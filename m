@@ -2,62 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4MFPDtxjnWksPQQAu9opvQ
+	id sLPaL4FlnWlgPQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:39:56 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:46:57 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6F1A183DE3
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:39:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EA1B183F10
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:46:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1C610E504;
-	Tue, 24 Feb 2026 08:39:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9023810E50F;
+	Tue, 24 Feb 2026 08:46:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmWnc2cy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ObJIGLNy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70A6B10E504;
- Tue, 24 Feb 2026 08:39:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 96FF710E50D;
+ Tue, 24 Feb 2026 08:46:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771922393; x=1803458393;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=M1EfgSvb1bQqWg3xZKIqJqK3buXxyFujIFlziayWl/A=;
- b=XmWnc2cyhrnOIIQwtF7ZIGWw1wfzayNZ6VCf8hOnqy5O2YqcTv0lStDS
- Q8b/F9u5MTGEgfJIQkrTSnAYlsEHD2s1Wq1r0mYZvXMFf5Dx96EB4EuPd
- L302uCPipVJCnuM6r+4OrmMsRiA45eQIVuHmUdOArhQug7jsG7XC8x2d1
- B9tn322TtDwBmZ5Qg6+8/lrOwnEWUdryR8aniMPiYzmfHR0PSY9q7rSLs
- 3xOuqfpg1DLCVkYdq5pjwooY9p6gtef86bMZKnNA5qgUWvCQclhd0CFfX
- LRtVXMjSF0nYPc/9WN5KBMKWk1sPxM47toYIvAAgzp16Q7ybSZnY8y9Mv g==;
-X-CSE-ConnectionGUID: zEWzhn+YTg2MueM9ZMgxMg==
-X-CSE-MsgGUID: 9OijkUCTRr+NwjV1LRZJmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72995855"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="72995855"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 00:39:53 -0800
-X-CSE-ConnectionGUID: natRpWH1TneeGzw4e+vDPw==
-X-CSE-MsgGUID: SqqPs6m4T7Obv48/1wzGLA==
+ t=1771922812; x=1803458812;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=mC8qvVCYNbTNmPwaI2pxB6pVeY9u606ZxLM8jLwheIk=;
+ b=ObJIGLNyCdsB0OdwWFZWEGbS622gwHg+Q2449M831D4kFiuB+Z6EWD+N
+ mYIxiJ9CWZPM4c9R4Cfts1stH85Hes6cAcxyMBQl1ajt/tRccQWozDb3v
+ PnpFLRbcsPBZ1At5s77fKICZ++7U+4zKuAf4nyqicvVjBuzbqmFPm5TA4
+ wgolm3Ik5ENN8HfrI5mXDoG8x1zzfEYzwoCDSzhTwBkTa/8nnLPjF/+5H
+ +sfN8wrI9tnvbQNlmIL/GMoCHgLq/txl/tZxvFC+2zkDl00lUF5o7fWIY
+ 3eSimURWr7wogNhgPNVNOiUkk9KuZcYIbBd0gNfUSVK445/iOZXkoMV31 Q==;
+X-CSE-ConnectionGUID: HLA8YTiDSvuUd4GUby+ydw==
+X-CSE-MsgGUID: pZt+xWpbQOSCa4XG3uGovQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="76792553"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="76792553"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 00:46:51 -0800
+X-CSE-ConnectionGUID: C76SBAcoS92zNGeNJQ+3DQ==
+X-CSE-MsgGUID: lVFCN+uzQ3m4qHgaF62Flw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="214928028"
-Received: from bilal-nuc7i7bnh.iind.intel.com ([10.190.239.45])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 00:39:52 -0800
-From: Mohammed Bilal <mohammed.bilal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	Mohammed Bilal <mohammed.bilal@intel.com>
-Subject: [PATCH v1] drm/i915/debugfs: Add i915_extended_wakeup_timeout debugfs
- entry
-Date: Tue, 24 Feb 2026 14:07:34 +0530
-Message-ID: <20260224083734.2947885-1-mohammed.bilal@intel.com>
-X-Mailer: git-send-email 2.48.1
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="253567515"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.101])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 00:46:41 -0800
+Date: Tue, 24 Feb 2026 10:46:38 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, xaver.hugl@kde.org,
+ harry.wentland@amd.com, uma.shankar@intel.com,
+ louis.chauvet@bootlin.com, naveen1.kumar@intel.com,
+ ramya.krishna.yella@intel.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
+Message-ID: <aZ1lbnop84k4du6N@intel.com>
+References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
+ <1a4462b8-def9-4474-8382-6e99b7c8276d@intel.com>
+ <aZ1OIDsVfFvyHUK5@intel.com>
+ <5f04b5f1-744e-449e-9a45-00fd477256fc@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <5f04b5f1-744e-449e-9a45-00fd477256fc@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,9 +92,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [0.36 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.67)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
@@ -83,132 +102,141 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,kde.org,amd.com,bootlin.com,lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mohammed.bilal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: A6F1A183DE3
+	TO_DN_SOME(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 6EA1B183F10
 X-Rspamd-Action: no action
 
-Add debugfs interface to expose extended wakeup timeout information for
-DP connectors. This shows whether a retimer is present, the
-current mode (transparent vs non-transparent), and the wakeup timeout
-value in milliseconds.
-This helps verify whether the extended wakeup timeout is functioning
-as expected.
+On Tue, Feb 24, 2026 at 12:46:10PM +0530, Murthy, Arun R wrote:
+> On 24-02-2026 12:37, Ville Syrjälä wrote:
+> > On Mon, Feb 23, 2026 at 03:37:39PM +0530, Murthy, Arun R wrote:
+> >> Any other comments/feedback on this?
+> > Having random strings as uabi seems like a bad idea.
+> > How would you make sure those are never changed?
+> The requirement was to have a string for logging/debugging in the UMD 
+> logs and KMD/display to pass the verbose information.
+> 
+> Discussions around this.[1][2]
+> 
+> [1] https://hackmd.io/f3bDn3kyRUalLn4LbMfCVQ#Commit-Failure-Feedback
+> 
+> [2] https://patchwork.freedesktop.org/patch/666193/?series=152276&rev=1
 
-Signed-off-by: Mohammed Bilal <mohammed.bilal@intel.com>
----
- .../drm/i915/display/intel_display_debugfs.c  | 78 +++++++++++++++++++
- 1 file changed, 78 insertions(+)
+So the enum+obj_id thing there is perhaps the only thing that makes
+sense for compositors.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 2614c4863c87..292ee71643da 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -1310,6 +1310,78 @@ static const struct file_operations i915_joiner_fops = {
- 	.write = i915_joiner_write
- };
- 
-+static int i915_extended_wakeup_timeout_show(struct seq_file *m, void *data)
-+{
-+	struct intel_connector *connector = m->private;
-+	struct intel_display *display = to_intel_display(connector);
-+	struct intel_encoder *encoder = intel_attached_encoder(connector);
-+	struct intel_dp *intel_dp;
-+	bool retimer_present = false;
-+	bool transparent_mode = true;
-+	int wakeup_timeout_ms = 1;
-+	int lttpr_count;
-+	u8 val;
-+	int ret;
-+
-+	if (!encoder)
-+		return -ENODEV;
-+
-+	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
-+	if (ret)
-+		return ret;
-+	if (connector->base.status != connector_status_connected) {
-+		ret = -ENODEV;
-+		goto out;
-+	}
-+
-+	intel_dp = enc_to_intel_dp(encoder);
-+	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
-+	retimer_present = (lttpr_count > 0);
-+	transparent_mode = intel_dp_lttpr_transparent_mode_enabled(intel_dp);
-+
-+	if (transparent_mode) {
-+		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
-+					    DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST,
-+					    &val, 1);
-+		if (!ret) {
-+			static const u8 timeout_mapping[] = {
-+				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
-+				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
-+				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
-+				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_60_MS] = 60,
-+				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
-+				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
-+			};
-+
-+			if (val < ARRAY_SIZE(timeout_mapping) && timeout_mapping[val])
-+				wakeup_timeout_ms = timeout_mapping[val];
-+		}
-+	} else {
-+		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
-+					    DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
-+					    &val, 1);
-+
-+		if (!ret) {
-+
-+			int timeout_val = val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK;
-+
-+			wakeup_timeout_ms = timeout_val ? (timeout_val * 10) : 1;
-+		}
-+	}
-+
-+	if (ret)
-+		wakeup_timeout_ms = -1;
-+
-+	seq_printf(m, "retimer_present: %s\n", retimer_present ? "yes" : "no");
-+	seq_printf(m, "mode: %s\n", transparent_mode ? "transparent" : "non-transparent");
-+	seq_printf(m, "wakeup_timeout_ms: %d\n", wakeup_timeout_ms);
-+
-+out:
-+	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-+	return ret;
-+}
-+DEFINE_SHOW_ATTRIBUTE(i915_extended_wakeup_timeout);
-+
- /**
-  * intel_connector_debugfs_add - add i915 specific connector debugfs files
-  * @connector: pointer to a registered intel_connector
-@@ -1335,6 +1407,12 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
- 	intel_dp_link_training_debugfs_add(connector);
- 	intel_link_bw_connector_debugfs_add(connector);
- 
-+	if (DISPLAY_VER(display) >= 30 &&
-+	    connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) {
-+		debugfs_create_file("i915_extended_wakeup_timeout", 0444, root,
-+				    connector, &i915_extended_wakeup_timeout_fops);
-+	}
-+
- 	if (DISPLAY_VER(display) >= 11 &&
- 	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
- 	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
+Although I kinda doubt its actual usefulness to drive useful
+fallback logic because often the restrictions might be a combination
+of many things, and the kernel can only realistically report one of
+those things.
+
+Anyways, someone really needs to do the actual compositor
+implementation so that we could see how any of this would
+even work in practice.
+
+> Thanks and Regards,
+> Arun R Murthy
+> -------------------
+> 
+> >> Thanks and Regards,
+> >> Arun R Murthy
+> >> -------------------
+> >>
+> >> On 23-02-2026 14:45, Arun R Murthy wrote:
+> >>> EDITME: Imported from f20260210-atomic-v9-5-525c88fd2402@intel.com
+> >>>           Please review before sending.
+> >>>
+> >>> The series focuses on providing a user readable error value on a failure
+> >>> in drm_atomic_ioctl(). Usually -EINVAL is returned in most of the error
+> >>> cases and it is difficult for the user to decode the error and get to
+> >>> know the real cause for the error. If user gets to know the reason for
+> >>> the error then corrective measurements can be taken up.
+> >>>
+> >>> User will have to check for the capability
+> >>> DRM_CAP_ATOMIC_ERROR_REPORTING before using this feature so as to ensure
+> >>> that the driver supports failure reporting.
+> >>>
+> >>> TODO: driver specific error codes are to be added and will be done in
+> >>> the follow-up patches.
+> >>>
+> >>> TODO: Once the series is merged the element 'reserved' used for sending
+> >>> the failure code in struct drm_mode_atomic is to changed to err_code.
+> >>>
+> >>> The IGT related changes are pushed for review @
+> >>> https://patchwork.freedesktop.org/series/153330/
+> >>>
+> >>> [RFC] changes for libdrm pushed for review @
+> >>> https://gitlab.freedesktop.org/mesa/libdrm/-/merge_requests/450
+> >>>
+> >>>       To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> >>>       To: suraj.kandpal@intel.com>
+> >>>       To: Maxime Ripard <mripard@kernel.org>
+> >>>       To: Thomas Zimmermann <tzimmermann@suse.de>
+> >>>       To: David Airlie <airlied@gmail.com>
+> >>>       To: Simona Vetter <simona@ffwll.ch>
+> >>>       To: Jani Nikula <jani.nikula@linux.intel.com>
+> >>>       To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> >>>       To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> >>>       To: Tvrtko Ursulin <tursulin@ursulin.net>
+> >>>       To: xaver.hugl@kde.org
+> >>>       To: harry.wentland@amd.com
+> >>>       To: uma.shankar@intel.com
+> >>>       To: louis.chauvet@bootlin.com
+> >>>       To: naveen1.kumar@intel.com
+> >>>       To: ramya.krishna.yella@intel.com
+> >>>       Cc: dri-devel@lists.freedesktop.org 
+> >>>       Cc: intel-gfx@lists.freedesktop.org
+> >>>       Cc: intel-xe@lists.freedesktop.org
+> >>>       Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> >>>
+> >>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> >>> ---
+> >>> Changes in v9:
+> >>> - EDITME: describe what is new in this series revision.
+> >>> - EDITME: use bulletpoints and terse descriptions.
+> >>> - Link to v8: https://lore.kernel.org/r/20260129-atomic-v8-0-4cb7b0faa051@intel.com
+> >>>
+> >>> ---
+> >>> Arun R Murthy (7):
+> >>>         drm: Define user readable error codes for atomic ioctl
+> >>>         drm/atomic: Add error_code element in atomic_state
+> >>>         drm/atomic: Call complete_signaling only if prepare_signaling is done
+> >>>         drm/atomic: Allocate atomic_state at the beginning of atomic_ioctl
+> >>>         drm/atomic: Return user readable error in atomic_ioctl
+> >>>         drm/i915/display: Error codes for async flip failures
+> >>>         drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
+> >>>
+> >>>    drivers/gpu/drm/drm_atomic.c                 | 31 ++++++++++
+> >>>    drivers/gpu/drm/drm_atomic_uapi.c            | 89 ++++++++++++++++++++--------
+> >>>    drivers/gpu/drm/drm_ioctl.c                  |  3 +
+> >>>    drivers/gpu/drm/i915/display/intel_display.c | 25 ++++----
+> >>>    include/drm/drm_atomic.h                     | 10 ++++
+> >>>    include/uapi/drm/drm.h                       |  7 +++
+> >>>    include/uapi/drm/drm_mode.h                  | 37 ++++++++++++
+> >>>    7 files changed, 165 insertions(+), 37 deletions(-)
+> >>> ---
+> >>> base-commit: cec43d5c2696af219fc2ef71dd7e93db48c80f66
+> >>> change-id: 20250728-atomic-c9713fd357e4
+> >>>
+> >>> Best regards,
+
 -- 
-2.48.1
-
+Ville Syrjälä
+Intel
