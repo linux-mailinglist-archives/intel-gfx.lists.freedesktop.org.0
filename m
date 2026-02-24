@@ -2,68 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8C7eJV3hnWnpSQQAu9opvQ
+	id KMmJKl3lnWlDSgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 18:35:25 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 18:52:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36EF018A972
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 18:35:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCA8518AC37
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 18:52:28 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 327D010E604;
-	Tue, 24 Feb 2026 17:35:21 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JCOdYrY4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id C34FC10E5FD;
+	Tue, 24 Feb 2026 17:52:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C701910E5FD;
- Tue, 24 Feb 2026 17:35:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771954520; x=1803490520;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to:content-transfer-encoding;
- bh=fnV3r4YK1Ig0XxD2ADAkkc5HjoyaC8z3j4q1npYtEO4=;
- b=JCOdYrY4WRZPVb1Co7GO07WOQK9wpvy1Uvq2Uo1pG+Ii5qEPaqU9eZsE
- 7RvVeQk30pDrQZ+N+zo6gS7oBapEZkApjTVg2Za1qCv54/MsSMEmpx1Nh
- fVE2GmCktXNSQMDgFIlNf7hIAJ7NiERzTkKfhgKlz0yNhnuHyIkobLkwp
- MaKqfz0dWsZa3nsdd3V9kJXEQ2NXnTrvpSLT6ka6bgohevQhpdMNxU5PC
- Z4prWI8Wymk7d7gdRYLb1L2ccluigfvothaS2PJjsNdzhHTWBfAHtuXlv
- TfLDCSRhXe57qldWq584oA13CmrR9OuFoZlcS1jPb1ajHZvGIqv+y0Pgp g==;
-X-CSE-ConnectionGUID: 4qcb5MT4Tyed27sWiD8ljg==
-X-CSE-MsgGUID: CcR2/608Q3aIK98DIEN7OQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73020625"
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="73020625"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 09:35:19 -0800
-X-CSE-ConnectionGUID: 2YIkFaFySR+pvVypz8kiPA==
-X-CSE-MsgGUID: hUNFEdcjSDu9+L48VEgDpg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,309,1763452800"; d="scan'208";a="214182552"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO [10.245.244.173])
- ([10.245.244.173])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 09:35:17 -0800
-Message-ID: <76588674-affb-478e-8a4a-35e7cf94f58f@intel.com>
-Date: Tue, 24 Feb 2026 17:35:15 +0000
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC99310E5FD;
+ Tue, 24 Feb 2026 17:52:25 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============4582602408349249616=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] drm/buddy: Improve offset-aligned allocation
- handling
-To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
- christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com
-References: <20260217113900.10675-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Language: en-GB
-From: Matthew Auld <matthew.auld@intel.com>
-In-Reply-To: <20260217113900.10675-1-Arunpravin.PaneerSelvam@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/gem=3A_Explicitl?=
+ =?utf-8?q?y_return_error_value_from_eb=5Frelocate_helpers_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonathan Cavitt" <jonathan.cavitt@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Feb 2026 17:52:25 -0000
+Message-ID: <177195554594.281933.16300640511877183974@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260224170024.10514-2-jonathan.cavitt@intel.com>
+In-Reply-To: <20260224170024.10514-2-jonathan.cavitt@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,135 +42,336 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[matthew.auld@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 36EF018A972
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.206];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: BCA8518AC37
 X-Rspamd-Action: no action
 
-On 17/02/2026 11:38, Arunpravin Paneer Selvam wrote:
-> Large alignment requests previously forced the buddy allocator to search by
-> alignment order, which often caused higher-order free blocks to be split even
-> when a suitably aligned smaller region already existed within them. This led
-> to excessive fragmentation, especially for workloads requesting small sizes
-> with large alignment constraints.
-> 
-> This change prioritizes the requested allocation size during the search and
-> uses an augmented RB-tree field (subtree_max_alignment) to efficiently locate
-> free blocks that satisfy both size and offset-alignment requirements. As a
-> result, the allocator can directly select an aligned sub-region without
-> splitting larger blocks unnecessarily.
-> 
-> A practical example is the VKCTS test
-> dEQP-VK.memory.allocation.basic.size_8KiB.reverse.count_4000, which repeatedly
-> allocates 8 KiB buffers with a 256 KiB alignment. Previously, such allocations
-> caused large blocks to be split aggressively, despite smaller aligned regions
-> being sufficient. With this change, those aligned regions are reused directly,
-> significantly reducing fragmentation.
-> 
-> This improvement is visible in the amdgpu VRAM buddy allocator state
-> (/sys/kernel/debug/dri/1/amdgpu_vram_mm). After the change, higher-order blocks
-> are preserved and the number of low-order fragments is substantially reduced.
-> 
-> Before:
->    order- 5 free: 1936 MiB, blocks: 15490
->    order- 4 free:  967 MiB, blocks: 15486
->    order- 3 free:  483 MiB, blocks: 15485
->    order- 2 free:  241 MiB, blocks: 15486
->    order- 1 free:  241 MiB, blocks: 30948
-> 
-> After:
->    order- 5 free:  493 MiB, blocks:  3941
->    order- 4 free:  246 MiB, blocks:  3943
->    order- 3 free:  123 MiB, blocks:  4101
->    order- 2 free:   61 MiB, blocks:  4101
->    order- 1 free:   61 MiB, blocks:  8018
-> 
-> By avoiding unnecessary splits, this change improves allocator efficiency and
-> helps maintain larger contiguous free regions under heavy offset-aligned
-> allocation workloads.
-> 
-> v2:(Matthew)
->    - Update augmented information along the path to the inserted node.
-> 
-> v3:
->    - Move the patch to gpu/buddy.c file.
-> 
-> v4:(Matthew)
->    - Use the helper instead of calling _ffs directly
->    - Remove gpu_buddy_block_order(block) >= order check and drop order
->    - Drop !node check as all callers handle this already
->    - Return larger than any other possible alignment for __ffs64(0)
->    - Replace __ffs with __ffs64
-> 
-> Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-> Suggested-by: Christian König <christian.koenig@amd.com>
-> ---
->   drivers/gpu/buddy.c       | 275 +++++++++++++++++++++++++++++++-------
->   include/linux/gpu_buddy.h |   2 +
->   2 files changed, 232 insertions(+), 45 deletions(-)
-> 
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index 603c59a2013a..542131992763 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -14,6 +14,25 @@
->   
->   static struct kmem_cache *slab_blocks;
->   
-> +static unsigned int gpu_buddy_block_offset_alignment(struct gpu_buddy_block *block)
-> +{
-> +	u64 offset = gpu_buddy_block_offset(block);
-> +
-> +	if (!offset)
-> +		/*
-> +		 * __ffs64(0) is undefined; offset 0 is maximally aligned, so return
-> +		 * a value greater than any possible alignment.
-> +		 */
-> +		return 64 + 1;
-> +
-> +	return __ffs64(offset);
-> +}
-> +
-> +RB_DECLARE_CALLBACKS_MAX(static, gpu_buddy_augment_cb,
-> +			 struct gpu_buddy_block, rb,
-> +			 unsigned int, subtree_max_alignment,
-> +			 gpu_buddy_block_offset_alignment);
-> +
->   static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
->   					       struct gpu_buddy_block *parent,
->   					       unsigned int order,
-> @@ -31,6 +50,9 @@ static struct gpu_buddy_block *gpu_block_alloc(struct gpu_buddy *mm,
->   	block->header |= order;
->   	block->parent = parent;
->   
-> +	block->subtree_max_alignment =
-> +		gpu_buddy_block_offset_alignment(block);
-> +
+--===============4582602408349249616==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I think we can drop this now?
+== Series Details ==
 
+Series: drm/i915/gem: Explicitly return error value from eb_relocate helpers (rev3)
+URL   : https://patchwork.freedesktop.org/series/161167/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_18022 -> Patchwork_161167v3
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_161167v3 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_161167v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/index.html
+
+Participating hosts (43 -> 41)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_161167v3:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-3:
+    - bat-arls-5:         [PASS][1] -> [DMESG-WARN][2] +4 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-3.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-3.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_161167v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@evict:
+    - bat-arls-5:         [PASS][3] -> [DMESG-FAIL][4] ([i915#15738])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@i915_selftest@live@evict.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@i915_selftest@live@evict.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - bat-arls-5:         [PASS][5] -> [INCOMPLETE][6] ([i915#15738]) +1 other test incomplete
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@i915_selftest@live@gem_contexts.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@sanitycheck:
+    - bat-arls-5:         [PASS][7] -> [DMESG-WARN][8] ([i915#15738]) +35 other tests dmesg-warn
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@i915_selftest@live@sanitycheck.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@i915_selftest@live@sanitycheck.html
+
+  
+#### Possible fixes ####
+
+  * igt@fbdev@eof:
+    - bat-jsl-5:          [SKIP][9] ([i915#15755]) -> [PASS][10] +3 other tests pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@fbdev@eof.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@fbdev@eof.html
+
+  * igt@fbdev@info:
+    - bat-jsl-5:          [SKIP][11] ([i915#1849]) -> [PASS][12]
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@fbdev@info.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@fbdev@info.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - bat-jsl-5:          [SKIP][15] ([i915#15754]) -> [PASS][16] +3 other tests pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_frontbuffer_tracking@basic:
+    - bat-jsl-5:          [SKIP][17] ([i915#15756]) -> [PASS][18]
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_frontbuffer_tracking@basic.html
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_frontbuffer_tracking@basic.html
+
+  * igt@kms_pipe_crc_basic@nonblocking-crc:
+    - bat-jsl-5:          [SKIP][19] ([i915#11190]) -> [PASS][20] +13 other tests pass
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
+   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_pipe_crc_basic@nonblocking-crc.html
+
+  * igt@prime_vgem@basic-fence-flip:
+    - bat-jsl-5:          [SKIP][21] -> [PASS][22]
+   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@prime_vgem@basic-fence-flip.html
+   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@prime_vgem@basic-fence-flip.html
+
+  
+#### Warnings ####
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-jsl-5:          [SKIP][23] ([i915#11190]) -> [SKIP][24] ([i915#4103]) +1 other test skip
+   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-jsl-5:          [SKIP][25] ([i915#11190]) -> [SKIP][26] ([i915#3555] / [i915#9886])
+   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_dsc@dsc-basic.html
+   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_dsc@dsc-basic.html
+
+  
+  [i915#11190]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11190
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#15738]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15738
+  [i915#15754]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15754
+  [i915#15755]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15755
+  [i915#15756]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15756
+  [i915#1849]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849
+  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
+  [i915#9886]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18022 -> Patchwork_161167v3
+
+  CI-20190529: 20190529
+  CI_DRM_18022: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8765: 8765
+  Patchwork_161167v3: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/index.html
+
+--===============4582602408349249616==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gem: Explicitly return error value from eb_relocate helpers (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161167/">https://patchwork.freedesktop.org/series/161167/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18022 -&gt; Patchwork_161167v3</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_161167v3 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_161167v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/index.html</p>
+<h2>Participating hosts (43 -&gt; 41)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_161167v3:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-3:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-3.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@kms_pipe_crc_basic@hang-read-crc@pipe-b-dp-3.html">DMESG-WARN</a> +4 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_161167v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@evict:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@i915_selftest@live@evict.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@i915_selftest@live@evict.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15738">i915#15738</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@i915_selftest@live@gem_contexts.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15738">i915#15738</a>) +1 other test incomplete</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-5/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-5/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15738">i915#15738</a>) +35 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@fbdev@eof:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@fbdev@eof.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15755">i915#15755</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@fbdev@eof.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@fbdev@info:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@fbdev@info.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1849">i915#1849</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@fbdev@info.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_flip@basic-flip-vs-wf_vblank.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15754">i915#15754</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +3 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_frontbuffer_tracking@basic:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_frontbuffer_tracking@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15756">i915#15756</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_frontbuffer_tracking@basic.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pipe_crc_basic@nonblocking-crc:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11190">i915#11190</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_pipe_crc_basic@nonblocking-crc.html">PASS</a> +13 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-flip:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@prime_vgem@basic-fence-flip.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@prime_vgem@basic-fence-flip.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11190">i915#11190</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-jsl-5/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11190">i915#11190</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161167v3/bat-jsl-5/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9886">i915#9886</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18022 -&gt; Patchwork_161167v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18022: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8765: 8765<br />
+  Patchwork_161167v3: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============4582602408349249616==--
