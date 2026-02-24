@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8AWKB4LRnWn4SAQAu9opvQ
+	id SLTaAN/YnWk0SQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 17:27:46 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 17:59:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6D449189CB4
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 17:27:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3EB6718A325
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 17:59:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F85B10E5CF;
-	Tue, 24 Feb 2026 16:27:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4B7F10E5EB;
+	Tue, 24 Feb 2026 16:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="cfiQt0He";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="66Bbl3q0";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="lnzJEWV5";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="J7lyvhNv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C9D010E5CF;
- Tue, 24 Feb 2026 16:27:42 +0000 (UTC)
-Date: Tue, 24 Feb 2026 17:27:03 +0100
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B97810E5E8;
+ Tue, 24 Feb 2026 16:59:06 +0000 (UTC)
+Date: Tue, 24 Feb 2026 17:59:03 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1771950424;
+ s=2020; t=1771952344;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=An2SQY23Mr6grh1u+6lgyPcn0Zz3R+IhJ6v+DJueH1Q=;
- b=cfiQt0He8yYtaUTvGLsnMwDTKjcxz2M15npsQrismFviaM2Zr2aGwgYfS2x3dugsgtvNzw
- 85zy0TZTbM5wsuy6+mwyPn8EIxpHRQkJtifJR4lqdu6htkTOpuFkmE6gmO8PqiC4jiXAdl
- K1vt8D+0Dri9FetxquT+xkOLXYqqvh+Gnqh4Ptt5kWONxCLoFbSHDRYJbvFZdoI83F9Ea3
- lvrqJmKHOdqttkEQk0rgLVgU0K3GazpxePyLYVKzJ6sDv7OVRgBIJsJjYs3H25ORmI6mz8
- hL+U1pU0dXpzaX0aHhajkSFTdCiPwNHTIZzVsWaPq2cXpZ0+TYDYPbJMYRwAWQ==
+ bh=6Iy7ZEO55Jhhl31ZvbYVjantUPH52WNb/3cgiUFVx5I=;
+ b=lnzJEWV5mu7cDRXITe5q4AvyphtfzSvJwT/0379YgIYtVOvqpoqd7Drhqi3PJJKkeK9r9p
+ FtGyKAlqeE7Dpv6Xo2LvTPY0BwjWYaao4ydd78DQiJsEafcbG+4pi5pxVcFwjrDUmA4T4B
+ EVIYGp5Vt68qmKUbXupmVdss2frhTQwu52Becc+agtFWApgYqjhlX0EVJTZ3VzLn+a8MES
+ dgJCQMGyWiILwHz9xdxfJnJsW0jTGSqKtKP8WVHM/VqwQXlmJE1I+wNV7CxTw+GcNF7XK1
+ xnRIr+HKgxjdmPkmwpWRN/wnEF2QiW8TWNs3ty5UlhhLY+c6bKeqA3qk0a9Smg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1771950424;
+ s=2020e; t=1771952344;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=An2SQY23Mr6grh1u+6lgyPcn0Zz3R+IhJ6v+DJueH1Q=;
- b=66Bbl3q008upA/iOrHg032B+K6rOfOyFXHc0FRThzHwlVEik9P3aWvxJCzirbZ67pCTLox
- w3hzNXhtyJ/t/+Aw==
+ bh=6Iy7ZEO55Jhhl31ZvbYVjantUPH52WNb/3cgiUFVx5I=;
+ b=J7lyvhNvXOl1NGoA1Ee/0QYdZ0Coz4zSeS0uPmrfAKFwb+apDoDo8nxc/z1RpKhqRODlf2
+ +qM+3vQ7i/Dp9+Dg==
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 To: Maarten Lankhorst <dev@lankhorst.se>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org
 Subject: Re: [i915-rt v6 00/24] drm/i915/display: All patches to make
  PREEMPT_RT work on i915 + xe.
-Message-ID: <20260224162703.Q_taYjEC@linutronix.de>
+Message-ID: <20260224165903.2mn24oQy@linutronix.de>
 References: <20260220083657.28815-26-dev@lankhorst.se>
+ <20260224162703.Q_taYjEC@linutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260220083657.28815-26-dev@lankhorst.se>
+In-Reply-To: <20260224162703.Q_taYjEC@linutronix.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,119 +97,68 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linutronix.de:mid,linutronix.de:dkim]
-X-Rspamd-Queue-Id: 6D449189CB4
+X-Rspamd-Queue-Id: 3EB6718A325
 X-Rspamd-Action: no action
 
-On 2026-02-20 09:36:58 [+0100], Maarten Lankhorst wrote:
-> New version, new approach!
+On 2026-02-24 17:27:03 [+0100], To Maarten Lankhorst wrote:
 >=20
-> A lot of the problems with PREEMPT_RT happen because of the current vblank
-> handling. The real solution is making it more deterministic.
->=20
-=E2=80=A6
+> There is nothing else, that popped up. So far no objections from my side
+> ;) Thank you.
 
-I applied this on top of drm-tip because nothing else I had around
-applied cleanly. I had to tell the selftests to use
-dma_fence_lock_irqsave() instead of spin_lock_irq() but I guess you are
-aware of it.
-I've been using it a bit and haven't noticed any big spikes while doing
-this and that. The help message for CONFIG_DRM_I915_SELFTEST refers to
-i915.selftest but this seems to have been replaced by
-{mock|live|perf}_selftests. Using mock_selftest I get
+different HW.
 
-| i915: Running i915_sw_fence_mock_selftests/test_timer
-| BUG: sleeping function called from invalid context at kernel/locking/spin=
-lock_rt.c:48
-| in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 4667, name: modpro=
-be
-| preempt_count: 1, expected: 0
-| RCU nest depth: 0, expected: 0
-| 1 lock held by modprobe/4667:
-|  #0: ffffd06703d0ba58 (&tf->fence/1){+.+.}-{2:2}, at: __i915_sw_fence_wak=
-e_up_all+0x122/0x1d0 [i915]
-| Preemption disabled at:
-| [<ffffffffc1a1990e>] test_timer+0x2e/0x230 [i915]
-^
-| CPU: 2 UID: 0 PID: 4667 Comm: modprobe Tainted: G     U              7.0.=
-0-rc1+ #1 PREEMPT_{RT,(lazy)}
-| Tainted: [U]=3DUSER
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
-BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock_nested+0x5d/0x200
-|  __i915_sw_fence_wake_up_all+0x122/0x1d0 [i915]
-|  i915_sw_fence_complete+0x3e/0x60 [i915]
-|  test_timer+0x42/0x230 [i915]
-^ has a preempt_disable()
+|  i915 0000:00:02.0: [drm] *ERROR* [CRTC:170:pipe A] flip_done timed out
+|  rcu: INFO: rcu_preempt self-detected stall on CPU
+|  rcu: 	7-....: (1 GPs behind) idle=3Dbc04/1/0x4000000000000000 softirq=3D=
+0/0 fqs=3D3084 rcuc=3D6502 jiffies(starved)
+|  rcu: 	(t=3D6500 jiffies g=3D46813 q=3D13322 ncpus=3D8)
+|  CPU: 7 UID: 0 PID: 12616 Comm: irq/182-i915 Tainted: G     U      E     =
+  7.0.0-rc1-lockdep+ #2 PREEMPT_{RT,(lazy)}
+|  Tainted: [U]=3DUSER, [E]=3DUNSIGNED_MODULE
+|  Hardware name: LENOVO 20TD00GLGE/20TD00GLGE, BIOS R1EET64W(1.64 ) 03/18/=
+2025
+|  RIP: 0010:intel_context_remove_breadcrumbs+0x14a/0x1a0 [i915]
+|  Code: 00 00 48 8b 50 70 b8 ff ff ff ff f0 41 0f c1 06 83 f8 01 74 58 85 =
+c0 7f 11 be 03 00 00 00 4c 89 f7 e8 fa 65 db e7 eb 02 f3 90 <41> 8b 84 24 a=
+0 00 00 00 85 c0 75 f2 48 83 c4 08 5b 5d 41 5c 41 5d
+|  RSP: 0018:ffffd2aa007d7c48 EFLAGS: 00000202
+|  RAX: 0000000000000001 RBX: 0000000000000001 RCX: 0000000000000001
+|  RDX: ffffffffc282ab20 RSI: ffffffffab33e33f RDI: 00000000ffffffff
+|  RBP: ffff8f1247401680 R08: 0000000000000001 R09: 0000000000000000
+|  R10: 0000000000000000 R11: 0000000000000000 R12: ffff8f104f3b6200
+|  R13: ffff8f12474017e0 R14: ffff8f1247401798 R15: ffff8f119e89e3a8
+|  FS:  0000000000000000(0000) GS:ffff8f140318b000(0000) knlGS:000000000000=
+0000
+|  CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+|  CR2: 00007f5409dc6000 CR3: 000000029ea56006 CR4: 0000000000f72ef0
+|  PKRU: 55555554
+|  Call Trace:
+|   <TASK>
+|   __execlists_schedule_out+0x1a6/0x340 [i915]
+|   execlists_submission_tasklet+0x178/0x1bb0 [i915]
+|   tasklet_action_common+0x1e9/0x410
+|   handle_softirqs.isra.0+0xbd/0x3f0
+|   __local_bh_enable_ip+0xe0/0x170
+|   irq_forced_thread_fn+0x41/0x50
+|   irq_thread+0x20d/0x360
+|   kthread+0x103/0x140
+|   ret_from_fork+0x34d/0x480
+|   ret_from_fork_asm+0x1a/0x30
+|   </TASK>
 
-|  __i915_subtests.cold+0x22/0x71 [i915]
-|  __run_selftests.cold+0x89/0xb8 [i915]
-|  i915_mock_selftests+0x30/0x70 [i915]
-|  i915_init+0x22/0x80 [i915]
-|
-| i915: Running i915_sw_fence_mock_selftests/test_dma_fence
-| Asynchronous wait on fence mock:mock:0 timed out (hint:fence_notify [i915=
-])
-| BUG: sleeping function called from invalid context at kernel/locking/spin=
-lock_rt.c:48
-| in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 86, name: ktimers/7
-| preempt_count: 0, expected: 0
-| RCU nest depth: 2, expected: 2
-| 6 locks held by ktimers/7/86:
-|  #0: ffffffff8f881700 (local_bh){.+.+}-{1:2}, at: __local_bh_disable_ip+0=
-x23/0x230
-|  #1: ffffffff8f909440 (rcu_read_lock){....}-{1:2}, at: __local_bh_disable=
-_ip+0x124/0x230
-|  #2: ffff8acf9751fce0 (&base->expiry_lock){+...}-{2:2}, at: timer_expire_=
-remote+0x37/0x60
-|  #3: ffffffff8f909440 (rcu_read_lock){....}-{1:2}, at: rt_spin_lock+0xf6/=
-0x200
-|  #4: ffffd0670031fc58 ((&timer->timer)){....}-{0:0}, at: call_timer_fn+0x=
-7e/0x280
-|  #5: ffff8acf857eb7d8 (fence/1){+.+.}-{2:2}, at: __i915_sw_fence_wake_up_=
-all+0x122/0x1d0 [i915]
-| irq event stamp: 729273
-| hardirqs last  enabled at (729272): [<ffffffff8f0df4dc>] _raw_spin_unlock=
-_irqrestore+0x4c/0x70
-| hardirqs last disabled at (729273): [<ffffffff8f0df162>] _raw_spin_lock_i=
-rq+0x52/0x60
+It seems to be always stuck in intel_context_remove_breadcrumbs.
 
-I guess this could be improved=E2=80=A6
+and top shows
+|     42 root      20   0       0      0      0 R 100,0   0,0   3:21.62 kso=
+ftirqd/2
+|  12616 root     -51   0       0      0      0 R 100,0   0,0   3:34.61 irq=
+/182-i915
 
-| softirqs last  enabled at (729252): [<ffffffff8e50da42>] run_ktimerd+0x72=
-/0xb0
-| softirqs last disabled at (729256): [<ffffffff8e50d9db>] run_ktimerd+0xb/=
-0xb0
-| CPU: 7 UID: 0 PID: 86 Comm: ktimers/7 Tainted: G     U  W           7.0.0=
--rc1+ #1 PREEMPT_{RT,(lazy)}
-| Tainted: [U]=3DUSER, [W]=3DWARN
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, =
-BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock_nested+0x5d/0x200
-|  __i915_sw_fence_wake_up_all+0x122/0x1d0 [i915]
-|  i915_sw_fence_complete+0x3e/0x60 [i915]
-|  call_timer_fn+0xaa/0x280
-|  __run_timers+0x1e8/0x340
-|  timer_expire_remote+0x47/0x60
-|  tmigr_handle_remote+0x381/0x500
-|  handle_softirqs.isra.0+0xc0/0x3f0
-|  run_ktimerd+0x50/0xb0
-|  smpboot_thread_fn+0x12d/0x2e0
-| i915: Running scatterlist
-| i915: Running scatterlist_mock_selftests/igt_sg_alloc
-| sg_alloc_table timed out
-| i915: Running scatterlist_mock_selftests/igt_sg_trim
-| i915_sg_trim timed out
-=E2=80=A6
+seems busy. The NMI backtrace reports always
+intel_context_remove_breadcrumbs() on CPU, don't see the irq handler.
 
-There is nothing else, that popped up. So far no objections from my side
-;) Thank you.
+This one I can reproduce while opening a browser and surfing a bit. Let
+me try step by step without lockdep, without RT and maybe just play
+v7.0-rc1 to figure out where this is from=E2=80=A6
 
 Sebastian
