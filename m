@@ -2,80 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IMN9HJSUnWnKQgQAu9opvQ
+	id 2JxPLPKYnWnwQgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 13:07:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 13:26:26 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C46AD186B86
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 13:07:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AAFD186EEB
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 13:26:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 392C010E242;
-	Tue, 24 Feb 2026 12:07:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A687410E581;
+	Tue, 24 Feb 2026 12:26:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DjKIgk58";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m8wrkI+t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1979110E57B;
- Tue, 24 Feb 2026 12:07:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E41010E56C;
+ Tue, 24 Feb 2026 12:26:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771934862; x=1803470862;
+ t=1771935981; x=1803471981;
  h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=/OcOQk2oMDzkyMxm6+Tl3gJyTTnWkvUgbDbcQuCM94M=;
- b=DjKIgk58posTioeTbgrPDsL+fneIKdyxydSjlIShoK+fP9OjckVmuOk5
- 0ZP7zoResXJeMD4kpcKoao5RIPUcVd0z6ETpvai7ugZ7gVxVufWKOursK
- uwD2Boi+xt00h/HxgfRFxOpC3wCT5pfgEeSjG3osRBU8TqOoMRKf9Gppj
- zlUoJSahr7oC5i8bdtkVsbp3Y28l0BHLTGndHsJbtsxysbKPsU95WkQYX
- SqunsXl/LBjFtMw5mKGc3I6VJhYfXTeGazJ9h9aa9jTDwlh9nPBRtQC7s
- QmdnKcWygDvT3kz6l0zlV3YLa+FHMgx+je7bmo+bC3QME2+0q2LsMPRJ2 g==;
-X-CSE-ConnectionGUID: HMQpTogqRq2kAFd6lvtt0g==
-X-CSE-MsgGUID: d8MLemKtS9GcO15EdizbVw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="60522553"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="60522553"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 04:07:42 -0800
-X-CSE-ConnectionGUID: YSx4KmV+QYyFfK7F7GsftA==
-X-CSE-MsgGUID: z1zvR7+XTzOZp4g0CqRNAg==
+ message-id:mime-version;
+ bh=apTYfIVjKcd/H6HYCxu6UdrBd5CxjlUBhHU1gt8ZlG0=;
+ b=m8wrkI+tK/+5YpMtKUT+zPkMjltXe2kIcJeplPLm/84mAteahj5O+VhQ
+ 8EeErWmtIso2FL6UBZLnUabko4xDz6CBrKg0y/dsBnU2kdbv6ooMgzB/t
+ MvYorE29raErY3Mos7mhiVnwPCNIhjA/VPeLZvYpbFua2QcD+rLKWL1yj
+ GR1G5eprt8+3Iqqc5HyaAA0nCmrpfyMQFC708j2r3tEMkKlXde796wT1f
+ sCIjoU1scVEmVoWhJa8wDN/rUu1POmtaa+Sc3lvO2Zlpr4meFjnWaz2SL
+ 8WQp2NPHjOetDqTpeyUdZRdvzCwqMyXabOI0CguyvxI3dMxE4UBaS5hcI g==;
+X-CSE-ConnectionGUID: nJvSLcjOTK6uVHC2xqFLqA==
+X-CSE-MsgGUID: BgeIHM28Q12FzR+pS3ZCrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="84405285"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="84405285"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 04:26:21 -0800
+X-CSE-ConnectionGUID: C4pHIvERRLGEEzqI4k9M4Q==
+X-CSE-MsgGUID: g8hZO8TKQ3OxNqnAhV0Utw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="246462074"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="213705129"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.20])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 04:07:35 -0800
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 04:26:18 -0800
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>, Ville =?utf-8?B?U3lyasOk?=
- =?utf-8?B?bMOk?= <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
- Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- xaver.hugl@kde.org, harry.wentland@amd.com, uma.shankar@intel.com,
- louis.chauvet@bootlin.com, naveen1.kumar@intel.com,
- ramya.krishna.yella@intel.com, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Suraj
- Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
-In-Reply-To: <1a39b9d5-ed57-4f6b-a4e2-9e26a2734c32@intel.com>
+To: Mohammed Bilal <mohammed.bilal@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com, Mohammed Bilal <mohammed.bilal@intel.com>
+Subject: Re: [PATCH v1] drm/i915/debugfs: Add i915_extended_wakeup_timeout
+ debugfs entry
+In-Reply-To: <20260224083734.2947885-1-mohammed.bilal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
- <1a4462b8-def9-4474-8382-6e99b7c8276d@intel.com>
- <aZ1OIDsVfFvyHUK5@intel.com>
- <5f04b5f1-744e-449e-9a45-00fd477256fc@intel.com>
- <aZ1lbnop84k4du6N@intel.com>
- <f155fae0285684108e92887e963358ea0ea158e9@intel.com>
- <1a39b9d5-ed57-4f6b-a4e2-9e26a2734c32@intel.com>
-Date: Tue, 24 Feb 2026 14:07:32 +0200
-Message-ID: <21d7edcec1b6fd767b066de4ec6734cea8992904@intel.com>
+References: <20260224083734.2947885-1-mohammed.bilal@intel.com>
+Date: Tue, 24 Feb 2026 14:26:16 +0200
+Message-ID: <cc5493055fc914166fc4b2395ca0370f53332a9d@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -91,25 +76,25 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,kde.org,amd.com,bootlin.com,lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
@@ -119,35 +104,126 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C46AD186B86
+X-Rspamd-Queue-Id: 0AAFD186EEB
 X-Rspamd-Action: no action
 
-On Tue, 24 Feb 2026, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
-> On 24-02-2026 14:58, Jani Nikula wrote:
->> On Tue, 24 Feb 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
-com> wrote:
->>> Although I kinda doubt its actual usefulness to drive useful
->>> fallback logic because often the restrictions might be a combination
->>> of many things, and the kernel can only realistically report one of
->>> those things.
->> Yeah, this is my main concern as well. The drivers will have to bail out
->> on the first issue they hit, whatever it is. The drivers may choose to
->> do the checks in different orders, resulting in different failure modes
->> for different drivers. And finally, accidentally making the order of the
->> checks part of the ABI contract is a scary prospect. Imagine user space
->> depending on certain checks happening first in order for the fallback
->> logic to work properly. Is it a kernel regression to change the order of
->> the checks then?
-> We are just reporting the 1st error that we see in the KMD and return=20
-> from there.
+On Tue, 24 Feb 2026, Mohammed Bilal <mohammed.bilal@intel.com> wrote:
+> Add debugfs interface to expose extended wakeup timeout information for
+> DP connectors. This shows whether a retimer is present, the
+> current mode (transparent vs non-transparent), and the wakeup timeout
+> value in milliseconds.
+> This helps verify whether the extended wakeup timeout is functioning
+> as expected.
+>
+> Signed-off-by: Mohammed Bilal <mohammed.bilal@intel.com>
 
-Yes. But we can't guarantee all drivers will report the *same* first
-error in the same circumstances. We can't guarantee we will maintain the
-*same* first error over time, we can't make that promise without
-painting ourselves in the corner wrt driver maintenance.
+Do we really have to add debugfs for things that are just DPCD reads? We
+have the DP AUX device exposed, and a userspace tool could read all of
+this through that. It's much more pain to maintain this in the kernel.
 
 BR,
 Jani.
 
---=20
+> ---
+>  .../drm/i915/display/intel_display_debugfs.c  | 78 +++++++++++++++++++
+>  1 file changed, 78 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> index 2614c4863c87..292ee71643da 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+> @@ -1310,6 +1310,78 @@ static const struct file_operations i915_joiner_fops = {
+>  	.write = i915_joiner_write
+>  };
+>  
+> +static int i915_extended_wakeup_timeout_show(struct seq_file *m, void *data)
+> +{
+> +	struct intel_connector *connector = m->private;
+> +	struct intel_display *display = to_intel_display(connector);
+> +	struct intel_encoder *encoder = intel_attached_encoder(connector);
+> +	struct intel_dp *intel_dp;
+> +	bool retimer_present = false;
+> +	bool transparent_mode = true;
+> +	int wakeup_timeout_ms = 1;
+> +	int lttpr_count;
+> +	u8 val;
+> +	int ret;
+> +
+> +	if (!encoder)
+> +		return -ENODEV;
+> +
+> +	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
+> +	if (ret)
+> +		return ret;
+> +	if (connector->base.status != connector_status_connected) {
+> +		ret = -ENODEV;
+> +		goto out;
+> +	}
+> +
+> +	intel_dp = enc_to_intel_dp(encoder);
+> +	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
+> +	retimer_present = (lttpr_count > 0);
+> +	transparent_mode = intel_dp_lttpr_transparent_mode_enabled(intel_dp);
+> +
+> +	if (transparent_mode) {
+> +		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
+> +					    DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST,
+> +					    &val, 1);
+> +		if (!ret) {
+> +			static const u8 timeout_mapping[] = {
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_60_MS] = 60,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
+> +				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
+> +			};
+> +
+> +			if (val < ARRAY_SIZE(timeout_mapping) && timeout_mapping[val])
+> +				wakeup_timeout_ms = timeout_mapping[val];
+> +		}
+> +	} else {
+> +		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
+> +					    DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
+> +					    &val, 1);
+> +
+> +		if (!ret) {
+> +
+> +			int timeout_val = val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK;
+> +
+> +			wakeup_timeout_ms = timeout_val ? (timeout_val * 10) : 1;
+> +		}
+> +	}
+> +
+> +	if (ret)
+> +		wakeup_timeout_ms = -1;
+> +
+> +	seq_printf(m, "retimer_present: %s\n", retimer_present ? "yes" : "no");
+> +	seq_printf(m, "mode: %s\n", transparent_mode ? "transparent" : "non-transparent");
+> +	seq_printf(m, "wakeup_timeout_ms: %d\n", wakeup_timeout_ms);
+> +
+> +out:
+> +	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+> +	return ret;
+> +}
+> +DEFINE_SHOW_ATTRIBUTE(i915_extended_wakeup_timeout);
+> +
+>  /**
+>   * intel_connector_debugfs_add - add i915 specific connector debugfs files
+>   * @connector: pointer to a registered intel_connector
+> @@ -1335,6 +1407,12 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+>  	intel_dp_link_training_debugfs_add(connector);
+>  	intel_link_bw_connector_debugfs_add(connector);
+>  
+> +	if (DISPLAY_VER(display) >= 30 &&
+> +	    connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) {
+> +		debugfs_create_file("i915_extended_wakeup_timeout", 0444, root,
+> +				    connector, &i915_extended_wakeup_timeout_fops);
+> +	}
+> +
+>  	if (DISPLAY_VER(display) >= 11 &&
+>  	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
+>  	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
+
+-- 
 Jani Nikula, Intel
