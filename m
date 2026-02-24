@@ -2,71 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDuGADxgnWkDPAQAu9opvQ
+	id 4MFPDtxjnWksPQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:24:28 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:39:56 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4C59D18399D
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:24:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6F1A183DE3
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 09:39:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92DA910E116;
-	Tue, 24 Feb 2026 08:24:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D1C610E504;
+	Tue, 24 Feb 2026 08:39:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VnMWEZRT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XmWnc2cy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6851710E116;
- Tue, 24 Feb 2026 08:24:23 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A6B10E504;
+ Tue, 24 Feb 2026 08:39:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771921463; x=1803457463;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=MB6sNbmDkVdIhwp5F8hEIQMkCi/XYyapE79eKPxdVmk=;
- b=VnMWEZRT4G8K9vs5MjnCph38Qsg9t5IhVxL3g58N7XTBbKKmZKAoL+rk
- 6U/HRFvB0wUtapLv18u80Ftm7zv3GtvWG+T/JLTmd0tzIQaLj+7AKJ6jv
- F608ymegzEJcdCsPo/s3xyU7NeuYN+7ce5JNhzjBsxYoUvcxG28/C547M
- UaM36L8QN2bJGikTFWcJIHm/hGXGkTJ0XVq2SQvLj8hRa6Zcc5zjAIhrq
- 0EopAVIN1yaIFF2X1/BbfQA3zYGIgzCM5SiMG35blrOgjB3DMA7Ex/2hE
- /4Z4RtzHW1d9wxxo/rkEP6JVKIG6X22t0iceh+4J0w4r1rRILNN2RFTd4 A==;
-X-CSE-ConnectionGUID: E+Lwk6hqTqS/1R3Dws8zMw==
-X-CSE-MsgGUID: ocw0PbA6TsWv2ldBTXE7RA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="73110201"
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="73110201"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 00:24:21 -0800
-X-CSE-ConnectionGUID: MruY8acQQGaRGcURpGh8Bw==
-X-CSE-MsgGUID: CKSl5HQwQImPYXcDGudSjQ==
+ t=1771922393; x=1803458393;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=M1EfgSvb1bQqWg3xZKIqJqK3buXxyFujIFlziayWl/A=;
+ b=XmWnc2cyhrnOIIQwtF7ZIGWw1wfzayNZ6VCf8hOnqy5O2YqcTv0lStDS
+ Q8b/F9u5MTGEgfJIQkrTSnAYlsEHD2s1Wq1r0mYZvXMFf5Dx96EB4EuPd
+ L302uCPipVJCnuM6r+4OrmMsRiA45eQIVuHmUdOArhQug7jsG7XC8x2d1
+ B9tn322TtDwBmZ5Qg6+8/lrOwnEWUdryR8aniMPiYzmfHR0PSY9q7rSLs
+ 3xOuqfpg1DLCVkYdq5pjwooY9p6gtef86bMZKnNA5qgUWvCQclhd0CFfX
+ LRtVXMjSF0nYPc/9WN5KBMKWk1sPxM47toYIvAAgzp16Q7ybSZnY8y9Mv g==;
+X-CSE-ConnectionGUID: zEWzhn+YTg2MueM9ZMgxMg==
+X-CSE-MsgGUID: 9OijkUCTRr+NwjV1LRZJmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72995855"
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="72995855"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 00:39:53 -0800
+X-CSE-ConnectionGUID: natRpWH1TneeGzw4e+vDPw==
+X-CSE-MsgGUID: SqqPs6m4T7Obv48/1wzGLA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="253562785"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.101])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Feb 2026 00:24:20 -0800
-Date: Tue, 24 Feb 2026 10:24:16 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com, suraj.kandpal@intel.com
-Subject: Re: [PATCH] drm/i915/dp: On DPCD init/caps wake the DPRx
-Message-ID: <aZ1gMHl2OC1tFiMd@intel.com>
-References: <20260219094326.34922-1-arun.r.murthy@intel.com>
- <aZcj08k5dG4lxRNE@intel.com>
- <2f2a155d-3b2c-4cf9-b8cd-8116fe84f85a@intel.com>
- <aZfQzqdS0koZQVwg@intel.com>
- <04797a87-79f5-445d-9dd8-4a798292156f@intel.com>
+X-IronPort-AV: E=Sophos;i="6.21,308,1763452800"; d="scan'208";a="214928028"
+Received: from bilal-nuc7i7bnh.iind.intel.com ([10.190.239.45])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Feb 2026 00:39:52 -0800
+From: Mohammed Bilal <mohammed.bilal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: suraj.kandpal@intel.com,
+	Mohammed Bilal <mohammed.bilal@intel.com>
+Subject: [PATCH v1] drm/i915/debugfs: Add i915_extended_wakeup_timeout debugfs
+ entry
+Date: Tue, 24 Feb 2026 14:07:34 +0530
+Message-ID: <20260224083734.2947885-1-mohammed.bilal@intel.com>
+X-Mailer: git-send-email 2.48.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <04797a87-79f5-445d-9dd8-4a798292156f@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,235 +73,142 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.36 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mohammed.bilal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4C59D18399D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: A6F1A183DE3
 X-Rspamd-Action: no action
 
-On Fri, Feb 20, 2026 at 10:31:10AM +0530, Murthy, Arun R wrote:
-> 
-> On 20-02-2026 08:41, Ville Syrjälä wrote:
-> > On Thu, Feb 19, 2026 at 08:42:49PM +0530, Murthy, Arun R wrote:
-> >> On 19-02-2026 20:23, Ville Syrjälä wrote:
-> >>> On Thu, Feb 19, 2026 at 03:13:26PM +0530, Arun R Murthy wrote:
-> >>>> Before reading the DPCD caps for eDP wake the sink device and for DP
-> >>>> after reading the lttpr caps and before reading the dpcd caps wake up
-> >>>> the sink device.
-> >>> Why?
-> >> Just to ensure that sink is awake.
-> >> On eDP init, as part of reading the DPCD caps during the AUX transaction
-> >> its sometimes observed that the AUX tx fails with timeout. In those
-> >> scenarios even if the retry is increased to 1000 AUX tx will not
-> >> succeed. May be that sink is in sleep or unknown state.
-> >> Spec DP2.1 sec 2.11.7.1.5.8 says if there is a NO REPLY for AUX tx this
-> >> can be due to illegal cmd or sink in low power state.
-> > That section is specifically about i2c-over-aux.
-> >
-> > Generally we have retries and appropriate timeouts to deal with AUX
-> > having to wake up from low power state.
-> We have tried this for 1000 times and didnt work.
+Add debugfs interface to expose extended wakeup timeout information for
+DP connectors. This shows whether a retimer is present, the
+current mode (transparent vs non-transparent), and the wakeup timeout
+value in milliseconds.
+This helps verify whether the extended wakeup timeout is functioning
+as expected.
 
-Tried it where/when/what? I still have no idea what you're trying to
-solve here.
+Signed-off-by: Mohammed Bilal <mohammed.bilal@intel.com>
+---
+ .../drm/i915/display/intel_display_debugfs.c  | 78 +++++++++++++++++++
+ 1 file changed, 78 insertions(+)
 
-> This leaves a question as to why not replying even after 1000 trials. 
-> Answer might be the command/request is wrong for which sink is not able 
-> to understand. But its not the case.
-> So the other thinking is "is the sink in low power mode" ?
-> In link training sections of the spec it says before starting link 
-> training ensure that sink is up and provides steps to wake the sink device.
-> Example: Section 3.5.2.16
-
-We already do that (intel_dp_set_power()). Though even then we seem
-to doing the OUI DPCD stuff before the D3->D0 transition. So that still
-assumes that any random DPCD accesses work while in D3. Why we do it in
-that order I have no idea.
-
-> 
-> > Although, I suppose we might consider switching to D0 for eg. duration
-> > of the detection to make sure none of the AUX transactions there take
-> > too long. That *might* make things a bit faster (but we'd need actual
-> > numbers to show that). And once we're done we should switch back to D3
-> > to save power.
-> I am doing that in the patch. I switch to D0 and then immediately switch 
-> to D3_AUX_ON state.
-
-D3_AUX_ON isn't even a thing in the older DP versions.
-
-> The reason for reading DP_SET_POWER in a loop is the spec says that DPTX 
-> should try for atleast 3 times as DPRX is waking from power saving state 
-> which takes 1ms.
-> Section 2.3.5 explains the DPRX AUX_CH state and says that DPRX shall 
-> avoid not issuing a reply when waking from a power saving state.
-> This section also explains the DPRX AUX_CH state on RESET. Usually this 
-> is the state on power on, and in the issue that we are referring to can 
-> also be co-related to this state as its during the kernel boot/driver 
-> probe.
-> >   Perhaps we could then also use a larger timeout just for
-> > the DP_SET_POWER AUX accesses,
-> spec mention on this time as 1ms, to allow sink to exit low power mode 
-> or AUX_CH Receiver is monitoring differential signals (sec 2.3.1.2)
-> > and all other AUX accesses could assume
-> > that the thing is awake and use a smaller timeout. Although the LTTPR
-> > mess probably means we can't actually reduce the timeouts :/
-> >
-> > Another slight snag in the current way of doing things is that IIRC
-> > we never put a device into D3 after the initial detection, unless we
-> > actually turned the main link on and off again. That's also something
-> > that could get fixed by always putting the device into D3 after
-> > detection. But to do that stuff safely we'd need some way to make sure
-> > nothing else (eg. the main link) requires the D0 at that time. So some
-> > kind of D0 vs. D3 reference counting scheme might be needed.
-> >
-> > I did consider implementing something like that years ago, but dealing
-> > with the reference counting seemed too messy at the time. And since I
-> > never implemented it I never measured it either. Perhaps things are a
-> > bit cleaner these days to make that easier. Dunno.
-> >
-> >> So in this patch we are trying to wake the sink device.
-> > Still the same question remains: Why? What *exactly* is the problem
-> > you're trying to solve here?
-> The problem we are trying to solve is that the AUX_CH Requested is not 
-> succeeding even after sending multiple AUX requests and fails to get a 
-> response from the AUX_CH Replier.
-> Increasing the retry count to a large value (1000) is also not helping.
-> 
-> In order to solve this went through the spec in detail, able to get some 
-> information scattered over multiple sections leaving us to a thinking 
-> that may be AUX_CH Replier in low power state. Also in link training 
-> section(3.5.2.16) it says source should wake the sink before starting 
-> link training.
-> 
-> Thanks and Regards,
-> Arun R Murthy
-> -------------------
-> 
-> >> Thanks and Regards,
-> >> Arun R Murthy
-> >> -------------------
-> >>
-> >>>> Closes: https://issues.redhat.com/browse/RHEL-120913
-> >>>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> >>>> ---
-> >>>>    drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++++++
-> >>>>    drivers/gpu/drm/i915/display/intel_dp.h       |  1 +
-> >>>>    .../drm/i915/display/intel_dp_link_training.c |  3 ++
-> >>>>    3 files changed, 45 insertions(+)
-> >>>>
-> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> >>>> index 454e6144ee4e..2fbb947e6cc8 100644
-> >>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> >>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> >>>> @@ -4705,6 +4705,45 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
-> >>>>    	intel_edp_set_data_override_rates(intel_dp);
-> >>>>    }
-> >>>>    
-> >>>> +void intel_dp_wake_sink(struct intel_dp *intel_dp)
-> >>>> +{
-> >>>> +	u8 value = 0;
-> >>>> +	int ret = 0, try = 0;
-> >>>> +
-> >>>> +	intel_dp_dpcd_set_probe(intel_dp, false);
-> >>>> +
-> >>>> +	/*
-> >>>> +	 * Wake the sink device
-> >>>> +	 * Spec DP2.1 section 2.3.1.2 if AUX CH is powered down by writing 0x02
-> >>>> +	 * to DP_SET_POWER dpcd reg, 1ms time would be required to wake it up
-> >>>> +	 */
-> >>>> +	while (try < 10 && ret < 0) {
-> >>>> +		ret = drm_dp_dpcd_readb(&intel_dp->aux, DP_SET_POWER, &value);
-> >>>> +		/*
-> >>>> +		 * If sink is in D3 then it may not respond to the AUX tx so
-> >>>> +		 * wake it up to D3_AUX_ON state
-> >>>> +		 */
-> >>>> +		if (value == DP_SET_POWER_D3) {
-> >>>> +			/* After setting to D0 need a min of 1ms to wake(Spec DP2.1 sec 2.3.1.2) */
-> >>>> +			drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
-> >>>> +					   DP_SET_POWER_D0);
-> >>>> +			fsleep(1000);
-> >>>> +			drm_dp_dpcd_writeb(&intel_dp->aux, DP_SET_POWER,
-> >>>> +					   DP_SET_POWER_D3_AUX_ON);
-> >>>> +			break;
-> >>>> +		} else if ((value == DP_SET_POWER_D0) ||
-> >>>> +			   (value == DP_SET_POWER_D3_AUX_ON)) {
-> >>>> +			/* if in D0 or D3_AUX_ON exit */
-> >>>> +			break;
-> >>>> +		}
-> >>>> +		/* Sink in D0 or even if read fails a minimum of 1ms is required to wake and respond */
-> >>>> +		fsleep(1000);
-> >>>> +		try++;
-> >>>> +	}
-> >>>> +
-> >>>> +	intel_dp_dpcd_set_probe(intel_dp, true);
-> >>>> +}
-> >>>> +
-> >>>>    static bool
-> >>>>    intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
-> >>>>    {
-> >>>> @@ -4713,6 +4752,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
-> >>>>    	/* this function is meant to be called only once */
-> >>>>    	drm_WARN_ON(display->drm, intel_dp->dpcd[DP_DPCD_REV] != 0);
-> >>>>    
-> >>>> +	intel_dp_wake_sink(intel_dp);
-> >>>> +
-> >>>>    	if (drm_dp_read_dpcd_caps(&intel_dp->aux, intel_dp->dpcd) != 0)
-> >>>>    		return false;
-> >>>>    
-> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> >>>> index b0bbd5981f57..3f16077c0cc7 100644
-> >>>> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> >>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> >>>> @@ -232,6 +232,7 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
-> >>>>    bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
-> >>>>    				     int hdisplay,
-> >>>>    				     int num_joined_pipes);
-> >>>> +void intel_dp_wake_sink(struct intel_dp *intel_dp);
-> >>>>    
-> >>>>    #define for_each_joiner_candidate(__connector, __mode, __num_joined_pipes) \
-> >>>>    	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
-> >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>>> index 54c585c59b90..cbb712ea9f60 100644
-> >>>> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> >>>> @@ -270,6 +270,9 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp)
-> >>>>    		lttpr_count = intel_dp_init_lttpr(intel_dp, dpcd);
-> >>>>    	}
-> >>>>    
-> >>>> +	/* After reading LTTPR wake up the sink before reading DPRX caps */
-> >>>> +	intel_dp_wake_sink(intel_dp);
-> >>>> +
-> >>>>    	/*
-> >>>>    	 * The DPTX shall read the DPRX caps after LTTPR detection, so re-read
-> >>>>    	 * it here.
-> >>>> -- 
-> >>>> 2.25.1
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index 2614c4863c87..292ee71643da 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -1310,6 +1310,78 @@ static const struct file_operations i915_joiner_fops = {
+ 	.write = i915_joiner_write
+ };
+ 
++static int i915_extended_wakeup_timeout_show(struct seq_file *m, void *data)
++{
++	struct intel_connector *connector = m->private;
++	struct intel_display *display = to_intel_display(connector);
++	struct intel_encoder *encoder = intel_attached_encoder(connector);
++	struct intel_dp *intel_dp;
++	bool retimer_present = false;
++	bool transparent_mode = true;
++	int wakeup_timeout_ms = 1;
++	int lttpr_count;
++	u8 val;
++	int ret;
++
++	if (!encoder)
++		return -ENODEV;
++
++	ret = drm_modeset_lock_single_interruptible(&display->drm->mode_config.connection_mutex);
++	if (ret)
++		return ret;
++	if (connector->base.status != connector_status_connected) {
++		ret = -ENODEV;
++		goto out;
++	}
++
++	intel_dp = enc_to_intel_dp(encoder);
++	lttpr_count = drm_dp_lttpr_count(intel_dp->lttpr_common_caps);
++	retimer_present = (lttpr_count > 0);
++	transparent_mode = intel_dp_lttpr_transparent_mode_enabled(intel_dp);
++
++	if (transparent_mode) {
++		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
++					    DP_EXTENDED_DPRX_SLEEP_WAKE_TIMEOUT_REQUEST,
++					    &val, 1);
++		if (!ret) {
++			static const u8 timeout_mapping[] = {
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_1_MS] = 1,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_20_MS] = 20,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_40_MS] = 40,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_60_MS] = 60,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS] = 80,
++				[DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS] = 100,
++			};
++
++			if (val < ARRAY_SIZE(timeout_mapping) && timeout_mapping[val])
++				wakeup_timeout_ms = timeout_mapping[val];
++		}
++	} else {
++		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
++					    DP_PHY_REPEATER_EXTENDED_WAIT_TIMEOUT,
++					    &val, 1);
++
++		if (!ret) {
++
++			int timeout_val = val & DP_EXTENDED_WAKE_TIMEOUT_REQUEST_MASK;
++
++			wakeup_timeout_ms = timeout_val ? (timeout_val * 10) : 1;
++		}
++	}
++
++	if (ret)
++		wakeup_timeout_ms = -1;
++
++	seq_printf(m, "retimer_present: %s\n", retimer_present ? "yes" : "no");
++	seq_printf(m, "mode: %s\n", transparent_mode ? "transparent" : "non-transparent");
++	seq_printf(m, "wakeup_timeout_ms: %d\n", wakeup_timeout_ms);
++
++out:
++	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
++	return ret;
++}
++DEFINE_SHOW_ATTRIBUTE(i915_extended_wakeup_timeout);
++
+ /**
+  * intel_connector_debugfs_add - add i915 specific connector debugfs files
+  * @connector: pointer to a registered intel_connector
+@@ -1335,6 +1407,12 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
+ 	intel_dp_link_training_debugfs_add(connector);
+ 	intel_link_bw_connector_debugfs_add(connector);
+ 
++	if (DISPLAY_VER(display) >= 30 &&
++	    connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) {
++		debugfs_create_file("i915_extended_wakeup_timeout", 0444, root,
++				    connector, &i915_extended_wakeup_timeout_fops);
++	}
++
+ 	if (DISPLAY_VER(display) >= 11 &&
+ 	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
+ 	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
 -- 
-Ville Syrjälä
-Intel
+2.48.1
+
