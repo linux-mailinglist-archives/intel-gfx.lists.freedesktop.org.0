@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHbtKOAenWnKMwQAu9opvQ
+	id oHEXMeQenWnKMwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 04:45:36 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 04:45:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78CC418176F
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 04:45:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AAC8181777
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 04:45:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C45B810E4A0;
-	Tue, 24 Feb 2026 03:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D186610E4A4;
+	Tue, 24 Feb 2026 03:45:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bGb3PqQu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c0GM7tb7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9AEE10E49D;
- Tue, 24 Feb 2026 03:45:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C70E10E49D;
+ Tue, 24 Feb 2026 03:45:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1771904734; x=1803440734;
+ t=1771904735; x=1803440735;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1LWfhxaLSYBJD0G7kjv3h4XLV9CuYMQ+AnaelnKrtN4=;
- b=bGb3PqQutsN0f/Y8lQUFC9QWZ+siHAktXNy7ATAYI4pj1aWdz28PiOeA
- awxid5bluTb1SzkIDK7T+4GGUWi7L1jrnV6tWUo67W/zpWoTg3AEMuwSf
- ZbTkHgz6ohM6zal67bbdbCJkKNBopA7rpVvQ2fJlcTHedM19PeDpe6u8n
- Z6HzwbfqMFDeRPsSKiG8gR+rNv1ISNNGoH6h167pmdYcqooncFWPszKjU
- 2VRli+m6FeyYBhzKsjg+4tfu/xwcTWhoh6bjcIgmFQGWXJgbfwmeDJI+g
- Bsl+CE9w8+evFdJBOr8mOgsS+nrhmhswvCffk9eUuq88HzUlSV9t06UA1 g==;
-X-CSE-ConnectionGUID: fKVQV91PQz2yQ+O7FxDdMg==
-X-CSE-MsgGUID: gZSOkXpmSb+QLxIIZt0+QQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72817858"
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="72817858"
+ bh=90cQgoKaqzDNQfgVFzrh3DJFmVNoNJYk6bNJjAc/LnY=;
+ b=c0GM7tb7Aup7HjhkEo4rVh0KX9sCKSK7qvpSsUDkTtPqeNkamSWS6o2Q
+ 49Rfa/IWwZqf22oXiQJau1nbkRuZAnC7dQys17Drxbmcl0v2TyF/BdwZR
+ rvGlfDE18LQ5jjAewlA4/Sfj6bod6mJEODTzpMDVVpZ0CpRrpbo71zxin
+ 1Efti1m6EFLwPMz2Wn3ILxzAyfdNiTf0c3vq10EjaespIME2aaMQ4rEt0
+ zWUqdVaTd3BzFFYMN/1Ku7pk1M4ahy83g6ha82AiaJgHNPXAApVmJG6w8
+ Dz1K9Z29+EDg5t3tih9FITW/CkXhKApGy9TzpKL+6Hu+WS11uN7CUHWaS A==;
+X-CSE-ConnectionGUID: MBfbdTw0QD+dKecs/x07VQ==
+X-CSE-MsgGUID: 7N2EDFxZQFy6mKxOIO21SQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11710"; a="72817861"
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="72817861"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Feb 2026 19:45:34 -0800
-X-CSE-ConnectionGUID: kEva6EBOTg6n4DVp07c5Zw==
-X-CSE-MsgGUID: +siFcq8cSkKwDL3Us4wIvw==
+ 23 Feb 2026 19:45:35 -0800
+X-CSE-ConnectionGUID: XcklmGEkR9ieXt6eknQtXg==
+X-CSE-MsgGUID: vLmJDQPgRQ6uWtJe/GV9Zw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="215010621"
+X-IronPort-AV: E=Sophos;i="6.21,307,1763452800"; d="scan'208";a="215010624"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa010.jf.intel.com with ESMTP; 23 Feb 2026 19:45:32 -0800
+ by orviesa010.jf.intel.com with ESMTP; 23 Feb 2026 19:45:33 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: arun.r.murthy@intel.com,
 	Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v3 2/8] drm/i915/backlight: Use intel_panel variable instead
- of intel_connector
-Date: Tue, 24 Feb 2026 09:15:20 +0530
-Message-Id: <20260224034526.2730130-3-suraj.kandpal@intel.com>
+Subject: [PATCH v3 3/8] drm/i915/backlight: Take luminance_set into account
+ for VESA backlight
+Date: Tue, 24 Feb 2026 09:15:21 +0530
+Message-Id: <20260224034526.2730130-4-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260224034526.2730130-1-suraj.kandpal@intel.com>
 References: <20260224034526.2730130-1-suraj.kandpal@intel.com>
@@ -98,32 +98,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 78CC418176F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 6AAC8181777
 X-Rspamd-Action: no action
 
-Use the intel_panel variable since it has already been declared and
-looks cleaner.
+When deciding what functions to enable to help control backlight we
+used to only check aux_enable. Now with PANEL_LUMINANCE_OVERRIDE in
+picture we need to take care that we do not enable PWM function if
+luminance_set is set.
 
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index c40ce310ad97..05d6d033f60b 100644
+index 05d6d033f60b..cb39696491a1 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -459,7 +459,7 @@ static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector, en
- 		return val / 1000;
- 	}
+@@ -486,7 +486,8 @@ intel_dp_aux_vesa_enable_backlight(const struct intel_crtc_state *crtc_state,
+ 	struct intel_panel *panel = &connector->panel;
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
  
--	return connector->panel.backlight.level;
-+	return panel->backlight.level;
- }
+-	if (!panel->backlight.edp.vesa.info.aux_enable) {
++	if (!(panel->backlight.edp.vesa.info.aux_enable ||
++	      panel->backlight.edp.vesa.info.luminance_set)) {
+ 		u32 pwm_level;
  
- static void
+ 		if (!panel->backlight.edp.vesa.info.aux_set)
 -- 
 2.34.1
 
