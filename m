@@ -2,34 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4K/5B0NpnWnBPwQAu9opvQ
+	id wOhzJHNpnWnBPwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 10:02:59 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 10:03:47 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69D4B1842F3
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 10:02:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41317184319
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Feb 2026 10:03:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BF87910E517;
-	Tue, 24 Feb 2026 09:02:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E627610E523;
+	Tue, 24 Feb 2026 09:03:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="EY0o15rc";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F18A110E517;
- Tue, 24 Feb 2026 09:02:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8321995998827919313=="
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E04A710E51F;
+ Tue, 24 Feb 2026 09:03:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id EE51A60145;
+ Tue, 24 Feb 2026 09:03:40 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 18FFBC116D0;
+ Tue, 24 Feb 2026 09:03:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1771923820;
+ bh=F66MvL8Ia7cFuSm/xIyKma6BJNqk8VAV91xYEJfDrVg=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=EY0o15rcNpeohXzKzHiT9RXLl5kMeW1SU7uJP4j5vdBXUrNRY6a5C+/OcAjng08uR
+ Rl6JkyaqdyQznw5IFlCczaP7rRSb8iAqrPn5VodGC6D/C1Z16P2UZmpcXL3BtEl3ze
+ uenoEDKvbAopscHS02nSxIqf2ehtR7UtybzG2acv1jVBwJ8MQ4Ic1c6hxkhoiQTLSk
+ IYPylxg2vmsIcFlPlIsnXjJ+NOrY3JIC5tvlamDn1EO6oFOtX7+PvItdWwHjUn9V7+
+ FWNB14pxkA4x1NJNVz5TN6leROlqjT+1c+FYkRVroInPqD8Vumk+fEYE2ycDMpBREq
+ E4Qsy059s6ndQ==
+Date: Tue, 24 Feb 2026 10:03:37 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, 
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, Andri Yngvason <andri@yngvason.is>, 
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v8 02/20] drm: Add new general DRM property "color format"
+Message-ID: <20260224-rustling-provocative-lemming-b2ed2f@houat>
+References: <20260216-color-format-v8-0-5722ce175dd5@collabora.com>
+ <20260216-color-format-v8-2-5722ce175dd5@collabora.com>
+ <3b5e5af4219671c5b4ffdcb09bd22679332244ac@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dp=3A_On_DPCD_in?=
- =?utf-8?q?it/caps_wake_the_DPRx_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 24 Feb 2026 09:02:37 -0000
-Message-ID: <177192375796.280486.7997336028388933806@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260219094326.34922-1-arun.r.murthy@intel.com>
-In-Reply-To: <20260219094326.34922-1-arun.r.murthy@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="36zlw2efj76bnmz3"
+Content-Disposition: inline
+In-Reply-To: <3b5e5af4219671c5b4ffdcb09bd22679332244ac@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,179 +87,195 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RSPAMD_URIBL_FAIL(0.00)[patchwork.freedesktop.org:query timed out,workarounds:query timed out,gitlab.freedesktop.org:query timed out];
-	TO_DN_SOME(0.00)[];
-	ASN_FAIL(0.00)[177.210.252.131.asn.rspamd.com:query timed out];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FREEMAIL_CC(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,yngvason.is,tuxedocomputers.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_SPAM(0.00)[0.567];
-	RSPAMD_EMAILBL_FAIL(0.00)[intel-gfx.lists.freedesktop.org:query timed out,i915_selftest.live:query timed out];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,workarounds:email,01.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url,lists.freedesktop.org:replyto]
-X-Rspamd-Queue-Id: 69D4B1842F3
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 41317184319
 X-Rspamd-Action: no action
 
---===============8321995998827919313==
-Content-Type: text/plain; charset="utf-8"
+
+--36zlw2efj76bnmz3
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v8 02/20] drm: Add new general DRM property "color format"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+Hi Jani,
 
-Series: drm/i915/dp: On DPCD init/caps wake the DPRx (rev2)
-URL   : https://patchwork.freedesktop.org/series/161818/
-State : success
+On Mon, Feb 23, 2026 at 06:17:23PM +0200, Jani Nikula wrote:
+> On Mon, 16 Feb 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com=
+> wrote:
+> > +/**
+> > + * enum drm_color_format_enum - color model description
+> > + *
+> > + * This enum is a high-level description of the component makeup of th=
+e image
+> > + * data. It says nothing about how the components are ordered or how m=
+any bits
+> > + * they take up (i.e. is unlike MEDIA_BUS_FMT\_ or DRM_FORMAT\_), but
+> > + * describes the type of components (Luminance-Chrominance vs. RGB) an=
+d the
+> > + * sub-sampling.
+> > + *
+> > + * &enum drm_color_format_enum makes statements about the same attribu=
+te of
+> > + * an image as the DRM_COLOR_FORMAT\_ bitfields do. Its purpose is to =
+inform
+> > + * choices made by display protocol specific implementations when it c=
+omes to
+> > + * translating it to e.g. &enum hdmi_colorspace or &enum dp_pixelforma=
+t, both
+> > + * of which also describe the same attribute of the image at the same =
+level of
+> > + * specificity.
+> > + *
+> > + * In precise terms, this enum describes a color model. It makes no st=
+atements
+> > + * about the primaries, gamma, or current phase of the moon used in co=
+nversion
+> > + * from one to the other. Furthermore, it also makes no statements abo=
+ut the
+> > + * order of components (e.g. RGB vs. BGR), their depth in bits, or the=
+ir binary
+> > + * packing.
+> > + */
+> > +enum drm_color_format_enum {
+>=20
+> The enum name should not have "enum" in it. That's just not a style
+> that's being used.
+>=20
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_AUTO: The choice of format is left up to the
+> > +	 * display protocol implementation. All implementations of the same
+> > +	 * display protocol (e.g. HDMI) are supposed to behave the same way,
+> > +	 * though display protocols may choose to behave differently compared=
+ to
+> > +	 * each other (e.g. HDMI's "AUTO" does not have to match DP's "AUTO").
+> > +	 *
+> > +	 * Implementations may rely on @DRM_COLOR_FORMAT_ENUM_AUTO to be fals=
+y.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_AUTO =3D 0,
+>=20
+> Ditto for the enumeration names, no ENUM in them please.
+>=20
+> > +
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_RGB444: Image components are encoded as RGB
+> > +	 * values of equal resolution.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_RGB444,
+> > +
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_YCBCR444: Image components are encoded as
+> > +	 * luminance and chrominance of equal resolution.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_YCBCR444,
+> > +
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_YCBCR422: Image components are encoded as
+> > +	 * luminance and chrominance with the chrominance components having h=
+alf
+> > +	 * the horizontal resolution.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_YCBCR422,
+> > +
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_YCBCR420: Image components are encoded as
+> > +	 * luminance and chrominance with the chrominance components having h=
+alf
+> > +	 * the horizontal and vertical resolution.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_YCBCR420,
+> > +
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_NUM: The number of valid color format values
+> > +	 * in this enum. Itself not a valid color format.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_NUM,
+> > +
+> > +	/**
+> > +	 * @DRM_COLOR_FORMAT_ENUM_INVALID: Error return value for conversion
+> > +	 * functions encountering unexpected inputs.
+> > +	 */
+> > +	DRM_COLOR_FORMAT_ENUM_INVALID =3D -EINVAL,
+>=20
+> Please don't hide negative error codes inside enums. If you need to
+> return one from a function, please return the negative error code
+> directly instead.
+>=20
+> > +};
+> > +
+> > +/*
+> > + * Constants for specifying bit masks for e.g. providing a list of sup=
+ported
+> > + * color formats as a single integer.
+> > + */
+> > +#define DRM_COLOR_FORMAT_RGB444		BIT(0)
+> > +#define DRM_COLOR_FORMAT_YCBCR444	BIT(1)
+> > +#define DRM_COLOR_FORMAT_YCBCR422	BIT(2)
+> > +#define DRM_COLOR_FORMAT_YCBCR420	BIT(3)
+>=20
+> I don't think we should define both enum and mask. One or the
+> other. Moreover, now you have two independent definitions for the same
+> thing, with nothing to ensure they keep matching. It's a bug waiting to
+> happen.
+>=20
+> I think the problem is that they were originally defined as bits even
+> though most places actually use them as single values only. It's
+> confusing. It would probably have been better to just use enums and
+> BIT(DRM_COLOR_FORMAT_*) where a mask is needed.
+>=20
+> Maybe that's what should be done as the first step anyway.
 
-== Summary ==
+I largely agree with the sentiment, and can extend it to the
+HDMI_COLORSPACE used in drm_connector_hdmi_state.
 
-CI Bug Log - changes from CI_DRM_18022 -> Patchwork_161818v2
-====================================================
+I've been working since yesterday on fixing that up to make Nicolas'
+life easier. I'll post it sometime today.
 
-Summary
--------
+Maxime
 
-  **SUCCESS**
+--36zlw2efj76bnmz3
+Content-Type: application/pgp-signature; name="signature.asc"
 
-  No regressions found.
+-----BEGIN PGP SIGNATURE-----
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/index.html
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaZ1paQAKCRAnX84Zoj2+
+dhj+AYCJxRTvr7o7P0A0JR9ICn8LRGV7zoUZ6CpFzW+1A23VNzGrMHwlhRmfhyfX
+tIXqxK4BgKdTepytTJVLjkyW62yHxmDFSIGl3zjxOOEMlvvU+yKc/TvA/GTUDyqw
+nc1ZuwKhKg==
+=86U0
+-----END PGP SIGNATURE-----
 
-Participating hosts (43 -> 41)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_161818v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-    - bat-mtlp-9:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18022 -> Patchwork_161818v2
-
-  CI-20190529: 20190529
-  CI_DRM_18022: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8765: 8765
-  Patchwork_161818v2: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/index.html
-
---===============8321995998827919313==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dp: On DPCD init/caps wake the DPRx (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161818/">https://patchwork.freedesktop.org/series/161818/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18022 -&gt; Patchwork_161818v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/index.html</p>
-<h2>Participating hosts (43 -&gt; 41)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_161818v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18022/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161818v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18022 -&gt; Patchwork_161818v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18022: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8765: 8765<br />
-  Patchwork_161818v2: 45a3045fc0dc46a893cb8bbe304afafd4120c904 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8321995998827919313==--
+--36zlw2efj76bnmz3--
