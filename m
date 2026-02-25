@@ -2,113 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uA8KGvWeoWl8ugQAu9opvQ
+	id sNTAKOz2nmm+YAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 14:41:09 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 14:19:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9DA81B7CAB
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 14:41:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 100D8197EA5
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 14:19:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B099410EB6B;
-	Fri, 27 Feb 2026 13:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1E6A10E6F2;
+	Wed, 25 Feb 2026 13:19:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ZRahhQ0+";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="PyYZaX+e";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com
- [209.85.221.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2206C10E355
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 13:01:21 +0000 (UTC)
-Received: by mail-vk1-f182.google.com with SMTP id
- 71dfb90a1353d-5688c221fd3so2876949e0c.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 05:01:21 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772024480; cv=none;
- d=google.com; s=arc-20240605;
- b=ePjFxlgLD4+f3PwNVmYjN0sHY/3BekdrCUZi7QQdw5n650dcrcbggbmKx0lL9zUsAr
- 7hVNiQkWKVmEnU/d8wc/Oskzaez6WfMcc4rvy6NaHhe/eoPVk39vtE1OqBz9g1Z/t2jc
- LZqpwbxEV/IrJ3Spx9o8O6TsHSycc7Ay+trCf2VZvD2B73spn03rx+QxHsEpt/+nNTXq
- plg/eQP3eOVNfWXKCOeKxLqN+1bh2NWUz6bIFY2MwUxf1zStnoUcfU5MBNDUKmghh7q4
- /gcIpAMqVRBTzt60goZEqOxA1CKcv5izyL/Y83sVKG6qxuoMSEbIESkitl0fkWgUuI9W
- VcNg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=Gdcuy9iaPpeMvNyOTp4uTsufvW1t3dj/0T0Nt9nk9jk=;
- fh=7Wd6blE6AybHQ8i5Zn2wUVaHD/Vs1CVMRe5hqLJPsWA=;
- b=kyZ2AmY3iTDwTf1YIaJYIUyQUgwukeihvfEwql+Hz1380GvPbQNafLWy0Y3fhNqmvl
- QxCDhoB4HCAhpfapR033EiJnFAXu9SXR78bCe+VEdXMQwiNKmKwCx5rcZ09nt8sWck9J
- AxsjdJ98qK37rzidBRnOKbPqy3Qmv1Rf7MeEceJ9y920EI6z6IcDl6QH0y8Tp5bwGeTd
- T17uqGu83FxINzyCv+WYWkHCMPY+BE4/dZsdxR/3Obxgnrj6Vg0Lm1IvzzaAlDZ5SVvu
- kamR4vMqyIInqtj6kPyuSVmA/c6eskBc/+6dSHtCeNeOOvFbvnT6XZ/OuLyLxtG9RSV+
- +t8A==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772024480; x=1772629280; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Gdcuy9iaPpeMvNyOTp4uTsufvW1t3dj/0T0Nt9nk9jk=;
- b=ZRahhQ0+ACEgMCM+crn02npT1O+ESZYwQTlGuex3CaUjMQwoHpnUw76iKcfmHuHmwr
- eRA+9eZHIY6ry9v+vTT7GjqiJJEvznOunKw7Mzak6Omux69OAtRm+ZM9v1HBI5WIxPF/
- 7DyJb/t2KHl1NHmHGozm1RDYhINkUQmaHWGQn2WQhtZGg7kUfwS/R1bLx8dRGkc8Cihi
- 5OTpWxYBKRh2VeSo9xg01dUapYr8i1H+bRfmkDyFyCIiqI/zJe6dcWtqOysF150zfQXJ
- dRY/g/5hU5PxaGsSCOiR1nwdB2697jEzWzXcpPMYlpRSE9a5EqZY3kfhjkBgFsxdU+P2
- bnAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772024480; x=1772629280;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Gdcuy9iaPpeMvNyOTp4uTsufvW1t3dj/0T0Nt9nk9jk=;
- b=P3kmcQE4tuK2tuuoR+pJAwFEz8kXQ06ishyciH7aaOSjo3zJHtVwkoE3NeltJwf/yd
- cPE89l2AxfVmhDs6EiE8aDEO4gLUFb5cMmV31+bnhpy4f449RKomvWxueaq02PtFsMeR
- GbHeVk5jXxLYqjkdcXu2gxaZPeT443Ev4honj/ensUmt9h1a8IZ7wSoqrwoZOnurRzI3
- eUyNV8u22omAftj1MOfrR48pipzJ9sII2/RDwb1CGsDeTf8C7PpLRyTrgS3CL7Ebb12u
- qhnkSVVMzmpx3wI+NWsxc/5GYXYGOMS6vrrVUOpGbJWv/c9A2Y4elkKaGwEHoJ1RhRC2
- XXfQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCV6U3+y+8VLPNdZLNHjIavrcX3YxYs7vY6I3J/5iZtByxNKWXMH7Hy/KHbEFxQQW2wwzuHx7nTFLqE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyW2DwPL5z06bRAw36ZW6L5X7og/0fttQCz49WAaQeND9xxU004
- lZ5k7EBT3cwE1p4tiCIXrXAvXEeT+vRe0LX5GNzScjm7G4C8r4csMxt9U9gdHwQ6PbiNx3Qug7U
- AFkbWtBA65mmoP7908v/Hy5yxouUkRY0=
-X-Gm-Gg: ATEYQzyPHPRrZXRvlZq/S4edmmoIP9ZjkL0kK1P2mu7HtTiG7QIJ5FD2Yf4DJgZdjhZ
- fWsGWEFiA7NXY0BzfZc5jxyssVof7ElzdKXA8zBW4Hjv1x9w90Kd1NBmbfekUIkSNexJlZDf5oa
- T+D9lK3b3s9+GCWXE/k5dbT/s6cyEGHApcHTwrQ8VcY0OUry5PuQBeMJSLDcqstAjD95KT75+Mp
- v7Kme65c8pTl6k0xqdIntqBHicDTIEaoVWowJXw84aQhl6JEvjh9qdxpI5G+HahEII+J+vjdA8+
- AYKGKz1GSE6aTEPCC6TFYB7E8j/q/EhBEt2FvM4SD9ZpNSHYWw6lVZksPbFn6Ar55Joi8P8uf5Q
- 1ZfoWSxwjAA==
-X-Received: by 2002:a05:6102:c48:b0:5fe:13bc:f13a with SMTP id
- ada2fe7eead31-5feb30f2f8bmr6491053137.36.1772024478156; Wed, 25 Feb 2026
- 05:01:18 -0800 (PST)
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE5110E355
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 13:19:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1772025574;
+ bh=UumSUaCwoKkC+CTynuEMgZFE/2h/iZQGftvdpvqprbU=;
+ h=From:To:Subject:Date:From;
+ b=PyYZaX+e1/uVN98N/q9dtrd/N8SNFNGHdvmCH0J+16xN+JwHu/P8yHIvYg2371jvS
+ u3yX7JErH/jggRLDUAmRc16a5YjAAp+7Z9J6J3u+5uOJJUXXAFTgRBGiGbJXWLazPQ
+ yJq7vrGIMaR4ggD+JXVYwoXS+3yzAQizAzE22MaVJVeAiV5tvdCIbIHChRykobOFzZ
+ jzqr6FPjpEPBLb1kFYi+/56sE/NAtW9/hkSSAHenLPQ7cS8wshfyeaY8q6ymlZKPqm
+ y+AYznomLOIDSdyXZZRniM5d1ydIzexaw1y4drgn5N4Ke63FRNlhMSLFLP7HDHifdk
+ dp42sHcVwJZTw==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-gfx@lists.freedesktop.org
+Subject: [i915-ci-only NO-REVIEW 00/25] Test PREEMPT_RT on i915 with selftest
+ fix.
+Date: Wed, 25 Feb 2026 14:19:04 +0100
+Message-ID: <20260225131931.60724-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
-References: <CAD0gVBsyzYNA6ydPwg9mJ9VQzYg4zPAi24JQ13-=0KtdbQ039A@mail.gmail.com>
- <CANiDSCsMVE7qAcjcjbjhYSMoyypkR5Nq-ZA-e=CJVY5CUGAG7Q@mail.gmail.com>
- <068a5363-de97-4d67-94a9-c9a2baed68b0@leemhuis.info>
-In-Reply-To: <068a5363-de97-4d67-94a9-c9a2baed68b0@leemhuis.info>
-From: =?UTF-8?B?QW5kcsOpcyBQw6lyZXo=?= <andres.f.perez@gmail.com>
-Date: Wed, 25 Feb 2026 13:00:55 +0000
-X-Gm-Features: AaiRm53w9VqfdeuFM3tO4rVuI77Og9DiXXronH78foC19VF0BgkGYZqa119Jqws
-Message-ID: <CAD0gVBvB6grt+Px_KV15eFFp8akuttEk6XY_r6L1yyuP75K+7A@mail.gmail.com>
-Subject: Re: [REGRESSION] Display freeze on VT switch back to X11 since v6.16
-To: Thorsten Leemhuis <regressions@leemhuis.info>
-Cc: Ricardo Ribalda <ribalda@chromium.org>, stable@vger.kernel.org, 
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans de Goede <hansg@kernel.org>, 
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-media@vger.kernel.org, linux-kernel@vger.kernel.org, 
- regressions@lists.linux.dev
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Fri, 27 Feb 2026 13:41:00 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -124,275 +54,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.64 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DATE_IN_PAST(1.00)[48];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:regressions@leemhuis.info,m:ribalda@chromium.org,m:stable@vger.kernel.org,m:laurent.pinchart@ideasonboard.com,m:hansg@kernel.org,m:mchehab@kernel.org,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-media@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:regressions@lists.linux.dev,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[andresfperez@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andresfperez@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[chromium.org,vger.kernel.org,ideasonboard.com,kernel.org,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,lists.linux.dev];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,leemhuis.info:email]
-X-Rspamd-Queue-Id: C9DA81B7CAB
+	ARC_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:mid,lankhorst.se:dkim];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_ONE(0.00)[1];
+	RCVD_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
+X-Rspamd-Queue-Id: 100D8197EA5
 X-Rspamd-Action: no action
 
-Thorsten,
+This is PURELY a CI run. I want to see what happens if I change
+the igt_atomic selftests to use a sleeping context instead. I do
+believe that there should be no functional change, and it's not
+necessary to convert the uncore lock to a raw spinlock.
 
-So I built vanilla 7.0-rc1. I also added these kernel params:
-    nvidia-drm.modeset=3D0
-    modprobe.blacklist=3Dnvidia,nvidia_drm,nvidia_modeset,nvidia_uvm
-    rd.driver.blacklist=3Dnvidia,nvidia_drm,nvidia_modeset,nvidia_uvm
+I hope I'm right!
 
-then I booted into it. this is what my nvidia loadout looks like on my
-usual 6.18.9:
-    + uname -r
-    6.18.9-arch1-2
-    + lsmod
-    + grep -E nvidia|nouveau
-    nvidia_drm            147456  3
-    nvidia_modeset       2121728  3 nvidia_drm
-    nvidia_uvm           2568192  0
-    nvidia              16306176  34 nvidia_uvm,nvidia_modeset
-    drm_ttm_helper         16384  2 nvidia_drm,xe
-    video                  81920  4 thinkpad_acpi,xe,i915,nvidia_modeset
-    + lspci -nnk
-    + grep -iA2 VGA\|3D\|Display
-    00:02.0 VGA compatible controller [0300]: Intel Corporation
-TigerLake-H GT1 [UHD Graphics] [8086:9a60] (rev 01)
-        Subsystem: Lenovo Device [17aa:22d8]
-        Kernel driver in use: i915
-    --
-    01:00.0 VGA compatible controller [0300]: NVIDIA Corporation
-TU117GLM [T1200 Laptop GPU] [10de:1fbc] (rev a1)
-        Subsystem: Lenovo Device [17aa:22d8]
-        Kernel driver in use: nvidia
+Maarten Lankhorst (20):
+  drm/vblank_work: Add methods to schedule vblank_work in 2 stages
+  drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
+  drm/intel/display: Make intel_crtc_arm_vblank_event static
+  drm/intel/display: Convert vblank event handling to 2-stage arming
+  drm/i915/display: Move vblank put until after critical section
+  drm/i915/display: Remove locking from intel_vblank_evade critical
+    section
+  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
+    too
+  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+  drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+  drm/i915/display: Make icl_dsi_frame_update use _fw too
+  drm/i915/display: Use intel_de_read/write_fw in colorops
+  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+  drm/i915/display: Make set_pipeconf use the fw variants
+  drm/i915/display: Fix intel_lpe_audio_irq_handler for PREEMPT-RT
+  drm/i915/gt: Fix selftests on PREEMPT_RT
+  drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+  drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
+  drm/i915: Use sleeping selftests for igt_atomic on PREEMPT_RT
+  PREEMPT_RT injection
+  FOR-CI: bump MAX_STACK_TRACE_ENTRIES
 
-and this is what it looked like in vanilla 7.0-rc1 with blacklisted nvidia:
-    + uname -r
-    7.0.0-rc1-dirty
-    + lsmod
-    + grep -E nvidia|nouveau
-    + lspci -nnk
-    + grep -iA2 VGA\|3D\|Display
-    00:02.0 VGA compatible controller [0300]: Intel Corporation
-TigerLake-H GT1 [UHD Graphics] [8086:9a60] (rev 01)
-        Subsystem: Lenovo Device [17aa:22d8]
-        Kernel driver in use: i915
-    --
-    01:00.0 VGA compatible controller [0300]: NVIDIA Corporation
-TU117GLM [T1200 Laptop GPU] [10de:1fbc] (rev a1)
-        Subsystem: Lenovo Device [17aa:22d8]
-        Kernel modules: nouveau
+Mike Galbraith (1):
+  drm/i915: Use preempt_disable/enable_rt() where recommended
 
-when I did a VT switch, it froze. my 90s failsafe triggered and rebooted me=
-.
-then I rebuilt 7.0-rc1 with my patch, rebooted with the same efi
-loader, and was able to perform VT switching without any issues.
+Sebastian Andrzej Siewior (4):
+  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
+    spin_lock()
+  drm/i915: Drop the irqs_disabled() check
+  drm/i915/guc: Consider also RCU depth in busy loop.
+  Revert "drm/i915: Depend on !PREEMPT_RT."
 
-Andr=C3=A9s
+ drivers/gpu/drm/drm_vblank.c                  |  61 +++++++++-
+ drivers/gpu/drm/drm_vblank_work.c             | 106 ++++++++++++----
+ drivers/gpu/drm/i915/Kconfig                  |   1 -
+ drivers/gpu/drm/i915/Kconfig.debug            |  15 ---
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |   4 -
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  86 ++++++-------
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   1 -
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
+ drivers/gpu/drm/i915/display/intel_display.c  |  46 +++----
+ .../gpu/drm/i915/display/intel_lpe_audio.c    |   2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  18 +--
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
+ drivers/gpu/drm/i915/i915_request.c           |   2 -
+ drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
+ drivers/gpu/drm/i915/selftests/igt_atomic.c   |   7 ++
+ drivers/gpu/drm/xe/Kconfig.debug              |   5 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
+ include/drm/drm_vblank.h                      |  14 ++-
+ include/drm/drm_vblank_work.h                 |  12 ++
+ kernel/Kconfig.preempt                        |   4 +-
+ lib/Kconfig.debug                             |   4 +-
+ 29 files changed, 383 insertions(+), 209 deletions(-)
 
-On Mon, Feb 23, 2026 at 8:26=E2=80=AFAM Thorsten Leemhuis
-<regressions@leemhuis.info> wrote:
->
->
->
-> On 2/23/26 09:10, Ricardo Ribalda wrote:
-> > Hi Andr=C3=A9s
-> >
-> > Thanks for doing the bisecting
-> >
-> > On Sun, 22 Feb 2026 at 22:56, Andr=C3=A9s P=C3=A9rez <andres.f.perez@gm=
-ail.com> wrote:
-> >>
-> >> # OVERVIEW
-> >>
-> >> Since kernel v6.16.1, switching from an X11 session to a text VT and b=
-ack
-> >> freezes the display on a ThinkPad P15 Gen 2. The system remains respon=
-sive
-> >> over SSH; only the display is frozen. Bisecting identified commit
-> >> d1b618e7954802fe ("media: uvcvideo: Do not turn on the camera for some
-> >> ioctls") as the trigger. Reverting the logic change in that commit
-> >> fixes VT switching
-> >> on v6.16.1, v6.17.9, and v6.18.9, but that is not an actual solution. =
-Wayland
-> >> compositors (e.g., river and sway) are not affected.
-> >>
-> >> Last good:  v6.15.9
-> >> First bad:  v6.16.1
-> >> Bisect result: d1b618e7954802fe media: uvcvideo: Do not turn on the
-> >> camera for some ioctls
-> >>
-> >> ## Hardware:   Lenovo ThinkPad P15 Gen 2i (20YQ0031US)
-> >> CPU:        Intel Core i7-11800H (Tiger Lake-H)
-> >> iGPU:        Intel UHD Graphics (TGL GT1)
-> >> dGPU:       NVIDIA T1200 (not involved in eDP output; driver: nvidia-o=
-pen)
->
-> Could this be caused by nvidia's own driver, even if it is not supposed
-> to be involved? Might be worth ruling out with a proper vanilla kernel,
-> ideally really fresh, so 7.0-rc1.
->
-> Ciao, Thorsten
->
-> >> Display:    15.6" 1920x1080 eDP, 10 bpc capable (EDID 1.4)
-> >> Webcam:     Integrated Camera on PCH xHCI (Bus 003 Port 004)
-> >> Firmware:   LENOVO N37ET61W (1.97)
-> >> OS:         Arch Linux, Nix home-manager, X11 + xmonad, no display man=
-ager
-> >>
-> >> ## Symptoms and reproduction steps:
-> >> 1. Boot, start X11 on tty1 (startx).
-> >> 2. Switch to tty2 (Ctrl+Alt+F2): works.
-> >> 3. Switch back to tty1 (Ctrl+Alt+F1): display freezes.
-> >>    - Frozen on the last frame shown before switching away.
-> >>    - System is fully responsive over SSH.
-> >>    - Other VTs switch normally between each other as long as X11 is
-> >> not active on them.
-> >>    - Killing X does not recover the display. A reboot is required.
-> >>
-> >> # DEBUG ANALYSIS
-> >>
-> >> On v6.16.1, the VT switch back to X triggers a full modeset due to pip=
-e
-> >> configuration mismatches detected by intel_pipe_config_compare:
-> >>
-> >> [drm:intel_pipe_config_compare] fastset requirement not met in pipe_bp=
-p
-> >>   (expected 30, found 24)
-> >> [drm:intel_pipe_config_compare] fastset requirement not met in dp_m_n
-> >>   (expected link 269484/524288, found link 336855/524288)
-> >> [drm:intel_pipe_config_compare] fastset requirement not met in dpll_hw=
-_state
-> >>   (expected cfgcr0: 0xe001a5, found cfgcr0: 0x1c2)
-> >> [drm:intel_pipe_config_compare] fastset requirement not met in port_cl=
-ock
-> >>   (expected 270000, found 216000)
-> >> [drm:intel_atomic_check] forcing full modeset
-> >>
-> >> On v6.15.9, the same VT switch shows no such messages.
-> >> no pipe_config_compare runs, no modeset, no freeze.
-> >>
-> >> # BISECT AND VERIFICATION
-> >>
-> >> The bisect converged on d1b618e7954802fe in the uvcvideo driver. This
-> >> commit adds a switch statement to uvc_v4l2_unlocked_ioctl that allows
-> >> certain V4L2 IOCTLS to call video_ioctl2 directly without first callin=
-g
-> >> uvc_pm_get/uvc_pm_put. Prior to this commit, all ioctls called uvc_pm_=
-get
-> >> before video_ioctl2.
-> >>
-> >> ## VT switching verification across kernel versions:
-> >>
-> >>   v6.12.74 arch pkg:   WORKS
-> >>   v6.15.9 arch pkg:    WORKS
-> >>   v6.15.9 from source: WORKS
-> >>   v6.16.1 with d1b618e reverted:     WORKS
-> >>   v6.17.9 with PM wrapping restored: WORKS
-> >>   v6.18.9 with PM wrapping restored: WORKS
-> >>
-> >>   v6.16.1 from source:  FREEZES
-> >>   v6.16.1 arch pkg:     FREEZES
-> >>   v6.17.9 arch pkg:     FREEZES
-> >>   v6.18.9 from source:  FREEZES
-> >>   v6.18.9 arch pkg:     FREEZES
-> >>
-> >> ## Things that do not eliminate the freeze
-> >>
-> >>   - module_blacklist=3Duvcvideo on boot
-> >>   - CONFIG_USB_VIDEO_CLASS=3Dn (compiled out)
-> >
-> > This is puzzling me a bit... You are saying that if you do not build
-> > the uvc driver, the freeze is still happening?
-> >
-> > Am I understanding this correctly?
-> >
-> >>   - i915.enable_psr=3D0
-> >>   - Bypassing intel_vrr_transcoder_enable/disable (no-op)
-> >>   - xrandr --output eDP-1 --set "max bpc" 10
-> >>   - Xorg config FBDepth 30 (No effect on pipe_bpp)
-> >>
-> >> ## Workaround patch
-> >>
-> >> Reverting the optimization from d1b618e to restore the unconditional
-> >> uvc_pm_get/put wrapping for all ioctls. This is not a proper fix.
-> >>
-> >> diff --git a/drivers/media/usb/uvc/uvc_v4l2.c b/drivers/media/usb/uvc/=
-uvc_v4l2.c
-> >> index 9e4a251eca88..15057b47ec4f 100644
-> >> --- a/drivers/media/usb/uvc/uvc_v4l2.c
-> >> +++ b/drivers/media/usb/uvc/uvc_v4l2.c
-> >> @@ -1199,33 +1199,12 @@ static long uvc_v4l2_unlocked_ioctl(struct fil=
-e *file,
-> >>   unsigned int converted_cmd =3D v4l2_translate_cmd(cmd);
-> >>   int ret;
-> >>
-> >> - /* The following IOCTLs need to turn on the camera. */
-> >> - switch (converted_cmd) {
-> >> - case UVCIOC_CTRL_MAP:
-> >> - case UVCIOC_CTRL_QUERY:
-> >> - case VIDIOC_G_CTRL:
-> >> - case VIDIOC_G_EXT_CTRLS:
-> >> - case VIDIOC_G_INPUT:
-> >> - case VIDIOC_QUERYCTRL:
-> >> - case VIDIOC_QUERYMENU:
-> >> - case VIDIOC_QUERY_EXT_CTRL:
-> >> - case VIDIOC_S_CTRL:
-> >> - case VIDIOC_S_EXT_CTRLS:
-> >> - case VIDIOC_S_FMT:
-> >> - case VIDIOC_S_INPUT:
-> >> - case VIDIOC_S_PARM:
-> >> - case VIDIOC_TRY_EXT_CTRLS:
-> >> - case VIDIOC_TRY_FMT:
-> >> - ret =3D uvc_pm_get(handle->stream->dev);
-> >> - if (ret)
-> >> - return ret;
-> >> - ret =3D video_ioctl2(file, cmd, arg);
-> >> - uvc_pm_put(handle->stream->dev);
-> >> + ret =3D uvc_pm_get(handle->stream->dev);
-> >> + if (ret)
-> >>   return ret;
-> >> - }
-> >> -
-> >> - /* The other IOCTLs can run with the camera off. */
-> >> - return video_ioctl2(file, cmd, arg);
-> >> + ret =3D video_ioctl2(file, cmd, arg);
-> >> + uvc_pm_put(handle->stream->dev);
-> >> + return ret;
-> >>  }
-> >>
-> >>  const struct v4l2_ioctl_ops uvc_ioctl_ops =3D {
-> >>
-> >> Andr=C3=A9s
-> >>
-> >
-> >
->
+-- 
+2.51.0
+
