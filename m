@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wOF+EfH2nmm+YAQAu9opvQ
+	id MIbtGvv2nmm+YAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 14:19:45 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 14:19:55 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 109E3197ED0
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 14:19:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 01D21197F10
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 14:19:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E78DD10E778;
-	Wed, 25 Feb 2026 13:19:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 520A810E784;
+	Wed, 25 Feb 2026 13:19:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="cohzePSX";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="l9MIZ0g6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FE0910E777
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 13:19:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29DED10E778
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Feb 2026 13:19:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1772025579;
- bh=JjuQlSBJtcs1s4HB+nRnZWBHE+LnWcQ0BbXuil+tJMU=;
+ s=default; t=1772025580;
+ bh=42xBVBf7/zSvWegansEjJVb5Z73iPoTA1jQMjnntQyE=;
  h=From:To:Subject:Date:In-Reply-To:References:From;
- b=cohzePSXX5Rp4sSWrjTNchTLkXaax+iN1TwuDaWY3ilPnpI12kc/170zkV5W8rhp5
- AiEn4/z9+wtgJmZuVJISUi6zvizysd0P+wKyGUZ/4TnaxIihVyAfzJn0ptPDaifUyw
- 7BGdHfJJwhqOIQf2DAFBqElBkEtArDsi33Vc+OXbjrNI+JtobCM/T2CYLZ2EvzqU7O
- 3j7ICXUpMozs5spGXU00ntbxrYmkhOy26LKNNOvnqWpkTmZrrjCm+Zoh1z0MfRrdtA
- MSlSanVRhCdtpdlG1o1NV9lRrYE/4SpxMN/WcSsq8BkzB0S/S5c17RFHuicuauJtAH
- 08bDHONJPy17w==
+ b=l9MIZ0g6K9ErlPx6yqLQKhWp86S0dEuCm3zpPQWW3eBJjTKQKctMoI2+mrI6Er/A8
+ osOy92Be5DSFhi9INtnMaumakNjA/cWHR1qK/w6+C+/xBOCrgtfg0qjLEg2ffS7Tq9
+ piH8GdfRAtaqE7GkuftexafSQySlZdDgkmPM61yiSv3En+cpJLqh38YjzSgYTQiSW7
+ D/1WAg+NZLDHek2GHiobYLbbdTfyZ32rk3IzOYA0iMEhXm3TFh2fNolkF4kjG7hRzV
+ 8/nITw2Ftf0kY88WROf1qIfRYphtzN+aXfaOoAccEt2K0rzEdmOb76n8bt30C75lFe
+ AucUA3MXLZ6nQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org
-Subject: [i915-ci-only NO-REVIEW 07/25] drm/i915/display: Handle vlv dsi
- workaround in scanline_in_safe_range too
-Date: Wed, 25 Feb 2026 14:19:11 +0100
-Message-ID: <20260225131931.60724-8-dev@lankhorst.se>
+Subject: [i915-ci-only NO-REVIEW 08/25] drm/i915: Use
+ preempt_disable/enable_rt() where recommended
+Date: Wed, 25 Feb 2026 14:19:12 +0100
+Message-ID: <20260225131931.60724-9-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260225131931.60724-1-dev@lankhorst.se>
 References: <20260225131931.60724-1-dev@lankhorst.se>
@@ -74,82 +74,135 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ARC_NA(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lankhorst.se:mid,lankhorst.se:dkim,lankhorst.se:email];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	TO_DN_NONE(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_ONE(0.00)[1];
 	RCVD_COUNT_TWO(0.00)[2];
 	DKIM_TRACE(0.00)[lankhorst.se:+]
-X-Rspamd-Queue-Id: 109E3197ED0
+X-Rspamd-Queue-Id: 01D21197F10
 X-Rspamd-Action: no action
 
-Now that we have a macro, might as well handle the VLV dsi workaround
-too.
+From: Mike Galbraith <umgwanakikbuti@gmail.com>
 
-This makes the vblank evasion code slightly more deterministic, by not
-looping with interrupts disabled.
+Mario Kleiner suggest in commit
+  ad3543ede630f ("drm/intel: Push get_scanout_position() timestamping into kms driver.")
 
+a spots where preemption should be disabled on PREEMPT_RT. The
+difference is that on PREEMPT_RT the intel_uncore::lock disables neither
+preemption nor interrupts and so region remains preemptible.
+
+The area covers only register reads and writes. The part that worries me
+is:
+- __intel_get_crtc_scanline() the worst case is 100us if no match is
+  found.
+
+- intel_crtc_scanlines_since_frame_timestamp() not sure how long this
+  may take in the worst case.
+
+It was in the RT queue for a while and nobody complained.
+Disable preemption on PREEPMPT_RT during timestamping.
+
+[bigeasy: patch description.]
+
+Cc: Mario Kleiner <mario.kleiner.de@gmail.com>
+Signed-off-by: Mike Galbraith <umgwanakikbuti@gmail.com>
+Signed-off-by: Thomas Gleixner <tglx@linutronix.de>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_vblank.c | 36 ++++++++++-----------
- 1 file changed, 18 insertions(+), 18 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vblank.c | 43 ++++++++++++++++-----
+ 1 file changed, 33 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 73676d8ccec8b..3eb6418723a84 100644
+index 3eb6418723a84..8263cefaa0fb6 100644
 --- a/drivers/gpu/drm/i915/display/intel_vblank.c
 +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -739,6 +739,24 @@ static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *sc
- 	else
- 		*scanline = __intel_get_crtc_scanline(evade->crtc);
- 
-+	/*
-+	 * On VLV/CHV DSI the scanline counter would appear to
-+	 * increment approx. 1/3 of a scanline before start of vblank.
-+	 * The registers still get latched at start of vblank however.
-+	 * This means we must not write any registers on the first
-+	 * line of vblank (since not the whole line is actually in
-+	 * vblank). And unfortunately we can't use the interrupt to
-+	 * wait here since it will fire too soon. We could use the
-+	 * frame start interrupt instead since it will fire after the
-+	 * critical scanline, but that would require more changes
-+	 * in the interrupt code. So for now we'll just do the nasty
-+	 * thing and poll for the bad scanline to pass us by.
-+	 *
-+	 * FIXME figure out if BXT+ DSI suffers from this as well
-+	 */
-+	if (evade->need_vlv_dsi_wa && *scanline == evade->vblank_start)
-+		return false;
+@@ -316,6 +316,20 @@ static void intel_vblank_section_exit(struct intel_display *display)
+ 	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+ 	spin_unlock(&uncore->lock);
+ }
 +
- 	return *scanline < evade->min || *scanline > evade->max;
++static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
++	__acquires(i915->uncore.lock)
++{
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_lock_irqsave(&uncore->lock, *flags);
++}
++
++static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
++	__releases(i915->uncore.lock)
++{
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	spin_unlock_irqrestore(&uncore->lock, flags);
++}
+ #else
+ static void intel_vblank_section_enter(struct intel_display *display)
+ {
+@@ -324,6 +338,17 @@ static void intel_vblank_section_enter(struct intel_display *display)
+ static void intel_vblank_section_exit(struct intel_display *display)
+ {
  }
++
++static void intel_vblank_section_enter_irqf(struct intel_display *display, unsigned long *flags)
++{
++	*flags = 0;
++}
++
++static void intel_vblank_section_exit_irqf(struct intel_display *display, unsigned long flags)
++{
++	if (flags)
++		return;
++}
+ #endif
  
-@@ -769,24 +787,6 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
- 		local_irq_disable();
- 	}
+ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+@@ -360,10 +385,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	 * timing critical raw register reads, potentially with
+ 	 * preemption disabled, so the following code must not block.
+ 	 */
+-	local_irq_save(irqflags);
+-	intel_vblank_section_enter(display);
++	intel_vblank_section_enter_irqf(display, &irqflags);
  
--	/*
--	 * On VLV/CHV DSI the scanline counter would appear to
--	 * increment approx. 1/3 of a scanline before start of vblank.
--	 * The registers still get latched at start of vblank however.
--	 * This means we must not write any registers on the first
--	 * line of vblank (since not the whole line is actually in
--	 * vblank). And unfortunately we can't use the interrupt to
--	 * wait here since it will fire too soon. We could use the
--	 * frame start interrupt instead since it will fire after the
--	 * critical scanline, but that would require more changes
--	 * in the interrupt code. So for now we'll just do the nasty
--	 * thing and poll for the bad scanline to pass us by.
--	 *
--	 * FIXME figure out if BXT+ DSI suffers from this as well
--	 */
--	while (evade->need_vlv_dsi_wa && scanline == evade->vblank_start)
--		scanline = intel_get_crtc_scanline(crtc);
--
- 	return scanline;
+-	/* preempt_disable_rt() should go right here in PREEMPT_RT patchset. */
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		preempt_disable();
+ 
+ 	/* Get optional system timestamp before query. */
+ 	if (stime)
+@@ -427,10 +452,10 @@ static bool i915_get_crtc_scanoutpos(struct drm_crtc *_crtc,
+ 	if (etime)
+ 		*etime = ktime_get();
+ 
+-	/* preempt_enable_rt() should go right here in PREEMPT_RT patchset. */
++	if (IS_ENABLED(CONFIG_PREEMPT_RT))
++		preempt_enable();
+ 
+-	intel_vblank_section_exit(display);
+-	local_irq_restore(irqflags);
++	intel_vblank_section_exit_irqf(display, irqflags);
+ 
+ 	/*
+ 	 * While in vblank, position will be negative
+@@ -468,13 +493,11 @@ int intel_get_crtc_scanline(struct intel_crtc *crtc)
+ 	unsigned long irqflags;
+ 	int position;
+ 
+-	local_irq_save(irqflags);
+-	intel_vblank_section_enter(display);
++	intel_vblank_section_enter_irqf(display, &irqflags);
+ 
+ 	position = __intel_get_crtc_scanline(crtc);
+ 
+-	intel_vblank_section_exit(display);
+-	local_irq_restore(irqflags);
++	intel_vblank_section_exit_irqf(display, irqflags);
+ 
+ 	return position;
  }
- 
 -- 
 2.51.0
 
