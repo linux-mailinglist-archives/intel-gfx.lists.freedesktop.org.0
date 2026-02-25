@@ -2,35 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0HxmC0W0nmnZWwQAu9opvQ
+	id KGglLPu/nmnsXAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 09:35:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 10:25:15 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 844E01944B8
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 09:35:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04C93194E7F
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 10:25:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DCD2B10E353;
-	Wed, 25 Feb 2026 08:35:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F0FAA10E064;
+	Wed, 25 Feb 2026 09:25:12 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="a6gcs/DZ";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CE3110E353;
- Wed, 25 Feb 2026 08:35:13 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============9063832167010582411=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7BFC610E064;
+ Wed, 25 Feb 2026 09:25:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772011511; x=1803547511;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=rMgjVD4GMsRX9ziLSps8kmQoitGnqhBrUnNKkSzdO5Y=;
+ b=a6gcs/DZrIEd1bncfgl8dRofzO9bJVPxTA/GKHpk4JGI3KfCSjwBxjlH
+ RsfvFLNTTGGz1pf5+5MmJZhNSz+CGdC0tfId0btwbptj+BWo5In88xlXR
+ CnVfGj1klnBmaab79co4VBDTXXMC0WntJEc94D2zeFkeRRKpyIPi+WHE1
+ d5ThPLYkMppE0BUFX4HNa6Ip1CzpNfzX3Q03QUgPYb6CShrjfWfHJAyZl
+ gWy41EENzISX78Y51f08jYhx0b/3Iql3KFhvcZdAtNMYHq/vAZzhVGZsa
+ oX3rVUqA4wRRN5wLJACk8fwPwuIhALz7rYrWFK2xkvFC5EvPD2oGew8UV w==;
+X-CSE-ConnectionGUID: 3LcL1GgqSF+ad7rgJUmyXA==
+X-CSE-MsgGUID: 5VruJvGqRQ+kXQKQ/CfiBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11711"; a="73115290"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="73115290"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 01:25:11 -0800
+X-CSE-ConnectionGUID: N3KGhzIGS3afP7PTcMA/dg==
+X-CSE-MsgGUID: 3UKWWixzQl6pWcpgZ6o6VA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="221178397"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.68])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 01:25:08 -0800
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: linux-rt-devel@lists.linux.dev, dri-devel@lists.freedesktop.org, Maarten
+ Lankhorst <dev@lankhorst.se>
+Subject: Re: [i915-rt v6 13/24] drm/i915/display: Use intel_de_write_fw in
+ intel_pipe_fastset
+In-Reply-To: <20260220083657.28815-39-dev@lankhorst.se>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260220083657.28815-26-dev@lankhorst.se>
+ <20260220083657.28815-39-dev@lankhorst.se>
+Date: Wed, 25 Feb 2026 11:25:05 +0200
+Message-ID: <4537cb8e981e2f49e1ba212237134dc5e812756e@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_series_starting_with_=5B1?=
- =?utf-8?q?/2=5D_drm/dp=3A_Add_definition_for_Panel_Replay_full-line_granula?=
- =?utf-8?q?rity?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Feb 2026 08:35:13 -0000
-Message-ID: <177200851335.284987.12844556830868026372@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260225074221.1744330-1-jouni.hogander@intel.com>
-In-Reply-To: <20260225074221.1744330-1-jouni.hogander@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -43,266 +75,250 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_SPAM(0.00)[0.147];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 844E01944B8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 04C93194E7F
 X-Rspamd-Action: no action
 
---===============9063832167010582411==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 20 Feb 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
+> intel_set_pipe_src_size(), hsw_set_linetime_wm(),
+> intel_cpu_transcoder_set_m1_n1() and intel_set_transcoder_timings_lrr()
+> are called from an atomic context on PREEMPT_RT, and should be using the
+> _fw functions.
 
-== Series Details ==
+Problem is, ~nobody knows when they should be using _fw anymore when
+they're all over the place. It'll get cargo culted.
 
-Series: series starting with [1/2] drm/dp: Add definition for Panel Replay full-line granularity
-URL   : https://patchwork.freedesktop.org/series/162122/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18041 -> Patchwork_162122v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_162122v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_162122v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/index.html
-
-Participating hosts (43 -> 40)
-------------------------------
-
-  Missing    (3): bat-dg2-13 bat-atsm-1 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_162122v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@gem_lmem_swapping@basic:
-    - bat-dg2-8:          [PASS][1] -> [ABORT][2] +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-dg2-8/igt@gem_lmem_swapping@basic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-8/igt@gem_lmem_swapping@basic.html
-
-  * igt@prime_vgem@basic-fence-mmap:
-    - fi-bsw-n3050:       [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/fi-bsw-n3050/igt@prime_vgem@basic-fence-mmap.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/fi-bsw-n3050/igt@prime_vgem@basic-fence-mmap.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_162122v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-rpls-4:         [PASS][5] -> [DMESG-WARN][6] ([i915#13400])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          NOTRUN -> [DMESG-FAIL][7] ([i915#12061]) +1 other test dmesg-fail
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-14:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [PASS][10] -> [DMESG-FAIL][11] ([i915#12061]) +1 other test dmesg-fail
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-dg2-9:          [ABORT][12] -> [PASS][13] +1 other test pass
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-dg2-9/igt@gem_lmem_swapping@parallel-random-engines.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-9/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@i915_selftest@live:
-    - bat-arlh-2:         [INCOMPLETE][14] ([i915#15707]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-arlh-2/igt@i915_selftest@live.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-arlh-2/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@client:
-    - bat-arlh-2:         [INCOMPLETE][16] -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-arlh-2/igt@i915_selftest@live@client.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-arlh-2/igt@i915_selftest@live@client.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
-  [i915#15707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15707
+BR,
+Jani.
 
 
-Build changes
--------------
+>
+> This likely prevents a deadlock on i915.
+>
+> Again noticed when trying to disable preemption in vblank evasion:
+> <3> BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
+> <3> in_atomic(): 1, irqs_disabled(): 0, non_block: 0, pid: 1505, name: kms_cursor_lega
+> <3> preempt_count: 1, expected: 0
+> <3> RCU nest depth: 0, expected: 0
+> <4> 4 locks held by kms_cursor_lega/1505:
+> <4>  #0: ffffc90003c6f988 (crtc_ww_class_acquire){+.+.}-{0:0}, at: drm_mode_atomic_ioctl+0x13b/0xe90
+> <4>  #1: ffffc90003c6f9b0 (crtc_ww_class_mutex){+.+.}-{3:3}, at: drm_mode_atomic_ioctl+0x13b/0xe90
+> <4>  #2: ffff888135b838b8 (&intel_dp->psr.lock){+.+.}-{3:3}, at: intel_psr_lock+0xc5/0xf0 [xe]
+> <4>  #3: ffff88812607bbc0 (&wl->lock){+.+.}-{2:2}, at: intel_dmc_wl_get+0x3c/0x140 [xe]
+> <4> CPU: 6 UID: 0 PID: 1505 Comm: kms_cursor_lega Tainted: G     U              6.18.0-rc3-lgci-xe-xe-pw-156729v1+ #1 PREEMPT_{RT,(lazy)}
+> <4> Tainted: [U]=USER
+> <4> Hardware name: Intel Corporation Panther Lake Client Platform/PTL-UH LP5 T3 RVP1, BIOS PTLPFWI1.R00.3383.D02.2509240621 09/24/2025
+> <4> Call Trace:
+> <4>  <TASK>
+> <4>  dump_stack_lvl+0xc1/0xf0
+> <4>  dump_stack+0x10/0x20
+> <4>  __might_resched+0x174/0x260
+> <4>  rt_spin_lock+0x63/0x200
+> <4>  ? intel_dmc_wl_get+0x3c/0x140 [xe]
+> <4>  intel_dmc_wl_get+0x3c/0x140 [xe]
+> <4>  intel_set_pipe_src_size+0x89/0xe0 [xe]
+> <4>  intel_update_crtc+0x3c1/0x950 [xe]
+> <4>  ? intel_pre_update_crtc+0x258/0x400 [xe]
+> <4>  skl_commit_modeset_enables+0x217/0x720 [xe]
+> <4>  intel_atomic_commit_tail+0xd4e/0x1af0 [xe]
+> <4>  ? lock_release+0xce/0x2a0
+> <4>  intel_atomic_commit+0x2e5/0x330 [xe]
+> <4>  ? intel_atomic_commit+0x2e5/0x330 [xe]
+> <4>  drm_atomic_commit+0xaf/0xf0
+> <4>  ? __pfx___drm_printfn_info+0x10/0x10
+> <4>  drm_mode_atomic_ioctl+0xbd5/0xe90
+> <4>  ? lock_acquire+0xc4/0x2e0
+> <4>  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
+> <4>  drm_ioctl_kernel+0xb6/0x120
+> <4>  drm_ioctl+0x2d7/0x5a0
+> <4>  ? __pfx_drm_mode_atomic_ioctl+0x10/0x10
+> <4>  ? rt_spin_unlock+0xa0/0x140
+> <4>  ? __pm_runtime_resume+0x53/0x90
+> <4>  xe_drm_ioctl+0x56/0x90 [xe]
+> <4>  __x64_sys_ioctl+0xa8/0x110
+> <4>  ? lock_acquire+0xc4/0x2e0
+> <4>  x64_sys_call+0x1144/0x26a0
+> <4>  do_syscall_64+0x93/0xae0
+> <4>  ? lock_release+0xce/0x2a0
+> <4>  ? __task_pid_nr_ns+0xd9/0x270
+> <4>  ? do_syscall_64+0x1b7/0xae0
+> <4>  ? find_held_lock+0x31/0x90
+> <4>  ? __task_pid_nr_ns+0xcf/0x270
+> <4>  ? __lock_acquire+0x43e/0x2860
+> <4>  ? __task_pid_nr_ns+0xd9/0x270
+> <4>  ? lock_acquire+0xc4/0x2e0
+> <4>  ? find_held_lock+0x31/0x90
+> <4>  ? __task_pid_nr_ns+0xcf/0x270
+> <4>  ? lock_release+0xce/0x2a0
+> <4>  ? __task_pid_nr_ns+0xd9/0x270
+> <4>  ? do_syscall_64+0x1b7/0xae0
+> <4>  ? do_syscall_64+0x1b7/0xae0
+> <4>  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+>
+> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c | 36 ++++++++++----------
+>  drivers/gpu/drm/i915/display/intel_vrr.c     | 18 +++++-----
+>  2 files changed, 27 insertions(+), 27 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index f224c9d7e0dfa..8fba2a8b6a6b5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -1607,9 +1607,9 @@ static void hsw_set_linetime_wm(const struct intel_crtc_state *crtc_state)
+>  	struct intel_display *display = to_intel_display(crtc_state);
+>  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>  
+> -	intel_de_write(display, WM_LINETIME(crtc->pipe),
+> -		       HSW_LINETIME(crtc_state->linetime) |
+> -		       HSW_IPS_LINETIME(crtc_state->ips_linetime));
+> +	intel_de_write_fw(display, WM_LINETIME(crtc->pipe),
+> +			  HSW_LINETIME(crtc_state->linetime) |
+> +			  HSW_IPS_LINETIME(crtc_state->ips_linetime));
+>  }
+>  
+>  static void hsw_set_frame_start_delay(const struct intel_crtc_state *crtc_state)
+> @@ -2606,14 +2606,14 @@ void intel_set_m_n(struct intel_display *display,
+>  		   i915_reg_t data_m_reg, i915_reg_t data_n_reg,
+>  		   i915_reg_t link_m_reg, i915_reg_t link_n_reg)
+>  {
+> -	intel_de_write(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
+> -	intel_de_write(display, data_n_reg, m_n->data_n);
+> -	intel_de_write(display, link_m_reg, m_n->link_m);
+> +	intel_de_write_fw(display, data_m_reg, TU_SIZE(m_n->tu) | m_n->data_m);
+> +	intel_de_write_fw(display, data_n_reg, m_n->data_n);
+> +	intel_de_write_fw(display, link_m_reg, m_n->link_m);
+>  	/*
+>  	 * On BDW+ writing LINK_N arms the double buffered update
+>  	 * of all the M/N registers, so it must be written last.
+>  	 */
+> -	intel_de_write(display, link_n_reg, m_n->link_n);
+> +	intel_de_write_fw(display, link_n_reg, m_n->link_n);
+>  }
+>  
+>  bool intel_cpu_transcoder_has_m2_n2(struct intel_display *display,
+> @@ -2800,9 +2800,9 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
+>  	}
+>  
+>  	if (DISPLAY_VER(display) >= 13) {
+> -		intel_de_write(display,
+> -			       TRANS_SET_CONTEXT_LATENCY(display, cpu_transcoder),
+> -			       crtc_state->set_context_latency);
+> +		intel_de_write_fw(display,
+> +				  TRANS_SET_CONTEXT_LATENCY(display, cpu_transcoder),
+> +				  crtc_state->set_context_latency);
+>  
+>  		/*
+>  		 * VBLANK_START not used by hw, just clear it
+> @@ -2818,9 +2818,9 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
+>  	 * The hardware actually ignores TRANS_VBLANK.VBLANK_END in DP mode.
+>  	 * But let's write it anyway to keep the state checker happy.
+>  	 */
+> -	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
+> -		       VBLANK_START(crtc_vblank_start - 1) |
+> -		       VBLANK_END(crtc_vblank_end - 1));
+> +	intel_de_write_fw(display, TRANS_VBLANK(display, cpu_transcoder),
+> +			  VBLANK_START(crtc_vblank_start - 1) |
+> +			  VBLANK_END(crtc_vblank_end - 1));
+>  	/*
+>  	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+>  	 * bits are not required. Since the support for these bits is going to
+> @@ -2834,9 +2834,9 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
+>  	 * The double buffer latch point for TRANS_VTOTAL
+>  	 * is the transcoder's undelayed vblank.
+>  	 */
+> -	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
+> -		       VACTIVE(crtc_vdisplay - 1) |
+> -		       VTOTAL(crtc_vtotal - 1));
+> +	intel_de_write_fw(display, TRANS_VTOTAL(display, cpu_transcoder),
+> +			  VACTIVE(crtc_vdisplay - 1) |
+> +			  VTOTAL(crtc_vtotal - 1));
+>  
+>  	intel_vrr_set_fixed_rr_timings(crtc_state);
+>  	intel_vrr_transcoder_enable(crtc_state);
+> @@ -2853,8 +2853,8 @@ static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state)
+>  	/* pipesrc controls the size that is scaled from, which should
+>  	 * always be the user's requested size.
+>  	 */
+> -	intel_de_write(display, PIPESRC(display, pipe),
+> -		       PIPESRC_WIDTH(width - 1) | PIPESRC_HEIGHT(height - 1));
+> +	intel_de_write_fw(display, PIPESRC(display, pipe),
+> +			  PIPESRC_WIDTH(width - 1) | PIPESRC_HEIGHT(height - 1));
+>  }
+>  
+>  static bool intel_pipe_is_interlaced(const struct intel_crtc_state *crtc_state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 00ca76dbdd6ce..128e19afc6c86 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -318,12 +318,12 @@ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
+>  	if (!intel_vrr_possible(crtc_state))
+>  		return;
+>  
+> -	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+> -		       intel_vrr_fixed_rr_hw_vmin(crtc_state) - 1);
+> -	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+> -		       intel_vrr_fixed_rr_hw_vmax(crtc_state) - 1);
+> -	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
+> -		       intel_vrr_fixed_rr_hw_flipline(crtc_state) - 1);
+> +	intel_de_write_fw(display, TRANS_VRR_VMIN(display, cpu_transcoder),
+> +			  intel_vrr_fixed_rr_hw_vmin(crtc_state) - 1);
+> +	intel_de_write_fw(display, TRANS_VRR_VMAX(display, cpu_transcoder),
+> +			  intel_vrr_fixed_rr_hw_vmax(crtc_state) - 1);
+> +	intel_de_write_fw(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
+> +			  intel_vrr_fixed_rr_hw_flipline(crtc_state) - 1);
+>  }
+>  
+>  static
+> @@ -896,8 +896,8 @@ static void intel_vrr_tg_enable(const struct intel_crtc_state *crtc_state,
+>  	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+>  	u32 vrr_ctl;
+>  
+> -	intel_de_write(display, TRANS_PUSH(display, cpu_transcoder),
+> -		       trans_vrr_push(crtc_state, false));
+> +	intel_de_write_fw(display, TRANS_PUSH(display, cpu_transcoder),
+> +			  trans_vrr_push(crtc_state, false));
+>  
+>  	vrr_ctl = VRR_CTL_VRR_ENABLE | trans_vrr_ctl(crtc_state);
+>  
+> @@ -909,7 +909,7 @@ static void intel_vrr_tg_enable(const struct intel_crtc_state *crtc_state,
+>  	if (cmrr_enable)
+>  		vrr_ctl |= VRR_CTL_CMRR_ENABLE;
+>  
+> -	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), vrr_ctl);
+> +	intel_de_write_fw(display, TRANS_VRR_CTL(display, cpu_transcoder), vrr_ctl);
+>  }
+>  
+>  static void intel_vrr_tg_disable(const struct intel_crtc_state *old_crtc_state)
 
-  * Linux: CI_DRM_18041 -> Patchwork_162122v1
-
-  CI-20190529: 20190529
-  CI_DRM_18041: 4a8ef58307bfc096873745fbb27d0bbc5454676d @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8770: 8770
-  Patchwork_162122v1: 4a8ef58307bfc096873745fbb27d0bbc5454676d @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/index.html
-
---===============9063832167010582411==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>series starting with [1/2] drm/dp: Add definition for Panel Replay full-line granularity</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162122/">https://patchwork.freedesktop.org/series/162122/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18041 -&gt; Patchwork_162122v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_162122v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_162122v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/index.html</p>
-<h2>Participating hosts (43 -&gt; 40)</h2>
-<p>Missing    (3): bat-dg2-13 bat-atsm-1 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_162122v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-dg2-8/igt@gem_lmem_swapping@basic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-8/igt@gem_lmem_swapping@basic.html">ABORT</a> +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-mmap:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/fi-bsw-n3050/igt@prime_vgem@basic-fence-mmap.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/fi-bsw-n3050/igt@prime_vgem@basic-fence-mmap.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_162122v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_hotunplug@unbind-rebind:</p>
-<ul>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-dg2-9/igt@gem_lmem_swapping@parallel-random-engines.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-dg2-9/igt@gem_lmem_swapping@parallel-random-engines.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-arlh-2/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15707">i915#15707</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-arlh-2/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@client:</p>
-<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18041/bat-arlh-2/igt@i915_selftest@live@client.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162122v1/bat-arlh-2/igt@i915_selftest@live@client.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18041 -&gt; Patchwork_162122v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18041: 4a8ef58307bfc096873745fbb27d0bbc5454676d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8770: 8770<br />
-  Patchwork_162122v1: 4a8ef58307bfc096873745fbb27d0bbc5454676d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============9063832167010582411==--
+-- 
+Jani Nikula, Intel
