@@ -2,66 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wEQFLSk4n2m5ZQQAu9opvQ
+	id eOagDys4n2m5ZQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:01 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:03 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FD2B19BE01
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA54819BE10
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 664D610E81A;
-	Wed, 25 Feb 2026 17:57:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E317710E7EF;
+	Wed, 25 Feb 2026 17:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8+18FZS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SuNLvM3F";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2539710E81D;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5B810E81D;
  Wed, 25 Feb 2026 17:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772042279; x=1803578279;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+k0T+8SMUGGVHG2/ySYpSmWDYN9a0AHBmT3/Z/TfOww=;
- b=D8+18FZSS2qsYwkFtVMpdKtFs+pSfyhn8wVxJP2xXvCaTmfFpk7vUZki
- uUA8YUXd59hrd95NkoXzdAkjny1ZLghG5rp814jld9NHxfWLET4ciFfZ1
- sNhKY7WVI6qHYJjRTF4ctEgUOrMDAgDkzJTZgkKtzFdnXMfbGXpWLGiw4
- tyoUV1EI3hY63mKdiD6bLXKIkNLtosjSsXR8zGRwIsM0WjcySPwGiqx/e
- XYDNS3PtEygL+7A+UDYO/ldR3gKuVFX1xlkejvPpM25Us8WZCl1yxiUmj
- YX0vGXPsOtqJxanuR0lVrYhlB4QsSYwpVjOaAEg8cwNSRD3+geM24lirz w==;
-X-CSE-ConnectionGUID: eZBPDVqqTPeuIijLwQ5XoA==
-X-CSE-MsgGUID: +/2ChLn/SiW4NH72IEiEWA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793836"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793836"
+ bh=kJv3c3rPwiRtffXNyqU3URQ9rg7Qg8W/bwjE8sUWsdw=;
+ b=SuNLvM3F9pQX/GIIzqjDcE9PrAj3Bod3f+7p5sSZs31TgQTi/QFibPZM
+ znYUag/1pRORTEf16F41K+CUvy1oZRBiv3asEr0RhG7EoywWtIW9a6sa4
+ amwB2zqI41Ld0BkxUDmOT59HoLuZjLWTFBvjI5Qg2R/3WKZSc8mymmssq
+ JBSVz8BEMBUPLE2zgbqX/pT4nNj9XC1HOzkBU2OUy4/ejpY/IVGPHwiOw
+ gOXZ26Grq9K2XEibh7qrhIXAGApuaQi9LGoKgPe0dcwqiGt3yMB6Z3vbv
+ /8CPFxdZVym187qlmLBt6vDQrJHTmf+/gJFOHcQGSw8arszXBBTC8kGnA g==;
+X-CSE-ConnectionGUID: YP92WsrHQ52CRUiaw1OIEg==
+X-CSE-MsgGUID: FHLU5W/eRwCUTQb6LpoLxQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793840"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793840"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:42 -0800
-X-CSE-ConnectionGUID: dk4naQxASgykJ0V3WJs6Tg==
-X-CSE-MsgGUID: MpS0Da9GSEG4O3DltIs2dQ==
+ 25 Feb 2026 09:57:47 -0800
+X-CSE-ConnectionGUID: OlWL+BBfSBK0/9z6lLArnA==
+X-CSE-MsgGUID: MDdG09h1TwuueEihQGBYUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394502"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394509"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:40 -0800
+ 25 Feb 2026 09:57:45 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	rodrigo.vivi@intel.com
-Subject: [PATCH 5/8] drm/xe/oa: prefer REG_MASKED_FIELD_ENABLE() and
- REG_MASKED_FIELD_DISABLE()
-Date: Wed, 25 Feb 2026 19:57:07 +0200
-Message-ID: <a9b0151d82b1622daa0625fc8ea2c41d233e4318.1772042022.git.jani.nikula@intel.com>
+Subject: [PATCH 6/8] drm/intel: add reg_bits.h for the various register
+ content helpers
+Date: Wed, 25 Feb 2026 19:57:08 +0200
+Message-ID: <e641fe6dcecef92367471f3e0d150f9f47ae4edc.1772042022.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772042022.git.jani.nikula@intel.com>
 References: <cover.1772042022.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -78,112 +79,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 1FD2B19BE01
+X-Rspamd-Queue-Id: CA54819BE10
 X-Rspamd-Action: no action
 
-Using REG_MASKED_FIELD_ENABLE() and REG_MASKED_FIELD_DISABLE() is more
-obvious to the reader than having the ternary expression inside
-REG_MASKED_FIELD().
+Add a shared header that's used by i915, xe, and i915 display.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/xe_oa.c | 32 ++++++++++++++++++--------------
- 1 file changed, 18 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/i915_reg_defs.h | 133 +------------------------
+ include/drm/intel/reg_bits.h         | 139 +++++++++++++++++++++++++++
+ 2 files changed, 140 insertions(+), 132 deletions(-)
+ create mode 100644 include/drm/intel/reg_bits.h
 
-diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
-index 9266a6ef9b1a..c176a61febb2 100644
---- a/drivers/gpu/drm/xe/xe_oa.c
-+++ b/drivers/gpu/drm/xe/xe_oa.c
-@@ -758,8 +758,9 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
- 		},
- 		{
- 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
--			REG_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
--					 enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0)
-+			enable ?
-+			REG_MASKED_FIELD_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE) :
-+			REG_MASKED_FIELD_DISABLE(CTX_CTRL_OAC_CONTEXT_ENABLE)
- 		},
- 	};
+diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
+index 9d72f6fae4ae..a1dc7ff2bef7 100644
+--- a/drivers/gpu/drm/i915/i915_reg_defs.h
++++ b/drivers/gpu/drm/i915/i915_reg_defs.h
+@@ -6,116 +6,7 @@
+ #ifndef __I915_REG_DEFS__
+ #define __I915_REG_DEFS__
  
-@@ -782,9 +783,9 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
- 		},
- 		{
- 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
--			REG_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
--					 enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
--			REG_MASKED_FIELD(CTX_CTRL_RUN_ALONE, enable ? CTX_CTRL_RUN_ALONE : 0),
-+			enable ?
-+			REG_MASKED_FIELD_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE | CTX_CTRL_RUN_ALONE) :
-+			REG_MASKED_FIELD_DISABLE(CTX_CTRL_OAC_CONTEXT_ENABLE | CTX_CTRL_RUN_ALONE),
- 		},
- 	};
+-#include <linux/bitfield.h>
+-#include <linux/bits.h>
+-
+-/*
+- * Wrappers over the generic fixed width BIT_U*() and GENMASK_U*()
+- * implementations, for compatibility reasons with previous implementation.
+- */
+-#define REG_GENMASK(high, low)		GENMASK_U32(high, low)
+-#define REG_GENMASK64(high, low)	GENMASK_U64(high, low)
+-#define REG_GENMASK16(high, low)	GENMASK_U16(high, low)
+-#define REG_GENMASK8(high, low)		GENMASK_U8(high, low)
+-
+-#define REG_BIT(n)			BIT_U32(n)
+-#define REG_BIT64(n)			BIT_U64(n)
+-#define REG_BIT16(n)			BIT_U16(n)
+-#define REG_BIT8(n)			BIT_U8(n)
+-
+-/*
+- * Local integer constant expression version of is_power_of_2().
+- */
+-#define IS_POWER_OF_2(__x)		((__x) && (((__x) & ((__x) - 1)) == 0))
+-
+-/**
+- * REG_FIELD_PREP() - Prepare a u32 bitfield value
+- * @__mask: shifted mask defining the field's length and position
+- * @__val: value to put in the field
+- *
+- * Local copy of FIELD_PREP() to generate an integer constant expression, force
+- * u32 and for consistency with REG_FIELD_GET(), REG_BIT() and REG_GENMASK().
+- *
+- * @return: @__val masked and shifted into the field defined by @__mask.
+- */
+-#define REG_FIELD_PREP(__mask, __val)						\
+-	((u32)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +	\
+-	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +		\
+-	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U32_MAX) +		\
+-	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
+-	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+-
+-/**
+- * REG_FIELD_PREP8() - Prepare a u8 bitfield value
+- * @__mask: shifted mask defining the field's length and position
+- * @__val: value to put in the field
+- *
+- * Local copy of FIELD_PREP() to generate an integer constant expression, force
+- * u8 and for consistency with REG_FIELD_GET8(), REG_BIT8() and REG_GENMASK8().
+- *
+- * @return: @__val masked and shifted into the field defined by @__mask.
+- */
+-#define REG_FIELD_PREP8(__mask, __val)                                          \
+-	((u8)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
+-	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
+-	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U8_MAX) +          \
+-	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
+-	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+-
+-/**
+- * REG_FIELD_GET() - Extract a u32 bitfield value
+- * @__mask: shifted mask defining the field's length and position
+- * @__val: value to extract the bitfield value from
+- *
+- * Local wrapper for FIELD_GET() to force u32 and for consistency with
+- * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
+- *
+- * @return: Masked and shifted value of the field defined by @__mask in @__val.
+- */
+-#define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
+-
+-/**
+- * REG_FIELD_GET64() - Extract a u64 bitfield value
+- * @__mask: shifted mask defining the field's length and position
+- * @__val: value to extract the bitfield value from
+- *
+- * Local wrapper for FIELD_GET() to force u64 and for consistency with
+- * REG_GENMASK64().
+- *
+- * @return: Masked and shifted value of the field defined by @__mask in @__val.
+- */
+-#define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
+-
+-
+-/**
+- * REG_FIELD_PREP16() - Prepare a u16 bitfield value
+- * @__mask: shifted mask defining the field's length and position
+- * @__val: value to put in the field
+- *
+- * Local copy of FIELD_PREP16() to generate an integer constant
+- * expression, force u8 and for consistency with
+- * REG_FIELD_GET16(), REG_BIT16() and REG_GENMASK16().
+- *
+- * @return: @__val masked and shifted into the field defined by @__mask.
+- */
+-#define REG_FIELD_PREP16(__mask, __val)                                          \
+-	((u16)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
+-	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
+-	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U16_MAX) +          \
+-	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
+-	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
+-
+-#define REG_MASKED_FIELD(mask, value) \
+-	(BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask), (mask) & 0xffff0000, 0)) + \
+-	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(value), (value) & 0xffff0000, 0)) + \
+-	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask) && __builtin_constant_p(value), (value) & ~(mask), 0)) + \
+-	 ((mask) << 16 | (value)))
+-
+-#define REG_MASKED_FIELD_ENABLE(a) \
+-	(__builtin_choose_expr(__builtin_constant_p(a), REG_MASKED_FIELD((a), (a)), ({ typeof(a) _a = (a); REG_MASKED_FIELD(_a, _a); })))
+-
+-#define REG_MASKED_FIELD_DISABLE(a) \
+-	(REG_MASKED_FIELD((a), 0))
++#include <drm/intel/reg_bits.h>
  
-@@ -812,9 +813,10 @@ static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
+ /*
+  * Given the first two numbers __a and __b of arbitrarily many evenly spaced
+@@ -161,28 +52,6 @@
+  */
+ #define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
  
- static u32 oag_configure_mmio_trigger(const struct xe_oa_stream *stream, bool enable)
- {
--	return REG_MASKED_FIELD(OAG_OA_DEBUG_DISABLE_MMIO_TRG,
--				enable && stream && stream->sample ?
--				0 : OAG_OA_DEBUG_DISABLE_MMIO_TRG);
-+	if (enable && stream && stream->sample)
-+		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_DISABLE_MMIO_TRG);
-+	else
-+		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_DISABLE_MMIO_TRG);
- }
- 
- static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
-@@ -1055,16 +1057,18 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
- static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
- {
- 	/* If user didn't require OA reports, ask HW not to emit ctx switch reports */
--	return REG_MASKED_FIELD(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS,
--				stream->sample ?
--				0 : OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
-+	if (stream->sample)
-+		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
-+	else
-+		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
- }
- 
- static u32 oag_buf_size_select(const struct xe_oa_stream *stream)
- {
--	return REG_MASKED_FIELD(OAG_OA_DEBUG_BUF_SIZE_SELECT,
--				xe_bo_size(stream->oa_buffer.bo) > SZ_16M ?
--				OAG_OA_DEBUG_BUF_SIZE_SELECT : 0);
-+	if (xe_bo_size(stream->oa_buffer.bo) > SZ_16M)
-+		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_BUF_SIZE_SELECT);
-+	else
-+		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_BUF_SIZE_SELECT);
- }
- 
- static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
+-/**
+- * REG_FIELD_GET8() - Extract a u8 bitfield value
+- * @__mask: shifted mask defining the field's length and position
+- * @__val: value to extract the bitfield value from
+- *
+- * Local wrapper for FIELD_GET() to force u8 and for consistency with
+- * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
+- *
+- * @return: Masked and shifted value of the field defined by @__mask in @__val.
+- */
+-#define REG_FIELD_GET8(__mask, __val)   ((u8)FIELD_GET(__mask, __val))
+-
+-/**
+- * REG_FIELD_MAX() - produce the maximum value representable by a field
+- * @__mask: shifted mask defining the field's length and position
+- *
+- * Local wrapper for FIELD_MAX() to return the maximum bit value that can
+- * be held in the field specified by @_mask, cast to u32 for consistency
+- * with other macros.
+- */
+-#define REG_FIELD_MAX(__mask)	((u32)FIELD_MAX(__mask))
+-
+ typedef struct {
+ 	u32 reg;
+ } i915_reg_t;
+diff --git a/include/drm/intel/reg_bits.h b/include/drm/intel/reg_bits.h
+new file mode 100644
+index 000000000000..2a9066e1d808
+--- /dev/null
++++ b/include/drm/intel/reg_bits.h
+@@ -0,0 +1,139 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright © 2026 Intel Corporation */
++
++#ifndef _REG_BITS_H_
++#define _REG_BITS_H_
++
++#include <linux/bitfield.h>
++#include <linux/bits.h>
++
++/*
++ * Wrappers over the generic fixed width BIT_U*() and GENMASK_U*()
++ * implementations, for compatibility reasons with previous implementation.
++ */
++#define REG_GENMASK(high, low)		GENMASK_U32(high, low)
++#define REG_GENMASK64(high, low)	GENMASK_U64(high, low)
++#define REG_GENMASK16(high, low)	GENMASK_U16(high, low)
++#define REG_GENMASK8(high, low)		GENMASK_U8(high, low)
++
++#define REG_BIT(n)			BIT_U32(n)
++#define REG_BIT64(n)			BIT_U64(n)
++#define REG_BIT16(n)			BIT_U16(n)
++#define REG_BIT8(n)			BIT_U8(n)
++
++/*
++ * Local integer constant expression version of is_power_of_2().
++ */
++#define IS_POWER_OF_2(__x)		((__x) && (((__x) & ((__x) - 1)) == 0))
++
++/**
++ * REG_FIELD_PREP8() - Prepare a u8 bitfield value
++ * @__mask: shifted mask defining the field's length and position
++ * @__val: value to put in the field
++ *
++ * Local copy of FIELD_PREP() to generate an integer constant expression, force
++ * u8 and for consistency with REG_FIELD_GET8(), REG_BIT8() and REG_GENMASK8().
++ *
++ * @return: @__val masked and shifted into the field defined by @__mask.
++ */
++#define REG_FIELD_PREP8(__mask, __val)                                          \
++	((u8)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
++	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
++	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U8_MAX) +          \
++	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
++	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
++
++/**
++ * REG_FIELD_PREP16() - Prepare a u16 bitfield value
++ * @__mask: shifted mask defining the field's length and position
++ * @__val: value to put in the field
++ *
++ * Local copy of FIELD_PREP16() to generate an integer constant
++ * expression, force u8 and for consistency with
++ * REG_FIELD_GET16(), REG_BIT16() and REG_GENMASK16().
++ *
++ * @return: @__val masked and shifted into the field defined by @__mask.
++ */
++#define REG_FIELD_PREP16(__mask, __val)                                          \
++	((u16)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
++	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
++	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U16_MAX) +          \
++	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
++	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
++
++/**
++ * REG_FIELD_PREP() - Prepare a u32 bitfield value
++ * @__mask: shifted mask defining the field's length and position
++ * @__val: value to put in the field
++ *
++ * Local copy of FIELD_PREP() to generate an integer constant expression, force
++ * u32 and for consistency with REG_FIELD_GET(), REG_BIT() and REG_GENMASK().
++ *
++ * @return: @__val masked and shifted into the field defined by @__mask.
++ */
++#define REG_FIELD_PREP(__mask, __val)						\
++	((u32)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +	\
++	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +		\
++	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U32_MAX) +		\
++	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
++	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
++
++/**
++ * REG_FIELD_GET8() - Extract a u8 bitfield value
++ * @__mask: shifted mask defining the field's length and position
++ * @__val: value to extract the bitfield value from
++ *
++ * Local wrapper for FIELD_GET() to force u8 and for consistency with
++ * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
++ *
++ * @return: Masked and shifted value of the field defined by @__mask in @__val.
++ */
++#define REG_FIELD_GET8(__mask, __val)   ((u8)FIELD_GET(__mask, __val))
++
++/**
++ * REG_FIELD_GET() - Extract a u32 bitfield value
++ * @__mask: shifted mask defining the field's length and position
++ * @__val: value to extract the bitfield value from
++ *
++ * Local wrapper for FIELD_GET() to force u32 and for consistency with
++ * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
++ *
++ * @return: Masked and shifted value of the field defined by @__mask in @__val.
++ */
++#define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
++
++/**
++ * REG_FIELD_GET64() - Extract a u64 bitfield value
++ * @__mask: shifted mask defining the field's length and position
++ * @__val: value to extract the bitfield value from
++ *
++ * Local wrapper for FIELD_GET() to force u64 and for consistency with
++ * REG_GENMASK64().
++ *
++ * @return: Masked and shifted value of the field defined by @__mask in @__val.
++ */
++#define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
++
++/**
++ * REG_FIELD_MAX() - produce the maximum value representable by a field
++ * @__mask: shifted mask defining the field's length and position
++ *
++ * Local wrapper for FIELD_MAX() to return the maximum bit value that can
++ * be held in the field specified by @_mask, cast to u32 for consistency
++ * with other macros.
++ */
++#define REG_FIELD_MAX(__mask)	((u32)FIELD_MAX(__mask))
++
++#define REG_MASKED_FIELD(mask, value) \
++	(BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask), (mask) & 0xffff0000, 0)) + \
++	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(value), (value) & 0xffff0000, 0)) + \
++	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask) && __builtin_constant_p(value), (value) & ~(mask), 0)) + \
++	 ((mask) << 16 | (value)))
++
++#define REG_MASKED_FIELD_ENABLE(a) \
++	(__builtin_choose_expr(__builtin_constant_p(a), REG_MASKED_FIELD((a), (a)), ({ typeof(a) _a = (a); REG_MASKED_FIELD(_a, _a); })))
++
++#define REG_MASKED_FIELD_DISABLE(a) \
++	(REG_MASKED_FIELD((a), 0))
++
++#endif
 -- 
 2.47.3
 
