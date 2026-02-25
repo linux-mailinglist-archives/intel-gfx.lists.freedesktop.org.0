@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AANfORQ4n2m5ZQQAu9opvQ
+	id wEQFLSk4n2m5ZQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:57:40 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:01 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE2A19BDF3
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:57:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FD2B19BE01
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB4FA10E7EA;
-	Wed, 25 Feb 2026 17:57:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 664D610E81A;
+	Wed, 25 Feb 2026 17:57:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IDUlZ8w7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8+18FZS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3072C10E80E;
- Wed, 25 Feb 2026 17:57:37 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2539710E81D;
+ Wed, 25 Feb 2026 17:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772042257; x=1803578257;
+ t=1772042279; x=1803578279;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=B/O/PRLz6Ea1GKEFhzKwtVVkAQVnxtrWQ8rUO2140+E=;
- b=IDUlZ8w7tbPdR4cDo0cFkVKHRDEDd8MOViLD4tzsZD7SpMbx/uLQxKSw
- odekgtT9GOJhbpLB82fewzLz6cC0j+aX3/bbYk9mCb6RZcVxelLQIPuuB
- XfNzje/QXvr75vN+YHiKajEd6I5Anu/zh4BZJYbXy+n6WFQGHKXuLQPC5
- fBnX9EAUdkMzEAjcnhKUanvnHClTLbLA2IxPhBUCpoT+PwtmVojmsrhsM
- EcOJmo8liq057L99AUOVzpxsLk877Y/yb1tJ3FdcvOCrlMpqtBvUWpe7B
- Gbr+zdth9A0QjlubcTpiCkGb/hIHvb+cKs57ru6M9dYNzC3hlYuLUidsU Q==;
-X-CSE-ConnectionGUID: nFK3WiqeTrOZFBIYTRTysg==
-X-CSE-MsgGUID: jNl/H1xhQdOdxneaRaz7tg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="76961523"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="76961523"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:37 -0800
-X-CSE-ConnectionGUID: o6XFFQoJRnmWcvh0wBNjYw==
-X-CSE-MsgGUID: CEEhSVS1SlyUTL+L7G04mw==
+ bh=+k0T+8SMUGGVHG2/ySYpSmWDYN9a0AHBmT3/Z/TfOww=;
+ b=D8+18FZSS2qsYwkFtVMpdKtFs+pSfyhn8wVxJP2xXvCaTmfFpk7vUZki
+ uUA8YUXd59hrd95NkoXzdAkjny1ZLghG5rp814jld9NHxfWLET4ciFfZ1
+ sNhKY7WVI6qHYJjRTF4ctEgUOrMDAgDkzJTZgkKtzFdnXMfbGXpWLGiw4
+ tyoUV1EI3hY63mKdiD6bLXKIkNLtosjSsXR8zGRwIsM0WjcySPwGiqx/e
+ XYDNS3PtEygL+7A+UDYO/ldR3gKuVFX1xlkejvPpM25Us8WZCl1yxiUmj
+ YX0vGXPsOtqJxanuR0lVrYhlB4QsSYwpVjOaAEg8cwNSRD3+geM24lirz w==;
+X-CSE-ConnectionGUID: eZBPDVqqTPeuIijLwQ5XoA==
+X-CSE-MsgGUID: +/2ChLn/SiW4NH72IEiEWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793836"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793836"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 09:57:42 -0800
+X-CSE-ConnectionGUID: dk4naQxASgykJ0V3WJs6Tg==
+X-CSE-MsgGUID: MpS0Da9GSEG4O3DltIs2dQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="220811995"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394502"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:35 -0800
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 09:57:40 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	rodrigo.vivi@intel.com
-Subject: [PATCH 4/8] drm/i915/perf: prefer REG_MASKED_FIELD_ENABLE() and
+Subject: [PATCH 5/8] drm/xe/oa: prefer REG_MASKED_FIELD_ENABLE() and
  REG_MASKED_FIELD_DISABLE()
-Date: Wed, 25 Feb 2026 19:57:06 +0200
-Message-ID: <93caec439ad10ef8b163162c52407abf36df69f5.1772042022.git.jani.nikula@intel.com>
+Date: Wed, 25 Feb 2026 19:57:07 +0200
+Message-ID: <a9b0151d82b1622daa0625fc8ea2c41d233e4318.1772042022.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772042022.git.jani.nikula@intel.com>
 References: <cover.1772042022.git.jani.nikula@intel.com>
@@ -104,7 +104,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: ADE2A19BDF3
+X-Rspamd-Queue-Id: 1FD2B19BE01
 X-Rspamd-Action: no action
 
 Using REG_MASKED_FIELD_ENABLE() and REG_MASKED_FIELD_DISABLE() is more
@@ -113,41 +113,77 @@ REG_MASKED_FIELD().
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_perf.c | 14 +++++++-------
- 1 file changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/xe/xe_oa.c | 32 ++++++++++++++++++--------------
+ 1 file changed, 18 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_perf.c b/drivers/gpu/drm/i915/i915_perf.c
-index 9ad4383404ff..19b82427aa41 100644
---- a/drivers/gpu/drm/i915/i915_perf.c
-+++ b/drivers/gpu/drm/i915/i915_perf.c
-@@ -2635,10 +2635,9 @@ static int gen12_configure_oar_context(struct i915_perf_stream *stream,
+diff --git a/drivers/gpu/drm/xe/xe_oa.c b/drivers/gpu/drm/xe/xe_oa.c
+index 9266a6ef9b1a..c176a61febb2 100644
+--- a/drivers/gpu/drm/xe/xe_oa.c
++++ b/drivers/gpu/drm/xe/xe_oa.c
+@@ -758,8 +758,9 @@ static int xe_oa_configure_oar_context(struct xe_oa_stream *stream, bool enable)
+ 		},
  		{
- 			RING_CONTEXT_CONTROL(ce->engine->mmio_base),
- 			CTX_CONTEXT_CONTROL,
--			REG_MASKED_FIELD(GEN12_CTX_CTRL_OAR_CONTEXT_ENABLE,
--					 active ?
--					 GEN12_CTX_CTRL_OAR_CONTEXT_ENABLE :
--					 0)
-+			active ?
-+			REG_MASKED_FIELD_ENABLE(GEN12_CTX_CTRL_OAR_CONTEXT_ENABLE) :
-+			REG_MASKED_FIELD_DISABLE(GEN12_CTX_CTRL_OAR_CONTEXT_ENABLE),
+ 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
+-			REG_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
+-					 enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0)
++			enable ?
++			REG_MASKED_FIELD_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE) :
++			REG_MASKED_FIELD_DISABLE(CTX_CTRL_OAC_CONTEXT_ENABLE)
  		},
  	};
  
-@@ -2847,9 +2846,10 @@ gen8_enable_metric_set(struct i915_perf_stream *stream,
+@@ -782,9 +783,9 @@ static int xe_oa_configure_oac_context(struct xe_oa_stream *stream, bool enable)
+ 		},
+ 		{
+ 			RING_CONTEXT_CONTROL(stream->hwe->mmio_base),
+-			REG_MASKED_FIELD(CTX_CTRL_OAC_CONTEXT_ENABLE,
+-					 enable ? CTX_CTRL_OAC_CONTEXT_ENABLE : 0) |
+-			REG_MASKED_FIELD(CTX_CTRL_RUN_ALONE, enable ? CTX_CTRL_RUN_ALONE : 0),
++			enable ?
++			REG_MASKED_FIELD_ENABLE(CTX_CTRL_OAC_CONTEXT_ENABLE | CTX_CTRL_RUN_ALONE) :
++			REG_MASKED_FIELD_DISABLE(CTX_CTRL_OAC_CONTEXT_ENABLE | CTX_CTRL_RUN_ALONE),
+ 		},
+ 	};
  
- static u32 oag_report_ctx_switches(const struct i915_perf_stream *stream)
+@@ -812,9 +813,10 @@ static int xe_oa_configure_oa_context(struct xe_oa_stream *stream, bool enable)
+ 
+ static u32 oag_configure_mmio_trigger(const struct xe_oa_stream *stream, bool enable)
  {
--	return REG_MASKED_FIELD(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS,
--				(stream->sample_flags & SAMPLE_OA_REPORT) ?
--				0 : GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
-+	if (stream->sample_flags & SAMPLE_OA_REPORT)
-+		return REG_MASKED_FIELD_DISABLE(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
+-	return REG_MASKED_FIELD(OAG_OA_DEBUG_DISABLE_MMIO_TRG,
+-				enable && stream && stream->sample ?
+-				0 : OAG_OA_DEBUG_DISABLE_MMIO_TRG);
++	if (enable && stream && stream->sample)
++		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_DISABLE_MMIO_TRG);
 +	else
-+		return REG_MASKED_FIELD_ENABLE(GEN12_OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
++		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_DISABLE_MMIO_TRG);
  }
  
- static int
+ static void xe_oa_disable_metric_set(struct xe_oa_stream *stream)
+@@ -1055,16 +1057,18 @@ static int xe_oa_emit_oa_config(struct xe_oa_stream *stream, struct xe_oa_config
+ static u32 oag_report_ctx_switches(const struct xe_oa_stream *stream)
+ {
+ 	/* If user didn't require OA reports, ask HW not to emit ctx switch reports */
+-	return REG_MASKED_FIELD(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS,
+-				stream->sample ?
+-				0 : OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
++	if (stream->sample)
++		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
++	else
++		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_DISABLE_CTX_SWITCH_REPORTS);
+ }
+ 
+ static u32 oag_buf_size_select(const struct xe_oa_stream *stream)
+ {
+-	return REG_MASKED_FIELD(OAG_OA_DEBUG_BUF_SIZE_SELECT,
+-				xe_bo_size(stream->oa_buffer.bo) > SZ_16M ?
+-				OAG_OA_DEBUG_BUF_SIZE_SELECT : 0);
++	if (xe_bo_size(stream->oa_buffer.bo) > SZ_16M)
++		return REG_MASKED_FIELD_ENABLE(OAG_OA_DEBUG_BUF_SIZE_SELECT);
++	else
++		return REG_MASKED_FIELD_DISABLE(OAG_OA_DEBUG_BUF_SIZE_SELECT);
+ }
+ 
+ static int xe_oa_enable_metric_set(struct xe_oa_stream *stream)
 -- 
 2.47.3
 
