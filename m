@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAq3NBgMn2neYgQAu9opvQ
+	id EBZBBx4Mn2neYgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 15:50:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 15:50:06 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1F91198FB5
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 15:50:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CC26198FBE
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 15:50:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EECC10E7A3;
-	Wed, 25 Feb 2026 14:49:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C4D1E10E7A5;
+	Wed, 25 Feb 2026 14:50:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ASOHGvpm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rt2ADO/q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A4F010E7C8;
- Wed, 25 Feb 2026 14:49:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 582AF10E798;
+ Wed, 25 Feb 2026 14:50:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772030998; x=1803566998;
+ t=1772031002; x=1803567002;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=4/W6hNwJLOJ/sQQUwozcjSFtZAuZedGs+wOnQAeuFNQ=;
- b=ASOHGvpme+0HPLk+k/V9yiyogIPcK7ZoE/IPncakE+VFiBo99FaqxG6q
- rskvMpBZNzqVNVzltXsjXYgXUM8mOw0JuH0PHSioU1Fum7MuzREmnHbrM
- fYYh8WSYM6yzVc7eUewyzFvFCViMNB6QqGA+9UywaK8EMxBziWJoqArAQ
- vace5phfeJDzmfBiEHmOAs4NspDlXS4d0czEEk5JfBJssh8yQnbIznqkV
- UigLRSWnGpG3skElUB1NLN074NrxLZTMLthDO/fnsPiaa/EjJ/bR8ETPG
- DParHlJP9pWvGxu/6fmn1WP/jJpgHpq6is5m4ZXQ86aR5iBvdcqpaHu01 Q==;
-X-CSE-ConnectionGUID: KRGq7OszQZ6mKKXBBiy5wg==
-X-CSE-MsgGUID: s1COCVAnQcy59/bWQnrKcQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="83398670"
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="83398670"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 06:49:57 -0800
-X-CSE-ConnectionGUID: Pw73uHcrSnm3Nof7KjlV+Q==
-X-CSE-MsgGUID: 4AAMZ2gITKaY/vXw/iLhtw==
+ bh=U/xB7A+jYHD2CPmNsuVHNvNMPzA1J3/EvNbH8DM7l+c=;
+ b=Rt2ADO/qYGZN1cpYQohg9Y3HZMdkh+78L7QSmnLgRf28Ev3Z/NG2iAwV
+ HHS6QcOjNzDTimJoyP8SnzYmtQZL14eZE8c08ABoGX/9dBFStQZGOmHmI
+ ksMkqA4mrnWdeVUjBsp7Zw+whYogDzaX1IZul7fxd2SzjHCzHlSIAGNRs
+ snLbrz/Se9AV6I6rotwp8kEEkJ+j+M2OJ3T49xEZKIEAJDcLCIHa/MuHV
+ y7VsS777O/eaaZbMweRiCnLVlSjcBqjxDVRnzOIaj9Rwagwr3y8dnknwP
+ KuKvJS3pNB7Ywa7SdNiCx+h/80PHJEifH1NqyKt8/gQV0pLnmmnU2rs3v w==;
+X-CSE-ConnectionGUID: 2KHuk6Z1RpmrOlpK5RdK6w==
+X-CSE-MsgGUID: EMjb0baLSW6mDLWzu0Euxw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="95686386"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="95686386"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 06:50:02 -0800
+X-CSE-ConnectionGUID: ZQCDi44+Sn62HmRSrjw/TQ==
+X-CSE-MsgGUID: YNmLbo3xRzWWQg0sH+j1IA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="213369305"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="216387425"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 06:49:55 -0800
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Feb 2026 06:50:00 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
-Subject: [PATCH 07/10] drm/i915/dpt: switch to i915 runtime pm calls
-Date: Wed, 25 Feb 2026 16:49:13 +0200
-Message-ID: <e8e00552ebf439b5f7b5d293014cce950c9c2999.1772030909.git.jani.nikula@intel.com>
+Subject: [PATCH 08/10] drm/i915/dpt: rename i915 specific functions to
+ i915_dpt_ prefix
+Date: Wed, 25 Feb 2026 16:49:14 +0200
+Message-ID: <9bb94942ed4a15bcdd89be3f0029a2cb6cdf170d.1772030909.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772030909.git.jani.nikula@intel.com>
 References: <cover.1772030909.git.jani.nikula@intel.com>
@@ -103,49 +104,110 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A1F91198FB5
+X-Rspamd-Queue-Id: 7CC26198FBE
 X-Rspamd-Action: no action
 
-The i915 specific code doesn't need to, and should not, call the display
-runtime pm functions. Just call the i915 functions directly, instead of
-routing through the parent interface.
+Follow the common convention of naming functions by file name, in this
+case also clarifying which functions are i915 specific.
 
 Reviewed-by: Juha-Pekka Heikkila <juhapekka.heikkila@gmail.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_dpt.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb_pin.c | 8 ++++----
+ drivers/gpu/drm/i915/i915_dpt.c             | 7 +++----
+ drivers/gpu/drm/i915/i915_dpt.h             | 7 +++----
+ 3 files changed, 10 insertions(+), 12 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.c b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+index 5d4ae8be5ca6..d2e4200f2cef 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.c
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.c
+@@ -284,7 +284,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 	} else {
+ 		unsigned int alignment = intel_plane_fb_min_alignment(plane_state);
+ 
+-		vma = intel_dpt_pin_to_ggtt(fb->dpt_vm, alignment / 512);
++		vma = i915_dpt_pin_to_ggtt(fb->dpt_vm, alignment / 512);
+ 		if (IS_ERR(vma))
+ 			return PTR_ERR(vma);
+ 
+@@ -294,7 +294,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 					  alignment, &plane_state->flags,
+ 					  fb->dpt_vm);
+ 		if (IS_ERR(vma)) {
+-			intel_dpt_unpin_from_ggtt(fb->dpt_vm);
++			i915_dpt_unpin_from_ggtt(fb->dpt_vm);
+ 			plane_state->ggtt_vma = NULL;
+ 			return PTR_ERR(vma);
+ 		}
+@@ -307,7 +307,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 		 * The DPT object contains only one vma, and there is no VT-d
+ 		 * guard, so the VMA's offset within the DPT is always 0.
+ 		 */
+-		drm_WARN_ON(display->drm, intel_dpt_offset(plane_state->dpt_vma));
++		drm_WARN_ON(display->drm, i915_dpt_offset(plane_state->dpt_vma));
+ 	}
+ 
+ 	/*
+@@ -346,7 +346,7 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 
+ 		vma = fetch_and_zero(&old_plane_state->ggtt_vma);
+ 		if (vma)
+-			intel_dpt_unpin_from_ggtt(fb->dpt_vm);
++			i915_dpt_unpin_from_ggtt(fb->dpt_vm);
+ 	}
+ }
+ 
 diff --git a/drivers/gpu/drm/i915/i915_dpt.c b/drivers/gpu/drm/i915/i915_dpt.c
-index f33e886f3316..8b49ebeecff7 100644
+index 8b49ebeecff7..b8a03c0498d2 100644
 --- a/drivers/gpu/drm/i915/i915_dpt.c
 +++ b/drivers/gpu/drm/i915/i915_dpt.c
-@@ -7,7 +7,6 @@
- #include <drm/intel/display_parent_interface.h>
+@@ -121,8 +121,7 @@ static void dpt_cleanup(struct i915_address_space *vm)
+ 	i915_gem_object_put(dpt->obj);
+ }
  
- #include "display/intel_display_core.h"
--#include "display/intel_display_rpm.h"
- #include "gem/i915_gem_domain.h"
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_lmem.h"
-@@ -138,7 +137,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 	if (i915_gem_object_is_stolen(dpt->obj))
- 		pin_flags |= PIN_MAPPABLE;
- 
--	wakeref = intel_display_rpm_get(display);
-+	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
- 	atomic_inc(&display->restore.pending_fb_pin);
- 
- 	for_i915_gem_ww(&ww, err, true) {
-@@ -170,7 +169,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
- 	dpt->obj->mm.dirty = true;
- 
- 	atomic_dec(&display->restore.pending_fb_pin);
--	intel_display_rpm_put(display, wakeref);
-+	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
- 
+-struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+-				       unsigned int alignment)
++struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_address_space *vm, unsigned int alignment)
+ {
+ 	struct drm_i915_private *i915 = vm->i915;
+ 	struct intel_display *display = i915->display;
+@@ -174,7 +173,7 @@ struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
  	return err ? ERR_PTR(err) : vma;
  }
+ 
+-void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm)
++void i915_dpt_unpin_from_ggtt(struct i915_address_space *vm)
+ {
+ 	struct i915_dpt *dpt = i915_vm_to_dpt(vm);
+ 
+@@ -265,7 +264,7 @@ static void i915_dpt_resume(struct i915_address_space *vm)
+ 	i915_ggtt_resume_vm(vm, true);
+ }
+ 
+-u64 intel_dpt_offset(struct i915_vma *dpt_vma)
++u64 i915_dpt_offset(struct i915_vma *dpt_vma)
+ {
+ 	return i915_vma_offset(dpt_vma);
+ }
+diff --git a/drivers/gpu/drm/i915/i915_dpt.h b/drivers/gpu/drm/i915/i915_dpt.h
+index 9b765bc8d88b..3b76e9760600 100644
+--- a/drivers/gpu/drm/i915/i915_dpt.h
++++ b/drivers/gpu/drm/i915/i915_dpt.h
+@@ -9,10 +9,9 @@
+ struct i915_address_space;
+ struct i915_vma;
+ 
+-struct i915_vma *intel_dpt_pin_to_ggtt(struct i915_address_space *vm,
+-				       unsigned int alignment);
+-void intel_dpt_unpin_from_ggtt(struct i915_address_space *vm);
+-u64 intel_dpt_offset(struct i915_vma *dpt_vma);
++struct i915_vma *i915_dpt_pin_to_ggtt(struct i915_address_space *vm, unsigned int alignment);
++void i915_dpt_unpin_from_ggtt(struct i915_address_space *vm);
++u64 i915_dpt_offset(struct i915_vma *dpt_vma);
+ 
+ extern const struct intel_display_dpt_interface i915_display_dpt_interface;
+ 
 -- 
 2.47.3
 
