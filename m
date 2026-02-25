@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOagDys4n2m5ZQQAu9opvQ
+	id KP3aIio4n2m5ZQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:03 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:02 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA54819BE10
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A31019BE08
 	for <lists+intel-gfx@lfdr.de>; Wed, 25 Feb 2026 18:58:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E317710E7EF;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 66A9610E820;
 	Wed, 25 Feb 2026 17:58:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SuNLvM3F";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aSJ9xNIR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B5B810E81D;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9588B10E80E;
  Wed, 25 Feb 2026 17:57:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772042279; x=1803578279;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kJv3c3rPwiRtffXNyqU3URQ9rg7Qg8W/bwjE8sUWsdw=;
- b=SuNLvM3F9pQX/GIIzqjDcE9PrAj3Bod3f+7p5sSZs31TgQTi/QFibPZM
- znYUag/1pRORTEf16F41K+CUvy1oZRBiv3asEr0RhG7EoywWtIW9a6sa4
- amwB2zqI41Ld0BkxUDmOT59HoLuZjLWTFBvjI5Qg2R/3WKZSc8mymmssq
- JBSVz8BEMBUPLE2zgbqX/pT4nNj9XC1HOzkBU2OUy4/ejpY/IVGPHwiOw
- gOXZ26Grq9K2XEibh7qrhIXAGApuaQi9LGoKgPe0dcwqiGt3yMB6Z3vbv
- /8CPFxdZVym187qlmLBt6vDQrJHTmf+/gJFOHcQGSw8arszXBBTC8kGnA g==;
-X-CSE-ConnectionGUID: YP92WsrHQ52CRUiaw1OIEg==
-X-CSE-MsgGUID: FHLU5W/eRwCUTQb6LpoLxQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793840"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793840"
+ bh=jjdulGPqdsrS949JcTkMZoD1J18rnAj6L8VzBzXAxrg=;
+ b=aSJ9xNIR5Iz3+tWjfuNrl7UxOyBw0g7rrKVAncfaG6eni2nzqa9HDHE0
+ FF6RHto0JRwxZIYgFO75LYSZ2Qw/uhxVWt9MbZbv9HW5RZInt6Lb4IO6s
+ P1LEMxEPOnZHo53As5P6NhOlcHPcgp3ENw5J3zms8XMI3gE4sA8yuXXdx
+ f3wlENk9qvCqtympnKi5hQiksdEklyDpPj0ohYyqX3adgfRMcs27a/6jS
+ PFthsFP5W4cyttzSMVXfwvuRnTUhTKodkKJA398bZGfYjlF+tszQW7Pvh
+ WyLSLYKSGLFXYSUjqOr7cz2LJrfj22PmjViL8NzDssBgq8ODI49jtxUpj w==;
+X-CSE-ConnectionGUID: 2kR5nq8lQYO3dleJ5ac3Cw==
+X-CSE-MsgGUID: W1AyKfkYTcubKaL6p/ej8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72793842"
+X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72793842"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:47 -0800
-X-CSE-ConnectionGUID: OlWL+BBfSBK0/9z6lLArnA==
-X-CSE-MsgGUID: MDdG09h1TwuueEihQGBYUg==
+ 25 Feb 2026 09:57:51 -0800
+X-CSE-ConnectionGUID: wv+NCNwpT+OevDwz0dxv2w==
+X-CSE-MsgGUID: rn4Bv+zlSQOzw8HwWO1/ig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394509"
+X-IronPort-AV: E=Sophos;i="6.21,310,1763452800"; d="scan'208";a="214394515"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.68])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 09:57:45 -0800
+ 25 Feb 2026 09:57:49 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	rodrigo.vivi@intel.com
-Subject: [PATCH 6/8] drm/intel: add reg_bits.h for the various register
- content helpers
-Date: Wed, 25 Feb 2026 19:57:08 +0200
-Message-ID: <e641fe6dcecef92367471f3e0d150f9f47ae4edc.1772042022.git.jani.nikula@intel.com>
+Subject: [PATCH 7/8] drm/intel: add pick.h for the various "picker" helpers
+Date: Wed, 25 Feb 2026 19:57:09 +0200
+Message-ID: <fcd70f3317755bf98a6e7ae88974aa8ba06efd1e.1772042022.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772042022.git.jani.nikula@intel.com>
 References: <cover.1772042022.git.jani.nikula@intel.com>
@@ -104,312 +103,169 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: CA54819BE10
+X-Rspamd-Queue-Id: 2A31019BE08
 X-Rspamd-Action: no action
 
 Add a shared header that's used by i915, xe, and i915 display.
 
+This allows us to drop the compat-i915-headers/i915_reg_defs.h include
+from xe_reg_defs.h. All the register macro helpers were subtly pulled in
+from i915 to all of xe through this.
+
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_reg_defs.h | 133 +------------------------
- include/drm/intel/reg_bits.h         | 139 +++++++++++++++++++++++++++
- 2 files changed, 140 insertions(+), 132 deletions(-)
- create mode 100644 include/drm/intel/reg_bits.h
+ drivers/gpu/drm/i915/i915_reg_defs.h          | 45 +---------------
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  1 +
+ drivers/gpu/drm/xe/regs/xe_reg_defs.h         |  5 +-
+ include/drm/intel/pick.h                      | 51 +++++++++++++++++++
+ 4 files changed, 56 insertions(+), 46 deletions(-)
+ create mode 100644 include/drm/intel/pick.h
 
 diff --git a/drivers/gpu/drm/i915/i915_reg_defs.h b/drivers/gpu/drm/i915/i915_reg_defs.h
-index 9d72f6fae4ae..a1dc7ff2bef7 100644
+index a1dc7ff2bef7..e897d3ccbf9e 100644
 --- a/drivers/gpu/drm/i915/i915_reg_defs.h
 +++ b/drivers/gpu/drm/i915/i915_reg_defs.h
-@@ -6,116 +6,7 @@
+@@ -6,52 +6,9 @@
  #ifndef __I915_REG_DEFS__
  #define __I915_REG_DEFS__
  
--#include <linux/bitfield.h>
--#include <linux/bits.h>
++#include <drm/intel/pick.h>
+ #include <drm/intel/reg_bits.h>
+ 
+-/*
+- * Given the first two numbers __a and __b of arbitrarily many evenly spaced
+- * numbers, pick the 0-based __index'th value.
+- *
+- * Always prefer this over _PICK() if the numbers are evenly spaced.
+- */
+-#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
 -
 -/*
-- * Wrappers over the generic fixed width BIT_U*() and GENMASK_U*()
-- * implementations, for compatibility reasons with previous implementation.
+- * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
+- * @__c_index corresponds to the index in which the second range starts to be
+- * used. Using math interval notation, the first range is used for indexes [ 0,
+- * @__c_index), while the second range is used for [ @__c_index, ... ). Example:
+- *
+- * #define _FOO_A			0xf000
+- * #define _FOO_B			0xf004
+- * #define _FOO_C			0xf008
+- * #define _SUPER_FOO_A			0xa000
+- * #define _SUPER_FOO_B			0xa100
+- * #define FOO(x)			_MMIO(_PICK_EVEN_2RANGES(x, 3,		\
+- *					      _FOO_A, _FOO_B,			\
+- *					      _SUPER_FOO_A, _SUPER_FOO_B))
+- *
+- * This expands to:
+- *	0: 0xf000,
+- *	1: 0xf004,
+- *	2: 0xf008,
+- *	3: 0xa000,
+- *	4: 0xa100,
+- *	5: 0xa200,
+- *	...
 - */
--#define REG_GENMASK(high, low)		GENMASK_U32(high, low)
--#define REG_GENMASK64(high, low)	GENMASK_U64(high, low)
--#define REG_GENMASK16(high, low)	GENMASK_U16(high, low)
--#define REG_GENMASK8(high, low)		GENMASK_U8(high, low)
--
--#define REG_BIT(n)			BIT_U32(n)
--#define REG_BIT64(n)			BIT_U64(n)
--#define REG_BIT16(n)			BIT_U16(n)
--#define REG_BIT8(n)			BIT_U8(n)
+-#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
+-	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
+-	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
+-				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
 -
 -/*
-- * Local integer constant expression version of is_power_of_2().
+- * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
+- *
+- * Always prefer _PICK_EVEN() over this if the numbers are evenly spaced.
 - */
--#define IS_POWER_OF_2(__x)		((__x) && (((__x) & ((__x) - 1)) == 0))
--
--/**
-- * REG_FIELD_PREP() - Prepare a u32 bitfield value
-- * @__mask: shifted mask defining the field's length and position
-- * @__val: value to put in the field
-- *
-- * Local copy of FIELD_PREP() to generate an integer constant expression, force
-- * u32 and for consistency with REG_FIELD_GET(), REG_BIT() and REG_GENMASK().
-- *
-- * @return: @__val masked and shifted into the field defined by @__mask.
-- */
--#define REG_FIELD_PREP(__mask, __val)						\
--	((u32)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +	\
--	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +		\
--	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U32_MAX) +		\
--	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
--	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
--
--/**
-- * REG_FIELD_PREP8() - Prepare a u8 bitfield value
-- * @__mask: shifted mask defining the field's length and position
-- * @__val: value to put in the field
-- *
-- * Local copy of FIELD_PREP() to generate an integer constant expression, force
-- * u8 and for consistency with REG_FIELD_GET8(), REG_BIT8() and REG_GENMASK8().
-- *
-- * @return: @__val masked and shifted into the field defined by @__mask.
-- */
--#define REG_FIELD_PREP8(__mask, __val)                                          \
--	((u8)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
--	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
--	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U8_MAX) +          \
--	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
--	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
--
--/**
-- * REG_FIELD_GET() - Extract a u32 bitfield value
-- * @__mask: shifted mask defining the field's length and position
-- * @__val: value to extract the bitfield value from
-- *
-- * Local wrapper for FIELD_GET() to force u32 and for consistency with
-- * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
-- *
-- * @return: Masked and shifted value of the field defined by @__mask in @__val.
-- */
--#define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
--
--/**
-- * REG_FIELD_GET64() - Extract a u64 bitfield value
-- * @__mask: shifted mask defining the field's length and position
-- * @__val: value to extract the bitfield value from
-- *
-- * Local wrapper for FIELD_GET() to force u64 and for consistency with
-- * REG_GENMASK64().
-- *
-- * @return: Masked and shifted value of the field defined by @__mask in @__val.
-- */
--#define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
--
--
--/**
-- * REG_FIELD_PREP16() - Prepare a u16 bitfield value
-- * @__mask: shifted mask defining the field's length and position
-- * @__val: value to put in the field
-- *
-- * Local copy of FIELD_PREP16() to generate an integer constant
-- * expression, force u8 and for consistency with
-- * REG_FIELD_GET16(), REG_BIT16() and REG_GENMASK16().
-- *
-- * @return: @__val masked and shifted into the field defined by @__mask.
-- */
--#define REG_FIELD_PREP16(__mask, __val)                                          \
--	((u16)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
--	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
--	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U16_MAX) +          \
--	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
--	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
--
--#define REG_MASKED_FIELD(mask, value) \
--	(BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask), (mask) & 0xffff0000, 0)) + \
--	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(value), (value) & 0xffff0000, 0)) + \
--	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask) && __builtin_constant_p(value), (value) & ~(mask), 0)) + \
--	 ((mask) << 16 | (value)))
--
--#define REG_MASKED_FIELD_ENABLE(a) \
--	(__builtin_choose_expr(__builtin_constant_p(a), REG_MASKED_FIELD((a), (a)), ({ typeof(a) _a = (a); REG_MASKED_FIELD(_a, _a); })))
--
--#define REG_MASKED_FIELD_DISABLE(a) \
--	(REG_MASKED_FIELD((a), 0))
-+#include <drm/intel/reg_bits.h>
- 
- /*
-  * Given the first two numbers __a and __b of arbitrarily many evenly spaced
-@@ -161,28 +52,6 @@
-  */
- #define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
- 
--/**
-- * REG_FIELD_GET8() - Extract a u8 bitfield value
-- * @__mask: shifted mask defining the field's length and position
-- * @__val: value to extract the bitfield value from
-- *
-- * Local wrapper for FIELD_GET() to force u8 and for consistency with
-- * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
-- *
-- * @return: Masked and shifted value of the field defined by @__mask in @__val.
-- */
--#define REG_FIELD_GET8(__mask, __val)   ((u8)FIELD_GET(__mask, __val))
--
--/**
-- * REG_FIELD_MAX() - produce the maximum value representable by a field
-- * @__mask: shifted mask defining the field's length and position
-- *
-- * Local wrapper for FIELD_MAX() to return the maximum bit value that can
-- * be held in the field specified by @_mask, cast to u32 for consistency
-- * with other macros.
-- */
--#define REG_FIELD_MAX(__mask)	((u32)FIELD_MAX(__mask))
+-#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
 -
  typedef struct {
  	u32 reg;
  } i915_reg_t;
-diff --git a/include/drm/intel/reg_bits.h b/include/drm/intel/reg_bits.h
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index c5e198ace7bc..a8cfd65119e0 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -6,6 +6,7 @@
+ #ifndef __INTEL_UNCORE_H__
+ #define __INTEL_UNCORE_H__
+ 
++#include "i915_reg_defs.h"
+ #include "xe_device.h"
+ #include "xe_device_types.h"
+ #include "xe_mmio.h"
+diff --git a/drivers/gpu/drm/xe/regs/xe_reg_defs.h b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+index c39aab843e35..27ac0bf1f6cd 100644
+--- a/drivers/gpu/drm/xe/regs/xe_reg_defs.h
++++ b/drivers/gpu/drm/xe/regs/xe_reg_defs.h
+@@ -6,12 +6,13 @@
+ #ifndef _XE_REG_DEFS_H_
+ #define _XE_REG_DEFS_H_
+ 
++#include <drm/intel/pick.h>
++#include <drm/intel/reg_bits.h>
++
+ #include <linux/build_bug.h>
+ #include <linux/log2.h>
+ #include <linux/sizes.h>
+ 
+-#include "compat-i915-headers/i915_reg_defs.h"
+-
+ /**
+  * XE_REG_ADDR_MAX - The upper limit on MMIO register address
+  *
+diff --git a/include/drm/intel/pick.h b/include/drm/intel/pick.h
 new file mode 100644
-index 000000000000..2a9066e1d808
+index 000000000000..d976fab8f270
 --- /dev/null
-+++ b/include/drm/intel/reg_bits.h
-@@ -0,0 +1,139 @@
++++ b/include/drm/intel/pick.h
+@@ -0,0 +1,51 @@
 +/* SPDX-License-Identifier: MIT */
 +/* Copyright © 2026 Intel Corporation */
 +
-+#ifndef _REG_BITS_H_
-+#define _REG_BITS_H_
-+
-+#include <linux/bitfield.h>
-+#include <linux/bits.h>
++#ifndef _PICK_H_
++#define _PICK_H_
 +
 +/*
-+ * Wrappers over the generic fixed width BIT_U*() and GENMASK_U*()
-+ * implementations, for compatibility reasons with previous implementation.
++ * Given the first two numbers __a and __b of arbitrarily many evenly spaced
++ * numbers, pick the 0-based __index'th value.
++ *
++ * Always prefer this over _PICK() if the numbers are evenly spaced.
 + */
-+#define REG_GENMASK(high, low)		GENMASK_U32(high, low)
-+#define REG_GENMASK64(high, low)	GENMASK_U64(high, low)
-+#define REG_GENMASK16(high, low)	GENMASK_U16(high, low)
-+#define REG_GENMASK8(high, low)		GENMASK_U8(high, low)
-+
-+#define REG_BIT(n)			BIT_U32(n)
-+#define REG_BIT64(n)			BIT_U64(n)
-+#define REG_BIT16(n)			BIT_U16(n)
-+#define REG_BIT8(n)			BIT_U8(n)
++#define _PICK_EVEN(__index, __a, __b) ((__a) + (__index) * ((__b) - (__a)))
 +
 +/*
-+ * Local integer constant expression version of is_power_of_2().
++ * Like _PICK_EVEN(), but supports 2 ranges of evenly spaced address offsets.
++ * @__c_index corresponds to the index in which the second range starts to be
++ * used. Using math interval notation, the first range is used for indexes [ 0,
++ * @__c_index), while the second range is used for [ @__c_index, ... ). Example:
++ *
++ * #define _FOO_A			0xf000
++ * #define _FOO_B			0xf004
++ * #define _FOO_C			0xf008
++ * #define _SUPER_FOO_A			0xa000
++ * #define _SUPER_FOO_B			0xa100
++ * #define FOO(x)			_MMIO(_PICK_EVEN_2RANGES(x, 3,		\
++ *					      _FOO_A, _FOO_B,			\
++ *					      _SUPER_FOO_A, _SUPER_FOO_B))
++ *
++ * This expands to:
++ *	0: 0xf000,
++ *	1: 0xf004,
++ *	2: 0xf008,
++ *	3: 0xa000,
++ *	4: 0xa100,
++ *	5: 0xa200,
++ *	...
 + */
-+#define IS_POWER_OF_2(__x)		((__x) && (((__x) & ((__x) - 1)) == 0))
++#define _PICK_EVEN_2RANGES(__index, __c_index, __a, __b, __c, __d)		\
++	(BUILD_BUG_ON_ZERO(!__is_constexpr(__c_index)) +			\
++	 ((__index) < (__c_index) ? _PICK_EVEN(__index, __a, __b) :		\
++				   _PICK_EVEN((__index) - (__c_index), __c, __d)))
 +
-+/**
-+ * REG_FIELD_PREP8() - Prepare a u8 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to put in the field
++/*
++ * Given the arbitrary numbers in varargs, pick the 0-based __index'th number.
 + *
-+ * Local copy of FIELD_PREP() to generate an integer constant expression, force
-+ * u8 and for consistency with REG_FIELD_GET8(), REG_BIT8() and REG_GENMASK8().
-+ *
-+ * @return: @__val masked and shifted into the field defined by @__mask.
++ * Always prefer _PICK_EVEN() over this if the numbers are evenly spaced.
 + */
-+#define REG_FIELD_PREP8(__mask, __val)                                          \
-+	((u8)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
-+	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
-+	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U8_MAX) +          \
-+	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
-+	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
-+
-+/**
-+ * REG_FIELD_PREP16() - Prepare a u16 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to put in the field
-+ *
-+ * Local copy of FIELD_PREP16() to generate an integer constant
-+ * expression, force u8 and for consistency with
-+ * REG_FIELD_GET16(), REG_BIT16() and REG_GENMASK16().
-+ *
-+ * @return: @__val masked and shifted into the field defined by @__mask.
-+ */
-+#define REG_FIELD_PREP16(__mask, __val)                                          \
-+	((u16)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +      \
-+	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +             \
-+	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U16_MAX) +          \
-+	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
-+	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
-+
-+/**
-+ * REG_FIELD_PREP() - Prepare a u32 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to put in the field
-+ *
-+ * Local copy of FIELD_PREP() to generate an integer constant expression, force
-+ * u32 and for consistency with REG_FIELD_GET(), REG_BIT() and REG_GENMASK().
-+ *
-+ * @return: @__val masked and shifted into the field defined by @__mask.
-+ */
-+#define REG_FIELD_PREP(__mask, __val)						\
-+	((u32)((((typeof(__mask))(__val) << __bf_shf(__mask)) & (__mask)) +	\
-+	       BUILD_BUG_ON_ZERO(!__is_constexpr(__mask)) +		\
-+	       BUILD_BUG_ON_ZERO((__mask) == 0 || (__mask) > U32_MAX) +		\
-+	       BUILD_BUG_ON_ZERO(!IS_POWER_OF_2((__mask) + (1ULL << __bf_shf(__mask)))) + \
-+	       BUILD_BUG_ON_ZERO(__builtin_choose_expr(__is_constexpr(__val), (~((__mask) >> __bf_shf(__mask)) & (__val)), 0))))
-+
-+/**
-+ * REG_FIELD_GET8() - Extract a u8 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to extract the bitfield value from
-+ *
-+ * Local wrapper for FIELD_GET() to force u8 and for consistency with
-+ * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
-+ *
-+ * @return: Masked and shifted value of the field defined by @__mask in @__val.
-+ */
-+#define REG_FIELD_GET8(__mask, __val)   ((u8)FIELD_GET(__mask, __val))
-+
-+/**
-+ * REG_FIELD_GET() - Extract a u32 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to extract the bitfield value from
-+ *
-+ * Local wrapper for FIELD_GET() to force u32 and for consistency with
-+ * REG_FIELD_PREP(), REG_BIT() and REG_GENMASK().
-+ *
-+ * @return: Masked and shifted value of the field defined by @__mask in @__val.
-+ */
-+#define REG_FIELD_GET(__mask, __val)	((u32)FIELD_GET(__mask, __val))
-+
-+/**
-+ * REG_FIELD_GET64() - Extract a u64 bitfield value
-+ * @__mask: shifted mask defining the field's length and position
-+ * @__val: value to extract the bitfield value from
-+ *
-+ * Local wrapper for FIELD_GET() to force u64 and for consistency with
-+ * REG_GENMASK64().
-+ *
-+ * @return: Masked and shifted value of the field defined by @__mask in @__val.
-+ */
-+#define REG_FIELD_GET64(__mask, __val)	((u64)FIELD_GET(__mask, __val))
-+
-+/**
-+ * REG_FIELD_MAX() - produce the maximum value representable by a field
-+ * @__mask: shifted mask defining the field's length and position
-+ *
-+ * Local wrapper for FIELD_MAX() to return the maximum bit value that can
-+ * be held in the field specified by @_mask, cast to u32 for consistency
-+ * with other macros.
-+ */
-+#define REG_FIELD_MAX(__mask)	((u32)FIELD_MAX(__mask))
-+
-+#define REG_MASKED_FIELD(mask, value) \
-+	(BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask), (mask) & 0xffff0000, 0)) + \
-+	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(value), (value) & 0xffff0000, 0)) + \
-+	 BUILD_BUG_ON_ZERO(__builtin_choose_expr(__builtin_constant_p(mask) && __builtin_constant_p(value), (value) & ~(mask), 0)) + \
-+	 ((mask) << 16 | (value)))
-+
-+#define REG_MASKED_FIELD_ENABLE(a) \
-+	(__builtin_choose_expr(__builtin_constant_p(a), REG_MASKED_FIELD((a), (a)), ({ typeof(a) _a = (a); REG_MASKED_FIELD(_a, _a); })))
-+
-+#define REG_MASKED_FIELD_DISABLE(a) \
-+	(REG_MASKED_FIELD((a), 0))
++#define _PICK(__index, ...) (((const u32 []){ __VA_ARGS__ })[__index])
 +
 +#endif
 -- 
