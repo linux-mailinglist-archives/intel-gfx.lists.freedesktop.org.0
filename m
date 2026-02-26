@@ -2,152 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AK8sGvKeoWl8ugQAu9opvQ
+	id IPlvCPhMoGnvhwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 14:41:06 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 14:39:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 156E21B7C87
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 14:41:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6F2F81A6BFE
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 14:39:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0089510EB63;
-	Fri, 27 Feb 2026 13:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7225C10E932;
+	Thu, 26 Feb 2026 13:39:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="N4DCZVGH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yuy+ON2V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 61FAA10E928;
- Thu, 26 Feb 2026 13:20:48 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 2F3D040DA4;
- Thu, 26 Feb 2026 13:20:48 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id AEDABC19422;
- Thu, 26 Feb 2026 13:20:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772112048;
- bh=kX30qZnPYCqfXb/76euKMO+o8GK+nW5VkIoRhP2qqC8=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=N4DCZVGHLhr0eBVQJieC3pRRNOvI49z81D2VdJU7sBWh4T/dHMdDAX5hzZ4PpRBNW
- BRAq078+anBNSSCiijh5OkpiqIYJfpx4294YGpYpgaRQbbP8SGLtoBU6rh9a1FWmwg
- SMHRRRvB40cIlPOpE5aMdYx0zO6bkUuB7JQPjuU0GcV+U39Xp9CP5szIB0aKctpq2g
- d+u7N0JiuNZ5PHI+yjzmsfgj+ZfpuRK4a85OFXXDp51NNqss2+suPBeMMB8LBAYrbd
- ueLNudkPWiaIkRW48GLkCxgdEUdzQySHZm0VcoWcIPqzcKgaOeXkBDt5p+PnSlggiO
- a+Pn9fTs5JkzA==
-Message-ID: <d8d35cd9-464d-46e5-8da6-cb0e45b1e582@kernel.org>
-Date: Thu, 26 Feb 2026 14:20:25 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD10610E931;
+ Thu, 26 Feb 2026 13:39:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772113141; x=1803649141;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/z3chuw+atnJ4AfpVGM7tdac0ICgQPp7BoXNpc1S46c=;
+ b=Yuy+ON2VD0uMF9UtPmtImmHIg55LVDM6HpoZMuACkmNS/5ISOSyZqyv/
+ e9gQjmC36MvYBxXpzJedspQd1GHa5uZDrVvSb9UDtyzcDLYCxhPEqcpYV
+ vH3/Y2uYjs65xm6yJLtduWKOmfLJVU3D+ezsbWaVOj+BPRY2qVjFoQteS
+ 869B+FWg+9GA32m2x79Ljl7kv/IjzA42zKv+LdOwOqTTc524JAKR/L+XR
+ dUQQUC9YJFDC5xFDUq/MsCet1+twPprxlk0StkKrru1xa3NQ5sVrQiJiT
+ rj9qfO+R0/i0N4ju8w1PKbHSNhEGKUBcWie4b30qr7qow+ww5e+9oP6Qq w==;
+X-CSE-ConnectionGUID: shj6GeuMSCiFuIQokVd3Bg==
+X-CSE-MsgGUID: jywYVpfwS1K6DKc5lKCoug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="95789957"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="95789957"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 05:39:01 -0800
+X-CSE-ConnectionGUID: 1FjjwR9tTvCWZAsW9Q8rjg==
+X-CSE-MsgGUID: Di6msecDQea7RVt4Qyltow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="239558159"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.224])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 05:38:58 -0800
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	Jani Nikula <jani.nikula@intel.com>
+Subject: [PATCH v3 18/19] drm/i915/overlay: Move i915 specific code into
+ i915_overlay.c
+Date: Thu, 26 Feb 2026 15:38:55 +0200
+Message-ID: <20260226133855.17690-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260226100738.29997-19-ville.syrjala@linux.intel.com>
+References: <20260226100738.29997-19-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 4/4] folio_batch: Rename PAGEVEC_SIZE to
- FOLIO_BATCH_SIZE
-To: Tal Zussman <tz2294@columbia.edu>, David Howells <dhowells@redhat.com>,
- Marc Dionne <marc.dionne@auristor.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Chao Yu <chao@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
- Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
- Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
- Matthew Wilcox <willy@infradead.org>, Dan Williams
- <dan.j.williams@intel.com>, Jan Kara <jack@suse.cz>,
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, Theodore Ts'o <tytso@mit.edu>
-Cc: Andreas Dilger <adilger.kernel@dilger.ca>,
- Paulo Alcantara <pc@manguebit.org>, Trond Myklebust <trondmy@kernel.org>,
- Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
- Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>,
- Steve French <sfrench@samba.org>, Ronnie Sahlberg
- <ronniesahlberg@gmail.com>, Shyam Prasad N <sprasad@microsoft.com>,
- Tom Talpey <tom@talpey.com>, Bharath SM <bharathsm@microsoft.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, Ilya Dryomov <idryomov@gmail.com>,
- Alex Markuze <amarkuze@redhat.com>, Viacheslav Dubeyko <slava@dubeyko.com>,
- Andreas Gruenbacher <agruenba@redhat.com>,
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- "Darrick J. Wong" <djwong@kernel.org>, Chuck Lever <chuck.lever@oracle.com>,
- Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>,
- Peter Xu <peterx@redhat.com>, Johannes Weiner <hannes@cmpxchg.org>,
- Roman Gushchin <roman.gushchin@linux.dev>,
- Shakeel Butt <shakeel.butt@linux.dev>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, Brendan Jackman <jackmanb@google.com>,
- Zi Yan <ziy@nvidia.com>, Hugh Dickins <hughd@google.com>,
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Axel Rasmussen <axelrasmussen@google.com>, Yuanchu Xie <yuanchu@google.com>,
- Wei Xu <weixugc@google.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
- linux-afs@lists.infradead.org, linux-kernel@vger.kernel.org,
- linux-f2fs-devel@lists.sourceforge.net, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, nvdimm@lists.linux.dev,
- linux-ext4@vger.kernel.org, netfs@lists.linux.dev,
- linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
- linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-btrfs@vger.kernel.org, ceph-devel@vger.kernel.org,
- gfs2@lists.linux.dev, linux-nilfs@vger.kernel.org,
- linux-xfs@vger.kernel.org, cgroups@vger.kernel.org
-References: <20260225-pagevec_cleanup-v2-0-716868cc2d11@columbia.edu>
- <20260225-pagevec_cleanup-v2-4-716868cc2d11@columbia.edu>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- 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
- qIws/H2t
-In-Reply-To: <20260225-pagevec_cleanup-v2-4-716868cc2d11@columbia.edu>
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Mailman-Approved-At: Fri, 27 Feb 2026 13:41:00 +0000
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -163,46 +78,1219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[24];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[dilger.ca,manguebit.org,kernel.org,fasheh.com,evilplan.org,linux.alibaba.com,samba.org,gmail.com,microsoft.com,talpey.com,linux.intel.com,suse.de,ffwll.ch,intel.com,ursulin.net,fb.com,suse.com,redhat.com,dubeyko.com,linux.dev,oracle.com,brown.name,ziepe.ca,nvidia.com,cmpxchg.org,google.com,bytedance.com,lists.infradead.org,vger.kernel.org,lists.sourceforge.net,kvack.org,lists.linux.dev,lists.samba.org,lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[columbia.edu,redhat.com,auristor.com,kernel.org,linux-foundation.org,oracle.com,google.com,suse.com,tencent.com,huaweicloud.com,gmail.com,infradead.org,intel.com,suse.cz,zeniv.linux.org.uk,mit.edu];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
-	RCPT_COUNT_GT_50(0.00)[96];
-	FROM_NEQ_ENVFROM(0.00)[david@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 156E21B7C87
+	RCPT_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 6F2F81A6BFE
 X-Rspamd-Action: no action
 
-On 2/26/26 00:44, Tal Zussman wrote:
-> struct pagevec no longer exists. Rename the macro appropriately.
-> 
-> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
-> ---
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Acked-by: David Hildenbrand (Arm) <david@kernel.org>
+Relocate the i915 driver specific parts of the overlay code
+into i915_overlay.c. This leaves intel_overlay.c with just
+the display specific code.
 
+The one annoyance here is the DSPCLK_GATE_D register access
+being done from i830_overlay_clock_gating(). The register
+definition lives on the display side as we do need to access
+it on other platforms there. Since it's just one register
+and bit, I decided to just duplicate that part in i915_reg.h.
+
+v2: Use kzalloc_obj()
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../gpu/drm/i915/display/intel_display_regs.h |   2 -
+ drivers/gpu/drm/i915/display/intel_overlay.c  | 490 +----------------
+ drivers/gpu/drm/i915/i915_overlay.c           | 500 ++++++++++++++++++
+ drivers/gpu/drm/i915/i915_overlay.h           |  43 ++
+ drivers/gpu/drm/i915/i915_reg.h               |   4 +
+ 6 files changed, 550 insertions(+), 490 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/i915_overlay.c
+ create mode 100644 drivers/gpu/drm/i915/i915_overlay.h
+
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 4d6c528d9881..45171de63ef9 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -80,6 +80,7 @@ i915-y += \
+ 	i915_dsb_buffer.o \
+ 	i915_hdcp_gsc.o \
+ 	i915_initial_plane.o \
++	i915_overlay.o \
+ 	i915_panic.o
+ 
+ # "Graphics Technology" (aka we talk to the gpu)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 49e2a9e3ee0e..4746e9ebd920 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -117,8 +117,6 @@
+ #define   VLV_ERROR_PAGE_TABLE				(1 << 4)
+ #define   VLV_ERROR_CLAIM				(1 << 0)
+ 
+-#define GEN2_ISR	_MMIO(0x20ac)
+-
+ #define VLV_ERROR_REGS		I915_ERROR_REGS(VLV_EMR, VLV_EIR)
+ 
+ #define _MBUS_ABOX0_CTL			0x45038
+diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
+index 37c60c08dd56..497bd4ec2224 100644
+--- a/drivers/gpu/drm/i915/display/intel_overlay.c
++++ b/drivers/gpu/drm/i915/display/intel_overlay.c
+@@ -27,24 +27,16 @@
+  */
+ 
+ #include <drm/drm_fourcc.h>
++#include <drm/drm_gem.h>
+ #include <drm/drm_print.h>
+-#include <drm/intel/intel_gmd_interrupt_regs.h>
+ 
+-#include "gem/i915_gem_internal.h"
+-#include "gem/i915_gem_object_frontbuffer.h"
+-#include "gem/i915_gem_pm.h"
+-
+-#include "gt/intel_gpu_commands.h"
+-#include "gt/intel_ring.h"
+-
+-#include "i915_drv.h"
++#include "i915_overlay.h"
+ #include "intel_color_regs.h"
+ #include "intel_de.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+ #include "intel_frontbuffer.h"
+ #include "intel_overlay.h"
+-#include "intel_pci_config.h"
+ #include "intel_pfit_regs.h"
+ 
+ /* Limits for overlay size. According to intel doc, the real limits are:
+@@ -121,9 +113,6 @@
+ #define RGB8I_TO_COLORKEY(c) \
+ 	((((c) & 0xff) << 16) | (((c) & 0xff) << 8) | (((c) & 0xff) << 0))
+ 
+-/* overlay flip addr flag */
+-#define OFC_UPDATE		0x1
+-
+ /* polyphase filter coefficients */
+ #define N_HORIZ_Y_TAPS          5
+ #define N_VERT_Y_TAPS           3
+@@ -187,22 +176,6 @@ struct overlay_registers {
+ 	u16 RESERVEDG[0x100 / 2 - N_HORIZ_UV_TAPS * N_PHASES];
+ };
+ 
+-struct i915_overlay {
+-	struct drm_i915_private *i915;
+-	struct intel_context *context;
+-	struct i915_vma *vma;
+-	struct i915_vma *old_vma;
+-	struct intel_frontbuffer *frontbuffer;
+-	/* register access */
+-	struct drm_i915_gem_object *reg_bo;
+-	void __iomem *regs;
+-	u32 flip_addr;
+-	u32 frontbuffer_bits;
+-	/* flip handling */
+-	struct i915_active last_flip;
+-	void (*flip_complete)(struct i915_overlay *overlay);
+-};
+-
+ struct intel_overlay {
+ 	struct intel_display *display;
+ 	struct intel_crtc *crtc;
+@@ -215,314 +188,6 @@ struct intel_overlay {
+ 	struct overlay_registers __iomem *regs;
+ };
+ 
+-static void i830_overlay_clock_gating(struct drm_i915_private *i915,
+-				      bool enable)
+-{
+-	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
+-	u8 val;
+-
+-	/*
+-	 * WA_OVERLAY_CLKGATE:alm
+-	 *
+-	 * FIXME should perhaps be done on the display side?
+-	 */
+-	if (enable)
+-		intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, 0);
+-	else
+-		intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, OVRUNIT_CLOCK_GATE_DISABLE);
+-
+-	/* WA_DISABLE_L2CACHE_CLOCK_GATING:alm */
+-	pci_bus_read_config_byte(pdev->bus,
+-				 PCI_DEVFN(0, 0), I830_CLOCK_GATE, &val);
+-	if (enable)
+-		val &= ~I830_L2_CACHE_CLOCK_GATE_DISABLE;
+-	else
+-		val |= I830_L2_CACHE_CLOCK_GATE_DISABLE;
+-	pci_bus_write_config_byte(pdev->bus,
+-				  PCI_DEVFN(0, 0), I830_CLOCK_GATE, val);
+-}
+-
+-static struct i915_request *
+-alloc_request(struct i915_overlay *overlay, void (*fn)(struct i915_overlay *))
+-{
+-	struct i915_request *rq;
+-	int err;
+-
+-	overlay->flip_complete = fn;
+-
+-	rq = i915_request_create(overlay->context);
+-	if (IS_ERR(rq))
+-		return rq;
+-
+-	err = i915_active_add_request(&overlay->last_flip, rq);
+-	if (err) {
+-		i915_request_add(rq);
+-		return ERR_PTR(err);
+-	}
+-
+-	return rq;
+-}
+-
+-static bool i915_overlay_is_active(struct drm_device *drm)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-
+-	return overlay->frontbuffer_bits;
+-}
+-
+-/* overlay needs to be disable in OCMD reg */
+-static int i915_overlay_on(struct drm_device *drm,
+-			   u32 frontbuffer_bits)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-	struct i915_request *rq;
+-	u32 *cs;
+-
+-	drm_WARN_ON(drm, i915_overlay_is_active(drm));
+-
+-	rq = alloc_request(overlay, NULL);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
+-
+-	cs = intel_ring_begin(rq, 4);
+-	if (IS_ERR(cs)) {
+-		i915_request_add(rq);
+-		return PTR_ERR(cs);
+-	}
+-
+-	overlay->frontbuffer_bits = frontbuffer_bits;
+-
+-	if (IS_I830(i915))
+-		i830_overlay_clock_gating(i915, false);
+-
+-	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_ON;
+-	*cs++ = overlay->flip_addr | OFC_UPDATE;
+-	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
+-	*cs++ = MI_NOOP;
+-	intel_ring_advance(rq, cs);
+-
+-	i915_request_add(rq);
+-
+-	return i915_active_wait(&overlay->last_flip);
+-}
+-
+-static void i915_overlay_flip_prepare(struct i915_overlay *overlay,
+-				      struct i915_vma *vma)
+-{
+-	struct drm_i915_private *i915 = overlay->i915;
+-	struct intel_frontbuffer *frontbuffer = NULL;
+-
+-	drm_WARN_ON(&i915->drm, overlay->old_vma);
+-
+-	if (vma)
+-		frontbuffer = intel_frontbuffer_get(intel_bo_to_drm_bo(vma->obj));
+-
+-	intel_frontbuffer_track(overlay->frontbuffer, frontbuffer,
+-				overlay->frontbuffer_bits);
+-
+-	if (overlay->frontbuffer)
+-		intel_frontbuffer_put(overlay->frontbuffer);
+-	overlay->frontbuffer = frontbuffer;
+-
+-	overlay->old_vma = overlay->vma;
+-	if (vma)
+-		overlay->vma = i915_vma_get(vma);
+-	else
+-		overlay->vma = NULL;
+-}
+-
+-/* overlay needs to be enabled in OCMD reg */
+-static int i915_overlay_continue(struct drm_device *drm,
+-				 struct i915_vma *vma,
+-				 bool load_polyphase_filter)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-	struct i915_request *rq;
+-	u32 flip_addr = overlay->flip_addr;
+-	u32 *cs;
+-
+-	drm_WARN_ON(drm, !i915_overlay_is_active(drm));
+-
+-	if (load_polyphase_filter)
+-		flip_addr |= OFC_UPDATE;
+-
+-	rq = alloc_request(overlay, NULL);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
+-
+-	cs = intel_ring_begin(rq, 2);
+-	if (IS_ERR(cs)) {
+-		i915_request_add(rq);
+-		return PTR_ERR(cs);
+-	}
+-
+-	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_CONTINUE;
+-	*cs++ = flip_addr;
+-	intel_ring_advance(rq, cs);
+-
+-	i915_overlay_flip_prepare(overlay, vma);
+-	i915_request_add(rq);
+-
+-	return 0;
+-}
+-
+-static void i915_overlay_release_old_vma(struct i915_overlay *overlay)
+-{
+-	struct drm_i915_private *i915 = overlay->i915;
+-	struct intel_display *display = i915->display;
+-	struct i915_vma *vma;
+-
+-	vma = fetch_and_zero(&overlay->old_vma);
+-	if (drm_WARN_ON(&i915->drm, !vma))
+-		return;
+-
+-	intel_frontbuffer_flip(display, overlay->frontbuffer_bits);
+-
+-	i915_vma_unpin(vma);
+-	i915_vma_put(vma);
+-}
+-
+-static void i915_overlay_release_old_vid_tail(struct i915_overlay *overlay)
+-{
+-	i915_overlay_release_old_vma(overlay);
+-}
+-
+-static void i915_overlay_off_tail(struct i915_overlay *overlay)
+-{
+-	struct drm_i915_private *i915 = overlay->i915;
+-
+-	i915_overlay_release_old_vma(overlay);
+-
+-	overlay->frontbuffer_bits = 0;
+-
+-	if (IS_I830(i915))
+-		i830_overlay_clock_gating(i915, true);
+-}
+-
+-static void i915_overlay_last_flip_retire(struct i915_active *active)
+-{
+-	struct i915_overlay *overlay =
+-		container_of(active, typeof(*overlay), last_flip);
+-
+-	if (overlay->flip_complete)
+-		overlay->flip_complete(overlay);
+-}
+-
+-/* overlay needs to be disabled in OCMD reg */
+-static int i915_overlay_off(struct drm_device *drm)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-	struct i915_request *rq;
+-	u32 *cs, flip_addr = overlay->flip_addr;
+-
+-	drm_WARN_ON(drm, !i915_overlay_is_active(drm));
+-
+-	/*
+-	 * According to intel docs the overlay hw may hang (when switching
+-	 * off) without loading the filter coeffs. It is however unclear whether
+-	 * this applies to the disabling of the overlay or to the switching off
+-	 * of the hw. Do it in both cases.
+-	 */
+-	flip_addr |= OFC_UPDATE;
+-
+-	rq = alloc_request(overlay, i915_overlay_off_tail);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
+-
+-	cs = intel_ring_begin(rq, 6);
+-	if (IS_ERR(cs)) {
+-		i915_request_add(rq);
+-		return PTR_ERR(cs);
+-	}
+-
+-	/* wait for overlay to go idle */
+-	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_CONTINUE;
+-	*cs++ = flip_addr;
+-	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
+-
+-	/* turn overlay off */
+-	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_OFF;
+-	*cs++ = flip_addr;
+-	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
+-
+-	intel_ring_advance(rq, cs);
+-
+-	i915_overlay_flip_prepare(overlay, NULL);
+-	i915_request_add(rq);
+-
+-	return i915_active_wait(&overlay->last_flip);
+-}
+-
+-/*
+- * Recover from an interruption due to a signal.
+- * We have to be careful not to repeat work forever an make forward progress.
+- */
+-static int i915_overlay_recover_from_interrupt(struct drm_device *drm)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-
+-	return i915_active_wait(&overlay->last_flip);
+-}
+-
+-/*
+- * Wait for pending overlay flip and release old frame.
+- * Needs to be called before the overlay register are changed
+- * via intel_overlay_(un)map_regs.
+- */
+-static int i915_overlay_release_old_vid(struct drm_device *drm)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-	struct i915_request *rq;
+-	u32 *cs;
+-
+-	/*
+-	 * Only wait if there is actually an old frame to release to
+-	 * guarantee forward progress.
+-	 */
+-	if (!overlay->old_vma)
+-		return 0;
+-
+-	if (!(intel_uncore_read(&i915->uncore, GEN2_ISR) & I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT)) {
+-		i915_overlay_release_old_vid_tail(overlay);
+-		return 0;
+-	}
+-
+-	rq = alloc_request(overlay, i915_overlay_release_old_vid_tail);
+-	if (IS_ERR(rq))
+-		return PTR_ERR(rq);
+-
+-	cs = intel_ring_begin(rq, 2);
+-	if (IS_ERR(cs)) {
+-		i915_request_add(rq);
+-		return PTR_ERR(cs);
+-	}
+-
+-	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
+-	*cs++ = MI_NOOP;
+-	intel_ring_advance(rq, cs);
+-
+-	i915_request_add(rq);
+-
+-	return i915_active_wait(&overlay->last_flip);
+-}
+-
+-static void i915_overlay_reset(struct drm_device *drm)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay = i915->overlay;
+-
+-	if (!overlay)
+-		return;
+-
+-	overlay->frontbuffer_bits = 0;
+-}
+-
+ void intel_overlay_reset(struct intel_display *display)
+ {
+ 	struct intel_overlay *overlay = display->overlay;
+@@ -796,43 +461,6 @@ static u32 overlay_cmd_reg(struct drm_intel_overlay_put_image *params)
+ 	return cmd;
+ }
+ 
+-static struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
+-					    struct drm_gem_object *obj,
+-					    u32 *offset)
+-{
+-	struct drm_i915_gem_object *new_bo = to_intel_bo(obj);
+-	struct i915_gem_ww_ctx ww;
+-	struct i915_vma *vma;
+-	int ret;
+-
+-	i915_gem_ww_ctx_init(&ww, true);
+-retry:
+-	ret = i915_gem_object_lock(new_bo, &ww);
+-	if (!ret) {
+-		vma = i915_gem_object_pin_to_display_plane(new_bo, &ww, 0, 0,
+-							   NULL, PIN_MAPPABLE);
+-		ret = PTR_ERR_OR_ZERO(vma);
+-	}
+-	if (ret == -EDEADLK) {
+-		ret = i915_gem_ww_ctx_backoff(&ww);
+-		if (!ret)
+-			goto retry;
+-	}
+-	i915_gem_ww_ctx_fini(&ww);
+-	if (ret)
+-		return ERR_PTR(ret);
+-
+-	*offset = i915_ggtt_offset(vma);
+-
+-	return vma;
+-}
+-
+-static void i915_overlay_unpin_fb(struct drm_device *drm,
+-				  struct i915_vma *vma)
+-{
+-	i915_vma_unpin(vma);
+-}
+-
+ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
+ 				      struct drm_gem_object *obj,
+ 				      struct drm_intel_overlay_put_image *params)
+@@ -1164,26 +792,6 @@ static int check_overlay_src(struct intel_display *display,
+ 	return 0;
+ }
+ 
+-static struct drm_gem_object *
+-i915_overlay_obj_lookup(struct drm_device *drm,
+-			struct drm_file *file_priv,
+-			u32 handle)
+-{
+-	struct drm_i915_gem_object *bo;
+-
+-	bo = i915_gem_object_lookup(file_priv, handle);
+-	if (!bo)
+-		return ERR_PTR(-ENOENT);
+-
+-	if (i915_gem_object_is_tiled(bo)) {
+-		drm_dbg(drm, "buffer used for overlay image can not be tiled\n");
+-		i915_gem_object_put(bo);
+-		return ERR_PTR(-EINVAL);
+-	}
+-
+-	return intel_bo_to_drm_bo(bo);
+-}
+-
+ int intel_overlay_put_image_ioctl(struct drm_device *dev, void *data,
+ 				  struct drm_file *file_priv)
+ {
+@@ -1416,78 +1024,6 @@ int intel_overlay_attrs_ioctl(struct drm_device *dev, void *data,
+ 	return ret;
+ }
+ 
+-static int get_registers(struct i915_overlay *overlay, bool use_phys)
+-{
+-	struct drm_i915_private *i915 = overlay->i915;
+-	struct drm_i915_gem_object *obj;
+-	struct i915_vma *vma;
+-	int err;
+-
+-	obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
+-	if (IS_ERR(obj))
+-		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
+-	if (IS_ERR(obj))
+-		return PTR_ERR(obj);
+-
+-	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, PIN_MAPPABLE);
+-	if (IS_ERR(vma)) {
+-		err = PTR_ERR(vma);
+-		goto err_put_bo;
+-	}
+-
+-	if (use_phys)
+-		overlay->flip_addr = sg_dma_address(obj->mm.pages->sgl);
+-	else
+-		overlay->flip_addr = i915_ggtt_offset(vma);
+-	overlay->regs = i915_vma_pin_iomap(vma);
+-	i915_vma_unpin(vma);
+-
+-	if (IS_ERR(overlay->regs)) {
+-		err = PTR_ERR(overlay->regs);
+-		goto err_put_bo;
+-	}
+-
+-	overlay->reg_bo = obj;
+-	return 0;
+-
+-err_put_bo:
+-	i915_gem_object_put(obj);
+-	return err;
+-}
+-
+-static void __iomem *i915_overlay_setup(struct drm_device *drm,
+-					bool needs_physical)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct intel_engine_cs *engine;
+-	struct i915_overlay *overlay;
+-	int ret;
+-
+-	engine = to_gt(i915)->engine[RCS0];
+-	if (!engine || !engine->kernel_context)
+-		return ERR_PTR(-ENOENT);
+-
+-	overlay = kzalloc_obj(*overlay);
+-	if (!overlay)
+-		return ERR_PTR(-ENOMEM);
+-
+-	overlay->i915 = i915;
+-	overlay->context = engine->kernel_context;
+-
+-	i915_active_init(&overlay->last_flip,
+-			 NULL, i915_overlay_last_flip_retire, 0);
+-
+-	ret = get_registers(overlay, needs_physical);
+-	if (ret) {
+-		kfree(overlay);
+-		return ERR_PTR(ret);
+-	}
+-
+-	i915->overlay = overlay;
+-
+-	return overlay->regs;
+-}
+-
+ void intel_overlay_setup(struct intel_display *display)
+ {
+ 	struct intel_overlay *overlay;
+@@ -1530,28 +1066,6 @@ bool intel_overlay_available(struct intel_display *display)
+ 	return display->overlay;
+ }
+ 
+-static void i915_overlay_cleanup(struct drm_device *drm)
+-{
+-	struct drm_i915_private *i915 = to_i915(drm);
+-	struct i915_overlay *overlay;
+-
+-	overlay = fetch_and_zero(&i915->overlay);
+-	if (!overlay)
+-		return;
+-
+-	/*
+-	 * The bo's should be free'd by the generic code already.
+-	 * Furthermore modesetting teardown happens beforehand so the
+-	 * hardware should be off already.
+-	 */
+-	drm_WARN_ON(drm, i915_overlay_is_active(drm));
+-
+-	i915_gem_object_put(overlay->reg_bo);
+-	i915_active_fini(&overlay->last_flip);
+-
+-	kfree(overlay);
+-}
+-
+ void intel_overlay_cleanup(struct intel_display *display)
+ {
+ 	if (!display->overlay)
+diff --git a/drivers/gpu/drm/i915/i915_overlay.c b/drivers/gpu/drm/i915/i915_overlay.c
+new file mode 100644
+index 000000000000..61869747c6bb
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_overlay.c
+@@ -0,0 +1,500 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright 2026, Intel Corporation.
++ */
++
++#include <drm/drm_print.h>
++
++#include <drm/intel/intel_gmd_interrupt_regs.h>
++
++#include "gem/i915_gem_internal.h"
++#include "gem/i915_gem_object_frontbuffer.h"
++#include "gem/i915_gem_pm.h"
++
++#include "gt/intel_gpu_commands.h"
++#include "gt/intel_ring.h"
++
++#include "i915_drv.h"
++#include "i915_overlay.h"
++#include "i915_reg.h"
++#include "intel_pci_config.h"
++
++#include "display/intel_frontbuffer.h"
++
++/* overlay flip addr flag */
++#define OFC_UPDATE		0x1
++
++struct i915_overlay {
++	struct drm_i915_private *i915;
++	struct intel_context *context;
++	struct i915_vma *vma;
++	struct i915_vma *old_vma;
++	struct intel_frontbuffer *frontbuffer;
++	/* register access */
++	struct drm_i915_gem_object *reg_bo;
++	void __iomem *regs;
++	u32 flip_addr;
++	u32 frontbuffer_bits;
++	/* flip handling */
++	struct i915_active last_flip;
++	void (*flip_complete)(struct i915_overlay *overlay);
++};
++
++static void i830_overlay_clock_gating(struct drm_i915_private *i915,
++				      bool enable)
++{
++	struct pci_dev *pdev = to_pci_dev(i915->drm.dev);
++	u8 val;
++
++	/*
++	 * WA_OVERLAY_CLKGATE:alm
++	 *
++	 * FIXME should perhaps be done on the display side?
++	 */
++	if (enable)
++		intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, 0);
++	else
++		intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, OVRUNIT_CLOCK_GATE_DISABLE);
++
++	/* WA_DISABLE_L2CACHE_CLOCK_GATING:alm */
++	pci_bus_read_config_byte(pdev->bus,
++				 PCI_DEVFN(0, 0), I830_CLOCK_GATE, &val);
++	if (enable)
++		val &= ~I830_L2_CACHE_CLOCK_GATE_DISABLE;
++	else
++		val |= I830_L2_CACHE_CLOCK_GATE_DISABLE;
++	pci_bus_write_config_byte(pdev->bus,
++				  PCI_DEVFN(0, 0), I830_CLOCK_GATE, val);
++}
++
++static struct i915_request *
++alloc_request(struct i915_overlay *overlay, void (*fn)(struct i915_overlay *))
++{
++	struct i915_request *rq;
++	int err;
++
++	overlay->flip_complete = fn;
++
++	rq = i915_request_create(overlay->context);
++	if (IS_ERR(rq))
++		return rq;
++
++	err = i915_active_add_request(&overlay->last_flip, rq);
++	if (err) {
++		i915_request_add(rq);
++		return ERR_PTR(err);
++	}
++
++	return rq;
++}
++
++bool i915_overlay_is_active(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++
++	return overlay->frontbuffer_bits;
++}
++
++/* overlay needs to be disable in OCMD reg */
++int i915_overlay_on(struct drm_device *drm,
++		    u32 frontbuffer_bits)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++	struct i915_request *rq;
++	u32 *cs;
++
++	drm_WARN_ON(drm, i915_overlay_is_active(drm));
++
++	rq = alloc_request(overlay, NULL);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	cs = intel_ring_begin(rq, 4);
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		return PTR_ERR(cs);
++	}
++
++	overlay->frontbuffer_bits = frontbuffer_bits;
++
++	if (IS_I830(i915))
++		i830_overlay_clock_gating(i915, false);
++
++	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_ON;
++	*cs++ = overlay->flip_addr | OFC_UPDATE;
++	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
++	*cs++ = MI_NOOP;
++	intel_ring_advance(rq, cs);
++
++	i915_request_add(rq);
++
++	return i915_active_wait(&overlay->last_flip);
++}
++
++static void i915_overlay_flip_prepare(struct i915_overlay *overlay,
++				      struct i915_vma *vma)
++{
++	struct drm_i915_private *i915 = overlay->i915;
++	struct intel_frontbuffer *frontbuffer = NULL;
++
++	drm_WARN_ON(&i915->drm, overlay->old_vma);
++
++	if (vma)
++		frontbuffer = intel_frontbuffer_get(intel_bo_to_drm_bo(vma->obj));
++
++	intel_frontbuffer_track(overlay->frontbuffer, frontbuffer,
++				overlay->frontbuffer_bits);
++
++	if (overlay->frontbuffer)
++		intel_frontbuffer_put(overlay->frontbuffer);
++	overlay->frontbuffer = frontbuffer;
++
++	overlay->old_vma = overlay->vma;
++	if (vma)
++		overlay->vma = i915_vma_get(vma);
++	else
++		overlay->vma = NULL;
++}
++
++/* overlay needs to be enabled in OCMD reg */
++int i915_overlay_continue(struct drm_device *drm,
++			  struct i915_vma *vma,
++			  bool load_polyphase_filter)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++	struct i915_request *rq;
++	u32 flip_addr = overlay->flip_addr;
++	u32 *cs;
++
++	drm_WARN_ON(drm, !i915_overlay_is_active(drm));
++
++	if (load_polyphase_filter)
++		flip_addr |= OFC_UPDATE;
++
++	rq = alloc_request(overlay, NULL);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	cs = intel_ring_begin(rq, 2);
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		return PTR_ERR(cs);
++	}
++
++	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_CONTINUE;
++	*cs++ = flip_addr;
++	intel_ring_advance(rq, cs);
++
++	i915_overlay_flip_prepare(overlay, vma);
++	i915_request_add(rq);
++
++	return 0;
++}
++
++static void i915_overlay_release_old_vma(struct i915_overlay *overlay)
++{
++	struct drm_i915_private *i915 = overlay->i915;
++	struct intel_display *display = i915->display;
++	struct i915_vma *vma;
++
++	vma = fetch_and_zero(&overlay->old_vma);
++	if (drm_WARN_ON(&i915->drm, !vma))
++		return;
++
++	intel_frontbuffer_flip(display, overlay->frontbuffer_bits);
++
++	i915_vma_unpin(vma);
++	i915_vma_put(vma);
++}
++
++static void i915_overlay_release_old_vid_tail(struct i915_overlay *overlay)
++{
++	i915_overlay_release_old_vma(overlay);
++}
++
++static void i915_overlay_off_tail(struct i915_overlay *overlay)
++{
++	struct drm_i915_private *i915 = overlay->i915;
++
++	i915_overlay_release_old_vma(overlay);
++
++	overlay->frontbuffer_bits = 0;
++
++	if (IS_I830(i915))
++		i830_overlay_clock_gating(i915, true);
++}
++
++static void i915_overlay_last_flip_retire(struct i915_active *active)
++{
++	struct i915_overlay *overlay =
++		container_of(active, typeof(*overlay), last_flip);
++
++	if (overlay->flip_complete)
++		overlay->flip_complete(overlay);
++}
++
++/* overlay needs to be disabled in OCMD reg */
++int i915_overlay_off(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++	struct i915_request *rq;
++	u32 *cs, flip_addr = overlay->flip_addr;
++
++	drm_WARN_ON(drm, !i915_overlay_is_active(drm));
++
++	/*
++	 * According to intel docs the overlay hw may hang (when switching
++	 * off) without loading the filter coeffs. It is however unclear whether
++	 * this applies to the disabling of the overlay or to the switching off
++	 * of the hw. Do it in both cases.
++	 */
++	flip_addr |= OFC_UPDATE;
++
++	rq = alloc_request(overlay, i915_overlay_off_tail);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	cs = intel_ring_begin(rq, 6);
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		return PTR_ERR(cs);
++	}
++
++	/* wait for overlay to go idle */
++	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_CONTINUE;
++	*cs++ = flip_addr;
++	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
++
++	/* turn overlay off */
++	*cs++ = MI_OVERLAY_FLIP | MI_OVERLAY_OFF;
++	*cs++ = flip_addr;
++	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
++
++	intel_ring_advance(rq, cs);
++
++	i915_overlay_flip_prepare(overlay, NULL);
++	i915_request_add(rq);
++
++	return i915_active_wait(&overlay->last_flip);
++}
++
++/*
++ * Recover from an interruption due to a signal.
++ * We have to be careful not to repeat work forever an make forward progress.
++ */
++int i915_overlay_recover_from_interrupt(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++
++	return i915_active_wait(&overlay->last_flip);
++}
++
++/*
++ * Wait for pending overlay flip and release old frame.
++ * Needs to be called before the overlay register are changed
++ * via intel_overlay_(un)map_regs.
++ */
++int i915_overlay_release_old_vid(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++	struct i915_request *rq;
++	u32 *cs;
++
++	/*
++	 * Only wait if there is actually an old frame to release to
++	 * guarantee forward progress.
++	 */
++	if (!overlay->old_vma)
++		return 0;
++
++	if (!(intel_uncore_read(&i915->uncore, GEN2_ISR) & I915_OVERLAY_PLANE_FLIP_PENDING_INTERRUPT)) {
++		i915_overlay_release_old_vid_tail(overlay);
++		return 0;
++	}
++
++	rq = alloc_request(overlay, i915_overlay_release_old_vid_tail);
++	if (IS_ERR(rq))
++		return PTR_ERR(rq);
++
++	cs = intel_ring_begin(rq, 2);
++	if (IS_ERR(cs)) {
++		i915_request_add(rq);
++		return PTR_ERR(cs);
++	}
++
++	*cs++ = MI_WAIT_FOR_EVENT | MI_WAIT_FOR_OVERLAY_FLIP;
++	*cs++ = MI_NOOP;
++	intel_ring_advance(rq, cs);
++
++	i915_request_add(rq);
++
++	return i915_active_wait(&overlay->last_flip);
++}
++
++void i915_overlay_reset(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay = i915->overlay;
++
++	if (!overlay)
++		return;
++
++	overlay->frontbuffer_bits = 0;
++}
++
++struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
++				     struct drm_gem_object *obj,
++				     u32 *offset)
++{
++	struct drm_i915_gem_object *new_bo = to_intel_bo(obj);
++	struct i915_gem_ww_ctx ww;
++	struct i915_vma *vma;
++	int ret;
++
++	i915_gem_ww_ctx_init(&ww, true);
++retry:
++	ret = i915_gem_object_lock(new_bo, &ww);
++	if (!ret) {
++		vma = i915_gem_object_pin_to_display_plane(new_bo, &ww, 0, 0,
++							   NULL, PIN_MAPPABLE);
++		ret = PTR_ERR_OR_ZERO(vma);
++	}
++	if (ret == -EDEADLK) {
++		ret = i915_gem_ww_ctx_backoff(&ww);
++		if (!ret)
++			goto retry;
++	}
++	i915_gem_ww_ctx_fini(&ww);
++	if (ret)
++		return ERR_PTR(ret);
++
++	*offset = i915_ggtt_offset(vma);
++
++	return vma;
++}
++
++void i915_overlay_unpin_fb(struct drm_device *drm,
++			   struct i915_vma *vma)
++{
++	i915_vma_unpin(vma);
++}
++
++struct drm_gem_object *
++i915_overlay_obj_lookup(struct drm_device *drm,
++			struct drm_file *file_priv,
++			u32 handle)
++{
++	struct drm_i915_gem_object *bo;
++
++	bo = i915_gem_object_lookup(file_priv, handle);
++	if (!bo)
++		return ERR_PTR(-ENOENT);
++
++	if (i915_gem_object_is_tiled(bo)) {
++		drm_dbg(drm, "buffer used for overlay image can not be tiled\n");
++		i915_gem_object_put(bo);
++		return ERR_PTR(-EINVAL);
++	}
++
++	return intel_bo_to_drm_bo(bo);
++}
++
++static int get_registers(struct i915_overlay *overlay, bool use_phys)
++{
++	struct drm_i915_private *i915 = overlay->i915;
++	struct drm_i915_gem_object *obj;
++	struct i915_vma *vma;
++	int err;
++
++	obj = i915_gem_object_create_stolen(i915, PAGE_SIZE);
++	if (IS_ERR(obj))
++		obj = i915_gem_object_create_internal(i915, PAGE_SIZE);
++	if (IS_ERR(obj))
++		return PTR_ERR(obj);
++
++	vma = i915_gem_object_ggtt_pin(obj, NULL, 0, 0, PIN_MAPPABLE);
++	if (IS_ERR(vma)) {
++		err = PTR_ERR(vma);
++		goto err_put_bo;
++	}
++
++	if (use_phys)
++		overlay->flip_addr = sg_dma_address(obj->mm.pages->sgl);
++	else
++		overlay->flip_addr = i915_ggtt_offset(vma);
++	overlay->regs = i915_vma_pin_iomap(vma);
++	i915_vma_unpin(vma);
++
++	if (IS_ERR(overlay->regs)) {
++		err = PTR_ERR(overlay->regs);
++		goto err_put_bo;
++	}
++
++	overlay->reg_bo = obj;
++	return 0;
++
++err_put_bo:
++	i915_gem_object_put(obj);
++	return err;
++}
++
++void __iomem *i915_overlay_setup(struct drm_device *drm,
++				 bool needs_physical)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct intel_engine_cs *engine;
++	struct i915_overlay *overlay;
++	int ret;
++
++	engine = to_gt(i915)->engine[RCS0];
++	if (!engine || !engine->kernel_context)
++		return ERR_PTR(-ENOENT);
++
++	overlay = kzalloc_obj(*overlay);
++	if (!overlay)
++		return ERR_PTR(-ENOMEM);
++
++	overlay->i915 = i915;
++	overlay->context = engine->kernel_context;
++
++	i915_active_init(&overlay->last_flip,
++			 NULL, i915_overlay_last_flip_retire, 0);
++
++	ret = get_registers(overlay, needs_physical);
++	if (ret) {
++		kfree(overlay);
++		return ERR_PTR(ret);
++	}
++
++	i915->overlay = overlay;
++
++	return overlay->regs;
++}
++
++void i915_overlay_cleanup(struct drm_device *drm)
++{
++	struct drm_i915_private *i915 = to_i915(drm);
++	struct i915_overlay *overlay;
++
++	overlay = fetch_and_zero(&i915->overlay);
++	if (!overlay)
++		return;
++
++	/*
++	 * The bo's should be free'd by the generic code already.
++	 * Furthermore modesetting teardown happens beforehand so the
++	 * hardware should be off already.
++	 */
++	drm_WARN_ON(drm, i915_overlay_is_active(drm));
++
++	i915_gem_object_put(overlay->reg_bo);
++	i915_active_fini(&overlay->last_flip);
++
++	kfree(overlay);
++}
+diff --git a/drivers/gpu/drm/i915/i915_overlay.h b/drivers/gpu/drm/i915/i915_overlay.h
+new file mode 100644
+index 000000000000..f553de2abeaa
+--- /dev/null
++++ b/drivers/gpu/drm/i915/i915_overlay.h
+@@ -0,0 +1,43 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __I915_OVERLAY_H__
++#define __I915_OVERLAY_H__
++
++#include <linux/types.h>
++
++struct drm_device;
++struct drm_file;
++struct drm_gem_object;
++struct i915_vma;
++
++bool i915_overlay_is_active(struct drm_device *drm);
++int i915_overlay_on(struct drm_device *drm,
++		    u32 frontbuffer_bits);
++int i915_overlay_continue(struct drm_device *drm,
++			  struct i915_vma *vma,
++			  bool load_polyphase_filter);
++int i915_overlay_off(struct drm_device *drm);
++int i915_overlay_recover_from_interrupt(struct drm_device *drm);
++int i915_overlay_release_old_vid(struct drm_device *drm);
++
++void i915_overlay_reset(struct drm_device *drm);
++
++struct i915_vma *i915_overlay_pin_fb(struct drm_device *drm,
++				     struct drm_gem_object *obj,
++				     u32 *offset);
++void i915_overlay_unpin_fb(struct drm_device *drm,
++			   struct i915_vma *vma);
++
++struct drm_gem_object *
++i915_overlay_obj_lookup(struct drm_device *drm,
++			struct drm_file *file_priv,
++			u32 handle);
++
++void __iomem *i915_overlay_setup(struct drm_device *drm,
++				 bool needs_physical);
++void i915_overlay_cleanup(struct drm_device *drm);
++
++#endif /* __I915_OVERLAY_H__ */
+diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
+index 784d99afde64..5d99b99b0c57 100644
+--- a/drivers/gpu/drm/i915/i915_reg.h
++++ b/drivers/gpu/drm/i915/i915_reg.h
+@@ -338,6 +338,7 @@
+ #define GEN2_IER	_MMIO(0x20a0)
+ #define GEN2_IIR	_MMIO(0x20a4)
+ #define GEN2_IMR	_MMIO(0x20a8)
++#define GEN2_ISR	_MMIO(0x20ac)
+ 
+ #define GEN2_IRQ_REGS		I915_IRQ_REGS(GEN2_IMR, \
+ 					      GEN2_IER, \
+@@ -777,4 +778,7 @@
+ 
+ #define MTL_MEDIA_GSI_BASE		0x380000
+ 
++#define DSPCLK_GATE_D			_MMIO(0x6200)
++# define OVRUNIT_CLOCK_GATE_DISABLE		(1 << 3)
++
+ #endif /* _I915_REG_H_ */
 -- 
-Cheers,
+2.52.0
 
-David
