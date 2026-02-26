@@ -2,160 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uO6yHjtHoGk9hwQAu9opvQ
+	id iGdRBfOeoWl8ugQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 14:14:35 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 14:41:07 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1E2A1A6336
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 14:14:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B2ADF1B7C8E
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 14:41:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 467BE10E01F;
-	Thu, 26 Feb 2026 13:14:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 06B1E10EB64;
+	Fri, 27 Feb 2026 13:41:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="j4vB+WEv";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="kBe6Fnbu";
-	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="NCKzskdH";
-	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="f6cNY8PR";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jMmZos5d";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B739310E00B
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 13:14:31 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5B9321FA9C;
- Thu, 26 Feb 2026 13:14:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1772111670; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HGlBY3HX0Fk8rDjUuw9CIjH8eNDH8K3OHId4Pn3yGbk=;
- b=j4vB+WEv4y1kWINxinp4K5xHq4qNb6QVbszMDLqe2cOmCXQLmMpXqNvER/OkhmttaJ6mPq
- PO01afqr65QPKR1hJWaE47l5VUFop/tmqYFDkH4sSQUZZZeg7/lDtJZsn2OcgnXG+FYJDS
- 3INSe7CY01YA4kqSgq+DkN654M2Qyxw=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1772111670;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HGlBY3HX0Fk8rDjUuw9CIjH8eNDH8K3OHId4Pn3yGbk=;
- b=kBe6FnbufQIISa9ZmB+PWU8oz7ztKwnEgGv0N1JRe7WMUc2sHPuXsS0oQ8TVFsDL/6jtgY
- 2lICg1SqBVAhN4AQ==
-Authentication-Results: smtp-out2.suse.de;
- dkim=pass header.d=suse.cz header.s=susede2_rsa header.b=NCKzskdH;
- dkim=pass header.d=suse.cz header.s=susede2_ed25519 header.b=f6cNY8PR
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
- t=1772111669; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HGlBY3HX0Fk8rDjUuw9CIjH8eNDH8K3OHId4Pn3yGbk=;
- b=NCKzskdH3Dy9QkXFKg6glqlZZJMWI3MXryoRpFrE7Iit1rKhU2WrNQBlfY9I3bU0B487TK
- 6aGiULbesLFXLotF7xJ+ZK2Ju/0lIZWQk0HZ965fTf9rNQVLJ/PzIypOaoD4zqVV/0nUke
- /rhJu7zUhkqh0wX6hDqb69mEKV4NGDE=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
- s=susede2_ed25519; t=1772111669;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=HGlBY3HX0Fk8rDjUuw9CIjH8eNDH8K3OHId4Pn3yGbk=;
- b=f6cNY8PR5Z08eNP9jW47F6KDNGFWkowV9LekH5eRsIayHKjssiYBUujUagUXY+lgyn3b9l
- 0ggVAJZEZsV4TbCw==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 491E33EA69;
- Thu, 26 Feb 2026 13:14:29 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id rlXWETVHoGlUSQAAD6G6ig
- (envelope-from <jack@suse.cz>); Thu, 26 Feb 2026 13:14:29 +0000
-Received: by quack3.suse.cz (Postfix, from userid 1000)
- id 07D78A0A27; Thu, 26 Feb 2026 14:14:25 +0100 (CET)
-Date: Thu, 26 Feb 2026 14:14:24 +0100
-From: Jan Kara <jack@suse.cz>
-To: Tal Zussman <tz2294@columbia.edu>
-Cc: David Howells <dhowells@redhat.com>, 
- Marc Dionne <marc.dionne@auristor.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Chao Yu <chao@kernel.org>, 
- Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Chris Li <chrisl@kernel.org>, 
- Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
- Nhat Pham <nphamcs@gmail.com>, Baoquan He <bhe@redhat.com>,
- Barry Song <baohua@kernel.org>, 
- Matthew Wilcox <willy@infradead.org>, Dan Williams <dan.j.williams@intel.com>,
- Jan Kara <jack@suse.cz>, Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, 
- Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>, 
- Paulo Alcantara <pc@manguebit.org>, Trond Myklebust <trondmy@kernel.org>, 
- Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
- Joel Becker <jlbec@evilplan.org>, 
- Joseph Qi <joseph.qi@linux.alibaba.com>, Steve French <sfrench@samba.org>, 
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, 
- Tom Talpey <tom@talpey.com>, Bharath SM <bharathsm@microsoft.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, 
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>, 
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Andreas Gruenbacher <agruenba@redhat.com>, 
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- "Darrick J. Wong" <djwong@kernel.org>, 
- Chuck Lever <chuck.lever@oracle.com>, Jeff Layton <jlayton@kernel.org>,
- NeilBrown <neil@brown.name>, 
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, 
- John Hubbard <jhubbard@nvidia.com>, Peter Xu <peterx@redhat.com>, 
- Johannes Weiner <hannes@cmpxchg.org>, Roman Gushchin <roman.gushchin@linux.dev>,
- Shakeel Butt <shakeel.butt@linux.dev>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, 
- Brendan Jackman <jackmanb@google.com>, Zi Yan <ziy@nvidia.com>,
- Hugh Dickins <hughd@google.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Axel Rasmussen <axelrasmussen@google.com>, 
- Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>, 
- Qi Zheng <zhengqi.arch@bytedance.com>, linux-afs@lists.infradead.org,
- linux-kernel@vger.kernel.org, 
- linux-f2fs-devel@lists.sourceforge.net, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, 
- nvdimm@lists.linux.dev, linux-ext4@vger.kernel.org, netfs@lists.linux.dev, 
- linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
- linux-cifs@vger.kernel.org, 
- samba-technical@lists.samba.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- linux-btrfs@vger.kernel.org, ceph-devel@vger.kernel.org, gfs2@lists.linux.dev, 
- linux-nilfs@vger.kernel.org, linux-xfs@vger.kernel.org, cgroups@vger.kernel.org
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E63710E00B;
+ Thu, 26 Feb 2026 13:19:22 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id E4CE74439F;
+ Thu, 26 Feb 2026 13:19:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC336C116C6;
+ Thu, 26 Feb 2026 13:19:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772111961;
+ bh=Pf04Z7iE3GM1u8EKRphHFGn52yUYGcn6vqYD0z/gPbY=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=jMmZos5dus2Vdwkn4H474ZgHVP2copjj/B3Awars5H3ImcL7EgOM+GnMA5CvpMRm3
+ uZjje4pqYf4U/nYL+xRxiEDH//aWM0rBwtjD95CAOoRC2yuXMGbL5XtrrMmgfnS2rW
+ SKRnp4xNZwZG4CbEKAWHfIsR255vlBA65beKvnqEE9eQWoG97Ra/KUkEcxKju0Wfvo
+ sjYcPaRs41hJ/9ffBGb+rQMm97rSXg5Yl5sDLfCmjj7fxTZulWhSZ1k9V9zsma5KQh
+ vO/EnlqBQWN2nRtvXne5k66C0o9AUqoILyum0ho9cOZ5L+B4QwkKlPj3fsUzF/4C8F
+ ObzEmPlSut8+g==
+Message-ID: <e2b9ef35-48af-4580-86b4-8640d353028c@kernel.org>
+Date: Thu, 26 Feb 2026 14:18:58 +0100
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH v2 3/4] folio_batch: Rename pagevec.h to folio_batch.h
-Message-ID: <zggxppyvd5ik5grjxcrhw6yc4q3w4ktiipv7qbxwlskv3l4uf2@wbrqoqvpzcul>
+To: Tal Zussman <tz2294@columbia.edu>, David Howells <dhowells@redhat.com>,
+ Marc Dionne <marc.dionne@auristor.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Chao Yu <chao@kernel.org>, Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Chris Li <chrisl@kernel.org>, Kairui Song <kasong@tencent.com>,
+ Kemeng Shi <shikemeng@huaweicloud.com>, Nhat Pham <nphamcs@gmail.com>,
+ Baoquan He <bhe@redhat.com>, Barry Song <baohua@kernel.org>,
+ Matthew Wilcox <willy@infradead.org>, Dan Williams
+ <dan.j.williams@intel.com>, Jan Kara <jack@suse.cz>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Theodore Ts'o <tytso@mit.edu>
+Cc: Andreas Dilger <adilger.kernel@dilger.ca>,
+ Paulo Alcantara <pc@manguebit.org>, Trond Myklebust <trondmy@kernel.org>,
+ Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
+ Joel Becker <jlbec@evilplan.org>, Joseph Qi <joseph.qi@linux.alibaba.com>,
+ Steve French <sfrench@samba.org>, Ronnie Sahlberg
+ <ronniesahlberg@gmail.com>, Shyam Prasad N <sprasad@microsoft.com>,
+ Tom Talpey <tom@talpey.com>, Bharath SM <bharathsm@microsoft.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Chris Mason <clm@fb.com>,
+ David Sterba <dsterba@suse.com>, Ilya Dryomov <idryomov@gmail.com>,
+ Alex Markuze <amarkuze@redhat.com>, Viacheslav Dubeyko <slava@dubeyko.com>,
+ Andreas Gruenbacher <agruenba@redhat.com>,
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ Ryusuke Konishi <konishi.ryusuke@gmail.com>,
+ "Darrick J. Wong" <djwong@kernel.org>, Chuck Lever <chuck.lever@oracle.com>,
+ Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>,
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, John Hubbard <jhubbard@nvidia.com>,
+ Peter Xu <peterx@redhat.com>, Johannes Weiner <hannes@cmpxchg.org>,
+ Roman Gushchin <roman.gushchin@linux.dev>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Brendan Jackman <jackmanb@google.com>,
+ Zi Yan <ziy@nvidia.com>, Hugh Dickins <hughd@google.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Axel Rasmussen <axelrasmussen@google.com>, Yuanchu Xie <yuanchu@google.com>,
+ Wei Xu <weixugc@google.com>, Qi Zheng <zhengqi.arch@bytedance.com>,
+ linux-afs@lists.infradead.org, linux-kernel@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-mm@kvack.org,
+ linux-fsdevel@vger.kernel.org, nvdimm@lists.linux.dev,
+ linux-ext4@vger.kernel.org, netfs@lists.linux.dev,
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ linux-cifs@vger.kernel.org, samba-technical@lists.samba.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-btrfs@vger.kernel.org, ceph-devel@vger.kernel.org,
+ gfs2@lists.linux.dev, linux-nilfs@vger.kernel.org,
+ linux-xfs@vger.kernel.org, cgroups@vger.kernel.org
 References: <20260225-pagevec_cleanup-v2-0-716868cc2d11@columbia.edu>
  <20260225-pagevec_cleanup-v2-3-716868cc2d11@columbia.edu>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
 In-Reply-To: <20260225-pagevec_cleanup-v2-3-716868cc2d11@columbia.edu>
-X-Spam-Flag: NO
-X-Spam-Score: -2.51
-X-Spam-Level: 
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Fri, 27 Feb 2026 13:41:00 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,44 +164,36 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	DATE_IN_PAST(1.00)[24];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:tz2294@columbia.edu,m:dhowells@redhat.com,m:marc.dionne@auristor.com,m:jaegeuk@kernel.org,m:chao@kernel.org,m:akpm@linux-foundation.org,m:david@kernel.org,m:lorenzo.stoakes@oracle.com,m:Liam.Howlett@oracle.com,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:chrisl@kernel.org,m:kasong@tencent.com,m:shikemeng@huaweicloud.com,m:nphamcs@gmail.com,m:bhe@redhat.com,m:baohua@kernel.org,m:willy@infradead.org,m:dan.j.williams@intel.com,m:jack@suse.cz,m:viro@zeniv.linux.org.uk,m:brauner@kernel.org,m:tytso@mit.edu,m:adilger.kernel@dilger.ca,m:pc@manguebit.org,m:trondmy@kernel.org,m:anna@kernel.org,m:mark@fasheh.com,m:jlbec@evilplan.org,m:joseph.qi@linux.alibaba.com,m:sfrench@samba.org,m:ronniesahlberg@gmail.com,m:sprasad@microsoft.com,m:tom@talpey.com,m:bharathsm@microsoft.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen
- @linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:clm@fb.com,m:dsterba@suse.com,m:idryomov@gmail.com,m:amarkuze@redhat.com,m:slava@dubeyko.com,m:agruenba@redhat.com,m:muchun.song@linux.dev,m:osalvador@suse.de,m:konishi.ryusuke@gmail.com,m:djwong@kernel.org,m:chuck.lever@oracle.com,m:jlayton@kernel.org,m:neil@brown.name,m:okorniev@redhat.com,m:Dai.Ngo@oracle.com,m:jgg@ziepe.ca,m:jhubbard@nvidia.com,m:peterx@redhat.com,m:hannes@cmpxchg.org,m:roman.gushchin@linux.dev,m:shakeel.butt@linux.dev,m:jannh@google.com,m:pfalcato@suse.de,m:jackmanb@google.com,m:ziy@nvidia.com,m:hughd@google.com,m:baolin.wang@linux.alibaba.com,m:axelrasmussen@google.com,m:yuanchu@google.com,m:weixugc@google.com,m:zhengqi.arch@bytedance.com,m:linux-afs@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:linux-f2fs-devel@lists.sourceforge.net,m:linux-mm@kvack.org,m:linux-fsdevel@vger.kernel.org,m:nvdimm@lists.linux.dev,m:linux-ext4@vger.kernel.org,m:netfs@lists.linux.dev,m:linux-nfs@vger.kernel.o
- rg,m:ocfs2-devel@lists.linux.dev,m:linux-cifs@vger.kernel.org,m:samba-technical@lists.samba.org,m:dri-devel@lists.freedesktop.org,m:linux-btrfs@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:gfs2@lists.linux.dev,m:linux-nilfs@vger.kernel.org,m:linux-xfs@vger.kernel.org,m:cgroups@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[suse.cz];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[jack@suse.cz,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[redhat.com,auristor.com,kernel.org,linux-foundation.org,oracle.com,google.com,suse.com,tencent.com,huaweicloud.com,gmail.com,infradead.org,intel.com,suse.cz,zeniv.linux.org.uk,mit.edu,dilger.ca,manguebit.org,fasheh.com,evilplan.org,linux.alibaba.com,samba.org,microsoft.com,talpey.com,linux.intel.com,suse.de,ffwll.ch,ursulin.net,fb.com,dubeyko.com,linux.dev,brown.name,ziepe.ca,nvidia.com,cmpxchg.org,bytedance.com,lists.infradead.org,vger.kernel.org,lists.sourceforge.net,kvack.org,lists.linux.dev,lists.samba.org,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[dilger.ca,manguebit.org,kernel.org,fasheh.com,evilplan.org,linux.alibaba.com,samba.org,gmail.com,microsoft.com,talpey.com,linux.intel.com,suse.de,ffwll.ch,intel.com,ursulin.net,fb.com,suse.com,redhat.com,dubeyko.com,linux.dev,oracle.com,brown.name,ziepe.ca,nvidia.com,cmpxchg.org,google.com,bytedance.com,lists.infradead.org,vger.kernel.org,lists.sourceforge.net,kvack.org,lists.linux.dev,lists.samba.org,lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[columbia.edu,redhat.com,auristor.com,kernel.org,linux-foundation.org,oracle.com,google.com,suse.com,tencent.com,huaweicloud.com,gmail.com,infradead.org,intel.com,suse.cz,zeniv.linux.org.uk,mit.edu];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[97];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[jack@suse.cz,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[suse.cz:+];
-	NEURAL_HAM(-0.00)[-0.977];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.996];
+	RCPT_COUNT_GT_50(0.00)[96];
+	FROM_NEQ_ENVFROM(0.00)[david@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[columbia.edu:email,suse.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,kvack.org:email,linux-mm.org:url]
-X-Rspamd-Queue-Id: E1E2A1A6336
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: B2ADF1B7C8E
 X-Rspamd-Action: no action
 
-On Wed 25-02-26 18:44:27, Tal Zussman wrote:
+On 2/26/26 00:44, Tal Zussman wrote:
 > struct pagevec was removed in commit 1e0877d58b1e ("mm: remove struct
 > pagevec"). Rename include/linux/pagevec.h to reflect reality and update
 > includes tree-wide. Add the new filename to MAINTAINERS explicitly, as
@@ -218,554 +201,11 @@ On Wed 25-02-26 18:44:27, Tal Zussman wrote:
 > MANAGEMENT - CORE.
 > 
 > Signed-off-by: Tal Zussman <tz2294@columbia.edu>
-
-Looks good. Feel free to add:
-
-Reviewed-by: Jan Kara <jack@suse.cz>
-
-								Honza
-
 > ---
->  MAINTAINERS                                | 1 +
->  drivers/gpu/drm/drm_gem.c                  | 2 +-
->  drivers/gpu/drm/i915/gem/i915_gem_shmem.c  | 2 +-
->  drivers/gpu/drm/i915/gt/intel_gtt.h        | 2 +-
->  drivers/gpu/drm/i915/i915_gpu_error.c      | 2 +-
->  fs/btrfs/compression.c                     | 2 +-
->  fs/btrfs/extent_io.c                       | 2 +-
->  fs/btrfs/tests/extent-io-tests.c           | 2 +-
->  fs/buffer.c                                | 2 +-
->  fs/ceph/addr.c                             | 2 +-
->  fs/ext4/inode.c                            | 2 +-
->  fs/f2fs/checkpoint.c                       | 2 +-
->  fs/f2fs/compress.c                         | 2 +-
->  fs/f2fs/data.c                             | 2 +-
->  fs/f2fs/node.c                             | 2 +-
->  fs/gfs2/aops.c                             | 2 +-
->  fs/hugetlbfs/inode.c                       | 2 +-
->  fs/nilfs2/btree.c                          | 2 +-
->  fs/nilfs2/page.c                           | 2 +-
->  fs/nilfs2/segment.c                        | 2 +-
->  fs/ramfs/file-nommu.c                      | 2 +-
->  include/linux/{pagevec.h => folio_batch.h} | 8 ++++----
->  include/linux/folio_queue.h                | 2 +-
->  include/linux/iomap.h                      | 2 +-
->  include/linux/sunrpc/svc.h                 | 2 +-
->  include/linux/writeback.h                  | 2 +-
->  mm/filemap.c                               | 2 +-
->  mm/gup.c                                   | 2 +-
->  mm/memcontrol.c                            | 2 +-
->  mm/mlock.c                                 | 2 +-
->  mm/page-writeback.c                        | 2 +-
->  mm/page_alloc.c                            | 2 +-
->  mm/shmem.c                                 | 2 +-
->  mm/swap.c                                  | 2 +-
->  mm/swap_state.c                            | 2 +-
->  mm/truncate.c                              | 2 +-
->  mm/vmscan.c                                | 2 +-
->  37 files changed, 40 insertions(+), 39 deletions(-)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e4572a36afd2..f50421e65cb1 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -16664,6 +16664,7 @@ L:	linux-mm@kvack.org
->  S:	Maintained
->  W:	http://www.linux-mm.org
->  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/akpm/mm
-> +F:	include/linux/folio_batch.h
->  F:	include/linux/gfp.h
->  F:	include/linux/gfp_types.h
->  F:	include/linux/highmem.h
-> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
-> index 891c3bff5ae0..dc4534fb175c 100644
-> --- a/drivers/gpu/drm/drm_gem.c
-> +++ b/drivers/gpu/drm/drm_gem.c
-> @@ -38,7 +38,7 @@
->  #include <linux/mman.h>
->  #include <linux/module.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/sched/mm.h>
->  #include <linux/shmem_fs.h>
->  #include <linux/slab.h>
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> index c6c64ba29bc4..07025b547c94 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_shmem.c
-> @@ -3,7 +3,7 @@
->   * Copyright © 2014-2016 Intel Corporation
->   */
->  
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/shmem_fs.h>
->  #include <linux/swap.h>
->  #include <linux/uio.h>
-> diff --git a/drivers/gpu/drm/i915/gt/intel_gtt.h b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> index 9d3a3ad567a0..b54ee4f25af1 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_gtt.h
-> +++ b/drivers/gpu/drm/i915/gt/intel_gtt.h
-> @@ -19,7 +19,7 @@
->  #include <linux/io-mapping.h>
->  #include <linux/kref.h>
->  #include <linux/mm.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/scatterlist.h>
->  #include <linux/workqueue.h>
->  
-> diff --git a/drivers/gpu/drm/i915/i915_gpu_error.c b/drivers/gpu/drm/i915/i915_gpu_error.c
-> index a99b4e45d26c..ffe5f24594c9 100644
-> --- a/drivers/gpu/drm/i915/i915_gpu_error.c
-> +++ b/drivers/gpu/drm/i915/i915_gpu_error.c
-> @@ -31,7 +31,7 @@
->  #include <linux/debugfs.h>
->  #include <linux/highmem.h>
->  #include <linux/nmi.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/scatterlist.h>
->  #include <linux/string_helpers.h>
->  #include <linux/utsname.h>
-> diff --git a/fs/btrfs/compression.c b/fs/btrfs/compression.c
-> index 790518a8c803..dbc634d10ad3 100644
-> --- a/fs/btrfs/compression.c
-> +++ b/fs/btrfs/compression.c
-> @@ -8,7 +8,7 @@
->  #include <linux/file.h>
->  #include <linux/fs.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/highmem.h>
->  #include <linux/kthread.h>
->  #include <linux/time.h>
-> diff --git a/fs/btrfs/extent_io.c b/fs/btrfs/extent_io.c
-> index 744a1fff6eef..c373d113f1e7 100644
-> --- a/fs/btrfs/extent_io.c
-> +++ b/fs/btrfs/extent_io.c
-> @@ -11,7 +11,7 @@
->  #include <linux/blkdev.h>
->  #include <linux/swap.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/prefetch.h>
->  #include <linux/fsverity.h>
->  #include "extent_io.h"
-> diff --git a/fs/btrfs/tests/extent-io-tests.c b/fs/btrfs/tests/extent-io-tests.c
-> index a0187d6163df..b2aacf846c8b 100644
-> --- a/fs/btrfs/tests/extent-io-tests.c
-> +++ b/fs/btrfs/tests/extent-io-tests.c
-> @@ -4,7 +4,7 @@
->   */
->  
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/sched.h>
->  #include <linux/slab.h>
->  #include <linux/sizes.h>
-> diff --git a/fs/buffer.c b/fs/buffer.c
-> index 22b43642ba57..f3122160ee2d 100644
-> --- a/fs/buffer.c
-> +++ b/fs/buffer.c
-> @@ -45,7 +45,7 @@
->  #include <linux/bitops.h>
->  #include <linux/mpage.h>
->  #include <linux/bit_spinlock.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/sched/mm.h>
->  #include <trace/events/block.h>
->  #include <linux/fscrypt.h>
-> diff --git a/fs/ceph/addr.c b/fs/ceph/addr.c
-> index e87b3bb94ee8..2803511d86ef 100644
-> --- a/fs/ceph/addr.c
-> +++ b/fs/ceph/addr.c
-> @@ -7,7 +7,7 @@
->  #include <linux/swap.h>
->  #include <linux/pagemap.h>
->  #include <linux/slab.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/task_io_accounting_ops.h>
->  #include <linux/signal.h>
->  #include <linux/iversion.h>
-> diff --git a/fs/ext4/inode.c b/fs/ext4/inode.c
-> index 396dc3a5d16b..58f982885187 100644
-> --- a/fs/ext4/inode.c
-> +++ b/fs/ext4/inode.c
-> @@ -29,7 +29,7 @@
->  #include <linux/string.h>
->  #include <linux/buffer_head.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/mpage.h>
->  #include <linux/rmap.h>
->  #include <linux/namei.h>
-> diff --git a/fs/f2fs/checkpoint.c b/fs/f2fs/checkpoint.c
-> index 6dd39b7de11a..0143365c07dc 100644
-> --- a/fs/f2fs/checkpoint.c
-> +++ b/fs/f2fs/checkpoint.c
-> @@ -11,7 +11,7 @@
->  #include <linux/writeback.h>
->  #include <linux/blkdev.h>
->  #include <linux/f2fs_fs.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/swap.h>
->  #include <linux/kthread.h>
->  #include <linux/delayacct.h>
-> diff --git a/fs/f2fs/compress.c b/fs/f2fs/compress.c
-> index 8c76400ba631..614e00b8ffdc 100644
-> --- a/fs/f2fs/compress.c
-> +++ b/fs/f2fs/compress.c
-> @@ -13,7 +13,7 @@
->  #include <linux/lzo.h>
->  #include <linux/lz4.h>
->  #include <linux/zstd.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  
->  #include "f2fs.h"
->  #include "node.h"
-> diff --git a/fs/f2fs/data.c b/fs/f2fs/data.c
-> index 338df7a2aea6..90e8ef625d82 100644
-> --- a/fs/f2fs/data.c
-> +++ b/fs/f2fs/data.c
-> @@ -10,7 +10,7 @@
->  #include <linux/sched/mm.h>
->  #include <linux/mpage.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/blkdev.h>
->  #include <linux/bio.h>
->  #include <linux/blk-crypto.h>
-> diff --git a/fs/f2fs/node.c b/fs/f2fs/node.c
-> index 74992fd9c9b6..ba0272314528 100644
-> --- a/fs/f2fs/node.c
-> +++ b/fs/f2fs/node.c
-> @@ -10,7 +10,7 @@
->  #include <linux/mpage.h>
->  #include <linux/sched/mm.h>
->  #include <linux/blkdev.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/swap.h>
->  
->  #include "f2fs.h"
-> diff --git a/fs/gfs2/aops.c b/fs/gfs2/aops.c
-> index e79ad087512a..dae3dc4ee6f7 100644
-> --- a/fs/gfs2/aops.c
-> +++ b/fs/gfs2/aops.c
-> @@ -10,7 +10,7 @@
->  #include <linux/completion.h>
->  #include <linux/buffer_head.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/mpage.h>
->  #include <linux/fs.h>
->  #include <linux/writeback.h>
-> diff --git a/fs/hugetlbfs/inode.c b/fs/hugetlbfs/inode.c
-> index 22c799000edb..2ec3e4231252 100644
-> --- a/fs/hugetlbfs/inode.c
-> +++ b/fs/hugetlbfs/inode.c
-> @@ -25,7 +25,7 @@
->  #include <linux/ctype.h>
->  #include <linux/backing-dev.h>
->  #include <linux/hugetlb.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/fs_parser.h>
->  #include <linux/mman.h>
->  #include <linux/slab.h>
-> diff --git a/fs/nilfs2/btree.c b/fs/nilfs2/btree.c
-> index dd0c8e560ef6..b400cfcdc803 100644
-> --- a/fs/nilfs2/btree.c
-> +++ b/fs/nilfs2/btree.c
-> @@ -10,7 +10,7 @@
->  #include <linux/slab.h>
->  #include <linux/string.h>
->  #include <linux/errno.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include "nilfs.h"
->  #include "page.h"
->  #include "btnode.h"
-> diff --git a/fs/nilfs2/page.c b/fs/nilfs2/page.c
-> index 56c4da417b6a..a9d8aa65416f 100644
-> --- a/fs/nilfs2/page.c
-> +++ b/fs/nilfs2/page.c
-> @@ -14,7 +14,7 @@
->  #include <linux/page-flags.h>
->  #include <linux/list.h>
->  #include <linux/highmem.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/gfp.h>
->  #include "nilfs.h"
->  #include "page.h"
-> diff --git a/fs/nilfs2/segment.c b/fs/nilfs2/segment.c
-> index 098a3bd103e0..6d62de64a309 100644
-> --- a/fs/nilfs2/segment.c
-> +++ b/fs/nilfs2/segment.c
-> @@ -19,7 +19,7 @@
->  #include <linux/freezer.h>
->  #include <linux/kthread.h>
->  #include <linux/crc32.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/slab.h>
->  #include <linux/sched/signal.h>
->  
-> diff --git a/fs/ramfs/file-nommu.c b/fs/ramfs/file-nommu.c
-> index 0f8e838ece07..2f79bcb89d2e 100644
-> --- a/fs/ramfs/file-nommu.c
-> +++ b/fs/ramfs/file-nommu.c
-> @@ -14,7 +14,7 @@
->  #include <linux/string.h>
->  #include <linux/backing-dev.h>
->  #include <linux/ramfs.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/mman.h>
->  #include <linux/sched.h>
->  #include <linux/slab.h>
-> diff --git a/include/linux/pagevec.h b/include/linux/folio_batch.h
-> similarity index 95%
-> rename from include/linux/pagevec.h
-> rename to include/linux/folio_batch.h
-> index 007affabf335..a2f3d3043f7e 100644
-> --- a/include/linux/pagevec.h
-> +++ b/include/linux/folio_batch.h
-> @@ -1,13 +1,13 @@
->  /* SPDX-License-Identifier: GPL-2.0 */
->  /*
-> - * include/linux/pagevec.h
-> + * include/linux/folio_batch.h
->   *
->   * In many places it is efficient to batch an operation up against multiple
->   * folios.  A folio_batch is a container which is used for that.
->   */
->  
-> -#ifndef _LINUX_PAGEVEC_H
-> -#define _LINUX_PAGEVEC_H
-> +#ifndef _LINUX_FOLIO_BATCH_H
-> +#define _LINUX_FOLIO_BATCH_H
->  
->  #include <linux/types.h>
->  
-> @@ -102,4 +102,4 @@ static inline void folio_batch_release(struct folio_batch *fbatch)
->  }
->  
->  void folio_batch_remove_exceptionals(struct folio_batch *fbatch);
-> -#endif /* _LINUX_PAGEVEC_H */
-> +#endif /* _LINUX_FOLIO_BATCH_H */
-> diff --git a/include/linux/folio_queue.h b/include/linux/folio_queue.h
-> index adab609c972e..0d3765fa9d1d 100644
-> --- a/include/linux/folio_queue.h
-> +++ b/include/linux/folio_queue.h
-> @@ -14,7 +14,7 @@
->  #ifndef _LINUX_FOLIO_QUEUE_H
->  #define _LINUX_FOLIO_QUEUE_H
->  
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/mm.h>
->  
->  /*
-> diff --git a/include/linux/iomap.h b/include/linux/iomap.h
-> index 99b7209dabd7..4551613cea2f 100644
-> --- a/include/linux/iomap.h
-> +++ b/include/linux/iomap.h
-> @@ -9,7 +9,7 @@
->  #include <linux/types.h>
->  #include <linux/mm_types.h>
->  #include <linux/blkdev.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  
->  struct address_space;
->  struct fiemap_extent_info;
-> diff --git a/include/linux/sunrpc/svc.h b/include/linux/sunrpc/svc.h
-> index 4dc14c7a711b..a11acf5cd63b 100644
-> --- a/include/linux/sunrpc/svc.h
-> +++ b/include/linux/sunrpc/svc.h
-> @@ -20,7 +20,7 @@
->  #include <linux/lwq.h>
->  #include <linux/wait.h>
->  #include <linux/mm.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/kthread.h>
->  
->  /*
-> diff --git a/include/linux/writeback.h b/include/linux/writeback.h
-> index e530112c4b3a..62552a2ce5b9 100644
-> --- a/include/linux/writeback.h
-> +++ b/include/linux/writeback.h
-> @@ -11,7 +11,7 @@
->  #include <linux/flex_proportions.h>
->  #include <linux/backing-dev-defs.h>
->  #include <linux/blk_types.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  
->  struct bio;
->  
-> diff --git a/mm/filemap.c b/mm/filemap.c
-> index 6cd7974d4ada..63f256307fdd 100644
-> --- a/mm/filemap.c
-> +++ b/mm/filemap.c
-> @@ -31,7 +31,7 @@
->  #include <linux/hash.h>
->  #include <linux/writeback.h>
->  #include <linux/backing-dev.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/security.h>
->  #include <linux/cpuset.h>
->  #include <linux/hugetlb.h>
-> diff --git a/mm/gup.c b/mm/gup.c
-> index 8e7dc2c6ee73..ad9ded39609c 100644
-> --- a/mm/gup.c
-> +++ b/mm/gup.c
-> @@ -18,7 +18,7 @@
->  #include <linux/hugetlb.h>
->  #include <linux/migrate.h>
->  #include <linux/mm_inline.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/sched/mm.h>
->  #include <linux/shmem_fs.h>
->  
-> diff --git a/mm/memcontrol.c b/mm/memcontrol.c
-> index db59fad3503f..51508573963d 100644
-> --- a/mm/memcontrol.c
-> +++ b/mm/memcontrol.c
-> @@ -34,7 +34,7 @@
->  #include <linux/shmem_fs.h>
->  #include <linux/hugetlb.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/vm_event_item.h>
->  #include <linux/smp.h>
->  #include <linux/page-flags.h>
-> diff --git a/mm/mlock.c b/mm/mlock.c
-> index 2f699c3497a5..1a92d16f3684 100644
-> --- a/mm/mlock.c
-> +++ b/mm/mlock.c
-> @@ -13,7 +13,7 @@
->  #include <linux/swap.h>
->  #include <linux/swapops.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/pagewalk.h>
->  #include <linux/mempolicy.h>
->  #include <linux/syscalls.h>
-> diff --git a/mm/page-writeback.c b/mm/page-writeback.c
-> index 601a5e048d12..1009bb042ba4 100644
-> --- a/mm/page-writeback.c
-> +++ b/mm/page-writeback.c
-> @@ -33,7 +33,7 @@
->  #include <linux/sysctl.h>
->  #include <linux/cpu.h>
->  #include <linux/syscalls.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/timer.h>
->  #include <linux/sched/rt.h>
->  #include <linux/sched/signal.h>
-> diff --git a/mm/page_alloc.c b/mm/page_alloc.c
-> index d88c8c67ac0b..74b603872f34 100644
-> --- a/mm/page_alloc.c
-> +++ b/mm/page_alloc.c
-> @@ -31,7 +31,7 @@
->  #include <linux/sysctl.h>
->  #include <linux/cpu.h>
->  #include <linux/cpuset.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/memory_hotplug.h>
->  #include <linux/nodemask.h>
->  #include <linux/vmstat.h>
-> diff --git a/mm/shmem.c b/mm/shmem.c
-> index cfed6c3ff853..149fdb051170 100644
-> --- a/mm/shmem.c
-> +++ b/mm/shmem.c
-> @@ -61,7 +61,7 @@ static struct vfsmount *shm_mnt __ro_after_init;
->  #include <linux/slab.h>
->  #include <linux/backing-dev.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/percpu_counter.h>
->  #include <linux/falloc.h>
->  #include <linux/splice.h>
-> diff --git a/mm/swap.c b/mm/swap.c
-> index bb19ccbece46..2e517ede6561 100644
-> --- a/mm/swap.c
-> +++ b/mm/swap.c
-> @@ -20,7 +20,7 @@
->  #include <linux/swap.h>
->  #include <linux/mman.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/init.h>
->  #include <linux/export.h>
->  #include <linux/mm_inline.h>
-> diff --git a/mm/swap_state.c b/mm/swap_state.c
-> index 32d9d877bda8..a0c64db2b275 100644
-> --- a/mm/swap_state.c
-> +++ b/mm/swap_state.c
-> @@ -15,7 +15,7 @@
->  #include <linux/leafops.h>
->  #include <linux/init.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/backing-dev.h>
->  #include <linux/blkdev.h>
->  #include <linux/migrate.h>
-> diff --git a/mm/truncate.c b/mm/truncate.c
-> index 12467c1bd711..df0b7a7e6aff 100644
-> --- a/mm/truncate.c
-> +++ b/mm/truncate.c
-> @@ -17,7 +17,7 @@
->  #include <linux/export.h>
->  #include <linux/pagemap.h>
->  #include <linux/highmem.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/task_io_accounting_ops.h>
->  #include <linux/shmem_fs.h>
->  #include <linux/rmap.h>
-> diff --git a/mm/vmscan.c b/mm/vmscan.c
-> index 7effd01a7828..7e921dbe2373 100644
-> --- a/mm/vmscan.c
-> +++ b/mm/vmscan.c
-> @@ -44,7 +44,7 @@
->  #include <linux/sysctl.h>
->  #include <linux/memory-tiers.h>
->  #include <linux/oom.h>
-> -#include <linux/pagevec.h>
-> +#include <linux/folio_batch.h>
->  #include <linux/prefetch.h>
->  #include <linux/printk.h>
->  #include <linux/dax.h>
-> 
-> -- 
-> 2.39.5
-> 
+
+Acked-by: David Hildenbrand (Arm) <david@kernel.org>
+
 -- 
-Jan Kara <jack@suse.com>
-SUSE Labs, CR
+Cheers,
+
+David
