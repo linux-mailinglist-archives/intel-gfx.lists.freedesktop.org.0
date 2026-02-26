@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sA3rFYQboGmzfgQAu9opvQ
+	id gL86EogboGmzfgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 11:08:04 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 11:08:08 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1367F1A3FCB
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 11:08:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 038831A3FD2
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 11:08:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91D1F10E8A9;
-	Thu, 26 Feb 2026 10:08:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 88CA210E8B0;
+	Thu, 26 Feb 2026 10:08:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cZVS/fCk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c7AVCrH9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D8B0510E8AF;
- Thu, 26 Feb 2026 10:08:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DC2610E8B1;
+ Thu, 26 Feb 2026 10:08:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772100481; x=1803636481;
+ t=1772100485; x=1803636485;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vxgIdIim9gWdK5B6kmxqotjfOF5hcpLXLbFxuF1PHpI=;
- b=cZVS/fCkF5gV8uDLybluLHy/xTMaAqfBzGWill/Mgiz7V3sBBYjfocE6
- wYBiNydf16dQf1f5797gNbv93FKy/z4xhCLZgHGMeLhZM7wCyFmiSxHON
- jlRAhRZOVbLa+TBfqHnptKbYvzXBMAL8F+55PkIMSGjKEcv/tHG1hOpKR
- 9AayklFrX02++fhKU2qrnT77yr8VuAEWPtDDGsz6AaXmBIx58xBZ03O7H
- jKZGYOc+pMgwL1ijmrY1oZU50IAsmIGLn67cGmm+gfGxleviczbh9BguV
- 28iWfhFFXjMIE4+7vP9C9mGSZLMMQ0yEqFUXrrZEQYNtIIHucg6fOrk8h w==;
-X-CSE-ConnectionGUID: x/prZ93mSVCpW1YcPegTnQ==
-X-CSE-MsgGUID: a+SORHi3TS2GAsdWJPUbow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="73063809"
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="73063809"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 02:08:01 -0800
-X-CSE-ConnectionGUID: BCYtG4xUSxe1uYyCQfsztQ==
-X-CSE-MsgGUID: NjznHjdARlSZJTDN7hlMcA==
+ bh=nlRfQjBTAD4fTZ9wVv8rvoeclypSQmHHr8R+OIxF4Hc=;
+ b=c7AVCrH91aQLPSuIC49wE/so6qywe+IvlQFowOnBvCjD/5uVQM7NxC2V
+ VFItU8wwU/AH6iSD2ZXqusnICnmpBfweIE9znVKOsE3rwxXxDodfnHw36
+ melXt7RlBWIyg6H4wiYKFvemiIX+j4JEtXkNO8aKsBP7HwlLL/8UUhW2l
+ /9P7a4p6xiTtiMOBteX7GZzJeTKzOpD33c5zwBuOy2GoeUQIgrimaO2eb
+ +uwp2ifUNa6QK/ZJp3ZGRsfLEXwXPU9bDA669hIPgDvp0Onda6q5IdFZh
+ R3wJyNG6+gPiNL0NTr1iAaBu9J6cQr/fVSmUSoYaMoYUs/LAUdZtO1PUK g==;
+X-CSE-ConnectionGUID: 3CltV1BHRjukbd7atbAkcQ==
+X-CSE-MsgGUID: rUQ46G5NQ8asAfungXUjgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="83866887"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="83866887"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 02:08:05 -0800
+X-CSE-ConnectionGUID: 0SrlXf35RQKxEVyxUmjlEQ==
+X-CSE-MsgGUID: RaSR9k/7RUCZdzaEnQVZrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="221026419"
+X-IronPort-AV: E=Sophos;i="6.21,312,1763452800"; d="scan'208";a="216533082"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.224])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Feb 2026 02:07:59 -0800
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Feb 2026 02:08:03 -0800
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 04/19] drm/i915/overlay: Remove redundant overlay->active
-Date: Thu, 26 Feb 2026 12:07:23 +0200
-Message-ID: <20260226100738.29997-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 05/19] drm/i915/overlay: Relocate the underrun check
+Date: Thu, 26 Feb 2026 12:07:24 +0200
+Message-ID: <20260226100738.29997-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260226100738.29997-1-ville.syrjala@linux.intel.com>
 References: <20260226100738.29997-1-ville.syrjala@linux.intel.com>
@@ -102,65 +102,65 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 1367F1A3FCB
+X-Rspamd-Queue-Id: 038831A3FD2
 X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Now that we have overlay->frontbuffer_bits, overlay->active
-is completely redundant, so remove it.
+Move the underrun check out from intel_overlay_continue()
+so that the DOVSTA register access can stay on the display
+side of the parent vs. display driver split.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_overlay.c | 6 +-----
- 1 file changed, 1 insertion(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_overlay.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_overlay.c b/drivers/gpu/drm/i915/display/intel_overlay.c
-index 5831af146b14..b2458840dfc4 100644
+index b2458840dfc4..8c6e9c19b3f5 100644
 --- a/drivers/gpu/drm/i915/display/intel_overlay.c
 +++ b/drivers/gpu/drm/i915/display/intel_overlay.c
-@@ -194,7 +194,6 @@ struct intel_overlay {
+@@ -331,18 +331,13 @@ static int intel_overlay_continue(struct intel_overlay *overlay,
+ 	struct intel_display *display = overlay->display;
+ 	struct i915_request *rq;
+ 	u32 flip_addr = overlay->flip_addr;
+-	u32 tmp, *cs;
++	u32 *cs;
+ 
+ 	drm_WARN_ON(display->drm, !i915_overlay_is_active(display->drm));
+ 
+ 	if (load_polyphase_filter)
+ 		flip_addr |= OFC_UPDATE;
+ 
+-	/* check for underruns */
+-	tmp = intel_de_read(display, DOVSTA);
+-	if (tmp & (1 << 17))
+-		drm_dbg(display->drm, "overlay underrun, DOVSTA: %x\n", tmp);
+-
+ 	rq = alloc_request(overlay, NULL);
+ 	if (IS_ERR(rq))
+ 		return PTR_ERR(rq);
+@@ -810,6 +805,7 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
+ 	bool scale_changed = false;
  	struct i915_vma *vma;
- 	struct i915_vma *old_vma;
- 	struct intel_frontbuffer *frontbuffer;
--	bool active;
- 	bool pfit_active;
- 	u32 pfit_vscale_ratio; /* shifted-point number, (1<<12) == 1.0 */
- 	u32 color_key:24;
-@@ -260,7 +259,7 @@ static bool i915_overlay_is_active(struct drm_device *drm)
- 	struct intel_display *display = to_intel_display(drm);
- 	struct intel_overlay *overlay = display->overlay;
+ 	int ret, tmp_width;
++	u32 tmp;
  
--	return overlay->active;
-+	return overlay->frontbuffer_bits;
- }
+ 	drm_WARN_ON(display->drm,
+ 		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
+@@ -895,6 +891,11 @@ static int intel_overlay_do_put_image(struct intel_overlay *overlay,
  
- /* overlay needs to be disable in OCMD reg */
-@@ -283,7 +282,6 @@ static int intel_overlay_on(struct intel_overlay *overlay,
- 		return PTR_ERR(cs);
- 	}
+ 	iowrite32(overlay_cmd_reg(params), &regs->OCMD);
  
--	overlay->active = true;
- 	overlay->frontbuffer_bits = frontbuffer_bits;
- 
- 	if (display->platform.i830)
-@@ -392,7 +390,6 @@ static void intel_overlay_off_tail(struct intel_overlay *overlay)
- 
- 	intel_overlay_release_old_vma(overlay);
- 
--	overlay->active = false;
- 	overlay->frontbuffer_bits = 0;
- 
- 	if (display->platform.i830)
-@@ -514,7 +511,6 @@ void intel_overlay_reset(struct intel_display *display)
- 	overlay->old_xscale = 0;
- 	overlay->old_yscale = 0;
- 	overlay->crtc = NULL;
--	overlay->active = false;
- 	overlay->frontbuffer_bits = 0;
- }
- 
++	/* check for underruns */
++	tmp = intel_de_read(display, DOVSTA);
++	if (tmp & (1 << 17))
++		drm_dbg(display->drm, "overlay underrun, DOVSTA: %x\n", tmp);
++
+ 	ret = intel_overlay_continue(overlay, vma, scale_changed);
+ 	if (ret)
+ 		goto out_unpin;
 -- 
 2.52.0
 
