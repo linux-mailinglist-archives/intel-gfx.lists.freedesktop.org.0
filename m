@@ -2,63 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wDnsLU/5n2n3fAQAu9opvQ
+	id KF6CARoGoGl/fQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 08:42:07 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 09:36:42 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DAE591A1F62
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 08:42:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AA24E1A2A8B
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Feb 2026 09:36:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D8AD10E009;
-	Thu, 26 Feb 2026 07:42:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AE56310E883;
+	Thu, 26 Feb 2026 08:36:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8N/p80Q";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="NyeftoqB";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="hg7zEFm6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1632B10E009
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 07:42:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772091723; x=1803627723;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=wITukRR/ETFRAHxM9jR3Xxl55x4NZdhotKYiUwxEM18=;
- b=D8N/p80QNo4v871+5E2lu+oe9y5N9r+xWe2/AikfWmIKbSt75hcW+ajP
- bkIdQ+kceuTT82T9U9Xv7GbPVMCAaimcAyA9H6KbbMK1TDYB5fLKjZaq9
- ZmroQ+QhlHGEeBLGAtv801THeLBlZFWB0UMkoPZhy8hOY2BTQcT7atIo2
- t2mQBOr/O3V7oKVgoD9nfrvGxgWwXM1rsElQ5KWcjFa9406VpvH9zO4hc
- 4cM8fkQoW9Z6rh5urdlhWPk0y6puaovGNV3pivEiKyiiUqZ6N/Z8iZgF5
- Jp32KJb9/vpmmhNj7H6Yr8+pbZl1mwniRWzCYcTB4lwLgPztajPfa3vbz Q==;
-X-CSE-ConnectionGUID: g/wNiiKnTdSiDlYOP9pgTA==
-X-CSE-MsgGUID: zqDdL9EEQniVk4eMdxqvCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11712"; a="72355857"
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="72355857"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Feb 2026 23:42:02 -0800
-X-CSE-ConnectionGUID: D+j+KB7YSmCPCqaLRHD7kA==
-X-CSE-MsgGUID: ls0x13YLSBmBVtqa72xp4g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,311,1763452800"; d="scan'208";a="247022380"
-Received: from lkp-server02.sh.intel.com (HELO a3936d6a266d) ([10.239.97.151])
- by orviesa002.jf.intel.com with ESMTP; 25 Feb 2026 23:42:02 -0800
-Received: from kbuild by a3936d6a266d with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1vvW0U-000000008Pd-3BDl;
- Thu, 26 Feb 2026 07:41:58 +0000
-Date: Thu, 26 Feb 2026 15:41:16 +0800
-From: kernel test robot <lkp@intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev
-Subject: Re: [i915-ci-only NO-REVIEW 24/25] PREEMPT_RT injection
-Message-ID: <202602261547.3bM6yVAS-lkp@intel.com>
-References: <20260225131931.60724-25-dev@lankhorst.se>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2E2710E882
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 08:36:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1772094997;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=Ohl1Ez7BeCQdSMgPkBEicSLs/08Ob1PpTVJeWELXJjM=;
+ b=NyeftoqB389eqv/HZfICVTRX9Rmfj9wsv3ZllejQYYYbxlJAR7/13cas3Q/pEWHogau5bX
+ Bgk0unWKsLXU4xiu8PdpUihou4n7G3xtyD7KopAjyW/I2XIYgM0r96HxbprD0DeINHGqDb
+ B/bEmgIjbGA7fU/PqJOeO383s4DyFfc=
+Received: from mail-wm1-f72.google.com (mail-wm1-f72.google.com
+ [209.85.128.72]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-389-VsRF4HQzPoybgrnnAo1NIA-1; Thu, 26 Feb 2026 03:36:32 -0500
+X-MC-Unique: VsRF4HQzPoybgrnnAo1NIA-1
+X-Mimecast-MFC-AGG-ID: VsRF4HQzPoybgrnnAo1NIA_1772094992
+Received: by mail-wm1-f72.google.com with SMTP id
+ 5b1f17b1804b1-48069a43217so1491615e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Feb 2026 00:36:32 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1772094991; x=1772699791; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=Ohl1Ez7BeCQdSMgPkBEicSLs/08Ob1PpTVJeWELXJjM=;
+ b=hg7zEFm6VHB0knv/snKj6a+lovDSRSxi/AZwiYpMvI7BLDjH/4W7lVzplEoXZiKYpn
+ PZsztV74s2u0I1byxG3AAbKoTUUlxm1ZIQV/TXzvPwGLs6SgqFLg9baSx42pHsqdhD+n
+ sRc5n3cKTciuEXrLnHoZpJMLAla+73d7h5h9I2VCc9E8XVI7/8dUui+GGSC8JRPZ9zED
+ fXQSXBSSOc9JElvZphTs70Ydfrg3XgVmiQXUsJvcyofJQMNVaneMFuFthfOuudUiPAXx
+ evex1nNmsiXv1WiQI+wnSRV5oiFC1sSF5dTCgYiGvb9JFf+hr86Iyp/477JB01o8iO4e
+ qAmw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772094991; x=1772699791;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=Ohl1Ez7BeCQdSMgPkBEicSLs/08Ob1PpTVJeWELXJjM=;
+ b=bYZsgtcbVtcuLU3JGKA+ECCOCA9NwqU/eleZLzraViTuS8yCOJsPpU95UreMm0cx7j
+ /3EzTXXrgrj243sTkDqstMOQHhctuFeYLV+Liu4NlUEYpAW714kUdLbjt9Yqqv3xHNmr
+ mUkitiQ3OfnQJntkdbcYMYOJWMi1mFESX2my5w+ELD9unDHap6u1KVRsYSCHyOmBgRe0
+ iC/YVyWh+mI5PbHrF8WT1sbm9g+r7QTsvrkx0FsZj39Ycd8SKSfXwaaguUCLGDyQYVDn
+ 4MjkiIjargfdRb8/XgfR8A6LyFTSClOADHGv/iRStGyP3AVofgWSDV3zIzCJJrpGdbjL
+ Z15g==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWe0+tLk2W51JelYIHBrpNXkxrrtAxKI/MgN28ao38/ySiQsL7DhlPw0LhwmoxqV6FLLtcReCNO1A8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy+Ikq+cMQL4JGBIsoquKXhUEtoa9Jre5tBv9oVxkAHI7MIZsm4
+ R3HQFgc0/+8f6F1rDUC4lUmnkzgb+hDvqb68pMZH7LyPIfmOddB9nQU593oFmx43FoLEqXs/gVV
+ 4owPHUJ6MIpRD0CCRUw1ql3bzee1f0itE/87T+KRhruyD2lb3HcmMNJ7+I5ETmjwvCsK98Q==
+X-Gm-Gg: ATEYQzyeLW2axiCCOc7/ETd0e6JGqCetB5qAF+t8H/2taOs9UlRjswBHZELNPwCkFKE
+ KS64zUcay8MKaxg+Vi0LJ22x0COYbA7U+WN6899wXOBjiWq1hk5HUD0z5yrQCFu7iRxWKTUu7aJ
+ yapSK3eC2n2XNMorgQvGMb+OIPQoin4OBTB4E8UL96XZMMmxyah+BqvkQIDd76XScKxyJezS5T/
+ 9eBhxIq2+GIVDQN34StkGNSQps+oYlYHT0LltXwnB5W5veMHNGJ1prLv+h1grcV99MOdJcK/xel
+ bzQQt4MFxmAx/r/ZiLrr+On6AmvOTkwgCJhYGIBZ3207Rced1MlxHpQSA2i91rPwh6D+AsOGnsO
+ Z7Cq9Ae2xCyL2Bneo
+X-Received: by 2002:a05:600c:4452:b0:483:5a29:9678 with SMTP id
+ 5b1f17b1804b1-483c21be3a5mr55275975e9.2.1772094991485; 
+ Thu, 26 Feb 2026 00:36:31 -0800 (PST)
+X-Received: by 2002:a05:600c:4452:b0:483:5a29:9678 with SMTP id
+ 5b1f17b1804b1-483c21be3a5mr55275345e9.2.1772094990875; 
+ Thu, 26 Feb 2026 00:36:30 -0800 (PST)
+Received: from localhost ([82.66.159.240]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-483bd750607sm129958415e9.10.2026.02.26.00.36.30
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 26 Feb 2026 00:36:30 -0800 (PST)
+Date: Thu, 26 Feb 2026 09:36:29 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260226-heretic-stimulating-swine-6a2f27@penduick>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="h7jenyb2nigt3xo2"
 Content-Disposition: inline
-In-Reply-To: <20260225131931.60724-25-dev@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,114 +119,193 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dev@lankhorst.se,m:oe-kbuild-all@lists.linux.dev,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER(0.00)[mripard@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[mripard@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,git-scm.com:url]
-X-Rspamd-Queue-Id: DAE591A1F62
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: AA24E1A2A8B
 X-Rspamd-Action: no action
 
-Hi Maarten,
 
-kernel test robot noticed the following build errors:
+--h7jenyb2nigt3xo2
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-[auto build test ERROR on drm-i915/for-linux-next]
-[also build test ERROR on next-20260225]
-[cannot apply to drm-i915/for-linux-next-fixes drm-misc/drm-misc-next drm-xe/drm-xe-next linus/master v7.0-rc1]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
+Hi Dave, Sima,
 
-url:    https://github.com/intel-lab-lkp/linux/commits/Maarten-Lankhorst/drm-vblank_work-Add-methods-to-schedule-vblank_work-in-2-stages/20260226-012447
-base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
-patch link:    https://lore.kernel.org/r/20260225131931.60724-25-dev%40lankhorst.se
-patch subject: [i915-ci-only NO-REVIEW 24/25] PREEMPT_RT injection
-config: arm64-randconfig-r123-20260226 (https://download.01.org/0day-ci/archive/20260226/202602261547.3bM6yVAS-lkp@intel.com/config)
-compiler: clang version 23.0.0git (https://github.com/llvm/llvm-project 9a109fbb6e184ec9bcce10615949f598f4c974a9)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260226/202602261547.3bM6yVAS-lkp@intel.com/reproduce)
+Here's this week drm-misc-fixes PR.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202602261547.3bM6yVAS-lkp@intel.com/
+Maxime
 
-All errors (new ones prefixed by >>):
+drm-misc-fixes-2026-02-26:
+Several fixes for:
+  - amdxdna: Fix for a deadlock, a NULL pointer dereference, a suspend
+    failure, a hang, an out-of-bounds access, a buffer overflow, input
+    sanitization and other minor fixes.
+  - dw-dp: An error handling fix
+  - ethosu: A binary shift overflow fix
+  - imx: An error handling fix
+  - logicvc: A dt node reference leak fix
+  - nouveau: A WARN_ON removal
+  - samsung-dsim: A memory leak fix
+  - sharp-memory: A NULL pointer dereference fix
+  - vmgfx: A reference count and error handling fix
+The following changes since commit 6de23f81a5e08be8fbf5e8d7e9febc72a5b5f27f:
 
->> drivers/gpu/drm/ttm/tests/ttm_bo_test.c:225:13: error: incompatible pointer types passing 'struct rt_mutex *' to parameter of type 'struct mutex *' [-Wincompatible-pointer-types]
-     225 |         mutex_lock(&bo->base.resv->lock.base);
-         |                    ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/mutex.h:193:44: note: expanded from macro 'mutex_lock'
-     193 | #define mutex_lock(lock) mutex_lock_nested(lock, 0)
-         |                                            ^~~~
-   include/linux/mutex.h:185:45: note: passing argument to parameter 'lock' here
-     185 | extern void mutex_lock_nested(struct mutex *lock, unsigned int subclass) __acquires(lock);
-         |                                             ^
-   drivers/gpu/drm/ttm/tests/ttm_bo_test.c:231:15: error: incompatible pointer types passing 'struct rt_mutex *' to parameter of type 'struct mutex *' [-Wincompatible-pointer-types]
-     231 |         mutex_unlock(&bo->base.resv->lock.base);
-         |                      ^~~~~~~~~~~~~~~~~~~~~~~~~
-   include/linux/mutex.h:249:40: note: passing argument to parameter 'lock' here
-     249 | extern void mutex_unlock(struct mutex *lock) __releases(lock);
-         |                                        ^
-   2 errors generated.
+  Linux 7.0-rc1 (2026-02-22 13:18:59 -0800)
 
+are available in the Git repository at:
 
-vim +225 drivers/gpu/drm/ttm/tests/ttm_bo_test.c
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-02-26
 
-995279d280d1ef Karolina Stolarek 2023-11-29  210  
-995279d280d1ef Karolina Stolarek 2023-11-29  211  static void ttm_bo_reserve_interrupted(struct kunit *test)
-995279d280d1ef Karolina Stolarek 2023-11-29  212  {
-995279d280d1ef Karolina Stolarek 2023-11-29  213  	struct ttm_buffer_object *bo;
-995279d280d1ef Karolina Stolarek 2023-11-29  214  	struct task_struct *task;
-995279d280d1ef Karolina Stolarek 2023-11-29  215  	int err;
-995279d280d1ef Karolina Stolarek 2023-11-29  216  
-588c4c8d58c413 Karolina Stolarek 2024-06-12  217  	bo = ttm_bo_kunit_init(test, test->priv, BO_SIZE, NULL);
-995279d280d1ef Karolina Stolarek 2023-11-29  218  
-995279d280d1ef Karolina Stolarek 2023-11-29  219  	task = kthread_create(threaded_ttm_bo_reserve, bo, "ttm-bo-reserve");
-995279d280d1ef Karolina Stolarek 2023-11-29  220  
-995279d280d1ef Karolina Stolarek 2023-11-29  221  	if (IS_ERR(task))
-995279d280d1ef Karolina Stolarek 2023-11-29  222  		KUNIT_FAIL(test, "Couldn't create ttm bo reserve task\n");
-995279d280d1ef Karolina Stolarek 2023-11-29  223  
-995279d280d1ef Karolina Stolarek 2023-11-29  224  	/* Take a lock so the threaded reserve has to wait */
-995279d280d1ef Karolina Stolarek 2023-11-29 @225  	mutex_lock(&bo->base.resv->lock.base);
-995279d280d1ef Karolina Stolarek 2023-11-29  226  
-995279d280d1ef Karolina Stolarek 2023-11-29  227  	wake_up_process(task);
-995279d280d1ef Karolina Stolarek 2023-11-29  228  	msleep(20);
-995279d280d1ef Karolina Stolarek 2023-11-29  229  	err = kthread_stop(task);
-995279d280d1ef Karolina Stolarek 2023-11-29  230  
-995279d280d1ef Karolina Stolarek 2023-11-29  231  	mutex_unlock(&bo->base.resv->lock.base);
-995279d280d1ef Karolina Stolarek 2023-11-29  232  
-995279d280d1ef Karolina Stolarek 2023-11-29  233  	KUNIT_ASSERT_EQ(test, err, -ERESTARTSYS);
-995279d280d1ef Karolina Stolarek 2023-11-29  234  }
-995279d280d1ef Karolina Stolarek 2023-11-29  235  #endif /* IS_BUILTIN(CONFIG_DRM_TTM_KUNIT_TEST) */
-995279d280d1ef Karolina Stolarek 2023-11-29  236  
+for you to fetch changes up to 75c151ceaacf5ca8f2f34ebf863d88002fb12587:
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+  accel/amdxdna: Use a different name for latest firmware (2026-02-25 13:51:31 -0800)
+
+----------------------------------------------------------------
+Several fixes for:
+  - amdxdna: Fix for a deadlock, a NULL pointer dereference, a suspend
+    failure, a hang, an out-of-bounds access, a buffer overflow, input
+    sanitization and other minor fixes.
+  - dw-dp: An error handling fix
+  - ethosu: A binary shift overflow fix
+  - imx: An error handling fix
+  - logicvc: A dt node reference leak fix
+  - nouveau: A WARN_ON removal
+  - samsung-dsim: A memory leak fix
+  - sharp-memory: A NULL pointer dereference fix
+  - vmgfx: A reference count and error handling fix
+
+----------------------------------------------------------------
+Brad Spengler (1):
+      drm/vmwgfx: Fix invalid kref_put callback in vmw_bo_dirty_release
+
+Chen Ni (2):
+      drm/imx: parallel-display: check return value of devm_drm_bridge_add() in imx_pd_probe()
+      drm/bridge: synopsys: dw-dp: Check return value of devm_drm_bridge_add() in dw_dp_bind()
+
+Dan Carpenter (1):
+      accel: ethosu: Fix shift overflow in cmd_to_addr()
+
+Dave Airlie (1):
+      nouveau/gsp: drop WARN_ON in ACPI probes
+
+Ethan Tidmore (1):
+      drm/tiny: sharp-memory: fix pointer error dereference
+
+Felix Gu (1):
+      drm/logicvc: Fix device node reference leak in logicvc_drm_config_parse()
+
+Franz Schnyder (1):
+      drm/bridge: ti-sn65dsi86: Enable HPD polling if IRQ is not used
+
+Ian Forbes (2):
+      drm/vmwgfx: Set a unique ID for each submitted command buffer
+      drm/vmwgfx: Return the correct value in vmw_translate_ptr functions
+
+Jonathan Cavitt (1):
+      drm/client: Do not destroy NULL modes
+
+Lizhi Hou (10):
+      accel/amdxdna: Remove buffer size check when creating command BO
+      accel/amdxdna: Switch to always use chained command
+      accel/amdxdna: Fix crash when destroying a suspended hardware context
+      accel/amdxdna: Fix dead lock for suspend and resume
+      accel/amdxdna: Fix suspend failure after enabling turbo mode
+      accel/amdxdna: Fix command hang on suspended hardware context
+      accel/amdxdna: Fix out-of-bounds memset in command slot handling
+      accel/amdxdna: Prevent ubuf size overflow
+      accel/amdxdna: Validate command buffer payload count
+      accel/amdxdna: Use a different name for latest firmware
+
+Mario Limonciello (1):
+      accel/amdxdna: Reduce log noise during process termination
+
+Matthew Brost (1):
+      drm/gpusvm: Fix drm_gpusvm_pages_valid_unlocked() kernel-doc
+
+Maxime Ripard (1):
+      Merge drm/drm-fixes into drm-misc-fixes
+
+Osama Abdelkader (1):
+      drm/bridge: samsung-dsim: Fix memory leak in error path
+
+Simon Ser (1):
+      drm/fourcc: fix plane order for 10/12/16-bit YCbCr formats
+
+ drivers/accel/amdxdna/aie2_ctx.c                   | 32 ++++++++++-------
+ drivers/accel/amdxdna/aie2_message.c               | 15 +++++---
+ drivers/accel/amdxdna/aie2_pci.c                   | 40 ++++++++++++++++------
+ drivers/accel/amdxdna/aie2_pm.c                    |  2 +-
+ drivers/accel/amdxdna/amdxdna_ctx.c                | 24 ++++++-------
+ drivers/accel/amdxdna/amdxdna_gem.c                | 38 ++++++++++----------
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |  3 ++
+ drivers/accel/amdxdna/amdxdna_pm.c                 |  2 ++
+ drivers/accel/amdxdna/amdxdna_pm.h                 | 11 ++++++
+ drivers/accel/amdxdna/amdxdna_ubuf.c               |  6 +++-
+ drivers/accel/amdxdna/npu1_regs.c                  |  2 +-
+ drivers/accel/amdxdna/npu4_regs.c                  |  2 +-
+ drivers/accel/amdxdna/npu5_regs.c                  |  2 +-
+ drivers/accel/amdxdna/npu6_regs.c                  |  2 +-
+ drivers/accel/ethosu/ethosu_gem.c                  |  2 +-
+ drivers/gpu/drm/bridge/samsung-dsim.c              | 23 ++++++++-----
+ drivers/gpu/drm/bridge/synopsys/dw-dp.c            |  4 ++-
+ drivers/gpu/drm/bridge/ti-sn65dsi86.c              |  6 ++--
+ drivers/gpu/drm/drm_client_modeset.c               |  3 +-
+ drivers/gpu/drm/drm_gpusvm.c                       | 10 +++---
+ drivers/gpu/drm/imx/ipuv3/parallel-display.c       |  4 ++-
+ drivers/gpu/drm/logicvc/logicvc_drm.c              |  4 +--
+ .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/gsp.c  | 12 +++----
+ drivers/gpu/drm/tiny/sharp-memory.c                |  4 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_cmdbuf.c             |  4 +++
+ drivers/gpu/drm/vmwgfx/vmwgfx_execbuf.c            |  4 +--
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c         |  9 ++++-
+ include/uapi/drm/drm_fourcc.h                      | 12 +++----
+ 28 files changed, 176 insertions(+), 106 deletions(-)
+
+--h7jenyb2nigt3xo2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaaAGDQAKCRAnX84Zoj2+
+drbsAYCEsDoqx/Gmbca8wv+gheQON5pIY63WyutXFjfIa0m3xv4JB84aD2h9Y4w7
+HlQsiasBgIYLwdAk+Aje1uqb/27BfH6ygDtbX2vizqxqResf6lJANGndqEfT/zsh
+Wn02s6t61g==
+=aeey
+-----END PGP SIGNATURE-----
+
+--h7jenyb2nigt3xo2--
+
