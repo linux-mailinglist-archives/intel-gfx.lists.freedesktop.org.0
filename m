@@ -2,92 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFhOI1K1oWmMvgQAu9opvQ
+	id CFe+Nza5pWmDFQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 16:16:34 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 17:22:14 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B3631B98EB
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 16:16:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3821C1DCAFB
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 17:22:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BFF7310EBBA;
-	Fri, 27 Feb 2026 15:16:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91C9F10E553;
+	Mon,  2 Mar 2026 16:22:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="bRnb2yPr";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="O4VApGig";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f44.google.com (mail-wm1-f44.google.com
- [209.85.128.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6247310EBBB
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 15:16:29 +0000 (UTC)
-Received: by mail-wm1-f44.google.com with SMTP id
- 5b1f17b1804b1-4836f4cbe0bso18958955e9.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 07:16:29 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1772205388; x=1772810188; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=SDbmRdkKnF+R+3AIq+Y+qJnHc86/jTNbQ+TAerlSwZI=;
- b=bRnb2yPrdhTriDWcJwusJ76WXs3W0ZP88wjWcveRFtyDiPPtWXrL8yUdOpBQF2Dy63
- S/rYvp3GgEFnAwV9/RjZpO72MfqGbioz2zD8Ovxwy7eJ2TR2PcLdUeNt5PFMBfmvAGUj
- E97AfYFSxeIjzX/Fv7jbhk9ZgixlCsNaSIjG1kYXhjjMoZlpoW2SLN8173j8tNoW0nZn
- KxQbRp2AtSFI6y6wp9FoDFJKEUHy47Hak9a82wKRhwthlaG9+hGq/btYQ+bP99tJX4Ia
- zVw6OvbmKSPzokCrTpLambandb/VJXU+K7USnUhI2VIj29xJwIwnEhK1cMsF+8IvIw5h
- 6KiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772205388; x=1772810188;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=SDbmRdkKnF+R+3AIq+Y+qJnHc86/jTNbQ+TAerlSwZI=;
- b=CbNgzhevPa+hDBhYPvECelcEY0wymhrPnkDbzpV+YFtpvdIphQKwZxUPHtoyBGxLta
- M/CJ8wGDWOYJ/6Axd7vnR0CVChhh1kcDgig5uox6bmCeFUL25j3cGaeElPkHzdKsucZl
- rlCFImw9AEWMQnxLsZ9Hjqk0zv/k80zvPhcTOQqyfPCkxw/xIW1FV982ifb1NgnSrVtj
- +nmc9O4107XYNJZltZm/9lOcghR2LeP8h/gZ5y7L6PkYxZfG00OWQeGhge1m2+1KQkcs
- mQswm1lhA6ntlt2U0ap+VNamvl4yTDoDvfFSQvqviw7kcyHbC9nvaUuLptdafQzHXcTz
- YTJw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXBQBqin2fCCTVW4/W1OVfVzbdKVjX6LBqa+P2JJlCBJHss4xNDYQicm1DN4Pztw8Fr5XDVZ4sVPMM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxzZ1nIh7LgAiuVqBQMG0rnKrl5q+sBWAc2yQKN8wQPMjcr2SDb
- pzJuhrzR9sLDMFuk5PLcUHZfep80aqnsg/lx/QsOeHCjlUDKE27FBayczbd17D/xpHA=
-X-Gm-Gg: ATEYQzwDP4WuXpIZmHpUHh3W4+A8KGw+nS/XvL7lzqbOYCtZwQQYkDOTWVmNKH6dPf9
- r7i0kllZcdV8BPLCrqmVjLXgUTgRVDhPu61EV2eOc4QXR/NYviZEbCJCvlnnNgaRq0iQ/sGNsZP
- IzDlNIsORpXiMLP3dz0uIzQJQPgDMolEjARTxOsmIaD3xkFG8gQzFs5CyxWJ8MDfwPP962ts3fp
- /Vuj3SB9Oi5ssM+4CzvL2Mjrv+PC9mqbwsC32AjPlikMTwFjLIQeiWE7DAeK4sbzhLLoJuFwosN
- B5WhR4WF0wEsbSaOfM1WzUbIHexMvhYDN6pAvd4rNKYZVkpkt8av+sB+futF3FPAUcfR+BeHw5w
- XnAH5Bkj+oL1s8y1eeLgpCZQv/Los/VoNtElgNmER3PpkIq2phclSlAU1m3QAvC/oKmyhZBE+Kz
- KlSJ6Ulp3WGTw8MSgdF8CBcyaAZDz+75FK92zAA8LW9WgR
-X-Received: by 2002:a05:600c:4e05:b0:483:b505:9db7 with SMTP id
- 5b1f17b1804b1-483c9c0b940mr43879535e9.32.1772205387536; 
- Fri, 27 Feb 2026 07:16:27 -0800 (PST)
-Received: from [192.168.0.101] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4399c76b20bsm7955985f8f.35.2026.02.27.07.16.26
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Fri, 27 Feb 2026 07:16:27 -0800 (PST)
-Message-ID: <79244f17-3e35-46cf-87d1-1a21dcff7812@ursulin.net>
-Date: Fri, 27 Feb 2026 15:16:26 +0000
+X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
+ Fri, 27 Feb 2026 15:58:32 UTC
+Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com
+ [95.215.58.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4643510E18F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 15:58:32 +0000 (UTC)
+Message-ID: <1d3c1c86-7382-4c2a-ab3e-3e6938d055ec@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1772207497;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=MaJxtRy1gxu5Hm6tq13uMb/9SHoCAIyHdACW5TaPNP8=;
+ b=O4VApGigh6dfWOJ9Vb5+0CQiVHhKjSZySfd6btG/EKcPBAUptNJb4/YDic3YfSQ0J8VAGe
+ hZ/07Q7h657LWWPzTUyyfY/nw/ws6+i/16B29wlwXRCsnqs1muOE91VHh5HeFCpqC42LSN
+ SqIKXtc4WN41DQjWrPhh33QzvyF2Et8=
+Date: Fri, 27 Feb 2026 23:50:59 +0800
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915: Test for imported buffers with
- drm_gem_is_imported()
-To: Thomas Zimmermann <tzimmermann@suse.de>,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com,
- simona@ffwll.ch
-Cc: dri-devel@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+Subject: Re: [PATCH v11 2/2] rust: clist: Add support to interface with C
+ linked lists
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin
+ <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Simona Vetter <simona@ffwll.ch>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
+ <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
+ <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org
-References: <20260227133113.235940-5-tzimmermann@suse.de>
- <c85eb64d-e4c2-41a2-9135-b52b3e8d7e12@ursulin.net>
- <4758c394-8c9a-4da2-a526-de06cbfa4c61@suse.de>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <4758c394-8c9a-4da2-a526-de06cbfa4c61@suse.de>
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
+ Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+References: <20260224222734.3153931-1-joelagnelf@nvidia.com>
+ <20260224222734.3153931-3-joelagnelf@nvidia.com>
+ <dbbb1a93-93fc-4ea6-bd6f-6f7fbfcc4710@linux.dev>
+ <20260226193442.GA4077409@joelbox2>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Alvin Sun <alvin.sun@linux.dev>
+In-Reply-To: <20260226193442.GA4077409@joelbox2>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Mon, 02 Mar 2026 16:22:03 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,105 +100,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+X-Rspamd-Queue-Id: 3821C1DCAFB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[72];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DMARC_NA(0.00)[ursulin.net];
-	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[tursulin@ursulin.net,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_TO(0.00)[suse.de,linux.intel.com,kernel.org,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[alvin.sun@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:aliceryhl@google.com,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
+ arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[55];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ursulin.net:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alvin.sun@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	NEURAL_HAM(-0.00)[-0.997];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,ursulin.net:mid,ursulin.net:dkim,ursulin.net:email]
-X-Rspamd-Queue-Id: 1B3631B98EB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:mid]
 X-Rspamd-Action: no action
 
 
-On 27/02/2026 15:05, Thomas Zimmermann wrote:
-> Hi
-> 
-> Am 27.02.26 um 15:59 schrieb Tvrtko Ursulin:
->>
->> On 27/02/2026 13:31, Thomas Zimmermann wrote:
->>> Instead of testing import_attach for imported GEM buffers, invoke
->>> drm_gem_is_imported() to do the test. The test itself does not change.
->>>
->>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
->>> Cc: Jani Nikula <jani.nikula@linux.intel.com>
->>> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
->>> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
->>> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
->>> Cc: intel-gfx@lists.freedesktop.org
->>> ---
->>>   drivers/gpu/drm/i915/gem/i915_gem_object.c | 6 +++---
->>>   1 file changed, 3 insertions(+), 3 deletions(-)
->>>
->>> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/ 
->>> gpu/drm/i915/gem/i915_gem_object.c
->>> index 3f6f040c359d..798c920160cf 100644
->>> --- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> +++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
->>> @@ -372,12 +372,12 @@ void __i915_gem_object_pages_fini(struct 
->>> drm_i915_gem_object *obj)
->>>        * and ttm_bo_cleanup_memtype_use() shouldn't be invoked for
->>>        * dma-buf, so it's safe to take the lock.
->>>        */
->>> -    if (obj->base.import_attach)
->>> +    if (drm_gem_is_imported(&obj->base))
->>>           i915_gem_object_lock(obj, NULL);
->>>         __i915_gem_object_put_pages(obj);
->>>   -    if (obj->base.import_attach)
->>> +    if (drm_gem_is_imported(&obj->base))
->>>           i915_gem_object_unlock(obj);
->>>         GEM_BUG_ON(i915_gem_object_has_pages(obj));
->>> @@ -391,7 +391,7 @@ void __i915_gem_free_object(struct 
->>> drm_i915_gem_object *obj)
->>>         bitmap_free(obj->bit_17);
->>>   -    if (obj->base.import_attach)
->>> +    if (drm_gem_is_imported(&obj->base))
->>>           drm_prime_gem_destroy(&obj->base, NULL);
->>>         drm_gem_free_mmap_offset(&obj->base);
->>
->> LGTM. Want us to merge it via i915 or you want to take the group via 
->> drm-misc?
-> 
-> Please merge it via i915 trees.
-> 
->>
->> What is the end goal btw, just cleanup or you plan to remove/rename 
->> the member? If latter there are some other places which access it 
->> directly.
-> 
-> There's no further goal. It's just about making the code easier to 
-> understand. I had these changes here for some time already and finally 
-> wanted to get them merged..
+On 2/27/26 03:34, Joel Fernandes wrote:
+> On Fri, 27 Feb 2026, Alvin Sun wrote:
+>> Thanks for the clist abstraction. The Tyr debugfs [1] I'm implementing
+>> needs to iterate over a GpuVm's VA list, and I'd like to switch that to
+>> a CList-based implementation.
+> Thanks for looking into using CList for this!
+>
+>> Could you make CListHeadIter public and expose a public constructor?
+>> Or do you have a better suggestion?
+> I think this can be handled without exposing CListHeadIter. See below.
+>
+>> The VA list mixes two node types in one list — GpuVa (with driver-specific
+>> data) and KernelGpuVa — so we have to filter/skip nodes and can't use
+>> CList as-is. With a public CListHeadIter and new(), we can implement a
+>> custom iterator (like our current GpuVaIter) on top of CListHeadIter and
+>> then migrate that code to clist instead of hand-rolled list traversal.
+> Looking at the Tyr code, both GpuVa and KernelGpuVa are
+> #[repr(transparent)] wrappers over the same C struct (drm_gpuva), linked
+> through the same list_head field at the same offset. The "two types" are
+> a Rust-level modeling choice for safety, not a structural difference in
+> the list — every node in that list is a drm_gpuva.
+>
+> So CList's typed iteration already works here. You can iterate over all
+> nodes using a common Rust wrapper type (like a #[repr(transparent)]
+> wrapper over drm_gpuva), and then skip the kernel-reserved node by
+> pointer identity — since drm_gpuvm has its kernel_alloc_node as a named
+> field, its address is known. Something like:
+>
+>      // Iterate all nodes as a common base type.
+>      let list = clist_create!(unsafe { head, RawGpuVa, drm_gpuva, rb.entry });
+>      let kernel_ptr = unsafe { &raw mut (*gpuvm_raw).kernel_alloc_node };
+>
+>      for va in list.iter() {
+>          if va.as_raw() == kernel_ptr {
+>              continue;  // skip
+>          }
+>
+>          // Cast to &GpuVa
+>          let gpu_va = unsafe { GpuVa::from_raw(va.as_raw()) };
+>          ...
+>      }
+>
+> If you need a named iterator type (e.g. for returning from a method),
+> you can wrap CListIter in your own GpuVaIter struct that stores the
+> kernel node pointer and filters in its Iterator::next() impl. That would
+> probably also be cleaner.
+That's a good idea! I will try to implement GpuVaIter based on CListIter.
 
-Acknowledged and merged, thank you for the cleanup!
-
-Regards,
-
-Tvrtko
-
+Thanks,
+Alvin Sun
+>
+> OTOH, with CListHeadIter you'd need to do container_of manually on each node,
+> which might be more erroneous code, whereas CListIter handles that for you.
+> And anyway, the pointer comparison needed to skip the kernel node is the same
+> in both approaches.
+>
+> Would this work for the Tyr debugfs use case?
+>
+> --
+> Joel Fernandes
+>
