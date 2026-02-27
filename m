@@ -2,90 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFe+Nza5pWmDFQAAu9opvQ
+	id SNeUI6XRoWkfwgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 17:22:14 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 18:17:25 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3821C1DCAFB
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 17:22:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09E4C1BB4FB
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 18:17:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91C9F10E553;
-	Mon,  2 Mar 2026 16:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9498210EBD4;
+	Fri, 27 Feb 2026 17:17:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="O4VApGig";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VLWuz7r3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 403 seconds by postgrey-1.36 at gabe;
- Fri, 27 Feb 2026 15:58:32 UTC
-Received: from out-174.mta1.migadu.com (out-174.mta1.migadu.com
- [95.215.58.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4643510E18F
- for <intel-gfx@lists.freedesktop.org>; Fri, 27 Feb 2026 15:58:32 +0000 (UTC)
-Message-ID: <1d3c1c86-7382-4c2a-ab3e-3e6938d055ec@linux.dev>
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1772207497;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=MaJxtRy1gxu5Hm6tq13uMb/9SHoCAIyHdACW5TaPNP8=;
- b=O4VApGigh6dfWOJ9Vb5+0CQiVHhKjSZySfd6btG/EKcPBAUptNJb4/YDic3YfSQ0J8VAGe
- hZ/07Q7h657LWWPzTUyyfY/nw/ws6+i/16B29wlwXRCsnqs1muOE91VHh5HeFCpqC42LSN
- SqIKXtc4WN41DQjWrPhh33QzvyF2Et8=
-Date: Fri, 27 Feb 2026 23:50:59 +0800
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23EE910EBD1;
+ Fri, 27 Feb 2026 17:17:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772212641; x=1803748641;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vrDn2gcKJ5LGc8jy7P8EZmSKhfJFHJUg4xh2Z1ZznCg=;
+ b=VLWuz7r3uHKcQ3jeNdrv8vgq3aIRocRkQ/Hr4L27jJ+mWGaGDKqUWQmp
+ 1x3UzOup5L3DdNfSmW4vB6ohE0sXsZ4+UXT5evyXUr8u+hOGSyV6PUd+m
+ Pmw5JDzy1IfO4CJ0xu+i5D9p+4koRTLw0kiJ9kDSn71fmPcI2YthBeph4
+ wOA3IheuaC3bvZ9hoLREcgN2Mmr6yyCasQN8d54xL5mUtMD+2Vmg9myLB
+ 5o63s8N7WLIt+EGfnQxBsBbLxOZL5i3golVrdo4dns2uPPjfP/Ld5fh2p
+ TU9flFrUO/P6AHiEG04U1wGQEgscn8km9Qykf6Oka7G1R0MT1thb4BD1N w==;
+X-CSE-ConnectionGUID: 0606OJAMT+2H4QRrpDhjAw==
+X-CSE-MsgGUID: jkeZInfdQHKPS46KY+zw1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="75902335"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="75902335"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 09:17:20 -0800
+X-CSE-ConnectionGUID: G+N8tmgoSGu8V/XTLuwFPw==
+X-CSE-MsgGUID: PbvxxBQLRhig9HBqTvE5Sw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="213804016"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.202])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Feb 2026 09:17:18 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH 0/4] drm/i915, drm/xe: clean up i915_vma.h usage for display
+Date: Fri, 27 Feb 2026 19:17:10 +0200
+Message-ID: <cover.1772212579.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Subject: Re: [PATCH v11 2/2] rust: clist: Add support to interface with C
- linked lists
-To: Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- Bjorn Roy Baron <bjorn3_gh@protonmail.com>, Benno Lossin
- <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>,
- Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- Simona Vetter <simona@ffwll.ch>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, Nikola Djukic
- <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260224222734.3153931-1-joelagnelf@nvidia.com>
- <20260224222734.3153931-3-joelagnelf@nvidia.com>
- <dbbb1a93-93fc-4ea6-bd6f-6f7fbfcc4710@linux.dev>
- <20260226193442.GA4077409@joelbox2>
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-From: Alvin Sun <alvin.sun@linux.dev>
-In-Reply-To: <20260226193442.GA4077409@joelbox2>
-Content-Type: text/plain; charset=UTF-8; format=flowed
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Mon, 02 Mar 2026 16:22:03 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -100,104 +73,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3821C1DCAFB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[72];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[alvin.sun@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:aliceryhl@google.com,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
- arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alvin.sun@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	NEURAL_HAM(-0.00)[-0.997];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:mid]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 09E4C1BB4FB
 X-Rspamd-Action: no action
 
+Drop compat i915_vma.h and make struct i915_vma opaque towards display.
 
-On 2/27/26 03:34, Joel Fernandes wrote:
-> On Fri, 27 Feb 2026, Alvin Sun wrote:
->> Thanks for the clist abstraction. The Tyr debugfs [1] I'm implementing
->> needs to iterate over a GpuVm's VA list, and I'd like to switch that to
->> a CList-based implementation.
-> Thanks for looking into using CList for this!
->
->> Could you make CListHeadIter public and expose a public constructor?
->> Or do you have a better suggestion?
-> I think this can be handled without exposing CListHeadIter. See below.
->
->> The VA list mixes two node types in one list — GpuVa (with driver-specific
->> data) and KernelGpuVa — so we have to filter/skip nodes and can't use
->> CList as-is. With a public CListHeadIter and new(), we can implement a
->> custom iterator (like our current GpuVaIter) on top of CListHeadIter and
->> then migrate that code to clist instead of hand-rolled list traversal.
-> Looking at the Tyr code, both GpuVa and KernelGpuVa are
-> #[repr(transparent)] wrappers over the same C struct (drm_gpuva), linked
-> through the same list_head field at the same offset. The "two types" are
-> a Rust-level modeling choice for safety, not a structural difference in
-> the list — every node in that list is a drm_gpuva.
->
-> So CList's typed iteration already works here. You can iterate over all
-> nodes using a common Rust wrapper type (like a #[repr(transparent)]
-> wrapper over drm_gpuva), and then skip the kernel-reserved node by
-> pointer identity — since drm_gpuvm has its kernel_alloc_node as a named
-> field, its address is known. Something like:
->
->      // Iterate all nodes as a common base type.
->      let list = clist_create!(unsafe { head, RawGpuVa, drm_gpuva, rb.entry });
->      let kernel_ptr = unsafe { &raw mut (*gpuvm_raw).kernel_alloc_node };
->
->      for va in list.iter() {
->          if va.as_raw() == kernel_ptr {
->              continue;  // skip
->          }
->
->          // Cast to &GpuVa
->          let gpu_va = unsafe { GpuVa::from_raw(va.as_raw()) };
->          ...
->      }
->
-> If you need a named iterator type (e.g. for returning from a method),
-> you can wrap CListIter in your own GpuVaIter struct that stores the
-> kernel node pointer and filters in its Iterator::next() impl. That would
-> probably also be cleaner.
-That's a good idea! I will try to implement GpuVaIter based on CListIter.
+Jani Nikula (4):
+  drm/i915/fbdev: stop debug logging i915_ggtt_offset()
+  drm/i915: add VMA to parent interface
+  drm/xe/compat: remove i915_vma.h from compat
+  drm/xe/display: clean up xe_initial_plane.c includes
 
-Thanks,
-Alvin Sun
->
-> OTOH, with CListHeadIter you'd need to do container_of manually on each node,
-> which might be more erroneous code, whereas CListIter handles that for you.
-> And anyway, the pointer comparison needed to skip the kernel node is the same
-> in both approaches.
->
-> Would this work for the Tyr debugfs use case?
->
-> --
-> Joel Fernandes
->
+ drivers/gpu/drm/i915/display/intel_fbc.c      |  5 ++-
+ drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 +--
+ drivers/gpu/drm/i915/display/intel_parent.c   |  9 +++++
+ drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
+ drivers/gpu/drm/i915/i915_driver.c            |  1 +
+ drivers/gpu/drm/i915/i915_vma.c               | 10 ++++++
+ drivers/gpu/drm/i915/i915_vma.h               |  7 ++--
+ .../gpu/drm/xe/compat-i915-headers/i915_vma.h | 36 -------------------
+ drivers/gpu/drm/xe/display/xe_display_vma.h   | 18 ++++++++++
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  6 ++--
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 16 +++------
+ include/drm/intel/display_parent_interface.h  |  7 ++++
+ 12 files changed, 61 insertions(+), 62 deletions(-)
+ delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
+ create mode 100644 drivers/gpu/drm/xe/display/xe_display_vma.h
+
+-- 
+2.47.3
+
