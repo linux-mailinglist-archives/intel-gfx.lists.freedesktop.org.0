@@ -2,164 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ULBfCVF/oWkUtgQAu9opvQ
+	id 0Mg6LF2AoWkUtgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 12:26:09 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 12:30:37 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 859111B688B
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 12:26:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63C801B6945
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 12:30:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7371410EAFB;
-	Fri, 27 Feb 2026 11:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 136D610EB07;
+	Fri, 27 Feb 2026 11:30:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OzrdFnG+";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KA9mDr33";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7316410E16E;
- Fri, 27 Feb 2026 11:26:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772191566; x=1803727566;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=7UEYx/Iwm2La6C5+a8lAHREpycR2NkHEP19uIFL5feM=;
- b=OzrdFnG+/noMqRlOlmwyHnjoeWG4QlRGkcvunl9L5mCznTXKEoqzyne+
- mVew5ZB0PFvQPH7NsHcros+kMNPE3QaFqECNeref3doRbjN1IZptJkZxO
- tKlPeF5kUM7hiUtpjhjEaxBzCCY2zqPhUofLCdP/iNohIGr4fxgJkD2ko
- FgAj3Au2gBw2WGjQ3LYt501rynJ5O/b0bYZ5HWdF3vfQrL9XJdjfODK0h
- X9SMU0175ZNoQ7+C42EVdBRbfZg4IRXDC0CD+IX+ozJG4TCYeKRUpqYWK
- i7Tq22clMAOnddG7HaJdMoegHaEyjyfry4q21m22xvwpWsa/iNbIkZYLS A==;
-X-CSE-ConnectionGUID: c7T/ouAjRgSiL0UpAtdeWw==
-X-CSE-MsgGUID: aXrye9qsTIuozjjOiuLluw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11713"; a="76880025"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="76880025"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 03:26:04 -0800
-X-CSE-ConnectionGUID: QLuKnM+2SUWSO4AFr0iAWA==
-X-CSE-MsgGUID: 0xg7lWNDSP2ZaaNGkT6BPg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="216981803"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 03:26:04 -0800
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 03:26:03 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 27 Feb 2026 03:26:03 -0800
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.1) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 27 Feb 2026 03:26:03 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mZZEOGgCbJPAvotZUdoZpmc3/5upSH7MmHXlutkRXI31vNX0qtyv5OCfspQfYCRCyacmU4wUGT0n9l7+M/Rqin2l2u4VujxHkDBkatP4MqKYmuoz/EW5l/fVA3NiTvZf61P3ZQN0aKA4i6FzRIBFc7bO/eAKSGhW0tUoePFLGYFY7icilkihn/iuBlOhWXOn7jsSwBwcq7c0nlfsJRB5K+FILHMpnTrfl0ez/sXSrDTfPGVsTf++G6wg+b2jRt/XGljRlwkEbvy3QLQq3dZg67U3x0TxSRq8bCtKD1Q56e9vliN7vYi8LY89vP+WWAmULXRSC5/pkPTPvfPOW2iUfA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=NGVZwjrjojkTIBzPWfIQOw9UeZtPiik/r5W4khJsxzU=;
- b=DXclNZNFKawJGAQIhr2S2bCNJeubNlL/VFFySBiNmDdCkx5KlpRoEdVCGHqI+cn2r/IgjGwQc/z2GUtNHXl+kgcMTLcXdN/vVV/668Axc+xb7dZp/AGB0zJDw/egJGEBKh56TuClln2qd0W+kRmp8gHueWX3L8C/udOLnAmFwXNNFElGw+mXMwwU5QnzVpv3xJumbvDajjBY3p8Hl6R3xWf45jWAcAlR/94G0DzvjhfLVQr5abNYBuOCKLuAW7Ni22Vuis2WvnrB/VD+CZSosMzDnol38U/D5g9L0qB+D4/RE7Cq70ytppKcoGkt5HvvBz/G1yyQwQq/jXCa8nvvxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CY8PR11MB6987.namprd11.prod.outlook.com (2603:10b6:930:55::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.11; Fri, 27 Feb
- 2026 11:25:59 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9632.017; Fri, 27 Feb 2026
- 11:25:59 +0000
-Message-ID: <7477ab43-d840-4b7b-8088-54a637b3df23@intel.com>
-Date: Fri, 27 Feb 2026 16:55:48 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 11/14] drm/i915/dp: Program AS SDP DB[1:0] for PR with
- Link off
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <jouni.hogander@intel.com>, <animesh.manna@intel.com>
-References: <20260223134431.1639308-1-ankit.k.nautiyal@intel.com>
- <20260223134431.1639308-12-ankit.k.nautiyal@intel.com>
- <aaBxTmXGrgAHQ4Ix@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <aaBxTmXGrgAHQ4Ix@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0040.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:175::13) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB6987:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3665c08a-9f1f-4cc0-9c44-08de75f2faf5
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|376014|366016;
-X-Microsoft-Antispam-Message-Info: XEXqEtttrAi7ryGRZAGNJYoS9OL8fLRGIXcN5Mloi0Q3JNFIb7gCl2huI5+Z8ccvd9aH211g677Dd2u+yq0cJEVOBneWZ7u2kI+ymOdBfpVOuX4CInsF4MNJuBtxBxKkhshoGa/p1KpGHuBbRnZQ0mKYpUbd8XYf1oJ+wqpZaBWFcwv3BWii84C6vrrX5WtAd8ZMeLpe2wH6WNTeBPhFAXCq7jSXYnYTZUVlbhvxhtUKql10Z8LIFQ6KCHbiksOj7EfJjJr0kCn7CLGQbUvMrr2xUiSgX7MJlKIg13dTbh/KmafDHhKVpkBi/sAOrj+3cf5t6qm2xUWSncMndQYEBcVsJHnf5Sb96KpdNyFWGC9vllcGqKd3JXelsEc8RAOuIAGxCL6Y9pMvElbllD/uML3HOsOfQWKVQiSCDlcIP93hcpaBi4VxBQlfhhiigBV0GBtJ8ieSgAIC4P8M1TvtyR+VGfrwCpqsWvE12u4K/EXNGKwgcvfn48aN4f6hSznSULaYIbVtbiTNmK+Zb12HfgqrUia813iD7Upm+My/xMBFL1ZQH5Y8md8d/sihoxUN7REWPZvb+zXe8dvdV1rqAIvVtXnE0zh8AzkwJOdvIZB73VszLmxdtxoogNAI7ijq18aN9ZruCNyzV0JYruFgKYHuTrSSUk29G87XCxPl3wbBHU8LYyp/wfmo5+DT4v0f1bMMUs9ZlOmYOjoILlaW4at4ceoIbsyjjIYfDZYzdX0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MjFiVmZYVmlSWXhsbzlrS2g4SGhZNDM4VUpjNFYreUJhY2xTS3haVGhWU0k1?=
- =?utf-8?B?TzlYZXo4QzlxTzM3M3RNSC9Ib3M3SUsyTWUzek9SSmI4c09tVW0yQ0ZjZndt?=
- =?utf-8?B?WWptYXUzT3UyZ21YVXdEcFVxMUdIYmxXazI4U3ZsYVZxc29FWFIrak5UMjdt?=
- =?utf-8?B?cm40WFkrK2dhd2ZGUGFIYU1OVWMvbFJXRGZPQi9XYyt0aHEyTjd3cnlxSnNn?=
- =?utf-8?B?bmJ4V01CSDJFeW53TzQ1aEhNT3lGRXl3SGNlWnZySll6bXY3cFUrY0I3WElI?=
- =?utf-8?B?ditMc01TalNkVWpSSW1EV29FclFPSmR2Wm9BanZSUGx5UFdFR21hN2tNVlY2?=
- =?utf-8?B?MDNBcG1SRDhoZnMyOWFSV2FJUVVwMmlseHRTVDdxTUIrSE0wTmw0REMxV1NV?=
- =?utf-8?B?WFlFVGtFWUxxdFlZUFZBMWJXbTBGbk9kQytRZFBzaEEwYVRVN1c0bDRlZGoz?=
- =?utf-8?B?ZWpVZVg4eUNQWWtRWkRZNVdScVJCcyttTUJ4ZEhFV01id1Bua1pFaWdmeTdr?=
- =?utf-8?B?Z0pNTldQc0dMWG5CaFp0a09iT0hXZmRwVlJhWUJmN0d1UjIzN0xPamJ2UFFy?=
- =?utf-8?B?Sm93bzJnVXpWUkFDZ3lBZWJncUJZcXdyTkxmR0czby9UWHVobXBnVzI4cWNw?=
- =?utf-8?B?U1BaWW5USUpTOU5JZVgxNTFCYnFnWmF4Ny9LdkxmTW5IS3ViNU8velB1NFpx?=
- =?utf-8?B?NEtJd0h4NlpRY25DcDdoZkR1YkNjRVgrOWd5UlV6Zk81bDBNVDJPcTdYSzFw?=
- =?utf-8?B?QmhpOE56NXJEbmR6M0tWbmJHRzBOZzczU3lhK0hFaEszZGVVY2FBQUpjNzh6?=
- =?utf-8?B?UDFhWGdtaXU0R3pkcC9XRHZ3aTY2TDJIUUs0ck1xaVRGbjJUckpNN2pMbUdN?=
- =?utf-8?B?VkY1WXYrNU5uQVZNNWcwNmVMZC9hU1grUDhvUHdCMTFUYmNtU2k2WE1BQmt1?=
- =?utf-8?B?d0RyOTd0eVp2aVkzUVpHeTBsS0hJT0pGblFJRGp6K0FINGhrSlJ2Z0MxSEd2?=
- =?utf-8?B?Z3psVitxaXd3ZnVJRzVIMEJhaEFRa0tFdTdpR0VIS0NqS2Z0c0xNTGRYM2U4?=
- =?utf-8?B?dXNma0J1N01CZ3dJaG9Nd1hBWE93NmlwbUJXYzllaElTenorQktaMStqNTNF?=
- =?utf-8?B?RlBVbTRUWFcwdDFBSW05b2ZLMHlVQWNuSDVzSlhQSVdIeC9nVmNUSHFOZ3or?=
- =?utf-8?B?bmVua050dHJZVU1lNkpHN2hhbVZodzMyWmN1MjJrZGtWZFdOU0lvUFgxR3Ba?=
- =?utf-8?B?a3ZVbTczYS9jSHZaNU9hZi9LRjlMY1VJN2ppbWdoTmZyL3BtYnFZa2NsVzVw?=
- =?utf-8?B?OGZ4Q0lEaXltbkxUYnlhYUFZUW1UMi91elhGWVE5Z21CMmZNMzFPcktqQVZC?=
- =?utf-8?B?dTJUNVpPbFcwRVNkSlZLeXNlT3VJdEhwN2FINTVsVVFXS0oxZXdUbk5IUGJ1?=
- =?utf-8?B?bWp6bkg5NjAwMjlZMTdSV294Yy96c3puWklvTnNQQXh6RFh0YmEyN096TjN6?=
- =?utf-8?B?QVErcW13VWdIN0RYWHdDRnpPZmRlaWYwOU0wQWlVcnNGaWlTRHhTYTRubWxR?=
- =?utf-8?B?SXdYbHl6VlZqSzJHZlYyRDhQWDVVd3g4MHZFQnE0RFYwY01kUUhGRzZ6K3Z6?=
- =?utf-8?B?TDczMVpFVDN3SS9VQUxVZi9qZnFTQVpLVDNHcGlSWkFKN1dwSFNLRGtVNzNa?=
- =?utf-8?B?RVNhNW5JZmNJOUtiT3hZckd5VXBOWEVsM29DcjQ0dTNiRTlaY3dkVFhTcW9p?=
- =?utf-8?B?bTY5V3VuNGhuSTNzeDFHWEdVdzI0UTN4TllhenUwdzJCK1dFTzJmS2t1bU5w?=
- =?utf-8?B?ZnJRbVZUajVoZVcwTGNmdjFFRTlwamFjbWplMXhKUWRFSFdZZ1hnMWdwdHMz?=
- =?utf-8?B?Tzg4U2NTekIzQWdzVFdITFArNUFLeFluZmMyLzlqOVZoRjN4eDlVVm9JcjFQ?=
- =?utf-8?B?ejk2TkpKbm9XcEwyR0pmbjRWdGtLTit0aVlwM3E0V2RLVWNFK3Fyem9pcjZm?=
- =?utf-8?B?WC92bFljTzRPcTJGd2tYWno4NTZYdGVudk50T29JSG5RWEhwZ2VxbGx3V0x2?=
- =?utf-8?B?aWhnMXprWm55T1JrRXJxQTFMSEhEN0tJTjNiVHJIano4WUxxOUpXRGY5d1NY?=
- =?utf-8?B?aVU0d21wWmRQdTdCTnd6bW5ka0xxamFObzRJZHZBbnFUZjFFclJpTG9nNUE2?=
- =?utf-8?B?N3ZqUzh0bzFGNnMxM0VqZjRiTE5PeG5KaVN2K0VJaHVUdTk2NGVKd1F0a3Ft?=
- =?utf-8?B?NlozZUFrb04yTGpNelI5NkZuRFBUVjNraDdJZk5XVFlEb3orTlpjeXlPSHRN?=
- =?utf-8?B?ZmcyRnFOWGlVTGV3MmwyUUp0WUlCZVpSWTFrNndZaGZ1U2FPbFRYVkIrZGNp?=
- =?utf-8?Q?XQ7ZpjuzvHAT3sYI=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3665c08a-9f1f-4cc0-9c44-08de75f2faf5
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Feb 2026 11:25:58.9423 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: AICFfR3K7QxQWS2NB283m5kgX7E79ejXj34PORJSC68cPbOjd37ETtN+g7dagmQws0gRhP/Iinx+o5015YnEzgAyb8ACQLNFHaDgpx1fZvI=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB6987
-X-OriginatorOrg: intel.com
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 473AC10E16E;
+ Fri, 27 Feb 2026 11:30:33 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id CB6CE444C6;
+ Fri, 27 Feb 2026 11:30:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5AC98C116C6;
+ Fri, 27 Feb 2026 11:30:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772191832;
+ bh=q9Qw4m+ehN9G6pF4YvgGI5YvC7WtO4kLCNQbCmQ0VZ8=;
+ h=Date:Subject:Cc:To:From:References:In-Reply-To:From;
+ b=KA9mDr33xS18HYhHMxjWEsKqOqRnJOYpP3JoPuGNMxpZMgBGRk6QZ30AzHVzdMVlO
+ TlkKcIB9/TPLGYpNMZ08Il3YRMVl9JyYWiCdAl2pNiuWRqG72drMNfkl3tdVGfJ97c
+ DpXQ9dYkomvweAHjYHDizYYP8o4V52D/mdElnHU1siJ10WDu+XllQMBZZO0xEYE09D
+ o/8GjtCbz5qKoHOUipHVLPwgZNQZNkuawkxPPgJ6OBKBakBli+8GttpLRvglr/C2wh
+ 2jrpmrS4BRdthCoOgJ1ymMUaQ1woQSWypOu7cGqLP0i/AZequ6WqdEOC47KWg0+CDn
+ IPDrai+gMi2kw==
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Fri, 27 Feb 2026 12:30:20 +0100
+Message-Id: <DGPPKJ5W6FVD.29LI1HKSBZSG2@kernel.org>
+Subject: Re: [PATCH v11 4/4] rust: gpu: Add GPU buddy allocator bindings
+Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
+ "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
+ =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
+ <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
+ Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Dave
+ Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
+ Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
+ <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
+ "Thomas Zimmermann" <tzimmermann@suse.de>, "David Airlie"
+ <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet"
+ <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
+ "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
+ "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
+ "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
+ "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
+ "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
+ Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
+ <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
+ <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>,
+ <arunpravin.paneerselvam@amd.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>
+From: "Danilo Krummrich" <dakr@kernel.org>
+References: <20260224224005.3232841-1-joelagnelf@nvidia.com>
+ <20260224224005.3232841-5-joelagnelf@nvidia.com>
+In-Reply-To: <20260224224005.3232841-5-joelagnelf@nvidia.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,90 +94,259 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MV_CASE(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9];
-	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 859111B688B
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[57];
+	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	NEURAL_HAM(-0.00)[-0.936];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,nvidia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 63C801B6945
 X-Rspamd-Action: no action
 
+(Cc: Arun)
 
-On 2/26/2026 9:44 PM, Ville Syrjälä wrote:
-> On Mon, Feb 23, 2026 at 07:14:28PM +0530, Ankit Nautiyal wrote:
->> For Panel Replay with AUX-less ALPM (link-off PR), the source must send
->> Adaptive-Sync SDP v2. Program DB[1:0] per DP spec v2.1:
->> - VRR AVT: 00b (variable VTotal)
->> - VRR FAVT: 10b/11b (TRR not reached/reached)
->> - Fixed timing with PR link-off (VRR off): 01b (AS disabled; VTotal fixed)
->>
->> Select SDP version v2 whenever PR link-off or VRR is active, otherwise v1,
->> and program the AS SDP DB[1:0] bits.
->>
->> Also, drop the redundant target_rr assignment.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dp.c | 7 ++++---
->>   1 file changed, 4 insertions(+), 3 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 5952db6197cf..ad2aceb526ff 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -3139,7 +3139,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->>   	as_sdp->duration_incr_ms = 0;
->>   	as_sdp->version = 0x2;
->>   
->> -	if (crtc_state->vrr.enable)
->> +	if (crtc_state->vrr.enable || intel_psr_is_pr_with_link_off(crtc_state))
->>   		as_sdp->version = 0x2;
->>   	else
->>   		as_sdp->version = 0x1;
->> @@ -3154,9 +3154,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
->>   		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
->>   		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
->>   		as_sdp->target_rr_divider = true;
->> -	} else {
->> +	} else if (crtc_state->vrr.enable) {
->>   		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
->> -		as_sdp->target_rr = 0;
->> +	} else if (intel_psr_is_pr_with_link_off(crtc_state)) {
->> +		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
->>   	}
->   else {
->    what now?
->   }
+On Tue Feb 24, 2026 at 11:40 PM CET, Joel Fernandes wrote:
+> +RUST [GPU BUDDY]
+> +M:	Joel Fernandes <joelagnelf@nvidia.com>
+> +L:	dri-devel@lists.freedesktop.org
+> +L:	rust-for-linux@vger.kernel.org
+> +S:	Maintained
+> +F:	rust/helpers/gpu.c
+> +F:	rust/kernel/gpu/
 
-Hmm I think with always enable AS SDP the else part would naturally become:
+What about adding this to the existing GPU BUDDY ALLOCATOR entry? Maybe you=
+ can
+offer Matthew and Arun your help.
 
-as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+Also, this wouldn't be a subentry of "RUST", but the rust version of GPU BU=
+DDY,
+so it would be "GPU BUDDY [RUST]".
 
+Also, please add rust/kernel/gpu/ to the "DRM DRIVERS AND COMMON INFRASTRUC=
+TURE
+[RUST]" entry.
 
-Regards,
-Ankit
+> +/// Inner structure holding the actual buddy allocator.
+> +///
+> +/// # Synchronization
+> +///
+> +/// The C `gpu_buddy` API requires synchronization (see `include/linux/g=
+pu_buddy.h`).
+> +/// The internal [`GpuBuddyGuard`] ensures that the lock is held for all
+> +/// allocator and free operations, preventing races between concurrent a=
+llocations
+> +/// and the freeing that occurs when [`AllocatedBlocks`] is dropped.
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Opaque`] contains a valid, initialized buddy allocator.
 
+The invariant should be justified in the constructor. Also, where is it use=
+d?
 
->>   }
->>   
->> -- 
->> 2.45.2
+> +// SAFETY: GpuBuddyInner is `Sync` because the internal GpuBuddyGuard
+
+I think it's more precise to refer to GpuBuddyInner::lock.
+
+> +// serializes all access to the C allocator, preventing data races.
+> +unsafe impl Sync for GpuBuddyInner {}
+> +
+> +/// Guard that proves the lock is held, enabling access to the allocator=
+.
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner `_guard` holds the lock for the duration of this guard's l=
+ifetime.
+> +pub(crate) struct GpuBuddyGuard<'a> {
+> +    inner: &'a GpuBuddyInner,
+> +    _guard: MutexGuard<'a, ()>,
+> +}
+> +
+> +impl GpuBuddyGuard<'_> {
+> +    /// Get a raw pointer to the underlying C `gpu_buddy` structure.
+> +    fn as_raw(&self) -> *mut bindings::gpu_buddy {
+> +        self.inner.inner.get()
+> +    }
+> +}
+> +
+> +/// GPU buddy allocator instance.
+> +///
+> +/// This structure wraps the C `gpu_buddy` allocator using reference cou=
+nting.
+> +/// The allocator is automatically cleaned up when all references are dr=
+opped.
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Arc`] points to a valid, initialized GPU buddy allocator=
+.
+
+Do we need this invariant? Isn't this implied by the GpuBuddyInner type?
+
+> +    /// Iterate over allocated blocks.
+> +    ///
+> +    /// Returns an iterator yielding [`AllocatedBlock`] values. Each [`A=
+llocatedBlock`]
+> +    /// borrows `self` and is only valid for the duration of that borrow=
+.
+> +    pub fn iter(&self) -> impl Iterator<Item =3D AllocatedBlock<'_>> + '=
+_ {
+> +        // SAFETY: list contains gpu_buddy_block items linked via __bind=
+gen_anon_1.link.
+> +        let clist =3D clist_create!(unsafe {
+
+This macro has three separate safety requirements, please justify all of th=
+em.
+Also, please also use markdown in safety comments. Personally, I don't care=
+ too
+much, but it would be good to keep things consistent.
+
+> +            self.list.as_raw(),
+> +            Block,
+> +            bindings::gpu_buddy_block,
+> +            __bindgen_anon_1.link
+> +        });
+> +
+> +        clist
+> +            .iter()
+> +            .map(|block| AllocatedBlock { block, alloc: self })
+> +    }
+> +}
+> +
+> +#[pinned_drop]
+> +impl PinnedDrop for AllocatedBlocks {
+> +    fn drop(self: Pin<&mut Self>) {
+> +        let guard =3D self.buddy.lock();
+> +
+> +        // SAFETY:
+> +        // - list is valid per the type's invariants.
+> +        // - guard provides exclusive access to the allocator.
+> +        // CAST: BuddyFlags were validated to fit in u32 at construction=
+.
+> +        unsafe {
+> +            bindings::gpu_buddy_free_list(
+> +                guard.as_raw(),
+> +                self.list.as_raw(),
+> +                self.flags.as_raw() as u32,
+> +            );
+> +        }
+> +    }
+> +}
+> +
+> +/// A GPU buddy block.
+> +///
+> +/// Transparent wrapper over C `gpu_buddy_block` structure. This type is=
+ returned
+> +/// as references during iteration over [`AllocatedBlocks`].
+> +///
+> +/// # Invariants
+> +///
+> +/// The inner [`Opaque`] contains a valid, allocated `gpu_buddy_block`.
+> +#[repr(transparent)]
+> +pub struct Block(Opaque<bindings::gpu_buddy_block>);
+
+Does this need to be public? I don't see it being exposed by any API.
+
+> +
+> +impl Block {
+> +    /// Get a raw pointer to the underlying C block.
+> +    fn as_raw(&self) -> *mut bindings::gpu_buddy_block {
+> +        self.0.get()
+> +    }
+> +
+> +    /// Get the block's offset in the address space.
+> +    pub(crate) fn offset(&self) -> u64 {
+> +        // SAFETY: self.as_raw() is valid per the type's invariants.
+> +        unsafe { bindings::gpu_buddy_block_offset(self.as_raw()) }
+> +    }
+> +
+> +    /// Get the block order.
+> +    pub(crate) fn order(&self) -> u32 {
+> +        // SAFETY: self.as_raw() is valid per the type's invariants.
+> +        unsafe { bindings::gpu_buddy_block_order(self.as_raw()) }
+> +    }
+> +}
+> +
+> +// SAFETY: `Block` is not modified after allocation for the lifetime
+> +// of `AllocatedBlock`.
+> +unsafe impl Send for Block {}
+> +
+> +// SAFETY: `Block` is not modified after allocation for the lifetime
+> +// of `AllocatedBlock`.
+> +unsafe impl Sync for Block {}
+> +
+> +/// An allocated block with access to the GPU buddy allocator.
+
+This needs a better description, i.e. what makes an `AllocatedBlock differe=
+nt
+compared to a "normal" Block.
+
+> +///
+> +/// It is returned by [`AllocatedBlocks::iter()`] and provides access to=
+ the
+> +/// GPU buddy allocator required for some accessors.
+> +///
+> +/// # Invariants
+> +///
+> +/// - `block` is a valid reference to an allocated [`Block`].
+> +/// - `alloc` is a valid reference to the [`AllocatedBlocks`] that owns =
+this block.
+
+References should always be valid, no need to mention that.
+
+> +pub struct AllocatedBlock<'a> {
+> +    block: &'a Block,
+
+NIT: What about just naming it "this" and
+
+> +    alloc: &'a AllocatedBlocks,
+
+"blocks"?
+
+> +}
+> +
+> +impl AllocatedBlock<'_> {
+> +    /// Get the block's offset in the address space.
+> +    ///
+> +    /// Returns the absolute offset including the allocator's base offse=
+t.
+> +    /// This is the actual address to use for accessing the allocated me=
+mory.
+> +    pub fn offset(&self) -> u64 {
+> +        self.alloc.buddy.base_offset + self.block.offset()
+> +    }
+> +
+> +    /// Get the block order (size =3D chunk_size << order).
+> +    pub fn order(&self) -> u32 {
+> +        self.block.order()
+> +    }
+> +
+> +    /// Get the block's size in bytes.
+> +    pub fn size(&self) -> u64 {
+> +        self.alloc.buddy.chunk_size << self.block.order()
+> +    }
+> +}
