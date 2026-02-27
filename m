@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNeUI6XRoWkfwgQAu9opvQ
+	id sEGzD6fRoWkfwgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 18:17:25 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 18:17:27 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09E4C1BB4FB
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 18:17:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F62D1BB504
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Feb 2026 18:17:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9498210EBD4;
-	Fri, 27 Feb 2026 17:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E5F710EBD7;
+	Fri, 27 Feb 2026 17:17:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VLWuz7r3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XepxY9dI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23EE910EBD1;
- Fri, 27 Feb 2026 17:17:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2B7210EBD7;
+ Fri, 27 Feb 2026 17:17:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772212641; x=1803748641;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vrDn2gcKJ5LGc8jy7P8EZmSKhfJFHJUg4xh2Z1ZznCg=;
- b=VLWuz7r3uHKcQ3jeNdrv8vgq3aIRocRkQ/Hr4L27jJ+mWGaGDKqUWQmp
- 1x3UzOup5L3DdNfSmW4vB6ohE0sXsZ4+UXT5evyXUr8u+hOGSyV6PUd+m
- Pmw5JDzy1IfO4CJ0xu+i5D9p+4koRTLw0kiJ9kDSn71fmPcI2YthBeph4
- wOA3IheuaC3bvZ9hoLREcgN2Mmr6yyCasQN8d54xL5mUtMD+2Vmg9myLB
- 5o63s8N7WLIt+EGfnQxBsBbLxOZL5i3golVrdo4dns2uPPjfP/Ld5fh2p
- TU9flFrUO/P6AHiEG04U1wGQEgscn8km9Qykf6Oka7G1R0MT1thb4BD1N w==;
-X-CSE-ConnectionGUID: 0606OJAMT+2H4QRrpDhjAw==
-X-CSE-MsgGUID: jkeZInfdQHKPS46KY+zw1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="75902335"
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="75902335"
+ t=1772212645; x=1803748645;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=+xR0iUOk9UXtgfodo7rVNLAP3SxnUFl+wAgxGDk+AU4=;
+ b=XepxY9dI0LnlvMOKIBh9AsiaPLk20RB22/KxJ8mud4mvt40OtCwHiAoV
+ XAau8Jw+XPcmReqMtzL100PsJ1ka97TAy4O123LDywjnIqnHbIAsPuE9a
+ Ghx5CFV3Bfy+66dW+FBJ1CCLILQ0SvrdqT8fM6Q2MzWwaTUBa3YLn7pTj
+ vAUgzpbROVOk3TJ5gWuS72y8zNbJlEsBGtpVZXyNI9TOMJ+u7j+1rj3yU
+ bzJyJAG/VBfbGnVGAjQnp88z2HTmGDHsx/AdJ0DFl3Ql7B6q719YC6nyt
+ 301vRjQ612cIc1ceGpHzTiQZwN6K4inDYgWLbPHKR2y0I1HDsHwr2yhzT g==;
+X-CSE-ConnectionGUID: ZCYUWWW6SO2G5dU1Qj8BYQ==
+X-CSE-MsgGUID: qPNVcIrERlmJMAVhXAQ3fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11714"; a="75902343"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="75902343"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 09:17:20 -0800
-X-CSE-ConnectionGUID: G+N8tmgoSGu8V/XTLuwFPw==
-X-CSE-MsgGUID: PbvxxBQLRhig9HBqTvE5Sw==
+ 27 Feb 2026 09:17:24 -0800
+X-CSE-ConnectionGUID: egj6cwFVTiWkD68sPTewYA==
+X-CSE-MsgGUID: 6wbhcMl+T2uily2Uuz23cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="213804016"
+X-IronPort-AV: E=Sophos;i="6.21,314,1763452800"; d="scan'208";a="213804025"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.202])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Feb 2026 09:17:18 -0800
+ 27 Feb 2026 09:17:23 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 0/4] drm/i915, drm/xe: clean up i915_vma.h usage for display
-Date: Fri, 27 Feb 2026 19:17:10 +0200
-Message-ID: <cover.1772212579.git.jani.nikula@intel.com>
+Subject: [PATCH 1/4] drm/i915/fbdev: stop debug logging i915_ggtt_offset()
+Date: Fri, 27 Feb 2026 19:17:11 +0200
+Message-ID: <c3b84cb572c7ee94389e702aba4dcacb26c41673.1772212579.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1772212579.git.jani.nikula@intel.com>
+References: <cover.1772212579.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -79,7 +81,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
@@ -87,10 +89,10 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
@@ -99,34 +101,41 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 09E4C1BB4FB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 0F62D1BB504
 X-Rspamd-Action: no action
 
-Drop compat i915_vma.h and make struct i915_vma opaque towards display.
+The debug logging in fbdev is the only user of i915_ggtt_offset() in
+display code. Just stop doing it to drop a dependency on i915_vma.h.
 
-Jani Nikula (4):
-  drm/i915/fbdev: stop debug logging i915_ggtt_offset()
-  drm/i915: add VMA to parent interface
-  drm/xe/compat: remove i915_vma.h from compat
-  drm/xe/display: clean up xe_initial_plane.c includes
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_fbc.c      |  5 ++-
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  5 +--
- drivers/gpu/drm/i915/display/intel_parent.c   |  9 +++++
- drivers/gpu/drm/i915/display/intel_parent.h   |  3 ++
- drivers/gpu/drm/i915/i915_driver.c            |  1 +
- drivers/gpu/drm/i915/i915_vma.c               | 10 ++++++
- drivers/gpu/drm/i915/i915_vma.h               |  7 ++--
- .../gpu/drm/xe/compat-i915-headers/i915_vma.h | 36 -------------------
- drivers/gpu/drm/xe/display/xe_display_vma.h   | 18 ++++++++++
- drivers/gpu/drm/xe/display/xe_fb_pin.c        |  6 ++--
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 16 +++------
- include/drm/intel/display_parent_interface.h  |  7 ++++
- 12 files changed, 61 insertions(+), 62 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
- create mode 100644 drivers/gpu/drm/xe/display/xe_display_vma.h
-
+diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
+index 44f4fcce526e..bdaaf3edba0c 100644
+--- a/drivers/gpu/drm/i915/display/intel_fbdev.c
++++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+@@ -47,7 +47,6 @@
+ #include <drm/drm_managed.h>
+ #include <drm/drm_print.h>
+ 
+-#include "i915_vma.h"
+ #include "intel_bo.h"
+ #include "intel_display_core.h"
+ #include "intel_display_rpm.h"
+@@ -343,9 +342,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 
+ 	/* Use default scratch pixmap (info->pixmap.flags = FB_PIXMAP_SYSTEM) */
+ 
+-	drm_dbg_kms(display->drm, "allocated %dx%d fb: 0x%08x\n",
+-		    fb->base.width, fb->base.height,
+-		    i915_ggtt_offset(vma));
++	drm_dbg_kms(display->drm, "allocated %dx%d fb\n", fb->base.width, fb->base.height);
+ 	ifbdev->fb = fb;
+ 	ifbdev->vma = vma;
+ 	ifbdev->vma_flags = flags;
 -- 
 2.47.3
 
