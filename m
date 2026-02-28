@@ -2,123 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id fHBuKDLjomlx7wQAu9opvQ
+	id YJKFD07uomny8AQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Feb 2026 13:44:34 +0100
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Feb 2026 14:31:58 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B416C1C3046
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Feb 2026 13:44:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA9E21C33DE
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Feb 2026 14:31:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04D2C10E29F;
-	Sat, 28 Feb 2026 12:44:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F01710E2A6;
+	Sat, 28 Feb 2026 13:31:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="HTHQmG3c";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="inhGoeUZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f73.google.com (mail-wm1-f73.google.com
- [209.85.128.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3753D10E2A0
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Feb 2026 12:44:30 +0000 (UTC)
-Received: by mail-wm1-f73.google.com with SMTP id
- 5b1f17b1804b1-483a2db68caso23191825e9.0
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Feb 2026 04:44:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1772282669; x=1772887469;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=RH0L9WD4/u9mQiuU+Jc2bLYt2zoxsRLi5sNyM2YzgMo=;
- b=HTHQmG3cXVKjawylAL3iHZ34M6CV82KhZ+kRqFDp0F7mYng7JszVSybtsOrkG1jq5V
- L23JYjiLD/qtzSZObeXBbUN8p25ki5vZRNHKSXLCdpAwZkeCVy6lJYQv3dQFXgd+VXaE
- VoBboTIDkLURbNBMoVJrSLVlp5oGkCZxXX7uscXgjNCmkERtNoPq6rOXv+Pj1yy8iYu+
- DjtgpuXij3sniillPmga8iaQVdfXvYUGqPEZiIQqgIRtne9DsR/+wauPzBsa5B2nkM35
- NYxXxXDhZNFOSJjkpUDt38pRIMCVkC/kz9b5DGdHpXLWl3uOofI28dFe4ZzjdyE5ci/H
- +NFg==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A967810E2AE
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Feb 2026 13:31:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1772285510;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=1aKltuGD73YjisWVS6CLmrdjTwiXA9NrG9kYPekxkOw=;
+ b=inhGoeUZL+NhNgJETTTshDi7/DDCAYG2wgMDoIA+erg1dWO3QQMDVK8y4k81YxgYmxr/mr
+ 2ZyIlPTCAdY0KLawi28ky+lgTRcIofbv94NfomhF7pT5rhzU1Wx9s3lXZNzMnOKnt4qkPw
+ MAbd5SH+XH3STOC44QHAPp+IwNsMiPw=
+Received: from mail-pj1-f69.google.com (mail-pj1-f69.google.com
+ [209.85.216.69]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-493-Ek9icPKcOcOMGIvPNEE1pw-1; Sat, 28 Feb 2026 08:31:48 -0500
+X-MC-Unique: Ek9icPKcOcOMGIvPNEE1pw-1
+X-Mimecast-MFC-AGG-ID: Ek9icPKcOcOMGIvPNEE1pw_1772285508
+Received: by mail-pj1-f69.google.com with SMTP id
+ 98e67ed59e1d1-358f058973fso2724325a91.1
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Feb 2026 05:31:48 -0800 (PST)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772282669; x=1772887469;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=RH0L9WD4/u9mQiuU+Jc2bLYt2zoxsRLi5sNyM2YzgMo=;
- b=UuyekZy6r6rFHiXY+TjJIG2l2Mktcaj9XXn54IUKzKFwny+k5/uoBO93QAJcT7QIn1
- 6CzJI2iE+j3V9ORynLnIuOaVNtxd695Wp9+3afKixs1Hrp8aQBJCF84FL/pgXpkyA6Kc
- Vjvv1Dl59UvkiCcib33nv7Rh6Bxab7H4v65SfEWINp8/vR6rHrDM7y3MaxZT1MEtyn0I
- 8mgEEesklI5GsBhWVqktpnxhxPDuZJ906+X2OGQC9k9DHGaTIPAl4P9/TDFZnrfMuXJ5
- DP3anf4vycfu7U6Wo9LQBzPtmiBbeZjo+thzLQhknpI/XVFAEttFxu3uOFf/v5lMmgi8
- /Xpg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXIRWA+NjyixTZB1EjViYyYEEB1YU5Zl4sl3AoIM55FAMVGVTUNpFEhHZVb5VjBtQQWFTsSE62XhPc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwxJmGGfT2rCaRghDUxLmbjNTQ6ykP02YkP/tpoM3bhb9Zksbfd
- rblkr/35JZf/82A62970DsiDajBsb1IR1t2q5SmqPEl8PULFaF5RyCp7WAiIG9ca7w0/Utns4y9
- 7FfAAxrXuttIIHdekKw==
-X-Received: from wmqi19.prod.google.com ([2002:a05:600c:3553:b0:483:6fe1:c054])
- (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:600c:4fc8:b0:47b:e2a9:2bd7 with SMTP id
- 5b1f17b1804b1-483c9beaca0mr120569145e9.19.1772282668287; 
- Sat, 28 Feb 2026 04:44:28 -0800 (PST)
-Date: Sat, 28 Feb 2026 12:44:27 +0000
-In-Reply-To: <20260227200848.114019-15-david@kernel.org>
-Mime-Version: 1.0
-References: <20260227200848.114019-1-david@kernel.org>
- <20260227200848.114019-15-david@kernel.org>
-Message-ID: <aaLjK2Q2q5ghE-uE@google.com>
-Subject: Re: [PATCH v1 14/16] mm: rename zap_page_range_single() to
- zap_vma_range()
-From: Alice Ryhl <aliceryhl@google.com>
-To: "David Hildenbrand (Arm)" <david@kernel.org>
-Cc: linux-kernel@vger.kernel.org, 
- "linux-mm @ kvack . org" <linux-mm@kvack.org>,
- Andrew Morton <akpm@linux-foundation.org>, 
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Jann Horn <jannh@google.com>, 
- Pedro Falcato <pfalcato@suse.de>, David Rientjes <rientjes@google.com>, 
- Shakeel Butt <shakeel.butt@linux.dev>,
- "Matthew Wilcox (Oracle)" <willy@infradead.org>, 
- Madhavan Srinivasan <maddy@linux.ibm.com>,
- Michael Ellerman <mpe@ellerman.id.au>, 
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Janosch Frank <frankja@linux.ibm.com>, 
- Claudio Imbrenda <imbrenda@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>, 
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, 
- Vasily Gorbik <gor@linux.ibm.com>, Jarkko Sakkinen <jarkko@kernel.org>,
- Thomas Gleixner <tglx@kernel.org>, 
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
- "Arve =?utf-8?B?SGrDuG5uZXbDpWc=?=" <arve@android.com>,
- Todd Kjos <tkjos@android.com>, 
- Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
- Ian Abbott <abbotti@mev.co.uk>, 
- H Hartley Sweeten <hsweeten@visionengravers.com>,
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>, 
- Dimitri Sivanich <dimitri.sivanich@hpe.com>, Arnd Bergmann <arnd@arndb.de>, 
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, 
- Andrii Nakryiko <andrii@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
- Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
- Andy Lutomirski <luto@kernel.org>, 
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Eric Dumazet <edumazet@google.com>, 
- Neal Cardwell <ncardwell@google.com>, "David S. Miller" <davem@davemloft.net>, 
- David Ahern <dsahern@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
- Paolo Abeni <pabeni@redhat.com>, 
- Miguel Ojeda <ojeda@kernel.org>, linuxppc-dev@lists.ozlabs.org,
- kvm@vger.kernel.org, 
- linux-s390@vger.kernel.org, linux-sgx@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-rdma@vger.kernel.org, bpf@vger.kernel.org, 
- linux-perf-users@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
- netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, x86@kernel.org
-Content-Type: text/plain; charset="utf-8"
+ d=1e100.net; s=20230601; t=1772285508; x=1772890308;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=1aKltuGD73YjisWVS6CLmrdjTwiXA9NrG9kYPekxkOw=;
+ b=H+3S8rNkHMe1yYI7hwwdnptaY9S5BAkCPv9/0VjU6z17Mz6DjLpPVLOSiR/aPlRVeQ
+ Fyl5eAUNsLyrri0hjOMTL+zpj0XgPEe3jlDeJXfqA++hLw4rBw1VcUTUstXdS3OFT6X8
+ Dx5fHAACOfEKfELj/vcsyuXsAmmQ3SEYOQfb9wanQYWjR1bTVLU1IgLpjEZNgAtb11oM
+ sckB50DnPTPRyyv4pDnobXMFKUknZe3+4MdqppSfVnioznnMY4veCqzS3DUe8PyW804m
+ +UYpghFMxqaI9J9pVBJhwy5To/9iGEW1aII2WeHs3jUvb4q51BrGQAuZsVyu8uvNcDzd
+ 8+xg==
+X-Gm-Message-State: AOJu0YyuABzrVpxz1VZt4PV3dDpf2cruDGOz9tMfeO3mjfzuPx2k2/aJ
+ alXLzXxEWnMwHS4tYVnPHEmgbG/R0MUxXKm4lA3lTLLlfne46JVun/Oh+L9dWeLzAoRxoS8g9nM
+ qroiZyiMUhZ/eooLLzojvDJnOWTnKvrSrRgWw0P04f/fp2ymGiIA9D5IOCfz9PvE99ftLnw==
+X-Gm-Gg: ATEYQzwyYmKDrLvKo2eVk0rrhdeV0plA+21V/g62m16RFjQtq2Srg6s7lXd2gsvAnuj
+ /0BTHoX4b/b72zdMFn079sNYFNHqrcEmvfC4Sy0Z121f3BiJDWltvuBreSo8Da5inE9sG2HaVz8
+ geendcElukuj0tUR9Ufqi2ki7C2Rz8XBByEM5bT5QhYkfBNOlZDeU/7UTUeWm7Z/bzdmubEdDgv
+ v4iCzpzlMwIWczrQJ3TPb+wpE9tVpgxcgUbObwlZvYb/EVZo2av9zDhC/VWRbP9qlLvESOasuzG
+ YHOZJ+HAAvcXibMDWg8M/n8xF6XgN/ICcL7egWZ57FRdKfXhGD6GRjl4en6jyPYSlzJg5R1x286
+ 3egN0YFOJbdxQ8EPL46v0ek0QSKBQqVyVXIQ=
+X-Received: by 2002:a17:90b:544b:b0:354:bd08:480c with SMTP id
+ 98e67ed59e1d1-35965d029fcmr5533354a91.30.1772285507836; 
+ Sat, 28 Feb 2026 05:31:47 -0800 (PST)
+X-Received: by 2002:a17:90b:544b:b0:354:bd08:480c with SMTP id
+ 98e67ed59e1d1-35965d029fcmr5533334a91.30.1772285507391; 
+ Sat, 28 Feb 2026 05:31:47 -0800 (PST)
+Received: from localhost.localdomain.com ([209.132.188.88])
+ by smtp.gmail.com with ESMTPSA id
+ 41be03b00d2f7-c70fa82dab1sm6844448a12.27.2026.02.28.05.31.42
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Sat, 28 Feb 2026 05:31:46 -0800 (PST)
+From: Tao Liu <ltao@redhat.com>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, kexec@lists.infradead.org,
+ linux-kernel@vger.kernel.org, Tao Liu <ltao@redhat.com>
+Subject: [PATCH] i915: Fix NULL pointer dereference in
+ intel_dmc_update_dc6_allowed_count()
+Date: Sun,  1 Mar 2026 02:09:47 +1300
+Message-ID: <20260228130946.50919-2-ltao@redhat.com>
+X-Mailer: git-send-email 2.47.0
+MIME-Version: 1.0
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: X39ctd-qd_zQDrlaS1YUVm-QXSslq95HR3lrce0SUXI_1772285508
+X-Mimecast-Originator: redhat.com
+Content-Transfer-Encoding: 8bit
+content-type: text/plain; charset="US-ASCII"; x-default=true
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,111 +104,129 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MV_CASE(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kvack.org,linux-foundation.org,oracle.com,kernel.org,google.com,suse.com,suse.de,linux.dev,infradead.org,linux.ibm.com,ellerman.id.au,redhat.com,alien8.de,linuxfoundation.org,android.com,mev.co.uk,visionengravers.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,ziepe.ca,hpe.com,arndb.de,iogearbox.net,arm.com,davemloft.net,lists.ozlabs.org,lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:david@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mm@kvack.org,m:akpm@linux-foundation.org,m:lorenzo.stoakes@oracle.com,m:Liam.Howlett@oracle.com,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:jannh@google.com,m:pfalcato@suse.de,m:rientjes@google.com,m:shakeel.butt@linux.dev,m:willy@infradead.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:borntraeger@linux.ibm.com,m:frankja@linux.ibm.com,m:imbrenda@linux.ibm.com,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:jarkko@kernel.org,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:gregkh@linuxfoundation.org,m:arve@android.com,m:tkjos@android.com,m:brauner@kernel.org,m:cmllamas@google.com,m:abbotti@mev.co.uk,m:hsweeten@visionengravers.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:jgg@ziepe.ca,m:leon@kernel.org,m:
- dimitri.sivanich@hpe.com,m:arnd@arndb.de,m:ast@kernel.org,m:daniel@iogearbox.net,m:andrii@kernel.org,m:peterz@infradead.org,m:acme@kernel.org,m:namhyung@kernel.org,m:luto@kernel.org,m:vincenzo.frascino@arm.com,m:edumazet@google.com,m:ncardwell@google.com,m:davem@davemloft.net,m:dsahern@kernel.org,m:kuba@kernel.org,m:pabeni@redhat.com,m:ojeda@kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-s390@vger.kernel.org,m:linux-sgx@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:netdev@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:x86@kernel.org,s:lists@lfdr.de];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[ltao@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[google.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[73];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:kexec@lists.infradead.org,m:linux-kernel@vger.kernel.org,m:ltao@redhat.com,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[ltao@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: B416C1C3046
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DA9E21C33DE
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 09:08:45PM +0100, David Hildenbrand (Arm) wrote:
-> diff --git a/drivers/android/binder/page_range.rs b/drivers/android/binder/page_range.rs
-> index fdd97112ef5c..2fddd4ed8d4c 100644
-> --- a/drivers/android/binder/page_range.rs
-> +++ b/drivers/android/binder/page_range.rs
-> @@ -130,7 +130,7 @@ pub(crate) struct ShrinkablePageRange {
->      pid: Pid,
->      /// The mm for the relevant process.
->      mm: ARef<Mm>,
-> -    /// Used to synchronize calls to `vm_insert_page` and `zap_page_range_single`.
-> +    /// Used to synchronize calls to `vm_insert_page` and `zap_vma_range`.
->      #[pin]
->      mm_lock: Mutex<()>,
->      /// Spinlock protecting changes to pages.
-> @@ -719,7 +719,7 @@ fn drop(self: Pin<&mut Self>) {
->  
->      if let Some(vma) = mmap_read.vma_lookup(vma_addr) {
->          let user_page_addr = vma_addr + (page_index << PAGE_SHIFT);
-> -        vma.zap_page_range_single(user_page_addr, PAGE_SIZE);
-> +        vma.zap_vma_range(user_page_addr, PAGE_SIZE);
->      }
+There is a NULL pointer dereference issue noticed in i915 when 2nd kernel
+bootup during kdump. This will panic 2nd kernel and lead to no vmcore
+generation. The issue is observed in Meteorlake CPU(cpuid: 0xA06A2):
 
-LGTM. Be aware that this will have a merge conflict with patches
-currently in char-misc-linus that are scheduled to land in an -rc.
+    BUG: kernel NULL pointer dereference, address: 0000000000000000
+    #PF: supervisor read access in kernel mode
+    #PF: error_code(0x0000) - not-present page
+    PGD 0 P4D 0
+    Oops: Oops: 0000 [#1] SMP NOPTI
+    ...
+    RIP: 0010:intel_dmc_update_dc6_allowed_count+0x16/0xa0 [i915]
+    ...
 
-> diff --git a/drivers/android/binder_alloc.c b/drivers/android/binder_alloc.c
-> index dd2046bd5cde..e4488ad86a65 100644
-> --- a/drivers/android/binder_alloc.c
-> +++ b/drivers/android/binder_alloc.c
-> @@ -1185,7 +1185,7 @@ enum lru_status binder_alloc_free_page(struct list_head *item,
->  	if (vma) {
->  		trace_binder_unmap_user_start(alloc, index);
->  
-> -		zap_page_range_single(vma, page_addr, PAGE_SIZE);
-> +		zap_vma_range(vma, page_addr, PAGE_SIZE);
->  
->  		trace_binder_unmap_user_end(alloc, index);
+It is easy to locate the NULL pointer dereference by disassembly:
 
-LGTM.
+    00000000001171e0 <intel_dmc_update_dc6_allowed_count>:
+      1171e0:       f3 0f 1e fa             endbr64
+      1171e4:       e8 00 00 00 00          call   1171e9
+      1171e9:       41 55                   push   %r13
+      1171eb:       41 54                   push   %r12
+      1171ed:       55                      push   %rbp
+      1171ee:       53                      push   %rbx
+      1171ef:       4c 8b a7 18 03 00 00    mov    0x318(%rdi),%r12
+      1171f6:       49 8b 2c 24             mov    (%r12),%rbp
 
-> diff --git a/rust/kernel/mm/virt.rs b/rust/kernel/mm/virt.rs
-> index b8e59e4420f3..04b3cc925d67 100644
-> --- a/rust/kernel/mm/virt.rs
-> +++ b/rust/kernel/mm/virt.rs
-> @@ -113,7 +113,7 @@ pub fn end(&self) -> usize {
->      /// kernel goes further in freeing unused page tables, but for the purposes of this operation
->      /// we must only assume that the leaf level is cleared.
->      #[inline]
-> -    pub fn zap_page_range_single(&self, address: usize, size: usize) {
-> +    pub fn zap_vma_range(&self, address: usize, size: usize) {
->          let (end, did_overflow) = address.overflowing_add(size);
->          if did_overflow || address < self.start() || self.end() < end {
->              // TODO: call WARN_ONCE once Rust version of it is added
-> @@ -124,7 +124,7 @@ pub fn zap_page_range_single(&self, address: usize, size: usize) {
->          // sufficient for this method call. This method has no requirements on the vma flags. The
->          // address range is checked to be within the vma.
->          unsafe {
-> -            bindings::zap_page_range_single(self.as_ptr(), address, size)
-> +            bindings::zap_vma_range(self.as_ptr(), address, size)
->          };
->      }
+To fix this, add a NULL pointer check before dereferencing.
 
-Same as previous patch: please run rustfmt. It will format on a single
-line, like this:
+Signed-off-by: Tao Liu <ltao@redhat.com>
+---
 
-        unsafe { bindings::zap_vma_range(self.as_ptr(), address, size) };
+The issue doesn't happen in 1st kernel, but in 2nd kernel of kdump. I'm not
+an expert to i915 and unsure what lead to the NULL pointer. To help further
+analysis, here is the full stack:
 
-with the above change applied:
+[    8.608520]  <TASK> 
+[    8.610652]  gen9_set_dc_state.part.0+0x25d/0x2f0 [i915] 
+[    8.616096]  icl_display_core_init+0x2d/0x620 [i915] 
+[    8.621266]  intel_power_domains_init_hw+0x1b2/0x500 [i915] 
+[    8.627047]  intel_display_driver_probe_noirq+0x87/0x300 [i915] 
+[    8.633188]  i915_driver_probe+0x207/0x5d0 [i915] 
+[    8.637977]  ? drm_privacy_screen_get+0x198/0x1c0 
+[    8.642832]  local_pci_probe+0x41/0x90 
+[    8.646646]  pci_call_probe+0x58/0x160 
+[    8.650458]  ? pci_assign_irq+0x2f/0x160 
+[    8.654447]  ? pci_match_device+0xf8/0x120 
+[    8.658522]  pci_device_probe+0x95/0x140 
+[    8.662582]  call_driver_probe+0x27/0x110 
+[    8.666570]  really_probe+0xcc/0x2c0 
+[    8.670190]  __driver_probe_device+0x78/0x120 
+[    8.674692]  driver_probe_device+0x1f/0xa0 
+[    8.678857]  __driver_attach+0xfa/0x230 
+[    8.682757]  ? __pfx___driver_attach+0x10/0x10 
+[    8.687185]  bus_for_each_dev+0x8e/0xe0 
+[    8.691159]  bus_add_driver+0x11f/0x200 
+[    8.694970]  driver_register+0x72/0xd0 
+[    8.698853]  i915_init+0x26/0x90 [i915] 
+[    8.702837]  ? __pfx_i915_init+0x10/0x10 [i915] 
+[    8.707433]  do_one_initcall+0x5c/0x320 
+[    8.711409]  do_init_module+0x60/0x240 
+[    8.715132]  init_module_from_file+0xd6/0x130 
+[    8.719634]  idempotent_init_module+0x114/0x310 
+[    8.724241]  __x64_sys_finit_module+0x71/0xe0 
+[    8.728671]  do_syscall_64+0x11b/0x6d0 
+[    8.732483]  ? ksys_read+0x6b/0xe0 
+[    8.735854]  ? arch_exit_to_user_mode_prepare.isra.0+0xa2/0xd0 
+[    8.741768]  ? do_syscall_64+0x153/0x6d0 
+[    8.745828]  ? do_syscall_64+0x153/0x6d0 
+[    8.749814]  ? do_syscall_64+0x153/0x6d0 
+[    8.753800]  ? clear_bhb_loop+0x30/0x80 
+[    8.757700]  entry_SYSCALL_64_after_hwframe+0x76/0x7e 
 
-Acked-by: Alice Ryhl <aliceryhl@google.com> # Rust and Binder
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Alice
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index 1006b060c3f3..fd2756badc0c 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -1578,7 +1578,7 @@ void intel_dmc_update_dc6_allowed_count(struct intel_display *display,
+ 	struct intel_dmc *dmc = display_to_dmc(display);
+ 	u32 dc5_cur_count;
+ 
+-	if (DISPLAY_VER(dmc->display) < 14)
++	if (!dmc || DISPLAY_VER(dmc->display) < 14)
+ 		return;
+ 
+ 	dc5_cur_count = intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_COUNT);
+-- 
+2.47.0
+
