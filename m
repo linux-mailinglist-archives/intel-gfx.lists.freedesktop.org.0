@@ -2,158 +2,123 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MGBvNzxwpGnCgwUAu9opvQ
+	id 8HcdFj+MpGlfkAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 17:58:36 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 19:58:07 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3950F1D0C53
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 17:58:36 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A008A1D1228
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 19:58:06 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC28610E3EE;
-	Sun,  1 Mar 2026 16:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECA7710E162;
+	Sun,  1 Mar 2026 18:58:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="fkhYPumS";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="T5HtZ/1d";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ARO8Memm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1A4F210E3DD
- for <intel-gfx@lists.freedesktop.org>; Sun,  1 Mar 2026 16:58:32 +0000 (UTC)
-Received: from pps.filterd (m0279873.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6219dlT4422058
- for <intel-gfx@lists.freedesktop.org>; Sun, 1 Mar 2026 16:58:31 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=yZjRbJ2gpSOpi4BD2wRxX0dJ
- 2Njlip5bE4IRh4tsp0k=; b=fkhYPumSL/QAlMbXMLtEWChiX97tIzcJ8VeBIX4T
- 7342qTqQUCnt0S7oDq9sQfzhyGpEUUJellGBOuoJYTfsmMFHgnXodEk5AC55z1iG
- c18u06r73+Pdj0npRxhtTGO474kenLYedhcwWpbRcBC3ivwUaTrgm50Dsqk4R6aI
- +2cwuKSHZdg1z1b9ojEBXDyD89t9uzig7w2KMFQb1bUwamY01WeikQvsTWQDMhlM
- wS7Axd8o1A+YDbnxSksJB4wZ0i060owQOeU4T2ACD8MJ4tYn9Af87F/Z+bjux2Vo
- fOz++88nKgW1Zk3CTwm94ccFlRFF5WRpv6fuV0NvlWcAeA==
-Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
- [209.85.222.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4ckshktwsh-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 16:58:30 +0000 (GMT)
-Received: by mail-qk1-f198.google.com with SMTP id
- af79cd13be357-8cb3d11b913so3146955185a.1
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 08:58:30 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1772384310; x=1772989110;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=yZjRbJ2gpSOpi4BD2wRxX0dJ2Njlip5bE4IRh4tsp0k=;
- b=T5HtZ/1dr8xhlk5K5n2vsvGjj6cJVNlMgnZaFJ286RkQDiVgcMhI7DH+rXVapZ1r2R
- Lcik5RDe83oXJqKTPio3Bf5OkEZmeWAIYkrhstjXFlTpJuM+KOv1C6WmgpLHj7MfZMTy
- eqeLkjkXL9rAk00SK4smmodiSNDj/Shcha0NLmYs7ENXMQu9yBnag0VfbcA3GEwEd+bz
- daruiYD7DdmgCiZNVNdwtiWxmYsJmaYU7GH6U6Rln4fd8E4tin3iln2IuhZVKvK+v6J1
- Rji6TxGl08ZDo46Tx4XNjQ/aPX8yc+L/qeet2Sehj1TTWjt6rbr1op6BuhpQ9pZbFf0g
- rFAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772384310; x=1772989110;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=yZjRbJ2gpSOpi4BD2wRxX0dJ2Njlip5bE4IRh4tsp0k=;
- b=AY+1uCIYD7CCKP4WMZ3e5FV9NbVpatshpZBxCi2JMnwZNfv9yN2RzZP3dCmAwYlSAz
- /bsHWy5e+kvhpzor35GHb7zzTy3CcrUxn8xE2DhsbDK3zNVvcQ2aMwuKHE7UauKFh7Zy
- h5UsRXX/kxhIi0wUKLKSMX0SDoDPUjqmjj+iNxTdqe0rmFxnD4uftDBvcjKMMxUej+1j
- 207ccSfr9wcJ4NWCALqrsm4aNSN/2EjDHELlmBXcETYl76a5e8/b8Uq+nPYe9S62lacD
- xd3w+s2cgefDq4PbxgGU+geD8g+LrdsOFgxHAFheH3C+FSxX2IwexsMdwrl1L64clB7N
- dl0g==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVxI1LC6joQ+Bt3H0gC/l1uDd/xOYOQzG1vvlW9SfDXSNkP+IFDodpAJEDn/qOanUl4MqOG/yKXUlQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzXeDo66V3OIk2v5CmHa92y+HsHoLwVHybzKppy0mxU8Tq9ujUw
- staTu8NbO9zqC8Cax1Z/ChxPL8LnsvVcD6AGgMZ06m9fOkdn/FwUpilGdKDBQ1ZDXqiRXc3civ3
- h/Ld2/ksyZUYaXd+l7VxAWbDzbXjkDefmRcSuIa+xcsQCoet09iy5IbPFLc26rCSzoiNrhJ4=
-X-Gm-Gg: ATEYQzy7FK/WV/YpipQM99CWhKar9cXfa1akRXtPsmEmoyuIWDVScZOBFgKRMiFMj+S
- cQONiAfh2vWF8XxpO+kbFalce6af8QPT3vsYTs4qJG8OlCplXOeETjjQ5ulEusA9RQyKpFpHY8K
- CZM1490gH/JxfMYan+ytBhY7d/dSCvILvTRLPhgUdO50b3Uq0MC/8UX80c1MGG7i0jsCKKd+2T5
- Bj3jNGiw4UlxX5DphgmeBUBrtJKpSuo/s96gN+KTvYs4Vfzp6EEPjPZA5YW204fODPKDszdEQK2
- +2RymLggQrezTJHkWdAdbYT3PD9BXucn1XIgBRkOATZYLPyXrVgctq4K/mzeLB5CTw2p+/U1bUG
- 3dJo3xJZsjwt0Q89OsHgi9ON1P0TR4wVdrMNIxWRExBTO/jPUabYL91nZg3ccS+rTdi0KrJg6qC
- Ddp0EHrOi0/+CI9gNhwu8klBRVwg1IE57AnOo=
-X-Received: by 2002:a05:620a:3952:b0:8c6:e8f6:2c7 with SMTP id
- af79cd13be357-8cbc8e4b725mr1252711885a.38.1772384310449; 
- Sun, 01 Mar 2026 08:58:30 -0800 (PST)
-X-Received: by 2002:a05:620a:3952:b0:8c6:e8f6:2c7 with SMTP id
- af79cd13be357-8cbc8e4b725mr1252708585a.38.1772384309937; 
- Sun, 01 Mar 2026 08:58:29 -0800 (PST)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a115bca0dbsm1204999e87.41.2026.03.01.08.58.28
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Mar 2026 08:58:29 -0800 (PST)
-Date: Sun, 1 Mar 2026 18:58:27 +0200
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010002.outbound.protection.outlook.com [52.101.201.2])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BEF5110E05E;
+ Sun,  1 Mar 2026 18:58:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=AWixivLCp5MwlIC9mhcll0NMlknsFk5QOgAFBI9cuJzsL5zQlhwpWT6X0pM6Azl4SDO6U7pvfhLd6gCky978JAwfIDZEjfNflo4oMl02vY2wclLMc7L7bdpObTgT7S4HcK1vNzOm0AnznV0ocNk27qI4cW9WkjkvA6wd6cK/cQtIBrWsrD5IX+PjeERfpLdcHQRhxTmebW1r6W+bLjm5fmxUwo4QnVSLZGW8XhqbZshUyIXXjIBIPDzDnfv9IiorJSY56+FRLM3CdhFBfcmKeWTO75il0tOkye66Y9Awxy1peMdhgT+ssfJO6CKhIgzq9fE4fKcLwdx3V/nEo283Sw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=vGiIcbQX5FyihE+lGo37eKSzG2FvcKPu5KIVRU2o7NE=;
+ b=olbT5RFFKTFpvjz/HwSTJlKtNK3XW5lHve7PP87j6quQOrw/Bto0881JxvHDWkutGmfISuTqRn/GH6YRgcZNpA3/gMmasnOCZHt15X1AR7gRizpZm7OAoLbrmCmi/RSTXWJGO4OhWtlfJk4eJmVOakb6Ot+yHPvL80pJIjQqw/iu6H6LnhI3djTjV+QYNbmWwfGAui5bAtIc0g/KBp6K9Eu64pqpM86tIW5gBaGJ+DQWkQrpriyHGaXeam9moJhgv6soxZGUJZMkw3w21orEvqOPCdahPMkEh4cZ9pVte6EVIOQbCdmWG8Id/pSBLzsb0060Uwq2P1ykhsyiPbDDTw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=vGiIcbQX5FyihE+lGo37eKSzG2FvcKPu5KIVRU2o7NE=;
+ b=ARO8Memm3k7WXyNqyJF0k3sndsuGt3vD6Mv2amQ6s6ofHf/vRRv3cmYi1aS2F7X5FKX9A5dBfz2CjTk/O+h/+d1JRPUcDQkV1NUZLR8bx68LYDxAZlfGm7Jbluf2xOo0YaGGTxt0aSMv0uCytbgdW0TL1TpAMZMOMmMutyhSB86EgiEGUYOk9FLrFexs/okIOZq9GrJU+q/0A2ysVHdkThoR3jG40Ik3yW1cEA3MrtjGxp+Zf3B7b45UUq2bjWwEAZdksLsDLBoMHL4GtiXKnzBo6Aek61hso8qeZh/oohnzQdJaVM3rCfegY9719rLgC2do67/SYq8gr+HE0zOI9g==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com (2603:10b6:408:2a1::19)
+ by BL1PR12MB5993.namprd12.prod.outlook.com (2603:10b6:208:399::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.18; Sun, 1 Mar
+ 2026 18:57:59 +0000
+Received: from LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::299d:f5e0:3550:1528]) by LV8PR12MB9620.namprd12.prod.outlook.com
+ ([fe80::299d:f5e0:3550:1528%5]) with mapi id 15.20.9654.014; Sun, 1 Mar 2026
+ 18:57:59 +0000
+From: Jason Gunthorpe <jgg@nvidia.com>
+To: David Airlie <airlied@gmail.com>,
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 15/19] drm/connector: Register color format property
- on HDMI connectors
-Message-ID: <mxfdm4rrsizf3jzjbeoxosb5lhm2wrzqipn6rvly4ukrodltgp@vcu2fkgwagdx>
-References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-15-658c3b9db7ef@collabora.com>
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Simona Vetter <simona@ffwll.ch>,
+ Sumit Semwal <sumit.semwal@linaro.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>
+Cc: patches@lists.linux.dev
+Subject: [PATCH 0/5] Replace the dmabuf custom test framework with kunit
+Date: Sun,  1 Mar 2026 14:57:52 -0400
+Message-ID: <0-v1-0a349a394eff+14110-dmabuf_kunit_jgg@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-ClientProxiedBy: BLAPR03CA0154.namprd03.prod.outlook.com
+ (2603:10b6:208:32f::28) To LV8PR12MB9620.namprd12.prod.outlook.com
+ (2603:10b6:408:2a1::19)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260227-color-format-v9-15-658c3b9db7ef@collabora.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAxMDE1NSBTYWx0ZWRfXytYCFMx6c+f8
- vFxAhQdwCHUPgOXhjCQfY7injSPnpR0iBrq8pYEIdBG25FH4qzltPQqwBKS2Ia0UHtReKBgiUcZ
- Z9Yl1OoqPjoUHrlKk8sLxtsFjVOLvG6QVQx61p6lxSfoAk6gaXPtzAy8Xc3dVFzKnRqRi3DoYrO
- W6vtZxtIOcffr1ODcQOrzLEfTmeIcSwqd59IprzSgUUTX7ZhVx9O4qiwtsTNjRcfq2rXO4oj2rE
- fXCwS/wfXkJ8d/qsOWLpjOxIXgErvyv9HbUjvgIwkL9d3irp0znRiu5rwQ+5ClDIopNjrVyk/JD
- /hRMmOnZ1Mf3129/Z12vHwccwOPme8f1lvghVMd+Xf9OTuIfczknh54VPG+0vYeXTAuvX2ICMCK
- F3PSkGWhymUd0UtmPKe3tFi9EIt5bNaUuo3I/kpfbhj7n40up3NrxC41/SvaFNIq3uvrReKXe7z
- Q0gukSF3r87nfnkWdig==
-X-Proofpoint-ORIG-GUID: 1M_PnboSjGmW3FYgGuwYlWhr2ho3lkou
-X-Authority-Analysis: v=2.4 cv=EvbfbCcA c=1 sm=1 tr=0 ts=69a47037 cx=c_pps
- a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=rJkE3RaqiGZ5pbrm-msn:22 a=VwQbUJbxAAAA:8
- a=QX4gbG5DAAAA:8 a=QnxT5sWzqww7kDut_5wA:9 a=CjuIK1q_8ugA:10
- a=NFOGd7dJGGMPyQGDc5-O:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: 1M_PnboSjGmW3FYgGuwYlWhr2ho3lkou
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-03-01_03,2026-02-27_03,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- phishscore=0 bulkscore=0 spamscore=0 lowpriorityscore=0 priorityscore=1501
- malwarescore=0 adultscore=0 impostorscore=0 clxscore=1015 suspectscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603010155
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: LV8PR12MB9620:EE_|BL1PR12MB5993:EE_
+X-MS-Office365-Filtering-Correlation-Id: b89fa751-23c9-45d0-7932-08de77c474a9
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|7416014|366016|1800799024|921020; 
+X-Microsoft-Antispam-Message-Info: /6QwwSprA6zZTNdv028IXQDMPd1ydXMxamDF1vyxpc0dYnTJpOwQwqXqeqZTst1pzun/MsbHZkvPJbfoPIwUoMi+SDZ+U1TC2sZhffepSRqObFKqs2nahhRqF6HlIzaHqyZUef2qLBbSJh8ytZGwtAujVHTvkwiThQeI3txed34sDedQQjrNQA54tit6doKAQ6ZocDKpR7T3VbJ5CnrzNnWwsa0Go8r4KKLtChBzHR8imgiaqyNgvGaChsYrXR8I2587NaaXj43Z0iT/jMKocr3ECXp1TTy8xT8p1oW8XAQc3S4Fe52nMkeH5/X4E3TATeKD1IvZo9XhN5dcrTvgOYOfQPWAwCcC58vEfwEYNBHECavsbODUmqmSg1Z5NYLZOGv71qN7VNveXEEyeVPnTBsU7f3iBMi6Mk5mTsGKA1cZiwoSDUSGBsyQo02HqIZlRe5PGjMW/LvOQVEntXJrhvaq5xeg0zl0wzZqvxttVaHwZ0YoPJaE6ZG9LIsZnP8uJQakGDcc9R+lZa2EUFKcH9O18Xr/nBWip91VIBrSDugIp1CL+Kar/j6DtBCy5odIK61+w+yrAuV/BZruEL7GE7g4cZifMNOXCPtX0C6r99+OSSsVv+fv1Qc2CudAaPjxnTckXCMf+HTReOVf5pbwRwMPzB+Z1PO8qHUj0+/lEKBxMZk8Q090W2GTllHi9ayjCScvytCayvWy45nYyNmxKcIv5ElF5ZQCVPmT+rji0s9bj7QAa++TJ2IXnc6m+oQm/x/oynIsmGuahNcW1NdXZ8s2sPsax+286xPotYdszoI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:LV8PR12MB9620.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(7416014)(366016)(1800799024)(921020); DIR:OUT; SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mdecMoy4F424oCSrEtHQ2QT8usDraNv0HA0DU6KeZEJfkAb3A+eTv/IgsVxw?=
+ =?us-ascii?Q?/WQlJN+FulAJqZF2D+cZ1GFrt6yPfb93e32mHwauAox5alcviCx/6wI+t+lj?=
+ =?us-ascii?Q?rh+ZgCDAOybyUtFSh4HL3UU3r8dQPkLVdhWwwfuCmNgrgCP/sevI6cx7g38l?=
+ =?us-ascii?Q?JKp2O4VWuvwwH5kMjFN11xFHXnm9Ce35kYHwdaJaVExQ2YhzZbArpBZZ9zhc?=
+ =?us-ascii?Q?Nn6p4ZtAsEUFHNkm1g3ebVeBj6oEeX6w8bAFYMBYNOgIkz75kWTbpZN6Lik4?=
+ =?us-ascii?Q?tHkuS8PQPoP0C4EWSV3T4WRJZ51uvhjinrAIabpiy0lbQhdSlie2vsh2SVAT?=
+ =?us-ascii?Q?0dYLR2Ir6FBhC9Jl0tNGVLhWcs6hQlmLmgI6NVgUXMdumCH6v+syTI6IkOlJ?=
+ =?us-ascii?Q?oW1TMZU2PROkVRiOH20YQ/ygxmzE9noKYNF/x/Udt2lTJorBb0sOV/UOlYyr?=
+ =?us-ascii?Q?cmwbmdoyio0cnkOhBowI9qIzhIp/g3nPCIXVJhZk/Sxi9KAAnV5+tM79VoOH?=
+ =?us-ascii?Q?IAxmPl/Uws9vOuSm8KQnmi4bfLUcvjRFznxYLjSQxePDmr1MBIh/K3YEdFWE?=
+ =?us-ascii?Q?hWP6NJRxCRNU9AQSqAEdniZNyrmZGRLMks1zB9H22hb3danI+ZfHYVddMdqW?=
+ =?us-ascii?Q?P70vpNKf3mPD3w0+mPLGqkbmVB38wYg+xhhNZ7/jM5BTKRgfzloRzPjUBGFT?=
+ =?us-ascii?Q?zXC/Lhevu9uBBPiWECoakk+6D5mo/ILYXM3j95t/ySSeklgLO/tehIKAF8rb?=
+ =?us-ascii?Q?FlH6VWeBnDtENgMr8wM3PfQueI/dGB5XW/DEfu1u63v4/iPrL98dS7HhPRnp?=
+ =?us-ascii?Q?CP/3FYVYyUaBah0uuPTcqeNAaR7YUCERXmUCTZkeSbdKIH1HRE1UT8i6P7S9?=
+ =?us-ascii?Q?0ZTmigUoWx4+cRa3uEKe8giWlYO+VAKDCB/4bfqsLg/QvBIquomXnNV4qEOD?=
+ =?us-ascii?Q?tB4dpPm5WFIT0aKbdM9KNV37e8n32FStccYTz31tuQnTs9UswkJe3NoUKCuW?=
+ =?us-ascii?Q?j4TdXsR+eh0P0Y7Vm8Rzx63Q7DQkUmmlRTrzt/AlDopYe/52o7WRsYFp99ic?=
+ =?us-ascii?Q?KuX/I9j/2rJy0uOAFiUbWgVtcC+60ZmidX+8wkl0gaP82O11ZnEuWp3n6hPH?=
+ =?us-ascii?Q?zbXv64A9HJ5auswrlc+vbqiMgODe4tVVEhHrF90xG4CpZw2hR8ZuTpG00VAZ?=
+ =?us-ascii?Q?bWGHr3TeEsTYfng0lOG4voBiSgXC3N4VJH4yD/cZzRqwAS+kEJkM/vm0jncK?=
+ =?us-ascii?Q?J+WSekzlMwOCZbpqxKHsjH2BRZQK6Sb7qU/rPg/fT0qMd6Di9XlvSLK/t7Eu?=
+ =?us-ascii?Q?V2C1++TI62Cc8TIhNZQH4zafamAxAIaVYit6ylTG0LcHgc4lM5DQNvpxtwCG?=
+ =?us-ascii?Q?f+oTG4ifcK5HbUzyjZf+xdMSEbJiJ3fxzoven3PAX6P7KFdlX06+qLmsBuh/?=
+ =?us-ascii?Q?lNdQcPWDqROByGgllXDNLfSPJrZEn9KtElHYOT3Mlzs/hsRVh1DMbC69922a?=
+ =?us-ascii?Q?WwlqJ9TsDP9NG+L7htoV/M0Z9wtkCPYn4pix7eS9umccb8fjo3CgqleZVOhy?=
+ =?us-ascii?Q?WQwCsdEPy1tv90xu/nKsPwiJOGqObpzw9Gx1+v9AUTyhTQ3nMdHxA19JlZcA?=
+ =?us-ascii?Q?kxhcuSbGOEZCgTfhnuRTs+Y1cqwnIdxQ+2/409nHBG5mIeFYEAxjwm/+RWlL?=
+ =?us-ascii?Q?ZXZrp/gpi41xatyawjyN9kHTj+OoQWl6r25aLLgYmEBIh1Fc1wMtA7MxAWcJ?=
+ =?us-ascii?Q?qONwTdUKDg=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b89fa751-23c9-45d0-7932-08de77c474a9
+X-MS-Exchange-CrossTenant-AuthSource: LV8PR12MB9620.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Mar 2026 18:57:59.1118 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: q7AdgP9tvuvSu53FGaY6h+pdNgOAjFgGY7q1EaCcML6s6dbYMH798l7eUJVRtPTg
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5993
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -169,82 +134,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:j
- ernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,lists.freedesktop.org,linux.intel.com,lists.linaro.org,vger.kernel.org,intel.com,ffwll.ch,linaro.org,ursulin.net];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jgg@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:dkim,oss.qualcomm.com:dkim]
-X-Rspamd-Queue-Id: 3950F1D0C53
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: A008A1D1228
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 08:20:20PM +0100, Nicolas Frattaroli wrote:
-> The drmm_connector_hdmi_init function can figure out what DRM color
-> formats are supported by a particular connector based on the supported
-> HDMI format bitmask that's passed in.
-> 
-> Use it to register the drm color format property.
-> 
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/drm_connector.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index a4907e15dfc5..0f4e24446a9e 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -627,6 +627,9 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
->  	if (max_bpc > 8)
->  		drm_connector_attach_hdr_output_metadata_property(connector);
->  
-> +	if (!drm_mode_create_color_format_property(connector, supported_formats))
-> +		drm_connector_attach_color_format_property(connector);
+Using kunit to write tests for new work on dmabuf is coming up:
 
-It really looks like:
+https://lore.kernel.org/all/26-v1-b5cab63049c0+191af-dmabuf_map_type_jgg@nvidia.com/
 
-   drm_connector_attach_color_format_property(connector,
-					      supported_formats);
+Replace the custom test framework with kunit to avoid maintaining two
+concurrent test frameworks.
 
-> +
->  	connector->hdmi.funcs = hdmi_funcs;
->  
->  	return 0;
-> 
-> -- 
-> 2.53.0
-> 
+The conversion minimizes code changes and uses simple pattern-oriented
+reworks to reduce the chance of breaking any tests. Aside from adding the
+kunit_test_suite() boilerplate, the conversion follows a number of
+patterns:
 
+Test failures without cleanup. For example:
+   if (!ptr)
+       return -ENOMEM;
+Becomes:
+   KUNIT_ASSERT_NOT_NULL(test, ptr);
+
+In kunit ASSERT longjumps out of the test.
+
+Check for error, fail and cleanup:
+   if (err) {
+       pr_err("msg\n");
+       goto cleanup;
+   }
+Becomes:
+   if (err) {
+       KUNIT_FAIL(test, "msg");
+       goto cleanup;
+   }
+Preserve the existing failure messages and cleanup code.
+
+Cases where the test returns err but prints no message:
+   if (err)
+       goto cleanup;
+Becomes:
+   if (err) {
+       KUNIT_FAIL(test, "msg");
+       goto cleanup;
+   }
+Use KUNIT_FAIL to retain the 'cleanup on err' behavior.
+
+Overall, the conversion is straightforward.
+
+The result can be run with kunit.py:
+
+    $ tools/testing/kunit/kunit.py run --build_dir build_kunit_x86_64 --arch x86_64 --kunitconfig ./drivers/dma-buf/.kunitconfig
+    [20:37:23] Configuring KUnit Kernel ...
+    [20:37:23] Building KUnit Kernel ...
+    Populating config with:
+    $ make ARCH=x86_64 O=build_kunit_x86_64 olddefconfig
+    Building with:
+    $ make all compile_commands.json scripts_gdb ARCH=x86_64 O=build_kunit_x86_64 --jobs=20
+    [20:37:29] Starting KUnit Kernel (1/1)...
+    [20:37:29] ============================================================
+    Running tests with:
+    $ qemu-system-x86_64 -nodefaults -m 1024 -kernel build_kunit_x86_64/arch/x86/boot/bzImage -append 'kunit.enable=1 console=ttyS0 kunit_shutdown=reboot' -no-reboot -nographic -accel kvm -accel hvf -accel tcg -serial stdio -bios qboot.rom
+    [20:37:30] ================ dma-buf-resv (5 subtests) =================
+    [20:37:30] [PASSED] test_sanitycheck
+    [20:37:30] ===================== test_signaling  ======================
+    [20:37:30] [PASSED] kernel
+    [20:37:30] [PASSED] write
+    [20:37:30] [PASSED] read
+    [20:37:30] [PASSED] bookkeep
+    [20:37:30] ================= [PASSED] test_signaling ==================
+    ...
+    [20:37:35] Testing complete. Ran 50 tests: passed: 49, skipped: 1
+    [20:37:35] Elapsed time: 12.635s total, 0.001s configuring, 6.551s building, 6.017s running
+
+One test that requires two CPUs is skipped since the default VM has a
+single CPU and cannot run the test.
+
+All other usual ways to run kunit work as well, and all tests are placed
+in a module to provide more options for how they are run.
+
+AI was used to do the large scale semantic search and replaces described
+above, then everything was hand checked. AI also deduced the issue with
+test_race_signal_callback() in a couple of seconds from the kunit
+crash (!!), again was hand checked though I am not so familiar with this
+test to be fully certain this is the best answer.
+
+Jason Gunthorpe (5):
+  dma-buf: Change st-dma-resv.c to use kunit
+  dma-buf: Change st-dma-fence.c to use kunit
+  dma-buf: Change st-dma-fence-unwrap.c to use kunit
+  dma-buf: Change st-dma-fence-chain.c to use kunit
+  dma-buf: Remove the old selftest
+
+ drivers/dma-buf/.kunitconfig          |   2 +
+ drivers/dma-buf/Kconfig               |  11 +-
+ drivers/dma-buf/Makefile              |   5 +-
+ drivers/dma-buf/selftest.c            | 167 ---------------
+ drivers/dma-buf/selftest.h            |  30 ---
+ drivers/dma-buf/selftests.h           |  16 --
+ drivers/dma-buf/st-dma-fence-chain.c  | 217 +++++++++----------
+ drivers/dma-buf/st-dma-fence-unwrap.c | 290 +++++++++++---------------
+ drivers/dma-buf/st-dma-fence.c        | 200 ++++++++----------
+ drivers/dma-buf/st-dma-resv.c         | 145 +++++++------
+ drivers/gpu/drm/i915/Kconfig.debug    |   2 +-
+ 11 files changed, 394 insertions(+), 691 deletions(-)
+ create mode 100644 drivers/dma-buf/.kunitconfig
+ delete mode 100644 drivers/dma-buf/selftest.c
+ delete mode 100644 drivers/dma-buf/selftest.h
+ delete mode 100644 drivers/dma-buf/selftests.h
+
+
+base-commit: 41dae5ac5e157b0bb260f381eb3df2f4a4610205
 -- 
-With best wishes
-Dmitry
+2.43.0
+
