@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QC3eJ+2ao2kwIAUAu9opvQ
+	id MM9uAF6do2k3IQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:48:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:58:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 27B8F1CBD1E
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:48:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 87DAE1CC787
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:58:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E33A10E38A;
-	Sun,  1 Mar 2026 01:48:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EED6410E3A2;
+	Sun,  1 Mar 2026 01:58:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="mRmn7WPz";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="nRBNnSmz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D27CC10E388;
- Sun,  1 Mar 2026 01:48:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED32110E3A2;
+ Sun,  1 Mar 2026 01:58:50 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 549F360141;
- Sun,  1 Mar 2026 01:48:25 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 655A3C19421;
- Sun,  1 Mar 2026 01:48:24 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 6A34C6014C;
+ Sun,  1 Mar 2026 01:58:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7683FC19421;
+ Sun,  1 Mar 2026 01:58:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772329705;
- bh=8IUnhooVV+zzTIMn32gkHI63pQCnlwF8OJ/l8Xw+WU0=;
+ s=k20201202; t=1772330330;
+ bh=i4ERKcSL5Sm0Cbn9IG1dhHcZP8oFF75DpijB2Z0vpUA=;
  h=From:To:Cc:Subject:Date:From;
- b=mRmn7WPzDkQJZouTBtYFtr5Gv3jJIoDpsT+chdAguBLi9a64kOtz3lkUZUBFSVLD2
- nXNRYadS1m5mBNm4ZlY+kBHd7IYFedUuy2frBYAasgDwkp/piBJg4ds+Fi4x+6giNG
- Reu5DfQuj7PjLpbjJc8w92oSf9S7/z4JALztnZJU2JFLb7EO/B/SM8uyeKva+NKtXR
- YyTMB+AtjM2YuRRAqyzlDR0oOP/XYAZzQbEUZFEBL+zralPmax/e4U5YXqeVFGEncL
- 1J6afkbrzDC2eo2Emkkb4LFZRZpw95ePJqyuBVnkKfc01BLTw5VE+lT0ASDHGfqh9/
- gRHP/uTR957UA==
+ b=nRBNnSmzIQPYZBv26tiF7BFeQTxOfV156na6hkcImUpENuN6tzz9QkmzNLCPt7tAb
+ GdYa+BO9SoEA/98cp6A67bSHDExMm00Bdr6sarUoQLwmGGs2GU+hV/7OpRk6itSuld
+ J8J7GU1vCPPBR2KTiTdPHvlQK0Z12iwU9KNF3RYPdpnRTFZsyg9juGJLFv0DN9IOoE
+ IdZG9Qm34iVmFk1pD+UXH7mmh2Nyv4mdBbcrf2RcijMpSVneMfrSgNux94vxgc5TKL
+ niUadhVK/OyqUs7HCM9BH4LZ6z8lX+AMk4fIlCHlQsEekqn/wXaMHheJGeloVowtcG
+ fKxMjiefv8qcQ==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	ville.syrjala@linux.intel.com
@@ -42,9 +42,9 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Subject: FAILED: Patch "drm/i915/psr: Reject async flips when selective fetch
- is enabled" failed to apply to 5.15-stable tree
-Date: Sat, 28 Feb 2026 20:48:22 -0500
-Message-ID: <20260301014823.1712560-1-sashal@kernel.org>
+ is enabled" failed to apply to 5.10-stable tree
+Date: Sat, 28 Feb 2026 20:58:48 -0500
+Message-ID: <20260301015848.1724392-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
@@ -91,10 +91,10 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,msgid.link:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 27B8F1CBD1E
+X-Rspamd-Queue-Id: 87DAE1CC787
 X-Rspamd-Action: no action
 
-The patch below does not apply to the 5.15-stable tree.
+The patch below does not apply to the 5.10-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
