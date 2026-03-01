@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WN0bBM+To2lpHQUAu9opvQ
+	id UCMCEqOWo2l7HQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:18:07 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:30:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD7A1CA1BB
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:18:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A1DE01CAD2D
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 02:30:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34DDF10E2E8;
-	Sun,  1 Mar 2026 01:18:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB24010E30F;
+	Sun,  1 Mar 2026 01:30:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="a7szk/MF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="DjYFQDZ8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 405C810E2E6;
- Sun,  1 Mar 2026 01:18:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC0EA10E30C;
+ Sun,  1 Mar 2026 01:30:07 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 1E1A343CFD;
- Sun,  1 Mar 2026 01:18:04 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4A8B0C19425;
- Sun,  1 Mar 2026 01:18:03 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id CE3D04091C;
+ Sun,  1 Mar 2026 01:30:07 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0FD31C19421;
+ Sun,  1 Mar 2026 01:30:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772327884;
- bh=xKhyQqHz6O9W8cmkO6NLSB+T2RXQNFBP2ZoIfizpGgc=;
+ s=k20201202; t=1772328607;
+ bh=jtPjgZotmkGjkEoVrFy4o7JD5HiRCQMyZAzh2CSCv5A=;
  h=From:To:Cc:Subject:Date:From;
- b=a7szk/MFpIU0pRF/I9+R3+XyfdLnFof/4n4EmgfblyX/vvqBtaQorEOGEqVkiJLDX
- OcZfAvUzH6bMF5mN6nbLTidmvtTsJ310ktBHKP0evxazp0swCypRjUlaKH4xA8Kfck
- Xxu6F343aJpNkzqm9kjvCYPyoqGtMYLDc0Z1ouiAMKudMPzgpfgSoNhp/YPvYK1sSO
- Q07cRVdfeq6KDtkHtQIf4j/4FfKOmcO8nk7bN+66Sn4Cnj5YFgVfYeakQZUlO9r7a0
- JKpGiGbxItia1dOuIEd1IYboVYo6IhiMVAiniEaIymxDTcP70a0qpeuGeYfnPiUL+g
- nZ2Ha2oFHVJRg==
+ b=DjYFQDZ8oeVJ8ffM8riltlLa5dgib0Zo/+aLlA3YzOsW0oFriiLrwXIrwB+vtuKvv
+ TlPogMURh3xUP+yYkaLagoU/iqhdUrYGReDpWpxDNdarYoontSDsfE7Bs8uL4dNjY5
+ poB48xq5n3IF+h+L6cDKyjleC5E+w0dESRg11nuD+Vs/6kH0d2Y8VN+BbD08RmBxJW
+ 0vwm8x5ATi4JtnEYccu4YygttwqEnxrjhwUYOKiy1TlVCBF6nvT5gHqjeHyPKmRpYZ
+ urltV36X8fsI4mIZrLG7/5D8+x6rL5FYYcIN1rccAi1rehcpzxbqKfk89mqxKlfkQv
+ d0dv9/0fOJTvg==
 From: Sasha Levin <sashal@kernel.org>
 To: stable@vger.kernel.org,
 	ville.syrjala@linux.intel.com
@@ -42,9 +42,9 @@ Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Subject: FAILED: Patch "drm/i915/psr: Reject async flips when selective fetch
- is enabled" failed to apply to 6.12-stable tree
-Date: Sat, 28 Feb 2026 20:18:01 -0500
-Message-ID: <20260301011802.1672122-1-sashal@kernel.org>
+ is enabled" failed to apply to 6.6-stable tree
+Date: Sat, 28 Feb 2026 20:30:05 -0500
+Message-ID: <20260301013005.1688048-1-sashal@kernel.org>
 X-Mailer: git-send-email 2.51.0
 MIME-Version: 1.0
 X-Patchwork-Hint: ignore
@@ -90,11 +90,11 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,msgid.link:url,intel.com:email]
-X-Rspamd-Queue-Id: ACD7A1CA1BB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,msgid.link:url]
+X-Rspamd-Queue-Id: A1DE01CAD2D
 X-Rspamd-Action: no action
 
-The patch below does not apply to the 6.12-stable tree.
+The patch below does not apply to the 6.6-stable tree.
 If someone wants it applied there, or to any other stable or longterm
 tree, then please email the backport, including the original git commit
 id to <stable@vger.kernel.org>.
