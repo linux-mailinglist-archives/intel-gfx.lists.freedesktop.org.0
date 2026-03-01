@@ -2,97 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IExvM79tpGmmgQUAu9opvQ
+	id WArOLhBupGnwggUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 17:47:59 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 17:49:20 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E3041D0B6F
-	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 17:47:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 51B971D0B8F
+	for <lists+intel-gfx@lfdr.de>; Sun, 01 Mar 2026 17:49:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E720A10E3D3;
-	Sun,  1 Mar 2026 16:47:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2DF710E3DC;
+	Sun,  1 Mar 2026 16:49:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="j9k43y29";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="U0J88eFO";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="S4WFzvr7";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N/kiVMmr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC9F410E3D2
- for <intel-gfx@lists.freedesktop.org>; Sun,  1 Mar 2026 16:47:52 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 53AB910E3D7
+ for <intel-gfx@lists.freedesktop.org>; Sun,  1 Mar 2026 16:49:13 +0000 (UTC)
+Received: from pps.filterd (m0279872.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 6219jg09837665
- for <intel-gfx@lists.freedesktop.org>; Sun, 1 Mar 2026 16:47:52 GMT
+ 621AtKwj1363873
+ for <intel-gfx@lists.freedesktop.org>; Sun, 1 Mar 2026 16:49:12 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=23yFjRakNDMv9z7eHrnsMfwG
- zCe1oBIgBUxRG3B4w9c=; b=j9k43y29AY/jcOBaZs4hjILMyf4NJhXj35Ds8fPf
- WOCMUgc83CYIceqbax3lqKhzX79Ko+iYQC1kKbPZDfsyqOkPtQI1g5VEsX7Lu/qL
- AxtlMsFmktCzVSbsiJI69w0rNrE7ejK0npefurmC+7ixrdHK1PUZe8EUs5aAClT2
- 0dCCX8KR5It6Pr5VJ5vpuJH+eFms1e653wLTIIoz6kdz/S1wGb/5T+JN6GgqOTHL
- S+SDKd8+NufyC2a2lQuyvzgeT7eO/Frd6HF6ueEq71KVMYEsRIOilY3LgMv7z3FW
- WkVeV3lPmX4qJcZAkupTCrsicOZk0I+o6inqX9bWQ9NUlw==
-Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
- [209.85.222.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cksgru166-1
+ :references:subject:to; s=qcppdkim1; bh=dSllOkKEfDtkPszOpUxSs26w
+ 5scwH7eQoWJUjkkZk+0=; b=S4WFzvr74n+UOsusIQV8vroIg+2n/ZWGqD6P5I8I
+ 2QnM8/qHBqWY7ILgw/yiAvzWx2qubCHOnQ0vsX5ZwC28cc3zn5dc/5KewkUHerbV
+ QZZW+NBsVHblGZuFL0vr0vV4FBjPUbU65Zeg+xCL7ugVV5oZZpgnU0KHM+4rP4T7
+ RzUxQUk59lKRg+E0hMuAkjfRNqBYMlWRSO1Es3UCGXt0OChZJrGKGFssr4tyDNqg
+ OzXVptZm/MnRSTytiWYP9Xpe4HPms2u9CWCNhehNOtxetcz8Ixh1CZGH/mcLael2
+ 5065GNEayH87h4/uFtcHDWZcrDtLuJdAzC8C101bS6eCaQ==
+Received: from mail-qk1-f198.google.com (mail-qk1-f198.google.com
+ [209.85.222.198])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4cmgbarnwc-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 16:47:52 +0000 (GMT)
-Received: by mail-qk1-f197.google.com with SMTP id
- af79cd13be357-8cbb8040f48so3483203285a.0
- for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 08:47:51 -0800 (PST)
+ for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 16:49:12 +0000 (GMT)
+Received: by mail-qk1-f198.google.com with SMTP id
+ af79cd13be357-8c71304beb4so2516962185a.3
+ for <intel-gfx@lists.freedesktop.org>; Sun, 01 Mar 2026 08:49:11 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1772383671; x=1772988471;
+ d=oss.qualcomm.com; s=google; t=1772383751; x=1772988551;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=23yFjRakNDMv9z7eHrnsMfwGzCe1oBIgBUxRG3B4w9c=;
- b=U0J88eFOqs2NSSV/+ivaYNcqJkyO8OLP99X4QrpTQ28pbgb1EYGL45q7vpZyNIxZsv
- RvwA4ZrLlPFJ5/ks6oywSts6FfdROKT5W810Dn9hM41pko1Zq+0Il6j45PmqSNKzsN4B
- NvOlirmgbtJGcNzl7zWDd7MMbYnJjE0T5NSCAjhQKoZRsbeXpJWLbjsksQYBntNsXUH6
- AgWJ0cVBBb+Txu3A84C+s+LZPUz4zHy3tx2aiw3YSBULMQiZbuP5Pz+cxQwPR75KgLdj
- XIDsWISNTJ/zbHT6g3+2N0VXkcVaHLyq0/L8Hr0P4D5eobAKgfyx9lpwDf6u5wPqx+Jv
- 14nQ==
+ bh=dSllOkKEfDtkPszOpUxSs26w5scwH7eQoWJUjkkZk+0=;
+ b=N/kiVMmrXuU6Yj38mqMcQlw5/JjJyucmTi9NzXsRsCbrWQ38kuJatEJUjIPQiUtM+B
+ YY1wEUTBTr3dFzlzF281SLZKIcqNBJaE55sinN2m3z1rQih3RvclCOKcmx7i0uVBqkc2
+ Ff31hDtYm0qHt3hfhCnxkXN2cLdxlzIsidESrMT16yAmeq2j6anCO2N0fZgQROq1WK6s
+ 6nrbyZ3Dlo0492ziku876kogagP38GerOJirp7RhNVbQszaEOeTvRlxdfGgTwIC+2EZn
+ 8lWd2fEw42UD70W35/fAlU4oxRztGqeo7Zq+2btAJMEjNxSoJpRU2yKMFJDz/r9wGj/i
+ Q3ng==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772383671; x=1772988471;
+ d=1e100.net; s=20230601; t=1772383751; x=1772988551;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=23yFjRakNDMv9z7eHrnsMfwGzCe1oBIgBUxRG3B4w9c=;
- b=fwaDSlM7YtnFCYdWLrmiIQ8cRSNPs+mUA/io+dXH1vMhmIPEgADZZRKuH0Dhcil3aM
- EnjYvwQMZYtHsXcm15DZ9AEMrAXhfBcsFxAcxRC3CaRLqvMeuZgoW3y6ZMInA+mOA3ph
- s2iH7yv0hcQdV6nu41nVuMLDX7Wp/ILr5v42EGKN36nr6UHzYcEFwFw7SNMaMKaG1RWH
- rJ5T5YveEv3/ymUW4hEJEvlD3lZ573iSPvMaPaV1yOPvYqlGVKhbdI96H6KOnrIwuVpu
- GtnUSnaRhOXSokKAwG6TWIGkrmI7Gi5jvsuZjGp10SL9s2xDsIojNVPbQh5xz/iKFUOh
- RU+Q==
+ bh=dSllOkKEfDtkPszOpUxSs26w5scwH7eQoWJUjkkZk+0=;
+ b=sf5ohYmWhyiZfIV8iVdgRHkrJDtGFAylgRsJ8xHWS9fya0qG0TsZ+utQqHdZqkvEzN
+ tginrhvmRQPSvrodPa1cUbv3N65ejEakvnbmBp3W5XZuikj9Bxervwhtp5y+kYAMx4Qb
+ 82T2FY/NnHUGafr9QeR6bMIQAcl3CQxY6iAsOD0ziSjWTG7fWAA7S0E8RSzccujf4Dte
+ kgQ+L3DCvG0o+WSv308YJuZY7V1ex0auq7y8z7Maa3zcKvPvdl0QharYWvSLZtB8kV3l
+ QbhwjbW7KHPhG4LSljWhI/3i86wqZdVpgJ4Wq/QU6xLNNPQyz3BsT2XXwjwXdfu1a8hU
+ NFnw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCUbYPISdwV5tEX+jrhRcTL7sNQg5cPJVoUKlp0OXk4mGj5eEsD0+KtaAr3xzVo4TFSrRfGudcTpBI4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyt/F2eJn+CSpPRO87ItdLwMf35ICEZfnYxCaij9/p+V33yw61R
- zdUd9psnRb1CnjQ0JSxCXvdo66qECmoYNWt6QvTolSjX7C7Rz2TIv9IV5jJn8vCXOAPXHW8weyf
- Axlv5z+aGTMXjE/GKHbsvqx+4IXIpfX9zjj+GO5cv45eHDK/qw0wRj+NGh8BvRZXIzgDgf4s=
-X-Gm-Gg: ATEYQzxlNFgzTmWVD+qL5HHAqXJXLkH4of4KmLAE681nI4TbnLVgIuNRoBuGPaEhx8i
- bo9ggyLa5j7k4UGVuxwO7eCaoE0HrJ6RK/nmXAaio5Pi7FwosDqeXi5YLfUu68P6EKqBpw3RPIf
- peNN16pCzmNi5lBVGcqoQpoQVSrmQuZjdghhFC8yaXgd+dpIdLqF/d+xKsvgR9W0n8V5ieLz231
- LOyMAn5Z9GRol/KqAObuLk91Vqg92yPjrBsc9xWOok+XO1QT41rM/cfr+dFhc73ysw7XoYaLB1C
- imCXpSLJ2D14zI6G9lCQh/3IfUvF2FFTIxegnsPLwOU9Y9IR+uf/LSUQ9yqTDRPRbYxowN35YIl
- /2uEqGaiMyeB27GEldB56l60nltSYIdtoUHdS+rRVl4OjqpIkaCl1JhQ+K0DyqzaSq+ghh9V8cH
- MEgG7/sOXXaZarI7Ui8vc5ECOlUA4x3he3BLo=
-X-Received: by 2002:a05:620a:4801:b0:8cb:4066:7acc with SMTP id
- af79cd13be357-8cbc8e4b74fmr1215340985a.50.1772383671044; 
- Sun, 01 Mar 2026 08:47:51 -0800 (PST)
-X-Received: by 2002:a05:620a:4801:b0:8cb:4066:7acc with SMTP id
- af79cd13be357-8cbc8e4b74fmr1215338985a.50.1772383670575; 
- Sun, 01 Mar 2026 08:47:50 -0800 (PST)
+ AJvYcCVvpxKubAuR6On+x8pFxvOLXaiVXdBiSDjq29UaxbqOVaNejDf+5R8v7x8NjYfvBZB/uoKfmAlQOjQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxYBDLMjnzXZFmgsHcGm5pmVxv60uTtOGOTvmlI7SeFj6GQ4E2c
+ S7kDrEiYhmNof+s8wkXQuULmERm7txi6ECnwBbKX7YUpaP987eemQKse5dRjHeC9awFKaaX9fdp
+ CBEzTYIU7ws+Xy1cPMKWv7eCtqlag84GZ/skilFCrVQh0g1o7ihFk1NQowmftsn1Ty6gN0Aw=
+X-Gm-Gg: ATEYQzynD4vQ1io6otWcwspLS2RVxM6wRyhEvsKrEv/mQ3HBG9M/JJcaR6AFQur01Li
+ Y0NB8kq/U8QCOvdlDTpWzMliMv+GrJOxrzrmzYWA/FYodXvL8ajmmF8rtN5M+COtEGSG/sqoBdh
+ 9RyX/9Qm5mkxRSy684SNjiP0FWEIVbfyxVZX6iCfHbEs1oheq2djq7ZyYMenCAuqKoSpAmpdT2/
+ 1/XBrv2lbarCIZIz0b5+lxu1ZsdhGDwOfRWniwSYyqp5Fw89nGe7nLhrx8uwT3CFHd42LYE4Buo
+ Kt1rWB9DzYwCeUpYsMva8Uvlk3zoDFz3MjehAExwRh5oHeT+Vg0Wf2ekOWe2dvtkqpvHaScorYg
+ XHWYH1jnuIOunWpsfOIYTShMeF5phW6Uwc70SeNf9gPyl0L5bD4qIvvGDcRHrdeaVpMGNjENKdf
+ tLhKMdBqUhaAW9Hp1EYJjEOHL7WANrhs2ny4o=
+X-Received: by 2002:a05:620a:2901:b0:8b2:598d:6e66 with SMTP id
+ af79cd13be357-8cbc8da8ecemr1218259985a.22.1772383750678; 
+ Sun, 01 Mar 2026 08:49:10 -0800 (PST)
+X-Received: by 2002:a05:620a:2901:b0:8b2:598d:6e66 with SMTP id
+ af79cd13be357-8cbc8da8ecemr1218255985a.22.1772383750077; 
+ Sun, 01 Mar 2026 08:49:10 -0800 (PST)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a115bca083sm1146993e87.31.2026.03.01.08.47.49
+ 38308e7fff4ca-389f301788dsm21899311fa.35.2026.03.01.08.49.07
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sun, 01 Mar 2026 08:47:49 -0800 (PST)
-Date: Sun, 1 Mar 2026 18:47:48 +0200
+ Sun, 01 Mar 2026 08:49:08 -0800 (PST)
+Date: Sun, 1 Mar 2026 18:49:06 +0200
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
@@ -120,40 +120,38 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
  linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- Andri Yngvason <andri@yngvason.is>,
- Werner Sembach <wse@tuxedocomputers.com>,
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v9 02/19] drm: Add new general DRM property "color format"
-Message-ID: <y5ybjitphwydvtcjdtrmpcx7t7hwevjszpktcnmyvjqkgzinmu@hoitkl7lghxh>
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 05/19] drm/display: hdmi-state-helper: Try subsampling
+ in mode_valid
+Message-ID: <lw2tdcwu7yathstby4a5tx3ys6rruzeg3odvnsjsgc75sqycun@geoqspu2sfpv>
 References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-5-658c3b9db7ef@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAxMDE1MyBTYWx0ZWRfX8eDYdIk/4N9G
- 3FcWlhSP7f/ysok8aUpvlFk8VVlVWQaHQbnxgGBHqfGOuyAyce0qmRtJg5o9qwMn83H9h6fvwX1
- 3C17PzlfFpin+Hesu71497mwti6ILu5Dxa3DePl4fsENty1+8N+fJgyZ4VZzqnqCQ4aKMYGkSNI
- yTlknpZEfhRvYDQ9NLxh4OkxP7EBKGkPLBzR266eI8GdzgBQD7zPNTBmKTclo2X/Nn47NvxTTyU
- UYljrtt6AFl3JARlXLhifNuSM5n6b+U2NW++lk8mQg2tpYidzhu2PDxs0oAsqm8IYpmyXBy+39v
- TIdFBXodpJCNJbn/aVItl4fMFqzjHn7BNWo9efOb8XSDR2Tue0C+xRnWjHXSyFrgXG97IhElgUg
- YTDlpGUUJ1M4v8xuS3SRyNQsGKJzy9adnRBOFV2azBNGnbjJOIUbsP+GaMxcu7GLhOeOqhpeR9W
- EJ4xAd+yW62HWU0NqSw==
-X-Proofpoint-GUID: 6fSTJFGjlbCoTlo2H50aq4mrsJjnQ5NE
-X-Proofpoint-ORIG-GUID: 6fSTJFGjlbCoTlo2H50aq4mrsJjnQ5NE
-X-Authority-Analysis: v=2.4 cv=Zqzg6t7G c=1 sm=1 tr=0 ts=69a46db8 cx=c_pps
- a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260227-color-format-v9-5-658c3b9db7ef@collabora.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwMzAxMDE1MyBTYWx0ZWRfX8OmZYxcwKzsj
+ uAd7EzcQmBAVWg626c7aDt/0qqYRuYqs9w1GTQi63Cy1Nip3WzN/LVk6P9GKyyuZ9AH6DnXDFPl
+ nEIkvnBjb996w1wBNeeeTmFeDJeEGTaNl46bc7j6VowwzkRXZua9D6Mx6IR0sX0Ni3rWeRzasuR
+ Mxwc2jQllCDBai5dVYVkEghIJntF7vQ3OrlvnYUiIWmGUWiyw7FpQORar1of7+Zz6DZfvIv7n9j
+ R9oh0gjaL6L4qoksdXnZserQ5tKeysEnj7uGculkLqFX2hQz0nuKbVjd8RamM1boUDhxinz3UZR
+ Zqg05m3C1OhmTCb2uadflxUkR7nRiQWBe59m/DcmL0kRMQTDKnDnzo+Bk0kpR4aaQf9XK/3jdG0
+ 7UfbhFRKJugxbQzaz4kzKn2L8WdRbX/1VD2RLnm8gr45cgWTErArAkNUNsxyRFJcoLZYMq6Vmyq
+ RVAVPxPA33xs9wr6GHQ==
+X-Authority-Analysis: v=2.4 cv=QfVrf8bv c=1 sm=1 tr=0 ts=69a46e08 cx=c_pps
+ a=qKBjSQ1v91RyAK45QCPf5w==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=Yq5XynenixoA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=yDUiu3_GAAAA:8
- a=QX4gbG5DAAAA:8 a=bDwM_fcg3tGIVG_HqXcA:9 a=CjuIK1q_8ugA:10
- a=IoWCM6iH3mJn3m4BftBB:22 a=gafEeHOdjwYkg5oUpzAY:22 a=AbAUZ8qAyYyZVLSsDulk:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=yx91gb_oNiZeI1HMLzn7:22 a=VwQbUJbxAAAA:8
+ a=QX4gbG5DAAAA:8 a=EUspDBNiAAAA:8 a=CpXNCzN6O6rfykjMCtIA:9 a=CjuIK1q_8ugA:10
+ a=NFOGd7dJGGMPyQGDc5-O:22 a=AbAUZ8qAyYyZVLSsDulk:22
+X-Proofpoint-ORIG-GUID: MxlN5iNrQ4eAbT1ts_RLtlTPAGN9EK69
+X-Proofpoint-GUID: MxlN5iNrQ4eAbT1ts_RLtlTPAGN9EK69
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1121,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-03-01_03,2026-02-27_03,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- clxscore=1015 lowpriorityscore=0 spamscore=0 priorityscore=1501 phishscore=0
- suspectscore=0 impostorscore=0 malwarescore=0 bulkscore=0 adultscore=0
+ malwarescore=0 priorityscore=1501 spamscore=0 bulkscore=0 clxscore=1015
+ adultscore=0 lowpriorityscore=0 phishscore=0 impostorscore=0 suspectscore=0
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2602130000 definitions=main-2603010153
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -175,77 +173,61 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
-	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:a
- ndri@yngvason.is,m:wse@tuxedocomputers.com,m:marius.vlad@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,yngvason.is,tuxedocomputers.com];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:j
+ ernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[38];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[yngvason.is:email,oss.qualcomm.com:dkim,collabora.com:email,qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5E3041D0B6F
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 51B971D0B8F
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 08:20:07PM +0100, Nicolas Frattaroli wrote:
-> From: Andri Yngvason <andri@yngvason.is>
+On Fri, Feb 27, 2026 at 08:20:10PM +0100, Nicolas Frattaroli wrote:
+> drm_hdmi_connector_mode_valid assumes modes are only valid if they work
+> with RGB. The reality is more complex however: YCbCr 4:2:0
+> chroma-subsampled modes only require half the pixel clock that the same
+> mode would require in RGB.
 > 
-> Add a new general DRM property named "color format" which can be used by
-> userspace to request the display driver to output a particular color
-> format.
+> This leads to drm_hdmi_connector_mode_valid rejecting perfectly valid
+> 420-only or 420-also modes.
 > 
-> Possible options are:
->     - auto (setup by default, driver internally picks the color format)
->     - rgb
->     - ycbcr444
->     - ycbcr422
->     - ycbcr420
+> Fix this by checking whether the mode is 420-capable first. If so, then
+> proceed by checking it with DRM_OUTPUT_COLOR_FORMAT_YCBCR420 so long as
+> the connector has legalized 420, otherwise error out. If the mode is not
+> 420-capable, check with RGB as was previously always the case.
 > 
-> Drivers should advertise from this list which formats they support.
-> Together with this list and EDID data from the sink we should be able
-> to relay a list of usable color formats to users to pick from.
-> 
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> Signed-off-by: Andri Yngvason <andri@yngvason.is>
-> Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
+> Fixes: 47368ab437fd ("drm/display: hdmi: add generic mode_valid helper")
+> Reviewed-by: Maxime Ripard <mripard@kernel.org>
 > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
->  drivers/gpu/drm/drm_atomic_uapi.c   |  11 ++++
->  drivers/gpu/drm/drm_connector.c     | 124 ++++++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h         | 103 ++++++++++++++++++++++++++++++
->  4 files changed, 243 insertions(+)
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
 
-It seems and feels that the common code to be used (almost?) everywhere
-would be:
-
-if (!drm_mode_create_color_format_property(connector, supported_formats))
-	drm_connector_attach_color_format_property(connector);
-
-
-Please mention somewhere the reason to split that into two functions.
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
 
 -- 
