@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4PMcI3aGpWkeDAYAu9opvQ
+	id OPBmG2qIpWmWDQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:45:42 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:54:02 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E749F1D8F5A
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:45:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C71051D9383
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:54:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1399410E4CD;
-	Mon,  2 Mar 2026 12:45:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 29ECB10E4CF;
+	Mon,  2 Mar 2026 12:54:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="NklJGRmL";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="czCH1Pwn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 402D210E4CD;
- Mon,  2 Mar 2026 12:45:39 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1772455528; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 664BB10E4CF;
+ Mon,  2 Mar 2026 12:53:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1772456025; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=gfFgLK0NcN+DF027ztokmuJzLGgp/Kn1kKJQXerb1I9GNL7TP2viyfn7ZsNRBylkQp9ZArN5yoUDZfVQOnHcS1VKyjbKIm7l2ZUlnIeeG1TJTgHXFS5fWyJyERvIGWVbAurIivEeblG+hhFtl+csYmU0AdSVhboLMsxNpoMEsyo=
+ b=GMp6+xRMNwgsTM8iGKy0G8y6GkFeXPgakJzLr4g7v95spFf1QZd6gihYWQLeJL3rhTD72V5ksZSGquVESfiNqgKeGzY50/q6h8v1bi60drZGMwODJVl5oWq2gscFuxM8XEzd0q5iQhjpvN7xPzvuZds5ioTLzjp+OL7gf+moM5U=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1772455528;
+ s=zohoarc; t=1772456025;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=FI4iBPbexT5/+OX3ab+TBF6Dku2WJR7GpM9DDHrwsPk=; 
- b=A9R2BAzoJPj4uCGn9AR23la5ihbXVAeayO35kYB7Lj+Cz3KNcjeDodl1UTwoDH+AW3GSjW1QkNS1C1m02AjDdU3RwgkT9kG0X8KMdsUfhaRBbxAbhLFJHbtSylmO9zO0uGCDSrtzs488v983GA/u911rzbevHSGHSLIOiGjj4IE=
+ bh=lPQKUxtVjexxEX4A7XuYCfJhBt0aFJEhGTj3wOuGAak=; 
+ b=A8n4m9TSHOWSTtoNn2W97tLnoFen+A2T+MHjlMc1Fy2Osrzwbvz5wXokklGhxewaXenze4bkNrKTYl8owJrBUJ5XF9C1NhbLaSeq6TvYARrjCjqRSAlPfwuHpfzYaBKPOAlJuENarffaJUdtReMw0Vc+oQzIvMJ9+Pn+0UGA/IA=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772455527; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1772456025; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=FI4iBPbexT5/+OX3ab+TBF6Dku2WJR7GpM9DDHrwsPk=;
- b=NklJGRmL7Ht1vVNs25ImFGldSXVhHZfLcvTkHo1UkVwxo+YmvptU5KSwoBLaKwcI
- 8F/C/rYOF7LL5uRL3SWft23e8XNCzhZJlF4aT9q/cjC4NR+INLbrCfP48F4ndn/KZ+9
- c0F3vSfOqOkMW+KNDdJL7PAjYQ4ep4meusaEj670=
-Received: by mx.zohomail.com with SMTPS id 177245552678992.73586677524838;
- Mon, 2 Mar 2026 04:45:26 -0800 (PST)
+ bh=lPQKUxtVjexxEX4A7XuYCfJhBt0aFJEhGTj3wOuGAak=;
+ b=czCH1PwnW/CNSDoAUO7w4zjpsIwnu75I4YmbkTsbzGgEvfX7ryNg9YU9rmvgEoUo
+ y3p5/qdnQXH9dJ1dsu7mEMvGlvt+UzU3mJRc0wVN7PDPDV0PuEoHXkeE5lIglxjq8Ht
+ E9oAQ8KmXt0DU/LN72eVoyq0jW1mxhcUOCti0jF4=
+Received: by mx.zohomail.com with SMTPS id 1772456023924351.0985024371805;
+ Mon, 2 Mar 2026 04:53:43 -0800 (PST)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Maxime Ripard <mripard@kernel.org>
 Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  Rodrigo Siqueira <siqueira@igalia.com>,
  Alex Deucher <alexander.deucher@amd.com>,
  Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
@@ -69,13 +69,14 @@ Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-doc@vger.kernel.org
-Subject: Re: [PATCH v9 03/19] drm/bridge: Act on the DRM color format property
-Date: Mon, 02 Mar 2026 13:45:18 +0100
-Message-ID: <2254957.irdbgypaU6@workhorse>
-In-Reply-To: <unfsi4t4t4wl74zudkq3oeiryvm2xgyiplugcaxhyvjmtn7s2l@72xhl5vrtyt3>
+Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+Date: Mon, 02 Mar 2026 13:53:34 +0100
+Message-ID: <8648916.T7Z3S40VBb@workhorse>
+In-Reply-To: <20260302-literate-shrew-of-health-ec19d2@houat>
 References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
- <20260227-color-format-v9-3-658c3b9db7ef@collabora.com>
- <unfsi4t4t4wl74zudkq3oeiryvm2xgyiplugcaxhyvjmtn7s2l@72xhl5vrtyt3>
+ <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
+ <20260302-literate-shrew-of-health-ec19d2@houat>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="utf-8"
@@ -108,7 +109,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	RCPT_COUNT_TWELVE(0.00)[37];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
@@ -116,180 +117,117 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
 	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E749F1D8F5A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,collabora.com:dkim]
+X-Rspamd-Queue-Id: C71051D9383
 X-Rspamd-Action: no action
 
-On Sunday, 1 March 2026 17:56:08 Central European Standard Time Dmitry Baryshkov wrote:
-> On Fri, Feb 27, 2026 at 08:20:08PM +0100, Nicolas Frattaroli wrote:
-> > The new DRM color format property allows userspace to request a specific
-> > color format on a connector. In turn, this fills the connector state's
-> > color_format member to switch color formats.
+On Monday, 2 March 2026 09:46:06 Central European Standard Time Maxime Ripard wrote:
+> Hi,
+> 
+> On Fri, Feb 27, 2026 at 08:20:09PM +0100, Nicolas Frattaroli wrote:
+> > With the introduction of the "color format" DRM property, which allows
+> > userspace to request a specific color format, the HDMI state helper
+> > should implement this.
 > > 
-> > Make drm_bridges consider the color_format set in the connector state
-> > during the atomic bridge check. For bridges that represent HDMI bridges,
-> > rely on whatever format the HDMI logic set. Reject any output bus
-> > formats that do not correspond to the requested color format.
-> > 
-> > Non-HDMI last bridges with DRM_CONNECTOR_COLOR_FORMAT_AUTO set will end
-> > up choosing the first output format that functions to make a whole
-> > recursive bridge chain format selection succeed.
+> > Implement it by translating the requested drm_connector_color_format to
+> > a drm_output_color_format enum value as per the logic HDMI should use
+> > for this: Auto is translated to RGB, and a fallback to YUV420 is only
+> > performed if the original color format was auto.
 > > 
 > > Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > > ---
-> >  drivers/gpu/drm/drm_bridge.c | 89 +++++++++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 88 insertions(+), 1 deletion(-)
+> >  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 28 +++++++++++++++++++++++--
+> >  1 file changed, 26 insertions(+), 2 deletions(-)
 > > 
-> > diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-> > index 6d8947419940..5938fba0a983 100644
-> > --- a/drivers/gpu/drm/drm_bridge.c
-> > +++ b/drivers/gpu/drm/drm_bridge.c
-> > @@ -1117,6 +1117,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
-> >  	return ret;
-> >  }
+> > diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > index 9f3b696aceeb..31c6d55fa995 100644
+> > --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> > @@ -669,10 +669,34 @@ hdmi_compute_config(const struct drm_connector *connector,
+> >  	unsigned int max_bpc = clamp_t(unsigned int,
+> >  				       conn_state->max_bpc,
+> >  				       8, connector->max_bpc);
+> > +	enum drm_output_color_format fmt;
+> >  	int ret;
 > >  
-> > +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_connector_color_format fmt)
-> > +{
-> > +	if (fmt == DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-> > +		return true;
-> > +
-> > +	switch (bus_fmt) {
-> > +	case MEDIA_BUS_FMT_FIXED:
-> > +		return true;
-> > +	case MEDIA_BUS_FMT_RGB888_1X24:
-> > +	case MEDIA_BUS_FMT_RGB101010_1X30:
-> > +	case MEDIA_BUS_FMT_RGB121212_1X36:
-> > +	case MEDIA_BUS_FMT_RGB161616_1X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> > +	case MEDIA_BUS_FMT_YUV8_1X24:
-> > +	case MEDIA_BUS_FMT_YUV10_1X30:
-> > +	case MEDIA_BUS_FMT_YUV12_1X36:
-> > +	case MEDIA_BUS_FMT_YUV16_1X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> > +	case MEDIA_BUS_FMT_UYVY8_1X16:
-> > +	case MEDIA_BUS_FMT_VYUY8_1X16:
-> > +	case MEDIA_BUS_FMT_YUYV8_1X16:
-> > +	case MEDIA_BUS_FMT_YVYU8_1X16:
-> > +	case MEDIA_BUS_FMT_UYVY10_1X20:
-> > +	case MEDIA_BUS_FMT_YUYV10_1X20:
-> > +	case MEDIA_BUS_FMT_VYUY10_1X20:
-> > +	case MEDIA_BUS_FMT_YVYU10_1X20:
-> > +	case MEDIA_BUS_FMT_UYVY12_1X24:
-> > +	case MEDIA_BUS_FMT_VYUY12_1X24:
-> > +	case MEDIA_BUS_FMT_YUYV12_1X24:
-> > +	case MEDIA_BUS_FMT_YVYU12_1X24:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> > +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-> > +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-> > +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-> > +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-> > +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
+> > -	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+> > -				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
+> > +	switch (conn_state->color_format) {
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
+> > +		break;
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
+> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
+> > +		break;
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
+> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
+> > +		break;
+> > +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
+> > +		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
+> > +		break;
 > > +	default:
-> > +		return false;
+> > +		drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\n",
+> > +			    conn_state->color_format);
+> > +		return -EINVAL;
 > > +	}
-> > +}
 > > +
-> >  /*
-> >   * This function is called by &drm_atomic_bridge_chain_check() just before
-> >   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-> > @@ -1160,6 +1201,7 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  	struct drm_encoder *encoder = bridge->encoder;
-> >  	struct drm_bridge_state *last_bridge_state;
-> >  	unsigned int i, num_out_bus_fmts = 0;
-> > +	enum drm_connector_color_format fmt;
-> >  	u32 *out_bus_fmts;
-> >  	int ret = 0;
-> >  
-> > @@ -1201,13 +1243,58 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
-> >  			out_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
-> >  	}
-> >  
-> > +	/*
-> > +	 * On HDMI connectors, use the output format chosen by whatever does the
-> > +	 * HDMI logic. For everyone else, just trust that the bridge out_bus_fmts
-> > +	 * are sorted by preference for %DRM_CONNECTOR_COLOR_FORMAT_AUTO, as
-> > +	 * bus_format_is_color_fmt() always returns true for AUTO.
-> > +	 */
-> > +	if (last_bridge->ops & DRM_BRIDGE_OP_HDMI) {
+> > +	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
+> > +
+> > +	if (conn_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO)
+> > +		return ret;
+> > +
 > 
-> This will break the logic if there is anything after the HDMI bridge.
-> For example, if the board has hdmi-connector (yep, it's a bridge without
-> DRM_BRIDGE_OP_HDMI, because HDMI connectors don't implement any of the
-> HDMI functionality), then the function will go to the second clause.
+> We discussed it before, and it wasn't as trivial as it should have been,
+> but now, I really feel something like the following would be simpler:
 > 
-> This probably needs to be moved to drm_bridge_connector. There is is
-> natural to check for bridge_connector->bridge_hdmi.
+> if (conn_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
+> 	enum drm_output_color_format fmt;
+> 
+> 	switch (conn_state->color_format) {
+> 	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+> 	     drm_warn(connector->dev, "The format shouldn't be auto here"); // or any better message
+> 	     fallthrough;
 
-A few questions:
-1. are all HDMI connectors drm_bridge_connectors? Or does the code need
-   to handle two HDMI cases?
-2. If by "This probably needs to be moved to drm_bridge_connector", do
-   you mean the entire recursive bus format selection, or just a check
-   for whether it's an HDMI connector that sets some flag on the
-   drm_bridge?
-3. I don't see any KUnit tests for drm_bridge_connector. Is adding those
-   part of the requirements for getting this upstreamed?
+Why shouldn't it be auto there? This is the function where the auto->rgb
+mapping is explicitly handled.
+
+> 	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+> 	     fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
+> 	     break;
+> 	....
+> 	}
+> 
+> 	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
+> }
+> 
+> ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+> 			      DRM_OUTPUT_COLOR_FORMAT_RGB444);
+> 
+> It makes it much clearer what the two branches are, and we don't have to
+> test for auto multiple times.
+
+Testing for auto multiple times is done for the "4:2:0 fallback on
+AUTO only" case. If you fall through from AUTO to RGB and then return
+the result of hdmi_compute_format_bpc on RGB, then you will not let
+AUTO fall back to 4:2:0. hdmi_compute_format_bpc only does a fallback
+for lower bit depths, not different color formats.
+
+As far as I can tell, you're requesting a change of behaviour here that
+would require me to adjust the behaviour of every single other HDMI
+implementation and modify all the tests that you already gave a reviewed-by,
+so I assume this wasn't the intent?
 
 Kind regards,
 Nicolas Frattaroli
 
 > 
-> > +		drm_dbg_kms(last_bridge->dev,
-> > +			    "HDMI bridge requests format %s\n",
-> > +			    drm_hdmi_connector_get_output_format_name(
-> > +				    conn_state->hdmi.output_format));
-> > +		switch (conn_state->hdmi.output_format) {
-> > +		case DRM_OUTPUT_COLOR_FORMAT_RGB444:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> > +			break;
-> > +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-> > +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-> > +			break;
-> > +		default:
-> > +			ret = -EINVAL;
-> > +			goto out_free_bus_fmts;
-> > +		}
-> > +	} else {
-> > +		fmt = conn_state->color_format;
-> > +		drm_dbg_kms(last_bridge->dev, "Non-HDMI bridge requests format %d\n", fmt);
-> > +	}
-> > +
-> >  	for (i = 0; i < num_out_bus_fmts; i++) {
-> > +		if (!bus_format_is_color_fmt(out_bus_fmts[i], fmt)) {
-> > +			drm_dbg_kms(last_bridge->dev,
-> > +				    "Skipping bus format 0x%04x as it doesn't match format %d\n",
-> > +				    out_bus_fmts[i], fmt);
-> > +			ret = -ENOTSUPP;
-> > +			continue;
-> > +		}
-> >  		ret = select_bus_fmt_recursive(bridge, last_bridge, crtc_state,
-> >  					       conn_state, out_bus_fmts[i]);
-> > -		if (ret != -ENOTSUPP)
-> > +		if (ret != -ENOTSUPP) {
-> > +			drm_dbg_kms(last_bridge->dev,
-> > +				    "Found bridge chain ending with bus format 0x%04x\n",
-> > +				    out_bus_fmts[i]);
-> >  			break;
-> > +		}
-> >  	}
-> >  
-> > +out_free_bus_fmts:
-> >  	kfree(out_bus_fmts);
-> >  
-> >  	return ret;
-> > 
-> 
+> Maxime
 > 
 
 
