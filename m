@@ -2,63 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GD4YD6NNpWmt8AUAu9opvQ
+	id kAXNH1VOpWnS8QUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 09:43:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 09:46:13 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A66491D4C64
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 09:43:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1B511D4D15
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 09:46:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3147010E45C;
-	Mon,  2 Mar 2026 08:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC8610E1D7;
+	Mon,  2 Mar 2026 08:46:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QdLSMQ77";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="s5TC01pa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7193310E45C;
- Mon,  2 Mar 2026 08:43:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772440992; x=1803976992;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=Vfkj3u8+ELp4542Hw9MoUH023nj5G355ktoNUCKfTRk=;
- b=QdLSMQ775hIqa9PnqEB5Dnw1rDDLvjYAmgrVtI4HyJb5wJup1yAexXDN
- yLghq4VjTigpLh6VVy6wiRJ/gO0riFbL7d5Xj0qRZvgzh7AccHLAvPum6
- gkE3AhxlnMWGp99U3VKGrTY/OLGcoRexV+K0d53zct+R7SAy1Ycx5iDiu
- 5Jtkko/0kW1VR0xO4UuDNrA22Uj9XjrcCan3j7FclCoWQqT17alwxvztG
- z0jv3JwHozK2fRcHBhw+QKZvEb6yLc5I3Z7PNy9XDJNTV1I8IFqA+sVN3
- 0sT7KhVcSYzwBTURqujSk5mg7O1dCVDY3s3PQ15Lo2NmrEcQ3gH9EiBru w==;
-X-CSE-ConnectionGUID: GNGJIMiJScWLiE+xOuEzlA==
-X-CSE-MsgGUID: ZeNZXi1uT3uQXBV8XMLXJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="84080051"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="84080051"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 00:43:10 -0800
-X-CSE-ConnectionGUID: lsTsh8qhR+eBji5lo+wImQ==
-X-CSE-MsgGUID: vxN79MVXSLKyRhDkR8FfHA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="221737641"
-Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa003.jf.intel.com with ESMTP; 02 Mar 2026 00:41:49 -0800
-From: Arun R Murthy <arun.r.murthy@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
- jouni.hogander@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCHv2 2/2] drm/i915/dp: Rename alpm_init to alpm_init_dpcd
-Date: Mon,  2 Mar 2026 14:10:30 +0530
-Message-Id: <20260302084030.463284-2-arun.r.murthy@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260302084030.463284-1-arun.r.murthy@intel.com>
-References: <20260302033630.428913-1-arun.r.murthy@intel.com>
- <20260302084030.463284-1-arun.r.murthy@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CBBE10E1D7;
+ Mon,  2 Mar 2026 08:46:10 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id D42EB437BD;
+ Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2A83AC19423;
+ Mon,  2 Mar 2026 08:46:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772441169;
+ bh=YLIStkIR1KJnf5YwD17+MZnntYrS4W0CEDe/6e+dJPw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=s5TC01paLL43eTxonms1l0UTMB4QscnLOYJJh0RDmcC95ZK4NIh4yD4712OZgUuCL
+ tGqNwHCeuKPPfd/Y9RMuzjFpMVmtx4gMtyFak2D4RcHbIe5Vj6uBb69MFJcJn8i1MV
+ LZ3G6cmaomOi4BrrxqreSH1M6xtIAVmo/cePrRxgpg98RMOH0Y27kjzCOFgFY32W9Z
+ YScYRspyy630xCT3XFhu+bPmy9R1s9nWAjo80hSv3xIbOX0venX94Nvrxjj1aRNf4p
+ kRf4aeZrCSzUJ13Por+I5nwALTVi5dTSqYKsEbG78P6SkwRUpll2ijXXo3iGzov5Qj
+ htsykmjAjatjw==
+Date: Mon, 2 Mar 2026 09:46:06 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org
+Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+Message-ID: <20260302-literate-shrew-of-health-ec19d2@houat>
+References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="vlv6rbxnnxkik4dv"
+Content-Disposition: inline
+In-Reply-To: <20260227-color-format-v9-4-658c3b9db7ef@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,85 +89,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: A66491D4C64
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email]
+X-Rspamd-Queue-Id: E1B511D4D15
 X-Rspamd-Action: no action
 
-In the function intel_alpm_init we are reading the ALPM_CAPABILITIES and
-storing them in intel_dp, so appending the function name to _dpcd so as
-to align with other function such as intel_psr_init_dpcd referenced in
-the same function.
 
-Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
----
- drivers/gpu/drm/i915/display/intel_alpm.c | 2 +-
- drivers/gpu/drm/i915/display/intel_alpm.h | 2 +-
- drivers/gpu/drm/i915/display/intel_dp.c   | 2 +-
- 3 files changed, 3 insertions(+), 3 deletions(-)
+--vlv6rbxnnxkik4dv
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 04/19] drm/display: hdmi-state-helper: Act on color
+ format DRM property
+MIME-Version: 1.0
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index b3334bc4d0f9..8ba7463d7fe1 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -42,7 +42,7 @@ bool intel_alpm_is_alpm_aux_less(struct intel_dp *intel_dp,
- 		(crtc_state->has_lobf && intel_alpm_aux_less_wake_supported(intel_dp));
- }
- 
--void intel_alpm_init(struct intel_dp *intel_dp)
-+void intel_alpm_init_dpcd(struct intel_dp *intel_dp)
- {
- 	u8 dpcd;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.h b/drivers/gpu/drm/i915/display/intel_alpm.h
-index 1cf70668ab1b..a24a7a03bdaa 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.h
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.h
-@@ -15,7 +15,7 @@ struct intel_connector;
- struct intel_atomic_state;
- struct intel_crtc;
- 
--void intel_alpm_init(struct intel_dp *intel_dp);
-+void intel_alpm_init_dpcd(struct intel_dp *intel_dp);
- bool intel_alpm_compute_params(struct intel_dp *intel_dp,
- 			       struct intel_crtc_state *crtc_state);
- void intel_alpm_lobf_compute_config(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1544758c0bbc..4e9df88b90cd 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4749,7 +4749,7 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
- 	intel_dp_init_source_oui(intel_dp);
- 
- 	/* Read ALPM DPCD caps before reading the PSR CAPS */
--	intel_alpm_init(intel_dp);
-+	intel_alpm_init_dpcd(intel_dp);
- 
- 	/*
- 	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
--- 
-2.25.1
+Hi,
 
+On Fri, Feb 27, 2026 at 08:20:09PM +0100, Nicolas Frattaroli wrote:
+> With the introduction of the "color format" DRM property, which allows
+> userspace to request a specific color format, the HDMI state helper
+> should implement this.
+>=20
+> Implement it by translating the requested drm_connector_color_format to
+> a drm_output_color_format enum value as per the logic HDMI should use
+> for this: Auto is translated to RGB, and a fallback to YUV420 is only
+> performed if the original color format was auto.
+>=20
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> ---
+>  drivers/gpu/drm/display/drm_hdmi_state_helper.c | 28 +++++++++++++++++++=
+++++--
+>  1 file changed, 26 insertions(+), 2 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gp=
+u/drm/display/drm_hdmi_state_helper.c
+> index 9f3b696aceeb..31c6d55fa995 100644
+> --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+> @@ -669,10 +669,34 @@ hdmi_compute_config(const struct drm_connector *con=
+nector,
+>  	unsigned int max_bpc =3D clamp_t(unsigned int,
+>  				       conn_state->max_bpc,
+>  				       8, connector->max_bpc);
+> +	enum drm_output_color_format fmt;
+>  	int ret;
+> =20
+> -	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+> -				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
+> +	switch (conn_state->color_format) {
+> +	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+> +	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
+> +		break;
+> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
+> +		break;
+> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
+> +		break;
+> +	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
+> +		fmt =3D DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
+> +		break;
+> +	default:
+> +		drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\=
+n",
+> +			    conn_state->color_format);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, f=
+mt);
+> +
+> +	if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO)
+> +		return ret;
+> +
+
+We discussed it before, and it wasn't as trivial as it should have been,
+but now, I really feel something like the following would be simpler:
+
+if (conn_state->color_format !=3D DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
+	enum drm_output_color_format fmt;
+
+	switch (conn_state->color_format) {
+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
+	     drm_warn(connector->dev, "The format shouldn't be auto here"); // or =
+any better message
+	     fallthrough;
+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
+	     fmt =3D DRM_OUTPUT_COLOR_FORMAT_RGB444;
+	     break;
+	....
+	}
+
+	return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
+}
+
+ret =3D hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
+			      DRM_OUTPUT_COLOR_FORMAT_RGB444);
+
+It makes it much clearer what the two branches are, and we don't have to
+test for auto multiple times.
+
+Maxime
+
+--vlv6rbxnnxkik4dv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaaVOSgAKCRAnX84Zoj2+
+duj9AYC6G+CPt23Nm72keJB2VkI/OrdBkSffWrgwixDMIES2m/uxHVPMi8koLjpl
+BYFiCIUBf0RielKN8kXZvqBYg3FOuVBkylhQtEUK3blNIgR3cHtExnVL3+ecatTR
+DqljNp/Vrw==
+=9ih2
+-----END PGP SIGNATURE-----
+
+--vlv6rbxnnxkik4dv--
