@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDZMMFHUpWmvHAAAu9opvQ
+	id UF0zJFjUpWmvHAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:17:53 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:18:00 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 453461DE569
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:17:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id F1F751DE570
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:17:59 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8255410E582;
-	Mon,  2 Mar 2026 18:17:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4622610E57B;
+	Mon,  2 Mar 2026 18:17:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RNOMtIw5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jjA0LXFB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECFE910E582;
- Mon,  2 Mar 2026 18:17:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C883910E584;
+ Mon,  2 Mar 2026 18:17:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772475470; x=1804011470;
+ t=1772475477; x=1804011477;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zJCQwaX01YY5dVaFkmDqAXO6EeTIqd4bykV4YG7N+Ro=;
- b=RNOMtIw5RPn+Eq/jXjsZ9EXTxlw78JK0mnPuTJ/JsSzU73yaT1oPkMR4
- Okcd9ZjCfZuQHcmwL5d+qKJ8NsEZ0IGrxja/Kmn4zdxWRuib/MzVm06G3
- 1WmHAwNRDvAcQo38qczhsrsIo5+NAlk2SXH17C97Jf/JzyAmbaKIzwiPy
- qc1fn4YIpzMgCnIyeVDmT8Lnaeh4H4LUcxAdl/Vg9Qki7Fzzd9w4+njpF
- x8rw/YrLDstUkUcB8Gk/D7UcZNkYEdaX1H8s8/bgxrA3omUAUvqGSVDGh
- RKEMTC1v9VoE+ox1ZEP1maRIXSL3ekglIEoNNt9rb0k8VUQ7nHeYMetwp A==;
-X-CSE-ConnectionGUID: w9kTgG8HR+ilGt0OZQOBEQ==
-X-CSE-MsgGUID: IAf1NuBMSfuaAnk7+q8veQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="77362060"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="77362060"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 10:17:50 -0800
-X-CSE-ConnectionGUID: zoTcvPZoQWSJMQBnSDbqAA==
-X-CSE-MsgGUID: 8rsWyHo5SEKETOENN0c+MQ==
+ bh=UyBqL8rkVBBGgKdFEevxAF2ksJN60GxBh6EB0EeIr8A=;
+ b=jjA0LXFBOQZKoRJt8KKGzuSyyxDahxMD9FgM1O8gv/vt5HpTn9927mg4
+ 1PzSwON+7yDW56KWbZklTu7HO76sBgtPe7wk7q7n38KnZNmd+1y3Dsl/i
+ +IYD/UDs/ePtqXtInymhj0nBUgSDSFCZ5hamtUIzp7VDB93u6CDnEPjQU
+ Y/4LiPq7oYcmqwdiSyOuDiD4xgjMLXdcgwB0Q4DEy47BcCcl05haqDXHf
+ XRfYVrojGoQ2QKHwrSZSDnFFTq2FI7hQUwqzC13Fu4lJRI57gNT9YFDPZ
+ iMLa8wAVdz1OfgDu+KYgI+KwoJcOZl+MF22qLq/WIURpUTQvWwLXfsn5Y g==;
+X-CSE-ConnectionGUID: BkHKTb3xRFK6V2zotmCPFA==
+X-CSE-MsgGUID: yd/DvBeURhia9XVVbiRMZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73400616"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="73400616"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 10:17:55 -0800
+X-CSE-ConnectionGUID: jRRPG4WlS7ScTdVvWSFIeQ==
+X-CSE-MsgGUID: C00fOJ2uStuokrVN7VTmGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="222378056"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="214165506"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.238])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 10:17:48 -0800
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 10:17:53 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/7] drm/i915/gem: relocate __i915_gem_object_{flush,
- invalidate}_frontbuffer()
-Date: Mon,  2 Mar 2026 20:17:33 +0200
-Message-ID: <d779ef44b4b43feda9df63f1225a947a9cd23ba8.1772475391.git.jani.nikula@intel.com>
+Subject: [PATCH 2/7] drm/i915/gem: unify i915 gem object frontbuffer function
+ names
+Date: Mon,  2 Mar 2026 20:17:34 +0200
+Message-ID: <3415b59497f2c3a79586600d259eeaf58be73498.1772475391.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772475391.git.jani.nikula@intel.com>
 References: <cover.1772475391.git.jani.nikula@intel.com>
@@ -76,114 +76,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 453461DE569
+X-Rspamd-Queue-Id: F1F751DE570
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:-];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.990];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Move __i915_gem_object_{flush,invalidate}_frontbuffer() to
-i915_gem_object_frontbuffer.c. All the other i915 gem object frontbuffer
-functions are there already, and the relevant declarations are in
-i915_gem_object_frontbuffer.h too.
+Many of the i915 gem object frontbuffer function names follow the file
+name as prefix. Follow suit with the remaining functions, renaming them
+i915_gem_object_frontbuffer_*().
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_object.c    | 24 -------------------
- .../i915/gem/i915_gem_object_frontbuffer.c    | 24 +++++++++++++++++++
- 2 files changed, 24 insertions(+), 24 deletions(-)
+ drivers/gpu/drm/i915/gem/i915_gem_clflush.c          |  2 +-
+ drivers/gpu/drm/i915/gem/i915_gem_domain.c           |  6 +++---
+ .../gpu/drm/i915/gem/i915_gem_object_frontbuffer.c   |  4 ++--
+ .../gpu/drm/i915/gem/i915_gem_object_frontbuffer.h   | 12 ++++++------
+ drivers/gpu/drm/i915/gem/i915_gem_phys.c             |  4 ++--
+ drivers/gpu/drm/i915/i915_gem.c                      |  6 +++---
+ 6 files changed, 17 insertions(+), 17 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object.c b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-index 798c920160cf..5172d3982654 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object.c
-@@ -474,30 +474,6 @@ static void i915_gem_free_object(struct drm_gem_object *gem_obj)
- 		queue_work(i915->wq, &i915->mm.free_work);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+index 30cc08583cbd..7782ba44fabd 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_clflush.c
+@@ -22,7 +22,7 @@ static void __do_clflush(struct drm_i915_gem_object *obj)
+ 	GEM_BUG_ON(!i915_gem_object_has_pages(obj));
+ 	drm_clflush_sg(obj->mm.pages);
+ 
+-	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_flush(obj, ORIGIN_CPU);
+ }
+ 
+ static void clflush_work(struct dma_fence_work *base)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_domain.c b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+index ef3b14ae2e0d..df7502391b50 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_domain.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_domain.c
+@@ -68,7 +68,7 @@ flush_write_domain(struct drm_i915_gem_object *obj, unsigned int flush_domains)
+ 			i915_vma_flush_writes(vma);
+ 		spin_unlock(&obj->vma.lock);
+ 
+-		i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
++		i915_gem_object_frontbuffer_flush(obj, ORIGIN_CPU);
+ 		break;
+ 
+ 	case I915_GEM_DOMAIN_WC:
+@@ -647,7 +647,7 @@ i915_gem_set_domain_ioctl(struct drm_device *dev, void *data,
+ 	i915_gem_object_unlock(obj);
+ 
+ 	if (!err && write_domain)
+-		i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
++		i915_gem_object_frontbuffer_invalidate(obj, ORIGIN_CPU);
+ 
+ out:
+ 	i915_gem_object_put(obj);
+@@ -759,7 +759,7 @@ int i915_gem_object_prepare_write(struct drm_i915_gem_object *obj,
+ 	}
+ 
+ out:
+-	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_invalidate(obj, ORIGIN_CPU);
+ 	obj->mm.dirty = true;
+ 	/* return with the pages pinned */
+ 	return 0;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
+index 29076aefdfd8..cf0b66eaf11b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
+@@ -102,7 +102,7 @@ void i915_gem_object_frontbuffer_put(struct i915_frontbuffer *front)
+ 		      &i915->frontbuffer_lock);
  }
  
 -void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
--					 enum fb_op_origin origin)
--{
--	struct i915_frontbuffer *front;
--
--	front = i915_gem_object_frontbuffer_lookup(obj);
--	if (front) {
--		intel_frontbuffer_flush(&front->base, origin);
--		i915_gem_object_frontbuffer_put(front);
--	}
--}
--
--void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
--					      enum fb_op_origin origin)
--{
--	struct i915_frontbuffer *front;
--
--	front = i915_gem_object_frontbuffer_lookup(obj);
--	if (front) {
--		intel_frontbuffer_invalidate(&front->base, origin);
--		i915_gem_object_frontbuffer_put(front);
--	}
--}
--
- static void
- i915_gem_object_read_from_page_kmap(struct drm_i915_gem_object *obj, u64 offset, void *dst, int size)
++void __i915_gem_object_frontbuffer_flush(struct drm_i915_gem_object *obj,
+ 					 enum fb_op_origin origin)
  {
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
-index adba3fa96c05..29076aefdfd8 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.c
-@@ -101,3 +101,27 @@ void i915_gem_object_frontbuffer_put(struct i915_frontbuffer *front)
- 	kref_put_lock(&front->ref, frontbuffer_release,
- 		      &i915->frontbuffer_lock);
+ 	struct i915_frontbuffer *front;
+@@ -114,7 +114,7 @@ void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
+ 	}
  }
-+
-+void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
-+					 enum fb_op_origin origin)
-+{
-+	struct i915_frontbuffer *front;
-+
-+	front = i915_gem_object_frontbuffer_lookup(obj);
-+	if (front) {
-+		intel_frontbuffer_flush(&front->base, origin);
-+		i915_gem_object_frontbuffer_put(front);
-+	}
-+}
-+
-+void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
-+					      enum fb_op_origin origin)
-+{
-+	struct i915_frontbuffer *front;
-+
-+	front = i915_gem_object_frontbuffer_lookup(obj);
-+	if (front) {
-+		intel_frontbuffer_invalidate(&front->base, origin);
-+		i915_gem_object_frontbuffer_put(front);
-+	}
-+}
+ 
+-void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
++void __i915_gem_object_frontbuffer_invalidate(struct drm_i915_gem_object *obj,
+ 					      enum fb_op_origin origin)
+ {
+ 	struct i915_frontbuffer *front;
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
+index 2133e29047c5..1c250ce4ca66 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_object_frontbuffer.h
+@@ -20,25 +20,25 @@ struct i915_frontbuffer {
+ 	struct kref ref;
+ };
+ 
+-void __i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
++void __i915_gem_object_frontbuffer_flush(struct drm_i915_gem_object *obj,
+ 					 enum fb_op_origin origin);
+-void __i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
++void __i915_gem_object_frontbuffer_invalidate(struct drm_i915_gem_object *obj,
+ 					      enum fb_op_origin origin);
+ 
+ static inline void
+-i915_gem_object_flush_frontbuffer(struct drm_i915_gem_object *obj,
++i915_gem_object_frontbuffer_flush(struct drm_i915_gem_object *obj,
+ 				  enum fb_op_origin origin)
+ {
+ 	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
+-		__i915_gem_object_flush_frontbuffer(obj, origin);
++		__i915_gem_object_frontbuffer_flush(obj, origin);
+ }
+ 
+ static inline void
+-i915_gem_object_invalidate_frontbuffer(struct drm_i915_gem_object *obj,
++i915_gem_object_frontbuffer_invalidate(struct drm_i915_gem_object *obj,
+ 				       enum fb_op_origin origin)
+ {
+ 	if (unlikely(rcu_access_pointer(obj->frontbuffer)))
+-		__i915_gem_object_invalidate_frontbuffer(obj, origin);
++		__i915_gem_object_frontbuffer_invalidate(obj, origin);
+ }
+ 
+ struct i915_frontbuffer *i915_gem_object_frontbuffer_get(struct drm_i915_gem_object *obj);
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+index ce2780ef97ef..e375afbf458e 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
+@@ -155,7 +155,7 @@ int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
+ 	 * We manually control the domain here and pretend that it
+ 	 * remains coherent i.e. in the GTT domain, like shmem_pwrite.
+ 	 */
+-	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_invalidate(obj, ORIGIN_CPU);
+ 
+ 	if (copy_from_user(vaddr, user_data, args->size))
+ 		return -EFAULT;
+@@ -163,7 +163,7 @@ int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
+ 	drm_clflush_virt_range(vaddr, args->size);
+ 	intel_gt_chipset_flush(to_gt(i915));
+ 
+-	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_flush(obj, ORIGIN_CPU);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/i915_gem.c b/drivers/gpu/drm/i915/i915_gem.c
+index 160733619a4a..761491750914 100644
+--- a/drivers/gpu/drm/i915/i915_gem.c
++++ b/drivers/gpu/drm/i915/i915_gem.c
+@@ -579,7 +579,7 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
+ 		goto out_rpm;
+ 	}
+ 
+-	i915_gem_object_invalidate_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_invalidate(obj, ORIGIN_CPU);
+ 
+ 	user_data = u64_to_user_ptr(args->data_ptr);
+ 	offset = args->offset;
+@@ -626,7 +626,7 @@ i915_gem_gtt_pwrite_fast(struct drm_i915_gem_object *obj,
+ 	}
+ 
+ 	intel_gt_flush_ggtt_writes(ggtt->vm.gt);
+-	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_flush(obj, ORIGIN_CPU);
+ 
+ 	i915_gem_gtt_cleanup(obj, &node, vma);
+ out_rpm:
+@@ -714,7 +714,7 @@ i915_gem_shmem_pwrite(struct drm_i915_gem_object *obj,
+ 		offset = 0;
+ 	}
+ 
+-	i915_gem_object_flush_frontbuffer(obj, ORIGIN_CPU);
++	i915_gem_object_frontbuffer_flush(obj, ORIGIN_CPU);
+ 
+ 	i915_gem_object_unpin_pages(obj);
+ 	return ret;
 -- 
 2.47.3
 
