@@ -2,147 +2,127 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4KmrKWNmpWmx+wUAu9opvQ
+	id 92inLZFnpWkdAAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 11:28:51 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 11:33:53 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1F1F51D67D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 11:28:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91FF21D6960
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 11:33:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 688D610E484;
-	Mon,  2 Mar 2026 10:28:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFDD910E056;
+	Mon,  2 Mar 2026 10:33:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPcUhjGH";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="QgncP8+O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 13C2A10E47D;
- Mon,  2 Mar 2026 10:28:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772447328; x=1803983328;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=TfkoULFu6xB7yfQTwL8Crxme9i4JiSeMPKK4v5Nle1c=;
- b=KPcUhjGHM6qc9dnPXWHqqSm0uAvO8uP182vAYYR5LxIS02Ex3ndkc7sp
- 6wTx5UJbyf6lH9B1UoqurcjxyjJ0ZPS2eoJjBhpINssdx33f14pNFZbjK
- IWnuDlb7w1N9cZk7RpC3yH2RNv0i5ESgXsgBGW8n7fLmqO9/pwnPCbmCx
- oeZWpLIa75U1gsbIwx1KIQCsOPikbxQfhcXjsGcUrivN3Xgi7gEBH+Yns
- J/H0qAQAtZKlBC8izsYORKoRvQhgosIwCQvexJUTgAlcP3O3UsmLdklWp
- ChztQF92HBNOwsJZ9GeiptKFVJs0rKz9aRCEoKm/TeTSR33xoiWM9ePhV g==;
-X-CSE-ConnectionGUID: 0wSqmVsiQUuNjYwmWgZRhA==
-X-CSE-MsgGUID: jRgjdb9yS1S0FoVETQ5tow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="84544635"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="84544635"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 02:28:48 -0800
-X-CSE-ConnectionGUID: WHc4sp4oTe2Ie8aeIfaXJA==
-X-CSE-MsgGUID: wrMJfy0RSJ+UU409k8k7qg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="222584550"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 02:28:47 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 02:28:47 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 02:28:47 -0800
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.39) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 02:28:47 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cmg8E+lv1q7YWMWW7wpS4FcbeeDO5NMNNTAncVl8sElFxq66QWHf0z5IzKQ3I1L1N+rChIsTm26j34oqtGoIbjrDEgk6zmkUCPOGsvZRjgM3qlh85PdZP+cpWDSqVS9OJU1NmcfDt6uOEqVE9QE7P/BABaRR0m/QG4MJHLqzvXfI7/zsVJbanygwnYFSiZWfDWMgTLMQarRzOkLAYuY1n2GbZkSvilE+0aIzSde2ja/BjyX2N6UCtnd3kM/f8yNuL0u8EEDRDU7D8szTc9iZaZhEZiECaeKyRax5meyRkkrkzYK6JgGZMBf1KrfO2vPTQb5+cxpKbNNResIQTbH70A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=PGwEUJB+P1NZJaaM7lPE43ifu3lXoMArhpwomCkQ700=;
- b=aKiSOI06V3vzVqwxTw81pwkIXt86SnTROBy7mI4zsQxFTkHo/MTr2iWi3Yd420hEL3RgUFFWcPDYwseBEsOTqkn+WpzZwPcrNZhNraDqo4vuVUybGKBxGO3mYqhAnoFvk4wtJVXG5gkaLbY1eVPnwXJ9Cs3BabrrwZKd2JIWEbbtcmEmcqosmiMuRjQRvwRwF4Qto6oyXQp0wPe8/GrGZjZ8aUmHtJrHiTrAkKgF9QV26/BdhqqFtMFryZLvfN5hCBrhoCwO1IRyDRmqT61F5vw11IF6YqDiBXCuQco/fjgaFcI9X380Yc43Y+kvh5LTV9WZy/MLfDCyRzGVsxcQ+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
- by PH0PR11MB5879.namprd11.prod.outlook.com (2603:10b6:510:142::5)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.14; Mon, 2 Mar
- 2026 10:28:44 +0000
-Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
- ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9654.015; Mon, 2 Mar 2026
- 10:28:44 +0000
-From: Imre Deak <imre.deak@intel.com>
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH] drm/i915/dp: Fix DSC state computation
-Date: Mon, 2 Mar 2026 12:28:38 +0200
-Message-ID: <20260302102838.1522499-1-imre.deak@intel.com>
-X-Mailer: git-send-email 2.49.1
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: GVYP280CA0030.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:150:f9::11) To SJ0PR11MB4845.namprd11.prod.outlook.com
- (2603:10b6:a03:2d1::10)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|PH0PR11MB5879:EE_
-X-MS-Office365-Filtering-Correlation-Id: b6a06eae-69dc-4962-ad01-08de78467b4f
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|1800799024|366016|376014;
-X-Microsoft-Antispam-Message-Info: E/xrxgjUCNvtcrvDlWt8/d9ZKUmJ9rLOiuRMEPwuD9mnZNI9tDM77YnvMrWa83vibjwMUp5wGYcKteAe1TJ/lcD+0ljtpsCDrBjWnnva+gOez4vtW/4LLUtsgX9DAg5lWbhpTJC5Sf3aSjl1aO+fojpcTaudNp4z7KR0ZlqqPDGfcyaSwp8OAVyS9AoAW6ovX2RdNG6Ws15tl7gbmNG0dkfnlzkyqQxP7sdswulTiO61FBoG0RAwMp8jjYXUNzk0HqvX5qdpMAFoFVE2UBXVJb+7NXe8m+cQ57w3Q/Y7e8hC9c8Y3yTaU3b1BoCy4xY+fgKNidd5g7as5eFuER3Sgb+8LcQE+eVlOxjrTxBYsElJcua5EdtO81rTALX5FwuXRXsg1lyBYa+QC5QQyvf5M4FV8/XpxJwyHIev/Ci8kbJ881UNshgROYx1YyslQngJxKkQI8Qx9dDsjP6eNrJJsyh1TDNniLb7rsVAWJo06UQ99L3g6H2IlXUvN/CJ8htyo+AlbCSSDFBjC/VmPhxGpNpOThgVaW38gJPgSVvJOLYSW0NMJ16GApp+YtU8LlLgjDcy7NmmFsT6Cmt9PxcqwspbjEFDPqGW0aPXEGO+7m8ex5B0iWP+K5fA43G2WEf/ZmOchkmr4wn7oZllNOM+z/WFQwabxxbmOBhF/+KLwW0korYcQhscffFXW/lAqErL
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Fw6iHa21RrFVc85DqJBcwY0j82j3vSjsuNOJgSSVTG86bzTfhnKpmTxte6fR?=
- =?us-ascii?Q?viWSbApKjjDTzyfWBKCqHj2vwZfkDVkIVLidwj0myo2WLaQVsTBiLkmOLynL?=
- =?us-ascii?Q?QZUsPryMsw6QK9Yr/IkeAn6FDSHe/5kXJzeRtEVzM3IbDXrCMzdMfwI+JzdU?=
- =?us-ascii?Q?A6er5pVEZuTCJe7shinzvG8IuyDS9ZzmpTRXJF/SWAC51Lfjx162TCTmBscT?=
- =?us-ascii?Q?FBX7yPWZUg81tRtyIXPFrQ5GzZepRivwPCr2FPE7FRH0ea5vXKOsO417v92P?=
- =?us-ascii?Q?4g/WRKSIrjyqVFMCRnJgGj8KCTvAO90BypkxKGVTebhAWVQ6yStOoDF2+FpA?=
- =?us-ascii?Q?gOzDig7socDcrpXflj5nuIUQNoGZK199pgUh8f9SU07/yMPTb0SOebY/i/eC?=
- =?us-ascii?Q?GjSw1Kpfl3YzlUrDPOivZS5Nikek8lJGm2z9ukO8k2vT0CNBcfZZPhLNQ79o?=
- =?us-ascii?Q?Q6rwmPRo5TDSyGfp+sWL8uF5REtkYQbCe7hDlD1CfuucjLHAItl1uLjI5RaF?=
- =?us-ascii?Q?LuO4qJ5xnCC2XLKU540gAzB4aeVhFKNY/1FVffzfQoJ0xmzvoVvDMHEupLl6?=
- =?us-ascii?Q?LoV+U3K/SgTzIXePLmUgDxE/TsTsyIJFpnFV5vBrJQwYdBXV6zp/11PIrOwV?=
- =?us-ascii?Q?mT98mC1vdRkNzVzusZQGURNXMaqgOEWMSIwsjYgMrk9usZRjQS+4h/raXc2P?=
- =?us-ascii?Q?HRE600i6PUAcEQMPHNWAgScuXCHGVk2yQg4xXkWNSSeODTh1sliIyl5eZ5kV?=
- =?us-ascii?Q?Phf9UR0GbX47FNlRWatuHjtQfNdmUZhu9H2pI6pvkfwJQOvm8c8UnpueC3pS?=
- =?us-ascii?Q?lwH+sGQgiZiDIkx+0WURiJJLzhCbGEOB8PNZ2ZAWeu60vWQHvSFce0LjvDW+?=
- =?us-ascii?Q?dQSKPTaFRXwQT+jP+Ak/sHGfYKNWSsAnUJ3gKdLSXHcEnTk7oyfT0s/hmZXq?=
- =?us-ascii?Q?1Pm5LIJbvpC3Bueenu3dDdO/EOfTCtuJU5T8ywkDxzkfeV+gCNR5oaOpDA7g?=
- =?us-ascii?Q?YCbA5gIhM7xvul8VnyI/XPFxT6UV1jsCiTCYFGedcXfnAqwLJdRkGweeYX8A?=
- =?us-ascii?Q?YEjXmCb091d6dN86Lr0RH2xTbw7C7Qt67aUjX1k51h2ZL8VtymGWecVeRJAH?=
- =?us-ascii?Q?XwnH9boG4c8M7vcVtlLp8IbZRqATEqzMwj5aW1pNVKr3VuC8tbV9uk8qadfl?=
- =?us-ascii?Q?GGPNqR/13yxi52k1CUuoYMR+M94t3IS1xei3utBFCn4cRkUtREDAcc7oo3Pn?=
- =?us-ascii?Q?rtn87UTO8naov7cdD5MF8JXu625lAtVsyaaABV6kVNYy6vG2g8Imgc5ZktGy?=
- =?us-ascii?Q?AvpL4xYhD1PPN0USUZqLsQeHnLgdAyOHGonVuDT0Plei6h2c4lGh/CbwW00j?=
- =?us-ascii?Q?PGlH+cqutdLdWiis2G4DBrpYfOslV/8Xsk9BKLkJT4aGWiKhoaV2nkvvc72m?=
- =?us-ascii?Q?/e/H9fZ2ddFOL139mlLXgzLQ+fWvrB9uz/EL2FmSpVNFF4tDqfOK+e5/E0o+?=
- =?us-ascii?Q?X0wFHpcXLx44HuqY+51ggUtr6wOyZOZhHZfA4FVAZ92igmd7qI81lL8YrDRq?=
- =?us-ascii?Q?Em69oAzNuO+/qYOFo5OKvjPeGWkz3GRqqRWtBYg6w5R8moW8OS59VI0Fd4EJ?=
- =?us-ascii?Q?PrZnmTuzcZo5XhbLiY6esyjzp6YV05vvJW2wkd1bYGnm/YICFrzw07CPOkCC?=
- =?us-ascii?Q?jskfQDenHs0uASrOGhvK1t3Efk5HRXneBm+AcBVHazk4Kbk8Y4iZ+CEbya4R?=
- =?us-ascii?Q?v7NNeMdvzQ=3D=3D?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: b6a06eae-69dc-4962-ad01-08de78467b4f
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 10:28:44.8098 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: gKEk6LsBkCtfrKhyRz1lC9cUBpi7Ilixg7x6EQEIcUqs4oPMhSZ43WKBtq7vi33twqJ22qwKc7zizu1/WGs3Pg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB5879
-X-OriginatorOrg: intel.com
+Received: from mail-wm1-f74.google.com (mail-wm1-f74.google.com
+ [209.85.128.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D681610E056
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 10:33:47 +0000 (UTC)
+Received: by mail-wm1-f74.google.com with SMTP id
+ 5b1f17b1804b1-4830e7c6131so45132885e9.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2026 02:33:47 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20230601; t=1772447626; x=1773052426;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=EnMgJMcaQgCDj7i00Uawlj/G1rJtXPwe1sCLwvhoFHI=;
+ b=QgncP8+OhRI+4ZO8rEr1hLMqQCNpyPYa913C2g4NZbsFSKiVn4mIJpp/iEnsHZeO1E
+ lsaodZ2LnkwcyNbCyQl9x/WxSwEfl66kj3zpjL7cOqjts5WkhS9y2JjM71pRyXlkwsS8
+ COQ/7JVp1OTD0YRFtLfJiKUOEHTNj9oWHJG5XQN+FsPBgK6zU559gnSx45TNjGnv7GOw
+ nknTfDJVJ33lEAQooLqhMJHIozyy1xGkYf/XaG8yaBAu3om7YVvfkXeth/rDBAn/qxoG
+ Mz9zsKFWJt0RDebkUB5Sh726qFrnvt5L744rYG6nPw8PogFWHzQojUmcJGixGN04fZ8x
+ ZFmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772447626; x=1773052426;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=EnMgJMcaQgCDj7i00Uawlj/G1rJtXPwe1sCLwvhoFHI=;
+ b=QlqxWcBE+kvNj9bfGmpTeyZinxXLS1RSBCpFWB3ekRZRghZ3yyp+rhZ0WEzINf35DY
+ sTemgXHFX57Yg15h6VQbDQgsEHR/DF69dyPJ/AAoYTI1/WxO2jF8fhRdeWaYDeIxsGNw
+ 9SGd6oJwUZNgjAtzNL9Qb9H9A58YTXGVs2XzucAM7Fq0Iz4Nf/SvdzWNnTEAeei923hb
+ 3V1BEBYW7ySVqJNPe+TKQrX7HbsTqD0jIGC1RkgGqa099Mck9Y2RUxaEAsrqtPBB0ObL
+ 2s3EtuysCPcVrIVk9aMdbbc8znpQg+6xBVBM7sgRs+NNmjPXDkU82qDWfyScsnKPNB4E
+ aOZA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUj4OYjgSFtduyQs3Pm71e+Tv/LH7KvQqeOvnKnkBItudHs25cG0VSYzuv10T33BLOA3+szSTkLcBk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzB2CIEAIdm5JuU99vavZ5p6IQXx5IyLrL4FBR60lOhQ7T2O4lg
+ 4Pl7ZpYq3a04Z56o1LiXogVLNqTJD6X7MXRB9q6cUs6A9SDEt7WO0WbtNIGj+WstgKU0bqlpOJJ
+ RNTQiZqQRRFKtbTVSaA==
+X-Received: from wmdd1.prod.google.com ([2002:a05:600c:a201:b0:480:3227:a124])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:600c:6383:b0:47d:3ead:7440 with SMTP id
+ 5b1f17b1804b1-483c9bdb683mr186031315e9.32.1772447625915; 
+ Mon, 02 Mar 2026 02:33:45 -0800 (PST)
+Date: Mon, 2 Mar 2026 10:33:45 +0000
+In-Reply-To: <f2f3a8a1-3dbf-4ef9-a89a-a6ec20791d1c@kernel.org>
+Mime-Version: 1.0
+References: <20260227200848.114019-1-david@kernel.org>
+ <20260227200848.114019-3-david@kernel.org>
+ <aaLh2BxSgC9Jl5iS@google.com>
+ <8a27e9ac-2025-4724-a46d-0a7c90894ba7@kernel.org>
+ <aaVf5gv4XjV6Ddt-@google.com>
+ <f2f3a8a1-3dbf-4ef9-a89a-a6ec20791d1c@kernel.org>
+Message-ID: <aaVnifbdxKhBddQp@google.com>
+Subject: Re: [PATCH v1 02/16] mm/memory: remove "zap_details" parameter from
+ zap_page_range_single()
+From: Alice Ryhl <aliceryhl@google.com>
+To: "David Hildenbrand (Arm)" <david@kernel.org>
+Cc: linux-kernel@vger.kernel.org, 
+ "linux-mm @ kvack . org" <linux-mm@kvack.org>,
+ Andrew Morton <akpm@linux-foundation.org>, 
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Jann Horn <jannh@google.com>, 
+ Pedro Falcato <pfalcato@suse.de>, David Rientjes <rientjes@google.com>, 
+ Shakeel Butt <shakeel.butt@linux.dev>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>, 
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, 
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Janosch Frank <frankja@linux.ibm.com>, 
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>, 
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, 
+ Vasily Gorbik <gor@linux.ibm.com>, Jarkko Sakkinen <jarkko@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>, 
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ "Arve =?utf-8?B?SGrDuG5uZXbDpWc=?=" <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, 
+ Christian Brauner <brauner@kernel.org>, Carlos Llamas <cmllamas@google.com>,
+ Ian Abbott <abbotti@mev.co.uk>, 
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>, 
+ Dimitri Sivanich <dimitri.sivanich@hpe.com>, Arnd Bergmann <arnd@arndb.de>, 
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>, 
+ Andrii Nakryiko <andrii@kernel.org>, Peter Zijlstra <peterz@infradead.org>, 
+ Arnaldo Carvalho de Melo <acme@kernel.org>, Namhyung Kim <namhyung@kernel.org>,
+ Andy Lutomirski <luto@kernel.org>, 
+ Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ Eric Dumazet <edumazet@google.com>, 
+ Neal Cardwell <ncardwell@google.com>, "David S. Miller" <davem@davemloft.net>, 
+ David Ahern <dsahern@kernel.org>, Jakub Kicinski <kuba@kernel.org>,
+ Paolo Abeni <pabeni@redhat.com>, 
+ Miguel Ojeda <ojeda@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, 
+ linux-s390@vger.kernel.org, linux-sgx@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-rdma@vger.kernel.org, bpf@vger.kernel.org, 
+ linux-perf-users@vger.kernel.org, linux-fsdevel@vger.kernel.org, 
+ netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, x86@kernel.org
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,118 +139,84 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[imre.deak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS(0.00)[m:david@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-mm@kvack.org,m:akpm@linux-foundation.org,m:lorenzo.stoakes@oracle.com,m:Liam.Howlett@oracle.com,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:jannh@google.com,m:pfalcato@suse.de,m:rientjes@google.com,m:shakeel.butt@linux.dev,m:willy@infradead.org,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:borntraeger@linux.ibm.com,m:frankja@linux.ibm.com,m:imbrenda@linux.ibm.com,m:agordeev@linux.ibm.com,m:gerald.schaefer@linux.ibm.com,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:jarkko@kernel.org,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:gregkh@linuxfoundation.org,m:arve@android.com,m:tkjos@android.com,m:brauner@kernel.org,m:cmllamas@google.com,m:abbotti@mev.co.uk,m:hsweeten@visionengravers.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:jgg@ziepe.ca,m:leon@kernel.org,m:
+ dimitri.sivanich@hpe.com,m:arnd@arndb.de,m:ast@kernel.org,m:daniel@iogearbox.net,m:andrii@kernel.org,m:peterz@infradead.org,m:acme@kernel.org,m:namhyung@kernel.org,m:luto@kernel.org,m:vincenzo.frascino@arm.com,m:edumazet@google.com,m:ncardwell@google.com,m:davem@davemloft.net,m:dsahern@kernel.org,m:kuba@kernel.org,m:pabeni@redhat.com,m:ojeda@kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-s390@vger.kernel.org,m:linux-sgx@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:bpf@vger.kernel.org,m:linux-perf-users@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:netdev@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:x86@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kvack.org,linux-foundation.org,oracle.com,kernel.org,google.com,suse.com,suse.de,linux.dev,infradead.org,linux.ibm.com,ellerman.id.au,redhat.com,alien8.de,linuxfoundation.org,android.com,mev.co.uk,visionengravers.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,ziepe.ca,hpe.com,arndb.de,iogearbox.net,arm.com,davemloft.net,lists.ozlabs.org,lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 1F1F51D67D5
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[73];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[google.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 91FF21D6960
 X-Rspamd-Action: no action
 
-When computing the encoder/CRTC state multiple times, such as during
-iteration over the possible pipe joiner configurations, it must be
-ensured that all state is explicitly initialized each time. At the
-moment, this is not guaranteed for the DSC/FEC state within the
-encoder/CRTC state. In one iteration trying a pipe joiner configuration,
-the DSC state may get initialized without computing the full
-CRTC/encoder state due to the given joiner configuration being
-impossible. When the same CRTC/encoder state is recomputed in a
-subsequent iteration, the previously set non-zero - now stale - DSC/FEC
-state may still be present, which is unexpected if a non-DSC
-configuration is being computed.
+On Mon, Mar 02, 2026 at 11:27:40AM +0100, David Hildenbrand (Arm) wrote:
+> On 3/2/26 11:01, Alice Ryhl wrote:
+> > On Mon, Mar 02, 2026 at 09:18:45AM +0100, David Hildenbrand (Arm) wrote:
+> >> On 2/28/26 13:38, Alice Ryhl wrote:
+> >>>
+> >>>
+> >>> Please run rustfmt on Rust changes. Here, rustfmt leads to this being
+> >>> formatted on a single line:
+> >>
+> >> Having to run tooling I don't even have installed when removing a single
+> >> function parameter; did not expect that :)
+> > 
+> > Well, rustfmt comes with the compiler, and it would be ideal to build
+> > test changes before sending them :)
+> 
+> At least on Ubuntu on my notebook where I do most of the coding+patch
+> submissions it's a separate package?
+> 
+> I do all my builds on a different (more powerful) machine where the
+> whole rust machinery's in place. Further, build bots that run on my
+> private branches did not report any issues.
 
-This can lead to a DSC state mismatch error if multiple joiner
-configurations are evaluated and the working configuration ultimately
-turns out to be a non-DSC one.
+There are some build bots that check for rustfmt, though not all of
+them.
 
-Follow the existing pattern and compute the full (DSC/FEC) state on all
-code paths (including now the non-DSC path as well) to fix the issue.
+> > But no worries, I took care of testing it. Thanks for taking the time to
+> > update the Rust code as well.
+> 
+> I just did an allyesconfig and it does not report any warnings.
+> 
+> So apparently, rustfmt problems not result in the compiler complaining?
+> 
+> Or something else is off here that rust/kernel/mm/virt.rs won't get
+> compiled on my machine, even with allyesconfig. I can definitely see
+> some RUSTC stuff happening in the logs, like
+> 
+> 	RUSTC L rust/kernel.o
+> 
+> Thanks for the review and for pointing out rustfmt!
 
-Fixes: 1f1e3e5c65f6 ("drm/i915/dp: Rework pipe joiner logic in compute_config")
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7512
-Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Signed-off-by: Imre Deak <imre.deak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h     |  1 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c |  2 ++
- 3 files changed, 16 insertions(+)
+Similar to kerneldoc and other similar targets, formatting isn't checked
+in the normal build, but make can be invoked on the rustfmtcheck target
+to check it.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6c25c7595c48..2d9ce21e5bbe 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2457,6 +2457,17 @@ bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
- 	return dsc_enabled_on_crtc || intel_dsc_enabled_on_link(crtc_state);
- }
- 
-+void intel_dp_dsc_reset_config(struct intel_crtc_state *crtc_state)
-+{
-+	crtc_state->fec_enable = false;
-+
-+	crtc_state->dsc.compression_enable = false;
-+	crtc_state->dsc.compressed_bpp_x16 = 0;
-+
-+	memset(&crtc_state->dsc.slice_config, 0, sizeof(crtc_state->dsc.slice_config));
-+	memset(&crtc_state->dsc.config, 0, sizeof(crtc_state->dsc.config));
-+}
-+
- int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 				struct intel_crtc_state *pipe_config,
- 				struct drm_connector_state *conn_state,
-@@ -2888,6 +2899,8 @@ intel_dp_compute_link_for_joined_pipes(struct intel_encoder *encoder,
- 	bool dsc_needed, joiner_needs_dsc;
- 	int ret = 0;
- 
-+	intel_dp_dsc_reset_config(pipe_config);
-+
- 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
- 
- 	dsc_needed = joiner_needs_dsc || intel_dp->force_dsc_en ||
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 57fac7fb837f..fbe43ca3d99f 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -75,6 +75,7 @@ int intel_dp_compute_config(struct intel_encoder *encoder,
- 			    struct drm_connector_state *conn_state);
- bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
- 			      bool dsc_enabled_on_crtc);
-+void intel_dp_dsc_reset_config(struct intel_crtc_state *crtc_state);
- int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 				struct intel_crtc_state *pipe_config,
- 				struct drm_connector_state *conn_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index e73ae4956f9b..90349819dcfb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -610,6 +610,8 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 	bool dsc_needed, joiner_needs_dsc;
- 	int ret = 0;
- 
-+	intel_dp_dsc_reset_config(pipe_config);
-+
- 	joiner_needs_dsc = intel_dp_joiner_needs_dsc(display, num_joined_pipes);
- 
- 	dsc_needed = joiner_needs_dsc || intel_dp->force_dsc_en ||
--- 
-2.49.1
-
+Alice
