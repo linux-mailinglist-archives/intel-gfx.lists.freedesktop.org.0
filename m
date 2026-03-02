@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBRWGs0MpWn60QUAu9opvQ
+	id GGSIHs0MpWn60QUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 05:06:37 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39C861D2E04
+	by mail.lfdr.de (Postfix) with ESMTPS id 4894E1D2E05
 	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 05:06:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 208CF10E42E;
-	Mon,  2 Mar 2026 04:06:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67ED110E433;
+	Mon,  2 Mar 2026 04:06:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mf3AFKG6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B3KeuBR3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF51F10E422;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D0F8D10E424;
  Mon,  2 Mar 2026 04:06:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772424387; x=1803960387;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jFMo56os1gWZapSX53Nnhi2H/SQP61U5v8lMsZ+IJ1A=;
- b=Mf3AFKG6VrHMTVWtm7lYrS96lMS73SEbHxeYQXgK9FUGcLPgad9QRGex
- cI7DVlcOhNR0gNJyWhqe4dth1eKXI6+SqCQY/apZOg/mJbvkovcL+jVdE
- x4ZzwJI6JH737uJpG+BvQOe2PKuC1M2OJtDLT7bPB4nCXQhYwTmJn455C
- Q9xLybX2RUIYkdbcb51p37pexAFMlJJ9zMejhlDJXpRuYnEucP2ma/2f5
- bOrsifTehbduIQDl9XK6i5fJU8djU7YD2BlxxvpDgWwVIxpy7u8qu4Q8h
- UiOdsb2gQZmX5w/IQppYquW0JfIVpF24pIQlAV1uQSHfP6dl9zjyvgGNE Q==;
-X-CSE-ConnectionGUID: RUT4sxKjQju+n6THDlEVJQ==
-X-CSE-MsgGUID: 1ocpooCNRIyeyRDM+MALwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77294435"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="77294435"
+ bh=h738tuJxcg9YmgUkROi6mfIHHRWCthYWYNx+JnGsnTU=;
+ b=B3KeuBR34kz9V4ggwL0XHpxwM5ZlFOKd3XAZk7B1V0/yKIlfJqUvrU3c
+ VpEN6Wtg3U9BSYjLpiT24niouzPjIgX4fjZ1Nxe03jvXvnHs2yr1JB9d+
+ xznZYe3PYvZXr0qGkTt5MRm+Thb1A0dMr+S0IeDEM1gSLNTSz7msAWqyr
+ 05JJG3kVEh4mqH2jGlBZjPse7BOf2ug81XbiDJgjspQ5w7DLFnqiF5rat
+ FMdz9T2D6Knmy85AjjhU+NT5f2HKzXn50dsK66NAEp+xNqxAZUSUGlgon
+ 1Jml6KhBJwqCNfH3Z3Puy8kL3g+ytM/dxftLHeWw1kBGyKDKT9qTUhfx+ w==;
+X-CSE-ConnectionGUID: bfInsWcCT7K+Pq/fcg4wGQ==
+X-CSE-MsgGUID: ih7N2FZ6QLi2UD0RhbybJg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77294438"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="77294438"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2026 20:06:25 -0800
-X-CSE-ConnectionGUID: wyLQ1CmUTiSJUAfvpB+ZTA==
-X-CSE-MsgGUID: sDxqqMh1R7SAXhpXNIFplA==
+ 01 Mar 2026 20:06:26 -0800
+X-CSE-ConnectionGUID: rgxFczGUSKqaODRiyK92pw==
+X-CSE-MsgGUID: b7riYyOlQYWHLlPuTy9e5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="217541009"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="217541017"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 01 Mar 2026 20:06:24 -0800
+ by orviesa008.jf.intel.com with ESMTP; 01 Mar 2026 20:06:25 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [RESEND 4/8] drm/i915/backlight: Check luminance_set when disabling
- PWM via AUX VESA backlight
-Date: Mon,  2 Mar 2026 09:36:09 +0530
-Message-Id: <20260302040613.3324049-5-suraj.kandpal@intel.com>
+Subject: [RESEND 5/8] drm/i915/backlight: Short circuit
+ intel_dp_aux_supports_hdr_backlight
+Date: Mon,  2 Mar 2026 09:36:10 +0530
+Message-Id: <20260302040613.3324049-6-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260302040613.3324049-1-suraj.kandpal@intel.com>
 References: <20260302040613.3324049-1-suraj.kandpal@intel.com>
@@ -98,35 +98,39 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 39C861D2E04
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 4894E1D2E05
 X-Rspamd-Action: no action
 
-When deciding what if PWM funcs need to be disabled take into account
-luminance_set too. We do this since it is also used to decide if
-we are enabling PWM backlight funcs or not.
+intel_dp_aux_supports_hdr_backlight() prints debug message for
+intel HDR backlight version. This is fine when dealing with eDP 1.4b
+and lower. When we are talking about eDP 1.5 it causes confusion in
+logs since we need to use VESA AUX backlight functions but this
+print causes confusion as to which path code take.
+Short circuit this function with a eDP version check. Make sure this
+is only called if eDP <= 1.4b
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index f59a8a1994a1..27e31d063a01 100644
+index 27e31d063a01..6b321c384588 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -511,7 +511,8 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
- 
- 	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
- 
--	if (!panel->backlight.edp.vesa.info.aux_enable)
-+	if (!(panel->backlight.edp.vesa.info.aux_enable ||
-+	      panel->backlight.edp.vesa.info.luminance_set))
- 		panel->backlight.pwm_funcs->disable(old_conn_state,
- 						    intel_backlight_invert_pwm_level(connector, 0));
- }
+@@ -696,8 +696,8 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	 * Also there is a chance some VBTs may advertise false Intel backlight support even if the
+ 	 * TCON DPCD says otherwise. This means we keep VESA interface as fallback in that case.
+ 	 */
+-	if (try_intel_interface && intel_dp_aux_supports_hdr_backlight(connector) &&
+-	    intel_dp->edp_dpcd[0] <= DP_EDP_14b) {
++	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
++	    intel_dp_aux_supports_hdr_backlight(connector)) {
+ 		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using Intel proprietary eDP backlight controls\n",
+ 			    connector->base.base.id, connector->base.name);
+ 		panel->backlight.funcs = &intel_dp_hdr_bl_funcs;
 -- 
 2.34.1
 
