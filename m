@@ -2,66 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NlcEjeOpWmoDgYAu9opvQ
+	id 6D9sFjuQpWmoDgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 14:18:47 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 14:27:23 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A03431D9A3A
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 14:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D475E1D9B8E
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 14:27:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3CA3510E4DB;
-	Mon,  2 Mar 2026 13:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79AEE10E4EE;
+	Mon,  2 Mar 2026 13:27:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VkJrxAI/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mFUeT5B8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3306B10E4DB;
- Mon,  2 Mar 2026 13:18:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACAD010E4EF;
+ Mon,  2 Mar 2026 13:27:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772457523; x=1803993523;
+ t=1772458040; x=1803994040;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=6691Uwbnq6mFo8xT4AENshPMtcltfgExfzPKaGTFitw=;
- b=VkJrxAI/ie/b0G3oPoGn6MKzXUQjcDCZRTsvQPY5TbUzwHWOBzl24/zy
- YbEMlaGlINibV5DRZ7EcaMtVncnDUDm5azyExcL7tV01bjPIOnsV3ZvYm
- x3XCLZ6LdCeaMo+m8gwh9AA6pPOIEq6bTeWcps+PbJ8lFHBKNRluARdPH
- CRIa0prPzmIZj7rzab66G8iA6RDBvvszOY1yOjRCgBMMSNa56+lXWTsMg
- FRHtyzfe9qC+Qh9jT/cND5T5JTAGgt1ltE+aDXkJXhpoqDXFKQZIL0GQz
- gHneTFzdlvmw1+LJg7rteHoT4Vgjw3dzdnsLgbg0k2oRq5XQCBZJi3xlu Q==;
-X-CSE-ConnectionGUID: NRidGnq4TISOhggpUIG4mg==
-X-CSE-MsgGUID: xPOxNOEgSbuuCFDwjT+14g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="84929664"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="84929664"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 05:18:43 -0800
-X-CSE-ConnectionGUID: t6lOompaRh+yRpeM3hgapA==
-X-CSE-MsgGUID: BlGGcrh0SFGvAfn2TzxlUg==
+ bh=Oqvk5frmWrTXoWpOMVRWNeoQPtQgpz706F7RVEFBd8U=;
+ b=mFUeT5B8HJkffLA75PDanZLW+qJRAZ7U7QzlhTG85G+dM/ukIqrsbMAo
+ dHUXOj4oC9YjsjHNHng6pBw/VmhBWMMDkB9UeYW7RW4KNObHSxmNbxAHP
+ +J/o4zww7dT1Fp20oCsZiaz01q/oAY3iuZPmrNczsR38QvIDNYA8PE0/q
+ bT/M5THxdMNL0qNJIkDCswdBG8tlv147FVBVdrhA8ZyQqGKUzcfXXVZRw
+ xPbLaDZMhnApBugeE77eZMYnAI96Z8IFtycAEpuF8BrnL8AyRYIQFuGs8
+ FtbPNtPQwmwmWQLLded/agz7DnP8FyZ/TuLlh8sxWnRCXln87WLPlKMoN A==;
+X-CSE-ConnectionGUID: ZaDFw0RzSlOZ6OixkEYNTA==
+X-CSE-MsgGUID: jq7eQKi4TjSV9FYb22HaUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="84813269"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="84813269"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 05:27:18 -0800
+X-CSE-ConnectionGUID: fSe1HhPeSTicEbb1LXP5TQ==
+X-CSE-MsgGUID: oXJu6FMrQ5CC8Q59IRWlkg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="222285073"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.intranet) ([10.245.246.252])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 05:18:40 -0800
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: igt-dev@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
- Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- =?UTF-8?q?Zbigniew=20Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t] tests/intel/gem_lmem_swapping: Expect gem leak helper
- crashes
-Date: Mon,  2 Mar 2026 14:12:45 +0100
-Message-ID: <20260302131817.3744919-2-janusz.krzysztofik@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
+ by fmviesa003.fm.intel.com with ESMTP; 02 Mar 2026 05:27:16 -0800
+From: Arun R Murthy <arun.r.murthy@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, ankit.k.nautiyal@intel.com, jani.nikula@intel.com,
+ jouni.hogander@intel.com, Arun R Murthy <arun.r.murthy@intel.com>
+Subject: [PATCHv3 1/2] drm/i915/dp: Read ALPM caps after DPCD init
+Date: Mon,  2 Mar 2026 18:56:01 +0530
+Message-Id: <20260302132602.480408-1-arun.r.murthy@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -96,129 +87,52 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: A03431D9A3A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: D475E1D9B8E
 X-Rspamd-Action: no action
 
-When trying to exhaust system memory in order to exercise LMEM eviction
-under OOM conditions, a gem_leak helper process may itself become a victim
-of memory shortage.  If our i915 TTM VM fault handler fails to allocate a
-page and responds with a SIGBUS signal when the helper process is trying
-to store data in a mmaped i915 GEM object with memset then the process
-crashes.  Unfortunately, such crash is not only reported on stdout, strerr
-and dmesg as premature, additional result from the subtest while it is
-still in progress, but also renders the final result as failed.
+For eDP read the ALPM DPCD caps after DPCD initalization and just before
+the PSR init.
 
-Starting subtest: smem-oom
-Starting dynamic subtest: lmem0
-Received signal SIGBUS.
-Stack trace:
- #0 [fatal_sig_handler+0x17b]
- #1 [__sigaction+0x50]
- #2 [__igt_unique____real_main808+0xdbc]
- #3 [main+0x3f]
- #4 [__libc_init_first+0x8a]
- #5 [__libc_start_main+0x8b]
- #6 [_start+0x25]
-Dynamic subtest lmem0: CRASH (20.804s)
-Subtest smem-oom: SUCCESS (20.807s)
-Received signal SIGABRT.
-Stack trace:
- #0 [fatal_sig_handler+0x17b]
- #1 [__sigaction+0x50]
- #2 [pthread_kill+0x11c]
- #3 [gsignal+0x1e]
- #4 [abort+0xdf]
- #5 [<unknown>+0xdf]
- #6 [__assert_fail+0x47]
- #7 [__igt_waitchildren+0x1c0]
- #8 [igt_waitchildren_timeout+0x9d]
- #9 [intel_allocator_multiprocess_stop+0xbb]
- #10 [__igt_unique____real_main808+0x551]
- #11 [main+0x3f]
- #12 [__libc_init_first+0x8a]
- #13 [__libc_start_main+0x8b]
- #14 [_start+0x25]
-(gem_lmem_swapping:2347) CRITICAL: Test assertion failure function test_smem_oom, file ../tests/intel/gem_lmem_swapping.c:777:
-(gem_lmem_swapping:2347) CRITICAL: Failed assertion: lmem_err == 0
-(gem_lmem_swapping:2347) CRITICAL: Last errno: 3, No such process
-(gem_lmem_swapping:2347) CRITICAL: error: 137 != 0
-Dynamic subtest lmem0 failed.
-...
-runner: Dynamic subtest lmem0 result when not inside a subtest. This is a test bug.
-Subtest smem-oom: FAIL (22.672s)
+v2: Move intel_alpm_init to intel_edp_init_dpcd (Jouni)
+v3: Add Fixes with commit-id (Jouni)
 
-Since page allocation failures are unavoidable under OOM conditions, and
-the SIGBUS signal response from our TTM fault handler is correct in such
-cases, catch those signals and let the helper process continue.
-
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
-Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Fixes: 15438b325987 ("drm/i915/alpm: Add compute config for lobf")
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
-That's an improved and better documented new version of my former
-https://patchwork.freedesktop.org/patch/685572/
+ drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
- tests/intel/gem_lmem_swapping.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-index 77e18f1a3c..514423f470 100644
---- a/tests/intel/gem_lmem_swapping.c
-+++ b/tests/intel/gem_lmem_swapping.c
-@@ -11,6 +11,8 @@
- #include "igt_kmod.h"
- #include "runnercomms.h"
- #include <unistd.h>
-+#include <setjmp.h>
-+#include <signal.h>
- #include <stdlib.h>
- #include <stdint.h>
- #include <stdio.h>
-@@ -651,13 +653,21 @@ static void leak(uint64_t alloc)
- 	}
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 025e906b63a9..1544758c0bbc 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4748,6 +4748,9 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
+ 	 */
+ 	intel_dp_init_source_oui(intel_dp);
  
-+static sigjmp_buf sigbus_jmp;
++	/* Read ALPM DPCD caps before reading the PSR CAPS */
++	intel_alpm_init(intel_dp);
 +
-+static void sigbus_handler(int sig, siginfo_t *si, void *ctx)
-+{
-+	siglongjmp(sigbus_jmp, 1);
-+}
-+
- static void gem_leak(int fd, uint64_t alloc)
- {
- 	uint32_t handle = gem_create(fd, alloc);
- 	void *buf;
+ 	/*
+ 	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
+ 	 * for SET_POWER_CAPABLE bit in intel_dp->edp_dpcd[1]
+@@ -6914,8 +6917,6 @@ static bool intel_edp_init_connector(struct intel_dp *intel_dp,
+ 	 */
+ 	intel_hpd_enable_detection(encoder);
  
- 	buf = gem_mmap_offset__fixed(fd, handle, 0, PAGE_SIZE, PROT_WRITE);
--	memset(buf, 0, PAGE_SIZE);
-+	if (!igt_debug_on_f(sigsetjmp(sigbus_jmp, 1), "PID %d: SIGBUS caught\n", getpid()))
-+		memset(buf, 0, PAGE_SIZE);
- 	munmap(buf, PAGE_SIZE);
+-	intel_alpm_init(intel_dp);
+-
+ 	/* Cache DPCD and EDID for edp. */
+ 	has_dpcd = intel_edp_init_dpcd(intel_dp, connector);
  
- 	gem_madvise(fd, handle, I915_MADV_DONTNEED);
-@@ -745,8 +755,14 @@ static void test_smem_oom(int i915,
- 				}
- 			}
- 			igt_fork(child, 1) {
-+				struct sigaction sa = {
-+					.sa_sigaction = sigbus_handler,
-+					.sa_flags = SA_SIGINFO | SA_NODEFER,
-+				};
- 				int fd = drm_reopen_driver(i915);
- 
-+				sigaction(SIGBUS, &sa, NULL);
-+
- 				for (int pass = 0; pass < num_alloc; pass++) {
- 					if (READ_ONCE(*lmem_done))
- 						break;
 -- 
-2.52.0
+2.25.1
 
