@@ -2,67 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LGCMndbpWlc+QUAu9opvQ
+	id uIVyNmVepWlc+QUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 10:42:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 10:54:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38D541D5B16
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 10:42:15 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16EAA1D5CFA
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 10:54:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7382C10E471;
-	Mon,  2 Mar 2026 09:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AEE1810E47A;
+	Mon,  2 Mar 2026 09:54:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RG5Ku3DE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hArpjd1/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8B7010E471;
- Mon,  2 Mar 2026 09:42:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F48E10E47A;
+ Mon,  2 Mar 2026 09:54:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772444533; x=1803980533;
+ t=1772445280; x=1803981280;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=GqZoQURoODrG4SlWqUYNvO+VfsVwKjX27EuH5HpsCDI=;
- b=RG5Ku3DEzUIjLA9Xpl0ElxpvgDN9jHyGF2tA0jIapPz+ojAd8OTbu+qA
- lGsVT84UkT7TNy/FKPWtNVCY9zPQCefwEPVHiTOsKod3eZyRymASPcbKH
- J284jQkKSpL2oPIIQdFCJhb8nAF8mfI4HftpQobkotqPKBNOotyshl8bd
- C4VirqxBNJGzd9AQ/lchv6gKn/xM4LnglFcxlknvCcc+u5u4uh4FkPg4k
- 0QuAlyIx2SIXnA5xhVutoY6neUHt2XuOHde7juj2vB81ok2Uv0I6OMiPS
- z1NHzzOBJ7TNlHuAv8bhaNfH9Xc9Aq9BhDohTH4YdZE6Tuclvv2t8MyF4 Q==;
-X-CSE-ConnectionGUID: zLGPfm3IRUeNBgf5ubXaBA==
-X-CSE-MsgGUID: VhX+aBQqSzemkBcPqrP0+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="73513675"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="73513675"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:42:12 -0800
-X-CSE-ConnectionGUID: rHNVpWlMRf6SrwdhtznOgg==
-X-CSE-MsgGUID: oJO6bKOIS0uzyQmrt3Xuog==
+ bh=K4MMrTe+rvb+RCL/2V5MbkbBSdjlsppF1PJOSsFzFyQ=;
+ b=hArpjd1/hoSTIn4uPqIcgh4x9rns1J/IGG5rrUig4cX9eUFQ7CHulpoT
+ g0wGk2PyDErPaQEpy0FP23WQq05R++0VvnwC2q5bfcmohcjFq5fwIy10w
+ vLNVWHZeD71VpMl7ktKxt2zHmfpp5thJusePRsjLMny94m15PfUbTvh9g
+ I+quG3hBq8R2diNHHiySjCAxafNLJ9rRskahdVb+ultNAQ0xNr6yhE1Rz
+ 63CK/WuWb6RBUexBosngsbl4hUPBsa68JamqL9uzsH3Sg6y7nfps7grXh
+ qqeDK6thzx8hy+z4ew+YTyJYD8JbBDTYTCeu6Nm0I4qLTGObk05b8tVVM g==;
+X-CSE-ConnectionGUID: 7ATLImvVSeWkc/9NVfdS+g==
+X-CSE-MsgGUID: JKL24cfnSDSgf4yLCJ9dgw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="73357578"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="73357578"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 01:54:40 -0800
+X-CSE-ConnectionGUID: 5oxR9HPqQB2Xmahkgtg3pg==
+X-CSE-MsgGUID: P+hcbt7YQXCVN0znwtMYyw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="222235392"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="221756576"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.238])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 01:42:11 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Subject: RE: [PATCH v3 1/8] drm/i915/backlight: Use default/max brightness
- for VESA AUX backlight init
-In-Reply-To: <DM3PPF208195D8DACF643E4D0D138F0128CE375A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 01:54:37 -0800
+From: Jani Nikula <jani.nikula@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: jouni.hogander@intel.com, Animesh Manna <animesh.manna@intel.com>, Arun
+ R Murthy <arun.r.murthy@intel.com>
+Subject: Re: [PATCH v4] drm/i915/display: Panel Replay BW optimization for
+ DP2.0 tunneling
+In-Reply-To: <20260227093923.3170382-1-animesh.manna@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260224034526.2730130-1-suraj.kandpal@intel.com>
- <20260224034526.2730130-2-suraj.kandpal@intel.com>
- <1a76dfe14cbc90b4aaec6f0e54b4e8df9f480efa@intel.com>
- <DM3PPF208195D8DACF643E4D0D138F0128CE375A@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Date: Mon, 02 Mar 2026 11:42:07 +0200
-Message-ID: <9f9be7c4361428b7ccb77dcc04f93b0eda024c8b@intel.com>
+References: <20260227093923.3170382-1-animesh.manna@intel.com>
+Date: Mon, 02 Mar 2026 11:54:34 +0200
+Message-ID: <a6605b447ad026476d7c0da467ac123778be2dbc@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -80,127 +77,187 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 38D541D5B16
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 16EAA1D5CFA
 X-Rspamd-Action: no action
 
-On Wed, 25 Feb 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> Subject: Re: [PATCH v3 1/8] drm/i915/backlight: Use default/max brightness for
->> VESA AUX backlight init
->> 
->> On Tue, 24 Feb 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> > If the brightness fetched from VBT/previous state is 0 on backlight
->> > initialization, then set the brightness to a default/max value.
->> > Whenever the minimum brightness is reported as 0 there are chances we
->> > end up with blank screen. This confuses the user into thinking the
->> > display is acting weird. This occurs in eDP 1.5 when we are using
->> > PANEL_LUMINANCE_OVERRIDE mode to mainpulate brightness via luminance
->> > values.
->> >
->> > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
->> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> > Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
->> > ---
->> > v1 -> v2:
->> > - Let users set brightness to 0, make it so that it's just not done by
->> > default (Arun)
->> >
->> > v2 -> v3:
->> > -Update commit header and message (Arun)
->> >
->> >  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++++
->> >  1 file changed, 4 insertions(+)
->> >
->> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> > b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> > index eb05ef4bd9f6..c40ce310ad97 100644
->> > --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> > +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> > @@ -564,6 +564,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct
->> intel_connector *connector,
->> >  		}
->> >  		panel->backlight.level =
->> intel_dp_aux_vesa_get_backlight(connector, 0);
->> >  		panel->backlight.enabled = panel->backlight.level != 0;
->> > +		if (!panel->backlight.level)
->> > +			panel->backlight.level = panel->backlight.max;
->> 
->> How does this help when .enabled is still based on level != 0 above?
->> 
+On Fri, 27 Feb 2026, Animesh Manna <animesh.manna@intel.com> wrote:
+> Unused bandwidth can be used by external display agents for Panel Replay
+> enabled DP panel during idleness with link on. Enable source to replace
+> dummy data from the display with data from another agent by programming
+> TRANS_DP2_CTL [Panel Replay Tunneling Enable].
 >
-> Well we keep the backlight.enabled as false if we read a 0 back from the DPCD or the current level state is 0.
-> This is to maintain the policy that if during setup we get 0 as backlight value eDP backlight is currently disabled
-> (which means __intel_backlight_enable needs be called). We then change the current level to max so that when
-> backlight enable is called after setup from intel_backlight_update, we enable backlight with max level so that we
-> do not end up with a blank screen. This is also where we set backlight.enabled = true.
-> This is  to tackle different eDP behavior where, some preserve the last brightness value programmed in them (in that case
-> users want the same brightness to continue) while others don't and just 0 it out instead of having some default value (in that
-> case we keep backlight.enabled = false later to be made true during the __intel_backlight_enable call).
-> We face these scenarios in some compositors during the pass key phase where the compositor is still totally not doing everything and does not send
-> us any explicit brightness value to set thinking eDP would have some basic default value of it's own . We end up getting a 0 from DPCD and we enable and set the backlight enable with 0 value which anyways later causes us to call backlight disable.
-> In this case during authentication in some compositors like Fedora there are cases where we do not get a explicitly backlight value till the user has to blindly enter their
-> Passkey, after which the compositor sends us some sane value which we then program.
-
-There's a long history of problems with the PWM backlight unexpectedly
-going from 0 to max.
-
-BR,
-Jani.
-
+> v2:
+> - Enable pr bw optimization along with panel replay enable. [Jani]
 >
-> Regards,
-> Suraj Kandpal
+> v3:
+> - Write TRANS_DP2_CTL once for both bw optimization and panel replay
+> enable. [Jani]
 >
->> >  		drm_dbg_kms(display->drm,
->> >  			    "[CONNECTOR:%d:%s] AUX VESA Nits backlight level
->> is controlled through DPCD\n",
->> >  			    connector->base.base.id, connector->base.name);
->> @@ -573,6
->> > +575,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct
->> intel_connector *connector,
->> >  		if (current_mode ==
->> DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
->> >  			panel->backlight.level = current_level;
->> >  			panel->backlight.enabled = panel->backlight.level != 0;
->> > +			if (!panel->backlight.level)
->> > +				panel->backlight.level = panel->backlight.max;
->> 
->> Ditto.
->> 
->> >  		} else {
->> >  			panel->backlight.level = panel->backlight.max;
->> >  			panel->backlight.enabled = false;
->> 
->> --
->> Jani Nikula, Intel
+> v4:
+> - Read DPCD once in init() and store in panel_replay_caps. [Jouni]
+>
+> Bspec: 68920
+> Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/i915/display/intel_dp.c       |  1 +
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 30 +++++++++++++++++--
+>  4 files changed, 31 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 49e2a9e3ee0e..71411b26e918 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -2265,6 +2265,7 @@
+>  #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
+>  #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
+>  #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
+> +#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
+>  #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
+>  
+>  #define _TRANS_DP2_VFREQHIGH_A			0x600a4
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index e8e4af03a6a6..0b30f9085afb 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -576,6 +576,7 @@ struct intel_connector {
+>  
+>  			bool support;
+>  			bool su_support;
+> +			bool optimization_support;
+>  			enum intel_panel_replay_dsc_support dsc_support;
+>  
+>  			u16 su_w_granularity;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 025e906b63a9..f35aafe1e86f 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -6250,6 +6250,7 @@ intel_dp_detect(struct drm_connector *_connector,
+>  		intel_dp->psr.sink_panel_replay_support = false;
+>  		connector->dp.panel_replay_caps.support = false;
+>  		connector->dp.panel_replay_caps.su_support = false;
+> +		connector->dp.panel_replay_caps.optimization_support = false;
+>  		connector->dp.panel_replay_caps.dsc_support =
+>  			INTEL_DP_PANEL_REPLAY_DSC_NOT_SUPPORTED;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 5bea2eda744b..dc3e4d8885fa 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -43,6 +43,7 @@
+>  #include "intel_dmc.h"
+>  #include "intel_dp.h"
+>  #include "intel_dp_aux.h"
+> +#include "intel_dp_tunnel.h"
+>  #include "intel_dsb.h"
+>  #include "intel_frontbuffer.h"
+>  #include "intel_hdmi.h"
+> @@ -603,6 +604,7 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	int ret;
+> +	u8 val;
+>  
+>  	/* TODO: Enable Panel Replay on MST once it's properly implemented. */
+>  	if (intel_dp->mst_detect == DRM_DP_MST)
+> @@ -650,6 +652,10 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
+>  		    connector->dp.panel_replay_caps.su_support ?
+>  		    "selective_update " : "",
+>  		    panel_replay_dsc_support_str(connector->dp.panel_replay_caps.dsc_support));
+> +
+> +	drm_dp_dpcd_readb(&intel_dp->aux, DP_TUNNELING_CAPABILITIES, &val);
+
+drm_dp_dpcd_read_byte() is preferred over drm_dp_dpcd_readb().
+
+> +	connector->dp.panel_replay_caps.optimization_support =
+> +		(val & DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT) ? true : false;
+
+Drive-by comment, this can be simplified to just:
+
+	connector->dp.panel_replay_caps.optimization_support = val & DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT;
+
+>  }
+>  
+>  static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector)
+> @@ -1022,11 +1028,29 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
+>  	return frames_before_su_entry;
+>  }
+>  
+> +static bool intel_psr_allow_pr_bw_optimization(struct intel_dp *intel_dp)
+> +{
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +	struct intel_connector *connector = intel_dp->attached_connector;
+> +
+> +	if (DISPLAY_VER(display) < 35)
+> +		return false;
+> +
+> +	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
+> +		return false;
+> +
+> +	if (!(connector->dp.panel_replay_caps.optimization_support))
+
+Excess parenthesis.
+
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+>  static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+>  	struct intel_psr *psr = &intel_dp->psr;
+>  	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
+> +	u32 dp2_ctl_val = TRANS_DP2_PANEL_REPLAY_ENABLE;
+>  
+>  	if (intel_dp_is_edp(intel_dp) && psr->sel_update_enabled) {
+>  		u32 val = psr->su_region_et_enabled ?
+> @@ -1039,12 +1063,14 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
+>  			       val);
+>  	}
+>  
+> +	if (!intel_dp_is_edp(intel_dp) && intel_psr_allow_pr_bw_optimization(intel_dp))
+> +		dp2_ctl_val |= TRANS_DP2_PR_TUNNELING_ENABLE;
+> +
+>  	intel_de_rmw(display,
+>  		     PSR2_MAN_TRK_CTL(display, intel_dp->psr.transcoder),
+>  		     0, ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME);
+>  
+> -	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
+> -		     TRANS_DP2_PANEL_REPLAY_ENABLE);
+> +	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0, dp2_ctl_val);
+>  }
+>  
+>  static void hsw_activate_psr2(struct intel_dp *intel_dp)
 
 -- 
 Jani Nikula, Intel
