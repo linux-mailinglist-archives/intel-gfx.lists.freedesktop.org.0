@@ -2,165 +2,143 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WA6YKSVGpWkg7AUAu9opvQ
+	id sHLuKjW5pWmDFQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 09:11:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 17:22:13 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22A951D4749
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 09:11:17 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DB861DCAE5
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 17:22:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7DF510E451;
-	Mon,  2 Mar 2026 08:11:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 21DB910E54B;
+	Mon,  2 Mar 2026 16:22:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GnwX8SX3";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VtcHjAcd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 748F510E450;
- Mon,  2 Mar 2026 08:11:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772439074; x=1803975074;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=YccodgtGZCD/9XVxI1q3K/c0CCwlA291XiW0sWbA7BE=;
- b=GnwX8SX3S/K2kUWHsSDh1gsaNpt5beeGD5KXimPjU8PifUV0DyT6BvcT
- lR+EeF1jV9KmuXVrVq0rZjgHLA/c7s+amdDMg0SQrtkrlZKexKQnFi04L
- zsONZNLvYWo+XfNK/BsbNrtgVVKLFHPiLH3HYIav5uLUEbl49wHbJenFV
- 4gY9UtVt1j8Nn0aJ7z6hU41TdrC/53OR49ZxaIXdY5sL+Z6nez1uIQ5n4
- Z6qkEKUb3SH6Kpm+MiHe2WjaPCbgAqSdjRdiTf+xCBhYVSBzL+ejJyGUd
- PRGBncQwSdnBcxHB5AIkxitiryghzwFYNMUm4z9eLCWgc1VpNL01cfL3W A==;
-X-CSE-ConnectionGUID: lXjhvpSeQVupWH5S6a4wAA==
-X-CSE-MsgGUID: taamdjmfRyq7XDYSdNPczg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77280156"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="77280156"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 00:11:14 -0800
-X-CSE-ConnectionGUID: 749vwH23Qfivpqrc9RH5Kg==
-X-CSE-MsgGUID: A1M99ksRTZa+hioto9RvDQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="248078858"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 00:11:14 -0800
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 00:11:13 -0800
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 2 Mar 2026 00:11:13 -0800
-Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.57) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 2 Mar 2026 00:11:13 -0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=LM1Mj8PORVry+bE7GnkjZruTpuR55HQdZ/VIWslcbiWvHQSyVOXDOg30kuwle2zQtEGOlii9y0HaahwCWpcZnoZGttgZxpFgoUfujxFOL/p3EM0DBKIxmRelOsKzfKji0m6vJAkZdMNVHMkUS+ZBBctXidijLIVloBWoE2I2WLMUatFZw/aWCcOaquG0rZknUuDnLSlgJr1CRdSsL38cK57VHnd0QP5c3ZI9KRFKthog7J1YAFIIBbWRE+fx9YTP2M1s5hnnWgiwmOS4nIqKwNGIEoxky2pSDdYrpgMs1ex7BTZ9d9bif3YLVwc35Vrp3krG4cdJMAeCU6LQ5pklNA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=f5VjDqv8CWAE829Y8cc7sLeBUYPZ2crfqIPMwxX3vIo=;
- b=Y7iWg/CyNAnSRDQ0ZUHhxt2/KcZBmbMfDZ1j4uH4ud4XamMK5RbKTFUt9J+jdmxP2QDLCNLvkdKcJjfDwqONLBiDkYpEpwxFvzu3wy8RZ+znPCCNYP4kw5g5MJ13TTxQzInMrlGWkzkKiYqLsYHi7H8besWO3vjV2TJrxaEPw0a+5lrNvkgDEiQVCObI578MPl8ESUiAu1qADRPjGLO2fxqFmOHVckQbYTFIvNAiPukvZp+ETlR5rvENzaLd7DQ3a0lQmXxv+ngXCef5n8M/tXTO1lqIW0FQvyfe1wNV1y3T2NIIwrlwzFSTX4Sj7MCUly0vHOqiTehaKIliBdzn6w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
- by LV4PR11MB9489.namprd11.prod.outlook.com (2603:10b6:408:2e4::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
- 2026 08:11:12 +0000
-Received: from IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
- ([fe80::9d4a:f89:f548:dbc7%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 08:11:12 +0000
-Message-ID: <da60a6a4-7fab-42d5-b806-942cab4bde62@intel.com>
-Date: Mon, 2 Mar 2026 13:41:05 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/dp: ALPM init to be done after DPCD init
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nikula, Jani" <jani.nikula@intel.com>, "Manna, Animesh"
- <animesh.manna@intel.com>, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-References: <20260302033630.428913-1-arun.r.murthy@intel.com>
- <46978246247b387d6d1de157d037014e7c132531.camel@intel.com>
- <67c075b6-ff7c-45fb-9b23-906a9ed98355@intel.com>
- <1bec280e94efd93069cf807703a41f5c631341d3.camel@intel.com>
-Content-Language: en-US
-From: "Murthy, Arun R" <arun.r.murthy@intel.com>
-In-Reply-To: <1bec280e94efd93069cf807703a41f5c631341d3.camel@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0102.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d4::6) To IA0PR11MB7307.namprd11.prod.outlook.com
- (2603:10b6:208:437::10)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BBB710E453;
+ Mon,  2 Mar 2026 08:19:07 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 81674600AD;
+ Mon,  2 Mar 2026 08:19:05 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A42C3C19423;
+ Mon,  2 Mar 2026 08:18:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772439545;
+ bh=WmUymOIJMfyfhcBz2h3rfkkfmDcPbAvC1z+3AaqwZ0g=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=VtcHjAcdNUspXks9MnWnffCAOqhBHNybP+7Ni7w8KdFY/trDOnhcMQKmf8ZqBAo9v
+ 2oPq6TzzmlTs/C9RNRmZ/bhgByD+u1nfj6UxwxomjOQCu2sY9HuCtu0I3smP44soG1
+ z3JiHjnOWXVROlMpnAOszR6Llw0KBEFBuQA/dpMNDX95fR6stQpR5WnTZjAG5K+8C3
+ J8dr/QWrvH7T+g/mBKT5sBlBT5fQFIHiyIyYAdI/Wil4qScmZd5DeCh046NcNpwp9+
+ rTrW2LUZVcITpNBX5owhZeWoh57rxakj8ZFLJUaCvflED3tgx9mlEtXGwa4FzT086v
+ UCdEEMmXLFPAA==
+Message-ID: <8a27e9ac-2025-4724-a46d-0a7c90894ba7@kernel.org>
+Date: Mon, 2 Mar 2026 09:18:45 +0100
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|LV4PR11MB9489:EE_
-X-MS-Office365-Filtering-Correlation-Id: 08c1cb1c-df92-4ec1-b773-08de7833445a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;ARA:13230040|376014|366016|1800799024;
-X-Microsoft-Antispam-Message-Info: mMtMn9VHnVbt+MJUr5T5BmIAHsqwGAHXPOHUGmocX2F2dlpScCcg4yFiSsKqVjMKYQ99lR+n5AUXtqOr13V1ClOIYilW0RGo71IgIk6IARDnsPLiDvAGVq4lk4bXEe5/dPOOReAgR3Oi1jk5LjQHC7CWYvkrxHzMaaL2mO9f6xOYfLhCVYItJis17xpdXg0aHTYFvRMrRp11CKaP1gV5L8gd3E8+Ssajm6pnloSKvDqccHRc65lWfMheATm2wPBFjAsmK0qmj8yCchO0CE43gx+/DaFNiBR9jdByqm3G/Iup9Q8u0w5lmleDRoOEQiSYNKHO714ITooI0FrMA5BxFA7CmFSBgOMMBIS0pExUaePpjw+mBk2RQWLpLIsHVR5ZseHrrNTm43Z1tGBTkpu6oilKiiZrvSZSVXCglFGI92WLKdztOyl3ydI/C0GBEXgbGRKtyqe2NEZAx16WHhwTyyKeR+ZeDa0qkPeGVNSDiYgo8nTnXAY1XSsniIxoJgn9sQn/nsq7yHPI/XljZPS8pCQP+HYIVAi39vE37MyR2RIXH7ty7SQxVSAMqAwnNbNEVTOU4qq4tW64bbCf+56jRYtnr1qPSfRD/RkXq4byw/W5SU+iGWhAzlaGsHu6E+arlbY5IayRAPTSd7lnJFfG95z8vc/In98U9xaBQUL20j9siwdcOgQmLd30oCvrp1I6
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024); DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VGJVcW9taVAxU0VCV0JWQXZGbjZzY2IxWnRubnoyN25PYnpiZXFPUHE1RDZI?=
- =?utf-8?B?blRCVytnVVdORDJzbkpiV2VsdGppWk9sOGk4Ym5jZTdBMUs1Vi9nT3R0RE9z?=
- =?utf-8?B?TmpudXM5ZUZoWFl1S2oyVFNqWU9ielhLUGQwTGZ5VVFkZUd2eFBjd1JCOGs3?=
- =?utf-8?B?TlUwWWtBbW42SUxZRm9KaVRjRWZPcmtnR0JzRU9RenVSUUJ4Z1pGSEUveWEz?=
- =?utf-8?B?RTdnVEhDMzZsYmUzSDEyVHBiWTdOQzVHVm94eFJuYnBXNWFHcHZFbWdwbHZU?=
- =?utf-8?B?RXlpTEhPRXBnRTFOVDlqSHM0MlBWT0hSOU13eForVVNBWGdENlpPdXQ3UGFD?=
- =?utf-8?B?V1lLdXNmUHFEWnNvM0trcCtrNGtoN1BNd0Z1M2s2aHpFeHBaMmN6UW1MQXhH?=
- =?utf-8?B?Tm1TSzNhUnl2Z1kwYWgwQVhNWHlnQ0s2UkF5TmRxMnRxNlRjUUdEeE5vM3JB?=
- =?utf-8?B?V1E1dmNXblpWRzZac1g4RldsbmExRDRTczZXOUQrb2dLc3JNeUFCQW0rL0Mx?=
- =?utf-8?B?SGxHcDZKVEMwUTEyWUxqRUNIUEdTNWhXdUxhWHh2Y1VRNHRSRVZBWDQ3Q214?=
- =?utf-8?B?Yzc1OTVFd01PSGtuZGFRRDc5QzFsaS9OeW5GSjhmbXlwcnpvalRxeTNaNlU4?=
- =?utf-8?B?QlZ1eFJ2dXlhVmF0N1BMbDArZnUxVzdmTEZ4UVdxSVNOc0RBaWlEQkZJd0NQ?=
- =?utf-8?B?OTJsc1AzWm15TU5paTJxQ0grdk04YmZkcithZHRWdHNmVWEzS0lTRy91Tjdw?=
- =?utf-8?B?bUc3VU9hd0xJTG5tNWVFZzFmTGJRUU82QVgrcitFb3MrcXFXV010eVp1UEg4?=
- =?utf-8?B?WElTNnZYaC9ZK3orblUrT2FTV2hLNGRVeDdHM1drRXdtSU0rcC9yaFFNZjUv?=
- =?utf-8?B?eTQ2cUc4a0ZiOVdxT1F6VTdQSEhtc1pWRG4yMFRCczdyNFdVcFBTMzU5anY5?=
- =?utf-8?B?RXVYY01TWDd4VzZnNHFxMkQxS3B3VGs0U1c3Um8vVk8zZ3QvTW4wRVF3U1Ns?=
- =?utf-8?B?TmRxTGdUZDJtd3huZ0g4bVlGMW1wR2Z3WkpqdmxhMURZY3ZpV0ZtekFSZ24z?=
- =?utf-8?B?ejBqODJVNjk2ZmxKcHQrQTlOSGdBdWxaQ1V5a1VDREh4WWhDMGYwMTNKK2Vn?=
- =?utf-8?B?QmI2V2xkN2FXQXM1OTRiYVhvcE9LRGY0NDJHZXJOSnVkUUVmaUk0UE5iTTg2?=
- =?utf-8?B?SFYyTDljRURTRTlOclNSSkVSSzlXQm5RZnRldzFUWm5aRnk0Mk0wRWZ0QkR4?=
- =?utf-8?B?QWFOV0h5U1VRTW82MDhUY3RTMjhBWEhhWG5FcDRNN3MxY0tONlBwbWxvelJq?=
- =?utf-8?B?c0crUTQreE1YVkhheE85NnljSzdzWVdoMmVVVlNWNVZTRmVOTk52NlVCbUlk?=
- =?utf-8?B?TnpqRDhDbCtLNE9VYmpuZThiY3FtR3I5dlV0dHNzTWEvWFR1VzhFVEhOWGZH?=
- =?utf-8?B?QitIY3h4V2VjMGxTZkFDRVpvZENKakhwQ3JjMERwclFnOXhldktwY1BTZUJp?=
- =?utf-8?B?cGpKWlp3R0Z0SUZXWGh2RWMvSUhZVE5NaHYvMEhwM1JRM2VJRlhOMFltNXFa?=
- =?utf-8?B?bVpheE4xLzdGc1A4dE9GSmJVYXJxQ0hPZ1EreHBQd1lxYUZ4Tk1UQTFENzJk?=
- =?utf-8?B?MFpaaHN1bC9zNXNGTmhCdzFjcHpXa1I5UkVLOEprb05MNFJ2dHRxOVZnS290?=
- =?utf-8?B?ekRSYnhQODI1a0xWT2wwS20wQzdpc1Nqck1JZE9mQ3NqSjlsOGxTOTh5ZVdh?=
- =?utf-8?B?WUZKaWF6VGlmeWlWTWVNeGtOK1dDNXJCaUR3VkhnamloTGYxc1lUTkVnRlc1?=
- =?utf-8?B?c1JtR09PTXVRdWpzelRJdmdFVVFEV0VUZzQ5SVdoSllYLzUveDNZczJqRDlm?=
- =?utf-8?B?NE9oZ3BSNjdDLzkwNWNYUHZWeEVUd2l6ZTVUbzYrN2F0S09lUncxamY4aEtY?=
- =?utf-8?B?bUd4SzNtSkliUmMwR2QvaklJbnkxK2N1NmlHNHIwU3M2eFRIek9nMHkxRVJT?=
- =?utf-8?B?L0RQUTJJNEdrUXA2RS96cDFlYjExN3VFRlJTUFhNYzRMbkZ4dE9rSDZ2ZzI2?=
- =?utf-8?B?NjMrK0lQRlZKTi9SblhLVFVMNVhndmVtcUxQVlA1aDhndmhtN1k2ODhnR2dr?=
- =?utf-8?B?cHZUZWJjaWd6dHpvMXlaZ1JYeHdsYnZ6SUczUGRqYUE3elpTREhmVmtRSmxI?=
- =?utf-8?B?V3pCbVRpOUx2NVlmUVFZTWRjRWJyVlF4SXRXQ2RZbG1PZ2NUdXl6UUVBWjAz?=
- =?utf-8?B?a1lNZUxQVVJQTnBBN2xBb3JmZkQyYTBYd3B2Wno0cm5CQ2VHZUsxc3lBRWZY?=
- =?utf-8?B?N2ZmdnlzdVpXeU05bjdtOFJSZ2tEOXQxR3ZQUlVXVC9RZEl3Yy9lQT09?=
-X-MS-Exchange-CrossTenant-Network-Message-Id: 08c1cb1c-df92-4ec1-b773-08de7833445a
-X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 08:11:12.2000 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ALjM4NTadpcpvFXU3Yu2pMXbDV0zOcKgn1Jy00l11GrjYrAEqSqOaKz1ckmkxZg3fdWcBShgdZLaHC96MJla0A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV4PR11MB9489
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v1 02/16] mm/memory: remove "zap_details" parameter from
+ zap_page_range_single()
+To: Alice Ryhl <aliceryhl@google.com>
+Cc: linux-kernel@vger.kernel.org, "linux-mm @ kvack . org"
+ <linux-mm@kvack.org>, Andrew Morton <akpm@linux-foundation.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>,
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
+ David Rientjes <rientjes@google.com>, Shakeel Butt <shakeel.butt@linux.dev>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Janosch Frank <frankja@linux.ibm.com>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
+ Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
+ Jarkko Sakkinen <jarkko@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
+ Todd Kjos <tkjos@android.com>, Christian Brauner <brauner@kernel.org>,
+ Carlos Llamas <cmllamas@google.com>, Ian Abbott <abbotti@mev.co.uk>,
+ H Hartley Sweeten <hsweeten@visionengravers.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jason Gunthorpe <jgg@ziepe.ca>,
+ Leon Romanovsky <leon@kernel.org>,
+ Dimitri Sivanich <dimitri.sivanich@hpe.com>, Arnd Bergmann <arnd@arndb.de>,
+ Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
+ Andrii Nakryiko <andrii@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Namhyung Kim <namhyung@kernel.org>, Andy Lutomirski <luto@kernel.org>,
+ Vincenzo Frascino <vincenzo.frascino@arm.com>,
+ Eric Dumazet <edumazet@google.com>, Neal Cardwell <ncardwell@google.com>,
+ "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
+ Miguel Ojeda <ojeda@kernel.org>, linuxppc-dev@lists.ozlabs.org,
+ kvm@vger.kernel.org, linux-s390@vger.kernel.org, linux-sgx@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, bpf@vger.kernel.org,
+ linux-perf-users@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, x86@kernel.org
+References: <20260227200848.114019-1-david@kernel.org>
+ <20260227200848.114019-3-david@kernel.org> <aaLh2BxSgC9Jl5iS@google.com>
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Content-Language: en-US
+Autocrypt: addr=david@kernel.org; keydata=
+ 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
+ qIws/H2t
+In-Reply-To: <aaLh2BxSgC9Jl5iS@google.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Mon, 02 Mar 2026 16:22:03 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,112 +153,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
+X-Rspamd-Queue-Id: 2DB861DCAE5
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kvack.org,linux-foundation.org,oracle.com,kernel.org,google.com,suse.com,suse.de,linux.dev,infradead.org,linux.ibm.com,ellerman.id.au,redhat.com,alien8.de,linuxfoundation.org,android.com,mev.co.uk,visionengravers.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,ziepe.ca,hpe.com,arndb.de,iogearbox.net,arm.com,davemloft.net,lists.ozlabs.org,lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_GT_50(0.00)[73];
+	FROM_NEQ_ENVFROM(0.00)[david@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 22A951D4749
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On 02-03-2026 13:30, Hogander, Jouni wrote:
-> On Mon, 2026-03-02 at 12:50 +0530, Murthy, Arun R wrote:
->> On 02-03-2026 12:14, Hogander, Jouni wrote:
->>> On Mon, 2026-03-02 at 09:06 +0530, Arun R Murthy wrote:
->>>> In ALPM init, the DPCD register ALPM_CAPABILITIES are to be read.
->>>> This
->>>> read has to happen after the DPCD init.
->>>>
->>>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
->>>>    1 file changed, 2 insertions(+), 2 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c
->>>> b/drivers/gpu/drm/i915/display/intel_dp.c
->>>> index 613559d11133..e60802b0b8c9 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>>> @@ -6948,8 +6948,6 @@ static bool intel_edp_init_connector(struct
->>>> intel_dp *intel_dp,
->>>>    	 */
->>>>    	intel_hpd_enable_detection(encoder);
->>>>    
->>>> -	intel_alpm_init(intel_dp);
->>>> -
->>>>    	/* Cache DPCD and EDID for edp. */
->>>>    	has_dpcd = intel_edp_init_dpcd(intel_dp, connector);
->>>>    
->>>> @@ -6961,6 +6959,8 @@ static bool intel_edp_init_connector(struct
->>>> intel_dp *intel_dp,
->>>>    		goto out_vdd_off;
->>>>    	}
->>>>    
->>>> +	intel_alpm_init(intel_dp);
->>> This will cause problems to PSR/Panel Replay. intel_psr_init_dpcd
->>> is
->>> relying on ALPM dpcd init is done first.
->>>
->>> BR,
->>> Jouni Högander
->> I think this will also have to be moved down.
+On 2/28/26 13:38, Alice Ryhl wrote:
+> On Fri, Feb 27, 2026 at 09:08:33PM +0100, David Hildenbrand (Arm) wrote:
+>> Nobody except memory.c should really set that parameter to non-NULL. So
+>> let's just drop it and make unmap_mapping_range_vma() use
+>> zap_page_range_single_batched() instead.
 >>
->> For eDP intel_psr_init_dpcd() is called in intel_edp_init_dpcd.
->> So can
->> we move intel_alpm_init inside intel_edp_init_dpcd() ? Just before
->> calling intel_psr_init_dpcd !
->> Also rename intel_alpm_init() to intel_alpm_init_dpcd() ?
-> Animesh has some ongoing work related:
->
-> https://patchwork.freedesktop.org/patch/687711/?series=156417&rev=4
-I think we can still go ahead with those. The one that I am trying to 
-fix is move alpm_init inside intel_edp_init_dpcd() just before 
-intel_psr_init_dpcd().
+>> Signed-off-by: David Hildenbrand (Arm) <david@kernel.org>
+> 
+>> diff --git a/rust/kernel/mm/virt.rs b/rust/kernel/mm/virt.rs
+>> index da21d65ccd20..b8e59e4420f3 100644
+>> --- a/rust/kernel/mm/virt.rs
+>> +++ b/rust/kernel/mm/virt.rs
+>> @@ -124,7 +124,7 @@ pub fn zap_page_range_single(&self, address: usize, size: usize) {
+>>          // sufficient for this method call. This method has no requirements on the vma flags. The
+>>          // address range is checked to be within the vma.
+>>          unsafe {
+>> -            bindings::zap_page_range_single(self.as_ptr(), address, size, core::ptr::null_mut())
+>> +            bindings::zap_page_range_single(self.as_ptr(), address, size)
+>>          };
+> 
+> Please run rustfmt on Rust changes. Here, rustfmt leads to this being
+> formatted on a single line:
 
-Will float a patch with the said changes.
+Having to run tooling I don't even have installed when removing a single
+function parameter; did not expect that :)
 
-Thanks for the review.
+> 
+> unsafe { bindings::zap_page_range_single(self.as_ptr(), address, size) };
+> 
+
+@Andrew, can you squash:
+
+From 5128f2e34d219722a8883c1fa94e057bd34601f2 Mon Sep 17 00:00:00 2001
+From: "David Hildenbrand (Arm)" <david@kernel.org>
+Date: Mon, 2 Mar 2026 09:17:19 +0100
+Subject: [PATCH] fixup: mm/memory: remove zap_details parameter from
+ zap_page_range_single()
+
+Signed-off-by: David Hildenbrand (Arm) <david@kernel.org>
+---
+ rust/kernel/mm/virt.rs | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/rust/kernel/mm/virt.rs b/rust/kernel/mm/virt.rs
+index b8e59e4420f3..6bfd91cfa1f4 100644
+--- a/rust/kernel/mm/virt.rs
++++ b/rust/kernel/mm/virt.rs
+@@ -123,9 +123,7 @@ pub fn zap_page_range_single(&self, address: usize, size: usize) {
+         // SAFETY: By the type invariants, the caller has read access to this VMA, which is
+         // sufficient for this method call. This method has no requirements on the vma flags. The
+         // address range is checked to be within the vma.
+-        unsafe {
+-            bindings::zap_page_range_single(self.as_ptr(), address, size)
+-        };
++        unsafe { bindings::zap_page_range_single(self.as_ptr(), address, size) };
+     }
+ 
+     /// If the [`VM_MIXEDMAP`] flag is set, returns a [`VmaMixedMap`] to this VMA, otherwise
+-- 
+2.43.0
 
 
-Thanks and Regards,
-Arun R Murthy
---------------------
 
->
-> I think it should be ok to move and rename it. That mutex_init within
-> should be handled somehow.
->
-> BR,
-> Jouni Högander
->
->> Thanks and Regards,
->> Arun R Murthy
->> --------------------
->>
->>>> +
->>>>    	/*
->>>>    	 * VBT and straps are liars. Also check HPD as that
->>>> seems
->>>>    	 * to be the most reliable piece of information
->>>> available.
+> with the above changed:
+> 
+> Acked-by: Alice Ryhl <aliceryhl@google.com> # Rust and Binder
+
+Thanks!
+
+-- 
+Cheers,
+
+David
