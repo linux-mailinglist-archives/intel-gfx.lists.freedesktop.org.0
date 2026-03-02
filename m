@@ -2,161 +2,93 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KOq+AauBpWl1CgYAu9opvQ
+	id AHp4NdaDpWmxCwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:25:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:34:30 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5089A1D8437
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:25:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6911D89E5
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 13:34:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFF510E4B4;
-	Mon,  2 Mar 2026 12:25:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B34A10E4BA;
+	Mon,  2 Mar 2026 12:34:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="KBYMifQK";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="SuOpfMFo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CY3PR05CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11013011.outbound.protection.outlook.com
- [40.93.201.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 95BBF10E132;
- Mon,  2 Mar 2026 12:25:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZZqLfqh0Dh2ke4LPalcFGgGm0aB1ax2lD9f2lPQ/0K/1Og6d1YuwETkW4K2EA1rb4tSWU+utQ+1QQCDq8Rre58nWYYE+Fn12DsEKclK6lf+w42c3tcAOlBRnuRo0tV10frOq57tDKushRfAfztWm+ChiebjIwaKu/ZZi9IJzaalh2b6657dCDocvhzpvwtbGI2F9oz14Djb7CvdILQTtw8K6jw1L1NG8kokLXHeQU+3emV2j8u3dchXIJELlB+I6eOoWq6YFC904LQTxmXVTMfN+7h1w5Olbw8XQz/XLrwXJf0w59Cac8aUGd5rgUGpFyJjlqaxZEj2suwMjul53Pg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=oRtM+8Vup8Ovrp94ZOUNbyMQq63e4kB6wKBui8gwLrA=;
- b=sbUSsJe9jaL2QHcRQN4cItNIrht6Ud0DFDvdw86me7FbxrlvlnWDYLB/0cvEG2FFtKXa6nmnbSYur/1OljFc0N1RIpMUqyJ/m3ThBQWc5NnR4/M1kNyfMauh4yH9XYPECkrsz8LnV15A1xS1vfAmlPApQsXw0M82SG5JHEej2EIJqPqq14PdKJ5sEWolGugCvEynVHmBTOS2TYOSzpsT4U7ycCCUm06kWwKY6QZSb30X/3qsgkzTHDKpPK0YJC3PalB99qd6ANw4s2jbv8kifcVau7QQhE9k8JyVDkq1anenGm3Uy/hCndrMppdqVmhuwaPFwNahJ7aQbVu3uEIJtQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oRtM+8Vup8Ovrp94ZOUNbyMQq63e4kB6wKBui8gwLrA=;
- b=KBYMifQKiQUyS/uzsRM7y1okb4C5Z0nEhs1fn5+gZVH+U8y88NJjWtECL3mPjMb52XLPRhPnltitbg3crqqO7XaKbp6WXSpghzonD3zDNHB/yOee1zrhYn/unzrix9eaDYDO3Q7dP8bmoi5uVQ3guoWTfkAK+GZLwOQOCvqGawjvV9Aa135kHkOhnhn6WY+wr8nFY8QkHMN5a4zJG86+Lm7Sfk+HCRYb966yAaPePG9Ant0QWIAsrM2Th1cEieWXpMD4UOHcrYRvmtxRUgA5QjILSskTdIVD19KwT17j+TVSun8FR77lOazReOjk59ZpSAyGCbfJLSu+IaT233UFvQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com (2603:10b6:610:28::18)
- by CH3PR12MB8511.namprd12.prod.outlook.com (2603:10b6:610:15c::13)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.20; Mon, 2 Mar
- 2026 12:23:47 +0000
-Received: from CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989]) by CH2PR12MB3990.namprd12.prod.outlook.com
- ([fe80::7de1:4fe5:8ead:5989%6]) with mapi id 15.20.9654.020; Mon, 2 Mar 2026
- 12:23:47 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 02 Mar 2026 21:23:43 +0900
-Message-Id: <DGSAL1J55O3B.2LYEQ5VAIEM62@nvidia.com>
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Danilo
- Krummrich" <dakr@kernel.org>, "Dave Airlie" <airlied@redhat.com>, "Daniel
- Almeida" <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>, <rust-for-linux@vger.kernel.org>, "Nikola
- Djukic" <ndjukic@nvidia.com>, "Maarten Lankhorst"
- <maarten.lankhorst@linux.intel.com>, "Maxime Ripard" <mripard@kernel.org>,
- "Simona Vetter" <simona@ffwll.ch>, "Jonathan Corbet" <corbet@lwn.net>,
- "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "Alistair Popple"
- <apopple@nvidia.com>, "Andrea Righi" <arighi@nvidia.com>, "Zhi Wang"
- <zhiw@nvidia.com>, "Philipp Stanner" <phasta@kernel.org>, "Elle Rhumsaa"
- <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, "Eliot Courtney"
- <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v8 06/25] gpu: nova-core: mm: Add support to use PRAMIN
- windows to write to VRAM
-From: "Alexandre Courbot" <acourbot@nvidia.com>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>, "Zhi Wang" <zhiw@nvidia.com>,
- "Danilo Krummrich" <dakr@kernel.org>, "Gary Guo" <gary@kernel.org>
-References: <20260224225323.3312204-1-joelagnelf@nvidia.com>
- <20260224225323.3312204-7-joelagnelf@nvidia.com>
-In-Reply-To: <20260224225323.3312204-7-joelagnelf@nvidia.com>
-X-ClientProxiedBy: TYCP286CA0334.JPNP286.PROD.OUTLOOK.COM
- (2603:1096:400:38e::12) To CH2PR12MB3990.namprd12.prod.outlook.com
- (2603:10b6:610:28::18)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1AB2B10E4B8
+ for <intel-gfx@lists.freedesktop.org>; Mon,  2 Mar 2026 12:34:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1772454866;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=3doa6HfxdfxJ1p5CQxQkAhxxDryXGM6DiFWfZesWQ/A=;
+ b=SuOpfMFoTuz46JJTocBxbsrTuM6PNNZwqHfK7Q0VSdVUhW1s4d8Wo1cQlymtiCPKT4MiJ9
+ YLBeIH5vDlZsgF2omL3HnUMqw2UPrqSRy2ufhgRgQhj+Cx69VSLb8S/dktbpf12ZXQb+9F
+ 4gKG/ffh4+5ZUnfZNpAh1ndF8RKRxlU=
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-98-XZmZMmxHO3eLodoslL9rYw-1; Mon, 02 Mar 2026 07:34:23 -0500
+X-MC-Unique: XZmZMmxHO3eLodoslL9rYw-1
+X-Mimecast-MFC-AGG-ID: XZmZMmxHO3eLodoslL9rYw_1772454863
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-506c0da79c5so437345971cf.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 02 Mar 2026 04:34:23 -0800 (PST)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772454863; x=1773059663;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=3doa6HfxdfxJ1p5CQxQkAhxxDryXGM6DiFWfZesWQ/A=;
+ b=DQWOO1e1Y6C6PcaczoDDWun/j8HcRLH+/nONzaS5aaFd43WfVZSbSz19C/VxKPu6PQ
+ wp/VFXi45zn22ojf3aBeRWD8YGE/qA8ZFqZt7EtWPhPWFsCIKcvJqeQdk/re37Zv8vYf
+ lrPBDy7wMIKJ1rU7UbvobZtJ2ViAM0DDoHlISKHZh1f+5TRLALhg9k2TgRKMzThQAwRY
+ vVpbRYCsb/+kvxOSyPJybPOD0HkJg1BcYsbzpkbIZqCJcTjJIuJfikhBWYGeXaHgVRCP
+ HpNxgHFgeSYoy9Y+2uhbTzdcmhslzqbsYkOeREhMkQC9L0Y7Lbegdn5v6+L33dtZpkWp
+ m+lQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVZ1cYmyGV0XvS7TCplwsGoOsB5eS4IcDFzWbeH3eqj80vXCoYgKpUD3ChJO8iEIB+NZugQJleA3Ws=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwF7dILGQADOVKRIte71o8j4HkToCaMQ9kos2z7/vuXGW+9W9sj
+ Dv52pbl2jYwtojNqoeZyKSnrfdQ/ZpKAF8w9mwyk62eKLwLgz2hHUja23SFsJSyRWSGPsaeuEF7
+ Y+UK44fO+b48axfCZzEEfyvdynZr2m9Y/Htx7cFCDa0jvL0Y9JUkduFYiZyHZRFBXlab/j8vn+x
+ Ooa+A54IHhYyxDqRwbdE3jdG/KL7uGBYsc+CViirlfVYp/
+X-Gm-Gg: ATEYQzx9V0tE+9ercIYCpYp/09JCiJxUXHIX+1y5zYzHhFQLFHltlLWwG3+96zK2Z4U
+ qVTNpG7/Tbd8NsNFimGj/vah7Rh5mWBIFO692jpnISdrfCN/PnnDc/5c/VwP9IQXOZJLa2xyewT
+ D5VM9KyV8xuU4TZPlrG/VDslUGFI0I1SGhIhhLe1t8yVw9rOzKugJ9d2J4ZQxotCbl5cW4uI7C5
+ bFMUS4=
+X-Received: by 2002:ac8:7f49:0:b0:502:a1c6:4ee with SMTP id
+ d75a77b69052e-50752714b06mr153678741cf.1.1772454862533; 
+ Mon, 02 Mar 2026 04:34:22 -0800 (PST)
+X-Received: by 2002:ac8:7f49:0:b0:502:a1c6:4ee with SMTP id
+ d75a77b69052e-50752714b06mr153678311cf.1.1772454862031; Mon, 02 Mar 2026
+ 04:34:22 -0800 (PST)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CH2PR12MB3990:EE_|CH3PR12MB8511:EE_
-X-MS-Office365-Filtering-Correlation-Id: aaffaedc-08d0-4123-c2fe-08de78568d88
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|1800799024|10070799003|366016; 
-X-Microsoft-Antispam-Message-Info: O9Vszd3hFXnRMtYA2KiwlJm7rUjYorWk1SJnJXdsFVg3FgQj51EfjfigW6uiF9T+T9iRZFKsq1ienvggAgtzVof9vXzDI7ZciCf7rFu2prrKvBLSqwiNPaZ+sv0Bn3VyviOSvTWigNol4hZB/6IQXpc1HWnlwhXCJUT8EYtRJsncnusRoUnuns/J1Xpjoenslig+Vk9/FFERsWWmuillwKa7i78aF6pJQUyRgQ5ZVPAakx6KiIb/znGYCeda3jTFPQt9n0zEOc87dS5DX58c6pN3zI9bCuKbpmn0Wf5QHhYePP79vRzcotpNX8Sc1LsBdkCHqVVamERrqPvMlnpFszSTZ0loDpnZA8O+az5/+qy2W1RUgfT1QQBiTWby9I3s6kwAcjbFi0rlHMHNbysNzm7eVfRiM40wcZPSB/xFGh9ITjjK1OHq/WjQ1ibRz/NU97FDqXDrzD2vgide8h01rdU3JPdrMOm0UnfhjoFmXNLKfV3DOCw/dBlC05L1cB8kRlW6/nke7h/rdoWPdqyfxYZ65S4BtWM3dXBoLbUvAOK96JrDuKbaWZEXJBxsC4EMyBA/H/JPo1XxNiAYkTXI4zWjFHNTAce3ilZR3sOuco2YYxe2w8MivzGmExNXmUSNOTD7yIwMm3Mo5IN2sJoYIFhAMG9wgm4iyDOnU49KX6k/6zvmSDzwxy5Ifro6acKKKOvhc8DAdTsUp4Zrs3KUF/+V13SosMJaw587jw7wiy8=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH2PR12MB3990.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(1800799024)(10070799003)(366016); DIR:OUT;
- SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MHRWYVM2d1dGQVVlL3VVSW92RGNZSG9JSnh0eDgyK3ZBZ3BsRVk4TU5LaUNW?=
- =?utf-8?B?aysrQ083SFRMSHRxdkM1bldyK0pIaURqZzF0cXlVT1J5RWtVWGluYkhxR3R5?=
- =?utf-8?B?N2RhTnZMb0NmU0lDeUFxd0o4UXBPdThaZ2tRS0RtQld4YU1wZ3AzTjhhTUpU?=
- =?utf-8?B?RjFuT1V3cm1HOGtGQ2VMdXlPL0VGaFBXaGRBSzRhN2luYjFTUmdXWWorUDE2?=
- =?utf-8?B?bVkrMlR6WFN5WHJVT2VabkwyU0NqT0ROUHA3SnBNQUx1U3FHN3locExLUlNx?=
- =?utf-8?B?bVJqcUlDWTdUbzAxQmlWVFJpYWxWVUpEWWlIM2pwbUZpODF2MGxSVERINzE5?=
- =?utf-8?B?ektVdnVrV21PL05GVk0yZExMYVBEeTM3UEY0LzRnTnlXbGJONmRrcm4xcXp0?=
- =?utf-8?B?cC95N2w2RlB5enc3a1BLU3E1U2orVUZWejU5WUhsWG53ek1sTlBId3I3S3U2?=
- =?utf-8?B?RHA1L0UyRGg5MWd5QU40VWs5QTIyNVFhblV1YVN1UVZmM3VMM09MZy9KNEFQ?=
- =?utf-8?B?VWtZanNORVRkUHl1QkU0K2h0QUpETlIvRXRFOVp0Y2Q1VmpKT1l6V2VLbUdD?=
- =?utf-8?B?QkJmekg3VHExZnROQkNtL29zVmhKcEFNcFBiVUdZU0tXcDVjaGhKeThDc1F0?=
- =?utf-8?B?L0pvSG00MnZSZlhLVS9MdUtwT25ZM3c5dXlTUXlqdmNnUHhsZWxmcmxvSE9N?=
- =?utf-8?B?emZDdzBEZk1pelJSWFl1YUJvNlVYeDRlNlNpbUxCRkZyRm41TG9XN1FLTE9D?=
- =?utf-8?B?OWJnd0E1T2QzZDdpOHZVVkNFQVovNFpSQ0ZlQVh6dy9TS2R3NDZNM3dVcDRG?=
- =?utf-8?B?Y1VNTTR5SFI0RXRLcDF2Z0tCUzg5dFdjUWtuVCtRaVcwWHZNY2EzYzlTRHlL?=
- =?utf-8?B?RGxVbVlLU0FTVHUvWXd0U0pEUkxvNWhkV3oya0xsVjN2MVJyOVNzekErRDJr?=
- =?utf-8?B?Vno4RHJyNkpYQThKSFFZbFdRUVJ4Wkg4K0FrUXZkaStWT3FNTGJrdnROeFQy?=
- =?utf-8?B?M3FRb0R4L1NrQU9oVDJVUXNSOFhKcWFoK3FwTzcwUzczbVRKUkVJbTJXUy9y?=
- =?utf-8?B?R242b2g3TnNPZ2tKZDByTCtBOGFGUnFIMi91VndrekR1blNrZU8wSnA1dFZv?=
- =?utf-8?B?K0RXODlmTC9Za2c1dkJDWjlPNVMxSHZyWEFBeDFxYUlhUWtnV01heTZYRzc1?=
- =?utf-8?B?NHBxZE1HaTk0OTRVYjlMbWFoVEdXOGcyV2tOZ2pzc2Y2eUl4SkdDYmRYMzIr?=
- =?utf-8?B?ZHNqWVplN1JSVGQvYXZlSUZYUm9reHJ4Y3RSZTBJeFRma09BZWZ1cHF2Vnpw?=
- =?utf-8?B?QlcxOGgzL09sT1hQa3RDbUpSQVNXVjFuMVBnTnU4Rkc2ZTVVclB1VDl6N3Fr?=
- =?utf-8?B?eEd3UUpmajFGTkVIdEVtQnlpa1NCdjlhb2ZIRXVpZnZZV2lRU3d6LzlUR1VL?=
- =?utf-8?B?ZmhuVFVXNkRJR2RsM2tDS3lmOU5BamQ3ZUdzTEp0aXMxUklxRENqL01PZXd0?=
- =?utf-8?B?YllJbFhzT01ZZzRjZFMwWkk2d2ZROVExVStxWEFNOHQzVHlGMTBySFAwcmV3?=
- =?utf-8?B?MTl4Yjlia2FTcWZkekZheXd5ZVRKSURseW13VG5jK1VNa2NBN2FLczVyVU0v?=
- =?utf-8?B?YTUwU3FuMmdTUkV0NlRmajVoYk03cFozT0RPQkc2bXE4WUlmcXJMWlMwZFhN?=
- =?utf-8?B?NlpaZE43QUZqME80M2dSQkUrVjBPWU9QL0d0SnpMZmxVV1hhWU13OGhUWnJP?=
- =?utf-8?B?eUpSNWw5UVFxK1djdVk2MlhBeFFpN1dnUllzZlY2bkEzVkJ3REZRUE5YZjB6?=
- =?utf-8?B?alMvM2dNbm1aTmUxRWYzSi9qY1lYemNFVlJUQmw1S3ZnQnJZVGJ5bGwrRUxh?=
- =?utf-8?B?SmQ2WGlhWWJKSTF5UmpvV0hpOWZkWGtON1VPWUM5Qnl5ekI3RHBLTnhPK2xG?=
- =?utf-8?B?czFHeG1zVnF5S2poUkU2d1FDR2c4M1ZHMVB0V2I2Ky9VQ0h2Q0Y2aHgrYlFI?=
- =?utf-8?B?MGt2SzZyZ1drTGRsV2c5YitUcjZ6RWd1QmRva1pWaDVhekxScnRzamlCRnp1?=
- =?utf-8?B?NHlXVTZTaHl2N2JyYmwvNm85aWtLUUdWL21mOStnckxwdzh6aHhaRWVoQ3cv?=
- =?utf-8?B?YWNmc01kMkRYdGFGbTNoZlF5ZjlaSTN3UzFJRll1TnpBdUsyTmFLRTBQRytQ?=
- =?utf-8?B?SFpBU0M1aThNTDQ1b1o0VWd5Vm43aVhQb3ZxR1ZyUkZQbTdTeHlnamUrSFpM?=
- =?utf-8?B?U0hhRDVkWTRaQVdkQU1jS1NWYlJkNzFpMGtsWEFpUy91K0JOcWY2U0grM0s2?=
- =?utf-8?B?S0MwbHlLZjRUVHQwbVhNUnFDdnc2ZzZRay9oVWtyNUFUWGp2bW5RYTQwR2d2?=
- =?utf-8?Q?wNR1bUv7w4pxd2giMQ3FLhff/VQSYQixdmJNuMnNdSkKn?=
-X-MS-Exchange-AntiSpam-MessageData-1: 4cLXdO94khu4Ww==
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: aaffaedc-08d0-4123-c2fe-08de78568d88
-X-MS-Exchange-CrossTenant-AuthSource: CH2PR12MB3990.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Mar 2026 12:23:47.2271 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 3cdFwNSmy9DZlHHYlntWOu40uC0czgYHD1gT4LNN50H8lAUodLc6kBTyHk5tQtlPG77f1YLv9N9/CgeA+gl0nw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8511
+References: <20260228130946.50919-2-ltao@redhat.com>
+ <31690b028081ba72ca9babf2d09417376e10f2f1@intel.com>
+In-Reply-To: <31690b028081ba72ca9babf2d09417376e10f2f1@intel.com>
+From: Tao Liu <ltao@redhat.com>
+Date: Tue, 3 Mar 2026 01:33:44 +1300
+X-Gm-Features: AaiRm52a0YHO0oHtZTipmB5LVpX2kFAg8VVxT3gl0IBhaHYmqB6zATtNCm8_Zxk
+Message-ID: <CAO7dBbV2AtmXRCQkNgYvaAVW8S_jWoQgqC6c1k83H-aug_tNeA@mail.gmail.com>
+Subject: Re: [PATCH] i915: Fix NULL pointer dereference in
+ intel_dmc_update_dc6_allowed_count()
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com, 
+ tursulin@ursulin.net, airlied@gmail.com, simona@ffwll.ch, imre.deak@intel.com, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, kexec@lists.infradead.org, 
+ linux-kernel@vger.kernel.org
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: Mqr57V0oYJmWYy-W45iI7ykoq731eDLft6GIraKvS5s_1772454863
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -172,60 +104,164 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:imre.deak@intel.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:kexec@lists.infradead.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,gmail.com,weathered-steel.dev,joelfernandes.org];
+	FORGED_SENDER(0.00)[ltao@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FREEMAIL_CC(0.00)[intel.com,linux.intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,lists.infradead.org,vger.kernel.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[52];
-	FROM_NEQ_ENVFROM(0.00)[acourbot@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5089A1D8437
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[ltao@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	NEURAL_HAM(-0.00)[-0.992];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 8D6911D89E5
 X-Rspamd-Action: no action
 
-On Wed Feb 25, 2026 at 7:53 AM JST, Joel Fernandes wrote:
-> PRAMIN apertures are a crucial mechanism to direct read/write to VRAM.
-> Add support for the same.
+On Mon, Mar 2, 2026 at 10:14=E2=80=AFPM Jani Nikula <jani.nikula@linux.inte=
+l.com> wrote:
+>
+> On Sun, 01 Mar 2026, Tao Liu <ltao@redhat.com> wrote:
+> > There is a NULL pointer dereference issue noticed in i915 when 2nd kern=
+el
+> > bootup during kdump. This will panic 2nd kernel and lead to no vmcore
+> > generation. The issue is observed in Meteorlake CPU(cpuid: 0xA06A2):
+>
+> The previously posted fix is [1].
 
-A few design thoughts that are not immediately actionable, but might
-become this cycle if we get a tag with the new `Io` work.
+Thanks for the link, I didn't notice it. For kdump case, as far as I
+have tested, only adding (!dmc) check for
+intel_dmc_update_dc6_allowed_count() is sufficient to allow kdump to
+work.
 
-Basically this feature is a prime candidate for an `Io` implementation.
-It maps onto the BAR, has a fixed 1MB size, and needs to be accessed
-using various sizes. It is also used to fill structured values, which
-the I/O projection work will also allow us to do.
+Thanks,
+Tao Liu
 
-The current design doesn't allow the user to explicitly set the start of
-the sliding window - this results in a sub-optimal usage of the hardware
-and more complex code in this module. At this level, we just want
-something that exposes the hardware as it is, i.e. "give me a view of
-the 1MB of VRAM starting from this 64K-aligned address".
+>
+> Imre, please R-b that. It's a NULL pointer dereference in the wild, in
+> stable kernels. We need to get it fixed instead of bikeshedding on
+> potential incorrect debugfs results.
+>
+> BR,
+> Jani.
+>
+>
+> [1] https://lore.kernel.org/r/20251202183950.2450315-1-jani.nikula@intel.=
+com
+>
+>
+> >
+> >     BUG: kernel NULL pointer dereference, address: 0000000000000000
+> >     #PF: supervisor read access in kernel mode
+> >     #PF: error_code(0x0000) - not-present page
+> >     PGD 0 P4D 0
+> >     Oops: Oops: 0000 [#1] SMP NOPTI
+> >     ...
+> >     RIP: 0010:intel_dmc_update_dc6_allowed_count+0x16/0xa0 [i915]
+> >     ...
+> >
+> > It is easy to locate the NULL pointer dereference by disassembly:
+> >
+> >     00000000001171e0 <intel_dmc_update_dc6_allowed_count>:
+> >       1171e0:       f3 0f 1e fa             endbr64
+> >       1171e4:       e8 00 00 00 00          call   1171e9
+> >       1171e9:       41 55                   push   %r13
+> >       1171eb:       41 54                   push   %r12
+> >       1171ed:       55                      push   %rbp
+> >       1171ee:       53                      push   %rbx
+> >       1171ef:       4c 8b a7 18 03 00 00    mov    0x318(%rdi),%r12
+> >       1171f6:       49 8b 2c 24             mov    (%r12),%rbp
+> >
+> > To fix this, add a NULL pointer check before dereferencing.
+> >
+> > Signed-off-by: Tao Liu <ltao@redhat.com>
+> > ---
+> >
+> > The issue doesn't happen in 1st kernel, but in 2nd kernel of kdump. I'm=
+ not
+> > an expert to i915 and unsure what lead to the NULL pointer. To help fur=
+ther
+> > analysis, here is the full stack:
+> >
+> > [    8.608520]  <TASK>
+> > [    8.610652]  gen9_set_dc_state.part.0+0x25d/0x2f0 [i915]
+> > [    8.616096]  icl_display_core_init+0x2d/0x620 [i915]
+> > [    8.621266]  intel_power_domains_init_hw+0x1b2/0x500 [i915]
+> > [    8.627047]  intel_display_driver_probe_noirq+0x87/0x300 [i915]
+> > [    8.633188]  i915_driver_probe+0x207/0x5d0 [i915]
+> > [    8.637977]  ? drm_privacy_screen_get+0x198/0x1c0
+> > [    8.642832]  local_pci_probe+0x41/0x90
+> > [    8.646646]  pci_call_probe+0x58/0x160
+> > [    8.650458]  ? pci_assign_irq+0x2f/0x160
+> > [    8.654447]  ? pci_match_device+0xf8/0x120
+> > [    8.658522]  pci_device_probe+0x95/0x140
+> > [    8.662582]  call_driver_probe+0x27/0x110
+> > [    8.666570]  really_probe+0xcc/0x2c0
+> > [    8.670190]  __driver_probe_device+0x78/0x120
+> > [    8.674692]  driver_probe_device+0x1f/0xa0
+> > [    8.678857]  __driver_attach+0xfa/0x230
+> > [    8.682757]  ? __pfx___driver_attach+0x10/0x10
+> > [    8.687185]  bus_for_each_dev+0x8e/0xe0
+> > [    8.691159]  bus_add_driver+0x11f/0x200
+> > [    8.694970]  driver_register+0x72/0xd0
+> > [    8.698853]  i915_init+0x26/0x90 [i915]
+> > [    8.702837]  ? __pfx_i915_init+0x10/0x10 [i915]
+> > [    8.707433]  do_one_initcall+0x5c/0x320
+> > [    8.711409]  do_init_module+0x60/0x240
+> > [    8.715132]  init_module_from_file+0xd6/0x130
+> > [    8.719634]  idempotent_init_module+0x114/0x310
+> > [    8.724241]  __x64_sys_finit_module+0x71/0xe0
+> > [    8.728671]  do_syscall_64+0x11b/0x6d0
+> > [    8.732483]  ? ksys_read+0x6b/0xe0
+> > [    8.735854]  ? arch_exit_to_user_mode_prepare.isra.0+0xa2/0xd0
+> > [    8.741768]  ? do_syscall_64+0x153/0x6d0
+> > [    8.745828]  ? do_syscall_64+0x153/0x6d0
+> > [    8.749814]  ? do_syscall_64+0x153/0x6d0
+> > [    8.753800]  ? clear_bhb_loop+0x30/0x80
+> > [    8.757700]  entry_SYSCALL_64_after_hwframe+0x76/0x7e
+> >
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_dmc.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm=
+/i915/display/intel_dmc.c
+> > index 1006b060c3f3..fd2756badc0c 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > @@ -1578,7 +1578,7 @@ void intel_dmc_update_dc6_allowed_count(struct in=
+tel_display *display,
+> >       struct intel_dmc *dmc =3D display_to_dmc(display);
+> >       u32 dc5_cur_count;
+> >
+> > -     if (DISPLAY_VER(dmc->display) < 14)
+> > +     if (!dmc || DISPLAY_VER(dmc->display) < 14)
+> >               return;
+> >
+> >       dc5_cur_count =3D intel_de_read(dmc->display, DG1_DMC_DEBUG_DC5_C=
+OUNT);
+>
+> --
+> Jani Nikula, Intel
+>
 
-Then on top of that we can implement another type that handles the
-window automatically if we want, but I don't think we will actually need
-it. The page table code will most likely want to set the window to the
-start of its structure, project it, and access it using compile-time
-checked offsets.
-
-If that turns out to be insufficient, we can always compose something
-more complex from this basic piece - but the base `Pramin` should stay
-simple and truthful to the underlying hardware IMHO.
