@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBmaEmnUpWmvHAAAu9opvQ
+	id +PDeFG7UpWmvHAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:18:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:18:22 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF5361DE58D
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:18:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF96A1DE594
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 19:18:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C36610E585;
-	Mon,  2 Mar 2026 18:18:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4128610E58A;
+	Mon,  2 Mar 2026 18:18:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ehROxxll";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Max25J1w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C415810E58B;
- Mon,  2 Mar 2026 18:18:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4451610E587;
+ Mon,  2 Mar 2026 18:18:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772475494; x=1804011494;
+ t=1772475498; x=1804011498;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=lNui6aExhvK6I3pLbZ3+p9kAK1HRrrMEH0JVhzfu3NA=;
- b=ehROxxll8YP+Cn/EsgLHZhOFfUggfknr/tiDwktAmVsvg7ZT/Fte5llk
- 1BcNyBcSSBZSLVDdEgIXt4U162LkXtLOWtaBZ+7xIxNeDXR1vPg/aroc5
- nEIT4Wrj7r/tsq1vz8Jwu6R4Rp4KcM1iDuhmDF9YothG/PSlc/sBJHie7
- 3gJScm8mP9BY1+jvx+eRMJxw8XtyRrztNS2DpUn9fl1JGQHhoz4a9JalR
- 92w3JwfKsCcpRL5PZ/NLhkWG0tdgpYc7tGZqpEf11vKqezqMqXsXcZfCH
- Uc+u+1EnNfIyfrXYZSyTQoTEQse6VCwv3uQmhRy9xHz1Q4NXmFsRgO5x3 Q==;
-X-CSE-ConnectionGUID: yY3cvbLiSs6c3BK8wx0AHw==
-X-CSE-MsgGUID: xR+g9s6ZRYqPMRTQBXW4uA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73400635"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="73400635"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 10:18:14 -0800
-X-CSE-ConnectionGUID: oLah4WteQFW2ZFSU9mg3AQ==
-X-CSE-MsgGUID: ttYdMRwFRDK7DIlFrF/wBw==
+ bh=Cp+1S3F+kwe4pQ2kn3xsFFMNJJviKaUyzkA0z/JhdBw=;
+ b=Max25J1wOg+jN/m9WWwLUsA/SFxDWP/9nvqF8O0o8A5JMN2BI1sFfrPk
+ aHvXJo/RkutvpxEvCXiIOlabtXXib/OQi/D1Q49ZsybjNcvyNq3YEBaf1
+ VedPVqIy+N0jnSe3hr6QPCLTnvcRxqvRwzvbPgapOSKrzSDBEGkLqLlMl
+ gY6uIyc/FjzOv/kTzU8ijKviKkUbFrtQ/PJDTuBk2iuMgsMgPFKzVl3+U
+ VVmnRLD4ZRbAd1l9vp3SfH0yKGz36x8faqmn5jgZoP6BBI2YuMbLcPORb
+ +dbZihCt2Vw4Zq+3TuTf2lVouUFrd9KeDXfkDeqvwhD/Titey4zzCSqgl g==;
+X-CSE-ConnectionGUID: ePWOdldgS86fikpJjZtRHg==
+X-CSE-MsgGUID: m1OIpMPET+e5kJfGuAiscA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="77362152"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="77362152"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 10:18:18 -0800
+X-CSE-ConnectionGUID: wnpyeuD5Rpa+mPEmEgLd1w==
+X-CSE-MsgGUID: IzPFv1EbSPK51D41EM2URQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="214165516"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="222378248"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.238])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 10:18:12 -0800
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 10:18:16 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 6/7] drm/i915/frontbuffer: call parent interface directly
-Date: Mon,  2 Mar 2026 20:17:38 +0200
-Message-ID: <7451574d6840fe9a4af16d2d6b81ffb7739b5b76.1772475391.git.jani.nikula@intel.com>
+Subject: [PATCH 7/7] drm/i915/frontbuffer: reduce fb for frontbuffer
+ abbreviation usage
+Date: Mon,  2 Mar 2026 20:17:39 +0200
+Message-ID: <f7f04d63771891d1c3b1aa280485437bc4a70f20.1772475391.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772475391.git.jani.nikula@intel.com>
 References: <cover.1772475391.git.jani.nikula@intel.com>
@@ -75,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DF5361DE58D
+X-Rspamd-Queue-Id: EF96A1DE594
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -105,123 +106,89 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Do away with the redundant intel_frontbuffer_get(),
-intel_frontbuffer_put(), and intel_frontbuffer_ref() functions, and call
-the parent interface functions directly.
+Using fb for frontbuffer is a bit misleading, as framebuffer is the more
+common fb. Reduce fb usage in frontbuffer function naming.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c       |  8 +++----
- .../gpu/drm/i915/display/intel_frontbuffer.c  | 23 +++----------------
- .../gpu/drm/i915/display/intel_frontbuffer.h  |  5 ----
- 3 files changed, 7 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/intel_frontbuffer.c | 12 ++++++------
+ drivers/gpu/drm/i915/display/intel_frontbuffer.h | 16 ++++++++--------
+ 2 files changed, 14 insertions(+), 14 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 6be07d8a7e81..49c6ca9d94c6 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -2113,7 +2113,7 @@ static void intel_user_framebuffer_destroy(struct drm_framebuffer *fb)
- 
- 	intel_fb_bo_framebuffer_fini(intel_fb_bo(fb));
- 
--	intel_frontbuffer_put(intel_fb->frontbuffer);
-+	intel_parent_frontbuffer_put(display, intel_fb->frontbuffer);
- 
- 	kfree(intel_fb->panic);
- 	kfree(intel_fb);
-@@ -2221,10 +2221,10 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- 		return -ENOMEM;
- 
- 	/*
--	 * intel_frontbuffer_get() must be done before
-+	 * intel_parent_frontbuffer_get() must be done before
- 	 * intel_fb_bo_framebuffer_init() to avoid set_tiling vs. addfb race.
- 	 */
--	intel_fb->frontbuffer = intel_frontbuffer_get(obj);
-+	intel_fb->frontbuffer = intel_parent_frontbuffer_get(display, obj);
- 	if (!intel_fb->frontbuffer) {
- 		ret = -ENOMEM;
- 		goto err_free_panic;
-@@ -2335,7 +2335,7 @@ int intel_framebuffer_init(struct intel_framebuffer *intel_fb,
- err_bo_framebuffer_fini:
- 	intel_fb_bo_framebuffer_fini(obj);
- err_frontbuffer_put:
--	intel_frontbuffer_put(intel_fb->frontbuffer);
-+	intel_parent_frontbuffer_put(display, intel_fb->frontbuffer);
- err_free_panic:
- 	kfree(intel_fb->panic);
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.c b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-index a355dc064528..61ce82f85dad 100644
+index 61ce82f85dad..705742e117ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.c
 +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.c
-@@ -164,18 +164,13 @@ void __intel_fb_flush(struct intel_frontbuffer *front,
- 		frontbuffer_flush(display, frontbuffer_bits, origin);
+@@ -123,9 +123,9 @@ void intel_frontbuffer_flip(struct intel_display *display,
+ 	frontbuffer_flush(display, frontbuffer_bits, ORIGIN_FLIP);
  }
  
--static void intel_frontbuffer_ref(struct intel_frontbuffer *front)
--{
--	intel_parent_frontbuffer_ref(front->display, front);
--}
--
- static void intel_frontbuffer_flush_work(struct work_struct *work)
+-void __intel_fb_invalidate(struct intel_frontbuffer *front,
+-			   enum fb_op_origin origin,
+-			   unsigned int frontbuffer_bits)
++void __intel_frontbuffer_invalidate(struct intel_frontbuffer *front,
++				    enum fb_op_origin origin,
++				    unsigned int frontbuffer_bits)
  {
- 	struct intel_frontbuffer *front =
- 		container_of(work, struct intel_frontbuffer, flush_work);
+ 	struct intel_display *display = front->display;
  
- 	intel_frontbuffer_flush(front, ORIGIN_DIRTYFB);
--	intel_frontbuffer_put(front);
-+	intel_parent_frontbuffer_put(front->display, front);
+@@ -143,9 +143,9 @@ void __intel_fb_invalidate(struct intel_frontbuffer *front,
+ 	intel_fbc_invalidate(display, frontbuffer_bits, origin);
  }
  
- /**
-@@ -190,9 +185,9 @@ void intel_frontbuffer_queue_flush(struct intel_frontbuffer *front)
- 	if (!front)
- 		return;
+-void __intel_fb_flush(struct intel_frontbuffer *front,
+-		      enum fb_op_origin origin,
+-		      unsigned int frontbuffer_bits)
++void __intel_frontbuffer_flush(struct intel_frontbuffer *front,
++			       enum fb_op_origin origin,
++			       unsigned int frontbuffer_bits)
+ {
+ 	struct intel_display *display = front->display;
  
--	intel_frontbuffer_ref(front);
-+	intel_parent_frontbuffer_ref(front->display, front);
- 	if (!schedule_work(&front->flush_work))
--		intel_frontbuffer_put(front);
-+		intel_parent_frontbuffer_put(front->display, front);
- }
- 
- void intel_frontbuffer_init(struct intel_frontbuffer *front, struct drm_device *drm)
-@@ -207,18 +202,6 @@ void intel_frontbuffer_fini(struct intel_frontbuffer *front)
- 	drm_WARN_ON(front->display->drm, atomic_read(&front->bits));
- }
- 
--struct intel_frontbuffer *intel_frontbuffer_get(struct drm_gem_object *obj)
--{
--	struct intel_display *display = to_intel_display(obj->dev);
--
--	return intel_parent_frontbuffer_get(display, obj);
--}
--
--void intel_frontbuffer_put(struct intel_frontbuffer *front)
--{
--	intel_parent_frontbuffer_put(front->display, front);
--}
--
- /**
-  * intel_frontbuffer_track - update frontbuffer tracking
-  * @old: current buffer for the frontbuffer slots
 diff --git a/drivers/gpu/drm/i915/display/intel_frontbuffer.h b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-index 22677acb4c06..c9a22b6ccfd6 100644
+index c9a22b6ccfd6..a89ce352b12b 100644
 --- a/drivers/gpu/drm/i915/display/intel_frontbuffer.h
 +++ b/drivers/gpu/drm/i915/display/intel_frontbuffer.h
-@@ -66,11 +66,6 @@ struct intel_frontbuffer {
+@@ -66,9 +66,9 @@ struct intel_frontbuffer {
  void intel_frontbuffer_flip(struct intel_display *display,
  			    unsigned frontbuffer_bits);
  
--void intel_frontbuffer_put(struct intel_frontbuffer *front);
--
--struct intel_frontbuffer *
--intel_frontbuffer_get(struct drm_gem_object *obj);
--
- void __intel_fb_invalidate(struct intel_frontbuffer *front,
- 			   enum fb_op_origin origin,
- 			   unsigned int frontbuffer_bits);
+-void __intel_fb_invalidate(struct intel_frontbuffer *front,
+-			   enum fb_op_origin origin,
+-			   unsigned int frontbuffer_bits);
++void __intel_frontbuffer_invalidate(struct intel_frontbuffer *front,
++				    enum fb_op_origin origin,
++				    unsigned int frontbuffer_bits);
+ 
+ /**
+  * intel_frontbuffer_invalidate - invalidate frontbuffer object
+@@ -93,13 +93,13 @@ static inline bool intel_frontbuffer_invalidate(struct intel_frontbuffer *front,
+ 	if (!frontbuffer_bits)
+ 		return false;
+ 
+-	__intel_fb_invalidate(front, origin, frontbuffer_bits);
++	__intel_frontbuffer_invalidate(front, origin, frontbuffer_bits);
+ 	return true;
+ }
+ 
+-void __intel_fb_flush(struct intel_frontbuffer *front,
+-		      enum fb_op_origin origin,
+-		      unsigned int frontbuffer_bits);
++void __intel_frontbuffer_flush(struct intel_frontbuffer *front,
++			       enum fb_op_origin origin,
++			       unsigned int frontbuffer_bits);
+ 
+ /**
+  * intel_frontbuffer_flush - flush frontbuffer object
+@@ -121,7 +121,7 @@ static inline void intel_frontbuffer_flush(struct intel_frontbuffer *front,
+ 	if (!frontbuffer_bits)
+ 		return;
+ 
+-	__intel_fb_flush(front, origin, frontbuffer_bits);
++	__intel_frontbuffer_flush(front, origin, frontbuffer_bits);
+ }
+ 
+ void intel_frontbuffer_queue_flush(struct intel_frontbuffer *front);
 -- 
 2.47.3
 
