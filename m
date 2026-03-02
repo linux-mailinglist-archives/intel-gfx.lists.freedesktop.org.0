@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJigIcgMpWn50QUAu9opvQ
+	id IFHdJMkMpWn50QUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 05:06:32 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 05:06:33 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 56C201D2DE1
+	by mail.lfdr.de (Postfix) with ESMTPS id 02E6E1D2DE8
 	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 05:06:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BD8810E426;
-	Mon,  2 Mar 2026 04:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0F11C10E428;
+	Mon,  2 Mar 2026 04:06:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f357XT0w";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uja3YoEi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5A7A10E350;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2BFC10E423;
  Mon,  2 Mar 2026 04:06:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772424386; x=1803960386;
+ t=1772424387; x=1803960387;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/GE3c1xsKSe4lf/lUb9NThTQ8JKaW+1QpiTX2QO0+7E=;
- b=f357XT0wYEjctLIh6aVfKTHxqusYcWtG64eKeqlQytheZ6dxW0HUTU0T
- p5CHQaEHxhHMvwUV8rFD5QNgBF7x3LFdjIDouNHnUSqzYtKXSJV/xDZC5
- qXrQLvW1vIMvSAQfDANO3QO/92ah1seiEGtGWPkxaLjEdaYfru6zFCFvk
- SoD/JYPjsocFOfWo25onC/CRcfmiW5fVaHTTchqbnyVrrwmSurKVwkc2e
- FMZWEdYUg15g9VZVq0cbrz/lYdXwuQ/CTy7oP8SDmZi1EwjUmLrpgn0tw
- M7d1N/QuPo1e6GiqSYzuWXxdi3aOdiiZncLq/k0gcsftQSpMhKp+AgFTQ Q==;
-X-CSE-ConnectionGUID: L4gvYfplSIi207hfKAL1eg==
-X-CSE-MsgGUID: O+ylvlZZSj+R4YpWSfj7ag==
-X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77294428"
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="77294428"
+ bh=snt/ffZVEHz0Y0Soe7I37+Lvsj6YsXAO7NBfxutm7bI=;
+ b=Uja3YoEib10V/WWksAubD7fX9TYyx2utOZmnHKM45R9Bwrkygrsu3D5b
+ sBsXoQme64/iaEwITW9FDiwkfqNzfQbFlml7b6g86JRCV6DpNA72ZWVeV
+ PGAwQUCrO6EFAB+2Le26+Cl5ki5VlyzEiOsX25FqIi3MtOQ0PqGzlZ7KF
+ +dpCHRGUgXMlsFZlVhGZzq/XXvqCDYHtrkutRqtMKI3w5oSG3Y3OEAQrm
+ mLgZq/LV95JsidB5dntXwgZt6prdby+shLa93GyXaTq8jho7DpCFIf3Dg
+ V/jsDKyynchTLKCj7GYAwgHYry7Yvmt0LIkRWz0Rmn98Xpm5dcZeUiJaS Q==;
+X-CSE-ConnectionGUID: qSqHR4w7R9arLxdtmSeULg==
+X-CSE-MsgGUID: N7IDnaBpSFe5GyjsbGYZGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11716"; a="77294430"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="77294430"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Mar 2026 20:06:20 -0800
-X-CSE-ConnectionGUID: pHQvbcqNQBmBToFjebQOOw==
-X-CSE-MsgGUID: rbBJqGL/SK6mp6Tpsxpk/g==
+ 01 Mar 2026 20:06:21 -0800
+X-CSE-ConnectionGUID: 6V8Ew0DZTu2lZikwESFFXw==
+X-CSE-MsgGUID: JWaW4+YSTfSXKW0j8JpUHg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="217540994"
+X-IronPort-AV: E=Sophos;i="6.21,319,1763452800"; d="scan'208";a="217541000"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 01 Mar 2026 20:06:19 -0800
+ by orviesa008.jf.intel.com with ESMTP; 01 Mar 2026 20:06:20 -0800
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>,
  Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [RESEND 1/8] drm/i915/backlight: Use default/max brightness for VESA
- AUX backlight init
-Date: Mon,  2 Mar 2026 09:36:06 +0530
-Message-Id: <20260302040613.3324049-2-suraj.kandpal@intel.com>
+Subject: [RESEND 2/8] drm/i915/backlight: Use intel_panel variable instead of
+ intel_connector
+Date: Mon,  2 Mar 2026 09:36:07 +0530
+Message-Id: <20260302040613.3324049-3-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260302040613.3324049-1-suraj.kandpal@intel.com>
 References: <20260302040613.3324049-1-suraj.kandpal@intel.com>
@@ -98,47 +98,32 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 56C201D2DE1
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 02E6E1D2DE8
 X-Rspamd-Action: no action
 
-If the brightness fetched from VBT/previous state is 0 on backlight
-initialization, then set the brightness to a default/max value.
-Whenever the minimum brightness is reported as 0 there are chances
-we end up with blank screen. This confuses the user into thinking
-the display is acting weird. This occurs in eDP 1.5 when
-we are using PANEL_LUMINANCE_OVERRIDE mode to mainpulate brightness
-via luminance values.
+Use the intel_panel variable since it has already been declared and
+looks cleaner.
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15671
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-index 517e32d7702d..b9e9a05861d8 100644
+index b9e9a05861d8..b139ab024e9a 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-@@ -564,6 +564,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
- 		}
- 		panel->backlight.level = intel_dp_aux_vesa_get_backlight(connector, 0);
- 		panel->backlight.enabled = panel->backlight.level != 0;
-+		if (!panel->backlight.level)
-+			panel->backlight.level = panel->backlight.max;
- 		drm_dbg_kms(display->drm,
- 			    "[CONNECTOR:%d:%s] AUX VESA Nits backlight level is controlled through DPCD\n",
- 			    connector->base.base.id, connector->base.name);
-@@ -573,6 +575,8 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
- 		if (current_mode == DP_EDP_BACKLIGHT_CONTROL_MODE_DPCD) {
- 			panel->backlight.level = current_level;
- 			panel->backlight.enabled = panel->backlight.level != 0;
-+			if (!panel->backlight.level)
-+				panel->backlight.level = panel->backlight.max;
- 		} else {
- 			panel->backlight.level = panel->backlight.max;
- 			panel->backlight.enabled = false;
+@@ -459,7 +459,7 @@ static u32 intel_dp_aux_vesa_get_backlight(struct intel_connector *connector, en
+ 		return val / 1000;
+ 	}
+ 
+-	return connector->panel.backlight.level;
++	return panel->backlight.level;
+ }
+ 
+ static void
 -- 
 2.34.1
 
