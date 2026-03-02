@@ -2,65 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0GbVByjupWlLHwAAu9opvQ
+	id qIS7DT7upWlLHwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:08:08 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:08:30 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B78A81DF207
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:08:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A78BB1DF216
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:08:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CBB0210E373;
-	Mon,  2 Mar 2026 20:08:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0276B10E5AC;
+	Mon,  2 Mar 2026 20:08:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rfb8xWEy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zx2GzMXY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D366410E370;
- Mon,  2 Mar 2026 20:08:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 12C8610E5BA;
+ Mon,  2 Mar 2026 20:08:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772482084; x=1804018084;
+ t=1772482106; x=1804018106;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=QK8dhOvAVpVaPRpU3mxKsxqIE9B/0BE1QoewCJVnGn8=;
- b=Rfb8xWEyQp1WviG2Nx01mzYnwVOQZu3WRmhhkmHypgWhxBoMpV8T69t1
- LyjazkdCk4tR7NI0ylNKmMpcZtnQJu1ipfutl47H/PZVf9xk5ILIdg94c
- KMvc+lghh6EJB744PcFShFkZnWYBvs4QisEU0NbDrt4/K0TikhnMvo3ZQ
- jlfLX068/0C2g7r21XH/WDOxVb4te1y1riiwvMkefAOkJDGy2eiQ8jfqQ
- 0BT/Uq9Gf18WnlPyCpxgah1TbZ1r8vp/Euol+Qg8PfhegunBiddfTNDna
- SJTCCZOXW/SpWDpX69rTCgOwQh0b9TBjngJHUIRXVf0/1la06vCLR0A7f w==;
-X-CSE-ConnectionGUID: YQLFL3yxTTC2yE3TwtruVQ==
-X-CSE-MsgGUID: EFym8ahRS/OsKWS73GuPXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="73371341"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="73371341"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 12:08:04 -0800
-X-CSE-ConnectionGUID: eSjdZvkpTgifKygnEOLW6A==
-X-CSE-MsgGUID: kl6krIH8RNGyo0bIu2dDfQ==
+ bh=esrQdZ5zWdue2cSzmFix7aj1d45hcrAL3QHhWcWW4ZY=;
+ b=Zx2GzMXY83cZMD8t4ItkMnwZ5rtewPF94gdspJrXUCTtAspa/8XNpv0s
+ inZdAUHXwwUC1tPoBJittXlbNFZpeCVECY+rpbPzJcdyvfn9rHZboHrJ/
+ sKSJuzjsh0p83/3tUkpBNSuqefgw1CGPp1oTo4ltQ0LYROrbvSf6i00KB
+ 5tdbynFYxUmHotlBgo5JgAVuwgqInBSDgDPbNMxIIlFwydomGwrVT60M3
+ lmG0WFGRgny91FyX0ETYHUDcbzUeQpozCKJ0vjAJ2/D8dA50jyATBCcmi
+ KY5GTnS+jd7iTmAeuLqQyHVg6XTyMtbCuqe0y+5U/j9mxaL7OP2Z5RRpj Q==;
+X-CSE-ConnectionGUID: 2MD3RJqTS7ykp1PlFVFEFw==
+X-CSE-MsgGUID: l4gv/Vg0Tn6go3YoEbTHTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="76105173"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="76105173"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 12:08:25 -0800
+X-CSE-ConnectionGUID: u5CbyDGbQJaktoBbUSRMaw==
+X-CSE-MsgGUID: CX5EDRI2S4Wb1o/NYPVTKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="244756726"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="221921922"
 Received: from administrator-system-product-name.igk.intel.com
  ([10.91.214.181])
- by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 12:08:02 -0800
-Date: Mon, 2 Mar 2026 21:08:00 +0100 (CET)
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 12:08:24 -0800
+Date: Mon, 2 Mar 2026 21:08:22 +0100 (CET)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  rodrigo.vivi@intel.com
-Subject: Re: [PATCH 1/8] drm/i915/reg: make masked field helpers constexpr
-In-Reply-To: <788f538cc71dec0db25e0c768e8945bef6f9701c.1772042022.git.jani.nikula@intel.com>
-Message-ID: <82bec685-cad7-94dc-b8b1-ae4913dbce64@intel.com>
+Subject: Re: [PATCH 2/8] drm/i915/lrc: switch to _MASKED_BIT_ENABLE() and
+ _MASKED_BIT_DISABLE()
+In-Reply-To: <733568f8a6155b6e2da1dcdce9d21d6aab881449.1772042022.git.jani.nikula@intel.com>
+Message-ID: <ac75505a-be63-368c-c71a-780ff93d4999@intel.com>
 References: <cover.1772042022.git.jani.nikula@intel.com>
- <788f538cc71dec0db25e0c768e8945bef6f9701c.1772042022.git.jani.nikula@intel.com>
+ <733568f8a6155b6e2da1dcdce9d21d6aab881449.1772042022.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
- BOUNDARY="1527428566-2100778568-1772480497=:1836696"
-Content-ID: <2b33c185-2278-c977-b59a-2bb900c2a3bc@intel.com>
+ BOUNDARY="1527428566-878959048-1772480522=:1836696"
+Content-ID: <92abeb92-6d8e-4e1e-ce9e-0b1d0c3bd12c@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B78A81DF207
+X-Rspamd-Queue-Id: A78BB1DF216
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	CTYPE_MIXED_BOGUS(1.00)[];
@@ -102,22 +103,21 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---1527428566-2100778568-1772480497=:1836696
+--1527428566-878959048-1772480522=:1836696
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <b14050ec-4f6e-30b4-205b-b7257eb343a9@intel.com>
+Content-ID: <96885214-3c95-be22-99ed-2b15e5ab4777@intel.com>
 
 On Wed, 25 Feb 2026, Jani Nikula wrote:
-> Make it possible to use _MASKED_FIELD(), _MASKED_BIT_ENABLE() and
-> _MASKED_BIT_DISABLE() in contexts that require integer constant
-> expressions. This increases their usefulness at the small cost of making
-> the warnings from build time checks less helpful.
+> Since it's now possible to use _MASKED_BIT_ENABLE() and
+> _MASKED_BIT_DISABLE() in the array initializer, switch to them. This
+> allows us to remove __MASKED_FIELD() macro.
 >
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
@@ -125,4 +125,4 @@ Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
---1527428566-2100778568-1772480497=:1836696--
+--1527428566-878959048-1772480522=:1836696--
