@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MAPFDAjvpWlLHwAAu9opvQ
+	id iI7COhzvpWlLHwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:11:52 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:12:12 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC7621DF2BC
-	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:11:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 935CE1DF2E2
+	for <lists+intel-gfx@lfdr.de>; Mon, 02 Mar 2026 21:12:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D7B5610E5BE;
-	Mon,  2 Mar 2026 20:11:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DDB5910E5B5;
+	Mon,  2 Mar 2026 20:12:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iW7vv9Rz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Spk2JsJP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F152D10E5B4;
- Mon,  2 Mar 2026 20:11:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1318010E5B4;
+ Mon,  2 Mar 2026 20:12:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772482309; x=1804018309;
+ t=1772482330; x=1804018330;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=XZ7qy3JTXa+wR8ykniT1vG8hSi4IGIy2rc7hCedMyqU=;
- b=iW7vv9Rzv6XdVecv7zcP+CxqWkvsV1eLfDxQIV8Rybvt4hrA4LG174C8
- p9a5GbK0j0X9+yJbXyknL2LFOPsjjq0MnQqQFb+p8altLLsdJ4yj2c62D
- zD3yWevxo8R/t3GMULaOVnhNFcK6QnLFFQJbvnyiUhSAUIAxAIullJ+NG
- pK4phkufeSjxAP266AuUfIaLu70gTyJXHAo9+uY+Tl3VKn0bJBWW6dd5a
- 3jSuYNJW4vu1R2ogmEaW9q/LhOqe2QLAt5VdD6gCOBb51pnxSd/G8Dfus
- kH/ZMG99wmSKDPgDwU6QdpVQ73oPK/sf8kL/u94av9MlovI30d52BGl14 w==;
-X-CSE-ConnectionGUID: e57bhH1uT3qn3hOofkXWjw==
-X-CSE-MsgGUID: RLmTXxIwRoO1/Wm856yE4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="90897250"
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="90897250"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 12:11:49 -0800
-X-CSE-ConnectionGUID: ZXWozV03S2q0khKhe8Hn/A==
-X-CSE-MsgGUID: 5X9rvQG8RVOQdTz8ddYhtQ==
+ bh=TqVu6sUHUOinetDAEYDN8HahH/sXeoVjXA1gv1DAp+g=;
+ b=Spk2JsJPCHY8kqMrwKQTPcRXKVMhjmoGELK4GEPe2WASXhRozihkFaA+
+ IeblVBPlQCvPrXIT4YmLokYF3OL8FhCsUQ7uAiGHS0SI8s/IUBhtI0+2x
+ D7JRD6bMbhcjHdUy8MifUO4H77ek5+ERd37r0eu2GpsUzipV1uYnDtZeK
+ MFxfa++9FWH2aKj+4Gs92NtydpQApNRvUzCEaFOYNqkqBSaP5OXUTbGbP
+ 0UZCstYbtrVKtQUUooQWpQ7tKc987J7vwrvpyyY7qlSLGL9rU25w7vOgM
+ DwSjfd2ewcvrPQGE1iFNmFd9p/flb2zlIYBq3S1BMg/N+3imJSIy/aJxF A==;
+X-CSE-ConnectionGUID: iUTHnwn3S7KuMr8PGn+LIg==
+X-CSE-MsgGUID: CIFOnLFDQ5egg2EijaIw7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11717"; a="76105473"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="76105473"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 12:12:09 -0800
+X-CSE-ConnectionGUID: fcYxdbH/SOaGI+cu8GGGTQ==
+X-CSE-MsgGUID: RF99rwohRy6pyyELl/QIcQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="214936106"
+X-IronPort-AV: E=Sophos;i="6.21,320,1763452800"; d="scan'208";a="217768009"
 Received: from administrator-system-product-name.igk.intel.com
  ([10.91.214.181])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Mar 2026 12:11:47 -0800
-Date: Mon, 2 Mar 2026 21:11:45 +0100 (CET)
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Mar 2026 12:12:08 -0800
+Date: Mon, 2 Mar 2026 21:12:06 +0100 (CET)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  rodrigo.vivi@intel.com
-Subject: Re: [PATCH 7/8] drm/intel: add pick.h for the various "picker" helpers
-In-Reply-To: <fcd70f3317755bf98a6e7ae88974aa8ba06efd1e.1772042022.git.jani.nikula@intel.com>
-Message-ID: <9ce79027-3067-4e69-2ea8-bd0e2fd8177f@intel.com>
+Subject: Re: [PATCH 8/8] drm/i915/gt: prefer _PICK_EVEN() over _PICK()
+In-Reply-To: <f94272fb9e93afa51d9fdb006888b8ebe38580df.1772042022.git.jani.nikula@intel.com>
+Message-ID: <04a36fc1-b19e-99c8-1da2-89c2a21c28fe@intel.com>
 References: <cover.1772042022.git.jani.nikula@intel.com>
- <fcd70f3317755bf98a6e7ae88974aa8ba06efd1e.1772042022.git.jani.nikula@intel.com>
+ <f94272fb9e93afa51d9fdb006888b8ebe38580df.1772042022.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: multipart/mixed;
- BOUNDARY="1527428566-1802583461-1772481923=:1837396"
-Content-ID: <6e0da1d4-7a11-6917-2a74-670f334f3d12@intel.com>
+ BOUNDARY="1527428566-1768765617-1772481946=:1837396"
+Content-ID: <3e292771-7864-8399-c7c8-7210df8f1608@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CC7621DF2BC
+X-Rspamd-Queue-Id: 935CE1DF2E2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	CTYPE_MIXED_BOGUS(1.00)[];
@@ -95,7 +95,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCPT_COUNT_THREE(0.00)[4];
 	MID_RHS_MATCH_FROM(0.00)[];
@@ -108,17 +108,13 @@ X-Rspamd-Action: no action
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---1527428566-1802583461-1772481923=:1837396
+--1527428566-1768765617-1772481946=:1837396
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <206345d9-4917-1d06-28c7-35931e233b8c@intel.com>
+Content-ID: <574b9b75-6fd7-019f-b362-4aa12b0cb969@intel.com>
 
 On Wed, 25 Feb 2026, Jani Nikula wrote:
-> Add a shared header that's used by i915, xe, and i915 display.
->
-> This allows us to drop the compat-i915-headers/i915_reg_defs.h include
-> from xe_reg_defs.h. All the register macro helpers were subtly pulled in
-> from i915 to all of xe through this.
+> There's no need to use _PICK() here. Use the simpler one instead.
 >
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
@@ -126,4 +122,4 @@ Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
---1527428566-1802583461-1772481923=:1837396--
+--1527428566-1768765617-1772481946=:1837396--
