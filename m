@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uB/1I39EqGkfsAAAu9opvQ
+	id MPbJD4VEqGlOrwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:03 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EBFFC201C22
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E8913201C2A
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF3CC10EA22;
-	Wed,  4 Mar 2026 14:41:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 34EE210EA17;
+	Wed,  4 Mar 2026 14:41:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hDYWubWa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YsI0Rpxl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F056510EA17;
- Wed,  4 Mar 2026 14:40:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA8F10EA17;
+ Wed,  4 Mar 2026 14:41:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772635260; x=1804171260;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Wi0xU58MwDDZApqGPzC3+ppeAFchr7YSj2b+nQzDPWM=;
- b=hDYWubWap1dXESeJAGstzZqvSn6dtetUEtyt/T4Zk8Pjn9DTvOUdHdlZ
- Ga7eJpDCitdpWUPmG1sMA0uD3w8/HNhWJFVCGX6JWgvW6Bzdp87NO6Azg
- hOetQgfYRRyC+WeN5h56cjWrwNj2NVky2ScqhAENjMaMqEahRXNLQ+ORO
- LhBEQf9NCvmF7sige+gTImxFVB9gvAj3laH219rG2HtgjHp7Sibwej3fK
- KdFmD/QTyyHZUJ/A8lgJElGpo4zKSqyDhUdjv6ElwaUl6qnjwzxVE70ft
- PA3COXi3MHtCTw9aAyIS2m+KlP1rTDwr8QO0P4jEsimVgkVASig7dScMP Q==;
-X-CSE-ConnectionGUID: 728K4DvDSNq3WQr8HQanFw==
-X-CSE-MsgGUID: aJxy3KbsQHydy7T+VvJ11g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="84330018"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="84330018"
+ t=1772635264; x=1804171264;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2Y/V/7yUsk04r5vZ5pcBjOI5wra+iAEBgRFVkeJwh50=;
+ b=YsI0RpxlBSUDDOe8ZN9wCR1wS5Q7abSWlQz9M2Vkhe/U+mN+Plw+7Ue8
+ JjjU1sHOFrOH1ugMm3CNLwcJtYD3+jRmT2RciTZl26O3f9hwQNASgG6dT
+ HjRd+IK76ckAoZBdOiN455Bbm68186kyghsjrhMyMyaPHPUKb+djqnxtd
+ PG5VUCvdUngsxDBMzuExKCmpYN4cLn8hD6tDWYFDL6X7PFE1Mj4ZW22i+
+ 8Pm5trGK4fPpaNbPc+AcDV0g5PkgcbEhApsaZMQ6TDr1DhHimC/ZX2PkO
+ iIoA7vbT8jfVa/3uZmaSZMrCGNkL0CGSZ6KuN8/jRvzoxCKVYvTmC6M2O Q==;
+X-CSE-ConnectionGUID: NrwHSFuKQ5qokId7dGQXxw==
+X-CSE-MsgGUID: EDziYwSORvm8DAZYZ+MEqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="84330027"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="84330027"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 06:41:00 -0800
-X-CSE-ConnectionGUID: OCjHdQ+WTmCY3ZlItbi21A==
-X-CSE-MsgGUID: m2sLyKorT9qORLudFIYSoA==
+ 04 Mar 2026 06:41:04 -0800
+X-CSE-ConnectionGUID: DMDLuAFRRq6oMaMepNu9LQ==
+X-CSE-MsgGUID: nL/QBTrPSKOMIPgVacPu9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="218479306"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="218479328"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.84])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 06:40:58 -0800
+ 04 Mar 2026 06:41:03 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 0/8] drm/{i915,xe}: sort out step enums between the drivers
-Date: Wed,  4 Mar 2026 16:40:45 +0200
-Message-ID: <cover.1772635152.git.jani.nikula@intel.com>
+Subject: [PATCH 1/8] drm/i915/dmc: simplify stepping info initialization
+Date: Wed,  4 Mar 2026 16:40:46 +0200
+Message-ID: <a64ab4311a047d8e244192ea68f369b5d3c79e32.1772635152.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1772635152.git.jani.nikula@intel.com>
+References: <cover.1772635152.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -73,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: EBFFC201C22
+X-Rspamd-Queue-Id: E8913201C2A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -100,46 +102,69 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-A bunch of cleanup to share step enum across drivers.
+Having intel_get_stepping_info() return the pointer that was passed in
+isn't necessary. Just use a pointer to the local variable instead.
 
-Jani Nikula (8):
-  drm/i915/dmc: simplify stepping info initialization
-  drm/i915/display: add step name in display runtime info
-  drm/i915/dmc: use step name from runtime info
-  drm/xe/compat: remove intel_step_name macro
-  drm/intel: add shared step.h and switch i915 to use it
-  drm/xe/step: switch to the shared step definitions with i915
-  drm/xe/step: switch from enum xe_step to intel_step naming
-  drm/i915/display: switch to including common step file directly
+The initialization to ** didn't make a difference, because it was always
+overridden.
 
- drivers/gpu/drm/i915/display/intel_cdclk.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
- .../drm/i915/display/intel_display_device.c   | 30 +++++++--
- .../drm/i915/display/intel_display_device.h   |  1 +
- .../drm/i915/display/intel_display_power.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_dmc.c      | 19 +++---
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  2 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c      |  2 +-
- drivers/gpu/drm/i915/display/intel_flipq.c    |  2 +-
- drivers/gpu/drm/i915/display/intel_hdcp.c     |  2 +-
- drivers/gpu/drm/i915/display/intel_pmdemand.c |  2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  2 +-
- .../drm/i915/display/skl_universal_plane.c    |  2 +-
- drivers/gpu/drm/i915/intel_step.h             | 57 +----------------
- .../drm/xe/compat-i915-headers/intel_step.h   | 14 -----
- drivers/gpu/drm/xe/tests/xe_pci.c             |  4 +-
- drivers/gpu/drm/xe/xe_step.c                  |  2 +-
- drivers/gpu/drm/xe/xe_step.h                  |  4 +-
- drivers/gpu/drm/xe/xe_step_types.h            | 61 +-----------------
- include/drm/intel/step.h                      | 62 +++++++++++++++++++
- 21 files changed, 117 insertions(+), 159 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
- create mode 100644 include/drm/intel/step.h
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dmc.c | 12 +++++-------
+ 1 file changed, 5 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
+index c3b411259a0c..4e763f2f17c7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+@@ -418,15 +418,12 @@ bool intel_dmc_has_payload(struct intel_display *display)
+ 	return has_dmc_id_fw(display, DMC_FW_MAIN);
+ }
+ 
+-static const struct stepping_info *
+-intel_get_stepping_info(struct intel_display *display,
+-			struct stepping_info *si)
++static void initialize_stepping_info(struct intel_display *display, struct stepping_info *si)
+ {
+ 	const char *step_name = intel_step_name(INTEL_DISPLAY_STEP(display));
+ 
+ 	si->stepping = step_name[0];
+ 	si->substepping = step_name[1];
+-	return si;
+ }
+ 
+ static void gen9_set_dc_state_debugmask(struct intel_display *display)
+@@ -1274,8 +1271,7 @@ static int parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ 	struct intel_css_header *css_header;
+ 	struct intel_package_header *package_header;
+ 	struct intel_dmc_header_base *dmc_header;
+-	struct stepping_info display_info = { '*', '*'};
+-	const struct stepping_info *si = intel_get_stepping_info(display, &display_info);
++	struct stepping_info si = {};
+ 	enum intel_dmc_id dmc_id;
+ 	u32 readcount = 0;
+ 	u32 r, offset;
+@@ -1283,6 +1279,8 @@ static int parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ 	if (!fw)
+ 		return -EINVAL;
+ 
++	initialize_stepping_info(display, &si);
++
+ 	/* Extract CSS Header information */
+ 	css_header = (struct intel_css_header *)fw->data;
+ 	r = parse_dmc_fw_css(dmc, css_header, fw->size);
+@@ -1293,7 +1291,7 @@ static int parse_dmc_fw(struct intel_dmc *dmc, const struct firmware *fw)
+ 
+ 	/* Extract Package Header information */
+ 	package_header = (struct intel_package_header *)&fw->data[readcount];
+-	r = parse_dmc_fw_package(dmc, package_header, si, fw->size - readcount);
++	r = parse_dmc_fw_package(dmc, package_header, &si, fw->size - readcount);
+ 	if (!r)
+ 		return -EINVAL;
+ 
 -- 
 2.47.3
 
