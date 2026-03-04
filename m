@@ -2,111 +2,178 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EC1kBG2np2kHjAAAu9opvQ
+	id CGAzBe2np2kqjAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 04:30:53 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 04:33:01 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EBC81FA5AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 04:30:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7A2E11FA60A
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 04:33:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 57D8E10E93E;
-	Wed,  4 Mar 2026 03:30:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C350B10E940;
+	Wed,  4 Mar 2026 03:32:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="uKCOzUEp";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="OPw881fm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com
- [209.85.208.46])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4730210E93E
- for <intel-gfx@lists.freedesktop.org>; Wed,  4 Mar 2026 03:30:49 +0000 (UTC)
-Received: by mail-ed1-f46.google.com with SMTP id
- 4fb4d7f45d1cf-65f767a8d62so10949878a12.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 03 Mar 2026 19:30:49 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772595048; cv=none;
- d=google.com; s=arc-20240605;
- b=Xs75Nog1WuW7FPPcfamJRKMIuP22DIqpdj0gBWHi6B+LjnZjZL1gveh3LW3W/NhqfH
- 386wU/kfjGFOskJE76pPRftmMjr4uBtaw0aht4PN4oraZb3cqi7YFvNV9GVwWcl45OOB
- vLLRU2bZd80Rqn7kY2NEdT1nJc6CVHDmgURvAO4dMxm7hXvD6UhwtNdwXRYHkrfLk/pa
- E7m9WjWzvFYcU4eCxJ0RRXIMXqMls2I44FU5H3P+aQEFwhAlDPyNhmC3ujj0DStwJwGC
- 5hrkCXCVz8RWCNls3w6L1Rnm2tMOTaFF7yUbaF9VrzSjwx7cDBH2ro2WdQ2VCJ85gOSl
- iczg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=ryGl1nXaGybAiQ6N6tjuOaKs488ssmMuT4iLVEHz2v8=;
- fh=sOfLDXq/2wZtS/LClR0PB25edtszyBHN6MvrAJLmkqM=;
- b=aYtWUeG7mEn4pJsAn3KXQoEwjndkBeyCtnNTC9VrD35WOd7F2AjQR/YElgLhVDMby0
- jnjoqlcYUxwkda/GOmHO/vdoETytMmeJDDPBda9GE3GbH7V+QnxrdM1tSVvULII0t7dW
- VZqK8RTN2GCU/mg928W34fc5XqdiZCgIi/1bXzPQ0mAaD1Rt29KmkK6BJaThzwjKx8Vu
- AlFqoxenFvpKEvKXhfl7PS4HGeTXWEhVvjXt7cVXGEj426XyVV9EIQWjnppdL2LXoOgF
- +rDVHfJf6lfZo76BB5BD2/mdppIhc5wg/aiIE0BMB7ef8Lk8hZ6BCJBK43iEgOlnR0z8
- +lUQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1772595048; x=1773199848;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=ryGl1nXaGybAiQ6N6tjuOaKs488ssmMuT4iLVEHz2v8=;
- b=uKCOzUEp8xotpKWrjy23fc7sq8aStUc36LdQiZGWRgONhqBrMTfmN/wzBelYmwt0fg
- KdAQGZWQf45UhQPy/U39bVivM1sS7c2vwBXSYf6wtPZexgSRnVAYAcYiT54bMwwGIQ6m
- IlwYWTGcUJz39fKkbRsDa88cfFr6/L9HBglsGtjxM+PiWGvDHuxVwICFp7TQ2Kng2XeD
- BDupgUQsfMiMhTX7zAhloxJQIj7CTL7pvLSNtfImiY4FUtvyi8q7B/T+4xzEpnfvH/jJ
- +4BHZxEsCpX7aBv558MgYNBbrO5J2X20jrFX7frAoVB/3bnyeQi5huIW57yTdRr147xI
- J9nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772595048; x=1773199848;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=ryGl1nXaGybAiQ6N6tjuOaKs488ssmMuT4iLVEHz2v8=;
- b=j21b5O8ZWFP4j+l2I0nQYKG0oYz7tL9EqHL3ESHdaQi/1adsEhyloJJiDk8vU8nNou
- 5VA5MItzpVpJt4dQkFT+cq62GbuIq8LP9AbXmOHZTYi9zBiV42n/DL8Ae2d5EhEtkEex
- ATs23eeEQ8IgGzsXjsnXfXS/17H61HBUaRpQMcS249NytEnrWJHoc4Awj9FObY6/p4Qh
- IIHDFYDzQbcX7wB7vTWQO4ivle0Q1sObQAbTwvuTnOToMYhSG7EzdVGmZQNi31WKz2a5
- 8BKxK7viunUNBhf787c/DjH9jQBEjvNNagpPXoyJg0eylKEOklA2omlThBXXoQ9HDW81
- qFhw==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVXLbNpfJGquFA394bFlSENTS6BPs9MEilsYQqUlu/lCkSZ0fXTTHXDlJvqF3cpvKpWjUz9AlxXUCI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzbj+BW9C+ZLhWzvCi94Mz0sAF5roxW/XVYbh+KfEYAV4QWXAm/
- 9IUCePK4/twJwEqktfl0HU84A2vS9GknK5Llv8MGlG36edfMYwWymFGgeP0+eJysJo2/+pDy0QR
- FfR6Gw7QteLr/f6hZbGX/WwaLJ52FRyoOMGAsI0oK
-X-Gm-Gg: ATEYQzxUFFaZfI6AH/TrVPntmFoJ6wNjSy8eYJDz6wZLdfU/2J+5BqSrSlyH+BN+46b
- /lXgRRj+B8xUwAtmsiSz6Kadqeqyhc1aGcUJp3hkQdgCXs4H56vuoNbtTHRH+1zSODl8uFWVA3R
- gX2EcieIq1loDYGVw7+STNaZxJQ2h43OXnjE834gC1vXlQzeJkBUZRb7rrSLMPwa8BwbdjaOJv/
- 3jugtfnC16cXkNJh3/7W/e8+d3jWK00+3wssdgOd2SylaOWBGogX/LYGCNxE8pRKgxjvMdAIHa4
- VFDagBKazyh/tD2iu11wXN+sq5JNjRehgvWxjbTtUIazzaOLt3UJLjCAZqaauVqLhy36BA==
-X-Received: by 2002:a05:6402:f03:b0:660:a76c:27ab with SMTP id
- 4fb4d7f45d1cf-660f02d38d7mr132287a12.23.1772595047293; Tue, 03 Mar 2026
- 19:30:47 -0800 (PST)
+Received: from CY7PR03CU001.outbound.protection.outlook.com
+ (mail-westcentralusazon11010069.outbound.protection.outlook.com
+ [40.93.198.69])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B05710E940;
+ Wed,  4 Mar 2026 03:32:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EkKPF7gtQu/6vnSV/S8pLCuYRLeddeNDBrPH1p5E3nPH4eZ6XMHCbMVE92lXryAkykerxMd7wkFtdDB1QAtTPBV3G3eL93TUceHPf7AikHRAcpnGr3c9glx1FyvkGC8sHUOpoDCPgAnP4KDCSXdzrwGDO/xjC7E0JL4DZVJDC2pWx7wC2rNsMOnmR5FDEgdGea3r9nNrEt39Yi1RXCA6p5UERxsp9QJ5Cg3Vs9XENWvk9HcRXJLp1R2LT6VS7aZIF8nlHFIU5PMQqntXLSeh1U7T7WLAVX4wuqE90Fl/jyJzWRVPothEw6MWhnvR5jVs12LzF1htRXnPjgysWj7beA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=5DUpp2sS5DWOdg6mUbEn46YK54O6OkOlKSq07gXUAzw=;
+ b=tBhHlql0QwzQ5KxeHwwxZmLjot5tuqPqptALhxY7Ewf23vuE0AkrBRZ/1uiDrEeQmbDf/7CYLfCs5gHcS+6XP0CWNnGhPBGoFVetZtjzU5duJDHBzJddJnXUBqktzdcUUs/q6qzrlKhMDrF/RrOcTsIzc6B8yU05oZGWtPTTjXv2rtjQgl9r0BAPzA2QP1JRAJY9hidJ8sccdrG5vr3mDc9kNggZ7q/1vL+40CVC2SM3P3nwc8ww56F/cc45C/t6Tqo/PDq8NsZzsCo4tZyvBesbkhV0+NM+pNgs86ufV16DSF340DIwHy9gun1NfwAcsgi4AV7f/bbc3g9Zu2Wtcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5DUpp2sS5DWOdg6mUbEn46YK54O6OkOlKSq07gXUAzw=;
+ b=OPw881fmpEMsjVxnAPjMLJY/wE7WSICTbWg+iac8xW/MFXDCNwMeHFJrO89GanLnA5XITjEHf3Tfbrsa4WDgXDSeyCFs5H47C6XYOkRkiCXvADsZtydnAe2xbTgnrqObqpc0DbmzZKuwnfRSZSNVDSIbQG9a0xDjZjTZbGGqker7SfLYaVxVW0U/NHUScOASdXXsb3p4ImbXAWZ1I9w0Z2usOAXhB9A2I9cKqOIVhvjvvzHQIziQVpAB6XDI7T82BUqCqF+3MAb/+CRgaeU6aH3v3VetE8S/+sOEKpVU5SE7e+XYmxN3T1RPCGkIpWYAZLPH/N1KhVgAWu7268qywg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from PH0PR12MB8800.namprd12.prod.outlook.com (2603:10b6:510:26f::12)
+ by DS7PR12MB5958.namprd12.prod.outlook.com (2603:10b6:8:7d::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9654.22; Wed, 4 Mar
+ 2026 03:32:45 +0000
+Received: from PH0PR12MB8800.namprd12.prod.outlook.com
+ ([fe80::f79d:ddc5:2ad7:762d]) by PH0PR12MB8800.namprd12.prod.outlook.com
+ ([fe80::f79d:ddc5:2ad7:762d%4]) with mapi id 15.20.9654.022; Wed, 4 Mar 2026
+ 03:32:45 +0000
+Date: Tue, 3 Mar 2026 22:32:42 -0500
+From: Yury Norov <ynorov@nvidia.com>
+To: Sean Christopherson <seanjc@google.com>
+Cc: Jens Axboe <axboe@kernel.dk>, Jakub Kicinski <kuba@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>,
+ "Michael S. Tsirkin" <mst@redhat.com>,
+ Theodore Ts'o <tytso@mit.edu>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexander Duyck <alexanderduyck@fb.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Alexandra Winter <wintera@linux.ibm.com>,
+ Andreas Dilger <adilger.kernel@dilger.ca>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, Anna Schumaker <anna@kernel.org>,
+ Anton Yakovlev <anton.yakovlev@opensynergy.com>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Aswin Karuvally <aswin@linux.ibm.com>,
+ Borislav Petkov <bp@alien8.de>, Carlos Maiolino <cem@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Chao Yu <chao@kernel.org>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ David Airlie <airlied@gmail.com>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Dongsheng Yang <dongsheng.yang@linux.dev>,
+ Eric Dumazet <edumazet@google.com>,
+ Eric Van Hensbergen <ericvh@kernel.org>,
+ Heiko Carstens <hca@linux.ibm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Ingo Molnar <mingo@redhat.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Janosch Frank <frankja@linux.ibm.com>, Jaroslav Kysela <perex@perex.cz>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Latchesar Ionkov <lucho@ionkov.net>, Linus Walleij <linusw@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>, Mark Brown <broonie@kernel.org>,
+ Michael Ellerman <mpe@ellerman.id.au>, Miklos Szeredi <miklos@szeredi.hu>,
+ Namhyung Kim <namhyung@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Paul Walmsley <pjw@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Simona Vetter <simona@ffwll.ch>, Takashi Iwai <tiwai@suse.com>,
+ Thomas Gleixner <tglx@kernel.org>, Trond Myklebust <trondmy@kernel.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
+ Yury Norov <yury.norov@gmail.com>, Zheng Gu <cengku@gmail.com>,
+ linux-kernel@vger.kernel.org, x86@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ linux-riscv@lists.infradead.org, kvm@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-block@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ dm-devel@lists.linux.dev, netdev@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-mm@kvack.org, linux-perf-users@vger.kernel.org,
+ v9fs@lists.linux.dev, virtualization@lists.linux.dev,
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 0/8] mm: globalize rest_of_page() macro
+Message-ID: <aaen2pGs0UeiJqz1@yury>
+References: <20260304012717.201797-1-ynorov@nvidia.com>
+ <20260303182845.250bb2de@kernel.org>
+ <f8d86743-6231-414d-a5e8-65e867123fea@kernel.dk>
+ <aaedwFwXh9QXS3Ju@google.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <aaedwFwXh9QXS3Ju@google.com>
+X-ClientProxiedBy: BN9PR03CA0181.namprd03.prod.outlook.com
+ (2603:10b6:408:f9::6) To PH0PR12MB8800.namprd12.prod.outlook.com
+ (2603:10b6:510:26f::12)
 MIME-Version: 1.0
-References: <20260121204705.432290-1-jdsultan@google.com>
- <20260121204705.432290-3-jdsultan@google.com>
- <19ddb0a9aa900c51759cfa62b66bcbf079c4dde8@intel.com>
- <CAH6Pru4+nGqBf0y4ZJxPhB19SSUih1+k+4UUSyxnCQT2KMfw8g@mail.gmail.com>
- <CAMNLLoR6dVmYvGn66jsNobLgJzsck2rZ=LghA7zuaA-aKCn1BQ@mail.gmail.com>
- <f8096b857e6c0a24f32c1eb6479d95b0dbb4adad@intel.com>
- <CAMNLLoS2Yg+2EssW-ykXcKSfV7v2sYq-zcwFUYhKM+ErLTVc8w@mail.gmail.com>
- <CAMNLLoSf4gyiQpi7D=yGwcGkR7X9EZqXmP+CJKrFcgjkDhPXQA@mail.gmail.com>
- <bc56a6bc956aaef264946d6fe68296a564ba231d@intel.com>
-In-Reply-To: <bc56a6bc956aaef264946d6fe68296a564ba231d@intel.com>
-From: Juasheem Sultan <jdsultan@google.com>
-Date: Tue, 3 Mar 2026 19:30:36 -0800
-X-Gm-Features: AaiRm50Ej5XtiKVjaXcbcVdwvo79LiJaXNgskOv1vepYshqY6vxSYfGZAXkbBds
-Message-ID: <CAH6Pru5f1ytE9X46W0Vau=YQHktHmrjdKaqYCW53o9fUPV=hOw@mail.gmail.com>
-Subject: Re: [RFC PATCH v3 2/2] drm/i915/display: Synchronize crtc_state for
- initial commit
-To: Jani Nikula <jani.nikula@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Cc: Manasi Navare <navaremanasi@google.com>, intel-gfx@lists.freedesktop.org, 
- intel_xe@lists.freedesktop.org, Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Drew Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>, 
- Samuel Jacob <samjaco@google.com>, Rajat Jain <rajatja@google.com>,
- ville.syrjala@linux.intel.com
-Content-Type: multipart/alternative; boundary="000000000000206342064c2a7216"
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH0PR12MB8800:EE_|DS7PR12MB5958:EE_
+X-MS-Office365-Filtering-Correlation-Id: c12f8f5d-bd13-4d2a-a3d5-08de799eb2e2
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|7416014|376014|10070799003; 
+X-Microsoft-Antispam-Message-Info: Ldi53hmpQjSMzjv+DwE2D/6skKToxKApb/Fi3TyBNqzlLCyZv9Ny8w2FvJ5aaaodvoZUVdBcZRQ43CR0UDd8xUEAfoDJDtX2PwS3RLwkm6m6uZtQZyYGdG/VR6DKMgPmzNew/u4gQYMnCCXG/3Z7LHqWuvXTHHnqa3nvY4kU8gEWs7DY269aFPsfaeasGbY24+Gt8HMwWrUrNGFQ4APBNvxiiGnG/pmGnctnsYltpNeaTg1tHGnhpYueNMYLHEqinlLNo5P5WAbowZWeEgrQt+P57UpYoQ4O/hK1sntckbIFDcwe2L+m48L7WoJKsBViQY5lQNfIXALIqt5CqPWW0BdfJ9dDK1Buq1z9/bELGtxmyQX8pODlCUBaHKK49u5lJp7sOS4YiwX/n8kYDiw3FaGm0VA+UY4fcIu3HICVXNHJTOxguTby4nXUHX8X/ULHYatZgnCRYgi4FLd2NhAcip9yI5LnsQnRLRZK1Z9ob6/bG9zj2SsocegdZhqPwQ7PsbdZD380uUCfNQPchfmFPHbgWJ54QqioXSy1UQ4v4TNxi1csnhmGSBd2gEsJF6l8RXrKLAr1WXgeDGCkFWg1c1Oi20zfMpnCRMfu9rQYvfDARl+RiJhQl1mvlXH6f8Rc4eyR4a+4pzexqbszVCiE+DP9xO1R2Q8qmaW/+uVqBOUX0uxEXmvOjCDmQ/P1YqcRL/dT1leZH3U67Gs0/tqy7zeOOAm54kdueTG1qx2u9Aw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH0PR12MB8800.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(7416014)(376014)(10070799003); DIR:OUT;
+ SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?4oTSo9zEH/urMCTnwCydlGadgtEgpgaf9/rLv8XGuQ2jAskxeuJyoKtWMXgi?=
+ =?us-ascii?Q?1Due/xj30p8rNayd8MGTN0+5PmlgnCA0FPGrx34X05CE2hKvBpujqDYgzFlS?=
+ =?us-ascii?Q?4cm04toEFwgZLE7MsA2OE66ZTFHuNv58pOpKpohiHwtvA791k9+nNr2rEPDZ?=
+ =?us-ascii?Q?3zxhRjefHQW1WVflYhR/uBfNk/e8PxlYQ+UeckubDAeP+Vp30YRauDBvVUPq?=
+ =?us-ascii?Q?oJdu3HWY1hnmc555shB7tihguvtmm0Lgrk9VxEjppgYvzXri39OpXQDEyMAB?=
+ =?us-ascii?Q?QQEW1Tz1nm6ZUedHHJhJBpmLLXlElq9xGnD38kXQ0BLWc8Ud6rgyOrTfAgo0?=
+ =?us-ascii?Q?TCmzVITaeLeFSqtD8YthR7imyVyWf1TmoBrO735k1V3V0igGpKlI5koIxxIE?=
+ =?us-ascii?Q?qT+5HQnKiikyhbtWUvN+Vc+FEvC6Y4lB20p0jYYfbTY2OP2Vxeco220Bpb2Z?=
+ =?us-ascii?Q?IfI06MuCPl7Q12/zwSxcSHh9VU/Vy82D98HQeuApJOtVymBAQcuD99Ev7kUv?=
+ =?us-ascii?Q?UdN2xyykBICHFCLq/eGbSp4SP5uksibQyz6f6L9rIrweO5Sgq+HMCoykLkpt?=
+ =?us-ascii?Q?JpUoknDmfibMwGzkaQBq8OBsMHC9ppx3b4YSsiSL/LbMZTX9Huhlqsb3Mpoz?=
+ =?us-ascii?Q?Y8KA0YF0p2WjBlf0Zk5XHXGc7cd97iK3HgvgqShIPQZMs8hXujQXZdUgNe01?=
+ =?us-ascii?Q?XuOYpoc7SQSzKwHehkn1Q2QyBn4NGh3cETemrb56zrKr5o8xUNLZ89zE/NwH?=
+ =?us-ascii?Q?ASX/ENwvocjS59Slic3cf+3M/ofHzFQwQKGJ9qnBIuGztqxnj5MORxYdymbG?=
+ =?us-ascii?Q?dbBLaXrrnA7gCF59DCvVZEFqd1TJdaD0iV/qUmhL1TR2DuUWnt5PG8RR5O/f?=
+ =?us-ascii?Q?m1gWBkUxTVAkhEQsHF5ypRhzaLi89hS2s3pyq5r08sabaaglI67jMGXCDEXj?=
+ =?us-ascii?Q?R2qFIGnaOWEV4FxfOTu+7fhu5VN6QB2MbIGHEFIvj3nDlW0/iuyq+JYUMxAQ?=
+ =?us-ascii?Q?e1Z8ZQTZLDcy/CU3rJX5UTaE+mBhfadSKnmz/wcMbIvTvAnwhdMlDrNUBlbR?=
+ =?us-ascii?Q?YyE+AUXdD4r0rTyNZWr1Ww8trj6SMAI5vXCmpCq9dwk17Atsyu3noRhVHaEG?=
+ =?us-ascii?Q?6TjfF3hhSynb7tg5tkz9C7pKm34Tvpfxgk1cL0yel8zr62kuJy2PgswMe4Dv?=
+ =?us-ascii?Q?BPBjImzQJYaGNLHwp2njqWZLBMLJRDD21VK9z+ORDqPoAlwQgJ7bWQpBhnGA?=
+ =?us-ascii?Q?o0jbutz6zquXcTN86eBZXTwU2GjQd1wTLYb7O56AGM4ioOXTFi60nFSZ6NtY?=
+ =?us-ascii?Q?zt5ADR1lOXv7HbhtQ5/h4qe1cGM/FLKv5xERC2lrkkvZPUJYaLZkLKLTh37l?=
+ =?us-ascii?Q?B3sgbOyRtS395nqgAKrBUNG3Dh0R9Hd+iAWYtTqLgLIOXaNrnH2tDQyjljAI?=
+ =?us-ascii?Q?GnHncJzgdLgP/SD1Hp/5e6k0p9gBGDuV+fQdRXCzAyjMhC8Wx8Obq455rOs0?=
+ =?us-ascii?Q?7B9d+fESDyo/Jh+10RLpuBhpiE5Litmhk78uiNhNLsc/EpUICAykwWUdgFhc?=
+ =?us-ascii?Q?ITpXHzo0wv1SU8RjHh4UqLso1ZKJL5DlDg+ELmMHOAVg3rKagX98nkOy33Pt?=
+ =?us-ascii?Q?apyxPGadJY+vuuedAU1sQldj173rfhZhaOvBSh7htAyLySbtZDMw1SlcHjGT?=
+ =?us-ascii?Q?E72uxDxYFKOAkwwwIxnJt4WZhewNCtLXOhmUF3F0p9BCzE9DVggCi0cdkyOA?=
+ =?us-ascii?Q?FIq7CdK0waE9Qn52EKHsYj1sPSwMiAPoJs5WI5hTGpHEcH7xo9b3?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c12f8f5d-bd13-4d2a-a3d5-08de799eb2e2
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR12MB8800.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 04 Mar 2026 03:32:44.8820 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 1rpnZef7riRHYzt1o4UV+yE5ncFeLWafMn/9WG3ukqbaxdt05KGWQQBRI3nHrRx7dnDmEGE4VpNyc482T5TV4A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5958
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -121,312 +188,80 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2EBC81FA5AD
+X-Rspamd-Queue-Id: 7A2E11FA60A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[jdsultan@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@intel.com,m:jani.nikula@linux.intel.com,m:navaremanasi@google.com,m:intel_xe@lists.freedesktop.org,m:rodrigo.vivi@intel.com,m:ddavenport@google.com,m:seanpaul@google.com,m:samjaco@google.com,m:rajatja@google.com,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[google.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jdsultan@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[kernel.dk,kernel.org,linux-foundation.org,davemloft.net,redhat.com,mit.edu,eecs.berkeley.edu,fb.com,linux.ibm.com,zeniv.linux.org.uk,dilger.ca,lunn.ch,opensynergy.com,alien8.de,arm.com,linux.intel.com,gmail.com,codewreck.org,linux.dev,google.com,gondor.apana.org.au,perex.cz,ionkov.net,ellerman.id.au,szeredi.hu,dabbelt.com,infradead.org,intel.com,ffwll.ch,suse.com,ursulin.net,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.sourceforge.net,kvack.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[85];
+	FROM_NEQ_ENVFROM(0.00)[ynorov@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx,netdev];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,Nvidia.com:dkim]
 X-Rspamd-Action: no action
 
---000000000000206342064c2a7216
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, Mar 03, 2026 at 06:49:36PM -0800, Sean Christopherson wrote:
+> On Tue, Mar 03, 2026, Jens Axboe wrote:
+> > On 3/3/26 7:28 PM, Jakub Kicinski wrote:
+> > > On Tue,  3 Mar 2026 20:27:08 -0500 Yury Norov wrote:
+> > >> The net/9p networking driver has a handy macro to calculate the
+> > >> amount of bytes from a given pointer to the end of page. Move it
+> > >> to core/mm, and apply tree-wide. No functional changes intended.
+> > >>
+> > >> This series was originally introduced as a single patch #07/12 in:
+> > >>
+> > >> https://lore.kernel.org/all/20260219181407.290201-1-ynorov@nvidia.com/
+> > >>
+> > >> Split it for better granularity and submit separately.
+> > > 
+> > > I don't get what the motivation is here. Another helper developers
+> > > and readers of the code will need to know about just to replace 
+> > > obvious and easy to comprehend math.
+> > 
+> > I fully agree, I had the same thought reading this.
+> 
+> +1 from KVM-land.
 
-Hi @Jani Nikula <jani.nikula@linux.intel.com>
+My motivation is that it helps to simplify constructions like this:
 
-Thank you for the clarifications. I've investigated the issue and
-determined the source of the discrepancy between the driver and firmware
-set display state. Firstly, it appears userspace issued a commit that
-completely cleared the screen. This explains why we saw all 0s without my
-changes. I have fixed that on our side, so I shouldn't have to worry about
-that when debugging.
+-               loff_t cmp_len = min(PAGE_SIZE - offset_in_page(srcoff),
+-                                    PAGE_SIZE - offset_in_page(dstoff));
++               loff_t cmp_len = min(rest_of_page(srcoff), rest_of_page(dstoff));
 
-You can do a lot of debugging based on just looking at the debug output
-> for the state comparison where we decide a fastset (and in this case
-> fastboot) is not possible. Where does the differing info come from? Is
-> there a readout in place? Is something completely zero in the readout,
-> or are there minor differences? Do you get fastsets on the second and
-> subsequent regular modesets? Etc. Etc.
+Or this:
 
+-               if (folio_test_highmem(dst_folio) &&
+-                   chunk > PAGE_SIZE - offset_in_page(dst_off))
+-                       chunk = PAGE_SIZE - offset_in_page(dst_off);
+-               if (folio_test_highmem(src_folio) &&
+-                   chunk > PAGE_SIZE - offset_in_page(src_off))
+-                       chunk = PAGE_SIZE - offset_in_page(src_off);
++               if (folio_test_highmem(dst_folio) && chunk > rest_of_page(dst_off))
++                       chunk = rest_of_page(dst_off);
++               if (folio_test_highmem(src_folio) && chunk > rest_of_page(src_off))
++                       chunk = rest_of_page(src_off);
 
-We can commit the state that's originally read from the hardware. When
-userspace attempts its first commit, the PLL state and clock that the
-driver calculates differ slightly from what the BIOS has set. This is
-causing us to modeset. I slightly modified how the pll state was calculated
-and added a small tolerance to the clock comparison; this fixes the issue,
-making the state seamless, but I'm not sure exactly how this should be
-solved. In order to avoid publishing any potentially secure information, I
-have created an internal bug where we can discuss exactly how to resolve
-this.
+To a point where I don't have to use my brains to decode them. I agree
+it's an easy math. It's just too bulky to my (and 9p guys too) taste.
 
-On Tue, Mar 3, 2026 at 1:44=E2=80=AFAM Jani Nikula <jani.nikula@intel.com> =
-wrote:
-
-> On Mon, 02 Mar 2026, Manasi Navare <navaremanasi@google.com> wrote:
-> > Hi @Jani Nikula <jani.nikula@intel.com> :
-> >
-> > Before we file a fdo issue with complete debug logs to understand what
-> the
-> > FW is setting up the HW at, I wanted to understand a few more things in
-> > terms of the final solution:
-> >
-> > -  Ideally if the FW is setting up the initial state or programming the
-> HW
-> > registers for the initial splashscreen, for the initial commit when we =
-do
-> > the HW state readout, it should have the HW values programmed to some
-> mode
-> > parameters
-> > -  Then like you suggested, we would need to read out the HW state
-> > - Could you elaborate on "1) reading out the hw state to sw
-> > state? - Does that mean do the HW state readout and compute
-> > pipe_config/crtc_state for that?
-> >
-> > - Then add some sanitization to have this computed pipe_config that wil=
-l
-> be
-> > programmed to the HW
-> > - Then ensure that both are same so that the intel fastset logic can
-> apply
-> > fastset?
->
-> Let's start with the regular modesets, ignoring the probe for a bit.
->
-> For every modeset, we have the old (current) state and the new
-> state. These are both software states. We compare the states to
-> determine whether a full modeset is required or not. This is mostly
-> dependent on what the hardware can change on the fly. If we can bypass a
-> full modeset, we call it a fastset.
->
-> We write either the full new state (modeset) or just the changes
-> (fastset) to the hardware, and the new state becomes the old (current)
-> state.
->
-> After that, we read back the hardware state to verify we did everything
-> right. This is the state checker. The comparison is done using the same
-> functions as for determining whether a full modeset is required.
->
-> Rinse and repeat.
->
-> At probe, we obviously don't have the old (current) software state. We
-> create it by reading out the hardware state, using the same mechanisms
-> as in the state checker. We call it the inherited state. We do the
-> initial commit with that.
->
-> Then we arrive at the first userspace/client initiated modeset. It goes
-> through the same paths as the regular modeset. If we can get away with a
-> fastset, we call it fastboot i.e. no full modeset at boot.
->
-> That's the basic idea, anyway. Now the caveats.
->
-> Sometimes GOP (or whatever pre-os) ends up using slightly different
-> parameters for the same mode than the driver. Or we might not be able to
-> read out everything. Or we lose accuracy in the sw->hw->sw changes. Or
-> the pre-os enables stuff that it doesn't even use or care about. We
-> wiggle around those issues using sanitization or ignoring small
-> differences or simply bypassing some parts on the first modeset.
->
-> Obviously, if there are gaps in the state readout in the first place,
-> the inherited state will be incomplete, and likely leads to a full
-> modeset. (And we also miss out on the state verification of those
-> parts.)
->
-> If the GOP (or pre-os) sets a mode, and the first modeset requests a
-> completely different mode, you can't have fastboot either.
->
-> The thing we absolutely can't do is what patch 2 here does. We can't
-> simply copy over stuff from one state to another, and hope it works. It
-> might appear to work by coincidence in some cases, but it is all
-> wrong. It ignores the computed modeset parameters for the new state,
-> even if userspace tries a completely different mode. It bypasses the
-> comparison for whether a full modeset is needed or not. It's not
-> discretional, it depends on what the hardware can change on the fly, and
-> it's undocumented at best what happens when you try to change such
-> things without a modeset.
->
-> You can do a lot of debugging based on just looking at the debug output
-> for the state comparison where we decide a fastset (and in this case
-> fastboot) is not possible. Where does the differing info come from? Is
-> there a readout in place? Is something completely zero in the readout,
-> or are there minor differences? Do you get fastsets on the second and
-> subsequent regular modesets? Etc. Etc.
->
->
-> HTH,
-> Jani.
->
->
-> --
-> Jani Nikula, Intel
->
-
---000000000000206342064c2a7216
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">Hi=C2=A0<a class=3D"gmail_plusreply" id=3D"m_-666324136213=
-3333357plusReplyChip-0" href=3D"mailto:jani.nikula@linux.intel.com" target=
-=3D"_blank">@Jani Nikula</a>=C2=A0<div><br></div><div>Thank you for the cla=
-rifications. I&#39;ve investigated the issue and determined the source of t=
-he discrepancy between the driver and firmware set display state. Firstly, =
-it appears userspace issued a commit that completely cleared the screen. Th=
-is explains why we saw all 0s without my changes. I have fixed that on our =
-side, so I shouldn&#39;t have to worry about that when debugging.=C2=A0</di=
-v><div><br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px =
-0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">You can =
-do a lot of debugging based on just looking at the debug output<br>for the =
-state comparison where we decide a fastset (and in this case<br>fastboot) i=
-s not possible. Where does the differing info come from? Is<br>there a read=
-out in place? Is something completely zero in the readout,<br>or are there =
-minor differences? Do you get fastsets on the second and<br>subsequent regu=
-lar modesets? Etc. Etc.</blockquote><div><br></div><div>We can commit the s=
-tate that&#39;s originally read from the hardware. When userspace attempts =
-its first commit, the PLL state and clock that the driver calculates differ=
- slightly from what the BIOS has set. This is causing us to modeset. I slig=
-htly modified how the pll state was calculated and added a small tolerance =
-to the clock comparison; this fixes the issue, making the state seamless, b=
-ut I&#39;m not sure exactly how this should be solved. In order to avoid pu=
-blishing any potentially secure information, I have created an internal bug=
- where we can discuss exactly how to resolve this.=C2=A0</div></div><br><di=
-v class=3D"gmail_quote"><div dir=3D"ltr" class=3D"gmail_attr">On Tue, Mar 3=
-, 2026 at 1:44=E2=80=AFAM Jani Nikula &lt;<a href=3D"mailto:jani.nikula@int=
-el.com" target=3D"_blank">jani.nikula@intel.com</a>&gt; wrote:<br></div><bl=
-ockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0px 0.8ex;border-lef=
-t:1px solid rgb(204,204,204);padding-left:1ex">On Mon, 02 Mar 2026, Manasi =
-Navare &lt;<a href=3D"mailto:navaremanasi@google.com" target=3D"_blank">nav=
-aremanasi@google.com</a>&gt; wrote:<br>
-&gt; Hi @Jani Nikula &lt;<a href=3D"mailto:jani.nikula@intel.com" target=3D=
-"_blank">jani.nikula@intel.com</a>&gt; :<br>
-&gt;<br>
-&gt; Before we file a fdo issue with complete debug logs to understand what=
- the<br>
-&gt; FW is setting up the HW at, I wanted to understand a few more things i=
-n<br>
-&gt; terms of the final solution:<br>
-&gt;<br>
-&gt; -=C2=A0 Ideally if the FW is setting up the initial state or programmi=
-ng the HW<br>
-&gt; registers for the initial splashscreen, for the initial commit when we=
- do<br>
-&gt; the HW state readout, it should have the HW values programmed to some =
-mode<br>
-&gt; parameters<br>
-&gt; -=C2=A0 Then like you suggested, we would need to read out the HW stat=
-e<br>
-&gt; - Could you elaborate on &quot;1) reading out the hw state to sw<br>
-&gt; state? - Does that mean do the HW state readout and compute<br>
-&gt; pipe_config/crtc_state for that?<br>
-&gt;<br>
-&gt; - Then add some sanitization to have this computed pipe_config that wi=
-ll be<br>
-&gt; programmed to the HW<br>
-&gt; - Then ensure that both are same so that the intel fastset logic can a=
-pply<br>
-&gt; fastset?<br>
-<br>
-Let&#39;s start with the regular modesets, ignoring the probe for a bit.<br=
->
-<br>
-For every modeset, we have the old (current) state and the new<br>
-state. These are both software states. We compare the states to<br>
-determine whether a full modeset is required or not. This is mostly<br>
-dependent on what the hardware can change on the fly. If we can bypass a<br=
->
-full modeset, we call it a fastset.<br>
-<br>
-We write either the full new state (modeset) or just the changes<br>
-(fastset) to the hardware, and the new state becomes the old (current)<br>
-state.<br>
-<br>
-After that, we read back the hardware state to verify we did everything<br>
-right. This is the state checker. The comparison is done using the same<br>
-functions as for determining whether a full modeset is required.<br>
-<br>
-Rinse and repeat.<br>
-<br>
-At probe, we obviously don&#39;t have the old (current) software state. We<=
-br>
-create it by reading out the hardware state, using the same mechanisms<br>
-as in the state checker. We call it the inherited state. We do the<br>
-initial commit with that.<br>
-<br>
-Then we arrive at the first userspace/client initiated modeset. It goes<br>
-through the same paths as the regular modeset. If we can get away with a<br=
->
-fastset, we call it fastboot i.e. no full modeset at boot.<br>
-<br>
-That&#39;s the basic idea, anyway. Now the caveats.<br>
-<br>
-Sometimes GOP (or whatever pre-os) ends up using slightly different<br>
-parameters for the same mode than the driver. Or we might not be able to<br=
->
-read out everything. Or we lose accuracy in the sw-&gt;hw-&gt;sw changes. O=
-r<br>
-the pre-os enables stuff that it doesn&#39;t even use or care about. We<br>
-wiggle around those issues using sanitization or ignoring small<br>
-differences or simply bypassing some parts on the first modeset.<br>
-<br>
-Obviously, if there are gaps in the state readout in the first place,<br>
-the inherited state will be incomplete, and likely leads to a full<br>
-modeset. (And we also miss out on the state verification of those<br>
-parts.)<br>
-<br>
-If the GOP (or pre-os) sets a mode, and the first modeset requests a<br>
-completely different mode, you can&#39;t have fastboot either.<br>
-<br>
-The thing we absolutely can&#39;t do is what patch 2 here does. We can&#39;=
-t<br>
-simply copy over stuff from one state to another, and hope it works. It<br>
-might appear to work by coincidence in some cases, but it is all<br>
-wrong. It ignores the computed modeset parameters for the new state,<br>
-even if userspace tries a completely different mode. It bypasses the<br>
-comparison for whether a full modeset is needed or not. It&#39;s not<br>
-discretional, it depends on what the hardware can change on the fly, and<br=
->
-it&#39;s undocumented at best what happens when you try to change such<br>
-things without a modeset.<br>
-<br>
-You can do a lot of debugging based on just looking at the debug output<br>
-for the state comparison where we decide a fastset (and in this case<br>
-fastboot) is not possible. Where does the differing info come from? Is<br>
-there a readout in place? Is something completely zero in the readout,<br>
-or are there minor differences? Do you get fastsets on the second and<br>
-subsequent regular modesets? Etc. Etc.<br>
-<br>
-<br>
-HTH,<br>
-Jani.<br>
-<br>
-<br>
--- <br>
-Jani Nikula, Intel<br>
-</blockquote></div>
-
---000000000000206342064c2a7216--
+Thanks,
+Yury
