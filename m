@@ -2,34 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CNh4Cx+Xp2nciQAAu9opvQ
+	id iJLJFuaYp2kCigAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 03:21:19 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 03:28:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4EF5B1F9D36
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 03:21:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BBDF41F9DC2
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 03:28:53 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5279510E0D2;
-	Wed,  4 Mar 2026 02:21:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D97F910E0C4;
+	Wed,  4 Mar 2026 02:28:50 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="spjB+qe8";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1279910E0C4;
- Wed,  4 Mar 2026 02:21:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7122021567670107057=="
-MIME-Version: 1.0
-Subject: =?utf-8?b?4pyTIGk5MTUuQ0kuQkFUOiBzdWNjZXNzIGZvciBtbTogZ2xvYmFsaXplIHJlc3Rf?=
- =?utf-8?b?b2ZfcGFnZSgpIG1hY3Jv?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Yury Norov" <ynorov@nvidia.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 04 Mar 2026 02:21:16 -0000
-Message-ID: <177259087607.312866.5250676989924573250@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260304012717.201797-1-ynorov@nvidia.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 131A410E0C4;
+ Wed,  4 Mar 2026 02:28:50 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 41CFF43A1B;
+ Wed,  4 Mar 2026 02:28:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id DB983C116C6;
+ Wed,  4 Mar 2026 02:28:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772591329;
+ bh=w0enNDJ6vj/GjKs1g6Qapybf69Y+ysKOpkctiG5RrpQ=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+ b=spjB+qe83UoElqhhSNfGwtYNBZK6rgflA8nN48IzNFPIWPeUr3QRcXVdCtF1NJKnf
+ z5EksqVKhftC9MLC9j/7nGeIaaTR87yGm5Rwd8MxIRtsUMKdsilMMJ3Cd9iakxj8Bd
+ EH9ATACpJVqsf4PLZG7kLZaviIgPJnXRNiYRro7z9N/ZFYixQx9IlT7mTSxw717b7C
+ FtZrlDgcd81FIPR+0JhvBn0boDgv6oQAtRyqPocimgjFVPbqTR/7W2RrWO0jyc8Sw9
+ QZEusDhvc5/gFZA6KC6+NigNLVm6yl1rbhBl2iBivGRlsjsn6q5oZHNnRRI6Qq4pAT
+ NJF9zxNmgNh2w==
+Date: Tue, 3 Mar 2026 18:28:45 -0800
+From: Jakub Kicinski <kuba@kernel.org>
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>, "David S. Miller"
+ <davem@davemloft.net>, "Michael S. Tsirkin" <mst@redhat.com>, "Theodore
+ Ts'o" <tytso@mit.edu>, Albert Ou <aou@eecs.berkeley.edu>, Alexander Duyck
+ <alexanderduyck@fb.com>, Alexander Gordeev <agordeev@linux.ibm.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>, Alexandra Winter
+ <wintera@linux.ibm.com>, Andreas Dilger <adilger.kernel@dilger.ca>, Andrew
+ Lunn <andrew+netdev@lunn.ch>, Anna Schumaker <anna@kernel.org>, Anton
+ Yakovlev <anton.yakovlev@opensynergy.com>, Arnaldo Carvalho de Melo
+ <acme@kernel.org>, Aswin Karuvally <aswin@linux.ibm.com>, Borislav Petkov
+ <bp@alien8.de>, Carlos Maiolino <cem@kernel.org>, Catalin Marinas
+ <catalin.marinas@arm.com>, Chao Yu <chao@kernel.org>, Christian Borntraeger
+ <borntraeger@linux.ibm.com>, Christian Brauner <brauner@kernel.org>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>, Dave Hansen
+ <dave.hansen@linux.intel.com>, David Airlie <airlied@gmail.com>, Dominique
+ Martinet <asmadeus@codewreck.org>, Dongsheng Yang
+ <dongsheng.yang@linux.dev>, Eric Dumazet <edumazet@google.com>, Eric Van
+ Hensbergen <ericvh@kernel.org>, Heiko Carstens <hca@linux.ibm.com>, Herbert
+ Xu <herbert@gondor.apana.org.au>, Ingo Molnar <mingo@redhat.com>, Jaegeuk
+ Kim <jaegeuk@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Janosch Frank <frankja@linux.ibm.com>, Jaroslav Kysela <perex@perex.cz>,
+ Jens Axboe <axboe@kernel.dk>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Latchesar Ionkov <lucho@ionkov.net>,
+ Linus Walleij <linusw@kernel.org>, Madhavan Srinivasan
+ <maddy@linux.ibm.com>, Mark Brown <broonie@kernel.org>, Michael Ellerman
+ <mpe@ellerman.id.au>, Miklos Szeredi <miklos@szeredi.hu>, Namhyung Kim
+ <namhyung@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>, Paolo Abeni
+ <pabeni@redhat.com>, Paolo Bonzini <pbonzini@redhat.com>, Paul Walmsley
+ <pjw@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Sean Christopherson <seanjc@google.com>, Simona
+ Vetter <simona@ffwll.ch>, Takashi Iwai <tiwai@suse.com>, Thomas Gleixner
+ <tglx@kernel.org>, Trond Myklebust <trondmy@kernel.org>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Vasily Gorbik <gor@linux.ibm.com>, Will Deacon
+ <will@kernel.org>, Yury Norov <yury.norov@gmail.com>, Zheng Gu
+ <cengku@gmail.com>, linux-kernel@vger.kernel.org, x86@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ linux-riscv@lists.infradead.org, kvm@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-block@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ dm-devel@lists.linux.dev, netdev@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net, linux-fsdevel@vger.kernel.org,
+ linux-xfs@vger.kernel.org, linux-nfs@vger.kernel.org,
+ linux-crypto@vger.kernel.org, linux-mm@kvack.org,
+ linux-perf-users@vger.kernel.org, v9fs@lists.linux.dev,
+ virtualization@lists.linux.dev, linux-sound@vger.kernel.org
+Subject: Re: [PATCH 0/8] mm: globalize rest_of_page() macro
+Message-ID: <20260303182845.250bb2de@kernel.org>
 In-Reply-To: <20260304012717.201797-1-ynorov@nvidia.com>
+References: <20260304012717.201797-1-ynorov@nvidia.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,231 +102,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4EF5B1F9D36
+X-Rspamd-Queue-Id: BBDF41F9DC2
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux-foundation.org,davemloft.net,redhat.com,mit.edu,eecs.berkeley.edu,fb.com,linux.ibm.com,zeniv.linux.org.uk,dilger.ca,lunn.ch,kernel.org,opensynergy.com,alien8.de,arm.com,linux.intel.com,gmail.com,codewreck.org,linux.dev,google.com,gondor.apana.org.au,perex.cz,kernel.dk,ionkov.net,ellerman.id.au,szeredi.hu,dabbelt.com,infradead.org,intel.com,ffwll.ch,suse.com,ursulin.net,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.sourceforge.net,kvack.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.246];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[85];
+	FROM_NEQ_ENVFROM(0.00)[kuba@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx,netdev];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
---===============7122021567670107057==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue,  3 Mar 2026 20:27:08 -0500 Yury Norov wrote:
+> The net/9p networking driver has a handy macro to calculate the
+> amount of bytes from a given pointer to the end of page. Move it
+> to core/mm, and apply tree-wide. No functional changes intended.
+> 
+> This series was originally introduced as a single patch #07/12 in:
+> 
+> https://lore.kernel.org/all/20260219181407.290201-1-ynorov@nvidia.com/
+> 
+> Split it for better granularity and submit separately.
 
-== Series Details ==
-
-Series: mm: globalize rest_of_page() macro
-URL   : https://patchwork.freedesktop.org/series/162538/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18085 -> Patchwork_162538v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Missing    (1): bat-dg2-13 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_162538v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_exec_fence@basic-busy@rcs0:
-    - bat-dg1-6:          [PASS][1] -> [ABORT][2] ([i915#15759]) +1 other test abort
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-dg1-6/igt@gem_exec_fence@basic-busy@rcs0.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-dg1-6/igt@gem_exec_fence@basic-busy@rcs0.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-atsm-1:         NOTRUN -> [ABORT][3] ([i915#15759]) +1 other test abort
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-atsm-1/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines@lmem0:
-    - bat-dg2-8:          [PASS][4] -> [ABORT][5] ([i915#15759]) +1 other test abort
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-dg2-8/igt@gem_lmem_swapping@parallel-random-engines@lmem0.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-dg2-8/igt@gem_lmem_swapping@parallel-random-engines@lmem0.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][6] -> [DMESG-FAIL][7] ([i915#12061]) +1 other test dmesg-fail
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-mtlp-8/igt@i915_selftest@live.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@gem_lmem_swapping@basic:
-    - bat-atsm-1:         [ABORT][10] ([i915#15759]) -> [PASS][11] +1 other test pass
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-atsm-1/igt@gem_lmem_swapping@basic.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-atsm-1/igt@gem_lmem_swapping@basic.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-9:          [DMESG-FAIL][12] ([i915#12061]) -> [PASS][13] +1 other test pass
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15759]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18085 -> Patchwork_162538v1
-
-  CI-20190529: 20190529
-  CI_DRM_18085: cfc20c776480fda8c1b0517b187bb71ec0781cd4 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_162538v1: cfc20c776480fda8c1b0517b187bb71ec0781cd4 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/index.html
-
---===============7122021567670107057==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>mm: globalize rest_of_page() macro</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162538/">https://patchwork.freedesktop.org/series/162538/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18085 -&gt; Patchwork_162538v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Missing    (1): bat-dg2-13 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_162538v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_exec_fence@basic-busy@rcs0:</p>
-<ul>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-dg1-6/igt@gem_exec_fence@basic-busy@rcs0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-dg1-6/igt@gem_exec_fence@basic-busy@rcs0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759">i915#15759</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-atsm-1/igt@gem_lmem_swapping@parallel-random-engines.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759">i915#15759</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines@lmem0:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-dg2-8/igt@gem_lmem_swapping@parallel-random-engines@lmem0.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-dg2-8/igt@gem_lmem_swapping@parallel-random-engines@lmem0.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759">i915#15759</a>) +1 other test abort</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@basic:</p>
-<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-atsm-1/igt@gem_lmem_swapping@basic.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15759">i915#15759</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-atsm-1/igt@gem_lmem_swapping@basic.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18085/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162538v1/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18085 -&gt; Patchwork_162538v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18085: cfc20c776480fda8c1b0517b187bb71ec0781cd4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8777: a50285a68dbef0fe11140adef4016a756f57b324 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_162538v1: cfc20c776480fda8c1b0517b187bb71ec0781cd4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7122021567670107057==--
+I don't get what the motivation is here. Another helper developers
+and readers of the code will need to know about just to replace 
+obvious and easy to comprehend math.
