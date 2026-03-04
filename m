@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KE2YJD0wqGlPpQAAu9opvQ
+	id UJU8Gj4wqGlPpQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 14:14:37 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 14:14:38 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2377C200334
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 14:14:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DE0D20033B
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 14:14:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 68EEF10E9F9;
-	Wed,  4 Mar 2026 13:14:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B22A110E9FE;
+	Wed,  4 Mar 2026 13:14:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BI93f0bG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UxHMdSeT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 90CE610E9F8;
- Wed,  4 Mar 2026 13:14:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C1D5A10E9F1;
+ Wed,  4 Mar 2026 13:14:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772630074; x=1804166074;
+ t=1772630075; x=1804166075;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=t1jQcObCcH2Ju+ak5HWnL88ivLpZd5+RuuJ6SPRbC1I=;
- b=BI93f0bG0ywrALtz/v4dTLmeUElrtHBmXvMJpq5v8JwrpbZlSZXfVKsq
- iiIfzg0yDJp2Xm9mZZ6vVCf0clyx8jtFlswMb852XuGiM6Gm3Js+8vabh
- 2q5giKWV6kLhFa855IiLCpwcbbsdSCnXxwznZobyC/9+T3srpJN+vn96J
- ZrK+QhjWit7NSTp5Sw8gBJpjc5NB5kXfmbCPThu8OkEPTJZELuvXoV5Q7
- tyxDE4IiXziURzKjelOlOoLJeO6+74eNsWSpKGFnBbcD3I1/gjBNZMM4P
- bfNzXot7q1kmQPo5GIXQSYSU6uZyXme7muZqFxmnToRoOA0EnQQd5sCVi g==;
-X-CSE-ConnectionGUID: nCkZdlMmTwecaIDr0Phdow==
-X-CSE-MsgGUID: MSIwqH0nQouhMiQAMen9ng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="77293462"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="77293462"
+ bh=29GBgUZU7DhVGLj1I9LQo0QA0eCYb5ZaivVtiTJQSBs=;
+ b=UxHMdSeTezorzVwD8K5Tubnl9m0avXEz8xsn/B0wn/lkgStt8wAhcJ5e
+ T2HsuEP/BYpf0GvIL0ZTOIVTnUF+pWFPQrEQShm6pdBzfXyR8G6N+je8Q
+ 7/u+I/rWD61XHp8hPCPxSDYnmgI7+u8PF5iBk+Gwyi4UqRfiilj9/WI9v
+ nH4oOGmtpHPDZIV809gxn/pabzaZq1Nnl90KK6nmtVcITlro8w0LkPFmi
+ p2ibjEXZCaMIZ6HarH2Fpo/0J8WLdLFP5akEqKQeSStLOXLvcIegWmj6L
+ ACwmcoeBaz5bY9ObqptBfUPzcFcbwKVgUaA89JukAZ8RNDj2P0DGUYHVh A==;
+X-CSE-ConnectionGUID: kmXYVbDNSfKf0YD1TBzwxA==
+X-CSE-MsgGUID: I7fWd0KkRrqEvQW3PMRFJw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="77293464"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="77293464"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 05:14:34 -0800
-X-CSE-ConnectionGUID: dtEASHxKSqevfK5CDY4pkA==
-X-CSE-MsgGUID: jFrXoXf/TyaamL49QrPvbg==
+ 04 Mar 2026 05:14:35 -0800
+X-CSE-ConnectionGUID: KejhcsolSaWQG5xXEoN/4g==
+X-CSE-MsgGUID: dxN9O8QMQ6SHMwob49kVYA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="241350775"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="241350779"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa002.fm.intel.com with ESMTP; 04 Mar 2026 05:14:33 -0800
+ by fmviesa002.fm.intel.com with ESMTP; 04 Mar 2026 05:14:35 -0800
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 07/24] drm/i915/lt_phy: Add xe3plpd .get_dplls hook
-Date: Wed,  4 Mar 2026 13:14:06 +0000
-Message-ID: <20260304131423.1017821-8-mika.kahola@intel.com>
+Subject: [PATCH v2 08/24] drm/i915/lt_phy: Add xe3plpd .put_dplls hook
+Date: Wed,  4 Mar 2026 13:14:07 +0000
+Message-ID: <20260304131423.1017821-9-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260304131423.1017821-1-mika.kahola@intel.com>
 References: <20260304131423.1017821-1-mika.kahola@intel.com>
@@ -72,7 +72,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2377C200334
+X-Rspamd-Queue-Id: 3DE0D20033B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -101,9 +101,8 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-Add .get_dplls function pointer for xe3plpd platforms
-to support dpll framework. Reuse the ICL function
-pointer.
+Add .put_dplls function pointer to support xe3plpd platform
+on dpll framework. Reuse ICL function pointer.
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
@@ -112,14 +111,14 @@ Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index 58c24e2164ca..9aa8eb0a7d4a 100644
+index 9aa8eb0a7d4a..af2613eeaf92 100644
 --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
 +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -4653,6 +4653,7 @@ __maybe_unused
- static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
+@@ -4654,6 +4654,7 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
  	.dpll_info = xe3plpd_plls,
  	.compute_dplls = xe3plpd_compute_dplls,
-+	.get_dplls = mtl_get_dplls,
+ 	.get_dplls = mtl_get_dplls,
++	.put_dplls = icl_put_dplls,
  };
  
  /**
