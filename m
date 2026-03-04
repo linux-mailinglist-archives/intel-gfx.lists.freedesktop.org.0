@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ICzWAJ1EqGkfsAAAu9opvQ
+	id 0GK8LqJEqGlOrwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:33 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:38 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82618201C81
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32334201C89
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 15:41:38 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CFD4A10EA2F;
-	Wed,  4 Mar 2026 14:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 79E3410EA3E;
+	Wed,  4 Mar 2026 14:41:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gGxowV9P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jyq4+hog";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ACC3F10EA2C;
- Wed,  4 Mar 2026 14:41:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B2D10EA2D;
+ Wed,  4 Mar 2026 14:41:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772635290; x=1804171290;
+ t=1772635294; x=1804171294;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7CNAZKJ4LJXr9X7pkHlMpWnZO+2aJ+BHZi6Te7Ydf0A=;
- b=gGxowV9P0sZoIFJC7WFvuZ5yTFfq86TBJ4l0UDN4AzqcWblwwEy3N1ZE
- dfpmBsf4ilI2q7gHEJqO5zkEvGwkiKrae5BgCvRvi64aNeUZBgRqUQazL
- w5017e0QA6NXzeDCwidQRg+oJRzwHLq85f8qADBnNDnlfGG74lbGlykCo
- aRZYTYgJYvEVS1V1Gx4/jO30/wC+fjz7YFu39i6YAeMfZ40K+woGcm5Fy
- ESuOA1Q+RRehbgsn32Eh2zDdREIY/2K/SSHN9Ve5rz0VLCI8jkCok3Wbn
- ATiJx5zkr5Pja/TbfD0jPAYiwWzoCKekzBl9isQ2YqKjaNp2nubpqE93E A==;
-X-CSE-ConnectionGUID: Aw3LMxVKR22mQJcmpMqtvw==
-X-CSE-MsgGUID: nvl3QohURI+SkazUDgo0Pg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="84330071"
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="84330071"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 06:41:29 -0800
-X-CSE-ConnectionGUID: 1826xYVATZO47Fk4PQ0QBg==
-X-CSE-MsgGUID: N+t61tpOREanzoA04H3PLA==
+ bh=ZkdbFR8fZzQ1hu2SkSWfqA5lBfkvEldj8SI/l23a88I=;
+ b=jyq4+hog08pB4RxKmMQwpfZAmY6ASWN8YSUvV+zmMytzC4s/OW9yDZGG
+ aIwRLHY16IKl4ZUnX2BDG9uIBJDGgOZPNd1y1lp2YJ/zSPlifHqb/9E0q
+ H6UsJAfVUdvdGvPSFP15zKtv8ogGtur5vD4rSRPM5G8Xny+R0c9GtkYfN
+ SRznhcYXtxvcEqu7WefMiVgOOv25u0jU4PeLLKm9OjqfHd/yvifY6IWJj
+ vdW/iJrtG3SmhsIpPQDnjTR4dmojR1D2g6gh1xA7cbt3/e6EstvZGw88Q
+ L9qXlZx8O+sC6wlyg186wGXHaLAy9bBMjZhRzQoCAiDqm7jQVnikkQPib w==;
+X-CSE-ConnectionGUID: +8sflB4HSvu91D+PaVD7nA==
+X-CSE-MsgGUID: OJcYpvNTS/CMmk23dSNUlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73744094"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="73744094"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 06:41:34 -0800
+X-CSE-ConnectionGUID: RSSuPG+JTGqRxKVMARrxzA==
+X-CSE-MsgGUID: 1jpinp7qTE6V8TqeeHm93A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="218479421"
+X-IronPort-AV: E=Sophos;i="6.21,324,1763452800"; d="scan'208";a="217518073"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.84])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 06:41:28 -0800
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Mar 2026 06:41:33 -0800
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 6/8] drm/xe/step: switch to the shared step definitions with
- i915
-Date: Wed,  4 Mar 2026 16:40:51 +0200
-Message-ID: <a24789601b74cccdcb2f57b19ea6a609b8e53e16.1772635152.git.jani.nikula@intel.com>
+Subject: [PATCH 7/8] drm/xe/step: switch from enum xe_step to intel_step naming
+Date: Wed,  4 Mar 2026 16:40:52 +0200
+Message-ID: <d314f94272ffa45bb90b77f07220baac914769df.1772635152.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1772635152.git.jani.nikula@intel.com>
 References: <cover.1772635152.git.jani.nikula@intel.com>
@@ -76,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 82618201C81
+X-Rspamd-Queue-Id: 32334201C89
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -106,109 +105,76 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Use the shared stepping enums from include/drm/intel/step.h.
-
-For now, define xe_step as intel_step to avoid mass renames at the same
-time. For compat, we can remove the reverse macro.
+Remove the xe_step macro, and use the enum intel_step name directly.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/xe/compat-i915-headers/intel_step.h   |  4 +-
- drivers/gpu/drm/xe/xe_step_types.h            | 63 ++-----------------
- 2 files changed, 5 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/xe/tests/xe_pci.c  | 4 ++--
+ drivers/gpu/drm/xe/xe_step.c       | 2 +-
+ drivers/gpu/drm/xe/xe_step.h       | 4 ++--
+ drivers/gpu/drm/xe/xe_step_types.h | 2 --
+ 4 files changed, 5 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-index 0eabe2866f5f..cb55a659856b 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
-@@ -6,8 +6,6 @@
- #ifndef __INTEL_STEP_H__
- #define __INTEL_STEP_H__
+diff --git a/drivers/gpu/drm/xe/tests/xe_pci.c b/drivers/gpu/drm/xe/tests/xe_pci.c
+index f3179b31f13e..860409c579f8 100644
+--- a/drivers/gpu/drm/xe/tests/xe_pci.c
++++ b/drivers/gpu/drm/xe/tests/xe_pci.c
+@@ -131,12 +131,12 @@ static const char *subplatform_prefix(enum xe_subplatform s)
+ 	return s == XE_SUBPLATFORM_NONE ? "" : " ";
+ }
  
--#include "xe_step_types.h"
--
--#define intel_step xe_step
-+#include <drm/intel/step.h>
+-static const char *step_prefix(enum xe_step step)
++static const char *step_prefix(enum intel_step step)
+ {
+ 	return step == STEP_NONE ? "" : " ";
+ }
  
- #endif /* __INTEL_STEP_H__ */
+-static const char *step_name(enum xe_step step)
++static const char *step_name(enum intel_step step)
+ {
+ 	return step == STEP_NONE ? "" : xe_step_name(step);
+ }
+diff --git a/drivers/gpu/drm/xe/xe_step.c b/drivers/gpu/drm/xe/xe_step.c
+index 2860986f82f7..e021da35b03c 100644
+--- a/drivers/gpu/drm/xe/xe_step.c
++++ b/drivers/gpu/drm/xe/xe_step.c
+@@ -248,7 +248,7 @@ struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
+ 	case STEP_##name:	\
+ 		return #name;
+ 
+-const char *xe_step_name(enum xe_step step)
++const char *xe_step_name(enum intel_step step)
+ {
+ 	switch (step) {
+ 	STEP_NAME_LIST(STEP_NAME_CASE);
+diff --git a/drivers/gpu/drm/xe/xe_step.h b/drivers/gpu/drm/xe/xe_step.h
+index 686cb59200c2..6fd680c1b45e 100644
+--- a/drivers/gpu/drm/xe/xe_step.h
++++ b/drivers/gpu/drm/xe/xe_step.h
+@@ -16,8 +16,8 @@ struct xe_step_info xe_step_pre_gmdid_get(struct xe_device *xe);
+ struct xe_step_info xe_step_gmdid_get(struct xe_device *xe,
+ 				      u32 graphics_gmdid_revid,
+ 				      u32 media_gmdid_revid);
+-static inline u32 xe_step_to_gmdid(enum xe_step step) { return step - STEP_A0; }
++static inline u32 xe_step_to_gmdid(enum intel_step step) { return step - STEP_A0; }
+ 
+-const char *xe_step_name(enum xe_step step);
++const char *xe_step_name(enum intel_step step);
+ 
+ #endif
 diff --git a/drivers/gpu/drm/xe/xe_step_types.h b/drivers/gpu/drm/xe/xe_step_types.h
-index d978cc2512f2..bc3ed5a8282a 100644
+index bc3ed5a8282a..bd9a7a44a67f 100644
 --- a/drivers/gpu/drm/xe/xe_step_types.h
 +++ b/drivers/gpu/drm/xe/xe_step_types.h
-@@ -8,69 +8,14 @@
+@@ -10,8 +10,6 @@
  
- #include <linux/types.h>
+ #include <drm/intel/step.h>
  
-+#include <drm/intel/step.h>
-+
-+#define xe_step intel_step
-+
+-#define xe_step intel_step
+-
  struct xe_step_info {
  	u8 graphics;
  	u8 media;
- 	u8 basedie;
- };
- 
--#define STEP_ENUM_VAL(name)  STEP_##name,
--
--/*
-- * Always define four minor steppings 0-3 for each stepping to match GMD ID
-- * spacing of values. See xe_step_gmdid_get().
-- */
--#define STEP_NAME_LIST(func)		\
--	func(A0)			\
--	func(A1)			\
--	func(A2)			\
--	func(A3)			\
--	func(B0)			\
--	func(B1)			\
--	func(B2)			\
--	func(B3)			\
--	func(C0)			\
--	func(C1)			\
--	func(C2)			\
--	func(C3)			\
--	func(D0)			\
--	func(D1)			\
--	func(D2)			\
--	func(D3)			\
--	func(E0)			\
--	func(E1)			\
--	func(E2)			\
--	func(E3)			\
--	func(F0)			\
--	func(F1)			\
--	func(F2)			\
--	func(F3)			\
--	func(G0)			\
--	func(G1)			\
--	func(G2)			\
--	func(G3)			\
--	func(H0)			\
--	func(H1)			\
--	func(H2)			\
--	func(H3)			\
--	func(I0)			\
--	func(I1)			\
--	func(I2)			\
--	func(I3)			\
--	func(J0)			\
--	func(J1)			\
--	func(J2)			\
--	func(J3)
--
--/*
-- * Symbolic steppings that do not match the hardware. These are valid both as gt
-- * and display steppings as symbolic names.
-- */
--enum xe_step {
--	STEP_NONE = 0,
--	STEP_NAME_LIST(STEP_ENUM_VAL)
--	STEP_FUTURE,
--	STEP_FOREVER,
--};
--
- #endif
 -- 
 2.47.3
 
