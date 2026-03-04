@@ -2,66 +2,111 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJY8D7APqGk8ngAAu9opvQ
+	id uD3vOCoTqGnUngAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 11:55:44 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 12:10:34 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B69B1FE9A0
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 11:55:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5336F1FEB77
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 12:10:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 717DD10E9A9;
-	Wed,  4 Mar 2026 10:55:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C81710E9B2;
+	Wed,  4 Mar 2026 11:10:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PXGNDv/v";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KtxESzLT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C649010E9A9;
- Wed,  4 Mar 2026 10:55:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772621740; x=1804157740;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=D2mokMgwiDrPC5HTWpeWeXojhsT9ULqabU9TNVWeJMM=;
- b=PXGNDv/vX8W6fvGMOGBTSgqVGZdCPH8xR4DBTHt0yAwDrRjJtpPaZrH9
- zvKZziVMH/yGNdJJhxP81mJugAbEh5Lcs4zkCcJeceepV/4mbHvLOdNST
- LwMHeBCnXbh2+pYfxR5yAr/Mo6E0oppmH9F2ljtkr3Yh9VmISBAbZlUiP
- oDeblc3FFelw7ZC/x2C1XOBrWpn4cGJgmEc/THHptsMn65YYUiFvonaZk
- BdcOHyflJcPGpFPGiMVKiuhZIKyNQUT5Rs9JIv//utJvx9s4odO+di7uz
- pl09UURVBvdQ6MHwJhkbR4gJgcD8ThZplwT4GUm/vkErkDm/bfSgFee5I w==;
-X-CSE-ConnectionGUID: EJ2w2gCPSnmaN3yqkLJofg==
-X-CSE-MsgGUID: JzMnXMOzROm+ZE4OMGnh9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="85146017"
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="85146017"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 02:55:39 -0800
-X-CSE-ConnectionGUID: C3+BYwgfQ8e2hreBNg8DEg==
-X-CSE-MsgGUID: 6K04dB7ATHeFeG7d+jcezA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="241317248"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.84])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 02:55:37 -0800
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/4] drm/i915: add VMA to parent interface
-In-Reply-To: <aacIH_3FjC7azuC9@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1772212579.git.jani.nikula@intel.com>
- <036f4b2d20cc1b0a7ab814beb5bb914c53b6eb53.1772212579.git.jani.nikula@intel.com>
- <aacIH_3FjC7azuC9@intel.com>
-Date: Wed, 04 Mar 2026 12:55:34 +0200
-Message-ID: <99c154bc50a9b5c51f1f7945cf904cc7cbca95e7@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 615B510E10A;
+ Wed,  4 Mar 2026 11:10:31 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id C485643B18;
+ Wed,  4 Mar 2026 11:10:30 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 64839C19423;
+ Wed,  4 Mar 2026 11:10:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772622630;
+ bh=NqNfQqjBGfmbAJo/aZtHMPo7003kq0HNHUa3oLLM9rE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=KtxESzLTRevMkC0RMT3EArDVMk2FhTkCghz7l84S/Sl/uRFMKbvYjBO6WKTPLXZG2
+ hDd+jtXTkQDCPlsNqrRNNBIS69FSEG3kyCqhhWldcKaA7lgmXmclpmibkTkxFDGx05
+ L1mWc9QOtddQl0a6TEhhiss3l8edtqg3iz0dJiofY0wVH+4yeCbYY1MzoD2oPWrjdR
+ EnDw2NjEjLAGM8p4Zym2vHqMmJuBYJNQQtn7Ix1yH9YiSler1bu8kJQI/BP/hsAWKP
+ HCA4EbtIlLqW3pzKVaXGzu0CeEXA+pozdgRHL7CTE7jTeamnzsicmpnlaw5LC2gU+C
+ eQD2mqeeLI41g==
+Date: Wed, 4 Mar 2026 11:10:13 +0000
+From: Mark Brown <broonie@kernel.org>
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ "David S. Miller" <davem@davemloft.net>,
+ "Michael S. Tsirkin" <mst@redhat.com>,
+ Theodore Ts'o <tytso@mit.edu>, Albert Ou <aou@eecs.berkeley.edu>,
+ Alexander Duyck <alexanderduyck@fb.com>,
+ Alexander Gordeev <agordeev@linux.ibm.com>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Alexandra Winter <wintera@linux.ibm.com>,
+ Andreas Dilger <adilger.kernel@dilger.ca>,
+ Andrew Lunn <andrew+netdev@lunn.ch>, Anna Schumaker <anna@kernel.org>,
+ Anton Yakovlev <anton.yakovlev@opensynergy.com>,
+ Arnaldo Carvalho de Melo <acme@kernel.org>,
+ Aswin Karuvally <aswin@linux.ibm.com>,
+ Borislav Petkov <bp@alien8.de>, Carlos Maiolino <cem@kernel.org>,
+ Catalin Marinas <catalin.marinas@arm.com>, Chao Yu <chao@kernel.org>,
+ Christian Borntraeger <borntraeger@linux.ibm.com>,
+ Christian Brauner <brauner@kernel.org>,
+ Claudio Imbrenda <imbrenda@linux.ibm.com>,
+ Dave Hansen <dave.hansen@linux.intel.com>,
+ David Airlie <airlied@gmail.com>,
+ Dominique Martinet <asmadeus@codewreck.org>,
+ Dongsheng Yang <dongsheng.yang@linux.dev>,
+ Eric Dumazet <edumazet@google.com>,
+ Eric Van Hensbergen <ericvh@kernel.org>,
+ Heiko Carstens <hca@linux.ibm.com>,
+ Herbert Xu <herbert@gondor.apana.org.au>,
+ Ingo Molnar <mingo@redhat.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Jakub Kicinski <kuba@kernel.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Janosch Frank <frankja@linux.ibm.com>,
+ Jaroslav Kysela <perex@perex.cz>, Jens Axboe <axboe@kernel.dk>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Latchesar Ionkov <lucho@ionkov.net>, Linus Walleij <linusw@kernel.org>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>, Miklos Szeredi <miklos@szeredi.hu>,
+ Namhyung Kim <namhyung@kernel.org>, Palmer Dabbelt <palmer@dabbelt.com>,
+ Paolo Abeni <pabeni@redhat.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Paul Walmsley <pjw@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Sean Christopherson <seanjc@google.com>,
+ Simona Vetter <simona@ffwll.ch>, Takashi Iwai <tiwai@suse.com>,
+ Thomas Gleixner <tglx@kernel.org>, Trond Myklebust <trondmy@kernel.org>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Vasily Gorbik <gor@linux.ibm.com>, Will Deacon <will@kernel.org>,
+ Yury Norov <yury.norov@gmail.com>, Zheng Gu <cengku@gmail.com>,
+ linux-kernel@vger.kernel.org, x86@kernel.org,
+ linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org,
+ linux-riscv@lists.infradead.org, kvm@vger.kernel.org,
+ linux-s390@vger.kernel.org, linux-block@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ dm-devel@lists.linux.dev, netdev@vger.kernel.org,
+ linux-spi@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-f2fs-devel@lists.sourceforge.net,
+ linux-fsdevel@vger.kernel.org, linux-xfs@vger.kernel.org,
+ linux-nfs@vger.kernel.org, linux-crypto@vger.kernel.org,
+ linux-mm@kvack.org, linux-perf-users@vger.kernel.org,
+ v9fs@lists.linux.dev, virtualization@lists.linux.dev,
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 5/8] spi: use rest_of_page() macro where appropriate
+Message-ID: <e731e101-bf06-44d7-ac91-0756c5b8bbc8@sirena.org.uk>
+References: <20260304012717.201797-1-ynorov@nvidia.com>
+ <20260304012717.201797-6-ynorov@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="MuL6cN1k4g/DbVd2"
+Content-Disposition: inline
+In-Reply-To: <20260304012717.201797-6-ynorov@nvidia.com>
+X-Cookie: Take it easy, we're in a hurry.
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,254 +121,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9B69B1FE9A0
+X-Rspamd-Queue-Id: 5336F1FEB77
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[linux-foundation.org,davemloft.net,redhat.com,mit.edu,eecs.berkeley.edu,fb.com,linux.ibm.com,zeniv.linux.org.uk,dilger.ca,lunn.ch,kernel.org,opensynergy.com,alien8.de,arm.com,linux.intel.com,gmail.com,codewreck.org,linux.dev,google.com,gondor.apana.org.au,perex.cz,kernel.dk,ionkov.net,ellerman.id.au,szeredi.hu,dabbelt.com,infradead.org,intel.com,ffwll.ch,suse.com,ursulin.net,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.sourceforge.net,kvack.org];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_GT_50(0.00)[85];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[intel-gfx,netdev];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, 03 Mar 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, Feb 27, 2026 at 07:17:12PM +0200, Jani Nikula wrote:
->> It's unclear what the direction of the VMA abstraction in the parent
->> interface should be, but convert i915_vma_fence_id() to parent interface
->> for starters. This paves the way for making struct i915_vma opaque
->> towards display.
->>=20
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_fbc.c          |  5 ++---
->>  drivers/gpu/drm/i915/display/intel_parent.c       |  9 +++++++++
->>  drivers/gpu/drm/i915/display/intel_parent.h       |  3 +++
->>  drivers/gpu/drm/i915/i915_driver.c                |  1 +
->>  drivers/gpu/drm/i915/i915_vma.c                   | 10 ++++++++++
->>  drivers/gpu/drm/i915/i915_vma.h                   |  7 ++-----
->>  drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h |  2 --
->>  include/drm/intel/display_parent_interface.h      |  7 +++++++
->>  8 files changed, 34 insertions(+), 10 deletions(-)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/=
-i915/display/intel_fbc.c
->> index 91de38379282..3e9b3e532499 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->> @@ -45,7 +45,6 @@
->>  #include <drm/drm_fourcc.h>
->>  #include <drm/drm_print.h>
->>=20=20
->> -#include "i915_vma.h"
->>  #include "i9xx_plane_regs.h"
->>  #include "intel_de.h"
->>  #include "intel_display_device.h"
->> @@ -1463,7 +1462,7 @@ static void intel_fbc_update_state(struct intel_at=
-omic_state *state,
->>  		    !intel_fbc_has_fences(display));
->>=20=20
->>  	if (plane_state->flags & PLANE_HAS_FENCE)
->> -		fbc_state->fence_id =3D  i915_vma_fence_id(plane_state->ggtt_vma);
->> +		fbc_state->fence_id =3D intel_parent_vma_fence_id(display, plane_stat=
-e->ggtt_vma);
->
-> Hmm. I think I'd rather just return the fence from the pin stuff
-> and track it in the plane state, and then nuke plane_state->flags
-> since it'll no longer be needed.
 
-I'm afraid I merged the lot two hours before your message. :/
+--MuL6cN1k4g/DbVd2
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-BR,
-Jani.
+On Tue, Mar 03, 2026 at 08:27:13PM -0500, Yury Norov wrote:
+> Switch SPI code to using the macro. No functional changes intended.
+>=20
 
->
->>  	else
->>  		fbc_state->fence_id =3D -1;
->>=20=20
->> @@ -1490,7 +1489,7 @@ static bool intel_fbc_is_fence_ok(const struct int=
-el_plane_state *plane_state)
->>  	 */
->>  	return DISPLAY_VER(display) >=3D 9 ||
->>  		(plane_state->flags & PLANE_HAS_FENCE &&
->> -		 i915_vma_fence_id(plane_state->ggtt_vma) !=3D -1);
->> +		 intel_parent_vma_fence_id(display, plane_state->ggtt_vma) !=3D -1);
->>  }
->>=20=20
->>  static bool intel_fbc_is_cfb_ok(const struct intel_plane_state *plane_s=
-tate)
->> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/d=
-rm/i915/display/intel_parent.c
->> index 89f78ca1cd15..0c5962cb2f6d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_parent.c
->> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
->> @@ -317,6 +317,15 @@ void intel_parent_stolen_node_free(struct intel_dis=
-play *display, const struct i
->>  	display->parent->stolen->node_free(node);
->>  }
->>=20=20
->> +/* vma */
->> +int intel_parent_vma_fence_id(struct intel_display *display, const stru=
-ct i915_vma *vma)
->> +{
->> +	if (!display->parent->vma)
->> +		return -1;
->> +
->> +	return display->parent->vma->fence_id(vma);
->> +}
->> +
->>  /* generic */
->>  void intel_parent_fence_priority_display(struct intel_display *display,=
- struct dma_fence *fence)
->>  {
->> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/d=
-rm/i915/display/intel_parent.h
->> index 2317482ef072..6e7d09133aee 100644
->> --- a/drivers/gpu/drm/i915/display/intel_parent.h
->> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
->> @@ -102,6 +102,9 @@ u64 intel_parent_stolen_node_size(struct intel_displ=
-ay *display, const struct in
->>  struct intel_stolen_node *intel_parent_stolen_node_alloc(struct intel_d=
-isplay *display);
->>  void intel_parent_stolen_node_free(struct intel_display *display, const=
- struct intel_stolen_node *node);
->>=20=20
->> +/* vma */
->> +int intel_parent_vma_fence_id(struct intel_display *display, const stru=
-ct i915_vma *vma);
->> +
->>  /* generic */
->>  bool intel_parent_has_auxccs(struct intel_display *display);
->>  bool intel_parent_has_fenced_regions(struct intel_display *display);
->> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i=
-915_driver.c
->> index 5f77e891604d..18f912043f90 100644
->> --- a/drivers/gpu/drm/i915/i915_driver.c
->> +++ b/drivers/gpu/drm/i915/i915_driver.c
->> @@ -775,6 +775,7 @@ static const struct intel_display_parent_interface p=
-arent =3D {
->>  	.rpm =3D &i915_display_rpm_interface,
->>  	.rps =3D &i915_display_rps_interface,
->>  	.stolen =3D &i915_display_stolen_interface,
->> +	.vma =3D &i915_display_vma_interface,
->>=20=20
->>  	.fence_priority_display =3D fence_priority_display,
->>  	.has_auxccs =3D has_auxccs,
->> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915=
-_vma.c
->> index afc192d9931b..6a3a4d4244dc 100644
->> --- a/drivers/gpu/drm/i915/i915_vma.c
->> +++ b/drivers/gpu/drm/i915/i915_vma.c
->> @@ -27,6 +27,7 @@
->>=20=20
->>  #include <drm/drm_gem.h>
->>  #include <drm/drm_print.h>
->> +#include <drm/intel/display_parent_interface.h>
->>=20=20
->>  #include "display/intel_fb.h"
->>  #include "display/intel_frontbuffer.h"
->> @@ -2332,3 +2333,12 @@ int __init i915_vma_module_init(void)
->>=20=20
->>  	return 0;
->>  }
->> +
->> +static int i915_vma_fence_id(const struct i915_vma *vma)
->> +{
->> +	return vma->fence ? vma->fence->id : -1;
->> +}
->> +
->> +const struct intel_display_vma_interface i915_display_vma_interface =3D=
- {
->> +	.fence_id =3D i915_vma_fence_id,
->> +};
->> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915=
-_vma.h
->> index 8054047840aa..fa2d9b429db6 100644
->> --- a/drivers/gpu/drm/i915/i915_vma.h
->> +++ b/drivers/gpu/drm/i915/i915_vma.h
->> @@ -404,11 +404,6 @@ i915_vma_unpin_fence(struct i915_vma *vma)
->>  		__i915_vma_unpin_fence(vma);
->>  }
->>=20=20
->> -static inline int i915_vma_fence_id(const struct i915_vma *vma)
->> -{
->> -	return vma->fence ? vma->fence->id : -1;
->> -}
->> -
->>  void i915_vma_parked(struct intel_gt *gt);
->>=20=20
->>  static inline bool i915_vma_is_scanout(const struct i915_vma *vma)
->> @@ -481,4 +476,6 @@ int i915_vma_module_init(void);
->>  I915_SELFTEST_DECLARE(int i915_vma_get_pages(struct i915_vma *vma));
->>  I915_SELFTEST_DECLARE(void i915_vma_put_pages(struct i915_vma *vma));
->>=20=20
->> +extern const struct intel_display_vma_interface i915_display_vma_interf=
-ace;
->> +
->>  #endif
->> diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h b/drivers=
-/gpu/drm/xe/compat-i915-headers/i915_vma.h
->> index c4b5adaaa99a..da1d97b48fee 100644
->> --- a/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
->> +++ b/drivers/gpu/drm/xe/compat-i915-headers/i915_vma.h
->> @@ -26,8 +26,6 @@ struct i915_vma {
->>  	struct xe_ggtt_node *node;
->>  };
->>=20=20
->> -#define i915_vma_fence_id(vma) -1
->> -
->>  static inline u32 i915_ggtt_offset(const struct i915_vma *vma)
->>  {
->>  	return xe_ggtt_node_addr(vma->node);
->> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/=
-intel/display_parent_interface.h
->> index b4b0f58ae3ee..d02ab7cc1c92 100644
->> --- a/include/drm/intel/display_parent_interface.h
->> +++ b/include/drm/intel/display_parent_interface.h
->> @@ -149,6 +149,10 @@ struct intel_display_stolen_interface {
->>  	void (*node_free)(const struct intel_stolen_node *node);
->>  };
->>=20=20
->> +struct intel_display_vma_interface {
->> +	int (*fence_id)(const struct i915_vma *vma);
->> +};
->> +
->>  /**
->>   * struct intel_display_parent_interface - services parent driver provi=
-des to display
->>   *
->> @@ -198,6 +202,9 @@ struct intel_display_parent_interface {
->>  	/** @stolen: Stolen memory. */
->>  	const struct intel_display_stolen_interface *stolen;
->>=20=20
->> +	/** @vma: VMA interface. Optional. */
->> +	const struct intel_display_vma_interface *vma;
->> +
->>  	/* Generic independent functions */
->>  	struct {
->>  		/** @fence_priority_display: Set display priority. Optional. */
->> --=20
->> 2.47.3
+Acked-by: Mark Brown <broonie@kernel.org>
 
---=20
-Jani Nikula, Intel
+--MuL6cN1k4g/DbVd2
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmoExQACgkQJNaLcl1U
+h9CfwQf+I/XcN+BTYZLFcHPKTZ6Gt21+q3GLOzdkgChqzxOybf6b2qD+OHDN55Te
+HvnosWIFzWzrD0ZP4eNe1TE0j1djIs+y2hdX6fElOOuJijsn21UWvVZXuuGdENdA
+tPZDWrSzxJ8sU12FFYyBJDxsnWysekc1llPy00e37sfeetOZOLaYg/1jnttOl6oU
+a3i0DGlMSVCN0pIYah+1R5Vbe35l4DlrcyOoswdwqqqEAzPLr0ysycWbbVmelm0M
+U/y3gvpx6ZZBlMMio/3WWZfu3pM/Kwc8nzHkdzsstdqSIsRHEWru1MF5W4E+IcwO
+Id51vK66wgwDVauWcfBpUUDez8/oEA==
+=1DSJ
+-----END PGP SIGNATURE-----
+
+--MuL6cN1k4g/DbVd2--
