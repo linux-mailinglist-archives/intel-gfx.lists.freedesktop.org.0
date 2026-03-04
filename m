@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WChMLtUXqGmgnwAAu9opvQ
+	id uNfWKtYXqGmgnwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 12:30:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 12:30:30 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49F2E1FEFE2
-	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 12:30:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B2B11FEFE9
+	for <lists+intel-gfx@lfdr.de>; Wed, 04 Mar 2026 12:30:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 938DE10E9B7;
-	Wed,  4 Mar 2026 11:30:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8DA2410E9B6;
+	Wed,  4 Mar 2026 11:30:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fFAN8VmX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R358NFYu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B9E1510E9B4;
- Wed,  4 Mar 2026 11:30:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CC6010E9B6;
+ Wed,  4 Mar 2026 11:30:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772623826; x=1804159826;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Gd18HaH1p+sEE9ydO9u3ypfkhwFYLNt9h0i64BFO3fg=;
- b=fFAN8VmXdeyG5VBYUNAqOf5wi95Cn+apFB0g/MKFgoVXq9cZ2QiDL8UL
- n7HYu9PGXYF/BOroHBnAjCEptyLCZbL3I9JXCpDGoW7WPH+PJO8sa9eVf
- Inlsx7WLZTlrwOQjESZYvuJVdi32PgHl5PAl0GClwqYQBpCTOVNVn1Sfd
- TF5oqLtszknNshaR/vqtN5cO5qQd9KJ1K28OCaBEdpD1awXuVlkOXACvw
- O8B1reF+nxGQs3IaajwDglgJ/lOAXwRBDJmdy3wXsr6laQ5EIoW/I624V
- NrtJCRSQiNbOOgtryL+yJV9rJMaebocyCYZBkMVcSL9EkNvPKHBwPVGeA Q==;
-X-CSE-ConnectionGUID: SFpSDC+iTH2+xHcflQoZLw==
-X-CSE-MsgGUID: EK49XsHARbuEWXcR98OO4Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="91255305"
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="91255305"
+ t=1772623828; x=1804159828;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=VyEFWTQb4qhEJbfhtgA0EcgAW0Bgk6i+K7CQ5W5tVEA=;
+ b=R358NFYuNlELytQ6H00/N4GYM9ASbZrIRzk7amqQ2kk5SpWAtP4X28gG
+ kXbKutoHvnheoNBFoKzGlAottsJaQGf5Q2q2yyU0CJlS8rbzgUhZRG49i
+ /q+skjW2LKcTCc/Qza5Gjl3e2W7HHK5Hfo0j2I1j1O7X6sBIbsYzF96BH
+ S93TprrXyZrA+MmKKuiMKYBhKCo6i29Q21CcVLIiei/VfoFdO7LP/H65d
+ skDigZVFp3xa0+ObBXTqHZZ4gEjdK0B7lqK0M8xQ2Ff0FvTQEvNWPjW+V
+ 0oXvG6hb9SpFVb7zs+2VGzMmQki/rOyo2gzl1jPK1fk8SQHzFTnefPyMX w==;
+X-CSE-ConnectionGUID: Ll/IBOd5R8i393Y670J9aw==
+X-CSE-MsgGUID: bHK6BuBoSDSdHJw9xmdhYw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11718"; a="91255315"
+X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="91255315"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 03:30:26 -0800
-X-CSE-ConnectionGUID: zcGPgiEGSLKWkfXW7N6HAg==
-X-CSE-MsgGUID: VjCAfo8MSQ+nQ5BxuH9Kwg==
+ 04 Mar 2026 03:30:27 -0800
+X-CSE-ConnectionGUID: nAivn7gJS8it9ezHcM+yAw==
+X-CSE-MsgGUID: eGlsbLdAR6mtr6LY/50R7w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="248789991"
+X-IronPort-AV: E=Sophos;i="6.21,323,1763452800"; d="scan'208";a="248789998"
 Received: from ncintean-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.245.129])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 03:30:24 -0800
+ 04 Mar 2026 03:30:26 -0800
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH v3 0/4] PSR/PR Selective Fetch Early Transport fixes
-Date: Wed,  4 Mar 2026 13:30:07 +0200
-Message-ID: <20260304113011.626542-1-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ stable@vger.kernel.org, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH v3 1/4] drm/i915/psr: Repeat Selective Update area alignment
+Date: Wed,  4 Mar 2026 13:30:08 +0200
+Message-ID: <20260304113011.626542-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260304113011.626542-1-jouni.hogander@intel.com>
+References: <20260304113011.626542-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -73,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 49F2E1FEFE2
+X-Rspamd-Queue-Id: 2B2B11FEFE9
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -85,52 +88,130 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:mid]
+	DKIM_TRACE(0.00)[intel.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-This patch set contains fixes for Selective Fetch Early Transport configuration:
+Currently we are aligning Selective Update area to cover cursor fully if
+needed only once. It may happen that cursor is in Selective Update area
+after pipe alignment and after that covering cursor plane only
+partially. Fix this by looping alignment as long as alignment isn't needed
+anymore.
 
-  - add necessary DSC Early Transport configuration
-  - corner case fix for Selective Update area when Early Transport is
-    in use and cursor plane is included into SU are due to alignment.
-
-v3:
-  - add WARN_ON_ONCE if vdsc instances per pipe > 2
-  - instead of checking vdsc instances per pipe being > 1 check == 2
-  - move psr2_su_area under skip_sel_fetch_set_loop label
 v2:
-  - optimize alignment loop
-  - move register definitions to intel_vdsc_regs.h
-  - replace patches 3 and 4 with new patches
-  - drop patch 5
+  - do not unecessarily loop if cursor was already fully covered
+  - rename aligned as su_area_changed
 
-Jouni Högander (4):
-  drm/i915/psr: Repeat Selective Update area alignment
-  drm/i915/dsc: Add Selective Update register definitions
-  drm/i915/dsc: Add helper for writing DSC Selective Update ET
-    parameters
-  drm/i915/psr: Write DSC parameters on Selective Update in ET mode
+Fixes: 1bff93b8bc27 ("drm/i915/psr: Extend SU area to cover cursor fully if needed")
+Cc: <stable@vger.kernel.org> # v6.9+
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 50 ++++++++++++++++++------
+ 1 file changed, 38 insertions(+), 12 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_psr.c      | 60 +++++++++++++++----
- drivers/gpu/drm/i915/display/intel_vdsc.c     | 23 +++++++
- drivers/gpu/drm/i915/display/intel_vdsc.h     |  3 +
- .../gpu/drm/i915/display/intel_vdsc_regs.h    | 12 ++++
- 4 files changed, 86 insertions(+), 12 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 5bea2eda744b..7b197e84e77d 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2688,11 +2688,12 @@ static void clip_area_update(struct drm_rect *overlap_damage_area,
+ 		overlap_damage_area->y2 = damage_area->y2;
+ }
+ 
+-static void intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_state)
++static bool intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	const struct drm_dsc_config *vdsc_cfg = &crtc_state->dsc.config;
+ 	u16 y_alignment;
++	bool su_area_changed = false;
+ 
+ 	/* ADLP aligns the SU region to vdsc slice height in case dsc is enabled */
+ 	if (crtc_state->dsc.compression_enable &&
+@@ -2701,10 +2702,18 @@ static void intel_psr2_sel_fetch_pipe_alignment(struct intel_crtc_state *crtc_st
+ 	else
+ 		y_alignment = crtc_state->su_y_granularity;
+ 
+-	crtc_state->psr2_su_area.y1 -= crtc_state->psr2_su_area.y1 % y_alignment;
+-	if (crtc_state->psr2_su_area.y2 % y_alignment)
++	if (crtc_state->psr2_su_area.y1 % y_alignment) {
++		crtc_state->psr2_su_area.y1 -= crtc_state->psr2_su_area.y1 % y_alignment;
++		su_area_changed = true;
++	}
++
++	if (crtc_state->psr2_su_area.y2 % y_alignment) {
+ 		crtc_state->psr2_su_area.y2 = ((crtc_state->psr2_su_area.y2 /
+ 						y_alignment) + 1) * y_alignment;
++		su_area_changed = true;
++	}
++
++	return su_area_changed;
+ }
+ 
+ /*
+@@ -2838,7 +2847,7 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	struct intel_crtc_state *crtc_state = intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct intel_plane_state *new_plane_state, *old_plane_state;
+ 	struct intel_plane *plane;
+-	bool full_update = false, cursor_in_su_area = false;
++	bool full_update = false, su_area_changed;
+ 	int i, ret;
+ 
+ 	if (!crtc_state->enable_psr2_sel_fetch)
+@@ -2945,15 +2954,32 @@ int intel_psr2_sel_fetch_update(struct intel_atomic_state *state,
+ 	if (ret)
+ 		return ret;
+ 
+-	/*
+-	 * Adjust su area to cover cursor fully as necessary (early
+-	 * transport). This needs to be done after
+-	 * drm_atomic_add_affected_planes to ensure visible cursor is added into
+-	 * affected planes even when cursor is not updated by itself.
+-	 */
+-	intel_psr2_sel_fetch_et_alignment(state, crtc, &cursor_in_su_area);
++	do {
++		bool cursor_in_su_area;
+ 
+-	intel_psr2_sel_fetch_pipe_alignment(crtc_state);
++		/*
++		 * Adjust su area to cover cursor fully as necessary
++		 * (early transport). This needs to be done after
++		 * drm_atomic_add_affected_planes to ensure visible
++		 * cursor is added into affected planes even when
++		 * cursor is not updated by itself.
++		 */
++		intel_psr2_sel_fetch_et_alignment(state, crtc, &cursor_in_su_area);
++
++		su_area_changed = intel_psr2_sel_fetch_pipe_alignment(crtc_state);
++
++		/*
++		 * If the cursor was outside the SU area before
++		 * alignment, the alignment step (which only expands
++		 * SU) may pull the cursor partially inside, so we
++		 * must run ET alignment again to fully cover it. But
++		 * if the cursor was already fully inside before
++		 * alignment, expanding the SU area won't change that,
++		 * so no further work is needed.
++		 */
++		if (cursor_in_su_area)
++			break;
++	} while (su_area_changed);
+ 
+ 	/*
+ 	 * Now that we have the pipe damaged area check if it intersect with
 -- 
 2.43.0
 
