@@ -2,106 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WPjMBZGbqWnGAwEAu9opvQ
+	id 6IY/H4WjqWl5BQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 16:04:49 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 16:38:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EE282141F9
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 16:04:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDD77214ABD
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 16:38:44 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7638710E2C4;
-	Thu,  5 Mar 2026 15:04:46 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="DOYezm37";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4075710EC36;
+	Thu,  5 Mar 2026 15:38:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
- [209.85.167.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A38910E2C4
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2026 15:04:45 +0000 (UTC)
-Received: by mail-lf1-f45.google.com with SMTP id
- 2adb3069b0e04-5a1303b088bso974356e87.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 07:04:45 -0800 (PST)
-ARC-Seal: i=1; a=rsa-sha256; t=1772723083; cv=none;
- d=google.com; s=arc-20240605;
- b=kgt2VJQ5QHCLzDzK4enRzz92CR2sMsnGGXmo5QWDoT3v7RGsR3ztbWsR1eiES75qvr
- wv6EW5Wz7c4Zodc9OvgebSif2JO8rhxeAyeJF4wk8e8oOLLw27xBG96z/Wcwb/LcpBsG
- v+iNezYfsYi7hiXJe7Oe8tXd5gBENZWuzpaJM/qlsQZXtJmDhJFLQg9O+dX+Q6BM0jqx
- uFrhfhmcwCe2Bpws8z+HaxdwKluNE9tdIbPwEN23mMBRNYIt5aKRRUhD2tbRekbutM//
- RAzNMJLcCy7fUyuHQKuex5GyJ0fB8UrbcCH53bm9TUuwq6fLiJU+sJZt1LSXYziIcbXl
- niKQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=bAzlDiATw0sReZVnHLqMUNDe8YNqfvDhHHmieW05wFY=;
- fh=eSzX5ScW23VmCoar504nBK8RDGBDMKCgy66WWzz0NPQ=;
- b=hD/QuO6TDBBTGybfmx6KOqu14iDwCR85RBbfpuX+rTrNGjC621v973jiGlYK0OrvC4
- arL/4pSn5iVFHg2+OdNmEYYrcmISUW4VoadsQc8UPVp576MyJf/aLuq7qZHs7CI4yWjR
- wJp4nHRMF3+ZYAlgq/VUtE25MQTpmdgXMemNYa6d6J1FNEs4pMMrl6I4pe6f3LeP/+Ev
- kHCtO4kkb9VyJU8jMzwjhh1G4yjpv8kIX1UDJ82eCStLeF7uafRkBAUzcalavJOTUW/v
- /mukprJsrb+nOx5Ygc8AxsP4CxdWYYiJMlyLEJkHDgKoIbY1rNMUwb0ybZFK4G5sHXbS
- Z9Pw==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1772723083; x=1773327883; darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=bAzlDiATw0sReZVnHLqMUNDe8YNqfvDhHHmieW05wFY=;
- b=DOYezm37EeQUuWgkjlA38up2GyTLHv0a6OmG9pSFiLlyGQV8qKQbiKBE3BVPV2HwQR
- aoQ4GGw0FtG4UeZvuLeb0w8jQPGAYMCphKQYwdMviBcikqxD/FPs8jAkTPt8JE6kjh6G
- 35dcJ4QjQj2kADqlV/YSIg2YoinPqjnUrMWPtYMM0qjgfWOtfBCPv3JlQmbLdu4SRSVD
- obJtMuyory50IEZKarKZCpjVe/MwGy57JqXimRoTMpY3pIwsEcMeq+h+C3lKrGvAot+S
- 8DnhdXDkT4K1vcizENZLnkNDgR3nDt7oOUX8yVL4vM3N8eTP3+xdNOSqKrLIiJis9TZg
- YFzg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772723083; x=1773327883;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=bAzlDiATw0sReZVnHLqMUNDe8YNqfvDhHHmieW05wFY=;
- b=F/Af57aDjrBHFM3l9l5j56GgzJwZn+N6bvvP/Ls3oeHnzcYaPbHnCyNqYfvHfY3SWG
- 7+o1GMjORrvamNwJLMVTGoXiGpVcPzPVzGkvaMte9air6qsT+JJmbRnlITQYR3WNCHEf
- m3Jos6yjV9JPERz9SiqyVYzZKgvQA5lc7b7s/XZQRU4V/ANEqlTufZGcLUVEBNmsLTZF
- RFhku5+iRwjWPZwF9G7wUxTnJKe4fBlQYvsR9GzDE1hQF02Ud8H19YK5Ob1OCQnOOKLa
- YrEqC9SmozhLs3OcE18OXEcRoa1kCL0iKumqKojA4nDSA75Y6pDp6mwI1QpZZyJXQuDo
- GgVg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX/tAmsGBE1vDDdVgjb8tWyrZ0kNt8lG6MPBkBhZFAHtkuDr8hJDwK1gepdM9jJQia0OgNBwTFlcfg=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxb3j4oPIBwfD7gz6po18bnVayOM0A1KQQ5qTt57eOiULVHWsPX
- CTnXyQ47AnLJ/wytQ7Ly9eP8OciCbD2PLVWUF79flJbWlKsw9XJwADBKwpwFC7O9Rg1aJwJeqlp
- oMKZZL+i7lzApZCdmAQ7yZKutsl1wZm6u6tXDjrNXVg==
-X-Gm-Gg: ATEYQzzdZaBSRs8uG5MifjjLrHQz21igFD46/47cAKhH4VN0je1kyjR8PQyezBcJJZB
- I/wZVqr+l3/2n5UuGm0SUoFRY358uBjijIcVdfhQ3f++8yo3ghZ2Xn8FzA760RCCXjjPz052nyv
- h2+BdQYmG+JdunJDtiDzCa6ytjn4lg/M4Ww3n37fDILOU7vMoU+3ETG4ilgCM5BAemADtK7ngrZ
- O3TMZIpBjkJYmaCdx2HAXPdh8Xnh+5AduVKWOH0bASZT7kSBx5AVgcrNI8xBJPUZ4Lm06EcCsLq
- BuQJTnIEy8YDDeroZp9r5H6wxeqcDTPQ7+GK01O4
-X-Received: by 2002:a05:6512:3d02:b0:5a0:ecb2:c0c2 with SMTP id
- 2adb3069b0e04-5a131ee685dmr1018802e87.4.1772723083472; Thu, 05 Mar 2026
- 07:04:43 -0800 (PST)
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E97E10EC4A;
+ Thu,  5 Mar 2026 15:38:41 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <20251104100032.61525-1-marco.crivellari@suse.com>
-In-Reply-To: <20251104100032.61525-1-marco.crivellari@suse.com>
-From: Marco Crivellari <marco.crivellari@suse.com>
-Date: Thu, 5 Mar 2026 16:04:32 +0100
-X-Gm-Features: AaiRm51Fwf7l48SqEBCdWz3UtmH6UJ4sv_2IzU_K0N4uV9iItuAT5-zrxEN7IQA
-Message-ID: <CAAofZF4bvBoecKaJv_sEEK54htXBv_dc23tJRrwhXrGb3O_D7A@mail.gmail.com>
-Subject: Re: [PATCH v3 0/3] replace old wq(s), add WQ_PERCPU to alloc_workqueue
-To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org
-Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, 
- Frederic Weisbecker <frederic@kernel.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
- Michal Hocko <mhocko@suse.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Krzysztof Karas <krzysztof.karas@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Add_new_general_DRM_prope?=
+ =?utf-8?q?rty_=22color_format=22_=28rev7=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 05 Mar 2026 15:38:41 -0000
+Message-ID: <177272512156.322277.14255923163412974645@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260305-color-format-v10-0-a58c68a11868@collabora.com>
+In-Reply-To: <20260305-color-format-v10-0-a58c68a11868@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -114,60 +42,57 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6EE282141F9
+X-Rspamd-Queue-Id: DDD77214ABD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:krzysztof.karas@intel.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[marco.crivellari@suse.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linutronix.de,suse.com,linux.intel.com,intel.com,ursulin.net,ffwll.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[marco.crivellari@suse.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.977];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:dkim,suse.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Hi,
+== Series Details ==
 
-On Tue, Nov 4, 2025 at 11:00=E2=80=AFAM Marco Crivellari
-<marco.crivellari@suse.com> wrote:
-> Marco Crivellari (3):
->   drm/i915: replace use of system_unbound_wq with system_dfl_wq
->   drm/i915: replace use of system_wq with system_percpu_wq in the
->     documentation
->   drm/i915: add WQ_PERCPU to alloc_workqueue users
+Series: Add new general DRM property "color format" (rev7)
+URL   : https://patchwork.freedesktop.org/series/157910/
+State : failure
 
-Gentle ping.
-I checked patchwork and seems still in the "New" state.
+== Summary ==
 
-Thanks!
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/157910/revisions/7/mbox/ not applied
+Applying: drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+error: sha1 information is lacking or useless (drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c).
+error: could not build fake ancestor
+hint: Use 'git am --show-current-patch=diff' to see the failed patch
+Patch failed at 0001 drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+When you have resolved this problem, run "git am --continue".
+If you prefer to skip this patch, run "git am --skip" instead.
+To restore the original branch and stop patching, run "git am --abort".
+Build failed, no error log produced
 
---=20
 
-Marco Crivellari
-
-L3 Support Engineer
