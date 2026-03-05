@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJ54CndUqWkj4wAAu9opvQ
+	id qBlqGnxUqWkj4wAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:27 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D0FB420F348
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E72D820F364
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44B7810EBF3;
-	Thu,  5 Mar 2026 10:01:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51ADC10EBEC;
+	Thu,  5 Mar 2026 10:01:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ql1Obd4b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NF6PjGBa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89FB010EBEF;
- Thu,  5 Mar 2026 10:01:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A451010EBE9;
+ Thu,  5 Mar 2026 10:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772704879; x=1804240879;
+ t=1772704889; x=1804240889;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7j2wElsBEy/pQPbKv+cRmAKkTBCW9xnzm3zK9mc7lqs=;
- b=Ql1Obd4bId8GrXiW5GTdPPpkee3a7ChRwn7CunP0/CzDnat/hpE/I2iN
- +jhnr6NJzvke20iRBQMz63m1gAC8Ehve1BLVTaqWyC8MlJJ26xMAk3mPv
- 8OatCKJiquovssaPpvOj8hldrtEmBhJBEke51DEa4DiXOKp1qNRPtRw+2
- Bhbi2Sb2h0Zf36M07AjUCEOXecoeXkiCDK5MLKJQWFjX0G7mm1tewG9lT
- oP6FGtNns4nKTazhWdY9qKIA9SlWA6ZjgofzU+RhQO7nSaTBd8ODsFMn5
- WUMOHh6BSTyHd0xMpyo/esHXCyse5Lw0o0/2q+bIGaOhJsOmSlpRi8oNO A==;
-X-CSE-ConnectionGUID: u/JrMFxHR4WjLRRwwRJk5w==
-X-CSE-MsgGUID: q6IdBxfJRWCTnpsUGyhYAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73758080"
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73758080"
+ bh=y4E5mFxCUbo9pmidmfbhaGXPXHspo6XFteQBxfwlKK8=;
+ b=NF6PjGBa1SPWmX3NLqHqFJhamoABRoczPvrd2dAN5D7v/PMhxXfndDZo
+ kuBchpV/4Dt6EYObxk6ruhkGc5PId8T5SNLT1WJHIeAbDQ5WxD5MaceFx
+ bZSvqzUhEMJ5YRFxO4b3c6gqIFTiXZ2zQyZIyj6gUI8k8HG4vLeI1Ng47
+ 2/saVCGbNMoIMqVSKoDF7PqvqFmL806bVattZzQudlooOJISgX4h9GgVL
+ POTxag4U2TaXay6qkgzkl07Lb1D+4/IqeQF2lYta1qDV7FYMTsSTA4VmL
+ yJLW//Drf2cblk1nHvnVuqbOvrdXBmTXUQ5bojji8UhmxidjSDg8gpU5l w==;
+X-CSE-ConnectionGUID: G45OtyakRIuCA9CTytTWLw==
+X-CSE-MsgGUID: Kk45yhqxSlKNPXaagKPjSw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73758092"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73758092"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 02:01:19 -0800
-X-CSE-ConnectionGUID: mkK3bap9QxGsbT2clBFEzg==
-X-CSE-MsgGUID: v0PZ1svWRkuJEnNTUOuCcg==
+ 05 Mar 2026 02:01:28 -0800
+X-CSE-ConnectionGUID: BguwytVyTvasoQhfqBPkOA==
+X-CSE-MsgGUID: LeRIax2oSYiIzLDdawz7oQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="215460234"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="215460244"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.244.57])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 02:01:16 -0800
+ 05 Mar 2026 02:01:18 -0800
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH v5 03/16] drm/i915/display: convert W/As in
- intel_display_power.c to new framework
-Date: Thu,  5 Mar 2026 11:59:06 +0200
-Message-ID: <20260305100100.332956-4-luciano.coelho@intel.com>
+Subject: [PATCH v5 04/16] drm/i915/display: convert W/As in intel_cdclk.c to
+ new framework
+Date: Thu,  5 Mar 2026 11:59:07 +0200
+Message-ID: <20260305100100.332956-5-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260305100100.332956-1-luciano.coelho@intel.com>
 References: <20260305100100.332956-1-luciano.coelho@intel.com>
@@ -74,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D0FB420F348
+X-Rspamd-Queue-Id: E72D820F364
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -100,7 +100,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RSPAMD_EMAILBL_FAIL(0.00)[luciano.coelho.intel.com:query timed out];
+	RSPAMD_EMAILBL_FAIL(0.00)[luciano.coelho.intel.com:server fail];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
@@ -112,169 +112,47 @@ Acked-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- .../drm/i915/display/intel_display_power.c    | 22 +++++++++----------
- .../gpu/drm/i915/display/intel_display_wa.c   | 18 +++++++++++++++
- .../gpu/drm/i915/display/intel_display_wa.h   |  7 ++++++
- 3 files changed, 36 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c      | 2 +-
+ drivers/gpu/drm/i915/display/intel_display_wa.c | 3 +++
+ drivers/gpu/drm/i915/display/intel_display_wa.h | 1 +
+ 3 files changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 755935dcfe23..7312dba4f032 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -21,6 +21,7 @@
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
- #include "intel_dmc.h"
- #include "intel_dram.h"
- #include "intel_mchbar_regs.h"
-@@ -1621,8 +1622,7 @@ static void tgl_bw_buddy_init(struct intel_display *display)
- 	if (display->platform.dgfx && !display->platform.dg1)
- 		return;
- 
--	if (display->platform.alderlake_s ||
--	    (display->platform.rocketlake && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_1409767108))
- 		/* Wa_1409767108 */
- 		table = wa_1409767108_buddy_page_masks;
- 	else
-@@ -1645,7 +1645,7 @@ static void tgl_bw_buddy_init(struct intel_display *display)
- 				       table[config].page_mask);
- 
- 			/* Wa_22010178259:tgl,dg1,rkl,adl-s */
--			if (DISPLAY_VER(display) == 12)
-+			if (intel_display_wa(display, INTEL_DISPLAY_WA_22010178259))
- 				intel_de_rmw(display, BW_BUDDY_CTL(i),
- 					     BW_BUDDY_TLB_REQ_TIMER_MASK,
- 					     BW_BUDDY_TLB_REQ_TIMER(0x8));
-@@ -1662,8 +1662,7 @@ static void icl_display_core_init(struct intel_display *display,
- 	gen9_set_dc_state(display, DC_STATE_DISABLE);
- 
- 	/* Wa_14011294188:ehl,jsl,tgl,rkl,adl-s */
--	if (INTEL_PCH_TYPE(display) >= PCH_TGP &&
--	    INTEL_PCH_TYPE(display) < PCH_DG1)
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011294188))
- 		intel_de_rmw(display, SOUTH_DSPCLK_GATE_D, 0,
- 			     PCH_DPMGUNIT_CLOCK_GATE_DISABLE);
- 
-@@ -1717,17 +1716,17 @@ static void icl_display_core_init(struct intel_display *display,
- 		intel_dmc_load_program(display);
- 
- 	/* Wa_14011508470:tgl,dg1,rkl,adl-s,adl-p,dg2 */
--	if (IS_DISPLAY_VERx100(display, 1200, 1300))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011508470))
- 		intel_de_rmw(display, GEN11_CHICKEN_DCPR_2, 0,
- 			     DCPR_CLEAR_MEMSTAT_DIS | DCPR_SEND_RESP_IMM |
- 			     DCPR_MASK_LPMODE | DCPR_MASK_MAXLATENCY_MEMUP_CLR);
- 
- 	/* Wa_14011503030:xelpd */
--	if (DISPLAY_VER(display) == 13)
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503030))
- 		intel_de_write(display, XELPD_DISPLAY_ERR_FATAL_MASK, ~0);
- 
- 	/* Wa_15013987218 */
--	if (DISPLAY_VER(display) == 20) {
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_15013987218)) {
- 		intel_de_rmw(display, SOUTH_DSPCLK_GATE_D,
- 			     0, PCH_GMBUSUNIT_CLOCK_GATE_DISABLE);
- 		intel_de_rmw(display, SOUTH_DSPCLK_GATE_D,
-@@ -2266,8 +2265,9 @@ void intel_display_power_suspend_late(struct intel_display *display, bool s2idle
- 	}
- 
- 	/* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
--	if (INTEL_PCH_TYPE(display) >= PCH_CNP && INTEL_PCH_TYPE(display) < PCH_DG1)
--		intel_de_rmw(display, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14010685332))
-+		intel_de_rmw(display, SOUTH_CHICKEN1,
-+			     SBCLK_RUN_REFCLK_DIS, SBCLK_RUN_REFCLK_DIS);
- }
- 
- void intel_display_power_resume_early(struct intel_display *display)
-@@ -2281,7 +2281,7 @@ void intel_display_power_resume_early(struct intel_display *display)
- 	}
- 
- 	/* Tweaked Wa_14010685332:cnp,icp,jsp,mcc,tgp,adp */
--	if (INTEL_PCH_TYPE(display) >= PCH_CNP && INTEL_PCH_TYPE(display) < PCH_DG1)
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14010685332))
- 		intel_de_rmw(display, SOUTH_CHICKEN1, SBCLK_RUN_REFCLK_DIS, 0);
- 
- 	intel_power_domains_resume(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 7767f8c198da..121a12c5b8ac 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -4007,7 +4007,7 @@ void intel_init_cdclk_hooks(struct intel_display *display)
+ 		display->cdclk.table = dg2_cdclk_table;
+ 	} else if (display->platform.alderlake_p) {
+ 		/* Wa_22011320316:adl-p[a0] */
+-		if (display->platform.alderlake_p && IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)) {
++		if (intel_display_wa(display, INTEL_DISPLAY_WA_22011320316)) {
+ 			display->cdclk.table = adlp_a_step_cdclk_table;
+ 			display->funcs.cdclk = &tgl_cdclk_funcs;
+ 		} else if (display->platform.alderlake_p_raptorlake_u) {
 diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index b383bfad3af6..011749b680e8 100644
+index 011749b680e8..aef6eca51119 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -9,6 +9,7 @@
- #include "intel_display_core.h"
- #include "intel_display_regs.h"
- #include "intel_display_wa.h"
-+#include "intel_step.h"
- 
- static void gen11_display_wa_apply(struct intel_display *display)
- {
-@@ -69,23 +70,40 @@ static bool intel_display_needs_wa_16025573575(struct intel_display *display)
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name)
- {
- 	switch (wa) {
-+	case INTEL_DISPLAY_WA_1409767108:
-+		return (display->platform.alderlake_s ||
-+			(display->platform.rocketlake &&
-+			 IS_DISPLAY_STEP(display, STEP_A0, STEP_B0)));
- 	case INTEL_DISPLAY_WA_13012396614:
- 		return DISPLAY_VERx100(display) == 3000 ||
- 			DISPLAY_VERx100(display) == 3500;
-+	case INTEL_DISPLAY_WA_14010685332:
-+		return INTEL_PCH_TYPE(display) >= PCH_CNP &&
-+			INTEL_PCH_TYPE(display) < PCH_DG1;
-+	case INTEL_DISPLAY_WA_14011294188:
-+		return INTEL_PCH_TYPE(display) >= PCH_TGP &&
-+			INTEL_PCH_TYPE(display) < PCH_DG1;
-+	case INTEL_DISPLAY_WA_14011503030:
- 	case INTEL_DISPLAY_WA_14011503117:
- 		return DISPLAY_VER(display) == 13;
-+	case INTEL_DISPLAY_WA_14011508470:
-+		return (IS_DISPLAY_VERx100(display, 1200, 1300));
- 	case INTEL_DISPLAY_WA_14020863754:
- 		return DISPLAY_VERx100(display) == 3000 ||
- 			DISPLAY_VERx100(display) == 2000 ||
- 			DISPLAY_VERx100(display) == 1401;
- 	case INTEL_DISPLAY_WA_14025769978:
- 		return DISPLAY_VER(display) == 35;
-+	case INTEL_DISPLAY_WA_15013987218:
-+		return DISPLAY_VER(display) == 20;
- 	case INTEL_DISPLAY_WA_15018326506:
- 		return display->platform.battlemage;
- 	case INTEL_DISPLAY_WA_16023588340:
- 		return intel_display_needs_wa_16023588340(display);
- 	case INTEL_DISPLAY_WA_16025573575:
+@@ -104,6 +104,9 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
  		return intel_display_needs_wa_16025573575(display);
-+	case INTEL_DISPLAY_WA_22010178259:
-+		return DISPLAY_VER(display) == 12;
+ 	case INTEL_DISPLAY_WA_22010178259:
+ 		return DISPLAY_VER(display) == 12;
++	case INTEL_DISPLAY_WA_22011320316:
++		return display->platform.alderlake_p &&
++			IS_DISPLAY_STEP(display, STEP_A0, STEP_B0);
  	case INTEL_DISPLAY_WA_22014263786:
  		return IS_DISPLAY_VERx100(display, 1100, 1400);
  	case INTEL_DISPLAY_WA_22021048059:
 diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index b1bcc18dd2c8..380cb64cf774 100644
+index 380cb64cf774..aa96d111111c 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -27,13 +27,20 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
-  * number.
-  */
- enum intel_display_wa {
-+	INTEL_DISPLAY_WA_1409767108,
- 	INTEL_DISPLAY_WA_13012396614,
-+	INTEL_DISPLAY_WA_14010685332,
-+	INTEL_DISPLAY_WA_14011294188,
-+	INTEL_DISPLAY_WA_14011503030,
- 	INTEL_DISPLAY_WA_14011503117,
-+	INTEL_DISPLAY_WA_14011508470,
- 	INTEL_DISPLAY_WA_14020863754,
- 	INTEL_DISPLAY_WA_14025769978,
-+	INTEL_DISPLAY_WA_15013987218,
- 	INTEL_DISPLAY_WA_15018326506,
+@@ -41,6 +41,7 @@ enum intel_display_wa {
  	INTEL_DISPLAY_WA_16023588340,
  	INTEL_DISPLAY_WA_16025573575,
-+	INTEL_DISPLAY_WA_22010178259,
+ 	INTEL_DISPLAY_WA_22010178259,
++	INTEL_DISPLAY_WA_22011320316,
  	INTEL_DISPLAY_WA_22014263786,
  	INTEL_DISPLAY_WA_22021048059,
  };
