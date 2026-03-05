@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2LYEHHNUqWkj4wAAu9opvQ
+	id kKDtBHVUqWkj4wAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:23 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:25 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2643220F33E
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:18 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC7AA20F340
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 11:01:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 30BB110EBDC;
-	Thu,  5 Mar 2026 10:01:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 35FD710EBEB;
+	Thu,  5 Mar 2026 10:01:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KvnpzRKO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fgcSXnZ0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AD0810E28E;
- Thu,  5 Mar 2026 10:01:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 824EE10EBEB;
+ Thu,  5 Mar 2026 10:01:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772704875; x=1804240875;
+ t=1772704877; x=1804240877;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ry8k5iYuejGiXftnn67B+Q8FIgvFD3Otb1lMr2ZYtyg=;
- b=KvnpzRKOVOM0CRgDHB9whg3ZZBz12NR9QoBb7Q+fjBVp73KUobx14WSR
- i4F/4WFTAPan7dSQmP4u4yK9ojerQJPD1GpLqEjlsj3gS9WrQLqLuShvC
- RxoF0b/e77jP4mzfbyb4VG8WVWV2WZ021sGVN8x+joVpjh9Wb/eBxSIFD
- RXfKLQCWjPYKiwSluYj/XB99pa4wBfMoQB3VWe7uhsGhhbHvBjgq/bZ0A
- VLLXWnTFHYGfp9vEZBf86Y3ko1ue4kXXf9RhesPbtRS4GEWhwtizKyyxo
- SEY6zORodsAqCbZloQ1wQoA3sBrS8Dj8xlwouhFdgHmiNkHuPUg6j4Wvu A==;
-X-CSE-ConnectionGUID: tT9nPXaxQXmGwOIe5v2T3Q==
-X-CSE-MsgGUID: 6le3qkZZTouYe0kMX+Tthw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73758072"
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73758072"
+ bh=/cOtuolsD/w85xfbDKhxlzpjuC8C0Y+ffRXPAfwygSU=;
+ b=fgcSXnZ01J30JzHrPWs/alCctPMqrNvnsm0n1QsSXog91aR582W/R3XR
+ BlqBwwXPXx8OA8jwatM0wTXKLMSBUqpY1jVz1/rNwMMPCM1kkV3NenXJB
+ k+JagEzoBLingW7jxZIoeHrJga8ErQ7KdinIbo/PdriII7tqkQD/c0RVv
+ 4R91gzLRVcp5pGfsVf1Wa4cQuOc7iPiSRrucSroZ2wVovp0VVcu9b4g3Y
+ FCkNputy01CMGbG0vUxiWC62EhTyh49zd2YfMAintrtczf5OZmi+BzJOI
+ +ZRkKWWriM7e0plO8fyK5cr7iJQr1PNka8f8+3ChGCe1icVa4OhPRY6DC g==;
+X-CSE-ConnectionGUID: sW2iLDZ9SUqMqqBkcxOQFQ==
+X-CSE-MsgGUID: UMzprfKEQvOHKA5HaH9hsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73758075"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="73758075"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 02:01:15 -0800
-X-CSE-ConnectionGUID: zlNu3t30TzuIGbXhPAJLjg==
-X-CSE-MsgGUID: mF8vXioxSeCQAArgvfJFzw==
+ 05 Mar 2026 02:01:17 -0800
+X-CSE-ConnectionGUID: pzdToreRQSKPEnAgDTlT2A==
+X-CSE-MsgGUID: Eoqi3aKyRPCZe7DHhSEYnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="215460223"
+X-IronPort-AV: E=Sophos;i="6.23,102,1770624000"; d="scan'208";a="215460228"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.244.57])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 02:01:13 -0800
+ 05 Mar 2026 02:01:14 -0800
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	suraj.kandpal@intel.com
-Subject: [PATCH v5 01/16] drm/i915/display: remove enum macro magic in
- intel_display_wa()
-Date: Thu,  5 Mar 2026 11:59:04 +0200
-Message-ID: <20260305100100.332956-2-luciano.coelho@intel.com>
+Subject: [PATCH v5 02/16] drm/i915/display: convert audio workaround to new
+ framework
+Date: Thu,  5 Mar 2026 11:59:05 +0200
+Message-ID: <20260305100100.332956-3-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260305100100.332956-1-luciano.coelho@intel.com>
 References: <20260305100100.332956-1-luciano.coelho@intel.com>
@@ -74,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2643220F33E
+X-Rspamd-Queue-Id: BC7AA20F340
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -100,199 +100,106 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RSPAMD_EMAILBL_FAIL(0.00)[luciano.coelho.intel.com:query timed out,suraj.kandpal.intel.com:query timed out];
+	RSPAMD_EMAILBL_FAIL(0.00)[luciano.coelho.intel.com:query timed out];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-There's not much use in passing a number to the macro and let it
-convert that into the enum and a string.  It just hides the symbols.
+Convert the low-hanging fruits of workaround checks to the workaround
+framework.  Instead of having display structure checks for the
+workarounds all over, concentrate the checks in intel_display_wa.c.
 
-Remove the number to enum conversion magic in intel_display_wa().
-
-This has the side-effect of changing the print in the drm_WARN() that
-is issued when the number is not implemented, but that is moot anyway
-and can be changed later to something cleaner if needed.
-
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c              | 5 +++--
- drivers/gpu/drm/i915/display/intel_display.c            | 2 +-
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_wa.c         | 2 +-
- drivers/gpu/drm/i915/display/intel_display_wa.h         | 2 +-
- drivers/gpu/drm/i915/display/intel_fbc.c                | 8 ++++----
- drivers/gpu/drm/i915/display/intel_gmbus.c              | 6 +++---
- drivers/gpu/drm/i915/display/skl_scaler.c               | 2 +-
- 8 files changed, 16 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/i915/display/intel_audio.c    | 24 +++++++++----------
+ .../gpu/drm/i915/display/intel_display_wa.c   |  4 ++++
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+ 3 files changed, 16 insertions(+), 13 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 38331e899519..7767f8c198da 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1870,7 +1870,7 @@ static void icl_cdclk_pll_disable(struct intel_display *display)
- 	 *      after the PLL is enabled (which is already done as part of the
- 	 *      normal flow of _bxt_set_cdclk()).
- 	 */
--	if (intel_display_wa(display, 13012396614))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614))
- 		intel_de_rmw(display, CDCLK_CTL, MDCLK_SOURCE_SEL_MASK, MDCLK_SOURCE_SEL_CD2XCLK);
+diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
+index 5f3c175afdd2..081627e0d917 100644
+--- a/drivers/gpu/drm/i915/display/intel_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_audio.c
+@@ -37,6 +37,7 @@
+ #include "intel_crtc.h"
+ #include "intel_de.h"
+ #include "intel_display_types.h"
++#include "intel_display_wa.h"
+ #include "intel_lpe_audio.h"
  
- 	intel_de_rmw(display, BXT_DE_PLL_ENABLE,
-@@ -2186,7 +2186,8 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
- 		 * icl_cdclk_pll_disable().  Here we are just making sure
- 		 * we keep the expected value.
- 		 */
--		if (intel_display_wa(display, 13012396614) && vco == 0)
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614) &&
-+		    vco == 0)
- 			val |= MDCLK_SOURCE_SEL_CD2XCLK;
- 		else
- 			val |= xe2lpd_mdclk_source_sel(display);
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 138ee7dd1977..15edf609fff4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1070,7 +1070,7 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
- 	if (audio_enabling(old_crtc_state, new_crtc_state))
- 		intel_encoders_audio_enable(state, crtc);
+ /**
+@@ -184,17 +185,6 @@ static const struct hdmi_aud_ncts hdmi_aud_ncts_36bpp[] = {
+ 	{ 192000, TMDS_445_5M, 20480, 371250 },
+ };
  
--	if (intel_display_wa(display, 14011503117)) {
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117)) {
- 		if (old_crtc_state->pch_pfit.enabled != new_crtc_state->pch_pfit.enabled)
- 			adl_scaler_ecc_unmask(new_crtc_state);
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 9c8d29839caf..1e03187dbd38 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -249,7 +249,7 @@ static void hsw_power_well_post_enable(struct intel_display *display,
- 	if (irq_pipe_mask) {
- 		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
- 
--		if (intel_display_wa(display, 22021048059))
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
- 			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
- 	}
- }
-@@ -258,7 +258,7 @@ static void hsw_power_well_pre_disable(struct intel_display *display,
- 				       u8 irq_pipe_mask)
+-/*
+- * WA_14020863754: Implement Audio Workaround
+- * Corner case with Min Hblank Fix can cause audio hang
+- */
+-static bool needs_wa_14020863754(struct intel_display *display)
+-{
+-	return DISPLAY_VERx100(display) == 3000 ||
+-		DISPLAY_VERx100(display) == 2000 ||
+-		DISPLAY_VERx100(display) == 1401;
+-}
+-
+ /* get AUD_CONFIG_PIXEL_CLOCK_HDMI_* value for mode */
+ static u32 audio_config_hdmi_pixel_clock(const struct intel_crtc_state *crtc_state)
  {
- 	if (irq_pipe_mask) {
--		if (intel_display_wa(display, 22021048059))
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
- 			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
+@@ -440,7 +430,11 @@ static void hsw_audio_codec_disable(struct intel_encoder *encoder,
+ 	intel_de_rmw(display, HSW_AUD_PIN_ELD_CP_VLD,
+ 		     AUDIO_OUTPUT_ENABLE(cpu_transcoder), 0);
  
- 		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
+-	if (needs_wa_14020863754(display))
++	/*
++	 * WA_14020863754: Implement Audio Workaround
++	 * Corner case with Min Hblank Fix can cause audio hang
++	 */
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_14020863754))
+ 		intel_de_rmw(display, AUD_CHICKENBIT_REG3, DACBE_DISABLE_MIN_HBLANK_FIX, 0);
+ 
+ 	intel_audio_sdp_split_update(old_crtc_state, false);
+@@ -572,7 +566,11 @@ static void hsw_audio_codec_enable(struct intel_encoder *encoder,
+ 
+ 	intel_audio_sdp_split_update(crtc_state, true);
+ 
+-	if (needs_wa_14020863754(display))
++	/*
++	 * WA_14020863754: Implement Audio Workaround
++	 * Corner case with Min Hblank Fix can cause audio hang
++	 */
++	if (intel_display_wa(display, INTEL_DISPLAY_WA_14020863754))
+ 		intel_de_rmw(display, AUD_CHICKENBIT_REG3, 0, DACBE_DISABLE_MIN_HBLANK_FIX);
+ 
+ 	/* Enable audio presence detect */
 diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index c2ccdca2c2f3..1d8340b36c01 100644
+index 1d8340b36c01..b383bfad3af6 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -87,7 +87,7 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 	case INTEL_DISPLAY_WA_22021048059:
- 		return IS_DISPLAY_VER(display, 14, 35);
- 	default:
--		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
-+		drm_WARN(display->drm, 1, "Missing Wa: %s\n", name);
- 		break;
- 	}
- 
+@@ -74,6 +74,10 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
+ 			DISPLAY_VERx100(display) == 3500;
+ 	case INTEL_DISPLAY_WA_14011503117:
+ 		return DISPLAY_VER(display) == 13;
++	case INTEL_DISPLAY_WA_14020863754:
++		return DISPLAY_VERx100(display) == 3000 ||
++			DISPLAY_VERx100(display) == 2000 ||
++			DISPLAY_VERx100(display) == 1401;
+ 	case INTEL_DISPLAY_WA_14025769978:
+ 		return DISPLAY_VER(display) == 35;
+ 	case INTEL_DISPLAY_WA_15018326506:
 diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 767420d5f406..06c1f62c0f6d 100644
+index 06c1f62c0f6d..b1bcc18dd2c8 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -40,6 +40,6 @@ enum intel_display_wa {
- bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
- 
- #define intel_display_wa(__display, __wa) \
--	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringify(__wa))
-+	__intel_display_wa((__display), __wa, __stringify(__wa))
- 
- #endif
-diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
-index 3e9b3e532499..5d0d7c1027f5 100644
---- a/drivers/gpu/drm/i915/display/intel_fbc.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbc.c
-@@ -957,7 +957,7 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
- 	 * Fixes: Screen flicker with FBC and Package C state enabled
- 	 * Workaround: Forced SLB invalidation before start of new frame.
- 	 */
--	if (intel_display_wa(display, 22014263786))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_22014263786))
- 		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
- 			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
- 
-@@ -979,7 +979,7 @@ static void fbc_sys_cache_update_config(struct intel_display *display, u32 reg,
- 	 * Fixes: SoC hardware issue in read caching
- 	 * Workaround: disable cache read setting which is enabled by default.
- 	 */
--	if (!intel_display_wa(display, 14025769978))
-+	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14025769978))
- 		/* Cache read enable is set by default */
- 		reg |= FBC_SYS_CACHE_READ_ENABLE;
- 
-@@ -1612,7 +1612,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 		return 0;
- 	}
- 
--	if (intel_display_wa(display, 16023588340)) {
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_16023588340)) {
- 		plane_state->no_fbc_reason = "Wa_16023588340";
- 		return 0;
- 	}
-@@ -1622,7 +1622,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
- 	 * Fixes: Underrun during media decode
- 	 * Workaround: Do not enable FBC
- 	 */
--	if (intel_display_wa(display, 15018326506)) {
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_15018326506)) {
- 		plane_state->no_fbc_reason = "Wa_15018326506";
- 		return 0;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 38706017c0c6..df48f27f1cc1 100644
---- a/drivers/gpu/drm/i915/display/intel_gmbus.c
-+++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -250,7 +250,7 @@ static u32 get_reserved(struct intel_gmbus *bus)
- 	preserve_bits |= GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE;
- 
- 	/* Wa_16025573575: the masks bits need to be preserved through out */
--	if (intel_display_wa(display, 16025573575))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
- 		preserve_bits |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
- 				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
- 
-@@ -342,7 +342,7 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
- 	if (display->platform.pineview)
- 		pnv_gmbus_clock_gating(display, false);
- 
--	if (intel_display_wa(display, 16025573575))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
- 		ptl_handle_mask_bits(bus, true);
- 
- 	set_data(bus, 1);
-@@ -363,7 +363,7 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
- 	if (display->platform.pineview)
- 		pnv_gmbus_clock_gating(display, true);
- 
--	if (intel_display_wa(display, 16025573575))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
- 		ptl_handle_mask_bits(bus, false);
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 4c4deac7f9c8..7c5cb188ebf0 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -823,7 +823,7 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 			crtc_state->scaler_state.scaler_id < 0))
- 		return;
- 
--	if (intel_display_wa(display, 14011503117))
-+	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117))
- 		adl_scaler_ecc_mask(crtc_state);
- 
- 	drm_rect_init(&src, 0, 0,
+@@ -29,6 +29,7 @@ bool intel_display_needs_wa_16023588340(struct intel_display *display);
+ enum intel_display_wa {
+ 	INTEL_DISPLAY_WA_13012396614,
+ 	INTEL_DISPLAY_WA_14011503117,
++	INTEL_DISPLAY_WA_14020863754,
+ 	INTEL_DISPLAY_WA_14025769978,
+ 	INTEL_DISPLAY_WA_15018326506,
+ 	INTEL_DISPLAY_WA_16023588340,
 -- 
 2.51.0
 
