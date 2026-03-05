@@ -2,73 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKglBWSXqWlKAgEAu9opvQ
+	id WPjMBZGbqWnGAwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 15:47:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 16:04:49 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8223213C6F
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 15:46:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EE282141F9
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 16:04:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E79DE10E2BC;
-	Thu,  5 Mar 2026 14:46:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7638710E2C4;
+	Thu,  5 Mar 2026 15:04:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Dtp4EoEr";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="DOYezm37";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9AB6610E217;
- Thu,  5 Mar 2026 14:46:55 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id AF6386184F;
- Thu,  5 Mar 2026 14:46:54 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D781BC116C6;
- Thu,  5 Mar 2026 14:46:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772722014;
- bh=+vyyNXwbVKSALuloOGJ/u3XQdbK2QU/tneBRUrk0GPg=;
- h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
- b=Dtp4EoErGT5rmyC8XF590dGA+1fJwq3ailHWMacH5ErbUV+V1olQJF0gWKHFogu0X
- BS6BWuhIKpEF8bh0LvV+cqOW1xT56JIqFWU6kgMkxpYrJtZIQj2zJYo4NETaHbFvir
- H7q8e8sCROgU5De7vFaYkHpe5SBoFyZ2kXGiubH8BVWWjpCVMn6WZJrSdmBblj+JfY
- 3QJLSw282cXQGFqC9c4Yqoj8DvGpn3osMVMUdJULiALh0LhbcxoeHYNUDGXthpqT1t
- 2lJZ8L1MpOzPvXV2y/6wfRJ35EnJ/sfrhKG+Tixtl7ZwK3UmPTVA9jsaF/w6p9Xr0B
- jpKoTIypQBWrw==
-Message-ID: <0d4b2eb4691010abf43dcafb96b3694e@kernel.org>
-Date: Thu, 05 Mar 2026 14:46:51 +0000
-From: "Maxime Ripard" <mripard@kernel.org>
-To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
-Subject: Re: [PATCH v10 06/22] drm/display: hdmi-state-helper: Act on color
- format DRM property
-In-Reply-To: <20260305-color-format-v10-6-a58c68a11868@collabora.com>
-References: <20260305-color-format-v10-6-a58c68a11868@collabora.com>
-Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
- linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-rockchip@lists.infradead.org, "Alex
- Deucher" <alexander.deucher@amd.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Andy Yan" <andy.yan@rock-chips.com>,
- =?utf-8?b?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, "David
- Airlie" <airlied@gmail.com>, "Dmitry Baryshkov" <lumag@kernel.org>, "Harry
- Wentland" <harry.wentland@amd.com>,
- =?utf-8?b?SGVpa28gU3TDvGJuZXI=?= <heiko@sntech.de>, "Jani
- Nikula" <jani.nikula@linux.intel.com>,
- "Jernej Skrabec" <jernej.skrabec@gmail.com>, "Jonas
- Karlman" <jonas@kwiboo.se>, "Jonathan Corbet" <corbet@lwn.net>, "Joonas
- Lahtinen" <joonas.lahtinen@linux.intel.com>,
- "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>, "Leo
- Li" <sunpeng.li@amd.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime
- Ripard" <mripard@kernel.org>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Rob Herring" <robh@kernel.org>, "Robert Foss" <rfoss@kernel.org>, "Rodrigo
- Siqueira" <siqueira@igalia.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Sandy
- Huang" <hjc@rock-chips.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Shuah
- Khan" <skhan@linuxfoundation.org>, "Simona Vetter" <simona@ffwll.ch>, "Thomas
- Zimmermann" <tzimmermann@suse.de>, "Tvrtko Ursulin" <tursulin@ursulin.net>
-Content-Transfer-Encoding: 7bit
+Received: from mail-lf1-f45.google.com (mail-lf1-f45.google.com
+ [209.85.167.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A38910E2C4
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2026 15:04:45 +0000 (UTC)
+Received: by mail-lf1-f45.google.com with SMTP id
+ 2adb3069b0e04-5a1303b088bso974356e87.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 07:04:45 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1772723083; cv=none;
+ d=google.com; s=arc-20240605;
+ b=kgt2VJQ5QHCLzDzK4enRzz92CR2sMsnGGXmo5QWDoT3v7RGsR3ztbWsR1eiES75qvr
+ wv6EW5Wz7c4Zodc9OvgebSif2JO8rhxeAyeJF4wk8e8oOLLw27xBG96z/Wcwb/LcpBsG
+ v+iNezYfsYi7hiXJe7Oe8tXd5gBENZWuzpaJM/qlsQZXtJmDhJFLQg9O+dX+Q6BM0jqx
+ uFrhfhmcwCe2Bpws8z+HaxdwKluNE9tdIbPwEN23mMBRNYIt5aKRRUhD2tbRekbutM//
+ RAzNMJLcCy7fUyuHQKuex5GyJ0fB8UrbcCH53bm9TUuwq6fLiJU+sJZt1LSXYziIcbXl
+ niKQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=bAzlDiATw0sReZVnHLqMUNDe8YNqfvDhHHmieW05wFY=;
+ fh=eSzX5ScW23VmCoar504nBK8RDGBDMKCgy66WWzz0NPQ=;
+ b=hD/QuO6TDBBTGybfmx6KOqu14iDwCR85RBbfpuX+rTrNGjC621v973jiGlYK0OrvC4
+ arL/4pSn5iVFHg2+OdNmEYYrcmISUW4VoadsQc8UPVp576MyJf/aLuq7qZHs7CI4yWjR
+ wJp4nHRMF3+ZYAlgq/VUtE25MQTpmdgXMemNYa6d6J1FNEs4pMMrl6I4pe6f3LeP/+Ev
+ kHCtO4kkb9VyJU8jMzwjhh1G4yjpv8kIX1UDJ82eCStLeF7uafRkBAUzcalavJOTUW/v
+ /mukprJsrb+nOx5Ygc8AxsP4CxdWYYiJMlyLEJkHDgKoIbY1rNMUwb0ybZFK4G5sHXbS
+ Z9Pw==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=suse.com; s=google; t=1772723083; x=1773327883; darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bAzlDiATw0sReZVnHLqMUNDe8YNqfvDhHHmieW05wFY=;
+ b=DOYezm37EeQUuWgkjlA38up2GyTLHv0a6OmG9pSFiLlyGQV8qKQbiKBE3BVPV2HwQR
+ aoQ4GGw0FtG4UeZvuLeb0w8jQPGAYMCphKQYwdMviBcikqxD/FPs8jAkTPt8JE6kjh6G
+ 35dcJ4QjQj2kADqlV/YSIg2YoinPqjnUrMWPtYMM0qjgfWOtfBCPv3JlQmbLdu4SRSVD
+ obJtMuyory50IEZKarKZCpjVe/MwGy57JqXimRoTMpY3pIwsEcMeq+h+C3lKrGvAot+S
+ 8DnhdXDkT4K1vcizENZLnkNDgR3nDt7oOUX8yVL4vM3N8eTP3+xdNOSqKrLIiJis9TZg
+ YFzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1772723083; x=1773327883;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=bAzlDiATw0sReZVnHLqMUNDe8YNqfvDhHHmieW05wFY=;
+ b=F/Af57aDjrBHFM3l9l5j56GgzJwZn+N6bvvP/Ls3oeHnzcYaPbHnCyNqYfvHfY3SWG
+ 7+o1GMjORrvamNwJLMVTGoXiGpVcPzPVzGkvaMte9air6qsT+JJmbRnlITQYR3WNCHEf
+ m3Jos6yjV9JPERz9SiqyVYzZKgvQA5lc7b7s/XZQRU4V/ANEqlTufZGcLUVEBNmsLTZF
+ RFhku5+iRwjWPZwF9G7wUxTnJKe4fBlQYvsR9GzDE1hQF02Ud8H19YK5Ob1OCQnOOKLa
+ YrEqC9SmozhLs3OcE18OXEcRoa1kCL0iKumqKojA4nDSA75Y6pDp6mwI1QpZZyJXQuDo
+ GgVg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCX/tAmsGBE1vDDdVgjb8tWyrZ0kNt8lG6MPBkBhZFAHtkuDr8hJDwK1gepdM9jJQia0OgNBwTFlcfg=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxb3j4oPIBwfD7gz6po18bnVayOM0A1KQQ5qTt57eOiULVHWsPX
+ CTnXyQ47AnLJ/wytQ7Ly9eP8OciCbD2PLVWUF79flJbWlKsw9XJwADBKwpwFC7O9Rg1aJwJeqlp
+ oMKZZL+i7lzApZCdmAQ7yZKutsl1wZm6u6tXDjrNXVg==
+X-Gm-Gg: ATEYQzzdZaBSRs8uG5MifjjLrHQz21igFD46/47cAKhH4VN0je1kyjR8PQyezBcJJZB
+ I/wZVqr+l3/2n5UuGm0SUoFRY358uBjijIcVdfhQ3f++8yo3ghZ2Xn8FzA760RCCXjjPz052nyv
+ h2+BdQYmG+JdunJDtiDzCa6ytjn4lg/M4Ww3n37fDILOU7vMoU+3ETG4ilgCM5BAemADtK7ngrZ
+ O3TMZIpBjkJYmaCdx2HAXPdh8Xnh+5AduVKWOH0bASZT7kSBx5AVgcrNI8xBJPUZ4Lm06EcCsLq
+ BuQJTnIEy8YDDeroZp9r5H6wxeqcDTPQ7+GK01O4
+X-Received: by 2002:a05:6512:3d02:b0:5a0:ecb2:c0c2 with SMTP id
+ 2adb3069b0e04-5a131ee685dmr1018802e87.4.1772723083472; Thu, 05 Mar 2026
+ 07:04:43 -0800 (PST)
+MIME-Version: 1.0
+References: <20251104100032.61525-1-marco.crivellari@suse.com>
+In-Reply-To: <20251104100032.61525-1-marco.crivellari@suse.com>
+From: Marco Crivellari <marco.crivellari@suse.com>
+Date: Thu, 5 Mar 2026 16:04:32 +0100
+X-Gm-Features: AaiRm51Fwf7l48SqEBCdWz3UtmH6UJ4sv_2IzU_K0N4uV9iItuAT5-zrxEN7IQA
+Message-ID: <CAAofZF4bvBoecKaJv_sEEK54htXBv_dc23tJRrwhXrGb3O_D7A@mail.gmail.com>
+Subject: Re: [PATCH v3 0/3] replace old wq(s), add WQ_PERCPU to alloc_workqueue
+To: linux-kernel@vger.kernel.org, intel-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org
+Cc: Tejun Heo <tj@kernel.org>, Lai Jiangshan <jiangshanlai@gmail.com>, 
+ Frederic Weisbecker <frederic@kernel.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>, 
+ Michal Hocko <mhocko@suse.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Krzysztof Karas <krzysztof.karas@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,48 +116,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D8223213C6F
+X-Rspamd-Queue-Id: 6EE282141F9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [2.19 / 15.00];
-	MISSING_MIME_VERSION(2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[suse.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[suse.com:s=google];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:tj@kernel.org,m:jiangshanlai@gmail.com,m:frederic@kernel.org,m:bigeasy@linutronix.de,m:mhocko@suse.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:krzysztof.karas@intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,collabora.com,lists.infradead.org,vger.kernel.org,amd.com,intel.com,rock-chips.com,gmail.com,kernel.org,sntech.de,linux.intel.com,kwiboo.se,lwn.net,ideasonboard.com,linaro.org,igalia.com,pengutronix.de,linuxfoundation.org,ffwll.ch,suse.de,ursulin.net];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[marco.crivellari@suse.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,gmail.com,linutronix.de,suse.com,linux.intel.com,intel.com,ursulin.net,ffwll.ch];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[marco.crivellari@suse.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:dkim,suse.com:email]
 X-Rspamd-Action: no action
 
-On Thu, 5 Mar 2026 15:19:32 +0100, Nicolas Frattaroli wrote:
-> With the introduction of the "color format" DRM property, which allows
-> userspace to request a specific color format, the HDMI state helper
-> should implement this.
-> 
-> Implement it by translating the requested drm_connector_color_format to
-> 
-> [ ... ]
+Hi,
 
-Reviewed-by: Maxime Ripard <mripard@kernel.org>
+On Tue, Nov 4, 2025 at 11:00=E2=80=AFAM Marco Crivellari
+<marco.crivellari@suse.com> wrote:
+> Marco Crivellari (3):
+>   drm/i915: replace use of system_unbound_wq with system_dfl_wq
+>   drm/i915: replace use of system_wq with system_percpu_wq in the
+>     documentation
+>   drm/i915: add WQ_PERCPU to alloc_workqueue users
+
+Gentle ping.
+I checked patchwork and seems still in the "New" state.
 
 Thanks!
-Maxime
+
+--=20
+
+Marco Crivellari
+
+L3 Support Engineer
