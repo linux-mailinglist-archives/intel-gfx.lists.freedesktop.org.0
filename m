@@ -2,61 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLZCJasDqWlW0QAAu9opvQ
+	id 8GK4HK0DqWlW0QAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 05:16:43 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 05:16:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 22C8820AB5F
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 05:16:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 463FB20AB67
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 05:16:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20D8C10EAF3;
-	Thu,  5 Mar 2026 04:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7733010EAF9;
+	Thu,  5 Mar 2026 04:16:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bFxsRQM4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="luDETT4V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8512A10EAF3;
- Thu,  5 Mar 2026 04:16:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AC7110EAF7;
+ Thu,  5 Mar 2026 04:16:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772684201; x=1804220201;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=lsI8jRMNaGalvoqkwzsumD6BcgJCRwffvZfrHuB1IUI=;
- b=bFxsRQM4P9R4ZxJgb4yVUjTcYXgTxSLePq60fivIpj+hsFBjldJbazlJ
- e9+OPiHKzXoArJuU4meT5l3/LKdKUpGLJ3wUXMiEtdXPimKNG2iW7GdSR
- TatetqcqtYAXPBotL7Z+cKA7Da1y4Q3iBQMlQgXnjU2IYoXPm00cI5OHQ
- hj+JpIZwtHfgybVJBeYPd6YJFP1+Z0Lt4x/t7LNpHOD1zVWGHnxUCTkmy
- 81Fr66dPofi5cJTUC/f3t+NA5N4e2xHuLntf+N8iCP7gzowCV+IIo9d+h
- Sq2iNCYSIEHz/Zn8xMJfgYiQ7z7ICzuuYdVB96oQ5tWD1Sz8aLlNeNXsz g==;
-X-CSE-ConnectionGUID: BaiACm3WSHOXKa4wZWkQbA==
-X-CSE-MsgGUID: +B30eYgfTo6MFX1/f15Tzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73674694"
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="73674694"
+ t=1772684202; x=1804220202;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Rx+3+NZi5XMCnfzNjmy23J78jK+39g68O5U36HLK5D0=;
+ b=luDETT4VYkVLBSnnCAIFMciDcDB4jmv5vG4s0zMM/bqkadSaU03Gox7b
+ Gjo95OsEV5I/NSZOScyZQaOEuqSirTShUihLyLT1+UwU85bw+0fOsSt3V
+ J9GRZMVOV4A2TX0eoVlZuGLi8aKxjbshDmyKU/n3gz4OSpyspx1uoDBnB
+ KUPLaPG+ruu3HES4Rbgt1NNq30lbiqPpaILaQIba/KeMCPb2Kh+93a9bX
+ mkKznB32vGuS1NzxjSEXZHRvajP3pE/xFjAmOeDDgtnomqT9nmt2BjXAu
+ M/+LJQmsYvT3Z8zNCn5USoS/SASlaw3mZJXP5/fUNr1LO1XgSAhQVkLDK w==;
+X-CSE-ConnectionGUID: IVftC9+KRM2Fva9gJWRebQ==
+X-CSE-MsgGUID: mXZJ5r1FTiWMmK2zG3VuMg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="73674696"
+X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="73674696"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 20:16:40 -0800
-X-CSE-ConnectionGUID: TOEbgltUQVmAhzmghCkXtw==
-X-CSE-MsgGUID: 68A/YmQXRfuyHKaA1OFLqg==
+ 04 Mar 2026 20:16:41 -0800
+X-CSE-ConnectionGUID: 0H0y8VtAQhS01A+6zq1YIA==
+X-CSE-MsgGUID: EH3XJyLhSFCvfq4YIgAFPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="222705727"
+X-IronPort-AV: E=Sophos;i="6.21,325,1763452800"; d="scan'208";a="222705730"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Mar 2026 20:16:37 -0800
+ 04 Mar 2026 20:16:40 -0800
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/5] Add support for Common SDP Transmission Line
-Date: Thu,  5 Mar 2026 09:31:13 +0530
-Message-ID: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 1/5] drm/i915/nvl: Add register definitions for common SDP
+ Transmission Line
+Date: Thu,  5 Mar 2026 09:31:14 +0530
+Message-ID: <20260305040118.2576312-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
+References: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,72 +74,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 22C8820AB5F
+X-Rspamd-Queue-Id: 463FB20AB67
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:mid];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-Xe3p_lpd introduces new register bits to program a common SDP
-Transmission line that will be used by the Hardware to position the
-SDPs. Along with this, another new register is also added to stagger
-the different SDPs.
+From: Arun R Murthy <arun.r.murthy@intel.com>
 
-This series adds support for programming the Common SDP Transmission Line
-(CMN_SDP_TL) and its stagger control registers.
+Add registers definitions for common SDP transmission line CMN_SDP_TL
+and CMN_SDP_TL_STGR_CTL.
 
-Ankit Nautiyal (4):
-  drm/i915/dp: Add fields to store CMN_SDP_TL register state in
-    crtc_state
-  drm/i915/dp: Add helper for AS SDP TL and fix documentation
-  drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission
-    line
-  drm/i915/dp: Enable Common SDP Transmission line
+Bspec: 74384
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ .../gpu/drm/i915/display/intel_display_regs.h | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Ankit Nautiyal (4):
-  drm/i915/dp: Add fields to store CMN_SDP_TL register state in
-    crtc_state
-  drm/i915/dp: Add helper for AS SDP TL and fix documentation
-  drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission
-    line
-  drm/i915/dp: Enable Common SDP Transmission line
-
-Arun R Murthy (1):
-  drm/i915/nvl: Add register definitions for common SDP Transmission
-    Line
-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   4 +
- drivers/gpu/drm/i915/display/intel_display.c  |   6 +
- .../drm/i915/display/intel_display_device.h   |   1 +
- .../gpu/drm/i915/display/intel_display_regs.h |  19 +++
- .../drm/i915/display/intel_display_types.h    |   9 ++
- drivers/gpu/drm/i915/display/intel_dp.c       | 123 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h       |   5 +
- drivers/gpu/drm/i915/display/intel_vrr.c      |   4 +-
- 8 files changed, 169 insertions(+), 2 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 49e2a9e3ee0e..5cfe4114b7dd 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -2124,6 +2124,25 @@
+ 							 _VLV_VIDEO_DIP_DATA_B, \
+ 							 _CHV_VIDEO_DIP_DATA_C)
+ 
++/* COMMON SDP TRANSMISSION LINE */
++#define _CMN_SDP_TL_A			0x6020c
++#define CMN_SDP_TL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_A)
++#define  TRANSMISSION_LINE_ENABLE	REG_BIT(31)
++#define  BASE_TRANSMISSION_LINE_MASK	REG_GENMASK(12, 0)
++#define  BASE_TRANSMISSION_LINE(x)	REG_FIELD_PREP(BASE_TRANSMISSION_LINE_MASK, x)
++
++#define _CMN_SDP_TL_STGR_CTL_A			0x60214
++#define CMN_SDP_TL_STGR_CTL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_STGR_CTL_A)
++#define  VSC_EXT_STAGGER_MASK			REG_GENMASK(11, 8)
++#define  VSC_EXT_STAGGER(x)			REG_FIELD_PREP(VSC_EXT_STAGGER_MASK, x)
++#define  VSC_EXT_STAGGER_DEFAULT		0x2
++#define  PPS_STAGGER_MASK			REG_GENMASK(7, 4)
++#define  PPS_STAGGER(x)				REG_FIELD_PREP(PPS_STAGGER_MASK, x)
++#define  PPS_STAGGER_DEFAULT			0x1
++#define  GMP_STAGGER_MASK			REG_GENMASK(3, 0)
++#define  GMP_STAGGER(x)				REG_FIELD_PREP(GMP_STAGGER_MASK, x)
++#define  GMP_STAGGER_DEFAULT			0x0
++
+ #define _VLV_VIDEO_DIP_GDCP_PAYLOAD_A	0x60210
+ #define _VLV_VIDEO_DIP_GDCP_PAYLOAD_B	0x61178
+ #define _CHV_VIDEO_DIP_GDCP_PAYLOAD_C	0x611f8
 -- 
 2.45.2
 
