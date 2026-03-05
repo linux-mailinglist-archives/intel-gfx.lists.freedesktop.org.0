@@ -2,67 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SP50CHxKqWn+3wAAu9opvQ
+	id gEHYELZMqWk14AAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 10:18:52 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 10:28:22 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C26E020E320
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 10:18:51 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B02FB20E644
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 10:28:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E01310EBCC;
-	Thu,  5 Mar 2026 09:18:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7718310EBD3;
+	Thu,  5 Mar 2026 09:28:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hQ9SNWm/";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rI7HGIYh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E014A10EBCA;
- Thu,  5 Mar 2026 09:18:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772702326; x=1804238326;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=BXzAUTiKj5HwGFCiCJkRyXpWu7IkPmlenPetUuj2SaE=;
- b=hQ9SNWm/tVnlOdev/64EHGVeI6UB4OCod80VRU1tlkr1Il0wXRz+MQth
- I5cJsNPIGT/62P4X0z47kXhTEesD1+5NdsyOqPqmm2LutJtkgn0XdclrJ
- wbormavFse+1JwC9faDidTLBjGppsELXDQOIG51HJDlDKgzAHFsneQ0L5
- s1YhdyDEM0cTEMdlACElv2cpSF+nU9sayNYiWQkV0OlgZvJ0B+f8p1SUW
- UDAnaaNYBgf49Wx7OUcOrnOdHuSBAUFH75WmEiEajtnob/81mVWypN1Ow
- RfGNlRmf0aKI3YKiISLrsI934Mstp54WbzhUZn9QggBCtLG3YEW4aOljx A==;
-X-CSE-ConnectionGUID: oHgdxkA+TwKcBmRSLrbbnQ==
-X-CSE-MsgGUID: TaKvsqZySaWbWFFyhOuGpQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11719"; a="77654194"
-X-IronPort-AV: E=Sophos;i="6.23,325,1770624000"; d="scan'208";a="77654194"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 01:18:44 -0800
-X-CSE-ConnectionGUID: 7pQVRJ7AR3e7Ep3saSntAw==
-X-CSE-MsgGUID: U2mJ2UdCTNC9lJTjWmeCcw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,325,1770624000"; d="scan'208";a="249084544"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.134])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Mar 2026 01:18:42 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>, Imre Deak
- <imre.deak@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
- <ville.syrjala@linux.intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH RFC 1/4] drm/display/dp: Read LTTPR caps without DPRX caps
-In-Reply-To: <20260305-dp_aux-v1-1-54ee0b5f5158@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
- <20260305-dp_aux-v1-1-54ee0b5f5158@intel.com>
-Date: Thu, 05 Mar 2026 11:18:38 +0200
-Message-ID: <33d050c09290955321f01d61166e7763b6db2e77@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E22A110EBD0;
+ Thu,  5 Mar 2026 09:28:14 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id 0E07461340;
+ Thu,  5 Mar 2026 09:28:14 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 33AF9C116C6;
+ Thu,  5 Mar 2026 09:28:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772702893;
+ bh=eMEdAdxmi5XoFOVsNLtFj1G9gXiGNoC5/esgtPlElrw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=rI7HGIYhSvfO1RmPL7HM9zEdH40BCaFV4GwxZZJjuXF3OASqzHW3jOH+AkqYx0AUG
+ 8+zQ87QG1y13OUntm0/TwT8WYNQXGWcBfbqSBLeGVbvp9AHtZZLURGBdLEfWt2lo5V
+ le0b7GQewa3RvZOpRCegZPxgVHgc3EDPFkhvqb/ey5q6I/g+xR5SFq7Xmi4x7cFv2O
+ LZs02z7aN6V4Z4FqV5gW9M+z/My2xLpx74i3BRILn+CmiCr/MAgM8jNnlgIVIOSApw
+ gDkrtyV4tUll/rdSmRF6JUE2LBOOgLmrk1cCyX9Zc6j1Tn9XC/oz4dzPh3/P0BP/q2
+ obZnRjiQsVFWg==
+Date: Thu, 5 Mar 2026 10:28:11 +0100
+From: Maxime Ripard <mripard@kernel.org>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, 
+ Andri Yngvason <andri@yngvason.is>, Werner Sembach <wse@tuxedocomputers.com>, 
+ Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v9 02/19] drm: Add new general DRM property "color format"
+Message-ID: <20260305-just-oxpecker-of-reward-e05e4f@houat>
+References: <20260227-color-format-v9-0-658c3b9db7ef@collabora.com>
+ <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="56nzglyxg7oadotv"
+Content-Disposition: inline
+In-Reply-To: <20260227-color-format-v9-2-658c3b9db7ef@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,164 +89,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C26E020E320
+X-Rspamd-Queue-Id: B02FB20E644
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gitlab.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[40];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,yngvason.is,tuxedocomputers.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, 05 Mar 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> We at present have drm_dp_Read_lttpr_common_caps to read the LTTPR caps,
-> but this function required DPRX caps to be passed. As per the DP2.1 spec
-> section 3.6.8.6.1, section 2.12.1, section 2.12.3 (Link Policy) the
-> LTTPR caps is to be read first followed by the DPRX capability.
-> Hence adding another function to read the LTTPR caps without the need
-> for DPRX caps.
 
-If the spec says something, why are we keeping the function that does it
-the other way?
+--56nzglyxg7oadotv
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v9 02/19] drm: Add new general DRM property "color format"
+MIME-Version: 1.0
 
-> In order to handle the issue
-> https://gitlab.freedesktop.org/drm/intel/-/issues/4531
-> of reading corrupted values for LTTPR caps on few pannels with DP Rev 1.2
-> the workaround of reducing the block size to 1 and reading one block at a
-> time is done by checking for a valid link rate.
->
-> Fixes: 657586e474bd ("drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities")
+Hi,
 
-You're not calling the code being added here. This can't fix anything on
-its own. This is not how the Fixes: tag works.
+On Fri, Feb 27, 2026 at 08:20:07PM +0100, Nicolas Frattaroli wrote:
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index 4af91e252fbd..b5bc93856ad1 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -579,6 +579,91 @@ enum drm_output_color_format {
+>  	DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
+>  };
+> =20
+> +/* Do not forget to adjust after modifying &enum drm_output_color_format=
+ */
+> +#define DRM_OUTPUT_COLOR_FORMAT_COUNT 4
 
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 63 +++++++++++++++++++++++++++++++++
->  include/drm/display/drm_dp_helper.h     |  2 ++
->  2 files changed, 65 insertions(+)
->
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index a697cc227e28964cd8322803298178e7d788e820..9fe7db73027a43b01c4d12927f1f0e61444658e5 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -3050,6 +3050,69 @@ static int drm_dp_read_lttpr_regs(struct drm_dp_aux *aux,
->  	return 0;
->  }
->  
-> +static bool drm_dp_valid_link_rate(u8 link_rate)
-> +{
-> +	switch (link_rate) {
-> +	case 0x06:
-> +	case 0x0a:
-> +	case 0x14:
-> +	case 0x1e:
-> +		return true;
-> +	default:
-> +		return false;
-> +	}
-> +}
-> +
+Maybe we can put that as the last variant of our enum so we don't have
+to always update it?
+
 > +/**
-> + * drm_dp_read_lttpr_caps - read the LTTPR capabilities
-> + * @aux: DisplayPort AUX channel
-> + * @caps: buffer to return the capability info in
+> + * enum drm_connector_color_format - Connector Color Format Request
 > + *
-> + * Read capabilities common to all LTTPRs.
-> + *
-> + * Returns 0 on success or a negative error code on failure.
+> + * This enum, unlike &enum drm_output_color_format, is used to specify r=
+equests
+> + * for a specific color format on a connector through the DRM "color for=
+mat"
+> + * property. The difference is that it has an "AUTO" value to specify th=
+at
+> + * no specific choice has been made.
 > + */
-> +int drm_dp_read_lttpr_caps(struct drm_dp_aux *aux,
-> +			   u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
-> +{
-> +	/*
-> +	 * At least the DELL P2715Q monitor with a DPCD_REV < 0x14 returns
-> +	 * corrupted values when reading from the 0xF0000- range with a block
-> +	 * size bigger than 1.
-> +	 * For DP as per the spec DP2.1 section 3.6.8.6.1, section 2.12.1, section
-> +	 * 2.12.3 (Link Policy) the LTTPR caps is to be read first followed by the
-> +	 * DPRX capability.
-> +	 * So ideally we dont have DPCD_REV yet to check for the revision, instead
-> +	 * check for the correctness of the read value and in found corrupted read
-> +	 * block by block.
+> +enum drm_connector_color_format {
+> +	/**
+> +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
+> +	 * helpers should pick a suitable color format. All implementations of a
+> +	 * specific display protocol must behave the same way with "AUTO", but
+> +	 * different display protocols do not necessarily have the same "AUTO"
+> +	 * semantics.
+> +	 *
+> +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
+> +	 * bandwidth required for full-scale RGB is not available, or the mode
+> +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
+> +	 * YCbCr 4:2:0.
+> +	 *
+> +	 * For display protocols other than HDMI, the recursive bridge chain
+> +	 * format selection picks the first chain of bridge formats that works,
+> +	 * as has already been the case before the introduction of the "color
+> +	 * format" property. Non-HDMI bridges should therefore either sort their
+> +	 * bus output formats by preference, or agree on a unified auto format
+> +	 * selection logic that's implemented in a common state helper (like
+> +	 * how HDMI does it).
 > +	 */
-> +	int block_size;
-> +	int offset;
-> +	int ret;
-> +	int address = DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV;
-> +	int buf_size = DP_LTTPR_COMMON_CAP_SIZE;
+> +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
 > +
-> +	ret = drm_dp_dpcd_read_data(aux, address, &caps, buf_size);
-> +	if (ret < 0)
-> +		return ret;
+> +	/**
+> +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
+> +	 */
+> +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
 > +
-> +	if (caps[0] == 0x14) {
-> +		if (!drm_dp_valid_link_rate(caps[1])) {
-
-So you first read the whole thing once, and then in some cases read the
-whole thing again one byte at a time?
-
-Everything about this smells like a quirk for a specific display, not
-something you do normally. We shouldn't have to have two ways to read
-the lttpr caps in the normal case.
-
-> +			block_size = 1;
-
-What's the point with the variable?
-
-> +			for (offset = 0; offset < buf_size; offset += block_size) {
-> +				ret = drm_dp_dpcd_read_data(aux,
-> +							    address + offset,
-> +							    &caps[offset],
-> +							    block_size);
-> +				if (ret < 0)
-> +					return ret;
-> +			}
-> +		}
-> +	}
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_dp_read_lttpr_caps);
+> +	/**
+> +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
+> +	 * not subsampled)
+> +	 */
+> +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
 > +
->  /**
->   * drm_dp_read_lttpr_common_caps - read the LTTPR common capabilities
->   * @aux: DisplayPort AUX channel
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 1d0acd58f48676f60ff6a07cc6812f72cbb452e8..def145e67011c325b790c807f934b288304260c1 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -755,6 +755,8 @@ bool drm_dp_read_sink_count_cap(struct drm_connector *connector,
->  				const struct drm_dp_desc *desc);
->  int drm_dp_read_sink_count(struct drm_dp_aux *aux);
->  
-> +int drm_dp_read_lttpr_caps(struct drm_dp_aux *aux,
-> +				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
->  int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
->  				  const u8 dpcd[DP_RECEIVER_CAP_SIZE],
->  				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
+> +	/**
+> +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
+> +	 * with horizontal subsampling)
+> +	 */
+> +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> +
+> +	/**
+> +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
+> +	 * with horizontal and vertical subsampling)
+> +	 */
+> +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+> +};
+> +
+> +/* Do not forget to adjust after modifying &enum drm_connector_color_for=
+mat */
+> +#define DRM_CONNECTOR_COLOR_FORMAT_COUNT 5
 
--- 
-Jani Nikula, Intel
+Ditto
+
+Maxime
+
+--56nzglyxg7oadotv
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaalMqgAKCRAnX84Zoj2+
+dmOPAX92VmruO+gIj35XK8ogbZVYutcf8QCLMn4u+YKllIE7k9+XA+wG0UK9eYuH
+cO1fW3UBfRH+rv+HolxgeR79kVh3vlGJgPBqkn4Am7SomEZ6vyimagwigP2i7czB
+4BUuzmli8g==
+=EFdZ
+-----END PGP SIGNATURE-----
+
+--56nzglyxg7oadotv--
