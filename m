@@ -2,85 +2,109 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oF8VHc83qWlk3AAAu9opvQ
+	id yD//JT86qWka3QAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 08:59:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 09:09:35 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA6E020D0B1
-	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 08:59:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0191720D373
+	for <lists+intel-gfx@lfdr.de>; Thu, 05 Mar 2026 09:09:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8BE1910E220;
-	Thu,  5 Mar 2026 07:59:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36CBF10EB52;
+	Thu,  5 Mar 2026 08:09:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="inGPyAKP";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="TQ2l+OE6";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="dVXICtCK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com
- [209.85.221.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D077710E21E
- for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2026 07:59:07 +0000 (UTC)
-Received: by mail-wr1-f42.google.com with SMTP id
- ffacd0b85a97d-439a89b6fd0so4596702f8f.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 04 Mar 2026 23:59:07 -0800 (PST)
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87BB510EB58
+ for <intel-gfx@lists.freedesktop.org>; Thu,  5 Mar 2026 08:09:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1772698171;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=m2qyIYKFUP0m9wA/UEgSZpALpRru5dabPxt8eU3MBlw=;
+ b=TQ2l+OE6qVPerV9+YVQSl4IihBgQ+rCtjeWdysY59TBmvGn06L1YFs1uxNAd1TCm2up2nu
+ Lk6wOccew287OddC01KMAHq5YafAmrFi42TuWDjove+89gicARtnMhABoBgb+vrLrfvJGA
+ h26ED+4KKXnfXbDg1sKPxxcWxWGFLS4=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-348-mKWoNqwnNOOcOh97dzU7mw-1; Thu, 05 Mar 2026 03:09:30 -0500
+X-MC-Unique: mKWoNqwnNOOcOh97dzU7mw-1
+X-Mimecast-MFC-AGG-ID: mKWoNqwnNOOcOh97dzU7mw_1772698169
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-4836bf1a920so83473155e9.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 00:09:29 -0800 (PST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772697546; x=1773302346; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=up1Dq1xg6gmNuKxcZqGmFJ9w/LNCPKzJ4m3SQCOPg0U=;
- b=inGPyAKP5xxRdV1I9NHGRIr9zbgxx1ooUmYHx9Bl+wEWG2BmMvMEJmnTKwJ1yjJKI0
- Gi4bsOP5gLxjmZ2gvFcAHL/nTEcBo4NUyJgJ/6CLPsSFTJdZoGIJXM0z8pTMegRO/1zO
- QP4y+rpO7W/gdfu2q+SsSnH48wBKkDHIFcBjWQlruiYlotV200Y6HhSh38dgCuE614xO
- 95i4bFlzRXQEwVaYUqcezy4bsr4mIu4tqwQdHDuMKqxH3Y+nB0puDC/VU/A2X4pRFkum
- zk9e7Ff0COm34b6ZBQZjdNE8PJD4Hy+Cx89ObyvVb1zMbQ4pJlUEZgD56z3Qq6Qkf86q
- OhUg==
+ d=redhat.com; s=google; t=1772698169; x=1773302969; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=m2qyIYKFUP0m9wA/UEgSZpALpRru5dabPxt8eU3MBlw=;
+ b=dVXICtCK0aUMOoFCEogBSHGu0NUEkGWi5r0LPJKWvcDNoDPS26mUHqLsbaJ1igH2q1
+ eSPQtAjNNT9UqUEPTqJI5DZxAYU7dN3BasvASjTcfpgg7Xkv/mbza6GdwBFJmWSizK7s
+ 7vT9hZZm0OVmI8jqkCLfYsW6oNCrOB0HCELTvvuyeDVbqbNr4asJggnx544WDzM5ILge
+ caccZyAckV5uoIreBnJurwUZNn6kXmuhlJq3AiavHfaOIx7W8U8ZMWfeoNfCdlrNF8O7
+ x82JRDqIXDT2ozg455lSJg+U8oTqMcuOpbMnih5sAO2IqeYKJpgkfLQ5qcgfSwFxMwRX
+ BTuQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772697546; x=1773302346;
- h=content-transfer-encoding:mime-version:message-id:date:subject:to
- :from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=up1Dq1xg6gmNuKxcZqGmFJ9w/LNCPKzJ4m3SQCOPg0U=;
- b=bJdqIG5koG+fdOJLbetwDzBQ56rKOVekQ1d51wj+G3lIuRl8XnPN75jlt95QwJoPDD
- HLZ/dZ8VO5SQ1JiPLU+0jDTl9FJcSsQVReeayxJnR7XNLPHVnask9W9zol7JKhfQhWbO
- sOcQ0K82tTjEDNH6HlvzwshZhbgRKdWIl3Zz9kJJUVN8evmKKu/WBnY7TsTUTnzJf64B
- UZt3TUtUHYduCX2bNR3ECj0rfGI0uRXksin4eJ0TAurxUFipXQWw+t8lERLb1kCYyEBo
- FKyMIglvcFIiv+1Wb1kY81QS3XLDSdPHqBqxzH5vFNMaAGEqfyHGvWTWP1uBXPWctUKn
- e2BQ==
+ d=1e100.net; s=20230601; t=1772698169; x=1773302969;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=m2qyIYKFUP0m9wA/UEgSZpALpRru5dabPxt8eU3MBlw=;
+ b=twnYMHm8EBna7XejOiCFO7ZY1BTu1Dr5Gb4N/9xXmtdaUcwbnZIGYIMMXjPRgPIXm4
+ Q+GR85ov6ci8Ps1SPrWWtL2XQWIvsDMdRW2SMaglOG6W8G9QNyzsZ5OfNLM5lTSrNoL8
+ 3CgeF5Dx8Q7Ui/DcHo6F4AcXeWLQtIumHbwveujM5WU2gIdh9KF3Oxj+jNMCG+awEj8n
+ I2nSsvxinZz1uEApmKPBKqD2rM3v+HqCgmGx4xHUm60339HkltwlpGe6plJt2w5EJtbt
+ SK/izvHtKzVqshZ1217XE8rYddfUnD6hXzSxKPaSEw2WEcWvTgEcH5wXqxG7/qrtZw/B
+ HLKg==
 X-Forwarded-Encrypted: i=1;
- AJvYcCU8XEy2iUIKAqA8tha/7eh8pdHKUrHzb4dPHeu1gmtcv7owhgTI6tC/L+j/Owr0f3u1i81R5c6nfzk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yy7ATkOK4AI2aGCGyz7B8dh7A/HfbBim1uJ9nEZFMpuE56yPLzm
- YThChhKKKVNH8sCM2SgQ9NMfn0wXCXCkraqrWT/j2wHz6Kgr0OXt/sIk
-X-Gm-Gg: ATEYQzzkJVFM5l1w6zKmiIjFVxz7sK6GD2aajZuI8Sm00Fo+TVUFoCgedxAGfmfa1zW
- FE4qq3ZKJMtdQyULjPIL1IUrMKXrdccfUj+3f6TILRgTQGRWpPhVC+YIksinDP7ey3svGY4lEY/
- ccMY734V9bJSPx8fL/q23AptCrD6C/YxvNHD/sD+wAahGyafoYkQNo90QMw1vgh41rPr6Cp5R+A
- xJcR8stQeaprqyTtt/VCkV1hbMzBLRSETORpCd+MvlY2bOqZOzMGvfL4NbRpDLdYjUufHKQUI2N
- q7F8oUW0lYUG1ujFW7FoQGwhH554CaGihnbM1MyCEaThajLuzcf4fahOlBJ5PdO2HSI/6kJ55em
- utUIGjYLbewN3mzpKinN8zL5hoPTMl35vgcdYPpzqqr8iWBn5yDKj0q6h6I+owbRuVXRkNKZj4o
- 0xaa6i1g==
-X-Received: by 2002:a05:6000:2c0c:b0:439:905e:1236 with SMTP id
- ffacd0b85a97d-439c7f99afamr9065426f8f.2.1772697546064; 
- Wed, 04 Mar 2026 23:59:06 -0800 (PST)
-Received: from localhost ([2001:67c:1562:8007::aac:4468])
+ AJvYcCXlmll7LKVBG8GCBO9maOxfh1nocwiKiZsXHyCHbvVsIn8hGKSeBIyweWK5ku1EV50FWR58LqhBVug=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyeAYkL4al8f01sIV0uAD75ksd47a0xpDDAt2BUcgmubL1qq2ZD
+ 4hwTYGn2RyXI1sd1IdyWQwjmz3QPR3XQbKElBGvRvQxrOb1NiQ9HacAF0nItPDqWyLLqSDGAIAM
+ mSlLI0LTls3jzgRLA1OSljQfT2lIi1Dg2uwDUklCWkZMVahNaGTVNgbl2JE3hlvelqp+VRw==
+X-Gm-Gg: ATEYQzy+JhdWb1T3MOKg7KeztaXwsCSKioI9t8Gv5Iz3GM+tKU+zig4/4xUV6oeo7PH
+ wxUlHEG+GIJnHe1uwoqhNkZDiZas3MwE0YMl16insMOkzzwVXM1ztj2ubyTa7qaI2vM1bi8zqMc
+ rEo9zuceVzrdZlemfgIPs+3yh29muuJaaBQmZOKjc3A4xsUGRfD/njM64TfvDytTywQhva7CiIy
+ CEBA5KYLQRwAcjsDNUZN0tmfewuZyRYUlSFJficw3YURljV5AUZmSmpk9MN7rKzioWrPc+l0i3r
+ H7QgDp0q2M3Fa0qMxZesCQh2JyGlbsIrLhpd+Zu6qXPPRBbrmWIZr3c3WL2v1QYhTR8WEzRCpg=
+ =
+X-Received: by 2002:a05:600c:3b9e:b0:477:5cc6:7e44 with SMTP id
+ 5b1f17b1804b1-4851984f5bemr88508575e9.11.1772698168778; 
+ Thu, 05 Mar 2026 00:09:28 -0800 (PST)
+X-Received: by 2002:a05:600c:3b9e:b0:477:5cc6:7e44 with SMTP id
+ 5b1f17b1804b1-4851984f5bemr88508245e9.11.1772698168337; 
+ Thu, 05 Mar 2026 00:09:28 -0800 (PST)
+Received: from localhost ([2a01:e0a:b25:f902::ff])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-439b0549600sm34180087f8f.35.2026.03.04.23.59.03
+ 5b1f17b1804b1-4851fad01d2sm25418255e9.3.2026.03.05.00.09.27
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 04 Mar 2026 23:59:05 -0800 (PST)
-From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thu, 05 Mar 2026 00:09:27 -0800 (PST)
+Date: Thu, 5 Mar 2026 09:09:27 +0100
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/i915/lnl+/tc: Fix false disconnect of active DP-alt TC
- port during long HPD pulse
-Date: Thu,  5 Mar 2026 15:58:57 +0800
-Message-ID: <20260305075857.40077-1-acelan.kao@canonical.com>
-X-Mailer: git-send-email 2.51.0
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260305-ludicrous-quirky-raven-7cdafd@houat>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="ylij2qs72s7ecmod"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -95,104 +119,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DA6E020D0B1
+X-Rspamd-Queue-Id: 0191720D373
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [3.89 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[canonical.com : SPF not aligned (relaxed),reject];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20230601];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,canonical.com:mid,canonical.com:email];
-	FORGED_SENDER(0.00)[acelan.kao@canonical.com,intel-gfx-bounces@lists.freedesktop.org];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	FORGED_SENDER(0.00)[mripard@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[acelan.kao@canonical.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	NEURAL_HAM(-0.00)[-0.969];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url]
 X-Rspamd-Action: no action
 
-On platforms using XELPDP+ (Lunar Lake and later), tc_phy_hpd_live_status()
-reads the PICAINTERRUPT_ISR register to determine DP-alt live status. The
-XELPDP_DP_ALT_HOTPLUG_MASK bit in this register reflects the live HPD signal,
-which deasserts (goes low) during a long HPD pulse from the sink.
 
-When an LTTPR dongle (e.g. HP Type-C to HDMI, 03f0:8a4a) fires a long HPD
-pulse after link training, intel_tc_port_connected() reads PICAINTERRUPT_ISR
-and returns false even though the PHY is still owned and the link is active.
-Since intel_tc_port_handles_hpd_glitches() returns true for TC dp-alt ports,
-the 4ms glitch-filter retry loop in intel_digital_port_connected_locked() is
-bypassed immediately, giving no protection against this transient deassertion.
+--ylij2qs72s7ecmod
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-The AUX abort logic then fires (-ENXIO), the hotplug handler marks DP-1 as
-disconnected, and the compositor responds by disabling eDP-1, causing the
-internal display to disappear.
+Hi Dave, Sima,
 
-Fix this by trusting the PHY ownership register
-(XELPDP_PORT_BUF_CTL1 & XELPDP_TC_PHY_OWNERSHIP) over the transient HPD
-live status in intel_tc_port_connected() when the port has an active link
-(link_refcount > 0). The ownership register is stable and does not toggle
-during HPD pulses.
+Here's this week drm-misc-fixes PR.
 
-The TC cold power domain is guaranteed to be held when link_refcount > 0,
-as __intel_tc_port_lock() already asserts and verifies this via tc_phy_is_owned()
-before we reach intel_tc_port_connected().
+Maxime
 
-Without this fix, triggering mirror mode via hotkey on HP ZBook with HP Type-C
-to HDMI dongle (03f0:8a4a) causes:
+drm-misc-fixes-2026-03-05:
+A return type fix for ttm, a display fix for solomon, several misc fixes
+for amdxdna, a DSI clock rate fix for rz-du, a uapi fix for syncobj, a
+possible build failure fix for dma-buf, a doc warning fix for sched, a
+build failure fix for ttm tests, and a crash fix when suspended for
+nouveau.
+The following changes since commit 75c151ceaacf5ca8f2f34ebf863d88002fb12587:
 
-  [drm:intel_dp_hpd_pulse] got hpd irq on [ENCODER:270:DDI TC1/PHY TC1] - long
-  [drm:intel_tc_port_update_mode] Port D/TC#1: TC port mode reset (disconnected -> tbt-alt)
-  [drm:intel_dp_hpd_pulse] got hpd irq on [ENCODER:270:DDI TC1/PHY TC1] - long
-  [drm:intel_hotplug_detect_connector] [CONNECTOR:271:DP-1] status updated from connected to disconnected
+  accel/amdxdna: Use a different name for latest firmware (2026-02-25 13:51:31 -0800)
 
-With this fix, the port correctly stays in DP-alt mode:
+are available in the Git repository at:
 
-  [drm:intel_tc_port_update_mode] Port D/TC#1: TC port mode reset (dp-alt -> disconnected)
-  [drm:intel_tc_port_update_mode] Port D/TC#1: TC port mode reset (disconnected -> dp-alt)
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-03-05
 
-Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
----
- drivers/gpu/drm/i915/display/intel_tc.c | 5 +++++
- 1 file changed, 5 insertions(+)
+for you to fetch changes up to 8f3c6f08ababad2e3bdd239728cf66a9949446b4:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
-index bd12148e42f70..0967cfc75f522 100644
---- a/drivers/gpu/drm/i915/display/intel_tc.c
-+++ b/drivers/gpu/drm/i915/display/intel_tc.c
-@@ -1732,6 +1732,11 @@ bool intel_tc_port_connected(struct intel_encoder *encoder)
- 	if (tc->mode != TC_PORT_DISCONNECTED)
- 		mask = BIT(tc->mode);
- 
-+	if (tc->link_refcount > 0 &&
-+	    tc->mode == TC_PORT_DP_ALT &&
-+	    tc_phy_is_owned(tc))
-+		return true;
-+
- 	return tc_phy_hpd_live_status(tc) & mask;
- }
- 
--- 
-2.51.0
+  nouveau/dpcd: return EBUSY for aux xfer if the device is asleep (2026-03-04 22:08:01 +0100)
+
+----------------------------------------------------------------
+A return type fix for ttm, a display fix for solomon, several misc fixes
+for amdxdna, a DSI clock rate fix for rz-du, a uapi fix for syncobj, a
+possible build failure fix for dma-buf, a doc warning fix for sched, a
+build failure fix for ttm tests, and a crash fix when suspended for
+nouveau.
+
+----------------------------------------------------------------
+Chris Brandt (1):
+      drm: renesas: rz-du: mipi_dsi: Set DSI divider
+
+Dave Airlie (1):
+      nouveau/dpcd: return EBUSY for aux xfer if the device is asleep
+
+Francesco Lavra (1):
+      drm/solomon: Fix page start when updating rectangle in page addressing mode
+
+Isaac J. Manjarres (1):
+      dma-buf: Include ioctl.h in UAPI header
+
+Julian Orth (1):
+      drm/syncobj: Fix handle <-> fd ioctls with dirty stack
+
+Lizhi Hou (3):
+      accel/amdxdna: Fill invalid payload for failed command
+      accel/amdxdna: Fix NULL pointer dereference of mgmt_chann
+      accel/amdxdna: Fix major version check on NPU1 platform
+
+Maarten Lankhorst (1):
+      drm/ttm/tests: Fix build failure on PREEMPT_RT
+
+Tvrtko Ursulin (1):
+      drm/ttm: Fix ttm_pool_beneficial_order() return type
+
+Yujie Liu (1):
+      drm/sched: Fix kernel-doc warning for drm_sched_job_done()
+
+ drivers/accel/amdxdna/aie2_ctx.c               | 23 ++++++++--------------
+ drivers/accel/amdxdna/aie2_message.c           | 21 +++++++++++++++-----
+ drivers/accel/amdxdna/aie2_pci.c               |  7 ++-----
+ drivers/accel/amdxdna/aie2_pci.h               |  1 +
+ drivers/accel/amdxdna/amdxdna_ctx.c            | 27 ++++++++++++++++++++++++++
+ drivers/accel/amdxdna/amdxdna_ctx.h            |  3 +++
+ drivers/accel/amdxdna/npu1_regs.c              |  2 +-
+ drivers/gpu/drm/drm_syncobj.c                  |  4 ++--
+ drivers/gpu/drm/nouveau/nouveau_connector.c    |  3 +++
+ drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c | 16 ++++++++++++++-
+ drivers/gpu/drm/scheduler/sched_main.c         |  1 +
+ drivers/gpu/drm/solomon/ssd130x.c              |  6 ++----
+ drivers/gpu/drm/ttm/tests/ttm_bo_test.c        |  4 ++--
+ drivers/gpu/drm/ttm/ttm_pool_internal.h        |  2 +-
+ include/uapi/linux/dma-buf.h                   |  1 +
+ 15 files changed, 85 insertions(+), 36 deletions(-)
+
+--ylij2qs72s7ecmod
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaak6NgAKCRAnX84Zoj2+
+dhbSAYDiK+Tlgc4M1b78/SsyoMZnUj9Ar7Ng0Xl9zLTTzyeb6ppi2/x1Tos5HxSG
+xAjONRYBgJO8bjLZzhy+E0A12Jl84j8jchkWzfP8dtTxmSxFaDNO/WduyyqBIR/t
+HjKu7W6gMQ==
+=5wx3
+-----END PGP SIGNATURE-----
+
+--ylij2qs72s7ecmod--
 
