@@ -2,66 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGWaLLu8qmmnWAEAu9opvQ
+	id eHAZDQUYr2nHNgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:38:35 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10CFC21FBA7
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:38:35 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB97123EFA3
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F3B4110ECFF;
-	Fri,  6 Mar 2026 11:38:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB00210E5A9;
+	Mon,  9 Mar 2026 18:57:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eS6c7Vd9";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VmPUWeBa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F016410ECFB;
- Fri,  6 Mar 2026 11:38:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772797111; x=1804333111;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=YAamPi/31N5TpKh8mdffF9nlFOv95RdNRNjQVExZDQ0=;
- b=eS6c7Vd9H5r9d/994wTD72tVzXZA5pdRGgMcAlQDNbHp1SzveqrwQ+48
- hBa3IqIaVKrinamRjrTs/KIZ3DF1Os+aHabAAMzWHkRwTUza9HWzKzDCH
- 6K/4WEz/Up7ZKwg3ZBb8KKoA/I0/5QdbGbjFGB8nhuoNr3GDvMZ+Tvt4K
- s6JFF+qLdLG9Hg/xRUkB+yisn6RSr7UdH7wM8BsBYS0T8Pj8t1g5eH75W
- fdEK/Yn3eMijfRqYhGEvuud9Hnf58Sq2PUGefDVnjRgVxz/eq6o0NYs5W
- ZFpqqTBwU+T+MlZeRIk0Uy/3HvQxbcXIoUm9YJPRxlyHqHvnzWRLhpmXL g==;
-X-CSE-ConnectionGUID: 7K0l5Mu6TrKyTmQDQbvcLA==
-X-CSE-MsgGUID: aTgvtPbqT4KEaiSqkOj0cQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="76506215"
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="76506215"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 03:38:31 -0800
-X-CSE-ConnectionGUID: p9t/K9JhRY6EJ3Rr3U7lpw==
-X-CSE-MsgGUID: XVYfQlP1SMOLtTVtZdvTvw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="218221962"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.191])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 03:38:29 -0800
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, suraj.kandpal@intel.com
-Subject: Re: [PATCH v5 01/16] drm/i915/display: remove enum macro magic in
- intel_display_wa()
-In-Reply-To: <3ac0ffb3dae8ae824d34fc9330bbbc974af34651@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260305100100.332956-1-luciano.coelho@intel.com>
- <20260305100100.332956-2-luciano.coelho@intel.com>
- <3ac0ffb3dae8ae824d34fc9330bbbc974af34651@intel.com>
-Date: Fri, 06 Mar 2026 13:38:25 +0200
-Message-ID: <d9934b9f57fde3abad73b40013d68f1238f7284a@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F330610ECFB;
+ Fri,  6 Mar 2026 11:42:23 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by tor.source.kernel.org (Postfix) with ESMTP id B4B9A60127;
+ Fri,  6 Mar 2026 11:42:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CC4FAC4CEF7;
+ Fri,  6 Mar 2026 11:42:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1772797342;
+ bh=CA2vkPrs+KBRPBb6HWrkcW5f3nw7u13fgvwPYP4Knsw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=VmPUWeBaQkwHyNWrIgE+k6VTvF58sgBu9LcG+6SertLT2ce7KXBFZ0We86Id7A25U
+ Q+HpvLqR5cHvWiwcCko03D2oM0ZKE14Cr+BxZZDDmzCKdHkCFk9RqTfMemJZDDnloC
+ Ew767ufZJ7CKXy/CG6eJzT3vDrdM6zE9ZYv22SYiUP3CREBCfUFzOy3pucv0xCVXiW
+ 9MsH74masuCdJlZ8BntBknVUwyKbUCdud5oUJoRnrzrGTDqUqCnck040huUBGNP38a
+ rVd+D+l7txMQlbfz48dBDZDt3rCVTj4/qKf0/Air3/s23aXm7SQiY2Tv5T9Owh5nxk
+ DlcAdpF9cammw==
+Date: Fri, 6 Mar 2026 11:42:19 +0000
+From: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
+To: Tal Zussman <tz2294@columbia.edu>
+Cc: David Howells <dhowells@redhat.com>, 
+ Marc Dionne <marc.dionne@auristor.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
+ Chao Yu <chao@kernel.org>, 
+ Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>,
+ Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
+ "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
+ Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
+ Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
+ Chris Li <chrisl@kernel.org>, 
+ Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
+ Nhat Pham <nphamcs@gmail.com>, Baoquan He <bhe@redhat.com>,
+ Barry Song <baohua@kernel.org>, 
+ Matthew Wilcox <willy@infradead.org>, Dan Williams <dan.j.williams@intel.com>,
+ Jan Kara <jack@suse.cz>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, 
+ Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>, 
+ Paulo Alcantara <pc@manguebit.org>, Trond Myklebust <trondmy@kernel.org>, 
+ Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
+ Joel Becker <jlbec@evilplan.org>, 
+ Joseph Qi <joseph.qi@linux.alibaba.com>, Steve French <sfrench@samba.org>, 
+ Ronnie Sahlberg <ronniesahlberg@gmail.com>,
+ Shyam Prasad N <sprasad@microsoft.com>, 
+ Tom Talpey <tom@talpey.com>, Bharath SM <bharathsm@microsoft.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Chris Mason <clm@fb.com>,
+ David Sterba <dsterba@suse.com>, 
+ Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>, 
+ Viacheslav Dubeyko <slava@dubeyko.com>,
+ Andreas Gruenbacher <agruenba@redhat.com>, 
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
+ Ryusuke Konishi <konishi.ryusuke@gmail.com>,
+ "Darrick J. Wong" <djwong@kernel.org>, 
+ Chuck Lever <chuck.lever@oracle.com>, Jeff Layton <jlayton@kernel.org>,
+ NeilBrown <neil@brown.name>, 
+ Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
+ Jason Gunthorpe <jgg@ziepe.ca>, 
+ John Hubbard <jhubbard@nvidia.com>, Peter Xu <peterx@redhat.com>, 
+ Johannes Weiner <hannes@cmpxchg.org>, Roman Gushchin <roman.gushchin@linux.dev>,
+ Shakeel Butt <shakeel.butt@linux.dev>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, 
+ Brendan Jackman <jackmanb@google.com>, Zi Yan <ziy@nvidia.com>,
+ Hugh Dickins <hughd@google.com>, 
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ Axel Rasmussen <axelrasmussen@google.com>, 
+ Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>, 
+ Qi Zheng <zhengqi.arch@bytedance.com>, linux-afs@lists.infradead.org,
+ linux-kernel@vger.kernel.org, 
+ linux-f2fs-devel@lists.sourceforge.net, linux-mm@kvack.org,
+ linux-fsdevel@vger.kernel.org, 
+ nvdimm@lists.linux.dev, linux-ext4@vger.kernel.org, netfs@lists.linux.dev, 
+ linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
+ linux-cifs@vger.kernel.org, 
+ samba-technical@lists.samba.org, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, 
+ linux-btrfs@vger.kernel.org, ceph-devel@vger.kernel.org, gfs2@lists.linux.dev, 
+ linux-nilfs@vger.kernel.org, linux-xfs@vger.kernel.org, cgroups@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] mm: Remove stray references to struct pagevec
+Message-ID: <3f262490-ebed-49b5-99ff-7a8aaa12cada@lucifer.local>
+References: <20260225-pagevec_cleanup-v2-0-716868cc2d11@columbia.edu>
+ <20260225-pagevec_cleanup-v2-1-716868cc2d11@columbia.edu>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260225-pagevec_cleanup-v2-1-716868cc2d11@columbia.edu>
+X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,248 +122,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 10CFC21FBA7
+X-Rspamd-Queue-Id: BB97123EFA3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[79];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[redhat.com,auristor.com,kernel.org,linux-foundation.org,oracle.com,google.com,suse.com,tencent.com,huaweicloud.com,gmail.com,infradead.org,intel.com,suse.cz,zeniv.linux.org.uk,mit.edu,dilger.ca,manguebit.org,fasheh.com,evilplan.org,linux.alibaba.com,samba.org,microsoft.com,talpey.com,linux.intel.com,suse.de,ffwll.ch,ursulin.net,fb.com,dubeyko.com,linux.dev,brown.name,ziepe.ca,nvidia.com,cmpxchg.org,bytedance.com,lists.infradead.org,vger.kernel.org,lists.sourceforge.net,kvack.org,lists.linux.dev,lists.samba.org,lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_GT_50(0.00)[97];
+	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,lucifer.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, 06 Mar 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Thu, 05 Mar 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
->> There's not much use in passing a number to the macro and let it
->> convert that into the enum and a string.  It just hides the symbols.
+On Wed, Feb 25, 2026 at 06:44:25PM -0500, Tal Zussman wrote:
+> struct pagevec was removed in commit 1e0877d58b1e ("mm: remove struct
+> pagevec"). Remove remaining forward declarations and change
+> __folio_batch_release()'s declaration to match its definition.
 >
-> There was a point, though. Passing a random number to intel_display_wa()
-> would fail the build. Now you'll only find out runtime. I'll concede
-> there's value, perhaps more so, in having the symbols not hidden.
->
->> Remove the number to enum conversion magic in intel_display_wa().
->>
->> This has the side-effect of changing the print in the drm_WARN() that
->> is issued when the number is not implemented, but that is moot anyway
->> and can be changed later to something cleaner if needed.
->
-> I actually wonder if having the names there is really worth it. It's
-> just a bunch of rodata bloat for not much benefit. It should be easy
-> enough to find which enumerator isn't handled.
->
-> Maybe check the objdump bloat reduction with the intel_display_wa()
-> wrapper macro and the const char *name parameter removed?
+> Reviewed-by: Matthew Wilcox (Oracle) <willy@infradead.org>
+> Acked-by: David Hildenbrand (Arm) <david@kernel.org>
+> Acked-by: Chris Li <chrisl@kernel.org>
+> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
 
-PS. All of this can be done in follow-up too, to not hold this series
-back any longer.
+LGTM, so:
 
->
-> BR,
-> Jani.
->
->>
->> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_cdclk.c              | 5 +++--
->>  drivers/gpu/drm/i915/display/intel_display.c            | 2 +-
->>  drivers/gpu/drm/i915/display/intel_display_power_well.c | 4 ++--
->>  drivers/gpu/drm/i915/display/intel_display_wa.c         | 2 +-
->>  drivers/gpu/drm/i915/display/intel_display_wa.h         | 2 +-
->>  drivers/gpu/drm/i915/display/intel_fbc.c                | 8 ++++----
->>  drivers/gpu/drm/i915/display/intel_gmbus.c              | 6 +++---
->>  drivers/gpu/drm/i915/display/skl_scaler.c               | 2 +-
->>  8 files changed, 16 insertions(+), 15 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> index 38331e899519..7767f8c198da 100644
->> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
->> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
->> @@ -1870,7 +1870,7 @@ static void icl_cdclk_pll_disable(struct intel_display *display)
->>  	 *      after the PLL is enabled (which is already done as part of the
->>  	 *      normal flow of _bxt_set_cdclk()).
->>  	 */
->> -	if (intel_display_wa(display, 13012396614))
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614))
->>  		intel_de_rmw(display, CDCLK_CTL, MDCLK_SOURCE_SEL_MASK, MDCLK_SOURCE_SEL_CD2XCLK);
->>  
->>  	intel_de_rmw(display, BXT_DE_PLL_ENABLE,
->> @@ -2186,7 +2186,8 @@ static u32 bxt_cdclk_ctl(struct intel_display *display,
->>  		 * icl_cdclk_pll_disable().  Here we are just making sure
->>  		 * we keep the expected value.
->>  		 */
->> -		if (intel_display_wa(display, 13012396614) && vco == 0)
->> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_13012396614) &&
->> +		    vco == 0)
->>  			val |= MDCLK_SOURCE_SEL_CD2XCLK;
->>  		else
->>  			val |= xe2lpd_mdclk_source_sel(display);
->> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
->> index 138ee7dd1977..15edf609fff4 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> @@ -1070,7 +1070,7 @@ static void intel_post_plane_update(struct intel_atomic_state *state,
->>  	if (audio_enabling(old_crtc_state, new_crtc_state))
->>  		intel_encoders_audio_enable(state, crtc);
->>  
->> -	if (intel_display_wa(display, 14011503117)) {
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117)) {
->>  		if (old_crtc_state->pch_pfit.enabled != new_crtc_state->pch_pfit.enabled)
->>  			adl_scaler_ecc_unmask(new_crtc_state);
->>  	}
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> index 9c8d29839caf..1e03187dbd38 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
->> @@ -249,7 +249,7 @@ static void hsw_power_well_post_enable(struct intel_display *display,
->>  	if (irq_pipe_mask) {
->>  		gen8_irq_power_well_post_enable(display, irq_pipe_mask);
->>  
->> -		if (intel_display_wa(display, 22021048059))
->> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
->>  			dss_pipe_gating_enable_disable(display, irq_pipe_mask, false);
->>  	}
->>  }
->> @@ -258,7 +258,7 @@ static void hsw_power_well_pre_disable(struct intel_display *display,
->>  				       u8 irq_pipe_mask)
->>  {
->>  	if (irq_pipe_mask) {
->> -		if (intel_display_wa(display, 22021048059))
->> +		if (intel_display_wa(display, INTEL_DISPLAY_WA_22021048059))
->>  			dss_pipe_gating_enable_disable(display, irq_pipe_mask, true);
->>  
->>  		gen8_irq_power_well_pre_disable(display, irq_pipe_mask);
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
->> index c2ccdca2c2f3..1d8340b36c01 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_wa.c
->> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
->> @@ -87,7 +87,7 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
->>  	case INTEL_DISPLAY_WA_22021048059:
->>  		return IS_DISPLAY_VER(display, 14, 35);
->>  	default:
->> -		drm_WARN(display->drm, 1, "Missing Wa number: %s\n", name);
->> +		drm_WARN(display->drm, 1, "Missing Wa: %s\n", name);
->>  		break;
->>  	}
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
->> index 767420d5f406..06c1f62c0f6d 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_wa.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
->> @@ -40,6 +40,6 @@ enum intel_display_wa {
->>  bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa, const char *name);
->>  
->>  #define intel_display_wa(__display, __wa) \
->> -	__intel_display_wa((__display), INTEL_DISPLAY_WA_##__wa, __stringify(__wa))
->> +	__intel_display_wa((__display), __wa, __stringify(__wa))
->>  
->>  #endif
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbc.c b/drivers/gpu/drm/i915/display/intel_fbc.c
->> index 3e9b3e532499..5d0d7c1027f5 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbc.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbc.c
->> @@ -957,7 +957,7 @@ static void intel_fbc_program_workarounds(struct intel_fbc *fbc)
->>  	 * Fixes: Screen flicker with FBC and Package C state enabled
->>  	 * Workaround: Forced SLB invalidation before start of new frame.
->>  	 */
->> -	if (intel_display_wa(display, 22014263786))
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_22014263786))
->>  		intel_de_rmw(display, ILK_DPFC_CHICKEN(fbc->id),
->>  			     0, DPFC_CHICKEN_FORCE_SLB_INVALIDATION);
->>  
->> @@ -979,7 +979,7 @@ static void fbc_sys_cache_update_config(struct intel_display *display, u32 reg,
->>  	 * Fixes: SoC hardware issue in read caching
->>  	 * Workaround: disable cache read setting which is enabled by default.
->>  	 */
->> -	if (!intel_display_wa(display, 14025769978))
->> +	if (!intel_display_wa(display, INTEL_DISPLAY_WA_14025769978))
->>  		/* Cache read enable is set by default */
->>  		reg |= FBC_SYS_CACHE_READ_ENABLE;
->>  
->> @@ -1612,7 +1612,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->>  		return 0;
->>  	}
->>  
->> -	if (intel_display_wa(display, 16023588340)) {
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16023588340)) {
->>  		plane_state->no_fbc_reason = "Wa_16023588340";
->>  		return 0;
->>  	}
->> @@ -1622,7 +1622,7 @@ static int intel_fbc_check_plane(struct intel_atomic_state *state,
->>  	 * Fixes: Underrun during media decode
->>  	 * Workaround: Do not enable FBC
->>  	 */
->> -	if (intel_display_wa(display, 15018326506)) {
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_15018326506)) {
->>  		plane_state->no_fbc_reason = "Wa_15018326506";
->>  		return 0;
->>  	}
->> diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> index 38706017c0c6..df48f27f1cc1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
->> +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
->> @@ -250,7 +250,7 @@ static u32 get_reserved(struct intel_gmbus *bus)
->>  	preserve_bits |= GPIO_DATA_PULLUP_DISABLE | GPIO_CLOCK_PULLUP_DISABLE;
->>  
->>  	/* Wa_16025573575: the masks bits need to be preserved through out */
->> -	if (intel_display_wa(display, 16025573575))
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
->>  		preserve_bits |= GPIO_CLOCK_DIR_MASK | GPIO_CLOCK_VAL_MASK |
->>  				 GPIO_DATA_DIR_MASK | GPIO_DATA_VAL_MASK;
->>  
->> @@ -342,7 +342,7 @@ intel_gpio_pre_xfer(struct i2c_adapter *adapter)
->>  	if (display->platform.pineview)
->>  		pnv_gmbus_clock_gating(display, false);
->>  
->> -	if (intel_display_wa(display, 16025573575))
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
->>  		ptl_handle_mask_bits(bus, true);
->>  
->>  	set_data(bus, 1);
->> @@ -363,7 +363,7 @@ intel_gpio_post_xfer(struct i2c_adapter *adapter)
->>  	if (display->platform.pineview)
->>  		pnv_gmbus_clock_gating(display, true);
->>  
->> -	if (intel_display_wa(display, 16025573575))
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_16025573575))
->>  		ptl_handle_mask_bits(bus, false);
->>  }
->>  
->> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
->> index 4c4deac7f9c8..7c5cb188ebf0 100644
->> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
->> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
->> @@ -823,7 +823,7 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->>  			crtc_state->scaler_state.scaler_id < 0))
->>  		return;
->>  
->> -	if (intel_display_wa(display, 14011503117))
->> +	if (intel_display_wa(display, INTEL_DISPLAY_WA_14011503117))
->>  		adl_scaler_ecc_mask(crtc_state);
->>  
->>  	drm_rect_init(&src, 0, 0,
+Reviewed-by: Lorenzo Stoakes (Oracle) <ljs@kernel.org>
 
--- 
-Jani Nikula, Intel
+> ---
+>  fs/afs/internal.h       | 1 -
+>  fs/f2fs/f2fs.h          | 2 --
+>  include/linux/pagevec.h | 2 +-
+>  include/linux/swap.h    | 2 --
+>  4 files changed, 1 insertion(+), 6 deletions(-)
+>
+> diff --git a/fs/afs/internal.h b/fs/afs/internal.h
+> index 009064b8d661..599353c33337 100644
+> --- a/fs/afs/internal.h
+> +++ b/fs/afs/internal.h
+> @@ -31,7 +31,6 @@
+>
+>  #define AFS_CELL_MAX_ADDRS 15
+>
+> -struct pagevec;
+>  struct afs_call;
+>  struct afs_vnode;
+>  struct afs_server_probe;
+> diff --git a/fs/f2fs/f2fs.h b/fs/f2fs/f2fs.h
+> index bb34e864d0ef..d9e8531a5301 100644
+> --- a/fs/f2fs/f2fs.h
+> +++ b/fs/f2fs/f2fs.h
+> @@ -28,8 +28,6 @@
+>  #include <linux/fscrypt.h>
+>  #include <linux/fsverity.h>
+>
+> -struct pagevec;
+> -
+>  #ifdef CONFIG_F2FS_CHECK_FS
+>  #define f2fs_bug_on(sbi, condition)	BUG_ON(condition)
+>  #else
+> diff --git a/include/linux/pagevec.h b/include/linux/pagevec.h
+> index 63be5a451627..007affabf335 100644
+> --- a/include/linux/pagevec.h
+> +++ b/include/linux/pagevec.h
+> @@ -93,7 +93,7 @@ static inline struct folio *folio_batch_next(struct folio_batch *fbatch)
+>  	return fbatch->folios[fbatch->i++];
+>  }
+>
+> -void __folio_batch_release(struct folio_batch *pvec);
+> +void __folio_batch_release(struct folio_batch *fbatch);
+>
+>  static inline void folio_batch_release(struct folio_batch *fbatch)
+>  {
+> diff --git a/include/linux/swap.h b/include/linux/swap.h
+> index 0effe3cc50f5..4b1f13b5bbad 100644
+> --- a/include/linux/swap.h
+> +++ b/include/linux/swap.h
+> @@ -20,8 +20,6 @@ struct notifier_block;
+>
+>  struct bio;
+>
+> -struct pagevec;
+> -
+>  #define SWAP_FLAG_PREFER	0x8000	/* set if swap priority specified */
+>  #define SWAP_FLAG_PRIO_MASK	0x7fff
+>  #define SWAP_FLAG_DISCARD	0x10000 /* enable discard for swap */
+>
+> --
+> 2.39.5
+>
