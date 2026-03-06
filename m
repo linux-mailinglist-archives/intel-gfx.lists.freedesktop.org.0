@@ -2,112 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iI+WKQQYr2nHNgIAu9opvQ
+	id mIXGEfu9qmlXWQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:08 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:43:55 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 251CB23EF99
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B78BD21FCD3
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:43:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88BF410E599;
-	Mon,  9 Mar 2026 18:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 435EA10ED01;
+	Fri,  6 Mar 2026 11:43:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AoTL4X7f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UgjcH9K0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B34F10ECFE;
- Fri,  6 Mar 2026 11:43:36 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id ACAE1437E7;
- Fri,  6 Mar 2026 11:43:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EB45CC4CEF7;
- Fri,  6 Mar 2026 11:43:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772797415;
- bh=GowoyTsR4CI3ewxQ0f2lHFy7dHsKMkcXOPtOrZuLkR8=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=AoTL4X7fkCCo0RpTHoieQY0AotRrEjVyuQ02wvcgh1owSajcJbmcQEtWizAtCSsK/
- X+mc0JnVWTe165uGDV9E7WpAYYzGMULmVtno4EZukM7QoACh09oHoPUhdwygslZKvl
- UA8JGFtIK2G8zIIAmjqKqpT+tyil+49Wti7f3MPsrXYEUnfS45na2IEnXoSRELDO6M
- ZL6z80bBwk4W9VVHCHJBf7g9N26hSrTQ1VOPLG5slPyq9X33Zeti35mCcJQiMAS9Er
- ddlmGUcS+LRPdDZ43n2TXxhXjJ5UL+qfVn18k94Sk3SHS399+2vt6KziT54vb18xV4
- c6KUFHbeprQ4w==
-Date: Fri, 6 Mar 2026 11:43:32 +0000
-From: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
-To: Tal Zussman <tz2294@columbia.edu>
-Cc: David Howells <dhowells@redhat.com>, 
- Marc Dionne <marc.dionne@auristor.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Chao Yu <chao@kernel.org>, 
- Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Chris Li <chrisl@kernel.org>, 
- Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
- Nhat Pham <nphamcs@gmail.com>, Baoquan He <bhe@redhat.com>,
- Barry Song <baohua@kernel.org>, 
- Matthew Wilcox <willy@infradead.org>, Dan Williams <dan.j.williams@intel.com>,
- Jan Kara <jack@suse.cz>, Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, 
- Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>, 
- Paulo Alcantara <pc@manguebit.org>, Trond Myklebust <trondmy@kernel.org>, 
- Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
- Joel Becker <jlbec@evilplan.org>, 
- Joseph Qi <joseph.qi@linux.alibaba.com>, Steve French <sfrench@samba.org>, 
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, 
- Tom Talpey <tom@talpey.com>, Bharath SM <bharathsm@microsoft.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, 
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>, 
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Andreas Gruenbacher <agruenba@redhat.com>, 
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- "Darrick J. Wong" <djwong@kernel.org>, 
- Chuck Lever <chuck.lever@oracle.com>, Jeff Layton <jlayton@kernel.org>,
- NeilBrown <neil@brown.name>, 
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, 
- John Hubbard <jhubbard@nvidia.com>, Peter Xu <peterx@redhat.com>, 
- Johannes Weiner <hannes@cmpxchg.org>, Roman Gushchin <roman.gushchin@linux.dev>,
- Shakeel Butt <shakeel.butt@linux.dev>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, 
- Brendan Jackman <jackmanb@google.com>, Zi Yan <ziy@nvidia.com>,
- Hugh Dickins <hughd@google.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Axel Rasmussen <axelrasmussen@google.com>, 
- Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>, 
- Qi Zheng <zhengqi.arch@bytedance.com>, linux-afs@lists.infradead.org,
- linux-kernel@vger.kernel.org, 
- linux-f2fs-devel@lists.sourceforge.net, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, 
- nvdimm@lists.linux.dev, linux-ext4@vger.kernel.org, netfs@lists.linux.dev, 
- linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
- linux-cifs@vger.kernel.org, 
- samba-technical@lists.samba.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- linux-btrfs@vger.kernel.org, ceph-devel@vger.kernel.org, gfs2@lists.linux.dev, 
- linux-nilfs@vger.kernel.org, linux-xfs@vger.kernel.org, cgroups@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] fs: Remove unncessary pagevec.h includes
-Message-ID: <b5c861d6-6875-432a-8ae0-33030f4571ae@lucifer.local>
-References: <20260225-pagevec_cleanup-v2-0-716868cc2d11@columbia.edu>
- <20260225-pagevec_cleanup-v2-2-716868cc2d11@columbia.edu>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1066610ED00;
+ Fri,  6 Mar 2026 11:43:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772797432; x=1804333432;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=z/uzOnlf4XDgI/xBlyQBci1AoVsKxSQZTFy8nVsDZEw=;
+ b=UgjcH9K01W9O6taiTK2FzP8DwkG6kldKE105gN3UgDCQpIxw7exiI15F
+ wollpsPALpjtDuO6Gu4bGmUyXoUtcLvTh4WgXPhOKQqcuCqJ4Dyd1Yml4
+ zPJBLt62+QE4obgZ9nlkj4Hr7avOLL8luHEaO9ugvoOiJDC8tCJm1CVIr
+ bWb/50OyhzS9/mwo5ZAoX+8mnJbjTCz9+SCImgeYbEjNECL1UTrkDWfaL
+ /gHP2AP3uavax7CHqlfh3im45P7DQaGaCPV7viPkOCh2r9URxya4y4vMR
+ toS22T6vF20Q917QxsMOJV84pzNfTut7KeL95UO7bldHeHTeGUxQQa6kJ w==;
+X-CSE-ConnectionGUID: eeXP1RjwQmONH9dRZOxT3A==
+X-CSE-MsgGUID: 53BIlc2LSb2vgjZ/uU+IuA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="73816587"
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="73816587"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 03:43:52 -0800
+X-CSE-ConnectionGUID: MTQUNvaIRCOyp3/XOta09w==
+X-CSE-MsgGUID: 77bzyk17Qsy02r77XaewQg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="241997817"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa002.fm.intel.com with ESMTP; 06 Mar 2026 03:43:50 -0800
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v3 23/24] drm/i915/lt_phy: Remove LT PHY specific state
+ verification
+Date: Fri,  6 Mar 2026 11:43:48 +0000
+Message-ID: <20260306114348.1161663-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260304131423.1017821-24-mika.kahola@intel.com>
+References: <20260304131423.1017821-24-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260225-pagevec_cleanup-v2-2-716868cc2d11@columbia.edu>
-X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:52 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -122,228 +72,157 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 251CB23EF99
+X-Rspamd-Queue-Id: B78BD21FCD3
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[79];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[redhat.com,auristor.com,kernel.org,linux-foundation.org,oracle.com,google.com,suse.com,tencent.com,huaweicloud.com,gmail.com,infradead.org,intel.com,suse.cz,zeniv.linux.org.uk,mit.edu,dilger.ca,manguebit.org,fasheh.com,evilplan.org,linux.alibaba.com,samba.org,microsoft.com,talpey.com,linux.intel.com,suse.de,ffwll.ch,ursulin.net,fb.com,dubeyko.com,linux.dev,brown.name,ziepe.ca,nvidia.com,cmpxchg.org,bytedance.com,lists.infradead.org,vger.kernel.org,lists.sourceforge.net,kvack.org,lists.linux.dev,lists.samba.org,lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCPT_COUNT_GT_50(0.00)[97];
-	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 06:44:26PM -0500, Tal Zussman wrote:
-> Remove unused pagevec.h includes from .c files. These were found with
-> the following command:
->
->   grep -rl '#include.*pagevec\.h' --include='*.c' | while read f; do
->   	grep -qE 'PAGEVEC_SIZE|folio_batch' "$f" || echo "$f"
->   done
->
-> There are probably more removal candidates in .h files, but those are
-> more complex to analyze.
->
-> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
+Remove LT PHY specific state verification as DPLL framework
+has state verification check.
 
-Nice, LGTM so:
+v2: Reuse intel_lt_phy_pll_compare_hw_state() as only config[0]
+    and config[0] parameters are reliable with LT PHY (Suraj)
+v3: Rephrase handling of LT PHY case when verifying the state (CI)
 
-Reviewed-by: Lorenzo Stoakes (Oracle) <ljs@kernel.org>
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 14 +++++--
+ drivers/gpu/drm/i915/display/intel_lt_phy.c   | 39 -------------------
+ drivers/gpu/drm/i915/display/intel_lt_phy.h   |  2 -
+ .../drm/i915/display/intel_modeset_verify.c   |  1 -
+ 4 files changed, 11 insertions(+), 45 deletions(-)
 
-> ---
->  fs/afs/write.c                   | 1 -
->  fs/dax.c                         | 1 -
->  fs/ext4/file.c                   | 1 -
->  fs/ext4/page-io.c                | 1 -
->  fs/ext4/readpage.c               | 1 -
->  fs/f2fs/file.c                   | 1 -
->  fs/mpage.c                       | 1 -
->  fs/netfs/buffered_write.c        | 1 -
->  fs/nfs/blocklayout/blocklayout.c | 1 -
->  fs/nfs/dir.c                     | 1 -
->  fs/ocfs2/refcounttree.c          | 1 -
->  fs/smb/client/connect.c          | 1 -
->  fs/smb/client/file.c             | 1 -
->  13 files changed, 13 deletions(-)
->
-> diff --git a/fs/afs/write.c b/fs/afs/write.c
-> index 93ad86ff3345..fcfed9d24e0a 100644
-> --- a/fs/afs/write.c
-> +++ b/fs/afs/write.c
-> @@ -10,7 +10,6 @@
->  #include <linux/fs.h>
->  #include <linux/pagemap.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
->  #include <linux/netfs.h>
->  #include <trace/events/netfs.h>
->  #include "internal.h"
-> diff --git a/fs/dax.c b/fs/dax.c
-> index b78cff9c91b3..a5237169b467 100644
-> --- a/fs/dax.c
-> +++ b/fs/dax.c
-> @@ -15,7 +15,6 @@
->  #include <linux/memcontrol.h>
->  #include <linux/mm.h>
->  #include <linux/mutex.h>
-> -#include <linux/pagevec.h>
->  #include <linux/sched.h>
->  #include <linux/sched/signal.h>
->  #include <linux/uio.h>
-> diff --git a/fs/ext4/file.c b/fs/ext4/file.c
-> index f1dc5ce791a7..5e02f6cf653e 100644
-> --- a/fs/ext4/file.c
-> +++ b/fs/ext4/file.c
-> @@ -27,7 +27,6 @@
->  #include <linux/dax.h>
->  #include <linux/filelock.h>
->  #include <linux/quotaops.h>
-> -#include <linux/pagevec.h>
->  #include <linux/uio.h>
->  #include <linux/mman.h>
->  #include <linux/backing-dev.h>
-> diff --git a/fs/ext4/page-io.c b/fs/ext4/page-io.c
-> index a8c95eee91b7..98da200d11c8 100644
-> --- a/fs/ext4/page-io.c
-> +++ b/fs/ext4/page-io.c
-> @@ -16,7 +16,6 @@
->  #include <linux/string.h>
->  #include <linux/buffer_head.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
->  #include <linux/mpage.h>
->  #include <linux/namei.h>
->  #include <linux/uio.h>
-> diff --git a/fs/ext4/readpage.c b/fs/ext4/readpage.c
-> index 830f3b8a321f..3c7aabde719c 100644
-> --- a/fs/ext4/readpage.c
-> +++ b/fs/ext4/readpage.c
-> @@ -43,7 +43,6 @@
->  #include <linux/mpage.h>
->  #include <linux/writeback.h>
->  #include <linux/backing-dev.h>
-> -#include <linux/pagevec.h>
->
->  #include "ext4.h"
->  #include <trace/events/ext4.h>
-> diff --git a/fs/f2fs/file.c b/fs/f2fs/file.c
-> index c8a2f17a8f11..c6b6a1465d08 100644
-> --- a/fs/f2fs/file.c
-> +++ b/fs/f2fs/file.c
-> @@ -17,7 +17,6 @@
->  #include <linux/compat.h>
->  #include <linux/uaccess.h>
->  #include <linux/mount.h>
-> -#include <linux/pagevec.h>
->  #include <linux/uio.h>
->  #include <linux/uuid.h>
->  #include <linux/file.h>
-> diff --git a/fs/mpage.c b/fs/mpage.c
-> index 7dae5afc2b9e..e5285fbfcf09 100644
-> --- a/fs/mpage.c
-> +++ b/fs/mpage.c
-> @@ -28,7 +28,6 @@
->  #include <linux/mm_inline.h>
->  #include <linux/writeback.h>
->  #include <linux/backing-dev.h>
-> -#include <linux/pagevec.h>
->  #include "internal.h"
->
->  /*
-> diff --git a/fs/netfs/buffered_write.c b/fs/netfs/buffered_write.c
-> index 22a4d61631c9..05ea5b0cc0e8 100644
-> --- a/fs/netfs/buffered_write.c
-> +++ b/fs/netfs/buffered_write.c
-> @@ -10,7 +10,6 @@
->  #include <linux/mm.h>
->  #include <linux/pagemap.h>
->  #include <linux/slab.h>
-> -#include <linux/pagevec.h>
->  #include "internal.h"
->
->  static void __netfs_set_group(struct folio *folio, struct netfs_group *netfs_group)
-> diff --git a/fs/nfs/blocklayout/blocklayout.c b/fs/nfs/blocklayout/blocklayout.c
-> index cb0a645aeb50..11f9f69cde61 100644
-> --- a/fs/nfs/blocklayout/blocklayout.c
-> +++ b/fs/nfs/blocklayout/blocklayout.c
-> @@ -36,7 +36,6 @@
->  #include <linux/namei.h>
->  #include <linux/bio.h>		/* struct bio */
->  #include <linux/prefetch.h>
-> -#include <linux/pagevec.h>
->
->  #include "../pnfs.h"
->  #include "../nfs4session.h"
-> diff --git a/fs/nfs/dir.c b/fs/nfs/dir.c
-> index 2402f57c8e7d..0d276441206b 100644
-> --- a/fs/nfs/dir.c
-> +++ b/fs/nfs/dir.c
-> @@ -32,7 +32,6 @@
->  #include <linux/nfs_fs.h>
->  #include <linux/nfs_mount.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
->  #include <linux/namei.h>
->  #include <linux/mount.h>
->  #include <linux/swap.h>
-> diff --git a/fs/ocfs2/refcounttree.c b/fs/ocfs2/refcounttree.c
-> index c1cdececdfa4..b4acd081bbc4 100644
-> --- a/fs/ocfs2/refcounttree.c
-> +++ b/fs/ocfs2/refcounttree.c
-> @@ -31,7 +31,6 @@
->  #include <linux/blkdev.h>
->  #include <linux/slab.h>
->  #include <linux/writeback.h>
-> -#include <linux/pagevec.h>
->  #include <linux/swap.h>
->  #include <linux/security.h>
->  #include <linux/string.h>
-> diff --git a/fs/smb/client/connect.c b/fs/smb/client/connect.c
-> index 33dfe116ca52..9e57812b7b95 100644
-> --- a/fs/smb/client/connect.c
-> +++ b/fs/smb/client/connect.c
-> @@ -20,7 +20,6 @@
->  #include <linux/delay.h>
->  #include <linux/completion.h>
->  #include <linux/kthread.h>
-> -#include <linux/pagevec.h>
->  #include <linux/freezer.h>
->  #include <linux/namei.h>
->  #include <linux/uuid.h>
-> diff --git a/fs/smb/client/file.c b/fs/smb/client/file.c
-> index 18f31d4eb98d..853ce1817810 100644
-> --- a/fs/smb/client/file.c
-> +++ b/fs/smb/client/file.c
-> @@ -15,7 +15,6 @@
->  #include <linux/stat.h>
->  #include <linux/fcntl.h>
->  #include <linux/pagemap.h>
-> -#include <linux/pagevec.h>
->  #include <linux/writeback.h>
->  #include <linux/task_io_accounting_ops.h>
->  #include <linux/delay.h>
->
-> --
-> 2.39.5
->
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+index 534cc691979f..c3f35250f192 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+@@ -5075,6 +5075,7 @@ verify_single_dpll_state(struct intel_display *display,
+ 			 const struct intel_crtc_state *new_crtc_state)
+ {
+ 	struct intel_dpll_hw_state dpll_hw_state = {};
++	bool pll_mismatch = false;
+ 	u8 pipe_mask;
+ 	bool active;
+ 
+@@ -5116,9 +5117,16 @@ verify_single_dpll_state(struct intel_display *display,
+ 				 "%s: pll enabled crtcs mismatch (expected 0x%x in 0x%x)\n",
+ 				 pll->info->name, pipe_mask, pll->state.pipe_mask);
+ 
+-	if (INTEL_DISPLAY_STATE_WARN(display,
+-				     pll->on && memcmp(&pll->state.hw_state, &dpll_hw_state,
+-						       sizeof(dpll_hw_state)),
++	if (pll->on) {
++		const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
++
++		if (HAS_LT_PHY(display))
++			pll_mismatch = !dpll_mgr->compare_hw_state(&pll->state.hw_state, &dpll_hw_state);
++		else
++			pll_mismatch = memcmp(&pll->state.hw_state, &dpll_hw_state, sizeof(dpll_hw_state));
++	}
++
++	if (INTEL_DISPLAY_STATE_WARN(display, pll_mismatch,
+ 				     "%s: pll hw state mismatch\n",
+ 				     pll->info->name)) {
+ 		struct drm_printer p = drm_dbg_printer(display->drm, DRM_UT_KMS, NULL);
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index 746b0182362a..032fd80664c6 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -2263,45 +2263,6 @@ bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 	return true;
+ }
+ 
+-void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+-				   struct intel_crtc *crtc)
+-{
+-	struct intel_display *display = to_intel_display(state);
+-	struct intel_digital_port *dig_port;
+-	const struct intel_crtc_state *new_crtc_state =
+-		intel_atomic_get_new_crtc_state(state, crtc);
+-	struct intel_encoder *encoder;
+-	struct intel_lt_phy_pll_state pll_hw_state = {};
+-	const struct intel_lt_phy_pll_state *pll_sw_state = &new_crtc_state->dpll_hw_state.ltpll;
+-
+-	if (DISPLAY_VER(display) < 35)
+-		return;
+-
+-	if (!new_crtc_state->hw.active)
+-		return;
+-
+-	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
+-	if (!intel_crtc_needs_modeset(new_crtc_state) &&
+-	    !intel_crtc_needs_fastset(new_crtc_state))
+-		return;
+-
+-	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+-	intel_lt_phy_pll_readout_hw_state(encoder, &pll_hw_state);
+-
+-	dig_port = enc_to_dig_port(encoder);
+-	if (intel_tc_port_in_tbt_alt_mode(dig_port))
+-		return;
+-
+-	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[0] != pll_sw_state->config[0],
+-				 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG 0: (expected 0x%04x, found 0x%04x)",
+-				 crtc->base.base.id, crtc->base.name,
+-				 pll_sw_state->config[0], pll_hw_state.config[0]);
+-	INTEL_DISPLAY_STATE_WARN(display, pll_hw_state.config[2] != pll_sw_state->config[2],
+-				 "[CRTC:%d:%s] mismatch in LT PHY PLL CONFIG 2: (expected 0x%04x, found 0x%04x)",
+-				 crtc->base.base.id, crtc->base.name,
+-				 pll_sw_state->config[2], pll_hw_state.config[2]);
+-}
+-
+ void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
+ 			      struct intel_dpll *pll,
+ 			      const struct intel_dpll_hw_state *dpll_hw_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+index 1c2ec438cd10..8b98997b3107 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
+@@ -41,8 +41,6 @@ bool intel_lt_phy_tbt_pll_readout_hw_state(struct intel_display *display,
+ 					   struct intel_dpll_hw_state *hw_state);
+ bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 				       struct intel_lt_phy_pll_state *pll_state);
+-void intel_lt_phy_pll_state_verify(struct intel_atomic_state *state,
+-				   struct intel_crtc *crtc);
+ int
+ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
+ 				  u32 frequency_khz);
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+index 12a00121c274..2ec17c2bfe0f 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+@@ -246,7 +246,6 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
+ 	verify_crtc_state(state, crtc);
+ 	intel_dpll_state_verify(state, crtc);
+ 	intel_mpllb_state_verify(state, crtc);
+-	intel_lt_phy_pll_state_verify(state, crtc);
+ }
+ 
+ void intel_modeset_verify_disabled(struct intel_atomic_state *state)
+-- 
+2.43.0
+
