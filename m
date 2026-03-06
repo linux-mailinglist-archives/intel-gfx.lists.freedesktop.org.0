@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKGwC/0Xr2kiNwIAu9opvQ
+	id WKuxHf4Xr2kiNwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:01 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:02 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B0323EF53
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D87E23EF75
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61DC910E59F;
-	Mon,  9 Mar 2026 18:56:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A4E210E5A4;
+	Mon,  9 Mar 2026 18:56:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="LZ2C8YdL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="RrOKh0OA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4490B10ED30;
- Fri,  6 Mar 2026 12:29:32 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DACB210ED1D;
+ Fri,  6 Mar 2026 12:30:13 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 519B160018;
- Fri,  6 Mar 2026 12:29:31 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6FBA6C4CEF7;
- Fri,  6 Mar 2026 12:29:30 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6AF21440A6;
+ Fri,  6 Mar 2026 12:30:13 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B33C3C4CEF7;
+ Fri,  6 Mar 2026 12:30:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772800171;
- bh=e/BhLuvVPXdAbTMBHCsfqneVZFKZ17hQIzvo4yPKeoQ=;
+ s=k20201202; t=1772800213;
+ bh=Kftdd8omZX7VELmkL5LGQUFF+sQIeOHfzVU13moKjvE=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=LZ2C8YdL87D8RpW/YcqxQXdubcwJYV1mXiNi+UoS9iMH/GZ6tewKR5nE3DeuewPAj
- FjUGDPllrcWVkaTdK+hHETp1VMwk8al+fULHWHc5ArhEgn636iBiIKwo+030oucnyt
- R5ip2+oEghEmWWtqUJEOEDUPUzE1JM264O2JI8HG3B2KdY6tnlp6cUREjXfuUUhJqK
- laEw0eVrwgbM9iqQmt/O5Pd7Dpk3bYJMdu8+pPEen9SGbx9GDjtpxN/Vm1R2vXpdx+
- TesD22LJCGx7pZOPjxKfoMlDF8xXvihsNP+Y8Jno2n0Svqw7inQAdc/rgB4H5jjlqp
- MaOZu6sgtomNA==
-Date: Fri, 6 Mar 2026 12:29:28 +0000
+ b=RrOKh0OAhxHMytB1jOn/jttu3GJlb3C3rXPB9TooAMKbyt3vUr89Pt0+i4u40IkqV
+ RX2hBvNB6H5hwNgpkw2833/q+m2pIU+tXLy6aT2UqxNKjA9gRXZUoAjf58JN5/E+WU
+ b+1XKEzPnARh8OeG9Vznq4eIhrMwfxCOh6yt4sHKclOXteR/4dXp5YR9O3YGnPPT2n
+ aDJp5EcMC6pPhjaUS4A5KpHj2GJduynNISMtMzESwpD0c6OWnPmGQWuaLB8H96xPbV
+ V8tWz99yS9NFw2rriHryb/Y2+I+FJmH4No3lieIJOsE5G/KrymQlZobYCswq94RN1W
+ nF2PinBdqWDrw==
+Date: Fri, 6 Mar 2026 12:30:10 +0000
 From: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
 To: "David Hildenbrand (Arm)" <david@kernel.org>
 Cc: linux-kernel@vger.kernel.org, 
@@ -87,15 +87,14 @@ Cc: linux-kernel@vger.kernel.org,
  bpf@vger.kernel.org, linux-perf-users@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, 
  netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, x86@kernel.org
-Subject: Re: [PATCH v1 11/16] mm/memory: inline unmap_page_range() into
- __zap_vma_range()
-Message-ID: <a5765cac-69d6-4314-82d5-80ee363906de@lucifer.local>
+Subject: Re: [PATCH v1 12/16] mm: rename zap_vma_pages() to zap_vma()
+Message-ID: <2f4ee3ee-549c-4c0f-980d-3853193776b6@lucifer.local>
 References: <20260227200848.114019-1-david@kernel.org>
- <20260227200848.114019-12-david@kernel.org>
+ <20260227200848.114019-13-david@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260227200848.114019-12-david@kernel.org>
+In-Reply-To: <20260227200848.114019-13-david@kernel.org>
 X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,7 +110,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D3B0323EF53
+X-Rspamd-Queue-Id: 1D87E23EF75
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	DATE_IN_PAST(1.00)[78];
@@ -142,77 +141,93 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 09:08:42PM +0100, David Hildenbrand (Arm) wrote:
-> Let's inline it into the single caller to reduce the number of confusing
-> unmap/zap helpers.
->
-> Get rid of the unnecessary BUG_ON().
+On Fri, Feb 27, 2026 at 09:08:43PM +0100, David Hildenbrand (Arm) wrote:
+> Let's rename it to an even simpler name. While at it, add some
+> simplistic kernel doc.
 >
 > Signed-off-by: David Hildenbrand (Arm) <david@kernel.org>
 
-Small nits below, but overall LGTM so:
+LGTM, so:
 
 Reviewed-by: Lorenzo Stoakes (Oracle) <ljs@kernel.org>
 
 > ---
->  mm/memory.c | 32 ++++++++++++--------------------
->  1 file changed, 12 insertions(+), 20 deletions(-)
+>  arch/powerpc/platforms/book3s/vas-api.c | 2 +-
+>  arch/powerpc/platforms/pseries/vas.c    | 2 +-
+>  include/linux/mm.h                      | 6 +++++-
+>  lib/vdso/datastore.c                    | 2 +-
+>  mm/page-writeback.c                     | 2 +-
+>  5 files changed, 9 insertions(+), 5 deletions(-)
 >
-> diff --git a/mm/memory.c b/mm/memory.c
-> index 394b2e931974..1c0bcdfc73b7 100644
-> --- a/mm/memory.c
-> +++ b/mm/memory.c
-> @@ -2056,25 +2056,6 @@ static inline unsigned long zap_p4d_range(struct mmu_gather *tlb,
->  	return addr;
+> diff --git a/arch/powerpc/platforms/book3s/vas-api.c b/arch/powerpc/platforms/book3s/vas-api.c
+> index ea4ffa63f043..e96d79db69fe 100644
+> --- a/arch/powerpc/platforms/book3s/vas-api.c
+> +++ b/arch/powerpc/platforms/book3s/vas-api.c
+> @@ -414,7 +414,7 @@ static vm_fault_t vas_mmap_fault(struct vm_fault *vmf)
+>  	/*
+>  	 * When the LPAR lost credits due to core removal or during
+>  	 * migration, invalidate the existing mapping for the current
+> -	 * paste addresses and set windows in-active (zap_vma_pages in
+> +	 * paste addresses and set windows in-active (zap_vma() in
+>  	 * reconfig_close_windows()).
+>  	 * New mapping will be done later after migration or new credits
+>  	 * available. So continue to receive faults if the user space
+> diff --git a/arch/powerpc/platforms/pseries/vas.c b/arch/powerpc/platforms/pseries/vas.c
+> index ceb0a8788c0a..fa05f04364fe 100644
+> --- a/arch/powerpc/platforms/pseries/vas.c
+> +++ b/arch/powerpc/platforms/pseries/vas.c
+> @@ -807,7 +807,7 @@ static int reconfig_close_windows(struct vas_caps *vcap, int excess_creds,
+>  		 * is done before the original mmap() and after the ioctl.
+>  		 */
+>  		if (vma)
+> -			zap_vma_pages(vma);
+> +			zap_vma(vma);
+>
+>  		mutex_unlock(&task_ref->mmap_mutex);
+>  		mmap_write_unlock(task_ref->mm);
+> diff --git a/include/linux/mm.h b/include/linux/mm.h
+> index 4710f7c7495a..4bd1500b9630 100644
+> --- a/include/linux/mm.h
+> +++ b/include/linux/mm.h
+> @@ -2837,7 +2837,11 @@ void zap_vma_ptes(struct vm_area_struct *vma, unsigned long address,
+>  		  unsigned long size);
+>  void zap_page_range_single(struct vm_area_struct *vma, unsigned long address,
+>  			   unsigned long size);
+> -static inline void zap_vma_pages(struct vm_area_struct *vma)
+> +/**
+> + * zap_vma - zap all page table entries in a vma
+> + * @vma: The vma to zap.
+> + */
+> +static inline void zap_vma(struct vm_area_struct *vma)
+>  {
+>  	zap_page_range_single(vma, vma->vm_start, vma->vm_end - vma->vm_start);
 >  }
->
-> -static void unmap_page_range(struct mmu_gather *tlb, struct vm_area_struct *vma,
-> -		unsigned long addr, unsigned long end,
-> -		struct zap_details *details)
-> -{
-> -	pgd_t *pgd;
-> -	unsigned long next;
-> -
-> -	BUG_ON(addr >= end);
-> -	tlb_start_vma(tlb, vma);
-> -	pgd = pgd_offset(vma->vm_mm, addr);
-> -	do {
-> -		next = pgd_addr_end(addr, end);
-> -		if (pgd_none_or_clear_bad(pgd))
-> -			continue;
-> -		next = zap_p4d_range(tlb, vma, pgd, addr, next, details);
-> -	} while (pgd++, addr = next, addr != end);
-> -	tlb_end_vma(tlb, vma);
-> -}
-> -
->  static void __zap_vma_range(struct mmu_gather *tlb, struct vm_area_struct *vma,
->  		unsigned long start, unsigned long end,
->  		struct zap_details *details)
-> @@ -2100,7 +2081,18 @@ static void __zap_vma_range(struct mmu_gather *tlb, struct vm_area_struct *vma,
->  			return;
->  		__unmap_hugepage_range(tlb, vma, start, end, NULL, zap_flags);
->  	} else {
-> -		unmap_page_range(tlb, vma, start, end, details);
-> +		unsigned long next, cur = start;
-
-VERY nitty, but generally current is abbreviated to curr not cur.
-
-It's not a big deal, but why not addr?
-
-> +		pgd_t *pgd;
-> +
-> +		tlb_start_vma(tlb, vma);
-> +		pgd = pgd_offset(vma->vm_mm, cur);
-> +		do {
-> +			next = pgd_addr_end(cur, end);
-> +			if (pgd_none_or_clear_bad(pgd))
-> +				continue;
-> +			next = zap_p4d_range(tlb, vma, pgd, cur, next, details);
-> +		} while (pgd++, cur = next, cur != end);
-> +		tlb_end_vma(tlb, vma);
+> diff --git a/lib/vdso/datastore.c b/lib/vdso/datastore.c
+> index a565c30c71a0..222c143aebf7 100644
+> --- a/lib/vdso/datastore.c
+> +++ b/lib/vdso/datastore.c
+> @@ -121,7 +121,7 @@ int vdso_join_timens(struct task_struct *task, struct time_namespace *ns)
+>  	mmap_read_lock(mm);
+>  	for_each_vma(vmi, vma) {
+>  		if (vma_is_special_mapping(vma, &vdso_vvar_mapping))
+> -			zap_vma_pages(vma);
+> +			zap_vma(vma);
 >  	}
->  }
+>  	mmap_read_unlock(mm);
 >
+> diff --git a/mm/page-writeback.c b/mm/page-writeback.c
+> index 601a5e048d12..29f7567e5a71 100644
+> --- a/mm/page-writeback.c
+> +++ b/mm/page-writeback.c
+> @@ -2645,7 +2645,7 @@ void folio_account_cleaned(struct folio *folio, struct bdi_writeback *wb)
+>   * while this function is in progress, although it may have been truncated
+>   * before this function is called.  Most callers have the folio locked.
+>   * A few have the folio blocked from truncation through other means (e.g.
+> - * zap_vma_pages() has it mapped and is holding the page table lock).
+> + * zap_vma() has it mapped and is holding the page table lock).
+>   * When called from mark_buffer_dirty(), the filesystem should hold a
+>   * reference to the buffer_head that is being marked dirty, which causes
+>   * try_to_free_buffers() to fail.
 > --
 > 2.43.0
 >
