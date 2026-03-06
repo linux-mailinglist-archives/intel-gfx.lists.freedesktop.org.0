@@ -2,113 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cE9/DAYYr2nHNgIAu9opvQ
+	id wNryK9TAqmlXWQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:10 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:56:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4E8023EFB9
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 037E021FF04
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:56:03 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3491610E5AD;
-	Mon,  9 Mar 2026 18:57:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="fSK/XAQL";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DC19510ED07;
+	Fri,  6 Mar 2026 11:55:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7D26010E07F;
- Fri,  6 Mar 2026 11:45:29 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id BCBCD60131;
- Fri,  6 Mar 2026 11:45:28 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D9A66C4CEF7;
- Fri,  6 Mar 2026 11:45:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772797528;
- bh=R0Pw6Rvi1Mhd+owNp6fekaCHGfNY8HGW5Ezw3BximRg=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=fSK/XAQLAWrXgjeiTk3XlTolP/BrZo51IJvpeJZGw2osWtvnYdKil+TQMDx8gWiRi
- WjuQV6ZeyS/m6ni5W9gNsA2w9RKNJwzanT8/GnfMrboUr9Gbo4aVh2Mn/o2+vlLsjv
- 4PWo7PC7OublPZdNgrtwgO4Z2w9v6j7fcHKxDxv09GvTy61OlC8iHrQfKGPJGqGONd
- M0ALOZf6QGWhuKnQcihp+k2WJXsFw4+ryjYEvUIiElVerrlDn/O4aKeIuaVu+rMseL
- zWWevBBNjgHPZpEgylrlPgorL36cHHh2UT5GUH7Mk8QSGuUi3c21N1pC1/msfyBSRQ
- 8CjN9YQXQSKGA==
-Date: Fri, 6 Mar 2026 11:45:24 +0000
-From: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
-To: Tal Zussman <tz2294@columbia.edu>
-Cc: David Howells <dhowells@redhat.com>, 
- Marc Dionne <marc.dionne@auristor.com>, Jaegeuk Kim <jaegeuk@kernel.org>,
- Chao Yu <chao@kernel.org>, 
- Andrew Morton <akpm@linux-foundation.org>, David Hildenbrand <david@kernel.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Chris Li <chrisl@kernel.org>, 
- Kairui Song <kasong@tencent.com>, Kemeng Shi <shikemeng@huaweicloud.com>, 
- Nhat Pham <nphamcs@gmail.com>, Baoquan He <bhe@redhat.com>,
- Barry Song <baohua@kernel.org>, 
- Matthew Wilcox <willy@infradead.org>, Dan Williams <dan.j.williams@intel.com>,
- Jan Kara <jack@suse.cz>, Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, 
- Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>, 
- Paulo Alcantara <pc@manguebit.org>, Trond Myklebust <trondmy@kernel.org>, 
- Anna Schumaker <anna@kernel.org>, Mark Fasheh <mark@fasheh.com>,
- Joel Becker <jlbec@evilplan.org>, 
- Joseph Qi <joseph.qi@linux.alibaba.com>, Steve French <sfrench@samba.org>, 
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, 
- Tom Talpey <tom@talpey.com>, Bharath SM <bharathsm@microsoft.com>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, 
- Ilya Dryomov <idryomov@gmail.com>, Alex Markuze <amarkuze@redhat.com>, 
- Viacheslav Dubeyko <slava@dubeyko.com>,
- Andreas Gruenbacher <agruenba@redhat.com>, 
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
- Ryusuke Konishi <konishi.ryusuke@gmail.com>,
- "Darrick J. Wong" <djwong@kernel.org>, 
- Chuck Lever <chuck.lever@oracle.com>, Jeff Layton <jlayton@kernel.org>,
- NeilBrown <neil@brown.name>, 
- Olga Kornievskaia <okorniev@redhat.com>, Dai Ngo <Dai.Ngo@oracle.com>,
- Jason Gunthorpe <jgg@ziepe.ca>, 
- John Hubbard <jhubbard@nvidia.com>, Peter Xu <peterx@redhat.com>, 
- Johannes Weiner <hannes@cmpxchg.org>, Roman Gushchin <roman.gushchin@linux.dev>,
- Shakeel Butt <shakeel.butt@linux.dev>, Jann Horn <jannh@google.com>,
- Pedro Falcato <pfalcato@suse.de>, 
- Brendan Jackman <jackmanb@google.com>, Zi Yan <ziy@nvidia.com>,
- Hugh Dickins <hughd@google.com>, 
- Baolin Wang <baolin.wang@linux.alibaba.com>,
- Axel Rasmussen <axelrasmussen@google.com>, 
- Yuanchu Xie <yuanchu@google.com>, Wei Xu <weixugc@google.com>, 
- Qi Zheng <zhengqi.arch@bytedance.com>, linux-afs@lists.infradead.org,
- linux-kernel@vger.kernel.org, 
- linux-f2fs-devel@lists.sourceforge.net, linux-mm@kvack.org,
- linux-fsdevel@vger.kernel.org, 
- nvdimm@lists.linux.dev, linux-ext4@vger.kernel.org, netfs@lists.linux.dev, 
- linux-nfs@vger.kernel.org, ocfs2-devel@lists.linux.dev,
- linux-cifs@vger.kernel.org, 
- samba-technical@lists.samba.org, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, 
- linux-btrfs@vger.kernel.org, ceph-devel@vger.kernel.org, gfs2@lists.linux.dev, 
- linux-nilfs@vger.kernel.org, linux-xfs@vger.kernel.org, cgroups@vger.kernel.org
-Subject: Re: [PATCH v2 4/4] folio_batch: Rename PAGEVEC_SIZE to
- FOLIO_BATCH_SIZE
-Message-ID: <56265c07-962d-4bfc-b332-17f04c97429e@lucifer.local>
-References: <20260225-pagevec_cleanup-v2-0-716868cc2d11@columbia.edu>
- <20260225-pagevec_cleanup-v2-4-716868cc2d11@columbia.edu>
+Received: from mgamail.intel.com (unknown [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D55B10E119;
+ Fri,  6 Mar 2026 11:55:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772798152; x=1804334152;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=mUN/rHvC6EjmyFbxVqQJlFpCd/uno+eN8efzNRxXwmI=;
+ b=iepWbE1efnzmBvC/zvct2WHvcDV3benbWn2R99JIh2ZwwEijH4dCLBLF
+ gYA6W5BvvFXzBjhVwmMr+8hRt+zpJm5CkywQ+zjpgbb+MSgWnAtDwAdid
+ nh/7Eu8TbMAkpVd4kRshJJ2qlA5d2kCGWcHfthZrW595+2tmVGsSRO3Fk
+ 5tVDKcNXP6xclJ2Qbicphj4chdOImH7knjVrRddezFiIK2kU8UKwBZR3B
+ 6HrmdNPH6cB3YwC+w6/xxAr/MvhYlkJhMnjz715YmRutLtmxKjgb5BY3t
+ AO3P+D+/yVM90n0PT/VbxvsrhOpWgWRlxvNTywCUqcQpb+z2ZAA5152sN A==;
+X-CSE-ConnectionGUID: euZro6JGQ8ev2qpw14dAlA==
+X-CSE-MsgGUID: nDnC4W+FRs+74d66VRLg/g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="96519691"
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="96519691"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 03:55:41 -0800
+X-CSE-ConnectionGUID: enlLgugYSiql5dUi3ZvhWQ==
+X-CSE-MsgGUID: 5t/XXitNRkulJnrrcjUtVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="219125245"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.250])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Mar 2026 03:55:38 -0800
+Date: Fri, 6 Mar 2026 13:55:35 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ arun.r.murthy@intel.com
+Subject: Re: [PATCH 2/5] drm/i915/dp: Add fields to store CMN_SDP_TL register
+ state in crtc_state
+Message-ID: <aarAt1CIYXKnIP9P@intel.com>
+References: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
+ <20260305040118.2576312-3-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20260225-pagevec_cleanup-v2-4-716868cc2d11@columbia.edu>
-X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:52 +0000
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260305040118.2576312-3-ankit.k.nautiyal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,216 +76,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D4E8023EFB9
+X-Rspamd-Queue-Id: 037E021FF04
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[79];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [0.22 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.53)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[redhat.com,auristor.com,kernel.org,linux-foundation.org,oracle.com,google.com,suse.com,tencent.com,huaweicloud.com,gmail.com,infradead.org,intel.com,suse.cz,zeniv.linux.org.uk,mit.edu,dilger.ca,manguebit.org,fasheh.com,evilplan.org,linux.alibaba.com,samba.org,microsoft.com,talpey.com,linux.intel.com,suse.de,ffwll.ch,ursulin.net,fb.com,dubeyko.com,linux.dev,brown.name,ziepe.ca,nvidia.com,cmpxchg.org,bytedance.com,lists.infradead.org,vger.kernel.org,lists.sourceforge.net,kvack.org,lists.linux.dev,lists.samba.org,lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[97];
-	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Action: no action
 
-On Wed, Feb 25, 2026 at 06:44:28PM -0500, Tal Zussman wrote:
-> struct pagevec no longer exists. Rename the macro appropriately.
->
-> Signed-off-by: Tal Zussman <tz2294@columbia.edu>
-
-Nice thanks for this! LGTM, so:
-
-Reviewed-by: Lorenzo Stoakes (Oracle) <ljs@kernel.org>
-
+On Thu, Mar 05, 2026 at 09:31:15AM +0530, Ankit Nautiyal wrote:
+> Xe3p_lpd introduces new register bits to program a common SDP
+> Transmission Line, which the hardware uses to position various
+> SDPs. It also adds a separate control register to stagger the different
+> SDPs (VSC EXT, PPS, GMP).
+> 
+> Add fields in struct intel_crtc_state to store the state of these new
+> registers. Add register readback and pipe config comparison for the new
+> fields.
+> 
+> Also add a display version check (HAS_CMN_SDP_TL) to gate access to the
+> new registers.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  fs/btrfs/extent_io.c        | 4 ++--
->  include/linux/folio_batch.h | 6 +++---
->  include/linux/folio_queue.h | 6 +++---
->  mm/shmem.c                  | 4 ++--
->  mm/swap.c                   | 2 +-
->  mm/swap_state.c             | 2 +-
->  mm/truncate.c               | 6 +++---
->  7 files changed, 15 insertions(+), 15 deletions(-)
->
-> diff --git a/fs/btrfs/extent_io.c b/fs/btrfs/extent_io.c
-> index c373d113f1e7..d82ca509503f 100644
-> --- a/fs/btrfs/extent_io.c
-> +++ b/fs/btrfs/extent_io.c
-> @@ -2095,13 +2095,13 @@ static void buffer_tree_tag_for_writeback(struct btrfs_fs_info *fs_info,
->  struct eb_batch {
->  	unsigned int nr;
->  	unsigned int cur;
-> -	struct extent_buffer *ebs[PAGEVEC_SIZE];
-> +	struct extent_buffer *ebs[FOLIO_BATCH_SIZE];
->  };
->
->  static inline bool eb_batch_add(struct eb_batch *batch, struct extent_buffer *eb)
->  {
->  	batch->ebs[batch->nr++] = eb;
-> -	return (batch->nr < PAGEVEC_SIZE);
-> +	return (batch->nr < FOLIO_BATCH_SIZE);
+>  drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
+>  drivers/gpu/drm/i915/display/intel_display.c  |  6 ++++++
+>  .../drm/i915/display/intel_display_device.h   |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  9 ++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.c       | 21 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.h       |  2 ++
+>  6 files changed, 40 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+> index 94ae583e907f..bdbd89600bee 100644
+> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> @@ -4217,6 +4217,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
+>  	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
+>  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
+>  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
+> +	intel_dp_cmn_sdp_transmission_line_get_config(pipe_config);
+>  
+>  	intel_audio_codec_get_config(encoder, pipe_config);
 >  }
->
->  static inline void eb_batch_init(struct eb_batch *batch)
-> diff --git a/include/linux/folio_batch.h b/include/linux/folio_batch.h
-> index a2f3d3043f7e..b45946adc50b 100644
-> --- a/include/linux/folio_batch.h
-> +++ b/include/linux/folio_batch.h
-> @@ -12,7 +12,7 @@
->  #include <linux/types.h>
->
->  /* 31 pointers + header align the folio_batch structure to a power of two */
-> -#define PAGEVEC_SIZE	31
-> +#define FOLIO_BATCH_SIZE	31
->
->  struct folio;
->
-> @@ -29,7 +29,7 @@ struct folio_batch {
->  	unsigned char nr;
->  	unsigned char i;
->  	bool percpu_pvec_drained;
-> -	struct folio *folios[PAGEVEC_SIZE];
-> +	struct folio *folios[FOLIO_BATCH_SIZE];
->  };
->
->  /**
-> @@ -58,7 +58,7 @@ static inline unsigned int folio_batch_count(const struct folio_batch *fbatch)
->
->  static inline unsigned int folio_batch_space(const struct folio_batch *fbatch)
->  {
-> -	return PAGEVEC_SIZE - fbatch->nr;
-> +	return FOLIO_BATCH_SIZE - fbatch->nr;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 27354585ba92..76eea9d23766 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -5461,6 +5461,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>  	}
+>  	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
+>  
+> +	PIPE_CONF_CHECK_BOOL(cmn_sdp_tl.enable);
+> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.transmission_line);
+> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.vsc_ext_stagger);
+> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.pps_stagger);
+> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.gmp_stagger);
+
+This will make things fail every time until you add the actual
+code to program these. Ie. you are intentionally introducing
+broken bisection steps here.
+
+> +
+>  	PIPE_CONF_CHECK_X(sync_mode_slaves_mask);
+>  	PIPE_CONF_CHECK_I(master_transcoder);
+>  	PIPE_CONF_CHECK_X(joiner_pipes);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
+> index e84c190dcc4f..43e259761048 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
+> @@ -154,6 +154,7 @@ struct intel_display_platforms {
+>  #define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
+>  #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
+>  #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
+> +#define HAS_CMN_SDP_TL(__display)	(DISPLAY_VER(__display) >= 35)
+>  #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
+>  #define HAS_CMTG(__display)		(!(__display)->platform.dg2 && DISPLAY_VER(__display) >= 13)
+>  #define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index 8a2b37c7bccf..474d6e2ae34b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1298,6 +1298,15 @@ struct intel_crtc_state {
+>  		struct drm_dp_as_sdp as_sdp;
+>  	} infoframes;
+>  
+> +	struct {
+> +		/* Common SDP Transmission line */
+> +		bool enable;
+> +		int transmission_line;
+> +		int vsc_ext_stagger;
+> +		int pps_stagger;
+> +		int gmp_stagger;
+> +	} cmn_sdp_tl;
+> +
+>  	u8 eld[MAX_ELD_BYTES];
+>  
+>  	/* HDMI scrambling status */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 025e906b63a9..86390553800d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -7287,3 +7287,24 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
+>  
+>  	return true;
 >  }
->
->  /**
-> diff --git a/include/linux/folio_queue.h b/include/linux/folio_queue.h
-> index 0d3765fa9d1d..f6d5f1f127c9 100644
-> --- a/include/linux/folio_queue.h
-> +++ b/include/linux/folio_queue.h
-> @@ -29,12 +29,12 @@
->   */
->  struct folio_queue {
->  	struct folio_batch	vec;		/* Folios in the queue segment */
-> -	u8			orders[PAGEVEC_SIZE]; /* Order of each folio */
-> +	u8			orders[FOLIO_BATCH_SIZE]; /* Order of each folio */
->  	struct folio_queue	*next;		/* Next queue segment or NULL */
->  	struct folio_queue	*prev;		/* Previous queue segment of NULL */
->  	unsigned long		marks;		/* 1-bit mark per folio */
->  	unsigned long		marks2;		/* Second 1-bit mark per folio */
-> -#if PAGEVEC_SIZE > BITS_PER_LONG
-> +#if FOLIO_BATCH_SIZE > BITS_PER_LONG
->  #error marks is not big enough
->  #endif
->  	unsigned int		rreq_id;
-> @@ -70,7 +70,7 @@ static inline void folioq_init(struct folio_queue *folioq, unsigned int rreq_id)
->   */
->  static inline unsigned int folioq_nr_slots(const struct folio_queue *folioq)
->  {
-> -	return PAGEVEC_SIZE;
-> +	return FOLIO_BATCH_SIZE;
->  }
->
->  /**
-> diff --git a/mm/shmem.c b/mm/shmem.c
-> index 149fdb051170..5e7dcf5bc5d3 100644
-> --- a/mm/shmem.c
-> +++ b/mm/shmem.c
-> @@ -1113,7 +1113,7 @@ static void shmem_undo_range(struct inode *inode, loff_t lstart, uoff_t lend,
->  	pgoff_t start = (lstart + PAGE_SIZE - 1) >> PAGE_SHIFT;
->  	pgoff_t end = (lend + 1) >> PAGE_SHIFT;
->  	struct folio_batch fbatch;
-> -	pgoff_t indices[PAGEVEC_SIZE];
-> +	pgoff_t indices[FOLIO_BATCH_SIZE];
->  	struct folio *folio;
->  	bool same_folio;
->  	long nr_swaps_freed = 0;
-> @@ -1510,7 +1510,7 @@ static int shmem_unuse_inode(struct inode *inode, unsigned int type)
->  	struct address_space *mapping = inode->i_mapping;
->  	pgoff_t start = 0;
->  	struct folio_batch fbatch;
-> -	pgoff_t indices[PAGEVEC_SIZE];
-> +	pgoff_t indices[FOLIO_BATCH_SIZE];
->  	int ret = 0;
->
->  	do {
-> diff --git a/mm/swap.c b/mm/swap.c
-> index 2e517ede6561..78b4aa811fc6 100644
-> --- a/mm/swap.c
-> +++ b/mm/swap.c
-> @@ -1018,7 +1018,7 @@ EXPORT_SYMBOL(folios_put_refs);
->  void release_pages(release_pages_arg arg, int nr)
->  {
->  	struct folio_batch fbatch;
-> -	int refs[PAGEVEC_SIZE];
-> +	int refs[FOLIO_BATCH_SIZE];
->  	struct encoded_page **encoded = arg.encoded_pages;
->  	int i;
->
-> diff --git a/mm/swap_state.c b/mm/swap_state.c
-> index a0c64db2b275..6313b59d7eab 100644
-> --- a/mm/swap_state.c
-> +++ b/mm/swap_state.c
-> @@ -385,7 +385,7 @@ void free_folio_and_swap_cache(struct folio *folio)
->  void free_pages_and_swap_cache(struct encoded_page **pages, int nr)
->  {
->  	struct folio_batch folios;
-> -	unsigned int refs[PAGEVEC_SIZE];
-> +	unsigned int refs[FOLIO_BATCH_SIZE];
->
->  	folio_batch_init(&folios);
->  	for (int i = 0; i < nr; i++) {
-> diff --git a/mm/truncate.c b/mm/truncate.c
-> index df0b7a7e6aff..2931d66c16d0 100644
-> --- a/mm/truncate.c
-> +++ b/mm/truncate.c
-> @@ -369,7 +369,7 @@ void truncate_inode_pages_range(struct address_space *mapping,
->  	pgoff_t		start;		/* inclusive */
->  	pgoff_t		end;		/* exclusive */
->  	struct folio_batch fbatch;
-> -	pgoff_t		indices[PAGEVEC_SIZE];
-> +	pgoff_t		indices[FOLIO_BATCH_SIZE];
->  	pgoff_t		index;
->  	int		i;
->  	struct folio	*folio;
-> @@ -534,7 +534,7 @@ EXPORT_SYMBOL(truncate_inode_pages_final);
->  unsigned long mapping_try_invalidate(struct address_space *mapping,
->  		pgoff_t start, pgoff_t end, unsigned long *nr_failed)
->  {
-> -	pgoff_t indices[PAGEVEC_SIZE];
-> +	pgoff_t indices[FOLIO_BATCH_SIZE];
->  	struct folio_batch fbatch;
->  	pgoff_t index = start;
->  	unsigned long ret;
-> @@ -672,7 +672,7 @@ int folio_unmap_invalidate(struct address_space *mapping, struct folio *folio,
->  int invalidate_inode_pages2_range(struct address_space *mapping,
->  				  pgoff_t start, pgoff_t end)
->  {
-> -	pgoff_t indices[PAGEVEC_SIZE];
-> +	pgoff_t indices[FOLIO_BATCH_SIZE];
->  	struct folio_batch fbatch;
->  	pgoff_t index;
->  	int i;
->
-> --
-> 2.39.5
->
+> +
+> +void intel_dp_cmn_sdp_transmission_line_get_config(struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +	u32 val;
+> +
+> +	if (!HAS_CMN_SDP_TL(display))
+> +		return;
+> +
+> +	val = intel_de_read(display, CMN_SDP_TL(display, cpu_transcoder));
+> +
+> +	crtc_state->cmn_sdp_tl.enable = val & TRANSMISSION_LINE_ENABLE;
+
+Tracking the enable bit seems fairly pointless. If it's not set we could
+just skip the readout. I don't think we should ever want TL==0?
+
+> +	crtc_state->cmn_sdp_tl.transmission_line = REG_FIELD_GET(BASE_TRANSMISSION_LINE_MASK, val);
+> +
+> +	val = intel_de_read(display, CMN_SDP_TL_STGR_CTL(display, cpu_transcoder));
+> +
+> +	crtc_state->cmn_sdp_tl.vsc_ext_stagger = REG_FIELD_GET(VSC_EXT_STAGGER_MASK, val);
+> +	crtc_state->cmn_sdp_tl.pps_stagger = REG_FIELD_GET(PPS_STAGGER_MASK, val);
+> +	crtc_state->cmn_sdp_tl.gmp_stagger = REG_FIELD_GET(GMP_STAGGER_MASK, val);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index b0bbd5981f57..24df234a43d3 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -237,4 +237,6 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
+>  	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
+>  		for_each_if(intel_dp_joiner_candidate_valid(__connector, (__mode)->hdisplay, __num_joined_pipes))
+>  
+> +void intel_dp_cmn_sdp_transmission_line_get_config(struct intel_crtc_state *crtc_state);
+> +
+>  #endif /* __INTEL_DP_H__ */
+> -- 
+> 2.45.2
+
+-- 
+Ville Syrjälä
+Intel
