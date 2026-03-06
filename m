@@ -2,66 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNryK9TAqmlXWQEAu9opvQ
+	id uDO9ENnAqmk1WwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:56:04 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:56:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 037E021FF04
-	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:56:03 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB1DA21FF22
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 12:56:08 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC19510ED07;
-	Fri,  6 Mar 2026 11:55:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 36C7A10ED1E;
+	Fri,  6 Mar 2026 11:56:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (unknown [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D55B10E119;
- Fri,  6 Mar 2026 11:55:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8288810ED02;
+ Fri,  6 Mar 2026 11:55:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1772798152; x=1804334152;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=mUN/rHvC6EjmyFbxVqQJlFpCd/uno+eN8efzNRxXwmI=;
- b=iepWbE1efnzmBvC/zvct2WHvcDV3benbWn2R99JIh2ZwwEijH4dCLBLF
- gYA6W5BvvFXzBjhVwmMr+8hRt+zpJm5CkywQ+zjpgbb+MSgWnAtDwAdid
- nh/7Eu8TbMAkpVd4kRshJJ2qlA5d2kCGWcHfthZrW595+2tmVGsSRO3Fk
- 5tVDKcNXP6xclJ2Qbicphj4chdOImH7knjVrRddezFiIK2kU8UKwBZR3B
- 6HrmdNPH6cB3YwC+w6/xxAr/MvhYlkJhMnjz715YmRutLtmxKjgb5BY3t
- AO3P+D+/yVM90n0PT/VbxvsrhOpWgWRlxvNTywCUqcQpb+z2ZAA5152sN A==;
-X-CSE-ConnectionGUID: euZro6JGQ8ev2qpw14dAlA==
-X-CSE-MsgGUID: nDnC4W+FRs+74d66VRLg/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="96519691"
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="96519691"
+ mime-version:in-reply-to;
+ bh=jhajdyzSpC7nFWT4fIB5OrPUA7tIYSt6gs/Wi1JoeiM=;
+ b=L7hISM+1uIkSNiQZ4dnvmjRO7c/tknu3XRD+gFvv5ecmMrCRjturUP0M
+ l5SjFJ3Z4vG6eINurzacdhjuIxHtc0HL9vtRtRhmnjSM8JD71PRJBZSQU
+ tmwyxJmtBH7ZW4JQdG5Jv3VrBwnaiF2X+jyefmWzjv4M1tIoF6zRWpxrq
+ WaFkbvFYeJBewQEDuLcP5BitWSPV8QpBRphexOPBM470wW7RQIVzX6zy1
+ 9CaomlG+mZoDSXOyyXMZ7Rk1WLA6LqeySDvcnhr5jDUiO/9YbX0olzUvi
+ 3gWFU22s6E0yYOSvH82p9d0rumUwnHuKuMj02lcIbwKyf155235W9cFN9 g==;
+X-CSE-ConnectionGUID: anoxmUPxQFqrWXFk73xzbQ==
+X-CSE-MsgGUID: 5QnNx53TQCCsjX+87dNU8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="96519711"
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="96519711"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 03:55:41 -0800
-X-CSE-ConnectionGUID: enlLgugYSiql5dUi3ZvhWQ==
-X-CSE-MsgGUID: 5t/XXitNRkulJnrrcjUtVg==
+ 06 Mar 2026 03:55:52 -0800
+X-CSE-ConnectionGUID: Hc/ejmfCRfeOBPJkr0sNTQ==
+X-CSE-MsgGUID: wK1Q8qqgRS24XNLN/ZK7YA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="219125245"
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="219125272"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.250])
+ ([10.245.244.236])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Mar 2026 03:55:38 -0800
-Date: Fri, 6 Mar 2026 13:55:35 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- arun.r.murthy@intel.com
-Subject: Re: [PATCH 2/5] drm/i915/dp: Add fields to store CMN_SDP_TL register
- state in crtc_state
-Message-ID: <aarAt1CIYXKnIP9P@intel.com>
-References: <20260305040118.2576312-1-ankit.k.nautiyal@intel.com>
- <20260305040118.2576312-3-ankit.k.nautiyal@intel.com>
+ 06 Mar 2026 03:55:47 -0800
+Date: Fri, 6 Mar 2026 12:55:44 +0100
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ "Matthew Wilcox (Oracle)" <willy@infradead.org>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH] drm/i915: Fix potential overflow of shmem scatterlist
+ length
+Message-ID: <aarAwOWXOhcMYGqc@ashyti-mobl2.lan>
+References: <20260224094944.2447913-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260305040118.2576312-3-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260224094944.2447913-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,173 +80,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 037E021FF04
+X-Rspamd-Queue-Id: AB1DA21FF22
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.22 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.53)[subject];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Action: no action
 
-On Thu, Mar 05, 2026 at 09:31:15AM +0530, Ankit Nautiyal wrote:
-> Xe3p_lpd introduces new register bits to program a common SDP
-> Transmission Line, which the hardware uses to position various
-> SDPs. It also adds a separate control register to stagger the different
-> SDPs (VSC EXT, PPS, GMP).
+Hi Janusz,
+
+On Tue, Feb 24, 2026 at 10:49:06AM +0100, Janusz Krzysztofik wrote:
+> When a scatterlists table of a GEM shmem object of size 4 GB or more is
+> populated with pages allocated from a folio, unsigned int .length
+> attribute of a scatterlist may get overflowed if total byte length of
+> pages allocated to that single scatterlist happens to reach or cross the
+> 4GB limit.  As a consequence, users of the object may suffer from hitting
+> unexpected, premature end of the object's backing pages.
 > 
-> Add fields in struct intel_crtc_state to store the state of these new
-> registers. Add register readback and pipe config comparison for the new
-> fields.
+> [278.780187] ------------[ cut here ]------------
+> [278.780377] WARNING: CPU: 1 PID: 2326 at drivers/gpu/drm/i915/i915_mm.c:55 remap_sg+0x199/0x1d0 [i915]
+> ...
+> [278.780654] CPU: 1 UID: 0 PID: 2326 Comm: gem_mmap_offset Tainted: G S   U              6.17.0-rc1-CI_DRM_16981-ged823aaa0607+ #1 PREEMPT(voluntary)
+> [278.780656] Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER
+> [278.780658] Hardware name: Intel Corporation Meteor Lake Client Platform/MTL-P LP5x T3 RVP, BIOS MTLPFWI1.R00.3471.D91.2401310918 01/31/2024
+> [278.780659] RIP: 0010:remap_sg+0x199/0x1d0 [i915]
+> ...
+> [278.780786] Call Trace:
+> [278.780787]  <TASK>
+> [278.780788]  ? __apply_to_page_range+0x3e6/0x910
+> [278.780795]  ? __pfx_remap_sg+0x10/0x10 [i915]
+> [278.780906]  apply_to_page_range+0x14/0x30
+> [278.780908]  remap_io_sg+0x14d/0x260 [i915]
+> [278.781013]  vm_fault_cpu+0xd2/0x330 [i915]
+> [278.781137]  __do_fault+0x3a/0x1b0
+> [278.781140]  do_fault+0x322/0x640
+> [278.781143]  __handle_mm_fault+0x938/0xfd0
+> [278.781150]  handle_mm_fault+0x12c/0x300
+> [278.781152]  ? lock_mm_and_find_vma+0x4b/0x760
+> [278.781155]  do_user_addr_fault+0x2d6/0x8e0
+> [278.781160]  exc_page_fault+0x96/0x2c0
+> [278.781165]  asm_exc_page_fault+0x27/0x30
+> ...
 > 
-> Also add a display version check (HAS_CMN_SDP_TL) to gate access to the
-> new registers.
+> That issue was apprehended by the author of a change that introduced it,
+> and potential risk even annotated with a comment, but then never addressed.
 > 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  1 +
->  drivers/gpu/drm/i915/display/intel_display.c  |  6 ++++++
->  .../drm/i915/display/intel_display_device.h   |  1 +
->  .../drm/i915/display/intel_display_types.h    |  9 ++++++++
->  drivers/gpu/drm/i915/display/intel_dp.c       | 21 +++++++++++++++++++
->  drivers/gpu/drm/i915/display/intel_dp.h       |  2 ++
->  6 files changed, 40 insertions(+)
+> When adding folio pages to a scatterlist table, take care of byte length
+> of any single scatterlist not exceeding max_segment.
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 94ae583e907f..bdbd89600bee 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4217,6 +4217,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
->  	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
->  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
->  	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
-> +	intel_dp_cmn_sdp_transmission_line_get_config(pipe_config);
->  
->  	intel_audio_codec_get_config(encoder, pipe_config);
->  }
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index 27354585ba92..76eea9d23766 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -5461,6 +5461,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
->  	}
->  	PIPE_CONF_CHECK_DP_VSC_SDP(vsc);
->  
-> +	PIPE_CONF_CHECK_BOOL(cmn_sdp_tl.enable);
-> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.transmission_line);
-> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.vsc_ext_stagger);
-> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.pps_stagger);
-> +	PIPE_CONF_CHECK_I(cmn_sdp_tl.gmp_stagger);
+> Fixes: 0b62af28f249b ("i915: convert shmem_sg_free_table() to use a folio_batch")
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14809
+> Cc: Matthew Wilcox (Oracle) <willy@infradead.org>
+> Cc: Andrew Morton <akpm@linux-foundation.org>
+> Cc: stable@vger.kernel.org # v6.5+
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 
-This will make things fail every time until you add the actual
-code to program these. Ie. you are intentionally introducing
-broken bisection steps here.
+Applied to drm-intel-gt-next.
 
-> +
->  	PIPE_CONF_CHECK_X(sync_mode_slaves_mask);
->  	PIPE_CONF_CHECK_I(master_transcoder);
->  	PIPE_CONF_CHECK_X(joiner_pipes);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index e84c190dcc4f..43e259761048 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -154,6 +154,7 @@ struct intel_display_platforms {
->  #define HAS_CASF(__display)		(DISPLAY_VER(__display) >= 20)
->  #define HAS_CDCLK_CRAWL(__display)	(DISPLAY_INFO(__display)->has_cdclk_crawl)
->  #define HAS_CDCLK_SQUASH(__display)	(DISPLAY_INFO(__display)->has_cdclk_squash)
-> +#define HAS_CMN_SDP_TL(__display)	(DISPLAY_VER(__display) >= 35)
->  #define HAS_CMRR(__display)		(DISPLAY_VER(__display) >= 20)
->  #define HAS_CMTG(__display)		(!(__display)->platform.dg2 && DISPLAY_VER(__display) >= 13)
->  #define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> index 8a2b37c7bccf..474d6e2ae34b 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1298,6 +1298,15 @@ struct intel_crtc_state {
->  		struct drm_dp_as_sdp as_sdp;
->  	} infoframes;
->  
-> +	struct {
-> +		/* Common SDP Transmission line */
-> +		bool enable;
-> +		int transmission_line;
-> +		int vsc_ext_stagger;
-> +		int pps_stagger;
-> +		int gmp_stagger;
-> +	} cmn_sdp_tl;
-> +
->  	u8 eld[MAX_ELD_BYTES];
->  
->  	/* HDMI scrambling status */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 025e906b63a9..86390553800d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -7287,3 +7287,24 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
->  
->  	return true;
->  }
-> +
-> +void intel_dp_cmn_sdp_transmission_line_get_config(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 val;
-> +
-> +	if (!HAS_CMN_SDP_TL(display))
-> +		return;
-> +
-> +	val = intel_de_read(display, CMN_SDP_TL(display, cpu_transcoder));
-> +
-> +	crtc_state->cmn_sdp_tl.enable = val & TRANSMISSION_LINE_ENABLE;
-
-Tracking the enable bit seems fairly pointless. If it's not set we could
-just skip the readout. I don't think we should ever want TL==0?
-
-> +	crtc_state->cmn_sdp_tl.transmission_line = REG_FIELD_GET(BASE_TRANSMISSION_LINE_MASK, val);
-> +
-> +	val = intel_de_read(display, CMN_SDP_TL_STGR_CTL(display, cpu_transcoder));
-> +
-> +	crtc_state->cmn_sdp_tl.vsc_ext_stagger = REG_FIELD_GET(VSC_EXT_STAGGER_MASK, val);
-> +	crtc_state->cmn_sdp_tl.pps_stagger = REG_FIELD_GET(PPS_STAGGER_MASK, val);
-> +	crtc_state->cmn_sdp_tl.gmp_stagger = REG_FIELD_GET(GMP_STAGGER_MASK, val);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index b0bbd5981f57..24df234a43d3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -237,4 +237,6 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
->  	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
->  		for_each_if(intel_dp_joiner_candidate_valid(__connector, (__mode)->hdisplay, __num_joined_pipes))
->  
-> +void intel_dp_cmn_sdp_transmission_line_get_config(struct intel_crtc_state *crtc_state);
-> +
->  #endif /* __INTEL_DP_H__ */
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+Thanks,
+Andi
