@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QP47KwQYr2kiNwIAu9opvQ
+	id GO0VHPwXr2nHNgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:08 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:00 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 37D9923EF9A
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1C8AE23EF4A
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9446D10E5A6;
-	Mon,  9 Mar 2026 18:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4372910E59D;
+	Mon,  9 Mar 2026 18:56:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="dVqQGJSF";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="JE9hl+xg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6217B10E3D1;
- Fri,  6 Mar 2026 12:14:06 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AC98010ED18;
+ Fri,  6 Mar 2026 12:17:06 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 6715E6012A;
- Fri,  6 Mar 2026 12:14:05 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 829DEC4CEF7;
- Fri,  6 Mar 2026 12:14:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 516C242A97;
+ Fri,  6 Mar 2026 12:17:06 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9601AC4CEF7;
+ Fri,  6 Mar 2026 12:17:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1772799245;
- bh=Aeql3Q18nbzOXyXxhu0vMzA3N0kdNt6Kxm9MrBYhJwc=;
+ s=k20201202; t=1772799426;
+ bh=E50Nei4wvO5acKQ5WAuR9y8yrxBw8Jw9n6m//WAfpNk=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=dVqQGJSFiWX+fDD/OWZvs6Gl8EvNWdkhGAwY0jgLtpsGAh+dBK4hjzKSY1SnoVxJU
- Xn8o0QmPk7618RpV/ZP3BQon0ikZoZX/2Edj80XY9nHA/af8dILFPWfW54wd0CfK5J
- NNDPt/dl+gpaSa6q1arnlJ6LaGOiSvQqHc8RpLx+kRVj9NJ49/AzP4n1GT/dB3EozG
- MzrBFPGFBVBNv32TOIbQwG4bTmYYGJvCCLdYq7arv1NHHiBCMmGv2K2Sm+N0LRxzpC
- aFvJFL0+ixqlChqXpUk4/1NsRYhl/5ShnknPXYh+3W2ihDb5KHKe+eLdNWM7yGCDkz
- //0PKp6ZWU7fQ==
-Date: Fri, 6 Mar 2026 12:14:02 +0000
+ b=JE9hl+xgT0bTGi+BM5jUSHSxJhmfXyDYuZyy882H8pwaPVW4rs91GqXsOlDdNYt5q
+ M4CYD21uXiIoE80aCpIXZWa8pvS6BpzRhby5F3zlbgDBohqfN8gLvqI1ZzEKj9Sq8O
+ 1GA8U2yXsayzOcXwk/z9rDzRougLhaH2sFQZ/lImuHVanVDszwy6gcpcLHaEn0JF34
+ 5MRb84nwU6hkVV8bxr42O43gDIOYuZx7PoAczRQyQjOzRXl+pydnhhFnDCu0OWdTD3
+ GeXNhxm0JknludP4ZgMHI0L5kkBWpm7KDg9wTx0PM6ikXJpjNR7e3ecgYQUbTFzh7m
+ tM4T4pFHUGsng==
+Date: Fri, 6 Mar 2026 12:17:03 +0000
 From: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
 To: "David Hildenbrand (Arm)" <david@kernel.org>
 Cc: linux-kernel@vger.kernel.org, 
@@ -87,15 +87,15 @@ Cc: linux-kernel@vger.kernel.org,
  bpf@vger.kernel.org, linux-perf-users@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, 
  netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, x86@kernel.org
-Subject: Re: [PATCH v1 05/16] mm/oom_kill: use MMU_NOTIFY_CLEAR in
- __oom_reap_task_mm()
-Message-ID: <8ad03e9e-b14a-4348-aea3-fefd5d2b163d@lucifer.local>
+Subject: Re: [PATCH v1 06/16] mm/oom_kill: factor out zapping of VMA into
+ zap_vma_for_reaping()
+Message-ID: <d92e21ff-50cd-485b-8f48-621e8ae1b169@lucifer.local>
 References: <20260227200848.114019-1-david@kernel.org>
- <20260227200848.114019-6-david@kernel.org>
+ <20260227200848.114019-7-david@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260227200848.114019-6-david@kernel.org>
+In-Reply-To: <20260227200848.114019-7-david@kernel.org>
 X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,7 +111,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 37D9923EF9A
+X-Rspamd-Queue-Id: 1C8AE23EF4A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	DATE_IN_PAST(1.00)[78];
@@ -142,40 +142,128 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Fri, Feb 27, 2026 at 09:08:36PM +0100, David Hildenbrand (Arm) wrote:
-> In commit 7269f999934b ("mm/mmu_notifier: use correct mmu_notifier events
-> for each invalidation") we converted all MMU_NOTIFY_UNMAP to
-> MMU_NOTIFY_CLEAR, except the ones that actually perform munmap() or
-> mremap() as documented.
+On Fri, Feb 27, 2026 at 09:08:37PM +0100, David Hildenbrand (Arm) wrote:
+> Let's factor it out so we can turn unmap_page_range() into a static
+> function instead, and so oom reaping has a clean interface to call.
 >
-> __oom_reap_task_mm() behaves much more like MADV_DONTNEED. So use
-> MMU_NOTIFY_CLEAR as well.
->
-> This is a preparation for further changes.
+> Note that hugetlb is not supported, because it would require a bunch of
+> hugetlb-specific further actions (see zap_page_range_single_batched()).
+
+Ugh gawd. Hugetlb.
+
 >
 > Signed-off-by: David Hildenbrand (Arm) <david@kernel.org>
 
-LGTM, so:
+Seems reasonable, so:
 
 Reviewed-by: Lorenzo Stoakes (Oracle) <ljs@kernel.org>
 
 > ---
->  mm/oom_kill.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  mm/internal.h |  5 +----
+>  mm/memory.c   | 36 ++++++++++++++++++++++++++++++++----
+>  mm/oom_kill.c | 15 +--------------
+>  3 files changed, 34 insertions(+), 22 deletions(-)
 >
+> diff --git a/mm/internal.h b/mm/internal.h
+> index 39ab37bb0e1d..df9190f7db0e 100644
+> --- a/mm/internal.h
+> +++ b/mm/internal.h
+> @@ -536,13 +536,10 @@ static inline void sync_with_folio_pmd_zap(struct mm_struct *mm, pmd_t *pmdp)
+>  }
+>
+>  struct zap_details;
+> -void unmap_page_range(struct mmu_gather *tlb,
+> -			     struct vm_area_struct *vma,
+> -			     unsigned long addr, unsigned long end,
+> -			     struct zap_details *details);
+>  void zap_page_range_single_batched(struct mmu_gather *tlb,
+>  		struct vm_area_struct *vma, unsigned long addr,
+>  		unsigned long size, struct zap_details *details);
+> +int zap_vma_for_reaping(struct vm_area_struct *vma);
+>  int folio_unmap_invalidate(struct address_space *mapping, struct folio *folio,
+>  			   gfp_t gfp);
+>
+> diff --git a/mm/memory.c b/mm/memory.c
+> index e4154f03feac..621f38ae1425 100644
+> --- a/mm/memory.c
+> +++ b/mm/memory.c
+> @@ -2054,10 +2054,9 @@ static inline unsigned long zap_p4d_range(struct mmu_gather *tlb,
+>  	return addr;
+>  }
+>
+> -void unmap_page_range(struct mmu_gather *tlb,
+> -			     struct vm_area_struct *vma,
+> -			     unsigned long addr, unsigned long end,
+> -			     struct zap_details *details)
+> +static void unmap_page_range(struct mmu_gather *tlb, struct vm_area_struct *vma,
+> +		unsigned long addr, unsigned long end,
+> +		struct zap_details *details)
+>  {
+>  	pgd_t *pgd;
+>  	unsigned long next;
+> @@ -2115,6 +2114,35 @@ static void unmap_single_vma(struct mmu_gather *tlb,
+>  	}
+>  }
+>
+> +/**
+> + * zap_vma_for_reaping - zap all page table entries in the vma without blocking
+> + * @vma: The vma to zap.
+> + *
+> + * Zap all page table entries in the vma without blocking for use by the oom
+> + * killer. Hugetlb vmas are not supported.
+> + *
+> + * Returns: 0 on success, -EBUSY if we would have to block.
+> + */
+> +int zap_vma_for_reaping(struct vm_area_struct *vma)
+> +{
+> +	struct mmu_notifier_range range;
+> +	struct mmu_gather tlb;
+> +
+> +	VM_WARN_ON_ONCE(is_vm_hugetlb_page(vma));
+> +
+> +	mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0, vma->vm_mm,
+> +				vma->vm_start, vma->vm_end);
+> +	tlb_gather_mmu(&tlb, vma->vm_mm);
+> +	if (mmu_notifier_invalidate_range_start_nonblock(&range)) {
+> +		tlb_finish_mmu(&tlb);
+> +		return -EBUSY;
+> +	}
+> +	unmap_page_range(&tlb, vma, range.start, range.end, NULL);
+> +	mmu_notifier_invalidate_range_end(&range);
+> +	tlb_finish_mmu(&tlb);
+> +	return 0;
+> +}
+> +
+>  /**
+>   * unmap_vmas - unmap a range of memory covered by a list of vma's
+>   * @tlb: address of the caller's struct mmu_gather
 > diff --git a/mm/oom_kill.c b/mm/oom_kill.c
-> index 5c6c95c169ee..0ba56fcd10d5 100644
+> index 0ba56fcd10d5..54b7a8fe5136 100644
 > --- a/mm/oom_kill.c
 > +++ b/mm/oom_kill.c
-> @@ -551,7 +551,7 @@ static bool __oom_reap_task_mm(struct mm_struct *mm)
->  			struct mmu_notifier_range range;
->  			struct mmu_gather tlb;
+> @@ -548,21 +548,8 @@ static bool __oom_reap_task_mm(struct mm_struct *mm)
+>  		 * count elevated without a good reason.
+>  		 */
+>  		if (vma_is_anonymous(vma) || !(vma->vm_flags & VM_SHARED)) {
+> -			struct mmu_notifier_range range;
+> -			struct mmu_gather tlb;
+> -
+> -			mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0,
+> -						mm, vma->vm_start,
+> -						vma->vm_end);
+> -			tlb_gather_mmu(&tlb, mm);
+> -			if (mmu_notifier_invalidate_range_start_nonblock(&range)) {
+> -				tlb_finish_mmu(&tlb);
+> +			if (zap_vma_for_reaping(vma))
+>  				ret = false;
+> -				continue;
+> -			}
+> -			unmap_page_range(&tlb, vma, range.start, range.end, NULL);
+> -			mmu_notifier_invalidate_range_end(&range);
+> -			tlb_finish_mmu(&tlb);
+>  		}
+>  	}
 >
-> -			mmu_notifier_range_init(&range, MMU_NOTIFY_UNMAP, 0,
-> +			mmu_notifier_range_init(&range, MMU_NOTIFY_CLEAR, 0,
->  						mm, vma->vm_start,
->  						vma->vm_end);
->  			tlb_gather_mmu(&tlb, mm);
 > --
 > 2.43.0
 >
