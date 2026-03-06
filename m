@@ -2,86 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACcHHRIYr2nHNgIAu9opvQ
+	id +GQwJztTqmnhPQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:22 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 05:08:27 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6B5B23F00F
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:57:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB70921B5FF
+	for <lists+intel-gfx@lfdr.de>; Fri, 06 Mar 2026 05:08:26 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1C710E5BB;
-	Mon,  9 Mar 2026 18:57:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C18510E31E;
+	Fri,  6 Mar 2026 04:08:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="SqztcIfP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YLB+9tgk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com
- [209.85.161.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DDAC10E2F0
- for <intel-gfx@lists.freedesktop.org>; Fri,  6 Mar 2026 01:51:15 +0000 (UTC)
-Received: by mail-oo1-f49.google.com with SMTP id
- 006d021491bc7-6786b13984fso6218493eaf.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 05 Mar 2026 17:51:15 -0800 (PST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1772761874; x=1773366674; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Rjic6E4sYgoKxkNkNG8eG+bbyrYHUHzf7UJjTOVCQkA=;
- b=SqztcIfPRBD2tzqtLW/ac+y64QOL4W5AmcXWlV5s3IMJ0/wV+UxfGqBD2FPCsXyyo7
- 7IglWvDRmXuesxe5kiIZlkl7pI+FP0SbGRBMd6h/Cd+UbeJWF0vem7m+z8S1ZEuVhy81
- cHsJFbMc4hZP75EFN9h4zCalRU+/rNFKCazXgdYLvfNDMbshsmwsK7oj0tCXM4K19omu
- 56i6eUMOkauW0wQWanr4wHKjWjCinUzm1QocTQ++wLIGxg2o9Qd+lpRwwz6dBa4+ehMq
- PhoTfnZDbJtyDZhp5NkrCE87+FmpTLq3pUSgf1shfuUluPctcEaXHq6WhJwU2xQAR193
- HDjQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1772761874; x=1773366674;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=Rjic6E4sYgoKxkNkNG8eG+bbyrYHUHzf7UJjTOVCQkA=;
- b=cGZ5BA6E+cOYVz6/DF7z0PatuL6iudIp+8E5jDHlmwwdjfR4K1V4CLiz8HkvKs7VQ9
- BGG2gcsy3ll7rCweYQC/b7Yh1ElQhsNCHDDWANYCKxkWRRUFiZ1FrNnYukVZJhxT0TJi
- nGA7uqIGfdOimX1Baj0YMm1umJwxI/yKDGMGtdWo2HdQi3w15w+N696baRrYZM4ANJpr
- ISvCt8sQ4GB+9qhx0ts7R9Ks8dTYsRELnO5Zj1oV6bUJpEsA6zBj69c8HOR0zGad11Gf
- A1JdWkCWO/K1h1/QEfVokL2u4ux/+3fUeAAJoOZGz6XlVvPJd+1YOelnvjQCZhI9cjkq
- 2fhQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXzk1FhNRc437KR9iuhKH+kAZ7ts/Sa4EbSJzUbfkRAU3Y7khuAPTRUwDXFHL9nUWZNo4TRImWvW1s=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxcMXEOIp/xBWk1IUgdP+Yc+wN/rbeMCyGom5O/GnvVNKR1L1hV
- clAkKZB96iy0YJNwGQpSeAqVfUmDr9rJxAHxbQQKF4wDPqI2G2EsRO4L
-X-Gm-Gg: ATEYQzxCtlL4UTWrubjiLLFh4uMz8n22VQkZEQMmigxfm3SI8lpWREZjgzZnmbflh1I
- 2jMl6v5N+gqwAiVzdeuJSTy0R3NWSwZD62Wuw7bz+vrYaeYGEA51x1ocELRRhcLAJ25iMNialjH
- gBlkHamYjgoUABOViwF+cqUbQzzO8tbCsDnViFStx/wZjKs/ReFxUQuj8VEzcPF9ErHWTd5sU02
- Y5YyE9/7kSTEBuvIqj5B4d2CLVh5qTqj1R3NwH3bkAWvuNUyc7oPcDW4zeyivMzFxBexyo6WcOF
- dilCeiOXVlS7YvYFgX3ULWQ0dkEdikHFE/qXEqznbbeQ42fbdP17MVEXFYHrjQx3jSdibC0hdsu
- h3NScVghy/ZY4lOjwzqVKHZotCKoRUq3Xse/mlIyhkMtAZyWaPGMoGixjPCyg+DpZReakTIXSL3
- X6mx/0NvtBwHcb9bNsGGQK6AZJparh/EpDuT9aw8WGoY3zhbsw
-X-Received: by 2002:a05:6820:3103:b0:663:11b2:d61d with SMTP id
- 006d021491bc7-67b9bca1e01mr428086eaf.25.1772761874446; 
- Thu, 05 Mar 2026 17:51:14 -0800 (PST)
-Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
- by smtp.googlemail.com with ESMTPSA id
- 006d021491bc7-67b9cc1a627sm115245eaf.6.2026.03.05.17.51.13
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 05 Mar 2026 17:51:13 -0800 (PST)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Jim Cromie <jim.cromie@gmail.com>, Jason Baron <jbaron@akamai.com>,
- Shuah Khan <shuah@kernel.org>, linux-kselftest@vger.kernel.org
-Subject: [RFC PATCH 7/7] dyndbg-test: test keyword !value negation
-Date: Thu,  5 Mar 2026 18:50:10 -0700
-Message-ID: <20260306015022.1940986-8-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260306015022.1940986-1-jim.cromie@gmail.com>
-References: <20260306015022.1940986-1-jim.cromie@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32DA910E31B;
+ Fri,  6 Mar 2026 04:08:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772770103; x=1804306103;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=O1uIEdQIu56oMB6ojjvRq+3OidiIV42ZYRPQxdJ8t5E=;
+ b=YLB+9tgkm28olDDa5wNMUiYj8arULT0V0ElJMQWcmfZX6SvB4oNOH6FW
+ KtQf/EvC2R4cg2z5w5IYVjqo4LDNS2wL3QQkKpUgfHJOnq+QfrkUXG7ZU
+ MgqelQvRE4bPbwaY30CMX5m2KNYAjjtJZbQgn5X+yZ9zrUt+A+u/OEp+9
+ 9yuTil2OskmJCK+DGpcawC3V1g0DVdFptW2gP4AZma4aa1U03Ba3w2AYy
+ ZAfYy7BlGGMaYVYXA6Gt8j93vFfhk73oVJyfYXVCf7YKOLoYJleBRWGYQ
+ OXIKWAhqpDEeouDyDCARWYe5cihDDjIBcGhkD7D6cCxe5+OziwfRHDeA+ w==;
+X-CSE-ConnectionGUID: rgHJT9j1Qf+/32cepHliLA==
+X-CSE-MsgGUID: 2RmojJbaT/qN5/j71rNG0w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11720"; a="84585060"
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="84585060"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 20:08:22 -0800
+X-CSE-ConnectionGUID: VeI3a3zuRESGImPmGQuTZQ==
+X-CSE-MsgGUID: KExhxjuzRL2SHgz8DUwQjg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,104,1770624000"; d="scan'208";a="216679594"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Mar 2026 20:08:23 -0800
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 5 Mar 2026 20:08:22 -0800
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 5 Mar 2026 20:08:22 -0800
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.53) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 5 Mar 2026 20:08:21 -0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=U3s0i8uxmpVbg1r9SkweqjI0J1qMKNWaTr1JrIX6PWOwYdT+1a4coFXOVH1a6Ju0daZGnJjezfZAjQ+5FUjVOpZTz/wVV2af+/y+UjAEeqs3gWWSNkJuCJW2XhfM0FHe7K0JzQZazEHQWqhisAEFbD+8WJP5Fs57MqWp1qHN3FGue8wBlJAodXorAtSNKcBYpMn5kwGCTBLHSAPMMKyxuW02wS22Y3e5vijs2mlp8DRCl9f6FEWwO6UPUvWWJfzZzcV9T53OGF2T/dh71VKPIRCWBq9MmUGqnXQLi0ezWPvrTOcAbcpSE001k5Ut9v/EnwmeetiWA0GjXaxYlTPL+Q==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=H6cov6x8wD5/fKlllIHB1P8NWjN3gVf993auadlSW28=;
+ b=yitP6vItAi/mbKh3suAFdpHJbw9tVB2p1BzqT/47R7AAytVt83UpFjNpXCuZqNzt0M4MbihlbkusGaxcoua6//b8+yp289a8Ryr1SUqi0MaazyXI+7I7cAHQfexTbcqm2FR9UQlwNYhZCJdnWHkzlAqDx2q2r7cucsUQVSR0oMUK3XL5K7Bv52+bOrdXmKqJGx1SpkXXzjXZrbcWTvIWm30aZ+6wKjnlsBHBDi/mOjqMdsE/2SpKySxzkbJRkhaa32JgG2GRYIZIdahrWEhzalX5OylClyGiVfmSHHoegzUSen1oZHocBMKQ1ikCoiOltLGYkpHgHJsR/NMsM0Z+0g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by SN7PR11MB7706.namprd11.prod.outlook.com (2603:10b6:806:32c::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.18; Fri, 6 Mar
+ 2026 04:08:19 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::9d4a:f89:f548:dbc7%6]) with mapi id 15.20.9678.017; Fri, 6 Mar 2026
+ 04:08:18 +0000
+Message-ID: <42ff911b-f60c-4e75-9a51-495394ed432e@intel.com>
+Date: Fri, 6 Mar 2026 09:38:12 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH RFC 1/4] drm/display/dp: Read LTTPR caps without DPRX caps
+To: Jani Nikula <jani.nikula@linux.intel.com>, Imre Deak
+ <imre.deak@intel.com>, =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+References: <20260305-dp_aux-v1-0-54ee0b5f5158@intel.com>
+ <20260305-dp_aux-v1-1-54ee0b5f5158@intel.com>
+ <33d050c09290955321f01d61166e7763b6db2e77@intel.com>
+Content-Language: en-US
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+In-Reply-To: <33d050c09290955321f01d61166e7763b6db2e77@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0112.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b5::15) To IA0PR11MB7307.namprd11.prod.outlook.com
+ (2603:10b6:208:437::10)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:53 +0000
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA0PR11MB7307:EE_|SN7PR11MB7706:EE_
+X-MS-Office365-Filtering-Correlation-Id: c2c2a6a1-d7f4-4f57-ca3c-08de7b35ffad
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;ARA:13230040|366016|1800799024|376014;
+X-Microsoft-Antispam-Message-Info: GGQYQxNRPAr6jfLGpJXI9wzaWEYA6KErHoOKLkW80EF3pTLKh7NqUjaBkae39BtSDF9H65nUemmve06ymASUVpOCR1+6nsUFcYWpkX1aaHUYgKuRqQ3/9EqIdWSReCTkGbN2PgYmMZMdJwuhgosTBnh3GLABgdJOuNmNlAjrnm2naJM+zGLEpSjQBr2INlWdloj3aWvb3V0j/0qRO1WnG7HrVG9j/rFJ7KL6c4l9rldg/uadUB4NezZgpTJFBDY1Mm4O/8d6ptDyoDZRSE34gG0OudEhPDcoekVdoaBqnhkAZzfH9Y2Inmw5RwQShDsi0LsHtl26ovCdXEyWtrm0etAuASmvdguSXWBPi3DhzpJ2djjqvqtOrBKcEVkfm5N2rqsZ5udc57wNkMaFRu/YQIxhzDKMTbIo3Vz7hUud+mOHZdQnlWaYLF5Sb81ZDLBM2LJiz5gbae/LAcugoU9IW7pCPLavpB635bO9R9KHU20dcphiyn1+qxuWzpX3xLXICCda70Yah9dncJETM+KgmIRjFluChEwRZdVXQBCoGc7jJ11Ki1o1TXggpo8o8rpYu/bKIE+7zxsf4WpnTOO9bA1h2qlVbbOIlfJZKowUoHo5tzkNWnte5yqyf5kesRhDEjjKqA0uskfTQZweCjAz0ZXs6U7OqnFYTaCh+wTuLZHOuSgljPkQXq0Dq6Mevaid
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014); DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OEt1bmpBS2hoUFJNVTBaOEp5NkxtR0N4KzNiL2NQMzcrUklqdG16dUZhQkNL?=
+ =?utf-8?B?SndmdFFwSHBFYnBFYndjN1ZYbkdYaWlzYU5JWXU4TGsrcU53U3JQYmt3UGVQ?=
+ =?utf-8?B?ZnRSWDg5bmFFSDZZVGtzZmVFdWxsOXJYL25Jd2MvREg4L0dTZGNmeFJZaS9h?=
+ =?utf-8?B?QVE1T0ZGeU1xQjJyK0ZzcnNYSFVVOXFUOTNDZS9FZDVrOXlhWjlndlFYMktn?=
+ =?utf-8?B?RjA5Yk9JTk9qRVFMSGhBS3Y1ZXNRYnIvWStQUmVYYTEyWTdxalU3TzFxMmdT?=
+ =?utf-8?B?aVBhWGhHb1JBSWkxYkhPZDJVQWxYZ0VOZ3JMRG00SFFWcGZwUHRycjZxdGoy?=
+ =?utf-8?B?SytXL1JZU0poMnNpWE96dkhPcUx6Skt0NFk1dkRBdUg0elJKeVRvM04wQXRQ?=
+ =?utf-8?B?S1dCaTBCaDUzTWRnRmp5bUtyajYrUTlmY2JJMFZPbEtyNXQ0RzhvT3VYNVhs?=
+ =?utf-8?B?WTdTeUJJdmZOS3ZLVVNNc08rbnljNVJsZFU5YnlXT0FVOWNaMUE1Uml4UHdW?=
+ =?utf-8?B?eUJXOElqN0FTdU9uT2JPQnhOUUNkTjJ0TXNxYVVycGh4REpYejY0bTM5ZktU?=
+ =?utf-8?B?a0U3dHQvdEkzbzBVUnNGangwSjVjK1dsdWU3QUJXdDBMVGhJVFN4c1UvMFpZ?=
+ =?utf-8?B?Q1BXVWx5QlZxQTdLRVFQV2JZVURDZ3pUOGRsUURxQXhFWExaVGd0VW01SXp0?=
+ =?utf-8?B?eGIyLzgyaHh3UkYvL0I5bG5jRWRtR3BFdkVaTzlzb3p0Ui9pdXhUMmwwZE5K?=
+ =?utf-8?B?c0tyeTBCeCtVcnlPdUtFNCtwSGtmTU9McVJ4b256c1Y2TWRGM0pDeDNKcTZI?=
+ =?utf-8?B?RzNNbDlPM0dZSGlJcDNUeDRHOE1LS0IyZU9vdXNuVlZOSVlVZ3hIOHhUSTZl?=
+ =?utf-8?B?bzBHRCtST0JKV2dtRU90V0JLek16OUdBa1NhWmtNaXkrekRiZGJvbWdBTmxD?=
+ =?utf-8?B?cytiSEF4ejhraitUeFRJYkZ2MkVzUGRvblVvNTVSemNYVmphRHNLRmc2WWlJ?=
+ =?utf-8?B?bGllSDZsTnRjam5PWTRJR1JKQVNHUDgycmZmbUVqKzdPSWtTRGVROUZPNVFq?=
+ =?utf-8?B?M2tXSmg5MjMwV1VHK2RKeU1USjNkTThyY3pMeWRaS2x1V25wdmRJSkkxeGgz?=
+ =?utf-8?B?VDhza2hCZ2VTNlNNbU5pOGJLRzA3aDhVaEhsVTB2RDltZ3J5bVFGZ2lwakUv?=
+ =?utf-8?B?WWxtZ0huanU2S2hXZTdjaFQ2eU94TjdwVXhrMGhGcW85KzhzWFpFb0RIQkQ1?=
+ =?utf-8?B?MTlQT2k5Wk5jQkVuQ2RtR0NZOFVnODhLZU5reHFQcHBVa1dlSU5FOGEzRWIz?=
+ =?utf-8?B?QUYrOGd5T1dJQzhEeHhwall0c0dUT0NHRGlzd1pCQzlDTXBLWEl2SWtHZXl2?=
+ =?utf-8?B?b2pBNm42UmNwWXU1cVp3SEF6SUdpR09qWUJWRlJDaC9aalQ5aVdFcXQrY29l?=
+ =?utf-8?B?STlTcnhLTE9RSzhPaWttQ2lJbnliK2NRbTdGRm9RT0NBY2MzWFZZNHdrdXUy?=
+ =?utf-8?B?Nnd4ZTJrSWU4dGVUNFl0aTk5ZkRITlF1clZOZmtMKzFIZ2ZXcU04K2QycHl5?=
+ =?utf-8?B?UHZPSnIzVzNLSTlZYWNyWGhOdnF2bjZSVklrUEc3VG5waDZ1SWo0R1FBdnNK?=
+ =?utf-8?B?Yk54L21iT3l6TzcydTducFQrRGxJWmk2bDdkYVZXWThTSFNyZFdZT0JRZGdr?=
+ =?utf-8?B?aW5vN1Q5ZytidjFkRDRTdlMzcmpQUm5EckxWeVU2WmM3b01ZZmJUdFNET3h1?=
+ =?utf-8?B?YkFWa0dSK1did0E0V1d3YWwzWE5zaWhTVnBWMzNWTTVLQzY1MGVzb1lQUkVn?=
+ =?utf-8?B?OFA1bkx5aWQ4SEd4ZUJGY05jaVhDM0s1NUhPT0w4andaSHJ3WFVBSzczVGlZ?=
+ =?utf-8?B?WGlPSDIxN1FiNDdISWt4N3h5SS8rL08rem5xSlN5dTUzQ2EzRHNrcFE5RlIv?=
+ =?utf-8?B?UWwxQVZSVFowK2h4b0ovYUZlMmF3SXdOUlNUVVhjUk9FaFF5UHFoaFdsUWNn?=
+ =?utf-8?B?dUppQmZXb1c1MlBtWDQ5cHovZFhFSlB0czlMTXUrdFFQeHNYTkd2bHJrZ3Ji?=
+ =?utf-8?B?SjVtTWRQUmNoN28rVDlKUEMyVWRxbVZiWXJtcmJMSjhwejJ4aEdVZFhzczVi?=
+ =?utf-8?B?dHpIL0g1VG1qbkFidWZOM0c4Vy9Ub0E2d3BQSmdEM0h0ZVhObFBpaitXWDJG?=
+ =?utf-8?B?b1ZKd1hRZTdxSjNrWVpmaDZocys1K0Q0WEpIMUhrNVF2cVBqVC9NOEpubXl1?=
+ =?utf-8?B?NzhCQW1GaUlKOGJEN245akZkdm10dWtNTHJHKzVacVRQakZ6WnV6dDFsd2o4?=
+ =?utf-8?B?V1AxU20vaXE4cVlYMGRoUGIrenFYa0dkaWJoVWNMVktPNUc4QWk2dz09?=
+X-Exchange-RoutingPolicyChecked: EzpJADnGfKTdq4Nm5LFoZ3LoI5RtuvkLJ4A4Ap9nmehj4gBhV6rE8QjAeKZqw+qGG2prZFCCAORaN8sLfV2W8gRnqObKP9tT5/2VK2pnJVpxe8JBaYOi9kieb4c8AGOFLQF32KKu1neoKteDEJtLmBLLLZ4poDguZzxevbCIfsfqmR6rgkgcDycKhwknvWpzBAlBK4k77H41o09nD5k712FLogqkgpbKICJFxe3NQORAZrF13F9t6TaINNEC0PgRdITHwakUBUka7zfY3QgQapUuBSvRP6OzZlVlvi5z2t0Z3s1tASFepS0YwQPr30WYzMVSrZpj39aNz2UozKOBmQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c2c2a6a1-d7f4-4f57-ca3c-08de7b35ffad
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Mar 2026 04:08:18.7801 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: tH2FfZ76PrwIN1aw83HtegKuozXHQd0LMLvcoo0yZIoMkTeaMd0nGaxv0gqtn3Q9s4v6vX9Ew4RUoQHSeN/48A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB7706
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,104 +175,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E6B5B23F00F
+X-Rspamd-Queue-Id: EB70921B5FF
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[89];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUBJECT_HAS_EXCLAIM(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:linux-kernel@vger.kernel.org,m:dri-devel@lists.freedesktop.org,m:amd-gfx@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:jim.cromie@gmail.com,m:jbaron@akamai.com,m:shuah@kernel.org,m:linux-kselftest@vger.kernel.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	TAGGED_FROM(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,akamai.com,kernel.org,vger.kernel.org];
-	RCPT_COUNT_SEVEN(0.00)[9];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
----
- .../dynamic_debug/dyndbg_selftest.sh          | 35 +++++++++++++++++++
- 1 file changed, 35 insertions(+)
+On 05-03-2026 14:48, Jani Nikula wrote:
+> On Thu, 05 Mar 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
+>> We at present have drm_dp_Read_lttpr_common_caps to read the LTTPR caps,
+>> but this function required DPRX caps to be passed. As per the DP2.1 spec
+>> section 3.6.8.6.1, section 2.12.1, section 2.12.3 (Link Policy) the
+>> LTTPR caps is to be read first followed by the DPRX capability.
+>> Hence adding another function to read the LTTPR caps without the need
+>> for DPRX caps.
+> If the spec says something, why are we keeping the function that does it
+> the other way?
+Sure will remove the other one!
+>
+>> In order to handle the issue
+>> https://gitlab.freedesktop.org/drm/intel/-/issues/4531
+>> of reading corrupted values for LTTPR caps on few pannels with DP Rev 1.2
+>> the workaround of reducing the block size to 1 and reading one block at a
+>> time is done by checking for a valid link rate.
+>>
+>> Fixes: 657586e474bd ("drm/i915: Add a DP1.2 compatible way to read LTTPR capabilities")
+> You're not calling the code being added here. This can't fix anything on
+> its own. This is not how the Fixes: tag works.
+Got it, will remove the Fixes tag and just provide ref to this patch for 
+getting to know the issue.
+>
+>> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>> ---
+>>   drivers/gpu/drm/display/drm_dp_helper.c | 63 +++++++++++++++++++++++++++++++++
+>>   include/drm/display/drm_dp_helper.h     |  2 ++
+>>   2 files changed, 65 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+>> index a697cc227e28964cd8322803298178e7d788e820..9fe7db73027a43b01c4d12927f1f0e61444658e5 100644
+>> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+>> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+>> @@ -3050,6 +3050,69 @@ static int drm_dp_read_lttpr_regs(struct drm_dp_aux *aux,
+>>   	return 0;
+>>   }
+>>   
+>> +static bool drm_dp_valid_link_rate(u8 link_rate)
+>> +{
+>> +	switch (link_rate) {
+>> +	case 0x06:
+>> +	case 0x0a:
+>> +	case 0x14:
+>> +	case 0x1e:
+>> +		return true;
+>> +	default:
+>> +		return false;
+>> +	}
+>> +}
+>> +
+>> +/**
+>> + * drm_dp_read_lttpr_caps - read the LTTPR capabilities
+>> + * @aux: DisplayPort AUX channel
+>> + * @caps: buffer to return the capability info in
+>> + *
+>> + * Read capabilities common to all LTTPRs.
+>> + *
+>> + * Returns 0 on success or a negative error code on failure.
+>> + */
+>> +int drm_dp_read_lttpr_caps(struct drm_dp_aux *aux,
+>> +			   u8 caps[DP_LTTPR_COMMON_CAP_SIZE])
+>> +{
+>> +	/*
+>> +	 * At least the DELL P2715Q monitor with a DPCD_REV < 0x14 returns
+>> +	 * corrupted values when reading from the 0xF0000- range with a block
+>> +	 * size bigger than 1.
+>> +	 * For DP as per the spec DP2.1 section 3.6.8.6.1, section 2.12.1, section
+>> +	 * 2.12.3 (Link Policy) the LTTPR caps is to be read first followed by the
+>> +	 * DPRX capability.
+>> +	 * So ideally we dont have DPCD_REV yet to check for the revision, instead
+>> +	 * check for the correctness of the read value and in found corrupted read
+>> +	 * block by block.
+>> +	 */
+>> +	int block_size;
+>> +	int offset;
+>> +	int ret;
+>> +	int address = DP_LT_TUNABLE_PHY_REPEATER_FIELD_DATA_STRUCTURE_REV;
+>> +	int buf_size = DP_LTTPR_COMMON_CAP_SIZE;
+>> +
+>> +	ret = drm_dp_dpcd_read_data(aux, address, &caps, buf_size);
+>> +	if (ret < 0)
+>> +		return ret;
+>> +
+>> +	if (caps[0] == 0x14) {
+>> +		if (!drm_dp_valid_link_rate(caps[1])) {
+> So you first read the whole thing once, and then in some cases read the
+> whole thing again one byte at a time?
+Yes, this was one option that I could think and the other option 
+mentioned in the cover letter, i.e read the lttpr caps, and then read 
+the dprx caps, now check if DPCD rev > 1.4 then re-read the lttpr 1 
+block at a time.
+Another open would be do we need to address this issue and add a 
+workaround in the driver as the DP2.1 Spec says that LTTPR is supported 
+only from DPCD rev 1.4 onwards and in this case the workaround that we 
+are trying to add is for a DPCD rev 1.2 panel with LTTPR.
+>
+> Everything about this smells like a quirk for a specific display, not
+> something you do normally. We shouldn't have to have two ways to read
+> the lttpr caps in the normal case.
+Agree adding this as a quirk makes the code straight as per the spec and 
+cleaner.
+>> +			block_size = 1;
+> What's the point with the variable?
 
-diff --git a/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh b/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
-index 09937dca3056..5c35d7cc5ecf 100755
---- a/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
-+++ b/tools/testing/selftests/dynamic_debug/dyndbg_selftest.sh
-@@ -350,12 +350,47 @@ function test_mod_submod {
-     ifrmmod test_dynamic_debug
- }
- 
-+function test_negated_keywords {
-+    echo -e "${GREEN}# TEST_NEGATED_KEYWORDS ${NC}"
-+
-+    # Test 1: Disable negated subset from enabled set
-+    # Enables all 6 in init/main.c, then pulses ONLY those that are NOT run_init_process (the 2 blacklist sites) OFF.
-+    ddcmd =_
-+    ddcmd file init/main.c +p
-+    check_match_ct 'init/main.c:.*=p' 6 -r
-+    ddcmd file init/main.c func !run_init_process -p
-+    # Result: 6 - 2 = 4 sites (run_init_process) remain enabled.
-+    check_match_ct 'init/main.c:.*=p' 4 -r
-+    check_match_ct 'run_init_process' 4 -r
-+
-+    # Test 2: Enable negated subset from clean slate
-+    # Negation !run_init_process should match the 2 blacklist sites.
-+    ddcmd =_
-+    ddcmd file init/main.c func !run_init_process +p
-+    # Verify exactly 2 sites enabled
-+    check_match_ct 'init/main.c:.*=p' 2 -r
-+    check_match_ct 'initcall_blacklist[[:space:]]' 1 -r
-+    check_match_ct 'initcall_blacklisted[[:space:]]' 1 -r
-+
-+    # Test 3: Enable negated subset with wildcard
-+    # Negation !run_init_* should match the same 2 blacklist sites.
-+    ddcmd =_
-+    ddcmd file init/main.c func !run_init_* +p
-+    # Verify exactly 2 sites enabled
-+    check_match_ct 'init/main.c:.*=p' 2 -r
-+    check_match_ct 'initcall_blacklist[[:space:]]' 1 -r
-+    check_match_ct 'initcall_blacklisted[[:space:]]' 1 -r
-+
-+    ddcmd =_
-+}
-+
- tests_list=(
-     basic_tests
-     # these require test_dynamic_debug*.ko
-     comma_terminator_tests
-     test_percent_splitting
-     test_mod_submod
-+    test_negated_keywords
- )
- 
- # Run tests
--- 
-2.53.0
+will replace with a magic value.
 
+Thanks and Regards,
+Arun R Murthy
+
+-------------------
+
+>
+>> +			for (offset = 0; offset < buf_size; offset += block_size) {
+>> +				ret = drm_dp_dpcd_read_data(aux,
+>> +							    address + offset,
+>> +							    &caps[offset],
+>> +							    block_size);
+>> +				if (ret < 0)
+>> +					return ret;
+>> +			}
+>> +		}
+>> +	}
+>> +	return 0;
+>> +}
+>> +EXPORT_SYMBOL(drm_dp_read_lttpr_caps);
+>> +
+>>   /**
+>>    * drm_dp_read_lttpr_common_caps - read the LTTPR common capabilities
+>>    * @aux: DisplayPort AUX channel
+>> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+>> index 1d0acd58f48676f60ff6a07cc6812f72cbb452e8..def145e67011c325b790c807f934b288304260c1 100644
+>> --- a/include/drm/display/drm_dp_helper.h
+>> +++ b/include/drm/display/drm_dp_helper.h
+>> @@ -755,6 +755,8 @@ bool drm_dp_read_sink_count_cap(struct drm_connector *connector,
+>>   				const struct drm_dp_desc *desc);
+>>   int drm_dp_read_sink_count(struct drm_dp_aux *aux);
+>>   
+>> +int drm_dp_read_lttpr_caps(struct drm_dp_aux *aux,
+>> +				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
+>>   int drm_dp_read_lttpr_common_caps(struct drm_dp_aux *aux,
+>>   				  const u8 dpcd[DP_RECEIVER_CAP_SIZE],
+>>   				  u8 caps[DP_LTTPR_COMMON_CAP_SIZE]);
