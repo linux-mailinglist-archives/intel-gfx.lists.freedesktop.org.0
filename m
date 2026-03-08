@@ -2,65 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIPJLXlHrWkk0wEAu9opvQ
+	id sIDzDbV4rWlj3QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 10:55:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:09 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF2AA22F3F9
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 10:55:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3457F23064D
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E059310E0EC;
-	Sun,  8 Mar 2026 09:55:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F96F10E12D;
+	Sun,  8 Mar 2026 13:25:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="HvJAOaXM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="by0fop25";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from desiato.infradead.org (desiato.infradead.org [90.155.92.199])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AC9810E0EC;
- Sun,  8 Mar 2026 09:54:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=desiato.20200630; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=pX6nFaZQSPaXClUE5yxfEf/l17lRCF6vPh+70+1IPdA=; b=HvJAOaXMT59gprC770vHnagKq5
- QWTEaeqig7yBBbaIyURkfnSzSyW2SNa3zxyEOcwnmmj34bJf2aAnp1M9MlQPwPrSqz/hXJGKBvfF1
- 99HySvmuds8pCBWXzBGE0YAJuGmxfwTQSJ2qVNnBXeX0QIBrKhTVqcJ8MGm9xXCqaCCqBj7ntW5Rd
- WCuGAPRa/htAgVFJw47tzTAzM1OMcvw33o1H6ir0d7GZq9o7joyuw4aEOEIkLzxPSk8VoMGnKqZMB
- KxA3JRYluHU0WOvPTArRxIFYBtW4hkE0G3Jyvht3jTszN3vsFzcXWSgSomQ26RL6AXQgx5T1yTKKm
- fvYunsUg==;
-Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252]
- helo=noisy.programming.kicks-ass.net)
- by desiato.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1vzAqT-0000000AnoE-1yjl; Sun, 08 Mar 2026 09:54:46 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id F09CB300385; Sun, 08 Mar 2026 10:54:43 +0100 (CET)
-Date: Sun, 8 Mar 2026 10:54:43 +0100
-From: Peter Zijlstra <peterz@infradead.org>
-To: Jim Cromie <jim.cromie@gmail.com>
-Cc: linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, Jason Baron <jbaron@akamai.com>,
- Josh Poimboeuf <jpoimboe@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Steven Rostedt <rostedt@goodmis.org>,
- Ard Biesheuvel <ardb@kernel.org>,
- Alexandre Chartre <alexandre.chartre@oracle.com>,
- Juergen Gross <jgross@suse.com>, Andy Lutomirski <luto@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Kees Cook <kees@kernel.org>,
- Nathan Chancellor <nathan@kernel.org>,
- Lukas Bulwahn <lukas.bulwahn@redhat.com>
-Subject: Re: [RFC PATCH 1/7] jump_label: expose queueing API for batched
- static key updates
-Message-ID: <20260308095443.GY606826@noisy.programming.kicks-ass.net>
-References: <20260306015022.1940986-1-jim.cromie@gmail.com>
- <20260306015022.1940986-2-jim.cromie@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73AE810E041;
+ Sun,  8 Mar 2026 13:25:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1772976303; x=1804512303;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=sSd20dBKrCtftN/WiE5WjQxeKU+fpgU0M4RSRFoKsww=;
+ b=by0fop25de6GXGY4KYCYgcuWli8Us5JGkmFEeWCe22XHdsmjyTNg+22g
+ aY+uLBHNjpLT2GuV7871Kr/ZQ91YVmJGzVut0gn3G7rrtglK9bKb9rtPV
+ 35hOd83xKtScxGKGfCRg61iMeQm3QpHDrv35pkqIH5z4ty8Chl8ifKNaH
+ 4uiKT2cJ8S9Jy13o9hIOdwlm7VfRlKY9+vA9rJnKWyd6fMZDkfMPHGiGb
+ AmDocenzh6oaF4WpisXUuMxQJpjLu1LNnacTRCCoK1Oat1lhr2vaxlXCf
+ 9D2MjeADkavqnn0hDG3gSOijp0N+/ePlExzezTvYBBHkXO+e7fxbpn3bA A==;
+X-CSE-ConnectionGUID: sCRz9XQvTE6nVEXplIbiBQ==
+X-CSE-MsgGUID: D+dNaFHXSMCHBDgkSW01LA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871393"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871393"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2026 06:25:03 -0700
+X-CSE-ConnectionGUID: AETMFiaGTqWSMU+gZXdfRw==
+X-CSE-MsgGUID: dLDPygN4RbOSsJD2/9lkiw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598072"
+Received: from administrator-system-product-name.igk.intel.com (HELO
+ dev-417.igk.intel.com) ([10.91.214.181])
+ by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:01 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [RFC v1 00/11] support for vswing/preemphasis override
+Date: Sun,  8 Mar 2026 14:24:35 +0100
+Message-ID: <20260308132446.3320848-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260306015022.1940986-2-jim.cromie@gmail.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,92 +73,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: AF2AA22F3F9
+X-Rspamd-Queue-Id: 3457F23064D
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.99 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[infradead.org:s=desiato.20200630];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[23];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_NEQ_ENVFROM(0.00)[peterz@infradead.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[infradead.org:-];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	ARC_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.994];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_SPAM(0.00)[0.468];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[noisy.programming.kicks-ass.net:mid]
+	RCPT_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
+This patch series aims to get initial feedback & CI coverage on adding
+support for Vswing / Preemphasis Override from VBT. Currently patchset
+covers all platforms from MTL onward. There is an additional patch
+covering platforms from ADL-P, but since it is still work-in-progress,
+it hasn't been included for now.
 
-First strike for not Cc'ing me on all patches in the series :/
+BR,
+Michał
 
-On Thu, Mar 05, 2026 at 06:50:04PM -0700, Jim Cromie wrote:
-> Currently, `HAVE_JUMP_LABEL_BATCH` provides an architecture-level
-> mechanism to defer instruction synchronization (`text_poke_sync()`)
-> when patching a sequence of static keys. However, this deferred
-> batching capability is not exposed as a public kernel API. Subsystems
-> that need to toggle a large number of static keys (e.g.,
-> dynamic_debug) currently suffer from O(N) overhead due to repeated
-> machine-wide synchronizations (stop_machine).
-> 
-> This patch introduces a public queueing API to expose this deferred
-> synchronization mechanism to the rest of the kernel. This allows
-> multiple static keys to be enabled/disabled by queueing their
-> architecture-level updates, before applying a single machine-wide
-> synchronization barrier after all instructions are modified.
-> 
-> The new API consists of:
-> - static_key_enable_queued(key)
-> - static_key_disable_queued(key)
-> - static_key_apply_queued() (the global barrier/flush)
-> - static_branch_enable_queued(x) / static_branch_disable_queued(x) macros
-> 
-> NOTES:
-> 
-> The '_queued' API suffix was chosen to match the underlying
-> 'arch_jump_label_transform_queue' and to avoid confusion with the
-> existing rate-limited 'static_key_deferred' API.
-> 
-> Also unify the names under the 'static_key_*' prefix, renaming
-> jump_label_apply_queued to static_key_apply_queued (with a
-> compatibility macro) for consistency.
-> 
-> A pr_debug() is added to show the poked addresses, this exposed the
-> semi-random ordering coming from dynamic-debug, despite its ordered
-> descriptors.
-> 
-> So x86/kernel/alternatives gets new code to do an insert-sort, by
-> memcpy & memmove after appending.  This sorting yields a dramatic IPI
-> reduction; a following patch to dynamic-debug uses the API, and
-> includes the numbers.
-> 
+Michał Grzelak (11):
+  drm/i915/bios: search for Block 57 by default
+  drm/i915/bios: cache V/P Override block
+  drm/i915/bios: remove V/P Override warning
+  drm/i915/bios: print V/P Override port info
+  drm/i915/buf_trans: add intel_dp_above_hbr1() helper
+  drm/i915/buf_trans: add intel_edp_above_hbr2() helper
+  drm/i915/lt: align xe3plpd with V/P Override layout
+  drm/i915/buf_trans: switch from u8 to u32
+  drm/i915/xe3p: add V/P Override support for xe3p
+  drm/i915/dg2: warn on V/P Override request on dg2
+  drm/i915/mtl: add V/P Override support for mtl+
 
-Second strike for doing *WAAAY* to many things in one patch.
+ drivers/gpu/drm/i915/display/intel_bios.c     |  33 +-
+ drivers/gpu/drm/i915/display/intel_bios.h     |   1 +
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 323 ++++++++++++++----
+ .../drm/i915/display/intel_ddi_buf_trans.h    |  16 +-
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +
+ 5 files changed, 300 insertions(+), 75 deletions(-)
 
-> +EXPORT_SYMBOL_GPL(static_key_enable_queued);
-> +EXPORT_SYMBOL_GPL(static_key_disable_queued);
-> +EXPORT_SYMBOL_GPL(static_key_apply_queued);
+-- 
+2.45.2
 
-Third strike for exposing this to modules; flipping a ton of keys is
-*not* something sensible.
-
-> +	pr_debug("incoming addr=%px, current_qlen=%d\n",
-> +		 addr, text_poke_array.nr_entries);
-> +
-
-And seriously, what?!
