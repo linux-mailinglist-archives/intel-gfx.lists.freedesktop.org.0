@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AZZfEbV4rWlv3QEAu9opvQ
+	id sKW0E7d4rWlv3QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:09 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 650A623064E
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:08 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 221F1230664
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BE0D10E12F;
-	Sun,  8 Mar 2026 13:25:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1827B10E142;
+	Sun,  8 Mar 2026 13:25:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lpBUFtQv";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VXn7pqXP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E8BE210E041;
- Sun,  8 Mar 2026 13:25:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F23E010E041;
+ Sun,  8 Mar 2026 13:25:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772976305; x=1804512305;
+ t=1772976306; x=1804512306;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=LMv3uQczRBkIFAVHRrkOuh9xObNvwtfMsnBkMH/SPYQ=;
- b=lpBUFtQvS59VX1birE0jt5EZsE/i2ewJfojnjIFdU5BlGS53LLAhp15z
- y3y/ZLoZ/gvu0jKuqKXEyuoNsqOru5ZS2H4YX6fz0l8aT57sPeiGIJSmC
- 7CGzeGZCLL7cXwZtTgxzTRsi9kIycl6v5YBueN2+PFX5Y/qM/OcAX7cEk
- WyixOy837LKxYHSdzcFAb9tpkndeivr8QPt7ALcjum8QWFV+CKJ088Vha
- YwRiKOifZObQO+koqrNmwQoIkr3kgpnLFGznoty+yCdTBCcUMWo+16AhW
- xSx1lL35pC//WJ9QelKtfrPBq4dK6UVtYZbDX9/2VAZTUntBGHOnchkBN Q==;
-X-CSE-ConnectionGUID: N6xSKB2JSu6EhlK8SVUt1Q==
-X-CSE-MsgGUID: FaaOXV35T/+fMoZf8hfipw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871398"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871398"
+ bh=4GXx2R+BUPN5yCB+lR5YwhDoQjNax0QpIOfmR1G+5c4=;
+ b=VXn7pqXPwOkekDqc5O0ry5mh4wCVblVyUophS0gokqRbP3G3xi/FuYZH
+ 90QhMZkR5JRajjfrySd1wMpqdhGW1F8c3ASLQ4odApVBHrXDCSfmerhpl
+ Ikn7ZsE9wojnIbkABNhNKkNyfFK/PTfVNd+nw338tu1x0akskw4CNOo3Z
+ GdkWz0WHdBhC9H/dNMNjcAgRCB1T0VhnDSNUo+c66Z3Zm+z4JBzBNccov
+ TNlI8Socgw8G3+vBStapbIHr1EwfyOffxbWGHpaw2Z7XziP37WPMbW5Kr
+ m3xGALbzqxahhAOS6Q9SGtRioeOaqGROIalmLVfw0ntYu4ZYm8ZqeW66H g==;
+X-CSE-ConnectionGUID: 1hGd5Cb6Rmeovq/+eAXLeA==
+X-CSE-MsgGUID: ovx6lv9TRCWhWGXzGQvExw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871399"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871399"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:25:05 -0700
-X-CSE-ConnectionGUID: bt8sOfBTRCWez08HEtjrlQ==
-X-CSE-MsgGUID: mVRlTXpDQ8iuAtBqreTWNw==
+ 08 Mar 2026 06:25:06 -0700
+X-CSE-ConnectionGUID: OuMeodRtQ5+nx+3fHUfpXQ==
+X-CSE-MsgGUID: Aff+dJsvQbqYi2xfUFaG8Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598090"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598104"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:03 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:05 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [RFC v1 02/11] drm/i915/bios: cache V/P Override block
-Date: Sun,  8 Mar 2026 14:24:37 +0100
-Message-ID: <20260308132446.3320848-3-michal.grzelak@intel.com>
+Subject: [RFC v1 03/11] drm/i915/bios: remove V/P Override warning
+Date: Sun,  8 Mar 2026 14:24:38 +0100
+Message-ID: <20260308132446.3320848-4-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
 References: <20260308132446.3320848-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 650A623064E
+X-Rspamd-Queue-Id: 221F1230664
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.993];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
@@ -104,70 +104,41 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Add field into VBT data structure for pointer to Block 57. Cache the
-pointer into it during VBT parsing.
-
-In case firmware lacks Block 57 it will not be found during
-init_bdb_blocks(). In turn it will not be appended to ->vbt.bdb_blocks
-list. Thus bdb_find_section() will set .vswing to NULL.
-
-Init the field to NULL when no VBT was provided.
+Remove warning when using vswing/preemph tables. Remove child_device
+from print_ddi_port() since drm_WARN() was the only user of it.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c         | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_display_core.h |  2 ++
- 2 files changed, 13 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 9 ---------
+ 1 file changed, 9 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 5700de438fdf..ae33b93772ef 100644
+index ae33b93772ef..f88f330d21ae 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2185,6 +2185,15 @@ parse_compression_parameters(struct intel_display *display)
- 	}
- }
- 
-+static void
-+cache_vswing_preemph_block(struct intel_display *display)
-+{
-+	const u32 *block;
-+
-+	block = bdb_find_section(display, BDB_VSWING_PREEMPH);
-+	display->vbt.override_vswing = block;
-+}
-+
- static u8 translate_iboost(struct intel_display *display, u8 val)
+@@ -2728,7 +2728,6 @@ static bool is_port_valid(struct intel_display *display, enum port port)
+ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
  {
- 	static const u8 mapping[] = { 1, 3, 7 }; /* See VBT spec */
-@@ -3046,6 +3055,7 @@ init_vbt_missing_defaults(struct intel_display *display)
- 			    child->device_type, port_name(port));
- 	}
- 
-+	display->vbt.override_vswing = NULL;
- 	/* Bypass some minimum baseline VBT version checks */
- 	display->vbt.version = 155;
+ 	struct intel_display *display = devdata->display;
+-	const struct child_device_config *child = &devdata->child;
+ 	bool is_dvi, is_hdmi, is_dp, is_edp, is_dsi, is_crt, supports_typec_usb, supports_tbt;
+ 	int dp_boost_level, dp_max_link_rate, hdmi_boost_level, hdmi_level_shift, max_tmds_clock;
+ 	enum port port;
+@@ -2796,14 +2795,6 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
+ 		drm_dbg_kms(display->drm,
+ 			    "Port %c VBT DP max link rate: %d\n",
+ 			    port_name(port), dp_max_link_rate);
+-
+-	/*
+-	 * FIXME need to implement support for VBT
+-	 * vswing/preemph tables should this ever trigger.
+-	 */
+-	drm_WARN(display->drm, child->use_vbt_vswing,
+-		 "Port %c asks to use VBT vswing/preemph tables\n",
+-		 port_name(port));
  }
-@@ -3276,6 +3286,7 @@ void intel_bios_init(struct intel_display *display)
  
- 	/* Depends on child device list */
- 	parse_compression_parameters(display);
-+	cache_vswing_preemph_block(display);
- 
- out:
- 	if (!vbt) {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index d708d322aa85..f974df3becef 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -233,6 +233,8 @@ struct intel_vbt_data {
- 	struct list_head display_devices;
- 	struct list_head bdb_blocks;
- 
-+	const u32 *override_vswing;
-+
- 	struct sdvo_device_mapping {
- 		u8 initialized;
- 		u8 dvo_port;
+ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
 -- 
 2.45.2
 
