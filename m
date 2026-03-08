@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sIDzDbV4rWlj3QEAu9opvQ
+	id aE+4HLh4rWlj3QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:09 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:12 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3457F23064D
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:07 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 457C1230672
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F96F10E12D;
-	Sun,  8 Mar 2026 13:25:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 11AE210E153;
+	Sun,  8 Mar 2026 13:25:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="by0fop25";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LV92S5EP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 73AE810E041;
- Sun,  8 Mar 2026 13:25:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1EE9A10E120;
+ Sun,  8 Mar 2026 13:25:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772976303; x=1804512303;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=sSd20dBKrCtftN/WiE5WjQxeKU+fpgU0M4RSRFoKsww=;
- b=by0fop25de6GXGY4KYCYgcuWli8Us5JGkmFEeWCe22XHdsmjyTNg+22g
- aY+uLBHNjpLT2GuV7871Kr/ZQ91YVmJGzVut0gn3G7rrtglK9bKb9rtPV
- 35hOd83xKtScxGKGfCRg61iMeQm3QpHDrv35pkqIH5z4ty8Chl8ifKNaH
- 4uiKT2cJ8S9Jy13o9hIOdwlm7VfRlKY9+vA9rJnKWyd6fMZDkfMPHGiGb
- AmDocenzh6oaF4WpisXUuMxQJpjLu1LNnacTRCCoK1Oat1lhr2vaxlXCf
- 9D2MjeADkavqnn0hDG3gSOijp0N+/ePlExzezTvYBBHkXO+e7fxbpn3bA A==;
-X-CSE-ConnectionGUID: sCRz9XQvTE6nVEXplIbiBQ==
-X-CSE-MsgGUID: D+dNaFHXSMCHBDgkSW01LA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871393"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871393"
+ t=1772976304; x=1804512304;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Y+8OzhgaFKIrk1u5ESVoKCBY/Hl6c4KMeadbbwl7pUY=;
+ b=LV92S5EP55OlWlNl+dT3Wf9wLkp1KaKiNHc8zNRG+YGRE8Bt6HZZkt7b
+ Zxhz/RT2RQ6kKWV4hr5HzsEEJcL0e4Ms6Rhx0dhNsdVK9f5asRQ6O4XqX
+ NtErRzU+f5trszzoc77iESfvADaqkQz17gwFZlwQVNS1zixIanDSmk/au
+ VHHGJedcteRzLp+aHw0jMa6UWYCKU6sn84O4ZlgHXkuVD0BdoUFeCASxo
+ Jho8jk+WfEWA6gc7EoVTyAg7QunK0xDm98rECDnhPGXc8n/oFxwKTDZu0
+ wlka9+bEDCVqriH8LLzob2z/BxNjTSI1D7rDWi58DPNELxQXfpk0HR3z+ w==;
+X-CSE-ConnectionGUID: 8fJKNbJ/QOOx3v0/TosUpA==
+X-CSE-MsgGUID: uaQp59JzSRuGUjJzmciZAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871396"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871396"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  08 Mar 2026 06:25:03 -0700
-X-CSE-ConnectionGUID: AETMFiaGTqWSMU+gZXdfRw==
-X-CSE-MsgGUID: dLDPygN4RbOSsJD2/9lkiw==
+X-CSE-ConnectionGUID: 6RC0gZ4KRpKaOCZhPddVHw==
+X-CSE-MsgGUID: alNoT1X8TL6T+u2fTQBGYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598072"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598078"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:01 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:02 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [RFC v1 00/11] support for vswing/preemphasis override
-Date: Sun,  8 Mar 2026 14:24:35 +0100
-Message-ID: <20260308132446.3320848-1-michal.grzelak@intel.com>
+Subject: [RFC v1 01/11] drm/i915/bios: search for Block 57 by default
+Date: Sun,  8 Mar 2026 14:24:36 +0100
+Message-ID: <20260308132446.3320848-2-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
+References: <20260308132446.3320848-1-michal.grzelak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
@@ -73,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3457F23064D
+X-Rspamd-Queue-Id: 457C1230672
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -85,13 +87,13 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.994];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
@@ -99,38 +101,29 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-This patch series aims to get initial feedback & CI coverage on adding
-support for Vswing / Preemphasis Override from VBT. Currently patchset
-covers all platforms from MTL onward. There is an additional patch
-covering platforms from ADL-P, but since it is still work-in-progress,
-it hasn't been included for now.
+Start searching for Vswing / Preemphasis Override Block on VBT parsing.
 
-BR,
-Michał
+Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-Michał Grzelak (11):
-  drm/i915/bios: search for Block 57 by default
-  drm/i915/bios: cache V/P Override block
-  drm/i915/bios: remove V/P Override warning
-  drm/i915/bios: print V/P Override port info
-  drm/i915/buf_trans: add intel_dp_above_hbr1() helper
-  drm/i915/buf_trans: add intel_edp_above_hbr2() helper
-  drm/i915/lt: align xe3plpd with V/P Override layout
-  drm/i915/buf_trans: switch from u8 to u32
-  drm/i915/xe3p: add V/P Override support for xe3p
-  drm/i915/dg2: warn on V/P Override request on dg2
-  drm/i915/mtl: add V/P Override support for mtl+
-
- drivers/gpu/drm/i915/display/intel_bios.c     |  33 +-
- drivers/gpu/drm/i915/display/intel_bios.h     |   1 +
- .../drm/i915/display/intel_ddi_buf_trans.c    | 323 ++++++++++++++----
- .../drm/i915/display/intel_ddi_buf_trans.h    |  16 +-
- .../gpu/drm/i915/display/intel_display_core.h |   2 +
- 5 files changed, 300 insertions(+), 75 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index b6fe87c29aa7..5700de438fdf 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -200,6 +200,8 @@ static const struct {
+ 	  .min_size = sizeof(struct bdb_mipi_sequence) },
+ 	{ .section_id = BDB_COMPRESSION_PARAMETERS,
+ 	  .min_size = sizeof(struct bdb_compression_parameters), },
++	{ .section_id = BDB_VSWING_PREEMPH,
++	  .min_size = sizeof(struct bdb_vswing_preemph), },
+ 	{ .section_id = BDB_GENERIC_DTD,
+ 	  .min_size = sizeof(struct bdb_generic_dtd), },
+ };
 -- 
 2.45.2
 
