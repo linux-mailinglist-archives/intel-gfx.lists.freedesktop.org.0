@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wNLLD7Z4rWlv3QEAu9opvQ
+	id EJ3+A7h4rWlv3QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:10 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:12 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E4AC823065D
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B419523066B
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2069610E041;
-	Sun,  8 Mar 2026 13:25:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 90B7510E166;
+	Sun,  8 Mar 2026 13:25:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h8nQDpnX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hT4okZvy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1220B10E041;
- Sun,  8 Mar 2026 13:25:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F93610E13E;
+ Sun,  8 Mar 2026 13:25:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772976307; x=1804512307;
+ t=1772976308; x=1804512308;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SswZlG2Lf8BJCIEgpDfgcYBRf5yqg+FpJhKZf3yC8d8=;
- b=h8nQDpnXklBvbihnUadxJLWK+g/mqB/xURuRcG9h96ScqbkELQlQ3byZ
- 7Pyksd7GGbsLVYCDP7GZDXM7GEjRcaLsknZJLukoseMnt+i7BdEPP7sjz
- SsB7IEwKNU/mHqIJIwaQ03x9wgcLFSfXtdQxieBL/opQv2ZX5312ufMjn
- JQU12Dqg/C1MZysVBwG37Jr/3jIjbs+GBhM2jwJBrRb63nSriylxx+wiq
- gJBRW8tLNbCDxD4bWrkb6mVIivyE2nl4ryNEesRWkTJvMYAZyXyFIX3bN
- eZ6nj1v9yxohoJnwUIdmKihMkyW9RnSBdbmopXjffdfYR412EeRM/7Qbe w==;
-X-CSE-ConnectionGUID: WQ3mNddFT+WtFHIv/6dsww==
-X-CSE-MsgGUID: RBH2VkzzRUaqG7lrgMGZRw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871400"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871400"
+ bh=Mni1LSH9yMCezEMqfoMKKfl8JVI30n1O7gdM60IJ23Y=;
+ b=hT4okZvy0LbVTv3zDndVSBIO0eifaOkx1+pxAp0FCRK/Z55hVzQUtmwd
+ ocVurdHXFRNb9cjRAKb0yrBgSmTMb8NIsDzXMZkszUzM33kiK9JUMLbIX
+ t2hbCsqOh3XIH5zbUY1xhTmeGwRX2sqYtUjEUk6cmoTVbMIhE67/pjK94
+ apfBj+6KmzEfLFTC9VeCMwCBEXDfvY24cTY1BxIdbF36kAFsOLHSsDaFj
+ JX5zIaCARvUtIuYjsblIXEq6AzeaFZY+azV3V/IDLVoOTyuvYxn/kjrg3
+ GGvGimlRq75BIzfS/8U5Ey7AWYDvRKoOG7l6IUcD3wWYn1xKY3g281ejK g==;
+X-CSE-ConnectionGUID: ahYVrVwlRGy0EGOjrvXDVg==
+X-CSE-MsgGUID: KOgd0LSpSHaUWkgag+aHkA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871402"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871402"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:25:07 -0700
-X-CSE-ConnectionGUID: 0659qFNcTWyH5zERGOlpQQ==
-X-CSE-MsgGUID: VqYAsbUuSTSy5W27NoJNMw==
+ 08 Mar 2026 06:25:08 -0700
+X-CSE-ConnectionGUID: INOiRSY8SWC9x97YOSB7Qw==
+X-CSE-MsgGUID: DqZ3yg2rRGGbQLQA4Pqu9w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598108"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598123"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:06 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:07 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [RFC v1 04/11] drm/i915/bios: print V/P Override port info
-Date: Sun,  8 Mar 2026 14:24:39 +0100
-Message-ID: <20260308132446.3320848-5-michal.grzelak@intel.com>
+Subject: [RFC v1 05/11] drm/i915/buf_trans: add intel_dp_above_hbr1() helper
+Date: Sun,  8 Mar 2026 14:24:40 +0100
+Message-ID: <20260308132446.3320848-6-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
 References: <20260308132446.3320848-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E4AC823065D
+X-Rspamd-Queue-Id: B419523066B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.993];
+	NEURAL_HAM(-0.00)[-0.994];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
@@ -104,56 +104,121 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Check if port uses vswing/preemph override tables. Print info about port
-when requested.
+Check if port_clock is above HBR1 inside separate function.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_bios.h |  1 +
- 2 files changed, 12 insertions(+)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 27 ++++++++++++-------
+ 1 file changed, 17 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index f88f330d21ae..6c618f17f772 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2764,6 +2764,11 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- 			    "Port %c supports dynamic DDI allocation in TCSS\n",
- 			    port_name(port));
- 
-+	if (intel_bios_encoder_overrides_vswing(devdata))
-+		drm_dbg_kms(display->drm,
-+			    "Port %c overrides VBT vswing/preemphasis tables\n",
-+			    port_name(port));
-+
- 	hdmi_level_shift = intel_bios_hdmi_level_shift(devdata);
- 	if (hdmi_level_shift >= 0) {
- 		drm_dbg_kms(display->drm,
-@@ -3795,6 +3800,12 @@ bool intel_bios_encoder_supports_tbt(const struct intel_bios_encoder_data *devda
- 	return devdata->display->vbt.version >= 209 && devdata->child.tbt;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 395dba8c9e4d..ee6a78a20dac 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1184,6 +1184,13 @@ bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table)
+ 	return table == &tgl_combo_phy_trans_edp_hbr2_hobl;
  }
  
-+bool intel_bios_encoder_overrides_vswing(const struct intel_bios_encoder_data *devdata)
++static bool intel_dp_above_hbr1(const struct intel_crtc_state *crtc_state)
 +{
-+	return devdata->display->vbt.version >= 218 &&
-+		devdata->child.use_vbt_vswing;
++	if (crtc_state->port_clock > 270000)
++		return true;
++	return false;
 +}
 +
- bool intel_bios_encoder_is_dedicated_external(const struct intel_bios_encoder_data *devdata)
+ static bool use_edp_hobl(struct intel_encoder *encoder)
  {
- 	return devdata->display->vbt.version >= 264 &&
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 75dff27b4228..50c8fc91fbe8 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -73,6 +73,7 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct intel_display *display, enum port port);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+@@ -1396,7 +1403,7 @@ icl_get_mg_buf_trans_dp(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *crtc_state,
+ 			int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000) {
++	if (intel_dp_above_hbr1(crtc_state)) {
+ 		return intel_get_buf_trans(&icl_mg_phy_trans_hbr2_hbr3,
+ 					   n_entries);
+ 	} else {
+@@ -1421,7 +1428,7 @@ ehl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state,
+ 			    int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000)
++	if (intel_dp_above_hbr1(crtc_state))
+ 		return intel_get_buf_trans(&ehl_combo_phy_trans_edp_hbr2, n_entries);
+ 	else
+ 		return intel_get_buf_trans(&icl_combo_phy_trans_edp_hbr2, n_entries);
+@@ -1446,7 +1453,7 @@ jsl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state,
+ 			    int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000)
++	if (intel_dp_above_hbr1(crtc_state))
+ 		return intel_get_buf_trans(&jsl_combo_phy_trans_edp_hbr2, n_entries);
+ 	else
+ 		return intel_get_buf_trans(&jsl_combo_phy_trans_edp_hbr, n_entries);
+@@ -1473,7 +1480,7 @@ tgl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
  
-+bool intel_bios_encoder_overrides_vswing(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdata);
+-	if (crtc_state->port_clock > 270000) {
++	if (intel_dp_above_hbr1(crtc_state)) {
+ 		if (display->platform.tigerlake_uy) {
+ 			return intel_get_buf_trans(&tgl_uy_combo_phy_trans_dp_hbr2,
+ 						   n_entries);
+@@ -1524,7 +1531,7 @@ dg1_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ 			   const struct intel_crtc_state *crtc_state,
+ 			   int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000)
++	if (intel_dp_above_hbr1(crtc_state))
+ 		return intel_get_buf_trans(&dg1_combo_phy_trans_dp_hbr2_hbr3,
+ 					   n_entries);
+ 	else
+@@ -1568,7 +1575,7 @@ rkl_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ 			   const struct intel_crtc_state *crtc_state,
+ 			   int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000)
++	if (intel_dp_above_hbr1(crtc_state))
+ 		return intel_get_buf_trans(&rkl_combo_phy_trans_dp_hbr2_hbr3, n_entries);
+ 	else
+ 		return intel_get_buf_trans(&rkl_combo_phy_trans_dp_hbr, n_entries);
+@@ -1611,7 +1618,7 @@ adls_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state,
+ 			    int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000)
++	if (intel_dp_above_hbr1(crtc_state))
+ 		return intel_get_buf_trans(&adls_combo_phy_trans_dp_hbr2_hbr3, n_entries);
+ 	else
+ 		return intel_get_buf_trans(&tgl_combo_phy_trans_dp_hbr, n_entries);
+@@ -1650,7 +1657,7 @@ adlp_get_combo_buf_trans_dp(struct intel_encoder *encoder,
+ 			    const struct intel_crtc_state *crtc_state,
+ 			    int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000)
++	if (intel_dp_above_hbr1(crtc_state))
+ 		return intel_get_buf_trans(&adlp_combo_phy_trans_dp_hbr2_hbr3, n_entries);
+ 	else
+ 		return intel_get_buf_trans(&adlp_combo_phy_trans_dp_hbr, n_entries);
+@@ -1693,7 +1700,7 @@ tgl_get_dkl_buf_trans_dp(struct intel_encoder *encoder,
+ 			 const struct intel_crtc_state *crtc_state,
+ 			 int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000) {
++	if (intel_dp_above_hbr1(crtc_state)) {
+ 		return intel_get_buf_trans(&tgl_dkl_phy_trans_dp_hbr2,
+ 					   n_entries);
+ 	} else {
+@@ -1718,7 +1725,7 @@ adlp_get_dkl_buf_trans_dp(struct intel_encoder *encoder,
+ 			  const struct intel_crtc_state *crtc_state,
+ 			  int *n_entries)
+ {
+-	if (crtc_state->port_clock > 270000) {
++	if (intel_dp_above_hbr1(crtc_state)) {
+ 		return intel_get_buf_trans(&adlp_dkl_phy_trans_dp_hbr2_hbr3,
+ 					   n_entries);
+ 	} else {
 -- 
 2.45.2
 
