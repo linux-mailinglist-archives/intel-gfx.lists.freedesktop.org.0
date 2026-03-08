@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wMfiCLl4rWlj3QEAu9opvQ
+	id OOTSM7x4rWlj3QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:13 +0100
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:16 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C9182230679
-	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 82446230680
+	for <lists+intel-gfx@lfdr.de>; Sun, 08 Mar 2026 14:25:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6326110E164;
-	Sun,  8 Mar 2026 13:25:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0689410E175;
+	Sun,  8 Mar 2026 13:25:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MyAuAF3Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cvUXfGCC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 819E310E164;
- Sun,  8 Mar 2026 13:25:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BC7CB10E16A;
+ Sun,  8 Mar 2026 13:25:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1772976309; x=1804512309;
+ t=1772976311; x=1804512311;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6KVH615DTae6mCzUGAQctgVNvAbBnF/asRLr21t3zmU=;
- b=MyAuAF3YU0o+uzbBxny3f9EhzfPj8lv4z3ge9eME3gcVvsa928qIs6v2
- G+lEX+xRqVuN3BZPNxnB4nQucEQOrnJCw0wCWEE09vsGitidGollv6wJm
- zuXhToqNLJRhA5fJrwqFg1uwZOvGi1ifKgRSV6zDH6wkLSonDvQ/Xke2X
- o/6Pgg9IZIn1Vcu3xnv67PkIluGMHGZPURwQqRZq4x9LsPs46TvrOic+s
- bNexv3oaOWaUyABZWWs8Mqk/VBt3Q8DzvBlzYvMOnsZ6hOKqujSb4CHh3
- 20l+BD6fTxcQf3YFLZgNyLWT7HbeguDSsG3+ewKi4HVDeIiFeKUQeHytW A==;
-X-CSE-ConnectionGUID: ZyyF5mOyQFKT73kQHlgq1w==
-X-CSE-MsgGUID: rDPSGtHmS1a37dgv1enqmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871403"
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871403"
+ bh=77GguEib28APOmW2j+aSmZsmHVQ7NzeQMDiehLwoKTM=;
+ b=cvUXfGCCnjJaEJsTqdbMHULFye/I7q0uM8qWn/SwNMmrVsXeqhG8e39+
+ 1okqMCYZkQ2g+92sKlm6izGWq+Cwd5vMU6YX5qEVDt3g7/dHVssq3ARUE
+ p9J6/z6iv3jgdBTkGtCkdKBb/X8rod0YcRU+VCl9Jk9mrFYMwEdTXnzqu
+ cqIBO7fLASSx+azXtrYLELc343H4A2Q1fh2jwqxfi/1GPUeqP7/yXYxUV
+ UL+rOFXsiE0lVCBimZSmOpqIIelUIpm0Bcg2PVuFFNW0Y8gsHROpWcYIA
+ 6ToEs1U6gXhiuAbXxH7zOsuTI3LX6i9WEPrj3g9ztf7/WKju+tFGi2Nn6 Q==;
+X-CSE-ConnectionGUID: j0IoqD8TSZCSbhPLDiy7aQ==
+X-CSE-MsgGUID: BKLKs0K6SrOBrNsEyPMCHw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11722"; a="77871406"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="77871406"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Mar 2026 06:25:09 -0700
-X-CSE-ConnectionGUID: R/YuslGAR2Ov/ZGy1OQXig==
-X-CSE-MsgGUID: jseRWk/BRQ2w807KozWkQA==
+ 08 Mar 2026 06:25:10 -0700
+X-CSE-ConnectionGUID: E79rjMiJRbWcHb26HQSUAQ==
+X-CSE-MsgGUID: sWvR4xW3TIq4Mis/B1btGw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598149"
+X-IronPort-AV: E=Sophos;i="6.23,108,1770624000"; d="scan'208";a="217598177"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:08 -0700
+ by fmviesa008.fm.intel.com with ESMTP; 08 Mar 2026 06:25:09 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [RFC v1 06/11] drm/i915/buf_trans: add intel_edp_above_hbr2() helper
-Date: Sun,  8 Mar 2026 14:24:41 +0100
-Message-ID: <20260308132446.3320848-7-michal.grzelak@intel.com>
+Subject: [RFC v1 07/11] drm/i915/lt: align xe3plpd with V/P Override layout
+Date: Sun,  8 Mar 2026 14:24:42 +0100
+Message-ID: <20260308132446.3320848-8-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260308132446.3320848-1-michal.grzelak@intel.com>
 References: <20260308132446.3320848-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C9182230679
+X-Rspamd-Queue-Id: 82446230680
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -94,7 +94,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.994];
+	NEURAL_HAM(-0.00)[-0.996];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
@@ -104,85 +104,130 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Check if port_clock is above HBR2 inside separate function.
+Align struct xe3plpd_lt_phy_buf_trans to match layout found in
+vswing/preemphasis override tables.
+
+Move txswing & txswing_level to the end of the struct. Keep order
+between txswing & txswing_level columns in xe3plpd_lt_* tables.
+
+Move post_cursor from third field to second.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- .../drm/i915/display/intel_ddi_buf_trans.c    | 19 +++++++++++++------
- 1 file changed, 13 insertions(+), 6 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 72 +++++++++----------
+ .../drm/i915/display/intel_ddi_buf_trans.h    |  6 +-
+ 2 files changed, 39 insertions(+), 39 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index ee6a78a20dac..8b369535189c 100644
+index 8b369535189c..528a0ccfe8a2 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1191,6 +1191,13 @@ static bool intel_dp_above_hbr1(const struct intel_crtc_state *crtc_state)
- 	return false;
- }
+@@ -1118,50 +1118,50 @@ static const struct intel_ddi_buf_trans mtl_c20_trans_uhbr = {
  
-+static bool intel_edp_above_hbr2(const struct intel_crtc_state *crtc_state)
-+{
-+	if (crtc_state->port_clock > 540000)
-+		return true;
-+	return false;
-+}
-+
- static bool use_edp_hobl(struct intel_encoder *encoder)
- {
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-@@ -1374,7 +1381,7 @@ icl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state,
- 			    int *n_entries)
- {
--	if (crtc_state->port_clock > 540000) {
-+	if (intel_edp_above_hbr2(crtc_state)) {
- 		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
- 					   n_entries);
- 	} else if (use_edp_low_vswing(encoder)) {
-@@ -1499,7 +1506,7 @@ tgl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state,
- 			    int *n_entries)
- {
--	if (crtc_state->port_clock > 540000) {
-+	if (intel_edp_above_hbr2(crtc_state)) {
- 		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
- 					   n_entries);
- 	} else if (use_edp_hobl(encoder)) {
-@@ -1544,7 +1551,7 @@ dg1_get_combo_buf_trans_edp(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state,
- 			    int *n_entries)
- {
--	if (crtc_state->port_clock > 540000)
-+	if (intel_edp_above_hbr2(crtc_state))
- 		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
- 					   n_entries);
- 	else if (use_edp_hobl(encoder))
-@@ -1586,7 +1593,7 @@ rkl_get_combo_buf_trans_edp(struct intel_encoder *encoder,
- 			    const struct intel_crtc_state *crtc_state,
- 			    int *n_entries)
- {
--	if (crtc_state->port_clock > 540000) {
-+	if (intel_edp_above_hbr2(crtc_state)) {
- 		return intel_get_buf_trans(&icl_combo_phy_trans_dp_hbr2_edp_hbr3,
- 					   n_entries);
- 	} else if (use_edp_hobl(encoder)) {
-@@ -1629,7 +1636,7 @@ adls_get_combo_buf_trans_edp(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state,
- 			     int *n_entries)
- {
--	if (crtc_state->port_clock > 540000)
-+	if (intel_edp_above_hbr2(crtc_state))
- 		return intel_get_buf_trans(&adls_combo_phy_trans_edp_hbr3, n_entries);
- 	else if (use_edp_hobl(encoder))
- 		return intel_get_buf_trans(&tgl_combo_phy_trans_edp_hbr2_hobl, n_entries);
-@@ -1668,7 +1675,7 @@ adlp_get_combo_buf_trans_edp(struct intel_encoder *encoder,
- 			     const struct intel_crtc_state *crtc_state,
- 			     int *n_entries)
- {
--	if (crtc_state->port_clock > 540000) {
-+	if (intel_edp_above_hbr2(crtc_state)) {
- 		return intel_get_buf_trans(&adlp_combo_phy_trans_edp_hbr3,
- 					   n_entries);
- 	} else if (use_edp_hobl(encoder)) {
+ /* DP1.4 */
+ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_dp14[] = {
+-	{ .lt = { 1, 0, 0, 21, 0  } },
+-	{ .lt = { 1, 1, 0, 24, 3  } },
+-	{ .lt = { 1, 2, 0, 28, 7  } },
+-	{ .lt = { 0, 3, 0, 35, 13 } },
+-	{ .lt = { 1, 1, 0, 27, 0  } },
+-	{ .lt = { 1, 2, 0, 31, 4  } },
+-	{ .lt = { 0, 3, 0, 39, 9  } },
+-	{ .lt = { 1, 2, 0, 35, 0  } },
+-	{ .lt = { 0, 3, 0, 41, 7  } },
+-	{ .lt = { 0, 3, 0, 48, 0  } },
++	{ .lt = { 21, 0, 0 , 1, 0 } },
++	{ .lt = { 24, 0, 3 , 1, 1 } },
++	{ .lt = { 28, 0, 7 , 1, 2 } },
++	{ .lt = { 35, 0, 13, 0, 3 } },
++	{ .lt = { 27, 0, 0 , 1, 1 } },
++	{ .lt = { 31, 0, 4 , 1, 2 } },
++	{ .lt = { 39, 0, 9 , 0, 3 } },
++	{ .lt = { 35, 0, 0 , 1, 2 } },
++	{ .lt = { 41, 0, 7 , 0, 3 } },
++	{ .lt = { 48, 0, 0 , 0, 3 } },
+ };
+ 
+ /* DP2.1 */
+ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_uhbr[] = {
+-	{ .lt = { 0, 0, 0, 48, 0  } },
+-	{ .lt = { 0, 0, 0, 43, 5  } },
+-	{ .lt = { 0, 0, 0, 40, 8  } },
+-	{ .lt = { 0, 0, 0, 37, 11 } },
+-	{ .lt = { 0, 0, 0, 33, 15 } },
+-	{ .lt = { 0, 0, 2, 46, 0  } },
+-	{ .lt = { 0, 0, 2, 42, 4  } },
+-	{ .lt = { 0, 0, 2, 38, 8  } },
+-	{ .lt = { 0, 0, 2, 35, 11 } },
+-	{ .lt = { 0, 0, 2, 33, 13 } },
+-	{ .lt = { 0, 0, 4, 44, 0  } },
+-	{ .lt = { 0, 0, 4, 40, 4  } },
+-	{ .lt = { 0, 0, 4, 37, 7  } },
+-	{ .lt = { 0, 0, 4, 33, 11 } },
+-	{ .lt = { 0, 0, 8, 40, 0  } },
+-	{ .lt = { 1, 0, 2, 26, 2  } },
++	{ .lt = { 48, 0, 0 , 0, 0 } },
++	{ .lt = { 43, 0, 5 , 0, 0 } },
++	{ .lt = { 40, 0, 8 , 0, 0 } },
++	{ .lt = { 37, 0, 11, 0, 0 } },
++	{ .lt = { 33, 0, 15, 0, 0 } },
++	{ .lt = { 46, 2, 0 , 0, 0 } },
++	{ .lt = { 42, 2, 4 , 0, 0 } },
++	{ .lt = { 38, 2, 8 , 0, 0 } },
++	{ .lt = { 35, 2, 11, 0, 0 } },
++	{ .lt = { 33, 2, 13, 0, 0 } },
++	{ .lt = { 44, 4, 0 , 0, 0 } },
++	{ .lt = { 40, 4, 4 , 0, 0 } },
++	{ .lt = { 37, 4, 7 , 0, 0 } },
++	{ .lt = { 33, 4, 11, 0, 0 } },
++	{ .lt = { 40, 8, 0 , 0, 0 } },
++	{ .lt = { 26, 2, 2 , 1, 0 } },
+ };
+ 
+ /* eDp */
+ static const union intel_ddi_buf_trans_entry _xe3plpd_lt_trans_edp[] = {
+-	{ .lt = { 1, 0, 0, 12, 0 } },
+-	{ .lt = { 1, 1, 0, 13, 1 } },
+-	{ .lt = { 1, 2, 0, 15, 3 } },
+-	{ .lt = { 1, 3, 0, 19, 7 } },
+-	{ .lt = { 1, 1, 0, 14, 0 } },
+-	{ .lt = { 1, 2, 0, 16, 2 } },
+-	{ .lt = { 1, 3, 0, 21, 5 } },
+-	{ .lt = { 1, 2, 0, 18, 0 } },
+-	{ .lt = { 1, 3, 0, 22, 4 } },
+-	{ .lt = { 1, 3, 0, 26, 0 } },
++	{ .lt = { 12, 0, 0, 1, 0 } },
++	{ .lt = { 13, 0, 1, 1, 1 } },
++	{ .lt = { 15, 0, 3, 1, 2 } },
++	{ .lt = { 19, 0, 7, 1, 3 } },
++	{ .lt = { 14, 0, 0, 1, 1 } },
++	{ .lt = { 16, 0, 2, 1, 2 } },
++	{ .lt = { 21, 0, 5, 1, 3 } },
++	{ .lt = { 18, 0, 0, 1, 2 } },
++	{ .lt = { 22, 0, 4, 1, 3 } },
++	{ .lt = { 26, 0, 0, 1, 3 } },
+ };
+ 
+ static const struct intel_ddi_buf_trans xe3plpd_lt_trans_dp14 = {
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+index cec332090a20..7703c6c0a0cb 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
+@@ -51,11 +51,11 @@ struct dg2_snps_phy_buf_trans {
+ };
+ 
+ struct xe3plpd_lt_phy_buf_trans {
+-	u8 txswing;
+-	u8 txswing_level;
+-	u8 pre_cursor;
+ 	u8 main_cursor;
++	u8 pre_cursor;
+ 	u8 post_cursor;
++	u8 txswing;
++	u8 txswing_level;
+ };
+ 
+ union intel_ddi_buf_trans_entry {
 -- 
 2.45.2
 
