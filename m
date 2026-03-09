@@ -2,105 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oL23MPcXr2kiNwIAu9opvQ
+	id ujczNDZdrmm6CgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:56:55 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 06:40:06 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F90823EF08
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 19:56:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F723233F69
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 06:40:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9EAFF10E58D;
-	Mon,  9 Mar 2026 18:56:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A13AA10E48A;
+	Mon,  9 Mar 2026 05:40:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="HmIT16LF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mQ5NpcV5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f179.google.com (mail-yw1-f179.google.com
- [209.85.128.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB2C410E089
- for <intel-gfx@lists.freedesktop.org>; Sun,  8 Mar 2026 23:41:06 +0000 (UTC)
-Received: by mail-yw1-f179.google.com with SMTP id
- 00721157ae682-79801df3e42so141369907b3.0
- for <intel-gfx@lists.freedesktop.org>; Sun, 08 Mar 2026 16:41:06 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773013265; cv=none;
- d=google.com; s=arc-20240605;
- b=MfygANQxZpGfNbsP6BxNWWHv88L/Ml6SzFbIEvjMzYvXb+iZw20UrLh3WBks592eAv
- N8hoS1uIqrGMnLqcq5J1dbQ+z11VVW/Xg90YauqPgGJOFJVhjxXl058PaTbN+5LQ7C9D
- kDugqn/T9DfEQHnkSvy8qQneX8ZYD2cM4iHOQDc8HeIe08nTKGvMVvIkr5lPtUd/ZGQS
- urbleUJ+FEHQaAc788JDaKdIoqltx7/thTlW+bEXFnAkHdBJfZHXflqyGfD+LcUESTLm
- JSdeWgq37z/8L0AL+ODnOW7MrwB5hNF2B2+b2XXI0fT751BC8LmOpzrUGufLTN+tzgaE
- 5XTw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=NQXx8uu4M0KLxzrAzxI+jDa08vrKCalXPwY/Drji+ig=;
- fh=efFnO2TgviP/8ix9853nNrNJR2KEZsDi+1Thobv/tN4=;
- b=UziTue6iDMM5TYAK6u9rxVXNiHGn3rvqj11kMLZRNy18hsyLgFxdKRhD8bW2bba61T
- 9/hxfPw9gb7HSRduJoFJy5m4bhHWqB7s150PNmyIs0oC0NacJOFei2GLJOwYx/FvmkAm
- kXgDqph+ziomhal7OEo9vu/0lmMzVH3D6hPwPl1Buxde433j+/h7hnh1NKzjeWK70ido
- STuRjnArVjTkVTlP44YJtqUfQzzPNJ2wNd7wUHWuphc73lFOiMyLoHNb/SvREcoQu7NV
- nMX0EGBWZVPonsG3ITbjXrZXSrE/3r3EnYJp03JNPmqiBXCVn+q73ok2PCLssOsq1DBc
- U+xQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773013265; x=1773618065; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=NQXx8uu4M0KLxzrAzxI+jDa08vrKCalXPwY/Drji+ig=;
- b=HmIT16LFy3Qc/SOnEcRnxP4IrWF+j9Aa+zL/2QLaSO65+fjW3+i/5v1r4bg0PwL20O
- SCRaABU72ttJx+zdeptUMhqX6nKt6yr43x4Bh+aYcjOsz1CL8+NVAN37WrpaP0C8Xlto
- y0kpD7g2k1FWbd/9G/bneubiJ07nJnfRRoWClWLlHc2UHKXUzpQopVat2icoAZ9nnb6d
- 1IC0cU1jqViTsmFZq9WdLdWkGRWV71ov+EeppvnoV5XB8RW9/JtFPvG+4Oh4Jm/Tfsqc
- dKG4O7yGVR6H6IQFuyc53HjEVqf7WmWZhim45WgjJY5o1PS2fAzuVZpQ6zOckwBn1EO1
- GUpw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773013265; x=1773618065;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=NQXx8uu4M0KLxzrAzxI+jDa08vrKCalXPwY/Drji+ig=;
- b=wrxNWYxdp0emtMX65Y8g9EzkrJY1uOQvX81HZNX7hJC26rZI3Mh9139JuLCtOhQF5X
- 9LlKBylKA9dt5wI4AwOVQ1YLERLp+WmlBPABfIlaeV2fwxS8CeCfKMm3gdeO+aYWPbNf
- 16m4p91IQMFK9U8sRUzUhSFCWI1bQS5RypnD/zB81MlW1YCdogLb0h211sRvJCslFOOr
- 2vkHXuZmoAPCfj/EG79GkWM6P5Su3neKA+UcG1fo4FKz+6W/X1yMBnmeAU8rdSgu9yBS
- a2NBwAv46l57Bp4ZxR0H/48t0rPRtwDViQWlMdC7P4t0OFQnJ5Pbg9r5xH+6Xrl1ffAM
- QV/Q==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXQXiyib7wSBfvXkalMQwRWL+Gd/ZjctgEuVJdNS6wpofNW/EFVuKFnrczhaL+NIsw0POgBksj8MFI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxAhzLPxaz4+GET4nhfaBLfbAJZue1q7OoKOrirbJ4M0DZkaGnK
- +ioHDt5bqdOFvB5Bg9dIp0EhmRWWMyCPZ8aOD32KW32OYOzFjrXeSikd6oYu0TzsUq8CcaicwS3
- gdyT1H1sNUvDaZ4cYUJk6tEH1Owy2hsc=
-X-Gm-Gg: ATEYQzyyWRMDbcRpzAzW7eUUtX9qO/mWrYychKjAl51OLKm8oMagsa2XodX/cB6Rgtm
- MOzbUV5LO+qvf7w7LIqSbIDqWl1J1GQw+nX6NfwhKjTQJaxKpb1aTXg3Z2XluUZRTBOwm2JxZNu
- R2mbV5BwnI/QyzOTk5MviYaVatMfD8IUn8o6Cl4OI9wf4e8EDk6ZpVl+eBspahcURx6rkfIuQ3A
- xKewFjxwsyilaiHrrEQ54d0xmAjig8t6AmfNNGqlOZ0OHcUJpnojM0XLEL5YxhW0xOznyRLVCcN
- 1LeW
-X-Received: by 2002:a05:690c:c50f:b0:796:4486:b7d0 with SMTP id
- 00721157ae682-798dd6a9c02mr86884167b3.4.1773013265400; Sun, 08 Mar 2026
- 16:41:05 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DB55D10E488;
+ Mon,  9 Mar 2026 05:40:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773034803; x=1804570803;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=RlncYc9Z04pP4Jmu3dXCvoEdUkuEUVkzYMoopvM/QbA=;
+ b=mQ5NpcV5x8us+Yd+30S1yTm9/NN2dg5113BayPCrzx/hy34TmfLLfJY/
+ 43stLcGXbwxa7yYxDjJk4HTE53I1PuJgTNPG3PlRcc5CydNTZSzMbyMWb
+ TgWvGKMouJX0WfaawUrouzxWQF1IDzqnirydlcM4MrGw75Wx6qwLTNyyI
+ zL/x2ieXixVPglgXZwnPGaSygoXHpEcsgj7a2txEO8oUF9tFjTI/JFSRj
+ FplO6Yf9ht5WcDVnbw7x+xj2QDMMTEgs8/+th8dxSEBmNTUiFBrjUVxws
+ jzWlTY6fzJd7YH/DrphdPsIWKWMrcfFoUDGehZLwADwqaoF5gdGq/kPkU w==;
+X-CSE-ConnectionGUID: s+EPCwMhT6SiNcmOQ5+9rA==
+X-CSE-MsgGUID: 7fpoeJ4vRsi1LL2g0Bjj7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11723"; a="74020973"
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="74020973"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Mar 2026 22:40:02 -0700
+X-CSE-ConnectionGUID: as1R6B6iR46pgYa6Qu1n0g==
+X-CSE-MsgGUID: lWT0AplwSKqeEstnMJjYQA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,109,1770624000"; d="scan'208";a="224098487"
+Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
+ by orviesa004.jf.intel.com with ESMTP; 08 Mar 2026 22:40:00 -0700
+From: Suraj Kandpal <suraj.kandpal@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [PATCH] drm/i915/backlight: Check if VESA backlight is possible
+Date: Mon,  9 Mar 2026 11:09:56 +0530
+Message-Id: <20260309053956.3966624-1-suraj.kandpal@intel.com>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-References: <20250125064619.8305-1-jim.cromie@gmail.com>
- <2025022012-viscous-cringing-bf88@gregkh>
-In-Reply-To: <2025022012-viscous-cringing-bf88@gregkh>
-From: jim.cromie@gmail.com
-Date: Sun, 8 Mar 2026 17:40:39 -0600
-X-Gm-Features: AaiRm53r_scJ1hz_hrqKtTTL_x76n0lj7hLnJSP7FySmjXt2VLjJSlLhS6vTW4o
-Message-ID: <CAJfuBxyqemd2FipDjt0TNo0KOG1XcnX1X9MJYnt80Zy2-6rPXw@mail.gmail.com>
-Subject: Re: [PATCH 00/63] Fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: linux-kernel@vger.kernel.org, jbaron@akamai.com, ukaszb@chromium.org, 
- intel-gfx-trybot@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org, intel-gvt-dev@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, daniel.vetter@ffwll.ch, 
- tvrtko.ursulin@linux.intel.com, jani.nikula@intel.com, 
- ville.syrjala@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 09 Mar 2026 18:56:53 +0000
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -115,177 +69,109 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2F90823EF08
+X-Rspamd-Queue-Id: 3F723233F69
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:linux-kernel@vger.kernel.org,m:jbaron@akamai.com,m:ukaszb@chromium.org,m:intel-gfx-trybot@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:amd-gfx@lists.freedesktop.org,m:intel-gvt-dev@lists.freedesktop.org,m:daniel.vetter@ffwll.ch,m:tvrtko.ursulin@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,mail.gmail.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, Feb 20, 2025 at 1:31=E2=80=AFAM Greg KH <gregkh@linuxfoundation.org=
-> wrote:
->
-> On Fri, Jan 24, 2025 at 11:45:14PM -0700, Jim Cromie wrote:
-> > This series fixes dynamic-debug's support for DRM debug-categories.
-> > Classmaps-v1 evaded full review, and got committed in 2 chunks:
-> >
-> >   b7b4eebdba7b..6ea3bf466ac6  # core dyndbg changes
-> >   0406faf25fb1..ee7d633f2dfb  # drm adoption
-> >
-> > DRM-CI found a regression during init with drm.debug=3D<initval>; the
-> > static-keys under the drm-dbgs in drm.ko got enabled, but those in
-> > drivers & helpers did not.
-> >
-> > Root Problem:
-> >
-> > DECLARE_DYNDBG_CLASSMAP violated a K&R rule "define once, refer
-> > afterwards".  Replace it with DYNDBG_CLASSMAP_DEFINE (invoked once in
-> > drm-core) and DYNDBG_CLASSMAP_USE (invoked repeatedly, in drivers &
-> > helpers).
-> >
-> > _DEFINE exports the classmap it creates (in drm.ko), other modules
-> > _USE the classmap.  The _USE adds a record ref'g the _DEFINEd (&
-> > exported) classmap, in a 2nd __dyndbg_class_users section.
-> >
-> > So now at modprobe, dyndbg scans the new section after the 1st
-> > __dyndbg_class_maps section, follows the linkage to the _DEFINEr
-> > module, finds the (optional) kernel-param controlling the classmap,
-> > examines its drm.debug=3D<initval>, and applies it to the module being
-> > initialized.
-> >
-> > To recapitulate the multi-module problem wo DRM involvement, Add:
-> >
-> > A. tools/testing/selftests/dynamic_debug/*
-> >
-> > This alters pr_debugs in the test-modules, counts the results and
-> > checks them against expectations.  It uses this formula to test most
-> > of the control grammar, including the new class keyword.
-> >
-> > B. test_dynamic_debug_submod.ko
-> >
-> > This alters the test-module to build both parent & _submod ko's, with
-> > _DEFINE and _USE inside #if/#else blocks.  This recap's DRM's 2 module
-> > failure scenario, allowing A to exersize several cases.
-> >
-> > The #if/#else puts the 2 macro uses together for clarity, and gives
-> > the 2 modules identical sets of debugs.
-> >
-> > Recent DRM-CI tests are here:
-> >   https://patchwork.freedesktop.org/series/139147/
-> >
-> > Previous rev:
-> >   https://lore.kernel.org/lkml/20240716185806.1572048-1-jim.cromie@gmai=
-l.com/
-> >
-> > Noteworthy Additions:
-> >
-> > 1- drop class "protection" special case, per JBaron's preference.
-> >    only current use is marked BROKEN so nobody to affect.
-> >    now framed as policy-choice:
-> >    #define ddebug_client_module_protects_classes() false
-> >    subsystems wanting protection can change this.
-> >
-> > 2- compile-time arg-tests in DYNDBG_CLASSMAP_DEFINE
-> >    implement several required constraints, and fail obviously.
-> >
-> > 3- modprobe time check of conflicting class-id reservations
-> >    only affects 2+classmaps users.
-> >    compile-time solution not apparent.
-> >
-> > 4- dyndbg can now cause modprobe to fail.
-> >    needed to catch 3.
-> >    maybe some loose ends here on failure.
-> >
-> > 5- refactor & rename ddebug_attach_*module_classes
-> >    reduce repetetive boilerplate on 2 types: maps, users.
-> >    rework mostly brought forward in patchset to reduce churn
-> >    TBD: maybe squash more.
-> >
-> > Several recent trybot submissions (against drm-tip) have been passing
-> > CI.BAT, and failing one or few CI.IGT tests randomly; re-tests do not
-> > reliably repeat the failures.
-> >
-> > its also at github.com:jimc/linux.git
-> >   dd-fix-9[st]-ontip  &  dd-fix-9-13
-> >
-> > Ive been running it on my desktop w/o issues.
-> >
-> > The drivers/gpu/drm patches are RFC, I think there might be a single
-> > place to call DRM_CLASSMAP_USE(drm_dedbug_classes) to replace the
-> > sprinkling of _USEs in drivers and helpers.  IIRC, I tried adding a
-> > _DEFINE into drm_drv.c, that didn't do it, so I punted for now.
-> >
-> > I think the dyndbg core additions are ready for review and merging
-> > into a (next-next) test/integration tree.
->
-> So whose tree should this go through?
->
+Check if BACKLIGHT_BRIGHTNESS_AUX_SET_CAPABLE bit is
+set then EDP_PWMGEN_BIT_COUNT_CAP_MIN and EDP_PWMGEN_BIT_COUNT_CAP_MAX
+follow the eDP 1.4b Section 10.3. Which states min should
+be > 1 and max should be >= min. Some legacy panels
+do not follow this properly. They set the
+BACKLIGHT_BRIGHTNESS_AUX_SET_CAPABLE bit while not correctly
+populating the min and max fields leading to a 0 max value.
 
-If you'll have it, I'll send you the non-drm parts now.
-Or the whole thing, and you can take the front half.
-perhaps its too late for this cycle, but you can send it to linux-next IIUC=
-.
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/issues/7514
+Fixes: 40d2f5820951 ("drm/i915/backlight: Remove try_vesa_interface")
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ .../drm/i915/display/intel_dp_aux_backlight.c | 36 ++++++++++++++++++-
+ 1 file changed, 35 insertions(+), 1 deletion(-)
 
-This would free Lukas Bartosik to rework his dyndbg-to-tracefs patchset on =
-top.
-It has the nice feature of private tracefs buffers, allowing to
-isolate drm.debug
-messages there.  It also enables strong verification in selftests, by ensur=
-ing
-that no unrelated log-msgs get into the private tracebuf.
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index a7b186d0e3c4..5b6f5c5f00e6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -609,6 +609,38 @@ static int intel_dp_aux_vesa_setup_backlight(struct intel_connector *connector,
+ 	return 0;
+ }
+ 
++static bool
++check_if_vesa_backlight_possible(struct intel_dp *intel_dp)
++{
++	int ret;
++	bool aux_set = false;
++	u8 bit_min, bit_max;
++
++	if (intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP)
++		aux_set = true;
++
++	if (!aux_set)
++		return true;
++
++	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &bit_min);
++	if (ret < 0)
++		return false;
++
++	bit_min &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
++	if (bit_min < 1)
++		return false;
++
++	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MAX, &bit_max);
++	if (ret < 0)
++		return false;
++
++	bit_max &= DP_EDP_PWMGEN_BIT_COUNT_MASK;
++	if (bit_max < bit_min)
++		return false;
++
++	return true;
++}
++
+ static bool
+ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
+ {
+@@ -625,12 +657,14 @@ intel_dp_aux_supports_vesa_backlight(struct intel_connector *connector)
+ 		return true;
+ 	}
+ 
+-	if (drm_edp_backlight_supported(intel_dp->edp_dpcd)) {
++	if (drm_edp_backlight_supported(intel_dp->edp_dpcd) &&
++	    check_if_vesa_backlight_possible(intel_dp)) {
+ 		drm_dbg_kms(display->drm,
+ 			    "[CONNECTOR:%d:%s] AUX Backlight Control Supported!\n",
+ 			    connector->base.base.id, connector->base.name);
+ 		return true;
+ 	}
++
+ 	return false;
+ }
+ 
+-- 
+2.34.1
 
-
-Ive been banging on DRM-CI, with some success.
-Hopefully enough demonstrated soon to overcome the inertia.
-https://gitlab.freedesktop.org/jim.cromie/kernel-drm-next-dd.git
-
-Some tests on i915 timed out and failed, cuz toggling up to 1800
-drm-dbg callsites with dyndbg took 800 ms when 150 ms was expected.
-I have a fork of IGT adding time-dilation when drm-dbgs with classes
-are found in dynamic_debug/control.  An alternate approach batches
-256 static-key toggles in 1 IPI (by sorting rather than flushing on
-out-of-order addys).
-This cuts IPIs to 1/170, but is RFC, and only sorted on x86.
-
-
-
-> And I think the last patch in this series isn't correct, it looks like a
-> 000 email somehow.
->
-
-IIRC, that was me trying to get a merge-message or something like it.
-
-
-> thanks,
->
-> greg k-h
