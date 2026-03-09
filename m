@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aIMsJHnlrmmsJwIAu9opvQ
+	id uQu7JXTmrmlfKAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 16:21:29 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 16:25:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB7523B8D8
-	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 16:21:28 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4A8AD23B9AF
+	for <lists+intel-gfx@lfdr.de>; Mon, 09 Mar 2026 16:25:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 367C610E538;
-	Mon,  9 Mar 2026 15:21:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C09DF10E542;
+	Mon,  9 Mar 2026 15:25:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="U4L5dPhP";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MNAmv8fD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C457A10E533;
- Mon,  9 Mar 2026 15:21:25 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C96310E53E;
+ Mon,  9 Mar 2026 15:25:37 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id AFA5843E9F;
- Mon,  9 Mar 2026 15:21:24 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0C57CC4CEF7;
- Mon,  9 Mar 2026 15:21:24 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 74401600B0;
+ Mon,  9 Mar 2026 15:25:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9B133C2BC86;
+ Mon,  9 Mar 2026 15:25:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773069684;
- bh=yjH9Qy6R6RruoyUt8z/lT2greWmRoBg2fSGT8Nm76Q8=;
+ s=k20201202; t=1773069936;
+ bh=fBBN7nvLIOBBwvSPB0nsIwVG0Bl8ydOvAnuxSNjiMJ4=;
  h=Date:From:To:Subject:In-Reply-To:References:Cc:From;
- b=U4L5dPhPxfqs4JNxt0xMlRXLGgEgFbnOQkZVlti2gjv5KyyiBwar0P13MLfQ9bubh
- qoAYnquJqnlBkPmCiE6OKMAJ4v/QiqauKhbUAXkoMJ8Y9RrRG0IkIJ28p7FTw5mPql
- 6plPQyAshZdZ5b7qevch3261+Fjqvboq/GTm2b9uI8FmPBQU/hkEKtdTz8FnEoRKLC
- ZEBYDl4se1JJHja0XWGGDOuK36m958TCJ/Yj3Lycd18LJwFnAXMo5fB6XXjPurHM9o
- oyMWVj8KaTN+fQHJ+Vc+dbKpr6WF/9ejDtfgkMgS/2g73umL5BRttrc8oPU2gxO28Q
- 8m+T8znrqdNyQ==
-Message-ID: <c693c826ce1791fbab960af03ed75138@kernel.org>
-Date: Mon, 09 Mar 2026 15:21:21 +0000
+ b=MNAmv8fDnhYtxM0AqvHEvs5plNOfcFG5T5i+Ja+7DrxyZIGfF1AAYnIY+u3KsprMG
+ JMuD8rHTrFsGxJuWtPzYn1oTpX5E/S8Wt7w6/5DuKx+fhf450UI35MM2GkY6PE1bKn
+ maJdvsjJrMxdqAY0d4lhnCsvLP7aIkDoSGt+jsXb5ntSN4HlTvmbbzBDcMOZTgsLKA
+ fu7AB0yWeg/bOhCRg6RIQcQ9MK05WUSRy63p/aUCNSck2EKbYfMnfl3bpUTcKRp5/z
+ yCwhrXd/YmGiRCR7yH6ahfW4bFw3FHW/3DByDbQ0Kvt31TJT8Tpqn8CtNZmxqUy8dU
+ GlADCxlH2vpOw==
+Message-ID: <da696271d7b5e27569f026d4f7c2ab82@kernel.org>
+Date: Mon, 09 Mar 2026 15:25:33 +0000
 From: "Maxime Ripard" <mripard@kernel.org>
 To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
-Subject: Re: [PATCH v10 02/22] drm/display: hdmi-state-helper: Use default
- case for unsupported formats
-In-Reply-To: <20260305-color-format-v10-2-a58c68a11868@collabora.com>
-References: <20260305-color-format-v10-2-a58c68a11868@collabora.com>
+Subject: Re: [PATCH v10 03/22] drm: Add new general DRM property "color format"
+In-Reply-To: <20260305-color-format-v10-3-a58c68a11868@collabora.com>
+References: <20260305-color-format-v10-3-a58c68a11868@collabora.com>
 Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  kernel@collabora.com, linux-arm-kernel@lists.infradead.org,
  linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-rockchip@lists.infradead.org, "Alex
- Deucher" <alexander.deucher@amd.com>, "Andrzej Hajda" <andrzej.hajda@intel.com>,
- "Andy Yan" <andy.yan@rock-chips.com>,
+ Deucher" <alexander.deucher@amd.com>, "Andri Yngvason" <andri@yngvason.is>,
+ "Andrzej
+ Hajda" <andrzej.hajda@intel.com>, "Andy Yan" <andy.yan@rock-chips.com>,
  =?utf-8?b?Q2hyaXN0aWFuIEvDtm5pZw==?= <christian.koenig@amd.com>, "David
  Airlie" <airlied@gmail.com>, "Dmitry Baryshkov" <lumag@kernel.org>, "Harry
  Wentland" <harry.wentland@amd.com>,
@@ -60,14 +60,16 @@ Cc: amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Lahtinen" <joonas.lahtinen@linux.intel.com>,
  "Laurent Pinchart" <Laurent.pinchart@ideasonboard.com>, "Leo
  Li" <sunpeng.li@amd.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime
- Ripard" <mripard@kernel.org>, "Neil Armstrong" <neil.armstrong@linaro.org>,
- "Rob Herring" <robh@kernel.org>, "Robert Foss" <rfoss@kernel.org>, "Rodrigo
- Siqueira" <siqueira@igalia.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Sandy
- Huang" <hjc@rock-chips.com>, "Sascha Hauer" <s.hauer@pengutronix.de>, "Shuah
- Khan" <skhan@linuxfoundation.org>, "Simona Vetter" <simona@ffwll.ch>, "Thomas
- Zimmermann" <tzimmermann@suse.de>, "Tvrtko Ursulin" <tursulin@ursulin.net>
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Marius
+ Vlad" <marius.vlad@collabora.com>, "Maxime Ripard" <mripard@kernel.org>, "Neil
+ Armstrong" <neil.armstrong@linaro.org>, "Rob Herring" <robh@kernel.org>,
+ "Robert
+ Foss" <rfoss@kernel.org>, "Rodrigo Siqueira" <siqueira@igalia.com>, "Rodrigo
+ Vivi" <rodrigo.vivi@intel.com>, "Sandy Huang" <hjc@rock-chips.com>, "Sascha
+ Hauer" <s.hauer@pengutronix.de>, "Shuah Khan" <skhan@linuxfoundation.org>,
+ "Simona
+ Vetter" <simona@ffwll.ch>, "Thomas Zimmermann" <tzimmermann@suse.de>, "Tvrtko
+ Ursulin" <tursulin@ursulin.net>, "Werner Sembach" <wse@tuxedocomputers.com>
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,7 +85,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1EB7523B8D8
+X-Rspamd-Queue-Id: 4A8AD23B9AF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [2.19 / 15.00];
 	MISSING_MIME_VERSION(2.00)[];
@@ -97,9 +99,9 @@ X-Spamd-Result: default: False [2.19 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,collabora.com,lists.infradead.org,vger.kernel.org,amd.com,intel.com,rock-chips.com,gmail.com,kernel.org,sntech.de,linux.intel.com,kwiboo.se,lwn.net,ideasonboard.com,linaro.org,igalia.com,pengutronix.de,linuxfoundation.org,ffwll.ch,suse.de,ursulin.net];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,collabora.com,lists.infradead.org,vger.kernel.org,amd.com,yngvason.is,intel.com,rock-chips.com,gmail.com,kernel.org,sntech.de,linux.intel.com,kwiboo.se,lwn.net,ideasonboard.com,linaro.org,igalia.com,pengutronix.de,linuxfoundation.org,ffwll.ch,suse.de,ursulin.net,tuxedocomputers.com];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
@@ -116,12 +118,12 @@ X-Spamd-Result: default: False [2.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Thu, 5 Mar 2026 15:19:28 +0100, Nicolas Frattaroli wrote:
-> Switch statements that do not handle all possible values of an
-> enumeration will generate a warning during compilation. In preparation
-> for adding a COUNT value to the end of the enum, this needs to be dealt
-> with.
+On Thu, 5 Mar 2026 15:19:29 +0100, Nicolas Frattaroli wrote:
+> Add a new general DRM property named "color format" which can be used by
+> userspace to request the display driver to output a particular color
+> format.
 > 
+> Possible options are:
 > 
 > [ ... ]
 
