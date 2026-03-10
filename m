@@ -2,66 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UibwMAAIsGkUewIAu9opvQ
+	id mM/WL4EFsGlregIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:01:04 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:50:25 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47B8B24C06B
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32EC824BA09
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:50:25 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A31E10E705;
-	Tue, 10 Mar 2026 12:00:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2F7810E202;
+	Tue, 10 Mar 2026 11:50:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eq3XQydn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IML7jWg7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (unknown [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3478210E704;
- Tue, 10 Mar 2026 12:00:31 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CB82D10E202;
+ Tue, 10 Mar 2026 11:50:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773144051; x=1804680051;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=GMuRZsIcDPYzUmK3hRLnUVbGlgh6ZtOMDCxtj9c841Y=;
- b=Eq3XQydnB45YndpfZjWMBy0TZszjyQh3mW8hZ7GZ/lPMCUnAGqrunlKs
- e48y0ovudKkA06Bs3OHFuPg1ry+gtLSh0wXwJX7ZeGkSxykeXhucu27Ry
- pNyRbIZ0OLhJmeD5hFb2qwcEyp5UedgimEXkRMQfTXcBVUaUXEcHMiKLt
- oZw8cnfgr8mpOlKybwco6+/qErJGcuLVdsHZIF32xdHY6oSUt+y6V5h26
- xeLbZVWnO/LS0rd5BNdY1O5IT7ki/i22RvyiOpqymFud0Tw21dJkE2Kye
- AyOn2K1Z4ajt7TjMUpcVf1mCYV7wGex45FGFcohIFSr8XATFn22SqtWrH g==;
-X-CSE-ConnectionGUID: bqXqt9hyTuacgxKfUjt6Qg==
-X-CSE-MsgGUID: 9+GDMqtTQaOvqTPdgCSw/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84897898"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84897898"
+ t=1773143423; x=1804679423;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=d21oLiqDe/wh/XNZHzEftdKTvWWVa5DZev68iwNTTTI=;
+ b=IML7jWg719DGlzq7tZI7yrje//ZEVXkHu1BSG7ouq/DvdS5Nfw312uU7
+ MXbzpNsOQ0kKg6pfvHLfg1ze2eUwCgIskm+kEudJpmafJIvm51gCVxR3P
+ fW55FRWIo9c7xZWmu+rfDbdO9MUFmAPNuFf9oBUREmBsE1kNzEFG9DImt
+ pALqkdpY8SdkAgvrU9Cr37Vp/LELnL1bmSDDlLFQo1rQQha4sijf6d2cP
+ 2xX3SotXGD57PVpHPWJR/RG/i9RrAEBLc5AqPQ3MRUh7nCzbqDnIY1Kvn
+ F1q1EUEj3N1JG3OLFzKSObnt6qRUgJ/pm848BIsDP5ZuEXyz8++s4puiA g==;
+X-CSE-ConnectionGUID: M+WrzopySXeLLO8AuxJS5w==
+X-CSE-MsgGUID: mX46fiifRTqRQVLGm8eWGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="77792475"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="77792475"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 04:57:46 -0700
-X-CSE-ConnectionGUID: T899SoHYTtWxDo7ymnwV6Q==
-X-CSE-MsgGUID: +Gs3nQC3SKybWqfT0s/xBA==
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 04:50:23 -0700
+X-CSE-ConnectionGUID: Ige3gh1MQDOo7M97PT8+zg==
+X-CSE-MsgGUID: Qls9i9EjS1Obis60CUpA/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="224773048"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa005.fm.intel.com with ESMTP; 10 Mar 2026 04:57:42 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-Cc: contact@emersion.fr, alex.hung@amd.com, harry.wentland@amd.com,
- daniels@collabora.com, mwen@igalia.com, sebastian.wick@redhat.com,
- uma.shankar@intel.com, ville.syrjala@linux.intel.com,
- maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
- louis.chauvet@bootlin.com, stable@vger.kernel.org,
- chaitanya.kumar.borah@intel.com
-Subject: [PATCH v2 2/2] drm/atomic: Add affected colorops with affected planes
-Date: Tue, 10 Mar 2026 17:02:38 +0530
-Message-Id: <20260310113238.3495981-3-chaitanya.kumar.borah@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260310113238.3495981-1-chaitanya.kumar.borah@intel.com>
-References: <20260310113238.3495981-1-chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="224771906"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by fmviesa005-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Mar 2026 04:50:20 -0700
+Date: Tue, 10 Mar 2026 12:50:03 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH i-g-t] tests/intel/gem_lmem_swapping: Expect gem leak
+ helper crashes
+Message-ID: <20260310115003.wwffggwsyzsbxw5k@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+References: <20260302131817.3744919-2-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20260302131817.3744919-2-janusz.krzysztofik@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,79 +85,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 47B8B24C06B
+X-Rspamd-Queue-Id: 32EC824BA09
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[kamil.konieczny@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DMARC_DNSFAIL(0.00)[intel.com : query timed out];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url,kamilkon-DESK.igk.intel.com:mid]
 X-Rspamd-Action: no action
 
-When drm_atomic_add_affected_planes() adds a plane to the atomic
-state, the associated colorops are not guaranteed to be included.
-This can leave colorop state out of the transaction when planes
-are pulled in implicitly (eg. during modeset or internal commits).
+Hi Janusz,
+On 2026-03-02 at 14:12:45 +0100, Janusz Krzysztofik wrote:
+> When trying to exhaust system memory in order to exercise LMEM eviction
+> under OOM conditions, a gem_leak helper process may itself become a victim
+> of memory shortage.  If our i915 TTM VM fault handler fails to allocate a
+> page and responds with a SIGBUS signal when the helper process is trying
+> to store data in a mmaped i915 GEM object with memset then the process
+> crashes.  Unfortunately, such crash is not only reported on stdout, strerr
+> and dmesg as premature, additional result from the subtest while it is
+> still in progress, but also renders the final result as failed.
+> 
+> Starting subtest: smem-oom
+> Starting dynamic subtest: lmem0
+> Received signal SIGBUS.
+> Stack trace:
+>  #0 [fatal_sig_handler+0x17b]
+>  #1 [__sigaction+0x50]
+>  #2 [__igt_unique____real_main808+0xdbc]
+>  #3 [main+0x3f]
+>  #4 [__libc_init_first+0x8a]
+>  #5 [__libc_start_main+0x8b]
+>  #6 [_start+0x25]
+> Dynamic subtest lmem0: CRASH (20.804s)
+> Subtest smem-oom: SUCCESS (20.807s)
+> Received signal SIGABRT.
+> Stack trace:
+>  #0 [fatal_sig_handler+0x17b]
+>  #1 [__sigaction+0x50]
+>  #2 [pthread_kill+0x11c]
+>  #3 [gsignal+0x1e]
+>  #4 [abort+0xdf]
+>  #5 [<unknown>+0xdf]
+>  #6 [__assert_fail+0x47]
+>  #7 [__igt_waitchildren+0x1c0]
+>  #8 [igt_waitchildren_timeout+0x9d]
+>  #9 [intel_allocator_multiprocess_stop+0xbb]
+>  #10 [__igt_unique____real_main808+0x551]
+>  #11 [main+0x3f]
+>  #12 [__libc_init_first+0x8a]
+>  #13 [__libc_start_main+0x8b]
+>  #14 [_start+0x25]
+> (gem_lmem_swapping:2347) CRITICAL: Test assertion failure function test_smem_oom, file ../tests/intel/gem_lmem_swapping.c:777:
+> (gem_lmem_swapping:2347) CRITICAL: Failed assertion: lmem_err == 0
+> (gem_lmem_swapping:2347) CRITICAL: Last errno: 3, No such process
+> (gem_lmem_swapping:2347) CRITICAL: error: 137 != 0
+> Dynamic subtest lmem0 failed.
+> ...
+> runner: Dynamic subtest lmem0 result when not inside a subtest. This is a test bug.
+> Subtest smem-oom: FAIL (22.672s)
+> 
+> Since page allocation failures are unavoidable under OOM conditions, and
+> the SIGBUS signal response from our TTM fault handler is correct in such
+> cases, catch those signals and let the helper process continue.
+> 
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
+> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+> ---
+> That's an improved and better documented new version of my former
+> https://patchwork.freedesktop.org/patch/685572/
+> 
+>  tests/intel/gem_lmem_swapping.c | 18 +++++++++++++++++-
+>  1 file changed, 17 insertions(+), 1 deletion(-)
+> 
+> diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
+> index 77e18f1a3c..514423f470 100644
+> --- a/tests/intel/gem_lmem_swapping.c
+> +++ b/tests/intel/gem_lmem_swapping.c
+> @@ -11,6 +11,8 @@
+>  #include "igt_kmod.h"
+>  #include "runnercomms.h"
+>  #include <unistd.h>
+> +#include <setjmp.h>
+> +#include <signal.h>
+>  #include <stdlib.h>
+>  #include <stdint.h>
+>  #include <stdio.h>
+> @@ -651,13 +653,21 @@ static void leak(uint64_t alloc)
+>  	}
+>  }
+>  
+> +static sigjmp_buf sigbus_jmp;
+> +
+> +static void sigbus_handler(int sig, siginfo_t *si, void *ctx)
+> +{
+> +	siglongjmp(sigbus_jmp, 1);
+> +}
+> +
+>  static void gem_leak(int fd, uint64_t alloc)
+>  {
+>  	uint32_t handle = gem_create(fd, alloc);
+>  	void *buf;
+>  
+>  	buf = gem_mmap_offset__fixed(fd, handle, 0, PAGE_SIZE, PROT_WRITE);
+> -	memset(buf, 0, PAGE_SIZE);
+> +	if (!igt_debug_on_f(sigsetjmp(sigbus_jmp, 1), "PID %d: SIGBUS caught\n", getpid()))
+> +		memset(buf, 0, PAGE_SIZE);
 
-Also add affected colorops when adding affected planes to keep
-plane and color pipeline state consistent within the atomic
-transaction.
+There are other uses for signal masking in igt, all of them do:
+mask + op + unmask
 
-v2: Add affected colorops only when a pipeline is enabled
-
-Fixes: 2afc3184f3b3 ("drm/plane: Add COLOR PIPELINE property")
-Cc: <stable@vger.kernel.org> #v6.19+
-Reviewed-by: Uma Shankar <uma.shankar@intel.com> #v1
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/drm_atomic.c | 7 +++++++
- 1 file changed, 7 insertions(+)
-
-diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-index 04925166df98..dd9f27cfe991 100644
---- a/drivers/gpu/drm/drm_atomic.c
-+++ b/drivers/gpu/drm/drm_atomic.c
-@@ -1587,6 +1587,7 @@ drm_atomic_add_affected_planes(struct drm_atomic_state *state,
- 	const struct drm_crtc_state *old_crtc_state =
- 		drm_atomic_get_old_crtc_state(state, crtc);
- 	struct drm_plane *plane;
-+	int ret;
- 
- 	WARN_ON(!drm_atomic_get_new_crtc_state(state, crtc));
- 
-@@ -1600,6 +1601,12 @@ drm_atomic_add_affected_planes(struct drm_atomic_state *state,
- 
- 		if (IS_ERR(plane_state))
- 			return PTR_ERR(plane_state);
-+
-+		if (plane_state->color_pipeline) {
-+			ret = drm_atomic_add_affected_colorops(state, plane);
-+			if (ret)
-+				return ret;
-+		}
- 	}
- 	return 0;
- }
--- 
-2.25.1
-
+Regards,
+Kamil 
+>  	munmap(buf, PAGE_SIZE);
+>  
+>  	gem_madvise(fd, handle, I915_MADV_DONTNEED);
+> @@ -745,8 +755,14 @@ static void test_smem_oom(int i915,
+>  				}
+>  			}
+>  			igt_fork(child, 1) {
+> +				struct sigaction sa = {
+> +					.sa_sigaction = sigbus_handler,
+> +					.sa_flags = SA_SIGINFO | SA_NODEFER,
+> +				};
+>  				int fd = drm_reopen_driver(i915);
+>  
+> +				sigaction(SIGBUS, &sa, NULL);
+> +
+>  				for (int pass = 0; pass < num_alloc; pass++) {
+>  					if (READ_ONCE(*lmem_done))
+>  						break;
+> -- 
+> 2.52.0
+> 
