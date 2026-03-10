@@ -2,51 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPHeD4JfsGloigIAu9opvQ
+	id MK4EHf6UsWnkDAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 19:14:26 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 17:14:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1AE8256444
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 19:14:25 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 13FA2267241
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 17:14:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 563BF10E77E;
-	Tue, 10 Mar 2026 18:14:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BA7810E8F8;
+	Wed, 11 Mar 2026 16:14:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="kEW9++8W";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Fl8IzYhT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 555DD10E77B;
- Tue, 10 Mar 2026 18:14:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773166459;
- bh=GjCA8yQPbu1rhR9QarsGaGitf2y9GvEi6i7/18ZjPWU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=kEW9++8WO5AbuW0PQiHjP5MQM55Dq+cstct4rRBNAqMp5BfLNYmaahlwnNl2Pfmeh
- pIiBSkp1nuGYWp8GFmGH1qGlzIxTxghPuPSI5Dln7zsty9U+KnpIVZ/1lup1GhoYhr
- CDeWHVFYhgxHYuKVv2xj2mZgW+/zp9wI1IB3ezdZ2OyLqJtJTXOWq8X4oKhYxI36RU
- ovkqlTIpIxHq25/KcQ8CfaXZ+w203Vv4gLtFIpZGhp96hLveBkh5QP9h5XmwuYUDM2
- Hr5+frKhLF+XMJy1pTAmD9TbPT9UBEgIEBamA6PEHETJWSUcedB7EBPQT+mpmjGs57
- qs10u9mLkX2FQ==
-Message-ID: <64617f61-6c91-4739-a545-b0109f8dc87e@lankhorst.se>
-Date: Tue, 10 Mar 2026 19:14:18 +0100
+Received: from mail-pl1-f179.google.com (mail-pl1-f179.google.com
+ [209.85.214.179])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B80D610E085
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 18:40:50 +0000 (UTC)
+Received: by mail-pl1-f179.google.com with SMTP id
+ d9443c01a7336-2a9296b3926so102507525ad.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 11:40:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20230601; t=1773168050; x=1773772850; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=bjFZ9oZWWc3RZ4UdO5rq+AZbr7uPDX73K58gh1+yuH0=;
+ b=Fl8IzYhTIHy16Q7wx9gCET+sngq1nVTg44hY9uKGjmPm5ZHg2GOBjTf191Hg9ThwyW
+ uXkaIrFtuyed53h9xo4bKHp1hZ84VoPvLXFSyBuy3sPpS3oA2F54IY6Wmna71J+frNt9
+ wnOLMWFkqZN3Kptf5O1JxkJExArGcG1kONk/bTqw3JDzETl+cdH1jbvW2K3wIIeTxRj0
+ tZYIBRICV5XCGRHR+jbQKlDVIdM1WaAYOP2sTkTCFLnPXSKNuH1zd+OSrcnrZe2GTrzU
+ T5s+hpI5cQj6uXg9NK+Wii511DYLJIURi/WwmNGo4KOP9PlsNZCb/se8mpkGT+luubBQ
+ tL5g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20230601; t=1773168050; x=1773772850;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=bjFZ9oZWWc3RZ4UdO5rq+AZbr7uPDX73K58gh1+yuH0=;
+ b=Li1AkzsoYT+5XC+J9JC9tlUoON6AVpeGSIKMU0F1gJTZxhTEFeomKOnVYI95ph/TJi
+ ySxZ4nGyKsEnpq+yZzxsX+mMb/83e/pwZ6k3dYMpPp576ajuyabVZUVx9Sit81B4vv9X
+ lkHmnVvlO503SCKkWBhytEZA9sdBS2oG+YGF89ClycqTorWUxI7k5G31jxwkHMyLbJdb
+ g4p6PVKlYXRnjOqupH/0WeZ6xrHYf0X7iVUSl6PkKoaIgHxyjPGZ7zTZHCEZihPceVc7
+ OxhePRUCdvon9gE/zlWaTDQebzFXBEDaa6YZrin5oX4u3otYRQ0kwgs6YsUvymEzGdP7
+ LoSQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCUp0oO1eoodfjBgDDMuuCRbUS/UA4zJ1LxMjuoqmQ0os3tz+g1swSTwJzc6nQXPqo5+9VJnFBAGY8Q=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw5/WPsRyA2Yj/XVeoebw8kyTjHxdHB5n6wiT6U62lCk4ycWTIv
+ XmAMcPweL+SUptIB8/n5sY9dtTlTcgMSHY6d4btV6PALF78Lv1nZejFb
+X-Gm-Gg: ATEYQzym5GaTflJEOaxuAYj+BV7wwUZ7L7fkyXkMXJJW2MspoIbWT865pzDF9UW2Ms0
+ u75eH+YxWaGReC5SVrWHYAeDz68YGH3D17xn9E+nlPVxwi/NORm68125K7HBxjpSkzmdCmAyr0v
+ zZih8r+E5IAPIlbFCVMsgWA04yTStGTOC+/FUKlmZQnDzEqDVRymtDXefXi4NH5Zu17sVzf47bV
+ eY7OahoNG4R1VJbvt23siLKOa6C+J1eW0ArXN42oWSo2fZq1m6cOIeJfvpcmdsiPht454GrK28Q
+ gwUGgvhmIRmIVuXELmeJmkXB/leWm2BxP5WYJ/TDAjAL0Elry5ZLbRNFyNXGPSm4EIvP/E76bfH
+ i+WZHndqzRN8RPHpZsDra9steHV9v7l8PIBl8SxAh+yxl9064RTqaxXxMtN/4q4j4laY+4y3t4P
+ aRZkAaNfaPbBzVdxtmklrndn6gx125k6ARdThUoIjJsLGViA==
+X-Received: by 2002:a17:903:28c8:b0:2ae:5671:7071 with SMTP id
+ d9443c01a7336-2ae8252cf0fmr96662285ad.43.1773168050081; 
+ Tue, 10 Mar 2026 11:40:50 -0700 (PDT)
+Received: from google.com ([2402:7500:a44:85b:2953:97d3:b283:95c3])
+ by smtp.gmail.com with ESMTPSA id
+ d9443c01a7336-2ae83e58592sm220535625ad.14.2026.03.10.11.40.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 10 Mar 2026 11:40:49 -0700 (PDT)
+Date: Wed, 11 Mar 2026 02:40:36 +0800
+From: Kuan-Wei Chiu <visitorckw@gmail.com>
+To: Philipp Hahn <phahn-oss@avm.de>
+Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
+ bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
+ dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
+ gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
+ intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
+ kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
+ linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
+ linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
+ linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mm@kvack.org,
+ linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
+ linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
+ sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev
+Subject: Re: [PATCH 00/61] treewide: Use IS_ERR_OR_NULL over manual NULL
+ check - refactor
+Message-ID: <abBlpGKO842B3yl9@google.com>
+References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v7 26/26] drm/i915/gt: Add a spinlock to prevent
- starvation of irq_work.
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260310115709.2276203-1-dev@lankhorst.se>
- <20260310115709.2276203-27-dev@lankhorst.se>
- <20260310170413.5rCjlTce@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260310170413.5rCjlTce@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
+X-Mailman-Approved-At: Wed, 11 Mar 2026 16:14:45 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,134 +118,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E1AE8256444
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	RCPT_COUNT_THREE(0.00)[4];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,patchwork.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	FORGED_RECIPIENTS(0.00)[m:phahn-oss@avm.de,m:amd-gfx@lists.freedesktop.org,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradead.
+ org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER(0.00)[visitorckw@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[54];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[visitorckw@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 13FA2267241
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
-Hey,
+Hi Philipp,
 
-Den 2026-03-10 kl. 18:04, skrev Sebastian Andrzej Siewior:
-> On 2026-03-10 12:57:08 [+0100], Maarten Lankhorst wrote:
->> From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
->>
->> IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
->> and the interrupt will poll on signaler_active while the irq-work can't
->> make progress.
+On Tue, Mar 10, 2026 at 12:48:26PM +0100, Philipp Hahn wrote:
+> While doing some static code analysis I stumbled over a common pattern,
+> where IS_ERR() is combined with a NULL check. For that there is
+> IS_ERR_OR_NULL().
 > 
-> The threaded-interrupt is the interrupt.
+> I've written a Coccinelle patch to find and patch those instances.
+> The patches follow grouped by subsystem.
 > 
-> | On PREEMPT_RT the irq_work can be preempted by threaded-interrupt which
-> | will be poll for completion but the irq_work routine can't make
-> | progress.
+> Patches 55-58 may be dropped as they have a (minor?) semantic change:
+> They use WARN_ON() or WARN_ON_ONCE(), but only in the IS_ERR() path, not
+> for the NULL check. Iff it is okay to print the warning also for NULL,
+> then the patches can be applied.
 > 
->> Solve this by adding a spinlock to prevent starvation and force
->> completion.
-> 
-> | Solve this by adding a spinlock_t to prevent starvation by forcing a
-> | context switch if lock is held based on `signaler_active'. On
-> | !PREEMPT_RT `signaler_active' can only be non-zero if multiple CPUs are
-> | involved and spinning on the lock leds to the same result.
-> 
->> Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-> 
-> If I am the From: then I should have the Signed-off-by, too. Let me do
-> Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-> 
-> so it can be picked up.
-> 
-> You did suggest the following:
-> 
-> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-> @@ -209,7 +209,7 @@ static void signal_irq_work(struct irq_work *work)
->  		intel_breadcrumbs_disarm_irq(b);
->  
->  	rcu_read_lock();
-> -	atomic_inc(&b->signaler_active);
-> +	spin_lock(&b->signaler_active_sync);
->  	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
->  		struct i915_request *rq;
->  
-> @@ -245,7 +245,7 @@ static void signal_irq_work(struct irq_work *work)
->  				i915_request_put(rq);
->  		}
->  	}
-> -	atomic_dec(&b->signaler_active);
-> +	spin_unlock(&b->signaler_active_sync);
->  	rcu_read_unlock();
->  
->  	llist_for_each_safe(signal, sn, signal) {
-> @@ -290,6 +290,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
->  	init_llist_head(&b->signaled_requests);
->  
->  	spin_lock_init(&b->irq_lock);
-> +	spin_lock_init(&b->signaler_active_sync);
->  	init_irq_work(&b->irq_work, signal_irq_work);
->  
->  	b->irq_engine = irq_engine;
-> @@ -487,8 +488,10 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
->  	if (release)
->  		intel_context_put(ce);
->  
-> -	while (atomic_read(&b->signaler_active))
-> -		cpu_relax();
-> +	while (spin_is_locked(&b->signaler_active_sync)) {
-> +		spin_lock_irqsave(&b->signaler_active_sync, flags);
-> +		spin_unlock_irqrestore(&b->signaler_active_sync, flags);
-> 
-> And this does not work because spin_is_locked() returns true and spins
-> forever. This fails because there is a "corner case" where
-> spin_is_locked() returns but the lock has no lock owner as in locked.
-> This happens if there is a waiter which did not yet acquire the lock. 
-> 
-> So if you happy with this, we could keep it ;)
+> While generating the patch set `checkpatch` complained about mixing
+> [un]likely() with IS_ERR_OR_NULL(), which already uses likely()
+> internally. I found and fixed several locations, where that combination
+> has been used.
 
-It seems CI is a lot happier too now.
+Thanks for the patchset. However, I think we need a explanation for why
+switching to IS_ERR_OR_NULL() is an improvement over the existing code.
 
-Xe:
-https://patchwork.freedesktop.org/series/159034/#rev14
+IMHO, the necessity of IS_ERR_OR_NULL() often highlights a confusing or
+flawed API design. It usually implies that the caller is unsure whether
+a failure results in an error pointer or a NULL pointer. Rather than
+doing a treewide conversion of this pattern, I believe it would be much
+more meaningful to review these instances case-by-case and fix the
+underlying APIs or caller logic instead.
 
-BAT passes, the full run has some minor issues but only kms_vblank systematic.
-Likely due to the fundamental changes of the PREEMPT_RT kernel itself, nothing driver specific.
+Additionally, a treewide refactoring like this has the practical
+drawback of creating unnecessary merge conflicts when backporting to
+stable trees.
 
-i915:
-https://patchwork.freedesktop.org/series/159035/#rev14
-
-A few new warnings, and some noise. The most worrying part is the i915 execlists selftest
-failing on nearly all platforms:
-
-<3>[  504.279024] i915/intel_execlists_live_selftests: live_preempt_user failed with error -62
-...
-<7>[  506.799685] [IGT] i915_selftest: finished subtest execlists, FAIL
-
-I don't know what's going on there yet, likely needs more debugging. Could be the test itself
-being written incorrectly or something else entirely.
-
-Otherwise things are looking good! Have you uncovered anything else?
-
-Kind regards,
-~Maarten Lankhorst
+Regards,
+Kuan-Wei
