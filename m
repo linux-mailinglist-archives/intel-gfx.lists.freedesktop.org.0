@@ -2,60 +2,155 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SFU/GZwrsGl7gwIAu9opvQ
+	id YDvcN/yUsWnkDAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 15:33:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 17:14:52 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BF9B32520CD
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 15:32:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D142267232
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 17:14:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C3E410E158;
-	Tue, 10 Mar 2026 14:32:57 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=collabora.com header.i=@collabora.com header.b="aaWkO08D";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B69510E3ED;
+	Wed, 11 Mar 2026 16:14:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from bali.collaboradmins.com (bali.collaboradmins.com
- [148.251.105.195])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9A59010E158;
- Tue, 10 Mar 2026 14:32:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=collabora.com;
- s=mail; t=1773153175;
- bh=qQPA0em+yVcig65Vsh8WumcNnPD9SM/zDZ6+Ka10/d0=;
- h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
- b=aaWkO08DB0iMdT6zJyPDkBMtnGcj0SNtYkuF9hO9e1svoH1AIpmSLa0wyAeTqxJL7
- CA09gF0cuHcmZcfzV58CP6hiL9LaAyQynL3ROOmR/wOZTZHZS1iuy36GZBiFcKoAv9
- iWFXnxiuN9nVKzc2O2YtzE5A5jJIwMR7PdZVJn2tRpyfVk2ONq+jHjmHtStdPD48Q6
- ZTbo+Jfa/BmIKiknT1J4zRHO3qTSBDLP04Bvk+fTT9rdZBsVZSnmWOKOqXaMKA4gA7
- bT4TISvaCdUDmZfWU2egEVwtqdL+WTHzdaQ6+mx5S/BSMVKq0zvRrnRXL2JmMnxtXV
- QUpzFnY3HeaTg==
-Received: from eldfell (unknown [194.136.85.206])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (prime256v1) server-signature RSA-PSS (4096 bits)
- server-digest SHA256) (No client certificate requested)
- (Authenticated sender: pq)
- by bali.collaboradmins.com (Postfix) with ESMTPSA id 822AF17E0D25;
- Tue, 10 Mar 2026 15:32:54 +0100 (CET)
-Date: Tue, 10 Mar 2026 16:32:29 +0200
-From: Pekka Paalanen <pekka.paalanen@collabora.com>
-To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, harry.wentland@amd.com,
- louis.chauvet@bootlin.com, mwen@igalia.com, contact@emersion.fr,
- alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
- maarten.lankhorst@intel.com, pranay.samala@intel.com,
- swati2.sharma@intel.com
-Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
-Message-ID: <20260310163229.521186ab@eldfell>
-In-Reply-To: <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
-References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
- <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
-X-Mailer: Claws Mail 4.3.1 (GTK 3.24.49; x86_64-pc-linux-gnu)
+Received: from LO0P265CU003.outbound.protection.outlook.com
+ (mail-uksouthazon11022104.outbound.protection.outlook.com [52.101.96.104])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B4ECA10E160;
+ Tue, 10 Mar 2026 14:45:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=wB3Xfg8fFKEFvKlN8/Fj9g4pkeaVtXn0kkDv06O/WSlvfRmYmXzgWxSHv/glXmpgWjTZmDQlgN6XQtexxgcXW1W3VL/TLBetRYLY+B0ZV+vUVrCE48T2TIf40hP5rOs6WTQ7mys9HRZ+1AY1OvWdkf82/IykWL/OF4A+EYy6VjDR2OHgY9tSg7ChErbiQ3cYlgp7LRs1+gUG8oz3MmZ8f87tinkxAlWUEiyIEYKB0ncf/zELL6vWI41RbzVzDg2PiDOv7VyMNBtlJHN7zzrYdtM2wpxx31mXGg7KPaEOEKyIvGxE9pmt0WWUaZE4NxXaxmjdGfClh+8Ek0cFT+UH+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=JAqErPuH8jvSz3S3uW1/upneO2POe6vZLbo48MwocK4=;
+ b=W7tN4kfmd1B4jfJhRrUU6g4HsnWTQgFcjxfu8uf5dskX9ZbOcsBt430GAQhCKU8RgliHekyDzVdtGLYNkozrOO6SD2vWf4qf8y8niwVpCVoOOGsGHOzd80vtscok3K+fUCblknwTOHpHEiaywOV7qny2C0CogV32hxhE8dxV7Tq4Wq/YUNb2j9iwjREaJEIkKWo7nfWO/XYQXuJneWwzmE7r626rMP84ru1sLQzsKq7frVNFpBeZl8i8bshHULXeIkAad5lsnmOQcGAdgsVX9wqpjlsdXovsGplhJS5y8yvgeyXsiFIw0qc/e9C8Bq3IiywnSpp6TSnFye1QIK6rYA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=atomlin.com; dmarc=pass action=none header.from=atomlin.com;
+ dkim=pass header.d=atomlin.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=atomlin.com;
+Received: from CWLP123MB3523.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:70::10)
+ by CWXP123MB4117.GBRP123.PROD.OUTLOOK.COM (2603:10a6:400:b4::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9678.25; Tue, 10 Mar
+ 2026 14:45:39 +0000
+Received: from CWLP123MB3523.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::de8e:2e4f:6c6:f3bf]) by CWLP123MB3523.GBRP123.PROD.OUTLOOK.COM
+ ([fe80::de8e:2e4f:6c6:f3bf%2]) with mapi id 15.20.9678.017; Tue, 10 Mar 2026
+ 14:45:39 +0000
+Date: Tue, 10 Mar 2026 10:45:35 -0400
+From: Aaron Tomlin <atomlin@atomlin.com>
+To: Philipp Hahn <phahn-oss@avm.de>
+Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com, 
+ bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr, 
+ dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org, gfs2@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org,
+ iommu@lists.linux.dev, 
+ kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
+ linux-btrfs@vger.kernel.org, 
+ linux-cifs@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, 
+ linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
+ linux-gpio@vger.kernel.org, 
+ linux-hyperv@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-kernel@vger.kernel.org, 
+ linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mips@vger.kernel.org, 
+ linux-mm@kvack.org, linux-modules@vger.kernel.org,
+ linux-mtd@lists.infradead.org, 
+ linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-phy@lists.infradead.org, 
+ linux-pm@vger.kernel.org, linux-rockchip@lists.infradead.org,
+ linux-s390@vger.kernel.org, 
+ linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org, 
+ linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-sound@vger.kernel.org, 
+ linux-stm32@st-md-mailman.stormreply.com, linux-trace-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org, ntfs3@lists.linux.dev, 
+ samba-technical@lists.samba.org, sched-ext@lists.linux.dev,
+ target-devel@vger.kernel.org, 
+ tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
+ Luis Chamberlain <mcgrof@kernel.org>, 
+ Petr Pavlu <petr.pavlu@suse.com>, Daniel Gomez <da.gomez@kernel.org>, 
+ Sami Tolvanen <samitolvanen@google.com>
+Subject: Re: [PATCH 17/61] module: Prefer IS_ERR_OR_NULL over manual NULL check
+Message-ID: <qtwmj2mcbokwa7gexs5oqasjuitoaajiawc4d6dwcc224lmvbo@syjg6j6jggwy>
+References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
+ <20260310-b4-is_err_or_null-v1-17-bd63b656022d@avm.de>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="iksijtbqwcym3dge"
+Content-Disposition: inline
+In-Reply-To: <20260310-b4-is_err_or_null-v1-17-bd63b656022d@avm.de>
+X-ClientProxiedBy: BN0PR04CA0148.namprd04.prod.outlook.com
+ (2603:10b6:408:ed::33) To CWLP123MB3523.GBRP123.PROD.OUTLOOK.COM
+ (2603:10a6:400:70::10)
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="Sig_/MFoGoNaOk1KviB3flGmdAb5";
- protocol="application/pgp-signature"; micalg=pgp-sha256
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: CWLP123MB3523:EE_|CWXP123MB4117:EE_
+X-MS-Office365-Filtering-Correlation-Id: 13b40275-3529-4e12-fb2e-08de7eb3b274
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|7416014|376014|366016|1800799024|7053199007|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: eS8vfNxIlcveoUfBbC1f0b/7XDyt042g0NrOSeRHjPQz8SGF8XhnduWnhSq6w/jRCubBJWCQ0em9JSqFUpfcMToM52skjTdNeFfaYr/iVSsKAWiaW3DO/bcnqdcpaQuiI02eS0+aO+CkNT1YH1QQ6E7Q57u6/qaWaQ20N+1FIBcJZS1mBzIioruuLmthEo0gpbRvPUw85MZ4BuTbyxgwfUdq297KnZNKBcxR51k+1QwxfVuZq9j/tn2i89QI1rer6MizYsOjruF/dbbHjCey+BSjf4ODjERjtTz7wyRciY2SWDagpg72iLn9KVmzZVKExW68zMr/l9NtJWoTedOYUByiSKXbyY/3JV9xRnX1MzB9BgBZzT1xIV+5HlUy2YjMHl/3dJLaD2oBPxNWLURA8Z08rKBhZiJO2xeSiCI4mtWcnPeq3oEWmmY/WeHCI/B3o7JWziYbmH0QC8uqLAo/mQeRtn2TDgHIlkcKjGfALzMiD8xYPzjGT5P2vIR5K1BknKS+wJWav08f2MBfPRpwDPe50D0F6uw8UO3X9XH+2FvKXluY6iP9bBIpwnIhpFLltJGAWJ97kBcunctHO08msp59QGCLa7B9KyIGa5ySuwKbRsiH6EO7wMRDJH8WU49ueWwW1LGly9m6jhK5/yiuwnls2+tKU53my80py9Z/IAQ4MsIkAQLyj3EYcQb0F1EbNzlO4n0fZQx8QozYXcKQrvPpY9dpMBAU9AUK3jolnXE=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:CWLP123MB3523.GBRP123.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(376014)(366016)(1800799024)(7053199007)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1102; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RjlvdnlwWk1CSFZIUGxWVloyKzB5bUNjN2lRU1ZhM1hLSHQ0V2Flc3Iwd0VL?=
+ =?utf-8?B?bXArd0JIN2tZVzZLUGpqcHBUbWNFZzAwc2o1TmRuYkFRMnBERWo0OVk4L2JH?=
+ =?utf-8?B?M01qcWhaNDU3SDMxYnZDcThyUkNHMjYrZ0dtR1F3V0ZIVTVrUnRKN1dOOHR2?=
+ =?utf-8?B?RHpPcTI5V3R6azVuanpHZmg3U3dOd3lZRk94MUpZd2N2UFZnMitFcXdwbGtM?=
+ =?utf-8?B?MVBDd0xUODEzK21Ma2FQSnZNQVNYMnNGU2xJbmhqOHdmb3RhYm82alo0MVlQ?=
+ =?utf-8?B?VzEweHRPTGZxV25GM0ZwQ1BUcytpRGJIY3hVVk5KR0ZBbzhrUHd0YnJVMjdy?=
+ =?utf-8?B?T3JWUFFPdzZJVitQVWE1b0RnRkNLbHlmVCtkS295eVFOa1FyMTB4aVFPTzli?=
+ =?utf-8?B?V2hUMW52U2ZGa0N6TTF4UWZqejVMc0RPa05rbHluMUFBUVJQRTJZRGM3clEr?=
+ =?utf-8?B?Vmc2aGVzb01QenlhdGlYc0NLMWY5WUVJQ1JIUHFYcWs1a1pEN2JORDVjTlFN?=
+ =?utf-8?B?YjRTRUkwcitrUHM4blJac05MdDY3VXJTSStuZUhpcDZsV1EvazZkMGRYME1q?=
+ =?utf-8?B?ZFI3eWtGN3NEc0RCcGNhQTErRXB2cjRXWnRzbVpTcWtISDh4Y213SVhnMU01?=
+ =?utf-8?B?QjlCaTltWWgwUFFmb3VuaGQ3dDVKMkVwdVphRTNMR1hvVDkrbXBSMFNMUlVa?=
+ =?utf-8?B?M0JHVmRmaHdxcFg5QlgxaXNtckQ2SGIzRWJzYnZuTzViVWsxQlZHQmlDNExl?=
+ =?utf-8?B?Z1ptTVlDVVE2ZWQwMGdDZEk5Y0Q3NnFyWVltd0N0cDRUa2lXZ2h1R09tTGNT?=
+ =?utf-8?B?T0owTUk0UFc2SkljekM3QlZsVzJiWVBpVkZtaHFMK0FBOEg2aEovOGd6RnBW?=
+ =?utf-8?B?LzNsZkJmUU92bC9XUU5jZ05SbWNXZ3B5VXRzRVUzTm4vQWtVWFFqRnRYekY3?=
+ =?utf-8?B?L2E4TXpUV1ZCZGxZbitRS1RPYlBZVU9Yb0NDQUNEQnMvcTllUGltK1MyN2tZ?=
+ =?utf-8?B?WXNuc2hBelVVbVNtWUtYSi9SYzhWa095dy9RS1F6bHdibjNQYUpITTlhVTNo?=
+ =?utf-8?B?SFhldlpnYjYza082ZmFKRjZKd0h4LzJkTXRpclQxazNrQm9zTG5ReEQ0anhT?=
+ =?utf-8?B?S2s2L3ZiYUZzZU8rMHFEQkczZElUeW5KcEFRWnFHMVV1RXNsTzUvR1hNaG1Z?=
+ =?utf-8?B?T052eUI1MlpyTUNiWkNHbFI2dFBOQ29rNS9hcjltTStCVVUveDZTNHFtVXlK?=
+ =?utf-8?B?Smc3cmFlakdnVmtTak8zOHo4VHhzT0x6WmEwK29HckR1b1VPNUtiYlQ2SHIy?=
+ =?utf-8?B?a2VCRGJzM0IrZUJnSlVVNSs2Z1ozTWdJTEc2TWg0dklnenRxbHBVNkRiS2Q1?=
+ =?utf-8?B?VWdRbWlCTVRVZDZtQ0txNW1pYzVLVVd2L21mSElOMUhvUk90VWNYR3JFNUFy?=
+ =?utf-8?B?VkdFOTRTUTlrN2c3T3dpMUhhWVJOYnNZR3UydnU1UEpUMlAwdTczT1FyS2NI?=
+ =?utf-8?B?NUVlYVJ5R3R2K2tyYSt0RGdaVlZDSUJjVmNlYS8zZm1PWDQ4K3ZOT1BrQ1Ay?=
+ =?utf-8?B?MHRNaUswa2thTDR3cGZuN1R4ZzBUVHI0ZkdpM2F0N0dGWHJ6bGt6T3hyU2NH?=
+ =?utf-8?B?U1hJWHdweVpZcXU0RmRkejFLQXo4OGRNa0NiNmwwMzlFbGk4UklOaWtLSkRF?=
+ =?utf-8?B?UkpkRklXeHFRUzNxRFcrWWtGRXVuYXR3ZFloTkR5YUtSeWUzUjJhMGF0UktE?=
+ =?utf-8?B?RytHVTR5ODNjL2dpQjNMUkxMRm1QZmluWVJCWkt5VTZ3VW5vSXE0MitqU1k4?=
+ =?utf-8?B?aGJxc2hOZEsxdnJXMVg4N0lYZE0yalpJS3hYR25lQUw4VlBUWVpkWExhRGND?=
+ =?utf-8?B?UE5BQlkrajhVRWk1REJvWTBoeXdIRnJyQVl5ZDlTeEwyWWJrWEhGR2cvTG9N?=
+ =?utf-8?B?UktDRDM3dXhLWGlLL3pCcWp4UVNrSEN5clNLYmNLUFp4NjlxTldpUWppRXVi?=
+ =?utf-8?B?bERrcGUwdmR1K1AzUEVOdzYwaUgraVBkRUtUdEVIeEYweVQ3WnpKcHFsUjhp?=
+ =?utf-8?B?ck9wYlVlS1FGNUtINUxaMzZSUTdBZkhkdHEzOC9jNUg4WWRHUTEzZ1VEc1hn?=
+ =?utf-8?B?R0JxTFNOZ3VMMldjamx0Wll2MnJ1M2dzSjVNTlVUSnV4ZXh2b3prY0d4bzVK?=
+ =?utf-8?B?alRna2ROMW0zdzVCZWxoQXpqSXplVUpINE9jbFdpOTRMT2l6bDBFWGxpTVBD?=
+ =?utf-8?B?NkVGRWlFYXVZdEI2SEZsdmJpa253N0NYMlNVeVd4UmZVVlJLUWIyUk5BaFdn?=
+ =?utf-8?B?elM3bSs1cmluUGdxWTRDdEVRU1JVNm1PR0llU1djMEZsdGdRb0hWUT09?=
+X-OriginatorOrg: atomlin.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 13b40275-3529-4e12-fb2e-08de7eb3b274
+X-MS-Exchange-CrossTenant-AuthSource: CWLP123MB3523.GBRP123.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 14:45:39.3587 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: e6a32402-7d7b-4830-9a2b-76945bbbcb57
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: HwFautavIbFqmN5YwHCFfTVUxc9gxa3cpwndmicLa0FlANQgRiCX3WWVzDmT9lbq0RC4/eZ8BgFQOpVQW1fLOw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWXP123MB4117
+X-Mailman-Approved-At: Wed, 11 Mar 2026 16:14:45 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,509 +165,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BF9B32520CD
-X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-2.91 / 15.00];
+X-Spamd-Result: default: False [-0.71 / 15.00];
 	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DATE_IN_PAST(1.00)[25];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=mail];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DMARC_NA(0.00)[atomlin.com];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[pekka.paalanen@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	NEURAL_HAM(-0.00)[-0.992];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,collabora.com:dkim]
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[58];
+	FROM_NEQ_ENVFROM(0.00)[atomlin@atomlin.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.993];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[avm.de:email,suse.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4D142267232
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
---Sig_/MFoGoNaOk1KviB3flGmdAb5
-Content-Type: text/plain; charset=US-ASCII
+--iksijtbqwcym3dge
+Content-Type: text/plain; protected-headers=v1; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH 17/61] module: Prefer IS_ERR_OR_NULL over manual NULL
+ check
+MIME-Version: 1.0
 
-On Fri,  6 Mar 2026 22:22:58 +0530
-Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
-
-> Introduce DRM_COLOROP_CSC_FF, a new colorop type representing a
-> fixed-function Color Space Conversion (CSC) block.
+On Tue, Mar 10, 2026 at 12:48:43PM +0100, Philipp Hahn wrote:
+> Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
+> check.
 >=20
-> Unlike CTM-based colorops, this block does not expose programmable
-> coefficients. Instead, userspace selects one of the predefined
-> hardware modes via a new CSC_FF_TYPE enum property. Supported modes
-> include common YUV->RGB and RGB709->RGB2020 conversions.
+> Change generated with coccinelle.
 >=20
-> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> To: Luis Chamberlain <mcgrof@kernel.org>
+> To: Petr Pavlu <petr.pavlu@suse.com>
+> To: Daniel Gomez <da.gomez@kernel.org>
+> To: Sami Tolvanen <samitolvanen@google.com>
+> To: Aaron Tomlin <atomlin@atomlin.com>
+> Cc: linux-modules@vger.kernel.org
+> Cc: linux-kernel@vger.kernel.org
+> Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
 > ---
->  drivers/gpu/drm/drm_atomic.c      |   4 ++
->  drivers/gpu/drm/drm_atomic_uapi.c |   4 ++
->  drivers/gpu/drm/drm_colorop.c     | 105 ++++++++++++++++++++++++++++++
->  include/drm/drm_colorop.h         |  72 ++++++++++++++++++++
->  include/uapi/drm/drm_mode.h       |  13 ++++
->  5 files changed, 198 insertions(+)
+>  kernel/module/main.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 >=20
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 04925166df98..7296b844e3fd 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -844,6 +844,10 @@ static void drm_atomic_colorop_print_state(struct dr=
-m_printer *p,
->  			   drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolat=
-ion));
->  		drm_printf(p, "\tdata blob id=3D%d\n", state->data ? state->data->base=
-.id : 0);
->  		break;
-> +	case DRM_COLOROP_CSC_FF:
-> +		drm_printf(p, "\tcsc_ff_type=3D%s\n",
-> +			   drm_get_colorop_csc_ff_type_name(state->csc_ff_type));
-> +		break;
->  	default:
->  		break;
->  	}
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atom=
-ic_uapi.c
-> index 87de41fb4459..9af73325aa93 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -757,6 +757,8 @@ static int drm_atomic_colorop_set_property(struct drm=
-_colorop *colorop,
->  	} else if (property =3D=3D colorop->data_property) {
->  		return drm_atomic_color_set_data_property(colorop, state,
->  							  property, val);
-> +	} else if (property =3D=3D colorop->csc_ff_type_property) {
-> +		state->csc_ff_type =3D val;
->  	} else {
->  		drm_dbg_atomic(colorop->dev,
->  			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
-> @@ -789,6 +791,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *c=
-olorop,
->  		*val =3D colorop->lut3d_interpolation;
->  	else if (property =3D=3D colorop->data_property)
->  		*val =3D (state->data) ? state->data->base.id : 0;
-> +	else if (property =3D=3D colorop->csc_ff_type_property)
-> +		*val =3D state->csc_ff_type;
->  	else
->  		return -EINVAL;
-> =20
-> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
-> index f421c623b3f0..49422c625f4d 100644
-> --- a/drivers/gpu/drm/drm_colorop.c
-> +++ b/drivers/gpu/drm/drm_colorop.c
-> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type=
-_enum_list[] =3D {
->  	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
->  	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
->  	{ DRM_COLOROP_3D_LUT, "3D LUT"},
-> +	{ DRM_COLOROP_CSC_FF, "CSC Fixed-Function"},
+> diff --git a/kernel/module/main.c b/kernel/module/main.c
+> index c3ce106c70af165e2dc1a3c79f5a074a5c3e3d34..7f62f0620dcd75960e431f7af=
+3d1cadf4cc41e4b 100644
+> --- a/kernel/module/main.c
+> +++ b/kernel/module/main.c
+> @@ -1551,7 +1551,7 @@ static int simplify_symbols(struct module *mod, con=
+st struct load_info *info)
+>  		case SHN_UNDEF:
+>  			ksym =3D resolve_symbol_wait(mod, info, name);
+>  			/* Ok if resolved.  */
+> -			if (ksym && !IS_ERR(ksym)) {
+> +			if (!IS_ERR_OR_NULL(ksym)) {
+>  				sym[i].st_value =3D kernel_symbol_value(ksym);
+>  				break;
+>  			}
+>=20
+> --=20
+> 2.43.0
+>=20
 
-Hi,
+Hi Philipp,
 
-the fundamental idea seems fine to me, but I have a lot to say about the
-nomenclature.
+Thank you.
 
-What would you think of a more readable name DRM_COLOROP_FIXED_MATRIX
-"Fixed Matrix"?
+Have you considered other users of IS_ERR() in kernel/module/main.c too?
 
-Alternatively DRM_COLOROP_ENUM_MATRIX "Enumerated Matrix".
+Perhaps it might be best to prepare a clean up for each applicable
+subsystem in isolation.
 
->  };
-> =20
->  static const char * const colorop_curve_1d_type_names[] =3D {
-> @@ -90,6 +91,13 @@ static const struct drm_prop_enum_list drm_colorop_lut=
-3d_interpolation_list[] =3D
->  	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
->  };
-> =20
-> +static const char * const colorop_csc_ff_type_names[] =3D {
-> +	[DRM_COLOROP_CSC_FF_YUV601_RGB601]   =3D "YUV601 to RGB601",
-> +	[DRM_COLOROP_CSC_FF_YUV709_RGB709]   =3D "YUV709 to RGB709",
-> +	[DRM_COLOROP_CSC_FF_YUV2020_RGB2020] =3D "YUV2020 to RGB2020",
-> +	[DRM_COLOROP_CSC_FF_RGB709_RGB2020]  =3D "RGB709 to RGB2020",
 
-I'd suggest names:
+Kind regards,
+--=20
+Aaron Tomlin
 
-"YCbCr 601 to RGB"
-"YCbCr 709 to RGB"
-"YCbCr 2020 NC to RGB"
-"RGB709 to RGB2020"
-
-or something in that direction.
-
-The relevant ITU-R BT specifications use YCbCr nomenclature IIRC. Wrt.
-YCbCr-to-RGB conversion, there is no RGB601, RGB709 or RGB2020. There
-is only some RGB, and which primaries it uses is not always tied to
-which YCbCr conversion was used.
-
-For YCbCr 2020 I feel it's nice to remember, that there are two
-different conversions in the specification: the simple matrix one
-called "non-constant luminance", and the complex one called "constant
-luminance". Hence "NC".
-
-It's also good to recall that YCbCr-RGB conversions are done in an
-electrical space, while RGB709-to-RGB2020 conversion must be done in the
-optical space. It is up to the userspace to arrange the neighbouring
-colorops to use the fixed matrix right.
-
-> +};
-> +
->  /* Init Helpers */
-> =20
->  static int drm_plane_colorop_init(struct drm_device *dev, struct drm_col=
-orop *colorop,
-> @@ -459,6 +467,80 @@ int drm_plane_colorop_3dlut_init(struct drm_device *=
-dev, struct drm_colorop *col
->  }
->  EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
-> =20
-> +/**
-> + * drm_plane_colorop_csc_ff_init - Initialize a DRM_COLOROP_CSC_FF
-> + *
-> + * @dev: DRM device
-> + * @colorop: The drm_colorop object to initialize
-> + * @plane: The associated drm_plane
-> + * @funcs: control functions for the new colorop
-> + * @supported_csc_ff: A bitfield of supported drm_plane_colorop_csc_ff_t=
-ype enum values,
-> + *                    created using BIT(csc_ff_type) and combined with t=
-he OR '|'
-> + *                    operator.
-> + * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
-> + * @return zero on success, -E value on failure
-> + */
-> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_col=
-orop *colorop,
-> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				  u64 supported_csc_ff, uint32_t flags)
-> +{
-> +	struct drm_prop_enum_list enum_list[DRM_COLOROP_CSC_FF_COUNT];
-> +	int i, len;
-> +
-> +	struct drm_property *prop;
-> +	int ret;
-> +
-> +	if (!supported_csc_ff) {
-> +		drm_err(dev,
-> +			"No supported CSC op for new CSC FF colorop on [PLANE:%d:%s]\n",
-> +			plane->base.id, plane->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	if ((supported_csc_ff & -BIT(DRM_COLOROP_CSC_FF_COUNT)) !=3D 0) {
-> +		drm_err(dev, "Unknown CSC provided on [PLANE:%d:%s]\n",
-> +			plane->base.id, plane->name);
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret =3D drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_=
-CSC_FF, flags);
-> +	if (ret)
-> +		return ret;
-> +
-> +	len =3D 0;
-> +	for (i =3D 0; i < DRM_COLOROP_CSC_FF_COUNT; i++) {
-> +		if ((supported_csc_ff & BIT(i)) =3D=3D 0)
-> +			continue;
-> +
-> +		enum_list[len].type =3D i;
-> +		enum_list[len].name =3D colorop_csc_ff_type_names[i];
-> +		len++;
-> +	}
-> +
-> +	if (WARN_ON(len <=3D 0))
-> +		return -EINVAL;
-> +
-> +	prop =3D drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "CSC_FF_TY=
-PE",
-> +					enum_list, len);
-
-The Color Space Conversion Fixed-Function type is always "fixed
-matrix", right?
-
-The name for the colorop property to choose one of the supported
-matrices could be... "matrix"? "choice"?
-
-Does the property name need to be unique over all colorop types?
-
-> +
-> +	if (!prop)
-> +		return -ENOMEM;
-> +
-> +	colorop->csc_ff_type_property =3D prop;
-> +	/*
-> +	 * Default to the first supported CSC mode as provided by the driver.
-> +	 * Intuitively this should be something that keeps the colorop in pixel=
- bypass
-> +	 * mode but that is already handled via the standard colorop bypass
-> +	 * property.
-> +	 */
-> +	drm_object_attach_property(&colorop->base, colorop->csc_ff_type_propert=
-y,
-> +				   enum_list[0].type);
-> +	drm_colorop_reset(colorop);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(drm_plane_colorop_csc_ff_init);
-> +
->  static void __drm_atomic_helper_colorop_duplicate_state(struct drm_color=
-op *colorop,
->  							struct drm_colorop_state *state)
->  {
-> @@ -513,6 +595,13 @@ static void __drm_colorop_state_reset(struct drm_col=
-orop_state *colorop_state,
->  						      &val);
->  		colorop_state->curve_1d_type =3D val;
->  	}
-> +
-> +	if (colorop->csc_ff_type_property) {
-> +		drm_object_property_get_default_value(&colorop->base,
-> +						      colorop->csc_ff_type_property,
-> +						      &val);
-> +		colorop_state->csc_ff_type =3D val;
-> +	}
->  }
-> =20
->  /**
-> @@ -551,6 +640,7 @@ static const char * const colorop_type_name[] =3D {
->  	[DRM_COLOROP_CTM_3X4] =3D "3x4 Matrix",
->  	[DRM_COLOROP_MULTIPLIER] =3D "Multiplier",
->  	[DRM_COLOROP_3D_LUT] =3D "3D LUT",
-> +	[DRM_COLOROP_CSC_FF] =3D "CSC Fixed-Function",
->  };
-
-Why are there two arrays with the same DRM_COLOROP_* =3D name association?
-drm_colorop_type_enum_list is the first one.
-
-> =20
->  static const char * const colorop_lu3d_interpolation_name[] =3D {
-> @@ -607,6 +697,21 @@ const char *drm_get_colorop_lut3d_interpolation_name=
-(enum drm_colorop_lut3d_inte
->  	return colorop_lu3d_interpolation_name[type];
->  }
-> =20
-> +/**
-> + * drm_get_colorop_csc_ff_type_name: return a string for interpolation t=
-ype
-> + * @type: csc ff type to compute name of
-> + *
-> + * In contrast to the other drm_get_*_name functions this one here retur=
-ns a
-> + * const pointer and hence is threadsafe.
-> + */
-> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_typ=
-e type)
-> +{
-> +	if (WARN_ON(type >=3D ARRAY_SIZE(colorop_csc_ff_type_names)))
-> +		return "unknown";
-> +
-> +	return colorop_csc_ff_type_names[type];
-> +}
-> +
->  /**
->   * drm_colorop_set_next_property - sets the next pointer
->   * @colorop: drm colorop
-> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
-> index bd082854ca74..2cd8e0779c2a 100644
-> --- a/include/drm/drm_colorop.h
-> +++ b/include/drm/drm_colorop.h
-> @@ -134,6 +134,60 @@ enum drm_colorop_curve_1d_type {
->  	DRM_COLOROP_1D_CURVE_COUNT
->  };
-> =20
-> +/**
-> + * enum drm_colorop_csc_ff_type - type of CSC Fixed-Function
-> + *
-> + * Describes a CSC operation to be applied by the DRM_COLOROP_CSC_FF col=
-orop.
-
-It's a matrix operation. It seems to me that "CSC operation" is more
-specific and does not fit the YCbCr-to-RGB conversion.
-
-> + */
-> +enum drm_colorop_csc_ff_type {
-> +	/**
-> +	 * @DRM_COLOROP_CSC_FF_YUV601_RGB601
-> +	 *
-> +	 * enum string "YUV601 to RGB601"
-> +	 *
-> +	 * Selects the fixed-function CSC preset that converts YUV
-> +	 * (BT.601) colorimetry to RGB (BT.601).
-
-This selects the matrix that converts YCbCr into RGB
-according to the BT.601 coefficients.
-
-> +	 */
-> +	DRM_COLOROP_CSC_FF_YUV601_RGB601,
-> +
-> +	/**
-> +	 * @DRM_COLOROP_CSC_FF_YUV709_RGB709:
-> +	 *
-> +	 * enum string "YUV709 to RGB709"
-> +	 *
-> +	 * Selects the fixed-function CSC preset that converts YUV
-> +	 * (BT.709) colorimetry to RGB (BT.709).
-
-This selects the matrix that converts YCbCr into RGB
-according to the BT.709 coefficients.
-
-> +	 */
-> +	DRM_COLOROP_CSC_FF_YUV709_RGB709,
-> +
-> +	/**
-> +	 * @DRM_COLOROP_CSC_FF_YUV2020_RGB2020:
-> +	 *
-> +	 * enum string "YUV2020 to RGB2020"
-> +	 *
-> +	 * Selects the fixed-function CSC preset that converts YUV
-> +	 * (BT.2020) colorimetry to RGB (BT.2020).
-
-This selects the matrix that converts YCbCr into RGB
-according to the BT.2020 non-constant luminance coefficients.
-
-> +	 */
-> +	DRM_COLOROP_CSC_FF_YUV2020_RGB2020,
-> +
-> +	/**
-> +	 * @DRM_COLOROP_CSC_FF_RGB709_RGB2020:
-> +	 *
-> +	 * enum string "RGB709 to RGB2020"
-> +	 *
-> +	 * Selects the fixed-function CSC preset that converts RGB
-> +	 * (BT.709) colorimetry to RGB (BT.2020).
-
-This selects the matrix that converts optical RGB from BT.709 primaries
-to BT.2020 primaries.
-
-> +	 */
-> +	DRM_COLOROP_CSC_FF_RGB709_RGB2020,
-> +
-> +	/**
-> +	 * @DRM_COLOROP_CSC_FF_COUNT:
-> +	 *
-> +	 * enum value denoting the size of the enum
-> +	 */
-> +	DRM_COLOROP_CSC_FF_COUNT
-> +};
-> +
->  /**
->   * struct drm_colorop_state - mutable colorop state
->   */
-> @@ -183,6 +237,13 @@ struct drm_colorop_state {
->  	 */
->  	struct drm_property_blob *data;
-> =20
-> +	/**
-> +	 * @csc_ff_type:
-> +	 *
-> +	 * Type of Fixed function CSC.
-> +	 */
-> +	enum drm_colorop_csc_ff_type csc_ff_type;
-> +
->  	/** @state: backpointer to global drm_atomic_state */
->  	struct drm_atomic_state *state;
->  };
-> @@ -368,6 +429,13 @@ struct drm_colorop {
->  	 */
->  	struct drm_property *data_property;
-> =20
-> +	/**
-> +	 * @csc_ff_type_property:
-> +	 *
-> +	 * Sub-type for DRM_COLOROP_CSC_FF type.
-> +	 */
-> +	struct drm_property *csc_ff_type_property;
-> +
->  	/**
->  	 * @next_property:
->  	 *
-> @@ -424,6 +492,9 @@ int drm_plane_colorop_3dlut_init(struct drm_device *d=
-ev, struct drm_colorop *col
->  				 uint32_t lut_size,
->  				 enum drm_colorop_lut3d_interpolation_type interpolation,
->  				 uint32_t flags);
-> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_col=
-orop *colorop,
-> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
-> +				  u64 supported_csc_ff, uint32_t flags);
-> =20
->  struct drm_colorop_state *
->  drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
-> @@ -480,6 +551,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_col=
-orop_lut1d_interpolation_ty
-> =20
->  const char *
->  drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpol=
-ation_type type);
-> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_typ=
-e type);
-> =20
->  void drm_colorop_set_next_property(struct drm_colorop *colorop, struct d=
-rm_colorop *next);
-> =20
-> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
-> index 3693d82b5279..f7808e7ea984 100644
-> --- a/include/uapi/drm/drm_mode.h
-> +++ b/include/uapi/drm/drm_mode.h
-> @@ -968,6 +968,19 @@ enum drm_colorop_type {
->  	 *         color =3D lut3d[index]
->  	 */
->  	DRM_COLOROP_3D_LUT,
-> +
-> +	/**
-> +	 * @DRM_COLOROP_CSC_FF:
-> +	 *
-> +	 * enum string "CSC Fixed-Function"
-> +	 *
-> +	 * A fixed-function Color Space Conversion block where the coefficients
-> +	 * are not programmable but selected from predefined hardware modes via
-> +	 * the CSC_FF_TYPE enum property. The driver advertises the supported
-> +	 * CSC modes through this property.
-
-This would be a lot more obvious if it was called a "fixed matrix"
-operation or such. The current wording never mentions "matrix".
-
-> +	 */
-> +	DRM_COLOROP_CSC_FF,
-> +
->  };
-> =20
->  /**
-
-Thanks,
-pq
-
---Sig_/MFoGoNaOk1KviB3flGmdAb5
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
+--iksijtbqwcym3dge
+Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAEBCAAdFiEEJQjwWQChkWOYOIONI1/ltBGqqqcFAmmwK30ACgkQI1/ltBGq
-qqeKwQ//QINU4VCENkR+VsMDNo3hzSNXzGXYlfKUxmwKw0YzYoU3htndWlxJ3Vk8
-Zz9FaY9MfY8W7pkBlqPmbh8SMKYtMFWXMiDzVGVkphFUUN95if8O6sdpR9ehYKPZ
-FlQSLI/CppSQ3d5AqdLVYgmDfbW8GEfpEspsf+rB19VwvJyL7qbrboyWauXLprEF
-y5qGySuxUh/WC68eoymwlaZHfEwpybwsC+mBL9ZeA79n3mPS3lfGrIvYx3uhwxQY
-/ucuc8ImyduyqOvYqiQqOQy5FbOhe2CVfzx1+keiMYDn3iZXAvR8aKhEo3C5vUPv
-EtZY+KaiaB7iHV1cNyIrAfzxEq1yj9xUHeryxuAojm03sEy+7wVmmkP5VhvL6ede
-x2bY/gMXrG04QN7yxMHZ3y1Qed+w3B0Yj3f+wgrmNxRR+JvA9X6tTh3Mdf9ogvky
-S3y/oV/gFxmvcRlHcXvm968q1a+1gGxGAtjiHBi9t/jRbgevyMZA17U/41zbosvP
-5/mhqn8nX6aRs8wz5Xd3TQd8pFuUX9oKudaXj4VjH/lWZFjO/AAZLN1uHNzSjwy6
-gw1RGpt+2h3ObRxA6ikiomJ6w+DQysyMGfIpggelrNtqZbH/JfCgmzGLZON5pepp
-wTwRQteVJW0/HdUcqNCYDCv+RfuoKhsK3nU4lk0yOG4S2JGF0L8=
-=+2Hz
+iQIzBAEBCgAdFiEEeQaE6/qKljiNHm6b4t6WWBnMd9YFAmmwLosACgkQ4t6WWBnM
+d9aU9xAAqqgNT5SoU+VYtTZ80wOUwEE2OMdLBYzCI0mjnqJPXnb4U+JQX0SteStv
+Wd+zDAGE5Me5p/CfEt/+aiyKOuiZL7yQucXzvUMGKxqLMQFwqPvA3WtSoTVFL+rF
+LkaH0u5Q5L3fR1LqaiKYIZuzVEvau4J1yxwpr3TSOVVjsiNOir78WKYMWkbywt9w
+2ZGJmWlqCHaicR+MbDxwYxmj6A8vWK4lMNrf9/bSNlRcevwMRBi5MEVCXNAmi8/K
+HL+Lff4iFQayNqX+KHvqO+d71PuZJ6uRoZtmn2TOsqPFvRhSEwOCORUQRwprUwHK
+1AXthzlvxw54scM7jH/H7EVz4b/StJaeHqfZLJ4y6QJv7HWYccOTXqVPj5yDF4AS
+LNEe/UEO2rZOSVwqm8USG03ipXDhoZ7is3ump24r9vmbuJ4Ut/UkZnPPM2f1V8YS
+AiWpOQ5tGWd+85RvZUyJfbagqS9XcCxV1Ec+y4MXwaab2ddu81t86xc5nbRANS/k
+juKrG81J7nYvlpvQajkCU6tK/ZZsalYBs/BCg2IAYhG1V5SqGHR6o/a3KjVtmdwP
+5t9pTp1q1bD8/UPf4bSgjULpyVSusQkcdm6aoNJD80Jqi8vPQSuZUDFw9gdbbWdT
+6f5kQv0sOH33oz8IDL0pTNDmWbOF3HKDQCX5nbTnNtfG048XNxo=
+=x/q5
 -----END PGP SIGNATURE-----
 
---Sig_/MFoGoNaOk1KviB3flGmdAb5--
+--iksijtbqwcym3dge--
