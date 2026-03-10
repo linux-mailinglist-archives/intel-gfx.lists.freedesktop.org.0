@@ -2,44 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eAc4KjwHsGlregIAu9opvQ
+	id 8H8cD0AHsGlregIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:52 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6484724BDF8
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BE00224BE1F
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1ADD10E6CF;
-	Tue, 10 Mar 2026 11:57:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1B20310E6CC;
+	Tue, 10 Mar 2026 11:57:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ORJP6pik";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="IP6PfgeC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB0410E6C9;
- Tue, 10 Mar 2026 11:57:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A61EB10E6D2;
+ Tue, 10 Mar 2026 11:57:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143854;
- bh=q5DGgQouGWGgfcuej1E52iDtx+kNPYr3AALCQt5FiTw=;
+ s=default; t=1773143856;
+ bh=IAlYuco6WGmSB18uPKuZ6rA+AEk0SzGyZIQe0o5wuh0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ORJP6pik4mxWZMAxvvvqW03RNGWTfnDYCsgf12gqe7z50Hvoh3Zq3Os2AE9LGniSi
- b85a460PAJAXUBq3zV3hDpxKlnX2JQeyOICXCLXFlicJs/6njoBLcW5+TxEKVLPQrA
- NWRHOpq+MhOpoEXonUyRHgaZdVAmqzDKfa/J7maxafwUemHXUVcQfYqyvcIdwXjEhJ
- U0dF+qmznJqi8DqKL9rdc5+tX1OmUCXm8DiJ9TSbUCXYbYHIuxxBUGomMp0iS9VEwa
- IFXXdkfNfTYY/2UJr2CQjhRgY7XRhDz7RAIW6zeBgdcZTXxpPPpmVIKw3cKS+kCnAO
- hkUvBh29/M8UQ==
+ b=IP6PfgeCN9thASVLUHx1d5m8mUAjNYD7GtUOBb+fZpvFe4r/rlRulGOu0+WW06ALr
+ HAxJnXus5n2K42N85cgV1E1GcNI2DeT8XD/8IN/IYQpMj3xh6dgmh6+2Z2ZJFanral
+ Xqq48XkqxY0nA1PH+Dc/8sYtEIbXKlEq6r2ghbiC+1RLRZM3fZ81RxYn3VS4Uzllrk
+ FkjFq2RBPSTU3+s5zCaUquAy+6ixzXIqjUQv8e4dHBwN34hQPnCcb84Jw/y6ObyMWh
+ 5ZBmukSN//MdDKomlpCdOzMikKa+2OZ17bd0CUnESKHdcr0Lu5SPuP2nW9Od2BYuqw
+ LOXtsuGqNbDjg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Matthew Brost <matthew.brost@intel.com>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH v7 15/26] drm/i915/display: Fix intel_lpe_audio_irq_handler
- for PREEMPT-RT
-Date: Tue, 10 Mar 2026 12:56:57 +0100
-Message-ID: <20260310115709.2276203-16-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Clark Williams <williams@redhat.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v7 16/26] drm/i915/gt: Use spin_lock_irq() instead of
+ local_irq_disable() + spin_lock()
+Date: Tue, 10 Mar 2026 12:56:58 +0100
+Message-ID: <20260310115709.2276203-17-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -59,65 +61,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6484724BDF8
+X-Rspamd-Queue-Id: BE00224BE1F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_COUNT_TWO(0.00)[2];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linutronix.de:email,intel.com:email]
 X-Rspamd-Action: no action
 
-The LPE audio interrupt comes from the i915 interrupt handler. It
-should be in irq disabled context.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-With PREEMPT_RT enabled, the IRQ handler is threaded.
-Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
-generic_handle_irq_safe API disables the interrupts before calling LPE's
-interrupt top half handler.
+execlists_dequeue() is invoked from a function which uses
+local_irq_disable() to disable interrupts so the spin_lock() behaves
+like spin_lock_irq().
+This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
+the same as spin_lock_irq().
 
-This fixes braswell audio issues with RT enabled.
+execlists_dequeue_irq() and execlists_dequeue() has each one caller
+only. If intel_engine_cs::active::lock is acquired and released with the
+_irq suffix then it behaves almost as if execlists_dequeue() would be
+invoked with disabled interrupts. The difference is the last part of the
+function which is then invoked with enabled interrupts.
+I can't tell if this makes a difference. From looking at it, it might
+work to move the last unlock at the end of the function as I didn't find
+anything that would acquire the lock again.
 
+Reported-by: Clark Williams <williams@redhat.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Matthew Brost <matthew.brost@intel.com>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
+ 1 file changed, 5 insertions(+), 12 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 117b60656ca19..306b16889bc92 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
- 	if (!HAS_LPE_AUDIO(display))
- 		return;
+diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+index 1359fc9cb88ef..e11db81dca9c5 100644
+--- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
++++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
+@@ -1300,7 +1300,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 * and context switches) submission.
+ 	 */
  
--	ret = generic_handle_irq(display->audio.lpe.irq);
-+	ret = generic_handle_irq_safe(display->audio.lpe.irq);
- 	if (ret)
- 		drm_err_ratelimited(display->drm,
- 				    "error handling LPE audio irq: %d\n", ret);
+-	spin_lock(&sched_engine->lock);
++	spin_lock_irq(&sched_engine->lock);
+ 
+ 	/*
+ 	 * If the queue is higher priority than the last
+@@ -1400,7 +1400,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 				 * Even if ELSP[1] is occupied and not worthy
+ 				 * of timeslices, our queue might be.
+ 				 */
+-				spin_unlock(&sched_engine->lock);
++				spin_unlock_irq(&sched_engine->lock);
+ 				return;
+ 			}
+ 		}
+@@ -1426,7 +1426,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 
+ 		if (last && !can_merge_rq(last, rq)) {
+ 			spin_unlock(&ve->base.sched_engine->lock);
+-			spin_unlock(&engine->sched_engine->lock);
++			spin_unlock_irq(&engine->sched_engine->lock);
+ 			return; /* leave this for another sibling */
+ 		}
+ 
+@@ -1588,7 +1588,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	 */
+ 	sched_engine->queue_priority_hint = queue_prio(sched_engine);
+ 	i915_sched_engine_reset_on_empty(sched_engine);
+-	spin_unlock(&sched_engine->lock);
++	spin_unlock_irq(&sched_engine->lock);
+ 
+ 	/*
+ 	 * We can skip poking the HW if we ended up with exactly the same set
+@@ -1614,13 +1614,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
+ 	}
+ }
+ 
+-static void execlists_dequeue_irq(struct intel_engine_cs *engine)
+-{
+-	local_irq_disable(); /* Suspend interrupts across request submission */
+-	execlists_dequeue(engine);
+-	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
+-}
+-
+ static void clear_ports(struct i915_request **ports, int count)
+ {
+ 	memset_p((void **)ports, NULL, count);
+@@ -2475,7 +2468,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
+ 	}
+ 
+ 	if (!engine->execlists.pending[0]) {
+-		execlists_dequeue_irq(engine);
++		execlists_dequeue(engine);
+ 		start_timeslice(engine);
+ 	}
+ 
 -- 
 2.51.0
 
