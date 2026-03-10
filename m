@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gBLVOEIHsGlregIAu9opvQ
+	id EMp6N0wHsGnTegIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:54 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:58:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BB98C24BE52
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:54 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B708E24BED0
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:58:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C70E510E6E2;
-	Tue, 10 Mar 2026 11:57:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C0ACE10E6F7;
+	Tue, 10 Mar 2026 11:57:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="DcM0GUk7";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="iBBdmXpN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D0C510E6D9;
- Tue, 10 Mar 2026 11:57:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E91310E6D8;
+ Tue, 10 Mar 2026 11:57:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143862;
- bh=dgU9NxaeCYzOSvvL/Rn9LO0Bo2PGBMD2TB4KIygXVt8=;
+ s=default; t=1773143863;
+ bh=Ki3mUmMvHpijIAiDYp7vsZU9L20YDZpEx92dDshhaXk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DcM0GUk74a88eEIzf8dSJzNqOIuxBZf1aRg4b3wtiIIXjNxYgRpI9vss2+FYRJiYb
- 6fPvVV5ozWG/nhSlXt8Mu/a1Nz+0MWv7uOLbCxk7vznuFk0YJCF/XlWnxOCrR82i+q
- tJs8tAXHJ3LBKelQT96zH0GCjnTSJhOPwgBjMkS5eyInBNT3N5GTjTtmUiy2ePe5rB
- 4dF5kTWIjWEHQyFuRveCEnf/oU1gs/NboXTmK2BA5gqdLNk9PALuMWp2zFGlF6KSsH
- PI+5RDhoqsP3CL+ItD12XibE3xgQXDdHeOCUwlG4BR4hPwRblXAXx7PGKgL3KsZnIX
- KmibJMSN67+Hw==
+ b=iBBdmXpNZkbIM+txZ6TzffPDXJqfj0SAXcl8GyK7JwcUVwsXX4+twPf+XLEMq/qlW
+ pRejkzaOM2P6IJ7YxjwGVAM0FiRsyMLTP0aiZiPAkcX/x26sPDGkcSD6hfBjB4yyG5
+ NS9gIfTPPIkDUOZ1239YD31LaY4ChwtYNK/NK8LMkKlwlSUI6HSu+Dr+wewxEnxbPq
+ Dd6eXwars4Kw6JjwPO6jmmoU8yYXHWtlBwrajkT95FhVP1KZTAKoZfSKyYDV4m18Qi
+ OmtaZ7jjU+BFTdBPTb23j/kSBJOdN/nUMtfjMZS2KB1G5H0svbeppGE9tSMRxrRWMD
+ teZI68r1cK2oA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v7 21/26] drm/i915/display: Remove uncore lock from
- vlv_atomic_update_fifo
-Date: Tue, 10 Mar 2026 12:57:03 +0100
-Message-ID: <20260310115709.2276203-22-dev@lankhorst.se>
+Subject: [PATCH v7 22/26] drm/i915: Use sleeping selftests for igt_atomic on
+ PREEMPT_RT
+Date: Tue, 10 Mar 2026 12:57:04 +0100
+Message-ID: <20260310115709.2276203-23-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -58,7 +58,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BB98C24BE52
+X-Rspamd-Queue-Id: B708E24BED0
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -87,43 +87,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-TODO: Grab uncore lock during entire vblank evasion before disabling
-interrupts, and check what breaks?
+This makes the i915 selftests slightly happier, especially
+related to GPU reset.
+
+I believe this may be a better approach than trying to convert
+uncore->lock to raw_spinlock
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 9e170e79dcf67..8e1b3aced9a98 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	const struct vlv_fifo_state *fifo_state =
-@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	 * intel_pipe_update_start() has already disabled interrupts
- 	 * for us, so a plain spin_lock() is sufficient here.
- 	 */
--	spin_lock(&uncore->lock);
- 
- 	switch (crtc->pipe) {
- 	case PIPE_A:
-@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	}
- 
- 	intel_de_read_fw(display, DSPARB(display));
--
--	spin_unlock(&uncore->lock);
+diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+index fb506b6990956..8ae39cf570b76 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
++++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+@@ -39,7 +39,14 @@ static void __hardirq_end(void)
+ 	local_irq_enable();
  }
  
- #undef VLV_FIFO
++static void __maybe_unused __nop(void)
++{}
++
+ const struct igt_atomic_section igt_atomic_phases[] = {
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	{ "sleeping", __nop, __nop },
++	{ },
++#endif
+ 	{ "preempt", __preempt_begin, __preempt_end },
+ 	{ "softirq", __softirq_begin, __softirq_end },
+ 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.51.0
 
