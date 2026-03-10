@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFSGAzUHsGlregIAu9opvQ
+	id mDjVIjMHsGlregIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:41 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:39 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D79BE24BD83
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:40 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D6CE24BD55
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4269A10E6B2;
-	Tue, 10 Mar 2026 11:57:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49A7310E6AB;
+	Tue, 10 Mar 2026 11:57:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="jBAwcFKV";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="MoX3F0gk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF90F10E271;
- Tue, 10 Mar 2026 11:57:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6471110E27E;
+ Tue, 10 Mar 2026 11:57:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143845;
- bh=TaIDxLdOlko3tv8J9uO9pnTKKvUV34w9oUA1auAjZ1g=;
+ s=default; t=1773143846;
+ bh=DLbtDzPUzGBKCRN3ajcwkSfLaaYYbYIvLJsGpVhl8jk=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=jBAwcFKVSBYto2tSABEkf+loiBlOrf9IN6HFnMCUlxiA4db8VeJqFnMv0DBeNH+hY
- SuxPjwbLHA0CmlBkoOAhslFrHPjdg/lVsfHjBAussKMfXN4JNSUHC2eU5SzYYZybwq
- c0Q0ZVWZ9dUXHqIlwdfP5WRJGjiswD3f0sgCoRYwywzU5OZYYBBh5++WLOVgXILK5U
- vGbP1MGnK+evATvtco5+Dtos16CDZ7IheY4ueI4GV+2VGicKPOLwXfPehZOvQqzZRS
- huODydGEf+7UcQEVb11fg6eSF2U4ppd1mjLYlcwNMAAZLmkpph4Mk/2A7oVvYtgD4o
- ZFxuHtM6MzHTw==
+ b=MoX3F0gkEXy95OMaFnU7pi0YIFfYg94ymzA1APfsSfu96xodC9ZCp99RtkL/69XxU
+ JC7Tjvs3K7z1u3k+ImGAD9bB19zcpDFDE/q6PEunLHaWlztdiqN13u53QUP0KdMg/C
+ mnKrPd/gOIV/MtGn5cjqBuEDGxmQFFHr0naLu1uDTaVNowu8gqxg8OEOyca6UBps+7
+ 203k2hoOSY3reSQM0+UnstXQrbAVq530ic/TrVKnpSldTHvVQgPWjABzUU9j4C60TS
+ Gj5pXQsnh0Ti8ifK6xwTmE0/6Y0vw/XuRTjR81H9PovFihkv5o+RVQl+6+28KaQ/TC
+ qh/9CONkX7r2A==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Uma Shankar <uma.shankar@intel.com>
-Subject: [PATCH v7 05/26] drm/i915/display: Move vblank put until after
- critical section
-Date: Tue, 10 Mar 2026 12:56:47 +0100
-Message-ID: <20260310115709.2276203-6-dev@lankhorst.se>
+Cc: dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v7 06/26] drm/i915/display: Remove locking from
+ intel_vblank_evade critical section
+Date: Tue, 10 Mar 2026 12:56:48 +0100
+Message-ID: <20260310115709.2276203-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -58,92 +58,146 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: D79BE24BD83
+X-Rspamd-Queue-Id: 3D6CE24BD55
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
+	RCPT_COUNT_THREE(0.00)[4];
 	RCVD_COUNT_TWO(0.00)[2];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-drm_crtc_vblank_put may take some locks, this should probably
-not be the first thing we do after entering the time sensitive
-part.
+finish_wait() may take a lock, which means that it can take any amount
+of time. On PREEMPT-RT we should not be taking any lock after disabling
+preemption, so ensure that the completion is done before disabling
+interrupts.
 
-A better place is after programming is completed. Add a flag
-to put the vblank after completion.
-
-In the case of drm_vblank_work_schedule, we may not even need
-to disable the vblank interrupt any more if it takes its own
-reference.
+This also has the benefit of making vblank evasion more deterministic,
+by performing the final vblank check after all locking is done.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_vblank.c | 30 +++++++++------------
+ drivers/gpu/drm/i915/display/intel_vblank.h |  1 +
+ 3 files changed, 15 insertions(+), 18 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 18d1014de3613..5248e478b64e8 100644
---- a/drivers/gpu/drm/i915/display/intel_cursor.c
-+++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -817,6 +817,7 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_crtc_state *new_crtc_state;
- 	struct intel_vblank_evade_ctx evade;
-+	bool has_vblank = false;
- 	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index ca85b6fe50c6f..1022c2cf4eec2 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -688,7 +688,7 @@ void intel_pipe_update_end(struct intel_atomic_state *state,
+ 	struct intel_crtc_state *new_crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	enum pipe pipe = crtc->pipe;
+-	int scanline_end = intel_get_crtc_scanline(crtc);
++	int scanline_end = __intel_get_crtc_scanline(crtc);
+ 	u32 end_vbl_count = intel_crtc_get_vblank_counter(crtc);
+ 	ktime_t end_vbl_time = ktime_get();
  
- 	/*
-@@ -914,6 +915,8 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	intel_psr_lock(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
+index 1b7cfe226ff8f..73676d8ccec8b 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.c
++++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+@@ -241,7 +241,7 @@ int intel_crtc_scanline_offset(const struct intel_crtc_state *crtc_state)
+  * intel_de_read_fw(), only for fast reads of display block, no need for
+  * forcewake etc.
+  */
+-static int __intel_get_crtc_scanline(struct intel_crtc *crtc)
++int __intel_get_crtc_scanline(struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct drm_vblank_crtc *vblank = drm_crtc_vblank_crtc(&crtc->base);
+@@ -732,6 +732,16 @@ void intel_vblank_evade_init(const struct intel_crtc_state *old_crtc_state,
+ 		evade->min -= vblank_delay;
+ }
  
- 	if (!drm_WARN_ON(display->drm, drm_crtc_vblank_get(&crtc->base))) {
-+		has_vblank = true;
++static bool scanline_in_safe_range(struct intel_vblank_evade_ctx *evade, int *scanline, bool unlocked)
++{
++	if (unlocked)
++		*scanline = intel_get_crtc_scanline(evade->crtc);
++	else
++		*scanline = __intel_get_crtc_scanline(evade->crtc);
 +
- 		/*
- 		 * TODO: maybe check if we're still in PSR
- 		 * and skip the vblank evasion entirely?
-@@ -923,8 +926,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		local_irq_disable();
++	return *scanline < evade->min || *scanline > evade->max;
++}
++
+ /* must be called with vblank interrupt already enabled! */
+ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ {
+@@ -739,24 +749,12 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	long timeout = msecs_to_jiffies_timeout(1);
+ 	wait_queue_head_t *wq = drm_crtc_vblank_waitqueue(&crtc->base);
+-	DEFINE_WAIT(wait);
+ 	int scanline;
  
- 		intel_vblank_evade(&evade);
+ 	if (evade->min <= 0 || evade->max <= 0)
+ 		return 0;
+ 
+-	for (;;) {
+-		/*
+-		 * prepare_to_wait() has a memory barrier, which guarantees
+-		 * other CPUs can see the task state update by the time we
+-		 * read the scanline.
+-		 */
+-		prepare_to_wait(wq, &wait, TASK_UNINTERRUPTIBLE);
 -
--		drm_crtc_vblank_put(&crtc->base);
- 	} else {
+-		scanline = intel_get_crtc_scanline(crtc);
+-		if (scanline < evade->min || scanline > evade->max)
+-			break;
+-
++	while (!scanline_in_safe_range(evade, &scanline, false)) {
+ 		if (!timeout) {
+ 			drm_dbg_kms(display->drm,
+ 				    "Potential atomic update failure on pipe %c\n",
+@@ -766,13 +764,11 @@ int intel_vblank_evade(struct intel_vblank_evade_ctx *evade)
+ 
+ 		local_irq_enable();
+ 
+-		timeout = schedule_timeout(timeout);
++		timeout = wait_event_timeout(*wq, scanline_in_safe_range(evade, &scanline, true), timeout);
+ 
  		local_irq_disable();
  	}
-@@ -940,6 +941,9 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
  
- 	intel_psr_unlock(crtc_state);
- 
-+	if (has_vblank)
-+		drm_crtc_vblank_put(&crtc->base);
-+
- 	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
- 		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
- 				     intel_cursor_unpin_work);
+-	finish_wait(wq, &wait);
+-
+ 	/*
+ 	 * On VLV/CHV DSI the scanline counter would appear to
+ 	 * increment approx. 1/3 of a scanline before start of vblank.
+diff --git a/drivers/gpu/drm/i915/display/intel_vblank.h b/drivers/gpu/drm/i915/display/intel_vblank.h
+index 98d04cacd65f8..aa1974400e9fc 100644
+--- a/drivers/gpu/drm/i915/display/intel_vblank.h
++++ b/drivers/gpu/drm/i915/display/intel_vblank.h
+@@ -38,6 +38,7 @@ u32 g4x_get_vblank_counter(struct drm_crtc *crtc);
+ bool intel_crtc_get_vblank_timestamp(struct drm_crtc *crtc, int *max_error,
+ 				     ktime_t *vblank_time, bool in_vblank_irq);
+ int intel_get_crtc_scanline(struct intel_crtc *crtc);
++int __intel_get_crtc_scanline(struct intel_crtc *crtc);
+ void intel_wait_for_pipe_scanline_stopped(struct intel_crtc *crtc);
+ void intel_wait_for_pipe_scanline_moving(struct intel_crtc *crtc);
+ void intel_crtc_update_active_timings(const struct intel_crtc_state *crtc_state,
 -- 
 2.51.0
 
