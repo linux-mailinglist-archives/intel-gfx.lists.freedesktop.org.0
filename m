@@ -2,73 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCuECnMUsGnRfAIAu9opvQ
+	id INL1EgMbsGlAfwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:54:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 14:22:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 814F524F20A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:54:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA11F25005B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 14:22:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1252610E6C8;
-	Tue, 10 Mar 2026 12:54:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51D2F10E282;
+	Tue, 10 Mar 2026 13:22:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="bhooD2D+";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="ADQQpd+b";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f174.google.com (mail-pl1-f174.google.com
- [209.85.214.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E30B10E70B
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 12:54:08 +0000 (UTC)
-Received: by mail-pl1-f174.google.com with SMTP id
- d9443c01a7336-2aeab6ff148so1535ad.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 05:54:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20230601; t=1773147248; x=1773752048;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=mm6hm+LHoMGo5Ew01sq1dP9YSITnoqIDxYFDqmtgvh0=;
- b=bhooD2D+L9M7Bb9jOkredVaupFVK95A3sh2S6yWFIZ05Vc638sgtqAYZ9F8/n0bKfO
- 5aNu6qlMna3zywhSUahfFye9TuELYIDxKWwCIZZqHK9176KywLp+1sq9NKWS2UDTwjJt
- STqnSGQIPajj7SFTQLJcuGMbQmm0P0ma9Ip0IZZoc6G3/bVZA5KxujVyyk8tpx7uEODr
- YjkYBX/ZoCW8RQmVUgxWf0ArsgvIK/Tvve8GMvWzsFnXQPs0b0tUU0tXNXaQ2uXBqeL6
- +idSRiH0mLn0WJw/NGsDEoYYt2Kz5XZSQ3WXFwKZNOauCA9F299ZAOgvbXtLCY/QYrmF
- w6yw==
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EF4B10E272
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 13:22:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1773148926;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ in-reply-to:in-reply-to:references:references;
+ bh=5/adDEbR57gUpYJcJq84OoDVxrrM3xMPFmZCRo0jKXM=;
+ b=ADQQpd+bpcMvyiI6BuK6I/AtlFPVjRaT1jbvm8x0bcg2sn4Mv+l/q+wGsOaa7zGZavpvJL
+ HOw6n0NTrJxN8BVrJlzy+3Oyq/AicE10gafpjzfnHFVMImjvlOy3qRSEO7jpexZVWETsUQ
+ RoRPrXnJkd5ZbUZ0X+x9wM3CIJYSD9c=
+Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
+ [209.85.222.200]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-659-737G5GMMNmqKdEzIUTCqjA-1; Tue, 10 Mar 2026 09:22:05 -0400
+X-MC-Unique: 737G5GMMNmqKdEzIUTCqjA-1
+X-Mimecast-MFC-AGG-ID: 737G5GMMNmqKdEzIUTCqjA_1773148925
+Received: by mail-qk1-f200.google.com with SMTP id
+ af79cd13be357-8cd81506677so1375226585a.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 10 Mar 2026 06:22:05 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20230601; t=1773147248; x=1773752048;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=mm6hm+LHoMGo5Ew01sq1dP9YSITnoqIDxYFDqmtgvh0=;
- b=SDGRhDVn5hnlUHg7CCz16CntOmHqmudyo+Cu6I3Omx7V1XxQ/bX2bLFtcQ0KoGbL27
- KJ8FcpQYw2MChqOxMMIo6BkcmEKezPxVUWQc0nFrCRAa9nPqj0xlh1ZGSDJ28b38h4Bv
- v2jxei9H63foV4rz7GwRAdoT1SjxYpsh92JxeNU89F4U3r9nN2gYb7seMQCZvYKMEg1X
- m8KjVj80YMrUGzwvaQOgHJGHtdgiT7peAEfIWBoLKoqWuoDPw2c4QWhfegzpVsapjCu1
- 8VOtY3HYt0fBmN0E7d7ZPJNx01r7vAxDgUCIjYIOeRPXHM4D/+Frm6h5eTUQ2EKNhBmn
- XEew==
+ d=1e100.net; s=20230601; t=1773148925; x=1773753725;
+ h=user-agent:in-reply-to:content-disposition:mime-version:references
+ :message-id:subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=5/adDEbR57gUpYJcJq84OoDVxrrM3xMPFmZCRo0jKXM=;
+ b=D+ECmTVaI2UWP56zkByER3mclIzZXHWBIGSFM3KRlVWpUZ13HU0f/LggCLCsj7t50t
+ i8N8eNoimxYMRXHzw5VJobvKnFKqi2surHy3BHszT+MpVKrBsQnYDBMY+No9vrmbKx1S
+ zmE1oQpoSVtwIOYCj9/GItqgiaxGtYvrB511bm0I+PkgS2kJ8FMdCV8FYyr293slIoDM
+ flk8GRl9M5hMEMVutHeP8YINlmga5CTqGcF8j9ckj3nsjWiW3lMz/1xreaVLUsWrPgRg
+ KugSNomfWApH9m48rn8aBqLFScz9mEfS8DW3xLcazN8NQyZxaKAz5bAeSNnXqrisgRKU
+ N77g==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWXpK0Vpcp1MNPH2+A4CWD+NN/JOSMbnOx1siHh3sGkUfnKb3OfSFgKvFMLeW1Q5UuhNV0SIHMx5R0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyD+bWYU58iV2KHHbo0US6ZBeMIHY7ICtAqCw1AqTqoejalHCjq
- EOfOTZIEj6tVHHRC4vTovz0UswP81Xj53g4xzQzjcaQ+5ROFfcc37gzDrg3XYnmyDw==
-X-Gm-Gg: ATEYQzw6OAHwXSKj62tEPSidZokkFnNCOsSjNAdDzVc7OrKuMd/Qv5QpDrHj589eE5e
- jdCwWAE93c8uzA0YaQZCghS04FkX+1vhQF2wASvWd3dXsOs+6APWGVoih3dwGNBN1+mJuO9O1U3
- InoTUBaA6x/QFH2us7Hyh82Zx7bS7ditCPSyEw6hM2dKnKgU8AWWOqb7bgLORbFV3vf8bbU8j7c
- cIFy0yyiKjNjpUqIt9bkrTn4rZpjS24WYek2aGlwF4D4HuhkHBPQ+/5MESYHnOxIRxjhj1wYMG+
- Pqs6aVrWCdFDeZuFhfH9Uu4nOi5FRDEp5Lp0ervo2kPumMY5koS96f9aGRriHgH6RnVN9afP8L+
- 4vAm7IiMawclXbJ8htOZuFyj0YsE0vPAKMAJqGKW6EklgIf/CXoxY32N6toYrvOIyedkgjwrvi0
- UO1lp8M3OJ4Lv9Xrd3TxQ3ZYXlzqqCTW6u6HF7IXkcQb+pn5+G8CQN1mhxDw==
-X-Received: by 2002:a17:902:ebd2:b0:2ae:45bb:bc4e with SMTP id
- d9443c01a7336-2aea30ebe48mr3008685ad.24.1773147247400; 
- Tue, 10 Mar 2026 05:54:07 -0700 (PDT)
-Received: from google.com (10.129.124.34.bc.googleusercontent.com.
- [34.124.129.10]) by smtp.gmail.com with ESMTPSA id
- 41be03b00d2f7-c739e0cb73dsm12445679a12.11.2026.03.10.05.53.57
+ AJvYcCWJ6T/qNgSFY+FG0JhuHBg/cB2WUWI3g5ruVP92w1PHFen6BRMCe1gog+hc2JQqa929wM8OGGbdmTI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YygTH5xYfgPXR3QzZSEqOywJuop53PRCR0MjxoSj+a+DcF4x5wI
+ KlKQkFcE4zJG4b8WqHVhCfvtT4/3vSHbvtvecZkR+q47CqNBLkZEHvF0f2wtbfC/4KPfdYQMj0t
+ n9EjV1+GsA15ipy3yu1y9UISoLbDUIrmr+GOWHXXnIi9+Y6BJvSH9OUYSczs3c11NRP/++g==
+X-Gm-Gg: ATEYQzz8D2rBRlutBUM7MYZd9cQRAydKF4YQgaYWrO5/nuqUN8UB/ZFq/8yTY1lxYKE
+ If9yMME0EZ8WQNh2ncOaaAr90BTfzlLXl+TnWuQKliVphqgHZ1Sg3M4EHHn9WNYhMJ0IJAccCnV
+ ribK/EoEOczuqZDpAqGaKyuidhzA/HWl8uAP+uNI8t9PFML/400MGl/WLFwQt9nBV0ATJqNyicv
+ vB5bM9R1fTrxE/RERbDxn39RXX+dvGMdEAvH9zEXXajqel8aQ98jhgTs7dIQJY6u175qivGBky7
+ GguBZhjDozpKe4D8x65kzsfpSzxBLVC3ZuDn4ncTgOWwdzBIgZgKSQ5hOheeMPYP0nKluwvquys
+ Y1GsY206DtsAvQU/+534Lip+WTAfHW7MRR7Njte5KIB+6z+rHEdUJ0nf4
+X-Received: by 2002:a05:620a:3713:b0:8ca:1240:4991 with SMTP id
+ af79cd13be357-8cd6d4f9469mr1830785285a.45.1773148924694; 
+ Tue, 10 Mar 2026 06:22:04 -0700 (PDT)
+X-Received: by 2002:a05:620a:3713:b0:8ca:1240:4991 with SMTP id
+ af79cd13be357-8cd6d4f9469mr1830766185a.45.1773148922638; 
+ Tue, 10 Mar 2026 06:22:02 -0700 (PDT)
+Received: from redhat.com (c-73-183-52-120.hsd1.pa.comcast.net.
+ [73.183.52.120]) by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-8cd8576db0esm474754485a.47.2026.03.10.06.21.59
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 10 Mar 2026 05:54:06 -0700 (PDT)
-Date: Tue, 10 Mar 2026 12:53:54 +0000
-From: Pranjal Shrivastava <praan@google.com>
+ Tue, 10 Mar 2026 06:22:01 -0700 (PDT)
+Date: Tue, 10 Mar 2026 09:21:58 -0400
+From: Brian Masney <bmasney@redhat.com>
 To: Philipp Hahn <phahn-oss@avm.de>
 Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
  bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
@@ -96,15 +102,22 @@ Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
  ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
  sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
  tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
- Alex Williamson <alex@shazbot.org>
-Subject: Re: [PATCH 46/61] vfio: Prefer IS_ERR_OR_NULL over manual NULL check
-Message-ID: <abAUYvx6VEdSmInm@google.com>
+ Michael Turquette <mturquette@baylibre.com>,
+ Stephen Boyd <sboyd@kernel.org>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Thomas Gleixner <tglx@kernel.org>
+Subject: Re: [PATCH 56/61] clk: Prefer IS_ERR_OR_NULL over manual NULL check
+Message-ID: <abAa9vQg4BSxl1BJ@redhat.com>
 References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
- <20260310-b4-is_err_or_null-v1-46-bd63b656022d@avm.de>
+ <20260310-b4-is_err_or_null-v1-56-bd63b656022d@avm.de>
 MIME-Version: 1.0
+In-Reply-To: <20260310-b4-is_err_or_null-v1-56-bd63b656022d@avm.de>
+User-Agent: Mutt/2.2.14 (2025-02-20)
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: bNCbEDjnc_W4ChLFV5s_QA7kml8xgcSUZ-ebwZrOLUk_1773148925
+X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260310-b4-is_err_or_null-v1-46-bd63b656022d@avm.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,78 +132,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 814F524F20A
+X-Rspamd-Queue-Id: BA11F25005B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20230601];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[praan@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS(0.00)[m:phahn-oss@avm.de,m:amd-gfx@lists.freedesktop.org,m:apparmor@lists.ubuntu.com,m:bpf@vger.kernel.org,m:ceph-devel@vger.kernel.org,m:cocci@inria.fr,m:dm-devel@lists.linux.dev,m:dri-devel@lists.freedesktop.org,m:gfs2@lists.linux.dev,m:intel-wired-lan@lists.osuosl.org,m:iommu@lists.linux.dev,m:kvm@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-block@vger.kernel.org,m:linux-bluetooth@vger.kernel.org,m:linux-btrfs@vger.kernel.org,m:linux-cifs@vger.kernel.org,m:linux-clk@vger.kernel.org,m:linux-erofs@lists.ozlabs.org,m:linux-ext4@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-gpio@vger.kernel.org,m:linux-hyperv@vger.kernel.org,m:linux-input@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-leds@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-mips@vger.kernel.org,m:linux-mm@kvack.org,m:linux-modules@vger.kernel.org,m:linux-mtd@lists.infradead.org,m:linux-nfs@vger.kernel.org,m:linux-omap@vger.kernel.org,m:linux-phy@lists.infradead.
- org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,m:alex@shazbot.org,s:lists@lfdr.de];
+ org,m:linux-pm@vger.kernel.org,m:linux-rockchip@lists.infradead.org,m:linux-s390@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-sctp@vger.kernel.org,m:linux-security-module@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-trace-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:netdev@vger.kernel.org,m:ntfs3@lists.linux.dev,m:samba-technical@lists.samba.org,m:sched-ext@lists.linux.dev,m:target-devel@vger.kernel.org,m:tipc-discussion@lists.sourceforge.net,m:v9fs@lists.linux.dev,m:mturquette@baylibre.com,m:sboyd@kernel.org,m:daniel.lezcano@kernel.org,m:tglx@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER(0.00)[bmasney@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[praan@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DKIM_TRACE(0.00)[redhat.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[bmasney@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[58];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,avm.de:email,shazbot.org:email]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[baylibre.com:email,avm.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 12:49:12PM +0100, Philipp Hahn wrote:
+On Tue, Mar 10, 2026 at 12:49:22PM +0100, Philipp Hahn wrote:
 > Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
 > check.
 > 
-> Change generated with coccinelle.
+> Semantich change: Previously the code only printed the warning on error,
+
+Semantic ...
+
+> but not when the pointer was NULL. Now the warning is printed in both
+> cases!
 > 
-> To: Alex Williamson <alex@shazbot.org>
-> Cc: kvm@vger.kernel.org
+> Change found with coccinelle.
+> 
+> To: Michael Turquette <mturquette@baylibre.com>
+> To: Stephen Boyd <sboyd@kernel.org>
+> To: Daniel Lezcano <daniel.lezcano@kernel.org>
+> To: Thomas Gleixner <tglx@kernel.org>
+> Cc: linux-clk@vger.kernel.org
 > Cc: linux-kernel@vger.kernel.org
 > Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
-> ---
->  drivers/vfio/vfio_main.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/vfio/vfio_main.c b/drivers/vfio/vfio_main.c
-> index 742477546b15d4dbaf9ebcfb2e67627db71521e0..d71922dfde5885967398deddec3e9e04b05adfec 100644
-> --- a/drivers/vfio/vfio_main.c
-> +++ b/drivers/vfio/vfio_main.c
-> @@ -923,7 +923,7 @@ vfio_ioctl_device_feature_mig_device_state(struct vfio_device *device,
->  
->  	/* Handle the VFIO_DEVICE_FEATURE_SET */
->  	filp = device->mig_ops->migration_set_state(device, mig.device_state);
-> -	if (IS_ERR(filp) || !filp)
-> +	if (IS_ERR_OR_NULL(filp))
->  		goto out_copy;
->  
->  	return vfio_ioct_mig_return_fd(filp, arg, &mig);
-> 
 
-Reviewed-by: Pranjal Shrivastava <praan@google.com>
+With the minor typo addressed:
 
-The cleanup alone looks fine, but I'm not sure if the maintainers would
-be happy about the tree-wide spam, since each patch might go through a
-different tree. I'd wait for Alex's preference/ack on that.
+Reviewed-by: Brian Masney <bmasney@redhat.com>
 
-Thanks,
-Praan
