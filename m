@@ -2,59 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4M0SAwkesGlBgAIAu9opvQ
+	id +LOSEUYesGlagAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 14:35:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 14:36:06 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E40A25070F
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 14:35:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8D71250763
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 14:36:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA8F710E700;
-	Tue, 10 Mar 2026 13:35:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33EE010E6F4;
+	Tue, 10 Mar 2026 13:36:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="n/JgThux";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H+r+6uWB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6278B10E6F4;
- Tue, 10 Mar 2026 13:35:01 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id D4999600C4;
- Tue, 10 Mar 2026 13:35:00 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 6A11BC19423;
- Tue, 10 Mar 2026 13:34:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773149700;
- bh=tm1nj2lmOriJREfH+Qu5V0vXny3pFbW7dtCrEGIG9vA=;
- h=Date:From:To:Cc:Subject:From;
- b=n/JgThuxRT38ZOULF1t6gOR2jYFQExTDH3wGlXKd6q5CO1LtfYGXYo/btPRdimHsK
- GKfv+/F1g9zEuNmDthwA3M9LZgTeU0Hp+RvjNhDaAB9GC1V9tCqGC/p/uAM91MSSfy
- Rh1WGIJmafh8hFOJqU9pyLKqt9pU9tNV1cgV0f1AKqczZUIsluVigGKQdFRRLh+Ixn
- dnBzAQdRQsWGi7jOwtlT9BesDyncvj8auLONTgNmF+z3ZsLqvqwC/ml7DZwLmvoB3s
- ri0S3RkqYISW4E7Gg+ci6dsaAAXZKDR0hKlashXZ+BIJ/cyD6TJx59Uis9jmBbEMmR
- uGHPrDRxzOs8g==
-Date: Tue, 10 Mar 2026 13:34:55 +0000
-From: Mark Brown <broonie@kernel.org>
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Cc: Imre Deak <imre.deak@intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Tvrtko Ursulin <tursulin@ursulin.net>
-Subject: linux-next: manual merge of the drm-intel tree with the
- drm-intel-fixes tree
-Message-ID: <abAd_71qonm8fvk7@sirena.org.uk>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1852510E29F;
+ Tue, 10 Mar 2026 13:36:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773149764; x=1804685764;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=YNVg0BRHGoVeXuk5Vxr+f30hSbojncH4/v76fsbkPVM=;
+ b=H+r+6uWBJ64hHYCrtcYgK/v5Hp5R3AUppn/ryjwCDYjK8btFYqThjkle
+ vrX4x2gCByKLAXY7yYHTwC/z+OxwVedslp/Qdcdd2vKoK0g3iHPdNJHt6
+ XLzTTGULa9eC2yaeuaKl/naQWeWYCDaTTK5a4NWLQiXqp6siQ/yj3oICy
+ Z7l89s7323OZsPwb9TR0AwwgJoDZxAFXPeNmhmW3OI9pMMHBm0J3YLZJO
+ krzU0UvvtXNDFkBJpDmRqeJHZFPaiMQs69TLgEOCrno33hPfCoiSwO8pB
+ LnpE5MpFrovMlqEk7ZVI5ZC5Zof98zX8Tt2/GxXUwxDrNlTow1FvdhqzD A==;
+X-CSE-ConnectionGUID: oGft8QxYTky4nhwphWJ10Q==
+X-CSE-MsgGUID: 4rfAj+XvQXmr6kNlKRjjpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="85672637"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85672637"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Mar 2026 06:36:03 -0700
+X-CSE-ConnectionGUID: ASCeFWh8Q4y+UZ3i0uY+Wg==
+X-CSE-MsgGUID: b/TGjLb1Qz2GX9UTEuVaKQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="217646521"
+Received: from display-adls.igk.intel.com ([10.211.131.198])
+ by fmviesa007.fm.intel.com with ESMTP; 10 Mar 2026 06:36:01 -0700
+From: Mika Kahola <mika.kahola@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Mika Kahola <mika.kahola@intel.com>
+Subject: [PATCH v3 03/24] drm/i915/lt_phy: Refactor LT PHY PLL handling to use
+ explicit PLL state
+Date: Tue, 10 Mar 2026 13:36:00 +0000
+Message-ID: <20260310133600.1708066-1-mika.kahola@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260304131423.1017821-5-mika.kahola@intel.com>
+References: <20260304131423.1017821-5-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="B7OPzjIj5t59VfcG"
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,117 +73,233 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6E40A25070F
+X-Rspamd-Queue-Id: A8D71250763
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-3.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,sirena.org.uk:mid]
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	RCPT_COUNT_THREE(0.00)[3];
+	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Action: no action
 
+The LT PHY implementation currently pulls PLL and port_clock
+information directly from the CRTC state. This ties the PHY
+programming logic too tightly to the CRTC state and makes it
+harder to clearly express the PHY’s own PLL configuration.
 
---B7OPzjIj5t59VfcG
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Introduce an explicit "struct intel_lt_phy_pll_state" argument
+for the PHY functions and update callers accordingly.
 
-Hi all,
+No functional change is intended — this is a preparatory cleanup for
+to bring LT PHY PLL handling as part of PLL framework.
 
-Today's linux-next merge of the drm-intel tree got a conflict in:
+v2:  DP, HDMI 2.0, and HDMI FRL modes are port of the VDR configuration 0
+    register. These modes are defined by bits 2:0. Decode these to
+    differentiate DP and HDMI modes when programming PLL's. (Imre, Suraj)
 
-  drivers/gpu/drm/i915/display/intel_vdsc.h
+BSpec: 744921
 
-between commit:
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 67 ++++++++++++++-------
+ 1 file changed, 46 insertions(+), 21 deletions(-)
 
-  bb5f1cd10101c ("drm/i915/dsc: Add helper for writing DSC Selective Update=
- ET parameters")
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index f173d1788af8..06d83282c495 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -33,6 +33,7 @@
+ #define PCLK_PLL_ACK_LN0		REG_BIT(30)
+ #define MODE_DP				3
+ #define MODE_HDMI_20			4
++#define MODE_HDMI_FRL			5
+ #define Q32_TO_INT(x)	((x) >> 32)
+ #define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
+ #define DCO_MIN_FREQ_MHZ	11850
+@@ -1177,9 +1178,30 @@ intel_lt_phy_lane_reset(struct intel_encoder *encoder,
+ 	intel_de_rmw(display, XELPDP_PORT_BUF_CTL2(display, port), lane_phy_pulse_status, 0);
+ }
+ 
++static bool intel_lt_phy_is_hdmi(const struct intel_lt_phy_pll_state *ltpll)
++{
++	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
++
++	if (mode == MODE_HDMI_20 || mode == MODE_HDMI_FRL)
++		return true;
++
++	return false;
++}
++
++static bool intel_lt_phy_is_dp(const struct intel_lt_phy_pll_state *ltpll)
++{
++	u8 mode = REG_FIELD_GET8(LT_PHY_VDR_MODE_ENCODING_MASK, ltpll->config[0]);
++
++	if (mode == MODE_DP)
++		return true;
++
++	return false;
++}
++
+ static void
+ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+-				    const struct intel_crtc_state *crtc_state,
++				    const struct intel_lt_phy_pll_state *ltpll,
++				    int port_clock,
+ 				    bool lane_reversal)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -1196,17 +1218,16 @@ intel_lt_phy_program_port_clock_ctl(struct intel_encoder *encoder,
+ 	 * but since the register bits still remain the same we use
+ 	 * the same definition
+ 	 */
+-	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI) &&
+-	    intel_hdmi_is_frl(crtc_state->port_clock))
++	if (intel_lt_phy_is_hdmi(ltpll) && intel_hdmi_is_frl(port_clock))
+ 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_DIV18CLK);
+ 	else
+ 		val |= XELPDP_DDI_CLOCK_SELECT_PREP(display, XELPDP_DDI_CLOCK_SELECT_MAXPCLK);
+ 
+ 	 /* DP2.0 10G and 20G rates enable MPLLA*/
+-	if (crtc_state->port_clock == 1000000 || crtc_state->port_clock == 2000000)
++	if (port_clock == 1000000 || port_clock == 2000000)
+ 		val |= XELPDP_SSC_ENABLE_PLLA;
+ 	else
+-		val |= crtc_state->dpll_hw_state.ltpll.ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
++		val |= ltpll->ssc_enabled ? XELPDP_SSC_ENABLE_PLLB : 0;
+ 
+ 	intel_de_rmw(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port),
+ 		     XELPDP_LANE1_PHY_CLOCK_SELECT | XELPDP_FORWARD_CLOCK_UNGATE |
+@@ -1249,10 +1270,12 @@ static u32 intel_lt_phy_get_dp_clock(u8 rate)
+ 
+ static bool
+ intel_lt_phy_config_changed(struct intel_encoder *encoder,
+-			    const struct intel_crtc_state *crtc_state)
++			    const struct intel_lt_phy_pll_state *ltpll)
+ {
++	struct intel_display *display = to_intel_display(encoder);
+ 	u8 val, rate;
+ 	u32 clock;
++	u32 port_clock = intel_lt_phy_calc_port_clock(display, ltpll);
+ 
+ 	val = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
+ 				LT_PHY_VDR_0_CONFIG);
+@@ -1263,9 +1286,9 @@ intel_lt_phy_config_changed(struct intel_encoder *encoder,
+ 	 * using 1.62 Gbps clock since PHY PLL defaults to that
+ 	 * otherwise we always need to reconfigure it.
+ 	 */
+-	if (intel_crtc_has_dp_encoder(crtc_state)) {
++	if (intel_lt_phy_is_dp(ltpll)) {
+ 		clock = intel_lt_phy_get_dp_clock(rate);
+-		if (crtc_state->port_clock == 1620000 && crtc_state->port_clock == clock)
++		if (port_clock == 1620000 && port_clock == clock)
+ 			return false;
+ 	}
+ 
+@@ -1760,41 +1783,41 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
+ 
+ static void
+ intel_lt_phy_program_pll(struct intel_encoder *encoder,
+-			 const struct intel_crtc_state *crtc_state)
++			 const struct intel_lt_phy_pll_state *ltpll)
+ {
+ 	u8 owned_lane_mask = intel_lt_phy_get_owned_lane_mask(encoder);
+ 	int i, j, k;
+ 
+ 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_0_CONFIG,
+-			   crtc_state->dpll_hw_state.ltpll.config[0], MB_WRITE_COMMITTED);
++			   ltpll->config[0], MB_WRITE_COMMITTED);
+ 	intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG,
+-			   crtc_state->dpll_hw_state.ltpll.config[1], MB_WRITE_COMMITTED);
++			   ltpll->config[1], MB_WRITE_COMMITTED);
+ 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
+-			   crtc_state->dpll_hw_state.ltpll.config[2], MB_WRITE_COMMITTED);
++			   ltpll->config[2], MB_WRITE_COMMITTED);
+ 
+ 	for (i = 0; i <= 12; i++) {
+ 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
+-				   crtc_state->dpll_hw_state.ltpll.addr_msb[i],
++				   ltpll->addr_msb[i],
+ 				   MB_WRITE_COMMITTED);
+ 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_LSB(i),
+-				   crtc_state->dpll_hw_state.ltpll.addr_lsb[i],
++				   ltpll->addr_lsb[i],
+ 				   MB_WRITE_COMMITTED);
+ 
+ 		for (j = 3, k = 0; j >= 0; j--, k++)
+ 			intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0,
+ 					   LT_PHY_VDR_X_DATAY(i, j),
+-					   crtc_state->dpll_hw_state.ltpll.data[i][k],
++					   ltpll->data[i][k],
+ 					   MB_WRITE_COMMITTED);
+ 	}
+ }
+ 
+ static void
+ intel_lt_phy_enable_disable_tx(struct intel_encoder *encoder,
+-			       const struct intel_crtc_state *crtc_state)
++			       const struct intel_lt_phy_pll_state *ltpll,
++			       u8 lane_count)
+ {
+ 	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 	bool lane_reversal = dig_port->lane_reversal;
+-	u8 lane_count = crtc_state->lane_count;
+ 	bool is_dp_alt =
+ 		intel_tc_port_in_dp_alt_mode(dig_port);
+ 	enum intel_tc_pin_assignment tc_pin =
+@@ -1896,7 +1919,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_lane_reset(encoder, crtc_state->lane_count);
+ 
+ 	/* 2. Program PORT_CLOCK_CTL register to configure clock muxes, gating, and SSC. */
+-	intel_lt_phy_program_port_clock_ctl(encoder, crtc_state, lane_reversal);
++	intel_lt_phy_program_port_clock_ctl(encoder, &crtc_state->dpll_hw_state.ltpll,
++					    crtc_state->port_clock, lane_reversal);
+ 
+ 	/* 3. Change owned PHY lanes power to Ready state. */
+ 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
+@@ -1906,12 +1930,12 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	 * 4. Read the PHY message bus VDR register PHY_VDR_0_Config check enabled PLL type,
+ 	 * encoded rate and encoded mode.
+ 	 */
+-	if (intel_lt_phy_config_changed(encoder, crtc_state)) {
++	if (intel_lt_phy_config_changed(encoder, &crtc_state->dpll_hw_state.ltpll)) {
+ 		/*
+ 		 * 5. Program the PHY internal PLL registers over PHY message bus for the desired
+ 		 * frequency and protocol type
+ 		 */
+-		intel_lt_phy_program_pll(encoder, crtc_state);
++		intel_lt_phy_program_pll(encoder, &crtc_state->dpll_hw_state.ltpll);
+ 
+ 		/* 6. Use the P2P transaction flow */
+ 		/*
+@@ -2002,7 +2026,8 @@ void intel_lt_phy_pll_enable(struct intel_encoder *encoder,
+ 	intel_lt_phy_powerdown_change_sequence(encoder, owned_lane_mask,
+ 					       XELPDP_P0_STATE_ACTIVE);
+ 
+-	intel_lt_phy_enable_disable_tx(encoder, crtc_state);
++	intel_lt_phy_enable_disable_tx(encoder, &crtc_state->dpll_hw_state.ltpll,
++				       crtc_state->lane_count);
+ 	intel_lt_phy_transaction_end(encoder, wakeref);
+ }
+ 
+-- 
+2.43.0
 
-=66rom the drm-intel-fixes tree and commits:
-
-  c8698d61aeb3f ("drm/i915/dsc: Add helper for writing DSC Selective Update=
- ET parameters")
-  91f0a94974144 ("drm/i915/dsc: Add intel_dsc_get_slice_config()")
-  889ff8dd4679a ("drm/i915/dsc: Track the detaild DSC slice configuration")
-
-=66rom the drm-intel tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --combined drivers/gpu/drm/i915/display/intel_vdsc.h
-index 99bb9042592a4,3372f8694054d..0000000000000
---- a/drivers/gpu/drm/i915/display/intel_vdsc.h
-+++ b/drivers/gpu/drm/i915/display/intel_vdsc.h
-@@@ -13,10 -13,16 +13,16 @@@ struct drm_printer
-  enum transcoder;
-  struct intel_crtc;
-  struct intel_crtc_state;
-+ struct intel_display;
-  struct intel_dsb;
-+ struct intel_dsc_slice_config;
-  struct intel_encoder;
- =20
-  bool intel_dsc_source_support(const struct intel_crtc_state *crtc_state);
-+ int intel_dsc_line_slice_count(const struct intel_dsc_slice_config *confi=
-g);
-+ bool intel_dsc_get_slice_config(struct intel_display *display,
-+ 				int num_joined_pipes, int slice_per_pipe,
-+ 				struct intel_dsc_slice_config *config);
-  void intel_uncompressed_joiner_enable(const struct intel_crtc_state *crtc=
-_state);
-  void intel_dsc_enable(const struct intel_crtc_state *crtc_state);
-  void intel_dsc_disable(const struct intel_crtc_state *crtc_state);
-@@@ -38,5 -44,8 +44,8 @@@ void intel_vdsc_state_dump(struct drm_p
-  			   const struct intel_crtc_state *crtc_state);
-  int intel_vdsc_min_cdclk(const struct intel_crtc_state *crtc_state);
-  unsigned int intel_vdsc_prefill_lines(const struct intel_crtc_state *crtc=
-_state);
-+ int intel_dsc_get_pixel_rate_with_dsc_bubbles(struct intel_display *displ=
-ay,
-+ 					      int pixel_rate, int htotal,
-+ 					      int dsc_horizontal_slices);
- =20
-  #endif /* __INTEL_VDSC_H__ */
-
---B7OPzjIj5t59VfcG
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmmwHf4ACgkQJNaLcl1U
-h9CSyQf/XmNfjVo/DztUas+fZw27q1oFWsl2dxPE/uzNxZCTn+qKXsYYQc8dYF9T
-JFRqWcEQhjx0cuRI7G+Cd3D8O+19Y1lDP5NKk37fCEPmgQ6r8MFl/fAKfky7c5kJ
-LaofBuR67US4+edLJh1PKw9Dz88CWqlRV7Ip+JDTBVbFWE2TPW2gTtVsOGkhRZe/
-h9ECzW8HTnG2qKGcY6dbqX5MFcqxV8uYdiPsETFF84nBfZeqg1fei7qmJ2kqYSs/
-fSv7yg+yBe3A7D/cMCaBDIIW2CF1JU6dy+upSYkRLasW8LX7mElj7ehtQeY5a7fg
-7/FJU2op/jKA/nNHBjrgjbHMfjTg+Q==
-=Uwwm
------END PGP SIGNATURE-----
-
---B7OPzjIj5t59VfcG--
