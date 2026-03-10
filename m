@@ -2,49 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GLVNMAAIsGlregIAu9opvQ
+	id VJO6LwAIsGkTewIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:01:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0236C24C06D
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:00:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E512424C06A
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 13:00:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5699E10E70D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2AAA910E706;
 	Tue, 10 Mar 2026 12:00:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jSkU8lbe";
+	dkim=fail reason="key not found in DNS" (0-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BPI4hSVR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (unknown [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A28F410E702;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D068910E703;
  Tue, 10 Mar 2026 12:00:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773144051; x=1804680051;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=aSMZDpvUgLluBKOIRlanJKEP/gkSJLftLRgZUIk89GQ=;
- b=jSkU8lbe/Vk43HekiKKxHrJhr0QwGW6NFfUkqBehYYQoHCSI/niw5qKU
- XFlGVQ/hnnRCvHcVhQrRAHdjwufnn9s2D+AqdZ5uSiqYqS/OYERkx/jAw
- Lr2C7m+T1gNwopbS7ll74vp/QnFZ5B5UWZYU2hAzIgCmVhJRH6xUFpTlN
- WdSTMzOTG5adKCwRpOszdO/P4fmoHx2c4jJIEnEosQQPwvVGJwsIvXM4D
- cYf35jflWwiTZ2F/JQw8SNHU0xxViwrkz24eJssY2Tp5ASQK9/f1y4LD9
- emVDWgu6F7ndNN3Fs9ozqFRCXZFJCtI2rO54CJ36oMXIYocwCAq7T5fzh Q==;
-X-CSE-ConnectionGUID: wcjMJeZ/Q1e9y4J/nVnVDw==
-X-CSE-MsgGUID: L0xeg+3yQmq36u8RKVVZig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84897879"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84897879"
+ t=1773144052; x=1804680052;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=X5bkIg01mSwii0raJK6zIIndcQTpTwNMf2UUfEWI840=;
+ b=BPI4hSVRI6m/RHXBPbguk6rGndqNbgbKqE5DfpzKSqFZ8Ey0aYz2rnVs
+ E0iWK6TYOah1P6jHqpOv0XyeLcZaBTsk04qTj6H6ZeoX0RVWfOr/KEFYm
+ NHF/pbghf1Yhpw2BQeXsO6SQzrCnBd0x3ZtMI3sadoHDWXoXwP3BlYD55
+ f21pVOCskL5yO4ND8TXZwcJr1NS3P7+iMQqm5+8Ix2o8MJLJfVU+5A7lH
+ 0ZN0C+iN1WWzR4DffH4ceLgdrpW8CX13oN1FpNsXTHwGv47e2sOvqU1Wf
+ 4lz7GE63V+NepjKi5rEncGYDHXj7FunlqnN6YOl03rS6VNt6Ox3gTa1VL w==;
+X-CSE-ConnectionGUID: ob7QbQk2Q3mvCeCDGodLqA==
+X-CSE-MsgGUID: jQ+MbKQATWKdVRIfL2HsLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11724"; a="84897886"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="84897886"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 04:57:38 -0700
-X-CSE-ConnectionGUID: 9WIlatWxQcOiYBNiHHrqiw==
-X-CSE-MsgGUID: BbqkrnYaTOGdoo4yt+6izQ==
+ 10 Mar 2026 04:57:42 -0700
+X-CSE-ConnectionGUID: 5caxrIYCR6u91I0aJdALGA==
+X-CSE-MsgGUID: utGbFRa4SMWw1tJHYvJBsw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="224773038"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="224773043"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa005.fm.intel.com with ESMTP; 10 Mar 2026 04:57:33 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 10 Mar 2026 04:57:38 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
@@ -54,13 +54,13 @@ Cc: contact@emersion.fr, alex.hung@amd.com, harry.wentland@amd.com,
  maarten.lankhorst@linux.intel.com, jani.nikula@intel.com,
  louis.chauvet@bootlin.com, stable@vger.kernel.org,
  chaitanya.kumar.borah@intel.com
-Subject: [PATCH v2 0/2] drm/colorop: Keep colorop state consistent across
- atomic commits
-Date: Tue, 10 Mar 2026 17:02:36 +0530
-Message-Id: <20260310113238.3495981-1-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH v2 1/2] drm/colorop: Preserve bypass value in duplicate_state()
+Date: Tue, 10 Mar 2026 17:02:37 +0530
+Message-Id: <20260310113238.3495981-2-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260310113238.3495981-1-chaitanya.kumar.borah@intel.com>
+References: <20260310113238.3495981-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -76,127 +76,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0236C24C06D
+X-Rspamd-Queue-Id: E512424C06A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,bootlin.com:email,collabora.com:email,emersion.fr:email];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[16];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	DMARC_DNSFAIL(0.00)[intel.com : query timed out];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-This series aims to keep colorop state consistent across atomic
-transactions by ensuring it accurately reflects committed hardware
-state and remains part of the atomic update whenever its associated
-plane is involved.
+__drm_atomic_helper_colorop_duplicate_state() unconditionally
+sets state->bypass = true after copying the existing state.
 
-It contains two changes:
-- Preserves the bypass value in duplicated colorop state.
+This override causes the new atomic state to no longer reflect
+the currently committed hardware state. Since the bypass property
+directly controls whether the colorop is active in hardware,
+resetting it to true can inadvertently disable an active colorop
+during a subsequent commit, particularly for internal driver commits
+where userspace does not touch the property.
 
-_drm_atomic_helper_colorop_duplicate_state() unconditionally reset
-bypass to true, which means the duplicated state no longer reflects the
-committed hardware state. Since bypass directly controls whether the
-colorop is active in hardware, this can lead to an unintended disable
-during subsequent commits.
+Drop the unconditional assignment and preserve the duplicated
+bypass value.
 
-This could potentially be a problem also for colorops where bypass value
-is immutably false.
-
-Conceptually, I consider 'bypass' to behave similar to 'visible' in plane 
-state - it represents current HW state and should therefore be preserved
-across duplication.
-
-- Add affected colorops with affected plane
-
-Colorops are unique in the DRM model. While they are DRM objects with their
-own states, they are logically attached to a plane and exposed through
-a plane property. In some sense, they share the same hierarchy as CRTC and
-planes while following a different 'ownership' model.
-
-Given that enabling a CRTC pulls in all its affected planes into the atomic
-state, it follows that when a plane is added, its associated colorops are
-also included. Otherwise, during modesets or internal commits, colorop state
-may be missing from the transaction, resulting in inconsistent or incomplete
-state updates.
-
-That said, I do have a concern about potentially inflating the atomic
-state by automatically pulling in colorops from the core. It is not
-entirely clear to me whether inclusion of affected colorops should be
-handled in core, or left to individual drivers.
-
-My understanding of the atomic framework is still evolving, so
-I would appreciate feedback from those more familiar with the intended
-design direction.
-
-==
-Chaitanya
-
-P.S/Background/TL;DR:
-
-I discovered inconsistency with the colorop state while analysing CRC mismatches
-in kms_color_pipeline test cases[1]. Visual inspection reveals that while CRC is
-being collected degamma block has been reset. This was traced back to the internal
-commit that the driver does to disable PSR2 and selective fetch for CRC collection.
-
-crtc_crc_open
-    -> intel_crtc_set_crc_source
-        -> intel_crtc_crc_setup_workarounds
-            -> drm_atomic_commit
-
-During this flow colorop states are never added to the atomic state which in turn
-makes intel_plane_color_copy_uapi_to_hw_state() disable the colorops.
-
-If we add the colorops, to the atomic state, the problem still persisted because
-while duplicating the colorop state, 'bypass' was getting reset to true.
-
-The two changes made in this series fixes the issue.
-
-[1] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18001/shard-mtlp-6/igt@kms_color_pipeline@plane-lut1d.html
-
-v2:
-  - Add affected colorops only when a pipeline is enabled
-
-Cc: Simon Ser <contact@emersion.fr>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Harry Wentland <harry.wentland@amd.com>
-Cc: Daniel Stone <daniels@collabora.com>
-Cc: Melissa Wen <mwen@igalia.com>
-Cc: Sebastian Wick <sebastian.wick@redhat.com>
-Cc: Alex Hung <alex.hung@amd.com>
-Cc: Uma Shankar <uma.shankar@intel.com>
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Fixes: 8c5ea1745f4c ("drm/colorop: Add BYPASS property")
 Cc: <stable@vger.kernel.org> #v6.19+
-
-Chaitanya Kumar Borah (2):
-  drm/colorop: Preserve bypass value in duplicate_state()
-  drm/atomic: Add affected colorops with affected planes
-
- drivers/gpu/drm/drm_atomic.c  | 7 +++++++
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+---
  drivers/gpu/drm/drm_colorop.c | 2 --
- 2 files changed, 7 insertions(+), 2 deletions(-)
+ 1 file changed, 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+index f421c623b3f0..e44a738c4c14 100644
+--- a/drivers/gpu/drm/drm_colorop.c
++++ b/drivers/gpu/drm/drm_colorop.c
+@@ -466,8 +466,6 @@ static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colo
+ 
+ 	if (state->data)
+ 		drm_property_blob_get(state->data);
+-
+-	state->bypass = true;
+ }
+ 
+ struct drm_colorop_state *
 -- 
 2.25.1
 
