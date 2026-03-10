@@ -2,171 +2,175 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAqBAZqGsGlbkQIAu9opvQ
+	id 2AK9FxSIsGl2kQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 22:01:14 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 22:07:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 645D525811A
-	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 22:01:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0EFE725818B
+	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 22:07:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92E6710E786;
-	Tue, 10 Mar 2026 21:01:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D569610E78A;
+	Tue, 10 Mar 2026 21:07:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gEH/8z9Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T6QEhGEL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC03510E23E;
- Tue, 10 Mar 2026 21:01:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 10AE110E23E;
+ Tue, 10 Mar 2026 21:07:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773176469; x=1804712469;
- h=message-id:date:subject:from:to:cc:references:
+ t=1773176846; x=1804712846;
+ h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=uoJsPCkuAc0hd+p6xasgaktIeT0hJvN+x1dpyUFFMhU=;
- b=gEH/8z9YiHDDKIDv95bhzkCtL4k1O4fdIqx4z0uGyQnj9wImTcHDNYld
- X0SlljyyIfTX3EJ/OdFgw0ntwDcBcVcbLpK8CKiumlNAYVBOvm3VBkgqx
- 0I3sKlXqkmwUrLHcSof2hoTbybqUCMK8YRndAH5WY3cGDXK8Kq+wx+K+O
- NQMzZq+Dz8MRvnSiADcvltjjLkKIFEAylQytBo5Kee3j3FT+lkgonIphS
- InDmB+2zle2Z5kIPL1tSwE8LkOWo54L5FHkOoHMcEt2F58EuRx+K1gPVx
- sYmRzc7juaJzfGthCm2IB6z5YciCyAh5snFBT/QgDpSAERiksmi41ZmQL w==;
-X-CSE-ConnectionGUID: ZuXNyenTQua+TPdG8V3rjA==
-X-CSE-MsgGUID: QKy4iskoTiyhNI68j64lIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="85590896"
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85590896"
+ bh=mNZr4UtuAh2tE2D0EsOQw6W3SJ4ip6+JohBDjaL5NPs=;
+ b=T6QEhGELsb++Yq8TeOiAyUQSX3VYeiqugxkeAO3q1GMRhjkjmDg5MU81
+ XjcJdsQEFAKAVsGQz1emBs/JyKWoR+ZoR27qMXk0c1DNR6JEBbvuYqGx5
+ 4TgADkF0X4iChIJZfEdzDno1ivINayTs7mkn7c3g9ciUPruWBjPLRSVbB
+ A1kfD6wIf9s3xYh+HBuoYjJDPI8UL9Itv8H9pSHtBJpar8No/NbUunR9q
+ mj3W7WpPn1PeVDogLLrWS/McKA4ALS8Rh2WX3yGzOtT9h10UYxAggNDUj
+ 2+GNknXXSbt0Phdb9fKfL1xcrzfqNU1rwQx0LO2kNJV4LmsGvOFBdMusP A==;
+X-CSE-ConnectionGUID: 6v8C+sBRTyu4PhYdBU0+Ww==
+X-CSE-MsgGUID: 70pD1obuSwSxq/PMAMC4Lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="85591391"
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="85591391"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 14:01:08 -0700
-X-CSE-ConnectionGUID: 3KH9t3kKTE+kpDGA+/08hw==
-X-CSE-MsgGUID: QQjfoYLAQZ+pfQZBV47b2w==
+ 10 Mar 2026 14:07:25 -0700
+X-CSE-ConnectionGUID: vFr3Z5e3RMClOOq471APJA==
+X-CSE-MsgGUID: DXgSRDvkRR67iUIe6YRBaw==
+X-Ironport-Invalid-End-Of-Message: True
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="224422006"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+X-IronPort-AV: E=Sophos;i="6.23,112,1770624000"; d="scan'208";a="224423841"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
  by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Mar 2026 14:01:06 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 10 Mar 2026 14:07:25 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 10 Mar 2026 14:01:05 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Tue, 10 Mar 2026 14:07:24 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 10 Mar 2026 14:01:05 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.46) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Tue, 10 Mar 2026 14:07:24 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.8) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 10 Mar 2026 14:01:05 -0700
+ 15.2.2562.37; Tue, 10 Mar 2026 14:07:24 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=FU1k5dRkMihN+MZTb3tn6r4c3dzXPCp023vZVK//9+IyEJK+iIPSOMkDi+qJDsQoNloARp55QJVOqCTwWPFh92aQsIqlf5NXX/pHTnEFb8vuwsOS2WzXK6hc6n+JOZhu93bRrUkpNjdZMyatG/CAG0OtBZD0Es5p3o5EkfRXjI2dGI6KbnBoWkwuTZwhJac/U47ZG/YpYdAOPsuQZQlE9QtMoOCgnlfS7OiqJrztNcWWxPqTIYVuJ7qZFsj10n1XLkiPt1lZOvZK/+MxYINUvsunKXz2dBRUteRg22fjAyqE4gDi41+uYy6O12btiHmJNylNZ5NTR/+b6vgjmQ0gbg==
+ b=oKgMAN3T38wKpUrU0G1f73ZXzYhET5WqnKYpnmXEW88PXEc2zxlq0Ig/osL2AyTfmzb2zed9r5DiadoToY0IpfrEs1z0lYDMHFAFFKegrgFG9LUFwcy9iHcHAAfX/QdydWXGn4yhxMWY64zNQgYJ/Ya+Jz5z3LY8fcVFci2q+Ujr3dTOQ46xBvEPPXEYs7zPt5n0RKfazdCEBHZRW2RQVrtTBRtAIvnXrGlCTylEq9Ytuy8+n/zcGySYeXBgJaSjWy3SqpvontoOl/vTuBpqxYFddd2vqV7A/xch0Xg2XVojoUpXMogYJni7hiqcNrRV9hGJxr43agCR9IMma6rNKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Hd06NxTlkygT5AvC4y2NjrMh6e/cnh1i/FaVOj7V7cQ=;
- b=XsM8XkIaNCcIwGozknjAxRPMVnqHST8Rt6aGY2uKetmPZKMfSUTwd5a+hORjYxXz//2oR/UKAs/nI/kuo/ADD7zc2a18ueJEaz8MLyV0/hT+5C2pDtKC+PP/ii79Jhz5u3WFhb0gYjtMHd2d0htXLjBXdRkcQwEzUZ/Gl9AGGUmPynllacUdmg3WOOauxyBivRE/y4t18J3LvbQV9fgnr8gvryGfLb9ywU37+5Ayxb36tIgY3KqixNFRGQCOdQgEc7wWANVfGnNNkUQWmYa2E04ehEAIOqmWycX7IIlH2GptLT6+BDagM8ewpyPHp3MAI7ASiWmCGcKFJa/6Q5TG7A==
+ bh=YKxZJyoy0WhpNhcdyI5Pt73Ku5/Wdt7vNcXQqW1ez+U=;
+ b=Zx/n/A76smCdFl53fejlPmItfJcm75rvLnFdyz8TAb+uWvYCzVS+DYKi6FrEQvcbJJizXHyWeiVcnC7EWPgVo/W60DxT5Y9EWN07luIWM3bOVqTS4IDQLhPQ1unOI38M0unnKPKGgX8buf7OZxdsIF/nabBvJKDt9+7iG12uqVLwfoCio8GEhT3zFKRPEEN+yG3I0CEBGiCq64v1JXEjupsxFQSOLMTZalP4QzBg+9c/IMsMbkFGLaERD5nve8xxnwQz1CQhIAhgfIS6yakzTGiseGtywUsusuRWE2XnN9pUGt8pIEhk07peALBbtMoNpqTQyaPszJudhpoG4/hfFw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by SJ2PR11MB7618.namprd11.prod.outlook.com (2603:10b6:a03:4cc::10)
+ by PH3PPF2CAD058EC.namprd11.prod.outlook.com (2603:10b6:518:1::d12)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.11; Tue, 10 Mar
- 2026 21:01:02 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.5; Tue, 10 Mar
+ 2026 21:07:21 +0000
 Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
  ([fe80::45f:5907:efdb:cb5b]) by SJ1PR11MB6129.namprd11.prod.outlook.com
  ([fe80::45f:5907:efdb:cb5b%3]) with mapi id 15.20.9700.010; Tue, 10 Mar 2026
- 21:01:02 +0000
-Message-ID: <ae1018a5-b7ae-4a84-82c7-e55c8873b45b@intel.com>
-Date: Wed, 11 Mar 2026 02:30:53 +0530
+ 21:07:21 +0000
+Message-ID: <2e6e929e-0586-4724-bb03-a9590dd92b22@intel.com>
+Date: Wed, 11 Mar 2026 02:37:12 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] drm/colorop: Keep colorop state consistent across
- atomic commits
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-To: Harry Wentland <harry.wentland@amd.com>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
+Subject: Re: [PATCH 2/2] drm/atomic: Add affected colorops with affected planes
+Content-Language: en-GB
+To: "Shankar, Uma" <uma.shankar@intel.com>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
-CC: <contact@emersion.fr>, <alex.hung@amd.com>, <daniels@collabora.com>,
- <mwen@igalia.com>, <sebastian.wick@redhat.com>, <uma.shankar@intel.com>,
- <ville.syrjala@linux.intel.com>, <maarten.lankhorst@linux.intel.com>,
- <jani.nikula@intel.com>, <louis.chauvet@bootlin.com>,
+CC: "contact@emersion.fr" <contact@emersion.fr>, "alex.hung@amd.com"
+ <alex.hung@amd.com>, "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "daniels@collabora.com" <daniels@collabora.com>, "mwen@igalia.com"
+ <mwen@igalia.com>, "sebastian.wick@redhat.com" <sebastian.wick@redhat.com>,
+ "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>, "louis.chauvet@bootlin.com"
+ <louis.chauvet@bootlin.com>, "stable@vger.kernel.org"
  <stable@vger.kernel.org>
 References: <20260218065713.326417-1-chaitanya.kumar.borah@intel.com>
- <f670f350-7230-4bbc-9443-a6307429d7b3@amd.com>
- <8639961c-9395-4bbe-941c-c1511c72af69@intel.com>
-Content-Language: en-GB
-In-Reply-To: <8639961c-9395-4bbe-941c-c1511c72af69@intel.com>
+ <20260218065713.326417-3-chaitanya.kumar.borah@intel.com>
+ <DM4PR11MB6360F90857302E3EE94FAB73F477A@DM4PR11MB6360.namprd11.prod.outlook.com>
+From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+In-Reply-To: <DM4PR11MB6360F90857302E3EE94FAB73F477A@DM4PR11MB6360.namprd11.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA1P287CA0017.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a00:35::36) To SJ1PR11MB6129.namprd11.prod.outlook.com
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA1P287CA0023.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a00:35::28) To SJ1PR11MB6129.namprd11.prod.outlook.com
  (2603:10b6:a03:488::12)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|SJ2PR11MB7618:EE_
-X-MS-Office365-Filtering-Correlation-Id: f2d8ee29-51b9-4bf6-1e6e-08de7ee82345
+X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|PH3PPF2CAD058EC:EE_
+X-MS-Office365-Filtering-Correlation-Id: 65d6878b-08fa-4b28-066f-08de7ee90533
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|18002099003|22082099003|56012099003;
-X-Microsoft-Antispam-Message-Info: rIa3iphvBLJnuEY3TSfK+PO/lbg5QGXe1UZv6JQugrJk+XGkQYnmlwmzhCRYmExWeKEasn7NV9VdtuGs11f4pwXzG4TO8nHlbQBftDvOQmvg/8jgkL+Dqr8GIDQJEoLrJOjBdnkALsUfFwNAjBJyXNRlW8TddJcp352Lgr7AVK+Td/I0qjLLgJnkXbul8CAWhez8cBXH9+4yylcDIilqFaLveunq++07pFpl45fAAKZdRfl4UC6ErdN5wWB3LkeA8kF53JyGjU1Q/16m1yKFm0vFcIgGiEWaBvZ6DuwJECPhIwwg/pXUgCGjUcL/niRobZK4AA+rwsXb+e5ctP//Sa+JtZVzqfQX/HQDc/+6Rjs2xEPfTA2dH88ae6xe0/R80VYFrvrQXrnV72EQN9etSgOb4y9BtCmKxq9Z2lWRfclWP359y7V+/FPzez5XVb2ez5MVndOMVS8YHVGHMBKkh42aT2Ycd+M1Mm/MzEIAjdvRh7kBLpjbpbvhaWpJPTXcVmwEoI3lU+p0MuDCJv/2J3BlO8rAsxJXJudfJt/Tvp6f7kYgoNe5XHRskujpCL90l6s6OlfHvrdMC29DyRJmgYwMd7jfy58rr6Cwgr6zYxzwG1kxxCNcD88gIy+72TAALjjHaRdctY+1TO/MKf3+BHtpzBIfWmeBEjgGqml+MdWrwa82Yc++EAOC3osot48Glzj61CAtbTCWdXUv+QmcSQ==
+ ARA:13230040|376014|1800799024|7416014|366016|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: f2YJ5Y8brhx5Nw1kYeDkUf1Uf+zCgewCzpK3+sFzmC8Ato7GhMC+3lhYZtsfEv6jWTMtEeiysjFYLT9+kIJoDBokCj3aqLahgja9lmRKME8MRUvvpm2sazYa+pPF2CqGQI9ARJUwm1vwViHoxM5kwdm30aaBlORmrOXrBGI2lUefnJlTY4c1hu0GmJWtWYx80pCO93/MJdhEz3Mz3PDo3mpankXBvUc86tw5hlF0VCYQUTmwZGTzmKwTcp9GCJr86Cdj6Ctxf8E/qSg1lASAUmHrOiQjlt2SENctJsuXFOg6TuQxEOSPtUy93OQO7FlwBi3H2+1QeV7EIuqf8+KHxSwDH668BKGtYpKgVeImRJFEGXu5dzRwzJzkVeU3YIPx3lF4BlTq8mpVMxUqc0AW6LEL294oReNfXAE0zczVIT0SqPqt3CuoSrzmxHzQ6CTmo4NMtd9vb8RQ08gb2UpC+2l5/a3s6CiTqPhux+TH29Hjgzv10SF9pJIL+rz7j1KMiYJj7EGwx71d+UA1+ruDpAduPsZr6ecuCCDvBMrbjLTlCJQS5E9PbeKTNLsR42+cfQDq7dP5tsZTMx4jWu6gCwywnehextksD8o8L9OsxXaj0H7a+p6td+MHBugLV4Q27an3hngw9iyJIkdgJ70wHWv/G3B017MO9t6vbWckZa2RoXwQPtLjLB9hJYuOBFCkZbqkepQI71SKcMbKxjpyuxhGVNQpd3VRaFilgs0vYpo=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(18002099003)(22082099003)(56012099003);
+ SFS:(13230040)(376014)(1800799024)(7416014)(366016)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Q21UZ0gxMExzUWs3NVVUK3A4NENHQlJIU0NsOWhoSnJzWDhmbUhQdmI1NVBH?=
- =?utf-8?B?NHQ5WjRwN2Rqa3YzSnh6dm05N3M2ODRvbEg2ZU9saStKK1R3SnRpaEdJTUdZ?=
- =?utf-8?B?b2lvenI1VnhaK3ZsMHFDd2VZVncySTg2RDdBcm1ST2tKM1NtV1ViTDJXNjA3?=
- =?utf-8?B?cjNvd0MvV2ZKRTZmK1puZ0dMS2cyT0RaeWh6bHZqQ1pjQ0hYQzhmRHRmZmdu?=
- =?utf-8?B?cE0vdlMvbHhIejZXMnJ2UUdiSGNsVjRoWStGUVBmSzRxQmFINGdkUVl1K296?=
- =?utf-8?B?Y2RaQlN2YVkyOUpvUVRvZHNld2Y4elZtcHVndTQ1QzJsTHdXVTF5Qkg2YzQ0?=
- =?utf-8?B?UTlpaG44YXZBTFlwSmVWRHpGUHlTUFA4R3BYcmdnMC81amErTEdCV3cwSUxw?=
- =?utf-8?B?TTFnRkJBcjRFOGswL3J3V2k0dWRGUnRsT1I3Q3g2eHAyYUtzVndHeHMraGZ6?=
- =?utf-8?B?N24zcGE5RC9RMjJpRTU3QXFtb0sxbFNXZm9KZ244S2tPWUZvYmFMQTNNTnFC?=
- =?utf-8?B?V0Y1amYxMTluUFhEaE5EdnhkOW1iTzFWeXNTOWEyUVJ3dStma3g2QTNONGxh?=
- =?utf-8?B?dlZ4WGt0Ymk0Q2orNVQ2a2g0a3VNYStRWGpZQ0hsYWxIMnA2OFJ5RWZDb09M?=
- =?utf-8?B?Sk9hdGQ5V3p4TjZJdUQ2a3RWc21aaG5LRjQyTEJRWDd6MCtIRktMSkpDSkNY?=
- =?utf-8?B?ZlVwckUwRWoyZHdBN0U5NVpjNjBPU3d2MTdUaEdta2JtV3E5Y05DMHVKdFlK?=
- =?utf-8?B?ZWY0aEdsSVJIc0R3OVFVT3RnTzNCbkxUbUx5VFcrcmNaWVJJVzh3eTFWOWJz?=
- =?utf-8?B?aTdXNm8vZS81bWk0clZ6Y0VDMnJITU50cXd6MFVhQWFZakxxZTFCVEJYOWI1?=
- =?utf-8?B?eWlna3loNWRGekNzc3plKys1TTltQUl2R0xtNUVMRElaR2x1MkNuejBSZkZW?=
- =?utf-8?B?bTJwWk9OdVoyV2tPcks3RDlYSWg0SXM3OTFaOE9zMXZlSHRqTWtJTXYwQXNN?=
- =?utf-8?B?STdTV0w2eGpudWR1RDdML0Y1NGNIS1g4OEl6QjZ2dTlKdnlKTEt0ek1sSDh6?=
- =?utf-8?B?amhNTW53VjVuOFlRV0RGaXpwdDJXeUNxdWhTa3pPVjNlNUMrdVVqT3YxZmU0?=
- =?utf-8?B?L3pWaFp3SlF0eWNwaEc0N1lnZmZvaGpHd0lRa050aUowclJOWndxcWJhOStV?=
- =?utf-8?B?WTNTSmllYllMRlVhWFFZZEZDbmdpbzRoa21NVW9Pa2RLRjJzcmRhRENpdXBM?=
- =?utf-8?B?NGZQSCtIOStYZ0lMQ1BuN2tkQU96WlRvY1hZWkdISjZSWndxRnFtOHpZWk1w?=
- =?utf-8?B?cU1mQU8xN1lYZi9ob3g0MnJRL1Z6aENtckhMVEhQQ0xxUldaREx3aVZBQ2hI?=
- =?utf-8?B?a0dlZTJlS2NUaGFmN0pXV3g4ZUN0S0g3WFZabG5CQ2g4OStCSDNWeHkzNUZS?=
- =?utf-8?B?eUVBY0x1NEdzZyt5WjhWM00yUU1tampMU3Jaalo2OFdMdERBZ2V1NEE1bG9y?=
- =?utf-8?B?ZlRnT1I5bms4Z2NrTjVjQ25GamZ4clIyS0Fxb3FXNjdCdkowQkVEZVArbkdr?=
- =?utf-8?B?TG01TTZ2cEE5eTJBazROSk5JZHdiK2x0SHBwR0tXTHJTVXRjT3RxZUhHK0p5?=
- =?utf-8?B?WnVqWFpJVWFZRHg5djZUSVA1aUw3L3pJdUhMdjh1eHZFK1RSUTZjV1IzMTZH?=
- =?utf-8?B?RER6cVp0Z201QUNCRXVuSEdWclNUSFpFcDlJWmJ6OEVsek56M1duMERkb0t1?=
- =?utf-8?B?Q1R2SlNLSjJwUkFxWlBLaXR6QjVBU2tyM2xOcWNKa04wY1Z1a244WlZxMzds?=
- =?utf-8?B?dS8wU1VyeUdXVGtvdmJZZHBVRWorSVVLbFNIaUJYL3h5eTdhKzMwVFVCK3Ey?=
- =?utf-8?B?UHVkOEsrb2l2dFpkQUsycVlxNmxycTFXcHVNUGxaOFJEMDFPR2hQNVRBSUhW?=
- =?utf-8?B?OE1XczFtNnRXSmF0V1lGQWZMbjl0TW9YNThJcU1HNGlWQ1lCdGN6dVFKYm9x?=
- =?utf-8?B?VlA1TzdlSHBLM0RubFRHa0hBVFBqU3BvQUx4b3Jid29QWUNsWnZuYm5vZDBE?=
- =?utf-8?B?aVEwWWUrek03d2JYK0FHZ1FMU2ZURVdsVHZVaEtkZnFrSTVGdGsrOUlIZnFG?=
- =?utf-8?B?WkU3OE1WaFRHaGd5WUg5bFhsdDlSelBhZ1prNTFyUXBrY0FIMm1TdzZkRTRY?=
- =?utf-8?B?cDhGQjJtNkE2a0ZSYnJtUEpNd0Z0SmozUFpXZ2E1c00zWi9iVzdMM2FOVC9l?=
- =?utf-8?B?NzBvVFUyTVJXTHhvb3gyMWJJZzRkNjYzblMwQm52bWhGeHUrWEI0M2dVMWVK?=
- =?utf-8?B?UG1qLzd2bHBjWkIramZOTjIxRXNrWHpHV3RGSjZQL1JFM05oOU5qNlR6UEUw?=
- =?utf-8?Q?KOG7fkjuMY0MuD2M=3D?=
-X-Exchange-RoutingPolicyChecked: SbKYrbXQffZ9WTIIkgagYRsG7k5fJubvix4ZO0EePlG/M4ScnTM5NXO2Yi+X9OmLlEVPYyDKgr+8iLD8lANKi9Uap+ckOTn4iSY/0KMSrr4YkVdxBwXuoG8hIcIdceHlg5PHYCzf8Tlpvdc8w/BvJTGEA7/omBMfnbeP2/oTH1B0r2A/FcfYlDR//wFP5IuDdIPGRqM4XisKzuRcfuKnRzBWJk3auRAnOtiZ7F5hx9xlVesRfDyra/E05zRQMNy93mdPpagy6gc+XqLex+bMYibVCr5Rg03D9LZdaT9QnI+7xZYEGT3RdODLV+J8cqFjYuZaZaGZHFAL8Ji956k2vg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: f2d8ee29-51b9-4bf6-1e6e-08de7ee82345
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UmUxRkQvSEd4d1daaW84UFd4T1B2RGJINTl2RFp2UFFXVmxDMVUyV3FlT0pB?=
+ =?utf-8?B?RnQwZ2VYZ3A4YmNUYzJSd0FSaUgwTVRFY1NKSEl5THJ6aFpWc1dveERSYUtG?=
+ =?utf-8?B?c3BOTU9mMXNQQlBqWDN5Ky95eXc5bGpZME5qUE1YbHNueFBGZGpkL3NjallB?=
+ =?utf-8?B?dWxDR09aZnVabDRLcjNnRWJvQ3dmRXFpZmFyREZJcWdwdktwemtsNy8zdm9W?=
+ =?utf-8?B?RUY1MUdNaHZmcXNodFBWMXFKWnZUelo5ZVAxM0pmd01mNzNyZGpSQ2dHUjNy?=
+ =?utf-8?B?R1A3V3J3TDh5UlJxclJYZEQzMmFPMkd0Vkc1V0MvVHVEL0dSLzB1c2xxbytQ?=
+ =?utf-8?B?QWlTY3BvWHlXY1VnOFVwU3k2aXBxbUFEMm9LUFM4UHNJZGhmVDFjYXlKM0Fz?=
+ =?utf-8?B?a1lqZWt6dUtZckJlOEFSTUdKMkhqN0RNSXhERUQvVy8vYkZBVUpQZWxFZzNJ?=
+ =?utf-8?B?Q0xlU29CaUZ3OUZ5TEZYM2N4RFFwVzdkQnhLNDZJdjdRUjhJV21taXFFSEJU?=
+ =?utf-8?B?QmJBNzF4Si8zS2dSZXVZRXozWEg3MVc3UjgrVzlpTitXNkVub1NHcmJIaHhH?=
+ =?utf-8?B?bUF2RXJpclN1Y2o1cW9XbjZJd2JJNzN4N25WWXVZeE5HVm95ZVFvTXJHVkJy?=
+ =?utf-8?B?SkZLd2JzVHFTRlM1US9xUjJKZms0M21QSTlFdGhqdGlXWnFXUVlMc3BOZngw?=
+ =?utf-8?B?OTRrOCs0cHdxbnJpeU91NzIxUWxqRDlQK290SXZtSnlSankvS3BOZEJ0NVhQ?=
+ =?utf-8?B?UVFSekZqbHhjM1Z3RHYvcDZkclpEMG5xM1NCSjNVYkxYUWM3ZWFsVmhJSnFU?=
+ =?utf-8?B?cEY4QXpOZllleFdoOGJ3TjlKMWFTbVZtamU0Z2hhWEw1SFJaeElHQmJMY2ZV?=
+ =?utf-8?B?ZTZIcTl4TE1FN29ZSmQwclhRb0xnWGp1Q050TmZJS0xrSnAvTTdOUEVpR1Nv?=
+ =?utf-8?B?emtzZ0psNnZ2dHhWL1YwZXpockZaZGJQNGRFbHVkd0xUZDVtNjhqRGZ5NTJV?=
+ =?utf-8?B?aFVVY2c0aTREZlZ3R0M2VjREWUpOT2tSVDRBbVdocVprSk52blprRkxGWEwv?=
+ =?utf-8?B?YWtUQXlQbVVaS3NTc1lPL0JtTmo2SmNlNXZHd1pxWUo1S2hCNURmSWZxQ1h6?=
+ =?utf-8?B?UWZQeHl1Tk1BNUVCRGlrc0d4b0NSNmlyMHVxTURWcXBxY2Z1ZjUvNGdZWlIw?=
+ =?utf-8?B?emR5VGMzYm0zc1NuVkxxSTJHQ0UybFAwMkhmTTNucTRORlQyUTJWREpVaS9J?=
+ =?utf-8?B?ajdEQkZwSzI5VElMb0tDNzRZY2M2d1BEMDEzUGpLSWVHZmF5SkFrbVFtNEtk?=
+ =?utf-8?B?TCtrUjBhWldVZW9NTVkrcFFJazZiS2lZQTdoNDVMdjBkN0NNUTQ3OFhCc0JV?=
+ =?utf-8?B?bVdNeEg2MGswcXoycHBnYUE1bGFLYUl6UnJqNjdqNGc4Umo3cjQ3b21ram9T?=
+ =?utf-8?B?U0NJK1NCM3I1d3VYWDZzcC9WQWhqQzUwRkJmWjhHcDZ4bkFrL2c4RWpLQXo2?=
+ =?utf-8?B?bWtocDFOb0FvL1FoUGp2ZU43WGVvMTBUODFtODZCVS9ubmRuTytuMjY0SCtP?=
+ =?utf-8?B?WGt1YjcyMmlMcXR2V01Vamp6cytmdDF0c1BzNy9IZkJQZ01RZ2dRVUJEWTVB?=
+ =?utf-8?B?TCtlR3k3YnVnZG9jTFo4eVFNZzFaM25YdnpYS0s0a3lveWZwcWVmaWhOeEUw?=
+ =?utf-8?B?MmNEanMrcjZ6VWZoSzZFU2dNRWc2T0dFUmFDSFpTVTJnaVY5SkJQeUQ4L0x0?=
+ =?utf-8?B?UEFnbXVLRnAyNTN2VU40a0VxOGNHZzRlVjZ3YnczcG00YXBOQmZ3c0pKWGp1?=
+ =?utf-8?B?bUxxQWl3SUFTMEVhYVJ6T3k5aHNrcEtHcDFrajkxY3B2aTM4VUxMU1NKZ00z?=
+ =?utf-8?B?aDJ2eUs1VWwrekszZ1lvVmQ2OU8rUDZjd2hPUklKN2kvZE1OQlBHb3hGRXNY?=
+ =?utf-8?B?Z0Via2E5QXFHRi90OUtYSE11THRYODMzMW44VDk5U1VsR25IZ3VkSFMxYy9k?=
+ =?utf-8?B?TmhiSGFUdWJTcG93YXhla2cwZUxHYVFoeTdUdHZ0Z1JGM3pqYnZmSi9pbkZV?=
+ =?utf-8?B?Q1BvSzdwY0NoMG93RG04a1ZDTWErR1V1S2x1cEtYWTZyNU9YWUcvY0hqZEV0?=
+ =?utf-8?B?UG5XQlROWmQ4OVZZeXRMZGE3d1FFbW5vdU1GUURMME5UdmQ4QVBSdGRONVFp?=
+ =?utf-8?B?MXJiN3hpZEpMbFQ0T05QNmdWSGpvY1FCZU5uM2lXUE9ZVGhJKzdMRmJOOWJW?=
+ =?utf-8?B?VUdRQTdiUnNvNW1Wd0FYOWZSZWR5VFBUNmpOWi9zQk5lZ0FETUZvTTc1em1q?=
+ =?utf-8?B?aXNZYUtvTk8xc2FqcFJvdUpDMFBLWDRlbFA5NUVnWTBzcTkwNDlMR0d5Y3FW?=
+ =?utf-8?Q?cmannItZ1/B33dIk=3D?=
+X-MS-Exchange-CrossTenant-Network-Message-Id: 65d6878b-08fa-4b28-066f-08de7ee90533
 X-MS-Exchange-CrossTenant-AuthSource: SJ1PR11MB6129.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 21:01:02.5854 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Mar 2026 21:07:21.6232 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: /t/VK7DxkK2uv1HkT7B7fOPtDQ6Nm1MXJVPT92rc/eoh/VXZKCjqa8U/vQb626xPSVS9PZqmBHooto+RYFrHVH0MF9ZZBEWqVv394JvCFgE=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ2PR11MB7618
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4JVU76KJuH7kM9vwojNvblTHOYdHZQs2pcmtJMnuG2gWy5tsQtixCauwF6tnTIQu94Nf/9UJcoE0f935lnsk4YgiSPp4eD9vjb4PpLw9JJs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF2CAD058EC
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,183 +186,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 645D525811A
+X-Rspamd-Queue-Id: 0EFE725818B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.997];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-0.996];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
 
 
-On 2/26/2026 11:29 AM, Borah, Chaitanya Kumar wrote:
-> Thank you Harry for looking into it.
-> 
-> On 2/24/2026 2:44 AM, Harry Wentland wrote:
->> On 2026-02-18 01:57, Chaitanya Kumar Borah wrote:
->>> This series aims to keep colorop state consistent across atomic
->>> transactions by ensuring it accurately reflects committed hardware
->>> state and remains part of the atomic update whenever its associated
->>> plane is involved.
->>>
->>> It contains two changes:
->>> - Preserves the bypass value in duplicated colorop state.
->>>
->>> _drm_atomic_helper_colorop_duplicate_state() unconditionally reset
->>> bypass to true, which means the duplicated state no longer reflects the
->>> committed hardware state. Since bypass directly controls whether the
->>> colorop is active in hardware, this can lead to an unintended disable
->>> during subsequent commits.
->>>
->>> This could potentially be a problem also for colorops where bypass value
->>> is immutably false.
->>>
->>> Conceptually, I consider 'bypass' to behave similar to 'visible' in 
->>> plane
->>> state - it represents current HW state and should therefore be preserved
->>> across duplication.
->>>
->>> - Add affected colorops with affected plane
->>>
->>> Colorops are unique in the DRM model. While they are DRM objects with 
->>> their
->>> own states, they are logically attached to a plane and exposed through
->>> a plane property. In some sense, they share the same hierarchy as 
->>> CRTC and
->>> planes while following a different 'ownership' model.
->>>
->>> Given that enabling a CRTC pulls in all its affected planes into the 
->>> atomic
->>> state, it follows that when a plane is added, its associated colorops 
->>> are
->>> also included. Otherwise, during modesets or internal commits, 
->>> colorop state
->>> may be missing from the transaction, resulting in inconsistent or 
->>> incomplete
->>> state updates.
->>>
+On 2/24/2026 2:07 AM, Shankar, Uma wrote:
+>> Subject: [PATCH 2/2] drm/atomic: Add affected colorops with affected planes
 >>
->> That tends to reflect my thinking when I wrote the colorop stuff.
+>> When drm_atomic_add_affected_planes() adds a plane to the atomic state, the
+>> associated colorops are not guaranteed to be included.
+>> This can leave colorop state out of the transaction when planes are pulled in
+>> implicitly (eg. during modeset or internal commits).
 >>
->>> That said, I do have a concern about potentially inflating the atomic
->>> state by automatically pulling in colorops from the core. It is not
->>> entirely clear to me whether inclusion of affected colorops should be
->>> handled in core, or left to individual drivers.
->>>
->>
->> Could this lead drivers to reprogram possibly expensive colorops
->> when they didn't change? It won't be an issue for amdgpu since we
->> have another level of state tracking, but for drivers that strictly
->> follow the atomic model it might lead to issues.
->>
+>> Also add affected colorops when adding affected planes to keep plane and color
+>> pipeline state consistent within the atomic transaction.
+> Even though colorop is an object in itself but practically it doesn't have any existence without
+> the plane. So to add to state along with plane seems logical. Also its good to handle this in
+> drm core than individual drivers.
 > 
-> For xe/i915 too, this should be something that we can handle in 
-> atomic_check().
-> 
-> I guess the real question is whether this violates the atomic design 
-> contract. As far as I understand, when we pull in affected planes for a 
-> CRTC, we don’t actually verify whether any plane state has changed.
-> So by that analogy, should this be acceptable as well?
-> 
+> The change looks good to me.
+> Reviewed-by: Uma Shankar<uma.shankar@intel.com>
 
-One downside of adding colorops indiscriminately is lot of logs.
+Thank you, Uma, for the review.
 
-[drm:drm_atomic_get_colorop_state] Added [COLOROP:288:1] 
+I have sent another version of the patch where the colorops are added 
+only when pipeline is enabled. This avoids flooding of following logs 
+when pipeline is disabled.
+
+
+  [drm:drm_atomic_get_colorop_state] Added [COLOROP:288:1] 
 ffff88810db07240 state to ffff88810e040800
 
-So I created a version where we add only if a color pipeline is selected.
+Let me know if this looks good for you.
 
-https://lore.kernel.org/intel-gfx/20260310113238.3495981-3-chaitanya.kumar.borah@intel.com/T/#u
-
-Harry, please let me know if this approach still work for you.
-
-It would be good to hear others’ opinions on this as well.
-
->> On the other hand it makes colorop handling less error-prone in amdgpu,
->> and possibly fixes a bug I've come across where we get confused if an
->> active colorop isn't part of the state.
->>
->> Harry
->>
->>> My understanding of the atomic framework is still evolving, so
->>> I would appreciate feedback from those more familiar with the intended
->>> design direction.
->>>
->>> ==
->>> Chaitanya
->>>
->>> P.S/Background/TL;DR:
->>>
->>> I discovered inconsistency with the colorop state while analysing CRC 
->>> mismatches
->>> in kms_color_pipeline test cases[1]. Visual inspection reveals that 
->>> while CRC is
->>> being collected degamma block has been reset. This was traced back to 
->>> the internal
->>> commit that the driver does to disable PSR2 and selective fetch for 
->>> CRC collection.
->>>
->>> crtc_crc_open
->>>      -> intel_crtc_set_crc_source
->>>          -> intel_crtc_crc_setup_workarounds
->>>              -> drm_atomic_commit
->>>
->>> During this flow colorop states are never added to the atomic state 
->>> which in turn
->>> makes intel_plane_color_copy_uapi_to_hw_state() disable the colorops.
->>>
->>> If we add the colorops, to the atomic state, the problem still 
->>> persisted because
->>> while duplicating the colorop state, 'bypass' was getting reset to true.
->>>
->>> The two changes made in this series fixes the issue.
->>>
->>> [1] https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18001/shard- 
->>> mtlp-6/igt@kms_color_pipeline@plane-lut1d.html
->>>
->>> Cc: Simon Ser <contact@emersion.fr>
->>> Cc: Alex Hung <alex.hung@amd.com>
->>> Cc: Harry Wentland <harry.wentland@amd.com>
->>> Cc: Daniel Stone <daniels@collabora.com>
->>> Cc: Melissa Wen <mwen@igalia.com>
->>> Cc: Sebastian Wick <sebastian.wick@redhat.com>
->>> Cc: Alex Hung <alex.hung@amd.com>
->>> Cc: Uma Shankar <uma.shankar@intel.com>
->>> Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
->>> Cc: Jani Nikula <jani.nikula@intel.com>
->>> Cc: Louis Chauvet <louis.chauvet@bootlin.com>
->>> Cc: <stable@vger.kernel.org> #v6.19+
->>>
->>> Chaitanya Kumar Borah (2):
->>>    drm/colorop: Preserve bypass value in duplicate_state()
->>>    drm/atomic: Add affected colorops with affected planes
->>>
->>>   drivers/gpu/drm/drm_atomic.c  | 5 +++++
->>>   drivers/gpu/drm/drm_colorop.c | 2 --
->>>   2 files changed, 5 insertions(+), 2 deletions(-)
->>>
->>
-> 
-
+==
+Chaitanya
