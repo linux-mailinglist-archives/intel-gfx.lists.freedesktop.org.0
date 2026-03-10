@@ -2,43 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WJpMFjwHsGlregIAu9opvQ
+	id eAc4KjwHsGlregIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D10324BDEC
+	by mail.lfdr.de (Postfix) with ESMTPS id 6484724BDF8
 	for <lists+intel-gfx@lfdr.de>; Tue, 10 Mar 2026 12:57:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A09EE10E6CD;
-	Tue, 10 Mar 2026 11:57:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1ADD10E6CF;
+	Tue, 10 Mar 2026 11:57:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="DyWz3L6v";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ORJP6pik";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 04C9810E6C9;
- Tue, 10 Mar 2026 11:57:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BB0410E6C9;
+ Tue, 10 Mar 2026 11:57:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773143853;
- bh=ARI+lPjSoDz8vNjvs+Dx84qyp3Dc6GmPCARfbOEO5T8=;
+ s=default; t=1773143854;
+ bh=q5DGgQouGWGgfcuej1E52iDtx+kNPYr3AALCQt5FiTw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DyWz3L6vUxgfQhEG8S6ECsozBgfVZSJTv1J++CVg92eTTBdK9AOx55h9M0ovqqady
- uU2HoJ4ueF+imVzZ5+LhP9dykb55yLzmH4jgBbFI91hQGmAHjhWsw8QmL6j6ek8CJc
- qFIxxTuycCm4+H3PaK+08rlLDSo0KlMJrB9zg2RVGfeGVb2z5+1/Gmh8w5zkaqJNOr
- tvboDcMCAmHCycjLYxNo1jkwcx13ZixRlbX13RC2t6gHpgIZpiUZeC7AqQuCyWk/gN
- nXPZxS6F2C/WSZfDYnL5MJGILl8YUg16w42nDTfzSMwr0L8eBMf5ArD0Y7dtrUBUZE
- wEhEoQzgWb1RA==
+ b=ORJP6pik4mxWZMAxvvvqW03RNGWTfnDYCsgf12gqe7z50Hvoh3Zq3Os2AE9LGniSi
+ b85a460PAJAXUBq3zV3hDpxKlnX2JQeyOICXCLXFlicJs/6njoBLcW5+TxEKVLPQrA
+ NWRHOpq+MhOpoEXonUyRHgaZdVAmqzDKfa/J7maxafwUemHXUVcQfYqyvcIdwXjEhJ
+ U0dF+qmznJqi8DqKL9rdc5+tX1OmUCXm8DiJ9TSbUCXYbYHIuxxBUGomMp0iS9VEwa
+ IFXXdkfNfTYY/2UJr2CQjhRgY7XRhDz7RAIW6zeBgdcZTXxpPPpmVIKw3cKS+kCnAO
+ hkUvBh29/M8UQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, Maarten Lankhorst <dev@lankhorst.se>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Subject: [PATCH v7 14/26] drm/i915/display: Make set_pipeconf use the fw
- variants
-Date: Tue, 10 Mar 2026 12:56:56 +0100
-Message-ID: <20260310115709.2276203-15-dev@lankhorst.se>
+ Matthew Brost <matthew.brost@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>
+Subject: [PATCH v7 15/26] drm/i915/display: Fix intel_lpe_audio_irq_handler
+ for PREEMPT-RT
+Date: Tue, 10 Mar 2026 12:56:57 +0100
+Message-ID: <20260310115709.2276203-16-dev@lankhorst.se>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260310115709.2276203-1-dev@lankhorst.se>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
@@ -58,7 +59,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0D10324BDEC
+X-Rspamd-Queue-Id: 6484724BDF8
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -76,7 +77,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[lankhorst.se:+];
@@ -84,83 +85,39 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linutronix.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email]
 X-Rspamd-Action: no action
 
-The calls are used inside the critical section when updating
-the gamma mode, and thus should use the _fw variants to prevent
-locks.
+The LPE audio interrupt comes from the i915 interrupt handler. It
+should be in irq disabled context.
 
-Fixes following splat:
-| BUG: sleeping function called from invalid context at kernel/locking/spinlock_rt.c:48
-| in_atomic(): 0, irqs_disabled(): 1, non_block: 0, pid: 2115, name: modprobe
-| preempt_count: 0, expected: 0
-| RCU nest depth: 0, expected: 0
-| 4 locks held by modprobe/2115:
-|  #0: ffff99b9425161a0 (&dev->mutex){....}-{4:4}, at: __driver_attach+0xaf/0x1c0
-|  #1: ffffaa224810f6c0 (crtc_ww_class_acquire){+.+.}-{0:0}, at: intel_initial_commit+0x4c/0x200 [i915]
-|  #2: ffffaa224810f6e8 (crtc_ww_class_mutex){+.+.}-{4:4}, at: intel_initial_commit+0x4c/0x200 [i915]
-|  #3: ffff99b94a6c9030 (&uncore->lock){+.+.}-{3:3}, at: gen6_write32+0x50/0x290 [i915]
-| irq event stamp: 513344
-| hardirqs last  enabled at (513343): [<ffffffff8ba8d84c>] _raw_spin_unlock_irqrestore+0x4c/0x60
-| hardirqs last disabled at (513344): [<ffffffffc1543646>] intel_pipe_update_start+0x216/0x2c0 [i915]
-| softirqs last  enabled at (512766): [<ffffffff8af045cf>] __local_bh_enable_ip+0x10f/0x170
-| softirqs last disabled at (512712): [<ffffffffc14dfb6a>] __i915_request_queue+0x3a/0x70 [i915]
-| CPU: 3 UID: 0 PID: 2115 Comm: modprobe Tainted: G        W           6.18.0-rc1+ #17 PREEMPT_{RT,(lazy)}
-| Tainted: [W]=WARN
-| Hardware name: To Be Filled By O.E.M. To Be Filled By O.E.M./Z68 Pro3-M, BIOS P2.30 06/29/2012
-| Call Trace:
-|  <TASK>
-|  dump_stack_lvl+0x68/0x90
-|  __might_resched.cold+0xf0/0x12b
-|  rt_spin_lock+0x5f/0x200
-|  gen6_write32+0x50/0x290 [i915]
-|  ilk_set_pipeconf+0x12d/0x230 [i915]
-|  ilk_color_commit_arm+0x2d/0x70 [i915]
-|  intel_update_crtc+0x15b/0x690 [i915]
-|  intel_commit_modeset_enables+0xa6/0xd0 [i915]
-|  intel_atomic_commit_tail+0xd55/0x19a0 [i915]
-|  intel_atomic_commit+0x25d/0x2a0 [i915]
-|  drm_atomic_commit+0xad/0xe0 [drm]
-|  intel_initial_commit+0x16c/0x200 [i915]
-|  intel_display_driver_probe+0x2e/0x80 [i915]
-|  i915_driver_probe+0x791/0xc10 [i915]
-|  i915_pci_probe+0xd7/0x190 [i915]
+With PREEMPT_RT enabled, the IRQ handler is threaded.
+Because intel_lpe_audio_irq_handler() may be called in threaded IRQ context,
+generic_handle_irq_safe API disables the interrupts before calling LPE's
+interrupt top half handler.
 
-Reported-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+This fixes braswell audio issues with RT enabled.
+
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 10 ++++++----
- 1 file changed, 6 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 9cfa3fa915cf5..3a0cab5db2490 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -3035,8 +3035,9 @@ void i9xx_set_pipeconf(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 117b60656ca19..306b16889bc92 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -262,7 +262,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	if (!HAS_LPE_AUDIO(display))
+ 		return;
  
- 	val |= TRANSCONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
- 
--	intel_de_write(display, TRANSCONF(display, cpu_transcoder), val);
--	intel_de_posting_read(display, TRANSCONF(display, cpu_transcoder));
-+	intel_de_write_fw(display, TRANSCONF(display, cpu_transcoder), val);
-+	/* posting read */
-+	intel_de_read_fw(display, TRANSCONF(display, cpu_transcoder));
- }
- 
- static enum intel_output_format
-@@ -3231,8 +3232,9 @@ void ilk_set_pipeconf(const struct intel_crtc_state *crtc_state)
- 	val |= TRANSCONF_FRAME_START_DELAY(crtc_state->framestart_delay - 1);
- 	val |= TRANSCONF_MSA_TIMING_DELAY(crtc_state->msa_timing_delay);
- 
--	intel_de_write(display, TRANSCONF(display, cpu_transcoder), val);
--	intel_de_posting_read(display, TRANSCONF(display, cpu_transcoder));
-+	intel_de_write_fw(display, TRANSCONF(display, cpu_transcoder), val);
-+	/* posting read */
-+	intel_de_read_fw(display, TRANSCONF(display, cpu_transcoder));
- }
- 
- static void hsw_set_transconf(const struct intel_crtc_state *crtc_state)
+-	ret = generic_handle_irq(display->audio.lpe.irq);
++	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+ 				    "error handling LPE audio irq: %d\n", ret);
 -- 
 2.51.0
 
