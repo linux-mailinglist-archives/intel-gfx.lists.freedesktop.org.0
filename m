@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cI6xNsJ5sWk2vgIAu9opvQ
+	id UBVoMsN5sWk2vgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:18:42 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:18:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2ABF02653C4
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:18:38 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DF6732653D4
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:18:42 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6D86310E280;
-	Wed, 11 Mar 2026 14:18:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6ED0A10E8AE;
+	Wed, 11 Mar 2026 14:18:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JKTSL+pA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iW/p+XLG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F400D10E25B;
- Wed, 11 Mar 2026 14:18:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD3610E291;
+ Wed, 11 Mar 2026 14:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773238711; x=1804774711;
+ t=1773238720; x=1804774720;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dhmot/45xUIJvIhnIC5JqblhT488hbldI9frz9SxYaI=;
- b=JKTSL+pAN9LLvJ1W9nERXE08eXXEtDWqKXzKWLfDMB2kZeRqPYZR+aS4
- HUtMkYgRJi8Y5y3HlL8JsGdwL3bExvfZgbg0tgVb4l7HryDGxts/nKBQj
- Ozq30LJ+g2Fud/B06f8gQS1CBjwit3N2vTwsomdY9hxB5Hsdij2ZS5Wsj
- /nBn0C73fswfwOyb+44cCtc0LyLzcM3iO/FPLlcLPkdTxSYTw2NGL3nhf
- j6NGF/4DK35G8fS7cIni5mfgKwZgWUsWCkG2t4X4L2KfcPnYBtPCZdnMI
- VfwgPB2BNY7U3rYmvha5ufpsudoZm7i5RP/7jdZIT4Y6a3RMWaxxyDJ9g Q==;
-X-CSE-ConnectionGUID: 4dJm9X78T2G12K1Cinmctg==
-X-CSE-MsgGUID: xfX1CJWbRrmQZTclKGKy2A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="77913503"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="77913503"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 07:18:30 -0700
-X-CSE-ConnectionGUID: Ry6SGHveRsqhkgF1vqzFXw==
-X-CSE-MsgGUID: n//Oa3+VTFmzL3JBkvEKSw==
+ bh=Kg4MrGpWlR+LO1U0ZFfn7UPACmzllVM920/Nejs9CZw=;
+ b=iW/p+XLG4HguQQWewWtRPaKGElZzjVVLV05JO1hz0xlegXDieF8wQ+jQ
+ 2CVdyVgPgXED4HnCO2DB8N7mrJ8w/fQo/SS7yBwtW8QHiAKKtiixMduZA
+ 3jA2X935k0wnBQIcOLYsVIJHol6a8vBkmoVkKqaErGRgdi4MNrd64Qfgr
+ 3EFajexIqQcNW8Br1PUQidtox4Vnrh3CPsJu6WCnDF2/ZTkfjx3KJq4LF
+ 79upeHGatBUHt/EJblXKrTggsTTuN1SFcjKie8huBi35g0xtcAaFPJENB
+ OKuT5B5nl/5NxlinsKKgDIh/ZzO257J1PntfS3ENrNSXDSjIwz17XryMl A==;
+X-CSE-ConnectionGUID: wQwxew0TSxGuJ3cLeIeRBg==
+X-CSE-MsgGUID: i2NG+CnNRHm2//MRcW1dkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74427371"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74427371"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 07:18:36 -0700
+X-CSE-ConnectionGUID: ikpsoH9FTGavGlJG7DcowQ==
+X-CSE-MsgGUID: oVZcw6Z+SMmQs9TdJAQCSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="225447340"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="219729412"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.91])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 07:18:28 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 07:18:35 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/5] drm/i915: move i915 specific bo implementation to i915
-Date: Wed, 11 Mar 2026 16:18:14 +0200
-Message-ID: <e159166d623899996a51a577365ca7ab9b1a0974.1773238670.git.jani.nikula@intel.com>
+Subject: [PATCH 2/5] drm/xe: rename intel_bo.c to xe_display_bo.c
+Date: Wed, 11 Mar 2026 16:18:15 +0200
+Message-ID: <2f73eda5117462407f12113ce096496282ee3fcc.1773238670.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1773238670.git.jani.nikula@intel.com>
 References: <cover.1773238670.git.jani.nikula@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2ABF02653C4
+X-Rspamd-Queue-Id: DF6732653D4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -102,61 +102,39 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
-The bo interface implementation is different for both i915 and xe. Move
-the i915 specific implementation from display to i915 core.
+Follow the xe_ prefixed file naming in xe. With xe_bo.[ch] already being
+a thing in xe core, use xe_display_bo.c.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                          | 2 +-
- drivers/gpu/drm/i915/{display/intel_bo.c => i915_bo.c} | 3 ++-
- 2 files changed, 3 insertions(+), 2 deletions(-)
- rename drivers/gpu/drm/i915/{display/intel_bo.c => i915_bo.c} (97%)
+ drivers/gpu/drm/xe/Makefile                                | 2 +-
+ drivers/gpu/drm/xe/display/{intel_bo.c => xe_display_bo.c} | 0
+ 2 files changed, 1 insertion(+), 1 deletion(-)
+ rename drivers/gpu/drm/xe/display/{intel_bo.c => xe_display_bo.c} (100%)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index 7e9d9b666511..52a82608b8b1 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -76,6 +76,7 @@ i915-$(CONFIG_PERF_EVENTS) += \
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 50608312bc66..aeede4423680 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -211,10 +211,10 @@ $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/i915/display/%.c FORCE
  
- # core display adaptation
- i915-y += \
-+	i915_bo.o \
- 	i915_display_pc8.o \
- 	i915_dpt.o \
- 	i915_dsb_buffer.o \
-@@ -239,7 +240,6 @@ i915-y += \
- 	display/intel_atomic.o \
- 	display/intel_audio.o \
- 	display/intel_bios.o \
+ # Display code specific to xe
+ xe-$(CONFIG_DRM_XE_DISPLAY) += \
 -	display/intel_bo.o \
- 	display/intel_bw.o \
- 	display/intel_casf.o \
- 	display/intel_cdclk.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i915/i915_bo.c
-similarity index 97%
-rename from drivers/gpu/drm/i915/display/intel_bo.c
-rename to drivers/gpu/drm/i915/i915_bo.c
-index 2b6eaec351d8..21a4533ba341 100644
---- a/drivers/gpu/drm/i915/display/intel_bo.c
-+++ b/drivers/gpu/drm/i915/i915_bo.c
-@@ -3,12 +3,13 @@
- 
- #include <drm/drm_panic.h>
- 
-+#include "display/intel_bo.h"
-+
- #include "gem/i915_gem_mman.h"
- #include "gem/i915_gem_object.h"
- #include "gem/i915_gem_object_frontbuffer.h"
- #include "pxp/intel_pxp.h"
- #include "i915_debugfs.h"
--#include "intel_bo.h"
- 
- bool intel_bo_is_tiled(struct drm_gem_object *obj)
- {
+ 	display/intel_fb_bo.o \
+ 	display/intel_fbdev_fb.o \
+ 	display/xe_display.o \
++	display/xe_display_bo.o \
+ 	display/xe_display_pcode.o \
+ 	display/xe_display_rpm.o \
+ 	display/xe_display_wa.o \
+diff --git a/drivers/gpu/drm/xe/display/intel_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
+similarity index 100%
+rename from drivers/gpu/drm/xe/display/intel_bo.c
+rename to drivers/gpu/drm/xe/display/xe_display_bo.c
 -- 
 2.47.3
 
