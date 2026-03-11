@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yC5HF2xXsWmGtwIAu9opvQ
+	id 8CFsJ29XsWmGtwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:52:12 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:52:15 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0FB322632D2
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:52:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7518C2632E2
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:52:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66BC210E8C1;
-	Wed, 11 Mar 2026 11:52:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F194B10E8C6;
+	Wed, 11 Mar 2026 11:52:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5I/2Cri";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FN71SLw4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E924210E8C1;
- Wed, 11 Mar 2026 11:52:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B38F110E8C5;
+ Wed, 11 Mar 2026 11:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773229930; x=1804765930;
+ t=1773229933; x=1804765933;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T71xFQ0kn/1GZ1wJ/gZcmj2gzz2V+AX2NAAbN1HN5gE=;
- b=K5I/2CriPu2n51gvOIihodFENegXbFtP8/g6uSSwblXKjnx13nziOAH1
- ZsDEaJLUpuQAaAWoZsyho5bX7ARYrnailzuTlh301pLmWVDOLgEndhRqT
- 7gSwYYcU4ou05dAwZRCj4rwA3/mIWHU3+wzU+soLJvnXXLBJs2+Jcm03i
- r1ObgLz0BzMzbTdF02lct4L+DHCnWEtlhIIu7ZkozeIvD7L6MDoFw7t3T
- 6hOHn9Z+F9A9BkRDFYT9GU/MHs8XqOlVBV73UESKtBAmMzxAgl0lHVg52
- lbtc5oLu05+mY2khAQaNBOTQwlqcQHAb6F6T8y0oYkiBT/sekP40qxuLN w==;
-X-CSE-ConnectionGUID: XndfAJ9xQ1aCERRjoGbEsw==
-X-CSE-MsgGUID: 1CzAFytwRUKiuTRAhDz7Mg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74205001"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74205001"
+ bh=02+WLlJBG5Vrx5UQwS1xKQAh351GQIFDF1unSLSjZ+Y=;
+ b=FN71SLw4qZF3/yAep/njyY/tQUOt9YSvTPXaTsw08Awei3cnUyy6szkJ
+ AJtp5k5fJofTVlJaw35nOZZCgTTx1oZmz3Nw7BGawzC68LVdAR8q+9sL0
+ d5m41sSXsx0yyDq4Y0j4sNkTK/pEXKDfaHifn/V4o7tWKzFJbOJaoPhYM
+ kuGpRXGXMlescYxCaKUXng6c3xGSBrXFD/gk+13w416L+zaaVYSEQ5wer
+ n6AuvcChLY7vBUtvXJV6jGWdpZdaCH2jgpTklLiL/Wkd6/hBGR3QbgrXV
+ EKZZOrGglWuv82ptAZi8rRZyTia0IdNFO44+MAfS/X6RxYekLvY2LRR+Z Q==;
+X-CSE-ConnectionGUID: p+lQZjhsTb+vAuCNK5U0AA==
+X-CSE-MsgGUID: JPbe5oU+R/CVC8EGWUoQIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74205003"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74205003"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 04:52:10 -0700
-X-CSE-ConnectionGUID: A+EVs+CtS7Cog3OnIrxLrQ==
-X-CSE-MsgGUID: XV9BKkulSUOyyTEBNejt1g==
+ 11 Mar 2026 04:52:12 -0700
+X-CSE-ConnectionGUID: +jhFFKBdQ+2Hu+bQvsdrHw==
+X-CSE-MsgGUID: bZ99BpbYT4CKxXgSiVXamg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224602412"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224602421"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 04:52:07 -0700
+ 11 Mar 2026 04:52:10 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 15/19] drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for
- PR + Auxless ALPM
-Date: Wed, 11 Mar 2026 17:06:07 +0530
-Message-ID: <20260311113611.3393194-16-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 16/19] drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
+Date: Wed, 11 Mar 2026 17:06:08 +0530
+Message-ID: <20260311113611.3393194-17-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
 References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
@@ -74,7 +73,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0FB322632D2
+X-Rspamd-Queue-Id: 7518C2632E2
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -103,84 +102,37 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-To support Panel Replay with Auxless-ALPM, the source must transmit
-Adaptive-Sync SDPs for video timing synchronization while PR is active.
-As per the DP spec v2.1, this requires setting DPCD 0x0107[6]
-(FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE). This applies whether VRR is enabled
-(AVT/FAVT) or fixed-timing mode is used.
+For Panel Replay with AUX-less ALPM (link-off PR), the source must send
+Adaptive-Sync SDP v2. Program DB[1:0] per DP spec v2.1:
+- VRR AVT: 00b (variable VTotal)
+- VRR FAVT: 10b/11b (TRR not reached/reached)
+- Fixed timing with PR link-off (VRR off): 01b (AS disabled; VTotal fixed)
+
+Also, drop the redundant target_rr assignment.
+
+v2: Fix the else case. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_link_training.c | 10 ++++++++--
- drivers/gpu/drm/i915/display/intel_dp_link_training.h |  3 ++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c           |  2 +-
- 3 files changed, 11 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 54c585c59b90..136cabf06fd9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -27,6 +27,7 @@
- #include <drm/display/drm_dp_helper.h>
- #include <drm/drm_print.h>
- 
-+#include "intel_alpm.h"
- #include "intel_display_core.h"
- #include "intel_display_jiffies.h"
- #include "intel_display_types.h"
-@@ -710,11 +711,14 @@ static bool intel_dp_link_max_vswing_reached(struct intel_dp *intel_dp,
- 	return true;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 74a8af3cf18c..2b0318e0ceb0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3161,9 +3161,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
+ 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+ 		as_sdp->target_rr_divider = true;
+-	} else {
++	} else if (crtc_state->vrr.enable) {
+ 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
+-		as_sdp->target_rr = 0;
++	} else {
++		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+ 	}
  }
- 
--void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate, bool is_vrr)
-+void intel_dp_link_training_set_mode(struct intel_dp *intel_dp, int link_rate,
-+				     bool is_vrr,
-+				     bool is_pr_with_link_off)
- {
- 	u8 link_config[2];
- 
- 	link_config[0] = is_vrr ? DP_MSA_TIMING_PAR_IGNORE_EN : 0;
-+	link_config[0] |= is_pr_with_link_off ? DP_FIXED_VTOTAL_AS_SDP_EN_IN_PR_ACTIVE : 0;
- 	link_config[1] = drm_dp_is_uhbr_rate(link_rate) ?
- 			 DP_SET_ANSI_128B132B : DP_SET_ANSI_8B10B;
- 	drm_dp_dpcd_write(&intel_dp->aux, DP_DOWNSPREAD_CTRL, link_config, 2);
-@@ -737,7 +741,9 @@ static void intel_dp_update_downspread_ctrl(struct intel_dp *intel_dp,
- 	  * especially on the first real commit when clearing the inherited flag.
- 	  */
- 	intel_dp_link_training_set_mode(intel_dp,
--					crtc_state->port_clock, crtc_state->vrr.in_range);
-+					crtc_state->port_clock,
-+					crtc_state->vrr.in_range,
-+					intel_alpm_is_alpm_aux_less(intel_dp, crtc_state));
- }
- 
- void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-index 1ba22ed6db08..3591210f8ee6 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-@@ -18,7 +18,8 @@ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
- bool intel_dp_lttpr_transparent_mode_enabled(struct intel_dp *intel_dp);
- 
- void intel_dp_link_training_set_mode(struct intel_dp *intel_dp,
--				     int link_rate, bool is_vrr);
-+				     int link_rate, bool is_vrr,
-+				     bool is_pr_with_link_off);
- void intel_dp_link_training_set_bw(struct intel_dp *intel_dp,
- 				   int link_bw, int rate_select, int lane_count,
- 				   bool enhanced_framing);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 887b6de14e46..2201cf7ce015 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -2142,7 +2142,7 @@ void intel_dp_mst_prepare_probe(struct intel_dp *intel_dp)
- 
- 	intel_dp_compute_rate(intel_dp, link_rate, &link_bw, &rate_select);
- 
--	intel_dp_link_training_set_mode(intel_dp, link_rate, false);
-+	intel_dp_link_training_set_mode(intel_dp, link_rate, false, false);
- 	intel_dp_link_training_set_bw(intel_dp, link_bw, rate_select, lane_count,
- 				      drm_dp_enhanced_frame_cap(intel_dp->dpcd));
  
 -- 
 2.45.2
