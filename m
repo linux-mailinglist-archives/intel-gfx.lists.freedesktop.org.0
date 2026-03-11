@@ -2,71 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qAFQH2VfsWl/uQIAu9opvQ
+	id +IjADhJksWnsugIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:26:13 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:46:10 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C769E263955
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:26:12 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7260F263CB9
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:46:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F5F810E116;
-	Wed, 11 Mar 2026 12:26:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6585B10E1AE;
+	Wed, 11 Mar 2026 12:46:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HxgEmYWU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZVqdhd13";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5110C10E1BC;
- Wed, 11 Mar 2026 12:26:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6BCD510E134;
+ Wed, 11 Mar 2026 12:46:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773231970; x=1804767970;
+ t=1773233165; x=1804769165;
  h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=KdP4kjaCpXAymNN+Yhi2z2CE8+D8Ime3bG2PjPe+Gr8=;
- b=HxgEmYWUlkFx+7rNy8EGn5sDZX5WdgP3bB9/V7MHkPL83UXVpgytfQ9k
- sPBc5mpiiOR76Gzub11m+aS5u+Xk0wkj3fJqYvy44/2LsjmthCu2/DaIP
- 5/x9VAZQvM6WtX1/dXz0qfm8DwxPZBk9FiZt3ngxC1rDnH+UHhMDDXdt6
- B2/SF8ZahE82k5bInvj+7X/IEkAD8IbKkc/0q7O2awKHZXmA6SgG57rJo
- I90Xo2BRO3mQspxNDkoDGxDIp9sd144IFde6+rFbT1kcSur048M5bg2O3
- 82e+AbQoSRjIYWmhMtPQ8vxkBrqEUvvlA/4gb7BxpjqraLWYTvBSUEBDb Q==;
-X-CSE-ConnectionGUID: 0PJLc0ciSEKKriByOIMrAQ==
-X-CSE-MsgGUID: SdzzEJzbSyKwUvSQWe7WLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85002389"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="85002389"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 05:26:10 -0700
-X-CSE-ConnectionGUID: cSmEKEC5RxC2TMxDHEnkcA==
-X-CSE-MsgGUID: hSuucEqvQVukaUlExU3HCQ==
+ mime-version:in-reply-to;
+ bh=iXYOteEigPOAPqGl/r/DN3nYj6uqabmCRt5o12c07GY=;
+ b=ZVqdhd13MAbVVh880nDRkaFFNGevkZL1uct6WfCxDlrt+4/ZS47RtKpG
+ 5s4NJzq/x4l7Lu5VZoTmxHFmmW+bQawFs9uF6cPMb431w51zIXJ3yMmsQ
+ fhoqvNLV/c0tmL3lQNNT+L1avBDLlOF9VgPX4EAd+Y/5tcfqQz4CeFweM
+ XnERdaIAAk3SNGyfA/btnDF6BkpvshVN1JMlQ6A15XQmTXvU1bS+RpCKC
+ /zxweL+DcJVUYvNLE7dayjIc2NiJkdpomPOcu88HRVyzaNPIMyMJgC5rV
+ eonsJc2gNkv8Qapw23nzFIYShe10DF1r33IuFdX89BMRGHBXJJt37QBVK A==;
+X-CSE-ConnectionGUID: sC9bRO8vTAa0ikW8SzAe7g==
+X-CSE-MsgGUID: 1pFyxyDeTKapoHKfxF4fLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85775110"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="85775110"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 05:46:03 -0700
+X-CSE-ConnectionGUID: 7k9nsyU8TAuZW/JXiGKTyA==
+X-CSE-MsgGUID: S5pan9gbSIm9diA5GglBVw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="216712898"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.244.252])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 05:26:07 -0700
-Date: Wed, 11 Mar 2026 14:25:54 +0200
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Mohammed Thasleem <mohammed.thasleem@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Tao Liu <ltao@redhat.com>, stable@vger.kernel.org,
- Jani Nikula <jani.nikula@intel.com>
-Subject: Re: [CI] drm/i915/dmc: Fix an unlikely NULL pointer deference at probe
-Message-ID: <abFfUhF-bvNmmZDn@intel.com>
-References: <20260309164803.1918158-1-imre.deak@intel.com>
- <aa_Y7shwd1Vqiy3i@intel.com> <aa_j1Gxa7iWEEYHi@ideak-desk.lan>
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220404224"
+Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
+ by orviesa009-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 05:46:00 -0700
+Date: Wed, 11 Mar 2026 13:45:42 +0100
+From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
+To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Subject: Re: [PATCH i-g-t] tests/intel/gem_lmem_swapping: Expect gem leak
+ helper crashes
+Message-ID: <20260311124542.alcgu25gocfxbv6i@kamilkon-DESK.igk.intel.com>
+Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>,
+ Krzysztof Karas <krzysztof.karas@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+References: <20260302131817.3744919-2-janusz.krzysztofik@linux.intel.com>
+ <20260310115003.wwffggwsyzsbxw5k@kamilkon-DESK.igk.intel.com>
+ <1921025.atdPhlSkOF@jkrzyszt-mobl2.ger.corp.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <aa_j1Gxa7iWEEYHi@ideak-desk.lan>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <1921025.atdPhlSkOF@jkrzyszt-mobl2.ger.corp.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,167 +87,206 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C769E263955
+X-Rspamd-Queue-Id: 7260F263CB9
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.63)[subject];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[kamil.konieczny@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url,patchwork.freedesktop.org:url]
 X-Rspamd-Action: no action
 
-On Tue, Mar 10, 2026 at 11:26:44AM +0200, Imre Deak wrote:
-> On Tue, Mar 10, 2026 at 10:40:14AM +0200, Ville Syrjälä wrote:
-> > On Mon, Mar 09, 2026 at 06:48:03PM +0200, Imre Deak wrote:
-> > > intel_dmc_update_dc6_allowed_count() oopses when DMC hasn't been
-> > > initialized, and dmc is thus NULL.
+Hi Janusz,
+On 2026-03-11 at 13:13:35 +0100, Janusz Krzysztofik wrote:
+> Hi Kamil,
+> 
+> Please disregard my previously asked question, I've had a more deep look 
+> into your statement and I think I've understood what you had on mind.
+> 
+> On Tuesday, 10 March 2026 12:50:03 CET Kamil Konieczny wrote:
+> > Hi Janusz,
+> > On 2026-03-02 at 14:12:45 +0100, Janusz Krzysztofik wrote:
+> > > When trying to exhaust system memory in order to exercise LMEM eviction
+> > > under OOM conditions, a gem_leak helper process may itself become a victim
+> > > of memory shortage.  If our i915 TTM VM fault handler fails to allocate a
+> > > page and responds with a SIGBUS signal when the helper process is trying
+> > > to store data in a mmaped i915 GEM object with memset then the process
+> > > crashes.  Unfortunately, such crash is not only reported on stdout, strerr
+> > > and dmesg as premature, additional result from the subtest while it is
+> > > still in progress, but also renders the final result as failed.
 > > > 
-> > > That would be the case when the call path is
-> > > intel_power_domains_init_hw() -> {skl,bxt,icl}_display_core_init() ->
-> > > gen9_set_dc_state() -> intel_dmc_update_dc6_allowed_count(), as
-> > > intel_power_domains_init_hw() is called *before* intel_dmc_init().
+> > > Starting subtest: smem-oom
+> > > Starting dynamic subtest: lmem0
+> > > Received signal SIGBUS.
+> > > Stack trace:
+> > >  #0 [fatal_sig_handler+0x17b]
+> > >  #1 [__sigaction+0x50]
+> > >  #2 [__igt_unique____real_main808+0xdbc]
+> > >  #3 [main+0x3f]
+> > >  #4 [__libc_init_first+0x8a]
+> > >  #5 [__libc_start_main+0x8b]
+> > >  #6 [_start+0x25]
+> > > Dynamic subtest lmem0: CRASH (20.804s)
+> > > Subtest smem-oom: SUCCESS (20.807s)
+> > > Received signal SIGABRT.
+> > > Stack trace:
+> > >  #0 [fatal_sig_handler+0x17b]
+> > >  #1 [__sigaction+0x50]
+> > >  #2 [pthread_kill+0x11c]
+> > >  #3 [gsignal+0x1e]
+> > >  #4 [abort+0xdf]
+> > >  #5 [<unknown>+0xdf]
+> > >  #6 [__assert_fail+0x47]
+> > >  #7 [__igt_waitchildren+0x1c0]
+> > >  #8 [igt_waitchildren_timeout+0x9d]
+> > >  #9 [intel_allocator_multiprocess_stop+0xbb]
+> > >  #10 [__igt_unique____real_main808+0x551]
+> > >  #11 [main+0x3f]
+> > >  #12 [__libc_init_first+0x8a]
+> > >  #13 [__libc_start_main+0x8b]
+> > >  #14 [_start+0x25]
+> > > (gem_lmem_swapping:2347) CRITICAL: Test assertion failure function test_smem_oom, file ../tests/intel/gem_lmem_swapping.c:777:
+> > > (gem_lmem_swapping:2347) CRITICAL: Failed assertion: lmem_err == 0
+> > > (gem_lmem_swapping:2347) CRITICAL: Last errno: 3, No such process
+> > > (gem_lmem_swapping:2347) CRITICAL: error: 137 != 0
+> > > Dynamic subtest lmem0 failed.
+> > > ...
+> > > runner: Dynamic subtest lmem0 result when not inside a subtest. This is a test bug.
+> > > Subtest smem-oom: FAIL (22.672s)
 > > > 
-> > > However, gen9_set_dc_state() calls intel_dmc_update_dc6_allowed_count()
-> > > conditionally, depending on the current and target DC states. At probe,
-> > > the target is disabled, but if DC6 is enabled, the function is called,
-> > > and an oops follows. Apparently it's quite unlikely that DC6 is enabled
-> > > at probe, as we haven't seen this failure mode before.
+> > > Since page allocation failures are unavoidable under OOM conditions, and
+> > > the SIGBUS signal response from our TTM fault handler is correct in such
+> > > cases, catch those signals and let the helper process continue.
 > > > 
-> > > It is also strange to have DC6 enabled at boot, since that would require
-> > > the DMC firmware (loaded by BIOS); the BIOS loading the DMC firmware and
-> > > the driver stopping / reprogramming the firmware is a poorly specified
-> > > sequence and as such unlikely an intentional BIOS behaviour. It's more
-> > > likely that BIOS is leaving an unintentionally enabled DC6 HW state
-> > > behind (without actually loading the required DMC firmware for this).
-> > 
-> > Wasn't the original case some kdump kernel thing?
-> 
-> According to Jani the original issue was a KASAN run in QEMU, see [1].
-> Not sure if that also resulted in kexec/kdump.
-> 
-> However the case reported by Tao later is related to kexec/kdump indeed.
-> 
-> > I think that has a few issues:
-> > - loading full GPU drivers for a kdump kernel after the real kernel
-> >   has crashed seems a bit risky. Who knows what state the hardware
-> >   is in after the crash...
-> > - we should probably try to unload DMC at kexec time (to the extent
-> >   that DMC can actually be unloaded)
-> 
-> AFAICS that involves calling the pci_driver::shutdown which (for both xe
-> and i915) ends up calling intel_power_domains_disable(), which disables
-> DC states at least (hence the kexec'ed kernel should still not see DC6
-> being enabled). The DMC FW event handlers are not disabled though in
-> this case (which would be what you refer to unloading DMC I presume) as
-> opposed to system/runtime suspend, where all the DMC events are also
-> disabled.
-> 
-> I agree that the kexec->shutdown, driver remove etc. handlers should be
-> synced at least wrt. the above DMC unloading with the suspend handlers.
-> However, I consider that as a separate issue to the one fixed in this
-> patch, which is using the HW DC state (which is unreliable) incorrectly
-> to track the DC6 allowed counter (the correct way being using the SW DC
-> state instead). So are you okay to go ahead with this patch still for
-> now and follow up with syncing the above shutdown/driver remove handlers
-> with the suspend ones?
-
-Yeah this seems fine.
-
-As we discussed, eventually we may want:
-- make sure we sanitize DMC(*) early enough during driver load to
-  make sure it isn't running while we're initializing anything important
-- also sanitize similarly it during shutdown/unload/etc. to make sure it
-  doesn't screw up anything for the next driver/whatever
-- sprinkle some more asserts to make sure the DC state matches in
-  software and hardware, if we don't already have enough of these
-
-* disable DC states and all event handlers
-
-> 
-> [1] https://lore.kernel.org/all/43c4d7f0d9fe4ba6acac828306b41d612dd4f085@intel.com
-> 
-> > > The tracking of the DC6 allowed counter only works if starting /
-> > > stopping the counter depends on the _SW_ DC6 state vs. the current _HW_
-> > > DC6 state (since stopping the counter requires the DC5 counter captured
-> > > when the counter was started). Thus, using the HW DC6 state is incorrect
-> > > and it also leads to the above oops. Fix both issues by using the SW DC6
-> > > state for the tracking.
-> > > 
-> > > This is v2 of the fix originally sent by Jani, updated based on the
-> > > first Link: discussion below.
-> > > 
-> > > Link: https://lore.kernel.org/all/3626411dc9e556452c432d0919821b76d9991217@intel.com
-> > > Link: https://lore.kernel.org/all/20260228130946.50919-2-ltao@redhat.com
-> > > Fixes: 88c1f9a4d36d ("drm/i915/dmc: Create debugfs entry for dc6 counter")
-> > > Cc: Mohammed Thasleem <mohammed.thasleem@intel.com>
-> > > Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> > > Cc: Tao Liu <ltao@redhat.com>
-> > > Cc: <stable@vger.kernel.org> # v6.16+
-> > > Tested-by: Tao Liu <ltao@redhat.com>
-> > > Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> > > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
+> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 > > > ---
-> > >  drivers/gpu/drm/i915/display/intel_display_power_well.c | 2 +-
-> > >  drivers/gpu/drm/i915/display/intel_dmc.c                | 3 +--
-> > >  2 files changed, 2 insertions(+), 3 deletions(-)
+> > > That's an improved and better documented new version of my former
+> > > https://patchwork.freedesktop.org/patch/685572/
 > > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > index 1e03187dbd38a..f855f0f886946 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-> > > @@ -852,7 +852,7 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
-> > >  			power_domains->dc_state, val & mask);
+> > >  tests/intel/gem_lmem_swapping.c | 18 +++++++++++++++++-
+> > >  1 file changed, 17 insertions(+), 1 deletion(-)
+> > > 
+> > > diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
+> > > index 77e18f1a3c..514423f470 100644
+> > > --- a/tests/intel/gem_lmem_swapping.c
+> > > +++ b/tests/intel/gem_lmem_swapping.c
+> > > @@ -11,6 +11,8 @@
+> > >  #include "igt_kmod.h"
+> > >  #include "runnercomms.h"
+> > >  #include <unistd.h>
+> > > +#include <setjmp.h>
+> > > +#include <signal.h>
+> > >  #include <stdlib.h>
+> > >  #include <stdint.h>
+> > >  #include <stdio.h>
+> > > @@ -651,13 +653,21 @@ static void leak(uint64_t alloc)
+> > >  	}
+> > >  }
 > > >  
-> > >  	enable_dc6 = state & DC_STATE_EN_UPTO_DC6;
-> > > -	dc6_was_enabled = val & DC_STATE_EN_UPTO_DC6;
-> > > +	dc6_was_enabled = power_domains->dc_state & DC_STATE_EN_UPTO_DC6;
-> > >  	if (!dc6_was_enabled && enable_dc6)
-> > >  		intel_dmc_update_dc6_allowed_count(display, true);
+> > > +static sigjmp_buf sigbus_jmp;
+> > > +
+> > > +static void sigbus_handler(int sig, siginfo_t *si, void *ctx)
+> > > +{
+> > > +	siglongjmp(sigbus_jmp, 1);
+> > > +}
+> > > +
+> > >  static void gem_leak(int fd, uint64_t alloc)
+> > >  {
+> > >  	uint32_t handle = gem_create(fd, alloc);
+> > >  	void *buf;
 > > >  
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > index c3b411259a0c5..90ba932d940ac 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > @@ -1598,8 +1598,7 @@ static bool intel_dmc_get_dc6_allowed_count(struct intel_display *display, u32 *
-> > >  		return false;
-> > >  
-> > >  	mutex_lock(&power_domains->lock);
-> > > -	dc6_enabled = intel_de_read(display, DC_STATE_EN) &
-> > > -		      DC_STATE_EN_UPTO_DC6;
-> > > +	dc6_enabled = power_domains->dc_state & DC_STATE_EN_UPTO_DC6;
-> > >  	if (dc6_enabled)
-> > >  		intel_dmc_update_dc6_allowed_count(display, false);
-> > >  
-> > > -- 
-> > > 2.49.1
+> > >  	buf = gem_mmap_offset__fixed(fd, handle, 0, PAGE_SIZE, PROT_WRITE);
+> > > -	memset(buf, 0, PAGE_SIZE);
+> > > +	if (!igt_debug_on_f(sigsetjmp(sigbus_jmp, 1), "PID %d: SIGBUS caught\n", getpid()))
+> > > +		memset(buf, 0, PAGE_SIZE);
 > > 
-> > -- 
-> > Ville Syrjälä
-> > Intel
+> > There are other uses for signal masking in igt, all of them do:
+> > mask + op + unmask
+> 
+> That pattern (mask + op + unmask) is fully justified, and even mandatory, 
+> in cases when applicable only to specific steps of a test, usually in a 
+> preparation phase, before the real exercise starts.  But here we have a 
+> helper process that is not part of the exercise itself, in the sense its 
+> failures should not count.  As my commit message explains, those failures 
+> are expected, and their root cause is understood.  Here the helper process 
+> is expected to acquire and leak pages of GEM memory in a loop, and then 
+> just exit when signaled with a flag, with no follow up steps that would 
+> require the masked signal restored.   We don't have to care about unmask.  
 
--- 
-Ville Syrjälä
-Intel
+Could you add a comment in code for this?
+
+> 
+> Besides, there are already other justified "mask and forget" cases in IGT, 
+> see:
+> lib/xe/xe_eudebug.c:xe_eudebug_debugger_start_worker()
+> tests/amdgpu/amd_mem.c:test_signal_handling()
+> tests/intel/gem_close_race.c:multigpu_threads()
+> tests/intel/gem_exec_alignment.c:naughty_child()
+> tests/intel/gem_exec_fence.c:test_keep_in_fence()
+> tests/intel/gem_exec_schedule.c:test_pi_ringfull()
+> tests/intel/i915_pm_rc6_residency.c:bg_load()
+> tests/intel/xe_eu_stall.c:test_eustall()
+> tests/testdisplay.c:set_single()
+> 
+> See also one auto-correction below while being at it.
+> 
+> > 
+> > Regards,
+> > Kamil 
+> > >  	munmap(buf, PAGE_SIZE);
+> > >  
+> > >  	gem_madvise(fd, handle, I915_MADV_DONTNEED);
+> > > @@ -745,8 +755,14 @@ static void test_smem_oom(int i915,
+> > >  				}
+> > >  			}
+> > >  			igt_fork(child, 1) {
+> > > +				struct sigaction sa = {
+> > > +					.sa_sigaction = sigbus_handler,
+> > > +					.sa_flags = SA_SIGINFO | SA_NODEFER,
+> > > +				};
+> > >  				int fd = drm_reopen_driver(i915);
+> > >  
+> 
+> sigemptyset() is missing in front of sigaction(), we shouldn't depend on 
+> zero initialized .sa_mask, that's not portable.
+> 
+> Thanks,
+> Janusz
+> 
+
+Thank you for looking again into this.
+
+Regards,
+Kamil 
+> 
+> > > +				sigaction(SIGBUS, &sa, NULL);
+> > > +
+> > >  				for (int pass = 0; pass < num_alloc; pass++) {
+> > >  					if (READ_ONCE(*lmem_done))
+> > >  						break;
+> > 
+> 
+> 
+> 
+> 
