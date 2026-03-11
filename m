@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cMPnL995sWk2vgIAu9opvQ
+	id aKHZMOF5sWk2vgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:19:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:19:13 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AFDF265407
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:19:11 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 933BB26541D
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:19:13 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0244610E26D;
-	Wed, 11 Mar 2026 14:19:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25A3210E8C4;
+	Wed, 11 Mar 2026 14:19:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LbDSQvyz";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kxP5k52W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5741710E205;
- Wed, 11 Mar 2026 14:19:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9214E10E8C4;
+ Wed, 11 Mar 2026 14:19:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773238749; x=1804774749;
+ t=1773238751; x=1804774751;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ib3RS+wGCUmYr1i74CT5KQMZnex4G32BmgW4XToyKwQ=;
- b=LbDSQvyz1bR3wFBz6Pz9F3Z0r37bSnMQvb2dCAK0dHJRx17ouCVcJd+B
- ZHC8a6qKaiOYCOakoGZv4PjOMlCPvtzjsUT3RS+ePT/t1Xzwsh+a1romZ
- dNVgU2HIPQtVKe1UwC2h81UWrHFLa3zZ6dOMMn8DpvZTctoACenMe3MAN
- 4UnM0/1zWS5Ro1uPyZrRbhIgN9GuEjIXrlllQ1U34eFkdtm+87gCURgPb
- jKgddTFlAUwtCuyV1NbUfSgLuXcMh1K2IkrYx2KZj5qmXtu7j1cQsWpep
- JyjetYstDK8fAJaN4q5JPc6J4g6U80hbUk31tRd7R/b8r9fLJ5dDjGFX6 A==;
-X-CSE-ConnectionGUID: APbT/8k8Qg6kGthxn8IlbA==
-X-CSE-MsgGUID: PNjFYpAeR8WnBSyLJ8ghaA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="99775157"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="99775157"
+ bh=kf8+KtqCVmGyAgYZtnMZj8gr9JRv0t0v75OYAMgS9zI=;
+ b=kxP5k52Wax/ms89wqP63eMQQ1W1zyCVhzYuUBjvogqKxwXG+cvPSeMN1
+ zo0cqZFlGTldAI5lfcuWp3pa7Q6SwyazgUF/VLJ4W5r1GZsL5opjyMkxb
+ OCUDJSIq4hY/cPjJSH6jc0PIdy+xyBHFHEv1LcOSrEPewrSHD9iWkPYWA
+ EMOB/F0MqZwD5l0yZdrTImis+GfF5gfAhsHBeYs8p8rnPQBIESjTwKfH/
+ QtZkR2ANNi/K7of0tB1gAXO4OlwyV3+KXM4LIOhfvFFtIQ6MZodJmFoPA
+ 2jGzaFVj0lVnnZlXLsGXxxJs6WzrEQh1MEocpu8DdIrkCv+VPLBEhqHoc g==;
+X-CSE-ConnectionGUID: l3uZ2CDIT9CVCiExOhIsQQ==
+X-CSE-MsgGUID: My7laWTbRv2lFrj5WZ94Vg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="99775163"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="99775163"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 07:19:09 -0700
-X-CSE-ConnectionGUID: MnDQ/+xFQ+WHTYIeRkP1wg==
-X-CSE-MsgGUID: H3VDK9jsS+W6GLUe8P9aTw==
+ 11 Mar 2026 07:19:11 -0700
+X-CSE-ConnectionGUID: frmfKSbQSZeAYPqaYYLgVg==
+X-CSE-MsgGUID: m8QlWZsLTb6Sl49Co0Ve9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="216730351"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="216730363"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa006.fm.intel.com with ESMTP; 11 Mar 2026 07:19:08 -0700
+ by fmviesa006.fm.intel.com with ESMTP; 11 Mar 2026 07:19:09 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: suraj.kandpal@intel.com,
 	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 01/24] drm/i915/lt_phy: Dump missing PLL state parameters
-Date: Wed, 11 Mar 2026 14:18:42 +0000
-Message-ID: <20260311141905.2526418-2-mika.kahola@intel.com>
+Subject: [PATCH v3 02/24] drm/i915/lt_phy: Add check if PLL is enabled
+Date: Wed, 11 Mar 2026 14:18:43 +0000
+Message-ID: <20260311141905.2526418-3-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260311141905.2526418-1-mika.kahola@intel.com>
 References: <20260311141905.2526418-1-mika.kahola@intel.com>
@@ -72,7 +72,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7AFDF265407
+X-Rspamd-Queue-Id: 933BB26541D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -98,35 +98,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-Dump missing PLL structure members ssc_enabled and tbt_mode
-in order to enhance debugging.
+Add check for PLL enabling and return early if
+PLL is not enabled.
 
-v2: Drop addr_lsb and addr_msb printouts
+v2: Use PCLK PLL ACK bit to check if PLL is enabled (Suraj)
+v3: Check only if PCLK PLL ACK bit for lane 0 is enabled (Suraj)
 
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
-Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_lt_phy.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index eced8493e566..f768804122c1 100644
+index f768804122c1..e1c95f58b6ae 100644
 --- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
 +++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -2141,7 +2141,9 @@ void intel_lt_phy_dump_hw_state(struct intel_display *display,
- {
- 	int i, j;
+@@ -2176,6 +2176,14 @@ intel_lt_phy_pll_compare_hw_state(const struct intel_lt_phy_pll_state *a,
+ 	return false;
+ }
  
--	drm_dbg_kms(display->drm, "lt_phy_pll_hw_state:\n");
-+	drm_dbg_kms(display->drm, "lt_phy_pll_hw_state: ssc enabled: %d, tbt mode: %d\n",
-+		    hw_state->ssc_enabled, hw_state->tbt_mode);
++static bool intel_lt_phy_pll_is_enabled(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
 +
- 	for (i = 0; i < 3; i++) {
- 		drm_dbg_kms(display->drm, "config[%d] = 0x%.4x,\n",
- 			    i, hw_state->config[i]);
++	return intel_de_read(display, XELPDP_PORT_CLOCK_CTL(display, encoder->port)) &
++			     XELPDP_LANE_PCLK_PLL_ACK(0);
++}
++
+ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 				       const struct intel_crtc_state *crtc_state,
+ 				       struct intel_lt_phy_pll_state *pll_state)
+@@ -2185,6 +2193,9 @@ void intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
+ 	struct ref_tracker *wakeref;
+ 	int i, j, k;
+ 
++	if (!intel_lt_phy_pll_is_enabled(encoder))
++		return;
++
+ 	pll_state->tbt_mode = intel_tc_port_in_tbt_alt_mode(enc_to_dig_port(encoder));
+ 	if (pll_state->tbt_mode)
+ 		return;
 -- 
 2.43.0
 
