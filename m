@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNbxJU1XsWmGtwIAu9opvQ
+	id YByvLk9XsWmGtwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:51:41 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:51:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E171263219
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:51:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 93A4626322E
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 12:51:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 930B210E89D;
-	Wed, 11 Mar 2026 11:51:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9E1A610E89F;
+	Wed, 11 Mar 2026 11:51:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GmHtX3ns";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f0EaOegM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D470410E89E;
- Wed, 11 Mar 2026 11:51:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A036510E89F;
+ Wed, 11 Mar 2026 11:51:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773229896; x=1804765896;
+ t=1773229899; x=1804765899;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=aR883MkdyqzgSmejoaAQt1SUeJk1ueOFd1ylE1QQbDk=;
- b=GmHtX3ns8c4Bhpv0D4uh/l6fkDbZM7sHaTzIYrw0YrX5W8471H7Q1Ypg
- Ma2rHFjbSQK8yD7HKyUYemIF0NCGn4b0c6KhlCAVzBfEo1gStvOYv6Y+r
- ZI6NNDQ+S0KWyiBjowZ6aKX2ILOE4FOeL9bhE6KTDN/hzz3ewVb38VqOQ
- wKl7ygBFYx/Ohc00AEsvWyitfNNRffMQFzYvpcItuhFhJQWBJ7iRSfMVY
- bCakc8902vK2R3WSahhssnc6h3aVQUiKuZG0AJnwMKgRF4lnYIlL5uPl1
- nmPHxQ4DdNo5M5EHtEl812M1pfZJ1ov1Z9w4ovT7EN73Hagj1kcGzJwkZ A==;
-X-CSE-ConnectionGUID: /3f5FvJOTI+/gHFz3tYU4Q==
-X-CSE-MsgGUID: WRySgqYeRxOcPY1gKQ6Olw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74204971"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74204971"
+ bh=Qy6RvxVa8nWIK/2NvGqoMwWsbntlZxtRGEa8EoE5O4I=;
+ b=f0EaOegM6zUT6l1KObXipfQt3XuzG/nxjeSa1vWV3r5QxQ1qr6htBYK+
+ 422VosnZ40wLNbvsNPnc4dbhVs3Td9/UqYxBUz0HQD4Hq0UibU/nXCVvN
+ LDgWvPg/wbihhV46TmihcnpjFF+zpxG+KCHcN3ZicajuQzYV/YoSSGbjr
+ ndnDhROaQdzV2rmQFFT8ZvilCyi0BdVXbKNCBr4H3v3gLhFi86bswvkb4
+ 05Wv04JI4zddKkTk/tS9QHf32Ilt2ltyFNB2nveuIf5AEf2WT9f0uSc5D
+ 2bnk7S/MRI9zi50XdZpAmH+qI6dGRnF2PaYmHPigZKPmAY1B5prcCnvFg Q==;
+X-CSE-ConnectionGUID: 4cQUXcVDSKWY2I30raipCA==
+X-CSE-MsgGUID: 838ZBoeiSci4qOzE+VOvSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="74204973"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="74204973"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 04:51:35 -0700
-X-CSE-ConnectionGUID: 9CNil/Z1Q82cKA2bB/Ryhg==
-X-CSE-MsgGUID: AVNLAi/ySoOgQl5gpoyowg==
+ 11 Mar 2026 04:51:38 -0700
+X-CSE-ConnectionGUID: dgOeOTBBRjOhB5v+QYLudQ==
+X-CSE-MsgGUID: 6FVzb7jzSpOHkx/QCIxMiw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224602309"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="224602316"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 04:51:33 -0700
+ 11 Mar 2026 04:51:36 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 03/19] drm/dp: Add bits for AS SDP FAVT Payload Fields Parsing
- support
-Date: Wed, 11 Mar 2026 17:05:55 +0530
-Message-ID: <20260311113611.3393194-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 04/19] drm/dp: Add DPCD for configuring AS SDP for PR + VRR
+Date: Wed, 11 Mar 2026 17:05:56 +0530
+Message-ID: <20260311113611.3393194-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
 References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
@@ -74,7 +73,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6E171263219
+X-Rspamd-Queue-Id: 93A4626322E
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -103,26 +102,39 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Action: no action
 
-DP v2.1 introduced support for sending AS SDP payload bytes for FAVT.
-Add the relavant bits for the same.
+Add additional DPCDs required to be configured to support VRR with Panel
+Replay. These DPCDs are specifically required for configuring Adaptive Sync
+SDP and are introduced in DP v2.1.
+
+v2:
+ - Correct the shift for the bits. (Ville)
+ - Add DP_PR_ prefix for the PR-related fields.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- include/drm/display/drm_dp.h | 1 +
- 1 file changed, 1 insertion(+)
+ include/drm/display/drm_dp.h | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 49f0154eb93c..8d172863eba3 100644
+index 8d172863eba3..e6752a92d5dc 100644
 --- a/include/drm/display/drm_dp.h
 +++ b/include/drm/display/drm_dp.h
-@@ -1205,6 +1205,7 @@
- #define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1					0x2214 /* 2.0 E11 */
- # define DP_ADAPTIVE_SYNC_SDP_SUPPORTED						BIT(0)
- # define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED	BIT(1)
-+# define DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED			BIT(2) /* 2.1 */
- # define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED				BIT(4)
+@@ -775,6 +775,15 @@
+ # define DP_PANEL_REPLAY_SU_Y_GRANULARITY_EXTENDED_VAL_SEL_MASK  (0xf << 3)
+ # define DP_PANEL_REPLAY_SU_REGION_SCANLINE_CAPTURE		 (1 << 7)
  
- #define DP_128B132B_SUPPORTED_LINK_RATES       0x2215 /* 2.0 */
++#define PANEL_REPLAY_CONFIG3				0x11a /* DP 2.1 */
++# define DP_PR_AS_SDP_SETUP_TIME_SHIFT			6
++# define DP_PR_AS_SDP_SETUP_TIME_MASK			(3 << DP_PR_AS_SDP_SETUP_TIME_SHIFT)
++# define DP_PR_AS_SDP_SETUP_TIME_T1			0
++# define DP_PR_AS_SDP_SETUP_TIME_DYNAMIC		1 /* DP 2.1 Table 2-227 */
++# define DP_PR_AS_SDP_SETUP_TIME_T2			2
++# define DP_PR_AS_SDP_SETUP_TIME(t)			(((t) << DP_PR_AS_SDP_SETUP_TIME_SHIFT) & \
++							 DP_PR_AS_SDP_SETUP_TIME_MASK)
++
+ #define DP_PAYLOAD_ALLOCATE_SET		    0x1c0
+ #define DP_PAYLOAD_ALLOCATE_START_TIME_SLOT 0x1c1
+ #define DP_PAYLOAD_ALLOCATE_TIME_SLOT_COUNT 0x1c2
 -- 
 2.45.2
 
