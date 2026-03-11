@@ -2,62 +2,163 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eM7xF/55sWk2vgIAu9opvQ
+	id QMwlN/iUsWnkDAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:19:42 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 17:14:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 334C82654CE
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 15:19:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E59F267215
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 17:14:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0ED10E924;
-	Wed, 11 Mar 2026 14:19:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 813C310E315;
+	Wed, 11 Mar 2026 16:14:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y8Nj2jIJ";
+	dkim=pass (2048-bit key; secure) header.d=web.de header.i=markus.elfring@web.de header.b="N3vARO2k";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE9D10E923;
- Wed, 11 Mar 2026 14:19:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773238779; x=1804774779;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=u6Hvt9Ela69dl7pfrKA6B1p79RxfniAaY+JVU66qpXc=;
- b=Y8Nj2jIJ4SSvWrWZ2gjEYsSN9a7uU8Q3vCqx0BZ5LAL9XFJWQh6OX1ow
- HhqPqclcQrfVobsd03znFnqK3s9FjLM0CPTegdMAun2svzgONP9ASavkW
- h6O0fju/QCPNMvP1vRSZGX8r0I1ZVA67iiDM/wWuy6BNaexKLNEWmiHpJ
- FzIHAhQWocKvZ8JQwbE3HG6P8xKINPEf4poAMvufPtG51clU/CSIrwvjz
- XMbRI6UuJmQHgfK6mS/baEPk+kFL2qKWUCShQF5YUH/P54v8/O4VtTmTW
- +Gbg+lYxN+KjsDLVht9rEwzaOAWeHsissGcAmPW31+srkUDT/u/QM8WvR A==;
-X-CSE-ConnectionGUID: x+owTqq7S+mJ0JO4fmHOsg==
-X-CSE-MsgGUID: JUeXMnELSAut3B/Kkar1/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="99775313"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="99775313"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 07:19:39 -0700
-X-CSE-ConnectionGUID: kCnz80GVQOesS07lgNVxSA==
-X-CSE-MsgGUID: ZVHEIN+DTiG7mygshsGTiw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="216730550"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa006.fm.intel.com with ESMTP; 11 Mar 2026 07:19:38 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: suraj.kandpal@intel.com,
-	Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v3 24/24] drm/i915/lt_phy: Replace crtc compute clock
-Date: Wed, 11 Mar 2026 14:19:05 +0000
-Message-ID: <20260311141905.2526418-25-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260311141905.2526418-1-mika.kahola@intel.com>
-References: <20260311141905.2526418-1-mika.kahola@intel.com>
+X-Greylist: delayed 355 seconds by postgrey-1.36 at gabe;
+ Wed, 11 Mar 2026 15:19:10 UTC
+Received: from mout.web.de (mout.web.de [212.227.15.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A867E10E2B5;
+ Wed, 11 Mar 2026 15:19:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=web.de;
+ s=s29768273; t=1773242349; x=1773847149; i=markus.elfring@web.de;
+ bh=giiOm4nN20bJPCHKicALa9KbdO4HtuSxDT6eKFGA2mo=;
+ h=X-UI-Sender-Class:Message-ID:Date:MIME-Version:To:Cc:References:
+ Subject:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:
+ cc:content-transfer-encoding:content-type:date:from:message-id:
+ mime-version:reply-to:subject:to;
+ b=N3vARO2kWsWkg83YYz1vxwJoQ9jSAIQMxX2vcCM/Stj+o+Wq50UHrg7dnnAtQHuu
+ YAB/z+oy2FKguz0iGD2/h+yNDvP6yvRI3GoGZmMGU7OBxlxuW3NmT9uurD5Q5R1Jx
+ ylayMOI8/tftX2k0W3+2mokAnpBs3CkF8/Do8SlNx13GnuDZ/QjjV5XkJ1n8Oekl+
+ Kuw6q3x1T7SYNU2I5bnMP+ohSvJmogxd9a4Wd3FOJY9DpAzWfAggAB1uysQCkmvhk
+ fJcp5pSjm6VsV+1p7cws9x90+7X6p5CbjMslfOWtHRGXYL7Qq0MimPZqnzUgbwm+S
+ keVIZqyONE+ouVX8Rg==
+X-UI-Sender-Class: 814a7b36-bfc1-4dae-8640-3722d8ec6cd6
+Received: from client.hidden.invalid by smtp.web.de (mrweb006
+ [213.165.67.108]) with ESMTPSA (Nemesis) id 1N9cHJ-1vWLef0wrt-00vzxd; Wed, 11
+ Mar 2026 16:12:40 +0100
+Message-ID: <e6145c17-64ce-494e-a41a-c847df3d999e@web.de>
+Date: Wed, 11 Mar 2026 16:12:34 +0100
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+To: Philipp Hahn <phahn-oss@avm.de>, cocci@inria.fr,
+ Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>
+Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
+ bpf@vger.kernel.org, ceph-devel@vger.kernel.org, dm-devel@lists.linux.dev,
+ dri-devel@lists.freedesktop.org, gfs2@lists.linux.dev,
+ intel-gfx@lists.freedesktop.org, intel-wired-lan@lists.osuosl.org,
+ iommu@lists.linux.dev, kvm@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-block@vger.kernel.org,
+ linux-bluetooth@vger.kernel.org, linux-btrfs@vger.kernel.org,
+ linux-cifs@vger.kernel.org, linux-clk@vger.kernel.org,
+ linux-erofs@lists.ozlabs.org, linux-ext4@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-gpio@vger.kernel.org,
+ linux-hyperv@vger.kernel.org, linux-input@vger.kernel.org,
+ linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-mips@vger.kernel.org, linux-mm@kvack.org,
+ linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
+ linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
+ linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
+ linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
+ linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+ linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+ ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
+ sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
+ tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
+ LKML <linux-kernel@vger.kernel.org>
+References: <20260310-b4-is_err_or_null-v1-1-bd63b656022d@avm.de>
+Subject: Re: [PATCH 01/61] Coccinelle: Prefer IS_ERR_OR_NULL over manual NULL
+ check
+Content-Language: en-GB, de-DE
+From: Markus Elfring <Markus.Elfring@web.de>
+In-Reply-To: <20260310-b4-is_err_or_null-v1-1-bd63b656022d@avm.de>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:8uNlJJTAs0E3eVrueF6w+kamgZld8V5k307BMa2qc/KwhoVrne3
+ cPN5KceT1D2i5YOSNggwsPxOs655cWyte1CKlNlBLyuH93VGvstvy+ggV5GDmk4PUMu8Iwj
+ lIBpLLqKBgo7uQxQM9uBZQLnvS5wa1t6ITQ23zK6Z5KinOA9Ud5Ss1etUILA/92IsKQJLWt
+ MbIOhZYtTIg4ZGnA6bYYw==
+X-Spam-Flag: NO
+UI-OutboundReport: notjunk:1;M01:P0:a+IRfFeoX54=;ACwoHm6kjkhwvEQFxocQ2V974B8
+ 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
+X-Mailman-Approved-At: Wed, 11 Mar 2026 16:14:45 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,88 +173,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 334C82654CE
-X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[web.de,quarantine];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[web.de:s=s29768273];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_FROM(0.00)[web.de];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.977];
+	RCPT_COUNT_GT_50(0.00)[56];
+	FROM_NEQ_ENVFROM(0.00)[Markus.Elfring@web.de,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[web.de:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[wikipedia.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2E59F267215
 X-Rspamd-Action: no action
+X-Rspamd-Server: lfdr
 
-The existing DPLL compute clock callback for the XE3PLPD platform
-(`xe3plpd_crtc_compute_clock`) was specific to that platform. Replace it
-with the more generic Haswell (`hsw_crtc_compute_clock`) implementation
-so that the compute clock path does not rely on the XE3PLPD hook.
+=E2=80=A6
+> +// Confidence: High
 
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dpll.c | 25 +----------------------
- 1 file changed, 1 insertion(+), 24 deletions(-)
+Some contributors presented discerning comments for this change approach.
+Thus I became also curious how much they can eventually be taken better in=
+to account
+by the means of the semantic patch language (Coccinelle software).
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-index e13a5e12109d..c7d37e74fbe9 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-@@ -1212,29 +1212,6 @@ static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--static int xe3plpd_crtc_compute_clock(struct intel_atomic_state *state,
--				      struct intel_crtc *crtc)
--{
--	struct intel_crtc_state *crtc_state =
--		intel_atomic_get_new_crtc_state(state, crtc);
--	struct intel_encoder *encoder =
--		intel_get_crtc_new_encoder(state, crtc_state);
--	struct intel_display *display = to_intel_display(encoder);
--	int ret;
--
--	ret = intel_lt_phy_pll_calc_state(crtc_state, encoder, &crtc_state->dpll_hw_state);
--	if (ret)
--		return ret;
--
--	/* TODO: Do the readback via intel_compute_shared_dplls() */
--	crtc_state->port_clock =
--			intel_lt_phy_calc_port_clock(display, &crtc_state->dpll_hw_state.ltpll);
--
--	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
--
--	return 0;
--}
--
- static int ilk_fb_cb_factor(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-@@ -1695,7 +1672,7 @@ static int i8xx_crtc_compute_clock(struct intel_atomic_state *state,
- }
- 
- static const struct intel_dpll_global_funcs xe3plpd_dpll_funcs = {
--	.crtc_compute_clock = xe3plpd_crtc_compute_clock,
-+	.crtc_compute_clock = hsw_crtc_compute_clock,
- 	.crtc_get_dpll = hsw_crtc_get_dpll,
- };
- 
--- 
-2.43.0
+=E2=80=A6
++@p1 depends on patch@
++expression E;
++@@
++(
+> +-	E !=3D NULL && !IS_ERR(E)
+> ++	!IS_ERR_OR_NULL(E)
+> +|
+> +-	E =3D=3D NULL || IS_ERR(E)
+> ++	IS_ERR_OR_NULL(E)
+> +|
+> +-	!IS_ERR(E) && E !=3D NULL
+> ++	!IS_ERR_OR_NULL(E)
+> +|
+> +-	IS_ERR(E) || E =3D=3D NULL
+> ++	IS_ERR_OR_NULL(E)
+> +)
 
+Several detected expressions should refer to return values from function c=
+alls.
+https://en.wikipedia.org/wiki/Return_statement
+
+* Do any development challenges hinder still the determination of correspo=
+nding
+  failure predicates?
+
+* How will interests evolve to improve data processing any further for suc=
+h
+  use cases?
+
+
+Regards,
+Markus
