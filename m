@@ -2,77 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +IjADhJksWnsugIAu9opvQ
+	id uFsuBANlsWnsugIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:46:10 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:50:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7260F263CB9
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:46:09 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34850263DCC
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 13:50:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6585B10E1AE;
-	Wed, 11 Mar 2026 12:46:07 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZVqdhd13";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF1E10E134;
+	Wed, 11 Mar 2026 12:50:08 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6BCD510E134;
- Wed, 11 Mar 2026 12:46:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773233165; x=1804769165;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=iXYOteEigPOAPqGl/r/DN3nYj6uqabmCRt5o12c07GY=;
- b=ZVqdhd13MAbVVh880nDRkaFFNGevkZL1uct6WfCxDlrt+4/ZS47RtKpG
- 5s4NJzq/x4l7Lu5VZoTmxHFmmW+bQawFs9uF6cPMb431w51zIXJ3yMmsQ
- fhoqvNLV/c0tmL3lQNNT+L1avBDLlOF9VgPX4EAd+Y/5tcfqQz4CeFweM
- XnERdaIAAk3SNGyfA/btnDF6BkpvshVN1JMlQ6A15XQmTXvU1bS+RpCKC
- /zxweL+DcJVUYvNLE7dayjIc2NiJkdpomPOcu88HRVyzaNPIMyMJgC5rV
- eonsJc2gNkv8Qapw23nzFIYShe10DF1r33IuFdX89BMRGHBXJJt37QBVK A==;
-X-CSE-ConnectionGUID: sC9bRO8vTAa0ikW8SzAe7g==
-X-CSE-MsgGUID: 1pFyxyDeTKapoHKfxF4fLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85775110"
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="85775110"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Mar 2026 05:46:03 -0700
-X-CSE-ConnectionGUID: 7k9nsyU8TAuZW/JXiGKTyA==
-X-CSE-MsgGUID: S5pan9gbSIm9diA5GglBVw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="220404224"
-Received: from kamilkon-desk.igk.intel.com (HELO localhost) ([10.211.136.201])
- by orviesa009-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Mar 2026 05:46:00 -0700
-Date: Wed, 11 Mar 2026 13:45:42 +0100
-From: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH i-g-t] tests/intel/gem_lmem_swapping: Expect gem leak
- helper crashes
-Message-ID: <20260311124542.alcgu25gocfxbv6i@kamilkon-DESK.igk.intel.com>
-Mail-Followup-To: Kamil Konieczny <kamil.konieczny@linux.intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- igt-dev@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Zbigniew =?utf-8?Q?Kempczy=C5=84ski?= <zbigniew.kempczynski@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>,
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-References: <20260302131817.3744919-2-janusz.krzysztofik@linux.intel.com>
- <20260310115003.wwffggwsyzsbxw5k@kamilkon-DESK.igk.intel.com>
- <1921025.atdPhlSkOF@jkrzyszt-mobl2.ger.corp.intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 13D1510E134;
+ Wed, 11 Mar 2026 12:50:08 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1526996778855244465=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1921025.atdPhlSkOF@jkrzyszt-mobl2.ger.corp.intel.com>
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Fix_Adaptive_Sync_SDP_for?=
+ =?utf-8?q?_PR_with_Link_ON_+_Auxless_ALPM_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 11 Mar 2026 12:50:08 -0000
+Message-ID: <177323340805.345924.9409066575720330865@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,208 +42,254 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7260F263CB9
+X-Rspamd-Queue-Id: 34850263DCC
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[kamil.konieczny@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url,patchwork.freedesktop.org:url]
+	NEURAL_SPAM(0.00)[0.523];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[dmabuf:email]
 X-Rspamd-Action: no action
 
-Hi Janusz,
-On 2026-03-11 at 13:13:35 +0100, Janusz Krzysztofik wrote:
-> Hi Kamil,
-> 
-> Please disregard my previously asked question, I've had a more deep look 
-> into your statement and I think I've understood what you had on mind.
-> 
-> On Tuesday, 10 March 2026 12:50:03 CET Kamil Konieczny wrote:
-> > Hi Janusz,
-> > On 2026-03-02 at 14:12:45 +0100, Janusz Krzysztofik wrote:
-> > > When trying to exhaust system memory in order to exercise LMEM eviction
-> > > under OOM conditions, a gem_leak helper process may itself become a victim
-> > > of memory shortage.  If our i915 TTM VM fault handler fails to allocate a
-> > > page and responds with a SIGBUS signal when the helper process is trying
-> > > to store data in a mmaped i915 GEM object with memset then the process
-> > > crashes.  Unfortunately, such crash is not only reported on stdout, strerr
-> > > and dmesg as premature, additional result from the subtest while it is
-> > > still in progress, but also renders the final result as failed.
-> > > 
-> > > Starting subtest: smem-oom
-> > > Starting dynamic subtest: lmem0
-> > > Received signal SIGBUS.
-> > > Stack trace:
-> > >  #0 [fatal_sig_handler+0x17b]
-> > >  #1 [__sigaction+0x50]
-> > >  #2 [__igt_unique____real_main808+0xdbc]
-> > >  #3 [main+0x3f]
-> > >  #4 [__libc_init_first+0x8a]
-> > >  #5 [__libc_start_main+0x8b]
-> > >  #6 [_start+0x25]
-> > > Dynamic subtest lmem0: CRASH (20.804s)
-> > > Subtest smem-oom: SUCCESS (20.807s)
-> > > Received signal SIGABRT.
-> > > Stack trace:
-> > >  #0 [fatal_sig_handler+0x17b]
-> > >  #1 [__sigaction+0x50]
-> > >  #2 [pthread_kill+0x11c]
-> > >  #3 [gsignal+0x1e]
-> > >  #4 [abort+0xdf]
-> > >  #5 [<unknown>+0xdf]
-> > >  #6 [__assert_fail+0x47]
-> > >  #7 [__igt_waitchildren+0x1c0]
-> > >  #8 [igt_waitchildren_timeout+0x9d]
-> > >  #9 [intel_allocator_multiprocess_stop+0xbb]
-> > >  #10 [__igt_unique____real_main808+0x551]
-> > >  #11 [main+0x3f]
-> > >  #12 [__libc_init_first+0x8a]
-> > >  #13 [__libc_start_main+0x8b]
-> > >  #14 [_start+0x25]
-> > > (gem_lmem_swapping:2347) CRITICAL: Test assertion failure function test_smem_oom, file ../tests/intel/gem_lmem_swapping.c:777:
-> > > (gem_lmem_swapping:2347) CRITICAL: Failed assertion: lmem_err == 0
-> > > (gem_lmem_swapping:2347) CRITICAL: Last errno: 3, No such process
-> > > (gem_lmem_swapping:2347) CRITICAL: error: 137 != 0
-> > > Dynamic subtest lmem0 failed.
-> > > ...
-> > > runner: Dynamic subtest lmem0 result when not inside a subtest. This is a test bug.
-> > > Subtest smem-oom: FAIL (22.672s)
-> > > 
-> > > Since page allocation failures are unavoidable under OOM conditions, and
-> > > the SIGBUS signal response from our TTM fault handler is correct in such
-> > > cases, catch those signals and let the helper process continue.
-> > > 
-> > > Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5493
-> > > Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> > > ---
-> > > That's an improved and better documented new version of my former
-> > > https://patchwork.freedesktop.org/patch/685572/
-> > > 
-> > >  tests/intel/gem_lmem_swapping.c | 18 +++++++++++++++++-
-> > >  1 file changed, 17 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-> > > index 77e18f1a3c..514423f470 100644
-> > > --- a/tests/intel/gem_lmem_swapping.c
-> > > +++ b/tests/intel/gem_lmem_swapping.c
-> > > @@ -11,6 +11,8 @@
-> > >  #include "igt_kmod.h"
-> > >  #include "runnercomms.h"
-> > >  #include <unistd.h>
-> > > +#include <setjmp.h>
-> > > +#include <signal.h>
-> > >  #include <stdlib.h>
-> > >  #include <stdint.h>
-> > >  #include <stdio.h>
-> > > @@ -651,13 +653,21 @@ static void leak(uint64_t alloc)
-> > >  	}
-> > >  }
-> > >  
-> > > +static sigjmp_buf sigbus_jmp;
-> > > +
-> > > +static void sigbus_handler(int sig, siginfo_t *si, void *ctx)
-> > > +{
-> > > +	siglongjmp(sigbus_jmp, 1);
-> > > +}
-> > > +
-> > >  static void gem_leak(int fd, uint64_t alloc)
-> > >  {
-> > >  	uint32_t handle = gem_create(fd, alloc);
-> > >  	void *buf;
-> > >  
-> > >  	buf = gem_mmap_offset__fixed(fd, handle, 0, PAGE_SIZE, PROT_WRITE);
-> > > -	memset(buf, 0, PAGE_SIZE);
-> > > +	if (!igt_debug_on_f(sigsetjmp(sigbus_jmp, 1), "PID %d: SIGBUS caught\n", getpid()))
-> > > +		memset(buf, 0, PAGE_SIZE);
-> > 
-> > There are other uses for signal masking in igt, all of them do:
-> > mask + op + unmask
-> 
-> That pattern (mask + op + unmask) is fully justified, and even mandatory, 
-> in cases when applicable only to specific steps of a test, usually in a 
-> preparation phase, before the real exercise starts.  But here we have a 
-> helper process that is not part of the exercise itself, in the sense its 
-> failures should not count.  As my commit message explains, those failures 
-> are expected, and their root cause is understood.  Here the helper process 
-> is expected to acquire and leak pages of GEM memory in a loop, and then 
-> just exit when signaled with a flag, with no follow up steps that would 
-> require the masked signal restored.   We don't have to care about unmask.  
+--===============1526996778855244465==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Could you add a comment in code for this?
+== Series Details ==
 
-> 
-> Besides, there are already other justified "mask and forget" cases in IGT, 
-> see:
-> lib/xe/xe_eudebug.c:xe_eudebug_debugger_start_worker()
-> tests/amdgpu/amd_mem.c:test_signal_handling()
-> tests/intel/gem_close_race.c:multigpu_threads()
-> tests/intel/gem_exec_alignment.c:naughty_child()
-> tests/intel/gem_exec_fence.c:test_keep_in_fence()
-> tests/intel/gem_exec_schedule.c:test_pi_ringfull()
-> tests/intel/i915_pm_rc6_residency.c:bg_load()
-> tests/intel/xe_eu_stall.c:test_eustall()
-> tests/testdisplay.c:set_single()
-> 
-> See also one auto-correction below while being at it.
-> 
-> > 
-> > Regards,
-> > Kamil 
-> > >  	munmap(buf, PAGE_SIZE);
-> > >  
-> > >  	gem_madvise(fd, handle, I915_MADV_DONTNEED);
-> > > @@ -745,8 +755,14 @@ static void test_smem_oom(int i915,
-> > >  				}
-> > >  			}
-> > >  			igt_fork(child, 1) {
-> > > +				struct sigaction sa = {
-> > > +					.sa_sigaction = sigbus_handler,
-> > > +					.sa_flags = SA_SIGINFO | SA_NODEFER,
-> > > +				};
-> > >  				int fd = drm_reopen_driver(i915);
-> > >  
-> 
-> sigemptyset() is missing in front of sigaction(), we shouldn't depend on 
-> zero initialized .sa_mask, that's not portable.
-> 
-> Thanks,
-> Janusz
-> 
+Series: Fix Adaptive Sync SDP for PR with Link ON + Auxless ALPM (rev2)
+URL   : https://patchwork.freedesktop.org/series/161977/
+State : failure
 
-Thank you for looking again into this.
+== Summary ==
 
-Regards,
-Kamil 
-> 
-> > > +				sigaction(SIGBUS, &sa, NULL);
-> > > +
-> > >  				for (int pass = 0; pass < num_alloc; pass++) {
-> > >  					if (READ_ONCE(*lmem_done))
-> > >  						break;
-> > 
-> 
-> 
-> 
-> 
+CI Bug Log - changes from CI_DRM_18129 -> Patchwork_161977v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_161977v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_161977v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/index.html
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_161977v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - fi-bsw-nick:        [PASS][1] -> [ABORT][2] +1 other test abort
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/fi-bsw-nick/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-bsw-nick/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_161977v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-glk-j4005:       NOTRUN -> [SKIP][3]
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [PASS][4] -> [DMESG-FAIL][5] ([i915#12061]) +1 other test dmesg-fail
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/bat-dg2-8/igt@i915_selftest@live.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [PASS][6] -> [DMESG-FAIL][7] ([i915#12061]) +1 other test dmesg-fail
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - fi-glk-j4005:       [ABORT][8] -> [PASS][9] +1 other test pass
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/fi-glk-j4005/igt@i915_selftest@live.html
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-glk-j4005/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@migrate:
+    - fi-glk-j4005:       [DMESG-FAIL][10] -> [PASS][11]
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/fi-glk-j4005/igt@i915_selftest@live@migrate.html
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-glk-j4005/igt@i915_selftest@live@migrate.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][12] ([i915#12061]) -> [PASS][13] +1 other test pass
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18129 -> Patchwork_161977v2
+
+  CI-20190529: 20190529
+  CI_DRM_18129: 215a6363df58623db6c206078cdf34b3e58047ac @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8792: 8792
+  Patchwork_161977v2: 215a6363df58623db6c206078cdf34b3e58047ac @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/index.html
+
+--===============1526996778855244465==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix Adaptive Sync SDP for PR with Link ON + Auxless ALPM (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/161977/">https://patchwork.freedesktop.org/series/161977/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18129 -&gt; Patchwork_161977v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_161977v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_161977v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_161977v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/fi-bsw-nick/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-bsw-nick/igt@i915_selftest@live.html">ABORT</a> +1 other test abort</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_161977v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/fi-glk-j4005/igt@i915_selftest@live.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-glk-j4005/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@migrate:</p>
+<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/fi-glk-j4005/igt@i915_selftest@live@migrate.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/fi-glk-j4005/igt@i915_selftest@live@migrate.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18129/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_161977v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18129 -&gt; Patchwork_161977v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18129: 215a6363df58623db6c206078cdf34b3e58047ac @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8792: 8792<br />
+  Patchwork_161977v2: 215a6363df58623db6c206078cdf34b3e58047ac @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1526996778855244465==--
