@@ -2,143 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wJfeCtInsWkBrgIAu9opvQ
+	id KILbBqIssWkBrgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 09:29:06 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 09:49:38 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CDD8525F4DF
-	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 09:29:05 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC73325FB23
+	for <lists+intel-gfx@lfdr.de>; Wed, 11 Mar 2026 09:49:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 373AF10E3A2;
-	Wed, 11 Mar 2026 08:29:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 808E310E3A8;
+	Wed, 11 Mar 2026 08:49:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="utVavD96";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FTzFyBAs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB75110E398;
- Wed, 11 Mar 2026 08:29:02 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id A3FF143FE5;
- Wed, 11 Mar 2026 08:29:02 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3C4C3C4CEF7;
- Wed, 11 Mar 2026 08:28:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1773217742;
- bh=GE6B9Axf2iqOgQ6Zt2ej9Oufrn3oudVjXjL2vTIfmAQ=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=utVavD961L/MIxHcghlNRfP+qmyZvTz3tZkkai8biCLxovJiwSfi721dAan4WAerP
- qQU5S4O+so1CV/l13lXL1pBvxe6Xcb8kk+l/bBNkxM6Og8LAf+De6dljLV/bYd9vPF
- RnkVuR2LJMC1aO8Mmf8ZYzGG89DCjYYyg3JerSgXRXHIS9MEy5aP+0VPOJEnsfhJP/
- cAHnLbI4JCoH8Po1okfUE05z/3RGXHVkg9UE9OHdr7DaaCoUol+/nBwm0m7BwYmG4l
- DzBEoPXPx1/wX7BQYXu4AinRZizyRYhr3BiDVj3GhukhaNvYNRYVgru+HF9UqoHZIa
- O0mPmtOaDieiw==
-Message-ID: <5e5e0169-5197-4626-b91b-af4c13520805@kernel.org>
-Date: Wed, 11 Mar 2026 09:28:47 +0100
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 674F010E3A7;
+ Wed, 11 Mar 2026 08:49:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773218972; x=1804754972;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=iemXGwn0WTLQQHxIdty0y7e5+IYGHeXdy2cffbbSFn0=;
+ b=FTzFyBAsFEeFoFel5Wt5fD/oAqFwuxds53H2+t+BV/qjfFvaL1BDHJqB
+ nR4blLVKBauCxU8yinwsjbnWo5WqLX8ERuNMTZVqm9jVDqXJwYJZswzwa
+ PnmpPt5CACLkSYMd/zXZL875D0Gq6RBpCrODdk3LpJIt3yX6RDOeDzdVH
+ b81Bh5j2JgVzCRtOVCA7rwHfuwDVMAiykONf7w77qryOObYpI8BRB6bAc
+ 0Yl5VHf7WMBphW9um80hbXENLawuyhD8ft+N5zXvvrLtZ2Rd3bWTDRgr8
+ jH7gUJdjz1drqNj4MvOe+2xYOFq9A7pg329NCqTB6HDuhOatWuEsRlh05 w==;
+X-CSE-ConnectionGUID: O5X7PHW3RTiEBgEJ1GlKDw==
+X-CSE-MsgGUID: lJsyenTXSaS1yaNAwOiTQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11725"; a="91850935"
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="91850935"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 01:49:31 -0700
+X-CSE-ConnectionGUID: S5JTpmPgTvuAXxQz1E/F8A==
+X-CSE-MsgGUID: J2WSliGJTWyMsMq8Plr0Dg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,113,1770624000"; d="scan'208";a="219644678"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.91])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 Mar 2026 01:49:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, maarten.lankhorst@intel.com,
+ pekka.paalanen@collabora.com, pranay.samala@intel.com,
+ swati2.sharma@intel.com, Chaitanya Kumar Borah
+ <chaitanya.kumar.borah@intel.com>
+Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
+In-Reply-To: <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
+ <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+Date: Wed, 11 Mar 2026 10:49:22 +0200
+Message-ID: <224fa0ee81fdf9390e783e1b33da221eebcecca6@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 09/16] mm/memory: convert details->even_cows into
- details->skip_cows
-To: "Lorenzo Stoakes (Oracle)" <ljs@kernel.org>
-Cc: linux-kernel@vger.kernel.org, "linux-mm @ kvack . org"
- <linux-mm@kvack.org>, Andrew Morton <akpm@linux-foundation.org>,
- Lorenzo Stoakes <lorenzo.stoakes@oracle.com>,
- "Liam R. Howlett" <Liam.Howlett@oracle.com>,
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>,
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Jann Horn <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>,
- David Rientjes <rientjes@google.com>, Shakeel Butt <shakeel.butt@linux.dev>,
- "Matthew Wilcox (Oracle)" <willy@infradead.org>,
- Alice Ryhl <aliceryhl@google.com>, Madhavan Srinivasan
- <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Janosch Frank <frankja@linux.ibm.com>,
- Claudio Imbrenda <imbrenda@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Gerald Schaefer <gerald.schaefer@linux.ibm.com>,
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>,
- Jarkko Sakkinen <jarkko@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- =?UTF-8?Q?Arve_Hj=C3=B8nnev=C3=A5g?= <arve@android.com>,
- Todd Kjos <tkjos@android.com>, Christian Brauner <brauner@kernel.org>,
- Carlos Llamas <cmllamas@google.com>, Ian Abbott <abbotti@mev.co.uk>,
- H Hartley Sweeten <hsweeten@visionengravers.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jason Gunthorpe <jgg@ziepe.ca>,
- Leon Romanovsky <leon@kernel.org>,
- Dimitri Sivanich <dimitri.sivanich@hpe.com>, Arnd Bergmann <arnd@arndb.de>,
- Alexei Starovoitov <ast@kernel.org>, Daniel Borkmann <daniel@iogearbox.net>,
- Andrii Nakryiko <andrii@kernel.org>, Peter Zijlstra <peterz@infradead.org>,
- Arnaldo Carvalho de Melo <acme@kernel.org>,
- Namhyung Kim <namhyung@kernel.org>, Andy Lutomirski <luto@kernel.org>,
- Vincenzo Frascino <vincenzo.frascino@arm.com>,
- Eric Dumazet <edumazet@google.com>, Neal Cardwell <ncardwell@google.com>,
- "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Miguel Ojeda <ojeda@kernel.org>, linuxppc-dev@lists.ozlabs.org,
- kvm@vger.kernel.org, linux-s390@vger.kernel.org, linux-sgx@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, bpf@vger.kernel.org,
- linux-perf-users@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- netdev@vger.kernel.org, rust-for-linux@vger.kernel.org, x86@kernel.org
-References: <20260227200848.114019-1-david@kernel.org>
- <20260227200848.114019-10-david@kernel.org>
- <091ce280-9204-4b85-bf39-5e2a61e3d0ba@lucifer.local>
-From: "David Hildenbrand (Arm)" <david@kernel.org>
-Content-Language: en-US
-Autocrypt: addr=david@kernel.org; keydata=
- xsFNBFXLn5EBEAC+zYvAFJxCBY9Tr1xZgcESmxVNI/0ffzE/ZQOiHJl6mGkmA1R7/uUpiCjJ
- dBrn+lhhOYjjNefFQou6478faXE6o2AhmebqT4KiQoUQFV4R7y1KMEKoSyy8hQaK1umALTdL
- QZLQMzNE74ap+GDK0wnacPQFpcG1AE9RMq3aeErY5tujekBS32jfC/7AnH7I0v1v1TbbK3Gp
- XNeiN4QroO+5qaSr0ID2sz5jtBLRb15RMre27E1ImpaIv2Jw8NJgW0k/D1RyKCwaTsgRdwuK
- Kx/Y91XuSBdz0uOyU/S8kM1+ag0wvsGlpBVxRR/xw/E8M7TEwuCZQArqqTCmkG6HGcXFT0V9
- PXFNNgV5jXMQRwU0O/ztJIQqsE5LsUomE//bLwzj9IVsaQpKDqW6TAPjcdBDPLHvriq7kGjt
- WhVhdl0qEYB8lkBEU7V2Yb+SYhmhpDrti9Fq1EsmhiHSkxJcGREoMK/63r9WLZYI3+4W2rAc
- UucZa4OT27U5ZISjNg3Ev0rxU5UH2/pT4wJCfxwocmqaRr6UYmrtZmND89X0KigoFD/XSeVv
- jwBRNjPAubK9/k5NoRrYqztM9W6sJqrH8+UWZ1Idd/DdmogJh0gNC0+N42Za9yBRURfIdKSb
- B3JfpUqcWwE7vUaYrHG1nw54pLUoPG6sAA7Mehl3nd4pZUALHwARAQABzS5EYXZpZCBIaWxk
- ZW5icmFuZCAoQ3VycmVudCkgPGRhdmlkQGtlcm5lbC5vcmc+wsGQBBMBCAA6AhsDBQkmWAik
- AgsJBBUKCQgCFgICHgUCF4AWIQQb2cqtc1xMOkYN/MpN3hD3AP+DWgUCaYJt/AIZAQAKCRBN
- 3hD3AP+DWriiD/9BLGEKG+N8L2AXhikJg6YmXom9ytRwPqDgpHpVg2xdhopoWdMRXjzOrIKD
- g4LSnFaKneQD0hZhoArEeamG5tyo32xoRsPwkbpIzL0OKSZ8G6mVbFGpjmyDLQCAxteXCLXz
- ZI0VbsuJKelYnKcXWOIndOrNRvE5eoOfTt2XfBnAapxMYY2IsV+qaUXlO63GgfIOg8RBaj7x
- 3NxkI3rV0SHhI4GU9K6jCvGghxeS1QX6L/XI9mfAYaIwGy5B68kF26piAVYv/QZDEVIpo3t7
- /fjSpxKT8plJH6rhhR0epy8dWRHk3qT5tk2P85twasdloWtkMZ7FsCJRKWscm1BLpsDn6EQ4
- jeMHECiY9kGKKi8dQpv3FRyo2QApZ49NNDbwcR0ZndK0XFo15iH708H5Qja/8TuXCwnPWAcJ
- DQoNIDFyaxe26Rx3ZwUkRALa3iPcVjE0//TrQ4KnFf+lMBSrS33xDDBfevW9+Dk6IISmDH1R
- HFq2jpkN+FX/PE8eVhV68B2DsAPZ5rUwyCKUXPTJ/irrCCmAAb5Jpv11S7hUSpqtM/6oVESC
- 3z/7CzrVtRODzLtNgV4r5EI+wAv/3PgJLlMwgJM90Fb3CB2IgbxhjvmB1WNdvXACVydx55V7
- LPPKodSTF29rlnQAf9HLgCphuuSrrPn5VQDaYZl4N/7zc2wcWM7BTQRVy5+RARAA59fefSDR
- 9nMGCb9LbMX+TFAoIQo/wgP5XPyzLYakO+94GrgfZjfhdaxPXMsl2+o8jhp/hlIzG56taNdt
- VZtPp3ih1AgbR8rHgXw1xwOpuAd5lE1qNd54ndHuADO9a9A0vPimIes78Hi1/yy+ZEEvRkHk
- /kDa6F3AtTc1m4rbbOk2fiKzzsE9YXweFjQvl9p+AMw6qd/iC4lUk9g0+FQXNdRs+o4o6Qvy
- iOQJfGQ4UcBuOy1IrkJrd8qq5jet1fcM2j4QvsW8CLDWZS1L7kZ5gT5EycMKxUWb8LuRjxzZ
- 3QY1aQH2kkzn6acigU3HLtgFyV1gBNV44ehjgvJpRY2cC8VhanTx0dZ9mj1YKIky5N+C0f21
- zvntBqcxV0+3p8MrxRRcgEtDZNav+xAoT3G0W4SahAaUTWXpsZoOecwtxi74CyneQNPTDjNg
- azHmvpdBVEfj7k3p4dmJp5i0U66Onmf6mMFpArvBRSMOKU9DlAzMi4IvhiNWjKVaIE2Se9BY
- FdKVAJaZq85P2y20ZBd08ILnKcj7XKZkLU5FkoA0udEBvQ0f9QLNyyy3DZMCQWcwRuj1m73D
- sq8DEFBdZ5eEkj1dCyx+t/ga6x2rHyc8Sl86oK1tvAkwBNsfKou3v+jP/l14a7DGBvrmlYjO
- 59o3t6inu6H7pt7OL6u6BQj7DoMAEQEAAcLBfAQYAQgAJgIbDBYhBBvZyq1zXEw6Rg38yk3e
- EPcA/4NaBQJonNqrBQkmWAihAAoJEE3eEPcA/4NaKtMQALAJ8PzprBEXbXcEXwDKQu+P/vts
- IfUb1UNMfMV76BicGa5NCZnJNQASDP/+bFg6O3gx5NbhHHPeaWz/VxlOmYHokHodOvtL0WCC
- 8A5PEP8tOk6029Z+J+xUcMrJClNVFpzVvOpb1lCbhjwAV465Hy+NUSbbUiRxdzNQtLtgZzOV
- Zw7jxUCs4UUZLQTCuBpFgb15bBxYZ/BL9MbzxPxvfUQIPbnzQMcqtpUs21CMK2PdfCh5c4gS
- sDci6D5/ZIBw94UQWmGpM/O1ilGXde2ZzzGYl64glmccD8e87OnEgKnH3FbnJnT4iJchtSvx
- yJNi1+t0+qDti4m88+/9IuPqCKb6Stl+s2dnLtJNrjXBGJtsQG/sRpqsJz5x1/2nPJSRMsx9
- 5YfqbdrJSOFXDzZ8/r82HgQEtUvlSXNaXCa95ez0UkOG7+bDm2b3s0XahBQeLVCH0mw3RAQg
- r7xDAYKIrAwfHHmMTnBQDPJwVqxJjVNr7yBic4yfzVWGCGNE4DnOW0vcIeoyhy9vnIa3w1uZ
- 3iyY2Nsd7JxfKu1PRhCGwXzRw5TlfEsoRI7V9A8isUCoqE2Dzh3FvYHVeX4Us+bRL/oqareJ
- CIFqgYMyvHj7Q06kTKmauOe4Nf0l0qEkIuIzfoLJ3qr5UyXc2hLtWyT9Ir+lYlX9efqh7mOY
- qIws/H2t
-In-Reply-To: <091ce280-9204-4b85-bf39-5e2a61e3d0ba@lucifer.local>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -153,116 +81,382 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CDD8525F4DF
+X-Rspamd-Queue-Id: BC73325FB23
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kvack.org,linux-foundation.org,oracle.com,kernel.org,google.com,suse.com,suse.de,linux.dev,infradead.org,linux.ibm.com,ellerman.id.au,redhat.com,alien8.de,linuxfoundation.org,android.com,mev.co.uk,visionengravers.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,ziepe.ca,hpe.com,arndb.de,iogearbox.net,arm.com,davemloft.net,lists.ozlabs.org,lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.977];
-	RCPT_COUNT_GT_50(0.00)[74];
-	FROM_NEQ_ENVFROM(0.00)[david@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Action: no action
 
+On Fri, 06 Mar 2026, Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+> Introduce DRM_COLOROP_CSC_FF, a new colorop type representing a
+> fixed-function Color Space Conversion (CSC) block.
+>
+> Unlike CTM-based colorops, this block does not expose programmable
+> coefficients. Instead, userspace selects one of the predefined
+> hardware modes via a new CSC_FF_TYPE enum property. Supported modes
+> include common YUV->RGB and RGB709->RGB2020 conversions.
+>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/drm_atomic.c      |   4 ++
+>  drivers/gpu/drm/drm_atomic_uapi.c |   4 ++
+>  drivers/gpu/drm/drm_colorop.c     | 105 ++++++++++++++++++++++++++++++
+>  include/drm/drm_colorop.h         |  72 ++++++++++++++++++++
+>  include/uapi/drm/drm_mode.h       |  13 ++++
+>  5 files changed, 198 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 04925166df98..7296b844e3fd 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -844,6 +844,10 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
+>  			   drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
+>  		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+>  		break;
+> +	case DRM_COLOROP_CSC_FF:
+> +		drm_printf(p, "\tcsc_ff_type=%s\n",
+> +			   drm_get_colorop_csc_ff_type_name(state->csc_ff_type));
 
->>
->>  	zap_page_range_single_batched(
->> diff --git a/mm/memory.c b/mm/memory.c
->> index fdcd2abf29c2..7d7c24c6917c 100644
->> --- a/mm/memory.c
->> +++ b/mm/memory.c
->> @@ -1554,11 +1554,13 @@ copy_page_range(struct vm_area_struct *dst_vma, struct vm_area_struct *src_vma)
->>  static inline bool should_zap_cows(struct zap_details *details)
-> 
-> Not sure if you fix up later, but we should probably change this function to
-> should_skip_cows() to keep everything consistent, otherwise this is a bit weird
-> and confusing.
+See drm_printf_indent().
 
-should_skip_cows() is a bit misleading on its own IMHO, as we skip the
-"zap" context.
-
-Would have to be something like "should_skip_cows_when_zapping()", and I
-am not sure if that's really worth it.
-
-So I think we can leave it as is.
-
-Thanks!
-
-> 
->>  {
->>  	/* By default, zap all pages */
->> -	if (!details || details->reclaim_pt)
->> +	if (!details)
->>  		return true;
->>
->> +	VM_WARN_ON_ONCE(details->skip_cows && details->reclaim_pt);
->> +
->>  	/* Or, we zap COWed pages only if the caller wants to */
->> -	return details->even_cows;
->> +	return !details->skip_cows;
->>  }
->>
->>  /* Decides whether we should zap this folio with the folio pointer specified */
->> @@ -2149,8 +2151,6 @@ void unmap_vmas(struct mmu_gather *tlb, struct unmap_desc *unmap)
->>  	struct mmu_notifier_range range;
->>  	struct zap_details details = {
->>  		.zap_flags = ZAP_FLAG_DROP_MARKER | ZAP_FLAG_UNMAP,
->> -		/* Careful - we need to zap private pages too! */
->> -		.even_cows = true,
->>  	};
->>
->>  	vma = unmap->first;
->> @@ -4282,7 +4282,7 @@ void unmap_mapping_folio(struct folio *folio)
->>  	first_index = folio->index;
->>  	last_index = folio_next_index(folio) - 1;
->>
->> -	details.even_cows = false;
->> +	details.skip_cows = true;
->>  	details.single_folio = folio;
->>  	details.zap_flags = ZAP_FLAG_DROP_MARKER;
->>
->> @@ -4312,7 +4312,7 @@ void unmap_mapping_pages(struct address_space *mapping, pgoff_t start,
->>  	pgoff_t	first_index = start;
->>  	pgoff_t	last_index = start + nr - 1;
->>
->> -	details.even_cows = even_cows;
->> +	details.skip_cows = !even_cows;
-> 
-> Not sure if you clean up later, but seems sensible to cascade the change into
-> the local boolean here.
-
-There are too many unmap_mapping_range() users for me to want to change
-the external interface :)
-
-What I was thinking is that probably there should be two independent
-user-facing functions, instead of having this magical bool passed around
-
-Because I am sure, most users don't really know whether to set it to
-true or false ...
-
-But that's something for another cleanup. (I left the whole
-unmap_mapping_pages() interface etc alone in this series)
+> +		break;
+>  	default:
+>  		break;
+>  	}
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index 87de41fb4459..9af73325aa93 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -757,6 +757,8 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
+>  	} else if (property == colorop->data_property) {
+>  		return drm_atomic_color_set_data_property(colorop, state,
+>  							  property, val);
+> +	} else if (property == colorop->csc_ff_type_property) {
+> +		state->csc_ff_type = val;
+>  	} else {
+>  		drm_dbg_atomic(colorop->dev,
+>  			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
+> @@ -789,6 +791,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
+>  		*val = colorop->lut3d_interpolation;
+>  	else if (property == colorop->data_property)
+>  		*val = (state->data) ? state->data->base.id : 0;
+> +	else if (property == colorop->csc_ff_type_property)
+> +		*val = state->csc_ff_type;
+>  	else
+>  		return -EINVAL;
+>  
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index f421c623b3f0..49422c625f4d 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
+>  	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+>  	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
+>  	{ DRM_COLOROP_3D_LUT, "3D LUT"},
+> +	{ DRM_COLOROP_CSC_FF, "CSC Fixed-Function"},
+>  };
+>  
+>  static const char * const colorop_curve_1d_type_names[] = {
+> @@ -90,6 +91,13 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
+>  	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+>  };
+>  
+> +static const char * const colorop_csc_ff_type_names[] = {
+> +	[DRM_COLOROP_CSC_FF_YUV601_RGB601]   = "YUV601 to RGB601",
+> +	[DRM_COLOROP_CSC_FF_YUV709_RGB709]   = "YUV709 to RGB709",
+> +	[DRM_COLOROP_CSC_FF_YUV2020_RGB2020] = "YUV2020 to RGB2020",
+> +	[DRM_COLOROP_CSC_FF_RGB709_RGB2020]  = "RGB709 to RGB2020",
+> +};
+> +
+>  /* Init Helpers */
+>  
+>  static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
+> @@ -459,6 +467,80 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
+>  }
+>  EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
+>  
+> +/**
+> + * drm_plane_colorop_csc_ff_init - Initialize a DRM_COLOROP_CSC_FF
+> + *
+> + * @dev: DRM device
+> + * @colorop: The drm_colorop object to initialize
+> + * @plane: The associated drm_plane
+> + * @funcs: control functions for the new colorop
+> + * @supported_csc_ff: A bitfield of supported drm_plane_colorop_csc_ff_type enum values,
+> + *                    created using BIT(csc_ff_type) and combined with the OR '|'
+> + *                    operator.
+> + * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
+> + * @return zero on success, -E value on failure
+> + */
+> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
+> +				  u64 supported_csc_ff, uint32_t flags)
+> +{
+> +	struct drm_prop_enum_list enum_list[DRM_COLOROP_CSC_FF_COUNT];
+> +	int i, len;
+> +
+> +	struct drm_property *prop;
+> +	int ret;
+> +
+> +	if (!supported_csc_ff) {
+> +		drm_err(dev,
+> +			"No supported CSC op for new CSC FF colorop on [PLANE:%d:%s]\n",
+> +			plane->base.id, plane->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if ((supported_csc_ff & -BIT(DRM_COLOROP_CSC_FF_COUNT)) != 0) {
+> +		drm_err(dev, "Unknown CSC provided on [PLANE:%d:%s]\n",
+> +			plane->base.id, plane->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_CSC_FF, flags);
+> +	if (ret)
+> +		return ret;
+> +
+> +	len = 0;
+> +	for (i = 0; i < DRM_COLOROP_CSC_FF_COUNT; i++) {
+> +		if ((supported_csc_ff & BIT(i)) == 0)
+> +			continue;
+> +
+> +		enum_list[len].type = i;
+> +		enum_list[len].name = colorop_csc_ff_type_names[i];
+> +		len++;
+> +	}
+> +
+> +	if (WARN_ON(len <= 0))
+> +		return -EINVAL;
+> +
+> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "CSC_FF_TYPE",
+> +					enum_list, len);
+> +
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	colorop->csc_ff_type_property = prop;
+> +	/*
+> +	 * Default to the first supported CSC mode as provided by the driver.
+> +	 * Intuitively this should be something that keeps the colorop in pixel bypass
+> +	 * mode but that is already handled via the standard colorop bypass
+> +	 * property.
+> +	 */
+> +	drm_object_attach_property(&colorop->base, colorop->csc_ff_type_property,
+> +				   enum_list[0].type);
+> +	drm_colorop_reset(colorop);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_plane_colorop_csc_ff_init);
+> +
+>  static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
+>  							struct drm_colorop_state *state)
+>  {
+> @@ -513,6 +595,13 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+>  						      &val);
+>  		colorop_state->curve_1d_type = val;
+>  	}
+> +
+> +	if (colorop->csc_ff_type_property) {
+> +		drm_object_property_get_default_value(&colorop->base,
+> +						      colorop->csc_ff_type_property,
+> +						      &val);
+> +		colorop_state->csc_ff_type = val;
+> +	}
+>  }
+>  
+>  /**
+> @@ -551,6 +640,7 @@ static const char * const colorop_type_name[] = {
+>  	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix",
+>  	[DRM_COLOROP_MULTIPLIER] = "Multiplier",
+>  	[DRM_COLOROP_3D_LUT] = "3D LUT",
+> +	[DRM_COLOROP_CSC_FF] = "CSC Fixed-Function",
+>  };
+>  
+>  static const char * const colorop_lu3d_interpolation_name[] = {
+> @@ -607,6 +697,21 @@ const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_inte
+>  	return colorop_lu3d_interpolation_name[type];
+>  }
+>  
+> +/**
+> + * drm_get_colorop_csc_ff_type_name: return a string for interpolation type
+> + * @type: csc ff type to compute name of
+> + *
+> + * In contrast to the other drm_get_*_name functions this one here returns a
+> + * const pointer and hence is threadsafe.
+> + */
+> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_type type)
+> +{
+> +	if (WARN_ON(type >= ARRAY_SIZE(colorop_csc_ff_type_names)))
+> +		return "unknown";
+> +
+> +	return colorop_csc_ff_type_names[type];
+> +}
+> +
+>  /**
+>   * drm_colorop_set_next_property - sets the next pointer
+>   * @colorop: drm colorop
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index bd082854ca74..2cd8e0779c2a 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -134,6 +134,60 @@ enum drm_colorop_curve_1d_type {
+>  	DRM_COLOROP_1D_CURVE_COUNT
+>  };
+>  
+> +/**
+> + * enum drm_colorop_csc_ff_type - type of CSC Fixed-Function
+> + *
+> + * Describes a CSC operation to be applied by the DRM_COLOROP_CSC_FF colorop.
+> + */
+> +enum drm_colorop_csc_ff_type {
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_YUV601_RGB601
+> +	 *
+> +	 * enum string "YUV601 to RGB601"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts YUV
+> +	 * (BT.601) colorimetry to RGB (BT.601).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_YUV601_RGB601,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_YUV709_RGB709:
+> +	 *
+> +	 * enum string "YUV709 to RGB709"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts YUV
+> +	 * (BT.709) colorimetry to RGB (BT.709).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_YUV709_RGB709,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_YUV2020_RGB2020:
+> +	 *
+> +	 * enum string "YUV2020 to RGB2020"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts YUV
+> +	 * (BT.2020) colorimetry to RGB (BT.2020).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_YUV2020_RGB2020,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_RGB709_RGB2020:
+> +	 *
+> +	 * enum string "RGB709 to RGB2020"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts RGB
+> +	 * (BT.709) colorimetry to RGB (BT.2020).
+> +	 */
+> +	DRM_COLOROP_CSC_FF_RGB709_RGB2020,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF_COUNT:
+> +	 *
+> +	 * enum value denoting the size of the enum
+> +	 */
+> +	DRM_COLOROP_CSC_FF_COUNT
+> +};
+> +
+>  /**
+>   * struct drm_colorop_state - mutable colorop state
+>   */
+> @@ -183,6 +237,13 @@ struct drm_colorop_state {
+>  	 */
+>  	struct drm_property_blob *data;
+>  
+> +	/**
+> +	 * @csc_ff_type:
+> +	 *
+> +	 * Type of Fixed function CSC.
+> +	 */
+> +	enum drm_colorop_csc_ff_type csc_ff_type;
+> +
+>  	/** @state: backpointer to global drm_atomic_state */
+>  	struct drm_atomic_state *state;
+>  };
+> @@ -368,6 +429,13 @@ struct drm_colorop {
+>  	 */
+>  	struct drm_property *data_property;
+>  
+> +	/**
+> +	 * @csc_ff_type_property:
+> +	 *
+> +	 * Sub-type for DRM_COLOROP_CSC_FF type.
+> +	 */
+> +	struct drm_property *csc_ff_type_property;
+> +
+>  	/**
+>  	 * @next_property:
+>  	 *
+> @@ -424,6 +492,9 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
+>  				 uint32_t lut_size,
+>  				 enum drm_colorop_lut3d_interpolation_type interpolation,
+>  				 uint32_t flags);
+> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
+> +				  u64 supported_csc_ff, uint32_t flags);
+>  
+>  struct drm_colorop_state *
+>  drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
+> @@ -480,6 +551,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_ty
+>  
+>  const char *
+>  drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
+> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_type type);
+>  
+>  void drm_colorop_set_next_property(struct drm_colorop *colorop, struct drm_colorop *next);
+>  
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index 3693d82b5279..f7808e7ea984 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -968,6 +968,19 @@ enum drm_colorop_type {
+>  	 *         color = lut3d[index]
+>  	 */
+>  	DRM_COLOROP_3D_LUT,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_CSC_FF:
+> +	 *
+> +	 * enum string "CSC Fixed-Function"
+> +	 *
+> +	 * A fixed-function Color Space Conversion block where the coefficients
+> +	 * are not programmable but selected from predefined hardware modes via
+> +	 * the CSC_FF_TYPE enum property. The driver advertises the supported
+> +	 * CSC modes through this property.
+> +	 */
+> +	DRM_COLOROP_CSC_FF,
+> +
+>  };
+>  
+>  /**
 
 -- 
-Cheers,
-
-David
+Jani Nikula, Intel
