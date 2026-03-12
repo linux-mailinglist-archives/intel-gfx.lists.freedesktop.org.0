@@ -2,63 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oB8lKvKksmnwOQAAu9opvQ
+	id WP9EGLilsmnwOQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 12:35:14 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 12:38:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3AEFF27109D
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 12:35:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E141A27119B
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 12:38:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4E7210E9B9;
-	Thu, 12 Mar 2026 11:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ABD4510E99F;
+	Thu, 12 Mar 2026 11:38:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="S+A6If4D";
-	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="VJbIvelA";
+	dkim=pass (2048-bit key; secure) header.d=linutronix.de header.i=@linutronix.de header.b="17B65fO7";
+	dkim=permerror (0-bit key) header.d=linutronix.de header.i=@linutronix.de header.b="IkMuyfzB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from galois.linutronix.de (Galois.linutronix.de [193.142.43.55])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C0DE10E9B9;
- Thu, 12 Mar 2026 11:35:11 +0000 (UTC)
-Date: Thu, 12 Mar 2026 12:35:08 +0100
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6E84010E99F;
+ Thu, 12 Mar 2026 11:38:28 +0000 (UTC)
+Date: Thu, 12 Mar 2026 12:38:25 +0100
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020; t=1773315309;
+ s=2020; t=1773315507;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=kxPKAMMGsnIniCCQt8FVuGGitmXq9bLkHDjrWLMUJAw=;
- b=S+A6If4DTvg87flcqA89S8NUl+xLGvUjrwokJWONA85exMcv2ZPhwpEtfTfNNNdj2WrI3+
- nuK9hSq6ByN+EHOeXYeaTClYCh2etkRFUDPOwAhydShTaCVSBmLkgRDHqMeT+a0007+/9x
- gnuq41BoZFUwkx+LCUsdCLnjOvAIFvYkP91J+taxumTBBLdzaiS+3HBD8HTeE+s1rIeYO7
- GLh8xp06Nj0xB2WHwhTEDbhBMkXVcZoxAbfIV83p3D7ONY1FAfp0KM+H6IZA4n5YiOSzTE
- VjlsAJQMSzxevUVBovVQFvJ4Hzdt8DzahOC4OlRA7wLHm6HIaf/fMfXFmPxgzA==
+ bh=sB9f65l5Jdk60CA8NP/HMhEsJuKB0SLGppnHfM+zPPA=;
+ b=17B65fO7eBCkHO7c1hV7kbrDauYuuvjqqjOsLHYUJ0LPI9lyMmYhBi+VAVCueu8bnLi0cj
+ NuluPiyQi0zWQzOGNyVpCJCIVhOzvsIhqfIclLOX8lj4OxEQ/AbaMYUCx8zSsAPLesoy66
+ uUwDtXObj1wKztMUruaWhFKOQ/40tP4ppoZCN24HyahjiWcNghpG1tOr6WnI/7BGvQV7yO
+ Q/FjTM44JEPtBFe9BG2W8L6rwBEHr32x51zQj8qbqQUwDIlitTHeHalPVRVCECf1/e5AQN
+ xvWVK75jp7CsmOgfrtO4jHkFhwtbx+T/jXMY/JbHOv6rfI5seHOnF+T4xuI+eg==
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=linutronix.de;
- s=2020e; t=1773315309;
+ s=2020e; t=1773315507;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=kxPKAMMGsnIniCCQt8FVuGGitmXq9bLkHDjrWLMUJAw=;
- b=VJbIvelAe2aJGHIUDjIDVI679lnZOcmR49ej+4vnv3t0QMZwohNoHLwx/+itzUt4eSYOAY
- NiFrbEc+OwApxSCg==
+ bh=sB9f65l5Jdk60CA8NP/HMhEsJuKB0SLGppnHfM+zPPA=;
+ b=IkMuyfzB5BNycFWjmQhXhqTGrxWlQqS4Z3J75y6pZizUakywKc/Bu7LTH2j+3DlWPOnPHA
+ EXncDoZTD9LFXuAA==
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 To: Maarten Lankhorst <dev@lankhorst.se>
 Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Subject: Re: [PATCH v7 26/26] drm/i915/gt: Add a spinlock to prevent
  starvation of irq_work.
-Message-ID: <20260312113508.y_l5voIx@linutronix.de>
+Message-ID: <20260312113825.FuNFq5CM@linutronix.de>
 References: <20260310115709.2276203-1-dev@lankhorst.se>
  <20260310115709.2276203-27-dev@lankhorst.se>
- <20260310170413.5rCjlTce@linutronix.de>
- <64617f61-6c91-4739-a545-b0109f8dc87e@lankhorst.se>
+ <20260310172214.4lEOgGOl@linutronix.de>
+ <7774bff2-e101-4e59-9cfb-9f200e1caef9@lankhorst.se>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <64617f61-6c91-4739-a545-b0109f8dc87e@lankhorst.se>
+In-Reply-To: <7774bff2-e101-4e59-9cfb-9f200e1caef9@lankhorst.se>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,27 +94,44 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:dkim,linutronix.de:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3AEFF27109D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linutronix.de:dkim,linutronix.de:mid]
+X-Rspamd-Queue-Id: E141A27119B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 2026-03-10 19:14:18 [+0100], Maarten Lankhorst wrote:
+On 2026-03-10 20:03:14 [+0100], Maarten Lankhorst wrote:
 > Hey,
 Hi,
 
->=20
-> Otherwise things are looking good! Have you uncovered anything else?
+> Den 2026-03-10 kl. 18:22, skrev Sebastian Andrzej Siewior:
+> > On 2026-03-10 12:57:08 [+0100], Maarten Lankhorst wrote:
+> >> --- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> >> +++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
+> >> @@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
+> >>  	if (release)
+> >>  		intel_context_put(ce);
+> >>  
+> >> -	while (atomic_read(&b->signaler_active))
+> >> +	while (atomic_read(&b->signaler_active)) {
+> >> +		spin_lock(&b->signaler_active_sync);
+> >> +		spin_unlock(&b->signaler_active_sync);
+> >>  		cpu_relax();
+> > 
+> > Forgot to mention: This is fine on PREEMPT_RT but on !RT you might need
+> > 
+> >                spin_lock_irqsave(&b->signaler_active_sync, flags);
+> >                spin_unlock_irqrestore(&b->signaler_active_sync, flags);
+> > 
+> > if the function can be called from !IRQ context which might be the case
+> > due to the irqsave() earlier in this function.
+> Yeah seems a bit of an oversight. I'll change it to use flags.
+> 
+> Is it correct to assume that irq_work disables interrupts on !RT?
 
-I would swap the ordering 23 <-> 26 in
-| =E2=94=9C=E2=94=80>[PATCH v7 23/26] Revert "drm/i915: Depend on !PREEMPT_=
-RT."
-| =E2=94=9C=E2=94=80>[PATCH v7 26/26] drm/i915/gt: Add a spinlock to preven=
-t starvation of irq_work.
-
-but other than that it all looks good. I tested it by using it on my two
-boxes with i915 compatible hw and didn't notice anything.
-I've been using -next + this series.
+Yes. It runs either directly as an interrupt or gets kicked from the
+timer interrupt. Either way, interrupts are always disabled. Only on RT
+interrupts are enabled unless the IRQ-work has been explicitly requested
+to be run in interrupt context.
 
 > Kind regards,
 > ~Maarten Lankhorst
