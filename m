@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DjHFid0smlbMwAAu9opvQ
+	id iMD8KCh0smlbMwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 09:07:03 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 09:07:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B832D26E997
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 09:07:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 320A826E99E
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 09:07:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4716810E99A;
-	Thu, 12 Mar 2026 08:07:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B379B10E99C;
+	Thu, 12 Mar 2026 08:07:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MTrnB6uZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Aj3cT1eJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 175B110E993;
- Thu, 12 Mar 2026 08:07:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B1E110E993;
+ Thu, 12 Mar 2026 08:07:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773302820; x=1804838820;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jEajqlmYY/1bwuPzfjmV614O/pswEdM84I1y7ZNPZyM=;
- b=MTrnB6uZlPtgYrMiE/85A8xZ3O4vKFS5TuCqsY0Yw7Sj8kLRcqiP4/VX
- oe4UQ+ZPfisU0cHhH7iJ4JUowV2Y4Cn0T/8CgsEgYMAIbdlTL55VzsdOs
- qgKZk0VQROV8OWqhll0Io0xBdIOHq+GJyGJULIABoSPWyfQ+BzhTkDoAo
- sch+HjjGC5h1Lswix5bIX8Kn78qmgUXFYoxeBTfZ1t3KOQKvhmdb89k4T
- hnPJixx29rEFy990K4CqRYyxmrSa6TMqWWU9HhIlU+1NvpFzMVAfEkWtJ
- 6Kn4k8gNchkFTRt8/UuDWxfTMIR2k37hNpvtmNfZUbv6YSwyI84YW4Gza A==;
-X-CSE-ConnectionGUID: Zb3pYMZdRLuqH0qcWpgiwQ==
-X-CSE-MsgGUID: n5/isL6lQ9iMtfCXX7qRoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85013710"
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="85013710"
+ t=1773302821; x=1804838821;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Ib3RS+wGCUmYr1i74CT5KQMZnex4G32BmgW4XToyKwQ=;
+ b=Aj3cT1eJ5+weGrvVviCMVBGWfRyBV2kPRVS27u5p/yNLwpFccjXzzPuM
+ cbKTfKkpcsW8NKoOqyzXs3GcDkkuQu8I6qhvFpQ2ai3bzYebAXpjfW1BP
+ 5StVCYn5sFYnM0qD89LjLnj1RivGc3G+SuwrcfKBSM6hUtDTVuLYdeLJs
+ MnKRdGcXBjZCfaBXOB17yAVrKmKULfUHyAypT2Cs6/TGIjGlwvyE/9SL9
+ BUp9N+Iu5PHrQlVWaV4w5tjgbwziYWwwFEbgKQWI7rWZtjjsCx+ZQEzUk
+ kw3CrNvc931zTpfsfRxmWvPo+D90mcgx3UozfkXMirqrkiYIl3JPIE5YG w==;
+X-CSE-ConnectionGUID: bs+Gl+73Q2mXDu9ns32C7g==
+X-CSE-MsgGUID: 14Qwl3LeRgKqwyyJKZwDJw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="85013714"
+X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="85013714"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 01:06:59 -0700
-X-CSE-ConnectionGUID: 9HJ1kzD5T/65HkJyJzA9Lw==
-X-CSE-MsgGUID: 0gbBV3N8TvWPf0xYR6EWxg==
+ 12 Mar 2026 01:07:01 -0700
+X-CSE-ConnectionGUID: 5v6Jj6jcS7SOOWArHC7Ikw==
+X-CSE-MsgGUID: 48YZYlQHTnSlVc1I1LQ/3g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="223206767"
+X-IronPort-AV: E=Sophos;i="6.23,115,1770624000"; d="scan'208";a="223206773"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa004.fm.intel.com with ESMTP; 12 Mar 2026 01:06:59 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 12 Mar 2026 01:07:00 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [CI v3 00/24] Refactor LT PHY PLL handling to use DPLL framework
-Date: Thu, 12 Mar 2026 08:06:33 +0000
-Message-ID: <20260312080657.2648265-1-mika.kahola@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: [CI v3 01/24] drm/i915/lt_phy: Dump missing PLL state parameters
+Date: Thu, 12 Mar 2026 08:06:34 +0000
+Message-ID: <20260312080657.2648265-2-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260312080657.2648265-1-mika.kahola@intel.com>
+References: <20260312080657.2648265-1-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -70,82 +72,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: B832D26E997
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 320A826E99E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is v3 of [1], with the following changes
- - Reorder patches to maintain bisectability
- - Drop xe3plpd specific DDI enable_clock/disable_clock hooks and reuse
-   MTL intel_mtl_pll_enable_clock() and intel_mtl_pll_disable_clock()
-   hooks instead
- - Commit message updates
+Dump missing PLL structure members ssc_enabled and tbt_mode
+in order to enhance debugging.
 
-[1] https://lore.kernel.org/intel-gfx/20260304131423.1017821-1-mika.kahola@intel.com/
+v2: Drop addr_lsb and addr_msb printouts
 
-Mika Kahola (24):
-  drm/i915/lt_phy: Dump missing PLL state parameters
-  drm/i915/lt_phy: Add check if PLL is enabled
-  drm/i915/lt_phy: Add PLL information for xe3plpd
-  drm/i915/lt_phy: Refactor LT PHY PLL handling to use explicit PLL
-    state
-  drm/i915/lt_phy: Add lane_count to PLL state
-  drm/i915/lt_phy: Add xe3plpd .compute_dplls hook
-  drm/i915/lt_phy: Add xe3plpd .get_dplls hook
-  drm/i915/lt_phy: Add xe3plpd .put_dplls hook
-  drm/i915/lt_phy: Add xe3plpd .update_active_dpll hook
-  drm/i915/lt_phy: Add xe3plpd .update_dpll_ref_clks hook
-  drm/i915/lt_phy: Add xe3plpd .dump_hw_state hook
-  drm/i915/lt_phy: Add xe3plpd .compare_hw_state hook
-  drm/i915/lt_phy: Add xe3plpd .get_hw_state hook
-  drm/i915/lt_phy: Add xe3plpd .get_freq hook
-  drm/i915/lt_phy: Add xe3plpd .crtc_get_dpll
-  drm/i915/lt_phy: Add .enable_clock hook on DDI
-  drm/i915/lt_phy: Add .disable_clock hook on DDI
-  drm/i915/lt_phy: Dump lane count for HW state
-  drm/i915/lt_phy: Readout lane count
-  drm/i915/lt_phy: Get encoder configuration for xe3plpd platform
-  drm/i915/lt_phy: Add xe3plpd Thunderbolt PLL hooks
-  drm/i915/lt_phy: Remove LT PHY specific state verification
-  drm/i915/lt_phy: Enable dpll framework for xe3plpd
-  drm/i915/lt_phy: Replace crtc compute clock
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_lt_phy.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  10 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.h  |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c      |  26 +--
- drivers/gpu/drm/i915/display/intel_display.c  |  32 ---
- drivers/gpu/drm/i915/display/intel_dpll.c     |  26 +--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 186 ++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |   1 +
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 193 ++++++++++--------
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  23 ++-
- .../drm/i915/display/intel_modeset_verify.c   |   1 -
- 10 files changed, 320 insertions(+), 179 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+index eced8493e566..f768804122c1 100644
+--- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
+@@ -2141,7 +2141,9 @@ void intel_lt_phy_dump_hw_state(struct intel_display *display,
+ {
+ 	int i, j;
+ 
+-	drm_dbg_kms(display->drm, "lt_phy_pll_hw_state:\n");
++	drm_dbg_kms(display->drm, "lt_phy_pll_hw_state: ssc enabled: %d, tbt mode: %d\n",
++		    hw_state->ssc_enabled, hw_state->tbt_mode);
++
+ 	for (i = 0; i < 3; i++) {
+ 		drm_dbg_kms(display->drm, "config[%d] = 0x%.4x,\n",
+ 			    i, hw_state->config[i]);
 -- 
 2.43.0
 
