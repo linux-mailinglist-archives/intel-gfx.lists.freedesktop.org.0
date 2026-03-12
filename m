@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aG7gEbEBs2mQRQAAu9opvQ
+	id +AGRJLIBs2mQRQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:57 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:58 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E6CED2770AB
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 652AA2770B2
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3623710E429;
-	Thu, 12 Mar 2026 18:10:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D267110E42A;
+	Thu, 12 Mar 2026 18:10:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SehTZxFq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QD8teA07";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAF410E361;
- Thu, 12 Mar 2026 18:10:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE5DD10E42A;
+ Thu, 12 Mar 2026 18:10:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773339053; x=1804875053;
+ t=1773339056; x=1804875056;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=bbzyyHIdwDjoDVFX7mQXGFLu5F9UU/UHvUHC61hpUlc=;
- b=SehTZxFqRcOMJK9f9dC7OKQjyfiOwVwMwt/uw56KazWBx6YRmH5jOOlj
- 4Efx6/8/FD74AneR1p+e88WwbJ2tBKFN3dECRDpGKRWWmyrAXno1Rg5gj
- 8ZHIYS8wAIjbaB5SKKvvaIjwvU9fmXD1SXSypNrkPj/nlAx5lYrZ8L7cJ
- 4Kj7jiRDvpF5JRvqtVoMbthY5XwZUfbsKyLBAX0SrUIroztfx8OPsUBdn
- YGxZJMJS43SK5C2uwinCZMHTkcx1HMoT/bDVhg8RRwHzZsSxkJ43t5MKv
- rs+ZN7DPtBX9Qj9ERmdc0S6FZ5yHje9mVMEgBXlpF44j2RXF109eWgW1H Q==;
-X-CSE-ConnectionGUID: gu3ksDs8QEWHP3S687Irnw==
-X-CSE-MsgGUID: Gmbdr5TfSim4poyvRj5HOg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="92016967"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="92016967"
+ bh=omg4fEkyYA3+LJcDap+3Olegc0OOlrVunO1uw6uImmM=;
+ b=QD8teA073tafdyI9gJqSvvvqA0NmhB+OqvUBKkhj9v3Y4swB5Lwc/rmd
+ wYvZU3tdRVPeFLkkOKylWoWfhF277YXYi0VCt6Dc/3ZiZ1awkfH72H4Ap
+ MMK2EhMBlf5vFTfdaF8x+ml3hmPQbnRHJoglVcrBUADyfZI+ILICSyqbf
+ jO6ed+LHF3BI3+3peVUGSP1I+osXgogK1vP0HcsCR835XHyI4YjyfSPto
+ cFfdQE6Dw+2rDx6IbTG6ji2iRLCE3lleSKiRS2Cs6CyBX+PhEzXqwRM28
+ zDXZkrWv+8gMbah+dD18O/f6O9Tl6qhL127KIcKJsF002QMyCX4MOtsfd w==;
+X-CSE-ConnectionGUID: qIJxkqYHTJyDF6Tsj463Lw==
+X-CSE-MsgGUID: BMIIPq4RSxaz8icDCzKqsg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="92016973"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="92016973"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 11:10:53 -0700
-X-CSE-ConnectionGUID: +rdmOxPCRpy87aXE6+Ijnw==
-X-CSE-MsgGUID: mFT/5sh+RV6AzzHIM+2Ymg==
+ 12 Mar 2026 11:10:56 -0700
+X-CSE-ConnectionGUID: PXwx1FfsSmGRAvKzSbTEsw==
+X-CSE-MsgGUID: do97aK4ZT2KvUf2Hd/CtgQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="243936355"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="243936360"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.152])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 11:10:50 -0700
+ 12 Mar 2026 11:10:53 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
@@ -57,10 +57,10 @@ Cc: intel-gfx@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v2 1/3] tests/gem_lmem_swapping: Improve concurrency of
- smem-oom helpers.
-Date: Thu, 12 Mar 2026 19:07:33 +0100
-Message-ID: <20260312181032.20485-6-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2 2/3] tests/intel/gem_lmem_swapping: Be more clear
+ about subprocesses role
+Date: Thu, 12 Mar 2026 19:07:34 +0100
+Message-ID: <20260312181032.20485-7-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260312181032.20485-5-janusz.krzysztofik@linux.intel.com>
 References: <20260312181032.20485-5-janusz.krzysztofik@linux.intel.com>
@@ -105,90 +105,63 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: E6CED2770AB
+X-Rspamd-Queue-Id: 652AA2770B2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The smem-oom subtests re-spawns two different memory leak helpers.  Any of
-those two may either complete or be killed before the other and not
-respawned until the other is also completed or killed.  That imbalance may
-actually affect the shape of OOM conditions, most probably intended to be
-a compound result of those two memory exhaustion activities of different
-nature.
+In the smem-oom subtest, helper processes are now spawn with igt_fork(),
+not with igt_fork_helper() as one might expect.  That unfortunate use
+of igt_fork() may introduce uncertainty about the role of those
+subprocesses, whether their failures should count or not.
 
-Respawn each helper from its own loop.
+Use igt_fork_helper() for clarity.
 
 Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 ---
- tests/intel/gem_lmem_swapping.c | 27 ++++++++++++++++-----------
- 1 file changed, 16 insertions(+), 11 deletions(-)
+ tests/intel/gem_lmem_swapping.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
 diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
-index 77e18f1a3c..3a35318a74 100644
+index 3a35318a74..f790dc66e9 100644
 --- a/tests/intel/gem_lmem_swapping.c
 +++ b/tests/intel/gem_lmem_swapping.c
-@@ -707,7 +707,7 @@ static void test_smem_oom(int i915,
- 		igt_get_total_swap_mb();
- 	const unsigned int alloc = 256 * 1024 * 1024;
- 	const unsigned int num_alloc = 1 + smem_size / (alloc >> 20);
--	struct igt_helper_process smem_proc = {};
-+	struct igt_helper_process smem_loop[2] = {};
- 	unsigned int n;
- 	int lmem_err;
- 
-@@ -734,8 +734,8 @@ static void test_smem_oom(int i915,
- 		drm_close_driver(fd);
- 	}
- 
--	/* smem memory hog process, respawn till the lmem process completes */
--	igt_fork_helper(&smem_proc) {
-+	/* smem memory hog processes, respawn till the lmem process completes */
-+	igt_fork_helper(&smem_loop[0]) {
+@@ -737,7 +737,9 @@ static void test_smem_oom(int i915,
+ 	/* smem memory hog processes, respawn till the lmem process completes */
+ 	igt_fork_helper(&smem_loop[0]) {
  		while (!READ_ONCE(*lmem_done)) {
- 			igt_fork(child, 1) {
+-			igt_fork(child, 1) {
++			struct igt_helper_process smem_proc = {};
++
++			igt_fork_helper(&smem_proc) {
  				for (int pass = 0; pass < num_alloc; pass++) {
-@@ -744,6 +744,16 @@ static void test_smem_oom(int i915,
- 					leak(alloc);
- 				}
- 			}
-+			/*
-+			 * Wait for grand-child process to finish or be
-+			 * killed by the oom killer, don't call
-+			 * igt_waitchildren because of the noise
-+			 */
-+			wait(NULL);
-+		}
-+	}
-+	igt_fork_helper(&smem_loop[1]) {
-+		while (!READ_ONCE(*lmem_done)) {
- 			igt_fork(child, 1) {
+ 					if (READ_ONCE(*lmem_done))
+ 						break;
+@@ -749,12 +751,14 @@ static void test_smem_oom(int i915,
+ 			 * killed by the oom killer, don't call
+ 			 * igt_waitchildren because of the noise
+ 			 */
+-			wait(NULL);
++			igt_wait_helper(&smem_proc);
+ 		}
+ 	}
+ 	igt_fork_helper(&smem_loop[1]) {
+ 		while (!READ_ONCE(*lmem_done)) {
+-			igt_fork(child, 1) {
++			struct igt_helper_process smem_proc = {};
++
++			igt_fork_helper(&smem_proc) {
  				int fd = drm_reopen_driver(i915);
  
-@@ -754,13 +764,7 @@ static void test_smem_oom(int i915,
+ 				for (int pass = 0; pass < num_alloc; pass++) {
+@@ -764,7 +768,7 @@ static void test_smem_oom(int i915,
  				}
  				drm_close_driver(fd);
  			}
--			/*
--			 * Wait for grand-child processes to finish or be
--			 * killed by the oom killer, don't call
--			 * igt_waitchildren because of the noise
--			 */
--			for (n = 0; n < 2; n++)
--				wait(NULL);
-+			wait(NULL);
+-			wait(NULL);
++			igt_wait_helper(&smem_proc);
  		}
  	}
  
-@@ -772,7 +776,8 @@ static void test_smem_oom(int i915,
- 		(*lmem_done)++;
- 	munmap(lmem_done, sizeof(*lmem_done));
- 
--	igt_wait_helper(&smem_proc);
-+	for (n = 0; n < 2; n++)
-+		igt_wait_helper(&smem_loop[n]);
- 
- 	igt_assert_eq(lmem_err, 0);
- }
 -- 
 2.53.0
 
