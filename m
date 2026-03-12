@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CxVLsy+smmvPAAAu9opvQ
+	id wFqEM2u/smmvPAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:25:32 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:28:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61CC8272767
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:25:32 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C7DC2727E7
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:28:11 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE52110E9F2;
-	Thu, 12 Mar 2026 13:25:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14FC210E9F0;
+	Thu, 12 Mar 2026 13:28:10 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VzABFczR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ijd12aCL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 64C3C10E9F2;
- Thu, 12 Mar 2026 13:25:29 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 70A2A10E9F0;
+ Thu, 12 Mar 2026 13:28:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773321929; x=1804857929;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=iDYCfgxui0Vcp8E3XYR5CUDGg793MWX6zUY6R3Dw364=;
- b=VzABFczRD7/Rx1LDgzv4W2dctXUfffdfGwQI/gYm67PK38PaMNTcDxmE
- +V+nqkRMtHfZSHMX+LQ0wvzWZU2QjZV8/kNT5gmDz+8/cdHJsImLWMwOO
- l2uwbG+BQxBDZL5Q9HVMHZrzfK8TZ1c2KGSYwvjymuqtvCHq+dMX7D7JH
- WNzXftJGbcbaAVjBYxL0Rq3tZDzJoooCWJNlS0LBc6l1bG+p7rJP79zWU
- weETgcn9ddNoj7ZpNmPJbW7l8enJBPPyeaVjwUhYv5fBkX9dxVxYtY8LM
- NWYopXQU3Fdip15zqiHSDxZHZC1gXhxbfiB7A2cKRatr4ZANunzUGvwX6 A==;
-X-CSE-ConnectionGUID: ey/YtaXTRRKwNCzs6cyl2g==
-X-CSE-MsgGUID: pSp+BbIFQwKBEqtTlkZ4FA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74524947"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74524947"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 06:25:29 -0700
-X-CSE-ConnectionGUID: 6MV7/QrzRGOP3n1Al4Yxkg==
-X-CSE-MsgGUID: /rBwFBlnSPm7ljwijOw5Yg==
+ t=1773322089; x=1804858089;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vR6201sbq7VY4vnrVz5I+wDiDUkSvc1Ew4S1mHLrGqE=;
+ b=Ijd12aCLKaQhWw8m2hsutlwu4BLXyCIM4+VzlkENrbZqhXX4Q4PDRyyX
+ OKr19ZneCTBzA7GHplsI3qiqeGgvcxXL/ALifkoPnROerUwb8VOQO4Sof
+ otda5JGyxoYEmWryVK1RQ9Z/S+3x8y+OW2mQB52M97dzmID8SOXIsxnsF
+ u8OmAbGCeqejTfECeqF8EnERQ59fdJO9bFbtQhADIbY+VQWEjbXZMiesE
+ pDiINiIWa3phUg91YgEsTqy0XyCgETy76dESiT7N1Rgsclw9saWG0mF+P
+ kyXIashnubsxNtUzYCSsaSiOmnZwCaxzWko10uCJHre9Yf7163NeCWRig A==;
+X-CSE-ConnectionGUID: M7p+nCYLQWSoszcRw2Z3Zg==
+X-CSE-MsgGUID: JBKrzTqTTXe19xtt5lD8rw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="61988236"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="61988236"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 06:28:09 -0700
+X-CSE-ConnectionGUID: +7pv8WjUT0+m/4eXr6ONsQ==
+X-CSE-MsgGUID: 4vy2wYYjQ2+9LYugd8XW2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="225794542"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="220881959"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 06:25:27 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 Mar 2026 06:28:07 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  swati2.sharma@intel.com, suraj.kandpal@intel.com
-Subject: [PATCH v3 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
-Date: Thu, 12 Mar 2026 18:56:54 +0530
-Message-ID: <20260312132654.2614433-3-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v3 0/2] drm/i915/dmc: Update PIPEDMC interrupt mask
+Date: Thu, 12 Mar 2026 18:59:39 +0530
+Message-ID: <20260312132941.2614478-1-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260312132654.2614433-1-dibin.moolakadan.subrahmanian@intel.com>
-References: <20260312132654.2614433-1-dibin.moolakadan.subrahmanian@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -97,39 +95,28 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 61CC8272767
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8C7DC2727E7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable PIPEDMC_ERROR interrupt bit for display version 35+.
-
-Bspec: 70296
+On display version 35+ the PIPEDMC_ATS_FAULT and
+PIPEDMC_GTT_FAULT interrupt bits are no longer defined.
+Update the interrupt mask accordingly and enable the
+PIPEDMC_ERROR interrupt.
 
 Changes in v2:
-- Move PIPEDMC_ERROR interrupt enable to a separate patch (Ville Syrjala)
+- Move PIPEDMC_ERROR interrupt enable to a separate patch (Ville Syrjala)  
 Changes in v3:
 - Add Bspec reference (Suraj Kandpal)
 
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+Dibin Moolakadan Subrahmanian (2):
+  drm/i915/dmc: Remove invalid PIPEDMC interrupt bits
+  drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 38b284a0db82..e60f1f977070 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -510,7 +510,8 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
- static u32 pipedmc_interrupt_mask(struct intel_display *display)
- {
- 	if (DISPLAY_VER(display) >= 35)
--		return PIPEDMC_FLIPQ_PROG_DONE;
-+		return PIPEDMC_FLIPQ_PROG_DONE |
-+			PIPEDMC_ERROR;
- 
- 	/*
- 	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
+ drivers/gpu/drm/i915/display/intel_dmc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
 -- 
 2.43.0
 
