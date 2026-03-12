@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2CxKKbABs2mQRQAAu9opvQ
+	id aG7gEbEBs2mQRQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:56 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:57 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 046712770A4
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6CED2770AB
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 19:10:56 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D857510E361;
-	Thu, 12 Mar 2026 18:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3623710E429;
+	Thu, 12 Mar 2026 18:10:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mPJ63tJ8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SehTZxFq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 665AD10E361;
- Thu, 12 Mar 2026 18:10:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EAF410E361;
+ Thu, 12 Mar 2026 18:10:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773339051; x=1804875051;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=xPbl87r85T0RJj7/iT07olJj6xx5Oh+mO6yV54a/mEg=;
- b=mPJ63tJ8Fb51Y/OUIsMBTYk5yX2cYGd0UvnKLod1rl0KTYcC3X4UY8ok
- sS45geaOgRH7AMS0G5ctpukwbex4kSkyxtSO7T3gj0IWmwCHsQjUgvvsP
- EwwRXWf3a1awUF8THpUeYAj3QshOhO+GG3bjWfS0KhQ+cs0yesihR3U8X
- MUr72qyxQyUeTtw3IqX1upeaMOGoTQaKPRKOYx3eBRNnM4262D8D2xkuD
- lFw4iq67DU9NhkXOR9yVN6TQgkPtfmckqoF9j3PKrhjHTutH8d79awSmR
- 3HZtigvie8xDudcuDV0IK+zFsBH+8fC6aAZaP0Q2PbKp2Xi0pmFz9Fdqx Q==;
-X-CSE-ConnectionGUID: tH3LCalWSlmz1FPjtY0Qtw==
-X-CSE-MsgGUID: h5RmtmV1QEW7Lmbn5Lrn7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="92016965"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="92016965"
+ t=1773339053; x=1804875053;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=bbzyyHIdwDjoDVFX7mQXGFLu5F9UU/UHvUHC61hpUlc=;
+ b=SehTZxFqRcOMJK9f9dC7OKQjyfiOwVwMwt/uw56KazWBx6YRmH5jOOlj
+ 4Efx6/8/FD74AneR1p+e88WwbJ2tBKFN3dECRDpGKRWWmyrAXno1Rg5gj
+ 8ZHIYS8wAIjbaB5SKKvvaIjwvU9fmXD1SXSypNrkPj/nlAx5lYrZ8L7cJ
+ 4Kj7jiRDvpF5JRvqtVoMbthY5XwZUfbsKyLBAX0SrUIroztfx8OPsUBdn
+ YGxZJMJS43SK5C2uwinCZMHTkcx1HMoT/bDVhg8RRwHzZsSxkJ43t5MKv
+ rs+ZN7DPtBX9Qj9ERmdc0S6FZ5yHje9mVMEgBXlpF44j2RXF109eWgW1H Q==;
+X-CSE-ConnectionGUID: gu3ksDs8QEWHP3S687Irnw==
+X-CSE-MsgGUID: Gmbdr5TfSim4poyvRj5HOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="92016967"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="92016967"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 11:10:50 -0700
-X-CSE-ConnectionGUID: yRzfv4gYRU2hjB6/e0Jtsw==
-X-CSE-MsgGUID: Hdy78SsVR8uxH80z2acj+Q==
+ 12 Mar 2026 11:10:53 -0700
+X-CSE-ConnectionGUID: +rdmOxPCRpy87aXE6+Ijnw==
+X-CSE-MsgGUID: mFT/5sh+RV6AzzHIM+2Ymg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="243936347"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="243936355"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.152])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 11:10:48 -0700
+ 12 Mar 2026 11:10:50 -0700
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: igt-dev@lists.freedesktop.org
 Cc: intel-gfx@lists.freedesktop.org,
@@ -57,11 +57,13 @@ Cc: intel-gfx@lists.freedesktop.org,
  Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
  Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
  Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: [PATCH i-g-t v2 0/3] tests/intel/gem_lmem_swapping: Expect gem leak
- helper crashes
-Date: Thu, 12 Mar 2026 19:07:32 +0100
-Message-ID: <20260312181032.20485-5-janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH i-g-t v2 1/3] tests/gem_lmem_swapping: Improve concurrency of
+ smem-oom helpers.
+Date: Thu, 12 Mar 2026 19:07:33 +0100
+Message-ID: <20260312181032.20485-6-janusz.krzysztofik@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260312181032.20485-5-janusz.krzysztofik@linux.intel.com>
+References: <20260312181032.20485-5-janusz.krzysztofik@linux.intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -98,46 +100,95 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 046712770A4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: E6CED2770AB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-When trying to exhaust system memory in order to exercise LMEM eviction
-under OOM conditions, a gem_leak helper process may itself become a victim
-of memory shortage.  If our i915 TTM VM fault handler fails to allocate a
-page and responds with a SIGBUS signal when the helper process is trying
-to store data in a mmaped i915 GEM object with memset then the process
-crashes.  Unfortunately, such crash is not only reported on stdout, strerr
-and dmesg as premature, additional result from the subtest while it is
-still in progress, but also renders the final result as failed.
+The smem-oom subtests re-spawns two different memory leak helpers.  Any of
+those two may either complete or be killed before the other and not
+respawned until the other is also completed or killed.  That imbalance may
+actually affect the shape of OOM conditions, most probably intended to be
+a compound result of those two memory exhaustion activities of different
+nature.
 
-Since page allocation failures are unavoidable under OOM conditions, and
-the SIGBUS signal response from our TTM fault handler is correct in such
-cases, catch those signals and let the helper process continue.
+Respawn each helper from its own loop.
 
-While being at it, improve concurrency of smem-oom helpers and be more
-clear about their supplementary role.
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ tests/intel/gem_lmem_swapping.c | 27 ++++++++++++++++-----------
+ 1 file changed, 16 insertions(+), 11 deletions(-)
+
+diff --git a/tests/intel/gem_lmem_swapping.c b/tests/intel/gem_lmem_swapping.c
+index 77e18f1a3c..3a35318a74 100644
+--- a/tests/intel/gem_lmem_swapping.c
++++ b/tests/intel/gem_lmem_swapping.c
+@@ -707,7 +707,7 @@ static void test_smem_oom(int i915,
+ 		igt_get_total_swap_mb();
+ 	const unsigned int alloc = 256 * 1024 * 1024;
+ 	const unsigned int num_alloc = 1 + smem_size / (alloc >> 20);
+-	struct igt_helper_process smem_proc = {};
++	struct igt_helper_process smem_loop[2] = {};
+ 	unsigned int n;
+ 	int lmem_err;
  
-v2: Add 2 introductory patches that make the code more predictable and
-    clear,
-  - add a comment about no need to restore default SIGBUS handler (Kamil),
-  - fix missing initialization of sa.sa_mask with sigemptyset().
-
-Cc: Kamil Konieczny <kamil.konieczny@linux.intel.com>
-
-Janusz Krzysztofik (3):
-  tests/gem_lmem_swapping: Improve concurrency of smem-oom helpers.
-  tests/intel/gem_lmem_swapping: Be more clear about subprocesses role
-  tests/intel/gem_lmem_swapping: Expect gem leak helper crashes
-
- tests/intel/gem_lmem_swapping.c | 60 +++++++++++++++++++++++++--------
- 1 file changed, 46 insertions(+), 14 deletions(-)
-
+@@ -734,8 +734,8 @@ static void test_smem_oom(int i915,
+ 		drm_close_driver(fd);
+ 	}
+ 
+-	/* smem memory hog process, respawn till the lmem process completes */
+-	igt_fork_helper(&smem_proc) {
++	/* smem memory hog processes, respawn till the lmem process completes */
++	igt_fork_helper(&smem_loop[0]) {
+ 		while (!READ_ONCE(*lmem_done)) {
+ 			igt_fork(child, 1) {
+ 				for (int pass = 0; pass < num_alloc; pass++) {
+@@ -744,6 +744,16 @@ static void test_smem_oom(int i915,
+ 					leak(alloc);
+ 				}
+ 			}
++			/*
++			 * Wait for grand-child process to finish or be
++			 * killed by the oom killer, don't call
++			 * igt_waitchildren because of the noise
++			 */
++			wait(NULL);
++		}
++	}
++	igt_fork_helper(&smem_loop[1]) {
++		while (!READ_ONCE(*lmem_done)) {
+ 			igt_fork(child, 1) {
+ 				int fd = drm_reopen_driver(i915);
+ 
+@@ -754,13 +764,7 @@ static void test_smem_oom(int i915,
+ 				}
+ 				drm_close_driver(fd);
+ 			}
+-			/*
+-			 * Wait for grand-child processes to finish or be
+-			 * killed by the oom killer, don't call
+-			 * igt_waitchildren because of the noise
+-			 */
+-			for (n = 0; n < 2; n++)
+-				wait(NULL);
++			wait(NULL);
+ 		}
+ 	}
+ 
+@@ -772,7 +776,8 @@ static void test_smem_oom(int i915,
+ 		(*lmem_done)++;
+ 	munmap(lmem_done, sizeof(*lmem_done));
+ 
+-	igt_wait_helper(&smem_proc);
++	for (n = 0; n < 2; n++)
++		igt_wait_helper(&smem_loop[n]);
+ 
+ 	igt_assert_eq(lmem_err, 0);
+ }
 -- 
 2.53.0
 
