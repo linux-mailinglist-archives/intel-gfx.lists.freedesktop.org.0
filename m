@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKyOJMq+smmvPAAAu9opvQ
+	id 8CxVLsy+smmvPAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:25:30 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:25:32 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66482272760
-	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:25:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 61CC8272767
+	for <lists+intel-gfx@lfdr.de>; Thu, 12 Mar 2026 14:25:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E7ED510E9EC;
-	Thu, 12 Mar 2026 13:25:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE52110E9F2;
+	Thu, 12 Mar 2026 13:25:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Yv4OEN3H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VzABFczR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2121810E9EB;
- Thu, 12 Mar 2026 13:25:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64C3C10E9F2;
+ Thu, 12 Mar 2026 13:25:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773321927; x=1804857927;
+ t=1773321929; x=1804857929;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=vgE7Qc2MF6JmssB/Pt5Hj68iQH5CC1RjdrS8QHzp//E=;
- b=Yv4OEN3Hf20E5idcuv+AHqWwLVc8GHXjkATiaKJahjpMtcY6K1wpzDTS
- 5O3kjEkkZ0G4fibkPU91dpymrqcOADARQYGQr8W69MqsGAMJJ+GwoIPOE
- XxenKqlnetstESFZ6M7SptYx1fCuv0UqD/bys7tOti7tFYUiYColDVCos
- L3InoWdhc7VzEorHriMGSo3YzYEgNlMmcpu2ea6YbbNpKPBwt3o4qDogt
- E43cnkARUFsQJ6dOe3ulYzOoiqcuKQATL7G7eKhdV9iUKhis6/pOzBcDZ
- iclYzi47AjlMyiDIte3cpXn6WFt+0g7KMx/HjehHPxUr2vo+MojoNL0uS w==;
-X-CSE-ConnectionGUID: YyeM/8FKQamqWqWDrglfSQ==
-X-CSE-MsgGUID: BH8pwx/rQrKb4TQUCeKA0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74524923"
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74524923"
+ bh=iDYCfgxui0Vcp8E3XYR5CUDGg793MWX6zUY6R3Dw364=;
+ b=VzABFczRD7/Rx1LDgzv4W2dctXUfffdfGwQI/gYm67PK38PaMNTcDxmE
+ +V+nqkRMtHfZSHMX+LQ0wvzWZU2QjZV8/kNT5gmDz+8/cdHJsImLWMwOO
+ l2uwbG+BQxBDZL5Q9HVMHZrzfK8TZ1c2KGSYwvjymuqtvCHq+dMX7D7JH
+ WNzXftJGbcbaAVjBYxL0Rq3tZDzJoooCWJNlS0LBc6l1bG+p7rJP79zWU
+ weETgcn9ddNoj7ZpNmPJbW7l8enJBPPyeaVjwUhYv5fBkX9dxVxYtY8LM
+ NWYopXQU3Fdip15zqiHSDxZHZC1gXhxbfiB7A2cKRatr4ZANunzUGvwX6 A==;
+X-CSE-ConnectionGUID: ey/YtaXTRRKwNCzs6cyl2g==
+X-CSE-MsgGUID: pSp+BbIFQwKBEqtTlkZ4FA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11726"; a="74524947"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="74524947"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 06:25:27 -0700
-X-CSE-ConnectionGUID: aZI6F1W+RCa+bbrf6Neqiw==
-X-CSE-MsgGUID: +IsywUTxThqQlwH7bKABdg==
+ 12 Mar 2026 06:25:29 -0700
+X-CSE-ConnectionGUID: 6MV7/QrzRGOP3n1Al4Yxkg==
+X-CSE-MsgGUID: /rBwFBlnSPm7ljwijOw5Yg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="225794535"
+X-IronPort-AV: E=Sophos;i="6.23,116,1770624000"; d="scan'208";a="225794542"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Mar 2026 06:25:24 -0700
+ 12 Mar 2026 06:25:27 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
  swati2.sharma@intel.com, suraj.kandpal@intel.com
-Subject: [PATCH v3 1/2] drm/i915/dmc: Remove invalid PIPEDMC interrupt bits
-Date: Thu, 12 Mar 2026 18:56:53 +0530
-Message-ID: <20260312132654.2614433-2-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v3 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
+Date: Thu, 12 Mar 2026 18:56:54 +0530
+Message-ID: <20260312132654.2614433-3-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260312132654.2614433-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260312132654.2614433-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -98,14 +98,11 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 66482272760
+X-Rspamd-Queue-Id: 61CC8272767
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On display version 35+ PIPEDMC_ATS_FAULT and
-PIPEDMC_GTT_FAULT interrupt bits are no longer defined.
-
-Update the interrupt mask to drop these.
+Enable PIPEDMC_ERROR interrupt bit for display version 35+.
 
 Bspec: 70296
 
@@ -116,23 +113,23 @@ Changes in v3:
 
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index c3b411259a0c..38b284a0db82 100644
+index 38b284a0db82..e60f1f977070 100644
 --- a/drivers/gpu/drm/i915/display/intel_dmc.c
 +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -509,6 +509,9 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
- 
+@@ -510,7 +510,8 @@ static void pipedmc_clock_gating_wa(struct intel_display *display, bool enable)
  static u32 pipedmc_interrupt_mask(struct intel_display *display)
  {
-+	if (DISPLAY_VER(display) >= 35)
-+		return PIPEDMC_FLIPQ_PROG_DONE;
-+
+ 	if (DISPLAY_VER(display) >= 35)
+-		return PIPEDMC_FLIPQ_PROG_DONE;
++		return PIPEDMC_FLIPQ_PROG_DONE |
++			PIPEDMC_ERROR;
+ 
  	/*
  	 * FIXME PIPEDMC_ERROR not enabled for now due to LNL pipe B
- 	 * triggering it during the first DC state transition. Figure
 -- 
 2.43.0
 
