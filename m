@@ -2,94 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yA3AI29kwWmaSgQAu9opvQ
+	id 6Fo1FF8dtGlLhQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:59 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 15:21:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F6932F7758
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3DAF7284D40
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 15:21:18 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B494510E55E;
-	Mon, 23 Mar 2026 16:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3686110EBAA;
+	Fri, 13 Mar 2026 14:21:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="Xf6siehN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k3ViGpqM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com
- [209.85.167.177])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1F2110EC20
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:25:10 +0000 (UTC)
-Received: by mail-oi1-f177.google.com with SMTP id
- 5614622812f47-45f053b7b90so1445183b6e.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773408310; x=1774013110; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=BxHe4+DOmq20FSC3herHJvg5metbXtBJFuJ219tBZ0M=;
- b=Xf6siehNjFLZmeEgQQjXRyZVc6onqF1TTF0KANSL+iqu1ysJM/IcBVie0OhbepNZgD
- JIVWUUgJQ3u/d3nm4jFrBp9UcD6aA5PTkHPMbUTh//17JBrKPPWftJ8PKzNo3ZyUv7de
- Fd1VN3FR6n0Q1p6Az/4Oo9YCfm1ie7xFbsLaNtTr6MlxwRerxmfevrDwGEErEcfnSbtD
- y0DRjv8zS6+DgKKjzJ/ZrlJebW2YNHhGAhFo3e6HQrb/tzxhQdQ/r4MeQdjX6aDQVNkG
- Pw+/iz5idWPoJ3Y6+o5j3xedMJCycXyoikbhYygCvfU4UZoOWvmu3bWK6CYwUB8+LPV+
- WF3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773408310; x=1774013110;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=BxHe4+DOmq20FSC3herHJvg5metbXtBJFuJ219tBZ0M=;
- b=qKPxAdaHNM1ZxLKQoZ1PBzrO/CPNZ/HZptlzEa2/2H7qb3KLWpGhxu1aOC+Urf4Ho7
- Adnn2XMXAusX0IpHaJt2fu7vWxiXC9cjwQfajy1FJlLv2bjHNuUtE+CgDWGkvw+/t42q
- xIkluHw1k96nuqyl6lbo56fPaiYsIc4dCsLNO0I4v2pgqiBnZLPnBNHsdBviOwMi3l2d
- CzV0Ku8/1KMb2htuYz9RIpIyz3d65y8iQmQiNxrIrPH8pNTtn8O/KRBV9F7sRrt5S1tU
- MPI4sFi2bIjExVoL9I0vqluEJY+LTbAJqmCzGAauAkem0GypeKUh2owoyx4UEjSfYG3Q
- 3ekQ==
-X-Forwarded-Encrypted: i=1;
- AJvYcCXIT7vS2Z1Ih9Bgp1BJHhZ0lwn+CnbuJbBHhFJpUZ+mvdtJxdIjADvfHOgzc4GtKC0nEL54rQHAw4A=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxVogK6FrevaK/8y4mxPYNi397MzqU2CYL6gSW2Hn+80CsemU/k
- MvKOQzXKWVhxWrAr5OZPYsvviSi5dFANW0ValKNKjIBsYKJ7b4/TtMn1
-X-Gm-Gg: ATEYQzwaCdJX9u4BZxNov9dAd2cmNPrwQ+Tz7CClYZhr318uGM40hG+DN8l6CJWGnGR
- L3hfD7H/WxCI5T9Q+z96AluTfSVztr1+eEIrhncOt7xOOSepYr14QFGkOqKENQxepWbGXyE2oy2
- HUWqMYLAP0GxosV+zsn84sxYjaCcc6UhprS8PVV118gbUgg6qzv1DUtJNiky7hbKpHpTBC0diyL
- Ox6wZa+CfMSo9ASkTS1L58/LVckPn1QjDJQhJmo8ARVx1+GkB1gmvBzc6veGWMhVG0yICNAAse6
- FKnmJ/Gp3mUP0SetaDJze2C748wnRsjG9/vN/ykjBre4p61xJyUM/nIXqoZGUiHJKQVJHoSPyYL
- YtT4XPjPRCRsjV0F9xBYWfsGbRj58/9DNTYLBqVX1p1s+zEvnB61K9esAHXjlvJ5h+SNOyAS5AD
- x/phd6Jziq5fffAGQpC4wid9OqJoC+Aucyl9ke3tK6hwncdrwm
-X-Received: by 2002:a05:6808:118e:b0:467:268d:31cc with SMTP id
- 5614622812f47-46757144050mr1803892b6e.26.1773408310188; 
- Fri, 13 Mar 2026 06:25:10 -0700 (PDT)
-Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
- by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.25.09
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:25:09 -0700 (PDT)
-From: Jim Cromie <jim.cromie@gmail.com>
-To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
- gregkh@linuxfoundation.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Jim Cromie <jim.cromie@gmail.com>, jani.nikula@intel.com,
- ville.syrjala@linux.intel.com, christian.koenig@amd.com,
- matthew.auld@intel.com, arunpravin.paneerselvam@amd.com,
- louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
- ukaszb@chromium.org, intel-gfx@lists.freedesktop.org,
- amd-gfx@lists.freedesktop.org
-Subject: [PATCH v11 65/65] drm_vblank: use dyndbg's static-key to avoid
- flag-check
-Date: Fri, 13 Mar 2026 07:20:30 -0600
-Message-ID: <20260313132103.2529746-66-jim.cromie@gmail.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
-References: <20260313132103.2529746-1-jim.cromie@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D6FF10EBAA;
+ Fri, 13 Mar 2026 14:21:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1773411675; x=1804947675;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=xcIgWhdMuHo6uqJfKQlDIFrQhvNY0mjan0agaOrVC2U=;
+ b=k3ViGpqMrnhb+d8K4G4M01vvhPHlvPNXnVlbwYFvgDR4zJnhWgSTs2AM
+ tGk+JCEegmrPgJVum/VcznjWPgwDKanmoZQL0BEhN3joIlHn8UtCRitVq
+ 2ZYB4+8xQos7Oj2CZLKrpc2CkusacqbeO/48Jig1LByJjcoAMdWp0Y+Ch
+ zaSuBdbJx265gkpX2VR9MnKgYQnN2ppRPoVPa7O1iW02FY5vMwZtKaS27
+ aFM2u4db18bTMWV+6n0bfc072FCZxXAGe1v31wBxLayg4VVbwiVqBKEgt
+ XXCT3uTiXGFFk3NuW2Ppy4EEe4lUfNKOEXhVJ1KAcsFhCqe0xpj7/k2TL Q==;
+X-CSE-ConnectionGUID: 0odNc3NVReu80fKV+HQ97w==
+X-CSE-MsgGUID: JwoHhu6kSrSjJWVGq+jBFw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11728"; a="84836395"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="84836395"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 07:21:15 -0700
+X-CSE-ConnectionGUID: p0tiiiIfRTOwPY4ZwrXExg==
+X-CSE-MsgGUID: 7EnVPeHVRC+z2DOq8jJbtg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="220430235"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.193])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 07:21:13 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/3] drm/i915/de: Introduce intel_de.c and move
+ intel_de_{read, write}8() there
+In-Reply-To: <20260313111028.25159-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
+ <20260313111028.25159-2-ville.syrjala@linux.intel.com>
+Date: Fri, 13 Mar 2026 16:21:10 +0200
+Message-ID: <38f45520e854fc2644a885fe4e96e8f5bd0e278b@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 23 Mar 2026 16:03:24 +0000
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,90 +77,176 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [2.49 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[242];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org,linux.intel.com,kernel.org,suse.de,lists.freedesktop.org,vger.kernel.org];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:jim.cromie@gmail.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:amd-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER(0.00)[jimcromie@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_FROM(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,intel.com,linux.intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jimcromie@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.556];
-	MID_RHS_MATCH_FROM(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3F6932F7758
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3DAF7284D40
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-drm_crtc_vblank_helper_get_vblank_timestamp_internal() is called about
-~100 times per sec, on a single display. It currently calls
-drm_debug_enabled(DRM_UT_VBL) to avoid doing ktime_to_timespec64()
-conversions when the debug logging is disabled.
+On Fri, 13 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> intel_de_{read,write}() aren't performance critical so having them
+> as static inline is pointless. Introduce intel_de.c and move the
+> implementation there.
 
-When CONFIG_DRM_USE_DYNAMIC_DEBUG=Y, the drm_debug_enabled() is
-redundant, because the following drm_dbg_vbl() already carries a
-static-key optimization.
+I was surprised only the 8-bit read/write functions were moved. It's
+only the 8 in the subject line that conveys that, while the commit
+message implies all of them are.
 
-So move the ktime conversions into the drm_dbg_vbl() argument list,
-then they are guarded natively by the static key. This avoids the
-double-check entirely.
+What gets moved when is neither here nor there, I get that this is the
+simple change to create the file, and also drops a dependency on
+drm_print.h from the header.
 
-TBD: if CONFIG_DRM_USE_DYNAMIC_DEBUG=N, this does the ktime
-conversions unconditionally, so this might not be prudent (yet).
+But the commit message could be slightly more elaborate here. Can be
+fixed whole applying.
 
-Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
----
- drivers/gpu/drm/drm_vblank.c | 10 +++-------
- 1 file changed, 3 insertions(+), 7 deletions(-)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index f78bf37f1e0a..0dac7eec2066 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -803,15 +803,11 @@ drm_crtc_vblank_helper_get_vblank_timestamp_internal(
- 	 */
- 	*vblank_time = ktime_sub_ns(etime, delta_ns);
- 
--	if (!drm_debug_enabled(DRM_UT_VBL))
--		return true;
--
--	ts_etime = ktime_to_timespec64(etime);
--	ts_vblank_time = ktime_to_timespec64(*vblank_time);
--
- 	drm_dbg_vbl(dev,
- 		    "crtc %u : v p(%d,%d)@ %ptSp -> %ptSp [e %d us, %d rep]\n",
--		    pipe, hpos, vpos, &ts_etime, &ts_vblank_time,
-+		    pipe, hpos, vpos,
-+		    (ts_etime = ktime_to_timespec64(etime), &ts_etime),
-+		    (ts_vblank_time = ktime_to_timespec64(*vblank_time), &ts_vblank_time),
- 		    duration_ns / 1000, i);
- 
- 	return true;
--- 
-2.53.0
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/Makefile           |  1 +
+>  drivers/gpu/drm/i915/display/intel_de.c | 23 +++++++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_de.h | 22 +++-------------------
+>  drivers/gpu/drm/xe/Makefile             |  1 +
+>  4 files changed, 28 insertions(+), 19 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_de.c
+>
+> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+> index 7e9d9b666511..099f7b68bb30 100644
+> --- a/drivers/gpu/drm/i915/Makefile
+> +++ b/drivers/gpu/drm/i915/Makefile
+> @@ -253,6 +253,7 @@ i915-y +=3D \
+>  	display/intel_crtc_state_dump.o \
+>  	display/intel_cursor.o \
+>  	display/intel_dbuf_bw.o \
+> +	display/intel_de.o \
+>  	display/intel_display.o \
+>  	display/intel_display_conversion.o \
+>  	display/intel_display_driver.o \
+> diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i9=
+15/display/intel_de.c
+> new file mode 100644
+> index 000000000000..5348c1d51eb8
+> --- /dev/null
+> +++ b/drivers/gpu/drm/i915/display/intel_de.c
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: MIT
+> +/*
+> + * Copyright =C2=A9 2026 Intel Corporation
+> + */
+> +
+> +#include <drm/drm_print.h>
+> +
+> +#include "intel_de.h"
+> +
+> +u8 intel_de_read8(struct intel_display *display, i915_reg_t reg)
+> +{
+> +	/* this is only used on VGA registers (possible on pre-g4x) */
+> +	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 5 || display->platf=
+orm.g4x);
+> +
+> +	return intel_uncore_read8(__to_uncore(display), reg);
+> +}
+> +
+> +void intel_de_write8(struct intel_display *display, i915_reg_t reg, u8 v=
+al)
+> +{
+> +	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 5 || display->platf=
+orm.g4x);
+> +
+> +	intel_uncore_write8(__to_uncore(display), reg, val);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i9=
+15/display/intel_de.h
+> index f30f3f8ebee1..8ca5904ba84e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_de.h
+> +++ b/drivers/gpu/drm/i915/display/intel_de.h
+> @@ -6,8 +6,6 @@
+>  #ifndef __INTEL_DE_H__
+>  #define __INTEL_DE_H__
+>=20=20
+> -#include <drm/drm_print.h>
+> -
+>  #include "intel_display_core.h"
+>  #include "intel_dmc_wl.h"
+>  #include "intel_dsb.h"
+> @@ -19,6 +17,9 @@ static inline struct intel_uncore *__to_uncore(struct i=
+ntel_display *display)
+>  	return to_intel_uncore(display->drm);
+>  }
+>=20=20
+> +u8 intel_de_read8(struct intel_display *display, i915_reg_t reg);
+> +void intel_de_write8(struct intel_display *display, i915_reg_t reg, u8 v=
+al);
+> +
+>  static inline u32
+>  intel_de_read(struct intel_display *display, i915_reg_t reg)
+>  {
+> @@ -33,23 +34,6 @@ intel_de_read(struct intel_display *display, i915_reg_=
+t reg)
+>  	return val;
+>  }
+>=20=20
+> -static inline u8
+> -intel_de_read8(struct intel_display *display, i915_reg_t reg)
+> -{
+> -	/* this is only used on VGA registers (possible on pre-g4x) */
+> -	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 5 || display->platf=
+orm.g4x);
+> -
+> -	return intel_uncore_read8(__to_uncore(display), reg);
+> -}
+> -
+> -static inline void
+> -intel_de_write8(struct intel_display *display, i915_reg_t reg, u8 val)
+> -{
+> -	drm_WARN_ON(display->drm, DISPLAY_VER(display) >=3D 5 || display->platf=
+orm.g4x);
+> -
+> -	intel_uncore_write8(__to_uncore(display), reg, val);
+> -}
+> -
+>  static inline u64
+>  intel_de_read64_2x32(struct intel_display *display,
+>  		     i915_reg_t lower_reg, i915_reg_t upper_reg)
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 50608312bc66..0399a5f9a107 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -251,6 +251,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	i915-display/intel_dbuf_bw.o \
+>  	i915-display/intel_ddi.o \
+>  	i915-display/intel_ddi_buf_trans.o \
+> +	i915-display/intel_de.o \
+>  	i915-display/intel_display.o \
+>  	i915-display/intel_display_conversion.o \
+>  	i915-display/intel_display_device.o \
 
+--=20
+Jani Nikula, Intel
