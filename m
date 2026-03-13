@@ -2,75 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCmdOV5kwWkjSwQAu9opvQ
+	id uNhpD2hkwWkjSwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:42 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:52 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 971A42F75CE
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1C0A2F76B0
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D95510E50A;
-	Mon, 23 Mar 2026 16:03:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A5B010E542;
+	Mon, 23 Mar 2026 16:03:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="kfHX+MkC";
+	dkim=permerror (0-bit key) header.d=gmail.com header.i=@gmail.com header.b="IYeqMaEM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com
- [209.85.167.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE79510EBF1
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:23:16 +0000 (UTC)
-Received: by mail-oi1-f182.google.com with SMTP id
- 5614622812f47-4670676ba03so829366b6e.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:23:16 -0700 (PDT)
+Received: from mail-oi1-f180.google.com (mail-oi1-f180.google.com
+ [209.85.167.180])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5F0F10EBF6
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 13:23:18 +0000 (UTC)
+Received: by mail-oi1-f180.google.com with SMTP id
+ 5614622812f47-4671cbce2feso975253b6e.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 06:23:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1773408196; x=1774012996; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1773408198; x=1774012998; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=z18RPkW2IZoeg5aoWLW/CvDoUPtyLf/KFWO8hAB/+ds=;
- b=kfHX+MkCNEYvg9ohoNPBpKSHBEXIbF2Mtv+D28f7DNK6ABZDEXESdJsOZXBzp2ehfp
- NfOsDoCfRu20vYaWqPl/6vY1U4kCP2Wp6ItWI0Hligm88dR7bNNhgjqgNGF0d1JI4fsF
- R3Z/+GtKe4QRPQ2cTwUiYOLdQ7UnNnkN+qDwXQaHpspwbkNWeCVcRKm2RfgYZti7D99W
- SqzjrEKVagX/0z9YKczs5KlsgCibaJpfBWfYCv1HyHUbCh/uW0M20e4PT0Q1vAvy8QNK
- XQlphiq9H/nS6lUO9hSAYZFHlRA5KB042qZetN/XAURNq/haS1pBHAR3fEsVXaKjgEFh
- bVKA==
+ bh=sNdSdlXltBKavjCpq8HaVo39jGQFAT2gyMj0g9RRu6w=;
+ b=IYeqMaEMsi0LSzryetP9LXkyDznlZDZuB6mxuWZbPlfYRG/6YhtgstRhr/tbhHmp2o
+ vH/d86Yxfe87ZEmMd984Dx14A3hEmUMQphc6UtIIzjzdc+Lf0kVfYvxcvtaYLdO8GqEU
+ bYToyy9rwdYic/IAYLRYM7RsWG7jTjOKyX/F6zxDlJlYGRd6zMhoZz7jyCCXglK+4kKQ
+ 0vxvvde5GKn9/dLBi5/QjGsH+Dqap553SH7nshPsMwoQ3hc9XrZOpMdtyJA4Cea1t79y
+ 7YQt6/0F5GtZIfVkGz2XFKb0K//c64SGdvDZ82oQrpdN+DrlY6wngLTb7wbnaI6EXNVn
+ UsoQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773408196; x=1774012996;
+ d=1e100.net; s=20251104; t=1773408198; x=1774012998;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=z18RPkW2IZoeg5aoWLW/CvDoUPtyLf/KFWO8hAB/+ds=;
- b=bgd64sBBl7+MLIeN/8VMfU4Fst7vV2jemg1yiaEPAMTIBPAeeKiMjy/18CkZfnJU6O
- Hjx3Ys6N288p6hmwkjWvrL9hrbF/lCWUyoYH+OQk+j5R5vHSjA5UmPYnu/Zol3RJ0s/G
- CCuujf9ybL/Xf+c0w/lychK1LnU48ABsoOL3dTwibJMYb8oolrnUZuCHURldaUS1TIO0
- hkW9NOO7G5PZ4JulAhXolV+x8EBOc5CR2vdEyMu4Rz7GGLR5G8cu0b1OtLgZlnQu+XG6
- qRMzTbCanlmlqYDm9L8yrVA0dj8hTjiI2rXnRt3YIX9GIqJlFxICIkweRG2RdZfEb5Lx
- oD8A==
+ bh=sNdSdlXltBKavjCpq8HaVo39jGQFAT2gyMj0g9RRu6w=;
+ b=o19WoFIiLhOMHkJqd17ig1TrKFJ29OtS1Vwgu23/f1K6F4KA7o++sqWzMWvJAnPdIZ
+ nL45lftRnZMQW5SVn3VUYNsCpuqFBLaMWcWNWfyNv+0fvU4UZvmH0UUTT//1+34jt/dr
+ WKKCA0tNlE/s5KW95u4HnJF/cpQrD2aFbgSxMHWIHD6F0/P4Ss6oiA42nNUMej5sg/aw
+ 5/Xhpq7bQxE9yEVEl7va4r8g4HlsTWsVFgmnQLQa8C98g9HMsJoHbcsPKQagbUDF8M8R
+ ZKQFu26O4JuNQxoQvNZzC4I/bFjfr2wDaLDIt8nE1tZLY/CeYRVka+j0iuSPT8b8Yf9s
+ n8dw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVBdWU/iuhUXRxJ+wFeAvuEMMPlDxKXgWUPTsYjRFLl/1o1jwJSnk7ZUhFO/3tu72BMjZZl5bdIY+w=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxqeFk2RhaOqET6/M1AVXwr2Bzif7xXvACBbWAmSLQ+797A72Jz
- RMoR1xUY3A7YOOlhjGMTZvDwqVFBHWQDVJ56oU+VJxmJCVN4W0DCFEmb
-X-Gm-Gg: ATEYQzx9hKFWuFx8D5OhBplF08OuAibLYhSALIU73ay5YAX5OPV7sKmyuuf9vnVJ6lp
- 5wDTfcbo+paKqRgCYQbds24/Y8OrtidigPFQSuumG/uSbGVr0O2gUV+MM6PbkAjX0/grGWmPTgr
- O9+K6ACqOm9wccFsk4yY8+trXh6UiRCjwJMlYP9APtHmKvJp/jjnwHoRo660ZxVTPCEgkFQsFtJ
- +cQgCOgA8cGFvKWtn+aVnCShBFwLsd3dDtGQJytky/q2Ts83OLennK6kye9MjzLKyHcrJk6VlJn
- C6RD76l8IDlJhv0OwlUXV2ZT5PbyswXW5lkOi3fDQJSMNysjaFqDFLNYY1THhrsKnx9DXTo2EE5
- BdB0wXbSpoBnVbvpODRjVvsZR41nvsZuq+CA8Bgq7lruEJQIMjFpkBNNxozpkYlZuH7nTuozHT+
- bAMur7YDAUrySON3Z61tcQ1fbeEs67uCgAC34U6+g+5FWT+U1PLA57NNUUknU=
-X-Received: by 2002:a05:6808:c3ef:b0:466:fd51:6a66 with SMTP id
- 5614622812f47-4675714c79fmr1554429b6e.20.1773408195957; 
- Fri, 13 Mar 2026 06:23:15 -0700 (PDT)
+ AJvYcCW6qDDHSPH+2lEbqfYLpFag+wZUhbeTzelXZe5qRQ8HNChoPg/lqqwQiPfzrQd+zuKOfTQv9EN4Zas=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzraCd178A1RxFWCdJd5T5vhn9ty+BGHiqMosVqrrN52uMT00vZ
+ UXmBNczUM4hRM7QS2+FsReWH6IO/xXex9DN0E6h3VqN50m1zDuZtWGxJ
+X-Gm-Gg: ATEYQzzNAhly5wghFCQnbvACdZwPpC4BfvWP6lnENvvKmtU4LRkv7uU/HkyvTjBr1iM
+ LgOJN5kf/E0YTfYYf4ePQ9wJ412tVG6CTv6NkmvR1HfrZBI27iXPr6/1w1HbIEuHk7qhV92Tsel
+ d5bWeBUpw4LFGrDYgw34gw0oQfFD7s1ns6QLZb45mN51pfLScaYOyRsmE+kbYwlj+c6Q00efoYt
+ lNhWZyOn01hUCN0WsNBgkxBCNaOjGCC3pgaIJVjXbWvdXHUbZz/CGXFlB1dOEDRgKuVO3kigMhS
+ loUNIS+0dN5ngSqifdmCuqz1psonyYLJfq1fMjyEGilcrDjNa6pPpay64lYYovt/i02ZzLojUrD
+ GG5ijeIWEXpz32xhD5Cx0yWC9wZSgvrmwfS41fdUxGoqm537oqmTFCehNdLz+zKROxANsIQveWV
+ i5wfEPiff2aYrQQdO2fnKzLzBMNWSKJu68TB9dzp9Km4jKlhMw
+X-Received: by 2002:a05:6808:1b10:b0:467:254:b90 with SMTP id
+ 5614622812f47-4675704a335mr1610159b6e.10.1773408197894; 
+ Fri, 13 Mar 2026 06:23:17 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.23.14
+ 5614622812f47-4673434a35csm4795987b6e.20.2026.03.13.06.23.16
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Fri, 13 Mar 2026 06:23:15 -0700 (PDT)
+ Fri, 13 Mar 2026 06:23:17 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com,
- gregkh@linuxfoundation.org, Andrew Morton <akpm@linux-foundation.org>,
- Jim Cromie <jim.cromie@gmail.com>, linux-kernel@vger.kernel.org
+ gregkh@linuxfoundation.org, Jim Cromie <jim.cromie@gmail.com>,
+ Andrew Morton <akpm@linux-foundation.org>, linux-kernel@vger.kernel.org
 Cc: mripard@kernel.org, tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
  jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  christian.koenig@amd.com, matthew.auld@intel.com,
@@ -78,9 +78,9 @@ Cc: mripard@kernel.org, tzimmermann@suse.de, maarten.lankhorst@linux.intel.com,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org,
  dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  amd-gfx@lists.freedesktop.org
-Subject: [PATCH v11 10/65] dyndbg: tweak pr_fmt to avoid expansion conflicts
-Date: Fri, 13 Mar 2026 07:19:35 -0600
-Message-ID: <20260313132103.2529746-11-jim.cromie@gmail.com>
+Subject: [PATCH v11 11/65] dyndbg: reduce verbose/debug clutter
+Date: Fri, 13 Mar 2026 07:19:36 -0600
+Message-ID: <20260313132103.2529746-12-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260313132103.2529746-1-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
@@ -111,7 +111,7 @@ X-Spamd-Result: default: False [2.49 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:akpm@linux-foundation.org,m:jim.cromie@gmail.com,m:linux-kernel@vger.kernel.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:amd-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:akpm@linux-foundation.org,m:linux-kernel@vger.kernel.org,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:amd-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
@@ -132,38 +132,131 @@ X-Spamd-Result: default: False [2.49 / 15.00];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.969];
+	NEURAL_HAM(-0.00)[-0.964];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email]
-X-Rspamd-Queue-Id: 971A42F75CE
+X-Rspamd-Queue-Id: E1C0A2F76B0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Disambiguate pr_fmt(fmt) arg, by changing it to _FMT_, to avoid naming
-confusion with many later macros also using that argname.
+currently, for verbose=3, these are logged (blank lines for clarity):
+
+ dyndbg: query 0: "class DRM_UT_CORE +p" mod:*
+ dyndbg: split into words: "class" "DRM_UT_CORE" "+p"
+
+ dyndbg: op='+'
+ dyndbg: flags=0x1
+ dyndbg: *flagsp=0x1 *maskp=0xffffffff
+
+ dyndbg: parsed: func="" file="" module="" format="" lineno=0-0 class=...
+ dyndbg: no matches for query
+ dyndbg: no-match: func="" file="" module="" format="" lineno=0-0 class=...
+ dyndbg: processed 1 queries, with 0 matches, 0 errs
+
+That is excessive, so this patch:
+ - shrinks 3 lines of 2nd stanza to single line
+ - drops 1st 2 lines of 3rd stanza
+   3rd line is like 1st, with result, not procedure.
+   2nd line is just status, retold in 4th, with more info.
+
+New output:
+
+ dyndbg: query 0: "class DRM_UT_CORE +p" mod:*
+ dyndbg: split into words: "class" "DRM_UT_CORE" "+p"
+ dyndbg: op='+' flags=0x1 *flagsp=0x1 *maskp=0xffffffff
+ dyndbg: no-match: func="" file="" module="" format="" lineno=0-0 class=...
+ dyndbg: processed 1 queries, with 0 matches, 0 errs
+
+Also reduce verbose=3 messages in ddebug_add_module
+
+When modprobing a module, dyndbg currently logs/says "add-module", and
+then "skipping" if the module has no prdbgs.  Instead just check 1st
+and return quietly.
 
 no functional change
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- lib/dynamic_debug.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ lib/dynamic_debug.c | 21 ++++++---------------
+ 1 file changed, 6 insertions(+), 15 deletions(-)
 
 diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-index ffa1cf7c2c72..9575b92a8deb 100644
+index 9575b92a8deb..3ae9ecabdad1 100644
 --- a/lib/dynamic_debug.c
 +++ b/lib/dynamic_debug.c
-@@ -11,7 +11,7 @@
-  * Copyright (C) 2013 Du, Changbin <changbin.du@gmail.com>
-  */
+@@ -276,9 +276,6 @@ static int ddebug_change(const struct ddebug_query *query,
+ 	}
+ 	mutex_unlock(&ddebug_lock);
  
--#define pr_fmt(fmt) "dyndbg: " fmt
-+#define pr_fmt(_FMT_) "dyndbg: " _FMT_
+-	if (!nfound && verbose)
+-		pr_info("no matches for query\n");
+-
+ 	return nfound;
+ }
  
- #include <linux/kernel.h>
- #include <linux/module.h>
+@@ -511,7 +508,6 @@ static int ddebug_parse_flags(const char *str, struct flag_settings *modifiers)
+ 		pr_err("bad flag-op %c, at start of %s\n", *str, str);
+ 		return -EINVAL;
+ 	}
+-	v3pr_info("op='%c'\n", op);
+ 
+ 	for (; *str ; ++str) {
+ 		for (i = ARRAY_SIZE(opt_array) - 1; i >= 0; i--) {
+@@ -525,7 +521,6 @@ static int ddebug_parse_flags(const char *str, struct flag_settings *modifiers)
+ 			return -EINVAL;
+ 		}
+ 	}
+-	v3pr_info("flags=0x%x\n", modifiers->flags);
+ 
+ 	/* calculate final flags, mask based upon op */
+ 	switch (op) {
+@@ -541,7 +536,7 @@ static int ddebug_parse_flags(const char *str, struct flag_settings *modifiers)
+ 		modifiers->flags = 0;
+ 		break;
+ 	}
+-	v3pr_info("*flagsp=0x%x *maskp=0x%x\n", modifiers->flags, modifiers->mask);
++	v3pr_info("op='%c' flags=0x%x maskp=0x%x\n", op, modifiers->flags, modifiers->mask);
+ 
+ 	return 0;
+ }
+@@ -551,7 +546,7 @@ static int ddebug_exec_query(char *query_string, const char *modname)
+ 	struct flag_settings modifiers = {};
+ 	struct ddebug_query query = {};
+ #define MAXWORDS 9
+-	int nwords, nfound;
++	int nwords;
+ 	char *words[MAXWORDS];
+ 
+ 	nwords = ddebug_tokenize(query_string, words, MAXWORDS);
+@@ -569,10 +564,7 @@ static int ddebug_exec_query(char *query_string, const char *modname)
+ 		return -EINVAL;
+ 	}
+ 	/* actually go and implement the change */
+-	nfound = ddebug_change(&query, &modifiers);
+-	vpr_info_dq(&query, nfound ? "applied" : "no-match");
+-
+-	return nfound;
++	return ddebug_change(&query, &modifiers);
+ }
+ 
+ /* handle multiple queries in query string, continue on error, return
+@@ -1246,11 +1238,10 @@ static int ddebug_add_module(struct _ddebug_info *di, const char *modname)
+ {
+ 	struct ddebug_table *dt;
+ 
+-	v3pr_info("add-module: %s.%d sites\n", modname, di->num_descs);
+-	if (!di->num_descs) {
+-		v3pr_info(" skip %s\n", modname);
++	if (!di->num_descs)
+ 		return 0;
+-	}
++
++	v3pr_info("add-module: %s %d sites\n", modname, di->num_descs);
+ 
+ 	dt = kzalloc_obj(*dt);
+ 	if (dt == NULL) {
 -- 
 2.53.0
 
