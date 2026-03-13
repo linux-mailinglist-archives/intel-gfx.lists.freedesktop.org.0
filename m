@@ -2,66 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EO2DOLjws2nYdgAAu9opvQ
+	id sPoyDkT0s2nYdgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:25:56 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B316281F83
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:48 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35773282348
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:25:55 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D951010EB88;
-	Fri, 13 Mar 2026 11:10:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 580EC10EBA8;
+	Fri, 13 Mar 2026 11:25:53 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y6p/ir+P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jXMvLjIC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A7B0010EB84;
- Fri, 13 Mar 2026 11:10:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 753CF10EBA5;
+ Fri, 13 Mar 2026 11:25:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773400245; x=1804936245;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=k/rN6TYzorWCpYGJCHmOtkBfduUgjFxzdy8C8VukrMo=;
- b=Y6p/ir+PgOH7uAS9Xh4dFUFlmyDh6moUsWOZG1IKTbl7OM7N2jXIvwWY
- T6MHNvUePLy8XFXwjW3fljhIcj1Nzm61TwkBGJcvroOvOsaQy9N7QKrW+
- 6pQhQyQptpYAjvQ1gXeUs9MEUewUiYJlwhMY1937W9JFT/2BpxqrWRdEQ
- zo+TS1GW4Wu2+7z9XjOdcXA1t0o09bwtSqVJ/EnsT+XVqgBo/O9ocdxJd
- aEPzx8toPMY45E0nu4okH1syxy2U6G2tg3JLZbkykZE5YW6Qh9aU8cikv
- OL7q+KFof3nX9wYUCpd/xyal1cj87GJP4eTJgaoVoYwA/+hXoHDVaCOb6 Q==;
-X-CSE-ConnectionGUID: RyM7HII4QM+mBhohK7dgew==
-X-CSE-MsgGUID: np22ItYyTeKuFfDkA62d9w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78396165"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78396165"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:10:45 -0700
-X-CSE-ConnectionGUID: PGOsDvuwTeOalVKC8qKnPA==
-X-CSE-MsgGUID: APEATFyHQhyFfYECly9KnQ==
+ t=1773401151; x=1804937151;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=vVYY05MWceJfoLgMiLiuHYgFUj+vPKgA+UlheqqJMxA=;
+ b=jXMvLjIClsUU4zDszkooeQorhaX53BFIDgHU6AhBvIdD3xl7FYxM7HcN
+ FySmKi6AI8yrZGJ6UgQmqsj8ytDvGMDcp5jU5zxCLOPP75Y2mAVJgx4WB
+ Npzvd1VoHKeJp0/G/Q1tJDRL5vMZRWh+2oBXvXnQ1xZhmhToOHDjbvdQY
+ l2cjkJNe0Q2cCOQ6Fe/4lMa5iTDLtdNPNMZKL2kAyGKzzEd9AG2MMIGOB
+ KWlgmYVftd9+G1Z9ifXA3MHQ5i2gliZ+8+X+riPn45tQDOdkcFO2BeNNc
+ tkRLL7PfvqIu3CPSkdYM7Aqb74O0R8Z5+y0IcNZnxZbBgviCCxkNpdifZ Q==;
+X-CSE-ConnectionGUID: mXS2Be61T7ynFJHRepFgzA==
+X-CSE-MsgGUID: 9jNPkNReR3iPz2eWM73upw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74474613"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="74474613"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:25:51 -0700
+X-CSE-ConnectionGUID: cSXs33fqSISUzSwEImUBlQ==
+X-CSE-MsgGUID: OGFgb2zvQ2ytQYaoGhQU/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="251649949"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="225591733"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.21])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:10:44 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/3] drm/i915/de: Implement register polling in the display
- code
-Date: Fri, 13 Mar 2026 13:10:28 +0200
-Message-ID: <20260313111028.25159-4-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
-References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:25:48 -0700
+Date: Fri, 13 Mar 2026 13:25:46 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ "Sharma, Swati2" <swati2.sharma@intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
+Message-ID: <abP0OsNCqxhoaBCV@intel.com>
+References: <20260311063259.2608206-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260311063259.2608206-3-dibin.moolakadan.subrahmanian@intel.com>
+ <DM3PPF208195D8D8D1894ECDE4A41681332E344A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <dcba6eaf-1f57-4094-be69-0c8d116f92a7@intel.com>
+ <DM3PPF208195D8D96EA050D075A0AF09F07E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <7b072000-0b8d-4910-ae05-0eaac6d9e94a@intel.com>
+ <DM3PPF208195D8D6302B536CF802D111F55E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+ <abPg2j1wS_QLPIdJ@intel.com>
+ <DM3PPF208195D8D00F123DBDB50B578B8F0E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM3PPF208195D8D00F123DBDB50B578B8F0E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,254 +89,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.46 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.77)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	ARC_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 5B316281F83
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
+X-Rspamd-Queue-Id: 35773282348
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Fri, Mar 13, 2026 at 10:08:47AM +0000, Kandpal, Suraj wrote:
+> > Subject: Re: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
+> > 
+> > On Fri, Mar 13, 2026 at 05:04:46AM +0000, Kandpal, Suraj wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Dibin Moolakadan Subrahmanian
+> > > > <dibin.moolakadan.subrahmanian@intel.com>
+> > > > Sent: Friday, March 13, 2026 9:55 AM
+> > > > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
+> > > > intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > > > Cc: ville.syrjala@linux.intel.com; Shankar, Uma
+> > > > <uma.shankar@intel.com>; Sharma, Swati2 <swati2.sharma@intel.com>
+> > > > Subject: Re: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR
+> > > > interrupt
+> > > >
+> > > >
+> > > > On 13-03-2026 08:56, Kandpal, Suraj wrote:
+> > > > >> On 12-03-2026 08:48, Kandpal, Suraj wrote:
+> > > > >>>> Subject: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR
+> > > > >>>> interrupt
+> > > > >>>>
+> > > > >>>> Enable PIPEDMC_ERROR interrupt bit for display version 35+.
+> > > > >>>>
+> > > > >>> Add same Bspec link here too
+> > > > >>>
+> > > > >>>> Signed-off-by: Dibin Moolakadan Subrahmanian
+> > > > >>>> <dibin.moolakadan.subrahmanian@intel.com>
+> > > > >>>> ---
+> > > > >>>>    drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
+> > > > >>>>    1 file changed, 2 insertions(+), 1 deletion(-)
+> > > > >>>>
+> > > > >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > >>>> b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > >>>> index 38b284a0db82..e60f1f977070 100644
+> > > > >>>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > >>>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
+> > > > >>>> @@ -510,7 +510,8 @@ static void pipedmc_clock_gating_wa(struct
+> > > > >>>> intel_display *display, bool enable)  static u32
+> > > > >>>> pipedmc_interrupt_mask(struct intel_display *display)  {
+> > > > >>>>    	if (DISPLAY_VER(display) >= 35)
+> > > > >>>> -		return PIPEDMC_FLIPQ_PROG_DONE;
+> > > > >>>> +		return PIPEDMC_FLIPQ_PROG_DONE |
+> > > > >>>> +			PIPEDMC_ERROR;
+> > > > >>>>
+> > > > >>> Mostly looks okay but here's my question:
+> > > > >>> I know LNL pipe B had an issue with PIPEDMC_ERROR being
+> > > > >>> triggered on LNL pipe B, As I can see from Ville's commit
+> > > > >>> message, but is it still the case for
+> > > > >> PTL ?
+> > > > >>> Can we have that tested ?
+> > > > >>> If that works we can add the PIPEDMC_ERROR from PTL onwards.
+> > > > >>> Then here we can change code to create a mask and then return it
+> > > > >>> finally like
+> > > > >> :
+> > > > >>> mask = PIPEDMC_FLIPQ_PROG_DONE
+> > > > >>>
+> > > > >>> if display ver >= 30
+> > > > >>> mask |= PIPEDMC_ERROR
+> > > > >>>
+> > > > >>> if display ver < 35
+> > > > >>> mask |= PIPEDMC_GTT_FAULT |
+> > > > >>>                   PIPEDMC_ATS_FAULT;
+> > > > >>>
+> > > > >>> Return mask;
+> > > > >>>
+> > > > >>> Obviously that is if PIPEDMC_ERROR works on PTL properly.
+> > > > >> Thank you for spotting this, I think its better to add above
+> > > > >> logic in new series rather than combing with 35+ bit mask update.
+> > > > >>
+> > > > >> Regards,
+> > > > >> Dibin
+> > > > > If that is the case then I think its better to drop this patch altogether.
+> > > > > We have a justification of why we remove bits in first patch, that
+> > > > > was a change
+> > > > in NVL H/w.
+> > > > > But this change was introduced in LNL.
+> > > > > Without a strong reasoning of why you are enabling this is in NVL
+> > > > > and not in PTL (which I don’t see in this patch series) I suggest
+> > > > > you add this patch with as a part of the series where you have a
+> > > > > use case for it. And if
+> > > > there too you only add it for NVL You will need to add a comments as
+> > > > to why this is not enabled for PTL.
+> > > >
+> > > > This patch intent to fix the interrupt mask for 35+.
+> > > > I dont see any reason to disable this bit as
+> > > > 1) error bit warning is already present in interrupt handler.
+> > > > 2) bit is defined in bsepc.
+> > > > 3) LNL it was mentioned disabled because pipeB triggering it during
+> > > > first DC state transition which did not see in this case.
+> > >
+> > > In that case the interrupt handler is made to report errors if this bit is
+> > unmasked for  >= LNL.
+> > > Now this bit is introduced in LNL timeframe for which the reason to not add it
+> > is mentioned in comment and documented.
+> > > Similarly if you want to skip PTL you will need this to be documented
+> > > with the reason. Which means the FIXME comment needs to be modified In
+> > the least. If this patch is to go through.
+> > > Also Ville can you shed some light, on what the H/w folks had to say
+> > > regarding this and if they had mentioned any WA for LNL, and if this is fixed In
+> > LNL+.
+> > 
+> > I suspect it might be some kind of issue in the DMC firmware where it's
+> > accessing unpowered registers. But it was never investigated properly.
+> > 
+> > It would be good if someone could take that up and actually figure out what's
+> > going on. The problem is figuring out what exactly is the register that causes
+> > this. I don't think LNL has any kind of RM_CAPTURE register/etc available for
+> > the DMC that would directly tell us that :(
+> > 
+> > IIRC the Windows driver did seem to enable the error interrupt on LNL, but
+> > either they just ignore all the reported errors, or somehow the way they use
+> > the hardware/firmware doesn't trigger them.
+> 
+> Hmm would it be okay if we can move with enabling the bit for NVL+ since Dibin says we don’t see this issue
+> Anymore, while we add or TODO or FIXME in the comment to investigate this further for PTL and LNL
 
-The plan is to move all the mmio stuff into the display code itself.
-As a first step implement the register polling in intel_de.c.
+Yeah, I think the sooner we enable this on NVL the better. We want to
+catch the issues early. For PTL someone should just send a patch to
+enable it (separately from the NVL changes) and hopefully CI will tell
+us whether it's still a problem there or not.
 
-Currently i915 and xe implement this stuff in slightly different
-ways, so there are some functional changes here. Try to go for a
-reasonable middle ground between the i915 and xe implementations:
-- the exponential backoff limit is the simpler approach taken
-  by i915 (== just clamp the max sleep duration to 1 ms)
-- the fast vs. slow timeout handling is similar to i915 where
-  we first try the fast timeout and then again the slow timeout
-  if the condition still isn't satisfied. xe just adds up the
-  timeouts together, which is a bit weird.
-- the atomic wait variant uses udelay() like xe, whereas i915
-  has no udelay()s in its atomic loop. As a compromise go for a
-  fixed 1 usec delay  for short waits, instead of the somewhat
-  peculiar xe behaviour where it effectively just does one
-  iteration of the loop.
-- keep the "use udelay() for < 10 usec waits" logic (which
-  more or less mirrors fsleep()), but include an explicit
-  might_sleep() even for these short waits when called from
-  a non-atomic intel_de_wait*() function. This should prevent
-  people from calling the non-atomic functions from the wrong
-  place.
-
-Eventually we may want to switch over to poll_timeout*(),
-but that lacks the exponential backoff, so a bit too
-radical to change in one go.
-
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_de.c       | 99 +++++++++++++++++--
- .../drm/xe/compat-i915-headers/intel_uncore.h | 31 ------
- 2 files changed, 91 insertions(+), 39 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index fce92535bd6a..6cbe50f3e2b4 100644
---- a/drivers/gpu/drm/i915/display/intel_de.c
-+++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -3,10 +3,85 @@
-  * Copyright © 2026 Intel Corporation
-  */
- 
-+#include <linux/delay.h>
-+
- #include <drm/drm_print.h>
- 
- #include "intel_de.h"
- 
-+static int __intel_de_wait_for_register(struct intel_display *display,
-+					i915_reg_t reg, u32 mask, u32 value,
-+					unsigned int timeout_us,
-+					u32 (*read)(struct intel_display *display, i915_reg_t reg),
-+					u32 *out_val, bool is_atomic)
-+{
-+	const ktime_t end = ktime_add_us(ktime_get_raw(), timeout_us);
-+	int wait_max = 1000;
-+	int wait = 10;
-+	u32 reg_value;
-+	int ret;
-+
-+	might_sleep_if(!is_atomic);
-+
-+	if (timeout_us <= 10) {
-+		is_atomic = true;
-+		wait = 1;
-+	}
-+
-+	for (;;) {
-+		bool expired = ktime_after(ktime_get_raw(), end);
-+
-+		/* guarantee the condition is evaluated after timeout expired */
-+		barrier();
-+
-+		reg_value = read(display, reg);
-+		if ((reg_value & mask) == value) {
-+			ret = 0;
-+			break;
-+		}
-+
-+		if (expired) {
-+			ret = -ETIMEDOUT;
-+			break;
-+		}
-+
-+		if (is_atomic)
-+			udelay(wait);
-+		else
-+			usleep_range(wait, wait << 1);
-+
-+		if (wait < wait_max)
-+			wait <<= 1;
-+	}
-+
-+	if (out_val)
-+		*out_val = reg_value;
-+
-+	return ret;
-+}
-+
-+static int intel_de_wait_for_register(struct intel_display *display,
-+				      i915_reg_t reg, u32 mask, u32 value,
-+				      unsigned int fast_timeout_us,
-+				      unsigned int slow_timeout_us,
-+				      u32 (*read)(struct intel_display *display, i915_reg_t reg),
-+				      u32 *out_value, bool is_atomic)
-+{
-+	int ret;
-+
-+	if (fast_timeout_us)
-+		ret = __intel_de_wait_for_register(display, reg, mask, value,
-+						   fast_timeout_us, read,
-+						   out_value, is_atomic);
-+
-+	if (ret && slow_timeout_us)
-+		ret = __intel_de_wait_for_register(display, reg, mask, value,
-+						   slow_timeout_us, read,
-+						   out_value, is_atomic);
-+
-+	return ret;
-+}
-+
- int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
- 		     u32 mask, u32 value, unsigned int timeout_us,
- 		     u32 *out_value)
-@@ -15,8 +90,10 @@ int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
- 
- 	intel_dmc_wl_get(display, reg);
- 
--	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
--					value, timeout_us, 0, out_value);
-+	ret = intel_de_wait_for_register(display, reg, mask, value,
-+					 timeout_us, 0,
-+					 intel_de_read,
-+					 out_value, false);
- 
- 	intel_dmc_wl_put(display, reg);
- 
-@@ -31,8 +108,10 @@ int intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
- 
- 	intel_dmc_wl_get(display, reg);
- 
--	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
--					value, 2, timeout_ms, out_value);
-+	ret = intel_de_wait_for_register(display, reg, mask, value,
-+					 2, timeout_ms * 1000,
-+					 intel_de_read,
-+					 out_value, false);
- 
- 	intel_dmc_wl_put(display, reg);
- 
-@@ -43,16 +122,20 @@ int intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
- 			u32 mask, u32 value, unsigned int timeout_ms,
- 			u32 *out_value)
- {
--	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
--					    value, 2, timeout_ms, out_value);
-+	return intel_de_wait_for_register(display, reg, mask, value,
-+					  2, timeout_ms * 1000,
-+					  intel_de_read_fw,
-+					  out_value, false);
- }
- 
- int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t reg,
- 			       u32 mask, u32 value, unsigned int timeout_us,
- 			       u32 *out_value)
- {
--	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
--					    value, timeout_us, 0, out_value);
-+	return intel_de_wait_for_register(display, reg, mask, value,
-+					  timeout_us, 0,
-+					  intel_de_read_fw,
-+					  out_value, true);
- }
- 
- int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t reg,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-index a8cfd65119e0..08d7ab933672 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
-@@ -98,37 +98,6 @@ static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
- 	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
- }
- 
--static inline int
--__intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_reg,
--			  u32 mask, u32 value, unsigned int fast_timeout_us,
--			  unsigned int slow_timeout_ms, u32 *out_value)
--{
--	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
--	bool atomic;
--
--	/*
--	 * Replicate the behavior from i915 here, in which sleep is not
--	 * performed if slow_timeout_ms == 0. This is necessary because
--	 * of some paths in display code where waits are done in atomic
--	 * context.
--	 */
--	atomic = !slow_timeout_ms && fast_timeout_us > 0;
--
--	return xe_mmio_wait32(__compat_uncore_to_mmio(uncore), reg, mask, value,
--			      fast_timeout_us + 1000 * slow_timeout_ms,
--			      out_value, atomic);
--}
--
--static inline int
--__intel_wait_for_register_fw(struct intel_uncore *uncore, i915_reg_t i915_reg,
--			     u32 mask, u32 value, unsigned int fast_timeout_us,
--			     unsigned int slow_timeout_ms, u32 *out_value)
--{
--	return __intel_wait_for_register(uncore, i915_reg, mask, value,
--					 fast_timeout_us, slow_timeout_ms,
--					 out_value);
--}
--
- static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
- 				       i915_reg_t i915_reg)
- {
 -- 
-2.52.0
-
+Ville Syrjälä
+Intel
