@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NmxMAbws2nYdgAAu9opvQ
+	id GF8aLazws2nYdgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:07:50 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:36 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 127CD281E6E
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:07:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4336D281F5F
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E2D9010E101;
-	Fri, 13 Mar 2026 11:07:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C028410E0F5;
+	Fri, 13 Mar 2026 11:10:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQJSCkq2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XoSnQoi2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3A8010E0F5
- for <intel-gfx@lists.freedesktop.org>; Fri, 13 Mar 2026 11:07:45 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E22D10E0F5;
+ Fri, 13 Mar 2026 11:10:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773400066; x=1804936066;
+ t=1773400233; x=1804936233;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=DzUf/8iRGA8qUsueHxIvGDpDNyCtY9vmcu0Q7nYLcAM=;
- b=AQJSCkq2U4ZMD3j22SQIUtQQWdtJmuBrVqnlxGZ8+1CX/HrbZcXIpRyC
- yMxk5eLNv3h0f+QsqCEZu9OMO2bHP3hpStq7pYgO+I/8mlHz8SWxJ9zFQ
- E9legoirhKSXBvwHLGNHqRc2GEOyY9nOTWQjLWPzjyOGIPpzL4+UDQaiQ
- agvnegAns61vrCfm3TYlYq/3Uakvn5cRW2yE9sNXWubavGcKhTfo6RICC
- X6GyNGOK5YoFf5t6xCcCggaozfoaDhekzRA24SBb/plpZmso1VEyNtOkb
- Y0HofkvMNk760lAK/ckoMngoWA7i0+U8mlCwpK/eshje3PCJqxrT8D1F5 A==;
-X-CSE-ConnectionGUID: erh1KQLRQUOEOsKulwA5LQ==
-X-CSE-MsgGUID: Rud+YDCrRKa99JAZc1Ddww==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="85134817"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="85134817"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:07:45 -0700
-X-CSE-ConnectionGUID: gfF/eYY5SVmFBvkyMAph5w==
-X-CSE-MsgGUID: bEtW3hdpQJSVMuyRTvSw7Q==
+ bh=Lkc2I3myb53kYMc2w6fB7IgI8sDy0D/J2UKYLkwprQY=;
+ b=XoSnQoi2d951r1EMETkIGqgH5THnQxHbGcmn23DuSAwPQNJstspAPnXV
+ A/DsOWWevQjADABVyK3RMR1tNvu5JL613Rkrths7zENrKmOGHxG8nlZK7
+ 6LiILY1sEZ4s1fSLwm8oRpx7NK9NI4rL56B4YbAhqGp6fzGquCckaUXL7
+ ZTL42iThoTq2psiCyi3hgC6eKifPmOb0RASlREaWmWeK2oDxzAg6C3TQx
+ i0AYvZ8CpOoErVbxHXFiOVHnMaPobjpz43feZ8pSpwdWANLcJMUn30lR3
+ Pvv82mvXOOQwCaplfzo2fZWz1wBRkQWbLaZP9gQuEyUFLq0zZuOgONrjE A==;
+X-CSE-ConnectionGUID: EjEPA2pmS8e2ObXkx8NDOA==
+X-CSE-MsgGUID: IKf5XnUWQaWU8jBFaQwr/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78396141"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78396141"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:10:33 -0700
+X-CSE-ConnectionGUID: /Fqbtt16RJeneXuiJ2TBlg==
+X-CSE-MsgGUID: CAR/bQx6SmeiBu8kCjCpVg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="226088946"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="221345468"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.21])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:07:44 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:10:31 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: stable@vger.kernel.org
-Subject: [PATCH] drm/i915: Order OP vs. timeout correctly in __wait_for()
-Date: Fri, 13 Mar 2026 13:07:40 +0200
-Message-ID: <20260313110740.24620-1-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 0/3] drm/i915/de: Move register polling into display code
+Date: Fri, 13 Mar 2026 13:10:25 +0200
+Message-ID: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -77,72 +77,60 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 127CD281E6E
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 4336D281F5F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Put the barrier() before the OP so that anything we read out in
-OP and check in COND will actually be read out after the timeout
-has been evaluated.
+Implement register polling directly in the display code
+In an effort to decouple the display code from i915/xe.
 
-Currently the only place where we use OP is __intel_wait_for_register(),
-but the use there is precisely susceptible to this reordering, assuming
-the ktime_*() stuff itself doesn't act as a sufficient barrier:
+This is just the first step in a larger display mmio rework.
+My final aim is to move the entire mmio stuff into the display
+code. That will give us:
+- better control over how things are done
+- decouple display register locking from forcewake/etc
+- less overhead. We access a lot of registers, and
+  during vblank evasion critical section performance is
+  especially important.
+- unified RMbus unclaimed error checking for both i915 and xe
 
-__intel_wait_for_register(...)
-{
-	...
-	ret = __wait_for(reg_value = intel_uncore_read_notrace(...),
- 			 (reg_value & mask) == value, ...);
-	...
-}
+Ville Syrjälä (3):
+  drm/i915/de: Introduce intel_de.c and move intel_de_{read,write}8()
+    there
+  drm/i915/de: Move intel_de_wait*() into intel_de.c
+  drm/i915/de: Implement register polling in the display code
 
-Cc: stable@vger.kernel.org
-Fixes: 1c3c1dc66a96 ("drm/i915: Add compiler barrier to wait_for")
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/i915_wait_util.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ drivers/gpu/drm/i915/display/intel_de.c       | 178 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_de.h       | 121 +++---------
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ .../drm/xe/compat-i915-headers/intel_uncore.h |  31 ---
+ 5 files changed, 203 insertions(+), 129 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_de.c
 
-diff --git a/drivers/gpu/drm/i915/i915_wait_util.h b/drivers/gpu/drm/i915/i915_wait_util.h
-index 7376898e3bf8..e1ed7921ec70 100644
---- a/drivers/gpu/drm/i915/i915_wait_util.h
-+++ b/drivers/gpu/drm/i915/i915_wait_util.h
-@@ -25,9 +25,9 @@
- 	might_sleep();							\
- 	for (;;) {							\
- 		const bool expired__ = ktime_after(ktime_get_raw(), end__); \
--		OP;							\
- 		/* Guarantee COND check prior to timeout */		\
- 		barrier();						\
-+		OP;							\
- 		if (COND) {						\
- 			ret__ = 0;					\
- 			break;						\
 -- 
 2.52.0
 
