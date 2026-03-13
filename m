@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SKiBJLXws2nYdgAAu9opvQ
+	id EO2DOLjws2nYdgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:45 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43FDC281F74
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B316281F83
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:10:48 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D161310EB83;
-	Fri, 13 Mar 2026 11:10:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D951010EB88;
+	Fri, 13 Mar 2026 11:10:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mtb+w8Dc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Y6p/ir+P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5A7110EB81;
- Fri, 13 Mar 2026 11:10:41 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7B0010EB84;
+ Fri, 13 Mar 2026 11:10:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773400242; x=1804936242;
+ t=1773400245; x=1804936245;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1tBicJjLyCVta+Qq+V3+nD3klb+javXD2XzHBq87q1w=;
- b=Mtb+w8DcGxl3vWe09/BAVYultKESssadACFCQFLrxdCrSWZ0LMBDd9lh
- NNJQcH1HuoQW193hMrF2wjviIXuzjlAWD1AtQ3j0/WTLTCL6QjBdY9u+G
- 3kEaWD35RS/4ukge6glbWPWWSQh5kf3RJ/VfjSppIRRGIeWlTWnmauvs4
- Z1DHaZyr6G+hbm5t0rWV81SuarNlKx6UknC9B4WUOc5PioZFAZym7ycHY
- sUWguMqk+Ude2qwPisZGFnMCiSzh1Cz8H0yxq5tOwSukUVeOejEYqTbsj
- Q0WbucTJNtOIkkQZ4mJu3t06fsXULTHV21O3NYpe1Sr2vSwF3Nqh0vxFD Q==;
-X-CSE-ConnectionGUID: l4xaCEYuRBuwvKsaepZIPg==
-X-CSE-MsgGUID: ZR9QTlsmQKGJqxFLPIjErA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78396155"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78396155"
+ bh=k/rN6TYzorWCpYGJCHmOtkBfduUgjFxzdy8C8VukrMo=;
+ b=Y6p/ir+PgOH7uAS9Xh4dFUFlmyDh6moUsWOZG1IKTbl7OM7N2jXIvwWY
+ T6MHNvUePLy8XFXwjW3fljhIcj1Nzm61TwkBGJcvroOvOsaQy9N7QKrW+
+ 6pQhQyQptpYAjvQ1gXeUs9MEUewUiYJlwhMY1937W9JFT/2BpxqrWRdEQ
+ zo+TS1GW4Wu2+7z9XjOdcXA1t0o09bwtSqVJ/EnsT+XVqgBo/O9ocdxJd
+ aEPzx8toPMY45E0nu4okH1syxy2U6G2tg3JLZbkykZE5YW6Qh9aU8cikv
+ OL7q+KFof3nX9wYUCpd/xyal1cj87GJP4eTJgaoVoYwA/+hXoHDVaCOb6 Q==;
+X-CSE-ConnectionGUID: RyM7HII4QM+mBhohK7dgew==
+X-CSE-MsgGUID: np22ItYyTeKuFfDkA62d9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78396165"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78396165"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:10:41 -0700
-X-CSE-ConnectionGUID: kP7/IpuQRvu6JBfWhBvy6g==
-X-CSE-MsgGUID: EQBNnScUT2+FE5O3bRfI5w==
+ 13 Mar 2026 04:10:45 -0700
+X-CSE-ConnectionGUID: PGOsDvuwTeOalVKC8qKnPA==
+X-CSE-MsgGUID: APEATFyHQhyFfYECly9KnQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="251649945"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="251649949"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.21])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:10:40 -0700
+ 13 Mar 2026 04:10:44 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/3] drm/i915/de: Move intel_de_wait*() into intel_de.c
-Date: Fri, 13 Mar 2026 13:10:27 +0200
-Message-ID: <20260313111028.25159-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 3/3] drm/i915/de: Implement register polling in the display
+ code
+Date: Fri, 13 Mar 2026 13:10:28 +0200
+Message-ID: <20260313111028.25159-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
 References: <20260313111028.25159-1-ville.syrjala@linux.intel.com>
@@ -99,216 +100,230 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 43FDC281F74
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 5B316281F83
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_de_wait*() end up doing quite a bit of stuff, so the one
-function call overhead from them seems insignificant. Move the
-implementation intel_de.c.
+The plan is to move all the mmio stuff into the display code itself.
+As a first step implement the register polling in intel_de.c.
+
+Currently i915 and xe implement this stuff in slightly different
+ways, so there are some functional changes here. Try to go for a
+reasonable middle ground between the i915 and xe implementations:
+- the exponential backoff limit is the simpler approach taken
+  by i915 (== just clamp the max sleep duration to 1 ms)
+- the fast vs. slow timeout handling is similar to i915 where
+  we first try the fast timeout and then again the slow timeout
+  if the condition still isn't satisfied. xe just adds up the
+  timeouts together, which is a bit weird.
+- the atomic wait variant uses udelay() like xe, whereas i915
+  has no udelay()s in its atomic loop. As a compromise go for a
+  fixed 1 usec delay  for short waits, instead of the somewhat
+  peculiar xe behaviour where it effectively just does one
+  iteration of the loop.
+- keep the "use udelay() for < 10 usec waits" logic (which
+  more or less mirrors fsleep()), but include an explicit
+  might_sleep() even for these short waits when called from
+  a non-atomic intel_de_wait*() function. This should prevent
+  people from calling the non-atomic functions from the wrong
+  place.
+
+Eventually we may want to switch over to poll_timeout*(),
+but that lacks the exponential backoff, so a bit too
+radical to change in one go.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.c | 72 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_de.h | 99 +++++--------------------
- 2 files changed, 92 insertions(+), 79 deletions(-)
+ drivers/gpu/drm/i915/display/intel_de.c       | 99 +++++++++++++++++--
+ .../drm/xe/compat-i915-headers/intel_uncore.h | 31 ------
+ 2 files changed, 91 insertions(+), 39 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_de.c b/drivers/gpu/drm/i915/display/intel_de.c
-index 5348c1d51eb8..fce92535bd6a 100644
+index fce92535bd6a..6cbe50f3e2b4 100644
 --- a/drivers/gpu/drm/i915/display/intel_de.c
 +++ b/drivers/gpu/drm/i915/display/intel_de.c
-@@ -7,6 +7,78 @@
+@@ -3,10 +3,85 @@
+  * Copyright © 2026 Intel Corporation
+  */
+ 
++#include <linux/delay.h>
++
+ #include <drm/drm_print.h>
  
  #include "intel_de.h"
  
-+int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
-+		     u32 mask, u32 value, unsigned int timeout_us,
-+		     u32 *out_value)
++static int __intel_de_wait_for_register(struct intel_display *display,
++					i915_reg_t reg, u32 mask, u32 value,
++					unsigned int timeout_us,
++					u32 (*read)(struct intel_display *display, i915_reg_t reg),
++					u32 *out_val, bool is_atomic)
 +{
++	const ktime_t end = ktime_add_us(ktime_get_raw(), timeout_us);
++	int wait_max = 1000;
++	int wait = 10;
++	u32 reg_value;
 +	int ret;
 +
-+	intel_dmc_wl_get(display, reg);
++	might_sleep_if(!is_atomic);
 +
-+	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
-+					value, timeout_us, 0, out_value);
++	if (timeout_us <= 10) {
++		is_atomic = true;
++		wait = 1;
++	}
 +
-+	intel_dmc_wl_put(display, reg);
++	for (;;) {
++		bool expired = ktime_after(ktime_get_raw(), end);
++
++		/* guarantee the condition is evaluated after timeout expired */
++		barrier();
++
++		reg_value = read(display, reg);
++		if ((reg_value & mask) == value) {
++			ret = 0;
++			break;
++		}
++
++		if (expired) {
++			ret = -ETIMEDOUT;
++			break;
++		}
++
++		if (is_atomic)
++			udelay(wait);
++		else
++			usleep_range(wait, wait << 1);
++
++		if (wait < wait_max)
++			wait <<= 1;
++	}
++
++	if (out_val)
++		*out_val = reg_value;
 +
 +	return ret;
 +}
 +
-+int intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
-+		     u32 mask, u32 value, unsigned int timeout_ms,
-+		     u32 *out_value)
++static int intel_de_wait_for_register(struct intel_display *display,
++				      i915_reg_t reg, u32 mask, u32 value,
++				      unsigned int fast_timeout_us,
++				      unsigned int slow_timeout_us,
++				      u32 (*read)(struct intel_display *display, i915_reg_t reg),
++				      u32 *out_value, bool is_atomic)
 +{
 +	int ret;
 +
-+	intel_dmc_wl_get(display, reg);
++	if (fast_timeout_us)
++		ret = __intel_de_wait_for_register(display, reg, mask, value,
++						   fast_timeout_us, read,
++						   out_value, is_atomic);
 +
-+	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
-+					value, 2, timeout_ms, out_value);
-+
-+	intel_dmc_wl_put(display, reg);
++	if (ret && slow_timeout_us)
++		ret = __intel_de_wait_for_register(display, reg, mask, value,
++						   slow_timeout_us, read,
++						   out_value, is_atomic);
 +
 +	return ret;
 +}
 +
-+int intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
-+			u32 mask, u32 value, unsigned int timeout_ms,
-+			u32 *out_value)
-+{
-+	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-+					    value, 2, timeout_ms, out_value);
-+}
-+
-+int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t reg,
-+			       u32 mask, u32 value, unsigned int timeout_us,
-+			       u32 *out_value)
-+{
-+	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
-+					    value, timeout_us, 0, out_value);
-+}
-+
-+int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t reg,
-+			     u32 mask, unsigned int timeout_us)
-+{
-+	return intel_de_wait_us(display, reg, mask, mask, timeout_us, NULL);
-+}
-+
-+int intel_de_wait_for_clear_us(struct intel_display *display, i915_reg_t reg,
-+			       u32 mask, unsigned int timeout_us)
-+{
-+	return intel_de_wait_us(display, reg, mask, 0, timeout_us, NULL);
-+}
-+
-+int intel_de_wait_for_set_ms(struct intel_display *display, i915_reg_t reg,
-+			     u32 mask, unsigned int timeout_ms)
-+{
-+	return intel_de_wait_ms(display, reg, mask, mask, timeout_ms, NULL);
-+}
-+
-+int intel_de_wait_for_clear_ms(struct intel_display *display, i915_reg_t reg,
-+			       u32 mask, unsigned int timeout_ms)
-+{
-+	return intel_de_wait_ms(display, reg, mask, 0, timeout_ms, NULL);
-+}
-+
- u8 intel_de_read8(struct intel_display *display, i915_reg_t reg)
+ int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
+ 		     u32 mask, u32 value, unsigned int timeout_us,
+ 		     u32 *out_value)
+@@ -15,8 +90,10 @@ int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
+ 
+ 	intel_dmc_wl_get(display, reg);
+ 
+-	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
+-					value, timeout_us, 0, out_value);
++	ret = intel_de_wait_for_register(display, reg, mask, value,
++					 timeout_us, 0,
++					 intel_de_read,
++					 out_value, false);
+ 
+ 	intel_dmc_wl_put(display, reg);
+ 
+@@ -31,8 +108,10 @@ int intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
+ 
+ 	intel_dmc_wl_get(display, reg);
+ 
+-	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
+-					value, 2, timeout_ms, out_value);
++	ret = intel_de_wait_for_register(display, reg, mask, value,
++					 2, timeout_ms * 1000,
++					 intel_de_read,
++					 out_value, false);
+ 
+ 	intel_dmc_wl_put(display, reg);
+ 
+@@ -43,16 +122,20 @@ int intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
+ 			u32 mask, u32 value, unsigned int timeout_ms,
+ 			u32 *out_value)
  {
- 	/* this is only used on VGA registers (possible on pre-g4x) */
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 8ca5904ba84e..f87b84ab9d6d 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -86,85 +86,26 @@ intel_de_rmw(struct intel_display *display, i915_reg_t reg, u32 clear, u32 set)
- 	return val;
+-	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
+-					    value, 2, timeout_ms, out_value);
++	return intel_de_wait_for_register(display, reg, mask, value,
++					  2, timeout_ms * 1000,
++					  intel_de_read_fw,
++					  out_value, false);
+ }
+ 
+ int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t reg,
+ 			       u32 mask, u32 value, unsigned int timeout_us,
+ 			       u32 *out_value)
+ {
+-	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
+-					    value, timeout_us, 0, out_value);
++	return intel_de_wait_for_register(display, reg, mask, value,
++					  timeout_us, 0,
++					  intel_de_read_fw,
++					  out_value, true);
+ }
+ 
+ int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t reg,
+diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+index a8cfd65119e0..08d7ab933672 100644
+--- a/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
++++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_uncore.h
+@@ -98,37 +98,6 @@ static inline u32 intel_uncore_rmw(struct intel_uncore *uncore,
+ 	return xe_mmio_rmw32(__compat_uncore_to_mmio(uncore), reg, clear, set);
  }
  
 -static inline int
--intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
--		 u32 mask, u32 value, unsigned int timeout_us,
--		 u32 *out_value)
+-__intel_wait_for_register(struct intel_uncore *uncore, i915_reg_t i915_reg,
+-			  u32 mask, u32 value, unsigned int fast_timeout_us,
+-			  unsigned int slow_timeout_ms, u32 *out_value)
 -{
--	int ret;
+-	struct xe_reg reg = XE_REG(i915_mmio_reg_offset(i915_reg));
+-	bool atomic;
 -
--	intel_dmc_wl_get(display, reg);
+-	/*
+-	 * Replicate the behavior from i915 here, in which sleep is not
+-	 * performed if slow_timeout_ms == 0. This is necessary because
+-	 * of some paths in display code where waits are done in atomic
+-	 * context.
+-	 */
+-	atomic = !slow_timeout_ms && fast_timeout_us > 0;
 -
--	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
--					value, timeout_us, 0, out_value);
--
--	intel_dmc_wl_put(display, reg);
--
--	return ret;
+-	return xe_mmio_wait32(__compat_uncore_to_mmio(uncore), reg, mask, value,
+-			      fast_timeout_us + 1000 * slow_timeout_ms,
+-			      out_value, atomic);
 -}
 -
 -static inline int
--intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
--		 u32 mask, u32 value, unsigned int timeout_ms,
--		 u32 *out_value)
+-__intel_wait_for_register_fw(struct intel_uncore *uncore, i915_reg_t i915_reg,
+-			     u32 mask, u32 value, unsigned int fast_timeout_us,
+-			     unsigned int slow_timeout_ms, u32 *out_value)
 -{
--	int ret;
--
--	intel_dmc_wl_get(display, reg);
--
--	ret = __intel_wait_for_register(__to_uncore(display), reg, mask,
--					value, 2, timeout_ms, out_value);
--
--	intel_dmc_wl_put(display, reg);
--
--	return ret;
+-	return __intel_wait_for_register(uncore, i915_reg, mask, value,
+-					 fast_timeout_us, slow_timeout_ms,
+-					 out_value);
 -}
 -
--static inline int
--intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
--		    u32 mask, u32 value, unsigned int timeout_ms,
--		    u32 *out_value)
--{
--	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
--					    value, 2, timeout_ms, out_value);
--}
--
--static inline int
--intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t reg,
--			   u32 mask, u32 value, unsigned int timeout_us,
--			   u32 *out_value)
--{
--	return __intel_wait_for_register_fw(__to_uncore(display), reg, mask,
--					    value, timeout_us, 0, out_value);
--}
--
--static inline int
--intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t reg,
--			 u32 mask, unsigned int timeout_us)
--{
--	return intel_de_wait_us(display, reg, mask, mask, timeout_us, NULL);
--}
--
--static inline int
--intel_de_wait_for_clear_us(struct intel_display *display, i915_reg_t reg,
--			   u32 mask, unsigned int timeout_us)
--{
--	return intel_de_wait_us(display, reg, mask, 0, timeout_us, NULL);
--}
--
--static inline int
--intel_de_wait_for_set_ms(struct intel_display *display, i915_reg_t reg,
--			 u32 mask, unsigned int timeout_ms)
--{
--	return intel_de_wait_ms(display, reg, mask, mask, timeout_ms, NULL);
--}
--
--static inline int
--intel_de_wait_for_clear_ms(struct intel_display *display, i915_reg_t reg,
--			   u32 mask, unsigned int timeout_ms)
--{
--	return intel_de_wait_ms(display, reg, mask, 0, timeout_ms, NULL);
--}
-+int intel_de_wait_us(struct intel_display *display, i915_reg_t reg,
-+		     u32 mask, u32 value, unsigned int timeout_us,
-+		     u32 *out_value);
-+int intel_de_wait_ms(struct intel_display *display, i915_reg_t reg,
-+		     u32 mask, u32 value, unsigned int timeout_ms,
-+		     u32 *out_value);
-+int intel_de_wait_fw_ms(struct intel_display *display, i915_reg_t reg,
-+			u32 mask, u32 value, unsigned int timeout_ms,
-+			u32 *out_value);
-+int intel_de_wait_fw_us_atomic(struct intel_display *display, i915_reg_t reg,
-+			       u32 mask, u32 value, unsigned int timeout_us,
-+			       u32 *out_value);
-+int intel_de_wait_for_set_us(struct intel_display *display, i915_reg_t reg,
-+			     u32 mask, unsigned int timeout_us);
-+int intel_de_wait_for_clear_us(struct intel_display *display, i915_reg_t reg,
-+			       u32 mask, unsigned int timeout_us);
-+int intel_de_wait_for_set_ms(struct intel_display *display, i915_reg_t reg,
-+			     u32 mask, unsigned int timeout_ms);
-+int intel_de_wait_for_clear_ms(struct intel_display *display, i915_reg_t reg,
-+			       u32 mask, unsigned int timeout_ms);
- 
- /*
-  * Unlocked mmio-accessors, think carefully before using these.
+ static inline u32 intel_uncore_read_fw(struct intel_uncore *uncore,
+ 				       i915_reg_t i915_reg)
+ {
 -- 
 2.52.0
 
