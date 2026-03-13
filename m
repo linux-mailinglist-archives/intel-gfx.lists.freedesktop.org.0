@@ -2,76 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sPoyDkT0s2nYdgAAu9opvQ
+	id meHyFJ34s2nUeQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:25:56 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:44:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35773282348
-	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:25:55 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 19BB028265C
+	for <lists+intel-gfx@lfdr.de>; Fri, 13 Mar 2026 12:44:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 580EC10EBA8;
-	Fri, 13 Mar 2026 11:25:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12FA910EBB1;
+	Fri, 13 Mar 2026 11:44:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jXMvLjIC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SvWBysYi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 753CF10EBA5;
- Fri, 13 Mar 2026 11:25:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DCE010EBB0;
+ Fri, 13 Mar 2026 11:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773401151; x=1804937151;
+ t=1773402263; x=1804938263;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=vVYY05MWceJfoLgMiLiuHYgFUj+vPKgA+UlheqqJMxA=;
- b=jXMvLjIClsUU4zDszkooeQorhaX53BFIDgHU6AhBvIdD3xl7FYxM7HcN
- FySmKi6AI8yrZGJ6UgQmqsj8ytDvGMDcp5jU5zxCLOPP75Y2mAVJgx4WB
- Npzvd1VoHKeJp0/G/Q1tJDRL5vMZRWh+2oBXvXnQ1xZhmhToOHDjbvdQY
- l2cjkJNe0Q2cCOQ6Fe/4lMa5iTDLtdNPNMZKL2kAyGKzzEd9AG2MMIGOB
- KWlgmYVftd9+G1Z9ifXA3MHQ5i2gliZ+8+X+riPn45tQDOdkcFO2BeNNc
- tkRLL7PfvqIu3CPSkdYM7Aqb74O0R8Z5+y0IcNZnxZbBgviCCxkNpdifZ Q==;
-X-CSE-ConnectionGUID: mXS2Be61T7ynFJHRepFgzA==
-X-CSE-MsgGUID: 9jNPkNReR3iPz2eWM73upw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="74474613"
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="74474613"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:25:51 -0700
-X-CSE-ConnectionGUID: cSXs33fqSISUzSwEImUBlQ==
-X-CSE-MsgGUID: OGFgb2zvQ2ytQYaoGhQU/A==
+ bh=snZK/LW/UFopEgYQk+i74CD/DiR+G13CKLM7tjPV838=;
+ b=SvWBysYiJCPkeRDW9sBgGy3gpDOt0Q84uY/eKoRiz6kahaP4CLC2p/ne
+ 21Uj60TWaN6nig81w3A3s5jxzTBJW0RBn/7TZfEI2vamN+4mYC34TKgFg
+ xEiPfYP1op9I4BBKETP0ianbAKTla8YxGRuGC9esEWm8cDDjNwFs/XoR6
+ NwKmEQPBH29RAIW24GdsnRSmoXxfVEtmGNXMqpUkB4TSRTpyotIXWMo+8
+ GLwd7Jz9+f0ZnMONM91UDiLVhTpVmOqJcw+LAFL9EMqzc3U2WNqQ/Y9Ig
+ dRF0a9b/U3dQ5ATjgoINik5Hdl3ufP4nnz2ZFH/lxY2h64EoxlDLNEHmd w==;
+X-CSE-ConnectionGUID: nCfLba2jSXOJ76QkQCy+vA==
+X-CSE-MsgGUID: 5KJ4F8mIR42U6gh4oQCjGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11727"; a="78398677"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="78398677"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:44:22 -0700
+X-CSE-ConnectionGUID: xZFSMVYQRFm/PZb18nN7sg==
+X-CSE-MsgGUID: 2kUVIx/ETy+Wnd+hp43bew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="225591733"
+X-IronPort-AV: E=Sophos;i="6.23,118,1770624000"; d="scan'208";a="259039077"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.21])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Mar 2026 04:25:48 -0700
-Date: Fri, 13 Mar 2026 13:25:46 +0200
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Mar 2026 04:44:19 -0700
+Date: Fri, 13 Mar 2026 13:44:16 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-Cc: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- "Sharma, Swati2" <swati2.sharma@intel.com>,
- "Nikula, Jani" <jani.nikula@intel.com>
-Subject: Re: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
-Message-ID: <abP0OsNCqxhoaBCV@intel.com>
-References: <20260311063259.2608206-1-dibin.moolakadan.subrahmanian@intel.com>
- <20260311063259.2608206-3-dibin.moolakadan.subrahmanian@intel.com>
- <DM3PPF208195D8D8D1894ECDE4A41681332E344A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <dcba6eaf-1f57-4094-be69-0c8d116f92a7@intel.com>
- <DM3PPF208195D8D96EA050D075A0AF09F07E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <7b072000-0b8d-4910-ae05-0eaac6d9e94a@intel.com>
- <DM3PPF208195D8D6302B536CF802D111F55E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
- <abPg2j1wS_QLPIdJ@intel.com>
- <DM3PPF208195D8D00F123DBDB50B578B8F0E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
+ animesh.manna@intel.com
+Subject: Re: [PATCH 01/19] drm/dp: Rename and relocate AS SDP payload field
+ masks
+Message-ID: <abP4kOqkvfSh6j3G@intel.com>
+References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
+ <20260311113611.3393194-2-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <DM3PPF208195D8D00F123DBDB50B578B8F0E345A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+In-Reply-To: <20260311113611.3393194-2-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -89,162 +80,99 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.46 / 15.00];
+X-Spamd-Result: default: False [0.28 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.77)[subject];
+	R_MIXED_CHARSET(0.59)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 35773282348
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 19BB028265C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 13, 2026 at 10:08:47AM +0000, Kandpal, Suraj wrote:
-> > Subject: Re: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR interrupt
-> > 
-> > On Fri, Mar 13, 2026 at 05:04:46AM +0000, Kandpal, Suraj wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Dibin Moolakadan Subrahmanian
-> > > > <dibin.moolakadan.subrahmanian@intel.com>
-> > > > Sent: Friday, March 13, 2026 9:55 AM
-> > > > To: Kandpal, Suraj <suraj.kandpal@intel.com>;
-> > > > intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> > > > Cc: ville.syrjala@linux.intel.com; Shankar, Uma
-> > > > <uma.shankar@intel.com>; Sharma, Swati2 <swati2.sharma@intel.com>
-> > > > Subject: Re: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR
-> > > > interrupt
-> > > >
-> > > >
-> > > > On 13-03-2026 08:56, Kandpal, Suraj wrote:
-> > > > >> On 12-03-2026 08:48, Kandpal, Suraj wrote:
-> > > > >>>> Subject: [PATCH 2/2] drm/i915/dmc: Enable PIPEDMC_ERROR
-> > > > >>>> interrupt
-> > > > >>>>
-> > > > >>>> Enable PIPEDMC_ERROR interrupt bit for display version 35+.
-> > > > >>>>
-> > > > >>> Add same Bspec link here too
-> > > > >>>
-> > > > >>>> Signed-off-by: Dibin Moolakadan Subrahmanian
-> > > > >>>> <dibin.moolakadan.subrahmanian@intel.com>
-> > > > >>>> ---
-> > > > >>>>    drivers/gpu/drm/i915/display/intel_dmc.c | 3 ++-
-> > > > >>>>    1 file changed, 2 insertions(+), 1 deletion(-)
-> > > > >>>>
-> > > > >>>> diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > > >>>> b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > > >>>> index 38b284a0db82..e60f1f977070 100644
-> > > > >>>> --- a/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > > >>>> +++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-> > > > >>>> @@ -510,7 +510,8 @@ static void pipedmc_clock_gating_wa(struct
-> > > > >>>> intel_display *display, bool enable)  static u32
-> > > > >>>> pipedmc_interrupt_mask(struct intel_display *display)  {
-> > > > >>>>    	if (DISPLAY_VER(display) >= 35)
-> > > > >>>> -		return PIPEDMC_FLIPQ_PROG_DONE;
-> > > > >>>> +		return PIPEDMC_FLIPQ_PROG_DONE |
-> > > > >>>> +			PIPEDMC_ERROR;
-> > > > >>>>
-> > > > >>> Mostly looks okay but here's my question:
-> > > > >>> I know LNL pipe B had an issue with PIPEDMC_ERROR being
-> > > > >>> triggered on LNL pipe B, As I can see from Ville's commit
-> > > > >>> message, but is it still the case for
-> > > > >> PTL ?
-> > > > >>> Can we have that tested ?
-> > > > >>> If that works we can add the PIPEDMC_ERROR from PTL onwards.
-> > > > >>> Then here we can change code to create a mask and then return it
-> > > > >>> finally like
-> > > > >> :
-> > > > >>> mask = PIPEDMC_FLIPQ_PROG_DONE
-> > > > >>>
-> > > > >>> if display ver >= 30
-> > > > >>> mask |= PIPEDMC_ERROR
-> > > > >>>
-> > > > >>> if display ver < 35
-> > > > >>> mask |= PIPEDMC_GTT_FAULT |
-> > > > >>>                   PIPEDMC_ATS_FAULT;
-> > > > >>>
-> > > > >>> Return mask;
-> > > > >>>
-> > > > >>> Obviously that is if PIPEDMC_ERROR works on PTL properly.
-> > > > >> Thank you for spotting this, I think its better to add above
-> > > > >> logic in new series rather than combing with 35+ bit mask update.
-> > > > >>
-> > > > >> Regards,
-> > > > >> Dibin
-> > > > > If that is the case then I think its better to drop this patch altogether.
-> > > > > We have a justification of why we remove bits in first patch, that
-> > > > > was a change
-> > > > in NVL H/w.
-> > > > > But this change was introduced in LNL.
-> > > > > Without a strong reasoning of why you are enabling this is in NVL
-> > > > > and not in PTL (which I don‚Äôt see in this patch series) I suggest
-> > > > > you add this patch with as a part of the series where you have a
-> > > > > use case for it. And if
-> > > > there too you only add it for NVL You will need to add a comments as
-> > > > to why this is not enabled for PTL.
-> > > >
-> > > > This patch intent to fix the interrupt mask for 35+.
-> > > > I dont see any reason to disable this bit as
-> > > > 1) error bit warning is already present in interrupt handler.
-> > > > 2) bit is defined in bsepc.
-> > > > 3) LNL it was mentioned disabled because pipeB triggering it during
-> > > > first DC state transition which did not see in this case.
-> > >
-> > > In that case the interrupt handler is made to report errors if this bit is
-> > unmasked for  >= LNL.
-> > > Now this bit is introduced in LNL timeframe for which the reason to not add it
-> > is mentioned in comment and documented.
-> > > Similarly if you want to skip PTL you will need this to be documented
-> > > with the reason. Which means the FIXME comment needs to be modified In
-> > the least. If this patch is to go through.
-> > > Also Ville can you shed some light, on what the H/w folks had to say
-> > > regarding this and if they had mentioned any WA for LNL, and if this is fixed In
-> > LNL+.
-> > 
-> > I suspect it might be some kind of issue in the DMC firmware where it's
-> > accessing unpowered registers. But it was never investigated properly.
-> > 
-> > It would be good if someone could take that up and actually figure out what's
-> > going on. The problem is figuring out what exactly is the register that causes
-> > this. I don't think LNL has any kind of RM_CAPTURE register/etc available for
-> > the DMC that would directly tell us that :(
-> > 
-> > IIRC the Windows driver did seem to enable the error interrupt on LNL, but
-> > either they just ignore all the reported errors, or somehow the way they use
-> > the hardware/firmware doesn't trigger them.
+On Wed, Mar 11, 2026 at 05:05:53PM +0530, Ankit Nautiyal wrote:
+> The AS SDP payload field masks were misnamed and placed under the DPRX
+> feature enumeration list. These are not DPRX capability bits, but are
+> payload field masks for the Adaptive Sync SDP.
 > 
-> Hmm would it be okay if we can move with enabling the bit for NVL+ since Dibin says we don‚Äôt see this issue
-> Anymore, while we add or TODO or FIXME in the comment to investigate this further for PTL and LNL
+> Relocate both masks next to the AS SDP definitions.
+> Update users to the corrected names. No functional change.
+> 
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+>  include/drm/display/drm_dp.h            | 5 +++--
+>  2 files changed, 5 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index fbb5e2f9c241..cd1539c3268c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -5295,8 +5295,8 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+>  	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
+>  		return -EINVAL;
+>  
+> -	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
+> -	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
+> +	as_sdp->length = sdp->sdp_header.HB3 & DP_AS_SDP_LENGTH_MASK;
+> +	as_sdp->mode = sdp->db[0] & DP_AS_SDP_OPERATION_MODE_MASK;
+>  	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+>  	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
+>  	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
+> diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+> index 8b15d3eeb716..4ea3b5b08a12 100644
+> --- a/include/drm/display/drm_dp.h
+> +++ b/include/drm/display/drm_dp.h
+> @@ -1204,8 +1204,6 @@
+>  
+>  #define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1         0x2214 /* 2.0 E11 */
+>  # define DP_ADAPTIVE_SYNC_SDP_SUPPORTED    (1 << 0)
+> -# define DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE		GENMASK(1, 0)
+> -# define DP_ADAPTIVE_SYNC_SDP_LENGTH				GENMASK(5, 0)
+>  # define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED (1 << 1)
+>  # define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED  (1 << 4)
+>  
+> @@ -1870,4 +1868,7 @@ enum operation_mode {
+>  	DP_AS_SDP_FAVT_TRR_REACHED = 0x03
+>  };
+>  
+> +#define DP_AS_SDP_OPERATION_MODE_MASK	GENMASK(1, 0)
+> +#define DP_AS_SDP_LENGTH_MASK		GENMASK(5, 0)
 
-Yeah, I think the sooner we enable this on NVL the better. We want to
-catch the issues early. For PTL someone should just send a patch to
-enable it (separately from the NVL changes) and hopefully CI will tell
-us whether it's still a problem there or not.
+The way all the SDP stuff is organized in drm_dp.h very messy.
+It's not at all clear which bytes each define/enum corresponds
+to. Someone should try to clean it all up properly...
+
+But at least this is better than what we have now, so
+Reviewed-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
+
+> +
+>  #endif /* _DRM_DP_H_ */
+> -- 
+> 2.45.2
 
 -- 
-Ville Syrj√§l√§
+Ville Syrj‰l‰
 Intel
