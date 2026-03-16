@@ -2,171 +2,172 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IC2RCNjct2mcWAEAu9opvQ
+	id UEHwKGXpt2mzWwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 11:35:04 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 12:28:37 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77907297F98
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 11:35:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15CF3298A9C
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 12:28:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A11310E251;
-	Mon, 16 Mar 2026 10:34:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E65A10E4B5;
+	Mon, 16 Mar 2026 11:28:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YN32MV9s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jLZRSH4L";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CEEF810E0BA;
- Mon, 16 Mar 2026 10:34:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6322B10E4AA;
+ Mon, 16 Mar 2026 11:28:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773657295; x=1805193295;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=CEzg3xBjM0GnvgDsl9gmDdKLD6guGI81FieiNqfDEfI=;
- b=YN32MV9smI5DhU5aTPkKZOGAm3iBsNMYWrVk92qT5IE9HtiDvws03MHX
- fB+jDw+qVAW9Hhad+rDTxO0U9fHqhIlH/pJ1wfEnhNCUYXEBxEuioTI5J
- w16/qvQJKAusQFDsOU2/FTbEPI2doieTfc0wqVXEbtw/AoiKgI/a+lJdi
- y2nBGMu60HDwBuK6vFWx234UIdS0vJUEXDnrmukrdYJf5L8K7Sdvh642j
- KScfvPCK6KwueMY/cL91b+EzecT+2KQVoubFjDI/lbg4RAT0p+cBPGJvA
- +JVbHTzMj7dvhuOq2CAKwqYwEUHLYR9nXqH5lK+dJ/uFQ9SdX2yPzoQYM g==;
-X-CSE-ConnectionGUID: 2GsRsbO3SHCAmUQU3XyA0A==
-X-CSE-MsgGUID: qPsQBWCpTlim5QU7Ml8sXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="85750367"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="85750367"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 03:34:47 -0700
-X-CSE-ConnectionGUID: tYajn8nlS1KoWnhMjL8PZg==
-X-CSE-MsgGUID: DLKbiANzQ12AhIsDudXw0g==
+ t=1773660515; x=1805196515;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-id:content-transfer-encoding: mime-version;
+ bh=SM7VtQvzD1rzoZj+qrAi9DSmC5PUj7OE2Tbpl0uQmWM=;
+ b=jLZRSH4Lydgv+0JJ0RiYaob0vZXhsWLnGnVS2fB8xUjh6ogM9c3jwsyN
+ BI0ADm4GMPiCxw2wRX2EOEweEo3PQGLneofFNIYGsVJDAD4Eqvk7p1ttp
+ MBovsUFO+Mc0taWXDX0Z6QPMaI5PWNEyl+Xs7WaTa8bTaowuh5K7pk+E0
+ MTN6zr6wwnKFuYlPI/J/OWjOSS9OZH5yzKNBvi3WQZ35B85JfvEq2oTCf
+ 2ZUSV0qJJsuofP4PBitDPQ3vUZerLmLBgHdiQ0D1Bwb/wFxoUAD7iZVTz
+ 2dQ03rGcL4QxawaoIv0O+KvTneXW8p3YKtchBNNy7XygTb8mVxrZPabZ0 Q==;
+X-CSE-ConnectionGUID: 3c4Pvr8xTKKiomMC1VGDNQ==
+X-CSE-MsgGUID: 2/1dUw6UTayiOxN7K4RsVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="97282655"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="97282655"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2026 04:28:34 -0700
+X-CSE-ConnectionGUID: MOaAKdScQ82ZqCHdm0B1Kw==
+X-CSE-MsgGUID: /BMcq3BUQS6PV2hc+f171A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="252391644"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="221124881"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 03:34:47 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Mar 2026 04:28:34 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 16 Mar 2026 03:34:46 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 16 Mar 2026 04:28:33 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 16 Mar 2026 03:34:46 -0700
-Received: from SN4PR2101CU001.outbound.protection.outlook.com (40.93.195.58)
- by edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 16 Mar 2026 04:28:33 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.58) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 16 Mar 2026 03:34:46 -0700
+ 15.2.2562.37; Mon, 16 Mar 2026 04:28:33 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SX6P/Bo+4SSeyDg86EyqJdkpbengHuFnst659hiOc2NJ0LjOmszHaQfs5r1XEkU+8uWvzuKgWtv5badXqi9y9T560kdrXCFvLaStBmHDLZ8Cy77KwGvYcwYll4ZZwDtbYW0MwOECsZYDVbX0f/bkLwMGVKyvKQ9jCdtbb7RnCmOKOa06hjQq9T/drMwIFRPJwCF8AUocihlSJZcnbxcxKtpKDqm+HPuPHsLkGQzAyua9tJ0GCZbMUiHtIXUjquY23rpI7hKG9FCJ/KLyergl4lnRWYEIlbJYBGaUQ3CA+6Q1+DPZeUAveTB13Ij7safCGqwy/Tr8XLb+GNWfJSpvLg==
+ b=D1ngfWCBN1qS59/mcPEgHZ0MiB6jMiS1XoXCEdutJ8Og4gJgxXr/ZJ3r91Lw8rB9d8AWq51+KHQhmSQx3lq2zYrhHuBZGtC3eLCTuWkMxbvAItt0un3MwrEMOh19pfhVp5zWYgwkkTFhr2zujnkG/tGOHqXulVYZX7BpD4Z4K8BCehv19HVE8JD2vVjIi8M/IBwjBnIl4+UCeUpe8pQ4+TCOevQ4YwjHhJJcgFQ1ik24M/s16v2bVw6/lajYsjBzuCmYnE3EC+ObJ2u+E9IqI4Xhfi+vAJUC49tviRvsFxW6/8yIAktYGwlLv9gekNF+tsXZqsz3NQ2eF0oMrJ4Jpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=V+3xWElzjkK7q8F7oVzlkOaTTTq7vztj4AJW17JBYnc=;
- b=c1wqXuGc2+yirrO7R6SE5JLdjPskw3GSYjE1SJnLXv4P3+bU1Npli2J4Ilc65Ij80nxtzEeFHy9Uz4/yyDVPjjVQDIUc95z0su33BfkTOZT98m3st57JH5PIIaT6dIJ/V4FqXdDgS5EuKvsd19IaPTMtTfytcb1NyJhmBFfksrWh7pLd7+ad9JEmEkNGiH+6j3qIM68twHCMSWHXMoxJjHc+8gQHGizmRRVOn8l7xfFE4YKZogolIomKSzZtfpw4Nvovkyd9PGDsZIHsFKEbJ9YdsHexB82TdvXCM96x9EIVcLb4IjWx2ZXVZ+mGopxYTD0Fhf3ShGWjBuPmLgdndg==
+ bh=SM7VtQvzD1rzoZj+qrAi9DSmC5PUj7OE2Tbpl0uQmWM=;
+ b=PWFEekGSD+TizSmImKAGrnUhqrBi1cq6Q4cU9BmqLUDzMTaUxQIwaN7W0c7vQz4F3GzekSvgVMhm0pymwx4eK5kWMgJhyj6ju+vkUet1LM4VgwMiznVwR1Jxo7M5NyRYRK+RRtRrRZWiHvTw/xHSWqeum2nj9DlWUj9LmuxpNFsvqL89oDRdIrSpU0CEaAYqSK2lxcRw1HiUdzYjt4DN8UjYchwLXln/fMaM72KQdbfzgChtpEWZpumWkqE/MMcma2B54Ohpkp+X7bXIdmPJyNskq5m7tuJqdlKt7pHwjuocSX16yCWwCPe5wq7GVwpMsMpU3xXq1sx6ZlkTID20zw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com (2603:10b6:8:60::5) by
+ SJ0PR11MB6695.namprd11.prod.outlook.com (2603:10b6:a03:44e::6) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9723.16; Mon, 16 Mar 2026 11:28:29 +0000
+Received: from DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::9086:5e0b:ad24:762]) by DM4PR11MB6019.namprd11.prod.outlook.com
+ ([fe80::9086:5e0b:ad24:762%6]) with mapi id 15.20.9723.013; Mon, 16 Mar 2026
+ 11:28:29 +0000
+From: "Hogander, Jouni" <jouni.hogander@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+CC: "stable@vger.kernel.org" <stable@vger.kernel.org>, "Kahola, Mika"
+ <mika.kahola@intel.com>
+Subject: Re: [PATCH 2/2] drm/i915/psr: Compute psr_entry_setup_frames into
+ intel_crtc_state
+Thread-Topic: [PATCH 2/2] drm/i915/psr: Compute psr_entry_setup_frames into
+ intel_crtc_state
+Thread-Index: AQHcsft6xtNJ+1luskCpa3kdRcLdJrWwtmiAgABVpgA=
+Date: Mon, 16 Mar 2026 11:28:29 +0000
+Message-ID: <c3b60409a36bbaaeee59aa696e696ddfa5299ab2.camel@intel.com>
+References: <20260312083710.1593781-1-jouni.hogander@intel.com>
+ <20260312083710.1593781-3-jouni.hogander@intel.com>
+ <DM3PPF208195D8D80A172ABD37CE474F8EAE340A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+In-Reply-To: <DM3PPF208195D8D80A172ABD37CE474F8EAE340A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com (2603:10b6:a03:488::12)
- by CH0PR11MB8167.namprd11.prod.outlook.com (2603:10b6:610:192::7)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
- 2026 10:34:43 +0000
-Received: from SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::45f:5907:efdb:cb5b]) by SJ1PR11MB6129.namprd11.prod.outlook.com
- ([fe80::45f:5907:efdb:cb5b%3]) with mapi id 15.20.9723.014; Mon, 16 Mar 2026
- 10:34:43 +0000
-Message-ID: <eaaea3f6-76ce-4b20-b7b1-b483594070cd@intel.com>
-Date: Mon, 16 Mar 2026 16:04:32 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
-Content-Language: en-GB
-To: Pekka Paalanen <pekka.paalanen@collabora.com>, <harry.wentland@amd.com>
-CC: <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <louis.chauvet@bootlin.com>,
- <mwen@igalia.com>, <contact@emersion.fr>, <alex.hung@amd.com>,
- <daniels@collabora.com>, <uma.shankar@intel.com>,
- <maarten.lankhorst@intel.com>, <pranay.samala@intel.com>,
- <swati2.sharma@intel.com>
-References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
- <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
- <20260310163229.521186ab@eldfell>
- <53c3f610-942c-46bf-be5f-a4c51625c358@intel.com>
- <20260316105724.47d24409@eldfell>
-From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260316105724.47d24409@eldfell>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0189.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ac::17) To DM4PR11MB6141.namprd11.prod.outlook.com
- (2603:10b6:8:b3::13)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ1PR11MB6129:EE_|CH0PR11MB8167:EE_
-X-MS-Office365-Filtering-Correlation-Id: ad1a3e3b-7c41-4c21-1f19-08de8347a205
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: 61a4zPoKOA3BKjpkxlkkkoTkQQGGLGcKGcuSphbfep1Oiqf98XmaLNYor0Wu4LAgrQZP5VMWYXBxM6QbMQF0u9ZsfyVKD9tDdmdv/c2LxdgoBjoPodoqt5HAQOHExMt4W6uQEeQ7zFV6Ui9rzZO1monDi2m8EP18ThhAp+HgLWJBNM8V9U8ZG9uNVYlBZEFL383qVNTEF9MZtCQnvaQaTWpBSdKhpLBPxFq1+kpZ7IUfnADCOeMSlSg8CP/XewTEHtGJYVbZGGdLBKTYByQDeKrw+SmwGTLFWtL8jLD4IiRFEIA2ZoniKNNvscmradMdMpIDxbhnlezXKjsC95I33psMcXVbkPl3mHaBZHx8HW0nrFv0rwKRbH0kKiwlw3A5SWD8hQYY0Do6Z9YjYv5mIl1TYmQcvhCXxloUf/NjgEyp+D1pYGfAr8PJ0Ss1UynRgtBw6eoNp6YwkJSRvfRqbc18GNj8O86kbNkW98E7ZLU5KuDJhrxQW1FxUoM+PLNl0JUnYIfgfyM+qQTcGDrcDIiHBsFDyN9tLsf4Ad9smH8kZompRzIKzu/Xy+j0Bhpr20PrxFgQxLtlE1QhBA44MKqZl1f9eHkdMK0p1LMfygbcQMZwvM0Sw7ife7G4+V/yHnMWfSsnNCrOemQkwKKi7O8yKvb1drX6lj+zUOc8LgZkpX/Rz3UP2UUCQmcUpjAH
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ1PR11MB6129.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(56012099003)(18002099003)(22082099003);
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6019:EE_|SJ0PR11MB6695:EE_
+x-ms-office365-filtering-correlation-id: 0d2b7129-0694-4d15-1765-08de834f2608
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|10070799003|38070700021|22082099003|18002099003|56012099003;
+x-microsoft-antispam-message-info: MhEgx9qZG7Ln7bCfv+USfiDzEB9tP7PJHOKdA4GS8BrZlDVYNFdY98aoqehBXkzXCw4sYy1Wm0iVDNajcGV3eNmghfWrwyWD25Q10D9yHSfBH3WIMqr9rqQkDEFMDamFcZBjDZ0ShpfJKyHUrdpeEqjRO+3CnXMfpT0tkTwMNP77BurnR+C3dyOfMZ9RdCTxOrHJtQxczGyztYMyggSPyV3rAHk+4Yi5Qex1xrvTdV+76uctQCM84I7kTlnzf0hD3UoUKbhSkdn/uw2aZPrHlgTXwhFWJZb2hh1W+bQw1NGLnLN7GKJLkuFWS3W3Okf9sfVUMRSsqq1X75bSwxcZT5HJzUApGC28sf85MKUmRdhgbLAL99j2gfqddPFOT6TzIW2on9DW1Sf6BaiGi6khfd0BnT2noG1bfxPeM5KoF3CU+mWtQ235YhSqW2RwSaVZKM9B8D9Uf61/xn98CylYGsAHakM5gbf2Exf7BItDmrCr/3FqXsTE2bXLSvM472yOBpmuisAYjfAwD56jHX0JQK1omY0EUqVYZDTT855+DOVpUcTHN/ExWf/8xbRiEdzLZfI0YP0APwQkG5HFyuc2kBnjHdiydDn6HFl8gGSuWW7J0WgNY6ZE2YtK3g+wgL3j/BiK/6kgoN90YsinmRwWVf3ri4KWjPKEDbkCqPUUlBNdFwg4CbIaJqEwy1iTSp1QiJ0vYgWEDkkqtmiTmECyZ0hBywQm1xM7Z1VWTCRaPllhQkCJfggc33Yzu3f5PS66appFWtzn3RoG18EvbxPqt9Jsf04ZsOHanWk2vvbg3kY=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6019.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(10070799003)(38070700021)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?NzJOSHpwZzV0Y3dGSjkzWWc0ODAyWVJZRVdCeW4yNmFoa25CajNwMjBzZDd5?=
- =?utf-8?B?TUNvNE5mWUVCVjZJRVg2Q3ZPRTRSNlUxZ3hmRG5EQzJPWVBuUW1qSksra0w5?=
- =?utf-8?B?OWtjbXAxZUhmZDVBaGVycXJ0MmQ5cDA0dTdVNTEvQnpCZHZIcUcybGdFcVY5?=
- =?utf-8?B?QUFzaTA3MnFoRVVDUDJBTXpYajgvTElnRVd5NzJvcyt1bC9ZU3p2TEFBRDlN?=
- =?utf-8?B?Q0xBcUFBUWdxci9Pblo3Z21GeVUzS3NGclREU1NMSzlqSENrTW1BcUhuUFY3?=
- =?utf-8?B?S2JIdXhxWmxoV3ZCWVZRTUhySW5jTlZzZnorR1VqNUVDcUU2TitmMHU5MVE0?=
- =?utf-8?B?MlRLaC9oZ29wRVZwZk9yb253bWVNYmtEU0FKUHFoRHd5eEJrckkrRkFtN2dm?=
- =?utf-8?B?UEJwc2d2NFErdWVudFVvR1Irblk4ODJzSFEvUStPODUxTks5OUFOaTZWelN1?=
- =?utf-8?B?alBvMkZtNjZKRTNoV2xXRERab1F3eEpYTVhWYXdtRGlYelorbDZrMU81ODF2?=
- =?utf-8?B?V1gvaHRNMmxkZVNHazlpZ2xReGNsMUw3ajArTG9YaVYyQ0pGdU84bi9vQ3lJ?=
- =?utf-8?B?QXBhTm9vOXYyZmk2QmRjdDBNZjBNMVJxTEt6dmxEcFZLbWE5QXVJUDdUaGY2?=
- =?utf-8?B?ZHBhVmxhNWF0Um5zbkpTMnlZU1JQOTIrbmNYNE9rZHhMaVFaako3dGRHTFk2?=
- =?utf-8?B?VFk5NnhraSsySjZXd3ExTWJBcG9haDlkQWprL01IUmZnVndjV1AveHdiVHV5?=
- =?utf-8?B?UFVPKzZkSXhvaUFOQ0ZmVHRmN3VPKzQybHBqMlg1WTEvVkg2YXhqaEtoMlI3?=
- =?utf-8?B?eEphYktsMkRHUGNXTzU2Q28vcWlBZ2xVR1E0RWV5d1Z5bEUvVkd5RDV4T0lm?=
- =?utf-8?B?OUhsZ3NWTjgzWFNPUWZqaDFMOXVzTFVGSGl2byt1RDJWMm1RRE5XYU5CdjFC?=
- =?utf-8?B?VkJ5Qkw5aTV0KzdabUVxL3pRejVPU2RJQXlId1BRcCtYN2M1RGltdHZkVHZP?=
- =?utf-8?B?U0U1aE04QzFza1pwMEhrRjluc2J5Mmsvemd0WU50NVRnSVhraUFuTnZFVWdQ?=
- =?utf-8?B?OUZOVjhKT0JzSzFWVmkzMm5JVkVoWkhTZkZsdSsvaVVzazkvemo5TEhzK21B?=
- =?utf-8?B?R1YydzZHb2k3OE45d1JKTk5ZVkJxaktrNWh1T0xlUTJ3T2VFZUtPVmFpa1FE?=
- =?utf-8?B?WEVnYlFBbGQxU2ErVXJadmhwMGNpaS90ZTcrbUMxTE96NHNxaGg1bnUyU0M5?=
- =?utf-8?B?MUozd3BsdncxTkNmNkhQM1BiUXJXN21lRmNuM0puRzRMSVBqWlhVSzBLbGJN?=
- =?utf-8?B?SnFNWU1TMVl6MkxZd3VVVEhCT0pocTVqNXZGakFLZjdrbEI2ZkJyTGIxQVR2?=
- =?utf-8?B?NVJFZURwY21DcmN1SmZmMkp5Wk5BZm42bmZqWG1xeXY2UzIvOTMyMUFIMmFV?=
- =?utf-8?B?R0t6MTBLVVZUdGpYNTBTL2xxSEpYL2RuN0NkdjFLbjRCdFRzMFZTakYzZ1g2?=
- =?utf-8?B?clZsSGJENjFlMmVBRHMraXFpQzQwbzRWSWdZQ1FqWUFyU0ZyL3dWT3lXL3JY?=
- =?utf-8?B?b1VHUWhjTzRTVURLOHJPT2ludzRod3ZUM0JJSFhmUVpua2FFdHN1dE5FYXZz?=
- =?utf-8?B?cGxnTGRKNWQvRXA0Z3lHZC9SWHA1VnRIS28yZjYySEE2Vko3M0dBb0lQekRR?=
- =?utf-8?B?Q0ZRelFabkpjbTdPWGNNZ1Myck1yMGdyQVo3U2p1cytGTUxRaFR2TzREQ3Rn?=
- =?utf-8?B?dThad0tmTUIwOFJBa1JHcnFaaFp1MWtZMW9nQjZ6RkdBdWdDQ0RyQkY2Z2Rs?=
- =?utf-8?B?NHNOVEN6RnYveDdKd1ZGNlBOSVNlUXpHeWpUb3ZZUjBQSkswSU5TekRuWk1R?=
- =?utf-8?B?N1QycEZjSk5UVnh4WHh3WDZkK2NEeS9XRjBuSjVmNzFBamkyWEtza3BTbXc4?=
- =?utf-8?B?NHhqL0FuMHhNZS9iOTh1TmtENmRwc0dsT1luWkZ0RzRUUk00OTl1NnloS01w?=
- =?utf-8?B?YzhzTWNONjE0bGFiVlVwaWN1eG0yYXVoVFJMc0pERWlBMEhJbHBROXNLdWJ1?=
- =?utf-8?B?dVoxQlJBMFIzTFlYVlNUYnRFOXQ3T3dqaFd2eU82c1Ixb042QU5QNCt1NlJQ?=
- =?utf-8?B?Yld6YUE2NGdtSVEvNFp4Nm1XWXQ5aVRvV0hHOFNZV0g2eTZJOHZ2MnQvVjMw?=
- =?utf-8?B?dGsvWVBMZGQ2d09xV2JUVTBZSkh5NjhJdFJZT2prcjA0eVhvSFFPTUdZekpI?=
- =?utf-8?B?dWh3UjVkMWVsa3ZpK08zNmF4ZGMwcDVvT2g5RVlLc2psMjRjc0NqUGRMNkxW?=
- =?utf-8?B?ak1NQVRvOVZUUVVWWTB3UTRBQmcwdHI3MHl0Q2IvdHJWWVJKdG1XWmtoTlIx?=
- =?utf-8?Q?JUCwN/zvBD3Ku7Ho=3D?=
-X-Exchange-RoutingPolicyChecked: ZOrSgmOKm9AN2MQ7FJwb9m5iJUWAmkKgJ94jbbzB+vA5jmOvqoPLvAwi1DkpreojF+4BHQkUlbDF/aXuHhDbs3P0sDcgLhaY/rfHUk17/0MNrwEjQfbbH/dTL7+uHwEJUhwRcDXM/01Eg5/PJgjbz7IhfZjjb6Ub7xITCeqx6RTl0NUQTLtQWaywktfD6YrVYVy/QUofttkRvn8hY+VefZJTTN73VdFQkMLZpavvJMhpdOC/meRPUeo4IfOf0TZCJLiBSiw+NwsqUOe6uxcdkdKbePOBU99pnmSn+P/TP/vAM/ojX8f16x3LQr6YvXRUmruHWk269zUmhppWh1w6DA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: ad1a3e3b-7c41-4c21-1f19-08de8347a205
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6141.namprd11.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?NU1ONVEvQmhaSFNLUXdpNVFrM2ZyZENjcE9jNWYwc3kwc3BrQmlneGd3TU5S?=
+ =?utf-8?B?UlgvZ01IekRhQWRzOHkrT0NlNlkzWWNJNFEvRkhVTTAyakNwd1ZvY2NqVjI2?=
+ =?utf-8?B?OXYxdlZYcXlXN2Zya3BrdW1NMHVSc3Y4dUYwZytCQ2ZtK2hucXlrQ2hHYXJl?=
+ =?utf-8?B?Ky9CbDQ1N1dENjdTRG1HRS9XSE1sUFNFYzJFdUtBb2RLazlxOHB6eGpVaitz?=
+ =?utf-8?B?VmZVbHZoRTJ3aHlUb3JlQVAyV1RTNUFiZEFKTUdLZEJuUW9rRkRkNkV3RE93?=
+ =?utf-8?B?amo2dzBrWktnRkhLLzRrQTRzY2swTkJXOE12MlFDTkFMN0RBcmFLQTRFZllv?=
+ =?utf-8?B?WFI4aGhuYTRKR3piNk1tTVVyeDRTMWpLaWlxWDN0UnkzZWcrRC9GL20zck5D?=
+ =?utf-8?B?ZWNoWDNCcnR3TDRkSjFYbExvZXlGMWw0MWFpYnBZZFh0ZHE4MUJKL1VhcU1Z?=
+ =?utf-8?B?YTlvanJXZGY3UnoxMXhKRnRVN3FtL3FYdjIrZS83YVVLZEtVbE9BSEo5Z2t0?=
+ =?utf-8?B?VkRZcnhJVnV1NmhJOHNLeXlhdGRpcHVkUWsxRzJRc0xnb3MrTzB6MlI4STky?=
+ =?utf-8?B?MUZBL2YwYW5NL2djOHBqTVhzcWRES1Fva25TejgySk01TUVYeWppTytkQ2xa?=
+ =?utf-8?B?Qnd0ZVZnSk15UEJuSDA2eUhmWVNYcEZnTytJek1VZnNKdXA2TTJyRXkxK29T?=
+ =?utf-8?B?cGEyTFR6anNDYllyS0hZNnN2RVNPd3FYSmtac2lEVWJiQkZ0WlBFUkxZUGNY?=
+ =?utf-8?B?RjIwMzdjOVN3UmFxcWl2a2tGMGJYUTVpL0RnaFNzNEM3KzJ6eW9GSlBxMk1R?=
+ =?utf-8?B?RXlsY08vZHpBc3lZcFpUbEVxbEtDZEhvWFE5MENPMjhvVUhYNjZzckNoMCtV?=
+ =?utf-8?B?emh2WVhZbEJPWmJPMGw3UTkyaDhNVzlQcDE1VnFDY3lsNURXak9uUWowQjhw?=
+ =?utf-8?B?ekJrM1JoL2dxbnBsVWxxVkhBWElMQWx3SSthVjI3VDlLSDF4RThkczYzL3hu?=
+ =?utf-8?B?MEdzeWxPRFBTb3orNzdET2RDY3hDTHdhSjB6Zmc1TWlOUk4zaWt2cjFOcHBG?=
+ =?utf-8?B?TnM5djArUzR2ZmpQZVl4R0taazBuMXdXd2FDV0g2Zjlxa1RxL3BZeUtSVklR?=
+ =?utf-8?B?TjJ1UVl0NTVmYWl4SGlTdFVCdnludFhTSW1JOE40MW90V2JCNWxINkJIN3pa?=
+ =?utf-8?B?VG1LOE1RSHN0aHFTK1QvMW4yQjl2WTVEUGYwMXpVOU00ck05YXFIMzlmbEh1?=
+ =?utf-8?B?aGNLeHRid2JLNWllOWR4dXV5dXpCOS9Lc3VoUHNFaE5aVVE1eFhibU5pOTZO?=
+ =?utf-8?B?MXpOeUdnOTVTTytzS0hyeGVydXFPRSt2TVViVlRYSmhvZlFIU0MzcFZZR3R3?=
+ =?utf-8?B?VFZZSkZLZU9Td0tGOW5vZWlPaEJoc3NQcE5LNGh0aHJwMEFjWHpsZHUwMmdj?=
+ =?utf-8?B?Q2hvVjRJRWpjY1ZaZ1hMSFQwUmU2Y3dQdThqTmZSTFNNdWYvTUVZSTBTY0Nk?=
+ =?utf-8?B?TEhOSFpJUXcyM0xhVjZxcis1T09Nd0h6bStQNTBDOVdRYTN5ZTVMWkZrZ1V0?=
+ =?utf-8?B?emxyYlhBYlZhZDFSMGRjZWFvYXVQRDI4UEdJWlY1a3p0YU9xWVc2QzJLejJQ?=
+ =?utf-8?B?cmkwbTBJdjBlaHE0M3g0ZTBTRnZxd1ZuTXdNbnhITXczMEZ0VWtqTUFVUTNI?=
+ =?utf-8?B?VFVySWFMa0NJdk9HRUFUQ1hrMVk0NGhPZkxmaWVpbC9EUnRVNWZUUGFZVVVr?=
+ =?utf-8?B?VHlkT3daN292RFBncTkvWkRmakJIUGtPMkdwb0lzYk1aendLSTU3R2c2S2hS?=
+ =?utf-8?B?Ynl5R2tsTUVRWFU5WTMySlhKUDRYOFQwUWFUYnloYlhRcm5wYlZqRnRkd1Iz?=
+ =?utf-8?B?S0Z6WGwvVW5TeGxoVlRwQzhGem5DU1NkTlZxMDY3L21jTlorQ0ZLQjlIajAr?=
+ =?utf-8?B?NGRZNWJackhCZ1RaMldJMHRZNUt4WlpwV3QyeDVOc1pxYmszQm44MERFTW5D?=
+ =?utf-8?B?RXFJYXZrS056MjJVeTVHL2JSTzhjSEdSWW8xdWFrbnIyZzVnRkxGMjh1NzdQ?=
+ =?utf-8?B?ejRYak9uWCs0cUpsbjBwNXhiUFdCT0trQ1V5Yk83UDBhRllFa3B0cDFDR3du?=
+ =?utf-8?B?QXRDVG1aK2tLV2J0ZGdGR0ZVU2tkOG9EL0ZrZ2c3bmRDcE8xVmtHWVYydHpF?=
+ =?utf-8?B?bGI3ajdTeUxaMzV0N2ZPRHBONDlaQjBQeEpHWXpZdExvYWpPMjUxa0xuVU9i?=
+ =?utf-8?B?bnNvdVJ5dVg0Z2c4Vll6YUxQTnhwdkVXQm5uQXFWNkswL056L2NLaGFvbGps?=
+ =?utf-8?B?cWxDK1NtaE1QYzhjbzlpdnEwaHhGVzdXNHdRalloWmxPZHlRYXBkc0cwdHFX?=
+ =?utf-8?Q?OIdhmfX9xYg2A2J6T3ljoy75KCziKBclPCxl3DWOWLj4d?=
+x-ms-exchange-antispam-messagedata-1: ruZVYF7Iz+dfLMHMiBP2o1KyzhrC5o9MplU=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <58407589763E2D4A8E6CB09A52134A31@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: k3b4sEfHy0QBYl+k4ZANLEX+8kShchjopd8vj3lsj2874iIkOWXrG0BCDgozIsKI+5kjRFovKODVj2ve6hy1OJtmhpca35ebAa3PBAYLPlWs77LNildr7NWGmlb7oiMsHs4/DSjAM7qz9JqyjdmX986usH8LUFJdvXzUtacA6PYzvm5RFAtaWTNRAQXMMjwO0v7XzVwVHQwWMHqSoqHj5jeYW8eq86TSBJldpXXHyU9klmbRE621ii4f6LDOK6JyCxq2AepwXnAWBaM9luZ12jjqC0h+DUyyI13PBYZB0fOTUaHcxtGexfxwb3xHlIh08PpSI+LIdUdPrMhhdrR9YQ==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 10:34:43.2274 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: P1s16UaEbN+Ht9nUsMnrPWFWGN+VngsDck5bYJ2cDxz6fEm5ZMzl1MRcNAt5L8rBREwE7BvBq6eI0dFTeag0vm2WyZ9Mb2mna46rwl82J5c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH0PR11MB8167
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6019.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 0d2b7129-0694-4d15-1765-08de834f2608
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Mar 2026 11:28:29.6629 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Wm6qfRZPXAOn0X+ssBa6T7c/Wk/OfipcDO0YLBrr1MftAqltNCkOOvtvaG2KVY6/wXlD0ZrNn0B2ejHcxtivEbC0g8AKtf1u46MmYKGK3vI=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6695
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -182,593 +183,98 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [-0.21 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_SEVEN(0.00)[9];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 77907297F98
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 15CF3298A9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-
-On 3/16/2026 2:27 PM, Pekka Paalanen wrote:
-> On Mon, 16 Mar 2026 12:46:39 +0530
-> "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
-> 
->> Hi Pekka,
->>
->> Thank you for looking into the patch.
-> 
-> Hi Chaitanya!
-> 
-> Replies inline below.
-> 
->>
->> On 3/10/2026 8:02 PM, Pekka Paalanen wrote:
->>> On Fri,  6 Mar 2026 22:22:58 +0530
->>> Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
->>>    
->>>> Introduce DRM_COLOROP_CSC_FF, a new colorop type representing a
->>>> fixed-function Color Space Conversion (CSC) block.
->>>>
->>>> Unlike CTM-based colorops, this block does not expose programmable
->>>> coefficients. Instead, userspace selects one of the predefined
->>>> hardware modes via a new CSC_FF_TYPE enum property. Supported modes
->>>> include common YUV->RGB and RGB709->RGB2020 conversions.
->>>>
->>>> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->>>> ---
->>>>    drivers/gpu/drm/drm_atomic.c      |   4 ++
->>>>    drivers/gpu/drm/drm_atomic_uapi.c |   4 ++
->>>>    drivers/gpu/drm/drm_colorop.c     | 105 ++++++++++++++++++++++++++++++
->>>>    include/drm/drm_colorop.h         |  72 ++++++++++++++++++++
->>>>    include/uapi/drm/drm_mode.h       |  13 ++++
->>>>    5 files changed, 198 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
->>>> index 04925166df98..7296b844e3fd 100644
->>>> --- a/drivers/gpu/drm/drm_atomic.c
->>>> +++ b/drivers/gpu/drm/drm_atomic.c
->>>> @@ -844,6 +844,10 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
->>>>    			   drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
->>>>    		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
->>>>    		break;
->>>> +	case DRM_COLOROP_CSC_FF:
->>>> +		drm_printf(p, "\tcsc_ff_type=%s\n",
->>>> +			   drm_get_colorop_csc_ff_type_name(state->csc_ff_type));
->>>> +		break;
->>>>    	default:
->>>>    		break;
->>>>    	}
->>>> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
->>>> index 87de41fb4459..9af73325aa93 100644
->>>> --- a/drivers/gpu/drm/drm_atomic_uapi.c
->>>> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
->>>> @@ -757,6 +757,8 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
->>>>    	} else if (property == colorop->data_property) {
->>>>    		return drm_atomic_color_set_data_property(colorop, state,
->>>>    							  property, val);
->>>> +	} else if (property == colorop->csc_ff_type_property) {
->>>> +		state->csc_ff_type = val;
->>>>    	} else {
->>>>    		drm_dbg_atomic(colorop->dev,
->>>>    			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
->>>> @@ -789,6 +791,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
->>>>    		*val = colorop->lut3d_interpolation;
->>>>    	else if (property == colorop->data_property)
->>>>    		*val = (state->data) ? state->data->base.id : 0;
->>>> +	else if (property == colorop->csc_ff_type_property)
->>>> +		*val = state->csc_ff_type;
->>>>    	else
->>>>    		return -EINVAL;
->>>>    
->>>> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
->>>> index f421c623b3f0..49422c625f4d 100644
->>>> --- a/drivers/gpu/drm/drm_colorop.c
->>>> +++ b/drivers/gpu/drm/drm_colorop.c
->>>> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
->>>>    	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
->>>>    	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
->>>>    	{ DRM_COLOROP_3D_LUT, "3D LUT"},
->>>> +	{ DRM_COLOROP_CSC_FF, "CSC Fixed-Function"},
->>>
->>> Hi,
->>>
->>> the fundamental idea seems fine to me, but I have a lot to say about the
->>> nomenclature.
->>>
->>> What would you think of a more readable name DRM_COLOROP_FIXED_MATRIX
->>> "Fixed Matrix"?
->>>
->>> Alternatively DRM_COLOROP_ENUM_MATRIX "Enumerated Matrix".
->>>    
->>
->> I was intentionally staying away from the word matrix because there was
->> no programmable matrix but it would make sense to name it something like
->> DRM_COLOROP_FIXED_MATRIX (or *_PRESET_MATRIX for that matter).
->>
->>>>    };
->>>>    
->>>>    static const char * const colorop_curve_1d_type_names[] = {
->>>> @@ -90,6 +91,13 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
->>>>    	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
->>>>    };
->>>>    
->>>> +static const char * const colorop_csc_ff_type_names[] = {
->>>> +	[DRM_COLOROP_CSC_FF_YUV601_RGB601]   = "YUV601 to RGB601",
->>>> +	[DRM_COLOROP_CSC_FF_YUV709_RGB709]   = "YUV709 to RGB709",
->>>> +	[DRM_COLOROP_CSC_FF_YUV2020_RGB2020] = "YUV2020 to RGB2020",
->>>> +	[DRM_COLOROP_CSC_FF_RGB709_RGB2020]  = "RGB709 to RGB2020",
->>>
->>> I'd suggest names:
->>>
->>> "YCbCr 601 to RGB"
->>> "YCbCr 709 to RGB"
->>> "YCbCr 2020 NC to RGB"
->>> "RGB709 to RGB2020"
->>>
->>> or something in that direction.
->>>
->>> The relevant ITU-R BT specifications use YCbCr nomenclature IIRC. Wrt.
->>> YCbCr-to-RGB conversion, there is no RGB601, RGB709 or RGB2020. There
->>> is only some RGB, and which primaries it uses is not always tied to
->>> which YCbCr conversion was used.
->>>   
->>
->> What I understand from this is that the BT.709(et al.) only defines the
->> matrix that is used for YCbCr->RGB, "what" RGB it is defined by the
->> primaries (which comes with metadata?).
-> 
-> Unfortunately, BT.601, BT.709 and BT.2020 define two separate things each:
-> - the YCbCr<->RGB conversion, and
-> - the colorspace primaries (and white point, but that is the same for
->    them all).
-> 
-> BT.601 actually has two different sets of primaries. Bt.2020 defines
-> two different YCbCr conversions. BT.709 uses the same primaries as
-> sRGB, but is different from sRGB on all other aspects.
-> 
-> Therefore, when you refer to any one of these, you also need to be
-> clear whether you are referring to the YCbCr conversion or to the
-> primaries.
-> 
-
-In that case, if the HW block says that it does YCbCr to RGB conversion 
-using rec BT.709, the resultant RGB follows the primaries as described 
-by BT.709 or mathematically it does not really matter?
-
->> I will read up on why our HW names these bits as such.
-> 
-> Sure, but keep in mind that your hardware naming is irrelevant for the
-> UAPI design.
-
-Understood, I just want to make sure that the HW does exactly what we 
-will advertise through the UAPI.
-
-> 
->>> For YCbCr 2020 I feel it's nice to remember, that there are two
->>> different conversions in the specification: the simple matrix one
->>> called "non-constant luminance", and the complex one called "constant
->>> luminance". Hence "NC".
->>>
->>> It's also good to recall that YCbCr-RGB conversions are done in an
->>> electrical space, while RGB709-to-RGB2020 conversion must be done in the
->>> optical space. It is up to the userspace to arrange the neighbouring
->>> colorops to use the fixed matrix right.
->>>    
->>
->> Ack on the above.
->>
->>>> +};
->>>> +
->>>>    /* Init Helpers */
->>>>    
->>>>    static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
->>>> @@ -459,6 +467,80 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
->>>>    }
->>>>    EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
->>>>    
->>>> +/**
->>>> + * drm_plane_colorop_csc_ff_init - Initialize a DRM_COLOROP_CSC_FF
->>>> + *
->>>> + * @dev: DRM device
->>>> + * @colorop: The drm_colorop object to initialize
->>>> + * @plane: The associated drm_plane
->>>> + * @funcs: control functions for the new colorop
->>>> + * @supported_csc_ff: A bitfield of supported drm_plane_colorop_csc_ff_type enum values,
->>>> + *                    created using BIT(csc_ff_type) and combined with the OR '|'
->>>> + *                    operator.
->>>> + * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
->>>> + * @return zero on success, -E value on failure
->>>> + */
->>>> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_colorop *colorop,
->>>> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
->>>> +				  u64 supported_csc_ff, uint32_t flags)
->>>> +{
->>>> +	struct drm_prop_enum_list enum_list[DRM_COLOROP_CSC_FF_COUNT];
->>>> +	int i, len;
->>>> +
->>>> +	struct drm_property *prop;
->>>> +	int ret;
->>>> +
->>>> +	if (!supported_csc_ff) {
->>>> +		drm_err(dev,
->>>> +			"No supported CSC op for new CSC FF colorop on [PLANE:%d:%s]\n",
->>>> +			plane->base.id, plane->name);
->>>> +		return -EINVAL;
->>>> +	}
->>>> +
->>>> +	if ((supported_csc_ff & -BIT(DRM_COLOROP_CSC_FF_COUNT)) != 0) {
->>>> +		drm_err(dev, "Unknown CSC provided on [PLANE:%d:%s]\n",
->>>> +			plane->base.id, plane->name);
->>>> +		return -EINVAL;
->>>> +	}
->>>> +
->>>> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_CSC_FF, flags);
->>>> +	if (ret)
->>>> +		return ret;
->>>> +
->>>> +	len = 0;
->>>> +	for (i = 0; i < DRM_COLOROP_CSC_FF_COUNT; i++) {
->>>> +		if ((supported_csc_ff & BIT(i)) == 0)
->>>> +			continue;
->>>> +
->>>> +		enum_list[len].type = i;
->>>> +		enum_list[len].name = colorop_csc_ff_type_names[i];
->>>> +		len++;
->>>> +	}
->>>> +
->>>> +	if (WARN_ON(len <= 0))
->>>> +		return -EINVAL;
->>>> +
->>>> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "CSC_FF_TYPE",
->>>> +					enum_list, len);
->>>
->>> The Color Space Conversion Fixed-Function type is always "fixed
->>> matrix", right?
->>>
->>> The name for the colorop property to choose one of the supported
->>> matrices could be... "matrix"? "choice"?
->>
->> Ack.
->>
->>>
->>> Does the property name need to be unique over all colorop types?
->>>    
->>
->> I am not sure if I understand your question. Could you please elaborate?
-> 
-> Let's say we have two colorop types: MATRIX implements an arbitrary
-> programmable matrix, and FIXED_MATRIX where you pick the matrix from an
-> enum.
-> 
-> MATRIX needs a property for the matrix data, I think there is a
-> colorop property named DATA that takes a blob id and is used by several
-> colorop types for different kinds of data - they all take a blob id
-> though.
-> 
-
-Yes, I think that is what [1] does.
-
-[1] 
-https://lore.kernel.org/dri-devel/20251223-mtk-ovl-pre-blend-colorops-v1-9-0cb99bd0ab33@collabora.com/.
-
-> Ok, so there is no strict requirement for the property to be unique
-> over all colorop types. But are there any design guidelines here?
-> 
-> Hmm, maybe not.
-> 
-
-Yeah I don't think there is any such design guideline.
-
-In theory, we could have re-used the enum property "CURVE_1D_TYPE" 
-(after renaming it, ofcourse) and assign meaning to the property based 
-on the type of the colorop it is attached to, like we do with "DATA" but 
-I think that ship has sailed(?).
-
-But in hindsight that would have been a better approach so as to not 
-bloat the colorop object with properties.
-
->>>> +
->>>> +	if (!prop)
->>>> +		return -ENOMEM;
->>>> +
->>>> +	colorop->csc_ff_type_property = prop;
->>>> +	/*
->>>> +	 * Default to the first supported CSC mode as provided by the driver.
->>>> +	 * Intuitively this should be something that keeps the colorop in pixel bypass
->>>> +	 * mode but that is already handled via the standard colorop bypass
->>>> +	 * property.
->>>> +	 */
->>>> +	drm_object_attach_property(&colorop->base, colorop->csc_ff_type_property,
->>>> +				   enum_list[0].type);
->>>> +	drm_colorop_reset(colorop);
->>>> +
->>>> +	return 0;
->>>> +}
->>>> +EXPORT_SYMBOL(drm_plane_colorop_csc_ff_init);
->>>> +
->>>>    static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
->>>>    							struct drm_colorop_state *state)
->>>>    {
->>>> @@ -513,6 +595,13 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
->>>>    						      &val);
->>>>    		colorop_state->curve_1d_type = val;
->>>>    	}
->>>> +
->>>> +	if (colorop->csc_ff_type_property) {
->>>> +		drm_object_property_get_default_value(&colorop->base,
->>>> +						      colorop->csc_ff_type_property,
->>>> +						      &val);
->>>> +		colorop_state->csc_ff_type = val;
->>>> +	}
->>>>    }
->>>>    
->>>>    /**
->>>> @@ -551,6 +640,7 @@ static const char * const colorop_type_name[] = {
->>>>    	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix",
->>>>    	[DRM_COLOROP_MULTIPLIER] = "Multiplier",
->>>>    	[DRM_COLOROP_3D_LUT] = "3D LUT",
->>>> +	[DRM_COLOROP_CSC_FF] = "CSC Fixed-Function",
->>>>    };
->>>
->>> Why are there two arrays with the same DRM_COLOROP_* = name association?
->>> drm_colorop_type_enum_list is the first one.
->>>    
->>
->> This array is explicitly used by drm_get_colorop_type_name(). Connectors
->> use an enum list for a similar purpose, so colorops could also reuse an
->> enum list here, provided that the enum array index remains in sync with
->> the corresponding enum value.
->>
->>>>    
->>>>    static const char * const colorop_lu3d_interpolation_name[] = {
->>>> @@ -607,6 +697,21 @@ const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_inte
->>>>    	return colorop_lu3d_interpolation_name[type];
->>>>    }
->>>>    
->>>> +/**
->>>> + * drm_get_colorop_csc_ff_type_name: return a string for interpolation type
->>>> + * @type: csc ff type to compute name of
->>>> + *
->>>> + * In contrast to the other drm_get_*_name functions this one here returns a
->>>> + * const pointer and hence is threadsafe.
->>>> + */
->>>> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_type type)
->>>> +{
->>>> +	if (WARN_ON(type >= ARRAY_SIZE(colorop_csc_ff_type_names)))
->>>> +		return "unknown";
->>>> +
->>>> +	return colorop_csc_ff_type_names[type];
->>>> +}
->>>> +
->>>>    /**
->>>>     * drm_colorop_set_next_property - sets the next pointer
->>>>     * @colorop: drm colorop
->>>> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
->>>> index bd082854ca74..2cd8e0779c2a 100644
->>>> --- a/include/drm/drm_colorop.h
->>>> +++ b/include/drm/drm_colorop.h
->>>> @@ -134,6 +134,60 @@ enum drm_colorop_curve_1d_type {
->>>>    	DRM_COLOROP_1D_CURVE_COUNT
->>>>    };
->>>>    
->>>> +/**
->>>> + * enum drm_colorop_csc_ff_type - type of CSC Fixed-Function
->>>> + *
->>>> + * Describes a CSC operation to be applied by the DRM_COLOROP_CSC_FF colorop.
->>>
->>> It's a matrix operation. It seems to me that "CSC operation" is more
->>> specific and does not fit the YCbCr-to-RGB conversion.
->>>    
->>
->> Yes makes sense, matrix would be a more generic term.
->>
->>>> + */
->>>> +enum drm_colorop_csc_ff_type {
->>>> +	/**
->>>> +	 * @DRM_COLOROP_CSC_FF_YUV601_RGB601
->>>> +	 *
->>>> +	 * enum string "YUV601 to RGB601"
->>>> +	 *
->>>> +	 * Selects the fixed-function CSC preset that converts YUV
->>>> +	 * (BT.601) colorimetry to RGB (BT.601).
->>>
->>> This selects the matrix that converts YCbCr into RGB
->>> according to the BT.601 coefficients.
->>>    
->>>> +	 */
->>>> +	DRM_COLOROP_CSC_FF_YUV601_RGB601,
->>>> +
->>>> +	/**
->>>> +	 * @DRM_COLOROP_CSC_FF_YUV709_RGB709:
->>>> +	 *
->>>> +	 * enum string "YUV709 to RGB709"
->>>> +	 *
->>>> +	 * Selects the fixed-function CSC preset that converts YUV
->>>> +	 * (BT.709) colorimetry to RGB (BT.709).
->>>
->>> This selects the matrix that converts YCbCr into RGB
->>> according to the BT.709 coefficients.
->>>    
->>>> +	 */
->>>> +	DRM_COLOROP_CSC_FF_YUV709_RGB709,
->>>> +
->>>> +	/**
->>>> +	 * @DRM_COLOROP_CSC_FF_YUV2020_RGB2020:
->>>> +	 *
->>>> +	 * enum string "YUV2020 to RGB2020"
->>>> +	 *
->>>> +	 * Selects the fixed-function CSC preset that converts YUV
->>>> +	 * (BT.2020) colorimetry to RGB (BT.2020).
->>>
->>> This selects the matrix that converts YCbCr into RGB
->>> according to the BT.2020 non-constant luminance coefficients.
->>>    
->>>> +	 */
->>>> +	DRM_COLOROP_CSC_FF_YUV2020_RGB2020,
->>>> +
->>>> +	/**
->>>> +	 * @DRM_COLOROP_CSC_FF_RGB709_RGB2020:
->>>> +	 *
->>>> +	 * enum string "RGB709 to RGB2020"
->>>> +	 *
->>>> +	 * Selects the fixed-function CSC preset that converts RGB
->>>> +	 * (BT.709) colorimetry to RGB (BT.2020).
->>>
->>> This selects the matrix that converts optical RGB from BT.709 primaries
->>> to BT.2020 primaries.
->>>    
->>
->> Ack on the documentation.
->>
->>>> +	 */
->>>> +	DRM_COLOROP_CSC_FF_RGB709_RGB2020,
->>>> +
->>>> +	/**
->>>> +	 * @DRM_COLOROP_CSC_FF_COUNT:
->>>> +	 *
->>>> +	 * enum value denoting the size of the enum
->>>> +	 */
->>>> +	DRM_COLOROP_CSC_FF_COUNT
->>>> +};
->>>> +
->>>>    /**
->>>>     * struct drm_colorop_state - mutable colorop state
->>>>     */
->>>> @@ -183,6 +237,13 @@ struct drm_colorop_state {
->>>>    	 */
->>>>    	struct drm_property_blob *data;
->>>>    
->>>> +	/**
->>>> +	 * @csc_ff_type:
->>>> +	 *
->>>> +	 * Type of Fixed function CSC.
->>>> +	 */
->>>> +	enum drm_colorop_csc_ff_type csc_ff_type;
->>>> +
->>>>    	/** @state: backpointer to global drm_atomic_state */
->>>>    	struct drm_atomic_state *state;
->>>>    };
->>>> @@ -368,6 +429,13 @@ struct drm_colorop {
->>>>    	 */
->>>>    	struct drm_property *data_property;
->>>>    
->>>> +	/**
->>>> +	 * @csc_ff_type_property:
->>>> +	 *
->>>> +	 * Sub-type for DRM_COLOROP_CSC_FF type.
->>>> +	 */
->>>> +	struct drm_property *csc_ff_type_property;
->>>> +
->>>>    	/**
->>>>    	 * @next_property:
->>>>    	 *
->>>> @@ -424,6 +492,9 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
->>>>    				 uint32_t lut_size,
->>>>    				 enum drm_colorop_lut3d_interpolation_type interpolation,
->>>>    				 uint32_t flags);
->>>> +int drm_plane_colorop_csc_ff_init(struct drm_device *dev, struct drm_colorop *colorop,
->>>> +				  struct drm_plane *plane, const struct drm_colorop_funcs *funcs,
->>>> +				  u64 supported_csc_ff, uint32_t flags);
->>>>    
->>>>    struct drm_colorop_state *
->>>>    drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
->>>> @@ -480,6 +551,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_ty
->>>>    
->>>>    const char *
->>>>    drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
->>>> +const char *drm_get_colorop_csc_ff_type_name(enum drm_colorop_csc_ff_type type);
->>>>    
->>>>    void drm_colorop_set_next_property(struct drm_colorop *colorop, struct drm_colorop *next);
->>>>    
->>>> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
->>>> index 3693d82b5279..f7808e7ea984 100644
->>>> --- a/include/uapi/drm/drm_mode.h
->>>> +++ b/include/uapi/drm/drm_mode.h
->>>> @@ -968,6 +968,19 @@ enum drm_colorop_type {
->>>>    	 *         color = lut3d[index]
->>>>    	 */
->>>>    	DRM_COLOROP_3D_LUT,
->>>> +
->>>> +	/**
->>>> +	 * @DRM_COLOROP_CSC_FF:
->>>> +	 *
->>>> +	 * enum string "CSC Fixed-Function"
->>>> +	 *
->>>> +	 * A fixed-function Color Space Conversion block where the coefficients
->>>> +	 * are not programmable but selected from predefined hardware modes via
->>>> +	 * the CSC_FF_TYPE enum property. The driver advertises the supported
->>>> +	 * CSC modes through this property.
->>>
->>> This would be a lot more obvious if it was called a "fixed matrix"
->>> operation or such. The current wording never mentions "matrix".
->>>    
->>
->> Ack.
->>
->> I also wanted throw this question out there. Since we have introduced
->> YUV to RGB conversion colorop which essentially replaces the color
->> encoding property, would this also be the right time to bring in
->> something to replace the color range property.
-> 
-> Yes.
-> 
->> I recall Harry mentioning in the cover letter of the original series
->> that he was working on something along those lines.
-> 
-> Reading Harry's latest blog post it sounds he has done similar work as
-> you.
-> 
-> Harry's blog link seems dead, but the post is available at
-> https://planet.freedesktop.org/
-> titled "Harry Wentland: Plane Color Pipeline, CSC, 3D LUT, and KWin"
-> with links to patches.
-> 
-
-I will have a look at it, thank you.
-
-==
-Chaitanya
-
-> 
-> Thanks,
-> pq
-> 
->>
->> ==
->> Chaitanya
->>
->>>> +	 */
->>>> +	DRM_COLOROP_CSC_FF,
->>>> +
->>>>    };
->>>>    
->>>>    /**
->>>
->>> Thanks,
->>> pq
->>
-> 
-
+T24gTW9uLCAyMDI2LTAzLTE2IGF0IDA2OjIxICswMDAwLCBLYW5kcGFsLCBTdXJhaiB3cm90ZToN
+Cj4gPiBTdWJqZWN0OiBbUEFUQ0ggMi8yXSBkcm0vaTkxNS9wc3I6IENvbXB1dGUgcHNyX2VudHJ5
+X3NldHVwX2ZyYW1lcw0KPiA+IGludG8NCj4gPiBpbnRlbF9jcnRjX3N0YXRlDQo+ID4gDQo+ID4g
+UHNyX2VudHJ5X3NldHVwX2ZyYW1lcyBpcyBjdXJyZW50bHkgY29tcHV0ZWQgZGlyZWN0bHkgaW50
+byBzdHJ1Y3QNCj4gDQo+IFNob3VsZCB0aGlzIGJlIFBTUiBlbnRyeV9zZXR1cF9mcmFtZXMuIFNp
+bmNlIFBzcl9lbnRyeV9zZXR1cF9mcmFtZXMNCj4gZG9lcyBub3QgZXhpc3QuDQo+IFdpdGggdGhh
+dCBmaXhlZCBMR1RNLA0KPiBSZXZpZXdlZC1ieTogU3VyYWogS2FuZHBhbCA8c3VyYWoua2FuZHBh
+bEBpbnRlbC5jb20+DQoNClRoYW5rIHlvdSBTdXJhaiBmb3IgdGhlIHJldmlldy4gVGhlc2UgYXJl
+IG5vdyBwdXNoZWQgdG8gZHJtLWludGVsLW5leHQuDQoNCkJSLA0KSm91bmkgSMO2Z2FuZGVyDQoN
+Cj4gDQo+ID4gaW50ZWxfZHA6aW50ZWxfcHNyOmVudHJ5X3NldHVwX2ZyYW1lcy4gVGhpcyBjYXVz
+ZXMgYSBwcm9ibGVtIGlmDQo+ID4gbW9kZSBjaGFuZ2UNCj4gPiBnZXRzIHJlamVjdGVkIGFmdGVy
+IFBTUiBjb21wdXRlIGNvbmZpZzogUHNyX2VudHJ5X3NldHVwX2ZyYW1lcw0KPiA+IGNvbXB1dGVk
+IGZvcg0KPiA+IHRoaXMgcmVqZWN0ZWQgc3RhdGUgaXMgaW4gaW50ZWxfZHA6aW50ZWxfcHNyOmVu
+dHJ5X3NldHVwX2ZyYW1lLiBGaXgNCj4gPiB0aGlzIGJ5DQo+ID4gY29tcHV0aW5nIGl0IGludG8g
+aW50ZWxfY3J0Y19zdGF0ZSBhbmQgY29weSB0aGUgdmFsdWUgaW50bw0KPiA+IGludGVsX2RwOmlu
+dGVsX3BzcjplbnRyeV9zZXR1cF9mcmFtZXMgb24gUFNSIGVuYWJsZS4NCj4gPiANCj4gPiBGaXhl
+czogMmI5ODFkNTdlNDgwICgiZHJtL2k5MTUvZGlzcGxheTogU3VwcG9ydCBQU1IgZW50cnkgVlND
+DQo+ID4gcGFja2V0IHRvIGJlDQo+ID4gdHJhbnNtaXR0ZWQgb25lIGZyYW1lIGVhcmxpZXIiKQ0K
+PiA+IENjOiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFAaW50ZWwuY29tPg0KPiA+IENjOiA8c3Rh
+YmxlQHZnZXIua2VybmVsLm9yZz4gIyB2Ni44Kw0KPiA+IFNpZ25lZC1vZmYtYnk6IEpvdW5pIEjD
+tmdhbmRlciA8am91bmkuaG9nYW5kZXJAaW50ZWwuY29tPg0KPiA+IC0tLQ0KPiA+IMKgZHJpdmVy
+cy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmggfCAxICsNCj4gPiDC
+oGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmPCoMKgwqDCoMKgwqDCoMKg
+wqDCoCB8IDUgKysrLS0NCj4gPiDCoDIgZmlsZXMgY2hhbmdlZCwgNCBpbnNlcnRpb25zKCspLCAy
+IGRlbGV0aW9ucygtKQ0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+IGIvZHJpdmVycy9ncHUvZHJtL2k5
+MTUvZGlzcGxheS9pbnRlbF9kaXNwbGF5X3R5cGVzLmgNCj4gPiBpbmRleCBlMTg5ZjhjMzljY2Iu
+LmQzYTlhY2U0YzlkMSAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNw
+bGF5L2ludGVsX2Rpc3BsYXlfdHlwZXMuaA0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1
+L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBlcy5oDQo+ID4gQEAgLTExODgsNiArMTE4OCw3IEBA
+IHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRlIHsNCj4gPiDCoAl1MzIgZGMzY29fZXhpdGxpbmU7DQo+
+ID4gwqAJdTE2IHN1X3lfZ3JhbnVsYXJpdHk7DQo+ID4gwqAJdTggYWN0aXZlX25vbl9wc3JfcGlw
+ZXM7DQo+ID4gKwl1OCBlbnRyeV9zZXR1cF9mcmFtZXM7DQo+ID4gwqAJY29uc3QgY2hhciAqbm9f
+cHNyX3JlYXNvbjsNCj4gPiANCj4gPiDCoAkvKg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dw
+dS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gYi9kcml2ZXJzL2dwdS9kcm0vaTkx
+NS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+ID4gaW5kZXggN2UwZTRjM2JmOTg1Li5jMTMxMTZlNmYx
+N2YgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9w
+c3IuYw0KPiA+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcHNyLmMN
+Cj4gPiBAQCAtMTcxNiw3ICsxNzE2LDcgQEAgc3RhdGljIGJvb2wgX3Bzcl9jb21wdXRlX2NvbmZp
+ZyhzdHJ1Y3QNCj4gPiBpbnRlbF9kcA0KPiA+ICppbnRlbF9kcCwNCj4gPiDCoAllbnRyeV9zZXR1
+cF9mcmFtZXMgPQ0KPiA+IGludGVsX3Bzcl9lbnRyeV9zZXR1cF9mcmFtZXMoaW50ZWxfZHAsDQo+
+ID4gY29ubl9zdGF0ZSwgYWRqdXN0ZWRfbW9kZSk7DQo+ID4gDQo+ID4gwqAJaWYgKGVudHJ5X3Nl
+dHVwX2ZyYW1lcyA+PSAwKSB7DQo+ID4gLQkJaW50ZWxfZHAtPnBzci5lbnRyeV9zZXR1cF9mcmFt
+ZXMgPQ0KPiA+IGVudHJ5X3NldHVwX2ZyYW1lczsNCj4gPiArCQljcnRjX3N0YXRlLT5lbnRyeV9z
+ZXR1cF9mcmFtZXMgPQ0KPiA+IGVudHJ5X3NldHVwX2ZyYW1lczsNCj4gPiDCoAl9IGVsc2Ugew0K
+PiA+IMKgCQljcnRjX3N0YXRlLT5ub19wc3JfcmVhc29uID0gIlBTUiBzZXR1cCB0aW1pbmcgbm90
+DQo+ID4gbWV0IjsNCj4gPiDCoAkJZHJtX2RiZ19rbXMoZGlzcGxheS0+ZHJtLA0KPiA+IEBAIC0x
+ODE0LDcgKzE4MTQsNyBAQCBzdGF0aWMgYm9vbA0KPiA+IGludGVsX3Bzcl9uZWVkc193YV8xODAz
+NzgxODg3NihzdHJ1Y3QNCj4gPiBpbnRlbF9kcCAqaW50ZWxfZHAswqAgew0KPiA+IMKgCXN0cnVj
+dCBpbnRlbF9kaXNwbGF5ICpkaXNwbGF5ID0NCj4gPiB0b19pbnRlbF9kaXNwbGF5KGludGVsX2Rw
+KTsNCj4gPiANCj4gPiAtCXJldHVybiAoRElTUExBWV9WRVIoZGlzcGxheSkgPT0gMjAgJiYgaW50
+ZWxfZHAtDQo+ID4gPiBwc3IuZW50cnlfc2V0dXBfZnJhbWVzID4gMCAmJg0KPiA+ICsJcmV0dXJu
+IChESVNQTEFZX1ZFUihkaXNwbGF5KSA9PSAyMCAmJiBjcnRjX3N0YXRlLQ0KPiA+ID4gZW50cnlf
+c2V0dXBfZnJhbWVzID4NCj4gPiArMCAmJg0KPiA+IMKgCQkhY3J0Y19zdGF0ZS0+aGFzX3NlbF91
+cGRhdGUpOw0KPiA+IMKgfQ0KPiA+IA0KPiA+IEBAIC0yMTkwLDYgKzIxOTAsNyBAQCBzdGF0aWMg
+dm9pZCBpbnRlbF9wc3JfZW5hYmxlX2xvY2tlZChzdHJ1Y3QNCj4gPiBpbnRlbF9kcA0KPiA+ICpp
+bnRlbF9kcCwNCj4gPiDCoAlpbnRlbF9kcC0+cHNyLnBrZ19jX2xhdGVuY3lfdXNlZCA9IGNydGNf
+c3RhdGUtDQo+ID4gPnBrZ19jX2xhdGVuY3lfdXNlZDsNCj4gPiDCoAlpbnRlbF9kcC0+cHNyLmlv
+X3dha2VfbGluZXMgPSBjcnRjX3N0YXRlLQ0KPiA+ID5hbHBtX3N0YXRlLmlvX3dha2VfbGluZXM7
+DQo+ID4gwqAJaW50ZWxfZHAtPnBzci5mYXN0X3dha2VfbGluZXMgPSBjcnRjX3N0YXRlLQ0KPiA+
+ID5hbHBtX3N0YXRlLmZhc3Rfd2FrZV9saW5lczsNCj4gPiArCWludGVsX2RwLT5wc3IuZW50cnlf
+c2V0dXBfZnJhbWVzID0gY3J0Y19zdGF0ZS0NCj4gPiA+ZW50cnlfc2V0dXBfZnJhbWVzOw0KPiA+
+IA0KPiA+IMKgCWlmICghcHNyX2ludGVycnVwdF9lcnJvcl9jaGVjayhpbnRlbF9kcCkpDQo+ID4g
+wqAJCXJldHVybjsNCj4gPiAtLQ0KPiA+IDIuNDMuMA0KPiANCg0K
