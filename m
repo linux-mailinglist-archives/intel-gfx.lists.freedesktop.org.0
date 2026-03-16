@@ -2,64 +2,134 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNyNMyb1t2mfXQEAu9opvQ
+	id UIhqKyv1t2mfXQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 13:18:46 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 13:18:51 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 449512995B4
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 13:18:46 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E5F2995C9
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 13:18:51 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B84A610E50F;
-	Mon, 16 Mar 2026 12:18:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DB35010E519;
+	Mon, 16 Mar 2026 12:18:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dfgmTiMR";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="YMbihowt";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="g/RQt8/Z";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="YMbihowt";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="g/RQt8/Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1AAE310E50F;
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 405E110E513
+ for <intel-gfx@lists.freedesktop.org>; Mon, 16 Mar 2026 12:18:46 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id DC46F5BD1A;
  Mon, 16 Mar 2026 12:18:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773663524; x=1805199524;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=90hjf0MEXRpeHMZMqInoGrGEBPR8MAoihjOw8CL02/Q=;
- b=dfgmTiMR93XPaF5vTYsxLWp4S6j47c4czN4Bt5YeDgFs67HuJETOT0pe
- XbFW+YRivHpTTH9vQ8kKVa9DmR7N4bIUa1Mr2tECyYU1af7hNvdIsDqtk
- TmGIOijpDpP4rgzKXUlJGHSKPbFKTHaqocrXF64b7EbCLq3YOnrPoNQE0
- Jwpi5eznX03f5avZ5aSDJ1nN9AtoHCxa0HYsxv1e+TRaIqevF1BUM9ckX
- wkY4Fh9JkZqDDdIqrzGpenCKq+nbVL6/hnwqCM6lLGvCydmKzKG5iEel5
- qQwVKhq5YNAP4weype3+G3+FtwFKqDInxrYltjza15AmEkg/Wuf59ORFC A==;
-X-CSE-ConnectionGUID: wMyp9lNHSJmd3QAO9UQZPg==
-X-CSE-MsgGUID: +nms/sTiR7WqH4A5be5M8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11730"; a="86152275"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="86152275"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 05:18:44 -0700
-X-CSE-ConnectionGUID: l+QOKdpZRG6BWTTW/1nAeQ==
-X-CSE-MsgGUID: xW3d8mmuR/ihfJsBz/uOtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="226359366"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.238])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Mar 2026 05:18:42 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [CI] drm/i915/display: change pipe allocation order for discrete
- platforms
-Date: Mon, 16 Mar 2026 14:18:37 +0200
-Message-ID: <20260316121837.1264876-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1773663524; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=mB9Tj05DF4lv5T+QxlQXo7H+zML20YMLhiJtCrtfPgA=;
+ b=YMbihowtfo2GjiPz4aQmTrHixBFJuyIjMLqNHhsnSvrrdDJ0D5vtThpK/yJ10whM+FbnY1
+ HAHJF40UoFuuE5nEvpWV6ZIyU4S4IUF41cObxCLBHCBglZG/a1hGvrO51UrAMhZU7mk9wi
+ VID50r/T/huXYCy1Hib/TxbEVvrpx9U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1773663524;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=mB9Tj05DF4lv5T+QxlQXo7H+zML20YMLhiJtCrtfPgA=;
+ b=g/RQt8/ZJPi7TiVJ91ZFWYt4v0Yxn2FFupdXKQm44etrzj5XjgthDIDoLpuKeNr+xbkGHP
+ qFFWC4hIG7IrKsAA==
+Authentication-Results: smtp-out2.suse.de;
+ dkim=pass header.d=suse.de header.s=susede2_rsa header.b=YMbihowt;
+ dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="g/RQt8/Z"
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1773663524; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=mB9Tj05DF4lv5T+QxlQXo7H+zML20YMLhiJtCrtfPgA=;
+ b=YMbihowtfo2GjiPz4aQmTrHixBFJuyIjMLqNHhsnSvrrdDJ0D5vtThpK/yJ10whM+FbnY1
+ HAHJF40UoFuuE5nEvpWV6ZIyU4S4IUF41cObxCLBHCBglZG/a1hGvrO51UrAMhZU7mk9wi
+ VID50r/T/huXYCy1Hib/TxbEVvrpx9U=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1773663524;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=mB9Tj05DF4lv5T+QxlQXo7H+zML20YMLhiJtCrtfPgA=;
+ b=g/RQt8/ZJPi7TiVJ91ZFWYt4v0Yxn2FFupdXKQm44etrzj5XjgthDIDoLpuKeNr+xbkGHP
+ qFFWC4hIG7IrKsAA==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 720114273B;
+ Mon, 16 Mar 2026 12:18:44 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 8palGiT1t2k8VAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Mon, 16 Mar 2026 12:18:44 +0000
+Message-ID: <9b3354fe-ff49-4436-9f36-2a19eaf2918c@suse.de>
+Date: Mon, 16 Mar 2026 13:18:44 +0100
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915/fbdev: fix link failure without FBDEV emulation
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Arnd Bergmann <arnd@kernel.org>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Uma Shankar <uma.shankar@intel.com>,
+ Mika Kahola <mika.kahola@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: Arnd Bergmann <arnd@arndb.de>, =?UTF-8?Q?Jouni_H=C3=B6gander?=
+ <jouni.hogander@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+References: <20260304083701.724908-1-arnd@kernel.org>
+ <c9fe5e38-de78-45f3-82ae-adf0996a7aa1@suse.de>
+Content-Language: en-US
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <c9fe5e38-de78-45f3-82ae-adf0996a7aa1@suse.de>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -4.51
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,136 +144,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS(0.00)[m:arnd@kernel.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:uma.shankar@intel.com,m:mika.kahola@intel.com,m:ville.syrjala@linux.intel.com,m:vinod.govindapillai@intel.com,m:arnd@arndb.de,m:jouni.hogander@intel.com,m:chaitanya.kumar.borah@intel.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[17];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.de:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 449512995B4
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:dkim,suse.de:mid,suse.com:url]
+X-Rspamd-Queue-Id: 58E5F2995C9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-When big joiner is enabled, it reserves the adjacent pipe as the
-secondary pipe. This happens without the user space knowing, and
-subsequent attempts at using the CRTC with that pipe will fail. If the
-user space does not have a coping mechanism, i.e. trying another CRTC,
-this leads to a black screen.
+Hi
 
-Try to reduce the impact of the problem on discrete platforms by mapping
-the CRTCs to pipes in order A, C, B, and D. If the user space reserves
-CRTCs in order, this should trick it to using pipes that are more likely
-to be available for and after joining.
+Am 04.03.26 um 09:43 schrieb Thomas Zimmermann:
+> Hi
+>
+> Am 04.03.26 um 09:36 schrieb Arnd Bergmann:
+>> From: Arnd Bergmann <arnd@arndb.de>
+>>
+>> If CONFIG_DRM_FBDEV_EMULATION is disabled but CONFIG_FRAMEBUFFER_CONSOLE
+>> is turned on, the i915 driver now fails to link:
+>>
+>> ERROR: modpost: "intel_fbdev_fb_prefer_stolen" 
+>> [drivers/gpu/drm/i915/i915.ko] undefined!
+>>
+>> Fix the contition to include a check for the symbol that controls 
+>> compilation
+>> of intel_fbdev_fb.c.
+>>
+>> Fixes: 94c7d2861292 ("drm/i915/fbdev: Extract 
+>> intel_fbdev_fb_prefer_stolen()")
+>> Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+>> ---
+>>   drivers/gpu/drm/i915/i915_initial_plane.c | 3 ++-
+>>   1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c 
+>> b/drivers/gpu/drm/i915/i915_initial_plane.c
+>> index 5594548f51d8..390a9248d631 100644
+>> --- a/drivers/gpu/drm/i915/i915_initial_plane.c
+>> +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+>> @@ -115,7 +115,8 @@ initial_plane_vma(struct drm_i915_private *i915,
+>>        * important and we should probably use that space with FBC or 
+>> other
+>>        * features.
+>>        */
+>> -    if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+>> +    if (IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
+>> +        IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
+>
+> It's possible to run fbdev without the console. So if I'm not 
+> mistaken, only CONFIG_DRM_FBDEV_EMULATION would be correct.
 
-Limit this to discrete platforms, which have four pipes, and no eDP, a
-combination that should benefit the most with least drawbacks.
+Did anyone pick up this fix?
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Best regards
+Thomas
 
----
+>
+> Best regards
+> Thomas
+>
+>
+>>           mem == i915->mm.stolen_region &&
+>>           !intel_fbdev_fb_prefer_stolen(&i915->drm, size)) {
+>>           drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of 
+>> stolen, discarding\n");
+>
 
-v2: Also remove WARN_ON()
-
-v3: Limit to discrete
-
-v4: Revamp
-
-v5: Don't screw up the loop variable, dummy
-
-We've fixed a ton of IGT assumptions on CRTC index == pipe, resending
-the patch for CI to gauge where we're at.
----
- drivers/gpu/drm/i915/display/intel_crtc.c    | 29 ++++++++++++++++++--
- drivers/gpu/drm/i915/display/intel_display.c |  2 ++
- 2 files changed, 28 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index b8189cd5d864..c7b6ebe8f3e2 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -393,8 +393,6 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 
- 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
- 
--	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
--
- 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
- 
-@@ -406,6 +404,31 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 	return ret;
- }
- 
-+#define HAS_PIPE(display, pipe) (DISPLAY_RUNTIME_INFO(display)->pipe_mask & BIT(pipe))
-+
-+/*
-+ * Expose the pipes in order A, C, B, D on discrete platforms to trick user
-+ * space into using pipes that are more likely to be available for both a) user
-+ * space if pipe B has been reserved for the joiner, and b) the joiner if pipe A
-+ * doesn't need the joiner.
-+ *
-+ * Swap pipes B and C only if both are available i.e. not fused off.
-+ */
-+static enum pipe reorder_pipe(struct intel_display *display, enum pipe pipe)
-+{
-+	if (!display->platform.dgfx || !HAS_PIPE(display, PIPE_B) || !HAS_PIPE(display, PIPE_C))
-+		return pipe;
-+
-+	switch (pipe) {
-+	case PIPE_B:
-+		return PIPE_C;
-+	case PIPE_C:
-+		return PIPE_B;
-+	default:
-+		return pipe;
-+	}
-+}
-+
- int intel_crtc_init(struct intel_display *display)
- {
- 	enum pipe pipe;
-@@ -415,7 +438,7 @@ int intel_crtc_init(struct intel_display *display)
- 		    INTEL_NUM_PIPES(display), str_plural(INTEL_NUM_PIPES(display)));
- 
- 	for_each_pipe(display, pipe) {
--		ret = __intel_crtc_init(display, pipe);
-+		ret = __intel_crtc_init(display, reorder_pipe(display, pipe));
- 		if (ret)
- 			return ret;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index b18ce0c36a64..f0843de362fb 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5971,6 +5971,8 @@ static int intel_atomic_check_joiner(struct intel_atomic_state *state,
- 		 * This works because the crtcs are created in pipe order,
- 		 * and the hardware requires primary pipe < secondary pipe as well.
- 		 * Should that change we need to rethink the logic.
-+		 *
-+		 * FIXME: What about with reordered pipes?
- 		 */
- 		if (WARN_ON(drm_crtc_index(&primary_crtc->base) >
- 			    drm_crtc_index(&secondary_crtc->base)))
 -- 
-2.47.3
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+
 
