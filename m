@@ -2,166 +2,130 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6LTBD0dRuGmKcAEAu9opvQ
+	id +ENYArdnuGlEdgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 19:51:51 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 21:27:35 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1B5829F4D2
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 19:51:50 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACB082A0303
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 21:27:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15DA910E4A7;
-	Mon, 16 Mar 2026 18:51:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E069010E4C0;
+	Mon, 16 Mar 2026 20:27:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="D5kY6H4a";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Alrf+2ZC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from BYAPR05CU005.outbound.protection.outlook.com
- (mail-westusazon11010064.outbound.protection.outlook.com [52.101.85.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 937B410E34E;
- Mon, 16 Mar 2026 18:51:47 +0000 (UTC)
+Received: from PH0PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11011056.outbound.protection.outlook.com [40.107.208.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BB31210E3E4;
+ Mon, 16 Mar 2026 20:27:28 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=EmXOvNQ/XUhP5CpjNlYsP3MnSy3kGNb94avE2tXZAMthVbKCCMjyCRdbT2J3SpyCVYPI0eXf1H7N1Sknha47XaoU+2Zwkk0DI/PaVbv9AdMsN3oHUDnL6HU5OCMOHP5Dd23uUETxl+plzbWgYhwHIUKbvsDtEcdQDt3O8RPEEFMmAyowERmZxWRiXIkLsw4vpmW2SLrFT3/sZlpaQEfMwDBbwDuuhUy0QhjfMuKtcWLipVU56+0ApCcEYb7QU1n0t0om3+vUi1lFkwW3WJVbmvnHmVmGIVEv6nAzINLKJljapQD5zOoAqF8KN4oUkrPKH7GJGkPHr8n5uyeeVdgNWw==
+ b=e49udXZ9a/xaX0RXlncKfgc0MX7P3XF5b7o7SoKL7h3R+6h0j7CzQvYgjgjDZbeS+SZWeBYQozOlGdHavnGRODIlGIIgodQUWo522K5JY7qFPt82pkg1psTdcp1REPNu9g/gczzOh+RyuKIH2LRdlKCyRKEA+hl7fjzDhBGEget9J9ifionaOKXPbviYfRbUKzM4dE7cKSfknuaXkphyifpmJ39pgOGrSF6zzbKSUOdQ4NdrhL0R0Mv50nrXxt87b4HBlcR7Mi+0bTQ1GL+7RSEndeDbvFrk6hihilPbgZZq+Jkdv6NgRsEYketXFBgIVEdGm9aTFkDGvp30aY5WSQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a40p37aorfQFfqM2sAf4GszQN2rog8qPXY3HgGEmiSA=;
- b=aODCH2yhmVolANpOAusTmrysBA4+7Fil8Me3wRCIOQhzd6Ocz72/jBc5r6AwyK5jeaZ5aogaMrZxVSHXm00SOP1weH3s8cH6bGy5ilO8c5HYAG9w1YnAI8jqs1ML7shKEXekoOZ5GLu+QApwmEbndmr+tkbG+/lLb5uIAQCKHGJzMqtrElk3UvsPh+hrgOJLF5Yfk8X6fYlH1rXP4g0FeuyGKucKT2dpp8cwCVFvCGJm4sBBZK+QGDlOY+AOm5X2jkZnYePodFmSyquWStvqW86BhvxPOZ/4fpEUB35kcej5y2MFjEwIRXNg/+gHOuD1UEtbPj8hDWf8l6p0ChC7lQ==
+ bh=p2Q9U4nOt5xSn5bsEzaMhE24wWKf079WQKeXu0l8qyY=;
+ b=F3bbGs1m79qJgz6qgd/61+bcP6HuT3DS+L23okEbtURJ8SHTc/Fp6MvSKGGEnthv6pKXkKhcpOdHXamMmouNVMlva5yw22FBgTSnoBvcMqtMPnDHHdJCsONTyLrInAzwf0ItJEHaHO6OynslbGyYtJrHk1TkEdWYevRAmFFkYmIRLm5Lr9kgTVIJsXud3X2p3oNq8XlGCPhF20yphTiCkrXr4uAPX5m3T5lrlAn89+27fThXEJ0nqRSqiqsxCCJ+fOwuovJGaUp8DN8m09ZA/6ZbuvyO6z6mOaQgtrDrKwnE3r//K3o3GsN284cMABYeqW/7GFMLn3789AawNHlLZA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a40p37aorfQFfqM2sAf4GszQN2rog8qPXY3HgGEmiSA=;
- b=D5kY6H4aYBGMNfSRZyNrzxa3/OP74kerpdWaC8K1NiyLmKlKet21tIfGuoSPb2pf5kcanXdjmdFvejXqtB0iacsPPuezUdGGShVkTpIJap8ylVvB4wjXPrfNZ7bKl2BnwxHDg19HzBXZuyj2XN9ualMmD4UL3MthTYGaEq1ebpHB+eOnC035wIuFjNMgMeAbPG7f7EVFlTkarlJ3iV0mUpB5rK8uAYwHTzdAllK2lLbN2N98E1mgqiVmxRwkVMblTfriThU+qxKnBGBNHerfBQOnPgAFEPj+hNZBCn8riFpElgb5oHmV4IpI1t9HbKe5FwBmnRrYjpmZ4XV9xP414A==
+ bh=p2Q9U4nOt5xSn5bsEzaMhE24wWKf079WQKeXu0l8qyY=;
+ b=Alrf+2ZCLszV7h8rH0LYfg4IMQBXcJzZ8pLbiaTe4HbJygDsxyUh/EkzP4mGgAQvCGmDlyUl/G4gYzdFYY67c/hQWPgHfO2Ikokmqo57FyUBeHZ62jy9FSs2375+DGsXuLKXdgNcPFfEq4LfFogEfR6dSvY4421xI8yCKV8eA8w=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com (2603:10b6:0:4b::8) by
- SN7PR12MB6692.namprd12.prod.outlook.com (2603:10b6:806:270::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.14; Mon, 16 Mar
- 2026 18:51:42 +0000
-Received: from DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8]) by DM3PR12MB9416.namprd12.prod.outlook.com
- ([fe80::8cdd:504c:7d2a:59c8%7]) with mapi id 15.20.9723.016; Mon, 16 Mar 2026
- 18:51:42 +0000
-Message-ID: <efc10902-2ee9-4cb3-a4cc-442998eef01a@nvidia.com>
-Date: Mon, 16 Mar 2026 11:51:38 -0700
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5126.namprd12.prod.outlook.com (2603:10b6:208:312::8)
+ by PH0PR12MB8032.namprd12.prod.outlook.com (2603:10b6:510:26f::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
+ 2026 20:27:21 +0000
+Received: from BL1PR12MB5126.namprd12.prod.outlook.com
+ ([fe80::c3e7:1bc5:2b91:1cfe]) by BL1PR12MB5126.namprd12.prod.outlook.com
+ ([fe80::c3e7:1bc5:2b91:1cfe%4]) with mapi id 15.20.9723.016; Mon, 16 Mar 2026
+ 20:27:21 +0000
+Message-ID: <fb406515-8184-4e22-81a5-27d92a2114c8@amd.com>
+Date: Mon, 16 Mar 2026 16:27:16 -0400
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v12.1 1/1] rust: gpu: Add GPU buddy allocator bindings
-To: Alexandre Courbot <acourbot@nvidia.com>,
- Joel Fernandes <joelagnelf@nvidia.com>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, Alistair Popple <apopple@nvidia.com>,
- Timur Tabi <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
- <20260309135338.3919996-1-joelagnelf@nvidia.com>
- <20260309135338.3919996-2-joelagnelf@nvidia.com>
- <DH48DNAQCE0Z.2EX23VD27CQVX@nvidia.com>
 Content-Language: en-US
-From: John Hubbard <jhubbard@nvidia.com>
-In-Reply-To: <DH48DNAQCE0Z.2EX23VD27CQVX@nvidia.com>
+To: events@lists.x.org, xorg-devel@lists.x.org,
+ wayland-devel@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ mesa-dev@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ elections@x.org, members@x.org, xorg@lists.freedesktop.org
+From: Harry Wentland <harry.wentland@amd.com>
+Subject: Announcement: 2026 X.Org Foundation Election Candidates
 Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: SJ0PR03CA0130.namprd03.prod.outlook.com
- (2603:10b6:a03:33c::15) To DM3PR12MB9416.namprd12.prod.outlook.com
- (2603:10b6:0:4b::8)
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: YT4PR01CA0026.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:fe::11) To BL1PR12MB5126.namprd12.prod.outlook.com
+ (2603:10b6:208:312::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM3PR12MB9416:EE_|SN7PR12MB6692:EE_
-X-MS-Office365-Filtering-Correlation-Id: 423d3e59-c917-488d-203f-08de838d101d
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5126:EE_|PH0PR12MB8032:EE_
+X-MS-Office365-Filtering-Correlation-Id: 11c41b60-e8ba-4553-f29d-08de839a6d1d
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|7416014|1800799024|376014|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: LF0LwqIwrdtlzhbwFrVLo+DT/qaoQvb+S1w7yfX/XfBF5wE3wgxdF4lmmQUM7kGm6mfVOADXEdExvOZqLroTLKDpZR4AJRvmydeyKa1EnDrZOQVygKQ45W7yRLXacn9qTMqrqxDj0qpPzDZ5KXEeSJR6aNnFkRM7MDoSaO2EZebC31XAC+UDNLaViWpTef6MZo+Yfl41XDIKF5WgL0irPbDpSOHH6F3Isd6EG6vDheA85GTD8Xb0MfZDD7APb0iIUSEIwYIlmJLyFR71DLMWHfrmvI0PhJ8uNT9YyiLHLvK305hhiVoCh3LRbNXyD1cMIg2dZhcD/+bEpzoN+wAGsT6OAFc7/uH3XGyCCjKuHXyMnflBWE1plikG7QFaaLcEAQp3qXNEUX2NL0iuiXa2l8HrCwRiTv0sRr6XTGPWao4xNCort4K5Byft81RYTu1i053S44EpZVjeX/TTv4gMgzFgEQqh0qcFwWcKDE/0npFD8/AKiRGKX1fKZw9FAQNiiGnrYFVFJ+mFBdhkWApPSNVrXvflIM42aBVi3c337wz0tz7eDij7wSWyvRIN92IoxBxE3iaZvMIWE0pok1fBVUXPFLuWsrnk76oYR0wGH2qCaTxmwAY3McMArX8Ajd8EflIJGzVekcTIVojyQufdwdMIVyjTS0eSiGTCM9QIwTA87URYya4vh3zyS9CAXit50DuCRnEYIbsnr3LLU5MQVSTdowwcinv/t7eLn1fDqzU=
+ ARA:13230040|7416014|1800799024|376014|366016|56012099003|18002099003|921020; 
+X-Microsoft-Antispam-Message-Info: HrG30cK29w6BuhZ3BrBA1rtIuUFQ7US+MKd+6bPkB3ATUftjoQYZt5dh92usstUZMeTRVmg932WYbix5cTvgO2xU6R9uJ4zGXyVFL6qHAaxlE4GJEtJ7HrRYrptp7a0qDUrFhVag1Tm768CBY2Vx8OBVfIqSvza7Lvmz9UQ4oVbaM4H1IRPTYvxosC5TWuW3FXTZt46rJKIjSGz93xe+deid/if0WjS5mbGGbPeBOwZL2glqZiJAdDiyz9O0BhA0dSKlrgXZYj5saHmDJn2BNmGaEDM12LjTtCyqTZns8+teOQdLYK6IE5SWs98uJLG4rnwG5NsaR9r8WJ5Nnrm6TOKKLrNbQLTdvtj8STGlKlJsA+anHSAZINv76AdR9xFSIAMt6DlT8c28e9lQfq1w8kp7j2kZnQ+5EVQmr55s3OXjI8A69JR8GPpOsuKLxoko0uoZBulYdlYLrYB0H++bxHh24BCQ1VBn184Qc8Y1gpIZ+Flit/fB9OtPjztM3bZ5Lb67FRdXpbJx7uySC+AlumERinWxZ35DipBwnPkqrxnVOO71LP5tRZYocqISnZRqEnoJduuQp8VyqmTQ76FHPxzq9lZY2Oo4jFLQpywTMyPAOks7mmfdp8dhcHQlB13iOI7kcxCuMd8j9DltF2dU24xRxW4soZS9sjRsJZEdN75HMDXp455iDvx/cnZmVCOzQ6rCNv3c/8NNKQ8FHaHE2Gk0y1cQnEZqzjw/L5QMsYM=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PR12MB9416.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(7416014)(1800799024)(376014)(22082099003)(18002099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(7416014)(1800799024)(376014)(366016)(56012099003)(18002099003)(921020);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dktmSGpIWlZRSnRDWVB2Rkh6dDVXSVdFa3lUSVJQU2U5eUxZcGxVbjdYWU5s?=
- =?utf-8?B?cjZlQW5iUUMyUXhKcUdXRjZEOW43RGEyU0FWYXp1SWZiOTExaGhuenF4WUM5?=
- =?utf-8?B?RGRWSVVEUEQ0eEk3R2FPQk1MNFU4Q3haamlydmRKa1ArdThmVWNnZ0Y0ODNB?=
- =?utf-8?B?N0RFZWdVY25yQkFxOXlqRUZFbStuVDNCYmFBNjR0UmFIeDBLYStMUTdMR3o2?=
- =?utf-8?B?SGJwUi9kdUYyNTV3L0JnL3ovUzc4aFVtb1JIamRmNlBkLzZlazZYcU80Rndi?=
- =?utf-8?B?Z0wxUitLTXNPWmdFVlBlV04zQWZWUzBqeE9SY1MyZURDWWtPNDFDN1N3dTlQ?=
- =?utf-8?B?NzRLTzBPN2o4U3dNVU9Za29kc1A4bnJBeHlmOW9wU05wSXZpTDY1a21jbTQ4?=
- =?utf-8?B?SHZhd0IxT0h1aUpPSWJ6NVFvSkNtTkNBMmEyZXNvWGdVTmh2VVR4VE5nNGRo?=
- =?utf-8?B?aHNOK1hzZy9BeUZmR3FJTFhKdE9yNnkrUHM4VG51alBIbXdiWG9oWTlzbzN2?=
- =?utf-8?B?dUFEMDIvK3ZhdWhYWWdOUVI5cjNJQng0Rkl3Q2hjOThFQlhQYWVXcEtEZUdz?=
- =?utf-8?B?Qy9QNFBhbzNFWWloOEhZVEhvck5zSkZQdktFb1pJaVVtbDcrYXFBdEVodGVE?=
- =?utf-8?B?aC9RUXBJcE83V1RvSi9RdHJCSjVPMk1CSEFaQ2xSMnNvanlLS1pJRUxCVmtX?=
- =?utf-8?B?cnJONkgyY1I1dzNDRloxcldkdFBsdGRXUDBuT2JCdUpVdEY4UFFoYXA5QjUz?=
- =?utf-8?B?a2gwOWRZdVU0Mk1XNDJVZDVZdGpwUTZHZ3hKbTFOL0l6VTNQbDZDdW43VENa?=
- =?utf-8?B?ZjFkM2RxTEZoaHF1bEQ5V3Boakg2MVBYL1hEeGdndzRCQ0pjN1dkV3BQT3JT?=
- =?utf-8?B?c1B1V0ZDMnJVaVpPRGlNditVMmlvc21DMTBPM0Y2d0xSRnlYQUh2ZVpkNEpw?=
- =?utf-8?B?KzNVNXdFM01jS1JOMjZyU2xTbU9wYXl6eWplQlpCOUtUcjZ6Wng1QTdmNkli?=
- =?utf-8?B?c2lmdE15Z1llZHVWajhVZitCbk1ENDEzRXppVXNXdmxwNEtuRHp6emorL2Fm?=
- =?utf-8?B?UDBaZGQ0Y1dkSWRpbWhaKzFDeDNFYitRNUNKMjdaUmh2WStnQzNFc0Qzc052?=
- =?utf-8?B?YmQvc05uako5dVEzRVhFelhWVlllbUVkc3lyZ0JBU3FlS0xtWHJXNG9oSENn?=
- =?utf-8?B?K25DeVovS2ZjbkZaZ2tkYXI0cjRSdEZubzh2L1N6NlNxNWhKVFdKNjMwNCs2?=
- =?utf-8?B?Q25GRW9SMC95bFpmMlI3RTMrVFpYY2NZMkdIUXJlazhFekE0MG5TekJQQzdi?=
- =?utf-8?B?SnE3SlFjMXJRZEIrMVBxZlhUMzRxR0w4YStIdThqYWpWR2FPRm11OGMrU1U2?=
- =?utf-8?B?eitGS2pIUHdIWkNKMUhMbmNIUWFYM21ZdzZaaVlWK0ZVeXhRRWJRMjBXTW5M?=
- =?utf-8?B?RkVOMlhONUFXYmc2eHNSTHlQT241Yi9DTklJUVl1SUJRcnRTZWtkQ3VGTWtm?=
- =?utf-8?B?bWcrKzZuYUNxa1R1YzZRWURNcGQ1emwyOU4vT3R3N0V4Zy9UWjJFVGIrM1Zw?=
- =?utf-8?B?cis1TU04UDdTQmxjSXRuSlIrZGJ2Tkx2emp0akREUnhSWmVZbjVOV3VSditF?=
- =?utf-8?B?eCt0WmZRQXlSMVBkL0lpZlpOQ1IrbUxubVVaQUNjZEV2c0lreWZ3L1lDTE1q?=
- =?utf-8?B?dmpLQXlZRU1qL0RBQjgrNEN1QzZiUVkrOHlhOHIyc1hoRXVkbVBvNlZpcVBO?=
- =?utf-8?B?eWQ3ZHRETjQxWmp2RkVHSEJVeERRenpIZlhlWkVIbUZIMmRWYnhsaS8rRFlV?=
- =?utf-8?B?cTNiMEJaczRrRGJoREhpY052aUFIYW5nOXpTSENvSGZEb1F2VmttN214dEdN?=
- =?utf-8?B?Skk0R21EcVB1RkF1VVhxMXA5MnlnSktIOFdlOG1IQng2RXk3S2pmRmgyZnQ2?=
- =?utf-8?B?THpYVmt0Zmt5bnY0em9iSitPQVZhZk10alNQZ25UcmxJNVVFSktoMTRxVW5u?=
- =?utf-8?B?ckdKKzFLdFIySFJQTDM3T0dCVy9WNlV5ZFZHd3M3SDNiRUhtNStUZVdjTWho?=
- =?utf-8?B?OWpNM055UGorM1pWeDhjalVvZ00zUmxmallYaFZkS3ZKS0drcWFyckJkdWpz?=
- =?utf-8?B?a1k3Vm9zUVdZcUt2SzJZVFNlUHRyaHZ5ZTdjcXN3SS9KZVYyTXJrVUZoazlq?=
- =?utf-8?B?eUpOK1dWK3ZnWFdFaEVZVTFyd3dmdi9tNlUxOUNBemtoaEI2SG1YOUNvMW1P?=
- =?utf-8?B?LzlPakozS0c1VS9OS2UwcTgzZmFNbGd5d3V2bjJ2VU5YVk1UN3NML2FVVXp6?=
- =?utf-8?B?S1RuR2ZmNnpWS1JSN29oVWxWakdwMW1PWTZwSk9Cdm43Tm9ObUtRQT09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 423d3e59-c917-488d-203f-08de838d101d
-X-MS-Exchange-CrossTenant-AuthSource: DM3PR12MB9416.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bEhLczhZRFF2YmxPT25UdzlPa0Y0SmVoSmhQdTcwaDd5NUNRczRXTWkyK3JT?=
+ =?utf-8?B?bXlYK1VXeitkYWd0bTdGL2p1Q0lrVHRybWV0LzFmdnJlMWtaeUMvUWI4QnQx?=
+ =?utf-8?B?VGEvRlhITDliRTVzeGgwSHJYckNOWGw5WDE3cVlwcC81TTNCNXBPOWtCS1VJ?=
+ =?utf-8?B?cEY0QTVvU3A0ZHBCcERoa1JSQWlialFQdnU3TDRoOHRRYnJRcWpFcUxWc3Rh?=
+ =?utf-8?B?dTRZQ0YvMXNXVFFBalNsbFFzTUVZV2lwSGE1Z1ZNT1FXQ1NhU1BOYStaaXpt?=
+ =?utf-8?B?TndhK3dtOS9aQnd4WSsrZUFZZWYvMHBWVFNpRXYrbDA2T3pqeGVXTDR6K1Yx?=
+ =?utf-8?B?QTdLNW1taXBkZHlUR3NLeng5bDl4ZzRYOVJzM3l6amhmZzBXWGJKWkIrZDU0?=
+ =?utf-8?B?VEM3OXlidWsrNTFmTGYxK0pjTkFrYkpxelczdit3L2ZBVGxzQmlmaVFnTlNL?=
+ =?utf-8?B?ckt6SG5TaG5yM2FPR2o3ZFg1UTNnaXZBLzMyWXVOZzFOSldjNk1aL21rNmxC?=
+ =?utf-8?B?WUU5SkRLWjI4WEFSVmkrMXFUMzVQSjREYlVrMEFUVjBoTFh1S2s5VndBN3Zs?=
+ =?utf-8?B?NlpMYTJBRXJXQ2xsSTFIQUNOQ2x1THFUenpYVlZ1NkdmelpFREFueFZhaGwr?=
+ =?utf-8?B?ZnVwb2MzODZzQkZZV2REaXM4VUkyWDRMdHdCV09VYlVTZ1owM1VwTUQ5bEh5?=
+ =?utf-8?B?cGMycXlmWE9GSG9qODZSVHkrM3gxMmp0ckZkTisyc3ZSWG91SndhRjBrYkNO?=
+ =?utf-8?B?Sy92NWM0OTJIRjJYenBmYTNYK21UQlcyUVVtdXNPYkg2Q0hWNVdBU092L2Fj?=
+ =?utf-8?B?UUlCR0FmTUxXbmNLVXJ5NUI2dkNKeU5XZGw1c01hVWJRWk5pRTJveml6UjlE?=
+ =?utf-8?B?TjcyQUlobSs5QnFrSVlVL0FDRTFudk5qOTVjNk11OGJLdmtySXFCTWJVRlpQ?=
+ =?utf-8?B?eVp3NHZsZVZjbTVYR1J5Y2kxaVlsbEMzN2VYaTk5eFZFT3o3bzE5cnRVcDEz?=
+ =?utf-8?B?NFVwYUpEcFdrenpNWXMyWGpOb2hIUlpUQnlTWXBLK1ZSY0RZclNNWmg5NDhR?=
+ =?utf-8?B?Y1JqMHRTTWJuUnQxSGxKZXQ3VWN2SFZvK2RWbFo1MkQ2L0t2MW9KdnZHMkxW?=
+ =?utf-8?B?Sjg4a0hHcFhXNTQxL2RZWnpuS3FxSzBtaVlkNjU0YkNHWjI1dEFaTFlzVzF5?=
+ =?utf-8?B?Ri8yaGxsRWVoaGsxUWtuaVQyVXhzd05RUExmSmgxNEhlcFNaVCtOKzNKRy91?=
+ =?utf-8?B?MXVJWWhwTWR2a0tYcTdGRXduK09rckxwUjMxY3pUSmUzN29hR2FDaGJmajVy?=
+ =?utf-8?B?N05HTDJhYm1JUFZVL1U3V3E1UWpXSWgzNGc5YUdWZ1VaVUF2dFVzbXdIaFRV?=
+ =?utf-8?B?b2VkL3VSMFFWSUVBY1dWRldkS0tHYTVGSzdJZ1lmejQ1L2dZNmpqa2ZQdG0w?=
+ =?utf-8?B?UU8rSXUwUEpqMmpMUWFib3FUMnk4a1MzYkd4TWdGcnpQbHh5a2hmWGw1SFo3?=
+ =?utf-8?B?Ui9oU3JtNWlFbmpDYkZ5L2VMR25DVUk0bnJMRHM0KzBEWVhMcE5lTVQ1VzV1?=
+ =?utf-8?B?TnN6YlI1Sy8zTmwvY2ZVN3NDWThZeDhZdTJtK05Qd0YreHducDMvMXgzSXQr?=
+ =?utf-8?B?L3V4cXBMSTlkL21SUGpUNUFUUE5kMlRwbUErRHdNOTBGOWoyOFVZdnhSQkxx?=
+ =?utf-8?B?OXJFd0ZLZndVMGR5RSsySS96Y0h4dGg2ZVVidm1oQ1RWbTAxWi9MSVZPWnJk?=
+ =?utf-8?B?akR3dWNTR1k3aUVsSk40cXBpTXlNWUhTZFpCaHQ2Rkc1M095elFZOUJGYXdw?=
+ =?utf-8?B?RU5YdUorUEw4SDBLb1hacng2QnBRRVRCd3hhb2h0Z0hSSTVMYVd3QXY1KzZw?=
+ =?utf-8?B?aTFkOURIM3Z6WTZvVHEwWjJPMmFOSXRuNGExQnd4Qk9MeXU5VStENTBqd3hw?=
+ =?utf-8?B?WERteHVBMVlIYU1scHg2QTNoeFNXS1phaW1JazFneTVLUWhNUld4b2FFMGtE?=
+ =?utf-8?B?SDJydlZTQ0QzdGcyZlU3UG9jV3dBYzE0VmJ1WEJmT2VQZzk3Nm96R1QwckdW?=
+ =?utf-8?B?ZE9qQzVWcmQ3WENCYTN0TU9TNHE0QzV2ejJNcVFaamR0UmFGTU9qQ3A0ZUJj?=
+ =?utf-8?B?NGdBZ2QwNkc1bFJKWGxmNVMzRElveWdFTmVuMnMybnZFVW90MkFBZUJUa3Vp?=
+ =?utf-8?B?dmtYOXZJZEpLRXNrOTFjWTlhMll6SnZvUHVnWXlmRXVCSGIzcmYvTlhoMld0?=
+ =?utf-8?B?NFJmbTAvOXYxNTRtY3NpZnRUTEFjUUVxN3Z3ZEdsMnZIU3pzUzBqWE1CMEt0?=
+ =?utf-8?B?Q1YvdGVkTXZQai84YmpIWm5kT2dzbW82Qy8zN1djTXZqb2Q3azBBZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 11c41b60-e8ba-4553-f29d-08de839a6d1d
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5126.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 18:51:41.9357 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 20:27:21.3082 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: tmyNGhJZnNyZyASZb0vaSFW7eolts6fNf9D0oXlnu4dQ69F9XaGGWwuNGQ081EPAYOVZwFmFTgEP+HPrHAr4CA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB6692
+X-MS-Exchange-CrossTenant-UserPrincipalName: qTGGPSZocrpqQ0pAxkr80O5HjKO8TTtwv1nzIGI3qOCw0uGXOPl1UgQsX1Ao2O2fUijLhZn8dybEAUXAwCQ9LA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR12MB8032
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,62 +140,180 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	FROM_NEQ_ENVFROM(0.00)[jhubbard@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:mid,Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C1B5829F4D2
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_NONE(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[amd.com:+]
+X-Rspamd-Queue-Id: ACB082A0303
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 3/16/26 6:12 AM, Alexandre Courbot wrote:
-> On Mon Mar 9, 2026 at 10:53 PM JST, Joel Fernandes wrote:
-...
->> +//! // Create a 1GB buddy allocator with 4KB minimum chunk size.
->> +//! let buddy = GpuBuddy::new(GpuBuddyParams {
->> +//!     base_offset: 0,
->> +//!     physical_memory_size: SZ_1G as u64,
->> +//!     chunk_size: SZ_4K,
-> 
-> `chunk_size` is an interesting case. The C API uses a `u64`, but I think
-> we can reasonably consider that we won't ever need chunks larger than
-> 4GB (or can we :O). I'm actually ok with using a `usize` for this one.
-> 
-> One of the first things the C code does is throwing an error if it is
-> not a power of 2, so maybe we can even request an `Alignment`?
-> 
-> I'm a bit torn as to whether we should use a `u64` to conform with the C
-> API, but doing so would mean we cannot use an `Alignment`...
+To all X.Org Foundation Members:
 
-Alex, have you seen my Alignment patch [1], for that? It's sitting 
-around with only Miguel having responded, but seems like exactly
-what you're talking about here.
+The election for the X.Org Foundation Board of Directors will begin on March 23rd and end on April 13th.
 
-[1] https://lore.kernel.org/20260312031507.216709-3-jhubbard@nvidia.com
+The election will include a vote for a change in our bylaws to align our fiscal year with SFC's fiscal year and make the life of our treasurer a bit easier:
+https://gitlab.freedesktop.org/xorgfoundation/bylaws/-/merge_requests/3/diffs
 
-thanks,
--- 
-John Hubbard
+We have seven candidates who are running for four seats. They are (in alphabetical order):
 
+- Erik Faye-Lund
+- Mark Filion
+- Neal Gompa
+- Timur Kristóf
+- Manasi D Navare
+- Alyssa Rosenzweig
+- Simon Ser
+
+Attached below are the Personal Statements each candidate submitted for your consideration along with their Statements of Contribution that they submitted with the membership application. Please review each of the candidates' statements to help you decide whom to vote for during the upcoming election.
+
+If you have questions of the candidates, you should feel free to ask them here on the mailing list.
+
+The election committee will provide detailed instructions on how the voting system will work when the voting period begins.
+
+Please note: With the announcement of candidates the membership sign-up period also closes. It will re-open after the election.
+
+Cheers,
+Harry
+
+# Nominees (in alphabetical order)
+
+## Erik Faye-Lund
+
+__Current Affiliation:__ Collabora
+
+__Personal Statement:__
+
+Hey, I'm Erik and I work at Collabora as a principal engineer. My work there mostly evolves around Mesa, Panfrost, and open-source graphics in general. I also currently serve on the X.Org board.
+
+I've been in the graphics industry for over two decades now, and I have some experience with organizational work as well. I've been arranging demoscene parties since the late 90s, and are on the board of a Norwegian demoscene interest organization as well.
+
+If elected, I plan on trying to help out wherever I can. I have no big ambitions for radical change, but I'm also not opposed to modernizing things a bit where it makes sense.
+
+__Statement of Contribution:__
+
+I've been actively contributing to Mesa and the related projects since early 2013, touching almost every part of the stack on the way, from drivers to documentation.
+
+I've also regularly attended XDC since 2018, and I usually come with some sort of presentation. It's one of my favorite conferences, and I would love to contribute to ensuring its future.
+
+## Mark Filion
+
+__Current Affiliation:__ Collabora
+
+__Personal Statement:__
+
+I have served on the X.Org board since 2020, elected as the first non-technical member (I am not a developer but a marketing guy). I organized the 2019 and 2024 editions of XDC in Montreal. In recent years, I have also taken on a recurring role in sponsorship renewals and have acted as an advisor to the organizers of both XDC 2025 and XDC 2026, helping ensure continuity and shared knowledge across events.
+
+I have assisted with a number of tasks on the board including elections and the recurring sponsor drive. It has been really great to see open source graphics drivers flourish in recent years, and if re-elected, I hope to continue putting my marketing knowledge to use to make more noise for X.Org and support its ongoing growth. I am also proud to have played a role in the successful completion of X.Org's transition to a new fiscal sponsor, a key milestone for the Foundation.
+
+__Statement of Contribution:__
+
+Senior Marketing Manager @ Collabora. Organizer of XDC 2019 & 2024 in Montreal.
+
+## Neal Gompa
+
+__Current Affiliation:__ Velocity Limitless
+
+__Personal Statement:__
+
+I'm a big believer in trying to contribute to the success of what I use as a way to pay things forward. Admittedly, I'm no amazingly super-wise desktop developer (though I do get around and contribute code to a variety of projects...), but I've been a Linux desktop user for most of my life now, and I appreciate all the amazing work everyone does. If my being part of the X.Org Board of Directors can help with the growth and success of the FOSS desktop community, then I'm happy to step up and help out.
+
+__Statement of Contribution:__
+
+In the context of the Xorg/FreeDesktop space, I participate in the
+Wayland protocol discussions and help with reviews in various
+components in the graphics stack. I also attempt to contribute to a
+variety of projects in order to support the growth and adoption of the
+next generation of FOSS desktops. I am also one of the lead
+maintainers for Wayback.
+
+## Timur Kristóf
+
+__Current Affiliation:__ Valve (contractor)
+
+__Personal Statement:__
+
+My goal is to improve the Linux open source driver stack to make gaming on
+Linux more viable for a wider audience and make the drivers more stable and
+fully featured. We've experienced an unprecedented growth in this space in the
+past few years. I've been at it since 2019. When I started, it was rare for a
+game to perform well (or even work well) on Linux. Thanks to the efforts of our
+community, it is now the norm.
+
+I am looking forward to contributing more than just code and learning about
+the organizational aspects of X.org too. I'd be happy to help organize events
+such as XDC and more.
+
+__Statement of Contribution:__
+
+I've been working on Mesa professionally since 2019 as a contractor for Valve.
+I've participated in the development of the ACO backend compiler, the RADV
+Vulkan driver, as well as the NIR compiler infrastructure. I led the
+development of mesh shading in Mesa. Starting from 2025 I also contribute to
+the amdgpu kernel driver. My latest pet project is making the driver stack
+work better on older AMD GPUs so that Linux gaming becomes feasible for an
+even wider user base.
+
+## Manasi D Navare
+
+__Current Affiliation:__ Graphics Software Engineer @Google
+
+__Personal Statement:__
+
+I have passionately contributed to open source for the last 12 years, working on the Intel Linux Graphics kernel driver to upstream DRM support for VESA display features like Display Stream Compression, Adaptive Sync, enabling DP 2.1 UHBR rates for Intel platforms and worked on enabling these on Chromium OS for Google Chromebooks.
+
+I previously served on the X.org Board of Directors where I helped review XDC submissions. I was also on the Freedesktop Code of Conduct committee and served as Treasurer. I have also worked to mentor upstream contributors at Intel and Google.
+
+If I get elected again, I aim to continue foster a collaborative and inclusive environment in open source graphics community by helping with Code of Conduct and help with XDC planning/reviewing/organizing.
+
+__Statement of Contribution:__
+
+I am a Graphics Software Engineer at Google and an open source contributor to enable and upstream display features in DRM and enable them in Chromium OS. Recently I have also been contributing to the upstream DRM Hardware Composer HAL to interface with DRM/KMS.
+My most favorite contribution has been to fix the Linux black screen issues by adding DRM KMS property to signal link training failures which is now used by all Open source drivers.
+
+## Alyssa Rosenzweig
+
+__Personal Statement:__
+
+I've been in the Mesa community since 2018, when I brought up the free
+OpenGL drivers for contemporary Mali GPUs (Panfrost). After a five year
+detour reverse-engineering Apple's GPU and bringing conformant
+OpenGL/Vulkan/OpenCL to Apple Silicon via Asahi Linux, I'm now hacking
+on Mesa's Intel drivers.
+
+I see software freedom as one prong of a collective fight for a better
+world in the digital era. While small, our community has a role to play.
+Our work matters. Doing our jobs well while staying true to our values
+matters. Above all, our values matter.
+
+I previously served on the X.Org Foundation board from 2022-2024. Due to
+personal reasons I did not run again in 2024.
+
+## Simon Ser
+
+__Personal statement:__
+
+I've been involved in FreeDesktop.Org for a few years now, starting with
+Wayland then DRM + Mesa. I'm part of the sysadmin and CoC teams. I've
+been serving in the BoD for the last two years, with a focus on securing
+sponsors for XDC. I'd like to continue helping out for the next two
+years!
