@@ -2,166 +2,141 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2N5KKwk+uGmpagEAu9opvQ
+	id kPprLCpFuGmLbAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 18:29:45 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 19:00:10 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1253829E3E5
-	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 18:29:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE59429EB0C
+	for <lists+intel-gfx@lfdr.de>; Mon, 16 Mar 2026 19:00:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1A20D10E203;
-	Mon, 16 Mar 2026 17:29:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 436E610E2CB;
+	Mon, 16 Mar 2026 18:00:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="JLJ0lxJH";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="P6+zb0f7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CO1PR03CU002.outbound.protection.outlook.com
- (mail-westus2azon11010060.outbound.protection.outlook.com [52.101.46.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB63E10E1F5;
- Mon, 16 Mar 2026 17:29:41 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010010.outbound.protection.outlook.com [52.101.56.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA8B710E2CB;
+ Mon, 16 Mar 2026 18:00:06 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AhpnHe727OanRJdmHZ52kXVBsMj/WtKOIRib+I7foaZOIcB+blrNdR5u+5u43ho/rYS5QHRxF+FZWlYJ2s91w6MkekbXS3zfk34xtXHbUoptXi6oxfFerEZnEuxoOEcyCA7fwaNmModcd7VpBnEvNkPp6xhn0XhjdoJ6WrtekgkJY4+oqj3oqTFRfOrWqbnwSRQObdv9dsDCUYLQfIPw0N6XYcThWoD3yciC5pOEW0B0PO74VPwTgHNfWnwXp5DpmkbHqKL+mX+RKb/e9wMko4q2KP0Qxx9zJFO4ZfzQh/Gsm0bRYSpmasiYfxVdqH8AWYuVKhIuIdMc05ikBElyjQ==
+ b=dBnThM5viX3KtQsfw40s8UsXxiRHG98VXoyp+nrl4n1lR1xRvCWy5ZtO9gwR1iyym+ItsLHLG8Gz9oLDAk5kooEGC9wPCX/kDWOYVgQ0Ok1kCduFPw3YuMrAGRmxLyYOKab/LjgLNRsuUIOGYCq/2chM+8r7UURM/5eYQaDcAzK+r8G8/VKFpeHTCn/QLnlCyM7YzQAkoPgUwlfcUhLw9xWIDJQXACgAYZ5LGigzexD0b7L6RaMRuF30hKjlPdwROldA0+K37nNuKQ/XsmWcyeFyhBZVMPZh1Gh22mNL8bam5aYJyUvCnQXne3cEmkoLcO7iVQTN3kgG19dOAj4IWg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Eu/Q9quxmQXB3HM4kN20P276xyr8I8Jq3TC8W6T/RhI=;
- b=Zb+Lln5YqGpFQGzKW0nE+FGM+uqheuq8qglj1ZALNqOj1hnnrYHl+Al/dd7SpytuX8YOmby24h1uRkV0VRXxoRLmyUNTBkTuiUT6ph/RyNoC/mPqWKjd3batXX1G7yS6gV0gwftolpodHj2Dvb3dc66DW6D2x9vxm2H+vG2+ngkn7x5kLPUKRG+iPeE1R0oQgIrFXjQZ2HvaGTrSXhFxDJr+BnlIhq9/W7HMzvE9OlqyFplhbwDbHoxWOt4l5lal43kvApBN0z8jWD1CZPHYMkTZ/tAwjc7EEUY+Q1V8za00eLbVN2/KNRws7IodJoqkywx8w5ektqcz10wezHpy1g==
+ bh=QzqBfMUKmYCB8PolVuCea4jpLDK3jZrzsoaGQFPGwU4=;
+ b=JrnRZa+6BIkKMsPoF9V44KR8LvxWDu/VoBDqx9BeybVRG/KhC04gT/2B/Tlg+B4b19voXD24B5mMUE/mxU+sK7lublW2ONKIeSV/ik1YEuGqcPxRH2bC1WiRGLMZCdFnMvuz8rDiKzaLx/3ONbTgvPiL5DcTMLCKZFIEQowbyZHyYs1J12lV5M1ycO/F+Xhsvhv/HQi2Nbhoj7oWACd/7Hdh189/Pd+Z33HrBrRjKOBYHVTINPUnOhakvbBikkwZxKC4ZOCEANDTUNp4ejZP4ARJaELQlW9tTdouf5v6F4CwyGDv4pznBP8Wi2cQHdmfONttsN9CLWIb/Z1eLw6biA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Eu/Q9quxmQXB3HM4kN20P276xyr8I8Jq3TC8W6T/RhI=;
- b=JLJ0lxJHvIuKuxUY1Ldp47H9Y7UzNR5evKM0oEo+g436RQKhQxScMSiE8RE9KIMj5ntJVXl7URtMLA5uGNQmfvGuuSfjIRZXKq68zmhIBZbryavx3wt5etPtUL1vVW/fWLe9Ni3X6d7/Cpd1DPfGmtRD5dsZ0O1WP9ACNvNfXSjN9HTl4fyoy0VdxC96RsyG8U0Hg+59X6RyhP5ovx3c8IXHiOWW6L4Dq70IRyzTB/vDPcegWh3sQPJU7KifwuzPNJzYr6fWApqETdubBQWl+fqCe/PG9nc0DMkxQkRlmYl8FUAWONbl6ofNiIXBt1LI3aNQ7Yk9H6gt2xTN5DivoQ==
+ bh=QzqBfMUKmYCB8PolVuCea4jpLDK3jZrzsoaGQFPGwU4=;
+ b=P6+zb0f7rZW3j0teZWHEnkOYTbDcpv1yTtRuzkMf4sLMGp2DDoefrZ6JaMbDO3HRvFUx12dZX1Ek/IhiEeD2u4f+P/537Io+OQ44VhGrdzlG7LvwUGJuuxDn1ZwdCeHCUe4lfZH0RzRVQD/B7rFXHK7IR3Y2PrwYqrkoH3Zg8XY=
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- IA1PR12MB7544.namprd12.prod.outlook.com (2603:10b6:208:42c::7) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.16; Mon, 16 Mar 2026 17:29:36 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.014; Mon, 16 Mar 2026
- 17:29:35 +0000
-Message-ID: <56c6e704-661f-420e-815e-8c43d48e18d3@nvidia.com>
-Date: Mon, 16 Mar 2026 13:29:31 -0400
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from BL1PR12MB5126.namprd12.prod.outlook.com (2603:10b6:208:312::8)
+ by BL3PR12MB6524.namprd12.prod.outlook.com (2603:10b6:208:38c::6)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.16; Mon, 16 Mar
+ 2026 18:00:02 +0000
+Received: from BL1PR12MB5126.namprd12.prod.outlook.com
+ ([fe80::c3e7:1bc5:2b91:1cfe]) by BL1PR12MB5126.namprd12.prod.outlook.com
+ ([fe80::c3e7:1bc5:2b91:1cfe%4]) with mapi id 15.20.9723.016; Mon, 16 Mar 2026
+ 18:00:02 +0000
+Message-ID: <cd9e1aa2-85b8-4add-a3b9-ba7acbd29f60@amd.com>
+Date: Mon, 16 Mar 2026 13:59:57 -0400
 User-Agent: Mozilla Thunderbird
-From: Joel Fernandes <joelagnelf@nvidia.com>
-Subject: Re: [PATCH v12.1 1/1] rust: gpu: Add GPU buddy allocator bindings
-To: Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
- =?UTF-8?Q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org
-References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
- <20260309135338.3919996-1-joelagnelf@nvidia.com>
- <20260309135338.3919996-2-joelagnelf@nvidia.com>
- <DH0ZOYNAP1CN.1NL9E28UC2C95@kernel.org>
+Subject: Re: [PATCH 01/10] drm/colorop: Add DRM_COLOROP_CSC_FF
+To: Pekka Paalanen <pekka.paalanen@collabora.com>
+Cc: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, louis.chauvet@bootlin.com, mwen@igalia.com,
+ contact@emersion.fr, alex.hung@amd.com, daniels@collabora.com,
+ uma.shankar@intel.com, maarten.lankhorst@intel.com, pranay.samala@intel.com,
+ swati2.sharma@intel.com
+References: <20260306165307.3233194-1-chaitanya.kumar.borah@intel.com>
+ <20260306165307.3233194-2-chaitanya.kumar.borah@intel.com>
+ <20260310163229.521186ab@eldfell>
+ <53c3f610-942c-46bf-be5f-a4c51625c358@intel.com>
+ <20260316105724.47d24409@eldfell>
+ <eaaea3f6-76ce-4b20-b7b1-b483594070cd@intel.com>
+ <20260316135349.06476e85@eldfell>
+ <0969dd82-0212-4fec-b693-e53c6ddd692c@amd.com>
+ <20260316180338.0b2f6923@eldfell>
 Content-Language: en-US
-In-Reply-To: <DH0ZOYNAP1CN.1NL9E28UC2C95@kernel.org>
+From: Harry Wentland <harry.wentland@amd.com>
+In-Reply-To: <20260316180338.0b2f6923@eldfell>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BL1PR13CA0022.namprd13.prod.outlook.com
- (2603:10b6:208:256::27) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+X-ClientProxiedBy: YT4PR01CA0042.CANPRD01.PROD.OUTLOOK.COM
+ (2603:10b6:b01:fe::22) To BL1PR12MB5126.namprd12.prod.outlook.com
+ (2603:10b6:208:312::8)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|IA1PR12MB7544:EE_
-X-MS-Office365-Filtering-Correlation-Id: 95dff5bd-9a0d-40a7-4415-08de838197de
+X-MS-TrafficTypeDiagnostic: BL1PR12MB5126:EE_|BL3PR12MB6524:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45377604-f66e-4306-2a2c-08de8385d896
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|366016|1800799024|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: aI4lJBGtPp3IXhNg44XSP/byoWz1ywRfZk/t06c8rpejjUHme3sWNWSEKESPcIot81TucF5C/fgEsuYj/1+c226yOfyIy4BA+MzXt2g9ao8WNnNdzv+ngRRRG3dvaTMxaXsy3QjlhUS0c/CsH7T8TMB+M39TWotld9Jyg27jF3yjXGl34geM7LgU3x1815fbIGYpN1ElhKfZcd3VK/3/HeeLIlWELncmfZJsC/JMxx+V6Wr55H83QlVfcU8iRfOeCZewlIcher1OFlU1AfLyctJ4qOav9dLftn8NinYLzmuY4yqRUy01n9vXGFAa30kp5wz5SaIID+fnQMZIn/G2+BK62cyXs4HUM81JdD1j+dDjMYFl1G62ZqDbVoKNdvW2/l1xeSZ0wYxQ0/7T2M7ydqzJIcfygZ+GugCaXRZoVoeplffftzxWU07p4argWmmQbhnXr4OyMda3a/x9jVKYhssYbzVlhNB5PnfYJbfFmgh/Pnb/rTQi3dRNcxALNufXCSL35eJ19F6EL/o7LEn99Z1haIwVYIolgknnU4UFdy8fqoJgQWNUBHbDwtMKTaUSVXcXDDJs7EHoAiHwhyNtwynISDwHHGWbdgGyhAIHTFxotN38XgHtSt8YTbW4DfhH/pjeoRfDl1oIJd/ZMwjOuXldH/92QneHZ7okHJZw/vRfV9MHjqQD8+Tta4uTFvwTQoe+AjyScKh7tEqmKGxJp8Dpq3piPkL5PliNaznsb/E=
+ ARA:13230040|1800799024|366016|376014|7416014|18002099003|56012099003|22082099003;
+X-Microsoft-Antispam-Message-Info: hRXuT93EF+owwstOqFoSPSKAdlfVP5iS0n0mDpH1wiyyzXy5Jag+esXff8pxIARfvTzY3OkZVtnMxU+v6LannMYaivMfvrUkHnzQaqy0o2Fvw5zo47am4MeywjT/rUEoUdUDhbrOWd1ffINrLCKUSuSLdzeWDHmVPcSG2UDaNbI9OpWqRmSolTgL9+UyGVx2ZmI7oxZvKUmJAisp3gk6bJ+PyQweMHIUDrgOFpn0d8/ro4Kdu8GV5MFVD/Hj8QdL3S+qaJvBoGqnoBeKmEryEC7hZzGQW2xNWkkWYaSciQtcvCoppdcLvBVEgV4ufUUMVC52ITp5rkO545MEsBkienFTTTsE84/xOX0Lp7wtThYAtrSDCGdWndKXa+nSfYDH65UVt5341FGJYa9dfDjSvFapO0K0l7mRCoRepWtDVYF0A+aUxPzKBCNtJmx2E1IaQRdDsqQJP+RAb9GFUMeauuCh0x5HhAuZpmbvedWFXA9vURuxapij5YruJEGaZW8joeq2O32emC2KmfiOWWvDKGyoonDd7Ls1k9XJJchhVnQrDVc/nf3AKSYYcxllYob0TdXyVCYqz00H9PxILltPknHfrkJa0JTawzDEsD9THV9Ez/UagvoGfrS1sr0O8FMgUMJLBcewmET/V+taXA/IigE864fjz2UEI851kLvmJ7MNGMA0GIn7v+e3S+m0DmgN
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024)(22082099003)(18002099003)(56012099003);
+ IPV:NLI; SFV:NSPM; H:BL1PR12MB5126.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(7416014)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UFZvd1hVbnFlbmt5MWdzSFJkdGNvRVI0ZWNHQ01oeTUwNDUzSnhMNThyNklX?=
- =?utf-8?B?SjNsWHgxbmw3WmEvNGEvUW55eWRETUlSN3R2SlRRNkhvU2tFSDNlL01VckRp?=
- =?utf-8?B?Y0VKMTJFMkhpd0hKcUtmQjJkaTM4N1ViRGtUYkZHU0diZGhLbE9OVUkyL2Rp?=
- =?utf-8?B?TDRzS29NeXhNQ1dhNm1Jb3gwcWYzbGlDNUFRVW5sdnEzRTc2ZkhibTF6c2ZZ?=
- =?utf-8?B?MWk2MUl2T1poVHJtSm5CTm1ldHd2aW9wQVpPaHNSNk96ajFiUmVBZVNpRVdJ?=
- =?utf-8?B?N3habVFJUFJ6Qm0zK3R3V1lJT3lpcmRMZWdrYUxSL1dLVlZBQ3l4STlUYUE0?=
- =?utf-8?B?V2l4VXlkL05pR09MbG5XQk54V1RHbnhkeGdoS0g1WFhrWVdEVG12ZHRWWTNk?=
- =?utf-8?B?WC91cHJIdGhFdnJlSXZZWTFxK29QVXRXTU1KaHl4Z01welNiOGNjMWIvb0Jo?=
- =?utf-8?B?YXlFM2k5Tnp1bHdTS2gwLzF0WVJZUVcxeTh3ZTBsS1VGYytVSWVKSmJ0TU5t?=
- =?utf-8?B?S3ZQOTJaeWVBeGZ4WXFIWTNHRndjd0pXUTF0WEQ4WFJxRGxHZU40aXZVNTlB?=
- =?utf-8?B?M3I0YzdLQTl2c0NoeXFoYUI5N2JuVVNYUWY0c0FxMmN3ejd0ZDVsMXcvSXAz?=
- =?utf-8?B?RVVjUjM3N1l2bnJxb2ZlM1BSdFlYcXpYY081R0xXSkNVOHd3RVM4U3dLaFds?=
- =?utf-8?B?M3ErVWNIQzR4OStMbnFqYWxGbWRHV3FPenZCY2YzZVliMFlxSGFhQ3R0ZHlu?=
- =?utf-8?B?aTBBRHlXZzBXZ04zRDFydmJOaXN5M1FscWErTlA0SUdIdmJzc1FJNHp4UHdO?=
- =?utf-8?B?MzRROVJ3cmgrYi9zQldWQVlhUTZkUzJmTmJyTnFBb3BqOFh2TlJTUG1MQkcx?=
- =?utf-8?B?elR3eEF4cFBvYXlIUS9TTVNSbVd6S2lPWmtUVThzL3RmeUpMVjVMeVpTM0N3?=
- =?utf-8?B?YXJ1ZEViWDRtN1JiU3hVaE5sL1JENDQza21DWDg5S3huZkw0Rktrd3hRdk1h?=
- =?utf-8?B?bTV1WHFxZGp0TGdYMDlzYjNQQ3Q5STgrQXY0T3pZbnhBSndXK3lUa0o5UjNW?=
- =?utf-8?B?WmYwSG5IWnh2Qk1UbUxLZkZkeDVOZWFFT0NOZ2FFWG5OK1RGK0E3VE9LbWZ5?=
- =?utf-8?B?Y3VDZkpoNkVYdE05MFo2VnRSbWZQNXhSM3ZnQzcvS2Q5Y1VkdmE4Z0FlSWNp?=
- =?utf-8?B?ckdTVUUxdUE5bkFVQ2tqTWd1czgrbjFHYUptTzVydzBGaE1PUjR3cDBsL3JP?=
- =?utf-8?B?dTlyUmtKcjJXbUxDaGdRSi9tRVovcTdqUzlWYkVTTENTWng3eG1lY2ZuajFZ?=
- =?utf-8?B?Qk4xeG9nRW1mTnNJYXpoc0JVT05DVzhBZ292bUMwcU9NMVd4R3BEaUYwRXV4?=
- =?utf-8?B?TmtnLzMvcW84NWVvR1dPemFsUnA3dU9nVk9NWmJXWldBWCtLK0dsUFVlRm1L?=
- =?utf-8?B?c2FoeG9uNmozcGdNSVQxVm5vTFFVajluKzM2NGRkSHIwNjJVVTRlbUZOWWV0?=
- =?utf-8?B?RDh2Z3hGYjNHblM3cDVlanBhNWFHb2dQeGRId1c2ekZYRDl6U1JNQUZqODFq?=
- =?utf-8?B?QWlXK1RIQXVMN3Q3WkV4OEpnSEs1RVhaaU5RSGVvWnpyd1hRTkx1UGp6WG1M?=
- =?utf-8?B?UU9hNnZVdDN1ekVTREdLakVKaHhDT3d4c0tGL2lZMzRBTVhlOTZIZ3ZQQ0hD?=
- =?utf-8?B?MENmNmdWYXZERjREYXVjR1JXdjBOeDB2UHVML0xtcEJlSHVMLzR4dmlVaHJk?=
- =?utf-8?B?Q2tVOU5MV01rbWZUaDFHQnEvRkdjeVdjRHhNY0dlUDlpYlVtcXJUWWhWaG5H?=
- =?utf-8?B?STk2T1U2N1FZWi83QWpxTUp0ZzZCVG1SZmFGQ1ZyUzZWdVJsTDJ2QjlEa0dr?=
- =?utf-8?B?Q1JUTHNLd3NUeUI2SXVyMytvWFp2eTNpV0VRZjV6N1RRZ3VQNVFZMWpBUlhW?=
- =?utf-8?B?R3k5TDZyYlY0dzdzeEVnbGNNVXQ0SWZRZmNiK0pjbGhETHBvN2NtYjZjVitV?=
- =?utf-8?B?SVlyTTRFMG52RXRjd0tvVC9URko4STJjTFZCMDdyUkd6M2lSSDVKSmN5NURm?=
- =?utf-8?B?MEVnREphVDY5WUxFczFwV054TCs1U3hFaEt0bDYvMkhWVlE2dDQxSklMVG9p?=
- =?utf-8?B?YnhGZVFSbHArNWJkYTFWRzBVNit4S0ZhNFEvODQ1SGJVK05LcUlTWnlTd0x2?=
- =?utf-8?B?RFNLY0NQUUwvU2VmQnc2VnROejBEaExjZ2lYSjNwbjNYQ2VoY3JiUTRYOG9k?=
- =?utf-8?B?QTdZMmNTc3VoYXg5RnRaK0FpVTJRL0l1T2R1SjNHckl6bCtRRnpVbjdoSGJy?=
- =?utf-8?B?TzNEUVBjdHN4RUNia1JiaGUwOUFnN1JRVWlkNEZTb3BXRnRhK0ladz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 95dff5bd-9a0d-40a7-4415-08de838197de
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YVNWT2J3RUNmTFF6eFBzUWh2S3dBME5teVdJVXVQbWMwL1BBN1U0dElCNlA4?=
+ =?utf-8?B?ekM4b0lSTXhJNVFKUTlEaXVNVkRBdU9jcituZUxiR2o4czJjb2xxd3JFQmFi?=
+ =?utf-8?B?VG1KQjdHcGlpWVRiakR4NVA5djgrNFE4MlNGd3ZBU0NkVWpKSG1WZjdPQzJY?=
+ =?utf-8?B?c0NRbzc3TkFkU3JwRGdyN1J3UnZrWnZ3Y2k4LzIrV3h3VVFCRVFKNUY3V3FV?=
+ =?utf-8?B?dEM5V2VNTkp1YUN2TnI2Rjk0TmxUU3dyb0xhQmswelp2QU1MNHF3TTJiVFVv?=
+ =?utf-8?B?dkpVUzhVYmdtRmlWUU9KUG8yS2hhVzVaYVRmYWZXNUhXQkliV2NoWXFVeXlj?=
+ =?utf-8?B?S2tTYkI4b21VQW1aQWVscmc4dE9VOWd5RHVLcDRBUU5FQmFRZlByVWpqUnE4?=
+ =?utf-8?B?WXFRSWh6L3dwcEVyaTAwZElQYjI2SEJqQnVFWEFYQ3hiSjBxTVpyQmNtQ2Vl?=
+ =?utf-8?B?cWNnbUdxQTl4aTJ2UStNSDBtMmZ3SHI3WVlOU3VULzRmcmp2cnpuQ25ZbHFk?=
+ =?utf-8?B?M21yVGdJeXdBTFZWUUVVTVFvYjVBTEZDTEQyeVBXY0c4VDZPZzhDSklrdHor?=
+ =?utf-8?B?aC8zQVc1bWhUMTM2cVUvL1oyVTNHM1NNZzFwZ1NMRjVjVWhTczRySWNWRWtZ?=
+ =?utf-8?B?Wi93dWllejlkTk9mL2JTVG0wUnlmajNQZEw4WFRkWWVRTmN3RkpvWTdBVDZW?=
+ =?utf-8?B?UGhkdm5iYWd0VHJrRG0xOU9LV2Rrd2U5T3U1L2dyUUpRdDZkRzY1OUtNNlBp?=
+ =?utf-8?B?UmtDTUpLL3NiT0djeGVycEZuZmJqSm9HWW1seW1RYmN5VHp2d0lsOHFSSlZD?=
+ =?utf-8?B?a1hVSUpTZ3VVSk9HL0l3TmdPT3RZWUJzL3lMVUZOZDBKRmhzd3JMM0dIVEVq?=
+ =?utf-8?B?VzNwMEhvY3lYUkFsNkVXZ3JESXcwQ2NML2E4ZndlcGxIcWFnd2ttVlpqYkRj?=
+ =?utf-8?B?ODQ3VTc0d2Y2bW85cjJrZjdSdkpoMVVHMVVpVFNQWDBFaVlESUIvTkV5RzEx?=
+ =?utf-8?B?Wm1zYWFUY1V3V0pVb1Bid3l2UktuZmFDL1p5Tkp6K3hLRFdKMCtMdWJQczhh?=
+ =?utf-8?B?QTBpQXJYc2JreVVWNTZnc3doSlhhVStDb3VKeDFLNGdzdFNLb1dDSytvRStW?=
+ =?utf-8?B?MEMwdk80WWFpVjFlOXNMbFdwQnR3Q2F3cXVDWUVHR0JvRENUTXA0VHRLcVdt?=
+ =?utf-8?B?QWFOWVEwSStOY2prTStmc29FK2NFbWRwRWJQcWlkUERqQlJoQkEyMnlSbmJK?=
+ =?utf-8?B?MlZTVnlLbkFFekNOaDQ2MjdwSHp1THlYUDBReTQ4VTNERFA3Zk1zTnBvWVJN?=
+ =?utf-8?B?cEZ2YzhQbE5Vd0NuTEtkNStTK2RYczJ5ZWx6dzlhc1ZPVE9sbEFxcHl2L0J0?=
+ =?utf-8?B?bGRrMlNZV1I3RFlJeTJMWlVSSzNuQktKVUtLYXhSOWJCVUduVXphUUg5Qnlj?=
+ =?utf-8?B?aXkrbG50M3NQd0NMM2U5RXN5clJMYndOUEJEK2x1TU82MjFnOVhBK1FHQUdk?=
+ =?utf-8?B?azNubDRlVG44Z1VtZ1crR01Mb1A2Q2IwRGxNQ3RseUFWUVZCeStZU2pNenhh?=
+ =?utf-8?B?RUx5UGU2SVRRcnRCREl5cE1aUENMdGI5OFlERURwWHRqK2c3RTZHdERCdmcr?=
+ =?utf-8?B?UWh0T3RjNjhsb2NZa2htYms0NFJuL2JueGdlaFM1L2d3b29neXBWMzVUT2dN?=
+ =?utf-8?B?M01DZW41SnFBQS9saVpEblY4YnV3c0xRZmFSU0VFZ3M2V29hYUQ2Wlhvajhs?=
+ =?utf-8?B?bVc5MlIyN2Y3RUdkT21vN1IrWmsxQ2FsVmI5eGdTbDBmWENGZm5SUzZmRnFt?=
+ =?utf-8?B?OHBEYWNSUEEzZUpyaDYvOHZVWDE3R2JhK1htanF1KzdseEZhUDN2K0dmZXcz?=
+ =?utf-8?B?WUxJaVlxR0M4anQ2SVpCOVk2anhyUXZjdVo2ZDV2Y1YxMytBTHMyWWplK0sr?=
+ =?utf-8?B?OU9YMllVbjIvem9Kdk80ZnFSSzFrS1pBUXpucFJlenhMZndJd0g4T3RneE5F?=
+ =?utf-8?B?dEt1K040V3hJOEI5MGx0bFg1OGh1UFBHc2xxYW9aZ0hyRmlrcTVIYnJxSExO?=
+ =?utf-8?B?RndJckg3eUhjSXFleGZ2TEVsamY0WE9QL3NPR2x2aG9HMDlPMzRIM3Z1cjhR?=
+ =?utf-8?B?YjVpUGNNbXA0RkxFRDBwK2ZydWUxTU5IdTREa3FTcTRyTEVnYTdoOE1ldUV3?=
+ =?utf-8?B?QVJ0OERHUHpTUDJ3SU5Bcm91WmFvNTEyQzNHcXNJLytUZUNwUEFldFMwN3VN?=
+ =?utf-8?B?OG1ISjVlVWVhQzcvSG1UOTUvSVJyTFZpSWpGdXRQcksvMlJGK0czYmc1RXBS?=
+ =?utf-8?B?YUw3V201UGJXN1NqYmpURHdIUnN1UmlNRXdyZVgwRWNuSzRWSXhHZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45377604-f66e-4306-2a2c-08de8385d896
+X-MS-Exchange-CrossTenant-AuthSource: BL1PR12MB5126.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 17:29:35.6582 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Mar 2026 18:00:02.1996 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: roIOa7WB+RpRqz2sGbzAgKmrrgdr2WNo97EVoYmPDnfQ7PsE5mjc+N50IhqfE1HPML6Zczn7MDVx0PrcCT1TAg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR12MB7544
+X-MS-Exchange-CrossTenant-UserPrincipalName: SF1Abrks+08+rsrE6x0KcwFKVJT2Q7UARbFv9dYLhhGDtxPs8lpwkMbCNmgMu80PUk3ezjJ5y9pTIG2ryXLB/g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL3PR12MB6524
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,49 +151,262 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
 	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 1253829E3E5
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:dkim,amd.com:email,amd.com:mid,wiley.com:url];
+	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,intel-gfx-bounces@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-1.000];
+	DKIM_TRACE(0.00)[amd.com:+]
+X-Rspamd-Queue-Id: EE59429EB0C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 12 Mar 2026, Danilo Krummrich wrote:
 
-> -R:	Christian Koenig <christian.koenig@amd.com>
->
-> This should really be a separate patch as it is unrelated to the addition of the
-> Rust GPU buddy code.
->
-> +R:	Joel Fernandes <joelagnelf@nvidia.com>
 
-Agreed. I'll split the reviewer change into a separate MAINTAINERS patch.
-The F: path additions will stay in the buddy bindings patch since those directly
-track the new files being introduced.
+On 2026-03-16 12:03, Pekka Paalanen wrote:
+> On Mon, 16 Mar 2026 10:36:44 -0400
+> Harry Wentland <harry.wentland@amd.com> wrote:
+> 
+>> On 2026-03-16 07:53, Pekka Paalanen wrote:
+>>> On Mon, 16 Mar 2026 16:04:32 +0530
+>>> "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+>>>   
+>>>> On 3/16/2026 2:27 PM, Pekka Paalanen wrote:  
+>>>>> On Mon, 16 Mar 2026 12:46:39 +0530
+>>>>> "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com> wrote:
+>>>>>     
+>>>>>> Hi Pekka,
+>>>>>>
+>>>>>> Thank you for looking into the patch.    
+>>>>>
+>>>>> Hi Chaitanya!
+>>>>>
+>>>>> Replies inline below.
+>>>>>     
+>>>>>>
+>>>>>> On 3/10/2026 8:02 PM, Pekka Paalanen wrote:    
+>>>>>>> On Fri,  6 Mar 2026 22:22:58 +0530
+>>>>>>> Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com> wrote:
+>>>>>>>        
+>>>>>>>> Introduce DRM_COLOROP_CSC_FF, a new colorop type representing a
+>>>>>>>> fixed-function Color Space Conversion (CSC) block.
+>>>>>>>>
+>>>>>>>> Unlike CTM-based colorops, this block does not expose programmable
+>>>>>>>> coefficients. Instead, userspace selects one of the predefined
+>>>>>>>> hardware modes via a new CSC_FF_TYPE enum property. Supported modes
+>>>>>>>> include common YUV->RGB and RGB709->RGB2020 conversions.
+>>>>>>>>
+>>>>>>>> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>  
+>>>
+>>> ...
+>>>   
+>>>>>>>> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+>>>>>>>> index f421c623b3f0..49422c625f4d 100644
+>>>>>>>> --- a/drivers/gpu/drm/drm_colorop.c
+>>>>>>>> +++ b/drivers/gpu/drm/drm_colorop.c
+>>>>>>>> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
+>>>>>>>>    	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+>>>>>>>>    	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
+>>>>>>>>    	{ DRM_COLOROP_3D_LUT, "3D LUT"},
+>>>>>>>> +	{ DRM_COLOROP_CSC_FF, "CSC Fixed-Function"},    
+>>>>>>>
+>>>>>>> Hi,
+>>>>>>>
+>>>>>>> the fundamental idea seems fine to me, but I have a lot to say about the
+>>>>>>> nomenclature.
+>>>>>>>
+>>>>>>> What would you think of a more readable name DRM_COLOROP_FIXED_MATRIX
+>>>>>>> "Fixed Matrix"?
+>>>>>>>
+>>>>>>> Alternatively DRM_COLOROP_ENUM_MATRIX "Enumerated Matrix".
+>>>>>>>        
+>>>>>>
+>>>>>> I was intentionally staying away from the word matrix because there was
+>>>>>> no programmable matrix but it would make sense to name it something like
+>>>>>> DRM_COLOROP_FIXED_MATRIX (or *_PRESET_MATRIX for that matter).
+>>>>>>    
+>>>>>>>>    };
+>>>>>>>>    
+>>>>>>>>    static const char * const colorop_curve_1d_type_names[] = {
+>>>>>>>> @@ -90,6 +91,13 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
+>>>>>>>>    	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+>>>>>>>>    };
+>>>>>>>>    
+>>>>>>>> +static const char * const colorop_csc_ff_type_names[] = {
+>>>>>>>> +	[DRM_COLOROP_CSC_FF_YUV601_RGB601]   = "YUV601 to RGB601",
+>>>>>>>> +	[DRM_COLOROP_CSC_FF_YUV709_RGB709]   = "YUV709 to RGB709",
+>>>>>>>> +	[DRM_COLOROP_CSC_FF_YUV2020_RGB2020] = "YUV2020 to RGB2020",
+>>>>>>>> +	[DRM_COLOROP_CSC_FF_RGB709_RGB2020]  = "RGB709 to RGB2020",    
+>>>>>>>
+>>>>>>> I'd suggest names:
+>>>>>>>
+>>>>>>> "YCbCr 601 to RGB"
+>>>>>>> "YCbCr 709 to RGB"
+>>>>>>> "YCbCr 2020 NC to RGB"
+>>>>>>> "RGB709 to RGB2020"
+>>>>>>>
+>>>>>>> or something in that direction.
+>>>>>>>
+>>>>>>> The relevant ITU-R BT specifications use YCbCr nomenclature IIRC. Wrt.
+>>>>>>> YCbCr-to-RGB conversion, there is no RGB601, RGB709 or RGB2020. There
+>>>>>>> is only some RGB, and which primaries it uses is not always tied to
+>>>>>>> which YCbCr conversion was used.
+>>>>>>>       
+>>>>>>
+>>>>>> What I understand from this is that the BT.709(et al.) only defines the
+>>>>>> matrix that is used for YCbCr->RGB, "what" RGB it is defined by the
+>>>>>> primaries (which comes with metadata?).    
+>>>>>
+>>>>> Unfortunately, BT.601, BT.709 and BT.2020 define two separate things each:
+>>>>> - the YCbCr<->RGB conversion, and
+>>>>> - the colorspace primaries (and white point, but that is the same for
+>>>>>    them all).
+>>>>>  
+>>
+>> Would it make sense to treat these as two separate things in terms
+>> of colorops?
+> 
+> Hi Harry,
+> 
+> no, if your hardware not care. There are no semantics for the numbers
+> in the UAPI, it's just whatever numbers, and mathematical operations on
+> them.
+> 
+> I suspect that your hardware does care, though, and actually has
+> separate hardware elements for the YCbCr conversion and the colorspace
+> conversion matrix. After all, one has to be able to put a LUT or a
+> curve between the two to make sense.
+> 
+> IOW, two different colorops, yes. But different colorop types? Maybe
+> that depends on whether they would have the same colorop properties or
+> not.
+> 
 
-Thanks for the review!
+If I understand you correctly you're saying we can have a single
+colorop type to represent either type. A client of the API needs
+to understand what it's doing with the colorop and can use it
+as either a YCbCr conversion matrix in the case of YCbCr-to-RGB
+conversion, or an NPM for conversion of linear, normalized data
+from one set of primaries to another.
 
--- 
-Joel Fernandes
+Is that understanding correct?
+
+>> I have done some work on a CSC colorop and intend to send out the
+>> patches in the next couple of days.
+>>
+>> https://gitlab.freedesktop.org/hwentland/linux/-/commits/csc-colorop
+>>
+>> It follows the drm_plane's COLOR_RANGE and COLOR_ENCODING semantic
+>> and is only intended for YCbCr-to-RGB conversion, like the original
+>> properties on the plane.
+>>
+>> For the colorspace conversion within RGB (e.g., BT709 to BT2020)
+>> it might make sense then to have its own colorop if HW works on
+>> pre-defined transformations, or use the CTM 3x3 or 3x4 matrix ops
+>> if HW provides a flexible matrix.
+>>
+>> We might need to think about naming, since colorspace conversion (CSC)
+>> right now seems to refer to both YCbCr conversion and primaries
+>> conversion.
+> 
+> Indeed.
+> 
+> YCbCr conversion is usually a matrix operation. H.273 calls it
+> MatrixCoefficients, but it also lists cases where you need the EOTF in
+> the mix. I could go with "YCbCr coefficients". The pure matrix forms
+> are used on electrical pixel values.
+> 
+> The color space conversion matrices that are based on (Normalized)
+> Primary Matrices (NPM) must be used on optical pixel values. NPM is the
+> matrix that converts optical RGB values to CIE 1931 XYZ. For an
+> RGB-to-RGB conversion you need one NPM and another inverse NPM chained.
+> 
+
+This could be expressed in a single matrix, right?
+
+I intend to send out my patches as an RFC either way, but I think I
+could just as well work with the CSC_FF colorop. I'll have a look at
+basing my work on this.
+
+Harry
+
+> I guess using CSC for the latter is not obvious enough because it has
+> been used for the former (color model conversion) as well?
+> 
+> How about "color-primary conversion"?
+> 
+> I stole it from
+> https://onlinelibrary.wiley.com/doi/pdf/10.1002/9780470994375.app8
+> 
+> 
+> Thanks,
+> pq
+> 
+>>>>> BT.601 actually has two different sets of primaries. Bt.2020 defines
+>>>>> two different YCbCr conversions. BT.709 uses the same primaries as
+>>>>> sRGB, but is different from sRGB on all other aspects.
+>>>>>
+>>>>> Therefore, when you refer to any one of these, you also need to be
+>>>>> clear whether you are referring to the YCbCr conversion or to the
+>>>>> primaries.
+>>>>>     
+>>>>
+>>>> In that case, if the HW block says that it does YCbCr to RGB conversion 
+>>>> using rec BT.709, the resultant RGB follows the primaries as described 
+>>>> by BT.709 or mathematically it does not really matter?  
+>>>
+>>> Hi,
+>>>
+>>> the resultant RGB may or may not follow BT.709 primaries, and knowing
+>>> the primaries is important for further processing in general.
+>>>
+>>> YCbCr<->RGB conversion does not change the primaries. What went in,
+>>> will come out.
+>>>   
+>>>>>> I will read up on why our HW names these bits as such.    
+>>>>>
+>>>>> Sure, but keep in mind that your hardware naming is irrelevant for the
+>>>>> UAPI design.    
+>>>>
+>>>> Understood, I just want to make sure that the HW does exactly what we 
+>>>> will advertise through the UAPI.  
+>>>
+>>> Precisely.
+>>>
+>>>
+>>> Thanks,
+>>> pq
+>>>   
+>>>>>>> For YCbCr 2020 I feel it's nice to remember, that there are two
+>>>>>>> different conversions in the specification: the simple matrix one
+>>>>>>> called "non-constant luminance", and the complex one called "constant
+>>>>>>> luminance". Hence "NC".
+>>>>>>>
+>>>>>>> It's also good to recall that YCbCr-RGB conversions are done in an
+>>>>>>> electrical space, while RGB709-to-RGB2020 conversion must be done in the
+>>>>>>> optical space. It is up to the userspace to arrange the neighbouring
+>>>>>>> colorops to use the fixed matrix right.
+>>>>>>>        
+>>>>>>
+>>>>>> Ack on the above.  
+>>
+> 
+
