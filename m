@@ -2,31 +2,31 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WAN1AjsQuWkaoQEAu9opvQ
+	id 0MmcLUEQuWkaoQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 09:26:35 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 09:26:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C5D52A59F0
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 09:26:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AA282A59FE
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 09:26:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E13B610E5AD;
-	Tue, 17 Mar 2026 08:26:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0F3310E424;
+	Tue, 17 Mar 2026 08:26:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DB42210E5A9;
- Tue, 17 Mar 2026 08:26:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE4DA10E424;
+ Tue, 17 Mar 2026 08:26:38 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============2552849990600191822=="
+ boundary="===============5000943792948741863=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D=3A_p?=
  =?utf-8?q?rep_for_sorting_out_step_enums_between_the_drivers?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Mar 2026 08:26:31 -0000
-Message-ID: <177373599183.365547.17319510091800143517@a3b018990fe9>
+Date: Tue, 17 Mar 2026 08:26:38 -0000
+Message-ID: <177373599876.365547.9934140712097312882@a3b018990fe9>
 X-Patchwork-Hint: ignore
 References: <cover.1773663208.git.jani.nikula@intel.com>
 In-Reply-To: <cover.1773663208.git.jani.nikula@intel.com>
@@ -71,12 +71,12 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,mman:email,gitlab.freedesktop.org:url,i915_selftest:email,lists.freedesktop.org:replyto,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,live:email,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 6C5D52A59F0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,mman:email,gitlab.freedesktop.org:url,i915_selftest:email,patchwork.freedesktop.org:url,live:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:replyto]
+X-Rspamd-Queue-Id: 6AA282A59FE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============2552849990600191822==
+--===============5000943792948741863==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -152,7 +152,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163283v1/index.html
 
---===============2552849990600191822==
+--===============5000943792948741863==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -225,4 +225,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============2552849990600191822==--
+--===============5000943792948741863==--
