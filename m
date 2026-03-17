@@ -2,155 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gCo3KOHPuWmMOAIAu9opvQ
+	id iGRfGx/RuWnMOAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:04:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:09:35 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 06DFC2B2E8C
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:04:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CAF672B2F19
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:09:34 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04AAF10E5A9;
-	Tue, 17 Mar 2026 22:04:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D499210E1C6;
+	Tue, 17 Mar 2026 22:09:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="VVK741u9";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="KaX8m85O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012045.outbound.protection.outlook.com
- [40.107.200.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 35BBA10E434;
- Tue, 17 Mar 2026 22:04:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=l+RBJe83K37eueBnMxauCZYGrWSZUgn9SeGgmY5GYR86bH2Kwj+rj8gQmZSkRgHNxsozhfzxMiusSVdsQBOTN10By/e4ZWvZbUSQJ6LwQvANXjNLPHnR0ipz3xedI+wq9SB7BWh2hDeRLOiJu5fSxVYvpVgP95eUdXn9E73Upw8ZzrL1kM5KBQJSGQcleWPtBfppxJ9tbbkRKR7Ni4bDd2hWa5dzoIW36aOAvFcv5Mi8K5BpydzjeI36b7/z3AQATwrkyIKV9n2WRyqme5qxdRbXdluLlDHE56tDMYT3gmZfR6DAHRqXzceH0/bHuX87KoRR3FETrdXEXIg3JF/lBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=a8mu+hppfAii2Oy+pp+HkPKMm0NDU7Xfm+XwQ8L+2hk=;
- b=FRKcmTMR9AWrbKKwfuSaYfNOvt2Dk3Q1VQthP63i1mOZ/5bmhWdINU6qXRQfPZ6IcT8EZDXdBhOpoHDP6inhJBN2lJEF4FIrnQKEiWFQyzYZySUf1ZhpocLpZ3CA6ruYPXMDHypOYTkRWvvXsKWWZjirtdvpngKCM3cSnhp5VkSb7i77gKFFT8EfQ5OtNjhKkXToNlGpLAkbGoVnvD7oOAErz+E9RoQGLtjM5Egiq6QqnAkJ3f45a+MPD7enRxlvyNYEJq7VXp+b/HQTE8IOpvGUZMyxzASb7cTk3VwzhKe1GEPMEnzUdjubXE+qgyiOeChxEGi23LO4KvpsHIOKDA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=a8mu+hppfAii2Oy+pp+HkPKMm0NDU7Xfm+XwQ8L+2hk=;
- b=VVK741u9vbrH2AIec5kHbmkBpx0BsbTIQ0MvqYIup91/7BU/7IFF5iJuvOjJlRwQEvWJqS9TTeGWF9bROit7CPtMTCe+PcEM2aFXdHh3AyQdHgtmc1vMHyte3YDLhuKYQzLMBMW58VYIALk5hsIn9YqQyATEUPEq/weUxwhmv5QkbC+wyuTahC0rvejkm7t/RT3ucnSO2tvrcqNmJtA34tLbyR61jGJEVCu7oSMC/egAK48GKq8a9gqcTAtEQXc8Tqaf1HvaZBHLJTnYlMlhx+IslkfipyD7W4svnO/8RrUZkWaTIO0AvPJHGtOoVkXu55RNLCpSTXMfW5ZTp5ZA7g==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- DM4PR12MB9735.namprd12.prod.outlook.com (2603:10b6:8:225::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9723.16; Tue, 17 Mar 2026 22:04:04 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9723.014; Tue, 17 Mar 2026
- 22:04:03 +0000
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: linux-kernel@vger.kernel.org
-Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>,
- =?UTF-8?q?Bj=C3=B6rn=20Roy=20Baron?= <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- =?UTF-8?q?Christian=20K=C3=B6nig?= <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- =?UTF-8?q?Thomas=20Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
- linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
-Subject: [PATCH v13 2/2] MAINTAINERS: gpu: buddy: Update reviewer
-Date: Tue, 17 Mar 2026 18:03:23 -0400
-Message-Id: <20260317220323.1909618-3-joelagnelf@nvidia.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260317220323.1909618-1-joelagnelf@nvidia.com>
-References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
- <20260317220323.1909618-1-joelagnelf@nvidia.com>
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: BLAPR05CA0023.namprd05.prod.outlook.com
- (2603:10b6:208:36e::25) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|DM4PR12MB9735:EE_
-X-MS-Office365-Filtering-Correlation-Id: f36ac0ae-0627-429b-53f3-08de84711a03
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|366016|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: /3LDqVoJYF8AzuYLJAAhtY4hfACmwotpsx3blWKjh6eZ7M8pDyR9olYyBYCTtTFxuf5cF1jx0PUrJfNA3TWAUtsBpb2Gl3I2LYPvGFLp15OH8RvSl8gtOFyEqexSvBl6+S0Uxw1Xp9IKGVSrNtH7HZLjSJKl/pyOxgJ0VYwG5a8aM+FCAcoqFhoCIw4QS7b5O7mZGyLaPV9oBSpzVgawC5TV/bQxAgijud7EzdfTizJz4EjGSYJf/4Jztnnt7Gk87Yt6qzzm/t5UXv9XXEclhnAhQwZRPdM2PVYFkFEt4gGzH3yd/C6VhQ1ssCy2I2O7E/3/SvYgd7i2suml8h1as2TW0JlfIQr7395ZKxzZ2yjnJbfiZ4G3epbendNPX/V0CuuE/ag4lfTPaZ5iY7vBKodn8PI9oFGwc4kH0zstlxFeRRYSXqLvwsVtKtEr/xwW17R41gl3LQ3wPeNKTlIP71LVXlWBtQ0qvpTPWBvMQ5QgyytX+VfskOWY5rsiVAILpwji1zyG195NIEZweyHAP2UqNXpHKvRi/sNcmJy7wQAYwnU39+PheMmo8K+V3i8yizNwyDi0zCQ6DlwmhtY4CgIuS72gvXetKdOeU9yMxIYh9GNEoR7enQLiWK0f3t+qwnX2pQD5zEIr2z8mbYypcFqAg68ea2vxckwO/LyX3EZ1Kcd5ulJWwVSZZu0E5OPTx5HrwQYfkv9/moAjr3OmbJxEXQCT8vSsj8QV8aK2Az4=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(366016)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?RXdjM9Ohq/YAkbu0uEtAK+90GPTANg3Lr+NBjmTZZYgMBWpaFowWzWucv9Qz?=
- =?us-ascii?Q?FIe5zs2kH1TjyYszMpodhQtdc5hPpjSqU+AO0Oosous1+knmbwSf48oZ2/4K?=
- =?us-ascii?Q?S3krXu/I7gXwHahq1Z4YI9W6eTV2LDStWCB/2xpc8jlz1w1C9SvvRA4Tw7dZ?=
- =?us-ascii?Q?MMS9jbde7zP4+rN5IMx3IlULXJDlHsVuOV6YczBvOP1iourQA1td1chcDy8d?=
- =?us-ascii?Q?M/dYLdTuiKtT/jJs62RvuFGs4gicHTCEmvRzb4cpn8q2QuLr76BAx/mSdQzR?=
- =?us-ascii?Q?i1AzLKIcu2fh0prQHAvLBg95CNcE+1x0UUUdS0BbYNRRpE1r0X+xCDbatADt?=
- =?us-ascii?Q?73W5v/X5mRg6snoJ1GmsbFcYBC4RtBoNfpRE+cbJ5CzAlX6QwzjJ632XvNiW?=
- =?us-ascii?Q?HxSMcFdNFuO6o14kWmr4f18TpZraANVbDcR2gZkUBF4xRGV1bYUS/nsVoAU6?=
- =?us-ascii?Q?j/niNBRimi3Fuxe3kVkWKxW6mXgYZ967DN+tec/G/ZxP9LjMCX3mka/AjvdZ?=
- =?us-ascii?Q?IGBnKn4mO0dnK55aBqQ0qfSRz1JX2ce1N4Ek4y5ibB9CN85RVN9xZfTXbsjB?=
- =?us-ascii?Q?h/LonZDZkvILOIQ30dTgKFBu1JcINhnLiHGeJTOx+HQ82PbAiT0BldRVh7Sa?=
- =?us-ascii?Q?7RvRp9wvagHMMu6nEnhydAZ88RRKjFjg5XUL9mr4+8W+0y5bbRiIH45zt9Wo?=
- =?us-ascii?Q?UHI4QgXltmtCWzh/8O1JuLufYbFZxwZdKCZkKnLkAlWq4wxriDHEPuGgUUR6?=
- =?us-ascii?Q?TtTCeRmj7RwgyiYveh5/2hMPffY9XMp6YyJsq/156pdFiiu9VzNU4HNkCgzX?=
- =?us-ascii?Q?bM+O4oihYZQSRga4ozI2ddGbqdZTKA+2mQLXvfVUVAmbHSI0zH7OaKyPUln5?=
- =?us-ascii?Q?GlB4NYvxAZYy2rmUIIaSLmeyRmtUVdDg9UYNE7jh9nqOtt0BQ+gWlzKZe8C6?=
- =?us-ascii?Q?r3S7AW2xFBqxmT064nsK+SFWJHKAZukuSEKyXkb9QnEIiVjWq3GY6h43tIhy?=
- =?us-ascii?Q?0Nfyd1E6scyXksykg2oneAjnORRzilozuBgRYfukz7iUd2AlueuREgZc86ck?=
- =?us-ascii?Q?LnncPIcyfxASOgJUFm+uMyITCpYP1BF4PPj3Jov3L47k7tzbn0NvfS4xevfD?=
- =?us-ascii?Q?RETDYM3Tqvtd+C40esFu5ljp+Bx+mV1+JwwLPohIWttZkOqEDtnBukA2QZcO?=
- =?us-ascii?Q?1WHx1YffNwVjJb+xIPo2Dj1YUv+kqcXwGlc+cqG+RZPdGziBHJFA3dBjKWr9?=
- =?us-ascii?Q?j8fLpslImcCQpOXli96AcgNfSU+ZiQ0x0nnP+atcQZL3A3nA45heBHUUe7OM?=
- =?us-ascii?Q?Y8DyXlarGDegYvw6jsXhSZO4S0c860IZQxvbyc2nKDousp52LncMYFvMncWh?=
- =?us-ascii?Q?DxUfYlvClGM6EOgTwwE6nqOUDIkOpR5ce76qXFhrbuiVd3z4JDwqJWMKfOYI?=
- =?us-ascii?Q?Bf0pWqAGpfJsMrtiVY6UqZpx8E2JCVb7pTnQwbBRNI83ckRMJh/I1S/d3Cry?=
- =?us-ascii?Q?kLKRRxsXZsu9r8rHce4317mm6oYvovOaFSSPk+ZfI1LhLXnrudewuaBSCXY/?=
- =?us-ascii?Q?LdXW09eybTMIs3+teT6KLDv32cmd7DW1r6MuCcYMp7HXPuUhT+k1S0HglFCk?=
- =?us-ascii?Q?JUSdcJW+K2qtBkg7q4F6dSZuH7Nc3oogWLBQ5J8a/NJIC9oXAodT6MOsZq5u?=
- =?us-ascii?Q?EcBgL8L92i1zGTjfVq8QzBqfjliJ2UVi0iqavWOwX+8MgWUE2bz/jEgegsQQ?=
- =?us-ascii?Q?MkeQig4Z9Q=3D=3D?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f36ac0ae-0627-429b-53f3-08de84711a03
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Mar 2026 22:04:03.7162 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: w/WCzwM9tTHdDiF7BvK10GghhrV4w/WartqsI0c1SHabl0Au126dRH4DoccSaokzIEAoBjJddLGf2XB7ft2Vkg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR12MB9735
+Received: from mail-dy1-f201.google.com (mail-dy1-f201.google.com
+ [74.125.82.201])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BD3710E1C6
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 22:09:31 +0000 (UTC)
+Received: by mail-dy1-f201.google.com with SMTP id
+ 5a478bee46e88-2bdf75bc88fso5687337eec.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 15:09:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1773785371; x=1774390171;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=uIAN5vdsbZd5f2zOoV460Vevj8GFJfqQqiklZn/mOn0=;
+ b=KaX8m85OP+Pm1l/TB7Vx5V+p40my5AubO/kyjfM7Vj6g0z5mRYzA2auttDHvm2xN7g
+ azEwA23DCgUMKopkkUMztHHhqAwj4YuSSxAVPhb7MFPTczK8iVwv7WYzgdgm+xSDZG9O
+ BP2HQalkqu9mHlgNLVwpKKQBVz0vX0eQqfHPYvlFO8etIPvk/k20Pf5bUXiZJRhIChyP
+ rJSR//srhagXKSVjOPPBBIv16lEgAZGoYB8kfQDZQP4pnvsMo+Xm6K2u/69LViLCPdTD
+ Qm/lEnyf2NfXonjVP0HBptdptZHqfW4ki77t98nwXo+cj3arPhrwk+a0GzWsxi+RQ3DU
+ bXzg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773785371; x=1774390171;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=uIAN5vdsbZd5f2zOoV460Vevj8GFJfqQqiklZn/mOn0=;
+ b=ayAoRPU1IO3hUc8xEZhaBKvGREOmK7eK8DMGbCzyC/t3m147LQj0nZeuG30Xiz41y4
+ n46BTZaP+JRAWuWDSIaS4blg8cAgDfRmEjT1wpBnVNDjRwQfrPurK+4SdOV262zNJxse
+ /bXDgLc2RuThZ70KQTfjhURORqp69Q0akaKMrBucUsJtohDHA476enb9sIjEWG4k+mKg
+ hEMG+R6TmZXEGFTWdsjFi+xebBuCzw+GOCshaQX0c06RCLh0cCeqI86MNMoI0E3OEf6P
+ zIclBEpG7AXbMxWEeO4M4lzLlmKx49LPZxK/PqfMtd9VoXdK1abFqGq/2T8eLLQRMvCi
+ 4CRg==
+X-Gm-Message-State: AOJu0YzswRVTeHEADEAYH4aGL5lK/v1T17ZTdBJUk4wcKQhewPTsz83N
+ km6sToIKwVwHKV/VHFtMgjjG4eLjDHrAJe4pnSdIci/5cprtjR6VWEDF6epT+NmM24xnhD1AqCG
+ 7mlFg3SqRh7iZXOCH/4J+ppFMdWaptoPNVDDgrG5nhHqa9mhsUgLzegzH3fsQzsp0pfisOxmm8t
+ KrrGTqPrDCraJzl9CbYnePUNV94U9kg9KCOZb//X+TT475Kvru7WtLZGv5lwY=
+X-Received: from dybb24.prod.google.com ([2002:a05:693c:6098:b0:2c0:ccba:438b])
+ (user=jdsultan job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:7300:5722:b0:2b0:52cc:fe69 with SMTP id
+ 5a478bee46e88-2c0e4f79789mr617612eec.5.1773785369435; 
+ Tue, 17 Mar 2026 15:09:29 -0700 (PDT)
+Date: Tue, 17 Mar 2026 15:09:01 -0700
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.53.0.851.ga537e3e6e9-goog
+Message-ID: <20260317220908.130968-1-jdsultan@google.com>
+Subject: [PATCH v4 0/2] Enable seamless boot (fastboot) for PTL
+From: Juasheem Sultan <jdsultan@google.com>
+To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Manasi Navare <navaremanasi@google.com>, Drew Davenport <ddavenport@google.com>,
+ Sean Paul <seanpaul@google.com>, Samuel Jacob <samjaco@google.com>, 
+ Rajat Jain <rajatja@google.com>, Juasheem Sultan <jdsultan@google.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,59 +83,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	MAILLIST(-0.20)[mailman];
+	MV_CASE(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	RCPT_COUNT_GT_50(0.00)[56];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jdsultan@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[google.com:+];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	NEURAL_HAM(-0.00)[-0.994];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim,intel.com:email,nvidia.com:email,nvidia.com:mid,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: 06DFC2B2E8C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CAF672B2F19
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Christian Koenig mentioned he'd like to step down from the reviewer
-role for the GPU buddy allocator. Joel Fernandes is stepping in as
-reviewer with agreement from Matthew Auld and Arun Pravin.
+This is the fourth version of a series of patches meant to add
+support for seamless framebuffer handoff within the Xe driver. 
+It was tested on Panther Lake platforms.
 
-Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+The goal of this series is to achieve a flicker-free transition from
+the bootloader (BIOS/UEFI) to the kernel driver by strictly adhering
+to the hardware state established by the firmware.
+
+With this version, I've taken the feedback that the last version was
+doing too broad of a copy of the hardware crtc state into the new 
+atomic state. Rather than that, we are now instead sanitizing the 
+clock values and pll state. 
+
+The BIOS appears to set a slightly different clock than the ideal value
+calculated by the driver. If these are within a small tolerance of each
+other then we adopt the BIOS clock values. 
+
+The pll state that the driver reads has bytes 4 to 8 programmed to 0
+in non-ssc registers. The state read from the hardware doesn't have 
+this, so we adopt the hardware state if they match without those bytes.
+
 ---
- MAINTAINERS | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes since v1
+- v2 Complete rewrite of the code
+- v3 Resending due to failure of patches to send
+- v4 Switched from complete state copy to clock sanitization
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index cd9505d3be60..3353cbf98be1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -8946,7 +8946,7 @@ F:	include/drm/ttm/
- GPU BUDDY ALLOCATOR
- M:	Matthew Auld <matthew.auld@intel.com>
- M:	Arun Pravin <arunpravin.paneerselvam@amd.com>
--R:	Christian Koenig <christian.koenig@amd.com>
-+R:	Joel Fernandes <joelagnelf@nvidia.com>
- L:	dri-devel@lists.freedesktop.org
- S:	Maintained
- T:	git https://gitlab.freedesktop.org/drm/misc/kernel.git
+Juasheem Sultan (2):
+  drm/xe/display: Fix reading the framebuffer from stolen memory
+  drm/i915/display: Sync state to BIOS for seamless handoff
+
+ drivers/gpu/drm/i915/display/intel_display.c  | 67 +++++++++++++++++++
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 22 +++++-
+ 2 files changed, 88 insertions(+), 1 deletion(-)
+
 -- 
-2.34.1
+2.53.0.851.ga537e3e6e9-goog
 
