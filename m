@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +LOdJK8euWmbrQEAu9opvQ
+	id OMLTGMYeuWmbrQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 10:28:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 10:28:38 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F314E2A6AF2
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 10:28:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD29F2A6B27
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 10:28:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56FE710E414;
-	Tue, 17 Mar 2026 09:28:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C52710E494;
+	Tue, 17 Mar 2026 09:28:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gHPB0vjl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D8ErN3yD";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B59C310E3F4
- for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 09:28:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 42C4B10E494
+ for <intel-gfx@lists.freedesktop.org>; Tue, 17 Mar 2026 09:28:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773739691; x=1805275691;
+ t=1773739715; x=1805275715;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=rgqVhNpghrS0cK4OewU1Z3j2USe6GKVyE2kMVHfcHIM=;
- b=gHPB0vjlTgV3zA5MBxWrtqRfImeKjG0loC7euKWOS35geKsA5jUSBD7h
- dFa7dAB/3FQXIrkbh7ExTrQLKVXSt6AJdFYLKmHpN8zl5OyVdBsuHcpeQ
- Ggx0YhBqvl6OHZkXk/uEmUTIocj2jdG6M+nPnXinths/x8ZuT6Tgjwelv
- uyiAALPjOxDcCYBGJCaXC8PuqlwEQzTlJUgFHu3AM/ZOvkcYrtz71kZpO
- CKMiTEmKz4fF7RGnC5Mf1l7qF9kfT/qcgEuzRbKL7UoiWk2HPHNcRnu2p
- GwVksqaNRY7pHA2y1kMxIYfS1n/zL8r+RqMsX0iXq+pn/2AkpI1qESjoH g==;
-X-CSE-ConnectionGUID: HHHFcyePQzO6sjqb01SpiQ==
-X-CSE-MsgGUID: YtFcCyWrQVe2GOOPfqqP+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="92150469"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="92150469"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2026 02:28:11 -0700
-X-CSE-ConnectionGUID: r5CZYZb3SQOHJPmj74q3Gg==
-X-CSE-MsgGUID: VSiISeHvT8S51x4V/UUCKA==
+ bh=cky0pAlVXZgMbl72MBTJ4chaKilO7OYf7pcnadCOAm0=;
+ b=D8ErN3yDRdyHMazdbnOv/+eKp+ftx2tdeDHqQ6neamcAfoid46/T/bof
+ ccLimOq3mbqVLWKKtnRZy/D3jLVH5+H57StVmC/NXJH/bL6WFv7D4IK+k
+ htkkcgxVEyK95dQvKBsT8XuJMXmkhUFaZhJRnjTMBJgDI9wW9oQmAGjwk
+ NbJpMLPhI1tNsBRZtwGkfE62xH/XpcjG71plhiJyMn+QNXhKhVO4zuZbM
+ YMrO0ntnF2msvqJ0NU8s0lJnqrCee9mqUIPDgx684YptuXa8LH79Moco7
+ gQoSh0iVodv/feubn7pi0AofIgkH93GmdU7gHscGQX0jZjbUvUyLsKYLq g==;
+X-CSE-ConnectionGUID: JSo3GTQvSFyUpPvAjDKLJw==
+X-CSE-MsgGUID: 56FFYBcDSfSeTyj9ebPKNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="100222888"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="100222888"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 02:28:35 -0700
+X-CSE-ConnectionGUID: SouphM8AQo+yGfCoksx5nA==
+X-CSE-MsgGUID: 1fetBOXLS/+R71kWJ3mG7Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="221440482"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="216583214"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.32])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2026 02:28:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Mar 2026 02:28:33 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com
-Subject: Re: [PATCH] drm/i915/gvt: Swap read and write checks
-In-Reply-To: <20260204161945.8127-2-jonathan.cavitt@intel.com>
+Subject: Re: [PATCH v2] drm/i915/display: PORT_NONE is not valid
+In-Reply-To: <20260123152121.7042-2-jonathan.cavitt@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260204161945.8127-2-jonathan.cavitt@intel.com>
-Date: Tue, 17 Mar 2026 11:28:04 +0200
-Message-ID: <705230c4372a7feb62d4a2f8038e07224a5599ab@intel.com>
+References: <20260123152121.7042-2-jonathan.cavitt@intel.com>
+Date: Tue, 17 Mar 2026 11:28:29 +0200
+Message-ID: <6597430e6cbeedc11ce9d79967408aa917dfc1fc@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -74,103 +74,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F314E2A6AF2
+X-Rspamd-Queue-Id: BD29F2A6B27
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 04 Feb 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
-> The function intel_gvt_i2c_handle_aux_ch_write currently does not
-> support the DP_AUX_I2C_WRITE operation.  Notably, we check if
-> op & 0x1 == DP_AUX_I2C_WRITE (one), and if it does not, assert that
-> op & 0x1 == DP_AUX_I2C_READ (zero).  This is unnecessary because if
-> op & 0x1 != 1, then op & 0x1 == 0.  But beyond that, it probably makes
-> more sense to check for the condition that is implemented, rather than
-> check for the condition that is not.
+On Fri, 23 Jan 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> Static analysis issue:
 >
-> Swap the conditions.  We can also get rid of the unnecessary drm_WARN_ON
-> while we're here.
+> In assert_port_valid, add a check to ensure port != PORT_NONE, as that
+> is not a valid port.  The check must be explicit to prevent a bad bit
+> shift operation in the general case via short-circuiting.  It's not
+> likely this will ever come up in a real use case, but it's at least
+> worth guarding against.
 >
-> Suggested-by: Jani Nikula <jani.nikula@intel.com>
+> It would probably also be pertinent to modify the behavior of the
+> port_name function to correctly print PORT_NONE in this case, as
+> currently the port would be reported as 'port @' by the debugger.  But
+> that should be done separately, and given port_name is mostly just a
+> debug printing helper function anyways, fixing it is a low priority.
+>
+> v2:
+> - Conditional check was backwards.  Fix it.  (Jani)
+>
 > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Cc: Jani Nikula <jani.nikula@linux.intel.com>
 
 Thanks for the patch, pushed to drm-intel-next.
 
 BR,
 Jani.
 
+
 > ---
->  drivers/gpu/drm/i915/gvt/edid.c | 18 ++++++++----------
->  1 file changed, 8 insertions(+), 10 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/i915/gvt/edid.c b/drivers/gpu/drm/i915/gvt/edid.c
-> index 021afff1cd5d..ca5b54466a65 100644
-> --- a/drivers/gpu/drm/i915/gvt/edid.c
-> +++ b/drivers/gpu/drm/i915/gvt/edid.c
-> @@ -535,16 +535,7 @@ void intel_gvt_i2c_handle_aux_ch_write(struct intel_vgpu *vgpu,
->  					i2c_edid->edid_available = true;
->  			}
->  		}
-> -	} else if ((op & 0x1) == DP_AUX_I2C_WRITE) {
-> -		/* TODO
-> -		 * We only support EDID reading from I2C_over_AUX. And
-> -		 * we do not expect the index mode to be used. Right now
-> -		 * the WRITE operation is ignored. It is good enough to
-> -		 * support the gfx driver to do EDID access.
-> -		 */
-> -	} else {
-> -		if (drm_WARN_ON(&i915->drm, (op & 0x1) != DP_AUX_I2C_READ))
-> -			return;
-> +	} else if ((op & 0x1) == DP_AUX_I2C_READ) {
->  		if (drm_WARN_ON(&i915->drm, msg_length != 4))
->  			return;
->  		if (i2c_edid->edid_available && i2c_edid->target_selected) {
-> @@ -553,6 +544,13 @@ void intel_gvt_i2c_handle_aux_ch_write(struct intel_vgpu *vgpu,
->  			aux_data_for_write = (val << 16);
->  		} else
->  			aux_data_for_write = (0xff << 16);
-> +	} else {
-> +		/* TODO
-> +		 * We only support EDID reading from I2C_over_AUX. And
-> +		 * we do not expect the index mode to be used. Right now
-> +		 * the WRITE operation is ignored. It is good enough to
-> +		 * support the gfx driver to do EDID access.
-> +		 */
->  	}
->  	/* write the return value in AUX_CH_DATA reg which includes:
->  	 * ACK of I2C_WRITE
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 7491e00e3858..0c3bb3f98ee4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7828,7 +7828,8 @@ static bool intel_ddi_crt_present(struct intel_display *display)
+>  
+>  bool assert_port_valid(struct intel_display *display, enum port port)
+>  {
+> -	return !drm_WARN(display->drm, !(DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)),
+> +	return !drm_WARN(display->drm,
+> +			 !(port >= 0 && DISPLAY_RUNTIME_INFO(display)->port_mask & BIT(port)),
+>  			 "Platform does not support port %c\n", port_name(port));
+>  }
 
 -- 
 Jani Nikula, Intel
