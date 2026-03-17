@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eMswGOMvuWn4uAEAu9opvQ
+	id CNK5KuQvuWkYuAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 11:41:39 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 11:41:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0788A2A821B
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 11:41:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EEAC2A8222
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 11:41:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7956910E4F0;
-	Tue, 17 Mar 2026 10:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80E6610E5C4;
+	Tue, 17 Mar 2026 10:41:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M0vmte74";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dI7C4sR9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBD6610E1ED;
- Tue, 17 Mar 2026 10:41:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0035B10E4F0;
+ Tue, 17 Mar 2026 10:41:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773744095; x=1805280095;
+ t=1773744097; x=1805280097;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DTuuBnu66DQgG0PSV3Kes9x0y2tUqpjBMYga/FLUkeM=;
- b=M0vmte74mFTfjVC68IaGKuwQH1orfLLU9AMK5GWHBaQSYl9HZ0SdugTd
- wdsXm4X/+2JiV2QAO8Dw5JZ9U1i8GfZwgYkNpu8VXt/WHtz4bjIg8J7eG
- 33nJorL5O6EKDdzv9yNQany/hUO5QP2iFfiQ03XcDbkDeEUo0FaiqmnyO
- gRrvUYRbws/ay+otHDMEBYji4RlumZpxICNAGBqf6uEd2sbI4Et5VDs5D
- 6bUkFpzSzU3VWpxeVezeLye/su1Hd+jvbzp72tkCS2iVl81MiBwbfLGVy
- MjW9LH2GlgiBOKwmFhBfu2venqaGazFOjLb+fBzRdBu2SPYKiDCSojwvF Q==;
-X-CSE-ConnectionGUID: gG8Svk+WSx2MsI6wr9nAeg==
-X-CSE-MsgGUID: CruL7S0QRF2OEuEEHOIqvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="77381975"
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="77381975"
+ bh=Gl4+hRoT1FLxQnYEVk56eAw3AoDSsKcszo7XmpLciLM=;
+ b=dI7C4sR97ZXt8LfkKm98XmUd3nUNjZI6Tl6pHWIVUA7dyu8tWXrfGxd7
+ iylsMzrrXlu9qJvPzdDCzNaoO2rlADEC4mD/q2ziq/AGKehrNHWgdF6W5
+ O0CBaNjO6CSt/lIUrsqHyLYvucgN8oJziFGJyJz+eaYEQWVf0SYnFIz2A
+ r2XONkcmpkaphPComnPsnyeUgPm1pj+1q9ifshKLLvLT7Afm0tZQUkTNl
+ 4F30E9cbAEA814/0m0NAuM8E8dM7V6JTgZWGkbwN2eTaTKx29VG9rcUsO
+ d+T8Yuff6jugJo48JEAbzbdwekM32TvVGrSOMkjdAqlSUIzFhNI+74i+D A==;
+X-CSE-ConnectionGUID: 62GuI6URQw2T8ZhDHwXEFg==
+X-CSE-MsgGUID: h3Rlb5E4TMC/Xi9HZiCrNw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11731"; a="77381979"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="77381979"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2026 03:41:35 -0700
-X-CSE-ConnectionGUID: 0BebId1dS7eCWfRWDddlnw==
-X-CSE-MsgGUID: /N2gnmKbRCWIGQOCVNvQTg==
+ 17 Mar 2026 03:41:37 -0700
+X-CSE-ConnectionGUID: MDOlrm4TTXm9fu9xYqU6+g==
+X-CSE-MsgGUID: Cu+y3e/eQH2Aa7oQ89kDUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="221455818"
+X-IronPort-AV: E=Sophos;i="6.23,124,1770624000"; d="scan'208";a="221455829"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.245.118])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Mar 2026 03:41:34 -0700
+ 17 Mar 2026 03:41:36 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	jani.nikula@linux.intel.com
-Subject: [PATCH 1/4] drm/i915/display: move clock-gating init for IBX to
- display
-Date: Tue, 17 Mar 2026 12:40:48 +0200
-Message-ID: <20260317104119.1690065-2-luciano.coelho@intel.com>
+Subject: [PATCH 2/4] drm/i915: move CPT clock gating init into intel_pch
+Date: Tue, 17 Mar 2026 12:40:49 +0200
+Message-ID: <20260317104119.1690065-3-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.51.0
 In-Reply-To: <20260317104119.1690065-1-luciano.coelho@intel.com>
 References: <20260317104119.1690065-1-luciano.coelho@intel.com>
@@ -99,114 +98,148 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0788A2A821B
+X-Rspamd-Queue-Id: 5EEAC2A8222
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a new function in the display code to help initialize clock-gating
-without reading display PCH registers directly from non-display code.
-
-This adds a mini-framework to deal with display-specific PCH registers
-and uses it for IBX as a start.
+Move the CPT PCH clock gating programming into
+intel_pch_init_clock_gating() and switch the corresponding IVB callers
+to the display-specific code.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_pch.c  | 24 +++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_pch.h  |  1 +
- drivers/gpu/drm/i915/intel_clock_gating.c | 13 ++----------
- 3 files changed, 27 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pch.c  | 40 +++++++++++++++++++++++
+ drivers/gpu/drm/i915/intel_clock_gating.c | 39 ++--------------------
+ 2 files changed, 42 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_pch.c b/drivers/gpu/drm/i915/display/intel_pch.c
-index 65359a36df48..65812b720bda 100644
+index 65812b720bda..bcd66bdf2a22 100644
 --- a/drivers/gpu/drm/i915/display/intel_pch.c
 +++ b/drivers/gpu/drm/i915/display/intel_pch.c
-@@ -5,6 +5,8 @@
- 
+@@ -6,6 +6,7 @@
  #include <drm/drm_print.h>
  
-+#include "intel_de.h"
-+#include "intel_display_regs.h"
+ #include "intel_de.h"
++#include "intel_display.h"
+ #include "intel_display_regs.h"
  #include "intel_display_core.h"
  #include "intel_display_utils.h"
- #include "intel_pch.h"
-@@ -214,6 +216,28 @@ intel_pch_type(const struct intel_display *display, unsigned short id)
- 	}
+@@ -227,12 +228,51 @@ static void intel_pch_ibx_init_clock_gating(struct intel_display *display)
+ 		       PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
  }
  
-+static void intel_pch_ibx_init_clock_gating(struct intel_display *display)
++static void intel_pch_cpt_init_clock_gating(struct intel_display *display)
 +{
++	enum pipe pipe;
++	u32 val;
++
 +	/*
 +	 * On Ibex Peak and Cougar Point, we need to disable clock
 +	 * gating for the panel power sequencer or it will fail to
 +	 * start up when no ports are active.
 +	 */
 +	intel_de_write(display, SOUTH_DSPCLK_GATE_D,
-+		       PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
-+}
++		       PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
++		       PCH_DPLUNIT_CLOCK_GATE_DISABLE |
++		       PCH_CPUNIT_CLOCK_GATE_DISABLE);
++	intel_de_rmw(display, SOUTH_CHICKEN2, 0, DPLS_EDP_PPS_FIX_DIS);
 +
-+void intel_pch_init_clock_gating(struct intel_display *display)
-+{
-+	switch (INTEL_PCH_TYPE(display)) {
-+	case PCH_IBX:
-+		intel_pch_ibx_init_clock_gating(display);
-+		break;
-+	default:
-+		break;
++	/* The below fixes the weird display corruption, a few pixels shifted
++	 * downward, on (only) LVDS of some HP laptops with IVY.
++	 */
++	for_each_pipe(display, pipe) {
++		val = intel_de_read(display, TRANS_CHICKEN2(pipe));
++		val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
++		val &= ~TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
++		if (display->vbt.fdi_rx_polarity_inverted)
++			val |= TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
++		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER;
++		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH;
++		intel_de_write(display, TRANS_CHICKEN2(pipe), val);
 +	}
++
++	/* WADP0ClockGatingDisable */
++	for_each_pipe(display, pipe)
++		intel_de_write(display, TRANS_CHICKEN1(pipe),
++			       TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
 +}
 +
- static bool intel_is_virt_pch(unsigned short id,
- 			      unsigned short svendor, unsigned short sdevice)
+ void intel_pch_init_clock_gating(struct intel_display *display)
  {
-diff --git a/drivers/gpu/drm/i915/display/intel_pch.h b/drivers/gpu/drm/i915/display/intel_pch.h
-index 19cac7412d0a..aa971fa141e7 100644
---- a/drivers/gpu/drm/i915/display/intel_pch.h
-+++ b/drivers/gpu/drm/i915/display/intel_pch.h
-@@ -52,5 +52,6 @@ enum intel_pch {
- #define HAS_PCH_SPLIT(display)			(INTEL_PCH_TYPE(display) != PCH_NONE)
- 
- void intel_pch_detect(struct intel_display *display);
-+void intel_pch_init_clock_gating(struct intel_display *display);
- 
- #endif /* __INTEL_PCH__ */
+ 	switch (INTEL_PCH_TYPE(display)) {
+ 	case PCH_IBX:
+ 		intel_pch_ibx_init_clock_gating(display);
+ 		break;
++	case PCH_CPT:
++		intel_pch_cpt_init_clock_gating(display);
++		break;
+ 	default:
+ 		break;
+ 	}
 diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index 68a6f94f2a37..c0382607224d 100644
+index c0382607224d..0218196d183a 100644
 --- a/drivers/gpu/drm/i915/intel_clock_gating.c
 +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -33,6 +33,7 @@
- #include "display/intel_display.h"
- #include "display/intel_display_core.h"
- #include "display/intel_display_regs.h"
-+#include "display/intel_pch.h"
- #include "gt/intel_engine_regs.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_mcr.h"
-@@ -124,16 +125,6 @@ static void glk_init_clock_gating(struct drm_i915_private *i915)
- 			   PWM1_GATING_DIS | PWM2_GATING_DIS);
+@@ -196,41 +196,6 @@ static void ilk_init_clock_gating(struct drm_i915_private *i915)
+ 	intel_pch_init_clock_gating(i915->display);
  }
  
--static void ibx_init_clock_gating(struct drm_i915_private *i915)
+-static void cpt_init_clock_gating(struct drm_i915_private *i915)
 -{
+-	struct intel_display *display = i915->display;
+-	enum pipe pipe;
+-	u32 val;
+-
 -	/*
 -	 * On Ibex Peak and Cougar Point, we need to disable clock
 -	 * gating for the panel power sequencer or it will fail to
 -	 * start up when no ports are active.
 -	 */
--	intel_uncore_write(&i915->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE);
+-	intel_uncore_write(&i915->uncore, SOUTH_DSPCLK_GATE_D, PCH_DPLSUNIT_CLOCK_GATE_DISABLE |
+-			   PCH_DPLUNIT_CLOCK_GATE_DISABLE |
+-			   PCH_CPUNIT_CLOCK_GATE_DISABLE);
+-	intel_uncore_rmw(&i915->uncore, SOUTH_CHICKEN2, 0, DPLS_EDP_PPS_FIX_DIS);
+-	/* The below fixes the weird display corruption, a few pixels shifted
+-	 * downward, on (only) LVDS of some HP laptops with IVY.
+-	 */
+-	for_each_pipe(display, pipe) {
+-		val = intel_uncore_read(&i915->uncore, TRANS_CHICKEN2(pipe));
+-		val |= TRANS_CHICKEN2_TIMING_OVERRIDE;
+-		val &= ~TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
+-		if (display->vbt.fdi_rx_polarity_inverted)
+-			val |= TRANS_CHICKEN2_FDI_POLARITY_REVERSED;
+-		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_COUNTER;
+-		val &= ~TRANS_CHICKEN2_DISABLE_DEEP_COLOR_MODESWITCH;
+-		intel_uncore_write(&i915->uncore, TRANS_CHICKEN2(pipe), val);
+-	}
+-	/* WADP0ClockGatingDisable */
+-	for_each_pipe(display, pipe) {
+-		intel_uncore_write(&i915->uncore, TRANS_CHICKEN1(pipe),
+-				   TRANS_CHICKEN1_DP0UNIT_GC_DISABLE);
+-	}
 -}
 -
- static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+ static void gen6_check_mch_setup(struct drm_i915_private *i915)
  {
- 	struct intel_display *display = dev_priv->display;
-@@ -202,7 +193,7 @@ static void ilk_init_clock_gating(struct drm_i915_private *i915)
+ 	u32 tmp;
+@@ -296,7 +261,7 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
  
  	g4x_disable_trickle_feed(i915);
  
--	ibx_init_clock_gating(i915);
+-	cpt_init_clock_gating(i915);
 +	intel_pch_init_clock_gating(i915->display);
- }
  
- static void cpt_init_clock_gating(struct drm_i915_private *i915)
+ 	gen6_check_mch_setup(i915);
+ }
+@@ -536,7 +501,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
+ 			 GEN6_MBC_SNPCR_MED);
+ 
+ 	if (!HAS_PCH_NOP(display))
+-		cpt_init_clock_gating(i915);
++		intel_pch_init_clock_gating(display);
+ 
+ 	gen6_check_mch_setup(i915);
+ }
 -- 
 2.51.0
 
