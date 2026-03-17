@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCb3LWHauWlHOgIAu9opvQ
+	id IE1yL5jauWlHOgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:49:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:50:00 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D3B5C2B332C
-	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:49:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 56ED12B3342
+	for <lists+intel-gfx@lfdr.de>; Tue, 17 Mar 2026 23:50:00 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28D1A10E222;
-	Tue, 17 Mar 2026 22:49:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5C9B10E22B;
+	Tue, 17 Mar 2026 22:49:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 43DE410E1CA;
- Tue, 17 Mar 2026 22:49:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0979E10E1CA;
+ Tue, 17 Mar 2026 22:49:58 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Rust_GPU_buddy_allocator_?=
- =?utf-8?q?bindings_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Enable_seamless_boot_=28f?=
+ =?utf-8?q?astboot=29_for_PTL?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
+To: "Juasheem Sultan" <jdsultan@google.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 17 Mar 2026 22:49:02 -0000
-Message-ID: <177378774226.369169.17550430132799930978@a3b018990fe9>
+Date: Tue, 17 Mar 2026 22:49:58 -0000
+Message-ID: <177378779802.369169.3066895942797714863@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260308180407.3988286-1-joelagnelf@nvidia.com>
-In-Reply-To: <20260308180407.3988286-1-joelagnelf@nvidia.com>
+References: <20260317220908.130968-1-jdsultan@google.com>
+In-Reply-To: <20260317220908.130968-1-jdsultan@google.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,7 +48,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -63,33 +63,37 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.855];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_SPAM(0.00)[0.569];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,lists.freedesktop.org:replyto]
-X-Rspamd-Queue-Id: D3B5C2B332C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,patchwork.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 56ED12B3342
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 == Series Details ==
 
-Series: Rust GPU buddy allocator bindings (rev2)
-URL   : https://patchwork.freedesktop.org/series/162097/
+Series: Enable seamless boot (fastboot) for PTL
+URL   : https://patchwork.freedesktop.org/series/163413/
 State : failure
 
 == Summary ==
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/162097/revisions/2/mbox/ not applied
-Applying: rust: gpu: Add GPU buddy allocator bindings
-error: sha1 information is lacking or useless (MAINTAINERS).
-error: could not build fake ancestor
+Error: patch https://patchwork.freedesktop.org/api/1.0/series/163413/revisions/1/mbox/ not applied
+Applying: drm/xe/display: Fix reading the framebuffer from stolen memory
+Using index info to reconstruct a base tree...
+M	drivers/gpu/drm/xe/display/xe_initial_plane.c
+Falling back to patching base and 3-way merge...
+Auto-merging drivers/gpu/drm/xe/display/xe_initial_plane.c
+CONFLICT (content): Merge conflict in drivers/gpu/drm/xe/display/xe_initial_plane.c
+error: Failed to merge in the changes.
 hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0001 rust: gpu: Add GPU buddy allocator bindings
+Patch failed at 0001 drm/xe/display: Fix reading the framebuffer from stolen memory
 When you have resolved this problem, run "git am --continue".
 If you prefer to skip this patch, run "git am --skip" instead.
 To restore the original branch and stop patching, run "git am --abort".
