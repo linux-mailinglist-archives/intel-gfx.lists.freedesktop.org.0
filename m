@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wGXBLPWTumnSXgIAu9opvQ
+	id CCmjIQqVumnSXgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 13:00:53 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 13:05:30 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD7E2BB2EE
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 13:00:53 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1400C2BB38E
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 13:05:30 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E88D10E71E;
-	Wed, 18 Mar 2026 12:00:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B78F10E71A;
+	Wed, 18 Mar 2026 12:05:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="h0sJ2oAx";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="ZoFxJRml";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB3B610E528;
- Wed, 18 Mar 2026 12:00:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B318510E71A;
+ Wed, 18 Mar 2026 12:05:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1773835246;
- bh=sYBNJX531hWLceWL8RcKg8pAGpCkumKX1qDn/HWUuN8=;
+ s=default; t=1773835525;
+ bh=tF5q0vL2qxVDFyGWLZqCYdrLjaZO/kNMYzRya6oPuHk=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=h0sJ2oAx+0zVx1kthmEWNq/CB466M1iidHTvh1sAHYfeOgFQgWg65ZuPxU99JhfEq
- ICN3RAFKojr4gsDb8tnWsmjWnELox6sDF1yAV2zeka5Z7Lj6laCWmCYKGwKF+RFusv
- kaahr6Oo/yMH00i2LLBVx7Dv42o/NmkumFvRU44mRSjsBV2pccBCEpFKuUzk3feIb3
- J81QrM+LEX4ZV8dC+8JV6afGlWk54l+Z7PolsJiH2gUEZ0W0vYk4TZrWM5tYijxYYQ
- bGZRAKtWgRTqPAiRbgnPGnkgSNUDTBlliFe0weBXK2oBpiChUD337YZ2Id364g9bVt
- 7Q1XTl7iPUisg==
-Message-ID: <08c99b0d-6adb-423b-9c4b-2e8add00f5d3@lankhorst.se>
-Date: Wed, 18 Mar 2026 13:00:45 +0100
+ b=ZoFxJRmlvBhWbPrOM0eoNUv8iLdWmO0PCyqV3W7Ghw6Fjvl3PwWnBp8VTwd9wAyr1
+ uKHujBSvMr/peQ/sDDBOHBtdultfahgBrNJAgKtLvYfzt6kcZm78GaPYuef/Zcb4M7
+ yhPGa9Th5KoEyPlmtCP6Yg9W3Hb0Iby7vsry7ZjtB2DULDCMtqQ6j+QpGJ/N0+h1Rd
+ Q15FWKoaWSgWLjjeIdFartJEU+0ynGOM8wyAHZ6oKYM/V8ilL1Cmw6Il0kPvVOQJ39
+ 4O6fz21vHPc5VLS6aUVgmajGsLxJWibrU7Etage3i/rehfeX947RTAhz8+zHCwozzt
+ qjRV6EOCk5M4g==
+Message-ID: <b617a1e9-2f12-47fe-a44f-9b07d30024c4@lankhorst.se>
+Date: Wed, 18 Mar 2026 13:05:24 +0100
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 2/2] drm/i915/display: Sync state to BIOS for seamless
- handoff
+Subject: Re: [PATCH v4 1/2] drm/xe/display: Fix reading the framebuffer from
+ stolen memory
 To: Juasheem Sultan <jdsultan@google.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@linux.intel.com>,
@@ -44,10 +44,10 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Drew Davenport <ddavenport@google.com>, Sean Paul <seanpaul@google.com>,
  Samuel Jacob <samjaco@google.com>, Rajat Jain <rajatja@google.com>
 References: <20260317220908.130968-1-jdsultan@google.com>
- <20260317220908.130968-3-jdsultan@google.com>
+ <20260317220908.130968-2-jdsultan@google.com>
 Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260317220908.130968-3-jdsultan@google.com>
+From: Maarten Lankhorst <maarten@lankhorst.se>
+In-Reply-To: <20260317220908.130968-2-jdsultan@google.com>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -80,7 +80,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[maarten@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[10];
 	RCVD_COUNT_TWO(0.00)[2];
@@ -88,111 +88,66 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:dkim,lankhorst.se:mid];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[lankhorst.se:+]
-X-Rspamd-Queue-Id: 2AD7E2BB2EE
+X-Rspamd-Queue-Id: 1400C2BB38E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hey,
 
 Den 2026-03-17 kl. 23:09, skrev Juasheem Sultan:
-> Align DP timings and C10 PLL state with BIOS values if within a 0.5%
-> clock threshold. This prevents minor mismatches from triggering a full
-> modeset during the first atomic commit, ensuring a flicker-free handoff.
-> 
+> Currently, we attempt to pin stolen memory using the ggtt address. This
+> doesn't appear to actually read the framebuffer that was setup by the
+> bios. Instead, we have to use the underlying physical address offset
+> within stolen memory.
+>
 > Signed-off-by: Juasheem Sultan <jdsultan@google.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display.c | 67 ++++++++++++++++++++
->  1 file changed, 67 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index c4246481fc2f..22e5e931f134 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -6397,6 +6397,71 @@ static int intel_atomic_check_config_and_link(struct intel_atomic_state *state)
+>  drivers/gpu/drm/xe/display/xe_initial_plane.c | 22 ++++++++++++++++++-
+>  1 file changed, 21 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> index 4cfeafcc158d..d818993d9b8a 100644
+> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+> @@ -19,6 +19,7 @@
+>  #include "intel_fb.h"
+>  #include "intel_fb_pin.h"
+>  #include "xe_bo.h"
+> +#include "xe_ttm_stolen_mgr.h"
+>  #include "xe_vram_types.h"
+>  #include "xe_wa.h"
 >  
->  	return ret;
->  }
-> +
-> +// Helper function to sanitize pll state
-> +static void intel_sanitize_pll_state(struct intel_crtc_state *old_crtc_state,
-> +		struct intel_crtc_state *new_crtc_state)
-> +{
-> +	int j;
-> +
-> +	for (j = 4; j < 9; j++) {
-> +		if (new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] !=
-> +				old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j]) {
-> +			new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] =
-> +				old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j];
-> +		}
-> +	}
-> +}
-> +
-> +/*
-> + * intel_dp_sanitize_seamless_boot - Snap driver state to BIOS state for seamless handoff.
-> + * @state: the atomic state to sanitize
-> + *
-> + * This function compares the driver's calculated new_state with the inherited BIOS state
-> + * (old_state). If they are within a small threshold (e.g., 0.5% for clock), it "snaps"
-> + * the new_state to match the BIOS state exactly. This prevents minor state mismatches
-> + * that would otherwise force a full modeset (and a screen flicker) during the initial
-> + * kernel handoff.
-> + */
-> +static void intel_dp_sanitize_seamless_boot(struct intel_atomic_state *state)
-> +{
-> +	struct intel_display *display = to_intel_display(state);
-> +	struct intel_crtc_state *new_crtc_state, *old_crtc_state;
-> +	struct intel_crtc *crtc;
-> +	struct intel_encoder *encoder;
-> +	int i;
-> +
-> +	for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state, new_crtc_state, i) {
-> +		/*
-> +		 * We must check old_crtc_state->inherited because new_crtc_state->inherited
-> +		 * is cleared at the start of intel_atomic_check for userspace commits.
-> +		 */
-> +		if (!old_crtc_state->inherited || !new_crtc_state->hw.active)
-> +			continue;
-> +
-> +		if (intel_crtc_has_dp_encoder(new_crtc_state)) {
-> +			int old_clock = old_crtc_state->hw.adjusted_mode.crtc_clock;
-> +			int new_clock = new_crtc_state->hw.adjusted_mode.crtc_clock;
-> +			int threshold = old_clock / 200; /* 0.5% */
-> +
-> +			if (abs(new_clock - old_clock) <= threshold) {
-> +				new_crtc_state->hw.pipe_mode.crtc_clock = old_clock;
-> +				new_crtc_state->hw.adjusted_mode.crtc_clock = old_clock;
-> +				new_crtc_state->pixel_rate = old_crtc_state->pixel_rate;
-> +				new_crtc_state->dp_m_n = old_crtc_state->dp_m_n;
-> +			}
-> +		}
-> +
-> +		for_each_intel_encoder_mask(display->drm, encoder,
-> +				new_crtc_state->uapi.encoder_mask) {
-> +			if (intel_encoder_is_c10phy(encoder)) {
-> +				if (!new_crtc_state->dpll_hw_state.cx0pll.ssc_enabled)
-> +					intel_sanitize_pll_state(old_crtc_state, new_crtc_state);
-> +			}
-> +		}
-> +	}
-> +}
-> +
->  /**
->   * intel_atomic_check - validate state object
->   * @dev: drm device
-> @@ -6447,6 +6512,8 @@ int intel_atomic_check(struct drm_device *dev,
->  	if (ret)
->  		goto fail;
+> @@ -87,7 +88,26 @@ initial_plane_bo(struct xe_device *xe,
 >  
-> +	intel_dp_sanitize_seamless_boot(state);
+>  		if (!stolen)
+>  			return NULL;
+> -		phys_base = base;
 > +
->  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
->  		if (!intel_crtc_needs_modeset(new_crtc_state))
->  			continue;
+> +		/* Read PTE to find physical address backing the GGTT address */
+> +		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+> +		u64 phys_addr = pte & ~(page_size - 1);
+> +
+> +		u64 stolen_base = xe_ttm_stolen_gpu_offset(xe);
+> +
+> +		drm_dbg_kms(&xe->drm,
+> +				"Stolen Framebuffer base=%x pte=%llx phys_addr=%llx stolen_base=%llx\n",
+> +				base, pte, phys_addr, stolen_base);
+> +
+> +		/* Make sure that the physical address is in the range of stolen memory */
+> +		if (phys_addr >= stolen_base) {
+> +			phys_base = phys_addr - stolen_base;
+> +		} else {
+> +			drm_err(&xe->drm, "Stolen memory outside of stolen range phys_base=%pa\n",
+> +					&phys_base);
+> +			return NULL;
+> +		}
+> +
+>  		flags |= XE_BO_FLAG_STOLEN;
+>  
+>  		if (XE_DEVICE_WA(xe, 22019338487_display))
+So far all platforms had an identity mapping of GGTT with stolen, is that different?
 
-This might fix boot state, but in a way that complicates the code considerably.
-
-Have you considered updating intel_pipe_config_compare instead?
+There should probably also be a mention that allocation will fail anyway if phys_addr + bo_size < xe_ttm_stolen_size()
 
 Kind regards,
 ~Maarten Lankhorst
