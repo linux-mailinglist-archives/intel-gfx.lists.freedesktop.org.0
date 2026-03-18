@@ -2,65 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEOyD1xzumkeWwIAu9opvQ
+	id +EeSFB58ummTWwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 10:41:48 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 11:19:10 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E244D2B9483
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 10:41:47 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B06252B9C49
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 11:19:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E17110E79E;
-	Wed, 18 Mar 2026 09:41:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E18310E0C7;
+	Wed, 18 Mar 2026 10:19:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FXrmcu+x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WfUn4Sgq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFD0010E793;
- Wed, 18 Mar 2026 09:41:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 874AB10E04D;
+ Wed, 18 Mar 2026 10:19:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773826905; x=1805362905;
+ t=1773829146; x=1805365146;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=oGm7z5WFhS1F2vkp2tz9OgMWI+7feDYAJiM0g7xfIDk=;
- b=FXrmcu+xMEfhb9y6UX809/9HqEhVRJSWIxSenNclaCvXHEDW1TxMf9HY
- ShHvFltPxmMm3zvwjEyWsu8Oq8YpP1y+0+bIdD1nxuCJIWV8ur48dEChG
- 8qdW4J+hWEopJ/Vvdh5xFhYy6UB3xKvh6aQ9Fx2mC8Cn7HT+0v/jKa4ar
- Gw156PQ54SYEZJ88TkxCSoaUwYpyeU3rl08c8QrWz/Em1fARUoOib+0vP
- EGxzqKXFroeDSsroz2pTa64DbcAOcXghlcRDPVCCGAHW95eqhbIGiq51T
- gdNt37kF1ge3S0NyYun42bqVchFCPk2veF4B+2Kt1ddN43xPVoo9mb2u4 Q==;
-X-CSE-ConnectionGUID: o+DermWTQbKc7E2fyzgFNw==
-X-CSE-MsgGUID: zmDQHVDaRseVdJJW+SfHzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74576679"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="74576679"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ bh=A8QEN1n0Un7HZ5Jrcwq9ZMEZkOGZwfjFT6RrPBOzi9w=;
+ b=WfUn4SgqeD+igjVEFQH7w6f2blsD4kvWaYt0jf3dO11gLnidNmuTVn5M
+ s/S9whWTHBbgSybKq9wv/un6YcboEjeqJ9/bKtm8OhMJzvrLfL99SZbzj
+ yMdFDTDSzN3c9qWopfEkcTYAPI2zmJVig+bPHHrSdwz+YYq2TLogpoo6a
+ Q8P5g5HpzEw9TMSGLXgOyQGkWAcj1K7LaXRIGd25PPlBn+84LgIcRN2TZ
+ cTnA0xfXSWiZ98rQzwbAywVuCPGNt7DvK68tbxYVgtTMl9zcbDA3TNyyM
+ up0bqv9O8iY6Xw9HIQsCSKUYedVCiudTRV7QU3UFsCiFfcc/z7R0I34gF Q==;
+X-CSE-ConnectionGUID: CnMIa+c3SwaCSy6jkNZawQ==
+X-CSE-MsgGUID: VRe/kE7nQQuPT9176njhzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="74578822"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="74578822"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 02:41:44 -0700
-X-CSE-ConnectionGUID: RgoHS1T5QqqQniH98VHH5g==
-X-CSE-MsgGUID: RV5SmwFiRTuRC+R39CUfiA==
+ 18 Mar 2026 03:19:05 -0700
+X-CSE-ConnectionGUID: XNfADGAKTiiGhcjX9B49hw==
+X-CSE-MsgGUID: M5P8126mSfWrmmV5rfp4HQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="260473107"
+X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="221816684"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.79])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 02:41:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Rahul Bukte <rahul.bukte@sony.com>, Tvrtko Ursulin <tursulin@igalia.com>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] drm/i915/gt: Check set_default_submission() before
- deferencing
-In-Reply-To: <abo9bv1oz_5S66zE@rahul-Z690-S01>
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Mar 2026 03:19:03 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Samasth Norway Ananda <samasth.norway.ananda@oracle.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: samasth.norway.ananda@oracle.com, ville.syrjala@linux.intel.com,
+ rodrigo.vivi@intel.com
+Subject: Re: [PATCH v2 0/2] drm/i915/gmbus: fix bugs
+In-Reply-To: <98b08a93d554455ea7db69f148d2928e1ee728c1@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260203044839.1555147-1-suraj.kandpal@intel.com>
- <864065cfcd3baaff212135beb781b0a5990728d8@intel.com>
- <abo9bv1oz_5S66zE@rahul-Z690-S01>
-Date: Wed, 18 Mar 2026 11:41:38 +0200
-Message-ID: <407885d79847863026260d4f911e905da8d51724@intel.com>
+References: <20260316231920.135438-1-samasth.norway.ananda@oracle.com>
+ <98b08a93d554455ea7db69f148d2928e1ee728c1@intel.com>
+Date: Wed, 18 Mar 2026 12:19:00 +0200
+Message-ID: <61f99ea781c8e5d4d8a2588241fa3b91675e8f8a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -96,44 +95,42 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E244D2B9483
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oracle.com:email]
+X-Rspamd-Queue-Id: B06252B9C49
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 18 Mar 2026, Rahul Bukte <rahul.bukte@sony.com> wrote:
-> Hi,
+On Tue, 17 Mar 2026, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Mon, 16 Mar 2026, Samasth Norway Ananda <samasth.norway.ananda@oracle.com> wrote:
+>> v1 -> v2
+>> v1 just included both changes, the bug fix and typo change in same patch.
+>> Separated them to two different patches for clarity.
 >
-> On Fri, Mar 13, 2026 at 06:34:22PM +0200, Jani Nikula wrote:
->> On Tue, 03 Feb 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> > From: Rahul Bukte <rahul.bukte@sony.com>
->> >
->> > When the i915 driver firmware binaries are not present, the
->> > set_default_submission pointer is not set. This pointer is
->> > dereferenced during suspend anyways.
->> 
->> Which kernel vesions did this happen with? Should this have had Fixes:
->> or Cc: stable?
+> Thanks for the patches.
 >
-> Fixes: ff44ad51ebf8 ("drm/i915: Move engine->submit_request selection to a vfunc")
-> Cc: stable@vger.kernel.org
->
-> Suraj, you mentioned that you have commited this to din [1]. Can we add
-> this fixes and cc tags to that please?
->
-> [1]: https://lore.kernel.org/all/DM3PPF208195D8D000253F905FADCA379F9E36DA@DM3PPF208195D8D.namprd11.prod.outlook.com/
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Tvrtko, please pick this up for drm-intel-fixes.
+And pushed to drm-intel-next.
 
-BR,
+Thanks,
 Jani.
+
+>
+>
+>>
+>> Samasth Norway Ananda (2):
+>>   drm/i915/gmbus: fix spurious timeout on 512-byte burst reads
+>>   drm/i915/gmbus: fix a typo in comment message
+>>
+>>  drivers/gpu/drm/i915/display/intel_gmbus.c | 6 ++++--
+>>  1 file changed, 4 insertions(+), 2 deletions(-)
 
 -- 
 Jani Nikula, Intel
