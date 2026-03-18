@@ -2,101 +2,102 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENYUHkK3umlWawIAu9opvQ
+	id kBU8FFVkwWkjSwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 15:31:30 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:33 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D6A1B2BD2B4
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 15:31:29 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B387C2F754A
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:31 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3361E10E70B;
-	Wed, 18 Mar 2026 14:31:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E979910E4EE;
+	Mon, 23 Mar 2026 16:03:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="tZiWVFHj";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="VRtVHlls";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wr1-f50.google.com (mail-wr1-f50.google.com
- [209.85.221.50])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B76AF10E11C
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:31:26 +0000 (UTC)
-Received: by mail-wr1-f50.google.com with SMTP id
- ffacd0b85a97d-439b2965d4bso4941254f8f.2
- for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 07:31:26 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1773844285; cv=none;
+Received: from mail-dy1-f174.google.com (mail-dy1-f174.google.com
+ [74.125.82.174])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EE2310E274
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 14:42:00 +0000 (UTC)
+Received: by mail-dy1-f174.google.com with SMTP id
+ 5a478bee46e88-2c0c9994199so147923eec.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 07:42:00 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1773844920; cv=none;
  d=google.com; s=arc-20240605;
- b=MHD8EMsoLI1SDYOw/kqMw63FtyasYNjcpj416tcFsih886LQOr1SpGFwHJQDC1epRD
- m0x/ml65legDymQQs5dNGFih+wLSXnF+ROL62I1xEQok5Ed41AO+mSUa5yNnKwhkAQUF
- VtCsezbJKoXUwUPFrZPw3jiud2ZobwPDM5YUftpOl93NZHa90YPpRU773EGCp82/lBGg
- +yvQxysBf3lMrp5q2DbwLK0NIIba/N+aCDNNOoLwj80wS3tvIWlb8shRyYzIFgGoDntL
- wwhDCv4JM/BsaIim2D7SFbR4Nr7IvRK+SPI+w1SAYvC4+QF4p0f76EteYZZf2gTNAaBa
- 5CXA==
+ b=RtyxLtPgEwz4XoD80JOno3+FoQmyk9RRsJftBpZtIJSkHzkEgq93mpr62iXupfO03d
+ Ghk9yiaAufPhNW1OGePmmLUfgt0WCb1tC/YumVwgoaFBep6PnPNO8dWV70KbggMgDf2i
+ 89hEAbSO6ekD+0mO1M5mmPDpYttYJjLtPIQeU8JyX6iQNcjsu7rNk8QXslOXUqPhjK5X
+ XC9+cmmTpFRvjtbtJau1vV3NP4ANcLXlxjj4gocwSXuqpQXEp57aC4V1qUSSQLwx2258
+ /pvL0aczGsZ8ZmXwZmit/LgIKkXDJcz6W6WdIrPjEk2ykWl9PSDfW95S+hMNRZFnyZzF
+ GLKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=9Oke8F3j0iNZ3cSK0OCeOVMy+GmzWDcEKfA0PeIuC3c=;
- fh=r+VTK3wxx5hL5AFlVnaL14aavj81eZIdw/6Zn74Xmkg=;
- b=Iu1QNR2JIu+9cWaz8Gf3AVooR4WyM+2hSIrHdzYIrmVQmy59qgeXd4nN3N+fPPVB9W
- dJ1g8QlY0KXD7sorV0eiGLgYsHdUPq7bWLZBlDyczD7I0W3NyFbwsYx/5MmVw/ckIwQP
- TJIJFtjoXpnw8DGhOBtPU8BMxmLEwyh50nNGMcmC4xigKkutOqWFKdjDUbEA44IB0Tz/
- YGZZRzi43+CeullKkJHPtNdMb+unIPdiZOBsV8yG2IaYUSj+cP6bfQfUonpQaS1XVFpl
- lcwM6JTJS1Qs+7L8lYqSDoYQ2814m8a0keTGypjY3VEszd3G+INryRlEx0Tx6lgQvwWi
- pNFw==; darn=lists.freedesktop.org
+ bh=RTOE29KKEh2RCMQf09/Yf7/7d6oQT0Su+sy1NG6/ao4=;
+ fh=51Lu5vqzoDkJeXGBT7Cy8D/XSOBYE58gfQoMW0LGB9w=;
+ b=eCzr8p4nUxjJUI2JyMTc7DBpjLbp3feT+7hbnnGaYA//W5b4D6npN8T/LFHpMh0iV2
+ U+gdGpMolqgnNMyO/QgkTfn8F0mzxiS+ySo5yeMqddEWbgKoK9tuQicuUafq+wet6Jwb
+ HhKFXehkL6r2BsyLmmYvy/LCGNyabvWgz2MqdVf1+obCAdBJykReSwbg28kzfS6IGw+c
+ 3Yo5QSn+qhlJ1bTMHIKejXlS3M0vy4H6ViwdJb06b5f/6QcZTf6sxEX7P8Vzy/CseICc
+ mYKoa46jAKDlqmlp7iBvZrHzDf10vKz+heUai/j0gcLnikEpBBrbaE7WIbVp4v66MjKs
+ qvng==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1773844285; x=1774449085;
- darn=lists.freedesktop.org; 
+ d=gmail.com; s=20230601; t=1773844920; x=1774449720; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=9Oke8F3j0iNZ3cSK0OCeOVMy+GmzWDcEKfA0PeIuC3c=;
- b=tZiWVFHj2+g9DuubpbvnUXJzjWS5yRLIEcmLhSkfowhQcU3h/pW3rjvyiXbGjc+J/c
- yMXzCnq5OHsbQLHh4+cBCjDzAMD/CWOZz+ZIib1V9AfKHxoUg6I6Sstd6ZwvHtXhhnvu
- Le9Pe1kBpFN1rF8CWmgr+R2SZT1/2+bgHO9STvNDgbH0RHMrGJvOWtiSDTBHKi1Up97I
- Vm4gFHYOBRIfifX6Of4PjHpHX1fogGRo6PaqPa/7hsv56sri5qan9WKTEzb7iMUUV6Uo
- rlE1gPcXYzpDPNPYKYLtupYS2L64GX0H45xTr4ip0Ra8LQNhT46Mvpvy9/Da4Nb8lTwp
- ZVsw==
+ bh=RTOE29KKEh2RCMQf09/Yf7/7d6oQT0Su+sy1NG6/ao4=;
+ b=VRtVHllsYbUfS99x8ZJ5g4p32kEK+wtGik6SRcit90VBBH3EYlfQvrWNK/tzalFF1H
+ 8wZkA7EkU80PjeueroLcaAIw9QUWh0vkexlBYUyjfR8smumbcQbUg50DdmaGxRhpf1CN
+ qmSE+vyb4lIRosAVGh/7tpW5LldPt5aSoI6zTzlzK2nMsVqoIj+/IbT8MbdxkaXcQTgk
+ 3qNAT1/I1MJyie16WYZrzWbXNgWmd2ksC636kT67MAXZpBaJaYMVQeXoyvqAcdzV+jBo
+ emYB/hHO63xnRO7ZqfTZbwbhWeRgeIPbJQ157/IUZqB5lz/o/3g50Ou2B4IvpBx7vlfM
+ 50SA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1773844285; x=1774449085;
+ d=1e100.net; s=20251104; t=1773844920; x=1774449720;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=9Oke8F3j0iNZ3cSK0OCeOVMy+GmzWDcEKfA0PeIuC3c=;
- b=hFCMKE/QiCloPyU9EjUUci3ZvQ69hmCLBluRedwEU3pLaZT/QANyRcyo1BonC4XaR0
- cnVT4Lj2y4QG2IntOPcC9OW4iQFGJLlsRO/wJvHd8tJw2ApefbeTAe71d2VrqUnp5O6W
- u43UkyXi2eif9Hwpb7I9MrZ7iFk4PLiux00rfWMNkQUiMouqTIOuBpOi8OzG1Tvs4F2J
- lCYNBM2dSkFvnkUjIh+ai05SLCv06CVUgbyARIcQRsLYc3EnU08i5iC+Oi05szp1SVps
- cugsMcwSKrELkLppQ/qbOCh0A76QNOasuZjr213Tf+xVOccBcpSLTBDtLOnjVp9s3tnD
- T0Ng==
+ bh=RTOE29KKEh2RCMQf09/Yf7/7d6oQT0Su+sy1NG6/ao4=;
+ b=CqFU0wf4iAW229v6LW5zG95EE9fE3hrLpvrd/i4B8DR4/fZlUNtSjgzdwgrQnu/qBg
+ 9kJ+TxRCMjSFb259bIeHzFYJH8QbSNomU0Im4rL9WwUcmsNsURFnE2UhDHV47Varg+Jp
+ is5lc33vyqurgk5ce3ryalOM7Oqir/OyY4sQ+3BFgo0OjCVMlRGRyoa7xGmgXlv+qDCW
+ G0KJy+6to/9wMO/rTXuCAorBE6PTzkdnby313CqSUYEa7RCAAeU7mYCuRfVfXcosS3Ty
+ 8qhfoJdvVoonFUWtB1HOqZIrO3DLXnN7blJ6aE/XjPwmumf3ORkuJrNAIX0QJlwXSJTh
+ aChA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXN3WW5G3+EdjeqQmWh/7wWNAm5UeuZR6NUe+bGdDnJpK17l7E5SitQI2FtVMZYdF4lgeq9g1mKVwc=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxloXPi1z+2ZZQOGkehLmuetAiGZ5B+H/NiwjpfD59oAbRCAbrq
- c9PGS3Vy/TPGPvY+YuC4nH2pcO5H9ne3lXUiDeUZvq/9pvsWRdsAuA1Whz++3+wCQkRFCXqx3k7
- zLD5iRQs1MWdQS3mX9+WNAiatRhFwRwkcX1sHMIPW
-X-Gm-Gg: ATEYQzzplGD+CoQlvu9968eF7DKrB1xy9ApnR4BlFrRY27FTWIhHe+DVs5KplTq2k0a
- GT9oRqHMF5WYgpZ2mpUNpsgPL3z43jxPOQru1yuVrgssmIfZKQyPLmSbK99WLEPKv5FGs6xhY8w
- liypnH2oGbLp7Irg0vyy09JN1fYAVzOqViZHLn2ZDi3+KJYC3VIvj0E6NWtW7V4wgz8oyxVbfuz
- dR/9eKXwkpImJirs7o/Bz70XJ2keG8iU0X3ULTzgjRw0vhaTEOk/gNgH8evbmNeB8RjiU24h1sP
- dX3EgBOrdiNiKaKhFGfrKHQTfQFkXcnEzve4yrMhHSytU0vJF8jJebe3D1F/emd4k7OIlQ==
-X-Received: by 2002:a5d:5f43:0:b0:439:ca85:8848 with SMTP id
- ffacd0b85a97d-43b527aa344mr6004289f8f.16.1773844284463; Wed, 18 Mar 2026
- 07:31:24 -0700 (PDT)
+ AJvYcCVAks5W85b3DgwDDiyvt8D7hnIHxrpaVu6bSk9zBLWCdMX4Va5pgyVjoenBeeedmCDWhE2YNi96+lw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqNpCtProZNqIvTC0m4P5COVBReR+MOQEyB+tpfNQkopsCeJWP
+ 508h4OnQLdoPGDeMb20zM3F8iwituu0eXoSzyw3E+c5Z2+NpESVERyrZpbZ521mODwyy7SIHnz4
+ fpg8ouzNDMqzKr5Bk/vLRfpCC+7YIQP4=
+X-Gm-Gg: ATEYQzxgsy55mNkBcfwRpnOpz8bbYlslhMw9T1Ra/qNdWolYlzOMq03SrBIuHWbm5dX
+ ehl9emZ7BcQxNgqspnCR4PhHBt/ZNjjpdVIS1o91i2DY7uUh8xW5lo/dwW+CooxNAqKUmVA17/C
+ Bj8uytzbsrNp+WdeUcX2j3jLNFpt9dermSqljGJz+k4nsLL5vn/o9hFRVRV2awRIwBWKC2NWPRR
+ 3JPZ58XervY354JkEi6ADfKlPjuwAncm+KB2wkNe0qifKHEYS90jv23B9IbhbCgDx7QTCR0Q+xM
+ z8kbYYP3nmSNkiF9GgvvUzVITW2K5pGB9EGLdGHkfNVNli0guuMBzWzjTj+ZhW6QiuBZ4W3pMRr
+ J1HkcHGBaQQSL5VT8F3wx05M=
+X-Received: by 2002:a05:7300:3724:b0:2be:1f56:ed32 with SMTP id
+ 5a478bee46e88-2c0e4f79e7amr877942eec.1.1773844919477; Wed, 18 Mar 2026
+ 07:41:59 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260317201710.934932-1-joelagnelf@nvidia.com>
  <20260317201710.934932-2-joelagnelf@nvidia.com>
  <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
  <abppV3e91iVzplcv@google.com> <DH5UOS96171T.Z8XSRX583Q60@nvidia.com>
  <CANiq72=bmJ_GWKowAgv+DWQ8FcWK_HePwjaVgeDmRH+gVD-z5g@mail.gmail.com>
-In-Reply-To: <CANiq72=bmJ_GWKowAgv+DWQ8FcWK_HePwjaVgeDmRH+gVD-z5g@mail.gmail.com>
-From: Alice Ryhl <aliceryhl@google.com>
-Date: Wed, 18 Mar 2026 15:31:12 +0100
-X-Gm-Features: AaiRm51O3ZORqMPG2oSnP3bbIvsHXlypg7QXuPo86XIFyKOog2BgXzbGuVDuzJY
-Message-ID: <CAH5fLgg-kgeBw3Py-EZmAEJhm357u5NJP6na4qJe8v3aeFW5Cg@mail.gmail.com>
+ <CAH5fLgg-kgeBw3Py-EZmAEJhm357u5NJP6na4qJe8v3aeFW5Cg@mail.gmail.com>
+In-Reply-To: <CAH5fLgg-kgeBw3Py-EZmAEJhm357u5NJP6na4qJe8v3aeFW5Cg@mail.gmail.com>
+From: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+Date: Wed, 18 Mar 2026 15:41:44 +0100
+X-Gm-Features: AaiRm52glbQ5k03i38HLvFJrknMe1XNNnKvvWBogM8moiNwsNZDgYGGN20TDKPc
+Message-ID: <CANiq72nad-60tOJeAfkvHTFrWXQS_wbG4JUGQNnkjm_NvhhaYw@mail.gmail.com>
 Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
  interface
-To: Miguel Ojeda <miguel.ojeda.sandonis@gmail.com>
+To: Alice Ryhl <aliceryhl@google.com>
 Cc: Alexandre Courbot <acourbot@nvidia.com>,
  Joel Fernandes <joelagnelf@nvidia.com>, 
  linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
@@ -134,6 +135,7 @@ Cc: Alexandre Courbot <acourbot@nvidia.com>,
  intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 23 Mar 2026 16:03:24 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -148,54 +150,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	DATE_IN_PAST(1.00)[121];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:miguel.ojeda.sandonis@gmail.com,m:acourbot@nvidia.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nv
- idia.com,m:arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:miguelojedasandonis@gmail.com,m:alexgaynor@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	TAGGED_FROM(0.00)[];
+	FORGED_SENDER(0.00)[miguelojedasandonis@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:aliceryhl@google.com,m:acourbot@nvidia.com,m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:
+ arighi@nvidia.com,m:aritger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	RCPT_COUNT_GT_50(0.00)[54];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[miguelojedasandonis@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	NEURAL_HAM(-0.00)[-0.991];
+	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: D6A1B2BD2B4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: B387C2F754A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 18, 2026 at 3:21=E2=80=AFPM Miguel Ojeda
-<miguel.ojeda.sandonis@gmail.com> wrote:
-> [*] I would have preferred a middle ground like  modules being inside
-> but repeating the folder name, e.g. `.../pci/pci.rs`, but I doubt that
-> will ever be supported upstream since one probably wants to support
-> the other ways at the same time.
+On Wed, Mar 18, 2026 at 3:31=E2=80=AFPM Alice Ryhl <aliceryhl@google.com> w=
+rote:
+>
+> In principle this is possible using
+>
+> #[path =3D "pci/pci.rs"]
+> pub mod pci;
 
-In principle this is possible using
+No, I meant supported natively, i.e. without having to write an extra
+file everywhere (which could perhaps be simpler as just a symlink
+instead).
 
-#[path =3D "pci/pci.rs"]
-pub mod pci;
+We could also generate the `mod.rs` on the fly, but that means a clean
+tree isn't great for tooling etc.
 
-Alice
+Cheers,
+Miguel
