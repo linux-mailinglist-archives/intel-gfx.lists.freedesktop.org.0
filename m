@@ -2,62 +2,107 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HvDJOBvumnRWQIAu9opvQ
+	id WJ07OF5pumnnWAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 10:26:56 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 09:59:10 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 458BC2B8FF5
-	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 10:26:56 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 483462B895C
+	for <lists+intel-gfx@lfdr.de>; Wed, 18 Mar 2026 09:59:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34A7710E787;
-	Wed, 18 Mar 2026 09:26:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A620410E772;
+	Wed, 18 Mar 2026 08:59:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="de4Qmu9c";
+	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="AdFXKhWb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 63B5710E783;
- Wed, 18 Mar 2026 09:26:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773826012; x=1805362012;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=eYHQSwgTJFYHl10cdIWjxKtheDXSwV4VIZeq9P9XvJg=;
- b=de4Qmu9cQanzd0iACIxMcjYh9AgsD3gjAK0Dfw1/ONC0b3GlsEeuGNbI
- qcMnbNqsRD/KfzIwGohYmsL9CzvnvVeRRX7jAVSO1de5TBX3g4CZMNGsJ
- 9lXvWRtonUgl1sHc+eG8T99m/m/Le1wreYtT5kyRoJGrkT56UjuaGcQvE
- dRgGhHgPPWNo67q9BVDkkVhlj+TXFr6x6C5/Zedwucf4bF9n59lciDMO8
- 9wa2kZeQjLxpKcmQcUQDAJQLhD1W8kKSKRosJuq4v4NtzAQMQ/gE/Ad96
- KwH6DvSnUC6cEOzRM410raY/iEdMcZ4Na0JpR3r/L/HIRE/uIrmMvNnKP w==;
-X-CSE-ConnectionGUID: CwOTRU3LTuqelWWZv/w+Ow==
-X-CSE-MsgGUID: cdn/7aUvRBeLLZ4i0QgfMw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11732"; a="85953873"
-X-IronPort-AV: E=Sophos;i="6.23,127,1770624000"; d="scan'208";a="85953873"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 Mar 2026 02:26:52 -0700
-X-CSE-ConnectionGUID: DeMixuhaQRy71hK3xzLF5A==
-X-CSE-MsgGUID: A4vGYPj2TX2HXwrGGMx6YQ==
-X-ExtLoop1: 1
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa003.fm.intel.com with ESMTP; 18 Mar 2026 02:26:49 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: jouni.hogander@intel.com, imre.deak@intel.com, jani.nikula@intel.com,
- arun.r.murthy@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v8 3/3] drm/i915/display: Panel Replay BW optimization for
- DP2.0 tunneling
-Date: Wed, 18 Mar 2026 14:26:42 +0530
-Message-Id: <20260318085642.3621166-4-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20260318085642.3621166-1-animesh.manna@intel.com>
-References: <20260318085642.3621166-1-animesh.manna@intel.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Received: from mail-wr1-f74.google.com (mail-wr1-f74.google.com
+ [209.85.221.74])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A64BF10E777
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 08:59:06 +0000 (UTC)
+Received: by mail-wr1-f74.google.com with SMTP id
+ ffacd0b85a97d-439ae2cba40so6244832f8f.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 18 Mar 2026 01:59:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1773824345; x=1774429145;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:from:to:cc:subject:date:message-id:reply-to;
+ bh=MXY9EHBXCnPWVfnYnREpBujBITTjaoQ0F5qTzNSzUus=;
+ b=AdFXKhWbzkC/P817pKAHLvAFJFesMoJvZ6h/nH+QUkSIxbKYNe61F/ZctegLuzcC3s
+ G9kENx49LoQ8X7AJnMlIN/HkepXTElQDuybO69SK4QlStqtJ/Z7fK/eD++u9/4USNR1Q
+ KzHRdBmKmr6aOlD1HdiZGsW4+DkrPcd76+Rk+jn25js/y5pxkE9I5BLYjdNnfNHf5kqJ
+ wVGwcWtc8vUXLYnxQTG7DeEZa7MVwHSpfRAQwovjjHfRfZNOusOliqfICJtt2fvD5aJE
+ J1TjfeGrEPXDPZPqLJCzJbj4ckHZ8AcMQMlxMr2bKdxhKUjc8Iziuw9LOnkK0TFTw6rS
+ XLWQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1773824345; x=1774429145;
+ h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
+ :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=MXY9EHBXCnPWVfnYnREpBujBITTjaoQ0F5qTzNSzUus=;
+ b=dzuqryG6VJsAI4fllzslcQXrEJoezeMiAEVfcyQbO6PUN+Vr+XmCmOSpqwgnj+Pxsh
+ 3zWE5UkHe6xn8RNYZuM3sygo/Xk9VlrwV6v3aivY/f7h/vv99Hs3od6GM69l5ZZ5hyVl
+ EXWwUKnX9GRdTTpzRVI2zvIQ3b0AUycunaSptM2xDXb9+aEcP8J+49uNZWIcZCoUCYcm
+ FomBlyb6Wb5L5/3Yq7plxg6BmTMCPVRqlp90CCexVHIQqS3xyQEGV7FC8rFfQZ95icjA
+ zzmwH/37evLV+7CHevoH2MUl0sjjrtU/Bud4tU+Xq1Cgqz1uQvwhVp3YFTVc6wzZQ5Ql
+ AAhw==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVslMzeiCKGHUDopyEJKVy5FdDacqg+9qqWl+n9iOyUk203jvdsM2a2dD1wr2HO72HMk8/klTcFyhs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz/NDEUycjdvQh3naUX7MiiuauH3uj4lpRvksS17HV3TqPOpelZ
+ QI7CSyWtvp5PmQGMOypr6SDjEixCrm5R0OYKo0hwkhqaf7fQpBCwoCvsb/KYaJAsVNKmmiuOTih
+ sf7yAo1oSiJ3X/aSWRQ==
+X-Received: from wmqe14.prod.google.com ([2002:a05:600c:4e4e:b0:485:3539:bc05])
+ (user=aliceryhl job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:600c:a20b:b0:485:3bb5:92cf with SMTP id
+ 5b1f17b1804b1-486f4422300mr29381305e9.12.1773824344660; 
+ Wed, 18 Mar 2026 01:59:04 -0700 (PDT)
+Date: Wed, 18 Mar 2026 08:59:03 +0000
+In-Reply-To: <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+Mime-Version: 1.0
+References: <20260317201710.934932-1-joelagnelf@nvidia.com>
+ <20260317201710.934932-2-joelagnelf@nvidia.com>
+ <46986da6-8c89-475c-8561-964adaa7d034@nvidia.com>
+Message-ID: <abppV3e91iVzplcv@google.com>
+Subject: Re: [PATCH v13 1/1] rust: interop: Add list module for C linked list
+ interface
+From: Alice Ryhl <aliceryhl@google.com>
+To: Joel Fernandes <joelagnelf@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>, 
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, 
+ "=?utf-8?B?QmrDtnJu?= Roy Baron" <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, 
+ Andreas Hindborg <a.hindborg@kernel.org>, Trevor Gross <tmgross@umich.edu>, 
+ Alex Gaynor <alex.gaynor@gmail.com>, Danilo Krummrich <dakr@kernel.org>, 
+ Dave Airlie <airlied@redhat.com>, David Airlie <airlied@gmail.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, Simona Vetter <simona@ffwll.ch>, 
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>, 
+ Nikola Djukic <ndjukic@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>, 
+ Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa <elle@weathered-steel.dev>, 
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, 
+ "Christian =?utf-8?B?S8O2bmln?=" <christian.koenig@amd.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>, 
+ Matthew Auld <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>, 
+ "Thomas =?utf-8?Q?Hellstr=C3=B6m?=" <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, 
+ John Hubbard <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>,
+ Timur Tabi <ttabi@nvidia.com>, 
+ Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
+ Andy Ritger <aritger@nvidia.com>, 
+ Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ alexeyi@nvidia.com, 
+ Eliot Courtney <ecourtney@nvidia.com>, dri-devel@lists.freedesktop.org, 
+ rust-for-linux@vger.kernel.org, linux-doc@vger.kernel.org, 
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
+Content-Type: text/plain; charset="utf-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,131 +117,95 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	MV_CASE(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:joelagnelf@nvidia.com,m:linux-kernel@vger.kernel.org,m:ojeda@kernel.org,m:boqun@kernel.org,m:gary@garyguo.net,m:bjorn3_gh@protonmail.com,m:lossin@kernel.org,m:a.hindborg@kernel.org,m:tmgross@umich.edu,m:alex.gaynor@gmail.com,m:dakr@kernel.org,m:airlied@redhat.com,m:airlied@gmail.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:simona@ffwll.ch,m:daniel.almeida@collabora.com,m:koen.koning@linux.intel.com,m:ndjukic@nvidia.com,m:acourbot@nvidia.com,m:phasta@kernel.org,m:elle@weathered-steel.dev,m:corbet@lwn.net,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:lucas.demarchi@intel.com,m:thomas.hellstrom@linux.intel.com,m:deller@gmx.de,m:jhubbard@nvidia.com,m:apopple@nvidia.com,m:ttabi@nvidia.com,m:epeer@nvidia.com,m:arighi@nvidia.com,m:ari
+ tger@nvidia.com,m:zhiw@nvidia.com,m:balbirs@nvidia.com,m:alexeyi@nvidia.com,m:ecourtney@nvidia.com,m:dri-devel@lists.freedesktop.org,m:rust-for-linux@vger.kernel.org,m:linux-doc@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:linux-fbdev@vger.kernel.org,m:alexgaynor@gmail.com,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,umich.edu,gmail.com,redhat.com,linux.intel.com,suse.de,ffwll.ch,collabora.com,nvidia.com,weathered-steel.dev,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[animesh.manna@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[53];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[aliceryhl@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[google.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.989];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 458BC2B8FF5
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 483462B895C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Unused bandwidth can be used by external display agents for Panel Replay
-enabled DP panel during idleness with link on. Enable source to replace
-dummy data from the display with data from another agent by programming
-TRANS_DP2_CTL [Panel Replay Tunneling Enable].
+On Tue, Mar 17, 2026 at 04:18:46PM -0400, Joel Fernandes wrote:
+> 
+> 
+> On 3/17/2026 4:17 PM, Joel Fernandes wrote:
+> > Add a new module `kernel::interop::list` for working with C's doubly
+> > circular linked lists. Provide low-level iteration over list nodes.
+> > 
+> > Typed iteration over actual items is provided with a `clist_create`
+> > macro to assist in creation of the `CList` type.
+> > 
+> > Cc: Nikola Djukic <ndjukic@nvidia.com>
+> > Reviewed-by: Daniel Almeida <daniel.almeida@collabora.com>
+> > Reviewed-by: Alexandre Courbot <acourbot@nvidia.com>
+> > Acked-by: Alexandre Courbot <acourbot@nvidia.com>
+> > Acked-by: Gary Guo <gary@garyguo.net>
+> > Acked-by: Miguel Ojeda <ojeda@kernel.org>
+> > Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
+> > ---
+> >  MAINTAINERS                 |   8 +
+> >  rust/helpers/helpers.c      |   1 +
+> >  rust/helpers/list.c         |  17 ++
+> >  rust/kernel/interop.rs      |   9 +
+> >  rust/kernel/interop/list.rs | 342 ++++++++++++++++++++++++++++++++++++
+> >  rust/kernel/lib.rs          |   2 +
+> >  6 files changed, 379 insertions(+)
+> >  create mode 100644 rust/helpers/list.c
+> >  create mode 100644 rust/kernel/interop.rs
+> >  create mode 100644 rust/kernel/interop/list.rs
+> > 
+> > diff --git a/MAINTAINERS b/MAINTAINERS
+> > index 4bd6b538a51f..e847099efcc2 100644
+> > --- a/MAINTAINERS
+> > +++ b/MAINTAINERS
+> > @@ -23251,6 +23251,14 @@ T:	git https://github.com/Rust-for-Linux/linux.git alloc-next
+> >  F:	rust/kernel/alloc.rs
+> >  F:	rust/kernel/alloc/
+> >  
+> > +RUST [INTEROP]
+> > +M:	Joel Fernandes <joelagnelf@nvidia.com>
+> > +M:	Alexandre Courbot <acourbot@nvidia.com>
+> > +L:	rust-for-linux@vger.kernel.org
+> > +S:	Maintained
+> > +T:	git https://github.com/Rust-for-Linux/linux.git interop-next
+> > +F:	rust/kernel/interop/
+> 
+> Sorry, I forgot to add an additional F: for the rust/kernel/interop.rs file.
+> Danilo/Miguel, do you mind adding this when applying?
 
-v2:
-- Enable pr bw optimization along with panel replay enable. [Jani]
+I think you should consider a mod.rs file to avoid this. It's tiny, and
+just re-exports submodules, so I don't think the "mod.rs name in file
+view" concern is that big, and IMO having files related to interop/
+inside the directory is much better than having them outside.
 
-v3:
-- Write TRANS_DP2_CTL once for both bw optimization and panel replay
-enable. [Jani]
-
-v4:
-- Read DPCD once in init() and store in panel_replay_caps. [Jouni]
-
-v5:
-- Avoid reading DPCD for edp. [Jouni]
-- Use drm_dp_dpcd_read_byte() and some cosmetic changes. [Jani]
-
-v6:
-- Extend the corresponding interface defined in drm_dp_tunnel.c
-to query the Panel Replay optimization capability. [Imre]
-
-Bspec: 68920
-Reviewed-by: Arun R Murthy <arun.r.murthy@intel.com>
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- .../gpu/drm/i915/display/intel_display_regs.h |  1 +
- drivers/gpu/drm/i915/display/intel_psr.c      | 19 +++++++++++++++++--
- 2 files changed, 18 insertions(+), 2 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 4746e9ebd920..dada8dc27ea4 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2263,6 +2263,7 @@
- #define TRANS_DP2_CTL(trans)			_MMIO_TRANS(trans, _TRANS_DP2_CTL_A, _TRANS_DP2_CTL_B)
- #define  TRANS_DP2_128B132B_CHANNEL_CODING	REG_BIT(31)
- #define  TRANS_DP2_PANEL_REPLAY_ENABLE		REG_BIT(30)
-+#define  TRANS_DP2_PR_TUNNELING_ENABLE		REG_BIT(26)
- #define  TRANS_DP2_DEBUG_ENABLE			REG_BIT(23)
- 
- #define _TRANS_DP2_VFREQHIGH_A			0x600a4
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index c13116e6f17f..7e891a80786e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -44,6 +44,7 @@
- #include "intel_dmc.h"
- #include "intel_dp.h"
- #include "intel_dp_aux.h"
-+#include "intel_dp_tunnel.h"
- #include "intel_dsb.h"
- #include "intel_frontbuffer.h"
- #include "intel_hdmi.h"
-@@ -1023,11 +1024,23 @@ static u8 frames_before_su_entry(struct intel_dp *intel_dp)
- 	return frames_before_su_entry;
- }
- 
-+static bool intel_psr_allow_pr_bw_optimization(struct intel_dp *intel_dp)
-+{
-+	if (!intel_dp_tunnel_bw_alloc_is_enabled(intel_dp))
-+		return false;
-+
-+	if (!intel_dp_tunnel_pr_optimization_supported(intel_dp))
-+		return false;
-+
-+	return true;
-+}
-+
- static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_psr *psr = &intel_dp->psr;
- 	enum transcoder cpu_transcoder = intel_dp->psr.transcoder;
-+	u32 dp2_ctl_val = TRANS_DP2_PANEL_REPLAY_ENABLE;
- 
- 	if (intel_dp_is_edp(intel_dp) && psr->sel_update_enabled) {
- 		u32 val = psr->su_region_et_enabled ?
-@@ -1040,12 +1053,14 @@ static void dg2_activate_panel_replay(struct intel_dp *intel_dp)
- 			       val);
- 	}
- 
-+	if (!intel_dp_is_edp(intel_dp) && intel_psr_allow_pr_bw_optimization(intel_dp))
-+		dp2_ctl_val |= TRANS_DP2_PR_TUNNELING_ENABLE;
-+
- 	intel_de_rmw(display,
- 		     PSR2_MAN_TRK_CTL(display, intel_dp->psr.transcoder),
- 		     0, ADLP_PSR2_MAN_TRK_CTL_SF_CONTINUOS_FULL_FRAME);
- 
--	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0,
--		     TRANS_DP2_PANEL_REPLAY_ENABLE);
-+	intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder), 0, dp2_ctl_val);
- }
- 
- static void hsw_activate_psr2(struct intel_dp *intel_dp)
--- 
-2.29.0
-
+Alice
