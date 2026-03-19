@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mKSDA+Lgu2lXpQIAu9opvQ
+	id yJZeM+Tgu2lXpQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:22 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:24 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4E0A2CA788
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:21 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 823A72CA797
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:24 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 28AFD10E98A;
-	Thu, 19 Mar 2026 11:41:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 057E210E98B;
+	Thu, 19 Mar 2026 11:41:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dIcpAR5V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Oy02jw+y";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0796210E989;
- Thu, 19 Mar 2026 11:41:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5FCA910E98B;
+ Thu, 19 Mar 2026 11:41:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773920480; x=1805456480;
+ t=1773920483; x=1805456483;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UGUcsBKCjcEoW1u61ZrmP+jPJ3RHult3RO++8MB0Fic=;
- b=dIcpAR5VszDiXoczHRmmeyYjAQ3Xz1eSo/yYaszwIEia1MVHUmiocIY3
- tf1oFG8AozB3bn9zCoRcnhomYMDcjDtN1l2eikdjOJH4WJi3JvevmxKYD
- jH4jMrsiyl+uSFGp2BXw/xDnSXBf421EFHoS2Ejqbayohcc7mAnu0R4oM
- 4eH/4kDjOX2ajCyYOGcT5o6o1AoXxCqCgjeaG2c+Zr1VQ7NLAIdVbumTC
- D0aBrsiNJSPIS7oUKdI+TdeEZF85LembelmV4EoFIL6z6bUjvYGjXX5gZ
- qlPAYHpYqcZrTPn7zxG8U+ixn+pEESwdsfmVmXL0pPhQGw28VW49/KxWl w==;
-X-CSE-ConnectionGUID: asTV8RqSQ/SZ4MqtGxYkFg==
-X-CSE-MsgGUID: 1Dv3WPrdTOCg03AfyNCTEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="85306388"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="85306388"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:41:19 -0700
-X-CSE-ConnectionGUID: dnFS/xDKSLKeQGRrP7TPqA==
-X-CSE-MsgGUID: eCtZvVAhTOmDPj7HkFGKhA==
+ bh=vmlkv9gmr4kVXl1JHX/doghJ9Xzx7DALAx2FD2/uM7Y=;
+ b=Oy02jw+yEqlx5VdiY3Tub9/F+obrD8MWrAGoz+e5ZoV3a9HCFl6iZcJ3
+ vDYNnPQ6E+gbz5RzyLEYUhdax1ZhxZ7Z2iYvBFHNpgnFZs8yVOf2P3brS
+ r57O3AkceIgepkZUHvTjbTtFNXFfWjapGFF59DFzR17+lu0UFqTrtFGTU
+ bv98QkieE8iNbKTeY8Xo6pTo2voCcz0OU25U7BkikP6Qbljnqq4IwZDqH
+ +i1GieKQ0ER0v3bZnsSUMtiCWiwo9eE3ZOdoWdfIC2Jkedu8vTao0dJGj
+ k27di+maACc27zRam3df9Jj3U5ewLgIy7Mv/UVR3/v7SyBjK7yIrr1OdP A==;
+X-CSE-ConnectionGUID: BF2FYZfUTy6ybQS6FkWv7g==
+X-CSE-MsgGUID: 7dSLMXymRJGwtUQTvAI+7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="85691630"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="85691630"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 04:41:22 -0700
+X-CSE-ConnectionGUID: EfFGk2nqTzyGt6RLh2FWbg==
+X-CSE-MsgGUID: KAW9FYKjQYaQT8QSG7S83Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="245964224"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="227629248"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.169])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:41:16 -0700
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 04:41:21 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 8/9] drm/i915/wm: Include ddb_y in skl_print_wm_changes() on
- pre-icl
-Date: Thu, 19 Mar 2026 13:40:33 +0200
-Message-ID: <20260319114034.7093-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 9/9] drm/i915/wm: Include .min_ddb_alloc_uv in the wm dumps
+Date: Thu, 19 Mar 2026 13:40:34 +0200
+Message-ID: <20260319114034.7093-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
 References: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
@@ -101,50 +100,93 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: A4E0A2CA788
+X-Rspamd-Queue-Id: 823A72CA797
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pre-icl doesn't use a separate hardware plane for Y scanout,
-and instead it's all handled magially by the hardware. We
-do still need to allocate DDB space for the Y color plane
-though (PLANE_NV12_BUF_CFG). Include that information in the
-debugs so that we know where it ended up.
+We include the Y/RGB .min_ddb_alloc in the wm state change dumps.
+Do the same for .min_ddb_alloc_uv, on the platforms where it is
+used.
 
-On icl+ the equivalent information is dumped as the hardware
-Y plane's normal ddb allocation.
+Also adjust the whitespace in the other debug prints to keep
+the values for each wm level lined up across all the lines.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 30 +++++++++++++++++---
+ 1 file changed, 26 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 8687026935e9..345767349988 100644
+index 345767349988..4725927acfd4 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2735,10 +2735,17 @@ skl_print_wm_changes(struct intel_atomic_state *state)
- 			old = &old_crtc_state->wm.skl.plane_ddb[plane_id];
- 			new = &new_crtc_state->wm.skl.plane_ddb[plane_id];
+@@ -2624,7 +2624,7 @@ skl_print_plane_wm_changes(struct intel_plane *plane,
+ 	struct intel_display *display = to_intel_display(plane);
  
--			if (skl_ddb_entry_equal(old, new))
-+			if (!skl_ddb_entry_equal(old, new))
-+				skl_print_plane_ddb_changes(plane, old, new, "  ddb");
+ 	drm_dbg_kms(display->drm,
+-		    "[PLANE:%d:%s]   level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm"
++		    "[PLANE:%d:%s]      level %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm"
+ 		    " -> %cwm0,%cwm1,%cwm2,%cwm3,%cwm4,%cwm5,%cwm6,%cwm7,%ctwm,%cswm,%cstwm\n",
+ 		    plane->base.base.id, plane->base.name,
+ 		    enast(old_wm->wm[0].enable), enast(old_wm->wm[1].enable),
+@@ -2643,7 +2643,7 @@ skl_print_plane_wm_changes(struct intel_plane *plane,
+ 		    enast(new_wm->sagv.trans_wm.enable));
+ 
+ 	drm_dbg_kms(display->drm,
+-		    "[PLANE:%d:%s]   lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d"
++		    "[PLANE:%d:%s]      lines %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d"
+ 		      " -> %c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%3d,%c%4d\n",
+ 		    plane->base.base.id, plane->base.name,
+ 		    enast(old_wm->wm[0].ignore_lines), old_wm->wm[0].lines,
+@@ -2670,7 +2670,7 @@ skl_print_plane_wm_changes(struct intel_plane *plane,
+ 		    enast(new_wm->sagv.trans_wm.ignore_lines), new_wm->sagv.trans_wm.lines);
+ 
+ 	drm_dbg_kms(display->drm,
+-		    "[PLANE:%d:%s]  blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
++		    "[PLANE:%d:%s]     blocks %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
+ 		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+ 		    plane->base.base.id, plane->base.name,
+ 		    old_wm->wm[0].blocks, old_wm->wm[1].blocks,
+@@ -2689,7 +2689,7 @@ skl_print_plane_wm_changes(struct intel_plane *plane,
+ 		    new_wm->sagv.trans_wm.blocks);
+ 
+ 	drm_dbg_kms(display->drm,
+-		    "[PLANE:%d:%s] min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
++		    "[PLANE:%d:%s]    min_ddb %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
+ 		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
+ 		    plane->base.base.id, plane->base.name,
+ 		    old_wm->wm[0].min_ddb_alloc, old_wm->wm[1].min_ddb_alloc,
+@@ -2706,6 +2706,28 @@ skl_print_plane_wm_changes(struct intel_plane *plane,
+ 		    new_wm->trans_wm.min_ddb_alloc,
+ 		    new_wm->sagv.wm0.min_ddb_alloc,
+ 		    new_wm->sagv.trans_wm.min_ddb_alloc);
 +
-+			if (DISPLAY_VER(display) >= 11)
- 				continue;
- 
--			skl_print_plane_ddb_changes(plane, old, new, "ddb");
-+			old = &old_crtc_state->wm.skl.plane_ddb_y[plane_id];
-+			new = &new_crtc_state->wm.skl.plane_ddb_y[plane_id];
++	if (DISPLAY_VER(display) >= 11)
++		return;
 +
-+			if (!skl_ddb_entry_equal(old, new))
-+				skl_print_plane_ddb_changes(plane, old, new, "ddb_y");
- 		}
++	drm_dbg_kms(display->drm,
++		    "[PLANE:%d:%s] min_ddb_uv %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d"
++		    " -> %4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%4d,%5d\n",
++		    plane->base.base.id, plane->base.name,
++		    old_wm->wm[0].min_ddb_alloc_uv, old_wm->wm[1].min_ddb_alloc_uv,
++		    old_wm->wm[2].min_ddb_alloc_uv, old_wm->wm[3].min_ddb_alloc_uv,
++		    old_wm->wm[4].min_ddb_alloc_uv, old_wm->wm[5].min_ddb_alloc_uv,
++		    old_wm->wm[6].min_ddb_alloc_uv, old_wm->wm[7].min_ddb_alloc_uv,
++		    old_wm->trans_wm.min_ddb_alloc_uv,
++		    old_wm->sagv.wm0.min_ddb_alloc_uv,
++		    old_wm->sagv.trans_wm.min_ddb_alloc_uv,
++		    new_wm->wm[0].min_ddb_alloc_uv, new_wm->wm[1].min_ddb_alloc_uv,
++		    new_wm->wm[2].min_ddb_alloc_uv, new_wm->wm[3].min_ddb_alloc_uv,
++		    new_wm->wm[4].min_ddb_alloc_uv, new_wm->wm[5].min_ddb_alloc_uv,
++		    new_wm->wm[6].min_ddb_alloc_uv, new_wm->wm[7].min_ddb_alloc_uv,
++		    new_wm->trans_wm.min_ddb_alloc_uv,
++		    new_wm->sagv.wm0.min_ddb_alloc_uv,
++		    new_wm->sagv.trans_wm.min_ddb_alloc_uv);
+ }
  
- 		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
+ static void
 -- 
 2.52.0
 
