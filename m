@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CDzfE7vgu2lXpQIAu9opvQ
+	id GANVA77gu2lXpQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:43 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:46 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E32B12CA71F
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:42 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D27EA2CA726
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F66910E919;
-	Thu, 19 Mar 2026 11:40:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67AD910E924;
+	Thu, 19 Mar 2026 11:40:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D9T23iqd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqNc7SHT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 872E410E919;
- Thu, 19 Mar 2026 11:40:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD13110E91B;
+ Thu, 19 Mar 2026 11:40:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773920440; x=1805456440;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=vyV3mULLdOsJ4DI2jTKljfKBsjo/G2yBg9TANU1ffUo=;
- b=D9T23iqd88F6Qb0W/JLnV6jsCHZBuL58bQBSbM+FI+2BImrpxn2ZWZTD
- sHNscepRGAi1MOutRuuABSclgf+XrPULvg2Gk4aR7WCXetiygWnIgLxXp
- g8sfN8ZsYt/mCi9o+E2U8OmtsNNfrEJHd1kRpEBXGKtoiK1iOjPqHTTSQ
- C8S9dmNo5kHqGf6tpmENx703jriCQNl5oWu4hwkl0Wn16KZ3Tulc7PYVs
- BB4EnmPu7lJOgvbj2VnLNJI/EgKc8vqYHdYCiLhFgLsbFeVRpvEzsJ44J
- pliPEtkX4iAqM0PD3JYR6APfiguQ2gJE2zgFawU3OqBK0K28jrvAwlKN9 A==;
-X-CSE-ConnectionGUID: xNgQfmNGRuCh4yMJ/JIFSg==
-X-CSE-MsgGUID: lGpcdn6hQUectMTkG2l2Pg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78891615"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="78891615"
+ t=1773920444; x=1805456444;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=/sWvcBfhlQJ0qp5m7o3O2qvSWBPV/g/nODvg/yUjaLU=;
+ b=PqNc7SHTJ2ZLDPudGj20rcTHOBaS0CtTHtZRFbvh6+s//d8Z7STZNFOO
+ LeYAhX4Q3MAg2PjOfaZ2HWmvhYvvyC1vXMHTjw4uqiANiinxW0OT5P65b
+ YeMse1PIMgq6lCjday7GU7ZLriqDMnCxEFy2rcRlizOba2JA9rLN642UM
+ VhIwVCvs/JHn6Wv0NYDcRRdSHiD9jNGywFXKfc17Arz5mXf/p7Pm9gj+L
+ ebGL7BquzfL7JmK904c1FY+SIx3I2kdQQp5VdeAQqhX1zP/jTlaJCPrsn
+ HteydWUK4h2TzmlD8RDFlgSkdmRWrH3QH89oCU6LTL1AfenqhrfUnkRmB w==;
+X-CSE-ConnectionGUID: rzFarVYeTu+XcpmIR1708g==
+X-CSE-MsgGUID: zm0PGcJZT860ITSNhcpC0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78891618"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="78891618"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:40:39 -0700
-X-CSE-ConnectionGUID: 7fPl5OIWQtCGoqJ1bBlFBQ==
-X-CSE-MsgGUID: G+NFGfrkQKOoMGOUsVtBuQ==
+ 19 Mar 2026 04:40:44 -0700
+X-CSE-ConnectionGUID: 2sypfMYiRcWS+xGIulawcQ==
+X-CSE-MsgGUID: Az0c4y7KTpei/a8rmgrQ+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222970839"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222970845"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.169])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:40:37 -0700
+ 19 Mar 2026 04:40:41 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 0/9] drm/i915/wm: Clean up pre-icl NV12 watermarks
-Date: Thu, 19 Mar 2026 13:40:25 +0200
-Message-ID: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 1/9] drm/i915/wm: Nuke is_planar from skl+ wm structures
+Date: Thu, 19 Mar 2026 13:40:26 +0200
+Message-ID: <20260319114034.7093-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
+References: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -98,29 +100,67 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: E32B12CA71F
+X-Rspamd-Queue-Id: D27EA2CA726
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Clean up the NV12 DDB/watermark handling for pre-icl platforms.
+We don't need is_planar in either the actual watermarks or the
+wm_params structure used during the wm computation. Get rid
+of both.
 
-Ville Syrjälä (9):
-  drm/i915/wm: Nuke is_planar from skl+ wm structures
-  drm/i915/wm: Reorder the arguments to skl_allocate_plane_ddb()
-  drm/i915/wm: s/skl_check_nv12_wm_level()/skl_check_wm_level_nv12()/
-  drm/i915/wm: Extract skl_allocate_plane_ddb_nv12()
-  drm/i915/wm: Nuke wm->uv_wm[]
-  drm/i915/wm: s/skl_print_plane_changes()/skl_print_plane_wm_changes()/
-  drm/i915/wm: Extract skl_print_plane_ddb_changes()
-  drm/i915/wm: Include ddb_y in skl_print_wm_changes() on pre-icl
-  drm/i915/wm: Include .min_ddb_alloc_uv in the wm dumps
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_types.h | 1 -
+ drivers/gpu/drm/i915/display/skl_watermark.c       | 6 +-----
+ 2 files changed, 1 insertion(+), 6 deletions(-)
 
- .../drm/i915/display/intel_display_types.h    |   3 +-
- drivers/gpu/drm/i915/display/skl_watermark.c  | 160 ++++++++++++------
- 2 files changed, 105 insertions(+), 58 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index d3a9ace4c9d1..93b8b2f91484 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -851,7 +851,6 @@ struct skl_plane_wm {
+ 		struct skl_wm_level wm0;
+ 		struct skl_wm_level trans_wm;
+ 	} sagv;
+-	bool is_planar;
+ };
+ 
+ struct skl_pipe_wm {
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index b1f9546b8cda..0f99a3264f05 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -63,7 +63,6 @@ static void skl_sagv_disable(struct intel_display *display);
+ struct skl_wm_params {
+ 	bool x_tiled, y_tiled;
+ 	bool rc_surface;
+-	bool is_planar;
+ 	u32 width;
+ 	u8 cpp;
+ 	u32 plane_pixel_rate;
+@@ -1675,10 +1674,9 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
+ 	wp->y_tiled = modifier != I915_FORMAT_MOD_X_TILED &&
+ 		intel_fb_is_tiled_modifier(modifier);
+ 	wp->rc_surface = intel_fb_is_ccs_modifier(modifier);
+-	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
+ 
+ 	wp->width = width;
+-	if (color_plane == 1 && wp->is_planar)
++	if (color_plane == 1 && intel_format_info_is_yuv_semiplanar(format, modifier))
+ 		wp->width /= 2;
+ 
+ 	wp->cpp = format->cpp[color_plane];
+@@ -2073,8 +2071,6 @@ static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
+ 	struct skl_wm_params wm_params;
+ 	int ret;
+ 
+-	wm->is_planar = true;
+-
+ 	/* uv plane watermarks must also be validated for NV12/Planar */
+ 	ret = skl_compute_plane_wm_params(crtc_state, plane_state,
+ 					  &wm_params, 1);
 -- 
 2.52.0
 
