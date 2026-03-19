@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GANVA77gu2lXpQIAu9opvQ
+	id wDhIN8Lgu2lXpQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:46 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:50 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D27EA2CA726
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BE0A2CA72D
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:40:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67AD910E924;
-	Thu, 19 Mar 2026 11:40:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 15AFF10E92E;
+	Thu, 19 Mar 2026 11:40:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqNc7SHT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WM1tPxno";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD13110E91B;
- Thu, 19 Mar 2026 11:40:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8034B10E934;
+ Thu, 19 Mar 2026 11:40:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773920444; x=1805456444;
+ t=1773920448; x=1805456448;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/sWvcBfhlQJ0qp5m7o3O2qvSWBPV/g/nODvg/yUjaLU=;
- b=PqNc7SHTJ2ZLDPudGj20rcTHOBaS0CtTHtZRFbvh6+s//d8Z7STZNFOO
- LeYAhX4Q3MAg2PjOfaZ2HWmvhYvvyC1vXMHTjw4uqiANiinxW0OT5P65b
- YeMse1PIMgq6lCjday7GU7ZLriqDMnCxEFy2rcRlizOba2JA9rLN642UM
- VhIwVCvs/JHn6Wv0NYDcRRdSHiD9jNGywFXKfc17Arz5mXf/p7Pm9gj+L
- ebGL7BquzfL7JmK904c1FY+SIx3I2kdQQp5VdeAQqhX1zP/jTlaJCPrsn
- HteydWUK4h2TzmlD8RDFlgSkdmRWrH3QH89oCU6LTL1AfenqhrfUnkRmB w==;
-X-CSE-ConnectionGUID: rzFarVYeTu+XcpmIR1708g==
-X-CSE-MsgGUID: zm0PGcJZT860ITSNhcpC0g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78891618"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="78891618"
+ bh=MuOWdpRbH3rDDNVhPFF+nFqTtFcmBkwzpMI5Rg9swvo=;
+ b=WM1tPxnobKSXu8vezCAQ7TQWj3uU0332pjre5L2WeNWvsbFNjyaGJ6mp
+ sJ9xM9NGVIZRW6ETTXBSkZT7p7Tg8AWakEU0qGbWY8W80d4KwS4ZSRL2W
+ p7JP59hePJ6DhEp1kZEOapPmpHDMYnRdMfVm4cLk3pgW8gRM3oEpg/MRZ
+ dQyhNtoe8Yu6AtwS8CWUlI49DJdGapq+x9z7GkTxC/l1egI8k6yhsvFi1
+ Swue38sf40NluFMnnXXXUrRp/UCIhNQvKDQwkh0WEQVCGi6zwFUFQxCjs
+ MTIINDbBBRmVyzJVPJu3119o5DOoZXISZml9LcA5RpwfozrT1vg//+hSt Q==;
+X-CSE-ConnectionGUID: 7S2NUwUcTf268zTWa6Yo+w==
+X-CSE-MsgGUID: anIgzUC1QnWa9+h5ewk4IQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78891626"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="78891626"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:40:44 -0700
-X-CSE-ConnectionGUID: 2sypfMYiRcWS+xGIulawcQ==
-X-CSE-MsgGUID: Az0c4y7KTpei/a8rmgrQ+g==
+ 19 Mar 2026 04:40:47 -0700
+X-CSE-ConnectionGUID: YWUIG++GRdeve4yIYhI2pw==
+X-CSE-MsgGUID: GIedqMABTz2HvOUiAAtaZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222970845"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222970858"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.169])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:40:41 -0700
+ 19 Mar 2026 04:40:46 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/9] drm/i915/wm: Nuke is_planar from skl+ wm structures
-Date: Thu, 19 Mar 2026 13:40:26 +0200
-Message-ID: <20260319114034.7093-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/9] drm/i915/wm: Reorder the arguments to
+ skl_allocate_plane_ddb()
+Date: Thu, 19 Mar 2026 13:40:27 +0200
+Message-ID: <20260319114034.7093-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
 References: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
@@ -100,67 +101,57 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: D27EA2CA726
+X-Rspamd-Queue-Id: 8BE0A2CA72D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We don't need is_planar in either the actual watermarks or the
-wm_params structure used during the wm computation. Get rid
-of both.
+Group the ddb and data_rate together in the skl_allocate_plane_ddb()
+arguments. Upcoming changes will adjust the UV plane handling and
+keeing the ddb allocation and the data rate used to calculate it
+together will help with clarity.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 1 -
- drivers/gpu/drm/i915/display/skl_watermark.c       | 6 +-----
- 2 files changed, 1 insertion(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 15 +++++++--------
+ 1 file changed, 7 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index d3a9ace4c9d1..93b8b2f91484 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -851,7 +851,6 @@ struct skl_plane_wm {
- 		struct skl_wm_level wm0;
- 		struct skl_wm_level trans_wm;
- 	} sagv;
--	bool is_planar;
- };
- 
- struct skl_pipe_wm {
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index b1f9546b8cda..0f99a3264f05 100644
+index 0f99a3264f05..1664b84d0387 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -63,7 +63,6 @@ static void skl_sagv_disable(struct intel_display *display);
- struct skl_wm_params {
- 	bool x_tiled, y_tiled;
- 	bool rc_surface;
--	bool is_planar;
- 	u32 width;
- 	u8 cpp;
- 	u32 plane_pixel_rate;
-@@ -1675,10 +1674,9 @@ skl_compute_wm_params(const struct intel_crtc_state *crtc_state,
- 	wp->y_tiled = modifier != I915_FORMAT_MOD_X_TILED &&
- 		intel_fb_is_tiled_modifier(modifier);
- 	wp->rc_surface = intel_fb_is_ccs_modifier(modifier);
--	wp->is_planar = intel_format_info_is_yuv_semiplanar(format, modifier);
+@@ -1391,9 +1391,8 @@ struct skl_plane_ddb_iter {
  
- 	wp->width = width;
--	if (color_plane == 1 && wp->is_planar)
-+	if (color_plane == 1 && intel_format_info_is_yuv_semiplanar(format, modifier))
- 		wp->width /= 2;
+ static void
+ skl_allocate_plane_ddb(struct skl_plane_ddb_iter *iter,
+-		       struct skl_ddb_entry *ddb,
+ 		       const struct skl_wm_level *wm,
+-		       u64 data_rate)
++		       struct skl_ddb_entry *ddb, u64 data_rate)
+ {
+ 	u16 size, extra = 0;
  
- 	wp->cpp = format->cpp[color_plane];
-@@ -2073,8 +2071,6 @@ static int skl_build_plane_wm_uv(struct intel_crtc_state *crtc_state,
- 	struct skl_wm_params wm_params;
- 	int ret;
+@@ -1523,13 +1522,13 @@ skl_crtc_allocate_plane_ddb(struct intel_atomic_state *state,
  
--	wm->is_planar = true;
--
- 	/* uv plane watermarks must also be validated for NV12/Planar */
- 	ret = skl_compute_plane_wm_params(crtc_state, plane_state,
- 					  &wm_params, 1);
+ 		if (DISPLAY_VER(display) < 11 &&
+ 		    crtc_state->nv12_planes & BIT(plane_id)) {
+-			skl_allocate_plane_ddb(&iter, ddb_y, &wm->wm[level],
+-					       crtc_state->rel_data_rate_y[plane_id]);
+-			skl_allocate_plane_ddb(&iter, ddb, &wm->uv_wm[level],
+-					       crtc_state->rel_data_rate[plane_id]);
++			skl_allocate_plane_ddb(&iter, &wm->wm[level],
++					       ddb_y, crtc_state->rel_data_rate_y[plane_id]);
++			skl_allocate_plane_ddb(&iter, &wm->uv_wm[level],
++					       ddb, crtc_state->rel_data_rate[plane_id]);
+ 		} else {
+-			skl_allocate_plane_ddb(&iter, ddb, &wm->wm[level],
+-					       crtc_state->rel_data_rate[plane_id]);
++			skl_allocate_plane_ddb(&iter, &wm->wm[level],
++					       ddb, crtc_state->rel_data_rate[plane_id]);
+ 		}
+ 
+ 		if (DISPLAY_VER(display) >= 30) {
 -- 
 2.52.0
 
