@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAMyAtfgu2lXpQIAu9opvQ
+	id mKSDA+Lgu2lXpQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:22 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99A7A2CA768
-	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E0A2CA788
+	for <lists+intel-gfx@lfdr.de>; Thu, 19 Mar 2026 12:41:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B74210E930;
-	Thu, 19 Mar 2026 11:41:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 28AFD10E98A;
+	Thu, 19 Mar 2026 11:41:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CsnBd4jf";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dIcpAR5V";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2C2CD10E930;
- Thu, 19 Mar 2026 11:41:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0796210E989;
+ Thu, 19 Mar 2026 11:41:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773920468; x=1805456468;
+ t=1773920480; x=1805456480;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=amfXOz7wZDlhEwVxIdtim2mw0Y5oGkvbjWEHkfAcda0=;
- b=CsnBd4jfyqfhnjWykkOkcwGupnmp87FEo+8RHDMvHE90fKR0rlaRwekn
- uu9VJoxKCLEROWz2UNEJGcJsaDEAW7FwdGrlTt2E3qNcOHcjNkQE4hOim
- ala5M0UK7IYDksUtqxr0K57Z4W6H5EUhcqqsgN5ltLTztCorgBwd9j0iq
- bY6HZH8DQ19myQj8E3L76dvRj+J8dq6m4J+KJwdK5VZ6hb+EK3nw/oLVj
- BawbGnk8LFEQw1JbmfjDkKNdNBgDIMt038CU91KnAnubPFD0NXMma3k9Y
- m1P7cojiA3atwnMa3SgRpkzDQTaGQqHk1XSe76U79lflbG9Yz3SuCWM2n w==;
-X-CSE-ConnectionGUID: 6vh11buVRlOlZu3nUhkbUg==
-X-CSE-MsgGUID: 6cWtmhRVSHi6IL2zG73IHQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="78891660"
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="78891660"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:41:08 -0700
-X-CSE-ConnectionGUID: xv+8X6xcROiBX45f1Y63jw==
-X-CSE-MsgGUID: mpIxB6GtT8uhUnetK9BAaQ==
+ bh=UGUcsBKCjcEoW1u61ZrmP+jPJ3RHult3RO++8MB0Fic=;
+ b=dIcpAR5VszDiXoczHRmmeyYjAQ3Xz1eSo/yYaszwIEia1MVHUmiocIY3
+ tf1oFG8AozB3bn9zCoRcnhomYMDcjDtN1l2eikdjOJH4WJi3JvevmxKYD
+ jH4jMrsiyl+uSFGp2BXw/xDnSXBf421EFHoS2Ejqbayohcc7mAnu0R4oM
+ 4eH/4kDjOX2ajCyYOGcT5o6o1AoXxCqCgjeaG2c+Zr1VQ7NLAIdVbumTC
+ D0aBrsiNJSPIS7oUKdI+TdeEZF85LembelmV4EoFIL6z6bUjvYGjXX5gZ
+ qlPAYHpYqcZrTPn7zxG8U+ixn+pEESwdsfmVmXL0pPhQGw28VW49/KxWl w==;
+X-CSE-ConnectionGUID: asTV8RqSQ/SZ4MqtGxYkFg==
+X-CSE-MsgGUID: 1Dv3WPrdTOCg03AfyNCTEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11733"; a="85306388"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="85306388"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 04:41:19 -0700
+X-CSE-ConnectionGUID: dnFS/xDKSLKeQGRrP7TPqA==
+X-CSE-MsgGUID: eCtZvVAhTOmDPj7HkFGKhA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="222971020"
+X-IronPort-AV: E=Sophos;i="6.23,129,1770624000"; d="scan'208";a="245964224"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.244.169])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Mar 2026 04:41:06 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Mar 2026 04:41:16 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 7/9] drm/i915/wm: Extract skl_print_plane_ddb_changes()
-Date: Thu, 19 Mar 2026 13:40:32 +0200
-Message-ID: <20260319114034.7093-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 8/9] drm/i915/wm: Include ddb_y in skl_print_wm_changes() on
+ pre-icl
+Date: Thu, 19 Mar 2026 13:40:33 +0200
+Message-ID: <20260319114034.7093-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
 References: <20260319114034.7093-1-ville.syrjala@linux.intel.com>
@@ -99,62 +100,48 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 99A7A2CA768
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: A4E0A2CA788
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We have skl_print_plane_wm_changes() but the DDB counterpart is
-just inline in the main loop. Extract it into a function. We'll
-ave a second use for this soon.
+Pre-icl doesn't use a separate hardware plane for Y scanout,
+and instead it's all handled magially by the hardware. We
+do still need to allocate DDB space for the Y color plane
+though (PLANE_NV12_BUF_CFG). Include that information in the
+debugs so that we know where it ended up.
 
-The "ddb" part is already parametrized in anticipation of the
-second user.
+On icl+ the equivalent information is dumped as the hardware
+Y plane's normal ddb allocation.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 22 +++++++++++++++-----
- 1 file changed, 17 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index 6c8dab847ae2..8687026935e9 100644
+index 8687026935e9..345767349988 100644
 --- a/drivers/gpu/drm/i915/display/skl_watermark.c
 +++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2601,6 +2601,21 @@ static char enast(bool enable)
- 	return enable ? '*' : ' ';
- }
+@@ -2735,10 +2735,17 @@ skl_print_wm_changes(struct intel_atomic_state *state)
+ 			old = &old_crtc_state->wm.skl.plane_ddb[plane_id];
+ 			new = &new_crtc_state->wm.skl.plane_ddb[plane_id];
  
-+static void
-+skl_print_plane_ddb_changes(struct intel_plane *plane,
-+			    const struct skl_ddb_entry *old,
-+			    const struct skl_ddb_entry *new,
-+			    const char *ddb_name)
-+{
-+	struct intel_display *display = to_intel_display(plane);
+-			if (skl_ddb_entry_equal(old, new))
++			if (!skl_ddb_entry_equal(old, new))
++				skl_print_plane_ddb_changes(plane, old, new, "  ddb");
 +
-+	drm_dbg_kms(display->drm,
-+		    "[PLANE:%d:%s] %s (%4d - %4d) -> (%4d - %4d), size %4d -> %4d\n",
-+		    plane->base.base.id, plane->base.name, ddb_name,
-+		    old->start, old->end, new->start, new->end,
-+		    skl_ddb_entry_size(old), skl_ddb_entry_size(new));
-+}
-+
- static noinline_for_stack void
- skl_print_plane_wm_changes(struct intel_plane *plane,
- 			   const struct skl_plane_wm *old_wm,
-@@ -2722,11 +2737,8 @@ skl_print_wm_changes(struct intel_atomic_state *state)
- 
- 			if (skl_ddb_entry_equal(old, new))
++			if (DISPLAY_VER(display) >= 11)
  				continue;
--			drm_dbg_kms(display->drm,
--				    "[PLANE:%d:%s] ddb (%4d - %4d) -> (%4d - %4d), size %4d -> %4d\n",
--				    plane->base.base.id, plane->base.name,
--				    old->start, old->end, new->start, new->end,
--				    skl_ddb_entry_size(old), skl_ddb_entry_size(new));
+ 
+-			skl_print_plane_ddb_changes(plane, old, new, "ddb");
++			old = &old_crtc_state->wm.skl.plane_ddb_y[plane_id];
++			new = &new_crtc_state->wm.skl.plane_ddb_y[plane_id];
 +
-+			skl_print_plane_ddb_changes(plane, old, new, "ddb");
++			if (!skl_ddb_entry_equal(old, new))
++				skl_print_plane_ddb_changes(plane, old, new, "ddb_y");
  		}
  
  		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
