@@ -2,46 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SBMzCFB5vWmt9wIAu9opvQ
+	id iE1/Be94vWmt9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:44:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:23 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B32D92DDE0F
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id B02B62DDB14
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2584410EC07;
-	Fri, 20 Mar 2026 16:43:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3195210EBA7;
+	Fri, 20 Mar 2026 16:42:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="OJu+/q7l";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="VoQC0Thz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A39FD10EC02;
- Fri, 20 Mar 2026 16:43:51 +0000 (UTC)
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7E4210EBA0;
+ Fri, 20 Mar 2026 16:42:18 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 8B0924E4274D;
- Fri, 20 Mar 2026 16:43:50 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 4D280C5668D;
+ Fri, 20 Mar 2026 16:42:43 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 5EFE3600E0;
- Fri, 20 Mar 2026 16:43:50 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id C6867600E0;
+ Fri, 20 Mar 2026 16:42:17 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 1C0EC10450CB3; Fri, 20 Mar 2026 17:43:46 +0100 (CET)
+ with ESMTPSA id 4ED4410450CB6; Fri, 20 Mar 2026 17:42:13 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774025029; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024936; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=x2jomYIVcHsmbCXSkgnfVSZ1ezBsyA+cu8Tfc/iGI+E=;
- b=OJu+/q7l7Q+uT9hCnBfuRF2A7regTlfo5s6pf4wF/CLgOs1TBNEeggG/p0Wxk/Sw+vMDaQ
- gvk0lMOJgeDoWx6OYDwXdgH3os8pIAEm3k9uihhTLOeB3bSLxpmmSXH8Vt1MOFYf0yucMX
- lJEJCS7tV6F6RMzjDqJfOHef772FODw/nJSM1fOFXgmZWpKJtX7H58DrykbgyCX0wHDrVe
- GZE7d1c+5BHdKR0O17QK72fEnZRs0dm5bAcTaQUbJ5VJk8XFwjg9EDdTWUHQqg5wAdZtuw
- tZusADkGcDvLkCj6florrw7qIH30jZ8R/bmrLpe6/3aaahlc+ypRFnWCYvWJ2Q==
+ bh=IpIrkQUhN8f9igBcCmDP+0RFUmudVzc+7akDpTrZ6nU=;
+ b=VoQC0ThzFJinqd5e1n9HS6KWBV5NRmpjFvScHyP+XxqNHEyuoSWX/aJzfFJjM0+vwswadm
+ OjUlL+JUZYgTXkMBsY98T0IqlTgjoUCUhcB9UR1hGQ8ROGpbSEfVAlSLT5q3TWJzcVWee3
+ l5ZfkLrEC10+81aIjQtznNYe0h/ZHdyDvrt/DaPUMkdHogNH5/T2XKtMF2Nua2cZegqO63
+ xfrP2ciDmdt3rsLUxCvQvpU0EMxg2Z2HuN9QobwFYko+fZoM/cZqlokD53//4ZjwJ7C4BN
+ fGHjVTCMIo9l5+cJNkCjFTauPayTbgXw++44DVBKPyCl539EX/V9wfaahjj3Pg==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 63/65] drm_buddy: fix 64-bit truncation in
- power-of-2 rounding
+Subject: Re: [PATCH v11 26/65] dyndbg-API: promote
+ DYNAMIC_DEBUG_CLASSMAP_PARAM to API
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -53,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-64-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-27-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-64-jim.cromie@gmail.com>
+ <20260313132103.2529746-27-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491483.6181.11788631907510647484.b4-review@b4>
+Message-Id: <177402491446.6181.10584556385608309440.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1336;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=505;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=6aSbIg/8iFip1SYs4zO/D0GiF2Q/h3bYhaGjD6Gxw10=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjcUC7u6+1kFI700lYOn5R9e7bbxwF+r6Qn5
- rjLQs95CFOJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab143BsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOIkVw//c+i84OcoNXvQJKPre7SbJ6CPMKXQrGo
- hHDotwlGy49qjt+lRX64zbXpmPW+qDpnow2FYunCZiEadvNs/vcRKWSa+1bkuLVlQ/uyR/y42Qf
- xCevqDZBD4B2fqd9SyrK/Zkd7yVfGR5JI+2eTe6NPnnCbfxJIR5A9HFlpKH6AhhkzsqtHd6Q8BF
- eTL7h4wU1n02cQcM2htb/FXAQspJivxl2NWU5yarof9ZsdRZNffROPfpq72P7Zb+PTAZfS9RcQt
- MyaGT8Vm6bMXYXQaXSxZw5O0L9wocQUgMqrPios2+6NEbmqG7w2N5ewhCOGaZft8g+R3WCV+SRR
- ZIJQuGvPJSWym7ef5an3d1vdUD8S9Ome++z64S8mGRk46xg1ovEASNCWb4Ot440Y4B6edWhKrMa
- 8yixIETD5yz/AEB505CPnBMl8QED4upGIlVKez6bzok9rHXsPN6SCCAcpqzn6y+4Vee9JoLJfvn
- eaIiCpPBoPwoQt2pW7jLMEDQGgr1m7Xw58FWC1oreoX7MRENyQW3CudegJDsLSFcO/R+gx3zz95
- 0PLlI3KWGlQr40g4ZbUcIiVbEQ3HRJL1rJB/2AHAz1qv6xVhYEs3D7qc5mpObQ1Thki+kFJIJ4z
- xpgW6rf89twloUqXAJ3MXHqIkJ6clzQYt7EXx0ZoRK+2PAez4C+8=
+ bh=QnoSxbC/cY3NZCY1pQn05gze166+KvYaqE2hHUZIazo=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjYVKznFtfm2NveHmwQmNVFdRP9BwFBABzkr
+ 51i8gtIGGCJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142BsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOK8Hw/9Geg+lz6YSmcNWoNyrjdqBcH3CO8z8wC
+ t2fz23bkJg28OvwD/nZ5GukYX3ab2sIlJmdvfiFd0Ny4Tt8Mc/9XH3Cvv+ujZ4xfveJ9hXSKkZV
+ 9qusbFNE2PsO7ZKLpnSuDYdAT60NTOa9HC7dDp0MVBXU+IpYKmJ14pN7jQbJ2CVEnzh2n2RLSSq
+ FxDOQzWo4V6ssj0k0QFIht3Y089QYHUajO0tluOLa8UhEUQ5iv32TQ6fCDT82fSlZkK1kyO4DVb
+ UrsRiCPFW9aiIGyoQEuUK1y/9fVQgr2ZoovaHGvM+TnCAKD8Q1ZLMRLy7g+5SoRYzTyDZk7ECvZ
+ Wowy+PS29IMMg+53GOG60cLew/x14K6Fk5hifKimi6GGzP9c+jT1Q6nblzZlXO+P/Ow1pxtQcd6
+ Lx89ooK+UHbLnW7Sf8GB6KMGcLCei6EFo7IB/ED8z1dcyuTU/uF0AdMAlolvK5LiUrwmwO2YFJl
+ 5iHi9KTPJkPS7hZvCiHQj2Co+XjUpvVE/u9ziYxKdQhnOt/MaC9Zqsq1kuf3xuIFH0FmQg/2AJQ
+ YWoXOJyNtxyfhnw/cRFbLNnj1cEJanRlYGOHLz26LV5EjyowL0Jg2FVQw3R8GelQelmbqg8jEeX
+ 3GqWTg84YpgHUJYOAd/+S2UZ43M9Jgtq4Zn8juYazQ+7npwQVawE=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -119,49 +119,22 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: B32D92DDE0F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: B02B62DDB14
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:28 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> [...]
-> drm_test_buddy_alloc_exceeds_max_order() uses the on a u64 value,
-> where they silently truncate the 10GB allocation, giving unexpected
-> success in DRM-CI.  (see below the snip).
+On Fri, 13 Mar 2026 07:19:51 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> move the DYNAMIC_DEBUG_CLASSMAP_PARAM macro from test-dynamic-debug.c into
+> the header, and refine it, by distinguishing the 2 use cases:
 > 
-> Fix this by replacing the standard macros with safe 64-bit
-> power-of-two calculations using ilog2().
+> 1.DYNAMIC_DEBUG_CLASSMAP_PARAM_REF
+>     for DRM, to pass in extern __drm_debug by name.
+>     dyndbg keeps bits in it, so drm can still use it as before
+> 
+> [...]
 
-This is a general DRM bug, if you send a new iteration, can you move it at
-then start so it can be applied easly?
-
->
->
-> diff --git a/drivers/gpu/buddy.c b/drivers/gpu/buddy.c
-> index b27761246d4b..ff158cc1d27e 100644
-> --- a/drivers/gpu/buddy.c
-> +++ b/drivers/gpu/buddy.c
-> @@ -915,7 +915,7 @@ static int __alloc_contig_try_harder(struct gpu_buddy *mm,
->  	u64 modify_size;
->  	int err;
->  
-> -	modify_size = rounddown_pow_of_two(size);
-> +	modify_size = 1ULL << ilog2(size);
-
-Thanks for catching this issue!
-
-To avoid this kind of issue later / in other parts of the kernel, maybe you
-can change the macro itself to properly handle u64? I am thinking about
-something similar to ilog2[1]:
-
-( \
-	(sizeof(n) <= 4) ?		\
-	__rounddown_pow_of_two_u32(n) :	\
-	__rounddown_pow_of_two_u64(n)	\
-)
-
-[1]:https://elixir.bootlin.com/linux/v6.19.8/source/include/linux/log2.h#L156-L164
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
 -- 
 Louis Chauvet <louis.chauvet@bootlin.com>
