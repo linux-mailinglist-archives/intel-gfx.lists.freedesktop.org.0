@@ -2,46 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDX7Fsh4vWmt9wIAu9opvQ
+	id iP3kEgN5vWmt9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:41:44 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:43 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F083A2DD9C4
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:41:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F4482DDBAA
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1C4A10EB3B;
-	Fri, 20 Mar 2026 16:41:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BE2D10EBBC;
+	Fri, 20 Mar 2026 16:42:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="hbqEYZW8";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="AQ6I2IVB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0026010EB39;
- Fri, 20 Mar 2026 16:41:38 +0000 (UTC)
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 509C010EBBA;
+ Fri, 20 Mar 2026 16:42:39 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id BBA101A2F1D;
- Fri, 20 Mar 2026 16:41:37 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 6CE72C5668D;
+ Fri, 20 Mar 2026 16:43:03 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 901C0600E0;
- Fri, 20 Mar 2026 16:41:37 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id E6B3A600E0;
+ Fri, 20 Mar 2026 16:42:37 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 3BE3510450CB3; Fri, 20 Mar 2026 17:41:33 +0100 (CET)
+ with ESMTPSA id D074510450CB5; Fri, 20 Mar 2026 17:42:33 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024896; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024956; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=cKGDwlvt9Z0GcMs4r/vA+KlNQUjiaEClgAg1WqXLo9k=;
- b=hbqEYZW89sdj8sZN6dKNfCXBSj5VjvA50bHmVfW/Qw5MH0QmEJjEYvFcydvUVSkCekA679
- 0FR5F5DmwlzU4hGjJw8/XA5QCeqEVofa7qlTr0Hf6alJzsjZ0Lqxn82ZP6r8ax6QcLWIMC
- f/woWHrtF3/CbYb35IB7XbPcxLkuc8vKlGg/+SsUh0qjUlgqia4pJkkoUyNdf6DJ4XdRfw
- GSOdM98PHa+Msp5JFFA05yTMMvsyCQ07Na04IyDi6fhCKyBbpAlCP41xWHHZxfdFqqXmIT
- iV6P1Hw8/voYd30VzJN8q1GA6++jX2oIUmuG21DBG10fdw+oOi/8HVtAqsw7vQ==
+ bh=ZjS1ZoIAPd/0H3Pat14vVnrI2BR4vgAhRmSVs8W3mqg=;
+ b=AQ6I2IVBJUpyQX1VND38ENyZSBGcL1lwChYM6WUF25CWUSOXmQp2dSMTxjcKHadNvW875E
+ tISUI0PMC5x4aQ3SQyMDoYfrnhHFse08lhH0D3COXFpBGCLNaJWbyOVVlSydN1FbZMqM/a
+ RE9r1mV+qxbBRnjrhhvkssEwSZMI/nudZurR8lYPc1KGObJ83uSQHYuKyrUDWka208V9C6
+ vSngTPbUEYm7mA24ccTqNj1jI+We8IzYPB5SOGR4pK9rjZBduN3IHZ8AgJWdMMeBJfRa1g
+ ZfBxyjeKiACRUU0PIEtESKqMGT5mKGVfain90nnc5Ws5CMyoKq7Mf/gEjVrcJw==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 01/65] dyndbg: fix NULL ptr on i386 due to section
- alignment
+Subject: Re: [PATCH v11 34/65] drm: use correct ccflags-y spelling
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -53,27 +52,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-2-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-35-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-2-jim.cromie@gmail.com>
+ <20260313132103.2529746-35-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491426.6181.12855763650074831089.b4-review@b4>
+Message-Id: <177402491456.6181.16882943993128640125.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1941;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=431;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=5vu9kJUKSwepU61ul0h/niGvEXw8ZRvYqIj73mi0tqM=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjWJgk174KDSFVEfYK8MEGXPXOGRFrKaYh78
- OPxyPYI8XiJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab141hsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOLG1A//d2qhiK+QccjRn2qFd6LmmFfXKDycfnI
- vYg4YgD9yskm421XW1oAW5getFH0ZgMmJnBZNwunzEMgiiFtfPgX54KT9lHKy5xStkHSh41TXrp
- LSZfIji6smoEFg/wdVSmfIUNr1NXyeertLea9n4jdlTpHLpvHnvw5mAu7ako+DfjXfRrt3a5UKS
- bMoiy/lCZjuvLXLvSwZ+kH25LlEdU3KXPTA55PI5RZxQ0+uBW1evziiZsv8bVW7q8e6Ppg4UFb6
- IS1h+Gf8aaTyUeEHpslnt78/T9kkszXgKx21FuODT1boXbLVu+IZwoSqI7Lb7GyOyq94375xmtO
- Y2c2LIuBmfOnzNAwVbmsRjoQB2vYoPXGjnkF+KQLgUwgLg8ICiU4knkJBe9eNiSt4CoxgNxfgid
- r0sD+irtok76g26xd+VNhB4pypgjLnsffvHdvSKZpzFjHmpg7zCDipfZcNPooF+9PNuFQyTY7mQ
- RRkEf6BOMMGMLzqSm+iyHP/2KDGmpZ/q4cMGPdLZ0UhG/v1XugH+rk2zKE+VGQMyy8QWCUP31sz
- WxpQzHUsVsPHhM5uegSRniZnGYApMuMn03Ad+aWYccs5oFC81V8Wznkt7aKFb0RWuSvswxwsJsY
- xgXhtpJyocfNjJdVYr8QE1w7CANSVoAg2/cI82SF9sr0SYHvLwKQ=
+ bh=i7PwkzzW++IIbSNJiNrtCGR6lD/fF5m1m7HvQDTW8LA=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjZ1slr8Af7sYO4wbdsZMjI7UC30nsChYF5t
+ vVNs/YrKhWJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142RsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOK+EBAAzKxLKW3wJDGm9A5J3BARLxqP1eIn9xi
+ oz48tgFImFvuyrwO4Si+/k7ucbvB6DL9RenG7jbjQN+QsDVWnwGwjhTS/dZivu69klh462PoNBn
+ NoaWppLAaPZ22ltIsdIq/0EThm2gLzNnsIWTcUPGZ/izRetid7bbvN8quzAUGP8YVfRJoMCAdTV
+ 2z08i3L9gCcSgnQGtozNbcVjCeQ3oPb9cWH0CfbxfObufCKS/h8yNSOv0l6WsKr/9F0TXbS3yeu
+ zbrrpwb94fihx97F8+xCqaoSoSrlce4YjcCsTSu/ShCiY3bHSEOtLRnTYpaum6r5/4rTpCxM3hD
+ PXCqpAiUJNiljdPx3Ca3egF+HRu5pjdJJUMMi3b71lJen+i6yFkjnk0sk4yFlOHwCzPxprukv7R
+ hro4UaHjx73LGQPkahM6V132GNrnh9BxfYbajAJro7D0pWR0ETlKtcGBvSF6U/1wJzSQphcuVJO
+ 2O0Psx6oq8dZwRTuQK2utijA7rjRleV4+ZqXW/C+yaQ7/VHV4DYuJdhqpJpnMFRPGXzAFkF9j5r
+ xOcZnWymYr4BnaIhbZlk1XFKkY2Je5ByGZbwvHNkFpmmOVX/l2xJRzX3JaKvW9h6ROWQNIlPKbr
+ dKZvWOUEKxn7wsxatrB4b0+syQtctp+ylKaz+DvFJ2gLtvXEEaoE=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -119,61 +118,22 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F083A2DD9C4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 1F4482DDBAA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:19:26 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> [...]
-> smaller alignments, *and* scripts/sorttable.c does not tolerate the
-> added ALIGN(8) padding.
+On Fri, 13 Mar 2026 07:19:59 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> Incorrectly spelled CFLAGS- failed to add -DDYNAMIC_DEBUG_MODULE,
+> which disabled dynamic-debug in modules built with:
 > 
-> Reported-by: kernel test robot <oliver.sang@intel.com>
-> Closes: https://lore.kernel.org/oe-lkp/202601211325.7e1f336-lkp@intel.com
-> Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
+> CONFIG_DYNAMIC_DEBUG=n		# 1
+> CONFIG_DYNAMIC_DEBUG_CORE=y	# 2
+> CONFIG_DRM_USE_DYNAMIC_DEBUG=y	# 3
+> 
+> [...]
 
-comments may be wrong.
-
->
->
-> diff --git a/include/asm-generic/vmlinux.lds.h b/include/asm-generic/vmlinux.lds.h
-> index eeb070f330bd..a2ba7e3d9994 100644
-> --- a/include/asm-generic/vmlinux.lds.h
-> +++ b/include/asm-generic/vmlinux.lds.h
-> @@ -212,11 +212,13 @@
-> [ ... skip 7 lines ... ]
->  
->  #define BOUNDED_SECTION_POST_LABEL(_sec_, _label_, _BEGIN_, _END_)	\
-> +	. = ALIGN(8);							\
->  	_label_##_BEGIN_ = .;						\
->  	KEEP(*(_sec_))							\
->  	_label_##_END_ = .;
-
-This affects a lot of existing BOUNDED_SECTION_BY. I agree that it is
-not a big issue (most of them already have ALIGN(8) or ALIGN(32), but
-some have ALIGN(4) or just not aligned at all). I think this can increase
-the size of the kernel in other places.
-
-What do you think about a new macro or a
-BOUNDED_SECTION_BY_ALIGNED(sec,label,align) with explicit aligement?
-
-> @@ -867,15 +869,21 @@
-> [ ... skip 15 lines ... ]
->  	. = ALIGN(2);							\
->  	.orc_unwind : AT(ADDR(.orc_unwind) - LOAD_OFFSET) {		\
-> -		BOUNDED_SECTION_BY(.orc_unwind, _orc_unwind)		\
-> +		__start_orc_unwind = .;					\
-> +		KEEP(*(.orc_unwind))					\
-> +		__stop_orc_unwind = .;					\
-
-You already noticed an issue here for example, and you had to manually
-expand the macro to "disable" the align. This is error-prone, I think it is
-better to keep BOUNDED_SECTION_BY here.
-
-Note: I don't understand well linker scripts and all the implications, my
-
-Note: I don't understand well linker scripts and all the implications, my
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
 -- 
 Louis Chauvet <louis.chauvet@bootlin.com>
