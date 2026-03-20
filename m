@@ -2,96 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIHkH3BkwWmaSgQAu9opvQ
+	id QG2rC2RkwWkjSwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:04:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:48 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3038D2F776D
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:04:00 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD4E02F7645
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:47 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 015B110E57D;
-	Mon, 23 Mar 2026 16:03:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 672A310E524;
+	Mon, 23 Mar 2026 16:03:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="kvXX5vrc";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="NV6Ysiew";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yx1-f54.google.com (mail-yx1-f54.google.com
- [74.125.224.54])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6FFA310E0F8
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 22:38:50 +0000 (UTC)
-Received: by mail-yx1-f54.google.com with SMTP id
- 956f58d0204a3-64e9f9226a7so2101939d50.2
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 15:38:50 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774046329; cv=none;
+Received: from mail-yx1-f44.google.com (mail-yx1-f44.google.com
+ [74.125.224.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0017810E102
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 23:30:22 +0000 (UTC)
+Received: by mail-yx1-f44.google.com with SMTP id
+ 956f58d0204a3-64e8cdafeffso3679365d50.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:30:22 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774049422; cv=none;
  d=google.com; s=arc-20240605;
- b=aQhpiKaw4v8iSvRiPaSocLXyT36o4e+nBnr/7eAe8bSyvav+sEerv5Kd6o2FwhqBJN
- 9/j/s6IW5xaxLZoBE7AWCA7afKEBRsNJkeDdqnhYhg524dNMKdm+YSBqxC1Y1fdOyeVE
- xzdZy3/PlgGllysrnlekOKqOOUZ/PtyOaIAkVsiKyrTcg+6w4cfnt1YA9zrw/uNpVTNl
- S5toWT9JmvpJlB1ukPrixfmHQEpxJvZNsrXzmTEJMRWIVIbhe6UmSjP3yX6+SynTTosx
- sgIaw+80KvL6qOF2pl6jU1jI3b5uscNNi5gYor6e84D3FYW65oB7reRXQ4kv8lG5H2pi
- /GNQ==
+ b=gV+b1kY2YXNIv1aUYdf4eHE1JiK+HjpSBmdfjIGeTDPnuFyLIUrtVxHScZ/Ac4iPMy
+ xYNdADUlDIsRBTcm1dgKgJYDAyHbDVhpgHsuUF7mhBAzrA+cLHah50NjKZnqGjgU+AKm
+ cKSFLKT5uJp3oUQbtxREojgAQtIF9n6WPfrisQwv6zzd1k7f40ixmO7HR68wUsheCOtf
+ f8xglMBGF+Ej77HJ4RtYPjKPvUjM0zcBW5P6DS+Sez2S+MO3KqbHvWcrsDS1PNMWBfvg
+ R9tEpK/jqTH2PT8Hq8pqdOpyOpDKsQ9BDxd/LT+lNJCS/GhfWExhQ0lzR+ed+Vxo6lul
+ A4RA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=1QP6vLGAno7k+sNss+wwfyElHbIT2Fj2kzdCjibqhnU=;
- fh=CY2SibA2a0VBVyC3/VT9kXcc0KHo7YWeQsHHbeQyj0g=;
- b=WaqqvF7SFXAhAf0yiZ7eYsDlBGHktKKz8zy7D0Ru5XmuI9WVDmh4YmBCO08O8gdsA/
- yXnZHOoop7Jixur3CKETOT2B2VUymgLo8zGvCLI/wNDbhDVJX004KYA6kNPlHzon8Dvb
- AtDZU5dCcJGYtYl72k1E2nhgROlawmipcZWQ0l7L9p8aiBCGIlcF6jBn44guxrFWVdM2
- 8wT5XsEvw+nz0NvzWQlphwdc3NvZdVQGOiDiAXQxgZzn1IICDpXWINuzX2UZYFxPyNJv
- a4Lo4faB5R0MluLRC034MewDlEXfRPOPJw3B71fdvxoMhzthxLuKR6AYBzchzXnru8Pr
- iEow==; darn=lists.freedesktop.org
+ bh=gGm27wM+81bWCfb+V5biCQ0jTOal6htbF3yNa3Lpemo=;
+ fh=7F2qUd8J7L9oLcuFZ7Prap9tgM02mw2Yl1ipKEz8Jxk=;
+ b=dql9ng5UCsK6PVRmyQCZQq3UfVsgNa3x1J9Dny4ehCnCqavdUsTZIKt76JWqNs9g7Q
+ aezF/1tEgBP2c9y4S5JmEg95y0GUeCD0uTl+XegRlPF5BszxBf14UyknZHK9dU0hnFpf
+ 0Q5n7GK8WtLex1kejkjnSP09CvYZmOXEGtmJ3zSA5HpbSAVv1JU2Ghl9gpF71rsJhuU5
+ bMesJBrlrDtLqIm7xQI7m82oCBSsoKImuqHGXIYhoBnW9q2KeAfAGtc/8zkAvskVFMqK
+ x/IYs2MZRdIiI24mjeLG2SCHFEYCYfGKaiSFxY78Xpq3c0nyx8Kx3zpJbKr1Z5yzWjd9
+ cQsA==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774046329; x=1774651129; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774049422; x=1774654222; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=1QP6vLGAno7k+sNss+wwfyElHbIT2Fj2kzdCjibqhnU=;
- b=kvXX5vrczBwzeLzetQEk30KLX2hI8wZSCEZPkz20BHdO3OAlPJiiyRZYMBjwTkqK6G
- lA5a2Vymp8+CNUMPqbfeM4+pqnADDrPl5sa+jaMfitV0HrH1BZYm1SDX4gPbT4ep3nZV
- vqu1n16wt+dXoujFWL+/sK8qDWM3+xx7HV8swGmXa3oAvgTqtPCi6hyUxlZKQD0wldj4
- Iqw2vxzzYJOJahzsWAEo0XxnEE5AUh92KtkTU+eIvYoAsYYZbwPvlzKBXd13jPw/5Fi8
- bHuYLT2x00OCwkNMEM7eeGTr+r4Z4WC45fTvR/llh3PsxA5cVoVGzDH2RV+5im+1NitV
- 1ldQ==
+ bh=gGm27wM+81bWCfb+V5biCQ0jTOal6htbF3yNa3Lpemo=;
+ b=NV6YsiewSSNPsqrX7X4BwL3zNJeycxL/qa7XszUSuZhIOJSGUXNen3VFEAs8/cYSzU
+ PXo0WfxCOAVqheJUGRr6P+TS3ECcHuFmuC2Bvy6SigneanYEKswbPfO3hC727hu/k1BO
+ EQ01a4myHwGl5Sp2rGoFmOuMPc2zbNfxjbynkOLwWHAlJNaZzkjbO5Llg7qL63F2u0L0
+ J4U36Ar/HHykSdMKoi2pdyKZ6sLuVVGLFRD6OOGDw+44REH3qrN+acvNdP+3yvql2c5R
+ G5RodL2tEeU9HM++mSORBl+bzk+tw5azZHrFU8ofNZ+fs52I7BrVIVCnYIixskQSD23h
+ q8sg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774046329; x=1774651129;
+ d=1e100.net; s=20251104; t=1774049422; x=1774654222;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=1QP6vLGAno7k+sNss+wwfyElHbIT2Fj2kzdCjibqhnU=;
- b=M7FhwGAytayyT/pfpOYt4RWkof94RFXOHk8WZ3i6XYRqh7AUXG1QEOLrW23oXZbDHY
- O5eWTGfQX/pCQEMZq6sdeKKNXTo6btgtV5Occ2p/8b7FxKGqXWX2InsJIhZAFIZcpoDi
- wCNiyYLMLrwH2PAA+dV/x0KmoOUo17MXvDngYjkViKWpiM++y4inVNLK2cKj8dnuOfYN
- tC9s2TyOwjwBrTXWZEKHhb1zgXt4RFlRy3P8v6xpU/ft5L7bjMKb5eb/svqNppVEKuMf
- waldgNlVFBvgHB+1TaWRwEbkiMUs8O1kWdY1flfSkUog7QaRjTrJLOSMyM9pdy7YMhxJ
- zlQw==
+ bh=gGm27wM+81bWCfb+V5biCQ0jTOal6htbF3yNa3Lpemo=;
+ b=VVMjyUSg8PBsbrMsJSbttNXpPOf6qlGRn3dFfU3vbFlHEq1/X0MeGXR+FYu0441Yxs
+ GtRC2kVXqpe5CHUFferVtftozO2KxairzJq7R8K4ytd296KfZHLE5YTMAFK56VDpuCs1
+ ee/Dcrs40V35w1q+FcjRFRTjFPExiVVwKN4M7oPyYzczcWQNByCvk1jbG07cFN2MKTgK
+ fIGoCo6OQRJcldGikMVhXOZco+KY8RJaM86dOb1cLiFpMSIvrM2GKPg5qoryn3kp2A0T
+ m5oSn+x4qnIbYXj22oAAh1YXQfiVjXIUppzQfgaxH52L5XNj3wLLUgaclOCjFOwsWXMm
+ SZIw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVI7pCoXmTi3lhf7gtxgjK/9BPGsKaImsmkPkWn1/7s41+BJ2CDN8eVZN9QFwofy1KiO66aila6W8s=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxur1M+prs+weae7+dzr0ZMCLV4s0YZ3ksi/Yjo4IcWtHJqBlEt
- xdRfdWSw42aFLM7WPeSKyVnSKVVxF5UJL8hLEQsq+gebDx5k/9vmLcLGD5fY2XDb1jcHn1gDEX3
- yi1tGuhkAnTDKsNG5DfoaEEqpEWz4S+s=
-X-Gm-Gg: ATEYQzyt0lSRkUvzVJYHD7FB1anKkQllTV+qlZIcXDOL4wSl+i0JaBIR/Djt2fhn649
- qOzu2r4BNpsSdmzAUzcQlT4iHWOy9fA4bO3/n7JbCYabNcpddSRsuXjjRTGbOUrpA934QqASVSQ
- N3OjJfOxgOP44pX7wFHwkH3UWjShcg5Sx6cO6lo2gW3KEHgjDtwo5htXaCB9SplShmjtw+6KB+g
- sDrwkqa3rW5BvlPaT/jj6vHBIjoQ5MNEvXCect37rD7l1W7P6hW9MUBAVoFsuthos/YdKuN02pI
- FW0u
-X-Received: by 2002:a53:b9d2:0:b0:64c:f2f5:8f5c with SMTP id
- 956f58d0204a3-64eaa707e47mr3626057d50.30.1774046329351; Fri, 20 Mar 2026
- 15:38:49 -0700 (PDT)
+ AJvYcCUHQN3gLO7NQpBgbGRQ7yHKkrnPV4uMBnJPESydb5ngjTANTxddPB8UY5fssjwwXbz/dfY7ssiBKlA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyb6DxtY9Tv5VFOjiRwUsMcvj8SD2QNGhVKxXvEzKeBf0gC/OKc
+ OD86MZ3vVTFQH7WfqRNf4kb3h02bev5bJfxUJgHDufAl+oroRMXXUUArga/26HZUwgZP9dIrvZJ
+ 55HIzwIQrFGokbBn5t1KTRuKwsS08wzE=
+X-Gm-Gg: ATEYQzw8qQSvsDwK9Skwk7ZsyYAG+pE216iNHeoMIJsdF/hQTHup5SVY1ebCjlTolXf
+ uJzz9LDSW5eHTZLICIwG9JsuEb8dsC43tbpl//DJMMvImXPP+b5EzfEhYfQj4PvB1XfQAWGSXPX
+ XGvH6M9JD7oCA0SnC5cOWAdjXPHdDBZ2WGqPD0dH9NHmEhBejqdDhJ24v+XkSSpSFnHAc2Zaae6
+ EyPP3KJeXJRxy6A3gNlDoKWWnFw8DDHXDDg7EVpfRwK49hw+0pGCyt3eYv3AyBqhdk9QRQGaEFq
+ tzhb
+X-Received: by 2002:a05:690e:e88:b0:64c:2590:e454 with SMTP id
+ 956f58d0204a3-64eaabf5724mr4407440d50.14.1774049421463; Fri, 20 Mar 2026
+ 16:30:21 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-65-jim.cromie@gmail.com>
- <177402491485.6181.1878747749743687917.b4-review@b4>
-In-Reply-To: <177402491485.6181.1878747749743687917.b4-review@b4>
+ <20260313132103.2529746-60-jim.cromie@gmail.com>
+ <177402491476.6181.12723360930731783132.b4-review@b4>
+In-Reply-To: <177402491476.6181.12723360930731783132.b4-review@b4>
 From: jim.cromie@gmail.com
-Date: Fri, 20 Mar 2026 16:38:23 -0600
-X-Gm-Features: AaiRm532nEVSECCKtVZQBvh7bVjnXge5XC4gNh5bglnjYOP9OLegdkUxnYh0aWg
-Message-ID: <CAJfuBxy7U4DtDHKrphky7mCHMxmC9ZvuE4cdH1qAzZ4PZGuz1A@mail.gmail.com>
-Subject: Re: [PATCH v11 64/65] drm_print: fix drm_printer dynamic debug bypass
+Date: Fri, 20 Mar 2026 17:29:55 -0600
+X-Gm-Features: AaiRm52E-e5beknCm0D3IoqJOtVzVrqihcI488lZobOssZKy_IBRdDrXcsBQ3Ac
+Message-ID: <CAJfuBxwihP5ANOqgEmQAJF_PcHsa54T7Urn486DqbOy6rtcPHQ@mail.gmail.com>
+Subject: Re: [PATCH v11 59/65] accel/ivpu: implement IVPU_DBG_* as a dyndbg
+ classmap
 To: Louis Chauvet <louis.chauvet@bootlin.com>
 Cc: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org, mripard@kernel.org, tzimmermann@suse.de, 
@@ -120,7 +121,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DATE_IN_PAST(1.00)[65];
+	DATE_IN_PAST(1.00)[64];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
@@ -152,40 +153,97 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 3038D2F776D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,bootlin.com:email]
+X-Rspamd-Queue-Id: CD4E02F7645
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Mar 20, 2026 at 10:43=E2=80=AFAM Louis Chauvet
 <louis.chauvet@bootlin.com> wrote:
 >
-> On Fri, 13 Mar 2026 07:20:29 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
+> On Fri, 13 Mar 2026 07:20:24 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
 te:
 > > [...]
-> > mismatch in intel_pipe_config_compare(), the resulting UART storm
-> > causes a hard timeout after 20 minutes (see below the snip).
+> > Anyway, to play nice with DRM, we change all the constants, from
+> > macros calling BIT(X), to an explicit "enum ivpu_dbg_category"
+> > starting at 16 to avoid DRM_UT_CORE..RES.  This is all in an indef to
+> > avoid changing the constants for the non-dyndbg case.
 > >
-> > To fix this, change __drm_printfn_dbg() to use the explicit
-> > drm_debug_enabled_instrumented() instead. This ensures the bit-test is
-> > performed at runtime for this unguarded helper, stopping the UART storm=
-.
+> > Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 >
-> Why don't use use drm_debug_enabled directly? Does it make sense to call
-> the _instrumented when [2] is not enabled?
-
-my reason is so that we can turn on the pr-debug, and see how often
-this happens.
-If it happens a lot, we can look for ways to replace the bit-test with
-a static-key guard.
-
-That said, we could use drm_debug_enabled(), we'd lose the counting ability=
- when
-DRM_USE_DYNAMIC_DEBUG=3Dn, but still have it for =3Dy.
-So Im happy with either way.
-
+> Hello,
 >
+> I have a maybe dumb question: if you enable CONFIG_DRM_USE_DYNAMIC_DEBUG,
+> then the meaning of ivpu_dbg_mask will change no?
+>
+> In one case you will have to use ivpu_dbg_mask=3D0x01 and in the other ca=
+se
+> you need ivpu_dbg_mask=3D0x10. I think this is very missleading.
+>
+> In this case, I think it will be way easier to completly change the
+> expected value for ivpu_dbg_mask to have the same behavior with or withou=
+t
+> dyndbg.
+
+yes, it takes a bit more explaining certainly.
+
+The reason I kept the old numbers for the old way was to preserve obviousne=
+ss.
+
+The /sys/modules/ivpu/parameter/<name> maps bits 0..N, not 16..N+16
+I didnt want to fiddle with the conversion, and possibly get it wrong
+(miss something).
+
+> In addition, I think this could be nice to have a "rule" like: "cores"
+> should use LSB for their classes, "drivers" should use MSB for theirs
+> clases.
+>
+> This way, if DRM decide to create a new class there is less chance of
+> conflicts.
+>
+
+some guidance makes sense, Im not so sure a hard rule wouldnt just over-spe=
+cify.
+
+a simple rule would be reserve-in-8-bit-chunks.
+drm.debug has 10-12 bits (not sure exactly) leaving 4-6 for "growth".
+So I started IVPU_DBG_* at 16 iirc.
+
+Theres also some question if ACCEL should have their own set of debug-class=
+es,
+or should be reusing DRM_UT_*.  currently we have both,
+1 or 2 accel/* drivers use DRM_UT_CORE (but no others IIRC),
+
+ivpu had many, so I took it as a real-world example of the need
+for multiple classes (not just the test-dynamic-debug* scenario).
+
+This maybe isnt optimal.  But it might be premature to fit the strait-jacke=
+t.
+
 > >
+> >
+> > diff --git a/drivers/accel/ivpu/ivpu_drv.h b/drivers/accel/ivpu/ivpu_dr=
+v.h
+> > index 5b34b6f50e69..ef5a96b961fc 100644
+> > --- a/drivers/accel/ivpu/ivpu_drv.h
+> > +++ b/drivers/accel/ivpu/ivpu_drv.h
+> > @@ -81,6 +85,41 @@
+> > [ ... skip 9 lines ... ]
+> > +
+> > +enum ivpu_dbg_category {
+> > +     /*
+> > +      * since accels are drm-devices (CONFIG_DRM_ACCEL_*), adjust
+> > +      * IVPU_DBG_* to avoid DRMs 0..10 class_id reservations.
+> > +      */
+>
+> Here that could be nice to start the enum at 48, so there is a real hole
+> between "core" and "drivers" categories.
+
+Im unconvinced the distinction is that clear -
+DRM_UT_CORE is used in drivers, as are KMS and ATOMIC ( iirc)
+And is ACCEL classes core or drivers ? probably a bit of both ??
+
+
 >
 > --
 > Louis Chauvet <louis.chauvet@bootlin.com>
