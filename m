@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DarBh95vWkA+QIAu9opvQ
+	id sP0WHQp5vWmt9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:50 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7A742DDC5F
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B4BE2DDBF5
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:50 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 154C010EBD1;
-	Fri, 20 Mar 2026 16:43:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C043B10EBC4;
+	Fri, 20 Mar 2026 16:42:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="g5D/oyGa";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="QBGi33PF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4C59710EBD1
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:43:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B19F410EBC7;
+ Fri, 20 Mar 2026 16:42:47 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id 403B61A2F12;
- Fri, 20 Mar 2026 16:43:06 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id A45F01A2F12;
+ Fri, 20 Mar 2026 16:42:46 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 17A4B600E0;
- Fri, 20 Mar 2026 16:43:06 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 7849D600E0;
+ Fri, 20 Mar 2026 16:42:46 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 384D210450CB5; Fri, 20 Mar 2026 17:43:01 +0100 (CET)
+ with ESMTPSA id C8E9E10450CB2; Fri, 20 Mar 2026 17:42:42 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024984; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024965; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=yVKKtFyA9DidtZm5jLKM84Q7/lY9FYwbHVUGWxBkhsc=;
- b=g5D/oyGaKKqw8Y7BJ8EZNy/E0a0YKrC2KEi5W7jJOonIl81YvPoIXZbmsWyGbMbnLbiVEb
- cbiajhz6qKIw4E5WR+ynpCA9uOLkwd34jYkxvvR67dXnk9RAUMA5xVZKQ2tZIxAO/5WIEO
- oTz2xW7nVA3+Laq64D2g4dz1DyD4g7NzdiE9g6x4OYrfrZsdxfmxJ1tRsA/kihgywokery
- B4EXNg6/RXyUsCRsn6lTejZXsdMzTotPWm/HhlFSXgYD7IDPlgLk1NIU75U/UpnUGE3VRB
- JfkZVbDj0FNf7+mirQn0UqWy7KHbLiDjGBv3JMZfAVkKj/R17zkKqX6zO9sZFA==
+ bh=D2eov9mYgoOzrdqvxhU1NeQE4IQQdBebEx/n/f8G0ME=;
+ b=QBGi33PFaeySJZjofVkltE3FOtnyClXGNlUTbAongG5IFlHUyubUklxGvwt+qhccNaCXnd
+ C/XrqMFGJ+xXH84I8AJAlKUnjcgXsc9OmsomvNEagi63cc7p6Yo9UJ0widhWKSs8lPgt8O
+ ZvOkjUDHRLXRzqUOTWteo+oP6DIK8j1FvEr0S4Wfa2wj8wvKDv90hqihpqyMXih2twXJu1
+ iFuyNQ/KnuE/J7XsP20H2xGZVqLZFAl2CP2p9UyXzXwp8hypgPMTyVO1DQVz3bXSeMZ1H4
+ SDlI4hDk6TT1ematey90MIOWvDnmHO5kWba7GfGU5FF32ssE6TrdOQmdV1mlzQ==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 50/65] drm-dyndbg: add DRM_CLASSMAP_USE to radeon
+Subject: Re: [PATCH v11 44/65] drm-dyndbg: add DRM_CLASSMAP_USE to Xe
+ driver
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-51-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-45-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-51-jim.cromie@gmail.com>
+ <20260313132103.2529746-45-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491466.6181.13101083951648427716.b4-review@b4>
+Message-Id: <177402491459.6181.310434310040242842.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=342;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=341;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=XjeURTC8B5LFHL8twqKgk5E8IIjYxafTskje/7umE08=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjakz4wkagD2nfr1D1czN1I8E59Kwy4DxqTM
- Or7cfF7XJeJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142hsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOKUXRAAlB/qDIOZf9YSF8wRqhV9WtryWG033vA
- o0U1RIOXNfUdxHTAPy82/bkNcOY6JQZNuDghnBTS2J6UROHxKn8gQtGt8lOn+hRyuP0mTGcsIXf
- EufkWtnyygNgBlSBdfw1b59GB6Brja5m4A0qFbVbHoOE6RcmDq/Ey3bH9SmV5HR2z3j7qNaTbhU
- m90cWmVmx964SqwId8yriby20rbRT2KNtuFv00wZ23X9zPuLCUSRARFqlx9q9FH72qud/L0ru6b
- IWSsM7yKybrTTDneIEhPHhH3D5sL2AwwNvfNdIRHg0bSnTq7185fDUs/ysFAJZHg0NOB1xzpTmS
- aU2+1ZZjADtBLS+SWqqHiBRhwFCqKaD1gn1lnPm4RpUOVce7bwSAiCvYKdlDO35Erm16cd82Lhz
- /vaXJwRW5eBsyawT0PeVAsbLSCNyspknDGhcIWAPZbKz2rkbGsGjaISyCkBYRGsG45lDNtZmlMz
- +R2B6tsbScEFTSvkAsO62B8g4WHxih/MigXFSteDigYyHRnBj4UkA98TwDIAwIlfRxyzBgsCoNs
- +WJfsRGuxLg1swJndoNZBDj8oE2PNkhDpY5bXkDlRcPnKw1A/dWySh+AQt8jqEd8iUD9GZv/gbG
- dCfKcsMo8fz77uIOEDwWqwoxqMLkhNBeyTBYUgziisJ5KZfCyavw=
+ bh=wkPeMfWFdMwsBgB9lnGrK7e21ulZjCPnOjdFb/W3iHU=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjZECJCyxwaADPwvoKLVgXSmGrbG/LHfkNEY
+ OOLqtoJH9SJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142RsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOLagw//Vow/v1/XrmcXv+zlbKHhvVk+B8Crvu5
+ fRj5VwFXcHlCNIzMK96hsTYCOGpoTRn2gi3WfY2RIAKOR87MW20IcmiTwvlIl6tYs1iVijR9BRw
+ BPXJVcYwiAIYEc2Ss5DmVOXAjhBbI0tEtIrJg/b5eAZ0ZilgNvz7VWi4leVrngtLtmm9SH2QXV9
+ 9l2PN5RhL5QePGKPCCI92s2dH3HLVEIxWZuj0WME9Edhasl79/4B+G0jTBh1cmgPHacbZjgVjV4
+ ZkpfEhbUw+ZfisYf1SYsNxQE5/lbkUm0wyFlDm9l96fGDiwznT2IlHRuLNW8bvht3Pb5c/Ml4OB
+ JVPkAkeGmozCyHqyQjT2+/N3HyQZA9WYkZ9Vr2NEf8UxqSosAvvgeHN2nB+htYW1HIzBNEl5YQF
+ wXg8h8e+dGJhmfBobo3TORbZ3wQIizg7PFxxukEkXB/cCbOqKfVN50B3Iw9jSG5VjebJAvtv+n7
+ h/q41NpF/pvHZFCk4LwwGkSU0nNEIJRhceH4vAc5hQaQCMJUbSz2i5vlRtGJ8+ZlmZPnIzStc3u
+ HcYWIi+qAhuro1FM/CDstjLAHH56c6hb9gJGEhBNaS/LW0iu+oFisy9iIhsglf8LzB2MeD83hpJ
+ uLxZTDzQVKQbMxyD8fOA/7CSHPx9cRMOZDFCKBRDpDySS8fFkjb4=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -94,45 +95,39 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A7A742DDC5F
+X-Rspamd-Queue-Id: 4B4BE2DDBF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:15 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> radeon has some DRM_UT_* debugs, make them controllable when
-> CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg about its use of
-> the class'd debugs.
+On Fri, 13 Mar 2026 07:20:09 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> Invoke DRM_CLASSMAP_USE from xe_drm_client.c.  When built with
+> CONFIG_DRM_USE_DYNAMIC_DEBUG=y, this tells dydnbg that Xe has
+> drm.debug callsites.
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
