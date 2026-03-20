@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YM0eIgR5vWmt9wIAu9opvQ
+	id +K9KKxt5vWmt9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:44 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:07 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49BF62DDBB7
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:42:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 750BE2DDC52
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:07 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B757410EBB3;
-	Fri, 20 Mar 2026 16:42:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D131B10EBD4;
+	Fri, 20 Mar 2026 16:43:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="1PhghB6P";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="xV8pZhs2";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B33C210EBB7
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:42:41 +0000 (UTC)
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1618610EBD1;
+ Fri, 20 Mar 2026 16:43:04 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id A527A1A2F12;
- Fri, 20 Mar 2026 16:42:40 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 70E63C5668D;
+ Fri, 20 Mar 2026 16:43:28 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 7B2E2600E0;
- Fri, 20 Mar 2026 16:42:40 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id EABEE600E0;
+ Fri, 20 Mar 2026 16:43:02 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 1368810450CB4; Fri, 20 Mar 2026 17:42:36 +0100 (CET)
+ with ESMTPSA id 9099D10450CB2; Fri, 20 Mar 2026 17:42:58 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024959; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024981; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=iZdDScs1svj3Y2kEsx3AF0o56fDyFfnYnPud0AdDX4Q=;
- b=1PhghB6P4SLdN2MWy6T0pdCcAUPMN4IytL6aXQyVMgz8wDxXjcZC1H1saH3x8WfSBCXXws
- ZhNpFRxbmygy+1ZLaC+08myPKaKxEBZG2X/99ir0cdqTD0zw3ERg70Ttds0c/Uy3qQzR1K
- oB1j6CJtd9OTLR3I9zMjaqAf+MQacPuxgQ2fMy7Gsb/XWssZf1K2+Vlv/kPFgRZpa1HuNz
- xi6U1eUmST8/KUDuWtnytLRr2Bhukx+bcAg8gv8sP0kiII3uOCEb8x5mzvujieMjhP5BV1
- lpo7lybB9r52SPYtgaTII6S75Uwh9mB+ZpWx1YO/kQ4MRgj84XTLIKvGvn774w==
+ bh=vV4gsNPs/+9oJCujqH6WyEcXzp6KiZjTy4v+hsMvZSs=;
+ b=xV8pZhs2H7WaaIuTY8MSPDhT93IYjt5HFlfHkBkbpVFR1sWwOG3jaF+lDUd2WBADLqFZgY
+ pYj2aJHhORLmUnqpYro8Kmm707edOh6ZllNAIqRW0G9DkR/hld41nj4eum/6enqWlGrhuq
+ 0hRAl8O2g5Wms3H0wzS/Rbw1aV0PUGEEPrllZI/P8zpvX71ffRhUu0ARNc32eoHafPSljX
+ BVDOpueuvQWa9h8tahAApH+HmiOl+5bWl2072cyfOP/AUzVNtKryfqVBDzrthWMf+DV8U6
+ 1ud77E7rb4o7G8adqmRi3ZiQvskruXfUb+zpNejhUEJlIuOgxm9aYovgzShz7w==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 37/65] drm-print: modernize an archaic comment
+Subject: Re: [PATCH v11 49/65] drm-dyndbg: add DRM_CLASSMAP_USE to gma500
+ driver
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-38-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-50-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-38-jim.cromie@gmail.com>
+ <20260313132103.2529746-50-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491457.6181.147190124416339138.b4-review@b4>
+Message-Id: <177402491465.6181.10368703694909553814.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=326;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=344;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=lda5FcNWSAaI1o3RyjUZ4uvI6l3nv4ZHl5X45LAplqI=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjZzp2Ge/3QqAEbtHUNXbp/pyuf91pJ3qQ4k
- YzhugkRwJGJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142RsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOI9DA/9HApltA5hJZ2/7AxblfNQI7Q3z9yVQ1L
- NxZI1WH5uXeE5DtpzMNItBks8Xt+H/v3ppc/qnL1Un6w1u5W2pfHSNQ0DQqevUrqmyEWLmm2PgJ
- gVevqisdm5ol+SDz/UHBMabDSsQxjAZRKXyaTYrOwQp/Lbde7i/QddtgkqSFKkmEohCDpYOlIVx
- g5zw8bODfkOaJ2lD2LDeWJF3zMbJ5q17l9AwBLBhJpqj/JxZynaxOT5d2KVZxPtJsaCkeBuL3ml
- lJcrWvfXu2B883RnqtidE5It1gj3NDTaerWAmLqsLfqcHT0Hl70JRIRq8YZIT5df7eO2x4db4lq
- t0w/bLcMvLa0FGnxHCJlhqlMokDR2VPojlTfNTYo6yjGkXb1AwcduUiyLmCkGAC1RkNn4q2LHEl
- MjiXwdBMskds86sh51FK6Ee30l58nqmEchtWb5ZLNPLbDOwcUAVMxLlJiidhsJKZr1oit9PRn3d
- r88tr67qnsgigJKCU7VYDOD13JoKYUsG3VDG8Xz0HRJgRDTuyufgNF9ToibjSmeb4VBXsYTXp2R
- ZbyW2WMSFXDzba7Gsc5CIJxYbl52ZNjKYy0qBxXGXO9pUpK02jKzLlgTVAjft/tc2pf3qqar/GX
- fJUZcFRuSf5A3Ss0FgHhZ5CdoLcG1sImSLI4d5+1HKWN7yXVeuEo=
+ bh=NgQ+B2TOXOBiCWB/97Ln87I4OJAQ1bvyhvRS8W82urw=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjacpucBdE65Nc9Qp8fLHET5D7QN/2/sOFpe
+ YAEcdsDvQ2JAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142hsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOIeeA/7BNGbotVtzRRztWjECeEH3ZjIHAmQf6y
+ Hc0mG8BxjSsxBNC3PUZMEScQC38f7Qp3RapP0IRCB12EoiwnEoUq8nCkdXun/DNNgPWBk1Eahga
+ RwmuJKHO7BOia6jgn3OWMiRLA3hqjAcxUaqMnmwn5Xf+IOWm+zkquR3wJSfV2yVnBWgQCtxLMv7
+ 6tNczTRsVNlrldLkQbmfKUkIib9IT6GINeUKrubq629l3lR7eutBuSCM0z7ysiA12urMDqn3U9O
+ bmtjtVMu/sXEX1p7089KQ5SWUFwvfJSYroWHhdbIP1fIATAD1dcO+58UhhCwocAVzGMon8Sb3b1
+ j07YD5GBYAzNJwABF381QDqwXP3BSfa+UjiqaUGg0ZKL6eIyP/kX6MdXfX4IgMBgNFkROOgAyzM
+ lnJ1wfagMvqtmtrjPpzE41RPJwlJmFgQW/Mn1vo80mmyScTSIrkgYoVfJyCFILD8dVaS2Txw4lr
+ zTCnfcKV0NqTWcbStfFMqH4fBeHGg1Wfhh3kiodNQRNiIUlQUst7UflH3gyF+B9TjxfFKwPrUuI
+ ghwYLQCw4zvuyHF3Oo0ywFg3ZIs0usQ6VcbMU3xnaqmEmoHG/ROefp8IRFQZlNP83liBMiLevgA
+ OT6g6ISddF5A/UWiGOTBB8UeGLcrKClX5aCgNBIzW5Gug1g6LtEE=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -94,44 +95,39 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona@ffwll.ch,m:jbaron@akamai.com,m:gregkh@linuxfoundation.org,m:jim.cromie@gmail.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,m:christian.koenig@amd.com,m:matthew.auld@intel.com,m:arunpravin.paneerselvam@amd.com,m:louis.chauvet@bootlin.com,m:skhan@linuxfoundation.org,m:pmladek@suse.com,m:ukaszb@chromium.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:amd-gfx@lists.freedesktop.org,m:jimcromie@gmail.com,s:lists@lfdr.de];
 	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[21];
-	FORGED_SENDER(0.00)[louis.chauvet@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 49BF62DDBB7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:email]
+X-Rspamd-Queue-Id: 750BE2DDC52
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:02 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> In the year 2025 it is no longer noteworthy that drm.debug logging is
-> adjustable at runtime, via sysfs node.  Simplify the statement.
+On Fri, 13 Mar 2026 07:20:14 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> The gma500 has 126 DRM_UT_* debugs, make them controllable when
+> CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg that the module has
+> class'd debugs.
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
