@@ -2,159 +2,160 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EOHlKNVFvWkR8gIAu9opvQ
+	id AK7hKQ1gvWl09QIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 14:04:21 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 15:56:13 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD8112DAA49
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 14:04:20 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EB0D72DC1D9
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 15:56:12 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9881E10EAEF;
-	Fri, 20 Mar 2026 13:04:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1443210EB02;
+	Fri, 20 Mar 2026 14:56:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=garyguo.net header.i=@garyguo.net header.b="Ag2aX3k6";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GOIz8dEr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CWXP265CU010.outbound.protection.outlook.com
- (mail-ukwestazon11022100.outbound.protection.outlook.com [52.101.101.100])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DAF3B10E0A6;
- Fri, 20 Mar 2026 13:04:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A77310E90C;
+ Fri, 20 Mar 2026 14:56:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774018570; x=1805554570;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=W3/ONfspVNuxddwyvtAKjWoKOIvBn2ChHLFgu/WMYUo=;
+ b=GOIz8dEryMX2unTEwgWT+ouUZo+YzUSrA8dB/zVeRpaZZspWDcCTwPej
+ nk1Okb6//Df2ZmFOCBsKjFSXUoMZ4Hym4AC2A6jxQnozm7k8F3kd0649j
+ 9OeqUvJTyONMW4rHica6xP6kEerIZP8GgAKJCJ38wYl6T+hGbiWWAN7Xf
+ 2AYMJiouNC8O/R5MckZ1UGE9nM3QiayNTREjrgPdBKX7+0GlX3fjXi1AD
+ 6r0fgr+2iAv7Vrau5dsCfaLkSNn6935rWaFlq9zfCdBjqwYCcEtq5FK3U
+ jVKxtbJKK5wVcmY3/SdE94Nf9s7YB1Tmb1K57Gc0ZxQhQkfGpwo1RYSb0 g==;
+X-CSE-ConnectionGUID: VsrdVv/mTOqUXP8iDgSJLQ==
+X-CSE-MsgGUID: 2tYq4XFhQuiPr2Mv+iVdwg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11735"; a="85808274"
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="85808274"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2026 07:56:09 -0700
+X-CSE-ConnectionGUID: khpirnfDSqS7SLrd1lWlyA==
+X-CSE-MsgGUID: seav+SRXR9Cc6FiVzX4F/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="220639920"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Mar 2026 07:56:09 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 20 Mar 2026 07:56:08 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 20 Mar 2026 07:56:08 -0700
+Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.32) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 20 Mar 2026 07:56:08 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jkEFfybdGRJztWFMH9Lssbl1lsptaUsDR3PpjZtm6VuHbEnXYNY/ZLZk3KglOAeJADE20sTuhRljDoqdtLBBnO6SsYR0d4XWvIGesfmGk4gdSR7eABXdV/ySDDDwKhyhOcMh70SdbiEJ/Q4FhCT9oxKd84DTiAuL257Qd3KpIQChX3gxhrzq2LB9q3/4ON6Sip6Zi/GR3+whAxRq7Da8KqK0jUUBQBy3cMPwcc0Itli/7V4zaiwOXvlzGybrseZoprRpAYwNTTXvGPPwEEuPy2UK0025vntg5011LKEkab2xrNxidtAl2PuvIVDI7nCIgpE0mmBDacye9AK2+M7SWw==
+ b=N1K2bTlzJfCHf9UXOaD0aE+KkSpL/y8uRZUGgSjHXzJaU+lPHS/9ReiNmkzftuivkoORp/cOAZ1rJVTRqUN4DiNy/0YMc+tT066b84VNDvo2SvkOR0ylep4LNv+JRFVLUcMNTTRftGoKjC1PeHZEPraSROXt7v2wPshDLdcx8+Ax2D/XGd5+6RjndlL9CtovxoEob5VLuijJBIRscKkuhWnOqEm8ZYtwZYF+Jtz6zg0W2yUniwiEpw3y2VcLxzFXMtLipdsHVBxyjosXSRW2BGuAjxfiK8oQ4M2smIxWC+rwzIxZxv0QGCYl2BmaYO6xSvsG3S4ytCaREinOfUo7Ww==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=xwHfwJMJ/BoyqaGSSMonUhFCgp1zLjHqz6u+cp17t1I=;
- b=lS2Ire1/jcpF1fK1OrvncaYG3xc5ExY8v5Ur7TkhRLEeWZnhn8EP5V/6lkc99lnYNL5jGjQUISWhXxpvikIuIIMTLUTWg3PDkF0GkdHiOuRs9BWKIBz7zuSJQvsS+rlskiRHFrKY6F5Ighz3ON32fJ9kYhYPfWOy9ihq602FtsoB4hR2uIfe1FMbR5G2S61VH+PJmsFCcTElpIKiRfcoy7xmxQWJMOYqTt8A7yUNqf7v8djR47XTRMN8aJrJhKnySKXDwhfToW9iMY45t/S2FmQzvUitxjOwEHLjZLBjQVAJWnsLFK4/xDywF+vri3mRy4jkusSFtvLNvoK3nPo9TA==
+ bh=bMB4XN2xhnoI1bfx5R2Tbjj9rTFgxryZ/BgiEpot+G4=;
+ b=lD7WPN2L7Q6PVRWZ3p/GGMnJmCaS8+K7eBjZznaJiQ2UDrinzkUUgLc1JtzSnTOnV7W47eFqKZvyrM4Nni2V1zNKI/sFRRqJhNkdlsLyKvCdVAFLDNKS2gljGeZdGdrjDSfBuCLSv5ocEww1JIxKOtXlQ0gNV99Ox8eDlGICNp8Xrsw6Zod0H/iN5R6qDgVpdnCnCkwB4lZI40RnvbNCLst6R9I//8bODJbaR88l+i10JAorqAyIyv79I8wiTx09gi2v6fwFIP1kz3DJLkB1X+5bSOZKl/u9bY5oG8jU5FuRWIU4SLMxClh9L9pAdjEdcd05vzbevHHE6X1NThDa1g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=garyguo.net; dmarc=pass action=none header.from=garyguo.net;
- dkim=pass header.d=garyguo.net; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=garyguo.net;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xwHfwJMJ/BoyqaGSSMonUhFCgp1zLjHqz6u+cp17t1I=;
- b=Ag2aX3k6m+6SK+9yaijTu2U/9Mzz2xPdUB/23hmvNRtuSuFzPa4cHj9yqe5Q44RMSYoin/lWauZFFTsaiCAd/2UTGE7aeoFmiPTDOpEdXlPFqwDlFZKwMBrIcqI1M8dPuO29T1vV4rhWCFDLTcuFLsQAaB7Ojzeh9TI1Vs75Jlk=
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=garyguo.net;
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:488::16)
- by CWLP265MB5954.GBRP265.PROD.OUTLOOK.COM (2603:10a6:400:1cc::11)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
+ by IA4PR11MB8916.namprd11.prod.outlook.com (2603:10b6:208:55e::18)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9723.23; Fri, 20 Mar
- 2026 13:04:12 +0000
-Received: from LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986]) by LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- ([fe80::1c3:ceba:21b4:9986%5]) with mapi id 15.20.9723.022; Fri, 20 Mar 2026
- 13:04:12 +0000
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Fri, 20 Mar 2026 13:04:10 +0000
-Message-Id: <DH7MPTIK5OMK.3GHQAE07J5OO@garyguo.net>
-Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
- "Gary Guo" <gary@garyguo.net>, =?utf-8?q?Bj=C3=B6rn_Roy_Baron?=
- <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
- "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
- "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
- Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
- "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
- "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
- "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
- "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
- Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v14 1/2] rust: gpu: Add GPU buddy allocator bindings
-From: "Gary Guo" <gary@garyguo.net>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>, <linux-kernel@vger.kernel.org>
-X-Mailer: aerc 0.21.0
-References: <20260320045711.43494-1-joelagnelf@nvidia.com>
- <20260320045711.43494-2-joelagnelf@nvidia.com>
-In-Reply-To: <20260320045711.43494-2-joelagnelf@nvidia.com>
-X-ClientProxiedBy: LO4P123CA0306.GBRP123.PROD.OUTLOOK.COM
- (2603:10a6:600:196::23) To LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:488::16)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.9; Fri, 20 Mar
+ 2026 14:56:06 +0000
+Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
+ ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9723.010; Fri, 20 Mar 2026
+ 14:56:06 +0000
+Date: Fri, 20 Mar 2026 16:55:57 +0200
+From: Imre Deak <imre.deak@intel.com>
+To: "Shankar, Uma" <uma.shankar@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, Ville
+ =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ "stable@vger.kernel.org" <stable@vger.kernel.org>
+Subject: Re: [PATCH] drm/i915/dp_tunnel: Fix error handling when clearing
+ stream BW in atomic state
+Message-ID: <ab1f_WvJCZZRR5eK@ideak-desk.lan>
+References: <20260320092900.13210-1-imre.deak@intel.com>
+ <DM4PR11MB63602830F5D63903389EF2DAF44CA@DM4PR11MB6360.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DM4PR11MB63602830F5D63903389EF2DAF44CA@DM4PR11MB6360.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GVX0EPF0005F707.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::392) To SJ0PR11MB4845.namprd11.prod.outlook.com
+ (2603:10b6:a03:2d1::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: LOVP265MB8871:EE_|CWLP265MB5954:EE_
-X-MS-Office365-Filtering-Correlation-Id: 52ff095a-ee62-482e-1513-08de86812e42
+X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|IA4PR11MB8916:EE_
+X-MS-Office365-Filtering-Correlation-Id: b3e3a915-e06e-4483-04f6-08de8690d014
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|10070799003|366016|1800799024|376014|7416014|7053199007|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: hc6dYgZaWM/AKhw/VhoRY1RttCE7F8UyS6jDyWVnsgWNhF4IGD/DQYovQ2TmERdUIhYl8DaI4Usi6sqtx3dgErVkDoyyhjPR8J1BYO8l6yS9pj22pPXJ/usy2s6h7qPEoaxNVl6GpMVUXozZOdzurCsdY/HIovxeyiw7ZIes2TLySlDS2NdApEXG4U0dLvac9mJT8j0U/nDUhRj/k2P0sygBCb9qosToJ4suipNU7oQiE89lsyMCWW7zcU91E2ulbSXBmme484KdBQp3rqKdF5s1Eg/QQ2OevrCzd6J6h6FGDDgjI89zTG9k+HT2ocenSFgLm24+6zMfLv1cu9cFRMiibAQoBzvOsXMMQXdS98QEyIcx1K1FKa4sq2SBpgaQdIDA7xc2xWYO0mtne2w9n0hZ9Z3Q7x7BaUWfL+jd1VsrXb6S3N4YBz6v19gJMsEklOA7ryJO6vJf9EIEx5p72zzXBu0QknHjsK54YZoxlfIJ7UCDbB7Il5U9y22i5ZBAy3T8hAbldY63wE+vgSQwcLWnMl1/oPknSIwM3MB1Pl77NBt2ZSVYGOjmMUxOsCb9gtO1JvK90/2xVnIU3lONG8uQBHRlmWPfYqQLQqA+vxHgYtbPV/Acl/+7ZtcI74DGRVxA0vnWHsBfKCVL1AghzGOJTH6oWMif/Hchy87G2K55FACHRAICiUCC5LWdZTaN
+ ARA:13230040|1800799024|376014|366016|18002099003|22082099003|56012099003|7053199007;
+X-Microsoft-Antispam-Message-Info: We1llalsHKC3dm1V1pjWR3r/d6v3/N7GG2qHrzqxabavGyPVev4z6m3d3h+jvl2wljiwDcWAIabf8gxeI985g4ClSOFBjvjmBmNOQeKLJaSJT+tdmeE4OCkf42oFwK22AWaVZKJ0KALoSoorwFUxoeIQLHRehBSsWhqYmtczl6KfaK3kKfo03R4GuiFlCQmXGyuqM29tJFizn88O76s/0PWlQdbzvRvDEde4P4LIxREa4gW+p4wRQyXdhRYd225mCITxftE2FT+2A/y2ekCo2YpfKp6sqdoRpF1WTHwJhOpdAfhy+/bh038PGPKd1Mqkx5v+WUHOOuC6MBivc54iXjRXvCfwWcCu3vouAK4BY09yfw6WykPzN10ScJ0ZaW6sPLb43NZYoz82KsnrZ2HASi7Ny3b5hRuGdC+fOfsVCkVw7mtGDvnOs2xWYFHmJds/8DDsmQVQ9VUoR72Gz1/E1jfOX/KTdwjapfxQaVNfGuY6ckgHxB8dpxrSDGRsCfurOhNKshZfzh14saTE3zH0TflV+VMzPJxsv9Q4AZ0OAuX5JBfH94Am+5OOoRXipy0K488z1fcBDAzQNuYy2zh0Fm8vYH/jE9WJRmRGvQWrpZqar4uVIeHHeu9Zakh+YXO8upvb9O/BuE+rle8l5Ckr3jz/IX8FFIESWshvQzpRPkgnDPiD0/EONrwbGrtnmmZDfv5xZS/Z3VO/ridUTYU/wvGseHpSkZiegqLPE0Jmnrg=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(366016)(1800799024)(376014)(7416014)(7053199007)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1102; 
+ IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(22082099003)(56012099003)(7053199007);
+ DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MldjdHR6dHdQc3V1NFFhL0ZjL3RINjZDZTBNbHp4VXdMbDFKMVlLU24xR2hx?=
- =?utf-8?B?ajVBRC9rM25oQVE2NzhCemZlTWF2OHppamlEb3ZhNEZCYng4U0FlYTVsVUdK?=
- =?utf-8?B?VlE3bXRHWk02YjZlRWIyb0YyOFA3RVhYQTM1Tkc1WjZhZjYxZy9rUEN3TVFG?=
- =?utf-8?B?QjAycFRpTm8wNklZWVJiNnhFcVJwMXovNTBnZTZEaE5yM1duSTUzemtZemVZ?=
- =?utf-8?B?ZXE5S3NRbzBnUjM5QWdyM0dyVHQveDNiR3VNKzNvVTd1YU9WTXpqa1FqYk1a?=
- =?utf-8?B?QWpuQTRrbDNSaVVoWmJzSkdVSkRKWHZ1OUZRbFY1Z1NhMk8yNFVTYzQ3WjZ4?=
- =?utf-8?B?NUdISnNwN0pLSGtoa1RBak9GVlNuL2xkRTRFSko2dGpQT3ArM1V0dlRqWk83?=
- =?utf-8?B?Z1lJWnFIbkorSXJycVUvZGZOc0FWUkZIZHBDRlM5RkpmNlVkdU0wOUIrbURn?=
- =?utf-8?B?L2puTTE0R3lDQXFTeFFlS0FPU3hiUDcwUS9DcjFQS0FndXVkM2JlQVlJem50?=
- =?utf-8?B?S2JVdGdhMGs5OXRYVm45bXowUFZLYUVsKzJLK01kMEh6WkZUTkVSbzJqWEFU?=
- =?utf-8?B?SlRpMkphYjhwU25qbkc0bHBPekpTMWYwNjVUT1JBdWRDYlRmTDlrWmNSblVl?=
- =?utf-8?B?bytUek9WN296eVlNR3Nhdkl6anEyU25JYzFGR2lNbjVVN3FuR3U3QndaQ3Rs?=
- =?utf-8?B?ZGJsTkg2bE1HeEw4OGdXUGdoeEEzZHdIdGJJcWNtWVdMeDdMbTBOZnpHUWZQ?=
- =?utf-8?B?VnZuM3phZHgvOTJLYlBodllnOUU3VzY2NjNUVmtDdWQxUVVxakc2WWd6OGlP?=
- =?utf-8?B?TjloRTE2ajd5V1dGWDJQemRpRk5NZi9FbVdtT0E2TEhLRnQ2TC9SL0NmRFRY?=
- =?utf-8?B?TVB5V3JOVWRMMUQ2UFlTNzFXZGZFUlgweWdPS21ScDMzM3hWUGRVc1VZVFdI?=
- =?utf-8?B?Mkk0aGpBRUI2WjAxT29lbEVyWDNvWkpWQ1lKQy9JR1NwV2k0eElpY3l3L3hL?=
- =?utf-8?B?WnVod1FBY21icU5KcnBNb1kvQXR2TjlaWG1FaENGTjlrMTdOUG9jdDQrYTdk?=
- =?utf-8?B?YSszTS9VSENmTWpwaFh1Nkw2eEFnU3h5ZnRZSkd3VGVlU0sxK0ZvcTlSeGRB?=
- =?utf-8?B?UUxDMkRabmh2MUs5T2Uyd3V5V3VwZGprVThkZXNFZ1lqaG53UUpubTkrd2dZ?=
- =?utf-8?B?TVNIdFJ2ZERtQ2Y5Ni83SXMvK2JYQitsdThOemV5Lyt2UjZvRWJCelFkVHZD?=
- =?utf-8?B?NzNqRzc0RmFjbVQ4NFgxQ2hRNGR1RUp6QTNaVVg2dkQ0UktzQ2w3Z1hmRWdO?=
- =?utf-8?B?TmFQaTYzWVJuT1Axb0liczVFMi9UWFFTTWFEcXkyamJBT0JUQk5wQWxpYUhk?=
- =?utf-8?B?c1lEcGgvU05XUjA4RVBKcUtobThDNGFqYkp6M1BLWjdGMS9ocTkwbnZPVG5W?=
- =?utf-8?B?UFErWnFaMXQzOE1NeWhOd3RJZERLaEpLaGlLaFJCbDhzRFZjSjkrT2Q0cHpE?=
- =?utf-8?B?V1hQdzVURk9DR2ZCK01yTUZkbERXZmJkRWQ0cUVnZnp2ZE0zUjkzN0lPOFRB?=
- =?utf-8?B?QWFwNDdDNW45eVZURG83ZENoN2paLysxK3N5OEJXaUhITFNrSjU1TlZpdjN0?=
- =?utf-8?B?cis3V3E2eFZTQ2Ridm82M29MQzI4K3J3dkZnU01QcDlXbmZEWWxkTXFYYWtK?=
- =?utf-8?B?djBFaldpb3dBZ0xWeDVRSFpiZVZxcUxubzRsaDJIR0JhQVoyZjFpK2h1czBC?=
- =?utf-8?B?NkcwaTJlWmU0SXVZOHZ6bkRkNGJBeUZxMTVEVE9YOTVzU01VMXA4a2pzNTZm?=
- =?utf-8?B?bXlrcnFpUHZLeVI2VU9hQUpyTEtUUUlmemROcHByZEE1R1oxcWgrNks2c0to?=
- =?utf-8?B?ZlNhTTFYTytZRWZGRzVBSkt6SUt1OVI3aklPMXB5NUgzdzJPNEdBUG5nZjNL?=
- =?utf-8?B?czgwajlOT1hxcWlEWFBBUkIxM3Z4ZDdEQmUxUHFoQnVwdDZVMjJUOFJXU09P?=
- =?utf-8?B?dUE1L203ZVNLd3JFZE1JMFk5ZTJkeFBqd01Ea1pXR0MrMEZvTWY2RlpCcTZ2?=
- =?utf-8?B?NzRZOEtJemtkZXo1NVNCcERVcFpPeWc4akxCMXVaUG95cFQ0WGlpTFlJekR5?=
- =?utf-8?B?UUd6bDk1U1RRbGNidHF3RkhjckZpMGpwbmJoMXRxZkhFWTdQV2Vaa2hzNWpq?=
- =?utf-8?B?V0hjYk1qY0JucmczSE5IZEhTbkpyYktBWkl4K2FvNkc0ZnRzRkdpNXZLUURy?=
- =?utf-8?B?Nk9OUU1wOW4wMUl3TGRmNFFMelVMUzViWkRvU2ZXRWdSTHMvLzZXR0xzQkxT?=
- =?utf-8?B?WmhZL0IxdTBYMFZCcFMrRDBwNWVrcUhVVlduTnZyU0NhVVovelZYUT09?=
-X-OriginatorOrg: garyguo.net
-X-MS-Exchange-CrossTenant-Network-Message-Id: 52ff095a-ee62-482e-1513-08de86812e42
-X-MS-Exchange-CrossTenant-AuthSource: LOVP265MB8871.GBRP265.PROD.OUTLOOK.COM
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?iQ0EnTXrLfEYdMDhE7QOHsqEL5XAqPizFX9pBoWTXKcStK0WE7fPecHiyT?=
+ =?iso-8859-1?Q?FLV3y7kVGuL/DxUl88ZxhN6vOjvRlcPge/z9UQZiQephujdAjaSzrj3lLM?=
+ =?iso-8859-1?Q?dYc7mxZPymV3alqeKmCdWIyYJQ3L8pGLEXxLK7y5bBRaex1si/hGFViFgD?=
+ =?iso-8859-1?Q?yhY55ox4MdRAdOnn8jStip0apeAMFbxhEU81Up3B9fWssWVuiYg6JRnnkg?=
+ =?iso-8859-1?Q?ojc245AO001WXug8xhp6pXDA2vMl4x4VA81w7K9ahtIaX1veGuIum1zyXI?=
+ =?iso-8859-1?Q?3BnBnkECgvoNaEL6JmJF8j+SHyzQvGaI6adE5hM+AtzuCJaJoKHslyxmVI?=
+ =?iso-8859-1?Q?iIc9EPRu4KIPMU6/bB5nLYdmib3dJAhbkoWT6HS8pdI2i2zZ9B3b5A3ooz?=
+ =?iso-8859-1?Q?NMCN3Jts/iQwb3obn1KM+Tv6zCNMd2TjaZrURLZpkTxzkUP5fRVN7l4VCz?=
+ =?iso-8859-1?Q?nNzdDyxx+kvdoCYyco9xQXS0zIGt9D273LGrl613jtN0aTULhoLuLX2yg9?=
+ =?iso-8859-1?Q?jrs69DPdsVVU2UpGemb+Li8s+dM3jHtjJmPx5EMVSNOx87B6jDvQSnj0bE?=
+ =?iso-8859-1?Q?nr+jGkzU48N+9EipvyHx2IB24LmwRD+diOnkKH7Ne6Yrc0r+uhxk+z1gmi?=
+ =?iso-8859-1?Q?FZjIgGEuv94L679krsbgW068YtYWEh4GsfHXvp8kIc9nV2keopgEMLCd+c?=
+ =?iso-8859-1?Q?EkvIRHx2PPcSGFwJZwNzGtr9ns2zc/uNvvztyeXEtVTH4HwYssJta38H5A?=
+ =?iso-8859-1?Q?KnKdurGY9Q3LnOBsHRiiletdnPGeKusfBb8Gn26/Sn7XbGR/Q7vhur9nTY?=
+ =?iso-8859-1?Q?F5xC5Srbhtgb5ne8SAWRa5JCGSoM1p7q43/KRw2OgoAx3CXoBrwiEyfPpA?=
+ =?iso-8859-1?Q?rgGoflZvkl1tS+cuMudZ5+9zSGdz8qEgXOGs7lNOhvZJnjjWz71P/lfril?=
+ =?iso-8859-1?Q?b+ENf6QdkYYG8CMhhTPFZlRSu00q5nTOr9Dfpw6QsJW7Ibv2/DSgzCrUo3?=
+ =?iso-8859-1?Q?HC6vmUGSGEEv7LufVofpidSrZHKinG6fPQQNqBZQ6lSSJYCz3v6PMS3m+D?=
+ =?iso-8859-1?Q?1y9wxCA3H240soXTfHXeByUSYb8o5Q102SVMNBM1w78L6f3v9jKz5/UDvN?=
+ =?iso-8859-1?Q?UYVU1ilMYdzp5rXSPY3oVr987E//F1uwS2MHIDLebhkc9Zc9rCZ3XUcdYf?=
+ =?iso-8859-1?Q?xH8pIprc/Z2sFqLx5g0meqS8pZNuXtTp7rpdx/ZzVKxRDHrwbH/swlGYEn?=
+ =?iso-8859-1?Q?/rhgB32Rz8q2mjirXbQvu13eIZm8Qhzz2VCu1A3KwqlaQjM1PBOZ80mneZ?=
+ =?iso-8859-1?Q?BY4WhI8eLavPBzjbTbshRQNaYC006Gdh+HD+OO1JEYbuosJ6oaJF8ahR49?=
+ =?iso-8859-1?Q?qQo+cpiwZhNJxtAjdtlneR0Lj9/iLKa0htxEXVE/Pg78LZZz+nT+FR40m4?=
+ =?iso-8859-1?Q?aS1UUXY/aepZW2v2ynNTSA9bOLEWBz1iHETTyqXdOvQkFyaQhPr+TQzScD?=
+ =?iso-8859-1?Q?HtXd7dmb4Em2Kjrw4C5lIVqx50Lh3c9M1wBwgSoY6Iw15+5O8oqMkECENx?=
+ =?iso-8859-1?Q?MLF+X2cAXocwoxdA8Oa++KmI5wzE5rzkrpBR9tK00LrBZdNAoL8hKMONNs?=
+ =?iso-8859-1?Q?6yEczx5pEFeXDVAfvIdkumEN4aHh9frb6cgYwtW+brXkx0Emm8zPKWyxkC?=
+ =?iso-8859-1?Q?FncVXlf5azZPt9gAIACqWr6X2tUYxB5nb6h3KGSOIxJOizLIWg8gEJziDd?=
+ =?iso-8859-1?Q?FsciPfz8z51MuxFGpjELZa/e84PJliyRJRTgtberhbFfDGX6uMGDwYcpjG?=
+ =?iso-8859-1?Q?Hk4XWbAcVw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: DKAoMBgweFIL58mfyLPYFi0Z/IqJh2jyjjrb7Oi1C/iLwJ6GtBHjgp6almCkmS1cpiffrc4z+zfMEk6R9ak47m9ztrkCUewiMP7HiO3A4MHtmgSOK4e9CJrwbUzuLLC8PBj0Ca4vPL+LuKA2ch8Hw3fP3SWzrFv6fiaKSb+Pn2NoemTxePbbXRMx5f5toN8awWtBUzNa82T4tQHVd+BHa65sUN9rJhWJ9o4odPPi2eliQ/FwFPckYrPzmv2U3fO0FrzxYWDTwvUWqblKjiVUP0lx5BYVkh+dC2TjqJ8cQIUmEam565EdK1MZsYdj5XnxjVRZzjjW5EYvnImu8o6u8w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b3e3a915-e06e-4483-04f6-08de8690d014
+X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 13:04:11.9450 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Mar 2026 14:56:05.9617 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: bbc898ad-b10f-4e10-8552-d9377b823d45
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: nVkYvFtazanLN3fSC+NcajCkvZO30MCpkBfeD8lE1RyGo3iyaJ+z1a8xFx8J3MSRnoj0XFgc4UkxPUvulY4DUg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CWLP265MB5954
+X-MS-Exchange-CrossTenant-UserPrincipalName: czsqs0+wLbWIG3024Sr0cU9XQAH+QKQJIz2yhTWv1BslWsz4Lk3nhseJ//l9it8KoccFYOtzYYyThoUv7D2oRA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB8916
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -167,194 +168,200 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[garyguo.net,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[garyguo.net:s=selector1];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[56];
-	FROM_NEQ_ENVFROM(0.00)[gary@garyguo.net,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[garyguo.net:+];
-	NEURAL_HAM(-0.00)[-0.992];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:replyto,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[imre.deak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:-];
+	HAS_REPLYTO(0.00)[imre.deak@intel.com];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.678];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,nvidia.com:email]
-X-Rspamd-Queue-Id: CD8112DAA49
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: EB0D72DC1D9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri Mar 20, 2026 at 4:57 AM GMT, Joel Fernandes wrote:
-> Add safe Rust abstractions over the Linux kernel's GPU buddy
-> allocator for physical memory management. The GPU buddy allocator
-> implements a binary buddy system useful for GPU physical memory
-> allocation. nova-core will use it for physical memory allocation.
->
-> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->  MAINTAINERS                     |   6 +
->  rust/bindings/bindings_helper.h |  11 +
->  rust/helpers/gpu.c              |  23 ++
->  rust/helpers/helpers.c          |   1 +
->  rust/kernel/gpu.rs              |   6 +
->  rust/kernel/gpu/buddy.rs        | 613 ++++++++++++++++++++++++++++++++
->  rust/kernel/lib.rs              |   2 +
->  7 files changed, 662 insertions(+)
->  create mode 100644 rust/helpers/gpu.c
->  create mode 100644 rust/kernel/gpu.rs
->  create mode 100644 rust/kernel/gpu/buddy.rs
->
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index e847099efcc2..cd9505d3be60 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8531,7 +8531,10 @@ T:	git https://gitlab.freedesktop.org/drm/rust/ker=
-nel.git
->  F:	drivers/gpu/drm/nova/
->  F:	drivers/gpu/drm/tyr/
->  F:	drivers/gpu/nova-core/
-> +F:	rust/helpers/gpu.c
->  F:	rust/kernel/drm/
-> +F:	rust/kernel/gpu.rs
-> +F:	rust/kernel/gpu/
-> =20
->  DRM DRIVERS FOR ALLWINNER A10
->  M:	Chen-Yu Tsai <wens@kernel.org>
-> @@ -8952,6 +8955,9 @@ F:	drivers/gpu/drm/drm_buddy.c
->  F:	drivers/gpu/tests/gpu_buddy_test.c
->  F:	include/drm/drm_buddy.h
->  F:	include/linux/gpu_buddy.h
-> +F:	rust/helpers/gpu.c
-> +F:	rust/kernel/gpu.rs
-> +F:	rust/kernel/gpu/
-> =20
->  DRM AUTOMATED TESTING
->  M:	Helen Koike <helen.fornazier@gmail.com>
-> diff --git a/rust/bindings/bindings_helper.h b/rust/bindings/bindings_hel=
-per.h
-> index 083cc44aa952..dbb765a9fdbd 100644
-> --- a/rust/bindings/bindings_helper.h
-> +++ b/rust/bindings/bindings_helper.h
-> @@ -29,6 +29,7 @@
->  #include <linux/hrtimer_types.h>
-> =20
->  #include <linux/acpi.h>
-> +#include <linux/gpu_buddy.h>
->  #include <drm/drm_device.h>
->  #include <drm/drm_drv.h>
->  #include <drm/drm_file.h>
-> @@ -146,6 +147,16 @@ const vm_flags_t RUST_CONST_HELPER_VM_MIXEDMAP =3D V=
-M_MIXEDMAP;
->  const vm_flags_t RUST_CONST_HELPER_VM_HUGEPAGE =3D VM_HUGEPAGE;
->  const vm_flags_t RUST_CONST_HELPER_VM_NOHUGEPAGE =3D VM_NOHUGEPAGE;
-> =20
-> +#if IS_ENABLED(CONFIG_GPU_BUDDY)
-> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_RANGE_ALLOCATION =3D GPU=
-_BUDDY_RANGE_ALLOCATION;
-> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TOPDOWN_ALLOCATION =3D G=
-PU_BUDDY_TOPDOWN_ALLOCATION;
-> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CONTIGUOUS_ALLOCATION =
-=3D
-> +								GPU_BUDDY_CONTIGUOUS_ALLOCATION;
-> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEAR_ALLOCATION =3D GPU=
-_BUDDY_CLEAR_ALLOCATION;
-> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_CLEARED =3D GPU_BUDDY_CL=
-EARED;
-> +const unsigned long RUST_CONST_HELPER_GPU_BUDDY_TRIM_DISABLE =3D GPU_BUD=
-DY_TRIM_DISABLE;
-> +#endif
-> +
->  #if IS_ENABLED(CONFIG_ANDROID_BINDER_IPC_RUST)
->  #include "../../drivers/android/binder/rust_binder.h"
->  #include "../../drivers/android/binder/rust_binder_events.h"
-> diff --git a/rust/helpers/gpu.c b/rust/helpers/gpu.c
-> new file mode 100644
-> index 000000000000..38b1a4e6bef8
-> --- /dev/null
-> +++ b/rust/helpers/gpu.c
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/gpu_buddy.h>
-> +
-> +#ifdef CONFIG_GPU_BUDDY
-> +
-> +__rust_helper u64 rust_helper_gpu_buddy_block_offset(const struct gpu_bu=
-ddy_block *block)
-> +{
-> +	return gpu_buddy_block_offset(block);
-> +}
-> +
-> +__rust_helper unsigned int rust_helper_gpu_buddy_block_order(struct gpu_=
-buddy_block *block)
-> +{
-> +	return gpu_buddy_block_order(block);
-> +}
-> +
-> +__rust_helper u64 rust_helper_gpu_buddy_block_size(struct gpu_buddy *mm,
-> +						   struct gpu_buddy_block *block)
-> +{
-> +	return gpu_buddy_block_size(mm, block);
-> +}
+On Fri, Mar 20, 2026 at 01:42:58PM +0200, Shankar, Uma wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Deak, Imre <imre.deak@intel.com>
+> > Sent: Friday, March 20, 2026 2:59 PM
+> > To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > Cc: Shankar, Uma <uma.shankar@intel.com>; Ville Syrjälä
+> > <ville.syrjala@linux.intel.com>; stable@vger.kernel.org
+> > Subject: [PATCH] drm/i915/dp_tunnel: Fix error handling when clearing stream BW
+> > in atomic state
+> > 
+> > Clearing the DP tunnel stream BW in the atomic state involves getting the tunnel
+> > group state, which can fail. Handle the error accordingly.
+> > 
+> > This fixes at least one issue where drm_dp_tunnel_atomic_set_stream_bw()
+> > failed to get the tunnel group state returning -EDEADLK, which wasn't handled.
+> > This lead to the ctx->contended warn later in modeset_lock() while taking a WW
+> > mutex for another object in the same atomic state, and thus within the same
+> > already contended WW context.
+> > 
+> > Moving intel_crtc_state_alloc() later would avoid freeing saved_state on the error
+> > path; this stable patch leaves that simplification for a follow-up.
+> > 
+> > Cc: Uma Shankar <uma.shankar@intel.com>
+> > Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Cc: <stable@vger.kernel.org> # v6.9+
+> > Fixes: a4efae87ecb2 ("drm/i915/dp: Compute DP tunnel BW during encoder state
+> > computation")
+> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display.c  |  8 +++++++-
+> >  .../gpu/drm/i915/display/intel_dp_tunnel.c    | 20 +++++++++++++------
+> >  .../gpu/drm/i915/display/intel_dp_tunnel.h    | 11 ++++++----
+> >  3 files changed, 28 insertions(+), 11 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > index ee501009a251f..882db77c0bbcd 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > @@ -4640,6 +4640,7 @@ intel_crtc_prepare_cleared_state(struct
+> > intel_atomic_state *state,
+> >  	struct intel_crtc_state *crtc_state =
+> >  		intel_atomic_get_new_crtc_state(state, crtc);
+> >  	struct intel_crtc_state *saved_state;
+> > +	int err;
+> > 
+> >  	saved_state = intel_crtc_state_alloc(crtc);
+> >  	if (!saved_state)
+> > @@ -4648,7 +4649,12 @@ intel_crtc_prepare_cleared_state(struct
+> > intel_atomic_state *state,
+> >  	/* free the old crtc_state->hw members */
+> >  	intel_crtc_free_hw_state(crtc_state);
+> > 
+> > -	intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
+> > +	err = intel_dp_tunnel_atomic_clear_stream_bw(state, crtc_state);
+> > +	if (err) {
+> > +		kfree(saved_state);
+> > +
+> > +		return err;
+> > +	}
+> > 
+> >  	/* FIXME: before the switch to atomic started, a new pipe_config was
+> >  	 * kzalloc'd. Code that depends on any field being zero should be diff --git
+> > a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> > b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> > index 1fd1ac8d556d8..7363c98172971 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+> > @@ -659,19 +659,27 @@ int intel_dp_tunnel_atomic_compute_stream_bw(struct
+> > intel_atomic_state *state,
+> >   *
+> >   * Clear any DP tunnel stream BW requirement set by
+> >   * intel_dp_tunnel_atomic_compute_stream_bw().
+> > + *
+> > + * Returns 0 in case of success, a negative error code otherwise.
+> >   */
+> > -void intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
+> > -					    struct intel_crtc_state *crtc_state)
+> > +int intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
+> > +					   struct intel_crtc_state *crtc_state)
+> >  {
+> >  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> > +	int err;
+> > 
+> >  	if (!crtc_state->dp_tunnel_ref.tunnel)
+> > -		return;
+> > +		return 0;
+> > +
+> > +	err = drm_dp_tunnel_atomic_set_stream_bw(&state->base,
+> > +						 crtc_state->dp_tunnel_ref.tunnel,
+> > +						 crtc->pipe, 0);
+> > +	if (err)
+> > +		return err;
+> > 
+> > -	drm_dp_tunnel_atomic_set_stream_bw(&state->base,
+> > -					   crtc_state->dp_tunnel_ref.tunnel,
+> > -					   crtc->pipe, 0);
+> >  	drm_dp_tunnel_ref_put(&crtc_state->dp_tunnel_ref);
+> 
+> Hi Imre,
+> Should we not drop reference even in case of failure, is this intentional ?
 
-From Sashiko:
-https://sashiko.dev/#/patchset/20260320045711.43494-1-joelagnelf%40nvidia.c=
-om
+Yes, the early return in case of an error, preserving the tunnel reference
+in the crtc state is intentional. The error here will make the whole
+commit fail and the atomic state - within that the crtc state - being
+freed. That crtc state freeing will drop this reference, see
+intel_crtc_destroy_state().
 
-    Does the Rust wrapper use this helper? It looks like AllocatedBlock::si=
-ze()
-    manually duplicates the bitwise logic (chunk_size << order) rather than
-    calling this helper, which could create a divergence risk if the underl=
-ying C
-    allocator implementation changes.
+Aside: it wouldn't cause a functional problem to drop the reference as
+you suggest in case of the earlier error either - the related dropping
+of the reference in intel_crtc_destroy_state() described above would be
+skipped then. But I still think the usual early return - as done in the
+patch - in case of an error is the logically correct way.
 
-Many other review comments there seem to be false positive, but it might wo=
-rth
-confirming.
-
-Best,
-Gary
-
-> +
-> +#endif /* CONFIG_GPU_BUDDY */
-> diff --git a/rust/helpers/helpers.c b/rust/helpers/helpers.c
-> index 724fcb8240ac..a53929ce52a3 100644
-> --- a/rust/helpers/helpers.c
-> +++ b/rust/helpers/helpers.c
-> @@ -32,6 +32,7 @@
->  #include "err.c"
->  #include "irq.c"
->  #include "fs.c"
-> +#include "gpu.c"
->  #include "io.c"
->  #include "jump_label.c"
->  #include "kunit.c"
-> diff --git a/rust/kernel/gpu.rs b/rust/kernel/gpu.rs
-> new file mode 100644
-> index 000000000000..1dc5d0c8c09d
-> --- /dev/null
-> +++ b/rust/kernel/gpu.rs
-> @@ -0,0 +1,6 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! GPU subsystem abstractions.
-> +
-> +#[cfg(CONFIG_GPU_BUDDY =3D "y")]
-> +pub mod buddy;
-
+> 
+> Regards,
+> Uma Shankar
+> 
+> > +
+> > +	return 0;
+> >  }
+> > 
+> >  /**
+> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> > b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> > index 7f0f720e8dcad..10ab9eebcef69 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.h
+> > @@ -40,8 +40,8 @@ int intel_dp_tunnel_atomic_compute_stream_bw(struct
+> > intel_atomic_state *state,
+> >  					     struct intel_dp *intel_dp,
+> >  					     const struct intel_connector
+> > *connector,
+> >  					     struct intel_crtc_state *crtc_state); -
+> > void intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
+> > -					    struct intel_crtc_state *crtc_state);
+> > +int intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
+> > +					   struct intel_crtc_state *crtc_state);
+> > 
+> >  int intel_dp_tunnel_atomic_add_state_for_crtc(struct intel_atomic_state *state,
+> >  					      struct intel_crtc *crtc);
+> > @@ -88,9 +88,12 @@ intel_dp_tunnel_atomic_compute_stream_bw(struct
+> > intel_atomic_state *state,
+> >  	return 0;
+> >  }
+> > 
+> > -static inline void
+> > +static inline int
+> >  intel_dp_tunnel_atomic_clear_stream_bw(struct intel_atomic_state *state,
+> > -				       struct intel_crtc_state *crtc_state) {}
+> > +				       struct intel_crtc_state *crtc_state) {
+> > +	return 0;
+> > +}
+> > 
+> >  static inline int
+> >  intel_dp_tunnel_atomic_add_state_for_crtc(struct intel_atomic_state *state,
+> > --
+> > 2.49.1
+> 
