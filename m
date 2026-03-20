@@ -2,47 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAv7LJ11vWmD+AIAu9opvQ
+	id WK6hKqB1vWmt9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:28:13 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:28:16 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6804B2DD598
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:28:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2BCD22DD59F
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:28:16 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E864F10EB5B;
-	Fri, 20 Mar 2026 16:28:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6343B10EB5F;
+	Fri, 20 Mar 2026 16:28:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AEu2trzB";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="KM/M8DbM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B61ED10EB5E;
- Fri, 20 Mar 2026 16:28:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EEBF10EB5F;
+ Fri, 20 Mar 2026 16:28:13 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3605A6013A;
- Fri, 20 Mar 2026 16:28:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62B22C19425;
- Fri, 20 Mar 2026 16:28:09 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id EC3D260141;
+ Fri, 20 Mar 2026 16:28:12 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2050CC4CEF7;
+ Fri, 20 Mar 2026 16:28:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774024089;
- bh=ZCmJ88Jg/R0ZaGWt4Lbnf1PZ95HMiD+1w0SbJAg/htU=;
+ s=k20201202; t=1774024092;
+ bh=wxvIbslsFOe+8OR1tP24GsCg3PyWA7sUK7uSel4Swqg=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=AEu2trzBAfFOayFDVBex14Mc8zD+myHx+T4ECnRRrYG2srDpJsR3HgxD0ay5aiYau
- QtKqmA38LUerV5Ljvh790yFln9K2gtX6qvklHS9uShPojQl3XVVp0fj4FHyEvTwgIC
- JAZqPfScgaVElYSgyF0zniZ6oLUqlPi/g+ulSnaPxRNRQdzxgpk+JlqEk3vxqmMWKa
- Il7n133119QKa31CztyQhVRSNzrDtLvfFcJs3nBfIniWlCczGwq6T/I1Co0KbCwGc8
- bcUimQt3sDceJaVyKCLHvnI77PHgAqw9hgxIvSQDrC92UCoG6FbP0e8h2QeDwvsARp
- S6tAPtS0XrGmg==
+ b=KM/M8DbMI4cQ51n4PrNKbVDyepwp+XaKiCX9TL8p3egLC7ajUeVHSRCHBv1xZYxZ4
+ IbyvpfmTRNYivbC9qTEMn2ReWq360mbwcoZ03g0Hktfl89CWBfjmxyGzkCuqZWEkFI
+ XSQAd0rZeeJy8masn23VpfsooUbxy6raFOIA53Zr1xnqfc+GeunlSQCqXGgdsf+TIC
+ oI61Kj29xVzn90u/8R3OvE9xjVFn+4ziqUDXQX5nxfL/wuyrmHgVSnO8q5lU7Tib2g
+ 59de87igWktKY/xlNasqJ6UTmZVJjvq5voBnndn/G8KQv8+9jnjZ0pUBBgNFv6J5BM
+ 0AwUUvi9yZOTQ==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Fri, 20 Mar 2026 17:27:22 +0100
-Subject: [PATCH v2 15/20] drm/drv: Call drm_mode_config_create_state() by
- default
+Date: Fri, 20 Mar 2026 17:27:23 +0100
+Subject: [PATCH v2 16/20] drm/atomic: Drop private obj state allocation
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-drm-mode-config-init-v2-15-c63f1134e76c@kernel.org>
+Message-Id: <20260320-drm-mode-config-init-v2-16-c63f1134e76c@kernel.org>
 References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
 In-Reply-To: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -70,14 +69,15 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>
+ Maxime Ripard <mripard@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1218; i=mripard@kernel.org;
- h=from:subject:message-id; bh=ZCmJ88Jg/R0ZaGWt4Lbnf1PZ95HMiD+1w0SbJAg/htU=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJl7S7O0lcoEDoa4f72ltD6opGbHReGMScbTkmPWtCcI7
- W1uOz69YyoLgzAng6yYIssTmbDTy9sXVznYr/wBM4eVCWQIAxenAEwkw5WxPn43y5KuGsfzoef2
- BE3JYV513+Xrln0XPbNE1QXkan1E9tbLsanmbze+YFaqVhe689Jkxvq0I9cUH2rP/i96mlmjZ4X
- ZZ+0Xm1dKHq/T4yt69W1GqLTws+cberlM2N4djtNNDOda/QEA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1451; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=wxvIbslsFOe+8OR1tP24GsCg3PyWA7sUK7uSel4Swqg=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJl7S7OCbn+8dc39U0vJg8nZdpOvO65nua8bUaB9Xsdgx
+ an1HDofO6ayMAhzMsiKKbI8kQk7vbx9cZWD/cofMHNYmUCGMHBxCsBEJu9lrE/7u5hT4pqPR+CX
+ DSvU3YPkVm/5zxB2IY49sG8ai108mxnvQ4sngRl7pq59dVhh0dv4j4x1VrNOKB+e4/Rn2UV7jp4
+ i24dPW7TF5fcKCOTOXRVc4yN5pdPkZXkJ53R+1tZ7YlOcVvcAAA==
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -108,56 +108,66 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
+	NEURAL_HAM(-0.00)[-0.997];
 	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	TAGGED_RCPT(0.00)[intel-gfx,renesas];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6804B2DD598
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2BCD22DD59F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Almost all drivers, and our documented skeleton, call
-drm_mode_config_reset() prior to calling drm_dev_register() to
-initialize its DRM object states.
+Now that drm_dev_register() calls drm_mode_config_create_state() for
+every modeset driver, the private obj states will be initialized at
+driver registration automatically if they haven't already.
 
-Now that we have drm_mode_config_create_state() to create that initial
-state if it doesn't exist, we can call it directly in
-drm_dev_register(). That way, we know that the initial atomic state will
-always be allocated without any boilerplate.
+Thus, the explicit initial allocation we have in
+drm_atomic_private_obj_init() is now redundant, and we can remove it.
 
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
- drivers/gpu/drm/drm_drv.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/drm_atomic.c | 7 -------
+ 1 file changed, 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 2915118436ce8a6640cfb0c59936031990727ed1..820106d56ab399a39cac56d98662b5ddbcae8ded 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -1097,10 +1097,14 @@ int drm_dev_register(struct drm_device *dev, unsigned long flags)
+diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+index 5aa3f9f0620bd155dd53023e6c76e3883ffaadef..3bd52602fe307a1b82a3b68d82b458e1da8a4f6d 100644
+--- a/drivers/gpu/drm/drm_atomic.c
++++ b/drivers/gpu/drm/drm_atomic.c
+@@ -995,25 +995,18 @@ static void drm_atomic_plane_print_state(struct drm_printer *p,
+  */
+ int drm_atomic_private_obj_init(struct drm_device *dev,
+ 				struct drm_private_obj *obj,
+ 				const struct drm_private_state_funcs *funcs)
+ {
+-	struct drm_private_state *state;
+ 	memset(obj, 0, sizeof(*obj));
  
- 	if (drm_core_check_feature(dev, DRIVER_MODESET)) {
- 		ret = drm_modeset_register_all(dev);
- 		if (ret)
- 			goto err_unload;
-+
-+		ret = drm_mode_config_create_state(dev);
-+		if (ret)
-+			goto err_unload;
- 	}
- 	drm_panic_register(dev);
- 	drm_client_sysrq_register(dev);
+ 	drm_modeset_lock_init(&obj->lock);
  
- 	DRM_INFO("Initialized %s %d.%d.%d for %s on minor %d\n",
+ 	obj->dev = dev;
+ 	obj->funcs = funcs;
+ 	list_add_tail(&obj->head, &dev->mode_config.privobj_list);
+ 
+-	state = obj->funcs->atomic_create_state(obj);
+-	if (IS_ERR(state))
+-		return PTR_ERR(state);
+-
+-	obj->state = state;
+-
+ 	return 0;
+ }
+ EXPORT_SYMBOL(drm_atomic_private_obj_init);
+ 
+ /**
 
 -- 
 2.53.0
