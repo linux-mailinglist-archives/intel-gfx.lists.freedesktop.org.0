@@ -2,64 +2,100 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id nvKcFIv/vGmo5QIAu9opvQ
+	id oMxrHaIEvWkO5gIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 09:04:27 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 09:26:10 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9CF502D6F11
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 09:04:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D306E2D7326
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 09:26:09 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2924210EA8D;
-	Fri, 20 Mar 2026 08:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 590D210EA90;
+	Fri, 20 Mar 2026 08:26:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k9hN9q3/";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="x6W+ZCZ7";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cTVMVG5/";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="x6W+ZCZ7";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="cTVMVG5/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0603110EA8C;
- Fri, 20 Mar 2026 08:04:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1773993864; x=1805529864;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nrfzngWAmfG7J6CZIWATTIMZmcatGj5Vb9kCpbSCNo0=;
- b=k9hN9q3/iC1nOvYmodec83W0wtxjwcAU0rJ6ZNhLLFIZuNiC1QO0wPTJ
- BOcL/5WX2+itE7vCZ312doaaqwHaFzAp0/pXlRGqNAU5mi3Dv/i0DZ/8Q
- lQtbiKpdJMj5T0jugajoqSBKG7TyKewGXyLKHqChlFSliS1XqemYYzT9m
- TeO9zPgyn93Ga5qtR3SlaHRU+M/P3RCuQ4hmDaxp0U8w7X3H8eBRvBdod
- U2U+2f5ez/Y8M/Y57Vf+C+K9npeMF/5X1xYL54rgLwNLJc/qGMJN5pLQB
- dhLY5UM92P1bxdIZuHDCBDp5eU0IZP7R+Y21jIcqKaQUopStHmU2G8IvV Q==;
-X-CSE-ConnectionGUID: /LojOS/FSg6nIgfEOcFfjA==
-X-CSE-MsgGUID: q0cqToaUSbaAVCfT+UPP5w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11734"; a="85391213"
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="85391213"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 01:04:24 -0700
-X-CSE-ConnectionGUID: RQfdRxyLR628kkTFmDjIsQ==
-X-CSE-MsgGUID: okmcoCLXTTauidA1p5DOFQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,130,1770624000"; d="scan'208";a="246243573"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
- jhogande-mobl3.intel.com) ([10.245.245.16])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Mar 2026 01:04:22 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH] drm/i915/psr: Fixes for Dell XPS DA14260 quirk
-Date: Fri, 20 Mar 2026 10:04:03 +0200
-Message-ID: <20260320080403.1396926-1-jouni.hogander@intel.com>
-X-Mailer: git-send-email 2.43.0
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7162A10EA91
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 08:26:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id F2F654D21A;
+ Fri, 20 Mar 2026 08:26:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1773995166; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=u4bXpfoeAqdYm3lsUJ0hbpezIOgI+ygIBMj2ZZoyle8=;
+ b=x6W+ZCZ7TJL4Xi1V6EwOyR9RpOQo72MdQTqXtm6gMYOcV2NKlcWA4ZpgV458yXT1Bljga5
+ U/xmcjlFaq6X4G+sMxc4Na/LEtkA7tewp8c2HXa15b3iO1Bt2kBD9MVVZQ3cYebw0yasWW
+ OblXl7itRrftoKNA6H9U2C8GpN+KXPo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1773995166;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=u4bXpfoeAqdYm3lsUJ0hbpezIOgI+ygIBMj2ZZoyle8=;
+ b=cTVMVG5/xSxS1f95xUsznBqntAeA7aY7zTMQoABybHTRApaP8JMUEqCN4Qqd4B0oXyh/qZ
+ BKPkXGZ/Eg26JLAg==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1773995166; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=u4bXpfoeAqdYm3lsUJ0hbpezIOgI+ygIBMj2ZZoyle8=;
+ b=x6W+ZCZ7TJL4Xi1V6EwOyR9RpOQo72MdQTqXtm6gMYOcV2NKlcWA4ZpgV458yXT1Bljga5
+ U/xmcjlFaq6X4G+sMxc4Na/LEtkA7tewp8c2HXa15b3iO1Bt2kBD9MVVZQ3cYebw0yasWW
+ OblXl7itRrftoKNA6H9U2C8GpN+KXPo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1773995166;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=u4bXpfoeAqdYm3lsUJ0hbpezIOgI+ygIBMj2ZZoyle8=;
+ b=cTVMVG5/xSxS1f95xUsznBqntAeA7aY7zTMQoABybHTRApaP8JMUEqCN4Qqd4B0oXyh/qZ
+ BKPkXGZ/Eg26JLAg==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 923A74273C;
+ Fri, 20 Mar 2026 08:26:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id B8lXIp0EvWkBPwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 20 Mar 2026 08:26:05 +0000
+Date: Fri, 20 Mar 2026 09:26:04 +0100
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-next
+Message-ID: <20260320082604.GA17867@linux.fritz.box>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+X-Spam-Score: -4.30
+X-Spam-Level: 
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,137 +110,339 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.de:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 9CF502D6F11
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:dkim,suse.com:url,linux.fritz.box:mid]
+X-Rspamd-Queue-Id: D306E2D7326
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Dell seems to be changing device ID even within same device model. Due to
-this we need to ignore device ID when applying quirk for Dell XPS 14
-DA14260. Do this by adding DEVICE_ID_ANY and assign it to Dell XPS 14
-DA14260 quirk. Also apply the quirk only for eDP Panel Replay.
+Hi Dave, Sima,
 
-Fixes: 45c77d4bf8d4 ("drm/i915/psr: Disable Panel Replay on Dell XPS 14 DA14260 as a quirk")
-Cc: Mika Kahola <mika.kahola@intel.com>
-Signed-off-by: Jouni HÃ¶gander <jouni.hogander@intel.com>
----
- drivers/gpu/drm/i915/display/intel_psr.c    |  3 ++-
- drivers/gpu/drm/i915/display/intel_quirks.c | 16 ++++++++++------
- drivers/gpu/drm/i915/display/intel_quirks.h |  2 +-
- 3 files changed, 13 insertions(+), 8 deletions(-)
+this is the weekly PR for drm-misc-next. Besides the usual fixes, it
+adds support for CRTC background colors. There are some changes that
+affect the kernel's math helpers.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b319e5bd6274..2f1b48cd8efd 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -610,7 +610,8 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
- 	if (intel_dp->mst_detect == DRM_DP_MST)
- 		return;
- 
--	if (intel_has_dpcd_quirk(intel_dp, QUIRK_DISABLE_PANEL_REPLAY)) {
-+	if (intel_dp_is_edp(intel_dp) &&
-+	    intel_has_dpcd_quirk(intel_dp, QUIRK_DISABLE_EDP_PANEL_REPLAY)) {
- 		drm_dbg_kms(display->drm,
- 			    "Panel Replay support not currently available for this setup\n");
- 		return;
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 8f1bf8f418ec..883f297d4b83 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -86,11 +86,11 @@ static void quirk_edp_limit_rate_hbr2(struct intel_display *display)
- 	drm_info(display->drm, "Applying eDP Limit rate to HBR2 quirk\n");
- }
- 
--static void quirk_disable_panel_replay(struct intel_dp *intel_dp)
-+static void quirk_disable_edp_panel_replay(struct intel_dp *intel_dp)
- {
- 	struct intel_display *display = to_intel_display(intel_dp);
- 
--	intel_set_dpcd_quirk(intel_dp, QUIRK_DISABLE_PANEL_REPLAY);
-+	intel_set_dpcd_quirk(intel_dp, QUIRK_DISABLE_EDP_PANEL_REPLAY);
- 	drm_info(display->drm, "Applying disable Panel Replay quirk\n");
- }
- 
-@@ -116,6 +116,8 @@ struct intel_dpcd_quirk {
- 
- #define SINK_DEVICE_ID_ANY	SINK_DEVICE_ID(0, 0, 0, 0, 0, 0)
- 
-+#define DEVICE_ID_ANY		0
-+
- /* For systems that don't have a meaningful PCI subdevice/subvendor ID */
- struct intel_dmi_quirk {
- 	void (*hook)(struct intel_display *display);
-@@ -261,11 +263,11 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
- 	},
- 	/* Dell XPS 14 DA14260 */
- 	{
--		.device = 0xb080,
-+		.device = DEVICE_ID_ANY,
- 		.subsystem_vendor = 0x1028,
- 		.subsystem_device = 0x0db9,
- 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
--		.hook = quirk_disable_panel_replay,
-+		.hook = quirk_disable_edp_panel_replay,
- 	},
- };
- 
-@@ -277,7 +279,8 @@ void intel_init_quirks(struct intel_display *display)
- 	for (i = 0; i < ARRAY_SIZE(intel_quirks); i++) {
- 		struct intel_quirk *q = &intel_quirks[i];
- 
--		if (d->device == q->device &&
-+		if ((d->device == q->device ||
-+		     q->device == DEVICE_ID_ANY) &&
- 		    (d->subsystem_vendor == q->subsystem_vendor ||
- 		     q->subsystem_vendor == PCI_ANY_ID) &&
- 		    (d->subsystem_device == q->subsystem_device ||
-@@ -300,7 +303,8 @@ void intel_init_dpcd_quirks(struct intel_dp *intel_dp,
- 	for (i = 0; i < ARRAY_SIZE(intel_dpcd_quirks); i++) {
- 		const struct intel_dpcd_quirk *q = &intel_dpcd_quirks[i];
- 
--		if (d->device == q->device &&
-+		if ((d->device == q->device ||
-+		     q->device == DEVICE_ID_ANY) &&
- 		    (d->subsystem_vendor == q->subsystem_vendor ||
- 		     q->subsystem_vendor == PCI_ANY_ID) &&
- 		    (d->subsystem_device == q->subsystem_device ||
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 77e490caed0d..83214eb94b0c 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -21,7 +21,7 @@ enum intel_quirk_id {
- 	QUIRK_NO_PPS_BACKLIGHT_POWER_HOOK,
- 	QUIRK_FW_SYNC_LEN,
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
--	QUIRK_DISABLE_PANEL_REPLAY,
-+	QUIRK_DISABLE_EDP_PANEL_REPLAY,
- };
- 
- void intel_init_quirks(struct intel_display *display);
+Best regards
+Thomas
+
+drm-misc-next-2026-03-20:
+drm-misc-next for v7.1:
+
+UAPI Changes:
+
+math:
+- provide __KERNEL_DIV_ROUND_CLOSEST() in UAPI
+
+mode:
+- provide DRM_ARGB_GET*() macros for reading color components
+
+Cross-subsystem Changes:
+
+math:
+- implement DIV_ROUND_CLOSEST() with __KERNEL_DIV_ROUND_CLOSEST()
+
+Core Changes:
+
+atomic:
+- fix handling of colorop state in atomic updates
+- provide CRTC background color
+
+ttm:
+- improve tests and doumentation
+
+Driver Changes:
+
+amdxdna:
+- allow forcing DMA through IOMMU IOVA
+- improve debugging
+
+bridge:
+- Support Lontium LT8713SX DP MST bridge plus DT bindings
+
+imx:
+- support planes behind the primary plane
+- fix bus-format selection
+
+ivpu:
+- perform engine reset on TDR error
+
+panel:
+- novatek-nt36672a: Use mipi_dsi_*_multi() functions
+- panel-edp: Support BOE NV153WUM-N42, CMN N153JCA-ELK, CSW MNF307QS3-2
+
+renesas:
+- rz-du: clean up
+
+rockchip:
+- support CRTC background color
+
+sun4i:
+- fix leak in init code
+- clean up
+
+tildc
+- clean up
+
+v3d:
+- improve handling of struct v3d_stats
+- improve error handling
+- clean up
+
+vkms:
+- support CRTC background color
+The following changes since commit f08ceb71c5a5615577e7c841e1e00a89f495ab51:
+
+  Merge drm/drm-next into drm-misc-next (2026-03-12 08:25:41 +0100)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-03-20
+
+for you to fetch changes up to ade00a6c903f85031061b4e1a45e789b210f9055:
+
+  accel/ivpu: Perform engine reset instead of device recovery on TDR (2026-03-20 08:03:11 +0100)
+
+----------------------------------------------------------------
+drm-misc-next for v7.1:
+
+UAPI Changes:
+
+math:
+- provide __KERNEL_DIV_ROUND_CLOSEST() in UAPI
+
+mode:
+- provide DRM_ARGB_GET*() macros for reading color components
+
+Cross-subsystem Changes:
+
+math:
+- implement DIV_ROUND_CLOSEST() with __KERNEL_DIV_ROUND_CLOSEST()
+
+Core Changes:
+
+atomic:
+- fix handling of colorop state in atomic updates
+- provide CRTC background color
+
+ttm:
+- improve tests and doumentation
+
+Driver Changes:
+
+amdxdna:
+- allow forcing DMA through IOMMU IOVA
+- improve debugging
+
+bridge:
+- Support Lontium LT8713SX DP MST bridge plus DT bindings
+
+imx:
+- support planes behind the primary plane
+- fix bus-format selection
+
+ivpu:
+- perform engine reset on TDR error
+
+panel:
+- novatek-nt36672a: Use mipi_dsi_*_multi() functions
+- panel-edp: Support BOE NV153WUM-N42, CMN N153JCA-ELK, CSW MNF307QS3-2
+
+renesas:
+- rz-du: clean up
+
+rockchip:
+- support CRTC background color
+
+sun4i:
+- fix leak in init code
+- clean up
+
+tildc
+- clean up
+
+v3d:
+- improve handling of struct v3d_stats
+- improve error handling
+- clean up
+
+vkms:
+- support CRTC background color
+
+----------------------------------------------------------------
+Alvin1 Chen (1):
+      drm/panel-edp: Add BOE NV153WUM-N42, CMN N153JCA-ELK, CSW MNF307QS3-2
+
+Chaitanya Kumar Borah (2):
+      drm/colorop: Preserve bypass value in duplicate_state()
+      drm/atomic: Add affected colorops with affected planes
+
+Chen-Yu Tsai (1):
+      drm/sun4i: layers: Use drm_fb_dma_get_gem_addr() to get display memory
+
+Chintan Patel (1):
+      drm/panel: novatek-nt36672a: Convert to mipi_dsi_*_multi() helpers
+
+Cristian Ciocaltea (4):
+      uapi: Provide DIV_ROUND_CLOSEST()
+      drm: Add CRTC background color property
+      drm/vkms: Support setting custom background color
+      drm/rockchip: vop2: Support setting custom background color
+
+Ethan Tidmore (2):
+      drm/sun4i: Fix resource leaks
+      drm/bridge: waveshare-dsi: Fix signedness bug
+
+Geert Uytterhoeven (1):
+      drm: renesas: rz-du: mipi_dsi: Convert to FIELD_MODIFY()
+
+Harry Wentland (1):
+      drm/colorop: Fix blob property reference tracking in state lifecycle
+
+Karol Wachowski (1):
+      accel/ivpu: Perform engine reset instead of device recovery on TDR
+
+Kory Maincent (TI) (2):
+      drm/tilcdc: Remove tilcdc_panel driver reintroduced by a merge
+      drm/tilcdc: Fix type mismatch
+
+Lizhi Hou (3):
+      accel/amdxdna: Allow forcing IOVA-based DMA via module parameter
+      accel/amdxdna: Add debug prints for command submission
+      accel/amdxdna: Support retrieving hardware context debug information
+
+Marek Vasut (1):
+      drm/imx: parallel-display: Prefer bus format set via legacy "interface-pix-fmt" DT property
+
+Martin Kepplinger-Novakovic (1):
+      drm/imx: parallel-display: add DRM_DISPLAY_HELPER for DRM_IMX_PARALLEL_DISPLAY
+
+Maíra Canal (2):
+      drm/v3d: Handle error from drm_sched_entity_init()
+      drm/v3d: Remove dedicated fence_lock
+
+Michael Tretter (2):
+      drm/imx: ipuv3-plane: decouple zpos from plane type
+      drm/imx: ipuv3-plane: support underlay plane
+
+Thadeu Lima de Souza Cascardo (2):
+      drm/ttm: document that ttm_bo_swapout deals with pages
+      drm/ttm/tests: add a test to exercise ttm_bo_swapout
+
+Tvrtko Ursulin (4):
+      drm/v3d: Use raw seqcount helpers instead of fighting with lockdep
+      drm/v3d: Refcount v3d_stats
+      drm/v3d: Hold v3d_stats references in each job
+      drm/v3d: Attach per-fd reset counters to v3d_stats
+
+Vishnu Saini (2):
+      dt-bindings: bridge: lt8713sx: Add bindings
+      drm/bridge: add support for lontium lt8713sx bridge driver
+
+ .../bindings/display/bridge/lontium,lt8713sx.yaml  | 113 ++++
+ drivers/accel/amdxdna/Makefile                     |   1 +
+ drivers/accel/amdxdna/aie2_ctx.c                   |  91 +++-
+ drivers/accel/amdxdna/aie2_error.c                 |   5 +-
+ drivers/accel/amdxdna/aie2_message.c               | 105 +++-
+ drivers/accel/amdxdna/aie2_msg_priv.h              |  52 ++
+ drivers/accel/amdxdna/aie2_pci.c                   |  14 +
+ drivers/accel/amdxdna/aie2_pci.h                   |  10 +-
+ drivers/accel/amdxdna/amdxdna_ctx.c                |   6 +-
+ drivers/accel/amdxdna/amdxdna_ctx.h                |  18 +-
+ drivers/accel/amdxdna/amdxdna_gem.c                |  45 +-
+ drivers/accel/amdxdna/amdxdna_gem.h                |  10 +
+ drivers/accel/amdxdna/amdxdna_iommu.c              | 184 +++++++
+ drivers/accel/amdxdna/amdxdna_pci_drv.c            |  45 +-
+ drivers/accel/amdxdna/amdxdna_pci_drv.h            |  24 +
+ drivers/accel/amdxdna/npu4_regs.c                  |   3 +-
+ drivers/accel/ivpu/ivpu_debugfs.c                  |  14 +-
+ drivers/accel/ivpu/ivpu_drv.c                      |   1 +
+ drivers/accel/ivpu/ivpu_drv.h                      |   3 +-
+ drivers/accel/ivpu/ivpu_job.c                      |  50 +-
+ drivers/accel/ivpu/ivpu_jsm_msg.c                  |  19 +-
+ drivers/accel/ivpu/ivpu_jsm_msg.h                  |   3 +-
+ drivers/accel/ivpu/ivpu_mmu.c                      |   3 +-
+ drivers/accel/ivpu/ivpu_pm.c                       |  15 +-
+ drivers/accel/ivpu/ivpu_pm.h                       |   1 +
+ drivers/gpu/drm/bridge/Kconfig                     |  10 +
+ drivers/gpu/drm/bridge/Makefile                    |   1 +
+ drivers/gpu/drm/bridge/lontium-lt8713sx.c          | 598 +++++++++++++++++++++
+ drivers/gpu/drm/bridge/waveshare-dsi.c             |   8 +-
+ drivers/gpu/drm/drm_atomic.c                       |   8 +
+ drivers/gpu/drm/drm_atomic_state_helper.c          |   1 +
+ drivers/gpu/drm/drm_atomic_uapi.c                  |   4 +
+ drivers/gpu/drm/drm_blend.c                        |  39 +-
+ drivers/gpu/drm/drm_colorop.c                      |  28 +-
+ drivers/gpu/drm/drm_mode_config.c                  |   6 +
+ drivers/gpu/drm/imx/ipuv3/Kconfig                  |   1 +
+ drivers/gpu/drm/imx/ipuv3/ipuv3-plane.c            |  23 +-
+ drivers/gpu/drm/imx/ipuv3/parallel-display.c       |  15 +-
+ drivers/gpu/drm/panel/panel-edp.c                  |   3 +
+ drivers/gpu/drm/panel/panel-novatek-nt36672a.c     |  94 ++--
+ drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c     |   3 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  24 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.h       |   4 +
+ drivers/gpu/drm/sun4i/sun4i_backend.c              |   3 +-
+ drivers/gpu/drm/sun4i/sun8i_ui_layer.c             |  16 +-
+ drivers/gpu/drm/sun4i/sun8i_vi_layer.c             |  27 +-
+ drivers/gpu/drm/tilcdc/tilcdc_panel.c              | 408 --------------
+ drivers/gpu/drm/tilcdc/tilcdc_panel_legacy.c       |   4 +-
+ drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c   |  41 ++
+ drivers/gpu/drm/ttm/ttm_bo.c                       |   6 +-
+ drivers/gpu/drm/v3d/v3d_drv.c                      |  55 +-
+ drivers/gpu/drm/v3d/v3d_drv.h                      |  46 +-
+ drivers/gpu/drm/v3d/v3d_fence.c                    |   2 +-
+ drivers/gpu/drm/v3d/v3d_gem.c                      |  43 +-
+ drivers/gpu/drm/v3d/v3d_irq.c                      |   2 +-
+ drivers/gpu/drm/v3d/v3d_sched.c                    | 133 ++---
+ drivers/gpu/drm/v3d/v3d_submit.c                   |   6 +
+ drivers/gpu/drm/v3d/v3d_sysfs.c                    |   2 +-
+ drivers/gpu/drm/vkms/vkms_composer.c               |   8 +-
+ drivers/gpu/drm/vkms/vkms_crtc.c                   |   3 +
+ include/drm/drm_blend.h                            |   4 +-
+ include/drm/drm_crtc.h                             |  12 +
+ include/drm/drm_mode_config.h                      |   5 +
+ include/linux/math.h                               |  18 +-
+ include/uapi/drm/drm_mode.h                        |  80 +++
+ include/uapi/linux/const.h                         |  18 +
+ 66 files changed, 1872 insertions(+), 775 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/bridge/lontium,lt8713sx.yaml
+ create mode 100644 drivers/accel/amdxdna/amdxdna_iommu.c
+ create mode 100644 drivers/gpu/drm/bridge/lontium-lt8713sx.c
+ delete mode 100644 drivers/gpu/drm/tilcdc/tilcdc_panel.c
+
 -- 
-2.43.0
-
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
