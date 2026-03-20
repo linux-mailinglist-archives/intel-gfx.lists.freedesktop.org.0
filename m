@@ -2,97 +2,96 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBWEBG9kwWmaSgQAu9opvQ
+	id SGM9Em9kwWmaSgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:59 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ACD1A2F774A
+	by mail.lfdr.de (Postfix) with ESMTPS id EC0EE2F7751
 	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 17:03:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9075810E55D;
-	Mon, 23 Mar 2026 16:03:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0324510E567;
+	Mon, 23 Mar 2026 16:03:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h+5GLWM7";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Q5cWqo8N";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yx1-f52.google.com (mail-yx1-f52.google.com
- [74.125.224.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B85D210EB00
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 18:04:02 +0000 (UTC)
-Received: by mail-yx1-f52.google.com with SMTP id
- 956f58d0204a3-64eb7def21dso53533d50.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 11:04:02 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774029842; cv=none;
+Received: from mail-yx1-f53.google.com (mail-yx1-f53.google.com
+ [74.125.224.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6156910EB2A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 18:09:15 +0000 (UTC)
+Received: by mail-yx1-f53.google.com with SMTP id
+ 956f58d0204a3-64ad46a44easo2059681d50.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 11:09:15 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1774030154; cv=none;
  d=google.com; s=arc-20240605;
- b=SaZpoIwdpmJgZI7Dq6EkkP/UlujuLKEf3qUBKwmYKvWU5xaeG/T4rG8ocaj3RYQiLb
- Nfx2LJlGDExiswPKRCsIdJTjZn4ao+/h79FUBcBqwpVlXXtLhE3KPh8HFyDwI4ZUBU7+
- BjUtqYbr7BiJioQzKV7hLSiCpZh/uEMPbv2hLdqTbmNVxP6NWKq/enIQzJKdaIxVb3hX
- yyQ7TXVi4NhVOjQYUfLu8MNKDQMXs7SG1QNAA8ss6L7pJILcwoStfCDDh1g2XZci9By8
- qbmti7+W5fttEkq4ulXfg3vZPnMWH3aD6bghDP5SNYQ6OYE1erOgwPX4+8HD/mh8mpFB
- e7RA==
+ b=P3pre/SaaVu8X9Pi2o+RfVtxCetWjeBepqjKxWtZKFDG6Fc188ORzeXKCgaQZkf71z
+ QU1hWx3fz7oewEgIEey8/+Mn2xGCWrRx1kG0KRTDShRC6p1AeQJ+ay6qD6xa8rI7jZn9
+ 5QI1948r9OWBjvg4JZ5RoFlmZcDWsToQqXBn8LLDF22ae5TE+pCt0ascXb+z9hA2VKpT
+ 9CYyQN8w6U1VKSElXPQp4iTfN6rWDlKc271E1GKGyGb5aYKyVjLja35ck5LLbpXvpLOL
+ I6LvAfVwpLkvcQMJFYRHNKK355yfdQyfZwYfYCjfov38WNbfMFP6PZ4mEW05RQcbxcW/
+ GCpg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
  s=arc-20240605; 
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:dkim-signature;
- bh=n0ReudbBcJ1VWJQ8xSvYlWUHawfsvlE3jFdIh1UvDJg=;
- fh=lv+/9yL10rHyHHI+ELOY7zlUhsoWI9f6nNdASTFDsEA=;
- b=eZ1evM96BlN5tVGPxm5UgIfZDctlD39iRz7AcJt079ABUaYoN8+6MaGwlwfDwVNvo6
- roa/Fh2uIy1v7FK8aBdW20oCxLCFDtbsQoptFErdwvHcFYrWlJC7C+jaiCH/ONf1HMBY
- poexcE6w1fyRQJGe8Tpi+qxyqa80duld8Pj4CIthxkpgLYG1K2bB5KivyVvxaq9Qqek7
- HU42gP3GgAnqarjaIbP48ZMNUMFVetiZriNYJV8BR4ir/vbmOfQeASR91WJB0Ofrco0S
- +RxPzgYXbrn3+f7OdWiASTs2FMt5IFpwy6K5Cj+bESxXjEg6goY0udOUWZUsM4whAz1D
- tEQQ==; darn=lists.freedesktop.org
+ bh=AWhS4iaGoaPOka2Ug+rWFyTKYlbaHwFlyjwq3H7YvsM=;
+ fh=k/LvYW5YDU7x+VDNrZavDGWHd389DwycM+2xEdQyuLQ=;
+ b=dc2BYXABL6gP+ERt51bpPMVevcFT9jcsh9lZ1g/tNaE839hV8/4UVn+7oK+R/E1aJE
+ 7fh/0wTXHtTaJ3okzwsAAHmLQO/NZk0dYbMdy4LSFNI4psZM3yxO8ZOohojYoznk0qVp
+ f8Xmp2wM0nBDScCwpYxdXiMcpfCw8j/9upFFzEyiM+yT0ROVfy2UP1N8gWu4hhMvxbpr
+ W15ZG+95+QOBVIyUmN7DWhzupIPcA5BUos+VR+V6GGcwLbyH4TSO8IHd+wKhDYq3kO6p
+ kM+ebTFlU99LYFAcqp7roUGE7fTD/JjxDOmtyhY2Ao5CElRtk/RcRJOuDzpEFfa7J76J
+ ZFiQ==; darn=lists.freedesktop.org
 ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20230601; t=1774029842; x=1774634642; darn=lists.freedesktop.org;
+ d=gmail.com; s=20230601; t=1774030154; x=1774634954; darn=lists.freedesktop.org;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:from:to:cc:subject:date
  :message-id:reply-to;
- bh=n0ReudbBcJ1VWJQ8xSvYlWUHawfsvlE3jFdIh1UvDJg=;
- b=h+5GLWM7gOz6wIV5N+PjMYBSto7oRLGWGaLrjUv4foO+8Eg7YmRwD3oc+T/saNv8OK
- 2X/jZgLY+jrbBh61GzsZn2pUN3FwI7xDhcvjUkRHqX6ZEVqI6DbOh+JUpZ0U74L8Blky
- lgiY6xHshv3fhU5Jca0ADOaRaZqzNWyUT3UgHEQmCh6CFoA9Js5NSFujBfhmXzZc+uum
- 67oA2f/mVvBHcpHBaWU9Zk+kkXBdQQh4/IIcagPgez6e4CdnR7GwCBmBUqA6MT/MLHM+
- H+xshFNwQWXhaZmOnfGJp6oTrkmMKmhdh0dZOWj0K2ocAwTma3mpOFBXbQPuXC4+pT1u
- ImjQ==
+ bh=AWhS4iaGoaPOka2Ug+rWFyTKYlbaHwFlyjwq3H7YvsM=;
+ b=Q5cWqo8NPQoOiU7mAU8XFfDwxfZn0n1os4c8lo4CjVg6z3QGqjnuewocQrW7pva4AU
+ 3N0/1040N9/YRnzd5M/x0CqKEEYoY9aKkk+k5+5cjGFjxgxVLpLwX3HqWa/XO7aC0dF9
+ V8e7eOGIxFiOnTQKWN7yVnKT6KWfiweBRbAgcqhiwM5wDsySlyNRxumJ8vdmYPY1ef5G
+ Ksf9TzAEmV/v2CyQiyBJsfw+DexSg1VBJ9mGNwum+qZQVMvBOKqA9bpwPLbo+Tja4FlG
+ 6y6B6VxvTAWVCuvqjcLVXVPhXeNv+KLMyDvDjKbCDBDJCXcPTVz1v49+iP98Os+BdfBw
+ j5fg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774029842; x=1774634642;
+ d=1e100.net; s=20251104; t=1774030154; x=1774634954;
  h=content-transfer-encoding:cc:to:subject:message-id:date:from
  :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=n0ReudbBcJ1VWJQ8xSvYlWUHawfsvlE3jFdIh1UvDJg=;
- b=JbDMdbx5aaz7CCYZERgMlyG1tgto8fPHTCaelCuv9H2wP0nkgiHOJcayJx9iqQ8r52
- cICkq0VEBRIdKOiOVgM15b0XplM5bhRxMm80eL16ivaJU0TOu8WRUUlRWfaldnupjUQq
- 8JEICHegS4AwmA2ztNAamgKS8Z3StwpX1DqlTgy62eO4CcRLx1JtRg8FzONOvbDq0n3H
- Wt7Ox1pO+4/VrwaqduRZB14QWzSzWnAVCJdKcQ7yYfRVVRevZA2xoHB0rvc2hh0r7sve
- uc2Dw/BysLCOViGQHVvZy5tO0taJC1otSbRzC0gMFfv7ixlexfCFXodOY2hEDt7aKtQu
- +Lww==
+ bh=AWhS4iaGoaPOka2Ug+rWFyTKYlbaHwFlyjwq3H7YvsM=;
+ b=sCSSx+XVs3FibXlMe0pbF+pOcCDp/UiYdQtmdWd3gN7Bo526L5WGkc13UWvFxPVPqP
+ osF9KgupBTFpP8FwsrQiceTz+8cNX+eQ1Drj6DJLeWmrAeSZLKTqUukWv4HnzUAjtfGl
+ I4J07Y3FBmeiUJ0ta5+unA/EVgbdHb4ZB/s/m36YUkzrPs4mNZC16SVBoSNBZs8yK0Jz
+ BtQ1GN9kTUeOn748fZbIzxf7Z7i1bmeDwSm21Sd+y8F6UptsS1NIdFpuwkiQKzSQYnIK
+ 5+ntT9BSiyWjaO2Bc0S3JzUU/u0JemyKjAPMKUPM0LKAu0MWlwW5LYeMCYYMLkuawrr3
+ ioOQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWtlWXCS3y3HSIXg2uC5TsQKyE9Md/3UGl3UIEk4xnGTjTjATco8H+sWEllbVMb+JRC91fpncx+hhU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yxzo5wpYIGN7hT3aHUIS9stTyOdVz6o9qu00YKLJlx3zpCKbMHn
- lSxF/x4s30x9ApZGZ5m0Gf5Kkgfo6AuC/6Y1LLm0yvFvLmD+oVD5fHD0nvZCvn8x0MGJtI8C99M
- i9Tl6oynRSnDWl96n6w1Mt8yLJkg0Wnk=
-X-Gm-Gg: ATEYQzxkoAXC0ZPy4NZWMOkJRjmXRRQtYRGd2vfHYPdyFs+RoSY1koAYzk4CVFjp/KW
- 7UskVjoWuUH+bOFrPmRRaHq18tj9zyLXzsZ6uSql0Q9M+/dQW3ewNNOdh1v2A+KItckSmK6gaHC
- umZcU3rb84bUF8ThXhdy+YfOL9+6z5NU7DRjcvlEOEymf9vVYEi3YjRcHskppZs60TGIKZq0w8y
- /QGdSUrfpuunYzgT/+sP4Lb9fgGGNxA++fDPwlbJ6jeZm8HCp0Z7WZA+9ZLA61pGx80bE4Wa70V
- 4hQj
-X-Received: by 2002:a05:690e:74e:b0:64a:ce9a:ace2 with SMTP id
- 956f58d0204a3-64eaa7f7bc9mr3212110d50.56.1774029841504; Fri, 20 Mar 2026
- 11:04:01 -0700 (PDT)
+ AJvYcCUQz4trnn9Q6hCNPF4Z4is/7t5hASmr2qPuy6ffRlV9MW/Lta6U6Xm8US2wEYZCIaSjSAW1hrKMuCU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YybPQxiYavxkD3eqxS5eoALo9+tp9XHq1M2iXS4v4JGxuUiA3vA
+ +8fYfc9EK5+oNedI/9apmYrkkWavpyselq/sJxoCYO7ept0z7vcqE9a6cYmBcAJnXqwgJZ5Hy+9
+ dNaXTRxWBXqcRmbGr052pnaPEh5SPZeE=
+X-Gm-Gg: ATEYQzw3SawL9hWptx7Zc7PVNkL/t44+kcR2MfLhJPQEMyiur+4x3RgIw+7Mpj7Z6Vi
+ iNmV4KYppDEbn8dS2AHt4zprCQiv75TCmZ4AOGnFNvK/QMRQTifmm32/KqRqHB2vx4kpxpFQVjj
+ Hujz5B/Vfk5ys3xX3SMC38lDJlwKxfESMr/mR/SNHXeWIMlM5v2pYB75dpVmwbMhKjBXl6UtxVe
+ w32aC5+3m+1APRJ3WXVQfvqgVlimZvTJJ+bVYTPuVyX5BYlpyzmG5S11lNmrIwgXqXv+Q/SAl5L
+ +hH3
+X-Received: by 2002:a53:d7c8:0:b0:64c:f90c:743b with SMTP id
+ 956f58d0204a3-64eaa764fe2mr3121177d50.41.1774030154371; Fri, 20 Mar 2026
+ 11:09:14 -0700 (PDT)
 MIME-Version: 1.0
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-32-jim.cromie@gmail.com>
- <177402491451.6181.5247342952148189934.b4-review@b4>
-In-Reply-To: <177402491451.6181.5247342952148189934.b4-review@b4>
+ <20260313132103.2529746-33-jim.cromie@gmail.com>
+ <177402491454.6181.12972283720507136037.b4-review@b4>
+In-Reply-To: <177402491454.6181.12972283720507136037.b4-review@b4>
 From: jim.cromie@gmail.com
-Date: Fri, 20 Mar 2026 12:03:35 -0600
-X-Gm-Features: AaiRm53l_YjOB-S5RZgL9xPfAK8bYaoK2HLT6VSg9ZSzbMdUrD-RUBzNTMJmVgQ
-Message-ID: <CAJfuBxx748fTNk51joPgCUTqd8PmTG-mwp0YL3gTSzcnu5w8KA@mail.gmail.com>
-Subject: Re: [PATCH v11 31/65] dyndbg: add
- DYNAMIC_DEBUG_CLASSMAP_USE_(dd_class_name, offset)
+Date: Fri, 20 Mar 2026 12:08:48 -0600
+X-Gm-Features: AaiRm52OI33ofFnw-Ol-4xRbb4iS7hd6Ofimy35v4GvSaV31JzwNtCu7GJCPT2U
+Message-ID: <CAJfuBxwnKXG4d92WOOpiXRDXjFrYFnvfbKXaG5nn4nm4pVyqdQ@mail.gmail.com>
+Subject: Re: [PATCH v11 32/65] dyndbg: Harden classmap and callsite validation
 To: Louis Chauvet <louis.chauvet@bootlin.com>
 Cc: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org, mripard@kernel.org, tzimmermann@suse.de, 
@@ -121,7 +120,7 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DATE_IN_PAST(1.00)[70];
+	DATE_IN_PAST(1.00)[69];
 	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[gmail.com:s=20230601];
@@ -153,52 +152,72 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	FROM_NO_DN(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:email,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: ACD1A2F774A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: EC0EE2F7751
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, Mar 20, 2026 at 10:42=E2=80=AFAM Louis Chauvet
 <louis.chauvet@bootlin.com> wrote:
 >
-> On Fri, 13 Mar 2026 07:19:56 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
+> On Fri, 13 Mar 2026 07:19:57 -0600, Jim Cromie <jim.cromie@gmail.com> wro=
 te:
-> > [...]
-> > cases; perhaps a 3-X-3 of classmap-defns X classmap-users would get
-> > too awkward and fiddly.
+> > diff --git a/include/linux/dynamic_debug.h b/include/linux/dynamic_debu=
+g.h
+> > index 0d1245aefc69..28684cfc0937 100644
+> > --- a/include/linux/dynamic_debug.h
+> > +++ b/include/linux/dynamic_debug.h
+> > @@ -262,6 +262,8 @@ struct _ddebug_class_param {
 > >
-> > This is an untested interface extension, so drop this patch if it
-> > feels too speculative, knowing theres at least a notional solution
-> > should the situation arise.
+> >  #define __DYNAMIC_DEBUG_CLASSMAP_USE(_var, _offset, _uname)          \
+> >       extern struct _ddebug_class_map _var;                           \
+> > +     static_assert((_offset) >=3D 0 && (_offset) < _DPRINTK_CLASS_DFLT=
+, \
+> > +                   "classmap use offset must be in 0..62");          \
 >
-> I agree on the patch principle, the implementation seems good.
->
-> Can you move this patch after the BROKEN removal? I think you should
-> "stabilize" core features first so we can merge part of the series (and
-> reduce patch count).
->
+> Can't you also check the offset+base?
 
-I'll do this.
+If I dont already check, I can. theyre all constants.
 
-> >
+>
 > >
 > > diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
-> > index e9fa0c8868db..2083a8546460 100644
+> > index 2083a8546460..635df6edb4cf 100644
 > > --- a/lib/dynamic_debug.c
 > > +++ b/lib/dynamic_debug.c
-> > @@ -206,12 +206,17 @@ ddebug_find_valid_class(struct _ddebug_info const=
- *di, const char *query_class,
-> >       return NULL;
-> >  }
+> > @@ -1404,9 +1404,8 @@ static void ddebug_apply_class_users(const struct=
+ _ddebug_info *di)
+> >       (__dst)->info._vec.len =3D __nc;                                 =
+ \
+> >  })
 > >
-> > -static bool ddebug_class_in_range(const int class_id, const struct _dd=
-ebug_class_map *map)
-> > +static bool ddebug_class_map_in_range(const int class_id, const struct=
- _ddebug_class_map *map)
+> > -static int __maybe_unused
+> > -ddebug_class_range_overlap(struct _ddebug_class_map *cm,
+> > -                        u64 *reserved_ids)
+> > +static int ddebug_class_range_overlap(struct _ddebug_class_map *cm,
+> > +                                   u64 *reserved_ids)
 >
-> (that the rename I mentionned earlier)
+> I think you can remove the __maybe_unused earlier in the series (23/65
+> seems to use it).
 
-I dont know what you mean here.
+yeah that sounds correct.
+
+>
+> > @@ -1454,10 +1471,33 @@ static int ddebug_add_module(struct _ddebug_inf=
+o *di)
+> > [ ... skip 5 lines ... ]
+> > +     /* validate class map types and the per-module 0..62 class_id spa=
+ce */
+> > +     for_subvec(i, cm, &dt->info, maps) {
+> > +             if (cm->map_type > DD_CLASS_TYPE_LEVEL_NUM) {
+> > +                     pr_err("module %s has unknown classmap type %d\n"=
+, dt->info.mod_name, cm->map_type);
+> > +                     goto cleanup;
+> > +             }
+>
+> I think this check could be inserted earlier.
+
+ya this could be compile-time too.
 
 >
 > --
