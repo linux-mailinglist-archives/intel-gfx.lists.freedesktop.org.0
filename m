@@ -2,45 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2J86JSJ5vWkA+QIAu9opvQ
+	id MIBeMiJ5vWkA+QIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:14 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 67AA72DDC8A
+	by mail.lfdr.de (Postfix) with ESMTPS id 9BB3E2DDC8B
 	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:14 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B2D5010EBDB;
+	by gabe.freedesktop.org (Postfix) with ESMTP id C80C110EBDC;
 	Fri, 20 Mar 2026 16:43:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="YRYh3UYU";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="QYozG0zg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9445F10EBD1
- for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:43:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C2EA810EBDD
+ for <intel-gfx@lists.freedesktop.org>; Fri, 20 Mar 2026 16:43:11 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id CBE91C5668D;
- Fri, 20 Mar 2026 16:43:24 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id BFCECC5668D;
+ Fri, 20 Mar 2026 16:43:35 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 52326600E0;
- Fri, 20 Mar 2026 16:42:59 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 44AD6600E0;
+ Fri, 20 Mar 2026 16:43:10 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 24F5D10450CB3; Fri, 20 Mar 2026 17:42:55 +0100 (CET)
+ with ESMTPSA id 5D9AA10450CB2; Fri, 20 Mar 2026 17:43:05 +0100 (CET)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1774024978; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1774024988; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=qMcVQiftVhfBkmML8o2ktmysqfxHkp+YMWDo00Lyi34=;
- b=YRYh3UYUIjppt26iyz9tShHn+RkvXLKX1gzUyVLtKfFdja4HfSJQAcm2nl3iWwu9TN+SGq
- uB+fOnYPzDHqXzNEoZFK7YksJnZfNPNLYOd6wGo8cKr2VjYBJ5X1R3iXOvlQwdPmmkyNrG
- V0uMgGxba95DlA3mdwQe7bJ7EC/eQ91blvukKpVcVVWA7Nygllg6T3dFyN6S5AwDTw+256
- G2qZF2/fjwvs5c16g8dwegDpcuSpchAJb5FmimW8zRdToeDNGfPxxtkaRTR7smiWqNo2ly
- 0AS8yXW29qyM2lPqAWb3YrwPLWCyOhmRqr62AcLN3stEJ/Bod97z2jvUrkBsdQ==
+ bh=M3FgCUEMluypg2hUM87s+WpQPhp08syHOF7yO9QQVkw=;
+ b=QYozG0zgoLZwiW6GmAWTwfaLhUbV0Nfpq8+A7m1VU5rb1hCDTkr039xWxAuhtrjeqpyEui
+ EXKdY3R37dy25BLoNqEA73wvser6I2RvGPPWbds/azO1pSDAb/lQ/vNSFt3oSrXvuHKLv0
+ 1NFQeEpxkie9R/Mg6wshR3tOlnRNPmePi+wtmezmLMaUMZYTf8+WL3NiEX+dwuAtNNwkM9
+ aUddEDuYiBW4I3gxPDMo8ObhTMWaJrdZQMNt9eMHOLBU/OnbD++FdaXOeCkZJUkdXaQu5A
+ 1G8s21tD8A/GPskYRcbP2mwvyKB7pqRmKtDF0nrxrCD7BCbSfYj6YaA67DP9gQ==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Subject: Re: [PATCH v11 48/65] drm-dyndbg: add DRM_CLASSMAP_USE to etnaviv
+Subject: Re: [PATCH v11 51/65] drm-dyndbg: add DRM_CLASSMAP_USE to vmwgfx
+ driver
 From: Louis Chauvet <louis.chauvet@bootlin.com>
 To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
  gregkh@linuxfoundation.org
@@ -52,27 +53,27 @@ Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org,
  skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
  dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-In-Reply-To: <20260313132103.2529746-49-jim.cromie@gmail.com>
+In-Reply-To: <20260313132103.2529746-52-jim.cromie@gmail.com>
 References: <20260313132103.2529746-1-jim.cromie@gmail.com>
- <20260313132103.2529746-49-jim.cromie@gmail.com>
+ <20260313132103.2529746-52-jim.cromie@gmail.com>
 Date: Fri, 20 Mar 2026 17:41:54 +0100
-Message-Id: <177402491464.6181.7285802673166697323.b4-review@b4>
+Message-Id: <177402491467.6181.8102074641959734273.b4-review@b4>
 X-Mailer: b4 0.15-dev
-X-Developer-Signature: v=1; a=openpgp-sha256; l=374;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=350;
  i=louis.chauvet@bootlin.com; h=from:subject:message-id;
- bh=FbFQHKIzRc0orxa83RdZyoT3C7omF7bMn9AFR/3PkUA=;
- b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjaEf66zVN4xl9/AZ1btwhO/UJ1hBONRbpsQ
- JhIIJ30nXSJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142hsUgAAAAAAEAA5t
- YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOJsgw//RSgM4dN+d7CGaI8KsrRtYT/mmaVkMKf
- aIrzpcNNOuzz+Fx9wHnX7sY/hTZImbh7fJa9UINHzk2lPxe0GZHD64fQVg+jB8HWGNy73uyTeiy
- Zx2I3IKIY3/TjzXoon7fRnr4espAU0O8/2ahlqLWeKMwch+AATkagtwt+B9Jf/ah/EfSxONbD0K
- 3sYR/yF3HKDNS7/ZmbtIXQIIruTWt52wCCmP0LBQiGX08xsawEAYcZY4STfS/Y+yB3wIuSVF+fv
- LP1DxhU5rxFfIF0gN6+nGXtX1uheQC9XREVrvY74RAay0xBocCFT2bxt92S0lvcJi++rvaQF21v
- XERyu9pSEZDPXir2utxDefLdK+QdLIlNq5aiK+jEsXLkWJvb0TRpW3Qk8YbQYqqZtIQJ49Swzu0
- MFV7v5QX9lq1XtE8oK++h8nNWNq9vhWVhUVZvzCP+25JxT3ZCdQZmZr4KCrseZHnYJQ35927q33
- KkQLQq0uZk97DUsbjwbwiCpmJUIJEanpreYISNrBbKV95xKetp/nBMBTIaaYYyIh6gL9wb2NxHb
- YSUBieHdZLPlJgrFYM0xQgNuAGqr3ZEhrbsqT89ECab1WGE3U6JKMrOSml2Y3d3qKUQLGK8x3ut
- 45ZUXjr3/ADoKOfl7J0lwkakm8U3rgo4G+28WfubsAV7zOVzPtHQ=
+ bh=eWqgMWhrD3FKZnBrU1ZvTHlKFrcuBk1hvU3k2C6gl+o=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjamTJExJ3NaoOQEE5E5Zhj+pfcoQv+mRZuH
+ wuioS1aiDSJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab142hsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOLOsA/+K3eprPfblWsArA+Wzh6Ep3pU4H3dntL
+ f5BwkH8Df1xdoho8BkPUn7eJQnzwdK0vRLHsXFvLuJzWvFo5DckN4Ao1ql+k779MX0gXDBzhfx8
+ 8rJn4tQ3Dtj959pYDUJHM7wB34Hi8C203+cbl3FGtpO6dadtK0x1Un5W+ndekbe2FwjepN9p96F
+ GA+lZzRoFtmKnwKqGDZUWxjYNNwyvf5/fs5FdAiUEWdpnKEeRMxF7ODf4WL7VM0aV2rbtu5r3z2
+ YQdp6vFNOVJ+HON55rgvoAWy56ewAmi796gp8sr710286s2hpgGrBUpsco+zfj6xzuFDY8XRCYy
+ V7YzApOnc0Ake5PIJo36x57U3cZNVERTfucO6zVOv59NH43mgwEfgZMFayFWHHg3TzDV7aa4Md5
+ JcL/yfzpgd/tWDOkkKTNlRnpiqRfQx0m/CaiIX0IYt7Ju9K9SPQDXi2oaRn+wmF3goRbhP4LH0S
+ U3qsOE8as5mKYAXa6X2Ncxp+0mGaoC6IFnmGq15hDPi19dvUC5cRupNEVNLtaYDUVXPAJKnOirw
+ ZyMPSmfll7zFBQj9Ys5swtHToDOE9IUs327YPxHMPBUJg1yak4BCAowoLGJ7qQMEbdm/T8g/+65
+ KV9oVOCHwuyUrrzHR8ujhJAW3H33hywNUKsnMZe8FC05jU4T427Q=
 X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
  fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
 X-Last-TLS-Session-Version: TLSv1.3
@@ -125,14 +126,14 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 67AA72DDC8A
+X-Rspamd-Queue-Id: 9BB3E2DDC8B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 13 Mar 2026 07:20:13 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
-> etnaviv has 5 DRM_UT_CORE debugs, make them controllable when
-> CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg that the module has
-> class'd debugs as well as plain-old pr_debug()s
+On Fri, 13 Mar 2026 07:20:16 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> The vmwgfx driver has a number of DRM_UT_* debugs, make them
+> controllable when CONFIG_DRM_USE_DYNAMIC_DEBUG=y by telling dyndbg
+> that the module uses them.
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 
