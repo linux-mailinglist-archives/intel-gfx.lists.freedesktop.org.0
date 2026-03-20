@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4CYpKnl1vWmt9wIAu9opvQ
+	id kOLcBXx1vWmt9wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:27:37 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:27:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D8412DD485
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:27:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E9132DD493
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:27:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF33A10EB36;
-	Fri, 20 Mar 2026 16:27:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 20A9410EB35;
+	Fri, 20 Mar 2026 16:27:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="n+jGhnRW";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MnyukRsd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F35110EB34;
- Fri, 20 Mar 2026 16:27:34 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D367210EB38;
+ Fri, 20 Mar 2026 16:27:36 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 3D6F861850;
- Fri, 20 Mar 2026 16:27:33 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 835B8C19425;
- Fri, 20 Mar 2026 16:27:32 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 6E4DC44201;
+ Fri, 20 Mar 2026 16:27:36 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id BD29FC2BCB2;
+ Fri, 20 Mar 2026 16:27:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774024053;
- bh=H+nAyAHG7r+c++BxBGG12xBnveAJ4BFIOThMlPVrju4=;
+ s=k20201202; t=1774024056;
+ bh=wsgH+JigiQfeFcxwGD7t3o9+hIxvZid3TubvDqbfQKQ=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=n+jGhnRW032yI4TUKZGdS9Ogindi4qhXgdcN8dCcLhblct54XXcPInAz7SUNUpt/c
- BFTtx0Hqfpo6vyb0sjnuAmTpFfoEmMninyJvtFw2++5Meyd/Lk8gyPcG0GWPoe6xOB
- SQwkFGOerwleCoL8tFvz2maLjl6hAlgD1qg2bjHGqo5kwC2bPjo0oSxzewHFqb1HNa
- elgEIMFa2Nr4sre2tKv9z9Zv2P6G095/VgDUGUBQfPYvYn5+F09fjI/0u3ESDgDd8b
- MR2cChEG65XL7Fd24g3Ek8o0pWYZijVzm1bELRjnnKm8Ioc+MGR8bkvMTROnvzxXky
- VZJwKm9XguWAQ==
+ b=MnyukRsdGM5tALWWow4wXrFdo8tSbj4j8ni/3V46UYr2109ahtsTjO+b8xdEUcYWI
+ B5FJMYYjNoRgcIgBsRxF8+csBoBgS+6LqeDii30a02TOaLREFHylNG/b0do5OgulRX
+ uk/em3q56XPAJnJWUwicAA8LpnyY5y0NwTJ4AcO2XVPr4V0DKDVcERDl+tuHpGEfc3
+ rK0kS7xWscWDuSxaqOLPIN4F20FcZCis+xH8gNQyPqRGTFvMfi0CrnDdvcdJ1wwHSr
+ GaxwAsRBHzUahnvinIQJekLn9N0AWZdRYeJEctKdrz8xQ24iXt3keg8QHNdSXsHSuI
+ n8e5iAnbkY+TQ==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Fri, 20 Mar 2026 17:27:09 +0100
-Subject: [PATCH v2 02/20] drm/atomic: Drop drm_private_state.obj assignment
- from create_state
+Date: Fri, 20 Mar 2026 17:27:10 +0100
+Subject: [PATCH v2 03/20] drm/mode-config: Mention drm_mode_config_reset()
+ culprits
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-drm-mode-config-init-v2-2-c63f1134e76c@kernel.org>
+Message-Id: <20260320-drm-mode-config-init-v2-3-c63f1134e76c@kernel.org>
 References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
 In-Reply-To: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -70,14 +70,15 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>
+ Maxime Ripard <mripard@kernel.org>, 
+ Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1530; i=mripard@kernel.org;
- h=from:subject:message-id; bh=H+nAyAHG7r+c++BxBGG12xBnveAJ4BFIOThMlPVrju4=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJl7S1P+Pu433BjQ+OdChu/T5++uBT/p+Png94+XizZZa
- /dO2Rlu1jGVhUGYk0FWTJHliUzY6eXti6sc7Ff+gJnDygQyhIGLUwAmktXDWB87WyvqzpTTF1Wk
- LX7oWMcZRpSYRB9oPWSiqLJrqU0Rl/6ylk1LFy/0VDx904tRqTWwhbFh3nNHz4Ruey9n3k29Npq
- Zlgf2iW/fe/aKWPWEy5N2sCjsrLH9cvRp0eHk63Fx07fsD9kKAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1447; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=wsgH+JigiQfeFcxwGD7t3o9+hIxvZid3TubvDqbfQKQ=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJl7S1Nstz3decpi2d3w+dyr5Sep10g8NjdLdNj4TvVkR
+ dCc3sVbOqayMAhzMsiKKbI8kQk7vbx9cZWD/cofMHNYmUCGMHBxCsBE+vUYa3iSZ4dmqL/Xb0pU
+ aF57vk5KrffSjgPs3nUaSq8YoldPLlV6o/bufc2bR9+75RnYukOmMjY8v2TSmPH1tu5y5rSOaW+
+ /3hGa0P4geHpjnTp3SDDXjcVf9XfxtOklnQ559/qG3ITr7+cCAA==
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -108,60 +109,57 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
+	RCPT_COUNT_TWELVE(0.00)[39];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.997];
+	NEURAL_HAM(-0.00)[-0.996];
 	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	TAGGED_RCPT(0.00)[intel-gfx,renesas];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5D8412DD485
+X-Rspamd-Queue-Id: 9E9132DD493
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The initial intent of the atomic_create_state helper was to simply
-allocate a proper drm_private_state and returning it, without any side
-effect.
+drm_mode_config_reset() does not reset drm_private_states by design.
 
-However, the __drm_atomic_helper_private_obj_create_state() introduces a
-side effect by setting the drm_private_obj.state to the newly allocated
-state.
+This is especially significant for the DP MST and tunneling code that
+expect to be preserved across a suspend/resume cycle, where
+drm_mode_config_reset() is also used.
 
-This assignment defeats the purpose, but is also redundant since
-the only caller, drm_atomic_private_obj_init(), will also set this
-pointer to the newly allocated state.
+Let's document this expectation.
 
-Let's drop the assignment in __drm_atomic_helper_private_obj_create_state().
-
-Fixes: e7be39ed1716 ("drm/atomic-helper: Add private_obj atomic_create_state helper")
+Link: https://lore.kernel.org/dri-devel/aOaQLx-7EpsHRwkH@ideak-desk/
+Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
- drivers/gpu/drm/drm_atomic_state_helper.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/drm_mode_config.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-index 76746ad4a1bbb7142c067c93dd05fbec5d2f98eb..875149494b00e1eb7481e87d7d7038103b72b7e3 100644
---- a/drivers/gpu/drm/drm_atomic_state_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-@@ -729,12 +729,10 @@ EXPORT_SYMBOL(drm_atomic_helper_connector_destroy_state);
- void __drm_atomic_helper_private_obj_create_state(struct drm_private_obj *obj,
- 						  struct drm_private_state *state)
+diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
+index 66f7dc37b5970c0a08f8dde008aef56376c59f37..cba527571ca66d3aa6dc652c87e03a19815d1d41 100644
+--- a/drivers/gpu/drm/drm_mode_config.c
++++ b/drivers/gpu/drm/drm_mode_config.c
+@@ -187,10 +187,14 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
+  * @dev: drm device
+  *
+  * This functions calls all the crtc's, encoder's and connector's ->reset
+  * callback. Drivers can use this in e.g. their driver load or resume code to
+  * reset hardware and software state.
++ *
++ * Note that @drm_private_obj structures are expected to be stable across
++ * suspend/resume cycles, and @drm_mode_config_reset() does not affect these
++ * structures.
+  */
+ void drm_mode_config_reset(struct drm_device *dev)
  {
- 	if (state)
- 		state->obj = obj;
--
--	obj->state = state;
- }
- EXPORT_SYMBOL(__drm_atomic_helper_private_obj_create_state);
- 
- /**
-  * __drm_atomic_helper_private_obj_duplicate_state - copy atomic private state
+ 	struct drm_crtc *crtc;
+ 	struct drm_colorop *colorop;
 
 -- 
 2.53.0
