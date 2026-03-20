@@ -2,84 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHg7B6x1vWmD+AIAu9opvQ
+	id qHgbKE15vWkA+QIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:28:28 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:57 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91D7C2DD5EC
-	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:28:27 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 780002DDDF0
+	for <lists+intel-gfx@lfdr.de>; Fri, 20 Mar 2026 17:43:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC6C10EB72;
-	Fri, 20 Mar 2026 16:28:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECF8310EC03;
+	Fri, 20 Mar 2026 16:43:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="BJXf5Zeu";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="Qr0Q2O5S";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EB4A10EB6A;
- Fri, 20 Mar 2026 16:28:24 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id EB7F043D38;
- Fri, 20 Mar 2026 16:28:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 4F311C4CEF7;
- Fri, 20 Mar 2026 16:28:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774024103;
- bh=b66Tl5kZoqYvPt0EneArcC4td5ZO+VTiTMrGRP4Ocis=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=BJXf5ZeuYCDIhrvsHxH1x2cWRy5dggsOMwsdh/Y2nmJ4+p2VWxuuAWYNEFkUqEZEX
- c5zU/D5fcvlgkNcQhMcg+J4+kHBYh6zYnImaDb3QL6XrPmIqa5aYk7pJv5SuqthjfE
- XP3v1PzxM4PxnrBzRVk6VnzOvBbWMFPa4EgjcT64CDMpS2tHGfeu85H0taloLObfeJ
- p2/a7p1UULFu83tJjCpwTUhuIbS14XwM3xH0IKEhFkrBuGz2Fba1eQWkLTjspcQaxq
- 8ewdQnrfExXM7dmP8nAeMzqLUuwC5rnu8/IQqQzzhBQMvNImN+Xbqgnt8vRgw/FmWS
- jGNtIzpcnK7wA==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Fri, 20 Mar 2026 17:27:27 +0100
-Subject: [PATCH v2 20/20] drm/bridge_connector: Convert to atomic_create_state
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C58E910EC02;
+ Fri, 20 Mar 2026 16:43:54 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-02.galae.net (Postfix) with ESMTPS id B7B301A2F04;
+ Fri, 20 Mar 2026 16:43:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 8DD23600E0;
+ Fri, 20 Mar 2026 16:43:53 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 8486C10450CB2; Fri, 20 Mar 2026 17:43:49 +0100 (CET)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1774025032; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:in-reply-to:references;
+ bh=o3TXJDYgzD0dmnxmRY/CvJQPOemiCTt86JVL7IpYsus=;
+ b=Qr0Q2O5SE+fxx+BR+IEUfeudH8G1RGHpvsTIxl0lO3sHWEr1nxCj8M+cmuq+6likWftabc
+ aKoCCWdCgy7zYI6+gK+BKVP9VDeIasNX8GTZHW8p/qkB6mz8r8+gPQ53uuD2v3hmyzBHgh
+ gC5OZNZdyTKRMZmgx+YN+T7shDBpfo83fOZMkWnldBpE+zX//abG3C+nDS3ntGOV/hO/Dl
+ +yNLTzWhDe7V/lQ4jIxz7vRzKmfx6aKxOM4A4gRzqh6EIImsnPqtTwbP713HKN+L3mHRYl
+ QOUDd8C9Uf4JoWjEprmzCXyVusw8YoJPgiUzT5oO3e/1HG8brXogLOQdG96l6Q==
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260320-drm-mode-config-init-v2-20-c63f1134e76c@kernel.org>
-References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
-In-Reply-To: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>, 
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>, 
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: b4 0.14.2
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2228; i=mripard@kernel.org;
- h=from:subject:message-id; bh=b66Tl5kZoqYvPt0EneArcC4td5ZO+VTiTMrGRP4Ocis=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJl7S3M2nqx88cjFOTf5hobf8dcX952r1ee4+OuTn1bWU
- vl131597JjKwiDMySArpsjyRCbs9PL2xVUO9it/wMxhZQIZwsDFKQATOTedsWHmilddlx2LQsS0
- J3AGCM+fufLdwqwN0ip+73KN75ZNP/IspnKnWaWfW8bG6PKa1FcbbRnrC3MCpxmZOyjqL2H1WSq
- R0VPNLtgu+H3R06dF0u5ffrlxnVjNKzDp9U+/pxovJHkWTVoMAA==
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Subject: Re: [PATCH v11 64/65] drm_print: fix drm_printer dynamic debug bypass
+From: Louis Chauvet <louis.chauvet@bootlin.com>
+To: airlied@gmail.com, simona@ffwll.ch, jbaron@akamai.com, 
+ gregkh@linuxfoundation.org
+Cc: Jim Cromie <jim.cromie@gmail.com>, mripard@kernel.org, 
+ tzimmermann@suse.de, maarten.lankhorst@linux.intel.com, 
+ jani.nikula@intel.com, ville.syrjala@linux.intel.com, 
+ christian.koenig@amd.com, matthew.auld@intel.com, 
+ arunpravin.paneerselvam@amd.com, louis.chauvet@bootlin.com, 
+ skhan@linuxfoundation.org, pmladek@suse.com, ukaszb@chromium.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
+In-Reply-To: <20260313132103.2529746-65-jim.cromie@gmail.com>
+References: <20260313132103.2529746-1-jim.cromie@gmail.com>
+ <20260313132103.2529746-65-jim.cromie@gmail.com>
+Date: Fri, 20 Mar 2026 17:41:54 +0100
+Message-Id: <177402491485.6181.1878747749743687917.b4-review@b4>
+X-Mailer: b4 0.15-dev
+X-Developer-Signature: v=1; a=openpgp-sha256; l=612;
+ i=louis.chauvet@bootlin.com; h=from:subject:message-id;
+ bh=Enxz/CcS4dPtd+s/MVIidGMfH3pGlf0ScOzJEm/MQ4Q=;
+ b=owEBiQJ2/ZANAwAIASCtLsZbECziAcsmYgBpvXjcBJnEH32EGjcohuGKyo7Uk6ttAtORp7pSX
+ 79okPPk9HqJAk8EAAEIADkWIQRPj7g/vng8MQxQWQQgrS7GWxAs4gUCab143BsUgAAAAAAEAA5t
+ YW51MiwyLjUrMS4xMSwyLDIACgkQIK0uxlsQLOJ0IRAAtvJ4V8XWD0jXnFnIuRM6s2dU3QGRQgk
+ At7QqstxQUvULu6HboZlEUCOhM2osLgght28TTqVfqSoSXbRvnaXH+c67yBYiNXFmasvKZfDtWg
+ uyZbxw+8eY2awXf4pevPmqRMqXfSeDBvHJGFaklLCfp0ye+Vnkt7rAZeFqNC7x+keU8GsD6o1NT
+ w1aQaSbtpiWjwhi5F5K7AjAAd6jAY5OF8JAFszDtU2fHi2LjiPl5Poelw9Z0uo+F7fXfl+onx1w
+ 6Y2A8cy2UJdQofxR994qGF50aTav6ttOMe0xjWQGjF+ZGxARs4Dvwbp/IOttfGeyt06WZaLIXXm
+ 5YqMD5c922q+Z+tyLZTyoqE8I3C1A5kgcJt3OuXeE+SHJemRULzw1qQzk1894bMkiSiSKEIs8q7
+ mb90QP7D5mgjAWyJZYPjcGtsaYvZCqvVoaeGwAQ4B4SZburEa9NLyVlp7H4Hv+gvW7Ap4I40eS6
+ W5urVH4tV/wBnYX6Zfee4PYYoqjc+W2ALcCKBGElxOTB7wk7YgZNNKPFX0YL/nUXmZPAdx1rGag
+ 98YKY0suxFrzi2fY8d1ZSLPTyVvrPrzddRpaI2qBZQObVlQbzLME0vKW7q/vfjQ0JpA83AfKdUl
+ vfgmf0JNMYfRfZ1Fh8rT88GbwL261lTZLvaJWxVOVIBxE/82V/+I=
+X-Developer-Key: i=louis.chauvet@bootlin.com; a=openpgp;
+ fpr=8B7104AE9A272D6693F527F2EC1883F55E0B40A5
+X-Last-TLS-Session-Version: TLSv1.3
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,90 +90,52 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MAILLIST(-0.20)[mailman];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,akamai.com,linuxfoundation.org];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	RCPT_COUNT_TWELVE(0.00)[21];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[louis.chauvet@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,kernel.org,suse.de,linux.intel.com,intel.com,amd.com,bootlin.com,linuxfoundation.org,suse.com,chromium.org,lists.freedesktop.org,vger.kernel.org];
+	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx,renesas];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 91D7C2DD5EC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 780002DDDF0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The connector created by drm_bridge_connector only initializes a
-pristine state in reset, which is equivalent to that atomic_create_state
-would expect. Let's convert to it.
+On Fri, 13 Mar 2026 07:20:29 -0600, Jim Cromie <jim.cromie@gmail.com> wrote:
+> [...]
+> mismatch in intel_pipe_config_compare(), the resulting UART storm
+> causes a hard timeout after 20 minutes (see below the snip).
+> 
+> To fix this, change __drm_printfn_dbg() to use the explicit
+> drm_debug_enabled_instrumented() instead. This ensures the bit-test is
+> performed at runtime for this unguarded helper, stopping the UART storm.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
----
- drivers/gpu/drm/display/drm_bridge_connector.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+Why don't use use drm_debug_enabled directly? Does it make sense to call
+the _instrumented when [2] is not enabled?
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index 929f06b290626d2091418a6377a5230e3c264b60..b640e7d5a065d165a901bd73fc836afaab967dac 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -263,26 +263,33 @@ static void drm_bridge_connector_debugfs_init(struct drm_connector *connector,
- 		if (bridge->funcs->debugfs_init)
- 			bridge->funcs->debugfs_init(bridge, root);
- 	}
- }
- 
--static void drm_bridge_connector_reset(struct drm_connector *connector)
-+static struct drm_connector_state *
-+drm_bridge_connector_create_state(struct drm_connector *connector)
- {
- 	struct drm_bridge_connector *bridge_connector =
- 		to_drm_bridge_connector(connector);
-+	struct drm_connector_state *conn_state;
-+
-+	conn_state = drm_atomic_helper_connector_create_state(connector);
-+	if (IS_ERR(conn_state))
-+		return conn_state;
- 
--	drm_atomic_helper_connector_reset(connector);
- 	if (bridge_connector->bridge_hdmi)
- 		__drm_atomic_helper_connector_hdmi_state_init(connector,
--							      connector->state);
-+							      conn_state);
-+
-+	return conn_state;
- }
- 
- static const struct drm_connector_funcs drm_bridge_connector_funcs = {
--	.reset = drm_bridge_connector_reset,
- 	.detect = drm_bridge_connector_detect,
- 	.force = drm_bridge_connector_force,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_create_state = drm_bridge_connector_create_state,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.debugfs_init = drm_bridge_connector_debugfs_init,
- 	.oob_hotplug_event = drm_bridge_connector_oob_hotplug_event,
- };
+>
 
 -- 
-2.53.0
-
+Louis Chauvet <louis.chauvet@bootlin.com>
