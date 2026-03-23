@@ -2,80 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wF3bGmqqwWmUUQQAu9opvQ
+	id EG8hN2uuwWmUUQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:02:34 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:19:39 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E1A42FD87B
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:02:34 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E8622FDAE6
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:19:39 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A651B10E4FC;
-	Mon, 23 Mar 2026 21:02:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5D10E4AC;
+	Mon, 23 Mar 2026 21:19:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GLR/rmA/";
+	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="NIwXAMPI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E6C110E4FC;
- Mon, 23 Mar 2026 21:02:32 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 0943643FA0;
- Mon, 23 Mar 2026 21:02:32 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id F2147C4CEF7;
- Mon, 23 Mar 2026 21:02:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774299751;
- bh=zDuT7d/olP2YmOM9X6hWOR4dtrKPBLYPfN26Inboa/A=;
- h=Date:Cc:To:From:Subject:References:In-Reply-To:From;
- b=GLR/rmA/8rg4R6Xc5Mjb3Tznf0PtDUBvTLDg/mlrZT8nn72k+YiazJ/wvC8ua8KAa
- SMQzKo0lMbRXnQkL4m0ona/AxPa+hrqvWQNRPIIY2TQytJuzDDuDvFDSfrcXxrxOft
- gWiCSxK/i7HiYSU0EMxA9ME6M8xPK/DaWX/Qf2itQTbC9HebMl8Pabr898zTEmRs1+
- N4Yrsm4d2x/jPQiPiwpto8eE5BYP5mX6ZR+KJ8MzhfOXqD/dTNMGVMmc+NVEdfiCWi
- XwZasPpm0q95PBRMf0CtHjDXJ5j5L/gTrLc+0x9kb0XbY7+PLhRNqTvnb3/ckx3kQt
- i8c2rTFliRc3A==
-Mime-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset=UTF-8
-Date: Mon, 23 Mar 2026 22:02:20 +0100
-Message-Id: <DHAGRK6EYUH8.3K8PRCLYA2UBA@kernel.org>
-Cc: <linux-kernel@vger.kernel.org>, "Miguel Ojeda" <ojeda@kernel.org>,
- "Boqun Feng" <boqun@kernel.org>, "Gary Guo" <gary@garyguo.net>,
- =?utf-8?q?Bj=C3=B6rn_Roy_Baron?= <bjorn3_gh@protonmail.com>, "Benno Lossin"
- <lossin@kernel.org>, "Andreas Hindborg" <a.hindborg@kernel.org>, "Alice
- Ryhl" <aliceryhl@google.com>, "Trevor Gross" <tmgross@umich.edu>, "Dave
- Airlie" <airlied@redhat.com>, "Daniel Almeida"
- <daniel.almeida@collabora.com>, "Koen Koning"
- <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
- <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
- Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
- Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, "Jani Nikula"
- <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
- <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
- "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
- "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
- <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
- =?utf-8?q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- "Helge Deller" <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>,
- "Boqun Feng" <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>,
- "Alistair Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>,
- "Edwin Peer" <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>,
- "Andrea Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>,
- "Zhi Wang" <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp
- Stanner" <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
- <alexeyi@nvidia.com>, "Eliot Courtney" <ecourtney@nvidia.com>,
- <joel@joelfernandes.org>, <linux-doc@vger.kernel.org>,
- <amd-gfx@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-fbdev@vger.kernel.org>
-To: "Joel Fernandes" <joelagnelf@nvidia.com>
-From: "Danilo Krummrich" <dakr@kernel.org>
-Subject: Re: [PATCH v14 0/2] Rust GPU buddy allocator bindings
-References: <20260320045711.43494-1-joelagnelf@nvidia.com>
-In-Reply-To: <20260320045711.43494-1-joelagnelf@nvidia.com>
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22E1210E4A2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:36 +0000 (UTC)
+Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
+ [209.85.219.49]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id 5349D324C01
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:34 +0000 (GMT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1774300774; bh=r20OZHTYgzoYdBQOnECr0qFhpYAC9zz0Ibdh/LXucZw=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=NIwXAMPIku8YbMuedkkPuDs98hyP1558Xik7EmjMIedrb7Y1J6VGkvZYXt0SUQlBY
+ 9AzKmJ/oWc5tBnQFZ5MUmLnHCS56DCNW4xZPQEG84TWTadkP0m9IRCkvPDJdY+7Wiq
+ UUBTIC4dVFqdnXHasjcS6uScrwoPIo0pFUD5e6cqscQH87XDFtdVv8QzAnvTXEL2Xa
+ VOFb9MkoskH1xES4IisaunvAdJ7ivKckCyQBPiPP4zrzbz4FUo+80ictL8DnbLTre8
+ i06kpaxerQowe4XlQBaa5B7Hg6PpiYwhp9ogIrQRz5B2IW9WxE5Hunv6Zkv150eJSC
+ eOgveT+3fl1xQ==
+Received: by mail-qv1-f49.google.com with SMTP id
+ 6a1803df08f44-899e87b04d8so48662476d6.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 14:19:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWmvfj4vcCKpBwmyf/4cjDTMeADRIFacuKbEIRkl4kpy78JvDqo4fh74gur7+/rnQy9YXmoczTv+UA=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxJLXaTng+/Sp0z0KkDkXVbH2h+PPiMDnD/+7Nu1W4ztq5wBsmG
+ NwKNyiiOBvUHB9lGVCoTQcgH2lIhuw0Ood599IyMYKKkhYVpmrZpF5PtN9pMpWJhU5Ce0r1W49f
+ ax/wxDXUReJMoD9dPDwHPHOcr65ZSurM=
+X-Received: by 2002:ad4:5766:0:b0:89a:b7:9a9b with SMTP id
+ 6a1803df08f44-89c85a99ac1mr228043676d6.58.1774300772939; 
+ Mon, 23 Mar 2026 14:19:32 -0700 (PDT)
+MIME-Version: 1.0
+References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
+ <CAFZQkGw=VJnzFWnh7GT_59NhuSTiy3-VPOcKdWTZX14rkgW_uw@mail.gmail.com>
+ <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
+In-Reply-To: <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Mon, 23 Mar 2026 22:19:21 +0100
+X-Gmail-Original-Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
+X-Gm-Features: AQROBzBi1GIjCBzS3clAXX8UAOhv46EtsZX2EO34VxBgkUC-vgFWSwdNg9EAQo4
+Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
+Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
+ naveen1.kumar@intel.com, ramya.krishna.yella@intel.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,51 +83,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MV_CASE(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kde.org:s=users];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:harry.wentland@amd.com,m:uma.shankar@intel.com,m:louis.chauvet@bootlin.com,m:naveen1.kumar@intel.com,m:ramya.krishna.yella@intel.com,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:suraj.kandpal@intel.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[kde.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[dakr@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com,bootlin.com,lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kde.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3E1A42FD87B
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4E8622FDAE6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri Mar 20, 2026 at 5:57 AM CET, Joel Fernandes wrote:
+> Have added the remaining error codes to the enum
+> drm_mode_atomic_err_code, will push as part of patchset 11.
+I think it would be best to limit the enum values to actionable
+things. Connector and scanout bandwidth sound useful and pretty
+straight-forward to me, but the three other new values don't seem
+useful for compositors at the moment.
 
-Applied to drm-rust-next, thanks!
+> DRM_MODE_ATTOMIC_PIPE_BW
+Compositors aren't aware of pipes. What would they do with that information?
 
-> Joel Fernandes (2):
->   rust: gpu: Add GPU buddy allocator bindings
+> DRM_MODE_ATOMIC_MEMORY_DOMAIN
+> DRM_MODE_ATOMIC_SPEC_VIOLOATION
+I can't think of anything a compositor would do differently with these
+vs. "unspecified_error".
 
-    [ * Use doc-comments for GpuBuddyAllocMode methods and GpuBuddyGuard,
-      * Fix comma splice in GpuBuddyParams::chunk_size doc-comment,
-      * Remove redundant summary in GpuBuddy::new doc-comment,
-      * Drop Rust helper for gpu_buddy_block_size().
+> As far as the enum INVALID_API_USAGE is concerned, there is a certain
+> understanding on the
+> usage of the atomic_ioctl,  any miss in that would fall in this
+> category.
+Invalid API usage would mean the compositor did something it can know
+in advance is wrong based on the KMS API. It can't be used as the
+default value.
 
-        - Danilo ]
+> Some of them include
+>      - Driver doesnt support atomic, but still atomic_ioctl being used
+>      - Invalid/Junk flags
+>      - Async flip not supported
+>      - Flag page flip event along with test only is not supported
+> If changing this INVALID_API_USAGE to UNSPECIFIED_ERROR makes more
+> sense, I can change that.
+No, they're two different things. We need both, and unspecified_error
+needs to be the default for when the driver doesn't set anything more
+specific.
 
->   MAINTAINERS: gpu: buddy: Update reviewer
+- Xaver
