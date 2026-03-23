@@ -2,64 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 21VQEnaywWkYUwQAu9opvQ
+	id sFcOHK/DwWkHWQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:36:54 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 23:50:23 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DC42FDCFD
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:36:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2ACB2FE87B
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 23:50:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A69D10E534;
-	Mon, 23 Mar 2026 21:36:51 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5d9kkHn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2A2E210E084;
+	Mon, 23 Mar 2026 22:50:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A92AE10E505;
- Mon, 23 Mar 2026 21:36:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774301810; x=1805837810;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=GbmEJ3gAnA39ULBCT39vLN2O22v/jcs7w6rCjokfoBk=;
- b=K5d9kkHnCkv5lVH2g4+iSfs/TPzYeNg3eTlWhYgkJXjdpdMDR9RzboRa
- Rn/wYzAJmseUSCZOLpR/NfmXIC9gTg8ABA9gsbSu/4+Js+aPLg03XY5qQ
- f0rTgH4+/De51jhgH+6eupEAW+sKqrhaJf1ePNQimlsxdrnIyZu8zJ7PH
- BlgjsRE/tIDCRl+IFou+YdnJ/w8fhNqTxr0fwLznUzxiOLBkIsF7NEwIK
- YkXrM9hON7Q1Au6N7n+fcKCdZ7m0Zn/UgNsergfeJOuyz3j29EcFDoRdi
- /Keo0nzZgiFYMrSUpCf4UlGBKttDGHHLMBpSp3Pcd9g+34yv0A7fV3RWF w==;
-X-CSE-ConnectionGUID: kgYJbjebRSCeHT5TeJPklg==
-X-CSE-MsgGUID: g4JdNu2+QMiZ1Sl8cgal6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75429659"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75429659"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 14:36:49 -0700
-X-CSE-ConnectionGUID: Kj+ZacWnT8q5Xo/KLQP1+Q==
-X-CSE-MsgGUID: swwu6+xJTreu+/dLLd6GTw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="247194940"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.55])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Mar 2026 14:36:48 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: dri-devel@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Subject: [PATCH] drm/vblank: Extract get_vblank_counter_and_timestamp()
-Date: Mon, 23 Mar 2026 23:36:45 +0200
-Message-ID: <20260323213645.10965-1-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9601110E084;
+ Mon, 23 Mar 2026 22:50:19 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1980849670068521893=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/vblank=3A_Extract_get?=
+ =?utf-8?q?=5Fvblank=5Fcounter=5Fand=5Ftimestamp=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 23 Mar 2026 22:50:19 -0000
+Message-ID: <177430621957.387756.17569617008364782710@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260323213645.10965-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260323213645.10965-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,136 +42,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 20DC42FDCFD
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_SPAM(0.00)[0.995];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,01.org:url,live:email,lists.freedesktop.org:replyto,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: A2ACB2FE87B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============1980849670068521893==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-We have three copies of the "read vblank counter and timestamp
-in a loop" code. Consolidate to a single a function.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/drm_vblank.c | 36 +++++++++++++++++++++---------------
- 1 file changed, 21 insertions(+), 15 deletions(-)
+Series: drm/vblank: Extract get_vblank_counter_and_timestamp()
+URL   : https://patchwork.freedesktop.org/series/163737/
+State : success
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index f78bf37f1e0a..f90fb2d13e42 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -236,6 +236,21 @@ static u32 __get_vblank_counter(struct drm_device *dev, unsigned int pipe)
- 	return drm_vblank_no_hw_counter(dev, pipe);
- }
- 
-+static bool get_vblank_counter_and_timestamp(struct drm_device *dev, unsigned int pipe,
-+					     u32 *cur_vblank, ktime_t *t_vblank,
-+					     bool in_vblank_irq)
-+{
-+	int count = DRM_TIMESTAMP_MAXRETRIES;
-+	bool rc;
-+
-+	do {
-+		*cur_vblank = __get_vblank_counter(dev, pipe);
-+		rc = drm_get_last_vbltimestamp(dev, pipe, t_vblank, in_vblank_irq);
-+	} while (*cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
-+
-+	return rc;
-+}
-+
- /*
-  * Reset the stored timestamp for the current vblank count to correspond
-  * to the last vblank occurred.
-@@ -250,7 +265,6 @@ static void drm_reset_vblank_timestamp(struct drm_device *dev, unsigned int pipe
- 	u32 cur_vblank;
- 	bool rc;
- 	ktime_t t_vblank;
--	int count = DRM_TIMESTAMP_MAXRETRIES;
- 
- 	spin_lock(&dev->vblank_time_lock);
- 
-@@ -258,10 +272,8 @@ static void drm_reset_vblank_timestamp(struct drm_device *dev, unsigned int pipe
- 	 * sample the current counter to avoid random jumps
- 	 * when drm_vblank_enable() applies the diff
- 	 */
--	do {
--		cur_vblank = __get_vblank_counter(dev, pipe);
--		rc = drm_get_last_vbltimestamp(dev, pipe, &t_vblank, false);
--	} while (cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
-+	rc = get_vblank_counter_and_timestamp(dev, pipe, &cur_vblank,
-+					      &t_vblank, false);
- 
- 	/*
- 	 * Only reinitialize corresponding vblank timestamp if high-precision query
-@@ -299,7 +311,6 @@ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
- 	u32 cur_vblank, diff;
- 	bool rc;
- 	ktime_t t_vblank;
--	int count = DRM_TIMESTAMP_MAXRETRIES;
- 	int framedur_ns = vblank->framedur_ns;
- 	u32 max_vblank_count = drm_max_vblank_count(dev, pipe);
- 
-@@ -315,10 +326,8 @@ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
- 	 * updating its hardware counter while we are retrieving the
- 	 * corresponding vblank timestamp.
- 	 */
--	do {
--		cur_vblank = __get_vblank_counter(dev, pipe);
--		rc = drm_get_last_vbltimestamp(dev, pipe, &t_vblank, in_vblank_irq);
--	} while (cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
-+	rc = get_vblank_counter_and_timestamp(dev, pipe, &cur_vblank,
-+					      &t_vblank, in_vblank_irq);
- 
- 	if (max_vblank_count) {
- 		/* trust the hw counter when it's around */
-@@ -1543,7 +1552,6 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
- 	int framedur_ns;
- 	u64 diff_ns;
- 	u32 cur_vblank, diff = 1;
--	int count = DRM_TIMESTAMP_MAXRETRIES;
- 	u32 max_vblank_count = drm_max_vblank_count(dev, pipe);
- 
- 	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
-@@ -1558,10 +1566,8 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
- 		      "Cannot compute missed vblanks without frame duration\n");
- 	framedur_ns = vblank->framedur_ns;
- 
--	do {
--		cur_vblank = __get_vblank_counter(dev, pipe);
--		drm_get_last_vbltimestamp(dev, pipe, &t_vblank, false);
--	} while (cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
-+	get_vblank_counter_and_timestamp(dev, pipe, &cur_vblank,
-+					 &t_vblank, false);
- 
- 	diff_ns = ktime_to_ns(ktime_sub(t_vblank, vblank->time));
- 	if (framedur_ns)
--- 
-2.52.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18194 -> Patchwork_163737v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_163737v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18194/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18194 -> Patchwork_163737v1
+
+  CI-20190529: 20190529
+  CI_DRM_18194: 8fd3f32cf38821bef5101402e805e370e5b3aea4 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8820: b2f96bfbce5dd7903530e7e3eb0bbeb01eaecfeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_163737v1: 8fd3f32cf38821bef5101402e805e370e5b3aea4 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/index.html
+
+--===============1980849670068521893==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/vblank: Extract get_vblank_counter_and_timestamp()</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163737/">https://patchwork.freedesktop.org/series/163737/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18194 -&gt; Patchwork_163737v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_163737v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18194/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163737v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18194 -&gt; Patchwork_163737v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18194: 8fd3f32cf38821bef5101402e805e370e5b3aea4 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8820: b2f96bfbce5dd7903530e7e3eb0bbeb01eaecfeb @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_163737v1: 8fd3f32cf38821bef5101402e805e370e5b3aea4 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1980849670068521893==--
