@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gEQ4NU+DwWnATgQAu9opvQ
+	id QECcLoCLwWlxTwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 19:15:43 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 19:50:40 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40FC52FB170
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 19:15:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4C4282FB977
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 19:50:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC5D410E02A;
-	Mon, 23 Mar 2026 18:15:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEBED10E468;
+	Mon, 23 Mar 2026 18:50:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D974910E02A;
- Mon, 23 Mar 2026 18:15:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA19810E460;
+ Mon, 23 Mar 2026 18:50:37 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_debugfs=3A_disa?=
- =?utf-8?q?llow_NULL_string_creation_and_fix_callers?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm=3A_Fix_name?=
+ =?utf-8?q?space_clashes_with_=27pixel=5Fformat=27?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Gui-Dong Han" <hanguidong02@gmail.com>
+To: "Hou Wenlong" <houwenlong.hwl@antgroup.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 23 Mar 2026 18:15:40 -0000
-Message-ID: <177428974086.387756.6344212397486775766@a3b018990fe9>
+Date: Mon, 23 Mar 2026 18:50:37 -0000
+Message-ID: <177429183774.387500.2973599333165945338@a3b018990fe9>
 X-Patchwork-Hint: ignore
-References: <20260317185920.43387-1-hanguidong02@gmail.com>
-In-Reply-To: <20260317185920.43387-1-hanguidong02@gmail.com>
+References: <cover.1773629419.git.houwenlong.hwl@antgroup.com>
+In-Reply-To: <cover.1773629419.git.houwenlong.hwl@antgroup.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -52,40 +52,39 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWO(0.00)[2];
 	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.986];
+	NEURAL_HAM(-0.00)[-0.989];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,lists.freedesktop.org:replyto,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 40FC52FB170
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url,lists.freedesktop.org:email,lists.freedesktop.org:replyto]
+X-Rspamd-Queue-Id: 4C4282FB977
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 == Series Details ==
 
-Series: debugfs: disallow NULL string creation and fix callers
-URL   : https://patchwork.freedesktop.org/series/163711/
+Series: drm: Fix namespace clashes with 'pixel_format'
+URL   : https://patchwork.freedesktop.org/series/163710/
 State : failure
 
 == Summary ==
 
-Address 'hanguidong02@gmail.com' is not on the allowlist, which prevents CI from being triggered for this patch.
+Address 'houwenlong.hwl@antgroup.com' is not on the allowlist, which prevents CI from being triggered for this patch.
 If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
 Exception occurred during validation, bailing out!
 
