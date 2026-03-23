@@ -2,73 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EG8hN2uuwWmUUQQAu9opvQ
+	id 21VQEnaywWkYUwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:19:39 +0100
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:36:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4E8622FDAE6
-	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:19:39 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20DC42FDCFD
+	for <lists+intel-gfx@lfdr.de>; Mon, 23 Mar 2026 22:36:52 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81C5D10E4AC;
-	Mon, 23 Mar 2026 21:19:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A69D10E534;
+	Mon, 23 Mar 2026 21:36:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=kde.org header.i=@kde.org header.b="NIwXAMPI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K5d9kkHn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22E1210E4A2
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:36 +0000 (UTC)
-Received: from mail-qv1-f49.google.com (mail-qv1-f49.google.com
- [209.85.219.49]) (Authenticated sender: zamundaaa)
- by letterbox.kde.org (Postfix) with ESMTPSA id 5349D324C01
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 21:19:34 +0000 (GMT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
- t=1774300774; bh=r20OZHTYgzoYdBQOnECr0qFhpYAC9zz0Ibdh/LXucZw=;
- h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
- b=NIwXAMPIku8YbMuedkkPuDs98hyP1558Xik7EmjMIedrb7Y1J6VGkvZYXt0SUQlBY
- 9AzKmJ/oWc5tBnQFZ5MUmLnHCS56DCNW4xZPQEG84TWTadkP0m9IRCkvPDJdY+7Wiq
- UUBTIC4dVFqdnXHasjcS6uScrwoPIo0pFUD5e6cqscQH87XDFtdVv8QzAnvTXEL2Xa
- VOFb9MkoskH1xES4IisaunvAdJ7ivKckCyQBPiPP4zrzbz4FUo+80ictL8DnbLTre8
- i06kpaxerQowe4XlQBaa5B7Hg6PpiYwhp9ogIrQRz5B2IW9WxE5Hunv6Zkv150eJSC
- eOgveT+3fl1xQ==
-Received: by mail-qv1-f49.google.com with SMTP id
- 6a1803df08f44-899e87b04d8so48662476d6.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 23 Mar 2026 14:19:34 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCWmvfj4vcCKpBwmyf/4cjDTMeADRIFacuKbEIRkl4kpy78JvDqo4fh74gur7+/rnQy9YXmoczTv+UA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJLXaTng+/Sp0z0KkDkXVbH2h+PPiMDnD/+7Nu1W4ztq5wBsmG
- NwKNyiiOBvUHB9lGVCoTQcgH2lIhuw0Ood599IyMYKKkhYVpmrZpF5PtN9pMpWJhU5Ce0r1W49f
- ax/wxDXUReJMoD9dPDwHPHOcr65ZSurM=
-X-Received: by 2002:ad4:5766:0:b0:89a:b7:9a9b with SMTP id
- 6a1803df08f44-89c85a99ac1mr228043676d6.58.1774300772939; 
- Mon, 23 Mar 2026 14:19:32 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A92AE10E505;
+ Mon, 23 Mar 2026 21:36:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774301810; x=1805837810;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GbmEJ3gAnA39ULBCT39vLN2O22v/jcs7w6rCjokfoBk=;
+ b=K5d9kkHnCkv5lVH2g4+iSfs/TPzYeNg3eTlWhYgkJXjdpdMDR9RzboRa
+ Rn/wYzAJmseUSCZOLpR/NfmXIC9gTg8ABA9gsbSu/4+Js+aPLg03XY5qQ
+ f0rTgH4+/De51jhgH+6eupEAW+sKqrhaJf1ePNQimlsxdrnIyZu8zJ7PH
+ BlgjsRE/tIDCRl+IFou+YdnJ/w8fhNqTxr0fwLznUzxiOLBkIsF7NEwIK
+ YkXrM9hON7Q1Au6N7n+fcKCdZ7m0Zn/UgNsergfeJOuyz3j29EcFDoRdi
+ /Keo0nzZgiFYMrSUpCf4UlGBKttDGHHLMBpSp3Pcd9g+34yv0A7fV3RWF w==;
+X-CSE-ConnectionGUID: kgYJbjebRSCeHT5TeJPklg==
+X-CSE-MsgGUID: g4JdNu2+QMiZ1Sl8cgal6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11738"; a="75429659"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75429659"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 14:36:49 -0700
+X-CSE-ConnectionGUID: Kj+ZacWnT8q5Xo/KLQP1+Q==
+X-CSE-MsgGUID: swwu6+xJTreu+/dLLd6GTw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="247194940"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.55])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 Mar 2026 14:36:48 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: dri-devel@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Subject: [PATCH] drm/vblank: Extract get_vblank_counter_and_timestamp()
+Date: Mon, 23 Mar 2026 23:36:45 +0200
+Message-ID: <20260323213645.10965-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-References: <20260223-atomic-v10-0-f59c8def2e70@intel.com>
- <CAFZQkGw=VJnzFWnh7GT_59NhuSTiy3-VPOcKdWTZX14rkgW_uw@mail.gmail.com>
- <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
-In-Reply-To: <ec9b1e8d-daab-48a7-959a-bfc5309b3ea9@intel.com>
-From: Xaver Hugl <xaver.hugl@kde.org>
-Date: Mon, 23 Mar 2026 22:19:21 +0100
-X-Gmail-Original-Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
-X-Gm-Features: AQROBzBi1GIjCBzS3clAXX8UAOhv46EtsZX2EO34VxBgkUC-vgFWSwdNg9EAQo4
-Message-ID: <CAFZQkGxLWnrt1be4S6pJj0qVRfVPXkzvZODNNNKWjpD2NNTAeA@mail.gmail.com>
-Subject: Re: [PATCH v10 0/7] User readable error codes on atomic_ioctl failure
-To: "Murthy, Arun R" <arun.r.murthy@intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
- naveen1.kumar@intel.com, ramya.krishna.yella@intel.com, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,74 +74,134 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kde.org:s=users];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:harry.wentland@amd.com,m:uma.shankar@intel.com,m:louis.chauvet@bootlin.com,m:naveen1.kumar@intel.com,m:ramya.krishna.yella@intel.com,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:suraj.kandpal@intel.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[kde.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[19];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com,bootlin.com,lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kde.org:+];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4E8622FDAE6
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 20DC42FDCFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Have added the remaining error codes to the enum
-> drm_mode_atomic_err_code, will push as part of patchset 11.
-I think it would be best to limit the enum values to actionable
-things. Connector and scanout bandwidth sound useful and pretty
-straight-forward to me, but the three other new values don't seem
-useful for compositors at the moment.
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-> DRM_MODE_ATTOMIC_PIPE_BW
-Compositors aren't aware of pipes. What would they do with that information?
+We have three copies of the "read vblank counter and timestamp
+in a loop" code. Consolidate to a single a function.
 
-> DRM_MODE_ATOMIC_MEMORY_DOMAIN
-> DRM_MODE_ATOMIC_SPEC_VIOLOATION
-I can't think of anything a compositor would do differently with these
-vs. "unspecified_error".
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/drm_vblank.c | 36 +++++++++++++++++++++---------------
+ 1 file changed, 21 insertions(+), 15 deletions(-)
 
-> As far as the enum INVALID_API_USAGE is concerned, there is a certain
-> understanding on the
-> usage of the atomic_ioctl,  any miss in that would fall in this
-> category.
-Invalid API usage would mean the compositor did something it can know
-in advance is wrong based on the KMS API. It can't be used as the
-default value.
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index f78bf37f1e0a..f90fb2d13e42 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -236,6 +236,21 @@ static u32 __get_vblank_counter(struct drm_device *dev, unsigned int pipe)
+ 	return drm_vblank_no_hw_counter(dev, pipe);
+ }
+ 
++static bool get_vblank_counter_and_timestamp(struct drm_device *dev, unsigned int pipe,
++					     u32 *cur_vblank, ktime_t *t_vblank,
++					     bool in_vblank_irq)
++{
++	int count = DRM_TIMESTAMP_MAXRETRIES;
++	bool rc;
++
++	do {
++		*cur_vblank = __get_vblank_counter(dev, pipe);
++		rc = drm_get_last_vbltimestamp(dev, pipe, t_vblank, in_vblank_irq);
++	} while (*cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
++
++	return rc;
++}
++
+ /*
+  * Reset the stored timestamp for the current vblank count to correspond
+  * to the last vblank occurred.
+@@ -250,7 +265,6 @@ static void drm_reset_vblank_timestamp(struct drm_device *dev, unsigned int pipe
+ 	u32 cur_vblank;
+ 	bool rc;
+ 	ktime_t t_vblank;
+-	int count = DRM_TIMESTAMP_MAXRETRIES;
+ 
+ 	spin_lock(&dev->vblank_time_lock);
+ 
+@@ -258,10 +272,8 @@ static void drm_reset_vblank_timestamp(struct drm_device *dev, unsigned int pipe
+ 	 * sample the current counter to avoid random jumps
+ 	 * when drm_vblank_enable() applies the diff
+ 	 */
+-	do {
+-		cur_vblank = __get_vblank_counter(dev, pipe);
+-		rc = drm_get_last_vbltimestamp(dev, pipe, &t_vblank, false);
+-	} while (cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
++	rc = get_vblank_counter_and_timestamp(dev, pipe, &cur_vblank,
++					      &t_vblank, false);
+ 
+ 	/*
+ 	 * Only reinitialize corresponding vblank timestamp if high-precision query
+@@ -299,7 +311,6 @@ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
+ 	u32 cur_vblank, diff;
+ 	bool rc;
+ 	ktime_t t_vblank;
+-	int count = DRM_TIMESTAMP_MAXRETRIES;
+ 	int framedur_ns = vblank->framedur_ns;
+ 	u32 max_vblank_count = drm_max_vblank_count(dev, pipe);
+ 
+@@ -315,10 +326,8 @@ static void drm_update_vblank_count(struct drm_device *dev, unsigned int pipe,
+ 	 * updating its hardware counter while we are retrieving the
+ 	 * corresponding vblank timestamp.
+ 	 */
+-	do {
+-		cur_vblank = __get_vblank_counter(dev, pipe);
+-		rc = drm_get_last_vbltimestamp(dev, pipe, &t_vblank, in_vblank_irq);
+-	} while (cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
++	rc = get_vblank_counter_and_timestamp(dev, pipe, &cur_vblank,
++					      &t_vblank, in_vblank_irq);
+ 
+ 	if (max_vblank_count) {
+ 		/* trust the hw counter when it's around */
+@@ -1543,7 +1552,6 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
+ 	int framedur_ns;
+ 	u64 diff_ns;
+ 	u32 cur_vblank, diff = 1;
+-	int count = DRM_TIMESTAMP_MAXRETRIES;
+ 	u32 max_vblank_count = drm_max_vblank_count(dev, pipe);
+ 
+ 	if (drm_WARN_ON(dev, pipe >= dev->num_crtcs))
+@@ -1558,10 +1566,8 @@ static void drm_vblank_restore(struct drm_device *dev, unsigned int pipe)
+ 		      "Cannot compute missed vblanks without frame duration\n");
+ 	framedur_ns = vblank->framedur_ns;
+ 
+-	do {
+-		cur_vblank = __get_vblank_counter(dev, pipe);
+-		drm_get_last_vbltimestamp(dev, pipe, &t_vblank, false);
+-	} while (cur_vblank != __get_vblank_counter(dev, pipe) && --count > 0);
++	get_vblank_counter_and_timestamp(dev, pipe, &cur_vblank,
++					 &t_vblank, false);
+ 
+ 	diff_ns = ktime_to_ns(ktime_sub(t_vblank, vblank->time));
+ 	if (framedur_ns)
+-- 
+2.52.0
 
-> Some of them include
->      - Driver doesnt support atomic, but still atomic_ioctl being used
->      - Invalid/Junk flags
->      - Async flip not supported
->      - Flag page flip event along with test only is not supported
-> If changing this INVALID_API_USAGE to UNSPECIFIED_ERROR makes more
-> sense, I can change that.
-No, they're two different things. We need both, and unspecified_error
-needs to be the default for when the driver doesn't set anything more
-specific.
-
-- Xaver
