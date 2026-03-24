@@ -2,97 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UCYdA8/Nw2nuuAQAu9opvQ
+	id EP19AQqowmmmjwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 12:58:07 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 16:04:42 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B10B532452D
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 12:58:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6ECB6317A7F
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 16:04:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4372810E871;
-	Wed, 25 Mar 2026 11:58:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BAA6810E665;
+	Tue, 24 Mar 2026 15:04:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="h+fo6/H5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tqy/S7Yc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com
- [209.85.210.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C264F10E6E3
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 14:38:36 +0000 (UTC)
-Received: by mail-ot1-f47.google.com with SMTP id
- 46e09a7af769-7d9b21d1461so2201689a34.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 07:38:36 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774363116; cv=none;
- d=google.com; s=arc-20240605;
- b=BLLZW93XscXuRaQuEemfhD2mrooiaIAaH19XqUA0eThLyuOYp3PsoIAXpRSxhkgxJO
- HBTw92ggUMcnpYtFDgV4DUVRPdaseZWmAlGuz12Ha8NJaWYAvkUcMgsNJNfWUXKWVWRo
- WYmBJVlF6rKV2yma5ybNePIw/SxYbs5LJdnmgp/7uZbfbmK/z/IlEyuqWcH5SUQUDgPL
- J1s4uaGABihbpGmZuJGzY0905n4Sx3k/XBNBlftJPHEUWUEs2vjyL7rfl6ZhmAFQ50v4
- CRwov2aG2H3lOflkxGjVAamzS5dav+OflMzm/tNuk9tHxsRmYF6YXjrgzzXG1fEwtVXW
- OXkQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=Q2P2X5a3SvzdfNG+ptErUvhhDJG9k3IfKPvzAZtm4fo=;
- fh=t7VpN6WMhD3AbUOkfNaORR58zNSibwiBVzyOMyzecjY=;
- b=fzTC/2iBEw4nqAp9zEuXH3/dROL3kL2i8oZcwOExX7ImkvSmukQl/s0ikz0eBRoZkZ
- 5sPJixjtDPnWcfdnbQ9raH1fgl+FPusEIxMKvzB3GwxRgt7QvKSXFV6NEF5fOoKtA9CS
- e2QAnRHKZYAb145jb3MCouXx257fnUnHsc4Y0Og0lvcX8R6NZi1xklOXjPi4E8eAyaqA
- 8oWDoYkJSGUrNKwOM8SYrA/AlC6iMDlNEyfa6m+HVwHdJrFDGkNDwjSIaM6VtG5qXGEv
- l9gnPCHNm/fmVw36F3u8M+brgiHKUa8U0tbgb05Hld82fbOaq7IugoFMhEp182hoI6d1
- M1KA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774363116; x=1774967916; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=Q2P2X5a3SvzdfNG+ptErUvhhDJG9k3IfKPvzAZtm4fo=;
- b=h+fo6/H5cfCQ95Pqdm79/V0ZG5crJMTpofPBkMGK0PH20uagEXZTo0orgo8N1U96/p
- 4W934uQtgBTd2B+xWMKePsWH9Az+k/rPfom7wkhOPASds9YuQPd+FMxfQFfjSedp0Q52
- xHVnq09QjNO7fsKQr4A4lofvkoym7eZt0zwuUnzduoHWeWC1XYJHf8J+75zmr/mIfqWp
- Umc4QV/PEwawnh56xEw4lWTyv14N5x6GIj0fMeNxnAFQj1U9SB32r7KPey33Kjdg8BuD
- R0P1dbDtP7QIpQFBCK+JdLin9SZVZwaxxdnBz5cFCO5GEMcfVWS1bIFmyK8bL+P6mltE
- UPRg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774363116; x=1774967916;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=Q2P2X5a3SvzdfNG+ptErUvhhDJG9k3IfKPvzAZtm4fo=;
- b=L4yPKiht9E46DP/5yPCrMEptMV3THqBp7xZ22sq14HV/4DlB06wFxGeqmxofB4xhG3
- o04/mK2K7H3UOcIJCxhGdDcZV9mdX8baym7U3cmOtffe8mg8UFJGVjGYHW2ZLz8FYqI4
- EBF2ghXIEAo+6t0OrAjT5eU7pjMq1oX1ET1UJdNvkW9ZtiM3eSpY00FVv+tT2S4Pt9ML
- cMhSkrE8PgVEBFlAZ5kuj/NO7P2LDYQwGimc84iajvZ+psnrge0lVVeOXOcZlpCQcFTS
- a8g9yptaAIhzyUv5h2dAX9tKT4LCVo6rFpEuL+B684ZhD7s/ay48RO8SvRBgspSi2bmV
- +d+Q==
-X-Gm-Message-State: AOJu0Ywx/8uXpy0wvCmWqIv8X+RvCm+2UD3qsqJTgNGZbw6MujELpl4S
- 2YYLzjDH5yz9C+vHWi0JThbehXvSiivQZ0u/pmV9RNfbm4GBd99GGyTeCxra/X9UEhzx+/BN7zq
- j7cn8rAWxdcM27nHHjYrbb7fegaxtsGI=
-X-Gm-Gg: ATEYQzx5H9KtyiWtzRFzfeoZA60YXxL0BQHLjUNWNWlv6bqys/DZgNWtaWAi48/1I+9
- IpznIfbCsqvfHTzr4vwanwSo//SpLmeok31t5kKtExXx7JDg/rwXWrV02KU7yEGwi+7jkH3DyUx
- CdgtupBXKFzFk1MbixXqXPYRNtEfH/VCpuQvOIeTuP4+f89w13zXY+LaQBrC4a52OLPbZmSiW4X
- C+PQS7QuNjoBaf2GnDpAglnlIur5fNGjhgYZdITzJdDjb4Qr87D64bggqDvp2aNy/aH9d7jTqLr
- rktQ2Zi1sFxD1lLlbRQ=
-X-Received: by 2002:a05:6830:2649:b0:7d9:d3f9:a82f with SMTP id
- 46e09a7af769-7d9d4f5b9f3mr1417a34.10.1774363115506; Tue, 24 Mar 2026 07:38:35
- -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A82310E665;
+ Tue, 24 Mar 2026 15:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774364679; x=1805900679;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=T1EypG6JzbYHgJN98YRLBLJBIpjnEbhSl9LSMOyK8P0=;
+ b=Tqy/S7YcWRwgJEVgH/gkJjfQuEMhs5liTmNtMaAwIwprq8XConb8EGgB
+ 4lIe8aQL2GFPOPd1ZxRrq60iNiO+BoRe+/AMZVERWTURzr2NseP5/TR3v
+ nuejPnWqLLoR6x+dxajrE22kYxJumBp/e+KtHtIdxM3AvTISTV03dYikk
+ uID2B9fcKtlWa/kGZ1VWI11911pvmHeRAwxEPfMKBeHlFyeoy6Gpy0ADE
+ uY+cNh4S/Ko1ZX554KeJLddoGIet6XpNrw9z0hhuQ4ZQRc54yImmAo7El
+ 7my+kwhQrECvzogLbXt/mKLLWkUA4HSQUGpG28kNF3KIm5cQl4yJRd49I Q==;
+X-CSE-ConnectionGUID: Gds8d9NDSGKOrkYOy8Xlrg==
+X-CSE-MsgGUID: YprLmUcRRnus619b9BF61A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="85694365"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="85694365"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 08:04:39 -0700
+X-CSE-ConnectionGUID: NmCR5oPVTs6WMgu+esXeBA==
+X-CSE-MsgGUID: Rt/9v8v+Sq2uMOcDdiWtaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="223439162"
+Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.220])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 08:04:36 -0700
+Date: Tue, 24 Mar 2026 17:04:33 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ jani.nikula@linux.intel.com
+Subject: Re: [PATCH 7/8] drm/i915/display: move pre-HSW clock gating init to
+ display
+Message-ID: <acKoAdGa3s1S5Pqm@intel.com>
+References: <20260324143420.310800-1-luciano.coelho@intel.com>
+ <20260324143420.310800-8-luciano.coelho@intel.com>
 MIME-Version: 1.0
-References: <20260324134718.27331-1-sosohero200@gmail.com>
- <2026032453-depletion-various-b39f@gregkh>
-In-Reply-To: <2026032453-depletion-various-b39f@gregkh>
-From: Yassine Mounir <sosohero200@gmail.com>
-Date: Tue, 24 Mar 2026 10:38:24 -0400
-X-Gm-Features: AaiRm50cziF8olqPYG3fyV50MHL9v32hpyhvNyLU62jxWqIfwJZFnDUECBcvuGw
-Message-ID: <CANq=4mC4ppxPYShPdQiZ6k44v5oue+NhcY8qXYBV6kEgoSWgiQ@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915: Fix UAF race between relocation and GEM_CLOSE
-To: Greg KH <gregkh@linuxfoundation.org>
-Cc: intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com, 
- security@kernel.org, rodrigo.vivi@intel.com
-Content-Type: multipart/alternative; boundary="00000000000033cf8f064dc61bc1"
-X-Mailman-Approved-At: Wed, 25 Mar 2026 11:57:58 +0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260324143420.310800-8-luciano.coelho@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,198 +79,385 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [0.25 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.56)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:gregkh@linuxfoundation.org,m:joonas.lahtinen@linux.intel.com,m:security@kernel.org,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER(0.00)[sosohero200@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[sosohero200@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid]
-X-Rspamd-Queue-Id: B10B532452D
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 6ECB6317A7F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---00000000000033cf8f064dc61bc1
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+On Tue, Mar 24, 2026 at 04:29:56PM +0200, Luca Coelho wrote:
+> Move the remaining pre-HSW display clock gating programming into
+> display.
+> 
+> This also drops display register includes from intel_clock_gating.c.
+> 
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+>  .../i915/display/intel_display_clock_gating.c | 100 ++++++++++++++++
+>  .../i915/display/intel_display_clock_gating.h |  12 ++
+>  drivers/gpu/drm/i915/intel_clock_gating.c     | 109 +-----------------
+>  3 files changed, 118 insertions(+), 103 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> index 0b2edf6acb79..5809c49dccf0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> @@ -6,11 +6,13 @@
+>  #include <drm/intel/intel_gmd_misc_regs.h>
+>  
+>  #include "intel_de.h"
+> +#include "i9xx_plane_regs.h"
+>  #include "intel_display.h"
+>  #include "intel_display_clock_gating.h"
+>  #include "intel_display_regs.h"
+>  
+>  #include "i915_drv.h"
+> +#include "i915_reg.h"
+>  
+>  static void intel_display_gen9_init_clock_gating(struct intel_display *display,
+>  						 bool has_llc)
+> @@ -156,3 +158,101 @@ void intel_display_hsw_init_clock_gating(struct intel_display *display)
+>  	intel_display_hsw_init_clock_gating_common(display,
+>  						   HSW_UNMASK_VBL_TO_REGS_IN_SRD);
+>  }
+> +
+> +void intel_display_disable_trickle_feed(struct intel_display *display)
+> +{
+> +	enum pipe pipe;
+> +
+> +	for_each_pipe(display, pipe) {
+> +		intel_de_rmw(display, DSPCNTR(display, pipe), 0,
+> +			     DISP_TRICKLE_FEED_DISABLE);
+> +
+> +		intel_de_rmw(display, DSPSURF(display, pipe), 0, 0);
+> +		intel_de_posting_read(display, DSPSURF(display, pipe));
+> +	}
+> +}
+> +
+> +void intel_display_ilk_init_clock_gating(struct intel_display *display)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> +
+> +	/*
+> +	 * Required for FBC
+> +	 * WaFbcDisableDpfcClockGating:ilk
+> +	 */
+> +	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
+> +		       ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
+> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
+> +
+> +	intel_de_write(display, PCH_3DCGDIS0,
+> +		       MARIUNIT_CLOCK_GATE_DISABLE |
+> +		       SVSMUNIT_CLOCK_GATE_DISABLE);
+> +	intel_de_write(display, PCH_3DCGDIS1, VFMUNIT_CLOCK_GATE_DISABLE);
 
-*Hi Greg,*
+Those two aren't display things.
 
-*My apologies for the confusion. I realized I was developing against a
-distribution kernel (6.18.12-kali). I understand now why the file paths do
-not match the current upstream tree.*
+> +
+> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
+> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
+> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
+> +	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
+> +	intel_de_write(display, DISP_ARB_CTL,
+> +		       intel_de_read(display, DISP_ARB_CTL) |
+> +		       DISP_FBC_WM_DIS);
+> +
+> +	if (IS_IRONLAKE_M(i915)) {
+> +		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
+> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
+> +	}
+> +
+> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
+> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+> +
+> +	intel_display_disable_trickle_feed(display);
+> +}
+> +
+> +void intel_display_gen6_init_clock_gating(struct intel_display *display)
+> +{
+> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> +
+> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
+> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+> +
+> +	intel_de_write(display, ILK_DISPLAY_CHICKEN1,
+> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN1) |
+> +		       ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
+> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
+> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
+> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
+> +	intel_de_write(display, ILK_DSPCLK_GATE_D,
+> +		       intel_de_read(display, ILK_DSPCLK_GATE_D) |
+> +		       ILK_DPARBUNIT_CLOCK_GATE_ENABLE |
+> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
+> +
+> +	intel_display_disable_trickle_feed(display);
+> +}
+> +
+> +void intel_display_ivb_init_clock_gating(struct intel_display *display)
+> +{
+> +	intel_de_write(display, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
+> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+> +}
+> +
+> +void intel_display_g4x_init_clock_gating(struct intel_display *display)
+> +{
+> +	struct drm_i915_private *i915 = to_i915(display->drm);
+> +	u32 dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
+> +			  OVRUNIT_CLOCK_GATE_DISABLE |
+> +			  OVCUNIT_CLOCK_GATE_DISABLE;
+> +
+> +	if (IS_GM45(i915))
+> +		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
+> +
+> +	intel_de_write(display, DSPCLK_GATE_D, dspclk_gate);
+> +
+> +	intel_display_disable_trickle_feed(display);
+> +}
+> +
+> +void intel_display_i965gm_init_clock_gating(struct intel_display *display)
+> +{
+> +	intel_de_write(display, DSPCLK_GATE_D, 0);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> index 0eb240f2f69e..9eebfc4a6ebe 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> @@ -17,6 +17,12 @@ void intel_display_glk_init_clock_gating(struct intel_display *display);
+>  void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display);
+>  void intel_display_bdw_init_clock_gating(struct intel_display *display);
+>  void intel_display_hsw_init_clock_gating(struct intel_display *display);
+> +void intel_display_disable_trickle_feed(struct intel_display *display);
+> +void intel_display_ilk_init_clock_gating(struct intel_display *display);
+> +void intel_display_gen6_init_clock_gating(struct intel_display *display);
+> +void intel_display_ivb_init_clock_gating(struct intel_display *display);
+> +void intel_display_g4x_init_clock_gating(struct intel_display *display);
+> +void intel_display_i965gm_init_clock_gating(struct intel_display *display);
+>  #else
+>  static inline void intel_display_skl_init_clock_gating(struct intel_display *display) {}
+>  static inline void intel_display_kbl_init_clock_gating(struct intel_display *display) {}
+> @@ -26,6 +32,12 @@ static inline void intel_display_glk_init_clock_gating(struct intel_display *dis
+>  static inline void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display) {}
+>  static inline void intel_display_bdw_init_clock_gating(struct intel_display *display) {}
+>  static inline void intel_display_hsw_init_clock_gating(struct intel_display *display) {}
+> +static inline void intel_display_disable_trickle_feed(struct intel_display *display) {}
+> +static inline void intel_display_ilk_init_clock_gating(struct intel_display *display) {}
+> +static inline void intel_display_gen6_init_clock_gating(struct intel_display *display) {}
+> +static inline void intel_display_ivb_init_clock_gating(struct intel_display *display) {}
+> +static inline void intel_display_g4x_init_clock_gating(struct intel_display *display) {}
+> +static inline void intel_display_i965gm_init_clock_gating(struct intel_display *display) {}
+>  #endif
+>  
+>  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+> index a8e3eb6f06c8..98c048387a0a 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> @@ -29,11 +29,8 @@
+>  #include <drm/intel/intel_gmd_misc_regs.h>
+>  #include <drm/intel/intel_gmd_interrupt_regs.h>
+>  
+> -#include "display/i9xx_plane_regs.h"
+> -#include "display/intel_display.h"
+>  #include "display/intel_display_clock_gating.h"
+>  #include "display/intel_display_core.h"
+> -#include "display/intel_display_regs.h"
+>  #include "gt/intel_engine_regs.h"
+>  #include "gt/intel_gt.h"
+>  #include "gt/intel_gt_mcr.h"
+> @@ -68,74 +65,9 @@ static void glk_init_clock_gating(struct drm_i915_private *i915)
+>  	intel_display_glk_init_clock_gating(i915->display);
+>  }
+>  
+> -static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+> -{
+> -	struct intel_display *display = dev_priv->display;
+> -	enum pipe pipe;
+> -
+> -	for_each_pipe(display, pipe) {
+> -		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(display, pipe),
+> -				 0, DISP_TRICKLE_FEED_DISABLE);
+> -
+> -		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(display, pipe),
+> -				 0, 0);
+> -		intel_uncore_posting_read(&dev_priv->uncore,
+> -					  DSPSURF(display, pipe));
+> -	}
+> -}
+> -
+>  static void ilk_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> -
+> -	/*
+> -	 * Required for FBC
+> -	 * WaFbcDisableDpfcClockGating:ilk
+> -	 */
+> -	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
+> -		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
+> -		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
+> -
+> -	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
+> -			   MARIUNIT_CLOCK_GATE_DISABLE |
+> -			   SVSMUNIT_CLOCK_GATE_DISABLE);
+> -	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
+> -			   VFMUNIT_CLOCK_GATE_DISABLE);
+> -
+> -	/*
+> -	 * According to the spec the following bits should be set in
+> -	 * order to enable memory self-refresh
+> -	 * The bit 22/21 of 0x42004
+> -	 * The bit 5 of 0x42020
+> -	 * The bit 15 of 0x45000
+> -	 */
+> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
+> -			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
+> -			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
+> -	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
+> -	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
+> -			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
+> -			    DISP_FBC_WM_DIS));
+> -
+> -	/*
+> -	 * Based on the document from hardware guys the following bits
+> -	 * should be set unconditionally in order to enable FBC.
+> -	 * The bit 22 of 0x42000
+> -	 * The bit 22 of 0x42004
+> -	 * The bit 7,8,9 of 0x42020.
+> -	 */
+> -	if (IS_IRONLAKE_M(i915)) {
+> -		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
+> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
+> -	}
+> -
+> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
+> -
+> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+> -
+> -	g4x_disable_trickle_feed(i915);
+> -
+> +	intel_display_ilk_init_clock_gating(i915->display);
+>  	intel_pch_init_clock_gating(i915->display);
+>  }
+>  
+> @@ -152,11 +84,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *i915)
+>  
+>  static void gen6_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
+> -
+> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
+> -
+> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
+> +	intel_display_gen6_init_clock_gating(i915->display);
+>  
+>  	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
+>  			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
+> @@ -191,19 +119,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
+>  	 *
+>  	 * WaFbcAsynchFlipDisableFbcQueue:snb
+>  	 */
+> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
+> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
+> -			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
+> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
+> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
+> -			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
+> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
+> -			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
+> -			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
+> -			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
+> -
+> -	g4x_disable_trickle_feed(i915);
+> -
+>  	intel_pch_init_clock_gating(i915->display);
+>  
+>  	gen6_check_mch_setup(i915);
+> @@ -338,10 +253,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
+>  {
+>  	struct intel_display *display = i915->display;
+>  
+> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
+> -
+> -	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
+> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
+> +	intel_display_ivb_init_clock_gating(display);
+>  
+>  	/* WaDisableBackToBackFlipFix:ivb */
+>  	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
+> @@ -370,7 +282,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
+>  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+>  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
+>  
+> -	g4x_disable_trickle_feed(i915);
+> +	intel_display_disable_trickle_feed(display);
+>  
+>  	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
+>  			 GEN6_MBC_SNPCR_MED);
+> @@ -443,21 +355,12 @@ static void chv_init_clock_gating(struct drm_i915_private *i915)
+>  
+>  static void g4x_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	u32 dspclk_gate;
+> -
+>  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
+>  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
+>  			   GS_UNIT_CLOCK_GATE_DISABLE |
+>  			   CL_UNIT_CLOCK_GATE_DISABLE);
+>  	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
+> -	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
+> -		OVRUNIT_CLOCK_GATE_DISABLE |
+> -		OVCUNIT_CLOCK_GATE_DISABLE;
+> -	if (IS_GM45(i915))
+> -		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
+> -	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
+> -
+> -	g4x_disable_trickle_feed(i915);
+> +	intel_display_g4x_init_clock_gating(i915->display);
+>  }
+>  
+>  static void i965gm_init_clock_gating(struct drm_i915_private *i915)
+> @@ -466,7 +369,7 @@ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
+>  
+>  	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
+>  	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
+> -	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
+> +	intel_display_i965gm_init_clock_gating(i915->display);
+>  	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
+>  	intel_uncore_write16(uncore, DEUC, 0);
+>  	intel_uncore_write(uncore,
+> -- 
+> 2.53.0
 
-*Regarding the logic: The race condition happens specifically during the
-eb_relocate_entry call when a concurrent GEM_CLOSE drops the reference
-count to zero. The i915_gem_object_get is intended to pin the object's
-lifetime during this critical relocation window.*
-
-*I will now rebase this fix against the latest drm-tip / mainline tree,
-remove the 'Reported-by' tag as suggested, and submit a v2 for review.*
-
-*Thank you for your guidance.* *Best regards,*
-
-*Yassine (Toji1)*
-
-Le mar. 24 mars 2026 =C3=A0 10:27, Greg KH <gregkh@linuxfoundation.org> a =
-=C3=A9crit :
-
-> On Tue, Mar 24, 2026 at 09:47:18AM -0400, Yassine Mounir wrote:
-> > A use-after-free (UAF) vulnerability was identified in the i915 driver
-> > within eb_relocate_vma. The issue arises from a race condition where
-> > a concurrent DRM_IOCTL_GEM_CLOSE can drop the GEM object's reference
-> > count to zero while the relocation thread is still processing entries.
-> >
-> > This results in the kernel attempting to access freed memory in
-> > eb_relocate_entry, leading to a display pipeline hang and potential
-> > system instability.
-> >
-> > Fix:
-> > Wrap the relocation phase with i915_gem_object_get() and
-> > i915_gem_object_put() to ensure the object remains valid throughout
-> > the operation, even if user-space requests to close the handle.
-> >
-> > Reported-by: Yassine Mounir (Toji1) <sosohero200@gmail.com>
-> > Signed-off-by: Yassine Mounir <sosohero200@gmail.com>
->
-> No need for a reported-by when you create and sign off on a change.
->
-> > ---
-> >  drivers/gpu/drm/i915/i915_gem_execbuffer.c | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> >
-> > --- a/drivers/gpu/drm/i915/i915_gem_execbuffer.c
-> > +++ b/drivers/gpu/drm/i915/i915_gem_execbuffer.c
->
-> There is no such file name in the current kernel tree, what version did
-> you make this against?
->
->
-> > @@ -1542,7 +1542,11 @@ eb_relocate_vma(struct i915_execbuffer *eb,
-> struct i915_vma *vma)
-> >               if (ret)
-> >                       return ret;
-> >
-> > +             /* Hold a reference to prevent UAF during concurrent
-> GEM_CLOSE */
-> > +             i915_gem_object_get(vma->obj);
-> >               ret =3D eb_relocate_entry(eb, vma, rel);
-> > +             i915_gem_object_put(vma->obj);
-> > +
->
-> What prevents the object from going away right after the put call here?
->
-> thanks,
->
-> greg k-h
->
-
---00000000000033cf8f064dc61bc1
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr"><p><b>Hi Greg,</b></p><p><b>My apologies for the confusion=
-. I realized I was developing against a distribution kernel (6.18.12-kali).=
- I understand now why the file paths do not match the current upstream tree=
-.</b></p><p><b>Regarding the logic: The race condition happens specifically=
- during the <code>eb_relocate_entry</code> call when a concurrent <code>GEM=
-_CLOSE</code> drops the reference count to zero. The <code>i915_gem_object_=
-get</code> is intended to pin the object&#39;s lifetime during this critica=
-l relocation window.</b></p><p><b>I will now rebase this fix against the la=
-test <code>drm-tip</code> / <code>mainline</code> tree, remove the &#39;Rep=
-orted-by&#39; tag as suggested, and submit a v2 for review.</b></p><p><b>Th=
-ank you for your guidance.</b>
-<b>Best regards,</b>=C2=A0</p><p><b>Yassine (Toji1)</b></p></div><br><div c=
-lass=3D"gmail_quote gmail_quote_container"><div dir=3D"ltr" class=3D"gmail_=
-attr">Le=C2=A0mar. 24 mars 2026 =C3=A0=C2=A010:27, Greg KH &lt;<a href=3D"m=
-ailto:gregkh@linuxfoundation.org">gregkh@linuxfoundation.org</a>&gt; a =C3=
-=A9crit=C2=A0:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0=
-px 0px 0px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">O=
-n Tue, Mar 24, 2026 at 09:47:18AM -0400, Yassine Mounir wrote:<br>
-&gt; A use-after-free (UAF) vulnerability was identified in the i915 driver=
- <br>
-&gt; within eb_relocate_vma. The issue arises from a race condition where <=
-br>
-&gt; a concurrent DRM_IOCTL_GEM_CLOSE can drop the GEM object&#39;s referen=
-ce <br>
-&gt; count to zero while the relocation thread is still processing entries.=
-<br>
-&gt; <br>
-&gt; This results in the kernel attempting to access freed memory in <br>
-&gt; eb_relocate_entry, leading to a display pipeline hang and potential <b=
-r>
-&gt; system instability.<br>
-&gt; <br>
-&gt; Fix:<br>
-&gt; Wrap the relocation phase with i915_gem_object_get() and <br>
-&gt; i915_gem_object_put() to ensure the object remains valid throughout <b=
-r>
-&gt; the operation, even if user-space requests to close the handle.<br>
-&gt; <br>
-&gt; Reported-by: Yassine Mounir (Toji1) &lt;<a href=3D"mailto:sosohero200@=
-gmail.com" target=3D"_blank">sosohero200@gmail.com</a>&gt;<br>
-&gt; Signed-off-by: Yassine Mounir &lt;<a href=3D"mailto:sosohero200@gmail.=
-com" target=3D"_blank">sosohero200@gmail.com</a>&gt;<br>
-<br>
-No need for a reported-by when you create and sign off on a change.<br>
-<br>
-&gt; ---<br>
-&gt;=C2=A0 drivers/gpu/drm/i915/i915_gem_execbuffer.c | 4 ++++<br>
-&gt;=C2=A0 1 file changed, 4 insertions(+)<br>
-&gt; <br>
-&gt; --- a/drivers/gpu/drm/i915/i915_gem_execbuffer.c<br>
-&gt; +++ b/drivers/gpu/drm/i915/i915_gem_execbuffer.c<br>
-<br>
-There is no such file name in the current kernel tree, what version did<br>
-you make this against?<br>
-<br>
-<br>
-&gt; @@ -1542,7 +1542,11 @@ eb_relocate_vma(struct i915_execbuffer *eb, str=
-uct i915_vma *vma)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (ret)<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =
-=C2=A0 =C2=A0return ret;<br>
-&gt;=C2=A0 <br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0/* Hold a reference t=
-o prevent UAF during concurrent GEM_CLOSE */<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0i915_gem_object_get(v=
-ma-&gt;obj);<br>
-&gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0ret =3D eb_reloc=
-ate_entry(eb, vma, rel);<br>
-&gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0i915_gem_object_put(v=
-ma-&gt;obj);<br>
-&gt; +<br>
-<br>
-What prevents the object from going away right after the put call here?<br>
-<br>
-thanks,<br>
-<br>
-greg k-h<br>
-</blockquote></div>
-
---00000000000033cf8f064dc61bc1--
+-- 
+Ville Syrjälä
+Intel
