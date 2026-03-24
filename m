@@ -2,64 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EH/wG6zMwmkBmQQAu9opvQ
+	id 6C2lDUvWwmnmmgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 18:41:00 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 19:22:03 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C93C331A2D3
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 18:40:59 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DDDF31AB92
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 19:22:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4344010E605;
-	Tue, 24 Mar 2026 17:40:58 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jr3075Gn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 819BC10E617;
+	Tue, 24 Mar 2026 18:22:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FB3110E604;
- Tue, 24 Mar 2026 17:40:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774374057; x=1805910057;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=u/0gFANZ5dEfzWgxa0UPUJKda+e3XcIJ6yuvzDP764k=;
- b=jr3075Gnb+hNB7bPcFKqwPIadjVhkpVHSVOxwV3YCTzRu1i5ZenKYF+g
- x9boZtjWURKHGW9NPZEyaS550zaXI2esEKM64NEQOWXlXKyCu340+v5Jh
- RLiJ9OuXSrTLy1OOCTRfdEd5gQesZFB+5kwdljnoA8finTWTzmbzTtUic
- HqgimAZH96A+g0Vheg5/mgIgarH13kifneOTCPQwQyCSLvFhD5tczJPry
- E4NbhLkioxZ0QymHlTTyO6sx2e5PobIdsQ95eKUyvCR8qorTeynfWxrQC
- W5Rk49JtceusNR5CEZtyKXfdipJBw9ONWVpv+I9jzlsPDbp33Lf6Yk4Jb w==;
-X-CSE-ConnectionGUID: ljj57ReoQNurY38cgA7E8w==
-X-CSE-MsgGUID: J7TfOu+rSa26BcmxXguGNQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="62951184"
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="62951184"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 10:40:56 -0700
-X-CSE-ConnectionGUID: 0ul2hjvvSQCWITK3SjN1mg==
-X-CSE-MsgGUID: J7VUNphATei40d1FcSZ4Rw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="219550234"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.246.81])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 10:40:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/8] drm/i915: move SKL clock gating init to display
-In-Reply-To: <20260324143420.310800-2-luciano.coelho@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260324143420.310800-1-luciano.coelho@intel.com>
- <20260324143420.310800-2-luciano.coelho@intel.com>
-Date: Tue, 24 Mar 2026 19:40:51 +0200
-Message-ID: <f747c63ee19db048d2fe746170e9c151b0ba1056@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7391410E617;
+ Tue, 24 Mar 2026 18:21:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6916921103316607618=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Add_new_general_DRM_prope?=
+ =?utf-8?q?rty_=22color_format=22_=28rev8=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 24 Mar 2026 18:21:59 -0000
+Message-ID: <177437651945.392270.15793418693075599999@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+In-Reply-To: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,156 +42,320 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: C93C331A2D3
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
+X-Rspamd-Queue-Id: 6DDDF31AB92
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 24 Mar 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> Move the SKL-specific display clock gating programming into a new file
-> inside display.
->
-> This removes dependency from intel_clock_gating.c to the display's
-> intel_pch.h file, so we can remove the include statement.
->
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
->  drivers/gpu/drm/i915/Makefile                 |  1 +
->  .../i915/display/intel_display_clock_gating.c | 19 +++++++++++++++++++
->  .../i915/display/intel_display_clock_gating.h | 17 +++++++++++++++++
->  drivers/gpu/drm/i915/intel_clock_gating.c     |  8 ++------
->  4 files changed, 39 insertions(+), 6 deletions(-)
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.c
->  create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.h
->
-> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-> index be976a90c5a6..89232873d4b7 100644
-> --- a/drivers/gpu/drm/i915/Makefile
-> +++ b/drivers/gpu/drm/i915/Makefile
-> @@ -254,6 +254,7 @@ i915-y += \
->  	display/intel_crtc_state_dump.o \
->  	display/intel_cursor.o \
->  	display/intel_dbuf_bw.o \
-> +	display/intel_display_clock_gating.o \
->  	display/intel_display.o \
->  	display/intel_display_conversion.o \
->  	display/intel_display_driver.o \
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> new file mode 100644
-> index 000000000000..4a94593335e0
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> @@ -0,0 +1,19 @@
-> +// SPDX-License-Identifier: MIT
-> +/*
-> + * Copyright 2026 Intel Corporation
-> + */
-> +
-> +#include <drm/intel/intel_gmd_misc_regs.h>
-> +
-> +#include "intel_de.h"
-> +#include "intel_display_clock_gating.h"
-> +#include "intel_display_regs.h"
-> +
-> +void intel_display_skl_init_clock_gating(struct intel_display *display)
-> +{
-> +	/*
-> +	 * WaFbcTurnOffFbcWatermark:skl
-> +	 * Display WA #0562: skl
-> +	 */
-> +	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> new file mode 100644
-> index 000000000000..c93997417dcb
-> --- /dev/null
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: MIT */
-> +/*
-> + * Copyright 2026 Intel Corporation
-> + */
-> +
-> +#ifndef __INTEL_DISPLAY_CLOCK_GATING_H__
-> +#define __INTEL_DISPLAY_CLOCK_GATING_H__
-> +
-> +struct intel_display;
-> +
-> +#ifdef I915
-> +void intel_display_skl_init_clock_gating(struct intel_display *display);
-> +#else
-> +static inline void intel_display_skl_init_clock_gating(struct intel_display *display) {}
-> +#endif
+--===============6916921103316607618==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-I don't think we should add any of this #ifdef I915 stuff, because the
-next step will be to remove all of them anyway.
+== Series Details ==
 
-Currently they'll only get called for i915, but their existence in xe
-doesn't matter. And eventually they'll be part of the display module.
+Series: Add new general DRM property "color format" (rev8)
+URL   : https://patchwork.freedesktop.org/series/157910/
+State : failure
 
-BR,
-Jani.
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_18203 -> Patchwork_157910v8
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_157910v8 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_157910v8, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Additional (1): bat-adls-6 
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_157910v8:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_module_load@load:
+    - bat-mtlp-9:         [PASS][1] -> [ABORT][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-mtlp-9/igt@i915_module_load@load.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-mtlp-9/igt@i915_module_load@load.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_157910v8 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-adls-6:         NOTRUN -> [SKIP][3] ([i915#4613]) +3 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic@basic:
+    - bat-adls-6:         NOTRUN -> [SKIP][4] ([i915#15656])
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@gem_tiled_pread_basic@basic.html
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-dg2-8/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][9] -> [DMESG-FAIL][10] ([i915#12061]) +1 other test dmesg-fail
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  * igt@intel_hwmon@hwmon-read:
+    - bat-adls-6:         NOTRUN -> [SKIP][11] ([i915#7707]) +1 other test skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@intel_hwmon@hwmon-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-adls-6:         NOTRUN -> [SKIP][12] ([i915#4103]) +1 other test skip
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adls-6:         NOTRUN -> [SKIP][13] ([i915#3555] / [i915#3840])
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-adls-6:         NOTRUN -> [SKIP][14]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - bat-adls-6:         NOTRUN -> [SKIP][15] ([i915#5354])
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - bat-adls-6:         NOTRUN -> [SKIP][16] ([i915#1072] / [i915#9732]) +3 other tests skip
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-adls-6:         NOTRUN -> [SKIP][17] ([i915#3555])
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-adls-6:         NOTRUN -> [SKIP][18] ([i915#3291]) +2 other tests skip
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@prime_vgem@basic-fence-read.html
+
+  
+  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#15656]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656
+  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
+  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354
+  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
+  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
 
 
-> +
-> +#endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index ee2489a2fbe7..454334fef5e7 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -31,9 +31,9 @@
->  
->  #include "display/i9xx_plane_regs.h"
->  #include "display/intel_display.h"
-> +#include "display/intel_display_clock_gating.h"
->  #include "display/intel_display_core.h"
->  #include "display/intel_display_regs.h"
-> -#include "display/intel_pch.h"
->  #include "gt/intel_engine_regs.h"
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_mcr.h"
-> @@ -349,11 +349,7 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
->  	/* WAC6entrylatency:skl */
->  	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
->  
-> -	/*
-> -	 * WaFbcTurnOffFbcWatermark:skl
-> -	 * Display WA #0562: skl
-> -	 */
-> -	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-> +	intel_display_skl_init_clock_gating(i915->display);
->  }
->  
->  static void bdw_init_clock_gating(struct drm_i915_private *i915)
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: CI_DRM_18203 -> Patchwork_157910v8
+
+  CI-20190529: 20190529
+  CI_DRM_18203: 0be244ee3139de3578e9acc56e1b917a4bd162cd @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8822: 8822
+  Patchwork_157910v8: 0be244ee3139de3578e9acc56e1b917a4bd162cd @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/index.html
+
+--===============6916921103316607618==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Add new general DRM property &quot;color format&quot; (rev8)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157910/">https://patchwork.freedesktop.org/series/157910/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18203 -&gt; Patchwork_157910v8</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_157910v8 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_157910v8, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Additional (1): bat-adls-6 <br />
+  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_157910v8:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_module_load@load:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-mtlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-mtlp-9/igt@i915_module_load@load.html">ABORT</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_157910v8 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic@basic:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@gem_tiled_pread_basic@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656">i915#15656</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18203/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@intel_hwmon@hwmon-read:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-mmap-gtt:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v8/bat-adls-6/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291">i915#3291</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18203 -&gt; Patchwork_157910v8</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18203: 0be244ee3139de3578e9acc56e1b917a4bd162cd @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8822: 8822<br />
+  Patchwork_157910v8: 0be244ee3139de3578e9acc56e1b917a4bd162cd @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6916921103316607618==--
