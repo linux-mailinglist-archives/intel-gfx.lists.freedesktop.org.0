@@ -2,48 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHRTMkKfwmm3fQQAu9opvQ
+	id 4KQsJgGhwmm3fQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 15:27:14 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 15:34:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E9330A1F7
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 15:27:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1FEF030A379
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 15:34:41 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7844510E181;
-	Tue, 24 Mar 2026 14:27:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12DE889D8E;
+	Tue, 24 Mar 2026 14:34:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="BnFSBiYh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PlREhI2A";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE16C10E6F0
- for <intel-gfx@lists.freedesktop.org>; Tue, 24 Mar 2026 14:27:10 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 3FBBF433F9;
- Tue, 24 Mar 2026 14:27:10 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id B1E8EC19424;
- Tue, 24 Mar 2026 14:27:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
- s=korg; t=1774362430;
- bh=YntyrAEvKhruUfdcbERV1IHtWYJ3Xd1vlHV8OzTeqh0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=BnFSBiYhpOGEZqQkmPGAlGeUAUYIXevDepVPzm7DjFO9gDMlCEcV/8Pm5uH7Jtjx5
- 5EAVRU4HA58eiWJChDvvHrs1VY/pVr7GNfnSv4A3ZLJ30nq6u8lrFsEALK4Me6EJdb
- z23Wl3Vsn193p4g7gjt3wONb3R+yWJ+hu7QbzBo4=
-Date: Tue, 24 Mar 2026 15:26:47 +0100
-From: Greg KH <gregkh@linuxfoundation.org>
-To: Yassine Mounir <sosohero200@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com,
- security@kernel.org, rodrigo.vivi@intel.com
-Subject: Re: [PATCH] drm/i915: Fix UAF race between relocation and GEM_CLOSE
-Message-ID: <2026032453-depletion-various-b39f@gregkh>
-References: <20260324134718.27331-1-sosohero200@gmail.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E79189CFA;
+ Tue, 24 Mar 2026 14:34:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774362877; x=1805898877;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=nN6hm2558mVgVQxClt1FvCWVtgkPcKbDyCMLAVpcJyI=;
+ b=PlREhI2AQ/qUDMsrwr/XOgtGa3b6ksxrvFrSQiWXlBlIqZER6Xjsnl6d
+ sgqxEuFCZNOAFw7ZZjQJ04J4GCWOaBGd/vF/yIbGki5eOdGJro84hRa3T
+ XZXd+Nc+C4XTYfiJXGxN8KgVITERinX+nxB74nm8ayE1zazQS3YpEBQqE
+ HTU2uhvXwOGVFsrGzbVlzq52VCpb7WFKyLhY3936OOMA4llRhHYwbc/LT
+ opAM6qI0QqTMB1M1gdtkUJcJnbtQDTOB9L1NgJrkZDisdk2Th9UbPbRt1
+ BAnbqBV4HKFZXrwNhMjey1Aekb/omYzEHjMi3KkQXXDPn4PeXJKCcjTno g==;
+X-CSE-ConnectionGUID: G0Fs8/PxQluBvl7rLrbZrg==
+X-CSE-MsgGUID: y77eRjQYQbyXcIlICZ+8Sw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75405124"
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="75405124"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 07:34:35 -0700
+X-CSE-ConnectionGUID: UQTiXrM1RhypLYLCTnZeYg==
+X-CSE-MsgGUID: EEGno4kUTE68MgWypDuhpw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,138,1770624000"; d="scan'208";a="228843186"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO hazy.intel.com)
+ ([10.245.244.170])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Mar 2026 07:34:32 -0700
+From: Luca Coelho <luciano.coelho@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org,
+	jani.nikula@linux.intel.com
+Subject: [PATCH 0/8] drm/i915: move more display dependencies from i915
+Date: Tue, 24 Mar 2026 16:29:49 +0200
+Message-ID: <20260324143420.310800-1-luciano.coelho@intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260324134718.27331-1-sosohero200@gmail.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,87 +71,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [3.19 / 15.00];
-	MID_END_EQ_FROM_USER_PART(4.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:sosohero200@gmail.com,m:joonas.lahtinen@linux.intel.com,m:security@kernel.org,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[gmail.com];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[gregkh@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_NEQ_ENVFROM(0.00)[luciano.coelho@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 52E9330A1F7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 1FEF030A379
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 24, 2026 at 09:47:18AM -0400, Yassine Mounir wrote:
-> A use-after-free (UAF) vulnerability was identified in the i915 driver 
-> within eb_relocate_vma. The issue arises from a race condition where 
-> a concurrent DRM_IOCTL_GEM_CLOSE can drop the GEM object's reference 
-> count to zero while the relocation thread is still processing entries.
-> 
-> This results in the kernel attempting to access freed memory in 
-> eb_relocate_entry, leading to a display pipeline hang and potential 
-> system instability.
-> 
-> Fix:
-> Wrap the relocation phase with i915_gem_object_get() and 
-> i915_gem_object_put() to ensure the object remains valid throughout 
-> the operation, even if user-space requests to close the handle.
-> 
-> Reported-by: Yassine Mounir (Toji1) <sosohero200@gmail.com>
-> Signed-off-by: Yassine Mounir <sosohero200@gmail.com>
+Hi,
 
-No need for a reported-by when you create and sign off on a change.
+This series continues my work of refactoring the clock gating
+initialization, so that i915 doesn't do display-specific stuff.
 
-> ---
->  drivers/gpu/drm/i915/i915_gem_execbuffer.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> --- a/drivers/gpu/drm/i915/i915_gem_execbuffer.c
-> +++ b/drivers/gpu/drm/i915/i915_gem_execbuffer.c
+With this, all register dependencies should be gone.
 
-There is no such file name in the current kernel tree, what version did
-you make this against?
+Please review.
+
+Cheers,
+Luca.
 
 
-> @@ -1542,7 +1542,11 @@ eb_relocate_vma(struct i915_execbuffer *eb, struct i915_vma *vma)
->  		if (ret)
->  			return ret;
->  
-> +		/* Hold a reference to prevent UAF during concurrent GEM_CLOSE */
-> +		i915_gem_object_get(vma->obj);
->  		ret = eb_relocate_entry(eb, vma, rel);
-> +		i915_gem_object_put(vma->obj);
-> +
+Luca Coelho (8):
+  drm/i915: move SKL clock gating init to display
+  drm/i915: move KBL clock gating init to display
+  drm/i915/display: move CFL clock gating init to display
+  drm/i915/display: move BXT clock gating init to display
+  drm/i915/display: move GLK clock gating init to display
+  drm/i915/display: move HSW and BDW clock gating init to display
+  drm/i915/display: move pre-HSW clock gating init to display
+  drm/i915: remove HAS_PCH_NOP() dependency from clock gating
 
-What prevents the object from going away right after the put call here?
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../i915/display/intel_display_clock_gating.c | 258 ++++++++++++++++++
+ .../i915/display/intel_display_clock_gating.h |  43 +++
+ drivers/gpu/drm/i915/intel_clock_gating.c     | 229 ++--------------
+ 4 files changed, 319 insertions(+), 212 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.h
 
-thanks,
+-- 
+2.53.0
 
-greg k-h
