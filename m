@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MO3BG9W1wmlolAQAu9opvQ
+	id YPZuF9m1wmlilAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 17:03:33 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 17:03:37 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B6953189A4
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 17:03:33 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD12C3189B3
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 17:03:36 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9289310E73F;
-	Tue, 24 Mar 2026 16:03:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 535E510E741;
+	Tue, 24 Mar 2026 16:03:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="StE4EcIn";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Juacd6/t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8B3B810E740;
- Tue, 24 Mar 2026 16:03:29 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1774368198; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 27BAD10E758;
+ Tue, 24 Mar 2026 16:03:34 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774368204; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=gTwtCxvnoU48JIdC6RAfXmDRVOc242BPkSJvoEodcCUBWw4glgrgGl+oyjU08QT+M+nbxNCBbv8zLoesY6OxKOhUjC9IZ7W86VGE8he0wtyNSTa7VWWQeqgD8ttLa3q65EsAk+sDOuEdZEizLEDlT9NhwBe3HmqXdPc/nFfJH5w=
+ b=ghbBsPBgFM7BcUp1qFA1QCntA/3UiWTKuxuBl4yUBR+HoxRMMKaJ9qgBIhR/5xck+HFc/SZ3Pwfw+OQKgFQkYHY+uLLPpvf0lHNT9F/v++ihmQ67jRJmjZHhkD+fnE/tBmtGaDMQ+qrs8aR7slPAsJVVA2i7APhuhVP3u+39cWE=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1774368198;
+ s=zohoarc; t=1774368204;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=4QFgyuOG5afpYS03fcWAL5CdSy2aihqhs+a6jM8HpD0=; 
- b=NwqNTCqqXnhZr8eqcJZpW7BIRuDVOFDnDBlOcYwzXfc+mET09l9BG9doFi52akkDWkTOJlLeQPy8azIIzw95ims7svZyuuCdvLBIsreBrai+MqgNtY05XjnLa3U/0O2/XGd5cX942Bu8NAF3csDgIQC/C1BDd6zaWIbCkC2qjNY=
+ bh=+F2WuEiqCUVykRB3XRC/Bxq6Gy1eCIr0ZWhVWJ26imU=; 
+ b=TFeozRhV3GIZRinH9z5qCgNm7mwd/2PcTBZCdrCwNROeTRaUFCGbbrI72ijSbaPRf9Svog0EzakOPfZXK74FnvciNjnz0oxyDmsj4ESLHUSXAXNLleLcTb6yphIafQyEpnYCTG/eQwH3aMLRVMT0ViPf5j6CBDetcbCP4dK92ys=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774368198; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774368204; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=4QFgyuOG5afpYS03fcWAL5CdSy2aihqhs+a6jM8HpD0=;
- b=StE4EcIn7CD7rPQh/GbQUkavoPogMSXjDpXEqARJsSuCu72MYqkjKgwXgcsGtNsf
- eklnwPQ3QH3xO8Rg42Zq76sSjMpTiZv0dLynhWPDCf+V/VCx2WYydWWmXz6cOHKTaiX
- lRviGV1rofCQwrf/PIwedosNITFNqnRNH3Od2H0w=
-Received: by mx.zohomail.com with SMTPS id 1774368195808576.6011120671428;
- Tue, 24 Mar 2026 09:03:15 -0700 (PDT)
+ bh=+F2WuEiqCUVykRB3XRC/Bxq6Gy1eCIr0ZWhVWJ26imU=;
+ b=Juacd6/tndDn8bt3LvvFk+OyXDN52ta7kxhgnEQY19Sm50Z7oGKBgANRwor75Qmm
+ WYWnr0rnYe0n94WPwQdcHya3vUTz5w3EvflfRVnk3nksvw/h9sSZJMTXsNFGBZqsTwZ
+ RGbdXX+cEiW/j1rzJKh79CT7+O7xWfjkBTmbznSk=
+Received: by mx.zohomail.com with SMTPS id 1774368203121560.0965334782762;
+ Tue, 24 Mar 2026 09:03:23 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 24 Mar 2026 17:01:17 +0100
-Subject: [PATCH v11 13/22] drm/rockchip: vop2: Set correct output format
- for RK3576 YUV422
+Date: Tue, 24 Mar 2026 17:01:18 +0100
+Subject: [PATCH v11 14/22] drm/bridge: dw-hdmi-qp: Use common HDMI output
+ bus fmts helper
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260324-color-format-v11-13-605559af4fb4@collabora.com>
+Message-Id: <20260324-color-format-v11-14-605559af4fb4@collabora.com>
 References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
 In-Reply-To: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -78,7 +78,7 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-doc@vger.kernel.org, 
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Andy Yan <andyshrk@163.com>
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 X-Mailer: b4 0.15.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -98,75 +98,56 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[39];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,163.com];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1B6953189A4
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
+X-Rspamd-Queue-Id: CD12C3189B3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-For RK3576 to be able to output YUV422 signals, it first needs to be
-able to pick the right output mode in the display controller to do so.
+Make use of the common drm_bridge_funcs.atomic_get_output_bus_fmts
+helper for HDMI bridge connectors.
 
-The RK3576 hardware specifies different output formats depending on the
-used display protocol.
+This allows dw-hdmi-qp HDMI bridges to participate in recursive bus
+format selection in a meaningful way.
 
-Adjust the written register value based on the SoC and connector, so
-other users of vcstate->output_mode don't have to care about this.
-
-Reviewed-by: Andy Yan <andyshrk@163.com>
+Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 59d15bacf023..e76e00f0a530 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -1702,6 +1702,22 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
- 	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
- 	    !(vp_data->feature & VOP2_VP_FEATURE_OUTPUT_10BIT))
- 		out_mode = ROCKCHIP_OUT_MODE_P888;
-+	else if (vcstate->output_mode == ROCKCHIP_OUT_MODE_YUV422 &&
-+		 vop2->version == VOP_VERSION_RK3576)
-+		switch (vcstate->output_type) {
-+		case DRM_MODE_CONNECTOR_DisplayPort:
-+		case DRM_MODE_CONNECTOR_eDP:
-+			out_mode = ROCKCHIP_OUT_MODE_YUV422_RK3576_DP;
-+			break;
-+		case DRM_MODE_CONNECTOR_HDMIA:
-+			out_mode = ROCKCHIP_OUT_MODE_YUV422_RK3576_HDMI;
-+			break;
-+		default:
-+			drm_err(vop2->drm, "Unknown DRM_MODE_CONNECTOR %d\n",
-+				vcstate->output_type);
-+			vop2_unlock(vop2);
-+			return;
-+		}
- 	else
- 		out_mode = vcstate->output_mode;
+diff --git a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+index d649a1cf07f5..5380aa7d82a8 100644
+--- a/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
++++ b/drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c
+@@ -1192,6 +1192,7 @@ static int dw_hdmi_qp_cec_transmit(struct drm_bridge *bridge, u8 attempts,
+ #endif /* CONFIG_DRM_DW_HDMI_QP_CEC */
  
+ static const struct drm_bridge_funcs dw_hdmi_qp_bridge_funcs = {
++	.atomic_get_output_bus_fmts = drm_atomic_helper_bridge_get_hdmi_output_bus_fmts,
+ 	.atomic_duplicate_state = drm_atomic_helper_bridge_duplicate_state,
+ 	.atomic_destroy_state = drm_atomic_helper_bridge_destroy_state,
+ 	.atomic_reset = drm_atomic_helper_bridge_reset,
 
 -- 
 2.53.0
