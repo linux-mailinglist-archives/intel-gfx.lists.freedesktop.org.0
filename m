@@ -2,47 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +PfkOTWtwmkyggQAu9opvQ
+	id GIx2Eny1wmlilAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 16:26:45 +0100
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 17:02:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A4EE317FBF
-	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 16:26:45 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 02175318897
+	for <lists+intel-gfx@lfdr.de>; Tue, 24 Mar 2026 17:02:01 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C81F910E6E8;
-	Tue, 24 Mar 2026 15:26:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7454510E71C;
+	Tue, 24 Mar 2026 16:02:00 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="jSePwA9c";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A50D10E698;
- Tue, 24 Mar 2026 15:26:42 +0000 (UTC)
-Received: from 87-93-178-238.bb.dnainternet.fi ([87.93.178.238]
- helo=[192.168.101.111])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1w53eH-00000003cNx-3BxI; Tue, 24 Mar 2026 17:26:38 +0200
-Message-ID: <825849b65c16a959a4880bf9e4a476eaf3fd2927.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
- Luca Coelho <luciano.coelho@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- jani.nikula@linux.intel.com
-Date: Tue, 24 Mar 2026 17:26:28 +0200
-In-Reply-To: <acKoAdGa3s1S5Pqm@intel.com>
-References: <20260324143420.310800-1-luciano.coelho@intel.com>
- <20260324143420.310800-8-luciano.coelho@intel.com>
- <acKoAdGa3s1S5Pqm@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-9 
+Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
+ [136.143.188.112])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE79210E71A;
+ Tue, 24 Mar 2026 16:01:58 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1774368099; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=dBUWRWPpThIQ0tjDX5QbslM5s8/kOP6bFERl3sXme2wa6IYW2tm8z1Ke2C77gaKoTT1HkmnP1jDPBN8qsF+B4/spVlqdqHQdW523YFYlP8hEsUSDIdXgwfqqhPCHd6tKSCFRHnLPA2rBwDcbi3hoNRMcZvCyksNL/UlrIHOilZM=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1774368099;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=WlaV4JvFBC8VNEZjv9hjFK5aSiH45GAxPtvOjUEgrJE=; 
+ b=eaiDVmzR//iiWsy5r5pKk6n2XOvUw/Eyhl/r7KQ/CF16WBsMAJwyCEjxfGb8DcYWsch+MNuliVtjpFF1fyuV57Vyz+I9783oFddElhPU/rzIvAqy1BGEhbTZFcVtGRJ66p8ZJ4ts2GbyyXeleT0BhygxvRJIlUj/dxNY6QjMwkQ=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
+ dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774368099; 
+ s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
+ h=From:From:Subject:Subject:Date:Date:Message-Id:Message-Id:MIME-Version:Content-Type:Content-Transfer-Encoding:To:To:Cc:Cc:Reply-To;
+ bh=WlaV4JvFBC8VNEZjv9hjFK5aSiH45GAxPtvOjUEgrJE=;
+ b=jSePwA9ceg81+rG+PNSd3JGt3bs1lQUJX2jm8tbGxKzu3yGb8GYeRwD3eTNmrqqg
+ vuxaTHpRNIIDsP/3YlRI/ezC6yRffsMz9sa5+HN3+vTe0lEu9WJyPP0Hd+8fTTraZY3
+ +9Rn2bu0ippnIr+0xu7gbg10jXNfcvTtdQemu7tM=
+Received: by mx.zohomail.com with SMTPS id 1774368097681129.13325008967377;
+ Tue, 24 Mar 2026 09:01:37 -0700 (PDT)
+From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v11 00/22] Add new general DRM property "color format"
+Date: Tue, 24 Mar 2026 17:01:04 +0100
+Message-Id: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
-Subject: Re: [PATCH 7/8] drm/i915/display: move pre-HSW clock gating init to
- display
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-B4-Tracking: v=1; b=H4sIAAAAAAAC/33RS27CMBAA0Ksgr2vqceIfq96j6sKOJ8USweCEq
+ BXi7h1SWmgUdWWNrXnz8Zn1WBL2bLM6s4Jj6lPeUwDwtGLN1u/fkadIF0wKqUBIy5u8y4W3uXR
+ +4LVrI70EA7ZilHIo2KaPyXt9o7gtuePDtqD/RYQDgEqYyq1rV2kOvPMlnfr1uPPxhfSdD7n4d
+ ZO7m1jweKLGhm+WBd8jddF1adisYiE/HZ5vJ7sW3aZ+yOVzmmmsp5ypewDzt/ux5oKLiNHIECE
+ IMSt/xUb1AMzHHxUBukIrW4gBEJYA/QNoARJmgCbABAveGGiiCEuA+Q8wBGBrnIgejRXNEmDvg
+ AQ9AywBykjZIBgVo1oC3AMg50t01x0o21TBxWCwXQJA3IVKqJkA9AvcE6GtB7DazonL5fIF4o8
+ V7qoCAAA=
+X-Change-ID: 20251028-color-format-49fd202b7183
+To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>, 
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Sandy Huang <hjc@rock-chips.com>, 
+ =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-doc@vger.kernel.org, 
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, 
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>, 
+ Marius Vlad <marius.vlad@collabora.com>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
+ Andy Yan <andyshrk@163.com>
+X-Mailer: b4 0.15.0
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -57,436 +104,369 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.61 / 15.00];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	RCVD_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email];
-	ARC_NA(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[coelho.fi];
-	RCPT_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: 5A4EE317FBF
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[44];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is,oss.qualcomm.com,163.com];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,nv12:email,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 02175318897
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 2026-03-24 at 17:04 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> On Tue, Mar 24, 2026 at 04:29:56PM +0200, Luca Coelho wrote:
-> > Move the remaining pre-HSW display clock gating programming into
-> > display.
-> >=20
-> > This also drops display register includes from intel_clock_gating.c.
-> >=20
-> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > ---
-> >  .../i915/display/intel_display_clock_gating.c | 100 ++++++++++++++++
-> >  .../i915/display/intel_display_clock_gating.h |  12 ++
-> >  drivers/gpu/drm/i915/intel_clock_gating.c     | 109 +-----------------
-> >  3 files changed, 118 insertions(+), 103 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c =
-b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > index 0b2edf6acb79..5809c49dccf0 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > @@ -6,11 +6,13 @@
-> >  #include <drm/intel/intel_gmd_misc_regs.h>
-> > =20
-> >  #include "intel_de.h"
-> > +#include "i9xx_plane_regs.h"
-> >  #include "intel_display.h"
-> >  #include "intel_display_clock_gating.h"
-> >  #include "intel_display_regs.h"
-> > =20
-> >  #include "i915_drv.h"
-> > +#include "i915_reg.h"
-> > =20
-> >  static void intel_display_gen9_init_clock_gating(struct intel_display =
-*display,
-> >  						 bool has_llc)
-> > @@ -156,3 +158,101 @@ void intel_display_hsw_init_clock_gating(struct i=
-ntel_display *display)
-> >  	intel_display_hsw_init_clock_gating_common(display,
-> >  						   HSW_UNMASK_VBL_TO_REGS_IN_SRD);
-> >  }
-> > +
-> > +void intel_display_disable_trickle_feed(struct intel_display *display)
-> > +{
-> > +	enum pipe pipe;
-> > +
-> > +	for_each_pipe(display, pipe) {
-> > +		intel_de_rmw(display, DSPCNTR(display, pipe), 0,
-> > +			     DISP_TRICKLE_FEED_DISABLE);
-> > +
-> > +		intel_de_rmw(display, DSPSURF(display, pipe), 0, 0);
-> > +		intel_de_posting_read(display, DSPSURF(display, pipe));
-> > +	}
-> > +}
-> > +
-> > +void intel_display_ilk_init_clock_gating(struct intel_display *display=
-)
-> > +{
-> > +	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> > +	u32 dspclk_gate =3D ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> > +
-> > +	/*
-> > +	 * Required for FBC
-> > +	 * WaFbcDisableDpfcClockGating:ilk
-> > +	 */
-> > +	dspclk_gate |=3D ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> > +		       ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> > +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> > +
-> > +	intel_de_write(display, PCH_3DCGDIS0,
-> > +		       MARIUNIT_CLOCK_GATE_DISABLE |
-> > +		       SVSMUNIT_CLOCK_GATE_DISABLE);
-> > +	intel_de_write(display, PCH_3DCGDIS1, VFMUNIT_CLOCK_GATE_DISABLE);
->=20
-> Those two aren't display things.
+Hello,
 
-Oops, you're right.  I'll fix it.
+this is a follow-up to
+https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+which in of itself is a follow-up to
+https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/ where
+a new DRM connector property has been added allowing users to
+force a particular color format.
 
---
-Cheers,
-Luca.
+That in turn was actually also a follow-up from Werner Sembach's posted at
+https://lore.kernel.org/dri-devel/20210630151018.330354-1-wse@tuxedocomputers.com/
 
+As the number of cooks have reached critical mass, I'm hoping I'll be
+the last person to touch this particular series.
 
->=20
-> > +
-> > +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> > +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> > +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> > +	dspclk_gate |=3D ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> > +	intel_de_write(display, DISP_ARB_CTL,
-> > +		       intel_de_read(display, DISP_ARB_CTL) |
-> > +		       DISP_FBC_WM_DIS);
-> > +
-> > +	if (IS_IRONLAKE_M(i915)) {
-> > +		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> > +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> > +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> > +	}
-> > +
-> > +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> > +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> > +
-> > +	intel_display_disable_trickle_feed(display);
-> > +}
-> > +
-> > +void intel_display_gen6_init_clock_gating(struct intel_display *displa=
-y)
-> > +{
-> > +	u32 dspclk_gate =3D ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> > +
-> > +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> > +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> > +
-> > +	intel_de_write(display, ILK_DISPLAY_CHICKEN1,
-> > +		       intel_de_read(display, ILK_DISPLAY_CHICKEN1) |
-> > +		       ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> > +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> > +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> > +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> > +	intel_de_write(display, ILK_DSPCLK_GATE_D,
-> > +		       intel_de_read(display, ILK_DSPCLK_GATE_D) |
-> > +		       ILK_DPARBUNIT_CLOCK_GATE_ENABLE |
-> > +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> > +
-> > +	intel_display_disable_trickle_feed(display);
-> > +}
-> > +
-> > +void intel_display_ivb_init_clock_gating(struct intel_display *display=
-)
-> > +{
-> > +	intel_de_write(display, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DIS=
-ABLE);
-> > +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> > +}
-> > +
-> > +void intel_display_g4x_init_clock_gating(struct intel_display *display=
-)
-> > +{
-> > +	struct drm_i915_private *i915 =3D to_i915(display->drm);
-> > +	u32 dspclk_gate =3D VRHUNIT_CLOCK_GATE_DISABLE |
-> > +			  OVRUNIT_CLOCK_GATE_DISABLE |
-> > +			  OVCUNIT_CLOCK_GATE_DISABLE;
-> > +
-> > +	if (IS_GM45(i915))
-> > +		dspclk_gate |=3D DSSUNIT_CLOCK_GATE_DISABLE;
-> > +
-> > +	intel_de_write(display, DSPCLK_GATE_D, dspclk_gate);
-> > +
-> > +	intel_display_disable_trickle_feed(display);
-> > +}
-> > +
-> > +void intel_display_i965gm_init_clock_gating(struct intel_display *disp=
-lay)
-> > +{
-> > +	intel_de_write(display, DSPCLK_GATE_D, 0);
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h =
-b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> > index 0eb240f2f69e..9eebfc4a6ebe 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> > @@ -17,6 +17,12 @@ void intel_display_glk_init_clock_gating(struct inte=
-l_display *display);
-> >  void intel_display_bdw_hsw_init_clock_gating(struct intel_display *dis=
-play);
-> >  void intel_display_bdw_init_clock_gating(struct intel_display *display=
-);
-> >  void intel_display_hsw_init_clock_gating(struct intel_display *display=
-);
-> > +void intel_display_disable_trickle_feed(struct intel_display *display)=
-;
-> > +void intel_display_ilk_init_clock_gating(struct intel_display *display=
-);
-> > +void intel_display_gen6_init_clock_gating(struct intel_display *displa=
-y);
-> > +void intel_display_ivb_init_clock_gating(struct intel_display *display=
-);
-> > +void intel_display_g4x_init_clock_gating(struct intel_display *display=
-);
-> > +void intel_display_i965gm_init_clock_gating(struct intel_display *disp=
-lay);
-> >  #else
-> >  static inline void intel_display_skl_init_clock_gating(struct intel_di=
-splay *display) {}
-> >  static inline void intel_display_kbl_init_clock_gating(struct intel_di=
-splay *display) {}
-> > @@ -26,6 +32,12 @@ static inline void intel_display_glk_init_clock_gati=
-ng(struct intel_display *dis
-> >  static inline void intel_display_bdw_hsw_init_clock_gating(struct inte=
-l_display *display) {}
-> >  static inline void intel_display_bdw_init_clock_gating(struct intel_di=
-splay *display) {}
-> >  static inline void intel_display_hsw_init_clock_gating(struct intel_di=
-splay *display) {}
-> > +static inline void intel_display_disable_trickle_feed(struct intel_dis=
-play *display) {}
-> > +static inline void intel_display_ilk_init_clock_gating(struct intel_di=
-splay *display) {}
-> > +static inline void intel_display_gen6_init_clock_gating(struct intel_d=
-isplay *display) {}
-> > +static inline void intel_display_ivb_init_clock_gating(struct intel_di=
-splay *display) {}
-> > +static inline void intel_display_g4x_init_clock_gating(struct intel_di=
-splay *display) {}
-> > +static inline void intel_display_i965gm_init_clock_gating(struct intel=
-_display *display) {}
-> >  #endif
-> > =20
-> >  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> > diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/dr=
-m/i915/intel_clock_gating.c
-> > index a8e3eb6f06c8..98c048387a0a 100644
-> > --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> > +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> > @@ -29,11 +29,8 @@
-> >  #include <drm/intel/intel_gmd_misc_regs.h>
-> >  #include <drm/intel/intel_gmd_interrupt_regs.h>
-> > =20
-> > -#include "display/i9xx_plane_regs.h"
-> > -#include "display/intel_display.h"
-> >  #include "display/intel_display_clock_gating.h"
-> >  #include "display/intel_display_core.h"
-> > -#include "display/intel_display_regs.h"
-> >  #include "gt/intel_engine_regs.h"
-> >  #include "gt/intel_gt.h"
-> >  #include "gt/intel_gt_mcr.h"
-> > @@ -68,74 +65,9 @@ static void glk_init_clock_gating(struct drm_i915_pr=
-ivate *i915)
-> >  	intel_display_glk_init_clock_gating(i915->display);
-> >  }
-> > =20
-> > -static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv=
-)
-> > -{
-> > -	struct intel_display *display =3D dev_priv->display;
-> > -	enum pipe pipe;
-> > -
-> > -	for_each_pipe(display, pipe) {
-> > -		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(display, pipe),
-> > -				 0, DISP_TRICKLE_FEED_DISABLE);
-> > -
-> > -		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(display, pipe),
-> > -				 0, 0);
-> > -		intel_uncore_posting_read(&dev_priv->uncore,
-> > -					  DSPSURF(display, pipe));
-> > -	}
-> > -}
-> > -
-> >  static void ilk_init_clock_gating(struct drm_i915_private *i915)
-> >  {
-> > -	u32 dspclk_gate =3D ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> > -
-> > -	/*
-> > -	 * Required for FBC
-> > -	 * WaFbcDisableDpfcClockGating:ilk
-> > -	 */
-> > -	dspclk_gate |=3D ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> > -		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> > -		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> > -
-> > -	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
-> > -			   MARIUNIT_CLOCK_GATE_DISABLE |
-> > -			   SVSMUNIT_CLOCK_GATE_DISABLE);
-> > -	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
-> > -			   VFMUNIT_CLOCK_GATE_DISABLE);
-> > -
-> > -	/*
-> > -	 * According to the spec the following bits should be set in
-> > -	 * order to enable memory self-refresh
-> > -	 * The bit 22/21 of 0x42004
-> > -	 * The bit 5 of 0x42020
-> > -	 * The bit 15 of 0x45000
-> > -	 */
-> > -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> > -			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> > -			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
-> > -	dspclk_gate |=3D ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> > -	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
-> > -			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
-> > -			    DISP_FBC_WM_DIS));
-> > -
-> > -	/*
-> > -	 * Based on the document from hardware guys the following bits
-> > -	 * should be set unconditionally in order to enable FBC.
-> > -	 * The bit 22 of 0x42000
-> > -	 * The bit 22 of 0x42004
-> > -	 * The bit 7,8,9 of 0x42020.
-> > -	 */
-> > -	if (IS_IRONLAKE_M(i915)) {
-> > -		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> > -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DI=
-S);
-> > -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_G=
-ATE);
-> > -	}
-> > -
-> > -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> > -
-> > -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_40=
-9_SELECT);
-> > -
-> > -	g4x_disable_trickle_feed(i915);
-> > -
-> > +	intel_display_ilk_init_clock_gating(i915->display);
-> >  	intel_pch_init_clock_gating(i915->display);
-> >  }
-> > =20
-> > @@ -152,11 +84,7 @@ static void gen6_check_mch_setup(struct drm_i915_pr=
-ivate *i915)
-> > =20
-> >  static void gen6_init_clock_gating(struct drm_i915_private *i915)
-> >  {
-> > -	u32 dspclk_gate =3D ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> > -
-> > -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> > -
-> > -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_40=
-9_SELECT);
-> > +	intel_display_gen6_init_clock_gating(i915->display);
-> > =20
-> >  	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
-> >  			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
-> > @@ -191,19 +119,6 @@ static void gen6_init_clock_gating(struct drm_i915=
-_private *i915)
-> >  	 *
-> >  	 * WaFbcAsynchFlipDisableFbcQueue:snb
-> >  	 */
-> > -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
-> > -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
-> > -			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> > -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> > -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> > -			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> > -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
-> > -			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
-> > -			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
-> > -			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> > -
-> > -	g4x_disable_trickle_feed(i915);
-> > -
-> >  	intel_pch_init_clock_gating(i915->display);
-> > =20
-> >  	gen6_check_mch_setup(i915);
-> > @@ -338,10 +253,7 @@ static void ivb_init_clock_gating(struct drm_i915_=
-private *i915)
-> >  {
-> >  	struct intel_display *display =3D i915->display;
-> > =20
-> > -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOC=
-K_GATE_DISABLE);
-> > -
-> > -	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
-> > -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS=
-);
-> > +	intel_display_ivb_init_clock_gating(display);
-> > =20
-> >  	/* WaDisableBackToBackFlipFix:ivb */
-> >  	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
-> > @@ -370,7 +282,7 @@ static void ivb_init_clock_gating(struct drm_i915_p=
-rivate *i915)
-> >  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
-> >  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
-> > =20
-> > -	g4x_disable_trickle_feed(i915);
-> > +	intel_display_disable_trickle_feed(display);
-> > =20
-> >  	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MA=
-SK,
-> >  			 GEN6_MBC_SNPCR_MED);
-> > @@ -443,21 +355,12 @@ static void chv_init_clock_gating(struct drm_i915=
-_private *i915)
-> > =20
-> >  static void g4x_init_clock_gating(struct drm_i915_private *i915)
-> >  {
-> > -	u32 dspclk_gate;
-> > -
-> >  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
-> >  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_=
-DISABLE |
-> >  			   GS_UNIT_CLOCK_GATE_DISABLE |
-> >  			   CL_UNIT_CLOCK_GATE_DISABLE);
-> >  	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
-> > -	dspclk_gate =3D VRHUNIT_CLOCK_GATE_DISABLE |
-> > -		OVRUNIT_CLOCK_GATE_DISABLE |
-> > -		OVCUNIT_CLOCK_GATE_DISABLE;
-> > -	if (IS_GM45(i915))
-> > -		dspclk_gate |=3D DSSUNIT_CLOCK_GATE_DISABLE;
-> > -	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
-> > -
-> > -	g4x_disable_trickle_feed(i915);
-> > +	intel_display_g4x_init_clock_gating(i915->display);
-> >  }
-> > =20
-> >  static void i965gm_init_clock_gating(struct drm_i915_private *i915)
-> > @@ -466,7 +369,7 @@ static void i965gm_init_clock_gating(struct drm_i91=
-5_private *i915)
-> > =20
-> >  	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABL=
-E);
-> >  	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
-> > -	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
-> > +	intel_display_i965gm_init_clock_gating(i915->display);
-> >  	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
-> >  	intel_uncore_write16(uncore, DEUC, 0);
-> >  	intel_uncore_write(uncore,
-> > --=20
-> > 2.53.0
+We have an implementation in Weston at
+https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1825 that
+adds support for this property. This patch series has been tested
+against that MR on i915 (HDMI, DP), amdgpu (HDMI, DP) and on rockchip
+(HDMI).
+
+You can also manually test this with modetest like so, but beware that
+this is a non-atomic invocation, so testing YUV420 like this will result
+in weird outcomes if only some of the modes support YUV420:
+
+  $ modetest -s 115:1920x1080-60@NV12 -w 115:'color format':4
+
+where 115 is the connector ID and '4' is the enum value for a particular
+color format.
+
+General notes on the approach taken by me: instead of silently switching
+to a different format than was explicitly requested, or even worse,
+outputting something to the sink the sink doesn't support, bubble up an
+error to userspace instead. "color format" is a "I want this" type
+property, not a "force this" type property, i.e. the kernel will respect
+the limits imposed by the hardware.
+
+Things I've tested:
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3588
+- HDMI (YCbCr 4:4:4 + YCbCr 4:2:2 (8-bit) + RGB + Auto) on RK3576
+- HDMI + DP (YCbCr 4:4:4, YCbCr 4:2:0, RGB, Auto) on Intel N97 (i915)
+  including DP-MST.
+- HDMI (YCbCr 4:4:4, YCbCr 4:2:2, YCbCr 4:2:0, RGB, Auto) + DP (YCbCr
+  4:4:4, RGB, Auto) as well as DP-MST on an AMD Radeon RX 550 (amdgpu).
+
+Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+---
+Changes in v11:
+- amdgpu: fix property registration on DP-MST
+- i915: fix property registration on DP-MST
+- rebase on drm-tip, which includes Maxime's refactor series that was
+  previously declared a dependency of this series
+- Link to v10: https://lore.kernel.org/r/20260305-color-format-v10-0-a58c68a11868@collabora.com
+
+Changes in v10:
+- Make DRM_OUTPUT_COLOR_FORMAT_COUNT and
+  DRM_CONNECTOR_COLOR_FORMAT_COUNT part of the enum definition (thanks
+  to Maxime)
+- Preemptively avoid the warning that would be generated by the
+  enumification of DRM_OUTPUT_COLOR_FORMAT_COUNT by modifying the
+  problematic switch statement in drm_hdmi_state_helper's
+  sink_supports_format_bpc.
+- drm/bridge: Change HDMI check from checking for the last bridge having
+  a DRM_BRIDGE_OP_HDMI in ops to checking if last_bridge->type is HDMIA.
+  This is not quite the suggestion Dmitry had, but according to the
+  documentation of the drm_bridge.type member, and the
+  display-connector.c code, it should be correct.
+- Combine drm_mode_create_color_format_property and
+  drm_connector_attach_color_format_property into one function named the
+  latter. (thanks to Dmitry Baryshkov)
+- Change author of 'drm: Add new general DRM property "color format"'
+  to myself as it has by now changed quite a bit, and add Andri and
+  Werner as Co-developed-by, as per Andri's suggestion.
+- hdmi-state-helper: Rework hdmi_compute_config to make code flow more
+  obvious, and drop Dmitry's R-b as a consequence (thanks to Maxime)
+- Move dw-hdmi-qp's atomic_get_output_bus_fmts into
+  drm_bridge_helper.c, along with kernel doc string (thanks to Dmitry)
+- Future-proof the aforementioned get_output_bus_fmts use of hweight8 on
+  the supported_formats bitmask with a BUILD_BUG_ON.
+- Add a KUnit test for the HDMI output bus formats helper
+- Link to v9: https://lore.kernel.org/r/20260227-color-format-v9-0-658c3b9db7ef@collabora.com
+
+Changes in v9:
+- Document what the "AUTO" behaviour is in the color format enum (thanks
+  to Maxime)
+- drm/bridge: dw-hdmi-qp: Fix a rebase oopsie that reintroduced some
+  functions that were dropped. (thanks to Cristian)
+- drm/bridge: Shuffle "1:1" in the bridge fmt selection docs to earlier
+  in the sentence. (thanks to Randy Dunlap)
+- i915: Check chosen output format against requested format for dp-mst
+- All color format driver implementations: rebase and rework on top of
+  Maxime's series
+- As part of this rework, rename drm_color_format_enum to
+  drm_connector_color_format
+- drm kunit tests: rework for the new enums. Changes were trivial, so
+  trailers were kept
+- Link to v8: https://lore.kernel.org/r/20260216-color-format-v8-0-5722ce175dd5@collabora.com
+
+Changes in v8:
+- Drop "drm/rockchip: vop2: Fix YUV444 output", as the original problem
+  could not be reproduced anymore, and the justification did not make
+  sense.
+- Remove the 12-bit format from "drm/rockchip: vop2: Recognise 10/12-bit
+  YUV422 as YUV formats".
+- Refactor to keep the original DRM_COLOR_FORMAT bitshifted defines
+  as-is, but introduce a new drm_color_format_enum enum.
+- Adjust conversion functions for the newly refactored enum, ensuring
+  they only return valid enum values, and only convert in directions
+  that open up no error value cans of worms.
+- Rework the property uapi code for the newly refactored enum, since
+  it no longer needs to do any bitshifting or ffs().
+- Rework all the device drivers for the new enum.
+- Rework all the tests for the refactored enum.
+- Rework the hdmi state helper for the new enum, and also make it more
+  explicit about the auto behaviour by not relying on a conversion
+  function to map AUTO to RGB, but do this in the framework itself.
+- rockchip dw_hdmi_qp: Fix the GRF value to check for color >= 0 instead
+  of color > 0, as the latter broke switching back to RGB.
+- Rebase onto a recent drm-tip. This necessitated blindly reworking some
+  of the i915 dp-mst code.
+- Drop the __maybe_unused edid test patch, as I could no longer
+  reproduce the build warnings I added it for. I blame ghosts.
+- drm_bridge tests: remove "destroyed" member from struct
+  drm_bridge_chain_priv and all associated code, as it was not used in
+  any test.
+- Link to v7: https://lore.kernel.org/r/20260121-color-format-v7-0-ef790dae780c@collabora.com
+
+Changes in v7:
+- Fix drm_bridge kunit test build failure caused by rebasing across an
+  API change.
+- Make compilers shut up about unused EDID definitions in the test
+  suites.
+- Empty line checkpatch fixes that b4 prep --check didn't catch.
+- Link to v6: https://lore.kernel.org/r/20260121-color-format-v6-0-7b81a771cd0b@collabora.com
+
+Changes in v6:
+- Checkpatch fixes
+- Add drm_bridge.c kerneldoc fix patch to b4 deps so the kernel docs
+  required for every contribution to the subsystem can be built
+- dw-hdmi-qp core has gained the atomic_get_output_bus_fmts bridge func,
+  which allows it to participate in the drm_bridge chain recursive format
+  selection code properly.
+- The Rockchip dw-hdmi-qp integration now no longer reimplements the
+  color format logic (improperly), but reads the bus format of the first
+  bridge as set by the recursive bridge format selection. If the input
+  format is FIXED, it'll use the output format. Otherwise, the input
+  format is used.
+- In the synopsys drivers, YUV422 uses the same bus format as the non-qp
+  hdmi encoder driver. Probably correcter this way. The Rockchip vop2
+  is_yuv function has been extended to recognise this format as well.
+- KUnit tests for drm_bridge chains are now included, which exercise the
+  chain's recursive bus format selection.
+- On HDMI connectors, the drm_bridge bus format selection will try to target
+  the color format that the HDMI layer came up with. This means the AUTO
+  logic is not duplicated for HDMI connectors.
+- The enum conversion function commit gained a function for converting
+  from hdmi_colorspace to drm_color_format, and its author changed as no
+  original code remains anyway. Marius is still included as a
+  Co-developer.
+- Some tests for the HDMI state helper's mode_valid have been written.
+  They are incomplete as we lack a test EDID for a 420-also mode that
+  would violate the clock constraints on RGB. I hacked one together with
+  a hex editor, but it reports a too high of a clock rate, and there's
+  no EDID editor I could find which supports these extension blocks.
+- The color_format KUnit tests have been more heavily parameterised, the
+  auto case absorbed into other tests, and the comments around them
+  rewritten.
+- Add a few paragraphs of documentation that explain the bridge format
+  selection, and how to make use of it in a display driver.
+- Link to v5: https://lore.kernel.org/r/20251128-color-format-v5-0-63e82f1db1e1@collabora.com
+
+Changes in v5:
+- Rebase onto drm-tip
+- Drop DRM_MODE_COLOR_FORMAT_* as an enum
+- Unify DRM_COLOR_FORMAT_NONE and DRM_COLOR_FORMAT_AUTO, with AUTO being
+  0. This makes conversion and general logic much easier.
+- Adjust the drm_color_format enum to not needlessly renumber the
+  existing defines, as it doesn't need to correspond to how HDMI numbers
+  them.
+- Make the DRM-to-HDMI conversion function static inline __pure, because
+  the assembly it generates is tiny, and the function is pure.
+- Don't accept nothing as the list of supported color formats for
+  registration of the property.
+- Drop the per-connector variants of the color format registration
+  function, as it's not needed.
+- drm_hdmi_state_helper: Fix mode_valid rejecting 420-only modes.
+- drm_hdmi_state_helper: Only fall back to YUV420 with
+  DRM_COLOR_FORMAT_AUTO.
+- drm_hdmi_state_helper: Remove redundant AUTO->RGB condition, as the
+  conversion already does this.
+- Add KUnit tests for hdmi_compute_config.
+- drm/bridge: Refactor bus_format_is_color_fmt and add a few more YUV422
+  formats.
+- Register the color format property in drmm_connector_hdmi_init based
+  on the supported HDMI formats passed to it. This means rockchip
+  dw_hdmi_qp no longer needs to register it.
+- amdgpu: Simplify YUV420 logic
+- amdgpu: Don't try to pick YUV444 on YUV420-only modes
+- i915: Try to make behaviour more or less the same as that of the drm
+  hdmi state helper.
+- rockchip dw_hdmi_qp: Set supported HDMI formats
+- rockchip dw_hdmi_qp: Set the right VO GRF values depending on color
+  format.
+- rockchip dw_hdmi_qp: Act on the color format property in this driver,
+  rather than in VOP2, by setting the bus_format appropriately.
+- rockchip VOP2: Can the BCSH-based implementation. BCSH isn't available
+  on all video ports of the hardware, and the code was extremely
+  suspect. Instead, plug into the existing YUV-to-RGB/RGB-to-YUV code,
+  which can be done now that the HDMI driver sets the bus format.
+- A whole bunch of Rockchip VOP2 fixes.
+- Link to v4: https://lore.kernel.org/r/20251117-color-format-v4-0-0ded72bd1b00@collabora.com
+
+Changes in v4:
+- Rebase onto next-20251117
+- Get rid of HDMI_COLORSPACE_AUTO
+- Split hdmi_compute_config change into separate patch
+- Add missing symbol export for color_format_to_hdmi_colorspace to fix
+  builds in certain configurations
+- Drop "drm: Pass supported color formats straight onto drm_bridge"
+- Make dw-hdmi-qp set the platform data's supported color formats as
+  the bridge's supported HDMI color formats
+- drm_hdmi_state_helper: pass requested color format to
+  hdmi_compute_format_bpc if set.
+- drm_bridge: limit the bus formats to those explicitly requested with
+  the color format property during the atomic bridge check call,
+  specifically in drm_atomic_bridge_chain_select_bus_fmts.
+- i915: Remove INTEL_OUTPUT_FORMAT_AUTO, as automatic format selection
+  does not need to involve the hardware state
+- i915: Deduplicate ntel_output_format_to_drm_color_format code by
+  moving it as a static inline __pure function into a shared header
+- i915: rework logic in HDMI, DP and DP-MST output config functions to
+  remove redundant locals, simplify execution flow, and return an error
+  to userspace if an explicit color_format request can't be satisfied.
+- i915: assign myself as the author and make the others Co-developers,
+  so that they don't get the blame for any of my bugs.
+- amdgpu: refactor fill_stream_properties_from_drm_display_mode to
+  improve readability and ensure that impossible color format requests
+  get bubbled up to userspace as errors
+- amdgpu: don't pick YUV444 over RGB.
+- amdgpu: assign authorship to myself, with others as Co-developers, as
+  logic was modified and the blame should fall on me
+- dw_hdmi_qp-rockchip: set the supported color formats platform data
+  member
+- rockchip: remove drm property registration for rk3066_hdmi and
+  inno_hdmi. None of the platforms that use these use vop2 as the
+  video output processor.
+- Link to v3: https://lore.kernel.org/all/20250911130739.4936-1-marius.vlad@collabora.com/
+
+Changes in v3 by mvlad compared to Andri's v2 series:
+- renamed the property to just 'color format'
+- the property is added dynamically similar to the Colorspace property
+- a key point from previous comments was that drivers should advertise
+  the color formats they support and userspace would query EDID and
+  perform an intersection from those color formats which users can
+  further use. With this patch set each driver that adds this property
+  has such list of hard-coded color formats, but fundamentally the idea
+  is that driver can query the HW and do that on its own. The
+  infrastructure is now in place to allow to do that
+- by default the 'AUTO' color format is set. With this patch series that
+  has been introduced as a fallback to RGB. Drivers could further
+  customize this behavour and could perform additional checks on the sink
+  to pick another suitable color format they'd like for AUTO
+- drm_bridge bridge code has been improved to allow initialization with
+  the same color formats list as the DRM connector property. Similarly, bpc
+  pick-up now takes the color format into consideration when deciding
+  which bpc to choose from
+- The new DRM color format re-uses HDMI_COLORPSACE enum and provides an
+  enum translations between the two to avoid touching all other drivers that
+  use HDMI_COLORPSACE enum. I believe at this point that this allows the
+  least amount of disruption and avoids a massive bike shedding around
+  that part
+- a rockchip implementation has been by my colleague Derek Foreman
+- YUV444 color format has been added in i915
+- address comment about "Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A
+  check" where aconnector might be invalid
+- Link to v2: https://lore.kernel.org/dri-devel/20240115160554.720247-1-andri@yngvason.is/
+
+---
+Nicolas Frattaroli (21):
+      drm/display: hdmi-state-helper: Use default case for unsupported formats
+      drm: Add new general DRM property "color format"
+      drm/bridge: Act on the DRM color format property
+      drm/atomic-helper: Add HDMI bridge output bus formats helper
+      drm/display: hdmi-state-helper: Act on color format DRM property
+      drm/display: hdmi-state-helper: Try subsampling in mode_valid
+      drm/i915: Implement the "color format" DRM property
+      drm/amdgpu: Implement "color format" DRM property
+      drm/rockchip: Add YUV422 output mode constants for VOP2
+      drm/rockchip: vop2: Add RK3576 to the RG swap special case
+      drm/rockchip: vop2: Recognise 10-bit YUV422 as YUV format
+      drm/rockchip: vop2: Set correct output format for RK3576 YUV422
+      drm/bridge: dw-hdmi-qp: Use common HDMI output bus fmts helper
+      drm/rockchip: dw_hdmi_qp: Implement "color format" DRM property
+      drm/rockchip: dw_hdmi_qp: Set supported_formats platdata
+      drm/connector: Register color format property on HDMI connectors
+      drm/tests: hdmi: Add tests for the color_format property
+      drm/tests: hdmi: Add tests for HDMI helper's mode_valid
+      drm/tests: bridge: Add KUnit tests for bridge chain format selection
+      drm/tests: bridge: Add test for HDMI output bus formats helper
+      drm/bridge: Document bridge chain format selection
+
+Werner Sembach (1):
+      drm/amd/display: Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check
+
+ Documentation/gpu/drm-kms-helpers.rst              |   6 +
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  91 +-
+ .../amd/display/amdgpu_dm/amdgpu_dm_mst_types.c    |   9 +
+ drivers/gpu/drm/bridge/synopsys/dw-hdmi-qp.c       |   1 +
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  53 +-
+ drivers/gpu/drm/drm_atomic_helper.c                |  86 ++
+ drivers/gpu/drm/drm_atomic_uapi.c                  |  11 +
+ drivers/gpu/drm/drm_bridge.c                       | 129 ++-
+ drivers/gpu/drm/drm_connector.c                    | 112 +++
+ drivers/gpu/drm/i915/display/intel_connector.c     |  10 +
+ drivers/gpu/drm/i915/display/intel_connector.h     |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c            |  71 +-
+ drivers/gpu/drm/i915/display/intel_dp.h            |   4 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c        |  52 +-
+ drivers/gpu/drm/i915/display/intel_hdmi.c          |  72 +-
+ drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     | 111 ++-
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h        |   4 +
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c       |  21 +-
+ drivers/gpu/drm/tests/drm_bridge_test.c            | 971 +++++++++++++++++++++
+ drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c | 345 ++++++++
+ include/drm/drm_atomic_helper.h                    |   7 +
+ include/drm/drm_connector.h                        | 104 +++
+ 22 files changed, 2214 insertions(+), 57 deletions(-)
+---
+base-commit: 84e58d2aeaa1e5871d5f58a75283589b05415f7e
+change-id: 20251028-color-format-49fd202b7183
+
+Best regards,
+--  
+Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
