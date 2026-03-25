@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mFPhADPqw2lvugQAu9opvQ
+	id EF31KTfqw2lvugQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 14:59:15 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 14:59:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F5C32643F
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 14:59:14 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 79500326446
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 14:59:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44C2F10E778;
-	Wed, 25 Mar 2026 13:59:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC32010E22A;
+	Wed, 25 Mar 2026 13:59:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QLHvnorF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZzwBBzSK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ABD7E10E778;
- Wed, 25 Mar 2026 13:59:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1A5CB10E22A;
+ Wed, 25 Mar 2026 13:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774447151; x=1805983151;
+ t=1774447157; x=1805983157;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=qsKrW65o5eEBCmW46iA45oqhDn30TAkmv43FaNFr3A8=;
- b=QLHvnorFwZoTPLv6LmqMZpSGrG/E5REOoe/Mddk5hk/6ufKLryjiSu9D
- GLBDc3xFzs3GLdAowysBOam6jfEHa6tuYAMn08PybhDn5J/ui/3p/XUpL
- MZ4zTyUIpNzvWBEvAnfB21A9YVS21yT8yJXgYMyGsGAD+hLGNk3TP8OfL
- VwZBMSZWLqIYo+N328joktWd2JreLUt5iwq6wNo/CbYscL2xIP2Qg+K1o
- GyQ4ekoRd4jFWUFbZOTDPvRGk6VupqXmD0mvUrxsdA9kVHjF29KNnx4xJ
- F5TbMgvTw0tIKVIwNJi2tqUiW2dGNDLbRgN2y1xMt7BsKHbqPTbkZ7bdY g==;
-X-CSE-ConnectionGUID: wBiuAR2rSYKnEu0coaV5oQ==
-X-CSE-MsgGUID: NLgK/EgUSB6BCNsTm3EYKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75365868"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75365868"
+ bh=0EyJU1L/T0xb0wU37sM621dxikIDtnyWyAqKC698SuA=;
+ b=ZzwBBzSKBvnQNrSMzjlDuzdRdVBpOtRhdinFaoFGeCE5dyQyK3R6EBu6
+ RtKkBGjtJspufHP6VwAdc8pWn+CQ0mrCckZIZhdRq6PUWJBc6xToRJs+J
+ IJOBabm3Qu1Y1qCf+WVdWw1DL42KsNwzUlD+OLFycQv22DEAF/szqb5wY
+ QSnI8jvsuIMAUrsZyOvZyvPpBu6yYzqepKXxKEpIQPUZgBg2zXAsXmFu9
+ DxkLuGQb4Aa+srp85kAdHsH8lJ4v5DfMclkuh1NVMAjsrEIoj46O2ZXse
+ rORyDYsQsGtbXbj9f0LHCu3KlxI8qhObjfRHkXp/GnU7C9dHju3b31RYZ A==;
+X-CSE-ConnectionGUID: 4qkKrrHdSe2jX4urCQmV5A==
+X-CSE-MsgGUID: B60VI07ESUewnOqqb/Q5AQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75365895"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75365895"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 06:59:10 -0700
-X-CSE-ConnectionGUID: yuT4hmPpQAmdFy46wGjjvQ==
-X-CSE-MsgGUID: EJ7KjJWpSpe0ImU0YO3DdQ==
+ 25 Mar 2026 06:59:14 -0700
+X-CSE-ConnectionGUID: 7IhmWvvBR+CPtPTJ5XUQUg==
+X-CSE-MsgGUID: +PuoSEqiSBysnPQvFalgRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="248197473"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="248197482"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.117])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 06:59:09 -0700
+ 25 Mar 2026 06:59:13 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 4/6] drm/i915: Include the crtc min_voltage_level in the state
- dump
-Date: Wed, 25 Mar 2026 15:58:47 +0200
-Message-ID: <20260325135849.12603-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/6] drm/i915: Eliminate out of place "HBlank" CamelCase
+Date: Wed, 25 Mar 2026 15:58:48 +0200
+Message-ID: <20260325135849.12603-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
 References: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
@@ -101,36 +100,33 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
-X-Rspamd-Queue-Id: C4F5C32643F
+X-Rspamd-Queue-Id: 79500326446
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Include the pipe's min_voltage_level in its state dump, to help
-with debugging.
+Nothing else in the crtc state dump uses CamelCase, so
+don't use it for "HBlank" either.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 63a61caa059e..ec667a3d09d6 100644
+index ec667a3d09d6..e0c292c703c1 100644
 --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
 +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -320,9 +320,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 	drm_printf(&p, "pipe mode: " DRM_MODE_FMT "\n",
- 		   DRM_MODE_ARG(&pipe_config->hw.pipe_mode));
- 	intel_dump_crtc_timings(&p, &pipe_config->hw.pipe_mode);
--	drm_printf(&p, "port clock: %d, pixel rate %d, min cdclk %d\n",
-+	drm_printf(&p, "port clock: %d, pixel rate %d, min cdclk %d, min voltage level %d\n",
- 		   pipe_config->port_clock, pipe_config->pixel_rate,
--		   pipe_config->min_cdclk);
-+		   pipe_config->min_cdclk, pipe_config->min_voltage_level);
+@@ -250,7 +250,7 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
+ 			   str_enabled_disabled(pipe_config->has_sel_update),
+ 			   str_enabled_disabled(pipe_config->has_panel_replay),
+ 			   str_enabled_disabled(pipe_config->enable_psr2_sel_fetch));
+-		drm_printf(&p, "minimum HBlank: %d\n", pipe_config->min_hblank);
++		drm_printf(&p, "minimum hblank: %d\n", pipe_config->min_hblank);
+ 	}
  
- 	drm_printf(&p, "linetime: %d, ips linetime: %d\n",
- 		   pipe_config->linetime, pipe_config->ips_linetime);
+ 	drm_printf(&p, "audio: %i, infoframes: %i, infoframes enabled: 0x%x\n",
 -- 
 2.52.0
 
