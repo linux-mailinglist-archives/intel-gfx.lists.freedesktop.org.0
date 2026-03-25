@@ -2,155 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mATpLnoDxGnOvQQAu9opvQ
+	id CKmxKSMFxGnOvQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 16:47:06 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 16:54:11 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34A59328600
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 16:47:06 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E09EC3287DF
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 16:54:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4FCA10E7BF;
-	Wed, 25 Mar 2026 15:47:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 644C510E7C4;
+	Wed, 25 Mar 2026 15:54:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YKYdVZu1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CNPSGu2/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A0AE710E7BF
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 15:47:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 173B110E7C1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 15:54:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774453622; x=1805989622;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=UZdW44McfIBD/qvsy0IqYNXOW60pR6+m9f8VfGuQnf0=;
- b=YKYdVZu1MHvKWoCmCsYUIOs3lEUkhBOmJqz6ECwURyeIFmmdDAV0wDKa
- V3PConNeh2yo4Mm7y3UD+2YulFVmC3yOw06YLTMi+A6YFaXG/1psPZQEA
- YZ1Tt1RxLecP8aecb5p9drMzhUcCWeEuot7kkwZVko8EBMZaFUYIq3zEJ
- Yp62Z/ZV6dtjAdnP8H7ShFYQTfi83Brt7Pl1HDm8tW6Mo1JT/aYatqEJp
- 5TTctcDBzJMvwF6ACk0kaP/Cf6d9mVyAEUnl5KaseMLYPh+7Pl3o3vlnC
- m1LXhRZNALCuksqpeRLHAhqlMjRLTkLkla0ozfyf7lU3k81t+cegT6evs w==;
-X-CSE-ConnectionGUID: ukrKkNIGQ+GtHCoZYNXcsw==
-X-CSE-MsgGUID: P4CcsQ5CQrSg44VaX1IMyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="92874255"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="92874255"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 08:47:02 -0700
-X-CSE-ConnectionGUID: tEBjbOokTAmsUm39QrhdZA==
-X-CSE-MsgGUID: N+3n45VNTxOcEKG0G1ozog==
+ t=1774454047; x=1805990047;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version:content-transfer-encoding;
+ bh=cM1RsmPgzvl0nn4Q1KO8ZRAg1gfaexkntMW9YZNzCfg=;
+ b=CNPSGu2/096lk70kecBquu1l/oanRRcbORFL8iRqS2wwvDhH0cJECxFc
+ +/0AqSPEFG44K/ho+/Sq83wriudQN0YSJ2xKr4DqN3/yzc8+1H1wTJStB
+ i4IfRPU7S7lb7B5HEt976fEXmHNGNa2qiUSeZO6EHBfeOtuQeiDj1hl/u
+ oKK2tWf7MNduLhzhuYgOtsc8qxM2w8S5Sj7HbSdcfnveieib3+26iCNdG
+ 34XKERCpmFVrk3ga8aWSzWTyH14+oKnLW2nB9M+/gGtXF2j9pIxAl0ljq
+ urbf+tML7nLOR+prSlBdoxxBlQYPXQcPvtZxzaKkQjoW3WwvKCQr1ycqa g==;
+X-CSE-ConnectionGUID: 3eZrZIzVQ3SyHhEjHOl2zw==
+X-CSE-MsgGUID: fsLXTHDyR4OByh/+n+2D3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="86974457"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86974457"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 08:54:06 -0700
+X-CSE-ConnectionGUID: hRy0j1KPSh6jdwmxVQtlKA==
+X-CSE-MsgGUID: o7QhC9TaTmO//5Vl4Ho1Gg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="247748425"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 08:47:01 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 08:47:00 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 08:47:00 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.23) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 08:47:00 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=jkGvyr5daK12z1e8s88YUSTCZ/lH8o9BGQTqQtEno04tihoaGErtKRb6QzdGrNkkVCvIKOt9MgoOBR/cogVmFY7T6v03rKw01iWxKGBIalliMjUVs5wdirRWHMg1FjqkkM+QPI/w/lbZ/bGd8gTlINXvrj5JolpvyBsDg0HZX4tO0d/IUTTizvevcs5OOz0MNdCf381xKa89fSYT7SnXxM2HwcR33WZUanY8ApYBMOq67knjGSAtggfSzWXLmppaimS+XvYtgpkwX7mcSqefvQZO7M7xHxWtFZCRFIsVIw2fcIUvnZXER3gLAzSSfUmjVya/KnIXtz+kgP/wWBTnbg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ph3zNYeWKQoa93uPEThngWbNPvd/xx64RawcGmCrGHI=;
- b=YnNXBUNmZnI8tQmRNLcmJ/eaKGpWkMU/eZP6123Zwb6DIkLRp0r12GmJaB2x80XZQ8/Dq1JW8iz2oPivtXoTU+3LpChtSMBn2yLVaxJFGbG6BYWth9IfUGzlozzChoQi4sX7lEyKS7yB0MvYoK+U0qI39Tdom2XBQ6OvK5w2NNfMD4iq4on/3LZ9qss3vC8znWwhhsSFshJHMzG+4w4xfdNpkhib6FaxGV7lgM8N8o6x+heEGmKX/aquMoRqjj0U06daLJzA6k8GTRWI3fysYl5UB2ETmNmL4n6K5drBRVdFG/Pxz5KMPwP3105vATJ1PeWTiek4/xp/LHD3COrL8g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com (2603:10b6:930:c6::19)
- by LV3PR11MB8602.namprd11.prod.outlook.com (2603:10b6:408:1b3::11)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
- 2026 15:46:48 +0000
-Received: from CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d]) by CYYPR11MB8430.namprd11.prod.outlook.com
- ([fe80::1d86:a34:519a:3b0d%5]) with mapi id 15.20.9769.004; Wed, 25 Mar 2026
- 15:46:47 +0000
-Date: Wed, 25 Mar 2026 11:46:44 -0400
-From: Rodrigo Vivi <rodrigo.vivi@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-CC: Yassine Mounir <sosohero200@gmail.com>, <gregkh@linuxfoundation.org>,
- <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH v2] drm/i915/gem: Fix UAF race in eb_relocate_vma
-Message-ID: <acQDZJFtsEtm183A@intel.com>
-References: <20260324151741.29338-1-sosohero200@gmail.com>
- <177442567303.11552.5320450093167124387@jlahtine-mobl>
- <CANq=4mAEmEQWTUBpDJAgaiw930NUzL6-7EV-Y2WqLGst2YWLiw@mail.gmail.com>
- <177444763778.66558.14341959485998155867@jlahtine-mobl>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <177444763778.66558.14341959485998155867@jlahtine-mobl>
-X-ClientProxiedBy: SJ2PR07CA0013.namprd07.prod.outlook.com
- (2603:10b6:a03:505::15) To CYYPR11MB8430.namprd11.prod.outlook.com
- (2603:10b6:930:c6::19)
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="224976199"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.119])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 08:54:05 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 2/2] drm/i915/uncore: Do GT FIFO checks in early
+ sanitize and forcewake get
+In-Reply-To: <20260323101609.8391-3-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260323101609.8391-1-ville.syrjala@linux.intel.com>
+ <20260323101609.8391-3-ville.syrjala@linux.intel.com>
+Date: Wed, 25 Mar 2026 17:54:01 +0200
+Message-ID: <81728e3a3e05a8b63716ce4c30a0548409965c59@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CYYPR11MB8430:EE_|LV3PR11MB8602:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6006b288-6e5b-4c37-a2a9-08de8a85b93c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|18002099003|22082099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: HOpHvt3KMDAgb1WqSeVrFCtbmCBsV+nsX69kLqNW/bd8CgFH1uCGOcfUEQCV45S5SttXfUF6HgFMhRXJO6DrRTrlzjEb1IcOXqTZ9iGHLLwSpYeLSKQ74HeqqIa0ImowLZ8Yb/i4Cm+WSO+Ra+BzoZ6n3ilmugP4APzY7KW2v2f/6zNPcUPxNLrEDqrVmTgn27F5ERDJVKrAyR3wmTo3WxjTjDgwHZoiJHnxELN3druY4xhh874CyHFQ4OnQEiCpAvm/Rfm6rhpIgCFDyYcWhbNu0N1DWUGFun6zPTmsVQsXS2ike6Xzm5+UwufOVjHx2+WYWhVnJlEXKl8wtOELQwpBbXyTHqJe4imPuMxo0VEjULuW2w9mPDBRJtb7Q5MtNrVR0jg+IjnueTsp/1c16z4z8CgMhNf1vlaTHzIOf8fialHqnIv+G58Lzah+h9Hzan30iTcfbD04mgqeMEeCRTSJ+TZaAgY1WUboGFejtJ1OAvvtm79BgMcMt5a+ZYKvnvbqHqbv7RgTEdkC+MqGu1v1gwX4j1ssnbK5P4SjNp8PbcagpCEDkc1NY2iXhQB/HywsWHBjsSm5q8IjRBeIS5+FFzujhK4zoTJ2wbCd7CPe13SHo/Pub0r+LbKbTDucOHkVGtKJYrwg30sFPER3XbDGn6RWyU4pnOBSYyiqD/mtm84VnlZazisWwjegCMtI
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CYYPR11MB8430.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(18002099003)(22082099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?Y9AgPzboQFxdZo98qpKNd1Mnhq8Y0kZ+8ZEDpMVzFqxdAkdOuQvG9E2HvSL3?=
- =?us-ascii?Q?WS/CO4wE7+UeF3TV4KD66arUJ8dcAfVCGRpMACWGlSmylWWYm5PgKQUFHnQb?=
- =?us-ascii?Q?rf18yVlLM2icCgoHYIMLuVmDyTVzDiNRp0jCQo3BqBS7Tw4BfJ7qrFUBH561?=
- =?us-ascii?Q?dku/5qXe1z3pIUSh8Ph7Lv3hG5JA5rARWBJsigCTEpup525OW1o2X6vpTf1O?=
- =?us-ascii?Q?m0sTMjfCwn9aqh/4rUqVkbISy59/acBGMEH72InTlmw3obMx3IFChKH2Aljp?=
- =?us-ascii?Q?sxiYmcuXz9WU3tQexG9xA2lvAuNcp0gN34h5EZ2mSgJ/fPDMxI861bjfhpi6?=
- =?us-ascii?Q?hoPmSp2tpng6SuzI9mk6Ho5GUdW60dZcpeduAp1oHznoZkUXhoyDVsmZXPip?=
- =?us-ascii?Q?0/Pr91+yIySvtLAGQ+82vnOeTumgvKUJ1txhzbYqIQJ3kRaFgi5u04J825yj?=
- =?us-ascii?Q?rNLA8JML1aYXwU1LRKRihAxdK3gw0UPux4YmMCmQhQpg6iTh0ZM4uvR/wjLL?=
- =?us-ascii?Q?FOp3+AM8NAq6lLEH3L1ICMyJerjTCirefxAi6wUa5sDovWNI1rtKDCHnBXP4?=
- =?us-ascii?Q?SCspYIKl7yxJitFOgf7OJ/Us1gMD1SfXup5Fx2HQFH24RPqtte4o2/wldA6B?=
- =?us-ascii?Q?SCKeYBY3zyiS2h13SXOCt3EOq7p/bC8jbp4j6CzBQnpX9cEDxFZSG5mn8Qc3?=
- =?us-ascii?Q?4IVAY8k3DqODudKDZm85iQ+kv00fwLEmtiUehJdAqEsNI0fI86dnGvvX5iFQ?=
- =?us-ascii?Q?P12h5Ydc0deilgujS9Q5dDfMp8SqKhZNRxAPgUNFYaK6Jo8jVKgfwrHwT2XH?=
- =?us-ascii?Q?ZPEOiWVqtm2M/DPErwWNPcAG5jYynWiepBt3qUBFXJyF9jXe+6FlNlXcRxsV?=
- =?us-ascii?Q?rlW7CfhFwmul7HAwDUFqafXE6tWYBfszb69VPmRvOu1WUbXiq/ROsnQkoKVb?=
- =?us-ascii?Q?xhjQ3i5uwhWqdknSx64l1nIoQnOCyxoGWU7fykJfsM5NwRIwe3sUtifIR/+m?=
- =?us-ascii?Q?WxHHdrTn6Ang7SDMa2LoSiSiilLplYCEGHoargXV/j/w3EXfzG2yYohf3Ii+?=
- =?us-ascii?Q?8uHfVTi15sxkAHeLfQxNgVRVUc4hYECD9r6s9fgytKEymO4DQhHmlt2CmoM/?=
- =?us-ascii?Q?PLqce6NX3XXrSOtZ/KUy9fqqovUJak4Q78oqx/EAOMwEZok1uCH1KSLu7mxf?=
- =?us-ascii?Q?H6ZNpfJ38+InMR8g7pNS9stVawzJrtt/oCdegVI1yZa/8TasVOyAMA26SraH?=
- =?us-ascii?Q?2Vqqy+0qwJS4Vxcmz5fxSlasYNawUa9MW9CxIhqOI9xqY4zyiGyEgzDwI04Q?=
- =?us-ascii?Q?YUwcgEoWsFrs4ELYIa9MgERVe7giSJSjtpCaDUTNIbhOotSE/bpSU6emgkM7?=
- =?us-ascii?Q?V68Grhb8fk93WEhuCkvP2Fl5QU2pG22go+wlBq8GRgddbo7wZ4iePMYwbzrk?=
- =?us-ascii?Q?8dPbwKfX80DNd1Rhha3fm9wtLLM2hbCwUojkT9MUcJaKfSf0EZPnrn8KsJsE?=
- =?us-ascii?Q?8/QXizOF6bAQmSIQBffRXNXDPt34YE0NIFvDayLHjVo29hzcmbMIakwAi8Qj?=
- =?us-ascii?Q?3hRUNMnHd6Gi/fQ2uGmMu0gGlU7vy1h7gQ80YUTr2V8tC46aPhSTlUONn5mj?=
- =?us-ascii?Q?JnEg90m/zjPahEKAx/sSWraFox4iGUGp4jc0YcsWwMh2aXQw+FrG495buCfT?=
- =?us-ascii?Q?PMuomDUn/dQ5lq4R8KWyKTHknWWzbd1iMeS73uvQzsAmtQ2HGfiPccJ21HOr?=
- =?us-ascii?Q?0aNwHNqNwA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: GWN08nloB56wFps3ZpZi32aHqMU0F6ZV5jDCkhpB0I6/iK/aj0yaZcQwAdmAc81p2Ugd/N4RRK+2ccT9nq5Tbnvk6ZEbTzJnvdfKWW1EByKTd9pdVoXRdyyqCgaLZxWPCFna0mXRGSjD2KR/U0rVmTy+5qks762/0k86doaq1qFWsNra6GCzehxd30nS8Wgc/TladSNXqywdElCi4PgI0yaD2titeT+5anOpjzU9plxRL7gCaxVBjjj90ch1hGitof/Kq5QZtT3cYcz0QuY//ChdoqT5UOT6ZezgS5Uju2K/GNAF2BWsCVLP9PqjfwWEgQEJD+v+5Sukil4bCUzbyA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6006b288-6e5b-4c37-a2a9-08de8a85b93c
-X-MS-Exchange-CrossTenant-AuthSource: CYYPR11MB8430.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 15:46:47.8871 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: YZsiAewIyfk11/wKimF/0Gj39oFMcpLMNgW4bUjB7RznP/F80YMBddudnahqEexCUg+5qjEHYKYyyY626Uw6ow==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8602
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,77 +76,215 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[rodrigo.vivi@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:sosohero200@gmail.com,m:gregkh@linuxfoundation.org,s:lists@lfdr.de];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[gmail.com,linuxfoundation.org,lists.freedesktop.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,pages.freedesktop.org:url];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[rodrigo.vivi@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 34A59328600
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E09EC3287DF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 04:07:17PM +0200, Joonas Lahtinen wrote:
-> Quoting Yassine Mounir (2026-03-25 10:20:58)
-> > Hi Joonas,
-> > Thank you for the detailed feedback. I apologize for the double tag and the
-> > direct submission to Greg; I'm still refining my workflow.
-> 
-> Ok, then to level set some expectations:
-> 
-> Have you actually confirmed that the code you have submitted compiles
-> and does fix the bug you reported?
-> 
-> Expectation is that you run the reproducer on top of drm-tip and see a
-> crash where you pick the dmesg/KASAN splat from, then you run drm-tip
-> with the patch you have prepared and there is no crash.
+On Mon, 23 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> We're mixing up the GT FIFO debug checks (overflows and such)
+> with RMbus unclaimed register checks. The two are quite different
+> things as RMbus is only relevant for display registers, and the
+> GT FIFO only relevant for GT registers.
+>
+> Split the GT FIFO debugs out from the unclaimed register logic
+> and just do the checks during forcewake_get() and early init.
+> That is still sufficient to detect if any errors have happened.
+>
+> Any errors would anyway be caused by overflowing the FIFO
+> rather than accessing specific registers, so trying to figure
+> out exactly when the error happened isn't particularly useful.
+> To fix such issues we'd rather have to do something to slow down
+> the rate at which registers are accessed (eg. increase
+> GT_FIFO_NUM_RESERVED_ENTRIES or something).
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Exactly.
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Before any further submission, please let's get back to square 0 here.
+> ---
+>  drivers/gpu/drm/i915/intel_uncore.c | 72 ++++++++++++++++++++---------
+>  1 file changed, 50 insertions(+), 22 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/intel_uncore.c b/drivers/gpu/drm/i915/i=
+ntel_uncore.c
+> index 5b698d4d7a7f..170e83a8c9fc 100644
+> --- a/drivers/gpu/drm/i915/intel_uncore.c
+> +++ b/drivers/gpu/drm/i915/intel_uncore.c
+> @@ -399,6 +399,35 @@ static void fw_domains_get_with_thread_status(struct=
+ intel_uncore *uncore,
+>  	__gen6_gt_wait_for_thread_c0(uncore);
+>  }
+>=20=20
+> +static void
+> +gen6_check_for_fifo_debug(struct intel_uncore *uncore)
+> +{
+> +	u32 fifodbg;
+> +
+> +	fifodbg =3D __raw_uncore_read32(uncore, GTFIFODBG);
+> +
+> +	if (unlikely(fifodbg)) {
+> +		drm_dbg(&uncore->i915->drm, "GTFIFODBG =3D 0x08%x\n", fifodbg);
+> +		__raw_uncore_write32(uncore, GTFIFODBG, fifodbg);
+> +	}
+> +}
+> +
+> +static void
+> +fw_domains_get_normal_fifo(struct intel_uncore *uncore,
+> +			   enum forcewake_domains fw_domains)
+> +{
+> +	gen6_check_for_fifo_debug(uncore);
+> +	fw_domains_get_normal(uncore, fw_domains);
+> +}
+> +
+> +static void
+> +fw_domains_get_with_thread_status_fifo(struct intel_uncore *uncore,
+> +				       enum forcewake_domains fw_domains)
+> +{
+> +	gen6_check_for_fifo_debug(uncore);
+> +	fw_domains_get_with_thread_status(uncore, fw_domains);
+> +}
+> +
+>  static inline u32 fifo_free_entries(struct intel_uncore *uncore)
+>  {
+>  	u32 count =3D __raw_uncore_read32(uncore, GTFIFOCTL);
+> @@ -561,21 +590,6 @@ vlv_check_for_unclaimed_mmio(struct intel_uncore *un=
+core)
+>  	return true;
+>  }
+>=20=20
+> -static bool
+> -gen6_check_for_fifo_debug(struct intel_uncore *uncore)
+> -{
+> -	u32 fifodbg;
+> -
+> -	fifodbg =3D __raw_uncore_read32(uncore, GTFIFODBG);
+> -
+> -	if (unlikely(fifodbg)) {
+> -		drm_dbg(&uncore->i915->drm, "GTFIFODBG =3D 0x08%x\n", fifodbg);
+> -		__raw_uncore_write32(uncore, GTFIFODBG, fifodbg);
+> -	}
+> -
+> -	return fifodbg;
+> -}
+> -
+>  static bool
+>  check_for_unclaimed_mmio(struct intel_uncore *uncore)
+>  {
+> @@ -592,9 +606,6 @@ check_for_unclaimed_mmio(struct intel_uncore *uncore)
+>  	if (intel_uncore_has_dbg_unclaimed(uncore))
+>  		ret |=3D vlv_check_for_unclaimed_mmio(uncore);
+>=20=20
+> -	if (intel_uncore_has_fifo(uncore))
+> -		ret |=3D gen6_check_for_fifo_debug(uncore);
+> -
+>  	return ret;
+>  }
+>=20=20
+> @@ -611,6 +622,9 @@ static void forcewake_early_sanitize(struct intel_unc=
+ore *uncore,
+>  				     GT_FIFO_CTL_RC6_POLICY_STALL);
+>  	}
+>=20=20
+> +	if (intel_uncore_has_fifo(uncore))
+> +		gen6_check_for_fifo_debug(uncore);
+> +
+>  	iosf_mbi_punit_acquire();
+>  	intel_uncore_forcewake_reset(uncore);
+>  	if (restore_forcewake) {
+> @@ -2155,6 +2169,14 @@ static const struct intel_uncore_fw_get uncore_get=
+_thread_status =3D {
+>  	.force_wake_get =3D fw_domains_get_with_thread_status
+>  };
+>=20=20
+> +static const struct intel_uncore_fw_get uncore_get_normal_fifo =3D {
+> +	.force_wake_get =3D fw_domains_get_normal_fifo,
+> +};
+> +
+> +static const struct intel_uncore_fw_get uncore_get_thread_status_fifo =
+=3D {
+> +	.force_wake_get =3D fw_domains_get_with_thread_status_fifo
+> +};
+> +
+>  static int intel_uncore_fw_domains_init(struct intel_uncore *uncore)
+>  {
+>  	struct drm_i915_private *i915 =3D uncore->i915;
+> @@ -2218,13 +2240,19 @@ static int intel_uncore_fw_domains_init(struct in=
+tel_uncore *uncore)
+>  		fw_domain_init(uncore, FW_DOMAIN_ID_MEDIA,
+>  			       FORCEWAKE_MEDIA_GEN9, FORCEWAKE_ACK_MEDIA_GEN9);
+>  	} else if (IS_VALLEYVIEW(i915) || IS_CHERRYVIEW(i915)) {
+> -		uncore->fw_get_funcs =3D &uncore_get_normal;
+> +		if (intel_uncore_has_fifo(uncore))
+> +			uncore->fw_get_funcs =3D &uncore_get_normal_fifo;
+> +		else
+> +			uncore->fw_get_funcs =3D &uncore_get_normal;
+>  		fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
+>  			       FORCEWAKE_VLV, FORCEWAKE_ACK_VLV);
+>  		fw_domain_init(uncore, FW_DOMAIN_ID_MEDIA,
+>  			       FORCEWAKE_MEDIA_VLV, FORCEWAKE_ACK_MEDIA_VLV);
+>  	} else if (IS_HASWELL(i915) || IS_BROADWELL(i915)) {
+> -		uncore->fw_get_funcs =3D &uncore_get_thread_status;
+> +		if (intel_uncore_has_fifo(uncore))
+> +			uncore->fw_get_funcs =3D &uncore_get_thread_status_fifo;
+> +		else
+> +			uncore->fw_get_funcs =3D &uncore_get_thread_status;
+>  		fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
+>  			       FORCEWAKE_MT, FORCEWAKE_ACK_HSW);
+>  	} else if (IS_IVYBRIDGE(i915)) {
+> @@ -2239,7 +2267,7 @@ static int intel_uncore_fw_domains_init(struct inte=
+l_uncore *uncore)
+>  		 * (correctly) interpreted by the test below as MT
+>  		 * forcewake being disabled.
+>  		 */
+> -		uncore->fw_get_funcs =3D &uncore_get_thread_status;
+> +		uncore->fw_get_funcs =3D &uncore_get_thread_status_fifo;
+>=20=20
+>  		/* We need to init first for ECOBUS access and then
+>  		 * determine later if we want to reinit, in case of MT access is
+> @@ -2270,7 +2298,7 @@ static int intel_uncore_fw_domains_init(struct inte=
+l_uncore *uncore)
+>  				       FORCEWAKE, FORCEWAKE_ACK);
+>  		}
+>  	} else if (GRAPHICS_VER(i915) =3D=3D 6) {
+> -		uncore->fw_get_funcs =3D &uncore_get_thread_status;
+> +		uncore->fw_get_funcs =3D &uncore_get_thread_status_fifo;
+>  		fw_domain_init(uncore, FW_DOMAIN_ID_RENDER,
+>  			       FORCEWAKE, FORCEWAKE_ACK);
+>  	}
 
-0. Please file a bug to our gilab/issues:
-https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
-
-Do that against the drm-tip branch and provide all the log information
-from your experiments.
-
-1. If you have a proposed patch, also please confirm that it actually fix
-the issues that you are solving.
-
-2. Whenever using AI to help you with the code please ensure you comply
-with this:
-
-Documentation/process/generated-content.rst
-
-Thanks,
-Rodrigo.
-
-> 
-> Regards, Joonas
+--=20
+Jani Nikula, Intel
