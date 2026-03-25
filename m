@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ALmiDfZrw2k7qwQAu9opvQ
+	id EL2TDfZrw2kqqwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 06:00:38 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4F6B31FCBF
+	by mail.lfdr.de (Postfix) with ESMTPS id C032031FCBE
 	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 06:00:37 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 46DCE10E792;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4034510E791;
 	Wed, 25 Mar 2026 05:00:36 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mpwa8mcP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OYKENF5P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4070410E787;
- Wed, 25 Mar 2026 05:00:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D774E10E792;
+ Wed, 25 Mar 2026 05:00:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774414826; x=1805950826;
+ t=1774414829; x=1805950829;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UNnXKbh/lejFgfVwjlv2D09iHs+48NOnF6YmiItj6O4=;
- b=Mpwa8mcPfP4agyt6njQ+9mGJffaNYL4dEzXG96OsSL376LZw5UknQQgb
- rBccx9Gc2KVN8FTemBQbTJInfzYEKw9hLNDYrLdT7s6gNjsIaEYefYOJ+
- m9TxPr+6kY6eRO6qOmBZ++VEBwgvE7qmzv/21lJJZUGjm+nn0huEHtDBZ
- Q2uRg4IwlzzIIQPCsdNIncaYTGCUkKBthWI0oK28ChhTOYh5eiheejDxX
- AWSZbGrxLo8z8nENBbiHCAhLbyuuLWgjqi/FuOTxKafdfGQujkNG3mBZE
- cBIx30d83LMFEymbzpv5hztzZeP4LnEQj470abI5Sgf2mnYbzqDLgxKuR Q==;
-X-CSE-ConnectionGUID: Usp55/rATaqQKcfs9iKIRQ==
-X-CSE-MsgGUID: sEkLhODVTgWUtaquDckqew==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="86922374"
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="86922374"
+ bh=KUfQs9kvSy1oXR4eO3vHjfEUBRMl6oWn9oltAjZxyL4=;
+ b=OYKENF5P2l2r48HFxffFlNKUwfJfNHTeg64Huq0ilj26yIHENB4uEsja
+ JU5fsvermW2O8rOYhM/pnCIoSSpbTczcN+smBkJCIWzP7VaPdQftctXUi
+ HhceodAsR9rEzDvU51Gt3wwcHFZolxcPAhe2GhJT02rZ8rQMy4EqqhQWS
+ 3MCBqt9tAYC8c3Vyi8mM4kwKkjmxaMr3CQsou8AuLoiDcjw8ixlkOiseN
+ Qbs2Vn71RX8inyzBjfSaVS1AJPct5kWqUFiC30xSNmifFerkFgrUmt8gA
+ Z132hNXt/ANFUw6FG16/910CngamyI1AQLGtPiOKyAkNDv8Jr4Y+AoLpY A==;
+X-CSE-ConnectionGUID: 6VwxGQjJSl6fnz2bvLyhug==
+X-CSE-MsgGUID: f4DiYYkjQIasRB0IaXkVSg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="86922384"
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="86922384"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Mar 2026 22:00:26 -0700
-X-CSE-ConnectionGUID: LJlr7hx9S6ShH7L8ofXRCg==
-X-CSE-MsgGUID: uA5o0hfURKqYcXiuSt97BA==
+ 24 Mar 2026 22:00:28 -0700
+X-CSE-ConnectionGUID: 5uPk3B91Spqt99+DJr46+A==
+X-CSE-MsgGUID: ewtMLLMYSYeEmKnRXOfPEA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="224580923"
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="224580930"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa008.jf.intel.com with ESMTP; 24 Mar 2026 22:00:24 -0700
+ by orviesa008.jf.intel.com with ESMTP; 24 Mar 2026 22:00:26 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
  chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 23/26] drm/i915/writeback: Initialize writeback encoder.
-Date: Wed, 25 Mar 2026 10:29:13 +0530
-Message-Id: <20260325045916.984243-24-suraj.kandpal@intel.com>
+Subject: [PATCH v2 24/26] drm/i915/writeback: Define the disable sequence for
+ writeback
+Date: Wed, 25 Mar 2026 10:29:14 +0530
+Message-Id: <20260325045916.984243-25-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260325045916.984243-1-suraj.kandpal@intel.com>
 References: <20260325045916.984243-1-suraj.kandpal@intel.com>
@@ -97,33 +98,67 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: C4F6B31FCBF
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: C032031FCBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Call the init function to initialize the writeback encoder
-only for ADLP.
+Define the disable sequence for a writeback encoder. We only disable
+the encoder if no writeback job is pending, if it is then we just
+need to disable the wd function so that values can be updated
+accordingly.
 
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 +++
- 1 file changed, 3 insertions(+)
+ .../gpu/drm/i915/display/intel_writeback.c    | 28 +++++++++++++++++++
+ 1 file changed, 28 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index d0fb827d9ae0..6aa74d29d372 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -8055,6 +8055,9 @@ void intel_setup_outputs(struct intel_display *display)
- 		intel_dvo_init(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
+index 213f5e87ebe2..612721d7d978 100644
+--- a/drivers/gpu/drm/i915/display/intel_writeback.c
++++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+@@ -558,6 +558,33 @@ void intel_writeback_isr_handler(struct intel_display *display)
  	}
+ }
  
-+	if (DISPLAY_VER(display) == 13)
-+		intel_writeback_init(display);
++static void
++intel_writeback_disable_encoder(struct intel_atomic_state *state,
++				struct intel_encoder *encoder,
++				const struct intel_crtc_state *crtc_state,
++				const struct drm_connector_state *conn_state)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	struct intel_writeback_connector *wb_conn =
++		enc_to_intel_writeback_connector(encoder);
++	struct intel_crtc *pipe_crtc;
++	int i = 0;
 +
- 	for_each_intel_encoder(display->drm, encoder) {
- 		encoder->base.possible_crtcs =
- 			intel_encoder_possible_crtcs(encoder);
++	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, crtc_state, i) {
++		const struct intel_crtc_state *old_pipe_crtc_state =
++			intel_atomic_get_old_crtc_state(state, pipe_crtc);
++
++		intel_crtc_vblank_off(old_pipe_crtc_state);
++	}
++
++	intel_de_rmw(display, TRANSCONF_WD(crtc_state->cpu_transcoder), WD_TRANS_ENABLE,
++		     REG_FIELD_PREP(WD_TRANS_ENABLE, 0));
++	intel_de_rmw(display, WD_TRANS_FUNC_CTL(crtc_state->cpu_transcoder),
++		     TRANS_WD_FUNC_ENABLE,
++		     REG_FIELD_PREP(TRANS_WD_FUNC_ENABLE, 0));
++	wb_conn->frame_num = 1;
++}
++
+ int intel_writeback_init(struct intel_display *display)
+ {
+ 	struct intel_encoder *encoder;
+@@ -586,6 +613,7 @@ int intel_writeback_init(struct intel_display *display)
+ 	encoder->get_hw_state = intel_writeback_get_hw_state;
+ 	encoder->compute_config = intel_writeback_compute_config;
+ 	encoder->enable = intel_writeback_enable_encoder;
++	encoder->disable = intel_writeback_disable_encoder;
+ 
+ 	connector = &writeback_conn->connector;
+ 	ret = intel_writeback_connector_alloc(connector);
 -- 
 2.34.1
 
