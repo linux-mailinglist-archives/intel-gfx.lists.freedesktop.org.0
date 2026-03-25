@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2Ct8OSnUw2lwuQQAu9opvQ
+	id 2ALPFFbUw2lwuQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:25:13 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:25:58 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A9B5324D63
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:25:13 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0CB8A324D90
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:25:57 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A303710E55A;
-	Wed, 25 Mar 2026 12:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D77110E6FB;
+	Wed, 25 Mar 2026 12:25:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QLzPXVd/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xi12pFeK";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2335010E55A;
- Wed, 25 Mar 2026 12:25:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 018B410E6FA;
+ Wed, 25 Mar 2026 12:25:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774441511; x=1805977511;
+ t=1774441555; x=1805977555;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ruNP2xp3L48E0Lv2GyAw1oMecu5FpIKqxkVTFjIXTNE=;
- b=QLzPXVd/cqT4eUfYwfzQQ5W9HeOJ1PltrpS8mzteHewZ6tC1nCU788hq
- Ub7eOrNFXZQLk0KNpGsyA1nSzT1q26AOU4BBDRwvMYHAPyjWiOYUVT6+5
- uqNR46jyECixEJ+U/wLzWI+O51p70QWiWKcEjUXb6tQoqlKNZIZxtMrG1
- Ne2bqbmYZYXMrGNXCX9823KhNWYYj6R4QZT29us0S6j8UbvuSKDjqIUz5
- M6xVc7QNYGhVnSWjHlaXdbxawfrk7lITnkp7Y0VRQFyi6OVSwX1zjKG0k
- wg+Jw5Wsk92VZXmb3IOBC7egk/kKYegLdkpkBv4iJ5OFQfR+VDmugZv/N Q==;
-X-CSE-ConnectionGUID: 4EDqfT5DQ+C/anYqsATdMg==
-X-CSE-MsgGUID: 6JmKn/REQre+DV/g97D/4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75363459"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75363459"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:25:10 -0700
-X-CSE-ConnectionGUID: UtWB6YDBQPWjBexhmG6n7w==
-X-CSE-MsgGUID: h+6LRuEKRDyv87R6K0axsg==
+ bh=k+9nq2U1zhcbKXvQJtI+YDU1nbd7P9XxfzQeLmERsBU=;
+ b=Xi12pFeKyyQRA77SPjlljjFVEppTBfvihdoX2m1+FXR+tGp2S9MUzxqp
+ vs2fIil2Zj3zmvkIAAj/fySmPEPXSeWZGKrNsSwsFWW9DTZ7KwNJRLqoF
+ y9I2UJ+K0mbRYklfSuhzfQnu3zJggTi5hEZbBX+A9GSVs2HztFRUUUuvS
+ GjErHoU0cN7okGNfmvDCHXwRkaSAWnpfmim3cZTdGuKq+IF5ak3/KOeup
+ C1Uw9N1CK1brX0TfQAOyoYM+UvfwHYHm4083iKY1KnHVXsCBslXrw93he
+ C7bVzrGIXFjbIkjhUdE15/nT07niD9iIzLRG3EUHZ+qQ0JtVqkHQ4A0da Q==;
+X-CSE-ConnectionGUID: OHYK8ct1Qi6/R6E4OUHA0Q==
+X-CSE-MsgGUID: TZmE2hhDQ4KcNiRbThQ+Yw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75357499"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75357499"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:25:55 -0700
+X-CSE-ConnectionGUID: vmLM5b6mRgOw8xcaFBxagw==
+X-CSE-MsgGUID: utgCSGWSSNeCmKkBh4XM9Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="248184380"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="220261604"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.117])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:25:07 -0700
-Date: Wed, 25 Mar 2026 14:25:04 +0200
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:25:52 -0700
+Date: Wed, 25 Mar 2026 14:25:49 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
  chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com
-Subject: Re: [PATCH v3 15/26] drm/i915/writeback: Add connector atomic check
-Message-ID: <acPUIGM9Sox4YS77@intel.com>
+Subject: Re: [PATCH v3 16/26] drm/i915/writeback: Add writeback to xe Makefile
+Message-ID: <acPUTVa3Qc47KpQQ@intel.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
- <20260325110744.1096786-16-suraj.kandpal@intel.com>
+ <20260325110744.1096786-17-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260325110744.1096786-16-suraj.kandpal@intel.com>
+In-Reply-To: <20260325110744.1096786-17-suraj.kandpal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -79,9 +79,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.36 / 15.00];
+X-Spamd-Result: default: False [0.31 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
+	R_MIXED_CHARSET(0.63)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
@@ -107,90 +107,33 @@ X-Spamd-Result: default: False [0.36 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 4A9B5324D63
+X-Rspamd-Queue-Id: 0CB8A324D90
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 04:37:33PM +0530, Suraj Kandpal wrote:
-> Add connector helper function for atomic check which sets the
-> mode_changed bit and checks if pixel format of fb is valid or not.
-> 
+On Wed, Mar 25, 2026 at 04:37:34PM +0530, Suraj Kandpal wrote:
+> Add a intel_writeback.c to xe so that it builds for xe.
+>
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_writeback.c    | 49 +++++++++++++++++++
->  1 file changed, 49 insertions(+)
+>  drivers/gpu/drm/xe/Makefile | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
-> index 86b53e4603ae..ba4c162847c8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_writeback.c
-> +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
-> @@ -167,6 +167,54 @@ static void intel_writeback_connector_destroy(struct drm_connector *connector)
->  	kfree(connector);
->  }
->  
-> +static int intel_writeback_check_format(u32 format)
-> +{
-> +	int i;
-> +
-> +	for (i = 0; i < ARRAY_SIZE(writeback_formats); i++) {
-> +		if (writeback_formats[i] == format)
-> +			return 0;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int intel_writeback_atomic_check(struct drm_connector *connector,
-> +					struct drm_atomic_state *state)
-> +{
-> +	struct drm_connector_state *conn_state =
-> +		drm_atomic_get_new_connector_state(state, connector);
-> +	struct drm_crtc_state *crtc_state;
-> +	struct drm_framebuffer *fb;
-> +	int ret;
-> +
-> +	/* We return 0 since this is called while disabling writeback encoder */
-> +	if (!conn_state->crtc)
-> +		return 0;
-> +
-> +	/* We do not allow a blank commit when using writeback connector */
-> +	if (!conn_state->writeback_job)
-> +		return -EINVAL;
-> +
-> +	fb = conn_state->writeback_job->fb;
-> +	if (!fb)
-> +		return -EINVAL;
-> +
-> +	crtc_state = drm_atomic_get_new_crtc_state(state, conn_state->crtc);
-> +	if (fb->width != crtc_state->mode.hdisplay ||
-> +	    fb->height != crtc_state->mode.vdisplay)
-> +		return -EINVAL;
-> +
-> +	ret = intel_writeback_check_format(fb->format->format);
-> +	if (ret) {
-> +		drm_dbg_kms(connector->dev,
-> +			    "Unsupported drm format sent in writeback job\n");
-> +		return ret;
-> +	}
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 49de1c22a469..2e456070895a 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -327,6 +327,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/intel_vga.o \
+>  	i915-display/intel_vrr.o \
+>  	i915-display/intel_wm.o \
+> +	i915-display/intel_writeback.o \
 
-Pretty much all of this look like something that belongs
-in the core/helpers.
+Another one that should be squashed.
 
-> +
-> +	return 0;
-> +}
-> +
->  static const struct drm_encoder_funcs drm_writeback_encoder_funcs = {
->  	.destroy = drm_encoder_cleanup,
->  };
-> @@ -182,6 +230,7 @@ const struct drm_connector_funcs conn_funcs = {
->  static const struct drm_connector_helper_funcs conn_helper_funcs = {
->  	.get_modes = intel_writeback_get_modes,
->  	.mode_valid = intel_writeback_mode_valid,
-> +	.atomic_check = intel_writeback_atomic_check,
->  	.prepare_writeback_job = intel_writeback_prepare_job,
->  	.cleanup_writeback_job = intel_writeback_cleanup_job,
->  };
+>  	i915-display/skl_prefill.o \
+>  	i915-display/skl_scaler.o \
+>  	i915-display/skl_universal_plane.o \
 > -- 
 > 2.34.1
 
