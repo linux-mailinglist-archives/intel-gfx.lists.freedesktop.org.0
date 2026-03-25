@@ -2,68 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBLxDjKZw2myrwQAu9opvQ
+	id QGL8JGSaw2myrwQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 09:13:38 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 09:18:44 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BFAEB321433
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 09:13:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D94321514
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 09:18:43 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3E4A910E81B;
-	Wed, 25 Mar 2026 08:13:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4FFE10E7F6;
+	Wed, 25 Mar 2026 08:18:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cg2rTR57";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WAPayL62";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B5C510E817;
- Wed, 25 Mar 2026 08:13:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91B1510E7F6;
+ Wed, 25 Mar 2026 08:18:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774426414; x=1805962414;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=SU8A5Ps2qh9d3a9SWduAruOPWhbVXyGVduYXZopaXHQ=;
- b=Cg2rTR57PdmDwCBXiyX70Mduj4G+hGF5AEJbylHa6jt1mBPRcUu5QK2h
- 35oS0o/CeL0gTnAC1PitTyB/pAd9xQcf5dZKxUqpfMhdyHswg+JTPXCQu
- nlyh4KKzo2PQCAGhqzpZjmdTLlj4QkCJ0CDlm6ydUuLegQ8t25tXJFoKX
- pblsbkX7rUr5pznGwwi6XW4h5HabYhn1ea3ihxQzidJ2R+zF3nZ0M1Xik
- TLq1oGN8/UZXbvmETycJUod4sLj3yPRPKR3Oo9z31SheeDGK4GNwUMW+4
- px7hOCAWLvdnPoszKLSoQENbyev/Uih2DHUEWwPL8ISr0m8P27pM6jj4I w==;
-X-CSE-ConnectionGUID: 9ISlhvw7RLaxoRxiOVk4FQ==
-X-CSE-MsgGUID: c1VWCSiRQmKfCFEH4VAoXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="93034071"
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="93034071"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 01:13:34 -0700
-X-CSE-ConnectionGUID: QjJCAj4SSRKlB66G/5fj6A==
-X-CSE-MsgGUID: GutfMSMBQgudSoSUzq2gJg==
+ t=1774426721; x=1805962721;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=/6ZJrL9ty7qjQKpuGa3ThgbQxpvQFKUmuHn3wc9R41E=;
+ b=WAPayL628u7GYybJ9hLAj0iiHsixUDwZuQFPunfmxFd1bdbtcN0vpufM
+ 7x9ryY8cBvOS3EMSEeuia/we/8Ns5tkK9i10oqYRoCKIB91JXc0qMGdkI
+ jnv0z+ZX7xcegsOVza+JF9InzZTm1gjwkqfZmihIPjAXQrKC5zoq3WzTp
+ Tj/502TnI6hdHMwK143tOQ1ifwMLh5A6/Lyq68h6+SAZI/DQZdOZYhrAJ
+ IfP2s93AaISAITCPvBJC9iXHmB/4v+r0/qLoPYp+1GR04tSc53ZuCIvMh
+ AQBMG98szOi1ct9AO+aoyP8wzGjhG6SPo9AtU1cmJlMkz22jg7n/a1KHF Q==;
+X-CSE-ConnectionGUID: vyQsvRmQRYu1nBCBTOWnfg==
+X-CSE-MsgGUID: wjrzR6PJT9yXTFpzRq/80Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75361539"
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="75361539"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 01:18:40 -0700
+X-CSE-ConnectionGUID: AfsOnBSAR8GMZwSNZpe0VQ==
+X-CSE-MsgGUID: z+kx3G4XRu+OgAUJR/CAlA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="221717028"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.246.119])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 01:13:31 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 3/5] drm/{i915,
- xe}: move fbdev fb calls to parent interface
-In-Reply-To: <fa1f7a18-f96e-c347-ac1c-b903c7122e89@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1773840563.git.jani.nikula@intel.com>
- <37ec4a959c375a9099b42d11aa9454c51a96aec2.1773840563.git.jani.nikula@intel.com>
- <fa1f7a18-f96e-c347-ac1c-b903c7122e89@intel.com>
-Date: Wed, 25 Mar 2026 10:13:28 +0200
-Message-ID: <7f26ecaf1f47e36aebff7d8fe7904bb71f1c73a0@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,139,1770624000"; d="scan'208";a="220197344"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 01:18:40 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 25 Mar 2026 01:18:39 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 01:18:39 -0700
+Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.56) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 25 Mar 2026 01:18:38 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Zx3RvYVLOcjyrI1YKifmtq0/bpIyKm4w0GAJFAt4DPTt3O6MpvLZkqbIet5smrEI7UDUBnouxB1/ZnQr+gX4CpLZASFOd5xXRF1OsycASGnjdvfBLEU+rzPNEj5YhutxUn551x5NLF74k5zyBLwi8OxzOArVu6vKf3FjVOb6d+rle14qDNyQH3j//rdCM6hLZTE+XpItYfgmkZAS+7CEGBQODwTVVqQ2Cfp45kFfwG/M+GclXjBRBbfhRS6Rg++JjRcZ70U20hbMzxBvHlOcse0Ehm4CANrFvJS3v7MquHfpDYzvuYEkp6541YisJgqSkPL4dLzyxg3MH15ugSl3GA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9N0TgadhrMsugnqSgnqszuf1irg11BD2ldinJj+Zjjs=;
+ b=G4GhFxOHpTKBJ7HG5EaxBRXqGPxcD2L8WyXJjSp0yfS9L45O5on1YDUoVu+Tyg5B0gX/7iVcPchb6ILjHlu2/u1m3v8Kx+VyrD42/gINTm7uCfIYIn+iGQ6D6Kmwr7W1rFH2e6xyAxenA0jGgmCufyanSnLPiUK1ELOJu7qjiOK+oVpUx4oaJp0mqYlPuQOEo0H/zjh4PKKcugur+ujhOibrUAvSJs0rUvzshKlQ7M5AG1AdjtG66Vr3w6mSTNbzue+kTFRnyikC9JFu6J2U04yLVw8JokK8hODhPVfvrn1qZ5McptabrHYtcKLiZk3j0UnF2N+EoQhNI7utGoZzJw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by SA7PR11MB9594.namprd11.prod.outlook.com (2603:10b6:806:4cf::24) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Wed, 25 Mar
+ 2026 08:18:37 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9723.013; Wed, 25 Mar 2026
+ 08:18:37 +0000
+Message-ID: <b0e2b6bf-ffce-41d4-afaa-b5168d4e098d@intel.com>
+Date: Wed, 25 Mar 2026 13:48:30 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 18/19] drm/i915/dp: Make provision for AS SDP version 1
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <jouni.hogander@intel.com>,
+ <animesh.manna@intel.com>
+References: <20260311113611.3393194-1-ankit.k.nautiyal@intel.com>
+ <20260311113611.3393194-19-ankit.k.nautiyal@intel.com>
+ <abQGT0gcL7SsDCh9@intel.com>
+Content-Language: en-US
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+In-Reply-To: <abQGT0gcL7SsDCh9@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0114.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1a7::17) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SA7PR11MB9594:EE_
+X-MS-Office365-Filtering-Correlation-Id: bbd9f319-c3be-4c2e-2665-08de8a471d62
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: k2WhwTU6JcPvAvtK8YN2b63dD/FRsJSSXGQuJMhYBJr2//4ZOtHvNI4oeblYNSL1pQb7WOZtEVYG4lTaN/KAzOwios2x9udA0CEZGvxHJM86ik/ThLIxU4Z0/L1iyJOzszTbq9LvrGdgR6E+VYj385Lyh0Gt9FqYY9rvT3LPU3g3gjCiyVP6F4nVshf3aJ3td9d62egTsiVqa4MLI0MMfcs94mcV3UyOn7QTQidhQf92cmkxILM8vah4x9SmnZqtPJ+gipZDF4lDaqxiVLwuYe40saBomJVhtJWNQ19kAIR7qbi/rHUYksawf/l46PGsQv5fJs45rYhR0N9AO/Jnn2pssYN9dznxFu/1UFBSVab8a2/fpfE98BPqN5ecUkmHk+bl3IG+OQDiOgls5A4Xq7OxKl5dK3p1HsThBpvjl/IKK8CHQ8b+AWr1e3nM0AXp7DgatjtfnY2xgT3UyYkZeT4TMVd4e1qPyUTAeQED0ZGXZE8y2uTZ/j8xHPve70XdeGWsz+Xabwtity3Oc7cWhKnoNM0VjY5rqX3VdBHOdg3eI3GdpINoJaHOZVjYmo+/x1YvIo0CEKvXadQof/qzn4YpClFC3UgfAMCnEcJd1JJtVSRI4eVCw6LSPECb3M4rXIE25hiTsB2LGZSoNeOEs58LeIUnZDXFNdRCU+mRJqEXA3g5eCGfn3/R5iaVI0O4HmK1laNwwjRB1ZH5NvXTeQytt9NxduhmE6/U8LNvW2Y=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?clYvaFk1UkFWYUVObkdDTlp6TUFOR2E1UXIzWndTbi8zeHp5TUU2NTh3dDVo?=
+ =?utf-8?B?Ky8vS0k2VldaK2p0UnI2S1hUdE93amR1bmRUMnV1dmJnaS9wUTVjTXA5ZmNW?=
+ =?utf-8?B?eTlmT3pmTUUxbUV0WERVNEZuVGtRdThlUVJpcTVXTjNHVlQ3M0NJb0JDeUZS?=
+ =?utf-8?B?U0FDWFhSMzRNK1Y4WmFWWWROdTA3OVFpamVqeDdtM2NUeHFOMFlsZTZaK1V2?=
+ =?utf-8?B?NFhaTVY5Q0ZxbDFUYjNaT0ZzTEVDN01zdngyWnRLY2Vsam05cGsxTDYyTEdo?=
+ =?utf-8?B?OXZ0dFhXUjFINDBQaTYyL09BQnBENlFpV21tVk9mVVdOcldMdkxTRXJKZXZY?=
+ =?utf-8?B?RUJwOFBwLzdOMDBuK2x6ckExdFFZcWZ5amFvMm5lM1R0WUNNVVVmT1VTOHV1?=
+ =?utf-8?B?OEFvayt5VGVWQXJRVHdhaC94VTYwckxwVDFNL1NuaGZnUHpZQWNUVUgvNSt5?=
+ =?utf-8?B?c0RnWjJpWTU2bDFaT2R2WkVXSFpBWjZhQk0rbzZVWmlvZElCdFRNcXVmUEp3?=
+ =?utf-8?B?c08yTjRJMEdUOGd0ejNGclBycXFURFlidm5NeEFlNTR2Q3VLWEd0b3dGK0k5?=
+ =?utf-8?B?ZXBCVkVzdFU3aE01Umg0eTgxRlhvWW1hSTV3U2tnTVRyNjV3L2o5UXRqTTZ4?=
+ =?utf-8?B?Yzl6SnlHUEJ6QnFPc0I4TWhHTUg2VG93M3hReWVMZmNLTjQ0MGFsdEZrTGJ5?=
+ =?utf-8?B?YUhCTTl2VDM2S1cwWCsya3U5aW96bTZRVHhBaHVCZlR3NHNjNUFMZWw3QnRx?=
+ =?utf-8?B?Z21NUytzajRYeXZpdDNLc3dWTEdLUDRpMkFPKzd6cjc3OFI1WnZyUjVGUU1X?=
+ =?utf-8?B?eFI5RUxpdktiMGZ2dzM3S3ZFb3VpZ2UyN0x3V3lTVVVIQ1VFeTcyVTBOK1Zl?=
+ =?utf-8?B?eG1jUXA3WHJmUXBGdmhPQmdVc3Z0UWpNRS84UWZyTFV0V2diNU42Q3M3UkJN?=
+ =?utf-8?B?c2Ird3ZWRFY5VVdkeWxqNXUrbk02V0xtKysxR29NdlJ4VktXTXJqQ042YU5y?=
+ =?utf-8?B?aVZpWjhGQkZRbUxSLzRENEVqakova1p4YmFVUlAyS0xjKzl5RXJ4RDdteHIx?=
+ =?utf-8?B?amhWc1pTK2s0UkhveXRuL0p3KytzYW5KcVN1MkRTMVpDWnVncFlSMlg5QlJI?=
+ =?utf-8?B?UVQzRW15a3pvbkM3Rng2MkpPbUhhbnhqNHRKTnZOaElJMWpReEFoQVphbGpU?=
+ =?utf-8?B?bmdUYVQxRHZTSWw2OWYvSnFpaW5IQWlZUTY0K1lsZG85UmdtS29kZmtZYWhw?=
+ =?utf-8?B?SFhTdkdUWXpTKzA4a1lMTlpCcUtNQk5YTmlHdzRFYmNjRE56RDRYMXQ5QjhI?=
+ =?utf-8?B?K1hwenVrN285SHhKbmF4THBqTzlzZWZoeHlpbUJaOFE1UU8vbDkyT2xtNTVT?=
+ =?utf-8?B?Vkc1R3VnUG5LNXRvQ05XMXNXZEdPRHZBcWtkcVFGNkRHeTR0OHljRk4rdWlr?=
+ =?utf-8?B?RFRNT0R6c2htb2oyVUtWM3hsSEpZaGFmTytaU202bnpSTU5mb2hXRTdMTkZX?=
+ =?utf-8?B?RENXV1h2dndXUkNMNVZqVnRYdzRYNVc3SFUrVnM3Ryt4U1BwdVdkZlJZUXdR?=
+ =?utf-8?B?OGdFcGxxdEZKei84ZGtNd0ZEejkrU1BTTno1LzhpZG9JczE3T3pwK0d4YTlM?=
+ =?utf-8?B?SmwrSnU5WDBrVkNPak5YMHhEK1ZPd0dsblI2QWFGeDE0ejVvak1ILzZVRG1j?=
+ =?utf-8?B?Y1Rrc0hKcHlRMnZDci9FeDE0OHNXVkUvaXpwV1F5V3ErWE1xczV4bmJPSkZB?=
+ =?utf-8?B?dDhjSFA3Rmd3d3lMN3RYZHZJSnZHNG1QUFJZeG5Kamh5d1NKRHkveUlTVUhJ?=
+ =?utf-8?B?LytNRGpqbWhQNWl2MkphUjlPQTA3Q3hZdCt0M0JZaGRjbzRMZzE0b3Z0eEth?=
+ =?utf-8?B?NS9kODFjbnN4RnFjcW5tWXJvdk5wUzlaMzRqSVhFRy9BOGhmbjN2RFNBTlBa?=
+ =?utf-8?B?WHpQSGdjY216TUZ5eng2ZFZwN05lMDZ2N1lvMWRSLytXdC9kR2RyMGJtMS9w?=
+ =?utf-8?B?YmVhNi9IY1pHUzZvV0dxbjZ0SHJnNXdNTWRORUd6ZExYNHBmdU5RdDU0UDdD?=
+ =?utf-8?B?S2VMZ3ZVK1c5QVR3NFI0bjk1NHdUTVo0U1BpVnNENFlkWTdsOWpzaUp5ODA4?=
+ =?utf-8?B?K2JPR3A0RDh2MjhSZ1hwUndIOEdEL1BVUlBlT2ZEV0xRY25JVXFWMVMwekJN?=
+ =?utf-8?B?UUpxWDBJVTVlY3dXN0k5UFZibU9QdUtMZy84czNtUFhOSlVsU1NTZEpuc0Y5?=
+ =?utf-8?B?M0MrNkQ5b2pvcVBGTTJYK2EyMEJuaW5CTkFleHFHMnNtQjJ2cjVQOFVJaTJt?=
+ =?utf-8?B?ZTVFazBURUJvcC9mOGtwa20xd3BOOHIxY0JTZ0lnaWJDbWhGQlozNHU1dEE2?=
+ =?utf-8?Q?xiHP/6QgX/m8DQLo=3D?=
+X-Exchange-RoutingPolicyChecked: m/dxbWO/cUvNijwzX7+vU8Yx1RVKAA6thZ6cCMDQX+5SGFsnB2J9EHBpJXZPg08FS4AeV/yFnLl1nWCUXK/rvnHpWX/Nf+YHE3Pcouva0bcWHJuxzNwyuDPsF4cnZo6QUjdR61phyuOmAfde2Q8K7TW81YmvRTIQ+5hNsg2jDIe/AWav/kT7Ppvy3CHUPCejnuHCHucOm6D+B9HK6rmabHbVa4YE17+aZlGbkh0QaCYAPlPWaM4dhfJpsQR2ENlKXUOduIYl9IZe5aBgLwwRsNLOAWSVTdXX5aTN94GQKlv5AjGVpza5+Kw4DTlluPE8Nqt5SIkU3/dBegU+ciTPOw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: bbd9f319-c3be-4c2e-2665-08de8a471d62
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Mar 2026 08:18:37.6833 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: bt4lxCD3xLv/cfeWzwzvL2A5pZcty+Q21yLs4qMHrsK8ttUvHR0sXZVQYsqxKphltglZUpo63Nfy6w9WPozf2jW6hoeB4YosQyLmZHRM/ok=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA7PR11MB9594
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,981 +177,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: BFAEB321433
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 97D94321514
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 25 Mar 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
-> On Wed, 18 Mar 2026, Jani Nikula wrote:
->> Move the driver specific fbdev fb calls to the display parent
->> interface. Reuse the existing struct intel_display_bo_interface, as this
->> is mostly about gem objects.
+
+On 3/13/2026 6:12 PM, Ville Syrjälä wrote:
+> On Wed, Mar 11, 2026 at 05:06:10PM +0530, Ankit Nautiyal wrote:
+>> Currently we are setting AS SDP version to 2 without checking if the sink
+>> supports it or whether we need to send version 1.
 >>
->> Put everything behind IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) to catch
->> configuration issues at build or link time.
+>> For PR with Link ON, the AS SDP version V1 is used.
+>> When using AS SDP Version 1, AS SDP payload and parity bytes
+>> are all set to zeroes.
 >>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> Add a helper to compute the AS SDP version based on sink support and
+>> feature requirement.
+>>
+>> If AS SDP V2 is supported we use V2, unless Panel Replay with Link On is
+>> enabled, for which we use V1.
+>> If AS SDP V1 is not supported, we always send V1, without the payload.
+>>
+>> Bspec: 75639
+>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 >> ---
->> drivers/gpu/drm/i915/Makefile                 |   3 +-
->> drivers/gpu/drm/i915/display/intel_bo.c       |  27 ++++
->> drivers/gpu/drm/i915/display/intel_bo.h       |   8 ++
->> drivers/gpu/drm/i915/display/intel_fbdev.c    |  14 +--
->> drivers/gpu/drm/i915/display/intel_fbdev_fb.c | 118 ------------------
->> drivers/gpu/drm/i915/display/intel_fbdev_fb.h |  24 ----
->> drivers/gpu/drm/i915/i915_bo.c                | 116 +++++++++++++++++
->> drivers/gpu/drm/i915/i915_bo.h                |   6 +
->> drivers/gpu/drm/i915/i915_initial_plane.c     |   4 +-
->> drivers/gpu/drm/xe/Makefile                   |   1 -
->> drivers/gpu/drm/xe/display/intel_fbdev_fb.c   | 116 -----------------
->> drivers/gpu/drm/xe/display/xe_display_bo.c    | 117 +++++++++++++++++
->> drivers/gpu/drm/xe/display/xe_display_bo.h    |   6 +
->> drivers/gpu/drm/xe/display/xe_initial_plane.c |   4 +-
->> include/drm/intel/display_parent_interface.h  |   7 ++
->> 15 files changed, 299 insertions(+), 272 deletions(-)
->> delete mode 100644 drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> delete mode 100644 drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> delete mode 100644 drivers/gpu/drm/xe/display/intel_fbdev_fb.c
+>>   drivers/gpu/drm/i915/display/intel_dp.c | 24 +++++++++++++++++++++++-
+>>   1 file changed, 23 insertions(+), 1 deletion(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefi=
-le
->> index be976a90c5a6..026614d74cc4 100644
->> --- a/drivers/gpu/drm/i915/Makefile
->> +++ b/drivers/gpu/drm/i915/Makefile
->> @@ -324,8 +324,7 @@ i915-$(CONFIG_ACPI) +=3D \
->> 	display/intel_acpi.o \
->> 	display/intel_opregion.o
->> i915-$(CONFIG_DRM_FBDEV_EMULATION) +=3D \
->> -	display/intel_fbdev.o \
->> -	display/intel_fbdev_fb.o
->> +	display/intel_fbdev.o
->> i915-$(CONFIG_DEBUG_FS) +=3D \
->> 	display/intel_display_debugfs.o \
->> 	display/intel_display_debugfs_params.o \
->> diff --git a/drivers/gpu/drm/i915/display/intel_bo.c b/drivers/gpu/drm/i=
-915/display/intel_bo.c
->> index 3b82d38a0504..8ecdbb7e39f3 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bo.c
->> +++ b/drivers/gpu/drm/i915/display/intel_bo.c
->> @@ -85,3 +85,30 @@ struct drm_gem_object *intel_bo_framebuffer_lookup(st=
-ruct intel_display *display
->> {
->> 	return display->parent->bo->framebuffer_lookup(display->drm, filp, user=
-_mode_cmd);
->> }
+>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+>> index 4d0a7695be5a..6b45894e40e0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> @@ -5109,6 +5109,10 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
+>>   	sdp->sdp_header.HB2 = as_sdp->revision;
+>>   	sdp->sdp_header.HB3 = as_sdp->length;
+>>   
+>> +	/* No Payload Data bytes for Version 1 */
+>> +	if (as_sdp->revision == 0x1)
+>> +		return length;
 >> +
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 strid=
-e)
+>>   	/* Fill AS (Adaptive Sync) SDP Payload */
+>>   	sdp->db[0] = as_sdp->mode;
+>>   	sdp->db[1] = as_sdp->vtotal & 0xFF;
+>> @@ -7330,6 +7334,19 @@ void intel_dp_mst_resume(struct intel_display *display)
+>>   	}
+>>   }
+>>   
+>> +static bool intel_dp_get_as_sdp_revision(struct intel_dp *intel_dp,
+>> +					 struct intel_crtc_state *crtc_state)
 >> +{
->> +	return display->parent->bo->fbdev_pitch_align(stride);
->> +}
->> +
->> +struct drm_gem_object *intel_bo_fbdev_create(struct intel_display *disp=
-lay, int size)
->> +{
->> +	return display->parent->bo->fbdev_create(display->drm, size);
->> +}
->> +
->> +void intel_bo_fbdev_destroy(struct drm_gem_object *obj)
->> +{
->> +	struct intel_display *display =3D to_intel_display(obj->dev);
->> +
->> +	display->parent->bo->fbdev_destroy(obj);
->> +}
->> +
->> +int intel_bo_fbdev_fill_info(struct drm_gem_object *obj, struct fb_info=
- *info,
->> +			     struct i915_vma *vma)
->> +{
->> +	struct intel_display *display =3D to_intel_display(obj->dev);
->> +
->> +	return display->parent->bo->fbdev_fill_info(obj, info, vma);
->> +}
->> +#endif
->> diff --git a/drivers/gpu/drm/i915/display/intel_bo.h b/drivers/gpu/drm/i=
-915/display/intel_bo.h
->> index aec188c706c2..348f7fa66960 100644
->> --- a/drivers/gpu/drm/i915/display/intel_bo.h
->> +++ b/drivers/gpu/drm/i915/display/intel_bo.h
->> @@ -10,6 +10,8 @@ struct drm_file;
->> struct drm_gem_object;
->> struct drm_mode_fb_cmd2;
->> struct drm_scanout_buffer;
->> +struct fb_info;
->> +struct i915_vma;
->> struct intel_display;
->> struct intel_framebuffer;
->> struct seq_file;
->> @@ -31,4 +33,10 @@ struct drm_gem_object *intel_bo_framebuffer_lookup(st=
-ruct intel_display *display
->> 						   struct drm_file *filp,
->> 						   const struct drm_mode_fb_cmd2 *user_mode_cmd);
->>
->> +u32 intel_bo_fbdev_pitch_align(struct intel_display *display, u32 strid=
-e);
->> +struct drm_gem_object *intel_bo_fbdev_create(struct intel_display *disp=
-lay, int size);
->> +void intel_bo_fbdev_destroy(struct drm_gem_object *obj);
->> +int intel_bo_fbdev_fill_info(struct drm_gem_object *obj, struct fb_info=
- *info,
->> +			     struct i915_vma *vma);
->> +
->> #endif /* __INTEL_BO__ */
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/dr=
-m/i915/display/intel_fbdev.c
->> index 6401aaaba199..14ac01c1b3eb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
->> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
->> @@ -54,7 +54,6 @@
->> #include "intel_fb.h"
->> #include "intel_fb_pin.h"
->> #include "intel_fbdev.h"
->> -#include "intel_fbdev_fb.h"
->> #include "intel_frontbuffer.h"
->>
->> struct intel_fbdev {
->> @@ -204,7 +203,8 @@ static const struct drm_fb_helper_funcs intel_fb_hel=
-per_funcs =3D {
->> 	.fb_set_suspend =3D intelfb_set_suspend,
->> };
->>
->> -static void intel_fbdev_fill_mode_cmd(struct drm_fb_helper_surface_size=
- *sizes,
->> +static void intel_fbdev_fill_mode_cmd(struct intel_display *display,
->> +				      struct drm_fb_helper_surface_size *sizes,
->> 				      struct drm_mode_fb_cmd2 *mode_cmd)
->> {
->> 	/* we don't do packed 24bpp */
->> @@ -215,7 +215,7 @@ static void intel_fbdev_fill_mode_cmd(struct drm_fb_=
-helper_surface_size *sizes,
->> 	mode_cmd->width =3D sizes->surface_width;
->> 	mode_cmd->height =3D sizes->surface_height;
->>
->> -	mode_cmd->pitches[0] =3D intel_fbdev_fb_pitch_align(mode_cmd->width * =
-DIV_ROUND_UP(sizes->surface_bpp, 8));
->> +	mode_cmd->pitches[0] =3D intel_bo_fbdev_pitch_align(display, mode_cmd-=
->width * DIV_ROUND_UP(sizes->surface_bpp, 8));
->> 	mode_cmd->pixel_format =3D drm_mode_legacy_fb_format(sizes->surface_bpp,
->> 							   sizes->surface_depth);
->> 	mode_cmd->modifier[0] =3D DRM_FORMAT_MOD_LINEAR;
->> @@ -230,12 +230,12 @@ __intel_fbdev_fb_alloc(struct intel_display *displ=
-ay,
->> 	struct drm_gem_object *obj;
->> 	int size;
->>
->> -	intel_fbdev_fill_mode_cmd(sizes, &mode_cmd);
->> +	intel_fbdev_fill_mode_cmd(display, sizes, &mode_cmd);
->>
->> 	size =3D mode_cmd.pitches[0] * mode_cmd.height;
->> 	size =3D PAGE_ALIGN(size);
->>
->> -	obj =3D intel_fbdev_fb_bo_create(display->drm, size);
->> +	obj =3D intel_bo_fbdev_create(display, size);
->> 	if (IS_ERR(obj)) {
->> 		fb =3D ERR_CAST(obj);
->> 		goto err;
->> @@ -247,7 +247,7 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
->> 							  mode_cmd.modifier[0]),
->> 				      &mode_cmd);
->> 	if (IS_ERR(fb)) {
->> -		intel_fbdev_fb_bo_destroy(obj);
->> +		intel_bo_fbdev_destroy(obj);
->> 		goto err;
->> 	}
->>
->> @@ -327,7 +327,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_hel=
-per *helper,
->>
->> 	obj =3D intel_fb_bo(&fb->base);
->>
->> -	ret =3D intel_fbdev_fb_fill_info(obj, info, vma);
->> +	ret =3D intel_bo_fbdev_fill_info(obj, info, vma);
->> 	if (ret)
->> 		goto out_unpin;
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.c
->> deleted file mode 100644
->> index a696ce42d10b..000000000000
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.c
->> +++ /dev/null
->> @@ -1,118 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright =C2=A9 2023 Intel Corporation
->> - */
->> -
->> -#include <linux/fb.h>
->> -
->> -#include <drm/drm_print.h>
->> -
->> -#include "gem/i915_gem_lmem.h"
->> -
->> -#include "i915_drv.h"
->> -#include "intel_fbdev_fb.h"
->> -
->> -u32 intel_fbdev_fb_pitch_align(u32 stride)
->> -{
->> -	return ALIGN(stride, 64);
->> -}
->> -
->> -bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int =
-size)
->> -{
->> -	struct drm_i915_private *i915 =3D to_i915(drm);
->> -
->> -	/* Skip stolen on MTL as Wa_22018444074 mitigation. */
->> -	if (IS_METEORLAKE(i915))
->> -		return false;
->> -
->> -	/*
->> -	 * If the FB is too big, just don't use it since fbdev is not very
->> -	 * important and we should probably use that space with FBC or other
->> -	 * features.
->> -	 */
->> -	return i915->dsm.usable_size >=3D size * 2;
->> -}
->> -
->> -struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
- int size)
->> -{
->> -	struct drm_i915_private *i915 =3D to_i915(drm);
->> -	struct drm_i915_gem_object *obj;
->> -
->> -	obj =3D ERR_PTR(-ENODEV);
->> -	if (HAS_LMEM(i915)) {
->> -		obj =3D i915_gem_object_create_lmem(i915, size,
->> -						  I915_BO_ALLOC_CONTIGUOUS |
->> -						  I915_BO_ALLOC_USER);
->> -	} else {
->> -		if (intel_fbdev_fb_prefer_stolen(drm, size))
->> -			obj =3D i915_gem_object_create_stolen(i915, size);
->> -		else
->> -			drm_info(drm, "Allocating fbdev: Stolen memory not preferred.\n");
->> -
->> -		if (IS_ERR(obj))
->> -			obj =3D i915_gem_object_create_shmem(i915, size);
->> -	}
->> -
->> -	if (IS_ERR(obj)) {
->> -		drm_err(drm, "failed to allocate framebuffer (%pe)\n", obj);
->> -		return ERR_PTR(-ENOMEM);
->> -	}
->> -
->> -	return &obj->base;
->> -}
->> -
->> -void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> -{
->> -	drm_gem_object_put(obj);
->> -}
->> -
->> -int intel_fbdev_fb_fill_info(struct drm_gem_object *_obj, struct fb_inf=
-o *info,
->> -			     struct i915_vma *vma)
->> -{
->> -	struct drm_i915_private *i915 =3D to_i915(_obj->dev);
->> -	struct drm_i915_gem_object *obj =3D to_intel_bo(_obj);
->> -	struct i915_gem_ww_ctx ww;
->> -	void __iomem *vaddr;
->> -	int ret;
->> -
->> -	if (i915_gem_object_is_lmem(obj)) {
->> -		struct intel_memory_region *mem =3D obj->mm.region;
->> -
->> -		/* Use fbdev's framebuffer from lmem for discrete */
->> -		info->fix.smem_start =3D
->> -			(unsigned long)(mem->io.start +
->> -					i915_gem_object_get_dma_address(obj, 0) -
->> -					mem->region.start);
->> -		info->fix.smem_len =3D obj->base.size;
->> -	} else {
->> -		struct i915_ggtt *ggtt =3D to_gt(i915)->ggtt;
->> -
->> -		/* Our framebuffer is the entirety of fbdev's system memory */
->> -		info->fix.smem_start =3D
->> -			(unsigned long)(ggtt->gmadr.start + i915_ggtt_offset(vma));
->> -		info->fix.smem_len =3D vma->size;
->> -	}
->> -
->> -	for_i915_gem_ww(&ww, ret, false) {
->> -		ret =3D i915_gem_object_lock(vma->obj, &ww);
->> -
->> -		if (ret)
->> -			continue;
->> -
->> -		vaddr =3D i915_vma_pin_iomap(vma);
->> -		if (IS_ERR(vaddr)) {
->> -			drm_err(&i915->drm,
->> -				"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
->> -			ret =3D PTR_ERR(vaddr);
->> -			continue;
->> -		}
->> -	}
->> -
->> -	if (ret)
->> -		return ret;
->> -
->> -	info->screen_base =3D vaddr;
->> -	info->screen_size =3D intel_bo_to_drm_bo(obj)->size;
->> -
->> -	return 0;
->> -}
->> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h b/drivers/gpu=
-/drm/i915/display/intel_fbdev_fb.h
->> deleted file mode 100644
->> index ddba45e9839d..000000000000
->> --- a/drivers/gpu/drm/i915/display/intel_fbdev_fb.h
->> +++ /dev/null
->> @@ -1,24 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright =C2=A9 2023 Intel Corporation
->> - */
->> -
->> -#ifndef __INTEL_FBDEV_FB_H__
->> -#define __INTEL_FBDEV_FB_H__
->> -
->> -#include <linux/types.h>
->> -
->> -struct drm_device;
->> -struct drm_gem_object;
->> -struct drm_mode_fb_cmd2;
->> -struct fb_info;
->> -struct i915_vma;
->> -
->> -u32 intel_fbdev_fb_pitch_align(u32 stride);
->> -struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
- int size);
->> -void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj);
->> -int intel_fbdev_fb_fill_info(struct drm_gem_object *obj, struct fb_info=
- *info,
->> -			     struct i915_vma *vma);
->> -bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int =
-size);
->> -
->> -#endif
->> diff --git a/drivers/gpu/drm/i915/i915_bo.c b/drivers/gpu/drm/i915/i915_=
-bo.c
->> index 1789f7cab05c..7e38d002478e 100644
->> --- a/drivers/gpu/drm/i915/i915_bo.c
->> +++ b/drivers/gpu/drm/i915/i915_bo.c
->> @@ -1,11 +1,14 @@
->> // SPDX-License-Identifier: MIT
->> /* Copyright =C2=A9 2024 Intel Corporation */
->>
->> +#include <linux/fb.h>
->> +
->> #include <drm/drm_panic.h>
->> #include <drm/drm_print.h>
->> #include <drm/intel/display_parent_interface.h>
->>
->> #include "display/intel_fb.h"
->> +#include "gem/i915_gem_lmem.h"
->> #include "gem/i915_gem_mman.h"
->> #include "gem/i915_gem_object.h"
->> #include "gem/i915_gem_object_frontbuffer.h"
->> @@ -141,6 +144,113 @@ i915_bo_framebuffer_lookup(struct drm_device *drm,
->> 	return intel_bo_to_drm_bo(obj);
->> }
->>
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +static u32 i915_bo_fbdev_pitch_align(u32 stride)
->> +{
->> +	return ALIGN(stride, 64);
->> +}
->> +
->> +bool i915_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned int s=
-ize)
->> +{
->> +	struct drm_i915_private *i915 =3D to_i915(drm);
->> +
->> +	/* Skip stolen on MTL as Wa_22018444074 mitigation. */
->> +	if (IS_METEORLAKE(i915))
->> +		return false;
->> +
->> +	/*
->> +	 * If the FB is too big, just don't use it since fbdev is not very
->> +	 * important and we should probably use that space with FBC or other
->> +	 * features.
->> +	 */
->> +	return i915->dsm.usable_size >=3D size * 2;
->> +}
->> +
->> +static struct drm_gem_object *i915_bo_fbdev_create(struct drm_device *d=
-rm, int size)
->> +{
->> +	struct drm_i915_private *i915 =3D to_i915(drm);
->
-> Can we add same trick for i915_bo_fbdev_create() as we are doing
-> with i915_bo_fbdev_prefer_stolen() in patch [4/5]? Or e.g. add a
-> separate 6th patch for that? Up to patch reordering, of course.
+>> +	if (crtc_state->has_panel_replay &&
+>> +	    !intel_alpm_is_alpm_aux_less(intel_dp, crtc_state))
+>> +		return 1;
+> The bogus v1 in PR link ON requirement got nuked from bspec.
 
-I don't know what you mean.
 
-BR,
-Jani.
+Thanks for the clarification. With the updated bspec, this is no longer 
+needed. I’ll drop the patch.
 
+Apologies for the late reply and thanks for the reviews and suggestions.
+
+
+Regards,
+
+Ankit
 
 
 >
->> +	struct drm_i915_gem_object *obj;
 >> +
->> +	obj =3D ERR_PTR(-ENODEV);
->> +	if (HAS_LMEM(i915)) {
->> +		obj =3D i915_gem_object_create_lmem(i915, size,
->> +						  I915_BO_ALLOC_CONTIGUOUS |
->> +						  I915_BO_ALLOC_USER);
->> +	} else {
->> +		if (i915_bo_fbdev_prefer_stolen(drm, size))
->> +			obj =3D i915_gem_object_create_stolen(i915, size);
->> +		else
->> +			drm_info(drm, "Allocating fbdev: Stolen memory not preferred.\n");
+>> +	if (intel_dp->as_sdp_v2_supported)
+>> +		return 2;
 >> +
->> +		if (IS_ERR(obj))
->> +			obj =3D i915_gem_object_create_shmem(i915, size);
->> +	}
->> +
->> +	if (IS_ERR(obj)) {
->> +		drm_err(drm, "failed to allocate framebuffer (%pe)\n", obj);
->> +		return ERR_PTR(-ENOMEM);
->> +	}
->> +
->> +	return &obj->base;
+>> +	return 1;
 >> +}
 >> +
->> +static void i915_bo_fbdev_destroy(struct drm_gem_object *obj)
->> +{
->> +	drm_gem_object_put(obj);
->> +}
+>>   static
+>>   void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
+>>   					 struct intel_crtc_state *crtc_state)
+>> @@ -7345,7 +7362,12 @@ void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
+>>   	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
+>>   	as_sdp->length = 0x9;
+>>   	as_sdp->duration_incr_ms = 0;
+>> -	as_sdp->revision = 0x2;
+>> +	as_sdp->revision = intel_dp_get_as_sdp_revision(intel_dp, crtc_state);
 >> +
->> +static int i915_bo_fbdev_fill_info(struct drm_gem_object *_obj, struct =
-fb_info *info,
->> +				   struct i915_vma *vma)
->> +{
->> +	struct drm_i915_private *i915 =3D to_i915(_obj->dev);
->> +	struct drm_i915_gem_object *obj =3D to_intel_bo(_obj);
->> +	struct i915_gem_ww_ctx ww;
->> +	void __iomem *vaddr;
->> +	int ret;
+>> +	/* No payload data bytes for Version 1 */
+>> +	if (as_sdp->revision == 1)
+>> +		return;
 >> +
->> +	if (i915_gem_object_is_lmem(obj)) {
->> +		struct intel_memory_region *mem =3D obj->mm.region;
->> +
->> +		/* Use fbdev's framebuffer from lmem for discrete */
->> +		info->fix.smem_start =3D
->> +			(unsigned long)(mem->io.start +
->> +					i915_gem_object_get_dma_address(obj, 0) -
->> +					mem->region.start);
->> +		info->fix.smem_len =3D obj->base.size;
->> +	} else {
->> +		struct i915_ggtt *ggtt =3D to_gt(i915)->ggtt;
->> +
->> +		/* Our framebuffer is the entirety of fbdev's system memory */
->> +		info->fix.smem_start =3D
->> +			(unsigned long)(ggtt->gmadr.start + i915_ggtt_offset(vma));
->> +		info->fix.smem_len =3D vma->size;
->> +	}
->> +
->> +	for_i915_gem_ww(&ww, ret, false) {
->> +		ret =3D i915_gem_object_lock(vma->obj, &ww);
->> +
->> +		if (ret)
->> +			continue;
->> +
->> +		vaddr =3D i915_vma_pin_iomap(vma);
->> +		if (IS_ERR(vaddr)) {
->> +			drm_err(&i915->drm,
->> +				"Failed to remap framebuffer into virtual memory (%pe)\n", vaddr);
->> +			ret =3D PTR_ERR(vaddr);
->> +			continue;
->> +		}
->> +	}
->> +
->> +	if (ret)
->> +		return ret;
->> +
->> +	info->screen_base =3D vaddr;
->> +	info->screen_size =3D intel_bo_to_drm_bo(obj)->size;
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
->> const struct intel_display_bo_interface i915_display_bo_interface =3D {
->> 	.is_tiled =3D i915_bo_is_tiled,
->> 	.is_userptr =3D i915_bo_is_userptr,
->> @@ -153,4 +263,10 @@ const struct intel_display_bo_interface i915_displa=
-y_bo_interface =3D {
->> 	.framebuffer_init =3D i915_bo_framebuffer_init,
->> 	.framebuffer_fini =3D i915_bo_framebuffer_fini,
->> 	.framebuffer_lookup =3D i915_bo_framebuffer_lookup,
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +	.fbdev_create =3D i915_bo_fbdev_create,
->> +	.fbdev_destroy =3D i915_bo_fbdev_destroy,
->> +	.fbdev_fill_info =3D i915_bo_fbdev_fill_info,
->> +	.fbdev_pitch_align =3D i915_bo_fbdev_pitch_align,
->> +#endif
->> };
->> diff --git a/drivers/gpu/drm/i915/i915_bo.h b/drivers/gpu/drm/i915/i915_=
-bo.h
->> index 57255d052dd9..2a0f3050dd42 100644
->> --- a/drivers/gpu/drm/i915/i915_bo.h
->> +++ b/drivers/gpu/drm/i915/i915_bo.h
->> @@ -4,6 +4,12 @@
->> #ifndef __I915_BO_H__
->> #define __I915_BO_H__
->>
->> +#include <linux/types.h>
->> +
->> +struct drm_device;
->> +
->> +bool i915_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned int s=
-ize);
->> +
->> extern const struct intel_display_bo_interface i915_display_bo_interface;
->>
->> #endif /* __I915_BO_H__ */
->> diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm=
-/i915/i915_initial_plane.c
->> index 390a9248d631..f4d631a395d0 100644
->> --- a/drivers/gpu/drm/i915/i915_initial_plane.c
->> +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
->> @@ -9,10 +9,10 @@
->> #include "display/intel_crtc.h"
->> #include "display/intel_display_types.h"
->> #include "display/intel_fb.h"
->> -#include "display/intel_fbdev_fb.h"
->> #include "gem/i915_gem_lmem.h"
->> #include "gem/i915_gem_region.h"
->>
->> +#include "i915_bo.h"
->> #include "i915_drv.h"
->> #include "i915_initial_plane.h"
->>
->> @@ -118,7 +118,7 @@ initial_plane_vma(struct drm_i915_private *i915,
->> 	if (IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
->> 	    IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
->> 	    mem =3D=3D i915->mm.stolen_region &&
->> -	    !intel_fbdev_fb_prefer_stolen(&i915->drm, size)) {
->> +	    !i915_bo_fbdev_prefer_stolen(&i915->drm, size)) {
->> 		drm_dbg_kms(&i915->drm, "Initial FB size exceeds half of stolen, disca=
-rding\n");
->> 		return NULL;
->> 	}
->> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
->> index dab979287a96..936eb79e9269 100644
->> --- a/drivers/gpu/drm/xe/Makefile
->> +++ b/drivers/gpu/drm/xe/Makefile
->> @@ -211,7 +211,6 @@ $(obj)/i915-display/%.o: $(srctree)/drivers/gpu/drm/=
-i915/display/%.c FORCE
->>
->> # Display code specific to xe
->> xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
->> -	display/intel_fbdev_fb.o \
->> 	display/xe_display.o \
->> 	display/xe_display_bo.o \
->> 	display/xe_display_pcode.o \
->> diff --git a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c b/drivers/gpu/d=
-rm/xe/display/intel_fbdev_fb.c
->> deleted file mode 100644
->> index 2ad5e5a79287..000000000000
->> --- a/drivers/gpu/drm/xe/display/intel_fbdev_fb.c
->> +++ /dev/null
->> @@ -1,116 +0,0 @@
->> -/* SPDX-License-Identifier: MIT */
->> -/*
->> - * Copyright =C2=A9 2023 Intel Corporation
->> - */
->> -
->> -#include <linux/fb.h>
->> -
->> -#include "intel_fbdev_fb.h"
->> -#include "xe_bo.h"
->> -#include "xe_ttm_stolen_mgr.h"
->> -#include "xe_wa.h"
->> -
->> -#include <generated/xe_device_wa_oob.h>
->> -
->> -/*
->> - * FIXME: There shouldn't be any reason to have XE_PAGE_SIZE stride
->> - * alignment. The same 64 as i915 uses should be fine, and we shouldn't=
- need to
->> - * have driver specific values. However, dropping the stride alignment =
-to 64
->> - * leads to underflowing the bo pin count in the atomic cleanup work.
->> - */
->> -u32 intel_fbdev_fb_pitch_align(u32 stride)
->> -{
->> -	return ALIGN(stride, XE_PAGE_SIZE);
->> -}
->> -
->> -bool intel_fbdev_fb_prefer_stolen(struct drm_device *drm, unsigned int =
-size)
->> -{
->> -	struct xe_device *xe =3D to_xe_device(drm);
->> -	struct ttm_resource_manager *stolen;
->> -
->> -	stolen =3D ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
->> -	if (!stolen)
->> -		return false;
->> -
->> -	if (IS_DGFX(xe))
->> -		return false;
->> -
->> -	if (XE_DEVICE_WA(xe, 22019338487_display))
->> -		return false;
->> -
->> -	/*
->> -	 * If the FB is too big, just don't use it since fbdev is not very
->> -	 * important and we should probably use that space with FBC or other
->> -	 * features.
->> -	 */
->> -	return stolen->size >=3D size * 2;
->> -}
->> -
->> -struct drm_gem_object *intel_fbdev_fb_bo_create(struct drm_device *drm,=
- int size)
->> -{
->> -	struct xe_device *xe =3D to_xe_device(drm);
->> -	struct xe_bo *obj;
->> -
->> -	obj =3D ERR_PTR(-ENODEV);
->> -
->> -	if (intel_fbdev_fb_prefer_stolen(drm, size)) {
->> -		obj =3D xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
->> -						size,
->> -						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
->> -						XE_BO_FLAG_STOLEN |
->> -						XE_BO_FLAG_GGTT, false);
->> -		if (!IS_ERR(obj))
->> -			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
->> -		else
->> -			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_=
-ERR(obj));
->> -	} else {
->> -		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not preferred.\n"=
-);
->> -	}
->> -
->> -	if (IS_ERR(obj)) {
->> -		obj =3D xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), si=
-ze,
->> -						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
->> -						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> -						XE_BO_FLAG_GGTT, false);
->> -	}
->> -
->> -	if (IS_ERR(obj)) {
->> -		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", obj);
->> -		return ERR_PTR(-ENOMEM);
->> -	}
->> -
->> -	return &obj->ttm.base;
->> -}
->> -
->> -void intel_fbdev_fb_bo_destroy(struct drm_gem_object *obj)
->> -{
->> -	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> -}
->> -
->> -int intel_fbdev_fb_fill_info(struct drm_gem_object *_obj, struct fb_inf=
-o *info,
->> -			     struct i915_vma *vma)
->> -{
->> -	struct xe_bo *obj =3D gem_to_xe_bo(_obj);
->> -	struct pci_dev *pdev =3D to_pci_dev(_obj->dev->dev);
->> -
->> -	if (!(obj->flags & XE_BO_FLAG_SYSTEM)) {
->> -		if (obj->flags & XE_BO_FLAG_STOLEN)
->> -			info->fix.smem_start =3D xe_ttm_stolen_io_offset(obj, 0);
->> -		else
->> -			info->fix.smem_start =3D
->> -				pci_resource_start(pdev, 2) +
->> -				xe_bo_addr(obj, 0, XE_PAGE_SIZE);
->> -
->> -		info->fix.smem_len =3D obj->ttm.base.size;
->> -	} else {
->> -		/* XXX: Pure fiction, as the BO may not be physically accessible.. */
->> -		info->fix.smem_start =3D 0;
->> -		info->fix.smem_len =3D obj->ttm.base.size;
->> -	}
->> -	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
->> -
->> -	info->screen_base =3D obj->vmap.vaddr_iomem;
->> -	info->screen_size =3D obj->ttm.base.size;
->> -
->> -	return 0;
->> -}
->> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/dr=
-m/xe/display/xe_display_bo.c
->> index a689f71e7b14..10436edecc35 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
->> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
->> @@ -1,6 +1,8 @@
->> // SPDX-License-Identifier: MIT
->> /* Copyright =C2=A9 2024 Intel Corporation */
->>
->> +#include <linux/fb.h>
->> +
->> #include <drm/drm_gem.h>
->> #include <drm/intel/display_parent_interface.h>
->>
->> @@ -8,6 +10,10 @@
->> #include "xe_bo.h"
->> #include "xe_display_bo.h"
->> #include "xe_pxp.h"
->> +#include "xe_ttm_stolen_mgr.h"
->> +#include "xe_wa.h"
->> +
->> +#include <generated/xe_device_wa_oob.h>
->>
->> static bool xe_display_bo_is_protected(struct drm_gem_object *obj)
->> {
->> @@ -101,6 +107,111 @@ xe_display_bo_framebuffer_lookup(struct drm_device=
- *drm,
->> 	return gem;
->> }
->>
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +/*
->> + * FIXME: There shouldn't be any reason to have XE_PAGE_SIZE stride
->> + * alignment. The same 64 as i915 uses should be fine, and we shouldn't=
- need to
->> + * have driver specific values. However, dropping the stride alignment =
-to 64
->> + * leads to underflowing the bo pin count in the atomic cleanup work.
->> + */
->> +static u32 xe_display_bo_fbdev_pitch_align(u32 stride)
->> +{
->> +	return ALIGN(stride, XE_PAGE_SIZE);
->> +}
->> +
->> +bool xe_display_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned=
- int size)
->> +{
->> +	struct xe_device *xe =3D to_xe_device(drm);
->> +	struct ttm_resource_manager *stolen;
->> +
->> +	stolen =3D ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
->> +	if (!stolen)
->> +		return false;
->> +
->> +	if (IS_DGFX(xe))
->> +		return false;
->> +
->> +	if (XE_DEVICE_WA(xe, 22019338487_display))
->> +		return false;
->> +
->> +	/*
->> +	 * If the FB is too big, just don't use it since fbdev is not very
->> +	 * important and we should probably use that space with FBC or other
->> +	 * features.
->> +	 */
->> +	return stolen->size >=3D size * 2;
->> +}
->> +
->> +static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_dev=
-ice *drm, int size)
->> +{
->> +	struct xe_device *xe =3D to_xe_device(drm);
->
-> Same question here, but adding it in patch [5/5] or as new 7th patch. Up
-> to patch reordering of course.
->
-> BR,
-> Micha=C5=82
->
->> +	struct xe_bo *obj;
->> +
->> +	obj =3D ERR_PTR(-ENODEV);
->> +
->> +	if (xe_display_bo_fbdev_prefer_stolen(drm, size)) {
->> +		obj =3D xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
->> +						size,
->> +						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
->> +						XE_BO_FLAG_STOLEN |
->> +						XE_BO_FLAG_GGTT, false);
->> +		if (!IS_ERR(obj))
->> +			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
->> +		else
->> +			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_=
-ERR(obj));
->> +	} else {
->> +		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not preferred.\n"=
-);
->> +	}
->> +
->> +	if (IS_ERR(obj)) {
->> +		obj =3D xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), si=
-ze,
->> +						ttm_bo_type_kernel, XE_BO_FLAG_SCANOUT |
->> +						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
->> +						XE_BO_FLAG_GGTT, false);
->> +	}
->> +
->> +	if (IS_ERR(obj)) {
->> +		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", obj);
->> +		return ERR_PTR(-ENOMEM);
->> +	}
->> +
->> +	return &obj->ttm.base;
->> +}
->> +
->> +static void xe_display_bo_fbdev_destroy(struct drm_gem_object *obj)
->> +{
->> +	xe_bo_unpin_map_no_vm(gem_to_xe_bo(obj));
->> +}
->> +
->> +static int xe_display_bo_fbdev_fill_info(struct drm_gem_object *_obj, s=
-truct fb_info *info,
->> +			     struct i915_vma *vma)
->> +{
->> +	struct xe_bo *obj =3D gem_to_xe_bo(_obj);
->> +	struct pci_dev *pdev =3D to_pci_dev(_obj->dev->dev);
->> +
->> +	if (!(obj->flags & XE_BO_FLAG_SYSTEM)) {
->> +		if (obj->flags & XE_BO_FLAG_STOLEN)
->> +			info->fix.smem_start =3D xe_ttm_stolen_io_offset(obj, 0);
->> +		else
->> +			info->fix.smem_start =3D
->> +				pci_resource_start(pdev, 2) +
->> +				xe_bo_addr(obj, 0, XE_PAGE_SIZE);
->> +
->> +		info->fix.smem_len =3D obj->ttm.base.size;
->> +	} else {
->> +		/* XXX: Pure fiction, as the BO may not be physically accessible.. */
->> +		info->fix.smem_start =3D 0;
->> +		info->fix.smem_len =3D obj->ttm.base.size;
->> +	}
->> +	XE_WARN_ON(iosys_map_is_null(&obj->vmap));
->> +
->> +	info->screen_base =3D obj->vmap.vaddr_iomem;
->> +	info->screen_size =3D obj->ttm.base.size;
->> +
->> +	return 0;
->> +}
->> +#endif
->> +
->> const struct intel_display_bo_interface xe_display_bo_interface =3D {
->> 	.is_protected =3D xe_display_bo_is_protected,
->> 	.key_check =3D xe_pxp_obj_key_check,
->> @@ -109,4 +220,10 @@ const struct intel_display_bo_interface xe_display_=
-bo_interface =3D {
->> 	.framebuffer_init =3D xe_display_bo_framebuffer_init,
->> 	.framebuffer_fini =3D xe_display_bo_framebuffer_fini,
->> 	.framebuffer_lookup =3D xe_display_bo_framebuffer_lookup,
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +	.fbdev_create =3D xe_display_bo_fbdev_create,
->> +	.fbdev_destroy =3D xe_display_bo_fbdev_destroy,
->> +	.fbdev_fill_info =3D xe_display_bo_fbdev_fill_info,
->> +	.fbdev_pitch_align =3D xe_display_bo_fbdev_pitch_align,
->> +#endif
->> };
->> diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.h b/drivers/gpu/dr=
-m/xe/display/xe_display_bo.h
->> index 6879c104b0b1..8980e6ecf54a 100644
->> --- a/drivers/gpu/drm/xe/display/xe_display_bo.h
->> +++ b/drivers/gpu/drm/xe/display/xe_display_bo.h
->> @@ -4,6 +4,12 @@
->> #ifndef __XE_DISPLAY_BO_H__
->> #define __XE_DISPLAY_BO_H__
->>
->> +#include <linux/types.h>
->> +
->> +struct drm_device;
->> +
->> +bool xe_display_bo_fbdev_prefer_stolen(struct drm_device *drm, unsigned=
- int size);
->> +
->> extern const struct intel_display_bo_interface xe_display_bo_interface;
->>
->> #endif
->> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu=
-/drm/xe/display/xe_initial_plane.c
->> index 730c6dc49522..6e0a22429184 100644
->> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
->> @@ -12,8 +12,8 @@
->> #include "intel_display_types.h"
->> #include "intel_fb.h"
->> #include "intel_fb_pin.h"
->> -#include "intel_fbdev_fb.h"
->> #include "xe_bo.h"
->> +#include "xe_display_bo.h"
->> #include "xe_display_vma.h"
->> #include "xe_ggtt.h"
->> #include "xe_mmio.h"
->> @@ -87,7 +87,7 @@ initial_plane_bo(struct xe_device *xe,
->>
->> 		if (IS_ENABLED(CONFIG_FRAMEBUFFER_CONSOLE) &&
->> 		    IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION) &&
->> -		    !intel_fbdev_fb_prefer_stolen(&xe->drm, plane_config->size)) {
->> +		    !xe_display_bo_fbdev_prefer_stolen(&xe->drm, plane_config->size))=
- {
->> 			drm_info(&xe->drm, "Initial FB size exceeds half of stolen, discardin=
-g\n");
->> 			return NULL;
->> 		}
->> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/=
-intel/display_parent_interface.h
->> index 97ec94a2e749..2fc1794a3da4 100644
->> --- a/include/drm/intel/display_parent_interface.h
->> +++ b/include/drm/intel/display_parent_interface.h
->> @@ -15,6 +15,7 @@ struct drm_gem_object;
->> struct drm_mode_fb_cmd2;
->> struct drm_plane_state;
->> struct drm_scanout_buffer;
->> +struct fb_info;
->> struct i915_vma;
->> struct intel_dpt;
->> struct intel_dsb_buffer;
->> @@ -43,6 +44,12 @@ struct intel_display_bo_interface {
->> 	struct drm_gem_object *(*framebuffer_lookup)(struct drm_device *drm,
->> 						     struct drm_file *filp,
->> 						     const struct drm_mode_fb_cmd2 *user_mode_cmd);
->> +#if IS_ENABLED(CONFIG_DRM_FBDEV_EMULATION)
->> +	struct drm_gem_object *(*fbdev_create)(struct drm_device *drm, int siz=
-e);
->> +	void (*fbdev_destroy)(struct drm_gem_object *obj);
->> +	int (*fbdev_fill_info)(struct drm_gem_object *obj, struct fb_info *inf=
-o, struct i915_vma *vma);
->> +	u32 (*fbdev_pitch_align)(u32 stride);
->> +#endif
->> };
->>
->> struct intel_display_dpt_interface {
->> --=20
->> 2.47.3
->>
->>
-
---=20
-Jani Nikula, Intel
+>>   	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
+>>   
+>>   	if (crtc_state->cmrr.enable) {
+>> -- 
+>> 2.45.2
