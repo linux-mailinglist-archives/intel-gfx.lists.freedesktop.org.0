@@ -2,66 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +OQIOMLVw2lwuQQAu9opvQ
+	id 6DBsDDfWw2lwuQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:32:02 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:33:59 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52E10324E80
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:32:02 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91863324EEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:33:58 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 605FB10E204;
-	Wed, 25 Mar 2026 12:32:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC75510E866;
+	Wed, 25 Mar 2026 12:33:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fHTWw21V";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DR786y0p";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B180B10E204;
- Wed, 25 Mar 2026 12:31:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A48210E7FA;
+ Wed, 25 Mar 2026 12:33:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774441918; x=1805977918;
+ t=1774442036; x=1805978036;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=g6ErfOE74vHbzUtvp8/DGJV5kyORsv97Us58w4vDcOw=;
- b=fHTWw21VReKZjatcmA6CpwpWqNxQDnN4MKIdii0KDsxlrm1vOhLR8iWj
- N02xnolHti3MMyyebxpeojTMNrWi9REZnjrtyQfZi6voF3wRIQOjV3dTD
- A8B0o8pk1snnMzFwiabs84784GBydt+0YYWDLtL1Zrsiau/xTukRL8VhL
- qVJX2oGpbO7BUlY6YMMITYjd7N5hTZMdtkdMpBvrRa2xgL1fengH3N6x2
- IImFGXnwuQ7V4PUtDZrqso3wURR3RYvAfNt/k5Z84icFrEsKBFBrTALs0
- YB6a8wRw/J0gGLWPag9Xs0Cuuus/EXOMhjEeZ6ZlKkppFcs1R/3EC2hDf Q==;
-X-CSE-ConnectionGUID: LYwDbGclSD65ALtvJZhhsA==
-X-CSE-MsgGUID: jxAnL8DuTB25FWt0twC6tQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75498817"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75498817"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:31:58 -0700
-X-CSE-ConnectionGUID: iP6osTr/RfC3Y8GAJc1LqA==
-X-CSE-MsgGUID: vWCX8m4YSve7MH8nddXbew==
+ bh=cg4107XVw5qlZkEaG3Ts52/o/nhfPz88Bw9I+iwSFpY=;
+ b=DR786y0pd8gGrrU0ynFYrvRkxTqZdGeuy7VQh0G8z+WgtTG6OToy9GAV
+ 6umxdfjy8IM7Cnvx41R4tofRSr8GG5A/dGdtu6DSmAU0BGxk3RGZ1q+c6
+ aQ2PM9j2tlw07pO9BG77XJFOfmbVnBDDUv/O2mFffByInmN3+ZYygBXDE
+ R5Pgja6OO+GayIPaqwBR5uwAvLa7/qQ/TH+lJzYRvQDtGkt0Wvqpt7MpC
+ 2wOEkys0IYdZmJxT/bhCAWo9XVxKrmbawoy8wk9uVBG0irtalc0Zy8118
+ Y9wvmXyLe2Gw87I4eV392VpofCpVews6Igu7YIe5tnUtiEPX30VHCddhP A==;
+X-CSE-ConnectionGUID: fc1uIzeeQ5eZ+twd7zwv2Q==
+X-CSE-MsgGUID: McRF9MLdSTaa3mMQTwZrvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="86846901"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86846901"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:33:55 -0700
+X-CSE-ConnectionGUID: JW2rgvD2QFCWpA6X2UqS2g==
+X-CSE-MsgGUID: I0m/9a6bTXKe/GUxp8qMIA==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="229603769"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.117])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 05:31:55 -0700
-Date: Wed, 25 Mar 2026 14:31:53 +0200
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:33:52 -0700
+Date: Wed, 25 Mar 2026 14:33:49 +0200
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
  chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com
-Subject: Re: [PATCH v3 17/26] drm/i915/writeback: Add the enable sequence
- from writeback
-Message-ID: <acPVuVzdmOAOSfgM@intel.com>
+Subject: Re: [PATCH v3 18/26] drm/i915/writeback: Define writeback frame
+ capture function
+Message-ID: <acPWLdgT46MhXJL9@intel.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
- <20260325110744.1096786-18-suraj.kandpal@intel.com>
+ <20260325110744.1096786-19-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260325110744.1096786-18-suraj.kandpal@intel.com>
+In-Reply-To: <20260325110744.1096786-19-suraj.kandpal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -79,9 +80,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.28 / 15.00];
+X-Spamd-Result: default: False [0.31 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.59)[subject];
+	R_MIXED_CHARSET(0.63)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
@@ -106,168 +107,145 @@ X-Spamd-Result: default: False [0.28 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 52E10324E80
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 91863324EEB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Mar 25, 2026 at 04:37:35PM +0530, Suraj Kandpal wrote:
-> Add enable sequence for writeback, use encoder->enable hook to
-> enable the transcoder.
+On Wed, Mar 25, 2026 at 04:37:36PM +0530, Suraj Kandpal wrote:
+> Define the commit function to be called at atomic_commit_tail
+> if drm_writeback_job is available. This function calls the
+> capture function and queues the job to be called later via
+> interrupt handler when the job is complete.
 > 
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  .../gpu/drm/i915/display/intel_writeback.c    | 103 ++++++++++++++++++
->  1 file changed, 103 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_display.c  |  3 +
+>  .../gpu/drm/i915/display/intel_writeback.c    | 58 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_writeback.h    |  4 ++
+>  3 files changed, 65 insertions(+)
 > 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index d433ffaadd65..4cc3e0779e8a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -126,6 +126,7 @@
+>  #include "intel_vga.h"
+>  #include "intel_vrr.h"
+>  #include "intel_wm.h"
+> +#include "intel_writeback.h"
+>  #include "skl_scaler.h"
+>  #include "skl_universal_plane.h"
+>  #include "skl_watermark.h"
+> @@ -7564,6 +7565,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>  	/* FIXME probably need to sequence this properly */
+>  	intel_program_dpkgc_latency(state);
+>  
+> +	intel_writeback_atomic_commit(state);
+> +
+>  	intel_wait_for_vblank_workers(state);
+>  
+>  	/* FIXME: We should call drm_atomic_helper_commit_hw_done() here
 > diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
-> index ba4c162847c8..d45d5faaf7cc 100644
+> index d45d5faaf7cc..c79e7330b81c 100644
 > --- a/drivers/gpu/drm/i915/display/intel_writeback.c
 > +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
-> @@ -17,8 +17,10 @@
->  
->  #include "intel_atomic.h"
->  #include "intel_connector.h"
-> +#include "intel_crtc.h"
->  #include "intel_de.h"
->  #include "intel_display_driver.h"
-> +#include "intel_display_regs.h"
->  #include "intel_display_types.h"
->  #include "intel_display_utils.h"
->  #include "intel_fb_pin.h"
-> @@ -30,6 +32,7 @@ struct intel_writeback_connector {
->  	struct intel_encoder encoder;
->  	struct intel_writeback_job *job;
->  	enum transcoder trans;
-> +	enum pipe pipe;
->  	int frame_num;
->  };
->  
-> @@ -48,6 +51,12 @@ static const u32 writeback_formats[] = {
+> @@ -51,6 +51,12 @@ static const u32 writeback_formats[] = {
 >  	DRM_FORMAT_XBGR2101010,
 >  };
 >  
 > +static struct intel_writeback_connector
-> +*enc_to_intel_writeback_connector(struct intel_encoder *encoder)
+> +*conn_to_intel_writeback_connector(struct intel_connector *connector)
 > +{
-> +	return container_of(encoder, struct intel_writeback_connector, encoder);
+> +	return container_of(connector, struct intel_writeback_connector, connector);
 > +}
 > +
->  static int intel_writeback_connector_init(struct intel_connector *connector)
+>  static struct intel_writeback_connector
+>  *enc_to_intel_writeback_connector(struct intel_encoder *encoder)
 >  {
->  	struct intel_digital_connector_state *conn_state;
-> @@ -215,6 +224,99 @@ static int intel_writeback_atomic_check(struct drm_connector *connector,
+> @@ -224,6 +230,58 @@ static int intel_writeback_atomic_check(struct drm_connector *connector,
 >  	return 0;
 >  }
 >  
-> +static void intel_writeback_enable_encoder(struct intel_atomic_state *state,
-> +					   struct intel_encoder *encoder,
-> +					   const struct intel_crtc_state *crtc_state,
-> +					   const struct drm_connector_state *conn_state)
+> +static void intel_writeback_capture(struct intel_atomic_state *state,
+> +				    struct intel_connector *connector)
 > +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+> +	struct intel_display *display = to_intel_display(connector);
 > +	struct intel_writeback_connector *wb_conn =
-> +		enc_to_intel_writeback_connector(encoder);
-> +	struct intel_writeback_job *job = wb_conn->job;
-> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
-> +	enum transcoder trans = crtc_state->cpu_transcoder;
-> +	struct intel_crtc *pipe_crtc;
-> +	struct drm_framebuffer *fb;
-> +	u32 val = 0, hactive, vactive;
-> +	int i = 0;
+> +		conn_to_intel_writeback_connector(connector);
+> +	enum transcoder trans = wb_conn->trans;
+> +	u32 val = 0;
 > +
-> +	if (!conn_state->writeback_job)
-> +		return;
+> +	val |= START_TRIGGER_FRAME | WD_FRAME_NUMBER(wb_conn->frame_num);
+> +	intel_de_rmw(display, WD_TRANS_FUNC_CTL(trans),
+> +		     START_TRIGGER_FRAME | WD_FRAME_NUMBER_MASK,
+> +		     val);
 > +
-> +	wb_conn->trans = trans;
-> +	wb_conn->pipe = crtc->pipe;
-> +	fb = job->fb;
-> +	hactive = adjusted_mode->hdisplay;
-> +	vactive = adjusted_mode->vdisplay;
-> +
-> +	/* Configure WD_STRIDE, WD_SURF and WD_TAIL_CFG */
-> +	/* Enable Planes, Pipes and Transcoder */
-> +	/* TRANSCODER TIMINGS and other transcoder setting*/
-> +	/* minimum hactive as per bspec: 64 pixels */
-> +	if (hactive < 64)
-> +		drm_err(display->drm, "hactive is less then 64 pixels\n");
-> +
-> +	intel_de_write(display, TRANS_HTOTAL(display, trans), HACTIVE(hactive - 1));
-> +	intel_de_write(display, TRANS_VTOTAL(display, trans), VACTIVE(vactive - 1));
-> +
-> +	val = 0;
-> +	/* 2f) Configure and enable TRANS_WD_FUNC_CTL */
-> +	switch (crtc->pipe) {
-> +	default:
-> +		fallthrough;
-> +	case PIPE_A:
-> +		val |= WD_INPUT_PIPE_A;
-> +		break;
-> +	case PIPE_B:
-> +		val |= WD_INPUT_PIPE_B;
-> +		break;
-> +	case PIPE_C:
-> +		val |= WD_INPUT_PIPE_C;
-> +		break;
-> +	case PIPE_D:
-> +		val |= WD_INPUT_PIPE_D;
-> +		break;
-> +	}
-> +
-> +	switch (fb->format->format) {
-> +	default:
-> +		fallthrough;
-> +	case DRM_FORMAT_YUYV:
-> +		val |= WD_PIX_FMT_YUYV;
-> +		break;
-> +	case DRM_FORMAT_XYUV8888:
-> +		val |= WD_PIX_FMT_XYUV8888;
-> +		break;
-> +	case DRM_FORMAT_XBGR8888:
-> +		val |= WD_PIX_FMT_XBGR8888;
-> +		break;
-> +	case DRM_FORMAT_XBGR2101010:
-> +		val |= WD_PIX_FMT_XBGR2101010;
-> +		break;
-> +	}
-> +
-> +	val |= TRANS_WD_FUNC_ENABLE | WD_TRIGGERED_CAP_MODE_ENABLE |
-> +		WD_DISABLE_POINTERS;
-> +	intel_de_write(display, WD_TRANS_FUNC_CTL(trans), val);
-> +
-> +	if (DISPLAY_VER(display) >= 13)
-> +		intel_de_rmw(display, PIPE_CHICKEN(crtc->pipe),
-> +			     UNDERRUN_RECOVERY_DISABLE_ADLP,
-> +			     UNDERRUN_RECOVERY_DISABLE_ADLP);
-> +
-> +	/*  Configure and enable TRANS_CONF */
-> +	intel_de_write(display, TRANSCONF_WD(trans), WD_TRANS_ENABLE);
-> +	intel_de_posting_read(display, TRANSCONF_WD(trans));
-> +
-> +	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, crtc_state, i) {
-> +		const struct intel_crtc_state *pipe_crtc_state =
-> +			intel_atomic_get_new_crtc_state(state, pipe_crtc);
-> +
-> +		intel_crtc_vblank_on(pipe_crtc_state);
-> +	}
+> +	if (intel_de_wait_for_set_ms(display, WD_FRAME_STATUS(trans),
+> +				     WD_FRAME_COMPLETE, 50)) {
 
-Most of this looks like stuff we already do in the normal transcoder
-configre/enable sequence.
+I think we need to hook up the interrupts to avoid this kind of thing.
 
+The trigger we should probably just do from intel_pipe_update_end().
+
+> +		drm_dbg_kms(display->drm,
+> +			    "Frame was not captured after triggering a capture\n");
+> +		intel_de_rmw(display, WD_TRANS_FUNC_CTL(trans),
+> +			     STOP_TRIGGER_FRAME,
+> +			     STOP_TRIGGER_FRAME);
+> +	} else {
+> +		drm_writeback_signal_completion(&connector->base, 0);
+> +		intel_de_write(display, WD_FRAME_STATUS(trans), WD_FRAME_COMPLETE);
+> +		wb_conn->frame_num++;
+> +		if (wb_conn->frame_num > 7)
+> +			wb_conn->frame_num = 1;
+> +		wb_conn->job = NULL;
+> +	}
 > +}
 > +
->  static const struct drm_encoder_funcs drm_writeback_encoder_funcs = {
->  	.destroy = drm_encoder_cleanup,
->  };
-> @@ -335,6 +437,7 @@ int intel_writeback_init(struct intel_display *display)
->  	encoder->get_config = intel_writeback_get_config;
->  	encoder->get_hw_state = intel_writeback_get_hw_state;
->  	encoder->compute_config = intel_writeback_compute_config;
-> +	encoder->enable = intel_writeback_enable_encoder;
+> +void intel_writeback_atomic_commit(struct intel_atomic_state *state)
+> +{
+> +	struct drm_connector *connector;
+> +	struct drm_connector_state *conn_state;
+> +	int i;
+> +
+> +	for_each_new_connector_in_state(&state->base, connector, conn_state, i) {
+> +		struct intel_connector *intel_connector = to_intel_connector(connector);
+> +
+> +		if (!conn_state)
+> +			return;
+> +
+> +		if (conn_state->writeback_job && conn_state->writeback_job->fb) {
+> +			WARN_ON(connector->connector_type != DRM_MODE_CONNECTOR_WRITEBACK);
+> +
+> +			drm_writeback_queue_job(connector, conn_state);
+> +			intel_writeback_capture(state, intel_connector);
+> +		}
+> +	}
+> +}
+> +
+>  static void intel_writeback_enable_encoder(struct intel_atomic_state *state,
+>  					   struct intel_encoder *encoder,
+>  					   const struct intel_crtc_state *crtc_state,
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.h b/drivers/gpu/drm/i915/display/intel_writeback.h
+> index 5911684cb81a..3c145cf73e20 100644
+> --- a/drivers/gpu/drm/i915/display/intel_writeback.h
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback.h
+> @@ -8,10 +8,14 @@
 >  
->  	connector = &writeback_conn->connector;
->  	ret = intel_writeback_connector_alloc(connector);
+>  #include <linux/types.h>
+>  
+> +#include "intel_display_types.h"
+> +
+> +struct intel_atomic_state;
+>  struct intel_display;
+>  struct intel_writeback_connector;
+>  
+>  int intel_writeback_init(struct intel_display *display);
+> +void intel_writeback_atomic_commit(struct intel_atomic_state *state);
+>  
+>  #endif /* __INTEL_WRITEBACK_H__ */
+>  
 > -- 
 > 2.34.1
 
