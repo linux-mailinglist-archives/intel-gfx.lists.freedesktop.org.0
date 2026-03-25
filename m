@@ -2,124 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGXPGOfZw2lwuQQAu9opvQ
+	id QHOEO0rcw2lwuQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:49:43 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:59:55 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 13657325285
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:49:43 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4B01C32553E
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 13:59:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C9A010E7EF;
-	Wed, 25 Mar 2026 12:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A741510E129;
+	Wed, 25 Mar 2026 12:59:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=raspberrypi.com header.i=@raspberrypi.com header.b="D+k3uwxR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UdRBjp/+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f178.google.com (mail-yw1-f178.google.com
- [209.85.128.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DCDD10E568
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 12:49:37 +0000 (UTC)
-Received: by mail-yw1-f178.google.com with SMTP id
- 00721157ae682-79860421382so56543117b3.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 25 Mar 2026 05:49:37 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1774442976; cv=none;
- d=google.com; s=arc-20240605;
- b=SeMMh7KhBILhQhXlDvPi/LiX3oDgQe6jDAGYYRNe3davWkHi+fA06lT0IWQzsDPUo/
- n3oWL3J0CmuIUT+wMRdfhDfeJPfIXL6xUzOoVOII5Iin4S8ige3vxIM/ejsaLSYr5E42
- Flxgh6ShyrTsgI+InoKNLgbZFJB6fCipZPcLAL4oPBrVHM4FTLloUGMmsq/Ytm7EmB8p
- sGghs5j9Kqad+uMaNJRwsz7bTENa0DzJ6eLzK8sCw7tGEUoS2Qhifm5930HyxTSyoaa2
- 4CpKOURh46+Kddkd3e3o6UvtdwxpUEtXqzS+2gTLMg3IkVGGC/fl4mSltm2E9vw3XbAL
- UB+A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=VWVGdaROJEe59syGTJd027THFEoFG9QuDQ9XIoXDqcI=;
- fh=U2FpGlO5UX21o7p17hItf3/Kdvhzfop7fMsFLkf+BwM=;
- b=dUOujgpgZyYWAc/xX+jN1c4AioqSVS2vzNRzqOOmay6eDis68WnQ6HHu44JcD5pBLE
- aSZTDgUdUC1LcRO/QuKwsYsMWoUYNZ7BjpbU1gX7Gwzk1HqVbtYHaVpq7QgvXWUx4RN8
- UZcxiX1iQ7M6F0EKtnzGk15oQx7lBiLeSCLEZG3GK+yHj0IG21z/Hf3mA7wCR/9gbkTx
- tVqWgLE9BjyvXfSmnESrWj45rJEZ9C8wGnh9Jda/Ja/kVZBj9/fNtn5T5TCbNAhMMtba
- nsUspKSCulDzU1Qqd4Hxmp8azrMvcseZ7XaTrt0vPYs0QYjx+fnOvBg2H3N+DOUpRBZ0
- HASA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=raspberrypi.com; s=google; t=1774442976; x=1775047776;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=VWVGdaROJEe59syGTJd027THFEoFG9QuDQ9XIoXDqcI=;
- b=D+k3uwxROA6obuXA46g1N7bvOTcGPAm0r/dYqjKnxCHIu3Np3jZXq6t+SlSMztCNxy
- yHpNQS/dnEQFZ5nfTGCxaPp55ZlhnMQtxYd8fxiSt5FGWpOMqWbJErCVmcIHPZCaE7JK
- vCwAx/ulBf6i2PkGoy4Eho5FG8Mf5A+AVdgBlox0NK97rW62UIjnhSOlZxH+rIIaqOCn
- nQv1S1nhXqNfZAZ2yYq4eDIIg6zx6E9jn48W82FFo6eryfl7jAi/9JbdW4CNSUyuVplP
- nvt0/ft6KRbjAmMohWXqQiTNyPXt8d1lceoaSLN7vcrBbk4QSrbtQwrDIEi/s6n6gO3A
- wVWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774442976; x=1775047776;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=VWVGdaROJEe59syGTJd027THFEoFG9QuDQ9XIoXDqcI=;
- b=NGmFpv/d5VdySFk7C4wsE/fMLVtLsvAyinznGtytLX+oZJHMrme91iRTj7vZkBvbE/
- Xyx5HLGrKWxIosVSMsfC6Nx3nYxTZXjAFnmhRkRQrMIDtkK0As2RpktG4rpkYhJQKw4E
- m7tdw1QJjRRMLnUL/NdMWgPK+vlwwJJ8TufDQELGcmpxkIBES6aveQLveRC6OP22qHB5
- 7JsVuLULLt4D8DnlbsEWX0lrO7+RRmpbiF9w9Qb3elRIP/qImBN45nSHImOa26603L0J
- a6aN9aAqLEq3oyial5M0L/KNo2BussHBpM5CaMKJFK1UPk4y+Djdd9WFRAl7B1w6X9lO
- KJAg==
-X-Forwarded-Encrypted: i=1;
- AJvYcCX9YkVoRrurxsCU8DgUAYn8waK+FNvAvUNbWVGceR1vmYGfLhlbZTSj3JFFiSZslnzmh9NrVdrxgcU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzE9yii1hk0fUhIEAanSXx7Y1xWBQUcUmRz3bPmxOM7ErD9inAR
- 6xaJZEzWpPjAvt4lql45jd9AUjeJGH9hE1sQGG05/258gO+Oy904Z8AQ/IeSGv3RyKxfMmzM4oA
- 5h4SOzImVY+AOsnUWNiubgR8bqXKe1esMSt2F+FWl6w==
-X-Gm-Gg: ATEYQzwMS4S+hIdewYrrw6TVgcDQCMA/09sPBJoiOazGP1c6EtX5ajSW3SIOBkEr21c
- 5rQP/6tZ8UZUdHjh8y5m4+S5/BwijQb98aDB6Jtuu1IhNKtzAR9K63gRtQ7mVGcELwA7RybSqao
- PUZWO6VYL1Y0GzTtM+Sp2TwKsSq4pFJdyAxdoku+wl9hcc0iQcEwF1lXSvUdBhgMlz3uj7DLp8F
- 6TpXzzNx+qe0QWLUCe4wXFdz4jKXN4pJNd8m6WREPAD9bePYOqmrbiK5ApmJk85ifiuz5KLXiIk
- kBLj/ejLIc0dy9vLPr60kH4MvjIgBPE2rdVsIQ==
-X-Received: by 2002:a05:690c:e3cf:b0:79a:b71c:9c18 with SMTP id
- 00721157ae682-79acf6d3fafmr34648757b3.54.1774442975702; Wed, 25 Mar 2026
- 05:49:35 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AB0910E129;
+ Wed, 25 Mar 2026 12:59:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774443592; x=1805979592;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=1LjmH94tHmncqH6DmKgg0r0O5+Lq9wybXqJzEuhinzw=;
+ b=UdRBjp/+km50IouymXNm73D1r56J0HATY3obvRzQxfX/kuLiNS4Xdzsk
+ BBVXphCF8kvpg56RIeCrcQI+3WCNJW1P6+yDt7o7wNM0PM+XQWOCphVpj
+ mpPwFvLzfFGmh/ewUewKkPV1y3GgeQsaCq256UpfZ1g3sjdUh0Btgss9q
+ HmQRukBKJQbdPKFt5dk7BFo/UWovDHpty/VTM5QRu1992FV3PqOOesRzf
+ ZNWOSMU3aHrUkZO3tEnKb0SLr9T4BFJyOH4rx3WTi86cMIO7fyribqz5u
+ NBD8EqagRVZYXPVDA3EsCkBQCCX2j41ZGFByCf72Y7gExHQEpfzHU6k7k Q==;
+X-CSE-ConnectionGUID: dDNlHC+xTFKtaiz7XFyqjA==
+X-CSE-MsgGUID: Yg1OKMR/ROyw7ZDElj9J+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11739"; a="75379875"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75379875"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:59:51 -0700
+X-CSE-ConnectionGUID: Kh0fP9vXQ5ahHAhfYgw/lw==
+X-CSE-MsgGUID: Qgd4zL3eSMqWaD6k+AkDIQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="224628264"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.117])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 05:59:48 -0700
+Date: Wed, 25 Mar 2026 14:59:45 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ sowmiya.s@intel.com, uma.shankar@intel.com, swati2.sharma@intel.com,
+ chaitanya.kumar.borah@intel.com, arun.r.murthy@intel.com
+Subject: Re: [PATCH v3 22/26] drm/i915/writeback: Enable writeback interrupts
+Message-ID: <acPcQedhq-wTB_Ws@intel.com>
+References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
+ <20260325110744.1096786-23-suraj.kandpal@intel.com>
 MIME-Version: 1.0
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <20260324-color-format-v11-3-605559af4fb4@collabora.com>
-In-Reply-To: <20260324-color-format-v11-3-605559af4fb4@collabora.com>
-From: Dave Stevenson <dave.stevenson@raspberrypi.com>
-Date: Wed, 25 Mar 2026 12:49:19 +0000
-X-Gm-Features: AaiRm50VNDDjWfwK37zgUxzAmL4en6__7Zy6-AnLTnIOsCvoTh1nsZLCZm3Xzfc
-Message-ID: <CAPY8ntB9f_=f5kru=8w9BpTuqQR+93maGpT61EKU28Uay2vq8Q@mail.gmail.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
- Marius Vlad <marius.vlad@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260325110744.1096786-23-suraj.kandpal@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,398 +79,251 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[raspberrypi.com,reject];
-	R_DKIM_ALLOW(-0.20)[raspberrypi.com:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.40 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.71)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:w
- se@tuxedocomputers.com,m:andri@yngvason.is,m:marius.vlad@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[dave.stevenson@raspberrypi.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[raspberrypi.com:+];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dave.stevenson@raspberrypi.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,tuxedocomputers.com:email,yngvason.is:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 13657325285
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 4B01C32553E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 24 Mar 2026 at 16:02, Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
->
-> Add a new general DRM property named "color format" which can be used by
-> userspace to request the display driver to output a particular color
-> format.
->
-> Possible options are:
->     - auto (setup by default, driver internally picks the color format)
->     - rgb
->     - ycbcr444
->     - ycbcr422
->     - ycbcr420
->
-> Drivers should advertise from this list which formats they support.
-> Together with this list and EDID data from the sink we should be able
-> to relay a list of usable color formats to users to pick from.
->
-> Co-developed-by: Werner Sembach <wse@tuxedocomputers.com>
-> Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-> Co-developed-by: Andri Yngvason <andri@yngvason.is>
-> Signed-off-by: Andri Yngvason <andri@yngvason.is>
-> Signed-off-by: Marius Vlad <marius.vlad@collabora.com>
-> Reviewed-by: Maxime Ripard <mripard@kernel.org>
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+On Wed, Mar 25, 2026 at 04:37:40PM +0530, Suraj Kandpal wrote:
+> Enable writeback interrupts while enabling writeback
+> and define the isr handler and schedule work for later
+> to signal completion job.
+> 
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/drm_atomic_helper.c |   5 ++
->  drivers/gpu/drm/drm_atomic_uapi.c   |  11 ++++
->  drivers/gpu/drm/drm_connector.c     | 108 ++++++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h         | 104 ++++++++++++++++++++++++++++++++++
->  4 files changed, 228 insertions(+)
->
-> diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-> index 26953ed6b53e..b7753454b777 100644
-> --- a/drivers/gpu/drm/drm_atomic_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_helper.c
-> @@ -737,6 +737,11 @@ drm_atomic_helper_check_modeset(struct drm_device *dev,
->                         if (old_connector_state->max_requested_bpc !=
->                             new_connector_state->max_requested_bpc)
->                                 new_crtc_state->connectors_changed = true;
+>  .../gpu/drm/i915/display/intel_display_irq.c  | 10 ++++
+>  .../gpu/drm/i915/display/intel_display_regs.h |  1 +
+>  .../gpu/drm/i915/display/intel_writeback.c    | 50 +++++++++++++++++++
+>  .../gpu/drm/i915/display/intel_writeback.h    |  1 +
+>  4 files changed, 62 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index 70c1bba7c0a8..656fb314b985 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -29,6 +29,8 @@
+>  #include "intel_pmdemand.h"
+>  #include "intel_psr.h"
+>  #include "intel_psr_regs.h"
+> +#include "intel_writeback.h"
+> +#include "intel_writeback_reg.h"
+>  
+>  static void irq_reset(struct intel_display *display, struct i915_irq_regs regs)
+>  {
+> @@ -1281,6 +1283,11 @@ gen8_de_misc_irq_handler(struct intel_display *display, u32 iir)
+>  		found = true;
+>  	}
+>  
+> +	if (iir & (GEN8_DE_MISC_WD0)) {
+> +		intel_writeback_isr_handler(display);
+> +		found = true;
+> +	}
 > +
-> +                       if (old_connector_state->color_format !=
-> +                           new_connector_state->color_format)
-> +                               new_crtc_state->connectors_changed = true;
+>  	if (iir & GEN8_DE_EDP_PSR) {
+>  		struct intel_encoder *encoder;
+>  		u32 psr_iir;
+> @@ -2337,6 +2344,9 @@ void gen8_de_irq_postinstall(struct intel_display *display)
+>  	if (DISPLAY_VER(display) < 11)
+>  		de_misc_masked |= GEN8_DE_MISC_GSE;
+>  
+> +	if (DISPLAY_VER(display) >= 13)
+> +		de_misc_masked |= GEN8_DE_MISC_WD0;
 > +
->                 }
->
->                 if (funcs->atomic_check)
-> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-> index 5bd5bf6661df..dee510c85e59 100644
-> --- a/drivers/gpu/drm/drm_atomic_uapi.c
-> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-> @@ -935,6 +935,15 @@ static int drm_atomic_connector_set_property(struct drm_connector *connector,
->                 state->privacy_screen_sw_state = val;
->         } else if (property == connector->broadcast_rgb_property) {
->                 state->hdmi.broadcast_rgb = val;
-> +       } else if (property == connector->color_format_property) {
-> +               if (val > INT_MAX || !drm_connector_color_format_valid(val)) {
-> +                       drm_dbg_atomic(connector->dev,
-> +                                      "[CONNECTOR:%d:%s] unknown color format %llu\n",
-> +                                      connector->base.id, connector->name, val);
-> +                       return -EINVAL;
-> +               }
-> +
-> +               state->color_format = val;
->         } else if (connector->funcs->atomic_set_property) {
->                 return connector->funcs->atomic_set_property(connector,
->                                 state, property, val);
-> @@ -1020,6 +1029,8 @@ drm_atomic_connector_get_property(struct drm_connector *connector,
->                 *val = state->privacy_screen_sw_state;
->         } else if (property == connector->broadcast_rgb_property) {
->                 *val = state->hdmi.broadcast_rgb;
-> +       } else if (property == connector->color_format_property) {
-> +               *val = state->color_format;
->         } else if (connector->funcs->atomic_get_property) {
->                 return connector->funcs->atomic_get_property(connector,
->                                 state, property, val);
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index 47dc53c4a738..e848374dee0b 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -1388,6 +1388,18 @@ static const u32 hdmi_colorspaces =
->         BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_D65) |
->         BIT(DRM_MODE_COLORIMETRY_DCI_P3_RGB_THEATER);
->
-> +static const u32 hdmi_colorformats =
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
-> +
-> +static const u32 dp_colorformats =
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422) |
-> +       BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
-> +
->  /*
->   * As per DP 1.4a spec, 2.2.5.7.5 VSC SDP Payload for Pixel Encoding/Colorimetry
->   * Format Table 2-120
-> @@ -2940,6 +2952,102 @@ int drm_connector_attach_colorspace_property(struct drm_connector *connector)
+>  	if (display->platform.geminilake || display->platform.broxton)
+>  		de_port_masked |= BXT_DE_PORT_GMBUS;
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 4746e9ebd920..e637b10597c2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -1495,6 +1495,7 @@
+>  #define  XELPDP_RM_TIMEOUT		REG_BIT(29)
+>  #define  XELPDP_PMDEMAND_RSPTOUT_ERR	REG_BIT(27)
+>  #define  GEN8_DE_MISC_GSE		REG_BIT(27)
+> +#define  GEN8_DE_MISC_WD0		REG_BIT(23)
+>  #define  GEN8_DE_EDP_PSR		REG_BIT(19)
+>  #define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
+>  #define  XE2LPD_DBUF_OVERLAP_DETECTED	REG_BIT(1)
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c b/drivers/gpu/drm/i915/display/intel_writeback.c
+> index 54e74450e080..864d4a28de10 100644
+> --- a/drivers/gpu/drm/i915/display/intel_writeback.c
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+> @@ -14,6 +14,7 @@
+>  #include <drm/drm_encoder.h>
+>  #include <drm/drm_edid.h>
+>  #include <drm/drm_gem_framebuffer_helper.h>
+> +#include <drm/drm_vblank.h>
+>  
+>  #include "intel_atomic.h"
+>  #include "intel_connector.h"
+> @@ -323,6 +324,20 @@ void intel_writeback_atomic_commit(struct intel_atomic_state *state)
+>  	}
 >  }
->  EXPORT_SYMBOL(drm_connector_attach_colorspace_property);
->
-> +/**
-> + * drm_connector_attach_color_format_property - create and attach color format property
-> + * @connector: connector to create the color format property on
-> + * @supported_color_formats: bitmask of bit-shifted &enum drm_output_color_format
-> + *                           values the connector supports
-> + *
-> + * Called by a driver to create a color format property. The property is
-> + * attached to the connector automatically on success.
-> + *
-> + * @supported_color_formats should only include color formats the connector
-> + * type can actually support.
-> + *
-> + * Returns:
-> + * 0 on success, negative errno on error
-> + */
-> +int drm_connector_attach_color_format_property(struct drm_connector *connector,
-> +                                              unsigned long supported_color_formats)
+>  
+> +static void
+> +intel_writeback_enable_interrupts(struct intel_display *display,
+> +				  enum transcoder trans)
 > +{
-> +       struct drm_device *dev = connector->dev;
-> +       struct drm_prop_enum_list enum_list[DRM_CONNECTOR_COLOR_FORMAT_COUNT];
-> +       unsigned int i = 0;
-> +       unsigned long fmt;
+> +	u32 tmp;
 > +
-> +       if (connector->color_format_property)
-> +               return 0;
+> +	tmp = intel_de_read(display, WD_IIR(trans));
+> +	intel_de_write_fw(display, WD_IIR(trans), tmp);
 > +
-> +       if (!supported_color_formats) {
-> +               drm_err(dev, "No supported color formats provided on [CONNECTOR:%d:%s]\n",
-> +                       connector->base.id, connector->name);
-> +               return -EINVAL;
-> +       }
-> +
-> +       if (supported_color_formats & ~GENMASK(DRM_OUTPUT_COLOR_FORMAT_COUNT - 1, 0)) {
-> +               drm_err(dev, "Unknown color formats provided on [CONNECTOR:%d:%s]\n",
-> +                       connector->base.id, connector->name);
-> +               return -EINVAL;
-> +       }
-> +
-> +       switch (connector->connector_type) {
-> +       case DRM_MODE_CONNECTOR_HDMIA:
-> +       case DRM_MODE_CONNECTOR_HDMIB:
-> +               if (supported_color_formats & ~hdmi_colorformats) {
-> +                       drm_err(dev, "Color formats not allowed for HDMI on [CONNECTOR:%d:%s]\n",
-> +                               connector->base.id, connector->name);
-> +                       return -EINVAL;
-> +               }
-> +               break;
-> +       case DRM_MODE_CONNECTOR_DisplayPort:
-> +       case DRM_MODE_CONNECTOR_eDP:
-> +               if (supported_color_formats & ~dp_colorformats) {
-> +                       drm_err(dev, "Color formats not allowed for DP on [CONNECTOR:%d:%s]\n",
-> +                               connector->base.id, connector->name);
-> +                       return -EINVAL;
-> +               }
-> +               break;
-> +       }
-> +
-> +       enum_list[0].name = "AUTO";
-> +       enum_list[0].type = DRM_CONNECTOR_COLOR_FORMAT_AUTO;
-> +
-> +       for_each_set_bit(fmt, &supported_color_formats, DRM_OUTPUT_COLOR_FORMAT_COUNT) {
-> +               switch (fmt) {
-> +               case DRM_OUTPUT_COLOR_FORMAT_RGB444:
-> +                       enum_list[++i].type = DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-> +                       break;
-> +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
-> +                       enum_list[++i].type = DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-> +                       break;
-> +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
-> +                       enum_list[++i].type = DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-> +                       break;
-> +               case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-> +                       enum_list[++i].type = DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-> +                       break;
-> +               default:
-> +                       drm_warn(dev, "Unknown supported format %ld on [CONNECTOR:%d:%s]\n",
-> +                                fmt, connector->base.id, connector->name);
-> +                       continue;
-> +               }
-> +               enum_list[i].name = drm_hdmi_connector_get_output_format_name(fmt);
-> +       }
-> +
-> +       connector->color_format_property =
-> +               drm_property_create_enum(dev, DRM_MODE_PROP_ENUM, "color format",
-> +                                        enum_list, i + 1);
-> +
-> +       if (!connector->color_format_property)
-> +               return -ENOMEM;
-> +
-> +       drm_object_attach_property(&connector->base, connector->color_format_property,
-> +                                  DRM_CONNECTOR_COLOR_FORMAT_AUTO);
-> +
-> +       return 0;
-> +}
-> +EXPORT_SYMBOL(drm_connector_attach_color_format_property);
-> +
->  /**
->   * drm_connector_atomic_hdr_metadata_equal - checks if the hdr metadata changed
->   * @old_state: old connector state to compare
-> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
-> index af8b92d2d5b7..bd549f912b76 100644
-> --- a/include/drm/drm_connector.h
-> +++ b/include/drm/drm_connector.h
-> @@ -571,14 +571,102 @@ enum drm_colorspace {
->   *   YCbCr 4:2:2 output format (ie. with horizontal subsampling)
->   * @DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
->   *   YCbCr 4:2:0 output format (ie. with horizontal and vertical subsampling)
-> + * @DRM_OUTPUT_COLOR_FORMAT_COUNT:
-> + *   Number of valid output color format values in this enum
->   */
->  enum drm_output_color_format {
->         DRM_OUTPUT_COLOR_FORMAT_RGB444 = 0,
->         DRM_OUTPUT_COLOR_FORMAT_YCBCR444,
->         DRM_OUTPUT_COLOR_FORMAT_YCBCR422,
->         DRM_OUTPUT_COLOR_FORMAT_YCBCR420,
-> +       DRM_OUTPUT_COLOR_FORMAT_COUNT,
->  };
->
-> +/**
-> + * enum drm_connector_color_format - Connector Color Format Request
-> + *
-> + * This enum, unlike &enum drm_output_color_format, is used to specify requests
-> + * for a specific color format on a connector through the DRM "color format"
-> + * property. The difference is that it has an "AUTO" value to specify that
-> + * no specific choice has been made.
-> + */
-> +enum drm_connector_color_format {
-> +       /**
-> +        * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
-> +        * helpers should pick a suitable color format. All implementations of a
-> +        * specific display protocol must behave the same way with "AUTO", but
-> +        * different display protocols do not necessarily have the same "AUTO"
-> +        * semantics.
-> +        *
-> +        * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
-> +        * bandwidth required for full-scale RGB is not available, or the mode
-> +        * is YCbCr 4:2:0-only, as long as the mode and output both support
-> +        * YCbCr 4:2:0.
+> +	tmp = ~(WD_GTT_FAULT_INT | WD_WRITE_COMPLETE_INT |
+> +		WD_VBLANK_INT | WD_CAPTURING_INT);
+> +	intel_de_write(display, WD_IMR(trans), tmp);
 
-Is there a reason you propose dropping back to YCbCr 4:2:0 without
-trying YCbCr 4:2:2 first? Minimising the subsampling is surely
-beneficial, and vc4 for one can do 4:2:2 but not 4:2:0.
+If this is a double buffered IIR register then we really need to use the
+i915_irq_regs stuff to do this properly.
 
-  Dave
-
-> +        *
-> +        * For display protocols other than HDMI, the recursive bridge chain
-> +        * format selection picks the first chain of bridge formats that works,
-> +        * as has already been the case before the introduction of the "color
-> +        * format" property. Non-HDMI bridges should therefore either sort their
-> +        * bus output formats by preference, or agree on a unified auto format
-> +        * selection logic that's implemented in a common state helper (like
-> +        * how HDMI does it).
-> +        */
-> +       DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
-> +
-> +       /**
-> +        * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
-> +        */
-> +       DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> +
-> +       /**
-> +        * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
-> +        * not subsampled)
-> +        */
-> +       DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> +
-> +       /**
-> +        * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
-> +        * with horizontal subsampling)
-> +        */
-> +       DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> +
-> +       /**
-> +        * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
-> +        * with horizontal and vertical subsampling)
-> +        */
-> +       DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-> +
-> +       /**
-> +        * @DRM_CONNECTOR_COLOR_FORMAT_COUNT: Number of valid connector color
-> +        * format values in this enum
-> +        */
-> +       DRM_CONNECTOR_COLOR_FORMAT_COUNT,
-> +};
-> +
-> +/**
-> + * drm_connector_color_format_valid - Validate drm_connector_color_format value
-> + * @fmt: value to check against all values of &enum drm_connector_color_format
-> + *
-> + * Checks whether the passed in value of @fmt is one of the allowable values in
-> + * &enum drm_connector_color_format.
-> + *
-> + * Returns: %true if it's a valid value for the enum, %false otherwise.
-> + */
-> +static inline bool __pure
-> +drm_connector_color_format_valid(enum drm_connector_color_format fmt)
-> +{
-> +       switch (fmt) {
-> +       case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-> +       case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-> +       case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-> +       case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-> +       case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-> +               return true;
-> +       default:
-> +               return false;
-> +       }
 > +}
 > +
->  const char *
->  drm_hdmi_connector_get_output_format_name(enum drm_output_color_format fmt);
->
-> @@ -1129,6 +1217,13 @@ struct drm_connector_state {
->          */
->         enum drm_colorspace colorspace;
->
-> +       /**
-> +        * @color_format: State variable for Connector property to request
-> +        * color format change on Sink. This is most commonly used to switch
-> +        * between RGB to YUV and vice-versa.
-> +        */
-> +       enum drm_connector_color_format color_format;
+>  static void intel_writeback_enable_encoder(struct intel_atomic_state *state,
+>  					   struct intel_encoder *encoder,
+>  					   const struct intel_crtc_state *crtc_state,
+> @@ -348,6 +363,7 @@ static void intel_writeback_enable_encoder(struct intel_atomic_state *state,
+>  	fb = job->fb;
+>  	hactive = adjusted_mode->hdisplay;
+>  	vactive = adjusted_mode->vdisplay;
+> +	intel_writeback_enable_interrupts(display, trans);
+>  
+>  	/* Configure WD_STRIDE, WD_SURF and WD_TAIL_CFG */
+>  	/* Enable Planes, Pipes and Transcoder */
+> @@ -509,6 +525,40 @@ intel_writeback_get_hw_state(struct intel_encoder *encoder,
+>  	return true;
+>  }
+>  
+> +void intel_writeback_isr_handler(struct intel_display *display)
+
+"isr_handler" is not a term we use anywhere else.
+
+> +{
+> +	struct intel_encoder *encoder;
+> +	struct intel_writeback_connector *wb_conn;
+> +	struct intel_crtc *crtc;
+> +	u32 iir;
 > +
->         /**
->          * @writeback_job: Writeback job for writeback connectors
->          *
-> @@ -2127,6 +2222,12 @@ struct drm_connector {
->          */
->         struct drm_property *colorspace_property;
->
-> +       /**
-> +        * @color_format_property: Connector property to set the suitable
-> +        * color format supported by the sink.
-> +        */
-> +       struct drm_property *color_format_property;
+> +	for_each_intel_encoder(display->drm, encoder) {
+
+We should already know which WD transcoder generated the interrupt.
+Iterating all of them blindly doesn't seem right.
+
+> +		if (encoder->type != INTEL_OUTPUT_WRITEBACK)
+> +			continue;
 > +
->         /**
->          * @path_blob_ptr:
->          *
-> @@ -2610,6 +2711,9 @@ bool drm_connector_has_possible_encoder(struct drm_connector *connector,
->                                         struct drm_encoder *encoder);
->  const char *drm_get_colorspace_name(enum drm_colorspace colorspace);
->
-> +int drm_connector_attach_color_format_property(struct drm_connector *connector,
-> +                                              unsigned long supported_color_formats);
+> +		wb_conn = enc_to_intel_writeback_connector(encoder);
+> +		if (!wb_conn->job) {
+
+The interrupt code shouldn't care about that.
+
+> +			drm_err(display->drm, "No writeback job for the connector\n");
+> +			continue;
+> +		}
 > +
->  /**
->   * drm_for_each_connector_iter - connector_list iterator macro
->   * @connector: &struct drm_connector pointer used as cursor
->
-> --
-> 2.53.0
->
+> +		crtc = intel_crtc_for_pipe(display, wb_conn->pipe);
+
+Hmm. The pipe assignment will be dynamic. So looks like this stuff
+will need some actual thought...
+
+> +		iir = intel_de_read(display, WD_IIR(wb_conn->trans));
+> +		if (iir & WD_GTT_FAULT_INT)
+> +			drm_err(display->drm, " GTT fault during writeback\n");
+
+Missing at least the ATS fault.
+
+> +		if (iir & WD_WRITE_COMPLETE_INT)
+> +			drm_dbg_kms(display->drm, "Writeback job write completed\n");
+> +		if (iir & WD_VBLANK_INT) {
+> +			drm_crtc_handle_vblank(&crtc->base);
+
+I suspect the commit completion needs to happen from
+WD_WRITE_COMPLETE_INT. So either we put the vblank handling there, or
+we use manual commit completion for WD (ala. async flip/DSB/flip queue).
+
+I guess one option would be something like 
+  /* armed event for flip queue based updates */
+  struct drm_pending_vblank_event *flipq_event;\
++ /* armed event for each WD transcoder */
+  struct drm_pending_vblank_event *wd_event[2];
+
+And then we iterate the crtcs, looking for one with an event for the
+appropriate WD transcoder.
+
+
+Another idea that just came to me would be something like this:
+
+struct intel_crtc {
+	...
+	struct drm_pending_vblank_event *event;
+	enum {
+		EVENT_NONE,
+		EVENT_FLIP_DONE
+		EVENT_DSB,
+		EVENT_FLIP_QUEUE,
+		EVENT_WD0,
+		EVENT_WD1,
+	} event_type;
+	...
+};
+
+And then we keep the event and its type in sync while arming/sending.
+Would avoid having to keep so many mutually exclusive event pointers
+around.
+
+> +			drm_dbg_kms(display->drm, "Writeback vblank raised\n");
+> +		}
+> +		if (iir & WD_CAPTURING_INT)
+> +			drm_dbg_kms(display->drm, "Writeback job capture has started\n");
+> +
+> +		intel_de_write(display, WD_IIR(wb_conn->trans), iir);
+> +	}
+> +}
+> +
+>  int intel_writeback_init(struct intel_display *display)
+>  {
+>  	struct intel_encoder *encoder;
+> diff --git a/drivers/gpu/drm/i915/display/intel_writeback.h b/drivers/gpu/drm/i915/display/intel_writeback.h
+> index 3c145cf73e20..83a986753c4c 100644
+> --- a/drivers/gpu/drm/i915/display/intel_writeback.h
+> +++ b/drivers/gpu/drm/i915/display/intel_writeback.h
+> @@ -16,6 +16,7 @@ struct intel_writeback_connector;
+>  
+>  int intel_writeback_init(struct intel_display *display);
+>  void intel_writeback_atomic_commit(struct intel_atomic_state *state);
+> +void intel_writeback_isr_handler(struct intel_display *display);
+>  
+>  #endif /* __INTEL_WRITEBACK_H__ */
+>  
+> -- 
+> 2.34.1
+
+-- 
+Ville Syrjälä
+Intel
