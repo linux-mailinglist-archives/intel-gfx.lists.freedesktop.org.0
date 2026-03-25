@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDbnAVwvxGkAxQQAu9opvQ
+	id 2NRZDV8vxGkAxQQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 19:54:20 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 19:54:23 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0EC32AD73
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 19:54:19 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD09932AD7A
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 19:54:22 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23C3A10E868;
-	Wed, 25 Mar 2026 18:54:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A8A410E861;
+	Wed, 25 Mar 2026 18:54:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XQTaEQaD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P0tq1mfh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4721310E863;
- Wed, 25 Mar 2026 18:54:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C86A610E863;
+ Wed, 25 Mar 2026 18:54:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774464856; x=1806000856;
+ t=1774464860; x=1806000860;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=x52EN390b8bL6T3IVxFZAwzwdRkMKUNtDpvTvKICQtU=;
- b=XQTaEQaD2leh6ZF2TAD2tIWAxYx1lrCi7XqlDrXvGcq7M8SKwP3rd0UF
- x0jkDjOkFXHucs7lRyKvwSH8/4WLpm3WQtwYLgX5LKsaX0gyeLKhgcr4+
- IL+beRjKUvV3XhgjstMYHMLz39DZp0z1qBgfB5r0ss9uqRvWQKntdUwI9
- PH8zLJjCBSYhjXHJ/6jcn4QHQSPn2ylBtRPVrADgniwO33qiz7vV/Vvvt
- v0VavgCrNj2yaZRnurVT1wR5cIqZG4dClJz1Vvf8H1AAsY2ygg8trRPcl
- JoRk+XYb338N0AvhtOns3nMjYawQ4g+M89Ua/wgjghdKYfKh/Ogz60OGr A==;
-X-CSE-ConnectionGUID: HITUYQ4kSx2//qiZi/p3sg==
-X-CSE-MsgGUID: JSfzak2AQ9G6csraiLzXKw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="86991628"
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86991628"
+ bh=N5JRKXg4wTx/Bcw7904rFg89dPs2FKfkBPgB/SV5F5A=;
+ b=P0tq1mfhrgqhOVSbgk1Yg+gmURlNaz0IwKlq9e6wsj40pedjlH0Lp/Yk
+ 40bPavc9BIWQAxiJ0ZNMBksUDNEf06iZd2DmNxd/n4+Eec1PnaY19lLkU
+ nkcd52W9nRhBhIIuG5rADpaUrlec2/erBOWqqTfo1RuSrGoVzT95vmT3G
+ YB1l7KUzkybCo8q0jPloQN7RANb58/q/c4P/XaLClpZ1QaUPvnmrplOFE
+ pucGWsqbh2acBNWREjTAlLft9H/NGkgCaGi/oPrFdLzYMw6yOqRRjeNDJ
+ qWioC8rVGS0UYC3TbLNGEkk9XJxVyPAFJc1IzQB6AmKIJ/2CJLE8VuRod w==;
+X-CSE-ConnectionGUID: BOOCcbT6RDmPjwS//+8BXA==
+X-CSE-MsgGUID: BV3Z22qVSw+cp/fekXdG1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="86991648"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="86991648"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 11:54:16 -0700
-X-CSE-ConnectionGUID: qjTF4x8BTg2fMg5be+qN3A==
-X-CSE-MsgGUID: p8h8Rg1tSf2zhqXmWmjgaQ==
+ 25 Mar 2026 11:54:19 -0700
+X-CSE-ConnectionGUID: KfUNs/o0TxKDGBZMrrbEuQ==
+X-CSE-MsgGUID: z4xqQ0p0SSO3Qv6uV5HX9A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="221448650"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="221448699"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.117])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 11:54:14 -0700
+ 25 Mar 2026 11:54:18 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/12] drm/i915/de:
- s/intel_de_read64_2x32()/intel_de_read64_2x32_volatile()/
-Date: Wed, 25 Mar 2026 20:53:37 +0200
-Message-ID: <20260325185342.11482-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/12] drm/i915/de: Add a simple intel_de_read64_2x32()
+Date: Wed, 25 Mar 2026 20:53:38 +0200
+Message-ID: <20260325185342.11482-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
 References: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
@@ -100,76 +99,55 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCPT_COUNT_TWO(0.00)[2];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: AD0EC32AD73
+X-Rspamd-Queue-Id: DD09932AD7A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The raison d'etre of intel_de_read64_2x32() is that it can
-handle registers where volatile values are split across two
-registers. I don't like that it's being used needlessly.
+intel_de_read64_2x32_volatile() is a complex beast because
+it needs to deal with volatile register values. For simpler
+cases we can simply do a pair normal intel_de_read()s.
 
-Rename it to intel_de_read64_2x32_volatile() to make it
-more clear when it should be used.
+My main reason for hating overuse of intel_de_read64_2x32_volatile()
+is that it makes register tracepoints confusing. It always
+does three accesses in the somewhat weird udw,ldw,udw order,
+confusing the reader of the trace. Much more clear if we just
+observe the two reads in the natural little endian order.
+
+We also have no non-volatile use case where the LDW and UDW
+are stored in non-consecutive registers, so we can just pass
+along a single register offset.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_de.h     | 4 ++--
- drivers/gpu/drm/i915/display/intel_vblank.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_vrr.c    | 8 ++++----
- 3 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_de.h | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index 3f9861b7a589..295e7176b732 100644
+index 295e7176b732..624a0627b95c 100644
 --- a/drivers/gpu/drm/i915/display/intel_de.h
 +++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -36,8 +36,8 @@ intel_de_read(struct intel_display *display, i915_reg_t reg)
+@@ -53,6 +53,19 @@ intel_de_read64_2x32_volatile(struct intel_display *display,
+ 	return val;
  }
  
- static inline u64
--intel_de_read64_2x32(struct intel_display *display,
--		     i915_reg_t lower_reg, i915_reg_t upper_reg)
-+intel_de_read64_2x32_volatile(struct intel_display *display,
-+			      i915_reg_t lower_reg, i915_reg_t upper_reg)
++static inline u64
++intel_de_read64_2x32(struct intel_display *display,
++		     i915_reg_t reg)
++{
++	i915_reg_t upper_reg = _MMIO(i915_mmio_reg_offset(reg) + 4);
++	u32 lower, upper;
++
++	lower = intel_de_read(display, reg);
++	upper = intel_de_read(display, upper_reg);
++
++	return (u64)upper << 32 | lower;
++}
++
+ static inline void
+ intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
  {
- 	u64 val;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 1b7cfe226ff8..0726a2abed38 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -109,8 +109,8 @@ u32 i915_get_vblank_counter(struct drm_crtc *crtc)
- 	 * we get a low value that's stable across two reads of the high
- 	 * register.
- 	 */
--	frame = intel_de_read64_2x32(display, PIPEFRAMEPIXEL(display, pipe),
--				     PIPEFRAME(display, pipe));
-+	frame = intel_de_read64_2x32_volatile(display, PIPEFRAMEPIXEL(display, pipe),
-+					      PIPEFRAME(display, pipe));
- 
- 	pixel = frame & PIPE_PIXEL_MASK;
- 	frame = (frame >> PIPE_FRAME_LOW_SHIFT) & 0xffffff;
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 8a957804cb97..ae5385e92889 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -1053,11 +1053,11 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 
- 	if (crtc_state->cmrr.enable) {
- 		crtc_state->cmrr.cmrr_n =
--			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
--					     TRANS_CMRR_N_HI(display, cpu_transcoder));
-+			intel_de_read64_2x32_volatile(display, TRANS_CMRR_N_LO(display, cpu_transcoder),
-+						      TRANS_CMRR_N_HI(display, cpu_transcoder));
- 		crtc_state->cmrr.cmrr_m =
--			intel_de_read64_2x32(display, TRANS_CMRR_M_LO(display, cpu_transcoder),
--					     TRANS_CMRR_M_HI(display, cpu_transcoder));
-+			intel_de_read64_2x32_volatile(display, TRANS_CMRR_M_LO(display, cpu_transcoder),
-+						      TRANS_CMRR_M_HI(display, cpu_transcoder));
- 	}
- 
- 	if (DISPLAY_VER(display) >= 13) {
 -- 
 2.52.0
 
