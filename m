@@ -2,34 +2,99 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sG4HICcgxGmZwgQAu9opvQ
+	id gHOUE9UsxGmZwgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 18:49:27 +0100
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 19:43:33 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5BD632A190
-	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 18:49:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE29E32AB25
+	for <lists+intel-gfx@lfdr.de>; Wed, 25 Mar 2026 19:43:32 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D23E010E28B;
-	Wed, 25 Mar 2026 17:49:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5576010E906;
+	Wed, 25 Mar 2026 18:43:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NaKE8aSh";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2918710E28B;
- Wed, 25 Mar 2026 17:49:23 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6823658012467310461=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE33B10E906;
+ Wed, 25 Mar 2026 18:43:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774464209; x=1806000209;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=0uB4cz/kaaU7qp1vt9+ccjoVdLBU34QCUDDWtFm5dH4=;
+ b=NaKE8aSh5S78hxkSpItvlAh6zs/LP7H2VEht8IDk6rm3jmYO7iGgXKRY
+ Rx9Fe8bw3Y1S1gvAuGJKjwXXbH0PFQfBX11BJ18sv2p7jPBsWTohadkIQ
+ tNDayFi9BnRt4/FNVS1Upe0tHZw+qeB18npBwfOFA6EbZXPdXDO+QgWiu
+ /iXoLqfwxyFOrz/vwhw/XZJl2CVuY2griNe/qaWQNVe0188NLoTVv7tJY
+ YY93JNkjG2dg22+ijQhlHg+WQMXbk7PPCjA8kR1Ye7thlEctv7kOsIFp0
+ 9LkUO9aVIKJCfw2mmEYEdKR2ufPBf0YrxfT6IwcwtcbEBWga4Z2ARDaTO Q==;
+X-CSE-ConnectionGUID: xGSxtmLgRS6oPIYCOeiazw==
+X-CSE-MsgGUID: yz0fcG9FTOmwURCVlQyCmg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75228907"
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="75228907"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 11:43:27 -0700
+X-CSE-ConnectionGUID: PIgWhb1sReuCAFXJCMmd4Q==
+X-CSE-MsgGUID: SQkIRvm5QpyELM31Jk3yCw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,140,1770624000"; d="scan'208";a="229541235"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.117])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 11:43:17 -0700
+Date: Wed, 25 Mar 2026 20:43:15 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Maxime Ripard <mripard@kernel.org>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ Harry Wentland <harry.wentland@amd.com>,
+ Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>,
+ Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
+ Werner Sembach <wse@tuxedocomputers.com>,
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+Message-ID: <acQsw3Wi_xVlBZ8d@intel.com>
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <20260324-color-format-v11-3-605559af4fb4@collabora.com>
+ <acLDPYuaVI2-12JX@intel.com> <23910073.EfDdHjke4D@workhorse>
+ <acLrv5hLyNss-Px5@intel.com>
+ <20260325-neat-elegant-raven-ebc9ab@houat>
+ <acPA60Ci3n_t__xF@intel.com>
+ <20260325-magnificent-ultraviolet-oarfish-baefbc@houat>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Some_fixes_an?=
- =?utf-8?q?d_cleanups?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 25 Mar 2026 17:49:23 -0000
-Message-ID: <177446096314.397746.15426606883297672242@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260325135849.12603-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260325-magnificent-ultraviolet-oarfish-baefbc@houat>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,271 +107,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_MIXED_CHARSET(0.63)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
-X-Rspamd-Queue-Id: B5BD632A190
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: EE29E32AB25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============6823658012467310461==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote:
+> On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrjälä wrote:
+> > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
+> > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrjälä wrote:
+> > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrote:
+> > > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Time Ville Syrjälä wrote:
+> > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli wrote:
+> > > > > > > +enum drm_connector_color_format {
+> > > > > > > +	/**
+> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
+> > > > > > > +	 * helpers should pick a suitable color format. All implementations of a
+> > > > > > > +	 * specific display protocol must behave the same way with "AUTO", but
+> > > > > > > +	 * different display protocols do not necessarily have the same "AUTO"
+> > > > > > > +	 * semantics.
+> > > > > > > +	 *
+> > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
+> > > > > > > +	 * bandwidth required for full-scale RGB is not available, or the mode
+> > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output both support
+> > > > > > > +	 * YCbCr 4:2:0.
+> > > > > > > +	 *
+> > > > > > > +	 * For display protocols other than HDMI, the recursive bridge chain
+> > > > > > > +	 * format selection picks the first chain of bridge formats that works,
+> > > > > > > +	 * as has already been the case before the introduction of the "color
+> > > > > > > +	 * format" property. Non-HDMI bridges should therefore either sort their
+> > > > > > > +	 * bus output formats by preference, or agree on a unified auto format
+> > > > > > > +	 * selection logic that's implemented in a common state helper (like
+> > > > > > > +	 * how HDMI does it).
+> > > > > > > +	 */
+> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO = 0,
+> > > > > > > +
+> > > > > > > +	/**
+> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
+> > > > > > > +	 */
+> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
+> > > > > > > +
+> > > > > > > +	/**
+> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 output format (ie.
+> > > > > > > +	 * not subsampled)
+> > > > > > > +	 */
+> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
+> > > > > > > +
+> > > > > > > +	/**
+> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 output format (ie.
+> > > > > > > +	 * with horizontal subsampling)
+> > > > > > > +	 */
+> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
+> > > > > > > +
+> > > > > > > +	/**
+> > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 output format (ie.
+> > > > > > > +	 * with horizontal and vertical subsampling)
+> > > > > > > +	 */
+> > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
+> > > > > > 
+> > > > > > Seems like this should document what the quantization range
+> > > > > > should be for each format.
+> > > > > > 
+> > > > > 
+> > > > > I don't think so? If you want per-component bit depth values,
+> > > > > DRM_FORMAT_* defines would be the appropriate values to use. This
+> > > > > enum is more abstract than that, and is there to communicate
+> > > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
+> > > > > by other properties.
+> > > > > 
+> > > > > If you mean the factor used for subsampling, then that'd only be
+> > > > > relevant if YCBCR410 was supported where one chroma plane isn't
+> > > > > halved but quartered in resolution. I suspect 4:1:0 will never
+> > > > > be added; no digital display protocol standard supports it to my
+> > > > > knowledge, and hopefully none ever will.
+> > > > 
+> > > > No, I mean the quantization range (16-235 vs. 0-255 etc).
+> > > > 
+> > > > The i915 behaviour is that YCbCr is always limited range,
+> > > > RGB can either be full or limited range depending on the 
+> > > > "Broadcast RGB" property and other related factors.
+> > > 
+> > > So far the HDMI state has both the format and quantization range as
+> > > different fields. I'm not sure we need to document the range in the
+> > > format field, maybe only mention it's not part of the format but has a
+> > > field of its own?
+> > 
+> > I think we only have it for RGB (on some drivers only?). For YCbCr
+> > I think the assumption is limited range everywhere.
+> > 
+> > But I'm not really concerned about documenting struct members.
+> > What I'm talking about is the *uapi* docs. Surely userspace
+> > will want to know what the new property actually does so the
+> > uapi needs to be documented properly. And down the line some
+> > new driver might also implement the wrong behaviour if there
+> > is no clear specification.
+> 
+> Ack
+> 
+> > So I'm thinking (or perhaps hoping) the rule might be something like:
+> > - YCbCr limited range 
+> > - RGB full range if "Broadcast RGB" property is not present
+> 
+> Isn't it much more complicated than that for HDMI though? My
+> recollection was that any VIC but VIC1 would be limited range, and
+> anything else full range?
 
-== Series Details ==
+Do we have some driver that implements the CTA-861 CE vs. IT mode
+logic but doesn't expose the "Broadcast RGB" property? I was hoping
+those would always go hand in hand now.
 
-Series: drm/i915: Some fixes and cleanups
-URL   : https://patchwork.freedesktop.org/series/163857/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18213 -> Patchwork_163857v1
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_163857v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_163857v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_163857v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_busy@basic@flip:
-    - fi-bsw-n3050:       [PASS][1] -> [DMESG-WARN][2] +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-bsw-n3050/igt@kms_busy@basic@flip.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-bsw-n3050/igt@kms_busy@basic@flip.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_163857v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-glk-j4005:       NOTRUN -> [SKIP][3]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [PASS][4] -> [DMESG-FAIL][5] ([i915#12061]) +1 other test dmesg-fail
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/bat-mtlp-8/igt@i915_selftest@live.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/bat-mtlp-8/igt@i915_selftest@live.html
-    - bat-adlp-11:        [PASS][6] -> [DMESG-FAIL][7] ([i915#12964]) +1 other test dmesg-fail
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/bat-adlp-11/igt@i915_selftest@live.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/bat-adlp-11/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arlh-3:         [PASS][8] -> [DMESG-FAIL][9] ([i915#12061]) +1 other test dmesg-fail
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - fi-glk-j4005:       [ABORT][10] ([i915#15825]) -> [PASS][11]
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-glk-j4005/igt@i915_selftest@live.html
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gt_mocs:
-    - fi-glk-j4005:       [ABORT][12] -> [PASS][13]
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-glk-j4005/igt@i915_selftest@live@gt_mocs.html
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@i915_selftest@live@gt_mocs.html
-
-  * igt@i915_selftest@live@hugepages:
-    - fi-glk-j4005:       [DMESG-FAIL][14] -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-glk-j4005/igt@i915_selftest@live@hugepages.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@i915_selftest@live@hugepages.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [FAIL][16] ([i915#14867]) -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#12964]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964
-  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
-  [i915#15825]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15825
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18213 -> Patchwork_163857v1
-
-  CI-20190529: 20190529
-  CI_DRM_18213: cfe3d5f3eb5cf3b8aff1710c1c5c1d666f932aa8 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8825: 531ebe0606453021b88f794aad255d9e1a234d3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_163857v1: cfe3d5f3eb5cf3b8aff1710c1c5c1d666f932aa8 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/index.html
-
---===============6823658012467310461==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+> 
+> > - RGB full or limited range based on the "Broadcast RGB" property
+> >   if it's present
+> > 
+> > I think the "Broadcast RGB" property itself might also be lacking
+> > proper uapi docs, so that may need to be remedied as well.
+> 
+> I took care of documenting it when merging the HDMI helpers:
+> https://docs.kernel.org/gpu/drm-kms.html#hdmi-specific-connector-properties
+> 
+> Maxime
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Some fixes and cleanups</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163857/">https://patchwork.freedesktop.org/series/163857/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18213 -&gt; Patchwork_163857v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_163857v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_163857v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_163857v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_busy@basic@flip:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-bsw-n3050/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-bsw-n3050/igt@kms_busy@basic@flip.html">DMESG-WARN</a> +1 other test dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_163857v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-glk-j4005:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@dmabuf@all-tests@dma_fence_chain.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/bat-adlp-11/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/bat-adlp-11/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12964">i915#12964</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-glk-j4005/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15825">i915#15825</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gt_mocs:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-glk-j4005/igt@i915_selftest@live@gt_mocs.html">ABORT</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@i915_selftest@live@gt_mocs.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@hugepages:</p>
-<ul>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-glk-j4005/igt@i915_selftest@live@hugepages.html">DMESG-FAIL</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-glk-j4005/igt@i915_selftest@live@hugepages.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18213/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163857v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18213 -&gt; Patchwork_163857v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18213: cfe3d5f3eb5cf3b8aff1710c1c5c1d666f932aa8 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8825: 531ebe0606453021b88f794aad255d9e1a234d3d @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_163857v1: cfe3d5f3eb5cf3b8aff1710c1c5c1d666f932aa8 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6823658012467310461==--
+-- 
+Ville Syrjälä
+Intel
