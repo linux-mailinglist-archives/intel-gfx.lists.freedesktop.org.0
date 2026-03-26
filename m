@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mOB3LcBpxWl1+AQAu9opvQ
+	id QOb9NcFpxWl1+AQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:44 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:45 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8879033903B
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:44 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8FA7339049
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:45 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD45910EB17;
-	Thu, 26 Mar 2026 17:15:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD4C610EB35;
+	Thu, 26 Mar 2026 17:15:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C2Fg2v6L";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FBUrFv5j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC2D010EB09;
- Thu, 26 Mar 2026 17:15:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A32CA10EAC7;
+ Thu, 26 Mar 2026 17:15:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774545339; x=1806081339;
+ t=1774545341; x=1806081341;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Gu8FyOUnT0ZqozJpWbQHEK+Y+NiIXmW7crMUggRhqSw=;
- b=C2Fg2v6Leklsoc408TxKySyj4t9nDAhZHtsV5FMhATY5w0PaVb81WHSC
- r+8BeKtPG0dKQBKv8bD5QAXLjm3zZx0akoWEwA5wdigsKSMegdClTBe8J
- PO6lC3udw1sGn6ho28PTXNi33qo3aL0f3cRyhJY0MiMROhF1/rdTVS1Lr
- D+5G47yqSzli1q7x2dc5ZZbbS9SImnRRofP9SFWB5l5wqkWB52SSmX1Or
- DEcBUiL1JH/n1X4X4ByE1rAc/97ZT5CanOk7mZYgkPoTdV4CaocsQv5GU
- mUpxmVFCWnQFcnrE0kfkmeyvEkcOlDhLzLrkqlL9ZrvJOUTrMHglnL/9k Q==;
-X-CSE-ConnectionGUID: iUYJixy0QKuD1FlFrckH/g==
-X-CSE-MsgGUID: 99XucZikQnmcz1C2UsXmSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630592"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630592"
+ bh=0iZ4IGzE882ierrXPDsTGs+29DhbHM6p6D9d7sAR5pE=;
+ b=FBUrFv5jc/qfA+4iLAAoEvgjvPA1G2YxOezko3NASHRvmUhHtKKf49kp
+ 33vA9lN+OWqL2Ybs3HcmtBFsi7k4/CkLdbDdPCgLdBytpLIuLkQXz4Zy3
+ g5NhlgEYHhCIlJz7MY7Tm5U7Mvcpkj/v2CA4ZHQul0l2QGJuQ5fpVafEG
+ bLH+mNK0KInmGVUOhvvGy+jEZF13P8T7zPkdGHqYvTO78cIdO+aJTQT3S
+ j4X14ULSmUe58luDSzUnPIno/D6IeuJuq55BDPuewaXiozdo/ftSEyFba
+ eDUmQXiNhwjFnXNOqfJInCA7VIMhr92SCKxkaZuKbluLZgndOgicfW5CF g==;
+X-CSE-ConnectionGUID: ElbC+imaRiyKiDlQUfp3mg==
+X-CSE-MsgGUID: 70x9Zuy1RbCh/jzFR82Teg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630593"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630593"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 10:15:39 -0700
-X-CSE-ConnectionGUID: SckecXUmR1681fKfzw+nXQ==
-X-CSE-MsgGUID: 6ecbw7A9T1i7gBSK0iQUbw==
+ 26 Mar 2026 10:15:41 -0700
+X-CSE-ConnectionGUID: c4KX4j8lTOizKHKyjDo0Wg==
+X-CSE-MsgGUID: FSDYTzqdStaE/hA5LEybig==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975624"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975631"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 10:15:37 -0700
+ 26 Mar 2026 10:15:39 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com,
  suresh.kumar.kurmi@intel.com
-Subject: [PATCH 13/19] drm/i915/display: Define DC3CO idle protocol bit in
- PR_ALPM_CTL
-Date: Thu, 26 Mar 2026 22:45:51 +0530
-Message-ID: <20260326171557.2065632-14-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH 14/19] drm/i915/display: Enable DC3CO idle protocol in ALPM
+Date: Thu, 26 Mar 2026 22:45:52 +0530
+Message-ID: <20260326171557.2065632-15-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -99,30 +98,46 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 8879033903B
+X-Rspamd-Queue-Id: A8FA7339049
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL bit definition.
+Set PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL when DC3CO is
+allowed.
 
 BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_alpm.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 8afbf5a38335..16a9e3af198d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -268,6 +268,7 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index a7350ce8e716..9f92513a23c0 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -365,6 +365,9 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 	struct intel_display *display = to_intel_display(intel_dp);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	u32 alpm_ctl;
++	struct intel_atomic_state *state =
++		to_intel_atomic_state(crtc_state->uapi.state);
++
  
- #define _PR_ALPM_CTL_A	0x60948
- #define PR_ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _PR_ALPM_CTL_A)
-+#define  PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL			BIT(7)
- #define  PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU	BIT(6)
- #define  PR_ALPM_CTL_RFB_UPDATE_CONTROL				BIT(5)
- #define  PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE	BIT(4)
+ 	if (DISPLAY_VER(display) < 20 || (!intel_psr_needs_alpm(intel_dp, crtc_state) &&
+ 					  !crtc_state->has_lobf))
+@@ -389,6 +392,12 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			if (crtc_state->disable_as_sdp_when_pr_active)
+ 				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
+ 
++			if (intel_dc3co_allowed(state) &&
++			    intel_display_power_dc3co_supported(display))
++				pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++			else
++				pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++
+ 			intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder),
+ 				       pr_alpm_ctl);
+ 		}
 -- 
 2.43.0
 
