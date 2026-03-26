@@ -2,154 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4GWxHAvvxGnv5AQAu9opvQ
+	id AIFGEF7yxGnv5AQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 09:32:11 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 09:46:22 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CD6AC33161F
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 09:32:10 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id C95A9331951
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 09:46:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45C0510E243;
-	Thu, 26 Mar 2026 08:32:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6417B10EA0E;
+	Thu, 26 Mar 2026 08:46:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NT5JPASR";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="ibcv62xT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8C79C10E243;
- Thu, 26 Mar 2026 08:32:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774513927; x=1806049927;
- h=date:from:to:cc:subject:message-id:in-reply-to: mime-version;
- bh=1G20wEi8xJfEJKa1L00MdUY72df8E05Uv1eeGIaSWSQ=;
- b=NT5JPASR6D/Wx/lqOdYWZfLbqnXQpwjmBipQfX54gTYc1Hj4LD/QotIu
- m/EcSqfdqq6E2CihxlsjIyamxDQQjO9/ytqBkaiUDrkmjLd737+xvhDrl
- dVfw0P7AaBl+D2GsXXqMqW1gW0SWZFK2Nywr/KkIs8ScJkKuk5L9MEQ4a
- ZKGlZAKTWkWum72AHJxoOFoBfJWGnTm3CB9QUsu2gFep9yk6w46zeYNT2
- AF88oqmZ1cUeVUSSLghzuasnWtPxpuyCvT1C1QGGv7lIHuqXaTIZgVi3a
- ZnJ29KZfQeTfnwGyIAt3/0DnyJvxmrOXkEoHmSlavY3n6CkfM+gPy0Mhc g==;
-X-CSE-ConnectionGUID: 5GOMn5tWQj6XLeikR9z6hA==
-X-CSE-MsgGUID: lK6LJJBPRTCCxGDyqRSkjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75677794"
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="75677794"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 01:32:04 -0700
-X-CSE-ConnectionGUID: Bwf2Od8fRoSjJp8JnmKhlw==
-X-CSE-MsgGUID: oo0UdV8FSlKx7DUpZHEFcg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="224872465"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 01:32:03 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 26 Mar 2026 01:32:02 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 26 Mar 2026 01:32:02 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.48)
- by edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 26 Mar 2026 01:32:02 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=c+YyTrSId6J92cMo8a2EgNHwhfScLkyT29u1ooVBUiaJe6KXrfoxo/KACWZuq+ZrAxwgl0Tbd8c6OkOopeUGeWODiwJceW2DzLNcZ/jsO49fTCeZxVrOIPE8ngmxB0YEdOOAO9KvTwgYgwyw18L+P+CnCyEFEEoBSDTZUMLdN562B2BhtcJJ4OmoCdiLcQB7OILOk/3XD1WTEteQ4UrBGbI+TdemjwxFTb494s2LH2orPfFBUKq6H7BVh0/Ds5rn+TSgreQL6G/i9TovfRokiwISkb9GLCswNgcTU8KjeBV4vfVFupOgzxcBsimtvnaeeT/CdWKepOyDkPphTPBoNQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=OG7K0MVwaeIvk0V+GC64fgVUaKGkQ9AFdSSybwgD04o=;
- b=Ax9xyjRKgQsqbabV09Bz5ESN69dgijVL8snRhtnPZbgkXGkqzhbbkW+hOByCGXh6X7QBQZpUkyRMyspsQtdDJqCCeQE9RMQ2eTMrzDt4tnL0NGLTxFDcClVG9gBmHul6DhgrjtJJkF/MoTkRbRPuOHxlZhfTtb5Jinr185U9jl5y+FzsmBDOw1GBToe1G72tOjyWXCFVejnoGlmh3jWjRrdYVXj3g0tPzWT2xDelMy16l/Wk9sLbftZzpqZ2jrg5SWbEMoSu1NgrDXJqklZQdIGrKrJWOtfeJaGPjvvfocEit1aSmkktTVpsDEkBy+41o1gd2NEoiKWEphxt1qkElw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from PH0PR11MB5832.namprd11.prod.outlook.com (2603:10b6:510:141::7)
- by DM4PR11MB5995.namprd11.prod.outlook.com (2603:10b6:8:5e::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.7; Thu, 26 Mar
- 2026 08:31:58 +0000
-Received: from PH0PR11MB5832.namprd11.prod.outlook.com
- ([fe80::106e:78dd:4c96:d707]) by PH0PR11MB5832.namprd11.prod.outlook.com
- ([fe80::106e:78dd:4c96:d707%3]) with mapi id 15.20.9745.019; Thu, 26 Mar 2026
- 08:31:58 +0000
-Date: Thu, 26 Mar 2026 16:31:50 +0800
-From: kernel test robot <oliver.sang@intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <ckoenig.leichtzumerken@gmail.com>
-CC: <oe-lkp@lists.linux.dev>, <lkp@intel.com>, Christian
- =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- <linux-media@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
- <linaro-mm-sig@lists.linaro.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
- <tursulin@ursulin.net>, <sumit.semwal@linaro.org>, <oliver.sang@intel.com>
-Subject: Re: [PATCH] dma-buf/dma_fence_array: remove unused functionality
-Message-ID: <202603261503.3e8f7afc-lkp@intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20260317145039.2418-1-christian.koenig@amd.com>
-X-ClientProxiedBy: SI1PR02CA0011.apcprd02.prod.outlook.com
- (2603:1096:4:1f7::19) To PH0PR11MB5832.namprd11.prod.outlook.com
- (2603:10b6:510:141::7)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E369510EA0E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 08:46:16 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 197F840C26;
+ Thu, 26 Mar 2026 08:46:16 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8FA30C116C6;
+ Thu, 26 Mar 2026 08:46:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=linuxfoundation.org;
+ s=korg; t=1774514776;
+ bh=jRpEdutX9ti8N1xwFcSl90MFJfF5ESk51VrhbGqUPg4=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ibcv62xTT/CeNZXsGR/PzlWHPoPaUGi/bq9RjZou40N8+vGLA5Ux7pXNRrNiVmSMy
+ Ui3oUn/h81d4MNDXqzbbTGl682mHpSAEEW73MjVMhL1duNCBr1O/dIxxK87BUa3JsS
+ otrQmqsslIf5ElTcpQUKutCG4efni7XLxAfXYw/k=
+Date: Thu, 26 Mar 2026 09:45:51 +0100
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Yassine Mounir <sosohero200@gmail.com>,
+ intel-gfx@lists.freedesktop.org, security@kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: AI slop security report against i915 (Was: Re: [PATCH v2]
+ drm/i915/gem: Fix UAF race in eb_relocate_vma)
+Message-ID: <2026032643-disband-reorder-c0fd@gregkh>
+References: <20260324151741.29338-1-sosohero200@gmail.com>
+ <177442567303.11552.5320450093167124387@jlahtine-mobl>
+ <CANq=4mAEmEQWTUBpDJAgaiw930NUzL6-7EV-Y2WqLGst2YWLiw@mail.gmail.com>
+ <177444763778.66558.14341959485998155867@jlahtine-mobl>
+ <acQDZJFtsEtm183A@intel.com>
+ <CANq=4mDtmtz5ZFjCCoeAXEWN82J9m8+DLochsNc6BzfwJ6Pdpg@mail.gmail.com>
+ <CANq=4mC3+B4akvpp=nr_w1bbnhDwUXx=EzyQtHQpR9DN=ewCMA@mail.gmail.com>
+ <acReP5LYxOKCG80B@intel.com>
+ <CANq=4mCzoOGCAGZK6KAnCK4iaH+Woy49L=6Y5rCpuNmg_vEneQ@mail.gmail.com>
+ <177450809396.10669.10897074578574249353@jlahtine-mobl>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR11MB5832:EE_|DM4PR11MB5995:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0742f861-8c62-47a0-66fb-08de8b122568
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|7416014|376014|366016|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: QgLdaqNCRhIUqPOIWQeziQhbJMZYyTS6FR9swIhaeA8zIj1ejyDNHv+61yx8IxKSkZLs5aQ9gHJ/bTyCuQinOc3v4x+hUBJg4kyoq3WIVr4RakCW7qbwjnkRA/qIANOY0Z/shWlyKIbgI8k2jmaXRJIhLSmiktKue1zNL9jdviqI2wJSEaxbARnvVkrwlBNUxgiDXhGrdyAghrP35oDrQ9kGvRj+JcaAKa6A3LRz42WYAQJo8vPPuM7cnxu++Jj7J8GqMN9fzoqKpc9Ut1IbpyxuQkKmlVHw/WXez6PkvYd4F5nGIBjQCwbqkCiTQlgrkC+NcECHrzz0LDh6vqhzX6eYvwi1VxAjzuFdreVZfGpSoG2qcGYkT10vzc4cVhP1omNR1+5eZKXqlj+NxD4Sz2PBMuIV8M+V0xoVGojTcqNyaKJu1cdQaXnEPd/KSUxmNJ/5yyXRyRB5YJk/NPT6CyvHhdgmkZS4VbvRB3wyaDz8S3cYnI/KwDe4M8RF4CNTL1MqRXMaA5sGjcILD3euaETDq+7D/1Ow8ibZSl5G8gICE/XHn0dbS6Dxs/E58wqAK8j1KAcrC+3hb5BmjZJmq41OKeOGCEJgeK2cfe1UQStDgj+U5E2+IJg7r53TuL67npQG/QVVxsUtQXWFDBjAaKlau3MmOFlC6np+a6dAPN+UFsLQK45v1NcHZdI91df13R0YcIqkNN7sIKL/u2kEYA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH0PR11MB5832.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(7416014)(376014)(366016)(22082099003)(56012099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?1JlKNC0I2n66I7WYyiAiWYahxa2M2Xwxfg7mpsKv+j/B0dF2n0KkI0JtwmEW?=
- =?us-ascii?Q?jiWBnQ9t6DPPIefPfmajgVNvm8q2LX6id+m7PsYh/6DykVjlOrYYmUCHZ1E3?=
- =?us-ascii?Q?EqSqrjvZU/clu8MFpddfzdnMRqXDcOwbUqWPufIO0G9sycMnR4f+q/NSHUgv?=
- =?us-ascii?Q?3vFsTmftiTdiZ4FpH5OnSBx1K5YsRAvjLFuwQQher3aWA9K+UHH4XaXLb3SR?=
- =?us-ascii?Q?Szn3ANkvvB8G/p9fDxcQdpoNCY2uTonCzSlwAm8o9zRnUyI1RFBMekyiRyJV?=
- =?us-ascii?Q?odsuQcApCM3PyT0EentONL1Yc4419K/dhOIEAwYYsNYAfBjq0M8EUgp1UbrM?=
- =?us-ascii?Q?empgWe5fbUlkA+jm0SkW5GBRebUDPyTx6I5Qtsd2OQqBCo+O+jPf42jiiGko?=
- =?us-ascii?Q?zd8w7Uj6OhifxH+yxCTk12z0P3Ca+BvMKsr5b2x6+ArzU9jDIcL+kP32+oJY?=
- =?us-ascii?Q?Tz+QWB/azwUMgPaPmiaL3AFIp6TllPRcg7hRrziC3RvYk7QVD8qK9CjVlZ14?=
- =?us-ascii?Q?+6eCZOYn98xF8y4cF5xd8pHR63HYeXZT5Hn2YBvzT3COm8+2zB1J4QdLMUEV?=
- =?us-ascii?Q?WNlBAujdkEQdNSWh5FzIBcyoRGEWMkohUy2TCv1rw24YjgGOg61HshzpHB5V?=
- =?us-ascii?Q?eKwPAi6tDQnyUnjC1FviQ2iCCW4190+ycjeDfNqVockHgDELE+XHTgwsu79C?=
- =?us-ascii?Q?TOSqk/ypG1XMCTK95itk9biPvOFVZRTR+RzbDRing2xwTtPqmNjbVCWzQG9r?=
- =?us-ascii?Q?Ad1ZWIC43SLkOnz8FWl4scwzyjFtqL8v5ibnbo8C95/CerzEy1fE6e9G89RX?=
- =?us-ascii?Q?A9m1UPKh/ohq6KVLXmQOqv+ZaRRJRduRBEFyMpyvqXnaFjTIo8InmTYayt85?=
- =?us-ascii?Q?TvLkYCinRJz95E++kFazNLNCDJWmJYijwF629MYPMaZxdvyYU15S7aMBQDse?=
- =?us-ascii?Q?TEXu+bmbJUMaCcX/40DMqcL70xdXDECKcvEwffEYit58S2iEXoKAfDgbkDaS?=
- =?us-ascii?Q?yQ5/2tEoaYcIicO3Sp+mVaMF6rVntBAqq/k5VS3s/KLdFi09K2wJO/F+27H/?=
- =?us-ascii?Q?mXPIYEnyLiZmxBW+TmmT+qWyZoTw4JHnnxvQjvqtMF5FK4N9velW00Tr7zJj?=
- =?us-ascii?Q?9XEHct2hibQnrSOQAS/8yldfwaFW1gMXo3a53tccPUQnwA5Th0qTFHBzzn99?=
- =?us-ascii?Q?GGhDCqnqvj1Ht/ihnyo75Fn69d975tWWMc3shE3ZlHV4qZi10pRU4Gsna+Io?=
- =?us-ascii?Q?u7d4POA4wEx6zJ1cyp5ls+5XMhpLlQECXa5xTCuqX0ydPYaZDJq4vyE6N1Ei?=
- =?us-ascii?Q?yIEzZS7558UTtIEhNJWvpFBVkQl/pN9aPaJyr9/BBe+sgvwiVu+LXw2PIzTA?=
- =?us-ascii?Q?oDdjzJkPMOi4cY95etVa4BRWbJcOz+2uju7T9KhM3DBPvuowJZlD9UuqQf1a?=
- =?us-ascii?Q?InaPP8ssd6/gJ1JlmqNLr6aPtnxD5a8uG2w6V7kJobnx4Eq/NS+6xV+CgTCI?=
- =?us-ascii?Q?CcDJPRSXAzSvxAhBpmWwyFqhmX9Z7KxpU1+eUzfoRU6SRokLq+vrmZLrqXxW?=
- =?us-ascii?Q?StXy3qgV3ijgERtRC+/3J/OgENH7J43G7HlXiKvKd3UhaIQeMgwiHu0ordbr?=
- =?us-ascii?Q?kZbwY4KfDFgphq8oYgxcmLW2S6nQ6RVUFm/IWUpmpQraOEGhyg4Lwfa0y8Z6?=
- =?us-ascii?Q?cP3QgbGGOi68mqLfA2NYcOQFDlFrbYXz0xCcDFlzGevPQIstxLZy/EunEdXs?=
- =?us-ascii?Q?A5Ts5my2Ew=3D=3D?=
-X-Exchange-RoutingPolicyChecked: mOAFjiz5HVYxZdi5Eu7lWw6IpcB1MAI5vjX7+xcasSKzUABOaGU7bbMYkDw6onlpQ2WefY3wGZcB1KqZd5qRfOtRMEkA83/X5EHJpbbZT8XqNywF2+9NI/iBwQHkf2IbhYLnzCxW2Ew28MYNhJgyjSME5cP0LUS+F5j8wpLXxj2JfXBK2dae/lSk1B1AZM0H/wL/9pjDORoMTLYYQ4pSRG8b1Y/HYYTN9CMlmUs1o1kVahUgBR3Noj0+KReuFxaZPO0GceL3v8EyO7uRsxI8R3gmgFSPDRXrojLE4pzH+AG0EryyN215q2z2iCycCqhqzQ+HDH6T9K2hkoN8NT2bfQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0742f861-8c62-47a0-66fb-08de8b122568
-X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5832.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Mar 2026 08:31:58.7724 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pSRCcu9jNSk9AhabkAxFELugB8x5/uNiB27mz5ZL5OT7vRt8eri/j7UQ0qhUE5CRibi8700pFpzVsy9AsDyblQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB5995
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <177450809396.10669.10897074578574249353@jlahtine-mobl>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -164,100 +70,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [3.19 / 15.00];
+	MID_END_EQ_FROM_USER_PART(4.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=korg];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gitlab.freedesktop.org:url];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[oliver.sang@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:sosohero200@gmail.com,m:security@kernel.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[gregkh@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	RCPT_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.998];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[gregkh@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[intel.com,gmail.com,lists.freedesktop.org,kernel.org,vger.kernel.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: CD6AC33161F
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:dkim]
+X-Rspamd-Queue-Id: C95A9331951
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, Mar 26, 2026 at 08:54:53AM +0200, Joonas Lahtinen wrote:
+> (+ Adding back security mailing list (where this started) and LKML for them
+> to be aware of any further bogus security reports from the author)
 
+Ugh, I was kind of thinking this might be the case based on the original
+interactions here, but was willing to give the benifit of the doubt.
 
-Hello,
+Time to go reset the "Days since we recieved AI slop reports" counter
+back to 0...
 
-kernel test robot noticed "kernel-selftests.sync.sync_test.Testing_sync_framework.test_merge_stress_random_merge.fail" on:
+thanks for following through on this.
 
-commit: 26fa53bf886f191e90f8149224b10cda533e601d ("[PATCH] dma-buf/dma_fence_array: remove unused functionality")
-url: https://github.com/intel-lab-lkp/linux/commits/Christian-K-nig/dma-buf-dma_fence_array-remove-unused-functionality/20260318-024706
-base: https://gitlab.freedesktop.org/drm/misc/kernel.git drm-misc-next
-patch link: https://lore.kernel.org/all/20260317145039.2418-1-christian.koenig@amd.com/
-patch subject: [PATCH] dma-buf/dma_fence_array: remove unused functionality
-
-in testcase: kernel-selftests
-version: kernel-selftests-x86_64-c369299895a5-1_20260323
-with following parameters:
-
-	group: sync
-
-
-config: x86_64-rhel-9.4-kselftests
-compiler: gcc-14
-test machine: 36 threads 1 sockets Intel(R) Core(TM) i9-9980XE CPU @ 3.00GHz (Skylake) with 32G memory
-
-(please refer to attached dmesg/kmsg for entire log/backtrace)
-
-
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <oliver.sang@intel.com>
-| Closes: https://lore.kernel.org/oe-lkp/202603261503.3e8f7afc-lkp@intel.com
-
-
-TAP version 13
-1..1
-# timeout set to 300
-# selftests: sync: sync_test
-# TAP version 13
-# 1..10
-# # [RUN]	Testing sync framework
-# ok 1 [RUN]	test_alloc_timeline
-# ok 2 [RUN]	test_alloc_fence
-# ok 3 [RUN]	test_alloc_fence_negative
-# ok 4 [RUN]	test_fence_one_timeline_wait
-# ok 5 [RUN]	test_fence_one_timeline_merge
-# ok 6 [RUN]	test_fence_merge_same_fence
-# ok 7 [RUN]	test_fence_multi_timeline_wait
-# ok 8 [RUN]	test_stress_two_threads_shared_timeline
-# ok 9 [RUN]	test_consumer_stress_multi_producer_single_consumer
-# # [ERROR]	Failure waiting on fence until timeout
-# not ok 10 [RUN]	test_merge_stress_random_merge
-# Bail out! 1 out of 10 sync tests failed
-# # Totals: pass:9 fail:1 xfail:0 xpass:0 skip:0 error:0
-not ok 1 selftests: sync: sync_test # exit=1
-
-
-
-The kernel config and materials to reproduce are available at:
-https://download.01.org/0day-ci/archive/20260326/202603261503.3e8f7afc-lkp@intel.com
-
-
-
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
-
+greg k-h
