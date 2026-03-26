@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gFysIWobxWnr6QQAu9opvQ
+	id wEm6J7kbxWnr6QQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:41:30 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:42:49 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1178A334A43
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:41:30 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23462334A70
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:42:49 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6033D10E980;
-	Thu, 26 Mar 2026 11:41:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2EB6010E982;
+	Thu, 26 Mar 2026 11:42:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EW2/8iwl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PbGPCFyF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8F710E979;
- Thu, 26 Mar 2026 11:41:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6579010E982;
+ Thu, 26 Mar 2026 11:42:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774525286; x=1806061286;
+ t=1774525366; x=1806061366;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=plB9fbe47tUPEex2C9wTaUBdW0hfQgI7sSFVk+8KsbU=;
- b=EW2/8iwl1FxcrAPg0HmL9AwJucBc4hKCaChie9Amzvj8KKV1IxxOazUD
- 7OIExqvOa0JYEDTxaDLnrie4A2Ndq3hio6bpKrdvKC5vSArXIHCJ3G1lB
- Snhg6hKaVEDNoP8oZsBoPuBe4QtQqZ3NZkeqyzELL5cEcvdOc8SHe/hWj
- r82z60b8NSTux31RJ1nCxIQbRGaSgCCNpSrZeoChjVtxbTumgi8d/i7rg
- mKNJFXv1STgVJWZV7+YrfopeiVHHmtuRHkT+FrZlpqP23tVAMe+6ShHWX
- NjXuRCnxscUvRRWebMZuIHI3FW60Wiw8fSYNKSvGHvIUV1Y9s05oK6cxh g==;
-X-CSE-ConnectionGUID: ZhIYC3QaQNGnwhnyjGLkfw==
-X-CSE-MsgGUID: DdmO3FVBRS6ZafdR38Y/Aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="101033921"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="101033921"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 04:41:26 -0700
-X-CSE-ConnectionGUID: AlmPDTdIThi131Me4eEZlg==
-X-CSE-MsgGUID: CfxX1rBXQCOCT/eVa4QoLg==
+ bh=vboXN/91W4oEY2RLavkrBsyXEEAh7eNXriQdlQXdsEU=;
+ b=PbGPCFyFSqhbsFQ1JizIqu4wMak8W7qt7pHKPg8F4QWbVi0WDfHXFoVl
+ LY/9+/eb1AUKUfeIgeiDIgC9jgqSZintKsPhdH5nrLQAPemx8VIKsRlt8
+ 59A3OoaMyG27NJUb+rTvpP4rhrz3NJfwbo+haA2VqDBUBtlKCtTZsDC8O
+ 9+CsTcSeIy3KxTM3rtjK77vh9lw4vHGCESF3pIhXHrVQkNFWu/NKhs7IT
+ wyDhz8Pfg1gOpIO1MHbCmEic+Jh7V3/Ws0n6FYjkIf3b/hTNL3K5tueij
+ 8LTRjJed4Bo6Rozxhv5zBnjUr/8fn1Ri1XFhGL+LcfdtE3POkYwd+ki70 A==;
+X-CSE-ConnectionGUID: JoBkkQGCT9OIdrF0jF76ZQ==
+X-CSE-MsgGUID: Yy7AXdTBSD2qAKSqGIiygA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75295962"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75295962"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 04:42:46 -0700
+X-CSE-ConnectionGUID: EzwiHYppR+GhcGarz1TfXA==
+X-CSE-MsgGUID: i3YsYy9+TCqxs8ViR9V3Vg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226621627"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.184])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 04:41:24 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 04:42:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 09/12] drm/i915/de: Add a simple intel_de_read64_2x32()
-In-Reply-To: <20260325185342.11482-10-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 10/12] drm/i915/vrr: Use intel_de_read64_2x32()
+In-Reply-To: <20260325185342.11482-11-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
- <20260325185342.11482-10-ville.syrjala@linux.intel.com>
-Date: Thu, 26 Mar 2026 13:41:20 +0200
-Message-ID: <07d608454976ffb769f6e020bdef318dab9f3e5e@intel.com>
+ <20260325185342.11482-11-ville.syrjala@linux.intel.com>
+Date: Thu, 26 Mar 2026 13:42:40 +0200
+Message-ID: <1099d2f851c636adf6397cd869c3c0ed5d355084@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -101,64 +102,48 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1178A334A43
+X-Rspamd-Queue-Id: 23462334A70
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Wed, 25 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> intel_de_read64_2x32_volatile() is a complex beast because
-> it needs to deal with volatile register values. For simpler
-> cases we can simply do a pair normal intel_de_read()s.
->
-> My main reason for hating overuse of intel_de_read64_2x32_volatile()
-> is that it makes register tracepoints confusing. It always
-> does three accesses in the somewhat weird udw,ldw,udw order,
-> confusing the reader of the trace. Much more clear if we just
-> observe the two reads in the natural little endian order.
->
-> We also have no non-volatile use case where the LDW and UDW
-> are stored in non-consecutive registers, so we can just pass
-> along a single register offset.
+> Replace the pointless use of intel_de_read64_2x32_volatile()
+> with the simpler intel_de_read64_2x32().
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_de.h | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i9=
-15/display/intel_de.h
-> index 295e7176b732..624a0627b95c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_de.h
-> +++ b/drivers/gpu/drm/i915/display/intel_de.h
-> @@ -53,6 +53,19 @@ intel_de_read64_2x32_volatile(struct intel_display *di=
-splay,
->  	return val;
->  }
->=20=20
-> +static inline u64
-> +intel_de_read64_2x32(struct intel_display *display,
-> +		     i915_reg_t reg)
-
-Could fit on one line, matter of taste I guess.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
-> +{
-> +	i915_reg_t upper_reg =3D _MMIO(i915_mmio_reg_offset(reg) + 4);
-> +	u32 lower, upper;
-> +
-> +	lower =3D intel_de_read(display, reg);
-> +	upper =3D intel_de_read(display, upper_reg);
-> +
-> +	return (u64)upper << 32 | lower;
-> +}
-> +
->  static inline void
->  intel_de_posting_read(struct intel_display *display, i915_reg_t reg)
->  {
+> ---
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 6 ++----
+>  1 file changed, 2 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
+915/display/intel_vrr.c
+> index ae5385e92889..fae1186a90b2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -1053,11 +1053,9 @@ void intel_vrr_get_config(struct intel_crtc_state =
+*crtc_state)
+>=20=20
+>  	if (crtc_state->cmrr.enable) {
+>  		crtc_state->cmrr.cmrr_n =3D
+> -			intel_de_read64_2x32_volatile(display, TRANS_CMRR_N_LO(display, cpu_t=
+ranscoder),
+> -						      TRANS_CMRR_N_HI(display, cpu_transcoder));
+> +			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder=
+));
+>  		crtc_state->cmrr.cmrr_m =3D
+> -			intel_de_read64_2x32_volatile(display, TRANS_CMRR_M_LO(display, cpu_t=
+ranscoder),
+> -						      TRANS_CMRR_M_HI(display, cpu_transcoder));
+> +			intel_de_read64_2x32(display, TRANS_CMRR_M_LO(display, cpu_transcoder=
+));
+>  	}
+>=20=20
+>  	if (DISPLAY_VER(display) >=3D 13) {
 
 --=20
 Jani Nikula, Intel
