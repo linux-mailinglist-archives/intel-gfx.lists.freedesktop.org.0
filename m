@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CC+iIU5zymnG8gUAu9opvQ
+	id WIm2K2FzymlQ9AUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3823F35B679
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4BCF035B7E5
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA33E10E6ED;
-	Mon, 30 Mar 2026 12:57:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25E6C10E757;
+	Mon, 30 Mar 2026 12:58:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="IRkNoAg8";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="YgL126Zf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-f44.google.com (mail-oa1-f44.google.com
- [209.85.160.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 50CB210EBE6
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:39 +0000 (UTC)
-Received: by mail-oa1-f44.google.com with SMTP id
- 586e51a60fabf-41c0aae84e5so970799fac.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:39 -0700 (PDT)
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com
+ [209.85.210.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD63C10EBEC
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:40 +0000 (UTC)
+Received: by mail-ot1-f44.google.com with SMTP id
+ 46e09a7af769-7d8b2703f37so1135408a34.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551338; x=1775156138; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551340; x=1775156140; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=b4VPaN2JxzLfP79BRo4ZYIGptPdGN0vKlLM6mj5G4BY=;
- b=IRkNoAg8SByesDEF+uk8nhT05MlMq48mRLLLsGblUY5GKiiWnp4Ol6/A2wsG2m9hQj
- 5XzqXhjE4yCXmQwIFQAsKqZdne46cjgZth38hj8DST2t0YXaWmFE4DkkOAc9bj+leXBf
- DVei8oAFE7P05Douo3mdX+ffyiLmduHq2+B8PQylqQssryBQRCzF3E5wFY3PO7K/+Q6H
- RDjpvbzZ3YOgMzdgar5ohcx5RGO5RI9HJGSPAbaJ+BkNi1yOkce1bbfZG/V40gySLxBf
- EyR4FuGy9LSnv5jP8fYhg+1GLeMKqZAS4BS6ekWX0i3kT6fBEKm10SMboq29yXe+aMJI
- oAvw==
+ bh=26vMP3nfkpOdAIVisqGbQnZnw5iiyCO+aaCVYuAOEzg=;
+ b=YgL126Zfb5gq5ReaihNiWNA+xK6A8mLKXUZjxzcZaz/s8UwL4YYuGAggdaRJ+JOmdN
+ qOFJkldmt5eJ5+K4FA+71zUibjsgOp6ZjIt7CaG6ePBp120kZrjwi91RPb7E903rxtCj
+ 5D5AhLKhm8fJ1TPiJQgwpzgnjsN8rTcz3jFqHWNu1OP6IOceA1z2+JWlBU/p72QaiT1e
+ QFlNjQ1PTUrT/miNS2rAJVyIHTzkpiWON3RX45+936d+YBJQlKFMCjNn4pL1yGuZ9dkL
+ 02Hr0RLeOBHmYXB9FpLLh4IBpe5qcOXYqvIbRx8bKvyRtL8xeDL/PEltS2VIsBT8KXRt
+ T3Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551338; x=1775156138;
+ d=1e100.net; s=20251104; t=1774551340; x=1775156140;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=b4VPaN2JxzLfP79BRo4ZYIGptPdGN0vKlLM6mj5G4BY=;
- b=iIYV2ugj4MKfcREFSpuL0XsYIb2o57A3jpfznvOx2DbwIpZttR4W9MPay5t4dogVl8
- nS7NX/LXD1gu6x60XVyFKd0by5gkMWkETlDsXhEgXvx4oSy5PhVXzv07J59peTsaxyK3
- Wfat4LDq7aw0+L1dg0wK9oSan1SS5+qBWjYX0zgi6SC6URva+6+sRBhqz0dm0QmOs9DM
- wCZAuZhTpRbYEKZ0Uej5gbE/08lMBP7NPDKsfhmK7g/SA760OEaIZBqGsx+hgUk7NAEQ
- 53nf67RPzgdkI5HNXgD+cujTeJCTg/CiWHfo2cToY7wZGjICuif435OToGFjpYvFx7yO
- bjXw==
+ bh=26vMP3nfkpOdAIVisqGbQnZnw5iiyCO+aaCVYuAOEzg=;
+ b=KLiOYwAs2mtLaWIJuNfOyKQZJZuOCxMFw/XGBXGtVdj4g6i3d8gNq/qeNZfBhXpqcq
+ EeE1FYare2dDsRq7HVnPew+mC6QWiTVgH8k2Idh7vdd5Kup824MBgjmzqR+hU0SKo1ur
+ NJo3GAxTEaCKbdszu2R5nvNMf+AP/tXCMav1xdm/UMp/wFPZL/SpMkMNzRTmnW3hnKEf
+ GeJnmDAPL6Mdo4Tmvhw2oZokTYME9lF2dXYonEuLisj4VrqFcCAs1+os7RuOhHXZNVRH
+ VkLCVR03xzRObUp1xjNx4Z/3/w8lZEV3vO4lxRC6H5T9tOVJv+EYlXr9BuDb0b5ioCth
+ 469Q==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWXe8wWKo7CN9B0jT3eb51IFeYH1KNh7Mxg868b9HC45LWmUNtk46tx4Lut7khctAQbEuUjWf8Urc0=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxXmocSBsTkVh6Rt68s74DRXjALwp3Cr2SeQjC/ZXtrAJx3y5v5
- FM32/8nsqcsFNRTUU2VquYXmIAdq6FFu4xwXyWvB3vmJp07OXbYOIyIp
-X-Gm-Gg: ATEYQzzLMhhd3xvwEXttJL4QCv5+b3MLiYMvVfP8W9IJu3lPnsWCh0Jk05gdtfB2Sb8
- uigyf42wygRsMZ5V+L2tFh2NdFtaaTZO+JUCTc+oqkT8HUMgazkHUtNE5Qm1eZopr6jbESPeJUJ
- mc+bgDx6ze0laI8e1C2/bk0Phv1LhtecufiyhfWECJ0KvkXFvet+X2HbLh77MVIOcpgQjAmPCML
- ezgjaIkKrDQLJDZC/HVVdwnYwYs0seZPhdHRbFhqpILXXa5UK4aqxI5cjWqOosZ2GEP0LoE8bUi
- RxlDK0FCVxyQMbXrIa5BPu76uD8Zbdwq8rVzKgU7H4A56aHdbrIutzqqBt7vioa+KrNKyt/avM6
- GJD0Ef5sjfFQ92SkrHPsTCq8O+1Sz2w/vkziQVi0RtLz7NWchRxs0Z0rOm+cu61RENNLpIcnpTM
- cqWSyHlvXo0KKGFbA7zIzdOOMX/qYqq+UzfEKIRVDJB2hP7AuO
-X-Received: by 2002:a05:6871:4604:b0:409:95c6:f2dd with SMTP id
- 586e51a60fabf-41ca6e9ff1emr4767565fac.22.1774551338399; 
- Thu, 26 Mar 2026 11:55:38 -0700 (PDT)
+ AJvYcCX52tz4HsiFBZ7AD9U1+ViOxILe5eZqTGFr/XyFoHWubzcP0jvy+7yfNieW8uxVWC3igsH87jhqShU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxd/3JNgU6ec1UIyq+EyAVDEZeyHiXc2aK/CkOSsJuklaUhmDn7
+ oNAsEjqaK2xxoph/VkVTDA48hzZei8PhlWcvJEfsPdfPx/UhDFk+9XCw
+X-Gm-Gg: ATEYQzxOks3+9+EN55ouv5i23ChCI4g0Jo9yfinyIEsDeb43hxoWuOpP/UlbUD0G05b
+ Ne/kgOAZdzyg+BoKIfyKihvQ5/G1WFDikWx4sbHUqxrhB1U+OQQyFgvzw0KVw37qH6qSNItr9fG
+ 8x5YIBOGgbby17zgjWjOketj3FiFwGBKzfMCf9sA1HVYUE4ZsMuFZ+4caHaLwNZ5vn0/sju93PN
+ yyh3zKquSBnqdE+7Xid3+oS8yY4jglUnLmu1wwzMFbvhBqHYyufGKyVH2p+56NhRH6Ehxh0eOX/
+ JskxLeazH+mqEOXSgcnND+SgQY8hqvC9RusYNGVY+p8isrCsIw+j9GPTVgCwzeBg6Zen2OkvfZi
+ bNIdGwMvXUhcOp7m9tDfvleMtKSjafacqtIUzUu7sKwqluPgplqyr86jmgLbRSWhqyLP6l3GMBT
+ 24J8M1He5hgpcJ2BE4JIHXskzYkZJ05oXQjz/LsToaUCip3tA8
+X-Received: by 2002:a05:6820:2289:b0:67e:14bd:5ef3 with SMTP id
+ 006d021491bc7-67e14bd605dmr669706eaf.30.1774551339843; 
+ Thu, 26 Mar 2026 11:55:39 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.37
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.38
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:55:38 -0700 (PDT)
+ Thu, 26 Mar 2026 11:55:39 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,10 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 43/69] drm-dyndbg: adapt DRM to invoke
- DYNAMIC_DEBUG_CLASSMAP_PARAM
-Date: Thu, 26 Mar 2026 12:53:47 -0600
-Message-ID: <20260326185413.1205870-44-jim.cromie@gmail.com>
+Subject: [PATCH v12 44/69] drm_print: modernize an archaic comment
+Date: Thu, 26 Mar 2026 12:53:48 -0600
+Message-ID: <20260326185413.1205870-45-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -138,61 +137,36 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3823F35B679
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4BCF035B7E5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Invoke DYNAMIC_DEBUG_CLASSMAP_PARAM to hook drm.debug (__drm_debug) to the
-DRM_UT_* classmap, replacing the ad-hoc wiring previously doing it.
-
-Add DRM_CLASSMAP_* adapter macros to selectively use
-DYNAMIC_DEBUG_CLASSMAP_* when DRM_USE_DYNAMIC_DEBUG=y is configured.
+In the year 2025 it is no longer noteworthy that drm.debug logging is
+adjustable at runtime, via sysfs node.  Simplify the statement.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
-Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
 ---
- drivers/gpu/drm/drm_print.c | 8 ++------
- include/drm/drm_print.h     | 4 ++++
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ include/drm/drm_print.h | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
-index c0ec866f31dd..9cdc547e3f85 100644
---- a/drivers/gpu/drm/drm_print.c
-+++ b/drivers/gpu/drm/drm_print.c
-@@ -70,12 +70,8 @@ DRM_CLASSMAP_DEFINE(drm_debug_classes, DD_CLASS_TYPE_DISJOINT_BITS,
- 		    "DRM_UT_DP",
- 		    "DRM_UT_DRMRES");
- 
--static struct ddebug_class_param drm_debug_bitmap = {
--	.bits = &__drm_debug,
--	.flags = "p",
--	.map = &drm_debug_classes,
--};
--module_param_cb(debug, &param_ops_dyndbg_classes, &drm_debug_bitmap, 0600);
-+DRM_CLASSMAP_PARAM_REF(debug, __drm_debug, drm_debug_classes, p);
-+
- #endif
- 
- void __drm_puts_coredump(struct drm_printer *p, const char *str)
 diff --git a/include/drm/drm_print.h b/include/drm/drm_print.h
-index b743ee3f8f5e..94064ec6c229 100644
+index 94064ec6c229..c3df2f3f47d8 100644
 --- a/include/drm/drm_print.h
 +++ b/include/drm/drm_print.h
-@@ -147,9 +147,13 @@ enum drm_debug_category {
- #ifdef CONFIG_DRM_USE_DYNAMIC_DEBUG
- #define DRM_CLASSMAP_DEFINE(...)    DYNAMIC_DEBUG_CLASSMAP_DEFINE(__VA_ARGS__)
- #define DRM_CLASSMAP_USE(name)      DYNAMIC_DEBUG_CLASSMAP_USE(name)
-+#define DRM_CLASSMAP_PARAM_REF(...) DYNAMIC_DEBUG_CLASSMAP_PARAM_REF(__VA_ARGS__)
-+#define DRM_CLASSMAP_PARAM(...)     DYNAMIC_DEBUG_CLASSMAP_PARAM(__VA_ARGS__)
- #else
- #define DRM_CLASSMAP_DEFINE(...)
- #define DRM_CLASSMAP_USE(name)
-+#define DRM_CLASSMAP_PARAM_REF(...)
-+#define DRM_CLASSMAP_PARAM(...)
- #endif
- 
- static inline bool drm_debug_enabled_raw(enum drm_debug_category category)
+@@ -89,10 +89,9 @@ extern unsigned long __drm_debug;
+  *  - ...
+  *  - drm.debug=0x1ff will enable all messages
+  *
+- * An interesting feature is that it's possible to enable verbose logging at
+- * run-time by echoing the debug value in its sysfs node::
++ * You can also alter the logged categories at run-time:
+  *
+- *   # echo 0xf > /sys/module/drm/parameters/debug
++ *   #> echo 0xf > /sys/module/drm/parameters/debug
+  *
+  */
+ enum drm_debug_category {
 -- 
 2.53.0
 
