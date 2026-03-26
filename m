@@ -2,65 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCEVNBEWxWnr6QQAu9opvQ
+	id eIMdMggYxWnr6QQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:18:41 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:27:04 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85A6F334501
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:18:41 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 32ED433475F
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 12:27:04 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E889F10E37C;
-	Thu, 26 Mar 2026 11:18:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 908CB10E387;
+	Thu, 26 Mar 2026 11:27:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZHpfzlN6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fBIka3XV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AAB1010E1DE;
- Thu, 26 Mar 2026 11:18:36 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B60DF10E2E2;
+ Thu, 26 Mar 2026 11:27:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774523916; x=1806059916;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=aSG1ADNdgeWOS6RsXWBaMbISfQXOJtw+APFlnCgUsaM=;
- b=ZHpfzlN6ghRrMVqCkEZhzyahij3LBhkaOnd/ehUs+eRVR/iyj16lOpkP
- Yz5bcW/gd4Ay5ctPEL3yZpMh5nxiYbM0wbfkFQlb5gL4Sh6hAP9K7O8Rr
- wiITw5sWi4l/lqDf3Wx4Rc480sU8J8PMMJCRwo3rYNgH7oVJEo2hudkC1
- MFCch07+K64HD/IXEkVjfj1MoZtA9d3YvqjSbBEY1D8/BE13nee/+xvtT
- 3f3wz4vVzNaY/hXO72/Qex465nVHFrnFkzP2/odTOUfZX+Pz10aVLfXPw
- JWvlZ1aGsXatxRVuBeeMhNHzzZr0gsLjPLgcwwV2AxOMr6n3SuMU45z+Y Q==;
-X-CSE-ConnectionGUID: S8muC6FITE+b8NqJAzVShw==
-X-CSE-MsgGUID: rbCyvS5lQAmALKG5dtYn6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75692322"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75692322"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 04:18:36 -0700
-X-CSE-ConnectionGUID: 548rGh7qQnWmtZdDnhI/Fg==
-X-CSE-MsgGUID: 6uRpm8V1TVaO3AjRSYfNxA==
+ t=1774524421; x=1806060421;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=4HViDecbJjvH3ULD5+7vX4WLwFuDByxpaJHZnv/28G0=;
+ b=fBIka3XVeGm8NdbTaSEw94gj++UX58sO2AAoFLh8uPbfhb6i12YBd7Y2
+ f8KaDvIS9s0iwHAxk1PT2q1UEkg6wtEOHbMzcbFAO7Ti+YrL0JZex+lO5
+ ZNlZqwWGru3UoqFqHZXLpf61rsDmWEYidUf0Vf724P8ARPNfbS0/i4ILj
+ pvmv9VD2WEyAsYbJWze8rfqMDMTZ+GTbYDRAskDoDSi/jAwe+Nev7u3vn
+ sq/iR9t94jwAl9Qz9ORUBkW46J2pA9vbaglLT1dBNdrLS9gqaCVDJN5dw
+ DVkgFECUgVExJIqoTilS1fTSrNuKwAYf8kEEWAswGSke3qwfxnLyoBsqG g==;
+X-CSE-ConnectionGUID: So7x/x0jQ1ylauV8HoV72g==
+X-CSE-MsgGUID: KOuSAh9VQwqsCgwnfPstpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="79484239"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="79484239"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 04:27:00 -0700
+X-CSE-ConnectionGUID: eK1lWn+WTHSy7FiKYXDxWA==
+X-CSE-MsgGUID: 4oNCOkf/S2yiluwP3wGPfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="220127456"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.14])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 04:18:35 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="220568514"
+Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.184])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 04:26:58 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 5/5] drm/i915/dsi: Place clock into LP during LPM if requested
-Date: Thu, 26 Mar 2026 13:18:14 +0200
-Message-ID: <20260326111814.9800-6-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
-References: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Subject: Re: [PATCH 04/12] drm/i915/mchbar: WARN when accessing non-MCHBAR
+ registers via intel_mchbar_read*()
+In-Reply-To: <20260325185342.11482-5-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+References: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
+ <20260325185342.11482-5-ville.syrjala@linux.intel.com>
+Date: Thu, 26 Mar 2026 13:26:54 +0200
+Message-ID: <f69c1ac36824b0f707275dcdd5f666412c11c040@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,112 +77,154 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 85A6F334501
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 32ED433475F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+On Wed, 25 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The intel_mchbar_read*() functions should only be used for
+> accessing MCHBAR registers. Warn if someone tries to use
+> them for other registers.
+>
+> I suppose we could even have a dedicated type for MCHBAR
+> registers. But that is true for many other special register
+> types as well, and so far we haven't bothered adding any
+> special types.
 
-TGL/ADL DSI can be configured to place the clock lane into
-LP state during LPM, if otherwise configured for continuous
-HS clock.
+There's the i915_mcr_reg_t, and xe uses bits in the offset to identify
+the type. But let's roll with this for now.
 
-Hook that up. VBT tells us whether this should be done.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_mchbar.c | 49 +++++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.c b/drivers/gpu/dr=
+m/i915/display/intel_mchbar.c
+> index 950a36d586c3..82b47c00101a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_mchbar.c
+> +++ b/drivers/gpu/drm/i915/display/intel_mchbar.c
+> @@ -3,15 +3,60 @@
+>   * Copyright =C2=A9 2026 Intel Corporation
+>   */
+>=20=20
+> +#include <linux/minmax.h>
+> +
+> +#include <drm/drm_print.h>
+> +
+>  #include "intel_display_core.h"
+>  #include "intel_mchbar.h"
+> +#include "intel_mchbar_regs.h"
+>  #include "intel_uncore.h"
+>=20=20
+> +static bool has_mchbar_mirror(struct intel_display *display)
+> +{
+> +	return DISPLAY_VER(display) < 14;
+> +}
+> +
+> +static u32 mchbar_mirror_base(struct intel_display *display)
+> +{
+> +	if (DISPLAY_VER(display) >=3D 6)
+> +		return MCHBAR_MIRROR_BASE_SNB;
+> +	else
+> +		return MCHBAR_MIRROR_BASE;
+> +}
+> +
+> +static u32 mchbar_mirror_end(struct intel_display *display)
+> +{
+> +	if (DISPLAY_VER(display) >=3D 12 && !display->platform.rocketlake)
+> +		return MCHBAR_MIRROR_END_TGL;
+> +	else if (DISPLAY_VER(display) >=3D 11)
+> +		return MCHBAR_MIRROR_END_ICL_RKL;
+> +	else if (DISPLAY_VER(display) >=3D 6)
+> +		return MCHBAR_MIRROR_END_SNB;
+> +	else
+> +		return MCHBAR_MIRROR_END;
+> +}
+> +
+> +static u32 mchbar_mirror_len(struct intel_display *display)
+> +{
+> +	return mchbar_mirror_end(display) - mchbar_mirror_base(display) + 1;
+> +}
+> +
+> +static bool is_mchbar_reg(struct intel_display *display, i915_reg_t reg)
+> +{
+> +	return has_mchbar_mirror(display) &&
+> +		in_range32(i915_mmio_reg_offset(reg),
+> +			   mchbar_mirror_base(display),
+> +			   mchbar_mirror_len(display));
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/icl_dsi.c       | 6 ++++++
- drivers/gpu/drm/i915/display/icl_dsi_regs.h  | 1 +
- drivers/gpu/drm/i915/display/intel_dsi.h     | 1 +
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 2 ++
- 4 files changed, 10 insertions(+)
+Pedantically reg offset + size (2, 4 or 8 bytes) could overflow the
+range even if the reg offset is within range for 1 byte access.
 
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index 45ba02486c56..afbaa0465842 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -729,6 +729,12 @@ gen11_dsi_configure_transcoder(struct intel_encoder *encoder,
- 		else
- 			tmp |= CLK_HS_CONTINUOUS;
- 
-+		if (DISPLAY_VER(display) >= 12 &&
-+		    intel_dsi->lp_clock_during_lpm)
-+			tmp |= LP_CLK_DURING_LPM;
-+		else
-+			tmp &= ~LP_CLK_DURING_LPM;
-+
- 		/* configure buffer threshold limit to minimum */
- 		tmp &= ~PIX_BUF_THRESHOLD_MASK;
- 		tmp |= PIX_BUF_THRESHOLD_1_4;
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi_regs.h b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-index 641e8f0b8cdb..55ab57adcb0f 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-+++ b/drivers/gpu/drm/i915/display/icl_dsi_regs.h
-@@ -227,6 +227,7 @@
- #define  CLK_ENTER_LP_AFTER_DATA	(0x0 << 8)
- #define  CLK_HS_OR_LP			(0x2 << 8)
- #define  CLK_HS_CONTINUOUS		(0x3 << 8)
-+#define  LP_CLK_DURING_LPM		(1 << 7) /* tgl+ */
- #define  LINK_CALIBRATION_MASK		(0x3 << 4)
- #define  LINK_CALIBRATION_SHIFT		4
- #define  CALIBRATION_DISABLED		(0x0 << 4)
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi.h b/drivers/gpu/drm/i915/display/intel_dsi.h
-index f55d48e43af1..9fcdabbf3740 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi.h
-+++ b/drivers/gpu/drm/i915/display/intel_dsi.h
-@@ -80,6 +80,7 @@ struct intel_dsi {
- 	/* NON_BURST_SYNC_PULSE, NON_BURST_SYNC_EVENTS, or BURST_MODE */
- 	int video_mode;
- 
-+	bool lp_clock_during_lpm;
- 	bool blanking_pkt;
- 	bool eot_pkt;
- 	bool clock_stop;
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index c544871dac0b..fe12041e913c 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -718,6 +718,7 @@ void intel_dsi_log_params(struct intel_dsi *intel_dsi)
- 		   "burst" : "<unknown>");
- 	drm_printf(&p, "Burst mode ratio %d\n", intel_dsi->burst_mode_ratio);
- 	drm_printf(&p, "Reset timer %d\n", intel_dsi->rst_timer_val);
-+	drm_printf(&p, "LP clock during LPM %s\n", str_enabled_disabled(intel_dsi->lp_clock_during_lpm));
- 	drm_printf(&p, "Blanking packets during BLLP %s\n", str_enabled_disabled(intel_dsi->blanking_pkt));
- 	drm_printf(&p, "EoT packet %s\n", str_enabled_disabled(intel_dsi->eot_pkt));
- 	drm_printf(&p, "Clock stop during BLLP %s\n", str_enabled_disabled(intel_dsi->clock_stop));
-@@ -771,6 +772,7 @@ bool intel_dsi_vbt_init(struct intel_dsi *intel_dsi, u16 panel_id)
- 
- 	drm_dbg_kms(display->drm, "\n");
- 
-+	intel_dsi->lp_clock_during_lpm = mipi_config->lp_clock_during_lpm;
- 	intel_dsi->blanking_pkt = mipi_config->blanking_packets_during_bllp;
- 	intel_dsi->eot_pkt = !mipi_config->eot_pkt_disabled;
- 	intel_dsi->clock_stop = mipi_config->enable_clk_stop;
--- 
-2.52.0
+Not a big deal I guess.
 
+> +}
+> +
+>  u16 intel_mchbar_read16(struct intel_display *display,
+>  			i915_reg_t reg)
+>  {
+>  	struct intel_uncore *uncore =3D to_intel_uncore(display->drm);
+>=20=20
+> +	drm_WARN_ON(display->drm, !is_mchbar_reg(display, reg));
+
+Is the backtrace enough to pinpoint the offending register? No need to
+use drm_WARN() with a message indicating the reg? *shrug*
+
+Overall,
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+> +
+>  	return intel_uncore_read16(uncore, reg);
+>  }
+>=20=20
+> @@ -20,6 +65,8 @@ u32 intel_mchbar_read(struct intel_display *display,
+>  {
+>  	struct intel_uncore *uncore =3D to_intel_uncore(display->drm);
+>=20=20
+> +	drm_WARN_ON(display->drm, !is_mchbar_reg(display, reg));
+> +
+>  	return intel_uncore_read(uncore, reg);
+>  }
+>=20=20
+> @@ -28,5 +75,7 @@ u64 intel_mchbar_read64(struct intel_display *display,
+>  {
+>  	struct intel_uncore *uncore =3D to_intel_uncore(display->drm);
+>=20=20
+> +	drm_WARN_ON(display->drm, !is_mchbar_reg(display, reg));
+> +
+>  	return intel_uncore_read64(uncore, reg);
+>  }
+
+--=20
+Jani Nikula, Intel
