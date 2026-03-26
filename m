@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHG6D69pxWl1+AQAu9opvQ
+	id UGcOHLFpxWl1+AQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:27 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:29 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E59BC338FDA
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4481C338FE9
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:29 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 266F210E9BC;
-	Thu, 26 Mar 2026 17:15:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7653C10EA44;
+	Thu, 26 Mar 2026 17:15:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fBOY4eQd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="esl0mSXt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F7E010E956;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C4A8B10E9AE;
  Thu, 26 Mar 2026 17:15:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1774545324; x=1806081324;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TM2QJ5TCHrQIR/ysyBi9pAWEmQdL0KR9ybyHSbCC2+U=;
- b=fBOY4eQdxHEpUFQebKDb5Gp4F5TpClik5xEoDblcC9VtC7oLACFS7fic
- RfaIWWc5TsmnLjQdYBu5gGuQbtMga57MAwzIW3Nx3LUDOexuBijGb1uAX
- qZAdXrZYM03Vf3DzibAoGQWvhyTq3jlKIH8Ul45zfXTSGeVjMPHZpThDn
- QD/EA7CL6BG43gubyyyN+6JphyJxXWyNvpe756skEcMyILeYMnrsDPsrw
- FQGSBK0JXhEKGahwXsqmQWHIjfqAr23nmXTwnRvFR9Z/rVm1R49e1TCir
- w5Mxq3MeGLPflU3GhiRqLzy7th3WUmlTQ12ie+irz55m/XUthp+dWQywg A==;
-X-CSE-ConnectionGUID: DJsRNxUUROeR2zvkSW6IUg==
-X-CSE-MsgGUID: fWW0B5zPTfCYU3iZVmSDCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630562"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630562"
+ bh=vOm+YQIuUvHejsfV+0upTfvCP4kMBvEtqZ7O2r/JQmQ=;
+ b=esl0mSXtj0MKjY52ey4Y6tVLb0rGnak3nVaPhjsYswOPTfXEhL/msHaK
+ twvFLj77LwIy5aNoQ96glPFBoXlGnnX0a1zq1cMjtWLQz8/HUsK7LcHBh
+ 94Sssf4MBw/7NOiD9a0I2oFokPoEk2hlf11OQcHSeljy+fGq5K5WOM/qR
+ lsN58CYQq5u8BkvpKh24jiT36W9uOgAnQz7iEyyoCZfr0vLDqdT9vQ91a
+ glvo1YiNDqJp4HMwl9W2y9YpdB8NBMkBHcqDK3lQXFTA1QiDod2g+rqmc
+ eQKdR1JzynBcGoagp3IY/qY8m9DC2BqTdV3MxyFzf1pxKsOWMQuUMzSQv A==;
+X-CSE-ConnectionGUID: q3taVmpUSxCFYMrEx+Qjrw==
+X-CSE-MsgGUID: qb0c1Lg1Sk+p40LfyAGIXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630565"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630565"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 10:15:21 -0700
-X-CSE-ConnectionGUID: CLzuBj1lT6+BZHUu6vFXAA==
-X-CSE-MsgGUID: xQhUJQszSR2IrrjPFlPOqw==
+ 26 Mar 2026 10:15:23 -0700
+X-CSE-ConnectionGUID: OOeMLJD8Sr6J+nx/st5WDA==
+X-CSE-MsgGUID: fCpec7hPRDS2htLvxw81KQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975536"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975548"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 10:15:19 -0700
+ 26 Mar 2026 10:15:21 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com,
  suresh.kumar.kurmi@intel.com
-Subject: [PATCH 04/19] drm/i915/display: Add DC3CO DC_STATE enable/disable
- support
-Date: Thu, 26 Mar 2026 22:45:42 +0530
-Message-ID: <20260326171557.2065632-5-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH 05/19] drm/i915/display: Validate target DC state against
+ allowed_dc_mask
+Date: Thu, 26 Mar 2026 22:45:43 +0530
+Message-ID: <20260326171557.2065632-6-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -98,62 +98,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: E59BC338FDA
+X-Rspamd-Queue-Id: 4481C338FE9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add DC3CO handling to the dc_off power well sequencing and disable the
-DMC wakelock when exiting DC3CO.
+Validate the requested target DC state against allowed_dc_mask to
+avoid programming unsupported DC states.
 
-BSpec:75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- .../drm/i915/display/intel_display_power_well.c  | 16 +++++++++++++++-
- 1 file changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 9a948f5e2164..cb3dcd1460b2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -867,6 +867,13 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
- 	power_domains->dc_state = val & mask;
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 0afae5c2f62b..12967db27c8d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -302,6 +302,13 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
+ 	struct i915_power_domains *power_domains = &display->power.domains;
  
-+static void xe3lpd_enable_dc3co(struct intel_display *display)
-+{
-+	drm_dbg_kms(display->drm, "Enabling DC3CO\n");
-+	intel_dmc_wl_enable(display, DC_STATE_EN_UPTO_DC3CO);
-+	gen9_set_dc_state(display, DC_STATE_EN_UPTO_DC3CO);
-+}
+ 	mutex_lock(&power_domains->lock);
 +
- static void assert_can_enable_dc5(struct intel_display *display)
- {
- 	enum i915_power_well_id high_pg;
-@@ -1055,9 +1062,13 @@ void gen9_disable_dc_states(struct intel_display *display)
- 	}
++	if ((state & power_domains->allowed_dc_mask) != state) {
++		drm_dbg_kms(display->drm,
++			    "Rejecting DC state 0x%x (allowed mask 0x%x)\n",
++			     state, power_domains->allowed_dc_mask);
++		goto unlock;
++	}
+ 	power_well = lookup_power_well(display, SKL_DISP_DC_OFF);
  
- 	if (old_state == DC_STATE_EN_UPTO_DC5 ||
--	    old_state == DC_STATE_EN_UPTO_DC6)
-+	    old_state == DC_STATE_EN_UPTO_DC6 ||
-+	    old_state == DC_STATE_EN_UPTO_DC3CO)
- 		intel_dmc_wl_disable(display);
- 
-+	if (old_state == DC_STATE_EN_UPTO_DC3CO)
-+		return;
-+
- 	intel_cdclk_get_cdclk(display, &cdclk_config);
- 	/* Can't read out voltage_level so can't use intel_cdclk_changed() */
- 	drm_WARN_ON(display->drm,
-@@ -1093,6 +1104,9 @@ static void gen9_dc_off_power_well_disable(struct intel_display *display,
- 		return;
- 
- 	switch (power_domains->target_dc_state) {
-+	case DC_STATE_EN_UPTO_DC3CO:
-+		xe3lpd_enable_dc3co(display);
-+		break;
- 	case DC_STATE_EN_UPTO_DC6:
- 		skl_enable_dc6(display);
- 		break;
+ 	if (drm_WARN_ON(display->drm, !power_well))
 -- 
 2.43.0
 
