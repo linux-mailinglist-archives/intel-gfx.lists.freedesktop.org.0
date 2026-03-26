@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKUbL1hzymlQ9AUAu9opvQ
+	id 4MRKLl5zymmB9AUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6E75D35B70D
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 66C0735B796
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4678910E70E;
-	Mon, 30 Mar 2026 12:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F2C3710E72F;
+	Mon, 30 Mar 2026 12:57:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="dkjCJnPg";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="efrYnTab";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com
- [209.85.167.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 85F5B10EBF2
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:56:12 +0000 (UTC)
-Received: by mail-oi1-f182.google.com with SMTP id
- 5614622812f47-4680a2493a2so535467b6e.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:56:12 -0700 (PDT)
+Received: from mail-oo1-f49.google.com (mail-oo1-f49.google.com
+ [209.85.161.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CCDC110EBF1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:56:13 +0000 (UTC)
+Received: by mail-oo1-f49.google.com with SMTP id
+ 006d021491bc7-679b072ed3aso790152eaf.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:56:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551372; x=1775156172; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551373; x=1775156173; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=NDrEVSsHN3/NxzQ31ZhlYG+/I6Z2jtFfe5b8tEwBAEg=;
- b=dkjCJnPgmwZXQDBSDoi4aUBvvDBV3dRyMClnqWfixRKMZiVaJ1gFMO9H7oZzwSkgyT
- cSZkqTprD3AzNqcs3OfIVGaOWUvWDT2Ox/yzC/xgbRDPEeqCBNXBUNZu/ynKZ0ab7CFy
- Do1vcb3l9QJF9zOWPsp4Gg8aRHTCj5gtET66AIdrZV9Vmnkb+8lS4mCdBW+pVYEqnb7K
- MRDtwIE9RfQ27NlRewnjxi7VE/6HkZ8KGBAYaMy6zgv/h4cd9IoRdPKZomUieaZPS3fU
- v93H1PvKkr8gDB+D3WuaDSVjN5bbl+UqUFV7HYjfLshM1GLr3SYlS1tF5UO9b1c/qAtL
- 7xdg==
+ bh=wgXq6jE50vtzY84cY1V8ERFkQj1I8fWL7chL4/tqUbE=;
+ b=efrYnTabT5PosLMfK9xl79O3HVi+hloAlJzaiPtkdmX6Cc2zQGd+N+bwbscdhG1TXS
+ 7ah8ECRFInP1EsIjFYxLGZUA0SYsQP72ZnjfyFHtGC8wMisxe/KxBG4ZNmTSSwLQTOIP
+ wjqtUk4P0GJoP6/U0ln2PWmBeh040kvuB3PHeDg0goVWnkHHUTfcPC84rnNyIAm2Ka74
+ Xb4vL9G5LpAvFAVcMpb/XVkz+gkr+KXwJ/pi/Ot1taCbX++ON4+7D1Q1wm8mAe1FIY/D
+ xjglKxqmq9euyqhnKuuOgvsYaAkoUo23jX7OK7FnrM76wynAEPLcSXqm80pUGM0SqmfZ
+ OItw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551372; x=1775156172;
+ d=1e100.net; s=20251104; t=1774551373; x=1775156173;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=NDrEVSsHN3/NxzQ31ZhlYG+/I6Z2jtFfe5b8tEwBAEg=;
- b=OawiGS4eQuQZ+k7/wZyMFvQDtRl//9+XG9BAo4keGJf7TQXnpT5EcQ0JPsVw6ZYiF1
- VyR7nEJMj2cta96dnr1i17NBYtdkgYne6lsAl1LMTzoftGBr9eGJ/x/YL7k36xKl4Noo
- 14Kzrs1gvZFNphAOy4CGV+NgH06nwk9JAftAC5TLhYdv6mUk+Cmmmc8vCDeMPSwi9/74
- UZgqA8UW6y9dIZ6sp5ursK4KiceWiBojTwK2fhzWxhi6zsYhHjAn6fIBPYyrC/PeW9NO
- DMZhwDu6sZQOgIvTLaW6Sy9NtgRhA2jYMSW1yKu2LSbQC3+fsZRTpomZHOqmyq0/ocgf
- wCOg==
+ bh=wgXq6jE50vtzY84cY1V8ERFkQj1I8fWL7chL4/tqUbE=;
+ b=OLNsqjF8bJuENKpbrfNU9oYecv5krjTOmgUMlMUC/uoHt1R5vABXAsyvVZqGPPiXbd
+ ppYfnpiKOCjqBKzuecY0x2StMy4aEMLVp2dGU8EaIxbS+lLqtptPtLdDmHQtZnVX0afr
+ 5IfXGfblKFyXBlwf/28sqDResHPo7vTO6cgAf3wsjSruTocskg9iMwXETP393fPL3WBj
+ SZ8vRCZ0t48HV170XXrij3G2Ra3LYBVfPlpoFXdS3CtO4jWz27HuCMyCqf1vm6lDWHft
+ X7pQDpWtv+Kf8T903PuAVX5z2S4+bP2E36f51l1rY4NsRQ4BgSeOv+6sj9KgeIdEQEcm
+ 6RuQ==
 X-Forwarded-Encrypted: i=1;
- AJvYcCWSkPfSE5jYrRipiTnDqs6K/RelJJ4gwMljyRqFotuR1rD1SVwVcG13sIn4aS4H853uMFHnsZeLzXU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzHWhwgPVlLzfMYen3wHUdXF0GLo2UKwlxExqiTpGIUUhEZhkgj
- svk2wtSt8Bo8zOrIMGmkVzAbJqeU1jM63QInVVVsi6W3j6kwVllX34pz
-X-Gm-Gg: ATEYQzzHC1vP6FgKtoEbvsaMNfZG3DcvgQWSd0Ed/cbv8UX5mi9xx0GLVBwn4X5bNRV
- 9l6yGd1ui0XjKYCkeGnhkUV3yqC6tIeBOv/XwwkAn0xfvo6x+BZyYjG83F3jG+2tV45FQ6w/T9V
- YTWFw1qjo/W434MCFPFIPQr+g+TDXJKTRUwtgh7eGD5Wfsyq7avv8lh2XocXSgVEPYliU6bPLMW
- YIo0NSmZj++nw/DszJx2SxPmmFG7vnm595VGuaFSILAo+m5teojlW8Khk+qOl4jpsXb0OIGhInB
- Ebqz6J5xxNVvuRUZ9nogvvmxAH6uCskgJxBg5LFrM4lEROWHwkyA9LU1zQ+wKc7KZ2opvaaBysb
- v1yEMOTZ/0AVDnhf85zPRK8/VMrZllEmN+233ZPZW8tkDnmK+kp4V1Q2Rs3KJ5CXxv9IzkT7GwK
- OcboBUsFluXJpnE7YQRPJCPvuUd2cdgymQtcCwafeY25xQdwrm
-X-Received: by 2002:a05:6808:c295:b0:467:2926:123d with SMTP id
- 5614622812f47-46a5c77d4b2mr3987875b6e.47.1774551371661; 
- Thu, 26 Mar 2026 11:56:11 -0700 (PDT)
+ AJvYcCXEzCN1YlqW6jCwZCSCzipJ6MTFuN139fStAIp5eiWi9zKqHxRcimAiRL3m7o4YDqyXWi5vzF/RPJE=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyHz8RwNyN9IU2vtaoKVAdymMGBoloFWvOmZ4grv9ACVBHFuGK1
+ +tec+Yz6Dsm/wfxEfPfDIcMy5gXrfSi1RN8tIYEIIinH4J2Mb4n1o+po
+X-Gm-Gg: ATEYQzwYe+dkMEWiUQY9W/51a8g2QpPbmYKVX3YP/gH0k2Q76NuTOTCwLU1xprrjRdX
+ QkuGz9jXPtEiQmDDiMb+X0yaUSIRwoCRpXNn/IQQzwc5S+8DpJuAsg1vSasBysgNcqZ66D2vK5x
+ 1d3WFEyX8dAH9T62a/XByJdwwRj3AcY0YccNBzYXF0rlzfOrZjshpFz2n22D43NVhK5ZphopA++
+ FMcQEO0cptFqf8If4wNnZcFiBv0+jwe6CABuG9kuAyW8CIRcSuYI0NyMM2+3LYSn1+EKCTarQ58
+ Fg5ja+GhQlgOSqr8WID5TMJS1epRn7Pnp65lOSOLXG+1WcBk3c0i9qqd8RXMYaS8WyYJbMNBs+S
+ oDYxOJbYsQZU7+g1bS8oNj3iJ4aJGcNhc41XyPxMQMDpPXwj0Vv+pJHY+oyDPpTiJkT22l7GcBV
+ jztPLNLp1Eij0uSyAQIseUod86todSfNObyVItVP8uVf+Hp2qN
+X-Received: by 2002:a05:6820:3106:b0:67d:e17b:31ac with SMTP id
+ 006d021491bc7-67dff51609emr4069367eaf.45.1774551373018; 
+ Thu, 26 Mar 2026 11:56:13 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.56.10
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.56.11
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:56:11 -0700 (PDT)
+ Thu, 26 Mar 2026 11:56:12 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,10 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 66/69] accel: add -DDYNAMIC_DEBUG_MODULE to subdir-ccflags
-Date: Thu, 26 Mar 2026 12:54:10 -0600
-Message-ID: <20260326185413.1205870-67-jim.cromie@gmail.com>
+Subject: [PATCH v12 67/69] accel/ivpu: implement IVPU_DBG_* as a dyndbg
+ classmap
+Date: Thu, 26 Mar 2026 12:54:11 -0600
+Message-ID: <20260326185413.1205870-68-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -138,50 +139,163 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6E75D35B70D
+X-Rspamd-Queue-Id: 66C0735B796
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-With CONFIG_DRM_USE_DYNAMIC_DEBUG=y and CONFIG_DYNAMIC_DEBUG=n,
-accelerator modules are currently missing the _dynamic_func_call_cls
-macro, due to its conditional definition in dynamic_debug.h, which
-depends upon -DDYNAMIC_DEBUG_MODULE.
+Invoke DRM_CLASSMAP_DEFINE to create a classmap of
+class-ids/categories for ivpu_dbg().
 
-So add that to subir-ccflags for all accels, in accel/Makefile.
+This brings static-key optimized-off benefits to the ivpu_dbg()
+callsites.  DRM_CLASSMAP_PARAM_REF wires the sysfs kparam to the
+classmap.
 
-Notes:
+This is the 1st real-world example of a module avoiding another
+module's classmap's class_id range reservation.
 
-The added "indirection" allows modules to individually enable
-dynamic-debug, where a CONFIG_ option would be global to the build.
+Its also something of an oddity: it "is" a DRM module only cuz
 
-Several accelerator modules make drm*dbg() calls, so in effect they
-*are* DRM modules.
+1. CONFIG_DRM_ACCEL_IVPU exists.
+
+2. code therefore uses CONFIG_DRM_USE_DYNAMIC_DEBUG, so must also use
+   it's dependent wrappers: DRM_CLASSMAP_*
+
+accel/amdxdna is already using drm.debug via dev_dbg(), so it is more
+fully DRM but iirc its a single call.
+
+Anyway, to play nice with DRM, we change all the constants, from
+macros calling BIT(X), to an explicit "enum ivpu_dbg_category"
+starting at 16 to avoid DRM_UT_CORE..RES.  This is all in an indef to
+avoid changing the constants for the non-dyndbg case.
 
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/accel/Makefile | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+ drivers/accel/ivpu/ivpu_drv.c | 27 +++++++++++++++++++--
+ drivers/accel/ivpu/ivpu_drv.h | 45 ++++++++++++++++++++++++++++++-----
+ 2 files changed, 64 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/accel/Makefile b/drivers/accel/Makefile
-index 1d3a7251b950..44db786ea223 100644
---- a/drivers/accel/Makefile
-+++ b/drivers/accel/Makefile
-@@ -1,8 +1,13 @@
- # SPDX-License-Identifier: GPL-2.0-only
+diff --git a/drivers/accel/ivpu/ivpu_drv.c b/drivers/accel/ivpu/ivpu_drv.c
+index 5900a40c7a78..214fdbf06470 100644
+--- a/drivers/accel/ivpu/ivpu_drv.c
++++ b/drivers/accel/ivpu/ivpu_drv.c
+@@ -3,6 +3,7 @@
+  * Copyright (C) 2020-2025 Intel Corporation
+  */
  
-+# several accel modules use drm*dbg, so they *are* DRM modules.
-+# When built with only CONFIG_DYNAMIC_DEBUG_CORE
-+# (and not CONFIG_DYNAMIC_DEBUG), they need this flag
-+subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG) += -DDYNAMIC_DEBUG_MODULE
++#include <linux/dynamic_debug.h>
+ #include <linux/firmware.h>
+ #include <linux/module.h>
+ #include <linux/pci.h>
+@@ -37,8 +38,30 @@
+ #define DRIVER_VERSION_STR "1.0.0 " UTS_RELEASE
+ #endif
+ 
+-int ivpu_dbg_mask;
+-module_param_named(dbg_mask, ivpu_dbg_mask, int, 0644);
++unsigned long ivpu_dbg_mask;
 +
- obj-$(CONFIG_DRM_ACCEL_AMDXDNA)		+= amdxdna/
- obj-$(CONFIG_DRM_ACCEL_ARM_ETHOSU)	+= ethosu/
- obj-$(CONFIG_DRM_ACCEL_HABANALABS)	+= habanalabs/
- obj-$(CONFIG_DRM_ACCEL_IVPU)		+= ivpu/
- obj-$(CONFIG_DRM_ACCEL_QAIC)		+= qaic/
--obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
-\ No newline at end of file
-+obj-$(CONFIG_DRM_ACCEL_ROCKET)		+= rocket/
++#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
++
++module_param_named(dbg_mask, ivpu_dbg_mask, ulong, 0644);
++#else
++DRM_CLASSMAP_DEFINE(ivpu_dbg_classes, DD_CLASS_TYPE_DISJOINT_BITS,
++		IVPU_DBG_REG,
++		"IVPU_DBG_REG",
++		"IVPU_DBG_IRQ",
++		"IVPU_DBG_MMU",
++		"IVPU_DBG_FILE",
++		"IVPU_DBG_MISC",
++		"IVPU_DBG_FW_BOOT",
++		"IVPU_DBG_PM",
++		"IVPU_DBG_IPC",
++		"IVPU_DBG_BO",
++		"IVPU_DBG_JOB",
++		"IVPU_DBG_JSM",
++		"IVPU_DBG_KREF",
++		"IVPU_DBG_RPM",
++		"IVPU_DBG_MMU_MAP");
++DRM_CLASSMAP_PARAM_REF(dbg_mask, ivpu_dbg_mask, ivpu_dbg_classes, p);
++#endif
+ MODULE_PARM_DESC(dbg_mask, "Driver debug mask. See IVPU_DBG_* macros.");
+ 
+ int ivpu_test_mode;
+diff --git a/drivers/accel/ivpu/ivpu_drv.h b/drivers/accel/ivpu/ivpu_drv.h
+index 5b34b6f50e69..ef5a96b961fc 100644
+--- a/drivers/accel/ivpu/ivpu_drv.h
++++ b/drivers/accel/ivpu/ivpu_drv.h
+@@ -65,6 +65,10 @@
+ 
+ #define IVPU_SCHED_MODE_AUTO -1
+ 
++extern unsigned long ivpu_dbg_mask;
++
++#if !defined(CONFIG_DRM_USE_DYNAMIC_DEBUG)
++
+ #define IVPU_DBG_REG	 BIT(0)
+ #define IVPU_DBG_IRQ	 BIT(1)
+ #define IVPU_DBG_MMU	 BIT(2)
+@@ -81,6 +85,41 @@
+ #define IVPU_DBG_MMU_MAP BIT(13)
+ #define IVPU_DBG_IOCTL   BIT(14)
+ 
++#define ivpu_dbg(vdev, type, fmt, args...) do {				\
++	if (unlikely(IVPU_DBG_##type & ivpu_dbg_mask))			\
++		dev_dbg((vdev)->drm.dev, "[%s] " fmt, #type, ##args);	\
++} while (0)
++
++#else /* !!CONFIG_DRM_USE_DYNAMIC_DEBUG */
++
++enum ivpu_dbg_category {
++	/*
++	 * since accels are drm-devices (CONFIG_DRM_ACCEL_*), adjust
++	 * IVPU_DBG_* to avoid DRMs 0..10 class_id reservations.
++	 */
++	IVPU_DBG_REG = 16,
++	IVPU_DBG_IRQ,
++	IVPU_DBG_MMU,
++	IVPU_DBG_FILE,
++	IVPU_DBG_MISC,
++	IVPU_DBG_FW_BOOT,
++	IVPU_DBG_PM,
++	IVPU_DBG_IPC,
++	IVPU_DBG_BO,
++	IVPU_DBG_JOB,
++	IVPU_DBG_JSM,
++	IVPU_DBG_KREF,
++	IVPU_DBG_RPM,
++	IVPU_DBG_MMU_MAP,
++	IVPU_DBG_IOCTL
++};
++
++#define ivpu_dbg(vdev, type, fmt, ...)                    \
++	_dynamic_func_call_cls(IVPU_DBG_##type, fmt, __dynamic_dev_dbg,	\
++			       (vdev)->drm.dev, fmt, ##__VA_ARGS__)
++
++#endif /* !!CONFIG_DRM_USE_DYNAMIC_DEBUG */
++
+ #define ivpu_err(vdev, fmt, ...) \
+ 	drm_err(&(vdev)->drm, "%s(): " fmt, __func__, ##__VA_ARGS__)
+ 
+@@ -95,11 +134,6 @@
+ 
+ #define ivpu_info(vdev, fmt, ...) drm_info(&(vdev)->drm, fmt, ##__VA_ARGS__)
+ 
+-#define ivpu_dbg(vdev, type, fmt, args...) do {                                \
+-	if (unlikely(IVPU_DBG_##type & ivpu_dbg_mask))                         \
+-		dev_dbg((vdev)->drm.dev, "[%s] " fmt, #type, ##args);          \
+-} while (0)
+-
+ #define IVPU_WA(wa_name) (vdev->wa.wa_name)
+ 
+ #define IVPU_PRINT_WA(wa_name) do {					\
+@@ -197,7 +231,6 @@ struct ivpu_file_priv {
+ 	bool aborted;
+ };
+ 
+-extern int ivpu_dbg_mask;
+ extern u8 ivpu_pll_min_ratio;
+ extern u8 ivpu_pll_max_ratio;
+ extern int ivpu_sched_mode;
 -- 
 2.53.0
 
