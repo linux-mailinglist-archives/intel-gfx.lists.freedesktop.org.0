@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wFzLNU5zymlQ9AUAu9opvQ
+	id IN2REVFzymnG8gUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:53 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A9035B67F
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E710D35B6B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D320710E6EC;
-	Mon, 30 Mar 2026 12:57:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADC6710E6F3;
+	Mon, 30 Mar 2026 12:57:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eq/vLxtn";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="npMhsj+v";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com
- [209.85.160.48])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E0BA810EBE9
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:32 +0000 (UTC)
-Received: by mail-oa1-f48.google.com with SMTP id
- 586e51a60fabf-40ee9b945d5so940470fac.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
+Received: from mail-oa1-f47.google.com (mail-oa1-f47.google.com
+ [209.85.160.47])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44CE410EBE9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:35 +0000 (UTC)
+Received: by mail-oa1-f47.google.com with SMTP id
+ 586e51a60fabf-40ee9b945d5so940495fac.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551332; x=1775156132; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551334; x=1775156134; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
- b=Eq/vLxtncKNQ+ZEU+/X/bBiUdcJeQX+Y+rJ3mYIYSExKM7jeAoOhpXkc1TNq8mjCUV
- CEJ660E8nk1QvqprFC6edxAii9GDA9WcjkRejGV0xQJyDfswjS+TgJk8R/AaCsMvVIub
- WdQ2PlQx8Ng851XkUjcU0HAq+auqTJUkCJAsiONxgyhyAXENMV4LZCC+pw2cn17GrcmP
- vH8zj3PfuVjW1NJULbrRRhfW2DGV8W6ZmDJ1ibFEr0iwt/06hwHrqNWgJWyFNTgDZxcP
- JiYXKK0mrs2sNY9/IqkjiDqqKegOyo9kSzmgXd15h4OQ8JYUC8lyJXuo3swq7xAekAae
- kbfQ==
+ bh=bX4ilSonYi7XSfI6S+RBBXv+cAYgjTID5jxcrBPOaxA=;
+ b=npMhsj+vJQSGEcd3eMQDjm1OaGuqQRfbpa3rUxpdGZudnHxtVFZrd509LVgS6vcR7N
+ 0VrswZVQR/zh121vnZX99qjzdsa/Og/QqLRZbAItJjOfU+8k1aW58yncAktADlDAHiAR
+ riCF1ssN6Ij/q7AWwvSFoHnklg6AXDrz4qHpuYvr2lHbvu+wYMXPy7Py+YjkCUAGbqx0
+ gZZL51G84iuPztt77NM0rgiVMVY1xSn00yxKX4dklXm7aoqox0iHPsHx4t43d2LeznhP
+ PV7VS173350iDmsxe4caj9/4pcwXa3kDUdJqfYd82SvgGGf5Wo0LRYHqSRZ5I/6LY+Ws
+ ZMTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551332; x=1775156132;
+ d=1e100.net; s=20251104; t=1774551334; x=1775156134;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
- b=fAxio33M0/+TYWIxiItKfCUQKb9HAKv4R6PsZEv/1hdJ3SJhjRsvloT5620ZYA0Bl1
- 00EPeG9ZNFqkk/bbsoENoAtQEB/FGezQKkSn56tvuE+Pa+8D8OoXQW4Lj4WApapspIG3
- Z5iFLjQyEVEBHDwrdTda9wg/PM/nC7bPsEBwZuP//iogYreylXdcFk8rPvb3mHZP/pe2
- uW0V6yU1edSkDgDOMm7E4rCtUq97ZymoyoRcPw6AzofuPpeJYB8VJxVm58lNzM6M+/vE
- 3NyIas9O/WTbDWyBPhSpvzWBjlOmNoVwkn9rYNN8nuCLKXRutWpzIg1fWpt3fG0Fx8is
- G4QA==
+ bh=bX4ilSonYi7XSfI6S+RBBXv+cAYgjTID5jxcrBPOaxA=;
+ b=QkY7wonMpNMaEyvfxV9j1ucPCApkBvRktyRzX7dQHZTXhnGHW1GHCeiNwRdOAr5p6G
+ zXBf0Jt1kbDsWG6WU8vGEn29P6yzigTh8XoSaov2WTn1SHWDdlOGri6MqV26CtrtUxgL
+ TVVbrt3ftFaZzz1uzNnKchPUIjvOrfPhK+8dR+xvHc9vY8Nqp0zq4NuwhUPn6MTXgy8U
+ 8wDgTdw/OypD6QjFdjDl5r4sx9wLOnoys9FP+ERtMRK0+iQYzIFD7gcUEWgcs7OAVP1P
+ FQHhchQaDyZBSo6iN8CzCo5xFs9tXrPyVIUcdRtJYBZQLVfnGghLXXykwArjt6lRbkEa
+ NRxA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVplH2fDnsEaF0OfL2PwskbHwEJF+H/XSA6LjZ0hXtn+bTw2dDbyKbM0+CpeXXL1vb9+0IQL7gEnU4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxJ2MtfF/dpB8DviWXGlAL4Y1EtbLfoznaC8VaZoGXz9p96dzyQ
- g6qjhGHXg/hXPOYTq+TGWOEd/4u+aRCGeAxwWFMMagPjbp1LozR7+QIeS6NstQ==
-X-Gm-Gg: ATEYQzzp8ynRwEs7wO8G04UG7xFMurILegrMZ7WylLAJa7Y6W43TO8fB5bKZNPtuiO7
- t/r5qBpnfAobP52X9aFuBOVuUcZMWIgH1eqqyGNfYxTaQfdpAKH2rupxjP1unS3/dxKYUSdpTdd
- +0hZjcop2Q3YShh12vkwqcwPQZ2jlh2iFo4BHaH5mUciKD8D36hIKqKF1R8+H+3GwsUAkldc1yG
- wrfW4NP67O/DiRlth8O5JiWXc1Vgbs3v7lub450x8xka8mkqef5FNz1gnuHYAdGtBAWKmh4Lyzt
- fmEAbskZt1p/bRnIaejTsI2Esiib13oIrOnJMo3zUUkkf7hU0THCt0cHmshcsTvvvSZPQVkZ1I3
- VBM0qW3l+yox3Y0uNNVtrXqj874yoYwa5eT/Auf8tvO/0XpMUKVsMQCH7q7kmMUN2hsWXpvx4l0
- hnKOVy66DCPtLEzLtjkiXJuBu5od8R51mU7dwMu28VYhzNeITI
-X-Received: by 2002:a05:6870:194b:b0:409:9a0b:b733 with SMTP id
- 586e51a60fabf-41ca6d6a50emr4662736fac.10.1774551332051; 
- Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
+ AJvYcCUjnvRPyymJMTI2wMEytuE5OWYt6BMLMTjMgUlxstY8cQGgbS84Lwm7ekilUUjSGvRqopg+MZmXIeo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YysATmoJn6VQboyCQkV6Yq5mEA22Erh88DaHkL4VZhzKNak+jOY
+ /9HZ05asN2VJ/aTxT5zJw4ZizSMptNK4DiVFqShEy+Zz2yVt3NUrkL85
+X-Gm-Gg: ATEYQzz8GQ7eG+HZk4GM5z4d0uLaOrxhzS6TfOp2whm38ypl7NNSmndFCDOf47Dr2ZA
+ rYuS6HmLAfziLZiJWdcm5b80zddhH71/2+G2dEx/LlYQK9jrKSMn+AQBSU9ZyuyoD0uhdj/aQvV
+ yXXm1HkryEO51iPM+vKwcRByiCi8ynFh2qoKC+BtMH5BOOytgJ7mRNM6DEtnqdI+LrFSByAXXNN
+ wXEZ5NQQWfNjo86i6dLLtzOwAHXDSC0XBhQ1/8VhegKiY1w6iyUNzCcWrTnoeX9TtwxPwvmmatB
+ /rPIXPpee687LGCewWguLS6LcA3mb0XGpdDsQLl4OaK3Rejcn+k9aaHqOjUsqxILiqOeliMUcja
+ mZIVfTT/IJkmMm/WLQavi1KGc0eCvLI/V76K5DkjmDOaDrC+RBhPEIFf/VE35q4vWoRjf93mqC9
+ u8wLRnTFCGZdURCeBxht2nvHFGOFtRGeJ/KmEv77T7t3pGsSt+
+X-Received: by 2002:a05:6870:9502:b0:409:5ef5:be0c with SMTP id
+ 586e51a60fabf-41ca6de6bcbmr4583508fac.12.1774551334408; 
+ Thu, 26 Mar 2026 11:55:34 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.29
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.32
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:55:31 -0700 (PDT)
+ Thu, 26 Mar 2026 11:55:34 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 39/69] drm_buddy: fix power-of-2 rounding errs
-Date: Thu, 26 Mar 2026 12:53:43 -0600
-Message-ID: <20260326185413.1205870-40-jim.cromie@gmail.com>
+Subject: [PATCH v12 40/69] drm_print: fix drm_printer dynamic debug bypass
+Date: Thu, 26 Mar 2026 12:53:44 -0600
+Message-ID: <20260326185413.1205870-41-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -138,104 +138,88 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 89A9035B67F
+X-Rspamd-Queue-Id: E710D35B6B8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The standard roundup_pow_of_two() and rounddown_pow_of_two() macros use
-unsigned long internally, which on 32-bit architectures (like arm32) is
-a 32-bit type.
+drm_debug_enabled() is the canonical bit-test for drm.debug.
 
-drm_test_buddy_alloc_exceeds_max_order() uses these on a u64 value,
-where they silently truncate the 10GB allocation, giving unexpected
-success in DRM-CI.  (see below the snip).
+Commit 6ce6fae84536 ("drm_print: optimize drm_debug_enabled for
+jump-label") renamed the original bit-test to drm_debug_enabled_raw()
+and introduced an internal bypass for dyndbg. When [1]=y, it defined
+__drm_debug_enabled() to evaluate to 'true', allowing dyndbg's
+static-key to handle the filtering at the callsite. It also provided
+drm_debug_enabled() for cases where an explicit bit-mask check is
+still required.
 
-Fix this by replacing the those macros with safe 64-bit power-of-two
-calculations using ilog2().
+Later, commit 9fd6f61a297e ("drm/print: add drm_dbg_printer() for drm
+device specific printer") added __drm_printfn_dbg(), but mistakenly
+used the internal bypass __drm_debug_enabled() instead of the
+canonical drm_debug_enabled(). This went unnoticed because at the
+time, [1]=y was marked BROKEN.
 
+Because __drm_printfn_dbg() is a shared helper where the callsite is
+not directly guarded by dyndbg's static-key, this caused it to hit
+the 'true' bypass and always print, ignoring the drm.debug bit-mask.
+
+This results in a flood of messages in environments with slow serial
+consoles, as seen in DRM-CI on i915 CML devices. When IGT causes a
+mismatch in intel_pipe_config_compare(), the resulting UART storm
+causes a hard timeout after 20 minutes.
+
+To fix this, change __drm_printfn_dbg() to use
+drm_debug_enabled_instrumented() instead.  This ensures the bit-test
+is performed at runtime even when dyndbg is enabled.  It also adds a
+pr_debug(), allowing us to enable it and count the frequency of this
+bit-test.
+
+Note that using drm_debug_enabled() here would also instrument the
+callsite but only when [1]=n.  Since _instrumented() is basically free
+when its off, theres no reason to not have it available where it might
+provide some insight into the performance benefits of [1]=y.
+
+Additionally, update __drm_dev_dbg() to use the canonical
+drm_debug_enabled() instead of the internal __drm_debug_enabled().
+
+- when [1]=y the call to __drm_dev_dbg() is guarded by a static-key,
+  so the bit-test is redundant.
+
+- when [1]=n, we need the bit-test, since drm_dev_dbg() calls
+  __drm_dev_dbg() directly.  Here the pr_debug() can tell us the
+  possible value of further optimization.
+
+[1] CONFIG_DRM_USE_DYNAMIC_DEBUG
+
+Fixes: 9fd6f61a297e ("drm/print: add drm_dbg_printer() for drm device specific printer")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
-On DRM-CI, I encountered this kunit:arm32 failure.
-
-[23:19:40] [PASSED] drm_test_buddy_alloc_clear
-[23:19:40] [PASSED] drm_test_buddy_alloc_range_bias
-[23:19:41] [PASSED] drm_test_buddy_fragmentation_performance
-[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: EXPECTATION FAILED at drivers/gpu/drm/tests/drm_buddy_test.c:889
-[23:19:41]     Expected err == -22, but
-[23:19:41]         err == 0 (0x0)
-[23:19:41] ------------[ cut here ]------------
-[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:405 at drm_buddy_fini+0x114/0x1b8, CPU#0: kunit_try_catch/74
-[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G                 N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
-[23:19:41] Tainted: [N]=TEST
-[23:19:41] Hardware name: Generic DT based system
-[23:19:41] Call trace:
-[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
-[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
-[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
-[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
-[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x114/0x1b8
-[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
-[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
-[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
-[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
-[23:19:41]  kthread from ret_from_fork+0x14/0x28
-[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
-[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
-[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[23:19:41] ---[ end trace 0000000000000000 ]---
-[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: drivers/gpu/drm/drm_buddy.c:406: buddy_fini() root
-[23:19:41] ------------[ cut here ]------------
-[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:414 at drm_buddy_fini+0x1b4/0x1b8, CPU#0: kunit_try_catch/74
-[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G        W        N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
-[23:19:41] Tainted: [W]=WARN, [N]=TEST
-[23:19:41] Hardware name: Generic DT based system
-[23:19:41] Call trace:
-[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
-[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
-[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
-[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
-[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x1b4/0x1b8
-[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
-[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
-[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
-[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
-[23:19:41]  kthread from ret_from_fork+0x14/0x28
-[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
-[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
-[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
-[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
-[23:19:41] ---[ end trace 0000000000000000 ]---
-[23:19:41] [FAILED] drm_test_buddy_alloc_exceeds_max_order
-[23:19:41]     # drm_buddy: Testing DRM buddy manager, with random_seed=0xacce106c
-[23:19:41]     # module: drm_buddy_test
-[23:19:41] # drm_buddy: pass:8 fail:1 skip:0 total:9
+-v12- improve commit-msg explanation of choices re (__)?drm_debug_enabled
 ---
- drivers/gpu/drm/drm_buddy.c | 4 ++--
+ drivers/gpu/drm/drm_print.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
-index dbf984f8e301..8f23fb615d47 100644
---- a/drivers/gpu/drm/drm_buddy.c
-+++ b/drivers/gpu/drm/drm_buddy.c
-@@ -919,7 +919,7 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
- 	u64 modify_size;
- 	int err;
+diff --git a/drivers/gpu/drm/drm_print.c b/drivers/gpu/drm/drm_print.c
+index ded9461df5f2..9b622345e2eb 100644
+--- a/drivers/gpu/drm/drm_print.c
++++ b/drivers/gpu/drm/drm_print.c
+@@ -218,7 +218,7 @@ void __drm_printfn_dbg(struct drm_printer *p, struct va_format *vaf)
+ 	const struct device *dev = drm ? drm->dev : NULL;
+ 	enum drm_debug_category category = p->category;
  
--	modify_size = rounddown_pow_of_two(size);
-+	modify_size = 1ULL << ilog2(size);
- 	pages = modify_size >> ilog2(mm->chunk_size);
- 	order = fls(pages) - 1;
- 	if (order == 0)
-@@ -1140,7 +1140,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
+-	if (!__drm_debug_enabled(category))
++	if (!drm_debug_enabled_instrumented(category))
+ 		return;
  
- 	/* Roundup the size to power of 2 */
- 	if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
--		size = roundup_pow_of_two(size);
-+		size = 1ULL << (ilog2(size - 1) + 1);
- 		min_block_size = size;
- 	/* Align size value to min_block_size */
- 	} else if (!IS_ALIGNED(size, min_block_size)) {
+ 	__drm_dev_vprintk(dev, KERN_DEBUG, p->origin, p->prefix, vaf);
+@@ -335,7 +335,7 @@ void __drm_dev_dbg(struct _ddebug *desc, const struct device *dev,
+ 	struct va_format vaf;
+ 	va_list args;
+ 
+-	if (!__drm_debug_enabled(category))
++	if (!drm_debug_enabled(category))
+ 		return;
+ 
+ 	/* we know we are printing for either syslog, tracefs, or both */
 -- 
 2.53.0
 
