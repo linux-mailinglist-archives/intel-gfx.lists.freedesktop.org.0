@@ -2,98 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMniHVtzymnG8gUAu9opvQ
+	id IOPRG8lOxWkU8wQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 16:20:41 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E9A9E35B741
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97CE1337785
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 16:20:40 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BC25010E715;
-	Mon, 30 Mar 2026 12:57:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 25B1B10E253;
+	Thu, 26 Mar 2026 15:20:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="Zu+vi89M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RpNBR4Ir";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ACAA10E9E7
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 15:20:09 +0000 (UTC)
-Received: by mail-ed1-f44.google.com with SMTP id
- 4fb4d7f45d1cf-66b18af8c88so104957a12.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 08:20:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linuxfoundation.org; s=google; t=1774538407; x=1775143207;
- darn=lists.freedesktop.org; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=J5VwSVLrZu02gODrnOBU1zsYKEHs5QD8MREnECAvLw4=;
- b=Zu+vi89M47MDC8jnXkdQOj2YbFkUCY99g8KSe+NPFODOz3IeUNlxmSKY377zf7eljt
- 3jNgZtxogvpFJNWuW+D58X0po7NnNcXfkRVHC9WRNy/VlMOPch8vZpQaJY5jHFYac2uB
- UuTfk6Av3elNARjTpYw1FswyXRBqY58TFgcMc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774538407; x=1775143207;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=J5VwSVLrZu02gODrnOBU1zsYKEHs5QD8MREnECAvLw4=;
- b=oGvS+90ZK1C1sn2bfTWc7WVh9ZEbgC5imxFZHkJaBqW+g0pvvUv4NW9m8kqS8ioY9F
- WRdJd8iOP1IqkEoaQiFOJeDjBv0N6gDP46foBWHYHvFbI74yXR17Dhciqg2DBL/8cYDJ
- MKSK5FqEnb/PtcxgD+gAuSsrCVwR1+3Yh6EZpBXOnpMepTyiJ5xrgyeTenHQw0kKfq5k
- u0thdIcW5lkRUcFWB0CEiT/vL/FL3ZoKK6AFZ7+z8ZS+BNAXMjOuwsSw/L4jzciw6w0Z
- FCI1aiQHVMHVdP3+OH3zfD5UEkhZTwd701mGu7aUky9BcUo4sOf1bpLhrI1clLF3uQCT
- EMng==
-X-Forwarded-Encrypted: i=1;
- AJvYcCVJFUVpOitrl3jLBjzhVbwsCPBWkCCJVXQliLpTb2lFTU38nwVyUF8pKJR6YD4N4Rpv2zaM+W9/AZ8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yz/Zkg6t5KSNFiBjviKgrUHkQedoU5gdRc1BlzP1yMQtS+A7Bqo
- pApZbIOaIcHwIkRkFxV154+ihA/p+wUwS5NkOEe4Nm7/NdTaVHpfjIHMBth5KKheKj25FqS5X2l
- r25COYCk=
-X-Gm-Gg: ATEYQzxtw2GNMVwkBCCJMEPAYp7I/ji+eNrX6bjiQKXjrQmPAxe9UWe+fCnRXGn415O
- 9PFataC1FtvdVaDOt8bsj2Lh44Qbnk/QJWuybJrstRNQ4JG7jz81huNqkrmC3RuQwaAmeswmodL
- CNmBW1CaGZUjfFXY0pLWCBoAX0Ccbl7wWu+M7YyVWSZmzeOnxJj3iOlfoeH0UovGUieUR/CW127
- Qm8ClCCUYZGNjWYAzjKyuYrACM7uZOP5zueBpZHvTyQO+DXibEM+5+NzEWujsdd+vY6r66Pad2R
- P6vwy4EKhe0biCYNBtaozFJCJNafPql4tDF+G8Wx6TqwzdNV0W5Gh5E2K/jubhl5Vt/0XH2eyTk
- eZTculPDYyn/QfW4KlifN83+0dNAJUqecV5kB+GnVTt/iakjctNPaOAm/jWcmFCvkgtXCZDwH3a
- giuUbNVBTWVC2+c2MAGu7d1a7k0hy/qafSwKdsI8H8s4SfsIteK42x3OXgY/4mU+BmyVtJGEs=
-X-Received: by 2002:a05:6402:46c6:b0:668:599e:1035 with SMTP id
- 4fb4d7f45d1cf-66a8261ddbdmr4971832a12.2.1774538407223; 
- Thu, 26 Mar 2026 08:20:07 -0700 (PDT)
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com.
- [209.85.208.53]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-66ad6a4ec00sm1144093a12.23.2026.03.26.08.20.06
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Thu, 26 Mar 2026 08:20:06 -0700 (PDT)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-668d4751a3bso1559645a12.2
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 08:20:06 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AJvYcCXnF0br/WhYwqZsF/YxdXskpFBXedz012azaFUtq0rk5dyFDuBOmdTG/SI/uLhtvpNCDwJh5l8LF2c=@lists.freedesktop.org
-X-Received: by 2002:a05:6402:46d1:b0:66a:199d:12a with SMTP id
- 4fb4d7f45d1cf-66a826d6b44mr4587446a12.24.1774538406265; Thu, 26 Mar 2026
- 08:20:06 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F59B10E253;
+ Thu, 26 Mar 2026 15:20:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774538438; x=1806074438;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=HP7iObSQDaFEskIdMjcNl5duokJpRJigkr3f0fOeWjU=;
+ b=RpNBR4IrGd3oqe7JvqIyyEhIWM/CtDniKVAKEtgDdWokG5FDm/b2nLAH
+ g2ObGQPtBGbjZU9TzDTmi9wjnF6/wkcbTIQLIQAa9ECJ/4sYnp9GoHYNi
+ hhAS7zsUOkEC7j2uwm56Tx99ZxxLKvta78kkgyQHzwAIQuXNpb0c64bM7
+ z9TRrGtewl3EAfbBvyohVAJpLpspVdw+KyIIb2rtDVOLi/uL2yr5qYagR
+ 5oJ2f3+tJlVl66WTIwYcRRtwy8SLIED60tVjIBh7Xyatq3HkFtJ1NPCnH
+ 4vj4TfWIZP2RNujtb8vxWW5zh3KCTMKwNlABjWgiz9r05VWlSueNdGdKw w==;
+X-CSE-ConnectionGUID: +w/rIkb0SsK5so+RcfWmYA==
+X-CSE-MsgGUID: depGKo2PSYOsFSTRcgYGZg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75483568"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75483568"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 08:20:37 -0700
+X-CSE-ConnectionGUID: O+kaIYG6QL2nsuwmLpV0bQ==
+X-CSE-MsgGUID: wreXQJT9RGKuYoxdkGsVjQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="222116385"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.199])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 08:20:35 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, stable@vger.kernel.org
+Subject: Re: [PATCH 1/5] drm/i915/dsi: Don't do DSC horizontal timing
+ adjustments in command mode
+In-Reply-To: <20260326111814.9800-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260326111814.9800-1-ville.syrjala@linux.intel.com>
+ <20260326111814.9800-2-ville.syrjala@linux.intel.com>
+Date: Thu, 26 Mar 2026 17:20:31 +0200
+Message-ID: <18c2a71298928c8a3ee39603d1a783a13c9e62b0@intel.com>
 MIME-Version: 1.0
-References: <20260324151741.29338-1-sosohero200@gmail.com>
- <acUnQkniqECI0QVY@intel.com>
-In-Reply-To: <acUnQkniqECI0QVY@intel.com>
-From: Linus Torvalds <torvalds@linuxfoundation.org>
-Date: Thu, 26 Mar 2026 08:19:49 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wg6JqsqxrdZi6ruuV0pf3PdYWo0tm_XBWe+r=NSnjvHRA@mail.gmail.com>
-X-Gm-Features: AQROBzBqAMCueS_SeETvVBTTiKjI_km_I1doFSxMVYDSlm03kmy_SF7PQp61KJE
-Message-ID: <CAHk-=wg6JqsqxrdZi6ruuV0pf3PdYWo0tm_XBWe+r=NSnjvHRA@mail.gmail.com>
-Subject: Re: [PATCH v2] [PATCH v2] drm/i915/gem: Fix UAF race in
- eb_relocate_vma
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Yassine Mounir <sosohero200@gmail.com>, g@web.codeaurora.org,
- gregkh@linuxfoundation.org, 
- intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com, 
- rodrigo.vivi@intel.com, security@kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 30 Mar 2026 12:57:43 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -108,54 +77,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	DATE_IN_PAST(1.00)[93];
-	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
-	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=google];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[gmail.com,web.codeaurora.org,linuxfoundation.org,lists.freedesktop.org,linux.intel.com,intel.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[torvalds@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:sosohero200@gmail.com,m:g@web.codeaurora.org,m:gregkh@linuxfoundation.org,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:security@kernel.org,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linuxfoundation.org:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[torvalds@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid,linuxfoundation.org:dkim]
-X-Rspamd-Queue-Id: E9A9E35B741
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 97CE1337785
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 26 Mar 2026 at 05:32, Ville Syrj=C3=A4l=C3=A4
-<ville.syrjala@linux.intel.com> wrote:
+On Thu, 26 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Should we not do something like this?
+> Stop adjusting the horizontal timing values based on the
+> compression ratio in command mode. Bspec seems to be telling
+> us to do this only in video mode, and this is also how the
+> Windows driver does things.
 >
-> if (likely(vma && vma->vm =3D=3D vm))
->         vma =3D i915_vma_tryget(vma);
-> + else
-> +       vma =3D NULL;
+> This should also fix a div-by-zero on some machines because due to
+> the adjusted htotal ends up being so small that we end up with
+> line_time_us=3D=3D0 when trying to determine the vtotal value in
+> command mode.
+>
+> Note that this doesn't actually make the display on the
+> Huawei Matebook E work, but at least the kernel no longer
+> explodes when the driver loads.
+>
+> Cc: stable@vger.kernel.org
+> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12045
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-That looks much better. Returning a vma that you looked up inside rcu
-without gettin ga reference to it looks very wrong.
+Fixes: 53693f02d80e ("drm/i915/dsi: account for DSC in horizontal timings")
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-                  Linus
+> ---
+>  drivers/gpu/drm/i915/display/icl_dsi.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i91=
+5/display/icl_dsi.c
+> index c04327979678..a763f2b13ff2 100644
+> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+> @@ -888,7 +888,7 @@ gen11_dsi_set_transcoder_timings(struct intel_encoder=
+ *encoder,
+>  	 * non-compressed link speeds, and simplifies down to the ratio between
+>  	 * compressed and non-compressed bpp.
+>  	 */
+> -	if (crtc_state->dsc.compression_enable) {
+> +	if (is_vid_mode(intel_dsi) && crtc_state->dsc.compression_enable) {
+>  		mul =3D fxp_q4_to_int(crtc_state->dsc.compressed_bpp_x16);
+>  		div =3D mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+>  	}
+> @@ -1502,7 +1502,7 @@ static void gen11_dsi_get_timings(struct intel_enco=
+der *encoder,
+>  	struct drm_display_mode *adjusted_mode =3D
+>  					&pipe_config->hw.adjusted_mode;
+>=20=20
+> -	if (pipe_config->dsc.compressed_bpp_x16) {
+> +	if (is_vid_mode(intel_dsi) && pipe_config->dsc.compressed_bpp_x16) {
+>  		int div =3D fxp_q4_to_int(pipe_config->dsc.compressed_bpp_x16);
+>  		int mul =3D mipi_dsi_pixel_format_to_bpp(intel_dsi->pixel_format);
+
+--=20
+Jani Nikula, Intel
