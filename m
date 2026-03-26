@@ -2,86 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CNh9H8ZmxWkn+AQAu9opvQ
+	id 0O0CHKRpxWl1+AQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:03:02 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:16 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB367338DAA
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:03:01 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id ADC23338FBE
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 18:15:15 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 48CAB10E258;
-	Thu, 26 Mar 2026 17:03:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1547B10E382;
+	Thu, 26 Mar 2026 17:15:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="SYJhxnrS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tl5ZrnkI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 936B710E1FB;
- Thu, 26 Mar 2026 17:02:54 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 5FC0B60054;
- Thu, 26 Mar 2026 17:02:50 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8CE36C19423;
- Thu, 26 Mar 2026 17:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1774544570;
- bh=IQI/txVcFLr4SQuaJ4+73DkdYZEcK7MrNDOrGnm30ww=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=SYJhxnrSJGjkl2DyA0SD6tr3Iuz0bmP56WdE8RujYhI0+szob6l5AX+KDdb1uJX5g
- ayYGOuKmnnqNtTpD+gwuEgLkSwVTdiqOD3P3kQ4J6ebtlrxK4E1kT/SqQjKPwLHh1g
- 3l2e+KWgNDsIb/C6n6qhwsAht2eaRryQtwqf6TdjCjAiINMNwxjPFU5ZXyZpVXQ0P7
- yTHU2YwuPXXMv43NjDqgU/t/BKP8UGUJUjCl8oqNCTZdN4LjRSY7ANts9vZVHgq+h/
- 7WKFP+UzgELQY0w4DeN+tXHLPpVLp7KV7jeeV1a8rS2xXcroys7LJ8CugsHLgy1d7W
- 1BxMu+CyO6M+A==
-Date: Thu, 26 Mar 2026 18:02:47 +0100
-From: Maxime Ripard <mripard@kernel.org>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer <s.hauer@pengutronix.de>, 
- Rob Herring <robh@kernel.org>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, 
- Werner Sembach <wse@tuxedocomputers.com>, Andri Yngvason <andri@yngvason.is>, 
- Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Message-ID: <20260326-pumpkin-goshawk-of-stamina-0ccb84@houat>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <20260324-color-format-v11-3-605559af4fb4@collabora.com>
- <acLDPYuaVI2-12JX@intel.com> <23910073.EfDdHjke4D@workhorse>
- <acLrv5hLyNss-Px5@intel.com>
- <20260325-neat-elegant-raven-ebc9ab@houat>
- <acPA60Ci3n_t__xF@intel.com>
- <20260325-magnificent-ultraviolet-oarfish-baefbc@houat>
- <acQsw3Wi_xVlBZ8d@intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 891D610E9AC;
+ Thu, 26 Mar 2026 17:15:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774545313; x=1806081313;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=rOqFxkMemOkwukBhrN56DFvni0AeOaIylCnebKvYRGE=;
+ b=Tl5ZrnkIXzdfhmhaL9TS5Qj33RnZHbXv6W1vIchPsxijqWY11rgHncGL
+ ZCR1FltsKX6Mo9+HT9i58TaoiW1izSaWDxeSewi9WcsZlDhwKoBj3QTCz
+ gX0tNji4GYY3BHUWiIq8sKgB4Hu9mYIJHvBh9qlmIp7C8i85njZ11Hdv+
+ PtcdFF5H9kPx2L0djKHj1rburDcAIxRy3PLrAsOb7GM+DDxmEMgnNUC38
+ okEjkNw0MsabZkPfbeej7KrOXteA1nOe4DT7wfT7Ul/q5C6ZTYPxXZBsx
+ i6dge84O1vx2i2d80esYCFVn7sLneH3nue4a1kAuoMpZZEtlzGLz+ZVWN g==;
+X-CSE-ConnectionGUID: HF3+EjV8RW6IdmleySjsCw==
+X-CSE-MsgGUID: uhdjBDgpRpKk26OHfvBkdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75630549"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="75630549"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 10:15:13 -0700
+X-CSE-ConnectionGUID: d5S/qlSlRVKE4T1JH/kz6w==
+X-CSE-MsgGUID: Q2agoVMGReOWzN7yfYVwag==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="262975499"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 10:15:10 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, uma.shankar@intel.com,
+ suresh.kumar.kurmi@intel.com
+Subject: [PATCH 00/19] drm/i915/display: Add DC3CO support
+Date: Thu, 26 Mar 2026 22:45:38 +0530
+Message-ID: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="sztu7fljo7ruak3p"
-Content-Disposition: inline
-In-Reply-To: <acQsw3Wi_xVlBZ8d@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -96,192 +71,91 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: DB367338DAA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url]
+X-Rspamd-Queue-Id: ADC23338FBE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+This series adds initial DC3CO support for display version 35+ and adds
+debugfs visibility into DC3CO count/residency.
 
---sztu7fljo7ruak3p
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color
- format"
-MIME-Version: 1.0
+The series also includes required PSR/ALPM updates for DC3CO enablement.
 
-On Wed, Mar 25, 2026 at 08:43:15PM +0200, Ville Syrj=E4l=E4 wrote:
-> On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote:
-> > On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wrote:
-> > > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrj=E4l=E4 wrote:
-> > > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Frattaroli wrot=
-e:
-> > > > > > On Tuesday, 24 March 2026 18:00:45 Central European Standard Ti=
-me Ville Syrj=E4l=E4 wrote:
-> > > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas Frattaroli =
-wrote:
-> > > > > > > > +enum drm_connector_color_format {
-> > > > > > > > +	/**
-> > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or displa=
-y protocol
-> > > > > > > > +	 * helpers should pick a suitable color format. All imple=
-mentations of a
-> > > > > > > > +	 * specific display protocol must behave the same way wit=
-h "AUTO", but
-> > > > > > > > +	 * different display protocols do not necessarily have th=
-e same "AUTO"
-> > > > > > > > +	 * semantics.
-> > > > > > > > +	 *
-> > > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:=
-2:0 if the
-> > > > > > > > +	 * bandwidth required for full-scale RGB is not available=
-, or the mode
-> > > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and output bo=
-th support
-> > > > > > > > +	 * YCbCr 4:2:0.
-> > > > > > > > +	 *
-> > > > > > > > +	 * For display protocols other than HDMI, the recursive b=
-ridge chain
-> > > > > > > > +	 * format selection picks the first chain of bridge forma=
-ts that works,
-> > > > > > > > +	 * as has already been the case before the introduction o=
-f the "color
-> > > > > > > > +	 * format" property. Non-HDMI bridges should therefore ei=
-ther sort their
-> > > > > > > > +	 * bus output formats by preference, or agree on a unifie=
-d auto format
-> > > > > > > > +	 * selection logic that's implemented in a common state h=
-elper (like
-> > > > > > > > +	 * how HDMI does it).
-> > > > > > > > +	 */
-> > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
-> > > > > > > > +
-> > > > > > > > +	/**
-> > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB output format
-> > > > > > > > +	 */
-> > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> > > > > > > > +
-> > > > > > > > +	/**
-> > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr 4:4:4 outp=
-ut format (ie.
-> > > > > > > > +	 * not subsampled)
-> > > > > > > > +	 */
-> > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> > > > > > > > +
-> > > > > > > > +	/**
-> > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr 4:2:2 outp=
-ut format (ie.
-> > > > > > > > +	 * with horizontal subsampling)
-> > > > > > > > +	 */
-> > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> > > > > > > > +
-> > > > > > > > +	/**
-> > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr 4:2:0 outp=
-ut format (ie.
-> > > > > > > > +	 * with horizontal and vertical subsampling)
-> > > > > > > > +	 */
-> > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-> > > > > > >=20
-> > > > > > > Seems like this should document what the quantization range
-> > > > > > > should be for each format.
-> > > > > > >=20
-> > > > > >=20
-> > > > > > I don't think so? If you want per-component bit depth values,
-> > > > > > DRM_FORMAT_* defines would be the appropriate values to use. Th=
-is
-> > > > > > enum is more abstract than that, and is there to communicate
-> > > > > > YUV vs. RGB and chroma subsampling, with bit depth being handled
-> > > > > > by other properties.
-> > > > > >=20
-> > > > > > If you mean the factor used for subsampling, then that'd only be
-> > > > > > relevant if YCBCR410 was supported where one chroma plane isn't
-> > > > > > halved but quartered in resolution. I suspect 4:1:0 will never
-> > > > > > be added; no digital display protocol standard supports it to my
-> > > > > > knowledge, and hopefully none ever will.
-> > > > >=20
-> > > > > No, I mean the quantization range (16-235 vs. 0-255 etc).
-> > > > >=20
-> > > > > The i915 behaviour is that YCbCr is always limited range,
-> > > > > RGB can either be full or limited range depending on the=20
-> > > > > "Broadcast RGB" property and other related factors.
-> > > >=20
-> > > > So far the HDMI state has both the format and quantization range as
-> > > > different fields. I'm not sure we need to document the range in the
-> > > > format field, maybe only mention it's not part of the format but ha=
-s a
-> > > > field of its own?
-> > >=20
-> > > I think we only have it for RGB (on some drivers only?). For YCbCr
-> > > I think the assumption is limited range everywhere.
-> > >=20
-> > > But I'm not really concerned about documenting struct members.
-> > > What I'm talking about is the *uapi* docs. Surely userspace
-> > > will want to know what the new property actually does so the
-> > > uapi needs to be documented properly. And down the line some
-> > > new driver might also implement the wrong behaviour if there
-> > > is no clear specification.
-> >=20
-> > Ack
-> >=20
-> > > So I'm thinking (or perhaps hoping) the rule might be something like:
-> > > - YCbCr limited range=20
-> > > - RGB full range if "Broadcast RGB" property is not present
-> >=20
-> > Isn't it much more complicated than that for HDMI though? My
-> > recollection was that any VIC but VIC1 would be limited range, and
-> > anything else full range?
->=20
-> Do we have some driver that implements the CTA-861 CE vs. IT mode
-> logic but doesn't expose the "Broadcast RGB" property? I was hoping
-> those would always go hand in hand now.
+This series is based on the CMTG enablement series currently under
+review:
+https://patchwork.freedesktop.org/series/157664/
 
-I'm not sure. i915 and the HDMI state helpers handle it properly (I
-think?) but it looks like only vc4 registers the Broadcast RGB property
-and uses the HDMI state helpers.
+DC3CO is not enabled by this series since power_domains->allowed_dc_mask
+is not updated to include DC3CO.
 
-And it looks like amdgpu registers Broadcast RGB but doesn't use
-drm_default_rgb_quant_range() which seems suspicious?
+TODO: 
+- CMTG restore on DC6 exit
+- CMTG HWGB programming for DC3CO latencies
+- Enable DC3CO in power_domains->allowed_dc_mask
 
-Maxime
+Dibin Moolakadan Subrahmanian (19):
+  drm/i915/display: Remove TGL DC3CO support
+  drm/i915/display: Replace DC_STATE_EN_DC3CO with
+    DC_STATE_EN_UPTO_DC3CO
+  drm/i915/display: Use FIELD_PREP() for DC state enable bits
+  drm/i915/display: Add DC3CO DC_STATE enable/disable support
+  drm/i915/display: Validate target DC state against allowed_dc_mask
+  drm/i915/display: Fix HAS_DC3CO() and add DC3CO trigger enum
+  drm/i915/display: Add helper to check DC3CO support
+  drm/i915/display: Add DC3CO eligibility computation
+  drm/i915/display: Remove unused PSR dc3co_exitline field
+  drm/i915/display: Remove unused dc3co_exitline from intel_crtc_state
+  drm/i915/display: Store DC3CO eligibility in PSR state
+  drm/i915/display: PSR2: Set idle_frames to 0 for DC3CO
+  drm/i915/display: Define DC3CO idle protocol bit in PR_ALPM_CTL
+  drm/i915/display: Enable DC3CO idle protocol in ALPM
+  drm/i915/display: PSR Add delayed work to exit DC3CO
+  drm/i915/display: Add helper to enable DC counter
+  drm/i915/display: Remove DC3CO DMC debugfs
+  drm/i915/display: Add DC3CO count and residency in dmc debugfs
+  drm/i915/display: PSR set idle frames while exit from DC3CO
 
---sztu7fljo7ruak3p
-Content-Type: application/pgp-signature; name="signature.asc"
+ drivers/gpu/drm/i915/display/intel_alpm.c     |   9 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  98 +++++++-
+ drivers/gpu/drm/i915/display/intel_display.h  |   2 +-
+ .../drm/i915/display/intel_display_device.h   |   2 +-
+ .../drm/i915/display/intel_display_power.c    |  20 +-
+ .../drm/i915/display/intel_display_power.h    |  16 ++
+ .../i915/display/intel_display_power_well.c   |  36 ++-
+ .../i915/display/intel_display_power_well.h   |   1 +
+ .../gpu/drm/i915/display/intel_display_regs.h |  14 +-
+ .../drm/i915/display/intel_display_types.h    |  14 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  15 +-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |   2 +
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 224 +++++-------------
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |   1 +
+ 15 files changed, 245 insertions(+), 211 deletions(-)
 
------BEGIN PGP SIGNATURE-----
+-- 
+2.43.0
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCacVmrwAKCRAnX84Zoj2+
-djmKAXsEmUptwl0y0uTt0hUtaZxnRjjESVJQSddNJJtwkngvSvLKrVU57NG4oOLY
-OT9kC7ABgJp0yaEoRAtymIjzcn0p0cg7ukDU4WiKAyXKh4xAWn3poLiUScARRszO
-IyTM52RBAA==
-=jTyX
------END PGP SIGNATURE-----
-
---sztu7fljo7ruak3p--
