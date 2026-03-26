@@ -2,81 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oAVyEAecxGki1gQAu9opvQ
+	id 0KIoN2yfxGki1gQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 03:37:59 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 03:52:28 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7387132E6A0
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 03:37:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id E258232E840
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 03:52:27 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7196B10E206;
-	Thu, 26 Mar 2026 02:37:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F18E10E932;
+	Thu, 26 Mar 2026 02:52:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UDh4+/uu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U8mhvvWv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CED0010E206;
- Thu, 26 Mar 2026 02:37:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3242E10E224;
+ Thu, 26 Mar 2026 02:52:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774492676; x=1806028676;
+ t=1774493545; x=1806029545;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=fh0twgBkQk2RBdSewtC0yn1g5z3eZEdwV9HL/zKlRjI=;
- b=UDh4+/uuldBdGCBGlhAVxVPHQx1Hevu0/Y5GLiffJui2el6NxzUuc07F
- DxztQAiH+TuL+voFYzRoHCDI/B1/lOtFhYTTNDQnG/O+w037FDrqHoTiq
- pXT8RgTZTsSFkQj5fclX8MYjwCzXsoCZylfXfjXe2kyB4pRN9mRu873QC
- hFr1o/Tl7KCwjUa6ESWrH8rx8PdmFNKQU/DJnA4X2Q/rqmT4tp1SJe/Gx
- /Wq2buLYNsjuM/ORgHQRvLuvRRJ4OuPuFS2pnmOtc/CRQGaLt6cOa3fbc
- 4pE6dJ8QdEibLi72sNc9cqWx0FBbmjsZvXPoxt8w+bm2+wGW5G5Nulod6 A==;
-X-CSE-ConnectionGUID: 7JBgS0qiQyWa68rw+Y/sbw==
-X-CSE-MsgGUID: b3hegt6jRrasDV92dphfkA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="75506833"
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="75506833"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 19:37:55 -0700
-X-CSE-ConnectionGUID: tBP5vMFtRhCl3nemFWcK3Q==
-X-CSE-MsgGUID: RiWDxOmYQG6O1g5izvQ4UA==
+ bh=ZQwjMy9ieugEs1szzDePpGUEFTNB0Ny/gQ/k5AEVHlU=;
+ b=U8mhvvWvKd80+a954sosmDv3VrYGAC4jd/yQK9TmlTR+pZO8saREb3Fj
+ 1UdCKjf8DJD+4SuFGxN+ZcjI+ruT5T/RvFsGMUvGeXCxEIzatC+sO/uyB
+ utjddrDBPHeXM8Q2cLk9qMYVX5uVv2qRa/XSPHbcqsnOzuT5znQGXhZQm
+ KeBTfFWuA9FsiGxgkvHB6nWnX9k7XnIc48VYYO0KnAbyXrxPwZ6k/kjtv
+ 1oqz95fy2buStn9YD8psBGCxSxKHH1psDu2pIzS9Ev7m67P4GgLiOgjrB
+ jXKlKfiGR8f08hKgdg8TCVPyqTy0j723qPt8NlKmtfUvx1ACgEuCCPGDZ g==;
+X-CSE-ConnectionGUID: YptOX5FVQOm4rDP6ZuXCKA==
+X-CSE-MsgGUID: /81MQRGoQb280cWGVbbHkg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11740"; a="85850729"
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="85850729"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 19:52:25 -0700
+X-CSE-ConnectionGUID: 2NSiJTLBTpq9Nrcmdhv4kw==
+X-CSE-MsgGUID: QAzDUNB/SzitQdyI56TirQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="228930127"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Mar 2026 19:37:55 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,141,1770624000"; d="scan'208";a="225124939"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Mar 2026 19:52:23 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 19:37:54 -0700
-Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 25 Mar 2026 19:52:23 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 19:37:54 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.37) by
- edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 25 Mar 2026 19:52:23 -0700
+Received: from SJ2PR03CU001.outbound.protection.outlook.com (52.101.43.64) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 25 Mar 2026 19:37:54 -0700
+ 15.2.2562.37; Wed, 25 Mar 2026 19:52:21 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Jy0PTzXaRuzU3BXsmbVdzGIzYb7Va8QJnDGS85JrthLhYliTt07j/bjZwpqgo+oIGnc34rnOkCONmL1DFJrFCupvoivNmNWoMMyJUvfR0wPjchFdiIclivPMcdnCS1wsvWvenprkGqQhvdztFq+0nuqp4LkZbqx7H+QqDdsPaz9jBscKTzgKUIMj6H2sJn7dW0wAmtOCiUaUWZOdcff3vMBfRyouSXZiaPQvM0KYgXgXUD6Dm6G0QdzITHjtqqwD2uwT+cNXxGx51Fx+4rtYov/KzSRclstLR3LN+dnFXsjXUUAM11dL2WOckdaCQBKdb45KIee8et284M8DIf1Uqg==
+ b=QDyZLIKteqsRrESkosn9OxyjIQVPdUbFzgI3BPPV5iuDGKSRyYqVMfLXuDJ3SGdawkwMKCpvenih/7fWWbNXLeAXLq521bnP7zoUm6Pkc9gcColfVbXHaUzBXCwV6bGZGuR6mKOsNbCsnjgHKOFi3xMbhqwJIphH9Blf1bNLd0Ml7l93u2Xj6yDIoDKfY0WDhEnLvSoxO/MQPou19im9ZHGlEvUHL0h4Oq+R9073niXoLsCODJ+T4EHxplB1/1pjpr9IgkdeiTD91JifS8ikPV7C8d3Q6fcUljKAlYcD4GOlOmfChv9R5D3UmmNVb6FpTrxAVqf3D6d0OliYjIAGGg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=SHi+d1KIJhudo3wiwlZ+cbtmweIeq2MNk3TNcf2fBP0=;
- b=TidrguixK9vTiSBSG05RCW5EDBmUdaRJ+dSZF3162NupXAdhY/gdVi6R3ojlx6LP5cixkMvwMVZFFai4WNJ2bTHLJ5QdiqwMJdXtNnTnAkra3lniZ4x+se2c6auw2NBHZMuUzYI158iP8K5bVQPw/exrncCxMMmvlzRTM9ullFJ0MHCuF3h6JOzeXxrOVAiy+49ixAS22TkfToP8IyKn02DGryb3lKD9MTMelLGe0t4MCIjbJiBlox+CxLYZcFZuw4+mCmYfjYLeDm8QSKqiR7jtK1Ag1U0/qZeIjDjz+R5X7bx8SDMdvgOQ/sBFg0auIdma8jMQCf1TOBFQBnkZJg==
+ bh=BjoU/vEwF/efAjCRB0Bgry7ozQMXDxX3GzhP6WkHiz4=;
+ b=gfv7qh3rYqey7uBiU4SGuBetvaJ61Lsk3/7igCm6JILDunUM0R52NMT/xamSfygOFpX/6L9fhhS9j6vGNOPlkA6A6nvFKvVCxXtBE29C6h9/9mRqlOiabG87CZw3EAqIJK4Q93xZhxKVskjwoh/Yj1BqmY506LrOSNPRwOd3PGWhwAz63F2r2sXjruPsp4SIuwSbyx4WQdBz9l8tgWj+pIfHUNeA7uU7CrkCi9TyqwIxUxVgXmopHL90TQVJ/QXnN54sXuG1/66h73QuTi9hWbtJmAJ2ae9IRCtxzSc3ucstPQj2yt4a1LP+BkBbM9V9IihOuMT1JFXyym3TtnlTxw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by PH3PPF23335A1E7.namprd11.prod.outlook.com
- (2603:10b6:518:1::d0e) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Thu, 26 Mar
- 2026 02:37:52 +0000
+ (2603:10b6:f:fc00::f13) by DS3PR11MB9647.namprd11.prod.outlook.com
+ (2603:10b6:8:38e::13) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9700.19; Thu, 26 Mar
+ 2026 02:52:02 +0000
 Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
  ([fe80::308:3508:f7cd:9717]) by DM3PPF208195D8D.namprd11.prod.outlook.com
  ([fe80::308:3508:f7cd:9717%4]) with mapi id 15.20.9745.019; Thu, 26 Mar 2026
- 02:37:52 +0000
+ 02:52:02 +0000
 From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
 To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
@@ -84,17 +84,15 @@ CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
  Sowmiya" <sowmiya.s@intel.com>, "Shankar, Uma" <uma.shankar@intel.com>,
  "Sharma, Swati2" <swati2.sharma@intel.com>, "Borah, Chaitanya Kumar"
  <chaitanya.kumar.borah@intel.com>, "Murthy, Arun R" <arun.r.murthy@intel.com>
-Subject: RE: [PATCH v3 04/26] drm/i915/writeback: Add some preliminary
- writeback definitions
-Thread-Topic: [PATCH v3 04/26] drm/i915/writeback: Add some preliminary
- writeback definitions
-Thread-Index: AQHcvEesPfUhZUns7UGSDdfCPIvI3rW/IymAgAD1pXA=
-Date: Thu, 26 Mar 2026 02:37:52 +0000
-Message-ID: <DM3PPF208195D8D006B1B9713312D4E3F79E356A@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Subject: RE: [PATCH v3 05/26] drm/i915/writeback: Init writeback connector
+Thread-Topic: [PATCH v3 05/26] drm/i915/writeback: Init writeback connector
+Thread-Index: AQHcvEeqAeAFGwg+E0e9Uv5iQSr3SLW/KYkAgADxDCA=
+Date: Thu, 26 Mar 2026 02:52:02 +0000
+Message-ID: <DM3PPF208195D8D38B26183DD88D543E5BAE356A@DM3PPF208195D8D.namprd11.prod.outlook.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
- <20260325110744.1096786-5-suraj.kandpal@intel.com>
- <acPMf-mh689g7TuO@intel.com>
-In-Reply-To: <acPMf-mh689g7TuO@intel.com>
+ <20260325110744.1096786-6-suraj.kandpal@intel.com>
+ <acPR2C5-z1-jeuxU@intel.com>
+In-Reply-To: <acPR2C5-z1-jeuxU@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -102,62 +100,62 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|PH3PPF23335A1E7:EE_
-x-ms-office365-filtering-correlation-id: 5c498d36-c106-45a0-7740-08de8ae0ad7a
+x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|DS3PR11MB9647:EE_
+x-ms-office365-filtering-correlation-id: 5c78df2b-35e1-4b02-6e7d-08de8ae2a84f
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|38070700021|22082099003|56012099003|18002099003;
-x-microsoft-antispam-message-info: 6XsgJ1iPv1atGf6wwnIsN/XsL1rnvWCVyYQ2os3vS4ECQO8+mf9JGyk7aXDm9VBWIoQanI9+CX6l0icIfycbPF0luC9m/cYSgMDrThbggzvRMeD0NGArGrLsvZ5A5a6XNKOHKOVRgfxZmgnBB4OWgCHri0flQEAe1aU48xFXl5JDvxxkqiE+M+TnFA0MI176gG1EVxQyM13zykObRkp6CrUcvVKbrEodqwJJEgKbBx4MScpoml48eR7TyekCf2dSgZbM3EeEtvL6dzBB2bPoizw7tCoSWm3Jx6Ht+EWeRQoYa1ipjs28LWZKMM58pRNn07SJIOAQn+GKojhn5Fe/l8lAMLWE3G6KPReW1yQOmloJFLuKQAMr+NVcCe+OTi2ZZhnAbkp/g/aiNrLikh+t9ldRxVS0rHvK4lVv/+rETKrlXadSLlaOb7IV/kLybI2zoZPnVQ8gPSOXbhlr/3unizm4WqDi2PoEhigm8ofg2blhboKEeA8neCZGVHTNDoEueBI26Ysh1ESpFQT4vfcKIlSsNLXDOuYgQT7rP/cruYfaBal06HhC4Y/nQG94ar+qXaVXH6MQOAJFGF3XEsCMu2yorF++OwV/e4ONUVWjkeEFrQ+z8LsZk1QoDmJ0PXBiSiciJzOqHlX064kYNGPaN2MZWL++PeIJDzPY+ForMQSKEQ+/iLobPO9t7rCFrZjGBd0cw8q5uYda2g7Ix6Pxri8EjE8JY35GcIXF2p0qGjoPqJpU5q/J7HVqwAMiRShWBAShHAwV0VZ0nXrFHOkZAB01+YYXYRZiVj9mBPSsWbo=
+ ARA:13230040|366016|376014|1800799024|38070700021|22082099003|18002099003|56012099003;
+x-microsoft-antispam-message-info: TdFDsvm0k8tl/bPiwex1hujtqqoZe+eEHWtVqkpCYGRV3HV063U5x53aeoYhg9dCig9Yn5bFQtw/OZ9bMO5oLosUQB/x43oaoyvYsoQjosbvasDZvBeirgRaWpk0pf2FeWxD12bCMNzOxSgIuGl8EuKyE7tppFgLkBmviOT3JU14S50HrXuuszjMtiqDE53ZB19Qtxm+wVjwxeweg2p94IoU3dWxRMg2eUkSyylksUO2fY4sWHQaKT17nDlCDo/+SbeBjMfHH3fXZmrG2y1tn5QP854NaIsPykdgTovqOBXK91eQ/kUk8MgQb1wKOlZT1VYUB/sn2Au6j8jT2OhSZz8maV8YxQchzwitm3u0utHhJievqvD8FhGlmJsldZjz6j5s/vDiXqI5I9VCrIeaqCG5RhzOMChOHsKL2vcB8DLSC4Wv3TiR5vRE1JbhdZvQhLqhsCSPv2eBp54bYWcF2A7zraBbDLyXKsk8qYpBcnO60aoH1jJvKheZm6wdz/Uxrk0XxDtGMJH7hY+SzXLHbqfBejvGqIj7PZZIIPNqOxF6oexd9k303ZXDEA6X2pi8RkChhCznKQKz0k5bgmM/KzBfsM1VS0rJYu45TsluO4PwXc4OY8WHT8/8KG8j+7h26VunFJZ87pWjrz0+fspXte4n2t479hgsHHMlz8qaE8biOYyChldj+RAi2Zm7iZBLqsEVV/RHLakEOHAbeFEP4ARirXRcF3hka6pXCLoyVJwRfNPm1Oe84yi7D5qnETE2PnuozUW7jrw5GVuUbRVXtnlGrrZkuForypyCxnIYyQA=
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(22082099003)(56012099003)(18002099003);
+ SFS:(13230040)(366016)(376014)(1800799024)(38070700021)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?nJ7svFViG1Drs9hRa+sxF3L4g4kzcqKAoi8Bf7PDkvEs4oD8MtY4D6HKsA?=
- =?iso-8859-1?Q?ChbgtJOtRsEXEoy6y9wPA2HvZLCYruJtDyukG+uDEGA5xP9NiME1Sx3FGC?=
- =?iso-8859-1?Q?LEUJrkv1VPg+F6sNQjuqi8FAULM0LzS3eEj0WCTmrWQ9ZrceqmnQgy8m2n?=
- =?iso-8859-1?Q?GKmtWGbORSHymx9unGik6bG0Xyw4/wDhr/nY43/Xhh2jDJ+mchhcWHfdNl?=
- =?iso-8859-1?Q?Y0Qsa/8w0VdjlrEPOa7nz795dep8E7LZKCUFK3dsACGZBeLfjFUUL7SJsH?=
- =?iso-8859-1?Q?rLm2gOJ8RBWiDVBICsrVteg+DELAj4h4POjSLRJgiXFkAY4KPeWKOoCvdG?=
- =?iso-8859-1?Q?xwdH2Nc/Y0ZYBmNHOW1R7K3xoyKBAUbVU8dDozajWHZxbpEtk6nSg4G5ap?=
- =?iso-8859-1?Q?aBjU+skNtMrJvDsBUPHVYTBjzcJAJLJNBvV54UNSCW61l7QjSUOUDbXUWS?=
- =?iso-8859-1?Q?tKJ54kST/ZLR5+FIUunXp8hsobtMbipWA92m2qYr1rJoZ58/vnBPKL4IkQ?=
- =?iso-8859-1?Q?o8pNJqQ28zF05+S2H6/Lkl6/QRKwFdsVdt5B5FgoUPBRqin3+I/1D1UmM2?=
- =?iso-8859-1?Q?sPmqvKpUQvKASfSnJQ3Tt1lqJM9xXkGK4AORitiQk8cW6S3EDdLJlFcdzz?=
- =?iso-8859-1?Q?S4SXj9K4+Zxdpzf6ycbw2zTuxun/Q7o2PC/CpHCJLI/HGRpDBWFE17ccZn?=
- =?iso-8859-1?Q?y7SlfBuKn/rIaKo0aBVC4np9qr5a2B3FGTaonywAG3sAcGfCyNPlcpuIAH?=
- =?iso-8859-1?Q?Oqc8cAZvDjVEcOeXMGosiZL+qGWJK2mjcgyBxSIDLqCs33OXoazrUJO1YO?=
- =?iso-8859-1?Q?HaU74vyTUoXq3n+GBYM+FZZJstBwzDbp7tSNFv7ifHVnmgkKHCx7Pc8mPy?=
- =?iso-8859-1?Q?SstRBbhBeXjty95ZvmK4SNxtZ3XR/7iEZEoNoRp1FzlYLmyT+veIQzI8Pd?=
- =?iso-8859-1?Q?UWZwJ5FOAD5n/Q06jlrp8u6fvHDpxDov5uyENq3L6K+MVl5aByhuLnMs+E?=
- =?iso-8859-1?Q?LHyGX5r7wQTCGvNZPZth6/RKg6AZlJDJj1h9jbCv9R6JBsmriHKl5kHGjv?=
- =?iso-8859-1?Q?sy1czG4tSslNzCf6lZ763WtkhqdDevZVZnLonGVPYvNx1fPDhe70adXWmq?=
- =?iso-8859-1?Q?gLF9fNePwlLCMFh1WrBIa277qzVJI9+Up3kKdekQdPvcnQnnh3yZfOYO91?=
- =?iso-8859-1?Q?P5L+/eDWUKnEyFMsdxfGa4wbd+Z/4b3yYQsQIwSoxYTKbInI28GNzSdtmO?=
- =?iso-8859-1?Q?GJR5rZHM8q/GcI06Ttx/Tbc8HeXC/EJkdEqth2NnitInXw+1uypseorcSb?=
- =?iso-8859-1?Q?Yjv1KA5MN5/nTrEFndAaZqGUf4A7sg1iFrRgXqx/jSVTDqYwbtse/QVRf+?=
- =?iso-8859-1?Q?A8yGBfAO2q3wskTRIvjUhkZNUkieyUERRcHS7q4XN3Fo4LaZtT+NBHWEUA?=
- =?iso-8859-1?Q?RYAXxu4vb3c2670yT6Tu526KkVp81pd2VJfBM5jiv+IXUUQOl50SsgmWHF?=
- =?iso-8859-1?Q?RJYVrH2Vy6dgPC1Pd4bf+neeuJKnAdITzLQItln0ZguU4MMoBGyvSAsGG8?=
- =?iso-8859-1?Q?xp09LjThuNqJ/wp8rzINlf8JDmO9FrW7hzFriMe4PSE9Jq80o6xUvOWc1I?=
- =?iso-8859-1?Q?3yDZJVtv2Gx00+8b1Yy/9MU/flz1tn3y07JWaccfKduMbwLfXoh8vSaaAW?=
- =?iso-8859-1?Q?urvwVMmHIMABNLfwNcvVMZaBOM/twCPAbhG76hkMDPPoCghoPRQfuTSoXT?=
- =?iso-8859-1?Q?8bUYiNriZk8/9vgTqoI4I5xTB+UIZuaLuQR2elT01IFI5aRWi699bqPf5h?=
- =?iso-8859-1?Q?he3sekebxg=3D=3D?=
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?IBCJIcL+WLPNL3tNVOz+5IyyZYI5trmip+Idveq3r/sioXxWePc5GtaUKY?=
+ =?iso-8859-1?Q?R5Db69o0icPsac8kJFYPISu2AqSCtyiUgIDS7gtT7hCE/pVEVIxTE93slZ?=
+ =?iso-8859-1?Q?WAqIFd79DNbGVVosseMMACFt78N2Y1mKITSbhRscuRiaN7S0o7XKLK1Zg0?=
+ =?iso-8859-1?Q?41PPl+MxSPHoL69OHXXYVOXBEmpLP6xB174lIoX/jU7lcrohnYWlMMGej0?=
+ =?iso-8859-1?Q?2UcKKtbggbWdQWaqOtWQ9F8nwNDFUu28Sjj/eQKEJ5vpINyNtLmarPA1sO?=
+ =?iso-8859-1?Q?FQhfEzTUZpzh5FYvYMgmJKYOQZNLH+GOkkM5N2CNa2Np/T1Sw5bAshzowB?=
+ =?iso-8859-1?Q?IJwJsSnScogeJwDY3H1kvqe/VgUXlppu6/XNPWdYGFo7S1Dsxgquxqqwbt?=
+ =?iso-8859-1?Q?tj3OgcK7+pa8ugv4zjA9/ffEzOpNSF+vC1RL+UnAWsxBxhjZDShIc9NhGT?=
+ =?iso-8859-1?Q?37XfdgX6imAts6mMosccMrPnCcmWdI5aj1E4q8w1At5If0yfe9nmFL5RLN?=
+ =?iso-8859-1?Q?wNBwspBL75Bit64ccJJXysPRPEYa4xOu5y7vfVfj35p4YnOSz0nJjhPKU+?=
+ =?iso-8859-1?Q?FP9X66+0AtSpd9S9uzT8C+FBiqarhMekG2y2qVj3dpAab95rYE8dKicZSp?=
+ =?iso-8859-1?Q?b5exOxN7ma07yNOpPdYJlGC6UAbb2QYDrY1cWkAP6GDU4qs7SZzLacn6PA?=
+ =?iso-8859-1?Q?mJ/Jg+opu0dWI8FVoE0XFyUTN/QxdEBcWIBbth+4WvuM816Lcl2oPK5j6T?=
+ =?iso-8859-1?Q?Qe9FzKM/699crBLcxGQolHXewQM4VkWF5G+Z2WFcL36Z0mgYZDFE9AMUGF?=
+ =?iso-8859-1?Q?qX8Srmwlw4yPHQtbpGo9QNUQ1Mo3DVjoXY+YmE1s9+ip2BsHEZ8xAWNnzo?=
+ =?iso-8859-1?Q?YoOMke9HwSPto3T5KhLX61Oj4KLTltUryg2XfT5+OOuv5ej5u0qS4A6L7R?=
+ =?iso-8859-1?Q?c5Msg555Qz2UzEXCGMn8vYP0VqO5e2Kg6/4jffgacOa9cgkytFWHvCSKyP?=
+ =?iso-8859-1?Q?6A1ALbczkySS/fPFjAlsrrjwqx1T4vrVlXyawWjCnk8yZjcUUwWIE9hG3W?=
+ =?iso-8859-1?Q?LcWL1tW1jEihUHuFCSnnJM9aCr4gaPxFymiLDpRk5WaXOpz3RxVbKPASzJ?=
+ =?iso-8859-1?Q?px35D+YK6/nJIY1woSsLpISYqsNLmfB0LOtQedjxBP+/r2nyJMZLmFSZCm?=
+ =?iso-8859-1?Q?Cqfq/V6ASz7vQsBNmfTLCIhpL+ozGaZCI4MikjB7/2jG0iojoD21QCI/8o?=
+ =?iso-8859-1?Q?z5+adcr1Ef781Sj5YsDsHe+lm4uH5NgxL6PCTrCoBSdf6XGSUI/1CEYBl+?=
+ =?iso-8859-1?Q?NT5XjZUfKCneNzrNcV5baAOMrjNTayRAsd1UE9mmDZWD51+Dl1hKjlsk+7?=
+ =?iso-8859-1?Q?zoMoJc331KqIvxZ5hlOTp5ce4ao6UFS+am+DeKTGgkuYzc1j1bnBuFUmf9?=
+ =?iso-8859-1?Q?H8GDhA/gb3c5p4hn/0nCPfuSmINYYmJHCYR3nr6NQo9pvQif1fW4YDbAQm?=
+ =?iso-8859-1?Q?sW5tPzmt0KfNRR9AaZOP/TreM1F8gU3vPQC/xNHL2flp97HmjokQlz6fGF?=
+ =?iso-8859-1?Q?nhoox3ee9gj/MbfWeeEcJb5iCHQFGchdctW/GCZ3ps0D2Upuzr+bTCE7IH?=
+ =?iso-8859-1?Q?LfY5bNPD/Cw3u0bPrPYq4NoXydjlD1iStWj40Z+vZ1I8LS5Vf+Cgsg0I8Z?=
+ =?iso-8859-1?Q?8fQ96Fmb9+8qyS34maG0kECQhGT1IMz5ZLhwW6J25n/Mx9/8UapS8v/bdM?=
+ =?iso-8859-1?Q?/zmWM6Wwqq62l8RcP7Cdmu3jYL5yN/xoEJsNYmjuMqiPwrzdQKrXAbkGdL?=
+ =?iso-8859-1?Q?vgzbl3x6Lw=3D=3D?=
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: vHpRGCWNZdxmACT5GFYlUJ0AkYADDJciodlHNT5Vyajy3FvZfKdjOWepklLfhIJw2ihhCvM3Jqi4pS7PVsfrKhgz7M7WX7bypUBTYRWwG+5KhWiftM7yegsxp/jQGnaH/EhhS6xqqgfFHAP7yzz3A2BVxmSQiTbRbwnzq1t0wYaqcFg28F9wKlWshPQyj0ecTvwSiqcnEAV5ONimaLECb4qpj05Gs2jQMpWd8oHzK+HU6OTmETrN54bS5Z2x0vU6jVl9vyObRHxc7xnedMpTL7Qt9MP+JKBNJbSzejm2kIKiSWEeW1BQ0V4V03FE2dwVVxdAro8tirvCoqI2FlmF3A==
+X-Exchange-RoutingPolicyChecked: UwGOp2pqLJjJ/N6cdmSCv98X4O68WY2l3AfyBSWQXbcC9/zMC3+SsZEB8ef35JkSil7l6aVFcES0yu2hzmTCfw6g9DEUl1sKZ+DjoPw7XNBxJ4eIul8EP8u9vU2lnqqVUHXHHTeF/M24djJyc0HdQPJCuegkAMwU5kX6BUYJ4IFQ6VXt1szlzNfa6+6/l9vwzTdIbKAIddwv7x540J5FYJ3y5u9R4HhcPvIXWvSGORP2mGVxbggxAKMecvYADlg+nrujHwbaMjz4tHVINCn5lRNJth3drRrwIJiB9a7qVHXeivO3BJzF+9fe8xtvRTDJW8E+BdCUngM5jWE27vr7hw==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
 X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 5c498d36-c106-45a0-7740-08de8ae0ad7a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2026 02:37:52.0457 (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c78df2b-35e1-4b02-6e7d-08de8ae2a84f
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Mar 2026 02:52:02.3910 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: INIvcGJPjo3TQD+qjGwkZh30Yk+K18NL/AvLMykt4trJuDkn+uXQcAuXboL5BGoi/77vuc391xypBcW95vi2dA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF23335A1E7
+X-MS-Exchange-CrossTenant-userprincipalname: TQFe3wUNe1jSDj3A4zaThY8R+tOPLcmH2iJTmJeZS/Nv5YyAkiAbLxHvG2cyz3QWnzRbATc9Bk+1eHcIItV2jQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS3PR11MB9647
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -176,14 +174,14 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,DM3PPF208195D8D.namprd11.prod.outlook.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,DM3PPF208195D8D.namprd11.prod.outlook.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
@@ -198,379 +196,234 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 7387132E6A0
+X-Rspamd-Queue-Id: E258232E840
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> Subject: Re: [PATCH v3 04/26] drm/i915/writeback: Add some preliminary
-> writeback definitions
+> Subject: Re: [PATCH v3 05/26] drm/i915/writeback: Init writeback connecto=
+r
 >=20
-> On Wed, Mar 25, 2026 at 04:37:22PM +0530, Suraj Kandpal wrote:
-> > Add some preliminary definitions like, output type and transcoder
-> > related to the writeback functionality.
+> On Wed, Mar 25, 2026 at 04:37:23PM +0530, Suraj Kandpal wrote:
+> > Initialize writeback connector initialising the virtual encoder and
+> > intel connector. We also allocate memory for drm_writeback_connector
+> > but not the drm_connector within it due to a constraint we need all
+> > connectors to be an intel_connector.
+> > The writeback_format arrays is used to tell the user which drm formats
+> > are supported by us.
 > >
+> > Bspec: 49275
 > > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > > ---
-> >  drivers/gpu/drm/i915/display/intel_acpi.c     |  1 +
-> >  .../drm/i915/display/intel_crtc_state_dump.c  |  2 +-
-> > drivers/gpu/drm/i915/display/intel_display.c  |  3 +-
-> > drivers/gpu/drm/i915/display/intel_display.h  |  4 +++
-> >  .../drm/i915/display/intel_display_device.c   | 29 +++++++++++++++++--
-> >  .../drm/i915/display/intel_display_device.h   |  2 +-
-> >  .../drm/i915/display/intel_display_limits.h   |  2 ++
-> >  .../drm/i915/display/intel_display_power.c    |  4 +++
-> >  .../drm/i915/display/intel_display_power.h    |  2 ++
-> >  .../drm/i915/display/intel_display_types.h    |  1 +
-> >  10 files changed, 44 insertions(+), 6 deletions(-)
+> >  drivers/gpu/drm/i915/Makefile                 |   1 +
+> >  .../gpu/drm/i915/display/intel_writeback.c    | 126 ++++++++++++++++++
+> >  .../gpu/drm/i915/display/intel_writeback.h    |  17 +++
+> >  3 files changed, 144 insertions(+)
+> >  create mode 100644 drivers/gpu/drm/i915/display/intel_writeback.c
+> >  create mode 100644 drivers/gpu/drm/i915/display/intel_writeback.h
 > >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > index e06f324027be..89b8d3b4f1f2 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_acpi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_acpi.c
-> > @@ -256,6 +256,7 @@ static u32 acpi_display_type(struct intel_connector
-> *connector)
-> >  		break;
-> >  	case DRM_MODE_CONNECTOR_Unknown:
-> >  	case DRM_MODE_CONNECTOR_VIRTUAL:
-> > +	case DRM_MODE_CONNECTOR_WRITEBACK:
-> >  		display_type =3D ACPI_DISPLAY_TYPE_OTHER;
+> > diff --git a/drivers/gpu/drm/i915/Makefile
+> > b/drivers/gpu/drm/i915/Makefile index b677720a1c2d..1e9140e7713c
+> > 100644
+> > --- a/drivers/gpu/drm/i915/Makefile
+> > +++ b/drivers/gpu/drm/i915/Makefile
+> > @@ -315,6 +315,7 @@ i915-y +=3D \
+> >  	display/intel_vblank.o \
+> >  	display/intel_vga.o \
+> >  	display/intel_wm.o \
+> > +	display/intel_writeback.o \
+> >  	display/skl_prefill.o \
+> >  	display/skl_scaler.o \
+> >  	display/skl_universal_plane.o \
+> > diff --git a/drivers/gpu/drm/i915/display/intel_writeback.c
+> > b/drivers/gpu/drm/i915/display/intel_writeback.c
+> > new file mode 100644
+> > index 000000000000..73101ee17d74
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_writeback.c
+> > @@ -0,0 +1,126 @@
+> > +// SPDX-License-Identifier: MIT
+> > +/*
+> > + * Copyright =A9 2025 Intel Corporation  */
+> > +
+> > +#include <linux/slab.h>
+> > +#include <drm/drm_atomic_state_helper.h> #include
+> > +<drm/drm_writeback.h> #include <drm/drm_modeset_helper_vtables.h>
+> > +#include <drm/drm_probe_helper.h>
+> > +#include <drm/drm_fourcc.h>
+> > +#include <drm/drm_encoder.h>
+> > +
+> > +#include "intel_atomic.h"
+> > +#include "intel_connector.h"
+> > +#include "intel_de.h"
+> > +#include "intel_display_driver.h"
+> > +#include "intel_display_types.h"
+> > +#include "intel_writeback.h"
+> > +
+> > +struct intel_writeback_connector {
+> > +	struct intel_connector connector;
+> > +	struct intel_encoder encoder;
+> > +	enum transcoder trans;
 >=20
-> I don't think we want to add this stuff to the DIDL/etc.
-> Something somewhere needs to exclude these from that.
+> We don't call it 'trans' anywhere else.
 
-Hmm will have a look how that can be done
+Yes will call it transcoder my bad.
 
 >=20
-> >  		break;
-> >  	default:
-> > diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> > b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> > index 234843b8f83a..4e9e880d2778 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-> > @@ -53,7 +53,6 @@ intel_dump_infoframe(struct intel_display *display,
-> > }
-> >
-> >  #define OUTPUT_TYPE(x) [INTEL_OUTPUT_ ## x] =3D #x
-> > -
+> > +	int frame_num;
 >=20
-> Spurious change.
+> This and 'trans' are unused. Please introduce them when needed, not here.
+>=20
 
-Ahh sure will remove it.
+Got it.
 
->=20
-> >  static const char * const output_type_str[] =3D {
-> >  	OUTPUT_TYPE(UNUSED),
-> >  	OUTPUT_TYPE(ANALOG),
-> > @@ -67,6 +66,7 @@ static const char * const output_type_str[] =3D {
-> >  	OUTPUT_TYPE(DSI),
-> >  	OUTPUT_TYPE(DDI),
-> >  	OUTPUT_TYPE(DP_MST),
-> > +	OUTPUT_TYPE(WRITEBACK),
-> >  };
-> >
-> >  #undef OUTPUT_TYPE
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
-> > b/drivers/gpu/drm/i915/display/intel_display.c
-> > index 10b6c6fcb03f..d433ffaadd65 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> > @@ -3768,7 +3768,8 @@ static u8 hsw_panel_transcoders(struct
-> intel_display *display)
-> >  	u8 panel_transcoder_mask =3D BIT(TRANSCODER_EDP);
-> >
-> >  	if (DISPLAY_VER(display) >=3D 11)
-> > -		panel_transcoder_mask |=3D BIT(TRANSCODER_DSI_0) |
-> BIT(TRANSCODER_DSI_1);
-> > +		panel_transcoder_mask |=3D BIT(TRANSCODER_DSI_0) |
-> BIT(TRANSCODER_DSI_1) |
-> > +				BIT(TRANSCODER_WD_0) |
-> BIT(TRANSCODER_WD_1);
->=20
-> WD has existed at least since SKL. Looks like the tagging in BSpec is a b=
-it
-> inconsistent in that the filter only shows this for SKL+, but I *think* B=
-DW has it
-> already.
->=20
-> >
-> >  	return panel_transcoder_mask;
-> >  }
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display.h
-> > b/drivers/gpu/drm/i915/display/intel_display.h
-> > index 552a59d19e0f..07d9f62e0866 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> > @@ -66,6 +66,10 @@ static inline const char *transcoder_name(enum
-> transcoder transcoder)
-> >  		return "DSI A";
-> >  	case TRANSCODER_DSI_C:
-> >  		return "DSI C";
-> > +	case TRANSCODER_WD_0:
-> > +		return "WD 0";
-> > +	case TRANSCODER_WD_1:
-> > +		return "WD 1";
-> >  	default:
-> >  		return "<invalid>";
-> >  	}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c
-> > b/drivers/gpu/drm/i915/display/intel_display_device.c
-> > index be55ef8ea617..129b1c561847 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_device.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-> > @@ -22,6 +22,7 @@
-> >  #include "intel_display_wa.h"
-> >  #include "intel_fbc.h"
-> >  #include "intel_step.h"
-> > +#include "intel_writeback_reg.h"
-> >
-> >  __diag_push();
-> >  __diag_ignore_all("-Woverride-init", "Allow field initialization
-> > overrides for display info"); @@ -145,12 +146,16 @@ static const struct
-> intel_display_device_info no_display =3D {};
-> >  		[TRANSCODER_B] =3D PIPE_B_OFFSET, \
-> >  		[TRANSCODER_C] =3D PIPE_C_OFFSET, \
-> >  		[TRANSCODER_EDP] =3D PIPE_EDP_OFFSET, \
-> > +		[TRANSCODER_WD_0] =3D PIPE_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D PIPE_WD1_OFFSET, \
-> >  	}, \
-> >  	.trans_offsets =3D { \
-> >  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET, \
-> >  		[TRANSCODER_B] =3D TRANSCODER_B_OFFSET, \
-> >  		[TRANSCODER_C] =3D TRANSCODER_C_OFFSET, \
-> >  		[TRANSCODER_EDP] =3D TRANSCODER_EDP_OFFSET, \
-> > +		[TRANSCODER_WD_0] =3D TRANSCODER_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D TRANSCODER_WD1_OFFSET, \
-> >  	}
-> >
-> >  #define CHV_PIPE_OFFSETS \
-> > @@ -581,7 +586,8 @@ static const struct platform_desc hsw_desc =3D {
-> >  		.__runtime_defaults.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) |
-> BIT(PIPE_C),
-> >  		.__runtime_defaults.cpu_transcoder_mask =3D
-> >  		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> > -		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP),
-> > +		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) |
-> > +		BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_1),
-> >  		.__runtime_defaults.port_mask =3D BIT(PORT_A) |
-> BIT(PORT_B) | BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
-> >  		.__runtime_defaults.fbc_mask =3D BIT(INTEL_FBC_A),
-> >  	},
-> > @@ -678,7 +684,8 @@ static const struct intel_display_device_info
-> skl_display =3D {
-> >  	.__runtime_defaults.pipe_mask =3D BIT(PIPE_A) | BIT(PIPE_B) |
-> BIT(PIPE_C),
-> >  	.__runtime_defaults.cpu_transcoder_mask =3D
-> >  	BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> > -	BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP),
-> > +	BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) |
-> > +	BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_1),
-> >  	.__runtime_defaults.port_mask =3D BIT(PORT_A) | BIT(PORT_B) |
-> BIT(PORT_C) | BIT(PORT_D) | BIT(PORT_E),
-> >  	.__runtime_defaults.fbc_mask =3D BIT(INTEL_FBC_A),  }; @@ -830,6
-> > +837,7 @@ static const struct platform_desc cml_desc =3D {
-> >  		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-> >  		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
-> >  		BIT(TRANSCODER_DSI_A) | BIT(TRANSCODER_DSI_C), \
-> > +		BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_0), \
-> >  	.__runtime_defaults.port_mask =3D BIT(PORT_A) | BIT(PORT_B) |
-> > BIT(PORT_C)
-> >
-> >  static const enum intel_step bxt_steppings[] =3D { @@ -884,6 +892,8 @@
-> > static const struct platform_desc glk_desc =3D {
-> >  		[TRANSCODER_EDP] =3D PIPE_EDP_OFFSET, \
-> >  		[TRANSCODER_DSI_0] =3D PIPE_DSI0_OFFSET, \
-> >  		[TRANSCODER_DSI_1] =3D PIPE_DSI1_OFFSET, \
-> > +		[TRANSCODER_WD_0] =3D PIPE_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D PIPE_WD1_OFFSET, \
-> >  	}, \
-> >  	.trans_offsets =3D { \
-> >  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET, \ @@ -892,6
-> +902,8 @@ static
-> > const struct platform_desc glk_desc =3D {
-> >  		[TRANSCODER_EDP] =3D TRANSCODER_EDP_OFFSET, \
-> >  		[TRANSCODER_DSI_0] =3D TRANSCODER_DSI0_OFFSET, \
-> >  		[TRANSCODER_DSI_1] =3D TRANSCODER_DSI1_OFFSET, \
-> > +		[TRANSCODER_WD_0] =3D TRANSCODER_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D TRANSCODER_WD1_OFFSET, \
-> >  	}, \
-> >  	IVB_CURSOR_OFFSETS, \
-> >  	ICL_COLORS, \
-> > @@ -905,6 +917,7 @@ static const struct platform_desc glk_desc =3D {
-> >  		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-> >  		BIT(TRANSCODER_C) | BIT(TRANSCODER_EDP) | \
-> >  		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
-> > +		BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_1), \
-> >  	.__runtime_defaults.fbc_mask =3D BIT(INTEL_FBC_A)
-> >
-> >  static const u16 icl_port_f_ids[] =3D { @@ -975,6 +988,8 @@ static
-> > const struct platform_desc ehl_desc =3D {
-> >  		[TRANSCODER_D] =3D PIPE_D_OFFSET, \
-> >  		[TRANSCODER_DSI_0] =3D PIPE_DSI0_OFFSET, \
-> >  		[TRANSCODER_DSI_1] =3D PIPE_DSI1_OFFSET, \
-> > +		[TRANSCODER_WD_0] =3D PIPE_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D PIPE_WD1_OFFSET, \
-> >  	}, \
-> >  	.trans_offsets =3D { \
-> >  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET, \ @@ -983,6
-> +998,8 @@ static
-> > const struct platform_desc ehl_desc =3D {
-> >  		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET, \
-> >  		[TRANSCODER_DSI_0] =3D TRANSCODER_DSI0_OFFSET, \
-> >  		[TRANSCODER_DSI_1] =3D TRANSCODER_DSI1_OFFSET, \
-> > +		[TRANSCODER_WD_0] =3D TRANSCODER_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D TRANSCODER_WD1_OFFSET, \
-> >  	}, \
-> >  	TGL_CURSOR_OFFSETS, \
-> >  	ICL_COLORS, \
-> > @@ -997,6 +1014,7 @@ static const struct platform_desc ehl_desc =3D {
-> >  		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) | \
-> >  		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) | \
-> >  		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1), \
-> > +		BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_1), \
-> >  	.__runtime_defaults.fbc_mask =3D BIT(INTEL_FBC_A)
-> >
-> >  static const u16 tgl_uy_ids[] =3D {
-> > @@ -1142,6 +1160,8 @@ static const struct platform_desc adl_s_desc =3D =
+> > +};
+> > +
+> > +static const u32 writeback_formats[] =3D {
+> > +	DRM_FORMAT_XYUV8888,
+> > +	DRM_FORMAT_YUYV,
+> > +	DRM_FORMAT_XBGR8888,
+> > +	DRM_FORMAT_XVYU2101010,
+> > +	DRM_FORMAT_VYUY,
+> > +	DRM_FORMAT_XBGR2101010,
+> > +};
+> > +
+> > +static int intel_writeback_connector_init(struct intel_connector
+> > +*connector) {
+> > +	struct intel_digital_connector_state *conn_state;
+> > +
+> > +	conn_state =3D kzalloc(sizeof(*conn_state), GFP_KERNEL);
+> > +	if (!conn_state)
+> > +		return -ENOMEM;
+> > +
+> > +	__drm_atomic_helper_connector_reset(&connector->base,
+> > +					    &conn_state->base);
+> > +	return 0;
+> > +}
+> > +
+> > +static int
+> > +intel_writeback_connector_alloc(struct intel_connector *connector) {
+> > +	if (intel_writeback_connector_init(connector) < 0) {
+> > +		kfree(connector);
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static const struct drm_encoder_funcs drm_writeback_encoder_funcs =3D =
 {
-> >  		[TRANSCODER_D] =3D PIPE_D_OFFSET,
-> 		\
-> >  		[TRANSCODER_DSI_0] =3D PIPE_DSI0_OFFSET,
-> 		\
-> >  		[TRANSCODER_DSI_1] =3D PIPE_DSI1_OFFSET,
-> 		\
-> > +		[TRANSCODER_WD_0] =3D PIPE_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D PIPE_WD1_OFFSET, \
-> >  	},
-> 	\
-> >  	.trans_offsets =3D {
-> 	\
-> >  		[TRANSCODER_A] =3D TRANSCODER_A_OFFSET,
-> 		\
-> > @@ -1150,6 +1170,8 @@ static const struct platform_desc adl_s_desc =3D =
-{
-> >  		[TRANSCODER_D] =3D TRANSCODER_D_OFFSET,
-> 		\
-> >  		[TRANSCODER_DSI_0] =3D TRANSCODER_DSI0_OFFSET,
-> 		\
-> >  		[TRANSCODER_DSI_1] =3D TRANSCODER_DSI1_OFFSET,
-> 		\
-> > +		[TRANSCODER_WD_0] =3D TRANSCODER_WD0_OFFSET, \
-> > +		[TRANSCODER_WD_1] =3D TRANSCODER_WD1_OFFSET, \
-> >  	},
-> 	\
-> >  	TGL_CURSOR_OFFSETS,
-> 		\
-> >
-> 	\
-> > @@ -1169,7 +1191,8 @@ static const struct intel_display_device_info
-> xe_lpd_display =3D {
-> >  	.__runtime_defaults.cpu_transcoder_mask =3D
-> >  		BIT(TRANSCODER_A) | BIT(TRANSCODER_B) |
-> >  		BIT(TRANSCODER_C) | BIT(TRANSCODER_D) |
-> > -		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1),
-> > +		BIT(TRANSCODER_DSI_0) | BIT(TRANSCODER_DSI_1) |
-> > +		BIT(TRANSCODER_WD_0) | BIT(TRANSCODER_WD_1),
-> >  	.__runtime_defaults.port_mask =3D BIT(PORT_A) | BIT(PORT_B) |
-> >  		BIT(PORT_TC1) | BIT(PORT_TC2) | BIT(PORT_TC3) |
-> BIT(PORT_TC4),  };
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h
-> > b/drivers/gpu/drm/i915/display/intel_display_device.h
-> > index 1170ac346615..90aa629595db 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> > @@ -292,7 +292,7 @@ struct intel_display_runtime_info {
-> >  	u32 rawclk_freq;
-> >
-> >  	u8 pipe_mask;
-> > -	u8 cpu_transcoder_mask;
-> > +	u16 cpu_transcoder_mask;
+> > +	.destroy =3D drm_encoder_cleanup,
+> > +};
+> > +
+> > +const struct drm_connector_funcs conn_funcs =3D {
+> > +	.fill_modes =3D drm_helper_probe_single_connector_modes,
+> > +	.atomic_duplicate_state =3D intel_digital_connector_duplicate_state,
+> > +	.atomic_destroy_state =3D
+> drm_atomic_helper_connector_destroy_state,
+> > +};
+> > +
+> > +static const struct drm_connector_helper_funcs conn_helper_funcs =3D {
+> > +};
+> > +
+> > +int intel_writeback_init(struct intel_display *display) {
+> > +	struct intel_encoder *encoder;
+> > +	struct intel_writeback_connector *writeback_conn;
+> > +	struct intel_connector *connector;
+> > +	int ret;
+> > +
+> > +	writeback_conn =3D kzalloc(sizeof(*writeback_conn), GFP_KERNEL);
+> > +	if (!writeback_conn)
+> > +		return -ENOSPC;
+> > +
+> > +	encoder =3D &writeback_conn->encoder;
+> > +	encoder->base.possible_crtcs =3D 0xf;
 >=20
-> Ugh. You'll need to go over the entire codebase to make sure we never use=
- u8
-> for transcoder masks.
->=20
+> We have code that takes care of that.
 
-That's true but currently if this is not done we end up running into an err=
-or since now transcoders have increased, do you want me to add a patch in t=
-his series that basically makes sure that
-We always use a u8 transcoder everywhere or should I send a separate series=
- when I change this from u8 to u16 and the corresponding changes that come =
-with it.
-Open to other ideas on how I can get around this issue without having to ch=
-ange transcoder mask.
+Ohkay. Will remove this.
 
-> >  	u16 port_mask;
-> >
-> >  	u8 num_sprites[I915_MAX_PIPES];
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_limits.h
-> > b/drivers/gpu/drm/i915/display/intel_display_limits.h
-> > index 453f7b720815..a99e269b1aee 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_limits.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_limits.h
-> > @@ -45,6 +45,8 @@ enum transcoder {
-> >  	TRANSCODER_DSI_1,
-> >  	TRANSCODER_DSI_A =3D TRANSCODER_DSI_0,	/* legacy DSI */
-> >  	TRANSCODER_DSI_C =3D TRANSCODER_DSI_1,	/* legacy DSI */
-> > +	TRANSCODER_WD_0,
-> > +	TRANSCODER_WD_1,
-> >
-> >  	I915_MAX_TRANSCODERS
-> >  };
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > index ec96b141c74c..448f1c57439d 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-> > @@ -79,6 +79,10 @@ intel_display_power_domain_str(enum
-> intel_display_power_domain domain)
-> >  		return "TRANSCODER_DSI_A";
-> >  	case POWER_DOMAIN_TRANSCODER_DSI_C:
-> >  		return "TRANSCODER_DSI_C";
-> > +	case POWER_DOMAIN_TRANSCODER_WD_0:
-> > +		return "TRANSCODER_WD_0";
-> > +	case POWER_DOMAIN_TRANSCODER_WD_1:
-> > +		return "TRANSCODER_WD_1";
-> >  	case POWER_DOMAIN_TRANSCODER_VDSC_PW2:
-> >  		return "TRANSCODER_VDSC_PW2";
-> >  	case POWER_DOMAIN_PORT_DDI_LANES_A:
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > index d616d5d09cbe..fc24d7153ef8 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_power.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-> > @@ -42,6 +42,8 @@ enum intel_display_power_domain {
-> >  	POWER_DOMAIN_TRANSCODER_EDP,
-> >  	POWER_DOMAIN_TRANSCODER_DSI_A,
-> >  	POWER_DOMAIN_TRANSCODER_DSI_C,
-> > +	POWER_DOMAIN_TRANSCODER_WD_0,
-> > +	POWER_DOMAIN_TRANSCODER_WD_1,
 >=20
-> This patch is doing about a dozen different things. Please split it up.
+> > +	ret =3D drm_encoder_init(display->drm, &encoder->base,
+> > +			       &drm_writeback_encoder_funcs,
+> > +			       DRM_MODE_ENCODER_VIRTUAL, NULL);
+> > +	if (ret) {
+> > +		kfree(writeback_conn);
+> > +		return ret;
+> > +	}
+> > +
+> > +	encoder->type =3D INTEL_OUTPUT_WRITEBACK;
+> > +	encoder->pipe_mask =3D ~0;
+> > +	encoder->cloneable =3D 0;
 >=20
+> We should probably just nuke all the redundant cloneable=3D0 assignments =
+from
+> all the encoders.
 
-Sure will do
+Hmm will remove it from here, will try to remove it from all encoder when I=
+ get the time to test and float it.
+
+>=20
+> > +
+> > +	connector =3D &writeback_conn->connector;
+> > +	ret =3D intel_writeback_connector_alloc(connector);
+> > +	if (ret) {
+> > +		kfree(writeback_conn);
+> > +		return ret;
+> > +	}
+> > +
+> > +	connector->base.interlace_allowed =3D 0;
+>=20
+> redundant
+
+Right will remove it.
 
 Regards,
 Suraj Kandpal
 
-> >
-> >  	/* VDSC/joining for eDP/DSI transcoder (ICL) or pipe A (TGL) */
-> >  	POWER_DOMAIN_TRANSCODER_VDSC_PW2,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index e2496db1642a..a43625e30430 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -83,6 +83,7 @@ enum intel_output_type {
-> >  	INTEL_OUTPUT_DSI =3D 9,
-> >  	INTEL_OUTPUT_DDI =3D 10,
-> >  	INTEL_OUTPUT_DP_MST =3D 11,
-> > +	INTEL_OUTPUT_WRITEBACK =3D 12,
-> >  };
-> >
-> >  enum hdmi_force_audio {
+>=20
+> > +	drm_connector_helper_add(&connector->base, &conn_helper_funcs);
+> > +	ret =3D drm_writeback_connector_init(display->drm, &connector->base,
+> > +					   &conn_funcs, &encoder->base,
+> > +					   writeback_formats,
+> > +					   ARRAY_SIZE(writeback_formats));
+> > +	if (ret) {
+> > +		intel_connector_free(connector);
+> > +		drm_encoder_cleanup(&encoder->base);
+> > +		kfree(&writeback_conn->encoder);
+> > +		kfree(writeback_conn);
+> > +		return ret;
+> > +	}
+> > +
+> > +	intel_connector_attach_encoder(connector, encoder);
+> > +	connector->get_hw_state =3D intel_connector_get_hw_state;
+> > +	connector->base.status =3D connector_status_disconnected;
+> > +	writeback_conn->frame_num =3D 1;
+> > +
+> > +	return 0;
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_writeback.h
+> > b/drivers/gpu/drm/i915/display/intel_writeback.h
+> > new file mode 100644
+> > index 000000000000..5911684cb81a
+> > --- /dev/null
+> > +++ b/drivers/gpu/drm/i915/display/intel_writeback.h
+> > @@ -0,0 +1,17 @@
+> > +/* SPDX-License-Identifier: MIT */
+> > +/*
+> > + * Copyright =A9 2025 Intel Corporation  */
+> > +
+> > +#ifndef __INTEL_WRITEBACK_H__
+> > +#define __INTEL_WRITEBACK_H__
+> > +
+> > +#include <linux/types.h>
+> > +
+> > +struct intel_display;
+> > +struct intel_writeback_connector;
+> > +
+> > +int intel_writeback_init(struct intel_display *display);
+> > +
+> > +#endif /* __INTEL_WRITEBACK_H__ */
+> > +
 > > --
 > > 2.34.1
 >=20
