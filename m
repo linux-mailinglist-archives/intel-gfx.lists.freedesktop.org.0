@@ -2,71 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2I0NLVpzymmB9AUAu9opvQ
+	id wFzLNU5zymlQ9AUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66EA635B738
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:58:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 89A9035B67F
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 14:57:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 03D4A10E719;
-	Mon, 30 Mar 2026 12:57:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D320710E6EC;
+	Mon, 30 Mar 2026 12:57:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="izavzM6r";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="Eq/vLxtn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oa1-f42.google.com (mail-oa1-f42.google.com
- [209.85.160.42])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1A5810EBEF
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:29 +0000 (UTC)
-Received: by mail-oa1-f42.google.com with SMTP id
- 586e51a60fabf-404254ffe8aso774815fac.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:29 -0700 (PDT)
+Received: from mail-oa1-f48.google.com (mail-oa1-f48.google.com
+ [209.85.160.48])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0BA810EBE9
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 18:55:32 +0000 (UTC)
+Received: by mail-oa1-f48.google.com with SMTP id
+ 586e51a60fabf-40ee9b945d5so940470fac.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1774551329; x=1775156129; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1774551332; x=1775156132; darn=lists.freedesktop.org;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=BSisvrIuxABye56v+k4UdRTAwS5HV0U80AJ6AJkDqLc=;
- b=izavzM6r3fKe0qk3c65nD4xsENxTsjUFoMxZtpFpXily1O4EngvisOya5qKP9bEbEI
- cjWSv0c12dUI+PnfrcJpwlbl31DV5mSyJcLBlDs9AxaV3B6p/oi7daq0IAanXxq7ciRf
- wu8ZjgrNwlxqDwd7nmPKa7tdbmBPmMWWN0INk89FLOvy8cmXflAtgBs2eLlY6kZfruQg
- 8L61MFB/0vIFScrtv45CIH+2IS4r7vOyJF7POwGtdrLa84u647SJZy+RPm9M95TqZ2JS
- hDIPPGQMra5LvVv+pK905/GdVATufteh9iMvvSUAaw/ek61BNGQA0FVKYHQwmUAwffwH
- cmuw==
+ bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
+ b=Eq/vLxtncKNQ+ZEU+/X/bBiUdcJeQX+Y+rJ3mYIYSExKM7jeAoOhpXkc1TNq8mjCUV
+ CEJ660E8nk1QvqprFC6edxAii9GDA9WcjkRejGV0xQJyDfswjS+TgJk8R/AaCsMvVIub
+ WdQ2PlQx8Ng851XkUjcU0HAq+auqTJUkCJAsiONxgyhyAXENMV4LZCC+pw2cn17GrcmP
+ vH8zj3PfuVjW1NJULbrRRhfW2DGV8W6ZmDJ1ibFEr0iwt/06hwHrqNWgJWyFNTgDZxcP
+ JiYXKK0mrs2sNY9/IqkjiDqqKegOyo9kSzmgXd15h4OQ8JYUC8lyJXuo3swq7xAekAae
+ kbfQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1774551329; x=1775156129;
+ d=1e100.net; s=20251104; t=1774551332; x=1775156132;
  h=content-transfer-encoding:mime-version:references:in-reply-to
  :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
  :to:cc:subject:date:message-id:reply-to;
- bh=BSisvrIuxABye56v+k4UdRTAwS5HV0U80AJ6AJkDqLc=;
- b=r2298f2N2Kw3NoroyNmwcful950jixkiyDV8M713Ori5NZmJt5smrnaET7rNGciW/v
- 5IInSH+Qvae673/KBWIr+cle/8JdXlMTLocP/xaHfSSYqbKe/sxGMbwdNrsf2T9K6+RM
- ENtgExXSh2nuV2Z+WnFo6euOroo0MSqyABAN2oE0XCFKLLpC+iG+gfRJKwRQMbTolXXT
- HANZT9AuDO/mXxKuqHavb3+tOto6pGNAsyHTaiJG9N0Ynhw7zdl3FSLDQDl/mjUKra+N
- OI+WJXXEuF8meWiZ9u7VnQwCEBsVHZJbKh7ovjtA6t+HZuJEdHWg2Y4a1pdcSTu9bruX
- HWZg==
+ bh=b4jWe/O/TQKg+phAG4swgxb5r2uUue/0h3/17ze4tn4=;
+ b=fAxio33M0/+TYWIxiItKfCUQKb9HAKv4R6PsZEv/1hdJ3SJhjRsvloT5620ZYA0Bl1
+ 00EPeG9ZNFqkk/bbsoENoAtQEB/FGezQKkSn56tvuE+Pa+8D8OoXQW4Lj4WApapspIG3
+ Z5iFLjQyEVEBHDwrdTda9wg/PM/nC7bPsEBwZuP//iogYreylXdcFk8rPvb3mHZP/pe2
+ uW0V6yU1edSkDgDOMm7E4rCtUq97ZymoyoRcPw6AzofuPpeJYB8VJxVm58lNzM6M+/vE
+ 3NyIas9O/WTbDWyBPhSpvzWBjlOmNoVwkn9rYNN8nuCLKXRutWpzIg1fWpt3fG0Fx8is
+ G4QA==
 X-Forwarded-Encrypted: i=1;
- AJvYcCXmpatzNM6CqwMS58k4IIgS+/quGCD2e/AouY9U4/N0gru+2vJ1q/kczNTgneAVBL+GyPSfcFP1FBQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzu/EWbpudLGvAhkG3Ug5zM+N9WNXWxHej50ytPMKnvLFqTLij6
- j80Y7eXbBS1IC2vnUsJ3R4+Soz9Ajsq//ZE7IpcV94rN2XtF7d3mqOOj
-X-Gm-Gg: ATEYQzzqW37dmacNGcWM4RTYtrPahLO6QmwC1MM12k9m6pAL6eUXZnviRin4JOq9wdZ
- Bvm6RQ/35ZtVCZD5pkyBG0g+SzWLAJwe/c0qg623LF5PJgNlA98qU4xqn3iEb0eD7uiln1o0LGQ
- 5yBJaswSmcxMIGlZI4rsLYs98ywTKGAMcWu2IZj0Es3iLsSSk/koeCFGtpVYzA5mv4sfUpYCnbN
- 1QsAKFWrEW1/1irMfMlYJLzRJ87+urrL/chTBjEjri+BgUqK8NKTfFM1buqtd+uxj5gf9fKCZN6
- hA8R7V1MUKzfVQ2J3OySkuIG8pupURgScx2JYeZfPh9x6wmrtnGQ6z6SwhePGlRQrV2X0d6bSXS
- G3ty44vOv8PH6WoxvrelrMTZA1wyDMlBcaUQJnDtLWwQdydzoXTyy/xc/sVY7AijQWcCW0Wop2t
- vdPNNWSrnKDxspw0fQFMKBUdrL2jmOaMZCVwodUFK3zKcAcPJ21P774rG0pyM=
-X-Received: by 2002:a05:6870:b0e4:b0:40e:a9c5:5c32 with SMTP id
- 586e51a60fabf-41cd7b187d0mr1250153fac.8.1774551329111; 
- Thu, 26 Mar 2026 11:55:29 -0700 (PDT)
+ AJvYcCVplH2fDnsEaF0OfL2PwskbHwEJF+H/XSA6LjZ0hXtn+bTw2dDbyKbM0+CpeXXL1vb9+0IQL7gEnU4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxJ2MtfF/dpB8DviWXGlAL4Y1EtbLfoznaC8VaZoGXz9p96dzyQ
+ g6qjhGHXg/hXPOYTq+TGWOEd/4u+aRCGeAxwWFMMagPjbp1LozR7+QIeS6NstQ==
+X-Gm-Gg: ATEYQzzp8ynRwEs7wO8G04UG7xFMurILegrMZ7WylLAJa7Y6W43TO8fB5bKZNPtuiO7
+ t/r5qBpnfAobP52X9aFuBOVuUcZMWIgH1eqqyGNfYxTaQfdpAKH2rupxjP1unS3/dxKYUSdpTdd
+ +0hZjcop2Q3YShh12vkwqcwPQZ2jlh2iFo4BHaH5mUciKD8D36hIKqKF1R8+H+3GwsUAkldc1yG
+ wrfW4NP67O/DiRlth8O5JiWXc1Vgbs3v7lub450x8xka8mkqef5FNz1gnuHYAdGtBAWKmh4Lyzt
+ fmEAbskZt1p/bRnIaejTsI2Esiib13oIrOnJMo3zUUkkf7hU0THCt0cHmshcsTvvvSZPQVkZ1I3
+ VBM0qW3l+yox3Y0uNNVtrXqj874yoYwa5eT/Auf8tvO/0XpMUKVsMQCH7q7kmMUN2hsWXpvx4l0
+ hnKOVy66DCPtLEzLtjkiXJuBu5od8R51mU7dwMu28VYhzNeITI
+X-Received: by 2002:a05:6870:194b:b0:409:9a0b:b733 with SMTP id
+ 586e51a60fabf-41ca6d6a50emr4662736fac.10.1774551332051; 
+ Thu, 26 Mar 2026 11:55:32 -0700 (PDT)
 Received: from frodo (c-98-38-17-99.hsd1.co.comcast.net. [98.38.17.99])
  by smtp.googlemail.com with ESMTPSA id
- 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.26
+ 586e51a60fabf-41cc7760c08sm3075171fac.4.2026.03.26.11.55.29
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 26 Mar 2026 11:55:28 -0700 (PDT)
+ Thu, 26 Mar 2026 11:55:31 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
 To: linux-kernel@vger.kernel.org, airlied@gmail.com, simona@ffwll.ch,
  jbaron@akamai.com, gregkh@linuxfoundation.org
@@ -77,9 +77,9 @@ Cc: jim.cromie@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
  louis.chauvet@bootlin.com, skhan@linuxfoundation.org, pmladek@suse.com,
  ukaszb@chromium.org, dri-devel@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Subject: [PATCH v12 38/69] drm: use correct ccflags-y spelling
-Date: Thu, 26 Mar 2026 12:53:42 -0600
-Message-ID: <20260326185413.1205870-39-jim.cromie@gmail.com>
+Subject: [PATCH v12 39/69] drm_buddy: fix power-of-2 rounding errs
+Date: Thu, 26 Mar 2026 12:53:43 -0600
+Message-ID: <20260326185413.1205870-40-jim.cromie@gmail.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
 References: <20260326185413.1205870-1-jim.cromie@gmail.com>
@@ -138,40 +138,104 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[gmail.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 66EA635B738
+X-Rspamd-Queue-Id: 89A9035B67F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Incorrectly spelled CFLAGS- failed to add -DDYNAMIC_DEBUG_MODULE,
-which disabled dynamic-debug in modules built with:
+The standard roundup_pow_of_two() and rounddown_pow_of_two() macros use
+unsigned long internally, which on 32-bit architectures (like arm32) is
+a 32-bit type.
 
-CONFIG_DYNAMIC_DEBUG=n		# 1
-CONFIG_DYNAMIC_DEBUG_CORE=y	# 2
-CONFIG_DRM_USE_DYNAMIC_DEBUG=y	# 3
+drm_test_buddy_alloc_exceeds_max_order() uses these on a u64 value,
+where they silently truncate the 10GB allocation, giving unexpected
+success in DRM-CI.  (see below the snip).
 
-NB: this adds the flag (when 3) more often than strictly needed;
-modules built with CONFIG_DYNAMIC_DEBUG=y (!1) don't need the flag.
+Fix this by replacing the those macros with safe 64-bit power-of-two
+calculations using ilog2().
 
-Fixes: 84ec67288c10 ("drm_print: wrap drm_*_dbg in dyndbg descriptor factory macro")
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- drivers/gpu/drm/Makefile | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+On DRM-CI, I encountered this kunit:arm32 failure.
 
-diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index ec2c5ff82382..da36a9dbf170 100644
---- a/drivers/gpu/drm/Makefile
-+++ b/drivers/gpu/drm/Makefile
-@@ -3,7 +3,8 @@
- # Makefile for the drm device driver.  This driver provides support for the
- # Direct Rendering Infrastructure (DRI) in XFree86 4.1.0 and higher.
+[23:19:40] [PASSED] drm_test_buddy_alloc_clear
+[23:19:40] [PASSED] drm_test_buddy_alloc_range_bias
+[23:19:41] [PASSED] drm_test_buddy_fragmentation_performance
+[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: EXPECTATION FAILED at drivers/gpu/drm/tests/drm_buddy_test.c:889
+[23:19:41]     Expected err == -22, but
+[23:19:41]         err == 0 (0x0)
+[23:19:41] ------------[ cut here ]------------
+[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:405 at drm_buddy_fini+0x114/0x1b8, CPU#0: kunit_try_catch/74
+[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G                 N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
+[23:19:41] Tainted: [N]=TEST
+[23:19:41] Hardware name: Generic DT based system
+[23:19:41] Call trace:
+[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
+[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
+[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
+[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
+[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x114/0x1b8
+[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
+[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
+[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
+[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
+[23:19:41]  kthread from ret_from_fork+0x14/0x28
+[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
+[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
+[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[23:19:41] ---[ end trace 0000000000000000 ]---
+[23:19:41]     # drm_test_buddy_alloc_exceeds_max_order: drivers/gpu/drm/drm_buddy.c:406: buddy_fini() root
+[23:19:41] ------------[ cut here ]------------
+[23:19:41] WARNING: drivers/gpu/drm/drm_buddy.c:414 at drm_buddy_fini+0x1b4/0x1b8, CPU#0: kunit_try_catch/74
+[23:19:41] CPU: 0 UID: 0 PID: 74 Comm: kunit_try_catch Tainted: G        W        N  7.0.0-rc1-gdfb0bcedd08a #1 VOLUNTARY
+[23:19:41] Tainted: [W]=WARN, [N]=TEST
+[23:19:41] Hardware name: Generic DT based system
+[23:19:41] Call trace:
+[23:19:41]  unwind_backtrace from show_stack+0x10/0x14
+[23:19:41]  show_stack from dump_stack_lvl+0x3c/0x4c
+[23:19:41]  dump_stack_lvl from __warn+0xe8/0x1c4
+[23:19:41]  __warn from warn_slowpath_fmt+0xa4/0xc0
+[23:19:41]  warn_slowpath_fmt from drm_buddy_fini+0x1b4/0x1b8
+[23:19:41]  drm_buddy_fini from drm_test_buddy_alloc_exceeds_max_order+0x1c8/0x36c
+[23:19:41]  drm_test_buddy_alloc_exceeds_max_order from kunit_try_run_case+0x78/0x1c8
+[23:19:41]  kunit_try_run_case from kunit_generic_run_threadfn_adapter+0x1c/0x34
+[23:19:41]  kunit_generic_run_threadfn_adapter from kthread+0x108/0x134
+[23:19:41]  kthread from ret_from_fork+0x14/0x28
+[23:19:41] Exception stack(0xf0bd5fb0 to 0xf0bd5ff8)
+[23:19:41] 5fa0:                                     00000000 00000000 00000000 00000000
+[23:19:41] 5fc0: 00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000000
+[23:19:41] 5fe0: 00000000 00000000 00000000 00000000 00000013 00000000
+[23:19:41] ---[ end trace 0000000000000000 ]---
+[23:19:41] [FAILED] drm_test_buddy_alloc_exceeds_max_order
+[23:19:41]     # drm_buddy: Testing DRM buddy manager, with random_seed=0xacce106c
+[23:19:41]     # module: drm_buddy_test
+[23:19:41] # drm_buddy: pass:8 fail:1 skip:0 total:9
+---
+ drivers/gpu/drm/drm_buddy.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/drm_buddy.c b/drivers/gpu/drm/drm_buddy.c
+index dbf984f8e301..8f23fb615d47 100644
+--- a/drivers/gpu/drm/drm_buddy.c
++++ b/drivers/gpu/drm/drm_buddy.c
+@@ -919,7 +919,7 @@ static int __alloc_contig_try_harder(struct drm_buddy *mm,
+ 	u64 modify_size;
+ 	int err;
  
--CFLAGS-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
-+ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)		+= -DDYNAMIC_DEBUG_MODULE
-+subdir-ccflags-$(CONFIG_DRM_USE_DYNAMIC_DEBUG)	+= -DDYNAMIC_DEBUG_MODULE
+-	modify_size = rounddown_pow_of_two(size);
++	modify_size = 1ULL << ilog2(size);
+ 	pages = modify_size >> ilog2(mm->chunk_size);
+ 	order = fls(pages) - 1;
+ 	if (order == 0)
+@@ -1140,7 +1140,7 @@ int drm_buddy_alloc_blocks(struct drm_buddy *mm,
  
- # Unconditionally enable W=1 warnings locally
- # --- begin copy-paste W=1 warnings from scripts/Makefile.warn
+ 	/* Roundup the size to power of 2 */
+ 	if (flags & DRM_BUDDY_CONTIGUOUS_ALLOCATION) {
+-		size = roundup_pow_of_two(size);
++		size = 1ULL << (ilog2(size - 1) + 1);
+ 		min_block_size = size;
+ 	/* Align size value to min_block_size */
+ 	} else if (!IS_ALIGNED(size, min_block_size)) {
 -- 
 2.53.0
 
