@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aH9MA9+zxWnEAwUAu9opvQ
+	id QBGnKuazxWnKAwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:31:59 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:32:06 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A16433C751
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:31:58 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6072233C75A
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:32:02 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0D82610EAB9;
-	Thu, 26 Mar 2026 22:31:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E64C110EAD3;
+	Thu, 26 Mar 2026 22:32:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="noTrT3gW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hVfBDrcE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E1FF110EAAF;
- Thu, 26 Mar 2026 22:31:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3C5EB10EAAF;
+ Thu, 26 Mar 2026 22:32:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774564316; x=1806100316;
+ t=1774564320; x=1806100320;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Y327fH/gVN6WLDDn2U+z+Cw/bShsmjAO2gMQcv2alcw=;
- b=noTrT3gWpvkWWGT9lnL/f64W1StwYeLCsNzYqIknfXmjKQxjNNryygKD
- n79TBRi9hSwdgAKW/5bud2cEy+OdUwEbvERXSa2mWy5MFtnrTD00bgtzk
- dGIl3S7Wc7DnEAtbCZ8+f2gCi11rHdqq5oWjE2FBWzpEGt5bPxuyFMigY
- hc30tn1Ixrkp8aMWSHVrCvEd+bGg81tQuaXPt9hD+tuVQalmUpQO2zhFv
- piCqz4+sYfThVLkV3aw2VyzJTd7l+ptbdFUY9cHmPlI9Xym8bYLcx4a/I
- NWb4hUPjSnyh3I6ugcqft49OSVhauTe9q8ReCy4MlqKwQrbwZ/9CQIw7t g==;
-X-CSE-ConnectionGUID: 8VIUkWnnQkSkJNDg+8+sGA==
-X-CSE-MsgGUID: oaS41ospSqiZWpQ2xNwtXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233047"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233047"
+ bh=5nuxdu67dENFumv1dL/XgtJP7rlVfti3Qld3bFfC9J4=;
+ b=hVfBDrcEYtWKKQeeCSUP7GXEj5Cm1FfkCOnIo6UZm2aC3LW+NM3oYESb
+ Ug1aiEQJCfgb1JE2XORSExzLJ+fb3kQUK2NssFmefkTcjJ7byYv+cWQ5X
+ 3mv+BKvvM5uGB8LF+yzD3NXVV0ruD5xGFiagackMI8mUFp8DQca6ekGqc
+ 0C2A4Jg4nf9W29FHKVQeXzFYeTzgvJn9oFE6YQGlNnRuiyet3eGSzOgxk
+ vWS06G7W/bgPy0UVlBgB+k4y8BHZHDEOaggNGZOvJjVLB55szB4vGtDAE
+ MTxebuHiPcKFmfMufiNTv2xRG191hHXKGDeVTmCZT1Gp5DpcTkJ7oGR2i Q==;
+X-CSE-ConnectionGUID: bmXp+E/vR2OK7AA5hTDCWQ==
+X-CSE-MsgGUID: KpmuApIRTN6loVwALgpMAQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233062"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233062"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:31:56 -0700
-X-CSE-ConnectionGUID: E/dOG/o1RJiQfiLrDDGaFg==
-X-CSE-MsgGUID: L9Cbk+OYSmu72Pdbncsg+w==
+ 26 Mar 2026 15:32:00 -0700
+X-CSE-ConnectionGUID: RvTcTwftSmK0EejF89rElw==
+X-CSE-MsgGUID: xFv9KOgTTjanlMNO+6GzWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769474"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769481"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.14])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:31:54 -0700
+ 26 Mar 2026 15:31:58 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 3/9] drm/i915/casf: Move the casf state to better place
-Date: Fri, 27 Mar 2026 00:31:33 +0200
-Message-ID: <20260326223139.19116-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH 4/9] drm/i915/casf: Extract scaler_has_casf()
+Date: Fri, 27 Mar 2026 00:31:34 +0200
+Message-ID: <20260326223139.19116-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
 References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
@@ -101,266 +101,62 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 8A16433C751
+X-Rspamd-Queue-Id: 6072233C75A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The casf state is placed inside the 'hw' state for some reason.
-That is only really meant for things we have to duplicate from
-the uapi state. The rest can live on its own in our actual state.
-
-And since casf is just one aspect of the pfit/pipe scaler the
-proper place for it seems to be under pch_pfit.
+Extract a small helper to determine if the scaler supports
+the sharpness filter or not.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c     | 40 +++++++++----------
- .../drm/i915/display/intel_crtc_state_dump.c  |  6 +--
- drivers/gpu/drm/i915/display/intel_display.c  | 12 +++---
- .../drm/i915/display/intel_display_types.h    |  2 +-
- drivers/gpu/drm/i915/display/skl_scaler.c     |  4 +-
- 5 files changed, 32 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 12 ++++++++----
+ 1 file changed, 8 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 4316d8214e80..5a8ffb40d30d 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.c
-+++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -82,7 +82,7 @@ void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
- 	int win_size;
- 
- 	intel_de_rmw(display, SHARPNESS_CTL(crtc->pipe), FILTER_STRENGTH_MASK,
--		     FILTER_STRENGTH(crtc_state->hw.casf_params.strength));
-+		     FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength));
- 
- 	win_size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, 1));
- 
-@@ -95,11 +95,11 @@ static void intel_casf_compute_win_size(struct intel_crtc_state *crtc_state)
- 	u32 total_pixels = mode->hdisplay * mode->vdisplay;
- 
- 	if (total_pixels <= MAX_PIXELS_FOR_3_TAP_FILTER)
--		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_3X3;
-+		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_3X3;
- 	else if (total_pixels <= MAX_PIXELS_FOR_5_TAP_FILTER)
--		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_5X5;
-+		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_5X5;
- 	else
--		crtc_state->hw.casf_params.win_size = SHARPNESS_FILTER_SIZE_7X7;
-+		crtc_state->pch_pfit.casf.win_size = SHARPNESS_FILTER_SIZE_7X7;
- }
- 
- int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
-@@ -110,8 +110,8 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
- 		return 0;
- 
- 	if (crtc_state->hw.sharpness_strength == 0) {
--		crtc_state->hw.casf_params.enable = false;
--		crtc_state->hw.casf_params.strength = 0;
-+		crtc_state->pch_pfit.casf.enable = false;
-+		crtc_state->pch_pfit.casf.strength = 0;
- 		return 0;
- 	}
- 
-@@ -121,7 +121,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
- 		return -EINVAL;
- 	}
- 
--	crtc_state->hw.casf_params.enable = true;
-+	crtc_state->pch_pfit.casf.enable = true;
- 
- 	/*
- 	 * HW takes a value in form (1.0 + strength) in 4.4 fixed format.
-@@ -131,7 +131,7 @@ int intel_casf_compute_config(struct intel_crtc_state *crtc_state)
- 	 * 6.3125 in 4.4 format is b01100101 which is equal to 101.
- 	 * Also 85 + 16 = 101.
- 	 */
--	crtc_state->hw.casf_params.strength =
-+	crtc_state->pch_pfit.casf.strength =
- 		min(crtc_state->hw.sharpness_strength, 0xEF) + 0x10;
- 
- 	intel_casf_compute_win_size(crtc_state);
-@@ -151,19 +151,19 @@ void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state)
- 	if (sharp & FILTER_EN) {
- 		if (drm_WARN_ON(display->drm,
- 				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp) < 16))
--			crtc_state->hw.casf_params.strength = 0;
-+			crtc_state->pch_pfit.casf.strength = 0;
- 		else
--			crtc_state->hw.casf_params.strength =
-+			crtc_state->pch_pfit.casf.strength =
- 				REG_FIELD_GET(FILTER_STRENGTH_MASK, sharp);
--		crtc_state->hw.casf_params.enable = true;
--		crtc_state->hw.casf_params.win_size =
-+		crtc_state->pch_pfit.casf.enable = true;
-+		crtc_state->pch_pfit.casf.win_size =
- 			REG_FIELD_GET(FILTER_SIZE_MASK, sharp);
- 	}
- }
- 
- bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state)
- {
--	if (crtc_state->hw.casf_params.enable)
-+	if (crtc_state->pch_pfit.casf.enable)
- 		return true;
- 
- 	return false;
-@@ -179,7 +179,7 @@ static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
- 	struct scaler_filter_coeff value;
- 	u32 coeff;
- 
--	value = crtc_state->hw.casf_params.coeff[t];
-+	value = crtc_state->pch_pfit.casf.coeff[t];
- 	value.sign = 0;
- 
- 	coeff = value.sign << 15 | value.exp << 12 | value.mantissa << 3;
-@@ -189,7 +189,7 @@ static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
- /*
-  * 17 phase of 7 taps requires 119 coefficients in 60 dwords per set.
-  * To enable casf:  program scaler coefficients with the coeffients
-- * that are calculated and stored in hw.casf_params.coeff as per
-+ * that are calculated and stored in pch_pfit.casf.coeff as per
-  * SCALER_COEFFICIENT_FORMAT
-  */
- static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
-@@ -247,9 +247,9 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
- 	u16 sumcoeff = 0;
- 	int i;
- 
--	if (crtc_state->hw.casf_params.win_size == 0)
-+	if (crtc_state->pch_pfit.casf.win_size == 0)
- 		filtercoeff = filtercoeff_1;
--	else if (crtc_state->hw.casf_params.win_size == 1)
-+	else if (crtc_state->pch_pfit.casf.win_size == 1)
- 		filtercoeff = filtercoeff_2;
- 	else
- 		filtercoeff = filtercoeff_3;
-@@ -259,7 +259,7 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
- 
- 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
- 		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
--		convert_sharpness_coef_binary(&crtc_state->hw.casf_params.coeff[i],
-+		convert_sharpness_coef_binary(&crtc_state->pch_pfit.casf.coeff[i],
- 					      filter_coeff[i]);
- 	}
- }
-@@ -274,9 +274,9 @@ void intel_casf_enable(struct intel_crtc_state *crtc_state)
- 
- 	intel_casf_write_coeff(crtc_state);
- 
--	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->hw.casf_params.strength);
-+	sharpness_ctl = FILTER_EN | FILTER_STRENGTH(crtc_state->pch_pfit.casf.strength);
- 
--	sharpness_ctl |= crtc_state->hw.casf_params.win_size;
-+	sharpness_ctl |= crtc_state->pch_pfit.casf.win_size;
- 
- 	intel_de_write(display, SHARPNESS_CTL(crtc->pipe), sharpness_ctl);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 10a9b51337fa..95993f8e5d0d 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -382,9 +382,9 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 	intel_vdsc_state_dump(&p, 0, pipe_config);
- 
- 	drm_printf(&p, "sharpness strength: %d, sharpness tap size: %d, sharpness enable: %d\n",
--		   pipe_config->hw.casf_params.strength,
--		   pipe_config->hw.casf_params.win_size,
--		   pipe_config->hw.casf_params.enable);
-+		   pipe_config->pch_pfit.casf.strength,
-+		   pipe_config->pch_pfit.casf.win_size,
-+		   pipe_config->pch_pfit.casf.enable);
- 
- dump_planes:
- 	if (!state)
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index a02c58b5a34d..e02e69467871 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -994,7 +994,7 @@ static bool intel_casf_enabling(const struct intel_crtc_state *new_crtc_state,
- 	if (!new_crtc_state->hw.active)
- 		return false;
- 
--	return is_enabling(hw.casf_params.enable, old_crtc_state, new_crtc_state);
-+	return is_enabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
- }
- 
- static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
-@@ -1003,7 +1003,7 @@ static bool intel_casf_disabling(const struct intel_crtc_state *old_crtc_state,
- 	if (!new_crtc_state->hw.active)
- 		return false;
- 
--	return is_disabling(hw.casf_params.enable, old_crtc_state, new_crtc_state);
-+	return is_disabling(pch_pfit.casf.enable, old_crtc_state, new_crtc_state);
- }
- 
- static bool intel_crtc_lobf_enabling(const struct intel_crtc_state *old_crtc_state,
-@@ -5370,12 +5370,12 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 
- 		PIPE_CONF_CHECK_BOOL(pch_pfit.enabled);
- 		PIPE_CONF_CHECK_RECT(pch_pfit.dst);
-+		PIPE_CONF_CHECK_BOOL(pch_pfit.casf.enable);
-+		PIPE_CONF_CHECK_I(pch_pfit.casf.win_size);
-+		PIPE_CONF_CHECK_I(pch_pfit.casf.strength);
- 
- 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
- 		PIPE_CONF_CHECK_I(pixel_rate);
--		PIPE_CONF_CHECK_BOOL(hw.casf_params.enable);
--		PIPE_CONF_CHECK_I(hw.casf_params.win_size);
--		PIPE_CONF_CHECK_I(hw.casf_params.strength);
- 
- 		PIPE_CONF_CHECK_X(gamma_mode);
- 		if (display->platform.cherryview)
-@@ -6819,7 +6819,7 @@ static void intel_pre_update_crtc(struct intel_atomic_state *state,
- 
- 	if (intel_casf_enabling(new_crtc_state, old_crtc_state))
- 		intel_casf_enable(new_crtc_state);
--	else if (new_crtc_state->hw.casf_params.strength != old_crtc_state->hw.casf_params.strength)
-+	else if (new_crtc_state->pch_pfit.casf.strength != old_crtc_state->pch_pfit.casf.strength)
- 		intel_casf_update_strength(new_crtc_state);
- 
- 	intel_fbc_update(state, crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index af0d870de342..ca2581fb7bbd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1037,7 +1037,6 @@ struct intel_crtc_state {
- 		struct drm_display_mode mode, pipe_mode, adjusted_mode;
- 		enum drm_scaling_filter scaling_filter;
- 		u8 sharpness_strength;
--		struct intel_casf casf_params;
- 	} hw;
- 
- 	/* actual state of LUTs */
-@@ -1224,6 +1223,7 @@ struct intel_crtc_state {
- 
- 	/* Panel fitter placement and size for Ironlake+ */
- 	struct {
-+		struct intel_casf casf;
- 		struct drm_rect dst;
- 		bool enabled;
- 		bool force_thru;
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index cfa17ddb4018..e9fe5c0bf6ff 100644
+index e9fe5c0bf6ff..525afd736195 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -986,13 +986,13 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 		if (HAS_CASF(display) && id == 1)
+@@ -323,19 +323,24 @@ int skl_update_scaler_plane(struct intel_crtc_state *crtc_state,
+ 				 need_scaler);
+ }
+ 
++static bool scaler_has_casf(struct intel_display *display, int scaler_id)
++{
++	return HAS_CASF(display) && scaler_id == 1;
++}
++
+ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
+ 				 struct intel_crtc *crtc,
+ 				 struct intel_plane_state *plane_state,
+ 				 bool casf_scaler)
+ {
++	struct intel_display *display = to_intel_display(crtc);
+ 	int i;
+ 
+ 	for (i = 0; i < crtc->num_scalers; i++) {
+ 		if (scaler_state->scalers[i].in_use)
+ 			continue;
+ 
+-		/* CASF needs second scaler */
+-		if (!plane_state && casf_scaler && i != 1)
++		if (casf_scaler && !scaler_has_casf(display, i))
+ 			continue;
+ 
+ 		scaler_state->scalers[i].in_use = true;
+@@ -982,8 +987,7 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 
+ 		id = i;
+ 
+-		/* Read CASF regs for second scaler */
+-		if (HAS_CASF(display) && id == 1)
++		if (scaler_has_casf(display, i))
  			intel_casf_sharpness_get_config(crtc_state);
  
--		if (!crtc_state->hw.casf_params.enable)
-+		if (!crtc_state->pch_pfit.casf.enable)
- 			crtc_state->pch_pfit.enabled = true;
- 
- 		pos = intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, i));
- 		size = intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, i));
- 
--		if (!crtc_state->hw.casf_params.enable)
-+		if (!crtc_state->pch_pfit.casf.enable)
- 			drm_rect_init(&crtc_state->pch_pfit.dst,
- 				      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
- 				      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
+ 		if (!crtc_state->pch_pfit.casf.enable)
 -- 
 2.52.0
 
