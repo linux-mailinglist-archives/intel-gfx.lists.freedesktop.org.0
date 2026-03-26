@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2AnEJ/CzxWnEAwUAu9opvQ
+	id qIIBM/OzxWnKAwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:32:16 +0100
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:32:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B6C33C78F
-	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:32:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 806B033C797
+	for <lists+intel-gfx@lfdr.de>; Thu, 26 Mar 2026 23:32:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CC1FB10EB0E;
-	Thu, 26 Mar 2026 22:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1121510EAEF;
+	Thu, 26 Mar 2026 22:32:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Q3UyhunE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FU4hW/lx";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18E6F10EAFA;
- Thu, 26 Mar 2026 22:32:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACC3F10EAEF;
+ Thu, 26 Mar 2026 22:32:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774564332; x=1806100332;
+ t=1774564337; x=1806100337;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=NiMOAlSm1bCavPugRE68VzolBqP7I9M5L2zhr3eWMNg=;
- b=Q3UyhunEh9pAt5bUQ8UVDQtyWEIGUO/sHwYh+wtBfaDRbLyFK8CxFWXm
- 9f1urgcaMXpo+Shx8W/Q5daaVtWGa45uVMRbFm8oVHv086Z5Pb8I0gmp9
- /kvfAKGuI40e3qAuBkE/Et7dJ6X98JchDVgcV8TYX5P7ygPXE3CU/akof
- H7uaZ1WqZL6kkTS6tpzG409tmKUn6/T17qIt7KOGRAamvuCAyASloRZrK
- U/tmV3eqpSW+/yhEtKgt6nBOAtzmhi96SXg9puoHtIO25AhJ61qcEF/nM
- d852iajcrpdniKnCuF9utOJDSANd1Xe7+/fcx+JMWTHmcJpxoywvWgzP8 Q==;
-X-CSE-ConnectionGUID: Oj+Lsd93QN+awLR+boJxLw==
-X-CSE-MsgGUID: Bs/ZR28wR+m00GNCbt/MMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="78233092"
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="78233092"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:32:12 -0700
-X-CSE-ConnectionGUID: Fe9lqWCQSG+uGLDLNFeDxQ==
-X-CSE-MsgGUID: khLAU+dYSVaDl4m2NqNYWw==
+ bh=3hpY8c8eMl/oe6b/8ZeLJhuopM77iqYdfcPUdzrUmjI=;
+ b=FU4hW/lxZ/iAC7LIb3B8ER79UzLAfwdkxGuZDpEQDQxsMgIoAWlSbYs4
+ tB5DLtbNQ7HzI+jI4JwlFNrNxN4p+wKsKEk0UywOIr6wh4ut7t8IztRcM
+ Jd/e4pEZ18H7NulZeeKJw/+Iaj7nsFkubg6/v5xa/gsLIKuHksDcCTRpA
+ ibnMGXNtjBNUDNzCEE9Wfbpk34AbelssMExZotFqDp1H+/8VyV7uWbv3J
+ bKHsDg+1fBszRbmzr/Y6wmCDyQQf/PYfhL3/ruxtzaj4xAMa0nXpAW9u1
+ IU+Zwrk3tRd0Hd3je+ExsOOs25i8V3FDgt4o8e7OoG6BjZ60mi1tlkeQU w==;
+X-CSE-ConnectionGUID: k3klTtAfRXu12P5nOh/LkQ==
+X-CSE-MsgGUID: 21aKeXWBTRuQ0vIO0TRIWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="86713781"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="86713781"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 15:32:16 -0700
+X-CSE-ConnectionGUID: sQlCcfenStqJ0LSq856Okw==
+X-CSE-MsgGUID: yKmjNlBKSWWGWyGNnwczSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="226769525"
+X-IronPort-AV: E=Sophos;i="6.23,142,1770624000"; d="scan'208";a="248493992"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.14])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Mar 2026 15:32:10 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Mar 2026 15:32:14 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 7/9] drn/i915/casf: Remove redundant argument from
- intel_casf_filter_lut_load()
-Date: Fri, 27 Mar 2026 00:31:37 +0200
-Message-ID: <20260326223139.19116-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 8/9] drm/i915/pfit: Call intel_pfit_compute_config()
+ unconditionally on (e)DP/HDMI
+Date: Fri, 27 Mar 2026 00:31:38 +0200
+Message-ID: <20260326223139.19116-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
 References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
@@ -101,48 +101,74 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 75B6C33C78F
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 806B033C797
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_casf_filter_lut_load() can find the crtc from the crtc_state.
-No need to pass in both.
+We now have three different reasons for calling
+intel_pfit_compute_config():
+- actual pfit scaling/centering
+- YCbCr 4:2:0 output
+- sharpness filter
+
+So let's just all the intel_pfit_compute_config() from
+both the DP and HDMI code. Both gmch and ilk+ pfit code
+should be capable of judging whether anything actually
+needs the pfit.
+
+The only slightly questionable thing in the gmch code is
+the dithering knob, but that's only a thing on gen2/3 which
+don't even have HDMI/DP outputs, and so not an issue here.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c   | 9 +++------
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 8 +++-----
+ 2 files changed, 6 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index f777aae3fc57..21e84a4f9ff5 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.c
-+++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -61,10 +61,10 @@ const u16 filtercoeff_3[] = {
- 	FILTER_COEFF_0_125,
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4955bd8b11d7..ff3904b77492 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -3545,12 +3545,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	if (ret)
+ 		return ret;
  
--static void intel_casf_filter_lut_load(struct intel_crtc *crtc,
--				       const struct intel_crtc_state *crtc_state)
-+static void intel_casf_filter_lut_load(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	int i;
+-	if ((intel_dp_is_edp(intel_dp) && fixed_mode) ||
+-	    pipe_config->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
+-		ret = intel_pfit_compute_config(pipe_config, conn_state);
+-		if (ret)
+-			return ret;
+-	}
++	ret = intel_pfit_compute_config(pipe_config, conn_state);
++	if (ret)
++		return ret;
  
- 	intel_de_write(display, SHRPLUT_INDEX(crtc->pipe),
-@@ -270,7 +270,7 @@ void intel_casf_enable(const struct intel_crtc_state *crtc_state)
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	u32 sharpness_ctl;
+ 	pipe_config->limited_color_range =
+ 		intel_dp_limited_color_range(pipe_config, conn_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+index 05e898d10a2b..17bd2c207453 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdmi.c
++++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+@@ -2380,11 +2380,9 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+ 		return ret;
+ 	}
  
--	intel_casf_filter_lut_load(crtc, crtc_state);
-+	intel_casf_filter_lut_load(crtc_state);
+-	if (intel_hdmi_is_ycbcr420(pipe_config)) {
+-		ret = intel_pfit_compute_config(pipe_config, conn_state);
+-		if (ret)
+-			return ret;
+-	}
++	ret = intel_pfit_compute_config(pipe_config, conn_state);
++	if (ret)
++		return ret;
  
- 	intel_casf_write_coeff(crtc_state);
- 
+ 	pipe_config->limited_color_range =
+ 		intel_hdmi_limited_color_range(pipe_config, conn_state);
 -- 
 2.52.0
 
