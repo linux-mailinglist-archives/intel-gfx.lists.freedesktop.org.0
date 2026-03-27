@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +BrXKWlPxmk2IgUAu9opvQ
+	id KIFIInpPxmk2IgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 10:35:37 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 10:35:54 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1553C341CC0
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 10:35:37 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E901341CCC
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 10:35:54 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9162210ED3D;
-	Fri, 27 Mar 2026 09:35:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDFA610ED5D;
+	Fri, 27 Mar 2026 09:35:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jAEoZn2b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MR1j+DWw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3729E10ED3D;
- Fri, 27 Mar 2026 09:35:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D81A710ED55;
+ Fri, 27 Mar 2026 09:35:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774604134; x=1806140134;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bXvFyelMZUYzHvn/NF0n+ZMNrXdEvHJ7Xdt1gPS3T8k=;
- b=jAEoZn2bfJh83uA31/EoUlMD66w62oYOoHecvpbOgrB+GEoka3riGhD+
- rUDQkS/nI15PK8cyP3H6bGVXE7zJLFxOisR03vqRDaW3xEJUn1eugYE+n
- 32A64TTaL7ay8EF57XkydOvu/Bihjcrs9G8p6qPKsrpZbkaybIIabEwWi
- psrFG9DzA517v8BGEZiT1NLI1KO0a6lJCBDxhpGblLpZZEUvgpQeJyCYj
- 7tmb40e0dcQoWJZ82D+Vo7gmMJqfZbn4NHw0pWzokukx0GnBEoB6TPvWw
- TuIF6bWkAyEzU/pm1B7QviDzebXCEh5C7Xz8lzSQIcQdn228YNWirbRXs g==;
-X-CSE-ConnectionGUID: SmP3bmCqQ2iQ+LJ/V2Ia8g==
-X-CSE-MsgGUID: XE0hQ/GBSJaZvMhvKMTN+w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75873934"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75873934"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 02:35:34 -0700
-X-CSE-ConnectionGUID: 3W6HZWz3TRGSmIzk8WC/IA==
-X-CSE-MsgGUID: 6U/nxUPATl++gGO8aiS1Jg==
+ t=1774604151; x=1806140151;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=nodLxYeY1cFG9Ec22+AHCsA6f+9QKqXbxLwAJHrC5ek=;
+ b=MR1j+DWwW34J2B0NEYzEzaPx51DdtejRxHKH9UH7o/uaVF4aOrD73BrN
+ MlwU+aBE+fHE5lUUY/nKMTHHrw9P+ojy3xzVx1bt/vlHHA5Wrls4R3eUK
+ VJQmFsOSdSVaSt2NeZ8OaeD/YhycQwH42dIqIehyw9W2uX6Z4PrkPJ6kJ
+ ytvyXCkZ4d2SrQv/jg75CQaey4e2ev9+zD0LyhgAHbKi8EPbFhmpluoMz
+ zh4n+gP8BVLfh9SJPk92hIHm8d9yFastGNitzGcF65Czx9NZI8Mxj2mPJ
+ W4SwkZ5xgs86/5YYuapnuL9u5VbiT11EMMbP3gaHtdMmZ5ghvMWiRmXeH Q==;
+X-CSE-ConnectionGUID: slmyMe6kSLCwCbiRjYekbQ==
+X-CSE-MsgGUID: YhezoS5IQRCKtDNBgS5MCQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="75566369"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="75566369"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 02:35:51 -0700
+X-CSE-ConnectionGUID: JP3U7L5NSJy0GZeorPBaUA==
+X-CSE-MsgGUID: frrgGYYKRqKmgNCRl0pipw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="224310878"
-Received: from display-adls.igk.intel.com ([10.211.131.198])
- by orviesa006.jf.intel.com with ESMTP; 27 Mar 2026 02:35:33 -0700
-From: Mika Kahola <mika.kahola@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH] drm/i915/lt_phy: Build HDMI VDR config from fields and use
- VDR_NUM_REGISTERS
-Date: Fri, 27 Mar 2026 09:35:31 +0000
-Message-ID: <20260327093531.1203339-1-mika.kahola@intel.com>
-X-Mailer: git-send-email 2.43.0
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="220419149"
+Received: from administrator-system-product-name.igk.intel.com
+ ([10.91.214.181])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 02:35:48 -0700
+Date: Fri, 27 Mar 2026 10:35:46 +0100 (CET)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ Nemesa Garg <nemesa.garg@intel.com>
+Subject: Re: [PATCH 5/9] drm/i915/casf: Handle CASF in
+ skl_scaler_get_filter_select()
+In-Reply-To: <20260326223139.19116-6-ville.syrjala@linux.intel.com>
+Message-ID: <dfd14fde-d08d-7064-bc76-e7ab09914088@intel.com>
+References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+ <20260326223139.19116-6-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323329-1846110227-1774604149=:330621"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,234 +74,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [0.22 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	R_MIXED_CHARSET(0.53)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 1553C341CC0
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3E901341CCC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Stop hardcoding LT PHY VDR configuration register values for HDMI.
-Build VDR config[0] from the mode and (for FRL) the FRL rate encoding,
-and select DP PLL vs USB PLL programming (FRL10G uses USB PLL,
-so don’t set DP_PLL_ENABLE). Also build VDR config[1] from the PLL recipe
-bit and the number-of-registers field.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Make intel_lt_phy_calculate_hdmi_state() static and pass
-struct intel_display for debug logging.
+--8323329-1846110227-1774604149=:330621
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-Replace the hardcoded <= 12 (13-entry) VDR register loops with a shared
-constant (VDR_NUM_REGISTERS, 13 VDR entries) when programming, reading out
-and dumping LT PHY VDR state. Also remove a stray blank line at the end of
-intel_xe3plpd_pll_disable().
+On Thu, 26 Mar 2026, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> Nuke the duplicate CASF_SCALER_FILTER_SELECT and just have
+> skl_scaler_get_filter_select() return the proper value for
+> sharpness filter use. It is the same "use programmable coefficients"
+> value we already use for the nearest neighbor filtering.
+>
+> Cc: Nemesa Garg <nemesa.garg@intel.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-BSpec:74667
-Signed-off-by: Mika Kahola <mika.kahola@intel.com>
----
- drivers/gpu/drm/i915/display/intel_lt_phy.c   | 72 ++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_lt_phy.h   |  3 -
- .../gpu/drm/i915/display/intel_lt_phy_regs.h  |  5 +-
- 3 files changed, 66 insertions(+), 14 deletions(-)
+Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.c b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-index 657ad5cb0eff..31989a9036b7 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.c
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.c
-@@ -34,6 +34,12 @@
- #define MODE_DP				3
- #define MODE_HDMI_20			4
- #define MODE_HDMI_FRL			5
-+#define HDMI_FRL3G_RATE_ENCODING	0
-+#define HDMI_FRL6G_RATE_ENCODING	1
-+#define HDMI_FRL8G_RATE_ENCODING	2
-+#define HDMI_FRL10G_RATE_ENCODING	3
-+#define HDMI_FRL12G_RATE_ENCODING	4
-+#define VDR_NUM_REGISTERS		13
- #define Q32_TO_INT(x)	((x) >> 32)
- #define Q32_TO_FRAC(x)	((x) & 0xFFFFFFFF)
- #define DCO_MIN_FREQ_MHZ	11850
-@@ -1501,8 +1507,40 @@ static void compute_dco_fine(struct lt_phy_params *p, u32 dco_12g)
- 		dco_fine0_tune_2_0;
- }
- 
--int
--intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
-+static int intel_hdmi_vdr_rate_encoding(struct intel_display *display,
-+					u8 mode, u32 clock_khz)
-+{
-+	switch (mode) {
-+	case MODE_HDMI_20:
-+		/* For TMDS/HDMI2.0 the rate encoding is not used (don't care). */
-+		return 0;
-+
-+	case MODE_HDMI_FRL:
-+		if (intel_dpll_clock_matches(clock_khz, 300000))
-+			return HDMI_FRL3G_RATE_ENCODING;
-+		if (intel_dpll_clock_matches(clock_khz, 600000))
-+			return HDMI_FRL6G_RATE_ENCODING;
-+		if (intel_dpll_clock_matches(clock_khz, 800000))
-+			return HDMI_FRL8G_RATE_ENCODING;
-+		if (intel_dpll_clock_matches(clock_khz, 1000000))
-+			return HDMI_FRL10G_RATE_ENCODING;
-+		if (intel_dpll_clock_matches(clock_khz, 1200000))
-+			return HDMI_FRL12G_RATE_ENCODING;
-+
-+		drm_dbg_kms(display->drm,
-+			    "Unsupported LT PHY HDMI FRL rate %u kHz\n",
-+			    clock_khz);
-+		return -EINVAL;
-+
-+	default:
-+		/* Not an HDMI mode */
-+		return -EINVAL;
-+	}
-+}
-+
-+static int
-+intel_lt_phy_calculate_hdmi_state(struct intel_display *display,
-+				  struct intel_lt_phy_pll_state *lt_state,
- 				  u32 frequency_khz)
- {
- #define DATA_ASSIGN(i, pll_reg)	\
-@@ -1520,6 +1558,8 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
- 
- 	bool found = false;
- 	struct lt_phy_params p;
-+	u8 mode;
-+	int rate;
- 	u32 dco_fmin = DCO_MIN_FREQ_MHZ;
- 	u64 refclk_khz = REF_CLK_KHZ;
- 	u32 refclk_mhz_int = REF_CLK_KHZ / 1000;
-@@ -1616,8 +1656,21 @@ intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
- 		    (frequency_khz == 2500) || (dco_12g == 1)) ? 0 : 1;
- 	set_phy_vdr_addresses(&p, pll_type);
- 
--	lt_state->config[0] = 0x84;
--	lt_state->config[1] = 0x2d;
-+	mode = intel_hdmi_is_frl(frequency_khz) ? MODE_HDMI_FRL : MODE_HDMI_20;
-+	rate = intel_hdmi_vdr_rate_encoding(display, mode, frequency_khz);
-+
-+	if (rate < 0)
-+		return rate;
-+
-+	/* Only HDMI FRL 10G mode uses USB PLL */
-+	if (mode == MODE_HDMI_FRL && rate == HDMI_FRL10G_RATE_ENCODING)
-+		lt_state->config[0] = REG_FIELD_PREP(LT_PHY_VDR_RATE_ENCODING_MASK, rate) |
-+				      REG_FIELD_PREP(LT_PHY_VDR_MODE_ENCODING_MASK, mode);
-+	else
-+		lt_state->config[0] = LT_PHY_VDR_DP_PLL_ENABLE |
-+				      REG_FIELD_PREP(LT_PHY_VDR_RATE_ENCODING_MASK, rate) |
-+				      REG_FIELD_PREP(LT_PHY_VDR_MODE_ENCODING_MASK, mode);
-+	lt_state->config[1] = LT_PHY_VDR_PLL_RECIPE | LT_PHY_VDR_NUMBER_OF_REGISTERS(VDR_NUM_REGISTERS);
- 	ADDR_ASSIGN(0, p.pll_reg4);
- 	ADDR_ASSIGN(1, p.pll_reg3);
- 	ADDR_ASSIGN(2, p.pll_reg5);
-@@ -1778,7 +1831,7 @@ intel_lt_phy_pll_calc_state(struct intel_crtc_state *crtc_state,
- 
- 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI)) {
- 		hw_state->ltpll.lane_count = crtc_state->lane_count;
--		return intel_lt_phy_calculate_hdmi_state(&hw_state->ltpll,
-+		return intel_lt_phy_calculate_hdmi_state(display, &hw_state->ltpll,
- 							 crtc_state->port_clock);
- 	}
- 
-@@ -1806,7 +1859,7 @@ intel_lt_phy_program_pll(struct intel_encoder *encoder,
- 	intel_lt_phy_write(encoder, owned_lane_mask, LT_PHY_VDR_2_CONFIG,
- 			   ltpll->config[2], MB_WRITE_COMMITTED);
- 
--	for (i = 0; i <= 12; i++) {
-+	for (i = 0; i < VDR_NUM_REGISTERS; i++) {
- 		intel_lt_phy_write(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_X_ADDR_MSB(i),
- 				   ltpll->addr_msb[i],
- 				   MB_WRITE_COMMITTED);
-@@ -2186,7 +2239,7 @@ void intel_lt_phy_dump_hw_state(struct drm_printer *p,
- 			   i, hw_state->config[i]);
- 	}
- 
--	for (i = 0; i <= 12; i++)
-+	for (i = 0; i < VDR_NUM_REGISTERS; i++)
- 		for (j = 3; j >= 0; j--)
- 			drm_printf(p, "vdr_data[%d][%d] = 0x%.4x,\n",
- 				   i, j, hw_state->data[i][j]);
-@@ -2257,7 +2310,7 @@ bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 	pll_state->config[1] = intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0, LT_PHY_VDR_1_CONFIG);
- 	pll_state->config[2] = intel_lt_phy_read(encoder, lane, LT_PHY_VDR_2_CONFIG);
- 
--	for (i = 0; i <= 12; i++) {
-+	for (i = 0; i < VDR_NUM_REGISTERS; i++) {
- 		for (j = 3, k = 0; j >= 0; j--, k++)
- 			pll_state->data[i][k] =
- 				intel_lt_phy_read(encoder, INTEL_LT_PHY_LANE0,
-@@ -2284,7 +2337,6 @@ void intel_xe3plpd_pll_disable(struct intel_encoder *encoder)
- 		intel_mtl_tbt_pll_disable_clock(encoder);
- 	else
- 		intel_lt_phy_pll_disable(encoder);
--
- }
- 
- static void intel_lt_phy_pll_verify_clock(struct intel_display *display,
-@@ -2328,7 +2380,7 @@ static void intel_lt_phy_pll_verify_params(struct intel_display *display,
- 	if (!pll_params->is_hdmi)
- 		return;
- 
--	if (intel_lt_phy_calculate_hdmi_state(&pll_state, pll_params->clock_rate) != 0)
-+	if (intel_lt_phy_calculate_hdmi_state(display, &pll_state, pll_params->clock_rate) != 0)
- 		return;
- 
- 	intel_lt_phy_pll_verify_clock(display, pll_params->clock_rate, pll_params->name, &pll_state, false);
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy.h b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-index 16de39484779..a6f022f64d88 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy.h
-@@ -41,9 +41,6 @@ bool intel_lt_phy_tbt_pll_readout_hw_state(struct intel_display *display,
- 					   struct intel_dpll_hw_state *hw_state);
- bool intel_lt_phy_pll_readout_hw_state(struct intel_encoder *encoder,
- 				       struct intel_lt_phy_pll_state *pll_state);
--int
--intel_lt_phy_calculate_hdmi_state(struct intel_lt_phy_pll_state *lt_state,
--				  u32 frequency_khz);
- void intel_xe3plpd_pll_enable(struct intel_encoder *encoder,
- 			      struct intel_dpll *pll,
- 			      const struct intel_dpll_hw_state *dpll_hw_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-index ff6d7829dbb9..1bcda721c1d7 100644
---- a/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_lt_phy_regs.h
-@@ -38,9 +38,12 @@
- /* LT Phy Vendor Register */
- #define LT_PHY_VDR_0_CONFIG	0xC02
- #define  LT_PHY_VDR_DP_PLL_ENABLE	REG_BIT(7)
--#define LT_PHY_VDR_1_CONFIG	0xC03
- #define  LT_PHY_VDR_RATE_ENCODING_MASK	REG_GENMASK8(6, 3)
- #define  LT_PHY_VDR_MODE_ENCODING_MASK	REG_GENMASK8(2, 0)
-+#define LT_PHY_VDR_1_CONFIG	0xC03
-+#define  LT_PHY_VDR_PLL_RECIPE		REG_BIT(5)
-+#define  LT_PHY_VDR_NUMBER_OF_REGISTERS_MASK	REG_GENMASK(4, 0)
-+#define  LT_PHY_VDR_NUMBER_OF_REGISTERS(val)	REG_FIELD_PREP8(LT_PHY_VDR_NUMBER_OF_REGISTERS_MASK, val)
- #define LT_PHY_VDR_2_CONFIG	0xCC3
- 
- #define LT_PHY_VDR_X_ADDR_MSB(idx)	(0xC04 + 0x6 * (idx))
--- 
-2.43.0
-
+BR,
+Michał
+--8323329-1846110227-1774604149=:330621--
