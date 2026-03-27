@@ -2,65 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Nj5M6JWxmmMIwUAu9opvQ
+	id IEJzAvZXxmmMIwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 11:06:26 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 11:12:06 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 288F834227E
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 11:06:26 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 35275342400
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 11:12:05 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1893010E344;
-	Fri, 27 Mar 2026 10:06:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8465610EC9B;
+	Fri, 27 Mar 2026 10:12:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QQuCzN8a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eVLVr/xR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 78BF410E344;
- Fri, 27 Mar 2026 10:06:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E48110EC8B;
+ Fri, 27 Mar 2026 10:12:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774605982; x=1806141982;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=qbjXABwFkjHk60ONoly1UqEYGGm7nVJNBxkqx/cX2BM=;
- b=QQuCzN8a43OZL3jeT5Pq93B42btau9nVb+cyFYZOrwRLvRPCY5enx81H
- foEio8qgAjEGAPpLtlqPay8ZX7mMsc6UdVdmCJekTgsNVkx7POkub+86p
- 1LDXErcVgXW6cE5SSe7GvUKCGul8956H3eKBN/+6YGA8URQ4xHeGPTTM6
- rifwh6GzPu1Zc8WN0AT7VQPPVTdx5BnM0SFDFq8DTjSQXxh4R4e45QHle
- 5Eir8d1Cs4V3CyU5cW2Q4UJKohvh72L0PdHDgrwz5LiizLxMxj4d7qIvA
- VSP/ouhq9e1M50qJgqUa1B9LpZa/kBTJyS+I8Oz9j6+W6h/ySezyPsK7K Q==;
-X-CSE-ConnectionGUID: pdA12BdzQHqMeayH0egovg==
-X-CSE-MsgGUID: f0l0XM2uRn+xJrtxF+VESw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="87058979"
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="87058979"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:06:22 -0700
-X-CSE-ConnectionGUID: XIUQ+GB5T/KNHIF7HWEFTw==
-X-CSE-MsgGUID: yzqTmB7QTQmqlrc9obcsEA==
+ t=1774606320; x=1806142320;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=v9jOy18qqTCEPC0qlEEbTl7NvFVw13aI4sClHw5PUhc=;
+ b=eVLVr/xRZVzGfvR64Jc7c3DcllwDuwACnL9bZS4NlAdfotPuWkft+PEP
+ gDsJ0VI3VxnoebmwGsDnXJk8Q+AP8yud8xh0kAw8GVj1udnn1GYLR9QEU
+ +HCa34TV/8ZkUCPtNgHJpMSJHMgb5sPrqfx/7SOK4cosO7ioesfXrf+mc
+ kynHTPPoDLfSYaPTyfmdo4zOUfp9T9l0OzirIerNmXGRwTpJMIFibP9dn
+ sOqME0X9ekwXzIrWmvzhDlAaGnKgXAO2lcESsdmbp00AA9LKEfjGGEdHi
+ bnmvUxEsEhqUSttAxfIBwLYajqi8dmDboKd8wA1CkeJc4QgzrhQpglzFN A==;
+X-CSE-ConnectionGUID: v37aWdpiQ/KbaTWAvkD7Nw==
+X-CSE-MsgGUID: NldpmV2XSambWylCF0C4MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11741"; a="63232694"
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="63232694"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 03:12:00 -0700
+X-CSE-ConnectionGUID: qCQvs0WARMSGhx0J9O1xvA==
+X-CSE-MsgGUID: uiFw2mXvTDyySMrgGWESIA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="230049668"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Mar 2026 03:06:21 -0700
-Date: Fri, 27 Mar 2026 11:06:18 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-cc: Ville Syrjala <ville.syrjala@linux.intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH 4/9] drm/i915/casf: Extract scaler_has_casf()
-In-Reply-To: <5312c2aa-a724-9b98-aa95-e4a4fffe3e91@intel.com>
-Message-ID: <7de76a02-bf3e-49e0-52c0-14ef65c879c3@intel.com>
-References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
- <20260326223139.19116-5-ville.syrjala@linux.intel.com>
- <5312c2aa-a724-9b98-aa95-e4a4fffe3e91@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,143,1770624000"; d="scan'208";a="229750291"
+Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.188])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Mar 2026 03:11:57 -0700
+Date: Fri, 27 Mar 2026 12:11:54 +0200
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Juasheem Sultan <jdsultan@google.com>
+Cc: Maarten Lankhorst <dev@lankhorst.se>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Manasi Navare <navaremanasi@google.com>,
+ Drew Davenport <ddavenport@google.com>,
+ Sean Paul <seanpaul@google.com>, Samuel Jacob <samjaco@google.com>,
+ Rajat Jain <rajatja@google.com>
+Subject: Re: [PATCH v4 2/2] drm/i915/display: Sync state to BIOS for seamless
+ handoff
+Message-ID: <acZX6htfhw4v0G8c@intel.com>
+References: <20260317220908.130968-1-jdsultan@google.com>
+ <20260317220908.130968-3-jdsultan@google.com>
+ <08c99b0d-6adb-423b-9c4b-2e8add00f5d3@lankhorst.se>
+ <CAH6Pru5Me2pY31JF2GP61k3gy8XDaLfmH7U6jpAwXoYvGEZBwA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-382504748-1774605981=:356608"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAH6Pru5Me2pY31JF2GP61k3gy8XDaLfmH7U6jpAwXoYvGEZBwA@mail.gmail.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,168 +86,189 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
+X-Spamd-Result: default: False [-0.75 / 15.00];
+	R_MIXED_CHARSET(0.56)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 288F834227E
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:email]
+X-Rspamd-Queue-Id: 35275342400
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Thu, Mar 26, 2026 at 04:10:13PM -0700, Juasheem Sultan wrote:
+> Hi,
+> 
+> Thanks for looking at this.
+> 
+> You're saying instead of manually adopting the state that I should focus on
+> modifying the comparisons that we do to determine if we can perform a
+> fastset?
 
---8323329-382504748-1774605981=:356608
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+We don't want any fuzzy fastset hacks anywhere. I intentionally killed
+all that stuff because it was making it impossible to trust that the
+software state actually represents what the hardware is doing.
 
-On Fri, 27 Mar 2026, Michał Grzelak wrote:
-> On Thu, 26 Mar 2026, Ville Syrjala wrote:
->> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> 
->> Extract a small helper to determine if the scaler supports
->> the sharpness filter or not.
->> 
->> Cc: Nemesa Garg <nemesa.garg@intel.com>
->> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> ---
->> drivers/gpu/drm/i915/display/skl_scaler.c | 12 ++++++++----
->> 1 file changed, 8 insertions(+), 4 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c 
->> b/drivers/gpu/drm/i915/display/skl_scaler.c
->> index e9fe5c0bf6ff..525afd736195 100644
->> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
->> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
->> @@ -323,19 +323,24 @@ int skl_update_scaler_plane(struct intel_crtc_state 
->> *crtc_state,
->> 				 need_scaler);
->> }
->> 
->> +static bool scaler_has_casf(struct intel_display *display, int scaler_id)
->> +{
->> +	return HAS_CASF(display) && scaler_id == 1;
->> +}
->> +
->> static int intel_allocate_scaler(struct intel_crtc_scaler_state 
->> *scaler_state,
->> 				 struct intel_crtc *crtc,
->> 				 struct intel_plane_state *plane_state,
->> 				 bool casf_scaler)
->> {
->> +	struct intel_display *display = to_intel_display(crtc);
->> 	int i;
->>
->> 	for (i = 0; i < crtc->num_scalers; i++) {
->> 		if (scaler_state->scalers[i].in_use)
->> 			continue;
->> 
->> -		/* CASF needs second scaler */
->> -		if (!plane_state && casf_scaler && i != 1)
->> +		if (casf_scaler && !scaler_has_casf(display, i))
->> 			continue;
->>
->> 		scaler_state->scalers[i].in_use = true;
->> @@ -982,8 +987,7 @@ void skl_scaler_get_config(struct intel_crtc_state 
->> *crtc_state)
->>
->> 		id = i;
->> 
->> -		/* Read CASF regs for second scaler */
->> -		if (HAS_CASF(display) && id == 1)
->> +		if (scaler_has_casf(display, i))
->
-> With that being changed I am wondering if we need int id at all. The
-> only user of it is outside the loop. Since id is set to i on every
-> loop's pass, I guess we can replace it with last value of i. And if
-> crtc->num_scalers == -1, we wouldn't enter the loop anyway, so the id
-> is still set to -1. The only scenario I see where it can break is e.g.
-> when crtc->num_scalers == -2, but I have no clue if it is even possible.
->
-> To be precise, I am wondering about such change (diff without your change
-> being applied):
->
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c 
-> b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 4c4deac7f9c8..78852267e60b 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -969,7 +969,6 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> *crtc_state)
->        struct intel_display *display = to_intel_display(crtc_state);
->        struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->        struct intel_crtc_scaler_state *scaler_state = 
-> &crtc_state->scaler_state;
-> -       int id = -1;
->        int i;
->
->        /* find scaler attached to this pipe */
-> @@ -980,8 +979,6 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> *crtc_state)
->                if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN 
-> | PS_BINDING_PIPE))
->                        continue;
->
-> -               id = i;
-> -
->                /* Read CASF regs for second scaler */
->                if (HAS_CASF(display) && id == 1)
->                        intel_casf_sharpness_get_config(crtc_state);
-> @@ -1003,8 +1000,8 @@ void skl_scaler_get_config(struct intel_crtc_state 
-> *crtc_state)
->                break;
->        }
->
-> -       scaler_state->scaler_id = id;
-> -       if (id >= 0)
-> +       scaler_state->scaler_id = crtc->num_scalers;
-> +       if (scaler_state->scaler_id >= 0)
->                scaler_state->scaler_users |= (1 << SKL_CRTC_INDEX);
->        else
->                scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
->
-> But I don't know if the reasoning above makes any sense.
+Someone needs to figure out what exactly is the difference between
+the states between the GOP and the driver, and then figure out where
+that difference is coming from.
 
-Now I see that I missed the continue-break magic, so please disregard
-the whole comment.
+> 
+> -Juasheem
+> 
+> On Wed, Mar 18, 2026 at 5:00 AM Maarten Lankhorst <dev@lankhorst.se> wrote:
+> 
+> > Hey,
+> >
+> > Den 2026-03-17 kl. 23:09, skrev Juasheem Sultan:
+> > > Align DP timings and C10 PLL state with BIOS values if within a 0.5%
+> > > clock threshold. This prevents minor mismatches from triggering a full
+> > > modeset during the first atomic commit, ensuring a flicker-free handoff.
+> > >
+> > > Signed-off-by: Juasheem Sultan <jdsultan@google.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_display.c | 67 ++++++++++++++++++++
+> > >  1 file changed, 67 insertions(+)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_display.c
+> > b/drivers/gpu/drm/i915/display/intel_display.c
+> > > index c4246481fc2f..22e5e931f134 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_display.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> > > @@ -6397,6 +6397,71 @@ static int
+> > intel_atomic_check_config_and_link(struct intel_atomic_state *state)
+> > >
+> > >       return ret;
+> > >  }
+> > > +
+> > > +// Helper function to sanitize pll state
+> > > +static void intel_sanitize_pll_state(struct intel_crtc_state
+> > *old_crtc_state,
+> > > +             struct intel_crtc_state *new_crtc_state)
+> > > +{
+> > > +     int j;
+> > > +
+> > > +     for (j = 4; j < 9; j++) {
+> > > +             if (new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] !=
+> > > +
+> >  old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j]) {
+> > > +                     new_crtc_state->dpll_hw_state.cx0pll.c10.pll[j] =
+> > > +
+> >  old_crtc_state->dpll_hw_state.cx0pll.c10.pll[j];
+> > > +             }
+> > > +     }
+> > > +}
+> > > +
+> > > +/*
+> > > + * intel_dp_sanitize_seamless_boot - Snap driver state to BIOS state
+> > for seamless handoff.
+> > > + * @state: the atomic state to sanitize
+> > > + *
+> > > + * This function compares the driver's calculated new_state with the
+> > inherited BIOS state
+> > > + * (old_state). If they are within a small threshold (e.g., 0.5% for
+> > clock), it "snaps"
+> > > + * the new_state to match the BIOS state exactly. This prevents minor
+> > state mismatches
+> > > + * that would otherwise force a full modeset (and a screen flicker)
+> > during the initial
+> > > + * kernel handoff.
+> > > + */
+> > > +static void intel_dp_sanitize_seamless_boot(struct intel_atomic_state
+> > *state)
+> > > +{
+> > > +     struct intel_display *display = to_intel_display(state);
+> > > +     struct intel_crtc_state *new_crtc_state, *old_crtc_state;
+> > > +     struct intel_crtc *crtc;
+> > > +     struct intel_encoder *encoder;
+> > > +     int i;
+> > > +
+> > > +     for_each_oldnew_intel_crtc_in_state(state, crtc, old_crtc_state,
+> > new_crtc_state, i) {
+> > > +             /*
+> > > +              * We must check old_crtc_state->inherited because
+> > new_crtc_state->inherited
+> > > +              * is cleared at the start of intel_atomic_check for
+> > userspace commits.
+> > > +              */
+> > > +             if (!old_crtc_state->inherited ||
+> > !new_crtc_state->hw.active)
+> > > +                     continue;
+> > > +
+> > > +             if (intel_crtc_has_dp_encoder(new_crtc_state)) {
+> > > +                     int old_clock =
+> > old_crtc_state->hw.adjusted_mode.crtc_clock;
+> > > +                     int new_clock =
+> > new_crtc_state->hw.adjusted_mode.crtc_clock;
+> > > +                     int threshold = old_clock / 200; /* 0.5% */
+> > > +
+> > > +                     if (abs(new_clock - old_clock) <= threshold) {
+> > > +                             new_crtc_state->hw.pipe_mode.crtc_clock =
+> > old_clock;
+> > > +
+> >  new_crtc_state->hw.adjusted_mode.crtc_clock = old_clock;
+> > > +                             new_crtc_state->pixel_rate =
+> > old_crtc_state->pixel_rate;
+> > > +                             new_crtc_state->dp_m_n =
+> > old_crtc_state->dp_m_n;
+> > > +                     }
+> > > +             }
+> > > +
+> > > +             for_each_intel_encoder_mask(display->drm, encoder,
+> > > +                             new_crtc_state->uapi.encoder_mask) {
+> > > +                     if (intel_encoder_is_c10phy(encoder)) {
+> > > +                             if
+> > (!new_crtc_state->dpll_hw_state.cx0pll.ssc_enabled)
+> > > +
+> >  intel_sanitize_pll_state(old_crtc_state, new_crtc_state);
+> > > +                     }
+> > > +             }
+> > > +     }
+> > > +}
+> > > +
+> > >  /**
+> > >   * intel_atomic_check - validate state object
+> > >   * @dev: drm device
+> > > @@ -6447,6 +6512,8 @@ int intel_atomic_check(struct drm_device *dev,
+> > >       if (ret)
+> > >               goto fail;
+> > >
+> > > +     intel_dp_sanitize_seamless_boot(state);
+> > > +
+> > >       for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+> > >               if (!intel_crtc_needs_modeset(new_crtc_state))
+> > >                       continue;
+> >
+> > This might fix boot state, but in a way that complicates the code
+> > considerably.
+> >
+> > Have you considered updating intel_pipe_config_compare instead?
+> >
+> > Kind regards,
+> > ~Maarten Lankhorst
+> >
 
-BR,
-Michał
-
->
-> Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
->
-> BR,
-> Michał
->
->> 			intel_casf_sharpness_get_config(crtc_state);
->>
->> 		if (!crtc_state->pch_pfit.casf.enable)
->> -- 
->> 2.52.0
->> 
->> 
->
---8323329-382504748-1774605981=:356608--
+-- 
+Ville Syrjälä
+Intel
