@@ -2,34 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJMuB3mXxmnrMQUAu9opvQ
+	id eA5vMs6wxmmiNgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 15:43:05 +0100
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 17:31:10 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64F4B346425
-	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 15:43:04 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D02A347785
+	for <lists+intel-gfx@lfdr.de>; Fri, 27 Mar 2026 17:31:10 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5467C10E2B5;
-	Fri, 27 Mar 2026 14:43:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CB9B10ECF5;
+	Fri, 27 Mar 2026 16:31:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="jXxDSHrw";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 39BB910EE92;
- Fri, 27 Mar 2026 14:43:00 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5361912643244864003=="
+Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1E36A10E3CC;
+ Fri, 27 Mar 2026 16:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Transfer-Encoding:
+ Content-Type:MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:
+ Sender:Reply-To:Content-ID:Content-Description;
+ bh=Ny4qw8taYrs1T0pcr+uXSnjLdjR00AR+PeEIDL77s/I=; b=jXxDSHrwoSVwO2frkqg+oAxykM
+ LMwaBjCrPEJVPOEJh498r7cvaE2BOuRIM35DROUK81z/5fCYqODlwDcPk4316VGS1J9eTDIaILlLm
+ dfHL2/IsFNSjciPAH19rkol4JBcWMoirFSh1mEUJK7YyCmepYXweOKgAoTYMdnMA7ll5Y2GvXEmlD
+ SIOXnp5Mnr+FkxL3uXofbkpM7FV5M+qi93ukBOcSS9Ssgt4nTLHdr5uHXp6QnDOD3s8ETBTqvQGTG
+ E4NxEtUjOk132ddHAja06GOsq9Ckprb7ut+5DMk0lDie+/iFm58oqZKt3NPt9K5Xmertb+TBFVxfT
+ EGguMyWw==;
+Received: from 77-249-17-252.cable.dynamic.v4.ziggo.nl ([77.249.17.252]
+ helo=noisy.programming.kicks-ass.net)
+ by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
+ id 1w6A5O-000000025cw-1d9U; Fri, 27 Mar 2026 16:31:02 +0000
+Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
+ id 868F0301185; Fri, 27 Mar 2026 17:31:00 +0100 (CET)
+Date: Fri, 27 Mar 2026 17:31:00 +0100
+From: Peter Zijlstra <peterz@infradead.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: willy@infradead.org, linux-kernel@vger.kernel.org,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
+ "Saarinen, Jani" <jani.saarinen@intel.com>, ravitejax.veesam@intel.com
+Subject: Re: Regression on linux-next (next-20260324 )
+Message-ID: <20260327163100.GL3738010@noisy.programming.kicks-ass.net>
+References: <af005996-05e9-4336-8450-d14ca652ba5d@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_More_uncore_n?=
- =?utf-8?q?ukage_from_display_code_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?b?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 27 Mar 2026 14:43:00 -0000
-Message-ID: <177462258020.407468.4401088117152294721@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260325185342.11482-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <af005996-05e9-4336-8450-d14ca652ba5d@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,221 +64,111 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[infradead.org:s=casper.20170209];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DKIM_TRACE(0.00)[infradead.org:-];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 64F4B346425
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[peterz@infradead.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,noisy.programming.kicks-ass.net:mid]
+X-Rspamd-Queue-Id: 1D02A347785
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============5361912643244864003==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, Mar 27, 2026 at 07:09:26PM +0530, Borah, Chaitanya Kumar wrote:
+> Hello Matthew,
+> 
+> Hope you are doing well. I am Chaitanya from the linux graphics team in
+> Intel.
+> 
+> This mail is regarding a regression we are seeing in our CI runs[1] on
+> linux-next repository.
+> 
+> Since the version next-20260324 [2], we are seeing the following regression
+> 
+> `````````````````````````````````````````````````````````````````````````````````
+> <5>[  157.361977] [IGT] Inactivity timeout exceeded. Killing the current
+> test with SIGQUIT.
+> <6>[  157.362097] sysrq: HELP : loglevel(0-9) reboot(b) crash(c)
+> show-all-locks(d) terminate-all-tasks(e) memory-full-oom-kill(f)
+> kill-all-tasks(i) thaw-filesystems(j) sak(k)
+> show-backtrace-all-active-cpus(l) show-memory-usage(m) nice-all-RT-tasks(n)
+> poweroff(o) show-registers(p) show-all-timers(q) unraw(r) sync(s)
+> show-task-states(t) unmount(u) force-fb(v) show-blocked-tasks(w)
+> dump-ftrace-buffer(z) replay-kernel-logs(R)
+> <6>[  157.399543] sysrq: Show State
+> <6>[  157.403061] task:systemd         state:S stack:0     pid:1 tgid:1
+> ppid:0      task_flags:0x400100 flags:0x00080000
+> <6>[  157.403067] Call Trace:
+> <6>[  157.403069]  <TASK>
+> <6>[  157.403072]  __schedule+0x5d7/0x1ef0
+> <6>[  157.403078]  ? lock_acquire+0xc4/0x300
+> <6>[  157.403084]  ? schedule+0x10e/0x180
+> <6>[  157.403087]  ? lock_release+0xcd/0x2b0
+> <6>[  157.403092]  schedule+0x3a/0x180
+> <6>[  157.403094]  schedule_hrtimeout_range_clock+0x112/0x120
+> <6>[  157.403097]  ? do_epoll_wait+0x3e4/0x5b0
+> <6>[  157.403102]  ? lock_release+0xcd/0x2b0
+> <6>[  157.403104]  ? _raw_spin_unlock_irq+0x27/0x70
+> <6>[  157.403106]  ? do_epoll_wait+0x3e4/0x5b0
+> <6>[  157.403110]  schedule_hrtimeout_range+0x13/0x30
+> `````````````````````````````````````````````````````````````````````````````````
+> Details log can be found in [3].
+> 
+> After bisecting the tree, the following patch [4] seems to be the first
+> "bad" commit
+> 
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> commit 25500ba7e77ce9d3d9b5a1929d41a2ee2e23f6fe
+> Author: Matthew Wilcox (Oracle) willy@infradead.org
+> Date:   Thu Mar 5 19:55:43 2026 +0000
+> 
+>     locking/mutex: Remove the list_head from struct mutex
+> `````````````````````````````````````````````````````````````````````````````````````````````````````````
+> 
+> We could not revert the patch because of merge conflict but resetting to the
+> parent of the commit seems to fix the issue.
+> 
+> Could you please check why the patch causes this regression and provide a
+> fix if necessary?
 
-== Series Details ==
+Does this help?
 
-Series: drm/i915: More uncore nukage from display code (rev2)
-URL   : https://patchwork.freedesktop.org/series/163871/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18235 -> Patchwork_163871v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_163871v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-adlp-9:         [PASS][1] -> [DMESG-WARN][2] ([i915#14872]) +1 other test dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-adlp-9/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-adlp-9/igt@i915_selftest@live.html
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank:
-    - fi-bsw-n3050:       [PASS][3] -> [DMESG-WARN][4] ([i915#15498]) +1 other test dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
-
-  * igt@kms_pm_rpm@basic-rte:
-    - bat-rpls-4:         [PASS][5] -> [DMESG-WARN][6] ([i915#13400])
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-dg2-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
-    - bat-dg2-9:          [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
-  [i915#14872]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14872
-  [i915#15498]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15498
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18235 -> Patchwork_163871v2
-
-  CI-20190529: 20190529
-  CI_DRM_18235: b0c967b64ac6322238cc1cbabd75a3be31fbb637 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8834: 8834
-  Patchwork_163871v2: b0c967b64ac6322238cc1cbabd75a3be31fbb637 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/index.html
-
---===============5361912643244864003==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: More uncore nukage from display code (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163871/">https://patchwork.freedesktop.org/series/163871/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18235 -&gt; Patchwork_163871v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_163871v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-adlp-9/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-adlp-9/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14872">i915#14872</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15498">i915#15498</a>) +1 other test dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-rte:</p>
-<ul>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18235/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163871v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18235 -&gt; Patchwork_163871v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18235: b0c967b64ac6322238cc1cbabd75a3be31fbb637 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8834: 8834<br />
-  Patchwork_163871v2: b0c967b64ac6322238cc1cbabd75a3be31fbb637 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5361912643244864003==--
+---
+--- a/kernel/locking/ww_mutex.h
++++ b/kernel/locking/ww_mutex.h
+@@ -40,10 +40,10 @@ __ww_waiter_last(struct mutex *lock)
+ 	__must_hold(&lock->wait_lock)
+ {
+ 	struct mutex_waiter *w = lock->first_waiter;
++	if (!w)
++		return NULL;
+ 
+-	if (w)
+-		w = list_prev_entry(w, list);
+-	return w;
++	return __ww_waiter_prev(lock, w);
+ }
+ 
+ static inline void
