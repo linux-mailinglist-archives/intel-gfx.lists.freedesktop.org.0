@@ -2,66 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IMvPHETrx2nQewUAu9opvQ
+	id eOyqIg70x2lMfQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 15:52:52 +0100
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 16:30:22 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1963A34EBB5
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 15:52:52 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id D564D34EE3E
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 16:30:21 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 828B410E3D5;
-	Sat, 28 Mar 2026 14:52:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J5eulvBn";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0DEE110E060;
+	Sat, 28 Mar 2026 15:30:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2CE4F10E121;
- Sat, 28 Mar 2026 14:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774709569; x=1806245569;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=Nj65AVXv5ECweY6QhlEAy95vOjFQHw5ampBzfKUX14U=;
- b=J5eulvBnlCDFP7gSk2BnHCDBb4vgQCpConIMoW/vV046mlxb3EjSTt/6
- 2CmO3lmctjdTVZt0W4Pj6h+b/W/ip1ZqhzqRD+gaPx2D/M+pQoKqUPbss
- mz4jOQb3GA4yACvbd+KfGP35OdURHGEkiAbOntR1uZorcZ83vZ6/DlE71
- R/C0Q1LHJGrMeJINw13QjABRpTOhMuZcxl+vobUodHXvL61JKoLVuac9W
- TmLxNIU6YrvXFzLNfvaiSJEPO1agjndgh2P646Ed7J8ZjrG5iE7CTU6LY
- 920ObZDd2ayGqsP2MwbcvP2lcoMMnXWowtuxJWtAO2fp2DExCAvDyKqLI Q==;
-X-CSE-ConnectionGUID: Lh47a2c3R/yz6RqehZKbkA==
-X-CSE-MsgGUID: 03a4PFGTQVCs7Lok2ciA8Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="63313563"
-X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="63313563"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2026 07:52:49 -0700
-X-CSE-ConnectionGUID: gcM6p9VkQWukIJrcicJHDw==
-X-CSE-MsgGUID: FDupMcLjTjSTkAtZMBWK/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="222267462"
-Received: from administrator-system-product-name.igk.intel.com
- ([10.91.214.181])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2026 07:52:47 -0700
-Date: Sat, 28 Mar 2026 15:52:45 +0100 (CET)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: =?ISO-8859-15?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH 4/9] drm/i915/casf: Extract scaler_has_casf()
-In-Reply-To: <acZezWKFo1QwLAci@intel.com>
-Message-ID: <b85d0e01-96b9-94a6-b8fa-c7fcf403b040@intel.com>
-References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
- <20260326223139.19116-5-ville.syrjala@linux.intel.com>
- <5312c2aa-a724-9b98-aa95-e4a4fffe3e91@intel.com>
- <7de76a02-bf3e-49e0-52c0-14ef65c879c3@intel.com> <acZezWKFo1QwLAci@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E73F610E060;
+ Sat, 28 Mar 2026 15:30:18 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8248451334272384285=="
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-635784336-1774709568=:601923"
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_casf_=26_scal?=
+ =?utf-8?q?er_refactoring?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Sat, 28 Mar 2026 15:30:18 -0000
+Message-ID: <177471181892.409333.14305210409208032166@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260328143212.601656-1-michal.grzelak@intel.com>
+In-Reply-To: <20260328143212.601656-1-michal.grzelak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,209 +42,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 1963A34EBB5
+	DBL_BLOCKED_OPENRESOLVER(0.00)[live:email,workarounds:email,lists.freedesktop.org:replyto]
+X-Rspamd-Queue-Id: D564D34EE3E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+--===============8248451334272384285==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
---8323329-635784336-1774709568=:601923
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8BIT
+== Series Details ==
 
-On Fri, 27 Mar 2026, Ville Syrjälä wrote:
-> On Fri, Mar 27, 2026 at 11:06:18AM +0100, Michał Grzelak wrote:
->> On Fri, 27 Mar 2026, Michał Grzelak wrote:
->>> On Thu, 26 Mar 2026, Ville Syrjala wrote:
->>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>>
->>>> Extract a small helper to determine if the scaler supports
->>>> the sharpness filter or not.
->>>>
->>>> Cc: Nemesa Garg <nemesa.garg@intel.com>
->>>> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>> ---
->>>> drivers/gpu/drm/i915/display/skl_scaler.c | 12 ++++++++----
->>>> 1 file changed, 8 insertions(+), 4 deletions(-)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
->>>> b/drivers/gpu/drm/i915/display/skl_scaler.c
->>>> index e9fe5c0bf6ff..525afd736195 100644
->>>> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
->>>> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
->>>> @@ -323,19 +323,24 @@ int skl_update_scaler_plane(struct intel_crtc_state
->>>> *crtc_state,
->>>> 				 need_scaler);
->>>> }
->>>>
->>>> +static bool scaler_has_casf(struct intel_display *display, int scaler_id)
->>>> +{
->>>> +	return HAS_CASF(display) && scaler_id == 1;
->>>> +}
->>>> +
->>>> static int intel_allocate_scaler(struct intel_crtc_scaler_state
->>>> *scaler_state,
->>>> 				 struct intel_crtc *crtc,
->>>> 				 struct intel_plane_state *plane_state,
->>>> 				 bool casf_scaler)
->>>> {
->>>> +	struct intel_display *display = to_intel_display(crtc);
->>>> 	int i;
->>>>
->>>> 	for (i = 0; i < crtc->num_scalers; i++) {
->>>> 		if (scaler_state->scalers[i].in_use)
->>>> 			continue;
->>>>
->>>> -		/* CASF needs second scaler */
->>>> -		if (!plane_state && casf_scaler && i != 1)
->>>> +		if (casf_scaler && !scaler_has_casf(display, i))
->>>> 			continue;
->>>>
->>>> 		scaler_state->scalers[i].in_use = true;
->>>> @@ -982,8 +987,7 @@ void skl_scaler_get_config(struct intel_crtc_state
->>>> *crtc_state)
->>>>
->>>> 		id = i;
->>>>
->>>> -		/* Read CASF regs for second scaler */
->>>> -		if (HAS_CASF(display) && id == 1)
->>>> +		if (scaler_has_casf(display, i))
->>>
->>> With that being changed I am wondering if we need int id at all. The
->>> only user of it is outside the loop. Since id is set to i on every
->>> loop's pass, I guess we can replace it with last value of i. And if
->>> crtc->num_scalers == -1, we wouldn't enter the loop anyway, so the id
->>> is still set to -1. The only scenario I see where it can break is e.g.
->>> when crtc->num_scalers == -2, but I have no clue if it is even possible.
->>>
->>> To be precise, I am wondering about such change (diff without your change
->>> being applied):
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
->>> b/drivers/gpu/drm/i915/display/skl_scaler.c
->>> index 4c4deac7f9c8..78852267e60b 100644
->>> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
->>> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
->>> @@ -969,7 +969,6 @@ void skl_scaler_get_config(struct intel_crtc_state
->>> *crtc_state)
->>>        struct intel_display *display = to_intel_display(crtc_state);
->>>        struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->>>        struct intel_crtc_scaler_state *scaler_state =
->>> &crtc_state->scaler_state;
->>> -       int id = -1;
->>>        int i;
->>>
->>>        /* find scaler attached to this pipe */
->>> @@ -980,8 +979,6 @@ void skl_scaler_get_config(struct intel_crtc_state
->>> *crtc_state)
->>>                if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) != (PS_SCALER_EN
->>> | PS_BINDING_PIPE))
->>>                        continue;
->>>
->>> -               id = i;
->>> -
->>>                /* Read CASF regs for second scaler */
->>>                if (HAS_CASF(display) && id == 1)
->>>                        intel_casf_sharpness_get_config(crtc_state);
->>> @@ -1003,8 +1000,8 @@ void skl_scaler_get_config(struct intel_crtc_state
->>> *crtc_state)
->>>                break;
->>>        }
->>>
->>> -       scaler_state->scaler_id = id;
->>> -       if (id >= 0)
->>> +       scaler_state->scaler_id = crtc->num_scalers;
->>> +       if (scaler_state->scaler_id >= 0)
->>>                scaler_state->scaler_users |= (1 << SKL_CRTC_INDEX);
->>>        else
->>>                scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
->>>
->>> But I don't know if the reasoning above makes any sense.
->>
->> Now I see that I missed the continue-break magic, so please disregard
->> the whole comment.
->
-> I think the correct thing is to s/i/scaler_id/ and just move the
-> scaler_state->scaler_id and caler_state->scaler_users assignment into
-> the loop.
->
-> Or even better something like this:
->
-> skl_pipe_scaler_get_hw_state()
-> {
-> 	for (scaler_id) {
-> 		ctl = ...
-> 		if (ctl...)
-> 			return scaler_id;
-> 	}
->
-> 	return -1;
-> }
->
-> skl_scaler_get_config()
-> {
-> 	scaler_id = skl_pipe_scaler_get_hw_state();
-> 	if (scaler_id < 0)
-> 		return;
->
-> 	// do the scaler readout
-> }
->
-> Feel free to go at it.
->
+Series: drm/i915: casf & scaler refactoring
+URL   : https://patchwork.freedesktop.org/series/164028/
+State : success
 
-Now it makes sense, thanks. :)
+== Summary ==
 
-I've added you to couple of Suggested-by:, please correct me if I
-mishandled it.
+CI Bug Log - changes from CI_DRM_18243 -> Patchwork_164028v1
+====================================================
 
-BR,
-Michał
+Summary
+-------
 
->>>
->>> Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
->>>
->>>> 			intel_casf_sharpness_get_config(crtc_state);
->>>>
->>>> 		if (!crtc_state->pch_pfit.casf.enable)
->>>> --
->>>> 2.52.0
->>>>
->>>>
->>>
->
->
-> -- 
-> Ville Syrjälä
-> Intel
->
---8323329-635784336-1774709568=:601923--
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_164028v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18243/bat-dg2-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/bat-dg2-8/igt@i915_selftest@live.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18243/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18243 -> Patchwork_164028v1
+
+  CI-20190529: 20190529
+  CI_DRM_18243: 457f49574f26444c7089f03d86b8b5993d05ff60 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8834: 8834
+  Patchwork_164028v1: 457f49574f26444c7089f03d86b8b5993d05ff60 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/index.html
+
+--===============8248451334272384285==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: casf &amp; scaler refactoring</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164028/">https://patchwork.freedesktop.org/series/164028/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18243 -&gt; Patchwork_164028v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_164028v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18243/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18243/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164028v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18243 -&gt; Patchwork_164028v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18243: 457f49574f26444c7089f03d86b8b5993d05ff60 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8834: 8834<br />
+  Patchwork_164028v1: 457f49574f26444c7089f03d86b8b5993d05ff60 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8248451334272384285==--
