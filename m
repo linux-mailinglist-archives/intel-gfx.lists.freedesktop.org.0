@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sJuAFa3mx2kYegUAu9opvQ
+	id WMerOa/mx2kYegUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 15:33:17 +0100
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 15:33:19 +0100
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0756234EAE7
-	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 15:33:16 +0100 (CET)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB4A134EAF5
+	for <lists+intel-gfx@lfdr.de>; Sat, 28 Mar 2026 15:33:19 +0100 (CET)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3616310E11F;
-	Sat, 28 Mar 2026 14:33:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3BCAB10E00E;
+	Sat, 28 Mar 2026 14:33:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JkOKuoVB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nyr4k+yN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9FFFD10E3EC
- for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2026 14:33:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED2F510E11F
+ for <intel-gfx@lists.freedesktop.org>; Sat, 28 Mar 2026 14:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774708394; x=1806244394;
+ t=1774708395; x=1806244395;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=mimqalLtl6ZPffVdIvEXsjXel9q8kjv/BYAYNr377D4=;
- b=JkOKuoVB1goNz6mW+evhamN1QaygPM4FR0S7NFrAWk7YVggfQVz5XrwV
- rQZPFSabtgf+whK6u51yI4zHajDLz7kxWY12uljSMY8O1pPtu7KKj8nbK
- +CrIC+XsEyO+pTJV6nxGrXmQIawOeUf5FpNU7HZBsvpVCjLfzU4N3Ro+H
- Lla5y4Rcm9vuW7pCqhfxwJHbY1g/eKTQ5Kymw1Yt6dXaoPtFxuPzYOITu
- LRwjodu7yKaVMG7hTWQOtd8DlIsuW5mtaqYB384xXNplsfm/9TQvLLXpk
- /hbt3Q9ugdSlScRl16/sed/UPjDjnnNDTV0FsThk5coEFo2KMaQt/+eb8 g==;
-X-CSE-ConnectionGUID: kgH0W2tRQQSoJfJZTlTyPw==
-X-CSE-MsgGUID: cO1dRSN6RSWoEgZmqW5a9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="86839488"
-X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="86839488"
+ bh=q8w7YjROLE5GFKA7h54A9BVSkeuCg8X1iPh6vsUe0a8=;
+ b=Nyr4k+yN9zmpTEzbm/j9uiZwPquORL4L9MCXlKzqnU1sWsetn6dPma7S
+ HLJOq71M2Tj85pgWuNUkb47yrPz6tRcQmzcrU9oaIuHfZzNwniO8SpRPX
+ e3Pgfk/C5c+Ty5rSp4Ijb1w165s7xSvzI/XuntgroMkufSx9bUjsNPQqJ
+ ZSbF+89AlZEpG9/HqbdTDuT5hfbaCmkX+PLxfVhRG/WLZOGvBW6beC+FE
+ TkgGYy8hDBqUN1lhS42kCHMSxLRRYc0vQtudfv8Hk/CpPG8lLvfxZjDkL
+ KK8sPv4lZkehSCx2b0u25LbDBOydRrHD8zy890Dx3chBpu6yu0W6dBXKG g==;
+X-CSE-ConnectionGUID: qYE8dYQvQ3uB/t08CpphWg==
+X-CSE-MsgGUID: 5AEOoG1LQ3muXTtbNQr2Mg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11742"; a="86839489"
+X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="86839489"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Mar 2026 07:33:13 -0700
-X-CSE-ConnectionGUID: wKzAO7uqTGSf+SHtF2SUaA==
-X-CSE-MsgGUID: WhwpxMABSLCXfr0COQkopQ==
+ 28 Mar 2026 07:33:15 -0700
+X-CSE-ConnectionGUID: wa5GSo1aR2iEaE+c0EYMmQ==
+X-CSE-MsgGUID: VdXiA4lvTwG2/T3h8cDRCw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="224621069"
+X-IronPort-AV: E=Sophos;i="6.23,146,1770624000"; d="scan'208";a="224621074"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by orviesa006.jf.intel.com with ESMTP; 28 Mar 2026 07:33:13 -0700
+ by orviesa006.jf.intel.com with ESMTP; 28 Mar 2026 07:33:14 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 02/10] drm/i915/casf: rename convert_sharpness_coef_binary()
-Date: Sat, 28 Mar 2026 15:32:04 +0100
-Message-ID: <20260328143212.601656-3-michal.grzelak@intel.com>
+Subject: [PATCH v1 03/10] drm/i915/casf: rename t into tap in casf_coeff()
+Date: Sat, 28 Mar 2026 15:32:05 +0100
+Message-ID: <20260328143212.601656-4-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260328143212.601656-1-michal.grzelak@intel.com>
 References: <20260328143212.601656-1-michal.grzelak@intel.com>
@@ -102,40 +102,57 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 0756234EAE7
+X-Rspamd-Queue-Id: BB4A134EAF5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Stick to the notion of already used *_coeff_*() instead of *_coef_*().
+Add more description to the casf_coeff()'s argument and
+casf_coeff_tap()'s returned value.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_casf.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 7231ddb4b36c..13682de697be 100644
+index 13682de697be..d59e5ed4275c 100644
 --- a/drivers/gpu/drm/i915/display/intel_casf.c
 +++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -222,7 +222,7 @@ static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
- 	}
+@@ -174,12 +174,12 @@ static int casf_coeff_tap(int i)
+ 	return i % SCALER_FILTER_NUM_TAPS;
  }
  
--static void convert_sharpness_coef_binary(struct scaler_filter_coeff *coeff,
-+static void convert_sharpness_coeff_binary(struct scaler_filter_coeff *coeff,
- 					  u16 coefficient)
+-static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
++static u32 casf_coeff(struct intel_crtc_state *crtc_state, int tap)
  {
- 	if (coefficient < 25) {
-@@ -259,7 +259,7 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
+ 	struct scaler_filter_coeff value;
+ 	u32 coeff;
  
- 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
- 		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
--		convert_sharpness_coef_binary(&crtc_state->hw.casf_params.coeff[i],
-+		convert_sharpness_coeff_binary(&crtc_state->hw.casf_params.coeff[i],
- 					      filter_coeff[i]);
- 	}
- }
+-	value = crtc_state->hw.casf_params.coeff[t];
++	value = crtc_state->hw.casf_params.coeff[tap];
+ 	value.sign = 0;
+ 
+ 	coeff = value.sign << 15 | value.exp << 12 | value.mantissa << 3;
+@@ -209,13 +209,13 @@ static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
+ 
+ 	for (i = 0; i < 17 * SCALER_FILTER_NUM_TAPS; i += 2) {
+ 		u32 tmp;
+-		int t;
++		int tap;
+ 
+-		t = casf_coeff_tap(i);
+-		tmp = casf_coeff(crtc_state, t);
++		tap = casf_coeff_tap(i);
++		tmp = casf_coeff(crtc_state, tap);
+ 
+-		t = casf_coeff_tap(i + 1);
+-		tmp |= casf_coeff(crtc_state, t) << 16;
++		tap = casf_coeff_tap(i + 1);
++		tmp |= casf_coeff(crtc_state, tap) << 16;
+ 
+ 		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(crtc->pipe, id, 0),
+ 				  tmp);
 -- 
 2.45.2
 
