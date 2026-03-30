@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YD3qBG/6yWlg3wUAu9opvQ
+	id oM5GMW/6yWlg3wUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B775435531F
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97D03355327
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE7110E278;
-	Mon, 30 Mar 2026 04:22:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2018910E282;
+	Mon, 30 Mar 2026 04:22:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fTPNp45K";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eu8F7qPE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DDABB10E263;
- Mon, 30 Mar 2026 04:22:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 64A9C10E27B;
+ Mon, 30 Mar 2026 04:22:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774844522; x=1806380522;
+ t=1774844524; x=1806380524;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=0pawYva8l7qMOCH5aJFQdVWxW1YkP3xFfMAP6sK7gaY=;
- b=fTPNp45K4EeYz1zwkrMLxdhTBqQauCk7A7XD0/j0iunZsbDEZg0QwnUo
- y0s2DoBlbnLrbLw1VzCTEte2C4x2M0HA0uNuK+R/eh4dySEpjV/JNHJ4o
- 1DUSgKgGyLJUrdh80PR4Xa2PpM2ilJeBG7uf/1fNkg361Ojajh70jrg07
- k+Y1EO/yAUdjV8y4/3aqOWbx3dS+dY7aAxx6f7nyFoZ99ZDkvBphL3NDR
- rRObkZSujnrbsv1UO/JOqGUsdhtTPpx9bMZpdoZ3V//yB9SiBVqOKRTYr
- j5se/8DawaKEMjuZkhOs604DuQyPdXw8DU8ytWDnQhDiwSxBY5EhClJ35 A==;
-X-CSE-ConnectionGUID: kRyCGiCdRiWvVGfoToZI8Q==
-X-CSE-MsgGUID: XtGrZgIrS2OajvcohkaDlg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218211"
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218211"
+ bh=XjDIcelhTBrb67a2mZBXv/6E7BGm3pawrsiQbz/4hlI=;
+ b=Eu8F7qPEDgIoc2g6008BCGihZ4PzVcMyoZptYr77GQqotaSNbk3KE3xc
+ p34OxugWjFB7JEmE4dbjG7mwsGqx0HOZxiWIoJz+1sYXpUZ6EW0qoc1Dw
+ 33P7SRH/H4dCYMg827vcOOnawzd1Rqeh5PMLORkCcIfAWr/Uk7QXVpcN5
+ 2bhGIGnEEBJ68eZhSIY4YLI0mzi367TgNX/cKKw8T0Jk222NRAMvJms4I
+ TkltqOJbIQmnRNt8jAxOB/QrKFLMWPbACh5I1TBHKz/zz0+x270juxnZ5
+ U/sS1G2m9pUgCtjTUFdiPBCeKx3AuYsWHG9aXCmll2SNT7m+dIcCE5Qj6 A==;
+X-CSE-ConnectionGUID: qDjVqIucSymDZsA338M1ZQ==
+X-CSE-MsgGUID: PhHePrPjT3CBVPbTyByxaA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218214"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218214"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:22:01 -0700
-X-CSE-ConnectionGUID: Q8Cq+BISTTijZq2pycspIg==
-X-CSE-MsgGUID: /znD+QPBTgaMBYG8dVRQNQ==
+ 29 Mar 2026 21:22:04 -0700
+X-CSE-ConnectionGUID: qkaH8sAfQCaHKtLBPlkiLg==
+X-CSE-MsgGUID: BylOv2nlR2yLi+gG8rJLOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871032"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871062"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:21:59 -0700
+ 29 Mar 2026 21:22:02 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 01/19] drm/dp: Rename and relocate AS SDP payload field masks
-Date: Mon, 30 Mar 2026 09:36:38 +0530
-Message-ID: <20260330040656.4116502-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/19] drm/dp: Clean up DPRX feature enumeration macros
+Date: Mon, 30 Mar 2026 09:36:39 +0530
+Message-ID: <20260330040656.4116502-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
 References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
@@ -98,60 +98,38 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: B775435531F
+X-Rspamd-Queue-Id: 97D03355327
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The AS SDP payload field masks were misnamed and placed under the DPRX
-feature enumeration list. These are not DPRX capability bits, but are
-payload field masks for the Adaptive Sync SDP.
-
-Relocate both masks next to the AS SDP definitions.
-Update users to the corrected names. No functional change.
+Align the DP_DPRX feature enumeration macros for better readability and
+consistency, and use the BIT() macro instead of open-coded shifts.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
- include/drm/display/drm_dp.h            | 5 +++--
- 2 files changed, 5 insertions(+), 4 deletions(-)
+ include/drm/display/drm_dp.h | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4955bd8b11d7..602efaf500bd 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5295,8 +5295,8 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
- 	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
- 		return -EINVAL;
- 
--	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
--	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
-+	as_sdp->length = sdp->sdp_header.HB3 & DP_AS_SDP_LENGTH_MASK;
-+	as_sdp->mode = sdp->db[0] & DP_AS_SDP_OPERATION_MODE_MASK;
- 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
- 	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
- 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
 diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 8b15d3eeb716..4ea3b5b08a12 100644
+index 4ea3b5b08a12..49f0154eb93c 100644
 --- a/include/drm/display/drm_dp.h
 +++ b/include/drm/display/drm_dp.h
-@@ -1204,8 +1204,6 @@
+@@ -1202,10 +1202,10 @@
+ # define DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_80_MS	0x04
+ # define DP_DPRX_SLEEP_WAKE_TIMEOUT_PERIOD_100_MS	0x05
  
- #define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1         0x2214 /* 2.0 E11 */
- # define DP_ADAPTIVE_SYNC_SDP_SUPPORTED    (1 << 0)
--# define DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE		GENMASK(1, 0)
--# define DP_ADAPTIVE_SYNC_SDP_LENGTH				GENMASK(5, 0)
- # define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED (1 << 1)
- # define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED  (1 << 4)
+-#define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1         0x2214 /* 2.0 E11 */
+-# define DP_ADAPTIVE_SYNC_SDP_SUPPORTED    (1 << 0)
+-# define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED (1 << 1)
+-# define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED  (1 << 4)
++#define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1					0x2214 /* 2.0 E11 */
++# define DP_ADAPTIVE_SYNC_SDP_SUPPORTED						BIT(0)
++# define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED	BIT(1)
++# define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED				BIT(4)
  
-@@ -1870,4 +1868,7 @@ enum operation_mode {
- 	DP_AS_SDP_FAVT_TRR_REACHED = 0x03
- };
- 
-+#define DP_AS_SDP_OPERATION_MODE_MASK	GENMASK(1, 0)
-+#define DP_AS_SDP_LENGTH_MASK		GENMASK(5, 0)
-+
- #endif /* _DRM_DP_H_ */
+ #define DP_128B132B_SUPPORTED_LINK_RATES       0x2215 /* 2.0 */
+ # define DP_UHBR10                             (1 << 0)
 -- 
 2.45.2
 
