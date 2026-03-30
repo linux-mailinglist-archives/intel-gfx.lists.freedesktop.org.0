@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GsExIWz6yWlg3wUAu9opvQ
+	id YD3qBG/6yWlg3wUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C753355311
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B775435531F
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0FB3910E261;
-	Mon, 30 Mar 2026 04:22:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FE7110E278;
+	Mon, 30 Mar 2026 04:22:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dDf/ZnqS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fTPNp45K";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1421410E241;
- Mon, 30 Mar 2026 04:22:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDABB10E263;
+ Mon, 30 Mar 2026 04:22:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774844520; x=1806380520;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=edzzlBeL2ZqLP/MfVXz8Aa/f3M1sCWZSlJlz17VJvBs=;
- b=dDf/ZnqS1jp86gmPHNAQYQ6dQ2mccD+e+nzLzTkA/zO2j2rMamNzG85q
- ttfVUCbdS2eNe5ujILYC/w714z5sspC2vz7/We5GSOBxRVoy5JgFjKZaL
- cdgKjYqNdhe7cb2uVGq7+fu6Dzxtp6oKvFNDTs+5OQ6ulzJ6syInxfO5w
- /SaUWz+Ixn5vjKnX6pju9PkPRgNG0nu9/ZbRvmqz38Z30TqhJAk7AUkVs
- qf6pQ+FxDhE4cH11uVAhTh9Ow8uEqI6FJ6pR5T3BZoAPFmvdpcATM5O83
- YPFMtf3dLQhZPNSM6ENMKPHNO37fo404L/G7aWqx33Do66v0a/smpaiXM g==;
-X-CSE-ConnectionGUID: ljkJXEuXS8ibSzkRSTT8lw==
-X-CSE-MsgGUID: rdJLhxZZR+i/Vx+AGVakUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218210"
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218210"
+ t=1774844522; x=1806380522;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=0pawYva8l7qMOCH5aJFQdVWxW1YkP3xFfMAP6sK7gaY=;
+ b=fTPNp45K4EeYz1zwkrMLxdhTBqQauCk7A7XD0/j0iunZsbDEZg0QwnUo
+ y0s2DoBlbnLrbLw1VzCTEte2C4x2M0HA0uNuK+R/eh4dySEpjV/JNHJ4o
+ 1DUSgKgGyLJUrdh80PR4Xa2PpM2ilJeBG7uf/1fNkg361Ojajh70jrg07
+ k+Y1EO/yAUdjV8y4/3aqOWbx3dS+dY7aAxx6f7nyFoZ99ZDkvBphL3NDR
+ rRObkZSujnrbsv1UO/JOqGUsdhtTPpx9bMZpdoZ3V//yB9SiBVqOKRTYr
+ j5se/8DawaKEMjuZkhOs604DuQyPdXw8DU8ytWDnQhDiwSxBY5EhClJ35 A==;
+X-CSE-ConnectionGUID: kRyCGiCdRiWvVGfoToZI8Q==
+X-CSE-MsgGUID: XtGrZgIrS2OajvcohkaDlg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218211"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218211"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:21:59 -0700
-X-CSE-ConnectionGUID: JUVFVDeHQ2Kn/Dn63aDXDA==
-X-CSE-MsgGUID: cCJ2aeHATA+cJ5MTnC3LyA==
+ 29 Mar 2026 21:22:01 -0700
+X-CSE-ConnectionGUID: Q8Cq+BISTTijZq2pycspIg==
+X-CSE-MsgGUID: /znD+QPBTgaMBYG8dVRQNQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871021"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871032"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:21:57 -0700
+ 29 Mar 2026 21:21:59 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 00/19] Fix Adaptive Sync SDP for PR with Link ON + Auxless ALPM
-Date: Mon, 30 Mar 2026 09:36:37 +0530
-Message-ID: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 01/19] drm/dp: Rename and relocate AS SDP payload field masks
+Date: Mon, 30 Mar 2026 09:36:38 +0530
+Message-ID: <20260330040656.4116502-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
+References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -75,106 +77,81 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ARC_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_SEVEN(0.00)[7];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid];
+	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 8C753355311
+X-Rspamd-Queue-Id: B775435531F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Enable Adaptive Sync SDP for Panel replay + auxless ALPM.
-First few patches are fixes in existing AS SDP enablement.
-Later patches add the support to send AS SDP for Panel replay with Link
-ON and with auxless ALPM (Link-Off). 
+The AS SDP payload field masks were misnamed and placed under the DPRX
+feature enumeration list. These are not DPRX capability bits, but are
+payload field masks for the Adaptive Sync SDP.
 
-This series is in continuation from discussions in [1] [2] and more
-recent [3]:
+Relocate both masks next to the AS SDP definitions.
+Update users to the corrected names. No functional change.
 
-Apart from few patches from [3] new changes include:
-- Some clean up in drm/dp Macros
-- Add new DPCD bit to get FAVT PAYLOAD FIELDS PARSING SUPPORT.
-- Add AS SDP version and PR and VRR specific bits in drm_dp.h.
-- Modify AS SDP compute config to accomodate PR with Link On and Link
-  Off.
-- Program Downspread Ctrl DPCD bits.
-- Make way for T1 and T2 AS SDP transmission timing/position.
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++--
+ include/drm/display/drm_dp.h            | 5 +++--
+ 2 files changed, 5 insertions(+), 4 deletions(-)
 
-[1] https://lore.kernel.org/all/1b8c6c6de1e5fe0db83e6ae942dfee7e6f950767.camel@intel.com/
-[2] https://lore.kernel.org/all/aPtqdAxDwiuQZbrn@intel.com/
-[3] https://lore.kernel.org/intel-gfx/7c2d6f4e-69e6-452a-89cc-5fd4254430bd@intel.com/T/#m6e8beab2cc3b6ff9d61f740f107d83a2f4e08114
-
-Rev2:
- - Drop the redundant version member for AS SDP, and use the member
-   revision
- - Drop member to store AS SDP transmission time, use simple helper
-   instead.
- - Use Burst mode to write Panel Replay config DPCDs.
- - Split AS SDP configuration in compute_config() and
-   compute_config_late() phase.
- - Always enable AS SDP whenever supported by source + sink.
-
-Rev3:
- - Use ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR bit also to determine AS
-   SDP v2 support.
- - Drop patch to make provision to send AS SDP v1.
- - Add patch to include all relevant AS SDP fields in comparison.
- - Other refactor improvements suggested by Ville.
-
-Ankit Nautiyal (19):
-  drm/dp: Rename and relocate AS SDP payload field masks
-  drm/dp: Clean up DPRX feature enumeration macros
-  drm/dp: Add bits for AS SDP FAVT Payload Fields Parsing support
-  drm/dp: Add DPCD for configuring AS SDP for PR + VRR
-  drm/i915/dp: Fix readback for target_rr in Adaptive Sync SDP
-  drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
-  drm/i915/dp: Account for AS_SDP guardband only when enabled
-  drm/i915/dp: Add a helper to decide if AS SDP can be used
-  drm/i915/dp: Skip AS SDP for DP branch devices
-  drm/i915/dp: Use revision field of AS SDP data structure
-  drm/i915/dp: Include all relevant AS SDP fields in comparison
-  drm/i915/dp: Add member to intel_dp to store AS SDP v2 support
-  drm/i915/psr: Write the PR config DPCDs in burst mode
-  drm/i915/display: Add helper for AS SDP transmission time selection
-  drm/i915/psr: Program Panel Replay CONFIG3 using AS SDP transmission
-    time
-  drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for PR + Auxless
-    ALPM
-  drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
-  drm/i915/dp: Split AS SDP computation between compute_config and
-    compute_config_late
-  drm/i915/dp: Always enable AS SDP if supported by source + sink
-
- drivers/gpu/drm/i915/display/intel_alpm.c     |  20 ++-
- drivers/gpu/drm/i915/display/intel_display.c  |   6 +-
- .../drm/i915/display/intel_display_types.h    |   1 +
- drivers/gpu/drm/i915/display/intel_dp.c       | 147 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
- .../drm/i915/display/intel_dp_link_training.c |  10 +-
- .../drm/i915/display/intel_dp_link_training.h |   3 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      |  30 ++--
- drivers/gpu/drm/i915/display/intel_vrr.c      |  10 ++
- include/drm/display/drm_dp.h                  |  19 ++-
- 11 files changed, 194 insertions(+), 56 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4955bd8b11d7..602efaf500bd 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5295,8 +5295,8 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+ 	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
+ 		return -EINVAL;
+ 
+-	as_sdp->length = sdp->sdp_header.HB3 & DP_ADAPTIVE_SYNC_SDP_LENGTH;
+-	as_sdp->mode = sdp->db[0] & DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE;
++	as_sdp->length = sdp->sdp_header.HB3 & DP_AS_SDP_LENGTH_MASK;
++	as_sdp->mode = sdp->db[0] & DP_AS_SDP_OPERATION_MODE_MASK;
+ 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+ 	as_sdp->target_rr = (u64)sdp->db[3] | ((u64)sdp->db[4] & 0x3);
+ 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 8b15d3eeb716..4ea3b5b08a12 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -1204,8 +1204,6 @@
+ 
+ #define DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1         0x2214 /* 2.0 E11 */
+ # define DP_ADAPTIVE_SYNC_SDP_SUPPORTED    (1 << 0)
+-# define DP_ADAPTIVE_SYNC_SDP_OPERATION_MODE		GENMASK(1, 0)
+-# define DP_ADAPTIVE_SYNC_SDP_LENGTH				GENMASK(5, 0)
+ # define DP_AS_SDP_FIRST_HALF_LINE_OR_3840_PIXEL_CYCLE_WINDOW_NOT_SUPPORTED (1 << 1)
+ # define DP_VSC_EXT_SDP_FRAMEWORK_VERSION_1_SUPPORTED  (1 << 4)
+ 
+@@ -1870,4 +1868,7 @@ enum operation_mode {
+ 	DP_AS_SDP_FAVT_TRR_REACHED = 0x03
+ };
+ 
++#define DP_AS_SDP_OPERATION_MODE_MASK	GENMASK(1, 0)
++#define DP_AS_SDP_LENGTH_MASK		GENMASK(5, 0)
++
+ #endif /* _DRM_DP_H_ */
 -- 
 2.45.2
 
