@@ -2,34 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EITzCQmcymmg+QUAu9opvQ
+	id aAZ5LIOeymmg+QUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 17:51:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 18:02:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BB9735E2D5
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 17:51:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17EA635E4E9
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 18:02:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE59310E25A;
-	Mon, 30 Mar 2026 15:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6055510E1D6;
+	Mon, 30 Mar 2026 16:02:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="lRBCsvkU";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 293BB10E25A;
- Mon, 30 Mar 2026 15:51:34 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D6A110E002;
+ Mon, 30 Mar 2026 16:02:08 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 44FB5442D4;
+ Mon, 30 Mar 2026 16:02:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 9E25EC2BCB2;
+ Mon, 30 Mar 2026 16:02:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1774886528;
+ bh=AZ0uldLaPK5hj2AgqSOwxEW6YqwCYBF18h01AvCu1nM=;
+ h=Date:From:To:Cc:Subject:From;
+ b=lRBCsvkUDgYCeFXwKP0ieKfVCrnq23WG2/iGygDx03+c4ybXzxe0a/zcmqU7lLnq/
+ 1G7dNSwqbrt0AE2gjT07Q+O3uHbJ5JiA6ql5GOIR+b7l9NhZNeX7lhk5G0sTSoY1b+
+ 0Q4aqz9wsT0JtKROcMN9P3lmoV0j7/4mNcTxFre6TsbS4Qv9w+RHAKWJu53nrtbeUv
+ vt4VkmuyJQp6/RAEus2hIG/iEHc7/7sSB2taUf3bBwAmj1fWi23khbcD7vXDieuNo1
+ 9A1QXY1MulFAcg+G2rMIRCXJHwU3SDTS6jAtSaKr/p7hQBMW9igm1sHullKAfNG2yZ
+ /Fv9r5EGaPsuQ==
+Date: Mon, 30 Mar 2026 17:02:03 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Simona Vetter <simona.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: Dave Airlie <airlied@redhat.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>,
+ Maxime Ripard <mripard@kernel.org>
+Subject: linux-next: manual merge of the drm-misc tree with the drm tree
+Message-ID: <acqee1y4jIIuFlJe@sirena.org.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_fix_CONFIG=5FDRM=5FUSE=5F?=
- =?utf-8?q?DYNAMIC=5FDEBUG=3Dy_=28rev6=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jim Cromie" <jim.cromie@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 30 Mar 2026 15:51:34 -0000
-Message-ID: <177488589414.413457.10398149831631201213@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260326185413.1205870-1-jim.cromie@gmail.com>
-In-Reply-To: <20260326185413.1205870-1-jim.cromie@gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="q9oCtFYbqaFS5j8v"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,100 +62,146 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-3.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
+	TO_DN_ALL(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:replyto,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 9BB9735E2D5
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 17EA635E4E9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-== Series Details ==
 
-Series: fix CONFIG_DRM_USE_DYNAMIC_DEBUG=y (rev6)
-URL   : https://patchwork.freedesktop.org/series/135705/
-State : failure
+--q9oCtFYbqaFS5j8v
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-== Summary ==
+Hi all,
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/135705/revisions/6/mbox/ not applied
-Applying: dyndbg: fix NULL ptr on i386 due to section mis-alignment
-Applying: vmlinux.lds.h: move BOUNDED_SECTION_* macros to reuse later
-Applying: dyndbg.lds.S: fix lost dyndbg sections in modules
-Applying: vmlinux.lds.h: drop unused HEADERED_SECTION* macros
-Applying: dyndbg: factor ddebug_match_desc out from ddebug_change
-Applying: dyndbg: add stub macro for DECLARE_DYNDBG_CLASSMAP
-Applying: docs/dyndbg: update examples \012 to \n
-Applying: docs/dyndbg: explain flags parse 1st
-Applying: test-dyndbg: fixup CLASSMAP usage error
-Applying: dyndbg: reword "class unknown, " to "class:_UNKNOWN_"
-Applying: dyndbg: make ddebug_class_param union members same size
-Applying: dyndbg: drop NUM_TYPE_ARRAY
-Applying: dyndbg: tweak pr_fmt to avoid expansion conflicts
-Applying: dyndbg: reduce verbose/debug clutter
-Applying: dyndbg: refactor param_set_dyndbg_classes and below
-Applying: dyndbg: tighten fn-sig of ddebug_apply_class_bitmap
-Applying: dyndbg: replace classmap list with a vector
-Applying: dyndbg: macrofy a 2-index for-loop pattern
-Applying: dyndbg, module: make proper substructs in _ddebug_info
-Applying: dyndbg: move mod_name down from struct ddebug_table to _ddebug_info
-Applying: dyndbg: hoist classmap-filter-by-modname up to ddebug_add_module
-Applying: dyndbg-API: remove DD_CLASS_TYPE_(DISJOINT|LEVEL)_NAMES and code
-Applying: selftests-dyndbg: add a dynamic_debug run_tests target
-Applying: dyndbg: change __dynamic_func_call_cls* macros into expressions
-Applying: dyndbg-API: replace DECLARE_DYNDBG_CLASSMAP
-Applying: dyndbg: detect class_id reservation conflicts
-Applying: dyndbg: check DYNAMIC_DEBUG_CLASSMAP_DEFINE args at compile-time
-Applying: dyndbg-test: change do_prints testpoint to accept a loopct
-Applying: dyndbg-API: promote DYNAMIC_DEBUG_CLASSMAP_PARAM to API
-Applying: dyndbg: treat comma as a token separator
-Applying: dyndbg: split multi-query strings with %
-Applying: selftests-dyndbg: add test_mod_submod
-Applying: dyndbg: resolve "protection" of class'd pr_debug
-Applying: dyndbg: harden classmap and descriptor validation
-Applying: docs/dyndbg: add classmap info to howto
-Applying: dyndbg: Ignore additional arguments from pr_fmt
-Applying: dyndbg-test: verify DYNAMIC_DEBUG_CLASSMAP_USE_() compile-time CHECK
-Applying: drm: use correct ccflags-y spelling
-Applying: drm_buddy: fix power-of-2 rounding errs
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/drm_buddy.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/drm_buddy.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/drm_buddy.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0039 drm_buddy: fix power-of-2 rounding errs
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+Today's linux-next merge of the drm-misc tree got a conflict in:
 
+  drivers/gpu/drm/drm_gem_shmem_helper.c
 
+between commits:
+
+  d9a4a2021d4a5 ("Merge tag 'drm-misc-next-2026-03-12' of https://gitlab.fr=
+eedesktop.org/drm/misc/kernel into drm-next")
+
+=66rom the drm tree and commit:
+
+  6fdfd24017756 ("Merge drm/drm-fixes into drm-misc-next-fixes")
+
+=66rom the drm-misc tree.
+
+I fixed it up (see below) and can carry the fix as necessary. This
+is now fixed as far as linux-next is concerned, but any non trivial
+conflicts should be mentioned to your upstream maintainer when your tree
+is submitted for merging.  You may also want to consider cooperating
+with the maintainer of the conflicting tree to minimise any particularly
+complex conflicts.
+
+diff --combined drivers/gpu/drm/drm_gem_shmem_helper.c
+index 044f0d4ebf555,2062ca6078330..0000000000000
+--- a/drivers/gpu/drm/drm_gem_shmem_helper.c
++++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
+@@@ -554,20 -554,24 +554,20 @@@ int drm_gem_shmem_dumb_create(struct dr
+  }
+  EXPORT_SYMBOL_GPL(drm_gem_shmem_dumb_create);
+ =20
+ -static vm_fault_t try_insert_pfn(struct vm_fault *vmf, unsigned int order,
+ -				 unsigned long pfn)
+ +static vm_fault_t drm_gem_shmem_try_insert_pfn_pmd(struct vm_fault *vmf, =
+unsigned long pfn)
+  {
+ -	if (!order) {
+ -		return vmf_insert_pfn(vmf->vma, vmf->address, pfn);
+  #ifdef CONFIG_ARCH_SUPPORTS_PMD_PFNMAP
+ -	} else if (order =3D=3D PMD_ORDER) {
+ -		unsigned long paddr =3D pfn << PAGE_SHIFT;
+ -		bool aligned =3D (vmf->address & ~PMD_MASK) =3D=3D (paddr & ~PMD_MASK);
+ +	unsigned long paddr =3D pfn << PAGE_SHIFT;
+ +	bool aligned =3D (vmf->address & ~PMD_MASK) =3D=3D (paddr & ~PMD_MASK);
+ =20
+ -		if (aligned &&
+ -		    folio_test_pmd_mappable(page_folio(pfn_to_page(pfn)))) {
+ -			pfn &=3D PMD_MASK >> PAGE_SHIFT;
+ -			return vmf_insert_pfn_pmd(vmf, pfn, false);
+ -		}
+ -#endif
+ +	if (aligned && pmd_none(*vmf->pmd)) {
+ +		/* Read-only mapping; split upon write fault */
+ +		pfn &=3D PMD_MASK >> PAGE_SHIFT;
+ +		return vmf_insert_pfn_pmd(vmf, pfn, false);
+  	}
+ -	return VM_FAULT_FALLBACK;
+ +#endif
+ +
+ +	return 0;
+  }
+ =20
+  static vm_fault_t drm_gem_shmem_any_fault(struct vm_fault *vmf, unsigned =
+int order)
+@@@ -584,6 -588,9 +584,9 @@@
+  	struct folio *folio;
+  	unsigned long pfn;
+ =20
++ 	if (order && order !=3D PMD_ORDER)
++ 		return VM_FAULT_FALLBACK;
++=20
+  	dma_resv_lock(obj->resv, NULL);
+ =20
+  	if (page_offset >=3D num_pages || drm_WARN_ON_ONCE(dev, !shmem->pages) ||
+@@@ -597,11 -604,7 +600,11 @@@
+ =20
+  	pfn =3D page_to_pfn(page);
+ =20
+ -	ret =3D try_insert_pfn(vmf, order, pfn);
+ +	if (folio_test_pmd_mappable(folio))
+ +		ret =3D drm_gem_shmem_try_insert_pfn_pmd(vmf, pfn);
+ +	if (ret !=3D VM_FAULT_NOPAGE)
+ +		ret =3D vmf_insert_pfn(vma, vmf->address, pfn);
+ +
+  	if (ret =3D=3D VM_FAULT_NOPAGE)
+  		folio_mark_accessed(folio);
+ =20
+
+--q9oCtFYbqaFS5j8v
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnKnnsACgkQJNaLcl1U
+h9ATtwf/XVwOAJ9jZAbFoRGmM+aLhW814fUUnre9YJFIUtrihvOzF+CSmQt6iiBY
+UPuEhCRtw6qkP5+Dnf/nmlCx1F+99sN8QqV8GdgSPxeMp8krpMjHgpi3kkPbCSwq
+tC7JwzlrzeyC6vVmBCQMlx9duUGt1BHb4QtF0iX2viJm4mhc0iEwFDqdfYWZNA5O
+YGzTCoO1JdoCv9GN3PlsonncRHFnOwJzq47dVTMIl96bU0dAH0WU34kkVfH5QY1L
+f3Ipkqtyxw4J2ueI+dPAuJsjn7gjyGLMMjC72vQKp9tHZfN/lNAlU1HJR4uKo3/9
+ejY2wKNjnz963sg/5NdmhKqGZBtbZw==
+=+Hwg
+-----END PGP SIGNATURE-----
+
+--q9oCtFYbqaFS5j8v--
