@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOD7OHv6yWlg3wUAu9opvQ
+	id 2JF3N376yWlg3wUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:22 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B845E35537D
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5299355389
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 06:22:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23BE710E31E;
-	Mon, 30 Mar 2026 04:22:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3CFBB10E31D;
+	Mon, 30 Mar 2026 04:22:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dwpBVHw1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Djd4A7SF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EFCD110E31B;
- Mon, 30 Mar 2026 04:22:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7535C10E346;
+ Mon, 30 Mar 2026 04:22:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774844537; x=1806380537;
+ t=1774844539; x=1806380539;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=2z2CYXRfWM64itwzMpmd3GJZQFggUog43YdOkWGFPnA=;
- b=dwpBVHw1uffwKI5djhkdT7JxA1kBh2b6rJXbesZiheryHsTuqsaBM8n8
- iIF8NRvKMCEWUYULd8+gfsjhn6b9bFPMcKo5jKzxpQtl/D522i4UVChv2
- tqwWv0yzOh2SnInGBnCjcTRvjPkh5COYkeks7iFIjSIl2MQ8SVYOy0am+
- wM60oB4hu9+AS1oSGQt8GyGx+9x+D1sPAO2cprIUeKsAMXwlrHivipTNI
- Xcq8M6VxbgxkamopDMoQSenF3ETG2IF0qyNmujhbMGBHqK/h/CyNx1cml
- kwzHOcocBzBzjZrAjbKglCuBBN2CZlsiwmcWVx6SBPCjJ7sTvLZgbn4ja A==;
-X-CSE-ConnectionGUID: WLhBeGKWSi6GyWqRs1VTHw==
-X-CSE-MsgGUID: VatjFcNhR42JCHYJ9mimhA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218228"
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218228"
+ bh=8fHRg09kmlg4W410dOYhoxfAwbLFY3HQa5UFaqNxw54=;
+ b=Djd4A7SFXJIaEPFSO5DYpIrQQPChTpNL6zRNvcjz6c6upE79i2qS3oYP
+ DDDqJPeKZ1pZaON97/AkD413U/G6o08UOkSNWKtsAakIivgSLxdl6QtjY
+ ZiqX0JC6WLvkku40UYb7+RTJXT4p1vdTVSTg1bk1nf2Zibke1CA2WUVUq
+ ZwdD0Eb7HvUDMcLdk8AOY3nLDTTZHnAEYX+GaH38OZl6/a5kFsefKfYG5
+ Ic7+67YLoMZAw4ccoeFmUWbiSOTwragE7CdbPQjSIET3rDof88ICsZDkq
+ QIXwZqJVPVeHuL5KXOnVHSKOEeAdP64Isr6Ifqs2P+E4fRyGuqS+k8dkh A==;
+X-CSE-ConnectionGUID: ENLgS2YoQ8eCasGeDdsOIg==
+X-CSE-MsgGUID: ZNY8yi7ZTSGq85NAYAU8Yg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87218230"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87218230"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:22:17 -0700
-X-CSE-ConnectionGUID: +v+VZElET6OPuO75MDZ8zg==
-X-CSE-MsgGUID: tOX1weqKQKOG2XdKuwV7kw==
+ 29 Mar 2026 21:22:19 -0700
+X-CSE-ConnectionGUID: +Ih01W/RRyuXgXEo/N6m9A==
+X-CSE-MsgGUID: MaQKk/fIQuaE4Xh2ztR+Xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871154"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="263871183"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Mar 2026 21:22:14 -0700
+ 29 Mar 2026 21:22:17 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 07/19] drm/i915/dp: Account for AS_SDP guardband only when
- enabled
-Date: Mon, 30 Mar 2026 09:36:44 +0530
-Message-ID: <20260330040656.4116502-8-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 08/19] drm/i915/dp: Add a helper to decide if AS SDP can be
+ used
+Date: Mon, 30 Mar 2026 09:36:45 +0530
+Message-ID: <20260330040656.4116502-9-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
 References: <20260330040656.4116502-1-ankit.k.nautiyal@intel.com>
@@ -99,43 +99,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: B845E35537D
+X-Rspamd-Queue-Id: B5299355389
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Currently the intel_dp_sdp_min_guardband() accounts for AS_SDP for all
-platforms that support adaptive sync SDP even for configurations where
-it cannot be enabled. Instead account for adaptive sync SDP guardband
-only when it is enabled.
+Add a helper that determines whether AS SDP can be used for the
+current DP configuration. For now this is true only when the sink
+supports AS SDP and VRR is enabled, but more conditions may be added
+later.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 11 ++++++++++-
+ 1 file changed, 10 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 49eeb35973a1..499850c2abcf 100644
+index 499850c2abcf..7ca3f9d583db 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7374,7 +7374,6 @@ int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state, u32 ty
- int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 			       bool assume_all_enabled)
+@@ -3124,6 +3124,15 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
+ 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
+ }
+ 
++static bool intel_dp_can_use_as_sdp(struct intel_dp *intel_dp,
++				    struct intel_crtc_state *crtc_state)
++{
++	if (!intel_dp->as_sdp_supported)
++		return false;
++
++	return crtc_state->vrr.enable;
++}
++
+ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
  {
--	struct intel_display *display = to_intel_display(crtc_state);
- 	int sdp_guardband = 0;
+@@ -3131,7 +3140,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
  
- 	if (assume_all_enabled ||
-@@ -7389,8 +7388,8 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 		sdp_guardband = max(sdp_guardband,
- 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_PPS));
+-	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
++	if (!intel_dp_can_use_as_sdp(intel_dp, crtc_state))
+ 		return;
  
--	if ((assume_all_enabled && HAS_AS_SDP(display)) ||
--	    crtc_state->infoframes.enable & intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
-+	if (crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
- 		sdp_guardband = max(sdp_guardband,
- 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_ADAPTIVE_SYNC));
- 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
 -- 
 2.45.2
 
