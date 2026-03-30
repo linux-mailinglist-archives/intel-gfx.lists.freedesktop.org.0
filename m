@@ -2,67 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id frjjL1BAymky7AUAu9opvQ
+	id EM14GDpFymm/7AUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 11:20:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 11:41:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ECA4358089
-	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 11:20:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A7E3E3585B8
+	for <lists+intel-gfx@lfdr.de>; Mon, 30 Mar 2026 11:41:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E1A710E458;
-	Mon, 30 Mar 2026 09:20:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E3D910E53B;
+	Mon, 30 Mar 2026 09:41:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S9cBYH1O";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c11PhZqj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5329810E458;
- Mon, 30 Mar 2026 09:20:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A14D810E530;
+ Mon, 30 Mar 2026 09:41:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774862413; x=1806398413;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=KY1ELZtH2En9ImLQq+GK9FXLv0b7TZ9Celan5TQwKc8=;
- b=S9cBYH1OBgvzjkgLrdbxnUsUGJTFKZIkwmBNzdE4t56L/9+F7Nb/ZTX7
- MNHdXZQGMLgLK3QA7k/ppW7IMiUcWoTVPL6fh6sXbSCBcrvNKTRDc9U+m
- ffRptK6IdEt+zDU/5dxaid36B5ddWnxiVOOpDmZpHHkZREHA1UzAF+PAg
- TunWuwGP4itRJSlt5MnvJdrVUSTatmdX7ufK9HKhMsbx1iqWUtdiKx5EV
- 99nAAd/BatjnlgZmZ+AJHhFveRf+uRSqVEtaI6ajk8N/kfEB7z1TFrvSY
- eg5jLPAXj1RXtnP6a0wT7JTd07cDuFxVXaoJNxfWObKYVT4/f8zUUgh/U g==;
-X-CSE-ConnectionGUID: gTMTauyAT2WrsAkgPCFSFQ==
-X-CSE-MsgGUID: SWgND1qnRjSnuKjwg14UHw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="86467296"
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="86467296"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 02:20:07 -0700
-X-CSE-ConnectionGUID: NVfVk12hS3aWr/Tgpwvr3Q==
-X-CSE-MsgGUID: iSau7Pm6S5m9B6jmLymM7A==
+ t=1774863670; x=1806399670;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=YEPyN/mrDDqejI4Sz55lBSrk75Jo76HZL2xkArBiI8o=;
+ b=c11PhZqjlzfhhkqZwNyhGeH1hclZZOacgC9fU0RKR4uYAmhUidzj3U9m
+ zCOlJOiXOmHBC1HC1hcSq68nTsJNWMsghwiss36a+AT6bS4zgMT+Dav0t
+ 9CcXnPZEcazKnfirRZRietO2hUj4WlLVPq9KrWKO8uSnoLWjIEnEVGhfg
+ Kdma4fDAiYwkDV1KkYMWn+7lCYrYBLTDYmT+QSDjk0EK1fOgA2vWjFsfL
+ nE10WTLWXZn6z70hvGCyUAmduUdy3lrnEKYQ0vnNlVhotZXnmOrEoxbq8
+ ivZXYZQPtLlRogz5TZx/6lF8UavziiapIKcojEtOwER7UCPqzQpzcurCV w==;
+X-CSE-ConnectionGUID: 9xIV0xcYQbCKpLDe8lTOvA==
+X-CSE-MsgGUID: EX0TRNV3S9WY6ZoAyI0e4g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11743"; a="87321487"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="87321487"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 02:41:10 -0700
+X-CSE-ConnectionGUID: bmOHLgt+ShesTdXTT1fHfw==
+X-CSE-MsgGUID: bnWe0wyjSa6EeSBetyON8g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="221126582"
+X-IronPort-AV: E=Sophos;i="6.23,149,1770624000"; d="scan'208";a="222694328"
 Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.246.17])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 02:20:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-next
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 02:41:06 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>, "Grzelak, Michal"
+ <michal.grzelak@intel.com>
+Cc: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, Ville
+ =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Subject: RE: [PATCH v1] drm/i915/aux: use polling when irqs are unavailable
+In-Reply-To: <CH3PR11MB73006943DE437D325A3B4540BA55A@CH3PR11MB7300.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Date: Mon, 30 Mar 2026 12:19:59 +0300
-Message-ID: <ac9dfdb745d5a67c519ea150a6f36f8f74b8760e@intel.com>
+References: <20260210111952.4138954-1-michal.grzelak@intel.com>
+ <IA0PR11MB73072FD0F4A1F94AA63B5A04BA48A@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <dbb4a305-612a-c01f-37e3-e7f86c72cc69@intel.com>
+ <CH3PR11MB73006943DE437D325A3B4540BA55A@CH3PR11MB7300.namprd11.prod.outlook.com>
+Date: Mon, 30 Mar 2026 12:41:03 +0300
+Message-ID: <434c6bcb63f96b6d656a169275d5033d753d7857@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -80,248 +80,190 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 0ECA4358089
+	RCPT_COUNT_FIVE(0.00)[5]
+X-Rspamd-Queue-Id: A7E3E3585B8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Sun, 29 Mar 2026, "Murthy, Arun R" <arun.r.murthy@intel.com> wrote:
+>> -----Original Message-----
+>> From: Grzelak, Michal <michal.grzelak@intel.com>
+>> Sent: Saturday, March 28, 2026 9:22 PM
+>> To: Murthy, Arun R <arun.r.murthy@intel.com>
+>> Cc: Grzelak, Michal <michal.grzelak@intel.com>; intel-xe@lists.freedeskt=
+op.org;
+>> intel-gfx@lists.freedesktop.org; Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@=
+linux.intel.com>
+>> Subject: RE: [PATCH v1] drm/i915/aux: use polling when irqs are unavaila=
+ble
+>>=20
+>> On Tue, 24 Mar 2026, Murthy, Arun R wrote:
+>> >
+>> >> -----Original Message-----
+>> >> From: Intel-gfx <intel-gfx-bounces@lists.freedesktop.org> On Behalf
+>> >> Of Micha=C5=82 Grzelak
+>> >> Sent: Tuesday, February 10, 2026 4:50 PM
+>> >> To: intel-xe@lists.freedesktop.org; intel-gfx@lists.freedesktop.org
+>> >> Cc: Grzelak, Michal <michal.grzelak@intel.com>; Ville Syrj=C3=A4l=C3=
+=A4
+>> >> <ville.syrjala@linux.intel.com>
+>> >> Subject: [PATCH v1] drm/i915/aux: use polling when irqs are
+>> >> unavailable
+>> >>
+>> >> PTL with physically disconnected display was observed to have 40s
+>> >> longer execution time when testing
+>> xe_fault_injection@xe_guc_mmio_send_recv.
+>> >> The issue has not been seen when reverting commit 40a9f77a28fa
+>> >> ("Revert
+>> >> "drm/i915/dp: change aux_ctl reg read to polling read"").
+>> >>
+>> >> Apparently the configuration suffers from not having AUX enabled when
+>> >> using interrupts. One probable cause can be xe enabling interrupts
+>> >> too
+>> >> late: interrupts need memory allocations which currently can't be
+>> >> done before the display FB takeover is done.
+>> >>
+>> >> As for now, use polling for AUX in case interrupts are unavailable.
+>> >>
+>> >> Fixes: 40a9f77a28fa ("Revert "drm/i915/dp: change aux_ctl reg read to
+>> >> polling
+>> >> read"")
+>> >> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> >> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/display/intel_dp_aux.c | 20
+>> >> ++++++++++++++++----
+>> >>  1 file changed, 16 insertions(+), 4 deletions(-)
+>> >>
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> index b20ec3e589fad..9c9b6410366d5 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux.c
+>> >> @@ -12,6 +12,7 @@
+>> >>  #include "intel_dp.h"
+>> >>  #include "intel_dp_aux.h"
+>> >>  #include "intel_dp_aux_regs.h"
+>> >> +#include "intel_parent.h"
+>> >>  #include "intel_pps.h"
+>> >>  #include "intel_quirks.h"
+>> >>  #include "intel_tc.h"
+>> >> @@ -60,18 +61,29 @@ intel_dp_aux_wait_done(struct intel_dp *intel_dp)
+>> >>  	struct intel_display *display =3D to_intel_display(intel_dp);
+>> >>  	i915_reg_t ch_ctl =3D intel_dp->aux_ch_ctl_reg(intel_dp);
+>> >>  	const unsigned int timeout_ms =3D 10;
+>> >> +	bool done =3D true;
+>> >>  	u32 status;
+>> >> -	bool done;
+>> >> +	int ret;
+>> >>
+>> >> +	if (intel_parent_irq_enabled(display)) {
+>> >>  #define C (((status =3D intel_de_read_notrace(display, ch_ctl)) &
+>> >> DP_AUX_CH_CTL_SEND_BUSY) =3D=3D 0)
+>> >> -	done =3D wait_event_timeout(display->gmbus.wait_queue, C,
+>> >> -				  msecs_to_jiffies_timeout(timeout_ms));
+>> >> +		done =3D wait_event_timeout(display->gmbus.wait_queue, C,
+>> >> +
+>> > Wonder if this is a corner/error case, as to how interrupts are disabl=
+ed.
+>> > Rather I feel should find out why interrupts are being disabled, if th=
+is would
+>> be a valid scenario then in most of the places where wait_event_timeout(=
+) is
+>> used in drm we should check if parent_irq is enabled! In that case, can =
+this be a
+>> workaround ?
+>>=20
+>> I'm not sure I get what you mean. Can you elaborate more on what you wou=
+ld
+>> like to see?
+>>=20
+> Having interrupts disabled for such a long time is an issue and will have=
+ to identify that.
+> This work around would definitely help in those scenarios and a good to h=
+ave in driver.
+>
+>> My suspicion is that you are asking to
+>> s/wait_event_timeout()/<this patch> in the whole drm directory. If that'=
+s the
+>> case, I don't know if it is really neccessary since it is AUX-only relat=
+ed issue.
+> Why is it only AUX related. For AUX Tx we are relaying on interrupts and =
+getting this interrupt is the issue over here due to parent interrupt being=
+ disabled.
+> Similarly in other places where waitqueues are used in i915, can have thi=
+s WA to make the driver more robust.
 
-Hi Dave & Sima -
-
-drm-intel-next-2026-03-30:
-drm/i915 feature pull #2 for v7.1:
-
-Refactoring and cleanups:
-- Refactor LT PHY PLL handling to use the DPLL framework (Mika)
-- Implement display register polling and waits in display code (Ville)
-- Move PCH clock gating in display PCH file (Luca)
-- Add shared stepping info header for i915 and display (Jani)
-- Clean up GVT I2C command decoding (Jonathan)
-- NV12 plane unlinking cleanups (Ville)
-- Clean up NV12 DDB/watermark handling for pre-ICL platforms (Ville)
-
-Fixes:
-- An assortment of DSI fixes (Ville)
-- Handle PORT_NONE in assert_port_valid() (Jonathan)
-- Fix link failure without FBDEV emulation (Arnd Bergmann)
-- Quirk disable panel replay on certain Dell XPS models (Jouni)
-- Check if VESA DPCD AUX backlight is possible (Suraj)
-
-Other:
-- Mailmap update for Christoph (Christoph)
+Please analyze and root cause before even suggesting changes like that.
 
 BR,
 Jani.
 
-The following changes since commit 9876394f64a7c166964e003585806473ad6f532b:
 
-  drm/{i915,xe}: move framebuffer bo to parent interface (2026-03-16 11:00:=
-21 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-next-20=
-26-03-30
-
-for you to fetch changes up to e012fa31f90de0928d85ab22d9cc5fc8fe84c5b0:
-
-  drm/i915/uncore: Do GT FIFO checks in early sanitize and forcewake get (2=
-026-03-27 13:08:32 +0200)
-
-----------------------------------------------------------------
-drm/i915 feature pull #2 for v7.1:
-
-Refactoring and cleanups:
-- Refactor LT PHY PLL handling to use the DPLL framework (Mika)
-- Implement display register polling and waits in display code (Ville)
-- Move PCH clock gating in display PCH file (Luca)
-- Add shared stepping info header for i915 and display (Jani)
-- Clean up GVT I2C command decoding (Jonathan)
-- NV12 plane unlinking cleanups (Ville)
-- Clean up NV12 DDB/watermark handling for pre-ICL platforms (Ville)
-
-Fixes:
-- An assortment of DSI fixes (Ville)
-- Handle PORT_NONE in assert_port_valid() (Jonathan)
-- Fix link failure without FBDEV emulation (Arnd Bergmann)
-- Quirk disable panel replay on certain Dell XPS models (Jouni)
-- Check if VESA DPCD AUX backlight is possible (Suraj)
-
-Other:
-- Mailmap update for Christoph (Christoph)
-
-----------------------------------------------------------------
-Arnd Bergmann (1):
-      drm/i915/fbdev: fix link failure without FBDEV emulation
-
-Christoph Manszewski (1):
-      mailmap: update email address for Christoph Manszewski
-
-Imre Deak (1):
-      drm/i915/dp_tunnel: Fix error handling when clearing stream BW in ato=
-mic state
-
-Jani Nikula (5):
-      drm/i915/dmc: simplify stepping info initialization
-      drm/i915/display: add step name in display runtime info
-      drm/i915/dmc: use step name from runtime info
-      drm/xe/compat: remove intel_step_name macro
-      drm/intel: add shared step.h and switch i915 to use it
-
-Jonathan Cavitt (2):
-      drm/i915/display: PORT_NONE is not valid
-      drm/i915/gvt: Swap read and write checks
-
-Jouni H=C3=B6gander (4):
-      drm/i915/psr: Disable PSR on update_m_n and update_lrr
-      drm/i915/psr: Compute PSR entry_setup_frames into intel_crtc_state
-      drm/i915/psr: Disable Panel Replay on Dell XPS 14 DA14260 as a quirk
-      drm/i915/psr: Fixes for Dell XPS DA14260 quirk
-
-Luca Coelho (4):
-      drm/i915/display: move clock-gating init for IBX to display
-      drm/i915: move CPT clock gating init into intel_pch
-      drm/i915: move LPT clock gating init into intel_pch
-      drm/i915: move CNP clock gating init into intel_pch
-
-Mika Kahola (24):
-      drm/i915/lt_phy: Dump missing PLL state parameters
-      drm/i915/lt_phy: Add check if PLL is enabled
-      drm/i915/lt_phy: Add PLL information for xe3plpd
-      drm/i915/lt_phy: Refactor LT PHY PLL handling to use explicit PLL sta=
-te
-      drm/i915/lt_phy: Add lane_count to PLL state
-      drm/i915/lt_phy: Add xe3plpd .compute_dplls hook
-      drm/i915/lt_phy: Add xe3plpd .get_dplls hook
-      drm/i915/lt_phy: Add xe3plpd .put_dplls hook
-      drm/i915/lt_phy: Add xe3plpd .update_active_dpll hook
-      drm/i915/lt_phy: Add xe3plpd .update_dpll_ref_clks hook
-      drm/i915/lt_phy: Add xe3plpd .dump_hw_state hook
-      drm/i915/lt_phy: Add xe3plpd .compare_hw_state hook
-      drm/i915/lt_phy: Add xe3plpd .get_hw_state hook
-      drm/i915/lt_phy: Add xe3plpd .get_freq hook
-      drm/i915/lt_phy: Add xe3plpd .crtc_get_dpll
-      drm/i915/lt_phy: Add .enable_clock hook on DDI
-      drm/i915/lt_phy: Add .disable_clock hook on DDI
-      drm/i915/lt_phy: Dump lane count for HW state
-      drm/i915/lt_phy: Readout lane count
-      drm/i915/lt_phy: Get encoder configuration for xe3plpd platform
-      drm/i915/lt_phy: Add xe3plpd Thunderbolt PLL hooks
-      drm/i915/lt_phy: Remove LT PHY specific state verification
-      drm/i915/lt_phy: Enable dpll framework for xe3plpd
-      drm/i915/lt_phy: Replace crtc compute clock
-
-Samasth Norway Ananda (2):
-      drm/i915/gmbus: fix spurious timeout on 512-byte burst reads
-      drm/i915/gmbus: fix a typo in comment message
-
-Suraj Kandpal (1):
-      drm/i915/backlight: Check if VESA backlight is possible
-
-Ville Syrj=C3=A4l=C3=A4 (23):
-      drm/i915: Order OP vs. timeout correctly in __wait_for()
-      drm/i915: Unlink NV12 planes earlier
-      drm/i915: Relocate unlink_nv12_plane()
-      drm/i915: Skip redundant NV12 plane unlinking
-      drm/i915/wm: Nuke is_planar from skl+ wm structures
-      drm/i915/wm: Reorder the arguments to skl_allocate_plane_ddb()
-      drm/i915/wm: s/skl_check_nv12_wm_level()/skl_check_wm_level_nv12()/
-      drm/i915/wm: Extract skl_allocate_plane_ddb_nv12()
-      drm/i915/wm: Nuke wm->uv_wm[]
-      drm/i915/wm: s/skl_print_plane_changes()/skl_print_plane_wm_changes()/
-      drm/i915/wm: Extract skl_print_plane_ddb_changes()
-      drm/i915/wm: Include ddb_y in skl_print_wm_changes() on pre-icl
-      drm/i915/wm: Include .min_ddb_alloc_uv in the wm dumps
-      drm/i915/de: Introduce intel_de.c and move intel_de_{read,write}8() t=
-here
-      drm/i915/de: Move intel_de_wait*() into intel_de.c
-      drm/i915/de: Implement register polling in the display code
-      drm/i915/dsi: Don't do DSC horizontal timing adjustments in command m=
-ode
-      drm/i915/dsi: s/eotp_pkt/eot_pkt/
-      drm/i915/dsi: Make 'clock_stop' boolean
-      drm/i915/dsi: Fill BLLPs with blanking packets if requested
-      drm/i915/dsi: Place clock into LP during LPM if requested
-      drm/i915/selftests: Nuke live_forcewake_domains selftest
-      drm/i915/uncore: Do GT FIFO checks in early sanitize and forcewake get
-
- .mailmap                                           |   1 +
- drivers/gpu/drm/i915/Makefile                      |   1 +
- drivers/gpu/drm/i915/display/icl_dsi.c             |  21 ++-
- drivers/gpu/drm/i915/display/icl_dsi_regs.h        |   3 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.c       |  10 +-
- drivers/gpu/drm/i915/display/intel_cx0_phy.h       |   1 +
- drivers/gpu/drm/i915/display/intel_ddi.c           |  26 +--
- drivers/gpu/drm/i915/display/intel_de.c            | 178 +++++++++++++++++=
-++
- drivers/gpu/drm/i915/display/intel_de.h            | 121 +++----------
- drivers/gpu/drm/i915/display/intel_display.c       |  43 +----
- .../gpu/drm/i915/display/intel_display_device.c    |  28 ++-
- .../gpu/drm/i915/display/intel_display_device.h    |   1 +
- drivers/gpu/drm/i915/display/intel_display_types.h |   4 +-
- drivers/gpu/drm/i915/display/intel_dmc.c           |  19 +-
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  |  32 +++-
- drivers/gpu/drm/i915/display/intel_dp_tunnel.c     |  20 ++-
- drivers/gpu/drm/i915/display/intel_dp_tunnel.h     |  11 +-
- drivers/gpu/drm/i915/display/intel_dpll.c          |  26 +--
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c      | 186 +++++++++++++++++=
-++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h      |   1 +
- drivers/gpu/drm/i915/display/intel_dsi.h           |   7 +-
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c       |  12 +-
- drivers/gpu/drm/i915/display/intel_gmbus.c         |   6 +-
- drivers/gpu/drm/i915/display/intel_lt_phy.c        | 193 ++++++++++++-----=
-----
- drivers/gpu/drm/i915/display/intel_lt_phy.h        |  23 ++-
- .../gpu/drm/i915/display/intel_modeset_verify.c    |   1 -
- drivers/gpu/drm/i915/display/intel_pch.c           |  93 ++++++++++
- drivers/gpu/drm/i915/display/intel_pch.h           |   1 +
- drivers/gpu/drm/i915/display/intel_plane.c         |  61 +++----
- drivers/gpu/drm/i915/display/intel_psr.c           |  15 +-
- drivers/gpu/drm/i915/display/intel_quirks.c        |  25 ++-
- drivers/gpu/drm/i915/display/intel_quirks.h        |   1 +
- drivers/gpu/drm/i915/display/skl_watermark.c       | 162 +++++++++++------
- drivers/gpu/drm/i915/display/vlv_dsi.c             |   2 +-
- drivers/gpu/drm/i915/gvt/edid.c                    |  18 +-
- drivers/gpu/drm/i915/i915_initial_plane.c          |   3 +-
- drivers/gpu/drm/i915/i915_wait_util.h              |   2 +-
- drivers/gpu/drm/i915/intel_clock_gating.c          |  86 +--------
- drivers/gpu/drm/i915/intel_step.h                  |  57 +-----
- drivers/gpu/drm/i915/intel_uncore.c                |  72 +++++---
- drivers/gpu/drm/i915/selftests/intel_uncore.c      |  62 -------
- drivers/gpu/drm/xe/Makefile                        |   1 +
- .../gpu/drm/xe/compat-i915-headers/intel_step.h    |   3 +-
- .../gpu/drm/xe/compat-i915-headers/intel_uncore.h  |  31 ----
- include/drm/intel/step.h                           |  62 +++++++
- 45 files changed, 1049 insertions(+), 683 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_de.c
- create mode 100644 include/drm/intel/step.h
+>
+> Thanks and Regards,
+> Arun R Murthy
+> --------------------=20
+>
+>> Could you put some rationale behind it?
+>>=20
+>> BR,
+>> Micha=C5=82
+>>=20
+>> >
+>> > Thanks and Regards,
+>> > Arun R Murthy
+>> > --------------------
+>> >> msecs_to_jiffies_timeout(timeout_ms));
+>> >> +
+>> >> +#undef C
+>> >> +	} else {
+>> >> +		ret =3D intel_de_wait_ms(display, ch_ctl,
+>> >> +				       DP_AUX_CH_CTL_SEND_BUSY, 0,
+>> >> +				       timeout_ms, &status);
+>> >> +
+>> >> +		if (ret =3D=3D -ETIMEDOUT)
+>> >> +			done =3D false;
+>> >> +	}
+>> >>
+>> >>  	if (!done)
+>> >>  		drm_err(display->drm,
+>> >>  			"%s: did not complete or timeout within %ums (status
+>> 0x%08x)\n",
+>> >>  			intel_dp->aux.name, timeout_ms, status); -#undef C
+>> >>
+>> >>  	return status;
+>> >>  }
+>> >> --
+>> >> 2.45.2
+>> >
+>> >
 
 --=20
 Jani Nikula, Intel
