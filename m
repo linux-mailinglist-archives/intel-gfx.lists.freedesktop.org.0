@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOCdMCcNy2msDQYAu9opvQ
+	id oDPOMCwNy2msDQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 01:54:15 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 01:54:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 759AA36277A
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 01:54:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7CF89362781
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 01:54:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05E6E10E80B;
-	Mon, 30 Mar 2026 23:54:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1F89010E811;
+	Mon, 30 Mar 2026 23:54:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lQCSU+Ht";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mnrpR5GJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0517910E80F;
- Mon, 30 Mar 2026 23:54:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D9ACB10E811;
+ Mon, 30 Mar 2026 23:54:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774914853; x=1806450853;
+ t=1774914858; x=1806450858;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Ad/UOpLNScqhODp44W5RI8ZIVHKtQ/GO7tLI5JyGPeE=;
- b=lQCSU+HtIYDRnM6P72TBc4QM40Px0wDrIYHy6lZaSX5juK2YjeJZ6g9K
- 7dadJh3ovpbYxzy3GoPw8kVN6VZmLmxzjgmNWJfSeA28M+ITTX7I1P/xz
- Ym8uE4C+ZlEb7uoWxWbpTe1Vw3VAEZNpzPwXHrt05qxtpld7tv1NVLWAy
- thjClLpjB834AYQKB9h77k+uvv/UC3OuQBmXtcCV9W5hqEsAVYz6sFHpX
- 5XUOiP/xYKA61VnDaclyxJfCSCzkldTHGyDvLUGKMCKts+EimLc3Forin
- daI597eJd595MBImfnXoahv32SeyuY1Dq7TDuKmOk2F+zX1yz6CUiBVnm w==;
-X-CSE-ConnectionGUID: ulv4jMRSTKOtpcdpT9fbbQ==
-X-CSE-MsgGUID: Gyg3HB48RRGOJnmE24DUOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75979257"
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="75979257"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 16:54:13 -0700
-X-CSE-ConnectionGUID: PK99DkpnQnOs8hWgHaTF7A==
-X-CSE-MsgGUID: c3QXZRdYS2unbcen5mOHjg==
+ bh=T22jqak7i+QazMF4FUiNCZ3P9iUck6E+OwV6zEZ9EMo=;
+ b=mnrpR5GJ+3WdXHcB7xApCcGeuv7/lDdX26/x+oIq5ZuQrz38SNVJtKsZ
+ mavkvlkYjQoHVEtKWWSsncZiukwHDUX5GPV7lMjb3YIdkjwlbwyktHx/S
+ YKN7n4KLQjOFxY45Cy+8sukfM3LUhEfhUJnQMpOpxhjdg8r4+jqNaWTwS
+ gWS1u7X53R7KWZCIfTNjikuBCDskjpmqDAxlbA8Uhu89+tPs99kpMi9kN
+ TrrcMeqOxyXf2YQP6CKLfO+FQM+VIIvkRogAysNwczoG7mbrOF3bqdyAu
+ 86M2Wcp639vda9UwWsMIezd1qV3xk7IFR0QfeTd2VTAEImFDOTG9h+Gyi A==;
+X-CSE-ConnectionGUID: zw3EV/+sTwGiDXBx8QztPg==
+X-CSE-MsgGUID: Q9RnmIOeS1yeiSblXM84Ow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="86611990"
+X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="86611990"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 16:54:17 -0700
+X-CSE-ConnectionGUID: cKrSvS6WQaCOE4UW6Wf0LQ==
+X-CSE-MsgGUID: 4mG0luqIRlW7w38TAo1tfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,150,1770624000"; d="scan'208";a="225208231"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.155])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Mar 2026 16:54:12 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Mar 2026 16:54:16 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Subject: [PATCH 6/9] drm/i915/dp: Require a HDMI sink for YCbCr output via PCON
-Date: Tue, 31 Mar 2026 02:53:36 +0300
-Message-ID: <20260330235339.29479-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH 7/9] drm/i915/dp: Validate sink format in .mode_valid()
+Date: Tue, 31 Mar 2026 02:53:37 +0300
+Message-ID: <20260330235339.29479-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
 References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
@@ -100,42 +99,42 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:dkim,intel.com:email,collabora.com:email]
-X-Rspamd-Queue-Id: 759AA36277A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:dkim,intel.com:email,collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 7CF89362781
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-DVI sinks can't deal with YCbCr. Make sure we have a HDMI sink connected
-after the PCON before doing YCbCr 4:2:0 output.
+Make sure the sink supports out chosen sink format. I suppose it
+might be at least possible that some PCONs might not snoop the EDID
+hard enough and filter out all the modes that they should.
+
+Also if we ever want to add a similar "force DVI" knob to DP
+outputs that we have for native HDMI, we'd need to manually
+get rid of anything DVI sinks can't handle.
 
 Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 5 +++++
- 1 file changed, 5 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 86319bf09a19..ce40d38557e1 100644
+index ce40d38557e1..ed89fbcdd549 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1358,10 +1358,15 @@ intel_dp_sink_format_valid(struct intel_connector *connector,
- 			   const struct drm_display_mode *mode,
- 			   enum intel_output_format sink_format)
- {
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	const struct drm_display_info *info = &connector->base.display_info;
+@@ -1466,6 +1466,10 @@ intel_dp_mode_valid_format(struct intel_connector *connector,
+ 	int num_joined_pipes;
+ 	int link_bpp_x16;
  
- 	switch (sink_format) {
- 	case INTEL_OUTPUT_FORMAT_YCBCR420:
-+		if (intel_dp->dfp.min_tmds_clock &&
-+		    !intel_dp_has_hdmi_sink(intel_dp))
-+			return MODE_NO_420;
++	status = intel_dp_sink_format_valid(connector, mode, sink_format);
++	if (status != MODE_OK)
++		return status;
 +
- 		if (!connector->base.ycbcr_420_allowed ||
- 		    !drm_mode_is_420(info, mode))
- 			return MODE_NO_420;
+ 	output_format = intel_dp_output_format(connector, sink_format);
+ 
+ 	max_link_clock = intel_dp_max_link_rate(intel_dp);
 -- 
 2.52.0
 
