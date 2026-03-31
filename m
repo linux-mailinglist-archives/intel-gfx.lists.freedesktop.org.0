@@ -2,65 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GLixAMDEy2mnLgYAu9opvQ
+	id 0MjsOJvHy2mnLgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 14:57:36 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 15:09:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5F647369D2C
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 14:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D9CF369F80
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 15:09:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 66D9210EC51;
-	Tue, 31 Mar 2026 12:57:33 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqPkod4Y";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB98110E9A2;
+	Tue, 31 Mar 2026 13:09:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6CD8610EC51;
- Tue, 31 Mar 2026 12:57:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774961852; x=1806497852;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=ODPVfFtPpNPEzmNBiVGykna8wT8htt4X/R1Ucwv1OOc=;
- b=PqPkod4YFDQDupX8RcQBefeYseXjtgo1jZtQZLISgRnvGtP4WDAOlNXA
- zubNlx+eOTCsTbiLMyE7uTY2PjatPZM7F4dibe+QJt5a5J/lkb9dPS13p
- v0SeKBnyTlI5/wBezNMVIIdwhQvn1F8g0ujhHysYpgZsjG/FkiBXU7Yyx
- zyQzd+aXVD6HzgPEKNUzMtTh0wU5wkjrjNbhfBJIrmDiZ/lvfsrJJ/Gij
- vB1tyRpHyeZs0bf8+yyNbpgZzZOvZvZ8aeJGumMTVJZxmQem60unI3h2b
- 3tGATYaMJ7iByPnji6Jr0gsPSn2VYGzPb6JsNV+dhNYPTS/lCOKkzCHk2 Q==;
-X-CSE-ConnectionGUID: YZtT488ESkWtwq3vfuBsJg==
-X-CSE-MsgGUID: sQ6/x8YvR/CLuWB8AfZjdg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75867241"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="75867241"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:57:32 -0700
-X-CSE-ConnectionGUID: yWTsGHowSxSVXHRcqY/sFQ==
-X-CSE-MsgGUID: zj4BKb3lR/Kj2cZezlK0Cw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="223480535"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.73])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:57:30 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
-Subject: Re: [PATCH v2 7/8] drm/i915/display: move pre-HSW clock gating init
- to display
-In-Reply-To: <20260331121608.1016333-8-luciano.coelho@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260331121608.1016333-1-luciano.coelho@intel.com>
- <20260331121608.1016333-8-luciano.coelho@intel.com>
-Date: Tue, 31 Mar 2026 15:57:27 +0300
-Message-ID: <3a079495743029f8f00a90eb4401fba17aa7578a@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 287AD10E953;
+ Tue, 31 Mar 2026 13:09:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============3041847067871870456=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_move_VLV_IOSF?=
+ =?utf-8?q?_SB_to_display_parent_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Mar 2026 13:09:45 -0000
+Message-ID: <177496258512.415443.17639097013697528678@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1774957233.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1774957233.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,374 +42,322 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.935];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5F647369D2C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 4D9CF369F80
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 31 Mar 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> Move the remaining pre-HSW display clock gating programming into
-> display.
->
-> This also drops display register includes from intel_clock_gating.c.
->
-> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> ---
->  .../i915/display/intel_display_clock_gating.c |  95 ++++++++++++++++
->  .../i915/display/intel_display_clock_gating.h |   6 +
->  drivers/gpu/drm/i915/intel_clock_gating.c     | 103 +-----------------
->  3 files changed, 107 insertions(+), 97 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> index d5085ce7adae..6867963868a7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> @@ -6,11 +6,13 @@
->  #include <drm/intel/intel_gmd_misc_regs.h>
->  
->  #include "intel_de.h"
-> +#include "i9xx_plane_regs.h"
->  #include "intel_display.h"
->  #include "intel_display_clock_gating.h"
->  #include "intel_display_regs.h"
->  
->  #include "i915_drv.h"
-> +#include "i915_reg.h"
+--===============3041847067871870456==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Auch, another one I should've spotted in v1. We can't use i915_reg.h
-either, we've already eradicated it from display code and xe compat
-code.
+== Series Details ==
 
-If there are display registers still remaining in i915_reg.h, they need
-to be moved to display headers.
+Series: drm/i915: move VLV IOSF SB to display parent interface
+URL   : https://patchwork.freedesktop.org/series/164160/
+State : success
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_18256 -> Patchwork_164160v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Additional (1): bat-adls-6 
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_164160v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests@dma_fence_chain:
+    - fi-skl-6600u:       NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@dmabuf@all-tests@dma_fence_chain.html
+
+  * igt@gem_lmem_swapping@parallel-random-engines:
+    - bat-adls-6:         NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html
+
+  * igt@gem_tiled_pread_basic@basic:
+    - bat-adls-6:         NOTRUN -> [SKIP][3] ([i915#15656])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_tiled_pread_basic@basic.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][4] -> [DMESG-FAIL][5] ([i915#12061]) +1 other test dmesg-fail
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  * igt@intel_hwmon@hwmon-read:
+    - bat-adls-6:         NOTRUN -> [SKIP][6] ([i915#7707]) +1 other test skip
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@intel_hwmon@hwmon-read.html
+
+  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
+    - bat-adls-6:         NOTRUN -> [SKIP][7] ([i915#4103]) +1 other test skip
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
+
+  * igt@kms_dsc@dsc-basic:
+    - bat-adls-6:         NOTRUN -> [SKIP][8] ([i915#3555] / [i915#3840])
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_dsc@dsc-basic.html
+
+  * igt@kms_force_connector_basic@force-load-detect:
+    - bat-adls-6:         NOTRUN -> [SKIP][9]
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html
+
+  * igt@kms_pm_backlight@basic-brightness:
+    - bat-adls-6:         NOTRUN -> [SKIP][10] ([i915#5354])
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html
+
+  * igt@kms_psr@psr-primary-mmap-gtt:
+    - bat-adls-6:         NOTRUN -> [SKIP][11] ([i915#1072] / [i915#9732]) +3 other tests skip
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html
+
+  * igt@kms_setmode@basic-clone-single-crtc:
+    - bat-adls-6:         NOTRUN -> [SKIP][12] ([i915#3555])
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html
+
+  * igt@prime_vgem@basic-fence-read:
+    - bat-adls-6:         NOTRUN -> [SKIP][13] ([i915#3291]) +2 other tests skip
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@prime_vgem@basic-fence-read.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - fi-skl-6600u:       [INCOMPLETE][14] ([i915#15859]) -> [PASS][15]
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live.html
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@gem_contexts:
+    - fi-skl-6600u:       [INCOMPLETE][16] -> [PASS][17]
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html
+   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][18] ([i915#12061]) -> [PASS][19] +1 other test pass
+   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#15656]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656
+  [i915#15859]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15859
+  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
+  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
+  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
+  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+  [i915#5354]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354
+  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
+  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
 
 
-BR,
-Jani.
+Build changes
+-------------
 
->  
->  static void intel_display_gen9_init_clock_gating(struct intel_display *display,
->  						 bool has_llc)
-> @@ -167,3 +169,96 @@ void intel_display_hsw_init_clock_gating(struct intel_display *display)
->  			     HSW_UNMASK_VBL_TO_REGS_IN_SRD);
->  	}
->  }
-> +
-> +void intel_display_disable_trickle_feed(struct intel_display *display)
-> +{
-> +	enum pipe pipe;
-> +
-> +	for_each_pipe(display, pipe) {
-> +		intel_de_rmw(display, DSPCNTR(display, pipe), 0,
-> +			     DISP_TRICKLE_FEED_DISABLE);
-> +
-> +		intel_de_rmw(display, DSPSURF(display, pipe), 0, 0);
-> +		intel_de_posting_read(display, DSPSURF(display, pipe));
-> +	}
-> +}
-> +
-> +void intel_display_ilk_init_clock_gating(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	/*
-> +	 * Required for FBC
-> +	 * WaFbcDisableDpfcClockGating:ilk
-> +	 */
-> +	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> +		       ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> +
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> +	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> +	intel_de_write(display, DISP_ARB_CTL,
-> +		       intel_de_read(display, DISP_ARB_CTL) |
-> +		       DISP_FBC_WM_DIS);
-> +
-> +	if (IS_IRONLAKE_M(i915)) {
-> +		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +		intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> +	}
-> +
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +
-> +	intel_display_disable_trickle_feed(display);
-> +}
-> +
-> +void intel_display_gen6_init_clock_gating(struct intel_display *display)
-> +{
-> +	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, dspclk_gate);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN1,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN1) |
-> +		       ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> +	intel_de_write(display, ILK_DISPLAY_CHICKEN2,
-> +		       intel_de_read(display, ILK_DISPLAY_CHICKEN2) |
-> +		       ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D,
-> +		       intel_de_read(display, ILK_DSPCLK_GATE_D) |
-> +		       ILK_DPARBUNIT_CLOCK_GATE_ENABLE |
-> +		       ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> +
-> +	intel_display_disable_trickle_feed(display);
-> +}
-> +
-> +void intel_display_ivb_init_clock_gating(struct intel_display *display)
-> +{
-> +	intel_de_write(display, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-> +	intel_de_rmw(display, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +}
-> +
-> +void intel_display_g4x_init_clock_gating(struct intel_display *display)
-> +{
-> +	struct drm_i915_private *i915 = to_i915(display->drm);
-> +	u32 dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
-> +			  OVRUNIT_CLOCK_GATE_DISABLE |
-> +			  OVCUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	if (IS_GM45(i915))
-> +		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
-> +
-> +	intel_de_write(display, DSPCLK_GATE_D, dspclk_gate);
-> +
-> +	intel_display_disable_trickle_feed(display);
-> +}
-> +
-> +void intel_display_i965gm_init_clock_gating(struct intel_display *display)
-> +{
-> +	intel_de_write(display, DSPCLK_GATE_D, 0);
-> +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> index e0300dc8b041..b6dd34ca92dd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-> @@ -17,5 +17,11 @@ void intel_display_bdw_clock_gating_disable_fbcq(struct intel_display *display);
->  void intel_display_bdw_clock_gating_vblank_in_srd(struct intel_display *display);
->  void intel_display_bdw_clock_gating_kvm_notif(struct intel_display *display);
->  void intel_display_hsw_init_clock_gating(struct intel_display *display);
-> +void intel_display_disable_trickle_feed(struct intel_display *display);
-> +void intel_display_ilk_init_clock_gating(struct intel_display *display);
-> +void intel_display_gen6_init_clock_gating(struct intel_display *display);
-> +void intel_display_ivb_init_clock_gating(struct intel_display *display);
-> +void intel_display_g4x_init_clock_gating(struct intel_display *display);
-> +void intel_display_i965gm_init_clock_gating(struct intel_display *display);
->  
->  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
-> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-> index 47b437a82f4e..12559db84cf4 100644
-> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
-> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-> @@ -29,11 +29,8 @@
->  #include <drm/intel/intel_gmd_misc_regs.h>
->  #include <drm/intel/intel_gmd_interrupt_regs.h>
->  
-> -#include "display/i9xx_plane_regs.h"
-> -#include "display/intel_display.h"
->  #include "display/intel_display_clock_gating.h"
->  #include "display/intel_display_core.h"
-> -#include "display/intel_display_regs.h"
->  #include "gt/intel_engine_regs.h"
->  #include "gt/intel_gt.h"
->  #include "gt/intel_gt_mcr.h"
-> @@ -68,74 +65,15 @@ static void glk_init_clock_gating(struct drm_i915_private *i915)
->  	intel_display_glk_init_clock_gating(i915->display);
->  }
->  
-> -static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
-> -{
-> -	struct intel_display *display = dev_priv->display;
-> -	enum pipe pipe;
-> -
-> -	for_each_pipe(display, pipe) {
-> -		intel_uncore_rmw(&dev_priv->uncore, DSPCNTR(display, pipe),
-> -				 0, DISP_TRICKLE_FEED_DISABLE);
-> -
-> -		intel_uncore_rmw(&dev_priv->uncore, DSPSURF(display, pipe),
-> -				 0, 0);
-> -		intel_uncore_posting_read(&dev_priv->uncore,
-> -					  DSPSURF(display, pipe));
-> -	}
-> -}
-> -
->  static void ilk_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> -
-> -	/*
-> -	 * Required for FBC
-> -	 * WaFbcDisableDpfcClockGating:ilk
-> -	 */
-> -	dspclk_gate |= ILK_DPFCRUNIT_CLOCK_GATE_DISABLE |
-> -		   ILK_DPFCUNIT_CLOCK_GATE_DISABLE |
-> -		   ILK_DPFDUNIT_CLOCK_GATE_ENABLE;
-> -
->  	intel_uncore_write(&i915->uncore, PCH_3DCGDIS0,
->  			   MARIUNIT_CLOCK_GATE_DISABLE |
->  			   SVSMUNIT_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(&i915->uncore, PCH_3DCGDIS1,
->  			   VFMUNIT_CLOCK_GATE_DISABLE);
->  
-> -	/*
-> -	 * According to the spec the following bits should be set in
-> -	 * order to enable memory self-refresh
-> -	 * The bit 22/21 of 0x42004
-> -	 * The bit 5 of 0x42020
-> -	 * The bit 15 of 0x45000
-> -	 */
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> -			   (intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> -			    ILK_DPARB_GATE | ILK_VSDPFD_FULL));
-> -	dspclk_gate |= ILK_DPARBUNIT_CLOCK_GATE_ENABLE;
-> -	intel_uncore_write(&i915->uncore, DISP_ARB_CTL,
-> -			   (intel_uncore_read(&i915->uncore, DISP_ARB_CTL) |
-> -			    DISP_FBC_WM_DIS));
-> -
-> -	/*
-> -	 * Based on the document from hardware guys the following bits
-> -	 * should be set unconditionally in order to enable FBC.
-> -	 * The bit 22 of 0x42000
-> -	 * The bit 22 of 0x42004
-> -	 * The bit 7,8,9 of 0x42020.
-> -	 */
-> -	if (IS_IRONLAKE_M(i915)) {
-> -		/* WaFbcAsynchFlipDisableFbcQueue:ilk */
-> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> -		intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_DPARB_GATE);
-> -	}
-> -
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> -
-> +	intel_display_ilk_init_clock_gating(i915->display);
->  	intel_pch_init_clock_gating(i915->display);
->  }
->  
-> @@ -152,11 +90,7 @@ static void gen6_check_mch_setup(struct drm_i915_private *i915)
->  
->  static void gen6_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate = ILK_VRHUNIT_CLOCK_GATE_DISABLE;
-> -
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN2, 0, ILK_ELPIN_409_SELECT);
-> +	intel_display_gen6_init_clock_gating(i915->display);
->  
->  	intel_uncore_write(&i915->uncore, GEN6_UCGCTL1,
->  			   intel_uncore_read(&i915->uncore, GEN6_UCGCTL1) |
-> @@ -191,19 +125,6 @@ static void gen6_init_clock_gating(struct drm_i915_private *i915)
->  	 *
->  	 * WaFbcAsynchFlipDisableFbcQueue:snb
->  	 */
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN1,
-> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN1) |
-> -			   ILK_FBCQ_DIS | ILK_PABSTRETCH_DIS);
-> -	intel_uncore_write(&i915->uncore, ILK_DISPLAY_CHICKEN2,
-> -			   intel_uncore_read(&i915->uncore, ILK_DISPLAY_CHICKEN2) |
-> -			   ILK_DPARB_GATE | ILK_VSDPFD_FULL);
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D,
-> -			   intel_uncore_read(&i915->uncore, ILK_DSPCLK_GATE_D) |
-> -			   ILK_DPARBUNIT_CLOCK_GATE_ENABLE  |
-> -			   ILK_DPFDUNIT_CLOCK_GATE_ENABLE);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> -
->  	intel_pch_init_clock_gating(i915->display);
->  
->  	gen6_check_mch_setup(i915);
-> @@ -335,10 +256,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
->  {
->  	struct intel_display *display = i915->display;
->  
-> -	intel_uncore_write(&i915->uncore, ILK_DSPCLK_GATE_D, ILK_VRHUNIT_CLOCK_GATE_DISABLE);
-> -
-> -	/* WaFbcAsynchFlipDisableFbcQueue:ivb */
-> -	intel_uncore_rmw(&i915->uncore, ILK_DISPLAY_CHICKEN1, 0, ILK_FBCQ_DIS);
-> +	intel_display_ivb_init_clock_gating(display);
->  
->  	/* WaDisableBackToBackFlipFix:ivb */
->  	intel_uncore_write(&i915->uncore, IVB_CHICKEN3,
-> @@ -367,7 +285,7 @@ static void ivb_init_clock_gating(struct drm_i915_private *i915)
->  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
->  			 0, GEN7_SQ_CHICKEN_MBCUNIT_SQINTMOB);
->  
-> -	g4x_disable_trickle_feed(i915);
-> +	intel_display_disable_trickle_feed(display);
->  
->  	intel_uncore_rmw(&i915->uncore, GEN6_MBCUNIT_SNPCR, GEN6_MBC_SNPCR_MASK,
->  			 GEN6_MBC_SNPCR_MED);
-> @@ -440,21 +358,12 @@ static void chv_init_clock_gating(struct drm_i915_private *i915)
->  
->  static void g4x_init_clock_gating(struct drm_i915_private *i915)
->  {
-> -	u32 dspclk_gate;
-> -
->  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D1, 0);
->  	intel_uncore_write(&i915->uncore, RENCLK_GATE_D2, VF_UNIT_CLOCK_GATE_DISABLE |
->  			   GS_UNIT_CLOCK_GATE_DISABLE |
->  			   CL_UNIT_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(&i915->uncore, RAMCLK_GATE_D, 0);
-> -	dspclk_gate = VRHUNIT_CLOCK_GATE_DISABLE |
-> -		OVRUNIT_CLOCK_GATE_DISABLE |
-> -		OVCUNIT_CLOCK_GATE_DISABLE;
-> -	if (IS_GM45(i915))
-> -		dspclk_gate |= DSSUNIT_CLOCK_GATE_DISABLE;
-> -	intel_uncore_write(&i915->uncore, DSPCLK_GATE_D, dspclk_gate);
-> -
-> -	g4x_disable_trickle_feed(i915);
-> +	intel_display_g4x_init_clock_gating(i915->display);
->  }
->  
->  static void i965gm_init_clock_gating(struct drm_i915_private *i915)
-> @@ -463,7 +372,7 @@ static void i965gm_init_clock_gating(struct drm_i915_private *i915)
->  
->  	intel_uncore_write(uncore, RENCLK_GATE_D1, I965_RCC_CLOCK_GATE_DISABLE);
->  	intel_uncore_write(uncore, RENCLK_GATE_D2, 0);
-> -	intel_uncore_write(uncore, DSPCLK_GATE_D, 0);
-> +	intel_display_i965gm_init_clock_gating(i915->display);
->  	intel_uncore_write(uncore, RAMCLK_GATE_D, 0);
->  	intel_uncore_write16(uncore, DEUC, 0);
->  	intel_uncore_write(uncore,
+  * Linux: CI_DRM_18256 -> Patchwork_164160v1
 
--- 
-Jani Nikula, Intel
+  CI-20190529: 20190529
+  CI_DRM_18256: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8839: 8839
+  Patchwork_164160v1: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html
+
+--===============3041847067871870456==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: move VLV IOSF SB to display parent interface</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164160/">https://patchwork.freedesktop.org/series/164160/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18256 -&gt; Patchwork_164160v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Additional (1): bat-adls-6 <br />
+  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_164160v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
+<ul>
+<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@dmabuf@all-tests@dma_fence_chain.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@gem_tiled_pread_basic@basic:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_tiled_pread_basic@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656">i915#15656</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@intel_hwmon@hwmon-read:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_dsc@dsc-basic:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_force_connector_basic@force-load-detect:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_backlight@basic-brightness:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-primary-mmap-gtt:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_setmode@basic-clone-single-crtc:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@prime_vgem@basic-fence-read:</p>
+<ul>
+<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291">i915#3291</a>) +2 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15859">i915#15859</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@gem_contexts:</p>
+<ul>
+<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18256 -&gt; Patchwork_164160v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18256: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8839: 8839<br />
+  Patchwork_164160v1: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============3041847067871870456==--
