@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2O2xD9M6zGlyRgYAu9opvQ
+	id uOLRLtQ6zGlyRgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 23:21:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 23:21:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C85EE371954
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 23:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AF37371962
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 23:21:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 56A4510E9C3;
-	Tue, 31 Mar 2026 21:21:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DEB0210EB83;
+	Tue, 31 Mar 2026 21:21:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Odq6RBep";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="XjyIUeRm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011027.outbound.protection.outlook.com [52.101.57.27])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E8B310EB80;
- Tue, 31 Mar 2026 21:21:19 +0000 (UTC)
+Received: from BN1PR04CU002.outbound.protection.outlook.com
+ (mail-eastus2azon11010016.outbound.protection.outlook.com [52.101.56.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E1E910EB83;
+ Tue, 31 Mar 2026 21:21:22 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Z32cwQEQ7hTS3cJmIjLjLeK2tjBP+nI/9IydaMg+fJmB5AOCj/qxFoJlGiA0ZJkoaj1pMH6ZdOHgBoal03najwSQeQLf9eOXL2hSxbDhlBkuxzbEGZZYQZjjoQCCY8E2mOSamoAtZV7axmY+iXJ1cxJomF6qudeSTd5vdAgOIECBbIRlt/Jy1+P04p0tARvqgc8nrDVbj+749C3R0mFtxff4uQ8of9BEiGkzuI6cIKJu7ojVqwu4LvDenBfhT47a4jvRgnlq4k4c6npjffdEisYTXpBHsT13/7bf0DJxaw1Um7T59roPs28HxEkxQrW9CO/tp7Nz4yXcwwOo5Q/H9w==
+ b=UT1z/Pt4hl3MLsgblxJWLxj4Qvail3kT/x8wpMT8Itco5DeWdE7O0LzihQXEYok8ne2sZ3XHAxyWFaFHNTkrq3dFmGqnI4p2HLYPrWaiGRbu2m69TlZNEFRaahfefdAN5c4Ly1VedEYESQXKUWdEIvhnVvcxQ3P4p2i2wTgzqPppVB+aLK3Wegc51I0tU60f6dDVBM0lP5p3CYreaTDuG1qwDaokMUzNy0wa19F4imzRoz4ahsyc8caQ8BvWkY8Wq78car5z3B49QBXMjw5bKCUldaZWrXFD4oiL/bHerPJBah+DGafI0vWkawBLoyt7NIiDN1MPNR9kBPwsIEj96A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=H33nm66InsEMrisLhY04OyeLYVU6n0M/5qc1OO9Emgk=;
- b=Q34UPw0EHoVp50cfxbRxbS3jmxJh+xCkm3zXGIh4X0ho/fQzW4mInEQSwiQSQGApgVzwuUQWjyr1wwUmdKSvOzSykY9o5ZDqss3JkXTnGYElpS0PGQtJT1fPMqynSOtQiZHcSs6t9lN2WpVVrp1TH6QgHNN7r2w25qorFi0nuhHG5PhsL1tLNAm0EMrP5JLldliqgKGETB/f2q/IUbvzi6EZFLdFsMSVI62uIHLqwEnNwAh+jDSpl4PjH9+8NsYskXlG8fhBPc5/94jhkNSU3IVMnr0DVVPzTnrzjm8eYIEqnTevep+PgjEbz1AzirlNPuov1N7NUObaM4ooxmoQeQ==
+ bh=srN2KlMHr4c8Z+h8B5MRWKinNj3/cgxOXYhBZV3419Y=;
+ b=IfJp1IixOwET1ESxa0FPDI54ejaHkjaweDiO7xJLd+OQmQA8mqmQV06dp1Nh1jjTuMYMSkpXKhmDPcTFUy2TwqDRUOh8e6LIQTaBpp9xxeSkTbwfbqTlSSe5opYGYYTvAGXTe+D/n2K+muxi1y0g3IWSeVa+WasBFYgthBRVh0tNhn2/pHRORaBYnXNJ1jWIwpWVkbanaBZK4FFMhYW5jc6gZbHEQpdaUmGtlMmDXnNABGEG56G6hjylS9Wx92DOsZ/JAU0EwdG34lt+6e3DZu8dLbKwMB8y21Ayz4xO5cCnm+pMqffIjHmVs3U3j2JqN1HkiYldlnKehDWyadeJ2A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=H33nm66InsEMrisLhY04OyeLYVU6n0M/5qc1OO9Emgk=;
- b=Odq6RBep/YiZaOTanNlwAP+9QM5XzSSjEhONZ+KMhTi6zIJ/J+r2DRaaxWs8k/9Jef28oJlRcIVXY3HE8j+NQonFLFErMTX0ZjKoXKOzAvXVKwfXCbTNgmgpct1xDcmn5UGxcEDNXDPBdaneeot4Lr8w8cq3MEGkGv6d5TaCco5F4fFbwOHqMHERSR9koh5yn5OPqrg6RBJIfYviWYMmPgZ8s+vyLIwEo6hvIgwtJmQKE8uUEL7IC3D3THv0csPwnIeewjBipnjG/hh6h2FF/3Wux9hY9cAq6snubtQjzaI4FA00XuIzOCyAwdtTX9YWRo+sgBwItJr1kkYE1hIaAA==
+ bh=srN2KlMHr4c8Z+h8B5MRWKinNj3/cgxOXYhBZV3419Y=;
+ b=XjyIUeRm+9zt6kvzHyywlwXyA6wgQVZmYRljSi512bW7W5P3TYO8sC1q2jE2yTJhtztGtS/XzmofevGGhKLH+R2Re13EoD0XPpZRgfj0zqN4/8baCkT5Ej+NY1w5EvhsHO2998eMDyGa+hKl4NB5eYNNGOtA/sElDEoSCKedP7U/7qu+nzzB2NgUXbbk0Ma1SrMxFkYHROO47knWofBC3IvFiNN/hoZleCzUu+MyrEBFdQYNyMCcL5kczRrpfIM3HaG8OuT1qLdLUQWHfcktCSi9moarHldv7eXHl/z4y5/au/Opu/H7rA0ynnEfvyfoxnWr3sacwg87ACovnnMAMw==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
  BL1PR12MB5849.namprd12.prod.outlook.com (2603:10b6:208:384::18) with
  Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.8; Tue, 31 Mar
- 2026 21:21:13 +0000
+ 2026 21:21:15 +0000
 Received: from DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
  ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Tue, 31 Mar 2026
- 21:21:13 +0000
+ 21:21:14 +0000
 From: Joel Fernandes <joelagnelf@nvidia.com>
 To: linux-kernel@vger.kernel.org
 Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
@@ -83,72 +83,72 @@ Cc: Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
  linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, Joel Fernandes <joelagnelf@nvidia.com>
-Subject: [PATCH v10 05/21] docs: gpu: nova-core: Document the PRAMIN aperture
- mechanism
-Date: Tue, 31 Mar 2026 17:20:32 -0400
-Message-Id: <20260331212048.2229260-6-joelagnelf@nvidia.com>
+Subject: [PATCH v10 06/21] gpu: nova-core: mm: Add common memory management
+ types
+Date: Tue, 31 Mar 2026 17:20:33 -0400
+Message-Id: <20260331212048.2229260-7-joelagnelf@nvidia.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260331212048.2229260-1-joelagnelf@nvidia.com>
 References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
  <20260331212048.2229260-1-joelagnelf@nvidia.com>
 Content-Transfer-Encoding: 8bit
 Content-Type: text/plain
-X-ClientProxiedBy: MN0PR05CA0002.namprd05.prod.outlook.com
- (2603:10b6:208:52c::11) To DS0PR12MB6486.namprd12.prod.outlook.com
+X-ClientProxiedBy: BL1P221CA0021.NAMP221.PROD.OUTLOOK.COM
+ (2603:10b6:208:2c5::17) To DS0PR12MB6486.namprd12.prod.outlook.com
  (2603:10b6:8:c5::21)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BL1PR12MB5849:EE_
-X-MS-Office365-Filtering-Correlation-Id: 0e4397e4-ece1-4ad5-7b12-08de8f6b6f73
+X-MS-Office365-Filtering-Correlation-Id: bdce8bf8-404d-4069-ec59-08de8f6b70a1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|1800799024|7416014|376014|366016|22082099003|18002099003|56012099003;
-X-Microsoft-Antispam-Message-Info: ueJve5RZ2mn2pCQF7F855S68xPTAZV9jb6EHmEnH8TPdubZUSgMi5OhiLT5bnalUELNcryJXKLFVs8jiZ+aBTAfCWd8mSXuehgSmYpYhKp+XUlqRq4PE4PaSZveHl4GIDrnex77/2K+8ng4hb9EwKuJrfQ+CoiX6w+78wKgUyYjporCho293H/6iBAzm9vZQ5HgJR2HeIfMrBBKkyzqrtroZ+B8eQD1NquznGOj//B/CH2XuErbLc3AyDGbQbZREBUsIUQOZgzCMG723XREPP5ZkIngC3B9mDAvvRXQa8o6avX3rzHHo2B8sjmcGCPEQZyK7r8BWhA8MshtYUEgSpb5/db6hYq74QHRnh/QYPdb5HBIGIsrb/30zO4wTKnURBkKWfPFlvElxBK1vFYf2ocXXrz9bkeASKmUW3LQavxUJm+JnoSsBHKE5Jga5/lZJ4vsRIB/+4Xqk6Zfxbn/m3yg7Sg2n/D1BXf6Edp8JIinUekVr8htlZb+njPp0A924eB00It2AxHLHVBtN2K5I9H2QAEu88GpNZQzpc/QakzX6I3U6OfZ35oLP0iaSoDjXk7Fvi3LY6Q69O7jFzoHBDCq/jWrlB4o30j3Ab6/iuM58JTsw224k6WNy4cLeu+n9St8Ba9uULd191sWr0BmLr2iumua11vhsi29sWaJ/7a2u5wxHgCHxA/Sox5wPFc3dMWHP9ZFX3MRps1nvvRQBRVa4dQNkWyrHIE0GkuBz/Qc=
+X-Microsoft-Antispam-Message-Info: Kay+aqOsHy4ZX4Nh2JEBLQ9mR0f8gYCH7AqXfmMthjMANs6wjyQztJd9BhjGAZUwPKtTgGWrgTjDEkUPCXTLWJQZQ9MCYn/aGIxVQVRklHOBJuVfr3X5aIBl3EI8BAQ/ih3wd6a5vuLlsM8bJlV11oG4k/lsfXd3RGVhHPAolWlFpABHH47CCZjTynrIhBQlT4gslO8XjeCBastEUJGCrJnzHf3/7wJ/n+6YKmm4fal8rbCDXuSTojuA8u2LDxPn5tPTEDqSHsdAbX/RlSn/ltbT8EeCQcEqwoAMW1QEJrSi8ChvhstU2Rx8Qqf8YrWbJEZv6nuniCqvvFcq3XCHlTk2+uFfJx5kK9wQXmUYb3xTy4MbDm4LPGdAx7ffTdGNGSPzQEBQblhGC9rzorv0/idCEnwAAftOWVPS7/iaqCKZUEJ/1FbCzEXDlYuQJIZaweMAx25xEibjdjDPQPW/+8GmpF7WXrLRn7ItsgBHTFakmba3qbDnrsfR2wY1ok7xAUYibADuqj/opCqyW72j3bSHJfX91IIavFAVb3L7wDw3Mfx35VUIK58qfDRMWtbixXNTvfcTogvWcAmIcHR4nemumx2S5IttcV/wB678RGVz7A+DPNoRXP5rdAVsSJRrV8IbKG7yIORnRfRCG66/o2QSHz6X1lm+rEMoih+ze9oP8+fyBViZdHw2ExQ9WgLOQHdLx4LJTcrzNgz2i5wgAAa3sVxbyF6omAPOeXKjaSE=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(1800799024)(7416014)(376014)(366016)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?cQIrrTSqkkLtHIlP369ubS1rv8OEw9o/MgJpP57wyvzE/ZbSWBCTnGeJM8q0?=
- =?us-ascii?Q?cTdhFY7/BWnpRjsirk4BS4MEI3rOsSjCyrqFFc/9p/79Xk+qtDi9CA+PfRbN?=
- =?us-ascii?Q?BqY9VEkavu69f/+qpPyJCzPauvkcR5Awx7kMMADyps2ZyDGDvtoIkRvMVB55?=
- =?us-ascii?Q?WRt3gLf3GGaSWKZAwmfMM8W1BnULx3paWETWr3VKKHiB4rlZZtZP9O8uIIqy?=
- =?us-ascii?Q?mKmigyTrjsKsLUFsFHtpmi30ugkhpXnMHlukZEDu7Dn0eI74rikh8+tjSsGd?=
- =?us-ascii?Q?5aCxEenYOt4uCuqaBdNEQobnYoXW6E8RDMQLsf/5KI9BWjnyrRiJAVHQU+BO?=
- =?us-ascii?Q?FtAIiuBg93XMNtbXMofkelW4pciXRztR1R95tEhY4jbuwQ5ZRu7tgao3zNN6?=
- =?us-ascii?Q?uqDO/dMWsW4Zgg3NvT9TcJLb5E3Ev1a7WXvD9LtdtloKQZNVVCiJAFTA8APx?=
- =?us-ascii?Q?coFTu1DxdtNDi7LynGbAkIgXQyxy4MAf28COGE5bWjC5c0Rw9WEjy8Nh94MS?=
- =?us-ascii?Q?gDgkPEjmhxH5yo0RBKTzhRndiO5Nf/P1VHhEyUgj5KbI1yG16WmieQp/qErH?=
- =?us-ascii?Q?pNQYNsPj1pMZZz9jDers53gMj5JW811DRi12tb/lRehqF+SHOxZ/5o/SffWx?=
- =?us-ascii?Q?u38td7d34j0nmt0uc3z/gZbm0r83/w2vE/0r/ddNmqXflQJs6s7UjFvVZUvd?=
- =?us-ascii?Q?Gxgr8cX04DHHby0ocJq7Am4LgU8pruPx8OZUZjDh1v4IBZ9XWmEKVo6jTyNf?=
- =?us-ascii?Q?pCJYepylS8Yen2UYXJs3dB1uH3ahNEjlucgQGaZkM35uYQo2lC4xJ2fUT0hT?=
- =?us-ascii?Q?Z3bKJqxOnG3rkGtjDdOaO8kDMZd3mN+xT1jLRS8jsRR6Xd5sRBUWov6UnF9D?=
- =?us-ascii?Q?mEZ1S4Wp0KGPPl5qGiL5RZkXLvYUbx/kX9HtZMGHMkEqK4bsNGIBkYY3XmAe?=
- =?us-ascii?Q?z6cqRSoeA3D7SFBPQPrai1NWJshsm7hZJ9fdp6rZBdQGRHt8rGdDQMauVTvt?=
- =?us-ascii?Q?KwBLug8gyXhI/L+V3zRX0vZHub378JLAeYdnyiO5QyKOiC+bYgPB4Geq7ibF?=
- =?us-ascii?Q?SxQ3fkf/3KDWyETu6HG+LZanzyKfzQbskivPvfXyku53HqaUcw676GbhTv6j?=
- =?us-ascii?Q?OZO0OixdAWEs1fwzmRNzAKaVlFk3TdiIiwaASf6p7+qvH3BZ5ucxwrZ5zkT9?=
- =?us-ascii?Q?AgdoI4pewKIm9C8t0SEdHUa+XI/ubQ6dHstV+SbOouoBsDIBdqXDeFrup4tc?=
- =?us-ascii?Q?HJibYZv5Yn0KAsJvadvFkxqT2SMlKssg0y5t/4rM2lLScK1kTLYowh0KdUs+?=
- =?us-ascii?Q?zixxeIelmS4WTgzJ3r2XWYwyc3LKUXkB9yo/i2Y7Wd9JhpOiudlxGV8pPpva?=
- =?us-ascii?Q?ixYpkZIMyQUxQMAG9mS0Qtp9vATo3nkpWex3aDGrcVdEh3BfKGevV5wWNOIv?=
- =?us-ascii?Q?o1/9J7/LDbWSVOZyg0eOuokwUlaw6DF8aqnJg7UWkaROW2Et00WDa6j6Griu?=
- =?us-ascii?Q?TemjSwCXEGtBGm90UCtOD97/KIiVo6Yk3T9lU4ikWGuyCYKnwjiIZ33GKwCs?=
- =?us-ascii?Q?9pXyueX2FKW8PG9ao2NqL4LTcrg196/9JSRBGzXp2tSVZJ/kE5+f9Oz+wp50?=
- =?us-ascii?Q?ehryaGe9zOcPjXn2TlQ/mYH2yGrVeidxb9JpHSXJIS20E15yTpSKTHeRtT4E?=
- =?us-ascii?Q?P0NZ6NDFJuNjcMYWF1uA3Jy9q/veE/3YDbSV8qRgm7fOPBT12/Ilam+W0YkZ?=
- =?us-ascii?Q?860T0+GFHg=3D=3D?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mQb5Z3c8DIJHYY95YgDd8d6FGCruoqiTivbIKxn8FkKD9P4oWXY/pbEbrl/r?=
+ =?us-ascii?Q?dblvPIlL7CNjC36Zw9rQpvbu5GPQET+TPpoCHSIPsISO9+ck7kmH4xH6cOmn?=
+ =?us-ascii?Q?0jkPsut4bYX03dokKPIUSwgdpO+sE1C594v1dBgL5de1ERfF6voZJPeUceHG?=
+ =?us-ascii?Q?gCNdLWwI0rdG66Cz4IcoQPnDciWwwRSfAbCGeXYrDIdvnw+NXTn+5zoL4C0b?=
+ =?us-ascii?Q?0dK0v4cMnvPPvNu37le/wDDco2agjetXLehuFgYYta4vhVFBY/jorxbiuUp2?=
+ =?us-ascii?Q?5fGUNLIrkYKq04j99H6DUb7u7ICZL47fB+s0i5Miwv3kW8AyMELlXJvpL8ef?=
+ =?us-ascii?Q?tS3XnfKz3tCQNh27nmgLqDcDAwB941GdTUxHbcGaEI0cPDn4uIponhJUJ8Od?=
+ =?us-ascii?Q?V9Ed1E0VKD5UyXzUwBnA3NbRgMSKoSrhmjyww1XrxZjKXaI24QpMjjIDVtU3?=
+ =?us-ascii?Q?Nm24/uAasKozALXn0Fji6LpWQcpPbx4A75P4rEABBd/gOzT+cJmJrW8nbQ0L?=
+ =?us-ascii?Q?jFEH2LesFjgE1+21rZWMzivIa9UvNbTfJ+FgqJXaJWEtY+I/nOkdv0dDDZ70?=
+ =?us-ascii?Q?XQYwHcOq3va/ijPmWvw4STvK7KLju7W3pc+A7JT52kZq78y+p4a7A3PnqBa8?=
+ =?us-ascii?Q?x65QztbQM53mV93m9Al7IDp2jcNqnids9PGvJBjRoaxKxtnqnpX1e6KlrU5H?=
+ =?us-ascii?Q?ooAdffiwRxFIrRljuLAd7ogPj6mWgUX7EMGc1RxeTc1Gq7NNYBA0hbnY9kvG?=
+ =?us-ascii?Q?fN4noIHsVZ68l+iZGmqqsHIadMO3I/NGee0jcMprOlWMdTZaxaHQDmeieRgH?=
+ =?us-ascii?Q?Y5L48NQax0tQ4RbUr4YZIP8eqhHOMqNV07V5LIDRE88ezxXr6/tYOCT3mSzq?=
+ =?us-ascii?Q?kITwdtfAdUXviDm6jiuDzRgZh/0W7pPsrfwh17Ijgsc6wIXv8LA85hfbjKcx?=
+ =?us-ascii?Q?RZR954uj/CENlFzmViFGVPtItlAXBWxQsiD0curoBFKYi+3I25hCqUbtWFXs?=
+ =?us-ascii?Q?2GVfv6euLgyNQa8c+/IIzjT6vGk4c7tUmdKbyUXCzj2Ujrj3WSscca4qkWDp?=
+ =?us-ascii?Q?S5/qFX1dVJRXFM7Cj8Xmcj6THUTbh5IqL+t1ctqTxoWbHKHrt39qBcmlzbaZ?=
+ =?us-ascii?Q?dhIkxikmjUcT4R0SY36Za9L7CESZAhvBf9Jl0ZUNA9u1oegEn+iqyohKLLIE?=
+ =?us-ascii?Q?HTbROj/p9PF4YAUMlr8HusamO0cJtlPMGo59fwxm2SzeEHcXacAM6Gef7HqL?=
+ =?us-ascii?Q?lfYtTpPs6XqzVVFM75gD5suY64LsOXHpEnQo2l5cffvgmTG/FBshEBDo45sI?=
+ =?us-ascii?Q?FJ46tP0+pqi3Blj3diuPDYtDKTlJ2DxdG5AnUlI9czodeJROv0DquDYKMUVT?=
+ =?us-ascii?Q?sRqrZE8jlpiTSnprwBMisj+LGVbhzOsl4oHpEd+dZ4TaZrn39uIA0xI4/3q/?=
+ =?us-ascii?Q?bWXCiabAdIFrpUACLPJ5KxTzodJrYIm8fO657nlV6WR+Auyu3fx6jr856AGK?=
+ =?us-ascii?Q?Q2jYVl15c7L2Zg9I3ugodJdnnhYhtIQ06Rsebxsf/AgIPQwKwg92JdKicpOX?=
+ =?us-ascii?Q?MqJUhh3AFCXpYgPGqaxKbTFoINCYo9IKWP8F3Ac/Pb+0iyJQ1nz3rOPGEvaC?=
+ =?us-ascii?Q?PSbLClpjXkIbR+84LFJJL1wWvqZCVcVkuzw4RhnlinWJPqr8TBEp1tVP1dHo?=
+ =?us-ascii?Q?MkDPUODKPvkeqXRC6eEwKzIpcis1y7ZhYGPV9hrJ14nGYzGjR4gjLZEAx5Hc?=
+ =?us-ascii?Q?VrhuiH2Wng=3D=3D?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0e4397e4-ece1-4ad5-7b12-08de8f6b6f73
+X-MS-Exchange-CrossTenant-Network-Message-Id: bdce8bf8-404d-4069-ec59-08de8f6b70a1
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 21:21:12.9364 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 31 Mar 2026 21:21:14.8884 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: +kDhjKQ8wBF5Vgt3XX2BydCDD9Kl8CvaSxbgq5UuSn5lLmIcmKbheHemXS22IrBuyvTqYYi9wJMYrXZ3HUWoog==
+X-MS-Exchange-CrossTenant-UserPrincipalName: i3SlVF5fcyLHZvwOMsuPcpmaP8p2bpUmW10Ngc94ehOXhWzqSJY4YwwatJYbRJ10NF7EOCG/dG8KWBB1qoK7Qw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR12MB5849
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -191,162 +191,188 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,Nvidia.com:dkim]
-X-Rspamd-Queue-Id: C85EE371954
+X-Rspamd-Queue-Id: 6AF37371962
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add documentation for the PRAMIN aperture mechanism used by nova-core
-for direct VRAM access.
-
-Nova only uses TARGET=VRAM for VRAM access. The SYS_MEM target values
-are documented for completeness but not used by the driver.
+Add foundational types for GPU memory management. These types are used
+throughout the nova memory management subsystem for page table
+operations, address translation, and memory allocation.
 
 Cc: Nikola Djukic <ndjukic@nvidia.com>
 Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
 ---
- Documentation/gpu/nova/core/pramin.rst | 123 +++++++++++++++++++++++++
- Documentation/gpu/nova/index.rst       |   1 +
- 2 files changed, 124 insertions(+)
- create mode 100644 Documentation/gpu/nova/core/pramin.rst
+ drivers/gpu/nova-core/mm.rs | 159 ++++++++++++++++++++++++++++++++++++
+ 1 file changed, 159 insertions(+)
 
-diff --git a/Documentation/gpu/nova/core/pramin.rst b/Documentation/gpu/nova/core/pramin.rst
-new file mode 100644
-index 000000000000..bcedb6e06d33
---- /dev/null
-+++ b/Documentation/gpu/nova/core/pramin.rst
-@@ -0,0 +1,123 @@
-+.. SPDX-License-Identifier: GPL-2.0
+diff --git a/drivers/gpu/nova-core/mm.rs b/drivers/gpu/nova-core/mm.rs
+index 7a5dd4220c67..8f3089a5fa88 100644
+--- a/drivers/gpu/nova-core/mm.rs
++++ b/drivers/gpu/nova-core/mm.rs
+@@ -2,4 +2,163 @@
+ 
+ //! Memory management subsystems for nova-core.
+ 
++#![expect(dead_code)]
 +
-+=========================
-+PRAMIN aperture mechanism
-+=========================
+ pub(crate) mod pramin;
 +
-+.. note::
-+   The following description is approximate and current as of the Ampere family.
-+   It may change for future generations and is intended to assist in understanding
-+   the driver code.
++use kernel::sizes::SZ_4K;
 +
-+Introduction
-+============
++use crate::num::u64_as_usize;
 +
-+PRAMIN is a hardware aperture mechanism that provides CPU access to GPU Video RAM (VRAM) before
-+the GPU's Memory Management Unit (MMU) and page tables are initialized. This 1MB sliding window,
-+located at a fixed offset within BAR0, is essential for setting up page tables and other critical
-+GPU data structures without relying on the GPU's MMU.
++/// Page size in bytes (4 KiB).
++pub(crate) const PAGE_SIZE: usize = SZ_4K;
 +
-+Architecture Overview
-+=====================
++bitfield! {
++    pub(crate) struct VramAddress(u64), "Physical VRAM address in GPU video memory" {
++        11:0    offset          as u64, "Offset within 4KB page";
++        63:12   frame_number    as u64 => Pfn, "Physical frame number";
++    }
++}
 +
-+The PRAMIN aperture mechanism is logically implemented by the GPU's PBUS (PCIe Bus Controller Unit)
-+and provides a CPU-accessible window into VRAM through the PCIe interface::
++impl VramAddress {
++    /// Create a new VRAM address from a raw value.
++    pub(crate) const fn new(addr: u64) -> Self {
++        Self(addr)
++    }
 +
-+    +-----------------+    PCIe     +------------------------------+
-+    |      CPU        |<----------->|           GPU                |
-+    +-----------------+             |                              |
-+                                    |  +----------------------+    |
-+                                    |  |       PBUS           |    |
-+                                    |  |  (Bus Controller)    |    |
-+                                    |  |                      |    |
-+                                    |  |  +--------------+<------------ (window starts at
-+                                    |  |  |   PRAMIN     |    |    |     BAR0 + 0x700000)
-+                                    |  |  |   Window     |    |    |
-+                                    |  |  |   (1MB)      |    |    |
-+                                    |  |  +--------------+    |    |
-+                                    |  |         |            |    |
-+                                    |  +---------|------------+    |
-+                                    |            |                 |
-+                                    |            v                 |
-+                                    |  +----------------------+<------------ (Program PRAMIN to any
-+                                    |  |       VRAM           |    |    64KB-aligned VRAM boundary)
-+                                    |  |    (Several GBs)     |    |
-+                                    |  |                      |    |
-+                                    |  |  FB[0x000000000000]  |    |
-+                                    |  |          ...         |    |
-+                                    |  |  FB[0x7FFFFFFFFFF]   |    |
-+                                    |  +----------------------+    |
-+                                    +------------------------------+
++    /// Get the raw address value as `usize` (useful for MMIO offsets).
++    pub(crate) const fn raw(&self) -> usize {
++        u64_as_usize(self.0)
++    }
 +
-+PBUS (PCIe Bus Controller) is responsible for, among other things, handling MMIO
-+accesses to the BAR registers.
++    /// Get the raw address value as `u64`.
++    pub(crate) const fn raw_u64(&self) -> u64 {
++        self.0
++    }
++}
 +
-+PRAMIN Window Operation
-+=======================
++impl PartialEq for VramAddress {
++    fn eq(&self, other: &Self) -> bool {
++        self.0 == other.0
++    }
++}
 +
-+The PRAMIN window provides a 1MB sliding aperture that can be repositioned over
-+the entire VRAM address space using the ``NV_PBUS_BAR0_WINDOW`` register.
++impl Eq for VramAddress {}
 +
-+Window Control Mechanism
-+-------------------------
++impl PartialOrd for VramAddress {
++    fn partial_cmp(&self, other: &Self) -> Option<core::cmp::Ordering> {
++        Some(self.cmp(other))
++    }
++}
 +
-+::
++impl Ord for VramAddress {
++    fn cmp(&self, other: &Self) -> core::cmp::Ordering {
++        self.0.cmp(&other.0)
++    }
++}
 +
-+    NV_PBUS_BAR0_WINDOW Register (0x1700):
-+    +-------+--------+--------------------------------------+
-+    | 31:26 | 25:24  |               23:0                   |
-+    | RSVD  | TARGET |            BASE_ADDR                 |
-+    |       |        |        (bits 39:16 of VRAM address)  |
-+    +-------+--------+--------------------------------------+
++impl From<Pfn> for VramAddress {
++    fn from(pfn: Pfn) -> Self {
++        Self::default().set_frame_number(pfn)
++    }
++}
 +
-+    The 24-bit BASE_ADDR field encodes bits [39:16] of the target VRAM address,
-+    providing 40-bit (1TB) address space coverage with 64KB alignment.
++bitfield! {
++    pub(crate) struct VirtualAddress(u64), "Virtual address in GPU address space" {
++        11:0    offset          as u64, "Offset within 4KB page";
++        63:12   frame_number    as u64 => Vfn, "Virtual frame number";
++    }
++}
 +
-+    TARGET field (bits 25:24):
-+    - 0x0: VRAM (Video Memory)
-+    - 0x1: SYS_MEM_COH (Coherent System Memory)
-+    - 0x2: SYS_MEM_NONCOH (Non-coherent System Memory)
-+    - 0x3: Reserved
++impl VirtualAddress {
++    /// Create a new virtual address from a raw value.
++    #[expect(dead_code)]
++    pub(crate) const fn new(addr: u64) -> Self {
++        Self(addr)
++    }
 +
-+    .. note::
-+       Nova only uses TARGET=VRAM (0x0) for video memory access. The SYS_MEM
-+       target values are documented here for hardware completeness but are
-+       not used by the driver.
++    /// Get the raw address value as `u64`.
++    pub(crate) const fn raw_u64(&self) -> u64 {
++        self.0
++    }
++}
 +
-+64KB Alignment Requirement
-+---------------------------
++impl From<Vfn> for VirtualAddress {
++    fn from(vfn: Vfn) -> Self {
++        Self::default().set_frame_number(vfn)
++    }
++}
 +
-+The PRAMIN window must be aligned to 64KB boundaries in VRAM. This is enforced
-+by the ``BASE_ADDR`` field representing bits [39:16] of the target address::
++/// Physical Frame Number.
++///
++/// Represents a physical page in VRAM.
++#[repr(transparent)]
++#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
++pub(crate) struct Pfn(u64);
 +
-+    VRAM Address Calculation:
-+    actual_vram_addr = (BASE_ADDR << 16) + pramin_offset
-+    Where:
-+    - BASE_ADDR: 24-bit value from NV_PBUS_BAR0_WINDOW[23:0]
-+    - pramin_offset: 20-bit offset within the PRAMIN window [0x00000-0xFFFFF]
++impl Pfn {
++    /// Create a new PFN from a frame number.
++    pub(crate) const fn new(frame_number: u64) -> Self {
++        Self(frame_number)
++    }
 +
-+    Example Window Positioning:
-+    +---------------------------------------------------------+
-+    |                    VRAM Space                           |
-+    |                                                         |
-+    |  0x000000000  +-----------------+ <-- 64KB aligned      |
-+    |               | PRAMIN Window   |                       |
-+    |               |    (1MB)        |                       |
-+    |  0x0000FFFFF  +-----------------+                       |
-+    |                                                         |
-+    |       |              ^                                  |
-+    |       |              | Window can slide                 |
-+    |       v              | to any 64KB-aligned boundary     |
-+    |                                                         |
-+    |  0x123400000  +-----------------+ <-- 64KB aligned      |
-+    |               | PRAMIN Window   |                       |
-+    |               |    (1MB)        |                       |
-+    |  0x1234FFFFF  +-----------------+                       |
-+    |                                                         |
-+    |                       ...                               |
-+    |                                                         |
-+    |  0x7FFFF0000  +-----------------+ <-- 64KB aligned      |
-+    |               | PRAMIN Window   |                       |
-+    |               |    (1MB)        |                       |
-+    |  0x7FFFFFFFF  +-----------------+                       |
-+    +---------------------------------------------------------+
-diff --git a/Documentation/gpu/nova/index.rst b/Documentation/gpu/nova/index.rst
-index e39cb3163581..b8254b1ffe2a 100644
---- a/Documentation/gpu/nova/index.rst
-+++ b/Documentation/gpu/nova/index.rst
-@@ -32,3 +32,4 @@ vGPU manager VFIO driver and the nova-drm driver.
-    core/devinit
-    core/fwsec
-    core/falcon
-+   core/pramin
++    /// Get the raw frame number.
++    pub(crate) const fn raw(self) -> u64 {
++        self.0
++    }
++}
++
++impl From<VramAddress> for Pfn {
++    fn from(addr: VramAddress) -> Self {
++        addr.frame_number()
++    }
++}
++
++impl From<u64> for Pfn {
++    fn from(val: u64) -> Self {
++        Self(val)
++    }
++}
++
++impl From<Pfn> for u64 {
++    fn from(pfn: Pfn) -> Self {
++        pfn.0
++    }
++}
++
++/// Virtual Frame Number.
++///
++/// Represents a virtual page in GPU address space.
++#[repr(transparent)]
++#[derive(Debug, Clone, Copy, PartialEq, Eq, Default)]
++pub(crate) struct Vfn(u64);
++
++impl Vfn {
++    /// Create a new VFN from a frame number.
++    pub(crate) const fn new(frame_number: u64) -> Self {
++        Self(frame_number)
++    }
++
++    /// Get the raw frame number.
++    pub(crate) const fn raw(self) -> u64 {
++        self.0
++    }
++}
++
++impl From<VirtualAddress> for Vfn {
++    fn from(addr: VirtualAddress) -> Self {
++        addr.frame_number()
++    }
++}
++
++impl From<u64> for Vfn {
++    fn from(val: u64) -> Self {
++        Self(val)
++    }
++}
++
++impl From<Vfn> for u64 {
++    fn from(vfn: Vfn) -> Self {
++        vfn.0
++    }
++}
 -- 
 2.34.1
 
