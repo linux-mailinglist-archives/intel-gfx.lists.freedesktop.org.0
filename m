@@ -2,34 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2H91Iwyby2lBJgYAu9opvQ
+	id CHzlLA+cy2loJgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 11:59:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:03:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1663367757
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 11:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F0BA367893
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:03:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3252710E9E8;
-	Tue, 31 Mar 2026 09:59:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9B2810EA42;
+	Tue, 31 Mar 2026 10:03:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C42610E9E8;
- Tue, 31 Mar 2026 09:59:36 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3783797855572642867=="
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F14D310EA42;
+ Tue, 31 Mar 2026 10:03:55 +0000 (UTC)
+Received: from 87-93-178-238.bb.dnainternet.fi ([87.93.178.238]
+ helo=[192.168.101.111])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1w7Vwl-00000003pq8-2Tqg; Tue, 31 Mar 2026 13:03:52 +0300
+Message-ID: <d916a82d01456ede8a080484998b74af19286df5.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>, 
+ Luca Coelho <luciano.coelho@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ jani.nikula@linux.intel.com
+Date: Tue, 31 Mar 2026 13:03:42 +0300
+In-Reply-To: <acK9lVDxOV_hXPiN@intel.com>
+References: <20260324143420.310800-1-luciano.coelho@intel.com>
+ <20260324143420.310800-7-luciano.coelho@intel.com>
+ <acK9lVDxOV_hXPiN@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-9 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_User_readable_error_codes?=
- =?utf-8?q?_on_atomic=5Fioctl_failure_=28rev10=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Arun R Murthy" <arun.r.murthy@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Mar 2026 09:59:36 -0000
-Message-ID: <177495117621.415443.9379760145656917977@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
-In-Reply-To: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH 6/8] drm/i915/display: move HSW and BDW clock gating
+ init to display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,186 +55,256 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.61 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,coelho.fi:mid];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.939];
+	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.975];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,01.org:url,live:email,lists.freedesktop.org:replyto,i915_selftest:email,workarounds:email]
-X-Rspamd-Queue-Id: E1663367757
+	DMARC_NA(0.00)[coelho.fi];
+	RCPT_COUNT_FIVE(0.00)[5]
+X-Rspamd-Queue-Id: 1F0BA367893
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============3783797855572642867==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 2026-03-24 at 18:36 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> On Tue, Mar 24, 2026 at 04:29:55PM +0200, Luca Coelho wrote:
+> > Move the HSW and BDW display clock gating programming into the display
+> > code.  In this case we need two different helpers, because the common
+> > code between these two is split in the middle.
+> >=20
+> > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > ---
+> >  .../i915/display/intel_display_clock_gating.c | 33 +++++++++++++++++++
+> >  .../i915/display/intel_display_clock_gating.h |  6 ++++
+> >  drivers/gpu/drm/i915/intel_clock_gating.c     | 31 +++--------------
+> >  3 files changed, 43 insertions(+), 27 deletions(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c =
+b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > index e3b7522b4101..0b2edf6acb79 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > @@ -123,3 +123,36 @@ void intel_display_glk_init_clock_gating(struct in=
+tel_display *display)
+> >  		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
+> >  		       PWM1_GATING_DIS | PWM2_GATING_DIS);
+> >  }
+> > +
+> > +static void
+> > +intel_display_hsw_init_clock_gating_common(struct intel_display *displ=
+ay,
+> > +					   u32 unmask_vbl)
+>=20
+> Passing that as a parameter feels a bit obfuscated.
+>=20
+> > +{
+> > +	enum pipe pipe;
+> > +
+> > +	/* WaPsrDPAMaskVBlankInSRD:hsw */
+> > +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD)=
+;
+> > +
+> > +	for_each_pipe(display, pipe) {
+> > +		/* WaPsrDPRSUnmaskVBlankInSRD:hsw,bdw */
+> > +		intel_de_rmw(display, CHICKEN_PIPESL_1(pipe), 0, unmask_vbl);
+>=20
+> If we want to share the function then I'd probably just do
+> a platform check here.
 
-== Series Details ==
-
-Series: User readable error codes on atomic_ioctl failure (rev10)
-URL   : https://patchwork.freedesktop.org/series/152275/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18254 -> Patchwork_152275v10
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_152275v10 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18254/bat-dg2-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18254/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18254/bat-mtlp-8/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/bat-mtlp-8/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+True, I'll skip passing it and just add the platform check in this
+function.
 
 
-Build changes
--------------
+>=20
+> > +	}
+> > +}
+> > +
+> > +void intel_display_bdw_hsw_init_clock_gating(struct intel_display *dis=
+play)
+> > +{
+> > +	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> > +	intel_de_rmw(display, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
+> > +}
+>=20
+> Why do we have two different functions that shared by
+> both platforms?
 
-  * Linux: CI_DRM_18254 -> Patchwork_152275v10
+It's because for BDW there is this one in between the two common calls:
 
-  CI-20190529: 20190529
-  CI_DRM_18254: 4fde0b02eb03f3a64b2cf4c5366baa6fb1b96129 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8836: 8836
-  Patchwork_152275v10: 4fde0b02eb03f3a64b2cf4c5366baa6fb1b96129 @ git://anongit.freedesktop.org/gfx-ci/linux
+	/* WaSwitchSolVfFArbitrationPriority:bdw */
+	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
 
-== Logs ==
+...this is probably independent from the other two and it may be okay
+to move it before the common code, but I wanted to avoid that.
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/index.html
+Do you think it's safe to change the order from:
 
---===============3783797855572642867==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+1. CHICKEN_PIPESL_1
+2. GAM_ECOCHK
+3. CHICKEN_PAR1_1
 
+...to this?
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+1. GAM_ECOCHK
+2. CHICKEN_PIPESL_1
+3. CHICKEN_PAR1_1
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>User readable error codes on atomic_ioctl failure (rev10)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/152275/">https://patchwork.freedesktop.org/series/152275/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/index.html</a></td></tr>
-
-</table>
+If that's the case, then it can be simplified.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_18254 -&gt; Patchwork_152275v10</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_152275v10 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18254/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18254/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18254/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_152275v10/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18254 -&gt; Patchwork_152275v10</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18254: 4fde0b02eb03f3a64b2cf4c5366baa6fb1b96129 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8836: 8836<br />
-  Patchwork_152275v10: 4fde0b02eb03f3a64b2cf4c5366baa6fb1b96129 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+> > +
+> > +void intel_display_bdw_init_clock_gating(struct intel_display *display=
+)
+> > +{
+> > +	intel_display_hsw_init_clock_gating_common(display,
+> > +						   BDW_UNMASK_VBL_TO_REGS_IN_SRD);
+> > +}
+> > +
+> > +void intel_display_hsw_init_clock_gating(struct intel_display *display=
+)
+> > +{
+> > +	intel_display_hsw_init_clock_gating_common(display,
+> > +						   HSW_UNMASK_VBL_TO_REGS_IN_SRD);
+> > +}
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h =
+b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> > index 4abd34fa5832..0eb240f2f69e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> > @@ -14,12 +14,18 @@ void intel_display_kbl_init_clock_gating(struct int=
+el_display *display);
+> >  void intel_display_cfl_init_clock_gating(struct intel_display *display=
+);
+> >  void intel_display_bxt_init_clock_gating(struct intel_display *display=
+);
+> >  void intel_display_glk_init_clock_gating(struct intel_display *display=
+);
+> > +void intel_display_bdw_hsw_init_clock_gating(struct intel_display *dis=
+play);
+> > +void intel_display_bdw_init_clock_gating(struct intel_display *display=
+);
+> > +void intel_display_hsw_init_clock_gating(struct intel_display *display=
+);
+> >  #else
+> >  static inline void intel_display_skl_init_clock_gating(struct intel_di=
+splay *display) {}
+> >  static inline void intel_display_kbl_init_clock_gating(struct intel_di=
+splay *display) {}
+> >  static inline void intel_display_cfl_init_clock_gating(struct intel_di=
+splay *display) {}
+> >  static inline void intel_display_bxt_init_clock_gating(struct intel_di=
+splay *display) {}
+> >  static inline void intel_display_glk_init_clock_gating(struct intel_di=
+splay *display) {}
+> > +static inline void intel_display_bdw_hsw_init_clock_gating(struct inte=
+l_display *display) {}
+> > +static inline void intel_display_bdw_init_clock_gating(struct intel_di=
+splay *display) {}
+> > +static inline void intel_display_hsw_init_clock_gating(struct intel_di=
+splay *display) {}
+> >  #endif
+> > =20
+> >  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+> > diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/dr=
+m/i915/intel_clock_gating.c
+> > index 777314e0c75d..a8e3eb6f06c8 100644
+> > --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> > +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> > @@ -284,23 +284,12 @@ static void skl_init_clock_gating(struct drm_i915=
+_private *i915)
+> > =20
+> >  static void bdw_init_clock_gating(struct drm_i915_private *i915)
+> >  {
+> > -	struct intel_display *display =3D i915->display;
+> > -	enum pipe pipe;
+> > -
+> > -	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> > -	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ=
+_DIS);
+> > +	intel_display_bdw_hsw_init_clock_gating(i915->display);
+> > =20
+> >  	/* WaSwitchSolVfFArbitrationPriority:bdw */
+> >  	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SO=
+L);
+> > =20
+> > -	/* WaPsrDPAMaskVBlankInSRD:bdw */
+> > -	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PI=
+PE_IN_SRD);
+> > -
+> > -	for_each_pipe(display, pipe) {
+> > -		/* WaPsrDPRSUnmaskVBlankInSRD:bdw */
+> > -		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
+> > -				 0, BDW_UNMASK_VBL_TO_REGS_IN_SRD);
+> > -	}
+> > +	intel_display_bdw_init_clock_gating(i915->display);
+> > =20
+> >  	/* WaVSRefCountFullforceMissDisable:bdw */
+> >  	/* WaDSRefCountFullforceMissDisable:bdw */
+>=20
+> ...
+> WaKVMNotificationOnConfigChange:bdw somewhere in here is also a display
+> thing.
 
-</body>
-</html>
+I missed that.
 
---===============3783797855572642867==--
+
+> And given that I think sharing anything between the platforms in
+> this patch is a bit premature. I think it would be better to just
+> move things as is, and do the code sharing refactoring as a followup
+> once it's easier to see what's common and what isn't.
+
+Okay, this is better indeed.  It won't help with the ordering for BDW,
+but I'll try to do something.
+
+--
+Cheers,
+Luca.
+
+
+> > @@ -332,20 +321,8 @@ static void bdw_init_clock_gating(struct drm_i915_=
+private *i915)
+> > =20
+> >  static void hsw_init_clock_gating(struct drm_i915_private *i915)
+> >  {
+> > -	struct intel_display *display =3D i915->display;
+> > -	enum pipe pipe;
+> > -
+> > -	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> > -	intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ=
+_DIS);
+> > -
+> > -	/* WaPsrDPAMaskVBlankInSRD:hsw */
+> > -	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PI=
+PE_IN_SRD);
+> > -
+> > -	for_each_pipe(display, pipe) {
+> > -		/* WaPsrDPRSUnmaskVBlankInSRD:hsw */
+> > -		intel_uncore_rmw(&i915->uncore, CHICKEN_PIPESL_1(pipe),
+> > -				 0, HSW_UNMASK_VBL_TO_REGS_IN_SRD);
+> > -	}
+> > +	intel_display_bdw_hsw_init_clock_gating(i915->display);
+> > +	intel_display_hsw_init_clock_gating(i915->display);
+> > =20
+> >  	/* This is required by WaCatErrorRejectionIssue:hsw */
+> >  	intel_uncore_rmw(&i915->uncore, GEN7_SQ_CHICKEN_MBCUNIT_CONFIG,
+> > --=20
+> > 2.53.0
