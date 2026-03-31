@@ -2,34 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0MjsOJvHy2mnLgYAu9opvQ
+	id 4EmqFybMy2l0LwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 15:09:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 15:29:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4D9CF369F80
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 15:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36CEB36A42E
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 15:29:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB98110E9A2;
-	Tue, 31 Mar 2026 13:09:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 57BA910E252;
+	Tue, 31 Mar 2026 13:29:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WGAxjt/o";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 287AD10E953;
- Tue, 31 Mar 2026 13:09:45 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3041847067871870456=="
-MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_move_VLV_IOSF?=
- =?utf-8?q?_SB_to_display_parent_interface?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 31 Mar 2026 13:09:45 -0000
-Message-ID: <177496258512.415443.17639097013697528678@a3b018990fe9>
-X-Patchwork-Hint: ignore
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4AD4D10E251;
+ Tue, 31 Mar 2026 13:29:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1774963745; x=1806499745;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=J/2wVUcQIJYHvpJSvYaAS0J1N5hy6AUn7vIa1PObqJY=;
+ b=WGAxjt/oztDuLYAODyhPhrdvevvbopa7RIYfFFuqEPp9QLsjvFmNSz7s
+ m1dpYItcs4toJAFoGL0q0njHJvnCr2Alm9tv3sysSi7uZlA2WAKEp+Gus
+ 6HtV9wY6880uvvSjeL9lhBlZlimCNM9kvlJjAeKK7KkLXLgCHn6qGAY5G
+ 1yukKRrW9yJOPJAStP1WyCsM+znNcFOEfGtOON9Gfm43zAXLR4Anl8ZnW
+ q/5NEwkZpCnawOWqbf+Xl5u0O2F5wOr5gpWFHZgnHC5PqUL2kHi+oTDEm
+ lXfu1h+bsmZivqJqb2KgB42icpeQOKy3hulPreyYlPqSplQ2cJU+dYC5/ g==;
+X-CSE-ConnectionGUID: k5rogWeRSW+bI/76TtWtWA==
+X-CSE-MsgGUID: rqfislY9TseVWN6BxAunug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="79835720"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="79835720"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:29:05 -0700
+X-CSE-ConnectionGUID: xfnoHEp2TH6T9D+u8pVozA==
+X-CSE-MsgGUID: Kbeh4ic7S8m1K45Scew/tw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="231295833"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 31 Mar 2026 06:29:03 -0700
+Date: Tue, 31 Mar 2026 16:28:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/5] drm/{i915, xe}: convert VLV sideband display
+ wrappers into real functions
+Message-ID: <acvMGpZbVVjd6tKO@intel.com>
 References: <cover.1774957233.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1774957233.git.jani.nikula@intel.com>
+ <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <57740dc3a820cb5fc1cfcd28e4be58b2cb48020d.1774957233.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,322 +75,411 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.25 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.56)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.935];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4D9CF369F80
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 36CEB36A42E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============3041847067871870456==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, Mar 31, 2026 at 02:40:54PM +0300, Jani Nikula wrote:
+> Convert the VLV sideband static inline wrappers into real
+> functions. This will help the follow-up work of moving the VLV sideband
+> to the display parent interface.
+> 
+> The downside is that we'll have to build vlv_sideband.c as part of xe
+> build, to avoid a plethora of stubs.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> ---
+> 
+> 'git show --color-moved' will help review
 
-== Series Details ==
+If only --color-moved and --word-diff could play nice...
 
-Series: drm/i915: move VLV IOSF SB to display parent interface
-URL   : https://patchwork.freedesktop.org/series/164160/
-State : success
+For some other other patches --word-diff alone seemed pretty good
+fortunately.
 
-== Summary ==
+Series is
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-CI Bug Log - changes from CI_DRM_18256 -> Patchwork_164160v1
-====================================================
+> ---
+>  drivers/gpu/drm/i915/display/vlv_sideband.c | 125 +++++++++++++++
+>  drivers/gpu/drm/i915/display/vlv_sideband.h | 165 ++++----------------
+>  drivers/gpu/drm/xe/Makefile                 |   3 +-
+>  3 files changed, 156 insertions(+), 137 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.c b/drivers/gpu/drm/i915/display/vlv_sideband.c
+> index e18045f2b89d..2472e0412728 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_sideband.c
+> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.c
+> @@ -8,6 +8,71 @@
+>  #include "intel_dpio_phy.h"
+>  #include "vlv_sideband.h"
+>  
+> +void vlv_bunit_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
+> +}
+> +
+> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
+> +}
+> +
+> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
+> +}
+> +
+> +void vlv_bunit_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
+> +}
+> +
+> +void vlv_cck_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
+> +}
+> +
+> +u32 vlv_cck_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
+> +}
+> +
+> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
+> +}
+> +
+> +void vlv_cck_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
+> +}
+> +
+> +void vlv_ccu_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
+> +}
+> +
+> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
+> +}
+> +
+> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
+> +}
+> +
+> +void vlv_ccu_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
+> +}
+> +
+> +void vlv_dpio_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> +}
+> +
+>  static enum vlv_iosf_sb_unit vlv_dpio_phy_to_unit(struct intel_display *display,
+>  						  enum dpio_phy phy)
+>  {
+> @@ -48,3 +113,63 @@ void vlv_dpio_write(struct drm_device *drm,
+>  
+>  	vlv_iosf_sb_write(drm, unit, reg, val);
+>  }
+> +
+> +void vlv_dpio_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> +}
+> +
+> +void vlv_flisdsi_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
+> +}
+> +
+> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
+> +}
+> +
+> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
+> +{
+> +	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
+> +}
+> +
+> +void vlv_flisdsi_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
+> +}
+> +
+> +void vlv_nc_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
+> +}
+> +
+> +u32 vlv_nc_read(struct drm_device *drm, u8 addr)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
+> +}
+> +
+> +void vlv_nc_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
+> +}
+> +
+> +void vlv_punit_get(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
+> +}
+> +
+> +u32 vlv_punit_read(struct drm_device *drm, u32 addr)
+> +{
+> +	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
+> +}
+> +
+> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
+> +{
+> +	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
+> +}
+> +
+> +void vlv_punit_put(struct drm_device *drm)
+> +{
+> +	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/vlv_sideband.h b/drivers/gpu/drm/i915/display/vlv_sideband.h
+> index 2c240d81fead..065273726379 100644
+> --- a/drivers/gpu/drm/i915/display/vlv_sideband.h
+> +++ b/drivers/gpu/drm/i915/display/vlv_sideband.h
+> @@ -4,7 +4,6 @@
+>  #ifndef _VLV_SIDEBAND_H_
+>  #define _VLV_SIDEBAND_H_
+>  
+> -#include <linux/bitops.h>
+>  #include <linux/types.h>
+>  
+>  #include "vlv_iosf_sb.h"
+> @@ -13,144 +12,38 @@
+>  enum dpio_phy;
+>  struct drm_device;
+>  
+> -static inline void vlv_bunit_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_BUNIT));
+> -}
+> +void vlv_bunit_get(struct drm_device *drm);
+> +u32 vlv_bunit_read(struct drm_device *drm, u32 reg);
+> +void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_bunit_put(struct drm_device *drm);
+>  
+> -static inline u32 vlv_bunit_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_BUNIT, reg);
+> -}
+> +void vlv_cck_get(struct drm_device *drm);
+> +u32 vlv_cck_read(struct drm_device *drm, u32 reg);
+> +void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_cck_put(struct drm_device *drm);
+>  
+> -static inline void vlv_bunit_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_BUNIT, reg, val);
+> -}
+> +void vlv_ccu_get(struct drm_device *drm);
+> +u32 vlv_ccu_read(struct drm_device *drm, u32 reg);
+> +void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_ccu_put(struct drm_device *drm);
+>  
+> -static inline void vlv_bunit_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_BUNIT));
+> -}
+> -
+> -static inline void vlv_cck_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCK));
+> -}
+> -
+> -static inline u32 vlv_cck_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCK, reg);
+> -}
+> -
+> -static inline void vlv_cck_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCK, reg, val);
+> -}
+> -
+> -static inline void vlv_cck_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCK));
+> -}
+> -
+> -static inline void vlv_ccu_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_CCU));
+> -}
+> -
+> -static inline u32 vlv_ccu_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_CCU, reg);
+> -}
+> -
+> -static inline void vlv_ccu_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_CCU, reg, val);
+> -}
+> -
+> -static inline void vlv_ccu_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_CCU));
+> -}
+> -
+> -static inline void vlv_dpio_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> -}
+> -
+> -#ifdef I915
+> +void vlv_dpio_get(struct drm_device *drm);
+>  u32 vlv_dpio_read(struct drm_device *drm, enum dpio_phy phy, int reg);
+> -void vlv_dpio_write(struct drm_device *drm,
+> -		    enum dpio_phy phy, int reg, u32 val);
+> -#else
+> -static inline u32 vlv_dpio_read(struct drm_device *drm, int phy, int reg)
+> -{
+> -	return 0;
+> -}
+> -static inline void vlv_dpio_write(struct drm_device *drm,
+> -				  int phy, int reg, u32 val)
+> -{
+> -}
+> -#endif
+> -
+> -static inline void vlv_dpio_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_DPIO) | BIT(VLV_IOSF_SB_DPIO_2));
+> -}
+> -
+> -static inline void vlv_flisdsi_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_FLISDSI));
+> -}
+> -
+> -static inline u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_FLISDSI, reg);
+> -}
+> -
+> -static inline void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val)
+> -{
+> -	vlv_iosf_sb_write(drm, VLV_IOSF_SB_FLISDSI, reg, val);
+> -}
+> -
+> -static inline void vlv_flisdsi_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_FLISDSI));
+> -}
+> -
+> -static inline void vlv_nc_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_NC));
+> -}
+> -
+> -static inline u32 vlv_nc_read(struct drm_device *drm, u8 addr)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_NC, addr);
+> -}
+> -
+> -static inline void vlv_nc_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_NC));
+> -}
+> -
+> -static inline void vlv_punit_get(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_get(drm, BIT(VLV_IOSF_SB_PUNIT));
+> -}
+> -
+> -static inline u32 vlv_punit_read(struct drm_device *drm, u32 addr)
+> -{
+> -	return vlv_iosf_sb_read(drm, VLV_IOSF_SB_PUNIT, addr);
+> -}
+> -
+> -static inline int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val)
+> -{
+> -	return vlv_iosf_sb_write(drm, VLV_IOSF_SB_PUNIT, addr, val);
+> -}
+> -
+> -static inline void vlv_punit_put(struct drm_device *drm)
+> -{
+> -	vlv_iosf_sb_put(drm, BIT(VLV_IOSF_SB_PUNIT));
+> -}
+> +void vlv_dpio_write(struct drm_device *drm, enum dpio_phy phy, int reg, u32 val);
+> +void vlv_dpio_put(struct drm_device *drm);
+> +
+> +void vlv_flisdsi_get(struct drm_device *drm);
+> +u32 vlv_flisdsi_read(struct drm_device *drm, u32 reg);
+> +void vlv_flisdsi_write(struct drm_device *drm, u32 reg, u32 val);
+> +void vlv_flisdsi_put(struct drm_device *drm);
+> +
+> +void vlv_nc_get(struct drm_device *drm);
+> +u32 vlv_nc_read(struct drm_device *drm, u8 addr);
+> +void vlv_nc_put(struct drm_device *drm);
+> +
+> +void vlv_punit_get(struct drm_device *drm);
+> +u32 vlv_punit_read(struct drm_device *drm, u32 addr);
+> +int vlv_punit_write(struct drm_device *drm, u32 addr, u32 val);
+> +void vlv_punit_put(struct drm_device *drm);
+>  
+>  #endif /* _VLV_SIDEBAND_H_ */
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 9dacb0579a7d..7960c2db33bd 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -332,7 +332,8 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+>  	i915-display/skl_prefill.o \
+>  	i915-display/skl_scaler.o \
+>  	i915-display/skl_universal_plane.o \
+> -	i915-display/skl_watermark.o
+> +	i915-display/skl_watermark.o \
+> +	i915-display/vlv_sideband.o
+>  
+>  ifeq ($(CONFIG_ACPI),y)
+>  	xe-$(CONFIG_DRM_XE_DISPLAY) += \
+> -- 
+> 2.47.3
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Additional (1): bat-adls-6 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164160v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests@dma_fence_chain:
-    - fi-skl-6600u:       NOTRUN -> [SKIP][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@dmabuf@all-tests@dma_fence_chain.html
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-adls-6:         NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_tiled_pread_basic@basic:
-    - bat-adls-6:         NOTRUN -> [SKIP][3] ([i915#15656])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_tiled_pread_basic@basic.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][4] -> [DMESG-FAIL][5] ([i915#12061]) +1 other test dmesg-fail
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  * igt@intel_hwmon@hwmon-read:
-    - bat-adls-6:         NOTRUN -> [SKIP][6] ([i915#7707]) +1 other test skip
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@intel_hwmon@hwmon-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-adls-6:         NOTRUN -> [SKIP][7] ([i915#4103]) +1 other test skip
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adls-6:         NOTRUN -> [SKIP][8] ([i915#3555] / [i915#3840])
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adls-6:         NOTRUN -> [SKIP][9]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - bat-adls-6:         NOTRUN -> [SKIP][10] ([i915#5354])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_psr@psr-primary-mmap-gtt:
-    - bat-adls-6:         NOTRUN -> [SKIP][11] ([i915#1072] / [i915#9732]) +3 other tests skip
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adls-6:         NOTRUN -> [SKIP][12] ([i915#3555])
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-adls-6:         NOTRUN -> [SKIP][13] ([i915#3291]) +2 other tests skip
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@prime_vgem@basic-fence-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - fi-skl-6600u:       [INCOMPLETE][14] ([i915#15859]) -> [PASS][15]
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live.html
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@gem_contexts:
-    - fi-skl-6600u:       [INCOMPLETE][16] -> [PASS][17]
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [DMESG-FAIL][18] ([i915#12061]) -> [PASS][19] +1 other test pass
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15656]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656
-  [i915#15859]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15859
-  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#5354]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354
-  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
-  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18256 -> Patchwork_164160v1
-
-  CI-20190529: 20190529
-  CI_DRM_18256: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8839: 8839
-  Patchwork_164160v1: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html
-
---===============3041847067871870456==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: move VLV IOSF SB to display parent interface</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164160/">https://patchwork.freedesktop.org/series/164160/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18256 -&gt; Patchwork_164160v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (1): bat-adls-6 <br />
-  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164160v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests@dma_fence_chain:</p>
-<ul>
-<li>fi-skl-6600u:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@dmabuf@all-tests@dma_fence_chain.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic@basic:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@gem_tiled_pread_basic@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656">i915#15656</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@intel_hwmon@hwmon-read:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/5354">i915#5354</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-mmap-gtt:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_psr@psr-primary-mmap-gtt.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-adls-6:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-adls-6/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291">i915#3291</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15859">i915#15859</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@gem_contexts:</p>
-<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html">INCOMPLETE</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/fi-skl-6600u/igt@i915_selftest@live@gem_contexts.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18256/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164160v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18256 -&gt; Patchwork_164160v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18256: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8839: 8839<br />
-  Patchwork_164160v1: 779129c7868f4c7205901d6e57b25de52b411d1c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3041847067871870456==--
+-- 
+Ville Syrjälä
+Intel
