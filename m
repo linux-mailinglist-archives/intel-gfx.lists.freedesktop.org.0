@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2DaWI5COy2kuIwYAu9opvQ
+	id +DZbL5aOy2kuIwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 11:06:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 11:06:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36145366B6C
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 11:06:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6D3F1366B73
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 11:06:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA81310E9C8;
-	Tue, 31 Mar 2026 09:06:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1B2110E9C9;
+	Tue, 31 Mar 2026 09:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FhomRkVO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S5tSeyVX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EAF010E9BB;
- Tue, 31 Mar 2026 09:06:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8A9C610E9D2;
+ Tue, 31 Mar 2026 09:06:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774947982; x=1806483982;
+ t=1774947988; x=1806483988;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=k0Lc9p9ipY8/8SzisV23Mw3/OC64IXlDSPqI55a46fs=;
- b=FhomRkVOcvABwex2YIQ0xqAFQ3W5pp9Z/865Z9Ta7iCNB3w3jzXXJZfD
- IS8neBa2EKZwONMZ361hRY2fKv+Epg3/QAi1FOpVAtaqsVl1idw4WCGqT
- ufY4lUuURT0xYnKJDGZfI3aoBLt88utvPJlhW53HD1PxsWpEwIyaGsBN5
- 4/Zih56jd23vK+1w2WmAc4zcglpu8dd6fKrl+Trh5ovbFd0k+VnBMAF6Q
- YhMXPudhPiXso2i92DjxptO8vqlkAiH9pQBf3pEShq6MFEOV64jhkRR+o
- T0FtPwESHluDY/pz5j+xsmCnRUksQlL/YC4aLSGJjMoXNy8H4h70v0PbQ A==;
-X-CSE-ConnectionGUID: gjNV7vulQ4abQsAsKc030Q==
-X-CSE-MsgGUID: gDpU9ZS6TfanNIsvUjLgBg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="87420660"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="87420660"
+ bh=dXtgWOGBdELi8f/7iirwy/bcmpADsCwRE4rZo/pIbD4=;
+ b=S5tSeyVXDhtbj9NK5mkQNvq7BBtiOow4NVoazCeUqZ4jgBWhaRLloKW3
+ LxZnabC5sXjEpY5+7bytpuVxWnIAWdUagycZ8WAJlCzhjgHjqVdza5ga3
+ VnB6dwnUQQg+j60HiCg5DCgoVtoZTFEydOTLBGDg8vWzC/Yk4xc9SYzDG
+ KFlNqIA94fFRISIx3sPC6EYYI2hMUKQNxlM9RW4LpuWtbkiCg/yw9ez2h
+ EMFI+7I8NVgUqWc9ZeJrNx+KCELry/a4CNgD+DYPgeRzNgreyQGMS6GUf
+ eqBiThseDs+9TXxEE0P1WedFSSCRJmlctPvf5QL34fTt8x44+jZao0VEp g==;
+X-CSE-ConnectionGUID: LgGCe8HSRtSUzEFubBVB0g==
+X-CSE-MsgGUID: nYDXympST/qH4YzfzRbT2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="87420686"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="87420686"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 02:06:21 -0700
-X-CSE-ConnectionGUID: 0X0oapC6SeuMfg29qRxOjQ==
-X-CSE-MsgGUID: LKtJh3bhQzCOpTAkcsXlDw==
+ 31 Mar 2026 02:06:27 -0700
+X-CSE-ConnectionGUID: hxSsxsvKRt+O+Gb4X+OnOg==
+X-CSE-MsgGUID: kC3M13+gTci651nl3mqCeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226559713"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="226559731"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa007.jf.intel.com with ESMTP; 31 Mar 2026 02:06:16 -0700
+ by orviesa007.jf.intel.com with ESMTP; 31 Mar 2026 02:06:22 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 31 Mar 2026 14:33:56 +0530
-Subject: [PATCH v11 4/7] drm/atomic: Allocate atomic_state at the beginning
- of atomic_ioctl
+Date: Tue, 31 Mar 2026 14:33:57 +0530
+Subject: [PATCH v11 5/7] drm/atomic: Return user readable error in atomic_ioctl
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260331-atomic-v11-4-6a1df7ec5af8@intel.com>
+Message-Id: <20260331-atomic-v11-5-6a1df7ec5af8@intel.com>
 References: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
 In-Reply-To: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -106,101 +105,163 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 36145366B6C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 6D3F1366B73
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Move atomic_state allocation to the beginning of the atomic_ioctl
-to accommodate drm_mode_atomic_err_code usage for returning error
-code on failures.
-As atomic state is required for drm_mode_atomic_err_code to store the
-error codes.
+Add user readable error codes for failure cases in drm_atomic_ioctl() so
+that user can decode the error code and take corrective measurements.
 
-v7: Reframe commit message (Suraj)
-v8: Moved the clearing fence change to a different patch (Suraj/Louis)
-v9: Free allocated atomic_state before return on error, move this change
-from patch 5 (Suraj)
-v10: Re-order, exchange 3 and 4th patch to ensure cleanup is done in
-order (Suraj)
+v8: Replaced DRM_MODE_ATOMIC_ASYNC_NOT_SUPP_PLANE,
+    DRM_MODE_ATOMIC_ASYNC_MODIFIER_NOT_SUPP with INVALID_API_USAGE
+    (Xaver)
+v9: Move free atomic_state on error to patch 3 (Suraj)
+v10: on copy_to_user error free atomic_state and drop acquired locks
+(Suraj)
 
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/drm_atomic_uapi.c | 30 ++++++++++++++++++------------
- 1 file changed, 18 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/drm_atomic_uapi.c | 58 +++++++++++++++++++++++++++++----------
+ 1 file changed, 44 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
-index 64e33aeb9ee2d553b1247cfb9a11e17d8ddf1e86..a0227b4ca57187624d17cdda24c4da47916c3467 100644
+index a0227b4ca57187624d17cdda24c4da47916c3467..14d65d40efc8014fd97c1afa2cdc20ba6003d08c 100644
 --- a/drivers/gpu/drm/drm_atomic_uapi.c
 +++ b/drivers/gpu/drm/drm_atomic_uapi.c
-@@ -1580,6 +1580,14 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+@@ -1200,6 +1200,11 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 			ret = drm_atomic_connector_get_property(connector, connector_state,
+ 								prop, &old_val);
+ 			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
++			if (ret) {
++				drm_mode_atomic_add_error_msg(&state->error_code,
++							      DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
++							      "property change not allowed in async flip");
++			}
+ 			break;
+ 		}
+ 
+@@ -1222,6 +1227,11 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 			ret = drm_atomic_crtc_get_property(crtc, crtc_state,
+ 							   prop, &old_val);
+ 			ret = drm_atomic_check_prop_changes(ret, old_val, prop_value, prop);
++			if (ret) {
++				drm_mode_atomic_add_error_msg(&state->error_code,
++							      DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED,
++							      "property change not allowed in async flip");
++			}
+ 			break;
+ 		}
+ 
+@@ -1260,9 +1270,10 @@ int drm_atomic_set_property(struct drm_atomic_state *state,
+ 					ret = plane_funcs->atomic_async_check(plane, state, true);
+ 
+ 				if (ret) {
+-					drm_dbg_atomic(prop->dev,
+-						       "[PLANE:%d:%s] does not support async flips\n",
+-						       obj->id, plane->name);
++					drm_mode_atomic_add_error_msg(&state->error_code,
++								      DRM_MODE_ATOMIC_INVALID_API_USAGE,
++								      "[PLANE:%d:%s] does not support async flip",
++								      obj->id, plane->name);
+ 					break;
+ 				}
+ 			}
+@@ -1572,6 +1583,7 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 	struct drm_atomic_state *state;
+ 	struct drm_modeset_acquire_ctx ctx;
+ 	struct drm_out_fence_state *fence_state;
++	struct drm_mode_atomic_err_code __user *error_code_ptr;
+ 	int ret = 0;
+ 	unsigned int i, j, num_fences = 0;
+ 	bool async_flip = false;
+@@ -1580,6 +1592,14 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
  	if (!drm_core_check_feature(dev, DRIVER_ATOMIC))
  		return -EOPNOTSUPP;
  
-+	state = drm_atomic_state_alloc(dev);
-+	if (!state)
-+		return -ENOMEM;
++	if (!arg->reserved)
++		drm_dbg_atomic(dev,
++			       "memory not allocated for drm_atomic error reporting\n");
++	else
++		/* Update the error code if any error to allow user handling it */
++		error_code_ptr = (struct drm_mode_atomic_err_code __user *)
++				 (unsigned long)arg->reserved;
 +
-+	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
-+	state->acquire_ctx = &ctx;
-+	state->allow_modeset = !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
+ 	state = drm_atomic_state_alloc(dev);
+ 	if (!state)
+ 		return -ENOMEM;
+@@ -1588,11 +1608,16 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 	state->acquire_ctx = &ctx;
+ 	state->allow_modeset = !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
+ 
++	memset(&state->error_code, 0, sizeof(*error_code_ptr));
 +
  	/* disallow for userspace that has not enabled atomic cap (even
  	 * though this may be a bit overkill, since legacy userspace
  	 * wouldn't know how to call this ioctl)
-@@ -1587,24 +1595,28 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 	 */
  	if (!file_priv->atomic) {
++		drm_mode_atomic_add_error_msg(&state->error_code,
++					      DRM_MODE_ATOMIC_INVALID_API_USAGE,
++					      "drm atomic capability not enabled");
  		drm_dbg_atomic(dev,
  			       "commit failed: atomic cap not enabled\n");
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto out;
+ 		ret = -EINVAL;
+@@ -1600,21 +1625,18 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
  	}
  
  	if (arg->flags & ~DRM_MODE_ATOMIC_FLAGS) {
- 		drm_dbg_atomic(dev, "commit failed: invalid flag\n");
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto out;
- 	}
- 
- 	if (arg->reserved) {
- 		drm_dbg_atomic(dev, "commit failed: reserved field set\n");
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto out;
+-		drm_dbg_atomic(dev, "commit failed: invalid flag\n");
+-		ret = -EINVAL;
+-		goto out;
+-	}
+-
+-	if (arg->reserved) {
+-		drm_dbg_atomic(dev, "commit failed: reserved field set\n");
++		drm_mode_atomic_add_error_msg(&state->error_code,
++					      DRM_MODE_ATOMIC_INVALID_API_USAGE,
++					      "invalid flag");
+ 		ret = -EINVAL;
+ 		goto out;
  	}
  
  	if (arg->flags & DRM_MODE_PAGE_FLIP_ASYNC) {
  		if (!dev->mode_config.async_page_flip) {
- 			drm_dbg_atomic(dev,
- 				       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported\n");
--			return -EINVAL;
-+			ret = -EINVAL;
-+			goto out;
+-			drm_dbg_atomic(dev,
+-				       "commit failed: DRM_MODE_PAGE_FLIP_ASYNC not supported\n");
++			drm_mode_atomic_add_error_msg(&state->error_code,
++						      DRM_MODE_ATOMIC_INVALID_API_USAGE,
++						      "DRM_MODE_PAGE_FLIP_ASYNC not supported with ATOMIC ioctl");
+ 			ret = -EINVAL;
+ 			goto out;
  		}
- 
- 		async_flip = true;
-@@ -1615,16 +1627,10 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+@@ -1625,8 +1647,9 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
+ 	/* can't test and expect an event at the same time. */
+ 	if ((arg->flags & DRM_MODE_ATOMIC_TEST_ONLY) &&
  			(arg->flags & DRM_MODE_PAGE_FLIP_EVENT)) {
- 		drm_dbg_atomic(dev,
- 			       "commit failed: page-flip event requested with test-only commit\n");
--		return -EINVAL;
-+		ret = -EINVAL;
-+		goto out;
+-		drm_dbg_atomic(dev,
+-			       "commit failed: page-flip event requested with test-only commit\n");
++		drm_mode_atomic_add_error_msg(&state->error_code,
++					      DRM_MODE_ATOMIC_INVALID_API_USAGE,
++					      "page-flip event requested with test-only commit");
+ 		ret = -EINVAL;
+ 		goto out;
+ 	}
+@@ -1729,6 +1752,13 @@ int drm_mode_atomic_ioctl(struct drm_device *dev,
  	}
  
--	state = drm_atomic_state_alloc(dev);
--	if (!state)
--		return -ENOMEM;
--
--	drm_modeset_acquire_init(&ctx, DRM_MODESET_ACQUIRE_INTERRUPTIBLE);
--	state->acquire_ctx = &ctx;
--	state->allow_modeset = !!(arg->flags & DRM_MODE_ATOMIC_ALLOW_MODESET);
- 	state->plane_color_pipeline = file_priv->plane_color_pipeline;
+ out:
++	/* Update the error code if any error to allow user handling it */
++	if (ret < 0 && arg->reserved) {
++		if (copy_to_user(error_code_ptr, &state->error_code,
++				 sizeof(state->error_code)))
++			ret = -EFAULT;
++	}
++
+ 	if (num_fences)
+ 		complete_signaling(dev, state, fence_state, num_fences, !ret);
  
- retry:
 
 -- 
 2.25.1
