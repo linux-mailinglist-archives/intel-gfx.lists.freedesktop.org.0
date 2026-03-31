@@ -2,84 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +GfyEQCjy2kUJwYAu9opvQ
+	id wD/PCLaqy2kpKAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:33:36 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 13:06:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E91CE3680AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:33:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DD72368830
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 13:06:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3DD2110EA37;
-	Tue, 31 Mar 2026 10:33:32 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="V3L9lwL5";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D69C110E96D;
+	Tue, 31 Mar 2026 11:06:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 585BC10EA22;
- Tue, 31 Mar 2026 10:33:30 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1774953194; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=iq7d+EpWYAvrctcfxZoQjNJuhB62URk7xlbwaLsDMTNXTWCyQ4LwDyZ6I27wYYHAMP4YPM0hYR/rK8AWX1jqBcjhxQf8J51b99OQ+VF9yVDhEqMQMfzMcWZJUV2pGlG6D+JYKcdc63sYSJlX24pWsFdQZX2jKMN+WnVHhppSgRQ=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1774953194;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=WONs+triHAG3oxKIDY5u6sC91+pizMI0mnGHgeGpMWA=; 
- b=Vh9zaiChMYD6vskfjYkgIBkCpQIQmnxaqlBcmk8+El0hVORrkZFIntq9a8X6fTa7guKBYxcQC8K42tY0FIF9ir+fsdg58kFS9D0UjA9+cfr6iNC4IkwitdRA9MKj5MscyrlksfUfeV18AJAKMPFxt2cNzDqpvvQDy/G0UyUF4yQ=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1774953194; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Content-Type:Message-Id:Reply-To;
- bh=WONs+triHAG3oxKIDY5u6sC91+pizMI0mnGHgeGpMWA=;
- b=V3L9lwL5t+B5HbtOLDaYfqYdeaZCN8rQT1mGU46AB79OOrvLI8lwlaGUlxYG0lKq
- G6V26eWcMkIy5x3/sgiT2LdI+GDuyPfzNDQ6VB5oOYteJoe+EnPXzgWeohswEwhMpkq
- 0cS3rPBVWJ25PctJ4X+Zp9Z74BEt6x2M/ZP7K/Yo=
-Received: by mx.zohomail.com with SMTPS id 1774953193153170.1511210439279;
- Tue, 31 Mar 2026 03:33:13 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-To: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: Maxime Ripard <mripard@kernel.org>,
- Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?UTF-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?UTF-8?B?U3TDvGJuZXI=?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, Werner Sembach <wse@tuxedocomputers.com>,
- Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
-Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
-Date: Tue, 31 Mar 2026 12:33:00 +0200
-Message-ID: <5583906.GXAFRqVoOG@workhorse>
-In-Reply-To: <acsNoCDsPtEhtkRn@intel.com>
-References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
- <acclgID7lSVNten2@intel.com> <acsNoCDsPtEhtkRn@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8D80A10E968;
+ Tue, 31 Mar 2026 11:06:26 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5969025355871071051=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="utf-8"
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D=3A_m?=
+ =?utf-8?q?ove_fbdev_fb_calls_to_parent_interface?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 31 Mar 2026 11:06:26 -0000
+Message-ID: <177495518655.416872.8730551412051900928@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1774950508.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1774950508.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,320 +42,224 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[kernel.org,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.995];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim]
-X-Rspamd-Queue-Id: E91CE3680AC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,lists.freedesktop.org:replyto,live:email,kms_pm_rpm:email,workarounds:email,i915_selftest:email]
+X-Rspamd-Queue-Id: 6DD72368830
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tuesday, 31 March 2026 01:56:16 Central European Summer Time Ville Syrj=
-=C3=A4l=C3=A4 wrote:
-> On Sat, Mar 28, 2026 at 02:49:04AM +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > On Fri, Mar 27, 2026 at 01:56:06PM +0100, Nicolas Frattaroli wrote:
-> > > On Thursday, 26 March 2026 18:58:25 Central European Standard Time Vi=
-lle Syrj=C3=A4l=C3=A4 wrote:
-> > > > On Thu, Mar 26, 2026 at 06:02:47PM +0100, Maxime Ripard wrote:
-> > > > > On Wed, Mar 25, 2026 at 08:43:15PM +0200, Ville Syrj=C3=A4l=C3=A4=
- wrote:
-> > > > > > On Wed, Mar 25, 2026 at 03:56:58PM +0100, Maxime Ripard wrote:
-> > > > > > > On Wed, Mar 25, 2026 at 01:03:07PM +0200, Ville Syrj=C3=A4l=
-=C3=A4 wrote:
-> > > > > > > > On Wed, Mar 25, 2026 at 09:24:27AM +0100, Maxime Ripard wro=
-te:
-> > > > > > > > > On Tue, Mar 24, 2026 at 09:53:35PM +0200, Ville Syrj=C3=
-=A4l=C3=A4 wrote:
-> > > > > > > > > > On Tue, Mar 24, 2026 at 08:10:11PM +0100, Nicolas Fratt=
-aroli wrote:
-> > > > > > > > > > > On Tuesday, 24 March 2026 18:00:45 Central European S=
-tandard Time Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > > > > > > > > > > On Tue, Mar 24, 2026 at 05:01:07PM +0100, Nicolas F=
-rattaroli wrote:
-> > > > > > > > > > > > > +enum drm_connector_color_format {
-> > > > > > > > > > > > > +	/**
-> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver=
- or display protocol
-> > > > > > > > > > > > > +	 * helpers should pick a suitable color format.=
- All implementations of a
-> > > > > > > > > > > > > +	 * specific display protocol must behave the sa=
-me way with "AUTO", but
-> > > > > > > > > > > > > +	 * different display protocols do not necessari=
-ly have the same "AUTO"
-> > > > > > > > > > > > > +	 * semantics.
-> > > > > > > > > > > > > +	 *
-> > > > > > > > > > > > > +	 * For HDMI, "AUTO" picks RGB, but falls back t=
-o YCbCr 4:2:0 if the
-> > > > > > > > > > > > > +	 * bandwidth required for full-scale RGB is not=
- available, or the mode
-> > > > > > > > > > > > > +	 * is YCbCr 4:2:0-only, as long as the mode and=
- output both support
-> > > > > > > > > > > > > +	 * YCbCr 4:2:0.
-> > > > > > > > > > > > > +	 *
-> > > > > > > > > > > > > +	 * For display protocols other than HDMI, the r=
-ecursive bridge chain
-> > > > > > > > > > > > > +	 * format selection picks the first chain of br=
-idge formats that works,
-> > > > > > > > > > > > > +	 * as has already been the case before the intr=
-oduction of the "color
-> > > > > > > > > > > > > +	 * format" property. Non-HDMI bridges should th=
-erefore either sort their
-> > > > > > > > > > > > > +	 * bus output formats by preference, or agree o=
-n a unified auto format
-> > > > > > > > > > > > > +	 * selection logic that's implemented in a comm=
-on state helper (like
-> > > > > > > > > > > > > +	 * how HDMI does it).
-> > > > > > > > > > > > > +	 */
-> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_AUTO =3D 0,
-> > > > > > > > > > > > > +
-> > > > > > > > > > > > > +	/**
-> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_RGB444: RGB outp=
-ut format
-> > > > > > > > > > > > > +	 */
-> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_RGB444,
-> > > > > > > > > > > > > +
-> > > > > > > > > > > > > +	/**
-> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR444: YCbCr =
-4:4:4 output format (ie.
-> > > > > > > > > > > > > +	 * not subsampled)
-> > > > > > > > > > > > > +	 */
-> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR444,
-> > > > > > > > > > > > > +
-> > > > > > > > > > > > > +	/**
-> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR422: YCbCr =
-4:2:2 output format (ie.
-> > > > > > > > > > > > > +	 * with horizontal subsampling)
-> > > > > > > > > > > > > +	 */
-> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR422,
-> > > > > > > > > > > > > +
-> > > > > > > > > > > > > +	/**
-> > > > > > > > > > > > > +	 * @DRM_CONNECTOR_COLOR_FORMAT_YCBCR420: YCbCr =
-4:2:0 output format (ie.
-> > > > > > > > > > > > > +	 * with horizontal and vertical subsampling)
-> > > > > > > > > > > > > +	 */
-> > > > > > > > > > > > > +	DRM_CONNECTOR_COLOR_FORMAT_YCBCR420,
-> > > > > > > > > > > >=20
-> > > > > > > > > > > > Seems like this should document what the quantizati=
-on range
-> > > > > > > > > > > > should be for each format.
-> > > > > > > > > > > >=20
-> > > > > > > > > > >=20
-> > > > > > > > > > > I don't think so? If you want per-component bit depth=
- values,
-> > > > > > > > > > > DRM_FORMAT_* defines would be the appropriate values =
-to use. This
-> > > > > > > > > > > enum is more abstract than that, and is there to comm=
-unicate
-> > > > > > > > > > > YUV vs. RGB and chroma subsampling, with bit depth be=
-ing handled
-> > > > > > > > > > > by other properties.
-> > > > > > > > > > >=20
-> > > > > > > > > > > If you mean the factor used for subsampling, then tha=
-t'd only be
-> > > > > > > > > > > relevant if YCBCR410 was supported where one chroma p=
-lane isn't
-> > > > > > > > > > > halved but quartered in resolution. I suspect 4:1:0 w=
-ill never
-> > > > > > > > > > > be added; no digital display protocol standard suppor=
-ts it to my
-> > > > > > > > > > > knowledge, and hopefully none ever will.
-> > > > > > > > > >=20
-> > > > > > > > > > No, I mean the quantization range (16-235 vs. 0-255 etc=
-).
-> > > > > > > > > >=20
-> > > > > > > > > > The i915 behaviour is that YCbCr is always limited rang=
-e,
-> > > > > > > > > > RGB can either be full or limited range depending on th=
-e=20
-> > > > > > > > > > "Broadcast RGB" property and other related factors.
-> > > > > > > > >=20
-> > > > > > > > > So far the HDMI state has both the format and quantizatio=
-n range as
-> > > > > > > > > different fields. I'm not sure we need to document the ra=
-nge in the
-> > > > > > > > > format field, maybe only mention it's not part of the for=
-mat but has a
-> > > > > > > > > field of its own?
-> > > > > > > >=20
-> > > > > > > > I think we only have it for RGB (on some drivers only?). Fo=
-r YCbCr
-> > > > > > > > I think the assumption is limited range everywhere.
-> > > > > > > >=20
-> > > > > > > > But I'm not really concerned about documenting struct membe=
-rs.
-> > > > > > > > What I'm talking about is the *uapi* docs. Surely userspace
-> > > > > > > > will want to know what the new property actually does so the
-> > > > > > > > uapi needs to be documented properly. And down the line some
-> > > > > > > > new driver might also implement the wrong behaviour if there
-> > > > > > > > is no clear specification.
-> > > > > > >=20
-> > > > > > > Ack
-> > > > > > >=20
-> > > > > > > > So I'm thinking (or perhaps hoping) the rule might be somet=
-hing like:
-> > > > > > > > - YCbCr limited range=20
-> > > > > > > > - RGB full range if "Broadcast RGB" property is not present
-> > > > > > >=20
-> > > > > > > Isn't it much more complicated than that for HDMI though? My
-> > > > > > > recollection was that any VIC but VIC1 would be limited range=
-, and
-> > > > > > > anything else full range?
-> > > > > >=20
-> > > > > > Do we have some driver that implements the CTA-861 CE vs. IT mo=
-de
-> > > > > > logic but doesn't expose the "Broadcast RGB" property? I was ho=
-ping
-> > > > > > those would always go hand in hand now.
-> > > > >=20
-> > > > > I'm not sure. i915 and the HDMI state helpers handle it properly =
-(I
-> > > > > think?) but it looks like only vc4 registers the Broadcast RGB pr=
-operty
-> > > > > and uses the HDMI state helpers.
-> > > > >=20
-> > > > > And it looks like amdgpu registers Broadcast RGB but doesn't use
-> > > > > drm_default_rgb_quant_range() which seems suspicious?
-> > > >=20
-> > > > If they want just manual full vs. limited then they should
-> > > > limit the property to not expose the "auto" option at all.
-> > > >=20
-> > > > amdgpu also ties this in with the "colorspace" property, which
-> > > > originally in i915 only controlled the infoframes/etc. But on
-> > > > amdgpu it now controls various aspects of output color
-> > > > transformation. The end result is that the property is a complete
-> > > > mess with most of the values making no sense. And for whatever
-> > > > reason everyone involved refused to remove/deprecate the
-> > > > nonsensical values :/
-> > > >=20
-> > > > Looks like this series should make sure the documentation for
-> > > > the "colorspace" property is in sync with the new property
-> > > > as well. Currently now it's giving conflicting information.
-> > > >=20
-> > >=20
-> > > I take it the problematic information is in
-> > >=20
-> > >     * DOC: standard connector properties
-> > >     *
-> > >     * Colorspace:
-> > >=20
-> > > and probably specifically BT2020_YCC's (and BT2020_RGB's?) insistence
-> > > that they "produce RGB content".
-> > >=20
-> > > I think we probably just have to change the statement "The variants
-> > > BT2020_RGB and BT2020_YCC are equivalent and the driver chooses betwe=
-en
-> > > RGB and YCbCr on its own."
-> > >=20
-> > > The "on its own" here would get turned into "based on the color format
-> > > property".
-> > >=20
-> > > Speaking of i915, that patch is one of the very few (5) patches in
-> > > this series still lacking a review (hint hint nudge nudge). I'd like
-> > > to get some more feedback on the remaining patches before I send out
-> > > another revision, so that it's hopefully not just docs changes (I
-> > > know better than to think those patches must be perfect and won't
-> > > need revision.)
-> >=20
-> > The i915 code around this is already a big mess, and I don't really
-> > adding to that mess. So I think we'll need to do some refactoring before
-> > we add anything there. I already started typing something and so far
-> > it looks fairly straightforward, so I should have something soon.
->=20
-> OK, posted something
-> https://lore.kernel.org/intel-gfx/20260330235339.29479-1-ville.syrjala@li=
-nux.intel.com/T/#m7c349478ca6c856fbc68d5e2178f1aa31678a05f
+--===============5969025355871071051==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Thanks! I'll take a look at this today to get a more solid idea of
-where the pain points you highlighted are.
+== Series Details ==
 
-I'll also rebase/reimplement my i915 color format implementation
-(sans the DP-MST part, as discussed) on top of this on the next
-revision. I was never fully happy with the current one due to the
-logic being shoehorned into the already existing i915 fallback
-format logic, so I'm quite happy to have another opportunity to
-implement it with less historic baggage.
+Series: drm/{i915, xe}: move fbdev fb calls to parent interface
+URL   : https://patchwork.freedesktop.org/series/164150/
+State : success
 
-> Are the wayland/compositor/color management folks on board with
-> these new properties? I don't think I see the usual suspects on
-> the cc list.
+== Summary ==
 
-I don't know which precise group of people you refer to, but at
-least from the Collabora side of things, the userspace Wayland
-people are on board with these new properties. In Weston, we use
-it to implement the Weston frontend's "color-format" option in a
-WIP branch at
+CI Bug Log - changes from CI_DRM_18255 -> Patchwork_164150v1
+====================================================
 
-https://gitlab.freedesktop.org/wayland/weston/-/merge_requests/1859
+Summary
+-------
 
-I've also been made aware that LibreELEC is aware, and will look
-into making use of it rather than their own kernel patches.
+  **SUCCESS**
 
-Kind regards,
-Nicolas Frattaroli
+  No regressions found.
 
-> >=20
-> > While doing that several questions came to my mind though:
-> >=20
-> > * More interactions with the colorspace property, but I sent
-> >   a separate mail already about that
-> >=20
-> > * Which conversion matrix to use, and the answer I suspect
-> >   should be "ask the colorspace property", as mentioned in the
-> >   other mail
-> >=20
-> > * Should we flat out reject color formats (and I suppose also
-> >   colorspace prop values) the sink doesn't claim to support?
-> >=20
-> >   If yes, then I think we'll have to forget about adding anything=20
-> >   to i915 MST code. The way the MST stuff works is that if one
-> >   stream needs a modeset then all the related streams get modeset
-> >   as well. Thus if the user replaces a monitor getting fed with a
-> >   YCbCr stream just as another stream is being modeset, then the
-> >   entire atomic commit could fail due to the YCbCr stream getting
-> >   rejected.
-> >=20
-> >   I think eventually we might have to invent some mechanism where
-> >   all the input into the modeset computation is cached somehow,
-> >   and said cache updated only on explicit userspace modesets.
-> >   Either that or we have to come up  with a way to skip some of
-> >   the calculations that depend on external factors. Either way
-> >   it's going to be a pain.
-> >=20
-> >   OTOH if we don't mind feeding the sink with stuff it can't
-> >   understand, then I suppose we might add YCbCr 4:4:4 support
-> >   for MST. It shouldn't be any different from RGB apart from
-> >   the RGB->YCbCr conversion, which is handled elsewhere. But
-> >   YCbCr 4:2:0 is definitely out either way, the MST code has
-> >   no support for that currently.
-> >=20
->=20
->=20
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_164150v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - fi-tgl-1115g4:      [PASS][1] -> [DMESG-FAIL][2] ([i915#14808]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/fi-tgl-1115g4/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/fi-tgl-1115g4/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-arls-5:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-mtlp-9:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-rpls-4:         [PASS][9] -> [DMESG-WARN][10] ([i915#13400])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-mtlp-8/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-dg2-8:          [DMESG-FAIL][13] ([i915#12061]) -> [PASS][14] +1 other test pass
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-dg2-8/igt@i915_selftest@live.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-14:         [DMESG-FAIL][15] ([i915#12061]) -> [PASS][16] +1 other test pass
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
+  [i915#14808]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808
 
 
+Build changes
+-------------
+
+  * Linux: CI_DRM_18255 -> Patchwork_164150v1
+
+  CI-20190529: 20190529
+  CI_DRM_18255: e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8838: 75e860f605d698d0184d36091816814eb7de6ca5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_164150v1: e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/index.html
+
+--===============5969025355871071051==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
 
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}: move fbdev fb calls to parent interface</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164150/">https://patchwork.freedesktop.org/series/164150/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18255 -&gt; Patchwork_164150v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_164150v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/fi-tgl-1115g4/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/fi-tgl-1115g4/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14808">i915#14808</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18255/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164150v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18255 -&gt; Patchwork_164150v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18255: e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8838: 75e860f605d698d0184d36091816814eb7de6ca5 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_164150v1: e15bf8dd9e5cd3aa1352b5b9a16eeffd3b1b193d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5969025355871071051==--
