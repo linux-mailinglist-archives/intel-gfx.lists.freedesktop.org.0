@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gN1RN5Lry2l6MgYAu9opvQ
+	id iKFLNZbry2l6MgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91FF836BEE0
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7E4F636BEF2
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE8910EA34;
-	Tue, 31 Mar 2026 15:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0A7D210EA64;
+	Tue, 31 Mar 2026 15:43:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b+JW6xia";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iPuJcDTP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA68610EA5A;
- Tue, 31 Mar 2026 15:43:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DED6A10EA60;
+ Tue, 31 Mar 2026 15:43:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774971792; x=1806507792;
+ t=1774971796; x=1806507796;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s1Wx5eN3jV/yMpmAHcM/0u2pTkSYBqsjGDYorQX5l4Q=;
- b=b+JW6xiaIV0TnDuv/CTyUX+hsw3qkwSVJGzlQFyZ9Dmie7lTQ1PYGVH2
- D8v6tF/6/4emFyQfBcHQP9L7KiT/MHuhiU6K8DeSpqliex3GN5Kkb/OhJ
- C+hPJysGRVYnXt2qRav+Rbjz8znuf3+AuIDiVNlc+kdYNGe9FUQ9dJbjZ
- dBQFP83MDqjtJGXhHoyYGThKMrkKWlvKvf92c51EmCEWv9aapB1Vh/oPp
- WYhtL2TNkj3ypSUT0N6tgD32YkIm9uPwZO2FNtOATgTcIIiQpRoz3X9qj
- jQ5RMu4xtkrkPiyKqRFDqq0LMT5fa36zvPsyA/DQciO3U8j55kNxGSpfY g==;
-X-CSE-ConnectionGUID: jP3oR4kySDi2akEWeZdOXA==
-X-CSE-MsgGUID: FEMXO20QSealh1V2fgGUBw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75884116"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75884116"
+ bh=pGuaesHTw3qJWGRoLz2eBP5S1i5uVyvBTAm7wqtVe8o=;
+ b=iPuJcDTPL0f6QQE5sfqIX/XhLc2LbHg/1Xrl7p4GmO8iGDeVsLBPgsb+
+ pfEe3mNLqtB5iaxIW5NqtSOMEZGHTJLChHlBB7gP/liDxCuusbU73HMuc
+ 3S53ejV0m5yLHfHF40T6H+KBWqU0PMSO5R0Yg9YGuR03TmzzRz9U6veNJ
+ 7FJB0QcT5TkbI8QoVKsrWeM8J6SsR/MkWvhSnG7ZR/gGV4lnNrDw7WgoC
+ x7zCZvPuGFC6Rfb0czytrV1Ay5v+Jy/uhamoSrMu6E7UUx3XpSSFCuWNm
+ HN/JMLu0eDyza/NmBgo+w9lJP0XgWwNj5lGrxI07hJQ/jujm8SEFdCex3 Q==;
+X-CSE-ConnectionGUID: 6iXi4j9MRpC8IYtMck1PnA==
+X-CSE-MsgGUID: T02ezyIPRGqvWDH5eCn7rA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75884127"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75884127"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 08:43:12 -0700
-X-CSE-ConnectionGUID: rN4OxZgfR+afzbq2SpwgIQ==
-X-CSE-MsgGUID: SdFmGwxoQ0KpUOYifkQcCA==
+ 31 Mar 2026 08:43:16 -0700
+X-CSE-ConnectionGUID: 1/IKxr57T8uTACA54Q7d2A==
+X-CSE-MsgGUID: 5fZKRKyZRceElO8CqGJivQ==
 X-ExtLoop1: 1
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 08:43:10 -0700
+ 31 Mar 2026 08:43:14 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 02/12] drm/i915/mchbar: Provide intel_mchbar_read*()
- abstraction
-Date: Tue, 31 Mar 2026 18:42:49 +0300
-Message-ID: <20260331154259.24600-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 03/12] drm/i915/mchbar: Define the end of the MCHBAR mirror
+Date: Tue, 31 Mar 2026 18:42:50 +0300
+Message-ID: <20260331154259.24600-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
 References: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
@@ -99,124 +98,45 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 91FF836BEE0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 7E4F636BEF2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-MCHBAR registers are a bit special in that:
-- we access them through the mirror
-- the mirror is read only on HSW+
-- the mirror requires the actual MCHBAR to be enabled in device 0:0.0
-- the mirror is gone on MTL+
+Add defines for the end of the MCHBAR mirror. I'm planning to
+use this for some range sanity checks.
 
-So I'd prefer to treat MCHBAR registers as a bit special in
-the code as well, and do all accesses to them via dedicated
-functions. Prodive such functions in the form of
-intel_mchbar_read*().
-
-v2: Put the function arguments on one line
-    No intel_uncore_read64() on xe, use intel_uncore_read64_2x32()
-    Name the new function intel_mchbar_read64_2x32() as well
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
+BSpec: 51771
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/Makefile               |  1 +
- drivers/gpu/drm/i915/display/intel_mchbar.c | 30 +++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_mchbar.h | 19 +++++++++++++
- drivers/gpu/drm/xe/Makefile                 |  1 +
- 4 files changed, 51 insertions(+)
- create mode 100644 drivers/gpu/drm/i915/display/intel_mchbar.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_mchbar.h
+ drivers/gpu/drm/i915/intel_mchbar_regs.h | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index b677720a1c2d..0e48305df8b2 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -295,6 +295,7 @@ i915-y += \
- 	display/intel_link_bw.o \
- 	display/intel_load_detect.o \
- 	display/intel_lpe_audio.o \
-+	display/intel_mchbar.o \
- 	display/intel_modeset_lock.o \
- 	display/intel_modeset_setup.o \
- 	display/intel_modeset_verify.o \
-diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.c b/drivers/gpu/drm/i915/display/intel_mchbar.c
-new file mode 100644
-index 000000000000..2636fe60ef37
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_mchbar.c
-@@ -0,0 +1,30 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
+diff --git a/drivers/gpu/drm/i915/intel_mchbar_regs.h b/drivers/gpu/drm/i915/intel_mchbar_regs.h
+index 614d4017b57b..ca0d421be16c 100644
+--- a/drivers/gpu/drm/i915/intel_mchbar_regs.h
++++ b/drivers/gpu/drm/i915/intel_mchbar_regs.h
+@@ -16,11 +16,16 @@
+  * every way.  It is not accessible from the CP register read instructions.
+  *
+  * Starting from Haswell, you can't write registers using the MCHBAR mirror,
+- * just read.
++ * just read. On MTL+ the mirror no longer exists.
+  */
+ 
+ #define MCHBAR_MIRROR_BASE			0x10000
++#define MCHBAR_MIRROR_END			0x13fff
 +
-+#include "intel_display_core.h"
-+#include "intel_mchbar.h"
-+#include "intel_uncore.h"
-+
-+u16 intel_mchbar_read16(struct intel_display *display, i915_reg_t reg)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+
-+	return intel_uncore_read16(uncore, reg);
-+}
-+
-+u32 intel_mchbar_read(struct intel_display *display, i915_reg_t reg)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+
-+	return intel_uncore_read(uncore, reg);
-+}
-+
-+u64 intel_mchbar_read64_2x32(struct intel_display *display, i915_reg_t reg)
-+{
-+	struct intel_uncore *uncore = to_intel_uncore(display->drm);
-+	i915_reg_t upper_reg = _MMIO(i915_mmio_reg_offset(reg) + 4);
-+
-+	return intel_uncore_read64_2x32(uncore, reg, upper_reg);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.h b/drivers/gpu/drm/i915/display/intel_mchbar.h
-new file mode 100644
-index 000000000000..002a4454e8ed
---- /dev/null
-+++ b/drivers/gpu/drm/i915/display/intel_mchbar.h
-@@ -0,0 +1,19 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright © 2026 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_MCHBAR_H__
-+#define __INTEL_MCHBAR_H__
-+
-+#include <linux/types.h>
-+
-+#include "i915_reg_defs.h"
-+
-+struct intel_display;
-+
-+u16 intel_mchbar_read16(struct intel_display *display, i915_reg_t reg);
-+u32 intel_mchbar_read(struct intel_display *display, i915_reg_t reg);
-+u64 intel_mchbar_read64_2x32(struct intel_display *display, i915_reg_t reg);
-+
-+#endif /* __INTEL_MCHBAR_H__ */
-diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-index 9dacb0579a7d..a86c553dc996 100644
---- a/drivers/gpu/drm/xe/Makefile
-+++ b/drivers/gpu/drm/xe/Makefile
-@@ -306,6 +306,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
- 	i915-display/intel_link_bw.o \
- 	i915-display/intel_lspcon.o \
- 	i915-display/intel_lt_phy.o \
-+	i915-display/intel_mchbar.o \
- 	i915-display/intel_modeset_lock.o \
- 	i915-display/intel_modeset_setup.o \
- 	i915-display/intel_modeset_verify.o \
+ #define MCHBAR_MIRROR_BASE_SNB			0x140000
++#define MCHBAR_MIRROR_END_SNB			0x147fff
++#define MCHBAR_MIRROR_END_ICL_RKL		0x14ffff
++#define MCHBAR_MIRROR_END_TGL			0x15ffff
+ 
+ #define CTG_STOLEN_RESERVED			_MMIO(MCHBAR_MIRROR_BASE + 0x34)
+ #define ELK_STOLEN_RESERVED			_MMIO(MCHBAR_MIRROR_BASE + 0x48)
 -- 
 2.52.0
 
