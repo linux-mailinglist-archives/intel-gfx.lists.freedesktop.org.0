@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2CP3Arnry2l6MgYAu9opvQ
+	id sDbCM77ry2l6MgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4FA336BF8E
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5F24C36BF9E
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 302F910EAD4;
-	Tue, 31 Mar 2026 15:43:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B947310EB52;
+	Tue, 31 Mar 2026 15:43:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iTbrZTyE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oEuuFzJm";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A0AF10EAD4;
- Tue, 31 Mar 2026 15:43:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 250A510EAE6;
+ Tue, 31 Mar 2026 15:43:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774971830; x=1806507830;
+ t=1774971834; x=1806507834;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Wdo44Vo+v4WZ6sHlct7SuLKYH+JJRHB/3NCrhLxXy4E=;
- b=iTbrZTyE87cKfcQ7fLbYcy2OJpIPHV2RmNuFY5jJHw4wte8cGJNiNIvj
- uq2aZqArGefh9x114Qm8ZAHwIO4m3/oVA7nnCYuh0ABuKmRk5zqJSI/P8
- KRT6LUljgZUCRswinQEyFmLihesIW6Tdc7EzYqxYHFS7T7JU1nPHb+AUm
- lhqPn3oenZ2luMrF8Bq1SqvHgqTZXVYSldhtoCIu/MYt1EbsKVVxkMWSn
- dUnPY728mGFjbOXcPyb7sB/0GliqeadC6CQcpIace8fLIFJ/Jg7YYLmda
- iJ25x2RcoHlw8fuCDH3+d7deaWj3O3VSR7d9V1ryUC8kjH3zU3S7lexC2 w==;
-X-CSE-ConnectionGUID: XEQzrcsKSDKtM3DNTIJaEw==
-X-CSE-MsgGUID: IsS+fVzZQB2MnsSZ9vZmvA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76181021"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="76181021"
+ bh=0C67toRMXqRwv/RWf0OxDdihmGENjtUtpLGRQXQhZ6A=;
+ b=oEuuFzJmxrZQCgIVjeSEMOqvjEH0LZPmdDkdi+q7depcx9yI857su6OC
+ qNoR2j4evgd6Md0wUFTTt54YAaGbGwPA6JwCZi3+13wl0pVaqprqXS72Y
+ b9tSx+vyr63ZiedTmhvN8BSgeumdc1DGhU6/PwrDp2Bzn0ys0xoHHidd4
+ gugeIZokqV+A8+wxXEsBl1XVzdu8XTP5JSs5r4K87o+Y6PuIMa7FgJjsA
+ mS7BCfs3ta/DjpSQWQquuWcDodxpxE0+70JGwQ+7odSV3bzpydznRO2ba
+ IyDM9Qryjymgw6VlePtt1sRMRfFlXzLDLJgOaR4m+Ie0k6LLzZYwUdnHj g==;
+X-CSE-ConnectionGUID: GRtsv8FiQ4KVm4Y9jxf+5A==
+X-CSE-MsgGUID: yLpkfpQOS9y/iOsgsw7RTg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76181031"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="76181031"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 08:43:50 -0700
-X-CSE-ConnectionGUID: gSpjszI4S1ezqSNOK43FpA==
-X-CSE-MsgGUID: Mcoq3tq2RtKI7+7ZDOsZDw==
+ 31 Mar 2026 08:43:54 -0700
+X-CSE-ConnectionGUID: fbwGhy6aQjiAM6ieO4EBIQ==
+X-CSE-MsgGUID: uHNFRMN0TZimHCreQdkVVA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="223519406"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="223519439"
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 08:43:48 -0700
+ 31 Mar 2026 08:43:52 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 11/12] drm/i915/mchbar: Use intel_de_read*() for MCHBAR
- register accesses
-Date: Tue, 31 Mar 2026 18:42:58 +0300
-Message-ID: <20260331154259.24600-12-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 12/12] drm/i915/rom: Use intel_de for SPI ROM register
+ access
+Date: Tue, 31 Mar 2026 18:42:59 +0300
+Message-ID: <20260331154259.24600-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
 References: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
@@ -101,71 +101,77 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: A4FA336BF8E
+X-Rspamd-Queue-Id: 5F24C36BF9E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the naked intel_uncore_read*() with intel_de_read*()
-in the MCHBAR code.
-
-v2: Rebase due to intel_uncore_read64_2x32()
+Since we moved intel_rom.c back into the display code, just
+use intel_de_{read,write}() for the register accesses.
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_mchbar.c | 15 ++++-----------
- 1 file changed, 4 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_rom.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.c b/drivers/gpu/drm/i915/display/intel_mchbar.c
-index a404fa38c9bd..16fcfe1e93ec 100644
---- a/drivers/gpu/drm/i915/display/intel_mchbar.c
-+++ b/drivers/gpu/drm/i915/display/intel_mchbar.c
-@@ -7,10 +7,10 @@
+diff --git a/drivers/gpu/drm/i915/display/intel_rom.c b/drivers/gpu/drm/i915/display/intel_rom.c
+index d573059fb0d9..54f842c09fb0 100644
+--- a/drivers/gpu/drm/i915/display/intel_rom.c
++++ b/drivers/gpu/drm/i915/display/intel_rom.c
+@@ -7,8 +7,9 @@
  
- #include <drm/drm_print.h>
+ #include <drm/drm_device.h>
  
 +#include "intel_de.h"
- #include "intel_display_core.h"
- #include "intel_mchbar.h"
- #include "intel_mchbar_regs.h"
++#include "intel_display_types.h"
+ #include "intel_rom.h"
 -#include "intel_uncore.h"
+ #include "intel_oprom_regs.h"
  
- static bool has_mchbar_mirror(struct intel_display *display)
+ struct intel_rom {
+@@ -17,7 +18,7 @@ struct intel_rom {
+ 	void __iomem *oprom;
+ 
+ 	/* for SPI */
+-	struct intel_uncore *uncore;
++	struct intel_display *display;
+ 	loff_t offset;
+ 
+ 	size_t size;
+@@ -30,10 +31,10 @@ struct intel_rom {
+ 
+ static u32 spi_read32(struct intel_rom *rom, loff_t offset)
  {
-@@ -59,28 +59,21 @@ static void assert_is_mchbar_reg(struct intel_display *display, i915_reg_t reg)
+-	intel_uncore_write(rom->uncore, PRIMARY_SPI_ADDRESS,
+-			   rom->offset + offset);
++	intel_de_write(rom->display, PRIMARY_SPI_ADDRESS,
++		       rom->offset + offset);
  
- u16 intel_mchbar_read16(struct intel_display *display, i915_reg_t reg)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
--
- 	assert_is_mchbar_reg(display, reg);
- 
--	return intel_uncore_read16(uncore, reg);
-+	return intel_de_read16(display, reg);
+-	return intel_uncore_read(rom->uncore, PRIMARY_SPI_TRIGGER);
++	return intel_de_read(rom->display, PRIMARY_SPI_TRIGGER);
  }
  
- u32 intel_mchbar_read(struct intel_display *display, i915_reg_t reg)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
--
- 	assert_is_mchbar_reg(display, reg);
+ static u16 spi_read16(struct intel_rom *rom, loff_t offset)
+@@ -50,13 +51,13 @@ struct intel_rom *intel_rom_spi(struct drm_device *drm)
+ 	if (!rom)
+ 		return NULL;
  
--	return intel_uncore_read(uncore, reg);
-+	return intel_de_read(display, reg);
- }
+-	rom->uncore = to_intel_uncore(drm);
++	rom->display = to_intel_display(drm);
  
- u64 intel_mchbar_read64_2x32(struct intel_display *display, i915_reg_t reg)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
--	i915_reg_t upper_reg = _MMIO(i915_mmio_reg_offset(reg) + 4);
--
- 	assert_is_mchbar_reg(display, reg);
+-	static_region = intel_uncore_read(rom->uncore, SPI_STATIC_REGIONS);
++	static_region = intel_de_read(rom->display, SPI_STATIC_REGIONS);
+ 	static_region &= OPTIONROM_SPI_REGIONID_MASK;
+-	intel_uncore_write(rom->uncore, PRIMARY_SPI_REGIONID, static_region);
++	intel_de_write(rom->display, PRIMARY_SPI_REGIONID, static_region);
  
--	return intel_uncore_read64_2x32(uncore, reg, upper_reg);
-+	return intel_de_read64_2x32(display, reg);
- }
+-	rom->offset = intel_uncore_read(rom->uncore, OROM_OFFSET) & OROM_OFFSET_MASK;
++	rom->offset = intel_de_read(rom->display, OROM_OFFSET) & OROM_OFFSET_MASK;
+ 
+ 	rom->size = 0x200000;
+ 
 -- 
 2.52.0
 
