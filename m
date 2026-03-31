@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AL/zKR27y2kpKAYAu9opvQ
+	id oCYbKCG7y2kpKAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 14:16:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 14:16:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57039369576
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 14:16:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54C51369583
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 14:16:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B9DD310E2BB;
-	Tue, 31 Mar 2026 12:16:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC41C10EA9D;
+	Tue, 31 Mar 2026 12:16:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QfSYpW39";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gntT1N+w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1D6810E2BB;
- Tue, 31 Mar 2026 12:16:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8287D10E372;
+ Tue, 31 Mar 2026 12:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774959386; x=1806495386;
+ t=1774959388; x=1806495388;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=98yzMQg2xvSzjgeqpZUAE0zTxuV4jw13qGfWbbJa1Ds=;
- b=QfSYpW39obXOyxSS7rbLxxujoc03vGMMf2nRLZUnfMatpKJcGUh8mp/c
- i/kGgY6M5KF8iTaHcuRA2944EFMNVwO/oNToCg2qcyQSNihHpqiVnLYE9
- c6ZUdRmg6pNmIfRXk7ZkyU4uyqsFkJ28T8TnFXummDdtzFgJ8DO9Ray3h
- MxvVkRhRuDpwzN6T1uMfV+7/oF8UlhHCcHPDrRZiZCM+p3Jodv/2lmYyv
- 1+A53rOzZ/GF5ikm472GiA5JW6L9dSlnoGwnMxfRcZ/bb82UHSCQBMNz6
- MN7Jej5n+rhAGVJwzOem6XSbWR2tAOw2/wGTN0/YUm3zNOIPp08phA02j Q==;
-X-CSE-ConnectionGUID: vUbVHlbUTUeKpRAPViLCLg==
-X-CSE-MsgGUID: JXzvywOASOSFznzHUc0iNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="87361402"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="87361402"
+ bh=KoD/5SXNv/OcvU1ya0P/71beUgxm7nLl1tNTfR3Ymp8=;
+ b=gntT1N+w/1CQf2ekS9zbQCPyUKk/MPPdAumzg/NIGzdt9RtgYP+a+p50
+ YRsnjDrpKZksS5q977ehs71AN8Ad1jI20XtZ2+2bqe+mswQBvlr/pUyN1
+ bsi5LYZ5aVapCFHbjGJmsLQLmVD/UMOw6l6GDz/kOx001fyVu4s7O5B5h
+ odvzQjn/4LT35G6nCuIsog/qoxbBOIEEj0lx8MPrYygaROFsASkvV/y+o
+ X2+O0Q7GzN7Uv8NusFSScm2LJqRyDQxCMTMqxHqI4izIwa9ABjp3/DfBu
+ pcxlqBOaGnTAXVI8SogmbWInpetIvi4fu96ot1H1dh9E+MOoiXPHLvvA8 w==;
+X-CSE-ConnectionGUID: zfqvVhDuRd6eMisJmQyStg==
+X-CSE-MsgGUID: 280zfePOQwiwE7rdXhQGTA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="87361404"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="87361404"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:16:26 -0700
-X-CSE-ConnectionGUID: XEqjXuPrQbu+xIJMS9NS4Q==
-X-CSE-MsgGUID: kf4QQq7rQWacoEvZagRgBg==
+ 31 Mar 2026 05:16:28 -0700
+X-CSE-ConnectionGUID: CecJybiyTSGr77XJkavduA==
+X-CSE-MsgGUID: 6InsP9/HQDOwOZv3gbzySA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="223468970"
+X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="223469008"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.245.244])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 05:16:24 -0700
+ 31 Mar 2026 05:16:26 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v2 1/8] drm/i915: move SKL clock gating init to display
-Date: Tue, 31 Mar 2026 15:07:12 +0300
-Message-ID: <20260331121608.1016333-2-luciano.coelho@intel.com>
+Subject: [PATCH v2 2/8] drm/i915: move KBL clock gating init to display
+Date: Tue, 31 Mar 2026 15:07:13 +0300
+Message-ID: <20260331121608.1016333-3-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260331121608.1016333-1-luciano.coelho@intel.com>
 References: <20260331121608.1016333-1-luciano.coelho@intel.com>
@@ -98,110 +98,66 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 57039369576
+X-Rspamd-Queue-Id: 54C51369583
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Move the SKL-specific display clock gating programming into a new file
-inside display.
-
-This removes dependency from intel_clock_gating.c to the display's
-intel_pch.h file, so we can remove the include statement.
+Move the KBL-specific display clock gating programming into a
+display intel_display_clock_gating.c, to remove more dependencies from
+i915 to display registers.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/Makefile                 |  1 +
- .../i915/display/intel_display_clock_gating.c | 19 +++++++++++++++++++
- .../i915/display/intel_display_clock_gating.h | 13 +++++++++++++
- drivers/gpu/drm/i915/intel_clock_gating.c     |  8 ++------
- 4 files changed, 35 insertions(+), 6 deletions(-)
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.c
- create mode 100644 drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+ .../gpu/drm/i915/display/intel_display_clock_gating.c    | 9 +++++++++
+ .../gpu/drm/i915/display/intel_display_clock_gating.h    | 1 +
+ drivers/gpu/drm/i915/intel_clock_gating.c                | 6 +-----
+ 3 files changed, 11 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
-index b677720a1c2d..63a9e16826a9 100644
---- a/drivers/gpu/drm/i915/Makefile
-+++ b/drivers/gpu/drm/i915/Makefile
-@@ -255,6 +255,7 @@ i915-y += \
- 	display/intel_cursor.o \
- 	display/intel_dbuf_bw.o \
- 	display/intel_de.o \
-+	display/intel_display_clock_gating.o \
- 	display/intel_display.o \
- 	display/intel_display_conversion.o \
- 	display/intel_display_driver.o \
 diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-new file mode 100644
-index 000000000000..4a94593335e0
---- /dev/null
+index 4a94593335e0..508735212d6b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-@@ -0,0 +1,19 @@
-+// SPDX-License-Identifier: MIT
-+/*
-+ * Copyright 2026 Intel Corporation
-+ */
+@@ -17,3 +17,12 @@ void intel_display_skl_init_clock_gating(struct intel_display *display)
+ 	 */
+ 	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+ }
 +
-+#include <drm/intel/intel_gmd_misc_regs.h>
-+
-+#include "intel_de.h"
-+#include "intel_display_clock_gating.h"
-+#include "intel_display_regs.h"
-+
-+void intel_display_skl_init_clock_gating(struct intel_display *display)
++void intel_display_kbl_init_clock_gating(struct intel_display *display)
 +{
 +	/*
-+	 * WaFbcTurnOffFbcWatermark:skl
-+	 * Display WA #0562: skl
++	 * WaFbcTurnOffFbcWatermark:kbl
++	 * Display WA #0562: kbl
 +	 */
 +	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-new file mode 100644
-index 000000000000..00f416db7f47
---- /dev/null
+index 00f416db7f47..8c21217de66a 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
-@@ -0,0 +1,13 @@
-+/* SPDX-License-Identifier: MIT */
-+/*
-+ * Copyright 2026 Intel Corporation
-+ */
-+
-+#ifndef __INTEL_DISPLAY_CLOCK_GATING_H__
-+#define __INTEL_DISPLAY_CLOCK_GATING_H__
-+
-+struct intel_display;
-+
-+void intel_display_skl_init_clock_gating(struct intel_display *display);
-+
-+#endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+@@ -9,5 +9,6 @@
+ struct intel_display;
+ 
+ void intel_display_skl_init_clock_gating(struct intel_display *display);
++void intel_display_kbl_init_clock_gating(struct intel_display *display);
+ 
+ #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
 diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
-index ee2489a2fbe7..454334fef5e7 100644
+index 454334fef5e7..5f7910dbe164 100644
 --- a/drivers/gpu/drm/i915/intel_clock_gating.c
 +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
-@@ -31,9 +31,9 @@
- 
- #include "display/i9xx_plane_regs.h"
- #include "display/intel_display.h"
-+#include "display/intel_display_clock_gating.h"
- #include "display/intel_display_core.h"
- #include "display/intel_display_regs.h"
--#include "display/intel_pch.h"
- #include "gt/intel_engine_regs.h"
- #include "gt/intel_gt.h"
- #include "gt/intel_gt_mcr.h"
-@@ -349,11 +349,7 @@ static void skl_init_clock_gating(struct drm_i915_private *i915)
- 	/* WAC6entrylatency:skl */
- 	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+@@ -331,11 +331,7 @@ static void kbl_init_clock_gating(struct drm_i915_private *i915)
+ 		intel_uncore_rmw(&i915->uncore, GEN6_UCGCTL1,
+ 				 0, GEN6_GAMUNIT_CLOCK_GATE_DISABLE);
  
 -	/*
--	 * WaFbcTurnOffFbcWatermark:skl
--	 * Display WA #0562: skl
+-	 * WaFbcTurnOffFbcWatermark:kbl
+-	 * Display WA #0562: kbl
 -	 */
 -	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
-+	intel_display_skl_init_clock_gating(i915->display);
++	intel_display_kbl_init_clock_gating(i915->display);
  }
  
- static void bdw_init_clock_gating(struct drm_i915_private *i915)
+ static void skl_init_clock_gating(struct drm_i915_private *i915)
 -- 
 2.53.0
 
