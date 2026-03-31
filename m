@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iArwNo7ry2l6MgYAu9opvQ
+	id gN1RN5Lry2l6MgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C9BF36BED2
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 91FF836BEE0
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 17:43:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1641210EA3D;
-	Tue, 31 Mar 2026 15:43:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE8910EA34;
+	Tue, 31 Mar 2026 15:43:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lszWAdQp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b+JW6xia";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10D1D10EA3D;
- Tue, 31 Mar 2026 15:43:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA68610EA5A;
+ Tue, 31 Mar 2026 15:43:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774971788; x=1806507788;
+ t=1774971792; x=1806507792;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=3pZpK/bnwuBz/52sFXgtW72jSnrt/vUJdH6pLM72tXg=;
- b=lszWAdQpADWWLBE2RcQopZCPipB3YwsRBgIftorStTLY74GUPxbsZElT
- XRg3kU9E0CBOgy7wZ3UWEPfDGztRvefQA1VqDygV3JLOWaIcwOKpQ8Eui
- G95lwbP6yyLwJ17OkGM1gQDRKvnwZ3E7JIdQN6wwAD9HDifxC2twvV54d
- 2YSUyM1hg5mipmmYgnCWGzNRUD3LSFDBDXaaJcBEAhXpVbTrkGfQ6u5Zz
- vdR1cIwOtP6TjJbFe7mXjLP/GBoThCHk/DjOXQe8fIxuDs068TXl7fLvu
- co5HukYdkrIUQ0r6SJ7ZPNyWTPludKF0HokvA+Mq/95bvQCu+Q3xbz5jG A==;
-X-CSE-ConnectionGUID: sYOeQPciTsOlU+XlNZ770Q==
-X-CSE-MsgGUID: zdb6qe6jSuemN4062VZTUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75884109"
-X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75884109"
+ bh=s1Wx5eN3jV/yMpmAHcM/0u2pTkSYBqsjGDYorQX5l4Q=;
+ b=b+JW6xiaIV0TnDuv/CTyUX+hsw3qkwSVJGzlQFyZ9Dmie7lTQ1PYGVH2
+ D8v6tF/6/4emFyQfBcHQP9L7KiT/MHuhiU6K8DeSpqliex3GN5Kkb/OhJ
+ C+hPJysGRVYnXt2qRav+Rbjz8znuf3+AuIDiVNlc+kdYNGe9FUQ9dJbjZ
+ dBQFP83MDqjtJGXhHoyYGThKMrkKWlvKvf92c51EmCEWv9aapB1Vh/oPp
+ WYhtL2TNkj3ypSUT0N6tgD32YkIm9uPwZO2FNtOATgTcIIiQpRoz3X9qj
+ jQ5RMu4xtkrkPiyKqRFDqq0LMT5fa36zvPsyA/DQciO3U8j55kNxGSpfY g==;
+X-CSE-ConnectionGUID: jP3oR4kySDi2akEWeZdOXA==
+X-CSE-MsgGUID: FEMXO20QSealh1V2fgGUBw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75884116"
+X-IronPort-AV: E=Sophos;i="6.23,152,1770624000"; d="scan'208";a="75884116"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 08:43:08 -0700
-X-CSE-ConnectionGUID: MCPpHFlGQzm9uhx9BVSX6w==
-X-CSE-MsgGUID: rtRss9KKTu+2VOrxeFcJeQ==
+ 31 Mar 2026 08:43:12 -0700
+X-CSE-ConnectionGUID: rN4OxZgfR+afzbq2SpwgIQ==
+X-CSE-MsgGUID: SdFmGwxoQ0KpUOYifkQcCA==
 X-ExtLoop1: 1
 Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 08:43:06 -0700
+ 31 Mar 2026 08:43:10 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH v2 01/12] drm/i915/qgv: Use intel_de_read() for
- MTL_MEM_SS_INFO* reads
-Date: Tue, 31 Mar 2026 18:42:48 +0300
-Message-ID: <20260331154259.24600-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 02/12] drm/i915/mchbar: Provide intel_mchbar_read*()
+ abstraction
+Date: Tue, 31 Mar 2026 18:42:49 +0300
+Message-ID: <20260331154259.24600-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
 References: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
@@ -100,71 +100,123 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 8C9BF36BED2
+X-Rspamd-Queue-Id: 91FF836BEE0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The MTL_MEM_SS_INFO* are just regular display registers. Use
-intel_de_read() to access them.
+MCHBAR registers are a bit special in that:
+- we access them through the mirror
+- the mirror is read only on HSW+
+- the mirror requires the actual MCHBAR to be enabled in device 0:0.0
+- the mirror is gone on MTL+
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+So I'd prefer to treat MCHBAR registers as a bit special in
+the code as well, and do all accesses to them via dedicated
+functions. Prodive such functions in the form of
+intel_mchbar_read*().
+
+v2: Put the function arguments on one line
+    No intel_uncore_read64() on xe, use intel_uncore_read64_2x32()
+    Name the new function intel_mchbar_read64_2x32() as well
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com> #v1
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c   | 6 +++---
- drivers/gpu/drm/i915/display/intel_dram.c | 4 ++--
- 2 files changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/Makefile               |  1 +
+ drivers/gpu/drm/i915/display/intel_mchbar.c | 30 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_mchbar.h | 19 +++++++++++++
+ drivers/gpu/drm/xe/Makefile                 |  1 +
+ 4 files changed, 51 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_mchbar.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_mchbar.h
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 07b4531a4376..18b80147ddc7 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -9,6 +9,7 @@
- 
- #include "intel_bw.h"
- #include "intel_crtc.h"
-+#include "intel_de.h"
- #include "intel_display_core.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-@@ -211,12 +212,11 @@ static int icl_pcode_restrict_qgv_points(struct intel_display *display,
- static int mtl_read_qgv_point_info(struct intel_display *display,
- 				   struct intel_qgv_point *sp, int point)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	u32 val, val2;
- 	u16 dclk;
- 
--	val = intel_uncore_read(uncore, MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
--	val2 = intel_uncore_read(uncore, MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
-+	val = intel_de_read(display, MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
-+	val2 = intel_de_read(display, MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
- 	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
- 	sp->dclk = DIV_ROUND_CLOSEST(16667 * dclk, 1000);
- 	sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
-diff --git a/drivers/gpu/drm/i915/display/intel_dram.c b/drivers/gpu/drm/i915/display/intel_dram.c
-index bd281d4b4c05..f05796417485 100644
---- a/drivers/gpu/drm/i915/display/intel_dram.c
-+++ b/drivers/gpu/drm/i915/display/intel_dram.c
-@@ -9,6 +9,7 @@
- #include <drm/drm_print.h>
- #include <drm/intel/intel_pcode_regs.h>
- 
-+#include "intel_de.h"
- #include "intel_display_core.h"
- #include "intel_display_utils.h"
- #include "intel_display_regs.h"
-@@ -767,8 +768,7 @@ static int gen12_get_dram_info(struct intel_display *display, struct dram_info *
- 
- static int xelpdp_get_dram_info(struct intel_display *display, struct dram_info *dram_info)
- {
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
--	u32 val = intel_uncore_read(uncore, MTL_MEM_SS_INFO_GLOBAL);
-+	u32 val = intel_de_read(display, MTL_MEM_SS_INFO_GLOBAL);
- 
- 	switch (REG_FIELD_GET(MTL_DDR_TYPE_MASK, val)) {
- 	case 0:
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index b677720a1c2d..0e48305df8b2 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -295,6 +295,7 @@ i915-y += \
+ 	display/intel_link_bw.o \
+ 	display/intel_load_detect.o \
+ 	display/intel_lpe_audio.o \
++	display/intel_mchbar.o \
+ 	display/intel_modeset_lock.o \
+ 	display/intel_modeset_setup.o \
+ 	display/intel_modeset_verify.o \
+diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.c b/drivers/gpu/drm/i915/display/intel_mchbar.c
+new file mode 100644
+index 000000000000..2636fe60ef37
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_mchbar.c
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include "intel_display_core.h"
++#include "intel_mchbar.h"
++#include "intel_uncore.h"
++
++u16 intel_mchbar_read16(struct intel_display *display, i915_reg_t reg)
++{
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++
++	return intel_uncore_read16(uncore, reg);
++}
++
++u32 intel_mchbar_read(struct intel_display *display, i915_reg_t reg)
++{
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++
++	return intel_uncore_read(uncore, reg);
++}
++
++u64 intel_mchbar_read64_2x32(struct intel_display *display, i915_reg_t reg)
++{
++	struct intel_uncore *uncore = to_intel_uncore(display->drm);
++	i915_reg_t upper_reg = _MMIO(i915_mmio_reg_offset(reg) + 4);
++
++	return intel_uncore_read64_2x32(uncore, reg, upper_reg);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.h b/drivers/gpu/drm/i915/display/intel_mchbar.h
+new file mode 100644
+index 000000000000..002a4454e8ed
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_mchbar.h
+@@ -0,0 +1,19 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __INTEL_MCHBAR_H__
++#define __INTEL_MCHBAR_H__
++
++#include <linux/types.h>
++
++#include "i915_reg_defs.h"
++
++struct intel_display;
++
++u16 intel_mchbar_read16(struct intel_display *display, i915_reg_t reg);
++u32 intel_mchbar_read(struct intel_display *display, i915_reg_t reg);
++u64 intel_mchbar_read64_2x32(struct intel_display *display, i915_reg_t reg);
++
++#endif /* __INTEL_MCHBAR_H__ */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 9dacb0579a7d..a86c553dc996 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -306,6 +306,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_link_bw.o \
+ 	i915-display/intel_lspcon.o \
+ 	i915-display/intel_lt_phy.o \
++	i915-display/intel_mchbar.o \
+ 	i915-display/intel_modeset_lock.o \
+ 	i915-display/intel_modeset_setup.o \
+ 	i915-display/intel_modeset_verify.o \
 -- 
 2.52.0
 
