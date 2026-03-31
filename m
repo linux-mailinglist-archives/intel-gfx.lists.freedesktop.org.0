@@ -2,70 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iCLuDL+fy2loJgYAu9opvQ
+	id IJq9D6egy2kUJwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:19:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:23:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5CD3367CEA
-	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:19:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 94E60367DB2
+	for <lists+intel-gfx@lfdr.de>; Tue, 31 Mar 2026 12:23:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 37F0710E905;
-	Tue, 31 Mar 2026 10:19:41 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WcPY/1+0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72D2710E98B;
+	Tue, 31 Mar 2026 10:23:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8010510E905;
- Tue, 31 Mar 2026 10:19:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1774952381; x=1806488381;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=0CqLQulycl6ub3BKI2WyyXy1Bq5+fOPJSeHqGMIAWYk=;
- b=WcPY/1+0zbx62gCzCVDxnAUxYZNmVYaK15BMVykDpIDT7o3cLbi1yQ5T
- FAnLWmNIG0TNG82GDYWMuXQ+M4PraBcdUPyzWBgfD2at87kIwxvdGO5no
- Dnfdl+/aKScOoTOeEqmNUyAxliL0xsQUKHwhFSmr4XHNhShNUTiYse/r3
- gx1ayszf1n5lhQVW00krdGZBLI4Q3A5YBxnFhH07hYg3etF7N8uNMKChL
- UMESKSHG6J63QjslWDK2WZwEF5pU5JhENHdJ4X587hJnTcqnudQ9iA/py
- 9DOOAGwBd74c86IsxoMgt5oz6hkA37EIZKQJ/jkOjtrk9dawBHzXbw260 A==;
-X-CSE-ConnectionGUID: 3yHmbihuTr+4ANH5xRvcNA==
-X-CSE-MsgGUID: Ka1XtwaZTc29IpTt4dQP3A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11744"; a="75847663"
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="75847663"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 03:19:40 -0700
-X-CSE-ConnectionGUID: xZDCCDZuQRaHxyJeuXwqLg==
-X-CSE-MsgGUID: 5Osby3SDTbOYiei9Ryb+Iw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,151,1770624000"; d="scan'208";a="230797138"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.24])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 31 Mar 2026 03:19:38 -0700
-Date: Tue, 31 Mar 2026 13:19:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Luca Coelho <luca@coelho.fi>
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 377EC10E96A;
+ Tue, 31 Mar 2026 10:23:31 +0000 (UTC)
+Received: from 87-93-178-238.bb.dnainternet.fi ([87.93.178.238]
+ helo=[192.168.101.111])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1w7WFq-00000003psw-2Z2b; Tue, 31 Mar 2026 13:23:27 +0300
+Message-ID: <11921b4e0817dd78656754a3074d49968ae3b84d.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Ville =?ISO-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 Cc: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, jani.nikula@linux.intel.com
-Subject: Re: [PATCH 6/8] drm/i915/display: move HSW and BDW clock gating init
- to display
-Message-ID: <acuftvIa8GY4i57d@intel.com>
+Date: Tue, 31 Mar 2026 13:23:24 +0300
+In-Reply-To: <acuftvIa8GY4i57d@intel.com>
 References: <20260324143420.310800-1-luciano.coelho@intel.com>
  <20260324143420.310800-7-luciano.coelho@intel.com>
  <acK9lVDxOV_hXPiN@intel.com>
  <d916a82d01456ede8a080484998b74af19286df5.camel@coelho.fi>
+ <acuftvIa8GY4i57d@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-9 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d916a82d01456ede8a080484998b74af19286df5.camel@coelho.fi>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH 6/8] drm/i915/display: move HSW and BDW clock gating
+ init to display
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,122 +58,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.78 / 15.00];
-	R_MIXED_CHARSET(0.53)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.61 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: A5CD3367CEA
+	RCVD_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,coelho.fi:mid];
+	ARC_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.937];
+	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[coelho.fi];
+	RCPT_COUNT_FIVE(0.00)[5]
+X-Rspamd-Queue-Id: 94E60367DB2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 01:03:42PM +0300, Luca Coelho wrote:
-> On Tue, 2026-03-24 at 18:36 +0200, Ville Syrjälä wrote:
-> > On Tue, Mar 24, 2026 at 04:29:55PM +0200, Luca Coelho wrote:
-> > > Move the HSW and BDW display clock gating programming into the display
-> > > code.  In this case we need two different helpers, because the common
-> > > code between these two is split in the middle.
-> > > 
-> > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
-> > > ---
-> > >  .../i915/display/intel_display_clock_gating.c | 33 +++++++++++++++++++
-> > >  .../i915/display/intel_display_clock_gating.h |  6 ++++
-> > >  drivers/gpu/drm/i915/intel_clock_gating.c     | 31 +++--------------
-> > >  3 files changed, 43 insertions(+), 27 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > > index e3b7522b4101..0b2edf6acb79 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
-> > > @@ -123,3 +123,36 @@ void intel_display_glk_init_clock_gating(struct intel_display *display)
-> > >  		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
-> > >  		       PWM1_GATING_DIS | PWM2_GATING_DIS);
-> > >  }
-> > > +
-> > > +static void
-> > > +intel_display_hsw_init_clock_gating_common(struct intel_display *display,
-> > > +					   u32 unmask_vbl)
-> > 
-> > Passing that as a parameter feels a bit obfuscated.
-> > 
-> > > +{
-> > > +	enum pipe pipe;
-> > > +
-> > > +	/* WaPsrDPAMaskVBlankInSRD:hsw */
-> > > +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_SRD);
-> > > +
-> > > +	for_each_pipe(display, pipe) {
-> > > +		/* WaPsrDPRSUnmaskVBlankInSRD:hsw,bdw */
-> > > +		intel_de_rmw(display, CHICKEN_PIPESL_1(pipe), 0, unmask_vbl);
-> > 
-> > If we want to share the function then I'd probably just do
-> > a platform check here.
-> 
-> True, I'll skip passing it and just add the platform check in this
-> function.
-> 
-> 
-> > 
-> > > +	}
-> > > +}
-> > > +
-> > > +void intel_display_bdw_hsw_init_clock_gating(struct intel_display *display)
-> > > +{
-> > > +	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
-> > > +	intel_de_rmw(display, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
-> > > +}
-> > 
-> > Why do we have two different functions that shared by
-> > both platforms?
-> 
-> It's because for BDW there is this one in between the two common calls:
-> 
-> 	/* WaSwitchSolVfFArbitrationPriority:bdw */
-> 	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL);
-> 
-> ...this is probably independent from the other two and it may be okay
-> to move it before the common code, but I wanted to avoid that.
-> 
-> Do you think it's safe to change the order from:
-> 
-> 1. CHICKEN_PIPESL_1
-> 2. GAM_ECOCHK
-> 3. CHICKEN_PAR1_1
-> 
-> ...to this?
-> 
-> 1. GAM_ECOCHK
-> 2. CHICKEN_PIPESL_1
-> 3. CHICKEN_PAR1_1
-> 
-> If that's the case, then it can be simplified.
+On Tue, 2026-03-31 at 13:19 +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
+> On Tue, Mar 31, 2026 at 01:03:42PM +0300, Luca Coelho wrote:
+> > On Tue, 2026-03-24 at 18:36 +0200, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > > On Tue, Mar 24, 2026 at 04:29:55PM +0200, Luca Coelho wrote:
+> > > > Move the HSW and BDW display clock gating programming into the disp=
+lay
+> > > > code.  In this case we need two different helpers, because the comm=
+on
+> > > > code between these two is split in the middle.
+> > > >=20
+> > > > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> > > > ---
+> > > >  .../i915/display/intel_display_clock_gating.c | 33 +++++++++++++++=
+++++
+> > > >  .../i915/display/intel_display_clock_gating.h |  6 ++++
+> > > >  drivers/gpu/drm/i915/intel_clock_gating.c     | 31 +++------------=
+--
+> > > >  3 files changed, 43 insertions(+), 27 deletions(-)
+> > > >=20
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gatin=
+g.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > > > index e3b7522b4101..0b2edf6acb79 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> > > > @@ -123,3 +123,36 @@ void intel_display_glk_init_clock_gating(struc=
+t intel_display *display)
+> > > >  		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
+> > > >  		       PWM1_GATING_DIS | PWM2_GATING_DIS);
+> > > >  }
+> > > > +
+> > > > +static void
+> > > > +intel_display_hsw_init_clock_gating_common(struct intel_display *d=
+isplay,
+> > > > +					   u32 unmask_vbl)
+> > >=20
+> > > Passing that as a parameter feels a bit obfuscated.
+> > >=20
+> > > > +{
+> > > > +	enum pipe pipe;
+> > > > +
+> > > > +	/* WaPsrDPAMaskVBlankInSRD:hsw */
+> > > > +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, HSW_MASK_VBL_TO_PIPE_IN_=
+SRD);
+> > > > +
+> > > > +	for_each_pipe(display, pipe) {
+> > > > +		/* WaPsrDPRSUnmaskVBlankInSRD:hsw,bdw */
+> > > > +		intel_de_rmw(display, CHICKEN_PIPESL_1(pipe), 0, unmask_vbl);
+> > >=20
+> > > If we want to share the function then I'd probably just do
+> > > a platform check here.
+> >=20
+> > True, I'll skip passing it and just add the platform check in this
+> > function.
+> >=20
+> >=20
+> > >=20
+> > > > +	}
+> > > > +}
+> > > > +
+> > > > +void intel_display_bdw_hsw_init_clock_gating(struct intel_display =
+*display)
+> > > > +{
+> > > > +	/* WaFbcAsynchFlipDisableFbcQueue:hsw,bdw */
+> > > > +	intel_de_rmw(display, CHICKEN_PIPESL_1(PIPE_A), 0, HSW_FBCQ_DIS);
+> > > > +}
+> > >=20
+> > > Why do we have two different functions that shared by
+> > > both platforms?
+> >=20
+> > It's because for BDW there is this one in between the two common calls:
+> >=20
+> > 	/* WaSwitchSolVfFArbitrationPriority:bdw */
+> > 	intel_uncore_rmw(&i915->uncore, GAM_ECOCHK, 0, HSW_ECOCHK_ARB_PRIO_SOL=
+);
+> >=20
+> > ...this is probably independent from the other two and it may be okay
+> > to move it before the common code, but I wanted to avoid that.
+> >=20
+> > Do you think it's safe to change the order from:
+> >=20
+> > 1. CHICKEN_PIPESL_1
+> > 2. GAM_ECOCHK
+> > 3. CHICKEN_PAR1_1
+> >=20
+> > ...to this?
+> >=20
+> > 1. GAM_ECOCHK
+> > 2. CHICKEN_PIPESL_1
+> > 3. CHICKEN_PAR1_1
+> >=20
+> > If that's the case, then it can be simplified.
+>=20
+> There shouldn't be any ordering requirements here. But if you're
+> a it paranoid then you could do the reordering as a separate
+> step, just in case someone has to bisect it.
 
-There shouldn't be any ordering requirements here. But if you're
-a it paranoid then you could do the reordering as a separate
-step, just in case someone has to bisect it.
+Great, thanks for the insight.  I'll keep it separate for now.  The
+same thing for the KVM notification thingy... I'll keep it separate,
+but then we can combine the 3 separate steps into one to ease bisecting
+and making it clear that it's a functional change (while the initial
+patches should not make any functional changes, just move things
+around).
 
--- 
-Ville Syrjälä
-Intel
+--
+Cheers,
+Luca.
