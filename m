@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKGAIVEZzWnOaAYAu9opvQ
+	id SFhTILAazWnOaAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 15:10:41 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 15:16:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3D7337AF98
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 15:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DED3F37B10F
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 15:16:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8012410F000;
-	Wed,  1 Apr 2026 13:10:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 184D410F100;
+	Wed,  1 Apr 2026 13:16:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AUdJt+KP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mlmj66CY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 82A6B10F002;
- Wed,  1 Apr 2026 13:10:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4895610E209;
+ Wed,  1 Apr 2026 13:16:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775049038; x=1806585038;
+ t=1775049388; x=1806585388;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=+wTRVpRMLQWrFfg0pd54Ao0kao4iJ09L+CXlH9anmh8=;
- b=AUdJt+KPaA86cSadO3eynLbRhs38PT8tKnl88rILj6z908Pe/M9A52zD
- ya4Gvgf8BTX8lb8QU9GUEs48Yqw4m/Cc088tPZ3xtl8bfGxkGUj+1FV+H
- 5qv+HZAHfISd8Afs07Ee6IvMFUp42bLei6d/pp/1DFbGZpZB+ISDeZb4b
- jyZ9gC4Ymy0kTQrAB9+LN7nF8WHOr2/IoUFaMv8GXcftSKx0uYdmN/g/o
- /MBYTbD3LqWmNvOuhhdfrkyc22ZupoWzNH5ecZoNyikTqh1yqS4gwzqNt
- iizxLBjooYyth1bGwdcEG5e7Ut84Y42ofynqGPKLa0USngWSQDAMqDwG7 Q==;
-X-CSE-ConnectionGUID: GPqamYX4Sly49w4s/Pyj2A==
-X-CSE-MsgGUID: GQAMyxbOQS6M64e5/Se8kw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76144685"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76144685"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 06:10:38 -0700
-X-CSE-ConnectionGUID: SO3H7KxGTZ2VUGDOQfPDkg==
-X-CSE-MsgGUID: 6r+8Mc6xQS6UlFaI2m3b6w==
+ bh=Zme4EORxb62mE3Gz7iyiSunA8aKnHeRnkKkuESSBcOk=;
+ b=mlmj66CY3YO+1N8bpz8+KS713Kz4bBsBhfmqxicOqYu4ZrD3poIHRU4i
+ Xo0WDn1FL1bt2rzWbcrH6CQMgHC3oD7BXerfxuMtTfPdSnZUiIvTNO3ZQ
+ XG8Rs2IrBRtqN60keaa48R1xEGVSst9JWiJMuY4A7FGKJ27P4G4YYx800
+ YQ6sKBTNXbrO56Nj5ommD9/IOTUdsoGRbvIytkmIrnr+Iy+3b1hYhNfrm
+ 75xcNBx4SnPGCNKJkPX9j4HGjmf/LC1SJ0ypDwniGmNSKoTgI2rEBepUG
+ QISCwx7goACicbB9TUdW75Z4TrJ6XP0EOjVCj49Q+4Wrj2ZMJqAUxdDcC A==;
+X-CSE-ConnectionGUID: 0+bU9M4zSzGw3tjLhKyODQ==
+X-CSE-MsgGUID: 6jlnWr8pSJC6vZsA/NWGzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="76201311"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="76201311"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 06:16:27 -0700
+X-CSE-ConnectionGUID: XzMBAfNSQdWKwlsuWtPI5Q==
+X-CSE-MsgGUID: rmDiZ7X8TpKXF/WYxs6TVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="257153180"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="231081173"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.152])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 06:10:36 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 06:16:25 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 2/2] drm/i915: Remove the vma parent interface
-In-Reply-To: <20260331162138.19258-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH v2 00/12] drm/i915: More uncore nukage from display code
+In-Reply-To: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260331162138.19258-1-ville.syrjala@linux.intel.com>
- <20260331162138.19258-2-ville.syrjala@linux.intel.com>
-Date: Wed, 01 Apr 2026 16:10:33 +0300
-Message-ID: <c7f18600dcf13e32aab0cb5914019a95af8c423e@intel.com>
+References: <20260331154259.24600-1-ville.syrjala@linux.intel.com>
+Date: Wed, 01 Apr 2026 16:16:22 +0300
+Message-ID: <ccd24c66f09b7e743f2de36c87c8653ba3578d14@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -101,154 +100,62 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F3D7337AF98
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: DED3F37B10F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Tue, 31 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> With the fb pinning stuff directly returning the fence_id
-> there is no longer any need for the vma parent interface.
-> Get rid of it.
+> Ggt rid of more intel_uncore stuff from the display code:
+> - new intel_mchbar_read*() abstraction for MCHBAR registers
+> - some direct replacement of intel_uncore_{read,write}()
+>   with intel_de_{read,write}()
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> v2: Fix bisection on xe (nop intel_uncore_read64())
+>     Deal with review comments
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+Yeah, still looking good.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_parent.c  |  9 ---------
->  drivers/gpu/drm/i915/display/intel_parent.h  |  3 ---
->  drivers/gpu/drm/i915/i915_driver.c           |  1 -
->  drivers/gpu/drm/i915/i915_vma.c              | 10 ----------
->  drivers/gpu/drm/i915/i915_vma.h              |  2 --
->  include/drm/intel/display_parent_interface.h |  7 -------
->  6 files changed, 32 deletions(-)
+BR,
+Jani.
+
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/dr=
-m/i915/display/intel_parent.c
-> index 2e3bad2b3e6b..4142fe3eed7c 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.c
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.c
-> @@ -338,15 +338,6 @@ void intel_parent_stolen_node_free(struct intel_disp=
-lay *display, const struct i
->  	display->parent->stolen->node_free(node);
->  }
->=20=20
-> -/* vma */
-> -int intel_parent_vma_fence_id(struct intel_display *display, const struc=
-t i915_vma *vma)
-> -{
-> -	if (!display->parent->vma)
-> -		return -1;
-> -
-> -	return display->parent->vma->fence_id(vma);
-> -}
-> -
->  /* generic */
->  void intel_parent_fence_priority_display(struct intel_display *display, =
-struct dma_fence *fence)
->  {
-> diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/dr=
-m/i915/display/intel_parent.h
-> index 2013e5ed5aa9..c1214d3329a8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_parent.h
-> +++ b/drivers/gpu/drm/i915/display/intel_parent.h
-> @@ -109,9 +109,6 @@ u64 intel_parent_stolen_node_size(struct intel_displa=
-y *display, const struct in
->  struct intel_stolen_node *intel_parent_stolen_node_alloc(struct intel_di=
-splay *display);
->  void intel_parent_stolen_node_free(struct intel_display *display, const =
-struct intel_stolen_node *node);
->=20=20
-> -/* vma */
-> -int intel_parent_vma_fence_id(struct intel_display *display, const struc=
-t i915_vma *vma);
-> -
->  /* generic */
->  bool intel_parent_has_auxccs(struct intel_display *display);
->  bool intel_parent_has_fenced_regions(struct intel_display *display);
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
-15_driver.c
-> index 385a634c3ed0..6dde714d4646 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -780,7 +780,6 @@ static const struct intel_display_parent_interface pa=
-rent =3D {
->  	.rpm =3D &i915_display_rpm_interface,
->  	.rps =3D &i915_display_rps_interface,
->  	.stolen =3D &i915_display_stolen_interface,
-> -	.vma =3D &i915_display_vma_interface,
->=20=20
->  	.fence_priority_display =3D fence_priority_display,
->  	.has_auxccs =3D has_auxccs,
-> diff --git a/drivers/gpu/drm/i915/i915_vma.c b/drivers/gpu/drm/i915/i915_=
-vma.c
-> index 6a3a4d4244dc..afc192d9931b 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.c
-> +++ b/drivers/gpu/drm/i915/i915_vma.c
-> @@ -27,7 +27,6 @@
->=20=20
->  #include <drm/drm_gem.h>
->  #include <drm/drm_print.h>
-> -#include <drm/intel/display_parent_interface.h>
->=20=20
->  #include "display/intel_fb.h"
->  #include "display/intel_frontbuffer.h"
-> @@ -2333,12 +2332,3 @@ int __init i915_vma_module_init(void)
->=20=20
->  	return 0;
->  }
-> -
-> -static int i915_vma_fence_id(const struct i915_vma *vma)
-> -{
-> -	return vma->fence ? vma->fence->id : -1;
-> -}
-> -
-> -const struct intel_display_vma_interface i915_display_vma_interface =3D {
-> -	.fence_id =3D i915_vma_fence_id,
-> -};
-> diff --git a/drivers/gpu/drm/i915/i915_vma.h b/drivers/gpu/drm/i915/i915_=
-vma.h
-> index fa2d9b429db6..892306ab935d 100644
-> --- a/drivers/gpu/drm/i915/i915_vma.h
-> +++ b/drivers/gpu/drm/i915/i915_vma.h
-> @@ -476,6 +476,4 @@ int i915_vma_module_init(void);
->  I915_SELFTEST_DECLARE(int i915_vma_get_pages(struct i915_vma *vma));
->  I915_SELFTEST_DECLARE(void i915_vma_put_pages(struct i915_vma *vma));
->=20=20
-> -extern const struct intel_display_vma_interface i915_display_vma_interfa=
-ce;
-> -
->  #endif
-> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/i=
-ntel/display_parent_interface.h
-> index 97ec94a2e749..aef6a16efd90 100644
-> --- a/include/drm/intel/display_parent_interface.h
-> +++ b/include/drm/intel/display_parent_interface.h
-> @@ -176,10 +176,6 @@ struct intel_display_stolen_interface {
->  	void (*node_free)(const struct intel_stolen_node *node);
->  };
->=20=20
-> -struct intel_display_vma_interface {
-> -	int (*fence_id)(const struct i915_vma *vma);
-> -};
-> -
->  /**
->   * struct intel_display_parent_interface - services parent driver provid=
-es to display
->   *
-> @@ -235,9 +231,6 @@ struct intel_display_parent_interface {
->  	/** @stolen: Stolen memory. */
->  	const struct intel_display_stolen_interface *stolen;
->=20=20
-> -	/** @vma: VMA interface. Optional. */
-> -	const struct intel_display_vma_interface *vma;
-> -
->  	/* Generic independent functions */
->  	struct {
->  		/** @fence_priority_display: Set display priority. Optional. */
+> Ville Syrj=C3=A4l=C3=A4 (12):
+>   drm/i915/qgv: Use intel_de_read() for MTL_MEM_SS_INFO* reads
+>   drm/i915/mchbar: Provide intel_mchbar_read*() abstraction
+>   drm/i915/mchbar: Define the end of the MCHBAR mirror
+>   drm/i915/mchbar: WARN when accessing non-MCHBAR registers via
+>     intel_mchbar_read*()
+>   drm/i915/mchbar: Use intel_mchbar_read() instead of intel_de_read()
+>   drm/i915/mchbar: Use intel_mchbar_read*() instead of
+>     intel_uncore_read*()
+>   drm/i915/de: Add intel_de_read16()
+>   drm/i915/de: s/intel_de_read64_2x32()/intel_de_read64_2x32_volatile()/
+>   drm/i915/de: Add a simple intel_de_read64_2x32()
+>   drm/i915/vrr: Use intel_de_read64_2x32()
+>   drm/i915/mchbar: Use intel_de_read*() for MCHBAR register accesses
+>   drm/i915/rom: Use intel_de for SPI ROM register access
+>
+>  drivers/gpu/drm/i915/Makefile                 |  1 +
+>  drivers/gpu/drm/i915/display/i9xx_wm.c        | 10 +--
+>  drivers/gpu/drm/i915/display/intel_bw.c       | 17 ++--
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    |  5 +-
+>  drivers/gpu/drm/i915/display/intel_de.c       |  8 ++
+>  drivers/gpu/drm/i915/display/intel_de.h       | 17 +++-
+>  .../drm/i915/display/intel_display_power.c    |  3 +-
+>  drivers/gpu/drm/i915/display/intel_dram.c     | 33 +++-----
+>  drivers/gpu/drm/i915/display/intel_mchbar.c   | 79 +++++++++++++++++++
+>  drivers/gpu/drm/i915/display/intel_mchbar.h   | 19 +++++
+>  drivers/gpu/drm/i915/display/intel_rom.c      | 19 ++---
+>  drivers/gpu/drm/i915/display/intel_vblank.c   |  4 +-
+>  drivers/gpu/drm/i915/display/intel_vrr.c      |  6 +-
+>  drivers/gpu/drm/i915/intel_mchbar_regs.h      |  7 +-
+>  drivers/gpu/drm/xe/Makefile                   |  1 +
+>  15 files changed, 172 insertions(+), 57 deletions(-)
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_mchbar.c
+>  create mode 100644 drivers/gpu/drm/i915/display/intel_mchbar.h
 
 --=20
 Jani Nikula, Intel
