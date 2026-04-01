@@ -2,66 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yD+tCUsAzWlNZQYAu9opvQ
+	id iHbZIjIEzWnhZQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 13:23:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 13:40:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5350379545
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 13:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 017C43799F7
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 13:40:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2975010EB44;
-	Wed,  1 Apr 2026 11:23:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E66E10ECE3;
+	Wed,  1 Apr 2026 11:40:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VYkqpHNP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N673zmYS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E08F910EB44;
- Wed,  1 Apr 2026 11:23:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F09CC10ECA6;
+ Wed,  1 Apr 2026 11:40:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775042632; x=1806578632;
+ t=1775043630; x=1806579630;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=W+T33+IRm7vdKPwhoCLSI6f9zBvxdvjCKpEdk2NZB2A=;
- b=VYkqpHNPMQhsKf5oy9q7o1PGMRYw4vPmr1r9fR/FimGipxAfRg84LQD+
- 7SSp7V3zsRYN11y7ajwyOQC+LopPd0WjVlLIpYQynFbsKWN1BddbHNFRE
- 6VRdDv2a/MsX+7mFwoVDsaE6pvIkrnQZIVy5KDUDOE3MdunT1Bb9EzpwO
- BvDlI0AsWkijObThsGCFH1ChGQFOjJzJddVS3QsnDRJhHemmx/EgzAHM4
- Ff/n/iFjsp2NT9Zo43G5Z7SEuIptrPkCTMUKQ8ZFlZIuvhIroMWP32MJe
- 76BLQr3os3BkGw88/vGTeS55Xmv2c8gb11O1BsqToSkR6h56cT5KYChtT A==;
-X-CSE-ConnectionGUID: tzZTHggtTB+O6MyyNMgBaA==
-X-CSE-MsgGUID: R0IBGkmTT8eUQRn1N6EabQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="86380173"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="86380173"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 04:23:52 -0700
-X-CSE-ConnectionGUID: 7GQYh0CHQuandRJdHV3cPQ==
-X-CSE-MsgGUID: X8kU+saVRKKmFcyLIIbD0w==
+ bh=bcz45gsCitn29OWKtgkVdIvQKEpAbrGvGZd2gxuDAIE=;
+ b=N673zmYSMVv7pNch5SlAvvnzF5UW665sLVhIBh1/ZPb3nzgOz7HAHACm
+ Uh8aSoXi97eHCkF6jbAl01jPmcgBpAJM01+FddmoAZ1EwExZwSlUfIbkG
+ G6qKsBsBafNS87vPC8DcuIDQPmwLHcsRuzEc96A2xkuy8lL7As+8/rUmH
+ 3t+7ANZSHTAneqSY/Vv2EYD0ovuyc8JD9nNrUf2TCJKeihWwVD+oMrVS1
+ f+mzaJCxZvoTLM1MQgmSM4J67jtNp0JvHyOvad1BgRh79zsHMeO/SYF5T
+ HlSi+N7VqdV7YTfsByNLKwr8XTUSiO69MA/DOwspIubuwB8u54KcAegpl Q==;
+X-CSE-ConnectionGUID: WpQ2BQ0zRd2OqbQsiEGQSw==
+X-CSE-MsgGUID: zgcv2mhxS/mhjpA4a75htg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="78670107"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="78670107"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 04:40:30 -0700
+X-CSE-ConnectionGUID: bibSyEuAQDm8BbQ7Pg0Npw==
+X-CSE-MsgGUID: hglQ3MkVRECZBu45mJhLYw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="226512302"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="228264194"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.199])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 04:23:50 -0700
-Date: Wed, 1 Apr 2026 14:23:47 +0300
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 04:40:28 -0700
+Date: Wed, 1 Apr 2026 14:40:25 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jerome Tollet <jerome.tollet@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- ankit.k.nautiyal@intel.com
-Subject: Re: [RESEND] drm/i915/hdmi: Poll for 200 msec for
- TMDS_Scrambler_Status
-Message-ID: <ac0AQ_74Tukshr__@intel.com>
-References: <20260113143107.1446909-1-ankit.k.nautiyal@intel.com>
- <20260326054112.51287-1-jtollet@cisco.com>
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ uma.shankar@intel.com, pranay.samala@intel.com
+Subject: Re: [PATCH 1/3] drm/i915/display: Copy color pipeline from plane in
+ the primary joiner pipe
+Message-ID: <ac0EKTbNPeaiHIQA@intel.com>
+References: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260326054112.51287-1-jtollet@cisco.com>
+In-Reply-To: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -79,65 +78,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.60 / 15.00];
-	R_MIXED_CHARSET(0.71)[subject];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com];
+	FROM_HAS_DN(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:mid,60hz:email]
-X-Rspamd-Queue-Id: A5350379545
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 017C43799F7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Mar 26, 2026 at 06:41:12AM +0100, Jerome Tollet wrote:
-> From: Jerome Tollet <jerome.tollet@gmail.com>
+On Wed, Apr 01, 2026 at 02:08:39PM +0530, Chaitanya Kumar Borah wrote:
+> When copying plane color state in a joiner configuration, use the plane in
+> the primary joiner pipe since it carries the pipeline number selected by
+> the user-space.
 > 
-> Hi Ankit, Ville,
+> This assumes that all pipes in the joiner are symmetric in their plane
+> color capabilities.
 > 
-> Following up on this patch.
+> Cc: stable@vger.kernel.org # v6.19+
+> Fixes: a78f1b6baf4d ("drm/i915/color: Add framework to program CSC")
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_plane.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> As previously reported, the SCDC polling approach fixes the 4K@60Hz HDMI
-> issue on my Alder Lake-N (N100) + Cisco Desk Pro setup, and I have not
-> seen regressions in testing.
-> 
-> Ville, do you see any remaining concern with this approach, or is there
-> anything else you would like me to test to help move this forward?
+> diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+> index 5390ceb21ca4..82f445c83158 100644
+> --- a/drivers/gpu/drm/i915/display/intel_plane.c
+> +++ b/drivers/gpu/drm/i915/display/intel_plane.c
+> @@ -373,7 +373,7 @@ intel_plane_color_copy_uapi_to_hw_state(struct intel_plane_state *plane_state,
+>  	bool changed = false;
+>  	int i = 0;
+>  
+> -	iter_colorop = plane_state->uapi.color_pipeline;
+> +	iter_colorop = from_plane_state->uapi.color_pipeline;
+>  
+>  	while (iter_colorop) {
+>  		for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
 
-My main concern is having the synchronous polling appear to fix
-something now, and if we later make it asynchronous the original
-problem may re-appear.
+Hmm. This whole colorop thing seems a bit weird. So each plane/crtc/etc
+doesn't actually have its full state in its state, but rather it points
+to some other colorop state somewhere?
 
-That said, after perusing the spec a bit, it looks to me that sinks
-should be able sync up after at most two video fields. I suppose
-having effectively two extra vblank waits in a full modeset sequence
-isn't the end of world. The extra complexity of asynchronous polling
-might not even be worth the hassle.
-
-But the commit message should still highlight that (AFAICS) synchronous
-polling is not required by the spec, and thus the fact that this fixes
-some monitors is sort of an accidental byproduct.
+The mess here with the 'intel_atomic_state' here needs to get cleaned up.
+At the very least we need to pass the full atomic state from the caller
+instead of digging it out via the plane_state->uapi.state footgun.
+That thing should never be used, and ideally we'd just nuke it entirely.
 
 -- 
 Ville Syrjälä
