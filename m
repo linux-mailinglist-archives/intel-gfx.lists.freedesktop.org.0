@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UESTLW7fzGm0XAYAu9opvQ
+	id AH5oAHDfzGm0XAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 11:03:42 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 11:03:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F3C1377390
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 11:03:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C52A2377397
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 11:03:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE83810ECF3;
-	Wed,  1 Apr 2026 09:03:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7FE610ECFB;
+	Wed,  1 Apr 2026 09:03:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mX054GJM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EG59xB6K";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A36910ECBB;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 63DD110ECFB;
  Wed,  1 Apr 2026 09:03:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
  t=1775034220; x=1806570220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Cknct9sS9mi/9dDXgsbsYzgp08i9B887QBMgWVi36eE=;
- b=mX054GJMkfsna298bVOWk6OCr3bYXDS1p2mPMsIM3zCghFGcnzdlaKs8
- FMkUY8BWKsU6z+43NzUaZ+hf4oESyWYfdo2N4DcLyqiITmFYOzXxG7SrS
- x6ray69IgSRdXnuG/3v59i8CExjtzkyzUXMOfHVnDc6mabgE8CpJUEn9K
- UTrnQp9k96rXHoR7koXchyLXYte06Petz6wqqPPWA7JbGce3QIyMVnn0d
- viCZpbNifecJoW2xprXYYO6pocWEH4QtmqVOkHRqB/TOMY+FvTHHd3wKe
- MiznaIsiIIlL2TbniZcSI+SSoz8ltt0o6X3ghskCZjC0OHRuF7JeGQKhj A==;
-X-CSE-ConnectionGUID: 15u9uC7pRZW01wW6SK3vqw==
-X-CSE-MsgGUID: PQx0n85uR2yCekcs/teIMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75238100"
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="75238100"
+ bh=ttNQ2g8OZ/aDV2y5mC9zMTdyVBoIvin+li42MXqLzSQ=;
+ b=EG59xB6KOOPnxP0wJLuV9f3Bn1A9lIcif9nLOo/ANnqQHSLZDabUzhm7
+ siCcTxCbbuP2K83dXiK8v83ImLFmRVNy3JgQvxUgoXllZHhngWxSNMR9Y
+ kLWyu3TIewrKVgm26OjzyY6ztRTgK+0vZPPxQsE2p3qeqF8t9rgtkEH+C
+ yqHA/wu+aHRGJ2MHM/wO29AdAt2qIzzOscuCU8UlneW7LYhwku4mwykoY
+ 08F3e1CCBi4aP/Z5Ljg797MOkFwQI7w1YCZZQQs35+jlWOTxeRgbLsxp/
+ JYOPgwBGIONQOFvA5hOWB5rfHb0im6xmBZX5bbuhMPlEpn6Ii8AfVBiQO A==;
+X-CSE-ConnectionGUID: uSa/9MWhRVWJ6LzQi5z8CQ==
+X-CSE-MsgGUID: 5p5ZgnWERpuFEUJU5XlEOA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11745"; a="75238106"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="75238106"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
  01 Apr 2026 02:03:40 -0700
-X-CSE-ConnectionGUID: QM0H/I7AQeWYxRCmBc4dOQ==
-X-CSE-MsgGUID: ai2IBnunQM+RvslqtgBX7w==
+X-CSE-ConnectionGUID: 9WXeqK4+Ri2I4TQc+a9t8w==
+X-CSE-MsgGUID: d9zjw7yKQgurunuPuDhRHw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="228232891"
+X-IronPort-AV: E=Sophos;i="6.23,153,1770624000"; d="scan'208";a="228232903"
 Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by fmviesa004.fm.intel.com with ESMTP; 01 Apr 2026 02:03:32 -0700
+ by fmviesa004.fm.intel.com with ESMTP; 01 Apr 2026 02:03:37 -0700
 From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: uma.shankar@intel.com, chaitanya.kumar.borah@intel.com,
  pranay.samala@intel.com
-Subject: [PATCH 2/3] drm/i915: Fix color blob reference handling in
- intel_plane_state
-Date: Wed,  1 Apr 2026 14:08:40 +0530
-Message-Id: <20260401083841.4081587-2-chaitanya.kumar.borah@intel.com>
+Subject: [PATCH 3/3] drm/i915/display: Do not program color pipeline for Y
+ plane
+Date: Wed,  1 Apr 2026 14:08:41 +0530
+Message-Id: <20260401083841.4081587-3-chaitanya.kumar.borah@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
 References: <20260401083841.4081587-1-chaitanya.kumar.borah@intel.com>
@@ -97,95 +97,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4F3C1377390
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: C52A2377397
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Take proper references for hw color blobs (degamma_lut, gamma_lut,
-ctm, lut_3d) in intel_plane_duplicate_state() and drop them in
-intel_plane_destroy_state().
+The Y plane is only responsible for fetching luma data from a YCbCr
+frame buffer. After chroma upsampling, pixel data is forwarded
+through the UV plane for further processing. Programming the color
+pipeline on the Y plane is therefore unnecessary.
 
-v2:
-- handle blobs in hw state clear/copy
+The Y plane may still carry color pipeline state due to state copying
+between the Y and UV planes. The hw state copying needs to be more
+nuanced but until then, skip programming the color pipeline for the
+Y plane.
 
-Fixes: 3b7476e786c2 ("drm/i915/color: Add framework to program PRE/POST CSC LUT")
-Fixes: a78f1b6baf4d ("drm/i915/color: Add framework to program CSC")
-Fixes: 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
-Reviewed-by: Pranay Samala <pranay.samala@intel.com> #v1
 Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_plane.c | 36 ++++++++++++++++++++++
- 1 file changed, 36 insertions(+)
+ drivers/gpu/drm/i915/display/skl_universal_plane.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 82f445c83158..23988121065d 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -144,6 +144,15 @@ intel_plane_duplicate_state(struct drm_plane *plane)
- 	if (intel_state->hw.fb)
- 		drm_framebuffer_get(intel_state->hw.fb);
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 11ba42c67e3e..2f622a2d5e04 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -1567,7 +1567,8 @@ icl_plane_update_noarm(struct intel_dsb *dsb,
+ 	plane_color_ctl = plane_state->color_ctl |
+ 		glk_plane_color_ctl_crtc(crtc_state);
  
-+	if (intel_state->hw.degamma_lut)
-+		drm_property_blob_get(intel_state->hw.degamma_lut);
-+	if (intel_state->hw.gamma_lut)
-+		drm_property_blob_get(intel_state->hw.gamma_lut);
-+	if (intel_state->hw.ctm)
-+		drm_property_blob_get(intel_state->hw.ctm);
-+	if (intel_state->hw.lut_3d)
-+		drm_property_blob_get(intel_state->hw.lut_3d);
-+
- 	return &intel_state->uapi;
- }
+-	intel_color_plane_program_pipeline(dsb, plane_state);
++	if (!plane_state->is_y_plane)
++		intel_color_plane_program_pipeline(dsb, plane_state);
  
-@@ -167,6 +176,16 @@ intel_plane_destroy_state(struct drm_plane *plane,
- 	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
- 	if (plane_state->hw.fb)
- 		drm_framebuffer_put(plane_state->hw.fb);
-+
-+	if (plane_state->hw.degamma_lut)
-+		drm_property_blob_put(plane_state->hw.degamma_lut);
-+	if (plane_state->hw.gamma_lut)
-+		drm_property_blob_put(plane_state->hw.gamma_lut);
-+	if (plane_state->hw.ctm)
-+		drm_property_blob_put(plane_state->hw.ctm);
-+	if (plane_state->hw.lut_3d)
-+		drm_property_blob_put(plane_state->hw.lut_3d);
-+
- 	kfree(plane_state);
- }
- 
-@@ -317,6 +336,14 @@ static void intel_plane_clear_hw_state(struct intel_plane_state *plane_state)
- {
- 	if (plane_state->hw.fb)
- 		drm_framebuffer_put(plane_state->hw.fb);
-+	if (plane_state->hw.degamma_lut)
-+		drm_property_blob_put(plane_state->hw.degamma_lut);
-+	if (plane_state->hw.gamma_lut)
-+		drm_property_blob_put(plane_state->hw.gamma_lut);
-+	if (plane_state->hw.ctm)
-+		drm_property_blob_put(plane_state->hw.ctm);
-+	if (plane_state->hw.lut_3d)
-+		drm_property_blob_put(plane_state->hw.lut_3d);
- 
- 	memset(&plane_state->hw, 0, sizeof(plane_state->hw));
- }
-@@ -434,6 +461,15 @@ void intel_plane_copy_hw_state(struct intel_plane_state *plane_state,
- 
- 	if (plane_state->hw.fb)
- 		drm_framebuffer_get(plane_state->hw.fb);
-+
-+	if (plane_state->hw.degamma_lut)
-+		drm_property_blob_get(plane_state->hw.degamma_lut);
-+	if (plane_state->hw.gamma_lut)
-+		drm_property_blob_get(plane_state->hw.gamma_lut);
-+	if (plane_state->hw.ctm)
-+		drm_property_blob_get(plane_state->hw.ctm);
-+	if (plane_state->hw.lut_3d)
-+		drm_property_blob_get(plane_state->hw.lut_3d);
- }
- 
- static void unlink_nv12_plane(struct intel_crtc_state *crtc_state,
+ 	/* The scaler will handle the output position */
+ 	if (plane_state->scaler_id >= 0) {
 -- 
 2.25.1
 
