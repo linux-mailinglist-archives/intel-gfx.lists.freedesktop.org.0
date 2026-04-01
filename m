@@ -2,34 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFmHKfbWzGnnWwYAu9opvQ
+	id GGtCJoHYzGkyXAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 10:27:34 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 10:34:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DC338376C2C
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 10:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC92B376E05
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Apr 2026 10:34:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BB5610EFDA;
-	Wed,  1 Apr 2026 08:27:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5585B10EFC4;
+	Wed,  1 Apr 2026 08:34:07 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; secure) header.d=mailbox.org header.i=@mailbox.org header.b="cDtgeijh";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6862310EFDA;
- Wed,  1 Apr 2026 08:27:31 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7551916073143302864=="
+X-Greylist: delayed 363 seconds by postgrey-1.36 at gabe;
+ Wed, 01 Apr 2026 08:34:06 UTC
+Received: from mout-p-102.mailbox.org (mout-p-102.mailbox.org [80.241.56.152])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E33A10EFC4
+ for <intel-gfx@lists.freedesktop.org>; Wed,  1 Apr 2026 08:34:06 +0000 (UTC)
+Received: from smtp1.mailbox.org (smtp1.mailbox.org [10.196.197.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by mout-p-102.mailbox.org (Postfix) with ESMTPS id 4flymJ3sjDz9vKb;
+ Wed,  1 Apr 2026 10:28:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
+ s=mail20150812; t=1775032080;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=tb1F2P/gPVX7hmvyL7zuDD5FVQ+lQUkUvdkCl8Wclqk=;
+ b=cDtgeijh/xXy7nE6xhMCdiIacIOVa648Gbf4U7ObTHYmEsqmmM9Jyy7SpQFLBda+CsZOih
+ zZFH9+azWNF50WEPVw9dsvkE3Vu1EHAbC4Qy8kushhoKKPwL/+dvNDvpLxC8ymM3pjV6V+
+ gg7VKq9XTTLS+0eWtrNlFiumCpu2xZPc0o6B9O1GBaIZ9hM1qMEdYStpFEZ5Ki2SiKBLWI
+ RLn63RLyF3/LXPrTZsiCdxIDF8tMR+qw1Wp5G3BJvePt2t5ZhSjO+uASNS3JmiuyXDGoPI
+ a9LDuiXhSaGBzBGIsLuYwWnWbmdYLo9apoKhudIQ0IopI5nxR5Icz6rlrF+eVg==
+Message-ID: <824bf7a3-44ad-4da3-b019-08e43a4cc192@mailbox.org>
+Date: Wed, 1 Apr 2026 10:27:46 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_Reduce_wa?=
- =?utf-8?q?kelock_hold_time?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 01 Apr 2026 08:27:31 -0000
-Message-ID: <177503205139.422166.10246997504043936611@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260401073159.3227703-1-dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <20260401073159.3227703-1-dibin.moolakadan.subrahmanian@intel.com>
+Subject: Re: [PATCH v11 03/22] drm: Add new general DRM property "color format"
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Dave Stevenson <dave.stevenson@raspberrypi.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Sandy Huang <hjc@rock-chips.com>, =?UTF-8?Q?Heiko_St=C3=BCbner?=
+ <heiko@sntech.de>, Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, Werner Sembach <wse@tuxedocomputers.com>,
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+References: <20260324-color-format-v11-0-605559af4fb4@collabora.com>
+ <acPmcMbUvzWMzC-Q@intel.com>
+ <CAPY8ntCRPgN_ayHMGXFv9OrJrdyakUcUT0rvgY5J=FvdCFb6eA@mail.gmail.com>
+ <7991520.DvuYhMxLoT@workhorse>
+From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
+Content-Language: en-CA
+In-Reply-To: <7991520.DvuYhMxLoT@workhorse>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-MBO-RS-ID: ce369c97bd17c9d38f0
+X-MBO-RS-META: ru6a8tkc6pfuiejgd9pamkj44hgh76qb
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,162 +95,106 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:ville.syrjala@linux.intel.com,m:dave.stevenson@raspberrypi.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org
+ ,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:wse@tuxedocomputers.com,m:andri@yngvason.is,m:marius.vlad@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[michel.daenzer@mailbox.org,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[43];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.992];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[mailbox.org:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,live:email,workarounds:email,i915_selftest:email,01.org:url,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: DC338376C2C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mailbox.org:dkim,mailbox.org:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DC92B376E05
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============7551916073143302864==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On 3/26/26 13:02, Nicolas Frattaroli wrote:
+> On Thursday, 26 March 2026 12:16:12 Central European Standard Time Dave Stevenson wrote:
+>> On Wed, 25 Mar 2026 at 13:43, Ville Syrjälä
+>> <ville.syrjala@linux.intel.com> wrote:
+>>> On Wed, Mar 25, 2026 at 12:49:19PM +0000, Dave Stevenson wrote:
+>>>> On Tue, 24 Mar 2026 at 16:02, Nicolas Frattaroli
+>>>> <nicolas.frattaroli@collabora.com> wrote:
+>>>>>
+>>>>> +/**
+>>>>> + * enum drm_connector_color_format - Connector Color Format Request
+>>>>> + *
+>>>>> + * This enum, unlike &enum drm_output_color_format, is used to specify requests
+>>>>> + * for a specific color format on a connector through the DRM "color format"
+>>>>> + * property. The difference is that it has an "AUTO" value to specify that
+>>>>> + * no specific choice has been made.
+>>>>> + */
+>>>>> +enum drm_connector_color_format {
+>>>>> +       /**
+>>>>> +        * @DRM_CONNECTOR_COLOR_FORMAT_AUTO: The driver or display protocol
+>>>>> +        * helpers should pick a suitable color format. All implementations of a
+>>>>> +        * specific display protocol must behave the same way with "AUTO", but
+>>>>> +        * different display protocols do not necessarily have the same "AUTO"
+>>>>> +        * semantics.
+>>>>> +        *
+>>>>> +        * For HDMI, "AUTO" picks RGB, but falls back to YCbCr 4:2:0 if the
+>>>>> +        * bandwidth required for full-scale RGB is not available, or the mode
+>>>>> +        * is YCbCr 4:2:0-only, as long as the mode and output both support
+>>>>> +        * YCbCr 4:2:0.
+>>>>
+>>>> Is there a reason you propose dropping back to YCbCr 4:2:0 without
+>>>> trying YCbCr 4:2:2 first? Minimising the subsampling is surely
+>>>> beneficial, and vc4 for one can do 4:2:2 but not 4:2:0.
+>>>
+>>> On HDMI 4:2:2 is always 12bpc, so it doesn't save any bandwidth
+>>> compared to 8bpc 4:4:4.
+>>
+>> It does save bandwidth against 10 or 12bpc RGB 4:4:4.
+>>
+>> Or is the implication that max_bpc = 12 and
+>> DRM_CONNECTOR_COLOR_FORMAT_AUTO should drop bpc down to 8 and select
+>> RGB in preference to selecting 4:2:2?
+> 
+> Yes. Some people consider max-bpc to not be a legitimate way of requesting
+> an actual bpc, and don't think drivers will choose the highest bpc <= max-bpc,
+> and instead may negotiate a fantasy number anywhere below or equal to max-bpc.
 
-== Series Details ==
+Ridiculing others like this for disagreeing with you is uncalled for.
 
-Series: drm/i915/dmc: Reduce wakelock hold time
-URL   : https://patchwork.freedesktop.org/series/164219/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18260 -> Patchwork_164219v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164219v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18260/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18260/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18260 -> Patchwork_164219v1
-
-  CI-20190529: 20190529
-  CI_DRM_18260: ec2d5f6e76f906370ac56a3d6056891e321b299f @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8839: 8839
-  Patchwork_164219v1: ec2d5f6e76f906370ac56a3d6056891e321b299f @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/index.html
-
---===============7551916073143302864==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Is there any evidence for your claim that the driver must always use the 
+highest possible bpc <= max-bpc?
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> Of course this logic could be done in userspace which knows whether the
+> less chroma for more bit depth trade-off is worth it, but userspace does
+> not know the negotiated link bpc, and my attempts at adding a property for
+> it are being blocked.
+
+Assuming you're referring to the concerns I raised there, I don't have the power or intent to block it.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: Reduce wakelock hold time</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164219/">https://patchwork.freedesktop.org/series/164219/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18260 -&gt; Patchwork_164219v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164219v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18260/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18260/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164219v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18260 -&gt; Patchwork_164219v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18260: ec2d5f6e76f906370ac56a3d6056891e321b299f @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8839: 8839<br />
-  Patchwork_164219v1: ec2d5f6e76f906370ac56a3d6056891e321b299f @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7551916073143302864==--
+-- 
+Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
+https://redhat.com             \               Libre software enthusiast
