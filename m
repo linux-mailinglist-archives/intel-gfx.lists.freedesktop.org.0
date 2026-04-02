@@ -2,191 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yLw2CLwFzmnPkQYAu9opvQ
+	id 0HnBMBIHzmnpkQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 07:59:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 08:05:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C13E43843BA
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 07:59:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2C15638445D
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 08:05:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DF6910F054;
-	Thu,  2 Apr 2026 05:59:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73FBD10E294;
+	Thu,  2 Apr 2026 06:05:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oImtpc0b";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mNa2BqJC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72E5810EFE3;
- Thu,  2 Apr 2026 05:59:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 03FF910E294;
+ Thu,  2 Apr 2026 06:05:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775109558; x=1806645558;
- h=date:from:to:cc:subject:message-id:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=dEThQg5mmheujRXE5wNCpxhqC7aYOFTXuNR39ImfS/U=;
- b=oImtpc0bqnr3XYr/1teCfzwhf68l2S4t4BzEWUM46zHa9ZuU50rTBSc6
- VFNP1yqnLNkDKyOMagBHL556pdQAdg4FcSjUH91xTa3fRI2iheiWnw7zA
- mThQ8Z9o0tw6KeByeCFNQ7+lmvMdcRxqNeq21Wuk521mCNMZCn5qulk8T
- Kf5qX6X1HnSMsr5xY5lZn3Qb74ukXHw+C2lFp+cBbaOOe1loC/3iftgwN
- XfpOverQL5dIpKxJVvDlQYqmBOkSgOG2yhrhmXkaUY8FLASLXshJfS2iF
- 3IrlwcZEz9g2JYuHO7wSMCOFU4kbY5bbHA3gc0dAOpa5cVMV/bCLbKzWu w==;
-X-CSE-ConnectionGUID: eeleyxaARviD7EMpb+xARw==
-X-CSE-MsgGUID: brEn4O57S1yXF8sZzgWXPw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76277501"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76277501"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 22:59:17 -0700
-X-CSE-ConnectionGUID: +l38FrejSb+xSrj8ANVkhw==
-X-CSE-MsgGUID: I9SBv+38QmmWI/hZrhoncQ==
+ t=1775109904; x=1806645904;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=gvMhJPJi+dJQBoJU896bjOxpQqlJePK/QGkxlhAteow=;
+ b=mNa2BqJCxzcuHougZRhUlsLR+xaHAfLkBVqykM5mNpzTxfTQdl5cNGqh
+ kogl37JPhfg98fPKk8nNdk/PdarFCCfbCKQQHNwE3itVuzHPK7aaCJzhp
+ yG8xH5DjiyJtrxRX2jB0NXKTyEF9dVzBRB2cTz4NPmwjZsYzUNpfI+3Ko
+ 5FfMoX6LDSMTLyi7L/HbLYwX2FlcLmg5xIVIekJeWGq8dYTnqIm//zPjQ
+ fgE1kAYzBpkGoTrFlO1TpnK0pLrnXwX0yopt60KGn4lqpifnYWTZV01JI
+ PBV1tk4m0atS/GU0gc8VNNR1CJ+kx63ZOsXFa1+NiSiYv2Qd3x0RqlvNo A==;
+X-CSE-ConnectionGUID: ZXteDmj5SLCdUGTrZOeu1Q==
+X-CSE-MsgGUID: ffi574oTTbmVQbQNaN3hzw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="75337747"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="75337747"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 23:05:04 -0700
+X-CSE-ConnectionGUID: GxN46qUbSpm/Wp/SOV5I5Q==
+X-CSE-MsgGUID: Oy3TJuBST0OSGbg6sIQLDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="231833403"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Apr 2026 22:59:17 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 22:59:16 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="264819960"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Apr 2026 23:05:03 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 1 Apr 2026 22:59:16 -0700
-Received: from CY3PR05CU001.outbound.protection.outlook.com (40.93.201.44) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 1 Apr 2026 23:05:02 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 1 Apr 2026 22:59:12 -0700
+ 15.2.2562.37 via Frontend Transport; Wed, 1 Apr 2026 23:05:02 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.60) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 1 Apr 2026 23:05:02 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dRmREUnwqIXmNNXJA6D1PiY5YZ0W3zSKqR6fQ70F01kLGJ9u7Wq2WTN4kOKWRQ0pzC4eGcGsg3IiYEaor63EMJTQRnNCBBOSS2gZI3mUA3WY39actE/byxFsi1nSbJeYIjP84hseexHz/yUCKiRk6byWX6FxRFkad3KE+gf9KZ5MosPL8Fsb2QX2Qf73JfKYqG7gzzw1BQ3kq8LP6ddbNR8gUCMODBw5Q0LW4NwcW6HMc5zJIzq7djNEEtYQxsXYjM8RCTCC867anpPX3YIyC0Q4DsB+Zs52iGqNeQPPKkWteUufYwfVw8Xm/uEIDOIMCxdqYUAgLP3KmAaqhUtt1Q==
+ b=KEP28mQHv67A2zOuhcbnPVwOipbnRsLWWwHrlhNSNK2d+8UGnq+ko4GXZWsI9Nmufrkv2eBoQkaZjHM+8jPoC3MCSvEtRglf8ArB3RnxH4MLrTt4LvXmelE1BBgVKb9PF56dMMHz1KqQLQoqoz0nhly8s1S1Cj2APb7z7vKt+E82mUlrMQLFnJ1pCbrRKCip2+hVqyF4zOp+eMLfQhsKzHw3dfDsmwqn+kYNftisNAG9lZIBO3/Y4nHNOl3GEXaK1nNsr+zBycI45exAY/45KV+SKj8li1DxbRCfAZPBMny8cSGv4l0BDLDWnkR9viZ8i+v+kvJaNXWwRg1Xmuv9Mw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/5x47shNdkVNVC8TKZfTfxNXXuOrxJd1gKTq5Tt8vOk=;
- b=H1LB0Rbtf+0XwtsISAQuJhEa/h/1z9LCXLFuhPDekJp7W1Gb+w1Llnhb25hj2KTmSxDDoIZRUlLU2VerMdawEOAj165UgWFMKax2UETrm2d5v3WsS1WMjW2iZtmd1mWJoLMKSGm3XPd6ygqSab3wslt2X4/wpON+YDPQqCinU6nJ2Oilzd9PUn8yj3jSfBW6JvNbqD75+hI9C7AA1xOJy6YIj+WCykAJyhzCHYySnncgFaSDhCf1BrCOdVWZUS1nP3TgSZ7cvtMuqfsRBR9UfXRvlwyQbyFCeMtrjbHctIqPeCyqpvRXGZrio1prEQoHv8FyfBHST4DoeGcVTD9PIw==
+ bh=FNX28QW4hV1HrHA/t21ZYV9MFG/ByxItp58Eu9yiJ/U=;
+ b=QCnhClrjuwMWspufbjL8XTiJEl96qHQ5UNZgDT2ei07M6trF9k5DCvRyShDQ6WPFTVV5Mb0zesxlMU7bocz4eBXPJscGtbB3T/kYHISfKzijGJgpJPtX093T8QODYWhFykArL3OeDCeurDkLXntlQeag5vN0GbnCHXqDH6tYcRRtiTnI5qLoL7qSjIBYIOGFhoJ0nqFoez8J0wyA/sI/V5V6O+boBdvjhHpZOQMsfyOoQyjJRZcOv6rbsxp2bePgQq6MljYQH2wBPaa7RT7z734MQ2Gzt6FpcndlRhLS352jlmJF/fTzlBjk53U0+GvCQrwUydqPtjzk8/y5uaHpRw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by PH3PPF6E8D29981.namprd11.prod.outlook.com (2603:10b6:518:1::d2d)
+Received: from PH0PR11MB5880.namprd11.prod.outlook.com (2603:10b6:510:143::14)
+ by CH3PR11MB8703.namprd11.prod.outlook.com (2603:10b6:610:1cd::11)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9745.20; Thu, 2 Apr
- 2026 05:59:09 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9769.016; Thu, 2 Apr 2026
- 05:59:09 +0000
-Date: Wed, 1 Apr 2026 22:59:01 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Joel Fernandes <joelagnelf@nvidia.com>
-CC: <linux-kernel@vger.kernel.org>, Miguel Ojeda <ojeda@kernel.org>, "Boqun
- Feng" <boqun@kernel.org>, Gary Guo <gary@garyguo.net>, Bjorn Roy Baron
- <bjorn3_gh@protonmail.com>, Benno Lossin <lossin@kernel.org>, "Andreas
- Hindborg" <a.hindborg@kernel.org>, Alice Ryhl <aliceryhl@google.com>, "Trevor
- Gross" <tmgross@umich.edu>, Danilo Krummrich <dakr@kernel.org>, Dave Airlie
- <airlied@redhat.com>, Daniel Almeida <daniel.almeida@collabora.com>, "Koen
- Koning" <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
- <rust-for-linux@vger.kernel.org>, Nikola Djukic <ndjukic@nvidia.com>,
- "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Jonathan Corbet
- <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>, Christian Koenig
- <christian.koenig@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- "Joonas Lahtinen" <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
- <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>, Lucas De Marchi
- <lucas.demarchi@intel.com>, Thomas Hellstrom
- <thomas.hellstrom@linux.intel.com>, Helge Deller <deller@gmx.de>, Alex Gaynor
- <alex.gaynor@gmail.com>, Boqun Feng <boqun.feng@gmail.com>, John Hubbard
- <jhubbard@nvidia.com>, Alistair Popple <apopple@nvidia.com>, Timur Tabi
- <ttabi@nvidia.com>, Edwin Peer <epeer@nvidia.com>, Alexandre Courbot
- <acourbot@nvidia.com>, Andrea Righi <arighi@nvidia.com>, Andy Ritger
- <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>, Balbir Singh
- <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>, Elle Rhumsaa
- <elle@weathered-steel.dev>, <alexeyi@nvidia.com>, Eliot Courtney
- <ecourtney@nvidia.com>, <joel@joelfernandes.org>,
- <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <linux-fbdev@vger.kernel.org>
-Subject: Re: [PATCH v10 07/21] gpu: nova-core: mm: Add TLB flush support
-Message-ID: <ac4FpcD29XnbbsdD@gsse-cloud1.jf.intel.com>
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-8-joelagnelf@nvidia.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Thu, 2 Apr
+ 2026 06:04:55 +0000
+Received: from PH0PR11MB5880.namprd11.prod.outlook.com
+ ([fe80::b706:268e:9753:cdfd]) by PH0PR11MB5880.namprd11.prod.outlook.com
+ ([fe80::b706:268e:9753:cdfd%5]) with mapi id 15.20.9769.016; Thu, 2 Apr 2026
+ 06:04:55 +0000
+Message-ID: <46b46a4f-a730-4f6a-8991-82f0d3d5eab8@intel.com>
+Date: Thu, 2 Apr 2026 11:34:46 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/9] drm/i915/casf: Integrate the sharpness filter
+ properly into the scaler code
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ Nemesa Garg <nemesa.garg@intel.com>, <ankit.k.nautiyal@intel.com>
+References: <20260326223139.19116-1-ville.syrjala@linux.intel.com>
+ <67337fdf-1a98-4449-ac54-04b14805ad8b@intel.com> <acu_T8mBOpfZIJN2@intel.com>
+ <3af4af49-5575-4109-8a5a-58c8de5e2c99@intel.com> <ac0HYijc2stYuO_w@intel.com>
+Content-Language: en-US
+From: "Sharma, Swati2" <swati2.sharma@intel.com>
+In-Reply-To: <ac0HYijc2stYuO_w@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260331212048.2229260-8-joelagnelf@nvidia.com>
-X-ClientProxiedBy: MW4PR03CA0028.namprd03.prod.outlook.com
- (2603:10b6:303:8f::33) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+X-ClientProxiedBy: MA5P287CA0132.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d2::15) To PH0PR11MB5880.namprd11.prod.outlook.com
+ (2603:10b6:510:143::14)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|PH3PPF6E8D29981:EE_
-X-MS-Office365-Filtering-Correlation-Id: 9e9cbddd-3c90-4e0d-2081-08de907cf4f9
+X-MS-TrafficTypeDiagnostic: PH0PR11MB5880:EE_|CH3PR11MB8703:EE_
+X-MS-Office365-Filtering-Correlation-Id: 90de874f-b003-408f-d0c5-08de907dc2f1
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|7416014|376014|18002099003|56012099003|22082099003;
-X-Microsoft-Antispam-Message-Info: xOpxodA7nlGsTu1GBpLhmjG+1aEw8tWu3lW5GeB0mbR/pMn/BixWdREvgqOl2uDn8yVhnTJs1MSuOhQyBdmuvcO3cwEOFoENTMyXrzAeYKd+8lFjsfcLMHpP8q2BtMOtZkwaBFNoCBVB6c8RQB/J85kU12RDdpxFR7BRk+gBfBcDNNlT4XpCdEqzDrteHINEj02feVnVsBW0Chpqe/W+LdxM/gSAD7QU5Y5fx6Tqk/W8kH9wtyTzgfNmj8T7j6N6WXHrBp3bo2l+Nsae+EiCfS3l0y4xLhnC8vfnS6535+p1wzMEog2qvSbVkOT4Oh1s7gF93nj8rR4JMMmI9y6q1d8dZQXr5QP0ARSgouYN8pLc5Vwiud+9RDYEC4e2Bm4g8eB3yEM1CBxuLcU/ovr5gLOv5mkPtjn9l7csaaIeVaGJmH6KelnB4k/1Fv2N+zswsSaog5zYvYn76DQDckHoaiQa/L90xjS6n6vb8ZZI40x5w4RA1+PeW9OQKgCc9BPw2wQVQZCAG5oTnVN/rwMw1rvc4iKL11Y89zE6R40WWu3k5CpExJ5Xm+ilI65weurby0vUbIITbgmRUW9RwCqGdcNmkfVD/7o/vUeiw7amtTJ76Jgrl7vn2OT9tHhKQeDzGeMEr+FcSl8ZwFm/J6+4KaqlPnRZh9tIg2uCRAn0jBh60KSyTpi8TaXpkduEqVTgbM9+xS9u+oAIYN5C5Tr3hQxxXKrsKsUVJZtuX+fHYX8=
+ ARA:13230040|376014|1800799024|366016|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: jnuIuOthEhU0si4DOBAlCeqXN4aF9bzKjbdBntdiS1mQep3i8LiCzIMs1v5CsiJ2eUf8FZQCoC3QyW8Bkd6Oqw0vTWCJwQOYTnyBoOQqTyGEpYif8XaZZGhewLp/QncfPo3SND6Bv6G2g3v3h+ApPUf5y454bCbSmOB5CH62ohCu4zZSvQf0AD8p1FoaeHl+dQQXsSs7B4wWBTp6XFw+bgdplOXdYyyDdsRIMszsRkr+sF2oHCypirKGb5rv1v/mCU91ndSXUIC5P+J8TZwq9k9RLxQUywHwI1aP019f8csi45GY8mINZXk+y2N9/Yej59CcfYceXXN0/uhczQ7Qr/y9U4PUNSkHU8TQpKNzofcVMUaQo0rpD1tZrbMv4KUZTOsGFLoyLvaKrJfgWAoFJ4EHkDrfgRHPzZ6Pu7napRo3OL3i8k4TPpdoYAadwB3blp8MY0EA70VCDoVxn5getfIvA7b65529t7jPSKjWyZh4lPUMAxE+VmEZ/PkcqY5s0/rBwk/0gV2ZGxi6wDgDRyGA2gfHpjyze23d+fpw6mN4W0e27+AcNqp65kmCUk6MOxPoIkjn1eL7MNNGN68HB83EmjKVXaZ3iLWFh7H18I8qKga3UBdBkNJnCn7GGOe3q5LqmdeUhL2mbMjMe8nwwHt+97lXKLVb56ksJjUX23n9f0Tl2TRwoW3px/bhaX+4
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(7416014)(376014)(18002099003)(56012099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB5880.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OUNnemQ0MTZPZmRIVE9BWmlCQ1R0bFNPL0MwQVdybFhHUDVSRDFhNkFJZ1ZK?=
- =?utf-8?B?ekFoSnV6ck83Y0I3WHQ5MXYzeWdidVBsUXJhLzkxMkkzZmVRQUFwcFNFVGxw?=
- =?utf-8?B?S0duVzBua1pURzZjU0RydVJkZUhKcHkwajVNZnNUeTZtNmFNNUlQVlZzUGdt?=
- =?utf-8?B?MFFTTEtMRjFyTXpHc3JYNCtFeVNaSTRUL2JPUGxPQk94RHZXY2U1ZTVhWEpY?=
- =?utf-8?B?MFdwMjhhZEJOd3ZnSEZ3d29tWnR6REFjdmpSOFFPeHBscXI4ZmRyVUZZQTcz?=
- =?utf-8?B?dEI2cE9BMDd4S3RXMTUyTjd3QU5vT3FpZWpuR0FIaEZkRlVhYmlFMFdEODRy?=
- =?utf-8?B?Z0RRU0RpaStRbzN2VU9VSUZ4VW5oZFJ2eXlSZlN3aTZ6dkt0bkV2UGlIVjl2?=
- =?utf-8?B?TWt6REhwUjBBcjMyYUM3MVNOMjE1dWNGV1BNQ3NNNTdSOEFNa3FlWkkxTVFp?=
- =?utf-8?B?d0tpTDNTdnFWTytyZmRnSUdhd0ZlYjJXRDZQYjBIQVlKS3NhMlIzemkwanM3?=
- =?utf-8?B?T05xS0gwMzhucEhmL3dXbGovbzhHdGpMeDlOK2xqWmg3aHR4VmhtWkwvS0ZO?=
- =?utf-8?B?a1RIQko1VlFuSnVWdzlmNjQwVUFZcDdkZUk3dTRrUFdqVVA1SnJUQTg5YUxD?=
- =?utf-8?B?N0FZdVgvc2Y1Mm1MbkR6d3ZFdFp4cERHM1ozOE4rVGtBMkN1V2RpK2VQR3Rj?=
- =?utf-8?B?cU9hdGhmWFZ2amNDWm4vNGhpb0d0OTVzSlVkeHV2N1ljczVac2Ztcmw4d2NN?=
- =?utf-8?B?NllYaC9GQ3JsY3VFWlVYUVhaZjhuYXZRem1wN2NNdFhHSXhRU1BqK1dEVEwr?=
- =?utf-8?B?eDZ1eEZXa1phOVUvYldJUi9wRjBydFFJSTN4UElaQkFLUXRTNWMwWjJZdFBZ?=
- =?utf-8?B?K0NESUI1dTh1T2NvZ00zaWhuRWV5ZjV4VjVDVzVRdWxWUytCUHBsSUI4ckJQ?=
- =?utf-8?B?TCtnRzNzQnNSbWRJeTFZSlFuNFErYTJpMjhXb0lZT285Ri9UNWNIdWdhWGVC?=
- =?utf-8?B?N2sxRGl0UDlKRTRMUnhsdmNqcHEvV3dQeUE0MGhSNDRyU0FEN3NkenVCNnRH?=
- =?utf-8?B?YmNGWDZXbDUwNlp5bGRCSkNWYlVMaHAxSEgvSzMwN2FhWHUreFlKeEZYQnFn?=
- =?utf-8?B?TGdQWjRZUmNwaWlib2Z6cTBzUHVlTGlLWndRQ002SDE1dVhPN2RmamNBaFg4?=
- =?utf-8?B?em4ybG91dUhFZmk4WElpTmQzOFJPdDdndmZHN1JwWU1wNTdILzV0U01tTE9M?=
- =?utf-8?B?ZnFUMWtjdnMrSDhaNitpdnBiaDZLaWNmQ0ZOV25ldjcxSFoyMEdIZk1KZUJN?=
- =?utf-8?B?QlBQVEMyUFNnNHJMbGRVN0R5Y0IxUVBHN2htanYwUFVGelNVUjBpQzdBOXBl?=
- =?utf-8?B?MFFvWE05OVBDanl2Si9wVERvOEtnNTZKbVJmcHVaeG1QRElvV1NhQnptMkMv?=
- =?utf-8?B?cHE2UU1pVlpMMVVmYy9FQWdkLzdaRFpmSzd0R3dNUDhIUUwya3JRZVZtYnUz?=
- =?utf-8?B?VzBkQUVnNmhoNnN3OFVxSVhrNUJSMjZnczg3ZCtUM3VtZnlPLzd6Nkcwb0Q4?=
- =?utf-8?B?dDQxSlVQNHlldUIzZEtaY0YwWDdJYW55c2Zla3JpSzdJTnNORmc1UlZLOHZY?=
- =?utf-8?B?emVUazlzU0NydXZSdHNNWm90US9DL3FFeEFHRFhwV0I2YjlGVGZydnJ5QWoy?=
- =?utf-8?B?bXFjRFdGRVVYNFRFOHVVM0pDTEF5RTZvb1pIYjBhaHNxT2Zzb2t1SmVPZ1Za?=
- =?utf-8?B?TEdEcVBDcXhYVmR2U3Y1NXpuMHBmNDdQdDNPRGJENGpQcEJnY3I1Nkp6cDI5?=
- =?utf-8?B?aHVma2I4OVkwaTRhSGJCZjI4eC9lVGszRC9DSlByRm1TNEc2dEFWRC96ZFR4?=
- =?utf-8?B?UzhlaUgzclZlVm16ZStlOEoxb3IzUG9ZZlBQMU1XbHNEdDU5YWtIL3FZMVN3?=
- =?utf-8?B?QTlJUGhsUTZKTVFVRG5tSW52ZUVxbjZ5S3JLZ01wcVRGeTNvRHRBcDl3NUxs?=
- =?utf-8?B?ZlhheDQ0ODA2WVlCZmxsaDdtVkpJZkVDVDFyR3hQb0JUWjhUR2JXemVTQTJx?=
- =?utf-8?B?L3lSL29hekp5VVdIbFRTTEVOVTRsUVVsZTNmd0E1TnBCUC80K2lOV2JlMVdj?=
- =?utf-8?B?V2dHdnhDVjlPN1gyeFBZZWV6TzlsWnhBcCttc1d0VE9iYXUwK0VwUjRNVWc2?=
- =?utf-8?B?Ukl5a1dzMms0b2FDaHViOW1mcm5rUWVPZlloblNEUXN3d1pNdGJzc0dTZGJU?=
- =?utf-8?B?bFFjaUVrcFVpdG1kTFdBRVF1eHZ4T3Z2Slhrc1JvQytTdzRiRU0vRGlMTVUx?=
- =?utf-8?B?eDFaK2ltQ0ZXV2JETUhYbWVRTmxXUkZrQk1qNGd2RzlCYzBONFhKaVJ2OWRw?=
- =?utf-8?Q?eNWtQbteiPeSayxA=3D?=
-X-Exchange-RoutingPolicyChecked: QFZrfHCTTB+t2IuMt2TYF4XlH0NJ3/H8/AUPf6hi8Ah9LF7emq/rroechEJbfyk69/Zf+Bif/tROh37tvK/VfFws1Z75HJXdKbrRVYujxpewMKzSV0IxEPugSZRRlaUZSGagk+CiHRJY3hAXdqi0vEyCzEd/qOdewz8vtEs3K8AsBUzG+l8Lli7le8sdV2YGhLX5Guz6x/EhzKtjvlm92KVe3loLOosrfSL4aNVtZ+0JpMxlAqPwX5WfVVeRveaj35HWu57r4rgBpy7hCbRTfJUCso/T+QeD9aRzrZyApPtLHoMEKJNSOBRgE343YjlJuovflRYZMgjo63mZ4LVoXg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e9cbddd-3c90-4e0d-2081-08de907cf4f9
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZGhmVGJCbzZPak9WeDBhNmZSa2ptYXpBZHAyc3NsZVBpUElqbUxmQVdqNE1i?=
+ =?utf-8?B?UWtwM2VGSWdFQUd2ZjRPM2hvNGhiNTdxUkRpK0VtdXVQWlcrdktDeStpK2dE?=
+ =?utf-8?B?cSs1Z1hsMXlRL3ZxVWIwNkRnZXp5RE5helJIRTYrT05HUjZlalpzcGlrOEFt?=
+ =?utf-8?B?NDd0b2M5bXlWR1BpSE42UHp1Rk5rSWo3WmM0cE9waWUvZ01zMGNaaHpiVUdi?=
+ =?utf-8?B?bjdOQkRuekNrNWx3S29YSDlrRGpVZzZDYU0wd1hQUUtTQUgrZ0FKMGhRUFgy?=
+ =?utf-8?B?V09VWEd0Y3NOWUVrY0wwNkhUVlR6bTRHd2tLRy90Si9LQ1cxS3JmSVFNNGFU?=
+ =?utf-8?B?c252SjVROXdZY2tHWUh2aks2QXMvR2tMZUNvNUhYK1VtYUdGUGZwTzZjcnhM?=
+ =?utf-8?B?K2NaL3drN2hJZHdRbEk4M0lIMlo3TXMydXJZcm9qWlpWOU5PK2F1aEpyMmMr?=
+ =?utf-8?B?TXZZamlrWVhrcVlyYzRZVkE3MHlnRS9BcVE5N0RwTUJib1hFOGRyVEgwTVVV?=
+ =?utf-8?B?RlE1bENGd2h1YWJJY2dqd0JJWEpoaFFjRnJZaTdCNHBaUEIyNXVRa0xIUFc5?=
+ =?utf-8?B?VlE5M24xRTNOVng3ekJMNmlQSjFkRStmMzJSMnRMY29DSHBMSHhTRFRNYzdF?=
+ =?utf-8?B?cEREblQ0S0s4ZjBSbnZhVHAybWMrb2h5NW9qR29RUzdkNDJQc21Sc2Z1KzZE?=
+ =?utf-8?B?WGF0TmRYL3gzOG9JaHp3T3QwL2YzcWJvS1d1anM4c2pkSHdxcjd0MFVqSnBo?=
+ =?utf-8?B?WU1veFZEd1NmTmU2dyt3RGxqUHAzWjcxK2tEclhKQ2drOFg0QmhuUUMxTFJv?=
+ =?utf-8?B?aXNwMFR1a040TmwrT0VwUGZTSHJGZGxkd2NHSWV2N2FCamtDZjZuRlNFUk14?=
+ =?utf-8?B?VS9BSENkVytpSTVyNnhiRnJwWSt5OE1VVUlVSW1tZmNHclBBYXF4UzNTMnlr?=
+ =?utf-8?B?T2R2R09wK2tGeVNNZmhNNWs1OUVVVGQrYm9rTTAzWld4ZWdqODB5K3dnUkVB?=
+ =?utf-8?B?aUVxRENxcTNaYnVBTCt0RmlaM3VuWUs1TUh4eWxBZHdKZHBBV3FRTDA2N1RI?=
+ =?utf-8?B?ajVaL1BreGgwdGpTK2VzYXNWMGR6VVZDMW9aWjJYNnNPbWV0N0JEZ2JXc3Yv?=
+ =?utf-8?B?clJuYjRhdmRLNkJRcUNud2Y4UjhtMm44TFJITkdDSmlHVWlNYm9Dd0NpYzZQ?=
+ =?utf-8?B?VEtMbEZGVmxxVkZFTG90K2R6M1BGdzZyUTJ0R24ra09NbmI3U2w2czRQRGN0?=
+ =?utf-8?B?U21FdFY5R3k2ektDc1gxb3ZOamtWeEpwRHZvN3NRdW5ITDRLU2pVYUNTQTFV?=
+ =?utf-8?B?VGtpVWhPT2h4cnRtajJXOEFqOHB6M1BOQzBOVzlTbWZ6WXN2NnE0UGZPT0th?=
+ =?utf-8?B?NUJocjhEZWw1K3Y1ajQwWTM5V0JoY3VJZkhpTmNtM3lwTGdScE10c084N0Q0?=
+ =?utf-8?B?KzE5MVQwWFFWY05mcFdhYnpIVnkySVN5VDFxcGh3ajF4SXpVNUw0WXBCRnBx?=
+ =?utf-8?B?ZGNKays2OUlOVnE3b1FYV09nWWtuY0c5dVpnYkd0ZXhpWlpXcTVXeVNFR2dG?=
+ =?utf-8?B?WURCZEE3UHh3QVUxSHErMWMwUVI2bGlLTGx6SHdxOTlpdkNnZ1ZFb3k2TWg4?=
+ =?utf-8?B?dkRtR0U1aUE3eGVQS2JBSm1iLzFyMGFkekZsWVg4V1BMZlQ4TldQL2QvKzVq?=
+ =?utf-8?B?SjJyV2FhYTcwTlNSbExPWWF5RFkxVU1JV3llMzJROEZKQVlmSjJINW5yOGl1?=
+ =?utf-8?B?NlVtcnJka3FPNllUMFZwSVNhM2srMXhLaHF5Z2hjY3prN1YvZzJxNmdzMUVI?=
+ =?utf-8?B?anFQU1R2S0VyeU4rQ25acDFMM3luWHpIY1RBaTRYSjB4RHVQZTNxYTVvVTVM?=
+ =?utf-8?B?U21GQ2lIK0gvb0RrQkZvV0YrS2FHWDdDZy91cDFvZU0ybi9mYjd1TWEyWkJQ?=
+ =?utf-8?B?REp6bGtGZDFQZ0ZnM083eDJFYVU1U2ZlWVp1QWpyMWZqSHhPUkhBM1FjRTBh?=
+ =?utf-8?B?cUdLQlNTYmVFOHBIb2pMWDA3eGprZnpVT21mdUZOejFVUFBZNjRYQlJqZVBC?=
+ =?utf-8?B?V2lYdEUyQ1gvNlcwMkE3Tnlza0drakgwcS9zbExpT0tRSkduSWFlYkI1WkdR?=
+ =?utf-8?B?U2JrU2pjTWhOK0taN3NkOGNObTRTaDFuMXk4MlRtakM3c3VzY2w3NGFHd1RL?=
+ =?utf-8?B?WnhYd0cxd2p2OTR6by9kZnhRMnNmTHVOUC9SMk1jOTRQTXhLUmg2K2NJWXRV?=
+ =?utf-8?B?QnhjZTFkVndzcnpBaTRrKzJsNFk3bGZIQkY2K0lpZFdMZ1lHMmR6MkZBMjR4?=
+ =?utf-8?B?M0tNeVBLSUFTalRuU2FYKy9FcnNBdG4wdG50RWRGM1NNLzBBL3R1ZitkVlpa?=
+ =?utf-8?Q?oafLVJB0IV7TKgCU=3D?=
+X-Exchange-RoutingPolicyChecked: eqy1L9w66SUhmeNeIFLqL+KVqVWPT4r6B7vGqCzf9Ck/6A5KQfj+ejW8i8EQIw/W4y9w7mbSE9qlK6pa3e8X0kPVUJrF66kK8idVczB7RJzKa5iT/lkgaEBB44BX7HCreaKF5+IV00enWm4QTN/Ek3StPQbYhT8tXLQgyHO5EvUyaxCE1YOaCkazloQooPpN+brPp8r/qgqNFbVVaPEatWa3opscdfu24NhiRRxVbVP0pIZ/mBpdlowp631Wj078hNEE8iLq6mxf2QRLpoOWsC8dBFJHuYAoiH9pQWVinon8jsbFXL2MnPnhyoJQOhX8GuL3YkpDtZWMZISF7Bco5g==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 90de874f-b003-408f-d0c5-08de907dc2f1
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB5880.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 05:59:09.4712 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Apr 2026 06:04:55.3290 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cdoTGzorVfux/lARXkmM5ygx3EY8wltPkEEu4jkTSmyk8KTV9cqNnAimxRbqxOO63bhORT6vC5t7uSemtZgZZQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH3PPF6E8D29981
+X-MS-Exchange-CrossTenant-UserPrincipalName: xykLzUJutRY/68I/79k5RspWuI2Eg+DKiA+MZuWIWMqZ1Vefv1NGv1dzwjXGs+RL3xEurvI+yzI033RaJnn3lQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB8703
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -202,233 +177,124 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gsse-cloud1.jf.intel.com:mid,nvidia.com:email];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[matthew.brost@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: C13E43843BA
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[swati2.sharma@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,01.org:url];
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: 2C15638445D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 31, 2026 at 05:20:34PM -0400, Joel Fernandes wrote:
-> Add TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> 
-> After modifying page table entries, the GPU's TLB must be invalidated
-> to ensure the new mappings take effect. The Tlb struct provides flush
-> functionality through BAR0 registers.
-> 
-> The flush operation writes the page directory base address and triggers
-> an invalidation, polling for completion with a 2 second timeout matching
-> the Nouveau driver.
-> 
-> Cc: Nikola Djukic <ndjukic@nvidia.com>
-> Signed-off-by: Joel Fernandes <joelagnelf@nvidia.com>
-> ---
->  drivers/gpu/nova-core/mm.rs     |  1 +
->  drivers/gpu/nova-core/mm/tlb.rs | 95 +++++++++++++++++++++++++++++++++
->  drivers/gpu/nova-core/regs.rs   | 42 +++++++++++++++
->  3 files changed, 138 insertions(+)
->  create mode 100644 drivers/gpu/nova-core/mm/tlb.rs
-> 
-> diff --git a/drivers/gpu/nova-core/mm.rs b/drivers/gpu/nova-core/mm.rs
-> index 8f3089a5fa88..cfe9cbe11d57 100644
-> --- a/drivers/gpu/nova-core/mm.rs
-> +++ b/drivers/gpu/nova-core/mm.rs
-> @@ -5,6 +5,7 @@
->  #![expect(dead_code)]
->  
->  pub(crate) mod pramin;
-> +pub(crate) mod tlb;
->  
->  use kernel::sizes::SZ_4K;
->  
-> diff --git a/drivers/gpu/nova-core/mm/tlb.rs b/drivers/gpu/nova-core/mm/tlb.rs
-> new file mode 100644
-> index 000000000000..cd3cbcf4c739
-> --- /dev/null
-> +++ b/drivers/gpu/nova-core/mm/tlb.rs
-> @@ -0,0 +1,95 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +//! TLB (Translation Lookaside Buffer) flush support for GPU MMU.
-> +//!
-> +//! After modifying page table entries, the GPU's TLB must be flushed to
-> +//! ensure the new mappings take effect. This module provides TLB flush
-> +//! functionality for virtual memory managers.
-> +//!
-> +//! # Example
-> +//!
-> +//! ```ignore
-> +//! use crate::mm::tlb::Tlb;
-> +//!
-> +//! fn page_table_update(tlb: &Tlb, pdb_addr: VramAddress) -> Result<()> {
-> +//!     // ... modify page tables ...
-> +//!
-> +//!     // Flush TLB to make changes visible (polls for completion).
-> +//!     tlb.flush(pdb_addr)?;
-> +//!
-> +//!     Ok(())
-> +//! }
-> +//! ```
-> +
-> +use kernel::{
-> +    devres::Devres,
-> +    io::poll::read_poll_timeout,
-> +    io::Io,
-> +    new_mutex,
-> +    prelude::*,
-> +    sync::{
-> +        Arc,
-> +        Mutex, //
-> +    },
-> +    time::Delta, //
-> +};
-> +
-> +use crate::{
-> +    driver::Bar0,
-> +    mm::VramAddress,
-> +    regs, //
-> +};
-> +
-> +/// TLB manager for GPU translation buffer operations.
-> +#[pin_data]
-> +pub(crate) struct Tlb {
-> +    bar: Arc<Devres<Bar0>>,
-> +    /// TLB flush serialization lock: This lock is acquired during the
-> +    /// DMA fence signalling critical path. It must NEVER be held across any
-> +    /// reclaimable CPU memory allocations because the memory reclaim path can
-> +    /// call `dma_fence_wait()`, which would deadlock with this lock held.
-> +    #[pin]
-> +    lock: Mutex<()>,
-> +}
-> +
-> +impl Tlb {
-> +    /// Create a new TLB manager.
-> +    pub(super) fn new(bar: Arc<Devres<Bar0>>) -> impl PinInit<Self> {
-> +        pin_init!(Self {
-> +            bar,
-> +            lock <- new_mutex!((), "tlb_flush"),
-> +        })
-> +    }
-> +
-> +    /// Flush the GPU TLB for a specific page directory base.
-> +    ///
-> +    /// This invalidates all TLB entries associated with the given PDB address.
-> +    /// Must be called after modifying page table entries to ensure the GPU sees
-> +    /// the updated mappings.
-> +    pub(crate) fn flush(&self, pdb_addr: VramAddress) -> Result {
+Hi Ville,
 
-This landed on my list randomly, so I took a look.
+On 01-04-2026 05:24 pm, Ville Syrjälä wrote:
+> On Wed, Apr 01, 2026 at 11:32:30AM +0530, Sharma, Swati2 wrote:
+>> Hi Ville,
+>>
+>> On 31-03-2026 06:04 pm, Ville Syrjälä wrote:
+>>> On Tue, Mar 31, 2026 at 05:10:42PM +0530, Sharma, Swati2 wrote:
+>>>> Hi Ville,
+>>>>
+>>>> On 27-03-2026 04:01 am, Ville Syrjala wrote:
+>>>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>>>
+>>>>> The sharpness filter isn't anything special. It's just another
+>>>>> mode of the pipe scaler, so treat is as such.
+>>>>>
+>>>>> This gets rid of tons of special casing all over the place,
+>>>>> and will allow me to finally land the pending pipe prefill
+>>>>> series: https://patchwork.freedesktop.org/series/156137/
+>>>>>
+>>>>> Note that this will fail some kms_sharpness_filter tests,
+>>>>> because those tests are basically incorrect. But I couldn't
+>>>>> decide yet how much of that entire test should be nuked. It
+>>>>> seems to be doing a *lot* of things, most of which have
+>>>>> nothing to do with the sharpness filter...
+>>>> With your series I could see only 1 negative test failing -
+>>>> invalid-filter-with-scaling-mode-center
+>>>>
+>>>> https://intel-gfx-ci.01.org/tree/intel-xe/xe-pw-163952v1/shards-all.html?testfilter=sharpness
+>>>>
+>>>> Is it sharpness and scaling-mode-center can work together? Since
+>>>> scaler-mode-center doesn't require
+>>>>
+>>>> scaler.
+>>>>
+>>>> You rightly said, all tests are not related to sharpness but covering
+>>>> valid scenarios for scaler + sharpness.
+>>>>
+>>>> Apart from invalid-filter-with-scaling-mode-center, which other tests do
+>>>> you think are incorrect? We tried covering all valid scenarios as per HAS.
+>>> I would probably nuke all these:
+>>>
+>>> Nothing to do with the sharpness filter since
+>>> it's on the pipe scaler, not plane scaler:
+>>> - filter-modifiers
+>>> - filter-rotations
+>>> - filter-formats
+>> Ack.
+>>> Doesn't seem to test anything at all:
+>>> - filter-tap
+>> Intention of this test is to validate different taps. As per spec,
+>>
+>> different TAPS will be selected based on different resolution selected.
+>>
+>>
+>> TAP 3: mode->hdisplay <= 1920 && mode->vdisplay <= 1080
+>> TAP 5: (mode->hdisplay > 1920 && mode->hdisplay < 3840) &&
+>> (mode->vdisplay > 1080 && mode->vdisplay < 2160)
+>> TAP 7: mode->hdisplay >= 3840 && mode->vdisplay >= 2160
+> AFAIK all it does is try three different modes on the CRTC,
+> and then nothing. How does that verify anything (other
+> than the driver didn't explode)?
+Right, when we are trying with different resolutions; though from driver 
+different taps are
 
-Wouldn’t you want to virtualize the invalidation based on your device?
+being selected but from IGT we don't know if its correct or not.
 
-For example, what if you need to register interface changes on future hardware?
+> I suppose it could be verified with the chamelium/writeback
+> based test. But right now this test doesn't seem to do anything.
 
-Or, if you’re a VF, can you even do MMIO?
+You mean, shall i add this test on kms_chamelium_sharpness_filter.c ? 
+Currently we have only
 
-I’d relayer this.
+basic test enabled there.
 
-Matt
-
-> +        let _guard = self.lock.lock();
-> +
-> +        let bar = self.bar.try_access().ok_or(ENODEV)?;
-> +
-> +        // Write PDB address.
-> +        bar.write_reg(regs::NV_TLB_FLUSH_PDB_LO::from_pdb_addr(pdb_addr.raw_u64()));
-> +        bar.write_reg(regs::NV_TLB_FLUSH_PDB_HI::from_pdb_addr(pdb_addr.raw_u64()));
-> +
-> +        // Trigger flush: invalidate all pages and enable.
-> +        bar.write_reg(
-> +            regs::NV_TLB_FLUSH_CTRL::zeroed()
-> +                .with_page_all(true)
-> +                .with_enable(true),
-> +        );
-> +
-> +        // Poll for completion - enable bit clears when flush is done.
-> +        read_poll_timeout(
-> +            || Ok(bar.read(regs::NV_TLB_FLUSH_CTRL)),
-> +            |ctrl: &regs::NV_TLB_FLUSH_CTRL| !ctrl.enable(),
-> +            Delta::ZERO,
-> +            Delta::from_secs(2),
-> +        )?;
-> +
-> +        Ok(())
-> +    }
-> +}
-> diff --git a/drivers/gpu/nova-core/regs.rs b/drivers/gpu/nova-core/regs.rs
-> index a3ca02345e20..5e3f5933a55c 100644
-> --- a/drivers/gpu/nova-core/regs.rs
-> +++ b/drivers/gpu/nova-core/regs.rs
-> @@ -548,3 +548,45 @@ pub(crate) mod ga100 {
->          }
->      }
->  }
-> +
-> +// MMU TLB
-> +
-> +register! {
-> +    /// TLB flush register: PDB address bits [39:8].
-> +    pub(crate) NV_TLB_FLUSH_PDB_LO(u32) @ 0x00b830a0 {
-> +        /// PDB address bits [39:8].
-> +        31:0    pdb_lo => u32;
-> +    }
-> +
-> +    /// TLB flush register: PDB address bits [47:40].
-> +    pub(crate) NV_TLB_FLUSH_PDB_HI(u32) @ 0x00b830a4 {
-> +        /// PDB address bits [47:40].
-> +        7:0     pdb_hi => u8;
-> +    }
-> +
-> +    /// TLB flush control register.
-> +    pub(crate) NV_TLB_FLUSH_CTRL(u32) @ 0x00b830b0 {
-> +        /// Invalidate all pages.
-> +        0:0     page_all => bool;
-> +        /// Enable/trigger flush (clears when flush completes).
-> +        31:31   enable => bool;
-> +    }
-> +}
-> +
-> +impl NV_TLB_FLUSH_PDB_LO {
-> +    /// Create a register value from a PDB address.
-> +    ///
-> +    /// Extracts bits [39:8] of the address and shifts it right by 8 bits.
-> +    pub(crate) fn from_pdb_addr(addr: u64) -> Self {
-> +        Self::zeroed().with_pdb_lo(((addr >> 8) & 0xFFFF_FFFF) as u32)
-> +    }
-> +}
-> +
-> +impl NV_TLB_FLUSH_PDB_HI {
-> +    /// Create a register value from a PDB address.
-> +    ///
-> +    /// Extracts bits [47:40] of the address and shifts it right by 40 bits.
-> +    pub(crate) fn from_pdb_addr(addr: u64) -> Self {
-> +        Self::zeroed().with_pdb_hi(((addr >> 40) & 0xFF) as u8)
-> +    }
-> +}
-> -- 
-> 2.34.1
-> 
+>>> Maybe a decent idea, but really wasteful to have these kinds
+>>> of things for every little feature, as opposed to just
+>>> some generic "did we restore everything after dpms/suspend
+>>> correctly" test:
+>>> - filter-suspend
+>>> - filter-dpms
+>> True, but we did caught an issue during local testing with this test
+>> where we were not able
+>>
+>> to retain sharpness after S/R.
+> That was likely due to the poor integration with the actual
+> pfit code. So the sharpness filter needed all kinds of special
+> cases everywhere in the driver. I'm fixing that now.
+>
+> These kind of tests burn a lot of CI time. We really don't
+> want them separately for every little individual feature.
+Ack.
+>
