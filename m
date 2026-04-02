@@ -2,63 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0A7YAnilzmlZpAYAu9opvQ
+	id INFACijBzmmqpwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 19:20:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 21:19:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC2B38C7B9
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 19:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 75B4A38D9B0
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 21:19:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02C4E10E514;
-	Thu,  2 Apr 2026 17:20:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E204D10F307;
+	Thu,  2 Apr 2026 19:19:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7/YtJ3T";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fed6s5Z3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C318710E514;
- Thu,  2 Apr 2026 17:20:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2825310F2FF;
+ Thu,  2 Apr 2026 19:19:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775150453; x=1806686453;
+ t=1775157540; x=1806693540;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=ELBv9icxVOBaBHJjnTq3oMtNhuaLd5GQWH0kIokdzak=;
- b=S7/YtJ3TI23PNxwMYXq6xh/UO4kP7yrgHOw+adCyRV496TmyBR3Ld7pR
- clmOQylD4P26ZWqntDH2qC04Z3gQaqGqB3sZnCkV+baRNlxqvn6YCrjwo
- UYyH9nLy8Cp740gDDO4UWUwu2gTsdgzfReXTAHzbZqKDAWV1/Xlu3+7l1
- +BrLGtyfr7QF8v8WVC+RqjOUi+MeSdn9gvNiQCN27PsgBVfK3DAaUDI36
- zEHqe1UbntAAuZgRFTILih4QFQs/COYWuAu+Y0HO2c5YIsuu0YeckXoDJ
- FcfXPjjmAHx7okmwBFk4w24xAro31QioMC9ZCAYHk7oqOWHQPkDkhMYc5 Q==;
-X-CSE-ConnectionGUID: YRqb0R0lRVW5Lcd3CeKoYA==
-X-CSE-MsgGUID: DbQZvZ6vQCa1xNSHjOI+9A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="101668878"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="101668878"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 10:20:46 -0700
-X-CSE-ConnectionGUID: n/8rBEFNQmiw0OylYkPCmg==
-X-CSE-MsgGUID: FoJR6r3ATIWiCwUcLqdu8w==
+ bh=K0EH3p790L4SS7UFbkgUOsoKCehhJ8lERCfHu7Yb9J4=;
+ b=fed6s5Z3Wdxzldy1MsvYIM6rVs0WEKf03GeDDzXGNz3FduNyods+6oXM
+ LaLJ0m5vh+DmxD9pEyToz03n9AW+dXCJjJ3txfh9shVLR7OuzTvpscdRP
+ hf/d8i5MuS034O6mrYVAN0bMV6Baslbwy8jvRMnKepG+2IwXLhfjGFK05
+ is0PYCZnbJG7icW3XiSrTFn7PnT2OaBYR9MeWlN40aXBGgbjaPWwLEofO
+ g6sAF+EUy+Oa+733J9TBKG+I7TfdznylJg1N1oEhnisT1BtmzX4GDT9QF
+ vCfk3QVeG/bzpEA9jpYKW4iKhglk8n9WqddrH0O2tu6egsU+7T3Xzs0QS Q==;
+X-CSE-ConnectionGUID: +MoorJliTQS3Y63FJTrDOQ==
+X-CSE-MsgGUID: UIVcOObkSqmPaJikCr0lRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="75396066"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="75396066"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 12:19:00 -0700
+X-CSE-ConnectionGUID: cFtNdsusQgeuLUSzSwdDdQ==
+X-CSE-MsgGUID: RLs9mavNTviK/zGpXLAezQ==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="231867574"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.61])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 10:20:45 -0700
-Date: Thu, 2 Apr 2026 20:20:42 +0300
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 12:18:58 -0700
+Date: Thu, 2 Apr 2026 22:18:55 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/2] drm/i915: Track fence region ID in plane state
-Message-ID: <ac6lavov1aTtgwu3@intel.com>
-References: <20260331162138.19258-1-ville.syrjala@linux.intel.com>
- <100e73f5d1363ca1b2269f6deeb67443727efaf4@intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ ankit.k.nautiyal@intel.com
+Subject: Re: [PATCH] drm/i915/backlight: Fix VESA backlight possible check
+ condition
+Message-ID: <ac7BHyT8VI1vEMQv@intel.com>
+References: <20260401034332.1321585-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <100e73f5d1363ca1b2269f6deeb67443727efaf4@intel.com>
+In-Reply-To: <20260401034332.1321585-1-suraj.kandpal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -76,8 +78,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.69 / 15.00];
-	R_MIXED_CHARSET(0.63)[subject];
+X-Spamd-Result: default: False [0.40 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.71)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
@@ -85,68 +88,67 @@ X-Spamd-Result: default: False [-0.69 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.992];
+	NEURAL_HAM(-0.00)[-0.997];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,sashiko.dev:url]
-X-Rspamd-Queue-Id: 6EC2B38C7B9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 75B4A38D9B0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 02, 2026 at 05:54:05PM +0300, Jani Nikula wrote:
-> On Tue, 31 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > @@ -203,7 +204,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-> >  		ret = 0;
-> >  
-> >  		if (vma->fence)
-> > -			*out_flags |= PLANE_HAS_FENCE;
-> > +			*out_fence_id |= vma->fence->id;
+On Wed, Apr 01, 2026 at 09:13:32AM +0530, Suraj Kandpal wrote:
+> VESA backlight is possible through AUX only when
+> BACKLIGHT_AUX_ENABLE_CAPABLE is true or when we use BL_ENABLE bit
+> to enable backlight. Since that is not implemented we need to make
+> sure we do not try to manipulate backlight when
+> BACKLIGHT_AUX_ENABLE_CAPABLE is not set.
+> Also fix return value when condition is not fulfilled.
 > 
-> That should obviously be an assignment rather than OR.
-> 
-> I was reviewing the recently enabled Sashiko LLM reviews, and it had
-> spotted this one [1].
-> 
-> > @@ -314,7 +314,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
-> >  				   fb->min_alignment, 0,
-> >  				   intel_fb_view_vtd_guard(&fb->base, &fb->normal_view,
-> >  							   DRM_MODE_ROTATE_0),
-> > -				   false, &flags);
-> > +				   &fence_id);
-> 
-> This might also change behaviour as previously uses_fence == false.
+> Fixes: 40d2f5820951 ("drm/i915/backlight: Remove try_vesa_interface")
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Hmm. Seems harmless but I guess we don't need the fence here at all.
-If a fence is needed i915_vma_pin_iomap() will anyway grab one.
-And even if we didn't iomap the thing intel_plane_pin_fb() would still
-grab a fence if the display hardware needs it.
+Appears to work.
+Tested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
+I filed a bug with a dump of all platform information, mainly for posterity:
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15907
+
+> ---
+>  drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c | 5 +++--
+>  1 file changed, 3 insertions(+), 2 deletions(-)
 > 
-> BR,
-> Jani.
-> 
-> 
-> 
-> [1] https://sashiko.dev/#/patchset/20260331162138.19258-1-ville.syrjala%40linux.intel.com
-> 
-> 
-> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> index d0c76632a946..138d5b5e5482 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+> @@ -615,8 +615,9 @@ check_if_vesa_backlight_possible(struct intel_dp *intel_dp)
+>  	int ret;
+>  	u8 bit_min, bit_max;
+>  
+> -	if (!(intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP))
+> -		return true;
+> +	if (!(intel_dp->edp_dpcd[2] & DP_EDP_BACKLIGHT_BRIGHTNESS_AUX_SET_CAP &&
+> +	      intel_dp->edp_dpcd[1] & DP_EDP_BACKLIGHT_AUX_ENABLE_CAP))
+> +		return false;
+>  
+>  	ret = drm_dp_dpcd_read_byte(&intel_dp->aux, DP_EDP_PWMGEN_BIT_COUNT_CAP_MIN, &bit_min);
+>  	if (ret < 0)
 > -- 
-> Jani Nikula, Intel
+> 2.34.1
 
 -- 
 Ville Syrjälä
