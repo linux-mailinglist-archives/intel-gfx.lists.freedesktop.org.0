@@ -2,51 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CHyHEtGVzmkBowYAu9opvQ
+	id 0A7YAnilzmlZpAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 18:14:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 19:20:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A19EA38BB28
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 18:14:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6EC2B38C7B9
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 19:20:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4B6F10F300;
-	Thu,  2 Apr 2026 16:14:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 02C4E10E514;
+	Thu,  2 Apr 2026 17:20:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="clPT0Vw0";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S7/YtJ3T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6039A10F2FF;
- Thu,  2 Apr 2026 16:14:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1775146443;
- bh=s2CUUZ2Fms9wFK5hdhsvbXU3XIA1Je2RIT4u1Pft+uE=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=clPT0Vw0/RzZzt7CNm3lc332c+BAA/Otm2qxkUnvJsXyTGUJVIhpoNCSKAFR4ml4P
- t64SYMHpfIjAuSfd6pu9lafh9w0LAgUcQrGUj/1Sxnj3vViBgzUlhqAbsjd+jEysNy
- VnA7G7VB0Nzv3G1L7Z06eFi9snO9tAcMk27oUbR/Yzuqtz2RArYhsFv+912X1kmLyH
- 6ODxTb+7y7VMZm4A5QpI75IEMiUMQX+JOybSCTy1llLCLcwOQl8gC3D8jNX2+b14wb
- N6fUjipa2shETiUWr5AbLLAL4qP9q5Dst6PJMv6fXMVhUQMfVMZl9jTiFGn64ymrkP
- zTORrt+UlpVBg==
-Message-ID: <59096db1-aac5-4b3c-9689-43fbc29c5911@lankhorst.se>
-Date: Thu, 2 Apr 2026 18:14:03 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C318710E514;
+ Thu,  2 Apr 2026 17:20:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775150453; x=1806686453;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=ELBv9icxVOBaBHJjnTq3oMtNhuaLd5GQWH0kIokdzak=;
+ b=S7/YtJ3TI23PNxwMYXq6xh/UO4kP7yrgHOw+adCyRV496TmyBR3Ld7pR
+ clmOQylD4P26ZWqntDH2qC04Z3gQaqGqB3sZnCkV+baRNlxqvn6YCrjwo
+ UYyH9nLy8Cp740gDDO4UWUwu2gTsdgzfReXTAHzbZqKDAWV1/Xlu3+7l1
+ +BrLGtyfr7QF8v8WVC+RqjOUi+MeSdn9gvNiQCN27PsgBVfK3DAaUDI36
+ zEHqe1UbntAAuZgRFTILih4QFQs/COYWuAu+Y0HO2c5YIsuu0YeckXoDJ
+ FcfXPjjmAHx7okmwBFk4w24xAro31QioMC9ZCAYHk7oqOWHQPkDkhMYc5 Q==;
+X-CSE-ConnectionGUID: YRqb0R0lRVW5Lcd3CeKoYA==
+X-CSE-MsgGUID: DbQZvZ6vQCa1xNSHjOI+9A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="101668878"
+X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208";a="101668878"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 10:20:46 -0700
+X-CSE-ConnectionGUID: n/8rBEFNQmiw0OylYkPCmg==
+X-CSE-MsgGUID: FoJR6r3ATIWiCwUcLqdu8w==
+X-ExtLoop1: 1
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.61])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 10:20:45 -0700
+Date: Thu, 2 Apr 2026 20:20:42 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915: Track fence region ID in plane state
+Message-ID: <ac6lavov1aTtgwu3@intel.com>
+References: <20260331162138.19258-1-ville.syrjala@linux.intel.com>
+ <100e73f5d1363ca1b2269f6deeb67443727efaf4@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 1/3] drm/display: Add drm helper to check pr
- optimization support
-To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
- Imre Deak <imre.deak@intel.com>
-References: <20260330133620.3750559-1-animesh.manna@intel.com>
- <20260330133620.3750559-2-animesh.manna@intel.com>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260330133620.3750559-2-animesh.manna@intel.com>
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <100e73f5d1363ca1b2269f6deeb67443727efaf4@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -61,116 +76,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+X-Spamd-Result: default: False [-0.69 / 15.00];
+	R_MIXED_CHARSET(0.63)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[lankhorst.se:+]
-X-Rspamd-Queue-Id: A19EA38BB28
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.992];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,sashiko.dev:url]
+X-Rspamd-Queue-Id: 6EC2B38C7B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hey,
-
-Den 2026-03-30 kl. 15:36, skrev Animesh Manna:
-> Add api to check panel replay optimization supported or not to
-> drm-core DP tunneling framework which can be used by other driver
-> as well.
+On Thu, Apr 02, 2026 at 05:54:05PM +0300, Jani Nikula wrote:
+> On Tue, 31 Mar 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > @@ -203,7 +204,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+> >  		ret = 0;
+> >  
+> >  		if (vma->fence)
+> > -			*out_flags |= PLANE_HAS_FENCE;
+> > +			*out_fence_id |= vma->fence->id;
 > 
-> v2: Split generic drm changes from Intel specific changes. [Jouni]
+> That should obviously be an assignment rather than OR.
 > 
-> Reviewed-by: Jouni HÃ¶gander <jouni.hogander@intel.com>
-> Suggested-by: Imre Deak <imre.deak@intel.com>
-> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-Acked-by: Maarten Lankhorst <dev@lankhorst.se>
-
-> ---
->  drivers/gpu/drm/display/drm_dp_tunnel.c | 17 +++++++++++++++++
->  include/drm/display/drm_dp_tunnel.h     |  6 ++++++
->  2 files changed, 23 insertions(+)
+> I was reviewing the recently enabled Sashiko LLM reviews, and it had
+> spotted this one [1].
 > 
-> diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
-> index 6519b4244728..08dc5d26b2c5 100644
-> --- a/drivers/gpu/drm/display/drm_dp_tunnel.c
-> +++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
-> @@ -149,6 +149,7 @@ struct drm_dp_tunnel {
->  	bool bw_alloc_enabled:1;
->  	bool has_io_error:1;
->  	bool destroyed:1;
-> +	bool pr_optimization_support:1;
->  };
->  
->  struct drm_dp_tunnel_group_state;
-> @@ -508,6 +509,8 @@ create_tunnel(struct drm_dp_tunnel_mgr *mgr,
->  
->  	tunnel->bw_alloc_supported = tunnel_reg_bw_alloc_supported(regs);
->  	tunnel->bw_alloc_enabled = tunnel_reg_bw_alloc_enabled(regs);
-> +	tunnel->pr_optimization_support = tunnel_reg(regs, DP_TUNNELING_CAPABILITIES) &
-> +					  DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT;
->  
->  	if (!add_tunnel_to_group(mgr, drv_group_id, tunnel)) {
->  		kfree(tunnel);
-> @@ -1036,6 +1039,20 @@ bool drm_dp_tunnel_bw_alloc_is_enabled(const struct drm_dp_tunnel *tunnel)
->  }
->  EXPORT_SYMBOL(drm_dp_tunnel_bw_alloc_is_enabled);
->  
-> +/**
-> + * drm_dp_tunnel_pr_optimization_supported - Query the PR BW optimization support
-> + * @tunnel: Tunnel object
-> + *
-> + * Query if the PR BW optimization is supported for @tunnel.
-> + *
-> + * Returns %true if the PR BW optimiation is supported for @tunnel.
-> + */
-> +bool drm_dp_tunnel_pr_optimization_supported(const struct drm_dp_tunnel *tunnel)
-> +{
-> +	return tunnel && tunnel->pr_optimization_support;
-> +}
-> +EXPORT_SYMBOL(drm_dp_tunnel_pr_optimization_supported);
-> +
->  static int clear_bw_req_state(struct drm_dp_aux *aux)
->  {
->  	u8 bw_req_mask = DP_BW_REQUEST_SUCCEEDED | DP_BW_REQUEST_FAILED;
-> diff --git a/include/drm/display/drm_dp_tunnel.h b/include/drm/display/drm_dp_tunnel.h
-> index 87212c847915..4aa3ce9fd829 100644
-> --- a/include/drm/display/drm_dp_tunnel.h
-> +++ b/include/drm/display/drm_dp_tunnel.h
-> @@ -53,6 +53,7 @@ int drm_dp_tunnel_destroy(struct drm_dp_tunnel *tunnel);
->  int drm_dp_tunnel_enable_bw_alloc(struct drm_dp_tunnel *tunnel);
->  int drm_dp_tunnel_disable_bw_alloc(struct drm_dp_tunnel *tunnel);
->  bool drm_dp_tunnel_bw_alloc_is_enabled(const struct drm_dp_tunnel *tunnel);
-> +bool drm_dp_tunnel_pr_optimization_supported(const struct drm_dp_tunnel *tunnel);
->  int drm_dp_tunnel_alloc_bw(struct drm_dp_tunnel *tunnel, int bw);
->  int drm_dp_tunnel_get_allocated_bw(struct drm_dp_tunnel *tunnel);
->  int drm_dp_tunnel_update_state(struct drm_dp_tunnel *tunnel);
-> @@ -140,6 +141,11 @@ static inline bool drm_dp_tunnel_bw_alloc_is_enabled(const struct drm_dp_tunnel
->  	return false;
->  }
->  
-> +static inline bool drm_dp_tunnel_pr_optimization_supported(const struct drm_dp_tunnel *tunnel)
-> +{
-> +	return false;
-> +}
-> +
->  static inline int
->  drm_dp_tunnel_alloc_bw(struct drm_dp_tunnel *tunnel, int bw)
->  {
+> > @@ -314,7 +314,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+> >  				   fb->min_alignment, 0,
+> >  				   intel_fb_view_vtd_guard(&fb->base, &fb->normal_view,
+> >  							   DRM_MODE_ROTATE_0),
+> > -				   false, &flags);
+> > +				   &fence_id);
+> 
+> This might also change behaviour as previously uses_fence == false.
 
+Hmm. Seems harmless but I guess we don't need the fence here at all.
+If a fence is needed i915_vma_pin_iomap() will anyway grab one.
+And even if we didn't iomap the thing intel_plane_pin_fb() would still
+grab a fence if the display hardware needs it.
+
+> 
+> BR,
+> Jani.
+> 
+> 
+> 
+> [1] https://sashiko.dev/#/patchset/20260331162138.19258-1-ville.syrjala%40linux.intel.com
+> 
+> 
+> 
+> -- 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
