@@ -2,34 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDoAF2AqzmnIlQYAu9opvQ
+	id 0MuEKkk2zmmAmAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 10:35:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 11:26:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B9937386190
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 10:35:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2E4B4386E38
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 11:26:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5168610F19E;
-	Thu,  2 Apr 2026 08:35:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E46FA10E2D9;
+	Thu,  2 Apr 2026 09:26:30 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IkRh6CHw";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4F72D10F19B;
- Thu,  2 Apr 2026 08:35:41 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3634775639389548078=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA8BB10E2D9
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2026 09:26:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775121990; x=1806657990;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7BEI/ndrx10VSKp5tQ9KLWW/ppJeFqwcvJyGA28SOzo=;
+ b=IkRh6CHwT0AN2XUO2PzpO9RbhF759wmj5jQSt4OwYpj0V6bXVEbK+qJj
+ sk0sfYKraGg58swYfJQBPFcc97ooPo/Qg80OoLgsMdymScnSImkQReC7L
+ gPidWhZTs3EQOACSJw7RWfMIpptCBA/RN6IEfEy3NfCHGs5s2nSjY5yZT
+ ORu1dSRuKuGrWdw8xAgfTaR1pA9Xw40FVUTIOndbd1AY7c6j+aRRIpPaF
+ jWg+VM6jUhT8DEaGNUxMgiB/1yVlb1j+kKlymGyI+yp7hiPZzQK3ojbjY
+ /5ggDodaljXQmtSstcxFG/5P78CmbxTdqtNbpq0zbtLwGrHjnm0+mcN4q g==;
+X-CSE-ConnectionGUID: UP01QSTHTD6u+jhA3oGQBg==
+X-CSE-MsgGUID: PCrA2cQQRfONySI3ORzrcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="76067600"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="76067600"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 02:26:29 -0700
+X-CSE-ConnectionGUID: NvPlCPlcToe1lw7gdFy1Bg==
+X-CSE-MsgGUID: BKhgeaD4Soyq8R2z5myQVA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="231725118"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.189])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Apr 2026 02:26:28 -0700
+From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Subject: [PATCH topic/core-for-CI] iommu: Do not call drivers for empty gathers
+Date: Thu,  2 Apr 2026 11:23:13 +0200
+Message-ID: <20260402092506.2612595-2-janusz.krzysztofik@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/pfit=3A_Prevent_?=
- =?utf-8?q?negative_coordinates_in_center_mode_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nemesa Garg" <nemesa.garg@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 02 Apr 2026 08:35:41 -0000
-Message-ID: <177511894130.427330.4744467878954519809@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260402061310.111073-1-nemesa.garg@intel.com>
-In-Reply-To: <20260402061310.111073-1-nemesa.garg@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,171 +69,89 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.992];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[live:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,workarounds:email,01.org:url,gitlab.freedesktop.org:url,lists.freedesktop.org:replyto,i915_selftest:email,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: B9937386190
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: 2E4B4386E38
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============3634775639389548078==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Jason Gunthorpe <jgg@nvidia.com>
 
-== Series Details ==
+An empty gather is coded with start=U64_MAX, end=0 and several drivers go
+on to convert that to a size with:
 
-Series: drm/i915/pfit: Prevent negative coordinates in center mode (rev3)
-URL   : https://patchwork.freedesktop.org/series/164188/
-State : success
+ end - start + 1
 
-== Summary ==
+Which gives 2 for an empty gather. This then causes Weird Stuff to
+happen (for example an UBSAN splat in VT-d) that is hopefully harmless,
+but maybe not.
 
-CI Bug Log - changes from CI_DRM_18268 -> Patchwork_164188v3
-====================================================
+Prevent drivers from being called right in iommu_iotlb_sync().
 
-Summary
--------
+Auditing shows that AMD, Intel, Mediatek and RSIC-V drivers all do things
+on these empty gathers.
 
-  **SUCCESS**
+Further, there are several callers that can trigger empty gathers,
+especially in unusual conditions. For example iommu_map_nosync() will call
+a 0 size unmap on some error paths. Also in VFIO, iommupt and other
+places.
 
-  No regressions found.
+Cc: stable@vger.kernel.org
+Reported-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Closes: https://lore.kernel.org/r/11145826.aFP6jjVeTY@jkrzyszt-mobl2.ger.corp.intel.com
+Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
+Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
+Reviewed-by: Samiullah Khawaja <skhawaja@google.com>
+Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Reviewed-by: Vasant Hegde <vasant.hegde@amd.com>
+Signed-off-by: Joerg Roedel <joerg.roedel@amd.com>
+(cherry picked from commit 90c5def10bea574b101b7a520c015ca81742183f)
+Link: https://lore.kernel.org/all/1-v1-13a02eb0e031+a5-iommu_gather_jgg@nvidia.com
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15478
+Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+---
+ include/linux/iommu.h | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/index.html
+diff --git a/include/linux/iommu.h b/include/linux/iommu.h
+index 54b8b48c762e8..555597b54083c 100644
+--- a/include/linux/iommu.h
++++ b/include/linux/iommu.h
+@@ -980,7 +980,8 @@ static inline void iommu_flush_iotlb_all(struct iommu_domain *domain)
+ static inline void iommu_iotlb_sync(struct iommu_domain *domain,
+ 				  struct iommu_iotlb_gather *iotlb_gather)
+ {
+-	if (domain->ops->iotlb_sync)
++	if (domain->ops->iotlb_sync &&
++	    likely(iotlb_gather->start < iotlb_gather->end))
+ 		domain->ops->iotlb_sync(domain, iotlb_gather);
+ 
+ 	iommu_iotlb_gather_init(iotlb_gather);
+-- 
+2.53.0
 
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164188v3 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [DMESG-FAIL][1] ([i915#12061]) -> [PASS][2] +1 other test pass
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18268/bat-dg2-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18268/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18268 -> Patchwork_164188v3
-
-  CI-20190529: 20190529
-  CI_DRM_18268: 2ca39f35278e7f6e1750c710e75c32172fb1aa11 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8842: 8842
-  Patchwork_164188v3: 2ca39f35278e7f6e1750c710e75c32172fb1aa11 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/index.html
-
---===============3634775639389548078==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/pfit: Prevent negative coordinates in center mode (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164188/">https://patchwork.freedesktop.org/series/164188/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18268 -&gt; Patchwork_164188v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164188v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18268/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18268/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164188v3/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18268 -&gt; Patchwork_164188v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18268: 2ca39f35278e7f6e1750c710e75c32172fb1aa11 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8842: 8842<br />
-  Patchwork_164188v3: 2ca39f35278e7f6e1750c710e75c32172fb1aa11 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3634775639389548078==--
