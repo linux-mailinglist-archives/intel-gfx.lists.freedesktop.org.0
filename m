@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMMwJq4mzmnElAYAu9opvQ
+	id 4GmlELEmzmnElAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 10:19:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 10:20:01 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F10D385D63
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 10:19:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14A70385D7C
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 10:20:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E18EC10F130;
-	Thu,  2 Apr 2026 08:19:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75AF610F13B;
+	Thu,  2 Apr 2026 08:19:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jn+EUHiU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hcHGj3ar";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF87910F138;
- Thu,  2 Apr 2026 08:19:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7439E10F134;
+ Thu,  2 Apr 2026 08:19:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775117996; x=1806653996;
+ t=1775117998; x=1806653998;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1cLKVMur63/pPkKnppKBgZk0ESgTvcoIw/kPldjeDfE=;
- b=Jn+EUHiUdNv4fzFlEEmhkU+in3FjBSjNSWtKN20S+It052eipEMX9T9P
- UL/bllNsDxDlt+OXpBDekN2ZrFchCNt8KOJfZ/emExp8D2GbZSyp2cwS0
- PfX41cRPdb8opvTvysyuC+tjiMxkPt2pNU9sUy7Uo4NIyH0FNWVh07F0X
- 1WTHaVTqvr4fF/5ijUzO1iXT8lDI/sjYPPUuEGJ3b2I9z8MkDwnO4clV0
- VtXQ0djPpw1Bx0HqXe5sBcTvIZqw2THMgANm9UMPHSYE68sxjDNN9Kjz5
- S48ordxMX6bE4kOwzR21yQXYbZF4gZD7lyFE1mClPLLmbqVwxgCGb7543 g==;
-X-CSE-ConnectionGUID: iUzkKOn1Tf2tcDfIpphMow==
-X-CSE-MsgGUID: IN8tCDnIRTubrulrPwQX+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="80060472"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="80060472"
+ bh=nf8WAhFRjrXSJczf0JGGdCY4zEQ0DRamdGY5GYUihYM=;
+ b=hcHGj3ar1ZSWqT2H/77vjMULMxxC7eADIA7RxJVbahCGNg0TvnwYnO64
+ c9U3Ij3lpSQKyW85YR8z6CfWnIVTuq5rRD45nJb35ajXTtN7CJgO5xnRN
+ y2TjpSpKNYnCDIWs3UZrveNkSWGGJml8gagEUqUJQj4DZEj0SgZJeY1Em
+ HiPbdyq5mQAXoGHfDBLN82WfN+2sr2f8+unOwezrXadFiNAT9vVBicJWV
+ 0wAqA2EGGTyrgIXPIoA025VRzcX4Wo1a3h2oEoJq4LGddBlrZinBnmWo8
+ Aym17hh51XtO8d+MwHFqo0jlrCKZG7oEvf66DQYXu7LmFjS7qdICFW+OV Q==;
+X-CSE-ConnectionGUID: QsafCHd7QUqKqzlYy/H59g==
+X-CSE-MsgGUID: zCPYeel3R32oO7ETqAS97w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="80060483"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="80060483"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 01:19:56 -0700
-X-CSE-ConnectionGUID: zigHS1TDRvqQ/cRS6WwlcQ==
-X-CSE-MsgGUID: 4g/bvHo7RUmXd05L1o7WAg==
+ 02 Apr 2026 01:19:58 -0700
+X-CSE-ConnectionGUID: SGPiDiEGTfa3K8nC79nMEA==
+X-CSE-MsgGUID: iVU90riiT6qrsuP5oFjUSA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="226776126"
+X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="226776131"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 01:19:54 -0700
+ 02 Apr 2026 01:19:56 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 08/23] drm/i915/dp: Account for AS_SDP guardband only when
- enabled
-Date: Thu,  2 Apr 2026 13:34:08 +0530
-Message-ID: <20260402080425.548702-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/23] drm/i915/dp: Add a helper to decide if AS SDP can be
+ used
+Date: Thu,  2 Apr 2026 13:34:09 +0530
+Message-ID: <20260402080425.548702-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260402080425.548702-1-ankit.k.nautiyal@intel.com>
 References: <20260402080425.548702-1-ankit.k.nautiyal@intel.com>
@@ -99,44 +99,59 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 6F10D385D63
+X-Rspamd-Queue-Id: 14A70385D7C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Currently the intel_dp_sdp_min_guardband() accounts for AS_SDP for all
-platforms that support adaptive sync SDP even for configurations where
-it cannot be enabled. Instead account for adaptive sync SDP guardband
-only when it is enabled.
+Add a helper that determines whether AS SDP can be used for the
+current DP configuration. For now this is true only when the sink
+supports AS SDP and VRR is enabled, but more conditions may be added
+later.
+
+v2:
+ - Rename to intel_dp_needs_as_sdp(). (Ville)
+ - Add a #FIXME documenting non-atomic of DP SDP updates. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 16 +++++++++++++++-
+ 1 file changed, 15 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 49eeb35973a1..499850c2abcf 100644
+index 499850c2abcf..3d0ea074e610 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7374,7 +7374,6 @@ int intel_dp_get_lines_for_sdp(const struct intel_crtc_state *crtc_state, u32 ty
- int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 			       bool assume_all_enabled)
+@@ -3124,6 +3124,15 @@ static void intel_dp_compute_vsc_colorimetry(const struct intel_crtc_state *crtc
+ 	vsc->content_type = DP_CONTENT_TYPE_NOT_DEFINED;
+ }
+ 
++static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
++				  struct intel_crtc_state *crtc_state)
++{
++	if (!intel_dp->as_sdp_supported)
++		return false;
++
++	return crtc_state->vrr.enable;
++}
++
+ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
  {
--	struct intel_display *display = to_intel_display(crtc_state);
- 	int sdp_guardband = 0;
+@@ -3131,7 +3140,12 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	const struct drm_display_mode *adjusted_mode =
+ 		&crtc_state->hw.adjusted_mode;
  
- 	if (assume_all_enabled ||
-@@ -7389,8 +7388,8 @@ int intel_dp_sdp_min_guardband(const struct intel_crtc_state *crtc_state,
- 		sdp_guardband = max(sdp_guardband,
- 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_PPS));
+-	if (!crtc_state->vrr.enable || !intel_dp->as_sdp_supported)
++	/*
++	 * #FIXME: SDP/infoframe updates aren’t truly atomic, and with the new
++	 * cdclk->tc clock crossing we may transiently send a corrupted packet
++	 * if the update lands mid‑transmission.
++	 */
++	if (!intel_dp_needs_as_sdp(intel_dp, crtc_state))
+ 		return;
  
--	if ((assume_all_enabled && HAS_AS_SDP(display)) ||
--	    crtc_state->infoframes.enable & intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
-+	if (crtc_state->infoframes.enable &
-+	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC))
- 		sdp_guardband = max(sdp_guardband,
- 				    intel_dp_get_lines_for_sdp(crtc_state, DP_SDP_ADAPTIVE_SYNC));
- 
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
 -- 
 2.45.2
 
