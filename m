@@ -2,71 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHKcGEmOzmkbogYAu9opvQ
+	id CHyHEtGVzmkBowYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 17:42:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 18:14:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9126738B5BF
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 17:42:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A19EA38BB28
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 18:14:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 27D6610E08E;
-	Thu,  2 Apr 2026 15:41:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4B6F10F300;
+	Thu,  2 Apr 2026 16:14:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fw4mnC8s";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="clPT0Vw0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DFA6010E08E
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Apr 2026 15:41:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775144516; x=1806680516;
- h=message-id:date:mime-version:subject:to:cc:references:
- from:in-reply-to;
- bh=/Fr+BNdWDeTthmbrGNI1qer0GJGB+hsrgy+fOdoUTJ0=;
- b=Fw4mnC8s9jRLpgsiGpipnmVHnyMzO1mkGCQKBiXgIDtiYFgwwKyffBGS
- B6V//dJNYVwXpa27urPuGk0D0lifopuOWuTIdTt6tXJGuGvBy5W4Z8vgU
- EMoXTZlBqcZ04ns+iv04BrbTQioYBzVgyoKfrEq0oveQQ0cdtilFDTAMv
- SCHkRwTjjdPoyPX3TYpCqnCogJZVzidZP1cZgH1z5zHJkFDmZHbdzMfyC
- vMe7v+UcIeSfllwdhzaXCjXAixVgRp+WnJtIEnC2P5lcbnX/UkJI5Oppt
- tP3541P/J1Xm0WCpkulS+qEVaxCm2CaiDz8IA2CmA6erLl496TGj6Aw4h A==;
-X-CSE-ConnectionGUID: mToADaqCRKaBOfvNz9cl1g==
-X-CSE-MsgGUID: N4FE9t+IRDuPjc6zpxAJUg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="76088035"
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; d="scan'208,217";a="76088035"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 08:41:56 -0700
-X-CSE-ConnectionGUID: P3yDx962Q8O9YRMkf9ygPg==
-X-CSE-MsgGUID: VL6sjsHLRta7qYxWeiZ9kw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,156,1770624000"; 
- d="scan'208,217";a="264942767"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO [10.245.245.116])
- ([10.245.245.116])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 08:41:55 -0700
-Content-Type: multipart/alternative;
- boundary="------------iBmZ1clcUsXuEN5JbeWxGKWH"
-Message-ID: <4d0e3bfe-d3e3-43fb-8964-b9647e914a61@intel.com>
-Date: Thu, 2 Apr 2026 17:41:51 +0200
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6039A10F2FF;
+ Thu,  2 Apr 2026 16:14:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1775146443;
+ bh=s2CUUZ2Fms9wFK5hdhsvbXU3XIA1Je2RIT4u1Pft+uE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=clPT0Vw0/RzZzt7CNm3lc332c+BAA/Otm2qxkUnvJsXyTGUJVIhpoNCSKAFR4ml4P
+ t64SYMHpfIjAuSfd6pu9lafh9w0LAgUcQrGUj/1Sxnj3vViBgzUlhqAbsjd+jEysNy
+ VnA7G7VB0Nzv3G1L7Z06eFi9snO9tAcMk27oUbR/Yzuqtz2RArYhsFv+912X1kmLyH
+ 6ODxTb+7y7VMZm4A5QpI75IEMiUMQX+JOybSCTy1llLCLcwOQl8gC3D8jNX2+b14wb
+ N6fUjipa2shETiUWr5AbLLAL4qP9q5Dst6PJMv6fXMVhUQMfVMZl9jTiFGn64ymrkP
+ zTORrt+UlpVBg==
+Message-ID: <59096db1-aac5-4b3c-9689-43fbc29c5911@lankhorst.se>
+Date: Thu, 2 Apr 2026 18:14:03 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: =?UTF-8?Q?Re=3A_=E2=9C=97_i915=2ECI=2EFull=3A_failure_for_drm/i915/?=
- =?UTF-8?Q?display=3A_stop_using_the_configurable_fence_timeout_=28rev2=29?=
-To: Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-References: <20251112155612.8320-1-jani.nikula@intel.com>
- <176310680567.54560.8073003092226406962@10055242dc62>
- <3692f126b907c442d76a93957073660d7d9ffd12@intel.com>
- <aSXmTMWeOXjnYNSB@intel.com> <dc4d04b4-2d29-4a19-8d11-58051673e0a6@intel.com>
- <44f9b69d23678458f0ab3ff4bec5c45cb05535b8@intel.com>
+Subject: Re: [PATCH v10 1/3] drm/display: Add drm helper to check pr
+ optimization support
+To: Animesh Manna <animesh.manna@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: =?UTF-8?Q?Jouni_H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Imre Deak <imre.deak@intel.com>
+References: <20260330133620.3750559-1-animesh.manna@intel.com>
+ <20260330133620.3750559-2-animesh.manna@intel.com>
 Content-Language: en-US
-From: Maarten Lankhorst <maarten.lankhorst@intel.com>
-In-Reply-To: <44f9b69d23678458f0ab3ff4bec5c45cb05535b8@intel.com>
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <20260330133620.3750559-2-animesh.manna@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,277 +62,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@intel.com,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[maarten.lankhorst@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,01.org:url,extended-modeset-hang-newfb-with-reset:email,emeril.freedesktop.org:email]
-X-Rspamd-Queue-Id: 9126738B5BF
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
+X-Rspamd-Queue-Id: A19EA38BB28
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is a multi-part message in MIME format.
---------------iBmZ1clcUsXuEN5JbeWxGKWH
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Hey,
 
+Den 2026-03-30 kl. 15:36, skrev Animesh Manna:
+> Add api to check panel replay optimization supported or not to
+> drm-core DP tunneling framework which can be used by other driver
+> as well.
+> 
+> v2: Split generic drm changes from Intel specific changes. [Jouni]
+> 
+> Reviewed-by: Jouni Högander <jouni.hogander@intel.com>
+> Suggested-by: Imre Deak <imre.deak@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+Acked-by: Maarten Lankhorst <dev@lankhorst.se>
 
+> ---
+>  drivers/gpu/drm/display/drm_dp_tunnel.c | 17 +++++++++++++++++
+>  include/drm/display/drm_dp_tunnel.h     |  6 ++++++
+>  2 files changed, 23 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
+> index 6519b4244728..08dc5d26b2c5 100644
+> --- a/drivers/gpu/drm/display/drm_dp_tunnel.c
+> +++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
+> @@ -149,6 +149,7 @@ struct drm_dp_tunnel {
+>  	bool bw_alloc_enabled:1;
+>  	bool has_io_error:1;
+>  	bool destroyed:1;
+> +	bool pr_optimization_support:1;
+>  };
+>  
+>  struct drm_dp_tunnel_group_state;
+> @@ -508,6 +509,8 @@ create_tunnel(struct drm_dp_tunnel_mgr *mgr,
+>  
+>  	tunnel->bw_alloc_supported = tunnel_reg_bw_alloc_supported(regs);
+>  	tunnel->bw_alloc_enabled = tunnel_reg_bw_alloc_enabled(regs);
+> +	tunnel->pr_optimization_support = tunnel_reg(regs, DP_TUNNELING_CAPABILITIES) &
+> +					  DP_PANEL_REPLAY_OPTIMIZATION_SUPPORT;
+>  
+>  	if (!add_tunnel_to_group(mgr, drv_group_id, tunnel)) {
+>  		kfree(tunnel);
+> @@ -1036,6 +1039,20 @@ bool drm_dp_tunnel_bw_alloc_is_enabled(const struct drm_dp_tunnel *tunnel)
+>  }
+>  EXPORT_SYMBOL(drm_dp_tunnel_bw_alloc_is_enabled);
+>  
+> +/**
+> + * drm_dp_tunnel_pr_optimization_supported - Query the PR BW optimization support
+> + * @tunnel: Tunnel object
+> + *
+> + * Query if the PR BW optimization is supported for @tunnel.
+> + *
+> + * Returns %true if the PR BW optimiation is supported for @tunnel.
+> + */
+> +bool drm_dp_tunnel_pr_optimization_supported(const struct drm_dp_tunnel *tunnel)
+> +{
+> +	return tunnel && tunnel->pr_optimization_support;
+> +}
+> +EXPORT_SYMBOL(drm_dp_tunnel_pr_optimization_supported);
+> +
+>  static int clear_bw_req_state(struct drm_dp_aux *aux)
+>  {
+>  	u8 bw_req_mask = DP_BW_REQUEST_SUCCEEDED | DP_BW_REQUEST_FAILED;
+> diff --git a/include/drm/display/drm_dp_tunnel.h b/include/drm/display/drm_dp_tunnel.h
+> index 87212c847915..4aa3ce9fd829 100644
+> --- a/include/drm/display/drm_dp_tunnel.h
+> +++ b/include/drm/display/drm_dp_tunnel.h
+> @@ -53,6 +53,7 @@ int drm_dp_tunnel_destroy(struct drm_dp_tunnel *tunnel);
+>  int drm_dp_tunnel_enable_bw_alloc(struct drm_dp_tunnel *tunnel);
+>  int drm_dp_tunnel_disable_bw_alloc(struct drm_dp_tunnel *tunnel);
+>  bool drm_dp_tunnel_bw_alloc_is_enabled(const struct drm_dp_tunnel *tunnel);
+> +bool drm_dp_tunnel_pr_optimization_supported(const struct drm_dp_tunnel *tunnel);
+>  int drm_dp_tunnel_alloc_bw(struct drm_dp_tunnel *tunnel, int bw);
+>  int drm_dp_tunnel_get_allocated_bw(struct drm_dp_tunnel *tunnel);
+>  int drm_dp_tunnel_update_state(struct drm_dp_tunnel *tunnel);
+> @@ -140,6 +141,11 @@ static inline bool drm_dp_tunnel_bw_alloc_is_enabled(const struct drm_dp_tunnel
+>  	return false;
+>  }
+>  
+> +static inline bool drm_dp_tunnel_pr_optimization_supported(const struct drm_dp_tunnel *tunnel)
+> +{
+> +	return false;
+> +}
+> +
+>  static inline int
+>  drm_dp_tunnel_alloc_bw(struct drm_dp_tunnel *tunnel, int bw)
+>  {
 
-Den 2026-04-02 kl. 11:40, skrev Jani Nikula:
-> On Wed, 03 Dec 2025, Maarten Lankhorst <maarten.lankhorst@intel.com> wrote:
->> Hey,
->>
->> Den 2025-11-25 kl. 18:24, skrev Ville Syrjälä:
->>> On Tue, Nov 25, 2025 at 03:55:02PM +0200, Jani Nikula wrote:
->>>> On Fri, 14 Nov 2025, Patchwork <patchwork@emeril.freedesktop.org> wrote:
->>>>> == Series Details ==
->>>>>
->>>>> Series: drm/i915/display: stop using the configurable fence timeout (rev2)
->>>>> URL   : https://patchwork.freedesktop.org/series/157441/
->>>>> State : failure
->>>>>
->>>>> == Summary ==
->>>>>
->>>>> CI Bug Log - changes from CI_DRM_17544_full -> Patchwork_157441v2_full
->>>>> ====================================================
->>>>>
->>>>> Summary
->>>>> -------
->>>>>
->>>>>   **FAILURE**
->>>>>
->>>>>   Serious unknown changes coming with Patchwork_157441v2_full absolutely need to be
->>>>>   verified manually.
->>>>>   
->>>>>   If you think the reported changes have nothing to do with the changes
->>>>>   introduced in Patchwork_157441v2_full, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
->>>>>   to document this new failure mode, which will reduce false positives in CI.
->>>>>
->>>>>   
->>>>>
->>>>> Participating hosts (10 -> 11)
->>>>> ------------------------------
->>>>>
->>>>>   Additional (1): shard-dg2-set2 
->>>>>
->>>>> Possible new issues
->>>>> -------------------
->>>>>
->>>>>   Here are the unknown changes that may have been introduced in Patchwork_157441v2_full:
->>>>>
->>>>> ### IGT changes ###
->>>>>
->>>>> #### Possible regressions ####
->>>>>
->>>>>   * igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a:
->>>>>     - shard-mtlp:         [PASS][1] -> [DMESG-WARN][2] +5 other tests dmesg-warn
->>>>>    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-mtlp-7/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a.html
->>>>>    [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-mtlp-3/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a.html
->>>>>
->>>>>   * igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b:
->>>>>     - shard-snb:          [PASS][3] -> [DMESG-WARN][4] +3 other tests dmesg-warn
->>>>>    [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-snb5/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b.html
->>>>>    [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-snb7/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b.html
->>>>>
->>>>>   * igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d:
->>>>>     - shard-dg2:          [PASS][5] -> [DMESG-WARN][6] +5 other tests dmesg-warn
->>>>>    [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-dg2-6/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d.html
->>>>>    [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-dg2-5/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d.html
->>>>>
->>>>>   * igt@kms_busy@extended-modeset-hang-oldfb-with-reset:
->>>>>     - shard-dg1:          [PASS][7] -> [DMESG-WARN][8] +2 other tests dmesg-warn
->>>>>    [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-dg1-12/igt@kms_busy@extended-modeset-hang-oldfb-with-reset.html
->>>>>    [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-dg1-18/igt@kms_busy@extended-modeset-hang-oldfb-with-reset.html
->>>> Maarten, Ville, any ideas what to do about these?
->>> Looks like we need the timeout to unbreak the modeset vs. reset
->>> deadlock in a timely fashion.
->>>
->>> I'm not where we signal/error the fences the modeset is waiting
->>> for, but I guess that must be happening after the whole reset
->>> sequence is done. Doing that earlier would seem like another
->>> solution, but dunno what other fallout it would have.
->> intel_prepare_plane_fb() adds all dma-resv fences for old_obj on
->> intel_crtc_needs_modeset(), does it change anything if we remove that,
->> at least for the GPU reset commit?
-> We dropped the ball here a bit, and I'm a bit clueless as to what to
-> do. Except we'll need to unify i915 and xe here somehow.
->
-> Alternatives:
->
-> - Remove the timeout from i915 (the patch at hand), and fix the fallout
->   somehow.
->
-> - Add the timeout to xe, and fix the fallout, if any.
->
-> - Add the timeout to display parent interface, which is a bit meh.
->
->
-The mention in the commit is old_obj needs to be wait for flip_done, I do not believe this
-is the case that it was ever used in hardware supported by xe, so for xe the wait can be dropped entirely.
-
-Is this required for i915 still? In that case you can just eliminate the wait only for xe.
-
-Kind regards,
-~Maarten Lankhorst
---------------iBmZ1clcUsXuEN5JbeWxGKWH
-Content-Type: text/html; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  </head>
-  <body>
-    <br>
-    <br>
-    <div class="moz-cite-prefix">Den 2026-04-02 kl. 11:40, skrev Jani
-      Nikula:<br>
-    </div>
-    <blockquote type="cite"
-      cite="mid:44f9b69d23678458f0ab3ff4bec5c45cb05535b8@intel.com">
-      <pre wrap="" class="moz-quote-pre">On Wed, 03 Dec 2025, Maarten Lankhorst <a class="moz-txt-link-rfc2396E" href="mailto:maarten.lankhorst@intel.com">&lt;maarten.lankhorst@intel.com&gt;</a> wrote:
-</pre>
-      <blockquote type="cite">
-        <pre wrap="" class="moz-quote-pre">Hey,
-
-Den 2025-11-25 kl. 18:24, skrev Ville Syrjälä:
-</pre>
-        <blockquote type="cite">
-          <pre wrap="" class="moz-quote-pre">On Tue, Nov 25, 2025 at 03:55:02PM +0200, Jani Nikula wrote:
-</pre>
-          <blockquote type="cite">
-            <pre wrap="" class="moz-quote-pre">On Fri, 14 Nov 2025, Patchwork <a class="moz-txt-link-rfc2396E" href="mailto:patchwork@emeril.freedesktop.org">&lt;patchwork@emeril.freedesktop.org&gt;</a> wrote:
-</pre>
-            <blockquote type="cite">
-              <pre wrap="" class="moz-quote-pre">== Series Details ==
-
-Series: drm/i915/display: stop using the configurable fence timeout (rev2)
-URL   : <a class="moz-txt-link-freetext" href="https://patchwork.freedesktop.org/series/157441/">https://patchwork.freedesktop.org/series/157441/</a>
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_17544_full -&gt; Patchwork_157441v2_full
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_157441v2_full absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_157441v2_full, please notify your bug team (<a class="moz-txt-link-abbreviated" href="mailto:I915-ci-infra@lists.freedesktop.org">I915-ci-infra@lists.freedesktop.org</a>) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  
-
-Participating hosts (10 -&gt; 11)
-------------------------------
-
-  Additional (1): shard-dg2-set2 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_157441v2_full:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a:
-    - shard-mtlp:         [PASS][1] -&gt; [DMESG-WARN][2] +5 other tests dmesg-warn
-   [1]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-mtlp-7/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a.html">https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-mtlp-7/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a.html</a>
-   [2]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-mtlp-3/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-mtlp-3/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-a.html</a>
-
-  * igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b:
-    - shard-snb:          [PASS][3] -&gt; [DMESG-WARN][4] +3 other tests dmesg-warn
-   [3]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-snb5/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b.html">https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-snb5/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b.html</a>
-   [4]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-snb7/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-snb7/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-b.html</a>
-
-  * igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d:
-    - shard-dg2:          [PASS][5] -&gt; [DMESG-WARN][6] +5 other tests dmesg-warn
-   [5]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-dg2-6/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d.html">https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-dg2-6/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d.html</a>
-   [6]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-dg2-5/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-dg2-5/igt@kms_busy@extended-modeset-hang-newfb-with-reset@pipe-d.html</a>
-
-  * igt@kms_busy@extended-modeset-hang-oldfb-with-reset:
-    - shard-dg1:          [PASS][7] -&gt; [DMESG-WARN][8] +2 other tests dmesg-warn
-   [7]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-dg1-12/igt@kms_busy@extended-modeset-hang-oldfb-with-reset.html">https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_17544/shard-dg1-12/igt@kms_busy@extended-modeset-hang-oldfb-with-reset.html</a>
-   [8]: <a class="moz-txt-link-freetext" href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-dg1-18/igt@kms_busy@extended-modeset-hang-oldfb-with-reset.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157441v2/shard-dg1-18/igt@kms_busy@extended-modeset-hang-oldfb-with-reset.html</a>
-</pre>
-            </blockquote>
-            <pre wrap="" class="moz-quote-pre">Maarten, Ville, any ideas what to do about these?
-</pre>
-          </blockquote>
-          <pre wrap="" class="moz-quote-pre">Looks like we need the timeout to unbreak the modeset vs. reset
-deadlock in a timely fashion.
-
-I'm not where we signal/error the fences the modeset is waiting
-for, but I guess that must be happening after the whole reset
-sequence is done. Doing that earlier would seem like another
-solution, but dunno what other fallout it would have.
-</pre>
-        </blockquote>
-        <pre wrap="" class="moz-quote-pre">intel_prepare_plane_fb() adds all dma-resv fences for old_obj on
-intel_crtc_needs_modeset(), does it change anything if we remove that,
-at least for the GPU reset commit?
-</pre>
-      </blockquote>
-      <pre wrap="" class="moz-quote-pre">
-We dropped the ball here a bit, and I'm a bit clueless as to what to
-do. Except we'll need to unify i915 and xe here somehow.
-
-Alternatives:
-
-- Remove the timeout from i915 (the patch at hand), and fix the fallout
-  somehow.
-
-- Add the timeout to xe, and fix the fallout, if any.
-
-- Add the timeout to display parent interface, which is a bit meh.
-
-
-</pre>
-    </blockquote>
-    The mention in the commit is old_obj needs to be wait for flip_done,
-    I do not believe this<br>
-    is the case that it was ever used in hardware supported by xe, so
-    for xe the wait can be dropped entirely.<br>
-    <br>
-    Is this required for i915 still? In that case you can just eliminate
-    the wait only for xe.<br>
-    <br>
-    Kind regards,<br>
-    ~Maarten Lankhorst
-  </body>
-</html>
-
---------------iBmZ1clcUsXuEN5JbeWxGKWH--
