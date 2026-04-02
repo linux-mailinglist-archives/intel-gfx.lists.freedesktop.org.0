@@ -2,70 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GFYBJ6VOzmmjmgYAu9opvQ
+	id 8BCEIM9jzmmXnQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 13:10:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 14:40:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A0B8388212
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 13:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE777389289
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Apr 2026 14:40:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A4D1310E339;
-	Thu,  2 Apr 2026 11:10:25 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AS8PaWq9";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E24410F269;
+	Thu,  2 Apr 2026 12:40:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2EA0510E2D0;
- Thu,  2 Apr 2026 11:10:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775128224; x=1806664224;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=P/kcbzwxHFaQxKzowYCpts8tUu3qPtOnV6ryxc0e6C4=;
- b=AS8PaWq9qx/CMQDZGNZReHD+e6dsL+Pt4npm40VAXcbxnQu1Xcqee8an
- uISfeZC8QSMixOHYOBBj5q2t36SaKUvEnRV81HYF55UJqxorpOdMKrsYn
- QrO4a8Kff4aFV1vVIuBYOHbwNFqpihvjhnUVZm009JCFl+MNFVoEZhzqE
- AxME2g6vjrOkD0mzdG+HdTwxf2SVaAoKYVIUNWqMbPEJ3WDE7LIS5G2UI
- bS8SEsAfEMpIXRhnFatmkMNY85Yx/vd0PDuFwsBVf/AhBnyrDQCOtcPam
- MFG5sRLIMuykBABw8O9H2IFo7xwo0oETKHhBhK/cgocsQUn2aDzA5X5TD w==;
-X-CSE-ConnectionGUID: NKrdIlyET5SSV5r3fn8bBQ==
-X-CSE-MsgGUID: z8GDGX2NQheLo2HE0en62Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11746"; a="87257264"
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="87257264"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 04:10:23 -0700
-X-CSE-ConnectionGUID: T3XWu8G0S7CgIy4Gxk79Rw==
-X-CSE-MsgGUID: 8Zj0b7U1S2eYt4AlHR4+zg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,155,1770624000"; d="scan'208";a="226820646"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.61])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Apr 2026 04:10:22 -0700
-Date: Thu, 2 Apr 2026 14:10:19 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, jouni.hogander@intel.com,
- animesh.manna@intel.com
-Subject: Re: [PATCH 22/23] drm/i915/dp: Compute and include coasting vtotal
- for AS SDP
-Message-ID: <ac5Omw5rDxuGO-Bp@intel.com>
-References: <20260402080425.548702-1-ankit.k.nautiyal@intel.com>
- <20260402080425.548702-23-ankit.k.nautiyal@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6659510F269;
+ Thu,  2 Apr 2026 12:40:44 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5750229514834328487=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260402080425.548702-23-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_fix_refcou?=
+ =?utf-8?q?nt_underflow_in_intel=5Fengine=5Fpark=5Fheartbeat_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Sebastian Brzezinka" <sebastian.brzezinka@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 02 Apr 2026 12:40:44 -0000
+Message-ID: <177513364438.428772.11272983235491115042@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <d4c1c14255688dd07cc8044973c4f032a8d1559e.1775038106.git.sebastian.brzezinka@intel.com>
+In-Reply-To: <d4c1c14255688dd07cc8044973c4f032a8d1559e.1775038106.git.sebastian.brzezinka@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,129 +42,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.25 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.56)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	URIBL_MULTI_FAIL(0.00)[intel.com:server fail,gabe.freedesktop.org:server fail];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.995];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3A0B8388212
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,live:email,lists.freedesktop.org:replyto,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DE777389289
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 02, 2026 at 01:34:22PM +0530, Ankit Nautiyal wrote:
-> DP v2.1 allows the source to temporarily suspend Adaptive-Sync SDP
-> transmission while Panel Replay is active when the sink supports
-> asynchronous video timing.
-> 
-> In such cases, the sink relies on the last transmitted AS SDP timing
-> information to maintain the refresh rate. To support this behavior,
-> compute and populate the coasting vtotal field in the AS SDP payload.
-> 
-> Include coasting vtotal in AS SDP packing, unpacking, and comparison,
-> and set it during late AS SDP configuration for PR with Aux-less ALPM
-> when asynchronous video timing is supported.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
->  drivers/gpu/drm/i915/display/intel_dp.c      | 19 +++++++++++++++++++
->  2 files changed, 21 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> index a0e7ef2574b2..747dd3112d66 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -4914,7 +4914,8 @@ intel_compare_dp_as_sdp(const struct drm_dp_as_sdp *a,
->  		a->duration_incr_ms == b->duration_incr_ms &&
->  		a->duration_decr_ms == b->duration_decr_ms &&
->  		a->target_rr_divider == b->target_rr_divider &&
-> -		a->mode == b->mode;
-> +		a->mode == b->mode &&
-> +		a->coasting_vtotal == b->coasting_vtotal;
->  }
->  
->  static bool
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 902c09e0780f..de6f88a5400d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -5123,6 +5123,9 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
->  	if (as_sdp->target_rr_divider)
->  		sdp->db[4] |= 0x20;
->  
-> +	sdp->db[7] = as_sdp->coasting_vtotal & 0xFF;
-> +	sdp->db[8] = (as_sdp->coasting_vtotal >> 8) & 0xFF;
-> +
->  	return length;
->  }
->  
-> @@ -5306,6 +5309,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
->  	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
->  	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
->  	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
-> +	as_sdp->coasting_vtotal = (sdp->db[8] << 8) | sdp->db[7];
->  
->  	return 0;
->  }
-> @@ -7383,6 +7387,21 @@ void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
->  	} else {
->  		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
->  	}
-> +
-> +	/*
-> +	 * For Panel Replay with Async Video Timing support, the source can
-> +	 * disable sending the AS SDP during PR Active state. In that case,
-> +	 * the sink needs the coasting vtotal value to maintain the refresh
-> +	 * rate.
-> +	 *
-> +	 * #TODO:
-> +	 * If we ever advertise support for coasting at other refresh targets,
-> +	 * this logic could be revisited. For now, use the minimum refresh rate
-> +	 * as the only safe coasting value.
-> +	 */
-> +	if (intel_alpm_is_alpm_aux_less(intel_dp, crtc_state) &&
-> +	    intel_psr_pr_async_video_timing_supported(intel_dp))
-> +		as_sdp->coasting_vtotal = crtc_state->vrr.vmax;
+--===============5750229514834328487==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Seems reasonable.
+== Series Details ==
 
-Is this always under our control or could the hardware overwrite
-this with the current vtotal at the time of PR entry? Assuming
-we can enter PR before the vtotal goes back to vmax on its own
-anyway.
+Series: drm/i915/gt: fix refcount underflow in intel_engine_park_heartbeat (rev2)
+URL   : https://patchwork.freedesktop.org/series/164231/
+State : success
 
->  }
->  
->  static
-> -- 
-> 2.45.2
+== Summary ==
 
--- 
-Ville Syrjälä
-Intel
+CI Bug Log - changes from CI_DRM_18270 -> Patchwork_164231v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_164231v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061] / [i915#15861])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-arls-5/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-arls-5/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-5:         [PASS][3] -> [DMESG-FAIL][4] ([i915#15861])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-arls-5/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-arls-5/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061])
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#15861]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15861
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18270 -> Patchwork_164231v2
+
+  CI-20190529: 20190529
+  CI_DRM_18270: 7b7e57c49dffb4329964027a09420a3e9998e65a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8842: 8842
+  Patchwork_164231v2: 7b7e57c49dffb4329964027a09420a3e9998e65a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/index.html
+
+--===============5750229514834328487==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/gt: fix refcount underflow in intel_engine_park_heartbeat (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164231/">https://patchwork.freedesktop.org/series/164231/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18270 -&gt; Patchwork_164231v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_164231v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-arls-5/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-arls-5/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15861">i915#15861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-arls-5/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-arls-5/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15861">i915#15861</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>)</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18270/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164231v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18270 -&gt; Patchwork_164231v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18270: 7b7e57c49dffb4329964027a09420a3e9998e65a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8842: 8842<br />
+  Patchwork_164231v2: 7b7e57c49dffb4329964027a09420a3e9998e65a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5750229514834328487==--
