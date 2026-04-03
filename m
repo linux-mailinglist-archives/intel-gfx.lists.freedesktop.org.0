@@ -2,54 +2,99 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GL8iKd7Bz2lH0QYAu9opvQ
+	id UFwGL1k70GmP4wYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Apr 2026 15:34:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 04 Apr 2026 00:12:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10745394880
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Apr 2026 15:34:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 038F9398AD6
+	for <lists+intel-gfx@lfdr.de>; Sat, 04 Apr 2026 00:12:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5F9D010F09A;
-	Fri,  3 Apr 2026 13:34:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1F8410E0B8;
+	Fri,  3 Apr 2026 22:12:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="B76j39VB";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="MB8cbVB8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5054810F09A;
- Fri,  3 Apr 2026 13:34:19 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 8741860008;
- Fri,  3 Apr 2026 13:34:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id BC7CDC4CEF7;
- Fri,  3 Apr 2026 13:34:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1775223258;
- bh=DIQBYZ6MxzsBXUsvvT5LPGWQpjkKRzlO7KjSmq9vf/g=;
- h=Date:From:To:Cc:Subject:From;
- b=B76j39VBvZQCc1lZ+ZMYq5neJjLTDH000ePKPUmYheBMZeYqwkIyR6wd9gfpW1i44
- J0wcDAoJvBCCTddm+8LWUnb1+Rlgliv7VghoYbppbAbYhXuWjhnYvtyHgAvC5uAVpQ
- QrhU5X8BiMAsizLNrfxUUYQI1KtfYRWoJ94DIWXVE2ao3u8kkbUuzTNhxm5pw5h+Br
- 2mXNYRllwe1ScKkAjhgDO2keu0I3ZYsmXu2/AzF/Rykkay6luc7fTXIkAHGBHKwCZL
- pSCYEYzokbgAD1kF2Yutui8Alrc8WF2axhPEKmNBPVGvY/4C35to4HXGduC+sI0itK
- nHpd5hdfx67Pw==
-Date: Fri, 3 Apr 2026 14:34:14 +0100
-From: Mark Brown <broonie@kernel.org>
-To: Simona Vetter <simona.vetter@ffwll.ch>,
- Intel Graphics <intel-gfx@lists.freedesktop.org>,
- DRI <dri-devel@lists.freedesktop.org>
-Cc: Dave Airlie <airlied@redhat.com>,
- Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
- Linux Next Mailing List <linux-next@vger.kernel.org>,
- Maxime Ripard <mripard@kernel.org>
-Subject: linux-next: manual merge of the drm-misc tree with the drm tree
-Message-ID: <ac_B1p2wNP2Nk1RM@sirena.org.uk>
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+ [209.85.208.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 93DFB10E0B8
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 22:12:37 +0000 (UTC)
+Received: by mail-ed1-f52.google.com with SMTP id
+ 4fb4d7f45d1cf-66bd4e0560fso4521679a12.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2026 15:12:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google; t=1775254356; x=1775859156;
+ darn=lists.freedesktop.org; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=bYVlZ9BrWH45Sab7lCDUUe8Uv7vpGtXKpc6xapq4sqc=;
+ b=MB8cbVB8RKHto6pwci1b/HQuTQMB6Fudsr3xMfb7fGDYCE1zVs3T3C75+WXG2ojlJM
+ 3s3KYkgS9+towsCeuFiU2kWjDLlTUj1wmzDZvXZ7L3M6W6ZZmTeVHfx+80HND6CPSW8A
+ cMFdVnAU8A8njBB0cT0gXlLgjK/1e03aG3RzU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775254356; x=1775859156;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=bYVlZ9BrWH45Sab7lCDUUe8Uv7vpGtXKpc6xapq4sqc=;
+ b=EL7zyaBoLRxwXBkFZYtdZ8sOKRMcgs6NKiSepuKEVunebgv1T6h9+KbAHvpbDBv1N+
+ Qg1IDZmH85VTkq1MdPu09kKVeGopSOQ57sskPDQG4BgEUaYO32RMdt99iseI1xShXuGT
+ PMtLwflvFLldx0wOXSJME3EYcwmW6P88lPvkodOq13eAYaWrJWPUR5laJmwYGAQrrAQI
+ hhYAYi0oauhowHG8eofXtFSZW1jb22ENzfTAeKiSB1lagdRFP3MuCMHYzVldK+K9bOKG
+ 58LcBKJbWz+FQyHZcDySg3G4gGiC1s7vbQzjNY3PC5HRBzyPIY2T7AH3To7/IsH/zogD
+ xFyA==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCXzPW56oJRtIcu/FTHkQkxBcgBRh7GmOJMf66Y52Vz6g3Wd2qTk4HkqzCnCQyYn4CDefLRKoQALfjY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwGI1OtYmJCS3dtq8jEBbNL1Y4bo7H1fbL6zYEkJ7Zp6fXgOB9o
+ JvRH6Q579dyJ2/PS903mlu5zKUf8MbABUEU8LoiFobAOnFISmMbfzDADkFeUZM6xAhQhq2wt0ZP
+ AABfIuao=
+X-Gm-Gg: AeBDieupd530sXfVjwW556Mrx8sLYAZyY0ql+re8iRx3wUI1uijzWtWgnw9MuEwp9lT
+ Eu+sO80okicYVa5fMOdgz/Q0CEw4cyHbOaRnWFD4AXRHnP2cv/PWlP+VByw7DHcA1Ei67fBqIGo
+ gaD4CEZdAnU2wo7c1dQVnB9N9reW2J+02MUZvhXL5vcIrZJVS+9RB09GiyzbHW/naTeLrHRFOxe
+ jmM/YcD6cSTsE9DK2PYLhW7dxUFWAZaHvu58aWWBqejy/XPxUOKrsVBcRqmC5+n7jdrB7wynE2s
+ tyim+PgfFn4Y/u0ehX8H4lRIkOd++5EQWciU19vuRwInM3ae5cB/K2w6HOBuxOzLLf8NkHiH+cT
+ 7J6fv0CCYJrtOxbIi4ttjNg58xTXtY+iHm36O+Zp5Sr5znVRJj3dYrYVdqArgT/Bxkai4Vfazur
+ ugzVVC19wV5eqV+mcfNpgt1evq5rnG122dCAt7EdDviG+DPOMpqR64mr4np00rRa8kTryWO4Si7
+ qRslkLEwA==
+X-Received: by 2002:a17:907:a0c9:b0:b97:b88c:386b with SMTP id
+ a640c23a62f3a-b9c4713ebbcmr416730566b.29.1775254355567; 
+ Fri, 03 Apr 2026 15:12:35 -0700 (PDT)
+Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com.
+ [209.85.218.46]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b9c3c9721c1sm246021166b.2.2026.04.03.15.12.34
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Fri, 03 Apr 2026 15:12:35 -0700 (PDT)
+Received: by mail-ej1-f46.google.com with SMTP id
+ a640c23a62f3a-b980b35534eso532631066b.1
+ for <intel-gfx@lists.freedesktop.org>; Fri, 03 Apr 2026 15:12:34 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV7/jL/SyXXZwkgDkf5hUUCgaOmJIvmeLvEUQBNt2D+RSz8e55TG6VZyx8C9rmchRUwMu6pUZM1LUY=@lists.freedesktop.org
+X-Received: by 2002:a17:907:1c10:b0:b97:be1a:3bac with SMTP id
+ a640c23a62f3a-b9c4710f732mr388508766b.26.1775254353985; Fri, 03 Apr 2026
+ 15:12:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature"; boundary="vMrcI1uf3QTFOhA3"
-Content-Disposition: inline
+References: <20260324151741.29338-1-sosohero200@gmail.com>
+ <acUnQkniqECI0QVY@intel.com>
+In-Reply-To: <acUnQkniqECI0QVY@intel.com>
+From: Linus Torvalds <torvalds@linuxfoundation.org>
+Date: Fri, 3 Apr 2026 15:12:17 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wj=h9z-Qp+xm1oSURRGHO3wexzG7MyLqU8gSQbastwgdw@mail.gmail.com>
+X-Gm-Features: AQROBzCnmUV4IoS2rR9_AmBSZkxHDMINnWsU1NiGbmHT4DUsT2gSWthNREGLeQc
+Message-ID: <CAHk-=wj=h9z-Qp+xm1oSURRGHO3wexzG7MyLqU8gSQbastwgdw@mail.gmail.com>
+Subject: Re: [PATCH v2] [PATCH v2] drm/i915/gem: Fix UAF race in
+ eb_relocate_vma
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Dave Airlie <airlied@gmail.com>
+Cc: Yassine Mounir <sosohero200@gmail.com>, g@web.codeaurora.org,
+ gregkh@linuxfoundation.org, 
+ intel-gfx@lists.freedesktop.org, joonas.lahtinen@linux.intel.com, 
+ rodrigo.vivi@intel.com, security@kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -64,155 +109,68 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-3.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=google];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_ALL(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:airlied@gmail.com,m:sosohero200@gmail.com,m:g@web.codeaurora.org,m:gregkh@linuxfoundation.org,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:security@kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[gmail.com,web.codeaurora.org,linuxfoundation.org,lists.freedesktop.org,linux.intel.com,intel.com,kernel.org];
 	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_SENDER(0.00)[torvalds@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[linux.intel.com,gmail.com];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[torvalds@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 10745394880
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 038F9398AD6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Thu, 26 Mar 2026 at 05:32, Ville Syrj=C3=A4l=C3=A4
+<ville.syrjala@linux.intel.com> wrote:
+>
+> Ignoring the AI slop aspect, I did have a quick look at the code a bit
+> and noticed this:
+>
+> eb_lookup_vma() {
+>         ...
+>         rcu_read_lock();
+>         vma =3D radix_tree_lookup(...);
+>         if (likely(vma && vma->vm =3D=3D vm))
+>                 vma =3D i915_vma_tryget(vma);
+>         rcu_read_unlock();
+>         if (likely(vma))
+>                 return vma;
+>         ...
+> }
+>
+> So if we somehow get a vma with the wrong vm there then we
+> return the vma without grabbing a reference to it.
 
---vMrcI1uf3QTFOhA3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The fix for this seems to have gotten lost and wasn't in the recent
+drm pull request.
 
-Hi all,
+I can just fix it up by myself, but it would be good to have proper
+authorship and sign-off. Please?
 
-Today's linux-next merge of the drm-misc tree got a conflict in:
-
-  drivers/gpu/drm/drm_gem_shmem_helper.c
-
-between commits:
-
-  d9a4a2021d4a5 ("Merge tag 'drm-misc-next-2026-03-12' of https://gitlab.fr=
-eedesktop.org/drm/misc/kernel into drm-next")
-  f6225b546dfcc ("BackMerge tag 'v7.0-rc6' into drm-next")
-
-=66rom the drm tree and commit:
-
-  6fdfd24017756 ("Merge drm/drm-fixes into drm-misc-next-fixes")
-
-=66rom the drm-misc tree.
-
-I fixed it up (see below) and can carry the fix as necessary. This
-is now fixed as far as linux-next is concerned, but any non trivial
-conflicts should be mentioned to your upstream maintainer when your tree
-is submitted for merging.  You may also want to consider cooperating
-with the maintainer of the conflicting tree to minimise any particularly
-complex conflicts.
-
-diff --combined drivers/gpu/drm/drm_gem_shmem_helper.c
-index 2062ca6078330,545933c7f7121..0000000000000
---- a/drivers/gpu/drm/drm_gem_shmem_helper.c
-+++ b/drivers/gpu/drm/drm_gem_shmem_helper.c
-@@@ -554,6 -554,21 +554,21 @@@ int drm_gem_shmem_dumb_create(struct dr
-  }
-  EXPORT_SYMBOL_GPL(drm_gem_shmem_dumb_create);
- =20
-+ static void drm_gem_shmem_record_mkwrite(struct vm_fault *vmf)
-+ {
-+ 	struct vm_area_struct *vma =3D vmf->vma;
-+ 	struct drm_gem_object *obj =3D vma->vm_private_data;
-+ 	struct drm_gem_shmem_object *shmem =3D to_drm_gem_shmem_obj(obj);
-+ 	loff_t num_pages =3D obj->size >> PAGE_SHIFT;
-+ 	pgoff_t page_offset =3D vmf->pgoff - vma->vm_pgoff; /* page offset withi=
-n VMA */
-+=20
-+ 	if (drm_WARN_ON(obj->dev, !shmem->pages || page_offset >=3D num_pages))
-+ 		return;
-+=20
-+ 	file_update_time(vma->vm_file);
-+ 	folio_mark_dirty(page_folio(shmem->pages[page_offset]));
-+ }
-+=20
-  static vm_fault_t try_insert_pfn(struct vm_fault *vmf, unsigned int order,
-  				 unsigned long pfn)
-  {
-@@@ -566,8 -581,23 +581,23 @@@
- =20
-  		if (aligned &&
-  		    folio_test_pmd_mappable(page_folio(pfn_to_page(pfn)))) {
-+ 			vm_fault_t ret;
-+=20
-  			pfn &=3D PMD_MASK >> PAGE_SHIFT;
-- 			return vmf_insert_pfn_pmd(vmf, pfn, false);
-+=20
-+ 			/* Unlike PTEs which are automatically upgraded to
-+ 			 * writeable entries, the PMD upgrades go through
-+ 			 * .huge_fault(). Make sure we pass the "write" info
-+ 			 * along in that case.
-+ 			 * This also means we have to record the write fault
-+ 			 * here, instead of in .pfn_mkwrite().
-+ 			 */
-+ 			ret =3D vmf_insert_pfn_pmd(vmf, pfn,
-+ 						 vmf->flags & FAULT_FLAG_WRITE);
-+ 			if (ret =3D=3D VM_FAULT_NOPAGE && (vmf->flags & FAULT_FLAG_WRITE))
-+ 				drm_gem_shmem_record_mkwrite(vmf);
-+=20
-+ 			return ret;
-  		}
-  #endif
-  	}
-@@@ -655,19 -685,7 +685,7 @@@ static void drm_gem_shmem_vm_close(stru
- =20
-  static vm_fault_t drm_gem_shmem_pfn_mkwrite(struct vm_fault *vmf)
-  {
-- 	struct vm_area_struct *vma =3D vmf->vma;
-- 	struct drm_gem_object *obj =3D vma->vm_private_data;
-- 	struct drm_gem_shmem_object *shmem =3D to_drm_gem_shmem_obj(obj);
-- 	loff_t num_pages =3D obj->size >> PAGE_SHIFT;
-- 	pgoff_t page_offset =3D vmf->pgoff - vma->vm_pgoff; /* page offset withi=
-n VMA */
--=20
-- 	if (drm_WARN_ON(obj->dev, !shmem->pages || page_offset >=3D num_pages))
-- 		return VM_FAULT_SIGBUS;
--=20
-- 	file_update_time(vma->vm_file);
--=20
-- 	folio_mark_dirty(page_folio(shmem->pages[page_offset]));
--=20
-+ 	drm_gem_shmem_record_mkwrite(vmf);
-  	return 0;
-  }
- =20
-
---vMrcI1uf3QTFOhA3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmnPwdUACgkQJNaLcl1U
-h9B1Gwf+NXKrf2ldubiQjKciUi5bMoq+Jop0S+8phbRwnKtKTKlL5YfwwOkKBEtF
-kUMjJX9O4EZSdCBDNGqPtG0IBnSprmyY6AYh7PiI7ZU2p/K3najYVsIh1G/5663/
-jNpNH392O7mxgLUZ4JMNhZ5/hxDBrH+sKY24ndlhgb2Fr5oTLVwSOjCuBnia+oZy
-v5cbO7eYqPXSEnWnVFx90B5NoDJyGTllG2/On63oGi7hItkr54g8nj5Br+7a+/px
-0N19drURyfHRDXKItoY8v9LHOC8vYAKxQpZ94dPI7k06kP16nCZXZZZcN/DJaQLI
-CbCBmfUO1Gz86rVj+dO+sRNAPMYvZQ==
-=6sMy
------END PGP SIGNATURE-----
-
---vMrcI1uf3QTFOhA3--
+             Linus
