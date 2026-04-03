@@ -2,63 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MICOKp6Mz2mmxAYAu9opvQ
+	id gD3SHxSPz2mmxAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Apr 2026 11:47:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Apr 2026 11:57:40 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D112E392F6D
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Apr 2026 11:47:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D44223930E3
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Apr 2026 11:57:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1E15710F459;
-	Fri,  3 Apr 2026 09:47:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848C610E289;
+	Fri,  3 Apr 2026 09:57:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ab09bgN1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Gfmsj4ZF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D34ED10F459
- for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 09:47:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACAA710E289
+ for <intel-gfx@lists.freedesktop.org>; Fri,  3 Apr 2026 09:57:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775209626; x=1806745626;
+ t=1775210256; x=1806746256;
  h=message-id:subject:from:to:cc:date:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=Nz/B1iQ+ck18M4K5lxMvqx946ciYXNZHUeg84ddWy+g=;
- b=Ab09bgN1LA2sPsZzUXedh6SxD1kG6fITIM2Yn0tVc+MjGB6H+ZG4DvIF
- XnmXXo57qZMtd7hipFnlboAAzLTjmyOGh+4HW/iON4Y2zMX82DwuMOAxH
- E3sB4qgVvt4hvjKIfJgwrWFp3jSzVXKGND+JmyopCmvB1z/gUBDbmZoZU
- nyBiq4wZx878NUOeRy+e7BNl80g2AD/5OYwWA5jb3Vwl3qgbX7SQcO1JN
- HfL+3TMioMIrTN9PlW2jAirN70t6DrwPdBrsfk2MHANCxfQT4R11ZdfM2
- NL+uOKTuNSdR6c/qSGho5G7Nc4cDL6lx4PkxCNFIltFgqb4IsGDWQGOsy A==;
-X-CSE-ConnectionGUID: zR7+cuA8T5yeFHnoH+nhgQ==
-X-CSE-MsgGUID: Fx0fwC+1Tz6PkoLCYyT/LA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="75996288"
-X-IronPort-AV: E=Sophos;i="6.23,157,1770624000"; d="scan'208";a="75996288"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ bh=/8G5WPfgx6maeRN83fTE+5Itazsy5Zh6ePAEMMLSBcw=;
+ b=Gfmsj4ZFrQQQGgG5emN1fDiNgZOv/53kbIKQVMuQ41LnO5vms/9hGlTh
+ 8Sg/tiCYutJhOVpINKLWCzPLu/tiPIU3yVBdT0mK51d7I1qMunW7e127f
+ 8jxNeXWOnvx7fk0ojcEPpllIogNHX42r7vqRTD8WLEMWxCTgigtVOfRtJ
+ ePABHNObWYWNB5/Nlr2vo9hFsZslz34vDS7tqfGZcuZWgGWh2wPyKf66W
+ g59+jOjs8KKMG0Q8JFxUsKXg+kioDKqhlm3yGG/IlB7Q70JA57Ian5Onx
+ E3wzyygWrSMu2SQHmMg9+avCbjRfbi0IjOH8gBkQsNKT/8UNlKF1RrVIp A==;
+X-CSE-ConnectionGUID: mveu7QGgQN28wAG+iUEf5Q==
+X-CSE-MsgGUID: k7/aWjpRTeev6yz8GHXHew==
+X-IronPort-AV: E=McAfee;i="6800,10657,11747"; a="75996699"
+X-IronPort-AV: E=Sophos;i="6.23,157,1770624000"; d="scan'208";a="75996699"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2026 02:47:05 -0700
-X-CSE-ConnectionGUID: NJYaLC4OQdOQAosx7Ew3/w==
-X-CSE-MsgGUID: QmSZ2erzSfCn/9sr8hAjdA==
+ 03 Apr 2026 02:57:36 -0700
+X-CSE-ConnectionGUID: cWcYCIwbRGOwxCCUwpHIxw==
+X-CSE-MsgGUID: G9xmZ8dOR2WNR9DV2v0Ldw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,157,1770624000"; d="scan'208";a="223959538"
+X-IronPort-AV: E=Sophos;i="6.23,157,1770624000"; d="scan'208";a="231259878"
 Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.246.219])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Apr 2026 02:47:03 -0700
-Message-ID: <73fc2e43910f2295374e7f2ce55c73d59f0fd763.camel@linux.intel.com>
-Subject: Re: [RFC v3 2/2] drm/i915/selftests: Prevent userspace mapping
- invalidation
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Apr 2026 02:57:33 -0700
+Message-ID: <7707ddbfcbd74aec7d942bab1a5bd4cdbb2fe5ab.camel@linux.intel.com>
+Subject: Re: [RFC v3 1/2] drm/i915/selftests: Add userspace PID parameter
 From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
 To: Krzysztof Karas <krzysztof.karas@intel.com>, 
  intel-gfx@lists.freedesktop.org
 Cc: Andi Shyti <andi.shyti@linux.intel.com>, Sebastian Brzezinka	
  <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
  <krzysztof.niemiec@intel.com>
-Date: Fri, 03 Apr 2026 11:47:00 +0200
-In-Reply-To: <20260403090019.1933036-3-krzysztof.karas@intel.com>
+Date: Fri, 03 Apr 2026 11:57:30 +0200
+In-Reply-To: <20260403090019.1933036-2-krzysztof.karas@intel.com>
 References: <20260403090019.1933036-1-krzysztof.karas@intel.com>
- <20260403090019.1933036-3-krzysztof.karas@intel.com>
+ <20260403090019.1933036-2-krzysztof.karas@intel.com>
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
  80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
 Content-Type: text/plain; charset="UTF-8"
@@ -100,7 +99,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	DKIM_TRACE(0.00)[intel.com:+];
 	RCPT_COUNT_FIVE(0.00)[5];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
@@ -109,186 +108,80 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: D112E392F6D
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
+X-Rspamd-Queue-Id: D44223930E3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Hi Krzysztof,
 
-I think your solution is very good, however, I still have a few comments.
-
 On Fri, 2026-04-03 at 09:00 +0000, Krzysztof Karas wrote:
-> Migration testing in i915 assumes current task's address space
-> to allocate new userspace mapping and uses it without
-> registering real user for that address space in mm_struct.
-> On single NUMA node setups PCI probe executes in the same
-> context as userspace process calling the test (i915_selftest
-> from IGT), but when multiple nodes are available, the PCI code
-> puts probe into a kernel workqueue. This switches execution in
-> a kworker, which does not have its own address space in
-> userspace and must borrow such memory from another process, so
-> "current->active_mm" is unknown at the start of the test.
+> Currently, memory management tests using VMAs for object mapping
+> are not guaranteed to execute in completely safe environment of
+> user process in kernel context.
 >=20
-> It was observed that mm->mm_users would occasionally be 0
-> or drop to 0 during the test due to short delay between
-> scheduling and executing work in forked process, which reaped
-> userspace mappings, further leading to failures upon reading
-> from userland memory.
+> Since these tests may execute in kworker, for example on
+> multi-cell NUMA systems, their process would not get its own
+> userspace memory, so it'd borrow mm_struct from a process
+> previously handled by the scheduler (current->active_mm).
+> The test does not control the lifetime of that process and its
+> address space, so on occasion it could borrow memory that is
+> being cleaned up or that would be cleaned up during test
+> execution.
 >=20
-> Prevent this by making use of trusted task's mm via
-> user-provided PID if needed.
+> Add a new parameter to i915 to let users running these tests
+> pass a PID of trusted userspace process to ensure the mappings
+> will always be utilized in a stable and predictable environment.
 >=20
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-> Fixes: 34b1c1c71d37 ("i915/selftest/igt_mmap: let mmap tests run in kthre=
-ad")
 > Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+
+I would still prefer this combined with a part of next patch that uses the=
+=C2=A0
+user provided PID for acquiring a missing current->mm, and the other part,
+the one that skips selected test cases if current->mm is missing,=C2=A0spli=
+t=C2=A0
+into a separate patch.  That way, both would be self-contained and could=C2=
+=A0
+be=C2=A0reverted=C2=A0independently if needed.  But anyway,
+
+Reviewed-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+
+
 > ---
-> v2 (Janusz):
->  * Reword and shorten commit message to be more precise.
->  * Reorder variable declarations to follow upside down christmas
->  tree style.
+>  drivers/gpu/drm/i915/i915_selftest.h           | 1 +
+>  drivers/gpu/drm/i915/selftests/i915_selftest.c | 2 ++
+>  2 files changed, 3 insertions(+)
 >=20
-> v3 (Andi):
->  * Prevent PID and mm leaks.
->  * Remove a flag and use mm pointer to determine whether to
->  release references to the memory.
->=20
->  .../drm/i915/gem/selftests/i915_gem_mman.c    | 14 +++----
->  .../gpu/drm/i915/selftests/i915_selftest.c    | 38 +++++++++++++++++++
->  2 files changed, 44 insertions(+), 8 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers=
-/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> index 9d454d0b46f2..0752e758b01b 100644
-> --- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> +++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
-> @@ -1847,11 +1847,12 @@ static int igt_mmap_revoke(void *arg)
->  int i915_gem_mman_live_selftests(struct drm_i915_private *i915)
->  {
->  	int ret;
-> -	bool unuse_mm =3D false;
->  	static const struct i915_subtest tests[] =3D {
->  		SUBTEST(igt_partial_tiling),
->  		SUBTEST(igt_smoke_tiling),
->  		SUBTEST(igt_mmap_offset_exhaustion),
-> +	};
-> +	static const struct i915_subtest vma_tests[] =3D {
->  		SUBTEST(igt_mmap),
->  		SUBTEST(igt_mmap_migrate),
->  		SUBTEST(igt_mmap_access),
-> @@ -1859,15 +1860,12 @@ int i915_gem_mman_live_selftests(struct drm_i915_=
-private *i915)
->  		SUBTEST(igt_mmap_gpu),
->  	};
-> =20
-> -	if (!current->mm) {
-> -		kthread_use_mm(current->active_mm);
-> -		unuse_mm =3D true;
-> -	}
-> -
->  	ret =3D i915_live_subtests(tests, i915);
-> +	if (ret)
-> +		return ret;
-> =20
-> -	if (unuse_mm)
-> -		kthread_unuse_mm(current->active_mm);
-> +	if (current->mm)
-> +		ret =3D i915_live_subtests(vma_tests, i915);
-> =20
->  	return ret;
->  }
+> diff --git a/drivers/gpu/drm/i915/i915_selftest.h b/drivers/gpu/drm/i915/=
+i915_selftest.h
+> index 72922028f4ba..e29ca298e7eb 100644
+> --- a/drivers/gpu/drm/i915/i915_selftest.h
+> +++ b/drivers/gpu/drm/i915/i915_selftest.h
+> @@ -35,6 +35,7 @@ struct i915_selftest {
+>  	unsigned long timeout_jiffies;
+>  	unsigned int timeout_ms;
+>  	unsigned int random_seed;
+> +	unsigned int userspace_pid;
+>  	char *filter;
+>  	int mock;
+>  	int live;
 > diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu=
 /drm/i915/selftests/i915_selftest.c
-> index a1ccfde7380a..b6cd1063c709 100644
+> index 8460f0a70d04..a1ccfde7380a 100644
 > --- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
 > +++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
-> @@ -186,6 +186,8 @@ static int __run_selftests(const char *name,
->  			   unsigned int count,
->  			   void *data)
->  {
-> +	int u_pid_nr =3D i915_selftest.userspace_pid;
-> +	struct mm_struct *mm =3D NULL;
->  	int err =3D 0;
+> @@ -507,6 +507,8 @@ void igt_hexdump(const void *buf, size_t len)
+>  module_param_named(st_random_seed, i915_selftest.random_seed, uint, 0400=
+);
+>  module_param_named(st_timeout, i915_selftest.timeout_ms, uint, 0400);
+>  module_param_named(st_filter, i915_selftest.filter, charp, 0400);
+> +module_param_named(st_userspace_pid, i915_selftest.userspace_pid, uint, =
+0400);
+> +MODULE_PARM_DESC(st_userspace_pid, "For usage in tests that map userspac=
+e memory and require address space with controllable lifetime.");
 > =20
->  	while (!i915_selftest.random_seed)
-> @@ -201,6 +203,37 @@ static int __run_selftests(const char *name,
->  	pr_info(DRIVER_NAME ": Performing %s selftests with st_random_seed=3D0x=
-%x st_timeout=3D%u\n",
->  		name, i915_selftest.random_seed, i915_selftest.timeout_ms);
-> =20
-> +	/**
-> +	 * If the user passed a valid PID of a userspace task, then we may borr=
-ow
-> +	 * its address space to prepare a safe environment for the mmap selftes=
-ts.
-> +	 */
-> +	if (u_pid_nr) {
-
-In your previous version, you entered that section only if current->mm was=
-=C2=A0
-missing and there was a user provided PID.  I think that was more correct.=
-=C2=A0
-What happens if you then call kthread_use_mm(mm) with a valid current->mm?
-
-Besides, a warning on missing PID when current environment needs it would=
-=C2=A0
-work as a verbose validation of user provided module options.=20
-Please=C2=A0consider moving the u_pid_nr check into the if body, with such=
-=C2=A0
-warning=C2=A0added.
-
-> +		struct pid *u_pid =3D find_get_pid(u_pid_nr);
-> +		struct task_struct *task;
-> +
-> +		if (!u_pid) {
-> +			pr_warn("Could not find PID: %d\n", u_pid_nr);
-> +			goto run_tests;
-> +		}
-> +
-> +		task =3D get_pid_task(u_pid, PIDTYPE_PID);
-> +		put_pid(u_pid);
-> +		if (!task) {
-> +			pr_warn("Could not find userspace task for PID: %d\n", u_pid_nr);
-> +			goto run_tests;
-> +		}
-> +
-> +		mm =3D get_task_mm(task);
-> +		put_task_struct(task);
-> +		if (!mm) {
-> +			pr_warn("Could not find address space of task with PID: %d\n", u_pid_=
-nr);
-> +			goto run_tests;
-> +		}
-> +
-> +		kthread_use_mm(mm);
-> +	}
-> +
-> +run_tests:
->  	/* Tests are listed in order in i915_*_selftests.h */
->  	for (; count--; st++) {
->  		if (!st->enabled)
-> @@ -226,6 +259,11 @@ static int __run_selftests(const char *name,
->  		 st->name, err))
->  		err =3D -1;
-> =20
-> +	if (mm) {
-> +		mmput_async(mm);
-> +		kthread_unuse_mm(mm);
-
-Please make sure whether kthread_use_mm takes a reference to mm or not.
-If=C2=A0it likely does then we might be more clear if we put our reference =
-to=C2=A0
-mm=C2=A0taken with get_task_mm() right after kthread_use_mm() above.  If it=
-=C2=A0
-unlikely didn't then mmput_async(mm) would have to follow=C2=A0
-kthread_unuse_mm().
-
-Thanks,
-Janusz
-
-> +	}
-> +
->  	return err;
->  }
-> =20
+>  module_param_named_unsafe(mock_selftests, i915_selftest.mock, int, 0400)=
+;
+>  MODULE_PARM_DESC(mock_selftests, "Run selftests before loading, using mo=
+ck hardware (0:disabled [default], 1:run tests then load driver, -1:run tes=
+ts then leave dummy module)");
