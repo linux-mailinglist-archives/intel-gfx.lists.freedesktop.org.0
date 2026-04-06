@@ -2,167 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yIF2OmFF02lrggcAu9opvQ
+	id mNKdLrFy02lFiQcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 07:32:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 10:45:37 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A33D3A19A1
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 07:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F38D3A25B9
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 10:45:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92C3910E1D6;
-	Mon,  6 Apr 2026 05:32:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B3EC10E1FC;
+	Mon,  6 Apr 2026 08:45:34 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ch/12UfE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l3eOQIX/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6928C10E1D6;
- Mon,  6 Apr 2026 05:32:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EA7A10E184;
+ Mon,  6 Apr 2026 08:45:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775453532; x=1806989532;
+ t=1775465133; x=1807001133;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=dY2O2U9kGxF7e7DULZs3PyYhI49DyA5k3Wj6T9YrWqc=;
- b=ch/12UfEEF9QnXXEDHO+Zzmj1e5NYjGTXPhQjKvn3cQYngFJnXQv2nIU
- uGYZyH3Q/+jdnH3m1sHnBh0SurQyfzCj1Z3qQkSWFKfVtMO1DwNZlGArj
- g1KAz5ENq5fl3paJreFARgIfAizNS5OPHRj+hW6nIX/bqynV3lEv6xRN+
- k8AO9IGLolHHH6QvDazmyX2Ix78wvmW8BQE+HKmiCAw1pfu69a3K5b0XB
- eZfPcEOm2xII/bEuvq1352dLpP5HgESuZcn3OGrnUgA7DJRPOhtoqQbRE
- ZEiFrlhl3WrMf5+XEcI9LC1oGcPjiFrXSrHvwltYV1R2b4Y/M5+Np1WKF A==;
-X-CSE-ConnectionGUID: I00pU1oVTjSb/6n9WfQtxA==
-X-CSE-MsgGUID: TloAyaQ9R9yWvkx7RMciJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="76368722"
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="76368722"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2026 22:32:12 -0700
-X-CSE-ConnectionGUID: Wkd8b/feSMGnXu+E8gYLvQ==
-X-CSE-MsgGUID: MIWYZPz4TR6srM+eWH1s6w==
+ bh=tuEIDquXEMkeowKFfJk1BGJxPio6u7wW+aZr9YI5ghA=;
+ b=l3eOQIX/q9l5K2FcgVK2vwMwZgU0Zqw7pc11/eVRFpT38MkfklDBIbMW
+ DJTEZEL/8rhHmBPue45UeME/ZT7kbh19YSKHpUfuTz1MBiEw7Zz+irJjC
+ X/t+3ruVEpz0vzNAOdjZsstxjfpChhmnFa0/5H3EWZnh5ajp+s4d0kgTk
+ 6K4Lh9ZLdQUsQ/trEiJevfM2cxAfFmPVSVL9c2mlpq8armv+HmRt5ZA+i
+ c7S48wzFuq/Dot2DEl5eFTpoixfpFMFPnHBwA4q+LXmkGjXA3h3O/VBVC
+ d/nB/D4eMuCNOK7OXgHx6qbEdcSUJQlU7TdqxtHl2RUBKp9fEg+nB5Qka A==;
+X-CSE-ConnectionGUID: f7Cc1D04SSOw5pvA0f7QCw==
+X-CSE-MsgGUID: WbtJrGLsQeGC08gDi3vPyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="76605478"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="76605478"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 01:45:33 -0700
+X-CSE-ConnectionGUID: SCgT7XLRQwW5jexeZ89Gvw==
+X-CSE-MsgGUID: 9ZgMR64iSsi7CUFCP56LXw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="232193611"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="226831349"
 Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2026 22:32:13 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ by orviesa006.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Apr 2026 01:45:33 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Sun, 5 Apr 2026 22:32:12 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37; Mon, 6 Apr 2026 01:45:32 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Sun, 5 Apr 2026 22:32:12 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.50) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 6 Apr 2026 01:45:32 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.15) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Sun, 5 Apr 2026 22:32:12 -0700
+ 15.2.2562.37; Mon, 6 Apr 2026 01:45:31 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Plcf8wIR9iRxmzriD4xUZmyEIGBBq/+BL0qJtc5AKDbi1M1XRa5eAxU+crNt84SkTz58bh8/j/j8+ge0+thpZK6F4NTMyWuAj1TLmoUIzOpGOjr4er+G1wQJEEYrhw/bnH7wx0wr/4/cQ310X2K4I3TfQAjqvhASUp+aDg0ZL/J8qD26pxrMSqQn7TJI/YhRHwq+vj5Reuz5g2cvkIjBRoJu0GtghP0HjNdc6yUqAhFXq49I4wooE3YO6cdGvcDnsHlzZx4lfEi46VibDwJVLmVm/QDYQPHM5ZeVIuRHJ1qSmdYO6ntw43rI0eiY2jhnOHi8xNn7QNY6yzK+cnbd9A==
+ b=ZJIKpxtmTB95vPwJVMjCmZsZZKBKINNv+pTavdLz3uXn496QJelh6ScI0tFiyqknRi/wrd8P3sF0l8EC/ZvI86XYde7jRJNH09JXHafT3ddYG3+jUNnZ6mw2QeFxbLETH98LHWW7PmUwolC5bRW1XCn8rcozswuLKSMnGeytXegvyA6Df+akUFRvgy6dINjqGMSDvnvJOXN/wL5UhGzrLh9BDW/FF3tyUNGwMAAcFyN56+oaT2XfWLho41yEl9dNbGWu7DsapdmePrXUtRH69wXdRa3/iLl/0l6EfcA1+qaiZklol/bu5opf/PR0MsXkqipxsj56btzVCi6tRVV+qA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=wqCrYt6wIgR9E5LP9QOXnYE1cTHqtNNaIyWgM7JcBlo=;
- b=A8e7WK67/oW955mr6ymAbk17+lMrY1+68Sc3g79iWL2ltKu080V3GcG7lP1xBJT/OeFTlsi+iMZzujjg53qBPQS5ikZOsxa6uB4Zkk9ZspWYI2x0HaPlOrwS+nH/IF3rwhZBZfPusFEhWayTBCFFbKye3PxA5W9FLEJm4f0g7fjBq630fOe3AaQ5X0cQF1kV6Y1MOCpzE/cR+fonCaJ653RVStQLY6jZsQuQ9jahwoZfcDBYeCF7pRXSSMqL0AWJamZpLL7qC7/3ObHd/xb/VacgBZDkIKYCN0g39DeoCfc5Cty91PiOdWjdWWkhpbbIlvkPE7Vo2cL7ZedpK2c2SA==
+ bh=X9xtL9nw9WoT79GOTt9BIpZAczN1kMX8SBn3P5yfnds=;
+ b=YFxtZOFbxrQMmlapC5HSnhhZ5E9RAN+5Fw8bSGfK85l9fxsCUJawNOhzeQjqX4X3SVBt2ygjig23dOHbw8le7cAtIr08nd1cfABSVg7t5L3/16vUdNTVkGl536t8yOQoE1AKqHKBj3hXeLO2h/O2jNV6SSxtmnUdsiLF+X175uYUoyfF0ag9iPHEdKbs/NZ5+AMBQEJczW9gsBcOg0Sl1S3SEV7Ds6KjxBEYvm3EamKpYRqq57XlBsZxVBxItow+5im6V/1osfhqyZhmiDh76YntEnJdRGssTRSg+6buduyDXVwX/0hSUFyk6H0MIfZJ0PzmYCxruxgX+pW9WwHAPg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DM4PR11MB6117.namprd11.prod.outlook.com (2603:10b6:8:b3::19) with
+ by SJ5PPF263E38237.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::81a) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Mon, 6 Apr
- 2026 05:32:10 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.14; Mon, 6 Apr
+ 2026 08:45:29 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9769.016; Mon, 6 Apr 2026
- 05:32:10 +0000
-Message-ID: <8c705395-6400-44b6-b4f4-818a9a4056ea@intel.com>
-Date: Mon, 6 Apr 2026 11:02:03 +0530
+ 08:45:28 +0000
+Message-ID: <538fcd49-d6d9-4234-9064-5b8076a047c9@intel.com>
+Date: Mon, 6 Apr 2026 14:15:21 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 4/9] drm/i915/dp: Restructure the sink/output format
- selection
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- <intel-gfx@lists.freedesktop.org>, Ville Syrjala
- <ville.syrjala@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 5/9] drm/i915/dp: Validate "4:2:0 also" modes twice
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Nicolas Frattaroli
+ <nicolas.frattaroli@collabora.com>
 References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
- <20260330235339.29479-5-ville.syrjala@linux.intel.com>
- <2479715.CQOukoFCf9@workhorse>
+ <20260330235339.29479-6-ville.syrjala@linux.intel.com>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <2479715.CQOukoFCf9@workhorse>
+In-Reply-To: <20260330235339.29479-6-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0034.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:17a::11) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5PR01CA0057.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b8::11) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB6117:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7f1f4104-8c72-489a-2834-08de939dd94c
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|SJ5PPF263E38237:EE_
+X-MS-Office365-Filtering-Correlation-Id: 15ecd1e7-4441-477b-e3dc-08de93b8da89
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: xEYZyKmObzHGVv7g6N3z2jAeDSCSEjjOtnqggCaum4A/oxZNgDhamthTwaJrQlIUf/lkzpbU8UCdwvuPYDRaQZKi15CqYZJL9B9lwgGahaQYicqRItqRPmmsNwiOBLyUOrghNNgKS+p7yzAH27Dm/j4H80XPo5h7ZhffRaXdixYN8btARTDnGKdkkzoqfNqUq//6GXzcHJnuz+i5HtaYTWCUdISMmQuNoCKDbBIhLGRsEAJjgVjoVfCDl3Oy+YZJcOKFJpg5IJbFSe9COiautNheHTt7ssEP9v5tKQD1GCIFA6afY3EPvXyP8cEIKITM40o1IZnb9CDy3NNQUbOhl6YifcfrdeSjbNorG2+LJvW1SbaEfkPnSGUz/dTNmiq82z2kplucvjY3v7v0tFlx/8aA7imOwRv3Q5BevkJuVlfQxdEIlBmhRL05ItzbCXI2lptXCqkf8s+yIpkefjGBMZ8WJkHmJ55Jaz1YEXfS5anyY3ZhAlwnHFPiJ7zZtgs+qpd2coT3w1j7X8jBCBbf5JvYfmAu5J/hJWkyXroUqbKboWn3ief1ClWAqenjQNdoO6pLnbO/XbEJncvBPYyxhmP1Czv+MU3CiYvBC7a/tyuJKXOBKK3qf5wxVqY94yud0iGbeePdETNSOUlFS03+Qt3RbQDUn6+EFXZJOrK8mjrSM01tfeKbIrbRMRiiJoIaCkbxWvQgPfRVIbfQsUY+p6YcC9nb8wothQPQMmg+t5I=
+ ARA:13230040|1800799024|366016|376014|56012099003|18002099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: YDyl4Fh+bq9zoX3assl2IdRcu4b0CCSGLxuFTNDlSBN9gE5IkL2SWW3cy95xoSVGrNwO88rYtVJE8QBDq2RzLrC7uI+2jwrlNpY4aK3bGrXPtzfGTKH220KoD0sipEhhv4KrfbIjp4PjWmFOZOFDJCAAZvCwZNCjTWUiMfvG8NMrG0pVaqkYiiqvtyFUUHKGYyq/oFnikQpxr3VQ9jHl7MEvkguKMjrVPI4Wmn6QggTDsX7quuab5xIFZZtDhjvdgieD+oGcb8lB5b5DLXzL9eFfPDApiP2QCQtNgs0+s7v+DIF12e3bZTnSCWCJruylkGqoiDsk8q/sYLmNWgTAwfLBdG4/BXbIIj8q68WK3S5i+kkDJi8qSaAvgdhioerey5jHAAKlhMtiHamCMnJ72P1DqyeLN1MgNJ/O400MtcLdJpDymb3aL6ox0XV8sCHfgfPLhTZ7wwDGlRdP3QOm2JgTHdHRi3y8K8//Uv5V98DAEPtZXgIj1KDvYBC0JEC/gCXXfNty8suy2BF9gxWqOliamT3M+ZRzYasEcoGcz9Syw3Xt9T0aRVzPg5Ca35mHzNL75IBnhxHtYwtsepMUzQvJBbs2jZ+aTlgMBBsi5o/o2TOV3J0yvF8NO0MENW9OCaPf48m95Etzo1ZQeTM85zD3URck/FtH/sqTo+5DkUJVX58ef/WBPvrkgI6p1l+A4cfPrAGR+qbR1kHRWqKtYTJ6Ot8dv3PqZyJo/2kpCyI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(56012099003)(22082099003);
+ SFS:(13230040)(1800799024)(366016)(376014)(56012099003)(18002099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TnVxTUxFdzBkRnlrL0FhdmRNdk1iYVNTSVphM3lzWmNZMjJoNVlraGNkMlBl?=
- =?utf-8?B?WUtRaURMU3NESEJGMXFvRy9XVG9RL3Q1eWMzS3pnRWxaU0pUYW5nT2ZIWEZU?=
- =?utf-8?B?c3hjVmZtMktZZ0JFc1MyT2NBaGxvVllSQWZ4NWJ3M290RU1uMEJ5ZGtsOFUw?=
- =?utf-8?B?UU00SU0ySnIzempjSGpNOUplYnh2Um1kS281RmFzN0N4MDZkTDlvNHFCT2po?=
- =?utf-8?B?bFBHQ2gwWUdMMHBsQnl6TjljVC84c3pjZ3dzN0JQUU93MTY5UXRuQTdqeTYr?=
- =?utf-8?B?d2pzVEhueDNuQ2tnVEFLZm02K1owN0RSMGkwaHJMRERvNkFBYU5vZmdtUlFp?=
- =?utf-8?B?eTBEa0ZUVEd3ZTVBK2R2d1BPTTZ0YWt6Z0JPUWovMXZGMzJXa3o2MkJmK1Iw?=
- =?utf-8?B?TG1JNlozc2JNZ01VcFJZR0JsK1h1d0VneUdvSXd1dUVBVmF2a3MxVGdXYWc2?=
- =?utf-8?B?Qnc5ZVNUQWN6bXZTRmZXVTdNSDJ6K1g3c2lvS2cyMXBUNjBWY1VPVjg1YVo2?=
- =?utf-8?B?cnM5ZTFZVUs0eFZJUUhUanM2VEVnUTI4Ti8xYW9QT2VmRm1ZaGlqVlRHSmtp?=
- =?utf-8?B?ajF1SGdIYzZOOGN4Z0lUYnFkMnVuWUF6K05lY2dVeEVnL0N0Kzh3ZXBaWXcw?=
- =?utf-8?B?bmdRaEs5Y2hLKzQ2UnZmdHQrT1JNcWJGMTZzenhWU1YzVzN2YlJ4NVlUemx4?=
- =?utf-8?B?RWpXK21kekd6REZQWi9OcnNHR2dNRERIb0lRQThNekNCbDEzVmljUjdPYUdx?=
- =?utf-8?B?djBQd2didjd1ZWhxeTJETXB0Ukh4dzdMN1kxdVlvdTdBTm8xUWVqd2JiUlJs?=
- =?utf-8?B?Tkd1L3MvMFA2OENYTmVYVVBZMHAxcWNxR1BVM0RlMDMzUXFHY0ZIOTkwTGt1?=
- =?utf-8?B?cE16OEEraHJOeDAxdXFxTHZnZmlVRWU4NDM1ZmdDZmpxVHNpVTdsRjVYMVhQ?=
- =?utf-8?B?Sjh6SjBkWEVZUnQwVEZGbTVJL0EzTUY4MkRuSGVVVkYzaEE2aDRxVm1FaXdH?=
- =?utf-8?B?eHdyMFo1a0xaM3JXZmhCeFZkeUF4SEY5dzVBb1F1clFQTU5mMnhldzZxNzlU?=
- =?utf-8?B?RFI2eXJPMGZhSXZ1RjNnRngxUTQ4dXRvUHVMZHhMRGtmbUpsMFpHN3VzRVl1?=
- =?utf-8?B?MGE2enJQZWNVeFBWbWJxMUQxamxiSFJCSm5tNzZFc2xkeHpwc0s4ZlNJd3RP?=
- =?utf-8?B?UW5BZTVoWGxZdlgwTHQ5TS9mVlIzV2VUcDd4akp5VHN4VG41VDF2U2duTU1s?=
- =?utf-8?B?QkZDNmdva1ZydVJDY3MyWjJjYndVUWFIbGovWU53WFZ6OTRuOEg2M2ZmdWJJ?=
- =?utf-8?B?a2dEaWhzTTdmZjNNWjJWcTFMM0ZkNlI5MmFrcnplcElSS21xb1VtUDB1Y3o3?=
- =?utf-8?B?NjlEQytVK1VhWUhIelNxYUxZYjZFVkNJeSt4ZDBSbllRdC9SUEwreHZCN2Zv?=
- =?utf-8?B?OTlFbWw2VG4rRGExQUlYbWRueVI0cE56KzhCTlM4bG4vald0NzNGK3ZOd0ti?=
- =?utf-8?B?MzlFS3dUM1o1cXpoL2RmK1JVd1J3eDFOTkVhQ0xJMXNBdGZvaXhEcUFNWmo3?=
- =?utf-8?B?ZDNFM3FVYjdDOGtBNXROSExpSDFsZzNmaGRxRTN4Q0h5Y2NOaVdPazJnN2Vv?=
- =?utf-8?B?K0ZnTHBsVVVGNmZFcCtQSVU4WU5WcmNHT1I2RkZ0N2lTMUFaZWYxWFVEK2dU?=
- =?utf-8?B?a3BlQ2dPbmVxV1lWZGdwL0FHOFhJM0daU0hEWm1JbEkrQ2hFWkptdXlEQnpG?=
- =?utf-8?B?cEI5ZVlqVnpvenRJcGlkUFpveUI0U1JqV1YwZ0plN2xqd3ZINnNlR3I1eEJB?=
- =?utf-8?B?VkhHMEJWU0VJWlNJYTlLY3puQ0x3YnRLUXRsQStESkZjMXRjVTJETExkN3FF?=
- =?utf-8?B?OTYrTnJzdFdSWlZHNUdYdjRNL00vWFlmUXdML2k0cWNlaEZjMUhxZzVuc1dD?=
- =?utf-8?B?UTlaUk8rMDdiSXdhTlFBTlhKdnhWeEFsOEt3WVdvWjc5RkRwbm05NjBwNkVq?=
- =?utf-8?B?QlpFQlRRQWJ5VGJMY0hwT25tYUVDbmNHL2tEdWJvUzY0bml5L09lRkVvQ3Ny?=
- =?utf-8?B?WGRuNWxtL0ZraE5OZCs5NXN1aGEvNFplUjF2SWJKVkpUM005cjRvZTA5SnpL?=
- =?utf-8?B?VzVPZkw2Y200QjBTTW5hZ1JsTjliZTdYRXUzRSs3NloraE9NaUk4VGVibENq?=
- =?utf-8?B?bGMrQmdVajFvaEJlZi9US3ZvVjJVc01iUEpwYVExeTRHdmt0dmcyS1FXbExo?=
- =?utf-8?B?M1M4Y2RIZ0NLSGphWUVlSyttWDBJVGc3ZHZBMDZoa1dPb3VpdWpEWWlUUlF5?=
- =?utf-8?B?S3d3WFF6Z3FEUWM3WnZMbWxxQWc1Y0dYaEVYWE9LcHB4bFZ2anNuSzBHL0wr?=
- =?utf-8?Q?6nHi1eXW8VrP2dpA=3D?=
-X-Exchange-RoutingPolicyChecked: GqXXoe7JmkDybqS3PPQx+rqHLlKicoL66hofgCbWmiY9A3Uo3MNxBX0zaMw2AdvNN6szJ9Eyzmnsd9m5UBY8kHUGpvuGjqpFJWyYACNfNzErik1fuPCuyjeD6UIY7AsI7WhKLJlO3OsBlO9Ph+9cXJD0zWK4+OAgZ1n5bfE+y5hBXliTtmOII4dGFYIsQpK7KV4WuBMlgWR10A8qLiu/PU54wC0wpFBPwOfGXJwfhGAyPCuNoDz7k1ghxMtPyR9B8KvWupBlOs1SpbxaQffDSQpHaZ0cAKqUcQfhW30IzmxnY903vRirrGa8GtUFww+5tWDY68WmiRxewIN/FrPAow==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f1f4104-8c72-489a-2834-08de939dd94c
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVh0ZG9ZRFp5ZDNsano2Y3hGZm1SV3dkWkpDbFR4T2ttQlpHVTZwbS9SbCsv?=
+ =?utf-8?B?ditWZDR2MTJ0UmZJY1VSdytmMHdKeWw4b1M2MlIvY1dJMXhDQ2hsaVl4Ulk2?=
+ =?utf-8?B?YUNLSG8rRURWcmQ0ODdoOWVxWkh2ckN1WkVabzBnNE12MTRDazAzNllaemdt?=
+ =?utf-8?B?OGtab3YyTXZuZEdway9UZnZPTVB4WndMYmRzUDFFVHZLem1MdDk5ZDhlZktl?=
+ =?utf-8?B?ejJnTTd5ZUVFWGRpODBwSWlnenFIdGFJUzVWRmtqN0hVR0lXOWcrbXJVRWhZ?=
+ =?utf-8?B?anAyaUw0L09ST0cyYmxHR2NMcU1zKzcwZTBabHBEZVBFREwyNEdOOEFENDRk?=
+ =?utf-8?B?SjZvQ21Ha05NMm95a0UzbWVKZ1RJTjEwalYxNUc0UnRnYzNqLzg4dGZBMGRX?=
+ =?utf-8?B?T2FBR0JGa0xTUGdQRjBWejBaajVDU0pVbk5WalhRbVhoUU96WkFldFppMWhm?=
+ =?utf-8?B?RXBoWGtiOHF5RmF4bEk4VlpIZVN5SkFHSVdSTnAvMFEreXNYcmphSTN6TVBz?=
+ =?utf-8?B?bHRxYm01TE5IbWYrMUprdllPcUc5MVlQUFNaOFNhZi9JWU5iYmpHb1VDK25P?=
+ =?utf-8?B?WGZoSnNTaHcxN1NUdi9CWDAxMjZtdGVBRWgrWjVTL1RxSGQrK0VjZythZEpz?=
+ =?utf-8?B?eko5STJJL0lWMG9ubVhtc1ZuamFUSUVhNThBSEo5VTgxaUhCOEdkSlpXSXdC?=
+ =?utf-8?B?cDBHRXYweUxIMktIbGtWMDBRQTFOaTdzNVM3aG52R08rbktDWWJqREdmM0Ur?=
+ =?utf-8?B?eTZpWlRRV0Y1MDFrUDNRYy8yanhvaTZFTzllRUZiQmJVV3Q1bTZRMXEwclpP?=
+ =?utf-8?B?YUkxTDZuQXhUSnJSZEpocXhrMVU3YUJMQVBuTmpzMUpBbHI5bnpPNVEwQ1BP?=
+ =?utf-8?B?VzFNOFhtRVBOK2RGQWdFb0QyeFVnbjl2UTNkYUtzdjZKRU40TTVjeHhKalVn?=
+ =?utf-8?B?N1J1VlNDTVJodHpDTjdXc0lnUW5YY3NwRER5b0J1UUFhVDl1Rm5KNW83NTF2?=
+ =?utf-8?B?bGFlUEZFRDdSNXlmLzQ3RnJjVFJsRDBvNmE3OFdKSmdZSTZsL3R0NE5nd2Yy?=
+ =?utf-8?B?RUE5VmRobFR3ak9KdVNndFhub2Fud3pFR2huT0RoVVR0ME10Z1U1cTVneUp2?=
+ =?utf-8?B?aWQyaDNCSHB6dUdKOTVTVWg3R3FodHlYNUM4cW9EK1RZYjRXanBEZ2VvN2NQ?=
+ =?utf-8?B?S3VrZHoyOWtCOGlabU5RZWc4bTdiQU05QXBrZVBQRXMwNU1LMzRsRGd0RXpO?=
+ =?utf-8?B?ZElhUGhWcTBZL0cyTisrMU5RWDJ3MmMxWVZXSitHc1J0YmtlSzlFZ3JSTHFV?=
+ =?utf-8?B?QlZaUVBjS2ZIV1VnaVR1endnYzcrSjNld25KUU94YWV2NDdSZnA4N2FPSTF4?=
+ =?utf-8?B?MjZTWjBZdS9sRGxLNEZSbUE5TkZQcC81UjBEUUgyeTNQcWoxVndEVzUySHdW?=
+ =?utf-8?B?TC92UWlxQjZ2REZTYmxXcnM1SUpmTDY4dHRpNWtZZVpmT1J1QUwzaWZVV2wy?=
+ =?utf-8?B?Q0xZTnVDVXFoSm50ODRKb2VzdHV2M0JCNDZBR1IrOUJWUmdsWitZb2NRdnM4?=
+ =?utf-8?B?R3J3MzNKbkF4NTlicG8wdnp2emVPVi9pNVBLWm1YZ1ZwcDZVN2xGUjkyamZs?=
+ =?utf-8?B?ekU1UE9LRTdKRnRscU0xWVQyZFFqTFdVaFlOeEFoNlg2TnF6d3dCVVN3ZmRp?=
+ =?utf-8?B?bjZBMU1FTnNJNjR3WXlFVTY2bWNOeEFPdnp6SVpUS0tYaHYvMnFRaFdzMTFu?=
+ =?utf-8?B?Nm8wT1FhQi9La05KcEVZTHUwNXBCQVR1M2hkdk11VWFQQTVxMHF6Zk9iNEgy?=
+ =?utf-8?B?R084V0JRYitEckFMeTU1dHEyanJLcm1Wa2tEbkNoV2FNYisvbHB6WUFOVFJw?=
+ =?utf-8?B?cms0S1h1RmNvUzJDYy9PMFk4U2lKMS9WdUpRLzJaQ1NYbnluS3FEWDlwZ1p1?=
+ =?utf-8?B?SEFueGxvdWtsWHUwTVlYcS9mK2hDY2NzczZRRUhPRmFSV0p5b3VvYWJGWUwx?=
+ =?utf-8?B?dVA3aXJDNmlLcXhkWGNldko2KzFvYzhHSzFCZ2xicWNYQWtOa3JGVmMrQm1a?=
+ =?utf-8?B?cERYd1dRV3NxcTBjcFNzTi9mbmx3TjlWSEJRUmtMOHozWnRicjhBeTk5YWRH?=
+ =?utf-8?B?Q0F0N2pDeTRwWFBnWTlLLzdkWGVkUnZ6b2I1Z01hdW1ZTzRucytGNmNsdXdM?=
+ =?utf-8?B?K2lWUi9QOUtkMk1KM3k4aEVtR3ZlNGl2NUJqOVlLMERUUlM3SytFdEhtRkZW?=
+ =?utf-8?B?cmduWWZsclRXVG03VjhJMjVEbkZyM3pxRUdHUEhxS1Y2cS9IclgyemZLOWxP?=
+ =?utf-8?B?V2s2ZkFRSHFZbVpXS3pQNDczeGZmeFFjTzdFMk5YWlRUMkpsOXBBZnNqTlBo?=
+ =?utf-8?Q?waTbsLtcvAbSRFUo=3D?=
+X-Exchange-RoutingPolicyChecked: j4WBOKcyjRPVZZxKu42SNpKNlUvdM5wYQizsY+KyMP0o5mdUF1MVHpgMG1xe2HOhRHPEypCXV7+2hKNAbG04qQjSiURRBgXWKjOc/1v79wW8cBXOT41zE+d+5pTwIY9Q8azhgn/3hCpoSqpbVwRMEpRG3UNfuq1FcIbXCRjhNcaW2FLS2uCWvhgBsfvOCeonnKOHlR+ZqSgZ1CrjiglnAQGdWQYhH8w3asLXkVTeTLpEIF9m9jRR3/UoIHoHrhvCIkMjav99i9dahmjXEH/L14JplxkI9dQQlW/t9KyM6ssVGGblBZsb7KiZK95HKsnXDa0NX84qJVG3QnY0SLccoA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 15ecd1e7-4441-477b-e3dc-08de93b8da89
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 05:32:10.5742 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 08:45:28.7874 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oO+0itGU/r57q5cjdBRRN+teVsBgkHN3JFQD03sfp/WJcF/oUyNiVwzA1REQwXunUQaqQqeyUAGk48UxrSjMCKiQYRA4oTyV72NLCgXcv4Y=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6117
+X-MS-Exchange-CrossTenant-UserPrincipalName: iaUiCfa28bBniRVio38RYJ4+b7J7Pi0TP36V2/eJZYS80evwB5AcgwF0wrv+4lK9e9XKn8aCjZCqi47wNUhbbjO5l7rOqD0/ruMMNbDj/Lw=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF263E38237
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -190,7 +188,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,collabora.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
@@ -202,223 +200,209 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 4A33D3A19A1
+X-Rspamd-Queue-Id: 1F38D3A25B9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On 3/31/2026 7:05 PM, Nicolas Frattaroli wrote:
-> On Tuesday, 31 March 2026 01:53:34 Central European Summer Time Ville Syrjala wrote:
->> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>
->> Restructure intel_dp_compute_output_format() to resemble the new
->> intel_hdmi_compute_output_formats().
->>
->> Again, we basically have two main code paths:
->> - YCbCr 4:2:0 only modes
->> - everything else including YCbCr 4:2:0 also modes
->>
->> Take the exact same approach with the DP code, making the
->> format selection much less convoluted.
->>
->> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
->> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dp.c | 98 +++++++++++++++++--------
->>   1 file changed, 69 insertions(+), 29 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 4955bd8b11d7..230b45acde29 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -1371,6 +1371,28 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
->>   	return MODE_OK;
->>   }
->>   
->> +static enum drm_mode_status
->> +intel_dp_sink_format_valid(struct intel_connector *connector,
->> +			   const struct drm_display_mode *mode,
->> +			   enum intel_output_format sink_format)
->> +{
->> +	const struct drm_display_info *info = &connector->base.display_info;
->> +
->> +	switch (sink_format) {
->> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
->> +		if (!connector->base.ycbcr_420_allowed ||
->> +		    !drm_mode_is_420(info, mode))
->> +			return MODE_NO_420;
->> +
->> +		return MODE_OK;
->> +	case INTEL_OUTPUT_FORMAT_RGB:
->> +		return MODE_OK;
->> +	default:
->> +		MISSING_CASE(sink_format);
->> +		return MODE_BAD;
->> +	}
->> +}
->> +
-> I think here we'll want another
+On 3/31/2026 5:23 AM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> Currently we only validate "4:2:0 also" modes as RGB. But
+> if that fails we could perhaps still use the mode in with
+> 4:2:0 output. All we have to do is retry the validation with
+> the different sink format.
+>
+> So far we did the double validation only so far as it affects
+> PCON TMDS clock limits. But validating everything twice seems
+> a bit more sane.
+>
+> Note that intel_dp_output_format() might still end up picking
+> RGB for the actual output format (and letting PCON deal with
+> the YCbCr conversion). So I suppose we could still fail the
+> validation due to that, and forcing even the output format
+> to 4:2:0 might solve it on a third try. But we'd need the
+> same fallback logic in intel_dp_compute_config(). For now
+> this seems sufficient.
+>
+> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
+>   drivers/gpu/drm/i915/display/intel_dp.c | 114 +++++++++++++-----------
+>   1 file changed, 61 insertions(+), 53 deletions(-)
+>
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index e23162fc3f8b..a1dc089c54f5 100644
+> index 230b45acde29..86319bf09a19 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -1373,6 +1373,11 @@ intel_dp_sink_format_valid(struct intel_connector *connector,
+> @@ -1320,12 +1320,10 @@ intel_dp_tmds_clock_valid(struct intel_dp *intel_dp,
+>   static enum drm_mode_status
+>   intel_dp_mode_valid_downstream(struct intel_connector *connector,
+>   			       const struct drm_display_mode *mode,
+> -			       int target_clock)
+> +			       int target_clock,
+> +			       enum intel_output_format sink_format)
+>   {
+>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	const struct drm_display_info *info = &connector->base.display_info;
+> -	enum drm_mode_status status;
+> -	enum intel_output_format sink_format;
 >   
->                  return MODE_OK;
->          case INTEL_OUTPUT_FORMAT_RGB:
-> +               return MODE_OK;
-> +       case INTEL_OUTPUT_FORMAT_YCBCR444:
-> +               if (!(info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444)))
-> +                       return MODE_BAD;
+>   	/* If PCON supports FRL MODE, check FRL bandwidth constraints */
+>   	if (intel_dp->dfp.pcon_max_frl_bw) {
+> @@ -1350,25 +1348,9 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+>   	    target_clock > intel_dp->dfp.max_dotclock)
+>   		return MODE_CLOCK_HIGH;
+>   
+> -	sink_format = intel_dp_sink_format(connector, mode);
+> -
+>   	/* Assume 8bpc for the DP++/HDMI/DVI TMDS clock check */
+> -	status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
+> -					   8, sink_format, true);
+> -
+> -	if (status != MODE_OK) {
+> -		if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+> -		    !connector->base.ycbcr_420_allowed ||
+> -		    !drm_mode_is_420_also(info, mode))
+> -			return status;
+> -		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> -		status = intel_dp_tmds_clock_valid(intel_dp, target_clock,
+> -						   8, sink_format, true);
+> -		if (status != MODE_OK)
+> -			return status;
+> -	}
+> -
+> -	return MODE_OK;
+> +	return intel_dp_tmds_clock_valid(intel_dp, target_clock,
+> +					 8, sink_format, true);
+>   }
+>   
+>   static enum drm_mode_status
+> @@ -1464,15 +1446,14 @@ bool intel_dp_dotclk_valid(struct intel_display *display,
+>   }
+>   
+>   static enum drm_mode_status
+> -intel_dp_mode_valid(struct drm_connector *_connector,
+> -		    const struct drm_display_mode *mode)
+> +intel_dp_mode_valid_format(struct intel_connector *connector,
+> +			   const struct drm_display_mode *mode,
+> +			   int target_clock,
+> +			   enum intel_output_format sink_format)
+>   {
+> -	struct intel_display *display = to_intel_display(_connector->dev);
+> -	struct intel_connector *connector = to_intel_connector(_connector);
+> +	struct intel_display *display = to_intel_display(connector);
+>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> -	enum intel_output_format sink_format, output_format;
+> -	const struct drm_display_mode *fixed_mode;
+> -	int target_clock = mode->clock;
+> +	enum intel_output_format output_format;
+>   	int max_rate, mode_rate, max_lanes, max_link_clock;
+>   	u16 dsc_max_compressed_bpp = 0;
+>   	enum drm_mode_status status;
+> @@ -1480,29 +1461,6 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>   	int num_joined_pipes;
+>   	int link_bpp_x16;
+>   
+> -	status = intel_cpu_transcoder_mode_valid(display, mode);
+> -	if (status != MODE_OK)
+> -		return status;
+> -
+> -	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+> -		return MODE_H_ILLEGAL;
+> -
+> -	if (mode->clock < 10000)
+> -		return MODE_CLOCK_LOW;
+> -
+> -	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
+> -		return MODE_H_ILLEGAL;
+> -
+> -	fixed_mode = intel_panel_fixed_mode(connector, mode);
+> -	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+> -		status = intel_panel_mode_valid(connector, mode);
+> -		if (status != MODE_OK)
+> -			return status;
+> -
+> -		target_clock = fixed_mode->clock;
+> -	}
+> -
+> -	sink_format = intel_dp_sink_format(connector, mode);
+>   	output_format = intel_dp_output_format(connector, sink_format);
+>   
+>   	max_link_clock = intel_dp_max_link_rate(intel_dp);
+> @@ -1600,7 +1558,57 @@ intel_dp_mode_valid(struct drm_connector *_connector,
+>   	if (status != MODE_OK)
+>   		return status;
+>   
+> -	return intel_dp_mode_valid_downstream(connector, mode, target_clock);
+> +	return intel_dp_mode_valid_downstream(connector, mode,
+> +					      target_clock, sink_format);
+> +}
 > +
->                  return MODE_OK;
->          default:
->                  MISSING_CASE(sink_format);
-> ---
->
-> though this time, no bpc related changes. With that fixed, I get
-> YCbCr444 at 10bpc as well as 8bpc. Can't test 4:2:0 for what appears
-> to be unrelated userspace reasons, though the KMS property's enum
-> value is exposed properly.
+> +static enum drm_mode_status
+> +intel_dp_mode_valid(struct drm_connector *_connector,
+> +		    const struct drm_display_mode *mode)
+> +{
+> +	struct intel_display *display = to_intel_display(_connector->dev);
+> +	struct intel_connector *connector = to_intel_connector(_connector);
+> +	const struct drm_display_info *info = &connector->base.display_info;
+> +	struct intel_dp *intel_dp = intel_attached_dp(connector);
+> +	const struct drm_display_mode *fixed_mode;
+> +	int target_clock = mode->clock;
+> +	enum drm_mode_status status;
+> +
+> +	status = intel_cpu_transcoder_mode_valid(display, mode);
+> +	if (status != MODE_OK)
+> +		return status;
+> +
+> +	if (mode->flags & DRM_MODE_FLAG_DBLCLK)
+> +		return MODE_H_ILLEGAL;
+> +
+> +	if (mode->clock < 10000)
+> +		return MODE_CLOCK_LOW;
+> +
+> +	if (intel_dp_hdisplay_bad(display, mode->hdisplay))
+> +		return MODE_H_ILLEGAL;
+> +
+> +	fixed_mode = intel_panel_fixed_mode(connector, mode);
+> +	if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+> +		status = intel_panel_mode_valid(connector, mode);
+> +		if (status != MODE_OK)
+> +			return status;
+> +
+> +		target_clock = fixed_mode->clock;
+> +	}
+> +
+> +	if (drm_mode_is_420_only(info, mode)) {
+> +		status = intel_dp_mode_valid_format(connector, mode, target_clock,
+> +						    INTEL_OUTPUT_FORMAT_YCBCR420);
+> +	} else {
+> +		status = intel_dp_mode_valid_format(connector, mode, target_clock,
+> +						    INTEL_OUTPUT_FORMAT_RGB);
+> +
+
+Perhaps we can write  a comment or TODO here about the PCON special case 
+which you mentioned:
+
+that even though we are trying 420 sink output format, with PCON it is 
+possible that RGB output format gets picked up (if Pcon supports color 
+conversion).
+
+In which case the rest of the mode validation will be wrt to RGB. Unless 
+we handle fallback in intel_dp_output_format().
 
 
-Hmm... this alone should not be sufficient till we actually have code to 
-try with YCBCR444 in intel_dp_compute_formats().
+In any case, the patch LGTM.
+
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 
->
->>   int intel_dp_max_hdisplay_per_pipe(struct intel_display *display)
->>   {
->>   	return DISPLAY_VER(display) >= 30 ? 6144 : 5120;
->> @@ -3330,41 +3352,59 @@ static int
->>   intel_dp_compute_output_format(struct intel_encoder *encoder,
->>   			       struct intel_crtc_state *crtc_state,
->>   			       struct drm_connector_state *conn_state,
->> -			       bool respect_downstream_limits)
->> +			       bool respect_downstream_limits,
->> +			       enum intel_output_format sink_format)
->>   {
->> -	struct intel_display *display = to_intel_display(encoder);
->>   	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->>   	struct intel_connector *connector = intel_dp->attached_connector;
->> -	const struct drm_display_info *info = &connector->base.display_info;
->>   	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->> -	bool ycbcr_420_only;
->> -	int ret;
->>   
->> -	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
->> -
->> -	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
->> -		drm_dbg_kms(display->drm,
->> -			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
->> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->> -	} else {
->> -		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
->> -	}
->> +	if (intel_dp_sink_format_valid(connector, adjusted_mode,
->> +				       sink_format) != MODE_OK)
->> +		return -EINVAL;
->>   
->> +	crtc_state->sink_format = sink_format;
->>   	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
->>   
->> -	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->> -					   respect_downstream_limits);
->> -	if (ret) {
->> -		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
->> -		    !connector->base.ycbcr_420_allowed ||
->> -		    !drm_mode_is_420_also(info, adjusted_mode))
->> -			return ret;
->> -
->> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
->> -		crtc_state->output_format = intel_dp_output_format(connector,
->> -								   crtc_state->sink_format);
->> -		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->> -						   respect_downstream_limits);
->> +	return intel_dp_compute_link_config(encoder, crtc_state, conn_state,
->> +					    respect_downstream_limits);
-> With the removal of intel_dp_sink_format in this function, I wonder
-> if we can get rid of it entirely now. It's only called in
-> intel_dp_mode_min_link_bpp_x16, which seems to be used for bandwidth
-> limitation calculations (where YCbCr444 vs RGB444 doesn't matter, so
-> we're fine in that regard).
-
-I agree we can remove intel_dp_sink_format() but IMO it should be after 
-patch#7 where we are validating sink format for mode valid.
-
-I guess, with that change, intel_dp_mode_min_link_bpp_x16() can be 
-passed the sink_format directly since we have already validated that.
-
-
-Regards,
-
-Ankit
-
-
->
-> Judging by the "min" in the function name, I assume it should be
-> using INTEL_OUTPUT_FORMAT_YCBCR420 in drm_mode_is_420_also cases,
-> whereas right now it only gets this from intel_dp_sink_format if
-> the mode is drm_mode_is_420_only. So I think removing
-> intel_dp_sink_format entirely as a follow-up, and folding a
-> corrected minimum bandwidth computation that uses 420 if
-> drm_mode_is_420 into intel_dp_mode_min_link_bpp_x16 would make
-> sense, unless I'm totally misunderstanding the code here.
->
->> +}
->> +
->> +static int
->> +intel_dp_compute_formats(struct intel_encoder *encoder,
->> +			 struct intel_crtc_state *crtc_state,
->> +			 struct drm_connector_state *conn_state,
->> +			 bool respect_downstream_limits)
->> +{
->> +	struct intel_display *display = to_intel_display(encoder);
->> +	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
->> +	struct intel_connector *connector = intel_dp->attached_connector;
->> +	const struct drm_display_info *info = &connector->base.display_info;
->> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->> +	int ret;
->> +
->> +	if (drm_mode_is_420_only(info, adjusted_mode)) {
->> +		ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
->> +						     respect_downstream_limits,
->> +						     INTEL_OUTPUT_FORMAT_YCBCR420);
->> +
->> +		if (ret) {
->> +			drm_dbg_kms(display->drm,
->> +				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
->> +
->> +			ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
->> +							     respect_downstream_limits,
->> +							     INTEL_OUTPUT_FORMAT_RGB);
->> +		}
->> +	} else {
->> +		ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
->> +						     respect_downstream_limits,
->> +						     INTEL_OUTPUT_FORMAT_RGB);
->> +
->> +		if (ret && drm_mode_is_420_also(info, adjusted_mode))
->> +			ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
->> +							     respect_downstream_limits,
->> +							     INTEL_OUTPUT_FORMAT_YCBCR420);
->>   	}
->>   
->>   	return ret;
->> @@ -3539,9 +3579,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
->>   	 * Try to respect downstream TMDS clock limits first, if
->>   	 * that fails assume the user might know something we don't.
->>   	 */
->> -	ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, true);
->> +	ret = intel_dp_compute_formats(encoder, pipe_config, conn_state, true);
->>   	if (ret)
->> -		ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, false);
->> +		ret = intel_dp_compute_formats(encoder, pipe_config, conn_state, false);
->>   	if (ret)
->>   		return ret;
->>   
->>
->
->
->
+> +		if (status != MODE_OK && drm_mode_is_420_also(info, mode))
+> +			status = intel_dp_mode_valid_format(connector, mode, target_clock,
+> +							    INTEL_OUTPUT_FORMAT_YCBCR420);
+> +	}
+> +
+> +	return status;
+>   }
+>   
+>   bool intel_dp_source_supports_tps3(struct intel_display *display)
