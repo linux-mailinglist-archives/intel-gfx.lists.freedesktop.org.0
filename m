@@ -2,167 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MPb3MfxD02knggcAu9opvQ
+	id 8K7/FU9E02knggcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 07:26:20 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 07:27:43 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3761D3A194A
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 07:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8BBC3A1963
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Apr 2026 07:27:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 05BEA10E20A;
-	Mon,  6 Apr 2026 05:26:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1BBB110E20C;
+	Mon,  6 Apr 2026 05:27:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Zmv95utb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cYpZXKbN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 914EC10E1FD;
- Mon,  6 Apr 2026 05:26:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7D4FD10E0A9;
+ Mon,  6 Apr 2026 05:27:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775453177; x=1806989177;
+ t=1775453260; x=1806989260;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=UzSY559scqdngiUUs1HTNepaD/CB6Xd/V0LB4gP+LWE=;
- b=Zmv95utbf2YMPFZNhEM87XgpgUNssrW5u3oLDlqo3oiqE/UhJT/bQZb1
- YLyoLz1lcz40kjK7rFA4HW+KRGIGCSJNj5JYjBdtrin52HRub25yN0Lm5
- o7h1FVBMYXavLMbHwuot2RDTdPbg97agdRgoefRlGRxp2zKNCA3Kq3qBX
- ZkG8fIypMLMftcNGekZ90tnmM2sjfK9GWPeG/FrH2caF1165BzBLSEpGe
- LgbT9G6EL+pdsgUEUppgk1oB7OdwYxR/Y5gaXlwxm5I704nGi+5MoanqK
- P9t28gnRAgjJ9anatTZE5ejLJ66fdUZqsdhzazYItQRPQeF0zcyVJDMI9 g==;
-X-CSE-ConnectionGUID: PRglbsVUSOupmcNYyKKWdw==
-X-CSE-MsgGUID: N6Peo4nySISLwwkakIiRow==
-X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="99029277"
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="99029277"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2026 22:26:14 -0700
-X-CSE-ConnectionGUID: ktLSTwWDQ7iYJ/ybqopSEQ==
-X-CSE-MsgGUID: Qfm01oU5TjKZ2MuVNNi3MA==
+ bh=ukxIoI8SDsDNTgOBX0jgJtxYsPVGr2XkEKFHBiw39TA=;
+ b=cYpZXKbNQ8lzRm7wXlBjAGd4VP1Y+ZKSUTIDzSHqIXMwBHRQtmRpxShS
+ 9Gn3D/O8gvBmcNcOLmt7swjGllqmGisAUtqVT8Kt781IWBALf7rtfl2UR
+ WEBsprpnUVVeiFQt0/M/UEB9PApLq67yTW1FndAhjV3MH7OB+L0NcP/0m
+ fXYMsRC+qPaqVvWQwXnq4uX0v8hDcrBsu4ILnY+LZRMobgM6ZHUInlqjy
+ xPgiAlf+fqBhgIYbIY7D8sL99uHllcAVABVcWApPzGq9iSZuCYIBP9a1R
+ EV32HgIEQFLCmXtZnJvyMfxaQD9ZZ2dwICq+tHzQdNfPbkrFL/Tbry8fz Q==;
+X-CSE-ConnectionGUID: njMQmhb7Qp2w9YtpTrkLsw==
+X-CSE-MsgGUID: JW6hVmEKSZGmJguvuTcRlw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11750"; a="93793320"
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="93793320"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2026 22:27:39 -0700
+X-CSE-ConnectionGUID: vtSbSiqoTHe3r77SRokqLg==
+X-CSE-MsgGUID: MhfPvM5wTpuQXwFFYukn7A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="221202143"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Apr 2026 22:26:14 -0700
+X-IronPort-AV: E=Sophos;i="6.23,163,1770624000"; d="scan'208";a="224543203"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Apr 2026 22:27:38 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Sun, 5 Apr 2026 22:27:38 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Sun, 5 Apr 2026 22:26:13 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Sun, 5 Apr 2026 22:27:38 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.38) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Sun, 5 Apr 2026 22:26:13 -0700
-Received: from CH1PR05CU001.outbound.protection.outlook.com (52.101.193.40) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Sun, 5 Apr 2026 22:26:13 -0700
+ 15.2.2562.37; Sun, 5 Apr 2026 22:27:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=mwL4oy/W7yd77+NnscsSxpFJd1gwzXTl9wGgHbZ3PYxw8yAPG5o/llyiFGuqCFUgk3HW613MgEBKAMudvHUj/qXohYT3Gatf802O8O10fuYofoSnUV2c+7Q7Tty45xF8sAcsTcKbOgtSrnW8hfCjEOR/cBfmsVyAhabuJUdGsyQHls2whPSoHmjocUnCdH93JipcYfh5nkb7GGQjqZCyDO1UJb+hRwFE8YXm2pR2AewjwFXMy7HZmxUwzN9kR/1zE88zChv18tifzx7n3v4Zbf7vMSCry3xrbdXRTZPBVrV95mcKDiRkuqfoCZWzxQXuMrXpgD1PsMRfl5HLJtvBTQ==
+ b=VwZgqawJ2XAbdj1SCdXlRq6KKquIW1tcyIM02MKLlH9+cPw9u5SGI7gYNLxiGPIKQmj/aN0d7s7TsHZamFBUJFj/PvlKiKxdHS17XF36MEp+LKOOpanZUm8/pMYAqpGjnxlFvcHCmreo7qQr2bNbtiWarTcBL39dwCT4ZsR462mtlebuJj6gWTLbMemakEV3P5CQUij97cbON/WtO/mD39Ea7v1qb0doRlhQKVT+RPhMXs6wZWSX2qW3kOC7dE5QJPbgDT5LLnwt5ZccxqjmppqGSp84eGNkiDRSwGsyffhEch5+yr9Ib6MUFCvCtkUwSio3eOF0k1PEcFZYBJefuQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=X1GuL6/gCi2/YAKIKvKmOid6pumZzGLWhVNOzbE5bek=;
- b=QmKWsaxbHIR8v+lk0xBOKfR4h8LcV1Qimmtq7/syutFdoKRpuPDh8J2NxX2pkCAqt1xPVsLmzUcMyviSN4vzpuzG9c6CBDDYFkdTG5LwDlYukUtaWobb0CRxdjcDv//A54jvCEmFx4ph4S1EvAJnhnm1MSs5zmjcfix+azLx6iZ00icF/W1Erz5o8t94ydcufAwmf39OgNA9FSLhOiFY+0ACgAqoURjHYc2wd4sO9X/9g0DhpFnXLjrUGIUf9/SG+HPY5iRqmISHYrqKPmlFMRJP/tS+eGUOzansn9CLKY6Pti/XOJhfQqxlzGgmbTpXBeRalC0vQEqy/kRLrxZkPA==
+ bh=Axbxs10IkD5yIfYDZORXlmFQYebupdljHrvh00lqJ4k=;
+ b=PZ1FXqpC1TUvTMCsGjX0+/tBjXRDRHTMyURKqqxyQsOSM9IQtNF9iirALQDXJoilj3AZbtHyeeqBWYRnvDcyWqvncM3gOqcitj+f/wh2/M83nGMtSVmKzqUL81y76hd9XZryvQJ/Mh6h3Pu1owamrxtWQSn42s4tAF6q+ojwbzmGfG1vjgI+RXgpvhoppj/uaCpUCDarTR0g5mg2FJixAbt6MdsjkGoA3xAcNYtpvkJRiN2Y/7lhtnpbDu5Zh+1/am3dYfhVayQ1csO82o1Hs/yS8rQ7ENVnK8ZgKHDnhz74XMCK2KG+6y0lqzp7HlCi0Yyz75bIlqqL8BV/qTSBvw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by LV4PR11MB9491.namprd11.prod.outlook.com (2603:10b6:408:2de::14) with
+ by DM4PR11MB6117.namprd11.prod.outlook.com (2603:10b6:8:b3::19) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.19; Mon, 6 Apr
- 2026 05:26:11 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Mon, 6 Apr
+ 2026 05:27:29 +0000
 Received: from DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
  ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9769.016; Mon, 6 Apr 2026
- 05:26:11 +0000
-Message-ID: <61997692-afe2-4d6d-88f8-ce251e51beaf@intel.com>
-Date: Mon, 6 Apr 2026 10:56:04 +0530
+ 05:27:29 +0000
+Message-ID: <c5d8d614-5c7c-4400-95af-8e69eebdff59@intel.com>
+Date: Mon, 6 Apr 2026 10:57:22 +0530
 User-Agent: Mozilla Thunderbird
 Subject: Re: [PATCH 2/9] drm/i915/hdmi: Restructure the sink/output format
  selection
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
- <intel-gfx@lists.freedesktop.org>, Ville Syrjala
- <ville.syrjala@linux.intel.com>
-CC: <intel-xe@lists.freedesktop.org>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: <intel-xe@lists.freedesktop.org>, Nicolas Frattaroli
+ <nicolas.frattaroli@collabora.com>
 References: <20260330235339.29479-1-ville.syrjala@linux.intel.com>
  <20260330235339.29479-3-ville.syrjala@linux.intel.com>
- <2868694.iZASKD2KPV@workhorse>
 Content-Language: en-US
 From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <2868694.iZASKD2KPV@workhorse>
+In-Reply-To: <20260330235339.29479-3-ville.syrjala@linux.intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5P287CA0218.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1b4::17) To DM4PR11MB5341.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5P287CA0149.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d7::19) To DM4PR11MB5341.namprd11.prod.outlook.com
  (2603:10b6:5:390::22)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|LV4PR11MB9491:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d57ecdb-bc61-40c7-a9af-08de939d0390
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB6117:EE_
+X-MS-Office365-Filtering-Correlation-Id: 5055361e-f0b8-4221-6c7d-08de939d31db
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: OU+7a8/ZO+O9IzCnEMKXhtZ+kTZTf0k/titXLkyXppLiwNvcc0INg2bvfftkuVm6yf7/zXmj4b3v+Fi4CS2ikpXj1nFe7FaNIQPMLsxinJiv1yjQs7KlJ5dcdKrMYJ9cvGnOHGuVnztCQgy1dMz8hICwFQ0IvhxVs5dGSacKJvO9GwR5UP5JxyDD2r6xQF+pMlsPa6VHhQZDSyUcuScMoM+0sZ62zqYyEiRFEWpVr7ljcgh+gl1vzQx3j4qDCPmCuxbD9Olbe67xPu/yB3cpjgHI0U0a/DSAxb7Emx7d2L7txNuba5ZH4Bik84nmD4k6ldzffoYCnKOixIzlQZH4KoGoNWacEM7mYk/ReZwKT6SEwFdJ+Wjp6U6qH6zHBsiuNGBz7o1fMMswHS9ah7LSLcYM8Ay/ZTt9oFmY3nY8FAGVlQK0EUW9wSWcN/CelmVlmtpxo+Mkao/pZAGBEinXHeymnJzbZ4rkNHORQCIwHxDTBKVp/24AGQlu5Sa2qks64S33DfGSbZXlHFd8eIDs6jjuHqCU6HtxwRTBs4ENkJW5oi3pYkhGrrPCyssChGE3jpIv7IxPIVTxSIFfmWviM8K78pdNTjcZZ32b1iPHOIFzETf/tLrboMuaAxw0vk5oJprUmUfhHYCTha54BdyOVcPZeCTAjvXLgrUF4Gmnn4l/4HEKRSfSY+YETj1nqXMQsl71k4H88Dcus+63BLV9FYXg3g9QjxwbPaGGniehLqg=
+ ARA:13230040|376014|1800799024|366016|18002099003|56012099003|22082099003; 
+X-Microsoft-Antispam-Message-Info: 9ON6LKAgap8u1v8UVzbTvyqiptN+qzCL/N3DqSMzhQ8WzOheCst/pw+w2vWRRCjMiD7Qow3bGh53BUFGf4jrnzzb1w+eWdY0WGhEvxVY1bFcuKqYg0Uc24GLn8d3odIxuck+ZmJFu01zf6r1GSgewwEv+SfWsCZca7Wh9x0qawddknFJ6egKY5U4zCBccc/Ta75wZg1IpQEAvou4i8dWeJboYIxsb7U8A+Xu7De5pSvvmLc5RLcupZZA2kIFzDdPyBtEU1VNqJAmc1270i3xGMa2G08BQRoTWoSOt6oO48yKivPYNhyxFw0CP3ku+/drCw/ftUR2tK46FxWgnrtStY2kuCn0+zAGtFnLM/IJ7FKaKMQEsDQnGCVsfyR5p6wwRsvwniZbrmZcnr9fO478eADUD8wfcvKCysUh5lYT1LSBfFzs0fxgSVTjvgWAmTTDqo8LrjXk9qdqsjiZHVjN7rVQG66pn7B0o+gmBw6HDJ2P9QZx1fdQrVjuSi4l09y9E+0ySP7N4OuC8emB/lrFuLC2ORrx1c5SPKZz+JumWBYKZWqezklouy6gfAZnfIUcHGDxT3VKVlNAP2W2eer/sZXdPYvPmJCdYlJvI7Gj9Pca5EzWEnU0ewS5+I20ihN7QrtMSka6gOYcOhr5zdZHNoFkXxnimDT3eCo6toVz9nqHjtKWGK0yYlAtg5QD1tOF/cU5IKkEsOZOUDtANVezr8x6qdxjnV6+bkvb1BOeojU=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
+ SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZVFqQm5vaEdKSHNNQU1lb01rWGxyUU5iY1FLbkpHRlFMOCtlMGpiMTE2dkt4?=
- =?utf-8?B?enU5bVZMVnlJOXE0aTJVZWtTWUI3WWIxeXB6ZFNaNEZMaW12NG9lalpDWE5p?=
- =?utf-8?B?cjVvYTJZaS8yd3hjRXM3RWRkc3k4UGFCRnVZdXBrQXRsNFljVVVNSlJTMENz?=
- =?utf-8?B?WUNzT1JtanRiWm9WcVZuUXpLc3VJKy91SUdSb29wZ1JxNFFLYnhYY00xc3dR?=
- =?utf-8?B?RElQNWJxT0Myc2lUZEx0aEJVRFNUT25pNDdJK3dBQzBoaVlvUE1WeXdlUExx?=
- =?utf-8?B?cDZKU0JzNmYrQjBsS2t0MjBRZ0J5RjFMVHk2LzVCT3N6enRvYm9DNTVFdjN6?=
- =?utf-8?B?bWVtNzUybHh0MkxjUUs3WDVHb3FMekdhaGhaYzlLUURKalFidmYrMVc1UjZQ?=
- =?utf-8?B?aVNXSG5ZNHc0aWNpQXEvcGhCSHJ6R0tab1hCeHY2QVBnREZDZlJZRnlwSTN5?=
- =?utf-8?B?NTF5ZVhVQkp5NkE5SSswYW94eWdoWXQvTnZ4ZUZNbVdqWm45T1RwMjlRQk54?=
- =?utf-8?B?RTJmVTFqSUdXNUFQT0pHNzlCWVpmQi96a0c1WUpZa0xFczNuUVhaQm5LKzFj?=
- =?utf-8?B?UERUM0lVdERSUUl3NDB3eE05c3FhdmpvZWRIRmdCZWpWSDVhaHVydklPZGpq?=
- =?utf-8?B?NEpaZzhVR3BxUUlLYVFCMi9Nc0lkc1Z5cVkyNWhxNVhEWTJJVG5FNUN2aDA2?=
- =?utf-8?B?MTFxbVBNZnJmMnpKaEorMDZEUVZ4QXNGeExNSnJKNTNMd0VaS3hPNUh1a0hj?=
- =?utf-8?B?Z1lXU2t0ckpuZjQrWHRiYlBrdlZ3WWo2WGxyUU0yUHoveUR0V2doRkpKMlJT?=
- =?utf-8?B?NVBYMFJ0NElLQWw5Y3FUbXh6YVh2bHVZOXlIS2ZjS3JxYVNXcFJRcnhUN0Ez?=
- =?utf-8?B?NGN2SGVJbG12cEladzc4ODVBRCtMTTFBT3lZdUg3RTh0Ti9GVlFWczZhdldK?=
- =?utf-8?B?Tisrdk1zMEZMZURpM0FpY1F6YVFidW56VzFzc0UrT2tZZnRiaitITTNOQk96?=
- =?utf-8?B?MlQrVFFkbC9PbVNaRXVEVDNpaVU3dGI3akg0Zmt6YUNRYTBjeHd6MmlaOEh2?=
- =?utf-8?B?cHhPNVk5WHNHNVhWT2V3cWFaVys0NEprbUt5Z1d6Z29DNG1paXBqZmdHMitJ?=
- =?utf-8?B?RnpaNlpHalQ3OTlmZWdiMXdKMzI1bTVPeFZ6RC84cXBaem5uUWFNNU8yNmVm?=
- =?utf-8?B?bmp3UHU3OG0xZGJUSmN2M2JhR2p0Slc1WGVaL2x6R1kzbitVYlJyd0diZExi?=
- =?utf-8?B?VDhRWC91a2JkSSt5WFhjT0tudmVzV0tTRmpOR2J4TEJsOFMxNDdSc2R3VDEy?=
- =?utf-8?B?bERUMVdDOWVRd3FyQlg4dE1WZ2ZORlRGb3JMK1lDV3EzV1lzVjRGdUNJdmtH?=
- =?utf-8?B?bmdPT3g1NU9UdzhPMjI2a3cwYUJjaVBRY1V4MW9BMTl1Y2VDSmFtYjBGSzBh?=
- =?utf-8?B?bG1jWnpUOUUxaUpGNkQrUGZIQ0h5TmEzQWdlZW93dTdXMmo5WkZsVExoUWJt?=
- =?utf-8?B?ZDRpK1ozSURsbjViZjhOSk1WRzkzckNqQ0s5dmdXUVg3dEJpZU4wU3cyZ2dS?=
- =?utf-8?B?ektvVFJ4VW13Ry8xVWNINVZFb1BZMVFDSk5PbHE1VUk1Q0Q2aDlweWVxclIz?=
- =?utf-8?B?RmNUMkthck5iTjVjOWVNSkVxKzlVQSs5dkIwVGIwczl0N3dLaGh6Qlc4VnBi?=
- =?utf-8?B?Z042bUV5dkJ6bGJOa2VjY2tGVFlYS0hhTHhlRzE0YWRydkxuczd5Z0I0eWEy?=
- =?utf-8?B?bDBKYmtKUHZ2RVdrcWRNTHdHdGhPNlFBQ0xTMXRuZU1NZEhKVVRtcUpBTzJP?=
- =?utf-8?B?cWE0V0lpcGlIR05NSGkvMHZoSEthYnVCSk9HUlJjeWVYRmI3MGFFSnIvZGpV?=
- =?utf-8?B?ZWYrVGlvUWtZajJzSElhOXY0QytRN3hlNSt3V1M3ZzBaNW1QSjFJZ3g3S2tj?=
- =?utf-8?B?TGo4cEVQUVd5bFZrd1FlL21Nak9GMEtJNmExL1NURUdLaSsyK1l0V0tEY3ZU?=
- =?utf-8?B?VUc0aXJFeWZMUkxIM1RueWtHSEVMSFJZSGRDZHFGaEFqWGNBbWdjazYyUzh5?=
- =?utf-8?B?SnNJMHZpNXRJVHpKK1JCSURPZ0dTbDhsUml2VUowVHQ0OEJyZC9NeDBhZTlW?=
- =?utf-8?B?Rmt6dTAzdkRpajgyZmtlRFFvTUVCbmFlYmZuMVpNZFJqYkdWdEdneWd0R2RC?=
- =?utf-8?B?MnBtR2xRYzI3ZU1oV0JEWWZOOUtYU1NsbW5MYys2VFRMTDdTaE1rRHRKNTF3?=
- =?utf-8?B?Wm5TdGN6ZGxjTEh5a2ZOemloN09lRDNhU3hxWmtMTGErOEs4RmJLWTZrdWE5?=
- =?utf-8?B?eHBoY2Y0YUNZZFJKT3JoZVZMc0s4WmtSUHZvSWxhRlBZMDBMSFlXeWphSUdl?=
- =?utf-8?Q?Yt3qIgaX4itL6BJY=3D?=
-X-Exchange-RoutingPolicyChecked: t25h+7U9tIBBaIw09jdcP8cQrW6vvf7iiLCSKL1ijwP/MIVv6wcLRwGfqFbDIAHte2X+/vL/+kQEFDGI5hg9tocPBMS2sMFDlF6C2eoiHrpsg9UTUmCdUYNsKQntmWkz7pJh25HycO3cmpBY00WXesQKg8Ud3b0IBh/iIhoW/zfRPr1jjs4ECTBSTTenwLKqcq90984AK8AuLEKplW6RgGdHzPCwbtlw3VOSaTYUVlAAIVN968+qQE5A8RGVk0ARVRtNCblLEj3ipCLORfuNnYlO2Wek4X9E6l+NuwHMYZA/Apt/w5kqwPV3poDG7S31YhGt4kNx5tIIfwHQbWf/XA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d57ecdb-bc61-40c7-a9af-08de939d0390
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RHgvYVBpZWZJREE5enM2Nk92aFFnUFVjcFFDYWNwaHBiVmsrRXJPcXdGcTE4?=
+ =?utf-8?B?Zi9sbys5OGcwclhUeS8wU1J2VUIrVG11UUR5NlNYcHVWbHd2RzRHSzJIRXNi?=
+ =?utf-8?B?UjZtK3Yvc0JudVZ0QUgyK0pGNUFTNFBXWG1lSEQwelI5RVl0SWhxRDZhQkVw?=
+ =?utf-8?B?Njh0NnFhUnA1WTRqcGVFYUN6VXFXZ3FJRDgzNkxWNFNHRURxenJKcXM4bnU2?=
+ =?utf-8?B?WW1LZlY5aEpLS1QrS0VGN0VPTGgzbTZwZ0UxU2xodjhKUDFtdDVGMUdjRFVM?=
+ =?utf-8?B?MVdjaFNVVDVFemUwSThKYy92UHQ4TUZESDNKQ0RzNmJRMXdlOHh0cGdrcWJ4?=
+ =?utf-8?B?czAxSktCRktyVnZtSEV5eDRPQ1FDMFprOER2bDk2S1Nsa2dXWGdwK1MxaG1u?=
+ =?utf-8?B?ZFVxdGpGcW1LNlp4T2pUSWxRVFVWWmwwRlpDQzdkdTJabzFVSjBJQU5NQVdW?=
+ =?utf-8?B?bmxHbEZ5YTZJbVlYamNpS0p3WjVRVEJsZmlRRFdTRENYR04rNjZKc0tGZGNl?=
+ =?utf-8?B?d0tpTlpxNGNWbDVwSlorTThVTklzWjNCa2dWN0tRdzEwVmdlZ3RjWVMxUEVY?=
+ =?utf-8?B?MmxsOE1WRURzL2Q2dURuKzF1T2R3V3lBanQ4RGdsdFRpS2lxL0x6THI3Ym5H?=
+ =?utf-8?B?T3NGejF0SlpSbDEzeDB6MnJBM2ZEYWhCWTVCd3dNTlBtOVZ1Tkd2cks2RkNB?=
+ =?utf-8?B?d2tJVW9vRU5iSUk1Sjh6YldmZmFkazl4K2M5RDRJWHFwVk5DZkVxRSttdm41?=
+ =?utf-8?B?ZkZEQ1p5bGdFaDRtK3hhb29tdTROaVIydUs2QlhLZ0RTRnBTSllXdWNtNCt1?=
+ =?utf-8?B?aTZyZ0c1YyttQUxTeVVVa3hGbGZtN1Q4ZlV4UFZNUnh0UFJOc1FpeTZPTEdn?=
+ =?utf-8?B?KysyblZiLzU2Z0NCTUxFRk1LaGcrT21LRFI5cVU3WFRqTVVrSUxBZDl6YjdF?=
+ =?utf-8?B?bzZsMHFmT2VUdmpwRTFTaXJMV3BiOXZDN2NTVUVEY015L0c3dEhYeTQxUTNI?=
+ =?utf-8?B?ZnBlcDNKOUUxOTBiZTNzUSttRXVVeGxsSzg2K2gyc1M1blhkREJpTTNzTDZq?=
+ =?utf-8?B?a3NvWVE2eW15MENpcXpBaDNMdTJ3QkNRVnlSVU14R0ZYQmo5aWZiTnpTRldl?=
+ =?utf-8?B?b1J4ZGNMQWJ4bFpKK1FsVjQwTWZYa2U3TjEwbWNFR0s1eGxON0l0Y3kzbFNJ?=
+ =?utf-8?B?aEgzTEtCai9yYW5uVllPd3VsdjlJS0ZTTytMUDh0VCtUdXlwS296TUNGVFhH?=
+ =?utf-8?B?dWJkejZiTzJKUGxlZjhtRGNJMzRBa1JDZVdieTF4N2dXdEYyRUphM0txV3dw?=
+ =?utf-8?B?S3E0bktZQ0hzZ0Vnd2NCN1VIaHdaNzU5blpSNVFEQ3dXRVA3N1pFazQrU0U0?=
+ =?utf-8?B?SHkrYTNtUDlPUVlqT1U2SXc2K1FQQWhoUjFvWHNvcDd6bkoyRGptakVmc2xq?=
+ =?utf-8?B?V0c4UjB3ZTM2aS9pRTV1Zi81Q1U5YlhTdUQ1NEYyWDd6ZTZwQzJWRmkvcnYz?=
+ =?utf-8?B?TXVXQzJSRFJXVWZOUm1kSGF1LzZiR1E4NG55U3kwcnQvaEhxM2tSWnFGSmwy?=
+ =?utf-8?B?QitjMTNocE1WWENQZWhmN2o4S1gxcUtQb2k3NjhabGRkZHR2MWg1Lzd4Ukxh?=
+ =?utf-8?B?dWJ3dk1JNWhVK2loRkppS3lQZGM4Zzlndm51WVJzdXF2NHhTVXk2ZmRnWkN0?=
+ =?utf-8?B?T2hVc0YwQUdaQW1oU3Ayei9KUDR2N0srcFd5SkdPN1A5QTloUUF2bzArcUVI?=
+ =?utf-8?B?cUVJVnRsbVhiZDRHVDZ2QXpFMEd6SFQxdlVlblBkQ0UxemI1Z1VPVEtseURI?=
+ =?utf-8?B?dzh5MWIrZ1BWVG1SaUZWWGdYVWhjMWZuRnIvMDZNMi9jUGVYU01SRFpRZWIr?=
+ =?utf-8?B?bFh0MklzNjhCeHY2Y2JDSyszK01XV2MzN00xeFQ3akgzUE1xR2p4cTZmNEY0?=
+ =?utf-8?B?eFBDRjJLeTM5R0JVUk5QM1F5eG5pSmhHWVBqR2EzencxL3Z4U2NKdWkzYzZP?=
+ =?utf-8?B?UXFMcVZsT0h2N3JpK0xjajdYRkZZQU4xY3JtVXpCRTdwMzJPRXR0UnFuQ1Bk?=
+ =?utf-8?B?YlRpbS9vd3IzYzFSUGZQS2s1SjNFUHpUU3ZpZjVyR0ZYRnZ6c21vOWNWMUdl?=
+ =?utf-8?B?YmNXUnlzanNRajMwUDdJSFlhbnlBZ0M0Mkl3N1pOTDV0ME5LTlh0bnhNb3ds?=
+ =?utf-8?B?K3Vjc0ozV0ZteWx3ZnI3eG52TTJGbzdROGZkMHRNaWZjOE1oZTNZZk5QNzZZ?=
+ =?utf-8?B?eU1BVXQyWHphTW1vZmd5aGtTMGhzdjEreWhYODQ1ZG5RK2lkMkxRMHFpQ1lO?=
+ =?utf-8?B?NjdUR0R1RDZnOGxxaEFUbEgzcWpyYm1tSDJzZ1FKUzlUN0VaRzFZZnIrUElh?=
+ =?utf-8?Q?BIYICJjemYlFolIg=3D?=
+X-Exchange-RoutingPolicyChecked: VczpwVSGp8K7lq01U9mZnfbFXwta8nBwYTbDzQyTgrvOd0nvU4b9Mq0fGnH5uxCULCUoZ74x07s3MOmkCoqePXsXcuWIkGCS6SyEefVPRdkN9/ePLZDTXXEbTxbvY61riTsojAM3rLtWIgfBXLd1rDb2rIc9OTPbyGcJBrWHcxV3M8bo+r6puuUWtBduBXLJuFvGn0vZeoKz659Oke6NJWOICww4bwc+pBfg/xvmMfAWeePnjaIBB/Pf7lNEI8fc5iGtG2EeL/RAProgiTOVw2CfTYslp0KSYQSBx28QJcvRmiObyPGe2EJ51ZbMJ4n6bVxPJMmV++syhroyktAhOQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5055361e-f0b8-4221-6c7d-08de939d31db
 X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 05:26:11.5344 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Apr 2026 05:27:29.1985 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 03OXYBpb/6+1HgXFC1Sk2+It5Y71YW91QvpOU+htM+/mTYQ4e50N9ck+b09lJWdELBi5zW6/hLJ5zuRGfIpHRYAvABgAeNcWerhQdTiMAUM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV4PR11MB9491
+X-MS-Exchange-CrossTenant-UserPrincipalName: nR3Y+ZZXpUZuwPpGuC+ugBqAg/+aVeS/2oc/hRx27gslY15ZL751HFFOWcrhA8+79uf/zAygWywRm2elEjdglf82Ujnyf5iDb5uKGIqOClE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6117
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -190,7 +189,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,intel.com:dkim,intel.com:email,intel.com:mid];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
@@ -202,250 +201,194 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 3761D3A194A
+X-Rspamd-Queue-Id: B8BBC3A1963
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On 3/31/2026 5:42 PM, Nicolas Frattaroli wrote:
-> On Tuesday, 31 March 2026 01:53:32 Central European Summer Time Ville Syrjala wrote:
->> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>
->> intel_hdmi_compute_output_format() is a bit of a mess. Try to
->> restructure it into a more readable form.
->>
->> Right now we basically have two main code paths:
->> - YCbCr 4:2:0 only modes
->> - everything else including YCbCr 4:2:0 also modes
->>
->> Those two basically do the same two steps (try 4:2:0 and try 4:4:4)
->> but in opposite orders. Let's write that out in a more explicit
->> if-else form. And since I'm running out of function names I'll
->> rename the function with that high level logic into
->> intel_hdmi_compute_formats() and it will call (the new) with
->> intel_hdmi_compute_output_format() with an explicit sink_format
->> as needed.
->>
->> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
->> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_hdmi.c | 112 ++++++++++++++--------
->>   1 file changed, 70 insertions(+), 42 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> index 072b0554cc24..16873fc7bcb9 100644
->> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
->> @@ -2021,6 +2021,30 @@ intel_hdmi_mode_clock_valid(struct drm_connector *_connector, int clock,
->>   	return status;
->>   }
->>   
->> +static enum drm_mode_status
->> +intel_hdmi_sink_format_valid(struct intel_connector *connector,
->> +			     const struct drm_display_mode *mode,
->> +			     bool has_hdmi_sink,
->> +			     enum intel_output_format sink_format)
->> +{
->> +	const struct drm_display_info *info = &connector->base.display_info;
->> +
->> +	switch (sink_format) {
->> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
->> +		if (!has_hdmi_sink ||
->> +		    !connector->base.ycbcr_420_allowed ||
->> +		    !drm_mode_is_420(info, mode))
->> +			return MODE_NO_420;
->> +
->> +		return MODE_OK;
->> +	case INTEL_OUTPUT_FORMAT_RGB:
->> +		return MODE_OK;
->> +	default:
->> +		MISSING_CASE(sink_format);
->> +		return MODE_BAD;
->> +	}
->> +}
-> I think this here is missing INTEL_OUTPUT_FORMAT_YCBCR444 as a case.
-> The following diff adding it for both intel_hdmi_sink_format_valid
-> and intel_hdmi_sink_bpc_possible that I quickly whipped up may be the
-> way to go, but I'm unsure about the interaction between the two:
+On 3/31/2026 5:23 AM, Ville Syrjala wrote:
+> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>
+> intel_hdmi_compute_output_format() is a bit of a mess. Try to
+> restructure it into a more readable form.
+>
+> Right now we basically have two main code paths:
+> - YCbCr 4:2:0 only modes
+> - everything else including YCbCr 4:2:0 also modes
+>
+> Those two basically do the same two steps (try 4:2:0 and try 4:4:4)
+> but in opposite orders. Let's write that out in a more explicit
+> if-else form. And since I'm running out of function names I'll
+> rename the function with that high level logic into
+> intel_hdmi_compute_formats() and it will call (the new) with
 
-Hmm.. Trying YCBCR444 format, is not yet implemented.
+Nitpick : Extra 'with'.
 
-We need to have a well defined policy as to when to use YCBCR444, and 
-that should be in the newly created intel_hdmi_compute_formats(), 
-perhaps it should be after we have tried and failed with RGB444.
+Apart from above, the change looks good to me.
 
-(Although I am not sure in what case compute for RGB 444 will fail and 
-pass for YCBCR444).
-
-However,this should be a separate patch/series.
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 
 
 Regards,
 
 Ankit
 
-
+> intel_hdmi_compute_output_format() with an explicit sink_format
+> as needed.
 >
+> Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 > ---
+>   drivers/gpu/drm/i915/display/intel_hdmi.c | 112 ++++++++++++++--------
+>   1 file changed, 70 insertions(+), 42 deletions(-)
+>
 > diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> index 6bc1689cbf93..38b9924ebef0 100644
+> index 072b0554cc24..16873fc7bcb9 100644
 > --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-> @@ -1966,6 +1966,8 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *_connector,
+> @@ -2021,6 +2021,30 @@ intel_hdmi_mode_clock_valid(struct drm_connector *_connector, int clock,
+>   	return status;
+>   }
 >   
->                  if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
->                          return hdmi->y420_dc_modes & DRM_EDID_YCBCR420_DC_36;
-> +               else if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR444)
-> +                       return info->edid_hdmi_ycbcr444_dc_modes & DRM_EDID_HDMI_DC_36;
->                  else
->                          return info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_36;
->          case 10:
-> @@ -1974,6 +1976,8 @@ static bool intel_hdmi_sink_bpc_possible(struct drm_connector *_connector,
->   
->                  if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR420)
->                          return hdmi->y420_dc_modes & DRM_EDID_YCBCR420_DC_30;
-> +               else if (sink_format == INTEL_OUTPUT_FORMAT_YCBCR444)
-> +                       return info->edid_hdmi_ycbcr444_dc_modes & DRM_EDID_HDMI_DC_30;
->                  else
->                          return info->edid_hdmi_rgb444_dc_modes & DRM_EDID_HDMI_DC_30;
->          case 8:
-> @@ -2038,6 +2042,11 @@ intel_hdmi_sink_format_valid(struct intel_connector *connector,
->   
->                  return MODE_OK;
->          case INTEL_OUTPUT_FORMAT_RGB:
-> +               return MODE_OK;
-> +       case INTEL_OUTPUT_FORMAT_YCBCR444:
-> +               if (!(info->color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444)))
-> +                       return MODE_BAD;
+> +static enum drm_mode_status
+> +intel_hdmi_sink_format_valid(struct intel_connector *connector,
+> +			     const struct drm_display_mode *mode,
+> +			     bool has_hdmi_sink,
+> +			     enum intel_output_format sink_format)
+> +{
+> +	const struct drm_display_info *info = &connector->base.display_info;
 > +
->                  return MODE_OK;
->          default:
->                  MISSING_CASE(sink_format);
-> ---
->
-> It does work for me though at YCBCr 4:4:4 @ 12bpc, 10bpc and 8bpc, so both info
-> members this relies on are populated correctly.
->
->> +
->>   static enum drm_mode_status
->>   intel_hdmi_mode_valid(struct drm_connector *_connector,
->>   		      const struct drm_display_mode *mode)
->> @@ -2246,20 +2270,6 @@ static bool intel_hdmi_has_audio(struct intel_encoder *encoder,
->>   		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
->>   }
->>   
->> -static enum intel_output_format
->> -intel_hdmi_sink_format(const struct intel_crtc_state *crtc_state,
->> -		       struct intel_connector *connector,
->> -		       bool ycbcr_420_output)
->> -{
->> -	if (!crtc_state->has_hdmi_sink)
->> -		return INTEL_OUTPUT_FORMAT_RGB;
->> -
->> -	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
->> -		return INTEL_OUTPUT_FORMAT_YCBCR420;
->> -	else
->> -		return INTEL_OUTPUT_FORMAT_RGB;
->> -}
->> -
->>   static enum intel_output_format
->>   intel_hdmi_output_format(const struct intel_crtc_state *crtc_state)
->>   {
->> @@ -2268,37 +2278,55 @@ intel_hdmi_output_format(const struct intel_crtc_state *crtc_state)
->>   
->>   static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
->>   					    struct intel_crtc_state *crtc_state,
->> -					    const struct drm_connector_state *conn_state,
->> -					    bool respect_downstream_limits)
->> +					    struct intel_connector *connector,
->> +					    bool respect_downstream_limits,
->> +					    enum intel_output_format sink_format)
->>   {
->> -	struct intel_display *display = to_intel_display(encoder);
->> -	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->>   	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->> -	const struct drm_display_info *info = &connector->base.display_info;
->> -	bool ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
->> -	int ret;
->>   
->> -	crtc_state->sink_format =
->> -		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_only);
->> -
->> -	if (ycbcr_420_only && crtc_state->sink_format != INTEL_OUTPUT_FORMAT_YCBCR420) {
->> -		drm_dbg_kms(display->drm,
->> -			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
->> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
->> -	}
->> +	if (intel_hdmi_sink_format_valid(connector, adjusted_mode,
->> +					 crtc_state->has_hdmi_sink, sink_format) != MODE_OK)
->> +		return -EINVAL;
->>   
->> +	crtc_state->sink_format = sink_format;
->>   	crtc_state->output_format = intel_hdmi_output_format(crtc_state);
->> -	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
->> -	if (ret) {
->> -		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
->> -		    !crtc_state->has_hdmi_sink ||
->> -		    !connector->base.ycbcr_420_allowed ||
->> -		    !drm_mode_is_420_also(info, adjusted_mode))
->> -			return ret;
->> -
->> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
->> -		crtc_state->output_format = intel_hdmi_output_format(crtc_state);
->> -		ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
->> +
->> +	return intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
->> +}
->> +
->> +static int intel_hdmi_compute_formats(struct intel_encoder *encoder,
->> +				      struct intel_crtc_state *crtc_state,
->> +				      const struct drm_connector_state *conn_state,
->> +				      bool respect_downstream_limits)
->> +{
->> +	struct intel_display *display = to_intel_display(encoder);
->> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
->> +	const struct drm_display_info *info = &connector->base.display_info;
->> +	int ret;
->> +
->> +	if (drm_mode_is_420_only(info, adjusted_mode)) {
->> +		ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
->> +						       respect_downstream_limits,
->> +						       INTEL_OUTPUT_FORMAT_YCBCR420);
->> +
->> +		if (ret) {
->> +			drm_dbg_kms(display->drm,
->> +				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
->> +
->> +			ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
->> +							       respect_downstream_limits,
->> +							       INTEL_OUTPUT_FORMAT_RGB);
->> +		}
->> +	} else {
->> +		ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
->> +						       respect_downstream_limits,
->> +						       INTEL_OUTPUT_FORMAT_RGB);
->> +
->> +		if (ret && drm_mode_is_420_also(info, adjusted_mode))
->> +			ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
->> +							       respect_downstream_limits,
->> +							       INTEL_OUTPUT_FORMAT_YCBCR420);
->>   	}
->>   
->>   	return ret;
->> @@ -2375,9 +2403,9 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
->>   	 * Try to respect downstream TMDS clock limits first, if
->>   	 * that fails assume the user might know something we don't.
->>   	 */
->> -	ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state, true);
->> +	ret = intel_hdmi_compute_formats(encoder, pipe_config, conn_state, true);
->>   	if (ret)
->> -		ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state, false);
->> +		ret = intel_hdmi_compute_formats(encoder, pipe_config, conn_state, false);
->>   	if (ret) {
->>   		drm_dbg_kms(display->drm,
->>   			    "unsupported HDMI clock (%d kHz), rejecting mode\n",
->>
->
->
->
+> +	switch (sink_format) {
+> +	case INTEL_OUTPUT_FORMAT_YCBCR420:
+> +		if (!has_hdmi_sink ||
+> +		    !connector->base.ycbcr_420_allowed ||
+> +		    !drm_mode_is_420(info, mode))
+> +			return MODE_NO_420;
+> +
+> +		return MODE_OK;
+> +	case INTEL_OUTPUT_FORMAT_RGB:
+> +		return MODE_OK;
+> +	default:
+> +		MISSING_CASE(sink_format);
+> +		return MODE_BAD;
+> +	}
+> +}
+> +
+>   static enum drm_mode_status
+>   intel_hdmi_mode_valid(struct drm_connector *_connector,
+>   		      const struct drm_display_mode *mode)
+> @@ -2246,20 +2270,6 @@ static bool intel_hdmi_has_audio(struct intel_encoder *encoder,
+>   		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
+>   }
+>   
+> -static enum intel_output_format
+> -intel_hdmi_sink_format(const struct intel_crtc_state *crtc_state,
+> -		       struct intel_connector *connector,
+> -		       bool ycbcr_420_output)
+> -{
+> -	if (!crtc_state->has_hdmi_sink)
+> -		return INTEL_OUTPUT_FORMAT_RGB;
+> -
+> -	if (connector->base.ycbcr_420_allowed && ycbcr_420_output)
+> -		return INTEL_OUTPUT_FORMAT_YCBCR420;
+> -	else
+> -		return INTEL_OUTPUT_FORMAT_RGB;
+> -}
+> -
+>   static enum intel_output_format
+>   intel_hdmi_output_format(const struct intel_crtc_state *crtc_state)
+>   {
+> @@ -2268,37 +2278,55 @@ intel_hdmi_output_format(const struct intel_crtc_state *crtc_state)
+>   
+>   static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
+>   					    struct intel_crtc_state *crtc_state,
+> -					    const struct drm_connector_state *conn_state,
+> -					    bool respect_downstream_limits)
+> +					    struct intel_connector *connector,
+> +					    bool respect_downstream_limits,
+> +					    enum intel_output_format sink_format)
+>   {
+> -	struct intel_display *display = to_intel_display(encoder);
+> -	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+>   	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> -	const struct drm_display_info *info = &connector->base.display_info;
+> -	bool ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
+> -	int ret;
+>   
+> -	crtc_state->sink_format =
+> -		intel_hdmi_sink_format(crtc_state, connector, ycbcr_420_only);
+> -
+> -	if (ycbcr_420_only && crtc_state->sink_format != INTEL_OUTPUT_FORMAT_YCBCR420) {
+> -		drm_dbg_kms(display->drm,
+> -			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+> -	}
+> +	if (intel_hdmi_sink_format_valid(connector, adjusted_mode,
+> +					 crtc_state->has_hdmi_sink, sink_format) != MODE_OK)
+> +		return -EINVAL;
+>   
+> +	crtc_state->sink_format = sink_format;
+>   	crtc_state->output_format = intel_hdmi_output_format(crtc_state);
+> -	ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+> -	if (ret) {
+> -		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+> -		    !crtc_state->has_hdmi_sink ||
+> -		    !connector->base.ycbcr_420_allowed ||
+> -		    !drm_mode_is_420_also(info, adjusted_mode))
+> -			return ret;
+> -
+> -		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+> -		crtc_state->output_format = intel_hdmi_output_format(crtc_state);
+> -		ret = intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+> +
+> +	return intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
+> +}
+> +
+> +static int intel_hdmi_compute_formats(struct intel_encoder *encoder,
+> +				      struct intel_crtc_state *crtc_state,
+> +				      const struct drm_connector_state *conn_state,
+> +				      bool respect_downstream_limits)
+> +{
+> +	struct intel_display *display = to_intel_display(encoder);
+> +	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+> +	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+> +	const struct drm_display_info *info = &connector->base.display_info;
+> +	int ret;
+> +
+> +	if (drm_mode_is_420_only(info, adjusted_mode)) {
+> +		ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
+> +						       respect_downstream_limits,
+> +						       INTEL_OUTPUT_FORMAT_YCBCR420);
+> +
+> +		if (ret) {
+> +			drm_dbg_kms(display->drm,
+> +				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+> +
+> +			ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
+> +							       respect_downstream_limits,
+> +							       INTEL_OUTPUT_FORMAT_RGB);
+> +		}
+> +	} else {
+> +		ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
+> +						       respect_downstream_limits,
+> +						       INTEL_OUTPUT_FORMAT_RGB);
+> +
+> +		if (ret && drm_mode_is_420_also(info, adjusted_mode))
+> +			ret = intel_hdmi_compute_output_format(encoder, crtc_state, connector,
+> +							       respect_downstream_limits,
+> +							       INTEL_OUTPUT_FORMAT_YCBCR420);
+>   	}
+>   
+>   	return ret;
+> @@ -2375,9 +2403,9 @@ int intel_hdmi_compute_config(struct intel_encoder *encoder,
+>   	 * Try to respect downstream TMDS clock limits first, if
+>   	 * that fails assume the user might know something we don't.
+>   	 */
+> -	ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state, true);
+> +	ret = intel_hdmi_compute_formats(encoder, pipe_config, conn_state, true);
+>   	if (ret)
+> -		ret = intel_hdmi_compute_output_format(encoder, pipe_config, conn_state, false);
+> +		ret = intel_hdmi_compute_formats(encoder, pipe_config, conn_state, false);
+>   	if (ret) {
+>   		drm_dbg_kms(display->drm,
+>   			    "unsupported HDMI clock (%d kHz), rejecting mode\n",
