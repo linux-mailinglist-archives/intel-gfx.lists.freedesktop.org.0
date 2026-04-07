@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EG8bOAQo1WnB1gcAu9opvQ
+	id QKzLOAgo1WnB1gcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:32 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:36 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 873913B153D
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B6BBA3B154B
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 149CF10E47E;
-	Tue,  7 Apr 2026 15:51:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 17A8010E480;
+	Tue,  7 Apr 2026 15:51:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dAvQLwqS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="U88O1bD1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1728C10E47E;
- Tue,  7 Apr 2026 15:51:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6828110E480;
+ Tue,  7 Apr 2026 15:51:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775577090; x=1807113090;
+ t=1775577093; x=1807113093;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=luXBQH9+GVC7W5Ll2znZX9QlPoHdNVvEjfnLk8hBc3A=;
- b=dAvQLwqSk3zejA1lija3zGDHfpLrY1Uv60BHcFII/Lf/9CxX9Llzytqt
- D50BlDgTtNXnags1hFSwIY197oZzCN1fVTpVcTR1DphoweK71HEj7j/43
- f6HA1MDLZXY2WerXykWI9IMWUAqeMv0O8Vhrrj1jV4wRoxo7CKAhemURz
- H9F2YHRD/G7DsojKX4OpGq+xPwUOrkihSP9VIcDX8QRV1VzjRdNU8CORe
- +9PBJVa/nMnvLFsDpGqNYEx0Kqgqw3E3SHzZ9Q76C0KeSvK3CL97eksFj
- HM0ZSTSRlq7BB+FB9EmTRdZO4cMRpg43I81r7aHxCK5wlQp5AXu6efjlR Q==;
-X-CSE-ConnectionGUID: 21kHR49QQ7mr6xmoImQKkg==
-X-CSE-MsgGUID: j3BXsyITTRWwsPR2rZCcLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76614820"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76614820"
+ bh=frEvjBBZAHPSnrSXKeFbDeYbNCnm+340DRmPkouemao=;
+ b=U88O1bD1Usc/tE414BuBV3z+bYLG1KZyOjTbW/NajZaYkXolBgICsahy
+ Dg6FobzzVpdhX2vq+qin2lUxgSe9GkPTlYgCYsMqtHc/A331DKdkuqGi7
+ 20RmN8ZvYS6of9re40sC+7ABMy3OP+0QVwtE1/SIV4gELbRNR5sbsfJjw
+ sIFrAsJqStJTGSEP9c5EHjeAwLQeDqCm70w8OlKxm2NaUP0NENoCD6A+C
+ RuPyWYhD+rvlGsWzz/h5ifcUaig+jA+l4Q8hXrQU8klx+PbkLxT4lfYg7
+ mLpmVCQRUscZdVOyYR7LJxQQDtYKpXsonCJi49iDDEo4Hk6IzrOQaYibk A==;
+X-CSE-ConnectionGUID: qMsIT9QxS4iiTvitTkvM+g==
+X-CSE-MsgGUID: qTMXvbUkS02IMIE1bgEynQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76614823"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76614823"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:30 -0700
-X-CSE-ConnectionGUID: /6gd+soBRmyVxxOUiVbT0g==
-X-CSE-MsgGUID: ZvI6jQjkQyWrQDtEHwq+1A==
+ 07 Apr 2026 08:51:33 -0700
+X-CSE-ConnectionGUID: faw+V2cXTi2l+nQ2Orz30A==
+X-CSE-MsgGUID: V9v6G2qOS9O1JJr0mYfkgg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="229875998"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="229876010"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.211])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:28 -0700
+ 07 Apr 2026 08:51:32 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 09/12] drm/i915/fb: Use i915_gtt_view_is_*()
-Date: Tue,  7 Apr 2026 18:50:50 +0300
-Message-ID: <20260407155053.32156-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH 10/12] drm/i915/selftests: Eliminate duplicate vma size check
+Date: Tue,  7 Apr 2026 18:50:51 +0300
+Message-ID: <20260407155053.32156-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
 References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
@@ -100,61 +100,50 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 873913B153D
+X-Rspamd-Queue-Id: B6BBA3B154B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the naked GTT view type checks with the new
-i915_gtt_view_is_*() helpers. This isolates some of
-the code from GTT view implementation details.
+Both remapped and rotated views need the exact same size check.
+Currently that is being done separately for each type. Share
+the code by just checking for !NORMAL view. This test doesn't
+use I915_GTT_VIEW_PARTIAL so the inverse check is fine here.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/selftests/i915_vma.c | 10 +---------
+ 1 file changed, 1 insertion(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 52a619088e8e..ceed695d3ad4 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -1284,7 +1284,7 @@ bool intel_plane_uses_fence(const struct intel_plane_state *plane_state)
+diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
+index 7c4111e60f2e..258557388a2d 100644
+--- a/drivers/gpu/drm/i915/selftests/i915_vma.c
++++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
+@@ -634,7 +634,7 @@ static int igt_vma_rotate_remap(void *arg)
  
- 	return DISPLAY_VER(display) < 4 ||
- 		(plane->fbc && !plane_state->no_fbc_reason &&
--		 plane_state->view.gtt.type == I915_GTT_VIEW_NORMAL);
-+		 i915_gtt_view_is_normal(&plane_state->view.gtt));
- }
+ 					expected_pages = remapped_size(view.type, &plane_info[0], &plane_info[1]);
  
- static int intel_fb_pitch(const struct intel_framebuffer *fb, int color_plane, unsigned int rotation)
-@@ -1506,7 +1506,7 @@ static u32 calc_plane_remap_info(const struct intel_framebuffer *fb, int color_p
- 			       plane_view_height_tiles(fb, color_plane, dims, y));
- 	}
+-					if (view.type == I915_GTT_VIEW_ROTATED &&
++					if (view.type != I915_GTT_VIEW_NORMAL &&
+ 					    vma->size != expected_pages * PAGE_SIZE) {
+ 						pr_err("VMA is wrong size, expected %lu, found %llu\n",
+ 						       PAGE_SIZE * expected_pages, vma->size);
+@@ -642,14 +642,6 @@ static int igt_vma_rotate_remap(void *arg)
+ 						goto out_object;
+ 					}
  
--	if (view->gtt.type == I915_GTT_VIEW_ROTATED) {
-+	if (i915_gtt_view_is_rotated(&view->gtt)) {
- 		drm_WARN_ON(display->drm, remap_info->linear);
- 		check_array_bounds(display, view->gtt.rotated.plane, color_plane);
- 
-@@ -1531,7 +1531,7 @@ static u32 calc_plane_remap_info(const struct intel_framebuffer *fb, int color_p
- 		/* rotate the tile dimensions to match the GTT view */
- 		swap(tile_width, tile_height);
- 	} else {
--		drm_WARN_ON(display->drm, view->gtt.type != I915_GTT_VIEW_REMAPPED);
-+		drm_WARN_ON(display->drm, !i915_gtt_view_is_remapped(&view->gtt));
- 
- 		check_array_bounds(display, view->gtt.remapped.plane, color_plane);
- 
-@@ -1632,7 +1632,7 @@ static void intel_fb_view_init(struct intel_display *display,
- 	memset(view, 0, sizeof(*view));
- 	view->gtt.type = view_type;
- 
--	if (view_type == I915_GTT_VIEW_REMAPPED &&
-+	if (i915_gtt_view_is_remapped(&view->gtt) &&
- 	    (display->platform.alderlake_p || DISPLAY_VER(display) >= 14))
- 		view->gtt.remapped.plane_alignment = SZ_2M / PAGE_SIZE;
- }
+-					if (view.type == I915_GTT_VIEW_REMAPPED &&
+-					    vma->size > expected_pages * PAGE_SIZE) {
+-						pr_err("VMA is wrong size, expected %lu, found %llu\n",
+-						       PAGE_SIZE * expected_pages, vma->size);
+-						err = -EINVAL;
+-						goto out_object;
+-					}
+-
+ 					if (vma->pages->nents > expected_pages) {
+ 						pr_err("sg table is wrong sizeo, expected %u, found %u nents\n",
+ 						       expected_pages, vma->pages->nents);
 -- 
 2.52.0
 
