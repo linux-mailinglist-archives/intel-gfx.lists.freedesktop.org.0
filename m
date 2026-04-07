@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uNUSKMjW1GnuxwcAu9opvQ
+	id 8DwHA83W1GnuxwcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 12:04:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 12:05:01 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 377193AC7F2
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 12:04:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9F293AC7FA
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 12:05:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id ADFA310E3B0;
-	Tue,  7 Apr 2026 10:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DF7910E3B4;
+	Tue,  7 Apr 2026 10:04:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kZy8QmR8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHdPrDU1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A80D10E3AF;
- Tue,  7 Apr 2026 10:04:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DE2E510E3B3;
+ Tue,  7 Apr 2026 10:04:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775556294; x=1807092294;
+ t=1775556298; x=1807092298;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rwGavcf0Oc4ubIN6s+oZ5Ou98bYr3Kz2pD+W+YsPR38=;
- b=kZy8QmR8dInLkdsqvOYob91Lxu1lIq7dNGdAMdtc1/dlCCo8nPtw3iBQ
- ++okU8xPuktpFoKSi7o0baqJjosewjOw547vfjc2oDJN2KZHf5aOgnA0P
- kmeeRqAYDBcmDmoKSa9VP4h/wqDuXeihVE0KbgDiWr2xzXwVlBnVSRRrm
- DY1erUEjHa1FDirjjYoYJKp3cLtx4asx/FRuPv4nF4xwkmu2EFzHtVuC/
- mWzyqvARecHdHA/Qbn8/uz1LZ2pNwuFLIDcTleBsZ3lROvRm9yhSPs9wR
- nPEgcllM+tZKQi+fUfbPY6AD+6PHTDqW8katu92lyT17M/cVab3zluq63 w==;
-X-CSE-ConnectionGUID: yiPMvwd/QVSW7BNsiT7rOg==
-X-CSE-MsgGUID: G79gB3TCS/e9Qj53QHLdaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76410761"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76410761"
+ bh=divk9TjRw4BL+Pb10mYe5XOWgbZEfixiGhnVY5x/HXo=;
+ b=IHdPrDU1CH02zTaG3AZyFat7iE1tvpfQceZ8jVTXbCy6y3YLPVSwCKCg
+ RnAAT11WD83nw6gW+jlK4YndpK8/9VBQST8qj6QGwCvW6FnQ+vi9iOseO
+ yulWW2tx0AY4cX3CWzZtpeyVDMTNCbFvIJ4ycQclRrNRVqk+OmMMK75gU
+ b8HJERTOCTyuZ+Df1d5lsuHrnOJ9USvMhhFSClDOe1IqueLLIpNXHoBLp
+ UvfzrJ8JlcCIGaIOgGrOOSJL5kU9M1cJHbmKDdau0tC3Vo81RSO/746QE
+ G5dS/kPBz+55BEx+7uvb3eJLIL4Jw1pc5mkpk4SQQTGOnOBWqJJaedj7T A==;
+X-CSE-ConnectionGUID: 6DE/2dg/TEaEWt1CNe/TIA==
+X-CSE-MsgGUID: FIlFGrN/Q9OWXixx5e9CsQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="76410768"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76410768"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:04:53 -0700
-X-CSE-ConnectionGUID: Aq6YrPaaRGir7+cxissukg==
-X-CSE-MsgGUID: yw6uonzRTYizRwEgoqn0QA==
+ 07 Apr 2026 03:04:58 -0700
+X-CSE-ConnectionGUID: KB4tTDIYShGiBicWWVM44Q==
+X-CSE-MsgGUID: W+TdfX6yRLqZ2k+tqzVY0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221555409"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221555431"
 Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.244])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:04:51 -0700
+ 07 Apr 2026 03:04:56 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH 2/3] drm/i915/pin: s/dev_priv/i915/ and drop struct drm_device
- usage
-Date: Tue,  7 Apr 2026 13:04:36 +0300
-Message-ID: <3a4ac0a732a561a487e46838bde6327cff5ccb38.1775556190.git.jani.nikula@intel.com>
+Subject: [PATCH 3/3] drm/i915/pin: switch to i915 core runtime pm
+Date: Tue,  7 Apr 2026 13:04:37 +0300
+Message-ID: <c06366c1c6f9202be5d0b6ea649c20aba414e5bc.1775556190.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1775556190.git.jani.nikula@intel.com>
 References: <cover.1775556190.git.jani.nikula@intel.com>
@@ -103,104 +102,56 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 377193AC7F2
+X-Rspamd-Queue-Id: B9F293AC7FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Improve consistency within i915_fb_pin.c by replacing dev_priv naming
-with i915, and dropping struct drm_device usage.
+Remove a dependency on struct intel_display from i915 core code.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_fb_pin.c | 24 +++++++++++-------------
- 1 file changed, 11 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/i915_fb_pin.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-index 580acbb14ada..9ef10cb3e3aa 100644
+index 9ef10cb3e3aa..1018f4b7bc2c 100644
 --- a/drivers/gpu/drm/i915/i915_fb_pin.c
 +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -30,9 +30,8 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 		    unsigned long *out_flags,
- 		    struct intel_dpt *dpt)
- {
--	struct drm_device *dev = fb->dev;
--	struct intel_display *display = to_intel_display(dev);
--	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_display *display = to_intel_display(fb->dev);
-+	struct drm_i915_private *i915 = to_i915(fb->dev);
+@@ -10,7 +10,6 @@
+ #include <drm/drm_print.h>
+ 
+ #include "display/intel_display_core.h"
+-#include "display/intel_display_rpm.h"
+ #include "display/intel_display_types.h"
+ #include "display/intel_fb.h"
+ #include "display/intel_fb_pin.h"
+@@ -122,7 +121,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 	struct drm_i915_private *i915 = to_i915(fb->dev);
  	struct drm_gem_object *_obj = intel_fb_bo(fb);
  	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
- 	struct i915_address_space *vm = i915_dpt_to_vm(dpt);
-@@ -44,7 +43,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 	 * We are not syncing against the binding (and potential migrations)
- 	 * below, so this vm must never be async.
- 	 */
--	if (drm_WARN_ON(&dev_priv->drm, vm->bind_async_flags))
-+	if (drm_WARN_ON(&i915->drm, vm->bind_async_flags))
- 		return ERR_PTR(-EINVAL);
- 
- 	if (WARN_ON(!i915_gem_object_is_framebuffer(obj)))
-@@ -57,7 +56,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 		if (ret)
- 			continue;
- 
--		if (HAS_LMEM(dev_priv)) {
-+		if (HAS_LMEM(i915)) {
- 			unsigned int flags = obj->flags;
- 
- 			/*
-@@ -119,9 +118,8 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
- 		     bool uses_fence,
- 		     unsigned long *out_flags)
- {
--	struct drm_device *dev = fb->dev;
--	struct intel_display *display = to_intel_display(dev);
--	struct drm_i915_private *dev_priv = to_i915(dev);
-+	struct intel_display *display = to_intel_display(fb->dev);
-+	struct drm_i915_private *i915 = to_i915(fb->dev);
- 	struct drm_gem_object *_obj = intel_fb_bo(fb);
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
- 	struct ref_tracker *wakeref;
-@@ -130,10 +128,10 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+-	struct ref_tracker *wakeref;
++	intel_wakeref_t wakeref;
+ 	struct i915_gem_ww_ctx ww;
+ 	struct i915_vma *vma;
  	unsigned int pinctl;
- 	int ret;
+@@ -141,7 +140,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 	 * intel_runtime_pm_put(), so it is correct to wrap only the
+ 	 * pin/unpin/fence and not more.
+ 	 */
+-	wakeref = intel_display_rpm_get(display);
++	wakeref = intel_runtime_pm_get(&i915->runtime_pm);
  
--	if (drm_WARN_ON(dev, !i915_gem_object_is_framebuffer(obj)))
-+	if (drm_WARN_ON(&i915->drm, !i915_gem_object_is_framebuffer(obj)))
- 		return ERR_PTR(-EINVAL);
+ 	atomic_inc(&display->restore.pending_fb_pin);
  
--	if (drm_WARN_ON(dev, alignment && !is_power_of_2(alignment)))
-+	if (drm_WARN_ON(&i915->drm, alignment && !is_power_of_2(alignment)))
- 		return ERR_PTR(-EINVAL);
+@@ -220,7 +219,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		vma = ERR_PTR(ret);
  
- 	/*
-@@ -164,7 +162,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
- 	ret = i915_gem_object_lock(obj, &ww);
- 	if (!ret && phys_alignment)
- 		ret = i915_gem_object_attach_phys(obj, phys_alignment);
--	else if (!ret && HAS_LMEM(dev_priv))
-+	else if (!ret && HAS_LMEM(i915))
- 		ret = i915_gem_object_migrate(obj, &ww, INTEL_REGION_LMEM_0);
- 	if (!ret)
- 		ret = i915_gem_object_pin_pages(obj);
-@@ -265,7 +263,7 @@ intel_plane_fb_vtd_guard(const struct intel_plane_state *plane_state)
- int intel_plane_pin_fb(struct intel_plane_state *plane_state,
- 		       const struct intel_plane_state *old_plane_state)
- {
--	struct intel_display *display = to_intel_display(plane_state);
-+	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
- 	const struct intel_framebuffer *fb =
- 		to_intel_framebuffer(plane_state->hw.fb);
-@@ -309,7 +307,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
- 		 * The DPT object contains only one vma, and there is no VT-d
- 		 * guard, so the VMA's offset within the DPT is always 0.
- 		 */
--		drm_WARN_ON(display->drm, i915_dpt_offset(plane_state->dpt_vma));
-+		drm_WARN_ON(&i915->drm, i915_dpt_offset(plane_state->dpt_vma));
- 	}
+ 	atomic_dec(&display->restore.pending_fb_pin);
+-	intel_display_rpm_put(display, wakeref);
++	intel_runtime_pm_put(&i915->runtime_pm, wakeref);
+ 	return vma;
+ }
  
- 	/*
 -- 
 2.47.3
 
