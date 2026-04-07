@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGfGHgwo1WnB1gcAu9opvQ
+	id 6KvSAhAo1WnB1gcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E82983B1553
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83F533B155B
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32CC410E483;
-	Tue,  7 Apr 2026 15:51:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C37310E485;
+	Tue,  7 Apr 2026 15:51:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NtXpdVYZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bEDlYIb0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A39210E482;
- Tue,  7 Apr 2026 15:51:37 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9301B10E484;
+ Tue,  7 Apr 2026 15:51:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775577097; x=1807113097;
+ t=1775577101; x=1807113101;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yL/8VdqwmW5n7p5zGCVKnDkb1kueIh4Se/8uZDGyuT4=;
- b=NtXpdVYZBRoLQHNSBvNQfxK9OwK6WFt0ZDZYHi69F74GEY1uEvnysBoM
- RfIv17NW/9IkedyOG1WQUrdM728kwSzH5Iu75b6J86Pjh5ErBpwz7y8dZ
- rNuQey/UUbO7zPiVF8S3PgPAh4EnIQEQYbywsxN2UCet3cIeMoPjeB+7G
- AlWvbZgoc+i+Ydh6jSJXSpiW0rFK4RU1AaeHWm11/4ABpdXYLnJ7ELEoS
- u7SCabFIgY0OiwUNxogykyqVm7DIVdJ9JjWAEtdzgcPeHJM5Uc9jcLyqj
- IcgQr0ZcTKt8pPSapxWz+yGOxv0iD3cwNJuaW8SYgmguUKNV89jTI2Z4l w==;
-X-CSE-ConnectionGUID: U904RBESSauIO5a9zG0yCw==
-X-CSE-MsgGUID: LqD/W3ZwQTqKS3mDwTmu9Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76614826"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76614826"
+ bh=GMXUv+CGgnC3hwwibVcYtVU5jaz4QvRjnaIFdBIn1Wg=;
+ b=bEDlYIb0AcdwmHVNpAc4E1wNdnDNh+sd2Zh+l1Abh5iKBGfAZ0MI6bDS
+ SmqpRIYnOwS607fg6eiFHZBYv5NxH10AyRjf4A5yKxU4qeUo/WOYJDK2t
+ 9QE73deiXAJ41UbP6hRwLmyf6xAeV0f3xJKqIp9A+13ztZST6wppNVAz5
+ j8Sj3/2rq94IVG+oHuXfjepTeEACK0uss3v+1EOHFlH8u+numE4JfS+zs
+ J7aUqnqlbz32Fe5FIqdRBRES8Eq1l60EG1N54c9qfiM3S8l3g141swfUG
+ TcfnJK5J+etaIMOKXfbjvG6fs+2YbEt78EQDgeFAKf34xDkI9pzs3XqHt Q==;
+X-CSE-ConnectionGUID: vWZf1DsdQSWwCDJlftFrWw==
+X-CSE-MsgGUID: ITD//Q1PTLmULU4VSdK99g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76614831"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76614831"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:37 -0700
-X-CSE-ConnectionGUID: FUFbir2PREiT96SZvE17Dw==
-X-CSE-MsgGUID: fyOVRZtYRQKFzZ1J9h0u6A==
+ 07 Apr 2026 08:51:40 -0700
+X-CSE-ConnectionGUID: u2C3De0qTn6IdTa/9qQjiA==
+X-CSE-MsgGUID: AILaNJC6TtC3GznKRHNrow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="229876022"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="229876036"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.211])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:35 -0700
+ 07 Apr 2026 08:51:39 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 11/12] drm/i915/selftests:  Use i915_gtt_view_is_*()
-Date: Tue,  7 Apr 2026 18:50:52 +0300
-Message-ID: <20260407155053.32156-12-ville.syrjala@linux.intel.com>
+Subject: [PATCH 12/12] drm/i915/fb: Use intel_fb_needs_pot_stride_remap() in
+ intel_fb_view_init()
+Date: Tue,  7 Apr 2026 18:50:53 +0300
+Message-ID: <20260407155053.32156-13-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
 References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
@@ -99,116 +100,81 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-0.998];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: E82983B1553
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 83F533B155B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the naked GTT view type checks with the new
-i915_gtt_view_is_*() helpers. This isolates some of
-the code from GTT view implementation details.
+Replace the open coded intel_fb_needs_pot_stride_remap() check
+inside intel_fb_view_init() with the real thing.
+
+The current check doesn't have the intel_fb_uses_dpt() in there, but
+that is the only situation when we use the remapped view, and thus
+was always implied.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/selftests/i915_vma.c | 23 +++++++++++------------
- 1 file changed, 11 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_vma.c b/drivers/gpu/drm/i915/selftests/i915_vma.c
-index 258557388a2d..60dbc6e04f43 100644
---- a/drivers/gpu/drm/i915/selftests/i915_vma.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_vma.c
-@@ -533,12 +533,11 @@ assert_remapped(struct drm_i915_gem_object *obj,
- 	return sg;
+diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
+index ceed695d3ad4..c4af368deffd 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb.c
++++ b/drivers/gpu/drm/i915/display/intel_fb.c
+@@ -1627,13 +1627,14 @@ calc_plane_normal_size(const struct intel_framebuffer *fb, int color_plane,
+ 
+ static void intel_fb_view_init(struct intel_display *display,
+ 			       struct intel_fb_view *view,
+-			       enum i915_gtt_view_type view_type)
++			       enum i915_gtt_view_type view_type,
++			       const struct intel_framebuffer *fb)
+ {
+ 	memset(view, 0, sizeof(*view));
+ 	view->gtt.type = view_type;
+ 
+ 	if (i915_gtt_view_is_remapped(&view->gtt) &&
+-	    (display->platform.alderlake_p || DISPLAY_VER(display) >= 14))
++	    intel_fb_needs_pot_stride_remap(fb))
+ 		view->gtt.remapped.plane_alignment = SZ_2M / PAGE_SIZE;
  }
  
--static unsigned int remapped_size(enum i915_gtt_view_type view_type,
-+static unsigned int remapped_size(const struct i915_gtt_view *view,
- 				  const struct intel_remapped_plane_info *a,
- 				  const struct intel_remapped_plane_info *b)
- {
--
--	if (view_type == I915_GTT_VIEW_ROTATED)
-+	if (i915_gtt_view_is_rotated(view))
- 		return a->dst_stride * a->width + b->dst_stride * b->width;
- 	else
- 		return a->dst_stride * a->height + b->dst_stride * b->height;
-@@ -606,11 +605,11 @@ static int igt_vma_rotate_remap(void *arg)
- 			max_offset = max_pages - max_offset;
+@@ -1699,16 +1700,19 @@ int intel_fill_fb_info(struct intel_display *display, struct intel_framebuffer *
+ 	int i, num_planes = fb->base.format->num_planes;
+ 	unsigned int tile_size = intel_tile_size(display);
  
- 			if (!plane_info[0].dst_stride)
--				plane_info[0].dst_stride = view.type == I915_GTT_VIEW_ROTATED ?
-+				plane_info[0].dst_stride = i915_gtt_view_is_rotated(&view) ?
- 									plane_info[0].height :
- 									plane_info[0].width;
- 			if (!plane_info[1].dst_stride)
--				plane_info[1].dst_stride = view.type == I915_GTT_VIEW_ROTATED ?
-+				plane_info[1].dst_stride = i915_gtt_view_is_rotated(&view) ?
- 									plane_info[1].height :
- 									plane_info[1].width;
+-	intel_fb_view_init(display, &fb->normal_view, I915_GTT_VIEW_NORMAL);
++	intel_fb_view_init(display, &fb->normal_view,
++			   I915_GTT_VIEW_NORMAL, fb);
  
-@@ -632,7 +631,7 @@ static int igt_vma_rotate_remap(void *arg)
- 						goto out_object;
- 					}
+ 	drm_WARN_ON(display->drm,
+ 		    intel_fb_supports_90_270_rotation(fb) &&
+ 		    intel_fb_needs_pot_stride_remap(fb));
  
--					expected_pages = remapped_size(view.type, &plane_info[0], &plane_info[1]);
-+					expected_pages = remapped_size(&view, &plane_info[0], &plane_info[1]);
+ 	if (intel_fb_supports_90_270_rotation(fb))
+-		intel_fb_view_init(display, &fb->rotated_view, I915_GTT_VIEW_ROTATED);
++		intel_fb_view_init(display, &fb->rotated_view,
++				   I915_GTT_VIEW_ROTATED, fb);
+ 	if (intel_fb_needs_pot_stride_remap(fb))
+-		intel_fb_view_init(display, &fb->remapped_view, I915_GTT_VIEW_REMAPPED);
++		intel_fb_view_init(display, &fb->remapped_view,
++				   I915_GTT_VIEW_REMAPPED, fb);
  
- 					if (view.type != I915_GTT_VIEW_NORMAL &&
- 					    vma->size != expected_pages * PAGE_SIZE) {
-@@ -664,13 +663,13 @@ static int igt_vma_rotate_remap(void *arg)
+ 	for (i = 0; i < num_planes; i++) {
+ 		struct fb_plane_view_dims view_dims;
+@@ -1835,8 +1839,9 @@ static void intel_plane_remap_gtt(struct intel_plane_state *plane_state)
+ 	u32 gtt_offset = 0;
  
- 					sg = vma->pages->sgl;
- 					for (n = 0; n < ARRAY_SIZE(view.rotated.plane); n++) {
--						if (view.type == I915_GTT_VIEW_ROTATED)
-+						if (i915_gtt_view_is_rotated(&view))
- 							sg = assert_rotated(obj, &view.rotated, n, sg);
- 						else
- 							sg = assert_remapped(obj, &view.remapped, n, sg);
- 						if (IS_ERR(sg)) {
- 							pr_err("Inconsistent %s VMA pages for plane %d: [(%d, %d, %d, %d, %d), (%d, %d, %d, %d, %d)]\n",
--							       view.type == I915_GTT_VIEW_ROTATED ?
-+							       i915_gtt_view_is_rotated(&view) ?
- 							       "rotated" : "remapped", n,
- 							       plane_info[0].width,
- 							       plane_info[0].height,
-@@ -1009,7 +1008,7 @@ static int igt_vma_remapped_gtt(void *arg)
- 				goto out;
+ 	intel_fb_view_init(display, &plane_state->view,
+-			   drm_rotation_90_or_270(rotation) ? I915_GTT_VIEW_ROTATED :
+-							      I915_GTT_VIEW_REMAPPED);
++			   drm_rotation_90_or_270(rotation) ?
++			   I915_GTT_VIEW_ROTATED : I915_GTT_VIEW_REMAPPED,
++			   intel_fb);
  
- 			if (!plane_info[0].dst_stride)
--				plane_info[0].dst_stride = *t == I915_GTT_VIEW_ROTATED ?
-+				plane_info[0].dst_stride = i915_gtt_view_is_rotated(&view) ?
- 								 p->height : p->width;
- 
- 			vma = i915_gem_object_ggtt_pin(obj, &view, 0, 0, PIN_MAPPABLE);
-@@ -1032,7 +1031,7 @@ static int igt_vma_remapped_gtt(void *arg)
- 					unsigned int offset;
- 					u32 val = y << 16 | x;
- 
--					if (*t == I915_GTT_VIEW_ROTATED)
-+					if (i915_gtt_view_is_rotated(&view))
- 						offset = (x * plane_info[0].dst_stride + y) * PAGE_SIZE;
- 					else
- 						offset = (y * plane_info[0].dst_stride + x) * PAGE_SIZE;
-@@ -1064,7 +1063,7 @@ static int igt_vma_remapped_gtt(void *arg)
- 					u32 exp = y << 16 | x;
- 					u32 val;
- 
--					if (*t == I915_GTT_VIEW_ROTATED)
-+					if (i915_gtt_view_is_rotated(&view))
- 						src_idx = rotated_index(&view.rotated, 0, x, y);
- 					else
- 						src_idx = remapped_index(&view.remapped, 0, x, y);
-@@ -1073,7 +1072,7 @@ static int igt_vma_remapped_gtt(void *arg)
- 					val = ioread32(&map[offset / sizeof(*map)]);
- 					if (val != exp) {
- 						pr_err("%s VMA write test failed, expected 0x%x, found 0x%x\n",
--						       *t == I915_GTT_VIEW_ROTATED ? "Rotated" : "Remapped",
-+						       i915_gtt_view_is_rotated(&view) ? "Rotated" : "Remapped",
- 						       exp, val);
- 						i915_vma_unpin_iomap(vma);
- 						err = -EINVAL;
+ 	src_x = plane_state->uapi.src.x1 >> 16;
+ 	src_y = plane_state->uapi.src.y1 >> 16;
 -- 
 2.52.0
 
