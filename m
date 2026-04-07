@@ -2,169 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UMn3KlAI1WnMzgcAu9opvQ
+	id yBkHA84J1WnMzgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 15:36:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 15:42:38 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5C693AF3E9
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 15:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FCC63AF583
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 15:42:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8999510E425;
-	Tue,  7 Apr 2026 13:36:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2BC9410E417;
+	Tue,  7 Apr 2026 13:42:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oHih0Ve9";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ASGIpU8Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DD0C510E41E;
- Tue,  7 Apr 2026 13:36:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775568974; x=1807104974;
- h=message-id:date:subject:from:to:cc:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=C3aHuufqxlOEja0f88eboabSfsv6I4dL6yZNIYnJiRg=;
- b=oHih0Ve9FncFjIMXQgMVNM84S1SAshPijns7xr4bKZRcXplXHkqV70bP
- 2cjMEEaP2S2ofuzBs5XbIBAyE+TCz4hkf8sg4UyuR8MNGo0bCg92jh9Tb
- 2HaaqxejTEM/C8UXZ275vwcK1zDr3k4PSsL4jkQMaXegRUcz5Zl7oGaU7
- 2f2V9qKxcsi65j9655D1SGYeWM1JhU7z3kQ9jtZkgJ/wHfZ0c5FDrXKkl
- 5iPbdqIqAC7QJ8ewKCOvwLNnr6gND4T4TahzWRFn/81+ykx0HN82Ef70C
- 1/fCDrNiTyRmC5+C6Wfb7NZCjwGyHoxyplED2N9QotKEWY3JpIN1R7l2U w==;
-X-CSE-ConnectionGUID: WLyMZwC9SFmtBbiWugAtRw==
-X-CSE-MsgGUID: vjQgo9nNRpuDhhH4JaLCyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76413876"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="76413876"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 06:36:13 -0700
-X-CSE-ConnectionGUID: 1om/R2ZMRO6NAcWhXanN+Q==
-X-CSE-MsgGUID: 63aVk78YR+Cbl3SEl6BjHg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="223383493"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 06:36:12 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 7 Apr 2026 06:36:11 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 7 Apr 2026 06:36:11 -0700
-Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.45) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 7 Apr 2026 06:36:01 -0700
+Received: from CH1PR05CU001.outbound.protection.outlook.com
+ (mail-northcentralusazon11010044.outbound.protection.outlook.com
+ [52.101.193.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E960910E04D;
+ Tue,  7 Apr 2026 13:42:33 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=NvS1UVqNYXJMwmOlPUitlZA3VrmV8EFBcruugD+dX48AWYGWxjHGOMBJ1wZXX/v1bSJqLsfxR3gaGDVrAFgY32tPJWBOHfVutGD5VI4DsD09jHvIH+xtrQkFMhIKYmStTL+KuWkkgak5fnIF8YoXv0NK8ZM39Z7C/buu1G/z/3VbBS7nSPdWQ8glGgXlC2kohEqqW+xR1BEAKd2k6uxIJragPKBoHubBIhTWJym1E08PEg/sZNui0etUy5FJ/ZZgJa6Ee6M5VW45vtazn815dk05XcRaj+3T9VObezVA2j4x0P7EgB8ngW/Ala5/TfyLeqI2paXv+czLI+5yLWkNJA==
+ b=Q3G3m08jgbxj58IfuquesePOubkVb9YB5Q8/YoyI8f0X/Y6YKI9tejNYr+k5Pi0jj/zCGCTm17Rd3WZYzEPJc6sf0l1QIOXcDhI0NhL6Ykm1VbQHghYck0KvQnEP3kAq3C/0+kqyGeK6lr+7/HVrr59fwwx3KUHmVIrbuKXlA9KsXtX0zJaggr1yfb/wkZLCas70H60nCk8WdgdMe3PBZmH/mVi5C/dQwhlMs6DhjXGfc/KIb9UwvdrXyw20EqK1kUx9E/YHWLQGixIWzsWWy4ode/QfDLLqvRc+5dbDuOrOi65elXVaUg6DlEpzyTnPx/gEMX6Tvkpkr80+LErL2g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=UIVDLZmkEiRZxvEIg+zJdcV6PwtqzZ2sBrbjgeflRuM=;
- b=XOiXi1+JmOaUchUjvismC7qDxP9nuRJjGoWbmKgagWQjXSDSmcpB6R/cR4BfcIOh+c/D+xoE6v4HHl9pQNn5j6zZbOPXPMiAKjVwo6U084mr7th6qbc14F34amK+QpqCwA9yviAuBUoFa1HqPystST6EZOjDNl+VRBylt0BuUymWkFD0iXZo/5GIMZ/6C8kJ2rUjaIYw4/pkfdE+j/6NZN1g1YZu9piGy2alhyph84FdHaAEqKoBv838Q6QkEVhWrOeppZkvhQFBeaDr1eMA+x7pibGzHRSd9Rtn4TJUYAVwAOeHvQPbgc4uDuuwIXeG17pThUzowOrR6CqH+OpF5g==
+ bh=191XT4Za1tVv5q0Z0AsslL+hmR1PttqUiSVSlyCysu8=;
+ b=J+Sz43B2oFyaFmTPIVMLKuvJHl7F26PbM/RCclLuJ8FRge52eQGNhcy44X1Yof3zlC7Z/wPluI9jfF6T19CT+PKODvSaTdnK7NkL+RNKo2kQOJxXEOvQLyADrlnBpgGuNsSE4zKc96/LG/RhS2SpC4sKbZr0z+peFf4b5lN2K6NBEliqQKLo/Gg0lzW5fSsuGBlozfSaqY1K4L1jInDqQM3Ye9Wz6IVhCBte8DCCyvM/XvBU8kKS/WOJ4ZC6U1hGFAKZEj/f0BdHEjY1lUgT5RtG2Yr6zcQauGPGZ8AduOk/rQWID8GPEcNl7nJpILW7SKnMUdSVoplVt4a5Kzj+xQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=191XT4Za1tVv5q0Z0AsslL+hmR1PttqUiSVSlyCysu8=;
+ b=ASGIpU8ZO1d3+i5m2vd1eWsr6tA3/euywuOKR2EOYqpzuVDtX3wUlpeZx7tkdOAoH+Kte+inySQb6e2MTBD1Sx/xCr9C3cZaqky6rKSXcp6dxu6bWezCgqAPaNFVlZTwo4XJbfuhzYO7Q/tExZkShWgVRRseq6Owdm5izaH4iGS9Vg8FZS6ZCN35yN4IYzDBuMB/ZKfs8yL3sppueSbe5TbVw+tseeaT5g7x6pNh80Cgn6+C4+vpAJVOnrL0OjfdVYQAoEOHFb+bvjUK3/wKEH8A0YcjJ+U/iXP5xe//G5cW/CklzAKkkyTrtQwOT0dkmA47//i788cHyXJ0aq1VCA==
 Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by DM4PR11MB6310.namprd11.prod.outlook.com (2603:10b6:8:a7::12) with
- Microsoft SMTP Server (version=TLS1_2,
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by CYXPR12MB9428.namprd12.prod.outlook.com (2603:10b6:930:d5::13)
+ with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Tue, 7 Apr
- 2026 13:35:58 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9769.016; Tue, 7 Apr 2026
- 13:35:58 +0000
-Message-ID: <791d95e9-8547-4f30-bcac-a2b0562d63b3@intel.com>
-Date: Tue, 7 Apr 2026 19:05:51 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 14/23] drm/i915/dp: Add member to intel_dp to store AS SDP
- v2 support
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dri-devel@lists.freedesktop.org>, <jouni.hogander@intel.com>,
- <animesh.manna@intel.com>
-References: <20260402080425.548702-1-ankit.k.nautiyal@intel.com>
- <20260402080425.548702-15-ankit.k.nautiyal@intel.com>
- <ac5NPL2yG1aH12DF@intel.com> <ac5mAUhmxqn-_J0W@intel.com>
- <e84ddfe2-181e-4b74-8681-0b33545da61f@intel.com>
-Content-Language: en-US
-In-Reply-To: <e84ddfe2-181e-4b74-8681-0b33545da61f@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0153.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ac::14) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+ 2026 13:42:24 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9769.017; Tue, 7 Apr 2026
+ 13:42:24 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Tue, 07 Apr 2026 22:42:18 +0900
+Message-Id: <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
+ "Gary Guo" <gary@garyguo.net>, "Bjorn Roy Baron"
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ "Christian Koenig" <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
+ <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
+ Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
+ <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, <joel@joelfernandes.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
+ entry wrapper enums
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>, <linux-kernel@vger.kernel.org>
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-13-joelagnelf@nvidia.com>
+ <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
+ <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
+In-Reply-To: <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
+X-ClientProxiedBy: DUZPR01CA0005.eurprd01.prod.exchangelabs.com
+ (2603:10a6:10:3c3::9) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|DM4PR11MB6310:EE_
-X-MS-Office365-Filtering-Correlation-Id: 3bc3d68a-2ff7-4062-097f-08de94aa9a21
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|CYXPR12MB9428:EE_
+X-MS-Office365-Filtering-Correlation-Id: a437c496-13c8-45a9-88c0-08de94ab7fd9
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|56012099003|18002099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: IlGzRDl2NJSopoSjD6glkbdbcGS8oYFGD5khNMRrZggfSt7pFqsFFq/TUBIcpZTewg4uVFQL8AaWWNkATkjCl5CXR4yJAUbVRLNeBYHvSLIVECB9rog2kKMwaQvgX0eac94ij82aSlIokSShq1mStbFf8M8vzGttYPh/nHVXKhdhMECYJfWHnIPh0giGe8Y3jM17qes3H2pd81x57ebpongaw4QhCN/QpsIdcctLso0Ia7lrze2TICaHdlr8P+SU53BEbquz3lTp5Sg5F1y4ZTVWOdqv/DowJK9Z9FM8uY1CS1gerMr5aAlve72VKbttnHXdvBqpC2Iki5lR66BEtV1Pkn1IDfe+htrqWBRspz1w8sZCTQCoXh5rXQxwJxSqtvGCWElzvQDI2d3NIGZxd2IdE1BrqUqYF87jCOZkFG3NfR+k1nZ1wWQSNqigBLrCUyb87uleweEuwZou9QhduXA1zBrn5FTbCjnTgGqAIbkPVjT2ttEan1Lo6WTNLeT7g7BQfayxcZ9aX0K0kPYGsc8jMDZ1sXpaAfRvZVkBrzyZ0BxOckga9DD1bz0J6YVdRwHTmvHO6S0CtyD9tnzeTNkfEcSR4MKMB+97lVqkKO2CRh1+eouPdqrMkjOguqeQGuKqFGedeAyAds8C/W08UAvOKOsGo45ZvMNVtRdNX6PfMvminaetvYrkQ9JSXgLQTO5WV6W6GPWIlPt5tpbCm9Ua170MSrIleIOr7nlzcsg=
+ ARA:13230040|10070799003|366016|1800799024|7416014|376014|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: Fa8yqMKCEz4MtiyfFj0Hg/TNAi4MYelYlUpGgrOuyqZD2WAo44p22zMmTyF9Vidiwhlx1XX1mcwyTiBxhccTz9Yu7eBt2RPbWE1aNLASccyFxTpxWrfReDhSS809Lam2SBzQC1gn7jUj6Ppp+EuONbpdvI4RzEVeZEuDmPeiVEbTFmkScvq+g2uXy1/ubsXulyLugdlon8MRN2EO+Ee/Vbq8Ej/QJQqJnmWgNrhstBACGTeufLFWP+M2fBY2ix5NgJ3nC5hSRQY2QJPLSAM20lv6FERiuoDzqg2l5lTsacfW/DfFEqlMvrjwRnPW4Rg6/Ic/zPf2TOPg2oiCcRBwsDokdedzeLFBMcjW5V4grhYGXNcKc0UW/+nHzLtAoN2JvMzUUdgwm54rytggwY98K7DjExcETzx7H2EL1H80++9prNoU9VxqcdNVUgVWb41FJ/+b6GO0TmSW9MXYEl4X3QDc2yvsh01qevcrqDai7UNjVV06iCrEz9kdO3XoFQvJ+OIumz1EFYvkFUt3CizOGdvM90lkS59Ua4Vw1bJGDZQo2/1g3+B7K91n7R5XTtfWNcHfZFEvlkgOMfoWg/N0O97tpAFeBO624W+bc67OEu8QqUm8NmHW9kWduwXKfendfR1WVcCuERKSsUcGIuSyJwu7/zT//ceEvhTohj0jZ4dDLDYb3j64OYgstOIOM4JiiPw4GCendEzD6xuv9BIUAh6uJYvp5DwJ/ieWL/eK2R0=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(56012099003)(18002099003)(22082099003);
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2353.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(10070799003)(366016)(1800799024)(7416014)(376014)(56012099003)(22082099003)(18002099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dStFbVNXanV3R2ViYllVbFkzMmhFeVpJY3hLR2gvdlN3Q1pwMUtFUFRVTG1D?=
- =?utf-8?B?OFJXTmpWU3FaSmxHM3NiQzcreis1aWlud204WFlTMk1KRjRmd1BqOXM3aGdw?=
- =?utf-8?B?SERURDRTMEJlN0wyNDM0bXl5a2YzcTVlWmlqS0dnUmNzTXE3OUdBQ0JGY2tz?=
- =?utf-8?B?STVKaWhvaklNSGVWa0ErWUZZS05naWVXRjBuZUlHb0tOcC9RUjIxRFNBY2k2?=
- =?utf-8?B?Y0lOM0h3SHZqbGk1bWlWbUF1SHVHdXNjVDhvTTBRRUhEWUF2b0wzcVBHSURG?=
- =?utf-8?B?S1Boa0M3dW9BY0VMbzhVUktvVzRWWldPbFFNdndPWEtQakhoSTFQYys5TTVl?=
- =?utf-8?B?NXZzUFpyUWdjc1BobENKbUc4RElZT1k2TXFiRUtGaFBtZE9SOVFrRVJ2REZr?=
- =?utf-8?B?amJqRTVmamh5UkFUWG4yS05sci95azl0NFBhUlpVZm0zcDJIMFV0c0xaenNR?=
- =?utf-8?B?bVUvR1VkYTZJMFpITCtXb0k3SXZnMUQvNmlqVktlVFhmV2NSTUl5YlQ2V2lv?=
- =?utf-8?B?RnpKeG8xQWhubVMxYXI0MnRwVmc1aWZXK0RGRjFBZktvT3hoRjFmc01pSlFk?=
- =?utf-8?B?ZWxrcG5TWm8rL05EZ2M3Sm1qWjdKOSthNTB1STlZVjRGNytVdEp2VFVwdTg0?=
- =?utf-8?B?STFQb3hyRGpGaXhIaGQrZmpxdnlRNUZjOTYwL0RhSlpVdkc1M2w1d0F4N2dv?=
- =?utf-8?B?eDVlTU9JWnhvMWh5T1B6Zk9WeW94alVOWEpNbFZVb01mY21oZldqU2lRUzZR?=
- =?utf-8?B?dElKaGZKdGthY2NGaUFQQ1YyZEEyTWhUUURYLzl2bHdqc0xQVUt6NWhiVEND?=
- =?utf-8?B?Q3AxaWdia0hENitNeXNhbExqenMvL2RhVGJxd2gybllTMUZkN3Rrc2JMdjky?=
- =?utf-8?B?V2ZiWVlkRG4vSUw0dGtqaENKYWtDVWxYaXQ1Q3dHR0FaQkduak5iQ2c3bG1u?=
- =?utf-8?B?Ly9GUWJ3OXdFV2VGd1VHZG5OdnRKYXQyR3E5NGx6Q3A1eUxTZEF3blFjU2Q4?=
- =?utf-8?B?bUh6UFlIOUlVcFUyTHNocFR5M0tjYnNPNkV4NkVKTGVMSTUzT21RN3JYTUs0?=
- =?utf-8?B?dmd5TldXUUFyQm40aldHSlJ0ZFdVa2hOSEp2bEZ0QzlhZDRKQkJ1bWVuRlpj?=
- =?utf-8?B?K21sd1Vqc3lpdmVHZVI4Y2ZkOGJGblR3MDhpS0ZVVFBKZHZCSTBVRjNOWnM0?=
- =?utf-8?B?L2w5d3hQVjlJaTl0a2FSK2tCOTdsRDhldnBiNHVFZmc1Tldnd1JoZFhzS2Vo?=
- =?utf-8?B?b0MyUmxKcVNOdDE0S3hiQjZCUDlHaW9FOE41dlJtVXlWQTAzVGFQOFBCREEv?=
- =?utf-8?B?L0I5UHA5bmVLSXBEeFpmK0hsT20reEFIZUx3Q1IxRURGcVZCWFFIK2JJVHo4?=
- =?utf-8?B?cVJkTDdwUnI5N0NwVkIrMXhQZTl5UUl4MTUzWlZISG55SEQxUERRSTl6djlC?=
- =?utf-8?B?WmFjS0M5U296MHBORzd6OXh2Y0VlR3BHUFhNUGZTeVR5clZCbXFPNWxmOXF6?=
- =?utf-8?B?TnFualRwS1d2THZsMDYzRWNCc0FjdUlYMC91TEtYdTdBZktZdUpXdlovU2tU?=
- =?utf-8?B?Y3V5clBRenQyK1U5RW41N01MOHVtZmJCTk5HRTc3QVlMdVorSkhOOGZrZXdj?=
- =?utf-8?B?OUR1Y1hLc2JkcWVxUUl1eG1yajVYTUlBT2pnNUliNjBKQS9RWFNDY3ZSSHB5?=
- =?utf-8?B?WSsrbU50c2Vhd0pOcGJHQXh2cS9BUnovYmVZTlFtRVdoVXZtU2N1RTJnemFp?=
- =?utf-8?B?L1NDQmJ0RlZ5VEZpRmhTYWFnbnRIQ2w3clNjZzJWTThsWHZkaC9oSWRjWUtr?=
- =?utf-8?B?S1ZYRm1LSXA0Mno5ZmRPdE15OUJGbHp3QUYwVFVONXlsVit0MnZRVnlkNlBv?=
- =?utf-8?B?dG1HSHMrNUlOUS9jK1ZuV3FmdURhcHVIL3haTUxBeVNnYjVudkV2UjNKRjl5?=
- =?utf-8?B?ckNaMXhuT2VZVFEybzRRTWJubThCWkZ6QlZrSFVHTVY0Wm1yWDZNWVdLNjZi?=
- =?utf-8?B?SXo0WCtWZy9SbFcxQjdCZ0lqSzFncUhRWjJjSlFQTll3UmVOdExNZlhHRnhv?=
- =?utf-8?B?QzlxRC9BYjBRV2t0Y3l0ZW8zQmR6a0lLSGJiMjQxYUdNZGVkbi9HTnZLdUVC?=
- =?utf-8?B?NEVUeHVQSHZiMlpqOUk4ZTZLeHlsZWw1QzZTcDhaNG9BcVRubjFORkRJeTV4?=
- =?utf-8?B?QWp5b1lsOXE0UXdJeFpkcjgxTCtLNTFUbHo3SGZEQkI0NFZMR28wdWZySUg0?=
- =?utf-8?B?WCtyN3hiK2owZmNCT0dVUVdLRmJtcC9vTHBhdUFaZmprbTh0WWhEWCtQS2hM?=
- =?utf-8?B?aFAydnVDdTJuckdFVE53QkNyVTlldzFRMWdxRHFaeGJDV2p1eXpMUklsUzlt?=
- =?utf-8?Q?KMpJerUKtmGDW7hs=3D?=
-X-Exchange-RoutingPolicyChecked: ImRdtxzO8fSzBp4BWOz5bBrOVnvH56XxRBd74A9Tzh1wusTnbbQVO/uUW2jFbIMu+PLSV+vA8bYuDw0Vta8SnNcBjGEKnuw/TwrS4VypMQ2vx9FGIJqxTPdwHQFODjDPhDLkstcOO/HHIO8Ib61GLMjM0gYTgxHS1wNoUeqlRaebG8QD+f2JFnPMufrRAifzx3AJydjpw7AAlOwQdElCnQseHlj/epD/zMjn7MoON+5TqJaySRTOwzQNW973lbhaqdXXHvAq0BsRfK8yHd23jvrCfMPHa/e4EeWbAyvCrWJgNyTavTchJTEB1j1a23K5SfD4SFChu8MwnQlS/sNMRQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3bc3d68a-2ff7-4062-097f-08de94aa9a21
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZXhJZHpldE9RblNqTXVDdWhYYmFVQnRIKzJGM3hRYlF2aEtBZ3VINFkxR3VC?=
+ =?utf-8?B?SDhqWVRDcFpWTmE2VnNWalhjNW1JOUE2dG9jbCtXQ2FuSVlUd1FhM25VbzZH?=
+ =?utf-8?B?VWRTWVVkVnFqUTNyUE9JV1h1R3BlWDY2T0ZXWStqUmJoVmNvaUJhcGtEalFL?=
+ =?utf-8?B?MHc4Y1pld3EyS0lkbndUdXRaTXQxMVJtelJxS2FaYjVPTWkveEM3ZFA4MmE3?=
+ =?utf-8?B?Y29udlE2cXhMalZwdWM3WFVYRzBIeFpWWDhoN2JMZi9pa3BqYWFMb1NCWGRH?=
+ =?utf-8?B?TlhRMjhGQzBDSWRiajc0MWpyaDkzM1E2VnpxOGdGU0RMTmI2TWZDTnAzY0JI?=
+ =?utf-8?B?MjgrMWdOcGlkREhWbml1TXJaMnc5aGt5a1BiWERwdHlJdGtpRndKRkJBa3ZX?=
+ =?utf-8?B?WFZlaHhRSitMaHg0T2hLWUJyVjg0VFhXU2NhVHRpUEdoYUVaN04wRnVjUlVV?=
+ =?utf-8?B?T2FpaWhpeThUYmVIMjdYczFBYWNuVjdJZFVDL0ErTDhJS1M5dldqVnlzZHNs?=
+ =?utf-8?B?bzZKT3lzUmxiaHFBcEJVRlFjdGFoWFVaTis4Q2VSMlZnUGpZNGVQejdIc2FL?=
+ =?utf-8?B?UXlmZXl3b3l4R0c0ZEpLd1BydE1kYzJ0a3A4bWtoUzFKN0xhakEzYVNvejlH?=
+ =?utf-8?B?aFZOR25vdWsxblJWcXh2R0I3ekhUaVFLR0dpQlZMLzlmSU1HYjZBTzBiZGdD?=
+ =?utf-8?B?eUpNdHJYaUFyenlyMHJBalFVbmplR2JOa1dFNFZSNUlEYTBFN0N0OFNNcVRV?=
+ =?utf-8?B?ZS8xMEQxaHRaK3hmL3dkbXYySkxQQkNrbUM1NDlmMmJpT3pVL3BTR0Erellp?=
+ =?utf-8?B?ZmVXYTJkTFkxSVFBOG1KQUxDUWt3WEJwUENUT0FkMGQ3aEVwWFZJR0pIWWt1?=
+ =?utf-8?B?Z1Eyc3FwZHZkQzNxbFNkaGswYktwTDcvb3ZTWWg5RDNTamF0YnZkM0szOWYz?=
+ =?utf-8?B?Yi9aVWlyWGc4eWlyU0g2NlMzMmFLYkZscmtlbjd4NjVPU3FZYnpLa2ZCa1lM?=
+ =?utf-8?B?Tk9xNjJEUHhTTy9VWHFaT2dKUlI2ZHNCUU5ycjQyMFV6SkpKakZ5VjR3QUlV?=
+ =?utf-8?B?Vyt5OHcvSFBocCtacFdTb3ZialgxRG5XdUJqRk9uelNNR2dDaWREbFR3SS8w?=
+ =?utf-8?B?Z3lyK3RzcE9vQTU0cEtiV2VNaGlkVUxTZUx5L3lnR0lCaUlINlhEMVNZeWZI?=
+ =?utf-8?B?bms4Yk5rSnI0WDhRbDIzdzNJSUFabDJxT2IzZVlxdmFlWk9ybU10MXpwM3NL?=
+ =?utf-8?B?TDUwSXVIdjUzbkNIOFk4RXJSeGw0dm9KcW40ZTBNelVVSFl1V2ZURXg5Q1kw?=
+ =?utf-8?B?VWJzZ1JQeHR6dVFGNTJxMURLcFd3WjlKOS9nVVQ5Qy9UdEd0L0hMc3lCams2?=
+ =?utf-8?B?MHl4U01MeFlZaTZWVlZoOFFtazhOc29JVXZ4OUZDc0tNdGtQOXFyUEZWNDB0?=
+ =?utf-8?B?Q3diYzhoZWlLSlN3YjhXRnp0VFI2bHBsL3JPQ0JZSjNCVGZ1MGJtdkJsMENq?=
+ =?utf-8?B?M05HWnYzZThRK2dhZmhCSjF4MUFwRXg5ejhTQUFkZ3NtU0pMZEhZVUlxR0hP?=
+ =?utf-8?B?b1UxcWpBV3ZPTHJnYXozQ1pVMW9CUWRldDE1SCtYUjAyK1JiSytIVDFaeVpw?=
+ =?utf-8?B?K2R6Vnc0U1NLeWV0QmhGcGx0dVFwNDJPcXRSclFwRksvSnZnWHhLVUxrVXZx?=
+ =?utf-8?B?QWx1SlIzclZtL2xvWEN1R3ZWS1creFcxTnBRSjdLNExEOXNLRE13VWxDalli?=
+ =?utf-8?B?WTBLRUY1OCt5SmEwbExOd1hOSFZYOUJEK1hsUjhEMGNDelI4aEtHWGFIblJz?=
+ =?utf-8?B?Qm9aMUp0R0tJUnNETzh2bDFlOUxPcGRqWEJralhIR2xORkxCQXlxYlU4RWhS?=
+ =?utf-8?B?UHM1SEFKNy9MZzcxSTdhdW5ic2tOVGdNWWRmbDNVbjFUT0pPRUVCODFiT0Rz?=
+ =?utf-8?B?YzEvanJSVFZuSkVZbDFhdVdDWjBya1gvT2xoR3hOMzBGUHpoWVV2OUU5SDBT?=
+ =?utf-8?B?OGIxaHBsK1d6NFNaOFMyWW5vTTI0dTVUZGpSU1dYQ3N4cFdnRGs2dzR6VzFD?=
+ =?utf-8?B?amdGM3ArM0tWVzVtNi9iMFBodXF1dEl5MWFmd2U4VHdNNEs2bVUzVUhMU3Mx?=
+ =?utf-8?B?TVJ2ZGZibDExMHpXbHcvU1FUMm1tWTc2QUs4ZjloWHowTkNybjMyYXp6Ris2?=
+ =?utf-8?B?N2dWSEZkbmF4Y2dBSzc2M3MwQTc0RnhBR0JLK2c2NXdPSUEvTnZVUzRZOWFw?=
+ =?utf-8?B?TUE5RzRqTzF5d0xOTTBjaWJ5bWZYKy9pU1VjVmEwQi9tUnl5S2M5aVh6YmFr?=
+ =?utf-8?B?VEJ6d1IwK1lRRUNLRzlTanFHRkxML01TMlN0eWRqVzJHbjM3ZDJ0K0haa3B3?=
+ =?utf-8?Q?7fEfZCGWSqbefN0glugZeHkq2O3qZaIXsZbdjsT2Qu7o5?=
+X-MS-Exchange-AntiSpam-MessageData-1: O3lTX3caJd37Rg==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a437c496-13c8-45a9-88c0-08de94ab7fd9
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 13:35:58.7955 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Apr 2026 13:42:24.0130 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: u6qBdDNEQ+oMCw5I08PFBwCJ0qti+IZ5AVqEx5AHWxhW+Ftp6/woKMRVJvBV7Dp3XGgSKD5wBHAX7U9h8cO6VnTHtHoiPxYxgGBFB/Wo6Fw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM4PR11MB6310
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-UserPrincipalName: a1M93zIKIVWoCj/kwD44UMYODaBWPu03tPwGfVdHfWCOQYTLU8zyqFjDB7gHoRh7Z+34Lp6lM6FON25CepiR/A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR12MB9428
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,221 +177,111 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: E5C693AF3E9
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[56];
+	FROM_NEQ_ENVFROM(0.00)[ecourtney@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid,Nvidia.com:dkim,pagetable.rs:url]
+X-Rspamd-Queue-Id: 5FCC63AF583
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-
-On 4/7/2026 1:50 PM, Nautiyal, Ankit K wrote:
+On Tue Apr 7, 2026 at 6:55 AM JST, Joel Fernandes wrote:
+>>> +    /// Compute upper bound on page table pages needed for `num_virt_p=
+ages`.
+>>> +    ///
+>>> +    /// Walks from PTE level up through PDE levels, accumulating the t=
+ree.
+>>> +    pub(crate) fn pt_pages_upper_bound(&self, num_virt_pages: usize) -=
+> usize {
+>>> +        let mut total =3D 0;
+>>> +
+>>> +        // PTE pages at the leaf level.
+>>> +        let pte_epp =3D self.entries_per_page(self.pte_level());
+>>> +        let mut pages_at_level =3D num_virt_pages.div_ceil(pte_epp);
+>>> +        total +=3D pages_at_level;
+>>> +
+>>> +        // Walk PDE levels bottom-up (reverse of pde_levels()).
+>>> +        for &level in self.pde_levels().iter().rev() {
+>>> +            let epp =3D self.entries_per_page(level);
+>>> +
+>>> +            // How many pages at this level do we need to point to
+>>> +            // the previous pages_at_level?
+>>> +            pages_at_level =3D pages_at_level.div_ceil(epp);
+>>> +            total +=3D pages_at_level;
+>>> +        }
+>>> +
+>>> +        total
+>>> +    }
+>>> +}
+>>> +
+>>=20
+>> We have a lot of matches on the MMU version here (and below in Pte, Pde,
+>> DualPde). What about making MmuVersion into a trait (e.g. Mmu) with
+>> associated types for Pte, Pde, DualPde which can implement traits
+>> defining their common operations too?
 >
-> On 4/2/2026 6:20 PM, Ville Syrjälä wrote:
->> On Thu, Apr 02, 2026 at 02:04:28PM +0300, Ville Syrjälä wrote:
->>> On Thu, Apr 02, 2026 at 01:34:14PM +0530, Ankit Nautiyal wrote:
->>>> DP v2.1 SCR advertises support for FAVT payload fields parsing in DPCD
->>>> 0x2214 Bit 2. This indicates the support for Adaptive-Sync SDP 
->>>> version 2
->>>> (AS SDP v2), which allows the source to set the version in HB2[4:0] 
->>>> and the
->>>> payload length in HB3[5:0] of the AS SDP header.
->>>>
->>>> DP v2.1 SCR also introduces ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR 
->>>> in the
->>>> Panel Replay Capability DPCD 0x00b1 (Bit 3). When this bit is set, 
->>>> the sink
->>>> does not support asynchronous video timing while in a Panel Replay 
->>>> Active
->>>> state and the source is required to keep transmitting Adaptive-Sync
->>>> SDPs. The spec mandates that such sinks shall support AS SDP v2.
->>>>
->>>> Infer AS SDP v2 support from these capabilities and store it in
->>>> struct intel_dp for use by subsequent feature enablement changes.
->>> Hmm. After some more reading I think we might actually want to consult
->>> the DisplayID for this. The presence of the new adaptive sync block
->>> there might be a good indication for AS SDP v2 support. While the
->>> DisplayID 2.1 spec itself doesn't say that AS SDP v2 must be supported
->>> when the block is present, the DP 2.1 spec does at least say the 
->>> converse.
->>> Ie. adaptive sync capable DP 2.1 sink must have the DisplayID block. 
->>> And
->>> DP 2.1 seems to be all about the AS SDP v2 and not AS SDP v1 (that's 
->>> a DP
->>> 2.0 thing really).
->> Hmm. But the EDID comes from the display, and we could have a PCON
->> in between that doesn't understand AS SDP v2. Sigh. What a mess.
+> I coded this up and it did not look pretty, there's not much LOC savings =
+and the
+> code becomes harder to read because of parametrization of several functio=
+ns. Also:
+
+Thanks for looking into it. Sorry to be a bother, but would you have a
+branch around with the code? I'm curious what didn't look good about it.
+
+>> Then you can parameterise Vmm/PtWalk on this type.
 >
+> The match still to be done somewhere, so you end up matching on chipset t=
+o call
+> the correct parametrized functions versus just passing in the parameter o=
+r
+> chipset down, in some cases.
 >
-> hmm yeah. Is it alright to have a #TODO something like:
->
-> /*
-> * TODO: Check the Adaptive-Sync DisplayID 2.1 block once DisplayID 
-> parsing
-> * is available. This may help detect AS SDP v2 support for native DP 2.1
-> * sinks that do not expose FAVT or PR-based capability bits.
-> *
-> * In the presence of PCONs, check PCON support from DPCD and sink 
-> support from Display ID.
-> */
->
+> For now I am inclined to leave it as is. Also there's a Rust pitfall we a=
+ll
+> learnt during the turing and other patch reviews, sometimes doing a bunch=
+ of
+> matches is good especially if the number of variants are expected to be f=
+ixed
+> (in the mm case, version 2 and version 3). Traits have some disadvantages=
+ too,
+> example dyn traits have to heap-allocated, parametrizing can increase cod=
+e size
+> (due to monomorphization) etc.
 
-Going throught the eDP spec, it seems for eDP,  if AS SDP is supported 
-it implicitly means AS SDP v2.
-
- From eDP spec 2.0
-
-Section 2.8 Adaptive-Sync
-
-"eDP may optionally support the Adaptive-Sync operation to maintain 
-video timing
-synchronization between Source and Sink devices (see DP Standard, 
-“Adaptive-Sync Operation
-for VESA AdaptiveSync”). If supported, the Adaptive-Sync SDP version 
-shall be v2 or higher
-(HB2[4:0] = 02h or higher, and HB3[5:0] = 09h or higher)."
-
-Also, the FAVT Payload fields parsing support is not used for eDP and 
-will always read 0.
-
-This however doesn't mean that FAVT is not supported, the support is 
-implicit.
-
-Section 8.7.1 Video Timing Synchronization while in a PR Active State
-with ALPM Enabled
-
-...Source-to-Sink device timing synchronization during a PR Active state 
-that uses the Adaptive-Sync SDP may be enabled in
-Adaptive-Sync (FAVT or AVT mode) operation (DPCD 00107h[7] = 1) –or– when
-DPCD 00107h[7] = 0..
-
-
-So, I will update the logic for eDP here.
-
-Regards,
-
-Ankit
-
-
+Yeah, it's just this is a lot of matches in a lot of places. And we have
+ver2 / ver3 specific code leaking into the general pagetable.rs file. So
+it would be really nice if we could find a way to improve this specific
+aspect. We can reduce the match to happening in just one file. You can
+avoid heap allocation if you would like by making Vmm an enum,
+for example, and doing the match based dispatch there at the top of the
+API tree, rather than at the bottom where it fans out into a lot more
+locations.
 
 >
-> Regards,
+> thanks,
 >
-> Ankit
->
->>> I think there was a patch posted very recently on dri-devel, adding the
->>> adaptive sync DisplayID block parsing. Or at least some DisplayID block
->>> related to this.
->>>
->>> The intel_psr_pr_async_video_timing_supported() check I think we want
->>> to keep regardless, because you could have a sink with PR but no
->>> adaptive sync. But the FAVT check could perhaps be dropped if we add
->>> the DisplayID check.
->>>
->>>> v2: Include parsing ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR bit to
->>>>      determine AS SDP v2 support. (Ville)
->>>> v3: Use helper to determine asynch video timing support.
->>>>
->>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->>>> ---
->>>>   .../drm/i915/display/intel_display_types.h    |  1 +
->>>>   drivers/gpu/drm/i915/display/intel_dp.c       | 33 
->>>> +++++++++++++++++++
->>>>   2 files changed, 34 insertions(+)
->>>>
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h 
->>>> b/drivers/gpu/drm/i915/display/intel_display_types.h
->>>> index e2496db1642a..efc609eef4f5 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->>>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->>>> @@ -1870,6 +1870,7 @@ struct intel_dp {
->>>>       /* connector directly attached - won't be use for modeset in 
->>>> mst world */
->>>>       struct intel_connector *attached_connector;
->>>>       bool as_sdp_supported;
->>>> +    bool as_sdp_v2_supported;
->>>>         struct drm_dp_tunnel *tunnel;
->>>>       bool tunnel_suspended:1;
->>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c 
->>>> b/drivers/gpu/drm/i915/display/intel_dp.c
->>>> index cec0f3d03c2f..9fd768447f28 100644
->>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->>>> @@ -6306,6 +6306,36 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
->>>>                              false);
->>>>   }
->>>>   +static bool
->>>> +intel_dp_sink_supports_as_sdp_v2(struct intel_dp *intel_dp)
->>>> +{
->>>> +    u8 rx_features;
->>>> +
->>>> +    /*
->>>> +     * The DP spec does not explicitly provide the AS SDP v2 
->>>> capability.
->>>> +     * So based on the DP v2.1 SCR, we infer it from the following 
->>>> bits:
->>>> +     *
->>>> +     * DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED indicates 
->>>> support for
->>>> +     * FAVT, which is explicitly defined to use AS SDP v2.
->>>> +     *
->>>> +     * DP_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR indicates that 
->>>> the sink
->>>> +     * does not support asynchronous video timing while in PR Active,
->>>> +     * requiring the source to keep transmitting Adaptive-Sync 
->>>> SDPs. The
->>>> +     * spec mandates that such sinks shall support AS SDP v2.
->>>> +     */
->>>> +    if (drm_dp_dpcd_read_byte(&intel_dp->aux,
->>>> +                  DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1,
->>>> +                  &rx_features) == 1) {
->>>> +        if (rx_features & 
->>>> DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED)
->>>> +            return true;
->>>> +    }
->>>> +
->>>> +    if (!intel_psr_pr_async_video_timing_supported(intel_dp))
->>>> +        return true;
->>>> +
->>>> +    return false;
->>>> +}
->>>> +
->>>>   static void
->>>>   intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
->>>>   {
->>>> @@ -6313,6 +6343,9 @@ intel_dp_detect_sdp_caps(struct intel_dp 
->>>> *intel_dp)
->>>>         intel_dp->as_sdp_supported = HAS_AS_SDP(display) &&
->>>>           drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
->>>> +
->>>> +    intel_dp->as_sdp_v2_supported = intel_dp->as_sdp_supported &&
->>>> + intel_dp_sink_supports_as_sdp_v2(intel_dp);
->>>>   }
->>>>     static bool intel_dp_needs_dpcd_probe(struct intel_dp 
->>>> *intel_dp, bool force_on_external)
->>>> -- 
->>>> 2.45.2
->>> -- 
->>> Ville Syrjälä
->>> Intel
+> --
+> Joel Fernandes
+
