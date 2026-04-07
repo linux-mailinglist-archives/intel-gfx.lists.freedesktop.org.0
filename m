@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EGRiKY9E1WnY3wcAu9opvQ
+	id eIy/NpJE1WnY3wcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 19:53:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 19:53:22 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 406583B2A06
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 19:53:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 98E263B2A0D
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 19:53:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA4F610E07E;
-	Tue,  7 Apr 2026 17:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2187710E496;
+	Tue,  7 Apr 2026 17:53:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jEcDwy2k";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nz8RG3zS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2180B10E48B;
- Tue,  7 Apr 2026 17:53:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 782B610E123;
+ Tue,  7 Apr 2026 17:53:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775584396; x=1807120396;
+ t=1775584400; x=1807120400;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/cMk89PfhdA8wzD1NokWjQ+0n8GqAg7b/+fZ1gR9faQ=;
- b=jEcDwy2kWLSRR7ZDK5Yys0XVWaGGgS7YVc4pM/icjIlh+8x9BdDHPDtk
- n2tD61BJnBvNEtEo0OvceRetY2X4eKw52dCHBWFP7Ndg09qH0rAbhMrVw
- 1274tMu0oWGxjDoONEngYdx+tdN+ZPCsFtTYPRlYPAvXbDkvvBozhWCQ6
- GuSWVcuBHUz0WLbZMIsPABlfhViny/EwaSW8OVWsAgQ/vam/XdnEbY13W
- p2mcd7zzkUlgnxHt7PMmPVjIa5NH0Nn8PIeoptio4LbJYTN3GicMCFcRE
- 21EcCB24BOAOZFjgdfZLvyAJdc+iLTSKvWq0Ck94ftY6xWFLzGSsVVz4Q g==;
-X-CSE-ConnectionGUID: E1R0V42JSJ225k/tBKAGAg==
-X-CSE-MsgGUID: 1pM0STvMQnuWk6U+2ddIjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76449534"
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="76449534"
+ bh=/kEM5EEfHcU1SJmoGQJpUv6cu7xEJ66R/mYEB4lvNh0=;
+ b=nz8RG3zSJl8fZQophjVPidee5dopiUg8MBjfkgO6p2Mk5eXpvHEPFcfF
+ tRMV4wo1UtOk2I1HJdFkMmLAQ76Rsolp4CUQEyZIsx7Iz8ONJrjfHefzh
+ KklUAgPgsK1e3JOOblhGr1Baw9/xefGy7bUukxrxgwBrsif+1iDWmU2PU
+ P1t3QWf85zxpxJSVS3en/kcjh5x3DwK9zSSMBhejh5GCBU7juH+fdCMbT
+ ZlHUVXjx8dIsDuNRUf5sQycUJS4oYskP8+0Qv7dHXOiZG57dyWP49pgIq
+ 4H6sTZtACPC2tRUSa7KH9zgLEdsT3iGPVjJ+mP8EEgGnQohXJ/PvXiS3P A==;
+X-CSE-ConnectionGUID: +MfXmPeXQyKJj1j+6A/5IQ==
+X-CSE-MsgGUID: l2GNq0vyQ2OP7eGytXXong==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76449550"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="76449550"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 10:53:16 -0700
-X-CSE-ConnectionGUID: t1+TGgx5QmWyNNrtLyjisA==
-X-CSE-MsgGUID: QWTmsQa1QQ+F85ItDcf4lg==
+ 07 Apr 2026 10:53:20 -0700
+X-CSE-ConnectionGUID: Fm4+AEvyQbGEMSHVBYigNg==
+X-CSE-MsgGUID: WUHg1aUuQPOtBoYaiVnMOw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="223936106"
+X-IronPort-AV: E=Sophos;i="6.23,166,1770624000"; d="scan'208";a="223936118"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.211])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 10:53:14 -0700
+ 07 Apr 2026 10:53:18 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH v2 6/9] drm/i915/casf: Constify crtc_state
-Date: Tue,  7 Apr 2026 20:52:40 +0300
-Message-ID: <20260407175244.19654-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 7/9] drm/i915/casf: Remove redundant argument from
+ intel_casf_filter_lut_load()
+Date: Tue,  7 Apr 2026 20:52:41 +0300
+Message-ID: <20260407175244.19654-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260407175244.19654-1-ville.syrjala@linux.intel.com>
 References: <20260407175244.19654-1-ville.syrjala@linux.intel.com>
@@ -102,116 +103,48 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[4];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 406583B2A06
+X-Rspamd-Queue-Id: 98E263B2A0D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Make the crtc_state const everywhere in the sharpness filter
-code where it doesn't need to be mutated.
+intel_casf_filter_lut_load() can find the crtc from the crtc_state.
+No need to pass in both.
 
 Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 Reviewed-by: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c | 8 ++++----
- drivers/gpu/drm/i915/display/intel_casf.h | 4 ++--
- drivers/gpu/drm/i915/display/skl_scaler.c | 8 ++++----
- drivers/gpu/drm/i915/display/skl_scaler.h | 2 +-
- 4 files changed, 11 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_casf.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index 5a8ffb40d30d..f777aae3fc57 100644
+index f777aae3fc57..21e84a4f9ff5 100644
 --- a/drivers/gpu/drm/i915/display/intel_casf.c
 +++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -75,7 +75,7 @@ static void intel_casf_filter_lut_load(struct intel_crtc *crtc,
- 			       sharpness_lut[i]);
- }
+@@ -61,10 +61,10 @@ const u16 filtercoeff_3[] = {
+ 	FILTER_COEFF_0_125,
+ };
  
--void intel_casf_update_strength(struct intel_crtc_state *crtc_state)
-+void intel_casf_update_strength(const struct intel_crtc_state *crtc_state)
+-static void intel_casf_filter_lut_load(struct intel_crtc *crtc,
+-				       const struct intel_crtc_state *crtc_state)
++static void intel_casf_filter_lut_load(const struct intel_crtc_state *crtc_state)
  {
  	struct intel_display *display = to_intel_display(crtc_state);
++	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	int i;
+ 
+ 	intel_de_write(display, SHRPLUT_INDEX(crtc->pipe),
+@@ -270,7 +270,7 @@ void intel_casf_enable(const struct intel_crtc_state *crtc_state)
  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -174,7 +174,7 @@ static int casf_coeff_tap(int i)
- 	return i % SCALER_FILTER_NUM_TAPS;
- }
+ 	u32 sharpness_ctl;
  
--static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
-+static u32 casf_coeff(const struct intel_crtc_state *crtc_state, int t)
- {
- 	struct scaler_filter_coeff value;
- 	u32 coeff;
-@@ -192,7 +192,7 @@ static u32 casf_coeff(struct intel_crtc_state *crtc_state, int t)
-  * that are calculated and stored in pch_pfit.casf.coeff as per
-  * SCALER_COEFFICIENT_FORMAT
-  */
--static void intel_casf_write_coeff(struct intel_crtc_state *crtc_state)
-+static void intel_casf_write_coeff(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-@@ -264,7 +264,7 @@ void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state)
- 	}
- }
+-	intel_casf_filter_lut_load(crtc, crtc_state);
++	intel_casf_filter_lut_load(crtc_state);
  
--void intel_casf_enable(struct intel_crtc_state *crtc_state)
-+void intel_casf_enable(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-diff --git a/drivers/gpu/drm/i915/display/intel_casf.h b/drivers/gpu/drm/i915/display/intel_casf.h
-index b3fb0bcb3f5b..c4f984b73348 100644
---- a/drivers/gpu/drm/i915/display/intel_casf.h
-+++ b/drivers/gpu/drm/i915/display/intel_casf.h
-@@ -11,9 +11,9 @@
- struct intel_crtc_state;
+ 	intel_casf_write_coeff(crtc_state);
  
- int intel_casf_compute_config(struct intel_crtc_state *crtc_state);
--void intel_casf_update_strength(struct intel_crtc_state *new_crtc_state);
-+void intel_casf_update_strength(const struct intel_crtc_state *new_crtc_state);
- void intel_casf_sharpness_get_config(struct intel_crtc_state *crtc_state);
--void intel_casf_enable(struct intel_crtc_state *crtc_state);
-+void intel_casf_enable(const struct intel_crtc_state *crtc_state);
- void intel_casf_disable(const struct intel_crtc_state *crtc_state);
- void intel_casf_scaler_compute_config(struct intel_crtc_state *crtc_state);
- bool intel_casf_needs_scaler(const struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index d8bf65c6b4a7..762f4bb46c2d 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -757,13 +757,13 @@ static void skl_scaler_setup_filter(struct intel_display *display,
- 	}
- }
- 
--void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state)
-+void skl_scaler_setup_casf(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 	struct intel_display *display = to_intel_display(crtc);
--	struct drm_display_mode *adjusted_mode =
--	&crtc_state->hw.adjusted_mode;
--	struct intel_crtc_scaler_state *scaler_state =
-+	const struct drm_display_mode *adjusted_mode =
-+		&crtc_state->hw.adjusted_mode;
-+	const struct intel_crtc_scaler_state *scaler_state =
- 		&crtc_state->scaler_state;
- 	struct drm_rect src, dest;
- 	int id, width, height;
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.h b/drivers/gpu/drm/i915/display/skl_scaler.h
-index 7e8d819c019d..20ecf373eb19 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.h
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.h
-@@ -36,7 +36,7 @@ void skl_scaler_disable(const struct intel_crtc_state *old_crtc_state);
- 
- void skl_scaler_get_config(struct intel_crtc_state *crtc_state);
- 
--void skl_scaler_setup_casf(struct intel_crtc_state *crtc_state);
-+void skl_scaler_setup_casf(const struct intel_crtc_state *crtc_state);
- 
- enum drm_mode_status
- skl_scaler_mode_valid(struct intel_display *display,
 -- 
 2.52.0
 
