@@ -2,67 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sMxKLj3j1Gn0yQcAu9opvQ
+	id 6MV4M/fj1Gn0yQcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 12:58:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 13:01:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47A5C3AD616
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 12:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8670D3AD6AE
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 13:01:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C14DA10E3E8;
-	Tue,  7 Apr 2026 10:58:03 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nzrqHZmt";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAB0810E3F4;
+	Tue,  7 Apr 2026 11:01:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB31D10E3EA;
- Tue,  7 Apr 2026 10:58:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775559482; x=1807095482;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8CguOMp/Zq7W3dAxHK0YefJqh6bnaJEI04q6aVWx1gM=;
- b=nzrqHZmtYg9xqPYNb5ySW39UGoXXD0e31OmM9N+f0w9S5KiWpIjMT8xA
- aPKSnJD/5Vf5VwAzGf8yj2//Z7biOhSXgS3Enf5O/XfSge+IE4C0Yhd7v
- gAwTeUKHx4P7vIXOasd0wkuaDpjGL+vgxh0dity/JT8R4ew3YD5wwYqCW
- GH+q5SM38tQjV+93w1BgYbXGFYgVJFVjEzMALxz+boNNwFEl+zUu5ZBGa
- iKQYMRygzKZvPVZk0FEqGophMugq6F5XYZSf8J5gP5kDFAhD9i8ac0ycm
- xb7fT4HiqOfaH5a5Tbz/Nz3WRIgPOsUNeABQFLMimuaw4gop6CTua84lB g==;
-X-CSE-ConnectionGUID: QCVPX2yFQp+0UIwVXJBVfw==
-X-CSE-MsgGUID: +dpj1+OxQViWbd2giVY5SA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11751"; a="94099424"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="94099424"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:58:01 -0700
-X-CSE-ConnectionGUID: g0NCgyhHR7W7okXGq8yupQ==
-X-CSE-MsgGUID: 2uJZRc9+T9e8tcg5LEEsxQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="233109328"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.244])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 03:58:00 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 3/3] drm/i915/pci: move intel_pci_config.h under
- include/drm/intel
-Date: Tue,  7 Apr 2026 13:57:42 +0300
-Message-ID: <1e19927c4a5cc9f0e559a7253279ed3cf2259c78.1775559414.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775559414.git.jani.nikula@intel.com>
-References: <cover.1775559414.git.jani.nikula@intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AEB1D10E3F3;
+ Tue,  7 Apr 2026 11:01:03 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8184000677173261775=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/pin=3A_refactor_?=
+ =?utf-8?q?to_i915_core?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 07 Apr 2026 11:01:03 -0000
+Message-ID: <177555966369.437137.3874807822163651542@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <cover.1775556190.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1775556190.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,367 +42,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RSPAMD_URIBL_FAIL(0.00)[kms_hdmi_inject:query timed out];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.999];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.770];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 47A5C3AD616
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,01.org:url,patchwork.freedesktop.org:url,workarounds:email,read-all-entries:email]
+X-Rspamd-Queue-Id: 8670D3AD6AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Since the PCI registers are used from both i915 display and core, move
-intel_pci_config.h to include/drm/intel/pci_config.h. Drop the intel_
-prefix from the name to reduce tautology.
+--===============8184000677173261775==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With this, we can drop the corresponding xe display compat header.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/i9xx_display_sr.c              | 2 +-
- drivers/gpu/drm/i915/display/intel_backlight.c              | 2 +-
- drivers/gpu/drm/i915/display/intel_cdclk.c                  | 2 +-
- drivers/gpu/drm/i915/display/intel_lpe_audio.c              | 2 +-
- drivers/gpu/drm/i915/display/intel_opregion.c               | 2 +-
- drivers/gpu/drm/i915/gem/i915_gem_stolen.c                  | 2 +-
- drivers/gpu/drm/i915/gt/intel_ggtt.c                        | 2 +-
- drivers/gpu/drm/i915/gt/intel_gt.c                          | 2 +-
- drivers/gpu/drm/i915/gt/intel_region_lmem.c                 | 2 +-
- drivers/gpu/drm/i915/gt/intel_reset.c                       | 2 +-
- drivers/gpu/drm/i915/gvt/cfg_space.c                        | 2 +-
- drivers/gpu/drm/i915/i915_driver.c                          | 2 +-
- drivers/gpu/drm/i915/i915_gmch.c                            | 2 +-
- drivers/gpu/drm/i915/i915_overlay.c                         | 2 +-
- drivers/gpu/drm/i915/i915_pci.c                             | 2 +-
- drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h   | 6 ------
- .../intel_pci_config.h => include/drm/intel/pci_config.h    | 0
- 17 files changed, 15 insertions(+), 21 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
- rename drivers/gpu/drm/i915/intel_pci_config.h => include/drm/intel/pci_config.h (100%)
+Series: drm/i915/pin: refactor to i915 core
+URL   : https://patchwork.freedesktop.org/series/164435/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_display_sr.c b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-index 935419441709..1eb2f636cc65 100644
---- a/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_display_sr.c
-@@ -4,13 +4,13 @@
-  */
- 
- #include <drm/drm_device.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "i9xx_display_sr.h"
- #include "i9xx_wm_regs.h"
- #include "intel_de.h"
- #include "intel_display_regs.h"
- #include "intel_gmbus.h"
--#include "intel_pci_config.h"
- 
- static void i9xx_display_save_swf(struct intel_display *display)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_backlight.c b/drivers/gpu/drm/i915/display/intel_backlight.c
-index 34e95f05936e..b128896cb1c2 100644
---- a/drivers/gpu/drm/i915/display/intel_backlight.c
-+++ b/drivers/gpu/drm/i915/display/intel_backlight.c
-@@ -11,6 +11,7 @@
- 
- #include <drm/drm_file.h>
- #include <drm/drm_print.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "intel_backlight.h"
- #include "intel_backlight_regs.h"
-@@ -23,7 +24,6 @@
- #include "intel_dp_aux_backlight.h"
- #include "intel_dsi_dcs_backlight.h"
- #include "intel_panel.h"
--#include "intel_pci_config.h"
- #include "intel_pps.h"
- #include "intel_quirks.h"
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 82955cf16c4c..8feba2e0333b 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -28,6 +28,7 @@
- #include <drm/drm_fixed.h>
- #include <drm/drm_print.h>
- #include <drm/intel/intel_pcode_regs.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "hsw_ips.h"
- #include "intel_atomic.h"
-@@ -43,7 +44,6 @@
- #include "intel_dram.h"
- #include "intel_mchbar.h"
- #include "intel_parent.h"
--#include "intel_pci_config.h"
- #include "intel_plane.h"
- #include "intel_psr.h"
- #include "intel_step.h"
-diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-index 117b60656ca1..775493306a83 100644
---- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
-@@ -70,11 +70,11 @@
- 
- #include <drm/drm_print.h>
- #include <drm/intel/intel_lpe_audio.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "intel_audio_regs.h"
- #include "intel_de.h"
- #include "intel_lpe_audio.h"
--#include "intel_pci_config.h"
- 
- #define HAS_LPE_AUDIO(display) ((display)->audio.lpe.platdev)
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_opregion.c b/drivers/gpu/drm/i915/display/intel_opregion.c
-index e25be56e678b..9f88b7cac9f7 100644
---- a/drivers/gpu/drm/i915/display/intel_opregion.c
-+++ b/drivers/gpu/drm/i915/display/intel_opregion.c
-@@ -34,13 +34,13 @@
- #include <drm/drm_edid.h>
- #include <drm/drm_file.h>
- #include <drm/drm_print.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "intel_acpi.h"
- #include "intel_backlight.h"
- #include "intel_display_core.h"
- #include "intel_display_types.h"
- #include "intel_opregion.h"
--#include "intel_pci_config.h"
- 
- #define OPREGION_HEADER_OFFSET 0
- #define OPREGION_ACPI_OFFSET   0x100
-diff --git a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-index 5838fb33104d..1cfdcf5c1118 100644
---- a/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-+++ b/drivers/gpu/drm/i915/gem/i915_gem_stolen.c
-@@ -11,6 +11,7 @@
- #include <drm/intel/display_parent_interface.h>
- #include <drm/intel/i915_drm.h>
- #include <drm/intel/mchbar_regs.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "gem/i915_gem_lmem.h"
- #include "gem/i915_gem_region.h"
-@@ -24,7 +25,6 @@
- #include "i915_reg.h"
- #include "i915_utils.h"
- #include "i915_vgpu.h"
--#include "intel_pci_config.h"
- 
- struct intel_stolen_node {
- 	struct drm_i915_private *i915;
-diff --git a/drivers/gpu/drm/i915/gt/intel_ggtt.c b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-index 08c4e735481b..64ca5bbc53c6 100644
---- a/drivers/gpu/drm/i915/gt/intel_ggtt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_ggtt.c
-@@ -12,6 +12,7 @@
- #include <drm/drm_print.h>
- #include <drm/intel/i915_drm.h>
- #include <drm/intel/intel-gtt.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "gem/i915_gem_lmem.h"
- 
-@@ -20,7 +21,6 @@
- #include "intel_gpu_commands.h"
- #include "intel_gt.h"
- #include "intel_gt_regs.h"
--#include "intel_pci_config.h"
- #include "intel_ring.h"
- #include "i915_drv.h"
- #include "i915_pci.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt.c b/drivers/gpu/drm/i915/gt/intel_gt.c
-index d76121e117e1..5c7f862f7100 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt.c
-@@ -6,6 +6,7 @@
- #include <drm/drm_managed.h>
- #include <drm/intel/intel-gtt.h>
- #include <drm/intel/intel_gmd_interrupt_regs.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_lmem.h"
-@@ -28,7 +29,6 @@
- #include "intel_gt_requests.h"
- #include "intel_migrate.h"
- #include "intel_mocs.h"
--#include "intel_pci_config.h"
- #include "intel_rc6.h"
- #include "intel_renderstate.h"
- #include "intel_rps.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_region_lmem.c b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-index a30060fd4429..b8a39567a334 100644
---- a/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-+++ b/drivers/gpu/drm/i915/gt/intel_region_lmem.c
-@@ -4,12 +4,12 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "i915_drv.h"
- #include "i915_pci.h"
- #include "i915_reg.h"
- #include "intel_memory_region.h"
--#include "intel_pci_config.h"
- #include "intel_region_lmem.h"
- #include "intel_region_ttm.h"
- #include "gem/i915_gem_lmem.h"
-diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-index 4d0ea953eb6e..37272871b0f2 100644
---- a/drivers/gpu/drm/i915/gt/intel_reset.c
-+++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-@@ -8,6 +8,7 @@
- #include <linux/string_helpers.h>
- 
- #include <drm/intel/mchbar_regs.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "display/intel_display_reset.h"
- #include "display/intel_overlay.h"
-@@ -29,7 +30,6 @@
- #include "intel_gt_pm.h"
- #include "intel_gt_print.h"
- #include "intel_gt_requests.h"
--#include "intel_pci_config.h"
- #include "intel_reset.h"
- 
- #define RESET_MAX_RETRIES 3
-diff --git a/drivers/gpu/drm/i915/gvt/cfg_space.c b/drivers/gpu/drm/i915/gvt/cfg_space.c
-index 1937e04d3791..e00c1478a24e 100644
---- a/drivers/gpu/drm/i915/gvt/cfg_space.c
-+++ b/drivers/gpu/drm/i915/gvt/cfg_space.c
-@@ -32,10 +32,10 @@
-  */
- 
- #include <drm/drm_print.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "gvt.h"
- #include "i915_drv.h"
--#include "intel_pci_config.h"
- 
- enum {
- 	INTEL_GVT_PCI_BAR_GTTMMIO = 0,
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index c10cab38935a..0314b5dc592a 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -49,6 +49,7 @@
- #include <drm/intel/display_member.h>
- #include <drm/intel/display_parent_interface.h>
- #include <drm/intel/intel_pcode_regs.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "display/i9xx_display_sr.h"
- #include "display/intel_bw.h"
-@@ -122,7 +123,6 @@
- #include "intel_cpu_info.h"
- #include "intel_gvt.h"
- #include "intel_memory_region.h"
--#include "intel_pci_config.h"
- #include "intel_pcode.h"
- #include "intel_region_ttm.h"
- #include "vlv_iosf_sb.h"
-diff --git a/drivers/gpu/drm/i915/i915_gmch.c b/drivers/gpu/drm/i915/i915_gmch.c
-index 2d55831b3c58..b0ef6ef577a3 100644
---- a/drivers/gpu/drm/i915/i915_gmch.c
-+++ b/drivers/gpu/drm/i915/i915_gmch.c
-@@ -5,10 +5,10 @@
- 
- #include <drm/drm_managed.h>
- #include <drm/drm_print.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "i915_drv.h"
- #include "i915_gmch.h"
--#include "intel_pci_config.h"
- 
- static void i915_gmch_bridge_release(struct drm_device *dev, void *bridge)
- {
-diff --git a/drivers/gpu/drm/i915/i915_overlay.c b/drivers/gpu/drm/i915/i915_overlay.c
-index c2d712bd2b0d..2d7aff51e39b 100644
---- a/drivers/gpu/drm/i915/i915_overlay.c
-+++ b/drivers/gpu/drm/i915/i915_overlay.c
-@@ -7,6 +7,7 @@
- 
- #include <drm/intel/display_parent_interface.h>
- #include <drm/intel/intel_gmd_interrupt_regs.h>
-+#include <drm/intel/pci_config.h>
- 
- #include "gem/i915_gem_internal.h"
- #include "gem/i915_gem_object_frontbuffer.h"
-@@ -18,7 +19,6 @@
- #include "i915_drv.h"
- #include "i915_overlay.h"
- #include "i915_reg.h"
--#include "intel_pci_config.h"
- 
- #include "display/intel_frontbuffer.h"
- 
-diff --git a/drivers/gpu/drm/i915/i915_pci.c b/drivers/gpu/drm/i915/i915_pci.c
-index d966a00520f1..82415af47d54 100644
---- a/drivers/gpu/drm/i915/i915_pci.c
-+++ b/drivers/gpu/drm/i915/i915_pci.c
-@@ -24,6 +24,7 @@
- 
- #include <drm/drm_color_mgmt.h>
- #include <drm/drm_drv.h>
-+#include <drm/intel/pci_config.h>
- #include <drm/intel/pciids.h>
- 
- #include "display/intel_display_driver.h"
-@@ -35,7 +36,6 @@
- #include "i915_drv.h"
- #include "i915_pci.h"
- #include "i915_reg.h"
--#include "intel_pci_config.h"
- 
- __diag_push();
- __diag_ignore_all("-Woverride-init", "Allow field initialization overrides for device info");
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
-deleted file mode 100644
-index 8c15867fd613..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_pci_config.h
-+++ /dev/null
-@@ -1,6 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#include "../../i915/intel_pci_config.h"
-diff --git a/drivers/gpu/drm/i915/intel_pci_config.h b/include/drm/intel/pci_config.h
-similarity index 100%
-rename from drivers/gpu/drm/i915/intel_pci_config.h
-rename to include/drm/intel/pci_config.h
--- 
-2.47.3
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18284 -> Patchwork_164435v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-glk-j4005 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_164435v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [PASS][3] -> [FAIL][4] ([i915#14867])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@core_debugfs@read-all-entries:
+    - bat-adlp-9:         [DMESG-WARN][5] ([i915#15673]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/bat-adlp-9/igt@core_debugfs@read-all-entries.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/bat-adlp-9/igt@core_debugfs@read-all-entries.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
+  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18284 -> Patchwork_164435v1
+
+  CI-20190529: 20190529
+  CI_DRM_18284: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8849: 8849
+  Patchwork_164435v1: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/index.html
+
+--===============8184000677173261775==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/pin: refactor to i915 core</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164435/">https://patchwork.freedesktop.org/series/164435/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18284 -&gt; Patchwork_164435v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-glk-j4005 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_164435v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@core_debugfs@read-all-entries:</p>
+<ul>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/bat-adlp-9/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/bat-adlp-9/igt@core_debugfs@read-all-entries.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18284/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164435v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18284 -&gt; Patchwork_164435v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18284: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8849: 8849<br />
+  Patchwork_164435v1: 5f8792621868737c8b62a87b66dbf7eca4d9f7e3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8184000677173261775==--
