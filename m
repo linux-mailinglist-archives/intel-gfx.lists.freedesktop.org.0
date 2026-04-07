@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UKYFO+cn1WnB1gcAu9opvQ
+	id CMIyOuwn1WnB1gcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:08 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4ACC3B14FC
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC9203B1503
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 55BDB10E46B;
-	Tue,  7 Apr 2026 15:51:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5167B10E471;
+	Tue,  7 Apr 2026 15:51:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H9RLxs/U";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eEKWJfb3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9F73D10E46B;
- Tue,  7 Apr 2026 15:51:01 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C85910E471;
+ Tue,  7 Apr 2026 15:51:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775577061; x=1807113061;
+ t=1775577065; x=1807113065;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=l789J6zYvBpeyHo1rOkLhjMsfc9gXVIZVJ2dJrpuXzk=;
- b=H9RLxs/U0trgXgIV7pz54p3CRpwlwrFIduYHUo6sNOw8M88va2za5N+d
- YgV4EqepGU+SeozjL022/RkD9uS5Ap0DHobVH2YmuuqzrhajI+fQSDuId
- ZpAfkRVFuokefUHq3F39N3N8xfx7ev4dLxVoYZy7n9dNzPTUkDJ9mMzqT
- RgIYx7LiqlkuN+a4wKbWpqfWudgnyzCud7dWtxjGMZ0cO2ObeWh7CcuGJ
- tB0MqqOGVx5iKZfY6W5KZAxSmAgeBHs8sv2zkx911KR4DHmgRSnAu9/L0
- MzgBP7mTlfOFxm4ViSC+EqMxhzrMhOQVINpn1cbjnzV3mTdIu/g4JKRC8 Q==;
-X-CSE-ConnectionGUID: N4ZZJzFVQSSMSagth3/F3Q==
-X-CSE-MsgGUID: 3QsoGGiaS+Kw5C1Ijt686g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="101999066"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="101999066"
+ bh=cU7vt1vOum2Cj3DlInnKKDOo6lfuiJ7JUV8qhQzuBfo=;
+ b=eEKWJfb35o+0vGGHj/WQ/j/4O4PocBo5lrCdVgfztIfRf4h6avVL1Wng
+ ItvfiouidvNymX8pPqkkcv9nrj7BcfUpsCvJAUkTJNpg6i4OhBWlJ7t6Y
+ 12bOICn0ezb9KF7Q1k0v/qR+emhSwLv3A72TMTW27DMS6lzgKfjhPllk8
+ 6zZSLkQK4oCUknNDqkFo6ANRSBDVCMMXCUrybg3HeSyapgT22u4EQ03Y0
+ 7RUsqguIXnphI77c6zU8RShq1DsIS0lG8qntAs3Zs8rUKm1nRxdQJ04sh
+ uOOIxFMAxCTt2UTfDstk9MunreSDnBqDxxfWRtQ0DCy6bgF50clBedR+3 A==;
+X-CSE-ConnectionGUID: LucrLglWTwSPOzbofQQlxw==
+X-CSE-MsgGUID: 9einpWZhQX6XbkIKXURZEg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="101999089"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="101999089"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:01 -0700
-X-CSE-ConnectionGUID: krH0keztS6KAxc3tQDiZJQ==
-X-CSE-MsgGUID: 6X+Qhfs4QYSGExncvqM6DA==
+ 07 Apr 2026 08:51:04 -0700
+X-CSE-ConnectionGUID: K1Fbawd5ToW/mKSxxuPI8w==
+X-CSE-MsgGUID: izv9t4eETdSB4f1jcbcEiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221633644"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221633717"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.211])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:50:59 -0700
+ 07 Apr 2026 08:51:03 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/12] drm/i915/fb: Nuke intel_tile_row_size()
-Date: Tue,  7 Apr 2026 18:50:42 +0300
-Message-ID: <20260407155053.32156-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 02/12] drm/i915/fb: Make intel_fb_needs_pot_stride_remap()
+ static
+Date: Tue,  7 Apr 2026 18:50:43 +0300
+Message-ID: <20260407155053.32156-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
 References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
@@ -100,51 +101,45 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: C4ACC3B14FC
+X-Rspamd-Queue-Id: BC9203B1503
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_tile_row_size() is unused. Nuke it.
+intel_fb_needs_pot_stride_remap() isn't needed outside intel_fb.c.
+Make it static.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 9 ---------
+ drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
  drivers/gpu/drm/i915/display/intel_fb.h | 1 -
- 2 files changed, 10 deletions(-)
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 5768619f840f..83392c1a1ebe 100644
+index 83392c1a1ebe..4b0afea1c456 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -876,15 +876,6 @@ static void intel_tile_block_dims(const struct drm_framebuffer *fb, int color_pl
- 		*tile_height = 1;
+@@ -1265,7 +1265,7 @@ static bool intel_plane_can_remap(const struct intel_plane_state *plane_state)
+ 	return true;
  }
  
--unsigned int intel_tile_row_size(const struct drm_framebuffer *fb, int color_plane)
--{
--	unsigned int tile_width, tile_height;
--
--	intel_tile_dims(fb, color_plane, &tile_width, &tile_height);
--
--	return fb->pitches[color_plane] * tile_height;
--}
--
- unsigned int
- intel_fb_align_height(const struct drm_framebuffer *fb,
- 		      int color_plane, unsigned int height)
+-bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
++static bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
+ {
+ 	struct intel_display *display = to_intel_display(fb->base.dev);
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-index 22514d5f2bb6..fb1ec2a1e905 100644
+index fb1ec2a1e905..fc2c4d59bf06 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.h
 +++ b/drivers/gpu/drm/i915/display/intel_fb.h
-@@ -62,7 +62,6 @@ int skl_main_to_aux_plane(const struct drm_framebuffer *fb, int main_plane);
- unsigned int intel_tile_size(struct intel_display *display);
- unsigned int intel_tile_width_bytes(const struct drm_framebuffer *fb, int color_plane);
- unsigned int intel_tile_height(const struct drm_framebuffer *fb, int color_plane);
--unsigned int intel_tile_row_size(const struct drm_framebuffer *fb, int color_plane);
- unsigned int intel_fb_align_height(const struct drm_framebuffer *fb,
- 				   int color_plane, unsigned int height);
+@@ -77,7 +77,6 @@ u32 intel_plane_compute_aligned_offset(int *x, int *y,
+ 				       const struct intel_plane_state *plane_state,
+ 				       int color_plane);
+ 
+-bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb);
+ bool intel_plane_uses_fence(const struct intel_plane_state *plane_state);
+ bool intel_fb_supports_90_270_rotation(const struct intel_framebuffer *fb);
  
 -- 
 2.52.0
