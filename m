@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMIyOuwn1WnB1gcAu9opvQ
+	id 0GCDAO8n1WnB1gcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC9203B1503
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1773B150B
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Apr 2026 17:51:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5167B10E471;
-	Tue,  7 Apr 2026 15:51:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 619AE10E473;
+	Tue,  7 Apr 2026 15:51:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eEKWJfb3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzzWEnMO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C85910E471;
- Tue,  7 Apr 2026 15:51:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B0A510E472;
+ Tue,  7 Apr 2026 15:51:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775577065; x=1807113065;
+ t=1775577068; x=1807113068;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cU7vt1vOum2Cj3DlInnKKDOo6lfuiJ7JUV8qhQzuBfo=;
- b=eEKWJfb35o+0vGGHj/WQ/j/4O4PocBo5lrCdVgfztIfRf4h6avVL1Wng
- ItvfiouidvNymX8pPqkkcv9nrj7BcfUpsCvJAUkTJNpg6i4OhBWlJ7t6Y
- 12bOICn0ezb9KF7Q1k0v/qR+emhSwLv3A72TMTW27DMS6lzgKfjhPllk8
- 6zZSLkQK4oCUknNDqkFo6ANRSBDVCMMXCUrybg3HeSyapgT22u4EQ03Y0
- 7RUsqguIXnphI77c6zU8RShq1DsIS0lG8qntAs3Zs8rUKm1nRxdQJ04sh
- uOOIxFMAxCTt2UTfDstk9MunreSDnBqDxxfWRtQ0DCy6bgF50clBedR+3 A==;
-X-CSE-ConnectionGUID: LucrLglWTwSPOzbofQQlxw==
-X-CSE-MsgGUID: 9einpWZhQX6XbkIKXURZEg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="101999089"
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="101999089"
+ bh=30OCcPdh4t0HZWkboXYCQCLhX8mJqQD97iTCkReLg6Q=;
+ b=SzzWEnMOJa8ZZw8r4pStrS2E3pGeSontDGbYRtvrG8jrslP6L52kK3go
+ lw1kjNMaiHcoXg46Ls2gI4lfe5AIagf3qfyGVZz3CF6VFZbhxX4AVXv8r
+ jLiIXScJ4cnW27H1GHnqOEd35l0sLIFYn415LgLMoLtSwXAI1K8rPOmr4
+ BH97JlSl8PrJuPpoAS63TjsyE1yydVqoaiyKk1R8nHYKKbimjAlBwao3d
+ b5ztdVoDFC4ZYgXNPeLvObu8rwgT8EMCr71oDtYm9gl1CgpFtTA4SL1of
+ IYcw+1cJCq+jcZ5opgfkekaXbOUaefJX9v9hpJIl5hCIYnCTMiSl0tHvH g==;
+X-CSE-ConnectionGUID: 5Cwjuv8/R9mIlHSbk2qzUg==
+X-CSE-MsgGUID: ioP9EDXGQ/6ySd6+USExAg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="101999100"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="101999100"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:04 -0700
-X-CSE-ConnectionGUID: K1Fbawd5ToW/mKSxxuPI8w==
-X-CSE-MsgGUID: izv9t4eETdSB4f1jcbcEiQ==
+ 07 Apr 2026 08:51:08 -0700
+X-CSE-ConnectionGUID: DO0IX4mXS4OSsboQHrQgzA==
+X-CSE-MsgGUID: 3wUn3R+2SvSKCWe2McnKtg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221633717"
+X-IronPort-AV: E=Sophos;i="6.23,165,1770624000"; d="scan'208";a="221633742"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.211])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Apr 2026 08:51:03 -0700
+ 07 Apr 2026 08:51:07 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/12] drm/i915/fb: Make intel_fb_needs_pot_stride_remap()
- static
-Date: Tue,  7 Apr 2026 18:50:43 +0300
-Message-ID: <20260407155053.32156-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/12] drm/i915/fb: Reject per-plane remapping with DPT
+Date: Tue,  7 Apr 2026 18:50:44 +0300
+Message-ID: <20260407155053.32156-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
 References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
@@ -101,46 +100,35 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: BC9203B1503
+X-Rspamd-Queue-Id: CA1773B150B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-intel_fb_needs_pot_stride_remap() isn't needed outside intel_fb.c.
-Make it static.
+We currently create a single DPT for the entire FB, so we can't
+actually do the per-plane remap. Reject it for now.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c | 2 +-
- drivers/gpu/drm/i915/display/intel_fb.h | 1 -
- 2 files changed, 1 insertion(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index 83392c1a1ebe..4b0afea1c456 100644
+index 4b0afea1c456..52a619088e8e 100644
 --- a/drivers/gpu/drm/i915/display/intel_fb.c
 +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -1265,7 +1265,7 @@ static bool intel_plane_can_remap(const struct intel_plane_state *plane_state)
- 	return true;
- }
+@@ -1252,6 +1252,10 @@ static bool intel_plane_can_remap(const struct intel_plane_state *plane_state)
+ 	if (intel_fb_is_ccs_modifier(fb->modifier))
+ 		return false;
  
--bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
-+static bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb)
- {
- 	struct intel_display *display = to_intel_display(fb->base.dev);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.h b/drivers/gpu/drm/i915/display/intel_fb.h
-index fb1ec2a1e905..fc2c4d59bf06 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb.h
-@@ -77,7 +77,6 @@ u32 intel_plane_compute_aligned_offset(int *x, int *y,
- 				       const struct intel_plane_state *plane_state,
- 				       int color_plane);
- 
--bool intel_fb_needs_pot_stride_remap(const struct intel_framebuffer *fb);
- bool intel_plane_uses_fence(const struct intel_plane_state *plane_state);
- bool intel_fb_supports_90_270_rotation(const struct intel_framebuffer *fb);
- 
++	/* TODO implement remapping with DPT */
++	if (intel_fb_uses_dpt(fb))
++		return false;
++
+ 	/* Linear needs a page aligned stride for remapping */
+ 	if (fb->modifier == DRM_FORMAT_MOD_LINEAR) {
+ 		unsigned int alignment = intel_tile_size(display) - 1;
 -- 
 2.52.0
 
