@@ -2,169 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MKE/FzxD1mkFCwgAu9opvQ
+	id CIFYMu1D1mkFCwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 13:59:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:02:53 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9FC503BB9CF
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 13:59:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6679E3BBABD
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:02:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EA0110E341;
-	Wed,  8 Apr 2026 11:59:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8E0B10E0D5;
+	Wed,  8 Apr 2026 12:02:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g1N0sCLd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GGE2NLMf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC5BF10E0D5;
- Wed,  8 Apr 2026 11:59:52 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 680C510E0D5;
+ Wed,  8 Apr 2026 12:02:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775649593; x=1807185593;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-id:content-transfer-encoding: mime-version;
- bh=czH4xF4+hb39eKsGAO8ycfO/4RX+8NUoRPHH3qqhGF4=;
- b=g1N0sCLd3YDlbGqB8mtPzirQASTXf+ZDmpbAp9LbXACE27ZmVffukiVf
- hRHDJ5RkCZdl9EU9LZXQZvn0zImnMwJDt8r24NidIMhCsEnCmTjAle1bK
- eHjk8zOG4lc9vmvDndLBgXg7GzOtafK7DClo2wHUNG3bqUgmyNkE2pgYJ
- +YXscpBFoodkCi3dMHjEYY0WhtFNhi21Rb5P1nmDkTGZeo5PfdODhaU2O
- BRdRu1de2jomyG6LwdUtt99Bn4ZgwhWxvcloH3EIhjt+MALrpZ9JUiANR
- FnfTOzWXBZVKQBFBOT2GcDFarGv1JVpHJDLq455fxo/gE688IRGMEBg74 g==;
-X-CSE-ConnectionGUID: 9HO/pXpnTu2/x22Se4JqJA==
-X-CSE-MsgGUID: MP7VgvgGQfGUc7YiJWpdCw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80224102"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80224102"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:59:53 -0700
-X-CSE-ConnectionGUID: 1uYqwbClSMi0SMV7fEslhw==
-X-CSE-MsgGUID: c9y59w1VR9KdVHHHGISM1g==
+ t=1775649769; x=1807185769;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=YNtUFL0yTBrxzQVzWCC57bJs+G6Njz9xioBBgli3IC0=;
+ b=GGE2NLMfh1qa2OplI7jPQWm+UIM3SfdS0I1qQbRkajPVlIDDYgvZAdWS
+ rTQliIr5jVNAEbqQCJjJ5IfaszRlje/kvq9ljY4lnAJ/hqzliSd529na6
+ jPmjHedFpbshFWhp/xLcDhRMefWeJwbeEcMNVAyj2NeixuQfOCkBFh2iv
+ nFsXkNETRbfm45mijDmA/YJ6szFgqoZqzQuzp6b4446HGFT4eXRG4w/XR
+ 60RJWbDoV9m62BZ2Po0bzFzSJDLOjfjLuvRmq6MQDuGVrh/0nX75uRPjK
+ iSiJ27ZGETN66CKF/u5NH60AsGzKYl/uG//VIibs99tUShwW+7mknlJpz g==;
+X-CSE-ConnectionGUID: y7oIK2sYSXySEk+XBljK6g==
+X-CSE-MsgGUID: H+JhNFp7Tri6UltgMwPGig==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="99256465"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="99256465"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 05:02:49 -0700
+X-CSE-ConnectionGUID: d8of8FbaTgaH2ceHvcW0gg==
+X-CSE-MsgGUID: X9GJWjhLR+iiJOwF3qGO/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="258878269"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 04:59:52 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 04:59:52 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 04:59:52 -0700
-Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.4) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 8 Apr 2026 04:59:51 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ld1VnkE45YAE79O7fCyo3JboS0S+N89JbJmII1+DuodQnwiwv9X5Wpm8cT6FxtGizH8wjpEYwS3Z62jFOnzBPDdh1oQbGMuUlAovuQQ38tsFTtILpPcg/nZQgUjWgoyWy2ccjwRIWNZ+nU0i8kUXeLNL9KJV0ooBxXWGfMib7JPhEhNsE3035S6VV4IMBbfQ5s8U+t2ozIBup1euYviPFnRwiULVcI76KgF971T68xgpe4hTCq9k3RiC3RWRLimNgx5NHUQGYVRgl+DX6ZQNJlOxT6lM1rMJ2O2sI1NvoDrsQooNa1G/toW+eEhxuQt4LS/I8Rx652LY1NbIvhc5Sw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=czH4xF4+hb39eKsGAO8ycfO/4RX+8NUoRPHH3qqhGF4=;
- b=HDkB2aFMFdSeZiCD7FfBAncKDuO5gCBAeoCvYdYzMYqB06ZOhMuYTLNRPd+y6iT7ENs+DK7tRKDu44YTZ5vZo3LjOj0fmPuFbVh1pJzyI7jRS7lqXdDGNZu7yYUfOh1C+BRR4E7yy2EWrqyJKLCs/h9rixHXCKIXQRQN4FFDytVHQ33NEURHuXSgIagY8WqT9Ip/h6bYXzTkQyWxSZSlWKN1H9DF086H33v4ZQjVxAZqeS109QBAp8j1m0KDMgL5fp3F9HVA8q1bWbsNQrC1H5cYLQ7AQg5V8SvNBJpUAOAOIpYoADPOeuaNRUGCW6lWpFDyW8piLzseh9sdNJf3ZA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com (2603:10b6:930:71::14)
- by BY1PR11MB8030.namprd11.prod.outlook.com (2603:10b6:a03:522::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Wed, 8 Apr
- 2026 11:59:43 +0000
-Received: from CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::5a6:cd7:969c:fa41]) by CY8PR11MB7777.namprd11.prod.outlook.com
- ([fe80::5a6:cd7:969c:fa41%5]) with mapi id 15.20.9769.018; Wed, 8 Apr 2026
- 11:59:43 +0000
-From: "Govindapillai, Vinod" <vinod.govindapillai@intel.com>
-To: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 7/9] drm/i915/wm: Verify 'ddb_y' as well as 'ddb'
-Thread-Topic: [PATCH 7/9] drm/i915/wm: Verify 'ddb_y' as well as 'ddb'
-Thread-Index: AQHcu5Z6dJO84+YfhUKDr1ihP5JXW7XVJy+A
-Date: Wed, 8 Apr 2026 11:59:43 +0000
-Message-ID: <4a9c3663b467924051b6fb9e78f80147923a005d.camel@intel.com>
-References: <20260324134843.2364-1-ville.syrjala@linux.intel.com>
- <20260324134843.2364-8-ville.syrjala@linux.intel.com>
-In-Reply-To: <20260324134843.2364-8-ville.syrjala@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Evolution 3.52.3-0ubuntu1.1 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CY8PR11MB7777:EE_|BY1PR11MB8030:EE_
-x-ms-office365-filtering-correlation-id: 556b4dbf-37e3-4a3e-85a5-08de95665266
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|10070799003|376014|1800799024|366016|56012099003|18002099003|22082099003|38070700021;
-x-microsoft-antispam-message-info: aJPLa9FtevAIRIDGjsLtOPoT06ncWTmtLfgBEEUnl8ckMEeNIqd0RTRWBSHjKfF3rKJd7wuZxEA1zG6o3GJF59txGkGdD5xDgPqxcXv7dP5kzgW6hY8sYzcoYXa+r6IKg0VuybWqzr3gkmkm3BIgfbSt8CqjPSKzoGYvFByCvJhJlZ+DeO4EXL89GyG6OhY6L4y0HybUxuPPhSKZKSGX7nKgZLszw/0jNSUWZf5qfYipyoRc+XETUhD2ljc7DiOXQWMWNfBZP1YOQUril3S/fyO++KFruzMtIMTkfKIi+e7u5alo/T9dlxnVkJV5p2mksyVQFvuKearxlPWNnxXOFdsHmlKT2LXpDFEpo48VU/4mx9+RkyCnPwiqmm/B4aHrAVwmYEOmySnHAObs5THMQ8KNCzFotxZTkIUr2XquwoIBKkVH6s87OY/MC1Yl7CncrCI4knfEZH78HvV4/KHBdunxcSjSTr2aW2TFi3GaQi3tRYr1d68UN+Ggek0N20YaiJPlYDzhikn7DJ7lMfEintZvjZEAr+vktWvMjY7QsM104bE5KA2hG124n4v9fr1tVfsvlECROXBB5vXCNA7n38+PEXRcaKm5XxZfO7eHQ8oQY0jTo4aEzXK7+pSWoXXzp+B47X4Sk63CGXegcVys/p99v5mJDe4/WuDF75kngn+t0bU8PxDb9f4PxbrvweCx5j9bCvo5qmj3LtfapC+hYMoQw2MUelC8TtIUeBamTSFPtvG7L+Knsd+EkHNERz/W9SToGcxaNtTCF+CcqOkF4FA6DHhWjFYbJUjCfe8I63s=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CY8PR11MB7777.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(10070799003)(376014)(1800799024)(366016)(56012099003)(18002099003)(22082099003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 2
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?Smp0MXpocGVNTVpQK3dMUk40MnZIdnUwZ0ZJME05QXdaajdSNzlHaXpadnV3?=
- =?utf-8?B?MWVKNUN6TGRZZno5NHlWQTRvcERLcFVNcUJubXlzaFBsR2J0MVFLc2Zlazhs?=
- =?utf-8?B?Z1cycXE4WlhJc2tzcnJRS2RYejJIL05XVGdDRmxaNStkaXoyREh6YzlPdjBp?=
- =?utf-8?B?M0FtaFMxcFYzUjZjeHdjL3BVN2tDbzhOZnJQZk42dzVMQmVNTFBtcW1JZWVr?=
- =?utf-8?B?dk83ZXd5OVVWdW0xTmtEcndGT1lwMkk2enlRSjVyUEJwUElic0NhckJHV3Q2?=
- =?utf-8?B?M0pJQmt6d0hwVG1wbGt6ejE4L2xONmhRSlBEUXRIMFhrUUZNQ1IyUDRqS1NG?=
- =?utf-8?B?bGcyY0p0MHRQelEyb1Y3emdMaGp4OHRIZVozQTJYMU02WnpxOCszWGZTWnhX?=
- =?utf-8?B?cUFTOTlEYStkemNpUU50Sm1veVg0R1lQdm1IZnBLYXQrejZYTWJ0T2lNVEJh?=
- =?utf-8?B?ZThSVGM5WE8xYzFPRW5RVFlDekhnQnBiUkQ3L2c4c21KdlZFcjNKakw0MGNV?=
- =?utf-8?B?MXhLaG9QYUVWbG85cVc4Ty9zanY0bDZnZzJHdnBTRDhuRDNTN1RMRDA1ZHlJ?=
- =?utf-8?B?M2Nla1BxWTNlRnBsWnBaSlAzOTBCSUhjeEF4K2k2UXMrN0hlMnZmdTRFZnZW?=
- =?utf-8?B?aGt6MEZ4NkppNEc5S0NENkdGdHFwOWlyRjF1bVJiN29HZlVGYytuR0N6M1Ay?=
- =?utf-8?B?dERNLzlKSE9sa3BNcFJLdjhDWEFkS1pWdWNSMmt5R0k2MkhpeGM5Y2tMcG1C?=
- =?utf-8?B?Ujh2cDBCV0lmNzlWVVRaeEQ0czA0R1c4bFZRUjhsY21aejFNUHhhemw4L2ly?=
- =?utf-8?B?OWFhdEw3cy9LMjRWMWI1endPYytPTVdlQUJ4djhrZ2ZSNkZqeXlTY0tydHlt?=
- =?utf-8?B?V0NoNkQyT1g5bjR6akNvZ01ML0w2dFJ2amF1eWxXVmRKWFNYYW81b3padC9N?=
- =?utf-8?B?NEJtS0EwenlHalQ3YXRhNUVVOFdlTTlhbUYwS1Z3bk9FbmZ4eERQd2R1QUtR?=
- =?utf-8?B?UVIzalgwSG5kM3lTalRaUlRSaEtnTGpkUXpwVk8xYnY2bjdtQWVuNm1zOGNO?=
- =?utf-8?B?YS9MbTMzR3piV2lBY0pjTXdacjdWUmpsL2lKNS9KRG82YXVOdS9kK3F6cFBw?=
- =?utf-8?B?SkVRV0M2WXdoR2lWanUvYWtNT3pWZUt1NUF3aENUajBGdTZBQTdZWE5VODFG?=
- =?utf-8?B?MGpDTlR2c3FNVURhS2tFa0FsSHdJODNEcWJmTC8vNm9sVi9jeE5tR2tJdGFF?=
- =?utf-8?B?S2YycHJDbEF4NlpkS2dhTW1sTmFGalZadE8vdHJXREIwUWJmWTZmb1F4VHFB?=
- =?utf-8?B?d2psaTJBcVJwRzFtd01BTXVUaHNnc25mQ2ZtUk1iR01aWW9jTEgrMkcrS0Zp?=
- =?utf-8?B?OHBZb2hsL3lVYm94RmVWM1IvblZEU1kzZzJ3Y2NFRUJpcVBKVExGYkNlU0tw?=
- =?utf-8?B?VkQ0cEQ5a0llU1BTQ2ZyTC9BYUthSWZodG9pM3NFRmVqSTM2SkJrcE9FYjE1?=
- =?utf-8?B?eWVyZ1U4N3FBc1p2NW1kZ1pWTmVKendGYkFhUlI2cmhRWGZKY3c5S0pQRVdl?=
- =?utf-8?B?b2xnRUVvemY0L3FoMytRRVppK285NjlDSXJwZm1DaUtNMndKTFp0SVlkUlBZ?=
- =?utf-8?B?bHJKYlNRQkRMNGdwTFo5U2wrcHcyZkZ0RUt5dXBmRXlhTGx1ZUMrK2V3ZUlu?=
- =?utf-8?B?MVdhV1JRbEk5QzVjSW1pSURxN1BFbVFhWmw2QzhIakZYU3FvcXgrazBDZXFB?=
- =?utf-8?B?T0JWbXlKc0Z0b3h0NnpEQU1YOFFOM2RSYnczR0Q3djRvd1lzTWlJWEZSYlF3?=
- =?utf-8?B?QmtOaXFkcUdtQmFEUFhNcWRMUW9MWXdhUytwMEZZNkl0WGtLMlZaWkRWVStl?=
- =?utf-8?B?QktxdUhUMjdnZ2w3ckZpdVkzS0hHZE1zcXpuUUh6c000QzVvUnpFdkovaDY5?=
- =?utf-8?B?Q0s4MzIyVTRvSWdlYlFKWVhHdXBZSDJFaXBLbTRPaC9iaDZZQlgxWnBaUkh4?=
- =?utf-8?B?VEtVMzNuTkNkWlYvWWZURlFwRlRxL3JZUy85VlhEL1gyajhsa01FMmxKY01w?=
- =?utf-8?B?Z1ZSNGxDK3hDNm44b3RldlQ1c0FNdm5KYjhwUExzQ3JmUGlTRkM3aUdtYkxq?=
- =?utf-8?B?Z0ZweE9ydXgwc243MCtsMUwwekhmSkwrYmMzZXd1Qloxem01Zy8ySjVHemlq?=
- =?utf-8?B?Q1o1RW5YUHloNURYTjBiOFJYM2tQMHE3UktnTmd6WnA1N29YV3BRUnFZd3Fv?=
- =?utf-8?B?d2lsUTd0bWlFUXBobGx3dVZGd3BCd0xiQmFEQzl3ZlowMzdGaTBwWWZmK1o2?=
- =?utf-8?B?bUVIWDhMTHlDVURyeVBSdjZTbG9BTFNHbWRQZnc3MGRqK3Fvb3ZTRVUwV25k?=
- =?utf-8?Q?ZjMqSB1SCEuNOQZwDi6vI0mMv3TFD1w6lGf0B4wy3j/Ub?=
-x-ms-exchange-antispam-messagedata-1: QxbMKllhvmGc26N/MJPWPT3X1tPCJmQHH8w=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <37EBCB207EB1D1488F739A2C747201BD@namprd11.prod.outlook.com>
-Content-Transfer-Encoding: base64
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="233327547"
+Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.32])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 05:02:47 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v2] drm/i915: Walk crtcs in pipe order
+In-Reply-To: <20251120192137.5968-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
+ <20251120192137.5968-1-ville.syrjala@linux.intel.com>
+Date: Wed, 08 Apr 2026 15:02:44 +0300
+Message-ID: <94c5c732225f4281f258c5cdb0f2d4a0ee0e2ebf@intel.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: vPdB8tYQ/wR5LSILd9YomSEefR+lZw2u8V+clJ6bm68A6c6KmQ/vn9X9hTOlv4xbDj3KJzM1J2kkwPpRHkzm/uBValxHzX2Wf9iV5mUpO9q0i3xp3XCIioc5l9gkwwQZNpL9mqvJA7qgUNgqFMFo/5dMUVjJLf6QCehZytTAevBapYQUZ4bD3Ge0IJZ6rnIzXVmvaYqw0Kl1s3lvQwQmtiNr9Of66Jk5vClnRlFMlRhM3sf36/Q5YNZk1b2WwQKxKkaBvYeBU7eMd0RBcD6O8mcfKglTFNTIhGsUFfUHPQ4Gwh7UDTLZC2B+j8Vprk/2OBauQjKNl7lGpoxEUGFhCA==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CY8PR11MB7777.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 556b4dbf-37e3-4a3e-85a5-08de95665266
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Apr 2026 11:59:43.4393 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: qEj/0XAMJeIWhToqpE+5Eka2o1DFn1mKI751Ge5syS/8u2K1QHjueVZbh7pA8qkj/QhpeVNldmopmoc/kDKwWY4QSY9CmoJe07tM6J/Nsf0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY1PR11MB8030
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,53 +76,349 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.21 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_BASE64_TEXT(0.10)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_EQ_ADDR_ALL(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[vinod.govindapillai@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 9FC503BB9CF
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 6679E3BBABD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-T24gVHVlLCAyMDI2LTAzLTI0IGF0IDE1OjQ4ICswMjAwLCBWaWxsZSBTeXJqYWxhIHdyb3RlOg0K
-PiBGcm9tOiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50ZWwuY29tPg0K
-PiANCj4gVmVyaWZ5IHRoZSBwcmUtaWNsIE5WMTIgWSBjb2xvciBwbGFuZSBEREIgZW50cnkuIFRo
-dXMgZmFyDQo+IHdlJ3ZlIG9ubHkgdmVyaWZpZWQgdGhlIFJHQi9VViBEREIgZW50cnkuDQo+IA0K
-PiBTaWduZWQtb2ZmLWJ5OiBWaWxsZSBTeXJqw6Rsw6QgPHZpbGxlLnN5cmphbGFAbGludXguaW50
-ZWwuY29tPg0KPiAtLS0NCj4gwqBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF93YXRl
-cm1hcmsuYyB8IDQgKysrKw0KPiDCoDEgZmlsZSBjaGFuZ2VkLCA0IGluc2VydGlvbnMoKykNCj4g
-DQoNClJldmlld2VkLWJ5OiBWaW5vZCBHb3ZpbmRhcGlsbGFpIDx2aW5vZC5nb3ZpbmRhcGlsbGFp
-QGludGVsLmNvbT4NCg0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxh
-eS9za2xfd2F0ZXJtYXJrLmMNCj4gYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L3NrbF93
-YXRlcm1hcmsuYw0KPiBpbmRleCAxN2ZhZjA5MGExNTQuLjFkOTMyYzM3ZDc2OCAxMDA2NDQNCj4g
-LS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfd2F0ZXJtYXJrLmMNCj4gKysr
-IGIvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9za2xfd2F0ZXJtYXJrLmMNCj4gQEAgLTQw
-MjIsNiArNDAyMiwxMCBAQCB2b2lkIGludGVsX3dtX3N0YXRlX3ZlcmlmeShzdHJ1Y3QNCj4gaW50
-ZWxfYXRvbWljX3N0YXRlICpzdGF0ZSwNCj4gwqAJCXNrbF9kZGJfZW50cnlfdmVyaWZ5KHBsYW5l
-LCAiRERCIiwNCj4gwqAJCQkJwqDCoMKgwqAgJmh3LT5kZGJbcGxhbmUtPmlkXSwNCj4gwqAJCQkJ
-wqDCoMKgwqAgJm5ld19jcnRjX3N0YXRlLQ0KPiA+d20uc2tsLnBsYW5lX2RkYltwbGFuZS0+aWRd
-KTsNCj4gKw0KPiArCQlza2xfZGRiX2VudHJ5X3ZlcmlmeShwbGFuZSwgIkREQiBZIiwNCj4gKwkJ
-CQnCoMKgwqDCoCAmaHctPmRkYl95W3BsYW5lLT5pZF0sDQo+ICsJCQkJwqDCoMKgwqAgJm5ld19j
-cnRjX3N0YXRlLQ0KPiA+d20uc2tsLnBsYW5lX2RkYl95W3BsYW5lLT5pZF0pOw0KPiDCoAl9DQo+
-IMKgDQo+IMKgCWtmcmVlKGh3KTsNCg0K
+On Thu, 20 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Currently our crtcs are registered in pipe order, and thus
+> all the for_intel_crtc*() iterators walk the crtcs in pipe
+> order. There are a bunch of places that more or less depend
+> on that. Eg. during plane updates and such we want joined
+> pipes to be processed back-to-back to give a better chance
+> of an atomic update across the whole set.
+>
+> When we start to register crtcs in a different order we don't
+> want to change the order in which the pipes get handled.
+> Decouple the for_each_intel_crtc*() iterators from the crtc
+> registration order by using a separate list which will be
+> sorted by the pipe rather than the crtc index.
+>
+> We could priobably use a simple array or something, but that
+> would require some kind of extra iterator variable for the
+> macros, and thus would require a lot more changes. Using
+> a linked list keeps the fallout minimal. We can look at
+> using a more optimal data structure later.
+>
+> I also added this extra junk to the atomic state iterators:
+> "(__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i)"
+> even though the macro itself no longer needs the "__i" iterator.
+> This in case the "__i" is used by the caller, and to
+> avoid compiler warnings if it's completely unused now.
+
+Ville, care to rebase and resend this for merging?
+
+BR,
+Jani.
+
+
+
+>
+> v2: Flip the pipe comparison (Jani)
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_crtc.c     | 20 +++++
+>  drivers/gpu/drm/i915/display/intel_display.h  | 90 ++++++++-----------
+>  .../gpu/drm/i915/display/intel_display_core.h |  3 +
+>  .../drm/i915/display/intel_display_driver.c   |  1 +
+>  .../drm/i915/display/intel_display_types.h    |  1 +
+>  drivers/gpu/drm/xe/display/xe_display.c       |  1 +
+>  6 files changed, 64 insertions(+), 52 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
+i915/display/intel_crtc.c
+> index 153ff4b4b52c..709a8fb56736 100644
+> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+> @@ -209,6 +209,8 @@ static struct intel_crtc *intel_crtc_alloc(void)
+>  	crtc->base.state =3D &crtc_state->uapi;
+>  	crtc->config =3D crtc_state;
+>=20=20
+> +	INIT_LIST_HEAD(&crtc->pipe_head);
+> +
+>  	return crtc;
+>  }
+>=20=20
+> @@ -222,6 +224,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
+>  {
+>  	struct intel_crtc *crtc =3D to_intel_crtc(_crtc);
+>=20=20
+> +	list_del(&crtc->pipe_head);
+> +
+>  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
+>=20=20
+>  	drm_crtc_cleanup(&crtc->base);
+> @@ -308,6 +312,20 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs =
+=3D {
+>  	.get_vblank_timestamp =3D intel_crtc_get_vblank_timestamp,
+>  };
+>=20=20
+> +static void add_crtc_to_pipe_list(struct intel_display *display, struct =
+intel_crtc *crtc)
+> +{
+> +	struct intel_crtc *iter;
+> +
+> +	list_for_each_entry(iter, &display->pipe_list, pipe_head) {
+> +		if (crtc->pipe < iter->pipe) {
+> +			list_add_tail(&crtc->pipe_head, &iter->pipe_head);
+> +			return;
+> +		}
+> +	}
+> +
+> +	list_add_tail(&crtc->pipe_head, &display->pipe_list);
+> +}
+> +
+>  int intel_crtc_init(struct intel_display *display, enum pipe pipe)
+>  {
+>  	struct intel_plane *primary, *cursor;
+> @@ -398,6 +416,8 @@ int intel_crtc_init(struct intel_display *display, en=
+um pipe pipe)
+>  	if (HAS_CASF(display))
+>  		drm_crtc_create_sharpness_strength_property(&crtc->base);
+>=20=20
+> +	add_crtc_to_pipe_list(display, crtc);
+> +
+>  	return 0;
+>=20=20
+>  fail:
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
+rm/i915/display/intel_display.h
+> index bcc6ccb69d2b..ac83d4f09bb9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+> @@ -238,22 +238,23 @@ enum phy_fia {
+>  			    base.head)					\
+>  		for_each_if((intel_plane)->pipe =3D=3D (intel_crtc)->pipe)
+>=20=20
+> -#define for_each_intel_crtc(dev, intel_crtc)				\
+> -	list_for_each_entry(intel_crtc,					\
+> -			    &(dev)->mode_config.crtc_list,		\
+> -			    base.head)
+> +#define for_each_intel_crtc(dev, crtc) \
+> +	list_for_each_entry((crtc), \
+> +			    &to_intel_display(dev)->pipe_list, \
+> +			    pipe_head)
+>=20=20
+> -#define for_each_intel_crtc_in_pipe_mask(dev, intel_crtc, pipe_mask)	\
+> -	list_for_each_entry(intel_crtc,					\
+> -			    &(dev)->mode_config.crtc_list,		\
+> -			    base.head)					\
+> -		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
+> +#define for_each_intel_crtc_reverse(dev, crtc) \
+> +	list_for_each_entry_reverse((crtc), \
+> +				    &to_intel_display(dev)->pipe_list, \
+> +				    pipe_head)
+> +
+> +#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
+> +	for_each_intel_crtc((dev), (crtc)) \
+> +		for_each_if((pipe_mask) & BIT((crtc)->pipe))
+>=20=20
+> -#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_m=
+ask)	\
+> -	list_for_each_entry_reverse((intel_crtc),				\
+> -				    &(dev)->mode_config.crtc_list,		\
+> -				    base.head)					\
+> -		for_each_if((pipe_mask) & BIT((intel_crtc)->pipe))
+> +#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
+> +	for_each_intel_crtc_reverse((dev), (crtc)) \
+> +		for_each_if((pipe_mask) & BIT((crtc)->pipe))
+>=20=20
+>  #define for_each_intel_encoder(dev, intel_encoder)		\
+>  	list_for_each_entry(intel_encoder,			\
+> @@ -295,14 +296,6 @@ enum phy_fia {
+>  	     (__i)++) \
+>  		for_each_if(plane)
+>=20=20
+> -#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, =
+__i) \
+> -	for ((__i) =3D 0; \
+> -	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
+> -		     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
+> -		      (old_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
+_i].old_state), 1); \
+> -	     (__i)++) \
+> -		for_each_if(crtc)
+> -
+>  #define for_each_new_intel_plane_in_state(__state, plane, new_plane_stat=
+e, __i) \
+>  	for ((__i) =3D 0; \
+>  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
+> @@ -311,22 +304,6 @@ enum phy_fia {
+>  	     (__i)++) \
+>  		for_each_if(plane)
+>=20=20
+> -#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, =
+__i) \
+> -	for ((__i) =3D 0; \
+> -	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
+> -		     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
+> -		      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
+_i].new_state), 1); \
+> -	     (__i)++) \
+> -		for_each_if(crtc)
+> -
+> -#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc=
+_state, __i) \
+> -	for ((__i) =3D (__state)->base.dev->mode_config.num_crtc - 1; \
+> -	     (__i) >=3D 0  && \
+> -	     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
+> -	      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[__=
+i].new_state), 1); \
+> -	     (__i)--) \
+> -		for_each_if(crtc)
+> -
+>  #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_s=
+tate, new_plane_state, __i) \
+>  	for ((__i) =3D 0; \
+>  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
+> @@ -336,23 +313,32 @@ enum phy_fia {
+>  	     (__i)++) \
+>  		for_each_if(plane)
+>=20=20
+> +#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, =
+__i) \
+> +	for_each_intel_crtc((__state)->base.dev, (crtc)) \
+> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
+> +			     (old_crtc_state) =3D intel_atomic_get_old_crtc_state((__state), =
+(crtc))))
+> +
+> +#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, =
+__i) \
+> +	for_each_intel_crtc((__state)->base.dev, (crtc)) \
+> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
+> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
+(crtc))))
+> +
+> +#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc=
+_state, __i) \
+> +	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
+> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
+> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
+(crtc))))
+> +
+>  #define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_stat=
+e, new_crtc_state, __i) \
+> -	for ((__i) =3D 0; \
+> -	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
+> -		     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
+> -		      (old_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
+_i].old_state), \
+> -		      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
+_i].new_state), 1); \
+> -	     (__i)++) \
+> -		for_each_if(crtc)
+> +	for_each_intel_crtc((__state)->base.dev, (crtc)) \
+> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
+> +			     (old_crtc_state) =3D intel_atomic_get_old_crtc_state((__state), =
+(crtc)), \
+> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
+(crtc))))
+>=20=20
+>  #define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_c=
+rtc_state, new_crtc_state, __i) \
+> -	for ((__i) =3D (__state)->base.dev->mode_config.num_crtc - 1; \
+> -	     (__i) >=3D 0  && \
+> -	     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
+> -	      (old_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[__=
+i].old_state), \
+> -	      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[__=
+i].new_state), 1); \
+> -	     (__i)--) \
+> -		for_each_if(crtc)
+> +	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
+> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
+> +			     (old_crtc_state) =3D intel_atomic_get_old_crtc_state((__state), =
+(crtc)), \
+> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
+(crtc))))
+>=20=20
+>  #define intel_atomic_crtc_state_for_each_plane_state( \
+>  		  plane, plane_state, \
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
+gpu/drm/i915/display/intel_display_core.h
+> index 9b8414b77c15..4f4d5c314394 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -294,6 +294,9 @@ struct intel_display {
+>  	/* Parent, or core, driver functions exposed to display */
+>  	const struct intel_display_parent_interface *parent;
+>=20=20
+> +	/* list of all intel_crtcs sorted by pipe */
+> +	struct list_head pipe_list;
+> +
+>  	/* Display functions */
+>  	struct {
+>  		/* Top level crtc-ish functions */
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index 7e000ba3e08b..32726906e550 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -119,6 +119,7 @@ static void intel_mode_config_init(struct intel_displ=
+ay *display)
+>=20=20
+>  	drm_mode_config_init(display->drm);
+>  	INIT_LIST_HEAD(&display->global.obj_list);
+> +	INIT_LIST_HEAD(&display->pipe_list);
+>=20=20
+>  	mode_config->min_width =3D 0;
+>  	mode_config->min_height =3D 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index 38702a9e0f50..1c2bd9445795 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1441,6 +1441,7 @@ struct intel_flipq {
+>=20=20
+>  struct intel_crtc {
+>  	struct drm_crtc base;
+> +	struct list_head pipe_head;
+>  	enum pipe pipe;
+>  	/*
+>  	 * Whether the crtc and the connected output pipeline is active. Implies
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
+/display/xe_display.c
+> index e3320d9e6314..cfcbc7dd8638 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -22,6 +22,7 @@
+>  #include "intel_audio.h"
+>  #include "intel_bw.h"
+>  #include "intel_display.h"
+> +#include "intel_display_core.h"
+>  #include "intel_display_device.h"
+>  #include "intel_display_driver.h"
+>  #include "intel_display_irq.h"
+
+--=20
+Jani Nikula, Intel
