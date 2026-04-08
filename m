@@ -2,67 +2,169 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ENnOMydV1mm8DQgAu9opvQ
+	id cJnMC5NX1mn5DwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 15:16:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 15:26:43 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 77E6B3BCB67
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 15:16:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BFA53BCD3C
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 15:26:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 038FA10E659;
-	Wed,  8 Apr 2026 13:16:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9FAD10E0DF;
+	Wed,  8 Apr 2026 13:26:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QcJ+5jSw";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="qtcIiZV6";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D12010E644;
- Wed,  8 Apr 2026 13:16:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775654180; x=1807190180;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rUQfRZZWdJCMGRC6xE/MZRx2w4ltSUVweonBITgsyjs=;
- b=QcJ+5jSwXJS/zNsZfCuxzMWzX7OsKOpKusw9cX8Y88AhSPSjoH4hqC2Z
- MfvgL7jdX23KCh5Ky0CdYvCYqnOYbHCZ2kuiHH4tk8G1DjXV8FVCidnqY
- d0KOCA4Ln9NHSIXxZkb6KQ9j89Oj9tfjxNHIoxsEHKBbHRTXEdRjHeFoz
- Cw2s/KYbU5Lar0gBcUoBmtUCSrxDXUK8JLLbpqckO+rwBdzyAXjLqF1Bb
- p2U1FSCIM/ElAwdoYsnHlzBeI/lKN2VE95+iLgBEyddmpvCLtjzqZbNy0
- U0UGjki0HiQgtqdVI3Q8dtperse4cvQS9M6tyD8vPWMHj2rHoDEDJJ6W+ Q==;
-X-CSE-ConnectionGUID: c6699hZfT4CWivStbxsyMw==
-X-CSE-MsgGUID: 6b5JVSliQTqujA7J9pchtw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="88020326"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88020326"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 06:16:20 -0700
-X-CSE-ConnectionGUID: ebAAH9RBR2ix0GSCkCv5kg==
-X-CSE-MsgGUID: PZP4XKgWTUmlFjn8QjgOKA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227621002"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 06:16:18 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com,
-	ville.syrjala@linux.intel.com
-Subject: [PATCH 4/4] drm/i915/display: define and use intel_reg_{offset, equal,
- valid}() helpers
-Date: Wed,  8 Apr 2026 16:15:51 +0300
-Message-ID: <5a94a92b723e39285c29cc400c64b577c2876cff.1775653994.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775653994.git.jani.nikula@intel.com>
-References: <cover.1775653994.git.jani.nikula@intel.com>
+Received: from SN4PR0501CU005.outbound.protection.outlook.com
+ (mail-southcentralusazon11011033.outbound.protection.outlook.com
+ [40.93.194.33])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8244610E0DF;
+ Wed,  8 Apr 2026 13:26:39 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=g0RKo1usvZAy8gjh5MYiKCdKMT5CTb/PzAzjlJsZ2axK7Jrm5ytE6pvBHAgs3IC2RGl/JzKlg3v6qKmxr7tFobQjP+TS9Hoq6pLrCkw+kE47FfgUFomgf6I8CtGyKxH2g+/fWK594gmKRUdpIszlkBzNOyLyj/9ybgefACsYpgvdG4El7WpYMdhgdpUNmJbqo5isC+sZZhI4XzC328P6qRZZUMzV2D0sZMNz2IpHWc7HUHHarLmrfnm6qQubxeB3HnKvmtncwFdVqOxwxTxkbDzxWuzCeDIekD6idkkig3uK3213GJmHtC1+q9QhayZEMkaJexi+/xvRhcS3BU13eA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=+0WKHuaMbQSnrk7PbUjQvaDW9gAo22uZOHqMyCYbf5Q=;
+ b=SGRY5FW3xVYA3PkMYp7r54pZNWvqOKB+OLYB0sy+3A+UGt0QOjQ/aaMaed/WTnRXV+ciW4Pg+yEPB/gdGgIMulNC/DXC/4Ry4sfj1t1Fq9kVSVhppbZ+J2Y0IKZq5OFJ57u2nHI8YDpwzA3eV9NfXgVT646vtgk3EzVS1J4BHDxRzWCb+o2y0VTD4MCpGUP/t++3it5KaLmBG78Pfmv4Be0nE/EuCV7Y0Bhq5UNZJn7MNb9GZ7AzIQsfw8oYc3s6RP9JnjA+IjyTvqYmUKZVMHb8zE0jDUx759fQD0i9mu6VrmmusDoxzqu9hS7PZ+zlXddLSBXXUQeSoNgjodUmnw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+0WKHuaMbQSnrk7PbUjQvaDW9gAo22uZOHqMyCYbf5Q=;
+ b=qtcIiZV6glsV01tSAVThLENvtPKwC/LgKAwaNVZqrsRakD/y/yGtBDg1CfCRTZnpeaYPUzyImmCGpdmuUjsCvVW/PegFMPemz1yak028SfRGTug6Dljr0TM0lurtSb7BaGRpXe1muTnnRuo5VEVEcTlZLFf3mCKmzL4eQkG38FvY+E1VHtGFhWdVaAfV+gX/QS2y1mZUaVGAHIPi9l5+uiKFxMqK/+S8+hZFUY9cO4FK4rOoGcM/MliKGNxhaaIHN1XMIekirxLOgxrgSOueKf6OfS6O39c37OXOS3IMt3y0mL1prYaidBkdwgi/gOOTnWSDBqzq6Mpo1XGPARvETg==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com (2603:10b6:207:4c::31)
+ by DS7PR12MB5910.namprd12.prod.outlook.com (2603:10b6:8:7b::7) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.9769.17; Wed, 8 Apr 2026 13:26:19 +0000
+Received: from BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0]) by BL0PR12MB2353.namprd12.prod.outlook.com
+ ([fe80::99b:dcff:8d6d:78e0%4]) with mapi id 15.20.9769.017; Wed, 8 Apr 2026
+ 13:26:19 +0000
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Wed, 08 Apr 2026 22:26:14 +0900
+Message-Id: <DHNT32C2Q5HN.LLME0RV17Z8V@nvidia.com>
+From: "Eliot Courtney" <ecourtney@nvidia.com>
+To: "Joel Fernandes" <joelagnelf@nvidia.com>, "Eliot Courtney"
+ <ecourtney@nvidia.com>, <linux-kernel@vger.kernel.org>
+Cc: "Miguel Ojeda" <ojeda@kernel.org>, "Boqun Feng" <boqun@kernel.org>,
+ "Gary Guo" <gary@garyguo.net>, "Bjorn Roy Baron"
+ <bjorn3_gh@protonmail.com>, "Benno Lossin" <lossin@kernel.org>, "Andreas
+ Hindborg" <a.hindborg@kernel.org>, "Alice Ryhl" <aliceryhl@google.com>,
+ "Trevor Gross" <tmgross@umich.edu>, "Danilo Krummrich" <dakr@kernel.org>,
+ "Dave Airlie" <airlied@redhat.com>, "Daniel Almeida"
+ <daniel.almeida@collabora.com>, "Koen Koning"
+ <koen.koning@linux.intel.com>, <dri-devel@lists.freedesktop.org>,
+ <rust-for-linux@vger.kernel.org>, "Nikola Djukic" <ndjukic@nvidia.com>,
+ "Maarten Lankhorst" <maarten.lankhorst@linux.intel.com>, "Maxime Ripard"
+ <mripard@kernel.org>, "Thomas Zimmermann" <tzimmermann@suse.de>, "David
+ Airlie" <airlied@gmail.com>, "Simona Vetter" <simona@ffwll.ch>, "Jonathan
+ Corbet" <corbet@lwn.net>, "Alex Deucher" <alexander.deucher@amd.com>,
+ "Christian Koenig" <christian.koenig@amd.com>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Joonas Lahtinen"
+ <joonas.lahtinen@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>,
+ "Tvrtko Ursulin" <tursulin@ursulin.net>, "Huang Rui" <ray.huang@amd.com>,
+ "Matthew Auld" <matthew.auld@intel.com>, "Matthew Brost"
+ <matthew.brost@intel.com>, "Lucas De Marchi" <lucas.demarchi@intel.com>,
+ "Thomas Hellstrom" <thomas.hellstrom@linux.intel.com>, "Helge Deller"
+ <deller@gmx.de>, "Alex Gaynor" <alex.gaynor@gmail.com>, "Boqun Feng"
+ <boqun.feng@gmail.com>, "John Hubbard" <jhubbard@nvidia.com>, "Alistair
+ Popple" <apopple@nvidia.com>, "Timur Tabi" <ttabi@nvidia.com>, "Edwin Peer"
+ <epeer@nvidia.com>, "Alexandre Courbot" <acourbot@nvidia.com>, "Andrea
+ Righi" <arighi@nvidia.com>, "Andy Ritger" <aritger@nvidia.com>, "Zhi Wang"
+ <zhiw@nvidia.com>, "Balbir Singh" <balbirs@nvidia.com>, "Philipp Stanner"
+ <phasta@kernel.org>, "Elle Rhumsaa" <elle@weathered-steel.dev>,
+ <alexeyi@nvidia.com>, <joel@joelfernandes.org>,
+ <linux-doc@vger.kernel.org>, <amd-gfx@lists.freedesktop.org>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <linux-fbdev@vger.kernel.org>
+Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
+ entry wrapper enums
+X-Mailer: aerc 0.21.0-0-g5549850facc2
+References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-1-joelagnelf@nvidia.com>
+ <20260331212048.2229260-13-joelagnelf@nvidia.com>
+ <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
+ <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
+ <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
+ <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
+In-Reply-To: <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
+X-ClientProxiedBy: TYWP286CA0005.JPNP286.PROD.OUTLOOK.COM
+ (2603:1096:400:178::23) To BL0PR12MB2353.namprd12.prod.outlook.com
+ (2603:10b6:207:4c::31)
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: BL0PR12MB2353:EE_|DS7PR12MB5910:EE_
+X-MS-Office365-Filtering-Correlation-Id: a307159d-a2af-4f98-e767-08de95726ac7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|10070799003|7416014|1800799024|376014|56012099003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: QBn4jI1BV9swudwY4bktpxr6E3NarbaRuzTJrZgslkHgBN0dM8IIkR1KNRJLhJe864XrodNWiwRK1/vKec8QymNdimEbzOuYBCHyOwHhPcMTnIultc6/HbfZ/8MRtUuh5rftOAv4ZNAk6/35VcWJ3PWBn/YFuKOcwg5Hhi2Bf5sRHf6zH+VOSB1XQMYMqjlyfTReZHD+6GxWGK3r/Yv5Brn+Mqqlo4FQeZBDlA5aFITr6mRrnU1QAgBz2TlIt2YTbJADOKu3mOx4BPb7mW7O0EKf/Byhc0cjX8vDcCoGN4vKmwvO38bGjvK3KPa5WpHiMOqQRZ79GrEicjUyNWnOzh/bArUgWwGxzwgGM3nvX41znLDiC0R6cZvHqMOgCpqBMLpYUwnuB1YISTrpPSPzrwWoTKv/pi03T4+ZKlT2GZE5TWYatloj4DEndlsILyl+kFiI+E1MvnNJXvraI/raF4+0KzkkSY+evbiQgJDOMkpXhvxdbfhnp64btcAb4U+HSZS9IMz1c+OjNeigHR/2QbIET6lLbDuJqHVCFkAGB7mwBuFK9fOBqjwMEOhjl/A42ndJCCm88BG+D+BI7wYJfXmWAO9ueWurvtZSv5Ph1QrbrU2Iag08CotTCyKT+4byGIu5G+z1rg/Vgy6KJ9rTWFv/BXKTiXYYz0LcMJwVktTL0GPtPFA89zFTMZ6M7RRCLXZJc28RtBX4hwqEt1X+5mjrPl9ZCG4tWOLVcg/0PoI=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:BL0PR12MB2353.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(10070799003)(7416014)(1800799024)(376014)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?ZGhETzZCVTlJNHNTdWZLVUd0elh0dTB1YjQzaFFtREFubEprWVZUSk5laSsr?=
+ =?utf-8?B?MFcwVnZPUXU5VTg0SnhRbkRHVlEzdC91a3FxS3I2MXNXQTVYNjk3QkVzaVJx?=
+ =?utf-8?B?YXo2djNZdXArVkFCRDlBUFo5V1lZcHVCczN2V1hCZnMyT1ArWm5XdzkwdGNP?=
+ =?utf-8?B?TFF2bGNLOThRS21nOEVlTHNZbEt3Zk1vb081cTJra3R6ZGxhWkN5SWppaC9k?=
+ =?utf-8?B?NVBBNWYzUEZwSk9yeFpaNjhzTDd3S0NtWS9JS2hGZXFNdTBJRHY1dFhnWkUy?=
+ =?utf-8?B?M0ROUFd5ZWh6ZUdHMWE5Mm1CV0JheHd0c1JjbXJsbEd6bUVUdktwU0VlYlNH?=
+ =?utf-8?B?ZmJNZWxtbGJabHYxaWt4RTYzcU9YNDNTT01PS0pQWkNCbEJBSG5lenROUXQ1?=
+ =?utf-8?B?bVhsZmc2NVFPbzJ1V1dhR1RwS05WVnQ2Q09VK1ZHSWVkRjllNGVaK1l2ZklX?=
+ =?utf-8?B?SnRhVU51NlY2NURGd1lMdmxGNDVsSjdtTW5BbXZ0bmtOcml5QWZ3aDBEM0My?=
+ =?utf-8?B?a2pLaFdvdDA2M1BlOHdvRmxCWnJGL2h6dWpXNlp1V3A0Yks3YnZ0L3FlUFNv?=
+ =?utf-8?B?WHpOaTZTUWRQZ2pLRjdNL2kxMzN0U20vTDVBQXpyajJYQllpZlR0Z2FwU2Nz?=
+ =?utf-8?B?T1M2eXJneDZkMkpUY3o4R1FnL2o2c09vV0RsVE5obElMTkVNSlBOaVBzam5V?=
+ =?utf-8?B?WDMvRFR4UWNtT0MraWV2dmFTcHF2V0hlSTVOZFQ5emxrTys5cDJlMEJGTkR0?=
+ =?utf-8?B?K1BKQmgyc0JxL015ZWRrT1JwY1Q5aEhwc2owWkJCRkNGYmhtWDY5WEp1TFZi?=
+ =?utf-8?B?T1RHU1FaQi82QVdzbE5FV01zUEN1TlBIeGx0bW9jdWtVbit0SDVVZVpENVlC?=
+ =?utf-8?B?VFpDcm5iekNHTTZrcUVPbXQvN3JabXF3MmpYbFJ5NGFDSG1zOVF3aW1NRDVS?=
+ =?utf-8?B?SmFud1J5T0NKU3NFSTJxRkMwQzM3VFNNUC9nN0J6WjNxdTNiMW0vU0hjWnJh?=
+ =?utf-8?B?Mnhwejg5OFZvQ1FpZkZNOWVpZmVLR0ZmM2Y0M29XVW9KUmdtZENvSU1WcUtF?=
+ =?utf-8?B?WUEwU0MwanpJNDNIL3BNMDg4MUZxSnZ3MjlkakEwWXZVdlJNZjA4RHN3Z3JQ?=
+ =?utf-8?B?VEJQYlB2NXlZdkJod3VZSEZvV1JEUzFXRVhNK21RUzdnMzVQRnU5cUJaNGs4?=
+ =?utf-8?B?bkhMOFp4SHlVVHhSRnkvNDB4WVJidWhxejVVMlhITEQ1ZU5VL3d2WG9oa3lB?=
+ =?utf-8?B?c0UrU05HRVF4M1FNY3VnK1pCV3YyOHU1c1N2RUxlelRMZEJXVHVxbGlaSmh4?=
+ =?utf-8?B?MTFrTElnTCtLbHlOcGhYWmdyOUVxS3VVS01yR3hHWHkrNWlBWHZKMVdraDJl?=
+ =?utf-8?B?azd1bHUvYThJbGQ3OERzbDRnUllDendwOGwwcEQ4TUFFM1FyU1N0QlN3akgw?=
+ =?utf-8?B?WmpUMkFsL05zeUVwbkpLaHZsQmprS1hZM0tpaDd5cFNmU0V1UkxEeDk2aXgv?=
+ =?utf-8?B?M3VYNVRYNmUzQlBpcG00aFdybnhzZ0RYbVlDblhaOE5zZXRyNHlqNTIySzJF?=
+ =?utf-8?B?WTNiTnBMeldiaFZEN0QwY0J3ODliRld4VFBNM3N3Um9zZzZEWjlGWGlYbDQv?=
+ =?utf-8?B?L1J3QzN5aC9LaVdSSmlUeXRoQzNCUmtJVTVXUmxvQ0pyQ2E3M05ZUDVBV1Vq?=
+ =?utf-8?B?eHdoMzRrY09saG5XVGdWYmluYkphZXBDNnNhaXdVUkpGbEZTaGhXUFh1QWN1?=
+ =?utf-8?B?bXNXcW5oV292MXYvMWp1c3RjLytCcDluRnpGMDdzZDkxNmx6ZmxkSEJ6YzY0?=
+ =?utf-8?B?K3lZN2xObkkwb3E1NXp1aE82ZVdxSXJMZ0c0UUJhZEQ3R3FtUjh6YjdkOHRv?=
+ =?utf-8?B?a3oxMzFQR3VXVVRFS0FYaTVZVUt3TS9yRld4cEhjMEp6dTY1REgxd2RkR1Z4?=
+ =?utf-8?B?R3p6YlB1N1JwbFM1Q1BobFpkU0RHMFU5SVBsc29qZUtkRXMvajEwdkptV3k0?=
+ =?utf-8?B?dnJIQXNDOGh3Qk9nNGdYd3Yxc0pmNWF0MWF1RkM0MG1OWm5CYXNVVHB0bDZ0?=
+ =?utf-8?B?N3NHWWp6d2k3UTdvcWlLN1k1ZEovWUJDVisxVXF2TFlOTk14elEzTDlQaG01?=
+ =?utf-8?B?aC9zUlNVS25HUkQvWHVBY2NXb0d6TVplcDl2RERmRDdGNk9VY3VCTFcwc2JM?=
+ =?utf-8?B?dCsvMi91OXByUm1aRjBBemY3QmF3aDM5aVdSazN6bytOVGxXd0N0T2pmUEkw?=
+ =?utf-8?B?Vk11c1JTQVZzdDFVOHhXdmdqRkJ5eU1JcHFZVGNnN1BidU0wZVNIQkhFSTQr?=
+ =?utf-8?B?bmFoNzQxTk1nNlNuOXdEalJWcjJtQ25UOHhkRnFaMnFDa1JjQXJTSi8ybFFV?=
+ =?utf-8?Q?E29F/BVXf4npUDGswHQD8xrQTin0BY+RdWUUmmPY0pasN?=
+X-MS-Exchange-AntiSpam-MessageData-1: esiJ5NSsLWqf1w==
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a307159d-a2af-4f98-e767-08de95726ac7
+X-MS-Exchange-CrossTenant-AuthSource: BL0PR12MB2353.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 13:26:18.7623 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: AU/YkZwBwnpcXWsTJxhGdIW8lOrl4UcFDzC3PpZp1AkIPNRGgVukaA+ab+DCfnXJ5Bft0AD9wl2ElEH76oSu8A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR12MB5910
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,371 +179,162 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_SPAM(0.00)[0.415];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 77E6B3BCB67
+	FREEMAIL_CC(0.00)[kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,vger.kernel.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[56];
+	FROM_NEQ_ENVFROM(0.00)[ecourtney@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	NEURAL_HAM(-0.00)[-0.998];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid]
+X-Rspamd-Queue-Id: 8BFA53BCD3C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add display specific helpers for getting the register offset, checking
-for equality and validity. Add them as static inlines for increased type
-safety.
+On Tue Apr 7, 2026 at 10:59 PM JST, Joel Fernandes wrote:
+> Hi Eliot,
+>
+> On 4/7/2026 9:42 AM, Eliot Courtney wrote:
+>> On Tue Apr 7, 2026 at 6:55 AM JST, Joel Fernandes wrote:
+>>>>> +    /// Compute upper bound on page table pages needed for `num_virt=
+_pages`.
+>>>>> +    ///
+>>>>> +    /// Walks from PTE level up through PDE levels, accumulating the=
+ tree.
+>>>>> +    pub(crate) fn pt_pages_upper_bound(&self, num_virt_pages: usize)=
+ -> usize {
+>>>>> +        let mut total =3D 0;
+>>>>> +
+>>>>> +        // PTE pages at the leaf level.
+>>>>> +        let pte_epp =3D self.entries_per_page(self.pte_level());
+>>>>> +        let mut pages_at_level =3D num_virt_pages.div_ceil(pte_epp);
+>>>>> +        total +=3D pages_at_level;
+>>>>> +
+>>>>> +        // Walk PDE levels bottom-up (reverse of pde_levels()).
+>>>>> +        for &level in self.pde_levels().iter().rev() {
+>>>>> +            let epp =3D self.entries_per_page(level);
+>>>>> +
+>>>>> +            // How many pages at this level do we need to point to
+>>>>> +            // the previous pages_at_level?
+>>>>> +            pages_at_level =3D pages_at_level.div_ceil(epp);
+>>>>> +            total +=3D pages_at_level;
+>>>>> +        }
+>>>>> +
+>>>>> +        total
+>>>>> +    }
+>>>>> +}
+>>>>> +
+>>>>
+>>>> We have a lot of matches on the MMU version here (and below in Pte, Pd=
+e,
+>>>> DualPde). What about making MmuVersion into a trait (e.g. Mmu) with
+>>>> associated types for Pte, Pde, DualPde which can implement traits
+>>>> defining their common operations too?
+>>>
+>>> I coded this up and it did not look pretty, there's not much LOC saving=
+s and the
+>>> code becomes harder to read because of parametrization of several funct=
+ions. Also:
+>>=20
+>> Thanks for looking into it. Sorry to be a bother, but would you have a
+>> branch around with the code? I'm curious what didn't look good about it.
+>
+> Sorry but I already mentioned that above, the parameterizing of dozens of
+> function call sites, 3-4 new traits (because each struct like
+> Pte/Pde/DualPde etc each need their own trait which different MMU version=
+s
+> implement) etc. The code because hard to read and readability is the top
+> critical criteria for me - I am personally strictly against "Lets use shi=
+ny
+> features in language at the cost of making code unreadable". Because that
+> translates into bugs and nightmare for maintainability.
+>
+> I don't have the code at the moment, but if you still want to spend on ti=
+me
+> on this direction, feel free to share a tree. I am happy to take a look.
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_de.h       |  2 +-
- .../drm/i915/display/intel_display_device.c   |  2 +-
- .../gpu/drm/i915/display/intel_display_irq.c  |  2 +-
- .../drm/i915/display/intel_display_reg_defs.h | 15 +++++++++++
- .../drm/i915/display/intel_display_types.h    |  4 +--
- drivers/gpu/drm/i915/display/intel_dmc.c      | 26 +++++++++----------
- drivers/gpu/drm/i915/display/intel_dmc_wl.c   |  6 ++---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c |  4 +--
- drivers/gpu/drm/i915/display/intel_dsb.c      | 10 +++----
- drivers/gpu/drm/i915/display/intel_mchbar.c   |  4 +--
- drivers/gpu/drm/i915/display/intel_pps.c      |  6 ++---
- 11 files changed, 48 insertions(+), 33 deletions(-)
+I had a go at this, you can see the branch here [1] - it might not be
+perfect, but I think the shape is directionally good. It's structured so
+the HEAD commit has the diff from the current approach to the
+parametrised approach. The main decision is where to do the type
+erasure, I chose in `Vmm` since it looks like the main top level API for
+this code, but could do `BarUser` instead. I think it's overall better.
+I also think Alex's point about associated types making it easier to use
+the appropriate Bounded type is a good one.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_de.h b/drivers/gpu/drm/i915/display/intel_de.h
-index d17f14843f98..102979019429 100644
---- a/drivers/gpu/drm/i915/display/intel_de.h
-+++ b/drivers/gpu/drm/i915/display/intel_de.h
-@@ -56,7 +56,7 @@ intel_de_read64_2x32_volatile(struct intel_display *display,
- static inline u64
- intel_de_read64_2x32(struct intel_display *display, intel_reg_t reg)
- {
--	intel_reg_t upper_reg = _MMIO(i915_mmio_reg_offset(reg) + 4);
-+	intel_reg_t upper_reg = _MMIO(intel_reg_offset(reg) + 4);
- 	u32 lower, upper;
- 
- 	lower = intel_de_read(display, reg);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.c b/drivers/gpu/drm/i915/display/intel_display_device.c
-index be55ef8ea617..51083e63bd1f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.c
-@@ -1525,7 +1525,7 @@ probe_gmdid_display(struct intel_display *display, struct intel_display_ip_ver *
- 	u32 val;
- 	int i;
- 
--	addr = pci_iomap_range(pdev, 0, i915_mmio_reg_offset(GMD_ID_DISPLAY), sizeof(u32));
-+	addr = pci_iomap_range(pdev, 0, intel_reg_offset(GMD_ID_DISPLAY), sizeof(u32));
- 	if (!addr) {
- 		drm_err(display->drm,
- 			"Cannot map MMIO BAR to read display GMD_ID\n");
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 3869551cb9fd..40dcc2a1d3fb 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -56,7 +56,7 @@ static void assert_iir_is_zero(struct intel_display *display, intel_reg_t reg)
- 
- 	drm_WARN(display->drm, 1,
- 		 "Interrupt register 0x%x is not zero: 0x%08x\n",
--		 i915_mmio_reg_offset(reg), val);
-+		 intel_reg_offset(reg), val);
- 	intel_de_write(display, reg, 0xffffffff);
- 	intel_de_posting_read(display, reg);
- 	intel_de_write(display, reg, 0xffffffff);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-index a56f8ed055f6..9220fcbfcb24 100644
---- a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-@@ -10,6 +10,21 @@
- 
- typedef i915_reg_t intel_reg_t;
- 
-+static inline u32 intel_reg_offset(intel_reg_t r)
-+{
-+	return r.reg;
-+}
-+
-+static inline bool intel_reg_equal(intel_reg_t a, intel_reg_t b)
-+{
-+	return intel_reg_offset(a) == intel_reg_offset(b);
-+}
-+
-+static inline bool intel_reg_valid(intel_reg_t r)
-+{
-+	return !intel_reg_equal(r, INVALID_MMIO_REG);
-+}
-+
- /* A triplet for IMR/IER/IIR registers. */
- struct intel_irq_regs {
- 	intel_reg_t imr;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 677824ac0ffe..047462e92590 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -2116,7 +2116,7 @@ static inline bool intel_encoder_is_dp(struct intel_encoder *encoder)
- 		return true;
- 	case INTEL_OUTPUT_DDI:
- 		/* Skip pure HDMI/DVI DDI encoders */
--		return i915_mmio_reg_valid(enc_to_intel_dp(encoder)->output_reg);
-+		return intel_reg_valid(enc_to_intel_dp(encoder)->output_reg);
- 	default:
- 		return false;
- 	}
-@@ -2129,7 +2129,7 @@ static inline bool intel_encoder_is_hdmi(struct intel_encoder *encoder)
- 		return true;
- 	case INTEL_OUTPUT_DDI:
- 		/* See if the HDMI encoder is valid. */
--		return i915_mmio_reg_valid(enc_to_intel_hdmi(encoder)->hdmi_reg);
-+		return intel_reg_valid(enc_to_intel_hdmi(encoder)->hdmi_reg);
- 	default:
- 		return false;
- 	}
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 665842fb9eae..b90265e96a41 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -540,9 +540,9 @@ static u32 dmc_evt_ctl_disable(u32 dmc_evt_ctl)
- static bool is_dmc_evt_ctl_reg(struct intel_display *display,
- 			       enum intel_dmc_id dmc_id, intel_reg_t reg)
- {
--	u32 offset = i915_mmio_reg_offset(reg);
--	u32 start = i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, 0));
--	u32 end = i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, DMC_EVENT_HANDLER_COUNT_GEN12));
-+	u32 offset = intel_reg_offset(reg);
-+	u32 start = intel_reg_offset(DMC_EVT_CTL(display, dmc_id, 0));
-+	u32 end = intel_reg_offset(DMC_EVT_CTL(display, dmc_id, DMC_EVENT_HANDLER_COUNT_GEN12));
- 
- 	return offset >= start && offset < end;
- }
-@@ -550,9 +550,9 @@ static bool is_dmc_evt_ctl_reg(struct intel_display *display,
- static bool is_dmc_evt_htp_reg(struct intel_display *display,
- 			       enum intel_dmc_id dmc_id, intel_reg_t reg)
- {
--	u32 offset = i915_mmio_reg_offset(reg);
--	u32 start = i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, 0));
--	u32 end = i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, DMC_EVENT_HANDLER_COUNT_GEN12));
-+	u32 offset = intel_reg_offset(reg);
-+	u32 start = intel_reg_offset(DMC_EVT_HTP(display, dmc_id, 0));
-+	u32 end = intel_reg_offset(DMC_EVT_HTP(display, dmc_id, DMC_EVENT_HANDLER_COUNT_GEN12));
- 
- 	return offset >= start && offset < end;
- }
-@@ -578,8 +578,8 @@ static bool fixup_dmc_evt(struct intel_display *display,
- 		return false;
- 
- 	/* make sure reg_ctl and reg_htp are for the same event */
--	if (i915_mmio_reg_offset(reg_ctl) - i915_mmio_reg_offset(DMC_EVT_CTL(display, dmc_id, 0)) !=
--	    i915_mmio_reg_offset(reg_htp) - i915_mmio_reg_offset(DMC_EVT_HTP(display, dmc_id, 0)))
-+	if (intel_reg_offset(reg_ctl) - intel_reg_offset(DMC_EVT_CTL(display, dmc_id, 0)) !=
-+	    intel_reg_offset(reg_htp) - intel_reg_offset(DMC_EVT_HTP(display, dmc_id, 0)))
- 		return false;
- 
- 	/*
-@@ -703,7 +703,7 @@ static void assert_dmc_loaded(struct intel_display *display,
- 
- 		drm_WARN(display->drm, found != expected,
- 			 "DMC %d mmio[%d]/0x%x incorrect (expected 0x%x, current 0x%x)\n",
--			 dmc_id, i, i915_mmio_reg_offset(reg), expected, found);
-+			 dmc_id, i, intel_reg_offset(reg), expected, found);
- 	}
- }
- 
-@@ -1146,17 +1146,17 @@ static u32 parse_dmc_fw_header(struct intel_dmc *dmc,
- 
- 		drm_dbg_kms(display->drm,
- 			    " mmio[%d]: 0x%x = 0x%x->0x%x (EVT_CTL)\n",
--			    i, i915_mmio_reg_offset(dmc_info->mmioaddr[i]),
-+			    i, intel_reg_offset(dmc_info->mmioaddr[i]),
- 			    orig_mmiodata[0], dmc_info->mmiodata[i]);
- 		drm_dbg_kms(display->drm,
- 			    " mmio[%d]: 0x%x = 0x%x->0x%x (EVT_HTP)\n",
--			    i+1, i915_mmio_reg_offset(dmc_info->mmioaddr[i+1]),
-+			    i+1, intel_reg_offset(dmc_info->mmioaddr[i+1]),
- 			    orig_mmiodata[1], dmc_info->mmiodata[i+1]);
- 	}
- 
- 	for (i = 0; i < mmio_count; i++) {
- 		drm_dbg_kms(display->drm, " mmio[%d]: 0x%x = 0x%x%s%s\n",
--			    i, i915_mmio_reg_offset(dmc_info->mmioaddr[i]), dmc_info->mmiodata[i],
-+			    i, intel_reg_offset(dmc_info->mmioaddr[i]), dmc_info->mmiodata[i],
- 			    is_dmc_evt_ctl_reg(display, dmc_id, dmc_info->mmioaddr[i]) ? " (EVT_CTL)" :
- 			    is_dmc_evt_htp_reg(display, dmc_id, dmc_info->mmioaddr[i]) ? " (EVT_HTP)" : "",
- 			    disable_dmc_evt(display, dmc_id, dmc_info->mmioaddr[i],
-@@ -1672,7 +1672,7 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 	if (intel_dmc_get_dc6_allowed_count(display, &dc6_allowed_count))
- 		seq_printf(m, "DC5 -> DC6 allowed count: %d\n",
- 			   dc6_allowed_count);
--	else if (i915_mmio_reg_valid(dc6_reg))
-+	else if (intel_reg_valid(dc6_reg))
- 		seq_printf(m, "DC5 -> DC6 count: %d\n",
- 			   intel_de_read(display, dc6_reg));
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index 763f004700ba..7b50f2b41f54 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -227,7 +227,7 @@ static void __intel_dmc_wl_take(struct intel_display *display)
- static bool intel_dmc_wl_reg_in_range(intel_reg_t reg,
- 				      const struct intel_dmc_wl_range ranges[])
- {
--	u32 offset = i915_mmio_reg_offset(reg);
-+	u32 offset = intel_reg_offset(reg);
- 
- 	for (int i = 0; ranges[i].start; i++) {
- 		u32 end = ranges[i].end ?: ranges[i].start;
-@@ -441,7 +441,7 @@ void intel_dmc_wl_get(struct intel_display *display, intel_reg_t reg)
- 
- 	spin_lock_irqsave(&wl->lock, flags);
- 
--	if (i915_mmio_reg_valid(reg) &&
-+	if (intel_reg_valid(reg) &&
- 	    !intel_dmc_wl_check_range(display, reg, wl->dc_state))
- 		goto out_unlock;
- 
-@@ -474,7 +474,7 @@ void intel_dmc_wl_put(struct intel_display *display, intel_reg_t reg)
- 
- 	spin_lock_irqsave(&wl->lock, flags);
- 
--	if (i915_mmio_reg_valid(reg) &&
-+	if (intel_reg_valid(reg) &&
- 	    !intel_dmc_wl_check_range(display, reg, wl->dc_state))
- 		goto out_unlock;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index dba8eeb4de4b..02f681fe903e 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -3842,9 +3842,9 @@ static void icl_dpll_write(struct intel_display *display,
- 	intel_de_write(display, cfgcr0_reg, hw_state->cfgcr0);
- 	intel_de_write(display, cfgcr1_reg, hw_state->cfgcr1);
- 	drm_WARN_ON_ONCE(display->drm, display->vbt.override_afc_startup &&
--			 !i915_mmio_reg_valid(div0_reg));
-+			 !intel_reg_valid(div0_reg));
- 	if (display->vbt.override_afc_startup &&
--	    i915_mmio_reg_valid(div0_reg))
-+	    intel_reg_valid(div0_reg))
- 		intel_de_rmw(display, div0_reg,
- 			     TGL_DPLL0_DIV0_AFC_STARTUP_MASK, hw_state->div0);
- 	intel_de_posting_read(display, cfgcr1_reg);
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index ce4d452ae695..fec8a56e21ea 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -341,7 +341,7 @@ static bool intel_dsb_prev_ins_is_write(struct intel_dsb *dsb,
- 	prev_opcode = dsb->ins[1] & ~DSB_REG_VALUE_MASK;
- 	prev_reg =  dsb->ins[1] & DSB_REG_VALUE_MASK;
- 
--	return prev_opcode == opcode && prev_reg == i915_mmio_reg_offset(reg);
-+	return prev_opcode == opcode && prev_reg == intel_reg_offset(reg);
- }
- 
- static bool intel_dsb_prev_ins_is_indexed_write(struct intel_dsb *dsb, intel_reg_t reg)
-@@ -386,7 +386,7 @@ void intel_dsb_reg_write_indexed(struct intel_dsb *dsb,
- 	if (!intel_dsb_prev_ins_is_indexed_write(dsb, reg))
- 		intel_dsb_emit(dsb, 0, /* count */
- 			       (DSB_OPCODE_INDEXED_WRITE << DSB_OPCODE_SHIFT) |
--			       i915_mmio_reg_offset(reg));
-+			       intel_reg_offset(reg));
- 
- 	if (!assert_dsb_has_room(dsb))
- 		return;
-@@ -407,7 +407,7 @@ void intel_dsb_reg_write(struct intel_dsb *dsb,
- 	intel_dsb_emit(dsb, val,
- 		       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
- 		       (DSB_BYTE_EN << DSB_BYTE_EN_SHIFT) |
--		       i915_mmio_reg_offset(reg));
-+		       intel_reg_offset(reg));
- }
- 
- static u32 intel_dsb_mask_to_byte_en(u32 mask)
-@@ -425,7 +425,7 @@ void intel_dsb_reg_write_masked(struct intel_dsb *dsb,
- 	intel_dsb_emit(dsb, val,
- 		       (DSB_OPCODE_MMIO_WRITE << DSB_OPCODE_SHIFT) |
- 		       (intel_dsb_mask_to_byte_en(mask) << DSB_BYTE_EN_SHIFT) |
--		       i915_mmio_reg_offset(reg));
-+		       intel_reg_offset(reg));
- }
- 
- void intel_dsb_noop(struct intel_dsb *dsb, int count)
-@@ -565,7 +565,7 @@ void intel_dsb_poll(struct intel_dsb *dsb,
- 
- 	intel_dsb_emit(dsb, val,
- 		       (DSB_OPCODE_POLL << DSB_OPCODE_SHIFT) |
--		       i915_mmio_reg_offset(reg));
-+		       intel_reg_offset(reg));
- }
- 
- static void intel_dsb_align_tail(struct intel_dsb *dsb)
-diff --git a/drivers/gpu/drm/i915/display/intel_mchbar.c b/drivers/gpu/drm/i915/display/intel_mchbar.c
-index 8cfcee4a08a4..a3a69e11c390 100644
---- a/drivers/gpu/drm/i915/display/intel_mchbar.c
-+++ b/drivers/gpu/drm/i915/display/intel_mchbar.c
-@@ -44,7 +44,7 @@ static u32 mchbar_mirror_len(struct intel_display *display)
- static bool is_mchbar_reg(struct intel_display *display, intel_reg_t reg)
- {
- 	return has_mchbar_mirror(display) &&
--		in_range32(i915_mmio_reg_offset(reg),
-+		in_range32(intel_reg_offset(reg),
- 			   mchbar_mirror_base(display),
- 			   mchbar_mirror_len(display));
- }
-@@ -53,7 +53,7 @@ static void assert_is_mchbar_reg(struct intel_display *display, intel_reg_t reg)
- {
- 	drm_WARN(display->drm, !is_mchbar_reg(display, reg),
- 		 "Reading non-MCHBAR register 0x%x\n",
--		 i915_mmio_reg_offset(reg));
-+		 intel_reg_offset(reg));
- }
- 
- u16 intel_mchbar_read16(struct intel_display *display, intel_reg_t reg)
-diff --git a/drivers/gpu/drm/i915/display/intel_pps.c b/drivers/gpu/drm/i915/display/intel_pps.c
-index ea5e8f75acef..d4c98b150fa2 100644
---- a/drivers/gpu/drm/i915/display/intel_pps.c
-+++ b/drivers/gpu/drm/i915/display/intel_pps.c
-@@ -1388,7 +1388,7 @@ intel_pps_readout_hw_state(struct intel_dp *intel_dp, struct intel_pps_delays *s
- 	seq->backlight_off = REG_FIELD_GET(PANEL_LIGHT_OFF_DELAY_MASK, pp_off);
- 	seq->power_down = REG_FIELD_GET(PANEL_POWER_DOWN_DELAY_MASK, pp_off);
- 
--	if (i915_mmio_reg_valid(regs.pp_div)) {
-+	if (intel_reg_valid(regs.pp_div)) {
- 		u32 pp_div;
- 
- 		pp_div = intel_de_read(display, regs.pp_div);
-@@ -1647,7 +1647,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- 	/*
- 	 * Compute the divisor for the pp clock, simply match the Bspec formula.
- 	 */
--	if (i915_mmio_reg_valid(regs.pp_div))
-+	if (intel_reg_valid(regs.pp_div))
- 		intel_de_write(display, regs.pp_div,
- 			       REG_FIELD_PREP(PP_REFERENCE_DIVIDER_MASK,
- 					      (100 * div) / 2 - 1) |
-@@ -1662,7 +1662,7 @@ static void pps_init_registers(struct intel_dp *intel_dp, bool force_disable_vdd
- 		    "panel power sequencer register settings: PP_ON %#x, PP_OFF %#x, PP_DIV %#x\n",
- 		    intel_de_read(display, regs.pp_on),
- 		    intel_de_read(display, regs.pp_off),
--		    i915_mmio_reg_valid(regs.pp_div) ?
-+		    intel_reg_valid(regs.pp_div) ?
- 		    intel_de_read(display, regs.pp_div) :
- 		    (intel_de_read(display, regs.pp_ctrl) & BXT_POWER_CYCLE_DELAY_MASK));
- }
--- 
-2.47.3
+[1]: https://github.com/Edgeworth/linux/commits/review/nova-mm-v10/
+
+>>>> Then you can parameterise Vmm/PtWalk on this type.
+>>>
+>>> The match still to be done somewhere, so you end up matching on chipset=
+ to call
+>>> the correct parametrized functions versus just passing in the parameter=
+ or
+>>> chipset down, in some cases.
+>>>
+>>> For now I am inclined to leave it as is. Also there's a Rust pitfall we=
+ all
+>>> learnt during the turing and other patch reviews, sometimes doing a bun=
+ch of
+>>> matches is good especially if the number of variants are expected to be=
+ fixed
+>>> (in the mm case, version 2 and version 3). Traits have some disadvantag=
+es too,
+>>> example dyn traits have to heap-allocated, parametrizing can increase c=
+ode size
+>>> (due to monomorphization) etc.
+>>=20
+>> Yeah, it's just this is a lot of matches in a lot of places. And we have
+>> ver2 / ver3 specific code leaking into the general pagetable.rs file. So
+>
+> That's not a leak, that's by design. pagetable.rs is where the matches ar=
+e
+> centralized, most of the code changes here on out should happen outside o=
+f
+> this file.
+>
+> 31 out of 42 matches in the mm code are in pagetable.rs, so it is already
+> centralized.
+>
+>> it would be really nice if we could find a way to improve this specific
+>> aspect. We can reduce the match to happening in just one file.=20
+>
+> Assuming we know what we're improving. ;-)
+>
+>> You can> avoid heap allocation if you would like by making Vmm an enum,
+>> for example, and doing the match based dispatch there at the top of the
+>> API tree, rather than at the bottom where it fans out into a lot more
+>> locations.
+>
+> heap allocation is not always free, this code sensitive to dynamic
+> allocations in the kernel, due to MM reclaim and locking. I would like to
+> keep it simple.
+
+If you do the type erasure via enum in Vmm, you won't need to allocate
+it on the heap. The branch I posted above has an example on how to do
+this, although there might be a better way.
+
+>
+> thanks,
+>
+> --
+> Joel Fernandes
 
