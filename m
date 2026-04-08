@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sNF2KiE11mlZBwgAu9opvQ
+	id kKSxAJs21mlZBwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 12:59:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 13:06:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC5DD3BB079
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 12:59:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09BC53BB129
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 13:06:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D76AD89C48;
-	Wed,  8 Apr 2026 10:59:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95DE210E60F;
+	Wed,  8 Apr 2026 11:06:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c+kC22aD";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YJmSp+AZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AF64689C48;
- Wed,  8 Apr 2026 10:59:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AD52A10E60F;
+ Wed,  8 Apr 2026 11:05:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775645982; x=1807181982;
+ t=1775646360; x=1807182360;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=rI+xEI4plkQhMsH9fK6qESxqKU0IMeOdYAHW6tblm7c=;
- b=c+kC22aDt/PgQJkPP4uZzPYfv5RUGemJ/bZhXTrGq2f1lHevwE48JDvy
- 4faFf9WLOt3J/Wvnq6zPW30sgFYAg8w7kTMZiV+nJvoK9h1txJ9lSfX4b
- /7U/EN95kUYzATLKkdsHt0JTnotPknGHQbyVXt/bvYgQtqDEeTZv/emxH
- ajIQsvaD8wMuccQsFzClQlcHvM4Sl8271Piaqu6yfUN2Ibudb7dBhIJSd
- bW32tar0cwUC3batYKGQGzQ4c6lr4uQxzA5df1XadMHV8R9knEBippJZk
- +KoI6IJKan971oKw5tTSNxA9YUyFRQcPL0084K/dtmAhUscBZOLYhlLs7 Q==;
-X-CSE-ConnectionGUID: PeSrwQMjRUC7UOdtORxa6w==
-X-CSE-MsgGUID: qFhEiarQQjGEyM5JtyI2NQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="87701104"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="87701104"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 03:59:42 -0700
-X-CSE-ConnectionGUID: b4QzCCOaRcScvlCqdfutaw==
-X-CSE-MsgGUID: iSh5h4d/Txuv7L3ABYmCMQ==
+ bh=sDMz3ezEPPomZ/NtOObRpTT9/soXb1Vy1gowO7hQO6Q=;
+ b=YJmSp+AZF7v6kKDtCCFLsbH7GuCjsyBR63JHEJ0nSJ7izdy4SEo++9I2
+ f8mPLOeUDq2EVmtx+a0AjSAlcY9KGBTon/8BG3G11CoTq6IENF6ovuSfX
+ ohG3sq25KOi0L7ehwOFtNVxbSr7rZnqwUV4roWMIflIrmO8muS/TZTVWO
+ B+QVugPuI7VCNbJbsnFL7611Yzx8YT131R4Fy7VIRigoQIxym03TJRpvS
+ v70IoBoE1BsjnRzqwrWUGCfQpOY76YXZiHWcGADPHvpQE7ep6HGOz4YaY
+ JSo0/z5sdknE5D7ZeCha0q0iilbw9BBgiFMCsDGTNOYCYHPzwaamnbOZR w==;
+X-CSE-ConnectionGUID: ipi9SugiR662D8o7g85UNA==
+X-CSE-MsgGUID: cWpiit7jQTiY09GZ38DdnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="94015359"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="94015359"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 04:05:59 -0700
+X-CSE-ConnectionGUID: 9tghARCrSK+7K35MQgHF1Q==
+X-CSE-MsgGUID: Z7o+WjHwQRKI2GBMh3lYlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="258870385"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="266435528"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.1])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 03:59:39 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 04:05:57 -0700
 From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 To: Intel graphics driver community testing & development
  <intel-gfx@lists.freedesktop.org>
@@ -58,9 +58,9 @@ Cc: Direct Rendering Infrastructure - Development
  Simona Vetter <simona.vetter@ffwll.ch>,
  Tvrtko Ursulin <tursulin@ursulin.net>, Andi Shyti <andi.shyti@kernel.org>,
  Chris Wilson <chris@chris-wilson.co.uk>
-Subject: [PATCH v2] drm/i915/gem: Don't use VMA from wrong VM in EXECBUF
-Date: Wed,  8 Apr 2026 13:59:31 +0300
-Message-ID: <20260408105932.82810-1-joonas.lahtinen@linux.intel.com>
+Subject: [PATCH v3] drm/i915/gem: Don't use VMA from wrong VM in EXECBUF
+Date: Wed,  8 Apr 2026 14:05:51 +0300
+Message-ID: <20260408110551.84120-1-joonas.lahtinen@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
@@ -85,25 +85,25 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[9];
-	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,linux.intel.com:mid,ffwll.ch:email,ursulin.net:email,intel.com:dkim,intel.com:email,chris-wilson.co.uk:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linuxfoundation.org:email,linux.intel.com:mid,ffwll.ch:email,ursulin.net:email];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_ALL(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: EC5DD3BB079
+X-Rspamd-Queue-Id: 09BC53BB129
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -152,6 +152,9 @@ Sima's analysis:
   realistic to backport the latter and this here is trivial in case anyone
   is foolish enough to run such an old kernel.
 
+v3:
+- Include Sima's analysis and WARN_ON_ONCE
+
 Fixes: f7ce8639f6ff ("drm/i915/gem: Split the context's obj:vma lut into its own mutex")
 References: https://lore.kernel.org/all/20260324151741.29338-1-sosohero200@gmail.com/
 Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
@@ -162,19 +165,24 @@ Cc: Andi Shyti <andi.shyti@kernel.org>
 Cc: Chris Wilson <chris@chris-wilson.co.uk>
 Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 ---
- drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-index bd608cea396f..7463c3262651 100644
+index bd608cea396f..16f7c2fac143 100644
 --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
 +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
-@@ -897,6 +897,8 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+@@ -895,8 +895,12 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+ 
+ 		rcu_read_lock();
  		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
- 		if (likely(vma && vma->vm == vm))
+-		if (likely(vma && vma->vm == vm))
++		if (likely(vma && vma->vm == vm)) {
  			vma = i915_vma_tryget(vma);
-+		else
++		} else {
++			WARN_ON_ONCE(vma && vma->vm != vm);
 +			vma = NULL;
++		}
  		rcu_read_unlock();
  		if (likely(vma))
  			return vma;
