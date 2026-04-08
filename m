@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WBeTNNVf1mmEEwgAu9opvQ
+	id 6BLEE9Zf1mmEEwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 16:01:57 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 16:01:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 07FE63BD562
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 16:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 247BF3BD56C
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 16:01:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DFB210E67E;
-	Wed,  8 Apr 2026 14:01:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B1F710E680;
+	Wed,  8 Apr 2026 14:01:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bsSdygc7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PtNH9wdF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 581BD10E682;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6A710E67E;
  Wed,  8 Apr 2026 14:01:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775656914; x=1807192914;
+ t=1775656915; x=1807192915;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K7ziiDprh8UQTTtJwGpmLUGjs9VlqDrFGatnNbdl9LY=;
- b=bsSdygc7GfWYI097gVcpHK86IRwfkMu42kMzMuS6rO+D5seNFVetALpP
- dz59EZ3u43z8WuMjDKTbCdsA62jaS6Yjscng0f4lXROJVcPNC+zPlCylU
- 4C8JKWe/TtKj7FEuS3knLFfgStr/yYfCbrra0C89N1kNuLJygPzVj1Yaj
- MvP96Bb99hrINpJMFVAk0KkJ8F6w0gaxHWLk/YlT1QOfs+2hNuce+ZBYD
- eNPVkhA8adihN1pUjvDuwjmAybyKF6v1UxhrocieSqTVXGMx/HeVMrH99
- J6mQKyohPywVv0wOlyekFWmWyr8A141sZB5iMebiyYq4X35fEwKQUBaIu w==;
-X-CSE-ConnectionGUID: AvPSX7RJRyiP4mBrhW3K0g==
-X-CSE-MsgGUID: riB38m4eTbywR2VGAS2mJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75811576"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75811576"
+ bh=9n72ZPtAlLroVh60JdYFKTNf4IlJvp4hM0oPMm0BfbY=;
+ b=PtNH9wdFFWRSulqjQRnE/G86D1ebz2OspJwyU38LxEv02YTTWB4u6udW
+ uUaJZMdJ5zY8VIbGtwNNHEcfzbH6AMKQxOVqgc7Y+p1qPuGT0pzMEMMDt
+ EsH02nXdyYwAfS5GMLWUpF7CAT8y3lcGj4e4efdw4xK+lOrIWIeLz42r9
+ RABw90kgaWKMmFH1OsF7ZHnAbF5Ihl4b8z2U6mVEQUGZ8oc8ZzTpbA/cr
+ h84NXjgUyakXgDDzolWi++RePHo7G1MNA1jwbBZA2AAZbCWaVajnReEiy
+ Nk75rKWEJNfJy1zKGyU06OWAuLjyjkieFuTDcEJH+RVbOpvIRgBH0S3o3 A==;
+X-CSE-ConnectionGUID: dgXVCOsZQL2B+6AHGe3gWQ==
+X-CSE-MsgGUID: V2Qr8cOCQnaUn4YDLqqGow==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75811598"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="75811598"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 07:01:28 -0700
-X-CSE-ConnectionGUID: QTfaQtBWT+aSrgBcyPwGkw==
-X-CSE-MsgGUID: 3TVsrIlaS0aATW7DDH1xmw==
+ 08 Apr 2026 07:01:30 -0700
+X-CSE-ConnectionGUID: VsINA873SfeFbbE3M4Ak1g==
+X-CSE-MsgGUID: VudpyyuCTHq7Zd38M/LUWA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228726695"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228726703"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.244.251])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 07:01:27 -0700
+ 08 Apr 2026 07:01:29 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 6/7] drm/i915/psr: Dump out PSR and Panel Replay DPCD registers
-Date: Wed,  8 Apr 2026 17:00:58 +0300
-Message-ID: <20260408140059.252067-7-jouni.hogander@intel.com>
+Subject: [PATCH 7/7] drm/i915/alpm: Dump out ALPM capability DPCD register
+Date: Wed,  8 Apr 2026 17:00:59 +0300
+Message-ID: <20260408140059.252067-8-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260408140059.252067-1-jouni.hogander@intel.com>
 References: <20260408140059.252067-1-jouni.hogander@intel.com>
@@ -99,45 +99,32 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 07FE63BD562
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 247BF3BD56C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add dumping out PSR and Panel Replay DPCD registers after reading
-them. This helps parsing dmesg logs and tracing possible PSR/Panel Replay
-issues.
+Add dumping out ALPM capability DPCD registers. This helps parsing dmesg
+logs and tracing possible ALPM issues.
 
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 0adaba7e8f7a..129ba0da19ee 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -608,6 +608,10 @@ static void _panel_replay_init_dpcd(struct intel_dp *intel_dp, struct intel_conn
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 4955bd8b11d7..6906226d8a9d 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4768,6 +4768,8 @@ intel_edp_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *connector
  	if (ret < 0)
- 		return;
+ 		return false;
  
-+	drm_dbg_kms(display->drm, "Panel Replay DPCD: %*ph\n",
-+		    DP_PANEL_REPLAY_CAP_SIZE,
-+		    connector->dp.panel_replay_caps.dpcd);
++	drm_dbg_kms(display->drm, "ALPM DPCD: %02x\n", intel_dp->alpm_dpcd);
 +
- 	if (!(connector->dp.panel_replay_caps.dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)] &
- 	      DP_PANEL_REPLAY_SUPPORT))
- 		return;
-@@ -656,6 +660,9 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
- 	if (ret < 0)
- 		return;
- 
-+	drm_dbg_kms(display->drm, "PSR DPCD: %*ph\n", EDP_PSR_RECEIVER_CAP_SIZE,
-+		    connector->dp.psr_caps.dpcd);
-+
- 	if (!connector->dp.psr_caps.dpcd[INTEL_PSR_DPCD_INDEX(DP_PSR_SUPPORT)])
- 		return;
- 
+ 	/*
+ 	 * This has to be called after intel_dp->edp_dpcd is filled, PSR checks
+ 	 * for SET_POWER_CAPABLE bit in intel_dp->edp_dpcd[1]
 -- 
 2.43.0
 
