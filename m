@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QCYYIrVK1mkFDQgAu9opvQ
+	id 2KGNJcxL1ml8DQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:36:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 158793BC1A8
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 219C13BC34A
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:36:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9751410E62E;
-	Wed,  8 Apr 2026 12:31:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2FA10E633;
+	Wed,  8 Apr 2026 12:36:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kKEVNFoQ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CThc28py";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58C1810E631;
- Wed,  8 Apr 2026 12:31:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF4A610E631;
+ Wed,  8 Apr 2026 12:36:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775651507; x=1807187507;
+ t=1775651785; x=1807187785;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6fUGC9slu+fD42MMDgJOleAnviaWXYNhjC0XDSsey/M=;
- b=kKEVNFoQijXS3DOsisSVu3+LOfrYQwqnH2kFBuS0xqG4qdqnvZ2pX3kZ
- iET+8ugPuMoyNhzeZyMEkVMpMRAbJ/+NQy+WS5NhDgWUP5LfbXhGV5lK0
- 9PGXFUUxx5aKwOTWaSgOdWHj5IcUxohbaUSVCcXG7YgGvmNXxjzDk1k0+
- 2pNXJn5y6Km5iSSmYs2Uc36x8zwViIeltcW6tNZvobRFuAMo51wE89LZL
- Gh/HA95qktyFqXtXeByR4/CE/f4xj0Polu0sxSeptMMw1fucNXMA6/cUZ
- CXTMAxjIueT4eLRnskoCw2rERWGE8YWOG5k7ZRlWyAykbvvShT2s/ah4q A==;
-X-CSE-ConnectionGUID: 3REmU0vTT1uBH0jf9PmNGg==
-X-CSE-MsgGUID: fPRPXSCkS16hY3lA7IfyyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80519089"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80519089"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:47 -0700
-X-CSE-ConnectionGUID: diKxOQZEQ5+A09lNu6ndQg==
-X-CSE-MsgGUID: /3pIv7rCTJCGxcsaMQtJAg==
+ bh=MP//pFRCzZ74GDemYiPcqUzF1HyMXn+8kK22sltHuwc=;
+ b=CThc28pywJOEu82pyA2AtnWWa4N1NmdAf4Xeiyt4jNWBE0jcsLr7CekV
+ mnbGr3PIM8pDCgKi2vDQilsdC3ZyeaMd2CLizANCzl4GMBEjlde/aMgRI
+ rvbMMCXQUWZgOYs+1ACjsosYr6GowoyXcdSjlSpVp55Nt+B7HeF5mBed0
+ HWVMNuZqQ6DShOsEuPh/OqIELj86W/BIc8xdw9eRWvkMNmc2Gv3MnMmCU
+ BiSXSqXI7cjHfxt7dBWagg91xDvo6VKNJSafWN1MRLPm97Xi127E00Lfj
+ Mt//qzuZbeZiKRbxxQ1z9qVRc+a80IZC1p0Ow1he6+fHa91kshw6fw2NW w==;
+X-CSE-ConnectionGUID: iZGu83p6TVaToJjWcO8PHQ==
+X-CSE-MsgGUID: Yu+in1IfQUecpXJsoQqaXA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="88016839"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88016839"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 05:31:52 -0700
+X-CSE-ConnectionGUID: LTEYjf0JSCKSowRnyXsqGA==
+X-CSE-MsgGUID: mRxvLsySTK2rHF6wJIuy2w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251782069"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="224159152"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:44 -0700
+ by fmviesa010-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 05:31:50 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v3 6/9] drm/i915/scaler: Assign scalers earlier
-Date: Wed,  8 Apr 2026 15:31:11 +0300
-Message-ID: <20260408123115.15716-7-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 7/9] drm/i915/wm: Do skl_wm_check_vblank() after DDB stuff
+Date: Wed,  8 Apr 2026 15:31:12 +0300
+Message-ID: <20260408123115.15716-8-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
 References: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
@@ -79,93 +79,67 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	URIBL_MULTI_FAIL(0.00)[gabe.freedesktop.org:server fail,intel.com:server fail,linux.intel.com:server fail];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:+];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 158793BC1A8
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 219C13BC34A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Move the scaler assignment into intel_atomic_check_crtcs(). The
-scaler assignment and scale factors are needed for the prefill
-vs. vblank length checks performed during
-intel_compute_global_watermarks().
-
-I think originally the scaler code itself did some current cdclk
-vs. scaling factor checks, which explains why it's being called
-so late during intel_atomic_check(). But we've long ago switched
-the logic on its head so that scaling dictates the minimum cdclk,
-not the other way around.
+Feels more sensible to check the original unmangled watermarks
+against the allocated DDB size first, and only then do
+skl_wm_check_vblank() on whatever is left.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 18 +++++++++++-------
- 1 file changed, 11 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 58f33ee72272..37df9676a207 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4293,12 +4293,6 @@ static int intel_crtc_atomic_check_late(struct intel_atomic_state *state,
- 		return ret;
- 	}
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index d45b3bcc6ef0..f35a6aa32382 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -2371,7 +2371,7 @@ static int skl_build_pipe_wm(struct intel_atomic_state *state,
  
--	if (DISPLAY_VER(display) >= 9) {
--		ret = intel_atomic_setup_scalers(state, crtc);
--		if (ret)
--			return ret;
--	}
--
- 	if (HAS_IPS(display)) {
- 		ret = hsw_ips_compute_config(state, crtc);
- 		if (ret)
-@@ -5816,13 +5810,23 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+ 	crtc_state->wm.skl.optimal = crtc_state->wm.skl.raw;
  
- static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc_state *new_crtc_state;
- 	struct intel_crtc *crtc;
- 	int i;
- 
--	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
-+	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
-+		int ret;
-+
- 		new_crtc_state->min_cdclk = intel_crtc_min_cdclk(new_crtc_state);
- 
-+		if (DISPLAY_VER(display) >= 9) {
-+			ret = intel_atomic_setup_scalers(state, crtc);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
- 	return 0;
+-	return skl_wm_check_vblank(crtc_state);
++	return 0;
  }
  
+ static bool skl_wm_level_equals(const struct skl_wm_level *l1,
+@@ -2980,6 +2980,10 @@ skl_compute_wm(struct intel_atomic_state *state)
+ 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+ 		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
+ 
++		ret = skl_wm_check_vblank(new_crtc_state);
++		if (ret)
++			return ret;
++
+ 		/*
+ 		 * We store use_sagv_wm in the crtc state rather than relying on
+ 		 * that bw state since we have no convenient way to get at the
 -- 
 2.52.0
 
