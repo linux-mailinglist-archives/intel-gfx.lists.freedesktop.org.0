@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UC2VFb8Y1mk+BAgAu9opvQ
+	id uMb7DMIY1mk+BAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2C3DE3B97F5
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD1583B97FD
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9570610E5E9;
-	Wed,  8 Apr 2026 08:58:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3268010E5EF;
+	Wed,  8 Apr 2026 08:58:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EY5Een04";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R6luCV/w";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4778110E5E9;
- Wed,  8 Apr 2026 08:58:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C483810E5EA;
+ Wed,  8 Apr 2026 08:58:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775638716; x=1807174716;
+ t=1775638719; x=1807174719;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=e9qryOqyco3aQVFBquI3K3Sc9jZVNHQkKlRymJqYvTg=;
- b=EY5Een04B/q3Tg4mFvWwDzTxLp4mbwOXfWGZZwemGRg747f7OzFWqy59
- bhd9Uyu0lxMTlkq7jLum6vMCMdfuXMkqBNSzLFAvxmvymR2pn8z7ikd42
- Vb5nHwgEA16XX6UAY19vOnoKKOqUnPYvXixcQOcW5wMJRh9Mv2g8/On/m
- vd7qgkywF0I67COL26PBMdF6aKGWgJIrskr9D06mUVju4jyfwSR8QWfjR
- jB+wnCu/gSonOJGiAGOhTsx22G6F7Cu0pRK47AF07Wbz7FwU+VFjNccRM
- KCXC82sJkSclNt0H8TVnVWhVXYiCGzpyIZAm6yYaeel91cD7yvlH6kshM g==;
-X-CSE-ConnectionGUID: wd3ZUftgSneosxtv1T7mtg==
-X-CSE-MsgGUID: 1L3VOoEmTCCwVW6Jc5fwfw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516725"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516725"
+ bh=okDQ2Eo1+mKMm+DmjTio8uonakKarF2Q3DRYXPVSpQw=;
+ b=R6luCV/wMWFDu5HPHOllROICZuLLD5VfTwwBF+1kbIZBwUIa16SqUJVQ
+ Y+WKU8UT09oXxCC9vPFzDPkaMKLxiuFaabSPIGT740AbHeUaozNA0Kq16
+ x7sIw6/taclR6CpNWH0sgb9v4olZIDaUEGVRdESBm0htYKFelCTdkqvwx
+ eYErHaCSRd8rHY0WrW3xD5azP19cfzqJ/X8opcw65EHVXROikpsCwOCTy
+ SEWeDIi0pWKQ2234Ez+dj367Pg937divRMKWTOfgGN6dEn2TThDKBZKIu
+ kC6VmKoZXz2J6w5rESrxJOy0DYz4QEWX7OnlqSpZg6LDHQrEoJ7ZkE+0R Q==;
+X-CSE-ConnectionGUID: bFwkhzP7Sp6WUDNmCY2Lgw==
+X-CSE-MsgGUID: C/Sy8ZiXTbeKaT3PFdKuXQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516728"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516728"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:58:36 -0700
-X-CSE-ConnectionGUID: zyLwuTeBSKO9HRHuPcYvrw==
-X-CSE-MsgGUID: mY9ymXDjQyiN4hW25x6MEw==
+ 08 Apr 2026 01:58:39 -0700
+X-CSE-ConnectionGUID: i9M31JJfRSeHuYK/Hf3IDg==
+X-CSE-MsgGUID: IWqIcZUNTY6PNhHBAY7hZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572651"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572655"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:58:34 -0700
+ 08 Apr 2026 01:58:36 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 23/26] drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
-Date: Wed,  8 Apr 2026 14:12:35 +0530
-Message-ID: <20260408084239.1295325-24-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 24/26] drm/i915/dp: Split AS SDP computation between
+ compute_config and compute_config_late
+Date: Wed,  8 Apr 2026 14:12:36 +0530
+Message-ID: <20260408084239.1295325-25-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
 References: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
@@ -98,42 +99,151 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 2C3DE3B97F5
+X-Rspamd-Queue-Id: BD1583B97FD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-For Panel Replay with AUX-less ALPM (link-off PR), the source must send
-Adaptive-Sync SDP v2. Program DB[1:0] per DP spec v2.1:
-- VRR AVT: 00b (variable VTotal)
-- VRR FAVT: 10b/11b (TRR not reached/reached)
-- Fixed timing with PR link-off (VRR off): 01b (AS disabled; VTotal fixed)
+Currently we enable AS SDP only when VRR is enabled. As we start using
+AS SDP for other features, this becomes a problem. The AS SDP
+configuration can change dynamically based on VRR, CMRR, PR, ALPM, etc.
+Since these features may be enabled or disabled after the initial
+configuration, the AS SDP parameters need to be computed later in the
+pipeline.
 
-Also, drop the redundant target_rr assignment.
+However, not all of the AS SDP logic can be moved to the late stage:
+the VRR guardband optimization depends on knowing early whether AS SDP
+can be used. Without this, we would end up accounting for AS SDP on all
+platforms that support it, even for panels that do not support AS SDP.
+Therefore we set the infoframe enable bit for AS SDP during
+compute_config(), before the guardband is computed.
 
-v2: Fix the else case. (Ville)
+To handle these constraints, split the AS SDP programming into two
+phases:
+
+ - intel_dp_compute_as_sdp()
+   Runs during compute_config().
+   Sets only the infoframe enable bit so that the guardband logic can
+   account for AS SDP requirements.
+
+ - intel_dp_as_sdp_compute_config_late()
+   Runs during compute_config_late().
+   Computes all remaining AS SDP fields based on the features that need
+   it.
+
+The late-stage computation is called from
+intel_dp_sdp_compute_config_late(), before computing the minimum guardband
+for SDPs.
+
+This is a preparatory change. A subsequent patches will compute PR related
+AS SDP fields and enable AS SDP not only for VRR but for other features
+as well.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 66 ++++++++++++++++---------
+ 1 file changed, 43 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1e56de9c3ce3..754aa3f6427e 100644
+index 754aa3f6427e..52d3221c05a4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3166,9 +3166,10 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
- 		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
- 		as_sdp->target_rr_divider = true;
+@@ -3142,10 +3142,6 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
+ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 				    struct intel_crtc_state *crtc_state)
+ {
+-	struct drm_dp_as_sdp *as_sdp = &crtc_state->infoframes.as_sdp;
+-	const struct drm_display_mode *adjusted_mode =
+-		&crtc_state->hw.adjusted_mode;
+-
+ 	/*
+ 	 * #FIXME: SDP/infoframe updates aren’t truly atomic, and with the new
+ 	 * cdclk->tc clock crossing we may transiently send a corrupted packet
+@@ -3154,23 +3150,13 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	if (!intel_dp_needs_as_sdp(intel_dp, crtc_state))
+ 		return;
+ 
++	/*
++	 * Only set the infoframes.enable flag here. The remaining AS SDP fields
++	 * are programmed in the compute_config_late() phase. We need this flag
++	 * early so that the VRR guardband calculation can properly account for
++	 * AS SDP requirements.
++	 */
+ 	crtc_state->infoframes.enable |= intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC);
+-
+-	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
+-	as_sdp->length = 0x9;
+-	as_sdp->duration_incr_ms = 0;
+-	as_sdp->revision = 0x2;
+-	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
+-
+-	if (crtc_state->cmrr.enable) {
+-		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
+-		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
+-		as_sdp->target_rr_divider = true;
+-	} else if (crtc_state->vrr.enable) {
+-		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
 -	} else {
+-		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
+-	}
+ }
+ 
+ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
+@@ -7388,11 +7374,45 @@ void intel_dp_mst_resume(struct intel_display *display)
+ }
+ 
+ static
+-int intel_dp_sdp_compute_config_late(struct intel_crtc_state *crtc_state)
++void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
++					 struct intel_crtc_state *crtc_state)
++{
++	struct drm_dp_as_sdp *as_sdp = &crtc_state->infoframes.as_sdp;
++	const struct drm_display_mode *adjusted_mode =
++		&crtc_state->hw.adjusted_mode;
++
++	if ((crtc_state->infoframes.enable &
++	    intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC)) == 0)
++		return;
++
++	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
++	as_sdp->length = 0x9;
++	as_sdp->duration_incr_ms = 0;
++	as_sdp->revision = 0x2;
++	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
++
++	if (crtc_state->cmrr.enable) {
++		as_sdp->mode = DP_AS_SDP_FAVT_TRR_REACHED;
++		as_sdp->target_rr = drm_mode_vrefresh(adjusted_mode);
++		as_sdp->target_rr_divider = true;
 +	} else if (crtc_state->vrr.enable) {
- 		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
--		as_sdp->target_rr = 0;
++		as_sdp->mode = DP_AS_SDP_AVT_DYNAMIC_VTOTAL;
 +	} else {
 +		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
- 	}
- }
++	}
++}
++
++static
++int intel_dp_sdp_compute_config_late(struct intel_dp *intel_dp,
++				     struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	int guardband = intel_crtc_vblank_length(crtc_state);
+-	int min_sdp_guardband = intel_dp_sdp_min_guardband(crtc_state, false);
++	int min_sdp_guardband;
++
++	intel_dp_as_sdp_compute_config_late(intel_dp, crtc_state);
++
++	min_sdp_guardband = intel_dp_sdp_min_guardband(crtc_state, false);
+ 
+ 	if (guardband < min_sdp_guardband) {
+ 		drm_dbg_kms(display->drm, "guardband %d < min sdp guardband %d\n",
+@@ -7412,7 +7432,7 @@ int intel_dp_compute_config_late(struct intel_encoder *encoder,
+ 
+ 	intel_psr_compute_config_late(intel_dp, crtc_state);
+ 
+-	ret = intel_dp_sdp_compute_config_late(crtc_state);
++	ret = intel_dp_sdp_compute_config_late(intel_dp, crtc_state);
+ 	if (ret)
+ 		return ret;
  
 -- 
 2.45.2
