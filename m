@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uBvMI5hy1ml2FQgAu9opvQ
+	id qDgxNJty1ml2FQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:22:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:22:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1FE33BE1D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:21:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C3163BE1D7
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:22:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D2AF110E4AA;
-	Wed,  8 Apr 2026 15:21:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8AB910E68C;
+	Wed,  8 Apr 2026 15:22:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MQABDlnd";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L0W/F8aw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FF7210E2E7;
- Wed,  8 Apr 2026 15:21:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3249410E68B;
+ Wed,  8 Apr 2026 15:22:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775661716; x=1807197716;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=r/uavIWRpy7OaiQtgt3YT84oGwMU9Qi6Cis6khYIL5E=;
- b=MQABDlndkLIhnUc19KTPRK7jqQN5nk8/sGxBnBgmIJItcp5gKEd639DL
- UPKuOr9/P6yYX5bK8JIEGB52LiqxQbAEsdRgOWj7x2J9117WVBLKPa8iU
- Lnvi0PyJoLpDuXVBoY3VrF5zi5mPn7Rh7A5aExMk2gqE8X6QZrnBOP8ZK
- VejFMdeqIMAN3y7KjR8q3fdiexcOILiAgOtRfhtfuxurpuVmIMmkxYejN
- dXt7DwI/ETQe9i6n5L7ETcLFlzl/WDwehWNENEUR0c+bdukkDnCujxtx0
- MdYtuN46fCOM5pVobz/9sabbMe8AvmBRouaKFNFDf5lScYkCgScKscv+h A==;
-X-CSE-ConnectionGUID: NBMl34KBQFmtXv6qlE5fYw==
-X-CSE-MsgGUID: pDens0EZQjKhWoSOnAUy+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="94035756"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="94035756"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:21:55 -0700
-X-CSE-ConnectionGUID: +tr/qztoRa2onRPk0MGRJg==
-X-CSE-MsgGUID: Nhyt5FKrRLy0t/ozSlyptw==
+ t=1775661720; x=1807197720;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=PgTuL1CxrSE9DVnvmZ8Z1b3mbSq04a4hAhojm/bgwb0=;
+ b=L0W/F8awUMIGev3vcE3h8YHZb7Jgf9kziSOmfVsxaMRl22FPyAvbrV2V
+ nBxykIxqOR/o1FfzmjE9svzdwXjltjGIlSvQA1kuzDamdE2BDKxHPR3ZY
+ GYmbw+AFwrBlItYU8Zp8vJ2YQ3uJt+MH2C8MPvdO0l4ojBYl1Chsacal1
+ FRtqqBDAtcKdYy66KI7iU8yHb5KTfa+sEz0ahe501VIz5H3Q8+GujWkB1
+ /bvmCY206ogcYDYfbvyhrtQ206ioMolkwgBvQs3czIzhlUSisxVH7Wem9
+ BlHk8M3qHbfps4gudMaX22F2dAHy9HCDF5VYMLtrt1cGGeAdddmMXb6rO Q==;
+X-CSE-ConnectionGUID: in4Unl8yTeajgZFXp0qsdw==
+X-CSE-MsgGUID: 3CgMoDmDT+OqBGbtxKXFXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="64193881"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="64193881"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 08:22:00 -0700
+X-CSE-ConnectionGUID: poeAa/oVRfegOr3KuIplHQ==
+X-CSE-MsgGUID: NhJkOfZ4TzarwYaKj/O8+g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228745376"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.32])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:21:52 -0700
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 08:21:58 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  maarten.lankhorst@linux.intel.com
-Subject: [PATCH 0/2] drm/i915: move fence timeout to parent interface
-Date: Wed,  8 Apr 2026 18:21:47 +0300
-Message-ID: <cover.1775661609.git.jani.nikula@intel.com>
+Subject: [PATCH 1/2] drm/i915: convert i915_fence_timeout() into a proper
+ function
+Date: Wed,  8 Apr 2026 18:21:48 +0300
+Message-ID: <05f09eefef894bf87c3621b08a65d41c9050bc6f.1775661609.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1775661609.git.jani.nikula@intel.com>
+References: <cover.1775661609.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
@@ -75,54 +76,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: F1FE33BE1D0
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 9C3163BE1D7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This is not really something I like to do, but I'm not sure how to make
-forward progress otherwise. This removes one of the few remaining direct
-display to i915 or xe calls, and we can reconsider this later.
+We'll be needing a pointer to the function, and it'll be cleaner if it's
+not a static inline. Make it so.
 
-Jani Nikula (2):
-  drm/i915: convert i915_fence_timeout() into a proper function
-  drm/i915: move fence timeout to display parent interface
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/i915_config.c | 5 +++++
+ drivers/gpu/drm/i915/i915_config.h | 7 +------
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_display.c     |  8 ++++++--
- drivers/gpu/drm/i915/display/intel_parent.c      |  6 ++++++
- drivers/gpu/drm/i915/display/intel_parent.h      |  3 ++-
- drivers/gpu/drm/i915/i915_config.c               |  5 +++++
- drivers/gpu/drm/i915/i915_config.h               |  7 +------
- drivers/gpu/drm/i915/i915_driver.c               |  2 ++
- .../gpu/drm/xe/compat-i915-headers/i915_config.h | 16 ----------------
- include/drm/intel/display_parent_interface.h     |  3 +++
- 8 files changed, 25 insertions(+), 25 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-
+diff --git a/drivers/gpu/drm/i915/i915_config.c b/drivers/gpu/drm/i915/i915_config.c
+index 9e13b1be407c..71b195966a66 100644
+--- a/drivers/gpu/drm/i915/i915_config.c
++++ b/drivers/gpu/drm/i915/i915_config.c
+@@ -15,3 +15,8 @@ unsigned long i915_fence_context_timeout(u64 context)
+ 
+ 	return 0;
+ }
++
++unsigned long i915_fence_timeout(void)
++{
++	return i915_fence_context_timeout(U64_MAX);
++}
+diff --git a/drivers/gpu/drm/i915/i915_config.h b/drivers/gpu/drm/i915/i915_config.h
+index f386328d9e95..efb02a85284e 100644
+--- a/drivers/gpu/drm/i915/i915_config.h
++++ b/drivers/gpu/drm/i915/i915_config.h
+@@ -7,13 +7,8 @@
+ #define __I915_CONFIG_H__
+ 
+ #include <linux/types.h>
+-#include <linux/limits.h>
+ 
+ unsigned long i915_fence_context_timeout(u64 context);
+-
+-static inline unsigned long i915_fence_timeout(void)
+-{
+-	return i915_fence_context_timeout(U64_MAX);
+-}
++unsigned long i915_fence_timeout(void);
+ 
+ #endif /* __I915_CONFIG_H__ */
 -- 
 2.47.3
 
