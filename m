@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2KGNJcxL1ml8DQgAu9opvQ
+	id uB4oH81L1ml8DQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:36:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:36:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 219C13BC34A
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:36:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 232C93BC351
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:36:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9F2FA10E633;
-	Wed,  8 Apr 2026 12:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4545A10E636;
+	Wed,  8 Apr 2026 12:36:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CThc28py";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eY02agFc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DF4A610E631;
- Wed,  8 Apr 2026 12:36:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 919DC10E631;
+ Wed,  8 Apr 2026 12:36:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775651785; x=1807187785;
+ t=1775651786; x=1807187786;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MP//pFRCzZ74GDemYiPcqUzF1HyMXn+8kK22sltHuwc=;
- b=CThc28pywJOEu82pyA2AtnWWa4N1NmdAf4Xeiyt4jNWBE0jcsLr7CekV
- mnbGr3PIM8pDCgKi2vDQilsdC3ZyeaMd2CLizANCzl4GMBEjlde/aMgRI
- rvbMMCXQUWZgOYs+1ACjsosYr6GowoyXcdSjlSpVp55Nt+B7HeF5mBed0
- HWVMNuZqQ6DShOsEuPh/OqIELj86W/BIc8xdw9eRWvkMNmc2Gv3MnMmCU
- BiSXSqXI7cjHfxt7dBWagg91xDvo6VKNJSafWN1MRLPm97Xi127E00Lfj
- Mt//qzuZbeZiKRbxxQ1z9qVRc+a80IZC1p0Ow1he6+fHa91kshw6fw2NW w==;
-X-CSE-ConnectionGUID: iZGu83p6TVaToJjWcO8PHQ==
-X-CSE-MsgGUID: Yu+in1IfQUecpXJsoQqaXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="88016839"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88016839"
+ bh=sG3+FkpfiFVHa1w8+mVl0fyAEP7CXuTUmLL6F3zYpWc=;
+ b=eY02agFcTLdTXyuC6D6aXGBWntNDFaiNsZp/TLLx9y/i0F/VgTVMitc+
+ L78o2/Jx82bLr3FNKy2tGVk8JZHjEOFH3XPCmFjHAvL7brfMzwyBV0Vxs
+ jKuusT5DNP5vmsdjeDbPp+lG/+nyE0ilUZmJder2QWK2pMHaFO3ZrC5a/
+ hYLIk0Ue1YHcvnbAPp0QRJDBpQuPLMVuU2wVuoNt8XI6Vbbj1xQjtDAAv
+ 89e8PqkygVuFYk2fg5hJmvDhgsKarSjN4aH0NVK4P9MuCavmIe0/odT4D
+ tA1ufhAFTE7Z9j4mAOM2ccAFip1ClY36YM/1R2zPfRL5rEPVs7ofFqZAi A==;
+X-CSE-ConnectionGUID: WmHgRGqDQdGXKxtrOs8rww==
+X-CSE-MsgGUID: w+JhDOOIR+SAVzi3EYLwBQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="88016855"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88016855"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:52 -0700
-X-CSE-ConnectionGUID: LTEYjf0JSCKSowRnyXsqGA==
-X-CSE-MsgGUID: mRxvLsySTK2rHF6wJIuy2w==
+ 08 Apr 2026 05:31:58 -0700
+X-CSE-ConnectionGUID: loyNrQ8uSrOQjQY1g4p4yw==
+X-CSE-MsgGUID: aq8db6L+T1i1a2QEChF7nA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="224159152"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="224159198"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
  by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 05:31:50 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 05:31:55 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v3 7/9] drm/i915/wm: Do skl_wm_check_vblank() after DDB stuff
-Date: Wed,  8 Apr 2026 15:31:12 +0300
-Message-ID: <20260408123115.15716-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 8/9] drm/i915/cdclk: Use a more optimal min_cdclk for
+ vblank length check
+Date: Wed,  8 Apr 2026 15:31:13 +0300
+Message-ID: <20260408123115.15716-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
 References: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
@@ -99,47 +100,81 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 219C13BC34A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 232C93BC351
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Feels more sensible to check the original unmangled watermarks
-against the allocated DDB size first, and only then do
-skl_wm_check_vblank() on whatever is left.
+Adjust intel_cdclk_prefill_adjustment() to give out a potentially more
+optimal value, purely based on the final minimum CDCLK (also considering
+planes/pfit/etc.) for the current pipe. We can't actually check against
+the current CDCLK frequency as that might be much higher due to some
+other pipe, and said other pipe might later reduce the CDCLK below
+what the current pipe would find acceptable (given which WM levels
+are enabled). Ie. we don't consider any global constraints (other
+pipes, dbuf bandwidth, etc) on the mimimum CDCLK frequency here.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+We must also make sure crtc_state->min_cdclk doesn't exceed the
+platform max or else _intel_cdclk_prefill_adj() will get confused
+when trying to find the corresponding platform specific cdclk
+frequency.
+
+v2: check min_cdclk against platform max
+
+Reviewed-by: Luca Coelho <luciano.coelho@intel.com> #v1
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_watermark.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 17 +++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_display.c |  6 ++++++
+ 2 files changed, 21 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
-index d45b3bcc6ef0..f35a6aa32382 100644
---- a/drivers/gpu/drm/i915/display/skl_watermark.c
-+++ b/drivers/gpu/drm/i915/display/skl_watermark.c
-@@ -2371,7 +2371,7 @@ static int skl_build_pipe_wm(struct intel_atomic_state *state,
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 8feba2e0333b..9a9b86769118 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -4225,8 +4225,21 @@ static unsigned int _intel_cdclk_prefill_adj(const struct intel_crtc_state *crtc
  
- 	crtc_state->wm.skl.optimal = crtc_state->wm.skl.raw;
- 
--	return skl_wm_check_vblank(crtc_state);
-+	return 0;
+ unsigned int intel_cdclk_prefill_adjustment(const struct intel_crtc_state *crtc_state)
+ {
+-	/* FIXME use the actual min_cdclk for the pipe here */
+-	return intel_cdclk_prefill_adjustment_worst(crtc_state);
++	int clock = crtc_state->hw.pipe_mode.crtc_clock;
++	int min_cdclk;
++
++	/*
++	 * Only consider the current pipe's minimum cdclk here as a safe
++	 * lower bound. This must *not* be based on the actual/logical cdclk
++	 * frequency here as that may get reduced later due to eg. a modeset
++	 * on a different pipe, and that would completely invalidate the
++	 * guardband length checks we did on this pipe previously. That
++	 * could lead to prefill exceeding the guardband which would result
++	 * in underruns.
++	 */
++	min_cdclk = crtc_state->min_cdclk;
++
++	return _intel_cdclk_prefill_adj(crtc_state, clock, min_cdclk);
  }
  
- static bool skl_wm_level_equals(const struct skl_wm_level *l1,
-@@ -2980,6 +2980,10 @@ skl_compute_wm(struct intel_atomic_state *state)
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		struct skl_pipe_wm *pipe_wm = &new_crtc_state->wm.skl.optimal;
+ unsigned int intel_cdclk_prefill_adjustment_worst(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 37df9676a207..3b13f08bb417 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5819,6 +5819,12 @@ static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
+ 		int ret;
  
-+		ret = skl_wm_check_vblank(new_crtc_state);
-+		if (ret)
-+			return ret;
-+
- 		/*
- 		 * We store use_sagv_wm in the crtc state rather than relying on
- 		 * that bw state since we have no convenient way to get at the
+ 		new_crtc_state->min_cdclk = intel_crtc_min_cdclk(new_crtc_state);
++		if (new_crtc_state->min_cdclk > display->cdclk.max_cdclk_freq) {
++			drm_dbg_kms(display->drm, "[CRTC:%d:%s] required cdclk (%d kHz) exceeds max (%d kHz)\n",
++				    crtc->base.base.id, crtc->base.name, new_crtc_state->min_cdclk,
++				    display->cdclk.max_cdclk_freq);
++			return -EINVAL;
++		}
+ 
+ 		if (DISPLAY_VER(display) >= 9) {
+ 			ret = intel_atomic_setup_scalers(state, crtc);
 -- 
 2.52.0
 
