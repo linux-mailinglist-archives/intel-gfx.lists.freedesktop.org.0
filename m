@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aBA9E0ob1mluBAgAu9opvQ
+	id ECXuCa4b1mluBAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 11:09:30 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 11:11:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 932673B99E9
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 11:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83D853B9A86
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 11:11:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 030E910E5C3;
-	Wed,  8 Apr 2026 09:09:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id ECA1D10E5D4;
+	Wed,  8 Apr 2026 09:11:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0t2zN8H";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="is2Nx4xn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CC1E510E5C3;
- Wed,  8 Apr 2026 09:09:26 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EB1710E5D4;
+ Wed,  8 Apr 2026 09:11:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775639367; x=1807175367;
+ t=1775639467; x=1807175467;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=h5N3llxzif1LrIKAZsRK1Mn4fNTe4FDiP8ndj3BUjVw=;
- b=b0t2zN8HvZAuYL/497euBJAuev1ATxsXa9nuYu+M+igoZPwv7ZK661LE
- Mig7l87sybHmThJKIdrjfH4Tx1jRml+qcZNiOV+jzOSEslgOulbrV3n3y
- B/dHYh1YYX2TgvK86RsjR3q1A1gOIf/H36y2YxJF9oxaTmduvvHUHE/YR
- t4W3sb9Dy1GxLY+GvoAGXI1omBdyAdoX/PDp5uckPYryWe9hHzHmHQ0Ah
- ud9UxLyoQoZpGOMEpJHbcyU3FUQFZL64PEUnXO7P4PeBs4FJVoahZKlN3
- nJf5NvVWfD8+bE8xFiLs8bSzGxOWdMgfPpWJwP2Q0LFxSXn5N/IlkMpfW w==;
-X-CSE-ConnectionGUID: P54jC5m2Tk62xJyMz2OJFA==
-X-CSE-MsgGUID: VoQuw2JXS9yl+6TWhiC6sg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="88001355"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88001355"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 02:09:26 -0700
-X-CSE-ConnectionGUID: Epv0wivNQo6QKBD0Uhy7GA==
-X-CSE-MsgGUID: JclxXdwcQD+1vA9xBowzlA==
+ bh=fyYziRXCH9gJr4eGYouThl+QQ1jqWyxlodXa43e2/Es=;
+ b=is2Nx4xnMyoMq53wvsPULqQq3cS3EMc5hHTy7/9XMGgqLFGNEdoc7FMK
+ i06q1tbsIl1NDtsmvk/A9rz/+XKJZJY8Vu7yf8DUZ6bbVrBRwBXYfh/CQ
+ /8NPIgqfgoHXActgt7IKTrAdQ6H3HO8iD2k/NSbvAI0zrPTTpdAqH51Z+
+ i19QLEjmTuWK1gqCtwtoiMOpB4Im+UBPyajLTXCvNZ2Qe+z2HR7Pyhev0
+ sqePnBOzSzJI5YxP4k7EQOvy5Nazi7hdLuAKPMhcpYI362eCCbttKpvla
+ k1H91eRI8hkVFgKZ68zhZmpjydzgZrIeFYgoxfKiL+TnsGz4XGOw0xk8/ A==;
+X-CSE-ConnectionGUID: XpSbwT01T4ebRzvAI49jdQ==
+X-CSE-MsgGUID: prMX6KEPRvKqx3ahJxg9zw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="86908054"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="86908054"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 02:11:07 -0700
+X-CSE-ConnectionGUID: 504mfOiBRaeISEl4CEGx0w==
+X-CSE-MsgGUID: M7x1thHDRP60t1AzYF1tTg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="233293341"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228353177"
 Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.32])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 02:09:24 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 02:11:05 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 12/12] drm/i915/fb: Use
- intel_fb_needs_pot_stride_remap() in intel_fb_view_init()
-In-Reply-To: <20260407155053.32156-13-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 07/12] drm/i915/vma: Add helpers to check GTT view type
+In-Reply-To: <97be0c2c2ac61e38db7d41254b7fe54610ef26a4@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260407155053.32156-1-ville.syrjala@linux.intel.com>
- <20260407155053.32156-13-ville.syrjala@linux.intel.com>
-Date: Wed, 08 Apr 2026 12:09:22 +0300
-Message-ID: <535ff3f898555517d3ea6f8b47422a07290cf91f@intel.com>
+ <20260407155053.32156-8-ville.syrjala@linux.intel.com>
+ <97be0c2c2ac61e38db7d41254b7fe54610ef26a4@intel.com>
+Date: Wed, 08 Apr 2026 12:11:02 +0300
+Message-ID: <48db71f69330d3265c53fc9a44fff121b0caa3ca@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -103,89 +103,68 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 932673B99E9
+X-Rspamd-Queue-Id: 83D853B9A86
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Wed, 08 Apr 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Tue, 07 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>
+>> I915_GTT_VIEW_ROTATED is going away and being replaced by just
+>> I915_GTT_VIEW_REMAPPED, so we're going to need another way to
+>> determine if the view is rotated or not (since width/height
+>> will need to be swapped when operating on the destination
+>> coordinate space). Provide small helper functions to hide
+>> such implementation details from most of the code using GTT views.
+>>
+>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Replace the open coded intel_fb_needs_pot_stride_remap() check
-> inside intel_fb_view_init() with the real thing.
+> Funny, I think I have these helpers in a branch somewhere too. :)
 >
-> The current check doesn't have the intel_fb_uses_dpt() in there, but
-> that is the only situation when we use the remapped view, and thus
-> was always implied.
+> It's still not clear to me where we'll end up with this, since the file
+> is in i915 and used directly from xe core too, which is something we
+> want to get rid of. But seems like iterative improvement, so let's roll
+> with this.
 >
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+PS. I note that there's still plenty of places in i915 core that could
+be converted to the helpers after this series.
 
-> ---
->  drivers/gpu/drm/i915/display/intel_fb.c | 19 ++++++++++++-------
->  1 file changed, 12 insertions(+), 7 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i9=
-15/display/intel_fb.c
-> index ceed695d3ad4..c4af368deffd 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fb.c
-> @@ -1627,13 +1627,14 @@ calc_plane_normal_size(const struct intel_framebu=
-ffer *fb, int color_plane,
->=20=20
->  static void intel_fb_view_init(struct intel_display *display,
->  			       struct intel_fb_view *view,
-> -			       enum i915_gtt_view_type view_type)
-> +			       enum i915_gtt_view_type view_type,
-> +			       const struct intel_framebuffer *fb)
->  {
->  	memset(view, 0, sizeof(*view));
->  	view->gtt.type =3D view_type;
->=20=20
->  	if (i915_gtt_view_is_remapped(&view->gtt) &&
-> -	    (display->platform.alderlake_p || DISPLAY_VER(display) >=3D 14))
-> +	    intel_fb_needs_pot_stride_remap(fb))
->  		view->gtt.remapped.plane_alignment =3D SZ_2M / PAGE_SIZE;
->  }
->=20=20
-> @@ -1699,16 +1700,19 @@ int intel_fill_fb_info(struct intel_display *disp=
-lay, struct intel_framebuffer *
->  	int i, num_planes =3D fb->base.format->num_planes;
->  	unsigned int tile_size =3D intel_tile_size(display);
->=20=20
-> -	intel_fb_view_init(display, &fb->normal_view, I915_GTT_VIEW_NORMAL);
-> +	intel_fb_view_init(display, &fb->normal_view,
-> +			   I915_GTT_VIEW_NORMAL, fb);
->=20=20
->  	drm_WARN_ON(display->drm,
->  		    intel_fb_supports_90_270_rotation(fb) &&
->  		    intel_fb_needs_pot_stride_remap(fb));
->=20=20
->  	if (intel_fb_supports_90_270_rotation(fb))
-> -		intel_fb_view_init(display, &fb->rotated_view, I915_GTT_VIEW_ROTATED);
-> +		intel_fb_view_init(display, &fb->rotated_view,
-> +				   I915_GTT_VIEW_ROTATED, fb);
->  	if (intel_fb_needs_pot_stride_remap(fb))
-> -		intel_fb_view_init(display, &fb->remapped_view, I915_GTT_VIEW_REMAPPED=
-);
-> +		intel_fb_view_init(display, &fb->remapped_view,
-> +				   I915_GTT_VIEW_REMAPPED, fb);
->=20=20
->  	for (i =3D 0; i < num_planes; i++) {
->  		struct fb_plane_view_dims view_dims;
-> @@ -1835,8 +1839,9 @@ static void intel_plane_remap_gtt(struct intel_plan=
-e_state *plane_state)
->  	u32 gtt_offset =3D 0;
->=20=20
->  	intel_fb_view_init(display, &plane_state->view,
-> -			   drm_rotation_90_or_270(rotation) ? I915_GTT_VIEW_ROTATED :
-> -							      I915_GTT_VIEW_REMAPPED);
-> +			   drm_rotation_90_or_270(rotation) ?
-> +			   I915_GTT_VIEW_ROTATED : I915_GTT_VIEW_REMAPPED,
-> +			   intel_fb);
->=20=20
->  	src_x =3D plane_state->uapi.src.x1 >> 16;
->  	src_y =3D plane_state->uapi.src.y1 >> 16;
+>> ---
+>>  drivers/gpu/drm/i915/i915_gtt_view_types.h | 15 +++++++++++++++
+>>  1 file changed, 15 insertions(+)
+>>
+>> diff --git a/drivers/gpu/drm/i915/i915_gtt_view_types.h b/drivers/gpu/dr=
+m/i915/i915_gtt_view_types.h
+>> index c084f67bc880..9c4f38db32ff 100644
+>> --- a/drivers/gpu/drm/i915/i915_gtt_view_types.h
+>> +++ b/drivers/gpu/drm/i915/i915_gtt_view_types.h
+>> @@ -56,4 +56,19 @@ struct i915_gtt_view {
+>>  	};
+>>  };
+>>=20=20
+>> +static inline bool i915_gtt_view_is_normal(const struct i915_gtt_view *=
+view)
+>> +{
+>> +	return view->type =3D=3D I915_GTT_VIEW_NORMAL;
+>> +}
+>> +
+>> +static inline bool i915_gtt_view_is_remapped(const struct i915_gtt_view=
+ *view)
+>> +{
+>> +	return view->type =3D=3D I915_GTT_VIEW_REMAPPED;
+>> +}
+>> +
+>> +static inline bool i915_gtt_view_is_rotated(const struct i915_gtt_view =
+*view)
+>> +{
+>> +	return view->type =3D=3D I915_GTT_VIEW_ROTATED;
+>> +}
+>> +
+>>  #endif /* __I915_GTT_VIEW_TYPES_H__ */
 
 --=20
 Jani Nikula, Intel
