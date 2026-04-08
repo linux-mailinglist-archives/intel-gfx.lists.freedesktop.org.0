@@ -2,66 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CIFYMu1D1mkFCwgAu9opvQ
+	id QFxjFDpE1mkFCwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:02:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:04:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6679E3BBABD
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:02:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5D5833BBB64
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:04:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8E0B10E0D5;
-	Wed,  8 Apr 2026 12:02:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CE3D210E623;
+	Wed,  8 Apr 2026 12:04:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GGE2NLMf";
+	dkim=pass (1024-bit key; secure) header.d=ffwll.ch header.i=@ffwll.ch header.b="TwbVrcDC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 680C510E0D5;
- Wed,  8 Apr 2026 12:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775649769; x=1807185769;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=YNtUFL0yTBrxzQVzWCC57bJs+G6Njz9xioBBgli3IC0=;
- b=GGE2NLMfh1qa2OplI7jPQWm+UIM3SfdS0I1qQbRkajPVlIDDYgvZAdWS
- rTQliIr5jVNAEbqQCJjJ5IfaszRlje/kvq9ljY4lnAJ/hqzliSd529na6
- jPmjHedFpbshFWhp/xLcDhRMefWeJwbeEcMNVAyj2NeixuQfOCkBFh2iv
- nFsXkNETRbfm45mijDmA/YJ6szFgqoZqzQuzp6b4446HGFT4eXRG4w/XR
- 60RJWbDoV9m62BZ2Po0bzFzSJDLOjfjLuvRmq6MQDuGVrh/0nX75uRPjK
- iSiJ27ZGETN66CKF/u5NH60AsGzKYl/uG//VIibs99tUShwW+7mknlJpz g==;
-X-CSE-ConnectionGUID: y7oIK2sYSXySEk+XBljK6g==
-X-CSE-MsgGUID: H+JhNFp7Tri6UltgMwPGig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="99256465"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="99256465"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:02:49 -0700
-X-CSE-ConnectionGUID: d8of8FbaTgaH2ceHvcW0gg==
-X-CSE-MsgGUID: X9GJWjhLR+iiJOwF3qGO/A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="233327547"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:02:47 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/i915: Walk crtcs in pipe order
-In-Reply-To: <20251120192137.5968-1-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251120144910.13028-1-ville.syrjala@linux.intel.com>
- <20251120192137.5968-1-ville.syrjala@linux.intel.com>
-Date: Wed, 08 Apr 2026 15:02:44 +0300
-Message-ID: <94c5c732225f4281f258c5cdb0f2d4a0ee0e2ebf@intel.com>
+Received: from mail-wm1-f41.google.com (mail-wm1-f41.google.com
+ [209.85.128.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE10810E61F
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2026 12:04:06 +0000 (UTC)
+Received: by mail-wm1-f41.google.com with SMTP id
+ 5b1f17b1804b1-488af9fdaa7so19893355e9.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2026 05:04:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ffwll.ch; s=google; t=1775649845; x=1776254645; darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=67FUvuUYw3FdlK6qJZvlH40hk371TsgTNRnsmwrbeHA=;
+ b=TwbVrcDCohhfSbcghHn/c/Uo+AaKaGfMIDBzV0D8nCUH8Sw02WFJVQk3TDUIQY8jsU
+ cvXeIU2sSPWLNLG4ZTLqJ8lzPqqi1sT3z88R7eHim7JfNP0UO6j0dEPkzV65T9x6ggHy
+ 0qyt6EgHRN9M6cLG1z898XhBUGXJV8PwbD6Ck=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775649845; x=1776254645;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=67FUvuUYw3FdlK6qJZvlH40hk371TsgTNRnsmwrbeHA=;
+ b=JvsWuQnvyzkjH40E1o5lFwynxItUk/OPIMvw2Gk/gLWfDqSzQwzY91ad7QbRwMIJv9
+ piX7gJ8kpF3VWWYTTn6NeHeEJgqU43c5R34mP//dZElesGvGKEk636IbftSK2QlVDojD
+ 4yxwSjiaXqGTMLeIU/E/XRh3VxPYCXcVGDPq88/c60B/ULf54qv3+05RXLl37/KhI0MI
+ qQLF67mifVoeKJyja7h2ihaczWl7nXa4cLCVTHL9JFDzG79eWlaOW1u4ds7ktISKpEcQ
+ 13xaegfxNCUhg71DD8iRU11DnhCm6ulOVV/M+fBHuyd91zJMpogMQSDdBhRNlaL/UBYE
+ sxIQ==
+X-Gm-Message-State: AOJu0Yy6J7HWn9gY+iwMPb308/ll3ogpbjbIsF2hpq6NnaHujEfk6pE2
+ JTJDePtTCIAGvS6K6Wg9LhfF9YzmfQh4u45JeKSp09cgsLaXuFhvxKvlALDoqVnUzVnG+kkdh6C
+ YC7pV
+X-Gm-Gg: AeBDieuWTj1Z+NPDZ2C8sjyamWz798Jwcq7mpTCYAmsv/NB7Op7foTClqMkV5Cyzd7o
+ smpkCwtaqui/T4UrmOEbr4h9x1O+JjSaeH3nkWVCzsjup+AMfWj1RkNIe7JKz2Co5CtasrkGd+H
+ 4UyfIQes7+z1N1qnJpD6Rctn36Wt2xEheHL1uU+grKrzMizjHz9XNC4YZMTsbVwV8WtSQyGzZ9z
+ dSCQs/acVEzhNZ5jFe2V/xeQFxDV1pyE2W7LAAPj/Vji7+u5di4+28ysvBsUsmpxUMePyZqn0xc
+ vqXuU6lS2GIBkeeIS9ti/wP9FpoEjlCDdQx0x68wrDHYviPs9R8N/5NoqPWd0gmlH4wAQmVWSER
+ JqtR0R1gopC0PIF0JTLqAsOBqjk2x1z1tNSDe+7YqKrBbW7un/9UKoaUM4JBL1MAKLSCjuoSrGZ
+ ckLbQ+hDpHXd62vALAGZiEGd8br0vvlJAHHGlMw3Dfs5VMWg==
+X-Received: by 2002:a05:600c:1d1d:b0:488:7ebd:78 with SMTP id
+ 5b1f17b1804b1-4889977cbb7mr287621565e9.14.1775649844715; 
+ Wed, 08 Apr 2026 05:04:04 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:57f4:0:5485:d4b2:c087:b497])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-48893f39027sm439570295e9.2.2026.04.08.05.04.03
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 08 Apr 2026 05:04:04 -0700 (PDT)
+Date: Wed, 8 Apr 2026 14:04:02 +0200
+From: Simona Vetter <simona.vetter@ffwll.ch>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Intel graphics driver community testing & development
+ <intel-gfx@lists.freedesktop.org>, 
+ Direct Rendering Infrastructure - Development
+ <dri-devel@lists.freedesktop.org>, 
+ Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>,
+ Linus Torvalds <torvalds@linuxfoundation.org>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Andi Shyti <andi.shyti@kernel.org>,
+ Chris Wilson <chris@chris-wilson.co.uk>
+Subject: Re: [PATCH v3] drm/i915/gem: Don't use VMA from wrong VM in EXECBUF
+Message-ID: <adZEMi0ps3vK9-xt@phenom.ffwll.local>
+References: <20260408110551.84120-1-joonas.lahtinen@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260408110551.84120-1-joonas.lahtinen@linux.intel.com>
+X-Operating-System: Linux phenom 6.19.10+deb14-amd64 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,349 +98,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_DKIM_ALLOW(-0.20)[ffwll.ch:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[ffwll.ch];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:dri-devel@lists.freedesktop.org,m:ville.syrjala@linux.intel.com,m:torvalds@linuxfoundation.org,m:simona.vetter@ffwll.ch,m:tursulin@ursulin.net,m:andi.shyti@kernel.org,m:chris@chris-wilson.co.uk,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_ALL(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[simona.vetter@ffwll.ch,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[ffwll.ch:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6679E3BBABD
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[simona.vetter@ffwll.ch,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:email,chris-wilson.co.uk:email,phenom.ffwll.local:mid,ffwll.ch:dkim,ffwll.ch:email,ffwll.ch:url]
+X-Rspamd-Queue-Id: 5D5833BBB64
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 20 Nov 2025, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Currently our crtcs are registered in pipe order, and thus
-> all the for_intel_crtc*() iterators walk the crtcs in pipe
-> order. There are a bunch of places that more or less depend
-> on that. Eg. during plane updates and such we want joined
-> pipes to be processed back-to-back to give a better chance
-> of an atomic update across the whole set.
->
-> When we start to register crtcs in a different order we don't
-> want to change the order in which the pipes get handled.
-> Decouple the for_each_intel_crtc*() iterators from the crtc
-> registration order by using a separate list which will be
-> sorted by the pipe rather than the crtc index.
->
-> We could priobably use a simple array or something, but that
-> would require some kind of extra iterator variable for the
-> macros, and thus would require a lot more changes. Using
-> a linked list keeps the fallout minimal. We can look at
-> using a more optimal data structure later.
->
-> I also added this extra junk to the atomic state iterators:
-> "(__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i)"
-> even though the macro itself no longer needs the "__i" iterator.
-> This in case the "__i" is used by the caller, and to
-> avoid compiler warnings if it's completely unused now.
+On Wed, Apr 08, 2026 at 02:05:51PM +0300, Joonas Lahtinen wrote:
+> Do not pick a VMA with non-matching VM (ppGTT) on quick path
+> of BO handle lookup for a given EXECBUF call. VMA from wrong VM
+> could be picked if same BO is repeatedly used in EXECBUF
+> calls on same context with alternating VMs (ppGTTs). However due
+> to the introduction of proto-ctx that should not be possible since
+> d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle
+>  create parameters (v5)").
+> 
+> Also avoids returning a VMA without increasing the refcount,
+> which may potentially lead to UAF since f7ce8639f6ff ("drm/i915/gem:
+> Split the context's obj:vma lut into its own mutex") and until
+> d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle
+>  create parameters (v5)").
 
-Ville, care to rebase and resend this for merging?
+Reviewed-by: Simona Vetter <simona.vetter@ffwll.ch>
 
-BR,
-Jani.
+Also, much more succinct summary above than my babbling below :-)
 
+Cheers, Sima
 
-
->
-> v2: Flip the pipe comparison (Jani)
->
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> 
+> Sima's analysis:
+> 
+>   This check was added in f7ce8639f6ff ("drm/i915/gem: Split the context's
+>   obj:vma lut into its own mutex") but without any hint in the commit
+>   message as to why. In another hunk of that commit there's a hint though in
+>   __eb_add_lut:
+> 
+>           /* user racing with ctx set-vm */
+> 
+>   This would mean that this bug was introduced in e0695db7298e ("drm/i915:
+>   Create/destroy VM (ppGTT) for use with contexts"), which allowed to change
+>   the gem_ctx->vm at runtime, opening up the race that was partially fixed
+>   in the earlier referenced commit about a year later.
+> 
+>   But it cannot be exploited anymore in anything remotely recent because
+>   with the introduction of proto-contexts we've made gem_ctx->vm invariant
+>   again, exactly to preemptively close all these potential issues.
+>   Specifically d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle
+>   create parameters (v5)") is the vm specific part of the proto-context
+>   work.
+> 
+>   Despite that this is impossible to exploit I think it's still good to fix,
+>   but I think for paranoia's sake we should put a WARN_ON_ONCE(vma->vm !=
+>   vm) in there, since this really should be impossible.
+> 
+>   I don't think there's a  harm in backporting this though, since there's a
+>   2 year window between the introduction of the ctx->vm change and it's
+>   complete fix with the proto-ctx work between 2019 and 2021. It's not
+>   realistic to backport the latter and this here is trivial in case anyone
+>   is foolish enough to run such an old kernel.
+> 
+> v3:
+> - Include Sima's analysis and WARN_ON_ONCE
+> 
+> Fixes: f7ce8639f6ff ("drm/i915/gem: Split the context's obj:vma lut into its own mutex")
+> References: https://lore.kernel.org/all/20260324151741.29338-1-sosohero200@gmail.com/
+> Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Linus Torvalds <torvalds@linuxfoundation.org>
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: Andi Shyti <andi.shyti@kernel.org>
+> Cc: Chris Wilson <chris@chris-wilson.co.uk>
+> Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_crtc.c     | 20 +++++
->  drivers/gpu/drm/i915/display/intel_display.h  | 90 ++++++++-----------
->  .../gpu/drm/i915/display/intel_display_core.h |  3 +
->  .../drm/i915/display/intel_display_driver.c   |  1 +
->  .../drm/i915/display/intel_display_types.h    |  1 +
->  drivers/gpu/drm/xe/display/xe_display.c       |  1 +
->  6 files changed, 64 insertions(+), 52 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/=
-i915/display/intel_crtc.c
-> index 153ff4b4b52c..709a8fb56736 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -209,6 +209,8 @@ static struct intel_crtc *intel_crtc_alloc(void)
->  	crtc->base.state =3D &crtc_state->uapi;
->  	crtc->config =3D crtc_state;
->=20=20
-> +	INIT_LIST_HEAD(&crtc->pipe_head);
-> +
->  	return crtc;
->  }
->=20=20
-> @@ -222,6 +224,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
->  {
->  	struct intel_crtc *crtc =3D to_intel_crtc(_crtc);
->=20=20
-> +	list_del(&crtc->pipe_head);
-> +
->  	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
->=20=20
->  	drm_crtc_cleanup(&crtc->base);
-> @@ -308,6 +312,20 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs =
-=3D {
->  	.get_vblank_timestamp =3D intel_crtc_get_vblank_timestamp,
->  };
->=20=20
-> +static void add_crtc_to_pipe_list(struct intel_display *display, struct =
-intel_crtc *crtc)
-> +{
-> +	struct intel_crtc *iter;
-> +
-> +	list_for_each_entry(iter, &display->pipe_list, pipe_head) {
-> +		if (crtc->pipe < iter->pipe) {
-> +			list_add_tail(&crtc->pipe_head, &iter->pipe_head);
-> +			return;
+>  drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index bd608cea396f..16f7c2fac143 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -895,8 +895,12 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+>  
+>  		rcu_read_lock();
+>  		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
+> -		if (likely(vma && vma->vm == vm))
+> +		if (likely(vma && vma->vm == vm)) {
+>  			vma = i915_vma_tryget(vma);
+> +		} else {
+> +			WARN_ON_ONCE(vma && vma->vm != vm);
+> +			vma = NULL;
 > +		}
-> +	}
-> +
-> +	list_add_tail(&crtc->pipe_head, &display->pipe_list);
-> +}
-> +
->  int intel_crtc_init(struct intel_display *display, enum pipe pipe)
->  {
->  	struct intel_plane *primary, *cursor;
-> @@ -398,6 +416,8 @@ int intel_crtc_init(struct intel_display *display, en=
-um pipe pipe)
->  	if (HAS_CASF(display))
->  		drm_crtc_create_sharpness_strength_property(&crtc->base);
->=20=20
-> +	add_crtc_to_pipe_list(display, crtc);
-> +
->  	return 0;
->=20=20
->  fail:
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/d=
-rm/i915/display/intel_display.h
-> index bcc6ccb69d2b..ac83d4f09bb9 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> @@ -238,22 +238,23 @@ enum phy_fia {
->  			    base.head)					\
->  		for_each_if((intel_plane)->pipe =3D=3D (intel_crtc)->pipe)
->=20=20
-> -#define for_each_intel_crtc(dev, intel_crtc)				\
-> -	list_for_each_entry(intel_crtc,					\
-> -			    &(dev)->mode_config.crtc_list,		\
-> -			    base.head)
-> +#define for_each_intel_crtc(dev, crtc) \
-> +	list_for_each_entry((crtc), \
-> +			    &to_intel_display(dev)->pipe_list, \
-> +			    pipe_head)
->=20=20
-> -#define for_each_intel_crtc_in_pipe_mask(dev, intel_crtc, pipe_mask)	\
-> -	list_for_each_entry(intel_crtc,					\
-> -			    &(dev)->mode_config.crtc_list,		\
-> -			    base.head)					\
-> -		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
-> +#define for_each_intel_crtc_reverse(dev, crtc) \
-> +	list_for_each_entry_reverse((crtc), \
-> +				    &to_intel_display(dev)->pipe_list, \
-> +				    pipe_head)
-> +
-> +#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
-> +	for_each_intel_crtc((dev), (crtc)) \
-> +		for_each_if((pipe_mask) & BIT((crtc)->pipe))
->=20=20
-> -#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_m=
-ask)	\
-> -	list_for_each_entry_reverse((intel_crtc),				\
-> -				    &(dev)->mode_config.crtc_list,		\
-> -				    base.head)					\
-> -		for_each_if((pipe_mask) & BIT((intel_crtc)->pipe))
-> +#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
-> +	for_each_intel_crtc_reverse((dev), (crtc)) \
-> +		for_each_if((pipe_mask) & BIT((crtc)->pipe))
->=20=20
->  #define for_each_intel_encoder(dev, intel_encoder)		\
->  	list_for_each_entry(intel_encoder,			\
-> @@ -295,14 +296,6 @@ enum phy_fia {
->  	     (__i)++) \
->  		for_each_if(plane)
->=20=20
-> -#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, =
-__i) \
-> -	for ((__i) =3D 0; \
-> -	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
-> -		     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
-> -		      (old_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
-_i].old_state), 1); \
-> -	     (__i)++) \
-> -		for_each_if(crtc)
-> -
->  #define for_each_new_intel_plane_in_state(__state, plane, new_plane_stat=
-e, __i) \
->  	for ((__i) =3D 0; \
->  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-> @@ -311,22 +304,6 @@ enum phy_fia {
->  	     (__i)++) \
->  		for_each_if(plane)
->=20=20
-> -#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, =
-__i) \
-> -	for ((__i) =3D 0; \
-> -	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
-> -		     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
-> -		      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
-_i].new_state), 1); \
-> -	     (__i)++) \
-> -		for_each_if(crtc)
-> -
-> -#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc=
-_state, __i) \
-> -	for ((__i) =3D (__state)->base.dev->mode_config.num_crtc - 1; \
-> -	     (__i) >=3D 0  && \
-> -	     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
-> -	      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[__=
-i].new_state), 1); \
-> -	     (__i)--) \
-> -		for_each_if(crtc)
-> -
->  #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_s=
-tate, new_plane_state, __i) \
->  	for ((__i) =3D 0; \
->  	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-> @@ -336,23 +313,32 @@ enum phy_fia {
->  	     (__i)++) \
->  		for_each_if(plane)
->=20=20
-> +#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, =
-__i) \
-> +	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
-> +			     (old_crtc_state) =3D intel_atomic_get_old_crtc_state((__state), =
-(crtc))))
-> +
-> +#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, =
-__i) \
-> +	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
-> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
-(crtc))))
-> +
-> +#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc=
-_state, __i) \
-> +	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
-> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
-(crtc))))
-> +
->  #define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_stat=
-e, new_crtc_state, __i) \
-> -	for ((__i) =3D 0; \
-> -	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
-> -		     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
-> -		      (old_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
-_i].old_state), \
-> -		      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[_=
-_i].new_state), 1); \
-> -	     (__i)++) \
-> -		for_each_if(crtc)
-> +	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
-> +			     (old_crtc_state) =3D intel_atomic_get_old_crtc_state((__state), =
-(crtc)), \
-> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
-(crtc))))
->=20=20
->  #define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_c=
-rtc_state, new_crtc_state, __i) \
-> -	for ((__i) =3D (__state)->base.dev->mode_config.num_crtc - 1; \
-> -	     (__i) >=3D 0  && \
-> -	     ((crtc) =3D to_intel_crtc((__state)->base.crtcs[__i].ptr), \
-> -	      (old_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[__=
-i].old_state), \
-> -	      (new_crtc_state) =3D to_intel_crtc_state((__state)->base.crtcs[__=
-i].new_state), 1); \
-> -	     (__i)--) \
-> -		for_each_if(crtc)
-> +	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-> +		for_each_if(((__i) =3D drm_crtc_index(&(crtc)->base), (void)(__i), \
-> +			     (old_crtc_state) =3D intel_atomic_get_old_crtc_state((__state), =
-(crtc)), \
-> +			     (new_crtc_state) =3D intel_atomic_get_new_crtc_state((__state), =
-(crtc))))
->=20=20
->  #define intel_atomic_crtc_state_for_each_plane_state( \
->  		  plane, plane_state, \
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
-gpu/drm/i915/display/intel_display_core.h
-> index 9b8414b77c15..4f4d5c314394 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> @@ -294,6 +294,9 @@ struct intel_display {
->  	/* Parent, or core, driver functions exposed to display */
->  	const struct intel_display_parent_interface *parent;
->=20=20
-> +	/* list of all intel_crtcs sorted by pipe */
-> +	struct list_head pipe_list;
-> +
->  	/* Display functions */
->  	struct {
->  		/* Top level crtc-ish functions */
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
-s/gpu/drm/i915/display/intel_display_driver.c
-> index 7e000ba3e08b..32726906e550 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -119,6 +119,7 @@ static void intel_mode_config_init(struct intel_displ=
-ay *display)
->=20=20
->  	drm_mode_config_init(display->drm);
->  	INIT_LIST_HEAD(&display->global.obj_list);
-> +	INIT_LIST_HEAD(&display->pipe_list);
->=20=20
->  	mode_config->min_width =3D 0;
->  	mode_config->min_height =3D 0;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
-/gpu/drm/i915/display/intel_display_types.h
-> index 38702a9e0f50..1c2bd9445795 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> @@ -1441,6 +1441,7 @@ struct intel_flipq {
->=20=20
->  struct intel_crtc {
->  	struct drm_crtc base;
-> +	struct list_head pipe_head;
->  	enum pipe pipe;
->  	/*
->  	 * Whether the crtc and the connected output pipeline is active. Implies
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe=
-/display/xe_display.c
-> index e3320d9e6314..cfcbc7dd8638 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -22,6 +22,7 @@
->  #include "intel_audio.h"
->  #include "intel_bw.h"
->  #include "intel_display.h"
-> +#include "intel_display_core.h"
->  #include "intel_display_device.h"
->  #include "intel_display_driver.h"
->  #include "intel_display_irq.h"
+>  		rcu_read_unlock();
+>  		if (likely(vma))
+>  			return vma;
+> -- 
+> 2.53.0
+> 
 
---=20
-Jani Nikula, Intel
+-- 
+Simona Vetter
+Software Engineer
+http://blog.ffwll.ch
