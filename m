@@ -2,74 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +J6qGPV91mk0FwgAu9opvQ
+	id cPFSDyyB1mmwFwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 18:10:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 18:24:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AED583BEB63
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 18:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E403BECB0
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 18:24:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 313A410E69F;
-	Wed,  8 Apr 2026 16:10:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 41B6910E6A7;
+	Wed,  8 Apr 2026 16:24:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f33m7SyS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g074HO9j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF5AC10E6A0
- for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2026 16:10:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED0A010E6A3
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2026 16:24:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775664626; x=1807200626;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=2O7AP0QL9ZgiKdI+OYUj4STyfc5ZEzdQs9WIW3NK+Lk=;
- b=f33m7SySdHJy1AWJ5qCoRDhEfDVCUn4ry7r+tdtlFy/JmOxC195SOdWA
- /b+NEBIGrwa/CmlQVeTQ++jRa4D5Qjp8FIf4ONx5cpWabAmDcq3MJZKUN
- HnWCnN2pgI8CvwrhSVC+58Gz4GPdEDF8tJTy58IFMX5iiGg6+N34Lt4Wq
- bknkuTDQ1J91fJrh6tUO8ekJfE6hDnemWjxobrqw0oz5Eur3rkIuzIm2c
- WVXpkcWLk47Z6PDi+Wg18NP+VfLl7AL99RjCcJIe6BVrf/e6KzcSZLEJ3
- sUetffMj2b3g8D0ACb7ZUfNwT8u3guOBi6sta5DKx5qU+KCCghi2/+6wf A==;
-X-CSE-ConnectionGUID: ZXuwmaHoTP2tFDnniwK5dw==
-X-CSE-MsgGUID: AIcfyBkHSNyBt3BWuaiyCQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="88038081"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="88038081"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 09:10:25 -0700
-X-CSE-ConnectionGUID: N6Md1ic1RuaA9fzXA7Ho8A==
-X-CSE-MsgGUID: AI3TfUP+SbmsKh3Vvq0a9A==
+ t=1775665448; x=1807201448;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=E+QMn0IYrkJYY8Z5hzVFldk4ojDRTohvdRl48UbYOXs=;
+ b=g074HO9jHcjnoa4XW0f6P7WF3y2SLsIcfzh/c5FhdbNCdG9yIwhjnOYT
+ MNW8BNg49y0haXcKbTHwglypM6oD6Zzy+K0wDzA1etupgSmkDXMu7+UqT
+ Szy7Md04TJzbk3mz4BKcZQb1ac5E47ytwvgLlGn0FydEutOkyJdMGoeCl
+ FJDSQJHkxxn1T0weOTim7gNuasC/unH+kvJpNvIfRqiuJvkJ4x8CKoRAp
+ cxe76JqU+ibZdbFsM8dMXRgWB2MVbwmnTJXJGj3tn1mhv+0EPCFPCaoAm
+ 13G1QyjcXa23sZOvOOI5v5haUs3jJs/pELAW36ru7wSJxNjDzKdvj0AJ9 Q==;
+X-CSE-ConnectionGUID: qESPsx8ERSaXY/AfKSyaTw==
+X-CSE-MsgGUID: f2xUeg4tRPqYlZzrqzZXUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76545489"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76545489"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 09:24:07 -0700
+X-CSE-ConnectionGUID: s/UyX16/Sxmf9BoKKOOwfA==
+X-CSE-MsgGUID: djrszF6AScyCMIHWU8pPUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="224210384"
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 09:10:24 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Maarten Lankhorst <maarten.lankhorst@intel.com>, Ville =?utf-8?B?U3ly?=
- =?utf-8?B?asOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Subject: Re: =?utf-8?Q?=E2=9C=97?= i915.CI.Full: failure for
- drm/i915/display: stop using the configurable fence timeout (rev2)
-In-Reply-To: <dcaf9a16-a462-4b04-8b7b-29f03e4ea523@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20251112155612.8320-1-jani.nikula@intel.com>
- <176310680567.54560.8073003092226406962@10055242dc62>
- <3692f126b907c442d76a93957073660d7d9ffd12@intel.com>
- <aSXmTMWeOXjnYNSB@intel.com>
- <dc4d04b4-2d29-4a19-8d11-58051673e0a6@intel.com>
- <44f9b69d23678458f0ab3ff4bec5c45cb05535b8@intel.com>
- <4d0e3bfe-d3e3-43fb-8964-b9647e914a61@intel.com>
- <ac7ffc50c676979359a7363374030beb61d6cfff@intel.com>
- <dcaf9a16-a462-4b04-8b7b-29f03e4ea523@intel.com>
-Date: Wed, 08 Apr 2026 19:10:20 +0300
-Message-ID: <b42f7d3648591e4d2956c16f66a984d951b42eb9@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="223752052"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.1])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 09:24:04 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAHk-=wgbhJ6TzSwswdM5hKAS_RKF1SLXp2u6JAS35P3i2mW2OQ@mail.gmail.com>
+References: <20260324151741.29338-1-sosohero200@gmail.com>
+ <acUnQkniqECI0QVY@intel.com>
+ <CAHk-=wj=h9z-Qp+xm1oSURRGHO3wexzG7MyLqU8gSQbastwgdw@mail.gmail.com>
+ <177557988645.129480.6094289548721099346@jlahtine-mobl>
+ <CAHk-=wjcSt1gGnQZoyNvodky_6WEDxC=1+gQHywiOvOjw1+GUA@mail.gmail.com>
+ <177564692857.84154.3119637094332266143@jlahtine-mobl>
+ <CAHk-=wgbhJ6TzSwswdM5hKAS_RKF1SLXp2u6JAS35P3i2mW2OQ@mail.gmail.com>
+Subject: Re: [PATCH v2] [PATCH v2] drm/i915/gem: Fix UAF race in
+ eb_relocate_vma
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Dave Airlie <airlied@gmail.com>,
+ Ville =?utf-8?b?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Yassine Mounir <sosohero200@gmail.com>, g@web.codeaurora.org,
+ gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, security@kernel.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+To: Linus Torvalds <torvalds@linuxfoundation.org>
+Date: Wed, 08 Apr 2026 19:24:01 +0300
+Message-ID: <177566544117.120471.8020434521083493183@jlahtine-mobl>
+User-Agent: alot/0.12.dev7+g16b50e5f
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,102 +85,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@intel.com,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:ville.syrjala@linux.intel.com,m:sosohero200@gmail.com,m:g@web.codeaurora.org,m:gregkh@linuxfoundation.org,m:rodrigo.vivi@intel.com,m:security@kernel.org,m:simona.vetter@ffwll.ch,m:torvalds@linuxfoundation.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.997];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,web.codeaurora.org,linuxfoundation.org,lists.freedesktop.org,intel.com,kernel.org,ffwll.ch];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: AED583BEB63
+	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 96E403BECB0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 08 Apr 2026, Maarten Lankhorst <maarten.lankhorst@intel.com> wrote:
-> Hey,
->
-> Den 2026-04-08 kl. 17:14, skrev Jani Nikula:
->> On Thu, 02 Apr 2026, Maarten Lankhorst <maarten.lankhorst@intel.com> wro=
-te:
->>> Den 2026-04-02 kl. 11:40, skrev Jani Nikula:
->>>> On Wed, 03 Dec 2025, Maarten Lankhorst <maarten.lankhorst@intel.com> w=
-rote:
->>>>> Hey,
->>>>>
->>>>> Den 2025-11-25 kl. 18:24, skrev Ville Syrj=C3=A4l=C3=A4:
->>>>>> On Tue, Nov 25, 2025 at 03:55:02PM +0200, Jani Nikula wrote:
->>>>>>> Maarten, Ville, any ideas what to do about these?
->>>>>> Looks like we need the timeout to unbreak the modeset vs. reset
->>>>>> deadlock in a timely fashion.
->>>>>>
->>>>>> I'm not where we signal/error the fences the modeset is waiting
->>>>>> for, but I guess that must be happening after the whole reset
->>>>>> sequence is done. Doing that earlier would seem like another
->>>>>> solution, but dunno what other fallout it would have.
->>>>> intel_prepare_plane_fb() adds all dma-resv fences for old_obj on
->>>>> intel_crtc_needs_modeset(), does it change anything if we remove that,
->>>>> at least for the GPU reset commit?
->>>> We dropped the ball here a bit, and I'm a bit clueless as to what to
->>>> do. Except we'll need to unify i915 and xe here somehow.
->>>>
->>>> Alternatives:
->>>>
->>>> - Remove the timeout from i915 (the patch at hand), and fix the fallout
->>>>   somehow.
->>>>
->>>> - Add the timeout to xe, and fix the fallout, if any.
->>>>
->>>> - Add the timeout to display parent interface, which is a bit meh.
->>>>
->>>>
->>> The mention in the commit is old_obj needs to be wait for flip_done, I =
-do not believe this
->>> is the case that it was ever used in hardware supported by xe, so for x=
-e the wait can be dropped entirely.
->>>
->>> Is this required for i915 still? In that case you can just eliminate
->>> the wait only for xe.
->> Trouble is, doing things differently basically means using the parent
->> interface no matter what.
->>
-> The specific wait mentioned in intel_plane_prepare_plane_fb is only
-> used in pre-universal plane overlay support, and in xf86-video-intel
-> driver on < gen9. (source:
-> intel_skylake_info specifies gen =3D 0110,
-> and sna_wait_for_scanline() returns false for gen >=3D 0110 on sna.)
->
-> Adding a < GEN9 check would be sufficient, and not driver specific.
+Quoting Linus Torvalds (2026-04-08 18:38:00)
+> On Wed, 8 Apr 2026 at 04:15, Joonas Lahtinen
+> <joonas.lahtinen@linux.intel.com> wrote:
+> >
+> > I've sent out v3 of the patch[1]. I think it should be fine for you to
+> > simply drop or revert the version you included in -rc7.
+>=20
+> No.
+>=20
+> That code was MISLEADING GARBAGE.
 
-The timeout is still configurable on i915. I'm not sure how to resolve
-that part.
+Yes, there was clearly a bug introduced at the time of adding the
+vma->vm =3D=3D vm check where zeroing vma was missed if only that part of
+check failed. However the vma->vm =3D=3D vm part can't have failed since
+d4433c7600f7.
 
-BR,
-Jani.
+> At least now it does something sane for a situation that it tests for,
+> rather than "it tests for a situation that cannot happen, and then
+> does insane things".
+>=20
+> Because "that cannot happen" is not an argument for doing insane things.
 
---=20
-Jani Nikula, Intel
+Maybe the commit wording was bad if you got that impression, but that was
+never argued.
+
+Argument was to amend the zeroing with WARN_ON_ONCE to check for the
+"not supposed to happen scenario" in order to get a splat if we ever hit
+that scenario.
+
+> If it cannot happen, the test should simply not exist.
+
+If you are happier, in mainline we can just skip the else part
+completely and just reduce the check to if (likely(vma)) and skip
+the whole vma->vm =3D=3D vm part and not need the else branch at all.
+
+Do you want that to be sent as part of -fixes then?
+
+Regards, Joonas
+
+>=20
+>                  Linus
