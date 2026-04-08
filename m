@@ -2,34 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBFxMwKv1mkLHQgAu9opvQ
+	id qBb2Im6v1mkLHQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 21:39:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 21:41:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4803C3400
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 21:39:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E68F13C3495
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 21:41:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E029892F2;
-	Wed,  8 Apr 2026 19:39:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4565110E050;
+	Wed,  8 Apr 2026 19:41:32 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="M2fuKgpk";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 05596892F2;
- Wed,  8 Apr 2026 19:39:43 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1362122663775328027=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE26510E050
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2026 19:41:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775677291; x=1807213291;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=lD2oU1tpiCKEPSxvYs0dt16rKkLQwEdpvmqdlGjxdUQ=;
+ b=M2fuKgpkdrvmUVFQgUvqwYDxZXXz1DSUW4SaCpnMsS1ZCimNqlboM65S
+ /CFcW6qZ3KD4HvqdaYUaPfuxRSTeG2q7KrdrsV5B76pVOhPCmsRfvI2ga
+ fX5lfG8zKBUyadNb2IySjXEWJ7q228vD+NNimWK8wbjdPmCMZAUfxAJQJ
+ TX3lnSZG33NCxrFLZY8hLB5u0rxke0zNjhZNiClEbQlzcLH7rUcNkvDzk
+ 1aaUrWOSzz/Zr8GFlfAomuff8aL1XbIA0zRrBzoOqaXF0Kg1aa+2mjHbV
+ 0qHZ2ki193wFQpMT/tonaqFUs9xn85atYRsGK6LRa4fZ5IY4yuQyPUpnb A==;
+X-CSE-ConnectionGUID: A8qWAWW+RFeeh1iuXDy7pg==
+X-CSE-MsgGUID: SuRe/9CbQieA0C+3c57vpA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76389118"
+X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="76389118"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 12:41:31 -0700
+X-CSE-ConnectionGUID: mWLV6dVnQ7at0hkL380obA==
+X-CSE-MsgGUID: iKMnH1SNSjKjUN566a12aQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="225788728"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Apr 2026 12:41:30 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 8 Apr 2026 12:41:29 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Wed, 8 Apr 2026 12:41:29 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.48) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Wed, 8 Apr 2026 12:41:28 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=QMkEkVnWENSoVSi091PcgZmDtFqEQvvRSeJ6dr9BWDJGU3RGJ+TLiVLFChsnHnFdZaPJIg87YQq/35Bsr7EN5F0xCCiC2Bmp5ZurQ1TbtS4ar4pI+2cDuUV9AGArRdqoVX4UTPvAaGTcl7J53XitqLMcdvIkiSA6Hz1z3JiCU2EgCE7Erj3xRxgyo0fNDkx4sTCzbuuh2jBeEoxjmhnNLHW3dsxJPhjbY7LCDnB+/5/GrNm8qq4DM8A3dX13dj9Qo8cDeGfQ4IbM6T4ESqK8cSUl2fHSgS3iEhpOS9mZtSXkWQrnuBWtbvXEfX/9KW2gbAyIPiqjplFXMeMY+4sgnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=Y5UWWqTF1vhnbDK6rSzryABj0mkTrKfNSXMSed57mPo=;
+ b=gK7m5dXHj8DHqGIUxbtA2pt1wvGww1uS4uzeX6jqQuoQxSMJNBTYlmod6o8jVMlmhsw5QTV94Lprfu+b93Be+h/ZIT6NLVVtr83x0tEVKFbRhGvQb7pDvkxbgy1aaliwwSmEh8qofqyFBOoL8qchOJ84tc7hsdeqboQHw9cWo1lAOa708jRVnlBdnsoNb3/r6LeuYuOqLZPCWjLf2mdizwy8su17IkM1B4i4pBPkfgdZw79FhUoC3M2pgU3jwphBW95YGm+80ydWrynBmqkM7AK1H0RkHht65knOt1/JtS0ngofdwDlNKG6vakCOMqU5yFEbljnHFbJSJdJjN19g6g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by SN7PR11MB8042.namprd11.prod.outlook.com (2603:10b6:806:2ed::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.20; Wed, 8 Apr
+ 2026 19:41:24 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a%3]) with mapi id 15.20.9769.016; Wed, 8 Apr 2026
+ 19:41:24 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ <intel-gfx@lists.freedesktop.org>
+CC: Matt Roper <matthew.d.roper@intel.com>
+Subject: Re: [PATCH 1/4] drm/i915/bw: Extract platform-specific parameters
+In-Reply-To: <5a2fefe3f3d7ee92d3cc1bca1ffe88370d54c822@intel.com>
+References: <20260408-separate-platform-from-diplay-ip-specific-bw-params-v1-0-23c53afa7db0@intel.com>
+ <20260408-separate-platform-from-diplay-ip-specific-bw-params-v1-1-23c53afa7db0@intel.com>
+ <5a2fefe3f3d7ee92d3cc1bca1ffe88370d54c822@intel.com>
+Date: Wed, 8 Apr 2026 16:41:19 -0300
+Message-ID: <87v7e1ck9s.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: BYAPR08CA0064.namprd08.prod.outlook.com
+ (2603:10b6:a03:117::41) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/intel/display=3A_Use_?=
- =?utf-8?q?drmm_for_intel=5Fmode=5Fconfig=5Fcleanup?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maarten Lankhorst" <dev@lankhorst.se>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 08 Apr 2026 19:39:43 -0000
-Message-ID: <177567718300.443324.236040929082413542@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260408114755.1051393-2-dev@lankhorst.se>
-In-Reply-To: <20260408114755.1051393-2-dev@lankhorst.se>
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|SN7PR11MB8042:EE_
+X-MS-Office365-Filtering-Correlation-Id: 94890a42-ca6a-4f28-c166-08de95a6d16c
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|22082099003|56012099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: fN5RGqAvf4mXy9yjuv6TSpbkXwSuBLAwLVNMzfxZf2MEWHRFYnLMU+GbU+iRUp5F2X6Q/ifGUnAVFObHykURCfXB+UfP5k+olmtMf763J6h/FAiiAbwJ8Ledt091Gn5Qn2HVBvOko5x5gxZJLq2qxKHeB6D5NuAjWtxNsiDiYIP5eDjt6OUijT8078lxHEDgrnrTBhaPg2PgZ7VSBoVpNqNSoe9/KXusJeX7csqY/sxfVWEBIIA9FLwjJ/eNLShoKGd5dPwdUEB4kmIYg9U/m7qi8qmAhVRVNMAscgDeIDyBTijyzWuNW8mFYKQnF9iVRmo7THxyikM9+1so2+qB7UCSb9120c985FTFPv10pnAqwCTcv4N8C+XLF9y9mKy27j+BaUnSL/FeWT5gItFEgtkLNVW0t/2xxdLWoiMqRcW7BQuWeESBHxTiX1a9Ap6miWyLNuwz9yMFG5FvqqU4Q4gl1gTP9FvDgMFq5SQkTZt36GvJMLxTFAcM2KFtrI8ETWm6ryh3McvzNtRiyeB4LAao3rGqF2ZDxFufUTbLMmfKojxLwcxoiHtMxoXeYOt4bgTXYpaoN9BkWfIbLixn7v6aBnc5Pw/nPvWaAXwjgsZ8zp+l0zcVmDI89LEi2GJOm45kluvTFr/bfbUl5Qw5dTqcjJXSFg4mRzskPq1sMrZTXuPvnxftG5LBE3NbUAZHEAmADLZvhgFxWW81AHdzn/8JxpBoOiMjTb0e0gqPIhc=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(56012099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?mTqS3QnPpjzr1pCgZjYN7gQ8sP7XL3Q1XFyyQbYhWXYuJydCtgTBs/L/Y9ED?=
+ =?us-ascii?Q?TfXQx+CZhQQb3vqq2K8XjY1oDxpacnXs6O6O+E8yaJYICCtt3mLM6ex10yMY?=
+ =?us-ascii?Q?XeVdXTCn6tfSEmdYTo+jlO62HZ4ArXsrrWxLNCdxnanxUgw8mHkycuMGw/UY?=
+ =?us-ascii?Q?jGl+hReHPEu8JS11ek1srtY/BlhY7NkIiIICONeiHcnRdj8brMAo/nO6biHZ?=
+ =?us-ascii?Q?GXXVi6dPzAnsUIsrm8n504OL1rbK5DBb0TndGt8Yk4iYLR4MDnC/MzbPlPkU?=
+ =?us-ascii?Q?EFQwL8wJZzKD8rhcI9Z0+ou9uhcFm5HalJUAUhsUq5UPz5AafZvW8it16NV7?=
+ =?us-ascii?Q?jEhCU5z+dFqEq7YvQROCqeIhES4yH+UdPkW7+LeCyN7Cctoy2Gx0/synWZNF?=
+ =?us-ascii?Q?NS4WHcWKJNR4CuMi4pf3vmjoK6tcdGwojjitHchQoZVWykKb7ejIk3MShZ8C?=
+ =?us-ascii?Q?CiD+Z7imsW7rOxk4tD0Cuws+TnrphxXuy0SsBi2qypzeUT6/1HZEjqQKGloU?=
+ =?us-ascii?Q?b1EyU1EZsMHOg+xNm1adH3WQIRLDSCEoIx7Q7csjyTP11cP9ZXBxcfCM8mTv?=
+ =?us-ascii?Q?XRrrvBkZfHvVmYnJ6Y8GRnF+4PtL4Mu9xOOXLCj/zfvL030NgcER2H0fCL/9?=
+ =?us-ascii?Q?mKKguFqJN4RopBMwV+JUy8L1rj5VKhJSWK83waqTHEJdx5QOzS5qnbd1LPr+?=
+ =?us-ascii?Q?80hUXdNkYQvDpH4jezA6QyhndW8rokDTiMMkKWJcThOuMnU+9B0rX1kNxKXM?=
+ =?us-ascii?Q?H5UB9g4vIPAyacy6KCZMNiJnv6CJBHINWZPZpaKlRNycIpoK8YuTKyNtQtYg?=
+ =?us-ascii?Q?hzMDWeXC93qWEEnuOEhYAINC3wyfF4rvn8mXW2kw89UF8UAF9Ly8z3xQEtfJ?=
+ =?us-ascii?Q?+tzZl4XWxnHlOXKBqZ995xpe9vMXnPW/YaYIGeiCsL6AskcFaMD2pWaIe1Lu?=
+ =?us-ascii?Q?PyPO1aa01BfHWG/bIF/AkP3XDI+/FypdChXj6K8ZLiwA0FjtaBCtCnxVtP2h?=
+ =?us-ascii?Q?zEGuyPeLx0rqeZN02HPlMNga8aHgenEHlk4U/tVNVhHCCUm/aYJK0v0/mXBI?=
+ =?us-ascii?Q?KLWmpGgXk5UKNJZWsPpOwudwIvyrpSC9TSfbJ21JG9SkNR15YLRWAoVc+HHk?=
+ =?us-ascii?Q?0I22XdTMgNekMUmLcYCs+/MoYwBpoAlGu9MCgpvhYl3fwUBoVf2tj605nmCr?=
+ =?us-ascii?Q?i+tKgMxZepBPcsxI45Rp+oQ0sOFoXk081yrs62EaZjsAzZdjW9qZeVvPTeba?=
+ =?us-ascii?Q?1GxnIBzJrDogBFHiNTkynKe/1fvT5beuDhkqwy0FRIZmQMk5BmDA4n76RPsF?=
+ =?us-ascii?Q?0OpUBV4HRq1WKXItNX7m2yzGHSWoVFovKenyluh5SdbYGAx54OqVt3DmvchJ?=
+ =?us-ascii?Q?AZ8wW2DTnkqEUcuSMhwnNHluSQvblr/QbBvWUgwSWowPvRmjhfBQwvfWvXr8?=
+ =?us-ascii?Q?7vCXezW+UAYcX0pvByTDiCVVPoauGaisyS86oFUU1qk8Qub/VYa28YYb6woh?=
+ =?us-ascii?Q?YHbSFFa2HzeYduxDFJMJcvieqgthblDPo5kxb7ZAYFf1G0FG9sBoBUVxHbtl?=
+ =?us-ascii?Q?qcwqXJUaExReMZciY3NbyE0DRleL8Rb4q4XSs4psjV5zHaAxpfX/013tJ7Lv?=
+ =?us-ascii?Q?rzbpZJ4Y7ybPgZK2ETpZM7ZtFqwuSbtA1dkg5lCaan/tmJEiaS/z1maIu1vb?=
+ =?us-ascii?Q?1q8liUEbWB5azCLtYnkyDy6dcaE14WslB0A8bUOqlQYZW3DGinmJ1UpN6uzb?=
+ =?us-ascii?Q?eq2LQQOrlQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: k9uvW8diwkQd31xWvd8NxQBI7rUd8ATRyvEDmVX4B68QYOL2N7kwsRS1jfY1/IpKKYm+WqLQkrpgG+ATBiOTC8Ldjj+BcHVZ3WMdF/SDp+3vp24Yv88zLfk34Uq6x28l4HOqDzdg+rQlnRXhNyuks+ndWccv1yy8OYv6UuDd320P8AOEoWkQqINdDFdpKtAEAr2u935G3vS0Tz9CbUx5VnQj8O8bWpa1UqoCJ/mN4fuPz7rGnA1l02CjIUpBiKwlTuLje5qWGCR3IL4nIEwiBPl55HmxIlusCueYkLdMKD66huYNb2D4c995LLdonwAKx5Vk3KIFkySb1DXMmN0Www==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 94890a42-ca6a-4f28-c166-08de95a6d16c
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Apr 2026 19:41:24.5169 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: oFJM+LfOaRnD/21G5broi8ccVzCH5OhIqhdQi1ntJY/vtQGqG2c3NzmZAun5lxcCnP12wsfCqNUQkvFHOBd5yw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR11MB8042
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,356 +161,422 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.756];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:matthew.d.roper@intel.com,s:lists@lfdr.de];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
-X-Rspamd-Queue-Id: 3A4803C3400
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: E68F13C3495
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============1362122663775328027==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Jani Nikula <jani.nikula@linux.intel.com> writes:
 
-== Series Details ==
+> On Wed, 08 Apr 2026, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
+>> We got confirmation from the hardware team that the bandwidth parameters
+>> deprogbwlimit and derating are platform-specific and not tied to the
+>> display IP.  As such, let's make sure that we use platform checks for
+>> those.
+>>
+>> The rest of the members of struct intel_sa_info are tied to the display
+>> IP and we will deal with them as a follow-up.
+>>
+>> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_bw.c | 174 ++++++++++++++++++++++++--------
+>>  1 file changed, 133 insertions(+), 41 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+>> index 474438fc1ebc..ed840b592eff 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+>> @@ -375,77 +375,170 @@ static int icl_sagv_max_dclk(const struct intel_qgv_info *qi)
+>>  	return dclk;
+>>  }
+>>  
+>> +struct intel_platform_bw_params {
+>> +	u8 deprogbwlimit;
+>> +	u8 derating;
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params icl_plat_bw_params = {
+>> +	.deprogbwlimit = 25,
+>> +	.derating = 10,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params tgl_plat_bw_params = {
+>> +	.deprogbwlimit = 34,
+>> +	.derating = 10,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params rkl_plat_bw_params = {
+>> +	.deprogbwlimit = 20,
+>> +	.derating = 10,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params adl_s_plat_bw_params = {
+>> +	.deprogbwlimit = 38,
+>> +	.derating = 10,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params adl_p_plat_bw_params = {
+>> +	.deprogbwlimit = 38,
+>> +	.derating = 20,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params bmg_plat_bw_params = {
+>> +	.deprogbwlimit = 53,
+>> +	.derating = 30,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params bmg_ecc_plat_bw_params = {
+>> +	.deprogbwlimit = 53,
+>> +	.derating = 45,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params ptl_plat_bw_params = {
+>> +	.deprogbwlimit = 65,
+>> +	.derating = 10,
+>> +};
+>> +
+>> +static const struct intel_platform_bw_params wcl_plat_bw_params = {
+>> +	.deprogbwlimit = 22,
+>> +	.derating = 10,
+>> +};
+>
+> In the above, "plat" feels like tautology, since they're all prefixed by
+> platform acronyms.
 
-Series: drm/intel/display: Use drmm for intel_mode_config_cleanup
-URL   : https://patchwork.freedesktop.org/series/164528/
-State : failure
+Yeah, true.  In an upcoming patch I also introduce display-IP-specific
+structs, and I decided to use plat vs disp to differentiate
+(e.g. tgl_plat_bw_params vs tgl_disp_bw_params).
 
-== Summary ==
+Any suggestion of how to make it better?
 
-CI Bug Log - changes from CI_DRM_18292 -> Patchwork_164528v1
-====================================================
+>
+>> +
+>> +static const struct intel_platform_bw_params *get_platform_bw_params(struct intel_display *display)
+>> +{
+>> +	const struct intel_platform_bw_params *ret;
+>> +
+>> +	if (display->platform.dgfx)
+>> +		goto dgfx;
+>> +
+>> +	ret = &icl_plat_bw_params;
+>> +	if (display->platform.icelake ||
+>> +	    display->platform.jasperlake ||
+>> +	    display->platform.elkhartlake)
+>> +		return ret;
+>
+> What's the point of assigning and returning ret?
+>
+> Why not just return &icl_plat_bw_params; directly?
 
-Summary
--------
+I would like that we always have a default to be returned if somehow we
+miss adding a new case for a new platform (hence the "missing:"
+label).  The idea of assigning to ret is for it to have a valid value
+when hitting the missing: point.
 
-  **FAILURE**
+Arguably we could also only use this pattern only in the last case, but that
+would feel like an inconsistency and prone to someone forgetting to
+"push" it to the next new platform when the time comes.
 
-  Serious unknown changes coming with Patchwork_164528v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_164528v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
+I would be much happier with a switch-case statement that would have a
+"default:" combined with "fallthrough", but I think that's not possible
+with the current way we handle platform matching in the display code.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/index.html
+>
+>> +
+>> +	ret = &tgl_plat_bw_params;
+>> +	if (display->platform.tigerlake)
+>> +		return ret;
+>> +
+>> +	ret = &rkl_plat_bw_params;
+>> +	if (display->platform.rocketlake)
+>> +		return ret;
+>> +
+>> +	ret = &adl_s_plat_bw_params;
+>> +	if (display->platform.alderlake_s)
+>> +		return ret;
+>> +
+>> +	ret = &adl_p_plat_bw_params;
+>> +	if (display->platform.alderlake_p)
+>> +		return ret;
+>> +
+>> +	ret = &adl_s_plat_bw_params;
+>> +	if (display->platform.meteorlake ||
+>> +	    display->platform.lunarlake)
+>> +		return ret;
+>> +
+>> +	ret = &ptl_plat_bw_params;
+>> +	if (display->platform.pantherlake ||
+>> +	    display->platform.novalake) {
+>> +		if (display->platform.pantherlake_wildcatlake)
+>> +			ret = &wcl_plat_bw_params;
+>> +
+>> +		return ret;
+>> +	}
+>> +
+>> +	goto missing;
+>> +
+>> +dgfx:
+>> +	ret = &tgl_plat_bw_params;
+>> +	if (display->platform.dg1)
+>> +		return ret;
+>> +
+>> +	ret = &bmg_plat_bw_params;
+>> +	if (display->platform.battlemage) {
+>> +		const struct dram_info *dram_info = intel_dram_info(display);
+>> +
+>> +		if (dram_info->type == INTEL_DRAM_GDDR_ECC)
+>> +			ret = &bmg_ecc_plat_bw_params;
+>> +
+>> +		return ret;
+>> +	}
+>> +
+>> +missing:
+>> +	/*
+>> +	 * Use parameters from the most recent platform,
+>> +	 * but raise a warning.
+>> +	 */
+>> +	drm_WARN(display->drm, 1,
+>> +		 "Platform-specific bandwidth parameters not found, using possibly incompatible default values\n");
+>> +
+>> +	return ret;
+>
+> I don't understand at all why the function is written the way it
+> is. Seems like it should be a regular if-ladder like we have, with zero
+> gotos.
 
-Participating hosts (42 -> 40)
-------------------------------
+Just wanted the default for the missing case to be the most recent
+platform in an "automated" way, with separate ordering for dgfx and
+integrated.
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+Do you suggest we do not have such a default and cause a null-pointer
+deref (on purpose) if we forget to add a new platform?
 
-Possible new issues
--------------------
+Or always "manually" update the default when we add a new
+platform-specific instance?
 
-  Here are the unknown changes that may have been introduced in Patchwork_164528v1:
+>
+>> +}
+>> +
+>>  struct intel_sa_info {
+>>  	u16 displayrtids;
+>> -	u8 deburst, deprogbwlimit, derating;
+>> +	u8 deburst;
+>>  };
+>>  
+>>  static const struct intel_sa_info icl_sa_info = {
+>>  	.deburst = 8,
+>> -	.deprogbwlimit = 25, /* GB/s */
+>>  	.displayrtids = 128,
+>> -	.derating = 10,
+>>  };
+>>  
+>>  static const struct intel_sa_info tgl_sa_info = {
+>>  	.deburst = 16,
+>> -	.deprogbwlimit = 34, /* GB/s */
+>>  	.displayrtids = 256,
+>> -	.derating = 10,
+>>  };
+>>  
+>>  static const struct intel_sa_info rkl_sa_info = {
+>>  	.deburst = 8,
+>> -	.deprogbwlimit = 20, /* GB/s */
+>>  	.displayrtids = 128,
+>> -	.derating = 10,
+>>  };
+>>  
+>>  static const struct intel_sa_info adls_sa_info = {
+>>  	.deburst = 16,
+>> -	.deprogbwlimit = 38, /* GB/s */
+>>  	.displayrtids = 256,
+>> -	.derating = 10,
+>>  };
+>>  
+>>  static const struct intel_sa_info adlp_sa_info = {
+>>  	.deburst = 16,
+>> -	.deprogbwlimit = 38, /* GB/s */
+>>  	.displayrtids = 256,
+>> -	.derating = 20,
+>>  };
+>>  
+>>  static const struct intel_sa_info mtl_sa_info = {
+>>  	.deburst = 32,
+>> -	.deprogbwlimit = 38, /* GB/s */
+>>  	.displayrtids = 256,
+>> -	.derating = 10,
+>> -};
+>> -
+>> -static const struct intel_sa_info xe2_hpd_sa_info = {
+>> -	.derating = 30,
+>> -	.deprogbwlimit = 53,
+>> -	/* Other values not used by simplified algorithm */
+>> -};
+>> -
+>> -static const struct intel_sa_info xe2_hpd_ecc_sa_info = {
+>> -	.derating = 45,
+>> -	.deprogbwlimit = 53,
+>> -	/* Other values not used by simplified algorithm */
+>>  };
+>>  
+>>  static const struct intel_sa_info xe3lpd_sa_info = {
+>>  	.deburst = 32,
+>> -	.deprogbwlimit = 65, /* GB/s */
+>>  	.displayrtids = 256,
+>> -	.derating = 10,
+>>  };
+>>  
+>>  static const struct intel_sa_info xe3lpd_3002_sa_info = {
+>>  	.deburst = 32,
+>> -	.deprogbwlimit = 22, /* GB/s */
+>>  	.displayrtids = 256,
+>> -	.derating = 10,
+>>  };
+>>  
+>>  static int icl_get_bw_info(struct intel_display *display,
+>> @@ -453,6 +546,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>>  			   const struct intel_sa_info *sa)
+>>  {
+>>  	struct intel_qgv_info qi = {};
+>> +	const struct intel_platform_bw_params *plat_bw_params = get_platform_bw_params(display);
+>
+> Perhaps it would be better to pass this in instead of every function
+> having the call.
 
-### IGT changes ###
+Okay. I think I'll have to rework patch #4 as well
+then :-)
 
-#### Possible regressions ####
+>
+> Nitpick, "plat" is not an abbreviation I'm fond of.
 
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-cfl-guc:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg2-9:          [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg2-9/igt@core_hotunplug@unbind-rebind.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg2-9/igt@core_hotunplug@unbind-rebind.html
-    - fi-kbl-x1275:       [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html
-    - bat-adlp-11:        [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-11/igt@core_hotunplug@unbind-rebind.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adlp-11/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg1-6:          [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg1-6/igt@core_hotunplug@unbind-rebind.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg1-6/igt@core_hotunplug@unbind-rebind.html
-    - fi-cfl-8700k:       [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html
-    - bat-kbl-2:          [PASS][13] -> [ABORT][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-kbl-2/igt@core_hotunplug@unbind-rebind.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-kbl-2/igt@core_hotunplug@unbind-rebind.html
-    - bat-adlp-6:         [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html
-    - fi-skl-6600u:       [PASS][17] -> [ABORT][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-skl-6600u/igt@core_hotunplug@unbind-rebind.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-skl-6600u/igt@core_hotunplug@unbind-rebind.html
-    - bat-twl-2:          [PASS][19] -> [ABORT][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-twl-2/igt@core_hotunplug@unbind-rebind.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-twl-2/igt@core_hotunplug@unbind-rebind.html
-    - fi-ivb-3770:        [PASS][21] -> [ABORT][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg2-14:         [PASS][23] -> [ABORT][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg2-14/igt@core_hotunplug@unbind-rebind.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg2-14/igt@core_hotunplug@unbind-rebind.html
-    - fi-elk-e7500:       [PASS][25] -> [ABORT][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-elk-e7500/igt@core_hotunplug@unbind-rebind.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-elk-e7500/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg2-8:          [PASS][27] -> [ABORT][28]
-   [27]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg2-8/igt@core_hotunplug@unbind-rebind.html
-   [28]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg2-8/igt@core_hotunplug@unbind-rebind.html
-    - fi-bsw-nick:        [PASS][29] -> [ABORT][30]
-   [29]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-bsw-nick/igt@core_hotunplug@unbind-rebind.html
-   [30]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-bsw-nick/igt@core_hotunplug@unbind-rebind.html
-    - fi-bsw-n3050:       [PASS][31] -> [ABORT][32]
-   [31]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html
-   [32]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html
-    - bat-mtlp-9:         [PASS][33] -> [ABORT][34]
-   [33]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html
-   [34]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html
-    - bat-arls-6:         [PASS][35] -> [ABORT][36]
-   [35]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arls-6/igt@core_hotunplug@unbind-rebind.html
-   [36]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arls-6/igt@core_hotunplug@unbind-rebind.html
-    - fi-hsw-4770:        [PASS][37] -> [ABORT][38]
-   [37]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html
-   [38]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html
-    - bat-mtlp-8:         [PASS][39] -> [ABORT][40]
-   [39]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-mtlp-8/igt@core_hotunplug@unbind-rebind.html
-   [40]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-mtlp-8/igt@core_hotunplug@unbind-rebind.html
-    - bat-adls-6:         [PASS][41] -> [ABORT][42]
-   [41]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adls-6/igt@core_hotunplug@unbind-rebind.html
-   [42]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adls-6/igt@core_hotunplug@unbind-rebind.html
-    - bat-arls-5:         [PASS][43] -> [ABORT][44]
-   [43]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arls-5/igt@core_hotunplug@unbind-rebind.html
-   [44]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arls-5/igt@core_hotunplug@unbind-rebind.html
-    - bat-arlh-2:         [PASS][45] -> [ABORT][46]
-   [45]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arlh-2/igt@core_hotunplug@unbind-rebind.html
-   [46]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arlh-2/igt@core_hotunplug@unbind-rebind.html
-    - fi-rkl-11600:       [PASS][47] -> [ABORT][48]
-   [47]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html
-   [48]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html
-    - bat-arlh-3:         [PASS][49] -> [ABORT][50]
-   [49]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html
-   [50]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html
-    - fi-pnv-d510:        [PASS][51] -> [ABORT][52]
-   [51]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-pnv-d510/igt@core_hotunplug@unbind-rebind.html
-   [52]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-pnv-d510/igt@core_hotunplug@unbind-rebind.html
-    - bat-dg1-7:          [PASS][53] -> [ABORT][54]
-   [53]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg1-7/igt@core_hotunplug@unbind-rebind.html
-   [54]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg1-7/igt@core_hotunplug@unbind-rebind.html
-    - fi-glk-j4005:       [PASS][55] -> [ABORT][56]
-   [55]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-glk-j4005/igt@core_hotunplug@unbind-rebind.html
-   [56]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-glk-j4005/igt@core_hotunplug@unbind-rebind.html
-    - bat-adlp-9:         [PASS][57] -> [ABORT][58]
-   [57]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-9/igt@core_hotunplug@unbind-rebind.html
-   [58]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adlp-9/igt@core_hotunplug@unbind-rebind.html
-    - bat-rpls-4:         [PASS][59] -> [ABORT][60]
-   [59]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-   [60]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html
-    - fi-cfl-8109u:       [PASS][61] -> [ABORT][62]
-   [61]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html
-   [62]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html
-    - fi-kbl-7567u:       [PASS][63] -> [ABORT][64]
-   [63]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
-   [64]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html
-    - bat-twl-1:          [PASS][65] -> [ABORT][66]
-   [65]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-twl-1/igt@core_hotunplug@unbind-rebind.html
-   [66]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-twl-1/igt@core_hotunplug@unbind-rebind.html
-    - fi-kbl-8809g:       [PASS][67] -> [ABORT][68]
-   [67]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html
-   [68]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html
-    - bat-jsl-5:          [PASS][69] -> [ABORT][70]
-   [69]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-jsl-5/igt@core_hotunplug@unbind-rebind.html
-   [70]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-jsl-5/igt@core_hotunplug@unbind-rebind.html
-    - bat-rplp-1:         [PASS][71] -> [ABORT][72]
-   [71]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-rplp-1/igt@core_hotunplug@unbind-rebind.html
-   [72]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-rplp-1/igt@core_hotunplug@unbind-rebind.html
-    - fi-ilk-650:         [PASS][73] -> [ABORT][74]
-   [73]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-ilk-650/igt@core_hotunplug@unbind-rebind.html
-   [74]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-ilk-650/igt@core_hotunplug@unbind-rebind.html
-    - fi-tgl-1115g4:      [PASS][75] -> [ABORT][76]
-   [75]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
-   [76]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html
+Noted. 
 
-  
-#### Warnings ####
+Out of curiosity: because it is a noun of its own? Or is it something
+else?
 
-  * igt@core_hotunplug@unbind-rebind:
-    - bat-apl-1:          [DMESG-WARN][77] ([i915#13735] / [i915#180]) -> [ABORT][78]
-   [77]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-apl-1/igt@core_hotunplug@unbind-rebind.html
-   [78]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-apl-1/igt@core_hotunplug@unbind-rebind.html
+--
+Gustavo Sousa
 
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164528v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [PASS][79] -> [SKIP][80] ([i915#13030])
-   [79]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [80]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#13030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13030
-  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18292 -> Patchwork_164528v1
-
-  CI-20190529: 20190529
-  CI_DRM_18292: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8850: 8850
-  Patchwork_164528v1: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/index.html
-
---===============1362122663775328027==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/intel/display: Use drmm for intel_mode_config_cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164528/">https://patchwork.freedesktop.org/series/164528/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18292 -&gt; Patchwork_164528v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_164528v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_164528v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_164528v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-cfl-guc/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg2-9/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg2-9/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-kbl-x1275/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-11/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adlp-11/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-dg1-6:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg1-6/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg1-6/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-cfl-8700k/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-kbl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-kbl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-kbl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adlp-6/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-skl-6600u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-skl-6600u/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-twl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-twl-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-twl-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-ivb-3770/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg2-14/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg2-14/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-elk-e7500:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-elk-e7500/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-elk-e7500/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg2-8/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg2-8/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-bsw-nick:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-bsw-nick/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-bsw-nick/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-mtlp-9/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arls-6/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arls-6/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-hsw-4770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-hsw-4770/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-mtlp-8/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-mtlp-8/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-adls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adls-6/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adls-6/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arls-5/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arls-5/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arlh-2/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arlh-2/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-rkl-11600:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-rkl-11600/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-arlh-3/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-pnv-d510:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-pnv-d510/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-pnv-d510/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-dg1-7:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-dg1-7/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-dg1-7/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-glk-j4005/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-glk-j4005/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-9/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-adlp-9/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-rpls-4/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-cfl-8109u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-cfl-8109u/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-kbl-7567u/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-twl-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-twl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-kbl-8809g/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-jsl-5:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-jsl-5/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-jsl-5/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-rplp-1/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-rplp-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-ilk-650:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-ilk-650/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-ilk-650/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-tgl-1115g4/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-apl-1/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/bat-apl-1/igt@core_hotunplug@unbind-rebind.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164528v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164528v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13030">i915#13030</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18292 -&gt; Patchwork_164528v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18292: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8850: 8850<br />
-  Patchwork_164528v1: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1362122663775328027==--
+>
+>>  	bool is_y_tile = true; /* assume y tile may be used */
+>>  	int num_channels = max_t(u8, 1, dram_info->num_channels);
+>>  	int ipqdepth, ipqdepthpch = 16;
+>> @@ -469,7 +563,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>>  	}
+>>  
+>>  	dclk_max = icl_sagv_max_dclk(&qi);
+>> -	maxdebw = min(sa->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
+>> +	maxdebw = min(plat_bw_params->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
+>>  	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
+>>  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+>>  
+>> @@ -499,7 +593,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>>  			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+>>  
+>>  			bi->deratedbw[j] = min(maxdebw,
+>> -					       bw * (100 - sa->derating) / 100);
+>> +					       bw * (100 - plat_bw_params->derating) / 100);
+>>  
+>>  			drm_dbg_kms(display->drm,
+>>  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
+>> @@ -524,6 +618,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+>>  			   const struct intel_sa_info *sa)
+>>  {
+>>  	struct intel_qgv_info qi = {};
+>> +	const struct intel_platform_bw_params *plat_bw_params = get_platform_bw_params(display);
+>>  	bool is_y_tile = true; /* assume y tile may be used */
+>>  	int num_channels = max_t(u8, 1, dram_info->num_channels);
+>>  	int ipqdepth, ipqdepthpch = 16;
+>> @@ -557,7 +652,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+>>  	dclk_max = icl_sagv_max_dclk(&qi);
+>>  
+>>  	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
+>> -	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
+>> +	maxdebw = min(plat_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
+>>  
+>>  	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
+>>  	/*
+>> @@ -602,7 +697,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+>>  			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+>>  
+>>  			bi->deratedbw[j] = min(maxdebw,
+>> -					       bw * (100 - sa->derating) / 100);
+>> +					       bw * (100 - plat_bw_params->derating) / 100);
+>>  			bi->peakbw[j] = DIV_ROUND_CLOSEST(sp->dclk *
+>>  							  num_channels *
+>>  							  qi.channel_width, 8);
+>> @@ -663,10 +758,10 @@ static void dg2_get_bw_info(struct intel_display *display)
+>>  }
+>>  
+>>  static int xe2_hpd_get_bw_info(struct intel_display *display,
+>> -			       const struct dram_info *dram_info,
+>> -			       const struct intel_sa_info *sa)
+>> +			       const struct dram_info *dram_info)
+>>  {
+>>  	struct intel_qgv_info qi = {};
+>> +	const struct intel_platform_bw_params *plat_bw_params = get_platform_bw_params(display);
+>>  	int num_channels = dram_info->num_channels;
+>>  	int peakbw, maxdebw;
+>>  	int ret, i;
+>> @@ -679,14 +774,14 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
+>>  	}
+>>  
+>>  	peakbw = num_channels * qi.channel_width / 8 * icl_sagv_max_dclk(&qi);
+>> -	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 10);
+>> +	maxdebw = min(plat_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 10);
+>>  
+>>  	for (i = 0; i < qi.num_points; i++) {
+>>  		const struct intel_qgv_point *point = &qi.points[i];
+>>  		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
+>>  
+>>  		display->bw.max[0].deratedbw[i] =
+>> -			min(maxdebw, (100 - sa->derating) * bw / 100);
+>> +			min(maxdebw, (100 - plat_bw_params->derating) * bw / 100);
+>>  		display->bw.max[0].peakbw[i] = bw;
+>>  
+>>  		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
+>> @@ -814,10 +909,7 @@ void intel_bw_init_hw(struct intel_display *display)
+>>  		else
+>>  			tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
+>>  	} else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
+>> -		if (dram_info->type == INTEL_DRAM_GDDR_ECC)
+>> -			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
+>> -		else
+>> -			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_sa_info);
+>> +		xe2_hpd_get_bw_info(display, dram_info);
+>>  	} else if (DISPLAY_VER(display) >= 14) {
+>>  		tgl_get_bw_info(display, dram_info, &mtl_sa_info);
+>>  	} else if (display->platform.dg2) {
+>
+> -- 
+> Jani Nikula, Intel
