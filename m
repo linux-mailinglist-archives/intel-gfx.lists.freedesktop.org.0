@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CMBkD6lK1mkFDQgAu9opvQ
+	id wBnxNKxK1mkFDQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:40 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD4733BC18C
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F9B3BC19A
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67E8E10E635;
-	Wed,  8 Apr 2026 12:31:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3534D10E639;
+	Wed,  8 Apr 2026 12:31:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c0FEqb9P";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SRgDcVtV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6EB510E62E;
- Wed,  8 Apr 2026 12:31:33 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C7C4610E631;
+ Wed,  8 Apr 2026 12:31:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775651494; x=1807187494;
+ t=1775651498; x=1807187498;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fQpV1CZr4Rd7SDt1t8q0k2rfH6fbxaOTxXduZVFTMWI=;
- b=c0FEqb9PEskqNxnu+BU0uKHGjYPeQQegZci/2ZEGKRsQR5X4h7eJE9Qj
- KvfBoIXAexa+vLArg5bM2KgyPiUHOltceTQ2FuSKp/fyYyklrvCLwzFG3
- lgI7lLA+7NZeock+52QHykaBT5P7JojWW8KWvPcD+xKiXprFokFZoFj41
- uHLDqSVFvsoXxHVIzufincWv+crzLg3Q4uDkLyQbVxzPOoNzHJFsdclIV
- I+50frri37JxrqChS5nSa+gn8pOFjcS1pqJY+Tvis3J2MdGbYoHXAT0Xe
- 5SP3i/HA7nfVzaoLJa6d6tGa2RP1HGybSsD1hQbpME5rjYt89QFU3jHFw w==;
-X-CSE-ConnectionGUID: RV0T8JGeR1a+t8NgVncoqA==
-X-CSE-MsgGUID: LsNnkUVQT027dWjq5QgO/w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80519068"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80519068"
+ bh=gV233AuEmUUT1bQz0y8HaCkqDXtkt7mIug2hz3fcHB4=;
+ b=SRgDcVtV7DNwB+GQ1OUIIXI7g6JeJuPrH/YJQ9hIZs+ZasmB41UFmj+c
+ LF96agwZopyg+8R9PCne9rlRv1vbJl90yzO8/cfoGEe9uIqX9FChk7bfR
+ DQWB4jVCUwxiSbLihE/npbhpFa15ir5a+jjzjKqJpwAo/WGqkZm3LlsN7
+ Q4i6PpIljV9O26pAiX6FT3kfbvqBLJhqs/WoMg4fiD+KWgbBLLEM2tzN9
+ Aje1GsyBlGaQW9jaswJJ8hGXkHlXB2HftW6H4WheaRaGDSzeLsWZzUjaj
+ 3TmWvIhtWsg9KcNsmr+xx32xYM+ujv9QJXzGTFHgKl+eEATyUZ+tuTkth A==;
+X-CSE-ConnectionGUID: yk9aKmkARwKwd5VuQ/JUIA==
+X-CSE-MsgGUID: h3qoK8vURE6lwsE0jgQMXw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80519075"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80519075"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:34 -0700
-X-CSE-ConnectionGUID: /C1G2T+1QBmv394iwTUj/g==
-X-CSE-MsgGUID: iZplLemhSJy6wOZRBFCRrw==
+ 08 Apr 2026 05:31:38 -0700
+X-CSE-ConnectionGUID: TUFFXA1vTEOsoIcsdeHLBQ==
+X-CSE-MsgGUID: tIHrtXeqQ/yOjvz7chcKgA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251782028"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251782041"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:32 -0700
+ 08 Apr 2026 05:31:36 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v3 3/9] drm/i915:
- s/intel_atomic_check_crtcs()/intel_atomic_check_crtcs_late()/
-Date: Wed,  8 Apr 2026 15:31:08 +0300
-Message-ID: <20260408123115.15716-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 4/9] drm/i915: Introduce a new intel_atomic_check_crtcs()
+Date: Wed,  8 Apr 2026 15:31:09 +0300
+Message-ID: <20260408123115.15716-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
 References: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
@@ -101,67 +100,58 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: DD4733BC18C
+X-Rspamd-Queue-Id: A9F9B3BC19A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Rename the current intel_atomic_check_crtcs() to
-intel_atomic_check_crtcs_late() to indicate it is indeed
-done rather late during intel_atomic_check(). I'll be
-introducing a similar function that will get called earlier
-and I want to use the typical foo() vs. foo_late() naming
-there.
+Add a new intel_atomic_check_crtcs() that gets called fairly
+early during intel_atomic_check() and start collecting stuff
+into it from elsewhere. For now we can suck in the
+intel_crtc_min_cdclk() stiff.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 17 +++++++++++++++--
+ 1 file changed, 15 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 58a654ca0d20..aa9e6639f914 100644
+index aa9e6639f914..11952136c686 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4255,8 +4255,8 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--static int intel_crtc_atomic_check(struct intel_atomic_state *state,
--				   struct intel_crtc *crtc)
-+static int intel_crtc_atomic_check_late(struct intel_atomic_state *state,
-+					struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
- 	struct intel_crtc_state *crtc_state =
-@@ -5814,7 +5814,7 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+@@ -5814,6 +5814,18 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
  		new_crtc_state->update_pipe = true;
  }
  
--static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
-+static int intel_atomic_check_crtcs_late(struct intel_atomic_state *state)
++static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
++{
++	struct intel_crtc_state *new_crtc_state;
++	struct intel_crtc *crtc;
++	int i;
++
++	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
++		new_crtc_state->min_cdclk = intel_crtc_min_cdclk(new_crtc_state);
++
++	return 0;
++}
++
+ static int intel_atomic_check_crtcs_late(struct intel_atomic_state *state)
  {
  	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc_state __maybe_unused *crtc_state;
-@@ -5824,7 +5824,7 @@ static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
- 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
- 		int ret;
- 
--		ret = intel_crtc_atomic_check(state, crtc);
-+		ret = intel_crtc_atomic_check_late(state, crtc);
- 		if (ret) {
- 			drm_dbg_atomic(display->drm,
- 				       "[CRTC:%d:%s] atomic driver check failed\n",
-@@ -6546,7 +6546,7 @@ int intel_atomic_check(struct drm_device *dev,
+@@ -6521,8 +6533,9 @@ int intel_atomic_check(struct drm_device *dev,
  	if (ret)
  		goto fail;
  
--	ret = intel_atomic_check_crtcs(state);
-+	ret = intel_atomic_check_crtcs_late(state);
- 	if (ret)
- 		goto fail;
+-	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+-		new_crtc_state->min_cdclk = intel_crtc_min_cdclk(new_crtc_state);
++	ret = intel_atomic_check_crtcs(state);
++	if (ret)
++		goto fail;
  
+ 	ret = intel_compute_global_watermarks(state);
+ 	if (ret)
 -- 
 2.52.0
 
