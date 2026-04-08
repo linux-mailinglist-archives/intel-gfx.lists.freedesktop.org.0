@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QBbgD6VK1mkFDQgAu9opvQ
+	id CMBkD6lK1mkFDQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:37 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BBF93BC183
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4733BC18C
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 14:31:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 285D510E634;
-	Wed,  8 Apr 2026 12:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67E8E10E635;
+	Wed,  8 Apr 2026 12:31:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcPpPzrF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c0FEqb9P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5D1B910E633;
- Wed,  8 Apr 2026 12:31:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6EB510E62E;
+ Wed,  8 Apr 2026 12:31:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775651489; x=1807187489;
+ t=1775651494; x=1807187494;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rI6FWwPe3XXQHhaSBFF3QCBvjviQ7Trz2mrgzkGxm0w=;
- b=KcPpPzrFthM9OWpMN4CTrrJ+QxJXQqagKH4SexrHztsf7ZD8NQb+RP/t
- m5v03RlWZwAbX68vPGc1nLkUQO4rAQ4nGrcx0V1OHWvoeH4qYxN9mdq/G
- 1IJYeMiQtP1sO+cLIwHFtTKIIWKCVeIiSrn5R97y51XigcV9heYlPJ77T
- BPHWvSQ0Df/NxYwuVM8hDf612lTed9UjsObjCiBS9vOYwNHjpeL3hCNHd
- X0b1TZaVUYew56xwwKszvxc+7IamaoyzHNTpGlaAZy9TvGFEYEtnp2rMV
- TVkTnqkxkmzVR/mgB/bWuzJNyIA6qsF/XxxuhGyJvuacnAhWOt2oTl+jz A==;
-X-CSE-ConnectionGUID: yHs+yuYEQDeeKzEfJLjGIg==
-X-CSE-MsgGUID: 6qr4y/jVQlOI/pYEWyCqbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80519063"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80519063"
+ bh=fQpV1CZr4Rd7SDt1t8q0k2rfH6fbxaOTxXduZVFTMWI=;
+ b=c0FEqb9PEskqNxnu+BU0uKHGjYPeQQegZci/2ZEGKRsQR5X4h7eJE9Qj
+ KvfBoIXAexa+vLArg5bM2KgyPiUHOltceTQ2FuSKp/fyYyklrvCLwzFG3
+ lgI7lLA+7NZeock+52QHykaBT5P7JojWW8KWvPcD+xKiXprFokFZoFj41
+ uHLDqSVFvsoXxHVIzufincWv+crzLg3Q4uDkLyQbVxzPOoNzHJFsdclIV
+ I+50frri37JxrqChS5nSa+gn8pOFjcS1pqJY+Tvis3J2MdGbYoHXAT0Xe
+ 5SP3i/HA7nfVzaoLJa6d6tGa2RP1HGybSsD1hQbpME5rjYt89QFU3jHFw w==;
+X-CSE-ConnectionGUID: RV0T8JGeR1a+t8NgVncoqA==
+X-CSE-MsgGUID: LsNnkUVQT027dWjq5QgO/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="80519068"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="80519068"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:29 -0700
-X-CSE-ConnectionGUID: c6e0KQZCTQamM8aagMb9nQ==
-X-CSE-MsgGUID: AZU8sxL0Qe6/q3zKcXqzdQ==
+ 08 Apr 2026 05:31:34 -0700
+X-CSE-ConnectionGUID: /C1G2T+1QBmv394iwTUj/g==
+X-CSE-MsgGUID: iZplLemhSJy6wOZRBFCRrw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251782004"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="251782028"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 05:31:27 -0700
+ 08 Apr 2026 05:31:32 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	Luca Coelho <luciano.coelho@intel.com>
-Subject: [PATCH v3 2/9] drm/i915/scaler: Adjust pipe scaler scale factors for
- 4:2:0 ouput
-Date: Wed,  8 Apr 2026 15:31:07 +0300
-Message-ID: <20260408123115.15716-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 3/9] drm/i915:
+ s/intel_atomic_check_crtcs()/intel_atomic_check_crtcs_late()/
+Date: Wed,  8 Apr 2026 15:31:08 +0300
+Message-ID: <20260408123115.15716-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
 References: <20260408123115.15716-1-ville.syrjala@linux.intel.com>
@@ -101,42 +101,67 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 9BBF93BC183
+X-Rspamd-Queue-Id: DD4733BC18C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-4:2:0 output effectively involves an extra downscale factor of
-2x2 due to the chroma downsampling. Adjust the stored scaler
-scale factors accodingly.
+Rename the current intel_atomic_check_crtcs() to
+intel_atomic_check_crtcs_late() to indicate it is indeed
+done rather late during intel_atomic_check(). I'll be
+introducing a similar function that will get called earlier
+and I want to use the typical foo() vs. foo_late() naming
+there.
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 54507adc3073..165c403d1e5c 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -517,6 +517,15 @@ static int intel_atomic_setup_scaler(struct intel_crtc_state *crtc_state,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 58a654ca0d20..aa9e6639f914 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4255,8 +4255,8 @@ static int hsw_compute_linetime_wm(struct intel_atomic_state *state,
+ 	return 0;
+ }
  
- 			return -EINVAL;
- 		}
-+
-+		/*
-+		 * For the purposes of prefill 4:2:0 chroma
-+		 * subsampling is considered a 2x2 downscale.
-+		 */
-+		if (crtc_state->output_format == INTEL_OUTPUT_FORMAT_YCBCR420) {
-+			hscale <<= 1;
-+			vscale <<= 1;
-+		}
- 	}
+-static int intel_crtc_atomic_check(struct intel_atomic_state *state,
+-				   struct intel_crtc *crtc)
++static int intel_crtc_atomic_check_late(struct intel_atomic_state *state,
++					struct intel_crtc *crtc)
+ {
+ 	struct intel_display *display = to_intel_display(crtc);
+ 	struct intel_crtc_state *crtc_state =
+@@ -5814,7 +5814,7 @@ static void intel_crtc_check_fastset(const struct intel_crtc_state *old_crtc_sta
+ 		new_crtc_state->update_pipe = true;
+ }
  
- 	scaler_state->scalers[*scaler_id].hscale = hscale;
+-static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
++static int intel_atomic_check_crtcs_late(struct intel_atomic_state *state)
+ {
+ 	struct intel_display *display = to_intel_display(state);
+ 	struct intel_crtc_state __maybe_unused *crtc_state;
+@@ -5824,7 +5824,7 @@ static int intel_atomic_check_crtcs(struct intel_atomic_state *state)
+ 	for_each_new_intel_crtc_in_state(state, crtc, crtc_state, i) {
+ 		int ret;
+ 
+-		ret = intel_crtc_atomic_check(state, crtc);
++		ret = intel_crtc_atomic_check_late(state, crtc);
+ 		if (ret) {
+ 			drm_dbg_atomic(display->drm,
+ 				       "[CRTC:%d:%s] atomic driver check failed\n",
+@@ -6546,7 +6546,7 @@ int intel_atomic_check(struct drm_device *dev,
+ 	if (ret)
+ 		goto fail;
+ 
+-	ret = intel_atomic_check_crtcs(state);
++	ret = intel_atomic_check_crtcs_late(state);
+ 	if (ret)
+ 		goto fail;
+ 
 -- 
 2.52.0
 
