@@ -2,67 +2,101 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CNYROKFy1ml2FQgAu9opvQ
+	id wK47KHV21mlQFggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:22:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:38:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6BD1B3BE1F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:22:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC9FE3BE4CA
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:38:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F2A3D10E68F;
-	Wed,  8 Apr 2026 15:22:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89D8B10E694;
+	Wed,  8 Apr 2026 15:38:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jNaP6PFJ";
+	dkim=pass (1024-bit key; unprotected) header.d=linuxfoundation.org header.i=@linuxfoundation.org header.b="DexapWve";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 542EA10E68B;
- Wed,  8 Apr 2026 15:22:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775661725; x=1807197725;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=I8w4QXjoIu8I/CgeujIFqWt+BwH04qwOsww8ewrO9Ds=;
- b=jNaP6PFJ2Q5ur32Pe0944l3cHipmVGeFHdty0aY3BSL2wzfSIVedYMVo
- DIvqsloAJJh2cyrSJisqAeiZUAM9HlBF2Mpj7QvzFW2+nEVCcPDVZXv7g
- ttpF7LK0tT9CNUIsbx07VP6cUjkbZdRvzx1TPlJb7mSHMHHvZ7SlxEBFl
- PyP3UoqA3wioOsty5seSQPeId1gF8t/SmqpzsGSWjv14kviYdDhZ+CDNL
- rlQLK5XyXIY+OzEqCLfYFXNBDWvCqjxADke7FGB/KovO5dxnOwopwpFrN
- 9X+3wSM1BvUZ1cebARJtYhs2M83J9ZaI0wnNx6fHhjkaEj8SwSw+FoAGE w==;
-X-CSE-ConnectionGUID: RM7I9HeEToyYgvVnDPBRRQ==
-X-CSE-MsgGUID: Ecrxohl7QsShuBkh+nORaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="64193886"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="64193886"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:22:05 -0700
-X-CSE-ConnectionGUID: iS1xnDmWSNGbOP/B1pxy5g==
-X-CSE-MsgGUID: M/iFWoZdR5ukEpjEWoQ0WQ==
-X-ExtLoop1: 1
-Received: from krybak-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.32])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:22:03 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
- maarten.lankhorst@linux.intel.com,
- Maarten Lankhorst <maarten.lankhorst@intel.com>
-Subject: [PATCH 2/2] drm/i915: move fence timeout to display parent interface
-Date: Wed,  8 Apr 2026 18:21:49 +0300
-Message-ID: <8cde57236982fc3ca1a5608332943d3b9274a45a.1775661609.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1775661609.git.jani.nikula@intel.com>
-References: <cover.1775661609.git.jani.nikula@intel.com>
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+ [209.85.208.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C899C10E694
+ for <intel-gfx@lists.freedesktop.org>; Wed,  8 Apr 2026 15:38:23 +0000 (UTC)
+Received: by mail-ed1-f52.google.com with SMTP id
+ 4fb4d7f45d1cf-66e129e457dso6401675a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2026 08:38:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linuxfoundation.org; s=google; t=1775662702; x=1776267502;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=GzdSgS2ypsQNpojZvvdUhjw+lgnPctu3MI5Pbax4QbA=;
+ b=DexapWvevwUtq6I+SgVcnYDIVmAIDnNaa5ifLB+vs7oHdeg5UAAoFXhjNe6dKrXrLf
+ eSC25/+2w9nFY3okcbJLAeMaZoWkRI5sEQ9+HF3MKM8xncpyFQRt3EWdt6fEw2w95Af8
+ eyBxglLmpfUdEzMiYQ8ErwtJVF4oNVf8Kk18k=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775662702; x=1776267502;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=GzdSgS2ypsQNpojZvvdUhjw+lgnPctu3MI5Pbax4QbA=;
+ b=fpg2yzL2zIUR7jbadsG8HxJ1ZHNWzExR8zIU2hssHfdYbjoU64nYXKIpdLmI9V+rOS
+ taom/xVQqgHcLfVykGCe3lx9owTO9eoeTUyE86z01xwsKPfPU96GYUgMsNXM3ghebuGf
+ +bwJebSujMHk8cPWf+fQi+qCmsn3MWOEnrT3QOFcDpmVFBypIqT2Vjhnljv1hdGN0Prr
+ /r5eBaHInTVBw0iJ/JyUgUHV9dYC1pT5o5Y56pSwjdLklbnP+4mPLM2nMkm9Z/TALj3v
+ MDHwxmSPIsvqijyvzsi18xain0SuNnwudBPLcfAyUov15KvHX/QKNv0Rxb/qobOjMmIy
+ sBdQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCWauLpRBoCNrOnv8yNhteHceOKKSWYeafPhUW0R8UJVuEbguAGc1o0PHvLrvoHmOP9fHW5ucSVngOs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yw3tXEfVAa8jzYZBEviA/+C/tWjyzbWtbtj00ys1lgSjEOacXMV
+ FKT62Noz0kUbwr5EKSMGtBIyDCgi4+TBhzX5tb40aNdZ/ye8TaSus6r9VykmN9HUDsN+wF9VDXd
+ ywnpyGv0=
+X-Gm-Gg: AeBDiesCezzzQo5kIIXpb3PTmRAIhH2klva2fhXjk4aKDdwpMhXlTYG4FKu8/hS6hLQ
+ ZFWAZtbt8dYJxOZ+hjJxWwwDTM53hlSWOedJt8SWFHBMPJFA2kdXuxvLdRpxQlzyNRWCOzMrNut
+ yiHYL2o+hkBbgg1dElaFuOW4w80UavxUmciCIY/3PQE4bCHSKYQEI4HiNWN239Ggh2tAuO7qJ6z
+ XPCOiRR7VxCXkGmMLPiiC1ciDZOSQJQnjc2vx0NzGtwwpbzmp9bSGY2sxjQQTnG0kxYAbhWSIbY
+ PW+advkr5WwvUU5PzMBJcT3YJXcCMm8yGdm2QN9mckFTNC0tsl+ZibRrKT/YuLX26IcWAtVBdLt
+ P/sOd+TuYuvx2iY2XJWkXpyOAb0weaPSewzmxqsgGN0gqdWbK3IGVRRvR7HPLb6AiqutXZGDv2J
+ OJuW6ilgkDRsNH8jYwzLvHRllLELvgdg+jVQDCx+L99NdZWAeQH98c21MJxhOrsWWMIIkBWnU=
+X-Received: by 2002:a17:907:3f90:b0:b98:cb6:e896 with SMTP id
+ a640c23a62f3a-b9c67b77b14mr1121004766b.38.1775662701893; 
+ Wed, 08 Apr 2026 08:38:21 -0700 (PDT)
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com.
+ [209.85.218.43]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-b9c3d02897fsm653501566b.63.2026.04.08.08.38.17
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 08 Apr 2026 08:38:17 -0700 (PDT)
+Received: by mail-ej1-f43.google.com with SMTP id
+ a640c23a62f3a-b7cf4a975d2so812982466b.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 08 Apr 2026 08:38:17 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AJvYcCU34ceejmNSSkWluP5XS1IuZMF6YobC7fcn0oQfvUFlN5ffej9bPhm3BV6XDIc93GCz55MdYe7jNyU=@lists.freedesktop.org
+X-Received: by 2002:a17:906:9fc5:b0:b94:cfd:f37b with SMTP id
+ a640c23a62f3a-b9c67b99e79mr986935566b.45.1775662696829; Wed, 08 Apr 2026
+ 08:38:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+References: <20260324151741.29338-1-sosohero200@gmail.com>
+ <acUnQkniqECI0QVY@intel.com>
+ <CAHk-=wj=h9z-Qp+xm1oSURRGHO3wexzG7MyLqU8gSQbastwgdw@mail.gmail.com>
+ <177557988645.129480.6094289548721099346@jlahtine-mobl>
+ <CAHk-=wjcSt1gGnQZoyNvodky_6WEDxC=1+gQHywiOvOjw1+GUA@mail.gmail.com>
+ <177564692857.84154.3119637094332266143@jlahtine-mobl>
+In-Reply-To: <177564692857.84154.3119637094332266143@jlahtine-mobl>
+From: Linus Torvalds <torvalds@linuxfoundation.org>
+Date: Wed, 8 Apr 2026 08:38:00 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgbhJ6TzSwswdM5hKAS_RKF1SLXp2u6JAS35P3i2mW2OQ@mail.gmail.com>
+X-Gm-Features: AQROBzCiLjfvF2_QFYpJCjt2I_Ju0FzrjtUuBZEqdUomCgFeihSe5OfbX6887a0
+Message-ID: <CAHk-=wgbhJ6TzSwswdM5hKAS_RKF1SLXp2u6JAS35P3i2mW2OQ@mail.gmail.com>
+Subject: Re: [PATCH v2] [PATCH v2] drm/i915/gem: Fix UAF race in
+ eb_relocate_vma
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Dave Airlie <airlied@gmail.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, 
+ Yassine Mounir <sosohero200@gmail.com>, g@web.codeaurora.org,
+ gregkh@linuxfoundation.org, 
+ intel-gfx@lists.freedesktop.org, rodrigo.vivi@intel.com, security@kernel.org, 
+ Simona Vetter <simona.vetter@ffwll.ch>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,193 +111,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[linuxfoundation.org,none];
+	R_DKIM_ALLOW(-0.20)[linuxfoundation.org:s=google];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,web.codeaurora.org,linuxfoundation.org,lists.freedesktop.org,intel.com,kernel.org,ffwll.ch];
 	RCVD_TLS_LAST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:airlied@gmail.com,m:ville.syrjala@linux.intel.com,m:sosohero200@gmail.com,m:g@web.codeaurora.org,m:gregkh@linuxfoundation.org,m:rodrigo.vivi@intel.com,m:security@kernel.org,m:simona.vetter@ffwll.ch,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[torvalds@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[linuxfoundation.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[torvalds@linuxfoundation.org,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 6BD1B3BE1F0
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linuxfoundation.org:dkim]
+X-Rspamd-Queue-Id: EC9FE3BE4CA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-i915 has the Kconfig option DRM_I915_FENCE_TIMEOUT, defaulting to 10
-seconds. xe doesn't use it, instead defaulting to MAX_SCHEDULE_TIMEOUT.
+On Wed, 8 Apr 2026 at 04:15, Joonas Lahtinen
+<joonas.lahtinen@linux.intel.com> wrote:
+>
+> I've sent out v3 of the patch[1]. I think it should be fine for you to
+> simply drop or revert the version you included in -rc7.
 
-There was an attempt to unify the behaviour by switching to
-dma_fence_wait() which defaults to MAX_SCHEDULE_TIMEOUT, but that
-resulted in CI failures. See the link below.
+No.
 
-Move the fence timeout to the optional parent interface, retaining
-existing behaviour for each driver. With this, we can drop the xe compat
-i915_config.h header.
+That code was MISLEADING GARBAGE.
 
-While at it, order the declarations in intel_parent.h the same way as in
-the struct.
+At least now it does something sane for a situation that it tests for,
+rather than "it tests for a situation that cannot happen, and then
+does insane things".
 
-Link: https://lore.kernel.org/r/20251113155332.789554-1-jani.nikula@intel.com
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c     |  8 ++++++--
- drivers/gpu/drm/i915/display/intel_parent.c      |  6 ++++++
- drivers/gpu/drm/i915/display/intel_parent.h      |  3 ++-
- drivers/gpu/drm/i915/i915_driver.c               |  2 ++
- .../gpu/drm/xe/compat-i915-headers/i915_config.h | 16 ----------------
- include/drm/intel/display_parent_interface.h     |  3 +++
- 6 files changed, 19 insertions(+), 19 deletions(-)
- delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
+Because "that cannot happen" is not an argument for doing insane things.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 58a654ca0d20..765cc09b70da 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -49,7 +49,6 @@
- #include "g4x_dp.h"
- #include "g4x_hdmi.h"
- #include "hsw_ips.h"
--#include "i915_config.h"
- #include "i9xx_plane.h"
- #include "i9xx_plane_regs.h"
- #include "i9xx_wm.h"
-@@ -105,6 +104,7 @@
- #include "intel_modeset_verify.h"
- #include "intel_overlay.h"
- #include "intel_panel.h"
-+#include "intel_parent.h"
- #include "intel_pch_display.h"
- #include "intel_pch_refclk.h"
- #include "intel_pfit.h"
-@@ -7149,15 +7149,19 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
- 
- static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
- {
-+	struct intel_display *display = to_intel_display(intel_state);
- 	struct drm_plane *plane;
- 	struct drm_plane_state *new_plane_state;
-+	unsigned long fence_timeout;
- 	long ret;
- 	int i;
- 
-+	fence_timeout = intel_parent_fence_timeout(display);
-+
- 	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
- 		if (new_plane_state->fence) {
- 			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
--						     i915_fence_timeout());
-+						     fence_timeout);
- 			if (ret <= 0)
- 				break;
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 47ce3b6fdd5b..f22dd16ddb40 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -388,6 +388,12 @@ void intel_parent_fence_priority_display(struct intel_display *display, struct d
- 		display->parent->fence_priority_display(fence);
- }
- 
-+unsigned long intel_parent_fence_timeout(struct intel_display *display)
-+{
-+	return display->parent->fence_timeout ? display->parent->fence_timeout() :
-+		MAX_SCHEDULE_TIMEOUT;
-+}
-+
- bool intel_parent_has_auxccs(struct intel_display *display)
- {
- 	return display->parent->has_auxccs && display->parent->has_auxccs(display->drm);
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 1e89d24163cc..f06e0f9f2e41 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -120,9 +120,10 @@ int intel_parent_vlv_iosf_write(struct intel_display *display, enum vlv_iosf_sb_
- int intel_parent_vma_fence_id(struct intel_display *display, const struct i915_vma *vma);
- 
- /* generic */
-+void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
-+unsigned long intel_parent_fence_timeout(struct intel_display *display);
- bool intel_parent_has_auxccs(struct intel_display *display);
- bool intel_parent_has_fenced_regions(struct intel_display *display);
- bool intel_parent_vgpu_active(struct intel_display *display);
--void intel_parent_fence_priority_display(struct intel_display *display, struct dma_fence *fence);
- 
- #endif /* __INTEL_PARENT_H__ */
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 129013c5fb42..b7098d80b92d 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -91,6 +91,7 @@
- #include "pxp/intel_pxp_pm.h"
- 
- #include "i915_bo.h"
-+#include "i915_config.h"
- #include "i915_debugfs.h"
- #include "i915_display_pc8.h"
- #include "i915_dpt.h"
-@@ -783,6 +784,7 @@ static const struct intel_display_parent_interface parent = {
- 	.vma = &i915_display_vma_interface,
- 
- 	.fence_priority_display = fence_priority_display,
-+	.fence_timeout = i915_fence_timeout,
- 	.has_auxccs = has_auxccs,
- 	.has_fenced_regions = has_fenced_regions,
- 	.vgpu_active = vgpu_active,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h b/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-deleted file mode 100644
-index d4522203e2dd..000000000000
---- a/drivers/gpu/drm/xe/compat-i915-headers/i915_config.h
-+++ /dev/null
-@@ -1,16 +0,0 @@
--/* SPDX-License-Identifier: MIT */
--/*
-- * Copyright © 2023 Intel Corporation
-- */
--
--#ifndef __I915_CONFIG_H__
--#define __I915_CONFIG_H__
--
--#include <linux/sched.h>
--
--static inline unsigned long i915_fence_timeout(void)
--{
--	return MAX_SCHEDULE_TIMEOUT;
--}
--
--#endif /* __I915_CONFIG_H__ */
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index 258e6388ef77..e0293e6cfdab 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -261,6 +261,9 @@ struct intel_display_parent_interface {
- 		/** @fence_priority_display: Set display priority. Optional. */
- 		void (*fence_priority_display)(struct dma_fence *fence);
- 
-+		/** @fence_timeout: Fence timeout. Optional. */
-+		unsigned long (*fence_timeout)(void);
-+
- 		/** @has_auxccs: Are AuxCCS formats supported by the parent. Optional. */
- 		bool (*has_auxccs)(struct drm_device *drm);
- 
--- 
-2.47.3
+If it cannot happen, the test should simply not exist.
 
+                 Linus
