@@ -2,65 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BbSMQ571mk0FwgAu9opvQ
+	id 2Jf/NV191mk0FwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:58:06 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 18:07:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5DEF83BE9D9
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 17:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44D973BEAF9
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 18:07:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A8A8810E6A6;
-	Wed,  8 Apr 2026 15:58:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kveYrpOz";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BDF3010E43D;
+	Wed,  8 Apr 2026 16:07:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E254F10E68D;
- Wed,  8 Apr 2026 15:58:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775663884; x=1807199884;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=jfP79QxpHT3XEiljNlcn9AH83eE/Ml5mwrQJd7wFBMI=;
- b=kveYrpOz4vN+sKzPcYYkoAVOB78IeogCxoTbL7aJEK8doLG61zSs75w2
- A5+AksjXpwnCvBDpE6RZm9CUXid+XiDRgbhFJosqSL8ag7wdTwwL2NUu+
- pCgBMCJB6ngkpOAKiC4EQG3mNOtLLrC0qpzfp7ZTjU9YfTnPqD2enBh4y
- PyMrfZMq8rJF7AbftmfFo3ZZN/SEzYlBqKA087lxbbpJiiVja1RpnCkJ0
- EIWoRD5imLWRN0SBeQindVzl2jM8uxMnNZpNtWyiFQ+/rXkM5Ig0SX1Og
- 45rjslIWJfsEUX2uEUlZ4Y2FJSKk1iC0t92/sge9pdfysmz7TTKxcR9Dz A==;
-X-CSE-ConnectionGUID: 9ltOxFqQRVCKaXlbRyoN9Q==
-X-CSE-MsgGUID: F0i/fGt2Rba2tvf+F5KDMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76542088"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76542088"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 08:58:02 -0700
-X-CSE-ConnectionGUID: 7tcSnkUpQtaHA+MFomUn9A==
-X-CSE-MsgGUID: 8jBTLxwDQRus0QW8Chwibg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="228400702"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
- by orviesa009-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 08:57:59 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 2/2] drm/i915: Walk crtcs in pipe order
-Date: Wed,  8 Apr 2026 18:57:44 +0300
-Message-ID: <20260408155744.13326-3-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260408155744.13326-1-ville.syrjala@linux.intel.com>
-References: <20260408155744.13326-1-ville.syrjala@linux.intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3908410E43D;
+ Wed,  8 Apr 2026 16:07:54 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8727889674608701062=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/color=3A_Enable_?=
+ =?utf-8?q?SDR_plane_color_pipeline_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 08 Apr 2026 16:07:54 -0000
+Message-ID: <177566447422.443508.14847989614201633040@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260408051514.608781-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260408051514.608781-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,305 +42,192 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 5DEF83BE9D9
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.675];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,lists.freedesktop.org:replyto,compare-crc-sanitycheck-nv12:email]
+X-Rspamd-Queue-Id: 44D973BEAF9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============8727889674608701062==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Currently our crtcs are registered in pipe order, and thus
-all the for_intel_crtc*() iterators walk the crtcs in pipe
-order. There are a bunch of places that more or less depend
-on that. Eg. during plane updates and such we want joined
-pipes to be processed back-to-back to give a better chance
-of an atomic update across the whole set.
+== Series Details ==
 
-When we start to register crtcs in a different order we don't
-want to change the order in which the pipes get handled.
-Decouple the for_each_intel_crtc*() iterators from the crtc
-registration order by using a separate list which will be
-sorted by the pipe rather than the crtc index.
+Series: drm/i915/color: Enable SDR plane color pipeline (rev2)
+URL   : https://patchwork.freedesktop.org/series/162788/
+State : failure
 
-We could probably use a simple array or something, but that
-would require some kind of extra iterator variable for the
-macros, and thus would require a lot more changes. Using
-a linked list keeps the fallout minimal. We can look at
-using a more optimal data structure later.
+== Summary ==
 
-I also added this extra junk to the atomic state iterators:
-"(__i) = drm_crtc_index(&(crtc)->base), (void)(__i)"
-even though the macro itself no longer needs the "__i" iterator.
-This in case the "__i" is used by the caller, and to
-avoid compiler warnings if it's completely unused now.
+CI Bug Log - changes from CI_DRM_18292 -> Patchwork_162788v2
+====================================================
 
-v2: Flip the pipe comparison (Jani)
+Summary
+-------
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_crtc.c     | 20 +++++
- drivers/gpu/drm/i915/display/intel_display.h  | 90 ++++++++-----------
- .../gpu/drm/i915/display/intel_display_core.h |  3 +
- .../drm/i915/display/intel_display_driver.c   |  1 +
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/xe/display/xe_display.c       |  1 +
- 6 files changed, 64 insertions(+), 52 deletions(-)
+  **FAILURE**
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-index b8189cd5d864..c88a6810c49f 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-@@ -209,6 +209,8 @@ static struct intel_crtc *intel_crtc_alloc(void)
- 	crtc->base.state = &crtc_state->uapi;
- 	crtc->config = crtc_state;
- 
-+	INIT_LIST_HEAD(&crtc->pipe_head);
-+
- 	return crtc;
- }
- 
-@@ -222,6 +224,8 @@ static void intel_crtc_destroy(struct drm_crtc *_crtc)
- {
- 	struct intel_crtc *crtc = to_intel_crtc(_crtc);
- 
-+	list_del(&crtc->pipe_head);
-+
- 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
- 
- 	drm_crtc_cleanup(&crtc->base);
-@@ -308,6 +312,20 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
- 	.get_vblank_timestamp = intel_crtc_get_vblank_timestamp,
- };
- 
-+static void add_crtc_to_pipe_list(struct intel_display *display, struct intel_crtc *crtc)
-+{
-+	struct intel_crtc *iter;
-+
-+	list_for_each_entry(iter, &display->pipe_list, pipe_head) {
-+		if (crtc->pipe < iter->pipe) {
-+			list_add_tail(&crtc->pipe_head, &iter->pipe_head);
-+			return;
-+		}
-+	}
-+
-+	list_add_tail(&crtc->pipe_head, &display->pipe_list);
-+}
-+
- static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- {
- 	struct intel_plane *primary, *cursor;
-@@ -398,6 +416,8 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
- 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
- 		drm_crtc_create_sharpness_strength_property(&crtc->base);
- 
-+	add_crtc_to_pipe_list(display, crtc);
-+
- 	return 0;
- 
- fail:
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 552a59d19e0f..1e76a455d7c4 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -212,22 +212,23 @@ enum phy_fia {
- 			    base.head)					\
- 		for_each_if((intel_plane)->pipe == (intel_crtc)->pipe)
- 
--#define for_each_intel_crtc(dev, intel_crtc)				\
--	list_for_each_entry(intel_crtc,					\
--			    &(dev)->mode_config.crtc_list,		\
--			    base.head)
-+#define for_each_intel_crtc(dev, crtc) \
-+	list_for_each_entry((crtc), \
-+			    &to_intel_display(dev)->pipe_list, \
-+			    pipe_head)
- 
--#define for_each_intel_crtc_in_pipe_mask(dev, intel_crtc, pipe_mask)	\
--	list_for_each_entry(intel_crtc,					\
--			    &(dev)->mode_config.crtc_list,		\
--			    base.head)					\
--		for_each_if((pipe_mask) & BIT(intel_crtc->pipe))
-+#define for_each_intel_crtc_reverse(dev, crtc) \
-+	list_for_each_entry_reverse((crtc), \
-+				    &to_intel_display(dev)->pipe_list, \
-+				    pipe_head)
- 
--#define for_each_intel_crtc_in_pipe_mask_reverse(dev, intel_crtc, pipe_mask)	\
--	list_for_each_entry_reverse((intel_crtc),				\
--				    &(dev)->mode_config.crtc_list,		\
--				    base.head)					\
--		for_each_if((pipe_mask) & BIT((intel_crtc)->pipe))
-+#define for_each_intel_crtc_in_pipe_mask(dev, crtc, pipe_mask) \
-+	for_each_intel_crtc((dev), (crtc)) \
-+		for_each_if((pipe_mask) & BIT((crtc)->pipe))
-+
-+#define for_each_intel_crtc_in_pipe_mask_reverse(dev, crtc, pipe_mask) \
-+	for_each_intel_crtc_reverse((dev), (crtc)) \
-+		for_each_if((pipe_mask) & BIT((crtc)->pipe))
- 
- #define for_each_intel_encoder(dev, intel_encoder)		\
- 	list_for_each_entry(intel_encoder,			\
-@@ -269,14 +270,6 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
--#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
--
- #define for_each_new_intel_plane_in_state(__state, plane, new_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-@@ -285,22 +278,6 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
--#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
--
--#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
--	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
--	     (__i) >= 0  && \
--	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--	      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)--) \
--		for_each_if(crtc)
--
- #define for_each_oldnew_intel_plane_in_state(__state, plane, old_plane_state, new_plane_state, __i) \
- 	for ((__i) = 0; \
- 	     (__i) < (__state)->base.dev->mode_config.num_total_plane && \
-@@ -310,23 +287,32 @@ enum phy_fia {
- 	     (__i)++) \
- 		for_each_if(plane)
- 
-+#define for_each_old_intel_crtc_in_state(__state, crtc, old_crtc_state, __i) \
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc))))
-+
-+#define for_each_new_intel_crtc_in_state(__state, crtc, new_crtc_state, __i) \
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-+
-+#define for_each_new_intel_crtc_in_state_reverse(__state, crtc, new_crtc_state, __i) \
-+	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
-+
- #define for_each_oldnew_intel_crtc_in_state(__state, crtc, old_crtc_state, new_crtc_state, __i) \
--	for ((__i) = 0; \
--	     (__i) < (__state)->base.dev->mode_config.num_crtc && \
--		     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--		      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), \
--		      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)++) \
--		for_each_if(crtc)
-+	for_each_intel_crtc((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
- 
- #define for_each_oldnew_intel_crtc_in_state_reverse(__state, crtc, old_crtc_state, new_crtc_state, __i) \
--	for ((__i) = (__state)->base.dev->mode_config.num_crtc - 1; \
--	     (__i) >= 0  && \
--	     ((crtc) = to_intel_crtc((__state)->base.crtcs[__i].ptr), \
--	      (old_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].old_state), \
--	      (new_crtc_state) = to_intel_crtc_state((__state)->base.crtcs[__i].new_state), 1); \
--	     (__i)--) \
--		for_each_if(crtc)
-+	for_each_intel_crtc_reverse((__state)->base.dev, (crtc)) \
-+		for_each_if(((__i) = drm_crtc_index(&(crtc)->base), (void)(__i), \
-+			     (old_crtc_state) = intel_atomic_get_old_crtc_state((__state), (crtc)), \
-+			     (new_crtc_state) = intel_atomic_get_new_crtc_state((__state), (crtc))))
- 
- #define intel_atomic_crtc_state_for_each_plane_state( \
- 		  plane, plane_state, \
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index d708d322aa85..d9baca2d5aaf 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -294,6 +294,9 @@ struct intel_display {
- 	/* Parent, or core, driver functions exposed to display */
- 	const struct intel_display_parent_interface *parent;
- 
-+	/* list of all intel_crtcs sorted by pipe */
-+	struct list_head pipe_list;
-+
- 	/* Display functions */
- 	struct {
- 		/* Top level crtc-ish functions */
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 23bfecc983e8..9c2f7ad6c7b7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -117,6 +117,7 @@ static void intel_mode_config_init(struct intel_display *display)
- 
- 	drm_mode_config_init(display->drm);
- 	INIT_LIST_HEAD(&display->global.obj_list);
-+	INIT_LIST_HEAD(&display->pipe_list);
- 
- 	mode_config->min_width = 0;
- 	mode_config->min_height = 0;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ca2581fb7bbd..ee076106be85 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1485,6 +1485,7 @@ struct intel_flipq {
- 
- struct intel_crtc {
- 	struct drm_crtc base;
-+	struct list_head pipe_head;
- 	enum pipe pipe;
- 	/*
- 	 * Whether the crtc and the connected output pipeline is active. Implies
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index a0a4ddf3bb46..00dfa68af29a 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -21,6 +21,7 @@
- #include "intel_audio.h"
- #include "intel_bw.h"
- #include "intel_display.h"
-+#include "intel_display_core.h"
- #include "intel_display_device.h"
- #include "intel_display_driver.h"
- #include "intel_display_irq.h"
--- 
-2.52.0
+  Serious unknown changes coming with Patchwork_162788v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_162788v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_162788v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2:
+    - fi-glk-j4005:       [PASS][1] -> [FAIL][2] +3 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-glk-j4005/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/fi-glk-j4005/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_162788v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@core_debugfs@read-all-entries:
+    - bat-adlp-9:         [PASS][3] -> [DMESG-WARN][4] ([i915#15673])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-9/igt@core_debugfs@read-all-entries.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/bat-adlp-9/igt@core_debugfs@read-all-entries.html
+
+  
+  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18292 -> Patchwork_162788v2
+
+  CI-20190529: 20190529
+  CI_DRM_18292: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8850: 8850
+  Patchwork_162788v2: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/index.html
+
+--===============8727889674608701062==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/color: Enable SDR plane color pipeline (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162788/">https://patchwork.freedesktop.org/series/162788/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18292 -&gt; Patchwork_162788v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_162788v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_162788v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_162788v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2:<ul>
+<li>fi-glk-j4005:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/fi-glk-j4005/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/fi-glk-j4005/igt@kms_pipe_crc_basic@compare-crc-sanitycheck-nv12@pipe-a-hdmi-a-2.html">FAIL</a> +3 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_162788v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@core_debugfs@read-all-entries:<ul>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18292/bat-adlp-9/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v2/bat-adlp-9/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18292 -&gt; Patchwork_162788v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18292: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8850: 8850<br />
+  Patchwork_162788v2: f074368a55893ee121ba2920497b6c25e265d190 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8727889674608701062==--
