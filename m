@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aPJ3CqUY1mkxBAgAu9opvQ
+	id cEeuNaUY1mkxBAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:13 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F03EC3B9735
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 883A23B973D
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F64510E5C0;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC9DF10E5C2;
 	Wed,  8 Apr 2026 08:58:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lcEDiLQE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i46cDBob";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EB7B10E5BF;
- Wed,  8 Apr 2026 08:58:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D444C10E5C0;
+ Wed,  8 Apr 2026 08:58:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775638688; x=1807174688;
+ t=1775638691; x=1807174691;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nItMGEZjAanGeTV8IKsQQshbl/Vk98mzbv7NyX3QNDI=;
- b=lcEDiLQESfe0ELfMHpwYjFK+Po0DQTYWw4C5RtPfccQmUiWrYH5DXXGs
- b1rxTyvRbCBI+UBO8jKciXd7iH3khlqec4N6Tjpxpol9wKkquyycDvblZ
- BkKlNmt8hQNiR/LANnf3YOgLVItLJSYfsfMgSqKme7ppyM2b8UZOpGl2q
- V4kC1H1MmdmiG+pzD5DntWJOTw4MsQFKdUfsXjdFe7hzmexRp+ICE+ki6
- Vk9sXaRYlYG3Lk8BjixXE9i180N+qSYHSUbZXR5zBBm05BFDazuxpuWIg
- Nnxhrfhr7XpwahahoO6MgIvG6x+T4Nd4OHpIO/pZyy5CBs9f9Cjqr1K2M A==;
-X-CSE-ConnectionGUID: 3w5W/VSTSh+HFOr1sxQnng==
-X-CSE-MsgGUID: xKwNqK7hT6+qQ/3uQfmNQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516659"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516659"
+ bh=2akm8lWwsE5Rd4IgY195Wt4KpWwXChvZ/XszmNS2Iis=;
+ b=i46cDBobzZhvesRrHm58CXim1NBC+oh5ABA0SA2wQJRM40Xn4MCJzTUb
+ xfSJPRan+zTteeDEmkC1Xd6uegvZHZsrdQ+UHpP968r7n98bzZyzJzsaZ
+ u/JX2HbxKK9DaTTBKlFxOVhmJ3EDGvrycskaROsjxBWxu7HqYqTuYO47K
+ W1xADT7ca3stcewCzfT6CL6rBa8gS4zoYf4/LorK9pSDeOkoYFsbu2+5j
+ 8RCUH8nCgM8d0MX4rMtsAXt0L4Y8Hv8boan5Ohfw+Le5l6a7Uvc5MFXpD
+ iaZm0ewE6z+Ukl90NFE1PG9xlJNxqFgFrOVdOzEkSHWuS3muz1qhYlnEu A==;
+X-CSE-ConnectionGUID: EuRTV/a5QoK8TIrMqNA0wQ==
+X-CSE-MsgGUID: GkZmZjJTRyCLg3T9p4byqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516663"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516663"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:58:08 -0700
-X-CSE-ConnectionGUID: +F4o5YeOS5OOt+OJKRmAVQ==
-X-CSE-MsgGUID: JYzxlA9CROKe+25RWmhaQg==
+ 08 Apr 2026 01:58:11 -0700
+X-CSE-ConnectionGUID: sxeZiRMMRF2mv6vWSO/9TA==
+X-CSE-MsgGUID: 67Ip8k5GT2W5090zcCHtkA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572557"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572564"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:58:06 -0700
+ 08 Apr 2026 01:58:08 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 12/26] drm/i915/dp: Skip AS SDP for DP branch devices
-Date: Wed,  8 Apr 2026 14:12:24 +0530
-Message-ID: <20260408084239.1295325-13-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 13/26] drm/i915/dp: Use revision field of AS SDP data structure
+Date: Wed,  8 Apr 2026 14:12:25 +0530
+Message-ID: <20260408084239.1295325-14-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
 References: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
@@ -98,36 +98,70 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: F03EC3B9735
+X-Rspamd-Queue-Id: 883A23B973D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Currently, VRR is not implmented for DP branch devices.
-So skip sending AS SDP for them.
+Use the revision field of struct drm_dp_as_sdp instead of current
+hardcoding for the AS SDP revisions.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_dp.c      | 7 +++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 10b6c6fcb03f..57870baebfa5 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4906,7 +4906,8 @@ static bool
+ intel_compare_dp_as_sdp(const struct drm_dp_as_sdp *a,
+ 			const struct drm_dp_as_sdp *b)
+ {
+-	return a->vtotal == b->vtotal &&
++	return a->revision == b->revision &&
++		a->vtotal == b->vtotal &&
+ 		a->target_rr == b->target_rr &&
+ 		a->duration_incr_ms == b->duration_incr_ms &&
+ 		a->duration_decr_ms == b->duration_decr_ms &&
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3d0ea074e610..095bde8e97ef 100644
+index 095bde8e97ef..cec0f3d03c2f 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3130,6 +3130,12 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
- 	if (!intel_dp->as_sdp_supported)
- 		return false;
+@@ -3159,6 +3159,7 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 	as_sdp->sdp_type = DP_SDP_ADAPTIVE_SYNC;
+ 	as_sdp->length = 0x9;
+ 	as_sdp->duration_incr_ms = 0;
++	as_sdp->revision = 0x2;
+ 	as_sdp->vtotal = intel_vrr_vmin_vtotal(crtc_state);
  
-+	/*
-+	 * #TODO Implement AS SDP for DP branch device.
-+	 */
-+	if (drm_dp_is_branch(intel_dp->dpcd))
-+		return false;
-+
- 	return crtc_state->vrr.enable;
- }
+ 	if (crtc_state->cmrr.enable) {
+@@ -5122,7 +5123,7 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
+ 	/* Prepare AS (Adaptive Sync) SDP Header */
+ 	sdp->sdp_header.HB0 = 0;
+ 	sdp->sdp_header.HB1 = as_sdp->sdp_type;
+-	sdp->sdp_header.HB2 = 0x02;
++	sdp->sdp_header.HB2 = as_sdp->revision;
+ 	sdp->sdp_header.HB3 = as_sdp->length;
  
+ 	/* Fill AS (Adaptive Sync) SDP Payload */
+@@ -5309,13 +5310,11 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
+ 	if (sdp->sdp_header.HB1 != DP_SDP_ADAPTIVE_SYNC)
+ 		return -EINVAL;
+ 
+-	if (sdp->sdp_header.HB2 != 0x02)
+-		return -EINVAL;
+-
+ 	if ((sdp->sdp_header.HB3 & 0x3F) != 9)
+ 		return -EINVAL;
+ 
+ 	as_sdp->length = sdp->sdp_header.HB3 & DP_AS_SDP_LENGTH_MASK;
++	as_sdp->revision = sdp->sdp_header.HB2;
+ 	as_sdp->mode = sdp->db[0] & DP_AS_SDP_OPERATION_MODE_MASK;
+ 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
+ 	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
 -- 
 2.45.2
 
