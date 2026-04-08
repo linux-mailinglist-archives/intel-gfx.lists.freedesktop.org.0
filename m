@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPR6KkTm1mliJggAu9opvQ
+	id INjbK1fm1mliJggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 01:35:32 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 01:35:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5D52F3C4CD7
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 01:35:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 649193C4CED
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 01:35:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EDAA10E6FC;
-	Wed,  8 Apr 2026 23:35:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 913C110E6F8;
+	Wed,  8 Apr 2026 23:35:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="L/kWi3fN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i/lnNztr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DBB510E6F4;
- Wed,  8 Apr 2026 23:35:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4672810E6F6;
+ Wed,  8 Apr 2026 23:35:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775691329; x=1807227329;
+ t=1775691348; x=1807227348;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=8Q/mkkF5hQyhw6k94ut4wBxC1URpmF4mwrGexLdKo+c=;
- b=L/kWi3fNA0Xs5Yxr3VpGTvryxEe3T6MLxTAzdJE80CGeKaxPifwRd1v0
- 7xgybKk2T6qaTa8QdwZKHBFWS2kmi2p5C0Ww4BFf9xlAc0AITQHjOegiZ
- BuB5JFscLMdR4nl+Ov6rpKe0wIsW6oy1PJPwHfgpjLONeaxnPc79vghC8
- +fOxCP7ATgLxl1MKIy+TPgbt6brlP37wLYJnN13qrmtHuNf+VZgbONX51
- M4yMF4w3YXtLKvwcKWiffwWtuaciWkzmq9oVl9LuAG/OVcSjwFF+Y706F
- hR8MBNRQI+cMwYHkbaOfWwk83BAKxER+nwDhGoqGwv61fr1n75+fGlds3 Q==;
-X-CSE-ConnectionGUID: v4z6mPB1TgOZGDK7r9A7DQ==
-X-CSE-MsgGUID: waBIQgbYRVSf2kPdHaSKYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76706011"
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="76706011"
+ bh=UKV3rENiGha76nlSJMKOgtzsSEkJPExbIhKZTyFC7LA=;
+ b=i/lnNztrjNujz5BPkiqsNWGeqPlsz0YMR9qDT1xfcMqXXy6JZ0pcwWYV
+ apVpA/HuG5Q/jEuOM+Z/8x8SUh9Sh5keUFO2Hq2KQtHg8eXDZjUhWkvLq
+ jTUgvKUkDbLQ3cS2h/n/aOc0USySHAigSixg6gK55SVuxOHOFr88t0qbK
+ 6Ms6aPAJJd859uGWSMMxpxeGWVtb7RA8vo3CDY6ULHLT4NXlvf3Sh1kCK
+ /rlJRk5u6M1+bBXfg4uqKBzoQfyaj4oVnpgqkadhiCGBKrQ84Dw+YmeAZ
+ cKMJgTYBqLju/gmwL4p9GYJ9I2zM3toK+iwNXBdD7XIGuBxCZw2b0jP+4 g==;
+X-CSE-ConnectionGUID: /mArSkpMSu6jdCofUnHy1A==
+X-CSE-MsgGUID: zSLXUV6oSIWpaDIquY0qKg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76706045"
+X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="76706045"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 16:35:28 -0700
-X-CSE-ConnectionGUID: p5qn64s4Tii/iWan5/pI7A==
-X-CSE-MsgGUID: lLJu98lfQ4O8xuTQoybpXw==
+ 08 Apr 2026 16:35:47 -0700
+X-CSE-ConnectionGUID: 45519N2ORD6yC9/Dy+hqzQ==
+X-CSE-MsgGUID: Xm7htZfUQMmXTR4qMlrbPg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="230273143"
+X-IronPort-AV: E=Sophos;i="6.23,168,1770624000"; d="scan'208";a="230273191"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.73])
  by fmviesa004-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 16:35:25 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 Apr 2026 16:35:32 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -54,9 +54,10 @@ Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH 4/6] drm/xe/display: Add init_clock_gating.h stubs
-Date: Thu,  9 Apr 2026 02:34:56 +0300
-Message-ID: <20260408233458.22666-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 5/6] drm/i915/reset: Handle the display vs. GPU reset deadlock
+ using a custom dma-fence
+Date: Thu,  9 Apr 2026 02:34:57 +0300
+Message-ID: <20260408233458.22666-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
 References: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
@@ -104,17 +105,34 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: 5D52F3C4CD7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ffwll.ch:email,linux.intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: 649193C4CED
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add static inline stubs for init_clock_gating.h functions
-so that we don't need ifdefs in the actual code. We already
-have one in intel_display_power.c, and now I need to bring
-over intel_display_reset.c.
+The old display vs. GPU reset deadlock is back more or less.
+The old (working) solution to the problem was originally
+introduced in commit 9db529aac938 ("drm/i915: More surgically
+unbreak the modeset vs reset deadlock"), but it got nuked with
+commit d59cf7bb73f3 ("drm/i915/display: Use dma_fence interfaces
+instead of i915_sw_fence").
+
+Apparently no one looked hard enough to see that things didn't
+work quite properly anymore. What is still saving us for the most
+part is that we have a timeout on the fence wait
+(CONFIG_DRM_I915_FENCE_TIMEOUT, 10 seconds by default). But
+people are perhaps trying to get rid of that so we may need
+another solution, and 10 seconds is a bit slow.
+
+Re-solve the problem yet again with a custom dma-fence that gets
+signaled just prior to a GPU reset, and have the atomic commit wait
+for either that or the real fence using dma_fence_wait_any_timeout().
+Whichever signals first will let the commit proceed. We create a new
+"reset fence" whenever someone needs one, and keep it until the next
+GPU reset has completed. After that the next guy will again get a
+fresh unsignaled "reset fence".
 
 Cc: Simona Vetter <simona.vetter@ffwll.ch>
 Cc: Christian König <christian.koenig@amd.com>
@@ -123,42 +141,257 @@ Cc: Jouni Högander <jouni.hogander@intel.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c     |  2 --
- .../drm/xe/compat-i915-headers/intel_clock_gating.h    | 10 +++++++++-
- 2 files changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 34 +++++---
+ .../gpu/drm/i915/display/intel_display_core.h |  6 ++
+ .../drm/i915/display/intel_display_driver.c   |  5 ++
+ .../drm/i915/display/intel_display_reset.c    | 77 +++++++++++++++++++
+ .../drm/i915/display/intel_display_reset.h    |  4 +
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ 6 files changed, 117 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 4091b7c4914f..5ba3969e9ed6 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1420,9 +1420,7 @@ static void hsw_disable_pc8(struct intel_display *display)
- 	intel_init_pch_refclk(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 58a654ca0d20..83ccf13c4b16 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -72,6 +72,7 @@
+ #include "intel_display_driver.h"
+ #include "intel_display_power.h"
+ #include "intel_display_regs.h"
++#include "intel_display_reset.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
+@@ -7149,22 +7150,35 @@ static void skl_commit_modeset_enables(struct intel_atomic_state *state)
  
- 	/* Many display registers don't survive PC8+ */
--#ifdef I915 /* FIXME */
- 	intel_clock_gating_init(display->drm);
--#endif
+ static void intel_atomic_commit_fence_wait(struct intel_atomic_state *intel_state)
+ {
+-	struct drm_plane *plane;
++	struct intel_display *display = to_intel_display(intel_state);
+ 	struct drm_plane_state *new_plane_state;
+-	long ret;
++	struct dma_fence *reset_fence;
++	struct drm_plane *plane;
+ 	int i;
+ 
++	reset_fence = intel_display_reset_fence_get(display);
++
+ 	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state, i) {
+-		if (new_plane_state->fence) {
+-			ret = dma_fence_wait_timeout(new_plane_state->fence, false,
+-						     i915_fence_timeout());
+-			if (ret <= 0)
+-				break;
++		struct dma_fence *fences[2] = {
++			[0] = new_plane_state->fence,
++			[1] = reset_fence,
++		};
++		long ret;
+ 
+-			dma_fence_put(new_plane_state->fence);
+-			new_plane_state->fence = NULL;
+-		}
++		if (!new_plane_state->fence)
++			continue;
++
++		ret = dma_fence_wait_any_timeout(fences, reset_fence ? 2 : 1, false,
++						 i915_fence_timeout(), NULL);
++		if (ret <= 0)
++			break;
++
++		dma_fence_put(new_plane_state->fence);
++		new_plane_state->fence = NULL;
+ 	}
++
++	if (reset_fence)
++		dma_fence_put(reset_fence);
  }
  
- static void intel_pch_reset_handshake(struct intel_display *display,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-index ce986f0e8f38..552975a30ba2 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-@@ -3,4 +3,12 @@
+ static void intel_atomic_dsb_wait_commit(struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 9e77003addd0..6687b658c51d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -556,6 +556,12 @@ struct intel_display {
+ 		unsigned long mask;
+ 	} quirks;
+ 
++	struct {
++		/* protects reset.fence */
++		struct mutex mutex;
++		struct dma_fence *fence;
++	} reset;
++
+ 	struct {
+ 		/* restore state for suspend/resume and display reset */
+ 		struct drm_atomic_state *modeset_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+index 23bfecc983e8..fcd31722c731 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.c
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+@@ -34,6 +34,7 @@
+ #include "intel_display_driver.h"
+ #include "intel_display_irq.h"
+ #include "intel_display_power.h"
++#include "intel_display_reset.h"
+ #include "intel_display_types.h"
+ #include "intel_display_utils.h"
+ #include "intel_display_wa.h"
+@@ -257,6 +258,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+ 
+ 	intel_mode_config_init(display);
+ 
++	intel_display_reset_fence_init(display);
++
+ 	ret = intel_cdclk_init(display);
+ 	if (ret)
+ 		goto cleanup_wq_unordered;
+@@ -584,6 +587,8 @@ void intel_display_driver_remove(struct intel_display *display)
+ 	if (!HAS_DISPLAY(display))
+ 		return;
+ 
++	intel_display_reset_fence_discard(display);
++
+ 	flush_workqueue(display->wq.flip);
+ 	flush_workqueue(display->wq.modeset);
+ 	flush_workqueue(display->wq.cleanup);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index ca15dc18ef0f..80dd2ea8a0c2 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -3,6 +3,8 @@
   * Copyright © 2023 Intel Corporation
   */
  
--#include "../../i915/intel_clock_gating.h"
-+#ifndef __INTEL_CLOCK_GATING_H__
-+#define __INTEL_CLOCK_GATING_H__
++#include <linux/dma-fence.h>
 +
-+struct drm_device;
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_print.h>
+ 
+@@ -16,6 +18,72 @@
+ #include "intel_hotplug.h"
+ #include "intel_pps.h"
+ 
++static const char *intel_display_reset_fence_get_driver_name(struct dma_fence *fence)
++{
++	return "intel_display";
++}
 +
-+static inline void intel_clock_gating_init(struct drm_device *drm) {}
-+static inline void intel_clock_gating_hooks_init(struct drm_device *drm) {}
++static const char *intel_display_reset_fence_get_timeline_name(struct dma_fence *fence)
++{
++	return "reset";
++}
 +
-+#endif /* __INTEL_CLOCK_GATING_H__ */
++static const struct dma_fence_ops intel_display_reset_fence_ops = {
++	.get_driver_name = intel_display_reset_fence_get_driver_name,
++	.get_timeline_name = intel_display_reset_fence_get_timeline_name,
++};
++
++static void intel_display_reset_create(struct intel_display *display)
++{
++	struct dma_fence *fence;
++
++	fence = kzalloc_obj(*fence);
++	if (!fence)
++		return;
++
++	dma_fence_init(fence, &intel_display_reset_fence_ops, NULL, 0, 0);
++
++	display->reset.fence = fence;
++}
++
++struct dma_fence *intel_display_reset_fence_get(struct intel_display *display)
++{
++	struct dma_fence *fence;
++
++	mutex_lock(&display->reset.mutex);
++
++	if (!display->reset.fence)
++		intel_display_reset_create(display);
++
++	fence = display->reset.fence;
++	if (fence)
++		dma_fence_get(fence);
++
++	mutex_unlock(&display->reset.mutex);
++
++	return fence;
++}
++
++void intel_display_reset_fence_discard(struct intel_display *display)
++{
++	struct dma_fence *fence;
++
++	mutex_lock(&display->reset.mutex);
++
++	fence = display->reset.fence;
++	if (fence)
++		dma_fence_put(fence);
++
++	display->reset.fence = NULL;
++
++	mutex_unlock(&display->reset.mutex);
++}
++
++void intel_display_reset_fence_init(struct intel_display *display)
++{
++	mutex_init(&display->reset.mutex);
++}
++
+ bool intel_display_reset_supported(struct intel_display *display)
+ {
+ 	return HAS_DISPLAY(display);
+@@ -31,8 +99,15 @@ void intel_display_reset_prepare(struct intel_display *display)
+ {
+ 	struct drm_modeset_acquire_ctx *ctx = &display->restore.reset_ctx;
+ 	struct drm_atomic_state *state;
++	struct dma_fence *reset_fence;
+ 	int ret;
+ 
++	reset_fence = intel_display_reset_fence_get(display);
++	if (reset_fence) {
++		dma_fence_signal(reset_fence);
++		dma_fence_put(reset_fence);
++	}
++
+ 	/*
+ 	 * Need mode_config.mutex so that we don't
+ 	 * trample ongoing ->detect() and whatnot.
+@@ -110,6 +185,8 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ 
+ 	drm_atomic_state_put(state);
+ unlock:
++	intel_display_reset_fence_discard(display);
++
+ 	drm_modeset_drop_locks(ctx);
+ 	drm_modeset_acquire_fini(ctx);
+ 	mutex_unlock(&display->drm->mode_config.mutex);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
+index a8aa7729d33f..c36a075c6b4d 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.h
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
+@@ -10,6 +10,10 @@
+ 
+ struct intel_display;
+ 
++struct dma_fence *intel_display_reset_fence_get(struct intel_display *display);
++void intel_display_reset_fence_discard(struct intel_display *display);
++void intel_display_reset_fence_init(struct intel_display *display);
++
+ bool intel_display_reset_supported(struct intel_display *display);
+ bool intel_display_reset_test(struct intel_display *display);
+ void intel_display_reset_prepare(struct intel_display *display);
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 110fef511fe2..1a85dfe457f0 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -262,6 +262,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_display_power.o \
+ 	i915-display/intel_display_power_map.o \
+ 	i915-display/intel_display_power_well.o \
++	i915-display/intel_display_reset.o \
+ 	i915-display/intel_display_rpm.o \
+ 	i915-display/intel_display_rps.o \
+ 	i915-display/intel_display_trace.o \
 -- 
 2.52.0
 
