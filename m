@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yGXWD5QY1mkxBAgAu9opvQ
+	id EOWvI5YY1mkxBAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:57:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:57:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E48A83B96D3
-	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:57:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6592B3B96E2
+	for <lists+intel-gfx@lfdr.de>; Wed, 08 Apr 2026 10:57:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62CF710E59F;
-	Wed,  8 Apr 2026 08:57:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CA70810E5B1;
+	Wed,  8 Apr 2026 08:57:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CAmUUaux";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="edfCJZLa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4AC510E5B2;
- Wed,  8 Apr 2026 08:57:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6068F10E5B2;
+ Wed,  8 Apr 2026 08:57:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775638673; x=1807174673;
+ t=1775638675; x=1807174675;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HE73IoN21SAiR407neVozQ8QA+lJHkcqoWp2mIAwHRo=;
- b=CAmUUauxARmLjuKabGe3+MLldt3e1wpcpRbbQjAFNn6uh2kk4fYb8pD0
- YZjzm2EvqFRuToNCWjHAJpD9yfmemiwtUN1iJu30xvLO5jyyQqIa28HQ+
- ieB2ChHlyvJTfXt5lGhQLEka7okpbTNhccYmD58ZJJGjwVmBB7TRfbUlJ
- EMJQXDo7UoS5QrVyNbTE4gVhe9BZ3EI8Rjuh7V8wRZJgw6dwiVxtu3zyM
- zS1tnxllx+Ux+INwKYyAkXZuDWsOE8ejhnNXBMTPh9axQo9OxDYBPT94a
- x8e3n0MtWi1HsQVR5gWmDMjbwW5LYqPw/gKVFGbDfNsy4tORBnVDfEBSB A==;
-X-CSE-ConnectionGUID: FdddiY1uQ9W61IndzDA9nQ==
-X-CSE-MsgGUID: OA9qfQFATXGbfPZDWGOdYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516625"
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516625"
+ bh=uDfnAhuPeQpYybCGDkoBbLrE24EWqvm4HBK5ycB3WjE=;
+ b=edfCJZLaE4duYtqcKHnhAEAplk5YfGG3vkzZwlaSeLpWEFUSuD8zfGLZ
+ Sr6dXvqfgInZJsWHLmBjovZ6OKksO1O6WhE+pqhtoqGoOTLLsfvF0ZFPy
+ ioEJygIZ9KXz4vo9GeKl9uJflewlF61aWFuDL6rU2f7sbAkAqkjNvC/EG
+ ZYCIYQeyPem85BizqMZ6J8nXt/0YgUkZ+/21LlXZrt4rBMJ6pa26Bix5r
+ Sy5Qe+xp+tw4YY19U2QpJGx1HzCSF3VqYd5eHbUFM2Pk9o8gocOArgVhI
+ 4UIN1IceDLqUpprnN+lE3RJZwtMJV8N4xqvRTiVMp18j4O7zDh+0HTF+0 A==;
+X-CSE-ConnectionGUID: /3X57uP7SjClDrRHDbZtZg==
+X-CSE-MsgGUID: e7+fePV1QW2V9cT6OiZlhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11752"; a="76516633"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="76516633"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:57:53 -0700
-X-CSE-ConnectionGUID: df44PC0jTQW6fIlXwNNFGA==
-X-CSE-MsgGUID: ggoViMrdQcCThLAJPE+tXA==
+ 08 Apr 2026 01:57:55 -0700
+X-CSE-ConnectionGUID: CqrbdsV6RECVsB4pOcZaJA==
+X-CSE-MsgGUID: z00FE/wlS+63iJEXGAaIfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572499"
+X-IronPort-AV: E=Sophos;i="6.23,167,1770624000"; d="scan'208";a="227572511"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Apr 2026 01:57:50 -0700
+ 08 Apr 2026 01:57:53 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 06/26] drm/dp: Add a helper to get the SDP type as a string
-Date: Wed,  8 Apr 2026 14:12:18 +0530
-Message-ID: <20260408084239.1295325-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/26] drm/dp: Add target_rr_divider field in AS SDP logging
+Date: Wed,  8 Apr 2026 14:12:19 +0530
+Message-ID: <20260408084239.1295325-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
 References: <20260408084239.1295325-1-ankit.k.nautiyal@intel.com>
@@ -98,77 +98,31 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: E48A83B96D3
+X-Rspamd-Queue-Id: 6592B3B96E2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Introduce dp_sdp_type_get_name() to get the SDP type as a string.
-Use this to log the SDP type based on the sdp_type fields of the
-VSC and AS SDPs instead of the hardcoded strings.
-
-While at it, rename "SDP : AS_SDP" to "SDP : Adaptive Sync"
+The field target_rr_divider is missing from the AS SDP logging.
+Add it and print the divider value (1.001 or 1.000) as per the DP 2.1 spec.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c | 36 ++++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index e29958f8b0b6..102328d9022d 100644
+index 102328d9022d..c8421099a3ac 100644
 --- a/drivers/gpu/drm/display/drm_dp_helper.c
 +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -3487,10 +3487,38 @@ static const char *dp_content_type_get_name(enum dp_content_type content_type)
- 	}
- }
- 
-+static const char *dp_sdp_type_get_name(unsigned char type)
-+{
-+	switch (type) {
-+	case DP_SDP_AUDIO_TIMESTAMP:
-+		return "Audio Timestamp";
-+	case DP_SDP_AUDIO_STREAM:
-+		return "Audio Stream";
-+	case DP_SDP_EXTENSION:
-+		return "Extension";
-+	case DP_SDP_AUDIO_COPYMANAGEMENT:
-+		return "Audio Copy Management";
-+	case DP_SDP_ISRC:
-+		return "ISRC";
-+	case DP_SDP_VSC:
-+		return "VSC";
-+	case DP_SDP_PPS:
-+		return "PPS";
-+	case DP_SDP_VSC_EXT_VESA:
-+		return "VSC EXT VESA";
-+	case DP_SDP_VSC_EXT_CEA:
-+		return "VSC EXT CEA";
-+	case DP_SDP_ADAPTIVE_SYNC:
-+		return "Adaptive Sync";
-+	default:
-+		return "Unknown";
-+	}
-+}
-+
- void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc)
- {
--	drm_printf(p, "DP SDP: VSC, revision %u, length %u\n",
--		   vsc->revision, vsc->length);
-+	drm_printf(p, "DP SDP: %s, revision %u, length %u\n",
-+		   dp_sdp_type_get_name(vsc->sdp_type), vsc->revision, vsc->length);
- 	drm_printf(p, "    pixelformat: %s\n",
- 		   dp_pixelformat_get_name(vsc->pixelformat));
- 	drm_printf(p, "    colorimetry: %s\n",
-@@ -3505,8 +3533,8 @@ EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
- 
- void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp)
- {
--	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
--		   as_sdp->revision, as_sdp->length);
-+	drm_printf(p, "DP SDP: %s, revision %u, length %u\n",
-+		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
+@@ -3537,6 +3537,8 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
+ 		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
  	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
  	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
++	drm_printf(p, "    target_rr_divider: %s\n",
++		   as_sdp->target_rr_divider ? "1.001" : "1.000");
  	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
+ 	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
+ 	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
 -- 
 2.45.2
 
