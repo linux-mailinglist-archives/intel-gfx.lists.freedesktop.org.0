@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UDPUNOvg3GnrXgkAu9opvQ
+	id ALslBu/g3GmKXwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 83AA83EBEDB
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCE683EBF16
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D6F210E424;
-	Mon, 13 Apr 2026 12:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9F4A510E42E;
+	Mon, 13 Apr 2026 12:26:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="OcWU6p4E";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="NsNneuci";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B49D510E82C;
- Thu,  9 Apr 2026 17:09:08 +0000 (UTC)
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A615810E063;
+ Thu,  9 Apr 2026 17:09:12 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-02.galae.net (Postfix) with ESMTPS id A8F561A3255;
- Thu,  9 Apr 2026 17:09:07 +0000 (UTC)
+ by smtpout-03.galae.net (Postfix) with ESMTPS id 8E4634E429AD;
+ Thu,  9 Apr 2026 17:09:11 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 7B402603E4;
- Thu,  9 Apr 2026 17:09:07 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id 5B165603E4;
+ Thu,  9 Apr 2026 17:09:11 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 4A52E104501A3; 
- Thu,  9 Apr 2026 19:09:02 +0200 (CEST)
+ with ESMTPSA id 4B362104501CC; 
+ Thu,  9 Apr 2026 19:09:06 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1775754545; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1775754549; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=PUrev3OwtF7+aQkaLQNcxHy9DAd6gNcwgyZHwoDRdgs=;
- b=OcWU6p4Eq4OVCUQGSq0OR24F3SV9U9aoJdhjwYfqGnATABnWmw3hYwQNxsrBWr7LFEN0wY
- +zjRqf2kiNbPo/mU9nW61kDj5CwC7jaSAc5Gy3rkPy5Fj6M7a6/HMc++qZJDBCIVp5SsPv
- dJE7aBu08Dc+AWujlXmml9BdfZqEFleNP2qMh7AKwPjvG6avstJ/DraY1cnCzO32nFb0hm
- MbWiVfy6jfzGcJ3GtebCNIHq3TMe8Qh8ej8R1eIvUEP/2XYnx7UGtypJKwFS4d41ddVztJ
- uP4X8e1sExgc0UDbrUrd84ESpva7V1NRlz9nbV2ut6fF2cmdpdkXxjNkFsekMA==
+ bh=gLCKdJRpfKPoB5WWQAXBdqHs5x4sKwWXgZVhJIjP7RQ=;
+ b=NsNneuciB3J5k/khO3wOG9JznpaYRpPkooz/Oq4DtiNephghulGNOFQz596h3I9V2Humf1
+ e6PbTovsstxzMUZIwx+NkLGQBcfANB9dSd16qfZ0pM1kqH9xjb8ErmbqkiD3PJOn9+jRjm
+ +8qFFiXIzE8c1NbwFZUpEHa81fGdRnZQgVRCcaYss/e71EcOB1xfBnDKqJT7dzystwCwPw
+ ZuIPCtsJI0GQNPzsuj5VGyZxC8v/wbVsUlTSqVaZTcUDzi/pdUWvs+VpkiW1tvdQgb1RxZ
+ lwZGrYfjNxpwEv3MLe3fmyFwboJORD5neDvsKug/g6GDuYMg4c9IJ15OpG7plQ==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 09 Apr 2026 19:08:20 +0200
-Subject: [PATCH RFC 04/12] drm/i915/display: Switch to
- drmm_mode_config_init() and drop manual cleanup
+Date: Thu, 09 Apr 2026 19:08:21 +0200
+Subject: [PATCH RFC 05/12] drm/i915/display: Switch to managed for crtc
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-feat_link_cap-v1-4-7069e8199ce2@bootlin.com>
+Message-Id: <20260409-feat_link_cap-v1-5-7069e8199ce2@bootlin.com>
 References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -118,134 +117,196 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
-X-Rspamd-Queue-Id: 83AA83EBEDB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: BCE683EBF16
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Replace drm_mode_config_init() with drmm_mode_config_init() in
-intel_mode_config_init(). The managed variant automatically registers
-drm_mode_config_cleanup() with devres, so drivers must no longer call it
-directly.
+The current i915 driver uses non-managed function to create crtc. It
+is not an issue yet, but in order to comply with the latest DRM
+requirement, convert this code to use drm and device managed helpers.
 
-Since intel_mode_config_cleanup() was solely a wrapper combining
-intel_atomic_global_obj_cleanup() and drm_mode_config_cleanup(), and the
-latter is now handled by DRM core, remove it entirely. Instead, register
-intel_atomic_global_obj_cleanup() as a devres action so it still runs just
-before drm_mode_config_cleanup() during teardown, preserving the correct
-cleanup ordering.
-
-Change intel_mode_config_init() to return int to propagate any error from
-drmm_mode_config_init().
-
+Assisted-by: Claude Code:2.1.90
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
- .../gpu/drm/i915/display/intel_display_driver.c    | 37 ++++++++++++++--------
- 1 file changed, 24 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 102 ++++++++++--------------------
+ 1 file changed, 35 insertions(+), 67 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 23bfecc983e8d..d02393053cef4 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -12,6 +12,7 @@
- #include <drm/display/drm_dp_mst_helper.h>
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index b8189cd5d864a..e2f995313acf2 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -8,6 +8,7 @@
+ 
  #include <drm/drm_atomic_helper.h>
- #include <drm/drm_client_event.h>
+ #include <drm/drm_fourcc.h>
 +#include <drm/drm_managed.h>
- #include <drm/drm_mode_config.h>
- #include <drm/drm_privacy_screen_consumer.h>
+ #include <drm/drm_plane.h>
  #include <drm/drm_print.h>
-@@ -48,6 +49,7 @@
- #include "intel_fbdev.h"
- #include "intel_fdi.h"
- #include "intel_flipq.h"
-+#include "intel_global_state.h"
- #include "intel_gmbus.h"
- #include "intel_hdcp.h"
- #include "intel_hotplug.h"
-@@ -111,13 +113,28 @@ static const struct drm_mode_config_helper_funcs intel_mode_config_funcs = {
- 	.atomic_commit_setup = drm_dp_mst_atomic_setup_commit,
- };
+ #include <drm/drm_vblank.h>
+@@ -191,41 +192,11 @@ void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
+ 	crtc_state->max_link_bpp_x16 = INT_MAX;
+ }
  
--static void intel_mode_config_init(struct intel_display *display)
-+static void intel_atomic_global_obj_cleanup_action(struct drm_device *drm, void *data)
-+{
-+	intel_atomic_global_obj_cleanup((struct intel_display *)data);
-+}
-+
-+static int intel_mode_config_init(struct intel_display *display)
+-static struct intel_crtc *intel_crtc_alloc(void)
++static void intel_crtc_vblank_pm_qos_cleanup(struct drm_device *drm, void *data)
  {
- 	struct drm_mode_config *mode_config = &display->drm->mode_config;
-+	int ret;
-+
-+	ret = drmm_mode_config_init(display->drm);
-+	if (ret)
-+		return ret;
+-	struct intel_crtc_state *crtc_state;
+-	struct intel_crtc *crtc;
+-
+-	crtc = kzalloc_obj(*crtc);
+-	if (!crtc)
+-		return ERR_PTR(-ENOMEM);
+-
+-	crtc_state = intel_crtc_state_alloc(crtc);
+-	if (!crtc_state) {
+-		kfree(crtc);
+-		return ERR_PTR(-ENOMEM);
+-	}
+-
+-	crtc->base.state = &crtc_state->uapi;
+-	crtc->config = crtc_state;
+-
+-	return crtc;
+-}
+-
+-static void intel_crtc_free(struct intel_crtc *crtc)
+-{
+-	intel_crtc_destroy_state(&crtc->base, crtc->base.state);
+-	kfree(crtc);
+-}
+-
+-static void intel_crtc_destroy(struct drm_crtc *_crtc)
+-{
+-	struct intel_crtc *crtc = to_intel_crtc(_crtc);
++	struct intel_crtc *crtc = data;
  
--	drm_mode_config_init(display->drm);
- 	INIT_LIST_HEAD(&display->global.obj_list);
+ 	cpu_latency_qos_remove_request(&crtc->vblank_pm_qos);
+-
+-	drm_crtc_cleanup(&crtc->base);
+-	kfree(crtc);
+ }
  
-+	ret = drmm_add_action_or_reset(display->drm,
-+				       intel_atomic_global_obj_cleanup_action,
-+				       display);
-+	if (ret)
-+		return ret;
-+
- 	mode_config->min_width = 0;
- 	mode_config->min_height = 0;
+ static int intel_crtc_late_register(struct drm_crtc *crtc)
+@@ -236,7 +207,6 @@ static int intel_crtc_late_register(struct drm_crtc *crtc)
  
-@@ -148,12 +165,8 @@ static void intel_mode_config_init(struct intel_display *display)
+ #define INTEL_CRTC_FUNCS \
+ 	.set_config = drm_atomic_helper_set_config, \
+-	.destroy = intel_crtc_destroy, \
+ 	.page_flip = drm_atomic_helper_page_flip, \
+ 	.atomic_duplicate_state = intel_crtc_duplicate_state, \
+ 	.atomic_destroy_state = intel_crtc_destroy_state, \
+@@ -311,28 +281,19 @@ static const struct drm_crtc_funcs i8xx_crtc_funcs = {
+ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ {
+ 	struct intel_plane *primary, *cursor;
++	struct intel_crtc_state *crtc_state;
+ 	const struct drm_crtc_funcs *funcs;
+ 	struct intel_crtc *crtc;
++	u32 plane_ids_mask = 0;
+ 	int sprite, ret;
+ 
+-	crtc = intel_crtc_alloc();
+-	if (IS_ERR(crtc))
+-		return PTR_ERR(crtc);
+-
+-	crtc->pipe = pipe;
+-	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
+-
+ 	if (DISPLAY_VER(display) >= 9)
+ 		primary = skl_universal_plane_create(display, pipe, PLANE_1);
+ 	else
+ 		primary = intel_primary_plane_create(display, pipe);
+-	if (IS_ERR(primary)) {
+-		ret = PTR_ERR(primary);
+-		goto fail;
+-	}
+-	crtc->plane_ids_mask |= BIT(primary->id);
+-
+-	intel_init_fifo_underrun_reporting(display, crtc, false);
++	if (IS_ERR(primary))
++		return PTR_ERR(primary);
++	plane_ids_mask |= BIT(primary->id);
+ 
+ 	for_each_sprite(display, pipe, sprite) {
+ 		struct intel_plane *plane;
+@@ -341,19 +302,15 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 			plane = skl_universal_plane_create(display, pipe, PLANE_2 + sprite);
+ 		else
+ 			plane = intel_sprite_plane_create(display, pipe, sprite);
+-		if (IS_ERR(plane)) {
+-			ret = PTR_ERR(plane);
+-			goto fail;
+-		}
+-		crtc->plane_ids_mask |= BIT(plane->id);
++		if (IS_ERR(plane))
++			return PTR_ERR(plane);
++		plane_ids_mask |= BIT(plane->id);
  	}
  
- 	intel_cursor_mode_config_init(display);
--}
+ 	cursor = intel_cursor_plane_create(display, pipe);
+-	if (IS_ERR(cursor)) {
+-		ret = PTR_ERR(cursor);
+-		goto fail;
+-	}
+-	crtc->plane_ids_mask |= BIT(cursor->id);
++	if (IS_ERR(cursor))
++		return PTR_ERR(cursor);
++	plane_ids_mask |= BIT(cursor->id);
  
--static void intel_mode_config_cleanup(struct intel_display *display)
--{
--	intel_atomic_global_obj_cleanup(display);
--	drm_mode_config_cleanup(display->drm);
-+	return 0;
- }
+ 	if (HAS_GMCH(display)) {
+ 		if (display->platform.cherryview ||
+@@ -376,11 +333,23 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+ 			funcs = &ilk_crtc_funcs;
+ 	}
  
- static void intel_plane_possible_crtcs_init(struct intel_display *display)
-@@ -255,7 +268,9 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+-	ret = drm_crtc_init_with_planes(display->drm, &crtc->base,
+-					&primary->base, &cursor->base,
+-					funcs, "pipe %c", pipe_name(pipe));
+-	if (ret)
+-		goto fail;
++	crtc = drmm_crtc_alloc_with_planes(display->drm, struct intel_crtc, base,
++					   &primary->base, &cursor->base,
++					   funcs, "pipe %c", pipe_name(pipe));
++	if (IS_ERR(crtc))
++		return PTR_ERR(crtc);
++
++	crtc->pipe = pipe;
++	crtc->num_scalers = DISPLAY_RUNTIME_INFO(display)->num_scalers[pipe];
++	crtc->plane_ids_mask = plane_ids_mask;
++
++	crtc_state = intel_crtc_state_alloc(crtc);
++	if (!crtc_state)
++		return -ENOMEM;
++	crtc->base.state = &crtc_state->uapi;
++	crtc->config = crtc_state;
++
++	intel_init_fifo_underrun_reporting(display, crtc, false);
  
- 	intel_dmc_init(display);
+ 	if (DISPLAY_VER(display) >= 11)
+ 		drm_crtc_create_scaling_filter_property(&crtc->base,
+@@ -393,17 +362,16 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
  
--	intel_mode_config_init(display);
-+	ret = intel_mode_config_init(display);
+ 	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE);
+ 
++	ret = drmm_add_action_or_reset(display->drm, intel_crtc_vblank_pm_qos_cleanup, crtc);
 +	if (ret)
-+		goto cleanup_wq_unordered;
- 
- 	ret = intel_cdclk_init(display);
- 	if (ret)
-@@ -456,7 +471,7 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
- 
- 	ret = intel_crtc_init(display);
- 	if (ret)
--		goto err_mode_config;
 +		return ret;
++
+ 	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) != crtc->pipe);
  
- 	intel_plane_possible_crtcs_init(display);
- 	intel_dpll_init(display);
-@@ -497,8 +512,6 @@ int intel_display_driver_probe_nogem(struct intel_display *display)
+ 	if (HAS_CASF(display) && crtc->num_scalers >= 2)
+ 		drm_crtc_create_sharpness_strength_property(&crtc->base);
  
- err_hdcp:
- 	intel_hdcp_component_fini(display);
--err_mode_config:
--	intel_mode_config_cleanup(display);
- 
- 	return ret;
- }
-@@ -618,8 +631,6 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
- 
- 	intel_hdcp_component_fini(display);
- 
--	intel_mode_config_cleanup(display);
+ 	return 0;
 -
- 	intel_dp_tunnel_mgr_cleanup(display);
+-fail:
+-	intel_crtc_free(crtc);
+-
+-	return ret;
+ }
  
- 	intel_overlay_cleanup(display);
+ int intel_crtc_init(struct intel_display *display)
 
 -- 
 2.43.0
