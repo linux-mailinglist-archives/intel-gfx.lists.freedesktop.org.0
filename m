@@ -2,106 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +FIhKtEf2GlaYAgAu9opvQ
+	id 4BR1CWMj2Gm9YggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 23:53:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 00:08:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5E0A63D00C3
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 23:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C59663D01C4
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 00:08:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4393F10E0CE;
-	Thu,  9 Apr 2026 21:53:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 89D9610E025;
+	Thu,  9 Apr 2026 22:08:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="GmT673w0";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="Ko835XX1";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="jnoN8bWY";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="DDmVIgAR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
  [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D9B610E02F
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 21:53:15 +0000 (UTC)
-Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBBA810E07F
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 22:08:30 +0000 (UTC)
+Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 639INaON3352625
- for <intel-gfx@lists.freedesktop.org>; Thu, 9 Apr 2026 21:53:14 GMT
+ 639Eqk6O115070
+ for <intel-gfx@lists.freedesktop.org>; Thu, 9 Apr 2026 22:08:30 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=hu81u8EXPjFrB34GvSJW9iQw
- sEy8qvlO31eh+EE0xPg=; b=GmT673w0E/j1Q74yC99wb3ajRMSsRLbCbIHUvSVP
- uamrDGeWDu5NNk7G6tKX8jeB37nxu/H/C06C/S4yCJruDmrKx+ZLLLzPg3mclIP6
- mSJmy3eZbHxVhMTwbP7fc/ATus+LU4btxJZkNij0IJGfTBasR8eTPtdAYkhavNPk
- uRKgkE5/rQgpoYqNzOSkZrgr4DDhAZjoJYhMnELo5gQPSmcJA20p5gYGBIOs/rjO
- DxahXh/NChmF8HdNyZIHzJDRHWzU05YKF8KSlIsWptwTNibxjz92qddG+8mnXzev
- ypT8gPTdbW/WfZSg6miimVwvQCD63qVuSXz0MZsGx0OBcg==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dec1qt0xa-1
+ :references:subject:to; s=qcppdkim1; bh=iETKg8FvpT4ZN+EK0fX3kJUj
+ 6Q9RbW2hQbNGtGbKoyw=; b=jnoN8bWYgZLnSIlM+agOuqFEkJaoTNQBwruxepLZ
+ ThL5Y01ObekZaA0ik9yYlMgYYok1DneaOIsODX+1ov3pqpt19CexpFckhLzF+Xcp
+ 6kQMQ7motvxmlXObMXN6JJweuoIzjrG9IZMNxoT2/FhHV9VqtpdNzzfpkLDrceIg
+ emXARy/bk37u1Vd2ai/VJI9nXcX0c1izxsbVM8mPRlmg3J/Sc4SkXxAJldYep4K/
+ UxsfAljXcztQ8+87yGt11vKYVO13PmDJGtCKvdLAU+g50esSDcF1o859QmL24bHp
+ UFjWeBuoPw3ee/PtTaBP6mRQ5L2/jSMmmR2uAefYF3I/BA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dee8x9e2k-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 21:53:14 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id
- d75a77b69052e-50b4ca7e7c2so28931671cf.3
- for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 14:53:14 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 22:08:29 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id
+ d75a77b69052e-50b4ca7e7c2so29149811cf.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 15:08:29 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1775771594; x=1776376394;
+ d=oss.qualcomm.com; s=google; t=1775772509; x=1776377309;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=hu81u8EXPjFrB34GvSJW9iQwsEy8qvlO31eh+EE0xPg=;
- b=Ko835XX1S2JI6/dCKWM225Wvj2Tep44IGJMgUkBS3FJqhzLS5YKOwWMbSyhWpvoJCv
- hddWrB4PUrTThCzK6chEQ2bf2evOZVq1hJpwbiTVMgHIKToNz46sLrQnkhKjqPjZT4LL
- 7WGN1ZORuSTH3DfkpX1RKjfoDPVUOFuwZlo8yRQ/pTwI0eTTOC9bmGx0ab4hUNk7xL1I
- PlrcSphHGWkBDeSXQmIssQRO0myYg6lb+tfq3rJnVKS5xSaOExs5Nbec6U8F23Oe9V8O
- 878aFGXK8n3Hy+48EKHTTgcNBh0wSi6CU9SX0juRSA9LLnyfWDC0jFD0OBjechQHZeOM
- Yaiw==
+ bh=iETKg8FvpT4ZN+EK0fX3kJUj6Q9RbW2hQbNGtGbKoyw=;
+ b=DDmVIgAR6eXJcaqQ6lMjBW88RlsnAQrh9uDzrzettPVVhf21GDzEbC0QPz1n9AyNhV
+ XOXHKK6lULkCf9AH599s5cXgEhO0oa9obopPrrSwc716iqfSo+MCBBLxQC1GJplJR4LF
+ 04OM4u0hhLA7Q2bDKb0s1IKHeaFfrCYbp/yWEmhpPGTXDiusdGP1r5trvebcAMIhJWqT
+ 41bnWCI29a6VKZkWJPgYdxIHBBGetfkoCMh7uSnapOYT9wyy8ueLsw7op0nMXPY7RT1u
+ 8nGjQ9sE44d4nDRomxJK8TmAdVBcay1NnNRU2xeC4+WmJpudjfFgZcH7RDg3f0H0ncrl
+ MFew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1775771594; x=1776376394;
+ d=1e100.net; s=20251104; t=1775772509; x=1776377309;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=hu81u8EXPjFrB34GvSJW9iQwsEy8qvlO31eh+EE0xPg=;
- b=be4n+lRVbAB0dsSc7y5dEWtXn7VlMC2FrGC2n3P2S4i3g3OIHCTS/cURcFNB/MPIrG
- QiJg1d+9ldJ0/aID2uVAumJY2aJ3QyT9PacE38ndDlHTrl5S31chy8hJBiIAvq6fCV++
- kp9YkwTWlWELGdBIR3+UIVYVrAdj3LKuECwYRfbxrvoobte1ShkP9YzGOiQ1Xt7YwlHQ
- gidlDc0PhV1UmyUYHgHLbC3qnU0JPjQursJuRW/16Qw2p5EhsJIWkWDMc9+Tol+IW4oB
- yhQBHUK1U33vmgDiC8VOlOy0w9xUW13oQNv2ONI9QPXi6xk02TiQ9XZgCw0GSXibzMiu
- zuqg==
+ bh=iETKg8FvpT4ZN+EK0fX3kJUj6Q9RbW2hQbNGtGbKoyw=;
+ b=tAvWGeBOaDoeva9txgjvqWA8eYM/+peud4nzFO9Q8A3LUN7g016OilZknwFp3/oeM0
+ ANKdImqvd1TbPaUYQDbNNz0op4L3CELdK5shvhZng/N8+iIzwqOVRezCAc0Lbfs+dIKn
+ v3kYZxb3ldBX0CaOdhMnrfvWRp5+awcS0RSw0CnFtBnChGqAoeROB7Db2tR7MS1T3MEb
+ it1qPxVzq4WsGKWSYwrKRvZKYWmVzhnIzrR9ozF93iLRH/fLFxoKNOKUIRT1l6ipAqbH
+ tkw+vqFJ9CdHsCICaucIIS+aNb70AzAUfUXD14x1Fp7mybFKmMoZwghJ9iQFk3cQ7pRZ
+ wvRw==
 X-Forwarded-Encrypted: i=1;
- AJvYcCVMYroUPYNzAWKklrpPmfO33L1EoAPzzdP9jEBvr7MgeXjLsAeqYXjTLTtFKpE/hC5gEvxjqVrDjqU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwAPw5Gru3JALv0v0v3i1azsxLMJZbir2eXQsyQNGXBInXsAeY/
- rWl6O7z0p8xemX+Fzg+t327o+8aseOAB3pPzzbstBhDOfuOX98FYUhO0Uqo36YuctVQm6lM70YY
- pTMrPkISEVgkFsY9r1b9iwI/++v8fnW7L4fZfaw6UN+k+hGQy7fpDVou0rrJAgCSm4NvShS8=
-X-Gm-Gg: AeBDieu2UdW03hWzAvqQioD1CmdXN4OFBbKgI8LbPUhGS6TXZ6XIuqD778AcP3pn83k
- MKxj8e135LXCVTUZ+h0zNjsz4UH6BWM4gljHnmFsqOlyLHWRFUxadn2j+azDdw9YEvWop4cdhK5
- SYHsbksySGAcfsRsRFFqwbQywfXTQs5pk0AcJR0+W2h9F+RwkboM89SRZ8N26xcfwjkJg5rPaJs
- QDXwoaaFgoKjxmsFJQWYo42z4cHk9hKpJ8YzDWmYoLpZK68RFkAqKpQo/xy/apK1j1drIgZQmJZ
- Zq+AFD3AhhUDtKj+LcCMStGvvmHH+/3UKaUrizSziz5/g0jUCTx+gfLuIm4xRbV+GCPtTZ6Qn+v
- vUKCc7xT5AHkFjdGrv5uifGiAuNz6SMCZP22pzE+cSKXccDuS2cjTzoYJju6lsbc121NAzzSpeF
- Id3bDLTBloAJSEvvO6Z85b3cuQ0NduSOcVOOU=
-X-Received: by 2002:a05:622a:9:b0:50d:7b0c:35de with SMTP id
- d75a77b69052e-50dd5c74756mr15755461cf.44.1775771593979; 
- Thu, 09 Apr 2026 14:53:13 -0700 (PDT)
-X-Received: by 2002:a05:622a:9:b0:50d:7b0c:35de with SMTP id
- d75a77b69052e-50dd5c74756mr15755051cf.44.1775771593478; 
- Thu, 09 Apr 2026 14:53:13 -0700 (PDT)
+ AJvYcCVDQGHrrYSMQIuwtH5Q+M0jETy4bUCWlT3319HLAfLNTRf3pphksqbQm7bHaMub+sqzteQ/p151WZc=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwnHrfq8pFAP7PIdXJjzwu3IFsQZDxVD/KLsvuL6yHHRvsAVKnh
+ w6yZK92I4tVOfPCVtHXyLrlGfzE+lxVhcZ6nha2J6KZ53shaJKE8cUPF2KRRSU9ggqXoeZYURuU
+ IK7TFcJ9PdcudTeTxkmtKe5aKEMKDW5xfsHnSkmd8JMd8tiCuFke9fZFyLwnHz73l6jdY9Eg=
+X-Gm-Gg: AeBDies2Ai1Fgm4j8YLN8SSscQ+Gn1zHr2XP892RLUX4ezg56RtFHPfVPBnFYuxtgQ8
+ Z3fYwhWExCAitrBw1ksKCEYv6x6GtB3e1i/8LnUaS7sStNHQSWK8HnHVRjHsgtXgCDhHEbJaWhq
+ 2PRycSYnmQsqTMfAYOwSd/kc3tBHDitAJsBsyoCLVC/sAZ+x04PIewenH5kyEyh8fRcFIA09Q7M
+ p74i9mRt5A5gvaHTazfTYLFr7zG1m9soK9YkkvQc+ksHtHU20raQxPyPbNAtP3mBqTWWjc1BSI7
+ yiLamkP7l6+W74n3+Wid8sxm/7RKStb25JXJ9DGgVJJ5CkGYg4sc0IZZt+wvZ+WB9gp4doSf4G8
+ u+Or9oORgWK9H6hbc2enrKy+EY1fmRO987PeIVCcRNgHsKiJRts8aBpf3Srot4agBKOoy05NmpK
+ M/txMk/BdJWTorMnXB0cMEH7eX+TUb0a2RiPs=
+X-Received: by 2002:a05:622a:4a88:b0:50d:8cad:2381 with SMTP id
+ d75a77b69052e-50dd5cae418mr15903381cf.54.1775772509209; 
+ Thu, 09 Apr 2026 15:08:29 -0700 (PDT)
+X-Received: by 2002:a05:622a:4a88:b0:50d:8cad:2381 with SMTP id
+ d75a77b69052e-50dd5cae418mr15902681cf.54.1775772508751; 
+ Thu, 09 Apr 2026 15:08:28 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-38e49298f1csm1971861fa.12.2026.04.09.14.53.09
+ 38308e7fff4ca-38e49567101sm2221331fa.30.2026.04.09.15.08.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 09 Apr 2026 14:53:11 -0700 (PDT)
-Date: Fri, 10 Apr 2026 00:53:08 +0300
+ Thu, 09 Apr 2026 15:08:27 -0700 (PDT)
+Date: Fri, 10 Apr 2026 01:08:24 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Kory Maincent <kory.maincent@bootlin.com>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>,
+ Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Dave Airlie <airlied@redhat.com>,
- Jesse Barnes <jbarnes@virtuousgeek.org>, Eric Anholt <eric@anholt.net>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
@@ -109,52 +107,53 @@ Cc: Jani Nikula <jani.nikula@linux.intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Chun-Kuang Hu <chunkuang.hu@kernel.org>,
- Philipp Zabel <p.zabel@pengutronix.de>,
- Matthias Brugger <matthias.bgg@gmail.com>,
- AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
- Chris Wilson <chris@chris-wilson.co.uk>,
- Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
- Simona Vetter <simona.vetter@ffwll.ch>
-Subject: Re: [PATCH RFC 09/12] drm: Introduce drmm_connector_dp_init() with
- link training state properties
-Message-ID: <gmaxonri7y3k43pxsnxfnd23mydgrwsw2322v6m4yjoksqm7aj@4ehgvhzg2ubb>
-References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
- <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
+ Sandy Huang <hjc@rock-chips.com>,
+ Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
+ Jonathan Corbet <corbet@lwn.net>,
+ Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org
+Subject: Re: [PATCH v12 04/25] drm/bridge: Act on the DRM color format property
+Message-ID: <edeq6wxmwzvovfoo6pvih6dybwszf3tahg7nvqkjrw3qxllbfd@jwejh2sgb5eh>
+References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
+ <20260409-color-format-v12-4-ce84e1817a27@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA5MDIwMiBTYWx0ZWRfX0ngw1qKDEAK+
- 0xWHXNrPc0s5r5XxqG/c/0H/3j/y9fqP/385wyCweEV0sHGyuGqKg0ieB7zdZflZKM7rRrHxhCN
- pMIncutV7ynpdmM5DpSmQBAXLb5U3MxAjdqREFcVSLkx8joT20HjHaGL60ufb8HMmvj+pUdn4jC
- DfIZxi1ugi/K8FJB0BSo1RJXBPIzUnPZPtxPDthrX4Vb9vZ4puqb9/zeQ8TL/3uNkA3wZ0XcP6C
- DI4REUG0K4+DpEorqSmL5p4HJPGMVSn5omfEmWb0mg7XNpEHXTv7oOyTeXL0J6/hunCuawac8Zl
- W8/HEMCENIN/xWC/PATbU0jsBGPBpzzB5CxBWkyPM/acuPfO3gXDv4EhXi06JdxB6IsPAm1LQIB
- fWtQJ9rdnXovnQbUbFYvYZtUg9SieKv1zwjSpOEEAwSaSfCFSg+sfpd1GNoYC9lQatGvsq1w9n5
- w8dhrvCXZxHEzxS1YMw==
-X-Authority-Analysis: v=2.4 cv=eOcjSnp1 c=1 sm=1 tr=0 ts=69d81fca cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260409-color-format-v12-4-ce84e1817a27@collabora.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA5MDIwNCBTYWx0ZWRfXxs4L+xnvow7c
+ 0FHgApNB4HWSnjdkxHPp4VEMiXmpCroLGJSUEdoXGjS+BVQuyLrZ8JFsEdz4GDP+WSQbweTlg12
+ bvo8AKdQ4NJaKtbUQcrnwMK4Us9n19lugfacy+l1jIFTnSc8y00mrlpflp0VDw5nL7e2zRkZG4j
+ n4JfbHqx4drlhBWW7+Eh2yBKKQ0emG0OLJtuIfiiVRqxEnjW0uuly4Vz5aBuUKgUarSfDPwFGJX
+ PH5pmvDXzrILD0fCNfVN5dZDRiFaLStY363rMrFRl6dx/WmLghRpIFYG85UHo+LZUAavmMgySou
+ A+/vXZ0TPBY/hBaxuPqVsVLAxAwwmYVkTaTR/KkqyW3fJoLMBwz2qa5QWjaYH1XDnuxNg0lUJr1
+ coaOTAzzcBEKYdPWI0SvNH0asUsl7c1lxI0yAETHbBlAoby580qaC64S9PsFdSqAfeI8LmBY0GK
+ js5ADMzAFCsdo2o7WeA==
+X-Proofpoint-GUID: CBuKNQlAcPK9gQR_f_hU_KEAvHVwuzrY
+X-Proofpoint-ORIG-GUID: CBuKNQlAcPK9gQR_f_hU_KEAvHVwuzrY
+X-Authority-Analysis: v=2.4 cv=O7YJeh9W c=1 sm=1 tr=0 ts=69d8235d cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=P-IC7800AAAA:8
- a=E-m9dlAQy1ysB7IIWEIA:9 a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
- a=d3PnA9EDa4IxuAV0gXij:22
-X-Proofpoint-GUID: pXriOSsCS15kpa-GfohXnomIPbZepsCD
-X-Proofpoint-ORIG-GUID: pXriOSsCS15kpa-GfohXnomIPbZepsCD
+ a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=QX4gbG5DAAAA:8
+ a=NxoPbATI1rPzGprmJi8A:9 a=CjuIK1q_8ugA:10 a=uxP6HrT_eTzRwkO_Te1X:22
+ a=AbAUZ8qAyYyZVLSsDulk:22
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-09_04,2026-04-09_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- spamscore=0 adultscore=0 bulkscore=0 suspectscore=0 phishscore=0
- impostorscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
- malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ bulkscore=0 spamscore=0 phishscore=0 priorityscore=1501 adultscore=0
+ impostorscore=0 malwarescore=0 suspectscore=0 lowpriorityscore=0
+ clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
  route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604010000
- definitions=main-2604090202
+ definitions=main-2604090204
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -181,13 +180,13 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[35];
+	RCPT_COUNT_TWELVE(0.00)[38];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:kory.maincent@bootlin.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:airlied@redhat.com,m:jbarnes@virtuousgeek.org,m:eric@anholt.net,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:chris@chris-wilson.co.uk,m:thomas.petazzoni@bootlin.com,m:markyacoub@google.com,m:seanpaul@google.com,m:louis.chauvet@bootlin.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:simona.vetter@ffwll.ch,m:jernejskrabec@gmail.com,m:matthiasbgg@gmail.c
- om,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:j
+ ernejskrabec@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,redhat.com,virtuousgeek.org,anholt.net,kernel.org,suse.de,linaro.org,ideasonboard.com,kwiboo.se,pengutronix.de,collabora.com,chris-wilson.co.uk,bootlin.com,google.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
@@ -203,156 +202,168 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oss.qualcomm.com:dkim,bootlin.com:email,qualcomm.com:dkim]
-X-Rspamd-Queue-Id: 5E0A63D00C3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,collabora.com:email,oss.qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: C59663D01C4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 09, 2026 at 07:08:25PM +0200, Kory Maincent wrote:
-> Add a managed DisplayPort connector initialization helper,
-> drmm_connector_dp_init(), modeled after the existing HDMI counterpart
-> drmm_connector_hdmi_init(). Cleanup is handled automatically via a
-> DRM-managed action.
+On Thu, Apr 09, 2026 at 05:44:54PM +0200, Nicolas Frattaroli wrote:
+> The new DRM color format property allows userspace to request a specific
+> color format on a connector. In turn, this fills the connector state's
+> color_format member to switch color formats.
 > 
-> The helper creates the following immutable connector properties to expose
-> DP link training capabilities and state to userspace:
+> Make drm_bridges consider the color_format set in the connector state
+> during the atomic bridge check. For bridges that represent HDMI bridges,
+> rely on whatever format the HDMI logic set. Reject any output bus
+> formats that do not correspond to the requested color format.
 > 
->   - num_lanes: bitmask of supported lane counts (1, 2, 4)
->   - link_rate: Array of supported link rates.
->   - dsc_en: Display Stream Compression supported
->   - voltage_swingN: per-lane voltage swing level bitmask
->   - pre-emphasisN: per-lane pre-emphasis level bitmask
+> Non-HDMI last bridges with DRM_CONNECTOR_COLOR_FORMAT_AUTO set will end
+> up choosing the first output format that functions to make a whole
+> recursive bridge chain format selection succeed.
 > 
-> Link rates are passed by the driver in deca-kbps, following the DRM
-> convention, but exposed to userspace in kbps for clarity.
-> 
-> Two additional helpers are provided to update and reset those properties
-> at runtime:
->   - drm_connector_dp_set_link_train_properties()
->   - drm_connector_dp_reset_link_train_properties()
-> 
-> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 > ---
->  drivers/gpu/drm/Makefile           |   1 +
->  drivers/gpu/drm/drm_dp_connector.c | 344 +++++++++++++++++++++++++++++++++++++
->  include/drm/drm_connector.h        |  38 ++++
->  include/drm/drm_dp_connector.h     | 109 ++++++++++++
->  4 files changed, 492 insertions(+)
+>  drivers/gpu/drm/drm_bridge.c | 89 +++++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 88 insertions(+), 1 deletion(-)
 > 
-> diff --git a/include/drm/drm_dp_connector.h b/include/drm/drm_dp_connector.h
-> new file mode 100644
-> index 0000000000000..77d2f4bb6df68
-> --- /dev/null
-> +++ b/include/drm/drm_dp_connector.h
-> @@ -0,0 +1,109 @@
-> +/* SPDX-License-Identifier: GPL-2.0-only */
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index ba80bebb5685..7c1516864d96 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -1150,6 +1150,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
+>  	return ret;
+>  }
+>  
+> +static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_connector_color_format fmt)
+> +{
+> +	if (fmt == DRM_CONNECTOR_COLOR_FORMAT_AUTO)
+> +		return true;
 > +
-> +#ifndef DRM_DP_CONNECTOR_H_
-> +#define DRM_DP_CONNECTOR_H_
+> +	switch (bus_fmt) {
+> +	case MEDIA_BUS_FMT_FIXED:
+> +		return true;
+> +	case MEDIA_BUS_FMT_RGB888_1X24:
+> +	case MEDIA_BUS_FMT_RGB101010_1X30:
+> +	case MEDIA_BUS_FMT_RGB121212_1X36:
+> +	case MEDIA_BUS_FMT_RGB161616_1X48:
+> +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_RGB444;
+> +	case MEDIA_BUS_FMT_YUV8_1X24:
+> +	case MEDIA_BUS_FMT_YUV10_1X30:
+> +	case MEDIA_BUS_FMT_YUV12_1X36:
+> +	case MEDIA_BUS_FMT_YUV16_1X48:
+> +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
+> +	case MEDIA_BUS_FMT_UYVY8_1X16:
+> +	case MEDIA_BUS_FMT_VYUY8_1X16:
+> +	case MEDIA_BUS_FMT_YUYV8_1X16:
+> +	case MEDIA_BUS_FMT_YVYU8_1X16:
+> +	case MEDIA_BUS_FMT_UYVY10_1X20:
+> +	case MEDIA_BUS_FMT_YUYV10_1X20:
+> +	case MEDIA_BUS_FMT_VYUY10_1X20:
+> +	case MEDIA_BUS_FMT_YVYU10_1X20:
+> +	case MEDIA_BUS_FMT_UYVY12_1X24:
+> +	case MEDIA_BUS_FMT_VYUY12_1X24:
+> +	case MEDIA_BUS_FMT_YUYV12_1X24:
+> +	case MEDIA_BUS_FMT_YVYU12_1X24:
+> +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
+> +	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+> +	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+> +	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
+> +	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
+> +		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
+> +	default:
+> +		return false;
+> +	}
+> +}
 > +
-> +#include <drm/drm_connector.h>
-> +
-> +#define DRM_DP_1LANE	BIT(0)
-> +#define DRM_DP_2LANE	BIT(1)
-> +#define DRM_DP_4LANE	BIT(2)
-> +#define DRM_NLANES_MASK (DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE)
-> +#define DRM_DP_VOLTAGE_SWING_LEVEL_0 BIT(0)
-> +#define DRM_DP_VOLTAGE_SWING_LEVEL_1 BIT(1)
-> +#define DRM_DP_VOLTAGE_SWING_LEVEL_2 BIT(2)
-> +#define DRM_DP_VOLTAGE_SWING_LEVEL_3 BIT(3)
-> +#define DRM_DP_VOLTAGE_SWING_LEVEL_MASK (DRM_DP_VOLTAGE_SWING_LEVEL_0 | \
-> +					 DRM_DP_VOLTAGE_SWING_LEVEL_1 | \
-> +					 DRM_DP_VOLTAGE_SWING_LEVEL_2 | \
-> +					 DRM_DP_VOLTAGE_SWING_LEVEL_3)
-> +#define DRM_DP_PRE_EMPH_LEVEL_0 BIT(0)
-> +#define DRM_DP_PRE_EMPH_LEVEL_1 BIT(1)
-> +#define DRM_DP_PRE_EMPH_LEVEL_2 BIT(2)
-> +#define DRM_DP_PRE_EMPH_LEVEL_3 BIT(3)
-> +#define DRM_DP_PRE_EMPH_LEVEL_MASK (DRM_DP_PRE_EMPH_LEVEL_0 | \
-> +				    DRM_DP_PRE_EMPH_LEVEL_1 | \
-> +				    DRM_DP_PRE_EMPH_LEVEL_2 | \
-> +				    DRM_DP_PRE_EMPH_LEVEL_3)
-> +
-> +/**
-> + * struct drm_connector_dp_link_train_caps - DRM DisplayPort link training
-> + * capabilities
+>  /*
+>   * This function is called by &drm_atomic_bridge_chain_check() just before
+>   * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
+> @@ -1193,6 +1234,7 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
+>  	struct drm_encoder *encoder = bridge->encoder;
+>  	struct drm_bridge_state *last_bridge_state;
+>  	unsigned int i, num_out_bus_fmts = 0;
+> +	enum drm_connector_color_format fmt;
+>  	u32 *out_bus_fmts;
+>  	int ret = 0;
+>  
+> @@ -1234,13 +1276,58 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
+>  			out_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
+>  	}
+>  
+> +	/*
+> +	 * On HDMI connectors, use the output format chosen by whatever does the
+> +	 * HDMI logic. For everyone else, just trust that the bridge out_bus_fmts
+> +	 * are sorted by preference for %DRM_CONNECTOR_COLOR_FORMAT_AUTO, as
+> +	 * bus_format_is_color_fmt() always returns true for AUTO.
+> +	 */
+> +	if (last_bridge->type == DRM_MODE_CONNECTOR_HDMIA) {
 
-Those are not just link training caps. It is more like DP link caps.
-They make sense to be a part of the DP-related drm_connector part.
+I still think this is misplaced (and misidentified). Consider HDMI
+bridge being routed to the DVI-D connector. The last bridge would have
+different type, but the HDMI-specific logic must still be applied. The
+bridge must use RGB444, but it must be handled in a generic way.
 
-> + */
-> +struct drm_connector_dp_link_train_caps {
-> +	/**
-> +	 * @nlanes: Bitmask of lanes number supported
-> +	 */
-> +	u8 nlanes;
-> +
-> +	/**
-> +	 * @nrates: Number of link rates supported
-> +	 */
-> +	u32 nrates;
-> +
-> +	/**
-> +	 * @rates: Array listing the supported link rates in deca-kbps
-> +	 */
-> +	const u32 *rates;
-> +
-> +	/**
-> +	 * @dsc: Display Stream Compression supported
-> +	 */
-> +	bool dsc;
-> +
-> +	/**
-> +	 * @v_swings: Bitmask of voltage swing level supported
-> +	 */
-> +	u8 v_swings;
-> +
-> +	/**
-> +	 * @pre_emphs: Bitmask of pre-emphasis level supported
-> +	 */
-> +	u8 pre_emphs;
-> +};
-> +
-> +/**
-> + * struct drm_connector_dp_link_train - DRM DisplayPort link training
-> + * information report
-> + */
-> +struct drm_connector_dp_link_train {
+Or other way around, a DVI bridge being routed through the HDMI
+connector (thinking about PandaBoard here). The combo should not go
+through the HDMI-specific color format selection although the last
+bridge in the chanin is the HDMI-A bridge.
 
-THese define the current DP state. As such, they definitely make sense
-to be a part of the drm_connector.
-> +	/**
-> +	 * @nlanes: The number of lanes used
-> +	 */
-> +	u8 nlanes;
-> +
-> +	/**
-> +	 * @rates: Link rate value selected in deca-kbps
-> +	 */
-> +	u32 rate;
-> +
-> +	/**
-> +	 * @dsc: Display Stream Compression enabled
-> +	 */
-> +	bool dsc_en;
-> +
-> +	/**
-> +	 * @v_swings: Array listing the bitmask voltage swing level per lanes
-> +	 */
-> +	u8 v_swing[4];
-> +
-> +	/**
-> +	 * @pre_emph: Array listing the bitmask pre-emphasis level per lanes
-> +	 */
-> +	u8 pre_emph[4];
+I think all these cases should be handled by the connector, which knows
+if there is an OP_HDMI bridge in the chain or not.
 
-Please consider following struct phy_configure_opts_dp (or using it as
-is). Overall, please refer the talk and (more important) the lightning
-resumee at this XDC. I have some bits and pieces ready in spite of that
-proposal, but I didn't have time to finish it.
-
-> +};
+> +		drm_dbg_kms(last_bridge->dev,
+> +			    "HDMI bridge requests format %s\n",
+> +			    drm_hdmi_connector_get_output_format_name(
+> +				    conn_state->hdmi.output_format));
+> +		switch (conn_state->hdmi.output_format) {
+> +		case DRM_OUTPUT_COLOR_FORMAT_RGB444:
+> +			fmt = DRM_CONNECTOR_COLOR_FORMAT_RGB444;
+> +			break;
+> +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
+> +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
+> +			break;
+> +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
+> +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
+> +			break;
+> +		case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
+> +			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
+> +			break;
+> +		default:
+> +			ret = -EINVAL;
+> +			goto out_free_bus_fmts;
+> +		}
+> +	} else {
+> +		fmt = conn_state->color_format;
+> +		drm_dbg_kms(last_bridge->dev, "Non-HDMI bridge requests format %d\n", fmt);
+> +	}
 > +
+>  	for (i = 0; i < num_out_bus_fmts; i++) {
+> +		if (!bus_format_is_color_fmt(out_bus_fmts[i], fmt)) {
+> +			drm_dbg_kms(last_bridge->dev,
+> +				    "Skipping bus format 0x%04x as it doesn't match format %d\n",
+> +				    out_bus_fmts[i], fmt);
+> +			ret = -ENOTSUPP;
+> +			continue;
+> +		}
+>  		ret = select_bus_fmt_recursive(bridge, last_bridge, crtc_state,
+>  					       conn_state, out_bus_fmts[i]);
+> -		if (ret != -ENOTSUPP)
+> +		if (ret != -ENOTSUPP) {
+> +			drm_dbg_kms(last_bridge->dev,
+> +				    "Found bridge chain ending with bus format 0x%04x\n",
+> +				    out_bus_fmts[i]);
+>  			break;
+> +		}
+>  	}
+>  
+> +out_free_bus_fmts:
+>  	kfree(out_bus_fmts);
+>  
+>  	return ret;
+> 
+> -- 
+> 2.53.0
+> 
 
 -- 
 With best wishes
