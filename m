@@ -2,165 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +Dw4C6GA12kLPAgAu9opvQ
+	id 4K0dCZGB12kLPAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:34:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:38:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ED8A3C92F7
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C55B63C9373
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:38:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7267710E77F;
-	Thu,  9 Apr 2026 10:34:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 823CE10E790;
+	Thu,  9 Apr 2026 10:38:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="ROs+sTC1";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n2Uv4BRW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CY7PR03CU001.outbound.protection.outlook.com
- (mail-westcentralusazon11010052.outbound.protection.outlook.com
- [40.93.198.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F25CC10E77E;
- Thu,  9 Apr 2026 10:34:04 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Aj41T+MasDm+PckCkTO2FVWfziedezJk/EATK2jgQbJmM8IFy5jnT7vu9VJeM/vkkRFCEdUOY4L3j/M91+Q4ppusUlLVT7XfPwNqnjVS0d8B78Sdkpc+SBf7+G+bRb79YN+W+rv4pLSvWHHkfZo0zhGPYFbMLjKqohfWbk1Fk3Yewri6A3FM9xWMCykrRNxgoQ1C9l3xkBRbtKyIFWcjd4ShO9Z0DnZR+FI/hlWuPjB6ivXqn91diXBylDfmJtfsBCvTOSGwVs/gfQG+QTHUD42HImSl95J+U8bOrFGlxnjU8w1feJzGBTaKu0qV7N4t2vUBd1vIkmBVFQdVMp2FjQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IQVke9bmsoOzK9pErtklZWx+xoiN/1OTuXeK2LhlYG0=;
- b=Dluaf5j8f3hn0igmoB4uOGiJeodUCxJeaM78vCQr0316bQPhNvKf90ErsqMC7s2CeNuRc8efHi0RGjQ9Ctp3zl0nsfaBKX8fexIF/CnLKig+XFEsX3O94RSf9XdwlGWst4BGBSzLb6yuEFunCZXCoYHpWW+iC3HaxnrEQWk7DX9763YtmdGfsaCc8QJI88P/xaiakKi4s1cQumlhNH42RGEMQrGtJElvOxYQ3yJa19SlrEyVw1VWJcdLk6mScQsulro7zYT23T4enqfAfOutD+Y7V/82aPDQ+F7Kxs71ytfY2SxA1LNrOaW1Fo33y8aNoRoW5m6R8uTVk1q9ODDXsA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IQVke9bmsoOzK9pErtklZWx+xoiN/1OTuXeK2LhlYG0=;
- b=ROs+sTC1xDLMzFebUuPc3dU9C42/1CBdzqZp5h9/KcFGKPhemkjP6TkdcGW1FZIZ9U9uHQEkL/6jXwrgHh1q3h5folDx916Fda2QkDA+uKeiGzRFlR9fcH9hd5zPJomkyLKfS8HERouiZrMIhF7dgnexdeMNmtmevJFlKZBoOYkcAtiOPFeNZz0JXKj1sfOO6Aj3Ek6Hm1gBuh09xFfES51ItfM650MOIAcGeSilHsIHSHTlVuDe1ZjroAKCoj6zwVq5/AnUgudKS6OlaLquxqleo+cygfJ9InwZdEhFWKDBmjICMmGknyFXMr9qI4T3mJnZGLCb/UcD0nDc1fL9QQ==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- MW6PR12MB8999.namprd12.prod.outlook.com (2603:10b6:303:247::8) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9769.17; Thu, 9 Apr 2026 10:34:00 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Thu, 9 Apr 2026
- 10:33:59 +0000
-Date: Thu, 9 Apr 2026 06:33:57 -0400
-From: Joel Fernandes <joelagnelf@nvidia.com>
-To: John Hubbard <jhubbard@nvidia.com>
-Cc: Joel Fernandes <joelagnelf@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, linux-kernel@vger.kernel.org,
- Miguel Ojeda <ojeda@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Gary Guo <gary@garyguo.net>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>,
- dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
- Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Vivi Rodrigo <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Rui Huang <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
- Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
- Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
- Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>,
- Alexey Ivanov <alexeyi@nvidia.com>, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-Message-ID: <1775730646.3752.4760@nvidia.com>
-References: <42dd707f-e23a-4725-8b6f-08ca346b0143@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <42dd707f-e23a-4725-8b6f-08ca346b0143@nvidia.com>
-X-ClientProxiedBy: BL1PR13CA0186.namprd13.prod.outlook.com
- (2603:10b6:208:2be::11) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B874710E78D;
+ Thu,  9 Apr 2026 10:38:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775731083; x=1807267083;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=pUToKwWuzW4+i/wcO34uwyMMNZGsv1/eXrXOmyB6gnA=;
+ b=n2Uv4BRWyqw9rHMrjhT4Z8GzI4nW2hsITUBTuVyW4ifSKM81E44scda3
+ QDAuAtnLG9ntKnKgogAoczEcy+z0hTRBS+8tPFlBHiffJk51+EQMspwx9
+ +jykJetmyjBbXg0APmymbzzCEwVD9qNrA6jnafLh0lg7QjqDT+KhKKiq2
+ rUwprDebko/yN5Ld8+yFEkEGh02EfSdvZJ8bvaO5dN+KHUyfX3xQxP7ow
+ OHyng3J2LucNYJCx04s20aAeO3hZWwVF/+WwEPen8E8HhtdkYre7fYSUn
+ bdWfK8E7tcNeBT6LDnSFOUnFmVBWQC9NLRznFDeak5eJk+EM0aNNLqGPw Q==;
+X-CSE-ConnectionGUID: YZ2Z8jCVQKOhObFKySW8zg==
+X-CSE-MsgGUID: eZuPV7eaSQ+7x2mxfkTamA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75768000"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="75768000"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 03:38:02 -0700
+X-CSE-ConnectionGUID: Ni6X+H0mTCaVhV+54A6hzw==
+X-CSE-MsgGUID: IWHqL3UGRvGgQpU2CnNZ1w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="259181229"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.92])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 03:37:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Simona
+ Vetter <simona.vetter@ffwll.ch>, Christian =?utf-8?Q?K=C3=B6nig?=
+ <christian.koenig@amd.com>, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH 5/6] drm/i915/reset: Handle the display vs. GPU reset
+ deadlock using a custom dma-fence
+In-Reply-To: <20260408233458.22666-6-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
+ <20260408233458.22666-6-ville.syrjala@linux.intel.com>
+Date: Thu, 09 Apr 2026 13:37:56 +0300
+Message-ID: <b914af7aed6d2d19fbb12e7a4f06b705a7f597d1@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|MW6PR12MB8999:EE_
-X-MS-Office365-Filtering-Correlation-Id: b2538080-24db-47a6-b807-08de9623828b
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|7416014|56012099003|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 6Ou2V8qV0HYf2I55mkKO8pOY9sgFY6Pt7/+tVsl4Y6Knb1Dco0j/CagS3QXqEcUAy1FbLceMNIoO6UrR1zbRtW/oPqLf5cuMzx3Wny42VGJpoCbIFjHUlYN3zHQ/b4WE/RDa0nMidOX9SwFV9GEpJtvM75mT21wp0NoME/8cT6UZtTKU7tOeFrG4XtcdXA/exgKf0c+dbvo031G0YlGUY+q64S+DsEmbOkjtlqjvAY4RwEoIzhxP61Kt1xnpVfx2gFLN8FLxGQvdWosaVilE9DVihQr7Bo3vxhKlu44M3PmC1TVr7T0O0Nwfy3tsuWJbGnbbaAGe2oZowkBNxp4G0Vzrf2BGBen7o6XvVEQj1ytBp4p4wEH5D4vZXCg+5Cjt0jM9ZmXObG4njqWeuyPZMgSxEYiUmL5HJ8eKDSEmLXrkZs7OMA79zzGJ0WJV6g2+bG0nMANfzlNibjgGcKznuC5vO8XaB533jbQKGVARsRZIOA9Nohvw/Gs6zzsPFjOZIwh4U3+FHFMVD0QqqOFZYKHV7WtF6H9qTv1lMk0hs5Tbs0e9zMscrPSANxqxRJJa6ecmeZ6ZN4mjnLDbYH7dIWhfZMK6zrgzgsZwB2xcPVwpNYZ3ovxxvDP28WqVI9bnJy4WrrC3+axVdL1837QAyDDFtmdCLQiNqxJOR/Kg/HmQLDqRD8wMfq6MvoCg+Dgq2yoPpkxZf6uhAm9OxFptcLm2BdSX9WEYmIQxqESdNKg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(7416014)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UUhNd2IyMW5yd0N2MmU3VC85d0l4OVlvUWgvZFZKN0VsM1UrUVBFN2g0K0Vp?=
- =?utf-8?B?VS9yWHVHcWw5b1cyTXg4WVZZZlp5NmFiZW5ZSTRDN0VBcm5QSVc1cklRdmsr?=
- =?utf-8?B?SHhlN0tsTU4waStyL2ZoRjg3UytBTStPa2VBUVcveVhFeEt2N0U5dTk1cEdp?=
- =?utf-8?B?WnlwUkxGYXhFcE9UZUNlMkIwMGY2N2NLOWEwZjNNeDFRU0MxYm9oQ0VjeWM1?=
- =?utf-8?B?dUZmanNMNkladVZCTFVNM3BwQzdVbHBydzBIT0N2ZXRLNmJHa3F3N0NTTUgy?=
- =?utf-8?B?MEpNd1JrMDlIZUVqdllPU0NLNENEc28rRG1CZTlVSytSaS91ZDY4ZytWTW5W?=
- =?utf-8?B?WE56U2pqNUlWZHJpZ2NDTGFrc0Y0bWJ0SU9EdzZRZnhhQ3dpa1dzdnVVSzZm?=
- =?utf-8?B?TVJ6NzRVdFp1MnZCNWFDYW5WU09yTUtHd0JIbkI2UDQrS3FEdHJhZ0hQR0lX?=
- =?utf-8?B?K3R4cU1aNkRrVm1pdEIrM2sxR2hSWU1ZTGpSUHBvSGVXQ3VWM3JsL2lsaU5o?=
- =?utf-8?B?OEl5OHAzOG5DbU0wUW9NVG9uaW12SWFqZ2VzTitOMUdtYmpSS1pQdDRIZW9u?=
- =?utf-8?B?RmxVc0liYzdKOVdLTVMvN2dMMnhEVWJWYWNwYlZvVmkxd0hQeUVneSs1dGtK?=
- =?utf-8?B?WTBtRllVL1oreVV6c3Y4VFd6SnFPRUJtczBIREIxbVArditPYXY2TGQwSTlU?=
- =?utf-8?B?M3U0a0FFZlJFRG54SG14QjBDbFVSVHkwWjRJVERxV2laa2Fob3I2TnRrM1U0?=
- =?utf-8?B?NE5RVFZVZXg5NDdHUWhZOGI0NmJuTTNxRnNDekZTVlh2UXJnWG9VbzNaYkRG?=
- =?utf-8?B?VFV3NCtaeUVqQ2txOUdYQk5INGdjc0NiOFUxd0xXdjlJUEF0S2lUVTYxdVhO?=
- =?utf-8?B?Q0JEUVJDSlJDcU0rNVMxRTc2OVhnVHpvTTVLRkNIbDRMdGUzRWh4THovMEJU?=
- =?utf-8?B?dDZseklNRjVsd09Nd1RQUUlsTStaaFBpSDBkRVhlOGliQmhoY3JobENuVlV2?=
- =?utf-8?B?NVBXazJmT09wMGhkTkNhdzRVcmFVZXU5ZWNveUgxSFQ0T0lZT2p2WWVuZE1P?=
- =?utf-8?B?bnZDbUNyeG5GcjcycXFOWURMWXhyNGsxTHNiamlmSjlPSjF5RFpYVkNJTm03?=
- =?utf-8?B?SzgrdFk5SHVMbUY3RlBsbkg5Z0JjdmFEc3cxZzB5V2VvemYvMDgyenBsZ3Vj?=
- =?utf-8?B?RjY2Vm40MEpNRmF1Q3d3WDc0Z2hSVVVYTFF1Smt2bE5nS3RkVEZGaXpBUnI5?=
- =?utf-8?B?Nk9tdnQrUURUeUJUU011UDhiK1dScUsyc0VaSy90dTZ4VEYwK1RQWXpWT2lR?=
- =?utf-8?B?SGVPYXFRWmVjNUh4WEk3VXpKMm9XQWpOZnd3UmFZNEt5empYMHp2STRUMWEv?=
- =?utf-8?B?eDVCNU9vZ1ZoMFdzMkRsVlBHZENFMnFZOWh1VmlkOHNxeWFPK3B0cURIV1FQ?=
- =?utf-8?B?RDZFeUZidm8rTDRMUkViRWIxOUxBMHh3czgrSnBUVlJvMmNoM3Bzbms0eWQr?=
- =?utf-8?B?TDk2eUcwU1lHUEhtT3JodDNERHdHWk9jcnlQbXVFWTFQZmlReHd6eFpuVlNp?=
- =?utf-8?B?NG9mRENmSGFTYnB3QkpmZWl5bXJGUEw1MFcxeEJRTFlCWmNxQktyNU9ycUVP?=
- =?utf-8?B?UUhNRzh3Um9YWW5CZm9VY3ZuclA0WnVwQlVSMy9VZWd4czNqY3RyS3Q4TjlY?=
- =?utf-8?B?L3lLVnA1N0U1NzNzMWhMSXhYRCtLY2ZJbkFEZEU4cFk1cno3UDAzL3RVK0oz?=
- =?utf-8?B?SjB3L3FSaGNrYWtXRkRYNGpoWmJSMmtwR1Ivd0hON1pFSTNGTjZCdllTQXpJ?=
- =?utf-8?B?SUF2VjdaeTI5RlcrYzhMSW5sa0htZDNWRWlremR3YWl0R3JaRHRBM1VpaHkv?=
- =?utf-8?B?dVoyc09sTDIrMDBUcnpLUzcwb3VKemNDMTdkNHNmUjJGbmZMNFBYOWRsWmZy?=
- =?utf-8?B?S2IrZGpyZ3NwNGRoaUZDZWVQMjAzRFNuSFl0Ukw2VkhqMEFSTGJLZC9LdGg2?=
- =?utf-8?B?cWExZGxyNWJDUkh2VVpldk5vTys1YVFoUU11czlMaTZhZXQvS1RMSXo3MENo?=
- =?utf-8?B?SFI4SmErd2I3ZzFOeXZrc3lYV3k5T0REOGl4bEkrVGx2NzRMYUpxeDloVWR6?=
- =?utf-8?B?eHIwUExHem5KOVBVdUxjbExMZ0ZpaUtpQUdpZFl3bnBuQ1BsaHh6RnBYbFpY?=
- =?utf-8?B?cDJCekpncXNzdUZyQWVGdy80QkxRK2VJSmFHOTRCcnZqc1d1QUtkOFpDdVdG?=
- =?utf-8?B?YlQzc2ZJSHQ1NFQzaU5NVkx4T0R3Mm42dW1WdEcxdlo1Mm9NREYxc1VrRnRK?=
- =?utf-8?B?aFI2Q3dVWnAxNjZwYVp1STFoYWR1bFcrV3A5a3UxTXZ1NlA2L1ZUdz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b2538080-24db-47a6-b807-08de9623828b
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 10:33:59.4428 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: mk8zZhOumboQNlAZU95U0lf/nA8l2sZPBw2WKjYU/Xl9MtlMf+bCk5zTajDt7NitviWH5TFioEKYfUyhr8ox1w==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW6PR12MB8999
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,124 +81,342 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[nvidia.com,vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[nvidia.com:email,nvidia.com:mid,Nvidia.com:dkim]
-X-Rspamd-Queue-Id: 5ED8A3C92F7
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
+X-Rspamd-Queue-Id: C55B63C9373
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-> On Apr 8, 2026, at 7:13 PM, John Hubbard <jhubbard@nvidia.com> wrote:
-> 
-> ﻿On 4/8/26 9:58 AM, Joel Fernandes wrote:
->>> On 4/8/2026 9:26 AM, Eliot Courtney wrote:
->>> On Tue Apr 7, 2026 at 10:59 PM JST, Joel Fernandes wrote:
->>>> On 4/7/2026 9:42 AM, Eliot Courtney wrote:
->>>>> On Tue Apr 7, 2026 at 6:55 AM JST, Joel Fernandes wrote:
-> ...>> [1]: https://github.com/Edgeworth/linux/commits/review/nova-mm-v10/
->> First, thanks for the effort. I looked through this, its pretty much what I
->> had before when I used traits. I don't think it is better to be honest. In
->> fact your version is worse, it adds many new types and things like the
->> following which I did not need before.
-> 
-> Hi Joel and all,
-> 
-> I also looked through Eliot's above attempt carefully, and actually
-> liked it a lot (sorry! haha):
-> 
-> * It cleans up the code. The initial working version was readable, but
->  also had lots of noise on the screen: match statements and pairs of
->  v2/v3 statements.
-> 
->  And interestingly, the mmu_version was, in effect, sporadically
->  implementing a Trait-based approach. But because it is custom,
->  readers don't benefit as much as they would with Traits, which
->  tell you immediately how things are structured.
-> 
-> Joel, I am passionately in agreement with your principles: code must
-> be readable on the screen.
-> 
-> In this case, though, Traits make considerably more readable,
-> especially if one makes the very reasonable assumption that readers are
-> thoroughly accustomed to dealing with Rust traits.
-> 
->> 
->> To put it mildly, the following suggestion should not be anywhere near my code:
->> 
-> 
-> lol I understand, believe me. But this is short and not too bad, really.
-> 
->> /// Type-erased MMU-specific [`Vmm`] implementations.
-> 
-> Type erasure remains a semi-exotic thing, IMHO. As such, another
-> sentence to elaborate on this would be a nice touch.
-> 
->> enum VmmInner {
->>    /// `Vmm` implementation for MMU v2.
->>    V2(VmmImpl<MmuV2>),
->>    /// `Vmm` implementation for MMU v3.
->>    V3(VmmImpl<MmuV3>),
->> }
->> 
->> /// MMU-specific [`Vmm`] implementation.
->> struct VmmImpl<M: Mmu> {
->> 
->> Seriously, I have to pass on this. :-)
->> 
->> And, you unfortunately seem to have ignored my point about requiring 4 NEW
->> traits (Mmu, PteOps, PdeOps, DualPdeOps etc), which I did not need before.
->> So you're making the code much much worse than before actually. We don't
->> new traits and types pointlessly.
-> 
-> They are not pointless.
-> 
-> However! What I think would be nice is: do a new v11 with approximately
-> this approach, and then we can beat it into being as readable as
-> possible.
+On Thu, 09 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> The old display vs. GPU reset deadlock is back more or less.
+> The old (working) solution to the problem was originally
+> introduced in commit 9db529aac938 ("drm/i915: More surgically
+> unbreak the modeset vs reset deadlock"), but it got nuked with
+> commit d59cf7bb73f3 ("drm/i915/display: Use dma_fence interfaces
+> instead of i915_sw_fence").
+>
+> Apparently no one looked hard enough to see that things didn't
+> work quite properly anymore. What is still saving us for the most
+> part is that we have a timeout on the fence wait
+> (CONFIG_DRM_I915_FENCE_TIMEOUT, 10 seconds by default). But
+> people are perhaps trying to get rid of that so we may need
+> another solution, and 10 seconds is a bit slow.
+>
+> Re-solve the problem yet again with a custom dma-fence that gets
+> signaled just prior to a GPU reset, and have the atomic commit wait
+> for either that or the real fence using dma_fence_wait_any_timeout().
+> Whichever signals first will let the commit proceed. We create a new
+> "reset fence" whenever someone needs one, and keep it until the next
+> GPU reset has completed. After that the next guy will again get a
+> fresh unsignaled "reset fence".
+>
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Since it is 3 against 1 here, I rest my case :-). I am still in
-disagreement since I do not see much benefit (that is why I said
-pointless above). Actually it is not even about readability, that is
-subjective (and I haven’t heard most people say parametrizing code for
-the sake of it makes it more readable anyway). It is that the code gen
-is worse, and the complexity is just moved to a higher level in the
-code, not removed. So what are we getting out of this really, other than
-more boiler plate in higher layers of the code that did not exist
-before? Not performance, not better generated code. Really nothing. See
-all the data points in my previous reply.
+This all makes sense to me, but I'd like to solicit addition review from
+Simona, Christian and/or Maarten.
 
-Note that if the mmu version threading bothers everyone so much, we can
-also pass down chipset instead and let the walker deal with determining
-versioning. Would that be better?
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-But otherwise and since you guys asked, here comes a parameterized v11... ;-).
-  (Coming next week since this week I’m working on IRQ handling).
+> ---
+>  drivers/gpu/drm/i915/display/intel_display.c  | 34 +++++---
+>  .../gpu/drm/i915/display/intel_display_core.h |  6 ++
+>  .../drm/i915/display/intel_display_driver.c   |  5 ++
+>  .../drm/i915/display/intel_display_reset.c    | 77 +++++++++++++++++++
+>  .../drm/i915/display/intel_display_reset.h    |  4 +
+>  drivers/gpu/drm/xe/Makefile                   |  1 +
+>  6 files changed, 117 insertions(+), 10 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
+rm/i915/display/intel_display.c
+> index 58a654ca0d20..83ccf13c4b16 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -72,6 +72,7 @@
+>  #include "intel_display_driver.h"
+>  #include "intel_display_power.h"
+>  #include "intel_display_regs.h"
+> +#include "intel_display_reset.h"
+>  #include "intel_display_rpm.h"
+>  #include "intel_display_types.h"
+>  #include "intel_display_utils.h"
+> @@ -7149,22 +7150,35 @@ static void skl_commit_modeset_enables(struct int=
+el_atomic_state *state)
+>=20=20
+>  static void intel_atomic_commit_fence_wait(struct intel_atomic_state *in=
+tel_state)
+>  {
+> -	struct drm_plane *plane;
+> +	struct intel_display *display =3D to_intel_display(intel_state);
+>  	struct drm_plane_state *new_plane_state;
+> -	long ret;
+> +	struct dma_fence *reset_fence;
+> +	struct drm_plane *plane;
+>  	int i;
+>=20=20
+> +	reset_fence =3D intel_display_reset_fence_get(display);
+> +
+>  	for_each_new_plane_in_state(&intel_state->base, plane, new_plane_state,=
+ i) {
+> -		if (new_plane_state->fence) {
+> -			ret =3D dma_fence_wait_timeout(new_plane_state->fence, false,
+> -						     i915_fence_timeout());
+> -			if (ret <=3D 0)
+> -				break;
+> +		struct dma_fence *fences[2] =3D {
+> +			[0] =3D new_plane_state->fence,
+> +			[1] =3D reset_fence,
+> +		};
+> +		long ret;
+>=20=20
+> -			dma_fence_put(new_plane_state->fence);
+> -			new_plane_state->fence =3D NULL;
+> -		}
+> +		if (!new_plane_state->fence)
+> +			continue;
+> +
+> +		ret =3D dma_fence_wait_any_timeout(fences, reset_fence ? 2 : 1, false,
+> +						 i915_fence_timeout(), NULL);
+> +		if (ret <=3D 0)
+> +			break;
+> +
+> +		dma_fence_put(new_plane_state->fence);
+> +		new_plane_state->fence =3D NULL;
+>  	}
+> +
+> +	if (reset_fence)
+> +		dma_fence_put(reset_fence);
+>  }
+>=20=20
+>  static void intel_atomic_dsb_wait_commit(struct intel_crtc_state *crtc_s=
+tate)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/=
+gpu/drm/i915/display/intel_display_core.h
+> index 9e77003addd0..6687b658c51d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+> @@ -556,6 +556,12 @@ struct intel_display {
+>  		unsigned long mask;
+>  	} quirks;
+>=20=20
+> +	struct {
+> +		/* protects reset.fence */
+> +		struct mutex mutex;
+> +		struct dma_fence *fence;
+> +	} reset;
+> +
+>  	struct {
+>  		/* restore state for suspend/resume and display reset */
+>  		struct drm_atomic_state *modeset_state;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/driver=
+s/gpu/drm/i915/display/intel_display_driver.c
+> index 23bfecc983e8..fcd31722c731 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -34,6 +34,7 @@
+>  #include "intel_display_driver.h"
+>  #include "intel_display_irq.h"
+>  #include "intel_display_power.h"
+> +#include "intel_display_reset.h"
+>  #include "intel_display_types.h"
+>  #include "intel_display_utils.h"
+>  #include "intel_display_wa.h"
+> @@ -257,6 +258,8 @@ int intel_display_driver_probe_noirq(struct intel_dis=
+play *display)
+>=20=20
+>  	intel_mode_config_init(display);
+>=20=20
+> +	intel_display_reset_fence_init(display);
+> +
+>  	ret =3D intel_cdclk_init(display);
+>  	if (ret)
+>  		goto cleanup_wq_unordered;
+> @@ -584,6 +587,8 @@ void intel_display_driver_remove(struct intel_display=
+ *display)
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+>=20=20
+> +	intel_display_reset_fence_discard(display);
+> +
+>  	flush_workqueue(display->wq.flip);
+>  	flush_workqueue(display->wq.modeset);
+>  	flush_workqueue(display->wq.cleanup);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers=
+/gpu/drm/i915/display/intel_display_reset.c
+> index ca15dc18ef0f..80dd2ea8a0c2 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_reset.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+> @@ -3,6 +3,8 @@
+>   * Copyright =C2=A9 2023 Intel Corporation
+>   */
+>=20=20
+> +#include <linux/dma-fence.h>
+> +
+>  #include <drm/drm_atomic_helper.h>
+>  #include <drm/drm_print.h>
+>=20=20
+> @@ -16,6 +18,72 @@
+>  #include "intel_hotplug.h"
+>  #include "intel_pps.h"
+>=20=20
+> +static const char *intel_display_reset_fence_get_driver_name(struct dma_=
+fence *fence)
+> +{
+> +	return "intel_display";
+> +}
+> +
+> +static const char *intel_display_reset_fence_get_timeline_name(struct dm=
+a_fence *fence)
+> +{
+> +	return "reset";
+> +}
+> +
+> +static const struct dma_fence_ops intel_display_reset_fence_ops =3D {
+> +	.get_driver_name =3D intel_display_reset_fence_get_driver_name,
+> +	.get_timeline_name =3D intel_display_reset_fence_get_timeline_name,
+> +};
+> +
+> +static void intel_display_reset_create(struct intel_display *display)
+> +{
+> +	struct dma_fence *fence;
+> +
+> +	fence =3D kzalloc_obj(*fence);
+> +	if (!fence)
+> +		return;
+> +
+> +	dma_fence_init(fence, &intel_display_reset_fence_ops, NULL, 0, 0);
+> +
+> +	display->reset.fence =3D fence;
+> +}
+> +
+> +struct dma_fence *intel_display_reset_fence_get(struct intel_display *di=
+splay)
+> +{
+> +	struct dma_fence *fence;
+> +
+> +	mutex_lock(&display->reset.mutex);
+> +
+> +	if (!display->reset.fence)
+> +		intel_display_reset_create(display);
+> +
+> +	fence =3D display->reset.fence;
+> +	if (fence)
+> +		dma_fence_get(fence);
+> +
+> +	mutex_unlock(&display->reset.mutex);
+> +
+> +	return fence;
+> +}
+> +
+> +void intel_display_reset_fence_discard(struct intel_display *display)
+> +{
+> +	struct dma_fence *fence;
+> +
+> +	mutex_lock(&display->reset.mutex);
+> +
+> +	fence =3D display->reset.fence;
+> +	if (fence)
+> +		dma_fence_put(fence);
+> +
+> +	display->reset.fence =3D NULL;
+> +
+> +	mutex_unlock(&display->reset.mutex);
+> +}
+> +
+> +void intel_display_reset_fence_init(struct intel_display *display)
+> +{
+> +	mutex_init(&display->reset.mutex);
+> +}
+> +
+>  bool intel_display_reset_supported(struct intel_display *display)
+>  {
+>  	return HAS_DISPLAY(display);
+> @@ -31,8 +99,15 @@ void intel_display_reset_prepare(struct intel_display =
+*display)
+>  {
+>  	struct drm_modeset_acquire_ctx *ctx =3D &display->restore.reset_ctx;
+>  	struct drm_atomic_state *state;
+> +	struct dma_fence *reset_fence;
+>  	int ret;
+>=20=20
+> +	reset_fence =3D intel_display_reset_fence_get(display);
+> +	if (reset_fence) {
+> +		dma_fence_signal(reset_fence);
+> +		dma_fence_put(reset_fence);
+> +	}
+> +
+>  	/*
+>  	 * Need mode_config.mutex so that we don't
+>  	 * trample ongoing ->detect() and whatnot.
+> @@ -110,6 +185,8 @@ void intel_display_reset_finish(struct intel_display =
+*display, bool test_only)
+>=20=20
+>  	drm_atomic_state_put(state);
+>  unlock:
+> +	intel_display_reset_fence_discard(display);
+> +
+>  	drm_modeset_drop_locks(ctx);
+>  	drm_modeset_acquire_fini(ctx);
+>  	mutex_unlock(&display->drm->mode_config.mutex);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers=
+/gpu/drm/i915/display/intel_display_reset.h
+> index a8aa7729d33f..c36a075c6b4d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_reset.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
+> @@ -10,6 +10,10 @@
+>=20=20
+>  struct intel_display;
+>=20=20
+> +struct dma_fence *intel_display_reset_fence_get(struct intel_display *di=
+splay);
+> +void intel_display_reset_fence_discard(struct intel_display *display);
+> +void intel_display_reset_fence_init(struct intel_display *display);
+> +
+>  bool intel_display_reset_supported(struct intel_display *display);
+>  bool intel_display_reset_test(struct intel_display *display);
+>  void intel_display_reset_prepare(struct intel_display *display);
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index 110fef511fe2..1a85dfe457f0 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -262,6 +262,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) +=3D \
+>  	i915-display/intel_display_power.o \
+>  	i915-display/intel_display_power_map.o \
+>  	i915-display/intel_display_power_well.o \
+> +	i915-display/intel_display_reset.o \
+>  	i915-display/intel_display_rpm.o \
+>  	i915-display/intel_display_rps.o \
+>  	i915-display/intel_display_trace.o \
 
-thanks,
-
--- 
-Joel Fernandes
+--=20
+Jani Nikula, Intel
