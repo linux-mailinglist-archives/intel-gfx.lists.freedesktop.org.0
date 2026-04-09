@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kIPPMPnJ12k/TAgAu9opvQ
+	id SOPrKQTK12lmTAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6AAF73CD033
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 594BB3CD04B
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D993810E853;
-	Thu,  9 Apr 2026 15:47:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 86BCF10E85C;
+	Thu,  9 Apr 2026 15:47:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="i/Ob1r1C";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="GSs4aa8W";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB00110E853;
- Thu,  9 Apr 2026 15:47:02 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775749612; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9A6C810E858;
+ Thu,  9 Apr 2026 15:47:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1775749620; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=k5wsHZqs8L+oKRgVRkY8cPiIOySNMwHwWkx4c0922ZaauxvbHMFPU9pbeeexvl/BIofV5KA+Y04brvzxKTwE3ZaZqutVb8m3QyN5ik0ziYMZS9m8ATlDGEVLgZC4yxQWLaPjghi12txbQfcjFzJEx/5aRii+kfmO6H1E7gZf/5A=
+ b=PfSvNDqPTOW5HR6YFgQ1f/uXqn3o0m4gUq1MJ91oB/Q6aPSNZ6OxxW7VkflnmpYij4DGoSy5hkoCcB+ys9kpCjsvTkdTfqMHr1jZ3AAbgNWM3bjp5L9Cn0NbLigrwu3+eyeigUtjkfQs4lKH3eY1sPVDu351wnxk5ug0bwi8fAg=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775749612;
+ s=zohoarc; t=1775749620;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=I6mnIoMwQGSuHjHjLVfRnXnzAB6xS7ZmlkuOJOt+Ckg=; 
- b=bw7dZk18klANxrdlYQ33B1dnq81pbOWKx4zFCQYROK8pacU4JMvvd5vXGLGZeBM1sSF+l7jhHRyIIXt9zxLqvoNkcacBP1cMbImwoOrBN4jRUvdCqrU4cfqSH90meCZLBwKq1rB14m5fdEToBItnyVnzzDzrK991zcXNB3tVy5g=
+ bh=be7cudcJCQUyOVOHwo1ND08VirjduJEwXA0KoZoROB4=; 
+ b=girSe+hBV+uYDWnauh+5foeXdhuIhp7Bi/wBEVPMQgXESmEqo6gX0vLhuMYIb2YBEGfWNAWk+urj8VIcLfoh2cR/GdYDcrZ2qu+PDJ6XHx4X+Dte5Xx0r0zxwhRFYeZgJ7ofh402vWBJDeaztyAYftHRX0UirPARpxTnEWMYX+w=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749612; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749620; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=I6mnIoMwQGSuHjHjLVfRnXnzAB6xS7ZmlkuOJOt+Ckg=;
- b=i/Ob1r1CUogmn8cyQXldTZMcHG0YKvmwzRswzISCIRtBwWqPUsfEXewpEU01egsQ
- Ji1xsGGKx7C/y0BUI5glB8BTeVgYAeRoJNdflFEjO4ILvHAwrW6KY57I2IHCBwQR3va
- BwdqafmrcL2OH/e+vt00GjR4qhiE5fuLEH+D/kaw=
-Received: by mx.zohomail.com with SMTPS id 1775749611020224.4611688699132;
- Thu, 9 Apr 2026 08:46:51 -0700 (PDT)
+ bh=be7cudcJCQUyOVOHwo1ND08VirjduJEwXA0KoZoROB4=;
+ b=GSs4aa8Wrf+dqypuzfjulyrGpVRNqbSj4ptXEgEIGSs2P8TEvVbAb8ghV3aNh9G7
+ Y+nkYQ8N+tLRme0B2xDuf2D3OhgkTlECvnhBomJ77HmvTJoEY/cNOitd4nlZqdQ53lw
+ 9YqHsPeRTHrwJ6CF8LPCdfrRFUnSVAQSXtV5SHks=
+Received: by mx.zohomail.com with SMTPS id 1775749618896974.7402968990764;
+ Thu, 9 Apr 2026 08:46:58 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 09 Apr 2026 17:45:02 +0200
-Subject: [PATCH v12 12/25] drm/rockchip: Add YUV422 output mode constants
- for VOP2
+Date: Thu, 09 Apr 2026 17:45:03 +0200
+Subject: [PATCH v12 13/25] drm/rockchip: vop2: Add RK3576 to the RG swap
+ special case
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-color-format-v12-12-ce84e1817a27@collabora.com>
+Message-Id: <20260409-color-format-v12-13-ce84e1817a27@collabora.com>
 References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 In-Reply-To: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -113,7 +113,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.995];
+	NEURAL_HAM(-0.00)[-0.996];
 	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
 	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,163.com];
 	MID_RHS_MATCH_FROM(0.00)[];
@@ -121,41 +121,37 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
-X-Rspamd-Queue-Id: 6AAF73CD033
+X-Rspamd-Queue-Id: 594BB3CD04B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The Rockchip display controller has a general YUV422 output mode, and
-some SoC-specific connector-specific output modes for RK3576.
+Much like RK3588, RK3576 requires an RG swap to be performed for YUV444
+8-bit and YUV444 10-bit bus formats.
 
-Add them, based on the values in downstream and the TRM (dsp_out_mode in
-RK3576 TRM Part 2, register POST*_CTRL_POST_DSP_CTRL).
+Add its version to the already existing check for RK3588, so that YUV444
+output is correct on this platform.
 
+Fixes: 944757a4cba6 ("drm/rockchip: vop2: Add support for rk3576")
 Reviewed-by: Andy Yan <andyshrk@163.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_drv.h | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-index 2e86ad00979c..4705dc6b8bd7 100644
---- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-+++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
-@@ -30,10 +30,14 @@
- #define ROCKCHIP_OUT_MODE_P565		2
- #define ROCKCHIP_OUT_MODE_BT656		5
- #define ROCKCHIP_OUT_MODE_S888		8
-+#define ROCKCHIP_OUT_MODE_YUV422	9
- #define ROCKCHIP_OUT_MODE_S888_DUMMY	12
- #define ROCKCHIP_OUT_MODE_YUV420	14
- /* for use special outface */
- #define ROCKCHIP_OUT_MODE_AAAA		15
-+/* SoC specific output modes */
-+#define ROCKCHIP_OUT_MODE_YUV422_RK3576_DP	12
-+#define ROCKCHIP_OUT_MODE_YUV422_RK3576_HDMI	13
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+index 843c7ef979b2..d3b76e7e785e 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
+@@ -337,7 +337,8 @@ static bool vop2_output_uv_swap(u32 bus_format, u32 output_mode)
  
- /* output flags */
- #define ROCKCHIP_OUTPUT_DSI_DUAL	BIT(0)
+ static bool vop2_output_rg_swap(struct vop2 *vop2, u32 bus_format)
+ {
+-	if (vop2->version == VOP_VERSION_RK3588) {
++	if (vop2->version == VOP_VERSION_RK3588 ||
++	    vop2->version == VOP_VERSION_RK3576) {
+ 		if (bus_format == MEDIA_BUS_FMT_YUV8_1X24 ||
+ 		    bus_format == MEDIA_BUS_FMT_YUV10_1X30)
+ 			return true;
 
 -- 
 2.53.0
