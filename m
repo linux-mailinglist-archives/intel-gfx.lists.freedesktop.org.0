@@ -2,158 +2,162 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WEjtNcwY2GkfXggAu9opvQ
+	id 3R52DNQb2GlSXwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 23:23:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 23:36:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 339AE3CFE63
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 23:23:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7C64B3CFF72
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 23:36:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BB6A610E084;
-	Thu,  9 Apr 2026 21:23:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4FE810E091;
+	Thu,  9 Apr 2026 21:36:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HMbfLrd0";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="kOA4YSqW";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="eWKJEQxb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C36C110E084
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 21:23:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775769802; x=1807305802;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=w5xqq5UnJ8XsH0MTO1KryUZ4w15TMnYEmJ5Ork37Xw8=;
- b=HMbfLrd0BnubejRQpYfxqRCZhw0cABDcN+niALaP842zqFA/pNVMHr7V
- n7rp9/V2xbC+3C+S+ba2URXMV7bHQY84CjqI7HqAtr1e0pV00zxpEz0Yj
- AAvVthRflsmVUUnHRUWsvmrsrYvfOKH+eFhS6M/rIBvjOcANhbx7jPRZW
- KIXDC5yi7Jf7Wek68ErRJhlVmHAwi7q4MgjQAPsf6yeUdsRHlELtAaPEB
- ydWTdFNUudy6FPkZpagYu0kh1tPeGIlrKxay5wVPtCYq5PP2syNjqZ/c7
- gUPRqpIcC9G5t3b+e/CC2SxEKMS8haCCXpHwkz0jh2A8GXouTqytDMTXX g==;
-X-CSE-ConnectionGUID: ph3CpLOeS6+21gsKULkhpg==
-X-CSE-MsgGUID: IDYmgOqXTQ2dLiXIHSApAA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="76695603"
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="76695603"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 14:23:22 -0700
-X-CSE-ConnectionGUID: kfzpgzI2SluraI6wuzm6vQ==
-X-CSE-MsgGUID: pMgbRBPQRfa7sLuMF09WXw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="232966784"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 14:23:21 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 9 Apr 2026 14:23:20 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 9 Apr 2026 14:23:20 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.50) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 9 Apr 2026 14:23:19 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Xc/fghJg6WNwq0rJZkOMQl/4ya3GScw4khtumR396KeGv8iy3L3u0izffU5pCVZirPQG4g15ytUdPtYVBcJdjNvySXCwKupFWohlHS/4lEyxBEo2caaUJNZkFI+fhM+RiCbIwIb1p6HRHfc8XSdj+TLOlTdtFwPN/6JGN0f91UqQyspg1avBwekD3gr+qLf7VBLcS+q3pzcjp+PXFv8XV0NFj1430izFIQJYHkvWLUUjr8H0Hiuc86PzVZ5BFPT3zHF7rEDyf91EU5l7P0YXH+CEx5Mtyy1RvuUUmFQQ0dXgkd/uf2nffeE67WhzoWWjH6Q5oiQQiLz18lLjXZIUzw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=reopb4BL4YZsICT7sxu6LNEKh5rSMLS23lqDA7X9K7k=;
- b=Ls+JLNVjWvZAQzdTUdkLUEMAyH/kjEPOxNgAfs2yUrGgNe3PC++DMVFLMtdaflRlN8O5GeQqaLVtfx3p4WXrwN4p+xLvGm/yOLIKHiP0S8TaYl+Si9lsmQdmaCLpvMovtiwsUgHJ31qWcem37WMdksO4flasniPmcPR65Ql9uQZzKXK6Az9DmeUCIyBANYeeQgwdgSI3yR5hSR1EVD0uZP+H8IlEJV2hrtJmV13LVRcfRFYuCXorfCqbAyukcQLa/Sh6qMo4XYuFnDl2LmqxqEX8cY2FK/mLhzYkuoVbrt2ZJJr5Y3Hu/bqUM00BuTHJlF6ZJ9Rbsub5jG/9XE/0JQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com (2603:10b6:610:d3::13)
- by SJ5PPF33E90C8BE.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::81f) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.15; Thu, 9 Apr
- 2026 21:23:17 +0000
-Received: from CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5081:cd4:1a4b:a73e]) by CH0PR11MB5444.namprd11.prod.outlook.com
- ([fe80::5081:cd4:1a4b:a73e%4]) with mapi id 15.20.9769.041; Thu, 9 Apr 2026
- 21:23:17 +0000
-From: "Cavitt, Jonathan" <jonathan.cavitt@intel.com>
-To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "Gupta, Saurabhg" <saurabhg.gupta@intel.com>, "Zuo, Alex"
- <alex.zuo@intel.com>
-Subject: RE: [PATCH] drm/i915/display: Check some INVALID_TRANSCODER cases
-Thread-Topic: [PATCH] drm/i915/display: Check some INVALID_TRANSCODER cases
-Thread-Index: AQHcyGPjmm21HRe7EkOmODx3Y54s3rXXOhqAgAACuwA=
-Date: Thu, 9 Apr 2026 21:23:16 +0000
-Message-ID: <CH0PR11MB5444FC05440192178226B75EE5582@CH0PR11MB5444.namprd11.prod.outlook.com>
-References: <20260409210001.64901-2-jonathan.cavitt@intel.com>
- <adgWBSCegY8YvRxV@intel.com>
-In-Reply-To: <adgWBSCegY8YvRxV@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: CH0PR11MB5444:EE_|SJ5PPF33E90C8BE:EE_
-x-ms-office365-filtering-correlation-id: ed430bf6-459e-42c0-4c2e-08de967e3709
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|38070700021|18002099003|56012099003;
-x-microsoft-antispam-message-info: 775Vne3Uth0gOkJqUoDO7akI9KbfByK6+RaMyKM8vvEUvfNK6bcYgIO4n4wc64YZaWbciluMequB81Zzo3zPcWkzLEWy/lsBbwhOQHiWhg8MjTnJvLqnuG5Sl7N+neHLkMx0feiTiLZyM2XTiCwxI57YrGmDa0zb2FxsIs7J+GbGGv28KXfilzXNh2LitKaCmr0514Xh1whTl8Xg3UQkrWjVfJsgBLrjqcGaZ6g5W+Ee6TzfnNskXck1sSwuux7ZJ3l+E/toh2ouz2hSBI0XqwaxWLa0Lgk5Z2E8G9al3S3eNwNWZkKXKxHwUCLdFICotA2ngXQ8WNU+I5NtjiLuCcnZpF0BRe2WFh7OyN8QFC2mewt/H1xQPv596T0aWZaamey2FEiMhnczGmd462CNpS3eSbsbUGjHkHHdTrNQw2ZM31lsXB4CXTvwTnJezuuSpev5Q7fl8WjUj7GcE1Q0cS7NvwfQLy27+iFbEdiTkx2xtsq924Bbw/sxHahiUyHFYbtH1hVUlLFvr6WCCdR67Ltb05RHSdP1EHytcMdC+ehEgXWWrIJ+bkw6F+rKgX1iRYwoeoFlMODwtcAEFi5FZ8toVNzP7rxow7F4BYxrPUfJR6NrqcML9VmaOLLnEPnJb4VEdbzkCPlNTzBnL6kCT/My3UWjjx1LKOgSuJik9PYiKcWKkS6urVJdF3jhk8GSB0W+5otXFsW83gEUD9ZbgDIktaN5Kcmqaw2YgcgYfj8yG03Qv0ReiAL/YTvBQ2eypp5c86KGFA7ounSBNXWDJw+KeZmY4mI9FMNvOCVmp28=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CH0PR11MB5444.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(38070700021)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?PF6AQsmtoRKgHOnKSEQNO+kOgDQVY1iWPlVp/GpA06Mue3sbfr1M1MmZd0?=
- =?iso-8859-1?Q?pTLp+EJwuACdaSZksU5/0rQL5aou29umMmqszXQd7dCOkiiR2fJx4l0fqg?=
- =?iso-8859-1?Q?5BfEbW8H5Hw8YFolfyE+AZWLh7k4/qoTBuFmFSPkBLqYy/sAezWbpTO+oV?=
- =?iso-8859-1?Q?L2UZ85O933IIUtK5ZDTrJIsen+WKzCvgAm2rICLYouyD7CrBUeTgZX9e+g?=
- =?iso-8859-1?Q?FdOpER6krMyZ4Y2RXDQTIdOieSmuiv8QJQGPIEHWuoZNY8nCxb2u1gjHow?=
- =?iso-8859-1?Q?tROuHNn3Go9yMYqpDMap/aUN2ELgcbclJ5M9yvV5XHjg1wQHibWW4fV/fS?=
- =?iso-8859-1?Q?GSSHKXc/Si9Bh6QDrjGoagUO3kqCsogV9WIT7olzZd72+1lG3RcjU6Vx4T?=
- =?iso-8859-1?Q?AytSYrAO5rBCTzpOAC3diyZpbjLIukFyg/gJuGKVvqpWVfKTMpmHcD4sGU?=
- =?iso-8859-1?Q?JIPKtLg8pavHxrT5Xq45vSAt+DvXVP1tnT5ppifYVF7vMq3HUtiv+QfEgd?=
- =?iso-8859-1?Q?KHK5GJBPWu9mloyIZsMXvf3NPCasihPGvoSBuR3yof6Z8hesugpfNZe48o?=
- =?iso-8859-1?Q?ihU8pdBE7Kn6zST3lifup6dBx/jQl4iXsghLWDCeCQtPLGpgEHjF4yuBZ2?=
- =?iso-8859-1?Q?bn9z86EZgXiBXhgEtNnwKc2Zc8ewpLu3iz8o4DO01w5O6JaezjJEMxA3tv?=
- =?iso-8859-1?Q?NUWqomAvb/RPvLMO0z1ka06/1xSDqyl0bcQpn4yaCT4wMAFfmhelnvhLxZ?=
- =?iso-8859-1?Q?STNBh0WGH4g8VjCbnfIrxgXXgKHNzPLYaVX7n5Yrrq6H+HQGypXIL/mY3f?=
- =?iso-8859-1?Q?AREfmb8lRSR12Lwqcz7Oh0SFhNrUno/MTepotqW54t7RANYo7Jznnma3OB?=
- =?iso-8859-1?Q?1k2BglbImUtVNCzZmW6rs2q+Uhx/uoVvNiXLygP2Ma6DuEE5DI92/0ZHmc?=
- =?iso-8859-1?Q?dQR3HUlz84p3Xak1CQqu6T3yIBI9huR31wRDB1BDQioRIbZLsf3rrnw/hg?=
- =?iso-8859-1?Q?LHATuGI3ycUDO9sXgvLOK/MMiMFgiR+eRo8YQLGOYJ3S+F7BSFi/wsG5Ph?=
- =?iso-8859-1?Q?YASu92ZG/kERdcJiEtsi/Q8knzDURmJ5+7RuqFuY9+yCIboIDNqBKI9Z0V?=
- =?iso-8859-1?Q?gjvOoecdRTIjd55LwBQDziEmL12wl7t7Dmq4UD0Ow9XlAPIyxjvfFcKf5b?=
- =?iso-8859-1?Q?wuEtmlte0rpYsD3mhEf//ZEkQ26RzdSASaFmKQgC8qzgTuWoJmLKA/AzMz?=
- =?iso-8859-1?Q?h9gbVGp97ot7sKc5P6AJTekmgrkC9KdPqcW3lF2FQ7bjxd+ZxgbNXlXrNP?=
- =?iso-8859-1?Q?edmgvLip+9SqaZYCw4ng7lU0VlgayNM6QAKo173lo4S0brEgkunUU5BARr?=
- =?iso-8859-1?Q?TW4uPMLhcy1aTeeHJk5gXgiJsNIDQvzsaHERK4DP3IPUIFxpW6L+GlIA9P?=
- =?iso-8859-1?Q?4Y/YEXfIv8KxfTcVMg7Fm/fasogrRwc0wBWB0up9Krh30szt8/baiGXtwF?=
- =?iso-8859-1?Q?FshftiX4b+eEFg6ndyPl9uLYMDTOwYqQmQREsdvjLkVLNIoCZRv30Ydoea?=
- =?iso-8859-1?Q?DCeNeLYQ4qTD+kXDrCcWTv1Nh9C0t/zK8220IKhba2VB+BKrDEJHHew8Pq?=
- =?iso-8859-1?Q?MbzqidPaVz+z8iNkKRKlMbBUfLGDQb6BLWPAPewoI3IeDvRl/WXiVizFAd?=
- =?iso-8859-1?Q?bjUz7+MgQIX8jSREnYLyhPdlCrfCodw8ZC1cw0P0ZpAhL9umx5064pJIGN?=
- =?iso-8859-1?Q?tHwe1oo7eV6mpKWzuhSvogQNHN5YOo7rxxu0lVH8rj90lnc3SYqRpmq7RJ?=
- =?iso-8859-1?Q?KPrsd1NRlQ=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
+ [205.220.180.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A027F10E091
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 21:36:15 +0000 (UTC)
+Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 639ILkBe3352573
+ for <intel-gfx@lists.freedesktop.org>; Thu, 9 Apr 2026 21:36:14 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-transfer-encoding:content-type:date:from:in-reply-to
+ :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
+ TkJRO6Oo2pp+w//8GQnSgMgSzv0FXnFgaEUwgsNX1S4=; b=kOA4YSqWunwDnBf7
+ PZEsJ4gRm6TFadnMermJIbJp9qe4l0tJMan+tjJ7C5KdmtduGZQzJjQJHHjaxNeZ
+ o8qFJAwB9GlGMdjgGzNoVI0Uz1OLAPUFl2pChxXveCHHZiwuvliq3Oivjx1iTD/y
+ Lyw1/v8ADl3BsfOHtd+bV2SlJc0UznsdZP2ySJfeiRCgF/8csU0oAuFVDflZrvTB
+ XkTi7O2EM6L1ifqceIEVmZTK2f7P2BzGWaK/JlJDF1+NkjxpzJ+6E055M/Br2KET
+ i1Yy3fwJNRpt8GS2EwNDYxGYwLJS0dn6PfBgk2D/Bo6BETBfnqmvVVJCShGiG9B2
+ 7HR0IA==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dec1qsyu2-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 21:36:14 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-50dd17a71f6so8743751cf.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 14:36:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1775770574; x=1776375374;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:from:to
+ :cc:subject:date:message-id:reply-to;
+ bh=TkJRO6Oo2pp+w//8GQnSgMgSzv0FXnFgaEUwgsNX1S4=;
+ b=eWKJEQxbRjxzYO/EdWqQFtChyWf+jD8Kutq9xsOapjA2lTowuWFK++lL66mDwKRe4y
+ 030PrrRO6O7tn/tm7UsFra23MP0Q59ISIObAfJOoBMQhtXwraOKhjX/pRvEWRdcT97hN
+ hT+vV/borv8XPjpyiGtd+Va+LoK4UbpFtHt/7EJgVOjC0RqQ4WjsELI2F2FQhJuF8Q3K
+ 5+xFqz/QJ1NS9eqTfq1D0KiUj4PBcsuGFybJYhIAaPxucu4+0hn5RLiqUjG6zinBq0dn
+ uB7LfQaRRu9HuqXP22QLQdi01ewJ+rYAci5/Q8B+cjYcoP6y9TBz5oqB74WKlSTl/Jp1
+ Av2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775770574; x=1776375374;
+ h=in-reply-to:content-transfer-encoding:content-disposition
+ :mime-version:references:message-id:subject:cc:to:from:date:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=TkJRO6Oo2pp+w//8GQnSgMgSzv0FXnFgaEUwgsNX1S4=;
+ b=Zmo/eW1EATs6WhhjFDd9w3wf38HP2VEHv/cTCFMFYrJcuBxmPtNh+8YooLhi1C4tQ5
+ QCSx+9cAeG2BMcKWSu9a4eraaVzG0r5YaQAP/We3moF2A8jWI1YZXW+4cu3du0wNzN+E
+ GEmGlWM1yf491/WatqfXYiTQhHQnU0tJoMLJ6aro+sUsZvHF6lKMxoKJLh7YG69aXewl
+ kJMpKU0wzsCi6/0RQY43qz6Qxn4P9TEFNgkE+20aEIarso/VLJINgWGpADIV+VI2cSmm
+ f0jSHOdNde7cpfuPLTqnkavEBYWbd27V51Q1jH6/BWiKVR89EfMmtJ5BgXs3/Ew68lpN
+ SWEQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCV171GschjbV7K/Ye4viqYKtH0O8Pw2xBLg/kGTAepT3EX5CQsQU+6BNjnMsLDYgaBGh0EdqHbDDk0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyh6mrnZS9jLDw/gs3DVo32VboiukxPZDbybUlhtPQojxlpk8Bp
+ q+wCy3GMGnrhm3uEWmevMQi1zrAZJz2D8z0QVJwz13yfVGMDFOScEvUigCVcHlWTLyiiXceOI/L
+ Ex8vPtxaPq/GTeTKnH1psQCwjjMXsTpTX+j2AcEphT/cDd0Rwqvh3fyNGulzAbPygGDW5Jss=
+X-Gm-Gg: AeBDiesvYwlyKwflF5vNaqELqAZLvQvW5fZ5fSeVo8VLNrWAUcB6ok4ZUBJ0RLK0RPe
+ ObCyFcnZH3N5Pc96fdwcBdxZSLv0dnGqGh/GwMMW6eWqDA9qMQ3/MHhZyR98yojbttFlOXLdbt9
+ h97J53GDQJ6i9sWQ89UUkBA0onaXBoSk15QCw1lnBpSglAKPNS2LGYPgHL0DH02RyxQ6rLWyi0X
+ K3Hs1dFWAvz4QIYjcFRQ72uA/+HupSt0mh1KknT2J5/hoS6nBORH/XaY+nAdwuE7lu+4j/90UtV
+ dZSGp1XcdKZIWkiFyul1/vD8BNUeiKvwVS1pzvOVvl/GU9nzvLsKKsIEZ98qcVY0HoBsnPvORKT
+ 821YOw2r/+j4CUuMYIryoT/xW5NkdQRDkXHoFYDOzfV0P+ZswHjDiw7mY2XL5AqdMzvu27Ola4d
+ smfeaSJjadFDelkQGhoavDhwdvN+9lHDEx0eI=
+X-Received: by 2002:a05:622a:8305:b0:4ed:70d7:aa5a with SMTP id
+ d75a77b69052e-50dc1acdc38mr55450981cf.25.1775770573996; 
+ Thu, 09 Apr 2026 14:36:13 -0700 (PDT)
+X-Received: by 2002:a05:622a:8305:b0:4ed:70d7:aa5a with SMTP id
+ d75a77b69052e-50dc1acdc38mr55450611cf.25.1775770573510; 
+ Thu, 09 Apr 2026 14:36:13 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a3eee86784sm174147e87.8.2026.04.09.14.36.10
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Apr 2026 14:36:12 -0700 (PDT)
+Date: Fri, 10 Apr 2026 00:36:09 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Kory Maincent <kory.maincent@bootlin.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Dave Airlie <airlied@redhat.com>,
+ Jesse Barnes <jbarnes@virtuousgeek.org>, Eric Anholt <eric@anholt.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+ Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>,
+ AngeloGioacchino Del Regno <angelogioacchino.delregno@collabora.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>,
+ Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+ Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: Re: [PATCH RFC 00/12] Add support for DisplayPort link training
+ information report
+Message-ID: <u4ononk4cpccx77gvlywtfen5rmyslvr72v7olkhdrjf65aqce@xo777vofhcan>
+References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
+ <adgNxaFhbQaxC5E_@intel.com>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: rzrJDtbxd/8paL/b5d7J5r8sq4z7KcbYuKNfaTQk7bnVJvRusP3mLOCnjotAsNj1BjWNsvcwE0a0Vs531H7XxzCUCMDFYG2upXyaEEiGTgSDP7BhO/WHOkmEMPVXywQomvyh/RppMrONWR8jQPghc9RVB0m04AYPJlnNWy/fBwE1R6GeSE3IrjKgmS8kSDZaYty5HfqSBYpyau5zSTlcmnLidaaaGdV8FKNXZ4PWsr3XpVxrum8OlQJm6/PcjCZWIU6XhZjmbtf0VR0u3LTE5GhEFRU6GLPwtUmf5nYJYy+uSzy3IP85D6aAdB6mS9LMDQ0rd6vrHVBcV+Mkxk4wbg==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: CH0PR11MB5444.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ed430bf6-459e-42c0-4c2e-08de967e3709
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Apr 2026 21:23:16.5990 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 3DwuILeBEzozKfz+GBmkXIIDqkioO+ActMoFm18xf5s584KhakIsJyinUIwCVs0H167fX2qt074xdZXAf5gFEAK9FO4/9Scly/I+BRQzGSc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF33E90C8BE
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <adgNxaFhbQaxC5E_@intel.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDA5MDE5OSBTYWx0ZWRfXxDAHKwO6Rplf
+ SZ6bL0L1YhdE1o20ihKlnMswXAhCgCeslTorNcHlDiLD1MK4YEHCtmBjXim07dq5PmAyZENuy61
+ kwpesf9YTXX+NdT6Teb9zamSQGns2GmUkx1V+afpx/YKi6DjnMv3MvfnSFqtbB4O8M6Xl3nrZz6
+ +qHd34SHueoVyohNVfG9DRDA8JS1xgTzCCAJ3c8sphz7GZOyrcK22qHYk6j8btOWJXkjYyy2Lh2
+ q/JztQbjkvJRFxlPh82c/N/J9tz540qvM3J8Q7OJQ51WEjDbPNy7TMlmXhYgIql7PlxWB0gzLoy
+ tmGBB3T9v+yY+AXOihoY4NIZvBi+QB7G7PobkY0BDS0bCguDVTGLestqx53sSRpI6O/9O86lasn
+ oFXEKhj6CePUJyeRZsIAC4kLB56eDVdbOAzZ3NY10l75WiLQGldgYG917a1fQPrzPicV28R4YHJ
+ 5ON3Oa1AEsibVY+Tidg==
+X-Authority-Analysis: v=2.4 cv=eOcjSnp1 c=1 sm=1 tr=0 ts=69d81bce cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=8nJEP1OIZ-IA:10
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=F7xsp-YMIWaRqylmYmQA:9
+ a=3ZKOabzyN94A:10 a=wPNLvfGTeEIA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-GUID: Ck1f0weLurUtDJ3RFn_cvt8TsxxKyMnG
+X-Proofpoint-ORIG-GUID: Ck1f0weLurUtDJ3RFn_cvt8TsxxKyMnG
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-09_04,2026-04-09_02,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ spamscore=0 adultscore=0 bulkscore=0 suspectscore=0 phishscore=0
+ impostorscore=0 lowpriorityscore=0 clxscore=1015 priorityscore=1501
+ malwarescore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604010000
+ definitions=main-2604090199
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -168,142 +172,75 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[jonathan.cavitt@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[36];
 	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:kory.maincent@bootlin.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:airlied@redhat.com,m:jbarnes@virtuousgeek.org,m:eric@anholt.net,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:chris@chris-wilson.co.uk,m:thomas.petazzoni@bootlin.com,m:markyacoub@google.com,m:seanpaul@google.com,m:louis.chauvet@bootlin.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:simona.vetter@ffwll.ch,m:jernejskrabec
+ @gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,CH0PR11MB5444.namprd11.prod.outlook.com:mid];
-	RCPT_COUNT_THREE(0.00)[4];
+	FREEMAIL_CC(0.00)[bootlin.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,redhat.com,virtuousgeek.org,anholt.net,kernel.org,suse.de,linaro.org,ideasonboard.com,kwiboo.se,pengutronix.de,collabora.com,chris-wilson.co.uk,google.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cavitt@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 339AE3CFE63
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oss.qualcomm.com:dkim]
+X-Rspamd-Queue-Id: 7C64B3CFF72
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
------Original Message-----
-From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>=20
-Sent: Thursday, April 9, 2026 2:12 PM
-To: Cavitt, Jonathan <jonathan.cavitt@intel.com>
-Cc: intel-gfx@lists.freedesktop.org; Gupta, Saurabhg <saurabhg.gupta@intel.=
-com>; Zuo, Alex <alex.zuo@intel.com>
-Subject: Re: [PATCH] drm/i915/display: Check some INVALID_TRANSCODER cases
->=20
-> On Thu, Apr 09, 2026 at 09:00:02PM +0000, Jonathan Cavitt wrote:
-> > There are some cases in intel_ddi.c, such as in intel_ddi_is_audio_enab=
-led
-> > and intel_ddi_compute_config_late, where we attempt to perform a BIT
-> > shift using a passed transcoder enum value.  This value may be -1,
-> > INVALID_TRANSCODER, which can result in undefined behavior if this
-> > occurs.
-> >=20
-> > In the former case, we can simply return false if this is the transcode=
-r
-> > passed (as audio is not enabled on an invalid transcoder).
-> >=20
-> > In the latter case, the likely expected behavior is to set the
-> > crtc_state->sync_mode_slaves_mask to zero, so just do that directly and
-> > avoid a risky bit shift.
-> >=20
-> > The likelihood of either case occurring during normal execution is
-> > unknown and possibly very low.  Regardless, this covers a static analyi=
-s
-> > issue.
-> >=20
-> > Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_ddi.c | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm=
-/i915/display/intel_ddi.c
-> > index 178074316a2c..7abeb60779e5 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > @@ -3875,7 +3875,8 @@ static void intel_ddi_set_idle_link_train(struct =
-intel_dp *intel_dp,
-> >  static bool intel_ddi_is_audio_enabled(struct intel_display *display,
-> >  				       enum transcoder cpu_transcoder)
-> >  {
-> > -	if (cpu_transcoder =3D=3D TRANSCODER_EDP)
-> > +	if (cpu_transcoder =3D=3D TRANSCODER_EDP ||
-> > +	    cpu_transcoder =3D=3D INVALID_TRANSCODER)
-> >  		return false;
-> > =20
-> >  	if (!intel_display_power_is_enabled(display, POWER_DOMAIN_AUDIO_MMIO)=
-)
-> > @@ -4637,8 +4638,13 @@ static int intel_ddi_compute_config_late(struct =
-intel_encoder *encoder,
-> > =20
-> >  	if (crtc_state->master_transcoder =3D=3D crtc_state->cpu_transcoder) =
-{
-> >  		crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-> > -		crtc_state->sync_mode_slaves_mask =3D
-> > -			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
-> > +		if (crtc_state->cpu_transcoder =3D=3D INVALID_TRANSCODER ||
-> > +		    !port_sync_transcoders)
-> > +			crtc_state->sync_mode_slaves_mask =3D 0;
-> > +		else
-> > +
-> > +			crtc_state->sync_mode_slaves_mask =3D
-> > +				port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
->=20
-> Making the code convoluted just to satisfy some dumb static
-> analysis tool is not great.
->=20
-> If we really need to care about this crap then I think it'd be better
-> to introduce some kind of intel_transcoder_mask() function that
-> explicitly deals with INVALID_TRANSCODER.
+On Thu, Apr 09, 2026 at 11:36:21PM +0300, Ville Syrjälä wrote:
+> On Thu, Apr 09, 2026 at 07:08:16PM +0200, Kory Maincent wrote:
+> > DisplayPort link training negotiates the physical-layer parameters needed
+> > for a reliable connection: lane count, link rate, voltage swing,
+> > pre-emphasis, and optionally Display Stream Compression (DSC). Currently,
+> > each driver exposes this state in its own way, often through
+> > driver-specific debugfs entries, with no standard interface for userspace
+> > diagnostic and monitoring tools.
+> > 
+> > This series introduces a generic, DRM-managed framework for exposing DP
+> > link training state as standard connector properties, modeled after the
+> > existing HDMI helper drmm_connector_hdmi_init().
+> > 
+> > The new drmm_connector_dp_init() helper initializes a DP connector and
+> > registers the following connector properties to expose the negotiated link
+> > state to userspace:
+> > 
+> > - num_lanes:      negotiated lane count (1, 2 or 4)
+> > - link_rate:      negotiated link rate
+> > - dsc_en:         whether Display Stream Compression is active
+> > - voltage_swingN: per-lane voltage swing level (lanes 0-3)
+> > - pre_emphasisN:  per-lane pre-emphasis level (lanes 0-3)
+> 
+> I don't see why any real userspace would be interested in those (apart
+> from maybe DSC). If this is just for diagnostics and whatnot then I
+> think sysfs/debugfs could be a better fit.
 
-If the issue is with this specific segment, then would this be better?
-"""
-        if (crtc_state->master_transcoder =3D=3D crtc_state->cpu_transcoder=
-) {
-                if (crtc_state->master_transcoder =3D=3D INVALID_TRANSCODER=
-) {
-                        crtc_state->sync_mode_slaves_mask =3D 0;
-                        return 0;
-                }
-                crtc_state->master_transcoder =3D INVALID_TRANSCODER;
-                crtc_state->sync_mode_slaves_mask =3D
-                        port_sync_transcoders & ~BIT(crtc_state->cpu_transc=
-oder);
-        }
-"""
+I'd agree here. Please consider implementing it as a debugfs interface,
+possibly reusing the Intel's format.
 
-Otherwise, I could just mark the issue as a false positive on my end?
--Jonathan Cavitt
-
->=20
-> >  	}
-> > =20
-> >  	return 0;
-> > --=20
-> > 2.43.0
->=20
-> --=20
-> Ville Syrj=E4l=E4
-> Intel
->=20
+-- 
+With best wishes
+Dmitry
