@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4LSmLbR612mXOggAu9opvQ
+	id 8P6GIFN812mXOggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:08:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:15:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C44F3C8F37
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:08:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17EF93C90E3
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:15:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EF9810E78B;
-	Thu,  9 Apr 2026 10:08:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 93FA110E781;
+	Thu,  9 Apr 2026 10:15:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CaZslYP8";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Bsgoejwj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EB93D10E77D;
- Thu,  9 Apr 2026 10:08:48 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6FE210E74A;
+ Thu,  9 Apr 2026 10:15:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775729330; x=1807265330;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=P+joVdMaW1c1ICMkWSi7XQATcgtvvPtPrvX6UQdZ2xQ=;
- b=CaZslYP8IL85ihmZPktKHVERiPIhKY6J7VXZ+Em2ncv8bFBRBL4qqME6
- IWFENafrQya57t/ngJDdKrui0Tj+tfxBc7EZji2ZM99FjXFCzuZ+Lrn46
- tBoYCWTnQ+8YlWHRydMAqt1IPWoeMA8vTxcIGxdLwJOcogn0JTgLAU+VF
- 7KvB3W5nH2FFWR0rfPrh/ekrniuTf26pKm58HP4nVgrDL7DzZZhaFOEUc
- DnP/BGe1vBSK4ph3TreUAYXpf+IoVjUYbwxlr1FJgek5JHMtVc4jcOUoQ
- Yumb+vY8Wr7OTIxk5RTGVw4Iu1dIDCl9cFwCVz44Hqxtka9+9mjCFdxMf w==;
-X-CSE-ConnectionGUID: Gm/Tw/Y1Qnqhaf5qhGVNTQ==
-X-CSE-MsgGUID: ysPUqT+QSaKRy3ww1OqRKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="87806174"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="87806174"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 03:08:49 -0700
-X-CSE-ConnectionGUID: IJ6afUW8RrC9QPgQml6HKg==
-X-CSE-MsgGUID: hG4EJZECTx6rE0yMNYIawA==
+ t=1775729744; x=1807265744;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=vtP4dpXMWqrSadSgrAgHFT483nqPbCEQY3QAlkVMlNA=;
+ b=BsgoejwjlYuoAu2b4iikqHGc4l6YQKsE8s+MoewDQj2D9nbI/4OHEKo7
+ SO27ugEqVNM77iiLEv6ShYQTb2UJv9V60XJ+Ysdl1ZjdsW1QTAJWcMt5g
+ EXIGAH7YyKShFCK+FEoFq+Ek1BYTDw7ssBXtyf7UwJJc86l2/hEA8Zb5/
+ bgP1GNICelXyWlIaPwP6oTrtsX95u/Td++BzshzS3hxWN1Vgxw9Xhb0j2
+ KKi2/HHo6NeXeR/eYjR78GC/Vz0qGfQ9Jm+shqRohv3L7qfRfiF5vMMfz
+ /DE046hWOc+Z9L5DP4+RSUSQqCINNQlNZ/Kk1nbWo3K6lEKDfdQWfVJD1 w==;
+X-CSE-ConnectionGUID: F9O+2r92SrKt3lQKoPG7cw==
+X-CSE-MsgGUID: M7+NKSwsQjmgITD0968JoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="76610010"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="76610010"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 03:15:44 -0700
+X-CSE-ConnectionGUID: ihh2FqsMTmu0uMSchoqfNg==
+X-CSE-MsgGUID: P5WwN5x1TuGLwmCRUCpD/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="224426825"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="225567079"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.216])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 03:08:47 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 03:15:41 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 2/2] drm/i915/mst: Remove redundant has_pch_encoder=false
- assignment
-Date: Thu,  9 Apr 2026 13:08:41 +0300
-Message-ID: <20260409100841.1907-2-ville.syrjala@linux.intel.com>
+Cc: intel-xe@lists.freedesktop.org,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: [PATCH v2 0/9] drm/i915/{dp,
+ hdmi}: Restructure DP/HDMI sink format handling
+Date: Thu,  9 Apr 2026 13:15:30 +0300
+Message-ID: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260409100841.1907-1-ville.syrjala@linux.intel.com>
-References: <20260409100841.1907-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -76,58 +76,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:-];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.015];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 8C44F3C8F37
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 17EF93C90E3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The entire crtc_state is zeroed by default, there is no need
-to fiddle with crtc_state->has_pch_encoder unless we are actually
-dealing with a port on the PCH (which we never are for DP MST).
+Restructure the DP/HDMI sink format handling. I got inspired to do this
+by https://lore.kernel.org/dri-devel/20260324-color-format-v11-8-605559af4fb4@collabora.com/
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 1 -
- 1 file changed, 1 deletion(-)
+I envision that after this the aforementioned patch could just
+become something like this:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 9150763ca143..832a43ebe00f 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -721,7 +721,6 @@ static int mst_stream_compute_config(struct intel_encoder *encoder,
- 
- 	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
- 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
--	pipe_config->has_pch_encoder = false;
- 
- 	ret = intel_pfit_compute_config(pipe_config, conn_state);
- 	if (ret)
+1. s/intel_foo_compute_formats/intel_foo_compute_formats_auto/
+2. Add a new intel_foo_compute_formats()
+
+   intel_foo_compute_formats()
+   {
+        switch (color_format) {
+        case YCBCR420:
+                return intel_foo_compute_output_format(YCBCR420);
+        case RGB:
+                return intel_foo_compute_output_format(RGB);
+        case AUTO:
+                return intel_foo_compute_formats_auto();
+        }
+   }
+
+v2: A few more updates to the DP mode validation
+
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+
+Ville Syrjälä (9):
+  drm/i915/hdmi: Add missing intel_pfit_mode_valid() for 4:2:0 also
+    modes
+  drm/i915/hdmi: Restructure the sink/output format selection
+  drm/i915/hdmi: Restructure 4:2:0 vs. 4:4:4 mode validation
+  drm/i915/dp: Restructure the sink/output format selection
+  drm/i915/dp: Validate "4:2:0 also" modes twice
+  drm/i915/dp: Require a HDMI sink for YCbCr output via PCON
+  drm/i915/dp: Validate sink format in .mode_valid()
+  drm/i915/hdmi: Make the RGB fallback for "4:2:0 only" modes the last
+    resort
+  drm/i915/dp: Make the RGB fallback for "4:2:0 only" modes the last
+    resort
+
+ drivers/gpu/drm/i915/display/intel_dp.c   | 250 +++++++++++++---------
+ drivers/gpu/drm/i915/display/intel_hdmi.c | 167 +++++++++------
+ 2 files changed, 254 insertions(+), 163 deletions(-)
+
 -- 
 2.52.0
 
