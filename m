@@ -2,70 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DiuL8Ff12noNAgAu9opvQ
+	id SGGhMhxg12noNAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 10:13:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 10:15:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 70D173C7971
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 10:13:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D1163C79B3
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 10:15:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E211610E76B;
-	Thu,  9 Apr 2026 08:13:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73CAC10E76D;
+	Thu,  9 Apr 2026 08:15:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YqkVmcrg";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="HAXYGnzN";
+	dkim=pass (2048-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="DL5Ht5qp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A773410E767;
- Thu,  9 Apr 2026 08:13:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775722430; x=1807258430;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Aou7PJiN+m4B4Cq2GcvCEYf2MSYheuUqx83L/uWbnss=;
- b=YqkVmcrguI1BScqB66yJHaSLxal/M5IVmReq0PizPWxloBu7QhGxgkn1
- FXIoX6+ryfe1tUINvI8H0k6sh0lJUtgx6oLBRUW8kaLd7QMyMTJTwbkog
- OoHsnuhhM2XPOY79TV71Lhx1iZqnVNJtuoG9o8TPeHtBqNGWJaWpNfmdT
- o3YlyzZRH0DbkxgewRWbLX66Cjk1YNBFVhibmwW4871fTcHb1lJ8a/R+c
- wU1cyJKXSSpaeOXTTgyPvstsWqt414Hlg+/9UWv8RHeE0HE8ox5l13H0J
- KGoNmjnHPUfTirsqYIpcGZVDt51xTCvC90Jl9080k4diBu2+2Xo2dizaL w==;
-X-CSE-ConnectionGUID: E1Uh4Hm1QFeWYW6mA26Uag==
-X-CSE-MsgGUID: rFPvjYThSDG1CAawBpccLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="75758605"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="75758605"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 01:13:49 -0700
-X-CSE-ConnectionGUID: Cgvt7FEoT4e6PbTjh6RWDw==
-X-CSE-MsgGUID: jiWFTei+Q1yv2sDPc35N0Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="232749511"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.62])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 01:13:46 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Simona
- Vetter <simona.vetter@ffwll.ch>, Christian =?utf-8?Q?K=C3=B6nig?=
- <christian.koenig@amd.com>, Jouni =?utf-8?Q?H=C3=B6gander?=
- <jouni.hogander@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 2/6] drm/i915/reset: Reorganize display reset code
-In-Reply-To: <20260408233458.22666-3-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
- <20260408233458.22666-3-ville.syrjala@linux.intel.com>
-Date: Thu, 09 Apr 2026 11:13:43 +0300
-Message-ID: <1faaaf6e482716344c969a1a14582b063ab801be@intel.com>
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BAC010E76E
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 08:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1775722520;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type;
+ bh=cgrA7bBT8ZXCQqWY+bO1JlCg1Ecm798GETsxCdNk+V4=;
+ b=HAXYGnzN1jmlSW8Q8yZSRhphJLwq6JZYUuyb+64tqlqxQeZi//T78nfGc55WSrh+y/fN7T
+ 5nIYHhtRNkz3SdxDuX4huye8L3V/tHvoOXgIK5hOSA/tqtOWthb0cY0tqEOlgUzWHXjoCU
+ SMTJDY9I7ylTnz9XYYYZ4/UL/5vnJ6w=
+Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
+ [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-564-VZhrTRarNniCLf5IN0Khag-1; Thu, 09 Apr 2026 04:15:18 -0400
+X-MC-Unique: VZhrTRarNniCLf5IN0Khag-1
+X-Mimecast-MFC-AGG-ID: VZhrTRarNniCLf5IN0Khag_1775722517
+Received: by mail-wm1-f71.google.com with SMTP id
+ 5b1f17b1804b1-48378df3469so3677585e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 01:15:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=redhat.com; s=google; t=1775722517; x=1776327317; darn=lists.freedesktop.org;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=cgrA7bBT8ZXCQqWY+bO1JlCg1Ecm798GETsxCdNk+V4=;
+ b=DL5Ht5qpgzhCKvaQvy2rYKJQKgmZOQrfrdg+yGc90z6upgyrSnO84xj2GzQCeei4eV
+ CPTStztFqwAf9f+91FKgLTMmRq/ZgfaqbI5HLUixA27iVVcDbORnBEwmgoRTTtBnbR8Z
+ g1D1I6NAJmEl9B0YIGL/Hok+hbOowSOrnoZtT7ATCYzk3OrMhoORgbNDeFf0ne1R3moI
+ 99f/nrfzZsPC1EVLCHge7I1Vjl7wnHtruIsGuj4oIVtrg2nLi7pWw71KcFdgWjk8R8rA
+ 39xG0hErPqX3G7KagLZgDgCeoGGSU/CnXOx4kTakhPbqXEV3XpD/vES2wt0xjnFkGr8J
+ UD7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775722517; x=1776327317;
+ h=content-disposition:mime-version:message-id:subject:cc:to:from:date
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=cgrA7bBT8ZXCQqWY+bO1JlCg1Ecm798GETsxCdNk+V4=;
+ b=BGPUd9sVy0CetJIhSafffWf2NDCGR0P2zcGg+PERhOC6+3bPz1sYFVsJ6D8ZDIyiR/
+ xs7pJQN91iasv8yw9PvjqIwm4khAWazMBknmx0pIAbtcyGj9NqowUVPDGWt0fEjbrnX9
+ fkPzVjYJke6DnpTFh2fl0nePJL2Lv1XJcGfV7V6LlXisvA/G8njh2L3Q3+OpUk06aAb2
+ NHFt+h/56OkDNIGo65OqpaG2CTImKdb2ZLKU/1sWWhhB4uX4i6yJqpfYAtwnql8FT1nw
+ kQ+99I/vLWn8HbuBJ9O/GfGAyzXqcHtCd5gP6IeGWK1w4Zpq+CJEvjP8mT8hfVkieQev
+ rDsg==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVF1o6+csigL2MtWRcZjNtypHGiBSs+YSvZ2IKujTxn0Kf+OZu20Yjw/eFBcBKtwmSpfuPzv1doP/g=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzUkcXn7ZT/yWbGP5qE/BwOSVl5zuLWpLD7Jy/zgtN48iYUsquD
+ R/IQQuId07InWd6O2ccylufOsDF6PSpzrICPLT0vGqxiFQKCuqJyFs6jsTbLPZa6voRfwxHVW2W
+ hL1XsmTVqMtUePq8p1rLfa4eEuaYc/+29RSYdFYdom/sFmhxPmqlHt89TYBnNH9wGxZWnlA==
+X-Gm-Gg: AeBDiev4C2SfmCaGDYVOkA0YvqkHU6rU659mcQvVJjJXFb9RjaLkxKoVYRtQXeZNG19
+ z8w8hNKnIi2fLvqjg9x199rdAmxYvfRJc1TiC33jPE9bRRN9pNr5tRTluIa9pWZHMtzD7KSvChM
+ VMEUVxr3arUWno44HicbxBMUJceU0qfQF6XoyIwq6teOMTqT1Hry5KY3V4sMEDrOT8GfPHIptMW
+ rRC6L4TvW9uVJrJO/vOvG4oOP5dwl8mlz37/lCqOB+LqvpRVk4pTe0s7VKTt8pbwtX0eBpwtSQF
+ 05u9q8edEo9i/WgvttWg4f/O/twXFfMPRllOuv3yLOLi6L9GM2oQfiLhCfSXQj06YZGLyt4tbTq
+ VsPlUPxANCUb3j6py
+X-Received: by 2002:a05:600c:c087:b0:485:3c2e:60d5 with SMTP id
+ 5b1f17b1804b1-488cd50f45dmr21727375e9.2.1775722516985; 
+ Thu, 09 Apr 2026 01:15:16 -0700 (PDT)
+X-Received: by 2002:a05:600c:c087:b0:485:3c2e:60d5 with SMTP id
+ 5b1f17b1804b1-488cd50f45dmr21726855e9.2.1775722516410; 
+ Thu, 09 Apr 2026 01:15:16 -0700 (PDT)
+Received: from localhost ([37.221.85.123]) by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-488cd2492e8sm54399245e9.15.2026.04.09.01.15.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 09 Apr 2026 01:15:15 -0700 (PDT)
+Date: Thu, 9 Apr 2026 10:15:10 +0200
+From: Maxime Ripard <mripard@redhat.com>
+To: Dave Airlie <airlied@gmail.com>, 
+	Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260409-omniscient-tomato-coucal-edbadc@penduick>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="zyi5rrtfb4irsvwy"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,181 +118,107 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719,redhat.com:s=google];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	FORGED_SENDER(0.00)[mripard@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 70D173C7971
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 2D1163C79B3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 09 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Stop returning the "is there a display?" status from
-> intel_display_reset_prepare(). I plan to move the pending_fb_pin
-> into the i915 code, so I need to make that determination already
-> before intel_display_reset_prepare() is called. Add a new
-> intel_display_reset_supported() function for that.
->
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+--zyi5rrtfb4irsvwy
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: [PULL] drm-misc-fixes
+MIME-Version: 1.0
 
-> ---
->  .../drm/i915/display/intel_display_reset.c    | 23 ++++++++-----------
->  .../drm/i915/display/intel_display_reset.h    |  3 ++-
->  drivers/gpu/drm/i915/gt/intel_reset.c         | 13 +++++++----
->  3 files changed, 20 insertions(+), 19 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers=
-/gpu/drm/i915/display/intel_display_reset.c
-> index d00ef5bdcbda..137a2a33c8b0 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-> @@ -16,22 +16,24 @@
->  #include "intel_hotplug.h"
->  #include "intel_pps.h"
->=20=20
-> +bool intel_display_reset_supported(struct intel_display *display)
-> +{
-> +	return HAS_DISPLAY(display);
-> +}
-> +
->  bool intel_display_reset_test(struct intel_display *display)
->  {
-> -	return display->params.force_reset_modeset_test;
-> +	return HAS_DISPLAY(display) &&
-> +		display->params.force_reset_modeset_test;
->  }
->=20=20
-> -/* returns true if intel_display_reset_finish() needs to be called */
-> -bool intel_display_reset_prepare(struct intel_display *display,
-> +void intel_display_reset_prepare(struct intel_display *display,
->  				 modeset_stuck_fn modeset_stuck, void *context)
->  {
->  	struct drm_modeset_acquire_ctx *ctx =3D &display->restore.reset_ctx;
->  	struct drm_atomic_state *state;
->  	int ret;
->=20=20
-> -	if (!HAS_DISPLAY(display))
-> -		return false;
-> -
->  	if (atomic_read(&display->restore.pending_fb_pin)) {
->  		drm_dbg_kms(display->drm,
->  			    "Modeset potentially stuck, unbreaking through wedging\n");
-> @@ -60,7 +62,7 @@ bool intel_display_reset_prepare(struct intel_display *=
-display,
->  		ret =3D PTR_ERR(state);
->  		drm_err(display->drm, "Duplicating state failed with %i\n",
->  			ret);
-> -		return true;
-> +		return;
->  	}
->=20=20
->  	ret =3D drm_atomic_helper_disable_all(display->drm, ctx);
-> @@ -68,13 +70,11 @@ bool intel_display_reset_prepare(struct intel_display=
- *display,
->  		drm_err(display->drm, "Suspending crtc's failed with %i\n",
->  			ret);
->  		drm_atomic_state_put(state);
-> -		return true;
-> +		return;
->  	}
->=20=20
->  	display->restore.modeset_state =3D state;
->  	state->acquire_ctx =3D ctx;
-> -
-> -	return true;
->  }
->=20=20
->  void intel_display_reset_finish(struct intel_display *display, bool test=
-_only)
-> @@ -83,9 +83,6 @@ void intel_display_reset_finish(struct intel_display *d=
-isplay, bool test_only)
->  	struct drm_atomic_state *state;
->  	int ret;
->=20=20
-> -	if (!HAS_DISPLAY(display))
-> -		return;
-> -
->  	state =3D fetch_and_zero(&display->restore.modeset_state);
->  	if (!state)
->  		goto unlock;
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers=
-/gpu/drm/i915/display/intel_display_reset.h
-> index 8b3bda134454..e0f15e757728 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_reset.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
-> @@ -12,8 +12,9 @@ struct intel_display;
->=20=20
->  typedef void modeset_stuck_fn(void *context);
->=20=20
-> +bool intel_display_reset_supported(struct intel_display *display);
->  bool intel_display_reset_test(struct intel_display *display);
-> -bool intel_display_reset_prepare(struct intel_display *display,
-> +void intel_display_reset_prepare(struct intel_display *display,
->  				 modeset_stuck_fn modeset_stuck, void *context);
->  void intel_display_reset_finish(struct intel_display *display, bool test=
-_only);
->=20=20
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915=
-/gt/intel_reset.c
-> index 37272871b0f2..ffd11767874f 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -1425,16 +1425,19 @@ static void intel_gt_reset_global(struct intel_gt=
- *gt,
->  		bool need_display_reset;
->  		bool reset_display;
->=20=20
-> -		need_display_reset =3D intel_gt_gpu_reset_clobbers_display(gt) &&
-> +		need_display_reset =3D
-> +			intel_display_reset_supported(display) &&
-> +			intel_gt_gpu_reset_clobbers_display(gt) &&
->  			intel_has_gpu_reset(gt);
->=20=20
-> -		reset_display =3D intel_display_reset_test(display) ||
-> +		reset_display =3D
-> +			intel_display_reset_test(display) ||
->  			need_display_reset;
->=20=20
->  		if (reset_display)
-> -			reset_display =3D intel_display_reset_prepare(display,
-> -								    display_reset_modeset_stuck,
-> -								    gt);
-> +			intel_display_reset_prepare(display,
-> +						    display_reset_modeset_stuck,
-> +						    gt);
->=20=20
->  		intel_gt_reset(gt, engine_mask, reason);
+Hi,
 
---=20
-Jani Nikula, Intel
+Here's this week drm-misc-fixes PR.
+
+Maxime
+
+drm-misc-fixes-2026-04-09:
+Several fixes for v3d about memory leak, runtime PM, and locking, and a
+Kconfig improvement for ethosu.
+The following changes since commit f8995c2df519f382525ca4bc90553ad2ec611067:
+
+  drm/ioc32: stop speculation on the drm_compat_ioctl path (2026-04-02 08:2=
+4:55 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-20=
+26-04-09
+
+for you to fetch changes up to 857fa8f2a5b184c206c703a3d9ce05cea683cfed:
+
+  accel: ethosu: Add hardware dependency hint (2026-04-02 15:18:14 -0500)
+
+----------------------------------------------------------------
+Several fixes for v3d about memory leak, runtime PM, and locking, and a
+Kconfig improvement for ethosu.
+
+----------------------------------------------------------------
+Jean Delvare (1):
+      accel: ethosu: Add hardware dependency hint
+
+Ma=EDra Canal (4):
+      drm/vc4: Release runtime PM reference after binding V3D
+      drm/vc4: Fix memory leak of BO array in hang state
+      drm/vc4: Fix a memory leak in hang state error path
+      drm/vc4: Protect madv read in vc4_gem_object_mmap() with madv_lock
+
+ drivers/accel/ethosu/Kconfig  |  1 +
+ drivers/gpu/drm/vc4/vc4_bo.c  |  3 +++
+ drivers/gpu/drm/vc4/vc4_gem.c | 19 +++++++++++--------
+ drivers/gpu/drm/vc4/vc4_v3d.c |  1 +
+ 4 files changed, 16 insertions(+), 8 deletions(-)
+
+--zyi5rrtfb4irsvwy
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaddgDQAKCRAnX84Zoj2+
+dq+8AX9h1JYGdlhW52Zj4EWdoRxaJBWxFCZNyc2xQBtzzr6NTN0KeIhc8MqhmQND
+y5WSyc8BfjOYEMehb2BhpAw/A0qZZRSRQKeXskcw87pwZN0wPA1CLGL2lEl4E/RP
+Hy3M+KMS/w==
+=ebgs
+-----END PGP SIGNATURE-----
+
+--zyi5rrtfb4irsvwy--
+
