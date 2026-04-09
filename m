@@ -2,217 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id PtnwGu3g3GmKXwkAu9opvQ
+	id EDcbAs8A2GktWAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 21:41:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF6E53EBEF2
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 669643CF125
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 21:41:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6EA0A10E426;
-	Mon, 13 Apr 2026 12:26:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B2B4210E11F;
+	Thu,  9 Apr 2026 19:41:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=linux.org.uk header.i=@linux.org.uk header.b="JJcsCEca";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WkwiaJaG";
 	dkim-atps=neutral
-X-Original-To: intel-gfx@lists.freedesktop.org
-Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 1598 seconds by postgrey-1.36 at gabe;
- Thu, 09 Apr 2026 18:39:34 UTC
-Received: from zeniv.linux.org.uk (zeniv.linux.org.uk [62.89.141.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 54A7F10E057;
- Thu,  9 Apr 2026 18:39:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=linux.org.uk; s=zeniv-20220401; h=Sender:In-Reply-To:Content-Type:
- MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=BoGW7oywgvm57yYmgFIJhKPYzBfyhEW/uN+KSu6heaU=; b=JJcsCEcaKqyNrvJOUZ8XOnA1AS
- yC//2gnLRa8FcBRiXofOYljopOoyt9r8CbkWaLEFmbUVfW5qK5utkUh3D77jxlkhKoZiYVbvdTEnm
- X8jEr88bUddVEJ+24e8elVa7rPEDm9C+KeO3Yi+QSp+riwZi9Be8u3P2jnyNq7RhzU24dEi9YT5JB
- 9o5OjQL5vQk2h32ksN+l6XHB7LZbu7YtKRAMPXU1ZH+Yata0JOXemtl88QWI3UJ7mBXR7GCgddkg5
- qrhpzNPrKwHYiMCapxKfC0E4ZwUatWZBULD1y88efyo7haqTewJrOOn317SRlKBwAg9TXV76h3bsC
- A/eZOWQA==;
-Received: from viro by zeniv.linux.org.uk with local (Exim 4.99.1 #2 (Red Hat
- Linux)) id 1wAtvH-00000003xj6-26He; Thu, 09 Apr 2026 18:16:11 +0000
-Date: Thu, 9 Apr 2026 19:16:11 +0100
-From: Al Viro <viro@zeniv.linux.org.uk>
-To: Philipp Hahn <phahn-oss@avm.de>
-Cc: amd-gfx@lists.freedesktop.org, apparmor@lists.ubuntu.com,
- bpf@vger.kernel.org, ceph-devel@vger.kernel.org, cocci@inria.fr,
- dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
- gfs2@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- intel-wired-lan@lists.osuosl.org, iommu@lists.linux.dev,
- kvm@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-block@vger.kernel.org, linux-bluetooth@vger.kernel.org,
- linux-btrfs@vger.kernel.org, linux-cifs@vger.kernel.org,
- linux-clk@vger.kernel.org, linux-erofs@lists.ozlabs.org,
- linux-ext4@vger.kernel.org, linux-fsdevel@vger.kernel.org,
- linux-gpio@vger.kernel.org, linux-hyperv@vger.kernel.org,
- linux-input@vger.kernel.org, linux-kernel@vger.kernel.org,
- linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
- linux-mips@vger.kernel.org, linux-mm@kvack.org,
- linux-modules@vger.kernel.org, linux-mtd@lists.infradead.org,
- linux-nfs@vger.kernel.org, linux-omap@vger.kernel.org,
- linux-phy@lists.infradead.org, linux-pm@vger.kernel.org,
- linux-rockchip@lists.infradead.org, linux-s390@vger.kernel.org,
- linux-scsi@vger.kernel.org, linux-sctp@vger.kernel.org,
- linux-security-module@vger.kernel.org, linux-sh@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-trace-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
- linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
- ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
- sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
- tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev,
- Julia Lawall <Julia.Lawall@inria.fr>,
- Nicolas Palix <nicolas.palix@imag.fr>, Chris Mason <clm@fb.com>,
- David Sterba <dsterba@suse.com>, Ilya Dryomov <idryomov@gmail.com>,
- Alex Markuze <amarkuze@redhat.com>, Viacheslav Dubeyko <slava@dubeyko.com>,
- Theodore Ts'o <tytso@mit.edu>, Andreas Dilger <adilger.kernel@dilger.ca>,
- Steve French <sfrench@samba.org>, Paulo Alcantara <pc@manguebit.org>,
- Ronnie Sahlberg <ronniesahlberg@gmail.com>,
- Shyam Prasad N <sprasad@microsoft.com>, Tom Talpey <tom@talpey.com>,
- Bharath SM <bharathsm@microsoft.com>,
- Eric Van Hensbergen <ericvh@kernel.org>,
- Latchesar Ionkov <lucho@ionkov.net>,
- Dominique Martinet <asmadeus@codewreck.org>,
- Christian Schoenebeck <linux_oss@crudebyte.com>,
- Gao Xiang <xiang@kernel.org>, Chao Yu <chao@kernel.org>,
- Yue Hu <zbestahu@gmail.com>, Jeffle Xu <jefflexu@linux.alibaba.com>,
- Sandeep Dhavale <dhavale@google.com>, Hongbo Li <lihongbo22@huawei.com>,
- Chunhai Guo <guochunhai@vivo.com>, Miklos Szeredi <miklos@szeredi.hu>,
- Konstantin Komarov <almaz.alexandrovich@paragon-software.com>,
- Andreas Gruenbacher <agruenba@redhat.com>,
- Kees Cook <kees@kernel.org>, Tony Luck <tony.luck@intel.com>,
- "Guilherme G. Piccoli" <gpiccoli@igalia.com>,
- Jan Kara <jack@suse.com>, Phillip Lougher <phillip@squashfs.org.uk>,
- Christian Brauner <brauner@kernel.org>, Jan Kara <jack@suse.cz>,
- Steven Rostedt <rostedt@goodmis.org>,
- Masami Hiramatsu <mhiramat@kernel.org>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Tejun Heo <tj@kernel.org>, David Vernet <void@manifault.com>,
- Andrea Righi <arighi@nvidia.com>,
- Changwoo Min <changwoo@igalia.com>, Ingo Molnar <mingo@redhat.com>,
- Peter Zijlstra <peterz@infradead.org>, Juri Lelli <juri.lelli@redhat.com>,
- Vincent Guittot <vincent.guittot@linaro.org>,
- Dietmar Eggemann <dietmar.eggemann@arm.com>,
- Ben Segall <bsegall@google.com>, Mel Gorman <mgorman@suse.de>,
- Valentin Schneider <vschneid@redhat.com>,
- Luis Chamberlain <mcgrof@kernel.org>, Petr Pavlu <petr.pavlu@suse.com>,
- Daniel Gomez <da.gomez@kernel.org>,
- Sami Tolvanen <samitolvanen@google.com>,
- Aaron Tomlin <atomlin@atomlin.com>,
- Sylwester Nawrocki <s.nawrocki@samsung.com>,
- Liam Girdwood <lgirdwood@gmail.com>,
- Mark Brown <broonie@kernel.org>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>, Max Filippov <jcmvbkbc@gmail.com>,
- Paolo Bonzini <pbonzini@redhat.com>,
- John Johansen <john.johansen@canonical.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Alasdair Kergon <agk@redhat.com>, Mike Snitzer <snitzer@kernel.org>,
- Mikulas Patocka <mpatocka@redhat.com>,
- Benjamin Marzinski <bmarzins@redhat.com>,
- "David S. Miller" <davem@davemloft.net>, David Ahern <dsahern@kernel.org>,
- Eric Dumazet <edumazet@google.com>,
- Jakub Kicinski <kuba@kernel.org>, Paolo Abeni <pabeni@redhat.com>,
- Simon Horman <horms@kernel.org>, Marcel Holtmann <marcel@holtmann.org>,
- Johan Hedberg <johan.hedberg@gmail.com>,
- Luiz Augusto von Dentz <luiz.dentz@gmail.com>,
- Alexei Starovoitov <ast@kernel.org>,
- Daniel Borkmann <daniel@iogearbox.net>,
- Jesper Dangaard Brouer <hawk@kernel.org>,
- John Fastabend <john.fastabend@gmail.com>,
- Stanislav Fomichev <sdf@fomichev.me>,
- Jamal Hadi Salim <jhs@mojatatu.com>, Jiri Pirko <jiri@resnulli.us>,
- Marcelo Ricardo Leitner <marcelo.leitner@gmail.com>,
- Xin Long <lucien.xin@gmail.com>, Trond Myklebust <trondmy@kernel.org>,
- Anna Schumaker <anna@kernel.org>, Chuck Lever <chuck.lever@oracle.com>,
- Jeff Layton <jlayton@kernel.org>, NeilBrown <neil@brown.name>,
- Olga Kornievskaia <okorniev@redhat.com>,
- Dai Ngo <Dai.Ngo@oracle.com>, Jon Maloy <jmaloy@redhat.com>,
- Johannes Berg <johannes@sipsolutions.net>,
- Catalin Marinas <catalin.marinas@arm.com>,
- Russell King <linux@armlinux.org.uk>, John Crispin <john@phrozen.org>,
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Yoshinori Sato <ysato@users.sourceforge.jp>, Rich Felker <dalias@libc.org>,
- John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Zhenyu Wang <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, Igor Russkikh <irusskikh@marvell.com>,
- Andrew Lunn <andrew+netdev@lunn.ch>,
- Pavan Chebbi <pavan.chebbi@broadcom.com>,
- Michael Chan <mchan@broadcom.com>,
- Potnuri Bharat Teja <bharat@chelsio.com>,
- Tony Nguyen <anthony.l.nguyen@intel.com>,
- Przemek Kitszel <przemyslaw.kitszel@intel.com>,
- Taras Chornyi <taras.chornyi@plvision.eu>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Iyappan Subramanian <iyappan@os.amperecomputing.com>,
- Keyur Chudgar <keyur@os.amperecomputing.com>,
- Quan Nguyen <quan@os.amperecomputing.com>,
- Heiner Kallweit <hkallweit1@gmail.com>,
- Marc Zyngier <maz@kernel.org>, Thomas Gleixner <tglx@kernel.org>,
- Andrew Lunn <andrew@lunn.ch>,
- Gregory Clement <gregory.clement@bootlin.com>,
- Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
- Vinod Koul <vkoul@kernel.org>, Linus Walleij <linusw@kernel.org>,
- Ulf Hansson <ulf.hansson@linaro.org>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>,
- Alexander Gordeev <agordeev@linux.ibm.com>,
- Christian Borntraeger <borntraeger@linux.ibm.com>,
- Sven Schnelle <svens@linux.ibm.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Eduardo Valentin <edubezval@gmail.com>, Keerthy <j-keerthy@ti.com>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Daniel Lezcano <daniel.lezcano@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Alex Williamson <alex@shazbot.org>, Mark Greer <mgreer@animalcreek.com>,
- Miquel Raynal <miquel.raynal@bootlin.com>,
- Richard Weinberger <richard@nod.at>, Vignesh Raghavendra <vigneshr@ti.com>,
- Shuah Khan <skhan@linuxfoundation.org>,
- Kieran Bingham <kieran.bingham@ideasonboard.com>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Joerg Roedel <joro@8bytes.org>, Will Deacon <will@kernel.org>,
- Robin Murphy <robin.murphy@arm.com>, Lee Jones <lee@kernel.org>,
- Pavel Machek <pavel@kernel.org>, Dave Penkler <dpenkler@gmail.com>,
- "K. Y. Srinivasan" <kys@microsoft.com>,
- Haiyang Zhang <haiyangz@microsoft.com>,
- Wei Liu <wei.liu@kernel.org>, Dexuan Cui <decui@microsoft.com>,
- Long Li <longli@microsoft.com>, Justin Sanders <justin@coraid.com>,
- Jens Axboe <axboe@kernel.dk>, Georgi Djakov <djakov@kernel.org>,
- Michael Turquette <mturquette@baylibre.com>,
- Stephen Boyd <sboyd@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
- Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>,
- Pali =?iso-8859-1?Q?Roh=E1r?= <pali@kernel.org>,
- Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH 00/61] treewide: Use IS_ERR_OR_NULL over manual NULL
- check - refactor
-Message-ID: <20260409181611.GP3836593@ZenIV>
-References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+X-Original-To: Intel-gfx@lists.freedesktop.org
+Delivered-To: Intel-gfx@lists.freedesktop.org
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DBAB010E11F
+ for <Intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 19:40:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775763659; x=1807299659;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=WByfioZdb2/15Svg/mp4OYgCMU4Meav595ex4NhIko0=;
+ b=WkwiaJaGW4J9rrD6YWlAL81uhrmeXBUmem6WGDvuYDWjeeVghc5Z+qdH
+ G9seZMQcybuuGN+KPrK9D8iAVJ4L9LRHMhUXFKppUlY46+/zSfWWExmNV
+ G8aTXtKlyXdkVAtwLiiTAs9s+PEIombCBXXuCfrVYmSAqfVOWZc04EpZQ
+ OpraJvVfQ76tNt1xmmIk25wHIu3Vd7vdfwCsy7Gh2CGhVdxtZ6A1nC95r
+ eP9VN4Y2dD4MFafEK1w1o2g4xoUoD8777TW7fyf/qDZUOHJm3eZhlIj39
+ Nhpq7yd3utCAtsInLdysM1/302H0jfvLMwYlMMHx1bbNFr9uq7H9CgYgg w==;
+X-CSE-ConnectionGUID: t70CfZyTTQKXfq8l//teEg==
+X-CSE-MsgGUID: kmE1gHllQEyN7VVfoLNRrw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="80639476"
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="80639476"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 12:40:58 -0700
+X-CSE-ConnectionGUID: d6Aq6zGvRz2uGqyPEC42iQ==
+X-CSE-MsgGUID: rl+fFg/VRs6XScOPWlPCfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,170,1770624000"; d="scan'208";a="252003837"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Apr 2026 12:40:58 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 9 Apr 2026 12:40:57 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Thu, 9 Apr 2026 12:40:57 -0700
+Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.0) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Thu, 9 Apr 2026 12:40:57 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=apOoO40wbp09CwujpHluYoZaJJCSnNpGQZ5zgv4uLY2gBxXP4GjKH7u+w3VfjX84PH7BsB61lT96Zmxa2NbI85zNHsTvXWAVxtbBml2GHpRBsOWh0xxEpsVcgHgRF995zKsFZHfWGSfSSvHZ176a9Hh0qBzIpQ9L0Jn9wUSGdOuUOfosdG2EXXEkhHc9xIGxV7KdKVCFe76+EcilI6eZyfVNYss0l2PWbpUbVqMNsT8N0ccGLqqeolBp0IQvu/OlOpWWXXXyCDgO7tNZygwBszuB8JZXLksCaot+6zifoeEsk39gbCa3Lt5OWkzOtzVLWmnCyIDhwbGcl9yrLvs3Fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=9mmBCJ5gVRdcY8V+0BGKm+RYlDt9yIOdQEIy9mxNKkw=;
+ b=nb7/C0so75tMMQj+hTToCxitnnuFS6HfWBmsuIveWH+5HdYqW42l4s0e6xyVti3xPfwLIey8ubDh2jBMaQNJB0vd3ekbSa2gv+5bIyGR414Af5kC3rjSdGTtzdmJUlTOCbNY8XrEw/CcaqxU7GgnBWcX6jRGc97CaJNJdk/cAtfqRbFWXWvyl5YJjVx9QdHNO2wtLq05LahOg/HjKFF5cXuvxyCHhcIUYQVQFa78QLfNGRDoJlSt98xZo5gKSfugONwrPvfuvz1FRhGwThBtXFfzuZaGM2JsWr0oZ2r8kZILYE1F9vLhbU/kUndOGX3bMEmnT6KyMuU3uFlMmFEPGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
+ by MN2PR11MB4678.namprd11.prod.outlook.com (2603:10b6:208:264::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.18; Thu, 9 Apr
+ 2026 19:40:55 +0000
+Received: from DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
+ ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9769.018; Thu, 9 Apr 2026
+ 19:40:55 +0000
+Date: Thu, 9 Apr 2026 12:40:52 -0700
+From: Matt Roper <matthew.d.roper@intel.com>
+To: Clint Taylor <clinton.a.taylor@intel.com>
+CC: <Intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/xe: Apply WA_14026810691 to engine
+Message-ID: <20260409194052.GS2729713@mdroper-desk1.amr.corp.intel.com>
+References: <20260408213418.1738915-1-clinton.a.taylor@intel.com>
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
-X-Mailman-Approved-At: Mon, 13 Apr 2026 12:26:15 +0000
+In-Reply-To: <20260408213418.1738915-1-clinton.a.taylor@intel.com>
+X-ClientProxiedBy: SJ0PR03CA0117.namprd03.prod.outlook.com
+ (2603:10b6:a03:333::32) To DS0PR11MB8182.namprd11.prod.outlook.com
+ (2603:10b6:8:163::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|MN2PR11MB4678:EE_
+X-MS-Office365-Filtering-Correlation-Id: 342389a8-103a-48d7-498e-08de966fea30
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|18002099003|22082099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: Ezggn8+BFfowxwBy5LK/G9BPKVEzA0/RHevWR+vp1iKaOrR9efMGayRZj0aQ/8IPBwu8Nb5pkKH/AHfEsHXeY8DYuqMxOl1MusLBCXjIQSEpA8JP+YiIfUdB+UXyi5zZXHFkO+PwShXXspdBCQYoDLD5N0hqVeHBntjbwGoEmfNVKPIk+Hc8bM9ZJzzt3MTsMljQdVKTEumr7vvgRi+C+/DJp9ACXFrqIalYINDU65JrFf3zgZYEAeupCz0JvpxLcQBWDiYcp3X1aAICayjsZlF69EpPmhPG29gnluKLFWwXP7AL/M+h+SY5HIWfFMP1PVqpKu1SM0XKywEz5X+1mfLG0+vAG+1X0GiYixzQB0wqcexZJYgVXSqecWTSgq46CFJKYreGkzzAB0ChuFT7F3CFRhYEYnu/Ubk6jFpkoAYLhy6y9OETiW0eRaDAZSNLXUpY9MoLYD9Sx7xX2N3FX23VIMjYnT4DfKvTfjiUX8N0IxjKubnwib3Xm5NmqdBc+jI+qpHsoyq/RnYQyGtGTyJa5dFcoHMYGoGTPFdlvmANp9iaMsJVf8T6whujL5h4zYt5+ww7erweBJtTrV8MRMgdVXGY3B0yVJwgoeLsFRvXlQ8ufcoZBQ+dQOrjEmKoq2o9Nkuxo7T08L1CjGYsdA7guwQ5Nu/1BpyBcF2HZEU6ME2kzMUYF0Cs9jfb18/jlUVksTsw63yfmO7bzeTobtO3vN29XJ1WusPQ+WFRpr0=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?E0dpPkBNXt1tbZd99FGzaEzg81mGfpC8SeO/DxZBCqyribSRJcF9a4mOuBL0?=
+ =?us-ascii?Q?VxuqrvTr3GQP6jcWPfYfopUZqHAM4m52eTz4ZR84/xnr3r7zTHByC1/CKwzC?=
+ =?us-ascii?Q?2l5qgEAHr7S1UUDQFxx+HwkSrD8PAsoUgsiBPQqmOMMKCWqlGz8fC90ONT1p?=
+ =?us-ascii?Q?cZ1N5kqUDuLtACfP5xWDho5xW44XOIiwxhy7HNQ9ovYGsAIZXyvd11x7R7nU?=
+ =?us-ascii?Q?AKtbD90NTGIdtaQfXWmxN9A7/VlBdYlcRy4atOZFnWuO0SenM3zSZUQzO19C?=
+ =?us-ascii?Q?oS6fgtOulsO8h0Y98t4FHCM+YpsBIHCQu84HCCa/3Hzkp4iNGRhE7DJN+Irr?=
+ =?us-ascii?Q?u2kaTSnDeHbEK5o5Uk+gGuHUFrICjzw5n/MesPzpkoeTzxl6ejYR5GdMA8M9?=
+ =?us-ascii?Q?LOCYgwSr3MUvSBh0NgiaAOO+LL0z0EfA/6Ut1Wtais6t7uf33yWFtofezdih?=
+ =?us-ascii?Q?qxNd1ho7mNPJ6MgL+cLxnIvFNXzCwgsVyunEv4r2zDb2MLH6V3MaKxb731sD?=
+ =?us-ascii?Q?aT/h2QxB1hxPMA9y0GqzVVYu/OLPEBvjWEwFWHxd3/2lq4Qi/4+wdZaw8sU7?=
+ =?us-ascii?Q?ujNHCK1PHG8bqBVoorepjCklo8b4EJc7tu3BhJRV1ILbrAgkTTCddX+EdDzv?=
+ =?us-ascii?Q?piq+9YLWeuE7PDZclLJ4WsLJQb5BLmbUb1gXNZHMUYLKKTeau12McSRguvbT?=
+ =?us-ascii?Q?o5g66c91tNjfvlv0729o5JcN1RxkcGhH5PeAIl54PqOgP4CCheQUoBgGyjzF?=
+ =?us-ascii?Q?so2hIsQ9CVUSeCvFEqANEGZt8PlpImIKHhB3t3PrOT9offQoJj8EbYI/b+ff?=
+ =?us-ascii?Q?zIuICK2y2AK6kSu319KQ0u+tj4xNtn7xSguYda5hlTCQNlUjJ499f8gDhjhz?=
+ =?us-ascii?Q?NkeZVd3CI1tv9ijzP4W3rR55WRYXkjIK6JKonmc+8JR5R4+R5FNh00477ucE?=
+ =?us-ascii?Q?Y7kbI03CcArhHXBaOcXIPaN4JF+Mngx5ycxKSGT+ouodSL7ZZMchKO8bo6JS?=
+ =?us-ascii?Q?F6d0Jiw8x0c8a/wexEiHRajPvSwUvjvRF/trxJJ/n/erKFVgjCcomV1lb7o0?=
+ =?us-ascii?Q?w4KbIdgyuv5SGeE/9/JLMstESqH69Byjp7Abp5s+XA8XZfRFJnFC9HQuvmu5?=
+ =?us-ascii?Q?xWDKDIEUEo/dvsmhbwRbmG+2T9Fnm1QuFn6F3nsjQSP+rfYtAi9CkZyUA+29?=
+ =?us-ascii?Q?FQKyvyn0H/1tRuE1nPxnkDjGy+gA4R+CWHFPRmI/d5UoXfgeIoDfBCbPptiC?=
+ =?us-ascii?Q?w0phfn3lTb8hCzw/Yi+Xnl+8VpqdOMXuJEfVviiT1OfuYb9S8pbAalO1Yihb?=
+ =?us-ascii?Q?e01DgVEnISH5Qo6Q+N7D4Dd9jeRON6vN57aXr5F8R1xCZucGy82smHT4ei5p?=
+ =?us-ascii?Q?RHWwlPu7WpS//pvu4l15BUELN3IVWIB5i09asjPVlcUnSd0cdG3bIXfraBbf?=
+ =?us-ascii?Q?cPqGpKIvLobirtU6xQTfcu7bgaJBwN4ffE7gDgHsUHa2+AOfjL/oCzy0kVOx?=
+ =?us-ascii?Q?ILPEovlaG9yndHZZOWnul3NmKd5f5oXp+3XEzxaiKeoesZVU7vmc6UG+1sEN?=
+ =?us-ascii?Q?EXL0lcnuBJwQX0xFYBtGoE2D8u2cNUj/jNDhE7CLmjuYQ/+iAeZwznZVC35g?=
+ =?us-ascii?Q?WEPArbIBiRttBqhDiPZp0JTGx6pvFZVHry4F/XDwyzybqDKtVSdgJI8k4cd9?=
+ =?us-ascii?Q?ps6GYz99/4s088eO5tnZAzIkxKrt635ZrfgRnrhTfx927K9q1xbAxj86UKyB?=
+ =?us-ascii?Q?4tHDXHjBQsg1Y+YoiYCKWiX7bZrFBLk=3D?=
+X-Exchange-RoutingPolicyChecked: sUpD18nkETF1BLKYh5MyyPvk27xT9tq5YNyla/B7g3dhgO9hUdBHJcqGRJrwDVOjJ2swwLciuGQ9MnPiEc9wVduKN7z8IhUKsVglcIto9bYfJilWXPivewTDHKj+tN6oMZr8sYs1sWLX0vFopx23px+eD164KipjQ6xb8xknMs5RkGfkO0uFNTfrLlqwHgHKZ6r+79hHUzWli8g06VMVE+KXSmczshpW9GdYEgfVLnXkkqXiwoEJqW5GN0D4Qi20NS18+C/oJfdVSb38c5o0yQ6PMX2QhCssHDg78aFY/+pIBh9pXi/uT7ptE2fAe5yDQvKyIgGAe32WAhADa7IHUQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 342389a8-103a-48d7-498e-08de966fea30
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Apr 2026 19:40:54.9895 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ZM4mIN7H1maf9Qr2ZKDi4aYrpROmAuxDUYKJEjOvBxPz802rvNQ6qA5LZvykgr69bLJSp5G0SFk3LFQg99k7E2m+la4bemaVx5QDZjOYT8w=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4678
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -227,46 +161,97 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [3.49 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[90];
-	R_DKIM_REJECT(1.00)[linux.org.uk:s=zeniv-20220401];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[zeniv.linux.org.uk : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:clinton.a.taylor@intel.com,m:Intel-gfx@lists.freedesktop.org,s:lists@lfdr.de];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	FORGED_SENDER(0.00)[matthew.d.roper@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx,netdev];
-	RCPT_COUNT_GT_50(0.00)[247];
-	FROM_NEQ_ENVFROM(0.00)[viro@zeniv.linux.org.uk,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,lists.ubuntu.com,vger.kernel.org,inria.fr,lists.linux.dev,lists.osuosl.org,lists.infradead.org,lists.ozlabs.org,kvack.org,st-md-mailman.stormreply.com,lists.samba.org,lists.sourceforge.net,imag.fr,fb.com,suse.com,gmail.com,redhat.com,dubeyko.com,mit.edu,dilger.ca,samba.org,manguebit.org,microsoft.com,talpey.com,kernel.org,ionkov.net,codewreck.org,crudebyte.com,linux.alibaba.com,google.com,huawei.com,vivo.com,szeredi.hu,paragon-software.com,intel.com,igalia.com,squashfs.org.uk,suse.cz,goodmis.org,efficios.com,manifault.com,nvidia.com,infradead.org,linaro.org,arm.com,suse.de,atomlin.com,samsung.com,perex.cz,canonical.com,paul-moore.com,namei.org,hallyn.com,linux-foundation.org,davemloft.net,holtmann.org,iogearbox.net,fomichev.me,mojatatu.com,resnulli.us,oracle.com,brown.name,sipsolutions.net,armlinux.org.uk,phrozen.org,alpha.franken.de,users.sourceforge.jp,libc.org,physik.fu-berlin.de,ideasonboard.com,kwiboo.se,linux.intel.com,ffwll.ch,ursulin.n
- et,amd.com,rock-chips.com,sntech.de,marvell.com,lunn.ch,broadcom.com,chelsio.com,plvision.eu,foss.st.com,os.amperecomputing.com,bootlin.com,linux.ibm.com,ti.com,shazbot.org,animalcreek.com,nod.at,linuxfoundation.org,8bytes.org,coraid.com,kernel.dk,baylibre.com,pengutronix.de,alien8.de,zytor.com];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_SPAM(0.00)[0.630];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	DKIM_TRACE(0.00)[linux.org.uk:-];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[matthew.d.roper@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EF6E53EBEF2
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 669643CF125
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Mar 10, 2026 at 12:48:26PM +0100, Philipp Hahn wrote:
-> While doing some static code analysis I stumbled over a common pattern,
-> where IS_ERR() is combined with a NULL check. For that there is
-> IS_ERR_OR_NULL().
+On Wed, Apr 08, 2026 at 02:34:18PM -0700, Clint Taylor wrote:
+> Apply WA_14026810691 to following IPs:
+> Xe3p_LPG
+> Xe3p_XPC
+> 
 
-... and valid uses of IS_ERR_OR_NULL are rare as hen teeth.
-Most of those are "I'm not sure how this function returns an
-error, let's use that just in case".
+I think you may have accidentally sent this to the wrong list.  Can you
+re-send on intel-xe@lists.freedesktop.org to make sure we get reviews
+from the proper audience and CI testing?
 
-Please, do not introduce more of that crap.
+
+Matt
+
+> Signed-off-by: Clint Taylor <clinton.a.taylor@intel.com>
+> ---
+>  drivers/gpu/drm/xe/regs/xe_gt_regs.h | 3 +++
+>  drivers/gpu/drm/xe/xe_wa.c           | 6 ++++++
+>  2 files changed, 9 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/xe/regs/xe_gt_regs.h b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> index aa267c2f6162..6a16ac1aca96 100644
+> --- a/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> +++ b/drivers/gpu/drm/xe/regs/xe_gt_regs.h
+> @@ -536,6 +536,9 @@
+>  #define   SLM_WMTP_RESTORE			REG_BIT(11)
+>  #define   RES_CHK_SPR_DIS			REG_BIT(6)
+>  
+> +#define TDL_TSL_CHICKEN2			XE_REG_MCR(0xe4cc, XE_REG_OPTION_MASKED)
+> +#define   TILEY_LOCALID				REG_BIT(2)
+> +
+>  #define ROW_CHICKEN				XE_REG_MCR(0xe4f0, XE_REG_OPTION_MASKED)
+>  #define   UGM_BACKUP_MODE			REG_BIT(13)
+>  #define   MDQ_ARBITRATION_MODE			REG_BIT(12)
+> diff --git a/drivers/gpu/drm/xe/xe_wa.c b/drivers/gpu/drm/xe/xe_wa.c
+> index 2ec70be78bf9..30dd1687cc8d 100644
+> --- a/drivers/gpu/drm/xe/xe_wa.c
+> +++ b/drivers/gpu/drm/xe/xe_wa.c
+> @@ -609,6 +609,12 @@ static const struct xe_rtp_entry_sr engine_was[] = {
+>  		       FUNC(xe_rtp_match_first_render_or_compute)),
+>  	  XE_RTP_ACTIONS(SET(ROW_CHICKEN3, DIS_EU_GRF_POISON_TO_LSC))
+>  	},
+> +	{ XE_RTP_NAME("14026810691"),
+> +	  XE_RTP_RULES(GRAPHICS_VERSION_RANGE(3510, 3511),
+> +		       FUNC(xe_rtp_match_first_render_or_compute)),
+> +	  XE_RTP_ACTIONS(SET(TDL_TSL_CHICKEN2, TILEY_LOCALID))
+> +	},
+> +
+>  };
+>  
+>  static const struct xe_rtp_entry_sr lrc_was[] = {
+> -- 
+> 2.25.1
+> 
+
+-- 
+Matt Roper
+Graphics Software Engineer
+Linux GPU Platform Enablement
+Intel Corporation
