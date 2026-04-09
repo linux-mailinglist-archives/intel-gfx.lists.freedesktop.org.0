@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2MHVJvTJ12k/TAgAu9opvQ
+	id kIPPMPnJ12k/TAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4B2D63CD01D
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6AAF73CD033
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:47:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C132C10E851;
-	Thu,  9 Apr 2026 15:46:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D993810E853;
+	Thu,  9 Apr 2026 15:47:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="X1I0CorB";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="i/Ob1r1C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4548210E84E;
- Thu,  9 Apr 2026 15:46:57 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775749606; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB00110E853;
+ Thu,  9 Apr 2026 15:47:02 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1775749612; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=A/D0q9m4FEc+VBcD5CPAC+Ml7VmpdM6MccWf5hIDQ/smid+13F1gynXR89Z/YIUYa2CzIDwoS8xITCZYUS3Vz5uJXrN3TGyEXt3sdH718o2t/yp5advTwoOzv8XOG8e7/QcvB+TaZz/TgsozJYBgUe3en0UF33TKBv8a/Hl/DHc=
+ b=k5wsHZqs8L+oKRgVRkY8cPiIOySNMwHwWkx4c0922ZaauxvbHMFPU9pbeeexvl/BIofV5KA+Y04brvzxKTwE3ZaZqutVb8m3QyN5ik0ziYMZS9m8ATlDGEVLgZC4yxQWLaPjghi12txbQfcjFzJEx/5aRii+kfmO6H1E7gZf/5A=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775749606;
+ s=zohoarc; t=1775749612;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=pfuJgNlLA/GmqV8a4mWT/AFOH7DIYdQGAVlfIcknDY4=; 
- b=QY1Ud7LXRkeGPedtC97+EsSDQeHhiVRThovtrg46/wUsS0GfSE4TgajjarKHdI3VTr0fgX9c+u/LIgPS1B0cgFIO/UeeOGI2gBrfy20y0l+6W6BcS5/VLn+P3/W51PbSg+rAWX0FgVlErmPRlxoGwKqypycwCCly5vbgptkBelQ=
+ bh=I6mnIoMwQGSuHjHjLVfRnXnzAB6xS7ZmlkuOJOt+Ckg=; 
+ b=bw7dZk18klANxrdlYQ33B1dnq81pbOWKx4zFCQYROK8pacU4JMvvd5vXGLGZeBM1sSF+l7jhHRyIIXt9zxLqvoNkcacBP1cMbImwoOrBN4jRUvdCqrU4cfqSH90meCZLBwKq1rB14m5fdEToBItnyVnzzDzrK991zcXNB3tVy5g=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749606; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749612; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=pfuJgNlLA/GmqV8a4mWT/AFOH7DIYdQGAVlfIcknDY4=;
- b=X1I0CorBiVEuAVNjm0DZFxz0TluvAc/IsB+AGtu4SUpGISY11k0xEhPb9BJ72zDF
- Sh8v0q7YNr/UBSKj/xPZA8Q3klMrnBDBSYumVtALA8+cpXkkvV9n/Z5g+zOX+iR9sgz
- 7CFw/U++5kNhp0yJFEfrHkkvZvLaOGaWJ2hIsEXE=
-Received: by mx.zohomail.com with SMTPS id 1775749603657169.86328714073875;
- Thu, 9 Apr 2026 08:46:43 -0700 (PDT)
+ bh=I6mnIoMwQGSuHjHjLVfRnXnzAB6xS7ZmlkuOJOt+Ckg=;
+ b=i/Ob1r1CUogmn8cyQXldTZMcHG0YKvmwzRswzISCIRtBwWqPUsfEXewpEU01egsQ
+ Ji1xsGGKx7C/y0BUI5glB8BTeVgYAeRoJNdflFEjO4ILvHAwrW6KY57I2IHCBwQR3va
+ BwdqafmrcL2OH/e+vt00GjR4qhiE5fuLEH+D/kaw=
+Received: by mx.zohomail.com with SMTPS id 1775749611020224.4611688699132;
+ Thu, 9 Apr 2026 08:46:51 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 09 Apr 2026 17:45:01 +0200
-Subject: [PATCH v12 11/25] drm/i915: Implement the "color format" DRM property
+Date: Thu, 09 Apr 2026 17:45:02 +0200
+Subject: [PATCH v12 12/25] drm/rockchip: Add YUV422 output mode constants
+ for VOP2
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-color-format-v12-11-ce84e1817a27@collabora.com>
+Message-Id: <20260409-color-format-v12-12-ce84e1817a27@collabora.com>
 References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 In-Reply-To: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -76,7 +77,8 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+ Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
+ Andy Yan <andyshrk@163.com>
 X-Mailer: b4 0.15.1
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -96,207 +98,64 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[39];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.995];
+	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,163.com];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
-X-Rspamd-Queue-Id: 4B2D63CD01D
+X-Rspamd-Queue-Id: 6AAF73CD033
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Implement the "color format" DRM property for both DP and HDMI.  The
-values of the property include RGB, YCbCr420, YCbCr444 and Auto. Auto
-will pick RGB, with a fallback to YCbCr420.
+The Rockchip display controller has a general YUV422 output mode, and
+some SoC-specific connector-specific output modes for RK3576.
 
-The mask of supported formats by the source exposed by the property is
-an optimistic scenario, as specific DFP-related caveats can't be
-established before an EDID is present.
+Add them, based on the values in downstream and the TRM (dsp_out_mode in
+RK3576 TRM Part 2, register POST*_CTRL_POST_DSP_CTRL).
 
-Should the explicitly requested color format not be supported by the
-sink (or by the source in combination with the sink), then an error is
-returned to userspace, so that it can make a better choice.
-
+Reviewed-by: Andy Yan <andyshrk@163.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/i915/display/intel_connector.c | 10 +++++++
- drivers/gpu/drm/i915/display/intel_connector.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c        | 38 +++++++++++++++++++++++---
- drivers/gpu/drm/i915/display/intel_hdmi.c      | 38 +++++++++++++++++++++++---
- 4 files changed, 79 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_drv.h | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.c b/drivers/gpu/drm/i915/display/intel_connector.c
-index 7ef9338d67ab..b1a21dd77af6 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.c
-+++ b/drivers/gpu/drm/i915/display/intel_connector.c
-@@ -338,3 +338,13 @@ intel_attach_scaling_mode_property(struct drm_connector *connector)
+diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+index 2e86ad00979c..4705dc6b8bd7 100644
+--- a/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
++++ b/drivers/gpu/drm/rockchip/rockchip_drm_drv.h
+@@ -30,10 +30,14 @@
+ #define ROCKCHIP_OUT_MODE_P565		2
+ #define ROCKCHIP_OUT_MODE_BT656		5
+ #define ROCKCHIP_OUT_MODE_S888		8
++#define ROCKCHIP_OUT_MODE_YUV422	9
+ #define ROCKCHIP_OUT_MODE_S888_DUMMY	12
+ #define ROCKCHIP_OUT_MODE_YUV420	14
+ /* for use special outface */
+ #define ROCKCHIP_OUT_MODE_AAAA		15
++/* SoC specific output modes */
++#define ROCKCHIP_OUT_MODE_YUV422_RK3576_DP	12
++#define ROCKCHIP_OUT_MODE_YUV422_RK3576_HDMI	13
  
- 	connector->state->scaling_mode = DRM_MODE_SCALE_ASPECT;
- }
-+
-+void
-+intel_attach_color_format_property(struct drm_connector *connector)
-+{
-+	const unsigned long fmts = BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
-+				   BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
-+				   BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
-+
-+	drm_connector_attach_color_format_property(connector, fmts);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_connector.h b/drivers/gpu/drm/i915/display/intel_connector.h
-index 0aa86626e646..c77b7aac02cb 100644
---- a/drivers/gpu/drm/i915/display/intel_connector.h
-+++ b/drivers/gpu/drm/i915/display/intel_connector.h
-@@ -34,5 +34,6 @@ void intel_attach_dp_colorspace_property(struct drm_connector *connector);
- void intel_attach_scaling_mode_property(struct drm_connector *connector);
- void intel_connector_queue_modeset_retry_work(struct intel_connector *connector);
- void intel_connector_cancel_modeset_retry_work(struct intel_connector *connector);
-+void intel_attach_color_format_property(struct drm_connector *connector);
- 
- #endif /* __INTEL_CONNECTOR_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 47bd3d59ea93..3b2293415b55 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3398,10 +3398,10 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- }
- 
- static int
--intel_dp_compute_formats(struct intel_encoder *encoder,
--			 struct intel_crtc_state *crtc_state,
--			 struct drm_connector_state *conn_state,
--			 bool respect_downstream_limits)
-+intel_dp_compute_formats_auto(struct intel_encoder *encoder,
-+			      struct intel_crtc_state *crtc_state,
-+			      struct drm_connector_state *conn_state,
-+			      bool respect_downstream_limits)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-@@ -3437,6 +3437,34 @@ intel_dp_compute_formats(struct intel_encoder *encoder,
- 	return ret;
- }
- 
-+static int
-+intel_dp_compute_formats(struct intel_encoder *encoder,
-+			 struct intel_crtc_state *crtc_state,
-+			 struct drm_connector_state *conn_state,
-+			 bool respect_downstream_limits)
-+{
-+	switch (conn_state->color_format) {
-+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_RGB);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_YCBCR444);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_YCBCR420);
-+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-+		return intel_dp_compute_formats_auto(encoder, crtc_state, conn_state,
-+						     respect_downstream_limits);
-+	default:
-+		MISSING_CASE(conn_state->color_format);
-+		return -EINVAL;
-+	}
-+}
-+
- void
- intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
-@@ -7025,6 +7053,8 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *_connec
- 
- 	if (HAS_VRR(display))
- 		drm_connector_attach_vrr_capable_property(&connector->base);
-+
-+	intel_attach_color_format_property(&connector->base);
- }
- 
- static void
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 5ab5b5f85cde..632498e3702b 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2307,10 +2307,10 @@ static int intel_hdmi_compute_output_format(struct intel_encoder *encoder,
- 	return intel_hdmi_compute_clock(encoder, crtc_state, respect_downstream_limits);
- }
- 
--static int intel_hdmi_compute_formats(struct intel_encoder *encoder,
--				      struct intel_crtc_state *crtc_state,
--				      const struct drm_connector_state *conn_state,
--				      bool respect_downstream_limits)
-+static int intel_hdmi_compute_formats_auto(struct intel_encoder *encoder,
-+					   struct intel_crtc_state *crtc_state,
-+					   const struct drm_connector_state *conn_state,
-+					   bool respect_downstream_limits)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-@@ -2345,6 +2345,35 @@ static int intel_hdmi_compute_formats(struct intel_encoder *encoder,
- 	return ret;
- }
- 
-+static int intel_hdmi_compute_formats(struct intel_encoder *encoder,
-+				      struct intel_crtc_state *crtc_state,
-+				      const struct drm_connector_state *conn_state,
-+				      bool respect_downstream_limits)
-+{
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
-+
-+	switch (conn_state->color_format) {
-+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-+		return intel_hdmi_compute_output_format(encoder, crtc_state, connector,
-+							respect_downstream_limits,
-+							INTEL_OUTPUT_FORMAT_RGB);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-+		return intel_hdmi_compute_output_format(encoder, crtc_state, connector,
-+							respect_downstream_limits,
-+							INTEL_OUTPUT_FORMAT_YCBCR444);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-+		return intel_hdmi_compute_output_format(encoder, crtc_state, connector,
-+							respect_downstream_limits,
-+							INTEL_OUTPUT_FORMAT_YCBCR420);
-+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-+		return intel_hdmi_compute_formats_auto(encoder, crtc_state, conn_state,
-+						       respect_downstream_limits);
-+	default:
-+		MISSING_CASE(conn_state->color_format);
-+		return -EINVAL;
-+	}
-+}
-+
- static bool intel_hdmi_is_cloned(const struct intel_crtc_state *crtc_state)
- {
- 	return crtc_state->uapi.encoder_mask &&
-@@ -2729,6 +2758,7 @@ intel_hdmi_add_properties(struct intel_hdmi *intel_hdmi, struct drm_connector *_
- 
- 	intel_attach_hdmi_colorspace_property(&connector->base);
- 	drm_connector_attach_content_type_property(&connector->base);
-+	intel_attach_color_format_property(&connector->base);
- 
- 	if (DISPLAY_VER(display) >= 10)
- 		drm_connector_attach_hdr_output_metadata_property(&connector->base);
+ /* output flags */
+ #define ROCKCHIP_OUTPUT_DSI_DUAL	BIT(0)
 
 -- 
 2.53.0
