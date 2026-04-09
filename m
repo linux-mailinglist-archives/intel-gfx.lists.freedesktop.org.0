@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UNsrDV5812mXOggAu9opvQ
+	id oK0PB2R812mXOggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:15:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:16:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BA3913C90F8
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8F04B3C90FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 12:16:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D6910E799;
-	Thu,  9 Apr 2026 10:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F1C6C10E74A;
+	Thu,  9 Apr 2026 10:16:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WVl/Svm3";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="auT0TNsy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF69810E799;
- Thu,  9 Apr 2026 10:15:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C66E810E74A;
+ Thu,  9 Apr 2026 10:15:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775729756; x=1807265756;
+ t=1775729760; x=1807265760;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6ChfB512KifocCwTXkpxS1usdvVHqGeNOtOr3MVhk80=;
- b=WVl/Svm3WdNFbeTvCTQS1pgOooX6F5/j8oKT9CU1PLW2p45dgz8j2qT6
- vyJEz5+BJRnh5abMIzFwd2daSXiJ4/PjNyeidPs7lyfGqh3FRgT+NEy1V
- CCbae2MtCBbj+YkbZqUhvK8eRFG155VR0cGCbo2+wWVw8Y1BhcsX6D7j0
- CNeOF2JgdKMwU/tPnIXx3acDPKv4IUMvHyhF4+cJOK0SjV3PCVPshmMMD
- VfMkgDBJv8OiPNADy6cdtB5hE1dkTliKPc3t20cZy1vG3+/oSFe7P0Mmi
- EE+mo5CUL+TjvL9juHUkfElGeaQHEMYLCGHyrYU0hqfzOgauEGbpS8XKL g==;
-X-CSE-ConnectionGUID: vrJtzRXiSuanyZ5cZZ3ZAA==
-X-CSE-MsgGUID: X+lbGi1ZTiOAFV5iv56CUQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="87354255"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="87354255"
+ bh=KXjc2udLi74sfhwhuLW2FXpFWapwxNQu4b0Q0jCjGBA=;
+ b=auT0TNsyazSAMB4gdN+gu5Nc1iiwa4Ie7KosZURqw+y8Odh3+ZX58p/A
+ m0SBmEIwErB1TT6dSHRnKxM3PwRsEbWXVG+06tO13XLtHgOGae+i5dwfH
+ VE9eRvyack9TUqnmJW0RO7tUiLoOVUaJ3ofIIdt6ACKClhkE5lwVnk2uv
+ NwPv1FU/1qMUFGQz4xjK6Rs2ssc9iN7lmhzkrNrdwWKcpAFoK7wsGpgTM
+ infoQYY2WcANGU5T2Ukv+UV62JEUl3vPbJAvSbZq28cfaWSBXqILMUg9b
+ Hqs9cXLbSyUpHgMYBRodc/ERmfXF/Hkd4J3zcFGZ97EmL18A5kGr4paSK Q==;
+X-CSE-ConnectionGUID: ysoKhdcjTeeUfN45nAWSgw==
+X-CSE-MsgGUID: XskeE5FdT62y7Wa+DJBVyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="87354260"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="87354260"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 03:15:55 -0700
-X-CSE-ConnectionGUID: QApgZJbITKqW3D0WgA0BfA==
-X-CSE-MsgGUID: 7gRuU09ZShqLqxORuFYwrA==
+ 09 Apr 2026 03:15:59 -0700
+X-CSE-ConnectionGUID: jhLIEY4GRjKR0xZlc3MGWw==
+X-CSE-MsgGUID: b3hR02aaQMOnUsOku67xQw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="252065441"
+X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="252065475"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.216])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 03:15:54 -0700
+ 09 Apr 2026 03:15:58 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 3/9] drm/i915/hdmi: Restructure 4:2:0 vs. 4:4:4 mode
- validation
-Date: Thu,  9 Apr 2026 13:15:33 +0300
-Message-ID: <20260409101539.22032-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 4/9] drm/i915/dp: Restructure the sink/output format
+ selection
+Date: Thu,  9 Apr 2026 13:15:34 +0300
+Message-ID: <20260409101539.22032-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
 References: <20260409101539.22032-1-ville.syrjala@linux.intel.com>
@@ -102,120 +102,161 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: BA3913C90F8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 8F04B3C90FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Restructure the HDMI mode validation to resemble the new
-intel_hdmi_compute_formats(). Keeping the two in sync helps
-to avoid different bugs in each.
+Restructure intel_dp_compute_output_format() to resemble the new
+intel_hdmi_compute_output_formats().
 
-The main difference between mode_valid() and
-intel_hdmi_compute_formats() is that we don't want the
-Hail Mary RGB fallback for "4:2:0 only" modes.
+Again, we basically have two main code paths:
+- YCbCr 4:2:0 only modes
+- everything else including YCbCr 4:2:0 also modes
+
+Take the exact same approach with the DP code, making the
+format selection much less convoluted.
 
 Cc: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_hdmi.c | 60 ++++++++++++-----------
- 1 file changed, 32 insertions(+), 28 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 98 +++++++++++++++++--------
+ 1 file changed, 69 insertions(+), 29 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
-index 9c241d93166c..79093d8fc2e6 100644
---- a/drivers/gpu/drm/i915/display/intel_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
-@@ -2045,6 +2045,27 @@ intel_hdmi_sink_format_valid(struct intel_connector *connector,
- 	}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b8b6d62fb275..ed5841f224ee 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -1379,6 +1379,28 @@ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 	return MODE_OK;
  }
  
 +static enum drm_mode_status
-+intel_hdmi_mode_valid_format(struct intel_connector *connector,
-+			     const struct drm_display_mode *mode,
-+			     int clock, bool has_hdmi_sink,
-+			     enum intel_output_format sink_format)
++intel_dp_sink_format_valid(struct intel_connector *connector,
++			   const struct drm_display_mode *mode,
++			   enum intel_output_format sink_format)
 +{
-+	struct intel_display *display = to_intel_display(connector);
-+	enum drm_mode_status status;
++	const struct drm_display_info *info = &connector->base.display_info;
 +
-+	status = intel_hdmi_sink_format_valid(connector, mode,
-+					      has_hdmi_sink, sink_format);
-+	if (status != MODE_OK)
-+		return status;
++	switch (sink_format) {
++	case INTEL_OUTPUT_FORMAT_YCBCR420:
++		if (!connector->base.ycbcr_420_allowed ||
++		    !drm_mode_is_420(info, mode))
++			return MODE_NO_420;
 +
-+	status = intel_pfit_mode_valid(display, mode, sink_format, 0);
-+	if (status != MODE_OK)
-+		return status;
-+
-+	return intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
++		return MODE_OK;
++	case INTEL_OUTPUT_FORMAT_RGB:
++		return MODE_OK;
++	default:
++		MISSING_CASE(sink_format);
++		return MODE_BAD;
++	}
 +}
 +
- static enum drm_mode_status
- intel_hdmi_mode_valid(struct drm_connector *_connector,
- 		      const struct drm_display_mode *mode)
-@@ -2052,12 +2073,11 @@ intel_hdmi_mode_valid(struct drm_connector *_connector,
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_hdmi *hdmi = intel_attached_hdmi(connector);
-+	const struct drm_display_info *info = &connector->base.display_info;
- 	enum drm_mode_status status;
- 	int clock = mode->clock;
- 	int max_dotclk = display->cdclk.max_dotclk_freq;
- 	bool has_hdmi_sink = intel_has_hdmi_sink(hdmi, connector->base.state);
+ int intel_dp_max_hdisplay_per_pipe(struct intel_display *display)
+ {
+ 	return DISPLAY_VER(display) >= 30 ? 6144 : 5120;
+@@ -3338,41 +3360,59 @@ static int
+ intel_dp_compute_output_format(struct intel_encoder *encoder,
+ 			       struct intel_crtc_state *crtc_state,
+ 			       struct drm_connector_state *conn_state,
+-			       bool respect_downstream_limits)
++			       bool respect_downstream_limits,
++			       enum intel_output_format sink_format)
+ {
+-	struct intel_display *display = to_intel_display(encoder);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	struct intel_connector *connector = intel_dp->attached_connector;
+-	const struct drm_display_info *info = &connector->base.display_info;
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
 -	bool ycbcr_420_only;
--	enum intel_output_format sink_format;
+-	int ret;
  
- 	status = intel_cpu_transcoder_mode_valid(display, mode);
- 	if (status != MODE_OK)
-@@ -2084,36 +2104,20 @@ intel_hdmi_mode_valid(struct drm_connector *_connector,
- 	if (clock > 600000)
- 		return MODE_CLOCK_HIGH;
- 
--	ycbcr_420_only = drm_mode_is_420_only(&connector->base.display_info, mode);
-+	if (drm_mode_is_420_only(info, mode)) {
-+		status = intel_hdmi_mode_valid_format(connector, mode, clock, has_hdmi_sink,
-+						      INTEL_OUTPUT_FORMAT_YCBCR420);
-+	} else {
-+		status = intel_hdmi_mode_valid_format(connector, mode, clock, has_hdmi_sink,
-+						      INTEL_OUTPUT_FORMAT_RGB);
- 
--	if (ycbcr_420_only)
--		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--	else
--		sink_format = INTEL_OUTPUT_FORMAT_RGB;
+-	ycbcr_420_only = drm_mode_is_420_only(info, adjusted_mode);
 -
--	status = intel_pfit_mode_valid(display, mode, sink_format, 0);
-+		if (status != MODE_OK && drm_mode_is_420_also(info, mode))
-+			status = intel_hdmi_mode_valid_format(connector, mode, clock, has_hdmi_sink,
-+							      INTEL_OUTPUT_FORMAT_YCBCR420);
-+	}
- 	if (status != MODE_OK)
- 		return status;
- 
--	status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink, sink_format);
--	if (status != MODE_OK) {
--		if (ycbcr_420_only ||
--		    !connector->base.ycbcr_420_allowed ||
--		    !drm_mode_is_420_also(&connector->base.display_info, mode))
--			return status;
--
--		sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
--
--		status = intel_pfit_mode_valid(display, mode, sink_format, 0);
--		if (status != MODE_OK)
--			return status;
--
--		status = intel_hdmi_mode_clock_valid(&connector->base, clock, has_hdmi_sink,
--						     sink_format);
--		if (status != MODE_OK)
--			return status;
+-	if (ycbcr_420_only && !connector->base.ycbcr_420_allowed) {
+-		drm_dbg_kms(display->drm,
+-			    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
+-		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+-	} else {
+-		crtc_state->sink_format = intel_dp_sink_format(connector, adjusted_mode);
 -	}
++	if (intel_dp_sink_format_valid(connector, adjusted_mode,
++				       sink_format) != MODE_OK)
++		return -EINVAL;
+ 
++	crtc_state->sink_format = sink_format;
+ 	crtc_state->output_format = intel_dp_output_format(connector, crtc_state->sink_format);
+ 
+-	ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+-					   respect_downstream_limits);
+-	if (ret) {
+-		if (crtc_state->sink_format == INTEL_OUTPUT_FORMAT_YCBCR420 ||
+-		    !connector->base.ycbcr_420_allowed ||
+-		    !drm_mode_is_420_also(info, adjusted_mode))
+-			return ret;
 -
- 	return intel_mode_valid_max_plane_size(display, mode, 1);
- }
+-		crtc_state->sink_format = INTEL_OUTPUT_FORMAT_YCBCR420;
+-		crtc_state->output_format = intel_dp_output_format(connector,
+-								   crtc_state->sink_format);
+-		ret = intel_dp_compute_link_config(encoder, crtc_state, conn_state,
+-						   respect_downstream_limits);
++	return intel_dp_compute_link_config(encoder, crtc_state, conn_state,
++					    respect_downstream_limits);
++}
++
++static int
++intel_dp_compute_formats(struct intel_encoder *encoder,
++			 struct intel_crtc_state *crtc_state,
++			 struct drm_connector_state *conn_state,
++			 bool respect_downstream_limits)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	struct intel_connector *connector = intel_dp->attached_connector;
++	const struct drm_display_info *info = &connector->base.display_info;
++	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++	int ret;
++
++	if (drm_mode_is_420_only(info, adjusted_mode)) {
++		ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
++						     respect_downstream_limits,
++						     INTEL_OUTPUT_FORMAT_YCBCR420);
++
++		if (ret) {
++			drm_dbg_kms(display->drm,
++				    "YCbCr 4:2:0 mode but YCbCr 4:2:0 output not possible. Falling back to RGB.\n");
++
++			ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
++							     respect_downstream_limits,
++							     INTEL_OUTPUT_FORMAT_RGB);
++		}
++	} else {
++		ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
++						     respect_downstream_limits,
++						     INTEL_OUTPUT_FORMAT_RGB);
++
++		if (ret && drm_mode_is_420_also(info, adjusted_mode))
++			ret = intel_dp_compute_output_format(encoder, crtc_state, conn_state,
++							     respect_downstream_limits,
++							     INTEL_OUTPUT_FORMAT_YCBCR420);
+ 	}
+ 
+ 	return ret;
+@@ -3547,9 +3587,9 @@ intel_dp_compute_config(struct intel_encoder *encoder,
+ 	 * Try to respect downstream TMDS clock limits first, if
+ 	 * that fails assume the user might know something we don't.
+ 	 */
+-	ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, true);
++	ret = intel_dp_compute_formats(encoder, pipe_config, conn_state, true);
+ 	if (ret)
+-		ret = intel_dp_compute_output_format(encoder, pipe_config, conn_state, false);
++		ret = intel_dp_compute_formats(encoder, pipe_config, conn_state, false);
+ 	if (ret)
+ 		return ret;
  
 -- 
 2.52.0
