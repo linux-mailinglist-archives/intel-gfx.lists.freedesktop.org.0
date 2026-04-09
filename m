@@ -2,66 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGhFNLxm12myNggAu9opvQ
+	id SCcqAlRt12myNggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 10:43:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 11:11:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1247C3C7DDE
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 10:43:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 62D7D3C841A
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 11:11:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B385910E7A1;
-	Thu,  9 Apr 2026 08:43:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B11B510E779;
+	Thu,  9 Apr 2026 09:11:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JK7eSMNy";
+	dkim=pass (2048-bit key; unprotected) header.d=ursulin.net header.i=@ursulin.net header.b="YkWeiO21";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2C8F10E7A1
- for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 08:43:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775724217; x=1807260217;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=Ra+54xVNaiVIiq7uAAj3xLnxU52yD3G5ZikXrzq8eIg=;
- b=JK7eSMNy5bM313tVdWIJ1MXGd/eRjY0Nowy+XCVITh0mfmsuGtlFjwzN
- dEV+/YHjBJeh3MH51MeojmpqGdCHL+cx6oTsgpwOb5XxCg2H83zo5OR0N
- rFKB5YdMwkCjtKGaBsxXjBBHcYVt3Mtligxt8P5atYZXoMMQwl5+F61ep
- eA48VKbnfBLL8YdPvjDaz+8ZtfwhzM4uoeA6/TpPzT2cv7fmyv9dI+rWh
- gxjUm9BqFTa+0+wMibjHgnmr7NzFWA4M9YHli0usZddX/kaD1uBNg4jPj
- Yz+pdLQgZhpCwmr3IVOlNShawnoQI6KtXBvBpoHbEUwduwSMrzAfaWPdd g==;
-X-CSE-ConnectionGUID: GhLCoOuATpGIWTtSj3lWNQ==
-X-CSE-MsgGUID: k5oUCfQ/RXqGwHm7wy4RIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11753"; a="87799424"
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="87799424"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 01:43:36 -0700
-X-CSE-ConnectionGUID: yW8bjEtZQ9ihvnvy6nFw6A==
-X-CSE-MsgGUID: 4l0GB3YWR1+fVf+Rg295/g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,169,1770624000"; d="scan'208";a="230379027"
-Received: from ettammin-mobl2.ger.corp.intel.com (HELO
- jkrzyszt-mobl2.ger.corp.intel.com) ([10.245.246.83])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Apr 2026 01:43:35 -0700
-Message-ID: <8ad654540c17a0ad8314545fe6c0ed9907671ac0.camel@linux.intel.com>
-Subject: Re: [PATCH topic/core-for-CI] iommu: Do not call drivers for empty
- gathers
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Date: Thu, 09 Apr 2026 10:43:32 +0200
-In-Reply-To: <20260402092506.2612595-2-janusz.krzysztofik@linux.intel.com>
-References: <20260402092506.2612595-2-janusz.krzysztofik@linux.intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com
+ [209.85.221.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A49310E778
+ for <intel-gfx@lists.freedesktop.org>; Thu,  9 Apr 2026 09:11:44 +0000 (UTC)
+Received: by mail-wr1-f45.google.com with SMTP id
+ ffacd0b85a97d-43cf5ad500fso508470f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 09 Apr 2026 02:11:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=ursulin.net; s=google; t=1775725903; x=1776330703; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=+5wz/BvjEDMd/4gYUrDrwtdKo1HH0lx8NLd29v9vbXc=;
+ b=YkWeiO21oFLzHXFrg+mZMErPee5T/rVPJljtVLpAsfiQi3bNSL9uJkKNKHHVkF6YEY
+ D8tsjqEsWahon3aG0pdPT/7FouARpzt2i2hEkGyThWYvPX4FaxOPbYVKMqhvu7X19NU6
+ R34A1GWAXMi9i7wmSW14dezrYjsnrSHN1+QqSEcOSRRaTOaJ7e7IQMQ4e4mf7IAgTgtD
+ O8aI9syJbDhrZDKSkVGgXdb0jHwhBkCK4xeYbARi0CAIAgULJQyul8Xr/au1r088flAZ
+ cNW+btCLjm6Z/E9fHVWTTez0b1xFU+oeaory7ySFjKA4Yl/DbPmdAhfDwmDASWveK43X
+ AMEA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1775725903; x=1776330703;
+ h=content-transfer-encoding:in-reply-to:from:content-language
+ :references:cc:to:subject:user-agent:mime-version:date:message-id
+ :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
+ :reply-to;
+ bh=+5wz/BvjEDMd/4gYUrDrwtdKo1HH0lx8NLd29v9vbXc=;
+ b=GB38DhdfY2ObklSfwV4gzOCEf2sGfyF2NPA27/VyxvoMiglave7+xvjPaL0kFHv5/m
+ YjFVclOPGLJOxG7tTRWDNzusAdWRURoAt1j3NmwUZKm+J2xllrWmBRuy01OJDD825I7w
+ olpQ34BfNAgljUQeYuGHuivBoj5j/m6dMr++GJIxD/1LCvEamBK/pzb6ALfuObES/hoH
+ 2tWyISlETiVD6pmZo2sxhdsSACHMi/NihEWNTerb6Q1VzoVW7xSaz7rHEfN0H5LCkh7i
+ 1sYifrQMTdRAZydRom34yHADCwPM3B7DAEJ531At3QwygKjcV4vWJI2odx2sN3ZTqIY6
+ YrzQ==
+X-Forwarded-Encrypted: i=1;
+ AJvYcCVduQt65/vBDdxciQlONXnzH5li0LiC2/GZQKWpoXtzcP2SVseyH29f7veixl+v1HyX3LlvTVqFVdk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yy7KkBB3LpnU2ay8LGoHvLI2/wVojZ8O/+sGvn+HJHHmmK8CcWq
+ TngrpnrifM0K1PmLlinmgCiRIBTsKrquoyd5nHHqMFU7pVC57sbmnY8KwtTpZTRmaO8=
+X-Gm-Gg: AeBDieu8tdvPVB3fU1jrOsQLOJraOxmuQXXSfW/S5I8ktAHQ3vvC5llTkvItyYuaNq3
+ f17ZYSNL0wk//p/zQjphRhRswgkLQ5ZeeQp8TrqiQ8gvnhLC9BZIbqofVccmkekzdDBKVoE+4Xw
+ qp2NedeHHFaFhmJhCRaXdh9kmKUIp8/V0Jyq9rpJrDlu/W49XgauycTqsHvflFShp3tqbb81WMt
+ OsS3a7gjjG53V/8jHdT0shhFX1BgYR5TjIxBKBqhhnml13l3b4kE/13SBbighQ8c672khj46h41
+ 6X5/ttA4o7FAJ2xRt/1TUB86njxw1g/cmSjk74pKie0Puf0xLPWUQnzYXraW5jsIEuAFzkulXDQ
+ G9KAobwy54/fXBOU+VXpoOoBonihln5LVq7A9DB7mq4hH+oB8W284HNm+O/lP9WOEMTg5/BiYv5
+ bidx7JKVXTFm485vcjSB9tW2UTNH2hV3ClerB0+ix2qLTi
+X-Received: by 2002:a5d:5d08:0:b0:439:b8b2:fabc with SMTP id
+ ffacd0b85a97d-43d292a9581mr35950478f8f.21.1775725902114; 
+ Thu, 09 Apr 2026 02:11:42 -0700 (PDT)
+Received: from [192.168.0.101] ([90.240.106.137])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-43d1e4e6224sm66188510f8f.25.2026.04.09.02.11.41
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Thu, 09 Apr 2026 02:11:41 -0700 (PDT)
+Message-ID: <b8d02a4c-e20d-4814-8ba3-eaba6b701b6f@ursulin.net>
+Date: Thu, 9 Apr 2026 10:11:41 +0100
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v4] drm/i915/gem: Drop check for changed VM in EXECBUF
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Intel graphics driver community testing & development
+ <intel-gfx@lists.freedesktop.org>
+Cc: Direct Rendering Infrastructure - Development
+ <dri-devel@lists.freedesktop.org>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Linus Torvalds <torvalds@linuxfoundation.org>,
+ Simona Vetter <simona.vetter@ffwll.ch>, Andi Shyti <andi.shyti@kernel.org>
+References: <20260409053111.8914-1-joonas.lahtinen@linux.intel.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tursulin@ursulin.net>
+In-Reply-To: <20260409053111.8914-1-joonas.lahtinen@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,100 +101,104 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:dri-devel@lists.freedesktop.org,m:ville.syrjala@linux.intel.com,m:torvalds@linuxfoundation.org,m:simona.vetter@ffwll.ch,m:andi.shyti@kernel.org,s:lists@lfdr.de];
+	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[ursulin.net];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-0.996];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_ALL(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[tursulin@ursulin.net,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[ursulin.net:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,intel.com:dkim,intel.com:email,linux.intel.com:mid,nvidia.com:email]
-X-Rspamd-Queue-Id: 1247C3C7DDE
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxfoundation.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,ursulin.net:dkim,ursulin.net:email,ursulin.net:mid,ffwll.ch:email]
+X-Rspamd-Queue-Id: 62D7D3C841A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 2026-04-02 at 11:23 +0200, Janusz Krzysztofik wrote:
-> From: Jason Gunthorpe <jgg@nvidia.com>
->=20
-> An empty gather is coded with start=3DU64_MAX, end=3D0 and several driver=
-s go
-> on to convert that to a size with:
->=20
->  end - start + 1
->=20
-> Which gives 2 for an empty gather. This then causes Weird Stuff to
-> happen (for example an UBSAN splat in VT-d) that is hopefully harmless,
-> but maybe not.
->=20
-> Prevent drivers from being called right in iommu_iotlb_sync().
->=20
-> Auditing shows that AMD, Intel, Mediatek and RSIC-V drivers all do things
-> on these empty gathers.
->=20
-> Further, there are several callers that can trigger empty gathers,
-> especially in unusual conditions. For example iommu_map_nosync() will cal=
-l
-> a 0 size unmap on some error paths. Also in VFIO, iommupt and other
-> places.
->=20
-> Cc: stable@vger.kernel.org
-> Reported-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-> Closes: https://lore.kernel.org/r/11145826.aFP6jjVeTY@jkrzyszt-mobl2.ger.=
-corp.intel.com
-> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
-> Reviewed-by: Lu Baolu <baolu.lu@linux.intel.com>
-> Reviewed-by: Samiullah Khawaja <skhawaja@google.com>
-> Reviewed-by: Robin Murphy <robin.murphy@arm.com>
-> Reviewed-by: Vasant Hegde <vasant.hegde@amd.com>
-> Signed-off-by: Joerg Roedel <joerg.roedel@amd.com>
-> (cherry picked from commit 90c5def10bea574b101b7a520c015ca81742183f)
 
-That commit is already in mainline, no need to pull it into core-for-CI=C2=
-=A0
-any=C2=A0longer.
-
-Thanks,
-Janusz
-
-
-> Link: https://lore.kernel.org/all/1-v1-13a02eb0e031+a5-iommu_gather_jgg@n=
-vidia.com
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/15478
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+On 09/04/2026 06:31, Joonas Lahtinen wrote:
+> Since the introduction of d4433c7600f7 ("drm/i915/gem: Use the proto-context
+> to handle create parameters (v5)") it has not been possible for VM to change
+> after context creation so the check will never fail.
+> 
+> Sima's analysis:
+> 
+>    This check was added in f7ce8639f6ff ("drm/i915/gem: Split the context's
+>    obj:vma lut into its own mutex") but without any hint in the commit
+>    message as to why. In another hunk of that commit there's a hint though in
+>    __eb_add_lut:
+> 
+>            /* user racing with ctx set-vm */
+> 
+>    This would mean that this bug was introduced in e0695db7298e ("drm/i915:
+>    Create/destroy VM (ppGTT) for use with contexts"), which allowed to change
+>    the gem_ctx->vm at runtime, opening up the race that was partially fixed
+>    in the earlier referenced commit about a year later.
+> 
+>    But it cannot be exploited anymore in anything remotely recent because
+>    with the introduction of proto-contexts we've made gem_ctx->vm invariant
+>    again, exactly to preemptively close all these potential issues.
+>    Specifically d4433c7600f7 ("drm/i915/gem: Use the proto-context to handle
+>    create parameters (v5)") is the vm specific part of the proto-context
+>    work.
+> 
+> v3:
+> - Include Sima's analysis and WARN_ON_ONCE
+> 
+> v4:
+> - Focus only on latest mainline codebase
+> 
+> References: https://lore.kernel.org/all/20260324151741.29338-1-sosohero200@gmail.com/
+> Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Cc: Linus Torvalds <torvalds@linuxfoundation.org>
+> Cc: Simona Vetter <simona.vetter@ffwll.ch>
+> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
+> Cc: Andi Shyti <andi.shyti@kernel.org>
+> Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
 > ---
->  include/linux/iommu.h | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
->=20
-> diff --git a/include/linux/iommu.h b/include/linux/iommu.h
-> index 54b8b48c762e8..555597b54083c 100644
-> --- a/include/linux/iommu.h
-> +++ b/include/linux/iommu.h
-> @@ -980,7 +980,8 @@ static inline void iommu_flush_iotlb_all(struct iommu=
-_domain *domain)
->  static inline void iommu_iotlb_sync(struct iommu_domain *domain,
->  				  struct iommu_iotlb_gather *iotlb_gather)
->  {
-> -	if (domain->ops->iotlb_sync)
-> +	if (domain->ops->iotlb_sync &&
-> +	    likely(iotlb_gather->start < iotlb_gather->end))
->  		domain->ops->iotlb_sync(domain, iotlb_gather);
-> =20
->  	iommu_iotlb_gather_init(iotlb_gather);
+>   drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> index bd608cea396f..621f07a55c38 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_execbuffer.c
+> @@ -895,7 +895,7 @@ static struct i915_vma *eb_lookup_vma(struct i915_execbuffer *eb, u32 handle)
+>   
+>   		rcu_read_lock();
+>   		vma = radix_tree_lookup(&eb->gem_context->handles_vma, handle);
+> -		if (likely(vma && vma->vm == vm))
+> +		if (likely(vma))
+>   			vma = i915_vma_tryget(vma);
+>   		rcu_read_unlock();
+>   		if (likely(vma))
+
+Analysis reads correct to me.
+
+Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+
+Regards,
+
+Tvrtko
+
