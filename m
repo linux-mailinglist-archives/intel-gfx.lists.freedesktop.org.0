@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJ0wCfXg3GmKXwkAu9opvQ
+	id QBrTGOzg3GnrXgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A09D13EBF24
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 12CC73EBEE2
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:20 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1966F10E42F;
-	Mon, 13 Apr 2026 12:26:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD9B210E428;
+	Mon, 13 Apr 2026 12:26:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="2CyiOOQu";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="TdHFtusw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1651410E836;
- Thu,  9 Apr 2026 17:09:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C997210E844;
+ Thu,  9 Apr 2026 17:09:39 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-04.galae.net (Postfix) with ESMTPS id AA298C5C18C;
- Thu,  9 Apr 2026 17:10:09 +0000 (UTC)
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 7329EC5C18D;
+ Thu,  9 Apr 2026 17:10:13 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id DEFAE603E4;
- Thu,  9 Apr 2026 17:09:34 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id AA0F8603E4;
+ Thu,  9 Apr 2026 17:09:38 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 0DC27104501D0; 
- Thu,  9 Apr 2026 19:09:29 +0200 (CEST)
+ with ESMTPSA id A4965104501B9; 
+ Thu,  9 Apr 2026 19:09:33 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1775754573; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1775754577; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=db8ka7P2uU7OnUSlW7uuT/LogKA95j6LgGKnwnPZSO8=;
- b=2CyiOOQu4VUIgXCcPbaIa9rE/A/G6NdNzxg2ZbsNEQV4Esai/av5qezbZP0xomYKv8EpOk
- Zj0XimgfS8gT3Im5b13pDqVpAccntr7rPk0gXW3ivSpln7rBcvQ9ea2evZf/nAPOidCMrZ
- kyQB9TbOz/iuM3mNye+U6WVwLZkNpEB2b8w9jxN/jWQKJiobzCon5qPOl1Br6utnZmjYHc
- D5gXaUZbSaOKx1D4Po5oq9n/oA6xhOdnx6ZmHWIrAGYNw8oHOnonfgs8EbTRHI44F5+4Cg
- FiWE+zG1NtKoK7/2kSrRYiiEBn7Z9xqAg5r5V2sZaUn6eDs6864r+TWF/8WqLQ==
+ bh=80i2+SV+RLyeafvPAz3gjWWOqBFxeYH5P0a7No+38o8=;
+ b=TdHFtuswVi6gUMeZnFkAQ1h9pYxWbUEmNzplgQT7MQIoLxVUeKQh9ZW6VmZx0JcElV0nTT
+ ndiz9X1DMeZeUk8msd8gSMDWTxx2+1v+CUTZ2scRfTPMvu2Bf2YU9h2Xe2RIj4vns7A716
+ z5h9gRlT4iPBE+tVe1Yp3+1eSh1qr2E6PmB2LNubQzYatkW9NOJ6mwUB2QsEtWFhOjQ3Dm
+ D3KuHtVoL2McBeRsbNBCDGt/hapKZI1sw3s2gEOsQOX2gPJkgiOZUHjeQ0aFejaI+t0+7g
+ optEMjLs5g2b4/YnM4lbdoqcSSe9QIytTPOi6B16/duv4oJJLdD/30s7jfvwqw==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Thu, 09 Apr 2026 19:08:27 +0200
-Subject: [PATCH RFC 11/12] drm/bridge: Wire drmm_connector_dp_init() via
- new DRM_BRIDGE_OP_DP flag
+Date: Thu, 09 Apr 2026 19:08:28 +0200
+Subject: [PATCH RFC 12/12] drm/mediatek: Use dp_connector helpers to report
+ link training state
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-feat_link_cap-v1-11-7069e8199ce2@bootlin.com>
+Message-Id: <20260409-feat_link_cap-v1-12-7069e8199ce2@bootlin.com>
 References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 In-Reply-To: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
 To: Jani Nikula <jani.nikula@linux.intel.com>, 
@@ -118,123 +118,125 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:email,bootlin.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: A09D13EBF24
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:email,bootlin.com:mid]
+X-Rspamd-Queue-Id: 12CC73EBEE2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Introduce DRM_BRIDGE_OP_DP, a new bridge operation flag for bridges
-that provide DisplayPort connector operations with link training support.
-Bridges advertising this flag must fill the dp_link_train_caps field in
-struct drm_bridge with their link training capabilities.
+Set DRM_BRIDGE_OP_DP and populate dp_link_train_caps with the supported
+link rates, lane counts, voltage swing and pre-emphasis levels so the
+bridge connector uses drmm_connector_dp_init() and exposes the link
+training state properties to userspace.
 
-In drm_bridge_connector_init(), when a bridge sets DRM_BRIDGE_OP_DP,
-use drmm_connector_dp_init() instead of the generic drmm_connector_init()
-so the connector exposes link training state properties to userspace.
-This mirrors the existing pattern used for HDMI bridges.
+Store per-lane voltage swing and pre-emphasis values in
+mtk_dp_train_info and report the negotiated link parameters via
+drm_connector_dp_set_link_train_properties() on training completion.
+Clear them via drm_connector_dp_reset_link_train_properties() when a
+disconnect is detected in the HPD event thread.
 
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
- drivers/gpu/drm/display/drm_bridge_connector.c | 26 +++++++++++++++++++++++++-
- include/drm/drm_bridge.h                       | 13 +++++++++++++
- 2 files changed, 38 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index 39cc18f78eda1..e20b61bb03f12 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -13,7 +13,7 @@
- #include <drm/drm_atomic_state_helper.h>
+This patch has still not been tested. I am in the process of finding the
+hardware for that.
+---
+ drivers/gpu/drm/mediatek/mtk_dp.c | 34 +++++++++++++++++++++++++++++++++-
+ 1 file changed, 33 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/mediatek/mtk_dp.c b/drivers/gpu/drm/mediatek/mtk_dp.c
+index c52cc7c2e2006..119718c1374c5 100644
+--- a/drivers/gpu/drm/mediatek/mtk_dp.c
++++ b/drivers/gpu/drm/mediatek/mtk_dp.c
+@@ -10,6 +10,7 @@
+ #include <drm/drm_atomic_helper.h>
  #include <drm/drm_bridge.h>
- #include <drm/drm_bridge_connector.h>
--#include <drm/drm_connector.h>
+ #include <drm/drm_crtc.h>
 +#include <drm/drm_dp_connector.h>
- #include <drm/drm_device.h>
  #include <drm/drm_edid.h>
- #include <drm/drm_managed.h>
-@@ -108,6 +108,13 @@ struct drm_bridge_connector {
- 	 * HDMI Audio infrastructure, if any (see &DRM_BRIDGE_OP_HDMI_AUDIO).
- 	 */
- 	struct drm_bridge *bridge_hdmi_audio;
-+	/**
-+	 * @bridge_dp:
-+	 *
-+	 * The bridge in the chain that implements necessary support for the
-+	 * DisplayPort connector infrastructure, if any (see &DRM_BRIDGE_OP_DP).
-+	 */
-+	struct drm_bridge *bridge_dp;
- 	/**
- 	 * @bridge_dp_audio:
- 	 *
-@@ -766,6 +773,7 @@ static void drm_bridge_connector_put_bridges(struct drm_device *dev, void *data)
- 	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
- 	drm_bridge_put(bridge_connector->bridge_dp_audio);
- 	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
-+	drm_bridge_put(bridge_connector->bridge_dp);
- }
- 
- /**
-@@ -898,6 +906,15 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
- 			bridge_connector->bridge_hdmi_audio = drm_bridge_get(bridge);
- 		}
- 
-+		if (bridge->ops & DRM_BRIDGE_OP_DP) {
-+			if (bridge_connector->bridge_dp)
-+				return ERR_PTR(-EBUSY);
-+			if (!bridge->dp_link_train_caps)
-+				return ERR_PTR(-EINVAL);
-+
-+			bridge_connector->bridge_dp = drm_bridge_get(bridge);
-+		}
-+
- 		if (bridge->ops & DRM_BRIDGE_OP_DP_AUDIO) {
- 			if (bridge_connector->bridge_dp_audio)
- 				return ERR_PTR(-EBUSY);
-@@ -986,6 +1003,13 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
- 					       max_bpc);
- 		if (ret)
- 			return ERR_PTR(ret);
-+	} else if (bridge_connector->bridge_dp) {
-+		ret = drmm_connector_dp_init(drm, connector,
-+					     &drm_bridge_connector_funcs,
-+					     bridge_connector->bridge_dp->dp_link_train_caps,
-+					     connector_type, ddc);
-+		if (ret)
-+			return ERR_PTR(ret);
- 	} else {
- 		ret = drmm_connector_init(drm, connector,
- 					  &drm_bridge_connector_funcs,
-diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
-index a8d67bd9ee505..b3df9dffd5bcc 100644
---- a/include/drm/drm_bridge.h
-+++ b/include/drm/drm_bridge.h
-@@ -1092,6 +1092,14 @@ enum drm_bridge_ops {
- 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
- 	 */
- 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
-+	/**
-+	 * @DRM_BRIDGE_OP_DP: The bridge provides DisplayPort connector
-+	 * operations, including link training support. Bridges that set
-+	 * this flag must provide DisplayPort-related information and
-+	 * fill the &drm_bridge->dp_link_train_caps link training
-+	 * capabilities.
-+	 */
-+	DRM_BRIDGE_OP_DP = BIT(11),
+ #include <drm/drm_of.h>
+ #include <drm/drm_panel.h>
+@@ -72,6 +73,8 @@ struct mtk_dp_train_info {
+ 	/* link_rate is in multiple of 0.27Gbps */
+ 	int link_rate;
+ 	int lane_count;
++	u8 vswing[4];
++	u8 preemphasis[4];
+ 	unsigned int channel_eq_pattern;
  };
  
- /**
-@@ -1267,6 +1275,11 @@ struct drm_bridge {
- 	 */
- 	void *hpd_data;
- 
-+	/**
-+	 * @dp_link_train_caps: DisplayPort link training capabilities
-+	 */
-+	const struct drm_connector_dp_link_train_caps *dp_link_train_caps;
+@@ -1561,6 +1564,9 @@ static void mtk_dp_train_update_swing_pre(struct mtk_dp *mtk_dp, int lanes,
+ 		mtk_dp_set_swing_pre_emphasis(mtk_dp, lane, swing, preemphasis);
+ 		drm_dp_dpcd_writeb(&mtk_dp->aux, DP_TRAINING_LANE0_SET + lane,
+ 				   val);
 +
- 	/**
- 	 * @next_bridge: Pointer to the following bridge, automatically put
- 	 * when this bridge is freed (i.e. at destroy time). This is for
++		mtk_dp->train_info.vswing[lane] = swing;
++		mtk_dp->train_info.preemphasis[lane] = preemphasis;
+ 	}
+ }
+ 
+@@ -1812,6 +1818,21 @@ static void mtk_dp_train_change_mode(struct mtk_dp *mtk_dp)
+ 	mtk_dp_reset_swing_pre_emphasis(mtk_dp);
+ }
+ 
++static int mtk_dp_report_link_train(struct mtk_dp *mtk_dp)
++{
++	struct drm_connector_dp_link_train dp_link_train;
++
++	dp_link_train.rate = drm_dp_bw_code_to_link_rate(mtk_dp->train_info.link_rate);
++	dp_link_train.nlanes = mtk_dp->train_info.lane_count;
++
++	for (int i = 0; i < mtk_dp->train_info.lane_count; i++) {
++		dp_link_train.v_swing[i] = 1 << mtk_dp->train_info.vswing[i];
++		dp_link_train.pre_emph[i] = 1 << mtk_dp->train_info.preemphasis[i];
++	}
++
++	return drm_connector_dp_set_link_train_properties(mtk_dp->conn, &dp_link_train);
++}
++
+ static int mtk_dp_training(struct mtk_dp *mtk_dp)
+ {
+ 	int ret;
+@@ -1892,7 +1913,7 @@ static int mtk_dp_training(struct mtk_dp *mtk_dp)
+ 	mtk_dp_training_set_scramble(mtk_dp, true);
+ 	mtk_dp_set_enhanced_frame_mode(mtk_dp);
+ 
+-	return 0;
++	return mtk_dp_report_link_train(mtk_dp);
+ }
+ 
+ static void mtk_dp_video_enable(struct mtk_dp *mtk_dp, bool enable)
+@@ -2004,6 +2025,7 @@ static irqreturn_t mtk_dp_hpd_event_thread(int hpd, void *dev)
+ 			mtk_dp->need_debounce = false;
+ 			mod_timer(&mtk_dp->debounce_timer,
+ 				  jiffies + msecs_to_jiffies(100) - 1);
++			drm_connector_dp_reset_link_train_properties(mtk_dp->conn);
+ 		} else {
+ 			mtk_dp_aux_panel_poweron(mtk_dp, true);
+ 
+@@ -2742,6 +2764,14 @@ static int mtk_dp_edp_link_panel(struct drm_dp_aux *mtk_aux)
+ 
+ static int mtk_dp_probe(struct platform_device *pdev)
+ {
++	static const u32 dp_rates[] = {162000, 270000, 540000, 810000};
++	static const struct drm_connector_dp_link_train_caps dp_link_train_caps = {
++		.nlanes = DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE,
++		.nrates = ARRAY_SIZE(dp_rates),
++		.rates = dp_rates,
++		.v_swings = DRM_DP_VOLTAGE_SWING_LEVEL_MASK,
++		.pre_emphs = DRM_DP_PRE_EMPH_LEVEL_MASK,
++	};
+ 	struct mtk_dp *mtk_dp;
+ 	struct device *dev = &pdev->dev;
+ 	int ret;
+@@ -2809,6 +2839,8 @@ static int mtk_dp_probe(struct platform_device *pdev)
+ 
+ 	mtk_dp->bridge.of_node = dev->of_node;
+ 	mtk_dp->bridge.type = mtk_dp->data->bridge_type;
++	mtk_dp->bridge.dp_link_train_caps = &dp_link_train_caps;
++	mtk_dp->bridge.ops = DRM_BRIDGE_OP_DP;
+ 
+ 	if (mtk_dp->bridge.type == DRM_MODE_CONNECTOR_eDP) {
+ 		/*
 
 -- 
 2.43.0
