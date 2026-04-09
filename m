@@ -2,53 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SOlzKMHJ12k/TAgAu9opvQ
+	id QFs9CcvJ12k/TAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:46:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:46:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EA233CCF82
-	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB6AF3CCFA1
+	for <lists+intel-gfx@lfdr.de>; Thu, 09 Apr 2026 17:46:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A15FC10E82F;
-	Thu,  9 Apr 2026 15:46:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7C4910E835;
+	Thu,  9 Apr 2026 15:46:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="QftQ1Qyf";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="YNvn3ZwX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F29EE10E833;
- Thu,  9 Apr 2026 15:46:06 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1775749554; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 233F010E82B;
+ Thu,  9 Apr 2026 15:46:12 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1775749560; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=UX27YjGqjWtvdWsVuWZJGBdaDDnngHBsOquwbFSpM+rqeyE/p8ojc6xm24k2lB6ETJrny1zCNR5byniDCQDZVu4NGR9fFWT7d2rEJE7exPNLEPBzEEJmxXdFVpSNYrAN4uYe6LJoXZJ+DRtqntg7Fd0VJuiW+bHtCPPBpKrpwOA=
+ b=H9PJ8yAaLMa84xX6DZGd/sP0UZey1aJRIDY5NFJk/pk36/S0pENQT6LjssxJHYdmUagCzEBpPvQgbuGX4r6jzM0Oa5YzjZuzSC2jm+MkDuV2mzWGj6MicGqSzKpejDRzfOUiHqJJRDUuy3cgGPvdLdBz0F3cc3YLXNroUDImUIU=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1775749554;
+ s=zohoarc; t=1775749560;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=pWSUGjIdWSRW9G07q/V2dYUORdHYopLn48h2+i7k3tQ=; 
- b=FiGIig6t4g7w/ftzmRlvB8S86UcyeuHVzcoc+JihNUf3EDlEpdVbtb/MS/g79WxAytaEmXlKEyAQWu19Lt47hNdfL6MoDcaGqccTFOYXhuXfrPjsGR9NAKK+xwyIoyriyAe3EM23Dgc865Fpn81dgtc9sa+VycyPojTyE1JvhpI=
+ bh=IH5low48GM+yv78IQ9owPpTrmwFuFjqqYcrTkdlKUr4=; 
+ b=dqHF1RaXysaC6WeitzbiXTEatQPWr2sZ/nJAwsYnWi9EaWVEC/mxo4gPj81y/wFI3mvpoa5PFo2sgTxWFO6L3mv422rDD0s8c3kJV5kBTkSui5P0+Xfg4VqqdDAD8qjnYVUyOzrYOQKa5h/uqi/120OF3HTRRwUH3halQpawyJI=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749554; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1775749559; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=pWSUGjIdWSRW9G07q/V2dYUORdHYopLn48h2+i7k3tQ=;
- b=QftQ1QyfBBPWwWKwxxbk0UhhC944CjXHfofkPLcAuWhKe/GsxB3AEPCY/bw3qTHp
- HcZ38gV7clQ49pu1H5upJxJaiaZSCG5lg8gjF8ti80a0eauLWvh627aDgt4S+jnK39Q
- k/fsALZh9RO+n/9Dh82d6TREBIugS7mjRl67ViBc=
-Received: by mx.zohomail.com with SMTPS id 1775749551343223.90813673820003;
- Thu, 9 Apr 2026 08:45:51 -0700 (PDT)
+ bh=IH5low48GM+yv78IQ9owPpTrmwFuFjqqYcrTkdlKUr4=;
+ b=YNvn3ZwXuDa0vee5YdPF78ndhM5Z7WXVK0hSYa/yK6fA5iaXJc6bzlqa3O740iOx
+ Lq4YUICOcCZl69YVIqel2Yj7aOCtEpMMPI8ZiumEO+2xVNlJsaFBW059JGq6AVUhF3d
+ gJZaLVYxOsOpg8882hkwTzPVRPhVhCEG6XNXPiJc=
+Received: by mx.zohomail.com with SMTPS id 1775749558554589.8455527326919;
+ Thu, 9 Apr 2026 08:45:58 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 09 Apr 2026 17:44:54 +0200
-Subject: [PATCH v12 04/25] drm/bridge: Act on the DRM color format property
+Date: Thu, 09 Apr 2026 17:44:55 +0200
+Subject: [PATCH v12 05/25] drm/atomic-helper: Add HDMI bridge output bus
+ formats helper
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260409-color-format-v12-4-ce84e1817a27@collabora.com>
+Message-Id: <20260409-color-format-v12-5-ce84e1817a27@collabora.com>
 References: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 In-Reply-To: <20260409-color-format-v12-0-ce84e1817a27@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -118,148 +119,152 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:dkim,collabora.com:email,collabora.com:mid]
-X-Rspamd-Queue-Id: 3EA233CCF82
+X-Rspamd-Queue-Id: AB6AF3CCFA1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The new DRM color format property allows userspace to request a specific
-color format on a connector. In turn, this fills the connector state's
-color_format member to switch color formats.
+The drm_bridge_funcs atomic_get_output_bus_fmts operation should be the
+same for likely every HDMI connector bridge, unless such an HDMI
+connector bridge has some special hardware restrictions that I cannot
+envision yet.
 
-Make drm_bridges consider the color_format set in the connector state
-during the atomic bridge check. For bridges that represent HDMI bridges,
-rely on whatever format the HDMI logic set. Reject any output bus
-formats that do not correspond to the requested color format.
+To avoid code duplication and standardize on a set of media bus formats
+that the HDMI output color formats translate to, add a common helper
+function that implements this operation to the drm bridge helpers.
 
-Non-HDMI last bridges with DRM_CONNECTOR_COLOR_FORMAT_AUTO set will end
-up choosing the first output format that functions to make a whole
-recursive bridge chain format selection succeed.
+The function returns a list of output bus formats based on the HDMI
+bridge's current output bits-per-component, and its bitmask of supported
+color formats.
+
+To guard against future expansion of DRM_OUTPUT_COLOR_FORMAT outgrowing
+the hweight8 call, add a BUILD_BUG_ON statement where it's used that
+checks for DRM_OUTPUT_COLOR_FORMAT_COUNT. The justification for not
+using hweight32 in all cases is that not all ISAs have a popcount
+instruction, and will benefit from a smaller/faster software
+implementation that doesn't have to operate across all bits.
+
+The justification for not defining an hweight_color depending on the
+value of DRM_OUTPUT_COLOR_FORMAT_COUNT is that this count enum value is
+only known at compile time, not at preprocessor time.
 
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/drm_bridge.c | 89 +++++++++++++++++++++++++++++++++++++++++++-
- 1 file changed, 88 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/drm_atomic_helper.c | 81 +++++++++++++++++++++++++++++++++++++
+ include/drm/drm_atomic_helper.h     |  7 ++++
+ 2 files changed, 88 insertions(+)
 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index ba80bebb5685..7c1516864d96 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -1150,6 +1150,47 @@ static int select_bus_fmt_recursive(struct drm_bridge *first_bridge,
- 	return ret;
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index 0de9748a82c6..9e62a24ab4b4 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -28,6 +28,7 @@
+ #include <linux/export.h>
+ #include <linux/dma-fence.h>
+ #include <linux/ktime.h>
++#include <linux/media-bus-format.h>
+ 
+ #include <drm/drm_atomic.h>
+ #include <drm/drm_atomic_helper.h>
+@@ -4095,3 +4096,83 @@ drm_atomic_helper_bridge_propagate_bus_fmt(struct drm_bridge *bridge,
+ 	return input_fmts;
  }
- 
-+static bool __pure bus_format_is_color_fmt(u32 bus_fmt, enum drm_connector_color_format fmt)
+ EXPORT_SYMBOL(drm_atomic_helper_bridge_propagate_bus_fmt);
++
++/**
++ * drm_atomic_helper_bridge_get_hdmi_output_bus_fmts - helper implementing
++ *                                           atomic_get_output_bus_fmts for HDMI
++ * @bridge: pointer to &struct drm_bridge
++ * @bridge_state: pointer to the current bridge state
++ * @crtc_state: pointer to the current CRTC state
++ * @conn_state: pointer to the current connector state
++ * @num_output_fmts: pointer to where the number of entries in the returned array
++ *                   will be stored. Set to 0 if unsuccessful.
++ *
++ * Common implementation for the &drm_bridge_funcs.atomic_get_output_bus_fmts
++ * operation that's applicable to HDMI connectors.
++ *
++ * Returns: a newly allocated array of u32 values of length \*@num_output_fmts,
++ * representing all the MEDIA_BUS_FMTS\_ for the current connector state's
++ * chosen HDMI output bits per compoennt, or %NULL if it fails to allocate one.
++ */
++u32 *
++drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
++					struct drm_crtc_state *crtc_state,
++					struct drm_connector_state *conn_state,
++					unsigned int *num_output_fmts)
 +{
-+	if (fmt == DRM_CONNECTOR_COLOR_FORMAT_AUTO)
-+		return true;
++	unsigned int num_fmts = 0;
++	u32 *out_fmts;
 +
-+	switch (bus_fmt) {
-+	case MEDIA_BUS_FMT_FIXED:
-+		return true;
-+	case MEDIA_BUS_FMT_RGB888_1X24:
-+	case MEDIA_BUS_FMT_RGB101010_1X30:
-+	case MEDIA_BUS_FMT_RGB121212_1X36:
-+	case MEDIA_BUS_FMT_RGB161616_1X48:
-+		return fmt == DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-+	case MEDIA_BUS_FMT_YUV8_1X24:
-+	case MEDIA_BUS_FMT_YUV10_1X30:
-+	case MEDIA_BUS_FMT_YUV12_1X36:
-+	case MEDIA_BUS_FMT_YUV16_1X48:
-+		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-+	case MEDIA_BUS_FMT_UYVY8_1X16:
-+	case MEDIA_BUS_FMT_VYUY8_1X16:
-+	case MEDIA_BUS_FMT_YUYV8_1X16:
-+	case MEDIA_BUS_FMT_YVYU8_1X16:
-+	case MEDIA_BUS_FMT_UYVY10_1X20:
-+	case MEDIA_BUS_FMT_YUYV10_1X20:
-+	case MEDIA_BUS_FMT_VYUY10_1X20:
-+	case MEDIA_BUS_FMT_YVYU10_1X20:
-+	case MEDIA_BUS_FMT_UYVY12_1X24:
-+	case MEDIA_BUS_FMT_VYUY12_1X24:
-+	case MEDIA_BUS_FMT_YUYV12_1X24:
-+	case MEDIA_BUS_FMT_YVYU12_1X24:
-+		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-+	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
-+	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
-+	case MEDIA_BUS_FMT_UYYVYY12_0_5X36:
-+	case MEDIA_BUS_FMT_UYYVYY16_0_5X48:
-+		return fmt == DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-+	default:
-+		return false;
-+	}
-+}
-+
- /*
-  * This function is called by &drm_atomic_bridge_chain_check() just before
-  * calling &drm_bridge_funcs.atomic_check() on all elements of the chain.
-@@ -1193,6 +1234,7 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
- 	struct drm_encoder *encoder = bridge->encoder;
- 	struct drm_bridge_state *last_bridge_state;
- 	unsigned int i, num_out_bus_fmts = 0;
-+	enum drm_connector_color_format fmt;
- 	u32 *out_bus_fmts;
- 	int ret = 0;
- 
-@@ -1234,13 +1276,58 @@ drm_atomic_bridge_chain_select_bus_fmts(struct drm_bridge *bridge,
- 			out_bus_fmts[0] = MEDIA_BUS_FMT_FIXED;
- 	}
- 
 +	/*
-+	 * On HDMI connectors, use the output format chosen by whatever does the
-+	 * HDMI logic. For everyone else, just trust that the bridge out_bus_fmts
-+	 * are sorted by preference for %DRM_CONNECTOR_COLOR_FORMAT_AUTO, as
-+	 * bus_format_is_color_fmt() always returns true for AUTO.
++	 * bridge->supported_formats is a bit field of BIT(enum drm_output_color_format)
++	 * values. The smallest hweight that is smaller than or equal to
++	 * %DRM_OUTPUT_COLOR_FORMAT_COUNT will do for counting set bits here.
 +	 */
-+	if (last_bridge->type == DRM_MODE_CONNECTOR_HDMIA) {
-+		drm_dbg_kms(last_bridge->dev,
-+			    "HDMI bridge requests format %s\n",
-+			    drm_hdmi_connector_get_output_format_name(
-+				    conn_state->hdmi.output_format));
-+		switch (conn_state->hdmi.output_format) {
-+		case DRM_OUTPUT_COLOR_FORMAT_RGB444:
-+			fmt = DRM_CONNECTOR_COLOR_FORMAT_RGB444;
-+			break;
-+		case DRM_OUTPUT_COLOR_FORMAT_YCBCR444:
-+			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR444;
-+			break;
-+		case DRM_OUTPUT_COLOR_FORMAT_YCBCR422:
-+			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR422;
-+			break;
-+		case DRM_OUTPUT_COLOR_FORMAT_YCBCR420:
-+			fmt = DRM_CONNECTOR_COLOR_FORMAT_YCBCR420;
-+			break;
-+		default:
-+			ret = -EINVAL;
-+			goto out_free_bus_fmts;
-+		}
-+	} else {
-+		fmt = conn_state->color_format;
-+		drm_dbg_kms(last_bridge->dev, "Non-HDMI bridge requests format %d\n", fmt);
++	BUILD_BUG_ON(const_true(DRM_OUTPUT_COLOR_FORMAT_COUNT > 8));
++	out_fmts = kmalloc_array(hweight8(bridge->supported_formats),
++				 sizeof(u32), GFP_KERNEL);
++	if (!out_fmts) {
++		*num_output_fmts = 0;
++		return NULL;
 +	}
 +
- 	for (i = 0; i < num_out_bus_fmts; i++) {
-+		if (!bus_format_is_color_fmt(out_bus_fmts[i], fmt)) {
-+			drm_dbg_kms(last_bridge->dev,
-+				    "Skipping bus format 0x%04x as it doesn't match format %d\n",
-+				    out_bus_fmts[i], fmt);
-+			ret = -ENOTSUPP;
-+			continue;
-+		}
- 		ret = select_bus_fmt_recursive(bridge, last_bridge, crtc_state,
- 					       conn_state, out_bus_fmts[i]);
--		if (ret != -ENOTSUPP)
-+		if (ret != -ENOTSUPP) {
-+			drm_dbg_kms(last_bridge->dev,
-+				    "Found bridge chain ending with bus format 0x%04x\n",
-+				    out_bus_fmts[i]);
- 			break;
-+		}
- 	}
++	switch (conn_state->hdmi.output_bpc) {
++	case 12:
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_RGB121212_1X36;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_YUV12_1X36;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYVY12_1X24;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYYVYY12_0_5X36;
++		break;
++	case 10:
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_RGB101010_1X30;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_YUV10_1X30;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYVY10_1X20;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYYVYY10_0_5X30;
++		break;
++	default:
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_RGB888_1X24;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_YUV8_1X24;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYVY8_1X16;
++		if (bridge->supported_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420))
++			out_fmts[num_fmts++] = MEDIA_BUS_FMT_UYYVYY8_0_5X24;
++		break;
++	}
++
++	*num_output_fmts = num_fmts;
++
++	return out_fmts;
++}
++EXPORT_SYMBOL(drm_atomic_helper_bridge_get_hdmi_output_bus_fmts);
++
+diff --git a/include/drm/drm_atomic_helper.h b/include/drm/drm_atomic_helper.h
+index e154ee4f0696..7256eaca109b 100644
+--- a/include/drm/drm_atomic_helper.h
++++ b/include/drm/drm_atomic_helper.h
+@@ -295,4 +295,11 @@ drm_atomic_helper_bridge_propagate_bus_fmt(struct drm_bridge *bridge,
+ 					u32 output_fmt,
+ 					unsigned int *num_input_fmts);
  
-+out_free_bus_fmts:
- 	kfree(out_bus_fmts);
- 
- 	return ret;
++u32 *
++drm_atomic_helper_bridge_get_hdmi_output_bus_fmts(struct drm_bridge *bridge,
++					struct drm_bridge_state *bridge_state,
++					struct drm_crtc_state *crtc_state,
++					struct drm_connector_state *conn_state,
++					unsigned int *num_output_fmts);
++
+ #endif /* DRM_ATOMIC_HELPER_H_ */
 
 -- 
 2.53.0
