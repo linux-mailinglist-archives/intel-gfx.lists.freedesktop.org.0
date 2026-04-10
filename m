@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8C7CAEWo2GkhgggAu9opvQ
+	id yHHMOkuo2GkhgggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 09:35:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 09:35:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6A1E3D3662
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 09:35:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7025D3D366B
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 09:35:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 106E910E8D4;
-	Fri, 10 Apr 2026 07:35:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EF1B610E8D8;
+	Fri, 10 Apr 2026 07:35:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kumo/kmx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lxbpdljG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EEF110E8C7;
- Fri, 10 Apr 2026 07:35:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A32C10E8C0;
+ Fri, 10 Apr 2026 07:35:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775806530; x=1807342530;
+ t=1775806537; x=1807342537;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nFF+YT8G4d5ofUKL+n32oiFve/DWJGPgt+ca1e9axT8=;
- b=kumo/kmxxdRZz08fPDfeS+bDySA0kwo7U0quan7fwDHn25kmJQLl8BGs
- m45wJlNTmTdaeUcV+S+zlmywZsFracIJ3Bi9iuP4Y3MASht6/vFj6hJTw
- ptDYxqjqOeI/ImdKhyelmTC4QtL/UJgxqYqr9oXQ4QDD9ILBv1q4V63jO
- bX5XTqnY6iBLz3te+639LTBs+vxgJNMyi7PSNhK+dzx28XeQyOidivQCE
- JUcH/eNcXW7DLeROZf1FPZ58N384h8L+QRtzZRmb36fWmALbpd6Fc/hRL
- +OSZ9zLsqLCrxFLLr1EQzOl3VdDjJhGLO26EHIzJvwhJNRxdbDqIt1Zmw g==;
-X-CSE-ConnectionGUID: DmBXBTYfQMO740oHI7MnNA==
-X-CSE-MsgGUID: QbvNJF55R+uQHyP3StGIIw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="80709903"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="80709903"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 00:35:30 -0700
-X-CSE-ConnectionGUID: qKqdM4LKT7OdYwMs9fhQwA==
-X-CSE-MsgGUID: fPx83mgzT06ItA5OlXML3A==
+ bh=AFt6j8lWoKLXwi0jW1y0lYGtTJnSofImPUcTnlNOHMI=;
+ b=lxbpdljGHg4ee/3zIop9mRJW1J9kttGsKayfk48SlzdacLX9hIjJleRK
+ h9ZCse/f1gp/Wyq/0miharW2lTvMfCb1x3GGiZ9WvOoSv0ddxUrYpU270
+ XsLV29MFhUHY4+MDmz/nTTYHwOBtK9s0xll1loVqeP+sKdy5cjcMTDPfj
+ XnHcN0vj1BAPO84GhMs17MsFiW9pXcnnWFx5RF0Qc+Y6kNV6VQ4ai6oWB
+ cEaNh05YEiWiEo01hHo2aBNgFguJMcHIRR8D8PkgH9HV2WNdF0idd5qu5
+ sfVp1j0h6O/mTUknIVrYQrndwND/ABEl1gM7xdhLS2ZtGgMncmPRB96tg Q==;
+X-CSE-ConnectionGUID: SOWMg3iOTnOoxb+TrvUb/Q==
+X-CSE-MsgGUID: P+rvlH79TayJ5Arc+sbUHA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="75859512"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="75859512"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 00:35:36 -0700
+X-CSE-ConnectionGUID: uU6ziEnNSXm99KB2EF/xOA==
+X-CSE-MsgGUID: nzYb0yuLTky0s6dhysbGBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="225854411"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="229294531"
 Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.89])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 00:35:27 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 00:35:33 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
+Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@intel.com>
-Subject: [PATCH 3/4] drm/xe/display: Add init_clock_gating.h stubs
-Date: Fri, 10 Apr 2026 10:34:59 +0300
-Message-ID: <20260410073500.32308-4-ville.syrjala@linux.intel.com>
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: [PATCH 4/4] drm/i915/reset: Add "display_reset_count" debugfs file
+Date: Fri, 10 Apr 2026 10:35:00 +0300
+Message-ID: <20260410073500.32308-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260410073500.32308-1-ville.syrjala@linux.intel.com>
 References: <20260410073500.32308-1-ville.syrjala@linux.intel.com>
@@ -102,58 +101,118 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DKIM_TRACE(0.00)[intel.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: C6A1E3D3662
+X-Rspamd-Queue-Id: 7025D3D366B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add static inline stubs for init_clock_gating.h functions
-so that we don't need ifdefs in the actual code. We already
-have one in intel_display_power.c, and now I need to bring
-over intel_display_reset.c.
+Expose the number of display resets performed in a new
+"display_reset_count" debugfs file. kms_busy can use this to
+confirm that the kernel actually took the full display reset path.
 
+Cc: Jani Nikula <jani.nikula@intel.com>
 Cc: Jouni Högander <jouni.hogander@intel.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c     |  2 --
- .../drm/xe/compat-i915-headers/intel_clock_gating.h    | 10 +++++++++-
- 2 files changed, 9 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_core.h    |  4 ++++
+ drivers/gpu/drm/i915/display/intel_display_debugfs.c |  2 ++
+ drivers/gpu/drm/i915/display/intel_display_reset.c   | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_display_reset.h   |  2 ++
+ drivers/gpu/drm/xe/Makefile                          |  1 +
+ 5 files changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 8a7afe2a94bc..80ecf373fb19 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -1420,9 +1420,7 @@ static void hsw_disable_pc8(struct intel_display *display)
- 	intel_init_pch_refclk(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
+index 9e77003addd0..38535d1056d1 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_core.h
++++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+@@ -556,6 +556,10 @@ struct intel_display {
+ 		unsigned long mask;
+ 	} quirks;
  
- 	/* Many display registers don't survive PC8+ */
--#ifdef I915 /* FIXME */
- 	intel_clock_gating_init(display->drm);
--#endif
- }
++	struct {
++		u32 count;
++	} reset;
++
+ 	struct {
+ 		/* restore state for suspend/resume and display reset */
+ 		struct drm_atomic_state *modeset_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+index f244a2b5d139..81bef000a4e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
++++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+@@ -27,6 +27,7 @@
+ #include "intel_display_power.h"
+ #include "intel_display_power_well.h"
+ #include "intel_display_regs.h"
++#include "intel_display_reset.h"
+ #include "intel_display_rpm.h"
+ #include "intel_display_types.h"
+ #include "intel_dmc.h"
+@@ -838,6 +839,7 @@ void intel_display_debugfs_register(struct intel_display *display)
  
- static void intel_pch_reset_handshake(struct intel_display *display,
-diff --git a/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h b/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-index ce986f0e8f38..552975a30ba2 100644
---- a/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-+++ b/drivers/gpu/drm/xe/compat-i915-headers/intel_clock_gating.h
-@@ -3,4 +3,12 @@
+ 	intel_bios_debugfs_register(display);
+ 	intel_cdclk_debugfs_register(display);
++	intel_display_reset_debugfs_register(display);
+ 	intel_dmc_debugfs_register(display);
+ 	intel_dp_test_debugfs_register(display);
+ 	intel_fbc_debugfs_register(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
+index ca15dc18ef0f..79c2e77ca137 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.c
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
+@@ -3,6 +3,8 @@
   * Copyright © 2023 Intel Corporation
   */
  
--#include "../../i915/intel_clock_gating.h"
-+#ifndef __INTEL_CLOCK_GATING_H__
-+#define __INTEL_CLOCK_GATING_H__
++#include <linux/debugfs.h>
 +
-+struct drm_device;
+ #include <drm/drm_atomic_helper.h>
+ #include <drm/drm_print.h>
+ 
+@@ -66,6 +68,7 @@ void intel_display_reset_prepare(struct intel_display *display)
+ 		return;
+ 	}
+ 
++	display->reset.count++;
+ 	display->restore.modeset_state = state;
+ 	state->acquire_ctx = ctx;
+ }
+@@ -114,3 +117,10 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
+ 	drm_modeset_acquire_fini(ctx);
+ 	mutex_unlock(&display->drm->mode_config.mutex);
+ }
 +
-+static inline void intel_clock_gating_init(struct drm_device *drm) {}
-+static inline void intel_clock_gating_hooks_init(struct drm_device *drm) {}
++void intel_display_reset_debugfs_register(struct intel_display *display)
++{
++	debugfs_create_u32("display_reset_count", 0400,
++			   display->drm->debugfs_root,
++			   &display->reset.count);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
+index a8aa7729d33f..b88c330a3441 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_reset.h
++++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
+@@ -15,4 +15,6 @@ bool intel_display_reset_test(struct intel_display *display);
+ void intel_display_reset_prepare(struct intel_display *display);
+ void intel_display_reset_finish(struct intel_display *display, bool test_only);
+ 
++void intel_display_reset_debugfs_register(struct intel_display *display);
 +
-+#endif /* __INTEL_CLOCK_GATING_H__ */
+ #endif /* __INTEL_RESET_H__ */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 110fef511fe2..1a85dfe457f0 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -262,6 +262,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_display_power.o \
+ 	i915-display/intel_display_power_map.o \
+ 	i915-display/intel_display_power_well.o \
++	i915-display/intel_display_reset.o \
+ 	i915-display/intel_display_rpm.o \
+ 	i915-display/intel_display_rps.o \
+ 	i915-display/intel_display_trace.o \
 -- 
 2.52.0
 
