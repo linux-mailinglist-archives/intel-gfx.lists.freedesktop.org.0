@@ -2,63 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOIZLRMa2WnfmAgAu9opvQ
+	id oN+3Nrca2WnfmAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:41:07 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:43:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EDF633D9847
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:41:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F1B73D9964
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:43:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3066810E0D1;
-	Fri, 10 Apr 2026 15:41:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A1C6D10E1D1;
+	Fri, 10 Apr 2026 15:43:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OpRFDhYm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XW4YzwM0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643CF10E0D1;
- Fri, 10 Apr 2026 15:41:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2008E10E251;
+ Fri, 10 Apr 2026 15:43:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775835664; x=1807371664;
+ t=1775835827; x=1807371827;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=EtecRltQ268otp+QX6QOLAU0k1KrXVRxi+zU/1C9smA=;
- b=OpRFDhYmkOhF6MVcJMcj0v8HOWZzDkh6AmXMOay5u8/K+4vnCSSPTQay
- hfj2zHy3g3Avzx69RAoBOvxJ1YEOPrm8rCf+5vK0PzXZt6tSkkqHBV615
- 9NV1/8J0ydn5J6pEmgya+BOcUdQm3rnyuvLD+0ONZ3EBgsdSI3QzlaLRi
- uXF9oaFVUMzNXUc0MIIO6+4WocO8ePlBJZIVAKA2ctEnMptiu/mAaUDee
- tTSeUfQw6H6hRen7ykLO86oJPs0Zqxy1NVGwRdKSx+Ht+T+tnR00BHTjR
- Rj7Es/y5isLdoZX9K2HlKhzEj4HrlpoyEzxPgh/R7e/QDlcX/eFX/PV4Z Q==;
-X-CSE-ConnectionGUID: pqEsvKR0Q8KGPHg7DG6cVg==
-X-CSE-MsgGUID: 9U1HlXuGTzah52WYq1xr7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="94250252"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="94250252"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 08:41:03 -0700
-X-CSE-ConnectionGUID: kXL/qs/NTp2nFL7dpk28XQ==
-X-CSE-MsgGUID: m7RPWI99RxmkNJrzXhvzWA==
+ bh=tl6eRv6VTgfwZFy7bjfuADW3CAoZNbD8Um1nZyotCcQ=;
+ b=XW4YzwM0+F37NraYVFHaoCXtSYyzKK5xE79xS76bMnsdyJANg/OqwV6s
+ yeVhP4Scv7bhwgodB5FwRmi99QutiuOY1qxI3g09EFxixivcikB1gEgOJ
+ olBeV9wGHHkxU+C62aPCCMKInCQ2yMcjWC2QFEJL0pVn7WdTel/ldkYgz
+ O5jJgvup3ttq4CJoWknyAQOJMqQYRXbVtEh5KVYX8+QUIzslJqPEOwyhH
+ IvDagVGa81JJfZXBtT1o0bCRgNvod/1ATbEBPSDZj37jvh8xFyuQGyu/I
+ r6eKV1wKuqE2zOoYS71fuzSTIUhdqEbhITfO7rNbqI3cexuYGZKUgo2yX Q==;
+X-CSE-ConnectionGUID: NFjm8yVcT7my8ufDEpq0iw==
+X-CSE-MsgGUID: VYenHCXGSbu7h7v0zLVgvg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="75896737"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="75896737"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 08:43:46 -0700
+X-CSE-ConnectionGUID: WLzQ6zd3T26QgrWWe7Cphg==
+X-CSE-MsgGUID: vEZCChYsTBq02QF/OSm+Vg==
 X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="229387392"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.149])
- by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 08:41:01 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 08:43:44 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 01/10] drm/i915: Introduce sanity to the plane_config
- pointer vs. array thing
-In-Reply-To: <20260410150449.9699-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 02/10] drm/i915: Remove 'mem' and 'phy_base' from struct
+ intel_initial_plane_config
+In-Reply-To: <20260410150449.9699-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260410150449.9699-1-ville.syrjala@linux.intel.com>
- <20260410150449.9699-2-ville.syrjala@linux.intel.com>
-Date: Fri, 10 Apr 2026 18:40:58 +0300
-Message-ID: <2a2c1b5eeeee55a530662b93403fd47cae9ffe26@intel.com>
+ <20260410150449.9699-3-ville.syrjala@linux.intel.com>
+Date: Fri, 10 Apr 2026 18:43:41 +0300
+Message-ID: <8bb4a7be25ff9d2e6aa6c24f4c00ae5a48ce8dc4@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -101,146 +102,85 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EDF633D9847
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 2F1B73D9964
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, 10 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> The "plane_config" vs. "plane_configs" naming difference is very
-> subtle, making it far too easy to use the wrong thing by accident.
-> Introduce a separate type for the array, making it impossible to
-> pass in the wrong thing. And while at it name the variable
-> "all_plane_configs" to help the poor reader make sense of things.
->
-> The .config_fini() prototype also mistakenly used the plural
-> form despite only taking in a singular plane_config. So fix that
-> one up as well.
->
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> The 'mem' and 'phy_base' members or struct intel_initial_plane_config
 
-Nice!
+*of
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-
-> ---
->  .../drm/i915/display/intel_initial_plane.c    | 21 ++++++++++++-------
->  include/drm/intel/display_parent_interface.h  |  2 +-
->  2 files changed, 14 insertions(+), 9 deletions(-)
+> only exist to be passed from initial_plane_phys() to its sole caller.
+> Just return them via function arguments.
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers=
-/gpu/drm/i915/display/intel_initial_plane.c
-> index ee545c033da6..4f51083dbd11 100644
-> --- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> @@ -11,6 +11,10 @@
->  #include "intel_initial_plane.h"
->  #include "intel_plane.h"
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_types.h |  2 --
+>  drivers/gpu/drm/i915/i915_initial_plane.c          | 13 ++++++-------
+>  2 files changed, 6 insertions(+), 9 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers=
+/gpu/drm/i915/display/intel_display_types.h
+> index ca2581fb7bbd..eaa37b8d9584 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -756,8 +756,6 @@ struct intel_plane_state {
 >=20=20
-> +struct intel_initial_plane_configs {
-> +	struct intel_initial_plane_config config[I915_MAX_PIPES];
-> +};
-> +
->  void intel_initial_plane_vblank_wait(struct intel_crtc *crtc)
+>  struct intel_initial_plane_config {
+>  	struct intel_framebuffer *fb;
+> -	struct intel_memory_region *mem;
+> -	resource_size_t phys_base;
+>  	struct i915_vma *vma;
+>  	int size;
+>  	u32 base;
+> diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/=
+i915/i915_initial_plane.c
+> index c1a12bf6b66c..060aa0388c39 100644
+> --- a/drivers/gpu/drm/i915/i915_initial_plane.c
+> +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+> @@ -34,7 +34,9 @@ initial_plane_memory_type(struct drm_i915_private *i915)
+>=20=20
+>  static bool
+>  initial_plane_phys(struct drm_i915_private *i915,
+> -		   struct intel_initial_plane_config *plane_config)
+> +		   struct intel_initial_plane_config *plane_config,
+> +		   resource_size_t *out_phys_base,
+> +		   struct intel_memory_region **out_mem)
 >  {
->  	struct intel_display *display =3D to_intel_display(crtc);
-> @@ -20,7 +24,7 @@ void intel_initial_plane_vblank_wait(struct intel_crtc =
-*crtc)
+>  	struct i915_ggtt *ggtt =3D to_gt(i915)->ggtt;
+>  	struct intel_memory_region *mem;
+> @@ -77,8 +79,8 @@ initial_plane_phys(struct drm_i915_private *i915,
+>  	drm_dbg(&i915->drm, "Using dma_addr=3D%pa, based on initial plane progr=
+amming\n",
+>  		&dma_addr);
 >=20=20
->  static const struct intel_plane_state *
->  intel_reuse_initial_plane_obj(struct intel_crtc *this,
-> -			      const struct intel_initial_plane_config plane_configs[])
-> +			      const struct intel_initial_plane_configs *all_plane_configs)
->  {
->  	struct intel_display *display =3D to_intel_display(this);
->  	struct intel_crtc *crtc;
-> @@ -39,7 +43,8 @@ intel_reuse_initial_plane_obj(struct intel_crtc *this,
->  		if (!plane_state->ggtt_vma)
->  			continue;
+> -	plane_config->phys_base =3D dma_addr - mem->region.start;
+> -	plane_config->mem =3D mem;
+> +	*out_phys_base =3D dma_addr - mem->region.start;
+> +	*out_mem =3D mem;
 >=20=20
-> -		if (plane_configs[this->pipe].base =3D=3D plane_configs[crtc->pipe].ba=
-se)
-> +		if (all_plane_configs->config[this->pipe].base =3D=3D
-> +		    all_plane_configs->config[crtc->pipe].base)
->  			return plane_state;
->  	}
+>  	return true;
+>  }
+> @@ -99,12 +101,9 @@ initial_plane_vma(struct drm_i915_private *i915,
+>  	if (plane_config->size =3D=3D 0)
+>  		return NULL;
 >=20=20
-> @@ -69,10 +74,10 @@ intel_alloc_initial_plane_obj(struct intel_display *d=
-isplay,
+> -	if (!initial_plane_phys(i915, plane_config))
+> +	if (!initial_plane_phys(i915, plane_config, &phys_base, &mem))
+>  		return NULL;
 >=20=20
->  static void
->  intel_find_initial_plane_obj(struct intel_crtc *crtc,
-> -			     struct intel_initial_plane_config plane_configs[])
-> +			     struct intel_initial_plane_configs *all_plane_configs)
->  {
->  	struct intel_display *display =3D to_intel_display(crtc);
-> -	struct intel_initial_plane_config *plane_config =3D &plane_configs[crtc=
-->pipe];
-> +	struct intel_initial_plane_config *plane_config =3D &all_plane_configs-=
->config[crtc->pipe];
->  	struct intel_plane *plane =3D to_intel_plane(crtc->base.primary);
->  	struct intel_plane_state *plane_state =3D to_intel_plane_state(plane->b=
-ase.state);
->  	struct drm_framebuffer *fb;
-> @@ -93,7 +98,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
->  	} else {
->  		const struct intel_plane_state *other_plane_state;
->=20=20
-> -		other_plane_state =3D intel_reuse_initial_plane_obj(crtc, plane_config=
-s);
-> +		other_plane_state =3D intel_reuse_initial_plane_obj(crtc, all_plane_co=
-nfigs);
->  		if (!other_plane_state)
->  			goto nofb;
->=20=20
-> @@ -158,14 +163,14 @@ static void plane_config_fini(struct intel_display =
-*display,
->=20=20
->  void intel_initial_plane_config(struct intel_display *display)
->  {
-> -	struct intel_initial_plane_config plane_configs[I915_MAX_PIPES] =3D {};
-> +	struct intel_initial_plane_configs all_plane_configs =3D {};
->  	struct intel_crtc *crtc;
->=20=20
->  	for_each_intel_crtc(display->drm, crtc) {
->  		const struct intel_crtc_state *crtc_state =3D
->  			to_intel_crtc_state(crtc->base.state);
->  		struct intel_initial_plane_config *plane_config =3D
-> -			&plane_configs[crtc->pipe];
-> +			&all_plane_configs.config[crtc->pipe];
->=20=20
->  		if (!crtc_state->hw.active)
->  			continue;
-> @@ -183,7 +188,7 @@ void intel_initial_plane_config(struct intel_display =
-*display)
->  		 * If the fb is shared between multiple heads, we'll
->  		 * just get the first one.
->  		 */
-> -		intel_find_initial_plane_obj(crtc, plane_configs);
-> +		intel_find_initial_plane_obj(crtc, &all_plane_configs);
->=20=20
->  		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_con=
-fig))
->  			intel_initial_plane_vblank_wait(crtc);
-> diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/i=
-ntel/display_parent_interface.h
-> index 258e6388ef77..9041897c772e 100644
-> --- a/include/drm/intel/display_parent_interface.h
-> +++ b/include/drm/intel/display_parent_interface.h
-> @@ -91,7 +91,7 @@ struct intel_display_initial_plane_interface {
->  	struct drm_gem_object *(*alloc_obj)(struct drm_device *drm, struct inte=
-l_initial_plane_config *plane_config);
->  	int (*setup)(struct drm_plane_state *plane_state, struct intel_initial_=
-plane_config *plane_config,
->  		     struct drm_framebuffer *fb, struct i915_vma *vma);
-> -	void (*config_fini)(struct intel_initial_plane_config *plane_configs);
-> +	void (*config_fini)(struct intel_initial_plane_config *plane_config);
->  };
->=20=20
->  struct intel_display_irq_interface {
+> -	phys_base =3D plane_config->phys_base;
+> -	mem =3D plane_config->mem;
+> -
+>  	base =3D round_down(plane_config->base, I915_GTT_MIN_ALIGNMENT);
+>  	size =3D round_up(plane_config->base + plane_config->size,
+>  			mem->min_page_size);
 
 --=20
 Jani Nikula, Intel
