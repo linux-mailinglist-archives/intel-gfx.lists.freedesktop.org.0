@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kO+BOrIR2WlClwgAu9opvQ
+	id uNLtDr8R2Wl+lggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:05:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:05:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0EC13D8EBD
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E1BB43D8ED9
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:05:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16DC210E982;
-	Fri, 10 Apr 2026 15:05:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5F2E910E975;
+	Fri, 10 Apr 2026 15:05:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AbhmYa5x";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i+F5ha+o";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BADA310E978;
- Fri, 10 Apr 2026 15:05:19 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AF1C610E975;
+ Fri, 10 Apr 2026 15:05:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775833520; x=1807369520;
+ t=1775833533; x=1807369533;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ztYKBIxXtG7VHMIGQm875oQWdMgQaKIwSICB3t1QvI4=;
- b=AbhmYa5xUswocyOJl8CsPevL26r34nR2yaMKg8erUWLt9jsB1Ga8ksnB
- rtc8aZe3Xt2LFmvCeTjdAZl4bsD33cKA5ct8Z9gadTERVLftzRTvf4fN7
- bE9oHZbMIU3qWFQumF8+mxb8abE6RIkVgzG3q8BEKEGph/nKt3nSk9Xyw
- cLFKfer0P/IcZIkC00iP2sXOSM/Overx3rQgyPKQByDaf4W/IiiDBn7J5
- HRKq/paioXRqAWmD+NJM/hIz0297VInd60797uImoImXt7syd/EnNakBO
- KmvVuinjIcWbomJTMKW5GdxYJKYPqlc3CZtVOJmuYIptFmQ+DL5L5pexl w==;
-X-CSE-ConnectionGUID: VdPZBReKSsG9vdoDF8cocw==
-X-CSE-MsgGUID: 4WxNwDtzSqi7Y2IpG0UeLQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76815343"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="76815343"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 08:05:19 -0700
-X-CSE-ConnectionGUID: KcoA4uPwSimyxd7wdTHCtA==
-X-CSE-MsgGUID: g3b1yoG6SSW7agAih+lnZg==
+ bh=C9ugfJgZzkyYn3GGXylG6HzE3Ten7yseYbr7zpHPAtc=;
+ b=i+F5ha+oWh3JwmveH1mVPqN/d6yH+2ivIDHC6h8g/RZqBNGOB4xmQDl8
+ 5F+QVIOjEANuvbY8pVql/8HmS5cwMR6xXPUHqvYZo0OrVOLmfz6YIMPaa
+ gU2GWHTp3DZTxFZOVqSepHsmOlfIoX2qehNd1r4Rh/OIAbamY3MENFNct
+ RlppVK2AjNorIppcETTDoSXpDtRK7Mw1GYVv9Tya/xypBRmIvsNjkNQqD
+ evBAKGXzuWv0KXrjpfKdyG5r6jFz4jrAICgm1P4fV8moKp+QU4L51omNY
+ T7soydi5+bZ+QVr2M+/GRUxvu+UxASxxZ/adpQnFPT15YUIkWomrdOu6W A==;
+X-CSE-ConnectionGUID: JUQbpua9QuK/Ad6d7dFPcw==
+X-CSE-MsgGUID: 0e5AJfi9RIeomYZGgUxHzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76743753"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="76743753"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 08:05:23 -0700
+X-CSE-ConnectionGUID: 0+T0sGk4SmWfM9Dc1CpzZg==
+X-CSE-MsgGUID: iB32H/l8SEeeFhumQk4WZg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="230827827"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="224802725"
 Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.89])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 08:05:17 -0700
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 08:05:21 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/10] drm/i915: Reject tile4 BIOS FB
-Date: Fri, 10 Apr 2026 18:04:46 +0300
-Message-ID: <20260410150449.9699-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/10] drm/i915: Reject X/Y tiled BIOS FB if we don't have
+ fenced regions
+Date: Fri, 10 Apr 2026 18:04:47 +0300
+Message-ID: <20260410150449.9699-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260410150449.9699-1-ville.syrjala@linux.intel.com>
 References: <20260410150449.9699-1-ville.syrjala@linux.intel.com>
@@ -98,35 +99,46 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: A0EC13D8EBD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
+X-Rspamd-Queue-Id: E1BB43D8ED9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-There is no such thing as tile4 fenced region, so there is no
-way to have a linear view of the tile4 framebuffer for the CPU.
-Thus we should never encounter a tile4 BIOS FB, but if we somehow
-do, then reject it.
+The CPU always needs linear view into the BIOS FB, and for X/Y tiled
+buffers that is achieved by the use of a fenced region. If the
+underlying driver doesn't support fenced regions then we can't keep
+the X/Y tiled BIOS FB. i915 has fenced regions, xe does not.
+
+Probably not a big deal since I don't think we've seen tiled BIOS
+FBs outside of some MacBooks. See eg. commit d9a515867bdb
+("drm/i915/gen9+: Fix initial readout for Y tiled framebuffers").
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_initial_plane.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_initial_plane.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-index 4f1591b55752..5a5adf738d4a 100644
+index 5a5adf738d4a..55b6cdded126 100644
 --- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
 +++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-@@ -81,7 +81,6 @@ intel_alloc_initial_plane_obj(struct intel_display *display,
+@@ -79,9 +79,13 @@ intel_alloc_initial_plane_obj(struct intel_display *display,
+ 
+ 	switch (fb->modifier) {
  	case DRM_FORMAT_MOD_LINEAR:
++		break;
  	case I915_FORMAT_MOD_X_TILED:
  	case I915_FORMAT_MOD_Y_TILED:
--	case I915_FORMAT_MOD_4_TILED:
- 		break;
+-		break;
++		/* fenced region needed for linear CPU access to tiled FB */
++		if (intel_parent_has_fenced_regions(display))
++			break;
++		fallthrough;
  	default:
  		drm_dbg_kms(display->drm, "Unsupported modifier for initial FB: 0x%llx\n",
+ 			    fb->modifier);
 -- 
 2.52.0
 
