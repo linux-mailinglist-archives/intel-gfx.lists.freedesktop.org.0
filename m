@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iJlCFEUd2WnVmQgAu9opvQ
+	id YMuKF20d2WmLmQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:54:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:55:25 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0ACCF3D9D64
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:54:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 851783D9DF0
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 17:55:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5047910E252;
-	Fri, 10 Apr 2026 15:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0B5F10E24C;
+	Fri, 10 Apr 2026 15:55:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OfJstmjj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Scxt6SaN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C1AA610E98C;
- Fri, 10 Apr 2026 15:54:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 657F510E24C;
+ Fri, 10 Apr 2026 15:55:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775836483; x=1807372483;
+ t=1775836522; x=1807372522;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=6fXRXe6NQduRO3RmcLJvVDHoBIYNxuRWcwEX+8h0ebk=;
- b=OfJstmjjuGd7EJvDnkxynXAd5NLlMMrIsXbyMPzbazMPh4/TOAvovmPF
- Bk1JglBs5TeL5Fv8ponJH2WLEtR/pQXSz6hJFLANe74dazwQO6Yz6zNkx
- LimsTO7dveAcqeFnM18fhWIZe3T3ssOcvcn5tzote2ElD2485u0yQvhm3
- FJ0/6RJJaXJjo3qBDvOC1wN3JuZXLK1hldWYjUATmsJliPu5IRb5QkeZw
- ++wSTCwboBB1ohA3ZFpV9ASxCN+QFaanE4WE/vDL1JK0QJpYq0nGV5cJt
- dzuGT3Tnlef4ykJYDGdAXE2dGZfecvlhQEZTQxfdE69AnvjPkmycTCsED g==;
-X-CSE-ConnectionGUID: cuPm3HAkTdq5KUzpG6Fzqw==
-X-CSE-MsgGUID: 3WlASKYyR1aWyWaQXvr5Lw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="87934123"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="87934123"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ bh=bibI8JKePOlnt07RSzEfw0O6UFe8jkuJWjH+yrF+0g4=;
+ b=Scxt6SaNn8AEMIOdg7eeGCx/vSxM/MwoIgKKOshs+R+/+6GYlHenKTX6
+ E+PUSY0b7qSbqQqAFXLHuN4qjhqJSy3ZCDLQZ922jYk9Gc0DW8PHQxiQ9
+ cA+WffcWlA8uTHd87OTYRp84ABrByoEhOHqSc0nbGPYqnmGdgS7PNlc73
+ tz93sHTh3nL5CwNJ7R8RzIywmdCp1tS9Ozl5sW7tJX+SCGypot2XcX+cj
+ KcqDsh+ht1Dj+IV7GiaqNxACyyuhzbdr/NAOd+Qj6PiZIV0n/5lnkTLb/
+ P9kw2JhqtNPSzESy6De9MqpYIKqD2+UrBxhLrkoWKlhmusoCDnGCKAZLP g==;
+X-CSE-ConnectionGUID: I7CdGGq6Su6PY2GnHb4nUQ==
+X-CSE-MsgGUID: ccPkQ26mSU+l9GjatO3QIg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="87934577"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="87934577"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 08:54:42 -0700
-X-CSE-ConnectionGUID: XGZmPbNGRi6FGNVTlg08og==
-X-CSE-MsgGUID: xYVGKbOhRc+fUVx3gkodkQ==
+ 10 Apr 2026 08:55:20 -0700
+X-CSE-ConnectionGUID: YZvauTi1QDCwj5RBnHuPsQ==
+X-CSE-MsgGUID: D+YryTznRpCin0o63Orbpg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="230838116"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="229037558"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.246.149])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 08:54:40 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 08:55:19 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 06/10] drm/i915: Use a 1 second timeout for the polling
- vblank wait
-In-Reply-To: <20260410150449.9699-7-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 07/10] drm/i915: Reject tile4 BIOS FB
+In-Reply-To: <20260410150449.9699-8-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260410150449.9699-1-ville.syrjala@linux.intel.com>
- <20260410150449.9699-7-ville.syrjala@linux.intel.com>
-Date: Fri, 10 Apr 2026 18:54:37 +0300
-Message-ID: <1f941f68512a4c18c096b95277d332fb2e6afe4f@intel.com>
+ <20260410150449.9699-8-ville.syrjala@linux.intel.com>
+Date: Fri, 10 Apr 2026 18:55:15 +0300
+Message-ID: <d8b7837ec586c63bb36ce85e486968e1ac4d1f52@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -102,43 +101,42 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 0ACCF3D9D64
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 851783D9DF0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Fri, 10 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> 40 msec seems like a very random number for a vblank wait timeout.
-> Considering ~24Hz display modes are definitely a thing this seems
-> way too low. Just bump it to a full second to match what we've been
-> using for normal vblank waits.
+> There is no such thing as tile4 fenced region, so there is no
+> way to have a linear view of the tile4 framebuffer for the CPU.
+> Thus we should never encounter a tile4 BIOS FB, but if we somehow
+> do, then reject it.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_initial_plane.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_initial_plane.c | 1 -
+>  1 file changed, 1 deletion(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers=
 /gpu/drm/i915/display/intel_initial_plane.c
-> index 74e10d34c63c..4f1591b55752 100644
+> index 4f1591b55752..5a5adf738d4a 100644
 > --- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
 > +++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> @@ -36,7 +36,7 @@ void intel_initial_plane_vblank_wait(struct intel_crtc =
-*crtc)
->  	start_ts =3D intel_de_read(display, PIPE_FRMTMSTMP(crtc->pipe));
->=20=20
->  	ret =3D poll_timeout_us(end_ts =3D intel_de_read(display, PIPE_FRMTMSTM=
-P(crtc->pipe)),
-> -			      end_ts !=3D start_ts, 1000, 40 * 1000, false);
-> +			      end_ts !=3D start_ts, 1000, 1000 * 1000, false);
->  	if (ret)
->  		drm_warn(display->drm, "[CRTC:%d:%s] early vblank wait timed out\n",
->  			 crtc->base.base.id, crtc->base.name);
+> @@ -81,7 +81,6 @@ intel_alloc_initial_plane_obj(struct intel_display *dis=
+play,
+>  	case DRM_FORMAT_MOD_LINEAR:
+>  	case I915_FORMAT_MOD_X_TILED:
+>  	case I915_FORMAT_MOD_Y_TILED:
+> -	case I915_FORMAT_MOD_4_TILED:
+>  		break;
+>  	default:
+>  		drm_dbg_kms(display->drm, "Unsupported modifier for initial FB: 0x%llx=
+\n",
 
 --=20
 Jani Nikula, Intel
