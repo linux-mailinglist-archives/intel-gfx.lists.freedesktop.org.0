@@ -2,69 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4K+gAUCt2GljgwgAu9opvQ
+	id UAE8LIKv2GljgwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 09:56:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 10:06:26 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5C1963D3A74
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 09:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6452C3D3C30
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 10:06:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D742710E8E8;
-	Fri, 10 Apr 2026 07:56:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 030C610E8EA;
+	Fri, 10 Apr 2026 08:06:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="dMs116rI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ksZFRD6q";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1FB3610E8E1;
- Fri, 10 Apr 2026 07:56:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D7E989DFC;
+ Fri, 10 Apr 2026 08:06:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775807804; x=1807343804;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=vNtvUOk2PDog8fnczodDF3+jiFbC1miklrDkAHNYYHE=;
- b=dMs116rIzhvVkJAycUmqFT25tHjXejV+73K9vnbtJdLsGPxSd47YR4gA
- SEsKomzAyLpNIqleMt7avyoOJVndEGscgD7C9511u6gZ/Xi18UDSXWdL+
- +jd7TIQz6eGTfi0O1A2Oi6aReSB2IKkwHkfSKYFlGPkui6zCRvcKiKm6e
- jjH5gQCMp4/2UWaG7l30rLSk8XLBdZNQO86+Oe0wvHfHYBGci2H7IoOBG
- hRlhLEWRbe6E9+M50KBDdvFNELGwde11FSPY2EZdhBI2VLDJ3ZRKhF3qJ
- 0E/6iGm1P/Z2n9ja5UDeywUmcvT+fdcwnIqkKDL0Hw42notlkwsEwrihW Q==;
-X-CSE-ConnectionGUID: pbJnTgnTTOuwrklHp8cwrA==
-X-CSE-MsgGUID: N1sTs9SqTE279qjn19BK0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="77008636"
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="77008636"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 00:56:44 -0700
-X-CSE-ConnectionGUID: cSSdt7i6TFODpF0kzRuu3g==
-X-CSE-MsgGUID: DOlCHl52QrmkvKMizNX6Nw==
+ t=1775808381; x=1807344381;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=wA94zRZq84xYFpwzGzcwqHyL6HNUQgoHAbgajBVa5nQ=;
+ b=ksZFRD6q9+zyrTdC8Fp4zt+A9rYb/bU7EyU10pvOiaxPYZWPMaqvJfCd
+ uad28oSKRXHJymZ+QnBjlwJlfQpcmSU6Rf2DqvJAn+gFCVMPXMd9cRilz
+ sJyHOhBA5zr8Xvk42CHM3oJJgA7e5bYQNfZlwxhFOBc37+M1oS7BOnbTl
+ Ac1M08jrq6jjZZDO5sV4Sjo6eugPiFosbDcCYfeW6/WC96Dt0TkXhd9If
+ NNdo7r68RHFLd0M9Qt1RS6PXo9tjSwanqKj18LEaMxIPzSa8z1FMIjNFu
+ +XvK1IPgeYrW6cAaZtfZ1+TcC0HCrd/NnTWBLdE5piUFcFKXRWfpFYqaN A==;
+X-CSE-ConnectionGUID: JCuhq9t0T0CA7Awh2OZUSw==
+X-CSE-MsgGUID: 7zAnbFAFT0SZ8KrpaDgEBg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11754"; a="87112328"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="87112328"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 01:06:21 -0700
+X-CSE-ConnectionGUID: A16Ofq1/TFSodDN05Hf6DQ==
+X-CSE-MsgGUID: wVFhdyfKQjeqY6hoY6Pjnw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="259484975"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.244.89])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Apr 2026 00:56:40 -0700
-Date: Fri, 10 Apr 2026 10:56:37 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH 4/4] drm/i915/reset: Add "display_reset_count" debugfs file
-Message-ID: <aditNTEpluzhV_IE@intel.com>
-References: <20260410073500.32308-1-ville.syrjala@linux.intel.com>
- <20260410073500.32308-5-ville.syrjala@linux.intel.com>
- <b059bb9ef0df9a2ab98ee9e4f900f8e6e3e82e57@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="233416426"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.110])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 01:06:15 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Matthew Brost
+ <matthew.brost@intel.com>, Dave Airlie <airlied@gmail.com>, Simona Vetter
+ <simona.vetter@ffwll.ch>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, Thomas Zimmermann
+ <tzimmermann@suse.de>, Maxime Ripard <mripard@kernel.org>, Oded Gabbay
+ <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: Re: [PULL] topic/step for i915 and xe
+In-Reply-To: <ade396UuRQoPLGdS@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cc1ff0a476ff457e88251e22b83c1a45ada11ecc@intel.com>
+ <ade396UuRQoPLGdS@intel.com>
+Date: Fri, 10 Apr 2026 11:06:12 +0300
+Message-ID: <404ea596f4aacf999d403182d31843a5d2c47bb2@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b059bb9ef0df9a2ab98ee9e4f900f8e6e3e82e57@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,175 +83,112 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.40 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.71)[subject];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,gmail.com,ffwll.ch,ursulin.net,suse.de,kernel.org,lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[15];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 5C1963D3A74
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid,gitlab.freedesktop.org:url]
+X-Rspamd-Queue-Id: 6452C3D3C30
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 10, 2026 at 10:42:23AM +0300, Jani Nikula wrote:
-> On Fri, 10 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > Expose the number of display resets performed in a new
-> > "display_reset_count" debugfs file. kms_busy can use this to
-> > confirm that the kernel actually took the full display reset path.
-> >
-> > Cc: Jani Nikula <jani.nikula@intel.com>
-> > Cc: Jouni Högander <jouni.hogander@intel.com>
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_core.h    |  4 ++++
-> >  drivers/gpu/drm/i915/display/intel_display_debugfs.c |  2 ++
-> >  drivers/gpu/drm/i915/display/intel_display_reset.c   | 10 ++++++++++
-> >  drivers/gpu/drm/i915/display/intel_display_reset.h   |  2 ++
-> >  drivers/gpu/drm/xe/Makefile                          |  1 +
-> >  5 files changed, 19 insertions(+)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-> > index 9e77003addd0..38535d1056d1 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_core.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-> > @@ -556,6 +556,10 @@ struct intel_display {
-> >  		unsigned long mask;
-> >  	} quirks;
-> >  
-> > +	struct {
-> > +		u32 count;
-> > +	} reset;
-> > +
-> >  	struct {
-> >  		/* restore state for suspend/resume and display reset */
-> >  		struct drm_atomic_state *modeset_state;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > index f244a2b5d139..81bef000a4e3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-> > @@ -27,6 +27,7 @@
-> >  #include "intel_display_power.h"
-> >  #include "intel_display_power_well.h"
-> >  #include "intel_display_regs.h"
-> > +#include "intel_display_reset.h"
-> >  #include "intel_display_rpm.h"
-> >  #include "intel_display_types.h"
-> >  #include "intel_dmc.h"
-> > @@ -838,6 +839,7 @@ void intel_display_debugfs_register(struct intel_display *display)
-> >  
-> >  	intel_bios_debugfs_register(display);
-> >  	intel_cdclk_debugfs_register(display);
-> > +	intel_display_reset_debugfs_register(display);
-> >  	intel_dmc_debugfs_register(display);
-> >  	intel_dp_test_debugfs_register(display);
-> >  	intel_fbc_debugfs_register(display);
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.c b/drivers/gpu/drm/i915/display/intel_display_reset.c
-> > index ca15dc18ef0f..79c2e77ca137 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_reset.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_reset.c
-> > @@ -3,6 +3,8 @@
-> >   * Copyright © 2023 Intel Corporation
-> >   */
-> >  
-> > +#include <linux/debugfs.h>
-> > +
-> >  #include <drm/drm_atomic_helper.h>
-> >  #include <drm/drm_print.h>
-> >  
-> > @@ -66,6 +68,7 @@ void intel_display_reset_prepare(struct intel_display *display)
-> >  		return;
-> >  	}
-> >  
-> > +	display->reset.count++;
-> >  	display->restore.modeset_state = state;
-> >  	state->acquire_ctx = ctx;
-> >  }
-> > @@ -114,3 +117,10 @@ void intel_display_reset_finish(struct intel_display *display, bool test_only)
-> >  	drm_modeset_acquire_fini(ctx);
-> >  	mutex_unlock(&display->drm->mode_config.mutex);
-> >  }
-> > +
-> > +void intel_display_reset_debugfs_register(struct intel_display *display)
-> > +{
-> > +	debugfs_create_u32("display_reset_count", 0400,
-> > +			   display->drm->debugfs_root,
-> > +			   &display->reset.count);
-> 
-> I'm wondering about the names of the debugfs files. We've used the i915_
-> prefix so far, but it's obviously misleading nowadays. I've started
-> using intel_ in some places.
-> 
-> I primarily worry about the potential clash with drm core debugfs files,
-> which leads to failures to create the file, and clash with other
-> drivers, where the files are created all right, but the contents differ
-> driver to driver.
+On Thu, 09 Apr 2026, Rodrigo Vivi <rodrigo.vivi@intel.com> wrote:
+> On Thu, Apr 09, 2026 at 11:02:20AM +0300, Jani Nikula wrote:
+>> 
+>> Hi Thomas, Matthew and Rodrigo -
+>> 
+>> Here's a topic pull intended for both drm-xe-next and drm-intel-next to
+>> unify the steppings header and enum between the i915 and xe drivers. I'm
+>> opting for a topic branch because merging this through either driver's
+>> -next branch would likely be painful conflicts wise.
+>> 
+>> Please pull this to drm-xe-next (*), and once you're done, I'll follow
+>> suit in drm-intel-next.
+>
+> Pulled to drm-xe-next while I'm covering for Thomas.
 
-Fair point. I suppose I'll just stick an "intel_" prefix on it.
+And pulled to drm-intel-next as well. Thanks a lot.
 
-Another option could be use a subdirectory to separate the driver
-specific stuff from the core stuff, but dunno if we want to start
-down that path. And I guess we'd then need similar subdirectories
-inside the crtc/connector/etc. subdirectories.
+BR,
+Jani.
 
-> 
-> *shrug*
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> > +}
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_reset.h b/drivers/gpu/drm/i915/display/intel_display_reset.h
-> > index a8aa7729d33f..b88c330a3441 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_reset.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_reset.h
-> > @@ -15,4 +15,6 @@ bool intel_display_reset_test(struct intel_display *display);
-> >  void intel_display_reset_prepare(struct intel_display *display);
-> >  void intel_display_reset_finish(struct intel_display *display, bool test_only);
-> >  
-> > +void intel_display_reset_debugfs_register(struct intel_display *display);
-> > +
-> >  #endif /* __INTEL_RESET_H__ */
-> > diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
-> > index 110fef511fe2..1a85dfe457f0 100644
-> > --- a/drivers/gpu/drm/xe/Makefile
-> > +++ b/drivers/gpu/drm/xe/Makefile
-> > @@ -262,6 +262,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
-> >  	i915-display/intel_display_power.o \
-> >  	i915-display/intel_display_power_map.o \
-> >  	i915-display/intel_display_power_well.o \
-> > +	i915-display/intel_display_reset.o \
-> >  	i915-display/intel_display_rpm.o \
-> >  	i915-display/intel_display_rps.o \
-> >  	i915-display/intel_display_trace.o \
-> 
-> -- 
-> Jani Nikula, Intel
+>
+>> 
+>> Thanks,
+>> Jani.
+>> 
+>> 
+>> (*) Hint, 'dim apply-pull drm-xe-next' on this message will do the
+>>     trick.
+>> 
+>> 
+>> The following changes since commit 4516432284e1b2ad9e70de8067f779c9c1072189:
+>> 
+>>   ttm/pool: track allocated_pages per numa node. (2026-04-08 06:52:48 +1000)
+>> 
+>> are available in the Git repository at:
+>> 
+>>   https://gitlab.freedesktop.org/drm/i915/kernel.git tags/topic/step-2026-04-09
+>> 
+>> for you to fetch changes up to baf310b9836445ca9056f04ec347293963a1cc6e:
+>> 
+>>   drm/i915/display: switch to including common step file directly (2026-04-09 10:10:03 +0300)
+>> 
+>> ----------------------------------------------------------------
+>> topic/step to unify xe and i915 on common steppings header and enum
+>> 
+>> ----------------------------------------------------------------
+>> Jani Nikula (3):
+>>       drm/xe/step: switch to the shared step definitions with i915
+>>       drm/xe/step: switch from enum xe_step to intel_step naming
+>>       drm/i915/display: switch to including common step file directly
+>> 
+>>  drivers/gpu/drm/i915/display/intel_cdclk.c         |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_ddi.c           |  2 +-
+>>  .../gpu/drm/i915/display/intel_display_device.c    |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_display_power.c |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_display_wa.c    |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_dp_mst.c        |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c      |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_fbc.c           |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_flipq.c         |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_hdcp.c          |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_pmdemand.c      |  2 +-
+>>  drivers/gpu/drm/i915/display/intel_psr.c           |  2 +-
+>>  drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
+>>  .../gpu/drm/xe/compat-i915-headers/intel_step.h    | 13 -----
+>>  drivers/gpu/drm/xe/tests/xe_pci.c                  |  4 +-
+>>  drivers/gpu/drm/xe/xe_step.c                       |  2 +-
+>>  drivers/gpu/drm/xe/xe_step.h                       |  4 +-
+>>  drivers/gpu/drm/xe/xe_step_types.h                 | 61 +---------------------
+>>  18 files changed, 20 insertions(+), 90 deletions(-)
+>>  delete mode 100644 drivers/gpu/drm/xe/compat-i915-headers/intel_step.h
+>> 
+>> -- 
+>> Jani Nikula, Intel
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
