@@ -2,34 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGTcJxcj2WlrmggAu9opvQ
+	id qCZkLHYj2WlrmggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 18:19:35 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 18:21:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F11453DA498
-	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 18:19:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2160C3DA51C
+	for <lists+intel-gfx@lfdr.de>; Fri, 10 Apr 2026 18:21:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FFDB10E981;
-	Fri, 10 Apr 2026 16:19:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6229710E986;
+	Fri, 10 Apr 2026 16:21:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="FFFtkMO3";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 80E2810E981;
- Fri, 10 Apr 2026 16:19:32 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2904623473317499767=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ED39610E986;
+ Fri, 10 Apr 2026 16:21:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1775838067; x=1807374067;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=L4JnN6ymkD02thfr3D7lc2Ddeg6CXvhtgVtpVinHkfY=;
+ b=FFFtkMO36Qw2tiBFlJAtsp789H6d47URN5ZXbM3arCGhdEA+AFltfTYM
+ HbCKjRlo5xBMPKC8B7z2RpjhWA3z+L9r/jwsz1H3NoRgHk4pkszPgDRMu
+ YMgDHeb1eknDi3Q5QqyFqiRG5qs4WVm9dszdxOhMr5KWbikx0f6JSuG0k
+ Vmg0FfeAiqjrMsg2A5nbp5TBYrE/8CIpqW9/avSR/5NsuRQmh4WrrpqfN
+ wK5/NTk1idBr0gG2542bfAxlINb8HWzmXokuzV942padsU9mSr9ni9Yob
+ /uQsNYWQ0unUzVnKreCuBP6aY2jr2diNXVBO88aE1EaZOhHkJ7K+xiR7O A==;
+X-CSE-ConnectionGUID: cmnc8SevQaO4JVy6azR5Hw==
+X-CSE-MsgGUID: 2DfOhYrESuum5IbP1s7g+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76575382"
+X-IronPort-AV: E=Sophos;i="6.23,171,1770624000"; d="scan'208";a="76575382"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 09:21:06 -0700
+X-CSE-ConnectionGUID: 7iDZzSfNTFujT5f7GhEQ5g==
+X-CSE-MsgGUID: ++Zffgl8QfWm3j0Dwaa+zQ==
+X-ExtLoop1: 1
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.149])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Apr 2026 09:20:55 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Kory Maincent <kory.maincent@bootlin.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
+ Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
+ Anholt <eric@anholt.net>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>,
+ Matthias Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>
+Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, Mark Yacoub
+ <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, Louis Chauvet
+ <louis.chauvet@bootlin.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, Simona Vetter
+ <simona.vetter@ffwll.ch>, Kory Maincent <kory.maincent@bootlin.com>
+Subject: Re: [PATCH RFC 09/12] drm: Introduce drmm_connector_dp_init() with
+ link training state properties
+In-Reply-To: <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
+ <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
+Date: Fri, 10 Apr 2026 19:20:53 +0300
+Message-ID: <52197e5711b7ceabeb48035910fe39978e96a497@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dg2=3A_Add_per-c?=
- =?utf-8?q?ontext_control_for_Wa=5F22013059131_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jia Yao" <jia.yao@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 10 Apr 2026 16:19:32 -0000
-Message-ID: <177583797251.451529.5853183978234363671@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260410140619.736008-1-jia.yao@intel.com>
-In-Reply-To: <20260410140619.736008-1-jia.yao@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,313 +93,627 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[bootlin.com,intel.com,linux.intel.com,ursulin.net,gmail.com,ffwll.ch,redhat.com,virtuousgeek.org,anholt.net,kernel.org,suse.de,linaro.org,ideasonboard.com,kwiboo.se,pengutronix.de,collabora.com,chris-wilson.co.uk];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWELVE(0.00)[35];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
-X-Rspamd-Queue-Id: F11453DA498
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 2160C3DA51C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============2904623473317499767==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 09 Apr 2026, Kory Maincent <kory.maincent@bootlin.com> wrote:
+> Add a managed DisplayPort connector initialization helper,
+> drmm_connector_dp_init(), modeled after the existing HDMI counterpart
+> drmm_connector_hdmi_init(). Cleanup is handled automatically via a
+> DRM-managed action.
+>
+> The helper creates the following immutable connector properties to expose
+> DP link training capabilities and state to userspace:
+>
+>   - num_lanes: bitmask of supported lane counts (1, 2, 4)
+>   - link_rate: Array of supported link rates.
+>   - dsc_en: Display Stream Compression supported
+>   - voltage_swingN: per-lane voltage swing level bitmask
+>   - pre-emphasisN: per-lane pre-emphasis level bitmask
 
-== Series Details ==
+The main question is, why do we need to provide these details to the
+userspace via ABI?
 
-Series: drm/i915/dg2: Add per-context control for Wa_22013059131 (rev2)
-URL   : https://patchwork.freedesktop.org/series/164198/
-State : success
+I mean yeah, we can unify on a debugfs interface, but connector
+properties and ABI seems a bit over the top. The userspace should not
+have to act on any of this information, except perhaps in a test
+scenario, for which debugfs should be just fine.
 
-== Summary ==
+I'm also concerned about the duplication of data here. I think debugfs
+could be constructed in a way to query the actual information from the
+driver right then and there, instead of having to copy data over to
+properties, which can go stale.
 
-CI Bug Log - changes from CI_DRM_18313 -> Patchwork_164198v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Additional (1): bat-adlp-9 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164198v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@gem_lmem_swapping@parallel-random-engines:
-    - bat-adlp-9:         NOTRUN -> [SKIP][1] ([i915#4613]) +3 other tests skip
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@gem_lmem_swapping@parallel-random-engines.html
-
-  * igt@gem_tiled_pread_basic@basic:
-    - bat-adlp-9:         NOTRUN -> [SKIP][2] ([i915#15656])
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@gem_tiled_pread_basic@basic.html
-
-  * igt@i915_pm_rps@basic-api:
-    - bat-adlp-9:         NOTRUN -> [SKIP][3] ([i915#6621])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@i915_pm_rps@basic-api.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [PASS][4] -> [DMESG-FAIL][5] ([i915#12061]) +1 other test dmesg-fail
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18313/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [PASS][6] -> [DMESG-FAIL][7] ([i915#12061]) +1 other test dmesg-fail
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18313/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  * igt@intel_hwmon@hwmon-read:
-    - bat-adlp-9:         NOTRUN -> [SKIP][8] ([i915#7707]) +1 other test skip
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@intel_hwmon@hwmon-read.html
-
-  * igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:
-    - bat-adlp-9:         NOTRUN -> [SKIP][9] ([i915#4103]) +1 other test skip
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html
-
-  * igt@kms_dsc@dsc-basic:
-    - bat-adlp-9:         NOTRUN -> [SKIP][10] ([i915#3555] / [i915#3840])
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_dsc@dsc-basic.html
-
-  * igt@kms_force_connector_basic@force-load-detect:
-    - bat-adlp-9:         NOTRUN -> [SKIP][11]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_force_connector_basic@force-load-detect.html
-
-  * igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-dp-1:
-    - bat-adlp-9:         NOTRUN -> [DMESG-WARN][12] ([i915#15673]) +63 other tests dmesg-warn
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-dp-1.html
-
-  * igt@kms_pm_backlight@basic-brightness:
-    - bat-adlp-9:         NOTRUN -> [SKIP][13] ([i915#9812])
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_pm_backlight@basic-brightness.html
-
-  * igt@kms_psr@psr-primary-page-flip:
-    - bat-adlp-9:         NOTRUN -> [SKIP][14] ([i915#1072] / [i915#9732]) +3 other tests skip
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_psr@psr-primary-page-flip.html
-
-  * igt@kms_setmode@basic-clone-single-crtc:
-    - bat-adlp-9:         NOTRUN -> [SKIP][15] ([i915#3555])
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_setmode@basic-clone-single-crtc.html
-
-  * igt@prime_vgem@basic-fence-read:
-    - bat-adlp-9:         NOTRUN -> [SKIP][16] ([i915#3291] / [i915#3708]) +2 other tests skip
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@prime_vgem@basic-fence-read.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adlp-6:         [DMESG-WARN][17] ([i915#15673]) -> [PASS][18] +78 other tests pass
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18313/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
-
-  
-  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15656]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656
-  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
-  [i915#3291]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291
-  [i915#3555]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555
-  [i915#3708]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708
-  [i915#3840]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840
-  [i915#4103]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
-  [i915#6621]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621
-  [i915#7707]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707
-  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
-  [i915#9812]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9812
+Oh, there's also too much going on in one patch here.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_18313 -> Patchwork_164198v2
-
-  CI-20190529: 20190529
-  CI_DRM_18313: 3751e2e5a19aba3949a3f12aa5b917eb8bbb1eb5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8853: b52b42b0c987404a8cbf80c77a41e37705e32779 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_164198v2: 3751e2e5a19aba3949a3f12aa5b917eb8bbb1eb5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/index.html
-
---===============2904623473317499767==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
 
+>
+> Link rates are passed by the driver in deca-kbps, following the DRM
+> convention, but exposed to userspace in kbps for clarity.
+>
+> Two additional helpers are provided to update and reset those properties
+> at runtime:
+>   - drm_connector_dp_set_link_train_properties()
+>   - drm_connector_dp_reset_link_train_properties()
+>
+> Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
+> ---
+>  drivers/gpu/drm/Makefile           |   1 +
+>  drivers/gpu/drm/drm_dp_connector.c | 344 +++++++++++++++++++++++++++++++++++++
+>  include/drm/drm_connector.h        |  38 ++++
+>  include/drm/drm_dp_connector.h     | 109 ++++++++++++
+>  4 files changed, 492 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
+> index e97faabcd7830..8ff08c2fb863e 100644
+> --- a/drivers/gpu/drm/Makefile
+> +++ b/drivers/gpu/drm/Makefile
+> @@ -42,6 +42,7 @@ drm-y := \
+>  	drm_color_mgmt.o \
+>  	drm_colorop.o \
+>  	drm_connector.o \
+> +	drm_dp_connector.o \
+>  	drm_crtc.o \
+>  	drm_displayid.o \
+>  	drm_drv.o \
+> diff --git a/drivers/gpu/drm/drm_dp_connector.c b/drivers/gpu/drm/drm_dp_connector.c
+> new file mode 100644
+> index 0000000000000..b25637a4378d5
+> --- /dev/null
+> +++ b/drivers/gpu/drm/drm_dp_connector.c
+> @@ -0,0 +1,344 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +/*
+> + * Copyright (C) 2026 Google
+> + * Author: Kory Maincent <kory.maincent@bootlin.com>
+> + */
+> +#include <drm/drm_dp_connector.h>
+> +#include <drm/drm_print.h>
+> +#include <linux/list.h>
+> +
+> +/**
+> + * drm_connector_dp_link_reset_properties() - Reset DisplayPort link configuration
+> + * @connector: DRM connector
+> + * @dp_link: Link training informations
+> + *
+> + * Returns: Zero on success, or an errno code otherwise.
+> + */
+> +int
+> +drm_connector_dp_set_link_train_properties(struct drm_connector *connector,
+> +					   const struct drm_connector_dp_link_train *dp_link_train)
+> +{
+> +	u32 lrate = 0;
+> +	int ret;
+> +
+> +	if (!connector)
+> +		return -ENODEV;
+> +
+> +	if (dp_link_train->nlanes && !is_power_of_2(dp_link_train->nlanes & DRM_NLANES_MASK)) {
+> +		drm_err(connector->dev, "Wrong lane number");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (dp_link_train->rate) {
+> +		struct drm_property_enum *prop_enum;
+> +		bool found = false;
+> +
+> +		list_for_each_entry(prop_enum, &connector->dp.link_rate_property->enum_list, head) {
+> +			u32 parsed_rate;
+> +
+> +			/* Convert dp_link_train->rate from deca-kbps to kbps */
+> +			if (!kstrtou32(prop_enum->name, 10, &parsed_rate) &&
+> +			    dp_link_train->rate * 10 == parsed_rate) {
+> +				lrate = 1 << prop_enum->value;
+> +				found = true;
+> +				break;
+> +			}
+> +		}
+> +
+> +		if (!found) {
+> +			drm_err(connector->dev, "Wrong rate value");
+> +			return -EINVAL;
+> +		}
+> +	}
+> +
+> +	ret = drm_object_property_set_value(&connector->base, connector->dp.nlanes_property,
+> +					    dp_link_train->nlanes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_object_property_set_value(&connector->base, connector->dp.link_rate_property,
+> +					    lrate);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (connector->dp.dsc_en_property) {
+> +		ret = drm_object_property_set_value(&connector->base, connector->dp.dsc_en_property,
+> +						    dp_link_train->dsc_en);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	for (int i = 0; i < 4; i++) {
+> +		if (connector->dp.v_swing_property[i]) {
+> +			ret = drm_object_property_set_value(&connector->base,
+> +							    connector->dp.v_swing_property[i],
+> +							    dp_link_train->v_swing[i]);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +
+> +		if (connector->dp.pre_emph_property[i]) {
+> +			ret = drm_object_property_set_value(&connector->base,
+> +							    connector->dp.pre_emph_property[i],
+> +							    dp_link_train->pre_emph[i]);
+> +			if (ret)
+> +				return ret;
+> +		}
+> +	}
+> +
+> +	return ret;
+> +}
+> +EXPORT_SYMBOL(drm_connector_dp_set_link_train_properties);
+> +
+> +/**
+> + * drm_connector_dp_link_reset_properties() - Reset DisplayPort link configuration
+> + * @connector: DRM connector
+> + */
+> +void drm_connector_dp_reset_link_train_properties(struct drm_connector *connector)
+> +{
+> +	struct drm_connector_dp_link_train dp_link_train = {0};
+> +
+> +	drm_connector_dp_set_link_train_properties(connector, &dp_link_train);
+> +}
+> +EXPORT_SYMBOL(drm_connector_dp_reset_link_train_properties);
+> +
+> +static int drm_connector_create_nlanes_prop(struct drm_connector *connector,
+> +					    u8 sup_nlanes)
+> +{
+> +	static const struct drm_prop_enum_list props[] = {
+> +		{__builtin_ffs(DRM_DP_1LANE) - 1, "1" },
+> +		{__builtin_ffs(DRM_DP_2LANE) - 1, "2" },
+> +		{__builtin_ffs(DRM_DP_4LANE) - 1, "4" },
+> +	};
+> +	struct drm_property *prop;
+> +
+> +	if (drm_WARN_ON(connector->dev, sup_nlanes != (sup_nlanes & DRM_NLANES_MASK)))
+> +		return -EINVAL;
+> +
+> +	prop = drm_property_create_bitmask(connector->dev, DRM_MODE_PROP_IMMUTABLE,
+> +					   "num_lanes", props, ARRAY_SIZE(props),
+> +					   sup_nlanes);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +
+> +	connector->dp.nlanes_property = prop;
+> +
+> +	return 0;
+> +}
+> +
+> +static int drm_connector_create_lrate_prop(struct drm_connector *connector,
+> +					   u32 sup_nlrates,
+> +					   const u32 *sup_lrates)
+> +{
+> +	struct drm_prop_enum_list *props;
+> +	u32 supp_nlrates_bitmask = 0;
+> +	struct drm_property *prop;
+> +	int ret = 0;
+> +
+> +	if (!sup_nlrates || !sup_lrates)
+> +		return 0;
+> +
+> +	props = kcalloc(sup_nlrates, sizeof(*props), GFP_KERNEL);
+> +	if (!props)
+> +		return -ENOMEM;
+> +
+> +	for (int i = 0; i < sup_nlrates; i++) {
+> +		props[i].type = i;
+> +		/* Convert deca-kbps to kbps */
+> +		props[i].name = kasprintf(GFP_KERNEL, "%d", sup_lrates[i] * 10);
+> +		if (!props[i].name) {
+> +			while (i--)
+> +				kfree(props[i].name);
+> +			kfree(props);
+> +			return -ENOMEM;
+> +		}
+> +		supp_nlrates_bitmask |= 1 << i;
+> +	}
+> +
+> +	prop = drm_property_create_bitmask(connector->dev, DRM_MODE_PROP_IMMUTABLE,
+> +					   "link_rate", props, sup_nlrates,
+> +					   supp_nlrates_bitmask);
+> +	if (!prop) {
+> +		ret = -ENOMEM;
+> +		goto out;
+> +	}
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +
+> +	connector->dp.link_rate_property = prop;
+> +
+> +out:
+> +	for (int i = 0; i < sup_nlrates; i++)
+> +		kfree(props[i].name);
+> +
+> +	kfree(props);
+> +	return ret;
+> +}
+> +
+> +static int drm_connector_create_dsc_prop(struct drm_connector *connector)
+> +{
+> +	struct drm_property *prop;
+> +
+> +	prop = drm_property_create_bool(connector->dev, DRM_MODE_PROP_IMMUTABLE, "dsc_en");
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +
+> +	connector->dp.dsc_en_property = prop;
+> +
+> +	return 0;
+> +}
+> +
+> +static int drm_connector_create_vswing_prop(struct drm_connector *connector,
+> +					    u8 sup_v_swings, int id)
+> +{
+> +	static const struct drm_prop_enum_list props[] = {
+> +		{__builtin_ffs(DRM_DP_VOLTAGE_SWING_LEVEL_0) - 1, "level_0" },
+> +		{__builtin_ffs(DRM_DP_VOLTAGE_SWING_LEVEL_1) - 1, "level_1" },
+> +		{__builtin_ffs(DRM_DP_VOLTAGE_SWING_LEVEL_2) - 1, "level_2" },
+> +		{__builtin_ffs(DRM_DP_VOLTAGE_SWING_LEVEL_3) - 1, "level_3" },
+> +	};
+> +	struct drm_property *prop;
+> +	char str[16];
+> +
+> +	if (!sup_v_swings)
+> +		return 0;
+> +
+> +	if (drm_WARN_ON(connector->dev, sup_v_swings != (sup_v_swings &
+> +						   DRM_DP_VOLTAGE_SWING_LEVEL_MASK)))
+> +		return -EINVAL;
+> +
+> +	snprintf(str, sizeof(str), "voltage_swing%d", id);
+> +	prop = drm_property_create_bitmask(connector->dev, DRM_MODE_PROP_IMMUTABLE,
+> +					   str, props, ARRAY_SIZE(props),
+> +					   sup_v_swings);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +
+> +	connector->dp.v_swing_property[id] = prop;
+> +
+> +	return 0;
+> +}
+> +
+> +static int drm_connector_create_pre_emph_prop(struct drm_connector *connector,
+> +					      u8 sup_pre_emph, int id)
+> +{
+> +	static const struct drm_prop_enum_list props[] = {
+> +		{__builtin_ffs(DRM_DP_PRE_EMPH_LEVEL_0) - 1, "level_0" },
+> +		{__builtin_ffs(DRM_DP_PRE_EMPH_LEVEL_1) - 1, "level_1" },
+> +		{__builtin_ffs(DRM_DP_PRE_EMPH_LEVEL_2) - 1, "level_2" },
+> +		{__builtin_ffs(DRM_DP_PRE_EMPH_LEVEL_3) - 1, "level_3" },
+> +	};
+> +	struct drm_property *prop;
+> +	char str[16];
+> +
+> +	if (!sup_pre_emph)
+> +		return 0;
+> +
+> +	if (drm_WARN_ON(connector->dev, sup_pre_emph != (sup_pre_emph &
+> +						   DRM_DP_PRE_EMPH_LEVEL_MASK)))
+> +		return -EINVAL;
+> +
+> +	snprintf(str, sizeof(str), "pre_emphasis%d", id);
+> +	prop = drm_property_create_bitmask(connector->dev, DRM_MODE_PROP_IMMUTABLE,
+> +					   str, props, ARRAY_SIZE(props),
+> +					   sup_pre_emph);
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	drm_object_attach_property(&connector->base, prop, 0);
+> +
+> +	connector->dp.pre_emph_property[id] = prop;
+> +
+> +	return 0;
+> +}
+> +
+> +static int
+> +drm_connector_dp_create_props(struct drm_connector *connector,
+> +			      const struct drm_connector_dp_link_train_caps *dp_link_train_caps)
+> +{
+> +	u8 nlanes;
+> +	int ret;
+> +
+> +	ret = drm_connector_create_nlanes_prop(connector, dp_link_train_caps->nlanes);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = drm_connector_create_lrate_prop(connector, dp_link_train_caps->nrates,
+> +					      dp_link_train_caps->rates);
+> +	if (ret)
+> +		return ret;
+> +
+> +	if (dp_link_train_caps->dsc) {
+> +		ret = drm_connector_create_dsc_prop(connector);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	nlanes = 1 << (fls(dp_link_train_caps->nlanes) - 1);
+> +	for (int i = 0; i < nlanes; i++) {
+> +		ret = drm_connector_create_vswing_prop(connector,
+> +						       dp_link_train_caps->v_swings, i);
+> +		if (ret)
+> +			return ret;
+> +
+> +		ret = drm_connector_create_pre_emph_prop(connector,
+> +							 dp_link_train_caps->pre_emphs, i);
+> +		if (ret)
+> +			return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +/**
+> + * drmm_connector_dp_init - Init a preallocated DisplayPort connector
+> + * @dev: DRM device
+> + * @connector: A pointer to the DisplayPort connector to init
+> + * @funcs: callbacks for this connector
+> + * @dp_link_train_caps: DisplayPort link training capabilities. The pointer
+> + *			is not kept by the DRM core
+> + * @connector_type: user visible type of the connector
+> + * @ddc: optional pointer to the associated ddc adapter
+> + *
+> + * Initialises a preallocated DisplayPort connector. Connectors can be
+> + * subclassed as part of driver connector objects.
+> + *
+> + * Cleanup is automatically handled with a call to
+> + * drm_connector_cleanup() in a DRM-managed action.
+> + *
+> + * The connector structure should be allocated with drmm_kzalloc().
+> + *
+> + * The @drm_connector_funcs.destroy hook must be NULL.
+> + *
+> + * Returns:
+> + * Zero on success, error code on failure.
+> + */
+> +int drmm_connector_dp_init(struct drm_device *dev,
+> +			   struct drm_connector *connector,
+> +			   const struct drm_connector_funcs *funcs,
+> +			   const struct drm_connector_dp_link_train_caps *dp_link_train_caps,
+> +			   int connector_type,
+> +			   struct i2c_adapter *ddc)
+> +{
+> +	int ret;
+> +
+> +	if (!(connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
+> +	      connector_type == DRM_MODE_CONNECTOR_eDP))
+> +		return -EINVAL;
+> +
+> +	if (!dp_link_train_caps)
+> +		return -EINVAL;
+> +
+> +	ret = drmm_connector_init(dev, connector, funcs, connector_type, ddc);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return drm_connector_dp_create_props(connector, dp_link_train_caps);
+> +}
+> +EXPORT_SYMBOL(drmm_connector_dp_init);
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index f83f28cae2075..df3a71fed35b1 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1987,6 +1987,39 @@ struct drm_connector_cec {
+>  	void *data;
+>  };
+>  
+> +/**
+> + * struct drm_connector_dp - DRM Connector DisplayPort-related structure
+> + */
+> +struct drm_connector_dp {
+> +	/**
+> +	 * @nlanes_property: Connector property to report the number of lanes
+> +	 */
+> +	struct drm_property *nlanes_property;
+> +
+> +	/**
+> +	 * @link_rate_property: Connector property to report the link rate
+> +	 */
+> +	struct drm_property *link_rate_property;
+> +
+> +	/**
+> +	 * @dsc_en_property: Connector property to report the Display Stream
+> +	 * Compression supporrt
+> +	 */
+> +	struct drm_property *dsc_en_property;
+> +
+> +	/**
+> +	 * @v_swing_property: Connector property to report the voltage
+> +	 * swing per lane
+> +	 */
+> +	struct drm_property *v_swing_property[4];
+> +
+> +	/**
+> +	 * @pre_emph_property: Connector property to report the
+> +	 * pre-emphasis per lane
+> +	 */
+> +	struct drm_property *pre_emph_property[4];
+> +};
+> +
+>  /**
+>   * struct drm_connector - central DRM connector control structure
+>   *
+> @@ -2410,6 +2443,11 @@ struct drm_connector {
+>  	 * @cec: CEC-related data.
+>  	 */
+>  	struct drm_connector_cec cec;
+> +
+> +	/**
+> +	 * @dp: DisplayPort-related variable and properties.
+> +	 */
+> +	struct drm_connector_dp dp;
+>  };
+>  
+>  #define obj_to_connector(x) container_of(x, struct drm_connector, base)
+> diff --git a/include/drm/drm_dp_connector.h b/include/drm/drm_dp_connector.h
+> new file mode 100644
+> index 0000000000000..77d2f4bb6df68
+> --- /dev/null
+> +++ b/include/drm/drm_dp_connector.h
+> @@ -0,0 +1,109 @@
+> +/* SPDX-License-Identifier: GPL-2.0-only */
+> +
+> +#ifndef DRM_DP_CONNECTOR_H_
+> +#define DRM_DP_CONNECTOR_H_
+> +
+> +#include <drm/drm_connector.h>
+> +
+> +#define DRM_DP_1LANE	BIT(0)
+> +#define DRM_DP_2LANE	BIT(1)
+> +#define DRM_DP_4LANE	BIT(2)
+> +#define DRM_NLANES_MASK (DRM_DP_1LANE | DRM_DP_2LANE | DRM_DP_4LANE)
+> +#define DRM_DP_VOLTAGE_SWING_LEVEL_0 BIT(0)
+> +#define DRM_DP_VOLTAGE_SWING_LEVEL_1 BIT(1)
+> +#define DRM_DP_VOLTAGE_SWING_LEVEL_2 BIT(2)
+> +#define DRM_DP_VOLTAGE_SWING_LEVEL_3 BIT(3)
+> +#define DRM_DP_VOLTAGE_SWING_LEVEL_MASK (DRM_DP_VOLTAGE_SWING_LEVEL_0 | \
+> +					 DRM_DP_VOLTAGE_SWING_LEVEL_1 | \
+> +					 DRM_DP_VOLTAGE_SWING_LEVEL_2 | \
+> +					 DRM_DP_VOLTAGE_SWING_LEVEL_3)
+> +#define DRM_DP_PRE_EMPH_LEVEL_0 BIT(0)
+> +#define DRM_DP_PRE_EMPH_LEVEL_1 BIT(1)
+> +#define DRM_DP_PRE_EMPH_LEVEL_2 BIT(2)
+> +#define DRM_DP_PRE_EMPH_LEVEL_3 BIT(3)
+> +#define DRM_DP_PRE_EMPH_LEVEL_MASK (DRM_DP_PRE_EMPH_LEVEL_0 | \
+> +				    DRM_DP_PRE_EMPH_LEVEL_1 | \
+> +				    DRM_DP_PRE_EMPH_LEVEL_2 | \
+> +				    DRM_DP_PRE_EMPH_LEVEL_3)
+> +
+> +/**
+> + * struct drm_connector_dp_link_train_caps - DRM DisplayPort link training
+> + * capabilities
+> + */
+> +struct drm_connector_dp_link_train_caps {
+> +	/**
+> +	 * @nlanes: Bitmask of lanes number supported
+> +	 */
+> +	u8 nlanes;
+> +
+> +	/**
+> +	 * @nrates: Number of link rates supported
+> +	 */
+> +	u32 nrates;
+> +
+> +	/**
+> +	 * @rates: Array listing the supported link rates in deca-kbps
+> +	 */
+> +	const u32 *rates;
+> +
+> +	/**
+> +	 * @dsc: Display Stream Compression supported
+> +	 */
+> +	bool dsc;
+> +
+> +	/**
+> +	 * @v_swings: Bitmask of voltage swing level supported
+> +	 */
+> +	u8 v_swings;
+> +
+> +	/**
+> +	 * @pre_emphs: Bitmask of pre-emphasis level supported
+> +	 */
+> +	u8 pre_emphs;
+> +};
+> +
+> +/**
+> + * struct drm_connector_dp_link_train - DRM DisplayPort link training
+> + * information report
+> + */
+> +struct drm_connector_dp_link_train {
+> +	/**
+> +	 * @nlanes: The number of lanes used
+> +	 */
+> +	u8 nlanes;
+> +
+> +	/**
+> +	 * @rates: Link rate value selected in deca-kbps
+> +	 */
+> +	u32 rate;
+> +
+> +	/**
+> +	 * @dsc: Display Stream Compression enabled
+> +	 */
+> +	bool dsc_en;
+> +
+> +	/**
+> +	 * @v_swings: Array listing the bitmask voltage swing level per lanes
+> +	 */
+> +	u8 v_swing[4];
+> +
+> +	/**
+> +	 * @pre_emph: Array listing the bitmask pre-emphasis level per lanes
+> +	 */
+> +	u8 pre_emph[4];
+> +};
+> +
+> +int drmm_connector_dp_init(struct drm_device *dev,
+> +			   struct drm_connector *connector,
+> +			   const struct drm_connector_funcs *funcs,
+> +			   const struct drm_connector_dp_link_train_caps *dp_link_train_caps,
+> +			   int connector_type,
+> +			   struct i2c_adapter *ddc);
+> +
+> +int
+> +drm_connector_dp_set_link_train_properties(struct drm_connector *con,
+> +					   const struct drm_connector_dp_link_train *dp_link_train);
+> +
+> +void drm_connector_dp_reset_link_train_properties(struct drm_connector *connector);
+> +
+> +#endif // DRM_DP_CONNECTOR_H_
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Add per-context control for Wa_22013059131 (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164198/">https://patchwork.freedesktop.org/series/164198/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18313 -&gt; Patchwork_164198v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (1): bat-adlp-9 <br />
-  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164198v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@gem_lmem_swapping@parallel-random-engines:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@gem_lmem_swapping@parallel-random-engines.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@gem_tiled_pread_basic@basic:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@gem_tiled_pread_basic@basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15656">i915#15656</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_pm_rps@basic-api:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@i915_pm_rps@basic-api.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/6621">i915#6621</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18313/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18313/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@intel_hwmon@hwmon-read:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@intel_hwmon@hwmon-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/7707">i915#7707</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_cursor_legacy@basic-busy-flip-before-cursor-legacy.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4103">i915#4103</a>) +1 other test skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_dsc@dsc-basic:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_dsc@dsc-basic.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3840">i915#3840</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_force_connector_basic@force-load-detect:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_force_connector_basic@force-load-detect.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-dp-1:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_pipe_crc_basic@hang-read-crc@pipe-d-dp-1.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) +63 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_backlight@basic-brightness:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_pm_backlight@basic-brightness.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9812">i915#9812</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-primary-page-flip:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_psr@psr-primary-page-flip.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_setmode@basic-clone-single-crtc:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@kms_setmode@basic-clone-single-crtc.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3555">i915#3555</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@prime_vgem@basic-fence-read:</p>
-<ul>
-<li>bat-adlp-9:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-9/igt@prime_vgem@basic-fence-read.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3291">i915#3291</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/3708">i915#3708</a>) +2 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18313/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v2/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">PASS</a> +78 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18313 -&gt; Patchwork_164198v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18313: 3751e2e5a19aba3949a3f12aa5b917eb8bbb1eb5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8853: b52b42b0c987404a8cbf80c77a41e37705e32779 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_164198v2: 3751e2e5a19aba3949a3f12aa5b917eb8bbb1eb5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2904623473317499767==--
+-- 
+Jani Nikula, Intel
