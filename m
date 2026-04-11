@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iOzSEu+I2mly3ggAu9opvQ
+	id GOA+Ge2I2mly3ggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2026 19:46:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2026 19:46:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EEBB13E11F7
-	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2026 19:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C463E11E9
+	for <lists+intel-gfx@lfdr.de>; Sat, 11 Apr 2026 19:46:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D39A10E219;
-	Sat, 11 Apr 2026 17:46:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BE3E810E214;
+	Sat, 11 Apr 2026 17:46:19 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bJK2YIyk";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VKGedmgo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C627010E214
- for <intel-gfx@lists.freedesktop.org>; Sat, 11 Apr 2026 17:46:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0859110E214
+ for <intel-gfx@lists.freedesktop.org>; Sat, 11 Apr 2026 17:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775929577; x=1807465577;
+ t=1775929579; x=1807465579;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=s5UJJrnBz6HnyDQBbiTbnju49OE2gBKl3hI58vb3yUk=;
- b=bJK2YIyk7GFznl0e6w4qi/E0PbrnREaIFx66FGoLr5YStMPG6A78hiRX
- 83lVWzioIgfD8MIJEkoUFW8jxMGQ8LbgQL7uBKbgZRf7NS4rKj7hlKIyg
- 1Fu1iqUajCDA9tMRrp41duHZgxkCSliIzWI/cUH3PsQjidmg1OZRQTXJz
- sahXkt3p9wQCiDQjcmQIqMNFEZ5/d1DsUgodCvFqCCF62G5avDZJTo5oG
- j3mkVwypzqTF3YFblJewQF6k6PkuhNKEvkaNNLVo2lhEIkanxyb6+DLu3
- 2k9Fldz104yCwj3GaZ4BLK8lY8YokHBvupKvbaYF1FICwiafh3HWeFkR9 w==;
-X-CSE-ConnectionGUID: q5Q180i4SLG8NOT2bRK2+w==
-X-CSE-MsgGUID: J+XGym99RD60k+pqTuZXjA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="99564219"
-X-IronPort-AV: E=Sophos;i="6.23,173,1770624000"; d="scan'208";a="99564219"
+ bh=5MWVYL/afAvuk7/me77FAgEnOvBQIXRWn6DJMoMgcb4=;
+ b=VKGedmgozJFBVrgqpEfe98+YKDUNTmK0gi+mX+G74RgmiU0HBce3UpYm
+ suk6aR0C0Lww0PFRhVxfWP1gGemdEPh3fUaU1/5Vr01r18LbhE7hCOG3g
+ xenkEwHMjd+eOUxGfzNrOMAmLrM29xzc+52990jJKuCYwos2fk0DvcEdA
+ PhrOfkIMSyL4NmXljG3Rn4YPx4HAhPSaUg+g43w0z4Iny/wh84JRS/pzc
+ WPwpzBnWWihKsG3VOXaec9nyVkN5mzo9/r1nyQd7mUSXfde9wiP2dCFvf
+ C1jcYG6xXVWJEuxhec6sqgkGzrVAXpcRL3Y0IJ1zR9GYb9GaNlERLGAlN w==;
+X-CSE-ConnectionGUID: Nck8KDjgQuqq6HU5g5zm4A==
+X-CSE-MsgGUID: reBCqgi+T3aMmi/Sx7Shdg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="99564225"
+X-IronPort-AV: E=Sophos;i="6.23,173,1770624000"; d="scan'208";a="99564225"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 Apr 2026 10:46:17 -0700
-X-CSE-ConnectionGUID: ejuiaNM7Rke5KP/SXtbtxw==
-X-CSE-MsgGUID: kfbeQoPHSZ+5fjD1xWow7g==
+ 11 Apr 2026 10:46:18 -0700
+X-CSE-ConnectionGUID: Ymv5LgwASyWjjbzNatYq4g==
+X-CSE-MsgGUID: ga8j7t6PROiRN7mbcxS7rQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,173,1770624000"; d="scan'208";a="222899839"
+X-IronPort-AV: E=Sophos;i="6.23,173,1770624000"; d="scan'208";a="222899849"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa009.fm.intel.com with ESMTP; 11 Apr 2026 10:46:15 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 11 Apr 2026 10:46:16 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 03/10] drm/i915: rename t into tap
-Date: Sat, 11 Apr 2026 19:45:19 +0200
-Message-ID: <20260411174526.2850179-4-michal.grzelak@intel.com>
+Subject: [PATCH v2 04/10] drm/i915/casf: rename sumcoeff into sum_coeff
+Date: Sat, 11 Apr 2026 19:45:20 +0200
+Message-ID: <20260411174526.2850179-5-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260411174526.2850179-1-michal.grzelak@intel.com>
 References: <20260411174526.2850179-1-michal.grzelak@intel.com>
@@ -102,98 +102,45 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: EEBB13E11F7
+X-Rspamd-Queue-Id: 36C463E11E9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add more description to the casf_coeff()'s argument and
-casf_coeff_tap()'s returned value.
-
-Do the same for glk_nearest_filter_coef().
-
-v1->v2
-- apply the rename to nearest neighbor filter (Ville)
+Stick to using snake_case in intel_casf_scaler_compute_coeff() where
+it is possible.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_casf.c | 14 +++++++-------
- drivers/gpu/drm/i915/display/skl_scaler.c | 14 +++++++-------
- 2 files changed, 14 insertions(+), 14 deletions(-)
+ drivers/gpu/drm/i915/display/intel_casf.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_casf.c b/drivers/gpu/drm/i915/display/intel_casf.c
-index c4fabffa369e3..b9643548d1822 100644
+index b9643548d1822..cafd21a036320 100644
 --- a/drivers/gpu/drm/i915/display/intel_casf.c
 +++ b/drivers/gpu/drm/i915/display/intel_casf.c
-@@ -148,12 +148,12 @@ static int casf_coeff_tap(int i)
- 	return i % SCALER_FILTER_NUM_TAPS;
- }
- 
--static u32 casf_coeff(const struct intel_crtc_state *crtc_state, int t)
-+static u32 casf_coeff(const struct intel_crtc_state *crtc_state, int tap)
+@@ -218,7 +218,7 @@ static void intel_casf_scaler_compute_coeff(struct intel_crtc_state *crtc_state)
  {
- 	struct scaler_filter_coeff value;
- 	u32 coeff;
+ 	const u16 *filtercoeff;
+ 	u16 filter_coeff[SCALER_FILTER_NUM_TAPS];
+-	u16 sumcoeff = 0;
++	u16 sum_coeff = 0;
+ 	int i;
  
--	value = crtc_state->pch_pfit.casf.coeff[t];
-+	value = crtc_state->pch_pfit.casf.coeff[tap];
- 	value.sign = 0;
+ 	if (crtc_state->pch_pfit.casf.win_size == 0)
+@@ -229,10 +229,10 @@ static void intel_casf_scaler_compute_coeff(struct intel_crtc_state *crtc_state)
+ 		filtercoeff = filtercoeff_3;
  
- 	coeff = value.sign << 15 | value.exp << 12 | value.mantissa << 3;
-@@ -183,13 +183,13 @@ static void intel_casf_write_coeff(const struct intel_crtc_state *crtc_state)
+ 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++)
+-		sumcoeff += *(filtercoeff + i);
++		sum_coeff += *(filtercoeff + i);
  
- 	for (i = 0; i < 17 * SCALER_FILTER_NUM_TAPS; i += 2) {
- 		u32 tmp;
--		int t;
-+		int tap;
- 
--		t = casf_coeff_tap(i);
--		tmp = casf_coeff(crtc_state, t);
-+		tap = casf_coeff_tap(i);
-+		tmp = casf_coeff(crtc_state, tap);
- 
--		t = casf_coeff_tap(i + 1);
--		tmp |= casf_coeff(crtc_state, t) << 16;
-+		tap = casf_coeff_tap(i + 1);
-+		tmp |= casf_coeff(crtc_state, tap) << 16;
- 
- 		intel_de_write_fw(display, GLK_PS_COEF_DATA_SET(crtc->pipe, id, 0),
- 				  tmp);
-diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 308b8d363bba0..eceda1a909ccd 100644
---- a/drivers/gpu/drm/i915/display/skl_scaler.c
-+++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -661,9 +661,9 @@ static int glk_coef_tap(int i)
- 	return i % 7;
- }
- 
--static u16 glk_nearest_filter_coef(int t)
-+static u16 glk_nearest_filter_coef(int tap)
- {
--	return t == 3 ? 0x0800 : 0x3000;
-+	return tap == 3 ? 0x0800 : 0x3000;
- }
- 
- /*
-@@ -715,13 +715,13 @@ static void glk_program_nearest_filter_coefs(struct intel_display *display,
- 
- 	for (i = 0; i < 17 * 7; i += 2) {
- 		u32 tmp;
--		int t;
-+		int tap;
- 
--		t = glk_coef_tap(i);
--		tmp = glk_nearest_filter_coef(t);
-+		tap = glk_coef_tap(i);
-+		tmp = glk_nearest_filter_coef(tap);
- 
--		t = glk_coef_tap(i + 1);
--		tmp |= glk_nearest_filter_coef(t) << 16;
-+		tap = glk_coef_tap(i + 1);
-+		tmp |= glk_nearest_filter_coef(tap) << 16;
- 
- 		intel_de_write_dsb(display, dsb,
- 				   GLK_PS_COEF_DATA_SET(pipe, id, set), tmp);
+ 	for (i = 0; i < SCALER_FILTER_NUM_TAPS; i++) {
+-		filter_coeff[i] = (*(filtercoeff + i) * 100 / sumcoeff);
++		filter_coeff[i] = (*(filtercoeff + i) * 100 / sum_coeff);
+ 		convert_sharpness_coeff_binary(&crtc_state->pch_pfit.casf.coeff[i],
+ 					      filter_coeff[i]);
+ 	}
 -- 
 2.45.2
 
