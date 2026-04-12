@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EBi+AA9922mCCgkAu9opvQ
+	id 6BU3IBN922mCCgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:07:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:08:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8DF053E37AA
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:07:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 30C6F3E37B4
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:08:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0280B10E2AB;
-	Sun, 12 Apr 2026 11:07:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 687D810E2AF;
+	Sun, 12 Apr 2026 11:08:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IBXICw/n";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SUpwUe0+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6534910E2AB;
- Sun, 12 Apr 2026 11:07:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7F90710E29F;
+ Sun, 12 Apr 2026 11:07:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775992077; x=1807528077;
+ t=1775992080; x=1807528080;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WrvyRKbEHkYhUzKV25ngJOGHpL5utDLZ+GlH23Vtok4=;
- b=IBXICw/nvy+5CIGanVS5eXg/rzfVYs+yyZe8e5KIjMQ/J3IlH/kaWpjd
- R8Ge6Ylcf62RUpA3zj1snquupqu5eXXY/luRKiEM1D17HUYauxgz80i6l
- bFJXoJY6T4JE11TbqKe/5yOpUQMrV0cq/dsUV9aEUv9UQMN09ULiA4311
- AcI4qY4q3DNa/7SJnNWOVFolGq0Kw2gQZ+k7ugAETyDZCld+NrT55L3Hq
- w5aE3OjZRYfr4loy62j42AImiI2M88X/KkhZ75nPsBjZfNyiD++C/7cNG
- ikuf7fGgktyBS5poyPdWKd+hc4feWCRbgvvlDOs8du0uZvvI576B3Pzb6 Q==;
-X-CSE-ConnectionGUID: NL6AfwxrSzWcr8oOsSB+aw==
-X-CSE-MsgGUID: kGaF4n6eQvGwyUBstGmIyA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76115119"
-X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="76115119"
+ bh=vsXou9WcDL+R8mv0DDj7Mgt1GsTkgQYVrPa60jZ4pTM=;
+ b=SUpwUe0+SQqtdLxotrY0t6YuioHoPpFwidFRWvtiKUjy3ptOOaAqPvYL
+ PcQxw6Xvjai7+y0dB8sa3d0z7oErm87L+UrQN9gQdHM/NyRSK/DvIkLus
+ WDfEbfof3AX6IMZkezG3wPWTe6SlQLYoHLrttvu+jQNJNtdNiWafLzBFR
+ SPbmtRKbw6MJf+7Ez4lATSg/OTw6FOsS1hCHszRDqxdp0K9lhE1XWIQkV
+ qPJmI0u4RPJhkgNPAj0l75t4Zi45Gwzi3phreTJrRBx/9T8fvBEe6G571
+ /bc2kOm6upKMm+ys19daqfQxProg/dGGTRcUuW4gZb2r9alXHUrEZN90U A==;
+X-CSE-ConnectionGUID: ZrgYK25vTNinxijOVMembQ==
+X-CSE-MsgGUID: Pds2CX/UScCEyqXcDzVYsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76115120"
+X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="76115120"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 04:07:56 -0700
-X-CSE-ConnectionGUID: GrlG+E+EQemwqla8cM7hxg==
-X-CSE-MsgGUID: AIhJ4BXPTWuiC09nfTQtOw==
+ 12 Apr 2026 04:07:59 -0700
+X-CSE-ConnectionGUID: nPZec0HfS0qySobcG/SX4A==
+X-CSE-MsgGUID: dN3jnZlQQyGE2uqZL5+DEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="267507725"
+X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="267507728"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa001.jf.intel.com with ESMTP; 12 Apr 2026 04:07:54 -0700
+ by orviesa001.jf.intel.com with ESMTP; 12 Apr 2026 04:07:57 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
  jani.nikula@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 05/13] drm/i915/cmtg: Set transcoder mn for CMTG
-Date: Sun, 12 Apr 2026 16:07:04 +0530
-Message-Id: <20260412103712.4021213-6-animesh.manna@intel.com>
+Subject: [PATCH v4 06/13] drm/i915/cmtg: Add hook to enable CMTG with sync to
+ port
+Date: Sun, 12 Apr 2026 16:07:05 +0530
+Message-Id: <20260412103712.4021213-7-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260412103712.4021213-1-animesh.manna@intel.com>
 References: <20260412103712.4021213-1-animesh.manna@intel.com>
@@ -96,86 +97,111 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 8DF053E37AA
+X-Rspamd-Queue-Id: 30C6F3E37B4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Program CMTG link M/N.
+Add a hook to enable CMTG by programming CMTG CTL with Sync to Port.
+When CMTG starts running, the Sync to Port bit will be cleared. Add
+a wait to check its running status and trigger WARN_ON() on timeout.
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cmtg.c      | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_cmtg.h      |  1 +
- drivers/gpu/drm/i915/display/intel_cmtg_regs.h |  9 +++++++++
- drivers/gpu/drm/i915/display/intel_display.c   |  1 +
- 4 files changed, 24 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 27 ++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_cmtg.h     |  1 +
+ .../gpu/drm/i915/display/intel_cmtg_regs.h    |  7 +++--
+ 3 files changed, 29 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index c5ef9de2e408..aecee4157405 100644
+index aecee4157405..be8b513cde45 100644
 --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
 +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -314,3 +314,16 @@ void intel_cmtg_set_vrr_ctl(const struct intel_crtc_state *crtc_state)
+@@ -104,11 +104,11 @@ static void intel_cmtg_get_config(struct intel_display *display,
+ {
+ 	u32 val;
  
- 	intel_de_write(display, TRANS_VRR_CTL_CMTG(cpu_transcoder), vrr_ctl);
+-	val = intel_de_read(display, TRANS_CMTG_CTL_A);
++	val = intel_de_read(display, TRANS_CMTG_CTL(TRANSCODER_A));
+ 	cmtg_config->cmtg_a_enable = val & CMTG_ENABLE;
+ 
+ 	if (intel_cmtg_has_cmtg_b(display)) {
+-		val = intel_de_read(display, TRANS_CMTG_CTL_B);
++		val = intel_de_read(display, TRANS_CMTG_CTL(TRANSCODER_B));
+ 		cmtg_config->cmtg_b_enable = val & CMTG_ENABLE;
+ 	}
+ 
+@@ -141,14 +141,14 @@ static void intel_cmtg_disable(struct intel_display *display,
+ 
+ 	if (cmtg_config->cmtg_a_enable) {
+ 		drm_dbg_kms(display->drm, "Disabling CMTG A\n");
+-		intel_de_rmw(display, TRANS_CMTG_CTL_A, CMTG_ENABLE, 0);
++		intel_de_rmw(display, TRANS_CMTG_CTL(TRANSCODER_A), CMTG_ENABLE, 0);
+ 		clk_sel_clr |= CMTG_CLK_SEL_A_MASK;
+ 		clk_sel_set |= CMTG_CLK_SEL_A_DISABLED;
+ 	}
+ 
+ 	if (cmtg_config->cmtg_b_enable) {
+ 		drm_dbg_kms(display->drm, "Disabling CMTG B\n");
+-		intel_de_rmw(display, TRANS_CMTG_CTL_B, CMTG_ENABLE, 0);
++		intel_de_rmw(display, TRANS_CMTG_CTL(TRANSCODER_B), CMTG_ENABLE, 0);
+ 		clk_sel_clr |= CMTG_CLK_SEL_B_MASK;
+ 		clk_sel_set |= CMTG_CLK_SEL_B_DISABLED;
+ 	}
+@@ -327,3 +327,22 @@ void intel_cmtg_set_m_n(const struct intel_crtc_state *crtc_state)
+ 	intel_de_write(display, TRANS_LINKM1_CMTG(cpu_transcoder), m_n->link_m);
+ 	intel_de_write(display, TRANS_LINKN1_CMTG(cpu_transcoder), m_n->link_n);
  }
 +
-+void intel_cmtg_set_m_n(const struct intel_crtc_state *crtc_state)
++void intel_cmtg_enable_sync(const struct intel_crtc_state *crtc_state)
 +{
 +	struct intel_display *display = to_intel_display(crtc_state);
 +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	const struct intel_link_m_n *m_n = &crtc_state->dp_m_n;
++	u32 cmtg_ctl;
 +
 +	if (!intel_cmtg_is_allowed(crtc_state))
 +		return;
 +
-+	intel_de_write(display, TRANS_LINKM1_CMTG(cpu_transcoder), m_n->link_m);
-+	intel_de_write(display, TRANS_LINKN1_CMTG(cpu_transcoder), m_n->link_n);
++	cmtg_ctl = CMTG_SYNC_TO_PORT | CMTG_ENABLE;
++
++	intel_de_rmw(display, TRANS_CMTG_CTL(cpu_transcoder), 0, cmtg_ctl);
++	if (intel_de_wait_for_clear_ms(display, TRANS_CMTG_CTL(cpu_transcoder),
++				       CMTG_SYNC_TO_PORT, 50)) {
++		drm_WARN(display->drm, 1, "CMTG: %s enable timeout\n",
++			 transcoder_name(cpu_transcoder));
++	}
 +}
 diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h b/drivers/gpu/drm/i915/display/intel_cmtg.h
-index c92e3a62ff0d..6796eb727eef 100644
+index 6796eb727eef..64ff6a19948a 100644
 --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
 +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
 @@ -11,6 +11,7 @@
  struct intel_display;
  struct intel_crtc_state;
  
-+void intel_cmtg_set_m_n(const struct intel_crtc_state *crtc_state);
++void intel_cmtg_enable_sync(const struct intel_crtc_state *crtc_state);
+ void intel_cmtg_set_m_n(const struct intel_crtc_state *crtc_state);
  void intel_cmtg_set_vrr_timings(const struct intel_crtc_state *crtc_state);
  void intel_cmtg_set_vrr_ctl(const struct intel_crtc_state *crtc_state);
- void intel_cmtg_set_timings(const struct intel_crtc_state *crtc_state, bool lrr);
 diff --git a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-index b50ada371262..b6a549aec033 100644
+index b6a549aec033..d447a72bd9fa 100644
 --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-@@ -45,6 +45,15 @@
- #define TRANS_VSYNC_CMTG(trans)		_MMIO_TRANS((trans), \
- 						    _TRANS_VSYNC_CMTG_A, _TRANS_VSYNC_CMTG_B)
+@@ -16,9 +16,12 @@
+ #define CMTG_CLK_SELECT_PHYB_ENABLE	REG_FIELD_PREP(CMTG_CLK_SEL_B_MASK, 0x6)
+ #define CMTG_CLK_SEL_B_DISABLED		REG_FIELD_PREP(CMTG_CLK_SEL_B_MASK, 0)
  
-+#define _TRANS_LINKM1_CMTG_A		0x6F040
-+#define _TRANS_LINKM1_CMTG_B		0x6F140
-+#define TRANS_LINKM1_CMTG(trans)	_MMIO_TRANS((trans), \
-+						    _TRANS_LINKM1_CMTG_A, _TRANS_LINKM1_CMTG_B)
-+#define _TRANS_LINKN1_CMTG_A		0x6F044
-+#define _TRANS_LINKN1_CMTG_B		0x6F144
-+#define TRANS_LINKN1_CMTG(trans)	_MMIO_TRANS((trans), \
-+						    _TRANS_LINKN1_CMTG_A, _TRANS_LINKN1_CMTG_B)
-+
- #define _TRANS_SET_CTX_LATENCY_CMTG_A	0x6F07C
- #define _TRANS_SET_CTX_LATENCY_CMTG_B	0x6F17C
- #define TRANS_SET_CTX_LATENCY_CMTG(trans)	_MMIO_TRANS((trans), \
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index bf58ae5d3535..e8470b7ce13f 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1615,6 +1615,7 @@ static void hsw_configure_cpu_transcoder(const struct intel_crtc_state *crtc_sta
- 					       &crtc_state->dp_m2_n2);
- 	}
+-#define TRANS_CMTG_CTL_A		_MMIO(0x6fa88)
+-#define TRANS_CMTG_CTL_B		_MMIO(0x6fb88)
++#define _TRANS_CMTG_CTL_A		0x6fa88
++#define _TRANS_CMTG_CTL_B		0x6fb88
++#define TRANS_CMTG_CTL(trans)		_MMIO_TRANS((trans), \
++						    _TRANS_CMTG_CTL_A, _TRANS_CMTG_CTL_B)
+ #define  CMTG_ENABLE			REG_BIT(31)
++#define  CMTG_SYNC_TO_PORT		REG_BIT(29)
  
-+	intel_cmtg_set_m_n(crtc_state);
- 	intel_set_transcoder_timings(crtc_state);
- 
- 	if (cpu_transcoder != TRANSCODER_EDP)
+ #define _TRANS_HTOTAL_CMTG_A		0x6F000
+ #define _TRANS_HTOTAL_CMTG_B		0x6F100
 -- 
 2.29.0
 
