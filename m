@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDKuJCV922mCCgkAu9opvQ
+	id mAjiNil922mCCgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:08:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:08:25 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6517C3E37E0
-	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8FC1E3E37E7
+	for <lists+intel-gfx@lfdr.de>; Sun, 12 Apr 2026 13:08:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E557710E2B7;
-	Sun, 12 Apr 2026 11:08:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2191710E2BA;
+	Sun, 12 Apr 2026 11:08:24 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kRxeIwU4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m9c3NzmU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C416210E2B7;
- Sun, 12 Apr 2026 11:08:18 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B49B210E2BA;
+ Sun, 12 Apr 2026 11:08:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1775992099; x=1807528099;
+ t=1775992103; x=1807528103;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kEIau+R6G0jGe8LpKwThuXzCvZkG9r6W5TqjTHM4yrI=;
- b=kRxeIwU4ZDhVqS1KmtVzduZfm5BznaOxZQy3sNB8512+/JUssS6fDCS4
- Hf+ChVtCVGJBBMK/0QlYuU2HXemfZwAQ23Sdy+j0mQ8bZLpV0QD9O7I1F
- CBmDxwpA0iW6PyboQ4b39C4enXKD0sDU2SzBWOgHXhdmeeE4dYsjAQ9O4
- 9roCeQDoUJs+KZa3Ft+XMwy/iFNIQZVuBWtlurVyEUvyFGe0EW+3An84E
- lYJLc1NC7TeenzOYwvSo6BoEe3MkQcOHCMjLaLzURo+oM06pbr35hbnA6
- f38iAxPsoG4xGO8YaZJy7EkbgPGXgh28EIkS+XiBXtUm3wzm7r5xChZXi A==;
-X-CSE-ConnectionGUID: LM58igl+R3S16EjcpVudaA==
-X-CSE-MsgGUID: OGiYhQNtR4qI3J0IIXYDtQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76115140"
-X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="76115140"
+ bh=YYM+YvQuXrqAUwtZwMqIjtspxdL3exgwNUXpth1pTHM=;
+ b=m9c3NzmU50i8Fpx4E0fRtHFCJmPBc8HaoWw3JPca3qhOzxeA3kZHWi9p
+ Tt+F7Rpjyd492mj6pDixgQIT5VaEg8Mg3gx1xx+BgZlw5fLfyDXLt1D3M
+ Rvsn9AfW1G7PARVYj889HyO9V2kZfXgHZ/MknZIypv7pGUiO7xc4iIJ3e
+ kb0Fo+sk/rUfvyZ2ZPYtNVNHPGit+PdOiE63mnmzroR4PCWOJKAOitjwv
+ rCGhV6cIpkTEC+N22ZMkwTUosZTcwB3FZS4WN1mUyhP9myrGd1+m3Oinu
+ clzxDyDIQaJF3MpEoostIZiNhVycJQHakdoQNzjLFuoTI5jaQhQSAGdjK g==;
+X-CSE-ConnectionGUID: ROrnLlm1Qs6anF13LRpaSQ==
+X-CSE-MsgGUID: XCRTFGM8Rz+5U9SxVZ2MFA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11755"; a="76115143"
+X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="76115143"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 04:08:19 -0700
-X-CSE-ConnectionGUID: AYdLbG+IRLysZIMKGjoq7w==
-X-CSE-MsgGUID: eAPe7jIaT4yTExqRGwqhIg==
+ 12 Apr 2026 04:08:22 -0700
+X-CSE-ConnectionGUID: UJkVl/KiT9qrreVDkfOcow==
+X-CSE-MsgGUID: qY1J8OVHRl+vdpbcgscC3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="267507753"
+X-IronPort-AV: E=Sophos;i="6.23,175,1770624000"; d="scan'208";a="267507757"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by orviesa001.jf.intel.com with ESMTP; 12 Apr 2026 04:08:17 -0700
+ by orviesa001.jf.intel.com with ESMTP; 12 Apr 2026 04:08:20 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
  jani.nikula@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v4 12/13] drm/i915/cmtg: Disable CMTG if dc3co is not allowed
-Date: Sun, 12 Apr 2026 16:07:11 +0530
-Message-Id: <20260412103712.4021213-13-animesh.manna@intel.com>
+Subject: [PATCH v4 13/13] drm/i915/cmtg: Set target_dc_state flag for
+ lobf/psr2/pr-alpm
+Date: Sun, 12 Apr 2026 16:07:12 +0530
+Message-Id: <20260412103712.4021213-14-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260412103712.4021213-1-animesh.manna@intel.com>
 References: <20260412103712.4021213-1-animesh.manna@intel.com>
@@ -96,33 +97,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 6517C3E37E0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8FC1E3E37E7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-DC3co entry condition can change dymamically and disable
-CMTG if entry condition is not met for DC3co.
+Set the target_dc_state in specific scenarios such as LOBF/PSR2/PR-ALPM,
+where DC3CO enablement will be targeted, allowing CMTG to be programmed.
+DC3CO enablement will be implemented in a separate patch series.
+
+Note: This patch currently added to test cmtg and need to revisit once
+DC3co enablement design in finilized.
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 3d683d290fa6..9c5985ae89e0 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6874,7 +6874,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	    old_crtc_state->inherited)
- 		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index b8b6d62fb275..5de6cfde8bf5 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -7342,6 +7342,7 @@ int intel_dp_compute_config_late(struct intel_encoder *encoder,
+ 				 struct intel_crtc_state *crtc_state,
+ 				 struct drm_connector_state *conn_state)
+ {
++	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 	int ret;
  
--	if (crtc->cmtg.enabled && intel_crtc_vrr_enabling(state, crtc)) {
-+	if (crtc->cmtg.enabled && (intel_crtc_vrr_enabling(state, crtc) ||
-+				   !intel_cmtg_is_allowed(new_crtc_state))) {
- 		intel_cmtg_disable(new_crtc_state);
- 		intel_cmtg_disable_interrupt(new_crtc_state);
- 	}
+@@ -7353,6 +7354,13 @@ int intel_dp_compute_config_late(struct intel_encoder *encoder,
+ 
+ 	intel_alpm_lobf_compute_config_late(intel_dp, crtc_state);
+ 
++	if (DISPLAY_VER(display) >= 35 && intel_dp_is_edp(intel_dp) &&
++	    (crtc_state->has_lobf || crtc_state->has_sel_update ||
++	     crtc_state->has_panel_replay))
++		intel_display_power_set_target_dc_state(display, DC_STATE_EN_DC3CO);
++	else
++		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
++
+ 	return 0;
+ }
+ 
 -- 
 2.29.0
 
