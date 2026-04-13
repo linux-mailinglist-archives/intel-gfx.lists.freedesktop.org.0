@@ -2,83 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UAcqGmvB3Gn5VwkAu9opvQ
+	id oEMPA8PA3Gn5VwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 12:11:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 12:09:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A9F93EA67C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 12:11:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7DD8E3EA46B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 12:09:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A98310E3E8;
-	Mon, 13 Apr 2026 10:11:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC90210E3BC;
+	Mon, 13 Apr 2026 10:09:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="QgmkkMtl";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UNkBm8/9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E4D1F10E3E4;
- Mon, 13 Apr 2026 10:11:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1776075102; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=IBTsDxLxQSdNoi3ndUXa20r13M4Ela5iEpVM08Oo2RkBEYLAF+Lw/dJzqDGqMyz+i5psseEJCdN5DruAJbExPguHCM75eMzOJdpnFxkP+wZg+/gMI7lE0pJcdv9DkEAtPV4kEdSgWhnuNvZd+EAylDxSJ4pdbF1Cjvz2D1hLgMU=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1776075102;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=pAXSZtPd5U/ZCuO8959Lc90gPEZRU63FJ0bQzc9gzHI=; 
- b=AOkxbjOIdTJDYdW1Ob1kjqvA6a3TpbC77dYOBpKpH4MSQpWVFZmHRnlbH+TrscRrKWcyrEhkmUzfM0Qgp5plOFgjrB1DhBx2Ffd2tCbUTRlCjXTMDaewahyww7Ty/Td11sYdcNqN+W0q853FZ0UjF0OwDnncCxJQfRJzyLt76r8=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1776075102; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=pAXSZtPd5U/ZCuO8959Lc90gPEZRU63FJ0bQzc9gzHI=;
- b=QgmkkMtl/suz2GbB8NnEaOetn8NXNniLv61xv0fk95cPbACV/sIw1UsHl28Dt/N5
- luI4x10c2eVBU0SoYIKt3VMzDO5Go1sk4iLDXd1ck8OcT43IzcLS7xvCvCMEeqDlrWh
- HoSdEUnQehxbKyyt7GHgciZ+tLnaeEi2F3cU++VE=
-Received: by mx.zohomail.com with SMTPS id 1776075099753819.2140777372053;
- Mon, 13 Apr 2026 03:11:39 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Mon, 13 Apr 2026 12:07:41 +0200
-Subject: [PATCH v13 27/27] drm/connector: Update docs of "colorspace" for
- color format prop
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D73C10E3B8;
+ Mon, 13 Apr 2026 10:09:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776074943; x=1807610943;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AYVViBzC1UVd6/9kYCdjk4M6Q1A+ZDLIeh3I/2ejIM8=;
+ b=UNkBm8/9Q1dKf8tjajBI/PTItNglZi/HmQ8uUDLSDGA5gYpTKv6S462b
+ nlfBwlauTaUaE7YbSHkMP26b8yuUz0yCE5yxg/SjOcXMfsjwOO89LLGqU
+ TCVS/oVpqUccgK/D3ZUHrZUh4RemY+AXb63kotFKQWDqLF7zcdvqUbr/m
+ Ht5anSHr9pmnHF87sa+yyQrk+Y1m1++eH1zSqul0wTmixaw9sI27Z+xvd
+ kp8SXMIcruDBQp8CAr3Ju9wJdEpp8EQPLz0dERnuaKtYLIcFU3nLfUnc3
+ HxlIeSod18474ggAxpVS0ux1wLFm7AEtDBgIKZmhNEOzgu0e/Ye5rhDGM w==;
+X-CSE-ConnectionGUID: Loq91YdZQnW2WMIXAMwUZA==
+X-CSE-MsgGUID: Ld/HIVT5QjqKcJv/pifW5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="94395577"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="94395577"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 03:09:03 -0700
+X-CSE-ConnectionGUID: yCFRKyYcSBC6EzkbF/wa5g==
+X-CSE-MsgGUID: RcbMp991SV+VkCLbiSGoSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="229616762"
+Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.64])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 03:09:00 -0700
+Date: Mon, 13 Apr 2026 13:08:57 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, Simona Vetter <simona.vetter@ffwll.ch>,
+ Jani Nikula <jani.nikula@intel.com>,
+ Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
+Subject: Re: [PATCH 5/6] drm/i915/reset: Handle the display vs. GPU reset
+ deadlock using a custom dma-fence
+Message-ID: <adzAuSvOP8DkppZU@intel.com>
+References: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
+ <20260408233458.22666-6-ville.syrjala@linux.intel.com>
+ <44fa373c-6216-4cc4-a605-94776b3873ad@amd.com>
+ <adeLRHQ2omAv93yM@intel.com>
+ <cc51ea63-19b0-4352-9299-e5ab63f57ce4@amd.com>
+ <adyzR6ISo_idi38p@intel.com>
+ <b93c6c33-2d94-4da8-8e97-04c3bade2575@amd.com>
+ <ady-UMqIQUqmKsLv@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260413-color-format-v13-27-ab37d4dfba48@collabora.com>
-References: <20260413-color-format-v13-0-ab37d4dfba48@collabora.com>
-In-Reply-To: <20260413-color-format-v13-0-ab37d4dfba48@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.15.2
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <ady-UMqIQUqmKsLv@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,66 +89,85 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[38];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[intel.com:server fail,gabe.freedesktop.org:server fail];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:email,collabora.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 1A9F93EA67C
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 7DD8E3EA46B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The colorspace property's documentation states that BT2020_RGB and
-BT2020_YCC are equivalent, and the output format depends on the driver.
+On Mon, Apr 13, 2026 at 12:58:40PM +0300, Ville Syrjälä wrote:
+> On Mon, Apr 13, 2026 at 11:35:23AM +0200, Christian König wrote:
+> > On 4/13/26 11:11, Ville Syrjälä wrote:
+> > >>>> I think something is missing in my picture how that is supposed to work.
+> > >>>
+> > >>> The problem stems from the fact that on old platforms a GPU reset
+> > >>> also resets the display hardware,
+> > >>
+> > >> Which is true for at least AMD GPUs and I think pretty much everybody else as well, but that wasn't so much of a problem so far.
+> > >>
+> > >>> and to do that safely we need:
+> > >>> 1. shut down display
+> > >>> 2. perform the GPU reset
+> > >>> 3. restore the display hardware to its orignal state
+> > >>
+> > >> Mhm, I've recently talked with Michel about it and we confirmed that this is perfectly possible without issues. Adding Michel as well.
+> > >>
+> > >>> We just do that with essentially with a normal atomic commit.
+> > >>
+> > >> I think that is the source of the problem.
+> > >>
+> > >> I'm not an expert on that topic but amdgpu and tons of other drivers seem to just use drm_atomic_helper_shutdown() for that.
+> > > 
+> > > drm_atomic_helper_shutdown() is definitely not the thing to use
+> > > for this as it would clobber the stored kms state, leaving everything
+> > > permanently disabled. The drm_atomic_helper_commit_duplicated_state()
+> > > stuff i915 uses is the correct thing here.
+> > > 
+> > > But for this problem it doesn't even matter which gets used. Either
+> > > would get equally stuck behind a previous atomic commit waiting for
+> > > its fences.
+> > > 
+> > >>
+> > >> What is i915 doing differently?
+> > > 
+> > > I see zero code for any display reset stuff in any other driver. If
+> > > amdgpu does anything it must be something completely custom, hidden
+> > > somewhere deep.
+> > 
+> > The display is just fully reset by any MODE1 reset, you don't need to do anything special for that.
+> 
+> You can't just ignore the fact that there may be a display hardware
+> reprogramming already happening in parallel. Failing to follow the
+> correct programming sequence is a recipe for even hard system hangs.
 
-Now that there is a "color format" property that userspace can use to
-explicitly set a format, update the colorspace docs to mention this.
-
-The behaviour here is not changed for userspace that doesn't know about
-the color format property yet, as the color format property defaults to
-"AUTO", where the choice of output format is left up to drivers.
-
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/drm_connector.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-index 048789032971..88185a53d940 100644
---- a/drivers/gpu/drm/drm_connector.c
-+++ b/drivers/gpu/drm/drm_connector.c
-@@ -2573,7 +2573,8 @@ EXPORT_SYMBOL(drm_mode_create_aspect_ratio_property);
-  *		conversion matrix and convert to the appropriate quantization
-  *		range.
-  *		The variants BT2020_RGB and BT2020_YCC are equivalent and the
-- *		driver chooses between RGB and YCbCr on its own.
-+ *		driver chooses between RGB and YCbCr based on the color format
-+ *		property.
-  *
-  *	SMPTE_170M_YCC:
-  *	BT709_YCC:
+Oh, and skipping the controlled shutdown could violate panel power
+sequencing requirements, which is not good for the panel's health.
 
 -- 
-2.53.0
-
+Ville Syrjälä
+Intel
