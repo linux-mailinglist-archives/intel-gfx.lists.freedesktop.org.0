@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YPmrLOWp3GkEUgkAu9opvQ
+	id wPSINR+q3GlfVAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:31:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:32:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 122B13E9250
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:31:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 521D93E928B
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:32:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4987A10E378;
-	Mon, 13 Apr 2026 08:31:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4110E37A;
+	Mon, 13 Apr 2026 08:32:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Jdrh+wnL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzwdkJNO";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 03EB710E376;
- Mon, 13 Apr 2026 08:31:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE99710E376;
+ Mon, 13 Apr 2026 08:32:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776069089; x=1807605089;
+ t=1776069148; x=1807605148;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=qtVTG4IbqbqViXITZFdWk88uSCE3RHGetwLHytXQ0pA=;
- b=Jdrh+wnLB++ApwNwyIZZzi+F28RgmNMQhEBILz5N0ZyECRy7lWB53j1R
- LNht/YGI3884XRssKY1EGxL197iSkW5OKoutSbdl4zUbzoQ0l9ISBtsvJ
- 1Imh9OEDG23CozS3gkxbyKVTVNa0L7Ws3W9lH+iqArJ7icAzwkQXVwnI/
- V515PBFEmFXJSqBNjc3ByHJnuOsqMhc2YC88ZJd7AE18SJdSS6/UWfU0s
- fSR8PeejAPByIDqFhNDmdqUNsc+cUhyW555BdYea+TotD2lAIwwpWxhCH
- PFQRRuAfRxPqCtJa2LzI26WJXEy5d04U4XdaA/63LbUbf8ohwLUCSL43H g==;
-X-CSE-ConnectionGUID: 3h2Wu61TSbCy+HSnF9fh2A==
-X-CSE-MsgGUID: UqIJ2YQTTHus8p7Hb+4Vlw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="87625255"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="87625255"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 01:31:29 -0700
-X-CSE-ConnectionGUID: xOVmc26STgS4z0p0FCI/7w==
-X-CSE-MsgGUID: TeY5SlVETruYFO5fGmIirQ==
+ bh=2NyYDKTl8rgMPQJA1ydwD6V1OQHloyI7+62Faq6RV+0=;
+ b=SzwdkJNO3QgWlW9+5u3+p7VsXjw5OiLWu+dWlk4sVFSd6e/09NXI/CXM
+ REAeAs5X4SH/lkyq25yR63MKKtyFbTrP+RVyiHjjjYE5TS84FceBEhkYz
+ zgjNajG1l2HzUO3IF1kgg7sHH9AMlObMq7LRB5EsJHIkBGe55iIxqFOTa
+ 3zzDIZdLmw+epWoWAgzkh9VO5QP9QYYkiItGoiRaMwlzBaYMlEnCqSl2m
+ eqrB5wOM5KWnczIug+bRhEMK5lZrCjScJz5a0yv05wDPaYtLoI2zN//Gd
+ 0o217XGrA5DRnAHupreqkdCmCpGTAV3h+LyNlkMifosHah7wBmrTqZkid Q==;
+X-CSE-ConnectionGUID: l9yOHkfwTJKj/AmdNZ4A6A==
+X-CSE-MsgGUID: Bx9aiuOGRoCV6Q5lQTvLUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77016630"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77016630"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 01:32:27 -0700
+X-CSE-ConnectionGUID: NdDLdxUPQrm2byENR0QQsA==
+X-CSE-MsgGUID: UlUzN+sLS0WoRclBXFWyMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="234709208"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="229642921"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.182])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 01:31:26 -0700
+ by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 01:32:26 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com, Ankit Nautiyal
  <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 01/12] drm/i915/vrr: Add HAS_EMP_AS_SDP_TL macro
-In-Reply-To: <20260413035349.1730312-2-ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 02/12] drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
+In-Reply-To: <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
- <20260413035349.1730312-2-ankit.k.nautiyal@intel.com>
-Date: Mon, 13 Apr 2026 11:31:23 +0300
-Message-ID: <902d39b5ef740d820ceb73847232102b5a0a6edd@intel.com>
+ <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
+Date: Mon, 13 Apr 2026 11:32:22 +0300
+Message-ID: <4daee56a2d6dd3a5797e13b19232d1b3b5fd1c2e@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -103,67 +103,60 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 122B13E9250
+X-Rspamd-Queue-Id: 521D93E928B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Mon, 13 Apr 2026, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> For BMG and LNL+ onwards the EMP_AS_SDP_TL is used for programming
-> double buffering point and transmission line for VRR packets for
-> HDMI2.1/DP/eDP/DP->HDMI2.1 PCON.
-
-Okay, EMP AS SDP TL is where I draw the line. I don't understand this
-acronym soup anymore. HAS_EMP_AS_SDL_TL() is meaningless to me.
-
-The idea with the HAS_*() helpers is to make the code more *readable*.
-
-The absolute minimum is to explain what these acronyms mean in commit
-messages or comments, but you could just make the HAS_*() macro more
-readable on its own.
-
-I'm also not convinced we need to put all the HAS_*() macros in
-intel_display_device.h when we could place some of them inside the
-single .c file that uses them.
-
-
-BR,
-Jani.
-
-
+> EMP_AS_SDP_TL is used to program both DP Adaptive Sync SDP and HDMI
+> Video Timing EMP for VRR operation. Add a helper to read back the
+> programmed transmission line from hardware so VRR code can populate
+> the corresponding CRTC state fields during get_config.
 >
-> Add a macro for this and use it in intel_vrr.c
+> This provides a common read-back path for VRR packet transmission
+> line state.
+
+Still no idea what "emp" means.
+
 >
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
->  drivers/gpu/drm/i915/display/intel_vrr.c            | 2 +-
->  2 files changed, 2 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_vrr.h |  1 +
+>  2 files changed, 14 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-> index 1170ac346615..9338ea087e92 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_device.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-> @@ -173,6 +173,7 @@ struct intel_display_platforms {
->  #define HAS_DSC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dsc)
->  #define HAS_DSC_3ENGINES(__display)	(DISPLAY_VERx100(__display) == 1401 && HAS_DSC(__display))
->  #define HAS_DSC_MST(__display)		(DISPLAY_VER(__display) >= 12 && HAS_DSC(__display))
-> +#define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || DISPLAY_VER(__display) >= 20)
->  #define HAS_FBC(__display)		(DISPLAY_RUNTIME_INFO(__display)->fbc_mask != 0)
->  #define HAS_FBC_DIRTY_RECT(__display)	(DISPLAY_VER(__display) >= 30)
->  #define HAS_FBC_SYS_CACHE(__display)	(DISPLAY_VER(__display) >= 35 && !(__display)->platform.dgfx)
 > diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index fae1186a90b2..1fed597439b0 100644
+> index 1fed597439b0..abdae7f1f8a8 100644
 > --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 > +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -656,7 +656,7 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
->  	 * Since currently we support VRR only for DP/eDP, so this is programmed
->  	 * to for Adaptive Sync SDP to Vsync start.
->  	 */
-> -	if (DISPLAY_VERx100(display) == 1401 || DISPLAY_VER(display) >= 20)
-> +	if (HAS_EMP_AS_SDP_TL(display))
->  		intel_de_write(display,
->  			       EMP_AS_SDP_TL(display, cpu_transcoder),
->  			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
+> @@ -1218,3 +1218,16 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
+>  
+>  	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
+>  }
+> +
+> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +	u32 val;
+> +
+> +	if (!HAS_EMP_AS_SDP_TL(display))
+> +		return 0;
+> +
+> +	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
+> +	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
+> index 4f16ca4af91f..6659a8a53432 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
+> @@ -53,5 +53,6 @@ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_sta
+>  int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
+>  int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
+>  int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
+> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
+>  
+>  #endif /* __INTEL_VRR_H__ */
 
 -- 
 Jani Nikula, Intel
