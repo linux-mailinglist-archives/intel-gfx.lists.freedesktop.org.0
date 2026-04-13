@@ -2,170 +2,158 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eIC7N0dR3WkFcQkAu9opvQ
+	id SCV3EdFU3WkFcQkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 22:25:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 22:40:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BC373F312C
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 22:25:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E30E3F32A8
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 22:40:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D589E10E107;
-	Mon, 13 Apr 2026 20:25:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D29110E055;
+	Mon, 13 Apr 2026 20:40:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="KYO1KElx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PLHJIhgp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from BN8PR05CU002.outbound.protection.outlook.com
- (mail-eastus2azon11011071.outbound.protection.outlook.com [52.101.57.71])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC87810E055;
- Mon, 13 Apr 2026 20:25:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DF110E055;
+ Mon, 13 Apr 2026 20:40:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776112845; x=1807648845;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=shineMJ+iZ0uC5FqoCmTGIHRA3ARePgYzCMQ/T0aB3M=;
+ b=PLHJIhgp+9gSrapB4sZH+LSNaQrtGJPVawrR02xUP0UbHe1HuzGm41Gp
+ muw3BW4CIT2JQYFXTxcE96ggkx7Ev64uzdL45q/bXz4uS/A4uMuxZifZA
+ oic8zdKY6EfTBWAMCcKBCzscEbqLBSkpsWC3UNULLruEJrYtOZSlinFdh
+ gEm4lzCweZ04bLrRC8i7Rj4B+xHF9yG6TV2bWTXriz1ImMqWV5McBCSav
+ CWsLsKj1VL1+vc3Fwns3rdy0zk1EDngsqIpoGMvjdBwrbKPHYOe5GlXXV
+ xqF3FX7wemeyAn8d/qdccx2XafcghpU9si9OwpdDxnmdFV83mMRstNpMW A==;
+X-CSE-ConnectionGUID: ozXeYkxjSxmQGjJ+GsM3EQ==
+X-CSE-MsgGUID: 1cTGLJ8dRV6nMLsR/fyR8Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11758"; a="77024133"
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="77024133"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 13:40:45 -0700
+X-CSE-ConnectionGUID: oaXVJMAXSkOUfMqrj1HUCQ==
+X-CSE-MsgGUID: urZWbvUiQ7aYHeShRC1nGQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="234866902"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 13:40:45 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 13 Apr 2026 13:40:44 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 13 Apr 2026 13:40:44 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.17) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 13 Apr 2026 13:40:44 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HMzv2bEoWxPSw4qNslew5f6iGQaWWubGj/vOgkxdW84Zak1QSialXZBXWAo2Vm641wijyQgYdc0WOu0T3Zc6qXhuwtVNE6F7F2OFRuXUQ/ymxE3MIxo4PyokggFc4y83b1I6E+oHZhlHyNRRureugAcL6oxHCNUuXMN3PMx90kSg7n9GAnq0Xnzx9o6dgTzwpl7i9ZuTplkxSLhbTZZkgXBXjJWiTzCc3uhqcrD7HjAq9qNqPL8QAUhXLN9M2FmNWAP21apmx0lXnyrMEuOh9GpDzwoNaYZc7YCKob7VRr/RYBT4x1+nKsQ1D/JY7aXjDhK/lqG8IXf2whF493T48g==
+ b=nkTsy7cd2IlXpZnZywwXCK8w8+0I2qbfB19M71OowzIinX++Cri65vpuQGKr2BMZXkaUT1zXgULBUWkDR9oogbk0TVkz+miwGHfuyh9ToOIAHd6uxwBQhpjaBAK92y2zlWOttgqsCdNXRtG5FmuKe98Su/XtqdGew4IUc1Q+DYJ1QFJHiseSjVWr3mo0Jn8Ohuc5iLcVVyDYuMyNBbUmtm8L9+6q3VMS11Bx4w/K1752/h4A4Jnuxk4iniJtKL/gZtG7jmYBeNtl1IfsEOt9HRcfsodR/F3Nxsh6cQj3X1rVP9J4u17bwIQ0rnnH6id6au7qXqzcMEzlHcdx91q2/Q==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=akNp3m4Iid1v8cmwjp0ofS8pjXed3gQ9X0aepN2Ddjw=;
- b=qV3DL5CuRxNwTCgM6zg1TYJ+00VOTWfPy1DncbNUk+XT3Y2dEh9Yg3cO5Nq0AQ5GuoFytPhggEIa3UGVSE4TwQKSF7/t/mghllglnu6xW6m2UAlnSnfCBUnqrYBsyeIz97776G3KSE1bvockjWy70lfLLaE2CBooy5A0QKdDZ3Y9wFgwbnC9q8VdhpaITJHbm0OvZU4hRiQAQv0+w7FjcRdH+LMpWTZVYscZYrUXZQbbPcPx6vzFl5eZmsNBcAfSpdwNFixa+d0xZcuFCr8VpUzIxVTF4kO7mKS7goN5Ui1YTCKNJa8ZuXmqx973CSVjgQgNPQLuoj95ryiUbZJbGA==
+ bh=hk7P+a9Y1slKAAqpF8GLRijdcUvH25mHgS4cfiJW4QY=;
+ b=ctZZ0bQgZjUawcIKhBltdTtyMXjdVHzf+BSQMnVqxtEwLxhuiD3C+/IuKd5f2UJ2rZJxvBxbGA3+8Kwjoym9hGmmEDMhlagKjR2hzyiidleo2lNRUR3D2qfzsHhzp4JzfNQdt6Q3IdpvR8UauvWfpEKD4Zjzc+LEH4xXMxhY6wgzEGyZSkECTX+8n5sLXfW70mPOCayEAlHdAkkqVLy+UwHgqcGUo9EEb39NsaV3YPkRI8y0w1YOUVGPD5pFIRg18oD+CWfvQrKz7j4A+BnzocJ3B1nVzWtJivyEifxvKJNJ4Lc81vDPNlFDz+HuZ+6lbIQb6/qIJ5oeDXduMRPvMw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
- dkim=pass header.d=nvidia.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=akNp3m4Iid1v8cmwjp0ofS8pjXed3gQ9X0aepN2Ddjw=;
- b=KYO1KElxEf4x2JZyP3s31T9Z/ZEM0xveDAkFllW8ap/1PX0APQc9jc25dIfsh+HejoEk6DHT8381IdpOHDPsvC0aqyKnqqQRnCVyondBbX1h7JXcc1fohtsKsc9lS5c5/aBmQOjxBuBVaes6Q7TENRhCSNAfYPRsMyp/Xi0zF8M/nA9pZjofFxcxppROQcz85UuxBUnBpB0QiK9SSlK/uemKRfCDF9zRnfnZpDAbpf82SGrsa3Lm9UfYe7U89APUR01uuXnJwBtuutESAmadKRzgL3h6cCMQJJ0GZFOPIZy5nDxtu92VGuGSCvaX4Hi3FjkKMNZTCAz7vlOc+dmRUA==
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=nvidia.com;
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
- BN7PPFA8145BD40.namprd12.prod.outlook.com (2603:10b6:40f:fc02::6de)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.17; Mon, 13 Apr
- 2026 20:25:35 +0000
-Received: from DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
- ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9769.014; Mon, 13 Apr 2026
- 20:25:35 +0000
-Message-ID: <a675d5fa-29d2-4420-9b82-18a7027fc769@nvidia.com>
-Date: Mon, 13 Apr 2026 16:25:28 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v10 12/21] gpu: nova-core: mm: Add unified page table
- entry wrapper enums
-To: Gary Guo <gary@garyguo.net>, Alexandre Courbot <acourbot@nvidia.com>,
- Eliot Courtney <ecourtney@nvidia.com>, Danilo Krummrich <dakr@kernel.org>
-Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
- Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
- Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
- Dave Airlie <airlied@redhat.com>,
- Daniel Almeida <daniel.almeida@collabora.com>,
- Koen Koning <koen.koning@linux.intel.com>, dri-devel@lists.freedesktop.org,
- rust-for-linux@vger.kernel.org, Nikola Djukic <ndjukic@nvidia.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
- Christian Koenig <christian.koenig@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
- Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
- Boqun Feng <boqun.feng@gmail.com>, John Hubbard <jhubbard@nvidia.com>,
- Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
- Edwin Peer <epeer@nvidia.com>, Andrea Righi <arighi@nvidia.com>,
- Andy Ritger <aritger@nvidia.com>, Zhi Wang <zhiw@nvidia.com>,
- Balbir Singh <balbirs@nvidia.com>, Philipp Stanner <phasta@kernel.org>,
- Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
- joel@joelfernandes.org, linux-doc@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-fbdev@vger.kernel.org
-References: <20260311004008.2208806-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-1-joelagnelf@nvidia.com>
- <20260331212048.2229260-13-joelagnelf@nvidia.com>
- <DHIFF98P1YQ3.1IXUT02E3TF20@nvidia.com>
- <5db2aab1-4b65-486e-ad9b-27a108bdb0d6@nvidia.com>
- <DHMYSTLVHIFJ.A2BDMPVNZNLS@nvidia.com>
- <537a8c5a-3885-4c47-99f6-963b48ddf87d@nvidia.com>
- <DHNKYBM159T9.2UUQ7CU0RN0BU@nvidia.com>
- <2f004511-61d1-4197-84b6-cddcdd275e55@nvidia.com>
- <DHOKN9XVOTIB.1A4JY7CDJFWPS@garyguo.net>
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ PH7PR11MB8504.namprd11.prod.outlook.com (2603:10b6:510:2fe::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9769.48; Mon, 13 Apr
+ 2026 20:40:41 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::22d9:ae03:5db1:680]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::22d9:ae03:5db1:680%5]) with mapi id 15.20.9818.017; Mon, 13 Apr 2026
+ 20:40:41 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+CC: "Manna, Animesh" <animesh.manna@intel.com>, "Kurmi, Suresh Kumar"
+ <suresh.kumar.kurmi@intel.com>
+Subject: RE: [PATCH 01/19] drm/i915/display: Remove TGL DC3CO support
+Thread-Topic: [PATCH 01/19] drm/i915/display: Remove TGL DC3CO support
+Thread-Index: AQHcvUQkFCGH4Ee270KCnh7D/PbADrXdkDPA
+Date: Mon, 13 Apr 2026 20:40:40 +0000
+Message-ID: <DM4PR11MB63605DB556EE3AD45279CE7DF4242@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260326171557.2065632-2-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260326171557.2065632-2-dibin.moolakadan.subrahmanian@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Joel Fernandes <joelagnelf@nvidia.com>
-In-Reply-To: <DHOKN9XVOTIB.1A4JY7CDJFWPS@garyguo.net>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: BLAPR03CA0074.namprd03.prod.outlook.com
- (2603:10b6:208:329::19) To DS0PR12MB6486.namprd12.prod.outlook.com
- (2603:10b6:8:c5::21)
-MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|BN7PPFA8145BD40:EE_
-X-MS-Office365-Filtering-Correlation-Id: e32bf791-ea43-472e-9981-08de999ad175
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|7416014|366016|1800799024|22082099003|56012099003|18002099003;
-X-Microsoft-Antispam-Message-Info: ebsYEVVSv+Wiul3uryJ2ty31ggyTwywOZBMEPDjiM4moWtJn29dLWAF8v9+DvI1FHoLdQIn4SSiXYhA6sletpQ2TICsihi0YAtn6M/1QrWPVB9At8MvRPRX3aOPCBD0CetQhGP4GXaOZ82s1nhtqLKCoGY87HiqRv0CNB9uf/Db+yygv7e/WtRgMS6xPnR9DUA0re6g9NjctWQjGc5mwpq0xDRMKcWrPGIFpJhis/itwr3g5ue6bmm6oBTo3Ry2D06ZGdR6lfLrRD+HChjQjEqE0zPF2xiG4IL1gJkwWiszkUSwDmM5HkSzq8R5D7dfRLSMLAOn+FG64TTVufWAjpq96UtYYAMFD0aQjHqGoucOpoFup5/5Cvuo78/rzMdmYAVagu9uizjy7p+s0MjR2RG5IxarZ0ChT31NHI4PLmVJGvuhjCRCN5D12qR7kKHM6bqJgKKHa0McxYU+1F85OkCxXhGzhb0+fMI523HFfDJjzOWcLn4TPdD3sKAg4W6htE90OLEplmbWH8YgrcOuxI6JH6DHDaZuntkLZr3cSg4u5HSnnZEGnghfGfyiw5+4+yDEluDpQm6X9tZqHXHlEiNMZBCcj90/DTb3wU9SDXQJN4qEke6hJn/1PnuGzxXjwnuxT+kn3OM1W3n5kx18KoRnweZu/KUtYdN9ZZhGrqkbw5mk+ne0gknkuxST1mvqUOgjH+/U3RvkYlt947HtoPdYyp+oUQVanOI+HnLdlu9/dc/Jjfw2Ld6R/K1e6GEl7
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(7416014)(366016)(1800799024)(22082099003)(56012099003)(18002099003);
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|PH7PR11MB8504:EE_
+x-ms-office365-filtering-correlation-id: 82051f2f-8216-4199-d66f-08de999ced73
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|38070700021|18002099003|56012099003|22082099003;
+x-microsoft-antispam-message-info: b99GOZQ4lOZEnDSftrJXXUaZOTZLEG29QSSd2hIYcmV463L48ug8rRVm3JbBjcaBUQRXFg9J5icX1DOsWaWRa85YfZ8SbicFF5pFxbhNexd4eCM62Z8y/LVixFqQL1Nz8EhfEIJB8YUGXa8FEeFYlVluNmDt+RE71g+9yIjvM1dzlo1qtNFDADI2krb+RJyDwGwj7T9l4PczfXdhwzqsiAaegOWF2aCKVZasUth98Tuit7ANymGhGOvzzpXRnxLgm8hwnsWzA/deoZdGwo5AVivaXayWBDn3YFLDdi2PaclOsqswHQmKAELseV/qfZudd7ZAilW4o1ZGxF4eN7rMnWzoYzPJBKJIkC2ubVOE2BeAlWmggk0QQEFCQbrEvNCQqhjdorQ/LUECH2aghQlKpExoBD2szzrAeWqBhxvIA/PBebB/JM0RlpcYNvhWvs1X3L7nOwGFidi3mWs05pEEAuK++7p4eyHq8NZcf8WmUmDcaP+0TicVU8aqLrS8QT9GpGF86UCPDz2jsv85UeOVSi082krz0EI+uFuKLNR14mFDQqdz6w8KwCyDSa7SYQKMbHYKaBGlr/gGuyTn4VXdugDsh0wszdEZHWmNa9QtkbrCG8OUf7Zy33d9DEbt3ZmGm3jl8YVVxm2hb7XHNzi+Tj+Z80T1mZHL/wJyMNAsl3q3UAkVH9MtfISwbR/ItV+TyHmzV6dBA+/UeiAl5HYsHmij2bWL7UR9VsQUgPoNQlPFicjpPxNDU04uKItsYaRyCaCJ113fjQaiJHpsaxkTfk/47JS4LjlmYJeKaCPyR4E=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(38070700021)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?VUZiUlJjb3BRY1hFcGl0VEtVeFc2d0JEaGVoYUgxUXNoQnBWRnJnWitOd1Jr?=
- =?utf-8?B?bUsvd2J3RmlFN1JGaDZJSUQrUXRSVGZZcUNZWVYybGZEdTZJdEJxeWxkTWJ6?=
- =?utf-8?B?NDhPVHd0REJPaEVHVGZrYjBreXZOTEk0bytDeVBybkVxaDFiVksvR3V4YkpZ?=
- =?utf-8?B?VEVsbEZvUVVhcEE4ZzUxR2p3alRucFk1NjdSYzdBSU85Z0tKb3VlRXY4czdP?=
- =?utf-8?B?YU1XOHJqb3Y1ZEM1WnJ4akZvcDVNTEtRS2RiS3VyWE85SVRDMElxR2dKa01a?=
- =?utf-8?B?b00wSnZNSHFmZ0psRmt0cjE0aVd5Zm8xVTBnUzk1TWxBbGViMVlvR2c3Q3Uv?=
- =?utf-8?B?M2QyMGF2dDc3ZzFPMnI0WFRMZGp5ZmF3K1ZCN25GREZ3clRES1oxRE8xZ05B?=
- =?utf-8?B?K3BmQ3kvYm8vQWFRdHIzeVFRNUV3WjdjQk1OUjUxNWJIL3ZPWFJ3YmlCSkJW?=
- =?utf-8?B?UGZaZEUzMGhGMUo5SGpNdTBQZ0ZjVlJSN21PM3BGbXhSbG5MNzlGT0ovcmdG?=
- =?utf-8?B?S045VHArY1dyejliN2RLSFF3aVQ3eXN6TWtmazdSMUYyVGpYcmhIbTRFTUpz?=
- =?utf-8?B?OVJZTmpueWFyd2ZBZXRmNUpHWUVKcnhYMVlUTXEwcXljQTdCZXkvaGJ0a3FU?=
- =?utf-8?B?emFLNUpZUHcyaHR1TitHM2laMlRydGpPVzlSeTFJZGZKTThWUTRuR3Q5eGRo?=
- =?utf-8?B?MDNpK2FsaS96SHJIc3o2d2VrY214Zjd4dHh1QWJMdEhSL3BJSlYwdmFETlRl?=
- =?utf-8?B?c0NTRk5LNXhaUjY5ZnlkWGpUZiszclVJM2ZsWXdZWmpwQUE5WGE4TnNJbFdq?=
- =?utf-8?B?U0E0OUxTOXpWaVBiQ0RobjZDellkTnpJWG41UFdCYjJVcFVqbjVkRGYvd1E5?=
- =?utf-8?B?MTFJV0ljTytJM0pYWnplS3E4ZWpKd0s0TUNsK3dQTEs3aVdPaE1KK3BZTU9E?=
- =?utf-8?B?eHgvTCtWdTU1RU0xSlpDZllWMk5iM3J1TElzbldjY2RPQWxvbnQrVm1CaEVj?=
- =?utf-8?B?bXZIS002VzhIN2JYdUZuOFVHN2o4aERjdGYvOE5xeG80VnVIakJMOXJ1RUY3?=
- =?utf-8?B?N1d5RzZUTE1FWktxUkVjc080dnFrbTI3dHJRcHVKOVo4UVZoMWFBZnY5L0gw?=
- =?utf-8?B?TFRhR3hvQk9zRlpycmlHWFc2OUVTMzhxaW5XZ00yTlVZWjl4YWoyS1U4YWRm?=
- =?utf-8?B?aElnc2hzMnY4Qm5iTkZNVkxWTkdxdkEvcFh4OExQdTI5WVdHaFZ0YU4wN0s0?=
- =?utf-8?B?VzJNbU1IbEJOaDU0UkY1Vk0wc3BqeWxzZFJPbjJ0RjMzOWVXNXA1WGFpNzZ2?=
- =?utf-8?B?N2ZNSlBJWU1QK213MUczdHRyVFl4ZEZSbWRBcktMZDExMVZJWmhkWjhQTmtz?=
- =?utf-8?B?eHFYMWRGQ0hwQUJnbjFQOVFVWVVnK3FZUThsQXJhSENZQU9zd2JVSGxoTWlq?=
- =?utf-8?B?SERsMHhueTlhRVNPRURBNlZXNnU3dUxuUHBlMkdFZTk1NmRyMmdUdnAzN29I?=
- =?utf-8?B?MzZEWG1LT0p0SVoza0xyMDlTKzNqL25kbzdtS29RanZ1QmFreXV5a3duSW9P?=
- =?utf-8?B?SHQyV3IzZDIvaS9YM1RETG5NUVJqSnhReUtsUkF4a3hJYlo0WldOMUVxOWtk?=
- =?utf-8?B?U3dOMkhvZFcyTjdwam9qV1BYU0xmZzNOdi9PVkJkZG5oajN0c0M1SnRQbWlY?=
- =?utf-8?B?SDlxUHZWM0l1RFdRYUJ3RlgxSFMrZ01FQ2hvQTArUTFGT2MveGVLMTE4TG9h?=
- =?utf-8?B?NldHbnRZclFaK2xBUFFZdVVHankweDJBSWZuQkhrNFAzbmNBVnFML2tPYWZx?=
- =?utf-8?B?ZXNWbmNETzd1S3hoQll0MjFqSmNXdnFoZ2lHb3VYbHY0UExzcVNWbERLbldi?=
- =?utf-8?B?TzcvVVZyMXIrYjBEUVg4WDJVTVFyRnNRMEVZMWJUdWJtQ2I0WXA4K09hOG9G?=
- =?utf-8?B?VW9ZMnZ5YXkyRVFCdGxRam5qd2VGMmc2WHZjT1EyTVllZmhabHlHMHNXUGlG?=
- =?utf-8?B?dUR4cEE4ODFORmdVdGZaMlpjbmhDRTdwemYxRHk5WjcvUmoySmltNDZJUy95?=
- =?utf-8?B?YUVLZUtOYmhJR3JOS2t0MWtsOEoxK3hXU3hYbEZFTGdqVGMwMG05QWk3R09x?=
- =?utf-8?B?aG5RZkJjU1JiNzU5aGtvUmtQSVFXYzNVYmpxb05aSGcrc2NzQng5YnV6L0w5?=
- =?utf-8?B?WFF1Uzdnclh5eWVUUW9yQ1dxaldOaTkvb0t1SlUyZ2lZcFhhOElKRjFDUCty?=
- =?utf-8?B?a0hQSWtZUUdKWGgzQXNHK0dXWWRLSGg5UEY5SC9xYjdTUndDSXVKQWFvWEox?=
- =?utf-8?B?RXFIK0JqSFZKaTFLUjU1OG5PRXJyTWkwTzRtQ2pYd1Azb0lSZ0doZz09?=
-X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e32bf791-ea43-472e-9981-08de999ad175
-X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?ebglNlrdHyaB5Hy3e389IKOh65JdLdKYrygsjUTpQtXiH3NFPrAEXB+rk16q?=
+ =?us-ascii?Q?qiKQ2dR9TcWNjix7Y74NUEZUHO0FDqS5DEK1lVJbxUo6+dtv3xnq1GxV+Rzr?=
+ =?us-ascii?Q?R3F93sigoXhRcpJxl5xvUrcrWrMc7BwcBN8twQGWM1nYJrYAP8eHR3igQ2c/?=
+ =?us-ascii?Q?ZZclab837vNwRgxEfxsfuQ+n0zd8+I++bHQFi4y9FD3TPFMAXlpcELpdeAnI?=
+ =?us-ascii?Q?6qgDiqGq+y53condliMVqiIFZ4jPA8S0TBiqB/0UM0YYRBQraYAIOfbCf+VL?=
+ =?us-ascii?Q?+8p3+I473khyiSTdXx4vaTP46q8g5SYvXmBv/AtUd9ZcnL2NaC7P4KEjfLTF?=
+ =?us-ascii?Q?Yx4vH+39EXmCd3E4b/7nESlhYRwpMnNb5NR7B0qb5MYmfmBzwOu9wAcyRPTW?=
+ =?us-ascii?Q?ENdVndMUz9zsuK1GtMwoysVYfkezlWsdukKhMlXOcH8Dfnd7UjOKrv3ohzNi?=
+ =?us-ascii?Q?8ZYafg0SqHN/xpcFvgI5A9Ei1Mt8nUbDJlUeg1MPKUp3AnCgSM0szSa/TV1E?=
+ =?us-ascii?Q?2twD9DK/ZT9Y1zz+FBGeKXQ/NoE+8GGfke9sDjKu165WYsqJxSE1McB/Cm8B?=
+ =?us-ascii?Q?vLBVK0a4DFg6Yduagqxt1feVzRILMp/4a9vBitzMoSg2cvd42bWSEnHDIeus?=
+ =?us-ascii?Q?K3hiKxvXwGOUt+f096F5rdeZAXgu5EoBXQCgPyoDdbSX8SPNADvPS5+UV7jf?=
+ =?us-ascii?Q?JrreY7ewA0uJbiVMXcAvHv8+pblI2ExnR91yDBJOYVMXEg/9wbTjexBE+gc+?=
+ =?us-ascii?Q?+j96tm9Nbesg/bJmb+5C+T2+IqxEvOBk+mjel6KczjwpJCYteNcIKV/UY2N+?=
+ =?us-ascii?Q?Rj1qDPGexmXfmC/4ibeqG5gpXzr+o/TSce+UPIpPtdxreL0WkN1EaS2RuKsf?=
+ =?us-ascii?Q?U7FBzaFTSZX2ZI7DQcdUSC/A9nthUatSosSvWMdEcqZgfOwNLxFQMBftFOhV?=
+ =?us-ascii?Q?3MmxUJyGVB76dmwpTxxlmDwp7JORiWWgMSeDjBZ27JyVv+HjgNOSVusqFavN?=
+ =?us-ascii?Q?KpC36O4N73Pa5im5zcxSf2xwTI543yApSXiLTuBZxC3aSj4r4ZsbVUxQ/EnX?=
+ =?us-ascii?Q?dObowAJxXHEWXteWLScwlA83wnSLe8nvHMWqf3YDdWhIlHU91y1Lfoe4SlCu?=
+ =?us-ascii?Q?22bTOdPezfP0qvOc7gWoTSk2I91sfeHib2ejI7p5m0RUhubeHffCS5MwBfTu?=
+ =?us-ascii?Q?hX3CvJ63uKE6Z6ypy0g4ShlhDsyDeh/QkPVzdCKu64QTtRDX4uQnB8TM5sQY?=
+ =?us-ascii?Q?/xQaaupfTAE25YBSAx4DwP9BvaxtFNHHjRZSAn/gNpK2RnxcL8SLlf0qiSkE?=
+ =?us-ascii?Q?Pf1PviEbvgPxtb6xLl82JzmisR5NC2EgTFSF93eFpJXEfbTIbgTi8RtToj1V?=
+ =?us-ascii?Q?KcuFx+OHj9nQEjYLBoZTsq84aRDYME1H8+qDYYqG9HwFtxYl+Q+PG66+iEYo?=
+ =?us-ascii?Q?sV5VUDzQOrMMjJE3ZEBSdia3rg/GMBJl+qbPzs4hfR+O5B5/mZrOGtrRwBtX?=
+ =?us-ascii?Q?VNgAwb9OczhYlJs+fsHIu5kGBx68EX4gy7jmRStX8bamzlgEh5YXFe4pIsil?=
+ =?us-ascii?Q?fSPT7goGtJOHCGBdMR1P1r9X4H6hYP7Tg4qt6Ke3rsjUt7Se3wYXy9v6Muw5?=
+ =?us-ascii?Q?FVcewl9TxrndP3x2c5Mav9TPB3Ft3O6wVfnaI5XlCeTGZ6YjEuEYAOqxJlNS?=
+ =?us-ascii?Q?nUZ+LRWxiXTxiFogO8f3dZWDs7eHk4IUNZ67/JpVCa76PedyhJ49ut4tsZsJ?=
+ =?us-ascii?Q?3+pT4rB9/Q=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: IpbU2s6DQKQboRtnYt0N8RsirglMOWoyf0NIuhDbT6ICYHA0vIrMFhHxsJj1IXWrj38QhHYSECc3gOS81mVjlbaZh5xIXCfUHnEqtJP2bNNU9bhJEElmi7yJxXSJdYof0jkP1hcYgZ/5zptc3b2RcIciGeTeEKUwaxHRS++pFqbGbZE3MbGwxbZqCW0QBZtgey2uyMLvJy05H+ocuE+7s8/ouNcyp0IcU7sPVvdrvEmg/nXJTIr2ePC14ayY+lNRTzOF19MzNzzTkR6gbQ1JT/XHdetxf7tRsxYcpBrMhvjuuCJApYan3NkWE/5K3Vn8jrozPhoF4uBnyT33ry0XMg==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 13 Apr 2026 20:25:35.3315 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 8uIGpcPvb4DaxWbwDmAcKD+6FM6qpExw6cxO3RDMTxTjSC5gshROq8llCMRMKhsbekUfqcW1JOGBovB9kp45mA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN7PPFA8145BD40
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82051f2f-8216-4199-d66f-08de999ced73
+X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Apr 2026 20:40:41.0646 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: dtcLc53dyOpsQR06/XC6nYgyM07rBSTMDW97KQxMGsoJkTSFxoZQ/3uS/Hhsgqg8UKEl4cgIkb/5CDIeHt0gJg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB8504
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,207 +168,402 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[55];
-	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[Nvidia.com:+];
-	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,DM4PR11MB6360.namprd11.prod.outlook.com:mid,lists.freedesktop.org:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[uma.shankar@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[vmm.rs:url,Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:mid,pagetable.rs:url]
-X-Rspamd-Queue-Id: 4BC373F312C
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 9E30E3F32A8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
 
-On 4/9/2026 7:02 AM, Gary Guo wrote:
-> On Wed Apr 8, 2026 at 9:19 PM BST, Joel Fernandes wrote:
->> Hi Alex, Eliot, Danilo,
->>
->> Thanks for taking a look. Let me respond to the specific points below.
->>
->> On Wed, 08 Apr 2026, Alexandre Courbot wrote:
->>> After a quick look I'd say that having a trait here would actually be
->>> *good* for correctness and maintainability.
->>>
->>> The current design implies that every operation on a page table (most
->>> likely using the walker) goes through a branching point. Just looking at
->>> `PtWalk::read_pte_at_level`, there are already at least 6
->>> `if version == 2 { } else { }` branches that all resolve to the same
->>> result. Include walking down the PDEs and you have at least a dozen of
->>> these just to resolve a virtual address. I know CPUs are fast, but this
->>> is still wasted cycles for no good reason.
->>
->> I did some measurements and there is no notieceable difference in both
->> approaches. I ran perf and loaded nova with self-tests running. The extra
->> potential branching is lost in the noise. In both cases, loading nova and
->> running the self-tests has ~119.7M branch instructions on my Ampere. The total
->> instruction count is also identical (~615M).
->>
->> I measured like this:
->> perf stat -e
->> branches,branch-misses,cache-references,cache-misses,instructions,cycles --
->> modprobe nova_core
->>
->> So I think the branching argument is not a strong one. I also did more
->> measurements and the dominant time taken is MMIO. During the map prep and
->> execute, page table walks are done. A TLB flush alone costs ~1.4 microseconds.
->> And PRAMIN BAR0 writes to write the PTE is also about 1 microsecond. Considering
->> this, I don't think the extra branching argument holds (even without branch
->> prediction and speculation).
->>
->> Also some branches cannot be eliminated even with parameterization:
->>
->>     if level == self.mmu_version.dual_pde_level() {
->>         // 128-bit dual PDE read
->>     } else {
->>         // Regular 64-bit PDE read
->>     }
->>
->> This isn't really a version branch -- it's a structural branch that
->> distinguishes between 64-bit PDE and 128-bit dual PDE entries. Any MMU
->> version with a dual PDE level would need this same distinction.
->>
->> I also did code-generation size analysis (see diff of code used below):
->>
->> Code generation analysis:
->>
->>   Module .ko size:   Before: 511,792 bytes   After: 524,464 bytes  (+2.5%)
->>   .text section:     Before: 112,620 bytes   After: 116,628 bytes  (+4,008 bytes)
->>
->>   The +4K .text growth is the monomorphization cost: every generic function
->>   is compiled twice (once for MmuV2, once for MmuV3).
->>
->>> If you use a trait here, and make `PtWalk` generic against it, you can
->>> optimize this away. We had a similar situation when we introduced Turing
->>> support and the v2 ucode header, and tried both approaches: the
->>> trait-based one was slightly shorter, and arguably more readable.
->>
->> Actually I was the one who suggested traits for Falcon ucode descriptor if you
->> see this thread [1]. So basically you and Eliot are telling me to do what I
->> suggested in [1]. :-) However, I disagree that it is the right choice for this code.
->>
->> [1] https://lore.kernel.org/all/20251117231028.GA1095236@joelbox2/
->>
->> I think the two cases are quite different in complexity:
->>
->> The falcon ucode descriptor is essentially a set of flat field accessors
->> and a few params (imem_sec_load_params, dmem_load_params).
->> The trait has ~10 simple getter methods. There's no multi-level hierarchy,
->> no walker, and no generic propagation.
->>
->> The MMU page table case is structurally different. Making PtWalk generic
->> over an Mmu trait would require:
->>
->>   - PtWalk<M: Mmu> (the walker)
->>   - Plus all the associated types: M::Pte, M::Pde, M::DualPde each
->>     needing their own trait bounds
->>
->> And we would also need:
->>   - Vmm<M: Mmu> (which creates PtWalk)
->>   - BarUser<M: Mmu> (which creates Vmm)
->>
->> I am also against making Vmm an enum as Eliot suggested:
->>        enum Vmm {
->>            V2(VmmInner<MmuV2>),
->>            V3(VmmInner<MmuV3>),
->>        }
->>
->> That moves the version complexity up to the reader. Code complexity IMO should
->> decrease as we go up abstractions, making it easier for users (Vmm/Bar).
->>
->> If you look at the the changes in vmm.rs to handle version dispatch there [2]:
->> Added: +109
->> Removed: -28
->>
->> [2]
->> https://github.com/Edgeworth/linux/commit/3627af550b61256184d589e7ec666c1108971f0e
->>
->> The main benefit of my approach is version-specific dispatch complexity is
->> completely isolated inside MmuVersion thus making the code outside of
->> pagetable.rs much more readable, without having to parametrize anything, and
->> without code size increase. I think that is worth considering.
->>
->>> But the main argument to use a trait here IMO is that it enables
->>> associated types and constants. That's particularly critical since some
->>> equivalent fields have different lengths between v2 and v3. An
->>> associated `Bounded` type for these would force the caller to validate
->>> the length of these fields before calling a non-fallible operation,
->>> which is exactly the level of caution that we want when dealing with
->>> page tables.
->>
->> I think Bounded validation is orthogonal to the dispatch model.
->> We can add Bounded to the current design without restructuring
->> into traits. For example:
->>
->>     // In ver2::Pte
->>     pub fn new_vram(pfn: Bounded<Pfn, 25>, writable: bool) -> Self { ... }
->>
->>     // In ver3::Pte
->>     pub fn new_vram(pfn: Bounded<Pfn, 40>, writable: bool) -> Self { ... }
->>
->> The unified Pte enum wrapper already dispatches to the correct
->> version-specific constructor, which would enforce the correct Bounded
->> constraint for that version.
->>
->>> In order to fully benefit from it, we will need the bitfield macro from
->>> the `kernel` crate so the PDE/PTE fields can be `Bounded`, I will try to
->>> make it available quickly in a patch that you can depend on.
->>
->> That would be great, and I'd be happy to integrate Bounded validation once
->> the macro is available. I just don't think we need to restructure the
->> dispatch model in order to benefit from it.
->>
->>> But long story short, and although I need to dive deeper into the code,
->>> this looks like a good candidate for using a trait and associated types.
->>
->> The walker code (walk.rs) is already version-agnostic and reads cleanly.
->> The version dispatch is encapsulated behind method calls, not exposed as
->> inline if/else blocks.
->>
->> Generic propagation (or version-specific dispatch at higher levels) adds more
->> complexity at higher layers.
->>
->> Enclosed below [3] is the diff I used for my testing with the data, I don't
->> really see a net readability win there (IMO, it is a net-loss in readability).
->>
->> [3]
->> https://git.kernel.org/pub/scm/linux/kernel/git/jfern/linux.git/commit/?h=trait-pt-dispatch&id=5eb0e98af11ba608ff4d0f7a06065ee863f5066a
-> 
-> IMO this diff is quite has got me quite in favour of trait approach.
-> 
-> I wanted about to purpose something similar (or maybe I had already?) trait
-> approach some versions ago but didn't due to the eventual need of `match` like
-> dispatch (like you had with `vmm_dispatch`), but your code made that looks not
-> as bad as I thought it would be.
-> 
+> -----Original Message-----
+> From: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> Sent: Thursday, March 26, 2026 10:46 PM
+> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> Cc: Manna, Animesh <animesh.manna@intel.com>; Shankar, Uma
+> <uma.shankar@intel.com>; Kurmi, Suresh Kumar
+> <suresh.kumar.kurmi@intel.com>
+> Subject: [PATCH 01/19] drm/i915/display: Remove TGL DC3CO support
+>=20
+> Remove all Tiger Lake DC3CO-related functions, as the feature is not enab=
+led and
+> not used. The existing structure members are intentionally left in place =
+and will be
+> cleaned up in subsequent patches.
+>=20
+> Signed-off-by: Dibin Moolakadan Subrahmanian
+> <dibin.moolakadan.subrahmanian@intel.com>
+> ---
+>  .../i915/display/intel_display_power_well.c   |  25 ---
+>  .../drm/i915/display/intel_display_types.h    |   1 -
+>  drivers/gpu/drm/i915/display/intel_psr.c      | 163 ------------------
+>  3 files changed, 189 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> index f855f0f88694..6d5f07f7f590 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+> @@ -867,23 +867,6 @@ void gen9_set_dc_state(struct intel_display *display=
+,
+> u32 state)
+>  	power_domains->dc_state =3D val & mask;
+>  }
+>=20
+> -static void tgl_enable_dc3co(struct intel_display *display) -{
+> -	drm_dbg_kms(display->drm, "Enabling DC3CO\n");
+> -	gen9_set_dc_state(display, DC_STATE_EN_DC3CO);
+> -}
+> -
+> -static void tgl_disable_dc3co(struct intel_display *display) -{
+> -	drm_dbg_kms(display->drm, "Disabling DC3CO\n");
+> -	intel_de_rmw(display, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
+> -	gen9_set_dc_state(display, DC_STATE_DISABLE);
+> -	/*
+> -	 * Delay of 200us DC3CO Exit time B.Spec 49196
+> -	 */
+> -	usleep_range(200, 210);
+> -}
+> -
+>  static void assert_can_enable_dc5(struct intel_display *display)  {
+>  	enum i915_power_well_id high_pg;
+> @@ -1062,11 +1045,6 @@ void gen9_disable_dc_states(struct intel_display
+> *display)
+>  	struct intel_cdclk_config cdclk_config =3D {};
+>  	u32 old_state =3D power_domains->dc_state;
+>=20
+> -	if (power_domains->target_dc_state =3D=3D DC_STATE_EN_DC3CO) {
+> -		tgl_disable_dc3co(display);
+> -		return;
+> -	}
+> -
+>  	if (HAS_DISPLAY(display)) {
+>  		intel_dmc_wl_get_noreg(display);
+>  		gen9_set_dc_state(display, DC_STATE_DISABLE); @@ -1115,9
+> +1093,6 @@ static void gen9_dc_off_power_well_disable(struct intel_displa=
+y
+> *display,
+>  		return;
+>=20
+>  	switch (power_domains->target_dc_state) {
+> -	case DC_STATE_EN_DC3CO:
+> -		tgl_enable_dc3co(display);
+> -		break;
+>  	case DC_STATE_EN_UPTO_DC6:
+>  		skl_enable_dc6(display);
+>  		break;
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> b/drivers/gpu/drm/i915/display/intel_display_types.h
+> index b4c3d8537a99..6830f911d94d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> @@ -1784,7 +1784,6 @@ struct intel_psr {
+>  	bool panel_replay_enabled;
+>  	u32 dc3co_exitline;
+>  	u32 dc3co_exit_delay;
+> -	struct delayed_work dc3co_work;
+>  	u8 entry_setup_frames;
+>=20
+>  	u8 io_wake_lines;
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+> b/drivers/gpu/drm/i915/display/intel_psr.c
+> index 5041a5a138d1..29900576e117 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -85,22 +85,6 @@
+>   * issues the self-refresh re-enable code is done from a work queue, whi=
+ch
+>   * must be correctly synchronized/cancelled when shutting down the pipe.=
+"
+>   *
+> - * DC3CO (DC3 clock off)
+> - *
+> - * On top of PSR2, GEN12 adds a intermediate power savings state that tu=
+rns
+> - * clock off automatically during PSR2 idle state.
+> - * The smaller overhead of DC3co entry/exit vs. the overhead of PSR2 dee=
+p
+> sleep
+> - * entry/exit allows the HW to enter a low-power state even when page fl=
+ipping
+> - * periodically (for instance a 30fps video playback scenario).
+> - *
+> - * Every time a flips occurs PSR2 will get out of deep sleep state(if it=
+ was),
+> - * so DC3CO is enabled and tgl_dc3co_disable_work is schedule to run aft=
+er 6
+> - * frames, if no other flip occurs and the function above is executed, D=
+C3CO is
+> - * disabled and PSR2 is configured to enter deep sleep, resetting again =
+in case
+> - * of another flip.
+> - * Front buffer modifications do not trigger DC3CO activation on purpose=
+ as it
+> - * would bring a lot of complexity and most of the moderns systems will =
+only
+> - * use page flips.
+>   */
+>=20
+>  /*
+> @@ -1178,108 +1162,6 @@ static void psr2_program_idle_frames(struct intel=
+_dp
+> *intel_dp,
+>  		     EDP_PSR2_IDLE_FRAMES(idle_frames));
+>  }
+>=20
+> -static void tgl_psr2_enable_dc3co(struct intel_dp *intel_dp) -{
+> -	struct intel_display *display =3D to_intel_display(intel_dp);
+> -
+> -	psr2_program_idle_frames(intel_dp, 0);
+> -	intel_display_power_set_target_dc_state(display,
+> DC_STATE_EN_DC3CO);
+> -}
+> -
+> -static void tgl_psr2_disable_dc3co(struct intel_dp *intel_dp) -{
+> -	struct intel_display *display =3D to_intel_display(intel_dp);
+> -
+> -	intel_display_power_set_target_dc_state(display,
+> DC_STATE_EN_UPTO_DC6);
+> -	psr2_program_idle_frames(intel_dp, psr_compute_idle_frames(intel_dp));
+> -}
+> -
+> -static void tgl_dc3co_disable_work(struct work_struct *work) -{
+> -	struct intel_dp *intel_dp =3D
+> -		container_of(work, typeof(*intel_dp), psr.dc3co_work.work);
+> -
+> -	mutex_lock(&intel_dp->psr.lock);
+> -	/* If delayed work is pending, it is not idle */
+> -	if (delayed_work_pending(&intel_dp->psr.dc3co_work))
+> -		goto unlock;
+> -
+> -	tgl_psr2_disable_dc3co(intel_dp);
+> -unlock:
+> -	mutex_unlock(&intel_dp->psr.lock);
+> -}
+> -
+> -static void tgl_disallow_dc3co_on_psr2_exit(struct intel_dp *intel_dp) -=
+{
+> -	if (!intel_dp->psr.dc3co_exitline)
+> -		return;
+> -
+> -	cancel_delayed_work(&intel_dp->psr.dc3co_work);
+> -	/* Before PSR2 exit disallow dc3co*/
+> -	tgl_psr2_disable_dc3co(intel_dp);
+> -}
+> -
+> -static bool
+> -dc3co_is_pipe_port_compatible(struct intel_dp *intel_dp,
+> -			      struct intel_crtc_state *crtc_state)
+> -{
+> -	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	struct intel_digital_port *dig_port =3D dp_to_dig_port(intel_dp);
+> -	enum pipe pipe =3D to_intel_crtc(crtc_state->uapi.crtc)->pipe;
+> -	enum port port =3D dig_port->base.port;
+> -
+> -	if (display->platform.alderlake_p || DISPLAY_VER(display) >=3D 14)
+> -		return pipe <=3D PIPE_B && port <=3D PORT_B;
+> -	else
+> -		return pipe =3D=3D PIPE_A && port =3D=3D PORT_A;
+> -}
+> -
+> -static void
+> -tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
+> -				  struct intel_crtc_state *crtc_state)
+> -{
+> -	struct intel_display *display =3D to_intel_display(intel_dp);
+> -	const u32 crtc_vdisplay =3D crtc_state->uapi.adjusted_mode.crtc_vdispla=
+y;
+> -	struct i915_power_domains *power_domains =3D &display->power.domains;
+> -	u32 exit_scanlines;
+> -
+> -	/*
+> -	 * FIXME: Due to the changed sequence of activating/deactivating
+> DC3CO,
+> -	 * disable DC3CO until the changed dc3co activating/deactivating
+> sequence
+> -	 * is applied. B.Specs:49196
+> -	 */
+> -	return;
+> -
+> -	/*
+> -	 * DMC's DC3CO exit mechanism has an issue with Selective Fecth
+> -	 * TODO: when the issue is addressed, this restriction should be remove=
+d.
+> -	 */
+> -	if (crtc_state->enable_psr2_sel_fetch)
+> -		return;
+> -
+> -	if (!(power_domains->allowed_dc_mask & DC_STATE_EN_DC3CO))
+> -		return;
+> -
+> -	if (!dc3co_is_pipe_port_compatible(intel_dp, crtc_state))
+> -		return;
+> -
+> -	/* Wa_16011303918:adl-p */
+> -	if (intel_display_wa(display, INTEL_DISPLAY_WA_16011303918))
+> -		return;
+> -
+> -	/*
+> -	 * DC3CO Exit time 200us B.Spec 49196
+> -	 * PSR2 transcoder Early Exit scanlines =3D ROUNDUP(200 / line time) + =
+1
+> -	 */
+> -	exit_scanlines =3D
+> -		intel_usecs_to_scanlines(&crtc_state->uapi.adjusted_mode, 200)
+> + 1;
+> -
+> -	if (drm_WARN_ON(display->drm, exit_scanlines > crtc_vdisplay))
+> -		return;
+> -
+> -	crtc_state->dc3co_exitline =3D crtc_vdisplay - exit_scanlines;
+> -}
+> -
+>  static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
+>  					      struct intel_crtc_state *crtc_state)  {
+> @@ -1622,8 +1504,6 @@ static bool intel_psr2_config_valid(struct intel_dp
+> *intel_dp,
+>  		return false;
+>  	}
+>=20
+> -	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
+> -
+>  	return true;
+>  }
+>=20
+> @@ -2071,16 +1951,6 @@ static void intel_psr_enable_source(struct intel_d=
+p
+> *intel_dp,
+>=20
+>  	psr_irq_control(intel_dp);
+>=20
+> -	/*
+> -	 * TODO: if future platforms supports DC3CO in more than one
+> -	 * transcoder, EXITLINE will need to be unset when disabling PSR
+> -	 */
+> -	if (intel_dp->psr.dc3co_exitline)
+> -		intel_de_rmw(display,
+> -			     TRANS_EXITLINE(display, cpu_transcoder),
+> -			     EXITLINE_MASK,
+> -			     intel_dp->psr.dc3co_exitline << EXITLINE_SHIFT |
+> EXITLINE_ENABLE);
+> -
+>  	if (HAS_PSR_HW_TRACKING(display) &&
+> HAS_PSR2_SEL_FETCH(display))
+>  		intel_de_rmw(display, CHICKEN_PAR1_1,
+> IGNORE_PSR2_HW_TRACKING,
+>  			     intel_dp->psr.psr2_sel_fetch_enabled ?
+> @@ -2258,7 +2128,6 @@ static void intel_psr_exit(struct intel_dp *intel_d=
+p)
+>  		intel_de_rmw(display, TRANS_DP2_CTL(intel_dp-
+> >psr.transcoder),
+>  			     TRANS_DP2_PANEL_REPLAY_ENABLE, 0);
+>  	} else if (intel_dp->psr.sel_update_enabled) {
+> -		tgl_disallow_dc3co_on_psr2_exit(intel_dp);
+>=20
 
-That's the drawback right, now vmm_dispatch has to deal with version difference
-where as before, the lower layers would. Maybe we can keep the vmm layer the way
-it is now, but do the dispatch itself at the lower layers, while still using
-traits like in the diff. I'll try that as well. :)
+Nit: This leaves a blank line
 
-thanks,
+With above fixed, this is
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 
---
-Joel Fernandes
+>  		val =3D intel_de_rmw(display,
+>  				   EDP_PSR2_CTL(display, cpu_transcoder), @@
+> -2401,7 +2270,6 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+>=20
+>  	mutex_unlock(&intel_dp->psr.lock);
+>  	cancel_work_sync(&intel_dp->psr.work);
+> -	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
+>  }
+>=20
+>  /**
+> @@ -2432,7 +2300,6 @@ void intel_psr_pause(struct intel_dp *intel_dp)
+>  	mutex_unlock(&psr->lock);
+>=20
+>  	cancel_work_sync(&psr->work);
+> -	cancel_delayed_work_sync(&psr->dc3co_work);
+>  }
+>=20
+>  /**
+> @@ -3568,34 +3435,6 @@ void intel_psr_invalidate(struct intel_display *di=
+splay,
+>  		mutex_unlock(&intel_dp->psr.lock);
+>  	}
+>  }
+> -/*
+> - * When we will be completely rely on PSR2 S/W tracking in future,
+> - * intel_psr_flush() will invalidate and flush the PSR for ORIGIN_FLIP
+> - * event also therefore tgl_dc3co_flush_locked() require to be changed
+> - * accordingly in future.
+> - */
+> -static void
+> -tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuff=
+er_bits,
+> -		       enum fb_op_origin origin)
+> -{
+> -	struct intel_display *display =3D to_intel_display(intel_dp);
+> -
+> -	if (!intel_dp->psr.dc3co_exitline || !intel_dp->psr.sel_update_enabled =
+||
+> -	    !intel_dp->psr.active)
+> -		return;
+> -
+> -	/*
+> -	 * At every frontbuffer flush flip event modified delay of delayed work=
+,
+> -	 * when delayed work schedules that means display has been idle.
+> -	 */
+> -	if (!(frontbuffer_bits &
+> -	    INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe)))
+> -		return;
+> -
+> -	tgl_psr2_enable_dc3co(intel_dp);
+> -	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
+> -			 intel_dp->psr.dc3co_exit_delay);
+> -}
+>=20
+>  static void _psr_flush_handle(struct intel_dp *intel_dp)  { @@ -3682,7 +=
+3521,6
+> @@ void intel_psr_flush(struct intel_display *display,
+>  		if (origin =3D=3D ORIGIN_FLIP ||
+>  		    (origin =3D=3D ORIGIN_CURSOR_UPDATE &&
+>  		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
+> -			tgl_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
+>  			goto unlock;
+>  		}
+>=20
+> @@ -3741,7 +3579,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
+>  		intel_dp->psr.link_standby =3D connector->panel.vbt.psr.full_link;
+>=20
+>  	INIT_WORK(&intel_dp->psr.work, intel_psr_work);
+> -	INIT_DELAYED_WORK(&intel_dp->psr.dc3co_work,
+> tgl_dc3co_disable_work);
+>  	mutex_init(&intel_dp->psr.lock);
+>  }
+>=20
+> --
+> 2.43.0
 
