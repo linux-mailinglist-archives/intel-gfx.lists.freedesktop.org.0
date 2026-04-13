@@ -2,80 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8PE5B3TY3GmcWQkAu9opvQ
+	id qPVMC+7g3GnrXgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 13:50:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:22 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE2573EB8C5
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 13:50:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B636F3EBEFB
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:26:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA54510E40E;
-	Mon, 13 Apr 2026 11:50:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3C89110E42B;
+	Mon, 13 Apr 2026 12:26:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HO4ZB/8U";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="XgDbUsd0";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B62110E0F7;
- Mon, 13 Apr 2026 11:50:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776081007; x=1807617007;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Yq89AWeM65x6lSICr/3HDVFJkQA/EojNgtug9VdEils=;
- b=HO4ZB/8UalBPbgK05vqWIYsH9OYumkMK0PS9MFyoFd2wi88RJlwq+p3w
- eKluwhT0+nL8anbLz/20wmLoRDRSsoq0850avW85mkMEt57OBdO0md/n6
- Q5imwxd6cKRtIVFDptqG/XNR2vLY/TEW1cadv9aHJg5buw6AVj9ctfRNn
- 4N041spO/FJATTA8f/PepH9MfcRn3CzvqsuesngBfyocjXbL3R6Xc3AtT
- Ai+bWmb8T3bC8XB+x0VWxERViCkBXTVcuI9Ul34VMTA9L3V82crAzUaam
- 4gHARBTkIzAvpFnL5A/Edv89qMDuz9mDGtS7EpoU6b6CHQXzKCT9Wg9jb Q==;
-X-CSE-ConnectionGUID: nTnU0P3CSduo7824FUfQHg==
-X-CSE-MsgGUID: Q5T/DgEITESW1ZpGYT8+0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="76046274"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="76046274"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 04:50:07 -0700
-X-CSE-ConnectionGUID: /fLU7yZLSIOpyKcAJWJoDw==
-X-CSE-MsgGUID: 94GyNh0VQNG5vbuGU7wtnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="253163879"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.64])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 04:50:03 -0700
-Date: Mon, 13 Apr 2026 14:49:54 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Simona Vetter <simona.vetter@ffwll.ch>,
- Jani Nikula <jani.nikula@intel.com>,
- Jouni =?iso-8859-1?Q?H=F6gander?= <jouni.hogander@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Michel =?iso-8859-1?Q?D=E4nzer?= <michel.daenzer@mailbox.org>
-Subject: Re: [PATCH 5/6] drm/i915/reset: Handle the display vs. GPU reset
- deadlock using a custom dma-fence
-Message-ID: <adzYYqOkSfY9XP_m@intel.com>
-References: <20260408233458.22666-1-ville.syrjala@linux.intel.com>
- <20260408233458.22666-6-ville.syrjala@linux.intel.com>
- <44fa373c-6216-4cc4-a605-94776b3873ad@amd.com>
- <adeLRHQ2omAv93yM@intel.com>
- <cc51ea63-19b0-4352-9299-e5ab63f57ce4@amd.com>
- <adyzR6ISo_idi38p@intel.com>
- <b93c6c33-2d94-4da8-8e97-04c3bade2575@amd.com>
- <ady-UMqIQUqmKsLv@intel.com>
- <855c4188-3701-468f-bd78-8292d6143645@amd.com>
+Received: from smtpout-04.galae.net (smtpout-04.galae.net [185.171.202.116])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3928410E416
+ for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 12:10:19 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-04.galae.net (Postfix) with ESMTPS id 9C3ADC5C183;
+ Mon, 13 Apr 2026 12:10:53 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id EEFD25FFB9;
+ Mon, 13 Apr 2026 12:10:16 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id AA50A104500A2; 
+ Mon, 13 Apr 2026 14:10:02 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1776082215; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:in-reply-to:references;
+ bh=dhpDLI3GbjEnq5ea2C3CSlaeOYOoDERSaq/PhF217/g=;
+ b=XgDbUsd0kza50SBVz4+wc3tba3Gea/Rw9Wtl9Oh3cj1zYYyx83GshUatFgLe99itaxWAJf
+ dbLqFjb/kWwi0Lrqgc0awLQeFS+zivNYqgAQVEqYi8w3nolcV+k65uHo3kdCaoU8FmQRYi
+ FNnxTfJNQn5FvhrAeOubTD8A5Hs74ZXx+AAtTu4zM20gVeAwAclh1G1dVmBb9dY1Eir7Jq
+ fvH5aaDiIW27DKzBoQbqfzu2fOc/1o1RsElFMmpjnd6CCy0Z1XUpibM/HsTJ3u3RLvDctq
+ J8mv0Uvt+qvEaqgfRTVFVct2t/QHp9kY5w5CLgxJtUaDj7TEc6nIau/Ea77HiQ==
+Date: Mon, 13 Apr 2026 14:10:00 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Ville =?UTF-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>, Jani
+ Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
+ Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
+ Anholt <eric@anholt.net>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Mark Yacoub <markyacoub@google.com>, Sean
+ Paul <seanpaul@google.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: Re: [PATCH RFC 00/12] Add support for DisplayPort link training
+ information report
+Message-ID: <20260413141000.0e190dcc@kmaincent-XPS-13-7390>
+In-Reply-To: <u4ononk4cpccx77gvlywtfen5rmyslvr72v7olkhdrjf65aqce@xo777vofhcan>
+References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
+ <adgNxaFhbQaxC5E_@intel.com>
+ <u4ononk4cpccx77gvlywtfen5rmyslvr72v7olkhdrjf65aqce@xo777vofhcan>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <855c4188-3701-468f-bd78-8292d6143645@amd.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
+X-Mailman-Approved-At: Mon, 13 Apr 2026 12:26:15 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,108 +92,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:ville.syrjala@linux.intel.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:airlied@redhat.com,m:jbarnes@virtuousgeek.org,m:eric@anholt.net,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:chris@chris-wilson.co.uk,m:thomas.petazzoni@bootlin.com,m:markyacoub@google.com,m:seanpaul@google.com,m:louis.chauvet@bootlin.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:simona.vetter@ffwll.ch,m:jerne
+ jskrabec@gmail.com,m:matthiasbgg@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[kory.maincent@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[36];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,redhat.com,virtuousgeek.org,anholt.net,kernel.org,suse.de,linaro.org,ideasonboard.com,kwiboo.se,pengutronix.de,collabora.com,chris-wilson.co.uk,bootlin.com,google.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: BE2573EB8C5
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:dkim,bootlin.com:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:email]
+X-Rspamd-Queue-Id: B636F3EBEFB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, Apr 13, 2026 at 01:24:04PM +0200, Christian König wrote:
-> On 4/13/26 11:58, Ville Syrjälä wrote:
-> > On Mon, Apr 13, 2026 at 11:35:23AM +0200, Christian König wrote:
-> >> On 4/13/26 11:11, Ville Syrjälä wrote:
-> >>>>>> I think something is missing in my picture how that is supposed to work.
-> >>>>>
-> >>>>> The problem stems from the fact that on old platforms a GPU reset
-> >>>>> also resets the display hardware,
-> >>>>
-> >>>> Which is true for at least AMD GPUs and I think pretty much everybody else as well, but that wasn't so much of a problem so far.
-> >>>>
-> >>>>> and to do that safely we need:
-> >>>>> 1. shut down display
-> >>>>> 2. perform the GPU reset
-> >>>>> 3. restore the display hardware to its orignal state
-> >>>>
-> >>>> Mhm, I've recently talked with Michel about it and we confirmed that this is perfectly possible without issues. Adding Michel as well.
-> >>>>
-> >>>>> We just do that with essentially with a normal atomic commit.
-> >>>>
-> >>>> I think that is the source of the problem.
-> >>>>
-> >>>> I'm not an expert on that topic but amdgpu and tons of other drivers seem to just use drm_atomic_helper_shutdown() for that.
-> >>>
-> >>> drm_atomic_helper_shutdown() is definitely not the thing to use
-> >>> for this as it would clobber the stored kms state, leaving everything
-> >>> permanently disabled. The drm_atomic_helper_commit_duplicated_state()
-> >>> stuff i915 uses is the correct thing here.
-> >>>
-> >>> But for this problem it doesn't even matter which gets used. Either
-> >>> would get equally stuck behind a previous atomic commit waiting for
-> >>> its fences.
-> >>>
-> >>>>
-> >>>> What is i915 doing differently?
-> >>>
-> >>> I see zero code for any display reset stuff in any other driver. If
-> >>> amdgpu does anything it must be something completely custom, hidden
-> >>> somewhere deep.
-> >>
-> >> The display is just fully reset by any MODE1 reset, you don't need to do anything special for that.
-> > 
-> > You can't just ignore the fact that there may be a display hardware
-> > reprogramming already happening in parallel. Failing to follow the
-> > correct programming sequence is a recipe for even hard system hangs.
-> 
-> Of course not. We have a RW lock to prevent concurrent HW access while a GPU reset is ongoing to prevent that.
+On Fri, 10 Apr 2026 00:36:09 +0300
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
 
-Now that you mention it, I remember that long ago I did something
-very similar for i915, but it required quite a bit of surgery to
-the atomic core code and Sima didn't want it so it never went in.
+> On Thu, Apr 09, 2026 at 11:36:21PM +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
+> > On Thu, Apr 09, 2026 at 07:08:16PM +0200, Kory Maincent wrote: =20
+> > > DisplayPort link training negotiates the physical-layer parameters ne=
+eded
+> > > for a reliable connection: lane count, link rate, voltage swing,
+> > > pre-emphasis, and optionally Display Stream Compression (DSC). Curren=
+tly,
+> > > each driver exposes this state in its own way, often through
+> > > driver-specific debugfs entries, with no standard interface for users=
+pace
+> > > diagnostic and monitoring tools.
+> > >=20
+> > > This series introduces a generic, DRM-managed framework for exposing =
+DP
+> > > link training state as standard connector properties, modeled after t=
+he
+> > > existing HDMI helper drmm_connector_hdmi_init().
+> > >=20
+> > > The new drmm_connector_dp_init() helper initializes a DP connector and
+> > > registers the following connector properties to expose the negotiated=
+ link
+> > > state to userspace:
+> > >=20
+> > > - num_lanes:      negotiated lane count (1, 2 or 4)
+> > > - link_rate:      negotiated link rate
+> > > - dsc_en:         whether Display Stream Compression is active
+> > > - voltage_swingN: per-lane voltage swing level (lanes 0-3)
+> > > - pre_emphasisN:  per-lane pre-emphasis level (lanes 0-3) =20
+> >=20
+> > I don't see why any real userspace would be interested in those (apart
+> > from maybe DSC). If this is just for diagnostics and whatnot then I
+> > think sysfs/debugfs could be a better fit. =20
+>=20
+> I'd agree here. Please consider implementing it as a debugfs interface,
+> possibly reusing the Intel's format.
 
-Our modeset state is much more complex these days, so attempting
-to resurrect it now (and actually getting people to accept it)
-just for old hardware doesn't seem worth the effort.
+Sorry, I completely forgot to include a paragraph explaining the rationale
+behind using DRM properties.
 
-I think apart from the reset fence, the only other *practical* solution
-is to effectively revert Sima's commit 9db529aac938 ("drm/i915: More
-surgically unbreak the modeset vs reset deadlock") and go back to the
-full wedge (== cancel all in flight requests). It's a bit rude since
-it will also penalize completely innocent contexts. But meh.
+This DisplayPort link information report was requested by OSes to allow the=
+m to
+assess the capabilities of each DisplayPort connector on the system, and to
+guide users from the most to least capable ones. It will also enable the OS=
+ to
+warn the user when a cable is too long or experiencing noise (indicated by =
+high
+voltage swing and pre-emphasis levels).
 
-> > There is zero support in the atomic design for reordering commits,
-> > which is pretty much what would be needed. A generic solution would
-> > more or less involve a full redesign/rewrite of atomic.
-> 
-> Mhm, I need to ask our DC team and other contacts how that is handled at the moment for amdgpu.
-> 
-> But we clearly have the same problem and it doesn't require any hacks like that one here. So there must be a solution for it already.
+Since this is information that OSes will consume on a regular basis, exposi=
+ng
+it directly as DRM properties seems the most appropriate approach.=20
 
-The hacks must be on the modeset side, since as mentioned atomic has
-zero support for this at the moment.
-
--- 
-Ville Syrjälä
-Intel
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
