@@ -2,67 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ABerEHPl3GkZYAkAu9opvQ
+	id AD0ON6gu3mnxogkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:45:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2026 14:10:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93E7B3EC2A1
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 14:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 913623F9D2F
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2026 14:10:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1805310E430;
-	Mon, 13 Apr 2026 12:45:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 623C810E5DF;
+	Tue, 14 Apr 2026 12:10:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oJONbrdf";
+	dkim=pass (2048-bit key; unprotected) header.d=bootlin.com header.i=@bootlin.com header.b="wDi4rylp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D644E10E431
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 12:45:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776084335; x=1807620335;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=NEQ13m3EpcbqmcY9BrjP3feNL83wKzhYi34KhJnb9i0=;
- b=oJONbrdfHA4ASypLciG96zbvR0PNTuZjLafSLCR5FPiv6PbY1zRGEp+t
- 9VobV7vPsVf3P2QHsrb+UVLmgkmCdl0bz8T6GYDF/G/pyLKRh7JqMwODG
- 1gKRSvnDd3xeU3+yXblqhVXTVOpgdOmyGwKmDmqnYgVyV2d/Y1pb7EPU9
- hPw0frKQbqj2NBGLG5aA6noR3j/D4Eb/cv4GWq+ZWElBaO8P2caGPrTjC
- AOooYrhQy28dgKynd4lFAaeOKTRqa/VCf6Uty9aKamSQUWP4vlQq8lxQp
- hJXe9+jvxkkz+SBcTipb7bWCRLIPBRCXU2uFplQr7S3PRS0+G2ExLGVMn w==;
-X-CSE-ConnectionGUID: BtMjtdYSRGqNGv25C48Mxw==
-X-CSE-MsgGUID: Xs46ZEoISVua6Wb1QDnSog==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="87312732"
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="87312732"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 05:45:35 -0700
-X-CSE-ConnectionGUID: yJfbe1Q5T6iD7Zix2lHEvQ==
-X-CSE-MsgGUID: MwtEHB8ETY6ailmsYiw8eQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,177,1770624000"; d="scan'208";a="229695687"
-Received: from dalessan-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.64])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 05:45:31 -0700
-Date: Mon, 13 Apr 2026 15:45:27 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH v2 09/10] drm/i915/scaler: abstract scaler searching loop
-Message-ID: <adzlZzTcNo7Ampmj@intel.com>
-References: <20260411174526.2850179-1-michal.grzelak@intel.com>
- <20260411174526.2850179-10-michal.grzelak@intel.com>
+Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4832C10E356;
+ Mon, 13 Apr 2026 12:59:45 +0000 (UTC)
+Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
+ by smtpout-03.galae.net (Postfix) with ESMTPS id E7E274E42982;
+ Mon, 13 Apr 2026 12:59:43 +0000 (UTC)
+Received: from mail.galae.net (mail.galae.net [212.83.136.155])
+ by smtpout-01.galae.net (Postfix) with ESMTPS id B42DE5FFB9;
+ Mon, 13 Apr 2026 12:59:43 +0000 (UTC)
+Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
+ with ESMTPSA id 05B5810450229; 
+ Mon, 13 Apr 2026 14:59:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
+ t=1776085182; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ content-transfer-encoding:in-reply-to:references;
+ bh=h3FUUOILacuSgM+ABHMGfQupbtWpVZVev0K7QR0S3PA=;
+ b=wDi4rylprXYa5KvrF5XClhZwCqdBhIRvrj68umpv0rOZCRw+SHIMqqb9J6A5OlpXFegLXb
+ 1v1yWAis2ur92VlhEUydt8lyKrp3p55Mm8z+cYDV+L0hnrTR+erxW8efuL3L8dxN5VzCkr
+ zU/YVxQzBaq+vUFYst8ScqPRT6rtP+1OJUU/axL3iUbwIQxAhQxyAuWdIIfxwRFUKKgp/6
+ th235XxhexkP7slAiEV8kDSum6Qom6jTajuknHPdnSpgRF4Y9gRdntzSjMMsboitxLJD2v
+ 2oOiT4IQHWd8cguLrclzB4T7Rk0CCw8IEvepPTsgnrO/+IRlae+TSlDZSMjNuQ==
+Date: Mon, 13 Apr 2026 14:59:30 +0200
+From: Kory Maincent <kory.maincent@bootlin.com>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Dave
+ Airlie <airlied@redhat.com>, Jesse Barnes <jbarnes@virtuousgeek.org>, Eric
+ Anholt <eric@anholt.net>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Chun-Kuang Hu
+ <chunkuang.hu@kernel.org>, Philipp Zabel <p.zabel@pengutronix.de>, Matthias
+ Brugger <matthias.bgg@gmail.com>, AngeloGioacchino Del Regno
+ <angelogioacchino.delregno@collabora.com>, Chris Wilson
+ <chris@chris-wilson.co.uk>, Thomas Petazzoni
+ <thomas.petazzoni@bootlin.com>, Mark Yacoub <markyacoub@google.com>, Sean
+ Paul <seanpaul@google.com>, Louis Chauvet <louis.chauvet@bootlin.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-mediatek@lists.infradead.org, linux-arm-kernel@lists.infradead.org,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Subject: Re: [PATCH RFC 09/12] drm: Introduce drmm_connector_dp_init() with
+ link training state properties
+Message-ID: <20260413145930.140ba461@kmaincent-XPS-13-7390>
+In-Reply-To: <gmaxonri7y3k43pxsnxfnd23mydgrwsw2322v6m4yjoksqm7aj@4ehgvhzg2ubb>
+References: <20260409-feat_link_cap-v1-0-7069e8199ce2@bootlin.com>
+ <20260409-feat_link_cap-v1-9-7069e8199ce2@bootlin.com>
+ <gmaxonri7y3k43pxsnxfnd23mydgrwsw2322v6m4yjoksqm7aj@4ehgvhzg2ubb>
+Organization: bootlin
+X-Mailer: Claws Mail 4.2.0 (GTK 3.24.41; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260411174526.2850179-10-michal.grzelak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Last-TLS-Session-Version: TLSv1.3
+X-Mailman-Approved-At: Tue, 14 Apr 2026 12:10:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,127 +91,119 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.36 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS(0.00)[m:michal.grzelak@intel.com,m:nemesa.garg@intel.com,s:lists@lfdr.de];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[35];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[bootlin.com:+];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,redhat.com,virtuousgeek.org,anholt.net,kernel.org,suse.de,linaro.org,ideasonboard.com,kwiboo.se,pengutronix.de,collabora.com,chris-wilson.co.uk,bootlin.com,google.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 93E7B3EC2A1
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:dkim,bootlin.com:url]
+X-Rspamd-Queue-Id: 913623F9D2F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Sat, Apr 11, 2026 at 07:45:25PM +0200, Michał Grzelak wrote:
-> Add a helper function hiding the search for scaler_id.
-> 
-> Cc: Nemesa Garg <nemesa.garg@intel.com>
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 29 ++++++++++++++---------
->  1 file changed, 18 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 4e2f4c4ffc45a..1f47c5fc1802f 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -836,6 +836,21 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
->  			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
->  }
->  
-> +static int skl_pipe_scaler_get_hw_state(struct intel_crtc_state *crtc_state)
-> +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-> +	u32 ctl;
+On Fri, 10 Apr 2026 00:53:08 +0300
+Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com> wrote:
 
-'ctl' could stay inside the loop.
+> On Thu, Apr 09, 2026 at 07:08:25PM +0200, Kory Maincent wrote:
+> > Add a managed DisplayPort connector initialization helper,
+> > drmm_connector_dp_init(), modeled after the existing HDMI counterpart
+> > drmm_connector_hdmi_init(). Cleanup is handled automatically via a
+> > DRM-managed action.
+> >=20
+> > The helper creates the following immutable connector properties to expo=
+se
+> > DP link training capabilities and state to userspace:
+> >=20
+> >   - num_lanes: bitmask of supported lane counts (1, 2, 4)
+> >   - link_rate: Array of supported link rates.
+> >   - dsc_en: Display Stream Compression supported
+> >   - voltage_swingN: per-lane voltage swing level bitmask
+> >   - pre-emphasisN: per-lane pre-emphasis level bitmask
+> >=20
+> > Link rates are passed by the driver in deca-kbps, following the DRM
+> > convention, but exposed to userspace in kbps for clarity.
+> >=20
+> > Two additional helpers are provided to update and reset those properties
+> > at runtime:
+> >   - drm_connector_dp_set_link_train_properties()
+> >   - drm_connector_dp_reset_link_train_properties()
+> >=20
 
-I suppose technically 'display' could go there as well, but
-we've established the convention that 'display' (if needed inside
-the function) is the first variable declared. So that one should
-stay here.
+...
 
-> +
-> +	for (int scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
-> +		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, scaler_id));
-> +		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) == (PS_SCALER_EN | PS_BINDING_PIPE))
-> +			return scaler_id;
-> +	}
-> +
-> +	return -1;
-> +}
-> +
->  void
->  skl_program_plane_scaler(struct intel_dsb *dsb,
->  			 struct intel_plane *plane,
-> @@ -950,19 +965,11 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
->  	struct intel_display *display = to_intel_display(crtc_state);
->  	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
->  	struct intel_crtc_scaler_state *scaler_state = &crtc_state->scaler_state;
-> -	int scaler_id;
-> -	u32 pos, size;
-> -
->  	/* find scaler attached to this pipe */
-> -	for (scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
-> -		u32 ctl;
-> -
-> -		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, scaler_id));
-> -		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) == (PS_SCALER_EN | PS_BINDING_PIPE))
-> -			break;
-> -	}
-> +	int scaler_id = skl_pipe_scaler_get_hw_state(crtc_state);
+> > +/**
+> > + * struct drm_connector_dp_link_train - DRM DisplayPort link training
+> > + * information report
+> > + */
+> > +struct drm_connector_dp_link_train { =20
+>=20
+> THese define the current DP state. As such, they definitely make sense
+> to be a part of the drm_connector.
+> > +	/**
+> > +	 * @nlanes: The number of lanes used
+> > +	 */
+> > +	u8 nlanes;
+> > +
+> > +	/**
+> > +	 * @rates: Link rate value selected in deca-kbps
+> > +	 */
+> > +	u32 rate;
+> > +
+> > +	/**
+> > +	 * @dsc: Display Stream Compression enabled
+> > +	 */
+> > +	bool dsc_en;
+> > +
+> > +	/**
+> > +	 * @v_swings: Array listing the bitmask voltage swing level per
+> > lanes
+> > +	 */
+> > +	u8 v_swing[4];
+> > +
+> > +	/**
+> > +	 * @pre_emph: Array listing the bitmask pre-emphasis level per
+> > lanes
+> > +	 */
+> > +	u8 pre_emph[4]; =20
+>=20
+> Please consider following struct phy_configure_opts_dp (or using it as
+> is). Overall, please refer the talk and (more important) the lightning
+> resumee at this XDC. I have some bits and pieces ready in spite of that
+> proposal, but I didn't have time to finish it.
 
-I don't like hiding stuff with potential side effects
-inside the variable declaration block. Only pure
-functions should be called there. So it's better to
-do the function call+assignment just before the <0 check.
+I didn't know this phy_configure_opts_dp struct. This indeed could make sen=
+se
+to reuse and modify that structure for our needs.
 
-Apart from that it all looks good to me. So with that adjusted
-the series is
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+About your XDC talk. What were the developments you were talking about? Cou=
+ld I
+have a look at them?
 
-But looks like you forgot to cc intel-xe@. We do want xe CI results
-before merging...
-
-> +	u32 pos, size;
->  
-> -	if (scaler_id == crtc->num_scalers)
-> +	if (scaler_id < 0)
->  		return;
->  
->  	if (scaler_has_casf(display, scaler_id))
-> -- 
-> 2.45.2
-
--- 
-Ville Syrjälä
-Intel
+Regards,
+--=20
+K=C3=B6ry Maincent, Bootlin
+Embedded Linux and kernel engineering
+https://bootlin.com
