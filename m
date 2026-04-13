@@ -2,64 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wPSINR+q3GlfVAkAu9opvQ
+	id GIB3J7qq3GmKVAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:32:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:35:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 521D93E928B
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:32:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A2243E92DC
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 10:35:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CAB4110E37A;
-	Mon, 13 Apr 2026 08:32:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4175610E376;
+	Mon, 13 Apr 2026 08:35:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SzwdkJNO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YImj08Vp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE99710E376;
- Mon, 13 Apr 2026 08:32:28 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4C7A210E376;
+ Mon, 13 Apr 2026 08:35:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776069148; x=1807605148;
+ t=1776069304; x=1807605304;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=2NyYDKTl8rgMPQJA1ydwD6V1OQHloyI7+62Faq6RV+0=;
- b=SzwdkJNO3QgWlW9+5u3+p7VsXjw5OiLWu+dWlk4sVFSd6e/09NXI/CXM
- REAeAs5X4SH/lkyq25yR63MKKtyFbTrP+RVyiHjjjYE5TS84FceBEhkYz
- zgjNajG1l2HzUO3IF1kgg7sHH9AMlObMq7LRB5EsJHIkBGe55iIxqFOTa
- 3zzDIZdLmw+epWoWAgzkh9VO5QP9QYYkiItGoiRaMwlzBaYMlEnCqSl2m
- eqrB5wOM5KWnczIug+bRhEMK5lZrCjScJz5a0yv05wDPaYtLoI2zN//Gd
- 0o217XGrA5DRnAHupreqkdCmCpGTAV3h+LyNlkMifosHah7wBmrTqZkid Q==;
-X-CSE-ConnectionGUID: l9yOHkfwTJKj/AmdNZ4A6A==
-X-CSE-MsgGUID: Bx9aiuOGRoCV6Q5lQTvLUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77016630"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77016630"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 01:32:27 -0700
-X-CSE-ConnectionGUID: NdDLdxUPQrm2byENR0QQsA==
-X-CSE-MsgGUID: UlUzN+sLS0WoRclBXFWyMQ==
+ bh=FNMYdLUbKCwfnsCAWHQ6xk2KbR00B6vdy0vm4mii9cQ=;
+ b=YImj08VpYcPujjnRGmuG3T1iWcu/lDuLbldCU+hcNeTMso6E+q72gsDg
+ +XI+o9Hj/Mj8HBaymmbPCuZ3Gjo4WGgE5p7sHIudXPy89rRlnX2UOvkyM
+ dFs6atMpHceMzJ3d1jFFThICTa2Hp85mpesW9S/6gtSWgEj/cdeUhrEIP
+ YTd66kmkmVaNy1vSx3kBo8UL26Bm/oUsgk5AJFLSxXu2rA67bVkACb3VL
+ bonmghRrj4HpCIeBK2uJpx4U9/8t0UhE185oZdFM26fJdJK1gsJEWfeYm
+ b6vDPfzENnJSwtNbJCHyazRXzSgb/xZW8zY63u0XZPD3QEwkXpfRDfyp1 A==;
+X-CSE-ConnectionGUID: QYXPAPlhRRe+8cUf/+NC/A==
+X-CSE-MsgGUID: zCKg7o+FStSJWtYRWepPUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="87293674"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="87293674"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 01:35:02 -0700
+X-CSE-ConnectionGUID: m2TLwogvS8aC5lsDXIbOtw==
+X-CSE-MsgGUID: 4QwQAupIR42vFlqVkJToPA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="229642921"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="231448449"
 Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.246.182])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Apr 2026 01:32:26 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 01:34:59 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com, Ankit Nautiyal
  <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH 02/12] drm/i915/vrr: Add helper to readback EMP_AS_SDP_TL
-In-Reply-To: <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
+Subject: Re: [PATCH 04/12] drm/i915/dp: Add helper to get AS SDP
+ Transmission Line
+In-Reply-To: <20260413035349.1730312-5-ankit.k.nautiyal@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260413035349.1730312-1-ankit.k.nautiyal@intel.com>
- <20260413035349.1730312-3-ankit.k.nautiyal@intel.com>
-Date: Mon, 13 Apr 2026 11:32:22 +0300
-Message-ID: <4daee56a2d6dd3a5797e13b19232d1b3b5fd1c2e@intel.com>
+ <20260413035349.1730312-5-ankit.k.nautiyal@intel.com>
+Date: Mon, 13 Apr 2026 11:34:55 +0300
+Message-ID: <60b491e73f722548e1d40f4aafccd1096c4807cf@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -81,82 +82,107 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 521D93E928B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid]
+X-Rspamd-Queue-Id: 0A2243E92DC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Mon, 13 Apr 2026, Ankit Nautiyal <ankit.k.nautiyal@intel.com> wrote:
-> EMP_AS_SDP_TL is used to program both DP Adaptive Sync SDP and HDMI
-> Video Timing EMP for VRR operation. Add a helper to read back the
-> programmed transmission line from hardware so VRR code can populate
-> the corresponding CRTC state fields during get_config.
+> Introduce a DP helper to compute the Adaptive Sync SDP transmission line
+> and use it when programming the EMP_AS_SDP_TL register.
 >
-> This provides a common read-back path for VRR packet transmission
-> line state.
-
-Still no idea what "emp" means.
-
+> Currently the AS SDP transmission line is programmed to the T1 position.
+> This can be extended in the future to support programming the T2 position
+> as well.
+>
+> While at it, improve the documentation: the AS SDP transmission line
+> corresponds to the T1 position, which maps to the start of the VSYNC
+> pulse.
 >
 > Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 13 +++++++++++++
->  drivers/gpu/drm/i915/display/intel_vrr.h |  1 +
->  2 files changed, 14 insertions(+)
+>  drivers/gpu/drm/i915/display/intel_dp.c  | 12 ++++++++++++
+>  drivers/gpu/drm/i915/display/intel_dp.h  |  2 ++
+>  drivers/gpu/drm/i915/display/intel_vrr.c |  4 ++--
+>  3 files changed, 16 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 1fed597439b0..abdae7f1f8a8 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -1218,3 +1218,16 @@ int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_st
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+> index 4955bd8b11d7..fd668babd641 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+> @@ -7415,3 +7415,15 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
 >  
->  	return intel_vrr_vblank_start(crtc_state, VRR_DCB_VMAX(tmp) + 1);
+>  	return true;
 >  }
 > +
-> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
+> +int intel_dp_sdp_as_tl(const struct intel_crtc_state *crtc_state)
+
+So the name of the function is Intel display port secondary data packet
+adaptive sync transmission line.
+
+The function name doesn't say what the function *does*.
+
 > +{
-> +	struct intel_display *display = to_intel_display(crtc_state);
-> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> +	u32 val;
-> +
-> +	if (!HAS_EMP_AS_SDP_TL(display))
-> +		return 0;
-> +
-> +	val = intel_de_read(display, EMP_AS_SDP_TL(display, cpu_transcoder));
-> +	return REG_FIELD_GET(EMP_AS_SDP_DB_TL_MASK, val);
+> +	/*
+> +	 * EMP_AS_SDP_TL defines the T1 position as the default AS SDP
+> +	 * Transmission Line, which corresponds to the start of the
+> +	 * VSYNC pulse.
+> +	 *
+> +	 * Use the T1 position for now.
+> +	 */
+> +	return crtc_state->vrr.vsync_start;
 > +}
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-> index 4f16ca4af91f..6659a8a53432 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.h
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-> @@ -53,5 +53,6 @@ int intel_vrr_dcb_vmin_vblank_start_next(const struct intel_crtc_state *crtc_sta
->  int intel_vrr_dcb_vmax_vblank_start_next(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_dcb_vmin_vblank_start_final(const struct intel_crtc_state *crtc_state);
->  int intel_vrr_dcb_vmax_vblank_start_final(const struct intel_crtc_state *crtc_state);
-> +u16 intel_vrr_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+> index 2849b9ecdc71..7024fd0ace0a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+> @@ -238,4 +238,6 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
+>  	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
+>  		for_each_if(intel_dp_joiner_candidate_valid(__connector, (__mode)->hdisplay, __num_joined_pipes))
 >  
->  #endif /* __INTEL_VRR_H__ */
+> +int intel_dp_sdp_as_tl(const struct intel_crtc_state *crtc_state);
+> +
+>  #endif /* __INTEL_DP_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+> index 5164d8c354e0..b700da4e9256 100644
+> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+> @@ -607,11 +607,11 @@ void intel_vrr_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
+>  
+>  	/*
+>  	 * Since currently we support VRR only for DP/eDP, so this is programmed
+> -	 * only for Adaptive Sync SDP to Vsync start.
+> +	 * only for Adaptive Sync SDP.
+>  	 */
+>  	intel_de_write(display,
+>  		       EMP_AS_SDP_TL(display, cpu_transcoder),
+> -		       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
+> +		       EMP_AS_SDP_DB_TL(intel_dp_sdp_as_tl(crtc_state)));
+>  }
+>  
+>  void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
 
 -- 
 Jani Nikula, Intel
