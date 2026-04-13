@@ -2,77 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cIiUO5pz3Gn1RAkAu9opvQ
+	id gKZAKv2a3GkxUAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 06:39:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 09:27:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F12D3E7509
-	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 06:39:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E24533E837F
+	for <lists+intel-gfx@lfdr.de>; Mon, 13 Apr 2026 09:27:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D89E810E300;
-	Mon, 13 Apr 2026 04:39:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D09E710E334;
+	Mon, 13 Apr 2026 07:27:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="i/vQ9s30";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DNKZZ9RR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 87A8510E300
- for <intel-gfx@lists.freedesktop.org>; Mon, 13 Apr 2026 04:39:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F1F9A10E332;
+ Mon, 13 Apr 2026 07:27:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776055190; x=1807591190;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=4mfv+YJHm8QJAqClzxhpolQW6MniSIVtDS7Vhb/vXVY=;
- b=i/vQ9s30j8N/3BqSK3DbdYn6idLaU0cO+MrjIH5hUfv9f70IeohpSB2r
- SBsDSG+aejxFfefRelJUyJWIehA7uH1beb6wEVFIKBji7b8TsUGhfS2QU
- G3HAhgxZgUBArEykysnPwn4wiB9jzuVbYtLPyX/508QHyc+B+XF3KqwZ0
- Y3DstI3YcJRXKz8v0zUkEKSA72AbUrH70BsczIYlG9PBV8QQf+IN29ZF5
- uGSpfaYYdxuIxH8Nd0FiPc+92FV0ccuG1gwoERCNYr4GS6CqqRE99v911
- gJ7z5Zk8ycfyMiqenxl8cfnkwg1DthYkF0j/I39nhMHFkVAlQ4zk8jHUw g==;
-X-CSE-ConnectionGUID: waot9vnPS8ylk6NzQUQPqA==
-X-CSE-MsgGUID: BugKHAG7RvaZA3RT0ho1iA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="77097567"
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="77097567"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 21:39:49 -0700
-X-CSE-ConnectionGUID: a64snc6EQCWnStRTjQxHQQ==
-X-CSE-MsgGUID: U+5/jgrzTRmxpJsGHsRBvQ==
+ t=1776065273; x=1807601273;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=DxFD9zQLGiFeZujcfJKBXNq3JSdEC2v79i8229Bhb1Q=;
+ b=DNKZZ9RRKoLWzNL9LQRB5D11ZpWpcuDE/Xyw8vn83FXrkmYmxhbQyVG4
+ cPkWSCiBwGGS1QyQolHiAKyHPIdd2MwleZlBHXIyNFm6NpzgHiga+K0FE
+ F1a0KZDFIBff37co3qlPqxRMjpAgaThrVsxxGKKBDAVKgacPWwRzRc/Rz
+ EaIT24SVBMomWkW03twe3Novih/lua0Ds6hVPf/Ag5KeINebyloSqaqkc
+ G6QdLTJ9G6gzQi8mLLzOAq+Q8BJpc4R+4rzIy7JWgHJP2vsXOMDkx+vvk
+ u90IeAUu7t+lVn6xf6tAiPA0lQh5TbuZn+1yHlTPosGUVqjDDezzD7+qN Q==;
+X-CSE-ConnectionGUID: SwF4dEaATV6gzaF+tMfdng==
+X-CSE-MsgGUID: shujKhN0T7ibm45nk+Npbg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11757"; a="76902292"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="76902292"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 00:27:53 -0700
+X-CSE-ConnectionGUID: ihZpMN6KTsisdn80aGEvtw==
+X-CSE-MsgGUID: QI9NlBKCQFimWJVNWeJoFA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="229586454"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.245])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Apr 2026 21:39:46 -0700
-Content-Type: text/plain; charset="utf-8"
+X-IronPort-AV: E=Sophos;i="6.23,176,1770624000"; d="scan'208";a="228843659"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.182])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 Apr 2026 00:27:51 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 1/2] drm/i915/joiner: Make joiner "nomodeset" state copy
+ independent of pipe order
+In-Reply-To: <64fcf34f83f7d3011ec204d7e260de399b265c6a@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260408155744.13326-1-ville.syrjala@linux.intel.com>
+ <20260408155744.13326-2-ville.syrjala@linux.intel.com>
+ <64fcf34f83f7d3011ec204d7e260de399b265c6a@intel.com>
+Date: Mon, 13 Apr 2026 10:27:47 +0300
+Message-ID: <ebd35293306f951d2ea2f6632f97016069205111@intel.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAHk-=whfUM8y3PoFfT21+guKWK-mJmAE=8uLzOT+7HGv5NtqSw@mail.gmail.com>
-References: <20260324151741.29338-1-sosohero200@gmail.com>
- <acUnQkniqECI0QVY@intel.com>
- <CAHk-=wj=h9z-Qp+xm1oSURRGHO3wexzG7MyLqU8gSQbastwgdw@mail.gmail.com>
- <177557988645.129480.6094289548721099346@jlahtine-mobl>
- <CAHk-=wjcSt1gGnQZoyNvodky_6WEDxC=1+gQHywiOvOjw1+GUA@mail.gmail.com>
- <177564692857.84154.3119637094332266143@jlahtine-mobl>
- <CAHk-=wgbhJ6TzSwswdM5hKAS_RKF1SLXp2u6JAS35P3i2mW2OQ@mail.gmail.com>
- <177566544117.120471.8020434521083493183@jlahtine-mobl>
- <CAHk-=whfUM8y3PoFfT21+guKWK-mJmAE=8uLzOT+7HGv5NtqSw@mail.gmail.com>
-Subject: Re: [PATCH v2] [PATCH v2] drm/i915/gem: Fix UAF race in
- eb_relocate_vma
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Dave Airlie <airlied@gmail.com>,
- Ville =?utf-8?b?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Yassine Mounir <sosohero200@gmail.com>, g@web.codeaurora.org,
- gregkh@linuxfoundation.org, intel-gfx@lists.freedesktop.org,
- rodrigo.vivi@intel.com, security@kernel.org,
- Simona Vetter <simona.vetter@ffwll.ch>
-To: Linus Torvalds <torvalds@linuxfoundation.org>
-Date: Mon, 13 Apr 2026 07:39:43 +0300
-Message-ID: <177605518306.10866.17910229610103068841@jlahtine-mobl>
-User-Agent: alot/0.12.dev7+g16b50e5f
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,60 +78,132 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:ville.syrjala@linux.intel.com,m:sosohero200@gmail.com,m:g@web.codeaurora.org,m:gregkh@linuxfoundation.org,m:rodrigo.vivi@intel.com,m:security@kernel.org,m:simona.vetter@ffwll.ch,m:torvalds@linuxfoundation.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.999];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,linux.intel.com,web.codeaurora.org,linuxfoundation.org,lists.freedesktop.org,intel.com,kernel.org,ffwll.ch];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6F12D3E7509
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: E24533E837F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Quoting Linus Torvalds (2026-04-09 18:45:23)
-> On Wed, 8 Apr 2026 at 09:24, Joonas Lahtinen
-> <joonas.lahtinen@linux.intel.com> wrote:
-> >
-> > Yes, there was clearly a bug introduced at the time of adding the
-> > vma->vm =3D=3D vm check where zeroing vma was missed if only that part =
-of
-> > check failed. However the vma->vm =3D=3D vm part can't have failed since
-> > d4433c7600f7.
->=20
-> Yes, I'm perfectly fine with the change to just remove that chgeck
-> entirely (and then obviously the "set vma to NULL' addition goes
-> away).
+On Wed, 08 Apr 2026, Jani Nikula <jani.nikula@intel.com> wrote:
+> On Wed, 08 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+>> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>>
+>> Currently the joiner primary->secondary hw state copy still happens from
+>> the main compute_config loop alongside the primary uapi->hw state copy.
+>> The primary uapi->hw state copy must therefore happen first, or else
+>> we'll end up copying stale junk into the secondary.
+>>
+>> We have a WARN in intel_atomic_check_joiner() to make sure the CRTCs
+>> will be walked in the correct order. The plan is to reoder the CRTCs,
+>> which would mess up the order, unless we also adjust the iterators
+>> to keep the pipe order. The actual plan is to do both, so technically
+>> we should be able to just remove the WARN and call it a day.
+>>
+>> But relying on the iteration order like this is fragile and confusing,
+>> so let's move the "nomodeset" joiner state copy into the later loop
+>> where the "modeset" state copy is also done. The first loop having
+>> completely finished, we are guaranteed to have up to date hw state
+>> on the primary when we do the copy to the secondary.
+>
+> I find the number of loops in the forest of intel_atomic_check*
+> functions confusing too. But this looks like progress.
+>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+>
+> I'm wondering about merging this, along with the pipe reordering, to a
+> topic branch that could be merged to drm-next at Dave's discretion,
+> instead of cherry-picks which might be a bit cumbersome for patches this
+> size. So please hold off on merging while I figure this out.
 
-Do you prefer for me to include a revert for the vma =3D NULL change in
-the -next PR?
+Thanks, I've pushed the set to topic/pipe-reorder, and will be resending
+the pipe reordering patch again shortly.
 
-Including it in the simplification patch would have caused conflits
-galore because the original change didn't come from our development
-tree and didn't want to backmerge -rc7 there.
+BR,
+Jani.
 
-Regards, Joonas
+>
+>
+>>
+>> Cc: Jani Nikula <jani.nikula@intel.com>
+>> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_display.c | 20 +++++---------------
+>>  1 file changed, 5 insertions(+), 15 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/=
+drm/i915/display/intel_display.c
+>> index 58a654ca0d20..674a4ece6d0f 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -5914,17 +5914,6 @@ static int intel_atomic_check_joiner(struct intel=
+_atomic_state *state,
+>>  			return -EINVAL;
+>>  		}
+>>=20=20
+>> -		/*
+>> -		 * The state copy logic assumes the primary crtc gets processed
+>> -		 * before the secondary crtc during the main compute_config loop.
+>> -		 * This works because the crtcs are created in pipe order,
+>> -		 * and the hardware requires primary pipe < secondary pipe as well.
+>> -		 * Should that change we need to rethink the logic.
+>> -		 */
+>> -		if (WARN_ON(drm_crtc_index(&primary_crtc->base) >
+>> -			    drm_crtc_index(&secondary_crtc->base)))
+>> -			return -EINVAL;
+>> -
+>>  		drm_dbg_kms(display->drm,
+>>  			    "[CRTC:%d:%s] Used as secondary for joiner primary [CRTC:%d:%s]\=
+n",
+>>  			    secondary_crtc->base.base.id, secondary_crtc->base.name,
+>> @@ -6302,9 +6291,7 @@ static int intel_atomic_check_config(struct intel_=
+atomic_state *state,
+>>=20=20
+>>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>>  		if (!intel_crtc_needs_modeset(new_crtc_state)) {
+>> -			if (intel_crtc_is_joiner_secondary(new_crtc_state))
+>> -				copy_joiner_crtc_state_nomodeset(state, crtc);
+>> -			else
+>> +			if (!intel_crtc_is_joiner_secondary(new_crtc_state))
+>>  				intel_crtc_copy_uapi_to_hw_state_nomodeset(state, crtc);
+>>  			continue;
+>>  		}
+>> @@ -6439,8 +6426,11 @@ int intel_atomic_check(struct drm_device *dev,
+>>  		goto fail;
+>>=20=20
+>>  	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>> -		if (!intel_crtc_needs_modeset(new_crtc_state))
+>> +		if (!intel_crtc_needs_modeset(new_crtc_state)) {
+>> +			if (intel_crtc_is_joiner_secondary(new_crtc_state))
+>> +				copy_joiner_crtc_state_nomodeset(state, crtc);
+>>  			continue;
+>> +		}
+>>=20=20
+>>  		if (intel_crtc_is_joiner_secondary(new_crtc_state)) {
+>>  			drm_WARN_ON(display->drm, new_crtc_state->uapi.enable);
+
+--=20
+Jani Nikula, Intel
