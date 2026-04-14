@@ -2,69 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kMVlK+tP3mndqAkAu9opvQ
+	id KPLSNX9g3mn+CQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2026 16:32:11 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2026 17:42:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BB4F3FB47F
-	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2026 16:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D72E13FC0F5
+	for <lists+intel-gfx@lfdr.de>; Tue, 14 Apr 2026 17:42:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB68010E612;
-	Tue, 14 Apr 2026 14:32:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4E5410E2E5;
+	Tue, 14 Apr 2026 15:42:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EfiXV5mY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="W9Ln/5m8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 625AA10E34F;
- Tue, 14 Apr 2026 14:32:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C9C2410E0EA;
+ Tue, 14 Apr 2026 15:42:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776177128; x=1807713128;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=kKNzpoxDFI2YMGxgjuzAQzQbsIM9oP3mltMpKlD2iR8=;
- b=EfiXV5mYDUS79Y0rR5uLt362oV+Pbuuic/VGs5RslkGdKGwH0nLiyu/n
- SnCnC5htizWNUjGdz/rk7SUfxgEeh73wouHGetADUta+BgyLJ2e4uMq7v
- EdMGSyQ/L5t16/RRI6EeE1K5o3VSxPswrLN1ubjtQG2iz2q64PAO8oM9G
- IJWT3EtZgxxSlci4l42UAi71sriK3wyBmUWm/erfIWcDpWDO4S6qaBKbE
- 84z4UQl1EG2he4T6587jIt6V7bxbKnua52dded+M0RzhDNqPCbL5USb9F
- gKwo+zMCvYSqTO0i8ILDYXbQZgjiaCwAXm+/8jyWgIncEr21eUsl3e6gL Q==;
-X-CSE-ConnectionGUID: osG+hVhhSpKEL8858VS1yQ==
-X-CSE-MsgGUID: jQ1cig8pShezqAfZBuIj0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="76841043"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="76841043"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 07:32:07 -0700
-X-CSE-ConnectionGUID: V+sVBy4aSk6+7+XIgLhd3Q==
-X-CSE-MsgGUID: U9XxuzQFTqSm+gmFYD0Lgw==
+ t=1776181371; x=1807717371;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=/POnNeAxl1NYAfZ7rXYtPsivu8bHhWdV9fHCpdAkQGo=;
+ b=W9Ln/5m8bmkLsBwWfOmMlefGSzJnVaQB/pQRYNOGagIdvVGgZzLuY40H
+ DwkluBQiokg/4J056Fc+5OuC1T2tAhtG2EYDFgtLDzfpZdFPiacIjrxow
+ xI4lCWFAoG+E20EMXHkzce2kSIIXrlvcurJABE83rLdcdAiJhnT5Ju3cP
+ Hbevy4pUCGuea7nmWNmYFS7Fa+HbWEwxiUjp2FsaL6D8Ttub3IeY1JT1G
+ UdN+0LDnTb1bDGAUkgCKmjdEvePAxLYUEDlT+eqyFCiuyAkyE/Hij2qAx
+ S57wrvMrTW+pH4gz+ALzWL/kJGYCJV52bBVy8h7urN8QPzQ/8N+irv6o7 w==;
+X-CSE-ConnectionGUID: 8Fp6bpgSR+WobCwea3PrYg==
+X-CSE-MsgGUID: MnnVGp+LQVSapX7t+8uq7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="88220893"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="88220893"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 08:42:50 -0700
+X-CSE-ConnectionGUID: 6tO4LgJASeu6qRprgU7gOQ==
+X-CSE-MsgGUID: GpzKIF0ETjKAakU1Z10rzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="231862963"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.235])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 07:32:05 -0700
-Date: Tue, 14 Apr 2026 17:32:01 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 04/10] drm/i915: Make plane_config->fb a struct
- drm_framebuffer*
-Message-ID: <ad5P4XUVw3I6VGar@intel.com>
-References: <20260410150449.9699-1-ville.syrjala@linux.intel.com>
- <20260410150449.9699-5-ville.syrjala@linux.intel.com>
- <fa77ccf73f2da60f4fcfc7275c03ce63907da8ba@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="225412828"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.238])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 14 Apr 2026 08:42:48 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vidya Srinivas <vidya.srinivas@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: Re: [PATCH] [RFC]: drm/i915/display: Use ceiling division for NV12
+ UV surface offset calculation
+In-Reply-To: <20260411171521.162189-1-vidya.srinivas@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260411171521.162189-1-vidya.srinivas@intel.com>
+Date: Tue, 14 Apr 2026 18:42:45 +0300
+Message-ID: <bf735bb719753185479461767d7c077bd9c3bfda@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <fa77ccf73f2da60f4fcfc7275c03ce63907da8ba@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,201 +74,106 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.64 / 15.00];
-	R_MIXED_CHARSET(0.67)[subject];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,intel.com:mid]
-X-Rspamd-Queue-Id: 0BB4F3FB47F
+	FROM_HAS_DN(0.00)[]
+X-Rspamd-Queue-Id: D72E13FC0F5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 10, 2026 at 06:48:02PM +0300, Jani Nikula wrote:
-> On Fri, 10 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> >
-> > There's no need to use the intel specific struct intel_framebuffer*
-> > type in the initial plane_config structure. Just make it a
-> > struct drm_framebuffer*.
-> 
-> I guess a few words on the "why?" would be nice. I mean they're still
-> pointers to struct intel_framebuffer objects, and could be
-> container_of'd back.
+On Sat, 11 Apr 2026, Vidya Srinivas <vidya.srinivas@intel.com> wrote:
+> For LNL+, odd source size and panning for YUV 422/420 surfaces is
+> supported. However, it requires the UV (chroma) surface Start X/Y and
+> width/height to be calculated as ceiling(half of Y plane value) rather
+> than floor. The current code uses (>> 17) which is floor division. For
+> odd Y plane values this produces an off-by-one error in the UV plane
+> offset.
+>
+> On Android systems we see PLANE ATS fault when NV12 overlays are
+> used with odd source dimensions:
+>
+> [  126.854200] xe 0000:00:02.0: [drm:intel_atomic_setup_scaler [xe]] [CRTC:148:pipe A] attached scaler id 0.0 to PLANE:33
+> [  126.854617] xe 0000:00:02.0: [drm:skl_update_scaler [xe]] [CRTC:148:pipe A] scaler_user index 0.0: staged scaling request for 1279x719->1340x753
+> [  126.854837] xe 0000:00:02.0: [drm:intel_plane_atomic_check [xe]] UV plane [PLANE:33:plane 1A] using Y plane [PLANE:123:plane 4A]
+> [  126.854926] xe 0000:00:02.0: [drm] *ERROR* [CRTC:148:pipe A] PLANE ATS fault
+>
+> With Y plane width 1279:
+>   floor(1279/2) = 639 (current)
+>   ceil(1279/2)  = 640 (required)
+>
+> Change the UV offset/size calculation to use ceiling division by adding
+> (1 << 17) - 1 before shifting. This is a no-op for even values since
+> ceiling and floor are equal when the dividend is even.
+>
+> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/skl_universal_plane.c | 14 ++++++++++----
+>  1 file changed, 10 insertions(+), 4 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index 7a9d494334b5..c455bf92ae99 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -2139,10 +2139,16 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
+>  	int min_height = intel_plane_min_height(plane, fb, uv_plane, rotation);
+>  	int max_width = intel_plane_max_width(plane, fb, uv_plane, rotation);
+>  	int max_height = intel_plane_max_height(plane, fb, uv_plane, rotation);
+> -	int x = plane_state->uapi.src.x1 >> 17;
+> -	int y = plane_state->uapi.src.y1 >> 17;
+> -	int w = drm_rect_width(&plane_state->uapi.src) >> 17;
+> -	int h = drm_rect_height(&plane_state->uapi.src) >> 17;
+> +
+> +	/*
+> +	 * LNL+ UV surface start/size =
+> +	 * ceiling(half of Y plane start/size). Use ceiling division
+> +	 * unconditionally; it is a no-op for even values.
+> +	 */
+> +	int x = (plane_state->uapi.src.x1 + (1 << 17) - 1) >> 17;
+> +	int y = (plane_state->uapi.src.y1 + (1 << 17) - 1) >> 17;
+> +	int w = (drm_rect_width(&plane_state->uapi.src) + (1 << 17) - 1) >> 17;
+> +	int h = (drm_rect_height(&plane_state->uapi.src) + (1 << 17) - 1) >> 17;
 
-Yeah, meant to put something more sensible here. Basically I think the
-less special types we expose in the interface (even if just pointers)
-the better. At least then there is no need to change the interface
-definition if we ever change the internal types. And I hope that the
-existing examples will generally encourage people to not expose more
-special types unless absolutely necessary.
+The problem I have with this is that the original >> 17 is already too
+magic. It divides a U16.16 fixed point in half, and this is completely
+non-obvious.
 
-> 
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-> 
-> 
-> >
-> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/i9xx_plane.c          |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_display_types.h |  2 +-
-> >  drivers/gpu/drm/i915/display/intel_initial_plane.c | 10 +++++-----
-> >  drivers/gpu/drm/i915/display/skl_universal_plane.c |  2 +-
-> >  drivers/gpu/drm/i915/i915_initial_plane.c          |  6 +++---
-> >  drivers/gpu/drm/xe/display/xe_initial_plane.c      |  2 +-
-> >  6 files changed, 12 insertions(+), 12 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > index 9c16753a1f3b..70734d32a409 100644
-> > --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
-> > @@ -1240,7 +1240,7 @@ i9xx_get_initial_plane_config(struct intel_crtc *crtc,
-> >  		    fb->width, fb->height, fb->format->cpp[0] * 8,
-> >  		    base, fb->pitches[0], plane_config->size);
-> >  
-> > -	plane_config->fb = intel_fb;
-> > +	plane_config->fb = &intel_fb->base;
-> >  }
-> >  
-> >  bool i9xx_fixup_initial_plane_config(struct intel_crtc *crtc,
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > index eaa37b8d9584..82c7e03427ff 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > @@ -755,7 +755,7 @@ struct intel_plane_state {
-> >  };
-> >  
-> >  struct intel_initial_plane_config {
-> > -	struct intel_framebuffer *fb;
-> > +	struct drm_framebuffer *fb;
-> >  	struct i915_vma *vma;
-> >  	int size;
-> >  	u32 base;
-> > diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > index 4f51083dbd11..911d67dceba9 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > @@ -55,9 +55,9 @@ static struct drm_gem_object *
-> >  intel_alloc_initial_plane_obj(struct intel_display *display,
-> >  			      struct intel_initial_plane_config *plane_config)
-> >  {
-> > -	struct intel_framebuffer *fb = plane_config->fb;
-> > +	struct drm_framebuffer *fb = plane_config->fb;
-> >  
-> > -	switch (fb->base.modifier) {
-> > +	switch (fb->modifier) {
-> >  	case DRM_FORMAT_MOD_LINEAR:
-> >  	case I915_FORMAT_MOD_X_TILED:
-> >  	case I915_FORMAT_MOD_Y_TILED:
-> > @@ -65,7 +65,7 @@ intel_alloc_initial_plane_obj(struct intel_display *display,
-> >  		break;
-> >  	default:
-> >  		drm_dbg_kms(display->drm, "Unsupported modifier for initial FB: 0x%llx\n",
-> > -			    fb->base.modifier);
-> > +			    fb->modifier);
-> >  		return NULL;
-> >  	}
-> >  
-> > @@ -93,7 +93,7 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
-> >  		return;
-> >  
-> >  	if (intel_alloc_initial_plane_obj(display, plane_config)) {
-> > -		fb = &plane_config->fb->base;
-> > +		fb = plane_config->fb;
-> >  		vma = plane_config->vma;
-> >  	} else {
-> >  		const struct intel_plane_state *other_plane_state;
-> > @@ -149,7 +149,7 @@ static void plane_config_fini(struct intel_display *display,
-> >  			      struct intel_initial_plane_config *plane_config)
-> >  {
-> >  	if (plane_config->fb) {
-> > -		struct drm_framebuffer *fb = &plane_config->fb->base;
-> > +		struct drm_framebuffer *fb = plane_config->fb;
-> >  
-> >  		/* We may only have the stub and not a full framebuffer */
-> >  		if (drm_framebuffer_read_refcount(fb))
-> > diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > index 7a9d494334b5..00c863e378a1 100644
-> > --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> > @@ -3206,7 +3206,7 @@ skl_get_initial_plane_config(struct intel_crtc *crtc,
-> >  		    fb->width, fb->height, fb->format->cpp[0] * 8,
-> >  		    base, fb->pitches[0], plane_config->size);
-> >  
-> > -	plane_config->fb = intel_fb;
-> > +	plane_config->fb = &intel_fb->base;
-> >  	return;
-> >  
-> >  error:
-> > diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-> > index 6df57db9b62a..5cb1adde67b6 100644
-> > --- a/drivers/gpu/drm/i915/i915_initial_plane.c
-> > +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-> > @@ -137,7 +137,7 @@ initial_plane_vma(struct drm_i915_private *i915,
-> >  	i915_gem_object_set_cache_coherency(obj, HAS_WT(i915) ?
-> >  					    I915_CACHE_WT : I915_CACHE_NONE);
-> >  
-> > -	tiling = intel_fb_modifier_to_tiling(plane_config->fb->base.modifier);
-> > +	tiling = intel_fb_modifier_to_tiling(plane_config->fb->modifier);
-> >  
-> >  	switch (tiling) {
-> >  	case I915_TILING_NONE:
-> > @@ -145,7 +145,7 @@ initial_plane_vma(struct drm_i915_private *i915,
-> >  	case I915_TILING_X:
-> >  	case I915_TILING_Y:
-> >  		obj->tiling_and_stride =
-> > -			plane_config->fb->base.pitches[0] |
-> > +			plane_config->fb->pitches[0] |
-> >  			tiling;
-> >  		break;
-> >  	default:
-> > @@ -223,7 +223,7 @@ i915_alloc_initial_plane_obj(struct drm_device *drm,
-> >  {
-> >  	struct drm_i915_private *i915 = to_i915(drm);
-> >  	struct drm_mode_fb_cmd2 mode_cmd = {};
-> > -	struct drm_framebuffer *fb = &plane_config->fb->base;
-> > +	struct drm_framebuffer *fb = plane_config->fb;
-> >  	struct i915_vma *vma;
-> >  
-> >  	vma = initial_plane_vma(i915, plane_config);
-> > diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > index 1c7a4e8c390c..8f2d0244c03f 100644
-> > --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> > @@ -115,7 +115,7 @@ xe_alloc_initial_plane_obj(struct drm_device *drm,
-> >  {
-> >  	struct xe_device *xe = to_xe_device(drm);
-> >  	struct drm_mode_fb_cmd2 mode_cmd = { 0 };
-> > -	struct drm_framebuffer *fb = &plane_config->fb->base;
-> > +	struct drm_framebuffer *fb = plane_config->fb;
-> >  	struct xe_bo *bo;
-> >  
-> >  	mode_cmd.pixel_format = fb->format->format;
-> 
-> -- 
-> Jani Nikula, Intel
+The commit message doesn't even mention this.
+
+I think this needs a clean separation between the division and the
+conversion to int.
+
+
+BR,
+Jani.
+
+
+>  	u32 offset;
+>  
+>  	/* FIXME not quite sure how/if these apply to the chroma plane */
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
