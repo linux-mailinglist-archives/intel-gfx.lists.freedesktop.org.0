@@ -2,103 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +DhPKq+/32lOYgAAu9opvQ
+	id AFmgEA7F32kmYwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:41:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 19:04:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F14344066F8
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:41:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 944E84069A1
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 19:04:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B00B10E181;
-	Wed, 15 Apr 2026 16:41:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72EEB10E255;
+	Wed, 15 Apr 2026 17:04:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="bvH80gFC";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZmBX+OgU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
- [209.85.208.44])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C5D1B10E181
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 16:41:14 +0000 (UTC)
-Received: by mail-ed1-f44.google.com with SMTP id
- 4fb4d7f45d1cf-6720c7968e4so3563435a12.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:41:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1776271273; x=1776876073;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=y7Lb39tX80cyqh4EoAouwl4tDKxTNBcVjFCL5GxqOEY=;
- b=bvH80gFCf86nt5AznWwy+DIdBcfzhuk+oj2xoDIqsQqJJexbZxcVpSezevXpy/oznU
- yfesX3pydU1pkYQZJICp5b8etNcY7veqyKWhcrgo3ESVdpKMs0OZDyfyU2kexEkgaoPk
- Zsbn6DjYSyOo2HVVRQUz3lXnLsw5uRgy9Tt6c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776271273; x=1776876073;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=y7Lb39tX80cyqh4EoAouwl4tDKxTNBcVjFCL5GxqOEY=;
- b=bC9Uuupl6p32Zl1Gi0IFujFgdzgRU34/axCE1JQatzv+Wa19YTJYYpj27xpsBTNA0z
- 8SMRgqFOJUmsIcci/mo4QdmLLhsPE1KjLJw9igavEjM0YwYxWnyjvRN/x/NUoGD1V51U
- 0hsSDwHDbPMUtbwv6w2Ep+yifh9KQyNsL9YpwvJK+JaSpWJ+MryJ6/1cfjnxcCX89zrg
- Fl6iI6/P42Ex0zC7SEyrfK/eb6GpGGIUrCButplp6h4nDNCEJSktc8ITeZrnQLggrnza
- QMHL+vraLos+Yte17OReezWd5W0dctjDb9GcFuVXiKNeYGYM0Y0TiU+SooqStNXAUqxG
- PEkA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8J6HOjayy4lPL/0gyoGahDcaNL2BbUENRlEtbCHjcQkrZuqiongDpstH5XfvPkx8mZnH0KQmotyYU=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzp54o6JAfBohzKfTrIkHcSsWfopZq0d8igUxoLXBRdP3QtI+OJ
- 2nXWpb6Fwg5u5gpNmzeq+dbvmLS4Psdc98vDq1ctve9EdAM7gA1M+VCn7kt3BjHoptWYmfwoMo5
- UObxhLQc=
-X-Gm-Gg: AeBDies22afJai7lAgmSH/kSjjDmF7iA2mLxVgAbnAsdrvW3dxHgsEvrsmc5DEFKRh5
- 8fK5/4wnyntm5EWLjWpmS7RZ4V0ZoNtccgQHVvgHw7hNdhQW7Q6L1fIGM/6FC9SIGrsWYGBY7sr
- awEE8lAwaJ0f/BCatv2CvZr02OG0OeQPgY/lZYMX0wvhypDJIDCU8Ch0V7xzJAKFav7Zqj6Hki8
- XoGrNlhZBVMksOLw4TpFYydgn3XIWLtbEHH/B6kPAmJXJBYgy4Fcp7hPBVx6va8/xY7QBialXJe
- blo0eqImAVbu6iTw0HqP4CubJYQcx+wrhjB74ztl0EE6qlY6niHc3AGtfExdCq7lDUGTYiwa7qx
- wahASt92H25VwVG3ITROVFvUnA80iDYOP0YFNgtA11hZTmwCGXtTzA5ThKYbtqhdg8Qk/6YaKUk
- jb+Mxw9vmEqeI9X7NhNQJX8pxDpdOBHDMH55UtuW5EIiR9xovVrLhvHWsx8qKjjCfsHNxXT3zg
-X-Received: by 2002:aa7:d1da:0:b0:671:d016:df0f with SMTP id
- 4fb4d7f45d1cf-672711b1328mr110654a12.4.1776271273314; 
- Wed, 15 Apr 2026 09:41:13 -0700 (PDT)
-Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com.
- [209.85.208.46]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-6723800ecbesm580110a12.29.2026.04.15.09.41.13
- for <intel-gfx@lists.freedesktop.org>
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Apr 2026 09:41:13 -0700 (PDT)
-Received: by mail-ed1-f46.google.com with SMTP id
- 4fb4d7f45d1cf-66d65646c65so5148387a12.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:41:13 -0700 (PDT)
-X-Forwarded-Encrypted: i=1;
- AFNElJ/ZniU1ErO+NhBdDBZYbGQNePXjyhN4lNewDXWBCQKTxd/Si5BkWM3KrbaKacUYFkw55ZltCiouVSI=@lists.freedesktop.org
-X-Received: by 2002:aa7:d88c:0:b0:66f:76c8:f747 with SMTP id
- 4fb4d7f45d1cf-672711c49b4mr83740a12.6.1776271272830; Wed, 15 Apr 2026
- 09:41:12 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0DF5110E255;
+ Wed, 15 Apr 2026 17:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776272650; x=1807808650;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=xuWuqb5avQDgzglGUrjDiI36gtR++YtvaOI9TlVeCXw=;
+ b=ZmBX+OgUuov/xVpFvVf1czWZv77vd9QQ9GCqkeQkKNtBZaea5DGonxAP
+ 8InLT5PBMGvwT0S/LMld3ZMDEIOucpIY6vicvSu6rbjwG9C3oEBDWy3Xj
+ 7DaNfx5bjbwP0JKUsHCZBl3zyhPKl69N8G1QUYuIHOMypzbKgdMVCDqMH
+ 3lVdSX0brqZmrT+tp1YWf5hwsx90jwkIxle5KZ4Zr2k6Xy/9ocFXxNAIc
+ dsqiAzaxmiiQpeFAWKqMJoO5BSgg3rYNNlltixs7eIz2HgW3Ff/aKEvx7
+ R6HGaABeckfpw+rix3bknCH3J53uCsuM4YOzvYK/yHbvtqA+/mcVDCvsO A==;
+X-CSE-ConnectionGUID: fFAp/DSnS+yHn3pd7O09HQ==
+X-CSE-MsgGUID: 9sQkdJrnTrmPoeAVw0cwfg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77442408"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="77442408"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 10:04:10 -0700
+X-CSE-ConnectionGUID: zVgTznifQqGkLaBkX04y3w==
+X-CSE-MsgGUID: 6/NWP9LPSa2eHh/ae6fVOw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227827921"
+Received: from vsrini4-xps-8920.iind.intel.com ([10.223.167.75])
+ by fmviesa008.fm.intel.com with ESMTP; 15 Apr 2026 10:04:06 -0700
+From: Vidya Srinivas <vidya.srinivas@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com,
+ jani.nikula@intel.com, Vidya Srinivas <vidya.srinivas@intel.com>
+Subject: [PATCH] [RFC v3]: drm/i915/display: Use ceiling division for NV12 UV
+ surface offset calculation
+Date: Wed, 15 Apr 2026 22:28:49 +0530
+Message-ID: <20260415165849.187693-1-vidya.srinivas@intel.com>
+X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260411171521.162189-1-vidya.srinivas@intel.com>
+References: <20260411171521.162189-1-vidya.srinivas@intel.com>
 MIME-Version: 1.0
-References: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
- <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
-In-Reply-To: <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
-From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 15 Apr 2026 09:40:55 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wjmTh4ESQE7ntR=ddF5JBToNerf4Dzt2zQQ2-Y3OEre-A@mail.gmail.com>
-X-Gm-Features: AQROBzAzrmt1r9Lcsx11hYqA7ZFPDheNDl4Usu75n-ImSxQhTSjJgoByqAuzn5w
-Message-ID: <CAHk-=wjmTh4ESQE7ntR=ddF5JBToNerf4Dzt2zQQ2-Y3OEre-A@mail.gmail.com>
-Subject: Re: [PULL] topic/pipe-reorder for drm-intel-next and possibly v7.1-rc1
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Matthew Brost <matthew.brost@intel.com>, 
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dim-tools@lists.freedesktop.org, 
- Ville Syrjala <ville.syrjala@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -113,56 +72,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[linux-foundation.org];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@intel.com,m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linux.intel.com,ursulin.net,intel.com,suse.de,kernel.org,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux-foundation.org:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[torvalds@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[vidya.srinivas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-0.999];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-foundation.org:dkim,linux-foundation.org:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: F14344066F8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 944E84069A1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 15 Apr 2026 at 09:28, Linus Torvalds
-<torvalds@linux-foundation.org> wrote:
->
-> I guess I'll test it just to verify, but if this fixes that known
-> issue I'm all for getting this fixed sooner rather than later.
+For LNL+, odd source size and panning for YUV 422/420 surfaces is
+supported. However, it requires the UV (chroma) surface Start X/Y and
+width/height to be calculated as ceiling(half of Y plane value) rather
+than floor.
 
-Well, that was easy enough. I assume this was expected, but I can
-indeed verify that that branch works for me as a replacement for (two
-versions) of the local patch I have been running for the last six
-months or so.
+The current code uses (>> 17) which combines the U16.16 fixed-point to
+integer conversion (>> 16) with a divide-by-2 for chroma subsampling
+(>> 1) into a single floor division. For odd Y plane values this
+produces an off-by-one error in the UV plane offset.
 
-And maybe I'm the only person on the planet that runs this setup, but
-it gets an ack from me. So I'm ok with a late pull as a fix, but
-somebody who can better judge the risks for other setups should
-eventually make the judgement call.
+On Android systems we see PLANE ATS fault when NV12 overlays are
+used with odd source dimensions:
 
-                Linus
+[  126.854200] xe 0000:00:02.0: [drm:intel_atomic_setup_scaler [xe]] [CRTC:148:pipe A] attached scaler id 0.0 to PLANE:33
+[  126.854617] xe 0000:00:02.0: [drm:skl_update_scaler [xe]] [CRTC:148:pipe A] scaler_user index 0.0: staged scaling request for 1279x719->1340x753
+[  126.854837] xe 0000:00:02.0: [drm:intel_plane_atomic_check [xe]] UV plane [PLANE:33:plane 1A] using Y plane [PLANE:123:plane 4A]
+[  126.854926] xe 0000:00:02.0: [drm] *ERROR* [CRTC:148:pipe A] PLANE ATS fault
+
+With Y plane width 1279:
+  floor(1279/2) = 639 (current)
+  ceil(1279/2)  = 640 (required)
+
+Introduce fp_16_16_div2() and fp_16_16_to_int_ceil() helpers to cleanly
+separate the two operations: first halve the U16.16 fixed-point value
+for chroma subsampling (staying in fixed-point domain), then convert
+to integer with ceiling rounding.
+
+v2: Use DIV_ROUND_UP(value, 1 << 17) to preserve sub-pixel precision
+    while making the ceiling division readable (Jani, Uma)
+
+v3: Split into two helpers - fp_16_16_div2() for fixed-point division
+    by 2 and fp_16_16_to_int_ceil() for ceiling conversion to integer,
+    cleanly separating chroma subsampling from fixed-point to integer
+    conversion (Jani)
+
+Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+---
+ .../drm/i915/display/skl_universal_plane.c    | 27 ++++++++++++++++---
+ 1 file changed, 23 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+index 7a9d494334b5..e772b0d716c7 100644
+--- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
++++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+@@ -2126,6 +2126,19 @@ static int skl_check_main_surface(struct intel_plane_state *plane_state)
+ 	return 0;
+ }
+ 
++
++/* Divide a U16.16 fixed-point value by 2, staying in fixed-point domain */
++static inline u32 fp_16_16_div2(u32 fp)
++{
++	return fp >> 1;
++}
++
++/* Convert a U16.16 fixed-point value to integer, rounding up */
++static inline int fp_16_16_to_int_ceil(u32 fp)
++{
++	return DIV_ROUND_UP(fp, 1 << 16);
++}
++
+ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+@@ -2139,10 +2152,16 @@ static int skl_check_nv12_aux_surface(struct intel_plane_state *plane_state)
+ 	int min_height = intel_plane_min_height(plane, fb, uv_plane, rotation);
+ 	int max_width = intel_plane_max_width(plane, fb, uv_plane, rotation);
+ 	int max_height = intel_plane_max_height(plane, fb, uv_plane, rotation);
+-	int x = plane_state->uapi.src.x1 >> 17;
+-	int y = plane_state->uapi.src.y1 >> 17;
+-	int w = drm_rect_width(&plane_state->uapi.src) >> 17;
+-	int h = drm_rect_height(&plane_state->uapi.src) >> 17;
++
++	/*
++	 * LNL+ UV surface start/size =
++	 * ceiling(half of Y plane start/size). Use ceiling division
++	 * unconditionally; it is a no-op for even values.
++	 */
++	int x = fp_16_16_to_int_ceil(fp_16_16_div2(plane_state->uapi.src.x1));
++	int y = fp_16_16_to_int_ceil(fp_16_16_div2(plane_state->uapi.src.y1));
++	int w = fp_16_16_to_int_ceil(fp_16_16_div2(drm_rect_width(&plane_state->uapi.src)));
++	int h = fp_16_16_to_int_ceil(fp_16_16_div2(drm_rect_height(&plane_state->uapi.src)));
+ 	u32 offset;
+ 
+ 	/* FIXME not quite sure how/if these apply to the chroma plane */
+-- 
+2.45.2
+
