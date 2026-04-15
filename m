@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yFZwFtMk32lcPQAAu9opvQ
+	id QObfOtAk32lcPQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:35 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C4DF240085A
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C2C9D400853
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5237E10E680;
-	Wed, 15 Apr 2026 05:40:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EB4310E0F4;
+	Wed, 15 Apr 2026 05:40:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iZOqDBpa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hLp/1AKv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB85310E676;
- Wed, 15 Apr 2026 05:40:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C0D610E67A;
+ Wed, 15 Apr 2026 05:40:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776231628; x=1807767628;
+ t=1776231630; x=1807767630;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=70uWmhQSBPhkTGB+oAjtaz/7Ep6qaeC/Myyl7te6GJ4=;
- b=iZOqDBpaGnP7hsdRTvAGs/scFIEJNROw7DG+DgZWX675xIQ7EaBUCeLs
- xK1QvMz3859nMTSDz1FWZ8AFGHruKeSqMXyap1LoR1AG6GolMohPdi3mF
- ATRmstotqQuwP5U3egFDwloG8HWAnuAXLmpb+ps1TI4OndThaF6VNImpM
- 3Qwv+hP9bcJ7CdXs8VPyw8v9zsTTfvWHgvGSN8r1Xpcw3q/KTyuhob+aC
- R6+W+RMn1DgBhqdUgpPOAs0ayI2h+nUOrNCXntN3g+gv7dWHIIuhnE+fd
- QU0mJUd7W4epV2jVYu8FdazVBEmlNQPIea+SKqpdngSv/LIC3cLp8EiBE A==;
-X-CSE-ConnectionGUID: 84Kl6BO4TNKPj7f+PhertQ==
-X-CSE-MsgGUID: uJGpu4+dTVuLUWwYc6IrYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657062"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657062"
+ bh=imhwI7cBkRx6lDeZyqlPNBKKq8ew+w6ck4Jp2syREJo=;
+ b=hLp/1AKv/Fu6u4mWMX7lmrKN13GCwvO+t9fK0WhCBx0P5+23jxV/P+hA
+ sVJvu8aPCtRbtIOPC5Hmlanuvfedz3QzDtoT1jNQn7v9q2om9UHQqkq92
+ UHFz+YlRKOifTvDea9U6plbRTZLdWDChVrWLtELSgREIom2MFtIGGf4qv
+ hO1KX0bcCM3322vlmknqBpKVAuOJd7lA3waeivIYsAsucwlZ3y90s9PN8
+ 0CzzH0VT1GslciKWwxD854erJaTfx3JDlJRd+e/AXU+s3hqyoad8liled
+ 6HpHRBuhqZvXsqxDhX+Y08SXYjc2FCkcXC2GltsfefNgGxfeRzbE3NfvK A==;
+X-CSE-ConnectionGUID: AaW11UedTxOQktJkAVZxzA==
+X-CSE-MsgGUID: VOp7E3ZCRoiHNo1oxTrORQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657064"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657064"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 22:40:28 -0700
-X-CSE-ConnectionGUID: 2u6HHMcMQnmidSn4BleNAQ==
-X-CSE-MsgGUID: EOT7dOsRR0CNG7fMUn+xTA==
+ 14 Apr 2026 22:40:30 -0700
+X-CSE-ConnectionGUID: 0INnRTCbQOGjgEfa0GrZCw==
+X-CSE-MsgGUID: +XzSYdTzSlm6+Hutef8Mcw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129786"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129791"
 Received: from abityuts-desk.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.244.37])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 22:40:27 -0700
+ 14 Apr 2026 22:40:29 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
- stable@vger.kernel.org
-Subject: [PATCH 3/4] drm/i915/psr: Apply Intel DPCD workaround when SDP on
- prior line used
-Date: Wed, 15 Apr 2026 08:39:59 +0300
-Message-ID: <20260415054000.400070-4-jouni.hogander@intel.com>
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH 4/4] drm/i915/psr: Apply SDP on prior scanline workaround for
+ NVL
+Date: Wed, 15 Apr 2026 08:40:00 +0300
+Message-ID: <20260415054000.400070-5-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260415054000.400070-1-jouni.hogander@intel.com>
 References: <20260415054000.400070-1-jouni.hogander@intel.com>
@@ -100,85 +99,43 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: C4DF240085A
+X-Rspamd-Queue-Id: C2C9D400853
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-There is Intel specific workaround DPCD address containing workaround for
-case where SDP is on prior line. Apply this workaround according to values
-in the offset.
+In NVL there is an HW optimization done. When there is an SU triggered in
+Capture state, Link will be kept ON post Capture CRC SDP. Before valid SU
+pixels Intel source will transmit dummy pixels. Some TCONS are improperly
+considering these dummy pixels as a valid pixel data. Prior NVL link was
+was turned of even if there was SU triggered in Capture state and no dummy
+pixels were transmitted. These dummy pixels are problem only if SDP on
+prior scanline is used and Early Transport is not in use. The workaround is
+to start SU area always at scanline 0.
 
-Fixes: 61e887329e33 ("drm/i915/xelpd: Handle PSR2 SDP indication in the prior scanline")
-Cc: <stable@vger.kernel.org> # v5.15+
+Bspec: 74741, 79482
 Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 36 +++++++++++++++++++++---
- 1 file changed, 32 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 5 +++++
+ 1 file changed, 5 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 1f3f0d35d52a..341186622ed4 100644
+index 341186622ed4..28668fed8347 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1385,9 +1385,36 @@ static bool psr2_granularity_check(struct intel_crtc_state *crtc_state,
- 	return true;
- }
+@@ -2910,6 +2910,11 @@ intel_psr_apply_su_area_workarounds(struct intel_crtc_state *crtc_state)
+ 	    crtc_state->splitter.enable)
+ 		crtc_state->psr2_su_area.y1 = 0;
  
--static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_dp *intel_dp,
--							struct intel_crtc_state *crtc_state)
-+static bool apply_scanline_indication_wa(struct intel_crtc_state *crtc_state,
-+					 struct intel_connector *connector)
- {
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
-+	u8 early_scanline_support = connector->dp.psr_caps.intel_wa_dpcd &
-+		INTEL_WA_REGISTER_CAPS_PSR2_EARLYSCANLINE_SDP_SUPPORT_MASK;
++	/* Wa_16029024088 */
++	if (DISPLAY_VER(display) >= 35 && crtc_state->req_psr2_sdp_prior_scanline &&
++	    !crtc_state->enable_psr2_su_region_et)
++		crtc_state->psr2_su_area.y1 = 0;
 +
-+	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
-+		return true;
-+
-+	switch(early_scanline_support)
-+	{
-+	case INTEL_WA_REGISTER_CAPS_FALL_BACK_TO_PSR1:
-+		crtc_state->req_psr2_sdp_prior_scanline = false;
-+		return false;
-+	case INTEL_WA_REGISTER_CAPS_PSR2_WITH_EARLY_SCANLINE:
-+		return true;
-+	case INTEL_WA_REGISTER_CAPS_PSR2_WITHOUT_EARLY_SCANLINE:
-+		crtc_state->req_psr2_sdp_prior_scanline = false;
-+		return true;
-+	default:
-+		MISSING_CASE(early_scanline_support);
-+		return false;
-+	}
-+}
-+
-+static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_crtc_state *crtc_state,
-+							struct intel_connector *connector)
-+{
-+	struct intel_dp *intel_dp = intel_attached_dp(connector);
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	const struct drm_display_mode *adjusted_mode = &crtc_state->uapi.adjusted_mode;
- 	u32 hblank_total, hblank_ns, req_ns;
-@@ -1406,7 +1433,8 @@ static bool _compute_psr2_sdp_prior_scanline_indication(struct intel_dp *intel_d
- 		return false;
- 
- 	crtc_state->req_psr2_sdp_prior_scanline = true;
--	return true;
-+
-+	return apply_scanline_indication_wa(crtc_state, connector);
- }
- 
- static int intel_psr_entry_setup_frames(struct intel_dp *intel_dp,
-@@ -1687,7 +1715,7 @@ static bool intel_sel_update_config_valid(struct intel_crtc_state *crtc_state,
- 								      conn_state))
- 		goto unsupported;
- 
--	if (!_compute_psr2_sdp_prior_scanline_indication(intel_dp, crtc_state)) {
-+	if (!_compute_psr2_sdp_prior_scanline_indication(crtc_state, connector)) {
- 		drm_dbg_kms(display->drm,
- 			    "Selective update not enabled, SDP indication do not fit in hblank\n");
- 		goto unsupported;
+ 	/* Wa 14019834836 */
+ 	if (DISPLAY_VER(display) == 30)
+ 		intel_psr_apply_pr_link_on_su_wa(crtc_state);
 -- 
 2.43.0
 
