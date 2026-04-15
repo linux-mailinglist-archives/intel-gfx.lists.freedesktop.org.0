@@ -2,105 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qE4KLNId4GkGcwAAu9opvQ
+	id iKJoA9Ud4GkGcwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:22:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:23:01 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607AD408DFD
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:22:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AFEEE408E13
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:23:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E24BB10E786;
-	Wed, 15 Apr 2026 23:22:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0CFE010E7B6;
+	Wed, 15 Apr 2026 23:22:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="dy+HDyD8";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UltBrhCa";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="bPaBuvxP";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="I/+SvFNC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 879A210E786
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 23:22:54 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5BACD10E7AA
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 23:22:58 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63FFKWBY1565845
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 23:22:53 GMT
+ 63FFLNIl4053105
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 23:22:58 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-transfer-encoding:content-type:date:from:in-reply-to
  :message-id:mime-version:references:subject:to; s=qcppdkim1; bh=
- Vr30iwIqmebM7hvnEfidMs2EUAZWyrOGgpsLJ6GZ70Q=; b=dy+HDyD8rosMW30L
- FUNS2GM/lG+f/jTnHznm8IJHSBbRKc8RhizcSnMXCOajnDCwPJ/IKZK3lnQYIZiR
- 5VKDEhgK4DHJVakIozsfYZg7KlcCwAMoGQOmkhSGBjTFSmCtWANSVh5S2uR937Qs
- H0E459ajMWPkg3SVX2V0hyqHbN+cuo+/M2f7gOfIlX9gb4gOjGTiTivjV/7Yp08h
- F8AQkM8ppWipV88ZV6NJ/dxUwcEez1dQlF9I1+cOieWmHaPGJZj2fhGu6Ty/ESU1
- 0i2Ir6mBYMoWn4ekLksWwE/zbLXb7CbdULcLrzuFhEX1qItdysCZyXaSC8yRLZ6b
- MXl3cQ==
-Received: from mail-qk1-f200.google.com (mail-qk1-f200.google.com
- [209.85.222.200])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dj7wv2qt5-1
+ 1TlTaPnDMsSjHelLBIYtNHmZZl9OCynI6YeLwhyIsxc=; b=bPaBuvxP/CTH3RFI
+ DdDJB18yMTWJ5vbg2oW6dD6oPcLf8r3baGiH1RKX22NwrNJkhXudtwy2w14nHIQc
+ IW+xHLBl+PAblH0/sNsPEZUK3kZWi5Pa0jb/bWtjdPNX9DMi/5zOm7YbUXklHcp0
+ HczNEKwrvkLFURo9haQXFouBjQAq8h8/xqv7A+6cA7GX9GnnI1LL0tfqMvZrHe1A
+ wir+iwaHENGIdo4dJisSlMUiu4F0H+twDs35X1K4H5NrOHhejFXbuooaVoXVXdTh
+ +hjYzWVu1ocq7rUQIvj+O43EjHzj6Hslfljy3f/eYQuGCzyQnybAekIe/hwVP2QD
+ xkgxlw==
+Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
+ [209.85.219.70])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dj7s5tr10-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 23:22:53 +0000 (GMT)
-Received: by mail-qk1-f200.google.com with SMTP id
- af79cd13be357-8cfc1634e43so859732485a.0
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 16:22:53 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 23:22:57 +0000 (GMT)
+Received: by mail-qv1-f70.google.com with SMTP id
+ 6a1803df08f44-89502dfd7b4so111785036d6.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 16:22:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1776295373; x=1776900173;
+ d=oss.qualcomm.com; s=google; t=1776295377; x=1776900177;
  darn=lists.freedesktop.org; 
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=Vr30iwIqmebM7hvnEfidMs2EUAZWyrOGgpsLJ6GZ70Q=;
- b=UltBrhCaVzChWu80ErzS0sc5c9zyTY/8jy6RYo5MLz1mdj3NN/Jna3NYyqcmWJX5+R
- jqLqdqrYbEDCVcf8YL+abfi0/MgV9oGQB15Zw7oTMVDPoAvUWJDGrHLB/dQArTmMdJ4y
- Mh4lABsqaKz8Abl8kxog3SD0JwfN1pKoWGU9iRYyWMtYiCT1iOoTx2fU6ZHss7K5ySNY
- aiIXXol+hHm/7xz37jJh0P2uvbarwHx9sTn8GslGsfZN/NCj+v+gqOvJ/fVNEe4WsRWQ
- PQg+qba9if6pSRHWxW98IyBjR9RTeR8SB31TMqBXq47J3vZMpxcQ++2PwkGWNShWXgjL
- vO9A==
+ :reply-to; bh=1TlTaPnDMsSjHelLBIYtNHmZZl9OCynI6YeLwhyIsxc=;
+ b=I/+SvFNCDLlE5FdZYxdGfm1jn2vQKGrq/FOMewMQhQXLuqLVbEiWgtrwhumodN3sEf
+ JVNg/NRdwPT+nKoV9Kc52sL9/m3XZQOkxN3xqbFc2VGQvEzCVHziglnXi8Sr2CkU3alq
+ Plx7PnbvVTPLAS6uRWw6J/ojb79CuNHnkfL1B0EwRWNPvrjU84dC+8PAQpb0m3LtDGPK
+ cfiZmFyp6c2jYKwuKRVgC2moSTsAqLJzjAAcKDpA/7B9R62DS+Js5nPKWvKVx+Zk00rk
+ igMcXUFRqyOb2EWQ5HlK81fYNSxyp+UmukKLDfDTnRXj0aR9df3Guc9u7NddMnCeQnfn
+ W2Gg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776295373; x=1776900173;
+ d=1e100.net; s=20251104; t=1776295377; x=1776900177;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=Vr30iwIqmebM7hvnEfidMs2EUAZWyrOGgpsLJ6GZ70Q=;
- b=XfRvHCD7HfNZ87dxz4t3tNaYpZ9A0KfenSz7mv5XW8fOwN4buoW9E19Q1TLT+6RfGC
- y48yj1HHPNlupFgX6QJU+WYoum9vT0AzA0t8LOH/yQjDXM4ZhbgGTQ7mYrqnPopISe6E
- zMpCmp1BULQIR3uTHzy9WzB2UZDGkUhIZ5BuL/YxK6O+FTdOAt1ilxQ4PLbDXRCmTdUJ
- H5/NorM8mo5dSGWx32KQzcQ6KxkIfPmPEX/dplsKDWzSX6LfHDgbTu4zmjMn9i9R5QuI
- 5GDX+LMverfg3i5PuCpaRYqtFw7BxPwG8ePKNqPDDOupDwjN7r4zZkSpcmKQZhZBPAJO
- X1Bw==
+ bh=1TlTaPnDMsSjHelLBIYtNHmZZl9OCynI6YeLwhyIsxc=;
+ b=gNem1G7DEnoEKCAhvDn3w+xRd8hHu/2Gag1m9w72U5z7KJITPiDnM6dwvQol6F9weF
+ EY0GbDplktz3dYXvc7yUst++/uXjGNPMW/K6lZWMdowuTt3huaxEg0JkjC+reuNVO7cS
+ LKiWHaCe1zVaInsbzvlEXnjGPj3mIO6GubIrljYyhbKfXwNlYKxNK5v2nk7588FaQzpP
+ vXMfApyxJjzsXXDIOz48wbqJbqAAABCy+MX3mBzVhTebyHs+F1TIjvAnA7fGxPIiT2oP
+ ZuIf/yZUML2x+ubWmFX8ZpKUOMKokfMQ3UR9yV48I6HNfbwpR0FZ/o8TlPZvfHqn9wmA
+ g5tQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/Epjg6VgFhSt2kx0lHovUXe+CJL6RyccD0ZY/JeY/uRTO2ROMk10ruLE7H2zvCSXkv0RKqkmgEZwo=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxhK4wkGMOzNFMdNVJCfJQoQ9DCVUA6uTpXPAlAuuCmpI1auG5T
- oKY0zIU0udh0yT4T1j7QscKoC76XCxdaAMsM2hQ09Kie2iG6fwUVRBo+5g2GrKWIqhEg2dEVkQV
- XAk9dePu6SdP61c09cBlZ+XBPUuVTTT/X2eo0kTv3pMHNgV1Q1ZAdYwMqHeK8d8cY3LvEKcE=
-X-Gm-Gg: AeBDieulBbaNpo4d5S+YjCMEQGu4jTRAg3NKlQi9tGJGKyqTRv1RNoNw6QlnpsXn0tK
- yqmn0f2c5pb9G/tm8kpM3wKeAQ9RAly1LQq3Y2UvWqMdvO/mUPY2B91bLRRrWV3KGEutyU66zk4
- +G1aruXRU1EKr79rnp+WYrQ185TsgS3JeV2npX0A93+DIqxPOBhZJuz67aQ6pX/C1h9zY+fF/vo
- 6DJ6ziWKu4r76otNfvwub717cQFQ55n0StOobN7dskE1xCi0f32WkFrZ4m6lcJ9j68OmnBx2VNY
- RJbn1vFWhdxaX1wY4BwH69ejiJ73TcWd3fXy59RtED+izzXDBmPSV6DR7/jPjCWpRzBV0k5a4z9
- 8yZxq7I+6ZdY3RkTMi8Ouu+jy6gRvOKCvth6T9j+NE3bEU3UyQguxAcpfEoPUFKqNB6XTSvARPf
- 1YVx4sEU5WYUMSIUQq+io//sSIX9BCqfcD5p4mpQQs7Yy8FQ==
-X-Received: by 2002:ac8:588c:0:b0:50d:9e36:f961 with SMTP id
- d75a77b69052e-50dd5ad88b2mr362529691cf.20.1776295372979; 
- Wed, 15 Apr 2026 16:22:52 -0700 (PDT)
-X-Received: by 2002:ac8:588c:0:b0:50d:9e36:f961 with SMTP id
- d75a77b69052e-50dd5ad88b2mr362528991cf.20.1776295372491; 
- Wed, 15 Apr 2026 16:22:52 -0700 (PDT)
+ AFNElJ+4dYlWhOmDSjMVuyPBoiJqNfUXqPfy+qbuBS5wSOil0vwoV1v5NQTSiLD9PlDcbzFaAM/NZTlZ9Xo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxbsvP3azb7KldIA/SO07ZjqeizkbS81aEuz9uqo2LiQ3O+o9J5
+ 1ekbR/g8Irq9o5iX82b5geEvEwWwP2x7AZh0DZ403a7BtBs2aPqv23bQMEOCoFY/Ucr2s6ZDjMY
+ MgaZKQwOKxx2c2+viAxHrwrmAzGN+x35O70xlxpuUbr4uIDOwizTwCBF20lL9o7Erkl0jWK8=
+X-Gm-Gg: AeBDievxutXqOJwdNoM8WmPYCr45xZ3SZfBRnyMyeTidHx6SJlCT1QmofGiwW6PeV6I
+ JJH/RjkyRMaukkdyGpJq2t5iVND5wo6p4MvEstamFyYmS14o4/um0lKtImcyC+uUuGQNVIQURR5
+ O/YNf3CAYEEV+a0tqnVVhMFwA42/U6AA/uej1cldCaPoCQhf6s/pbROgJkaASLGsDnqlm82Gpo5
+ Rr5/jCi/WvCMO1RWKxnP6b+k5m3DUCfGWugeubUtgCOjz/GgIz6DxtIS0jjcuU9hPz9J7zlviNS
+ RmO85FdU9KIhCGTRgxyTmvnnHrzBstBOSNyGB8Pu+JYks5aNa1mhZa97JYjzKWQ4fJ1kzGRtnKC
+ c4IfpwlFkoEqbrG5tO0qjRbKE8QO/4OoOyEleUHFyMdOMHubaQ184mJDIQnh9HBhN2UkC7hf+i4
+ S6+/NwJurpAn/xYIpU7HOIHvwsnhJboA7onNgpqqS2Zfj/zw==
+X-Received: by 2002:a05:622a:13c9:b0:509:1590:f5b3 with SMTP id
+ d75a77b69052e-50dd5bcdc20mr342487921cf.35.1776295376962; 
+ Wed, 15 Apr 2026 16:22:56 -0700 (PDT)
+X-Received: by 2002:a05:622a:13c9:b0:509:1590:f5b3 with SMTP id
+ d75a77b69052e-50dd5bcdc20mr342487371cf.35.1776295376486; 
+ Wed, 15 Apr 2026 16:22:56 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a40a272852sm817054e87.10.2026.04.15.16.22.49
+ 2adb3069b0e04-5a40a272852sm817054e87.10.2026.04.15.16.22.52
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 15 Apr 2026 16:22:50 -0700 (PDT)
+ Wed, 15 Apr 2026 16:22:54 -0700 (PDT)
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Date: Thu, 16 Apr 2026 02:22:36 +0300
-Subject: [PATCH 5/6] soc: qcom: pmic-glink-altmode: pass down HPD_IRQ
- events
+Date: Thu, 16 Apr 2026 02:22:37 +0300
+Subject: [PATCH 6/6] usb: typec: ucsi: huawei-gaokun: pass down HPD_IRQ events
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260416-hpd-irq-events-v1-5-1ab1f1cfb2b2@oss.qualcomm.com>
+Message-Id: <20260416-hpd-irq-events-v1-6-1ab1f1cfb2b2@oss.qualcomm.com>
 References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
 In-Reply-To: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -136,39 +135,39 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
  freedreno@lists.freedesktop.org
 X-Mailer: b4 0.15.1
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1009;
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1136;
  i=dmitry.baryshkov@oss.qualcomm.com; h=from:subject:message-id;
- bh=DMjriJDCdMjopTDai5VHPDfHuDEfFaw+9gvGTyDPhTQ=;
- b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBp4B25RIprvup1/Ku4C5KowC01NBQ8O5kpPwx4h
- eobWONDt92JATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaeAduQAKCRCLPIo+Aiko
- 1QO1B/0SHnYn7panRBTo1IS+8Cr8do8q3/z8CG8T6fTAgUXlq7xy/zOnHoCF42M0ieXTyV7YQ/z
- cQnWdqx+Erjt/bwe0xRuejxplCDVdRnwoqJWlkTQa3RRpVC3Pv1J3HETUgH9dQxAe2InJ5RdKbp
- I2lxInSBYOdMD30sbJs2NfKL+tcRKO3hy5lap1+JKBCjWzIKj4juaEgZcxleBs1mdIhAWgzZGUD
- nLFhYljjrwhvhv6dvi+IXD9E5I1faQmchJFUq7tjgSod3CPzjUL4byQJIpqrpRZRYM4mlUzY81g
- 41iEJM/GZIAKEMqXIyPiU2UPMeuXPR6g4go3iwvPkEoI4Fmr
+ bh=SEN/GR0hrR1a9DBG9m1Xo1QGkgnSMHduOhSuiYVFnL8=;
+ b=owEBbQGS/pANAwAKAYs8ij4CKSjVAcsmYgBp4B269bBlbJtFKVMj9cfKSjxyfAMo/avZojzn9
+ 1S4hJysf3GJATMEAAEKAB0WIQRMcISVXLJjVvC4lX+LPIo+Aiko1QUCaeAdugAKCRCLPIo+Aiko
+ 1WirCACLulVg6ZpKOCltCebHzmh/eMf3t3bLRta2jkwQIXM8sIkvuLAXeTER8cd0ZDj5c+cGKqt
+ mUZIMEpnhLP5RxelE1DCRtytDCjOETI4dg6Pehe9ONh0k8ZP94zzn2aZZgG1tNW1iqFGdHkTLSX
+ +Q183rOGj4kJV8ubUk9o/0bRMn1QgmeITH9IJBYHAiKFDogK2LrgZigISt4W7j2RyjDn7rP6CMZ
+ 2eB2RZhtQHZG9yfT1RptN+ZXG68VayMJq7tV44jasBlZP0lR5KPlwE14F+15fCMJ6GRO4YmuwW+
+ PDBdXKXcOpw3cco8JkjI2YgI3hWMdCYFYFYelO5aQ09670Q6
 X-Developer-Key: i=dmitry.baryshkov@oss.qualcomm.com; a=openpgp;
  fpr=8F88381DD5C873E4AE487DA5199BF1243632046A
-X-Proofpoint-GUID: bQE3Xn1WqB4e5q3YWwJtUwqh5WDETQVy
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE1MDIxOSBTYWx0ZWRfX2f3Nx4dmXlY7
- YE4ezN+xqpO5qa6pOnvTAsMeID3281UYRyHa2m5f4+cuSJ8xL0DUIIGL3e3voXQq/m6he/QQcbO
- Eh5Izpo3JZHRJJ0bMBAuGqPh1Wo9KKHOW79zlwR2Xf/0hdy3yIxteRHO2Ut1IB0wW6N+IuhkXHO
- YXvJt7SLYZAUwtmxQBZoWlgsGpQAPMoSKB9opHQl3d7QKTiVhLM1GwtHDzRMYQOf+O4F7lJUH0l
- Lz/cqpWkZtzUy1kGJctCNTjFNYuIbEeGa0FYhyAsRh4Vl0Jt/esATpUMYQZJ6nDvYA3QVcfyfxd
- Q3olw7NaoD4IB2I79tIca5nxZPgC8VuQws6dYzZvY6CeNFJXPCTSca+GK/GMUo7jTAqr0BtpgTA
- AvS+9Wuk2eAFyml6Hi9ULkGeNySgANC/vghJSbfYuXAhILgHEkSZ9tsADpPO4Ma3ioaDSzJCz3Q
- gqqBPBJ21gmBcWl2HEA==
-X-Authority-Analysis: v=2.4 cv=GYgnWwXL c=1 sm=1 tr=0 ts=69e01dcd cx=c_pps
- a=hnmNkyzTK/kJ09Xio7VxxA==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
+X-Authority-Analysis: v=2.4 cv=A7Zc+aWG c=1 sm=1 tr=0 ts=69e01dd1 cx=c_pps
+ a=oc9J++0uMp73DTRD5QyR2A==:117 a=xqWC_Br6kY4A:10 a=IkcTkHD0fZMA:10
  a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=EUspDBNiAAAA:8
- a=5qjnEABnMYrc5H2CFY0A:9 a=QEXdDO2ut3YA:10 a=PEH46H7Ffwr30OY-TuGO:22
-X-Proofpoint-ORIG-GUID: bQE3Xn1WqB4e5q3YWwJtUwqh5WDETQVy
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8
+ a=QzDdqdBtNhq9Kz3vvWgA:9 a=QEXdDO2ut3YA:10 a=iYH6xdkBrDN1Jqds4HTS:22
+X-Proofpoint-ORIG-GUID: p9BIyOp0raTdbGrx7NnB3QXxUs7n0a2F
+X-Proofpoint-GUID: p9BIyOp0raTdbGrx7NnB3QXxUs7n0a2F
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDE1MDIxOSBTYWx0ZWRfXy774jfRMWmgK
+ Su7hefvqaEuqvtSWaAzSmtNR300J9S3iB+fm7nMRMV4hQThB7bII1jS+Flo9+1slEMB4v1+2JyH
+ Kcwly3IdN8+T/0tKtieJP884yWsSRz8pIDB++z5dAjeYDsVJQqC1q/vnw7tPSOMdxOMPYNnTFCq
+ PCdko5gnEcsM75P3YAPQ0Q+UMrr8uTZZBChhQTnX8JrO9AoWoiTp5OzY2wEHtKPdFpN8pdh2H8G
+ AsxHxcEVh5cQ5xhxCNAVGV2T0T5Lj9skfYixeY7BDmk/+OCz74+3qdIAgwEkPnb/3ZxzEf3W07J
+ Cc3k5eJ97WLr6aABW8sP89arcYxq3CHmAmSaefZmCGbDz/LgbcIddA3795+Us9ehKbBY1OYRpzx
+ ULdjJc8aC1clLyrfKIGs5y8rH9E+zKvep1zbocMPPgcxfpqyvS8nfGxP0//gDOcQ/oM9593ssZ+
+ SqgHZ1pCqxyfQiytLWw==
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-15_01,2026-04-13_04,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 phishscore=0 lowpriorityscore=0 malwarescore=0 spamscore=0
- clxscore=1015 priorityscore=1501 suspectscore=0 adultscore=0 bulkscore=0
+ malwarescore=0 spamscore=0 adultscore=0 bulkscore=0 priorityscore=1501
+ phishscore=0 impostorscore=0 lowpriorityscore=0 suspectscore=0 clxscore=1015
  classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
  reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604150219
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -215,11 +214,11 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:dkim,qualcomm.com:email]
-X-Rspamd-Queue-Id: 607AD408DFD
+X-Rspamd-Queue-Id: AFEEE408E13
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -228,24 +227,29 @@ the DisplayPort driver.
 
 Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 ---
- drivers/soc/qcom/pmic_glink_altmode.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/soc/qcom/pmic_glink_altmode.c b/drivers/soc/qcom/pmic_glink_altmode.c
-index 619bad2c27ee..618dce748316 100644
---- a/drivers/soc/qcom/pmic_glink_altmode.c
-+++ b/drivers/soc/qcom/pmic_glink_altmode.c
-@@ -373,7 +373,9 @@ static void pmic_glink_altmode_worker(struct work_struct *work)
- 		else
- 			conn_status = connector_status_disconnected;
+diff --git a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
+index ca749fde49bd..328ba92e1b44 100644
+--- a/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
++++ b/drivers/usb/typec/ucsi/ucsi_huawei_gaokun.c
+@@ -299,10 +299,11 @@ static void gaokun_ucsi_handle_altmode(struct gaokun_ucsi_port *port)
  
--		drm_aux_hpd_bridge_notify(&alt_port->bridge->dev, conn_status);
-+		drm_aux_hpd_bridge_notify_with_irq(&alt_port->bridge->dev,
-+						   conn_status,
-+						   alt_port->hpd_irq);
- 	} else if (alt_port->mux_ctrl == MUX_CTRL_STATE_TUNNELING) {
- 		if (alt_port->svid == USB_TYPEC_TBT_SID)
- 			pmic_glink_altmode_enable_tbt(altmode, alt_port);
+ 	/* UCSI callback .connector_status() have set orientation */
+ 	if (port->bridge)
+-		drm_aux_hpd_bridge_notify(&port->bridge->dev,
+-					  port->hpd_state ?
+-					  connector_status_connected :
+-					  connector_status_disconnected);
++		drm_aux_hpd_bridge_notify_with_irq(&port->bridge->dev,
++						   port->hpd_state ?
++						   connector_status_connected :
++						   connector_status_disconnected,
++						   port->hpd_irq);
+ 
+ 	gaokun_ec_ucsi_pan_ack(uec->ec, port->idx);
+ }
 
 -- 
 2.47.3
