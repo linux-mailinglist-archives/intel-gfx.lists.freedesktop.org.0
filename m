@@ -2,86 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kHCCLLi832mOYQAAu9opvQ
+	id +DhPKq+/32lOYgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:28:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:41:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD8DE4065FD
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F14344066F8
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:41:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 371F310E19F;
-	Wed, 15 Apr 2026 16:28:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B00B10E181;
+	Wed, 15 Apr 2026 16:41:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="gXW0X+XQ";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="bvH80gFC";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
- [209.85.218.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3B510E24C
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 16:28:36 +0000 (UTC)
-Received: by mail-ej1-f45.google.com with SMTP id
- a640c23a62f3a-b9c3e2cf3c0so1090903766b.1
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:28:36 -0700 (PDT)
+Received: from mail-ed1-f44.google.com (mail-ed1-f44.google.com
+ [209.85.208.44])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5D1B10E181
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 16:41:14 +0000 (UTC)
+Received: by mail-ed1-f44.google.com with SMTP id
+ 4fb4d7f45d1cf-6720c7968e4so3563435a12.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:41:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1776270515; x=1776875315;
+ d=linux-foundation.org; s=google; t=1776271273; x=1776876073;
  darn=lists.freedesktop.org; 
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=SVtPfhgGSMK7VhUt7eWOmIDqvBPOmQt89lyJEcl6ojk=;
- b=gXW0X+XQZj8Q2J8T/lAyJRzsi5tZ8Z4xIbOpaDoMoYK1sMBlR5pNlkfafj7uQkzuOu
- yMFVGmO+8ctOaJHzCtuPpiIpHpm+IIRV+t65PzmO77YHvnUyZLoI81gYvgf4fWGxN9Q1
- 6PIMbkvKwnuvNGJU2vrOz4TBio6gUKg31nL+g=
+ bh=y7Lb39tX80cyqh4EoAouwl4tDKxTNBcVjFCL5GxqOEY=;
+ b=bvH80gFCf86nt5AznWwy+DIdBcfzhuk+oj2xoDIqsQqJJexbZxcVpSezevXpy/oznU
+ yfesX3pydU1pkYQZJICp5b8etNcY7veqyKWhcrgo3ESVdpKMs0OZDyfyU2kexEkgaoPk
+ Zsbn6DjYSyOo2HVVRQUz3lXnLsw5uRgy9Tt6c=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776270515; x=1776875315;
+ d=1e100.net; s=20251104; t=1776271273; x=1776876073;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=SVtPfhgGSMK7VhUt7eWOmIDqvBPOmQt89lyJEcl6ojk=;
- b=fIhzE17MSYIleGNXx5bXKNbuU0yTyPzRdXDMSHik6ZJb6ynM5ck8DfZzbwPItaYRx/
- imVTS3CpvBMLHQGJcRP2XdhtYpbfsxPc2K/vkt9mmApG1uhF9ltFpgH8s/PyqFsfCME0
- VoA0C47PmUB5iyDadynUsZGdM1l+E974nf+yir6LUL4MKBB8XwdeRPpuMb6/ZHya51B/
- hg1PfbAZYSqeUk2iGCK9rIAF8enjdbziywrs8e7GUzu/s01dm5sO+6gqJmHK0clBJ2Bq
- S0XdJJXlFe3NsLs/d7FSBYpnBzfyB97ORmYuA2nC9TBWEfTOOfC2yaIE3NvRCZ2qFc+f
- TGVQ==
+ bh=y7Lb39tX80cyqh4EoAouwl4tDKxTNBcVjFCL5GxqOEY=;
+ b=bC9Uuupl6p32Zl1Gi0IFujFgdzgRU34/axCE1JQatzv+Wa19YTJYYpj27xpsBTNA0z
+ 8SMRgqFOJUmsIcci/mo4QdmLLhsPE1KjLJw9igavEjM0YwYxWnyjvRN/x/NUoGD1V51U
+ 0hsSDwHDbPMUtbwv6w2Ep+yifh9KQyNsL9YpwvJK+JaSpWJ+MryJ6/1cfjnxcCX89zrg
+ Fl6iI6/P42Ex0zC7SEyrfK/eb6GpGGIUrCButplp6h4nDNCEJSktc8ITeZrnQLggrnza
+ QMHL+vraLos+Yte17OReezWd5W0dctjDb9GcFuVXiKNeYGYM0Y0TiU+SooqStNXAUqxG
+ PEkA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+SYYq3eNSSnWJEFIVdEpqDVnRk0J5SIUb52P98lLHGOQ85ECpfH1cPCdB/6ToMoXMuovFV6xCR4Jw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyqJ1vOcw1AVZP3m8xu/118dwcseEzVAF7U6Bxn84VhCk8XPzGP
- BQ1Gvmja59sQTalavBj33fsoBjFxWdKMW52BFXgccb3f7rJlCayGy0S+1j92SgNaho7jgrNanvJ
- hg01eaOo=
-X-Gm-Gg: AeBDiesyep8WVuU2+rFDGozl8ytn1giWHEQ7BgA0O8ucQKRxki3jbxyQUggTbpqU2vf
- 1sW4QX/yg3j+81dsB/GFAXzb5kVrg4viQaOwEEdEgfIxwc7yY1y8zS/FHbJyMMKYZ/qR1oMMUOJ
- dImq1kk2SfyedK16Xf4PXtf5Tr08G0JqSB/iliiqqEqnciePilqI+M5rdYtTsNNEM2uu2pVQMsf
- zIeGuV9yEsTtoPEkGZZk9jZkWwuKLeKBz7GzQfggZGA6RIHBXBNpK5x7XhWb12ncvbv3FM+oQgQ
- +XUBaa8h++8nmo3SjMTd0Km/nlM1IKuQTbTZTD81IDwhk6lBZeqfgpZ0DWFgDlGGpXgd0urTB9Q
- ht5Wret394XlXUSgbBn5LFv5mEXIegJ4jgXyncosYUN/e69p1gUtz2ueqDMARS8Z4qZCJmpyWiR
- OzGoP+pcz2+7BKOdq4zBVFWrs0jiRC5uzX1p7NXmq2wWI02bdVpfPgJ3mybpv4fZIJ/QM/MfB3
-X-Received: by 2002:a17:906:fd86:b0:b9b:e935:147f with SMTP id
- a640c23a62f3a-b9d7260dccbmr1416605566b.14.1776270514753; 
- Wed, 15 Apr 2026 09:28:34 -0700 (PDT)
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com.
- [209.85.218.50]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-6723800e3b0sm563648a12.27.2026.04.15.09.28.32
+ AFNElJ8J6HOjayy4lPL/0gyoGahDcaNL2BbUENRlEtbCHjcQkrZuqiongDpstH5XfvPkx8mZnH0KQmotyYU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yzp54o6JAfBohzKfTrIkHcSsWfopZq0d8igUxoLXBRdP3QtI+OJ
+ 2nXWpb6Fwg5u5gpNmzeq+dbvmLS4Psdc98vDq1ctve9EdAM7gA1M+VCn7kt3BjHoptWYmfwoMo5
+ UObxhLQc=
+X-Gm-Gg: AeBDies22afJai7lAgmSH/kSjjDmF7iA2mLxVgAbnAsdrvW3dxHgsEvrsmc5DEFKRh5
+ 8fK5/4wnyntm5EWLjWpmS7RZ4V0ZoNtccgQHVvgHw7hNdhQW7Q6L1fIGM/6FC9SIGrsWYGBY7sr
+ awEE8lAwaJ0f/BCatv2CvZr02OG0OeQPgY/lZYMX0wvhypDJIDCU8Ch0V7xzJAKFav7Zqj6Hki8
+ XoGrNlhZBVMksOLw4TpFYydgn3XIWLtbEHH/B6kPAmJXJBYgy4Fcp7hPBVx6va8/xY7QBialXJe
+ blo0eqImAVbu6iTw0HqP4CubJYQcx+wrhjB74ztl0EE6qlY6niHc3AGtfExdCq7lDUGTYiwa7qx
+ wahASt92H25VwVG3ITROVFvUnA80iDYOP0YFNgtA11hZTmwCGXtTzA5ThKYbtqhdg8Qk/6YaKUk
+ jb+Mxw9vmEqeI9X7NhNQJX8pxDpdOBHDMH55UtuW5EIiR9xovVrLhvHWsx8qKjjCfsHNxXT3zg
+X-Received: by 2002:aa7:d1da:0:b0:671:d016:df0f with SMTP id
+ 4fb4d7f45d1cf-672711b1328mr110654a12.4.1776271273314; 
+ Wed, 15 Apr 2026 09:41:13 -0700 (PDT)
+Received: from mail-ed1-f46.google.com (mail-ed1-f46.google.com.
+ [209.85.208.46]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-6723800ecbesm580110a12.29.2026.04.15.09.41.13
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 15 Apr 2026 09:28:33 -0700 (PDT)
-Received: by mail-ej1-f50.google.com with SMTP id
- a640c23a62f3a-b97f9587e6eso979362866b.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:28:32 -0700 (PDT)
+ Wed, 15 Apr 2026 09:41:13 -0700 (PDT)
+Received: by mail-ed1-f46.google.com with SMTP id
+ 4fb4d7f45d1cf-66d65646c65so5148387a12.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:41:13 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AFNElJ9Ec22b6cfsfxWW5nRgfUroBeB4u+Dgw7oXcKGlKzRQ0qqmt0PWKS99bC96SfA2oyl17JXxMpUvZok=@lists.freedesktop.org
-X-Received: by 2002:a17:907:9801:b0:b9d:31c2:37f9 with SMTP id
- a640c23a62f3a-b9d724f01a5mr1184257666b.2.1776270512082; Wed, 15 Apr 2026
- 09:28:32 -0700 (PDT)
+ AFNElJ/ZniU1ErO+NhBdDBZYbGQNePXjyhN4lNewDXWBCQKTxd/Si5BkWM3KrbaKacUYFkw55ZltCiouVSI=@lists.freedesktop.org
+X-Received: by 2002:aa7:d88c:0:b0:66f:76c8:f747 with SMTP id
+ 4fb4d7f45d1cf-672711c49b4mr83740a12.6.1776271272830; Wed, 15 Apr 2026
+ 09:41:12 -0700 (PDT)
 MIME-Version: 1.0
 References: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
-In-Reply-To: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
+ <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
+In-Reply-To: <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Wed, 15 Apr 2026 09:28:15 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
-X-Gm-Features: AQROBzAwO_jXF6Cc0zC7gGmeVDHe5c1N_2hgiklfnxVR1DaUU6j-D3KNwiqGohU
-Message-ID: <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
+Date: Wed, 15 Apr 2026 09:40:55 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wjmTh4ESQE7ntR=ddF5JBToNerf4Dzt2zQQ2-Y3OEre-A@mail.gmail.com>
+X-Gm-Features: AQROBzAzrmt1r9Lcsx11hYqA7ZFPDheNDl4Usu75n-ImSxQhTSjJgoByqAuzn5w
+Message-ID: <CAHk-=wjmTh4ESQE7ntR=ddF5JBToNerf4Dzt2zQQ2-Y3OEre-A@mail.gmail.com>
 Subject: Re: [PULL] topic/pipe-reorder for drm-intel-next and possibly v7.1-rc1
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
@@ -143,23 +144,25 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: DD8DE4065FD
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux-foundation.org:dkim,linux-foundation.org:email,mail.gmail.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: F14344066F8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 15 Apr 2026 at 09:09, Jani Nikula <jani.nikula@intel.com> wrote:
+On Wed, 15 Apr 2026 at 09:28, Linus Torvalds
+<torvalds@linux-foundation.org> wrote:
 >
-> We're fully aware this is beyond feature deadlines for v7.1 and it
-> hasn't seen linux-next. But in the off-chance you might consider also
-> pulling this as a fix for v7.1 (and really, distros might want this to
-> be backported to stable) I'm sending this as a separate topic pull
-> request.
+> I guess I'll test it just to verify, but if this fixes that known
+> issue I'm all for getting this fixed sooner rather than later.
 
-Does this basically obviate the hack that I've been running for
-several months now for my dual 6k setup?
+Well, that was easy enough. I assume this was expected, but I can
+indeed verify that that branch works for me as a replacement for (two
+versions) of the local patch I have been running for the last six
+months or so.
 
-I guess I'll test it just to verify, but if this fixes that known
-issue I'm all for getting this fixed sooner rather than later.
+And maybe I'm the only person on the planet that runs this setup, but
+it gets an ack from me. So I'm ok with a late pull as a fix, but
+somebody who can better judge the risks for other setups should
+eventually make the judgement call.
 
-                 Linus
+                Linus
