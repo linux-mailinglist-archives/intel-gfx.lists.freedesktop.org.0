@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qDQnGoAj4GmbcwAAu9opvQ
+	id wBXyLXoj4GmbcwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:47:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:47:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C4A34090C9
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D54C4090BA
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:47:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7938410E7CF;
-	Wed, 15 Apr 2026 23:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2295410E7B9;
+	Wed, 15 Apr 2026 23:47:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="khoqJhRR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hau4rMk1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2635310E7B9;
- Wed, 15 Apr 2026 23:47:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5973F10E7B9;
+ Wed, 15 Apr 2026 23:47:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296823; x=1807832823;
+ t=1776296824; x=1807832824;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MF4WaqUkghChU8LQOZfsNvnFdTR5sxHLIOxGgv6wl08=;
- b=khoqJhRRTTdoFVr+/vMseBlZMy5kSzHTr6w2IUcb1vcRjI+aHx6NXNem
- KEUtH8+BE1mxc6RJLAl6QtoSfUWd6h77SK9l+fuusjz1L+u8oal4BwL9u
- 4U/gFteYWKfHFtJkCtc68hBZmwJEf9TsewkXKSlOGZRXmCPcv9hWpSEDS
- f1/py8w2ILHU1vqcGaLu/EcWIfZHAQbucLbsxvMW2SqxY1sG7YcIK+Bae
- VOP2P++XwgNJGZ6Mh/yNsjY3ZIZvrROylAgv/uLPa39lOREGlKEDYvA8/
- IhQcEdKMOP2WpYPRNu+AuVDydqG5cm+xxYlosUOcbyMpPSEw8O9RWsop1 Q==;
-X-CSE-ConnectionGUID: PhgIfq+vTa6aW0QLL5CDxQ==
-X-CSE-MsgGUID: bGVgyGpsR+6Pm2HSO9H3Vw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403491"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403491"
+ bh=cjR7kVsZq03LcaIxJb44jZNaM49ZjvnQc61QE+TfxhU=;
+ b=hau4rMk1gJ4I1Xr4hp8rOwpaeVwoUzryFUNDp5YlxH0oxo10GBzrwCUT
+ LoHL88z4ZwPWOZy9l60ialMifwXjNy1OgjwmN9qnP5VADcqZzOvdWlkGQ
+ 1sB6Zl7vjaXApcH0gIqH6FYYFBQKLKTTXXgF3wbQqu0zuOeSBq8QPQ6lx
+ cHd8IuTw7CuFqxkq1We8OiQjFQUDjsmBVIG/z42qR1SLSswV1TsiC0zV5
+ xAnvVEA5ldIV/utj0PoBsGkyUmg8KG3SyPLetZysU0dxzHRiWo8xfZyLg
+ +FPb7VrX/z6+t3SFCqWHfHJwvwNJ4BhQcHIDJRHanPOvGRVPB0wOJIAsN g==;
+X-CSE-ConnectionGUID: DS8CMQ40QkSFXoKPvXKkpw==
+X-CSE-MsgGUID: Os5yA9/qR/Kc14Xu4JgkoQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403493"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403493"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:03 -0700
-X-CSE-ConnectionGUID: gfUVwUK8RWmYwafSwLgsYA==
-X-CSE-MsgGUID: YjtJN+smQmadrKvrEvjkFQ==
+ 15 Apr 2026 16:47:04 -0700
+X-CSE-ConnectionGUID: AN51VWoBRt66ZNo8vPnZFA==
+X-CSE-MsgGUID: h32ou4pTQKC9Y8DM7VR91A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511148"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511154"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:02 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:03 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 07/32] drm/i915/bios: add buf_trans for each bios_encoder
-Date: Thu, 16 Apr 2026 01:46:14 +0200
-Message-ID: <20260415234639.3577774-8-michal.grzelak@intel.com>
+Subject: [PATCH v2 08/32] drm/i915/bios: de/allocate buf_trans for each port
+Date: Thu, 16 Apr 2026 01:46:15 +0200
+Message-ID: <20260415234639.3577774-9-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -100,61 +100,54 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 3C4A34090C9
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 8D54C4090BA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Every devdata needs a separate intel_ddi_buf_trans since each port can
-request an override. Add buffer's pointer into intel_bios_encoder_data.
+Allocate intel_ddi_buf_trans buffer per port if requested. Request is
+considered invalid if .use_vbt_vswing field is unset and VBT version is
+less than 218. Do not allocate buffer if not requested or request is
+invalid.
 
-Initialize the pointer to NULL when no VBT was provided.
+Deallocate buffer for each requesting port on driver removal.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 51d034d2ff77f..e0e6a8dfe2953 100644
+index e0e6a8dfe2953..345bfdf33a8e9 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -73,6 +73,7 @@
- struct intel_bios_encoder_data {
- 	struct intel_display *display;
+@@ -2659,7 +2659,15 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
  
-+	struct intel_ddi_buf_trans *buf_trans;
- 	struct child_device_config child;
- 	struct dsc_compression_parameters_entry *dsc;
- 	struct list_head node;
-@@ -2656,6 +2657,11 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
- 	}
- }
- 
-+static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
-+{
-+	devdata->buf_trans = NULL;
-+}
-+
- static bool
- intel_bios_encoder_supports_crt(const struct intel_bios_encoder_data *devdata)
+ static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
  {
-@@ -2847,6 +2853,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
- 	sanitize_dedicated_external(devdata, port);
- 	sanitize_device_type(devdata, port);
- 	sanitize_hdmi_level_shift(devdata, port);
-+	override_vswing_preemph(devdata);
++	struct intel_ddi_buf_trans *buf_trans;
++
+ 	devdata->buf_trans = NULL;
++
++	if (devdata->display->vbt.version < 218 || !devdata->child.use_vbt_vswing)
++		return;
++
++	buf_trans = kzalloc(sizeof(*buf_trans), GFP_KERNEL);
++	devdata->buf_trans = buf_trans;
  }
  
- static bool has_ddi_port_info(struct intel_display *display)
-@@ -3057,6 +3064,7 @@ init_vbt_missing_defaults(struct intel_display *display)
- 			break;
+ static bool
+@@ -3398,6 +3406,10 @@ void intel_bios_driver_remove(struct intel_display *display)
+ 				 node) {
+ 		list_del(&devdata->node);
+ 		kfree(devdata->dsc);
++
++		if (devdata->buf_trans)
++			kfree(devdata->buf_trans);
++
+ 		kfree(devdata);
+ 	}
  
- 		devdata->display = display;
-+		devdata->buf_trans = NULL;
- 		child = &devdata->child;
- 
- 		if (port == PORT_F)
 -- 
 2.45.2
 
