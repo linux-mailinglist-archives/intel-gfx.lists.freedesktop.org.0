@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ODmyCVX932ntbAAAu9opvQ
+	id UJwxLVf932ntbAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 23:04:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 23:04:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 09621407DF1
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 23:04:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C45D407DF9
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 23:04:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A27E110E1CB;
-	Wed, 15 Apr 2026 21:04:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E76BA10E755;
+	Wed, 15 Apr 2026 21:04:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MwYi0bXI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QNelsroR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4ED6010E066;
- Wed, 15 Apr 2026 21:04:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C07D010E758;
+ Wed, 15 Apr 2026 21:04:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776287056; x=1807823056;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=ftny5u1xa/gfZFm5MFJPzgv5h1UF96HVeS7MxK3aIZI=;
- b=MwYi0bXI/kMicaZrBU6WbbD5b2TaAe068iPfr4O3tiREB68zdlqw2cBG
- 77M0GkAqydPEkhChmm8RqamQUQ/Cxk+0+1r2OaduII5qmRRceA1CHsOMZ
- gFD+WVX8Ulz7eA/2hwTQq3Q/heEKUh34cB/v2l5Wn7DQlirdZzVGSow6B
- tH4C22LeYqC4teRmL+mqm7sX30igKUMYsl7oLBQxhHyt2CQ1F/Ll4sHVK
- m9G7mAATmCUnVwYVsSGIvwHK9LV/QEKDhsmUxUWf77oAvunUnMQDfBpAz
- jmf5cafCqKHLdVLYavhUEVl2gFSzX3RHmWtdSqgwOSA/KTstQHXIn0/0n g==;
-X-CSE-ConnectionGUID: 6y0XdCYfQhicS6VvecgYxg==
-X-CSE-MsgGUID: hbZlnKvTREeJY+Ea7KnbxA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="81158060"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="81158060"
+ t=1776287060; x=1807823060;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SfOJmDFmBqf6eFlgOr/J4Qg1nnKIVNhHmeBnEziUops=;
+ b=QNelsroREQF2dzeZSElfp4TfuAcui4pDUs1cXxxUmVmT6yYpWxO/qfMm
+ RFX3NJZAHbuexM/OZFkXicPvPOz3AqpaNsHEkcHixmZ/Ut2fSZc2NDnMc
+ IUSo5e9F1kgb1g1GRWU6C0TD+ksFjS6Bn8NXOPoiyInoHqr8xfQYZpScP
+ V+EEedBX77RyjTBjizmmjzeh1Rs1bkp51UNYXPNHTRZN4oyi+cWTf3Ke0
+ XGXXY2apjerbYscBN4VO10DZDS5y57LAlx3g+v7AE41SSCtvcxc2raP6d
+ 9nXEZggIv24zWiaV3Bry6nYlF4Qp0FlU6hqNxwc2vSHbY2fJOT1v9kMoW A==;
+X-CSE-ConnectionGUID: OB6FX7bfSA+ZAFKC9u93iw==
+X-CSE-MsgGUID: bZ9fCiDxTSa8V+6R6z1z3Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="81158070"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="81158070"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 14:04:16 -0700
-X-CSE-ConnectionGUID: DoUaezJZScOQq0P36QbRKg==
-X-CSE-MsgGUID: GTv1nKOOTSOeh02ma5huCQ==
+ 15 Apr 2026 14:04:20 -0700
+X-CSE-ConnectionGUID: 8cAZ1lm4ScOZG95t1jIbqw==
+X-CSE-MsgGUID: cMjTJwrGRlOEp9LN7q/tAQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="225830429"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="225830438"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.108])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 14:04:14 -0700
+ 15 Apr 2026 14:04:19 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: [PATCH v3 0/7] drm/i915/reset: Expose "display_reset_count" in debugfs
-Date: Thu, 16 Apr 2026 00:04:04 +0300
-Message-ID: <20260415210411.24750-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH v3 1/7] drm/i915: Clear i915->display when no longer valid
+Date: Thu, 16 Apr 2026 00:04:05 +0300
+Message-ID: <20260415210411.24750-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
+In-Reply-To: <20260415210411.24750-1-ville.syrjala@linux.intel.com>
+References: <20260415210411.24750-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -85,11 +87,11 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
@@ -100,55 +102,56 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DKIM_TRACE(0.00)[intel.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 09621407DF1
+X-Rspamd-Queue-Id: 8C45D407DF9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Expose a display reset count in debugfs. It will be used
-by kms_busy/*-with-reset tests to confirm they are actually
-testing the thing they are meant to test.
+Don't leave a stale i915->display pointer hanging around after
+the display driver has been torn down. Apparently the gt code
+calls into the reset codepaths after this, and if the display
+pointer is still around we may try to access freed memory.
 
-This should now pass on all platforms, after the last patch
-prevents the per-engine reset shortcut when using execlist
-submission.
-
-v2: Deal with the execlist per-engine reset issue
-v3: Deal with the stale i915->display floating around in the mock tests
+The whole teardown sequence here seems rather suspect. Why is
+display done first and then everything else via the managed
+release? Who the heck knows. Someone really needs to dig into
+this stuff and figure out the proper init/cleanup sequence for
+both i915 (real and mock) and xe...
 
 Cc: Jani Nikula <jani.nikula@intel.com>
 Cc: Jouni Högander <jouni.hogander@intel.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/i915_driver.c               | 1 +
+ drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 +
+ 2 files changed, 2 insertions(+)
 
-Ville Syrjälä (7):
-  drm/i915: Clear i915->display when no longer valid
-  drm/xe: Clear xe->display when no longer valid
-  drm/i915/reset: Reorganize display reset code
-  drm/i915/reset: Move pending_fb_pin handling to i915
-  drm/xe/display: Add init_clock_gating.h stubs
-  drm/i915/reset: Add "display_reset_count" debugfs file
-  drm/i915/reset: Disable execlist per-engine reset for display reset
-    tests
-
- .../gpu/drm/i915/display/intel_display_core.h |  5 ++-
- .../drm/i915/display/intel_display_debugfs.c  |  2 +
- .../drm/i915/display/intel_display_power.c    |  2 -
- .../drm/i915/display/intel_display_reset.c    | 40 +++++++++----------
- .../drm/i915/display/intel_display_reset.h    |  8 ++--
- drivers/gpu/drm/i915/display/intel_overlay.c  | 10 +----
- drivers/gpu/drm/i915/gt/intel_reset.c         | 35 +++++++++-------
- drivers/gpu/drm/i915/i915_dpt.c               |  5 +--
- drivers/gpu/drm/i915/i915_driver.c            |  1 +
- drivers/gpu/drm/i915/i915_drv.h               |  2 +
- drivers/gpu/drm/i915/i915_fb_pin.c            |  9 ++---
- drivers/gpu/drm/i915/i915_overlay.c           |  6 +++
- .../gpu/drm/i915/selftests/mock_gem_device.c  |  1 +
- drivers/gpu/drm/xe/Makefile                   |  1 +
- .../compat-i915-headers/intel_clock_gating.h  | 10 ++++-
- drivers/gpu/drm/xe/display/xe_display.c       | 13 +++---
- 16 files changed, 86 insertions(+), 64 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+index 195e34acef30..d31819758f3d 100644
+--- a/drivers/gpu/drm/i915/i915_driver.c
++++ b/drivers/gpu/drm/i915/i915_driver.c
+@@ -310,6 +310,7 @@ static void i915_driver_late_release(struct drm_i915_private *dev_priv)
+ 	i915_params_free(&dev_priv->params);
+ 
+ 	intel_display_device_remove(display);
++	dev_priv->display = NULL;
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+index 27dc0e40a8d7..796c9b070e41 100644
+--- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
++++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+@@ -277,6 +277,7 @@ void mock_destroy_device(struct drm_i915_private *i915)
+ 	struct device *dev = i915->drm.dev;
+ 
+ 	intel_display_device_remove(i915->display);
++	i915->display = NULL;
+ 
+ 	devres_release_group(dev, NULL);
+ 	put_device(dev);
 -- 
 2.52.0
 
