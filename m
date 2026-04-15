@@ -2,69 +2,87 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oEWPOhvk32n9ZwAAu9opvQ
+	id sI+gEOXh4GlhnAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 21:16:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 15:19:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64432407523
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 21:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E789040EAB6
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 15:19:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AFCFC10E75C;
-	Wed, 15 Apr 2026 19:16:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CD55D10E89B;
+	Thu, 16 Apr 2026 13:19:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GFjTEZc7";
+	dkim=pass (2048-bit key; unprotected) header.d=metarealtyinc-ca.20251104.gappssmtp.com header.i=@metarealtyinc-ca.20251104.gappssmtp.com header.b="NDk/fgZQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EA1B10E74D;
- Wed, 15 Apr 2026 19:16:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776280599; x=1807816599;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=u9Jk6XIJWWR1cJ56Q1L2GEys47wi/1PVK05xIE3RW7E=;
- b=GFjTEZc7ZCaeDI23BFBXa+L+OGvCteqTO6lYkWjX6DmDLBtuLVnfpeLo
- ZyXxXw9lO0avXUtGgSzt0CGL3I0EbZYPZ8O9m07Zt70KuczMgARUhptbC
- W+WOkh47SyE9k5UnjQyRB8+pB5CT+dDXKUN3rFkN0oqXUMNEvm3GRqcI8
- FKVU+RrL8rX/qMQ3gzsKKPd1LzeQkuWcyOGKvZsSNbRsyF49A063r5yuk
- U1f78DJ4UOn1aFqVdYhZbyYIQGFhxeXjYwNjwHlwNkRhQP2F1otoZZVxh
- cGtCn2zlpEXSgAmM9BhEtyCvxloKVBvvAzmXJ9kZcL4exUlNuvea6cdIA w==;
-X-CSE-ConnectionGUID: PFK+mSwCRUCZkaIyz3J3Hw==
-X-CSE-MsgGUID: Xygyorb3SLaWIiFqMLW6IQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="102735580"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102735580"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 12:16:39 -0700
-X-CSE-ConnectionGUID: XMFb1mE4T1+16wGKQTjYIg==
-X-CSE-MsgGUID: Zmenxb6jQPyuRTcRJoQQbw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="230359127"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.108])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 12:16:37 -0700
-Date: Wed, 15 Apr 2026 22:16:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jake S <j@metarealtyinc.ca>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
+ [209.85.222.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8EEB810E73B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 19:39:14 +0000 (UTC)
+Received: by mail-qk1-f170.google.com with SMTP id
+ af79cd13be357-8d68bcf50fdso818362785a.2
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 12:39:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=metarealtyinc-ca.20251104.gappssmtp.com; s=20251104; t=1776281953;
+ x=1776886753; darn=lists.freedesktop.org; 
+ h=date:references:in-reply-to:subject:cc:to:from
+ :content-transfer-encoding:mime-version:message-id:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=OBFBxNBSTTxIBo6jQ9Ed1NU8hv/XV5Shu7D1Vz0KsLg=;
+ b=NDk/fgZQB9mAcCJC5WWS7vMmBbDQz5K31xxK783WnHdGNS2hpyNzXdZOh6HpLHCeJG
+ EBWlLLT4MW2mdnVxe6SkLxi6END/Mvnsq2xITthwwTM5UzIy3P4RGafV68YiaQpzyDVC
+ 4hPThha0Ols1qpi38HINVuIxPbC/A3n2R5OckP/gSuYAlXYlHRrRCZ56uoB4fm5/rzqX
+ bS1DCTwnUy+2fICrv1rn1MNwBiw2hJuHJ44FIPaAAwWS9k/f/qh8ODPlkvqZNFVTxndG
+ 42eEoqwuPZF+ry7ud0JXwXL54TlKc1VTPyNQUDSPQIk+9+5n+CiU9l9K8lcwksxpDShm
+ oBYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776281953; x=1776886753;
+ h=date:references:in-reply-to:subject:cc:to:from
+ :content-transfer-encoding:mime-version:message-id:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=OBFBxNBSTTxIBo6jQ9Ed1NU8hv/XV5Shu7D1Vz0KsLg=;
+ b=jbbFjsTadlkf154AGK4Kgs/yV5cCD5fz+amTLW+f9VzM/FC0HCV6AAp7ujABzqYdTM
+ 6MYuWT/3AmYc6TKXDc5JHH7bQwU9jJSF2BPrJA2ZszpC1HMdqXFRLrnFJKHZEzw2T1fM
+ TYaIWlyhHpYiMRu5zHFZ7DaLRWMcn0/7hA1AEMZmc2wD9VHzJNiGM56HooLvAMc4erI7
+ 0CM+oYZTKxRPzdz/85M3SlJGRaEFh7sW0523MXaB6XxuNEzloK2nEl89VRHir5eKw2ns
+ ZUVwyHlde9V4EkqVWF5MMJCUBjpsU3WGkKp+/Ja+rX1VnTPClKqlAGVdyGrAgQA8xTz/
+ 8CLw==
+X-Gm-Message-State: AOJu0YwJRP+TK5p/uOLRVEkp8JBr/zqXvDbl9HCFr3TbJP+UKK1w3rV/
+ 5aHFN0Cogarwzf8YbwXEiG2sRsy/CC9CzOORVxk7R8W0rC/sCRep8neTXMDeZcfS0yQce2G2cyH
+ sgCZLSy46Y5/kbkIw9BS/ZrxakHG9VVPL+HW6bDjy8MtAYx/zw+gsoTzsPtWPst9gN8SUeUzAZi
+ cbRT/kNjfqi+XzqtcTsBQo0DBJnjxOHq5pddnUdGMaww6G6goL05OvaQI=
+X-Gm-Gg: AeBDietHthOzLcuKiyvDLm+aPfwfzqnP51Lg9cVhwZEB0o4+YBuvZEixLgKjHPE2qmv
+ qIU3ENKm7xLWtCoan57aQrgIZrylMwiF21YzTccz5dkUXQU/lqwJiHwuzz/8y9fjn5phPY0EmO7
+ q0OcieHG0AmVJqnQMArUJOsu1qtJb8yfovd6mkuWESOskwBlckITKWYYKZP4AF1O33uV0w/seqK
+ ejhQzp2pBzIyaFxZoklC7rrjNwC+Gm5wMumX1JehrlQ2O4NQf112AbcGGof+mK0rkDGnZ3VF4mA
+ afj0qyYzm5QFIG2PsuYzUsDRx3nCWc22QgfvBXr8UhREbTd6gSLXTGXi7c3WyuSJbNVYjGsZw+I
+ HJpeLn5GsaD31LA4IACIFjrzMth62D7I42oRSGNTDftIMthINbEJXcCoX69qdMLMX08qPI6snsj
+ 3Oklw0nuqyiGTucdxhyOIgmF85t1bDacEmrBTLkDMI2q/rE46qZ1agfAFg2UaJkhN0z0QWA+S5v
+ H13wg37I2nIRDmAFlrTvToCx7HXKXCd4cqs2PsKi0w=
+X-Received: by 2002:a05:622a:a192:b0:50d:efc1:841d with SMTP id
+ d75a77b69052e-50defc18f77mr209163071cf.23.1776281953156; 
+ Wed, 15 Apr 2026 12:39:13 -0700 (PDT)
+Received: from [127.0.1.1] ([2607:fea8:e5:500:8e39:827f:e928:9eb7])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8ae6cbbc1bdsm18245406d6.38.2026.04.15.12.39.12
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 15 Apr 2026 12:39:12 -0700 (PDT)
+Message-ID: <69dfe960.050a0220.1c3509.e29e@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: base64
+From: Jake S <j@metarealtyinc.ca>
+To: intel-gfx@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org, ville.syrjala@linux.intel.com
 Subject: Re: [PATCH 2/2] drm/i915/display: allow eDP VRR when EDID has
  adaptive sync range
-Message-ID: <ad_kEgDZiDIPy1Cs@intel.com>
+In-Reply-To: <20260415130626.10523-3-j@metarealtyinc.ca>
 References: <20260415130626.10523-1-j@metarealtyinc.ca>
  <20260415130626.10523-3-j@metarealtyinc.ca>
- <69dfe22f.050a0220.301b30.5755@mx.google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <69dfe22f.050a0220.301b30.5755@mx.google.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Date: Wed, 15 Apr 2026 19:39:11 +0000
+X-Mailman-Approved-At: Thu, 16 Apr 2026 13:19:24 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,77 +97,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.78 / 15.00];
-	R_MIXED_CHARSET(0.53)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.39 / 15.00];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[metarealtyinc-ca.20251104.gappssmtp.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
+	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[metarealtyinc.ca : SPF not aligned (relaxed), DKIM not aligned (relaxed),none];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[j@metarealtyinc.ca,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[metarealtyinc-ca.20251104.gappssmtp.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 64432407523
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mx.google.com:mid]
+X-Rspamd-Queue-Id: E789040EAB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, Apr 15, 2026 at 07:08:30PM +0000, Jake S wrote:
-> Hi Ville,
-> 
-> > AFAICS the Windows driver does respect that VBT bit. So we should too.
-> 
-> That's fair -- I don't have visibility into the Windows driver
-> internals so I can't say definitively whether it checks VBT or not.
-> 
-> What I can confirm is the end-user result: on this Dell XPS 2026
-> (Panther Lake), VRR 20-120Hz works on Windows but not on Linux with
-> the same firmware. The VBT does not contain a VRR flag for this panel
-> at all -- intel_vbt_decode shows no VRR-related fields in the child
-> device block.
-
-It's in the LFP power block (44).
-
-> 
-> So either Windows has a fallback path when VBT doesn't declare VRR,
-> or Dell's Intel DCH driver ships with a driver-side override.
-
-My cursory glance didn't spot any registry key stuff in there
-either. That I think is the usual "screw proper design and just
-hack it" approach for the Windows driver.
-
-> Either
-> way, the panel clearly supports VRR (the EDID's DisplayID extension
-> explicitly declares Adaptive Sync 20-120Hz), and it works in practice
-> on this hardware.
-> 
-> Framework laptop users have reported the same class of issue with
-> their BOE panels.
-> 
-> If respecting VBT is important (and I understand the reasoning --
-> OEM validation), would something like a quirk table or a module
-> parameter be an acceptable alternative? I'd rather have any path to
-> making this work than no path.
-
-One can always hack up the VBT and use the firmware loader
-to override it.
-
--- 
-Ville Syrjälä
-Intel
+SGkgVmlsbGUsCgo+IEl0J3MgaW4gdGhlIExGUCBwb3dlciBibG9jayAoNDQpLgoKWW91J3JlIHJp
+Z2h0IC0tIEkgY2hlY2tlZCBhbmQgaW50ZWxfdmJ0X2RlY29kZSBzaG93czoKCiAgQkRCIGJsb2Nr
+IDQ0IC0gTEZQIHBvd2VyIGNvbnNlcnZhdGlvbiBmZWF0dXJlcyBibG9jazoKICAgIFZhcmlhYmxl
+IFJlZnJlc2ggUmF0ZSAoVlJSKTogeWVzCgpBbmQgbG9va2luZyBhdCB0aGUgY29kZSwgcGFuZWwt
+PnZidC52cnIgZGVmYXVsdHMgdG8gdHJ1ZSBhdCBsaW5lCjEzNzAgb2YgaW50ZWxfYmlvcy5jIGFu
+eXdheS4gU28gdGhlIFZCVCBnYXRlIHdhcyBuZXZlciB0aGUgcHJvYmxlbS4KClRoZSBhY3R1YWwg
+aXNzdWUgaXMgdGhlIGZpbmFsIGNoZWNrIGluIGludGVsX3Zycl9pc19jYXBhYmxlKCk6CgogIHJl
+dHVybiBpbmZvLT5tb25pdG9yX3JhbmdlLm1heF92ZnJlcSAtIG1pbl92ZnJlcSA+IDEwOwoKbW9u
+aXRvcl9yYW5nZSBpcyAwLzAgYmVjYXVzZSB0aGlzIHBhbmVsJ3MgRURJRCBoYXMgbm8gYmFzZSBi
+bG9jawpSYW5nZSBMaW1pdHMgZGVzY3JpcHRvciAodGFnIDB4RkQpLiBUaGUgVlJSIHJhbmdlIGlz
+IG9ubHkgaW4gdGhlCkRpc3BsYXlJRCB2Mi4wIEFkYXB0aXZlIFN5bmMgYmxvY2sgKHRhZyAweDJC
+KSwgd2hpY2ggZHJtX2VkaWQuYwpkb2Vzbid0IHBhcnNlIGludG8gbW9uaXRvcl9yYW5nZS4KClNv
+IHBhdGNoIDIvMiAodGhlIFZCVCByZWxheGF0aW9uKSBpcyB1bm5lY2Vzc2FyeSBhbmQgSSdsbCBk
+cm9wIGl0LgpPbmx5IHBhdGNoIDEvMiAocGFyc2luZyBEaXNwbGF5SUQgdGFnIDB4MkIgaW50byBt
+b25pdG9yX3JhbmdlKSBpcwpuZWVkZWQuIEknbGwgc2VuZCBhIHYyIHdpdGgganVzdCB0aGF0IHBh
+dGNoLgoKU29ycnkgZm9yIHRoZSBub2lzZSBvbiB0aGUgVkJUIGZyb250IC0tIHNob3VsZCBoYXZl
+IHRyYWNlZCB0aGUKYWN0dWFsIGZhaWx1cmUgcGF0aCBtb3JlIGNhcmVmdWxseSBiZWZvcmUgYXNz
+dW1pbmcuCgpUaGFua3MsCkpha2UK
