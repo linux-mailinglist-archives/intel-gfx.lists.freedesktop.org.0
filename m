@@ -2,72 +2,102 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AF9WMSG432mOYQAAu9opvQ
+	id kHCCLLi832mOYQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:09:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:28:40 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1EB4440645D
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD8DE4065FD
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 18:28:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E0ED10E720;
-	Wed, 15 Apr 2026 16:09:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 371F310E19F;
+	Wed, 15 Apr 2026 16:28:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nq2kLLq2";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="gXW0X+XQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 567D810E71A;
- Wed, 15 Apr 2026 16:09:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776269342; x=1807805342;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=nLwFGIpECw5N/7X1jKnfzsIFlSWwzdHUOHXcP6UrVKQ=;
- b=Nq2kLLq2Cn8FzYZRsR3EmInuleRRh5tO6+9yft78NtR7gLEm+gj36bSO
- ywcU52NJudOYJs1Mp7sF+eYa78raRhCmB3gh44zFu19ElWPZGND9p/nMe
- 82flcrnQO2vfyFc+nelQmAICBWcHQ9no738wXxg0oNdx5Hs5ykcAwjjul
- LBgrzA7OA3fWxtgtKtEWZrDv4MEj878ylTZPT0VHvZDRLXlvaCUCETIxD
- tmtkM6xuFJ+Q9GZuU1tRbKY13SUfXWZFZL1vhR14YZwpbRoZqId78vMLY
- e6EOBSve9ivQH4o9XS7qtAk/eXyi2S0zvis7JaI6UWIRST6/6LOMHpM8I g==;
-X-CSE-ConnectionGUID: 5uNBrqUBT2+XljDLZ4aKUA==
-X-CSE-MsgGUID: cI4JEiwsRMmmaKoyEMl1ZQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="99896223"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="99896223"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 09:09:02 -0700
-X-CSE-ConnectionGUID: CbELCx2hQq6n0ZIAN6Cgzw==
-X-CSE-MsgGUID: JlXYWHeMQZWpawPoXYihgg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="253880350"
-Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.246.25])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 09:08:56 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- Linus Torvalds <torvalds@linux-foundation.org>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>, Thomas =?utf-8?Q?Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Oded Gabbay <ogabbay@kernel.org>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org, Ville
- Syrjala <ville.syrjala@linux.intel.com>
-Subject: [PULL] topic/pipe-reorder for drm-intel-next and possibly v7.1-rc1
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Date: Wed, 15 Apr 2026 19:08:52 +0300
-Message-ID: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
+Received: from mail-ej1-f45.google.com (mail-ej1-f45.google.com
+ [209.85.218.45])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F3B510E24C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 16:28:36 +0000 (UTC)
+Received: by mail-ej1-f45.google.com with SMTP id
+ a640c23a62f3a-b9c3e2cf3c0so1090903766b.1
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:28:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=linux-foundation.org; s=google; t=1776270515; x=1776875315;
+ darn=lists.freedesktop.org; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=SVtPfhgGSMK7VhUt7eWOmIDqvBPOmQt89lyJEcl6ojk=;
+ b=gXW0X+XQZj8Q2J8T/lAyJRzsi5tZ8Z4xIbOpaDoMoYK1sMBlR5pNlkfafj7uQkzuOu
+ yMFVGmO+8ctOaJHzCtuPpiIpHpm+IIRV+t65PzmO77YHvnUyZLoI81gYvgf4fWGxN9Q1
+ 6PIMbkvKwnuvNGJU2vrOz4TBio6gUKg31nL+g=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776270515; x=1776875315;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=SVtPfhgGSMK7VhUt7eWOmIDqvBPOmQt89lyJEcl6ojk=;
+ b=fIhzE17MSYIleGNXx5bXKNbuU0yTyPzRdXDMSHik6ZJb6ynM5ck8DfZzbwPItaYRx/
+ imVTS3CpvBMLHQGJcRP2XdhtYpbfsxPc2K/vkt9mmApG1uhF9ltFpgH8s/PyqFsfCME0
+ VoA0C47PmUB5iyDadynUsZGdM1l+E974nf+yir6LUL4MKBB8XwdeRPpuMb6/ZHya51B/
+ hg1PfbAZYSqeUk2iGCK9rIAF8enjdbziywrs8e7GUzu/s01dm5sO+6gqJmHK0clBJ2Bq
+ S0XdJJXlFe3NsLs/d7FSBYpnBzfyB97ORmYuA2nC9TBWEfTOOfC2yaIE3NvRCZ2qFc+f
+ TGVQ==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+SYYq3eNSSnWJEFIVdEpqDVnRk0J5SIUb52P98lLHGOQ85ECpfH1cPCdB/6ToMoXMuovFV6xCR4Jw=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyqJ1vOcw1AVZP3m8xu/118dwcseEzVAF7U6Bxn84VhCk8XPzGP
+ BQ1Gvmja59sQTalavBj33fsoBjFxWdKMW52BFXgccb3f7rJlCayGy0S+1j92SgNaho7jgrNanvJ
+ hg01eaOo=
+X-Gm-Gg: AeBDiesyep8WVuU2+rFDGozl8ytn1giWHEQ7BgA0O8ucQKRxki3jbxyQUggTbpqU2vf
+ 1sW4QX/yg3j+81dsB/GFAXzb5kVrg4viQaOwEEdEgfIxwc7yY1y8zS/FHbJyMMKYZ/qR1oMMUOJ
+ dImq1kk2SfyedK16Xf4PXtf5Tr08G0JqSB/iliiqqEqnciePilqI+M5rdYtTsNNEM2uu2pVQMsf
+ zIeGuV9yEsTtoPEkGZZk9jZkWwuKLeKBz7GzQfggZGA6RIHBXBNpK5x7XhWb12ncvbv3FM+oQgQ
+ +XUBaa8h++8nmo3SjMTd0Km/nlM1IKuQTbTZTD81IDwhk6lBZeqfgpZ0DWFgDlGGpXgd0urTB9Q
+ ht5Wret394XlXUSgbBn5LFv5mEXIegJ4jgXyncosYUN/e69p1gUtz2ueqDMARS8Z4qZCJmpyWiR
+ OzGoP+pcz2+7BKOdq4zBVFWrs0jiRC5uzX1p7NXmq2wWI02bdVpfPgJ3mybpv4fZIJ/QM/MfB3
+X-Received: by 2002:a17:906:fd86:b0:b9b:e935:147f with SMTP id
+ a640c23a62f3a-b9d7260dccbmr1416605566b.14.1776270514753; 
+ Wed, 15 Apr 2026 09:28:34 -0700 (PDT)
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com.
+ [209.85.218.50]) by smtp.gmail.com with ESMTPSA id
+ 4fb4d7f45d1cf-6723800e3b0sm563648a12.27.2026.04.15.09.28.32
+ for <intel-gfx@lists.freedesktop.org>
+ (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+ Wed, 15 Apr 2026 09:28:33 -0700 (PDT)
+Received: by mail-ej1-f50.google.com with SMTP id
+ a640c23a62f3a-b97f9587e6eso979362866b.3
+ for <intel-gfx@lists.freedesktop.org>; Wed, 15 Apr 2026 09:28:32 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9Ec22b6cfsfxWW5nRgfUroBeB4u+Dgw7oXcKGlKzRQ0qqmt0PWKS99bC96SfA2oyl17JXxMpUvZok=@lists.freedesktop.org
+X-Received: by 2002:a17:907:9801:b0:b9d:31c2:37f9 with SMTP id
+ a640c23a62f3a-b9d724f01a5mr1184257666b.2.1776270512082; Wed, 15 Apr 2026
+ 09:28:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+References: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
+In-Reply-To: <d69501d53c233386d70ed10290af24aafebf434f@intel.com>
+From: Linus Torvalds <torvalds@linux-foundation.org>
+Date: Wed, 15 Apr 2026 09:28:15 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
+X-Gm-Features: AQROBzAwO_jXF6Cc0zC7gGmeVDHe5c1N_2hgiklfnxVR1DaUU6j-D3KNwiqGohU
+Message-ID: <CAHk-=wiAGevirr3=xC=u5_kN+m63JtjqA0C9NJLrd5PGrM0suw@mail.gmail.com>
+Subject: Re: [PULL] topic/pipe-reorder for drm-intel-next and possibly v7.1-rc1
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Matthew Brost <matthew.brost@intel.com>, 
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, 
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ dim-tools@lists.freedesktop.org, 
+ Ville Syrjala <ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,105 +112,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch,linux-foundation.org];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[linux-foundation.org];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@intel.com,m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
+	FREEMAIL_CC(0.00)[gmail.com,ffwll.ch,linux.intel.com,ursulin.net,intel.com,suse.de,kernel.org,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux-foundation.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
-X-Rspamd-Queue-Id: 1EB4440645D
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[torvalds@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: DD8DE4065FD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Wed, 15 Apr 2026 at 09:09, Jani Nikula <jani.nikula@intel.com> wrote:
+>
+> We're fully aware this is beyond feature deadlines for v7.1 and it
+> hasn't seen linux-next. But in the off-chance you might consider also
+> pulling this as a fix for v7.1 (and really, distros might want this to
+> be backported to stable) I'm sending this as a separate topic pull
+> request.
 
-Hi Dave & Linus -
+Does this basically obviate the hack that I've been running for
+several months now for my dual 6k setup?
 
-This is a topic pull request for changing the pipe allocation order for
-discrete platforms from the usual A,B,C,D to A,C,B,D. The goal is to
-help pipe joiner configurations that reserve the adjacent pipe as the
-secondary pipe without the user space knowing. More details in the
-relevant commit message. The CRTC iteration is also changed to remain in
-pipe order.
+I guess I'll test it just to verify, but if this fixes that known
+issue I'm all for getting this fixed sooner rather than later.
 
-This has been a long time in the making, primarily because IGT basically
-assumed CRTC index =3D=3D pipe, and it took hundreds of commits from Ville
-and me over several months to untangle it, and actually get CI results.
-
-I'm going to merge this to drm-intel-next soon, and at this point in
-time it would normally target v7.2.
-
-We're fully aware this is beyond feature deadlines for v7.1 and it
-hasn't seen linux-next. But in the off-chance you might consider also
-pulling this as a fix for v7.1 (and really, distros might want this to
-be backported to stable) I'm sending this as a separate topic pull
-request.
-
-I'm leaving it to your discretion.
-
-BR,
-Jani.
-
-
-topic/pipe-reorder-2026-04-15:
-drm/i915/display: change pipe allocation order for discrete platforms
-
-
-The following changes since commit 4516432284e1b2ad9e70de8067f779c9c1072189:
-
-  ttm/pool: track allocated_pages per numa node. (2026-04-08 06:52:48 +1000)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/topic/pipe-reorde=
-r-2026-04-15
-
-for you to fetch changes up to 2c683e9b419328da3433a49f7c467da71aaf0469:
-
-  drm/i915/display: change pipe allocation order for discrete platforms (20=
-26-04-15 13:30:26 +0300)
-
-----------------------------------------------------------------
-drm/i915/display: change pipe allocation order for discrete platforms
-
-----------------------------------------------------------------
-Jani Nikula (1):
-      drm/i915/display: change pipe allocation order for discrete platforms
-
-Ville Syrj=C3=A4l=C3=A4 (2):
-      drm/i915/joiner: Make joiner "nomodeset" state copy independent of pi=
-pe order
-      drm/i915: Walk crtcs in pipe order
-
- drivers/gpu/drm/i915/display/intel_crtc.c          | 49 +++++++++++-
- drivers/gpu/drm/i915/display/intel_display.c       | 20 ++---
- drivers/gpu/drm/i915/display/intel_display.h       | 90 +++++++++---------=
-----
- drivers/gpu/drm/i915/display/intel_display_core.h  |  3 +
- .../gpu/drm/i915/display/intel_display_driver.c    |  1 +
- drivers/gpu/drm/i915/display/intel_display_types.h |  1 +
- drivers/gpu/drm/xe/display/xe_display.c            |  1 +
- 7 files changed, 95 insertions(+), 70 deletions(-)
-
---=20
-Jani Nikula, Intel
+                 Linus
