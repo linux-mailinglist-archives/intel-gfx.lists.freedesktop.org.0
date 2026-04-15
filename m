@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QMqLLY8j4GmbcwAAu9opvQ
+	id SIsvL48j4GmtcwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:47:27 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 522084090FE
+	by mail.lfdr.de (Postfix) with ESMTPS id 920F54090FF
 	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 01:47:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB33510E7E0;
-	Wed, 15 Apr 2026 23:47:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0301D10E7E4;
+	Wed, 15 Apr 2026 23:47:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SANn0YmF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="I6SkTASF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28E3310E7DD;
- Wed, 15 Apr 2026 23:47:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D5E410E7DD;
+ Wed, 15 Apr 2026 23:47:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776296841; x=1807832841;
+ t=1776296842; x=1807832842;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cL1bpC/sR6ckVwJC5m/QCCH4kUySz8Nl6TVfSHcLt24=;
- b=SANn0YmFpIj8m/GAENFC/oTGJceFn1yY8kOiKwgjQxY5yt8o26g8G/UU
- +yjCS0CgZcsV4AylleZTqT0Yr7+eX/zlXWGOP3K+GmwTGyiwiS+jux4md
- v9k8UHKFGKKaL6c52PP6VGmIEJoNSvb/sgY8n1lWb2n9OuGDqxMV2j4k5
- O4MUg2Byj3maCmUQl8/gF57ftaobzZWmTOL9XgxFcbYXDuDrEppgN7FXY
- t/brgatd1cuyDVH8/Y/Ydok7IJQQWYE7zEztIGr3+NhtjW8+PhVYwPx+3
- S+OYyFunHQ1YuM2vvvC03AaAynu4tqhIjzFINLF++m6tZvASUa0jL4fae w==;
-X-CSE-ConnectionGUID: 3XLrZXc7R7W+iZ/4P7kkww==
-X-CSE-MsgGUID: 6vxtBXLYR0ydxeaihsnpWQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403514"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403514"
+ bh=ClW6fQSRcqmWO3BMkQ4KtvoUupieEMsHZ/QTLBX7moA=;
+ b=I6SkTASF8BzuPCzV7sSVcDFpQjPz+qO/vDsCjnO97ZpdyJK04tC2Q/Z7
+ qrvB4NSt9xJeybxq7XKi0Jrd2rrNnbrj2o8Z7LJw4u8c2h4niZ0c/Larz
+ Ni78WbHZnnl8BBB1ZPzaqvJM1SQpogDEEXKFJ8bFjy5oiWG8fW9yjAvBm
+ vNpCMxZUz1I+APBkBz5GgD9PP5au5pCwNA8Cv+fe15DH3SXKQfd6XE7TE
+ m1vqqVDtJXo6N5IrREW8in4VEq5mubNAuNe/h+Rfpbn/kasnH0QbOoDVK
+ tozPrvQi24YKrii3HKOxMlXLyDQE/QG1twRRc0vplqtFB4mlbg/yl++xF w==;
+X-CSE-ConnectionGUID: iDnCJvaARUO65QdAAXo7OA==
+X-CSE-MsgGUID: Nc0C/xEXSg2VCltES75bfQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77403515"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77403515"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 16:47:21 -0700
-X-CSE-ConnectionGUID: 7BUlxkSFQPyLaasY1pyMoQ==
-X-CSE-MsgGUID: zOgQT7+iRZOduQfFC/+l4Q==
+ 15 Apr 2026 16:47:22 -0700
+X-CSE-ConnectionGUID: ng6iKvoDQemNeO8kjBeAFQ==
+X-CSE-MsgGUID: qUf0Y9RsSf+d6xhv5/cKOg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511214"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="235511217"
 Received: from administrator-system-product-name.igk.intel.com (HELO
  dev-417.igk.intel.com) ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:20 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 15 Apr 2026 16:47:21 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v2 21/32] drm/i915/bios: shrink all Snps's VS/PE tables
-Date: Thu, 16 Apr 2026 01:46:28 +0200
-Message-ID: <20260415234639.3577774-22-michal.grzelak@intel.com>
+Subject: [PATCH v2 22/32] drm/i915/buf_trans: compute C20's VS/PE-O index
+Date: Thu, 16 Apr 2026 01:46:29 +0200
+Message-ID: <20260415234639.3577774-23-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
 References: <20260415234639.3577774-1-michal.grzelak@intel.com>
@@ -100,60 +100,63 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 522084090FE
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 920F54090FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Each value present in Snps's VS/PE-O table is stored on u32. In order to
-match values' size this causes dg2_snps_phy_buf_trans to increase it's
-size.
+Compute the most appropriate VS/PE-O index for C20 basing on highest
+available DP mode.
 
-Nevertheless, the actual value from each Snps's VS/PE-O table is fully
-encoded in the lowest byte. Extract the lowest byte by casting to u8 and
-using it as deparsed value. This way there is no need to inflate default
-tables.
+Use 6th table if encoder supports DP 2.0 or higher. Otherwise use 5th
+table for DP.
+
+Warn if encoder does not support DP. In that case fallback to using
+default VS/PE tables.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c          | 6 +++---
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h | 6 +++---
- 2 files changed, 6 insertions(+), 6 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 9380b4a13fdea..f9cf21833b167 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2202,9 +2202,9 @@ parse_vswing_preemph_snps(union intel_ddi_buf_trans_entry **bufs_mtrx,
- 			vals = &tables[offset];
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index c344680d5b93e..ff2ae498a616b 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1786,6 +1786,23 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
+ }
  
- 			entry = &bufs_mtrx[idx][row];
--			entry->snps.vswing = vals[0];
--			entry->snps.pre_cursor = vals[1];
--			entry->snps.post_cursor = vals[2];
-+			entry->snps.vswing = (u8) vals[0];
-+			entry->snps.pre_cursor = (u8) vals[1];
-+			entry->snps.post_cursor = (u8) vals[2];
++static int
++snps_c20_compute_index(const struct intel_crtc_state *crtc_state)
++{
++	if (intel_crtc_has_dp_encoder(crtc_state)) {
++		if (intel_dp_is_uhbr(crtc_state))
++			return 5;
++		else
++			return 4;
++	}
++
++	drm_WARN(to_intel_display(crtc_state)->drm, 1,
++		 "non-DP (%d) encoder asks to compute VS/PE-O index\n",
++		 crtc_state->output_types);
++
++	return -1;
++}
++
+ static enum lt_vspeo_index
+ lt_compute_index(const struct intel_crtc_state *crtc_state)
+ {
+@@ -1811,6 +1828,9 @@ vspeo_compute_index(struct intel_encoder *encoder,
  
- 			offset += block->num_columns;
- 		}
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index 1b48d66189ede..30fafeeaf62f2 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -45,9 +45,9 @@ struct tgl_dkl_phy_ddi_buf_trans {
- };
+ 	if (HAS_LT_PHY(display)) {
+ 		return lt_compute_index(crtc_state);
++	} else if (DISPLAY_VER(display) >= 14) {
++		if (!intel_encoder_is_c10phy(encoder))
++			return snps_c20_compute_index(crtc_state);
+ 	}
  
- struct dg2_snps_phy_buf_trans {
--	u32 vswing;
--	u32 pre_cursor;
--	u32 post_cursor;
-+	u8 vswing;
-+	u8 pre_cursor;
-+	u8 post_cursor;
- };
- 
- struct xe3plpd_lt_phy_buf_trans {
+ 	drm_dbg_kms(display->drm, "VS/PE-O unsupported, using default VS/PE tables");
 -- 
 2.45.2
 
