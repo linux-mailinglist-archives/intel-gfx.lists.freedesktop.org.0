@@ -2,59 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eNZbFMwk32lcPQAAu9opvQ
+	id mDNWH80k32lcPQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B2B99400834
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 33567400843
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 07:40:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4342310E05A;
-	Wed, 15 Apr 2026 05:40:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3D53510E674;
+	Wed, 15 Apr 2026 05:40:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="k/Ihi+OP";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kUtSTe3P";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9370210E05A;
- Wed, 15 Apr 2026 05:40:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2BA110E05A;
+ Wed, 15 Apr 2026 05:40:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776231624; x=1807767624;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=+2W6lPWhHIYu48Bo+L4CqsG6/1wXuPKqFNaXw3LviqM=;
- b=k/Ihi+OP4/kDbtNXs188hpVnZJxR8bhzHs0fl5p38x++HYJWmQMyafIv
- ioPRNKLUMVSbWI4wnVZHpqZCIrCBB11qYzWZoZO3OR/h5roiqobFOo+bZ
- vbn/jJz64VPr3g55FsIYPOb+y/bSP0/nBvby16wN26F70lNmtMLZYC1da
- HluHBbL21JXClSsHD5/cVN7yk3DWhxIS0UCYh6jdhCDw3gn3S4OSacpZD
- 2OQH7VtBCSGdcl5lVrbX0PeTJYBLdDbSoR78QcjzJmZw27/7OastqF19R
- n/SwdlA4vSQE9HEiX+5ZOHrQmk+CcGqdX0Cd/ETc5I5czr9gHEdOq5aq1 Q==;
-X-CSE-ConnectionGUID: 75xJf8sOTp+NccGOxTaABg==
-X-CSE-MsgGUID: /1WX3rYlQ4WuHdbf0FUeLg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657057"
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657057"
+ t=1776231625; x=1807767625;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=5E8kg95mMpogJ7RYneQr/UZ/qVL+Hb4NFSZCXZ4JCJ0=;
+ b=kUtSTe3PKUtNYF/fH0hxuiDeKICRgJmq/duz3SithVtX2p7UNVne+GVT
+ sjWh11ALNXpjdY0foFRHL0kBxjR4HjnIvbmsf/pSRIiQQ1jD3Bg3AISvz
+ bZV5+6j77wbbNCsNqwPJDSboCpEcfmiJTo7UCoaIrMS3M6LkFJZ63sVuC
+ 4Ol5eQzFbOidYhW0JRHzZL+LfV5yHq5P82NAy6rCICL/L6Rlj0G2qRKOH
+ qKS6+aFuNGoYYaBFEm0xdIZDuY66d+DSM+e5PWVtMFCyoZyYNFTL6mBLd
+ 22j2UZzO2FLmoBbHFNV+IXbwYjWhNnTklJ7BPu28JGXnd/4EDK83A+mNO A==;
+X-CSE-ConnectionGUID: vwvXeoAUQDCpbP7vgzXRMA==
+X-CSE-MsgGUID: ntPk1sxARUmreeDfeq4m5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="102657059"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="102657059"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 22:40:24 -0700
-X-CSE-ConnectionGUID: AgFH5CGTRIWBpj6cnAFzYA==
-X-CSE-MsgGUID: zIE4Lw7JT/+BbFiMP7qRpw==
+ 14 Apr 2026 22:40:25 -0700
+X-CSE-ConnectionGUID: VpO1TclHSIyua9Glngy6Cw==
+X-CSE-MsgGUID: HV4/9qOsT2uN406RspVPGQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129766"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="227129775"
 Received: from abityuts-desk.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.244.37])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 Apr 2026 22:40:23 -0700
+ 14 Apr 2026 22:40:24 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 0/4] PSR2 SDP on Prior Scanline workarounds
-Date: Wed, 15 Apr 2026 08:39:56 +0300
-Message-ID: <20260415054000.400070-1-jouni.hogander@intel.com>
+Subject: [PATCH 1/4] drm/i915/psr: Add defininitions for
+ INTEL_WA_REGISTER_CAPS DPCD register
+Date: Wed, 15 Apr 2026 08:39:57 +0300
+Message-ID: <20260415054000.400070-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260415054000.400070-1-jouni.hogander@intel.com>
+References: <20260415054000.400070-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -97,41 +100,61 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: B2B99400834
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 33567400843
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-This patch set implements two workarounds:
+EDP specification says:
 
-1. There are problem in PSR2 SDP on Prior Scanline implementation in
-   several panels due to eDP1.4b spec ambiguity. Two tackle this there is
-   Intel specific DPCD register for panel to indicate implementation
-   compatibility with Intel source implementation. eDP1.5 doesn't have
-   this problem.
+"If either VSC SDP is unable to be transmitted 100 ns before the SU region,
+the Source device may optionally transmit the VSC SDP during the prior
+video scan line’s HBlank period There is a Intel specific drm dp register
+currently containing bits related how TCON can support PSR2 with SDP on
+prior line."
 
-2. In NVL there is an HW optimization done. When there is an SU triggered in
-   Capture state, Link will be kept ON post Capture CRC SDP. Before valid SU
-   pixels Intel source will transmit dummy pixels. Some TCONS are improperly
-   considering these dummy pixels as a valid pixel data. Prior NVL link was
-   was turned of even if there was SU triggered in Capture state and no dummy
-   pixels were transmitted. These dummy pixels are problem only if SDP on
-   prior scanline is used and Early Transport is not in use. The workaround is
-   to start SU area always at scanline 0.
+Unfortunately many panels are having problems in implementing this. So
+there is a custom Intel specific DPCD register (INTEL_WA_REGISTER_CAPS) to
+figure out if this is properly implemented on a panel or if panel doesn't
+require that 100 ns delay before the SU region. Here are the definitions in
+this custom DPCD address:
 
-Jouni Högander (4):
-  drm/i915/psr: Add defininitions for INTEL_WA_REGISTER_CAPS DPCD
-    register
-  drm/i915/psr: Read Intel DPCD workaround register
-  drm/i915/psr: Apply Intel DPCD workaround when SDP on prior line used
-  drm/i915/psr: Apply SDP on prior scanline workaround for NVL
+0 = Panel doesn't support SDP on prior line
+1 = Panel supports SDP on prior line
+2 = Panel doesn't have 100ns requirement
+3 = Reserved
 
- .../drm/i915/display/intel_display_types.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dpcd.h     | 15 ++++++
- drivers/gpu/drm/i915/display/intel_psr.c      | 49 +++++++++++++++++--
- 3 files changed, 60 insertions(+), 5 deletions(-)
+Add definitions for this new register and it's values into new header
+intel_dpcd.h.
+
+Bspec: 74741
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dpcd.h | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
  create mode 100644 drivers/gpu/drm/i915/display/intel_dpcd.h
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dpcd.h b/drivers/gpu/drm/i915/display/intel_dpcd.h
+new file mode 100644
+index 000000000000..670513ff5552
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dpcd.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: MIT */
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#ifndef __INTEL_DPCD_H__
++#define __INTEL_DPCD_H__
++
++#define INTEL_WA_REGISTER_CAPS						0x3f0
++# define INTEL_WA_REGISTER_CAPS_PSR2_EARLYSCANLINE_SDP_SUPPORT_MASK	REG_GENMASK(1, 0)
++# define INTEL_WA_REGISTER_CAPS_FALL_BACK_TO_PSR1			0
++# define INTEL_WA_REGISTER_CAPS_PSR2_WITH_EARLY_SCANLINE		1
++# define INTEL_WA_REGISTER_CAPS_PSR2_WITHOUT_EARLY_SCANLINE		2
++
++#endif /* __INTEL_DPCD_H__ */
 -- 
 2.43.0
 
