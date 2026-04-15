@@ -2,59 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AFfOOS9t32kzSwAAu9opvQ
+	id aM8sFCJv32nqSwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 12:49:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 12:57:38 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 41D1A40368B
-	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 12:49:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96E23403782
+	for <lists+intel-gfx@lfdr.de>; Wed, 15 Apr 2026 12:57:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B1DF310E162;
-	Wed, 15 Apr 2026 10:49:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10D610E6BC;
+	Wed, 15 Apr 2026 10:57:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="NhUg6juo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="c1ufUB6B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75A6310E162;
- Wed, 15 Apr 2026 10:49:15 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 7B80C600AD;
- Wed, 15 Apr 2026 10:49:14 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C91BAC19424;
- Wed, 15 Apr 2026 10:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776250154;
- bh=j+N98l0ooNExwBDTre7YYqcd1nUKFqcoQBnHUGe/doY=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=NhUg6juoOQXvyqVclhJlQBqv6anKIrGIce+wEOYLI0vlqeCTylX1Ybi8J/ckjajyK
- c33eOFZeHK5PPxhIemMf9YSiVroRr+sCuqVhfJF3dikcQ2bNsNcIVYNdNefEZxdDql
- Cbcr+rrN7SDLyoxEAdVWSdV/BOVZ5cZZAExBgMJnfcIB8HMatS51EViZuLJlyjankj
- 9wh43dEXHJN6WGr9gUAVkiNZ62Dc8w+ZnvY0IPWACV2xfPjpEaBVu0bf6GKKNJ74TP
- V5yh5UpsCfU3Xu8ARJ9goRB4QFn+H3/JV67EN2RvM4ZrLX5gQhEXGwfwVYPClUcbZd
- GMLeES4HaAk+A==
-Date: Wed, 15 Apr 2026 12:49:11 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Simona Vetter <simona@ffwll.ch>, Chris Wilson <chris.p.wilson@intel.com>, 
- Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>, 
- Krzysztof Karas <krzysztof.karas@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-Subject: Re: [PATCH] drm/i915: Fix VMA UAF in execbuf setup
-Message-ID: <ad9sNH5caYNRj6Ep@zenone.zhora.eu>
-References: <20260414195834.115460-2-janusz.krzysztofik@linux.intel.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2BB1810E6BC;
+ Wed, 15 Apr 2026 10:57:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776250655; x=1807786655;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=QQ5Yufi0ua1iY9PPA2fENHC2gfETVJVjv/BJg2cbwx0=;
+ b=c1ufUB6BCpxl7LovwxWh3y8tPINQ2ACOgOqt9eq+yIRQ1P02E7HADD0Z
+ AuTkH8YkZgTxOfp/gWvK4Rz6eaxCap8/FK7h1zsSKzAW8OlJR/w/aQ4yC
+ kUJwf5EtLEptu6EsdNAYe33jauQ3sERpgryjWaSuixwRqSyV4d3IF5i/u
+ MzFU5OqLeBGd7+qu1Qv03AFxEQFdROvye6DrQFlBndvhhEnbOezrtzcrw
+ LpzQVvYvPwL/fz+NBPoOiLCJiv07HBqrtN1Oo3FiH8qORDf1fA7nJqQKr
+ jsF7znskZVH+MYzWER+HEYcpEoTsjgqmScPYKjq/cJTRDj15bYbChX2IO A==;
+X-CSE-ConnectionGUID: Ok/JEYTBRtaj9PxJ2EWd+w==
+X-CSE-MsgGUID: bZctDfzWS2KT65b8bzeuoA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11759"; a="88303702"
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="88303702"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 03:57:35 -0700
+X-CSE-ConnectionGUID: W61GTcxjSY2XiLBVC8dBNg==
+X-CSE-MsgGUID: toVh1dVeTSic4yvwWuLJmA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,179,1770624000"; d="scan'208";a="225697052"
+Received: from mjarzebo-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.25])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 03:57:33 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v6] drm/i915/display: change pipe allocation order for
+ discrete platforms
+In-Reply-To: <ad9aZ9oYYLWLbni1@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260413081609.969342-1-jani.nikula@intel.com>
+ <ad9aZ9oYYLWLbni1@intel.com>
+Date: Wed, 15 Apr 2026 13:57:29 +0300
+Message-ID: <c510d0d848ca57637120803f256870d29dee5482@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260414195834.115460-2-janusz.krzysztofik@linux.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,85 +77,150 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,inte.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,zenone.zhora.eu:mid]
-X-Rspamd-Queue-Id: 41D1A40368B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 96E23403782
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Janusz,
+On Wed, 15 Apr 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
+> wrote:
+> On Mon, Apr 13, 2026 at 11:16:09AM +0300, Jani Nikula wrote:
+>> When big joiner is enabled, it reserves the adjacent pipe as the
+>> secondary pipe. This happens without the user space knowing, and
+>> subsequent attempts at using the CRTC with that pipe will fail. If the
+>> user space does not have a coping mechanism, i.e. trying another CRTC,
+>> this leads to a black screen.
+>>=20
+>> Try to reduce the impact of the problem on discrete platforms by mapping
+>> the CRTCs to pipes in order A, C, B, and D. If the user space reserves
+>> CRTCs in order, this should trick it to using pipes that are more likely
+>> to be available for and after joining.
+>>=20
+>> Limit this to discrete platforms, which have four pipes, and no eDP, a
+>> combination that should benefit the most with least drawbacks.
+>>=20
+>> Cc: Ville Syrjala <ville.syrjala@linux.intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>
+> Should be fine with the other stuff I posted earlier:
+> https://lore.kernel.org/intel-gfx/20260408155744.13326-1-ville.syrjala@li=
+nux.intel.com/
+>
+> Reviewed-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-On Tue, Apr 14, 2026 at 09:57:47PM +0200, Janusz Krzysztofik wrote:
-> We now depend on RCU protection when looking up VMAs associated with GEM
-> objects of an execbuf task in a radix tree based lookup table of a user
-> GEM context for that execbuf.  That's not sufficient.  While the radix
-> tree itself, as well as GEM objects, freed by RCU, are safe, VMA items are
-> not, and memory they occupy can be freed concurrently if another thread is
-> doing a cleanup.
-> 
-> [550.183466] Oops: general protection fault, probably for non-canonical address 0x6b6b6b6b6b6b6b6b: 0000 [#1] SMP PTI
-> [550.183490] CPU: 6 UID: 0 PID: 18815 Comm: gem_reloc_race Tainted: G S   U       L   N  7.0.0-CI_DRM_18329-g4e3f5ea9aacc+ #1 PREEMPT(lazy)
-> [550.183508] Tainted: [S]=CPU_OUT_OF_SPEC, [U]=USER, [L]=SOFTLOCKUP, [N]=TEST
-> [550.183517] Hardware name: Dell Inc. XPS 8300  /0Y2MRG, BIOS A06 10/17/2011
-> [550.183527] RIP: 0010:eb_lookup_vma+0x89/0x770 [i915]
-> [550.183909] Code: 00 00 00 49 8b 44 24 38 4c 89 f6 48 8d b8 20 02 00 00 e8 1a 65 c2 e1 48 89 c3 48 85 c0 0f 84 c8 00 00 00 48 8b b8 c0 00 00 00 <8b> 17 85 d2 0f 84 b7 00 00 00 8d 4a 01 89 d0 f0 0f b1 0f 0f 85 53
-> [550.183928] RSP: 0018:ffffc90001aeb7e8 EFLAGS: 00010282
-> [550.183938] RAX: ffff888175b4cb40 RBX: ffff888175b4cb40 RCX: 0000000000000000
-> [550.183948] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 6b6b6b6b6b6b6b6b
-> [550.183957] RBP: ffffc90001aeb848 R08: 0000000000000000 R09: 0000000000000000
-> [550.183966] R10: 0000000000000000 R11: 0000000000000000 R12: ffffc90001aeb8b8
-> [550.183975] R13: 0000000000000003 R14: 0000000000000003 R15: ffffffffa0ced6f2
-> [550.183984] FS:  00007a83cce026c0(0000) GS:ffff8882a3997000(0000) knlGS:0000000000000000
-> [550.183995] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-> [550.184004] CR2: 00007b5f1317e428 CR3: 0000000179690003 CR4: 00000000000626f0
-> [550.184016] Call Trace:
-> [550.184021]  <TASK>
-> [550.184031]  i915_gem_do_execbuffer+0xc84/0x36e0 [i915]
-> [550.184362]  ? lock_release+0xd0/0x2b0
-> [550.184376]  ? is_bpf_text_address+0x74/0x140
-> [550.184387]  ? kernel_text_address+0x139/0x150
-> [550.184398]  ? unwind_get_return_address+0x25/0x50
-> [550.184410]  ? __lock_acquire+0x43e/0x2790
-> [550.184421]  ? stack_depot_save_flags+0x28/0x960
-> [550.184435]  ? __lock_acquire+0x43e/0x2790
-> [550.184446]  ? find_held_lock+0x31/0x90
-> [550.184455]  ? __create_object+0x68/0xc0
-> [550.184470]  ? lock_acquire+0xc4/0x2f0
-> [550.184479]  ? find_held_lock+0x31/0x90
-> [550.184489]  ? __might_fault+0x53/0xb0
-> [550.184505]  i915_gem_execbuffer2_ioctl+0x169/0x320 [i915]
-> 
-> Protect a VMA item retrieved from the context lookup table with a mutex
-> associated with that table while taking a reference to an underlying GEM
-> object.
-> 
-> Fixes: f7ce8639f6ff7 ("drm/i915/gem: Split the context's obj:vma lut into its own mutex")
-> Cc: stable@vger.kernel.org # v5.9+
-> Signed-off-by: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
+Thanks, pushed top topic/pipe-reorder, which already has the commits you
+refer to.
 
-Reviewed-by: Andi Shyti <andi.shyti@linux.inte.com>
+BR,
+Jani.
 
-Thanks,
-Andi
+>
+>>=20
+>> ---
+>>=20
+>> v2: Also remove WARN_ON()
+>>=20
+>> v3: Limit to discrete
+>>=20
+>> v4: Revamp
+>>=20
+>> v5: Don't screw up the loop variable, dummy
+>>=20
+>> v6: Rebase, drop FIXME comment
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_crtc.c | 29 ++++++++++++++++++++---
+>>  1 file changed, 26 insertions(+), 3 deletions(-)
+>>=20
+>> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm=
+/i915/display/intel_crtc.c
+>> index c88a6810c49f..03de219f7a64 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+>> @@ -411,8 +411,6 @@ static int __intel_crtc_init(struct intel_display *d=
+isplay, enum pipe pipe)
+>>=20=20
+>>  	cpu_latency_qos_add_request(&crtc->vblank_pm_qos, PM_QOS_DEFAULT_VALUE=
+);
+>>=20=20
+>> -	drm_WARN_ON(display->drm, drm_crtc_index(&crtc->base) !=3D crtc->pipe);
+>> -
+>>  	if (HAS_CASF(display) && crtc->num_scalers >=3D 2)
+>>  		drm_crtc_create_sharpness_strength_property(&crtc->base);
+>>=20=20
+>> @@ -426,6 +424,31 @@ static int __intel_crtc_init(struct intel_display *=
+display, enum pipe pipe)
+>>  	return ret;
+>>  }
+>>=20=20
+>> +#define HAS_PIPE(display, pipe) (DISPLAY_RUNTIME_INFO(display)->pipe_ma=
+sk & BIT(pipe))
+>> +
+>> +/*
+>> + * Expose the pipes in order A, C, B, D on discrete platforms to trick =
+user
+>> + * space into using pipes that are more likely to be available for both=
+ a) user
+>> + * space if pipe B has been reserved for the joiner, and b) the joiner =
+if pipe A
+>> + * doesn't need the joiner.
+>> + *
+>> + * Swap pipes B and C only if both are available i.e. not fused off.
+>> + */
+>> +static enum pipe reorder_pipe(struct intel_display *display, enum pipe =
+pipe)
+>> +{
+>> +	if (!display->platform.dgfx || !HAS_PIPE(display, PIPE_B) || !HAS_PIPE=
+(display, PIPE_C))
+>> +		return pipe;
+>> +
+>> +	switch (pipe) {
+>> +	case PIPE_B:
+>> +		return PIPE_C;
+>> +	case PIPE_C:
+>> +		return PIPE_B;
+>> +	default:
+>> +		return pipe;
+>> +	}
+>> +}
+>> +
+>>  int intel_crtc_init(struct intel_display *display)
+>>  {
+>>  	enum pipe pipe;
+>> @@ -435,7 +458,7 @@ int intel_crtc_init(struct intel_display *display)
+>>  		    INTEL_NUM_PIPES(display), str_plural(INTEL_NUM_PIPES(display)));
+>>=20=20
+>>  	for_each_pipe(display, pipe) {
+>> -		ret =3D __intel_crtc_init(display, pipe);
+>> +		ret =3D __intel_crtc_init(display, reorder_pipe(display, pipe));
+>>  		if (ret)
+>>  			return ret;
+>>  	}
+>> --=20
+>> 2.47.3
+
+--=20
+Jani Nikula, Intel
