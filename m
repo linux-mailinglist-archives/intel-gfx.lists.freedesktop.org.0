@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wL5WKsBQ4GkhewAAu9opvQ
+	id yPGZOMJQ4GkhewAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7CB38409CF6
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9CFC409CFD
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0672A10E7C6;
-	Thu, 16 Apr 2026 03:00:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4DCA310E7E1;
+	Thu, 16 Apr 2026 03:00:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RrZKzBjy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UjU87vkB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0960110E7DB;
- Thu, 16 Apr 2026 03:00:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4F2BF10E7DE;
+ Thu, 16 Apr 2026 03:00:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776308413; x=1807844413;
+ t=1776308415; x=1807844415;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7LyB1E7yS+8fKyRQZUDHJkmePYa5Y5tiwX4BhAPiJsM=;
- b=RrZKzBjyNVNYGg1oXl5Qg7OcghE3Rzhexg4RIU9LQClqvWoeCoSHCNMr
- e8l2wWwgAOY2VNBIAIhaex3u4/Dx1qHTmeq7lHBrVGAmlTCaTeLgeN2vP
- Wp/Kf+XB2XK6NwCCuC9cny02+5gsG3ebc+73RFTj3VTG5nRa/DoTQMOn5
- +XADfB8Ju0GQSgpZij+jFUDOGrojn23BvRysZ1SlgeFfEbqp2M03ttiq0
- g0BEkvDzZzSmgItQcMSVlN6w20itYrgrKzM9mP3JQ0CkdTYF72nyVPs1m
- nzBtRYxeVRQPjNHnHnnfgIdUBngKtTSWT7zK/+y1Y5RGCBZBSWw0nb2/l Q==;
-X-CSE-ConnectionGUID: FcmzTNQfSo6nzsOgUr7EBw==
-X-CSE-MsgGUID: UPV8Rx7UTcypIOTN0ir6jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997560"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997560"
+ bh=Oa2aQbMzfNMybpuUJ+NwPx6BX4+R4IoEcj4O0FXO/TI=;
+ b=UjU87vkBOo0kCbZi6P0V4nbXfRWDdeuld2t+MuqCgVQRpygPNbutz4Gm
+ irkc4N1yrZtpM3rCerXzFCiRv6uo/IOtcPKoFv1Ulj7gNUq4erRyTh0oL
+ od9UH5+URmzuKdr/b9tcVVQ6Ec5mBG9XZuw6sOj+Qof9NaIUVGT/tT1Sa
+ va7P+1FWvnXR8JlPUbBGjCG5z95CEzX5Yme50GvzylBQZP4/QCx1CHRC2
+ +GVXakEG5Ez9ju7UqXPdh0sl7lc+w1acthupC7p7bDsXddGXyCNWz+t+C
+ VXqBjdUZ2cL4dIptJMBaFM6ywubCpv9qqD8248NllZH4l7Ehe7F29cOE6 Q==;
+X-CSE-ConnectionGUID: FgTWZ+z7SVq5VD9ZBI8rkw==
+X-CSE-MsgGUID: uhSFxZYoSM6IZsShYRaMnA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997572"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997572"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:12 -0700
-X-CSE-ConnectionGUID: 9NlOB6NPSkm0L8V59eHahw==
-X-CSE-MsgGUID: zhDwVW0JT4qzc7A+2tx9oA==
+ 15 Apr 2026 20:00:15 -0700
+X-CSE-ConnectionGUID: ziiHjiicSVSplrr8+Iurkg==
+X-CSE-MsgGUID: BFBrTUtrRNaoQNfXjNFyAA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755191"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755220"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:11 -0700
+ 15 Apr 2026 20:00:13 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
  jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 08/12] drm/i915/display: Add HAS_COMMON_SDP_TL macro
-Date: Thu, 16 Apr 2026 08:14:58 +0530
-Message-ID: <20260416024504.1925195-9-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 09/12] drm/i915/dp: Store SDP transmission lines in crtc_state
+Date: Thu, 16 Apr 2026 08:14:59 +0530
+Message-ID: <20260416024504.1925195-10-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
 References: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
@@ -98,39 +98,58 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[6];
 	DKIM_TRACE(0.00)[intel.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 7CB38409CF6
+X-Rspamd-Queue-Id: B9CFC409CFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add a helper macro to detect CMN SDP TL support on platforms with display
-version 35 and above.
+Currently the driver only programs the transmission line for the
+Adaptive-Sync SDP, while the hardware controls the transmission lines for
+other SDPs.
+
+Starting with Xe3p_lpd, the hardware allows the driver to program
+transmission lines for additional DP SDPs. Prepare for this by adding
+fields to struct intel_crtc_state to store SDP transmission lines, and
+include them in pipe config comparison.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dip.h | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dip.h     | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_display.c | 5 +++++
+ 2 files changed, 11 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dip.h b/drivers/gpu/drm/i915/display/intel_dip.h
-index 600dabbf7372..e9959356226e 100644
+index e9959356226e..03ef749a79ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_dip.h
 +++ b/drivers/gpu/drm/i915/display/intel_dip.h
-@@ -32,6 +32,16 @@ struct intel_crtc_state;
- #define HAS_EMP_AS_SDP_TL(__display)	(DISPLAY_VERx100(__display) == 1401 || \
- 					 DISPLAY_VER(__display) >= 20)
+@@ -51,6 +51,12 @@ struct intel_dip {
+ 	 * The programmed transmit line is (Vtotal - value)
+ 	 */
+ 	u16 emp_as_sdp_tl;
++	u16 gmp_sdp_tl;
++	u16 pps_sdp_tl;
++	u16 vsc_sdp_tl;
++	u16 vsc_ext_sdp_tl;
++	/* Common SDP Base transmission line (Xe3p_lpd+) */
++	u16 cmn_sdp_tl;
+ };
  
-+/*
-+ * CMN SDP TL: Common Secondary Data Packet Transmission Line.
-+ *
-+ * Xe3p_lpd introduces new register CMN_SDP_TL to program a common SDP
-+ * Transmission line that will be used by the Hardware to position the
-+ * SDPs. Along with this, another new register CMN_SDP_TL_STGR_CTL is
-+ * also added to stagger the different SDPs.
-+ */
-+#define HAS_COMMON_SDP_TL(__display)      (DISPLAY_VER(__display) >= 35)
-+
- u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
- void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
+ void intel_dip_sdp_tl_compute_config_late(struct intel_crtc_state *crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 0fcee8b42b71..d8d11e9cb75e 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5504,6 +5504,11 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	PIPE_CONF_CHECK_I(set_context_latency);
  
+ 	PIPE_CONF_CHECK_I(dip.emp_as_sdp_tl);
++	PIPE_CONF_CHECK_I(dip.gmp_sdp_tl);
++	PIPE_CONF_CHECK_I(dip.pps_sdp_tl);
++	PIPE_CONF_CHECK_I(dip.vsc_sdp_tl);
++	PIPE_CONF_CHECK_I(dip.vsc_ext_sdp_tl);
++	PIPE_CONF_CHECK_I(dip.cmn_sdp_tl);
+ 
+ #undef PIPE_CONF_CHECK_X
+ #undef PIPE_CONF_CHECK_I
 -- 
 2.45.2
 
