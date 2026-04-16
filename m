@@ -2,34 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CJJxHBo04Gm5dQAAu9opvQ
+	id oDvrJK9Q4GkiewAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 02:58:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 04:59:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E1C874095E8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 02:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4EE22409CB6
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 04:59:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4AAC10E7B0;
-	Thu, 16 Apr 2026 00:57:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB2D110E0F0;
+	Thu, 16 Apr 2026 02:59:56 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XR3FGOeW";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA4910E79E;
- Thu, 16 Apr 2026 00:57:57 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6231632900058004943=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3525F10E0F0;
+ Thu, 16 Apr 2026 02:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776308395; x=1807844395;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=xqgMJ0gyVUViyQoUQOOUGgMSePUyTTje+QS6DqL+sTM=;
+ b=XR3FGOeWS7DD8EtCzCxWsyTDcBp2pWPCw4oRtrVLRyxd0BLYgUJ3VzA8
+ /w/lFJcvjMEICvDXCyC3Gii4UAYtmtjoELbtgFK9IUuqj56VIqBShSpfm
+ hOV9KDOmTW+w5KLvn8QRiZ11DCxBNYMrFdaLmfC4cZE1Qxh1EcGYHEoi6
+ RlAt7mqSh4OcoSM0ZCOsAGecR+3VUkMe1iV+cS5cEQxZrci0PqTGvKGI1
+ eKEeaJ4JKsMn9xNjghWVqiC6lRMmzZ/gYdILHlkhwbeh3l+wa7TNOGPuR
+ ykKyQE1e09qVU1pqD59Ik9bRdzps3GQO9zc22eSyaxFfeV1S6fiUxXGv4 Q==;
+X-CSE-ConnectionGUID: 4eWbvX59RnuUI2TOYnY/TQ==
+X-CSE-MsgGUID: iXpgmam9SLm4y8bShTq4ZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997521"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997521"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 19:59:54 -0700
+X-CSE-ConnectionGUID: +DQ8p0ZXSkKU/gicOx9yJA==
+X-CSE-MsgGUID: Og1Esfj0SYqHizQIbSkEwQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755019"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Apr 2026 19:59:53 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
+ jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/12] Add support for Common SDP Transmission Line
+Date: Thu, 16 Apr 2026 08:14:50 +0530
+Message-ID: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Vswing/Preemphasis_Overri?=
- =?utf-8?q?de?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 16 Apr 2026 00:57:57 -0000
-Message-ID: <177630107762.466823.6628674182100231645@a3b018990fe9>
-X-Patchwork-Hint: ignore
-References: <20260415234639.3577774-1-michal.grzelak@intel.com>
-In-Reply-To: <20260415234639.3577774-1-michal.grzelak@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,212 +69,122 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
 	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	ASN_FAIL(0.00)[177.210.252.131.asn.rspamd.com:server fail];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	R_DKIM_NA(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[core_auth:email,i915_selftest:email,kms_hdmi_inject:email,lists.freedesktop.org:replyto,basic-auth:email,01.org:url,patchwork.freedesktop.org:url,read-all-entries:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,core_debugfs:email,inject-audio:email]
-X-Rspamd-Queue-Id: E1C874095E8
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	DKIM_TRACE(0.00)[intel.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 4EE22409CB6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============6231632900058004943==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Xe3p_lpd introduces new register bits to program a common SDP
+Transmission line that will be used by the Hardware to position the
+SDPs. Along with this, another new register is also added to stagger
+the different SDPs.
 
-== Series Details ==
+This series adds support for programming the Common SDP Transmission Line
+(CMN_SDP_TL) and its stagger control registers.
 
-Series: Vswing/Preemphasis Override
-URL   : https://patchwork.freedesktop.org/series/164958/
-State : success
+Rev2:
+ - Add tracking for AS SDP Transmission line first. Instead of directly
+   programming it in the register, compute the state during
+   compute_config_late() and write the value from crtc_state.
+   Readout from the register through a vrr helper, since the register is
+   defined in context of VRR and will be used for both DP and HDMI VRR
+   packets.
+ - Add support to track other SDP transmission lines, instead of stagger
+   values.
+ - Compute the transmission lines in compute_config_late path and add
+   readout.
+ - Always write the Common SDP Transmission line and other stagger
+   values, whether the packets are sent or not.
+ - Dump SDP transmission lines in crtc_state.
 
-== Summary ==
+Rev3:
+ - Introduce new files for handling the Data Island Packets (DIPs)
+   programming in one place. (Ville)
+ - Extract the Transmission Line programming for
+   HDMI Extended Metadata Packet (EMP) and Adaptive Sync SDP (AS SDP)
+   i.e. EMP_AS_SDP_TL in the new file.
+ - Add programming for Common Base SDP Transmission lines and other
+   stagger offsets in the new file.
+ - Add a #TODO to extract other helpers that deal with Data Island Packets
+   and VIDEO_DIP registers.
+ - Place the HAS_* Macros related to DIP in the intel_dip.h file
+   instead of intel_display_devices.h (Jani) 
+ - Make function names more descriptive and avoid overuse of multiple
+   acronyms. (Jani)
 
-CI Bug Log - changes from CI_DRM_18337 -> Patchwork_164958v1
-====================================================
+Note:
+ - Though I have fixed the naming as suggested in most places, I
+   have retained HAS_EMP_AS_SDP_TL for the following reasons:
+   1) Lack of an apt name that avoids the acronym for
+      'Extended Metadata Packet Adaptive Sync Secondary Packet Transmission
+      Line'.
+   2) Keeping this name makes it easier to find and map with the exact name
+      for such a complex register name.
 
-Summary
--------
+   However, I am open to suggestions for a better name.
 
-  **SUCCESS**
+Ankit Nautiyal (11):
+  drm/i915/dip: Add new file to handle Data Island Packet hardware
+  drm/i915/vrr: Use the helper to write EMP_AS_SDP_TL register
+  drm/i915/intel_dip: Add check for DP encoder
+  drm/i915/dp: Add helper to get AS SDP Transmission Line
+  drm/i915/display: Add crtc state for DIP transmission lines
+  drm/i915/dip: Store and use AS SDP transmission line from crtc state
+  drm/i915/display: Add HAS_COMMON_SDP_TL macro
+  drm/i915/dp: Store SDP transmission lines in crtc_state
+  drm/i915/dp: Introduce helpers to enable/disable CMN SDP Transmission
+    line
+  drm/i915/dip: Enable Common SDP Transmission line
+  drm/i915/display: Dump DIP Transmission lines
 
-  No regressions found.
+Arun R Murthy (1):
+  drm/i915/nvl: Add register definitions for common SDP Transmission
+    Line
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/index.html
+ drivers/gpu/drm/i915/Makefile                 |   1 +
+ .../drm/i915/display/intel_crtc_state_dump.c  |   9 +
+ drivers/gpu/drm/i915/display/intel_ddi.c      |   5 +
+ drivers/gpu/drm/i915/display/intel_dip.c      | 197 ++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_dip.h      |  67 ++++++
+ drivers/gpu/drm/i915/display/intel_dip_regs.h |  36 ++++
+ drivers/gpu/drm/i915/display/intel_display.c  |   7 +
+ .../drm/i915/display/intel_display_types.h    |   3 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  23 ++
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  13 +-
+ drivers/gpu/drm/i915/display/intel_vrr_regs.h |   6 -
+ drivers/gpu/drm/xe/Makefile                   |   1 +
+ 13 files changed, 353 insertions(+), 17 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip.h
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dip_regs.h
 
-Participating hosts (42 -> 40)
-------------------------------
+-- 
+2.45.2
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164958v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_debugfs@read-all-entries:
-    - bat-adlp-9:         [PASS][1] -> [DMESG-WARN][2] ([i915#15673])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-adlp-9/igt@core_debugfs@read-all-entries.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-adlp-9/igt@core_debugfs@read-all-entries.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-6:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_auth@basic-auth:
-    - bat-adlp-9:         [DMESG-WARN][5] ([i915#15673]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-adlp-9/igt@core_auth@basic-auth.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-adlp-9/igt@core_auth@basic-auth.html
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-dg2-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-dg2-8/igt@i915_selftest@live.html
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [FAIL][9] ([i915#14867]) -> [PASS][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
-  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18337 -> Patchwork_164958v1
-
-  CI-20190529: 20190529
-  CI_DRM_18337: b2dbef367fba940bdaca7a3a3645c4be3d3c8ff9 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_164958v1: b2dbef367fba940bdaca7a3a3645c4be3d3c8ff9 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/index.html
-
---===============6231632900058004943==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Vswing/Preemphasis Override</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164958/">https://patchwork.freedesktop.org/series/164958/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18337 -&gt; Patchwork_164958v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164958v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@core_debugfs@read-all-entries:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-adlp-9/igt@core_debugfs@read-all-entries.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-adlp-9/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_auth@basic-auth:</p>
-<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-adlp-9/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-adlp-9/igt@core_auth@basic-auth.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_hdmi_inject@inject-audio:</p>
-<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18337/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164958v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18337 -&gt; Patchwork_164958v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18337: b2dbef367fba940bdaca7a3a3645c4be3d3c8ff9 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8861: 63a08403d58b652dcab80da02d6078386da78c17 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_164958v1: b2dbef367fba940bdaca7a3a3645c4be3d3c8ff9 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6231632900058004943==--
