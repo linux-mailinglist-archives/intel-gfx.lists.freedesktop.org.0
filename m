@@ -2,66 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yAVFFUsg4WmipQAAu9opvQ
+	id 7JK0Hqo44WmaqgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 21:29:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B6A2041335D
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B8429414151
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 21:29:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44DD510E931;
-	Thu, 16 Apr 2026 17:45:45 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NlQU1OuF";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 05C6310E21B;
+	Thu, 16 Apr 2026 19:29:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9951610E932;
- Thu, 16 Apr 2026 17:45:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776361544; x=1807897544;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=ZVquPRJpUh1xHCi7MhYrLAX4CCK1Yl0+tC2Oa4Tfxqo=;
- b=NlQU1OuFH7oWdgiCyEDxVjaA1GRrG/VlAiFlxb5QfrH+eczmTUjDso5M
- JzdTfAL9VsS3Vln7WStrDiZeiEUYAGkkZ6sCvJQyrEcNwMJvLOa7+mTtG
- zpVsu9DDcHFHRmaVgL8JlIJ4TD9pI0rIahkbvwGCivcaDrcAO/hDBw3U6
- oiGg6fZLdQ71bNbVkOS95y0aF2mxYmIQunV7jg03sG0xmQHxMyuktbrok
- 6O2K5GnlLhMLm9oDSR1uO4hBka3Fjj/W6dTq82rqTv0jO+QRMDvYpIkZQ
- 4LkLXR809RiKl3FQ0q7fNt5zaB/ifXgZ8B9YoF4/eMjR5vVF8BF+OCzkL A==;
-X-CSE-ConnectionGUID: qT8YOvvHQBKvd9LCSQ8GMQ==
-X-CSE-MsgGUID: cJwlpZusQwCKv5+TXibkIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77279748"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77279748"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 10:45:44 -0700
-X-CSE-ConnectionGUID: LS7Va3JaSqaVkh6S+CITMg==
-X-CSE-MsgGUID: +hpoOnORQwOWAN8eVBB+PQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229797875"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.244.241])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 10:45:43 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 11/11] drm/i915: Don't pass the framebuffer to low level
- pinning functions
-Date: Thu, 16 Apr 2026 20:44:47 +0300
-Message-ID: <20260416174448.28264-12-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.52.0
-In-Reply-To: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
-References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 057B610E218;
+ Thu, 16 Apr 2026 19:29:43 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8255707830456470079=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Eliminate_FB_?=
+ =?utf-8?q?usage_from_low_level_pinning_code?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ville Syrjala" <ville.syrjala@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 16 Apr 2026 19:29:43 -0000
+Message-ID: <177636778301.469471.16137255191715079850@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,271 +42,173 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
 	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.980];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: B6A2041335D
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:replyto]
+X-Rspamd-Queue-Id: B8429414151
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============8255707830456470079==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Now that we have the pin_params the low level pinning code no
-longer needs the entire framebuffer structure. The gem object
-alone (along with the pin_params) is enough.
+== Series Details ==
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_fb_pin.h   |  4 +--
- drivers/gpu/drm/i915/display/intel_fbdev.c    |  6 ++--
- drivers/gpu/drm/i915/i915_fb_pin.c            | 15 ++++------
- drivers/gpu/drm/xe/display/xe_fb_pin.c        | 28 ++++++++-----------
- drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
- 5 files changed, 23 insertions(+), 32 deletions(-)
+Series: drm/i915: Eliminate FB usage from low level pinning code
+URL   : https://patchwork.freedesktop.org/series/165015/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index 95f83bf7411f..5825503c38ea 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -8,7 +8,7 @@
- 
- #include <linux/types.h>
- 
--struct drm_framebuffer;
-+struct drm_gem_object;
- struct i915_vma;
- struct intel_plane_state;
- struct i915_gtt_view;
-@@ -26,7 +26,7 @@ struct intel_fb_pin_params {
- };
- 
- struct i915_vma *
--intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-+intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
- 		     const struct intel_fb_pin_params *pin_params,
- 		     int *out_fence_id);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index 4c3e54acde81..9ab0ac49abb7 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -306,6 +306,8 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 		sizes->fb_height = fb->base.height;
- 	}
- 
-+	obj = intel_fb_bo(&fb->base);
-+
- 	/* Pin the GGTT vma for our access via info->screen_base.
- 	 * This also validates that any existing fb inherited from the
- 	 * BIOS is suitable for own access.
-@@ -317,7 +319,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 						       DRM_MODE_ROTATE_0);
- 	pin_params.needs_low_address = intel_plane_needs_low_address(display);
- 
--	vma = intel_fb_pin_to_ggtt(&fb->base, &pin_params, NULL);
-+	vma = intel_fb_pin_to_ggtt(obj, &pin_params, NULL);
- 	if (IS_ERR(vma)) {
- 		ret = PTR_ERR(vma);
- 		goto out_unlock;
-@@ -328,8 +330,6 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 
- 	info->fbops = &intelfb_ops;
- 
--	obj = intel_fb_bo(&fb->base);
--
- 	ret = intel_bo_fbdev_fill_info(obj, info, vma);
- 	if (ret)
- 		goto out_unpin;
-diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-index 5060ec8c76ca..b0e121462ca3 100644
---- a/drivers/gpu/drm/i915/i915_fb_pin.c
-+++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -23,12 +23,10 @@
- #include "i915_vma.h"
- 
- static struct i915_vma *
--intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
--		    struct intel_dpt *dpt,
-+intel_fb_pin_to_dpt(struct drm_gem_object *_obj, struct intel_dpt *dpt,
- 		    const struct intel_fb_pin_params *pin_params)
- {
--	struct drm_i915_private *i915 = to_i915(fb->dev);
--	struct drm_gem_object *_obj = intel_fb_bo(fb);
-+	struct drm_i915_private *i915 = to_i915(_obj->dev);
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
- 	struct i915_address_space *vm = i915_dpt_to_vm(dpt);
- 	struct i915_gem_ww_ctx ww;
-@@ -108,12 +106,11 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- }
- 
- struct i915_vma *
--intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-+intel_fb_pin_to_ggtt(struct drm_gem_object *_obj,
- 		     const struct intel_fb_pin_params *pin_params,
- 		     int *out_fence_id)
- {
--	struct drm_i915_private *i915 = to_i915(fb->dev);
--	struct drm_gem_object *_obj = intel_fb_bo(fb);
-+	struct drm_i915_private *i915 = to_i915(_obj->dev);
- 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
- 	intel_wakeref_t wakeref;
- 	struct i915_gem_ww_ctx ww;
-@@ -275,7 +272,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
- 		};
- 		int fence_id = -1;
- 
--		vma = intel_fb_pin_to_ggtt(&fb->base, &pin_params,
-+		vma = intel_fb_pin_to_ggtt(intel_fb_bo(&fb->base), &pin_params,
- 					   intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
- 		if (IS_ERR(vma))
- 			return PTR_ERR(vma);
-@@ -295,7 +292,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
- 
- 		plane_state->ggtt_vma = vma;
- 
--		vma = intel_fb_pin_to_dpt(&fb->base, fb->dpt, &pin_params);
-+		vma = intel_fb_pin_to_dpt(intel_fb_bo(&fb->base), fb->dpt, &pin_params);
- 		if (IS_ERR(vma)) {
- 			i915_dpt_unpin_from_ggtt(fb->dpt);
- 			plane_state->ggtt_vma = NULL;
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 44562769fbc9..5d7b30f62930 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -139,14 +139,13 @@ write_dpt_remapped(struct xe_bo *bo,
- 	}
- }
- 
--static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
-+static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
- 			       const struct intel_fb_pin_params *pin_params,
- 			       struct i915_vma *vma)
- {
--	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct xe_device *xe = to_xe_device(obj->dev);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
--	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	const struct i915_gtt_view *view = pin_params->view;
- 	struct xe_bo *bo = gem_to_xe_bo(obj), *dpt;
- 	u32 dpt_size, size = bo->ttm.base.size;
-@@ -268,14 +267,13 @@ static void write_ggtt_rotated_node(struct xe_ggtt *ggtt, struct xe_ggtt_node *n
- 				   rot_info->plane[i].dst_stride);
- }
- 
--static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
-+static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
- 				const struct intel_fb_pin_params *pin_params,
- 				struct i915_vma *vma)
- {
--	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	const struct i915_gtt_view *view = pin_params->view;
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
--	struct xe_device *xe = to_xe_device(fb->base.dev);
-+	struct xe_device *xe = to_xe_device(obj->dev);
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_ggtt *ggtt = tile0->mem.ggtt;
- 	u64 pte, size;
-@@ -318,13 +316,11 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
- 	return ret;
- }
- 
--static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb, bool is_dpt,
-+static struct i915_vma *__xe_pin_fb_vma(struct drm_gem_object *obj, bool is_dpt,
- 					const struct intel_fb_pin_params *pin_params)
- {
--	struct drm_device *dev = fb->base.dev;
--	struct xe_device *xe = to_xe_device(dev);
-+	struct xe_device *xe = to_xe_device(obj->dev);
- 	struct i915_vma *vma = kzalloc(sizeof(*vma), GFP_KERNEL);
--	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct xe_validation_ctx ctx;
- 	struct drm_exec exec;
-@@ -376,9 +372,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb, bool
- 
- 	vma->bo = bo;
- 	if (is_dpt)
--		ret = __xe_pin_fb_vma_dpt(fb, pin_params, vma);
-+		ret = __xe_pin_fb_vma_dpt(obj, pin_params, vma);
- 	else
--		ret = __xe_pin_fb_vma_ggtt(fb, pin_params, vma);
-+		ret = __xe_pin_fb_vma_ggtt(obj, pin_params, vma);
- 	if (ret)
- 		goto err_unpin;
- 
-@@ -412,14 +408,14 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
- }
- 
- struct i915_vma *
--intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-+intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
- 		     const struct intel_fb_pin_params *pin_params,
- 		     int *out_fence_id)
- {
- 	if (out_fence_id)
- 		*out_fence_id = -1;
- 
--	return __xe_pin_fb_vma(to_intel_framebuffer(fb), false, pin_params);
-+	return __xe_pin_fb_vma(obj, false, pin_params);
- }
- 
- void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
-@@ -469,7 +465,6 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	struct drm_gem_object *obj = intel_fb_bo(fb);
- 	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct i915_vma *vma;
--	struct intel_framebuffer *intel_fb = to_intel_framebuffer(fb);
- 	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
- 	struct intel_fb_pin_params pin_params = {
- 		.view = &new_plane_state->view.gtt,
-@@ -483,8 +478,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	/* We reject creating !SCANOUT fb's, so this is weird.. */
- 	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
- 
--	vma = __xe_pin_fb_vma(intel_fb, intel_fb_uses_dpt(&intel_fb->base),
--			      &pin_params);
-+	vma = __xe_pin_fb_vma(obj, intel_fb_uses_dpt(fb), &pin_params);
- 
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 4f0ad4692ed6..8e3c0c4b81fe 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -138,7 +138,7 @@ xe_initial_plane_setup(struct drm_plane_state *_plane_state,
- 		.view = &plane_state->view.gtt,
- 	};
- 
--	vma = intel_fb_pin_to_ggtt(fb, &pin_params, NULL);
-+	vma = intel_fb_pin_to_ggtt(intel_fb_bo(fb), &pin_params, NULL);
- 	if (IS_ERR(vma))
- 		return PTR_ERR(vma);
- 
--- 
-2.52.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18344 -> Patchwork_165015v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_165015v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18344/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-mtlp-9:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18344/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18344 -> Patchwork_165015v1
+
+  CI-20190529: 20190529
+  CI_DRM_18344: 9ac7dca8d82a4e6d9806ac6c991f0777338833bb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8862: 9b95600c4ae2cb683a8a19ad2a7c006263811a8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_165015v1: 9ac7dca8d82a4e6d9806ac6c991f0777338833bb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/index.html
+
+--===============8255707830456470079==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: Eliminate FB usage from low level pinning code</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165015/">https://patchwork.freedesktop.org/series/165015/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18344 -&gt; Patchwork_165015v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_165015v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18344/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18344/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165015v1/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18344 -&gt; Patchwork_165015v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18344: 9ac7dca8d82a4e6d9806ac6c991f0777338833bb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8862: 9b95600c4ae2cb683a8a19ad2a7c006263811a8f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_165015v1: 9ac7dca8d82a4e6d9806ac6c991f0777338833bb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8255707830456470079==--
