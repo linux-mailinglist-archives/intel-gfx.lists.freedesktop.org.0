@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ALy1KbpQ4GkiewAAu9opvQ
+	id yKI/I7pQ4GkiewAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61BCA409CDA
+	by mail.lfdr.de (Postfix) with ESMTPS id BBC1A409CDB
 	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EBD8A10E7D2;
-	Thu, 16 Apr 2026 03:00:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 424F010E7D3;
+	Thu, 16 Apr 2026 03:00:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8F7FKzB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="R/UVGEtn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC11D10E7D0;
- Thu, 16 Apr 2026 03:00:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38B0510E7D3;
+ Thu, 16 Apr 2026 03:00:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776308404; x=1807844404;
+ t=1776308406; x=1807844406;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WsE+Ok9yLVzjqH0RbnAwzzlmj9T/E5lLe39/MJcKcOM=;
- b=l8F7FKzBcYjK2e3sv27HwNbTLN5SYf5DyiYkVE4XzdThKAGK3xJW8o5m
- /IGCtFJgSljGRLgJs89u0LtgnWaqtzAozxIfnlS4ovwpE67sQ4xRQBfQg
- s9Z+irbvzupwnEelmVq7tURM5rWEKKlfownZxpPKdgvGEYfZhZSlzEOsG
- cpVMjLC0LiuOcDUYAUvr8YKvpAvZtVvCebNMHmBpPc+c/7Fj/0qfOWV+B
- hXkWHYbyMH4cmLeJN2cCUjakmkUSYPfQobUo/wOpsb8hDALA56yOdbmPI
- RfbXRQRUDjnym2xvlkpPBidgrH5CqmsZxAF4/iCKin/PtRoiVMF6e0H4b Q==;
-X-CSE-ConnectionGUID: 90GY+FYBRqWerl97EGmvpw==
-X-CSE-MsgGUID: tQauZ1aoRBe4l0YnzBuTjw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997534"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997534"
+ bh=jn+3Gi5NSTl8SHAe+Z2dV2BQt5K34IlBV9DPdcICfG8=;
+ b=R/UVGEtn9dl9AM96dA7AHJbu3F87ishyqCqkp9h+o3gGmyFWUIvKdjl+
+ T/O5OaAO1l0Av4cQt7dCX3yiQyedp7DlzCP96G/SjfoyrtetlDYIq/uTb
+ qKmpeB9jt0f+ULt3dcbb087kcnB0oBhg4LLV3UGRdNBJFYXdA02gsIi87
+ tDupF94rki0YO0jjM5qL8HiCjvqdxLsdKGxLP8SlDtcqIFatFNUk8W1IG
+ Db7ltpE8xGViucK6PDRv3j2ZlVM5o+wOHQC8AiJDiNyrNuWtceP0Bm9GU
+ GEw1YWpL5+JB2jfgq6WWEdyjd+YeM3IyCb0kmA+V4CP+XK3EDgLiyJO57 g==;
+X-CSE-ConnectionGUID: uvurHH2kRTWdyzP6YjGEkQ==
+X-CSE-MsgGUID: xAquaWXkS5asma/fUIwTUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997538"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997538"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:03 -0700
-X-CSE-ConnectionGUID: zydf9y0DRPG0SMk6xF4OAA==
-X-CSE-MsgGUID: jk41WgnoRhOZrVflvEbO4A==
+ 15 Apr 2026 20:00:06 -0700
+X-CSE-ConnectionGUID: qmxyNeKsQyas02+IhxmYLQ==
+X-CSE-MsgGUID: y2mxPfeGSPGlvoAMDQRoZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755063"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755086"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:02 -0700
+ 15 Apr 2026 20:00:04 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
  jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 04/12] drm/i915/dp: Add helper to get AS SDP Transmission Line
-Date: Thu, 16 Apr 2026 08:14:54 +0530
-Message-ID: <20260416024504.1925195-5-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 05/12] drm/i915/display: Add crtc state for DIP transmission
+ lines
+Date: Thu, 16 Apr 2026 08:14:55 +0530
+Message-ID: <20260416024504.1925195-6-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
 References: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
@@ -98,84 +99,79 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[6];
 	DKIM_TRACE(0.00)[intel.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 61BCA409CDA
+X-Rspamd-Queue-Id: BBC1A409CDB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Introduce a DP helper to compute the Adaptive Sync SDP transmission line
-and use it when programming the EMP_AS_SDP_TL register.
+The Adaptive Sync SDP is currently the only packet with a programmable
+transmission line.
 
-Currently the AS SDP transmission line is programmed to the T1 position.
-This can be extended in the future to support programming the T2 position
-as well.
+Make a structure struct intel_dip for Data Island Packets. Add a member to
+track Adaptive-Sync SDP transmission line. Include the new member in the
+pipe configuration comparison.
 
-While at it, improve the documentation: the AS SDP transmission line
-corresponds to the T1 position, which maps to the start of the VSYNC
-pulse.
+This will pave the way for supporting more packets' programmable
+transmission lines, including the common base SDP transmission line
+introduced with Xe3p_lpd.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dip.c |  5 +++--
- drivers/gpu/drm/i915/display/intel_dp.c  | 12 ++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.h  |  2 ++
- 3 files changed, 17 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dip.h           | 8 ++++++++
+ drivers/gpu/drm/i915/display/intel_display.c       | 2 ++
+ drivers/gpu/drm/i915/display/intel_display_types.h | 3 +++
+ 3 files changed, 13 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dip.c b/drivers/gpu/drm/i915/display/intel_dip.c
-index 2e3f303de74b..2ec07148801e 100644
---- a/drivers/gpu/drm/i915/display/intel_dip.c
-+++ b/drivers/gpu/drm/i915/display/intel_dip.c
-@@ -8,6 +8,7 @@
- #include "intel_dip.h"
- #include "intel_dip_regs.h"
- #include "intel_display_types.h"
-+#include "intel_dp.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_dip.h b/drivers/gpu/drm/i915/display/intel_dip.h
+index 25bae4a04d6b..37507ac3e645 100644
+--- a/drivers/gpu/drm/i915/display/intel_dip.h
++++ b/drivers/gpu/drm/i915/display/intel_dip.h
+@@ -35,4 +35,12 @@ struct intel_crtc_state;
+ u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
+ void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state);
  
- u16 intel_dip_read_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
- {
-@@ -31,10 +32,10 @@ void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
- 		return;
- 	/*
- 	 * Since currently we support VRR only for DP/eDP, so this is programmed
--	 * only for Adaptive Sync SDP to Vsync start.
-+	 * only for Adaptive Sync SDP.
- 	 */
- 	if (intel_crtc_has_dp_encoder(crtc_state))
- 		intel_de_write(display,
- 			       EMP_AS_SDP_TL(display, cpu_transcoder),
--			       EMP_AS_SDP_DB_TL(crtc_state->vrr.vsync_start));
-+			       EMP_AS_SDP_DB_TL(intel_dp_get_as_sdp_transmission_line(crtc_state)));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 4955bd8b11d7..cab7db9902e2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7415,3 +7415,15 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
- 
- 	return true;
- }
-+
-+int intel_dp_get_as_sdp_transmission_line(const struct intel_crtc_state *crtc_state)
-+{
++struct intel_dip {
 +	/*
-+	 * EMP_AS_SDP_TL defines the T1 position as the default AS SDP
-+	 * Transmission Line, which corresponds to the start of the
-+	 * VSYNC pulse.
-+	 *
-+	 * Use the T1 position for now.
++	 * DIP Transmission line, relative to the Vtotal.
++	 * The programmed transmit line is (Vtotal - value)
 +	 */
-+	return crtc_state->vrr.vsync_start;
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 2849b9ecdc71..e10f21c06fe9 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -238,4 +238,6 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
- 	for ((__num_joined_pipes) = 1; (__num_joined_pipes) <= (I915_MAX_PIPES); (__num_joined_pipes)++) \
- 		for_each_if(intel_dp_joiner_candidate_valid(__connector, (__mode)->hdisplay, __num_joined_pipes))
- 
-+int intel_dp_get_as_sdp_transmission_line(const struct intel_crtc_state *crtc_state);
++	u16 emp_as_sdp_tl;
++};
 +
- #endif /* __INTEL_DP_H__ */
+ #endif /* __INTEL_DIP_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 10b6c6fcb03f..0fcee8b42b71 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -5503,6 +5503,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 
+ 	PIPE_CONF_CHECK_I(set_context_latency);
+ 
++	PIPE_CONF_CHECK_I(dip.emp_as_sdp_tl);
++
+ #undef PIPE_CONF_CHECK_X
+ #undef PIPE_CONF_CHECK_I
+ #undef PIPE_CONF_CHECK_LLI
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index e2496db1642a..deed3690a01f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -46,6 +46,7 @@
+ 
+ #include "i915_gtt_view_types.h"
+ #include "intel_bios.h"
++#include "intel_dip.h"
+ #include "intel_display.h"
+ #include "intel_display_conversion.h"
+ #include "intel_display_limits.h"
+@@ -1298,6 +1299,8 @@ struct intel_crtc_state {
+ 		struct drm_dp_as_sdp as_sdp;
+ 	} infoframes;
+ 
++	struct intel_dip dip;
++
+ 	u8 eld[MAX_ELD_BYTES];
+ 
+ 	/* HDMI scrambling status */
 -- 
 2.45.2
 
