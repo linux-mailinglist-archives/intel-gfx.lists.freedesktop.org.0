@@ -2,45 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kLDWODLV4Gk5mgAAu9opvQ
+	id sI3KEIHW4GlymgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 14:25:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 14:30:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9641040E0D2
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 14:25:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 793A840E2C8
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 14:30:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B6AE10E8AB;
-	Thu, 16 Apr 2026 12:25:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C719C10E13B;
+	Thu, 16 Apr 2026 12:30:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GQGv29sX";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="aREs4pY9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5B84F10E1DF;
- Thu, 16 Apr 2026 12:25:19 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F152F10E13B;
+ Thu, 16 Apr 2026 12:30:53 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 54A6B60126;
- Thu, 16 Apr 2026 12:25:18 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D4797C2BCB3;
- Thu, 16 Apr 2026 12:25:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 91B2640474;
+ Thu, 16 Apr 2026 12:30:53 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB8D2C2BCAF;
+ Thu, 16 Apr 2026 12:30:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776342318;
- bh=gECMS4EGrtN1lWkNcMdqV1cQaJPbxrgRQTXN3zouHSg=;
+ s=k20201202; t=1776342653;
+ bh=0+upWZt1SQSfIz6OgmfLK1joGZgudnQ2lP+Bv+7s1DM=;
  h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=GQGv29sXj5S5z7UPKnXaUJAuD1qc92DQaWs8UXQ6wwBCK62RBOeMuB3RtNcxzLs+n
- PPcHL7L8pFqT/h2G0bvvPkUySB8nqp1hX+g8DsxNBEPpxoa8+yXm1bMdZVixBjqxgs
- n60V3osh+8lSW6pt2nDmsfqoDHDW6Auv9CDrXKgdtoPlM9Xla54AXl1OSAYSKpcXrA
- NmL+fSV7Qk/BTzx5WK8y+vV+U+fxOTS5SiuiemUg0UByoPARoWSlKdZYhXUYnMvTFf
- DgJsTYvf1ogHE4V/gC2FO90mA6aK9sVcz0Z1Cm9dDcGVpaCAj1nCKENYb7/YBcL1F4
- 1oc9q29NjGBrg==
-Message-ID: <1fd72d1b-f5cd-447f-ae11-6f4d4426b8e8@kernel.org>
-Date: Thu, 16 Apr 2026 14:24:57 +0200
+ b=aREs4pY9AFWiyPis1yCUHi655kH6F2cmateO3OS3vwiWh4XGstegazkXh9fTeJRQW
+ F7PNlGo+5uv4JS1ghUA7GmLt/nGdKTIiz0N3eNo0k9qdgxnlZ6UVo1xvuY/jm0Jsgz
+ 6OXZlHvLM95FlzgQqthFFGhbIejPY5s4jQOos8SHiaMv+4GNWDNJ4NBjKmastJKLl9
+ B+kLcT7cwceOa9aKNihg3CZG+65E3BtgCcBvAVf5SIS4E47zAqVB8uUKfjkayyutdK
+ 0Jj6v6r/4toyxe6BrveBQ3dEYq/LaiTL2nhXiDsBmOQK54Y4zcD7qDew9ISAzQHpha
+ d9g1fsIICa3fA==
+Message-ID: <1fba96bd-124d-431d-8de8-78688c248600@kernel.org>
+Date: Thu, 16 Apr 2026 14:30:37 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 55/61] interconnect: Prefer IS_ERR_OR_NULL over manual
- NULL check
+Subject: Re: [PATCH 01/61] Coccinelle: Prefer IS_ERR_OR_NULL over manual NULL
+ check
 To: Philipp Hahn <phahn-oss@avm.de>, amd-gfx@lists.freedesktop.org,
  apparmor@lists.ubuntu.com, bpf@vger.kernel.org, ceph-devel@vger.kernel.org,
  cocci@inria.fr, dm-devel@lists.linux.dev, dri-devel@lists.freedesktop.org,
@@ -67,9 +67,9 @@ To: Philipp Hahn <phahn-oss@avm.de>, amd-gfx@lists.freedesktop.org,
  ntfs3@lists.linux.dev, samba-technical@lists.samba.org,
  sched-ext@lists.linux.dev, target-devel@vger.kernel.org,
  tipc-discussion@lists.sourceforge.net, v9fs@lists.linux.dev
-Cc: Georgi Djakov <djakov@kernel.org>
+Cc: Julia Lawall <Julia.Lawall@inria.fr>, Nicolas Palix <nicolas.palix@imag.fr>
 References: <20260310-b4-is_err_or_null-v1-0-bd63b656022d@avm.de>
- <20260310-b4-is_err_or_null-v1-55-bd63b656022d@avm.de>
+ <20260310-b4-is_err_or_null-v1-1-bd63b656022d@avm.de>
 From: Krzysztof Kozlowski <krzk@kernel.org>
 Content-Language: en-US
 Autocrypt: addr=krzk@kernel.org; keydata=
@@ -115,7 +115,7 @@ Autocrypt: addr=krzk@kernel.org; keydata=
  jWt87ecuHlpL3uuQ0ZZNWqHgZoQLXoqC2ZV5KrtKWb/jyiFX/sxSrodALf0zf+tfHv0FZWT2
  zHjUqd0t4njD/UOsuIMOQn4Ig0SdivYPfZukb5cdasKJukG1NOpbW7yRNivaCnfZz6dTawXw
  XRIV/KDsHQiyVxKvN73bThKhONkcX2LWuD928tAR6XMM2G5ovxLe09vuOzzfTWQDsm++9UKF a/A=
-In-Reply-To: <20260310-b4-is_err_or_null-v1-55-bd63b656022d@avm.de>
+In-Reply-To: <20260310-b4-is_err_or_null-v1-1-bd63b656022d@avm.de>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -137,7 +137,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -150,53 +150,63 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_GT_50(0.00)[55];
+	RCPT_COUNT_GT_50(0.00)[56];
 	FROM_NEQ_ENVFROM(0.00)[krzk@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,avm.de:email]
-X-Rspamd-Queue-Id: 9641040E0D2
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,imag.fr:email,avm.de:email]
+X-Rspamd-Queue-Id: 793A840E2C8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On 10/03/2026 12:49, Philipp Hahn wrote:
-> Prefer using IS_ERR_OR_NULL() over using IS_ERR() and a manual NULL
-> check.
+On 10/03/2026 12:48, Philipp Hahn wrote:
+> Find and convert uses of IS_ERR() plus NULL check to IS_ERR_OR_NULL().
 > 
-> Semantich change: Previously the code only printed the warning on error,
-> but not when the pointer was NULL. Now the warning is printed in both
-> cases!
-
-NAK, read the code
-
+> There are several cases where `!ptr && WARN_ON[_ONCE](IS_ERR(ptr))` is
+> used:
+> - arch/x86/kernel/callthunks.c:215 WARN_ON_ONCE
+> - drivers/clk/clk.c:4561 WARN_ON_ONCE
+> - drivers/interconnect/core.c:793 WARN_ON
+> - drivers/reset/core.c:718 WARN_ON
+> The change is not 100% semantical equivalent as the warning will now
+> also happen when the pointer is NULL.
 > 
-> Change found with coccinelle.
-> 
-> To: Georgi Djakov <djakov@kernel.org>
-> Cc: linux-pm@vger.kernel.org
+> To: Julia Lawall <Julia.Lawall@inria.fr>
+> To: Nicolas Palix <nicolas.palix@imag.fr>
+> Cc: cocci@inria.fr
 > Cc: linux-kernel@vger.kernel.org
+> 
+> ---
+> drivers/clocksource/mips-gic-timer.c:283 looks suspicious: ret != clk,
+> but Daniel Lezcano verified it as cottect.
+> 
+> There are some cases where the checks are part of a larger expression:
+> - mm/kmemleak.c:1095
+> - mm/kmemleak.c:1155
+> - mm/kmemleak.c:1173
+> - mm/kmemleak.c:1290
+> - mm/kmemleak.c:1328
+> - mm/kmemleak.c:1241
+> - mm/kmemleak.c:1310
+> - mm/kmemleak.c:1258
+> - net/netlink/af_netlink.c:2670
+> Thanks to Julia Lawall for the help to also handle them.
+> 
 > Signed-off-by: Philipp Hahn <phahn-oss@avm.de>
 > ---
->  drivers/interconnect/core.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  scripts/coccinelle/api/is_err_or_null.cocci | 125 ++++++++++++++++++++++++++++
+>  1 file changed, 125 insertions(+)
 > 
-> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
-> index 8569b78a18517b33abeafac091978b25cbc1acc7..22e92b30f73853d5bd2e05b4f52cb5aa22556468 100644
-> --- a/drivers/interconnect/core.c
-> +++ b/drivers/interconnect/core.c
-> @@ -790,7 +790,7 @@ void icc_put(struct icc_path *path)
->  	size_t i;
->  	int ret;
->  
-> -	if (!path || WARN_ON(IS_ERR(path)))
-> +	if (WARN_ON(IS_ERR_OR_NULL(path)))
 
-IS_ERR_OR_NULL is simply discouraged, but beside of code preference, you
-just added bug here. This is clearly not equivalent and you emit warn on
-perfectly valid case!
+Neither this, nor try from 2011, nor any future try should be accepted,
+because it creates impression IS_ERR_OR_NULL is somehow okay. No, it is
+not okay, it is a discouraged pattern leading to less readable and
+maintainable code. We should not have therefore any tools suggesting
+usage of IS_ERR_OR_NULL, because people will be converting poor code
+into that, instead of fixing that poor code.
 
 Best regards,
 Krzysztof
