@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sAqULikg4WmapQAAu9opvQ
+	id YAQaCTgg4WmipQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6DC8441330B
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8CF6C41331A
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EA58910E91F;
-	Thu, 16 Apr 2026 17:45:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 24D0810E923;
+	Thu, 16 Apr 2026 17:45:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KmTzQmZZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CO29z3Le";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 459FA10E922;
- Thu, 16 Apr 2026 17:45:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 85CDC10E922;
+ Thu, 16 Apr 2026 17:45:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776361511; x=1807897511;
+ t=1776361524; x=1807897524;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=L+KizgliHsWegnU3FScyDUT3G3eWrzAyvJflPtdRjRo=;
- b=KmTzQmZZVaqdRB3J3+FjMRyzegbPhCWXfUQhB81A+JrP3KYmheMp1k1U
- njL48lKTZSWydi9XRYnMuxqElIFf9RW5Skj1NaLEDJtsCkn/mBTl7BUKp
- f2Krex2pop9YuucAAW1k05FW1QX2e75/FMLALMmo8A0aoBI43Csi2n59q
- wkFQY5cwmJS8UHkH+2z835SteUMAsHaQv4dqYpojiwK9IEc3nf2ICDXvN
- +tcHz88MrfpOar9jHZ/8xyZHHhmcbncUROqm5RZ4XoTuAoGdWah06w+Pv
- mKZ4RGpjVu8lEk3xI9fQYI+16GOiZrm7C+P2SCmSMQzHHC10CwQXsCbw6 g==;
-X-CSE-ConnectionGUID: agYvpJ45TI+oIXu5dRNhXw==
-X-CSE-MsgGUID: Mc6ZCTSzRIiFH+t0H8T2+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77279625"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77279625"
+ bh=cmv03a75oTxubo+6AFWKBub2cvDv9hXuHCQchmv+5j0=;
+ b=CO29z3LegOPNxIrhFSxkxwbxRP7unhhfILjovO5yN7f1xtBKYsfOhMT6
+ 5Ve3tHGCCXeRMIhmcteEhfa/lBBQDgPPGC4yEtX2an9E3AHII2UYlBYX7
+ wO7rqSEi/sBhvoc6FROzr3T7jWWw9LFoD5dvvSCfvkT2uBb8WYCJTkIEV
+ MqRw+Q+FaFQifOPk97N1YF/hvIznocGkI4MFinPiIu5YxcdnQbF12FJQg
+ C3ZbxgA+sMjSo7m2zhL6eIyXPDvAeMmgoxmhM0ETLOvYmRFpbycBNA7Q3
+ pex5tVIV31vPuKkmNDpyYqEjAisT9R7exAL+KNUV8FzMrV6Ll1FlnGLSR Q==;
+X-CSE-ConnectionGUID: YDNqRXeKRMaoE+PvzO6/nA==
+X-CSE-MsgGUID: Gp3CHwVMSa2GQ8q2jvsKwA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77279635"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77279635"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 10:45:11 -0700
-X-CSE-ConnectionGUID: mkfroX1FRWWvO5qkwLRvOw==
-X-CSE-MsgGUID: uNX/DD50QTSmr7JppGGPZQ==
+ 16 Apr 2026 10:45:15 -0700
+X-CSE-ConnectionGUID: qblDDmO/SXW0g14fyDewsA==
+X-CSE-MsgGUID: 9w6nJSfpT6m4u7vHtahIvw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229960319"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229960340"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.241])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 10:45:10 -0700
+ 16 Apr 2026 10:45:14 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 04/11] drm/i915: Introduce pin_params.needs_cpu_lmem_access
-Date: Thu, 16 Apr 2026 20:44:40 +0300
-Message-ID: <20260416174448.28264-5-ville.syrjala@linux.intel.com>
+Subject: [PATCH 05/11] drm/i915: Extract intel_plane_needs_low_address()
+Date: Thu, 16 Apr 2026 20:44:41 +0300
+Message-ID: <20260416174448.28264-6-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
 References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
@@ -99,86 +99,98 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 6DC8441330B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: 8CF6C41331A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a new flag pin_params.neeeds_cpu_lmem_access so that the
-low level pinning code doesn't need to peek into the display
-driver's framebuffer structure.
+Extract the naked "gmch? -> need a low ggtt address" check into
+a more descriptive helper (intel_plane_needs_low_address()).
+The goal being to eliminate all display specific stuff from the
+low level pinning code.
+
+The actual implementation still abuses PIN_MAPPABLE to achieve
+this goal. I'm not entire convinced that this whole thing even
+needs to exist, and the original issue wasn't just caused by
+some other bug. But no time to dig into it right now, so let's
+keep going.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
- drivers/gpu/drm/i915/i915_fb_pin.c          | 4 +++-
- drivers/gpu/drm/xe/display/xe_fb_pin.c      | 3 ++-
- 3 files changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_plane.c | 13 +++++++++++++
+ drivers/gpu/drm/i915/display/intel_plane.h |  2 ++
+ drivers/gpu/drm/i915/i915_fb_pin.c         | 11 ++---------
+ 3 files changed, 17 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index e6271437459d..bcf5a1f46092 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -19,6 +19,7 @@ struct intel_fb_pin_params {
- 	unsigned int alignment;
- 	unsigned int phys_alignment;
- 	unsigned int vtd_guard;
-+	bool needs_cpu_lmem_access;
- };
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index f15dd9e91243..f41f4c2ac320 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -171,6 +171,19 @@ intel_plane_destroy_state(struct drm_plane *plane,
+ 	kfree(plane_state);
+ }
  
- struct i915_vma *
++bool intel_plane_needs_low_address(struct intel_display *display)
++{
++	/*
++	 * Valleyview is definitely limited to scanning out the first
++	 * 512MiB. Lets presume this behaviour was inherited from the
++	 * g4x display engine and that all earlier gen are similarly
++	 * limited. Testing suggests that it is a little more
++	 * complicated than this. For example, Cherryview appears quite
++	 * happy to scanout from anywhere within its global aperture.
++	 */
++	return HAS_GMCH(display);
++}
++
+ bool intel_plane_needs_physical(struct intel_plane *plane)
+ {
+ 	struct intel_display *display = to_intel_display(plane);
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
+index 5a8f2f3baab5..7fa7fbbb58dc 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.h
++++ b/drivers/gpu/drm/i915/display/intel_plane.h
+@@ -15,6 +15,7 @@ struct drm_rect;
+ struct intel_atomic_state;
+ struct intel_crtc;
+ struct intel_crtc_state;
++struct intel_display;
+ struct intel_dsb;
+ struct intel_plane;
+ struct intel_plane_state;
+@@ -79,6 +80,7 @@ int intel_plane_check_src_coordinates(struct intel_plane_state *plane_state);
+ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
+ 			       struct intel_plane_state *plane_state);
+ void intel_plane_helper_add(struct intel_plane *plane);
++bool intel_plane_needs_low_address(struct intel_display *display);
+ bool intel_plane_needs_physical(struct intel_plane *plane);
+ void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
+ 					 struct intel_plane_state *new_plane_state);
 diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-index 780be25ad43b..96ffc4b0d809 100644
+index 96ffc4b0d809..a3e5107c12f0 100644
 --- a/drivers/gpu/drm/i915/i915_fb_pin.c
 +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -61,7 +61,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
- 			 * ensure it is always in the mappable part of lmem, if this is
- 			 * a small-bar device.
- 			 */
--			if (intel_fb_needs_cpu_access(fb))
-+			if (pin_params->needs_cpu_lmem_access)
- 				flags &= ~I915_BO_ALLOC_GPU_ONLY;
- 			ret = __i915_gem_object_migrate(obj, &ww, INTEL_REGION_LMEM_0,
- 							flags);
-@@ -275,6 +275,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
- 			.alignment = intel_plane_fb_min_alignment(plane_state),
- 			.phys_alignment = intel_plane_fb_min_phys_alignment(plane_state),
- 			.vtd_guard = intel_plane_fb_vtd_guard(plane_state),
-+			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
- 		};
- 		int fence_id = -1;
+@@ -140,16 +140,9 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
  
-@@ -289,6 +290,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
- 		struct intel_fb_pin_params pin_params = {
- 			.view = &plane_state->view.gtt,
- 			.alignment = intel_plane_fb_min_alignment(plane_state),
-+			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
- 		};
+ 	atomic_inc(&i915->pending_fb_pin);
  
- 		vma = i915_dpt_pin_to_ggtt(fb->dpt, pin_params.alignment / 512);
-diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 205492639dba..a4eb06cfa769 100644
---- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-+++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -335,7 +335,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *fb,
+-	/*
+-	 * Valleyview is definitely limited to scanning out the first
+-	 * 512MiB. Lets presume this behaviour was inherited from the
+-	 * g4x display engine and that all earlier gen are similarly
+-	 * limited. Testing suggests that it is a little more
+-	 * complicated than this. For example, Cherryview appears quite
+-	 * happy to scanout from anywhere within its global aperture.
+-	 */
+ 	pinctl = 0;
+-	if (HAS_GMCH(display))
++	/* PIN_MAPPABLE limits the address to GMADR size */
++	if (intel_plane_needs_low_address(display))
+ 		pinctl |= PIN_MAPPABLE;
  
- 	refcount_set(&vma->ref, 1);
- 	if (IS_DGFX(to_xe_device(bo->ttm.base.dev)) &&
--	    intel_fb_needs_cpu_access(&fb->base) &&
-+	    pin_params->needs_cpu_lmem_access &&
- 	    !(bo->flags & XE_BO_FLAG_NEEDS_CPU_ACCESS)) {
- 		struct xe_vram_region *vram = xe_device_get_root_tile(xe)->mem.vram;
- 
-@@ -474,6 +474,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	struct intel_fb_pin_params pin_params = {
- 		.view = &new_plane_state->view.gtt,
- 		.alignment = plane->min_alignment(plane, fb, 0),
-+		.needs_cpu_lmem_access = intel_fb_needs_cpu_access(fb),
- 	};
- 
- 	if (reuse_vma(new_plane_state, old_plane_state))
+ 	i915_gem_ww_ctx_init(&ww, true);
 -- 
 2.52.0
 
