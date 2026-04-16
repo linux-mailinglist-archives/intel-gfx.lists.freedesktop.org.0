@@ -2,78 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6O2FDWiZ4GlMkAAAu9opvQ
+	id sC2ZBhqb4GnokAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 10:10:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 10:17:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 89A3640B577
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 10:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6343A40B6AE
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 10:17:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C037B10E838;
-	Thu, 16 Apr 2026 08:10:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0593910E1A8;
+	Thu, 16 Apr 2026 08:17:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="pWjsSEEG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QOhCgo1s";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E464910E834;
- Thu, 16 Apr 2026 08:10:10 +0000 (UTC)
-Received: from [192.168.88.20] (91-158-153-178.elisa-laajakaista.fi
- [91.158.153.178])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 14C9DC6C;
- Thu, 16 Apr 2026 10:08:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1776326915;
- bh=g7f/Flf2ul/YLdxmLv00ymzR+4jdIi46fIJJ0uhUQ7Y=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=pWjsSEEGtmYTjmh1L3vxjLjJOdT9c2tbeZUNXWjczBqPbKqdjpZMp4rqczxJP58Jf
- zLFaAukADLLma/Vw4PR1ekKd/GJOEikDsklce9HMwHIqA6dJSLu3TaWUZStlGcDAtB
- up2qmcbfrGPR9jIeuRwjWAgLZdc7PMji46McCOyU=
-Message-ID: <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
-Date: Thu, 16 Apr 2026 11:10:03 +0300
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8931610E1A8;
+ Thu, 16 Apr 2026 08:17:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776327444; x=1807863444;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=zzxyS/86yO+QwFq7EG77Q9q1k9Dsv35OEyw8JoSHAkg=;
+ b=QOhCgo1sAbCfHF7uehHdMj5nld8BCHVLwp9fwymlpEjTyc4xq1Y8xLGR
+ PiONc4jAL+DwKGHWhxV7C99kxvsiV3PymJHYLvwrPIYjLJS6wOs7wEyRT
+ NVdCQmLMjQZCLOjo/V30w2YAZ3RnPGl+uQaMvqd8gd0DHW0U/ZgXZSyGW
+ 3NMNqV2POrMkefX/TT+DO6qII5IiuUbFTHUjOwetlm0segWMb/cjRQo49
+ 0W3cZNoCi6n2tdSjQE6loNiiz4DBhr07VsmlKcdHtr9BqkkwN9y5Supws
+ 3tiFkWaHXonr+lHO/xw/UBQkyHz4WRUbSWe8ZvrwgoCfL89V54PCeaycp A==;
+X-CSE-ConnectionGUID: gDVbdPv+TkqNjNUVR0LExA==
+X-CSE-MsgGUID: UIHxHRGmShicv9U8cI1qkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="77195147"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77195147"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 01:17:23 -0700
+X-CSE-ConnectionGUID: s/car1LEQ/u8yaZAVlVnBQ==
+X-CSE-MsgGUID: nWgtQzsdSUq5MIYXzOlbVw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229834869"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.246.78])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 01:17:21 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, Jouni =?utf-8?Q?H=C3=B6gander?=
+ <jouni.hogander@intel.com>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>
+Subject: Re: [PATCH v3 1/7] drm/i915: Clear i915->display when no longer valid
+In-Reply-To: <20260415210411.24750-2-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260415210411.24750-1-ville.syrjala@linux.intel.com>
+ <20260415210411.24750-2-ville.syrjala@linux.intel.com>
+Date: Thu, 16 Apr 2026 11:17:18 +0300
+Message-ID: <a2bed6245981f401c49ac46118e9f7ed7b46b29b@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
- linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
- Jerome Brunet <jbrunet@baylibre.com>,
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- Bjorn Andersson <andersson@kernel.org>,
- Konrad Dybcio <konradybcio@kernel.org>, Pengyu Luo <mitltlatltl@gmail.com>,
- Nikita Travkin <nikita@trvn.ru>, Yongxing Mou <yongxing.mou@oss.qualcomm.com>
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
-Content-Language: en-US
-From: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
-In-Reply-To: <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,87 +78,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
-	ASN_FAIL(0.00)[177.210.252.131.asn.rspamd.com:server fail];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[42];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[tomi.valkeinen@ideasonboard.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,lists.infradead.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN_FAIL(0.00)[177.210.252.131.asn.rspamd.com:server fail];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 89A3640B577
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: 6343A40B6AE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Don't leave a stale i915->display pointer hanging around after
+> the display driver has been torn down. Apparently the gt code
+> calls into the reset codepaths after this, and if the display
+> pointer is still around we may try to access freed memory.
+>
+> The whole teardown sequence here seems rather suspect. Why is
+> display done first and then everything else via the managed
+> release? Who the heck knows. Someone really needs to dig into
+> this stuff and figure out the proper init/cleanup sequence for
+> both i915 (real and mock) and xe...
 
-On 16/04/2026 02:22, Dmitry Baryshkov wrote:
-> The DisplayPort standard defines a special kind of events called IRQ.
-> These events are used to notify DP Source about the events on the Sink
-> side. It is extremely important for DP MST handling, where the MST
-> events are reported through this IRQ.
-> 
-> In case of the USB-C DP AltMode there is no actual HPD pulse, but the
-> events are ported through the bits in the AltMode VDOs.
-> 
-> Extend the drm_connector_oob_hotplug_event() interface and report IRQ
-> events to the DisplayPort Sink drivers.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Yeah. And i915 and xe need to be unified, and changed to call higher
+level interfaces instead of deep into display.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->   drivers/gpu/drm/drm_connector.c          |  4 +++-
->   drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
->   include/drm/drm_connector.h              |  3 ++-
->   3 files changed, 13 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
-> index 47dc53c4a738..5fdacbd84bd7 100644
-> --- a/drivers/gpu/drm/drm_connector.c
-> +++ b/drivers/gpu/drm/drm_connector.c
-> @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->    * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
->    * @connector_fwnode: fwnode_handle to report the event on
->    * @status: hot plug detect logical state
-> + * @irq_hpd: HPD pulse detected
->    *
->    * On some hardware a hotplug event notification may come from outside the display
->    * driver / device. An example of this is some USB Type-C setups where the hardware
-> @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
->    * a drm_connector reference through calling drm_connector_find_by_fwnode().
->    */
->   void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
-> -				     enum drm_connector_status status)
-> +				     enum drm_connector_status status,
-> +				     bool irq_hpd)
-I find the "IRQ HPD" naming always confusing, even if I'm somewhat 
-familiar with DP, but if someone has mainly worked on HDMI, I'm sure 
-it's even worse.
+>  drivers/gpu/drm/i915/i915_driver.c               | 1 +
+>  drivers/gpu/drm/i915/selftests/mock_gem_device.c | 1 +
+>  2 files changed, 2 insertions(+)
+>
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i9=
+15_driver.c
+> index 195e34acef30..d31819758f3d 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -310,6 +310,7 @@ static void i915_driver_late_release(struct drm_i915_=
+private *dev_priv)
+>  	i915_params_free(&dev_priv->params);
+>=20=20
+>  	intel_display_device_remove(display);
+> +	dev_priv->display =3D NULL;
+>  }
+>=20=20
+>  /**
+> diff --git a/drivers/gpu/drm/i915/selftests/mock_gem_device.c b/drivers/g=
+pu/drm/i915/selftests/mock_gem_device.c
+> index 27dc0e40a8d7..796c9b070e41 100644
+> --- a/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> +++ b/drivers/gpu/drm/i915/selftests/mock_gem_device.c
+> @@ -277,6 +277,7 @@ void mock_destroy_device(struct drm_i915_private *i91=
+5)
+>  	struct device *dev =3D i915->drm.dev;
+>=20=20
+>  	intel_display_device_remove(i915->display);
+> +	i915->display =3D NULL;
+>=20=20
+>  	devres_release_group(dev, NULL);
+>  	put_device(dev);
 
-Can we define this a bit more precisely? Is 'irq_hpd' only for 
-displayport?  If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I 
-might even call it 'dp_hpd_pulse', but maybe that's not good as the spec 
-talks about HPD pulse for both short and long ones (although in the 
-kernel doc you just write "HPD pulse")... The kernel doc could be 
-expanded a bit to make it clear what this flag indicates.
-
-  Tomi
-
+--=20
+Jani Nikula, Intel
