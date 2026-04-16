@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0O7JIT4g4WmapQAAu9opvQ
+	id UFCZAkUg4WmapQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:34 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2EB6E413337
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC69A413346
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 19:45:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB9EB10E92D;
-	Thu, 16 Apr 2026 17:45:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FBDC10E926;
+	Thu, 16 Apr 2026 17:45:39 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="mr1R3Lpn";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFHyY8KH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9C16D10E927;
- Thu, 16 Apr 2026 17:45:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1072B10E92B;
+ Thu, 16 Apr 2026 17:45:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776361530; x=1807897530;
+ t=1776361538; x=1807897538;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+P0MHJJSyomna06hvGm2kCHagaX9cKShAapVopP8hO8=;
- b=mr1R3LpnF1ptLl1wRxuQS3wgpnsGwYjzJV7rvopWdpvhB4c/qbKztKzh
- tuSZMJrYf46QGschbCJz8xu5orqrHjT0Yvsbsa1jm6Ko7mrBi86w37RkX
- HBX664DmgC4y2rQ4mKgQOSwghOmIySs2aor2vCyfDbfTjNQrzhqjbufvD
- AdzwUpRPwp2LX/gimO+AnP3B2NIqOxWj9Oxpj2SoHg2jiGvAiH6S2ECa5
- X4Q4TJ0JFuTsW6O0soOaO++BxQUE/7f6pCFLFb037xxgvDScbr1f0q4+D
- yAPA9ITZYYDA0UGCWMpkJdtdWzRLRWwO6f1SYZD2fSvI77T/V4B1jhxNp A==;
-X-CSE-ConnectionGUID: dTjJQD8eR9KgxCnRpVbsDQ==
-X-CSE-MsgGUID: KI4IWPCjTGellTtx1XiETw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77279696"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77279696"
+ bh=20yqELnQH1PoLEuwnMTXh9estpB+kNnZF0rdFm8mZcI=;
+ b=IFHyY8KHsbisvecOahSo4oHmwAAKVSfhCWkEiP+1p6auGwWUHNK+cyWd
+ D6CvNOmzRFDd4cFs6wsdNH4sGpy9jRKo6HRJO+7iVgRfOaFKuIgkTZ9TI
+ /0ilyBkF5Iu6jPU5NoZa1P8fgvwB+Sni7MznBr3+XYTlZLDgYmRmwsW92
+ dF7p95KEcN/Y3E1JL5Bgx2/wvAo8jEPh/M38MkKc0lScEykiyPShBgzU7
+ sUYdE0IDNT5G43zgb0n7rAMuTVvs2c4dG6J4jGQPonKBzMhvvGyxp4+sY
+ 7vT0fK80Gs89E+zJFwOUiM4iQWaybDwh5v5DdTOD42t8rXLpg3v2cgMIV A==;
+X-CSE-ConnectionGUID: IXYwPa51TYKG7z2gVfzfEg==
+X-CSE-MsgGUID: 4Rvm2eQhQVmA0G29d5o0qg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77279722"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="77279722"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 10:45:28 -0700
-X-CSE-ConnectionGUID: hzaF8IhTRTOqQptIX/Ykog==
-X-CSE-MsgGUID: Ln4XVJPlSOaLA+wAAc8V2g==
+ 16 Apr 2026 10:45:37 -0700
+X-CSE-ConnectionGUID: L32HqTv9SN+PJCFDknDPEg==
+X-CSE-MsgGUID: W7Y+wMuUS/apn7zF+ZFmFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229960391"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229960416"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.241])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 10:45:27 -0700
+ 16 Apr 2026 10:45:33 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/11] drm/i915: Extract intel_plane_needs_fence()
-Date: Thu, 16 Apr 2026 20:44:44 +0300
-Message-ID: <20260416174448.28264-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/11] drm/i915: Introduce pin_params.needs_fence
+Date: Thu, 16 Apr 2026 20:44:45 +0300
+Message-ID: <20260416174448.28264-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
 References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
@@ -99,84 +99,66 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 2EB6E413337
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid,intel.com:dkim,intel.com:email]
+X-Rspamd-Queue-Id: AC69A413346
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Extract the naked DISPLA_VER<4 checks into a descriptive little
-helper (intel_plane_needs_fence()).
+Add a new flag pin_params.needs_fencel to inform the pinning
+code that the display needs a fence for tiled scanout.
 
-And while at it document the reason why the check is what it is.
+The goal is to eliminate all display specific stuff from
+the low level pinning code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb.c    | 2 +-
- drivers/gpu/drm/i915/display/intel_plane.c | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_plane.h | 1 +
- drivers/gpu/drm/i915/i915_fb_pin.c         | 2 +-
- 4 files changed, 12 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
+ drivers/gpu/drm/i915/i915_fb_pin.c          | 4 ++--
+ 2 files changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb.c b/drivers/gpu/drm/i915/display/intel_fb.c
-index cbeb39ebdb73..1c0859d5f829 100644
---- a/drivers/gpu/drm/i915/display/intel_fb.c
-+++ b/drivers/gpu/drm/i915/display/intel_fb.c
-@@ -1287,7 +1287,7 @@ bool intel_plane_uses_fence(const struct intel_plane_state *plane_state)
- 	struct intel_display *display = to_intel_display(plane_state);
- 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+index 3e37e9874f50..95f83bf7411f 100644
+--- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
++++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+@@ -22,6 +22,7 @@ struct intel_fb_pin_params {
+ 	bool needs_cpu_lmem_access;
+ 	bool needs_low_address;
+ 	bool needs_physical;
++	bool needs_fence;
+ };
  
--	return DISPLAY_VER(display) < 4 ||
-+	return intel_plane_needs_fence(display) ||
- 		(plane->fbc && !plane_state->no_fbc_reason &&
- 		 i915_gtt_view_is_normal(&plane_state->view.gtt));
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index f41f4c2ac320..c2b58d3b9c23 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -192,6 +192,15 @@ bool intel_plane_needs_physical(struct intel_plane *plane)
- 		DISPLAY_INFO(display)->cursor_needs_physical;
- }
- 
-+bool intel_plane_needs_fence(struct intel_display *display)
-+{
-+	/*
-+	 * pre-i965 planes use the fence for tiled scanout.
-+	 * i965+ planes have their own tiled scanout control bit.
-+	 */
-+	return DISPLAY_VER(display) < 4;
-+}
-+
- bool intel_plane_can_async_flip(struct intel_plane *plane,
- 				const struct drm_format_info *info,
- 				u64 modifier)
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.h b/drivers/gpu/drm/i915/display/intel_plane.h
-index 7fa7fbbb58dc..7b5456f56f42 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.h
-+++ b/drivers/gpu/drm/i915/display/intel_plane.h
-@@ -82,6 +82,7 @@ void intel_plane_set_invisible(struct intel_crtc_state *crtc_state,
- void intel_plane_helper_add(struct intel_plane *plane);
- bool intel_plane_needs_low_address(struct intel_display *display);
- bool intel_plane_needs_physical(struct intel_plane *plane);
-+bool intel_plane_needs_fence(struct intel_display *display);
- void intel_plane_init_cursor_vblank_work(struct intel_plane_state *old_plane_state,
- 					 struct intel_plane_state *new_plane_state);
- int intel_plane_add_affected(struct intel_atomic_state *state,
+ struct i915_vma *
 diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-index bfe9a5342e13..a8ed888183cb 100644
+index a8ed888183cb..5060ec8c76ca 100644
 --- a/drivers/gpu/drm/i915/i915_fb_pin.c
 +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -188,7 +188,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+@@ -112,7 +112,6 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+ 		     const struct intel_fb_pin_params *pin_params,
+ 		     int *out_fence_id)
+ {
+-	struct intel_display *display = to_intel_display(fb->dev);
+ 	struct drm_i915_private *i915 = to_i915(fb->dev);
+ 	struct drm_gem_object *_obj = intel_fb_bo(fb);
+ 	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
+@@ -188,7 +187,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
  		 * mode that matches the user configuration.
  		 */
  		ret = i915_vma_pin_fence(vma);
--		if (ret != 0 && DISPLAY_VER(display) < 4) {
-+		if (ret != 0 && intel_plane_needs_fence(display)) {
+-		if (ret != 0 && intel_plane_needs_fence(display)) {
++		if (ret != 0 && pin_params->needs_fence) {
  			i915_vma_unpin(vma);
  			goto err_unpin;
  		}
+@@ -272,6 +271,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
+ 			.needs_low_address = intel_plane_needs_low_address(display),
+ 			.needs_physical = intel_plane_needs_physical(plane),
++			.needs_fence = intel_plane_needs_fence(display),
+ 		};
+ 		int fence_id = -1;
+ 
 -- 
 2.52.0
 
