@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOkQA7xQ4GkhewAAu9opvQ
+	id gAZ0CsBQ4GkhewAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AE479409CE8
-	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F00E6409CEF
+	for <lists+intel-gfx@lfdr.de>; Thu, 16 Apr 2026 05:00:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 399C810E7DC;
-	Thu, 16 Apr 2026 03:00:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83D9C10E7BE;
+	Thu, 16 Apr 2026 03:00:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DGVCEGqT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b5LDyEfT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C4AD10E7DB;
- Thu, 16 Apr 2026 03:00:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C58C610E7DD;
+ Thu, 16 Apr 2026 03:00:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776308408; x=1807844408;
+ t=1776308410; x=1807844410;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fNFzWUF+mvaJQM5K8UCC8wAXL+m5PxMcabxN8+HyKgY=;
- b=DGVCEGqTyXkva5DQwEOZIEzMceTXy7YSnGoQUb7N2fQEMzVs4iF4ZxBU
- UCEUaout5JnuG4xku6ah6wxSK3tSsM5meXgmh5484K1WS+P7opAx1S+oO
- bprJs8Wt5Fj/Z+yMXPvZsIZqcJ1oiJc74aWKj7B1eR5tR9INcyIyaR6MD
- IbNWPmlb2gUFlmetAigyJkFWDszxltIzHPwNRnM1GiIAKUI5ElgRYm4Kc
- D1LW2GxjBNsBBzuSQMqGuNn+wEzg0UTXUmXA0NK1rpFSuqL8NjIO3gVLr
- 20l+ObueWOxg7Kf0SgmiFWtBqED/8J+OZle2NKc4fOo/4RWF/MBwrayWu w==;
-X-CSE-ConnectionGUID: o1wKtdFRRs+D9nVyq8e98w==
-X-CSE-MsgGUID: 9XoiwQNETtiDk44Mr9yD3w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997546"
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997546"
+ bh=8mIxuvDoowuDtfew6tsACufTwhNzBDPIe6qHPIvrD8A=;
+ b=b5LDyEfTfzaKBfcy1958qfVLG0DtCBgMx4EYYhD4ltBF4AZMVUzq7XoR
+ w3MCoMtLiB+3jR9kEdkv1VRVvaDw/YaS//SsQuUzm/h361rCKXzZQt3yT
+ uJ5LNmTIbxHtoLDKnCaMvdxD4NAfHq4jS888POefmkgkcPCNZDbkJwgF7
+ N6H5aXzinqvg7KnFWZVAtaYG7xGxnmeXNHBhN0wXswYOHBR49n5t16WbU
+ wAhRPlaW5JXIvARSh22wxW2vSSmbIbuKXp34HyQv/BdWYPziBcCs/fQXI
+ DPGksC2JXR+Wnj6zs0DpWF054PLgkRbsi0t1YJ8uUNSeA94gEm4zCUDvj g==;
+X-CSE-ConnectionGUID: qLOISPiqRGCedNw4iNWWrQ==
+X-CSE-MsgGUID: tVA8Ojw6RAybnlIYfstgYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11760"; a="76997553"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="76997553"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:08 -0700
-X-CSE-ConnectionGUID: lc4cTmMNQWCeyayauGGbHQ==
-X-CSE-MsgGUID: Pc2S1MyzQJyjTdWpglXJaA==
+ 15 Apr 2026 20:00:10 -0700
+X-CSE-ConnectionGUID: ZG5zmmZ+Qc6IICKjtVenSg==
+X-CSE-MsgGUID: N7V0og31RLeydpkT1wkBJw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755123"
+X-IronPort-AV: E=Sophos;i="6.23,181,1770624000"; d="scan'208";a="229755166"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Apr 2026 20:00:06 -0700
+ 15 Apr 2026 20:00:09 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, arun.r.murthy@intel.com,
  jani.nikula@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 06/12] drm/i915/dip: Store and use AS SDP transmission line
- from crtc state
-Date: Thu, 16 Apr 2026 08:14:56 +0530
-Message-ID: <20260416024504.1925195-7-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 07/12] drm/i915/nvl: Add register definitions for common SDP
+ Transmission Line
+Date: Thu, 16 Apr 2026 08:14:57 +0530
+Message-ID: <20260416024504.1925195-8-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
 References: <20260416024504.1925195-1-ankit.k.nautiyal@intel.com>
@@ -99,113 +99,52 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_FIVE(0.00)[6];
 	DKIM_TRACE(0.00)[intel.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: AE479409CE8
+X-Rspamd-Queue-Id: F00E6409CEF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The driver currently computes the Adaptive Sync SDP transmission line
-directly at programming time. Instead, compute and store the
-AS SDP transmission line in the crtc state and use it when programming the
-EMP_AS_SDP_TL register.
+From: Arun R Murthy <arun.r.murthy@intel.com>
 
-We get the clear picture about the SDPs and guardband only in
-intel_dp_sdp_compute_config_late() therefore we must configure the
-AS SDP transmission line at this point when AS SDP is enabled in
-crtc_state.
+Add registers definitions for common SDP transmission line CMN_SDP_TL
+and CMN_SDP_TL_STGR_CTL.
 
-This prepares the ground for supporting programmable transmission lines
-for additional DP SDPs.
+v2: Move all registers to intel_dip_regs.h (Ankit)
 
+Bspec: 74384
+Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c |  2 ++
- drivers/gpu/drm/i915/display/intel_dip.c | 12 +++++++++++-
- drivers/gpu/drm/i915/display/intel_dip.h |  3 +++
- drivers/gpu/drm/i915/display/intel_dp.c  | 11 +++++++++++
- 4 files changed, 27 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dip_regs.h | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index ebefa889bc8c..f85fbbc4fe9b 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -48,6 +48,7 @@
- #include "intel_ddi.h"
- #include "intel_ddi_buf_trans.h"
- #include "intel_de.h"
-+#include "intel_dip.h"
- #include "intel_display_power.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
-@@ -4217,6 +4218,7 @@ static void intel_ddi_get_config(struct intel_encoder *encoder,
- 	intel_read_dp_sdp(encoder, pipe_config, HDMI_PACKET_TYPE_GAMUT_METADATA);
- 	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_VSC);
- 	intel_read_dp_sdp(encoder, pipe_config, DP_SDP_ADAPTIVE_SYNC);
-+	intel_dip_sdp_transmission_line_get_config(pipe_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_dip_regs.h b/drivers/gpu/drm/i915/display/intel_dip_regs.h
+index 85dcbf42e77d..7e69c5cf63da 100644
+--- a/drivers/gpu/drm/i915/display/intel_dip_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_dip_regs.h
+@@ -14,4 +14,23 @@
+ #define   EMP_AS_SDP_DB_TL_MASK			REG_GENMASK(12, 0)
+ #define   EMP_AS_SDP_DB_TL(db_transmit_line)	REG_FIELD_PREP(EMP_AS_SDP_DB_TL_MASK, (db_transmit_line))
  
- 	intel_audio_codec_get_config(encoder, pipe_config);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dip.c b/drivers/gpu/drm/i915/display/intel_dip.c
-index 2ec07148801e..8b3e72c1c2a8 100644
---- a/drivers/gpu/drm/i915/display/intel_dip.c
-+++ b/drivers/gpu/drm/i915/display/intel_dip.c
-@@ -37,5 +37,15 @@ void intel_dip_write_emp_as_sdp_tl(const struct intel_crtc_state *crtc_state)
- 	if (intel_crtc_has_dp_encoder(crtc_state))
- 		intel_de_write(display,
- 			       EMP_AS_SDP_TL(display, cpu_transcoder),
--			       EMP_AS_SDP_DB_TL(intel_dp_get_as_sdp_transmission_line(crtc_state)));
-+			       EMP_AS_SDP_DB_TL(crtc_state->dip.emp_as_sdp_tl));
-+}
++/* COMMON SDP TRANSMISSION LINE */
++#define _CMN_SDP_TL_A			0x6020c
++#define CMN_SDP_TL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_A)
++#define  TRANSMISSION_LINE_ENABLE	REG_BIT(31)
++#define  BASE_TRANSMISSION_LINE_MASK	REG_GENMASK(12, 0)
++#define  BASE_TRANSMISSION_LINE(x)	REG_FIELD_PREP(BASE_TRANSMISSION_LINE_MASK, x)
 +
-+void intel_dip_sdp_tl_compute_config_late(struct intel_crtc_state *crtc_state)
-+{
-+	crtc_state->dip.emp_as_sdp_tl = intel_dp_get_as_sdp_transmission_line(crtc_state);
-+}
++#define _CMN_SDP_TL_STGR_CTL_A			0x60214
++#define CMN_SDP_TL_STGR_CTL(display, trans)	_MMIO_TRANS2(display, (trans), _CMN_SDP_TL_STGR_CTL_A)
++#define  VSC_EXT_STAGGER_MASK			REG_GENMASK(11, 8)
++#define  VSC_EXT_STAGGER(x)			REG_FIELD_PREP(VSC_EXT_STAGGER_MASK, x)
++#define  VSC_EXT_STAGGER_DEFAULT		0x2
++#define  PPS_STAGGER_MASK			REG_GENMASK(7, 4)
++#define  PPS_STAGGER(x)				REG_FIELD_PREP(PPS_STAGGER_MASK, x)
++#define  PPS_STAGGER_DEFAULT			0x1
++#define  GMP_STAGGER_MASK			REG_GENMASK(3, 0)
++#define  GMP_STAGGER(x)				REG_FIELD_PREP(GMP_STAGGER_MASK, x)
++#define  GMP_STAGGER_DEFAULT			0x0
 +
-+void intel_dip_sdp_transmission_line_get_config(struct intel_crtc_state *crtc_state)
-+{
-+	crtc_state->dip.emp_as_sdp_tl = intel_dip_read_emp_as_sdp_tl(crtc_state);
- }
-diff --git a/drivers/gpu/drm/i915/display/intel_dip.h b/drivers/gpu/drm/i915/display/intel_dip.h
-index 37507ac3e645..600dabbf7372 100644
---- a/drivers/gpu/drm/i915/display/intel_dip.h
-+++ b/drivers/gpu/drm/i915/display/intel_dip.h
-@@ -43,4 +43,7 @@ struct intel_dip {
- 	u16 emp_as_sdp_tl;
- };
- 
-+void intel_dip_sdp_tl_compute_config_late(struct intel_crtc_state *crtc_state);
-+void intel_dip_sdp_transmission_line_get_config(struct intel_crtc_state *crtc_state);
-+
- #endif /* __INTEL_DIP_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index cab7db9902e2..2670696542e0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7330,6 +7330,8 @@ int intel_dp_sdp_compute_config_late(struct intel_crtc_state *crtc_state)
- 		return -EINVAL;
- 	}
- 
-+	intel_dip_sdp_tl_compute_config_late(crtc_state);
-+
- 	return 0;
- }
- 
-@@ -7418,6 +7420,15 @@ bool intel_dp_joiner_candidate_valid(struct intel_connector *connector,
- 
- int intel_dp_get_as_sdp_transmission_line(const struct intel_crtc_state *crtc_state)
- {
-+	struct intel_display *display = to_intel_display(crtc_state);
-+
-+	if (!HAS_EMP_AS_SDP_TL(display))
-+		return 0;
-+
-+	if (!(crtc_state->infoframes.enable &
-+	      intel_hdmi_infoframe_enable(DP_SDP_ADAPTIVE_SYNC)))
-+		return 0;
-+
- 	/*
- 	 * EMP_AS_SDP_TL defines the T1 position as the default AS SDP
- 	 * Transmission Line, which corresponds to the start of the
+ #endif /* __INTEL_DIP_REGS_H__ */
 -- 
 2.45.2
 
