@@ -2,65 +2,129 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wA49OvEg4mlX1wAAu9opvQ
+	id IBbMJQlr5mmBwAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 14:00:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 20:06:01 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA93141B04A
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 14:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 24DAC43273B
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 20:06:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 67D6310E2B6;
-	Fri, 17 Apr 2026 12:00:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A561510E727;
+	Mon, 20 Apr 2026 18:05:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BHSIPAlM";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bRjPIkEH";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8D4310E2AF;
- Fri, 17 Apr 2026 12:00:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776427246; x=1807963246;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WdpwZlEs+cp1NHGCP0R/CBzoLFx+AfPelYvEKVDVow8=;
- b=BHSIPAlMVyqrq8LP6d7CC1kuuEFX4cjqwB509nnh3doNPLknH0JtuYyS
- /gcdLRT7HJboHcjYDJg5fxP4Ea/RYAkr+YTNgE+vjy4WffqW+WmS/+Vz9
- GpdowJbi1cLAzFwLLlvLuADVdLghwgYpCzYulRLqCNo34LqjnkeEjmmFL
- y6l7dkiNychImIytXBF/B+i8pbvWYiz2ZAgiefpSfqzmziOGOsn5Paqih
- HUntsalHRPUtoDS28h0nXZBI52zqX/np1KvaLRMdwQIDf5LqXBmucnRLw
- TBBA1Yh4tqslC5lL592fUtvIvty4ZdpJmRlu/659DsyWIgrdbJOc3W/Hl w==;
-X-CSE-ConnectionGUID: 0rMvmdorQhaewBDCoki4qg==
-X-CSE-MsgGUID: t7YoaO78ROG0HG4+DHgPgw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="64978178"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="64978178"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 05:00:46 -0700
-X-CSE-ConnectionGUID: n/LhiTdEQvqlBnDFiHsaPQ==
-X-CSE-MsgGUID: xovW0LgQTL+L5rXa2ARKKg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="235008610"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.127])
- by ORVIESA003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 05:00:43 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, swati2.sharma@intel.com, Suraj Kandpal
- <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-In-Reply-To: <a99f71916d52b29e300ecac2207e0fb501d6a4a5@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260417080118.2352283-1-suraj.kandpal@intel.com>
- <a99f71916d52b29e300ecac2207e0fb501d6a4a5@intel.com>
-Date: Fri, 17 Apr 2026 15:00:40 +0300
-Message-ID: <c3b5e61c68aae8242da2bd170736485ced2f9db2@intel.com>
+Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com
+ [209.85.217.43])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 473BD10E036
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 12:18:11 +0000 (UTC)
+Received: by mail-vs1-f43.google.com with SMTP id
+ ada2fe7eead31-6058a955e04so431205137.0
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 05:18:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1776428290; cv=none;
+ d=google.com; s=arc-20240605;
+ b=GljA1d9iGjSGbR5LI2pH+lzuZWFuWmgHwEZpZXn6974X2lLSyHDDRu/H6jPfIljVqF
+ FDMbpFfTwszvUevKe7IMrqB5iaSBqLd7HlqYL5Uzmkm1vO1rnGEf8g+76Fmo/GeQGkil
+ sTPNpK0N3kdqfr5ZjglMfLKXPqxQBdu/SK0eGRVNPl65Fb+oppWLPbcMMdmluzJ4NtFU
+ ZaYV3dMNoZxb9ehRWEGL8oc6mfSC1I1+WFbbtTpW1bYZLdDR1DP7dTNeQlGS0xwXrz5o
+ 8JzxsDmzYXQzVPT5r/YrKiNp4fQkzWYMLuiLOfthCmrnMMZQCSuH0hYCxHRGl3j2wD3p
+ BLOg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:dkim-signature;
+ bh=cDMhKxQZOBW41kLl446l1EJd+PVPbWKyXfIiDzkTED4=;
+ fh=IQjK765ovZ3mv/RcMZO57P1D4UgSwZl/DSQGnM2p8Wk=;
+ b=eQW6kdYdqHajxikxpZk/yMWauqVBl86l9VNA8nwsw25xFYPliDUh8ohVTECXASXlj5
+ Y712bnXvVCsWZqKvUjFm4W0U2p2vxLLv7/D6/Kii1krCMYuno5aZAqiUtyi3Tbi8sjEj
+ VuhzG4Y5tNPqYChCfHrydHZdneZHH8PbOQ4xDfQh/NhwinBICjTo73DIq9N2kHj11Dg4
+ Uvg1H95X2EdRPolr7UXvEdI22YCxt0ccwXvoIRpJ3UuL5BZLXeo4P7ehBEgHDkNbmH0k
+ i4XTLa7nHZ5COiswWAPtgPm4N88R8XVa1ccrNfN5J4jWweTXrUAJffgsAN0o1SWFEsPh
+ yXzg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776428290; x=1777033090; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=cDMhKxQZOBW41kLl446l1EJd+PVPbWKyXfIiDzkTED4=;
+ b=bRjPIkEH3YZ6zkrUU0L0mCtsbhdFrJVBkeldrhNPs+m0yr4+QpHPn95+YAuGQQ04yL
+ iodv7FtvR6Rv5Yt0ODWguCFw33fI9xk8/IEzw3mWn0f6N0yRb+fJv0hyC6GLZ2k1I9Ol
+ 93fGeDfWVegZoaIE45zD8tur3DkV8ck+gjzYTbYJSDH3EhhaJNndY72DDzZXlyKVtTd8
+ UMEvRzz6CUYx0bOmLMvjmci8puDEjDy2wudHvYBHwCgMf1gub7mB910kpCA67xudVmaO
+ xMFFUDARZFvbSSJublaHazTHjkbnnJtuA1R4YEnxmH6wYVCpnbYhkOT+t2/mISqFrgIR
+ CsDA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776428290; x=1777033090;
+ h=content-transfer-encoding:cc:to:subject:message-id:date:from
+ :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=cDMhKxQZOBW41kLl446l1EJd+PVPbWKyXfIiDzkTED4=;
+ b=A+5dKydLo0IZ3JDw9Vx0+7eumOrs1+LyKZwuBS5vKOjwBIt705j2LgI011tylWHiy2
+ jdaMj70FtY4FPMFqP+I4kSiIlCo3a7DvS8y+W3E7cMoqxKZuIKnC1seyvz0homOkZ7hl
+ oL2yUBPAm/aSFjrZMuapE+rYDc1VhPclrqkGv8Rh7n/hpqCvZJxPy9+KjQdODV7zKK/n
+ ZlAekuG+0ymnbjUiXLKCg9eWJwdfI9V79wjAQwdZZIlQQqM+3FH8T3RXYAYRvS7f3+jL
+ K0mZZbyfopdztYrhnF2hnGHGeMqFlY8XKfd9C+T+FklnlBtU0ACS8TrSPYIvoWdU0NAq
+ h32w==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ+A0c2UfZ1TxOw4ibFwYlYBnA1jgxMbnv1IfKVe2gJXFftoq9quhdCSPDxYHI9FWd3+iNEGCyW844Q=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyy5KloKfkZgeNQpOZSBd/sCZD52ABXS0hMHFqeaxFDcS5Zkw1h
+ wbL5afy+FiDwZw232pVyKexnkFZXIua/eU8/AcSfsz0ljOYOPRi/PcrvuLFqFGEjTRcSL7z6zYs
+ NicSBooy+2qRDCJp3GHpL0tq5uQH73eI=
+X-Gm-Gg: AeBDievGyCxi+y1lcz+gAvf8BvB6RQCtLPTKJ44vJ/ekB0rugLNJGa1o8UaZ6cJK00S
+ uY4fciR7E7CuLWIMTsEyB5ganRBY0cfI+B/81svTvcEifi1TPxxtOj0n8yLeat9eo4ujsjKO5FV
+ Ox4+n3br8aUoGg3B7qnrdbbTnC9eivBkl+Y87eHgYKTX56XelC88UV12+IBY/TB4Gaik9MjmAJt
+ kxD58ZhR7f0EILVa+gKGB6hlCGnOfUMjyeIF0hELWxNJTS4e9dmgIq+owyO2wA+VHEhXzO+4BjV
+ s8R6lkTZ8rQMea0HJg==
+X-Received: by 2002:a67:e703:0:b0:602:afbc:ae78 with SMTP id
+ ada2fe7eead31-616fb89ea6emr791230137.2.1776428289898; Fri, 17 Apr 2026
+ 05:18:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
+ <20260416-hpd-irq-events-v1-6-1ab1f1cfb2b2@oss.qualcomm.com>
+In-Reply-To: <20260416-hpd-irq-events-v1-6-1ab1f1cfb2b2@oss.qualcomm.com>
+From: Pengyu Luo <mitltlatltl@gmail.com>
+Date: Fri, 17 Apr 2026 20:17:26 +0800
+X-Gm-Features: AQROBzDTVswzyUjJ6xkXYjkzbvzXgr8nk22CVU17PBSoxKtVUOrPnYmdya4d4B0
+Message-ID: <CAH2e8h4rLZB3E8Rdwy_LtfwtwAKZCOgL18fRFVqGBx32Cm2N2Q@mail.gmail.com>
+Subject: Re: [PATCH 6/6] usb: typec: ucsi: huawei-gaokun: pass down HPD_IRQ
+ events
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Bjorn Andersson <andersson@kernel.org>, 
+ Konrad Dybcio <konradybcio@kernel.org>, Nikita Travkin <nikita@trvn.ru>, 
+ Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailman-Approved-At: Mon, 20 Apr 2026 18:05:58 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,114 +140,54 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[77];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:heikki.krogerus@linux.intel.com,m:gregkh@linuxfoundation.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:adrien.grassein@gmail.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:tomi.valkeinen@ideasonboard.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:nikita@trvn.ru,m:yongxing.mou@oss.qualcomm.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:int
+ el-xe@lists.freedesktop.org,m:linux-amlogic@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:jernejskrabec@gmail.com,m:adriengrassein@gmail.com,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[42];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: DA93141B04A
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
+X-Rspamd-Queue-Id: 24DAC43273B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 17 Apr 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 17 Apr 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
->> When we are enable/disable DPLL cycle there are chances the connected
->> monitors is still sending us HPD signals. This causes us to handle them
->> which require DPCD read. These sometimes race with the DPLL getting
->> disabled in between causing AUX failures via Timeout.
->> Introduce atomic variable link_teardown which is used to track if
->> we are in DPLL enable/disable cycle. We ignore HPDs during this time.
->> Re-enable after DPLL is up so that we can avoid populating logs
->> with expected logs AUX timeout failures.
+On Thu, Apr 16, 2026 at 7:22=E2=80=AFAM Dmitry Baryshkov
+<dmitry.baryshkov@oss.qualcomm.com> wrote:
 >
-> How is this not racy?
-
-Oh, please don't cross-post trybot list with other lists.
-
+> Pass IRQ_HPD events to the HPD bridge, letting those to be delivered to
+> the DisplayPort driver.
 >
->>
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_ddi.c           | 5 +++++
->>  drivers/gpu/drm/i915/display/intel_display_types.h | 1 +
->>  drivers/gpu/drm/i915/display/intel_dp.c            | 5 +++++
->>  3 files changed, 11 insertions(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
->> index 178074316a2c..4a523eb56bc4 100644
->> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
->> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
->> @@ -2086,8 +2086,12 @@ static struct intel_dpll *hsw_ddi_get_pll(struct intel_encoder *encoder)
->>  void intel_ddi_enable_clock(struct intel_encoder *encoder,
->>  			    const struct intel_crtc_state *crtc_state)
->>  {
->> +	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->> +
->>  	if (encoder->enable_clock)
->>  		encoder->enable_clock(encoder, crtc_state);
->> +
->> +	atomic_set(&dig_port->link_teardown, 0);
->>  }
->>  
->>  void intel_ddi_disable_clock(struct intel_encoder *encoder)
->> @@ -3181,6 +3185,7 @@ static void intel_ddi_post_disable_dp(struct intel_atomic_state *state,
->>  					dig_port->ddi_io_power_domain,
->>  					wakeref);
->>  
->> +	atomic_set(&dig_port->link_teardown, 1);
->>  	intel_ddi_disable_clock(encoder);
->>  
->>  	/* De-select Thunderbolt */
->> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
->> index c81916761850..f59bbb2fb260 100644
->> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
->> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
->> @@ -1985,6 +1985,7 @@ struct intel_digital_port {
->>  	enum intel_display_power_domain ddi_io_power_domain;
->>  	struct ref_tracker *ddi_io_wakeref;
->>  	struct ref_tracker *aux_wakeref;
->> +	atomic_t link_teardown;
->>  
->>  	struct intel_tc_port *tc;
->>  
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 35b8fb5740aa..9177fe9b3e84 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -6889,6 +6889,11 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
->>  	struct intel_dp *intel_dp = &dig_port->dp;
->>  	u8 dpcd[DP_RECEIVER_CAP_SIZE];
->>  
->> +	if (atomic_read(&dig_port->link_teardown)) {
->> +		drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
->> +		return IRQ_NONE;
->> +	}
->> +
->>  	if (dig_port->base.type == INTEL_OUTPUT_EDP &&
->>  	    (long_hpd ||
->>  	     intel_display_rpm_suspended(display) ||
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 
--- 
-Jani Nikula, Intel
+Reviewed-by: Pengyu Luo <mitltlatltl@gmail.com>
+
+Best wishes,
+Pengyu
