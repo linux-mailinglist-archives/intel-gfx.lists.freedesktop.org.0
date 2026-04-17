@@ -2,68 +2,106 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aFBnJpBd4mlM5QAAu9opvQ
+	id CGGgGbNp4mnk5gAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 18:19:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 19:11:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3027A41D075
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 18:19:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EAE6A41D6E6
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 19:11:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6980410EA87;
-	Fri, 17 Apr 2026 16:19:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D45510EA5A;
+	Fri, 17 Apr 2026 17:11:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AQV12rRV";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.cz header.i=@suse.cz header.b="p8f9HgC8";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="xpC/kqsu";
+	dkim=pass (1024-bit key) header.d=suse.cz header.i=@suse.cz header.b="p8f9HgC8";
+	dkim=permerror (0-bit key) header.d=suse.cz header.i=@suse.cz header.b="xpC/kqsu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 063CC88E26;
- Fri, 17 Apr 2026 16:19:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776442761; x=1807978761;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=bg5PrQthRI6SChhA/Si1NlqpMgtAcr2ASM33MCzqD38=;
- b=AQV12rRVX3CeQhtf9/ZzLislIecVUycOgISGSEPgEZLu8R/umcB35dAp
- IsNLA+5UN4EHw4B5yMnrdkB8GDo3X/7/1h/3mowKtV4edVqmPxyPTKhG8
- ajonAAvw072lTKdMnxh+XUTcYtQIrWBbscVvTfB83ulu10DB6RD6+alXc
- +s5kIDKXMeZFi+4C3CgT8LIClLblGN8c6xiSP8hDx6Tt+2piU59XoHyfp
- OWghnWFdtMs78Qufjuj0PPRSIKDlPAp8n41fo3DNSKp/O+pCkFNmFk0Sw
- uDAc8p6/qFUjleX1MfZEqDOTC3BDujd6N7TkPOB4Xt4aVHJQmdWWFe6B2 Q==;
-X-CSE-ConnectionGUID: H/9ALWjWSqOdO87kg4Gi9A==
-X-CSE-MsgGUID: h/SiY1RYSz6aOonIxI/ULg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81059113"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81059113"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 09:19:20 -0700
-X-CSE-ConnectionGUID: PrFgOoi1TsG/HH0hOAnzlw==
-X-CSE-MsgGUID: QpcctSY0StGhyWNgC9r5OA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="228395108"
-Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 09:19:19 -0700
-Date: Fri, 17 Apr 2026 19:19:16 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 04/11] drm/i915: Introduce pin_params.needs_cpu_lmem_access
-Message-ID: <aeJdhD2D9bsw0OnF@intel.com>
-References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
- <20260416174448.28264-5-ville.syrjala@linux.intel.com>
- <8e03ca87134e5bebee44aabeccd5fb86a096d4fa@intel.com>
- <aeIac-2O3xy6uso6@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 842CA10EA5A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 17:11:07 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 3B0596A9CD;
+ Fri, 17 Apr 2026 17:11:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1776445866;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZoNpbTJG3FA+Y6/ojdio+/PmnI+Bl2TOJlXEMWDNRPc=;
+ b=p8f9HgC81RqnGM4durgZx3xfS4BOkcEkxseOTwAdLLv3T5iUFg+alC5QLwazifO2qYMvyZ
+ 9NMDXV3nZW4dz2svQgotp1+E3heJ8pENfVcs+XYKpxZIiKX7ftYWqAKG/MagbhGWIvTb3S
+ 9xSw9wniFDqH5J5SWrwuNjpPAq15+DY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1776445866;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZoNpbTJG3FA+Y6/ojdio+/PmnI+Bl2TOJlXEMWDNRPc=;
+ b=xpC/kqsu09Mh0R9uSJUz2I83Sy/6JwlEUoGqu5nmmrOkJp0YpXCkeQagMjbGw54q+Fjid/
+ YcD+YEMHDw6JvXCw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.cz; s=susede2_rsa;
+ t=1776445866;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZoNpbTJG3FA+Y6/ojdio+/PmnI+Bl2TOJlXEMWDNRPc=;
+ b=p8f9HgC81RqnGM4durgZx3xfS4BOkcEkxseOTwAdLLv3T5iUFg+alC5QLwazifO2qYMvyZ
+ 9NMDXV3nZW4dz2svQgotp1+E3heJ8pENfVcs+XYKpxZIiKX7ftYWqAKG/MagbhGWIvTb3S
+ 9xSw9wniFDqH5J5SWrwuNjpPAq15+DY=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.cz;
+ s=susede2_ed25519; t=1776445866;
+ h=from:from:reply-to:reply-to:date:date:message-id:message-id:to:to:
+ cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=ZoNpbTJG3FA+Y6/ojdio+/PmnI+Bl2TOJlXEMWDNRPc=;
+ b=xpC/kqsu09Mh0R9uSJUz2I83Sy/6JwlEUoGqu5nmmrOkJp0YpXCkeQagMjbGw54q+Fjid/
+ YcD+YEMHDw6JvXCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BF5EC593AE;
+ Fri, 17 Apr 2026 17:11:05 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 0EDgLKlp4mn4RAAAD6G6ig
+ (envelope-from <pvorel@suse.cz>); Fri, 17 Apr 2026 17:11:05 +0000
+Date: Fri, 17 Apr 2026 19:11:04 +0200
+From: Petr Vorel <pvorel@suse.cz>
+To: =?iso-8859-2?Q?Micha=B3?= Grzelak <michal.grzelak@intel.com>
+Cc: Oliver Sang <oliver.sang@intel.com>, lkp@intel.com,
+ intel-gfx@lists.freedesktop.org,
+ Jani Nikula <jani.nikula@linux.intel.com>, oe-lkp@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, ltp@lists.linux.it,
+ linux-integrity@vger.kernel.org, Mimi Zohar <zohar@linux.ibm.com>
+Subject: Re: [LTP] [PATCH v1 15/16] drm/i915/bios: search for VBT #57 by
+ default
+Message-ID: <20260417171104.GB426937@pevik>
+References: <20260331183332.1773886-16-michal.grzelak@intel.com>
+ <202604150702.d409a2b6-lkp@intel.com>
+ <20260416064051.GA281695@pevik>
+ <aeCShTeoW+lmHjHF@xsang-OptiPlex-9020>
+ <2df6f595-da57-0668-951c-657c5c876333@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=iso-8859-2
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <aeIac-2O3xy6uso6@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <2df6f595-da57-0668-951c-657c5c876333@intel.com>
+X-Spam-Score: -3.50
+X-Spam-Level: 
+X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,105 +114,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: Petr Vorel <pvorel@suse.cz>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.40 / 15.00];
-	R_MIXED_CHARSET(0.91)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.cz:s=susede2_rsa,suse.cz:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS(0.00)[m:michal.grzelak@intel.com,m:oliver.sang@intel.com,m:lkp@intel.com,m:jani.nikula@linux.intel.com,m:oe-lkp@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:ltp@lists.linux.it,m:linux-integrity@vger.kernel.org,m:zohar@linux.ibm.com,s:lists@lfdr.de];
+	DMARC_NA(0.00)[suse.cz];
+	FORGED_SENDER(0.00)[pvorel@suse.cz,intel-gfx-bounces@lists.freedesktop.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sashiko.dev:url,suse.cz:dkim,suse.cz:replyto];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[suse.cz:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 3027A41D075
+	HAS_REPLYTO(0.00)[pvorel@suse.cz];
+	RCVD_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pvorel@suse.cz,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	REPLYTO_EQ_FROM(0.00)[]
+X-Rspamd-Queue-Id: EAE6A41D6E6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Apr 17, 2026 at 02:33:07PM +0300, Ville Syrjälä wrote:
-> On Fri, Apr 17, 2026 at 12:39:54PM +0300, Jani Nikula wrote:
-> > On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > >
-> > > Add a new flag pin_params.neeeds_cpu_lmem_access so that the
-> > > low level pinning code doesn't need to peek into the display
-> > > driver's framebuffer structure.
-> > >
-> > > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > ---
-> > >  drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
-> > >  drivers/gpu/drm/i915/i915_fb_pin.c          | 4 +++-
-> > >  drivers/gpu/drm/xe/display/xe_fb_pin.c      | 3 ++-
-> > >  3 files changed, 6 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> > > index e6271437459d..bcf5a1f46092 100644
-> > > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> > > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> > > @@ -19,6 +19,7 @@ struct intel_fb_pin_params {
-> > >  	unsigned int alignment;
-> > >  	unsigned int phys_alignment;
-> > >  	unsigned int vtd_guard;
-> > > +	bool needs_cpu_lmem_access;
-> > >  };
-> > >  
-> > >  struct i915_vma *
-> > > diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-> > > index 780be25ad43b..96ffc4b0d809 100644
-> > > --- a/drivers/gpu/drm/i915/i915_fb_pin.c
-> > > +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-> > > @@ -61,7 +61,7 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
-> > >  			 * ensure it is always in the mappable part of lmem, if this is
-> > >  			 * a small-bar device.
-> > >  			 */
-> > > -			if (intel_fb_needs_cpu_access(fb))
-> > > +			if (pin_params->needs_cpu_lmem_access)
-> > >  				flags &= ~I915_BO_ALLOC_GPU_ONLY;
-> > >  			ret = __i915_gem_object_migrate(obj, &ww, INTEL_REGION_LMEM_0,
-> > >  							flags);
-> > > @@ -275,6 +275,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
-> > >  			.alignment = intel_plane_fb_min_alignment(plane_state),
-> > >  			.phys_alignment = intel_plane_fb_min_phys_alignment(plane_state),
-> > >  			.vtd_guard = intel_plane_fb_vtd_guard(plane_state),
-> > > +			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
-> > 
-> > IIUC this path never uses .needs_cpu_lmem_access, but you initialize it
-> > anyway. What I find confusing is initializing it here apparently
-> > unnecessarily, but then leaving it out on a number of other paths that
-> > don't need it.
-> 
-> Hmm, yeah looks like we don't have the explicit migrate stuff
-> in the DPT path for some reason.
+Hi Micha³, all,
 
-Doh. Misread it. It is exactly the DPT path where we have this.
-And that makes sense since DG2+ require DPT for tiled buffers
-and clear color is only a thing with certain tiled modifiers.
-And DG1, which doesn't have DPT, also doesn't support small-BAR
-operation, so the migration is never needed there.
+> Hi Petr & Oliver,
 
-I guess the only situation where we might need the migration
-in the ggtt path is if we run DG2 with DPT disable via the
-modparam. But I've never actually tried that so not sure it
-even works. Should probably give it a go at some point...
+> > in our tests, it's quite persistent and clean on parent:
 
--- 
-Ville Syrjälä
-Intel
+> I haven't reproduced it myself, but this issue seems somewhat related
+> with issue observed earlier by CI [1]. I would expect it to not be a
+> random glitch but a true bug related to the series.
+
+> In previous versions of the series, during parsing there was a
+> unfortunate snippet of:
+
+> +	const u32 *tables = block->tables;
+> +	size_t offset = 0;
+> +	size_t row_width;
+> +	const u32 *vals;
+> +
+> +	row_width = block->num_columns * sizeof(*tables);
+> +
+> +	for (int idx = 0; idx < block->num_tables; idx++) {
+> +		for (int row = 0; row < num_rows; row++) {
+> +			vals = &tables[offset];
+> [...]
+> +			offset += row_width;
+> +		}
+> +	}
+
+> Which caused hopping by 4 times more bytes than it should, because the
+> sizeof() wasn't meant to be there. Since parsing takes place at module
+> load, looks like it could be the issue. This seems especially convincing
+> given that report is from parse_vswing_preemph_snps(). I have to also
+> admit that it would be consistent with review comment from Sashiko [2].
+
+> Lastly, sadly due to poorly split commits, 15th patch from v1 turned on
+> whole VBT #57 searching. This probably caused bisect to point at 15th
+> patch instead of pointing at patch adding parsing code, which would
+> clearly show that patch/es introduce/s the bug.
+
+> Anyways, now the bug should be fixed in v2 [3].
+
+Micha³, thanks a lot for pointing pointing this out.
+
+Kind regards,
+Petr
+
+> [1] https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164196v1/fi-hsw-4770/dmesg0.txt
+> [2] https://sashiko.dev/#/patchset/20260331183332.1773886-1-michal.grzelak%40intel.com?part=5
+> [3] https://lore.kernel.org/intel-gfx/20260415234639.3577774-21-michal.grzelak@intel.com/
+
+> BR,
+> Micha³
