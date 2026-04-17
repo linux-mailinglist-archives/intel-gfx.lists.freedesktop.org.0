@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id DaECGf+74WlFxgAAu9opvQ
+	id KBT5C6zA4WnixgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 06:50:07 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 07:10:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3DF86416EB3
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 06:50:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3019B416FE8
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 07:10:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7AD2110E90D;
-	Fri, 17 Apr 2026 04:50:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 714C710E11B;
+	Fri, 17 Apr 2026 05:10:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="huWXlg8+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f/L4L4KI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 754D510E28E;
- Fri, 17 Apr 2026 04:50:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACF3710E11B
+ for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 05:09:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776401403; x=1807937403;
+ t=1776402599; x=1807938599;
  h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=UBSoZEvSrLWpr8Y4M05lDl272QKFsmniII/mJiI4XY4=;
- b=huWXlg8+sLtoYUBJulNB5MerjvgFF9TlRZzYCZQKDfoyG8yQJExBiI/N
- gb1PrwKSC1Bjzj9IJRWlYULE4H+kfzGtI5u71jJLxVilaamuSKWgNss/E
- pcxN5oYAAASLcWmtSI7BAesfHa+9+1tMK+Qm+n9DtJY8ilJVEFyWssB1f
- tBVeQgK4wEeAy7yKvJtARKyC3gAV0nYUL3W5+Iu+wBh8heoxl/R/nofZs
- gUcrZKWKPyHFieBrK7AedxNQvMB19QA4wyv4l6ZJ8hou1U8mMNz+w0Ir/
- 3OtBK8J6qd/OyrZ9JiGuGi2T1lK5PivRArMxd6bqA3GHzqNUFsTS5Bau/ A==;
-X-CSE-ConnectionGUID: MjZ6EhAbS7e4jMJ+sXEMog==
-X-CSE-MsgGUID: 6/hLaj37Tkyecnn320kG+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="88795897"
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="88795897"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 21:50:02 -0700
-X-CSE-ConnectionGUID: 2kQ7gmTeRkGYbeLz3/KiHw==
-X-CSE-MsgGUID: y0R59w+ZRFicInXazf2NvQ==
+ bh=TRpltXnPilb2jllDQ4xqfTOJJjFXmMeXlpCKG4UKTvM=;
+ b=f/L4L4KI2fGrBQ2F6XqKytuLFQiIIxs9TxR/9t23ZxncFu9F84ngQuhN
+ vU1DZnKC5gq/fS5RhWUJqrBrn6SzVtvJW8V0zbyULrEaRGMpWqlmHNsqJ
+ 17UW682QBg7ptQGTJd3OyRTFJ4GnYMK9OzOtHTQY6cPMrV2d8wBEFbe46
+ 6AxZJr7it6ENh0Pd195PjdEAMEf4iylbWQcj5LTXtA+hs9uBLr6FPXhyY
+ D6OT+ws8wtXkeupy0XzKBKYKYXJtZWYb7mDGNSGlKk3ckPG0x0Se68c5V
+ TW1uQKUHHB28ZRhh2AlyKZdYKrPwhkJglEVVgaaTs9HxRzPAi69OCPYn8 Q==;
+X-CSE-ConnectionGUID: d4rt1oHBTMW5wfXLW1DWlw==
+X-CSE-MsgGUID: 4sa3fxXJSEaCHc3Z5i2xgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81012488"
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="81012488"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 Apr 2026 22:09:58 -0700
+X-CSE-ConnectionGUID: Wz+IUFsaQi2mdyNDVvdcPw==
+X-CSE-MsgGUID: OmPL2U5sT/SAuO98lg+/PA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="230076483"
-Received: from amilburn-desk.amilburn-desk (HELO jhogande-mobl3.intel.com)
- ([10.245.245.73])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Apr 2026 21:50:00 -0700
-From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH] drm/i915/psr: Disable PSR2 on Xiaomi Book Pro 14 2026 as a
- quirk
-Date: Fri, 17 Apr 2026 07:49:26 +0300
-Message-ID: <20260417044926.750354-1-jouni.hogander@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,183,1770624000"; d="scan'208";a="228266452"
+Received: from dut6094bmgfrd.fm.intel.com ([10.80.55.31])
+ by fmviesa008.fm.intel.com with ESMTP; 16 Apr 2026 22:09:58 -0700
+From: Jia Yao <jia.yao@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Jia Yao <jia.yao@intel.com>, stable@vger.kernel.org,
+ Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maciej Plewka <maciej.plewka@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: [PATCH v3] drm/i915/dg2: Add per-context control for Wa_22013059131
+Date: Fri, 17 Apr 2026 05:09:56 +0000
+Message-ID: <20260417050956.1945481-1-jia.yao@intel.com>
 X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,102 +74,242 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jia.yao@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[3];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 3DF86416EB3
+X-Rspamd-Queue-Id: 3019B416FE8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add new quirk (QUIRK_DISABLE_PSR2) for disabling PSR2 as a quirk for
-problematic setups. Apply this newly added quirk on Xiaomi Book Pro 14 2026.
+Wa_22013059131 sets FORCE_1_SUB_MESSAGE_PER_FRAGMENT in LSC_CHICKEN_BIT_0
+at engine init, but this is known to cause GPU hangs in certain workloads.
+Add I915_CONTEXT_PARAM_WA_22013059131 so userspace that handles the
+workaround itself (e.g. by limiting SLM size) can set it to 1 to let the
+kernel know bit 15 programming is not needed for that context.
 
-Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7677
-Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+LSC_CHICKEN_BIT_0 is not context-saved by hardware, so the kernel restores
+the correct value on every context switch via the indirect context
+batchbuffer to avoid leaking state between contexts. The old unconditional
+application of Wa22013059131 in intel_workarounds.c is removed.
+
+v3:
+- Kernel-internal context will not change workaround settings
+
+Bspec: 54833
+Fixes: 645cc0b9d972 ("drm/i915/dg2: Add initial gt/ctx/engine workarounds")
+Cc: stable@vger.kernel.org
+Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+Cc: Matt Roper <matthew.d.roper@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Cc: Maciej Plewka <maciej.plewka@intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>
+Signed-off-by: Jia Yao <jia.yao@intel.com>
+Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c    | 6 ++++++
- drivers/gpu/drm/i915/display/intel_quirks.c | 9 +++++++++
- drivers/gpu/drm/i915/display/intel_quirks.h | 1 +
- 3 files changed, 16 insertions(+)
+ drivers/gpu/drm/i915/gem/i915_gem_context.c   | 12 +++++
+ .../gpu/drm/i915/gem/i915_gem_context_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_context_types.h |  1 +
+ drivers/gpu/drm/i915/gt/intel_lrc.c           | 44 ++++++++++++++++++-
+ drivers/gpu/drm/i915/gt/intel_workarounds.c   | 10 ++---
+ include/uapi/drm/i915_drm.h                   | 10 +++++
+ 6 files changed, 72 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b4ca5843d098..19b3b9d52eb9 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -695,6 +695,12 @@ static void _psr_init_dpcd(struct intel_dp *intel_dp, struct intel_connector *co
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+index 6ac0f23570f3..d24e449f1eb3 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+@@ -911,6 +911,15 @@ static int set_proto_ctx_param(struct drm_i915_file_private *fpriv,
+ 			ret = -EINVAL;
+ 		break;
  
- 	connector->dp.psr_caps.sync_latency = intel_dp_get_sink_sync_latency(intel_dp);
- 
-+	if (intel_has_quirk(display, QUIRK_DISABLE_PSR2)) {
-+		drm_dbg_kms(display->drm,
-+			    "PSR2 support not currently available for this setup\n");
-+		return;
-+	}
++	case I915_CONTEXT_PARAM_WA_22013059131:
++		if (args->size)
++			ret = -EINVAL;
++		else if (args->value)
++			pc->user_flags |= BIT(UCONTEXT_WA_22013059131);
++		else
++			pc->user_flags &= ~BIT(UCONTEXT_WA_22013059131);
++		break;
 +
- 	if (DISPLAY_VER(display) >= 9 &&
- 	    connector->dp.psr_caps.dpcd[0] >= DP_PSR2_WITH_Y_COORD_IS_SUPPORTED) {
- 		bool y_req = connector->dp.psr_caps.dpcd[1] &
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
-index 883f297d4b83..229e0025a06c 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.c
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.c
-@@ -94,6 +94,12 @@ static void quirk_disable_edp_panel_replay(struct intel_dp *intel_dp)
- 	drm_info(display->drm, "Applying disable Panel Replay quirk\n");
+ 	case I915_CONTEXT_PARAM_RECOVERABLE:
+ 		if (args->size)
+ 			ret = -EINVAL;
+@@ -1003,6 +1012,9 @@ static int intel_context_set_gem(struct intel_context *ce,
+ 	if (test_bit(UCONTEXT_LOW_LATENCY, &ctx->user_flags))
+ 		__set_bit(CONTEXT_LOW_LATENCY, &ce->flags);
+ 
++	if (test_bit(UCONTEXT_WA_22013059131, &ctx->user_flags))
++		__set_bit(CONTEXT_WA_22013059131, &ce->flags);
++
+ 	return ret;
  }
  
-+static void quirk_disable_psr2(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+index 0267c924634b..4efc0e758d3b 100644
+--- a/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
++++ b/drivers/gpu/drm/i915/gem/i915_gem_context_types.h
+@@ -338,6 +338,7 @@ struct i915_gem_context {
+ #define UCONTEXT_RECOVERABLE		3
+ #define UCONTEXT_PERSISTENCE		4
+ #define UCONTEXT_LOW_LATENCY		5
++#define UCONTEXT_WA_22013059131		6
+ 
+ 	/**
+ 	 * @flags: small set of booleans
+diff --git a/drivers/gpu/drm/i915/gt/intel_context_types.h b/drivers/gpu/drm/i915/gt/intel_context_types.h
+index 10070ee4d74c..84011ce7c84d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_context_types.h
++++ b/drivers/gpu/drm/i915/gt/intel_context_types.h
+@@ -133,6 +133,7 @@ struct intel_context {
+ #define CONTEXT_EXITING			13
+ #define CONTEXT_LOW_LATENCY		14
+ #define CONTEXT_OWN_STATE		15
++#define CONTEXT_WA_22013059131		16
+ 
+ 	struct {
+ 		u64 timeout_us;
+diff --git a/drivers/gpu/drm/i915/gt/intel_lrc.c b/drivers/gpu/drm/i915/gt/intel_lrc.c
+index 147d22907960..bab4f38515d4 100644
+--- a/drivers/gpu/drm/i915/gt/intel_lrc.c
++++ b/drivers/gpu/drm/i915/gt/intel_lrc.c
+@@ -1348,6 +1348,37 @@ gen12_invalidate_state_cache(u32 *cs)
+ 	return cs;
+ }
+ 
++static u32 *
++dg2_g11_emit_wa_22013059131(const struct intel_context *ce, u32 *cs)
 +{
-+	intel_set_quirk(display, QUIRK_DISABLE_PSR2);
-+	drm_info(display->drm, "Applying disable PSR2 quirk\n");
++	/*
++	 * While re-writing LSC_CHICKEN_BIT_0 for Wa_22013059131, the
++	 * other bits of the register will also get overwritten.  The
++	 * hardware default for all other bits is 0, but any workarounds
++	 * that adjust the other bits in the lower dword of the register
++	 * also need to be re-applied here.  At the moment that's just
++	 * Wa_22014226127, which is always set for DG2-G11 platforms.
++	 */
++	u32 val = DISABLE_D8_D16_COASLESCE;
++
++	/*
++	 * Wa_22013059131: only set FORCE_1_SUB_MESSAGE_PER_FRAGMENT for
++	 * userspace contexts that have not opted out.  Kernel-internal
++	 * contexts (gem_context == NULL) never run shader workloads that
++	 * require this workaround, so skip them unconditionally.
++	 */
++	if (rcu_access_pointer(ce->gem_context) &&
++	    !test_bit(CONTEXT_WA_22013059131, &ce->flags)) {
++		val |= FORCE_1_SUB_MESSAGE_PER_FRAGMENT;
++	}
++
++	*cs++ = MI_LOAD_REGISTER_IMM(1);
++	*cs++ = i915_mmio_reg_offset(LSC_CHICKEN_BIT_0);
++	*cs++ = val;
++
++	return cs;
 +}
 +
- struct intel_quirk {
- 	int device;
- 	int subsystem_vendor;
-@@ -250,6 +256,9 @@ static struct intel_quirk intel_quirks[] = {
+ static u32 *
+ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+ {
+@@ -1371,6 +1402,11 @@ gen12_emit_indirect_ctx_rcs(const struct intel_context *ce, u32 *cs)
+ 	    IS_DG2(ce->engine->i915))
+ 		cs = dg2_emit_draw_watermark_setting(cs);
  
- 	/* Dell XPS 13 7390 2-in-1 */
- 	{ 0x8a52, 0x1028, 0x08b0, quirk_edp_limit_rate_hbr2 },
++	/* Wa_22013059131:dg2 */
++	if (IS_DG2_G11(ce->engine->i915))
++		cs = dg2_g11_emit_wa_22013059131(ce, cs);
 +
-+	/* Xiaomi Book Pro 14 2026 */
-+	{ 0xb081, 0x1d72, 0x2424, quirk_disable_psr2 },
- };
++
+ 	return cs;
+ }
  
- static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
-diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
-index 83214eb94b0c..970a4fe52faf 100644
---- a/drivers/gpu/drm/i915/display/intel_quirks.h
-+++ b/drivers/gpu/drm/i915/display/intel_quirks.h
-@@ -22,6 +22,7 @@ enum intel_quirk_id {
- 	QUIRK_FW_SYNC_LEN,
- 	QUIRK_EDP_LIMIT_RATE_HBR2,
- 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
-+	QUIRK_DISABLE_PSR2,
- };
+@@ -1387,7 +1423,13 @@ gen12_emit_indirect_ctx_xcs(const struct intel_context *ce, u32 *cs)
+ 						    PIPE_CONTROL_INSTRUCTION_CACHE_INVALIDATE,
+ 						    0);
  
- void intel_init_quirks(struct intel_display *display);
+-	return gen12_emit_aux_table_inv(ce->engine, cs);
++	cs = gen12_emit_aux_table_inv(ce->engine, cs);
++
++	/* Wa_22013059131:dg2 */
++	if (IS_DG2_G11(ce->engine->i915))
++		cs = dg2_g11_emit_wa_22013059131(ce, cs);
++
++	return cs;
+ }
+ 
+ static u32 *xehp_emit_fastcolor_blt_wabb(const struct intel_context *ce, u32 *cs)
+diff --git a/drivers/gpu/drm/i915/gt/intel_workarounds.c b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+index 24ea5d8d529c..ef6eea3ab597 100644
+--- a/drivers/gpu/drm/i915/gt/intel_workarounds.c
++++ b/drivers/gpu/drm/i915/gt/intel_workarounds.c
+@@ -2840,7 +2840,11 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 	if (IS_GFX_GT_IP_STEP(gt, IP_VER(12, 70), STEP_A0, STEP_B0) ||
+ 	    IS_GFX_GT_IP_STEP(gt, IP_VER(12, 71), STEP_A0, STEP_B0) ||
+ 	    IS_DG2(i915)) {
+-		/* Wa_22014226127 */
++		/*
++		 * Wa_22014226127: Note that this workaround also needs to be
++		 * re-applied in intel_lrc.c when LSC_CHICKEN_BIT_0 is
++		 * re-written for Wa_22013059131.
++		 */
+ 		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0, DISABLE_D8_D16_COASLESCE);
+ 	}
+ 
+@@ -2867,10 +2871,6 @@ general_render_compute_wa_init(struct intel_engine_cs *engine, struct i915_wa_li
+ 				     MAXREQS_PER_BANK,
+ 				     REG_FIELD_PREP(MAXREQS_PER_BANK, 2));
+ 
+-		/* Wa_22013059131:dg2 */
+-		wa_mcr_write_or(wal, LSC_CHICKEN_BIT_0,
+-				FORCE_1_SUB_MESSAGE_PER_FRAGMENT);
+-
+ 		/*
+ 		 * Wa_22012654132
+ 		 *
+diff --git a/include/uapi/drm/i915_drm.h b/include/uapi/drm/i915_drm.h
+index 535cb68fdb5c..0f553bb12fb0 100644
+--- a/include/uapi/drm/i915_drm.h
++++ b/include/uapi/drm/i915_drm.h
+@@ -2172,6 +2172,16 @@ struct drm_i915_gem_context_param {
+  * Note that this is a debug API not available on production kernel builds.
+  */
+ #define I915_CONTEXT_PARAM_CONTEXT_IMAGE	0xf
++
++/*
++ * I915_CONTEXT_PARAM_WA_22013059131:
++ *
++ * Default value 0 means the kernel programs Wa_22013059131 for this context.
++ * Set to 1 to inform the kernel that userspace is taking responsibility for
++ * applying the preferred workaround implementation, so the kernel programming
++ * of LSC_CHICKEN_BIT_0 bit 15 is not needed for this context. DG2-G11 only.
++ */
++#define I915_CONTEXT_PARAM_WA_22013059131	0x10
+ /* Must be kept compact -- no holes and well documented */
+ 
+ 	/** @value: Context parameter value to be set or queried */
 -- 
 2.43.0
 
