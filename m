@@ -2,62 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SMbnJ04E4mna0QAAu9opvQ
+	id ePptEEAJ4mna0QAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 11:58:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 12:19:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 275D1419BA7
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 11:58:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C0F6941A0AB
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 12:19:39 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 270CD10E9B7;
-	Fri, 17 Apr 2026 09:58:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D4E510E058;
+	Fri, 17 Apr 2026 10:19:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LKfX/Dy7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jUUz9khI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6282B10E9B7;
- Fri, 17 Apr 2026 09:58:30 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B3D5B10E058;
+ Fri, 17 Apr 2026 10:19:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776419910; x=1807955910;
+ t=1776421175; x=1807957175;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=CL/rmD4aNqCqQy/FBFwsoFfh0w1fXqFdcYcmHmZWjjI=;
- b=LKfX/Dy73zU1FRuMqxEcvB4zan2Io5cYUxhdoLNJijkS6umbp9gh4ena
- p24AnS/pkbkLU1ZteDVXMM345nYMhXm0MxMkhW6gUtN3gR5QpWb6U5NEA
- pWICmUsm/nFZbaTJtZ1eNDJS7FaAZuORIcK33A0szWHYFUri5gjDOxtVj
- IoCPLs+TTriDnmePQfZ+CFXjYEJqBdsxOJTVvqd+EwWOTByJYM1WPd4RO
- 3iewkSq6waNG3pMT/sRH24cgvY/anKeeWdntwOOVSXW+8cahJbhsswu74
- Ws3tIItZ6a9X3GhAouK5dlG4+0DZqyiNw4ykAXLdOhdTvtUE/XKLSsYH+ A==;
-X-CSE-ConnectionGUID: bgQ0a2u2QqKLVKZU/EuHnQ==
-X-CSE-MsgGUID: LVxF/DONQTajTPP+0mVZ0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77342404"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="77342404"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 02:58:30 -0700
-X-CSE-ConnectionGUID: ogxhJ1oMRnSuzeKzGwwaHw==
-X-CSE-MsgGUID: +qtK/T09RISlDNhvzbT+Nw==
+ bh=a7xoVr/Y+vLxXenpInznQQ2gLS1mBHcDt+jUqp6rk9s=;
+ b=jUUz9khIbIIQ0C6nQI3K5RauBmhk1RXhUNifJZCpfvSh4m9BIFVYdwQY
+ llH9n1oEWIPtuyT/oI2BS+GRzkPJf1LFT2omLn+RaWcAArA1Zk5Phn8AD
+ yOse50uSZ2cAqcpdH3Ud3/JhLwYtXsDS1AVBYZB2PvuQz5h+f229Xsokm
+ sLhzv5JoXrfpctzOW3VMaytZ6XBzXQwE/QtZtG/7Ftk9gc7RoadZM8N8T
+ QTAPzEDlWCw9sYtm/j69X9zaY0DUQKg4zIpgrSrxkYMrmKqV26dBhvO34
+ L4peu25PyZ371vVUkgRuTJ6l/OwqQBxsna9tIoanqkIw9jgC8se/mtgKH g==;
+X-CSE-ConnectionGUID: 01z9aH8ZRaOPmGIvuWShvA==
+X-CSE-MsgGUID: hhF1QgF9QE2p3KQQxYl/uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="77555817"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="77555817"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 03:19:35 -0700
+X-CSE-ConnectionGUID: F962EbpbTaCNOuD57kYmWA==
+X-CSE-MsgGUID: TMrYEMjKQ1G4dKUAZ1MC1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="226650199"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="230137060"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.127])
- by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 02:58:28 -0700
+ by orviesa010-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Apr 2026 03:19:34 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 09/11] drm/i915: Introduce pin_params.needs_fence
-In-Reply-To: <20260416174448.28264-10-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 10/11] drm/xe: Eliminate intel_fb_uses_dpt() call from
+ __xe_pin_fb_vma()
+In-Reply-To: <20260416174448.28264-11-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
- <20260416174448.28264-10-ville.syrjala@linux.intel.com>
-Date: Fri, 17 Apr 2026 12:58:26 +0300
-Message-ID: <47a9626a4dcf354d2c30b1236b19b03126d57ec2@intel.com>
+ <20260416174448.28264-11-ville.syrjala@linux.intel.com>
+Date: Fri, 17 Apr 2026 13:19:30 +0300
+Message-ID: <b5b0c71a91ce90b18dbd7ef928c7d49bcde4f948@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -90,8 +91,8 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCPT_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
@@ -100,83 +101,85 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 275D1419BA7
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: C0F6941A0AB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Add a new flag pin_params.needs_fencel to inform the pinning
+> Move the intel_fb_uses_dpt() out from __xe_pin_fb_vma() into
+> intel_plane_pin_fb() so the we don't any display stuff that deep
+> in the pinning code.
 
-*needs_fence
+Parse error. "so that we don't have"?
 
-> code that the display needs a fence for tiled scanout.
->
-> The goal is to eliminate all display specific stuff from
-> the low level pinning code.
+> And intel_fb_pin_to_ggtt() can just say "this does not need DPT"
+> always since it's specifically about pinning the fb into GGTT.
+> The previous logic here was kinda insane with the high level code
+> assuming GGTT, and low level code potentially deciding otherwise.
+> In practice it should have been fine because intel_fb_pin_to_ggtt()
+> only gets used from the intiial_palne code, and there we are
+> not supposed to be have a framebuffer that needs DPT.
 
-Again, I find it just a little magical that .needs_fence is only
-initialized in certain code paths, with the implementation detail
-knowledge where the member is used. E.g. in this case out_fence_id !=3D
-NULL.
-
-Regardless,
+*initial_plane
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
->  drivers/gpu/drm/i915/i915_fb_pin.c          | 4 ++--
->  2 files changed, 3 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 9 +++++----
+>  1 file changed, 5 insertions(+), 4 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/dr=
-m/i915/display/intel_fb_pin.h
-> index 3e37e9874f50..95f83bf7411f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> @@ -22,6 +22,7 @@ struct intel_fb_pin_params {
->  	bool needs_cpu_lmem_access;
->  	bool needs_low_address;
->  	bool needs_physical;
-> +	bool needs_fence;
->  };
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
+display/xe_fb_pin.c
+> index a4eb06cfa769..44562769fbc9 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -318,7 +318,7 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_fr=
+amebuffer *fb,
+>  	return ret;
+>  }
 >=20=20
->  struct i915_vma *
-> diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i9=
-15_fb_pin.c
-> index a8ed888183cb..5060ec8c76ca 100644
-> --- a/drivers/gpu/drm/i915/i915_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-> @@ -112,7 +112,6 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
->  		     const struct intel_fb_pin_params *pin_params,
->  		     int *out_fence_id)
+> -static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *=
+fb,
+> +static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *=
+fb, bool is_dpt,
+>  					const struct intel_fb_pin_params *pin_params)
 >  {
-> -	struct intel_display *display =3D to_intel_display(fb->dev);
->  	struct drm_i915_private *i915 =3D to_i915(fb->dev);
->  	struct drm_gem_object *_obj =3D intel_fb_bo(fb);
->  	struct drm_i915_gem_object *obj =3D to_intel_bo(_obj);
-> @@ -188,7 +187,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
->  		 * mode that matches the user configuration.
->  		 */
->  		ret =3D i915_vma_pin_fence(vma);
-> -		if (ret !=3D 0 && intel_plane_needs_fence(display)) {
-> +		if (ret !=3D 0 && pin_params->needs_fence) {
->  			i915_vma_unpin(vma);
->  			goto err_unpin;
->  		}
-> @@ -272,6 +271,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
-e_state,
->  			.needs_cpu_lmem_access =3D intel_fb_needs_cpu_access(&fb->base),
->  			.needs_low_address =3D intel_plane_needs_low_address(display),
->  			.needs_physical =3D intel_plane_needs_physical(plane),
-> +			.needs_fence =3D intel_plane_needs_fence(display),
->  		};
->  		int fence_id =3D -1;
+>  	struct drm_device *dev =3D fb->base.dev;
+> @@ -375,7 +375,7 @@ static struct i915_vma *__xe_pin_fb_vma(const struct =
+intel_framebuffer *fb,
+>  		goto err;
+>=20=20
+>  	vma->bo =3D bo;
+> -	if (intel_fb_uses_dpt(&fb->base))
+> +	if (is_dpt)
+>  		ret =3D __xe_pin_fb_vma_dpt(fb, pin_params, vma);
+>  	else
+>  		ret =3D __xe_pin_fb_vma_ggtt(fb, pin_params, vma);
+> @@ -419,7 +419,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+>  	if (out_fence_id)
+>  		*out_fence_id =3D -1;
+>=20=20
+> -	return __xe_pin_fb_vma(to_intel_framebuffer(fb), pin_params);
+> +	return __xe_pin_fb_vma(to_intel_framebuffer(fb), false, pin_params);
+>  }
+>=20=20
+>  void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+> @@ -483,7 +483,8 @@ int intel_plane_pin_fb(struct intel_plane_state *new_=
+plane_state,
+>  	/* We reject creating !SCANOUT fb's, so this is weird.. */
+>  	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
+>=20=20
+> -	vma =3D __xe_pin_fb_vma(intel_fb, &pin_params);
+> +	vma =3D __xe_pin_fb_vma(intel_fb, intel_fb_uses_dpt(&intel_fb->base),
+> +			      &pin_params);
+>=20=20
+>  	if (IS_ERR(vma))
+>  		return PTR_ERR(vma);
 
 --=20
 Jani Nikula, Intel
