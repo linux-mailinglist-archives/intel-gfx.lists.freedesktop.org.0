@@ -2,129 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IBbMJQlr5mmBwAEAu9opvQ
+	id YHnlGMsm4mkY2QAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 20:06:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 14:25:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DAC43273B
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 20:06:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E15B541B325
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 14:25:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A561510E727;
-	Mon, 20 Apr 2026 18:05:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C2B410E2A9;
+	Fri, 17 Apr 2026 12:25:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="bRjPIkEH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fmiKcbUN";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com
- [209.85.217.43])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 473BD10E036
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 12:18:11 +0000 (UTC)
-Received: by mail-vs1-f43.google.com with SMTP id
- ada2fe7eead31-6058a955e04so431205137.0
- for <intel-gfx@lists.freedesktop.org>; Fri, 17 Apr 2026 05:18:11 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1776428290; cv=none;
- d=google.com; s=arc-20240605;
- b=GljA1d9iGjSGbR5LI2pH+lzuZWFuWmgHwEZpZXn6974X2lLSyHDDRu/H6jPfIljVqF
- FDMbpFfTwszvUevKe7IMrqB5iaSBqLd7HlqYL5Uzmkm1vO1rnGEf8g+76Fmo/GeQGkil
- sTPNpK0N3kdqfr5ZjglMfLKXPqxQBdu/SK0eGRVNPl65Fb+oppWLPbcMMdmluzJ4NtFU
- ZaYV3dMNoZxb9ehRWEGL8oc6mfSC1I1+WFbbtTpW1bYZLdDR1DP7dTNeQlGS0xwXrz5o
- 8JzxsDmzYXQzVPT5r/YrKiNp4fQkzWYMLuiLOfthCmrnMMZQCSuH0hYCxHRGl3j2wD3p
- BLOg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=cDMhKxQZOBW41kLl446l1EJd+PVPbWKyXfIiDzkTED4=;
- fh=IQjK765ovZ3mv/RcMZO57P1D4UgSwZl/DSQGnM2p8Wk=;
- b=eQW6kdYdqHajxikxpZk/yMWauqVBl86l9VNA8nwsw25xFYPliDUh8ohVTECXASXlj5
- Y712bnXvVCsWZqKvUjFm4W0U2p2vxLLv7/D6/Kii1krCMYuno5aZAqiUtyi3Tbi8sjEj
- VuhzG4Y5tNPqYChCfHrydHZdneZHH8PbOQ4xDfQh/NhwinBICjTo73DIq9N2kHj11Dg4
- Uvg1H95X2EdRPolr7UXvEdI22YCxt0ccwXvoIRpJ3UuL5BZLXeo4P7ehBEgHDkNbmH0k
- i4XTLa7nHZ5COiswWAPtgPm4N88R8XVa1ccrNfN5J4jWweTXrUAJffgsAN0o1SWFEsPh
- yXzg==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776428290; x=1777033090; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=cDMhKxQZOBW41kLl446l1EJd+PVPbWKyXfIiDzkTED4=;
- b=bRjPIkEH3YZ6zkrUU0L0mCtsbhdFrJVBkeldrhNPs+m0yr4+QpHPn95+YAuGQQ04yL
- iodv7FtvR6Rv5Yt0ODWguCFw33fI9xk8/IEzw3mWn0f6N0yRb+fJv0hyC6GLZ2k1I9Ol
- 93fGeDfWVegZoaIE45zD8tur3DkV8ck+gjzYTbYJSDH3EhhaJNndY72DDzZXlyKVtTd8
- UMEvRzz6CUYx0bOmLMvjmci8puDEjDy2wudHvYBHwCgMf1gub7mB910kpCA67xudVmaO
- xMFFUDARZFvbSSJublaHazTHjkbnnJtuA1R4YEnxmH6wYVCpnbYhkOT+t2/mISqFrgIR
- CsDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776428290; x=1777033090;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=cDMhKxQZOBW41kLl446l1EJd+PVPbWKyXfIiDzkTED4=;
- b=A+5dKydLo0IZ3JDw9Vx0+7eumOrs1+LyKZwuBS5vKOjwBIt705j2LgI011tylWHiy2
- jdaMj70FtY4FPMFqP+I4kSiIlCo3a7DvS8y+W3E7cMoqxKZuIKnC1seyvz0homOkZ7hl
- oL2yUBPAm/aSFjrZMuapE+rYDc1VhPclrqkGv8Rh7n/hpqCvZJxPy9+KjQdODV7zKK/n
- ZlAekuG+0ymnbjUiXLKCg9eWJwdfI9V79wjAQwdZZIlQQqM+3FH8T3RXYAYRvS7f3+jL
- K0mZZbyfopdztYrhnF2hnGHGeMqFlY8XKfd9C+T+FklnlBtU0ACS8TrSPYIvoWdU0NAq
- h32w==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+A0c2UfZ1TxOw4ibFwYlYBnA1jgxMbnv1IfKVe2gJXFftoq9quhdCSPDxYHI9FWd3+iNEGCyW844Q=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yyy5KloKfkZgeNQpOZSBd/sCZD52ABXS0hMHFqeaxFDcS5Zkw1h
- wbL5afy+FiDwZw232pVyKexnkFZXIua/eU8/AcSfsz0ljOYOPRi/PcrvuLFqFGEjTRcSL7z6zYs
- NicSBooy+2qRDCJp3GHpL0tq5uQH73eI=
-X-Gm-Gg: AeBDievGyCxi+y1lcz+gAvf8BvB6RQCtLPTKJ44vJ/ekB0rugLNJGa1o8UaZ6cJK00S
- uY4fciR7E7CuLWIMTsEyB5ganRBY0cfI+B/81svTvcEifi1TPxxtOj0n8yLeat9eo4ujsjKO5FV
- Ox4+n3br8aUoGg3B7qnrdbbTnC9eivBkl+Y87eHgYKTX56XelC88UV12+IBY/TB4Gaik9MjmAJt
- kxD58ZhR7f0EILVa+gKGB6hlCGnOfUMjyeIF0hELWxNJTS4e9dmgIq+owyO2wA+VHEhXzO+4BjV
- s8R6lkTZ8rQMea0HJg==
-X-Received: by 2002:a67:e703:0:b0:602:afbc:ae78 with SMTP id
- ada2fe7eead31-616fb89ea6emr791230137.2.1776428289898; Fri, 17 Apr 2026
- 05:18:09 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0EEAE10E2A9;
+ Fri, 17 Apr 2026 12:25:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1776428740; x=1807964740;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=kbHTkYoKArlqE/2u5Is0Nfk2zK9OxgIiUR57aTdl6YQ=;
+ b=fmiKcbUNd/giWqPnUJRL1NyjLe7GgAlw0UPViBlNtmzOcGn7o2EZ4NPH
+ pqb1XDj2urcTzoF5sgHmvgOehDZz4dBMoIPzMlINl2AaCw3Lp1hWHrbkk
+ RocHxP7W3g1/9JEcvBG9Dqz/mA1MWmP1xU1IqCjfDVn6DgKIEsUtxhGsf
+ xyf1DWBOg4gX/5zVBqv8uZHXji241SmG7MRciiCujqKI6t3bIysBMIR1U
+ hsv9HBk5XHB3PWJeQ40DtTnyKYQVdjXkZUTwGJplBhm3QnKRg7R9iIAAg
+ 8Ab/Xd1GRix0LMvdW81/7PaoXTI49KAxciTbypmvuYfwloKOXS439aBi3 Q==;
+X-CSE-ConnectionGUID: lt9dShSIQzyM8ZoqUlW+tw==
+X-CSE-MsgGUID: HMFh0Mg2SZiunU6RWAiWug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81321614"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81321614"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 05:25:40 -0700
+X-CSE-ConnectionGUID: 61QJsspeTp6bONMEOBcGPg==
+X-CSE-MsgGUID: fXu2mbaKTcObII0aWUtubQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="227892689"
+Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 05:25:38 -0700
+Date: Fri, 17 Apr 2026 15:25:35 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 09/11] drm/i915: Introduce pin_params.needs_fence
+Message-ID: <aeImv3P19vdMrqZm@intel.com>
+References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
+ <20260416174448.28264-10-ville.syrjala@linux.intel.com>
+ <47a9626a4dcf354d2c30b1236b19b03126d57ec2@intel.com>
 MIME-Version: 1.0
-References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
- <20260416-hpd-irq-events-v1-6-1ab1f1cfb2b2@oss.qualcomm.com>
-In-Reply-To: <20260416-hpd-irq-events-v1-6-1ab1f1cfb2b2@oss.qualcomm.com>
-From: Pengyu Luo <mitltlatltl@gmail.com>
-Date: Fri, 17 Apr 2026 20:17:26 +0800
-X-Gm-Features: AQROBzDTVswzyUjJ6xkXYjkzbvzXgr8nk22CVU17PBSoxKtVUOrPnYmdya4d4B0
-Message-ID: <CAH2e8h4rLZB3E8Rdwy_LtfwtwAKZCOgL18fRFVqGBx32Cm2N2Q@mail.gmail.com>
-Subject: Re: [PATCH 6/6] usb: typec: ucsi: huawei-gaokun: pass down HPD_IRQ
- events
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, 
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
- Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Bjorn Andersson <andersson@kernel.org>, 
- Konrad Dybcio <konradybcio@kernel.org>, Nikita Travkin <nikita@trvn.ru>, 
- Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-X-Mailman-Approved-At: Mon, 20 Apr 2026 18:05:58 +0000
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <47a9626a4dcf354d2c30b1236b19b03126d57ec2@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -139,55 +77,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[77];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.40 / 15.00];
+	R_MIXED_CHARSET(0.91)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:dmitry.baryshkov@oss.qualcomm.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:heikki.krogerus@linux.intel.com,m:gregkh@linuxfoundation.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:adrien.grassein@gmail.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.run,m:marijn.suijten@somainline.org,m:tomi.valkeinen@ideasonboard.com,m:andersson@kernel.org,m:konradybcio@kernel.org,m:nikita@trvn.ru,m:yongxing.mou@oss.qualcomm.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:int
- el-xe@lists.freedesktop.org,m:linux-amlogic@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:jernejskrabec@gmail.com,m:adriengrassein@gmail.com,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mitltlatltl@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[42];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mitltlatltl@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,mail.gmail.com:mid]
-X-Rspamd-Queue-Id: 24DAC43273B
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+X-Rspamd-Queue-Id: E15B541B325
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 16, 2026 at 7:22=E2=80=AFAM Dmitry Baryshkov
-<dmitry.baryshkov@oss.qualcomm.com> wrote:
->
-> Pass IRQ_HPD events to the HPD bridge, letting those to be delivered to
-> the DisplayPort driver.
->
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+On Fri, Apr 17, 2026 at 12:58:26PM +0300, Jani Nikula wrote:
+> On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> >
+> > Add a new flag pin_params.needs_fencel to inform the pinning
+> 
+> *needs_fence
+> 
+> > code that the display needs a fence for tiled scanout.
+> >
+> > The goal is to eliminate all display specific stuff from
+> > the low level pinning code.
+> 
+> Again, I find it just a little magical that .needs_fence is only
+> initialized in certain code paths, with the implementation detail
+> knowledge where the member is used.
 
-Reviewed-by: Pengyu Luo <mitltlatltl@gmail.com>
+I think in the end we could more or less set all the pin_params
+members identically in all the codepaths. Though in the end we
+should only have three codepaths (plane ggtt pin, plane dpt pin,
+fbdev ggtt pin), so the xe vs. i915 differences here will just
+go away with that.
 
-Best wishes,
-Pengyu
+> E.g. in this case out_fence_id !=
+> NULL.
+
+I suppose for that particular thing I could also add a
+.uses_fence and just always require the &fence_id to be
+passed in. Although I guess then I'd need to add the
+fence_id tracking to to the fbdev path as well.
+
+Hmm, I think fences might disappear on runtime suspend
+so it might not really work to have a fence being tracked
+for the fbdev perma-pin and expect it to survive runtime
+suspend. So it may be that we never want to request a fence
+in the fbdev codepath. But if the fence disappears then how
+would a tiled fbdev framebuffer even work? I need to check
+this...
+
+And for the DPT path we probably shouldn't set any fence flags
+(nor even have the *out_fence_id) since fence+DPT is just
+nonsense.
+
+> 
+> Regardless,
+> 
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+> 
+> 
+> >
+> > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_fb_pin.h | 1 +
+> >  drivers/gpu/drm/i915/i915_fb_pin.c          | 4 ++--
+> >  2 files changed, 3 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > index 3e37e9874f50..95f83bf7411f 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
+> > @@ -22,6 +22,7 @@ struct intel_fb_pin_params {
+> >  	bool needs_cpu_lmem_access;
+> >  	bool needs_low_address;
+> >  	bool needs_physical;
+> > +	bool needs_fence;
+> >  };
+> >  
+> >  struct i915_vma *
+> > diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
+> > index a8ed888183cb..5060ec8c76ca 100644
+> > --- a/drivers/gpu/drm/i915/i915_fb_pin.c
+> > +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
+> > @@ -112,7 +112,6 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+> >  		     const struct intel_fb_pin_params *pin_params,
+> >  		     int *out_fence_id)
+> >  {
+> > -	struct intel_display *display = to_intel_display(fb->dev);
+> >  	struct drm_i915_private *i915 = to_i915(fb->dev);
+> >  	struct drm_gem_object *_obj = intel_fb_bo(fb);
+> >  	struct drm_i915_gem_object *obj = to_intel_bo(_obj);
+> > @@ -188,7 +187,7 @@ intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
+> >  		 * mode that matches the user configuration.
+> >  		 */
+> >  		ret = i915_vma_pin_fence(vma);
+> > -		if (ret != 0 && intel_plane_needs_fence(display)) {
+> > +		if (ret != 0 && pin_params->needs_fence) {
+> >  			i915_vma_unpin(vma);
+> >  			goto err_unpin;
+> >  		}
+> > @@ -272,6 +271,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+> >  			.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
+> >  			.needs_low_address = intel_plane_needs_low_address(display),
+> >  			.needs_physical = intel_plane_needs_physical(plane),
+> > +			.needs_fence = intel_plane_needs_fence(display),
+> >  		};
+> >  		int fence_id = -1;
+> 
+> -- 
+> Jani Nikula, Intel
+
+-- 
+Ville Syrjälä
+Intel
