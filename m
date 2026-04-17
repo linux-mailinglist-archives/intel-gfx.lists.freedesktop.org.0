@@ -2,66 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oFnmJI0K4mmE0wAAu9opvQ
+	id aNsfAf8K4mmE0wAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 12:25:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 12:27:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23F7A41A160
-	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 12:25:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8511D41A185
+	for <lists+intel-gfx@lfdr.de>; Fri, 17 Apr 2026 12:27:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FF0810E9D9;
-	Fri, 17 Apr 2026 10:25:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B885710E9DA;
+	Fri, 17 Apr 2026 10:27:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lx5KY4gT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jQw8UAYL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 17D0710E9D9;
- Fri, 17 Apr 2026 10:25:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E5C4E10E9DA;
+ Fri, 17 Apr 2026 10:27:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776421510; x=1807957510;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=Jk5gqhvOV7DsiBeKduClDTOmoEQVYqXC8fTcQJr3kKA=;
- b=lx5KY4gToq00KpXlMYZ0VoZPr3z33TQjderRq/fHiISEmpPnwr9n4Rko
- mo7DBdKOhK/RAsFnH8tBBDx0tSsUJ7m1jifWe6eH8inpnEineb/xIAxsS
- d7lBwmrfGHofF1tCWRlmUHsY+9ruQUjY94gYw8gdl7rHOvUZDpaRzjcPN
- q2Ql+bvxAk4Svy/DlwMcrLDv2tT8wleoAtuQVWhgJxtRSON+Kg8SStk7s
- qLgLau9hUsUJDGBqCT+nMeyKDS0M95lSMPTsLxc5Z3LDFS+hdDkbk5T1q
- cyZp8pzm6zBMV54G/aNxsG9v+FeAHF7WGDPVqhxryERWHc4XbmvJxsigD g==;
-X-CSE-ConnectionGUID: Yru5zrvZQVWE7LibMKFIWg==
-X-CSE-MsgGUID: MntA71y4RQCcf/LhmozXgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="88508523"
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="88508523"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 03:25:09 -0700
-X-CSE-ConnectionGUID: UGXbUAnnQqWrs6iqYZq7bA==
-X-CSE-MsgGUID: R0o9HFNOROCyKhpLxzskOw==
+ t=1776421624; x=1807957624;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=hd2Pu9lPjRuTNLo6ZFOLBA/ymDyHuavCpbIwFLJ1aqc=;
+ b=jQw8UAYL0c6PTY67meptGZ4OmJILsgCRy0dvdoM6XhCskqXUN0PL0PES
+ fZ4qYBkgjRU1cJTJ8yKp/MonUh4jjZAnb4Yi32exHhtgf4uVs8FMQT8QT
+ efbj6NqyXwSK6kL8HiJn2lFuefV85nRxXbcPRuLM7I09fascownnRBz3z
+ l/RGXB+DY/F4WouUheQwvhKVqJV6Vv5sOD4sFBp20APElkP6rTwWpx1rZ
+ vZ6cGfeAWve9Ffq4yQu3QZtSQNFe4h77/yNrp0EDsMqsLw2ONztMjHzlo
+ 7vb4JODj/4TNfLSIT2FKZfbjd7GPDllPwT8ca8P/0kE/h9Kq12kpjF5dt A==;
+X-CSE-ConnectionGUID: hGoAdMimRD+EBlluugv8uA==
+X-CSE-MsgGUID: g2pMalBVRUC0DeXPnHdamQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11761"; a="81033413"
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="81033413"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 03:27:03 -0700
+X-CSE-ConnectionGUID: ew2WkmcqTBGC/fHdJx4VBg==
+X-CSE-MsgGUID: 26fd4okQSoSkv0OrZH+NIw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="269024278"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.127])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Apr 2026 03:25:09 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 11/11] drm/i915: Don't pass the framebuffer to low level
- pinning functions
-In-Reply-To: <20260416174448.28264-12-ville.syrjala@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260416174448.28264-1-ville.syrjala@linux.intel.com>
- <20260416174448.28264-12-ville.syrjala@linux.intel.com>
-Date: Fri, 17 Apr 2026 13:25:05 +0300
-Message-ID: <930d88df274c94811050a7c9f2bd132685bf2442@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,184,1770624000"; d="scan'208";a="230877146"
+Received: from zzombora-mobl1 (HELO localhost) ([10.245.245.176])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Apr 2026 03:27:02 -0700
+Date: Fri, 17 Apr 2026 13:26:58 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
+Message-ID: <aeIK8oEzWAkDJw5i@intel.com>
+References: <20260412103712.4021213-1-animesh.manna@intel.com>
+ <20260412103712.4021213-4-animesh.manna@intel.com>
+ <d9c82dabf89fb932b3c10aa0ee768fdda181c396@intel.com>
+ <DS0PR11MB804961654148D027B4F03601F9202@DS0PR11MB8049.namprd11.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <DS0PR11MB804961654148D027B4F03601F9202@DS0PR11MB8049.namprd11.prod.outlook.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,294 +82,235 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [0.36 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.67)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[6];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 23F7A41A160
+X-Rspamd-Queue-Id: 8511D41A185
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 16 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
-> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
->
-> Now that we have the pin_params the low level pinning code no
-> longer needs the entire framebuffer structure. The gem object
-> alone (along with the pin_params) is enough.
+On Fri, Apr 17, 2026 at 06:03:52AM +0000, Manna, Animesh wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Nikula, Jani <jani.nikula@intel.com>
+> > Sent: Tuesday, April 14, 2026 7:03 PM
+> > To: Manna, Animesh <animesh.manna@intel.com>; intel-
+> > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > Cc: Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan
+> > Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>; Manna,
+> > Animesh <animesh.manna@intel.com>
+> > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
+> > 
+> > On Sun, 12 Apr 2026, Animesh Manna <animesh.manna@intel.com> wrote:
+> > > Timing registers are separate for CMTG, read transcoder register and
+> > > program cmtg transcoder with those values.
+> > >
+> > > v2:
+> > > - Use sw state instead of reading directly from hardware. [Jani]
+> > > - Move set_timing later after encoder enable. [Dibin]
+> > >
+> > > v3:
+> > > - Replace id with trans. [Jani]
+> > > - Program cmtg set_timing() along with primary transcoder timing.
+> > >
+> > > v4:
+> > > - Use _MMIO_TRANS() for cmtg registers instead of direct
+> > > multiplication. [Jani]
+> > >
+> > > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > > ---
+> > >  drivers/gpu/drm/i915/display/intel_cmtg.c     | 61 ++++++++++++++++++-
+> > >  drivers/gpu/drm/i915/display/intel_cmtg.h     |  3 +
+> > >  .../gpu/drm/i915/display/intel_cmtg_regs.h    | 31 ++++++++++
+> > >  drivers/gpu/drm/i915/display/intel_display.c  |  4 ++
+> > >  4 files changed, 98 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > index 403f9e10a8dc..a3db1368bd83 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > @@ -4,7 +4,6 @@
+> > >   */
+> > >
+> > >  #include <linux/string_choices.h>
+> > > -#include <linux/types.h>
+> > >
+> > >  #include <drm/drm_device.h>
+> > >  #include <drm/drm_print.h>
+> > > @@ -222,3 +221,63 @@ void intel_cmtg_set_clk_select(const struct
+> > intel_crtc_state *crtc_state)
+> > >  	if (clk_sel_set)
+> > >  		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr,
+> > clk_sel_set);  }
+> > > +
+> > > +void intel_cmtg_set_timings(const struct intel_crtc_state
+> > > +*crtc_state, bool lrr) {
+> > > +	struct intel_display *display = to_intel_display(crtc_state);
+> > > +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> > > +	const struct drm_display_mode *adjusted_mode = &crtc_state-
+> > >hw.adjusted_mode;
+> > > +	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
+> > > +
+> > > +	if (!intel_cmtg_is_allowed(crtc_state))
+> > > +		return;
+> > > +
+> > > +	crtc_vdisplay = adjusted_mode->crtc_vdisplay;
+> > > +
+> > > +	/*
+> > > +	 * For platforms that always use VRR Timing Generator, the
+> > VTOTAL.Vtotal
+> > > +	 * bits are not required. Since the support for these bits is going to
+> > > +	 * be deprecated in upcoming platforms, avoid writing these bits for
+> > the
+> > > +	 * platforms that do not use legacy Timing Generator.
+> > > +	 */
+> > > +	crtc_vtotal = 1;
+> > > +
+> > > +	/*
+> > > +	 * VBLANK_START not used by hw, just clear it
+> > > +	 * to make it stand out in register dumps.
+> > > +	 */
+> > > +	crtc_vblank_start = 1;
+> > > +
+> > > +	crtc_vblank_end = adjusted_mode->crtc_vblank_end;
+> > > +
+> > > +	if (lrr) {
+> > > +		intel_de_write(display,
+> > TRANS_VTOTAL_CMTG(cpu_transcoder),
+> > > +			       VACTIVE(crtc_vdisplay - 1) |
+> > > +			       VTOTAL(crtc_vtotal - 1));
+> > > +		intel_de_write(display,
+> > TRANS_VBLANK_CMTG(cpu_transcoder),
+> > > +			       VBLANK_START(crtc_vblank_start - 1) |
+> > > +			       VBLANK_END(crtc_vblank_end - 1));
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	intel_de_write(display, TRANS_HTOTAL_CMTG(cpu_transcoder),
+> > > +		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
+> > > +		       HTOTAL(adjusted_mode->crtc_htotal - 1));
+> > > +	intel_de_write(display, TRANS_HBLANK_CMTG(cpu_transcoder),
+> > > +		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
+> > > +		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
+> > > +	intel_de_write(display, TRANS_HSYNC_CMTG(cpu_transcoder),
+> > > +		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
+> > > +		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
+> > > +	intel_de_write(display, TRANS_VTOTAL_CMTG(cpu_transcoder),
+> > > +		       VACTIVE(crtc_vdisplay - 1) |
+> > > +		       VTOTAL(crtc_vtotal - 1));
+> > > +	intel_de_write(display, TRANS_VBLANK_CMTG(cpu_transcoder),
+> > > +		       VBLANK_START(crtc_vblank_start - 1) |
+> > > +		       VBLANK_END(crtc_vblank_end - 1));
+> > > +	intel_de_write(display, TRANS_VSYNC_CMTG(cpu_transcoder),
+> > > +		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
+> > > +		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
+> > > +	intel_de_write(display,
+> > TRANS_SET_CTX_LATENCY_CMTG(cpu_transcoder),
+> > > +		       crtc_state->set_context_latency); }
+> > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > index 660ec513626e..53a44f505dd2 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > @@ -6,9 +6,12 @@
+> > >  #ifndef __INTEL_CMTG_H__
+> > >  #define __INTEL_CMTG_H__
+> > >
+> > > +#include <linux/types.h>
+> > > +
+> > >  struct intel_display;
+> > >  struct intel_crtc_state;
+> > >
+> > > +void intel_cmtg_set_timings(const struct intel_crtc_state
+> > > +*crtc_state, bool lrr);
+> > >  void intel_cmtg_set_clk_select(const struct intel_crtc_state
+> > > *crtc_state);  void intel_cmtg_sanitize(struct intel_display
+> > > *display);  bool intel_cmtg_is_allowed(const struct intel_crtc_state
+> > > *crtc_state); diff --git
+> > > a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > index 4a80b88d88fd..f7fc812d8ef0 100644
+> > > --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > @@ -20,4 +20,35 @@
+> > >  #define TRANS_CMTG_CTL_B		_MMIO(0x6fb88)
+> > >  #define  CMTG_ENABLE			REG_BIT(31)
+> > >
+> > > +#define _TRANS_HTOTAL_CMTG_A		0x6F000
+> > > +#define _TRANS_HTOTAL_CMTG_B		0x6F100
+> > > +#define TRANS_HTOTAL_CMTG(trans)	_MMIO_TRANS((trans), \
+> > > +						    _TRANS_HTOTAL_CMTG_A,
+> > _TRANS_HTOTAL_CMTG_B)
+> > > +#define _TRANS_HBLANK_CMTG_A		0x6F004
+> > > +#define _TRANS_HBLANK_CMTG_B		0x6F104
+> > > +#define TRANS_HBLANK_CMTG(trans)	_MMIO_TRANS((trans), \
+> > > +						    _TRANS_HBLANK_CMTG_A,
+> > _TRANS_HBLANK_CMTG_B)
+> > > +#define _TRANS_HSYNC_CMTG_A		0x6F008
+> > > +#define _TRANS_HSYNC_CMTG_B		0x6F108
+> > > +#define TRANS_HSYNC_CMTG(trans)
+> > 	_MMIO_TRANS((trans), \
+> > > +						    _TRANS_HSYNC_CMTG_A,
+> > _TRANS_HSYNC_CMTG_B)
+> > > +#define _TRANS_VTOTAL_CMTG_A		0x6F00C
+> > > +#define _TRANS_VTOTAL_CMTG_B		0x6F10C
+> > > +#define TRANS_VTOTAL_CMTG(trans)	_MMIO_TRANS((trans), \
+> > > +						    _TRANS_VTOTAL_CMTG_A,
+> > _TRANS_VTOTAL_CMTG_B)
+> > > +#define _TRANS_VBLANK_CMTG_A		0x6F010
+> > > +#define _TRANS_VBLANK_CMTG_B		0x6F110
+> > > +#define TRANS_VBLANK_CMTG(trans)	_MMIO_TRANS((trans), \
+> > > +						    _TRANS_VBLANK_CMTG_A,
+> > _TRANS_VBLANK_CMTG_B)
+> > > +#define _TRANS_VSYNC_CMTG_A		0x6F014
+> > > +#define _TRANS_VSYNC_CMTG_B		0x6F114
+> > > +#define TRANS_VSYNC_CMTG(trans)
+> > 	_MMIO_TRANS((trans), \
+> > > +						    _TRANS_VSYNC_CMTG_A,
+> > _TRANS_VSYNC_CMTG_B)
+> > 
+> > I though there was already feedback that these match the regular transcoder
+> > registers.
+> 
+> _TRANS_HTOTAL_A         0x60000
+> _TRANS_HTOTAL_B         0x61000
+> 
+> _TRANS_HTOTAL_CMTG_A            0x6F000
+> _TRANS_HTOTAL_CMTG_B            0x6F100
+> 
+> I am not clear how to match?
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+#define TRANSCODER_CMTG0_OFFSET 0x6F000
+#define TRANSCODER_CMTG1_OFFSET 0x6F100
 
-
-> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_fb_pin.h   |  4 +--
->  drivers/gpu/drm/i915/display/intel_fbdev.c    |  6 ++--
->  drivers/gpu/drm/i915/i915_fb_pin.c            | 15 ++++------
->  drivers/gpu/drm/xe/display/xe_fb_pin.c        | 28 ++++++++-----------
->  drivers/gpu/drm/xe/display/xe_initial_plane.c |  2 +-
->  5 files changed, 23 insertions(+), 32 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/dr=
-m/i915/display/intel_fb_pin.h
-> index 95f83bf7411f..5825503c38ea 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> +++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-> @@ -8,7 +8,7 @@
->=20=20
->  #include <linux/types.h>
->=20=20
-> -struct drm_framebuffer;
-> +struct drm_gem_object;
->  struct i915_vma;
->  struct intel_plane_state;
->  struct i915_gtt_view;
-> @@ -26,7 +26,7 @@ struct intel_fb_pin_params {
->  };
->=20=20
->  struct i915_vma *
-> -intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-> +intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
->  		     const struct intel_fb_pin_params *pin_params,
->  		     int *out_fence_id);
->=20=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
-/i915/display/intel_fbdev.c
-> index 4c3e54acde81..9ab0ac49abb7 100644
-> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-> @@ -306,6 +306,8 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_help=
-er *helper,
->  		sizes->fb_height =3D fb->base.height;
->  	}
->=20=20
-> +	obj =3D intel_fb_bo(&fb->base);
-> +
->  	/* Pin the GGTT vma for our access via info->screen_base.
->  	 * This also validates that any existing fb inherited from the
->  	 * BIOS is suitable for own access.
-> @@ -317,7 +319,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_help=
-er *helper,
->  						       DRM_MODE_ROTATE_0);
->  	pin_params.needs_low_address =3D intel_plane_needs_low_address(display);
->=20=20
-> -	vma =3D intel_fb_pin_to_ggtt(&fb->base, &pin_params, NULL);
-> +	vma =3D intel_fb_pin_to_ggtt(obj, &pin_params, NULL);
->  	if (IS_ERR(vma)) {
->  		ret =3D PTR_ERR(vma);
->  		goto out_unlock;
-> @@ -328,8 +330,6 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_help=
-er *helper,
->=20=20
->  	info->fbops =3D &intelfb_ops;
->=20=20
-> -	obj =3D intel_fb_bo(&fb->base);
-> -
->  	ret =3D intel_bo_fbdev_fill_info(obj, info, vma);
->  	if (ret)
->  		goto out_unpin;
-> diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i9=
-15_fb_pin.c
-> index 5060ec8c76ca..b0e121462ca3 100644
-> --- a/drivers/gpu/drm/i915/i915_fb_pin.c
-> +++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-> @@ -23,12 +23,10 @@
->  #include "i915_vma.h"
->=20=20
->  static struct i915_vma *
-> -intel_fb_pin_to_dpt(const struct drm_framebuffer *fb,
-> -		    struct intel_dpt *dpt,
-> +intel_fb_pin_to_dpt(struct drm_gem_object *_obj, struct intel_dpt *dpt,
->  		    const struct intel_fb_pin_params *pin_params)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(fb->dev);
-> -	struct drm_gem_object *_obj =3D intel_fb_bo(fb);
-> +	struct drm_i915_private *i915 =3D to_i915(_obj->dev);
->  	struct drm_i915_gem_object *obj =3D to_intel_bo(_obj);
->  	struct i915_address_space *vm =3D i915_dpt_to_vm(dpt);
->  	struct i915_gem_ww_ctx ww;
-> @@ -108,12 +106,11 @@ intel_fb_pin_to_dpt(const struct drm_framebuffer *f=
-b,
->  }
->=20=20
->  struct i915_vma *
-> -intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-> +intel_fb_pin_to_ggtt(struct drm_gem_object *_obj,
->  		     const struct intel_fb_pin_params *pin_params,
->  		     int *out_fence_id)
->  {
-> -	struct drm_i915_private *i915 =3D to_i915(fb->dev);
-> -	struct drm_gem_object *_obj =3D intel_fb_bo(fb);
-> +	struct drm_i915_private *i915 =3D to_i915(_obj->dev);
->  	struct drm_i915_gem_object *obj =3D to_intel_bo(_obj);
->  	intel_wakeref_t wakeref;
->  	struct i915_gem_ww_ctx ww;
-> @@ -275,7 +272,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
-e_state,
->  		};
->  		int fence_id =3D -1;
->=20=20
-> -		vma =3D intel_fb_pin_to_ggtt(&fb->base, &pin_params,
-> +		vma =3D intel_fb_pin_to_ggtt(intel_fb_bo(&fb->base), &pin_params,
->  					   intel_plane_uses_fence(plane_state) ? &fence_id : NULL);
->  		if (IS_ERR(vma))
->  			return PTR_ERR(vma);
-> @@ -295,7 +292,7 @@ int intel_plane_pin_fb(struct intel_plane_state *plan=
-e_state,
->=20=20
->  		plane_state->ggtt_vma =3D vma;
->=20=20
-> -		vma =3D intel_fb_pin_to_dpt(&fb->base, fb->dpt, &pin_params);
-> +		vma =3D intel_fb_pin_to_dpt(intel_fb_bo(&fb->base), fb->dpt, &pin_para=
-ms);
->  		if (IS_ERR(vma)) {
->  			i915_dpt_unpin_from_ggtt(fb->dpt);
->  			plane_state->ggtt_vma =3D NULL;
-> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
-display/xe_fb_pin.c
-> index 44562769fbc9..5d7b30f62930 100644
-> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-> @@ -139,14 +139,13 @@ write_dpt_remapped(struct xe_bo *bo,
->  	}
->  }
->=20=20
-> -static int __xe_pin_fb_vma_dpt(const struct intel_framebuffer *fb,
-> +static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
->  			       const struct intel_fb_pin_params *pin_params,
->  			       struct i915_vma *vma)
->  {
-> -	struct xe_device *xe =3D to_xe_device(fb->base.dev);
-> +	struct xe_device *xe =3D to_xe_device(obj->dev);
->  	struct xe_tile *tile0 =3D xe_device_get_root_tile(xe);
->  	struct xe_ggtt *ggtt =3D tile0->mem.ggtt;
-> -	struct drm_gem_object *obj =3D intel_fb_bo(&fb->base);
->  	const struct i915_gtt_view *view =3D pin_params->view;
->  	struct xe_bo *bo =3D gem_to_xe_bo(obj), *dpt;
->  	u32 dpt_size, size =3D bo->ttm.base.size;
-> @@ -268,14 +267,13 @@ static void write_ggtt_rotated_node(struct xe_ggtt =
-*ggtt, struct xe_ggtt_node *n
->  				   rot_info->plane[i].dst_stride);
->  }
->=20=20
-> -static int __xe_pin_fb_vma_ggtt(const struct intel_framebuffer *fb,
-> +static int __xe_pin_fb_vma_ggtt(struct drm_gem_object *obj,
->  				const struct intel_fb_pin_params *pin_params,
->  				struct i915_vma *vma)
->  {
-> -	struct drm_gem_object *obj =3D intel_fb_bo(&fb->base);
->  	const struct i915_gtt_view *view =3D pin_params->view;
->  	struct xe_bo *bo =3D gem_to_xe_bo(obj);
-> -	struct xe_device *xe =3D to_xe_device(fb->base.dev);
-> +	struct xe_device *xe =3D to_xe_device(obj->dev);
->  	struct xe_tile *tile0 =3D xe_device_get_root_tile(xe);
->  	struct xe_ggtt *ggtt =3D tile0->mem.ggtt;
->  	u64 pte, size;
-> @@ -318,13 +316,11 @@ static int __xe_pin_fb_vma_ggtt(const struct intel_=
-framebuffer *fb,
->  	return ret;
->  }
->=20=20
-> -static struct i915_vma *__xe_pin_fb_vma(const struct intel_framebuffer *=
-fb, bool is_dpt,
-> +static struct i915_vma *__xe_pin_fb_vma(struct drm_gem_object *obj, bool=
- is_dpt,
->  					const struct intel_fb_pin_params *pin_params)
->  {
-> -	struct drm_device *dev =3D fb->base.dev;
-> -	struct xe_device *xe =3D to_xe_device(dev);
-> +	struct xe_device *xe =3D to_xe_device(obj->dev);
->  	struct i915_vma *vma =3D kzalloc(sizeof(*vma), GFP_KERNEL);
-> -	struct drm_gem_object *obj =3D intel_fb_bo(&fb->base);
->  	struct xe_bo *bo =3D gem_to_xe_bo(obj);
->  	struct xe_validation_ctx ctx;
->  	struct drm_exec exec;
-> @@ -376,9 +372,9 @@ static struct i915_vma *__xe_pin_fb_vma(const struct =
-intel_framebuffer *fb, bool
->=20=20
->  	vma->bo =3D bo;
->  	if (is_dpt)
-> -		ret =3D __xe_pin_fb_vma_dpt(fb, pin_params, vma);
-> +		ret =3D __xe_pin_fb_vma_dpt(obj, pin_params, vma);
->  	else
-> -		ret =3D __xe_pin_fb_vma_ggtt(fb, pin_params, vma);
-> +		ret =3D __xe_pin_fb_vma_ggtt(obj, pin_params, vma);
->  	if (ret)
->  		goto err_unpin;
->=20=20
-> @@ -412,14 +408,14 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
->  }
->=20=20
->  struct i915_vma *
-> -intel_fb_pin_to_ggtt(const struct drm_framebuffer *fb,
-> +intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
->  		     const struct intel_fb_pin_params *pin_params,
->  		     int *out_fence_id)
->  {
->  	if (out_fence_id)
->  		*out_fence_id =3D -1;
->=20=20
-> -	return __xe_pin_fb_vma(to_intel_framebuffer(fb), false, pin_params);
-> +	return __xe_pin_fb_vma(obj, false, pin_params);
->  }
->=20=20
->  void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
-> @@ -469,7 +465,6 @@ int intel_plane_pin_fb(struct intel_plane_state *new_=
-plane_state,
->  	struct drm_gem_object *obj =3D intel_fb_bo(fb);
->  	struct xe_bo *bo =3D gem_to_xe_bo(obj);
->  	struct i915_vma *vma;
-> -	struct intel_framebuffer *intel_fb =3D to_intel_framebuffer(fb);
->  	struct intel_plane *plane =3D to_intel_plane(new_plane_state->uapi.plan=
-e);
->  	struct intel_fb_pin_params pin_params =3D {
->  		.view =3D &new_plane_state->view.gtt,
-> @@ -483,8 +478,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_=
-plane_state,
->  	/* We reject creating !SCANOUT fb's, so this is weird.. */
->  	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
->=20=20
-> -	vma =3D __xe_pin_fb_vma(intel_fb, intel_fb_uses_dpt(&intel_fb->base),
-> -			      &pin_params);
-> +	vma =3D __xe_pin_fb_vma(obj, intel_fb_uses_dpt(fb), &pin_params);
->=20=20
->  	if (IS_ERR(vma))
->  		return PTR_ERR(vma);
-> diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/=
-drm/xe/display/xe_initial_plane.c
-> index 4f0ad4692ed6..8e3c0c4b81fe 100644
-> --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> @@ -138,7 +138,7 @@ xe_initial_plane_setup(struct drm_plane_state *_plane=
-_state,
->  		.view =3D &plane_state->view.gtt,
->  	};
->=20=20
-> -	vma =3D intel_fb_pin_to_ggtt(fb, &pin_params, NULL);
-> +	vma =3D intel_fb_pin_to_ggtt(intel_fb_bo(fb), &pin_params, NULL);
->  	if (IS_ERR(vma))
->  		return PTR_ERR(vma);
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
