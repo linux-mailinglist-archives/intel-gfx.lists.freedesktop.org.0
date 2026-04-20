@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iHrfE0ef5mmyywEAu9opvQ
+	id 6GpiE0uf5mmyywEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 23:48:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 23:48:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F3A644345DD
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 23:48:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23BE84345EB
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 23:48:59 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87A0610E755;
-	Mon, 20 Apr 2026 21:48:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7DDA10E75B;
+	Mon, 20 Apr 2026 21:48:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CKJaZvhB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jax8Cxh3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1134D10E751;
- Mon, 20 Apr 2026 21:48:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5302C10E75A;
+ Mon, 20 Apr 2026 21:48:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776721732; x=1808257732;
+ t=1776721737; x=1808257737;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=T266vt6cjiZev7FgDsXdVFAMhMdkMs8FvuLLMo56t1Y=;
- b=CKJaZvhB9Qe8+StnLvp1zgyxj3QremMG8bLqQ+3HpMgrxv+t0ABMz87w
- iNGmMyXQYDLdExsq4atNGF6CX2+psv34KXqv6fGtnNCPCrQrGiGpSuWcN
- KS57KkAEc0DxeSp2Bayp22YsF5yNigC3rah75lr/b1p+gR3RdQ98NVcpd
- 02oZVkFMb1+zOK9n/YvcnO9HwkAHfXUSLKpXlBCmBx0YWKL2RDoXvybkL
- +SguK4ew4kxahJ2iQ3AOjgDyMa1OludvQBtin1jUDEBepK2OARsuaDeOx
- AVS3W6a0NOOwcUALEuZANkHA2aGbJUd73HIRS7eHpY/6WtHcijEg/HLEy g==;
-X-CSE-ConnectionGUID: DJrBrEi/R/mA2bxduUzhkw==
-X-CSE-MsgGUID: 8/X9dMvARHGbiOrZh3fe1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81521017"
-X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="81521017"
+ bh=Dzt0BSeFQfpBdyGeNacNDlZUMlVkDpK6DCsnREmKu9E=;
+ b=jax8Cxh3yXolZgyzucSxjqonttSv+k3N7W3MHGmqmLRdNbAJu3JWBjCS
+ a7y9k6BnuHQxP8a1szKRkT1dDsZAwjLTkeyaEllBcTBgtCdDK3ybnrs8r
+ UhHgxzlY2Bn07rjeEUpaHT7vKtW050AK2JimNlG0LTbVsxpOZJgusnfdK
+ XhKjgt9S1z7vK2oV+9B0HnIyIpKS2LEKTTuA55UoRjxgcfDjTwnMj3YEK
+ 12SiFqx3L2AyNQB2x550+aW7IwV9LSvoyZTJCK9+S27AdrLF98Ufc4DJ4
+ /Y+GTIel3nqbYr0EqowDdQ0VRmZs1Fevyas71xOGsKYY9lKXuZrKuLt7R w==;
+X-CSE-ConnectionGUID: U8tVB+67RwSsmC7e1al9Mg==
+X-CSE-MsgGUID: D/oUkvKnRmupnrGyNAN85Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="81521025"
+X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="81521025"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 14:48:52 -0700
-X-CSE-ConnectionGUID: 9jUw5XWGTI6bFLDsArMhjw==
-X-CSE-MsgGUID: iMnDxgJaT6iNjcbhC6IatA==
+ 20 Apr 2026 14:48:56 -0700
+X-CSE-ConnectionGUID: Vpo8lMkIS+iRFIqbocnB+Q==
+X-CSE-MsgGUID: 5MYfKhI4T6iRSgcuYD57UA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="233609832"
+X-IronPort-AV: E=Sophos;i="6.23,190,1770624000"; d="scan'208";a="233609858"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.159])
  by fmviesa004-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2026 14:48:51 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Apr 2026 14:48:55 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/2] drm/i915/gmbus: Lock AUX CH during GMBUS transfers
-Date: Tue, 21 Apr 2026 00:48:42 +0300
-Message-ID: <20260420214843.17514-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/2] drm/i915/gmbus: Swap locks vs. wakeref in
+ intel_gmbus_output_aksv()
+Date: Tue, 21 Apr 2026 00:48:43 +0300
+Message-ID: <20260420214843.17514-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260420214843.17514-1-ville.syrjala@linux.intel.com>
 References: <20260420214843.17514-1-ville.syrjala@linux.intel.com>
@@ -100,143 +101,49 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: F3A644345DD
+X-Rspamd-Queue-Id: 23BE84345EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-It looks like that (at last on some platforms) GMBUS can interfere
-with AUX transfers using the same pins. The symptom is that the AUX
-transfer never gets the timeout interrupt from the hardware, and we
-eventually reach the wait_event_timeout() timeout.
-
-Prevent parallel GMBUS and AUX actitivity by locking the AUX mutexes
-along with gmbus.mutex. We already use the same nested locking order
-during CDCLK changes, so it's fine. Ideally we'd just lock the single
-AUX mutex that corresponds to the pins being used by GMBUS, but
-figuring out that mapping needs a bit more work.
-
-shard-dg1 seems very good at hitting this but IIRC we've see this
-on tgl as well at some point, possibly other machines as well:
-<7> [197.185322] i915 0000:03:00.0: [drm:intel_dp_aux_xfer [i915]] AUX USBC2/DDI TC2/PHY D: timeout (status 0x7d40023f)
-<7> [197.206471] i915 0000:03:00.0: [drm:intel_dp_aux_xfer [i915]] AUX USBC2/DDI TC2/PHY D: timeout (status 0x7d40023f)
-<7> [197.206654] i915 0000:03:00.0: [drm:drm_dp_dpcd_access [drm_display_helper]] AUX USBC2/DDI TC2/PHY D: Too many retries, giving up. First error: -110
-<7> [197.206704] i915 0000:03:00.0: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:623:DP-3] disconnected
-<7> [197.206733] i915 0000:03:00.0: [drm:drm_helper_probe_single_connector_modes] [CONNECTOR:631:HDMI-A-4]
-<7> [197.206739] i915 0000:03:00.0: [drm:intel_hdmi_detect [i915]] [CONNECTOR:631:HDMI-A-4]
-<3> [197.217425] i915 0000:03:00.0: [drm] *ERROR* AUX USBC2/DDI TC2/PHY D: did not complete or timeout within 10ms (status 0xad40023f)
-<3> [197.230328] i915 0000:03:00.0: [drm] *ERROR* AUX USBC2/DDI TC2/PHY D: did not complete or timeout within 10ms (status 0xad40023f)
-<7> [197.231108] i915 0000:03:00.0: [drm:update_display_info.part.0] [CONNECTOR:631:HDMI-A-4] ELD monitor FH-DP4K
-...
-<7> [197.243982] i915 0000:03:00.0: [drm:drm_client_dev_restore] fbdev: ret=0
-<7> [197.244143] i915 0000:03:00.0: [drm:intel_dp_aux_xfer [i915]] AUX USBC2/DDI TC2/PHY D: timeout (status 0x7d40023f)
-<6> [197.260566] Console: switching to colour frame buffer device 240x67
-<7> [197.265263] i915 0000:03:00.0: [drm:intel_dp_aux_xfer [i915]] AUX USBC2/DDI TC2/PHY D: timeout (status 0x7d40023f)
+Normal GMBUS transfers lock the mutexes first, the grab the power
+domain wakeref. Do it the same way around for the HDCP stuff,
+for consistency.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_gmbus.c | 53 ++++++++++++++++++++--
- 1 file changed, 50 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index ea5cf8f51b31..4d0b8c82f6ff 100644
+index 4d0b8c82f6ff..66f1366e74ef 100644
 --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -834,7 +834,8 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
+@@ -833,10 +833,10 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
+ 	struct ref_tracker *wakeref;
  	int ret;
  
- 	wakeref = intel_display_power_get(display, POWER_DOMAIN_GMBUS);
--	mutex_lock(&display->gmbus.mutex);
-+
-+	adapter->lock_ops->lock_bus(adapter, 0);
+-	wakeref = intel_display_power_get(display, POWER_DOMAIN_GMBUS);
+-
+ 	adapter->lock_ops->lock_bus(adapter, 0);
  
++	wakeref = intel_display_power_get(display, POWER_DOMAIN_GMBUS);
++
  	/*
  	 * In order to output Aksv to the receiver, use an indexed write to
-@@ -843,7 +844,8 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
+ 	 * pass the i2c command, and tell GMBUS to use the HW-provided value
+@@ -844,10 +844,10 @@ int intel_gmbus_output_aksv(struct i2c_adapter *adapter)
  	 */
  	ret = do_gmbus_xfer(adapter, msgs, ARRAY_SIZE(msgs), GMBUS_AKSV_SELECT);
  
--	mutex_unlock(&display->gmbus.mutex);
-+	adapter->lock_ops->unlock_bus(adapter, 0);
++	intel_display_power_put(display, POWER_DOMAIN_GMBUS, wakeref);
 +
- 	intel_display_power_put(display, POWER_DOMAIN_GMBUS, wakeref);
+ 	adapter->lock_ops->unlock_bus(adapter, 0);
  
+-	intel_display_power_put(display, POWER_DOMAIN_GMBUS, wakeref);
+-
  	return ret;
-@@ -863,6 +865,36 @@ static const struct i2c_algorithm gmbus_algorithm = {
- 	.functionality	= gmbus_func
- };
- 
-+static void gmbus_lock_aux(struct intel_display *display)
-+{
-+	struct intel_encoder *encoder;
-+
-+	/*
-+	 * GMBUS can interfere with AUX CH on the same pins, causing
-+	 * the AUX hardware to not raise the timeout interrupt.
-+	 *
-+	 * TODO: only lock the AUX CH using the same pins as
-+	 *       GMBUS is currently using...
-+	 */
-+	for_each_intel_dp(display->drm, encoder) {
-+		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+		mutex_lock_nest_lock(&intel_dp->aux.hw_mutex,
-+				     &display->gmbus.mutex);
-+	}
-+}
-+
-+static void gmbus_unlock_aux(struct intel_display *display)
-+{
-+	struct intel_encoder *encoder;
-+
-+	for_each_intel_dp(display->drm, encoder) {
-+		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-+
-+		mutex_unlock(&intel_dp->aux.hw_mutex);
-+	}
-+}
-+
- static void gmbus_lock_bus(struct i2c_adapter *adapter,
- 			   unsigned int flags)
- {
-@@ -870,6 +902,8 @@ static void gmbus_lock_bus(struct i2c_adapter *adapter,
- 	struct intel_display *display = bus->display;
- 
- 	mutex_lock(&display->gmbus.mutex);
-+
-+	gmbus_lock_aux(display);
- }
- 
- static int gmbus_trylock_bus(struct i2c_adapter *adapter,
-@@ -877,8 +911,19 @@ static int gmbus_trylock_bus(struct i2c_adapter *adapter,
- {
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
- 	struct intel_display *display = bus->display;
-+	int locked;
- 
--	return mutex_trylock(&display->gmbus.mutex);
-+	locked = mutex_trylock(&display->gmbus.mutex);
-+	if (!locked)
-+		return 0;
-+
-+	/*
-+	 * TODO use mutex_trylock_next_lock() here? Would need
-+	 * to track which mutexes to unlocks on failure...
-+	 */
-+	gmbus_lock_aux(display);
-+
-+	return 1;
- }
- 
- static void gmbus_unlock_bus(struct i2c_adapter *adapter,
-@@ -887,6 +932,8 @@ static void gmbus_unlock_bus(struct i2c_adapter *adapter,
- 	struct intel_gmbus *bus = to_intel_gmbus(adapter);
- 	struct intel_display *display = bus->display;
- 
-+	gmbus_unlock_aux(display);
-+
- 	mutex_unlock(&display->gmbus.mutex);
  }
  
 -- 
