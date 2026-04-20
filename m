@@ -2,41 +2,41 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kNNjJNzk5WkupAEAu9opvQ
+	id gEPkB93k5WlkpAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:33:32 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:33:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4413A4282DC
+	by mail.lfdr.de (Postfix) with ESMTPS id A1E9A4282E6
 	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:33:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9145510E451;
+	by gabe.freedesktop.org (Postfix) with ESMTP id CBEFB10E454;
 	Mon, 20 Apr 2026 08:33:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="Z1p+ciyn";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="RRivjKKA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C27F10E112;
- Mon, 20 Apr 2026 08:33:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2FF9A10E13A;
+ Mon, 20 Apr 2026 08:33:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1776674007;
- bh=gmvkaYyC+MMsCC22MHUEX/8sKRQEwhd1V9emFHijYQk=;
+ s=default; t=1776674008;
+ bh=vGo4UocPCCay7+DcA5AoyXAfp+kJajEtiH63TA2KsmQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=Z1p+ciynn96UA+tyDeYA2LWuP7BTk/fBowqJGVOO4QxEwq9NvmHoyYYkMFpq3r+I2
- suhoOyVwj3m0X/M37APCKuN1DcRg5hP+0KD7T1gF9w02p70qVKPacN8xuTi4tRoAEk
- TlJg/BEi6AJlGpFrYsiTjXRh5kwdGzmvQX3y1QEPQq4MVSwJ9MgFyw0pB0xs0HJYCR
- 8L79ICR2FEJ9h/JVqvBOrkf41UahgiAyqLd8M466upMEX9w+MaG4JU/weXEq4P1t3k
- gMdpA2FbSnRHEcbtiftlghy2+DT7WXKfsBVh7iA7QRUj1lYSlPOmYJ2tkRK+ph9hMO
- ojJ9d9JghxyAw==
+ b=RRivjKKAs9Nz7SACldfwfyG7cbTnP/6QlXak9VJvSWV8NMYVTQNRmwS6YAdI14ewQ
+ mqZ+FZJfyVPyVn64x0SsqrRn2FutortYgrVW9PX5MSbrAT/nSPnQD1a3o3zHj0tR07
+ Q7gB3nPrnQEx5A8KgDxWnSwm9fChtuzJgW85VzuD2jFHfKuAouZJhPKMBkDlDHejJa
+ 0IZnvkoegPuQ3u7ezizOk8BPKxayBnxIJnCi6pzZ9IoS7sunryVTguk/8Kry/FfPqk
+ uz8t7ZtBJj6OwkRaQj7oIfOEXCb7vJb1H1q0JpN3VerK5RhktLzObpyL9FJZoAAs/N
+ 5Fni3r86xkmjg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: dri-devel@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 3/4] drm/doc/rfc: Remove i915_small_bar rfc.
-Date: Mon, 20 Apr 2026 10:33:21 +0200
-Message-ID: <20260420083318.92038-9-dev@lankhorst.se>
+Subject: [PATCH 4/4] drm/doc/rfc: Remove i915_scheduler item.
+Date: Mon, 20 Apr 2026 10:33:22 +0200
+Message-ID: <20260420083318.92038-10-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260420083318.92038-6-dev@lankhorst.se>
 References: <20260420083318.92038-6-dev@lankhorst.se>
@@ -80,282 +80,189 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:email,lankhorst.se:dkim,lankhorst.se:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 4413A4282DC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:email,lankhorst.se:dkim,lankhorst.se:mid,khronos.org:url]
+X-Rspamd-Queue-Id: A1E9A4282E6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Probably done, with commit 525e93f6317a ("drm/i915/uapi: add NEEDS_CPU_ACCESS hint")
-and 3f4309cbdc84 ("drm/i915/uapi: add probed_cpu_visible_size")
+I've seen no updates since e5e32171a2cf ("drm/i915/guc: Connect UAPI to GuC multi-lrc interface")
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- Documentation/gpu/rfc/i915_small_bar.h   | 189 -----------------------
- Documentation/gpu/rfc/i915_small_bar.rst |  47 ------
+ Documentation/gpu/rfc/i915_scheduler.rst | 152 -----------------------
  Documentation/gpu/rfc/index.rst          |   4 -
- 3 files changed, 240 deletions(-)
- delete mode 100644 Documentation/gpu/rfc/i915_small_bar.h
- delete mode 100644 Documentation/gpu/rfc/i915_small_bar.rst
+ 2 files changed, 156 deletions(-)
+ delete mode 100644 Documentation/gpu/rfc/i915_scheduler.rst
 
-diff --git a/Documentation/gpu/rfc/i915_small_bar.h b/Documentation/gpu/rfc/i915_small_bar.h
+diff --git a/Documentation/gpu/rfc/i915_scheduler.rst b/Documentation/gpu/rfc/i915_scheduler.rst
 deleted file mode 100644
-index 6003c81d5aa40..0000000000000
---- a/Documentation/gpu/rfc/i915_small_bar.h
+index 2974525f0ac54..0000000000000
+--- a/Documentation/gpu/rfc/i915_scheduler.rst
 +++ /dev/null
-@@ -1,189 +0,0 @@
--/**
-- * struct __drm_i915_memory_region_info - Describes one region as known to the
-- * driver.
-- *
-- * Note this is using both struct drm_i915_query_item and struct drm_i915_query.
-- * For this new query we are adding the new query id DRM_I915_QUERY_MEMORY_REGIONS
-- * at &drm_i915_query_item.query_id.
-- */
--struct __drm_i915_memory_region_info {
--	/** @region: The class:instance pair encoding */
--	struct drm_i915_gem_memory_class_instance region;
+@@ -1,152 +0,0 @@
+-=========================================
+-I915 GuC Submission/DRM Scheduler Section
+-=========================================
 -
--	/** @rsvd0: MBZ */
--	__u32 rsvd0;
+-Upstream plan
+-=============
+-For upstream the overall plan for landing GuC submission and integrating the
+-i915 with the DRM scheduler is:
 -
--	/**
--	 * @probed_size: Memory probed by the driver
--	 *
--	 * Note that it should not be possible to ever encounter a zero value
--	 * here, also note that no current region type will ever return -1 here.
--	 * Although for future region types, this might be a possibility. The
--	 * same applies to the other size fields.
--	 */
--	__u64 probed_size;
+-* Merge basic GuC submission
+-	* Basic submission support for all gen11+ platforms
+-	* Not enabled by default on any current platforms but can be enabled via
+-	  modparam enable_guc
+-	* Lots of rework will need to be done to integrate with DRM scheduler so
+-	  no need to nit pick everything in the code, it just should be
+-	  functional, no major coding style / layering errors, and not regress
+-	  execlists
+-	* Update IGTs / selftests as needed to work with GuC submission
+-	* Enable CI on supported platforms for a baseline
+-	* Rework / get CI heathly for GuC submission in place as needed
+-* Merge new parallel submission uAPI
+-	* Bonding uAPI completely incompatible with GuC submission, plus it has
+-	  severe design issues in general, which is why we want to retire it no
+-	  matter what
+-	* New uAPI adds I915_CONTEXT_ENGINES_EXT_PARALLEL context setup step
+-	  which configures a slot with N contexts
+-	* After I915_CONTEXT_ENGINES_EXT_PARALLEL a user can submit N batches to
+-	  a slot in a single execbuf IOCTL and the batches run on the GPU in
+-	  parallel
+-	* Initially only for GuC submission but execlists can be supported if
+-	  needed
+-* Convert the i915 to use the DRM scheduler
+-	* GuC submission backend fully integrated with DRM scheduler
+-		* All request queues removed from backend (e.g. all backpressure
+-		  handled in DRM scheduler)
+-		* Resets / cancels hook in DRM scheduler
+-		* Watchdog hooks into DRM scheduler
+-		* Lots of complexity of the GuC backend can be pulled out once
+-		  integrated with DRM scheduler (e.g. state machine gets
+-		  simpler, locking gets simpler, etc...)
+-	* Execlists backend will minimum required to hook in the DRM scheduler
+-		* Legacy interface
+-		* Features like timeslicing / preemption / virtual engines would
+-		  be difficult to integrate with the DRM scheduler and these
+-		  features are not required for GuC submission as the GuC does
+-		  these things for us
+-		* ROI low on fully integrating into DRM scheduler
+-		* Fully integrating would add lots of complexity to DRM
+-		  scheduler
+-	* Port i915 priority inheritance / boosting feature in DRM scheduler
+-		* Used for i915 page flip, may be useful to other DRM drivers as
+-		  well
+-		* Will be an optional feature in the DRM scheduler
+-	* Remove in-order completion assumptions from DRM scheduler
+-		* Even when using the DRM scheduler the backends will handle
+-		  preemption, timeslicing, etc... so it is possible for jobs to
+-		  finish out of order
+-	* Pull out i915 priority levels and use DRM priority levels
+-	* Optimize DRM scheduler as needed
 -
--	/**
--	 * @unallocated_size: Estimate of memory remaining
--	 *
--	 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable accounting.
--	 * Without this (or if this is an older kernel) the value here will
--	 * always equal the @probed_size. Note this is only currently tracked
--	 * for I915_MEMORY_CLASS_DEVICE regions (for other types the value here
--	 * will always equal the @probed_size).
--	 */
--	__u64 unallocated_size;
+-TODOs for GuC submission upstream
+-=================================
 -
--	union {
--		/** @rsvd1: MBZ */
--		__u64 rsvd1[8];
--		struct {
--			/**
--			 * @probed_cpu_visible_size: Memory probed by the driver
--			 * that is CPU accessible.
--			 *
--			 * This will be always be <= @probed_size, and the
--			 * remainder (if there is any) will not be CPU
--			 * accessible.
--			 *
--			 * On systems without small BAR, the @probed_size will
--			 * always equal the @probed_cpu_visible_size, since all
--			 * of it will be CPU accessible.
--			 *
--			 * Note this is only tracked for
--			 * I915_MEMORY_CLASS_DEVICE regions (for other types the
--			 * value here will always equal the @probed_size).
--			 *
--			 * Note that if the value returned here is zero, then
--			 * this must be an old kernel which lacks the relevant
--			 * small-bar uAPI support (including
--			 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS), but on
--			 * such systems we should never actually end up with a
--			 * small BAR configuration, assuming we are able to load
--			 * the kernel module. Hence it should be safe to treat
--			 * this the same as when @probed_cpu_visible_size ==
--			 * @probed_size.
--			 */
--			__u64 probed_cpu_visible_size;
+-* Need an update to GuC firmware / i915 to enable error state capture
+-* Open source tool to decode GuC logs
+-* Public GuC spec
 -
--			/**
--			 * @unallocated_cpu_visible_size: Estimate of CPU
--			 * visible memory remaining
--			 *
--			 * Note this is only tracked for
--			 * I915_MEMORY_CLASS_DEVICE regions (for other types the
--			 * value here will always equal the
--			 * @probed_cpu_visible_size).
--			 *
--			 * Requires CAP_PERFMON or CAP_SYS_ADMIN to get reliable
--			 * accounting.  Without this the value here will always
--			 * equal the @probed_cpu_visible_size. Note this is only
--			 * currently tracked for I915_MEMORY_CLASS_DEVICE
--			 * regions (for other types the value here will also
--			 * always equal the @probed_cpu_visible_size).
--			 *
--			 * If this is an older kernel the value here will be
--			 * zero, see also @probed_cpu_visible_size.
--			 */
--			__u64 unallocated_cpu_visible_size;
--		};
--	};
--};
+-New uAPI for basic GuC submission
+-=================================
+-No major changes are required to the uAPI for basic GuC submission. The only
+-change is a new scheduler attribute: I915_SCHEDULER_CAP_STATIC_PRIORITY_MAP.
+-This attribute indicates the 2k i915 user priority levels are statically mapped
+-into 3 levels as follows:
 -
--/**
-- * struct __drm_i915_gem_create_ext - Existing gem_create behaviour, with added
-- * extension support using struct i915_user_extension.
-- *
-- * Note that new buffer flags should be added here, at least for the stuff that
-- * is immutable. Previously we would have two ioctls, one to create the object
-- * with gem_create, and another to apply various parameters, however this
-- * creates some ambiguity for the params which are considered immutable. Also in
-- * general we're phasing out the various SET/GET ioctls.
-- */
--struct __drm_i915_gem_create_ext {
--	/**
--	 * @size: Requested size for the object.
--	 *
--	 * The (page-aligned) allocated size for the object will be returned.
--	 *
--	 * Note that for some devices we have might have further minimum
--	 * page-size restrictions (larger than 4K), like for device local-memory.
--	 * However in general the final size here should always reflect any
--	 * rounding up, if for example using the I915_GEM_CREATE_EXT_MEMORY_REGIONS
--	 * extension to place the object in device local-memory. The kernel will
--	 * always select the largest minimum page-size for the set of possible
--	 * placements as the value to use when rounding up the @size.
--	 */
--	__u64 size;
+-* -1k to -1 Low priority
+-* 0 Medium priority
+-* 1 to 1k High priority
 -
--	/**
--	 * @handle: Returned handle for the object.
--	 *
--	 * Object handles are nonzero.
--	 */
--	__u32 handle;
+-This is needed because the GuC only has 4 priority bands. The highest priority
+-band is reserved with the kernel. This aligns with the DRM scheduler priority
+-levels too.
 -
--	/**
--	 * @flags: Optional flags.
--	 *
--	 * Supported values:
--	 *
--	 * I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS - Signal to the kernel that
--	 * the object will need to be accessed via the CPU.
--	 *
--	 * Only valid when placing objects in I915_MEMORY_CLASS_DEVICE, and only
--	 * strictly required on configurations where some subset of the device
--	 * memory is directly visible/mappable through the CPU (which we also
--	 * call small BAR), like on some DG2+ systems. Note that this is quite
--	 * undesirable, but due to various factors like the client CPU, BIOS etc
--	 * it's something we can expect to see in the wild. See
--	 * &__drm_i915_memory_region_info.probed_cpu_visible_size for how to
--	 * determine if this system applies.
--	 *
--	 * Note that one of the placements MUST be I915_MEMORY_CLASS_SYSTEM, to
--	 * ensure the kernel can always spill the allocation to system memory,
--	 * if the object can't be allocated in the mappable part of
--	 * I915_MEMORY_CLASS_DEVICE.
--	 *
--	 * Also note that since the kernel only supports flat-CCS on objects
--	 * that can *only* be placed in I915_MEMORY_CLASS_DEVICE, we therefore
--	 * don't support I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS together with
--	 * flat-CCS.
--	 *
--	 * Without this hint, the kernel will assume that non-mappable
--	 * I915_MEMORY_CLASS_DEVICE is preferred for this object. Note that the
--	 * kernel can still migrate the object to the mappable part, as a last
--	 * resort, if userspace ever CPU faults this object, but this might be
--	 * expensive, and so ideally should be avoided.
--	 *
--	 * On older kernels which lack the relevant small-bar uAPI support (see
--	 * also &__drm_i915_memory_region_info.probed_cpu_visible_size),
--	 * usage of the flag will result in an error, but it should NEVER be
--	 * possible to end up with a small BAR configuration, assuming we can
--	 * also successfully load the i915 kernel module. In such cases the
--	 * entire I915_MEMORY_CLASS_DEVICE region will be CPU accessible, and as
--	 * such there are zero restrictions on where the object can be placed.
--	 */
--#define I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS (1 << 0)
--	__u32 flags;
+-Spec references:
+-----------------
+-* https://www.khronos.org/registry/EGL/extensions/IMG/EGL_IMG_context_priority.txt
+-* https://www.khronos.org/registry/vulkan/specs/1.2-extensions/html/chap5.html#devsandqueues-priority
+-* https://spec.oneapi.com/level-zero/latest/core/api.html#ze-command-queue-priority-t
 -
--	/**
--	 * @extensions: The chain of extensions to apply to this object.
--	 *
--	 * This will be useful in the future when we need to support several
--	 * different extensions, and we need to apply more than one when
--	 * creating the object. See struct i915_user_extension.
--	 *
--	 * If we don't supply any extensions then we get the same old gem_create
--	 * behaviour.
--	 *
--	 * For I915_GEM_CREATE_EXT_MEMORY_REGIONS usage see
--	 * struct drm_i915_gem_create_ext_memory_regions.
--	 *
--	 * For I915_GEM_CREATE_EXT_PROTECTED_CONTENT usage see
--	 * struct drm_i915_gem_create_ext_protected_content.
--	 */
--#define I915_GEM_CREATE_EXT_MEMORY_REGIONS 0
--#define I915_GEM_CREATE_EXT_PROTECTED_CONTENT 1
--	__u64 extensions;
--};
-diff --git a/Documentation/gpu/rfc/i915_small_bar.rst b/Documentation/gpu/rfc/i915_small_bar.rst
-deleted file mode 100644
-index d6c03ce3b862b..0000000000000
---- a/Documentation/gpu/rfc/i915_small_bar.rst
-+++ /dev/null
-@@ -1,47 +0,0 @@
--==========================
--I915 Small BAR RFC Section
--==========================
--Starting from DG2 we will have resizable BAR support for device local-memory(i.e
--I915_MEMORY_CLASS_DEVICE), but in some cases the final BAR size might still be
--smaller than the total probed_size. In such cases, only some subset of
--I915_MEMORY_CLASS_DEVICE will be CPU accessible(for example the first 256M),
--while the remainder is only accessible via the GPU.
+-New parallel submission uAPI
+-============================
+-The existing bonding uAPI is completely broken with GuC submission because
+-whether a submission is a single context submit or parallel submit isn't known
+-until execbuf time activated via the I915_SUBMIT_FENCE. To submit multiple
+-contexts in parallel with the GuC the context must be explicitly registered with
+-N contexts and all N contexts must be submitted in a single command to the GuC.
+-The GuC interfaces do not support dynamically changing between N contexts as the
+-bonding uAPI does. Hence the need for a new parallel submission interface. Also
+-the legacy bonding uAPI is quite confusing and not intuitive at all. Furthermore
+-I915_SUBMIT_FENCE is by design a future fence, so not really something we should
+-continue to support.
 -
--I915_GEM_CREATE_EXT_FLAG_NEEDS_CPU_ACCESS flag
------------------------------------------------
--New gem_create_ext flag to tell the kernel that a BO will require CPU access.
--This becomes important when placing an object in I915_MEMORY_CLASS_DEVICE, where
--underneath the device has a small BAR, meaning only some portion of it is CPU
--accessible. Without this flag the kernel will assume that CPU access is not
--required, and prioritize using the non-CPU visible portion of
--I915_MEMORY_CLASS_DEVICE.
+-The new parallel submission uAPI consists of 3 parts:
 -
--.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
--   :functions: __drm_i915_gem_create_ext
+-* Export engines logical mapping
+-* A 'set_parallel' extension to configure contexts for parallel
+-  submission
+-* Extend execbuf2 IOCTL to support submitting N BBs in a single IOCTL
 -
--probed_cpu_visible_size attribute
-----------------------------------
--New struct__drm_i915_memory_region attribute which returns the total size of the
--CPU accessible portion, for the particular region. This should only be
--applicable for I915_MEMORY_CLASS_DEVICE. We also report the
--unallocated_cpu_visible_size, alongside the unallocated_size.
+-Export engines logical mapping
+-------------------------------
+-Certain use cases require BBs to be placed on engine instances in logical order
+-(e.g. split-frame on gen11+). The logical mapping of engine instances can change
+-based on fusing. Rather than making UMDs be aware of fusing, simply expose the
+-logical mapping with the existing query engine info IOCTL. Also the GuC
+-submission interface currently only supports submitting multiple contexts to
+-engines in logical order which is a new requirement compared to execlists.
+-Lastly, all current platforms have at most 2 engine instances and the logical
+-order is the same as uAPI order. This will change on platforms with more than 2
+-engine instances.
 -
--Vulkan will need this as part of creating a separate VkMemoryHeap with the
--VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT set, to represent the CPU visible portion,
--where the total size of the heap needs to be known. It also wants to be able to
--give a rough estimate of how memory can potentially be allocated.
+-A single bit will be added to drm_i915_engine_info.flags indicating that the
+-logical instance has been returned and a new field,
+-drm_i915_engine_info.logical_instance, returns the logical instance.
 -
--.. kernel-doc:: Documentation/gpu/rfc/i915_small_bar.h
--   :functions: __drm_i915_memory_region_info
+-A 'set_parallel' extension to configure contexts for parallel submission
+-------------------------------------------------------------------------
+-The 'set_parallel' extension configures a slot for parallel submission of N BBs.
+-It is a setup step that must be called before using any of the contexts. See
+-I915_CONTEXT_ENGINES_EXT_LOAD_BALANCE or I915_CONTEXT_ENGINES_EXT_BOND for
+-similar existing examples. Once a slot is configured for parallel submission the
+-execbuf2 IOCTL can be called submitting N BBs in a single IOCTL. Initially only
+-supports GuC submission. Execlists supports can be added later if needed.
 -
--Error Capture restrictions
----------------------------
--With error capture we have two new restrictions:
+-Add I915_CONTEXT_ENGINES_EXT_PARALLEL_SUBMIT and
+-drm_i915_context_engines_parallel_submit to the uAPI to implement this
+-extension.
 -
--    1) Error capture is best effort on small BAR systems; if the pages are not
--    CPU accessible, at the time of capture, then the kernel is free to skip
--    trying to capture them.
+-.. c:namespace-push:: rfc
 -
--    2) On discrete and newer integrated platforms we now reject error capture
--    on recoverable contexts. In the future the kernel may want to blit during
--    error capture, when for example something is not currently CPU accessible.
+-.. kernel-doc:: include/uapi/drm/i915_drm.h
+-        :functions: i915_context_engines_parallel_submit
+-
+-.. c:namespace-pop::
+-
+-Extend execbuf2 IOCTL to support submitting N BBs in a single IOCTL
+--------------------------------------------------------------------
+-Contexts that have been configured with the 'set_parallel' extension can only
+-submit N BBs in a single execbuf2 IOCTL. The BBs are either the last N objects
+-in the drm_i915_gem_exec_object2 list or the first N if I915_EXEC_BATCH_FIRST is
+-set. The number of BBs is implicit based on the slot submitted and how it has
+-been configured by 'set_parallel' or other extensions. No uAPI changes are
+-required to the execbuf2 IOCTL.
 diff --git a/Documentation/gpu/rfc/index.rst b/Documentation/gpu/rfc/index.rst
-index 1256dde0fb3b1..3ab666616c3c5 100644
+index 3ab666616c3c5..975b7094e259a 100644
 --- a/Documentation/gpu/rfc/index.rst
 +++ b/Documentation/gpu/rfc/index.rst
-@@ -24,9 +24,5 @@ host such documentation:
+@@ -20,9 +20,5 @@ host such documentation:
  
-     i915_scheduler.rst
+     gpusvm.rst
  
 -.. toctree::
 -
--    i915_small_bar.rst
+-    i915_scheduler.rst
 -
  .. toctree::
      color_pipeline.rst
