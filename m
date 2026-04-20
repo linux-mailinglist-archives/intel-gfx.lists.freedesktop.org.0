@@ -2,70 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oGlsKvQQ5mlrrAEAu9opvQ
+	id VhVsN/UR5mmnrAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:41:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:45:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9477B429FE0
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:41:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D0B742A033
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:45:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA66910E504;
-	Mon, 20 Apr 2026 11:41:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F57610E1C2;
+	Mon, 20 Apr 2026 11:45:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gKyjH8HN";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="f+Ng/SPg";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="UX9LQQuA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C70BE10E504;
- Mon, 20 Apr 2026 11:41:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776685296; x=1808221296;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=IC1y1rUa/06dFsAhVppN2VwYUNrgkuuyUUvfeGxF3+Y=;
- b=gKyjH8HNnrHzC7XhOoFkytHBTi6DQzwQ1JFD7XtHzvktmuAytw5jLhfv
- /RwVLpP6Q60AmJSLitEtRN3VTiEiAZXHZUtCWjJF8fU3l5PMM6C8WlZcy
- vICNC0NMmWxSIYXtCqNA92knGUg/OQ2ZbWJYK7OM2IeIJjk2Yivk7+bSL
- ax1q2Xu2JtcVla5ULYIQBFMZzng/6EF7604YwrpqN0lcoYPoMDb/bLktf
- oL8mB4e9Tbd6CL36WR5Jard/AaAXz6EE75RaubbMEwTNBgfVsDqFQiQhU
- NwdftOdWroR2GZuPyWLCCF3FB9crNuCno9C0ykNF/9vZglInjA478nyI+ A==;
-X-CSE-ConnectionGUID: ftoWBzsjRTqTwVy47gTSeA==
-X-CSE-MsgGUID: 68xh+T3iTlKEYIFvNaJPmw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="65131057"
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="65131057"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 04:41:35 -0700
-X-CSE-ConnectionGUID: Ai4AU07ESE+yW+D5knu4Mw==
-X-CSE-MsgGUID: VNlp6kleQtu5wM8oLgBSHQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="254954548"
-Received: from zzombora-mobl1 (HELO [10.245.244.168]) ([10.245.244.168])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 04:41:31 -0700
-Message-ID: <bf31b1a1-951b-4f60-b226-22e8c083697d@linux.intel.com>
-Date: Mon, 20 Apr 2026 13:41:14 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A09EF10E161
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 11:45:54 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 63K977k32755626
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 11:45:54 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=OSEOlty1w4G0PIvTT1dv0PCa
+ ahtC4/jkfebraYruQdc=; b=f+Ng/SPgYV0/VApKl6YYyO9YGSHsU3z0Q2RBtC+P
+ UiZtdEPyRFWDNAsoNaf2b8tsnDdpDuSWf3WCsSVIn+MgaHepaX4JPbXmDJXw1XSz
+ XS3us1ReB/tHS0hAgv4Dffl3nCK954nXS81UtTBk+UpJ0TZq3OI/49HhGKfXUd2x
+ f6t3ON+5D3vaxgEbTe1TpLcelu442HeuCsaiiBQsK0Nrz77SMXUzP4Lo5ptaIXhM
+ ODldoxylvSvlTVmas16TrTI/rmmaR6nHaUXWDznUbPhs3W3vjWXl18Tm2YBALshy
+ VumfoIKgMCrWt14FCsvZ0pHI0Zzf2Jgwbm4mCsVZCaPXSQ==
+Received: from mail-qk1-f197.google.com (mail-qk1-f197.google.com
+ [209.85.222.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dnh7xghar-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 11:45:53 +0000 (GMT)
+Received: by mail-qk1-f197.google.com with SMTP id
+ af79cd13be357-8cfc8e7f987so349958085a.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 04:45:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1776685552; x=1777290352;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=OSEOlty1w4G0PIvTT1dv0PCaahtC4/jkfebraYruQdc=;
+ b=UX9LQQuAM46Juzd+lyEBjJ3HhF7Tyks0NIxcpmsDjJwfgZrQy59nnHNXJUp6asy2r7
+ h70hPwawvj2cojAiLR5frUui9BHD9kGEoX2DfsXIxybbRwL5FwV4TVE8R7fCYlAo0nfJ
+ bE+aip9Cve2Ivza/Yq5X9UnuwjSrRUX/Ar27pPz4zMMG+Lw+vlFv1gl5lk6y8v8gM6tF
+ MurOofLXGYQErlsRUGSNAjjJbt2+LDQSgKjiU0LZsxHsqSQ+lCKlEK6qtCUTn1kPoxNr
+ WBcsKf4rck2HXrUGOvmhHHI1+V1GAksWYu6y4XhiM5Y8lnzhMb8mal4axZcgZxzxdEih
+ xtmA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776685552; x=1777290352;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=OSEOlty1w4G0PIvTT1dv0PCaahtC4/jkfebraYruQdc=;
+ b=NRGYByIHXqK1gvLefWFHsuWwt0veAF774O0daZbjK1hw1TH7AWpFqmM2zsCok8PXNr
+ tCDgWGq3uJ+OwtKRWt8SheOqCyGEWWIW029vKjkCwpVyBbWjjFyEgF0Ms8M/TLvL5Mhi
+ ntGcKXuaqRRWUUPEaov51lCvIPvM0VPj83ietf7vrYt98y3/47LtRCC5fpOZLIu/sFiC
+ W+FPdIrYT8h7qzuACE/oA4HUe7eDyH4cRchPYSFI5L3ADE4ldStqpNmrkj+quZcs3Kgd
+ XPHFnhG9ZP5DpllfKcb7prFsDF9uQBWWvepmk5gv0YxghK9WwIeTe238M/AbHH47gYu+
+ cb0Q==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8rhozKBfEUZvgOilxNGe7dcY4WawM7nLzrdIhlejDdIbLk4HVvXsG233bHt+scLfcqwjl+k31rhkU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxL6BsfdOuYO99I65nbrEBKBDZkGWYGLi9xfx1iSYCg6UnBbKVm
+ 1ZSIC1d2qDOECv7RsUjm0ILb3j/x7Qc423vh4AnrFYcXRxunSCGUCs646vztHqVtsbN0c9bvJQ4
+ bFml87jjx9N01Yb/MJ+AbVjMfJIbgsY6GOrXRea/cpncNNGK7tpCaHTkRjObRPL9jAhxzBXw=
+X-Gm-Gg: AeBDievYy4FIsHY+4icoWTChoJc6zikWZyIFAvml49jimUoBpJzNlpVdWbtJVZqy0Rz
+ VghYcD5KbW6/6n5EAU8qvv+meAwrg5jGsMyysXfRFtT1K1yGQMduMw0IiY136kRB+hs8Y48Kc/4
+ /+6/rDBBqHCEq3BUJIJE65lZzLdD6Q8Mpi6+e2cymN5sUNX6Prcb304+W0Dgb8VspA6yj6ECdN5
+ 2jPcOwxblztdf3meNH8ogTn2AmASKpZ1qyQHZyyv9Shp4R04KGUW3PyTiUpuzbjFmRRxkMQKQfq
+ 7cNURLiyMHX1WEbCcspO+lNuqxcNcZy1qVqbna7peZroLkXvtov3jnJLLX79duaq5Y50GEedTNm
+ SjMn56pnz5gkwmMPhmK9eV/8tMlo0ScncOSoKeg0WD/LRBmtyMU6ByAPGmbv9PGY7/PITpIZfD1
+ naGvi9I9wJ5BkGFwUhX6MbRMzZTkpXOgKSGjlewZj/B3kyig==
+X-Received: by 2002:a05:622a:ce:b0:50b:3895:c22f with SMTP id
+ d75a77b69052e-50e36b4ec02mr195511141cf.26.1776685551933; 
+ Mon, 20 Apr 2026 04:45:51 -0700 (PDT)
+X-Received: by 2002:a05:622a:ce:b0:50b:3895:c22f with SMTP id
+ d75a77b69052e-50e36b4ec02mr195510191cf.26.1776685551248; 
+ Mon, 20 Apr 2026 04:45:51 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a4187e7b22sm2874049e87.62.2026.04.20.04.45.49
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Apr 2026 04:45:50 -0700 (PDT)
+Date: Mon, 20 Apr 2026 14:45:48 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
+ Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+Message-ID: <v7h3a5pwx32dfcumc3diysylja6lhkhobyzemfthb6dsadcxnp@2kkidnsgov4e>
+References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
+ <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+ <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
+ <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
+ <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
+ <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
+ <f74ecd0a-3ff3-45b4-935e-44b89cd0c92d@ideasonboard.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f74ecd0a-3ff3-45b4-935e-44b89cd0c92d@ideasonboard.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDExNSBTYWx0ZWRfX8zPKPBDsSAQl
+ v+TOIDIJmZTKPqtEKt4FFsqWN6axqBbCtgPQ36bCFjC0VnQrqr+E7oeGHmwT2RV0RNf4oKH39Jd
+ Y5ufegBlHD+dul3jzY98ZinqhmicL4PfMYYmcUvl8pCtG/ilBKCS1HC4h3nJDwbeW2ogOi84/X8
+ JxUqm+XpsYVfYrXJjbe/9EJcT4O63gtaBmaENJq/mSVgpp6p5T6TtFtBg52zCXSGRXFtwuPHzjc
+ R96IZQ4rLsGJ2ZsV9iNf4mg7AvAptZHODXwtvEktvbtwWU82VaUPdUxBeCNh7TALKqxqDFrwNmc
+ xC8DlPaQyEgb1n2BY8siew7lLqp7wHNjnsG6IH1Y122TJKQ255aawc1Vpdt+OdHyecg0XsidfFd
+ ANONJTNreoxRb2hsNILe5K1Lj1tROt6ilSRT15VMFpD1uhqNKYvYucfc+ZptQjpkM9tuRHhiQYk
+ xl1Hh5bBC2uQO0d4G5w==
+X-Authority-Analysis: v=2.4 cv=BPmDalQG c=1 sm=1 tr=0 ts=69e611f1 cx=c_pps
+ a=50t2pK5VMbmlHzFWWp8p/g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8
+ a=hvn8mZBs_W1j6JFEFtEA:9 a=CjuIK1q_8ugA:10 a=IoWCM6iH3mJn3m4BftBB:22
+X-Proofpoint-ORIG-GUID: BKNPlg0SEOkEfDNT63Ys3AuuRQHRvv-c
+X-Proofpoint-GUID: BKNPlg0SEOkEfDNT63Ys3AuuRQHRvv-c
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-20_02,2026-04-17_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 adultscore=0 malwarescore=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200115
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,657 +177,210 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_TO(0.00)[ffwll.ch,gmail.com];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[42];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-amlogic@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:heikki.krogerus@linux.intel.com,m:gregkh@linuxfoundation.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:adrien.grassein@gmail.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.
+ run,m:marijn.suijten@somainline.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:mitltlatltl@gmail.com,m:nikita@trvn.ru,m:yongxing.mou@oss.qualcomm.com,m:jernejskrabec@gmail.com,m:adriengrassein@gmail.com,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,lists.infradead.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 9477B429FE0
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 3D0B742A033
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Dave, Simona,
+On Mon, Apr 20, 2026 at 02:01:57PM +0300, Tomi Valkeinen wrote:
+> Hi,
+> 
+> On 20/04/2026 12:50, Dmitry Baryshkov wrote:
+> > On Mon, Apr 20, 2026 at 07:50:46AM +0300, Tomi Valkeinen wrote:
+> > > Hi,
+> > > 
+> > > On 18/04/2026 01:32, Dmitry Baryshkov wrote:
+> > > > On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
+> > > > > Hi,
+> > > > > 
+> > > > > On 16/04/2026 02:22, Dmitry Baryshkov wrote:
+> > > > > > The DisplayPort standard defines a special kind of events called IRQ.
+> > > > > > These events are used to notify DP Source about the events on the Sink
+> > > > > > side. It is extremely important for DP MST handling, where the MST
+> > > > > > events are reported through this IRQ.
+> > > > > > 
+> > > > > > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+> > > > > > events are ported through the bits in the AltMode VDOs.
+> > > > > > 
+> > > > > > Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+> > > > > > events to the DisplayPort Sink drivers.
+> > > > > > 
+> > > > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > > > > > ---
+> > > > > >     drivers/gpu/drm/drm_connector.c          |  4 +++-
+> > > > > >     drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
+> > > > > >     include/drm/drm_connector.h              |  3 ++-
+> > > > > >     3 files changed, 13 insertions(+), 6 deletions(-)
+> > > > > > 
+> > > > > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> > > > > > index 47dc53c4a738..5fdacbd84bd7 100644
+> > > > > > --- a/drivers/gpu/drm/drm_connector.c
+> > > > > > +++ b/drivers/gpu/drm/drm_connector.c
+> > > > > > @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+> > > > > >      * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+> > > > > >      * @connector_fwnode: fwnode_handle to report the event on
+> > > > > >      * @status: hot plug detect logical state
+> > > > > > + * @irq_hpd: HPD pulse detected
+> > > > > >      *
+> > > > > >      * On some hardware a hotplug event notification may come from outside the display
+> > > > > >      * driver / device. An example of this is some USB Type-C setups where the hardware
+> > > > > > @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+> > > > > >      * a drm_connector reference through calling drm_connector_find_by_fwnode().
+> > > > > >      */
+> > > > > >     void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> > > > > > -				     enum drm_connector_status status)
+> > > > > > +				     enum drm_connector_status status,
+> > > > > > +				     bool irq_hpd)
+> > > > > I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
+> > > > > with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
+> > > > > 
+> > > > > Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
+> > > > > If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
+> > > > > 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
+> > > > > for both short and long ones (although in the kernel doc you just write "HPD
+> > > > > pulse")... The kernel doc could be expanded a bit to make it clear what this
+> > > > > flag indicates.
+> > > > 
+> > > > I attempted to stay away from defining a DP-specific flag, keeping it
+> > > > generic enough. HDMI is pretty close (IMO) to requiring separate flag in
+> > > 
+> > > If it's not specifically the DP IRQ HPD, then we need to define what it
+> > > means. I tried to think what it would mean with HDMI, but I didn't come up
+> > > with anything.
+> > 
+> > I might be mistaken, but I had someting like HEAC HPD / EDID status
+> > changes in mind (or HDCP-triggered HPD status changes). But here I
+> > admit, I hadn't checked if it is actually applicable or not.
+> 
+> Possibly, I'm not familiar with those.
+> 
+> > Anyway, for e.g. DVI or VGA that means nothing. But, my point really is
+> > to abstain from defining someting as DP-only in the top-level API.
+> 
+> I'm fine with that, but then it really has to be defined =).
+> 
+> > > > Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
+> > > > in the VDO rather than a pulse.
+> > > > 
+> > > > Anyway, if irq_hpd doesn't sound precise enough, what about "bool
+> > > > extra_irq"? This would convey that this is the extra hpd-related IRQ,
+> > > > but it would also be obvious that it's not related to the HPD pin
+> > > > itself.
+> > > We'd still need to define what exactly it means. I think it might be better
+> > > to just define it as the DP IRQ HPD, as then the meaning is clear.
+> > > 
+> > > Also, would an enum flags parameter be better than a bool parameter?
+> > 
+> > Maybe not enum, but u32 param. Then it can become:
+> > 
+> > @extra_status: additional type-specific information provided by the sink
+> > without changing the HPD state
+> > 
+> > void drm_connector_oob_hotplug_event(..., u32 extra_status);
+> > 
+> > /* DP short HPD pulse or corresponding AltMode flag */
+> > #define DRM_CONNECTOR_OOB_DP_IRQ_HPD BIT(0)
+> > /* DP long HPD pulse, debounced XXX: do we need this? */
+> > #define DRM_CONNECTOR_OOB_DP_REPLUG BIT(1)
+> 
+> Why is u32 better than enum? So that we could e.g. pass short values inside
+> the extra_status?
 
-First pull for v7.1!
+No, my thought was to be able to define values specific to the
+particular connector types and to be able to combine those values.
 
-Kind regards,
-~Maarten Lankhorst
+After sending the email I started thinking about the bridged and
+corresponding notifications. There having overlapping values will not
+work becasue bridges in the chanin don't easily know the final connector
+type.
 
-drm-misc-next-2026-04-20:
-drm-misc-next for v7.1-rc1:
+I think you are correct here, it should be the enum. With the first
+iteration defined as:
 
-UAPI Changes:
-- Expose per-client BO memory usage via fdinfo in amdxdna. (Hou)
-- Change the default priority of drm scheduler to fair. (Tvrtko)
+/**
+ * enum drm_connector_status_extra - additional events sent by the sink
+ * together or in replacement of the HPD status changes
+ /
+enum drm_connector_status_extra {
+  /**
+   * @DRM_CONNECTOR_DP_IRQ_HPD: DisplayPort Sink has sent the
+   * IRQ_HPD (either by the HPD short pulse or via the AltMode event).
+   */
+  DRM_CONNECTOR_DP_IRQ_HPD = BIT(0),
+};
 
-Cross-subsystem Changes:
-- Revert hugetlb support in udmabuf. (Gunthorpe)
-- Fix error in udmabuf with CONFIG_DMA_API_DEBUG(/ _SG). (Gavrilov)
-- Add Docbook for DRM_IOCTL_SYNCOBJ_EVENTFD, (Ser)
-  clarify drm_bridge_get/put. (Tvrtko)
-- Change signature of drm_connector_attach_hdr_output_metadata_property. (Canal)
-- Use IOVA allocations in gpusvm and pagemap APIs. (Brost)
-- Fix tracepoints vs dma-fence lifetime. (Tvrtko)
-- Convert st-dma*.c tests to use kunit. (Gunthorpe)
+/**
+  * @extra_status: additional information provided by the sink without
+  * changing the HPD state (or in addition to such a change). It is an
+  * OR of the values defined in the drm_connector_status_extra enum.
+  */
+void drm_connector_oob_hotplug_event(..., u32 extra_status);
 
-Core Changes:
-- Deduplicate counter and timestamp retrieval in vblank code. (Ville)
-- Parse AMD VSDB v3 in CTA extension blocks, and use it in amdgpu. (Chen)
-- Prevent bridge and encoder chain changes at inopportune times. (Ceresoli)
-- Map the run queue 1:1 to the drm scheduler. (Tvrtko)
+> 
+> > For HDMI we might want to define:
+> > 
+> > /* HDMI 1.4b 8.5, HPD pulse */
+> > #define DRM_CONNECTOR_OOB_HDMI_REPLUG BIT(0)
+> > 
+> > Or might not, 100ms is long enough for all debouncers.
+> 
+> As I read the spec, there's no usable HPD pulse in HDMI as such. It just
+> means that if HPD is low less than 100ms, it should be ignored, and if it's
+> low more than 100ms, it should be handled. In other words, from spec
+> perspective there's no difference between HPD being low 105ms or five days,
+> there's no upper limit for the "pulse".
 
-Driver Changes:
-- Assorted bugfixes and (documentation) updates to rockchip, bridge/synopsis,
-  panfrost, tidss, accel/qaic, tilcdc, vc4, ast, imagination, panthor,
-  renesas, accel/amdxdna, msxfb, bridge/imx8mp, nouveau.
-  bridge/analogix_dp, bridge/exynos_dp, omap.
-- Add support for CSW PNB601LS1-2, LGD LP116WHA-SPB1, panels.
-- Add support for a lot of waveshare panels (Baryshkov)
-- Support for AIE4 devices in accel/wamdxdna. (Zhang)
-- Enable support for GEM shrinking in panthor. (Goel/Brezillon)
-- Runtime Power Management is added to v3d. (Canal)
-- Allow panel probing and use the panel bridge helper in analogix_dp. (Ding)
-- Support XRGB1555 and C8 in mgag and XRGB1555 in ast. (Zimmermann)
-The following changes since commit 4516432284e1b2ad9e70de8067f779c9c1072189:
+Yes... Let's see. I don't think we should define any extra API or values
+for HDMI until the need arises.
 
-  ttm/pool: track allocated_pages per numa node. (2026-04-08 06:52:48 +1000)
+> 
+> Still, we probably want to handle the case where the HPD is low only for a
+> short period, so that we don't do a full disable/enable-cycle. We can
+> interpret it as the same monitor still being connected, we just need to
+> check the EDID again.
+> 
+> But isn't that just a drm_connector_hotplug_event with drm_connector_status
+> staying connected? The callee can see that the connector was connected
+> before, it's connected now, but we got an event, so let's read the EDID
+> again.
 
-are available in the Git repository at:
+As I wrote, I'd be more concerned with the CDC / HEAC / eARC. For the
+normal EDID changes I think we are doing a good enough job.
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-04-20
-
-for you to fetch changes up to 3f9357c30a44734d45e3093c521d52b2aefb09f5:
-
-  drm/mgag200: Enable DRM_FORMAT_XRGB1555 on the primary plane (2026-04-20 09:15:57 +0200)
-
-----------------------------------------------------------------
-drm-misc-next for v7.1-rc1:
-
-UAPI Changes:
-- Expose per-client BO memory usage via fdinfo in amdxdna. (Hou)
-- Change the default priority of drm scheduler to fair. (Tvrtko)
-
-Cross-subsystem Changes:
-- Revert hugetlb support in udmabuf. (Gunthorpe)
-- Fix error in udmabuf with CONFIG_DMA_API_DEBUG(/ _SG). (Gavrilov)
-- Add Docbook for DRM_IOCTL_SYNCOBJ_EVENTFD, (Ser)
-  clarify drm_bridge_get/put. (Tvrtko)
-- Change signature of drm_connector_attach_hdr_output_metadata_property. (Canal)
-- Use IOVA allocations in gpusvm and pagemap APIs. (Brost)
-- Fix tracepoints vs dma-fence lifetime. (Tvrtko)
-- Convert st-dma*.c tests to use kunit. (Gunthorpe)
-
-Core Changes:
-- Deduplicate counter and timestamp retrieval in vblank code. (Ville)
-- Parse AMD VSDB v3 in CTA extension blocks, and use it in amdgpu. (Chen)
-- Prevent bridge and encoder chain changes at inopportune times. (Ceresoli)
-- Map the run queue 1:1 to the drm scheduler. (Tvrtko)
-
-Driver Changes:
-- Assorted bugfixes and (documentation) updates to rockchip, bridge/synopsis,
-  panfrost, tidss, accel/qaic, tilcdc, vc4, ast, imagination, panthor,
-  renesas, accel/amdxdna, msxfb, bridge/imx8mp, nouveau.
-  bridge/analogix_dp, bridge/exynos_dp, omap.
-- Add support for CSW PNB601LS1-2, LGD LP116WHA-SPB1, panels.
-- Add support for a lot of waveshare panels (Baryshkov)
-- Support for AIE4 devices in accel/wamdxdna. (Zhang)
-- Enable support for GEM shrinking in panthor. (Goel/Brezillon)
-- Runtime Power Management is added to v3d. (Canal)
-- Allow panel probing and use the panel bridge helper in analogix_dp. (Ding)
-- Support XRGB1555 and C8 in mgag and XRGB1555 in ast. (Zimmermann)
-
-----------------------------------------------------------------
-Akash Goel (1):
-      drm/panthor: Add a GEM shrinker
-
-Alessio Belle (8):
-      drm/imagination: Count paired job fence as dependency in prepare_job()
-      drm/imagination: Fit paired fragment job in the correct CCCB
-      drm/imagination: Skip check on paired job fence during job submission
-      drm/imagination: Rename pvr_queue_fence_is_ufo_backed() to reflect usage
-      drm/imagination: Rename fence returned by pvr_queue_job_arm()
-      drm/imagination: Move repeated job fence check to its own function
-      drm/imagination: Update check to skip prepare_job() for fragment jobs
-      drm/imagination: Minor improvements to job submission code documentation
-
-Biju Das (7):
-      dt-bindings: gpu: mali-bifrost: Add compatible for RZ/G3L SoC
-      drm/panfrost: Drop redundant optional clock checks in runtime PM
-      drm/panfrost: Add bus_ace optional clock support for RZ/G2L
-      drm/panfrost: Add GPU_PM_RT support for RZ/G3L SoC
-      drm: renesas: rzg2l_mipi_dsi: Move rzg2l_mipi_dsi_set_display_timing()
-      drm: renesas: rzg2l_mipi_dsi: Increase reset deassertion delay
-      drm: renesas: rzg2l_mipi_dsi: Fix deassert/assert of CMN_RSTB signal
-
-Boris Brezillon (9):
-      drm/gem: Consider GEM object reclaimable if shrinking fails
-      drm/panthor: Remove unused panthor_vm_op_ctx::map::new_vma field
-      drm/panthor: Move panthor_gems_debugfs_init() to panthor_gem.c
-      drm/panthor: Group panthor_kernel_bo_xxx() helpers
-      drm/panthor: Don't call drm_gpuvm_bo_extobj_add() if the object is private
-      drm/panthor: Part ways with drm_gem_shmem_object
-      drm/panthor: Lazily allocate pages on mmap()
-      drm/panthor: Split panthor_vm_prepare_map_op_ctx() to prepare for reclaim
-      drm/panthor: Track the number of mmap on a BO
-
-Chen Ni (1):
-      drm/rockchip: analogix_dp: Add missing error check for platform_get_resource()
-
-Chenyu Chen (2):
-      drm/edid: Parse AMD Vendor-Specific Data Block
-      drm/amd/display: Use drm_display_info for AMD VSDB data
-
-Cristian Ciocaltea (7):
-      drm/rockchip: inno-hdmi: Switch to drmm_kzalloc()
-      drm/rockchip: dw_dp: Switch to drmm_kzalloc()
-      drm/rockchip: dw_dp: Fix null-ptr-deref in dw_dp_remove()
-      drm/rockchip: dw_dp: Simplify error handling
-      drm/rockchip: dw_dp: Drop unnecessary #include
-      drm/rockchip: dw_hdmi_qp: Switch to drmm_encoder_init()
-      drm/bridge: synopsys: dw-dp: Drop useless memory allocation
-
-Damon Ding (17):
-      drm/bridge: analogix_dp: Add &analogix_dp_plat_data.next_bridge
-      drm/bridge: Move legacy bridge driver out of imx directory for multi-platform use
-      drm/exynos: exynos_dp: Remove &exynos_dp_device.ptn_bridge
-      drm/exynos: exynos_dp: Remove unused &exynos_dp_device.connector
-      drm/exynos: exynos_dp: Apply of-display-mode-bridge to parse the display-timings node
-      drm/bridge: analogix_dp: Remove redundant &analogix_dp_plat_data.skip_connector
-      drm/bridge: analogix_dp: Move the color format check to .atomic_check() for Rockchip platforms
-      drm/bridge: analogix_dp: Remove unused &analogix_dp_plat_data.get_modes()
-      drm/bridge: analogix_dp: Remove unused struct drm_connector* for &analogix_dp_plat_data.attach()
-      drm/bridge: analogix_dp: Pass struct drm_atomic_state* for analogix_dp_bridge_mode_set()
-      drm/bridge: analogix_dp: Apply drm_bridge_connector helper
-      drm/bridge: analogix_dp: Add new API analogix_dp_finish_probe()
-      drm/rockchip: analogix_dp: Apply analogix_dp_finish_probe()
-      drm/exynos: exynos_dp: Apply analogix_dp_finish_probe()
-      drm/bridge: analogix_dp: Attach the next bridge in analogix_dp_bridge_attach()
-      drm/bridge: analogix_dp: Remove bridge disabing and panel unpreparing in analogix_dp_unbind()
-      drm/bridge: analogix_dp: Apply panel_bridge helper
-
-David Zhang (5):
-      accel/amdxdna: Add basic support for AIE4 devices
-      accel/amdxdna: Create common PSP interfaces for AIE2 and AIE4
-      accel/amdxdna: Add AIE4 firmware loading
-      accel/amdxdna: Create common SMU interfaces for AIE2 and AIE4
-      accel/amdxdna: Add AIE4 power on and off support
-
-Dmitry Baryshkov (21):
-      dt-bindings: display: panel: add Waveshare LCD panels
-      drm/panel: simple: add Waveshare LCD panels
-      dt-bindings: display/panel: himax,hx83102: describe Waveshare panel
-      dt-bindings: display/panel: himax,hx8394: describe Waveshare panel
-      dt-bindings: display/panel: jadard,jd9365da-h3: describe Waveshare panel
-      dt-bindings: dipslay/panel: describe panels using Focaltech OTA7290B
-      drm/of: add helper to count data-lanes on a remote endpoint
-      drm/panel: himax-hx83102: support Waveshare 12.3" DSI panel
-      drm/panel: himax-hx8394: set prepare_prev_first
-      drm/panel: himax-hx8394: simplify hx8394_enable()
-      drm/panel: himax-hx8394: support Waveshare DSI panels
-      drm/panel: jadard-jd9365da-h3: use drm_connector_helper_get_modes_fixed
-      drm/panel: jadard-jd9365da-h3: support variable DSI configuration
-      drm/panel: jadard-jd9365da-h3: set prepare_prev_first
-      drm/panel: jadard-jd9365da-h3: support Waveshare round DSI panels
-      drm/panel: jadard-jd9365da-h3: support Waveshare WXGA DSI panels
-      drm/panel: jadard-jd9365da-h3: support Waveshare 720p DSI panels
-      drm/panel: add devm_drm_panel_add() helper
-      drm/panel: add driver for Waveshare 8.8" DSI TOUCH-A panel
-      dt-bindings: display: waveshare,dsp2dpi: describe DSI2LVDS setup
-      drm/bridge: waveshare-dsi: support DSI LCD kits with LVDS panels
-
-Felix Gu (1):
-      accel/amdxdna: Fix memory leak in amdxdna_iommu_alloc()
-
-Jason Gunthorpe (6):
-      udmabuf: Do not create malformed scatterlists
-      dma-buf: Change st-dma-resv.c to use kunit
-      dma-buf: Change st-dma-fence.c to use kunit
-      dma-buf: Change st-dma-fence-unwrap.c to use kunit
-      dma-buf: Change st-dma-fence-chain.c to use kunit
-      dma-buf: Remove the old selftest
-
-Jonathan Cavitt (2):
-      drm/gpuvm: Do not prepare NULL objects
-      drm/colorop: Check if getting curve_1d_type default succeeds
-
-Laurent Pinchart (1):
-      drm: rcar-du: Fix crash when no CMM is available
-
-Lizhi Hou (7):
-      accel/amdxdna: Create shared functions for AIE2 and AIE4
-      accel/amdxdna: Adjust size for copy_to_user()
-      accel/amdxdna: Expose per-client BO memory usage via fdinfo
-      accel/amdxdna: Read real-time clock frequencies
-      accel/amdxdna: Check for device hang on job timeout
-      accel/amdxdna: Fix iommu_map_sgtable() return value handling
-      accel/amdxdna: Fix order of canceled mailbox messages
-
-Luca Ceresoli (23):
-      drm/kmb/dsi: convert to of_drm_find_and_get_bridge()
-      drm/omap: dss: convert to of_drm_find_and_get_bridge()
-      drm/bridge: drm_bridge_get/put(): document NULL pointer behaviour
-      drm/mxsfb/lcdif: simplify remote pointer management using __free
-      drm/mxsfb/lcdif: simplify ep pointer management using __free
-      drm/mxsfb/lcdif: use dev_err_probe() consistently in lcdif_attach_bridge
-      drm/mxsfb/lcdif: move iteration-specific variables declaration inside loop in lcdif_attach_bridge
-      drm/bridge: dw-hdmi: document the output_port field
-      drm/bridge: dw-hdmi: warn on unsupported attach combination
-      drm/bridge: dw-hdmi: move next_bridge lookup to attach time
-      drm/bridge: imx8mp-hdmi-tx-connector-fixup: add an hdmi-connector when missing using a DT overlay at boot time
-      drm/bridge: imx8mp-hdmi-tx-connector-fixup: show a warning when adding the overlay
-      drm/bridge: imx8mp-hdmi-tx: switch to DRM_BRIDGE_ATTACH_NO_CONNECTOR
-      drm/mxsfb/lcdif: use DRM_BRIDGE_ATTACH_NO_CONNECTOR and the bridge-connector
-      drm/encoder: add mutex to protect the bridge chain
-      drm/encoder: drm_encoder_cleanup: lock the encoder chain mutex during removal
-      drm/bridge: drm_bridge_attach: lock the encoder chain mutex during insertion
-      drm/bridge: lock the encoder chain in scoped for_each loops
-      drm/bridge: prevent encoder chain changes while iterating with list_for_each_entry_from()
-      drm/bridge: prevent encoder chain changes while iterating with list_for_each_entry_reverse()
-      drm/bridge: prevent encoder chain changes in pre_enable/post_disable
-      drm: renesas: rz-du: rzg2l_du_encoder: convert to of_drm_find_and_get_bridge()
-      drm: rcar-du: encoder: convert to of_drm_find_and_get_bridge()
-
-Marco Crivellari (1):
-      drm/tilcdc: replace use of system_wq with system_percpu_wq
-
-Matthew Brost (5):
-      drm/gpusvm: Use dma-map IOVA alloc, link, and sync API in GPU SVM
-      drm/pagemap: Drop source_peer_migrates flag and assume true
-      drm/pagemap: Split drm_pagemap_migrate_map_pages into device / system
-      drm/pagemap: Use dma-map IOVA alloc, link, and sync API for DRM pagemap
-      drm/pagemap: Fix drm_pagemap_migrate_unmap_pages kerneldoc
-
-Max Zhen (7):
-      accel/amdxdna: Fix leak when pinning ubuf pages
-      accel/amdxdna: Support read-only user-pointer BO mappings
-      accel/amdxdna: Handle DETACH_DEBUG_BO through config_debug_bo path
-      accel/amdxdna: Fix fatal_error_info layout in firmware interface
-      accel/amdxdna: Add hardware scheduler time quantum support
-      accel/amdxdna: Get device revision to derive VBNV string
-      accel/amdxdna: Guard management mailbox channel cleanup against NULL pointer
-
-Maíra Canal (6):
-      drm/vc4: Use devm_request_irq() for automatic cleanup
-      drm/vc4: Clean-up UAPI header inclusion
-      drm/v3d: Use devm_reset_control_get_optional_exclusive()
-      drm/v3d: Allocate all resources before enabling the clock
-      drm/v3d: Introduce Runtime Power Management
-      drm/connector: Make drm_connector_attach_hdr_output_metadata_property() return void
-
-Mikhail Gavrilov (2):
-      udmabuf: fix DMA direction mismatch in release_udmabuf()
-      dma-buf/udmabuf: skip redundant cpu sync to fix cacheline EEXIST warning
-
-Philipp Stanner (2):
-      drm/sched: Make drm_sched_entity_kill() a public function
-      drm/nouveau: Fix double call to drm_sched_entity_fini()
-
-Sergey Shtylyov (1):
-      drm/rockchip: cdn-dp: add missing check in cdn_dp_config_video()
-
-Simon Ser (1):
-      drm/doc: document DRM_IOCTL_SYNCOBJ_EVENTFD
-
-Steven Price (1):
-      drm/panthor: Fix kernel-doc in panthor_sched.c so it's visible
-
-Terry Hsiao (1):
-      drm/panel-edp: Add CSW PNB601LS1-2 and LGD LP116WHA-SPB1
-
-Thomas Zimmermann (27):
-      drm/rockchip: Test for imported buffers with drm_gem_is_imported()
-      Merge drm/drm-next into drm-misc-next
-      Merge drm/drm-next into drm-misc-next
-      drm/ast: Move 32-bit register-access helpers to ast_drv.{c, h}
-      drm/ast: Use constants for AHBC registers
-      drm/ast: Use constants for MCR registers
-      drm/ast: Use constants for SCU registers
-      drm/ast: Use constants for A2P registers
-      drm/ast: Use constants for WDT registers
-      drm/ast: Use constants for SDRAM registers
-      drm/ast: Store register addresses in struct ast_dramstruct
-      drm/ast: Gen1: Fix open-coded register access
-      drm/ast: Gen2: Fix open-coded register access
-      drm/ast: Gen4: Fix open-coded register access
-      drm/ast: Gen6: Fix open-coded register access
-      drm/ast: dp501: Fix open-coded register access
-      drm/ast: Fix open-coded scu_rev access
-      drm/ast: Add constant for VGACR91
-      drm/ast: Remove traces of DRM_FORMAT_RGB888 handling
-      drm/ast: Replace references to struct drm_format_info.cpp
-      drm/ast: Support DRM_FORMAT_XRGB1555 on the primary plane
-      drm/mgag200: Set xmulctrl from DRM format
-      drm/mgag200: Set scale from DRM format
-      drm/mgag200: Simplify offset calculation
-      drm/mgag200: g200se: Set hiprilvl from DRM format
-      drm/mgag200: Enable DRM_FORMAT_C8 on the primary plane
-      drm/mgag200: Enable DRM_FORMAT_XRGB1555 on the primary plane
-
-Tomi Valkeinen (2):
-      drm/tidss: Drop extra drm_mode_config_reset() call
-      drm/tidss: Fix missing drm_bridge_add() call
-
-Tommaso Merciai (1):
-      drm: rz-du: Ensure correct suspend/resume ordering with VSP
-
-Troy Hanson (1):
-      accel/qaic: Simplify bootlog line handling
-
-Tvrtko Ursulin (30):
-      dma-fence: Fix potential tracepoint null pointer dereferences
-      drm/sched: Disallow initializing entities with no schedulers
-      drm/sched: Consolidate entity run queue management
-      drm/sched: Move run queue related code into a separate file
-      drm/sched: Add some scheduling quality unit tests
-      drm/sched: Add some more scheduling quality unit tests
-      drm/sched: Implement RR via FIFO
-      drm/sched: Free all finished jobs at once
-      drm/sched: Account entity GPU time
-      drm/sched: Remove idle entity from tree
-      drm/sched: Add fair scheduling policy
-      drm/sched: Favour interactive clients slightly
-      drm/sched: Switch default policy to fair
-      drm/sched: Remove FIFO and RR and simplify to a single run queue
-      drm/sched: Embed run queue singleton into the scheduler
-      accel/amdxdna: Remove drm_sched_init_args->num_rqs usage
-      accel/rocket: Remove drm_sched_init_args->num_rqs usage
-      accel/ethosu: Remove drm_sched_init_args->num_rqs usage
-      drm/amdgpu: Remove drm_sched_init_args->num_rqs usage
-      drm/etnaviv: Remove drm_sched_init_args->num_rqs usage
-      drm/imagination: Remove drm_sched_init_args->num_rqs usage
-      drm/lima: Remove drm_sched_init_args->num_rqs usage
-      drm/msm: Remove drm_sched_init_args->num_rqs usage
-      drm/nouveau: Remove drm_sched_init_args->num_rqs usage
-      drm/panfrost: Remove drm_sched_init_args->num_rqs usage
-      drm/panthor: Remove drm_sched_init_args->num_rqs usage
-      drm/sched: Remove drm_sched_init_args->num_rqs usage
-      drm/v3d: Remove drm_sched_init_args->num_rqs usage
-      drm/xe: Remove drm_sched_init_args->num_rqs usage
-      drm/sched: Remove drm_sched_init_args->num_rqs
-
-Ville Syrjälä (1):
-      drm/vblank: Extract get_vblank_counter_and_timestamp()
-
-Yicong Hui (1):
-      drm/panthor: Fix kernel-doc warning in panthor_sched.c
-
-Zack McKevitt (2):
-      accel/qaic: Update copyright headers to yearless format
-      accel/qaic: Retain bootlogs that overflow
-
- Documentation/accel/amdxdna/amdnpu.rst             |   25 +
- .../bindings/display/bridge/waveshare,dsi2dpi.yaml |    9 +-
- .../bindings/display/panel/focaltech,ota7290b.yaml |   70 +
- .../bindings/display/panel/himax,hx83102.yaml      |    2 +
- .../bindings/display/panel/himax,hx8394.yaml       |    2 +
- .../bindings/display/panel/jadard,jd9365da-h3.yaml |    6 +
- .../bindings/display/panel/panel-simple.yaml       |   28 +
- .../devicetree/bindings/gpu/arm,mali-bifrost.yaml  |    2 +
- Documentation/gpu/drm-usage-stats.rst              |    1 +
- drivers/accel/amdxdna/Makefile                     |   10 +-
- drivers/accel/amdxdna/aie.c                        |  119 ++
- drivers/accel/amdxdna/aie.h                        |  111 ++
- drivers/accel/amdxdna/aie2_ctx.c                   |   42 +-
- drivers/accel/amdxdna/aie2_error.c                 |   17 +-
- drivers/accel/amdxdna/aie2_message.c               |  229 +--
- drivers/accel/amdxdna/aie2_msg_priv.h              |   41 +-
- drivers/accel/amdxdna/aie2_pci.c                   |  231 ++--
- drivers/accel/amdxdna/aie2_pci.h                   |  116 +-
- drivers/accel/amdxdna/aie2_pm.c                    |   12 +-
- drivers/accel/amdxdna/aie2_psp.c                   |  161 ---
- drivers/accel/amdxdna/aie2_smu.c                   |  156 ---
- drivers/accel/amdxdna/aie4_message.c               |   27 +
- drivers/accel/amdxdna/aie4_msg_priv.h              |   49 +
- drivers/accel/amdxdna/aie4_pci.c                   |  483 +++++++
- drivers/accel/amdxdna/aie4_pci.h                   |   53 +
- drivers/accel/amdxdna/aie4_sriov.c                 |   88 ++
- drivers/accel/amdxdna/aie_psp.c                    |  235 ++++
- drivers/accel/amdxdna/aie_smu.c                    |  153 +++
- drivers/accel/amdxdna/amdxdna_iommu.c              |   13 +-
- drivers/accel/amdxdna/amdxdna_mailbox.c            |   29 +-
- drivers/accel/amdxdna/amdxdna_mailbox.h            |    8 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.c            |   51 +-
- drivers/accel/amdxdna/amdxdna_pci_drv.h            |   16 +-
- drivers/accel/amdxdna/amdxdna_sysfs.c              |    5 +-
- drivers/accel/amdxdna/amdxdna_ubuf.c               |   41 +-
- drivers/accel/amdxdna/npu1_regs.c                  |   29 +-
- drivers/accel/amdxdna/npu3_regs.c                  |   77 ++
- drivers/accel/amdxdna/npu4_regs.c                  |   70 +-
- drivers/accel/amdxdna/npu5_regs.c                  |    9 +-
- drivers/accel/amdxdna/npu6_regs.c                  |    9 +-
- drivers/accel/ethosu/ethosu_job.c                  |    1 -
- drivers/accel/qaic/mhi_controller.c                |    2 +-
- drivers/accel/qaic/mhi_controller.h                |    9 +-
- drivers/accel/qaic/qaic.h                          |    9 +-
- drivers/accel/qaic/qaic_control.c                  |    2 +-
- drivers/accel/qaic/qaic_data.c                     |    2 +-
- drivers/accel/qaic/qaic_debugfs.c                  |   30 +-
- drivers/accel/qaic/qaic_debugfs.h                  |    2 +-
- drivers/accel/qaic/qaic_drv.c                      |    2 +-
- drivers/accel/qaic/qaic_ras.c                      |    1 -
- drivers/accel/qaic/qaic_ras.h                      |    1 +
- drivers/accel/qaic/qaic_ssr.c                      |    2 +-
- drivers/accel/qaic/qaic_ssr.h                      |    9 +-
- drivers/accel/qaic/qaic_timesync.c                 |    3 +-
- drivers/accel/qaic/qaic_timesync.h                 |    7 +-
- drivers/accel/qaic/sahara.c                        |    2 +-
- drivers/accel/qaic/sahara.h                        |    2 +-
- drivers/accel/rocket/rocket_job.c                  |    1 -
- drivers/dma-buf/.kunitconfig                       |    2 +
- drivers/dma-buf/Kconfig                            |   11 +-
- drivers/dma-buf/Makefile                           |    5 +-
- drivers/dma-buf/dma-fence.c                        |    3 +-
- drivers/dma-buf/selftest.c                         |  167 ---
- drivers/dma-buf/selftest.h                         |   30 -
- drivers/dma-buf/selftests.h                        |   16 -
- drivers/dma-buf/st-dma-fence-chain.c               |  217 ++-
- drivers/dma-buf/st-dma-fence-unwrap.c              |  290 ++--
- drivers/dma-buf/st-dma-fence.c                     |  200 ++-
- drivers/dma-buf/st-dma-resv.c                      |  145 +-
- drivers/dma-buf/udmabuf.c                          |   58 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |    6 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c         |    1 -
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.c            |   27 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_job.h            |    5 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_trace.h          |    8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_vm_sdma.c        |    8 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_xcp.c            |    8 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c  |  120 +-
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.h  |   14 -
- drivers/gpu/drm/ast/ast_2000.c                     |   61 +-
- drivers/gpu/drm/ast/ast_2100.c                     |  292 ++--
- drivers/gpu/drm/ast/ast_2300.c                     |  392 +++---
- drivers/gpu/drm/ast/ast_2500.c                     |  327 ++---
- drivers/gpu/drm/ast/ast_dp501.c                    |  130 +-
- drivers/gpu/drm/ast/ast_drv.c                      |   84 +-
- drivers/gpu/drm/ast/ast_drv.h                      |   60 +-
- drivers/gpu/drm/ast/ast_mode.c                     |   86 +-
- drivers/gpu/drm/ast/ast_post.c                     |   48 +-
- drivers/gpu/drm/ast/ast_post.h                     |   20 +-
- drivers/gpu/drm/ast/ast_reg.h                      |  211 ++-
- drivers/gpu/drm/bridge/Kconfig                     |   10 +
- drivers/gpu/drm/bridge/Makefile                    |    1 +
- drivers/gpu/drm/bridge/analogix/Kconfig            |    3 +
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.c |  235 ++--
- drivers/gpu/drm/bridge/analogix/analogix_dp_core.h |    1 -
- drivers/gpu/drm/bridge/imx/Kconfig                 |   28 +-
- drivers/gpu/drm/bridge/imx/Makefile                |    3 +-
- drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c     |   91 --
- .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.c    |   75 +
- .../bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso |   30 +
- drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx.c        |    1 +
- drivers/gpu/drm/bridge/of-display-mode-bridge.c    |   93 ++
- drivers/gpu/drm/bridge/synopsys/dw-dp.c            |    4 -
- drivers/gpu/drm/bridge/synopsys/dw-hdmi.c          |   49 +-
- drivers/gpu/drm/bridge/waveshare-dsi.c             |    5 +-
- drivers/gpu/drm/drm_bridge.c                       |   83 +-
- drivers/gpu/drm/drm_colorop.c                      |    8 +-
- drivers/gpu/drm/drm_connector.c                    |    9 +-
- drivers/gpu/drm/drm_edid.c                         |   72 +
- drivers/gpu/drm/drm_encoder.c                      |   18 +-
- drivers/gpu/drm/drm_gem.c                          |   10 +
- drivers/gpu/drm/drm_gpusvm.c                       |   53 +-
- drivers/gpu/drm/drm_gpuvm.c                        |    3 +
- drivers/gpu/drm/drm_of.c                           |   34 +
- drivers/gpu/drm/drm_pagemap.c                      |  229 ++-
- drivers/gpu/drm/drm_panel.c                        |   23 +
- drivers/gpu/drm/drm_vblank.c                       |   36 +-
- drivers/gpu/drm/etnaviv/etnaviv_sched.c            |    1 -
- drivers/gpu/drm/exynos/Kconfig                     |    3 +
- drivers/gpu/drm/exynos/exynos_dp.c                 |  110 +-
- drivers/gpu/drm/i915/Kconfig.debug                 |    2 +-
- drivers/gpu/drm/imagination/pvr_job.c              |    8 +-
- drivers/gpu/drm/imagination/pvr_queue.c            |  155 ++-
- drivers/gpu/drm/imagination/pvr_queue.h            |    2 +-
- .../gpu/drm/imagination/pvr_rogue_fwif_shared.h    |   10 +-
- drivers/gpu/drm/imagination/pvr_sync.c             |    8 +-
- drivers/gpu/drm/imagination/pvr_sync.h             |    2 +-
- drivers/gpu/drm/imx/ipuv3/Kconfig                  |    4 +-
- drivers/gpu/drm/imx/ipuv3/imx-ldb.c                |    6 +-
- drivers/gpu/drm/imx/ipuv3/parallel-display.c       |    5 +-
- drivers/gpu/drm/kmb/kmb_dsi.c                      |    2 +-
- drivers/gpu/drm/lima/lima_sched.c                  |    1 -
- drivers/gpu/drm/mgag200/mgag200_g200se.c           |   13 +-
- drivers/gpu/drm/mgag200/mgag200_mode.c             |  109 +-
- drivers/gpu/drm/mgag200/mgag200_reg.h              |    1 +
- drivers/gpu/drm/msm/msm_gem_vma.c                  |    1 -
- drivers/gpu/drm/msm/msm_ringbuffer.c               |    1 -
- drivers/gpu/drm/mxsfb/Kconfig                      |    2 +
- drivers/gpu/drm/mxsfb/lcdif_drv.c                  |   67 +-
- drivers/gpu/drm/nouveau/nouveau_abi16.c            |    2 +-
- drivers/gpu/drm/nouveau/nouveau_sched.c            |    1 -
- drivers/gpu/drm/omapdrm/dss/output.c               |   11 +-
- drivers/gpu/drm/panel/Kconfig                      |   13 +
- drivers/gpu/drm/panel/Makefile                     |    1 +
- drivers/gpu/drm/panel/panel-edp.c                  |    2 +
- drivers/gpu/drm/panel/panel-focaltech-ota7290b.c   |  225 +++
- drivers/gpu/drm/panel/panel-himax-hx83102.c        |  144 +-
- drivers/gpu/drm/panel/panel-himax-hx8394.c         |  279 +++-
- drivers/gpu/drm/panel/panel-jadard-jd9365da-h3.c   | 1421 ++++++++++++++++++-
- drivers/gpu/drm/panel/panel-simple.c               |  381 +++++
- drivers/gpu/drm/panfrost/panfrost_device.c         |   34 +-
- drivers/gpu/drm/panfrost/panfrost_device.h         |    1 +
- drivers/gpu/drm/panfrost/panfrost_drv.c            |    1 +
- drivers/gpu/drm/panfrost/panfrost_job.c            |    1 -
- drivers/gpu/drm/panthor/Kconfig                    |    1 -
- drivers/gpu/drm/panthor/panthor_device.c           |   11 +-
- drivers/gpu/drm/panthor/panthor_device.h           |   73 +
- drivers/gpu/drm/panthor/panthor_drv.c              |   33 +-
- drivers/gpu/drm/panthor/panthor_fw.c               |   16 +-
- drivers/gpu/drm/panthor/panthor_gem.c              | 1453 +++++++++++++++++---
- drivers/gpu/drm/panthor/panthor_gem.h              |  136 +-
- drivers/gpu/drm/panthor/panthor_mmu.c              |  513 +++++--
- drivers/gpu/drm/panthor/panthor_mmu.h              |    8 +
- drivers/gpu/drm/panthor/panthor_sched.c            |   85 +-
- drivers/gpu/drm/renesas/rcar-du/rcar_du_crtc.c     |    6 +-
- drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.c  |   29 +-
- drivers/gpu/drm/renesas/rcar-du/rcar_du_encoder.h  |    1 +
- drivers/gpu/drm/renesas/rcar-du/rcar_du_kms.c      |    2 +
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_encoder.c   |   13 +-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.c       |   16 +
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_vsp.h       |    2 +
- drivers/gpu/drm/renesas/rz-du/rzg2l_mipi_dsi.c     |   34 +-
- drivers/gpu/drm/rockchip/Kconfig                   |    1 +
- drivers/gpu/drm/rockchip/analogix_dp-rockchip.c    |   69 +-
- drivers/gpu/drm/rockchip/cdn-dp-reg.c              |    2 +
- drivers/gpu/drm/rockchip/dw_dp-rockchip.c          |   35 +-
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c     |   13 +-
- drivers/gpu/drm/rockchip/inno_hdmi-rockchip.c      |    3 +-
- drivers/gpu/drm/rockchip/rockchip_drm_gem.c        |    2 +-
- drivers/gpu/drm/scheduler/Makefile                 |    2 +-
- drivers/gpu/drm/scheduler/sched_entity.c           |  175 +--
- drivers/gpu/drm/scheduler/sched_fence.c            |    2 +-
- drivers/gpu/drm/scheduler/sched_internal.h         |   70 +-
- drivers/gpu/drm/scheduler/sched_main.c             |  351 +----
- drivers/gpu/drm/scheduler/sched_rq.c               |  383 ++++++
- drivers/gpu/drm/scheduler/tests/Makefile           |    3 +-
- drivers/gpu/drm/scheduler/tests/mock_scheduler.c   |    1 -
- drivers/gpu/drm/scheduler/tests/tests_scheduler.c  |  882 ++++++++++++
- drivers/gpu/drm/tidss/tidss_encoder.c              |    2 +
- drivers/gpu/drm/tidss/tidss_kms.c                  |    2 -
- drivers/gpu/drm/tilcdc/tilcdc_crtc.c               |    2 +-
- drivers/gpu/drm/v3d/Makefile                       |    1 +
- drivers/gpu/drm/v3d/v3d_debugfs.c                  |   23 +-
- drivers/gpu/drm/v3d/v3d_drv.c                      |  160 +--
- drivers/gpu/drm/v3d/v3d_drv.h                      |   18 +
- drivers/gpu/drm/v3d/v3d_gem.c                      |   17 +-
- drivers/gpu/drm/v3d/v3d_irq.c                      |   15 +-
- drivers/gpu/drm/v3d/v3d_mmu.c                      |   10 +-
- drivers/gpu/drm/v3d/v3d_perfmon.c                  |   18 +-
- drivers/gpu/drm/v3d/v3d_power.c                    |   87 ++
- drivers/gpu/drm/v3d/v3d_sched.c                    |    1 -
- drivers/gpu/drm/v3d/v3d_submit.c                   |   19 +-
- drivers/gpu/drm/vc4/vc4_bo.c                       |    1 -
- drivers/gpu/drm/vc4/vc4_drv.c                      |    2 -
- drivers/gpu/drm/vc4/vc4_gem.c                      |    1 -
- drivers/gpu/drm/vc4/vc4_irq.c                      |   33 +-
- drivers/gpu/drm/vc4/vc4_plane.c                    |    2 -
- drivers/gpu/drm/vc4/vc4_render_cl.c                |    1 -
- drivers/gpu/drm/vc4/vc4_validate.c                 |    1 -
- drivers/gpu/drm/xe/xe_dep_scheduler.c              |    1 -
- drivers/gpu/drm/xe/xe_execlist.c                   |    1 -
- drivers/gpu/drm/xe/xe_gpu_scheduler.c              |    1 -
- drivers/gpu/drm/xe/xe_svm.c                        |    1 -
- include/drm/bridge/analogix_dp.h                   |    8 +-
- include/drm/bridge/dw_hdmi.h                       |    6 +
- include/drm/bridge/imx.h                           |   17 -
- include/drm/bridge/of-display-mode-bridge.h        |   17 +
- include/drm/drm_bridge.h                           |   73 +-
- include/drm/drm_connector.h                        |   40 +-
- include/drm/drm_encoder.h                          |    4 +
- include/drm/drm_gpusvm.h                           |    5 +
- include/drm/drm_of.h                               |   13 +
- include/drm/drm_pagemap.h                          |    9 +-
- include/drm/drm_panel.h                            |    1 +
- include/drm/gpu_scheduler.h                        |   45 +-
- include/trace/events/dma_fence.h                   |   40 +-
- include/uapi/drm/amdxdna_accel.h                   |    3 +-
- include/uapi/drm/drm.h                             |    7 +
- 228 files changed, 11192 insertions(+), 4153 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/display/panel/focaltech,ota7290b.yaml
- create mode 100644 drivers/accel/amdxdna/aie.c
- create mode 100644 drivers/accel/amdxdna/aie.h
- delete mode 100644 drivers/accel/amdxdna/aie2_psp.c
- delete mode 100644 drivers/accel/amdxdna/aie2_smu.c
- create mode 100644 drivers/accel/amdxdna/aie4_message.c
- create mode 100644 drivers/accel/amdxdna/aie4_msg_priv.h
- create mode 100644 drivers/accel/amdxdna/aie4_pci.c
- create mode 100644 drivers/accel/amdxdna/aie4_pci.h
- create mode 100644 drivers/accel/amdxdna/aie4_sriov.c
- create mode 100644 drivers/accel/amdxdna/aie_psp.c
- create mode 100644 drivers/accel/amdxdna/aie_smu.c
- create mode 100644 drivers/accel/amdxdna/npu3_regs.c
- create mode 100644 drivers/dma-buf/.kunitconfig
- delete mode 100644 drivers/dma-buf/selftest.c
- delete mode 100644 drivers/dma-buf/selftest.h
- delete mode 100644 drivers/dma-buf/selftests.h
- delete mode 100644 drivers/gpu/drm/bridge/imx/imx-legacy-bridge.c
- create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.c
- create mode 100644 drivers/gpu/drm/bridge/imx/imx8mp-hdmi-tx-connector-fixup.dtso
- create mode 100644 drivers/gpu/drm/bridge/of-display-mode-bridge.c
- create mode 100644 drivers/gpu/drm/panel/panel-focaltech-ota7290b.c
- create mode 100644 drivers/gpu/drm/scheduler/sched_rq.c
- create mode 100644 drivers/gpu/drm/scheduler/tests/tests_scheduler.c
- create mode 100644 drivers/gpu/drm/v3d/v3d_power.c
- delete mode 100644 include/drm/bridge/imx.h
- create mode 100644 include/drm/bridge/of-display-mode-bridge.h
+-- 
+With best wishes
+Dmitry
