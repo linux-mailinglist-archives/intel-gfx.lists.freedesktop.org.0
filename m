@@ -2,165 +2,165 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCwKAV/v5WnCpQEAu9opvQ
+	id 8FIDCtb25WnjpgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 11:18:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 11:50:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59E61428C22
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 11:18:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 84DAC4290A7
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 11:50:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 51F9210E15D;
-	Mon, 20 Apr 2026 09:18:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 01CC210E157;
+	Mon, 20 Apr 2026 09:50:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RoRkts8w";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="W57WOtCe";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HKe+jwXq";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 47B2B10E15D
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 09:18:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776676698; x=1808212698;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=upPWUwvFH8JRO+Y4fFCoDeGlzzl5pagUpknxfeLKvZw=;
- b=RoRkts8wzHXxwAPqHGBMLnSkfiElcEzdQB5cL/5NOpLfASWD8VhtcgyO
- EVcmmW1/8A/jLj0cjpoWx/nLYGtoBhbCQMEBrhC0NIptUTCo5dB5PC+3r
- BO79mFn841SDKdLbXzQs+qhrBUgbnJ+sQHAoiTBWNMJJYOt7n59EM8Fr6
- MvXt3BeM612ClT2Klk6HR31VYeeaVsMamrLYGMHBc3X0OegMS1fgqn3D8
- IGoSbV5hrGPcbzNC1Mi8D6gKKDsiDjO+uxsb1Atn7bbKXFBa0d1qovcXB
- wy+C+CiocxrFiygMi1hkKzWegTS32oTjF92DbGUJslGX/Pbv6SfhIG+Pa Q==;
-X-CSE-ConnectionGUID: YJAJjtq1SIuNZaYj1hpT7Q==
-X-CSE-MsgGUID: LT/1swxuSteN7SDlVF9WMQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="88661801"
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="88661801"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 02:18:17 -0700
-X-CSE-ConnectionGUID: GlmavE4iT1+zVk/SluCe0w==
-X-CSE-MsgGUID: BLHXLBVPQLCXv1VmbgQG/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="233439594"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 02:18:17 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 20 Apr 2026 02:18:16 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 20 Apr 2026 02:18:16 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.57) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 20 Apr 2026 02:18:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=fiYM9VCLHHGnbrUKgRrd8X8sTTidBFaMfb60YusgpNPoNhAxtXZqYnM6ZztwUjBqKY4IW5Seqw5hY5pTcouxkxz15+BFEdGeKqExFRTDs7Ri7Vw1dadokjQu61KG9EQjTRrYb9FGAmzTgU+beV2UtIG9YL2ECOvrnUz+xxArGahVFV1MDOHNwDrxATQspzxCJdy1zDkEZOepYKYjhMyk1RCi4slXnMmc1wFGDOuK57mJfQ3UmFXrgGop+yRdMy0L+0fj7MOs0szcDs/zafwJdRTeTbrJwBbdV4l/LJOqlHeODHa/3GtwllTNA4joxMY+Fmo4DCKSOeKnTkrbZvGmkA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=HNl+z6HQCUFYlzpzr2zL9aUGBnUZfLB7k+Yjol3Gb9s=;
- b=V9EZLmGMfl8AabjYJ+OF0TR1N3E69eZizDTplBMDY4pz5R29XfrOLw9Ny6ix3G7RfsUOP0NMUGksT9sQ0DHi/Tj6UT3a3BHuL4jI3m3IwobR1/K+4uDsScof29QKab2vtIou7RM13lbETdNe2ub/9mCp6EzHqAZZXeopIUIc0PEN2biztXazReZpQBHq4X2IWzbfVj+By7Q/IGE/dHmD8WRt0XnvucEvASFsPmSYgh3NKiAScLi5kNLXGdeDaSAO9ZOTZ5tjVmrWsIxyBfTnyfRqtK31vOaUyK4awVfGDa+vpSgyfGc+hY+8qSRBhJfXu+YeD3zNSLB20fo/FgBl3A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
- by BL1PR11MB6049.namprd11.prod.outlook.com (2603:10b6:208:391::21)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.14; Mon, 20 Apr
- 2026 09:18:12 +0000
-Received: from CO1PR11MB5057.namprd11.prod.outlook.com
- ([fe80::3b75:a8d2:464e:30cc]) by CO1PR11MB5057.namprd11.prod.outlook.com
- ([fe80::3b75:a8d2:464e:30cc%6]) with mapi id 15.20.9846.011; Mon, 20 Apr 2026
- 09:18:12 +0000
-Date: Mon, 20 Apr 2026 09:18:03 +0000
-From: Krzysztof Karas <krzysztof.karas@intel.com>
-To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <andi.shyti@linux.intel.com>,
- <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/i915: skip __i915_request_skip() for already
- signaled requests
-Message-ID: <yoap6axokl3wt2cirb76uugga76ligklznoubcq7p4tgr3gkh7@4tpiryb7u7y4>
-"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
-References: <fe76921d35b6ae85aa651822726d0d9815aa5362.1776339012.git.sebastian.brzezinka@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <fe76921d35b6ae85aa651822726d0d9815aa5362.1776339012.git.sebastian.brzezinka@intel.com>
-X-ClientProxiedBy: DU6P191CA0045.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:10:53f::26) To CO1PR11MB5057.namprd11.prod.outlook.com
- (2603:10b6:303:6c::15)
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 80D7810E488
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 09:50:10 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
+ by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
+ 63K97EBd2755820
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 09:50:10 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
+ cc:content-type:date:from:in-reply-to:message-id:mime-version
+ :references:subject:to; s=qcppdkim1; bh=kWuPigQBRvg2mmG1YEkZ2x38
+ 8ocHV9caZV1E1+5l688=; b=W57WOtCeOcicX3eqOdiyb3EDavkLG5irwHoXW55M
+ wmRlpJepFltE0GBwDB/eEZBvMRLgtu+23T/xt1DZn4WHzXcrKRfoVPgQut1CClJX
+ VOYHOXibM3WI5SZiwdhnS4DizoNnKO4tGaZ4JSDZcp8Th2Dask97hw6Z7ZhAr1cP
+ aMwPD+EXq8OVfnwV4UiLLWKNWccIeCI0Dub5H2t9t3AcazG6saJukNtykdqRYJkj
+ D4s0lFeY98n8l5NcyXmUp7ALuyhcmg4wVEJt2Z//32LLZZj1qsrLH43JCZX/QjPe
+ A2yRQiUlXqP2y/JQ0XNndxovMBtB55L3BZJYG3/1Jqd95A==
+Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
+ [209.85.160.197])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dnh7xg5j5-1
+ (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 09:50:09 +0000 (GMT)
+Received: by mail-qt1-f197.google.com with SMTP id
+ d75a77b69052e-50b4076dc16so38091931cf.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 02:50:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=oss.qualcomm.com; s=google; t=1776678609; x=1777283409;
+ darn=lists.freedesktop.org; 
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=kWuPigQBRvg2mmG1YEkZ2x388ocHV9caZV1E1+5l688=;
+ b=HKe+jwXqAMTzTly5iC3qHJ7xfAzBlEF3qX5DLEKmIoOHyeOaiKdKWEWC8scqAc/27O
+ n9cewflgYxHPBZKjQVcUzSekNPSK/3UpUul+HkVu8pdw3c7W+OMG+FdLnHdiWazgZOVQ
+ RsBNFOXWuz1fgnKQwDUh9haKdfYvYuEjNkaUZxF+/OYEQDWV36k6r5HB4Vnv4MORIPdg
+ yJk7F2S9qY/8weiY4pXEiUuhXh+u7M3NvaQk3Aft0mkRjlWYFPaWTlXyIjc3U9LeDBga
+ 4Lfc0X1mD5iSfiokhdaa0IwMFZhcOEx3LoLL+MZH0iq1RbBlKVn2dKcHYTRHuOgl0996
+ lvAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776678609; x=1777283409;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=kWuPigQBRvg2mmG1YEkZ2x388ocHV9caZV1E1+5l688=;
+ b=IQ0Rgyn/6sPq193oSuk7hZNg4iMrbw8ciZ7AbCHJSDhPyL363Zv20SUxcBswTTzOGs
+ TspM+71VwqYwupif/HgLHk5Rjto60IC288qSgK3qSbKZi7gUpRWRyeabVaj/iroZJdWL
+ yapuL2q5pO4j5xX9wSZQSpxc7WIYKnMAgmckd+AuFP8odwhC5G5E9R1kgMIoti4qooK+
+ oiYCwF6NowGsP8gvQNC1e1McuR221WMQWlUnIlcBpSPjc0EqjnvBjZXWSKsp05itYw/D
+ WbQQsukA9dG4k6vetIfA/LbZp3rral460NIdNBsIByhWx7JzThhTbfRXbekRXc8qESkI
+ Vg3Q==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9/q2Up0jNq8sv7trBmo2IWlanoqKYh7FL1gdgG6lEAu9yroLC04TEKm56hJqifrKasLgkanoZQRmI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx7ut9a2Wsjpk141w8PabK/9V3Nk2cSoURaJZanBiclQcwjS5N7
+ 8AaOdRuxEygigcrlNf2Jd2CCjVMgUV2BWYrSR/QqZ/0q2/EQBK3m24e1on6qgJ22eUYF4rzWysJ
+ AvBJ4YNMj9XGQNRJ7nTnVzG4VsazcZb82ASJxB/Lnx9T1DptgbDrneFcuOYDPT6yqdFWDVxE=
+X-Gm-Gg: AeBDietbZnO7Pwlwvpi1E8y5LVoQQ7l6hzFA+8vjpXAmGXD8HJjAnk7AdCwT2SiHdks
+ fg7oq0B4IVwH4YuYyrKDP+J822G6gh7ppRGHzPJozKsPLc1DkJaTX2VSJJcAN6WUACSbmVg7ZrY
+ KYuGm3RUHtdsb6wtyvSqtYSyvSWfakPQhGenvwUb3W3D2vZ0AQiK8GpEUJZ4+h5qPRWmvxBFGvo
+ OXl9OAW3NHWRV2XRg1ZPUE+dXpUY4syPEEc9rufukekf7bqlxKjtsmhYQ84whzesp0q7Oytpwqy
+ hrzy1LRDXCKjZoLIRgenqDkXMWM3NjqhPWsCyFKymC6mHlHmBn8oZBZpORhGrvcS7WxlpAnQgDM
+ X/BGtOnNa6SGPKK76rENgBYRfU3sJLL/l8QPxjYKzhLIOrmsvGzR7icI3LoFjgEQ+a4PHFvz1ov
+ CmfjC/U37Rm/XvKG4WpnN02sG4aKiFjnS8E2gtaDKw0FY6XQ==
+X-Received: by 2002:ac8:7f15:0:b0:50e:5f37:a821 with SMTP id
+ d75a77b69052e-50e5f37af22mr37013141cf.36.1776678608868; 
+ Mon, 20 Apr 2026 02:50:08 -0700 (PDT)
+X-Received: by 2002:ac8:7f15:0:b0:50e:5f37:a821 with SMTP id
+ d75a77b69052e-50e5f37af22mr37012641cf.36.1776678608356; 
+ Mon, 20 Apr 2026 02:50:08 -0700 (PDT)
+Received: from umbar.lan
+ (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
+ [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a4185ad138sm2859553e87.9.2026.04.20.02.50.06
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 20 Apr 2026 02:50:07 -0700 (PDT)
+Date: Mon, 20 Apr 2026 12:50:05 +0300
+From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+To: Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>,
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ Bjorn Andersson <andersson@kernel.org>,
+ Konrad Dybcio <konradybcio@kernel.org>,
+ Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>,
+ Yongxing Mou <yongxing.mou@oss.qualcomm.com>
+Subject: Re: [PATCH 1/6] drm/connector: report IRQ_HPD events to
+ drm_connector_oob_hotplug_event()
+Message-ID: <3vrqk67oivkgo26xdc3r774rvj3jn3t6sfydhlytyrfiftubhg@cipain7xxcjz>
+References: <20260416-hpd-irq-events-v1-0-1ab1f1cfb2b2@oss.qualcomm.com>
+ <20260416-hpd-irq-events-v1-1-1ab1f1cfb2b2@oss.qualcomm.com>
+ <51b7c44e-36c9-461f-983a-eaa86eeb8cfd@ideasonboard.com>
+ <6z572fdjkvjqvedifwvotgdy4lcrifiqvkjpnutousjqc6764r@zepfzkqy2kbu>
+ <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|BL1PR11MB6049:EE_
-X-MS-Office365-Filtering-Correlation-Id: c96385d7-74a7-4daf-3715-08de9ebdbf16
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: pEyhmxEwkRiqPU7jytfcafab+fRBI9PhBk6AjVGUgWNGN6SX8A9i1JbY8Oy1IiXfUemOBVR3CkCsED/GbOgpeiFO69//HVD5mcRROE3rrAW33YK7CNKULFQ2xp4KAAkS91H1usu3hngS8HexNR2bSffy02FfpKlqWBQA1OE03gxr6jJE/lDd/45qbyj1kz6dSNQrKKhuxBeMvGzae8tRCyLpUpwobx3p3cPcbemyBhdWdGMLlY0Apz8JszLyVDN/qqYDOC/y3ZXeu6TLvyoqPAlkDgP1DmqAx+bC7iWQi0tW4Tw47easZ7rzng4X14bhSXpqfRd/n81ZXX7ZW+RvODVXVidk/1Sl1fbYePSmGlG/qogVK0HO2yktWQSCX+W/5utCTqvsoBPxj9V9pb4ntJNSn2gpMs8Kn/kPpedxXthgKSrHAoK3btzvAXfzxR9Javh/cQ/ryiUaa4nH7Iq0XlxQNTUsJBfYpXYqgxuCnhR1RV8JbGfiLwU6M/SH0hb3pddmJkWechijsD8jMuk/6Dw27YId8LSQM8+hoPVYtFk7MzWAZboy6iOaIFRRDBrwFpSO35ASi9kx65DpOw93t4jeuZkRVuXEVRZTzWEkpB+Fb4z6gi7FK7DK3wIRAeo7cGHz2r4ncqxWyln46N/X/EGhFlBd9b7qtidPnBTHzlzfNxLjXoi5LyaUjc/5wWUc
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?OVBmSjFnRlp1MTFEamVPT0VzWmt0YngwS3NWRmxIUTR6WnBNdkhhY2FDUXNp?=
- =?utf-8?B?cXo1eHZPNHlHTHRzblMzUmlyNDZUcWRVSzlia2trekhJbDUzNUlMZjBnT0Q0?=
- =?utf-8?B?WUtIUGF3VWN6cC9yZ0o5TEQ1UzdlQ2NURm1zcWlXcVovVGY0Q25LUytGYUZP?=
- =?utf-8?B?YTNZaXpyNmlRRXlqR3JZRmlDY09rZU1GcU1ySVBRUEZQYzlEL2hadnlDd1p4?=
- =?utf-8?B?bG5mUjVYREs3YjZ4OCsyYU5JdG5kaCtPZGtZWHJZekEzMHowdWx0MnBGRGY1?=
- =?utf-8?B?NXJqMUZmZVc0aGlPKzh6bC81ckdzd1J3dHlZaEZYcnd6ZnVpbUVSQUhUdmFV?=
- =?utf-8?B?MnRhbzhrY2toNmtZSERxakhuUC9xbXBBVVNuRGw2d3JDemJMdzNZL3ROa3c0?=
- =?utf-8?B?TzhkdWdCUVpKN01pSVFWVHZQUlFaYlIzeTVQQXRCbHF1L3pqZHE0Z2NYRE9y?=
- =?utf-8?B?bDc0eENESjhIaVJQUTlSYU1Pa0pzcE0vZUhCVWhzYU92OUxIV0wxSDNYSGdH?=
- =?utf-8?B?OXJHbzZ5ZU5VTDNwVWpQQXBaMDFrTWRPdGZRbU54Y05jRVZRY2VxM095NFF4?=
- =?utf-8?B?WWhEZGN1S3lablhSNlFBNVM2THlkL295TnlYNTdDNEROczMzQ09oTEZ4N1Vp?=
- =?utf-8?B?bnRhRWNaM0IyWXBUN3RsR2pyaUdySzlKcVhNbW9xNkxkZC8rNnU1WG90QThS?=
- =?utf-8?B?SStsaVBVZFEyU1kwTXlKa0gxVWxjN05wMG5PV3owdFdGb2pGc3cySHVENnN5?=
- =?utf-8?B?K3RvRlhiTFRsUnNPZk05VW5MLzBkeE9VL3o3U1FUeUJRVkNsN3VQSllRMThI?=
- =?utf-8?B?NWZmMzlkM0MwMmZvNTByMTBNUG03cHlwYmtyTnoxQnpBR0VyTUZreFYzZ2da?=
- =?utf-8?B?TXphRjhFU01YMThPamtuYlZMcHB3TTJETjZJTDIzVTgrRzd1bEZyNThBdlVV?=
- =?utf-8?B?N2tZM3FtTnZyNXVUQnM2WUlsMlVpVWJqWHNKdTdjUmJNSjFQYWZ5VGdOcmFk?=
- =?utf-8?B?QlJKOEtuZU1PNGpRcDNpR082R1F5OEF5Y0RGNWkyOGpxZ2QxUzRWY0p5WWxD?=
- =?utf-8?B?R2xqR2dSeFJTdG1ONEZNaVh4dktDS3V3NXUwUFZkRVpRMFRQT3hmMEM1cXg3?=
- =?utf-8?B?bUtaRG5UZ1phcS80TlN0amoxODJ0V2s1REQzUTFLanh0V3JuczVBekN1VEJu?=
- =?utf-8?B?TVNIOWtTM1FBTC9BdkJ1ZVhtYlJab1VabDFiVkRXeEFpaCs4d2lXd1dweWVp?=
- =?utf-8?B?S011WEhGaTY1Q1d1NloxZVZMRGRPUXFqN1JLZXBYNHRZTzVtQmtGUDZIM2Ry?=
- =?utf-8?B?Y1VhdzgyUXhvdzlkbXBhdmJ5bHFuaFROQXI5RHZOKy9KUmJSelBwQjJ0SHZ6?=
- =?utf-8?B?aVJUYTNhQXNRK1NXZkl5K1Z0UXFkdllSdGo5Y0RTY3hFTUJuTmVKdmNKa1hl?=
- =?utf-8?B?WjFYUXA3YUJEbmNoZU1CeUU5R3dWVVE5L3Nlek14TFhLQmFRamlaUm1tNjk0?=
- =?utf-8?B?WTdqTEcwWU5FVEhSTGdtV2J5YVM1cUJic2t1dlYwcERscS91S3QxTW9XZ0F3?=
- =?utf-8?B?emRoQjRScXA0aTRPa0ViYnJSVFJuSEJTSG16NmMwSFJmcENLMjFCT1pXYzY1?=
- =?utf-8?B?T3dxZi8ydnVJMjJNcjV0UVU5YzBEWklYamJYZjRXVFJxQ2tCSVpwOGhyZFUx?=
- =?utf-8?B?V2g1OEsrdCtNdGRFSThMS2JRenYyYXRXVnRobDlHRG9sRy9ON29pSjg0Sllt?=
- =?utf-8?B?R1ZWZWpSeDZlRTdZWFNRcTZkUFFMUlkzcDFWTGovWU9KOTc0eVg5MWVEbCt3?=
- =?utf-8?B?Z2Y2MU51KzFRZHNCcW5tSDVldlZZNmQ2SHgrckh5MDVvaHdUMWVibnAreFI2?=
- =?utf-8?B?SUE5ZktUVFQ0UVkvR0xDam1HWGJVWnBRT3FBOE12cHNrUDV6Znl6VWxnM3Bs?=
- =?utf-8?B?ZVFiZUJaalRvYTR0UnZOcjNEeWkyN2lBbU80enJLcEluOFFhSnEzZU9rdThG?=
- =?utf-8?B?TlpqRHBSWTR5NFZRTHJhTmtvRVVqKzVZTEhPSWVRQUt2MFZHZFI2RXAvMlh4?=
- =?utf-8?B?SHV1RkYvaitDWlZJSWR5QlM1ejNQb0h5VHFoVXpsSWpna3h3MFRoamplM1cr?=
- =?utf-8?B?SUdDWTdyK1lmOWdiSlBzZ2ZDY1pIMWY1YWF4TXFqUjhZRzdHMmdVNnYrME5u?=
- =?utf-8?B?RmM0QnJ1STBMTysrelVOdzNrOVBEaTZTNDRTdGFqUW1VKzVXMFpsVzdzTnIw?=
- =?utf-8?B?V0gvUHlkMHNrcS94T2hRaFFMTWQyWFNDUXgwbDdsd1NHOTI5UEc0RUg0Y0p6?=
- =?utf-8?B?WkI4VVcxK05iUEVQQ3hsSFNoMkg2ZC8vQllRdlFHRWN2T3liZWpxNkk0YXlC?=
- =?utf-8?Q?vEJOKY4Q5GWzUa8g=3D?=
-X-Exchange-RoutingPolicyChecked: hPZLDHEFVmqAH1vaoVgRo6Xh6eYrxTVhV5domrkdVBzSTzZ4TH5IJWim0qyfe1P1WMOIae9ptF0LeptsYuOf3lay2EMojRFeCbpMx/tuxEnf7zmtLOXJ1eaeReXzLMpMIVeSyYTTC3b0obSlx+xK+T1K4ISFfJlTGWnG/qzUP4Kfpl6t2IEOD0cHyTbdlfuwd7ftIhO40YFAUOwuv/0b4i6SXtzTRobJM2YcIQqUPgrXcA2nJlrCkjeI1mEI21Di7QxuyRbYUIcbLWpo/yMx+Zi1gJ64RczktUXRX+tOdFtQC6ul3n1eepeqMqAzfAMjvKkwxDac0jZHZnFjmt9KYw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: c96385d7-74a7-4daf-3715-08de9ebdbf16
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5057.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 20 Apr 2026 09:18:12.7281 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: uojH4Dd/ddo18g4L+8OwVPKfvt3trqHVcLXQ9i3K7Arh2fe2JA51B4UAuizcKMCnOAxQ8+Usa/EKEGki2NzV38ruN7Te38yNfKE1LLlmokw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB6049
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a2e60e74-a1be-469d-8f4d-ecce1f30b517@ideasonboard.com>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIwMDA5NCBTYWx0ZWRfX60oGxyTmNB6c
+ rh47y49Ya8mJG3h8LKvUg9a/4iEvQgxdbS7FfJbWVpuTCW7Wqa1M+Z0O3drpaC/crKvpf5b1KzU
+ WnkUNJFBZsS5QbFlFxbraEBk+PGA1ygvtYa3QRsfNNAR0jLLOcKZ3Jr/6kl/Sq3qj0qKxurdV8c
+ Ion4DGIa1p02o6ciPOfoOLHa0vGQ+yhgJsf48hnsIV7OhV4JTrMKN4N2nzmhr3sSp1HqHLo2eUO
+ stfwM83bbZeHZELMxqpSA7RoRtix0BFLzXVMO/N1fZDJZbVPC019/TjAse/p8Z9SaqcLpNJlam6
+ jd7OoPs3zSRl0ltwjrmMsFYZQy6VAmUH67OZJ90phtVqP4ioabQkgZSH0jxeG5vPR+GcgLCMbyP
+ T4KrQuJ5acmlK5IAW5u1HI7idV4p1WMOk4FnNPnByGkq7Y7kKTGXYVmDKIBkDts0s2nGe43Ufui
+ gQ7dTPaJ9TTcFscfSwA==
+X-Authority-Analysis: v=2.4 cv=BPmDalQG c=1 sm=1 tr=0 ts=69e5f6d1 cx=c_pps
+ a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+ a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=EUspDBNiAAAA:8
+ a=VVbN_I7Xu8gywQYyaxkA:9 a=CjuIK1q_8ugA:10 a=a_PwQJl-kcHnX1M80qC6:22
+X-Proofpoint-ORIG-GUID: 5N1V3cdn2JfTME5UTOChEz_q4ss6WojT
+X-Proofpoint-GUID: 5N1V3cdn2JfTME5UTOChEz_q4ss6WojT
+X-Proofpoint-Virus-Version: vendor=baseguard
+ engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
+ definitions=2026-04-20_02,2026-04-17_04,2025-10-01_01
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
+ priorityscore=1501 phishscore=0 adultscore=0 malwarescore=0 spamscore=0
+ lowpriorityscore=0 impostorscore=0 suspectscore=0 clxscore=1015 bulkscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604200094
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -175,102 +175,149 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
 	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[42];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:tomi.valkeinen@ideasonboard.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-usb@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-amlogic@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:heikki.krogerus@linux.intel.com,m:gregkh@linuxfoundation.org,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:adrien.grassein@gmail.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:khilman@baylibre.com,m:jbrunet@baylibre.com,m:martin.blumenstingl@googlemail.com,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:abhinav.kumar@linux.dev,m:jesszhan0024@gmail.com,m:sean@poorly.
+ run,m:marijn.suijten@somainline.org,m:andersson@kernel.org,m:konradybcio@kernel.org,m:mitltlatltl@gmail.com,m:nikita@trvn.ru,m:yongxing.mou@oss.qualcomm.com,m:jernejskrabec@gmail.com,m:adriengrassein@gmail.com,m:martinblumenstingl@gmail.com,s:lists@lfdr.de];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:sebastian.brzezinka@intel.com,m:andi.shyti@linux.intel.com,m:stable@vger.kernel.org,s:lists@lfdr.de];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,lists.infradead.org,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url];
-	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[6];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 59E61428C22
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 84DAC4290A7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Sebastian,
+On Mon, Apr 20, 2026 at 07:50:46AM +0300, Tomi Valkeinen wrote:
+> Hi,
+> 
+> On 18/04/2026 01:32, Dmitry Baryshkov wrote:
+> > On Thu, Apr 16, 2026 at 11:10:03AM +0300, Tomi Valkeinen wrote:
+> > > Hi,
+> > > 
+> > > On 16/04/2026 02:22, Dmitry Baryshkov wrote:
+> > > > The DisplayPort standard defines a special kind of events called IRQ.
+> > > > These events are used to notify DP Source about the events on the Sink
+> > > > side. It is extremely important for DP MST handling, where the MST
+> > > > events are reported through this IRQ.
+> > > > 
+> > > > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
+> > > > events are ported through the bits in the AltMode VDOs.
+> > > > 
+> > > > Extend the drm_connector_oob_hotplug_event() interface and report IRQ
+> > > > events to the DisplayPort Sink drivers.
+> > > > 
+> > > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+> > > > ---
+> > > >    drivers/gpu/drm/drm_connector.c          |  4 +++-
+> > > >    drivers/usb/typec/altmodes/displayport.c | 12 ++++++++----
+> > > >    include/drm/drm_connector.h              |  3 ++-
+> > > >    3 files changed, 13 insertions(+), 6 deletions(-)
+> > > > 
+> > > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> > > > index 47dc53c4a738..5fdacbd84bd7 100644
+> > > > --- a/drivers/gpu/drm/drm_connector.c
+> > > > +++ b/drivers/gpu/drm/drm_connector.c
+> > > > @@ -3510,6 +3510,7 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+> > > >     * drm_connector_oob_hotplug_event - Report out-of-band hotplug event to connector
+> > > >     * @connector_fwnode: fwnode_handle to report the event on
+> > > >     * @status: hot plug detect logical state
+> > > > + * @irq_hpd: HPD pulse detected
+> > > >     *
+> > > >     * On some hardware a hotplug event notification may come from outside the display
+> > > >     * driver / device. An example of this is some USB Type-C setups where the hardware
+> > > > @@ -3520,7 +3521,8 @@ struct drm_connector *drm_connector_find_by_fwnode(struct fwnode_handle *fwnode)
+> > > >     * a drm_connector reference through calling drm_connector_find_by_fwnode().
+> > > >     */
+> > > >    void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+> > > > -				     enum drm_connector_status status)
+> > > > +				     enum drm_connector_status status,
+> > > > +				     bool irq_hpd)
+> > > I find the "IRQ HPD" naming always confusing, even if I'm somewhat familiar
+> > > with DP, but if someone has mainly worked on HDMI, I'm sure it's even worse.
+> > > 
+> > > Can we define this a bit more precisely? Is 'irq_hpd' only for displayport?
+> > > If so, perhaps 'dp_irq_hpd' or 'displayport_irq_hpd'. I might even call it
+> > > 'dp_hpd_pulse', but maybe that's not good as the spec talks about HPD pulse
+> > > for both short and long ones (although in the kernel doc you just write "HPD
+> > > pulse")... The kernel doc could be expanded a bit to make it clear what this
+> > > flag indicates.
+> > 
+> > I attempted to stay away from defining a DP-specific flag, keeping it
+> > generic enough. HDMI is pretty close (IMO) to requiring separate flag in
+> 
+> If it's not specifically the DP IRQ HPD, then we need to define what it
+> means. I tried to think what it would mean with HDMI, but I didn't come up
+> with anything.
 
-On 2026-04-16 at 13:31:18 +0200, Sebastian Brzezinka wrote:
-> After a GPU reset the HWSP is zeroed, so previously completed
-> requests appear incomplete. If such a request is picked up during
-> reset_rewind() and marked guilty, i915_request_set_error_once()
-> returns early (fence already signaled), leaving fence.error without
-> a fatal error code. The subsequent __i915_request_skip() then hits:
-> ```
-> GEM_BUG_ON(!fatal_error(rq->fence.error))
-> ```
-> 
-> Fixes a kernel BUG observed on Sandy Bridge (Gen6) during
-By "Fixes" do you mean this patch? Or are you referring to the
-tag "Fixes:" below? If former would be the case, then imperative
-form might be better: Fix.
+I might be mistaken, but I had someting like HEAC HPD / EDID status
+changes in mind (or HDCP-triggered HPD status changes). But here I
+admit, I hadn't checked if it is actually applicable or not.
 
-In any case the patch looks sane:
-Reviewed-by: Krzysztof Karas <krzysztof.karas@intel.com>
+Anyway, for e.g. DVI or VGA that means nothing. But, my point really is
+to abstain from defining someting as DP-only in the top-level API.
 
-> heartbeat-triggered engine resets.
-> ```
-> kernel BUG at drivers/gpu/drm/i915/i915_request.c:556!
-> RIP: __i915_request_skip+0x15e/0x1d0 [i915]
-> ...
-> __i915_request_reset+0x212/0xa70 [i915]
-> reset_rewind+0xe4/0x280 [i915]
-> intel_gt_reset+0x30d/0x5b0 [i915]
-> heartbeat+0x516/0x530 [i915]
-> ```
 > 
-> Guard __i915_request_skip() with i915_request_signaled(), if the
-> fence is already signaled, the ring content is committed and there
-> is nothing left to skip.
+> > Linux. Likewise I'd rather not use "pulse". The DP AltMode defines a bit
+> > in the VDO rather than a pulse.
+> > 
+> > Anyway, if irq_hpd doesn't sound precise enough, what about "bool
+> > extra_irq"? This would convey that this is the extra hpd-related IRQ,
+> > but it would also be obvious that it's not related to the HPD pin
+> > itself.
+> We'd still need to define what exactly it means. I think it might be better
+> to just define it as the DP IRQ HPD, as then the meaning is clear.
 > 
-> Cc: stable@vger.kernel.org
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/13729
-> Fixes: 36e191f0644b ("drm/i915: Apply i915_request_skip() on submission")
-> Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/intel_reset.c | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
-> index 37272871b0f2..b728a5171e93 100644
-> --- a/drivers/gpu/drm/i915/gt/intel_reset.c
-> +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
-> @@ -133,7 +133,8 @@ void __i915_request_reset(struct i915_request *rq, bool guilty)
->  	rcu_read_lock(); /* protect the GEM context */
->  	if (guilty) {
->  		i915_request_set_error_once(rq, -EIO);
-> -		__i915_request_skip(rq);
-> +		if (!i915_request_signaled(rq))
-> +			__i915_request_skip(rq);
->  		banned = mark_guilty(rq);
->  	} else {
->  		i915_request_set_error_once(rq, -EAGAIN);
-> -- 
-> 2.53.0
-> 
+> Also, would an enum flags parameter be better than a bool parameter?
+
+Maybe not enum, but u32 param. Then it can become:
+
+@extra_status: additional type-specific information provided by the sink
+without changing the HPD state
+
+void drm_connector_oob_hotplug_event(..., u32 extra_status);
+
+/* DP short HPD pulse or corresponding AltMode flag */
+#define DRM_CONNECTOR_OOB_DP_IRQ_HPD BIT(0)
+/* DP long HPD pulse, debounced XXX: do we need this? */
+#define DRM_CONNECTOR_OOB_DP_REPLUG BIT(1)
+
+For HDMI we might want to define:
+
+/* HDMI 1.4b 8.5, HPD pulse */
+#define DRM_CONNECTOR_OOB_HDMI_REPLUG BIT(0)
+
+Or might not, 100ms is long enough for all debouncers.
+
+For HDMI we potentially have another source of OOB events, CDC-messages
+from CEC controller. I have not looked in the details of the HEAC 3.
 
 -- 
-Best Regards,
-Krzysztof
+With best wishes
+Dmitry
