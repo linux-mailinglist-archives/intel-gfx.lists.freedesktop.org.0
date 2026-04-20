@@ -2,96 +2,102 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AHBcMy/i5WnfowEAu9opvQ
+	id mFAGL7rk5WkupAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:22:07 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:32:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32F3842815C
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:22:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6DEE44282B6
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 10:32:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6280510E468;
-	Mon, 20 Apr 2026 08:22:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C5B610E455;
+	Mon, 20 Apr 2026 08:32:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PpKRwwE4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ATR6fQFc";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB76D10E114
- for <intel-gfx@lists.freedesktop.org>; Mon, 20 Apr 2026 08:22:03 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1B41310E112;
+ Mon, 20 Apr 2026 08:32:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776673324; x=1808209324;
+ t=1776673972; x=1808209972;
  h=from:to:cc:subject:date:message-id:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=sbiip0Wdzv5LozV4vq9wNJe5bL9+vJ06iLkD2rV7+Ik=;
- b=PpKRwwE4Eb2o5itCy7kzIyJQSxw1HzFrY9tKLLg9qL2cJgSxqer5E3KZ
- kAD1vZ1JHHvDAESi19D3qNYyGrxUZunsvGONIJHJDB2rMxI9JWQAu2V2l
- wPqjWeCx3VzlV9QMyEroTaNFEtrU6h5KDmBumo9PYeFMs9fjj+OcA2hdz
- 4dcKx9TosaaUCN5W3c89zfooFfGjLzbSsXy59dZok5QU+IOacfK2DRXm9
- 4lHaL0ZUStLLgBfqraaNm7yGpRrjfV12DQLgZbpCzb4bvLBCuGFKL+ek2
- hRaxv1amISv+k52+3VxlU/IHgbPK/xzOXOjNgYXQmLr2i9QXwkK7krRb4 A==;
-X-CSE-ConnectionGUID: FLAhf3vbQTeJPzYeESLLtQ==
-X-CSE-MsgGUID: gfyvE6jvSTy+YujktZJKHA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77708230"
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="77708230"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 01:22:03 -0700
-X-CSE-ConnectionGUID: SQ8ACirOSDmZARgg/EcDcA==
-X-CSE-MsgGUID: EJ2MW9GMSaGyipX/hn3/7g==
+ bh=gY7ZzZmexEeQ6e1UL21bEL1Z3n1sAo4DFUYKKBkN2lg=;
+ b=ATR6fQFcwjheWmJ+q4vFGUxOrJcBzXPhVhSesPIpF7UPFsJMcn7QMw3n
+ bZ6DmMO4YNyDXBW58hBcGPjlvfqJMTyZeF05ZU1EyfXdsINX7w+0z4tYu
+ y/G5BuF5O70NLVF5bTJtwttMwDjbuFzaSuBXc5xBnLAbCCKAAjNekE+No
+ 91nLG74EzoNwlt3K1XD3U+sA2iNTVCFpAqheDwMkjiTaVqS7a4i1PJ06l
+ blS6uRXUa2n5Zt1hnvjG2mvwUn1Jzy0VJAMQ/jPiv9AWlAj+3OKeO6/HV
+ yDckIeogABfdHmrqCYgulkXc6dtNUhEjE+a55pm5Z/nBQyFs4L6d1AGT/ A==;
+X-CSE-ConnectionGUID: zoLnhgUXQLK5ACM51EhEqQ==
+X-CSE-MsgGUID: DapfuuVUSvmKz24RxmDYYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="76611708"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="76611708"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2026 01:32:46 -0700
+X-CSE-ConnectionGUID: sAhpQVTlQzWLlq7iK0+hbA==
+X-CSE-MsgGUID: nr5cWyfqSX6CNP0a/1Zmew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="227323035"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 01:22:03 -0700
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 Apr 2026 01:32:46 -0700
 Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 20 Apr 2026 01:22:02 -0700
+ 15.2.2562.37; Mon, 20 Apr 2026 01:32:45 -0700
 Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 20 Apr 2026 01:22:02 -0700
-Received: from BYAPR05CU005.outbound.protection.outlook.com (52.101.85.38) by
+ 15.2.2562.37 via Frontend Transport; Mon, 20 Apr 2026 01:32:45 -0700
+Received: from CH5PR02CU005.outbound.protection.outlook.com (40.107.200.40) by
  edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 20 Apr 2026 01:22:02 -0700
+ 15.2.2562.37; Mon, 20 Apr 2026 01:32:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lgr54/BDEXbAlUsg/aLXP9k78be9/AOvrSy7/atFJJlNH9GXFlWxJivI2/dEykAc7xxJcC1IuJdq7F70WBDVYreLV4Jhyg90ZPVl1ro3HvLlOyfhaIdedJIvZ++ABLxqJRmNrC6cQ4QwuBGBiBTMhYdcZm937rGbcjKI5ipHwS+iF8tjuQx5b5hsunk93AE/vf9n8ZdGRFzs17hk4XOstO1sl5M2b3TLOdvaOPtV/uXHT4m3zL1a+eyPt8PgpY0gAj90pSf4CvUhfNW9D6emN5tLBeM1fKgqkXVt4WxIXGXG8Oy5d/nofmKr1086oKRIUjI0UF6y9j4RRIQndJ8lyQ==
+ b=PWpCHCZW2a9CAIHe2tN3ubdyNnGb9+2wOX8RBKCHXukaUWT59bfPrlZg954VEgmzakpxcWRwnQdovOjhFnTYrY7a7+ekEe91h88S0pQv/YUufb1l2YhhMCWsjGWa2adnfwtVmtPocv8ebsolyjVyhFdRCePygIVO9h8CCPC9HD9DyLoqSkKtMbNFv9HTO7TeNCwGNhtgr/nh7y+QC+RSol2PaugiBwq1r9wZZdEUaVnMMlRW8xr8qa082P0CwTZSYzaZ4l1oGPyYUZVYF98xC3MkpM9BdF5nJXz/zgyghWJFcrK5KuSGfO/hcrdg4OAvoO4wuXHoSe5Qf7yz0YvEiw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=gsI+LcQDXiuhJNMwOTVnh7bb6SP+kv6GBBmHMjjOeQM=;
- b=I3+7lw+d1yNG+z6b8hJ8QIfjoLZV94Wxr9JmzGEYiBJV+owJ8UqkzIncy8wCPtGEYXibU+3eaqNUJij43CRKQtbR3c9Ph0nAwt5CuA21umziFORlXiaVuSSaOdrJEfKiEVn/nA1r0mtVrxCvaknGUdzyADMgjefsj9WWGqSR2cI+eFuzsuZovtcZUnTCreQH9qU2MEjtAnOAMyCd1DPHw4xkrDrEeG1JWzAai5Mi8SRJQ9vpfSvUDBjeuyl1q8bEUIdtnoqyRHsyEBlzFyBIGjkzl1GfoN0OALJeUhjTYRjPMtxvmim6VGiMWoIeF4OxeBVlIK1kD6NTdZUAgtjzvw==
+ bh=XMU3q8s+eziVA8mUduyt/iTQkWmaaObcmcUpPgweSAA=;
+ b=aqmf8vuPpYFlqieymRgIKiO28voMtXwcKx2bBVy/zz1Zzu0eGIqkBZhtHs1Lm6sRI/ekDaeHwrjtlgKg2lhjMifO2InN6qwRNgS3UbvZfGedwIra7oq1msBaZdCkLul7W/b/nMDHFF5Pe0yYzmkUIcxtobfVIjJgDTtmfAWPyfAdbqNXHGDQdoiL3zaPcAEoZfeiLs43yTez8moQG2cDsoQfYpu63b8Yt8zN3LePTYBzkNfyCihVmEv6c0UbfXckFoGOcqch5Y58rtFqga0U4pTRIyxV2RgKSKJMtym7o24YeDZuh4J4fFKXXYQ6l8GS0UGbe2DLQ1NyBl8C54sagA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM4PR11MB7256.namprd11.prod.outlook.com (2603:10b6:8:10c::8) by
- CYXPR11MB8756.namprd11.prod.outlook.com (2603:10b6:930:d6::14) with
- Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.9846.15; Mon, 20 Apr 2026 08:22:00 +0000
-Received: from DM4PR11MB7256.namprd11.prod.outlook.com
- ([fe80::86bc:2f46:443f:51dd]) by DM4PR11MB7256.namprd11.prod.outlook.com
- ([fe80::86bc:2f46:443f:51dd%4]) with mapi id 15.20.9846.014; Mon, 20 Apr 2026
- 08:22:00 +0000
-From: "Grzelak, Michal" <michal.grzelak@intel.com>
-To: "Garg, Nemesa" <nemesa.garg@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>
-CC: =?iso-8859-2?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH v2 07/10] drm/i915/scaler: unloop scaler readout that is
- run once
-Thread-Topic: [PATCH v2 07/10] drm/i915/scaler: unloop scaler readout that is
- run once
-Thread-Index: AQHcydsh8ux9eYmr30iPGUD4J+q1obXeNhcAgAlwZiA=
-Date: Mon, 20 Apr 2026 08:22:00 +0000
-Message-ID: <DM4PR11MB72563B1768592FC73212439A8F2F2@DM4PR11MB7256.namprd11.prod.outlook.com>
-References: <20260411174526.2850179-1-michal.grzelak@intel.com>
- <20260411174526.2850179-8-michal.grzelak@intel.com>
- <IA1PR11MB64676351F58BB25EA0BAD5B4E3252@IA1PR11MB6467.namprd11.prod.outlook.com>
-In-Reply-To: <IA1PR11MB64676351F58BB25EA0BAD5B4E3252@IA1PR11MB6467.namprd11.prod.outlook.com>
+Received: from BN9PR11MB5290.namprd11.prod.outlook.com (2603:10b6:408:137::5)
+ by IA1PR11MB7726.namprd11.prod.outlook.com (2603:10b6:208:3f4::20)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.12; Mon, 20 Apr
+ 2026 08:32:34 +0000
+Received: from BN9PR11MB5290.namprd11.prod.outlook.com
+ ([fe80::e3c3:1a6a:aeec:f3ed]) by BN9PR11MB5290.namprd11.prod.outlook.com
+ ([fe80::e3c3:1a6a:aeec:f3ed%6]) with mapi id 15.20.9846.011; Mon, 20 Apr 2026
+ 08:32:34 +0000
+From: "Kumar, Naveen1" <naveen1.kumar@intel.com>
+To: "Murthy, Arun R" <arun.r.murthy@intel.com>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ "xaver.hugl@kde.org" <xaver.hugl@kde.org>, "harry.wentland@amd.com"
+ <harry.wentland@amd.com>, "Shankar, Uma" <uma.shankar@intel.com>,
+ "louis.chauvet@bootlin.com" <louis.chauvet@bootlin.com>, "Yella, Ramya
+ Krishna" <ramya.krishna.yella@intel.com>
+CC: "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Kandpal,
+ Suraj" <suraj.kandpal@intel.com>
+Subject: RE: [PATCH v11 0/7] User readable error codes on atomic_ioctl failure
+Thread-Topic: [PATCH v11 0/7] User readable error codes on atomic_ioctl failure
+Thread-Index: AQHcwO2d20A/eYq2a0e6os8r0aiGTbXnu1OQ
+Date: Mon, 20 Apr 2026 08:32:34 +0000
+Message-ID: <BN9PR11MB529039EC705FBA4E5E65C64FA72F2@BN9PR11MB5290.namprd11.prod.outlook.com>
+References: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
+In-Reply-To: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -99,62 +105,61 @@ X-MS-TNEF-Correlator:
 authentication-results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM4PR11MB7256:EE_|CYXPR11MB8756:EE_
-x-ms-office365-filtering-correlation-id: 3fb9cfe2-0e9b-4957-9b86-08de9eb5e54b
+x-ms-traffictypediagnostic: BN9PR11MB5290:EE_|IA1PR11MB7726:EE_
+x-ms-office365-filtering-correlation-id: 77bc7684-7aab-439b-f6b5-08de9eb75f02
 x-ms-exchange-senderadcheck: 1
 x-ms-exchange-antispam-relay: 0
 x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|1800799024|366016|38070700021|56012099003|22082099003|18002099003;
-x-microsoft-antispam-message-info: Y+jLDWmzXvFKpjGxSOaXUw+qXauVHka9tpUGAAiYxz+LEIU64AvWK1OMx9LJN40PDwIyj8lKTxBe/QwEixhNDGGLVwoluXVktIAXWINIoG9tLLe76PbNgbRNhJEzcX8DpRqKAAIhAjIxoTqUSKKpKxErKysZbQ2nTVN3jrzu30z/KnBd11LsPhrRfC7mvNpG2FmIehpWizCyWdpO5vvHysjdXPomzulsOYUBBbpvUOzMHnOA7yKEOLRL8M62tRk4q1hyB8bFEv+rHQbsfPrFZu6X6r64JABIDkhafIQpkbw3oyzo7h5CzBJPnsz+2uKeU/E4Al4ELf72vF1HHdk4i3lPq3+3v/+KQgVfFCAdYP0Qn/T8YioMOboFuQ0oYE8ZOs8g9oFstcbvv5933tRh3Ro26IyxLwZswm6OK1fxBk5B9pxPvlS5hhobq67PREKAlZ3kylcFDvu9J1Fe5kvYkcV/ogQ9mpmhaq8RGdLy0DyzLOR6fI6TvKnIpcaZ/7nYVHKqVngsQscsFcqCmbq024u2yYMzFH7yzAyHTyxkC/rVmdqrMdmaxTf2NWrH6A2LbrWYa5yuMG91Wk8q+fRQKtadSVTSl+BYtK7A8RtqmkEpgj1NQfDYd879ZyKTdDfdtjJA3gidb8Vqxo4ninSjaNUAyaR1Rw6ZWAEOt7eM2164XusF8JG9Wq3z6zUx63NVR6baX2FESeOUF1EblVl0+5noj79Bv7Ts2IUbYWWLAZySqF3w+MEVmHv8ZsCMhs2KakjCB/rr7p+UBF0/07G0ZBTQ1XFIsyCgdfopfnNwZ2c=
+ ARA:13230040|1800799024|366016|7416014|376014|18002099003|22082099003|921020|38070700021|56012099003;
+x-microsoft-antispam-message-info: oR7C7qZULD5pKTnlubP7w7ozjQ9yl1yoz7J87wlLSkuzri7OJKUuLuhYSjv5f5FWMHevZDCEjZAyPcISPIkmj9oKzK2wErsIGOW+rYzIjOXsh6mZhVISJPCXHhimmWqQE8NuSupDTN0C6wn6IV498jALjEQ/V50OwrTGRIVLZ3Ba8lfu+M9JmtJ86fs9Wau9Ps+W7v4fHAaU1ejOreewRVwol7Ph/tOMECk5PimAMW5i//Y4rWiBMUYNpTnzoNz3Q+vTVZN9QdKPPxrmGzE8IlUaUFsQVljaC3Ptp2ntoKeJvABtYJ2toBWeIdvAi20Jw/4zHbpB/ulw8JessmdJnzyPRZtw2+cgMswXUDAHxKN7H/RiRSm4YF2WIUfaDq0inq0eceZjn+CYcIRaymUCcxMpt6LkbGFIKueVklIySOvDR9BgX0vvQqeygjMECssVJjZgmDch+OemfmgMau234OCIevXLqWbER1g7/Hpl4ulNtxCkbfR+8NQWGHcmAyKzOsFi8zJTBAepgPcgbiKXmmLGnvLD5D0eVAWkrFHR01lPmzExxnyoGXe5BQnLmMofeSXPRT1O/M++Mjh8Tky8c28atclgNVqvWGb3UbUkCXK5SCahjFuAOnlJb4MIBvqCW2FSsMhvBh4xCBcH4UFOAV3gaNQkHVsm/7X3HKqM8K88DSeqpug17hYXKjnKB7CIsZKG9J5L1JB+8qkKPDliq/7/kGoFTj0Uee6FJRvkckWnLWJ24HQpr2pgLv1GDuakHAKpxScqsn47nzxoxAvyEw==
 x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7256.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(366016)(38070700021)(56012099003)(22082099003)(18002099003);
+ IPV:NLI; SFV:NSPM; H:BN9PR11MB5290.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(7416014)(376014)(18002099003)(22082099003)(921020)(38070700021)(56012099003);
  DIR:OUT; SFP:1101; 
 x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?iso-8859-2?Q?jxEGO3wIjRiA6O5APhV9N5M5UcnjYrPdtdPZDHlkmPwb+gjFVaJkM7xnbH?=
- =?iso-8859-2?Q?/RrF63ye5ljwA60WjmwKKzapLsiO50y6mJNbHBptkv+gttc2USwfVR+y2u?=
- =?iso-8859-2?Q?LUbs4Jn4VPHtYViT9OFpTVEAWcxqXkzSgUOk6XzfwV5qcMlk0cThYInlyK?=
- =?iso-8859-2?Q?/UA4BIhIEovdblOUfAR25tR0hsbi70Ki4LraSzx0owYoZqZUBagZoMvtGK?=
- =?iso-8859-2?Q?6G5C/TxNAoorgPvuNEVHw2RYlqAh0jcAlFHsQUDnQJIdSLu75al+GlAx2o?=
- =?iso-8859-2?Q?6aEjBsgrqsKc/X1wtTIrF1zRZ8y/AhjX/60BUAQzsd+Yx0eC1L5ufPhOhQ?=
- =?iso-8859-2?Q?kxT+Uke1y0tgDJuB7z9u3H21c3c+/TLGDE8vBYBcZ31NXk5/Owd6k/8B4K?=
- =?iso-8859-2?Q?Ce7EhiLlTGM4nBvEPmdv/bO19ye1Z7gMRiozZXubju5lix1lCPCcW/i5hI?=
- =?iso-8859-2?Q?ao6mOI3i8De3UvUDW/VfJGWO4+AcRcwE6D/v1eqJ1gqU3vpm3Artt4y0cJ?=
- =?iso-8859-2?Q?AiQ7R0Gds29BNB870hP3UbqTjdkcsXGzxE7bOvHqyTO2wDEYYhSj3VH1cq?=
- =?iso-8859-2?Q?ZdvJ3u7SyV6o2/JG4BLyj0TXFYkn0ZkAtpBro6Y2OiP36MMR8ZSKPphsvK?=
- =?iso-8859-2?Q?VKA32iULjBi6hBQtyGd2HH4G2WD+Vx5j0HsDUaBkQIi1olq0YCIzPmlcic?=
- =?iso-8859-2?Q?fOlUzJmXx2NJIu8aWVjseGwxKxEJ/VjG2DglHghyIM+b9wYHi9/He758q1?=
- =?iso-8859-2?Q?aQt8QsplHAOBgkiXoNq4fsgrGf1xSJmJ2JzrPakuPaCc75JwrxQ9bDO5w9?=
- =?iso-8859-2?Q?+dhncQgvujuho6H3gvlPJoZwc5xbzYJwkIrMdO/SXmm0yQPEUoqrLKAmo6?=
- =?iso-8859-2?Q?godOykJ7IcX+X6O+4MEvetHIBQo5RwVvL4eMe6UOPe0NdKcfX1KopNUOIz?=
- =?iso-8859-2?Q?SOTSngqc/hG8InrE8CWmfDNVRFxtAu5yGNFQbjn1aothSD9RgWiXBvxYVw?=
- =?iso-8859-2?Q?GHXyetcBn3uMZanOE2L6w4tDhg+UsdGjB/iQTih4hsCIdcciXBf4PLh95T?=
- =?iso-8859-2?Q?EKFo9pDqGq3ohI3MIf5wdsfZcrZtZF7d2EbrKmFcKz1pKsenc7SCnHMEbW?=
- =?iso-8859-2?Q?TaYtiF6cjn+Z0k6PMs1jBfnNutY4aShR00R9VqZn+SnVw++AQ3ICTHNhkZ?=
- =?iso-8859-2?Q?6Zu7ZHyStM/mXG6iFd2hwzb67JVNsgOLHI1jANmffxLLWZ973/T0Ctj4gz?=
- =?iso-8859-2?Q?LPDGVH3AExirREN2I3arqatxVQz5LiWWABoJvEJqTWRamRnI9vUiG530Ij?=
- =?iso-8859-2?Q?6P4nqEA68WRiMgiqSCReCxCrcH9kMf0hd64bCGKlvZ5K2XKzh5k+bwlLVS?=
- =?iso-8859-2?Q?edESq7061YZyeJ/rYmLaK1D6UC6IByzT0XAmZLMTdTzumugS9QlokGkSTT?=
- =?iso-8859-2?Q?7ET1pA/un6gbOTW6z1WGiN62S33YXb5aYIh/9eJzrnF/ZuVX00cFGvXQRj?=
- =?iso-8859-2?Q?hLzto/0ha2qWkZsgXq6IICF4zjGjGm45qcG3ZyJIGST6aX32yIsed6R1HP?=
- =?iso-8859-2?Q?6Yvvnmk5jnFUbSGjLLEAlnc6/4Lp0zsWv/8F5NZ97EdDgger0+CLhNvaUJ?=
- =?iso-8859-2?Q?szyWG99tGGgotlGCFgzbXmStA8PuaVCFh/1xcI/49e2NZz+HQv5mJVWb42?=
- =?iso-8859-2?Q?cqld54Nt/sjY2sE4n+lDNvw9cRB/J2sjuVcpyPkxUKVJdAaLD9wYzeDEcZ?=
- =?iso-8859-2?Q?1bMSQml1wYJOKCPRiNuSWq3kSDcaQ86GH21Zu/+q9o4es+T2tMyytiGW8U?=
- =?iso-8859-2?Q?7TKQhFdjRA=3D=3D?=
-Content-Type: text/plain; charset="iso-8859-2"
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?OlbxqmdKXCBV1CsRsjhoX3qy5hWJ7ycxoKdO/CPQKWR5LpOhD0fQtGfiBv2d?=
+ =?us-ascii?Q?nSkE7FaNkfUTItXT+VZA3qPoLlZtg1HOInGovie58k6LRmIU6bh+u+Weed7A?=
+ =?us-ascii?Q?gmtv467BgEtfTzHIb8Kf0wpMxORuQ3UhCH+kPbuLzXLl5My3cZBUTWr4n1R3?=
+ =?us-ascii?Q?9oN5v2So93dLawUl7iLD/9YB4aMFJWqkyJTtatmU5tOyOTjtHeVC/rzckHlQ?=
+ =?us-ascii?Q?xeJxEKiIuJEc1bDWy+ZFKZGnEVIAjMA1nq8hhq4uPPPrVq3SO4TRQWZHKgAu?=
+ =?us-ascii?Q?/73idM0rdSLREyBdI7no+TOl8XcSWCZcbhQumE4F+DHSyEI20vn6VB2thLoO?=
+ =?us-ascii?Q?cvpBGnRyUdHSpwOYxVLPMbAroKiX1cWTG65tSYEwIumTT3I5PugYFj99yu78?=
+ =?us-ascii?Q?ngg8ONceat05dNAU9v6SwV+brB/CcaloWFCbidC9uXaL1vBUKC9BaIDN3+9p?=
+ =?us-ascii?Q?muo2aKZSUiTG8CoU88fqxulCPNTM6bqJs382kJd5IAYjFieczQlrWRWn4ZNv?=
+ =?us-ascii?Q?4jQl9dGj9WsvnHG7g8UZSaB6jadzKyRWWmo/RqNA286sEGTxDqXIpXG5Udl5?=
+ =?us-ascii?Q?MND8M7p3JfR7pvEoalHo66kwQaMn3ujskazP5lz66W8Pxf7Yo9ZGBSYa8Ouu?=
+ =?us-ascii?Q?GBRu6QqSvSLs3YlWcuTXJN9rg8p1BPZmFzn904uxNGw81drmhqnf1xzCNyaW?=
+ =?us-ascii?Q?UGcDAJcUEsTtpWukRtRB5jAWMoWSxBJ49OZj4gbFnTtp3HioQJ/gRZY+qRrb?=
+ =?us-ascii?Q?FxqeN6JFoOiQEaxe4hNHDqbyIs5A2eiu43OlSqKV60YtbA/gtMJ/TIknm/Tt?=
+ =?us-ascii?Q?xmxGDdc+TKesa2u8ExPbzwn2iNiQaIsE5loBLbkWMWxekv2EvzieuEB+z5a0?=
+ =?us-ascii?Q?EnE0+qtaG9O5qxc66aCSAbSCuBiylFUHbqEX61F/RuB7sTD4C3xD8qj7qZin?=
+ =?us-ascii?Q?ZA3N6VjCL+3Z4/ZML2vwqGiVC6Vh9/UMarxSLG2N2OyZQQTC8Mk4IXoXPmZp?=
+ =?us-ascii?Q?AYefl4DrWODsDXYVsr+Pk6Rgsdndlc0FDxAZEtCnbr0c4HFGHHRELAa0+WhU?=
+ =?us-ascii?Q?anbNXW3DlsQ8jFD9a2m+8gycqjhiFAToArJcI74aJ3/LO5KLUAFrKlvTVzV/?=
+ =?us-ascii?Q?0ObieqH1gjJxkEWfgiJJPl/SZcR/ZhBoDHUFV03f0Lz94Q/It4tcXdgpWfjC?=
+ =?us-ascii?Q?klCcfijU9ThsamLxH/l+cMU9gTs4E4XnitZFFYYp6Tlls5QhOcOiOgKAwkmB?=
+ =?us-ascii?Q?itJjowTeSfg7JF097egpRf9CMU9ByX1t5u0ZgSxpFoCVXsDr84cBpjPlhqdh?=
+ =?us-ascii?Q?g/i/seQ/6V2dgd9wfjQX7u7ee7gRQs5ExHV8s5z93E3GUgyns9QgVu+UIVw/?=
+ =?us-ascii?Q?EMuooYOlyHGt8NEPLUo+q1FULi7GyHfCD+pcYYKACbp++DIHERIHk1Mzc7jq?=
+ =?us-ascii?Q?CO+alPIFQrlZdNkKX30FPidJZgxAQdvVhN5lDZqe838Ls0ZqT3orgUQyzY6w?=
+ =?us-ascii?Q?cT7DKLFc0JWZlA8GiiTp8M2uWGjdKtQT3E/dbha2zYbPQztqnSUhmll3VXur?=
+ =?us-ascii?Q?xhFj7VuSYTo8H3vTnK0sGKGtQ7C8OnZ9poUxMtIBR/LqPhRyxudbTvCxn5QA?=
+ =?us-ascii?Q?AATcUuWwrBoB9sO3Vu5oXfmybSm065lmwUYGrML0wDamLYligh2Azba0gINt?=
+ =?us-ascii?Q?Z4leTT7xCgjO5yuvttWmuSqfXpIhIDYiPD0IVSKXlu3Y5eoO4r/kirYnAZR2?=
+ =?us-ascii?Q?tsVRY7oGMg=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: LNTQn62VrCU9VFFMB273XNNWypJbMXG1uNZtoL/6oUdiXttPEzrGunybFahM8HvoyeJk+hxIkSsaoagwRbQc1PfPKwaYstq/vgqconUn3MN2yhPXXvSYlIWKcxNZ0B074UGGSIyzLtsOw+0yefo1hX2OBzKY8jbUchWncsa9mgq6D0DXz6jB/kNbUgWASVDRnQyPFk0FZyeJ4T5VDRE5OJxxoe9v9VNgUROex6Qjzshs0nZwuXD5KVemcujErpPQaMEn5N4cX87+xHl2vZcTE412ofthWfec7iuotUK1d/4Ofxh2+vrAUb5pQdN/c2Dm7TXwWc9K7Ng0U3/gd79K+A==
+X-Exchange-RoutingPolicyChecked: k0OjBaWC/V7AEktccOogrNZNoMrslYix/7R1nhGLtKsi6gm950S1FChdhWDSthWq4bhzKWEsWh82qpii5TrGrQAwGV97XWgKYWVwrouGYp6k9MlKvhld+VVU4URZF8YLeRbWpWlvgfHQX5dd6BUANDbzvYbBlLQfXZy1wIVDRO656XsSsv4cwY7PI50XOWKAjWfGLcU3XnPUC+fTENv1bo4u50dhWCWrHgtUrpzjw+rl6qzHRo5Is/5l605YckHp8OVAbjelObaRCQ1R6yvs3uSykaR/Tq3Nv0KKiE/mZjf2lPNQLEmzZuqASHM8aUwuWHIshuADSTLuCbf4jvo7MQ==
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7256.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3fb9cfe2-0e9b-4957-9b86-08de9eb5e54b
-X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2026 08:22:00.6278 (UTC)
+X-MS-Exchange-CrossTenant-AuthSource: BN9PR11MB5290.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 77bc7684-7aab-439b-f6b5-08de9eb75f02
+X-MS-Exchange-CrossTenant-originalarrivaltime: 20 Apr 2026 08:32:34.3019 (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Mt8CZtkKdXa7fvSXmUfONF5VuDp4maOseP7ujSbU9Uax0Kwmw03ymtwtnREtDbdxNVa+Yw7Bi3JBXw2YUbFBATd9AKSS+8/UdlhL7hiHvEY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CYXPR11MB8756
+X-MS-Exchange-CrossTenant-userprincipalname: iVxn9i7iB/q89fLaK+vYqpMTKPcMvIq+LxksMTzCyEZYzhhauOvATdiwQ5Ywzfy+JSPweAu8X2hVyEKOaEj0GQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB7726
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,158 +178,148 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:nemesa.garg@intel.com,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORGED_SENDER(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,DM4PR11MB7256.namprd11.prod.outlook.com:mid];
-	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[intel.com,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,ursulin.net,kde.org,amd.com,bootlin.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,ffwll.ch:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,kde.org:url,kde.org:email,suse.de:email];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[naveen1.kumar@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
 	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 32F3842815C
+X-Rspamd-Queue-Id: 6DEE44282B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Nemesa,
+HI Arun,
 
------Original Message-----
-From: Garg, Nemesa <nemesa.garg@intel.com>=20
-Sent: Tuesday, April 14, 2026 10:02 AM
-To: Grzelak, Michal <michal.grzelak@intel.com>; intel-gfx@lists.freedesktop=
-.org
-Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-Subject: RE: [PATCH v2 07/10] drm/i915/scaler: unloop scaler readout that i=
-s run once
+We verified atomic commit failure detection via capability flag, error code=
+/string retrieval, and fallback path execution in Mutter via MR https://git=
+lab.gnome.org/GNOME/mutter/-/merge_requests/5022.
 
+Tested-by: Naveen Kumar <naveen1.kumar@intel.com>
 
+Thanks
+Naveen Kumar
 
-> -----Original Message-----
-> From: Grzelak, Michal <michal.grzelak@intel.com>
-> Sent: Saturday, April 11, 2026 11:15 PM
-> To: intel-gfx@lists.freedesktop.org
-> Cc: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>; Garg, Nemesa=20
-> <nemesa.garg@intel.com>; Grzelak, Michal <michal.grzelak@intel.com>
-> Subject: [PATCH v2 07/10] drm/i915/scaler: unloop scaler readout that=20
-> is run once
->=20
-> Most of the loop's code is run once because of the continue statement=20
-> at it's start and break statement at it's end. Kick it out of the loop.
->=20
-> Cc: Nemesa Garg <nemesa.garg@intel.com>
-> Suggested-by: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
-> Signed-off-by: Micha=B3 Grzelak <michal.grzelak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/skl_scaler.c | 34=20
-> ++++++++++++-----------
->  1 file changed, 18 insertions(+), 16 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c
-> b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 6d9080ec74ce0..e71d9c036a1e7 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -951,36 +951,38 @@ void skl_scaler_get_config(struct=20
-> intel_crtc_state
-> *crtc_state)
->  	struct intel_crtc *crtc =3D to_intel_crtc(crtc_state->uapi.crtc);
->  	struct intel_crtc_scaler_state *scaler_state =3D &crtc_state-
-> >scaler_state;
->  	int scaler_id;
-> +	u32 pos, size;
->=20
->  	/* find scaler attached to this pipe */
->  	for (scaler_id =3D 0; scaler_id < crtc->num_scalers; scaler_id++) {
-> -		u32 ctl, pos, size;
-> +		u32 ctl;
->=20
->  		ctl =3D intel_de_read(display, SKL_PS_CTRL(crtc->pipe, scaler_id));
->  		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) !=3D (PS_SCALER_EN |=20
-> PS_BINDING_PIPE))
->  			continue;
->=20
-Hi Michal,
-
-In this patch you are keeping both continue and break statement and then in=
- patch 8 you are inverting the loop so I guess it will be better if we can =
-squash these 2 patches so we will have all changes in one place related to =
-this function. What do you think.
-
+>-----Original Message-----
+>From: Murthy, Arun R <arun.r.murthy@intel.com>
+>Sent: Tuesday, March 31, 2026 2:34 PM
+>To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>; Maxime Ripard
+><mripard@kernel.org>; Thomas Zimmermann <tzimmermann@suse.de>;
+>David Airlie <airlied@gmail.com>; Simona Vetter <simona@ffwll.ch>; Jani
+>Nikula <jani.nikula@linux.intel.com>; Vivi, Rodrigo <rodrigo.vivi@intel.co=
+m>;
+>Joonas Lahtinen <joonas.lahtinen@linux.intel.com>; Tvrtko Ursulin
+><tursulin@ursulin.net>; xaver.hugl@kde.org; harry.wentland@amd.com;
+>Shankar, Uma <uma.shankar@intel.com>; louis.chauvet@bootlin.com; Kumar,
+>Naveen1 <naveen1.kumar@intel.com>; Yella, Ramya Krishna
+><ramya.krishna.yella@intel.com>
+>Cc: dri-devel@lists.freedesktop.org; intel-gfx@lists.freedesktop.org; inte=
+l-
+>xe@lists.freedesktop.org; Murthy, Arun R <arun.r.murthy@intel.com>; Kandpa=
+l,
+>Suraj <suraj.kandpal@intel.com>
+>Subject: [PATCH v11 0/7] User readable error codes on atomic_ioctl failure
+>
+>The series focuses on providing a user readable error value on a failure i=
+n
+>drm_atomic_ioctl(). Usually -EINVAL is returned in most of the error cases=
+ and
+>it is difficult for the user to decode the error and get to know the real =
+cause for
+>the error. If user gets to know the reason for the error then corrective
+>measurements can be taken up.
+>
+>User will have to check for the capability
+>DRM_CAP_ATOMIC_ERROR_REPORTING before using this feature so as to
+>ensure that the driver supports failure reporting.
+>
+>TODO: driver specific error codes are to be added and will be done in the
+>follow-up patches.
+>
+>TODO: Once the series is merged the element 'reserved' used for sending th=
+e
+>failure code in struct drm_mode_atomic is to changed to err_code.
+>
+>The IGT related changes are pushed for review @
+>https://patchwork.freedesktop.org/series/153330/
+>
+>[RFC] changes for libdrm pushed for review @
+>https://gitlab.freedesktop.org/mesa/libdrm/-/merge_requests/450
+>
+>[DRAFT] KWin changes are pushed for review @
+>https://invent.kde.org/plasma/kwin/-/merge_requests/8991
+>
+>    To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>    To: suraj.kandpal@intel.com>
+>    To: Maxime Ripard <mripard@kernel.org>
+>    To: Thomas Zimmermann <tzimmermann@suse.de>
+>    To: David Airlie <airlied@gmail.com>
+>    To: Simona Vetter <simona@ffwll.ch>
+>    To: Jani Nikula <jani.nikula@linux.intel.com>
+>    To: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>    To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>    To: Tvrtko Ursulin <tursulin@ursulin.net>
+>    To: xaver.hugl@kde.org
+>    To: harry.wentland@amd.com
+>    To: uma.shankar@intel.com
+>    To: louis.chauvet@bootlin.com
+>    To: naveen1.kumar@intel.com
+>    To: ramya.krishna.yella@intel.com
+>    Cc: dri-devel@lists.freedesktop.org
+>    Cc: intel-gfx@lists.freedesktop.org
+>    Cc: intel-xe@lists.freedesktop.org
+>    Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>
+>Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+>---
+>Changes in v9:
+>- EDITME: describe what is new in this series revision.
+>- EDITME: use bulletpoints and terse descriptions.
+>- Link to v8: https://lore.kernel.org/r/20260129-atomic-v8-0-
+>4cb7b0faa051@intel.com
+>
+>---
+>Arun R Murthy (7):
+>      drm: Define user readable error codes for atomic ioctl
+>      drm/atomic: Add error_code element in atomic_state
+>      drm/atomic: Call complete_signaling only if prepare_signaling is don=
+e
+>      drm/atomic: Allocate atomic_state at the beginning of atomic_ioctl
+>      drm/atomic: Return user readable error in atomic_ioctl
+>      drm/i915/display: Error codes for async flip failures
+>      drm: Introduce DRM_CAP_ATOMIC_ERROR_REPORTING
+>
+> drivers/gpu/drm/drm_atomic.c                 | 31 ++++++++++
+> drivers/gpu/drm/drm_atomic_uapi.c            | 89 ++++++++++++++++++++---=
 ---
-Since the count of lines affected is quite low, I thought of the same. I ha=
-ve convinced myself though to keep it that way because I think this patch i=
-s separate from the previous, and in case of breakage it would be faster to=
- see what actually gone wrong. Also I found it non-trivial from the diff wh=
-at is happening when they were squashed, so that was my rationale.=20
-
-BR,
-Micha=B3
----
-
-Thanks and Regards,
-Nemesa
-
-> -		if (scaler_has_casf(display, scaler_id))
-> -			intel_casf_sharpness_get_config(crtc_state);
-> -
-> -		crtc_state->pch_pfit.enabled =3D true;
-> -
-> -		pos =3D intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe,
-> scaler_id));
-> -		size =3D intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe,
-> scaler_id));
-> -
-> -		drm_rect_init(&crtc_state->pch_pfit.dst,
-> -			      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
-> -			      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
-> -			      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
-> -			      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
-> -
-> -		scaler_state->scalers[scaler_id].in_use =3D true;
->  		break;
->  	}
->=20
->  	if (scaler_id =3D=3D crtc->num_scalers)
->  		return;
->=20
-> +	if (scaler_has_casf(display, scaler_id))
-> +		intel_casf_sharpness_get_config(crtc_state);
-> +
-> +	crtc_state->pch_pfit.enabled =3D true;
-> +
-> +	pos =3D intel_de_read(display, SKL_PS_WIN_POS(crtc->pipe, scaler_id));
-> +	size =3D intel_de_read(display, SKL_PS_WIN_SZ(crtc->pipe, scaler_id));
-> +
-> +	drm_rect_init(&crtc_state->pch_pfit.dst,
-> +		      REG_FIELD_GET(PS_WIN_XPOS_MASK, pos),
-> +		      REG_FIELD_GET(PS_WIN_YPOS_MASK, pos),
-> +		      REG_FIELD_GET(PS_WIN_XSIZE_MASK, size),
-> +		      REG_FIELD_GET(PS_WIN_YSIZE_MASK, size));
-> +
-> +	scaler_state->scalers[scaler_id].in_use =3D true;
-> +
->  	scaler_state->scaler_id =3D scaler_id;
->  	if (scaler_id >=3D 0)
->  		scaler_state->scaler_users |=3D (1 << SKL_CRTC_INDEX);
-> --
-> 2.45.2
+>--
+> drivers/gpu/drm/drm_ioctl.c                  |  3 +
+> drivers/gpu/drm/i915/display/intel_display.c | 25 ++++----
+> include/drm/drm_atomic.h                     | 10 ++++
+> include/uapi/drm/drm.h                       |  7 +++
+> include/uapi/drm/drm_mode.h                  | 56 +++++++++++++++++
+> 7 files changed, 184 insertions(+), 37 deletions(-)
+>---
+>base-commit: 65b94118bc585aefc7095c0e9554c3bb12d98a69
+>change-id: 20250728-atomic-c9713fd357e4
+>
+>Best regards,
+>--
+>Arun R Murthy <arun.r.murthy@intel.com>
 
