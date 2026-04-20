@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CG3kN3QO5mkGrAEAu9opvQ
+	id QO9rGXgO5mkGrAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:31:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:31:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5B30429EE9
-	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:31:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 395F4429EF8
+	for <lists+intel-gfx@lfdr.de>; Mon, 20 Apr 2026 13:31:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4C6010E4F9;
-	Mon, 20 Apr 2026 11:30:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4C31C10E502;
+	Mon, 20 Apr 2026 11:31:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="csVqu00h";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wu1J6B1O";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DABF10E4F9;
- Mon, 20 Apr 2026 11:30:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B2B910E502;
+ Mon, 20 Apr 2026 11:31:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776684657; x=1808220657;
+ t=1776684660; x=1808220660;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+hwSvWb4S9geX0wZbeGIGKy/wINtU8Sfn7NNy3j7gkc=;
- b=csVqu00hKzP5XpkFe/gSfzwnuRGucbAgG+jAGjxJUPa/2Y5A86ZwZrd5
- spgMiTv8b6hhaZx6xDXRWnLMy/cruq+oXzFGJwKQSJQfzWeMcUeW38AcL
- Fq+EJUW1vTkRQQUrrc+eugS2OymeF/wIcpTwsKD4gswYCOEqcJTojOCya
- v43DXcgE40M0J/KMbKxAyMQu1b6alTSw2hlftVGIQjRMSAzf+RejrMxZd
- sajn7+AVa1PvjnaImYAHGpc+N1hP0bVLzZDOHhn2oQcIIJdf8RHmOeBMr
- YTbaWSS4BvJCmHtqGcff2pAonyE6GdnQnS2DiOtsn6MSo8q0qgtyknllm A==;
-X-CSE-ConnectionGUID: GId+1cYTS62fcCjt6hUbtQ==
-X-CSE-MsgGUID: BpanFt5MRDq7CYMlZ9Lg5Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77722739"
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="77722739"
+ bh=nbgCHKgtC+xHSckl4WD/kC+YXa11+xiBffQGqU1U+o0=;
+ b=Wu1J6B1OQbeNhtu4lRQRkXa1tMvBz7wedAnk98rz3cvVAILQ7v7uhjq2
+ WSwWhYB589JrzAIyHYdNqYY2yyPvSkcBN+MIGHxT+tQrBQI2n+Z8rvRJH
+ oMuDh2nB0lgMiJw68brC/DEnfgPuV93vGdMRGJ0rgLpHBt88SJ2qQbkIY
+ L6b9SMn0RLeWR4GYcoKrcPi/KgaJNz/WQmzCgBTJiPZFbn3OdsRieGQVF
+ WlkdWmhlJZNWRJto7PrvJ3jeBZtf7047KmjHENiMmmUvG6DWe1tc60o1A
+ BpREfEZsl6w95ujkyLi/EWSZVJkUfMZJyhvN5b0VUDnbIJ8BmAlRgXawP Q==;
+X-CSE-ConnectionGUID: Y+2n0m1UTtq4CryI0yoaEg==
+X-CSE-MsgGUID: +hz/+ZSZTS2DkV3MCWmUcw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11762"; a="77722752"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="77722752"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 Apr 2026 04:30:57 -0700
-X-CSE-ConnectionGUID: uUlQ/d0wTZ6T1hemZ3MHlg==
-X-CSE-MsgGUID: 3uHnYVtdSe+w5P0rXr54CA==
+ 20 Apr 2026 04:31:00 -0700
+X-CSE-ConnectionGUID: NhUkKW9KRtSn9xFGkFEf3g==
+X-CSE-MsgGUID: EFiy5bnKS+uOZemh8l7k0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="236690594"
+X-IronPort-AV: E=Sophos;i="6.23,189,1770624000"; d="scan'208";a="236690611"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa005.jf.intel.com with ESMTP; 20 Apr 2026 04:30:56 -0700
+ by orviesa005.jf.intel.com with ESMTP; 20 Apr 2026 04:30:58 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 1/2] drm/dp: Define DSC bpp delta DPCD fields
-Date: Mon, 20 Apr 2026 16:56:10 +0530
-Message-Id: <20260420112611.1481530-2-nemesa.garg@intel.com>
+Subject: [PATCH 2/2] drm/i915/dp: Decode DSC max delta bpp from sink DPCD
+Date: Mon, 20 Apr 2026 16:56:11 +0530
+Message-Id: <20260420112611.1481530-3-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260420112611.1481530-1-nemesa.garg@intel.com>
 References: <20260420112611.1481530-1-nemesa.garg@intel.com>
@@ -95,39 +95,78 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_THREE(0.00)[4];
 	NEURAL_HAM(-0.00)[-1.000];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: B5B30429EE9
+X-Rspamd-Queue-Id: 395F4429EF8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add DP_DSC_MAX_BPP_DELTA and related field and mask helper
-macros for RGB/YCbCr444 delta and YCbCr420 delta encoding.
+Add intel_dp_dsc_max_delta_bppx16() to parse sink DSC max
+delta bpp from DPCD when DP_DSC_MAX_BPP_DELTA_AVAILABILITY
+is set. The helper decodes RGB/YCbCr444 delta range and
+YCbCr420 delta range from DP_DSC_MAX_BPP_DELTA.
 
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- include/drm/display/drm_dp.h | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 40 +++++++++++++++++++++++++
+ 1 file changed, 40 insertions(+)
 
-diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
-index 8b15d3eeb716..2afd33d90a0e 100644
---- a/include/drm/display/drm_dp.h
-+++ b/include/drm/display/drm_dp.h
-@@ -354,9 +354,15 @@
- # define DP_DSC_20_PER_DP_DSC_SINK          (1 << 1)
- # define DP_DSC_24_PER_DP_DSC_SINK          (1 << 2)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 35b8fb5740aa..7cc760aedd59 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -2169,6 +2169,41 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 	return -EINVAL;
+ }
  
--#define DP_DSC_BITS_PER_PIXEL_INC           0x06F
-+#define MIN_DSC_BPP_DELTA_444 16
-+#define MIN_DSC_BPP_DELTA_420 12
-+#define BPP_DELTA_SHIFT_420 5
++static u16 intel_dp_dsc_max_delta_bppx16(const struct intel_connector *connector,
++					 enum intel_output_format output_format)
++{
++	const u8 *dsc_dpcd = connector->dp.dsc_dpcd;
 +
-+#define DP_DSC_MAX_BPP_DELTA			0x06E
- # define DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK 0x1f
- # define DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK 0xe0
++	if (dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
++	    DP_DSC_MAX_BPP_DELTA_AVAILABILITY) {
++		int max_bpp_delta = 0;
 +
-+#define DP_DSC_BITS_PER_PIXEL_INC           0x06F
- # define DP_DSC_BITS_PER_PIXEL_1_16         0x0
- # define DP_DSC_BITS_PER_PIXEL_1_8          0x1
- # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
++		switch (output_format) {
++		case INTEL_OUTPUT_FORMAT_RGB:
++		case INTEL_OUTPUT_FORMAT_YCBCR444:
++			max_bpp_delta = dsc_dpcd[DP_DSC_MAX_BPP_DELTA - DP_DSC_SUPPORT] &
++				DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK;
++			if (max_bpp_delta >= 1 && max_bpp_delta <= 21)
++				max_bpp_delta =  max_bpp_delta + MIN_DSC_BPP_DELTA_444 - 1;
++			break;
++		case INTEL_OUTPUT_FORMAT_YCBCR420:
++			max_bpp_delta = (dsc_dpcd[DP_DSC_MAX_BPP_DELTA - DP_DSC_SUPPORT] &
++					DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK) >>
++					BPP_DELTA_SHIFT_420;
++			if (max_bpp_delta >= 1 && max_bpp_delta <= 7)
++				max_bpp_delta = max_bpp_delta + MIN_DSC_BPP_DELTA_420 - 1;
++			break;
++		default:
++			MISSING_CASE(output_format);
++			return 0;
++		}
++
++		return max_bpp_delta << 4;
++	}
++
++	return 0;
++}
++
+ static
+ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connector,
+ 					    enum intel_output_format output_format,
+@@ -2176,6 +2211,11 @@ u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connec
+ {
+ 	u16 max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
+ 
++	if (max_bppx16)
++		return max_bppx16;
++
++	max_bppx16 = intel_dp_dsc_max_delta_bppx16(connector, output_format);
++
+ 	if (max_bppx16)
+ 		return max_bppx16;
+ 	/*
 -- 
 2.25.1
 
