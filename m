@@ -2,97 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SCngMLqe52nX+QEAu9opvQ
+	id YMlVEvOe52ml+QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:58:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:59:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78C5B43D089
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDA8C43D0D5
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:59:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7DB7E10E8F8;
-	Tue, 21 Apr 2026 15:58:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5ECB710E8F3;
+	Tue, 21 Apr 2026 15:59:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="T0SFiySz";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="d/vfZO9k";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="blC0KCuS";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="GjENaVO3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
- [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14AF710E8F8
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:58:47 +0000 (UTC)
-Received: from pps.filterd (m0279869.ppops.net [127.0.0.1])
+Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
+ [205.220.168.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2FF610E8EB
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:59:43 +0000 (UTC)
+Received: from pps.filterd (m0279864.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63LBs3gf3257310
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:58:46 GMT
+ 63LA5w5m1834756
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:59:43 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=2rlmangFWK+0INg27+5z36YD
- N+j/0s+7d9Y2woRTfSA=; b=T0SFiySzaezo2/7b9AmZz/YWbxYaR8QXZFSTRY9E
- GIJG6FUoGiv7oMrG/MuhO1luUIBzqDS9Di3R8cHZkheeVvtY9tnXtBv5c8xdqnzO
- mQY5VYjrqIGt5qiBU1i/VnnwLNYmhzPWxcl0Ag0LfyOa2DlgIHfJ3ruMbJh2/K79
- iYHNsmis4GWjcHz50PQ1pjBQvjUWhUAvlQ+UD1NQBZVJ/Dm2vTiR4tx45k54ZUDk
- yHUW3E2/4Y8RmVns3vj9kkK9gIjhyoMvvdEsmWPAQ3vUB0GDzHqMOFcmp9mtBVmz
- LvGD7gdvz4gUMMwCImnYk3adl2OhMTbdM3y/L4+aHoDtMQ==
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp3naa2rp-1
+ :references:subject:to; s=qcppdkim1; bh=qTGT9dVHn9ZD4VlzKf8b4LWl
+ wJ6q97WIUZp+d0WZsqE=; b=blC0KCuSqm9wlc6YuJb5fJBNdXfodybBI8mwiIpG
+ cu6otodaBirp60rUNTgROxukDQUGZiL6De3HJPM03wiuePdz0xSeBsYSBoirf4PT
+ qoLPdE+pPdkw5yTbWy+PGdRwzUBM1+HV++fY4+Q+ZbgP0RdOMBRXxnbSIjPoBKgc
+ hF5Uyg91dwehoFyGu0H2aXCfOynF8KmbWq8KKtVGWSE5p7KJpLFXx+76GAYxak9D
+ p94Xm6IMiIlV3m9FMlfL1EKhpkJ0NfmkV80pk1th44BQ7+TPFCpqlNJMiPj9eL6T
+ se3Lg0BuYQoLayAbgATtnlnbdQjBs4NA+YoK2kDwBPuY7g==
+Received: from mail-ua1-f72.google.com (mail-ua1-f72.google.com
+ [209.85.222.72])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp76gs8k0-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:58:46 +0000 (GMT)
-Received: by mail-qt1-f197.google.com with SMTP id
- d75a77b69052e-50b4b81c632so100770341cf.1
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 08:58:46 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:59:43 +0000 (GMT)
+Received: by mail-ua1-f72.google.com with SMTP id
+ a1e0cc1a2514c-950bdef305cso2662127241.0
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 08:59:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1776787126; x=1777391926;
+ d=oss.qualcomm.com; s=google; t=1776787182; x=1777391982;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=2rlmangFWK+0INg27+5z36YDN+j/0s+7d9Y2woRTfSA=;
- b=d/vfZO9knZLdUuAXgAcuHxWSIciCh98gSYix/xSwYgUbJwz6Py5Pn6OeEhOmPD3VsJ
- WB2FklqsOGzNHZC4zIwvzJL7fC07/5Ig2ojHXN2E6popCfDaBPY2bCaW2rkBlkMJVLgd
- nZYBvSKB/jbMXCsnK+LSm8wNEtbYAaGtY8I2/A0G3tw2Ndeso/LVJ+GRaUFgMWATB+9v
- 0A0pesdDarVaZDvLl0z5p5VbDrhn/fAjZgRfVzqqvii23VQEbGysip0+zqyaCHP8x8OR
- ctB9zJl+QI+gPKmpanXlBJmv8zPR1q0xmXPtsDnkcule0cPqQvTKHjAIvwNJnXi1Zvp+
- 55WA==
+ bh=qTGT9dVHn9ZD4VlzKf8b4LWlwJ6q97WIUZp+d0WZsqE=;
+ b=GjENaVO38+pTvn8abYzp0OFvnP3ViWXmCzeTiCcMFkkLtuDfumeB7a9KnyaExg1baG
+ x6DIBek30rqQH/tVeuBiNpqQU+2AdBMolmLYtnH+vx6laJlOG6pN6VouoK4P+6j7KMus
+ 0/VKC0NmDMWvY5lQKnfzJhxtPby91c6/kQZls/5XddHtHkMLc5TrWN9iuFeRIxxvrEYk
+ S80W34yEtbn5ZEaD/a+HqyumhbIRwyDgFaj8yBVraP8FG4pHjtPFTlqmZVRYMM3xm6zv
+ XMQWysYX0wKVw4USCBY4CJC5NjZsTRCN+4IKlcm8XLGzfyR0ORStgASR6t/9svQEHJXF
+ 5yDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776787126; x=1777391926;
+ d=1e100.net; s=20251104; t=1776787182; x=1777391982;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=2rlmangFWK+0INg27+5z36YDN+j/0s+7d9Y2woRTfSA=;
- b=YE78p1KIpnbNrCEqRgCtBxO8XW2sp2xWZUR8oOFUxtb8xqi3eOC5Qsbg1jPGKpXBuA
- PYjm8fHur3FpJJF+Zq5gakTT+a9G3CkixlCamYuG0YNeCDax4dO8QgbveedaekynmVu4
- nwD2hsoP5X9M8IcgHqyfR5e+9H5LbzQnCICUfP9yUz3kyaE3dnTWBqFaUH4HSecM19uZ
- GispYBjBX+qMct/j2gvfA3qsa7VLSwIqXfUkxx1S8j4JNGPUJFr5zQ45bgUh1zVIF3Cz
- w/57hZ4yTgXQrMdg+SV3iKWEMtZHyOWiRwfACXqYXJkNVpgybDTrkF+z7kFFYy09iznH
- Dlbw==
+ bh=qTGT9dVHn9ZD4VlzKf8b4LWlwJ6q97WIUZp+d0WZsqE=;
+ b=c787jVQN4ah2jW/qAPUBU/zwgipikEu/ALRtfEpI9WyIE3CM7s4D+iOz5vsWdc5BT3
+ lFV/m1ipma0StElLci/u2gdI6vGTZI+UFy8jbO67xrPrYayrorl2vWjNfI/g2lxIGvHY
+ prwDBWLSfnAQaZoNVXCLQz/SgfprQS4E+m1QAgh6gmx2l6dDbFqCGJmThSRrACoAdDtz
+ GkfgnW4YP3cv+zwHwkUc08zpXqELZ22cp7y+MyuL0QJVmPk68493JLIxZ9Yrl+gLT4lo
+ 8mLP7V3WsBY9LKhEO7FVrCJV3DNAeP8HM+qbR39wygf5u6XewBscvIAz4IpB4E3F82Tv
+ hckQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+Xlvu6xUoh08LByGd1zAnxPwEpI9aibXJkcupCYSfT7FEo8OU8SOE2A2jPpiEE43DNxGum+/wWgHI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwOn+Ec9U3agugjU/NSXCiUqt5RmmIMfKuqaNC1zXxwBlMpCO3v
- FSq5c3PsxYACYw+6Hw+V950nRiEKBHaYgYP3z98WsXX/OX6OAaVyGHewVlrUN69Wn//2wKAACEP
- nlXuSdIBrv06KmbRVwNK/8Ih47tfOA3vcMAiuzTU/WSyOj5g1+gL/AP7LxL44j0J1WOX/Bx8=
-X-Gm-Gg: AeBDieuQz0+oPeM8c5cCPj5lNci/xaI5p2YfUcB1Pbq/YSgdJZpOQShs2GvHo8ri94/
- tDkj1z5pMdLQza80w0xIIHm8U3JmZA2jc0N8Cf5XI5OeOa+IjeO2nxsIAONi3BJ4+eLdtrKG8C+
- yHtdRUXu2bBYBU7Pp8qJZFvMO9CSlWn8qsHKKdPFZ0uMEXSRWQFWVE79Tmh6FHrCECzpwjEhxdj
- S75FHXlY4LL/9Z6RK6NqiYv/+DkOBXQknEX7aeQcAFh94YayylhM2jvm98xA8PuwaubOg5ZuEZS
- ndDnfmih3wSqaqa0WKKWjIQ8jW0j1u5fOo9GSxmUDsKRYXZMMu+LcAAeoLSa0rajawp5BalWqHK
- t36tpm7hh/P5WUWZmaj1Z1bZn1CuefU3byCoNmHhmN4B2qp9eDdxWy3wsekK82VrizamGyl1GgI
- aWeir2tsl00idr1XZGbaLVgx+km9kXoq+h1Lqq9dHbQ1Btqw==
-X-Received: by 2002:ac8:5a0f:0:b0:50f:ba8d:8b62 with SMTP id
- d75a77b69052e-50fba8d8caamr24329701cf.0.1776787125527; 
- Tue, 21 Apr 2026 08:58:45 -0700 (PDT)
-X-Received: by 2002:ac8:5a0f:0:b0:50f:ba8d:8b62 with SMTP id
- d75a77b69052e-50fba8d8caamr24328851cf.0.1776787124912; 
- Tue, 21 Apr 2026 08:58:44 -0700 (PDT)
+ AFNElJ+65bno/n0U++WrnqZNeCLKHl91V7C5u0QkAOOrYeA44T2Ue8neYUD1p3tOoig8gd2zVoNxamxiBTU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwXmIELPWiNpLDPILGXA62i5Z09e57EHgI2j4Ava/dmkGfZBYZ4
+ Y0qHiCMYnAo+0MuPIGZmx/p9GDOt8PsQg4TPAWlbjFKQdAlCufnfK4UbZQetk2KLVC9DeEdvQSI
+ mWiO2hT9ALpGDj7YPbf8pj9riKr532yRBgdkYWVjoK5PBEMNCzqtPJ2Mb6u66tUPBYXLgAxo=
+X-Gm-Gg: AeBDieunKiUIW3Qce1nbKI16jLEe/gFMoGOY3+ifKPV7fCbZZRGodowCrMGJR2OwRYz
+ eVBO9cH3HJAZFsMD+PhWOjA08BBOzQAQ/Og3Yzs4VVWBA7MDiJ2HGVBAJYXXRTH2irc8ZtK+0VM
+ GTIBzDbpbUyF+PkYizslj2illfK3yRoJrnGKIW5FurlZNsxXGC74w4xs4hNUGBtJvxmGXpIu/N3
+ BSff08a+cf6LrbNqzc5i9WluSpsLCs3CDnw6KwGAniyz7y4dtn/6LutkFh9o5w2zttgRb7HoLQ7
+ at4C2SZqrDNtZAoYJq1dbyjyvsW1mdCVfyRZaWIilxgd2dD6+NAmPfLHCIiQR+iwNKZ9vYfIr2f
+ 4hQSFIgtOv9V7UQaVnotRGMJhVGnT0kGoUVyMZB6+ma8vjgN1c2nWbhaUAkhfr/GAaNdXVpP5I0
+ IjUaZNYI9m69iB3hn573Xa0RN3IbjP8+wwl2p3t2LlvYJIgA==
+X-Received: by 2002:a05:6102:6052:b0:602:8c16:b24c with SMTP id
+ ada2fe7eead31-616f806992emr7568536137.19.1776787182077; 
+ Tue, 21 Apr 2026 08:59:42 -0700 (PDT)
+X-Received: by 2002:a05:6102:6052:b0:602:8c16:b24c with SMTP id
+ ada2fe7eead31-616f806992emr7568495137.19.1776787181651; 
+ Tue, 21 Apr 2026 08:59:41 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a4187e12c8sm3767238e87.49.2026.04.21.08.58.43
+ 38308e7fff4ca-38ecb6f0bfdsm31472081fa.26.2026.04.21.08.59.40
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2026 08:58:43 -0700 (PDT)
-Date: Tue, 21 Apr 2026 18:58:42 +0300
+ Tue, 21 Apr 2026 08:59:40 -0700 (PDT)
+Date: Tue, 21 Apr 2026 18:59:38 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Maxime Ripard <mripard@kernel.org>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -121,39 +121,39 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
  Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Subject: Re: [PATCH v2 20/20] drm/bridge_connector: Convert to
- atomic_create_state
-Message-ID: <b7heherpjabs3xbgzxvaznyvfk5ok45uqrjotgr5esy2ctuvff@t5o25d65j37h>
+Subject: Re: [PATCH v2 16/20] drm/atomic: Drop private obj state allocation
+Message-ID: <6fp5keyrgfic7x6rsopxpqdqfrbotkofv3vzni4bstphxwbc4l@5nlu63kpuwas>
 References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
- <20260320-drm-mode-config-init-v2-20-c63f1134e76c@kernel.org>
+ <20260320-drm-mode-config-init-v2-16-c63f1134e76c@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260320-drm-mode-config-init-v2-20-c63f1134e76c@kernel.org>
-X-Proofpoint-GUID: Ix-_BYQxiK4giUROdHtTU7cZZ4cbfdw6
-X-Proofpoint-ORIG-GUID: Ix-_BYQxiK4giUROdHtTU7cZZ4cbfdw6
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDE1NyBTYWx0ZWRfXyatJ1hEoU+uE
- wEVtjuuFsAyMfW+eNq2Z8Ffw6SrMYteA6JPSDuIY/dgjr2M2K0PE8SXIRetNpNCLApfdzl/l3rF
- 1ABgkCe4GQ/+yySAZ5/H0xr1SgpDX7dSV3qVZMNHnw1nD44heWsivr7ricykcOI4bsVf7Xd8Kjl
- BToSlBbdjlWX55hDnV3ehwiHColGMzZlG7Av4dYFJ6+GCb37U2BK8gCSkMofIKiHKKKwnaCK3NP
- 2fPN+k4nXMjwvpHz85qb22PC2QtBw1vYRYfneTkAR3WwZ/VuojR5qMpdR15mVkHa8+TbJCT9jOv
- ybwdOJ+LyVRQlkPx/7zglAh4HNK+kwVHseBrYTlR6xsoGeJhArXPKc8N2SMnT0NHPpv2eq6aPTr
- a+OxBtc+qzZBIw1Y9e1PfDPhFtwZS+lcpx+Vr3rNnIu0Gb5CVah8qdSEQv5ShPfst1rqAfNXvo5
- 8P+6YJ5vZtBwH0V4L2w==
-X-Authority-Analysis: v=2.4 cv=O9cJeh9W c=1 sm=1 tr=0 ts=69e79eb6 cx=c_pps
- a=EVbN6Ke/fEF3bsl7X48z0g==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260320-drm-mode-config-init-v2-16-c63f1134e76c@kernel.org>
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDE1NyBTYWx0ZWRfX9ESLMy8g0mtc
+ FNnv8jTc75WD7RV3wlu3FMLqPwbsYiOKyqZLxrtFS5WqqSnDljOlefFgNvOzbuYeaQcAXG9nTJT
+ eW6xhOglvFo8Q9mRGIJLAOwNaifTavWaKwb4UmFTIlM50ZmHocarUXEI63yTu+18GkxvNPksGGm
+ cicSr8c3F6947HcUwxs0AOWVxJ0kpBKDA3EuKQt6SUpFMkvJvEfKuSUST2RBBE60RiyHjZKT+VO
+ EOuyLWKWIrfcnKscXj8FrejiPLukS6EV2e/wQOThCYh7CUO3abdW+LjfBOlPDSV4dnQMF0BAp3s
+ 7smxdsRNHP48/PzjvH+KXlGkDaUV5jrZ2bBHH7c0DgybpT7mzmJGIJrg4FrV+0dkKedThLWjJOm
+ PpSIfP7739vBTBfNagvTeFuBrmc5ZaAslfyXeR6UC/uvlpEWc6NBzKXJK8sxqZNMQ4V0i+koCPp
+ XD/HnvAKcxf5UMVW5HQ==
+X-Proofpoint-GUID: t-tFYKrefK9dOI4ZjsieTAZxpVGWcDBV
+X-Authority-Analysis: v=2.4 cv=crWrVV4i c=1 sm=1 tr=0 ts=69e79eef cx=c_pps
+ a=ULNsgckmlI/WJG3HAyAuOQ==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=_glEPmIy2e8OvE2BGh3C:22 a=P1BnusSwAAAA:8
+ a=u7WPNUs3qKkmUXheDGA7:22 a=DJpcGTmdVt4CTyJn9g5Z:22 a=P1BnusSwAAAA:8
  a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=CGuZyk7pIeUWItkfYpsA:9 a=CjuIK1q_8ugA:10
- a=a_PwQJl-kcHnX1M80qC6:22 a=D0XLA9XvdZm18NrgonBM:22
+ a=1WsBpfsz9X-RYQiigVTh:22 a=D0XLA9XvdZm18NrgonBM:22
+X-Proofpoint-ORIG-GUID: t-tFYKrefK9dOI4ZjsieTAZxpVGWcDBV
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-21_03,2026-04-21_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- adultscore=0 clxscore=1015 spamscore=0 impostorscore=0 malwarescore=0
- lowpriorityscore=0 priorityscore=1501 suspectscore=0 bulkscore=0 phishscore=0
- classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
- reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210157
+ suspectscore=0 lowpriorityscore=0 clxscore=1015 impostorscore=0
+ priorityscore=1501 spamscore=0 phishscore=0 bulkscore=0 malwarescore=0
+ adultscore=0 classifier=typeunknown authscore=0 authtc= authcc=
+ route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604070000
+ definitions=main-2604210157
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,21 +202,24 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ideasonboard.com:email,qualcomm.com:dkim,qualcomm.com:email]
-X-Rspamd-Queue-Id: 78C5B43D089
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim]
+X-Rspamd-Queue-Id: EDA8C43D0D5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 05:27:27PM +0100, Maxime Ripard wrote:
-> The connector created by drm_bridge_connector only initializes a
-> pristine state in reset, which is equivalent to that atomic_create_state
-> would expect. Let's convert to it.
+On Fri, Mar 20, 2026 at 05:27:23PM +0100, Maxime Ripard wrote:
+> Now that drm_dev_register() calls drm_mode_config_create_state() for
+> every modeset driver, the private obj states will be initialized at
+> driver registration automatically if they haven't already.
+> 
+> Thus, the explicit initial allocation we have in
+> drm_atomic_private_obj_init() is now redundant, and we can remove it.
 > 
 > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > Signed-off-by: Maxime Ripard <mripard@kernel.org>
 > ---
->  drivers/gpu/drm/display/drm_bridge_connector.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/drm_atomic.c | 7 -------
+>  1 file changed, 7 deletions(-)
 > 
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
