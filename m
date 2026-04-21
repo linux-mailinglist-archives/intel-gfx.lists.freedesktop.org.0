@@ -2,146 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yHf2Hrp252nf9AEAu9opvQ
+	id uK8wK2l352nf9AEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 15:08:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 15:11:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2F3B543B226
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 15:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 261DC43B288
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 15:11:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4358210EC80;
-	Tue, 21 Apr 2026 13:08:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4295310E1EC;
+	Tue, 21 Apr 2026 13:11:03 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="pPSIEE7i";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eW6UwXMK";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="pPSIEE7i";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="eW6UwXMK";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="kljqfKE+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B47F510EC80
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 13:08:06 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 422C36A8E7;
- Tue, 21 Apr 2026 13:08:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1776776885; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=YwlpkKu7YwwjcudQJoK9Zw3nk0h2ATnF/QnLUu9GPBk=;
- b=pPSIEE7igVz79/Bv9Uyz95n9wcL8qQVfKgz7uAcOVtaAecwfMEzjVg42IwSfJBsMhTC9sz
- BCNjc9tuy0ruhGHQSN2VABBcgvkXB/eFfN3VhIzTjNCs0TRBO2grFlVk93my61hX+z/bdm
- I6vlDSrePWQ435btlrrvcChdj4H0ptk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1776776885;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=YwlpkKu7YwwjcudQJoK9Zw3nk0h2ATnF/QnLUu9GPBk=;
- b=eW6UwXMKUaEXo+IVrZOFZ82mZ3PvHGtekiRTkjjABERyNZDJUbNvBjcSkmM9QaQyEWFuFq
- p9E2IccyMIGtwcCQ==
-Authentication-Results: smtp-out1.suse.de;
-	none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1776776885; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=YwlpkKu7YwwjcudQJoK9Zw3nk0h2ATnF/QnLUu9GPBk=;
- b=pPSIEE7igVz79/Bv9Uyz95n9wcL8qQVfKgz7uAcOVtaAecwfMEzjVg42IwSfJBsMhTC9sz
- BCNjc9tuy0ruhGHQSN2VABBcgvkXB/eFfN3VhIzTjNCs0TRBO2grFlVk93my61hX+z/bdm
- I6vlDSrePWQ435btlrrvcChdj4H0ptk=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1776776885;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=YwlpkKu7YwwjcudQJoK9Zw3nk0h2ATnF/QnLUu9GPBk=;
- b=eW6UwXMKUaEXo+IVrZOFZ82mZ3PvHGtekiRTkjjABERyNZDJUbNvBjcSkmM9QaQyEWFuFq
- p9E2IccyMIGtwcCQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 4C0E0593AF;
- Tue, 21 Apr 2026 13:08:04 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id woxgEbR252nHeQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 21 Apr 2026 13:08:04 +0000
-Message-ID: <8f111841-bb88-4cbb-a3ae-b26ac2f252cb@suse.de>
-Date: Tue, 21 Apr 2026 15:08:03 +0200
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7ACA10E1C7;
+ Tue, 21 Apr 2026 13:10:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=60FIDauYCJXJjA5txU2eyxHu/RJMQbhWpmasooHg168=; b=kljqfKE+raDnPvJjP0XitOKEk0
+ Q01MWxpMEYege80D3p803yyErx0fnhawwyds9xvB1YI9cIR9r+jCPGHeSIwTYbcydxfiE7Yzkbeph
+ n/XXDGI1ThZv+yuaZc4QhCyFelD8vBlkZTC0A2ahFemkv/oolY6u1LUHa3oqle4tvrIPVhnUBpqf/
+ LB8Fk7SvNAsgbO4diuKX3A2sc7kZGmvUjnQVhg3kL9UZilkXCs5F6Z1jNbkAbU75wRJAaPEVdDjd6
+ 3Roxz6f9EX3Od8IVsEZ3O1p6QB0Odj/NRPp0c3lNlZBNH5DhNy3Y30HGWI2g8fHW0ypsTXslIdQ9B
+ 1x04vJeQ==;
+Received: from [186.208.73.228] (helo=[192.168.18.14])
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wFAsR-001pCu-FV; Tue, 21 Apr 2026 15:10:55 +0200
+Message-ID: <c15ff4ca-79c3-4e65-bcc3-24e74adc2636@igalia.com>
+Date: Tue, 21 Apr 2026 10:10:49 -0300
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 03/20] drm/mode-config: Mention drm_mode_config_reset()
- culprits
-To: Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>,
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>,
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
- <20260320-drm-mode-config-init-v2-3-c63f1134e76c@kernel.org>
+Subject: Re: [PATCH v2 01/13] drm/colorop: Add DRM_COLOROP_FIXED_MATRIX
+To: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: harry.wentland@amd.com, louis.chauvet@bootlin.com, contact@emersion.fr,
+ alex.hung@amd.com, daniels@collabora.com, uma.shankar@intel.com,
+ maarten.lankhorst@intel.com, pekka.paalanen@collabora.com,
+ pranay.samala@intel.com, swati2.sharma@intel.com
+References: <20260408051514.608781-1-chaitanya.kumar.borah@intel.com>
+ <20260408051514.608781-2-chaitanya.kumar.borah@intel.com>
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260320-drm-mode-config-init-v2-3-c63f1134e76c@kernel.org>
+From: Melissa Wen <mwen@igalia.com>
+In-Reply-To: <20260408051514.608781-2-chaitanya.kumar.borah@intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -2.80
-X-Spam-Level: 
-X-Spam-Flag: NO
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,96 +70,404 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:dmitry.baryshkov@oss.qualcomm.com,m:jyri.sarha@iki.fi,m:tomi.valkeinen@ideasonboard.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:contact@emersion.fr,m:harry.wentland@amd.com,m:mwen@igalia.com,m:sebastian.wick@redhat.com,m:alex.hung@amd.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:wens@kernel.org,m:samuel@sholland.org,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniels@collabora.com,m:intel-xe@lists.freedesktop.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:laurent.pinchart+ren
- esas@ideasonboard.com,m:jernejskrabec@gmail.com,m:laurent.pinchart@ideasonboard.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
-	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx,renesas];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:dkim,suse.de:mid]
-X-Rspamd-Queue-Id: 2F3B543B226
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,igalia.com:mid]
+X-Rspamd-Queue-Id: 261DC43B288
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi
 
-Am 20.03.26 um 17:27 schrieb Maxime Ripard:
-> drm_mode_config_reset() does not reset drm_private_states by design.
+
+On 08/04/2026 02:15, Chaitanya Kumar Borah wrote:
+> Introduce DRM_COLOROP_FIXED_MATRIX, a new colorop type representing a
+> hardware that performs a fixed matrix operation.
 >
-> This is especially significant for the DP MST and tunneling code that
-> expect to be preserved across a suspend/resume cycle, where
-> drm_mode_config_reset() is also used.
-
-Do we really? There's drm_mode_config_helper_suspend/resume(). Why would 
-drivers do a drm_mode_config_reset().
-
-Best regards
-Thomas
-
+> Unlike CTM-based colorops, this block does not expose programmable
+> coefficients. Instead, userspace selects one of the predefined
+> hardware modes via a new FIXED_MATRIX_TYPE enum property. Supported modes
+> include common YCbCr->RGB and RGB709->RGB2020 conversions.
 >
-> Let's document this expectation.
+> v2:
+>   - Naming changes (Pekka)
 >
-> Link: https://lore.kernel.org/dri-devel/aOaQLx-7EpsHRwkH@ideak-desk/
-> Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
 > ---
->   drivers/gpu/drm/drm_mode_config.c | 4 ++++
->   1 file changed, 4 insertions(+)
+>   drivers/gpu/drm/drm_atomic.c      |   4 ++
+>   drivers/gpu/drm/drm_atomic_uapi.c |   4 ++
+>   drivers/gpu/drm/drm_colorop.c     | 107 ++++++++++++++++++++++++++++++
+>   include/drm/drm_colorop.h         |  84 +++++++++++++++++++++++
+>   include/uapi/drm/drm_mode.h       |  12 ++++
+>   5 files changed, 211 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/drm_mode_config.c b/drivers/gpu/drm/drm_mode_config.c
-> index 66f7dc37b5970c0a08f8dde008aef56376c59f37..cba527571ca66d3aa6dc652c87e03a19815d1d41 100644
-> --- a/drivers/gpu/drm/drm_mode_config.c
-> +++ b/drivers/gpu/drm/drm_mode_config.c
-> @@ -187,10 +187,14 @@ int drm_mode_getresources(struct drm_device *dev, void *data,
->    * @dev: drm device
->    *
->    * This functions calls all the crtc's, encoder's and connector's ->reset
->    * callback. Drivers can use this in e.g. their driver load or resume code to
->    * reset hardware and software state.
+> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
+> index 41c57063f3b4..16a2183b11bf 100644
+> --- a/drivers/gpu/drm/drm_atomic.c
+> +++ b/drivers/gpu/drm/drm_atomic.c
+> @@ -845,6 +845,10 @@ static void drm_atomic_colorop_print_state(struct drm_printer *p,
+>   			   drm_get_colorop_lut3d_interpolation_name(colorop->lut3d_interpolation));
+>   		drm_printf(p, "\tdata blob id=%d\n", state->data ? state->data->base.id : 0);
+>   		break;
+> +	case DRM_COLOROP_FIXED_MATRIX:
+> +		drm_printf(p, "\tfixed_matrix_type=%s\n",
+> +			   drm_get_colorop_fixed_matrix_type_name(state->fixed_matrix_type));
+> +		break;
+>   	default:
+>   		break;
+>   	}
+> diff --git a/drivers/gpu/drm/drm_atomic_uapi.c b/drivers/gpu/drm/drm_atomic_uapi.c
+> index 5bd5bf6661df..d69406b08a0f 100644
+> --- a/drivers/gpu/drm/drm_atomic_uapi.c
+> +++ b/drivers/gpu/drm/drm_atomic_uapi.c
+> @@ -761,6 +761,8 @@ static int drm_atomic_colorop_set_property(struct drm_colorop *colorop,
+>   	} else if (property == colorop->data_property) {
+>   		return drm_atomic_color_set_data_property(colorop, state,
+>   							  property, val);
+> +	} else if (property == colorop->fixed_matrix_type_property) {
+> +		state->fixed_matrix_type = val;
+>   	} else {
+>   		drm_dbg_atomic(colorop->dev,
+>   			       "[COLOROP:%d:%d] unknown property [PROP:%d:%s]\n",
+> @@ -793,6 +795,8 @@ drm_atomic_colorop_get_property(struct drm_colorop *colorop,
+>   		*val = colorop->lut3d_interpolation;
+>   	else if (property == colorop->data_property)
+>   		*val = (state->data) ? state->data->base.id : 0;
+> +	else if (property == colorop->fixed_matrix_type_property)
+> +		*val = state->fixed_matrix_type;
+>   	else
+>   		return -EINVAL;
+>   
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index 566816e3c6f0..dd385e8dacbe 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -68,6 +68,7 @@ static const struct drm_prop_enum_list drm_colorop_type_enum_list[] = {
+>   	{ DRM_COLOROP_CTM_3X4, "3x4 Matrix"},
+>   	{ DRM_COLOROP_MULTIPLIER, "Multiplier"},
+>   	{ DRM_COLOROP_3D_LUT, "3D LUT"},
+> +	{ DRM_COLOROP_FIXED_MATRIX, "Fixed Matrix"},
+>   };
+>   
+>   static const char * const colorop_curve_1d_type_names[] = {
+> @@ -90,6 +91,14 @@ static const struct drm_prop_enum_list drm_colorop_lut3d_interpolation_list[] =
+>   	{ DRM_COLOROP_LUT3D_INTERPOLATION_TETRAHEDRAL, "Tetrahedral" },
+>   };
+>   
+> +static const char * const colorop_fixed_matrix_type_names[] = {
+> +	[DRM_COLOROP_FM_YCBCR601_FULL_RGB]  = "YCbCr 601 Full to RGB",
+> +	[DRM_COLOROP_FM_YCBCR709_FULL_RGB]    = "YCbCr 709 Full to RGB",
+> +	[DRM_COLOROP_FM_YCBCR2020_FULL_RGB_NC]  = "YCbCr 2020 Full to RGB NC",
+> +	[DRM_COLOROP_FM_YCBCR_LIMITED_FULL]  = "YCbCr limited to full",
+> +	[DRM_COLOROP_FM_RGB709_RGB2020]     = "RGB709 to RGB2020",
+> +};
+> +
+>   /* Init Helpers */
+>   
+>   static int drm_plane_colorop_init(struct drm_device *dev, struct drm_colorop *colorop,
+> @@ -455,6 +464,81 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
+>   }
+>   EXPORT_SYMBOL(drm_plane_colorop_3dlut_init);
+>   
+> +/**
+> + * drm_plane_colorop_fixed_matrix_init - Initialize a DRM_COLOROP_FIXED_MATRIX
 > + *
-> + * Note that @drm_private_obj structures are expected to be stable across
-> + * suspend/resume cycles, and @drm_mode_config_reset() does not affect these
-> + * structures.
->    */
->   void drm_mode_config_reset(struct drm_device *dev)
+> + * @dev: DRM device
+> + * @colorop: The drm_colorop object to initialize
+> + * @plane: The associated drm_plane
+> + * @funcs: control functions for the new colorop
+> + * @supported_fm: A bitfield of supported drm_colorop_fixed_matrix_type enum values,
+> + *               created using BIT(fixed_matrix_type) and combined with the OR '|'
+> + *               operator.
+> + * @flags: bitmask of misc, see DRM_COLOROP_FLAG_* defines.
+> + * @return zero on success, -E value on failure
+> + */
+> +int drm_plane_colorop_fixed_matrix_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +					struct drm_plane *plane,
+> +					const struct drm_colorop_funcs *funcs,
+> +					u64 supported_fm, uint32_t flags)
+> +{
+> +	struct drm_prop_enum_list enum_list[DRM_COLOROP_FM_COUNT];
+> +	int i, len;
+> +
+> +	struct drm_property *prop;
+> +	int ret;
+> +
+> +	if (!supported_fm) {
+> +		drm_err(dev,
+> +			"No supported FM type op for new Fixed Matrix colorop on [PLANE:%d:%s]\n",
+> +			plane->base.id, plane->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	if ((supported_fm & -BIT(DRM_COLOROP_FM_COUNT)) != 0) {
+> +		drm_err(dev, "Unknown Fixed Matrix provided on [PLANE:%d:%s]\n",
+> +			plane->base.id, plane->name);
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = drm_plane_colorop_init(dev, colorop, plane, funcs, DRM_COLOROP_FIXED_MATRIX, flags);
+> +	if (ret)
+> +		return ret;
+> +
+> +	len = 0;
+> +	for (i = 0; i < DRM_COLOROP_FM_COUNT; i++) {
+> +		if ((supported_fm & BIT(i)) == 0)
+> +			continue;
+> +
+> +		enum_list[len].type = i;
+> +		enum_list[len].name = colorop_fixed_matrix_type_names[i];
+> +		len++;
+> +	}
+> +
+> +	if (WARN_ON(len <= 0))
+> +		return -EINVAL;
+> +
+> +	prop = drm_property_create_enum(dev, DRM_MODE_PROP_ATOMIC, "FIXED_MATRIX_TYPE",
+> +					enum_list, len);
+> +
+> +	if (!prop)
+> +		return -ENOMEM;
+> +
+> +	colorop->fixed_matrix_type_property = prop;
+> +	/*
+> +	 * Default to the first supported CSC mode as provided by the driver.
+> +	 * Intuitively this should be something that keeps the colorop in pixel bypass
+> +	 * mode but that is already handled via the standard colorop bypass
+> +	 * property.
+> +	 */
+> +	drm_object_attach_property(&colorop->base, colorop->fixed_matrix_type_property,
+> +				   enum_list[0].type);
+> +	drm_colorop_reset(colorop);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(drm_plane_colorop_fixed_matrix_init);
+> +
+>   static void __drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop,
+>   							struct drm_colorop_state *state)
 >   {
->   	struct drm_crtc *crtc;
->   	struct drm_colorop *colorop;
->
+> @@ -521,6 +605,13 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+>   						      &val);
+>   		colorop_state->curve_1d_type = val;
+>   	}
+> +
+> +	if (colorop->fixed_matrix_type_property) {
+> +		drm_object_property_get_default_value(&colorop->base,
+> +						      colorop->fixed_matrix_type_property,
+> +						      &val);
+> +		colorop_state->fixed_matrix_type = val;
+> +	}
+>   }
+>   
+>   /**
+> @@ -561,6 +652,7 @@ static const char * const colorop_type_name[] = {
+>   	[DRM_COLOROP_CTM_3X4] = "3x4 Matrix",
+>   	[DRM_COLOROP_MULTIPLIER] = "Multiplier",
+>   	[DRM_COLOROP_3D_LUT] = "3D LUT",
+> +	[DRM_COLOROP_FIXED_MATRIX] = "Fixed Matrix",
+>   };
+>   
+>   static const char * const colorop_lu3d_interpolation_name[] = {
+> @@ -617,6 +709,21 @@ const char *drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_inte
+>   	return colorop_lu3d_interpolation_name[type];
+>   }
+>   
+> +/**
+> + * drm_get_colorop_fixed_matrix_type_name: return a string for fixed matrix type
+> + * @type: fixed matrix type to compute name of
+> + *
+> + * In contrast to the other drm_get_*_name functions this one here returns a
+> + * const pointer and hence is threadsafe.
+> + */
+> +const char *drm_get_colorop_fixed_matrix_type_name(enum drm_colorop_fixed_matrix_type type)
+> +{
+> +	if (WARN_ON(type >= ARRAY_SIZE(colorop_fixed_matrix_type_names)))
+> +		return "unknown";
+> +
+> +	return colorop_fixed_matrix_type_names[type];
+> +}
+> +
+>   /**
+>    * drm_colorop_set_next_property - sets the next pointer
+>    * @colorop: drm colorop
+> diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+> index bd082854ca74..c13b4b045fff 100644
+> --- a/include/drm/drm_colorop.h
+> +++ b/include/drm/drm_colorop.h
+> @@ -134,6 +134,71 @@ enum drm_colorop_curve_1d_type {
+>   	DRM_COLOROP_1D_CURVE_COUNT
+>   };
+>   
+> +/**
+> + * enum drm_colorop_fixed_matrix_type - type of Fixed Matrix
+> + *
+> + * Describes a Fixed Matrix operation to be applied by the DRM_COLOROP_FIXED_MATRIX
+> + */
+> +enum drm_colorop_fixed_matrix_type {
+> +	/**
+> +	 * @DRM_COLOROP_FM_YCBCR601_FULL_RGB:
+> +	 *
+> +	 * enum string "YCbCr 601 Full to RGB"
+> +	 *
+> +	 * This selects the matrix that converts full range YCbCr into RGB
+> +	 * according to the BT.601 coefficients.
+> +	 */
+> +	DRM_COLOROP_FM_YCBCR601_FULL_RGB,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_FM_YCBCR709_FULL_RGB:
+> +	 *
+> +	 * enum string "YCbCr 709 Full to RGB"
+> +	 *
+> +	 * This selects the matrix that converts full range YCbCr into RGB
+> +	 * according to the BT.709 coefficients.
+> +	 */
+> +	DRM_COLOROP_FM_YCBCR709_FULL_RGB,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_FM_YCBCR2020_NC_FULL_RGB:
+> +	 *
+> +	 * enum string "YCbCr 2020 Full to RGB NC"
+Nit: I think you mean "YCbCr 2020 NC Full to RGB"?
+> +	 *
+> +	 * This selects the matrix that converts full range YCbCr into RGB
+> +	 * according to the BT.2020 non-constant luminance coefficients.
+> +	 */
+> +	DRM_COLOROP_FM_YCBCR2020_FULL_RGB_NC,
+... and here ^ DRM_COLOROP_FM_YCBCR_NC_FULL_RGB
+> +
+> +	/**
+> +	 * @DRM_COLOROP_FM_YCBCR_LIMITED_FULL:
+> +	 *
+> +	 * enum string "YCbCr limited to full"
+> +	 *
+> +	 * This selects the matrix that converts limited range YCbCr into
+> +	 * full range YCbCr. Though not strictly a matrix operation but
+> +	 * can be represented as one.
+> +	 */
+> +	DRM_COLOROP_FM_YCBCR_LIMITED_FULL,
+I didn't full understand how this is going to work.
+Looks like it's merging two properties (COLOR_ENCODING and COLOR_RANGE) 
+in a single colorop.
+But we can only select one enum value. So how to communicate, for 
+example, a "YCbCr 709 Limited to RGB" conversion?
+The driver will have to define a coloro pipeline with two fixed matrix 
+colorop in a row, one with only "Limited to Full" and another with 
+"YCbCr Full to RGB" ?
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
+Melissa
+> +
+> +	/**
+> +	 * @DRM_COLOROP_FM_RGB709_RGB2020:
+> +	 *
+> +	 * enum string "RGB709 to RGB2020"
+> +	 *
+> +	 * Selects the fixed-function CSC preset that converts RGB
+> +	 * (BT.709) colorimetry to RGB (BT.2020).
+> +	 */
+> +	DRM_COLOROP_FM_RGB709_RGB2020,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_FM_COUNT:
+> +	 *
+> +	 * enum value denoting the size of the enum
+> +	 */
+> +	DRM_COLOROP_FM_COUNT
+> +};
+> +
+>   /**
+>    * struct drm_colorop_state - mutable colorop state
+>    */
+> @@ -183,6 +248,13 @@ struct drm_colorop_state {
+>   	 */
+>   	struct drm_property_blob *data;
+>   
+> +	/**
+> +	 * @fixed_matrix_type:
+> +	 *
+> +	 * Type of Fixed Matrix operation.
+> +	 */
+> +	enum drm_colorop_fixed_matrix_type fixed_matrix_type;
+> +
+>   	/** @state: backpointer to global drm_atomic_state */
+>   	struct drm_atomic_state *state;
+>   };
+> @@ -368,6 +440,13 @@ struct drm_colorop {
+>   	 */
+>   	struct drm_property *data_property;
+>   
+> +	/**
+> +	 * @fixed_matrix_type_property:
+> +	 *
+> +	 * Sub-type for DRM_COLOROP_FIXED_MATRIX type.
+> +	 */
+> +	struct drm_property *fixed_matrix_type_property;
+> +
+>   	/**
+>   	 * @next_property:
+>   	 *
+> @@ -424,6 +503,10 @@ int drm_plane_colorop_3dlut_init(struct drm_device *dev, struct drm_colorop *col
+>   				 uint32_t lut_size,
+>   				 enum drm_colorop_lut3d_interpolation_type interpolation,
+>   				 uint32_t flags);
+> +int drm_plane_colorop_fixed_matrix_init(struct drm_device *dev, struct drm_colorop *colorop,
+> +					struct drm_plane *plane,
+> +					const struct drm_colorop_funcs *funcs,
+> +					u64 supported_fm, uint32_t flags);
+>   
+>   struct drm_colorop_state *
+>   drm_atomic_helper_colorop_duplicate_state(struct drm_colorop *colorop);
+> @@ -480,6 +563,7 @@ drm_get_colorop_lut1d_interpolation_name(enum drm_colorop_lut1d_interpolation_ty
+>   
+>   const char *
+>   drm_get_colorop_lut3d_interpolation_name(enum drm_colorop_lut3d_interpolation_type type);
+> +const char *drm_get_colorop_fixed_matrix_type_name(enum drm_colorop_fixed_matrix_type type);
+>   
+>   void drm_colorop_set_next_property(struct drm_colorop *colorop, struct drm_colorop *next);
+>   
+> diff --git a/include/uapi/drm/drm_mode.h b/include/uapi/drm/drm_mode.h
+> index a4bdc4bd11bc..dc4b8566fec8 100644
+> --- a/include/uapi/drm/drm_mode.h
+> +++ b/include/uapi/drm/drm_mode.h
+> @@ -971,6 +971,18 @@ enum drm_colorop_type {
+>   	 *         color = lut3d[index]
+>   	 */
+>   	DRM_COLOROP_3D_LUT,
+> +
+> +	/**
+> +	 * @DRM_COLOROP_FIXED_MATRIX:
+> +	 *
+> +	 * enum string "Fixed Matrix"
+> +	 *
+> +	 * A Colorop block that performs a pre-defined matrix operation selected
+> +	 * via the FIXED_MATRIX_TYPE enum property. The driver advertises the supported
+> +	 * operations through this property.
+> +	 */
+> +	DRM_COLOROP_FIXED_MATRIX,
+> +
+>   };
+>   
+>   /**
 
