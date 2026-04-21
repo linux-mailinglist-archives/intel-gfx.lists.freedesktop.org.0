@@ -2,97 +2,97 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gOT2A7ic52l9+QEAu9opvQ
+	id cdnWJ8ec52ml+QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:50:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:50:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4934643CEEB
-	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:50:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1CD7843CEFD
+	for <lists+intel-gfx@lfdr.de>; Tue, 21 Apr 2026 17:50:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6DE9810E8D1;
-	Tue, 21 Apr 2026 15:50:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 962B210E8D6;
+	Tue, 21 Apr 2026 15:50:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="T3JfPtk/";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="N+5FFZEg";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="oK9RP7f8";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="R5l1U1xn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
  [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 355A710E8FA
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:50:12 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D830E10E8C5
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:50:28 +0000 (UTC)
+Received: from pps.filterd (m0279865.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63LFhR9s4167796
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:50:11 GMT
+ 63LCtPSb1538502
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:50:28 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=Mo2f7WcLf3osCcteJk9O/SCd
- aTHE9e4ZotSTHgD8zF4=; b=T3JfPtk/F9qTRPbRfkl7o2BZSzyv+JBhAXxS6ttT
- MOSjxvRnI4i77iSapmiJCFDnVsEq0QW/Jtnw0oP+13HCbJQZsbIl4o0nBZ7BM/Ak
- dIm5WQtrFpcHBrWUTfX0DPJz2/3k1CpYkjeUEJsBotxlqW8cHl4C1IzB9EukfqBJ
- WziBCJ4gy7miFoopX+oh4xsVOQF0GNzaP2l4PhxJYGlrDMcyomR8Wgf+5BvOL2B9
- dB4LcWEqOCSN3Mkne/6U/Pgvif/ICIcmjzDdVgPKjCyZVEtz3mctUrd2bbmrhx6Z
- XFkpDlnDUmrRcpSLJdCXg+25TftEYna+RLl4BXLJNiiZyQ==
-Received: from mail-qt1-f198.google.com (mail-qt1-f198.google.com
- [209.85.160.198])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp1au2pry-1
+ :references:subject:to; s=qcppdkim1; bh=Hto5MsLIcmZUVCfT6iG1LCNf
+ XNnKxNxx4T+khh9MBY0=; b=oK9RP7f8lu1aYiEjyHk0aEqVOStaTYP8ae8V/J7A
+ fzg+ethVOI9SKF2wkvXHoNExyOeQHiKBw03ubwQ0ZkxOuxchLGZaDFZD/6eke1ER
+ lWh045Gz8CLO1BgAQernTvNiezf//bRho1r23hw7uvbfJWka/ZD7lTQ/l3Nk+3K5
+ fsBJ9vLY6luVvAD3o3j6arPyJnsZmRPdwdM1yA4Bxa88vQleeuL8u+64rbv8TAog
+ uyjMUw9MZx7XXEO7S+8paqmukDnwv6a9YWK9iQ13GwdEeWKUjB9WG2TjV/FvCe1T
+ jdultxl8/v+ktl/VbRYH0wCB+VxraY7Tog1iwrufH9q4DA==
+Received: from mail-qt1-f200.google.com (mail-qt1-f200.google.com
+ [209.85.160.200])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dp4hahx2q-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:50:11 +0000 (GMT)
-Received: by mail-qt1-f198.google.com with SMTP id
- d75a77b69052e-50da529ff48so104682981cf.3
- for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 08:50:11 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 15:50:28 +0000 (GMT)
+Received: by mail-qt1-f200.google.com with SMTP id
+ d75a77b69052e-50d812c898cso119614221cf.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 21 Apr 2026 08:50:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1776786610; x=1777391410;
+ d=oss.qualcomm.com; s=google; t=1776786627; x=1777391427;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=Mo2f7WcLf3osCcteJk9O/SCdaTHE9e4ZotSTHgD8zF4=;
- b=N+5FFZEg+jnamrUp8K2GH9/oe7cOKmWNsn4sum6QWO4gdE612MN1i9a+gH3btjmfbt
- bCbg+fdEs/GX9p7kAJ2UOLyg3s6Wq2Ag4bC3NlziNqz8ZD7z1DyWdtTLclk8P4MHIS0E
- uOFuxZhxZb5qKy94dxVHYYUZI5YYdf3Pw8Z1sFQ6TjzZEd5h73T208BR1WeA2zTZTUV4
- C9MpRmpv4mvA8MHjyLp5GpnVht796zN4XS8ChPjGGY06VAVoMVg28tt72Sjz5IPYE9j5
- GAcAaNrdM+yyNmR9dHo/9LEQ0yZs/7O6fSGpzsEKVTd7ymwRzmJWJhPcOUBreao2KBwM
- p2Bw==
+ bh=Hto5MsLIcmZUVCfT6iG1LCNfXNnKxNxx4T+khh9MBY0=;
+ b=R5l1U1xnd6w2NlPLC5rj+1KR396hpHO8wn2fnrPLhYjX1OmnE/NC/nxdKK+8uObIwP
+ 4bfULGkblmtu0pJYxNlTShU0euwglYGy0oPU267unfhGeYHuZl0aS89sfgDgJBhiT0y3
+ cHZErXIDCuMQUrJVC6hdFBZ/9gZfclEOipVadb1LfvT0ZmYmhsC7hZiJI2dCr8cPj4Xg
+ vTAS+3m1KAieb6v/od4xim+G8eYps5juLDgndKenCnlHCKtgooFo/o2PRFlktX70+II4
+ ThXEYc3BqNWSoo4rU9D+kghWx9SLbXltuDpg0sbZytfvk3Pyz6oeIYpgYkyIvyWV+tm5
+ F2rA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776786610; x=1777391410;
+ d=1e100.net; s=20251104; t=1776786627; x=1777391427;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=Mo2f7WcLf3osCcteJk9O/SCdaTHE9e4ZotSTHgD8zF4=;
- b=s7PnBEp1vzVJgm+Cv1XuPRBaqquurTCrL9rtT0xdYHzNepWtBpD/Qij4zgM32UXRpL
- Si4Yq+KpSNnHJHYDv9+8Jyu400hc44vtIzI4EtVshIvN5YXOnPuQ/vLNqRgO/9/dYUvB
- 2lWp8DjsH4P4yWYUYqI9nzS/p3oaTP+sGPJlNtm1JOWtv2AVYUzjQl/55bCe8DADObfj
- SE2X8Sf4HP5HFK7ZzQw1UG8pHMMOGYsemBGH7Z3REMzfJD/6k9B2Cf8H3vYdvveG636A
- czVf01O44AHJAAXAYN88MPlHWqyB+d8G40F5PxBMB8epjJRd8SvKhZDQXFgNHfnOnuTX
- 9HqQ==
+ bh=Hto5MsLIcmZUVCfT6iG1LCNfXNnKxNxx4T+khh9MBY0=;
+ b=TcvuYYMqvS7+e6sxDZ0Qb8zR7U+g6DheLhOwgjDum6gaRgdbkGKlfrCj4464LXzeQt
+ oU5sFd80hVx+RUHxzdQByGa/XfY6EYy4WQS2eVPsq3n8FdeuwFr96PiWTYP7yhPasDS7
+ UCX9LsDx9c6nnY8+Qf5UJvkRAYjQS4D+43rOA5l12EnZxx3ABNP8B0ZKRA4TPqnK47xf
+ rmntfGO5AZp/o4WPGk7YxlqTmM6Ec5SwrPhDzEmXFuLKeEtOe+iiLtFdh1sE9biNp2xP
+ HDKFpQjwDLF7oLVC1ZuSFxhhoHDaCIf+ampjg0gKkwqNuyI63SmhF3Ga9Vfyjv5v3xbM
+ sBGw==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/tLvcahxiCsJKkPblRWZhxn6Ou8eCy0V1c/DzMeLiJJhmIYc5+wCEnYb0iuhI+Ah5Px2XIffTO5Q4=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwL7HVth3eQjbjcak3qreRmNKY6dEWq2N3lGc4MKp/WedB9K6b+
- KMYVsPSp7kcSZWABhK0g4hO3fm9kVxrLKt4eQstQMwlQLYIMJOuAfIakTkA02Pl6SQYL5SvmjqQ
- a3Yr9v4GOPTku956LAkM3vZr9FurZrXugPsw5F2DW6+C9kWZdDI8YnTOnUSK/rE/Msst2it8=
-X-Gm-Gg: AeBDiesXLUovzPx1E8hn5PZNvpfvTnqpBmwrPdukmOoxZR2kywpYt3PsKUaiQKhIKUz
- 6LYMSgF+A6IxIF4CXBPQnnPnIJwxjtJMtzrZQmL2/xBFj2qK+gnhi0qGhza8jWHVc3k0Y4umhWi
- /s+abRR6qut9zbAkUPfZFL+sPtnKG15tIv+T4/qBb7vpSZUoAwN2NmCIrex4xTs6IKWMAlJoZGa
- i1ZBOZ5k5qT/v/huOM6JsiZscv45YVtWLIWCnAQiJuXH71laralhzGDDKIMXn3QFp70gRfAJJdB
- bikMBuiUGXcm5OJKKwWCFjP4kxD/jRMHtXCN0vTGwjb1fdhrWjWxIT5Pmx29qKhkFTj/dIgxxH6
- nAORVqjglSBLbfSdtObZHOUp1KQ/NRuDuDpeKMFg0DC09z1OLGz9Waq31NmJNS16MfA3mhqbaWz
- Hc7l2l3yQQEvS5gecg1TmzDd0ng7CLLJoKNrjoGsf3qyi12w==
-X-Received: by 2002:a05:622a:11d5:b0:50f:b732:202c with SMTP id
- d75a77b69052e-50fb73225a9mr33343711cf.19.1776786610411; 
- Tue, 21 Apr 2026 08:50:10 -0700 (PDT)
-X-Received: by 2002:a05:622a:11d5:b0:50f:b732:202c with SMTP id
- d75a77b69052e-50fb73225a9mr33342531cf.19.1776786609679; 
- Tue, 21 Apr 2026 08:50:09 -0700 (PDT)
+ AFNElJ8GAiPOeCKpxUVCkWuu2bNW61wblUJ8kS1ddeePAFp2nQ8ae5y7yQ1LCPKPX6ad2yUL7B3j3N7/NHM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yyoh4r5oRUq7/nuxfFs24UugaxMwRrKE5Whb6B58aF5PMRdMTZz
+ RDZlzT+k4NpbQOhLBquyzqlkQjjlwzka+2ifLYxKQmRQ2zkx4Z8/4EhOY3ZgpEvgT95a2FejOhv
+ I5p/Pe3aTJJGlxn/Zdpmpq8BMsvB2AMD1nxr54Nz5Vp8x1L69KBDbMxX6GLd0pEBA8KOivZQ=
+X-Gm-Gg: AeBDiesb4HAvT9I+A8+NL6FAdFNp258SoJNr9zgJrsCqwmB0AJ2iHN0vUbvuTdWqubZ
+ ggPfWG3PzKH0c8O0lrx1YOfAc0SczlAgqzysevHek1dThEzaWxLQIatYDYlChNq7E/2Cf4U9eIP
+ ZzbJVkLw6k8WCbUDFG8mE+hwfDGzpcxMsPhbCb4qEi/kBJWKEA0yBOcXVgeDhu76ZRBs8fnh7yt
+ +8FcwWs6bKRGKwce2FgnVk13Cp1exIN3LbyN2YdTgDGCXQOyDbttlIVwLtN7ySs8CgfvoQAp2eV
+ Z+3+8QlwzYS8NRoQ8mevG73JmloyWzjAo1FTKeDRPwL1uq37tACK65CA3iR3dZjmv0kB6gtOdJ3
+ ksPjC3JsXPqolJN1ToAqb/KvG0r4vKKbPe+fQmNfpGoCcaGJ4ovJiWkulS2Ys89T0asWMVGOPUB
+ OULSAz4o8+yJvAuEhltHxorWAJBlHfuO0u5+MUDR2d081mqA==
+X-Received: by 2002:a05:622a:5c1b:b0:50d:a71d:810d with SMTP id
+ d75a77b69052e-50e36e9c5bdmr268930001cf.28.1776786627065; 
+ Tue, 21 Apr 2026 08:50:27 -0700 (PDT)
+X-Received: by 2002:a05:622a:5c1b:b0:50d:a71d:810d with SMTP id
+ d75a77b69052e-50e36e9c5bdmr268929381cf.28.1776786626578; 
+ Tue, 21 Apr 2026 08:50:26 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 2adb3069b0e04-5a4185c8a33sm3824506e87.36.2026.04.21.08.50.08
+ 2adb3069b0e04-5a4185ad11fsm3739915e87.14.2026.04.21.08.50.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Tue, 21 Apr 2026 08:50:08 -0700 (PDT)
-Date: Tue, 21 Apr 2026 18:50:06 +0300
+ Tue, 21 Apr 2026 08:50:25 -0700 (PDT)
+Date: Tue, 21 Apr 2026 18:50:23 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Maxime Ripard <mripard@kernel.org>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -120,40 +120,39 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 12/20] drm/hdmi: Rename
- __drm_atomic_helper_connector_hdmi_reset()
-Message-ID: <5me7yklungth6sss5okogfwtr2ed47fwaq3rxnfbhjqgauefis@h2c4kbfk2sqe>
+Subject: Re: [PATCH v2 11/20] drm/atomic-state-helper: Rename
+ __drm_atomic_helper_connector_state_reset()
+Message-ID: <ogjitbayzgefsouxgwhjia4vzmmpfagupddmmoxokvdscjouqo@dyaz5v7c4lyh>
 References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
- <20260320-drm-mode-config-init-v2-12-c63f1134e76c@kernel.org>
+ <20260320-drm-mode-config-init-v2-11-c63f1134e76c@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260320-drm-mode-config-init-v2-12-c63f1134e76c@kernel.org>
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDE1NiBTYWx0ZWRfX4Zgr7MYwvQAF
- 56omqiOLTnDBJM0WwObevZl9vqtIah/cOfD54ruNRed5BYmlXAvh/pymq4R09qpKSYdZ6w55sns
- upWJ58hFs12kiGHcEe6OEwdUxec5OpGXm9QRmhehiCfCWfFUFW8dTCeIUKi+o11Rjpil571Atn+
- Rlt367j2dZTVthnoI24Co4tXW02P3/GgNeaPDmLcBdR+6lZqHjF70EPjmkc5gwWFekIA/yRxp1V
- yacKvec9G1E2+WsqV+TSbcWKFGw4DSZ5KvLcSJVQEtP4O/vDbqeJlJ8gTP5Gi0T0qyaFfNWNnqb
- BCIpqKhiEZ7T1ML37X4DduXmTMTih8F64AlgCeBPBvR+rR9HYjQzDHoiZux7oAs9K31ouhNRwaE
- 6At/OqFaBCfO7y8oy4+75Iq1CN2mjugCo7hqtpkrs9xxQr+n69vq0TwGgqjfnWQqpsdqpCucgKs
- PJKjrFcTZucwstRDzjw==
-X-Authority-Analysis: v=2.4 cv=F9JnsKhN c=1 sm=1 tr=0 ts=69e79cb3 cx=c_pps
- a=mPf7EqFMSY9/WdsSgAYMbA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260320-drm-mode-config-init-v2-11-c63f1134e76c@kernel.org>
+X-Authority-Analysis: v=2.4 cv=bOQm5v+Z c=1 sm=1 tr=0 ts=69e79cc4 cx=c_pps
+ a=JbAStetqSzwMeJznSMzCyw==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=P1BnusSwAAAA:8
+ a=u7WPNUs3qKkmUXheDGA7:22 a=Um2Pa8k9VHT-vaBCBUpS:22 a=P1BnusSwAAAA:8
  a=VwQbUJbxAAAA:8 a=EUspDBNiAAAA:8 a=fOc9-Nj7kuNS0fQUIscA:9 a=CjuIK1q_8ugA:10
- a=dawVfQjAaf238kedN5IG:22 a=D0XLA9XvdZm18NrgonBM:22
-X-Proofpoint-GUID: lN8JUIvmyPZWwS1eumG5PBE5NanZprdx
-X-Proofpoint-ORIG-GUID: lN8JUIvmyPZWwS1eumG5PBE5NanZprdx
+ a=uxP6HrT_eTzRwkO_Te1X:22 a=D0XLA9XvdZm18NrgonBM:22
+X-Proofpoint-GUID: _8ntAQ8r8nUr9HZgdC0WO-BpN8RKcqGX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDIxMDE1NyBTYWx0ZWRfX7QvTaumMXGd+
+ 2pv6sgtAdb2LR/qbWzSb99V84MX203emp7NmZU/9CvvRH9Oxs3T/ntmPKsRnhgd4AyovQ1odb+V
+ yS01wKog42QL4i3lbTdE+iqYLVoScTI6VD6/VGbuGa0ZW/DzlMd3/q9PYrJt1NOMJqbmOETEerm
+ piUeNvarYVr4uXgKqXdnMkvhDXbJgddvQpRZJtyPs9Fue96VTyu+sRu7MNPp7qb6PGLIcaiGgT6
+ V0s9J3UBaFh1aioSA43uO40um0+HD9xUdB96NLDB1GxHOgqMPaudl0VADf+4cY3xz4vGL8O97la
+ J9tg6DuH8yyN5WtsqD2X5BlsmcIa/xlNkD5vkjR8ZmoMCH8uNgpYJqabMxxeUp+81B0cjlrIuki
+ BeucJ1T3b52NsT9WUGlTY6gaS+6j544/nqgNEDBYFWscVVqAL6dmwrUIYtAil3LQe9UIfLJi6ZF
+ cKRLI8F1mlNvqrKRdHg==
+X-Proofpoint-ORIG-GUID: _8ntAQ8r8nUr9HZgdC0WO-BpN8RKcqGX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-04-21_03,2026-04-21_02,2025-10-01_01
 X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- priorityscore=1501 impostorscore=0 clxscore=1015 suspectscore=0
- lowpriorityscore=0 spamscore=0 phishscore=0 adultscore=0 malwarescore=0
- bulkscore=0 classifier=typeunknown authscore=0 authtc= authcc= route=outbound
- adjust=0 reason=mlx scancount=1 engine=8.22.0-2604070000
- definitions=main-2604210156
+ suspectscore=0 spamscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
+ clxscore=1015 impostorscore=0 lowpriorityscore=0 adultscore=0 phishscore=0
+ classifier=typeunknown authscore=0 authtc= authcc= route=outbound adjust=0
+ reason=mlx scancount=1 engine=8.22.0-2604070000 definitions=main-2604210157
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -202,37 +201,32 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,oss.qualcomm.com:dkim]
-X-Rspamd-Queue-Id: 4934643CEEB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[oss.qualcomm.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ideasonboard.com:email,qualcomm.com:dkim,qualcomm.com:email]
+X-Rspamd-Queue-Id: 1CD7843CEFD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, Mar 20, 2026 at 05:27:19PM +0100, Maxime Ripard wrote:
-> __drm_atomic_helper_connector_hdmi_reset() is typically used to
-> initialize a newly allocated drm_connector_state when the connector is
-> using the HDMI helpers, and is being called by the
-> drm_connector_funcs.reset implementation.
+On Fri, Mar 20, 2026 at 05:27:18PM +0100, Maxime Ripard wrote:
+> __drm_atomic_helper_connector_state_reset() is used to initialize a
+> newly allocated drm_connector_state, and is being typically called by
+> the drm_connector_funcs.reset implementation.
 > 
 > Since we want to consolidate DRM objects state allocation around the
 > atomic_create_state callback that will only allocate and initialize a
 > new drm_connector_state instance, we will need to call
-> __drm_atomic_helper_connector_hdmi_reset() from both the reset and
+> __drm_atomic_helper_connector_state_reset() from both the reset and
 > atomic_create hooks.
 > 
 > To avoid any confusion, we can thus rename
-> __drm_atomic_helper_connector_hdmi_reset() to
-> __drm_atomic_helper_connector_hdmi_state_init().
+> __drm_atomic_helper_connector_state_reset() to
+> __drm_atomic_helper_connector_state_init().
 > 
 > Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > Signed-off-by: Maxime Ripard <mripard@kernel.org>
 > ---
->  drivers/gpu/drm/display/drm_bridge_connector.c     |  4 ++--
->  drivers/gpu/drm/display/drm_hdmi_state_helper.c    | 14 ++++++++------
->  drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |  2 +-
->  drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |  2 +-
->  drivers/gpu/drm/vc4/vc4_hdmi.c                     |  2 +-
->  include/drm/display/drm_hdmi_state_helper.h        |  4 ++--
->  6 files changed, 15 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/drm_atomic_state_helper.c | 10 +++++-----
+>  include/drm/drm_atomic_state_helper.h     |  2 +-
+>  2 files changed, 6 insertions(+), 6 deletions(-)
 > 
 
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
