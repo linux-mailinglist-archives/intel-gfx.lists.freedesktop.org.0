@@ -2,68 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iNhLMKGT6Gl9MgIAu9opvQ
+	id QGUpE5qV6GmDNAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 11:23:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 11:32:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36971443E61
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 11:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9496944405B
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 11:32:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16D7C10E997;
-	Wed, 22 Apr 2026 09:23:42 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="SdjYoXB4";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 175A810EB99;
+	Wed, 22 Apr 2026 09:32:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from casper.infradead.org (casper.infradead.org [90.155.50.34])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 75E3610E98A;
- Wed, 22 Apr 2026 09:23:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
- References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
- Content-Transfer-Encoding:Content-ID:Content-Description;
- bh=lSqPa1PdmXI2jpkxmLTsPfh8jceAyrsRpIgBAmWEFSk=; b=SdjYoXB4e3eTeS+jgZukX6E879
- rNfencW57vICi/oaA1/zhjb0/YTLZYyNArHIJyO2QuPLabv7ayFwG/V9HPAbEuYWYsy+ECMJcLmMD
- 8DXOOAL2TNOJh4YsSOe5sm3ZG8y6X+5FV8TvF01gB5UdXa9ZG01cC00FvN9laqSsuUXj+O0Tm36W9
- 8KFTWP+9qp6Ce0IL8cMnsm0CsvrZZBHoKisGkklipulnm8kFW/txkaMdoKJ+JtPN5yRpmBxZCaD6p
- qGrovYUqwMjheHPYbw69t5XZs3Br3bL2E7qb2Cer6Y5FzC2cZfKHejs5C8FoE1B6wfh5jCzrx40EP
- Z91zRiuQ==;
-Received: from
- 2001-1c00-8d85-4b00-266e-96ff-fe07-7dcc.cable.dynamic.v6.ziggo.nl
- ([2001:1c00:8d85:4b00:266e:96ff:fe07:7dcc]
- helo=noisy.programming.kicks-ass.net)
- by casper.infradead.org with esmtpsa (Exim 4.98.2 #2 (Red Hat Linux))
- id 1wFTo1-0000000BVot-0Nc6; Wed, 22 Apr 2026 09:23:37 +0000
-Received: by noisy.programming.kicks-ass.net (Postfix, from userid 1000)
- id 94F393008E2; Wed, 22 Apr 2026 11:23:35 +0200 (CEST)
-Date: Wed, 22 Apr 2026 11:23:35 +0200
-From: Peter Zijlstra <peterz@infradead.org>
-To: John Stultz <jstultz@google.com>
-Cc: K Prateek Nayak <kprateek.nayak@amd.com>,
- "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
- willy@infradead.org, linux-kernel@vger.kernel.org,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Kurmi, Suresh Kumar" <suresh.kumar.kurmi@intel.com>,
- "Saarinen, Jani" <jani.saarinen@intel.com>, ravitejax.veesam@intel.com
-Subject: Re: Regression on linux-next (next-20260324 )
-Message-ID: <20260422092335.GH3102924@noisy.programming.kicks-ass.net>
-References: <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
- <20260330195037.GW2872@noisy.programming.kicks-ass.net>
- <20260420130318.GD3102924@noisy.programming.kicks-ass.net>
- <CANDhNCq=oizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ@mail.gmail.com>
- <20260421101521.GO3102624@noisy.programming.kicks-ass.net>
- <95651a71-1adf-45ba-83eb-5744bc6d4a52@amd.com>
- <20260421143752.GD1064669@noisy.programming.kicks-ass.net>
- <bc5e8c5c-fc9c-4efc-b1a9-98c43c6a8762@amd.com>
- <CANDhNCr-+x8pTLhXZW=ATHaKTYEmXMPukz4+t8P-FeJ11Jrz9Q@mail.gmail.com>
- <20260421205647.GL3126523@noisy.programming.kicks-ass.net>
+Received: from a3b018990fe9 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 51C1510E9C2;
+ Wed, 22 Apr 2026 09:32:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1888314659674055413=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260421205647.GL3126523@noisy.programming.kicks-ass.net>
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_Add_q?=
+ =?utf-8?q?uirk_for_interlane_align_bit_on_CH7511?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Patrik Jakobsson" <pjakobsson@suse.de>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 22 Apr 2026 09:32:06 -0000
+Message-ID: <177685032630.484982.14661729777839382579@a3b018990fe9>
+X-Patchwork-Hint: ignore
+References: <20260422073339.27947-1-pjakobsson@suse.de>
+In-Reply-To: <20260422073339.27947-1-pjakobsson@suse.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,216 +42,215 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[infradead.org:s=casper.20170209];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[infradead.org:-];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.963];
-	FROM_NEQ_ENVFROM(0.00)[peterz@infradead.org,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.270];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email]
-X-Rspamd-Queue-Id: 36971443E61
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[basic-flip-vs-wf_vblank:email,workarounds:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,live:email,01.org:url,sanitycheck:email,kms_pm_rpm:email,patchwork.freedesktop.org:url]
+X-Rspamd-Queue-Id: 9496944405B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, Apr 21, 2026 at 10:56:48PM +0200, Peter Zijlstra wrote:
-> Excellent, I'll write it up tomorrow.
+--===============1888314659674055413==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-How's this? It 'passes' the ww_mutex selftest thing in so far as that I
-get the same:
+== Series Details ==
 
-[    2.312369] Beginning ww (wound) mutex selftests
-[    4.853240] stress (stress_inorder_work) failed with -35
-[    9.379572] Beginning ww (die) mutex selftests
-[   16.435831] All ww mutex selftests passed
+Series: drm/i915/display: Add quirk for interlane align bit on CH7511
+URL   : https://patchwork.freedesktop.org/series/165270/
+State : success
 
-before the offending commit and after this patch.
+== Summary ==
 
----
-Subject: Subject: locking/mutex: Fix ww_mutex wait_list operations
-From: Peter Zijlstra <peterz@infradead.org>
-Date: Wed Apr 22 10:38:41 CEST 2026
+CI Bug Log - changes from CI_DRM_18353 -> Patchwork_165270v1
+====================================================
 
-Chaitanya and John reported commit 25500ba7e77c ("locking/mutex: Remove the
-list_head from struct mutex") wrecked ww_mutex.
+Summary
+-------
 
-Specifically there were 2 issues:
+  **SUCCESS**
 
- - __ww_waiter_prev() had the termination condition wrong; it would terminate
-   when the previous entry was the first, which results in a truncated
-   iteration: W3, W2, (no W1).
+  No regressions found.
 
- - __mutex_add_waiter(@pos != NULL), as used by __ww_waiter_add() /
-   __ww_mutex_add_waiter(); this inserts @waiter before @pos (which is what
-   list_add_tail() does). But this should then also update lock->first_waiter.
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/index.html
 
-Much thanks to Prateek for spotting the __mutex_add_waiter() issue!
+Participating hosts (42 -> 40)
+------------------------------
 
-Fixes: 25500ba7e77c ("locking/mutex: Remove the list_head from struct mutex")
-Reported-by: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-Closes: https://lore.kernel.org/r/af005996-05e9-4336-8450-d14ca652ba5d%40intel.com
-Reported-by: John Stultz <jstultz@google.com>
-Closes: https://lore.kernel.org/r/CANDhNCq%3Doizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ%40mail.gmail.com
-Debugged-by: K Prateek Nayak <kprateek.nayak@amd.com>
-Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
----
- kernel/locking/mutex.c    |   40 +++++++++++++++++++++++++++-------------
- kernel/locking/ww_mutex.h |   34 ++++++++++++++++++++++++++++++++--
- 2 files changed, 59 insertions(+), 15 deletions(-)
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
 
---- a/kernel/locking/mutex.c
-+++ b/kernel/locking/mutex.c
-@@ -198,27 +198,43 @@ static inline void __mutex_clear_flag(st
- }
- 
- /*
-- * Add @waiter to a given location in the lock wait_list and set the
-- * FLAG_WAITERS flag if it's the first waiter.
-+ * Add @waiter to the @lock wait_list and set the FLAG_WAITERS flag if it's
-+ * the first waiter.
-+ *
-+ * When @pos, @waiter is added before the waiter indicated by @pos. Otherwise
-+ * @waiter will be added to the tail of the list.
-  */
- static void
- __mutex_add_waiter(struct mutex *lock, struct mutex_waiter *waiter,
--		   struct mutex_waiter *first)
-+		   struct mutex_waiter *pos)
- 	__must_hold(&lock->wait_lock)
- {
-+	struct mutex_waiter *first = lock->first_waiter;
-+
- 	hung_task_set_blocker(lock, BLOCKER_TYPE_MUTEX);
- 	debug_mutex_add_waiter(lock, waiter, current);
- 
--	if (!first)
--		first = lock->first_waiter;
-+	if (pos) {
-+		/*
-+		 * Insert @waiter before @pos.
-+		 */
-+		list_add_tail(&waiter->list, &pos->list);
-+		/*
-+		 * If @pos == @first, then @waiter will be the new first.
-+		 */
-+		if (pos == first)
-+			lock->first_waiter = waiter;
-+		return;
-+	}
- 
- 	if (first) {
- 		list_add_tail(&waiter->list, &first->list);
--	} else {
--		INIT_LIST_HEAD(&waiter->list);
--		lock->first_waiter = waiter;
--		__mutex_set_flag(lock, MUTEX_FLAG_WAITERS);
-+		return;
- 	}
-+
-+	INIT_LIST_HEAD(&waiter->list);
-+	lock->first_waiter = waiter;
-+	__mutex_set_flag(lock, MUTEX_FLAG_WAITERS);
- }
- 
- static void
-@@ -229,10 +245,8 @@ __mutex_remove_waiter(struct mutex *lock
- 		__mutex_clear_flag(lock, MUTEX_FLAGS);
- 		lock->first_waiter = NULL;
- 	} else {
--		if (lock->first_waiter == waiter) {
--			lock->first_waiter = list_first_entry(&waiter->list,
--							      struct mutex_waiter, list);
--		}
-+		if (lock->first_waiter == waiter)
-+			lock->first_waiter = list_next_entry(waiter, list);
- 		list_del(&waiter->list);
- 	}
- 
---- a/kernel/locking/ww_mutex.h
-+++ b/kernel/locking/ww_mutex.h
-@@ -6,6 +6,19 @@
- #define MUTEX_WAITER	mutex_waiter
- #define WAIT_LOCK	wait_lock
- 
-+/*
-+ *           +--------+
-+ *           | first  |
-+ *           +--------+
-+ *                |
-+ *                v
-+ *  +----+     +----+     +----+
-+ *  | W3 | <-> | W1 | <-> | W2 |
-+ *  +----+     +----+     +----+
-+ *    ^                     ^
-+ *    +---------------------+
-+ */
-+
- static inline struct mutex_waiter *
- __ww_waiter_first(struct mutex *lock)
- 	__must_hold(&lock->wait_lock)
-@@ -13,26 +26,43 @@ __ww_waiter_first(struct mutex *lock)
- 	return lock->first_waiter;
- }
- 
-+/*
-+ * for (cur = __ww_waiter_first(); cur; cur = __ww_waiter_next())
-+ *
-+ * Should iterate like: W1, W2, W3
-+ */
- static inline struct mutex_waiter *
- __ww_waiter_next(struct mutex *lock, struct mutex_waiter *w)
- 	__must_hold(&lock->wait_lock)
- {
- 	w = list_next_entry(w, list);
-+	/*
-+	 * Terminate if the next entry is the first again, that has already
-+	 * been observed.
-+	 */
- 	if (lock->first_waiter == w)
- 		return NULL;
- 
- 	return w;
- }
- 
-+/*
-+ * for (cur = __ww_waiter_last(); cur; cur = __ww_waiter_prev())
-+ *
-+ * Should iterate like: W3, W2, W1
-+ */
- static inline struct mutex_waiter *
- __ww_waiter_prev(struct mutex *lock, struct mutex_waiter *w)
- 	__must_hold(&lock->wait_lock)
- {
--	w = list_prev_entry(w, list);
-+	/*
-+	 * Terminate at the first entry, the previous entry of first is the
-+	 * last and that has already been observed.
-+	 */
- 	if (lock->first_waiter == w)
- 		return NULL;
- 
--	return w;
-+	return list_prev_entry(w, list);
- }
- 
- static inline struct mutex_waiter *
+Known issues
+------------
+
+  Here are the changes found in Patchwork_165270v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-3:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@sanitycheck:
+    - bat-apl-1:          [DMESG-WARN][5] ([i915#13735]) -> [PASS][6] +77 other tests pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-apl-1/igt@i915_selftest@live@sanitycheck.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-apl-1/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bsw-n3050:       [DMESG-WARN][9] ([i915#15947]) -> [PASS][10] +7 other tests pass
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - bat-apl-1:          [DMESG-WARN][11] ([i915#13735] / [i915#180]) -> [PASS][12] +49 other tests pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
+  [i915#15947]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15947
+  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18353 -> Patchwork_165270v1
+
+  CI-20190529: 20190529
+  CI_DRM_18353: 84de0c4efa971d100d339d4b4aef24676b86c58e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8865: 1c23bc1bdf01bf0ded2344cb217d7fe88de3b726 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_165270v1: 84de0c4efa971d100d339d4b4aef24676b86c58e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/index.html
+
+--===============1888314659674055413==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: Add quirk for interlane align bit on CH7511</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165270/">https://patchwork.freedesktop.org/series/165270/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18353 -&gt; Patchwork_165270v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_165270v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-arlh-3/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-arlh-3/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-apl-1/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-apl-1/igt@i915_selftest@live@sanitycheck.html">PASS</a> +77 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15947">i915#15947</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +7 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18353/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165270v1/bat-apl-1/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +49 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18353 -&gt; Patchwork_165270v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18353: 84de0c4efa971d100d339d4b4aef24676b86c58e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8865: 1c23bc1bdf01bf0ded2344cb217d7fe88de3b726 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_165270v1: 84de0c4efa971d100d339d4b4aef24676b86c58e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1888314659674055413==--
