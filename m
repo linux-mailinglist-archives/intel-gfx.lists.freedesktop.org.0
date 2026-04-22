@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEf7L4Nu6GmNKQIAu9opvQ
+	id QOPGHxZw6GmvKQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 08:45:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 08:52:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7174F4428EA
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 08:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E42564429C1
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 08:52:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 29F6F10EEE6;
-	Wed, 22 Apr 2026 06:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1E0B010F1D6;
+	Wed, 22 Apr 2026 06:52:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="Ddhmfalq";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="uBI2YyHQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6F2D10EECF;
- Wed, 22 Apr 2026 06:45:19 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 73FDF10F1D2;
+ Wed, 22 Apr 2026 06:52:02 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 7DAA54353C;
- Wed, 22 Apr 2026 06:45:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id D8D6DC2BCB3;
- Wed, 22 Apr 2026 06:45:18 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 5F70C60018;
+ Wed, 22 Apr 2026 06:52:01 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8C9AEC19425;
+ Wed, 22 Apr 2026 06:52:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1776840319;
- bh=pYMxzy5OOvpaaRU5o941SfAWX+eqdO8KE44KbLMbd7Y=;
+ s=k20201202; t=1776840721;
+ bh=F+k2j61BaRiqQdtTNTgqmqkRXzyWVzQqwf1yxx9Jl5Y=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=DdhmfalqLLHd9GLo6AHzXaUb59GTRlMbd3z7X7bpR4gWre4PnQaPyczOtXwMb+2mp
- BdG7O6F0DvzQAcj98JCSOKe85mfMwLGD1dfGxCGhN/F5X+3AGCymvlsnXfBoBmzkvz
- 8WpGL1jYe7h93YrA2b573sIPOGpri5F+9AGTyTW6HxKMQSnQjVhBLb9NDNiqvvw6jp
- aU/3Gc5qf1x1Cq5jyBoYHFt4eIEAC1V4XJwZZViYGgwXHUIZx8Lb2PjP4UHvGMeV01
- 3OHS4wdTfZe0l68e9D+HnIc698iXzzT6EDYtqrQWCovkuGH01IBk2fCy51S/JXgEvY
- 02//vyIBdljvw==
-Date: Wed, 22 Apr 2026 08:45:16 +0200
+ b=uBI2YyHQ14xILWfOLl0M781/RFBZxHKsv77ZC0eXBHFwUqbPFiRATOVszWZUCkuoy
+ P8AsHN90clI5gEzB7QzrZq4mJrZ4zgAO8JLsI6oI8YqouSwk0t0Dgb3PIz3G2erBO7
+ gfHj0aU9d3+y+LdzG60/FGB3OnyhG4AuGHGGxVSdKByYp1bAJjSWJ/7z48Csc1C9Lb
+ +4B0hE6FXg5eWOEiUZBsCNh0TQK6AvpA4lO8XvJFvdAh900rmQ0FOV9vkoYibxG9qo
+ gudHD4vXrsQnwh9duF4E+0jCjD8KIYut7hNPttSsTAwGrdFr1ApLK4/ho+U5OnHKW/
+ 5g5uCvXkkYfvA==
+Date: Wed, 22 Apr 2026 08:51:58 +0200
 From: Maxime Ripard <mripard@kernel.org>
 To: Thomas Zimmermann <tzimmermann@suse.de>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -63,18 +63,17 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v2 15/20] drm/drv: Call drm_mode_config_create_state() by
- default
-Message-ID: <20260422-vermilion-bumblebee-from-betelgeuse-cffbc1@houat>
+Subject: Re: [PATCH v2 02/20] drm/atomic: Drop drm_private_state.obj
+ assignment from create_state
+Message-ID: <20260422-poetic-malamute-of-greatness-ceee0f@houat>
 References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
- <20260320-drm-mode-config-init-v2-15-c63f1134e76c@kernel.org>
- <79cc30d5-80b5-4d87-a3ad-36d6fad98853@suse.de>
- <dd39f423-1598-4749-8c95-98b8daf69680@suse.de>
+ <20260320-drm-mode-config-init-v2-2-c63f1134e76c@kernel.org>
+ <bbb554a6-2034-4f6e-9b48-fa9e10b4a95a@suse.de>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="mmuav45v5xyeg7x4"
+ protocol="application/pgp-signature"; boundary="bcajdpsxzzkhkmjz"
 Content-Disposition: inline
-In-Reply-To: <dd39f423-1598-4749-8c95-98b8daf69680@suse.de>
+In-Reply-To: <bbb554a6-2034-4f6e-9b48-fa9e10b4a95a@suse.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,7 +96,7 @@ X-Spamd-Result: default: False [-1.41 / 15.00];
 	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.20)[multipart/signed,text/plain];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -118,115 +117,60 @@ X-Spamd-Result: default: False [-1.41 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 7174F4428EA
+X-Rspamd-Queue-Id: E42564429C1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
---mmuav45v5xyeg7x4
-Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+--bcajdpsxzzkhkmjz
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v2 15/20] drm/drv: Call drm_mode_config_create_state() by
- default
+Subject: Re: [PATCH v2 02/20] drm/atomic: Drop drm_private_state.obj
+ assignment from create_state
 MIME-Version: 1.0
 
-Hi Thomas,
-
-On Tue, Apr 21, 2026 at 05:33:12PM +0200, Thomas Zimmermann wrote:
-> Am 21.04.26 um 15:38 schrieb Thomas Zimmermann:
-> > Hi
-> >=20
-> > Am 20.03.26 um 17:27 schrieb Maxime Ripard:
-> > > Almost all drivers, and our documented skeleton, call
-> > > drm_mode_config_reset() prior to calling drm_dev_register() to
-> > > initialize its DRM object states.
-> > >=20
-> > > Now that we have drm_mode_config_create_state() to create that initial
-> > > state if it doesn't exist, we can call it directly in
-> > > drm_dev_register(). That way, we know that the initial atomic state w=
-ill
-> > > always be allocated without any boilerplate.
-> > >=20
-> > > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> > > ---
-> > > =A0 drivers/gpu/drm/drm_drv.c | 4 ++++
-> > > =A0 1 file changed, 4 insertions(+)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > > index 2915118436ce8a6640cfb0c59936031990727ed1..820106d56ab399a39cac5=
-6d98662b5ddbcae8ded
-> > > 100644
-> > > --- a/drivers/gpu/drm/drm_drv.c
-> > > +++ b/drivers/gpu/drm/drm_drv.c
-> > > @@ -1097,10 +1097,14 @@ int drm_dev_register(struct drm_device *dev,
-> > > unsigned long flags)
-> > > =A0 =A0=A0=A0=A0=A0 if (drm_core_check_feature(dev, DRIVER_MODESET)) {
-> > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 ret =3D drm_modeset_register_all(dev);
-> > > =A0=A0=A0=A0=A0=A0=A0=A0=A0 if (ret)
-> > > =A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto err_unload;
-> > > +
-> > > +=A0=A0=A0=A0=A0=A0=A0 ret =3D drm_mode_config_create_state(dev);
-> > > +=A0=A0=A0=A0=A0=A0=A0 if (ret)
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0=A0 goto err_unload;
-> >=20
-> > Way too late. Lets rather go through drivers and call this where they
-> > currently call drm_mode_config_reset() for initialization. This can be a
-> > single-patch mass conversion IMHO.
-
-I think that was Ville's main objection too. He suggested to do it in
-the object initialization instead, but I believe it would be too early.
-
-> On a second thought, can't we modify the suspend code and leave the reset
-> as-is for now?=A0 I'd still be interested to use reset as a means of
-> initializing the hardware or loading state on probe. So keeping the _rese=
-t()
-> calls in place might be helpful for that.
+On Tue, Apr 21, 2026 at 03:03:50PM +0200, Thomas Zimmermann wrote:
+> Hi
 >=20
-> What's the long-term plan here?
+> Am 20.03.26 um 17:27 schrieb Maxime Ripard:
+> > The initial intent of the atomic_create_state helper was to simply
+> > allocate a proper drm_private_state and returning it, without any side
+> > effect.
+> >=20
+> > However, the __drm_atomic_helper_private_obj_create_state() introduces a
+> > side effect by setting the drm_private_obj.state to the newly allocated
+> > state.
+> >=20
+> > This assignment defeats the purpose, but is also redundant since
+> > the only caller, drm_atomic_private_obj_init(), will also set this
+> > pointer to the newly allocated state.
+>=20
+> Is this paragraph no longer up to date? Grepping for
+> __drm_atomic_helper_private_obj_create_state returns plenty of callers.
 
-So, the way I was thinking about this is reset is done for several
-things right now: initial state creation and software reset, and
-hardware reset.
+No, it's still up to date but super confusing. I didn't mean that there
+wase one single caller of __drm_atomic_helper_private_obj_create_state()
+that would set obj->state, but rather that the
+drm_private_state_funcs.atomic_create_state hook is called only by
+drm_atomic_private_obj_init() and it will set obj->state.
 
-The latter isn't really commonly used. Most drivers, basically all
-drivers that use the reset helpers, will not perform the hardware reset
-as part of drm_mode_config_reset but will do it in probe or similar.
-
-This is also a concern for hardware state read-out, since you don't want
-that reset to happen.
-
-So, eventually, I wanted to have something like try a readout, and if it
-fails for any reason (disabled, unsupported, or failing to perform the
-readout), we fallback to allocating a pristine state + resetting the
-hardware.
-
-To do that, we need create_state introduced here both for the readout
-and non-readout paths, but also a (possibly device wide?) hw_reset hook
-that will *only* reset the device without affecting the software state.
-
-So:
- - probe with readout would be create_state + readout_state for all objects
- - probe without readout would be create_state + hw_reset for all objects
- - resume would be create_state + hw_reset for a limited number of objects
-
-And then we don't need .reset at all anymore and / or can implement
-drm_mode_config_reset() on top of that.
-
-I wanted to work on that next when done with this series.
+So, you're right, there's plenty of drivers calling
+__drm_atomic_helper_private_obj_create_state() but we always end up
+there through drm_atomic_private_obj_init().
 
 Maxime
 
---mmuav45v5xyeg7x4
+--bcajdpsxzzkhkmjz
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaehueAAKCRAnX84Zoj2+
-dk+SAYDSxsLLjUkEwpwBzrLclRVmyy7Pnj03L4U6OuOb8UUQK/YHd8u6ZI0Y5Fn8
-lXwP3SkBgIJRm9gxqUlt2WlYOp3xz6AwEEaxd7tHd6n7tpSv6KJ44hNAwTVtgZFI
-mLpzKOrOQg==
-=tglw
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaehwDQAKCRAnX84Zoj2+
+dpyKAXkBF+Uqrnq4REnKuA0OlvLZRGSTJJ2HUa7jCMcyxQLt/PBQx4V/BABYGfiY
+yGO45+UBgIaXbaB8TXvhywyna7iuhl4sopx2bu7lqy0Hut5/L8CNhH/7RgZBQYhD
+2HA5L3Ii3g==
+=qp7L
 -----END PGP SIGNATURE-----
 
---mmuav45v5xyeg7x4--
+--bcajdpsxzzkhkmjz--
