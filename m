@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MNntMJ4s6GmYGQIAu9opvQ
+	id OGF6Lbg26GkbHAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 04:04:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 04:47:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E0FD4413CF
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 04:04:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC02C441989
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 04:47:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A0D1B10E21C;
-	Wed, 22 Apr 2026 02:04:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6646810E175;
+	Wed, 22 Apr 2026 02:47:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EVPCIVSo";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SfejpSBM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EED510E1FF;
- Wed, 22 Apr 2026 02:04:11 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 663C410E10F;
+ Wed, 22 Apr 2026 02:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776823451; x=1808359451;
+ t=1776826036; x=1808362036;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=owbnoBgN9t3MgD+RSb6tSpj4KLDuzRv1rAll+x/jScY=;
- b=EVPCIVSo8WSSmymP5XOHRh2oWs5MugEEtcSdl0ggXpmwrhoxqS1cr+No
- f+HT1Hj+WAoAyWYazb//Xrv6IK4M2EJ9b/7ErQgs6TMtAbuy81WOLi4Nb
- UpPMUDOPmPLVgRSUSWThyw41W3Es3He2ybnKCWjsBP4WsLPgjXmYVFPKr
- d8/ISVxKXfjsp4ntu5IH3ljf9pi3SxUV/fG9WGrxhGMTWHctGK3CkRk/1
- LIxmdv8R2B7j0ZcIXZaKPKvBQ73pv3fdq5PwUg7FmB6A91VQkKsTjKdgc
- xXs0as5A50ObV9quTdnaU+e36LKNe6z2c/gE0AY9Rn0bf+tQxlQittXHN w==;
-X-CSE-ConnectionGUID: FJn3MUTpTF6Tk1w/7nuGBA==
-X-CSE-MsgGUID: BYQcMprSTuGLMdyjEdoGXQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="88468953"
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="88468953"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 19:04:11 -0700
-X-CSE-ConnectionGUID: JUEBHMB4SKOBR0KZMpVikA==
-X-CSE-MsgGUID: 35PpWF/yRXWPrs1BFDOQkg==
+ bh=5aedry7362275XmQZCBCL3OEeSud3GzSo5nw39yJn2Q=;
+ b=SfejpSBMpuFAolu93Ngkvg+C9u8p+0RG8oxGXyo2mqATXCeNptWc/GbF
+ FDe5sTNZT4L8trgdBvG2MW9vuKIhb7F5ePQJUaSNVv26x4lU4Ja3tWTIZ
+ f8drNHoRxEQDiLEC7/uJx+S2n6DgYTfugaCA1j6FAgQAgdHjCn5alB7mI
+ y7gzt9FQ4OSGBrG8sndE1S6AIGv0y4YH58nM55tGyv1r7RneNzPjaU1z7
+ +YAFNmbP9tDAp99GjxS2BTnTQxzIcqI/SxlXvpeHklcxsnFCQrr6MzfDe
+ v3OcMtxyZUcRTr7heBshv3StKFd5DRF3c7NQN86UbjrX4UGsuCPThRpzO Q==;
+X-CSE-ConnectionGUID: Wsk7+OALTCSKLLFKk7y52A==
+X-CSE-MsgGUID: wmI7xZ/KR0ml6fH1YczlbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="81638407"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="81638407"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 19:47:15 -0700
+X-CSE-ConnectionGUID: RXJVo8tZRGOZnh6ypnOGQw==
+X-CSE-MsgGUID: RUem36dJT42g7V2PMI5ZKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="270304429"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="255481441"
 Received: from lkp-server01.sh.intel.com (HELO 7e48d0ff8e22) ([10.239.97.150])
- by orviesa001.jf.intel.com with ESMTP; 21 Apr 2026 19:04:09 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 21 Apr 2026 19:47:13 -0700
 Received: from kbuild by 7e48d0ff8e22 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wFMwg-000000004BY-1F5n;
- Wed, 22 Apr 2026 02:04:06 +0000
-Date: Wed, 22 Apr 2026 10:03:31 +0800
+ (envelope-from <lkp@intel.com>) id 1wFNcM-000000004DY-1nXy;
+ Wed, 22 Apr 2026 02:47:10 +0000
+Date: Wed, 22 Apr 2026 10:46:29 +0800
 From: kernel test robot <lkp@intel.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-gfx-trybot@lists.freedesktop.org
-Cc: llvm@lists.linux.dev, oe-kbuild-all@lists.linux.dev,
- ankit.k.nautiyal@intel.com, swati2.sharma@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
+Cc: oe-kbuild-all@lists.linux.dev, ankit.k.nautiyal@intel.com,
+ swati2.sharma@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
 Subject: Re: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-Message-ID: <202604220938.18Kkm7Pt-lkp@intel.com>
+Message-ID: <202604221040.Im5y9Mk0-lkp@intel.com>
 References: <20260417080118.2352283-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -81,17 +80,17 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
@@ -100,7 +99,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: 2E0FD4413CF
+X-Rspamd-Queue-Id: BC02C441989
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
@@ -118,31 +117,32 @@ url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-dp
 base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
 patch link:    https://lore.kernel.org/r/20260417080118.2352283-1-suraj.kandpal%40intel.com
 patch subject: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-config: x86_64-rhel-9.4-rust (https://download.01.org/0day-ci/archive/20260422/202604220938.18Kkm7Pt-lkp@intel.com/config)
-compiler: clang version 20.1.8 (https://github.com/llvm/llvm-project 87f0227cb60147a26a1eeb4fb06e3b505e9c7261)
-rustc: rustc 1.88.0 (6b00bc388 2025-06-23)
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260422/202604220938.18Kkm7Pt-lkp@intel.com/reproduce)
+config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20260422/202604221040.Im5y9Mk0-lkp@intel.com/config)
+compiler: hppa-linux-gcc (GCC) 15.2.0
+reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260422/202604221040.Im5y9Mk0-lkp@intel.com/reproduce)
 
 If you fix the issue in a separate patch/commit (i.e. not just a new version of
 the same patch/commit), kindly add following tags
 | Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202604220938.18Kkm7Pt-lkp@intel.com/
+| Closes: https://lore.kernel.org/oe-kbuild-all/202604221040.Im5y9Mk0-lkp@intel.com/
 
 All errors (new ones prefixed by >>):
 
->> drivers/gpu/drm/i915/display/intel_dp.c:6834:62: error: too few arguments provided to function-like macro invocation
+   drivers/gpu/drm/i915/display/intel_dp.c: In function 'intel_dp_hpd_pulse':
+>> drivers/gpu/drm/i915/display/intel_dp.c:6834:76: error: macro 'drm_dbg_kms' requires 3 arguments, but only 1 given
     6834 |                 drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
          |                                                                            ^
+   In file included from drivers/gpu/drm/i915/display/intel_dp.c:50:
    include/drm/drm_print.h:652:9: note: macro 'drm_dbg_kms' defined here
      652 | #define drm_dbg_kms(drm, fmt, ...)                                      \
-         |         ^
->> drivers/gpu/drm/i915/display/intel_dp.c:6834:3: error: use of undeclared identifier 'drm_dbg_kms'
+         |         ^~~~~~~~~~~
+>> drivers/gpu/drm/i915/display/intel_dp.c:6834:17: error: 'drm_dbg_kms' undeclared (first use in this function)
     6834 |                 drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
-         |                 ^
-   2 errors generated.
+         |                 ^~~~~~~~~~~
+   drivers/gpu/drm/i915/display/intel_dp.c:6834:17: note: each undeclared identifier is reported only once for each function it appears in
 
 
-vim +6834 drivers/gpu/drm/i915/display/intel_dp.c
+vim +/drm_dbg_kms +6834 drivers/gpu/drm/i915/display/intel_dp.c
 
   6825	
   6826	enum irqreturn
