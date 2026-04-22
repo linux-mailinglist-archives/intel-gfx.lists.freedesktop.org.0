@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oTJLOLH26GkgSQIAu9opvQ
+	id EFI1Mbj26GkgSQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:25 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AEEE64489C3
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 611F14489D8
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D78910EEA2;
-	Wed, 22 Apr 2026 16:26:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8095B10EEA6;
+	Wed, 22 Apr 2026 16:26:30 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GpxXug3p";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MZJaF1sR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D37E10EEA2;
- Wed, 22 Apr 2026 16:26:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 55F3B10EEA3;
+ Wed, 22 Apr 2026 16:26:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776875183; x=1808411183;
+ t=1776875185; x=1808411185;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=dqapS9Oae6yPdFEYG9vTni2jGsYUnFHBJHiYkEDHrMs=;
- b=GpxXug3p+pZNtycs11TwLpIJAOWMbILvezckFF4Q21qOBstOTMsdAKWX
- VH4n1sex+yx+zFhxVAFcmVJsTUg8zX5Q0IwjQcKWaJ4wNarb331AkVEIP
- RI6cBiUkh49MfRKE6N+zsofKOq9jetKm73UmfNDBhWeG5F6XMipzJwX5o
- hpsmdXWAkO0PbC45lrXaSzGG8DOsQxvE3+Qq4ODKcXSO+PqR9zI40vc9a
- NHdREeuMeeQdhF91nHidknyU+zcbBaN9ECIQgR2JW/kYiyMI5O+SLfdcH
- 5YBptRFyyr4Z5twLQLCDjKLiMbsr9hxKzpSo1LGMrnk2fiCA+XlfGg+VZ w==;
-X-CSE-ConnectionGUID: rST/2zrtQvi+9XcFVNO+1w==
-X-CSE-MsgGUID: 8k3WWdsFQHq3wq/4R8ou7w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="95247618"
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="95247618"
+ bh=KDSJa5LM5xiyt0LRrCj14jVjoMxCZnWtIqRZiVd1CqY=;
+ b=MZJaF1sRxlnXyiLI9DmBgGb0HPDoUwHQ3NU5G2XQoWEcsjNkw1T9Fkyo
+ MEAcD1QX0eyyv01JEMw1c4c90L5zNbrup8GDr6Qw8Xc1MN8OMkSR7oTjp
+ M6STCeNeE21c9TfXUfZ5BMs+CcFOJx4g3gMxbT5HdlK0TM/qEOhW27LJl
+ 4qVdXvDLMHMJNh019IntXWO0VsIBg1aEJH1ZhRYn3VE+bVkyB4+ymRNFU
+ J+n5ExPn7cGbPG3m6csmXWtu29xK6tBxIG0jTWtfm8EhRU5AFeAB/6cAJ
+ HWq1aPjot7+XtS68DfGN5OmAi5YnZ4wwNbSZ8Fd6cCHAbmQPBKHX3+md4 g==;
+X-CSE-ConnectionGUID: LnruElOsRxOrkWAHYHRirw==
+X-CSE-MsgGUID: e1KGtqI9TWO0cw1Gk8ksNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="95247619"
+X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="95247619"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 09:26:23 -0700
-X-CSE-ConnectionGUID: XdFTk1YmQ9SuUSZkYITV8w==
-X-CSE-MsgGUID: U8UqlO9FRPeTmpip50PyGA==
+ 22 Apr 2026 09:26:25 -0700
+X-CSE-ConnectionGUID: 9z73dCd8QSS+5CeiCGI1aw==
+X-CSE-MsgGUID: PQ5tAILJSG66hGtKraXM4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="227816188"
+X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="227816198"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 09:26:21 -0700
+ 22 Apr 2026 09:26:23 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com,
  suresh.kumar.kurmi@intel.com
-Subject: [PATCH v2 10/13] drm/i915/display: Enable DC3CO idle protocol in ALPM
-Date: Wed, 22 Apr 2026 21:56:18 +0530
-Message-ID: <20260422162622.1869831-11-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v2 11/13] drm/i915/display: PSR Add delayed work to exit DC3CO
+Date: Wed, 22 Apr 2026 21:56:19 +0530
+Message-ID: <20260422162622.1869831-12-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260422162622.1869831-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260422162622.1869831-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -98,55 +98,141 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: AEEE64489C3
+X-Rspamd-Queue-Id: 611F14489D8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL bit definition and set it
-when DC3CO is allowed.
+For DC3CO, idle_frames is programmed to 0, so PSR does not
+enter deep sleep. Add delayed work to schedule DC3CO exit
+after an idle duration derived from frame time (minimum
+equivalent of 6 frames).
+
+The work is re-armed from the PSR flush path on relevant frontbuffer
+activity. Once the display remains idle, DC3CO is disabled, idle frames
+are reprogrammed to their normal value, and DC6 is enabled to allow
+deeper power savings.
 
 Changes in v2:
-- Squash "Define DC3CO idle protocol bit in PR_ALPM_CTL"
+- Squash "PSR set idle frames while exit from DC3CO"
   into this patch (Uma Shankar)
-- Use intel_display_power_dc3co_allowed(display)
-  instead of intel_dc3co_allowed(state)
+- Add cancel_delayed_work() in intel_psr_disable_locked()
+  before clearing dc3co_eligible (Uma Shankar)
 
-BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_alpm.c     | 6 ++++++
- drivers/gpu/drm/i915/display/intel_psr_regs.h | 1 +
- 2 files changed, 7 insertions(+)
+ .../drm/i915/display/intel_display_types.h    |  2 +
+ drivers/gpu/drm/i915/display/intel_psr.c      | 50 +++++++++++++++++++
+ 2 files changed, 52 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
-index a7350ce8e716..6394d1568b54 100644
---- a/drivers/gpu/drm/i915/display/intel_alpm.c
-+++ b/drivers/gpu/drm/i915/display/intel_alpm.c
-@@ -389,6 +389,12 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
- 			if (crtc_state->disable_as_sdp_when_pr_active)
- 				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index 28ab686b702a..fb5c12bb5b5c 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1771,6 +1771,8 @@ struct intel_psr {
+ 	bool irq_aux_error;
+ 	/* DC3CO eligibility used to control PSR configuration */
+ 	bool dc3co_eligible;
++	/* DC3CO disable work */
++	struct delayed_work dc3co_work;
+ 	u16 su_w_granularity;
+ 	u16 su_y_granularity;
+ 	bool source_panel_replay_support;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index ff9ce7d2a5aa..36180206d3ad 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1728,6 +1728,51 @@ static bool intel_psr_needs_wa_18037818876(struct intel_dp *intel_dp,
+ 		!crtc_state->has_sel_update);
+ }
  
-+			if (intel_display_power_dc3co_allowed(display) &&
-+			    intel_display_power_dc3co_supported(display))
-+				pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
-+			else
-+				pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++static void psr2_dc3co_disable_locked(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
 +
- 			intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder),
- 				       pr_alpm_ctl);
- 		}
-diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-index 8afbf5a38335..16a9e3af198d 100644
---- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
-@@ -268,6 +268,7 @@
++	if (intel_dp->psr.dc3co_eligible) {
++		intel_dp->psr.dc3co_eligible = false;
++		intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
++		psr2_program_idle_frames(intel_dp, psr_compute_idle_frames(intel_dp));
++	}
++}
++
++static void psr2_dc3co_disable_work(struct work_struct *work)
++{
++	struct intel_dp *intel_dp =
++		container_of(work, typeof(*intel_dp), psr.dc3co_work.work);
++
++	mutex_lock(&intel_dp->psr.lock);
++	psr2_dc3co_disable_locked(intel_dp);
++	mutex_unlock(&intel_dp->psr.lock);
++}
++
++static void
++psr2_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
++			enum fb_op_origin origin)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++
++	if (!intel_dp->psr.dc3co_eligible)
++		return;
++
++	if (!intel_dp->psr.sel_update_enabled ||
++	    !intel_dp->psr.active)
++		return;
++	/*
++	 * At every frontbuffer flush flip event modified delay of delayed work,
++	 * when delayed work schedules that means display has been idle.
++	 */
++	if (!(frontbuffer_bits &
++	    INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe)))
++		return;
++
++	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
++			 intel_dp->psr.dc3co_exit_delay);
++}
++
+ static
+ void intel_psr_set_non_psr_pipes(struct intel_dp *intel_dp,
+ 				 struct intel_crtc_state *crtc_state)
+@@ -2264,6 +2309,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
+ 	intel_dp->psr.active_non_psr_pipes = 0;
+ 	intel_dp->psr.pkg_c_latency_used = 0;
++	cancel_delayed_work(&intel_dp->psr.dc3co_work);
+ 	intel_dp->psr.dc3co_eligible = false;
+ }
  
- #define _PR_ALPM_CTL_A	0x60948
- #define PR_ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _PR_ALPM_CTL_A)
-+#define  PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL			BIT(7)
- #define  PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU	BIT(6)
- #define  PR_ALPM_CTL_RFB_UPDATE_CONTROL				BIT(5)
- #define  PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE	BIT(4)
+@@ -2294,6 +2340,7 @@ void intel_psr_disable(struct intel_dp *intel_dp,
+ 
+ 	mutex_unlock(&intel_dp->psr.lock);
+ 	cancel_work_sync(&intel_dp->psr.work);
++	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
+ }
+ 
+ /**
+@@ -2324,6 +2371,7 @@ void intel_psr_pause(struct intel_dp *intel_dp)
+ 	mutex_unlock(&psr->lock);
+ 
+ 	cancel_work_sync(&psr->work);
++	cancel_delayed_work_sync(&psr->dc3co_work);
+ }
+ 
+ /**
+@@ -3558,6 +3606,7 @@ void intel_psr_flush(struct intel_display *display,
+ 		if (origin == ORIGIN_FLIP ||
+ 		    (origin == ORIGIN_CURSOR_UPDATE &&
+ 		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
++			psr2_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
+ 			goto unlock;
+ 		}
+ 
+@@ -3616,6 +3665,7 @@ void intel_psr_init(struct intel_dp *intel_dp)
+ 		intel_dp->psr.link_standby = connector->panel.vbt.psr.full_link;
+ 
+ 	INIT_WORK(&intel_dp->psr.work, intel_psr_work);
++	INIT_DELAYED_WORK(&intel_dp->psr.dc3co_work, psr2_dc3co_disable_work);
+ 	mutex_init(&intel_dp->psr.lock);
+ }
+ 
 -- 
 2.43.0
 
