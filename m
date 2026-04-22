@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qLkZKqX26Gl3SAIAu9opvQ
+	id mM4+N6T26Gl3SAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57BA3448991
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96F0A44898A
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 18:26:12 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5EBF810EA63;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFAF10EA2C;
 	Wed, 22 Apr 2026 16:26:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P5r5BLhS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JwU9g2ah";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D645710EA2C;
- Wed, 22 Apr 2026 16:26:07 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BFAB010EA63;
+ Wed, 22 Apr 2026 16:26:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776875168; x=1808411168;
+ t=1776875170; x=1808411170;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xuTpxP6/qQZ9U91AQtcLeeVNOEcvSU9qscjcGQrTWRE=;
- b=P5r5BLhSAa8k+mRZLBNqSMGr4AcVWL6W7n3ID9MtqgHllr/jzQM3VFE3
- L4LkG4xnc//bMWLxBxedLqztHIIVehYlpdyEvNcbINzbmyIp3XCm+JgH2
- G32QRje+lRNMt0VIK05AfcaK1cQLJmazqcgXdIYG0ZFRh17pIHbQd1f1u
- bsn1oRYSueuj2C6Stuvf/6RpvK25DYn1RQlFs6UGDdFiRPw6dJ9h+uTcR
- uhoYq7tSo3ZVqAj7dGh1TeoZsqVVESTfzemekBIVs1qd/Q/f3VKaGucsY
- k5SukwvcCyf/ONHOodwc/HbhgVt/2L5FLgutU6dD/MLjsASEnX1RegNpu w==;
-X-CSE-ConnectionGUID: lG/uD6WuQcS6rk7hoGk/2A==
-X-CSE-MsgGUID: SsZequr6R7S4nlkemQ1Csg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="95247594"
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="95247594"
+ bh=4xy7xAm49WeyIyJEYUpdUJRsq/iBBUt3fwWNXFHuZn0=;
+ b=JwU9g2ahMdM7ZzNSvTh33rx6x8ia91qqhyn4r1h9nh/B9T9E1URuHy0K
+ o/QB1byF920rRd/olA2m5bb47R2kogf0IuBmsrHn5nJOg7WgUEvveHQlI
+ TY71wqalHZ6d8gsdB4ldAPMCuMShQyLWV48SRzUC3VtmbeR3CECC+pQk8
+ txo596mNReXgqf/PuFzgLtqxWqsbX2iOLCBs7vUyo/3IehpusVgBr5ilF
+ GmGlq2daFHw5H4lYbjsCKhHy3acdAmidQZdH/hqc60+mP9LeqwvhVtOQI
+ 6DbI9xVnSPdNDlDdJmW7sbMyIx7km7UsoFqJIvLrXQTW8A6uas50muCQt A==;
+X-CSE-ConnectionGUID: qtO9ar7uQAOCl04u5w2IWA==
+X-CSE-MsgGUID: +gIrATSvTBC2wGOnCuEmKA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="95247595"
+X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="95247595"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 09:26:08 -0700
-X-CSE-ConnectionGUID: guLeTZK3T7yxTRaN/Wkxuw==
-X-CSE-MsgGUID: wx9kRWFpQN+kVfsZenYtLg==
+ 22 Apr 2026 09:26:10 -0700
+X-CSE-ConnectionGUID: lgXDU6bHRgKgWHQl6zyKdg==
+X-CSE-MsgGUID: vZ9Xf/+qRT2HGT0YwhTaZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="227816105"
+X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="227816123"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 09:26:06 -0700
+ 22 Apr 2026 09:26:08 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com,
  suresh.kumar.kurmi@intel.com
-Subject: [PATCH v2 02/13] drm/i915/display: Switch DC3Co enable from
- standalone bit to DC level encoding
-Date: Wed, 22 Apr 2026 21:56:10 +0530
-Message-ID: <20260422162622.1869831-3-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v2 03/13] drm/i915/display: Use FIELD_PREP() for DC state
+ enable bits
+Date: Wed, 22 Apr 2026 21:56:11 +0530
+Message-ID: <20260422162622.1869831-4-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260422162622.1869831-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260422162622.1869831-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -99,108 +99,41 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
-X-Rspamd-Queue-Id: 57BA3448991
+X-Rspamd-Queue-Id: 96F0A44898A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On platforms prior to xe3, DC3CO was controlled via a standalone enable
-bit. Starting with xe3, DC3CO is encoded as part of the existing
-DC_STATE_EN_UPTO_DC* field.
+Replace open-coded shifts with REG_GENMASK() and REG_FIELD_PREP()
+for the DC state enable field.
 
-No functional change, as DC3CO is not enabled on platforms prior to xe3.
-
-Changes in v2:
-- Update commit header (Uma Shankar)
-
+Suggested-by: Jani Nikula <jani.nikula@linux.intel.com>
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c      | 6 +++---
- drivers/gpu/drm/i915/display/intel_display_power_well.c | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_regs.h       | 2 +-
- drivers/gpu/drm/i915/display/intel_dmc_wl.c             | 2 +-
- 4 files changed, 7 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_regs.h | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 80ecf373fb19..77c32492caa1 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -267,7 +267,7 @@ sanitize_target_dc_state(struct intel_display *display,
- 	static const u32 states[] = {
- 		DC_STATE_EN_UPTO_DC6,
- 		DC_STATE_EN_UPTO_DC5,
--		DC_STATE_EN_DC3CO,
-+		DC_STATE_EN_UPTO_DC3CO,
- 		DC_STATE_DISABLE,
- 	};
- 	int i;
-@@ -999,10 +999,10 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
- 
- 	switch (requested_dc) {
- 	case 4:
--		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC6;
-+		mask |= DC_STATE_EN_UPTO_DC3CO | DC_STATE_EN_UPTO_DC6;
- 		break;
- 	case 3:
--		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC5;
-+		mask |= DC_STATE_EN_UPTO_DC3CO | DC_STATE_EN_UPTO_DC5;
- 		break;
- 	case 2:
- 		mask |= DC_STATE_EN_UPTO_DC6;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index a7c5290edec1..b5e6437c3d8d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -772,7 +772,7 @@ static u32 gen9_dc_mask(struct intel_display *display)
- 	mask = DC_STATE_EN_UPTO_DC5;
- 
- 	if (DISPLAY_VER(display) >= 12)
--		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC6
-+		mask |= DC_STATE_EN_UPTO_DC3CO | DC_STATE_EN_UPTO_DC6
- 					  | DC_STATE_EN_DC9;
- 	else if (DISPLAY_VER(display) == 11)
- 		mask |= DC_STATE_EN_UPTO_DC6 | DC_STATE_EN_DC9;
-@@ -1022,7 +1022,7 @@ static void bxt_verify_dpio_phy_power_wells(struct intel_display *display)
- static bool gen9_dc_off_power_well_enabled(struct intel_display *display,
- 					   struct i915_power_well *power_well)
- {
--	return ((intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_DC3CO) == 0 &&
-+	return ((intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_UPTO_DC3CO) == 0 &&
- 		(intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0);
- }
- 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index dada8dc27ea4..2ad211da9157 100644
+index 2ad211da9157..fa56cc506e3f 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -3039,13 +3039,13 @@ enum skl_power_gate {
- /* GEN9 DC */
- #define DC_STATE_EN			_MMIO(0x45504)
- #define  DC_STATE_DISABLE		0
--#define  DC_STATE_EN_DC3CO		REG_BIT(30)
+@@ -3042,11 +3042,12 @@ enum skl_power_gate {
  #define  DC_STATE_DC3CO_STATUS		REG_BIT(29)
  #define  HOLD_PHY_CLKREQ_PG1_LATCH	REG_BIT(21)
  #define  HOLD_PHY_PG1_LATCH		REG_BIT(20)
- #define  DC_STATE_EN_UPTO_DC5		(1 << 0)
+-#define  DC_STATE_EN_UPTO_DC5		(1 << 0)
  #define  DC_STATE_EN_DC9		(1 << 3)
- #define  DC_STATE_EN_UPTO_DC6		(2 << 0)
-+#define  DC_STATE_EN_UPTO_DC3CO		(3 << 0)
- #define  DC_STATE_EN_UPTO_DC5_DC6_MASK   0x3
+-#define  DC_STATE_EN_UPTO_DC6		(2 << 0)
+-#define  DC_STATE_EN_UPTO_DC3CO		(3 << 0)
+-#define  DC_STATE_EN_UPTO_DC5_DC6_MASK   0x3
++#define  DC_STATE_EN_UPTO_DC5_DC6_MASK   REG_GENMASK(1, 0)
++#define  DC_STATE_EN_DISABLE		REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 0)
++#define  DC_STATE_EN_UPTO_DC5		REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 1)
++#define  DC_STATE_EN_UPTO_DC6		REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 2)
++#define  DC_STATE_EN_UPTO_DC3CO	REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 3)
  
  #define  DC_STATE_DEBUG                  _MMIO(0x45520)
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-index ddf1a1f1ebc3..13192531cd49 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
-@@ -260,7 +260,7 @@ static bool intel_dmc_wl_check_range(struct intel_display *display,
- 	 * the DMC and requires a DC exit for proper access.
- 	 */
- 	switch (dc_state) {
--	case DC_STATE_EN_DC3CO:
-+	case DC_STATE_EN_UPTO_DC3CO:
- 		ranges = xe3lpd_dc3co_dmc_ranges;
- 		break;
- 	case DC_STATE_EN_UPTO_DC5:
+ #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
 -- 
 2.43.0
 
