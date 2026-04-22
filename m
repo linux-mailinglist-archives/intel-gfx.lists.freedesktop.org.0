@@ -2,65 +2,163 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OGF6Lbg26GkbHAIAu9opvQ
+	id gGZ0MQxM6GlaIgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 04:47:20 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 06:18:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC02C441989
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 04:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 226BC441F4F
+	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 06:18:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6646810E175;
-	Wed, 22 Apr 2026 02:47:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D75C710E267;
+	Wed, 22 Apr 2026 04:18:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SfejpSBM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YcDhpoSU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 663C410E10F;
- Wed, 22 Apr 2026 02:47:15 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7C4410E261;
+ Wed, 22 Apr 2026 04:18:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776826036; x=1808362036;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=5aedry7362275XmQZCBCL3OEeSud3GzSo5nw39yJn2Q=;
- b=SfejpSBMpuFAolu93Ngkvg+C9u8p+0RG8oxGXyo2mqATXCeNptWc/GbF
- FDe5sTNZT4L8trgdBvG2MW9vuKIhb7F5ePQJUaSNVv26x4lU4Ja3tWTIZ
- f8drNHoRxEQDiLEC7/uJx+S2n6DgYTfugaCA1j6FAgQAgdHjCn5alB7mI
- y7gzt9FQ4OSGBrG8sndE1S6AIGv0y4YH58nM55tGyv1r7RneNzPjaU1z7
- +YAFNmbP9tDAp99GjxS2BTnTQxzIcqI/SxlXvpeHklcxsnFCQrr6MzfDe
- v3OcMtxyZUcRTr7heBshv3StKFd5DRF3c7NQN86UbjrX4UGsuCPThRpzO Q==;
-X-CSE-ConnectionGUID: Wsk7+OALTCSKLLFKk7y52A==
-X-CSE-MsgGUID: wmI7xZ/KR0ml6fH1YczlbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="81638407"
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="81638407"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 Apr 2026 19:47:15 -0700
-X-CSE-ConnectionGUID: RXJVo8tZRGOZnh6ypnOGQw==
-X-CSE-MsgGUID: RUem36dJT42g7V2PMI5ZKQ==
+ t=1776831496; x=1808367496;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=YGmW+QdFBa2Dn8DB8ipIRq2t7CRJsKs2oq5Z7vJlNEc=;
+ b=YcDhpoSUabV8TkBFTgGrqIlqSFRqvjkaaU2gFJsxrN2Qv9sFeGBT+I8O
+ UG1x6I5IPenio34JhbBmq3CEaCe9VTOS3Lpv5KxIUxp+TiU1x+TIKDiuX
+ gq5K7igT1ldWgZ1ntVVeOjsqYHAU6l5Yil/uf3L3xFqviO3NSNvSOJgm7
+ tnq0BegITTjR8g+WbgmzzVtJCH3HK6UrVOsZ/116ET6ckzsFQd61Jpn20
+ 8RRjNK76JRcdmdrjx20waDJVRcoIaH6FN3bC7nMfnerdF7jYVh0u6LDAQ
+ aYPYfyz3a1AdTUritmWtQ7Bo3lOuU2XzyrDMNACibauEAc+02zIJxWzE6 g==;
+X-CSE-ConnectionGUID: Z2l9MNb9TQC3hlveKoGdnQ==
+X-CSE-MsgGUID: Hv3kRUK0RSiq5nHAX+Jz2A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11763"; a="88079928"
+X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="88079928"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 21:18:15 -0700
+X-CSE-ConnectionGUID: UyL6WhgrQGecGMb5FuhvBg==
+X-CSE-MsgGUID: 8NJziSdnRQGELylW0A5RLw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,192,1770624000"; d="scan'208";a="255481441"
-Received: from lkp-server01.sh.intel.com (HELO 7e48d0ff8e22) ([10.239.97.150])
- by fmviesa002.fm.intel.com with ESMTP; 21 Apr 2026 19:47:13 -0700
-Received: from kbuild by 7e48d0ff8e22 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wFNcM-000000004DY-1nXy;
- Wed, 22 Apr 2026 02:47:10 +0000
-Date: Wed, 22 Apr 2026 10:46:29 +0800
-From: kernel test robot <lkp@intel.com>
-To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-gfx-trybot@lists.freedesktop.org
-Cc: oe-kbuild-all@lists.linux.dev, ankit.k.nautiyal@intel.com,
- swati2.sharma@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Re: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-Message-ID: <202604221040.Im5y9Mk0-lkp@intel.com>
-References: <20260417080118.2352283-1-suraj.kandpal@intel.com>
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 Apr 2026 21:18:15 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 21 Apr 2026 21:18:14 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 21 Apr 2026 21:18:14 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.11) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 21 Apr 2026 21:18:12 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=l5eUAulnNlACsUZMIgsb+qZ4YP8ni10BLf5Aiz1LhW/fmYA6juVjS1n+y/zxqEBt01yDV3OtNZTurmFwzuE66pp8g21ywQrcFonnfWxMcDP4YUGS2cvEPkq6/1RMAlBg/IHbAP/JYDYklfMWdGlqhDZO30t+6zcNwRbquND6RFHvVHiFU4/STvgG8upRID0WbumULtai31Nj4yPGvCYGw+u5mHXoAENumhOt5P+eS3VjGmTDVjZu69FJlxay+Pw7upV1rwBm8wwbVcShaZikAT9GZPt/zqRisOJkp4atmp9/yY1xnMt7L3qSxJ3QX4DlDvG56EgI9V2NhnHAkGBqPw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=ND7Pt2ySFNyP8oT+QH7ZbGSNywMHXtCi8iVxXC5qcsM=;
+ b=NchGiDZ3JVSmhxZw1C2pwtvti5FFxrsivKPslANkF6is3bK136ELpPoWAqciI3h+/0f6UPKjo/UPWvflt44Ff1pRYaomjFYh8s6T2qVZG05+i91kupk4yF11Q7V5x68DeXUOYy9PUp9baDoWvIdnA1XmD61GDXEiglbCS27RWy5tfzeLeXwQfv+YWvzSzrZkZh/AF0uQ0C8I9NXjii5jhg3PkbE2rt0GWXMC5H9eJp8QRM/r2XdIR5zpcgCmgbpI7zM2xA6cwRoZ24VgMJR41QLiIUsxh0SN1qAoL9XyUan5l6/D2N/zsqn9f59w2w65Dtmuo+GeqeY62p0WVHT0pQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB8252.namprd11.prod.outlook.com (2603:10b6:510:1aa::14)
+ by MN2PR11MB4519.namprd11.prod.outlook.com (2603:10b6:208:26c::7)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.20; Wed, 22 Apr
+ 2026 04:18:07 +0000
+Received: from PH7PR11MB8252.namprd11.prod.outlook.com
+ ([fe80::9f66:9d6f:3199:78b2]) by PH7PR11MB8252.namprd11.prod.outlook.com
+ ([fe80::9f66:9d6f:3199:78b2%4]) with mapi id 15.20.9846.014; Wed, 22 Apr 2026
+ 04:18:07 +0000
+From: "Srinivas, Vidya" <vidya.srinivas@intel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Shankar,
+ Uma" <uma.shankar@intel.com>, "Nautiyal, Ankit K"
+ <ankit.k.nautiyal@intel.com>, "seanpaul@google.com" <seanpaul@google.com>,
+ "Navare, Manasi" <navaremanasi@google.com>, "Lee, Shawn C"
+ <shawn.c.lee@intel.com>
+Subject: RE: [PATCH] [RFC]: drm/i915/display: Fix vblank timestamps for fixed
+ RR on VRR-TG-always platforms
+Thread-Topic: [PATCH] [RFC]: drm/i915/display: Fix vblank timestamps for fixed
+ RR on VRR-TG-always platforms
+Thread-Index: AQHczoDg7/LPzqfW70C0V4gmT0U14bXqgMnA
+Date: Wed, 22 Apr 2026 04:18:07 +0000
+Message-ID: <PH7PR11MB8252DF9ADFBB1017ACE66C6F892D2@PH7PR11MB8252.namprd11.prod.outlook.com>
+References: <20260417124439.206962-1-vidya.srinivas@intel.com>
+ <aeJU9ubmOwiukGuG@intel.com>
+In-Reply-To: <aeJU9ubmOwiukGuG@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: PH7PR11MB8252:EE_|MN2PR11MB4519:EE_
+x-ms-office365-filtering-correlation-id: bcb4afaa-a363-4b73-48cb-08dea02627f0
+x-ld-processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|22082099003|18002099003|56012099003|38070700021;
+x-microsoft-antispam-message-info: j/ufMSlnl8Eex/ia3tQY0pCdf7OR0izJw8jKq1FnFOW/10oOXbYC4oAk/HkuoMe9y9biuUvdguoSy1HZwaswJLuY70QsGljFIxaf4itex6POndDc2YGlZ1m55z0CnTBUb4MgXSIROoN2y2tqIfx6MmV/LBiJ4kACs75x7bi3C+uCxV9FxWzrk1S11wu3TkB3ZWQ1CSM6WHTJoSwTelledvIjqKDEHFgLlBPGsrJxJu10jWso6JXJcj8oqYCdM0/TQld53lPzLoMVWNY1maj4Z4Rtm3SwRFpeqhsE6IJr775hk2aSMERBpKKUzcBZY2qk9ApYTqKfG7Uad4dKMFJ/i7Temi+92EH1X59FvJUeUIQ0qP0l/2DX93vaV4SlGSB5hmYufCBdqgTM0WhXMNBCDgF01DAuBXX7A/hQywG8R/CVltzqBv66dCzWl0nD5RcBe5hidVnDpTA4+ZvmhSuf2QXpYVJj8/2YZEvzCfD6Q+aaXfRyPzcvKN6hK/GItSL/fYQwKQZp3z9qUZAY0Qg3/qoegEmE2pxerHY0D/Knt8XCNXxQODPG/JBAGZkK4meW6f0uI3Y5btDPaUsrhgeLSDHubIX66mmG4V1hHPgkhMbPqr8IaMX+5xmusfs5lApvYhOV572S1+cnsfijNR7jPIazFkJkELCCPcTMloQCyxPYCNEcNWIZvox+zmg3mFbaPoqDQBBRtQ4eG8+urWiIhRj6zI7qh5Si/mh++Bj7j6WIufhUZ2GO8agJIFX2LNkRBV4D3ojyrv8CbCGiaHQq60FaEjmtlsUjzCBhWAkIDTA=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB8252.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(22082099003)(18002099003)(56012099003)(38070700021);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?c5abVkzOAKs+frqwYXSkAl5ETQ6mxpdBGSFiHRGYgLDGO/BGRfMpw/Dmpw?=
+ =?iso-8859-1?Q?85vAzpVErycjD/t6FStHtuX7Vwr71WtkAkNb4BqQ0lkszh8x3zIj48U5Rt?=
+ =?iso-8859-1?Q?40FeZPpXj74tTMc3g9Kj0rcd0xTUp+pG623HpbWX1qHxrn7yo51yYz9b7f?=
+ =?iso-8859-1?Q?6z5SulHXmLX3ecx2un1xE6p76W/cQMyENsUL0UG0X7RucNEKvjhyRK/d31?=
+ =?iso-8859-1?Q?bkigL88Ib2rhNllNEvSkypz2nBFcK7NOQvrRVEK0Ut40co1wR7YoErMQDk?=
+ =?iso-8859-1?Q?ciS9FFvAQztlw2RMWN52wxAGCJpqXqXqoudfxv4oMmGTsZgPAjWqbIjJ0b?=
+ =?iso-8859-1?Q?CxEzhQi24jOsGxQgiGZOezis/EGtXg2b/M1Ulrt5Lp20mK9mO8Dn5QmTMc?=
+ =?iso-8859-1?Q?Sh5pFTkakMRVnYokKgpxl98+EmwXSrpEXMk4VKS/tdfqq414TMC150WGs8?=
+ =?iso-8859-1?Q?Jy5TawpwUsACh9TKsfWJi/HMzpRQ//5rr6dETLNuPaXAqocEJO/357p7xZ?=
+ =?iso-8859-1?Q?2SgpT27aHZaCzXFrvMKo8EQiQqKcQVcBUXmg5n0nbjTeaI7/C8Sk2R1nzA?=
+ =?iso-8859-1?Q?4NVjEx9DiR78MZ7Uqr5oif5Wd65i5YSHZpQSnpviHqeJYwkvM/AELWNI+4?=
+ =?iso-8859-1?Q?mT2jJNBFAC1stenk8zpEkiW/IzDobQPDgm34fB6OWuB+9PYFJQ7QFnIodj?=
+ =?iso-8859-1?Q?eTZXrSnE4nqr3dMNhAritNET5SzXh9jLHb9Wi4zUjrUg0ggUT6QROLFXbJ?=
+ =?iso-8859-1?Q?jAMsHIxDczuczSo33w3ePVgsd9p9bCz2L3vMjPFrziiSjEe4QndOqvVnAt?=
+ =?iso-8859-1?Q?IdiNgmOC7ljxp6bwjvh9fGkSzafL9CdioS3dwhFhHNvCgyzvGi3XXEGLaX?=
+ =?iso-8859-1?Q?rc4bsaOqYz1xnlPvDhsxRfRJmlHg3fPvnkAoWz6jAHa7GBG500pptcZdlK?=
+ =?iso-8859-1?Q?xyPYi7pluITOoeCLKL3gJ5YS/VisWJU9t3OZ+D7gWWBHHo2fX11SWI32TT?=
+ =?iso-8859-1?Q?8pP++tT+BO/zCLXFbmnnVMesOC5ZnHdG9YqdNpGkmLCxg2FSoixx10vpmV?=
+ =?iso-8859-1?Q?TPy2Tpm6FBF9oCJ1ZrZbtMeoEl72A4nkiM8eYRLSeChaThe2uljd4qc9i7?=
+ =?iso-8859-1?Q?Xvnafbn3mx47kcm/LuvMdy8eUkWyf6WEnyOMkgPQn3AORnTK8TVYBu0Pyb?=
+ =?iso-8859-1?Q?gNwU+zu3RxeG3HZQNegVWZSO0RqCova6sgQusq2NKowKfA/1Bf4qO+7oCt?=
+ =?iso-8859-1?Q?+n92X+y7F+GHaIYMAeHU1ndL0wbbClz1lsAEbhbf1oFATPo+PQU4+7NJeE?=
+ =?iso-8859-1?Q?p+KiOn7iit3fMCNIZLKe8y9wDyAhJ6S16PtmNQgevnpJKYuuToih0PmI5H?=
+ =?iso-8859-1?Q?/tx7xPxd0q6s37PbMJgIFgP9eW8EzvpFpjcilhNlETO1BzeHO4fvC3nKPC?=
+ =?iso-8859-1?Q?Fp9XQ1Xq3IDIU92PYsBeWjU1mk+dEz47LKW2obwxJohHqsw46+kZe18CN6?=
+ =?iso-8859-1?Q?nFr7BrUoRn9NYz7terBOV+MG7kInxa0i5zKRCPU5XTV93Np2Cwfyqptket?=
+ =?iso-8859-1?Q?pY7vO3DZnbua3TgkyYTsBAw3iXif4hL0e76Zm40qWAnlL7kA4MnIAGU6dq?=
+ =?iso-8859-1?Q?KRxgI2XXqw/pODVMCvg4v4Z6cOUy7CoJ8bBhDsUPxdUvOJrZXdDcqonB6R?=
+ =?iso-8859-1?Q?K3clE9GQqVFDjVIi5yR6KQYprbok3VJbWeg5EfMiJxFskLR1Yz9mNHVXLC?=
+ =?iso-8859-1?Q?pXvmLo8twKJRAv4ICpXk2/HZmLfQxID98pSHFe6AIKmmaeXAF+G9Y9B7pr?=
+ =?iso-8859-1?Q?NSnP30WBxw=3D=3D?=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260417080118.2352283-1-suraj.kandpal@intel.com>
+X-Exchange-RoutingPolicyChecked: ZWCPjVEQ+owsUhexkAfVU2bqdsmUg79hrybHuxysnCpqzlZ2mfiM728gSXQAbr7hcrRkBTz9Jo5H69kiE3h9hvjp/XRC56h3ANG/5ySszClCUMPQbR+B7M3PphMgcWhNcae5pFE0bZ+UTwnnh5ZxiDhulhivA9MOIUvti1RX4jUqQKHW4bxcpnLncqUt07fhteJbyRumAg7raQdDOwNiKabCBNHRDIXwMTTC8I/vdzIRO85upMnNwgYio6UP8uBKNj9e07SyldxldOaXHxPx7OP3WmoA+PPNn1yYHLjKAZJZE+2LmbbnASnS8h6YJGBf7zItFHGlJwMTn4LgbYY5Xw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB8252.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: bcb4afaa-a363-4b73-48cb-08dea02627f0
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Apr 2026 04:18:07.2141 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: d2o4YmzH0XZfAfljv5wxF7/LK0Urui+hj+XYUYqhRysuIb2sw0QgK74PVB6Cy1DLujMMLvoMVxTvDaHUb2tBjwCpo0cNvLmiflr8/8fg4nY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR11MB4519
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,140 +174,136 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,PH7PR11MB8252.namprd11.prod.outlook.com:mid];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[vidya.srinivas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: BC02C441989
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 226BC441F4F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Suraj,
-
-kernel test robot noticed the following build errors:
-
-[auto build test ERROR on drm-i915/for-linux-next]
-[also build test ERROR on drm-i915/for-linux-next-fixes drm-tip/drm-tip linus/master v7.0 next-20260421]
-[If your patch is applied to the wrong git tree, kindly drop us a note.
-And when submitting patch, we suggest to use '--base' as documented in
-https://git-scm.com/docs/git-format-patch#_base_tree_information]
-
-url:    https://github.com/intel-lab-lkp/linux/commits/Suraj-Kandpal/drm-i915-dp-Ignore-HPD-when-in-DPLL-enable-disable-cycle/20260422-031647
-base:   https://gitlab.freedesktop.org/drm/i915/kernel.git for-linux-next
-patch link:    https://lore.kernel.org/r/20260417080118.2352283-1-suraj.kandpal%40intel.com
-patch subject: [PATCH] drm/i915/dp: Ignore HPD when in DPLL enable/disable cycle
-config: parisc-allmodconfig (https://download.01.org/0day-ci/archive/20260422/202604221040.Im5y9Mk0-lkp@intel.com/config)
-compiler: hppa-linux-gcc (GCC) 15.2.0
-reproduce (this is a W=1 build): (https://download.01.org/0day-ci/archive/20260422/202604221040.Im5y9Mk0-lkp@intel.com/reproduce)
-
-If you fix the issue in a separate patch/commit (i.e. not just a new version of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202604221040.Im5y9Mk0-lkp@intel.com/
-
-All errors (new ones prefixed by >>):
-
-   drivers/gpu/drm/i915/display/intel_dp.c: In function 'intel_dp_hpd_pulse':
->> drivers/gpu/drm/i915/display/intel_dp.c:6834:76: error: macro 'drm_dbg_kms' requires 3 arguments, but only 1 given
-    6834 |                 drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
-         |                                                                            ^
-   In file included from drivers/gpu/drm/i915/display/intel_dp.c:50:
-   include/drm/drm_print.h:652:9: note: macro 'drm_dbg_kms' defined here
-     652 | #define drm_dbg_kms(drm, fmt, ...)                                      \
-         |         ^~~~~~~~~~~
->> drivers/gpu/drm/i915/display/intel_dp.c:6834:17: error: 'drm_dbg_kms' undeclared (first use in this function)
-    6834 |                 drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
-         |                 ^~~~~~~~~~~
-   drivers/gpu/drm/i915/display/intel_dp.c:6834:17: note: each undeclared identifier is reported only once for each function it appears in
 
 
-vim +/drm_dbg_kms +6834 drivers/gpu/drm/i915/display/intel_dp.c
+> -----Original Message-----
+> From: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+> Sent: 17 April 2026 21:13
+> To: Srinivas, Vidya <vidya.srinivas@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Shan=
+kar,
+> Uma <uma.shankar@intel.com>; Nautiyal, Ankit K
+> <ankit.k.nautiyal@intel.com>; seanpaul@google.com; Navare, Manasi
+> <navaremanasi@google.com>; Lee, Shawn C <shawn.c.lee@intel.com>
+> Subject: Re: [PATCH] [RFC]: drm/i915/display: Fix vblank timestamps for f=
+ixed
+> RR on VRR-TG-always platforms
+>=20
+> On Fri, Apr 17, 2026 at 06:14:39PM +0530, Vidya Srinivas wrote:
+> > On LNL+ VRR timing generator is always active.
+> > For panels like this
+> >
+> > "2880x1800": 120 709633 2880 2888 2920 3080 1800 1880 1896 1920 0x48
+> > 0xa
+> > "2880x1800":  60 709633 2880 2888 2920 3080 1800 3800 3816 3840 0x40
+> > 0xa
+> >
+> > that use the same pixel clock with a stretched vtotal have a large
+> > front porch. For this case 2880x1800 panel:
+> > 120Hz: vtotal=3D1920 (120 lines of front porch)
+> > 60Hz: vtotal=3D3840 (2000 lines of front porch)
+> >
+> > When at lower RR (60Hz) and "vrr_enable =3D false" this issue was seen
+> > The intel_crtc_active_timings() function is not adjusting
+> > crtc_vblank_start for the VRR TG when vrr_enable=3Dfalse, leaving it at
+> > the raw mode value of 1800 (vactive end). Since the VRR TG counts all
+> > the way to vtotal=3D3840, the actual frame latch happens at line 3840
+> > (16.67ms), but the vblank timestamp was reported at line 1800 (7.8ms).
+> >
+> > This caused Android SurfaceFlinger to miscalculate frame deadlines --
+> > it received fence signals ~8ms into the 16.67ms frame and concluded
+> > frames were being presented late, leading to dropped frames during
+> > heavy workloads like video playback at 60Hz.
+> >
+> > Fix by adjusting crtc_vblank_start, crtc_vblank_end, and crtc_vtotal
+> > to match the VRR timing generator values when
+> > intel_vrr_always_use_vrr_tg() is true, even when vrr_enable is false.a
+>=20
+> intel_vrr_compute_guardband() is supposed to tweak the adjusted_mode
+> timings appropriately.
 
-  6825	
-  6826	enum irqreturn
-  6827	intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
-  6828	{
-  6829		struct intel_display *display = to_intel_display(dig_port);
-  6830		struct intel_dp *intel_dp = &dig_port->dp;
-  6831		u8 dpcd[DP_RECEIVER_CAP_SIZE];
-  6832	
-  6833		if (atomic_read(&dig_port->link_teardown)) {
-> 6834			drm_dbg_kms("Ignoring HPD since DPLL is getting disabled\n");
-  6835			return IRQ_NONE;
-  6836		}
-  6837	
-  6838		if (dig_port->base.type == INTEL_OUTPUT_EDP &&
-  6839		    (long_hpd ||
-  6840		     intel_display_rpm_suspended(display) ||
-  6841		     !intel_pps_have_panel_power_or_vdd(intel_dp))) {
-  6842			/*
-  6843			 * vdd off can generate a long/short pulse on eDP which
-  6844			 * would require vdd on to handle it, and thus we
-  6845			 * would end up in an endless cycle of
-  6846			 * "vdd off -> long/short hpd -> vdd on -> detect -> vdd off -> ..."
-  6847			 */
-  6848			drm_dbg_kms(display->drm,
-  6849				    "ignoring %s hpd on eDP [ENCODER:%d:%s]\n",
-  6850				    long_hpd ? "long" : "short",
-  6851				    dig_port->base.base.base.id,
-  6852				    dig_port->base.base.name);
-  6853			return IRQ_HANDLED;
-  6854		}
-  6855	
-  6856		drm_dbg_kms(display->drm, "got hpd irq on [ENCODER:%d:%s] - %s\n",
-  6857			    dig_port->base.base.base.id,
-  6858			    dig_port->base.base.name,
-  6859			    long_hpd ? "long" : "short");
-  6860	
-  6861		/*
-  6862		 * TBT DP tunnels require the GFX driver to read out the DPRX caps in
-  6863		 * response to long HPD pulses. The DP hotplug handler does that,
-  6864		 * however the hotplug handler may be blocked by another
-  6865		 * connector's/encoder's hotplug handler. Since the TBT CM may not
-  6866		 * complete the DP tunnel BW request for the latter connector/encoder
-  6867		 * waiting for this encoder's DPRX read, perform a dummy read here.
-  6868		 */
-  6869		if (long_hpd) {
-  6870			intel_dp_dpcd_set_probe(intel_dp, true);
-  6871	
-  6872			intel_dp_read_dprx_caps(intel_dp, dpcd);
-  6873	
-  6874			intel_dp->reset_link_params = true;
-  6875			intel_dp_invalidate_source_oui(intel_dp);
-  6876	
-  6877			return IRQ_NONE;
-  6878		}
-  6879	
-  6880		if (intel_dp->is_mst) {
-  6881			if (!intel_dp_check_mst_status(intel_dp))
-  6882				return IRQ_NONE;
-  6883		} else if (!intel_dp_short_pulse(intel_dp)) {
-  6884			return IRQ_NONE;
-  6885		}
-  6886	
-  6887		return IRQ_HANDLED;
-  6888	}
-  6889	
+Hello Ville,
 
--- 
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
+Apologies for missing this. Thank you so much.
+Will check what else might be wrong in our case.
+
+Regards
+Vidya
+
+>=20
+> >
+> > Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_vblank.c | 20 +++++++++++++++++++-
+> >  1 file changed, 19 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
+> > b/drivers/gpu/drm/i915/display/intel_vblank.c
+> > index 0726a2abed38..8e0798277d5e 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
+> > @@ -527,8 +527,26 @@ static void intel_crtc_active_timings(struct
+> drm_display_mode *mode,
+> >  	drm_mode_init(mode, &crtc_state->hw.adjusted_mode);
+> >  	*vmax_vblank_start =3D 0;
+> >
+> > -	if (!vrr_enable)
+> > +	if (!vrr_enable) {
+> > +		/*
+> > +		 * On platforms that always use the VRR timing generator
+> > +		 * LNL+, even fixed refresh rate modes run
+> > +		 * through the VRR TG. The actual frame boundary is at
+> > +		 * flipline (=3D vtotal), not at vactive end. Without this
+> > +		 * adjustment, vblank timestamps and flip-done fences are
+> > +		 * signaled at vactive end (line 1800 for 60Hz) instead of
+> > +		 * near the real frame boundary, causing
+> > +		 * compositors like SurfaceFlinger to see ~8ms late fences
+> > +		 * and drop frames during GPU-heavy workloads.
+> > +		 */
+> > +		if (intel_vrr_always_use_vrr_tg(to_intel_display(crtc_state))) {
+> > +			mode->crtc_vtotal =3D
+> intel_vrr_vmin_vtotal(crtc_state);
+> > +			mode->crtc_vblank_end =3D
+> intel_vrr_vmin_vtotal(crtc_state);
+> > +			mode->crtc_vblank_start =3D
+> > +				intel_vrr_vmin_vblank_start(crtc_state);
+> > +		}
+> >  		return;
+> > +	}
+> >
+> >  	mode->crtc_vtotal =3D intel_vrr_vmax_vtotal(crtc_state);
+> >  	mode->crtc_vblank_end =3D intel_vrr_vmax_vtotal(crtc_state);
+> > --
+> > 2.45.2
+>=20
+> --
+> Ville Syrj=E4l=E4
+> Intel
