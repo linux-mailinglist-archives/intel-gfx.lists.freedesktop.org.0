@@ -2,170 +2,100 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NGKFJLh6GkHRQIAu9opvQ
+	id aB9QBftj62mtMAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 16:56:18 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 14:37:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF14447976
-	for <lists+intel-gfx@lfdr.de>; Wed, 22 Apr 2026 16:56:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 95BFA45E837
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 14:37:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3B1FD10EA74;
-	Wed, 22 Apr 2026 14:56:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F388410F56F;
+	Fri, 24 Apr 2026 12:37:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QGPSEvx9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gHaBXUc7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9298210E9FF;
- Wed, 22 Apr 2026 14:56:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776869774; x=1808405774;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=3Fksi44Dc1pW78+qIL+pHMh3JkLJWiMZGUOgJ3alr8E=;
- b=QGPSEvx9mPlTWbIokm8ybjPEFumC6AuNwNmsY1jOndwqCR2UDkbFqaOw
- ckWqyhNuMmg4skOmTpw06/fzyOWagjtdcsdmN3glj0uMEinituDJ7H+ow
- DyrAxoJ01DZpdhaXkBNmpRR4RYD8+CUxdcflfGDSwiRnuolOBNAx26HvR
- Y9vZRyZA7Hfo60p2LRvY4tt31nrQPoJDmyF50Xhs73CoFQJmD5VbQrpRM
- O65YfJJrfL9UEnknw0bNqR09Lbc0jBPszRvkMUIX59WtLvbZ/LjB1GEvP
- xDdI92BdeuZ97F+88NR9Ddsi4r8dIqVIL15of2jtZ5xpgKXNq88noRTSX g==;
-X-CSE-ConnectionGUID: p/cs3U1mRW6idK10PI29cQ==
-X-CSE-MsgGUID: XBZWpAqcSnWqY4FLhM775Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="88434240"
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="88434240"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 07:56:14 -0700
-X-CSE-ConnectionGUID: K1EGwZNoQziTavPh2Gvuow==
-X-CSE-MsgGUID: hgr2fPDBQGiNZETFtnd4fA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,193,1770624000"; d="scan'208";a="232283896"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Apr 2026 07:56:14 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 22 Apr 2026 07:56:13 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 22 Apr 2026 07:56:13 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.50) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 22 Apr 2026 07:56:13 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=M2fYTERAv3rFmFOMCf9dRCZDQQAp5l3eyCDa6SW/p+3Nvmi4LuFn7/72zwZWVCkxYeiadh5GplGbwtDOtMLu0SzmJWUcRpIC2r+5gAUuiXjF9Fm7FN4xU5ibVNRyBTzNwkVyelA/357OT9z4SXFpkUaE8Ea04guQXXPLUDHreFCO82svReyi3uU8Cay+yGxmNeoA9OgOL2Hw7uxAYUoJHgTFwrR1loTaAyTKNV0uYvqW3SeP3S2lyw7L8+7eP5j3jDUNnT2Mif39IJubXI8Xv0MY5HplXRS7XU8cwZcgstoRtFtYDT6LeS3IlVPUSexYGeM8G8DjaLvwUbdyc8zFFA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=dYRZT4UGPHWbnh7+K5lzU4Qt92WlvXnr40FwvbYWf5o=;
- b=EQR3NjTVO0Va217zFsvf1bQEVzDOavmrweMIWGhoEd14J/mt3cVq0t7JX2HmmbHR6mt1/Wqn316o+TjehLxuwneUOL75952CYLUvK6XMX76p9DYR+sA678/RbdvhAmjCJjJTiaQAXRp3fOMKd+c/VRflfCw9iBiQIP53cTNAw4sr/MOb/40x4dkOVsljvobvTt8GABiiRB6ChV61dL9lcWQOZMVAx9iR8RTAIYeFc+dJzGOxpidgaMC/v6JB7LLs++UU3hpeeLcbc8JKc3tEbsK3/X49mXtl02AAZCXXcP99efdk6f+FdMkqBE7z7uKoZlYxD2z4/3FdMARxtoxmQw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by IA3PR11MB9086.namprd11.prod.outlook.com (2603:10b6:208:57b::5) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9846.15; Wed, 22 Apr
- 2026 14:56:11 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9846.016; Wed, 22 Apr 2026
- 14:56:11 +0000
-Message-ID: <0d4d63ca-f41b-47f0-8142-1964629b6d41@intel.com>
-Date: Wed, 22 Apr 2026 20:26:03 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 19/19] drm/i915/display: PSR set idle frames while exit
- from DC3CO
-To: "Shankar, Uma" <uma.shankar@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-CC: "Manna, Animesh" <animesh.manna@intel.com>, "Kurmi, Suresh Kumar"
- <suresh.kumar.kurmi@intel.com>
-References: <20260326171557.2065632-1-dibin.moolakadan.subrahmanian@intel.com>
- <20260326171557.2065632-20-dibin.moolakadan.subrahmanian@intel.com>
- <DM4PR11MB63603DF8B4990EF4ACE14333F4242@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <DM4PR11MB63603DF8B4990EF4ACE14333F4242@DM4PR11MB6360.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0058.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b8::12) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+Received: from mail-lf1-f49.google.com (mail-lf1-f49.google.com
+ [209.85.167.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E21410E07B
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 15:52:13 +0000 (UTC)
+Received: by mail-lf1-f49.google.com with SMTP id
+ 2adb3069b0e04-5a3d1561e38so4792422e87.0
+ for <intel-gfx@lists.freedesktop.org>; Wed, 22 Apr 2026 08:52:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1776873131; x=1777477931; darn=lists.freedesktop.org;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=RNnGez9KIYhAWfYZKM7eASvp+SAAnmhGa5DxdGzAeNY=;
+ b=gHaBXUc7NzsiSGA2cLFxlfjpVSUahJxA7TQx2Xgf42dIa7PEDbUtcQ5ilv87ovAvx+
+ ciKNJy83fCIk5MuyRntlPD4ap8eFaMZ1rkXha+JSU1O4CppVkNTAi8ozOrXCmHG01tNG
+ BjW4Imjef1q2ppROEjxUmUVQNTmpUIhmzlla9e6HOA/yDViXNCJfqeDMYHD6dbHO4wdY
+ YQgAACZea45Q0X5GxAYl08t4bM7JWgIh9LvJFbrV1Xnvbv/nEfap7M6iM14mX7mqSx4F
+ hVXM2fThSjcVRDy0rjr75CeoKtHNMOiga32C3Bj6I+ign6FsShLbISKpRuAh49juBWm3
+ +pPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1776873131; x=1777477931;
+ h=mime-version:user-agent:content-transfer-encoding:references
+ :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=RNnGez9KIYhAWfYZKM7eASvp+SAAnmhGa5DxdGzAeNY=;
+ b=np/oKTBYD8Qo3WepETCXq5g/3+WMB4vvZUgOhcBJzjZ0QfvNv2lQt1BAeRJ4tl+S9/
+ Qu0DBBdX3B8sWrxmULY8dzO4jJFEAVOQYjs2XFLo3ggMzaW5jDHXvm335H7ibzjmI9bl
+ i8SQpz1IOKD1YqxE7CbAYZUUin2zhpYnXUdkGScRJxUCweFDu8hUnJP4Y/Q29RCLUQSU
+ 2OFnS9fCV4fXX5sfYNreQR+bUNkbtvqlyNeaWpKE1VHCvJdur3I7eSBg4J6oZ4BtKd52
+ sgAWJXgz/IHj7aUtvyB72crckgXhLdgh0SBl9Xs7jhfo0S0s9sIGD8fMXRrPIE11Mkss
+ jIxg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/R7A+L/ldUh/Kd6WB9Z4TcofwihJPAl20SaEaxASlLXJT82rV9YnXmUc0hHTvIJONxYr4p4b0DqDo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwtmYYJvTo2eYdJShv0VRspDKlHlUyTCwpL/TFfQDhEY4rFoO5u
+ hOdQcTYrG+OdiEMxKGOu+haRNkatLQTp1KgVWMpuVKwO98NIFi4MFFPN
+X-Gm-Gg: AeBDiets0+8dEBV2ZTEBDojE0nySBwfOsw7stSTjWRP6Nr9D5C5O/Yfr3dDyIusobLo
+ jEP2DPVeX0p3Gv1mg6GyGYxq0CF7HWwK3eJy9rFlOqSajgNLXU9KJ5IGABv/Zi/7+HsJJT5MGpK
+ hZhHNsdPxSl3dIN4b78+VlqOki9ZbV7AhxJCPbmskM2x8cL1swFbm5Mc2TDjqsP1nOR5kbvZEka
+ PvOBZMVEJX6ROngy6XkT18ajxByX3XlsV/AOsTEJmQD71+P1lGSeIT4SCVSzH9ULaCMmnyqyqfL
+ yTCN18Ii5R+U7L2SoCFHuywKsePro6wB1OssD3XVqBMWc5Xd/t2wf5BPBEiNeDLGSoGetN+7qKn
+ ogsZ4fDfSbRZa68x4jdp/ATlFSqg47Seme3XuLjhqcsx7ZDMOiD1hwbd0geSSdQRUkA68ysMLIi
+ n6EhhuKojkuGhesFaR2SRKJHu3ghXnZqxSo9A4aqUBAcfk5d363/ozDw==
+X-Received: by 2002:a05:6512:6cf:b0:5a2:bebd:45b5 with SMTP id
+ 2adb3069b0e04-5a4172bb8efmr8192442e87.4.1776873130944; 
+ Wed, 22 Apr 2026 08:52:10 -0700 (PDT)
+Received: from primary-ws.local ([188.234.148.119])
+ by smtp.gmail.com with ESMTPSA id
+ 2adb3069b0e04-5a4185ad11fsm4480896e87.14.2026.04.22.08.52.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Wed, 22 Apr 2026 08:52:10 -0700 (PDT)
+Message-ID: <2a93eae0c4b364d44fffe3840dcbb0a60a1c6114.camel@gmail.com>
+Subject: Re: Regression on linux-next (next-20260324 )
+From: "mikhail.v.gavrilov@gmail.com" <mikhail.v.gavrilov@gmail.com>
+To: Peter Zijlstra <peterz@infradead.org>, John Stultz <jstultz@google.com>
+Cc: K Prateek Nayak <kprateek.nayak@amd.com>, "Borah, Chaitanya Kumar"	
+ <chaitanya.kumar.borah@intel.com>, willy@infradead.org, 
+ linux-kernel@vger.kernel.org, "intel-gfx@lists.freedesktop.org"	
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"	
+ <intel-xe@lists.freedesktop.org>, "Kurmi, Suresh Kumar"	
+ <suresh.kumar.kurmi@intel.com>, "Saarinen, Jani" <jani.saarinen@intel.com>,
+ ravitejax.veesam@intel.com
+Date: Wed, 22 Apr 2026 20:52:08 +0500
+In-Reply-To: <20260422092335.GH3102924@noisy.programming.kicks-ass.net>
+References: <df391df3-3a3b-4a65-b3c7-ffe3ab50ee83@intel.com>
+ <20260330195037.GW2872@noisy.programming.kicks-ass.net>
+ <20260420130318.GD3102924@noisy.programming.kicks-ass.net>
+ <CANDhNCq=oizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdDWG8fRQ@mail.gmail.com>
+ <20260421101521.GO3102624@noisy.programming.kicks-ass.net>
+ <95651a71-1adf-45ba-83eb-5744bc6d4a52@amd.com>
+ <20260421143752.GD1064669@noisy.programming.kicks-ass.net>
+ <bc5e8c5c-fc9c-4efc-b1a9-98c43c6a8762@amd.com>
+ <CANDhNCr-+x8pTLhXZW=ATHaKTYEmXMPukz4+t8P-FeJ11Jrz9Q@mail.gmail.com>
+ <20260421205647.GL3126523@noisy.programming.kicks-ass.net>
+ <20260422092335.GH3102924@noisy.programming.kicks-ass.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.60.1 (3.60.1-1.fc45) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|IA3PR11MB9086:EE_
-X-MS-Office365-Filtering-Correlation-Id: 03fb7bf8-2d7f-419d-8e7a-08dea07f4acb
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: CtaJvcEKQoNvcVK8+QJlSUnazH3+O66qYDOu4jl6gGTCrd923icodnBRAY12HhDBiFKKqW8EUFKWBYGmEPEYm+Kj0Nq8iBJSWjIm1KiS0DhsQGM4CgWBglth04f17szfjsa62huZ1bwdGz62tvoT9I0JPNXfQ6CD88DNgAKi9NTLziDR5JAbuIOaVm5bGqWx0pP6ib6VFJLc+zrfl+P4ZQjXxyjA70kzN+qdseVforxsc42aOhWzS0pBhW0szX4MmohUy7s4SSdo1O3NIHS0Pfz+bL1qaaVFqERfItBZPCBE7dB/KEAUC19ICv1htdC4dvxwmaDc6hufa5rIfU5rAqnL3U3DyfxitpiuRi8wV2jNONnuGnu/T2GUqGlgEust4uhJVLt0UeNJw0gyMW6/12Onwye/6rh5CTqOjgwJgMWMpLBTYaJDArV3XO80q0T5yRN0Y4P2WHipFVB6d5+e0Y7LuDAvexA/algVx6ol6Wotiqe/qWvIErl2pjIXt4iLeSuX1Fmv3DJu+cP84OH1OnIpTekw+2zcAxLNoYW+uuWDBr30iKv9TJ6ErAGS3vkZLoM/SoFzO/lXHqX9r18kiskEnNV8WYah7aWSWcmzrbY2z+qVv2HoSMahbYYDgzaEDQIPmSbFU83VOn7VEc67FYAoVVATSQmD9QQBGULaBybu/1SGiDr6BrCEqjo/KUmW3pPD9xHESTsywQV2E+FKX0ixclgkOqaqFlYavqkdM74=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?Mnp1OVZ2clFhQkYzUlNuVTJISUxQbFhpZW9CL1RFbXdZYXRtUVRDT3pJMmdu?=
- =?utf-8?B?WTcwNzdnaXQ2N2dSYzRYT1B3d0NOcEQ2L3NTb2NFMEkvc1E2MCs1ZmlBOUVm?=
- =?utf-8?B?QjFuQW1YbmJqN3RrNE9rMDdVN1UzZERTaDltNlpHZTVQZXRWNmRQK293Vm1l?=
- =?utf-8?B?SnpBVEZzSGNaTFhpVjFDSFRyNXVKUnJqd0hmQ2NDbVVoaVd2VTJtL1NyUTZo?=
- =?utf-8?B?Zlpiby8raWJ0dXlqbHk1YkYxUnRUWGdNM01McXFia3Niem9QaElwSDJVOXBY?=
- =?utf-8?B?VnhMUmMzZi9IZThzSlRVVW56S2g5NWxLRnBSQWhpNjdDTUlPT2RZQWxZem8w?=
- =?utf-8?B?UHFKaHlLUmRkSmg5aU5PMTlYYnhNZ01JU1k1Uk42dVZkRDRmbEhKL2NFWXI4?=
- =?utf-8?B?MFFEZyttZmtaV2lSRUhpOWJMVVFoaURaRzQ1NzZheHVPYWZwZWJ6WFhvY1Jw?=
- =?utf-8?B?TzI5VmxqUnZlZDQ4ZmdyNitNRVorTC9rMUgzUG9MTlhWMWp1clZMWVVaTXA2?=
- =?utf-8?B?ZVFhNm1MdmRYaFh2NUhocytTaW5adXJyWHFhdVcwd0orMzZwZ3pEa05idTZn?=
- =?utf-8?B?SnZmTTVISGZ2UWFDTHNEeU5KOUF1aU5Rb2JLRmFtOHdLZ1p0eWN1dksyK2FI?=
- =?utf-8?B?VEdFbUJ5dWRGQ3FkMXI1VmlKRWY5UUVMZml0ZlV6dHFjMjJpK204OHpZTjd0?=
- =?utf-8?B?YzBYQ3l5VUpyL1VwajRRYVZIN2wxMHFKNXdya0JibWkzMElJcnR2enY4akJS?=
- =?utf-8?B?YnplVG93aHB3bFpzRXM4TDdRQXRydC9SUTl0d1pJWFZLR2t3WG9WWGJXN2pv?=
- =?utf-8?B?VjA3QXVwMWYwT3E1MU5VWTkzT1JLRTdIWkxubytySm5hLzhWZjcrb3d6THJW?=
- =?utf-8?B?MmVua1NrZDZGQy94dWQ0VFZrd0pIcjZnSXFza0lOeDNIeEd2ZVdzVkF3bTJl?=
- =?utf-8?B?dk9qTTliZnpyemNmYis1QVFuWGYzaEVidytFYXlNT1FCQTA3bm1sNHRzRmxI?=
- =?utf-8?B?bFZuZ2xwNWVxUE1EV3p0WVZnd0ZkKzVJdmdLNFJLSnNxcEU4SzdvZ2psazA0?=
- =?utf-8?B?Nm04M1dML3QweDZQdnlrMERYMzZnUjgydmNieXEyRU5WV3ZHSEd3NXNNSlRT?=
- =?utf-8?B?YUlYVE04bHBFbmNuMzdUUFk3TEx3SXI1L0hQdVBsSnNlUzZmYUZRYVh6WjJX?=
- =?utf-8?B?aGJndTNMMnZFVEE4Ym5tcmpVa2pUQ1I0aVdTODVTMzB2djhaaGVKOTNWSEFF?=
- =?utf-8?B?RlMzVDNrSlVaV1FsMENaaWhRMkN2dEVnQVJXSVlvNFZQNUROUHcrU3cyNFNG?=
- =?utf-8?B?bmhidkpoRXdVSXQvektoSHhOMmx0SWhpZ2d2UkZpWFRBL1dXZmowdnJDRXNT?=
- =?utf-8?B?dGFWZ3Bsd3hyVEpkUVNycWtVOW5mS2UxRm00OUVVWnpUdi9MR0IzdFUwclFw?=
- =?utf-8?B?RjZLdGc0YUdDaTNoV1dGSkRVbHMzbGFrOE9HTFUwQ2RuL3ptNjh0ZnNRRTJK?=
- =?utf-8?B?ZnRZNW1lcWFFZ01iTjEramhKcFVwWklvUktsQ3dFdUtJamZ6RmtCLytVWUJv?=
- =?utf-8?B?SVcxU3paaTFDM1lNZ1BJRS9PV3hWRElCcVlINTY4ZytXNXFPNW1MSVBZREk0?=
- =?utf-8?B?MjBHSStvRDVJQ3JQd3h0MEI2ekJ3SkFYRWF3MWI4d0NTRnBxenhnbTJmU1R2?=
- =?utf-8?B?ZzdhVmJwN2M0bjVEK0lTMndOc1BRcFFsQUQxSm92ZWJQbUE2Z1R6dkpybUNt?=
- =?utf-8?B?ZGo0cm9HUTlEYWRub01zWkhEOG9Eb0NBNk0rY1RXSy9JTUFLMnBpYTk1bGs2?=
- =?utf-8?B?L3F2a1hiY0JxK1pwNHBRRTlKWUNGaWRDWWJOS05BZDFCVjE2c3lOSWVXY3FF?=
- =?utf-8?B?N1h6emxBRTZ4YVZiem03Sys1U2gxUytJMTdDem5iRkNjeDhKdjZkMzNuZldP?=
- =?utf-8?B?VVdkdWJBMW9wOFZHZ25xaXZXUW15cldqeWFwRmVleng5N2FSNHlWVFQ1enBl?=
- =?utf-8?B?aWY3WG5qUTB2MUh0c3ljemdZZmJyQXkzcTcyOEd5U0czN0diOTZ1NVE5L0pM?=
- =?utf-8?B?OUtlTVlRSExYTEFYRXNleG9VTi9FN243bEU0ODB4bFkwa1lmK0g0dllselFj?=
- =?utf-8?B?aHMwYTlXbUdyUy9LcUh2ZXpaRys3SU9VcUhhUHRORVE0VFJIWkZDWW1Na1pW?=
- =?utf-8?B?MmpWSkpidVVXVTJyeGwwU3lZRjBVeE1OdGRnbmE1bk1lZTFKSzlCN3NscVlS?=
- =?utf-8?B?d0ZVUWt1OVRGSUVYdnp1TlNBQWdNYzFkcERKSVJ0amRWWTBvOXRpdjdpM1B0?=
- =?utf-8?B?M0hBZlNnZFphM0JhQ1kybU5PNjZUR2NTZ2F2ajNFMnBiaTJRR2xTSmZzQTZl?=
- =?utf-8?Q?AiWADrWIpsPWVpzXoVL/lOrF8qAzLAcoBg+pxE87jmyVx?=
-X-MS-Exchange-AntiSpam-MessageData-1: YYVuyJl8mDwPog==
-X-Exchange-RoutingPolicyChecked: LGyxQP4n+bkc2CZtzmNdS65k5alA9mEoP/TpHSOrCKlr4RaILm2f5+OZcT0vpOgID2KaM8NvH0DGWwzURW2Tmz5jLnNt8vzowjcepAknC98ifOU3ElhdmJiT8wZSluDYobYXO6K0riGC7xXxHhvtRyI/I55ZFUR6fLqjzEe4875V2SdbZ8V1t4kOPoNRUWuWp87mqrEWcWvIIHzP8ODXpSxJV8pdNSfUpj5QMvDuIIMsrLAoisacA/fD3NVlFQ9QNWO7vi4LXgu/wPL6lBMWvJm9ms8yK49mZ0Bfh92VErqxiYRbRhtf0epYBvKbyqs/CRApUjsGLI8yFL0XGL/ygw==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03fb7bf8-2d7f-419d-8e7a-08dea07f4acb
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Apr 2026 14:56:11.1216 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 2BjqkJfwYzQjUGVzvGKO+jNGBtzTW8oaHd/rqP6qdpFSx4MsLJrOlHBL8Tu9LxDwafRg93DLNJuOgLVwPWTVa95dBPL+RThIs5fZkJv3IelfCsnHZUq1D9k7I7dUuRAA
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA3PR11MB9086
-X-OriginatorOrg: intel.com
+X-Mailman-Approved-At: Fri, 24 Apr 2026 12:37:08 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,77 +110,274 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:email,intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: AFF14447976
+X-Rspamd-Queue-Id: 95BFA45E837
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[44];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
+	HAS_LIST_UNSUB(-0.01)[];
+	TAGGED_FROM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:peterz@infradead.org,m:jstultz@google.com,m:kprateek.nayak@amd.com,m:chaitanya.kumar.borah@intel.com,m:willy@infradead.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:suresh.kumar.kurmi@intel.com,m:jani.saarinen@intel.com,m:ravitejax.veesam@intel.com,s:lists@lfdr.de];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mikhailvgavrilov@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER(0.00)[mikhailvgavrilov@gmail.com,intel-gfx-bounces@lists.freedesktop.org]
+
+On Wed, 2026-04-22 at 11:23 +0200, Peter Zijlstra wrote:
+>=20
+> How's this? It 'passes' the ww_mutex selftest thing in so far as that
+> I
+> get the same:
+>=20
+> [=C2=A0=C2=A0=C2=A0 2.312369] Beginning ww (wound) mutex selftests
+> [=C2=A0=C2=A0=C2=A0 4.853240] stress (stress_inorder_work) failed with -3=
+5
+> [=C2=A0=C2=A0=C2=A0 9.379572] Beginning ww (die) mutex selftests
+> [=C2=A0=C2=A0 16.435831] All ww mutex selftests passed
+>=20
+> before the offending commit and after this patch.
+>=20
+> ---
+> Subject: Subject: locking/mutex: Fix ww_mutex wait_list operations
+> From: Peter Zijlstra <peterz@infradead.org>
+> Date: Wed Apr 22 10:38:41 CEST 2026
+>=20
+> Chaitanya and John reported commit 25500ba7e77c ("locking/mutex:
+> Remove the
+> list_head from struct mutex") wrecked ww_mutex.
+>=20
+> Specifically there were 2 issues:
+>=20
+> =C2=A0- __ww_waiter_prev() had the termination condition wrong; it would
+> terminate
+> =C2=A0=C2=A0 when the previous entry was the first, which results in a
+> truncated
+> =C2=A0=C2=A0 iteration: W3, W2, (no W1).
+>=20
+> =C2=A0- __mutex_add_waiter(@pos !=3D NULL), as used by __ww_waiter_add() =
+/
+> =C2=A0=C2=A0 __ww_mutex_add_waiter(); this inserts @waiter before @pos (w=
+hich
+> is what
+> =C2=A0=C2=A0 list_add_tail() does). But this should then also update lock=
+-
+> >first_waiter.
+>=20
+> Much thanks to Prateek for spotting the __mutex_add_waiter() issue!
+>=20
+> Fixes: 25500ba7e77c ("locking/mutex: Remove the list_head from struct
+> mutex")
+> Reported-by: "Borah, Chaitanya Kumar"
+> <chaitanya.kumar.borah@intel.com>
+> Closes:
+> https://lore.kernel.org/r/af005996-05e9-4336-8450-d14ca652ba5d%40intel.co=
+m
+> Reported-by: John Stultz <jstultz@google.com>
+> Closes:
+> https://lore.kernel.org/r/CANDhNCq%3Doizzud3hH3oqGzTrcjB8OwGeineJ3mwZuGdD=
+WG8fRQ%40mail.gmail.com
+> Debugged-by: K Prateek Nayak <kprateek.nayak@amd.com>
+> Signed-off-by: Peter Zijlstra (Intel) <peterz@infradead.org>
+> ---
+> =C2=A0kernel/locking/mutex.c=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 40 +++++++++=
+++++++++++++++++++--------
+> -----
+> =C2=A0kernel/locking/ww_mutex.h |=C2=A0=C2=A0 34 ++++++++++++++++++++++++=
+++++++++--
+> =C2=A02 files changed, 59 insertions(+), 15 deletions(-)
+>=20
+> --- a/kernel/locking/mutex.c
+> +++ b/kernel/locking/mutex.c
+> @@ -198,27 +198,43 @@ static inline void __mutex_clear_flag(st
+> =C2=A0}
+> =C2=A0
+> =C2=A0/*
+> - * Add @waiter to a given location in the lock wait_list and set the
+> - * FLAG_WAITERS flag if it's the first waiter.
+> + * Add @waiter to the @lock wait_list and set the FLAG_WAITERS flag
+> if it's
+> + * the first waiter.
+> + *
+> + * When @pos, @waiter is added before the waiter indicated by @pos.
+> Otherwise
+> + * @waiter will be added to the tail of the list.
+> =C2=A0 */
+> =C2=A0static void
+> =C2=A0__mutex_add_waiter(struct mutex *lock, struct mutex_waiter *waiter,
+> -		=C2=A0=C2=A0 struct mutex_waiter *first)
+> +		=C2=A0=C2=A0 struct mutex_waiter *pos)
+> =C2=A0	__must_hold(&lock->wait_lock)
+> =C2=A0{
+> +	struct mutex_waiter *first =3D lock->first_waiter;
+> +
+> =C2=A0	hung_task_set_blocker(lock, BLOCKER_TYPE_MUTEX);
+> =C2=A0	debug_mutex_add_waiter(lock, waiter, current);
+> =C2=A0
+> -	if (!first)
+> -		first =3D lock->first_waiter;
+> +	if (pos) {
+> +		/*
+> +		 * Insert @waiter before @pos.
+> +		 */
+> +		list_add_tail(&waiter->list, &pos->list);
+> +		/*
+> +		 * If @pos =3D=3D @first, then @waiter will be the new
+> first.
+> +		 */
+> +		if (pos =3D=3D first)
+> +			lock->first_waiter =3D waiter;
+> +		return;
+> +	}
+> =C2=A0
+> =C2=A0	if (first) {
+> =C2=A0		list_add_tail(&waiter->list, &first->list);
+> -	} else {
+> -		INIT_LIST_HEAD(&waiter->list);
+> -		lock->first_waiter =3D waiter;
+> -		__mutex_set_flag(lock, MUTEX_FLAG_WAITERS);
+> +		return;
+> =C2=A0	}
+> +
+> +	INIT_LIST_HEAD(&waiter->list);
+> +	lock->first_waiter =3D waiter;
+> +	__mutex_set_flag(lock, MUTEX_FLAG_WAITERS);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static void
+> @@ -229,10 +245,8 @@ __mutex_remove_waiter(struct mutex *lock
+> =C2=A0		__mutex_clear_flag(lock, MUTEX_FLAGS);
+> =C2=A0		lock->first_waiter =3D NULL;
+> =C2=A0	} else {
+> -		if (lock->first_waiter =3D=3D waiter) {
+> -			lock->first_waiter =3D
+> list_first_entry(&waiter->list,
+> -							=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct
+> mutex_waiter, list);
+> -		}
+> +		if (lock->first_waiter =3D=3D waiter)
+> +			lock->first_waiter =3D list_next_entry(waiter,
+> list);
+> =C2=A0		list_del(&waiter->list);
+> =C2=A0	}
+> =C2=A0
+> --- a/kernel/locking/ww_mutex.h
+> +++ b/kernel/locking/ww_mutex.h
+> @@ -6,6 +6,19 @@
+> =C2=A0#define MUTEX_WAITER	mutex_waiter
+> =C2=A0#define WAIT_LOCK	wait_lock
+> =C2=A0
+> +/*
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +--------=
++
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | first=
+=C2=A0 |
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 +--------=
++
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 |
+> + *=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 v
+> + *=C2=A0 +----+=C2=A0=C2=A0=C2=A0=C2=A0 +----+=C2=A0=C2=A0=C2=A0=C2=A0 +=
+----+
+> + *=C2=A0 | W3 | <-> | W1 | <-> | W2 |
+> + *=C2=A0 +----+=C2=A0=C2=A0=C2=A0=C2=A0 +----+=C2=A0=C2=A0=C2=A0=C2=A0 +=
+----+
+> + *=C2=A0=C2=A0=C2=A0 ^=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^
+> + *=C2=A0=C2=A0=C2=A0 +---------------------+
+> + */
+> +
+> =C2=A0static inline struct mutex_waiter *
+> =C2=A0__ww_waiter_first(struct mutex *lock)
+> =C2=A0	__must_hold(&lock->wait_lock)
+> @@ -13,26 +26,43 @@ __ww_waiter_first(struct mutex *lock)
+> =C2=A0	return lock->first_waiter;
+> =C2=A0}
+> =C2=A0
+> +/*
+> + * for (cur =3D __ww_waiter_first(); cur; cur =3D __ww_waiter_next())
+> + *
+> + * Should iterate like: W1, W2, W3
+> + */
+> =C2=A0static inline struct mutex_waiter *
+> =C2=A0__ww_waiter_next(struct mutex *lock, struct mutex_waiter *w)
+> =C2=A0	__must_hold(&lock->wait_lock)
+> =C2=A0{
+> =C2=A0	w =3D list_next_entry(w, list);
+> +	/*
+> +	 * Terminate if the next entry is the first again, that has
+> already
+> +	 * been observed.
+> +	 */
+> =C2=A0	if (lock->first_waiter =3D=3D w)
+> =C2=A0		return NULL;
+> =C2=A0
+> =C2=A0	return w;
+> =C2=A0}
+> =C2=A0
+> +/*
+> + * for (cur =3D __ww_waiter_last(); cur; cur =3D __ww_waiter_prev())
+> + *
+> + * Should iterate like: W3, W2, W1
+> + */
+> =C2=A0static inline struct mutex_waiter *
+> =C2=A0__ww_waiter_prev(struct mutex *lock, struct mutex_waiter *w)
+> =C2=A0	__must_hold(&lock->wait_lock)
+> =C2=A0{
+> -	w =3D list_prev_entry(w, list);
+> +	/*
+> +	 * Terminate at the first entry, the previous entry of first
+> is the
+> +	 * last and that has already been observed.
+> +	 */
+> =C2=A0	if (lock->first_waiter =3D=3D w)
+> =C2=A0		return NULL;
+> =C2=A0
+> -	return w;
+> +	return list_prev_entry(w, list);
+> =C2=A0}
+> =C2=A0
+> =C2=A0static inline struct mutex_waiter *
 
 
-On 14-04-2026 03:51, Shankar, Uma wrote:
->
->> -----Original Message-----
->> From: Dibin Moolakadan Subrahmanian
->> <dibin.moolakadan.subrahmanian@intel.com>
->> Sent: Thursday, March 26, 2026 10:46 PM
->> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Manna, Animesh <animesh.manna@intel.com>; Shankar, Uma
->> <uma.shankar@intel.com>; Kurmi, Suresh Kumar
->> <suresh.kumar.kurmi@intel.com>
->> Subject: [PATCH 19/19] drm/i915/display: PSR set idle frames while exit from
->> DC3CO
->>
->> After 6 idle frames, DC3CO is exited and DC6 is enabled.
->> Reprogram idle frames so that the deeper states can be entered.
-> Change Looks good but should be squashed with earlier patches adding PSR2 idle frames.
+Confirmed on an independent userspace-visible reproducer: Resident
+Evil 2/3/4/9 under Proton on AMD Zen4 + RX 7900 XTX, which hangs
+deterministically during level load on current master (main thread
+parked in futex_waitv). With this patch applied on top of master,
+both RE2 and RE9 complete a full playthrough with save-resume on two
+independent workstations (ASUS and ASRock B650). No hang, no splats.
 
-I will squash this into patch 15.
+Symptom details and third bisect log are in the separate thread at
+https://lore.kernel.org/r/CABXGCsO5fKq2nD9nO8yO1z50ZzgCPWqueNXHANjntaswoOh2=
+Dg@mail.gmail.com
 
->
->> Signed-off-by: Dibin Moolakadan Subrahmanian
->> <dibin.moolakadan.subrahmanian@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_psr.c | 1 +
->>   1 file changed, 1 insertion(+)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
->> b/drivers/gpu/drm/i915/display/intel_psr.c
->> index f3476118b8d0..dcf33359dc9c 100644
->> --- a/drivers/gpu/drm/i915/display/intel_psr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
->> @@ -1708,6 +1708,7 @@ static void psr2_dc3co_disable_locked(struct intel_dp
->> *intel_dp)
->>   	if (intel_dp->psr.dc3co_eligible) {
->>   		intel_dp->psr.dc3co_eligible = false;
->>   		intel_display_power_set_target_dc_state(display,
->> DC_STATE_EN_UPTO_DC6);
->> +		psr2_program_idle_frames(intel_dp,
->> psr_compute_idle_frames(intel_dp));
->>   	}
->>   }
->>
->> --
->> 2.43.0
+Tested-by: Mikhail Gavrilov <mikhail.v.gavrilov@gmail.com>
+
+--=20
+Thanks,
+Mikhail
