@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UK6HM2Zt6mkazQIAu9opvQ
+	id OARvJ29t6mnrzAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 21:05:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 21:05:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839AA45652D
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 21:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 16975456562
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 21:05:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 04E3910F284;
-	Thu, 23 Apr 2026 19:05:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1EC8310F241;
+	Thu, 23 Apr 2026 19:05:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Fw+r1suW";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="STsgN8xj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 98F5710F232;
- Thu, 23 Apr 2026 19:05:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1776971096; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA96810F2BA;
+ Thu, 23 Apr 2026 19:05:15 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1776971104; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=iYSaLATXcF1nQ9uw+DQMeskCQXUWTOFfBHFDMGl0P9PMmxmwZG+OewyhVyfvAowNM02esv87eDSwa8Fj6qpMX+mQFduI2rxKK0FNlNs/qNzwye6Jt7eBy6WERidpCt6FkzOs5aPxLhWkmHRNbThOhp308t2hnwBc6aabQRKUk+A=
+ b=RQB1uHbMvObsYiGKjTeBoSzj0t1fQICMOielOnZV7fw/Yvj6HGzU9V9viQNz4D/iNF1OoD2/K0/yl4aKGhKSEchps/4oG0jPdL6Uo6mgMqsgN9Wme/c5dfE7sOfVYg8AkeJ/fZq+RrDODzMT65sqhGc01LCmMvbCZbsZUa/7Ryo=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1776971096;
+ s=zohoarc; t=1776971104;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=5k1vlW62iXZjcOaFsSXyeVWlBMQFrsYlNjKb9M5MyLE=; 
- b=YuBR8fOBbfxAnYv+5DPk5R7tIEjeoc2I5zYR5wA3bC3tPV8QwML7wAK8wFPdo1OSD7U42tA6PeqOCI0thbJYzEk590ML4m7G2IvKSq6HjzzSKfGdQLHezlSiztVWlD5isjfs30Bjv/Oh1DVi22TzNp5923vd9pf/P392B9UkUdk=
+ bh=MC7m65enPeoK56w15mZU/jnX37Exa8SW0qeHJO7INHM=; 
+ b=KbF5dHlVQxVJnD2Kxv4iMmcIuUrUoxRGj4WL66/WzH8EBg7rgBX/toa4kARuu/pCY2zDMxNymS7snkraZXKQy/RX/p77ih4XtSpQWlSTAHxpTJJSUQ3eXHZKVhB3+5EYq/1gg7gL7h1u9ew4AwzqwCFA7c98u16I+Xld2M5R9d8=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1776971095; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1776971104; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=5k1vlW62iXZjcOaFsSXyeVWlBMQFrsYlNjKb9M5MyLE=;
- b=Fw+r1suWIOoBIdxvbwl38Dw+vKKHz89GbgtvAUR8sboveymUX0OIqXL6+kKM6+l+
- QeqmLa702SGB+kP5lYx4R9pcknr+XR30RTuqpsc7Rv8aouQxcInHeg48dIHWPbMsgyC
- flRPD7jGzCvPldsauve1FwmPFLwxogfDhmlXVpRY=
-Received: by mx.zohomail.com with SMTPS id 1776971094703164.3612840189653;
- Thu, 23 Apr 2026 12:04:54 -0700 (PDT)
+ bh=MC7m65enPeoK56w15mZU/jnX37Exa8SW0qeHJO7INHM=;
+ b=STsgN8xjDl5zaEmJt3gmo8VE0qCcb1cRfaP36y3J82oVoZXIw+aXXih51+eA/HKV
+ MMMGmL3ZXb2nY31CalnkaHzpaL1dHfwusfb8uyNZ9iYnGHVUwWe8kLjqIiD48CuHg6F
+ LuibRMEFLyvlpr+QizCpi3fW8SIDcf8nBmfIOshs=
+Received: by mx.zohomail.com with SMTPS id 1776971102374473.2371328803696;
+ Thu, 23 Apr 2026 12:05:02 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Thu, 23 Apr 2026 21:03:31 +0200
-Subject: [PATCH v14 08/28] drm/display: hdmi-state-helper: Act on color
- format DRM property
+Date: Thu, 23 Apr 2026 21:03:32 +0200
+Subject: [PATCH v14 09/28] drm/display: hdmi-state-helper: Try subsampling
+ in mode_valid
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-color-format-v14-8-449a419ccbd4@collabora.com>
+Message-Id: <20260423-color-format-v14-9-449a419ccbd4@collabora.com>
 References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
 In-Reply-To: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -120,70 +120,58 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:dkim,collabora.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 839AA45652D
+X-Rspamd-Queue-Id: 16975456562
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-With the introduction of the "color format" DRM property, which allows
-userspace to request a specific color format, the HDMI state helper
-should implement this.
+drm_hdmi_connector_mode_valid assumes modes are only valid if they work
+with RGB. The reality is more complex however: YCbCr 4:2:0
+chroma-subsampled modes only require half the pixel clock that the same
+mode would require in RGB.
 
-Implement it by translating the requested drm_connector_color_format to
-a drm_output_color_format enum value as per the logic HDMI should use
-for this: Auto is translated to RGB, and a fallback to YUV420 is only
-performed if the original color format was auto.
+This leads to drm_hdmi_connector_mode_valid rejecting perfectly valid
+420-only or 420-also modes.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Fix this by checking whether the mode is 420-capable first. If so, then
+proceed by checking it with DRM_OUTPUT_COLOR_FORMAT_YCBCR420 so long as
+the connector has legalized 420, otherwise error out. If the mode is not
+420-capable, check with RGB as was previously always the case.
+
+Fixes: 47368ab437fd ("drm/display: hdmi: add generic mode_valid helper")
 Reviewed-by: Maxime Ripard <mripard@kernel.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/display/drm_hdmi_state_helper.c | 31 +++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-index a0d88701d236..954f8b2973fc 100644
+index 954f8b2973fc..5cc30da30989 100644
 --- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
 +++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
-@@ -670,8 +670,39 @@ hdmi_compute_config(const struct drm_connector *connector,
- 	unsigned int max_bpc = clamp_t(unsigned int,
- 				       conn_state->max_bpc,
- 				       8, connector->max_bpc);
+@@ -942,8 +942,21 @@ drm_hdmi_connector_mode_valid(struct drm_connector *connector,
+ 			      const struct drm_display_mode *mode)
+ {
+ 	unsigned long long clock;
 +	enum drm_output_color_format fmt;
- 	int ret;
- 
-+	if (conn_state->color_format != DRM_CONNECTOR_COLOR_FORMAT_AUTO) {
-+		switch (conn_state->color_format) {
-+		case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-+			drm_warn(connector->dev, "AUTO format in non-AUTO path.\n");
-+			fallthrough;
-+		case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-+			fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
-+			break;
-+		case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-+			fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR444;
-+			break;
-+		case DRM_CONNECTOR_COLOR_FORMAT_YCBCR422:
-+			fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR422;
-+			break;
-+		case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
++
++	if (drm_mode_is_420_only(&connector->display_info, mode)) {
++		if (connector->ycbcr_420_allowed)
 +			fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
-+			break;
-+		default:
-+			drm_dbg_kms(connector->dev, "HDMI does not support color format '%d'.\n",
-+				conn_state->color_format);
-+			return -EINVAL;
-+		}
-+
-+		return hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc, fmt);
++		else
++			return MODE_NO_420;
++	} else if (drm_mode_is_420_also(&connector->display_info, mode) &&
++		   connector->ycbcr_420_allowed) {
++		fmt = DRM_OUTPUT_COLOR_FORMAT_YCBCR420;
++	} else {
++		fmt = DRM_OUTPUT_COLOR_FORMAT_RGB444;
 +	}
-+
-+	/*
-+	 * For %DRM_CONNECTOR_COLOR_FORMAT_AUTO, try RGB first, and fall back
-+	 * to the less bandwidth-intensive YCBCR420 if RGB fails.
-+	 */
- 	ret = hdmi_compute_format_bpc(connector, conn_state, mode, max_bpc,
- 				      DRM_OUTPUT_COLOR_FORMAT_RGB444);
- 	if (ret) {
+ 
+-	clock = drm_hdmi_compute_mode_clock(mode, 8, DRM_OUTPUT_COLOR_FORMAT_RGB444);
++	clock = drm_hdmi_compute_mode_clock(mode, 8, fmt);
+ 	if (!clock)
+ 		return MODE_ERROR;
+ 
 
 -- 
 2.53.0
