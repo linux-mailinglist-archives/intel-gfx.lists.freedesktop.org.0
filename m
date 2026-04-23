@@ -2,75 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBS7FcX56WnkpwIAu9opvQ
+	id QLy4GHT66WnkpwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 12:51:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 12:54:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC71D450ED3
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 12:51:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CBEBB450F54
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 12:54:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3FD7610F090;
-	Thu, 23 Apr 2026 10:51:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62FFD10F098;
+	Thu, 23 Apr 2026 10:54:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="moxioZi5";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="WxCijv5T";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EDC410F090;
- Thu, 23 Apr 2026 10:51:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776941507; x=1808477507;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=rp+xrYA+6sQNmRGPSVTNdYV92m0wXo+ZWn3+520Qp/U=;
- b=moxioZi5fxeN9DsuC0wSIdODxRsw9drOKTTgsanEe5SwQGYvT7Wgx0yh
- 9HfGmsFVfxLg7Uk9S7axtSGX3eGHYVUy/naDh4GjKk6ywwnTGmm7yyMMO
- 9EFss7dU8At/jfeEKtclZHOuKwDQmhYATDdfPMPH44/4z0t+N2LyQI6Gs
- kTdVpvbPzjEuyQWCnk0uzQokx6x67Ny9SbpsqrbwCTGz4Q/Btzg90zQXg
- 23NlEVWoK3p7BBnLcIOysaq+kk5MGp1zGveq1hsCZiSeJpNdXTaxv+9Fl
- BsQ63SvlD7Ah23m37zHUparijJzC1XmgZkUT0JSG/fXxCwt+OpAK1nPUv w==;
-X-CSE-ConnectionGUID: G3nc5S75R3yaoKolalGunw==
-X-CSE-MsgGUID: +hycj7ZsSgm1Oa692mYZCg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11764"; a="78097603"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="78097603"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 03:51:42 -0700
-X-CSE-ConnectionGUID: 6Y3j79wRTV2pMy+lpre7cQ==
-X-CSE-MsgGUID: 0f1lv+wLR+aVTUTnBk9RGg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="270743213"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.188])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 03:51:39 -0700
-Date: Thu, 23 Apr 2026 13:51:36 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: "Manna, Animesh" <animesh.manna@intel.com>
-Cc: "Nikula, Jani" <jani.nikula@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "Shankar, Uma" <uma.shankar@intel.com>,
- Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
-Message-ID: <aen5uNCEibNR7IGP@intel.com>
-References: <20260412103712.4021213-1-animesh.manna@intel.com>
- <20260412103712.4021213-4-animesh.manna@intel.com>
- <d9c82dabf89fb932b3c10aa0ee768fdda181c396@intel.com>
- <DS0PR11MB804961654148D027B4F03601F9202@DS0PR11MB8049.namprd11.prod.outlook.com>
- <aeIK8oEzWAkDJw5i@intel.com>
- <SN7PR11MB8042195650F92982C02967A8F92A2@SN7PR11MB8042.namprd11.prod.outlook.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B0CD410F095;
+ Thu, 23 Apr 2026 10:54:41 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id 5DB174011D;
+ Thu, 23 Apr 2026 10:54:41 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B0B62C2BCAF;
+ Thu, 23 Apr 2026 10:54:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1776941681;
+ bh=NHSuEK9H1801Db43XmFpxQoOeHBhCdehq8G+kH0L1gk=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=WxCijv5TIR/9gGmkrkA9sAHJW6JXbPHQvkzsGe9yqQ8AubEAUNc91qyNB+AofYwim
+ kj5xQUhGJ4T8tWnTTpPmx0A4CPxm2QN4GDj3LtX1iO95Dmyy25IpB91spjE/Vp0tby
+ b4/WKR1iizP+jJO42X4ewEp39VOJerxmaNoxuBpBQCC1PN/7L5QSq9b5d2S9fvMgzJ
+ xhf93I4scNVIZVURuKIeKnYn21K7wZG6PTp5OUFUBiX5JaYxc8vRFOObJ+/TCsgIpM
+ wGZeBzkERIYUnBHU6gyaqMhrFRS24ff+5tNI52FVZI64QP2yVusjoqR2sUcvOd9t+j
+ wFH21U6FY0oyw==
+Date: Thu, 23 Apr 2026 12:54:38 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Jyri Sarha <jyri.sarha@iki.fi>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Simon Ser <contact@emersion.fr>, 
+ Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>, 
+ Sebastian Wick <sebastian.wick@redhat.com>, Alex Hung <alex.hung@amd.com>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
+ Dave Stevenson <dave.stevenson@raspberrypi.com>,
+ =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
+ Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
+ dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
+Subject: Re: [PATCH v2 08/20] drm/plane: Add new atomic_create_state callback
+Message-ID: <20260423-fragrant-tody-of-inquire-a9f455@houat>
+References: <20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org>
+ <20260320-drm-mode-config-init-v2-8-c63f1134e76c@kernel.org>
+ <55c24dca-e354-49d1-8eaa-edf66f679428@suse.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="vpcnf3kbfe5e5pil"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <SN7PR11MB8042195650F92982C02967A8F92A2@SN7PR11MB8042.namprd11.prod.outlook.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <55c24dca-e354-49d1-8eaa-edf66f679428@suse.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,288 +87,140 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.36 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[37];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com,lists.freedesktop.org,vger.kernel.org,collabora.com,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_FIVE(0.00)[6];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,lists.freedesktop.org:email]
-X-Rspamd-Queue-Id: BC71D450ED3
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: CBEBB450F54
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, Apr 23, 2026 at 04:55:55AM +0000, Manna, Animesh wrote:
-> 
-> 
-> > -----Original Message-----
-> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > Sent: Friday, April 17, 2026 3:57 PM
-> > To: Manna, Animesh <animesh.manna@intel.com>
-> > Cc: Nikula, Jani <jani.nikula@intel.com>; intel-gfx@lists.freedesktop.org;
-> > intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
-> > Dibin Moolakadan Subrahmanian
-> > <dibin.moolakadan.subrahmanian@intel.com>
-> > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
-> > 
-> > On Fri, Apr 17, 2026 at 06:03:52AM +0000, Manna, Animesh wrote:
-> > >
-> > >
-> > > > -----Original Message-----
-> > > > From: Nikula, Jani <jani.nikula@intel.com>
-> > > > Sent: Tuesday, April 14, 2026 7:03 PM
-> > > > To: Manna, Animesh <animesh.manna@intel.com>; intel-
-> > > > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
-> > > > Cc: Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan
-> > > > Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>; Manna,
-> > > > Animesh <animesh.manna@intel.com>
-> > > > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
-> > > >
-> > > > On Sun, 12 Apr 2026, Animesh Manna <animesh.manna@intel.com>
-> > wrote:
-> > > > > Timing registers are separate for CMTG, read transcoder register
-> > > > > and program cmtg transcoder with those values.
-> > > > >
-> > > > > v2:
-> > > > > - Use sw state instead of reading directly from hardware. [Jani]
-> > > > > - Move set_timing later after encoder enable. [Dibin]
-> > > > >
-> > > > > v3:
-> > > > > - Replace id with trans. [Jani]
-> > > > > - Program cmtg set_timing() along with primary transcoder timing.
-> > > > >
-> > > > > v4:
-> > > > > - Use _MMIO_TRANS() for cmtg registers instead of direct
-> > > > > multiplication. [Jani]
-> > > > >
-> > > > > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
-> > > > > ---
-> > > > >  drivers/gpu/drm/i915/display/intel_cmtg.c     | 61
-> > ++++++++++++++++++-
-> > > > >  drivers/gpu/drm/i915/display/intel_cmtg.h     |  3 +
-> > > > >  .../gpu/drm/i915/display/intel_cmtg_regs.h    | 31 ++++++++++
-> > > > >  drivers/gpu/drm/i915/display/intel_display.c  |  4 ++
-> > > > >  4 files changed, 98 insertions(+), 1 deletion(-)
-> > > > >
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > > b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > > index 403f9e10a8dc..a3db1368bd83 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-> > > > > @@ -4,7 +4,6 @@
-> > > > >   */
-> > > > >
-> > > > >  #include <linux/string_choices.h> -#include <linux/types.h>
-> > > > >
-> > > > >  #include <drm/drm_device.h>
-> > > > >  #include <drm/drm_print.h>
-> > > > > @@ -222,3 +221,63 @@ void intel_cmtg_set_clk_select(const struct
-> > > > intel_crtc_state *crtc_state)
-> > > > >  	if (clk_sel_set)
-> > > > >  		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr,
-> > > > clk_sel_set);  }
-> > > > > +
-> > > > > +void intel_cmtg_set_timings(const struct intel_crtc_state
-> > > > > +*crtc_state, bool lrr) {
-> > > > > +	struct intel_display *display = to_intel_display(crtc_state);
-> > > > > +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-> > > > > +	const struct drm_display_mode *adjusted_mode = &crtc_state-
-> > > > >hw.adjusted_mode;
-> > > > > +	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start,
-> > > > > +crtc_vblank_end;
-> > > > > +
-> > > > > +	if (!intel_cmtg_is_allowed(crtc_state))
-> > > > > +		return;
-> > > > > +
-> > > > > +	crtc_vdisplay = adjusted_mode->crtc_vdisplay;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * For platforms that always use VRR Timing Generator, the
-> > > > VTOTAL.Vtotal
-> > > > > +	 * bits are not required. Since the support for these bits is going to
-> > > > > +	 * be deprecated in upcoming platforms, avoid writing these bits
-> > > > > +for
-> > > > the
-> > > > > +	 * platforms that do not use legacy Timing Generator.
-> > > > > +	 */
-> > > > > +	crtc_vtotal = 1;
-> > > > > +
-> > > > > +	/*
-> > > > > +	 * VBLANK_START not used by hw, just clear it
-> > > > > +	 * to make it stand out in register dumps.
-> > > > > +	 */
-> > > > > +	crtc_vblank_start = 1;
-> > > > > +
-> > > > > +	crtc_vblank_end = adjusted_mode->crtc_vblank_end;
-> > > > > +
-> > > > > +	if (lrr) {
-> > > > > +		intel_de_write(display,
-> > > > TRANS_VTOTAL_CMTG(cpu_transcoder),
-> > > > > +			       VACTIVE(crtc_vdisplay - 1) |
-> > > > > +			       VTOTAL(crtc_vtotal - 1));
-> > > > > +		intel_de_write(display,
-> > > > TRANS_VBLANK_CMTG(cpu_transcoder),
-> > > > > +			       VBLANK_START(crtc_vblank_start - 1) |
-> > > > > +			       VBLANK_END(crtc_vblank_end - 1));
-> > > > > +		return;
-> > > > > +	}
-> > > > > +
-> > > > > +	intel_de_write(display, TRANS_HTOTAL_CMTG(cpu_transcoder),
-> > > > > +		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
-> > > > > +		       HTOTAL(adjusted_mode->crtc_htotal - 1));
-> > > > > +	intel_de_write(display, TRANS_HBLANK_CMTG(cpu_transcoder),
-> > > > > +		       HBLANK_START(adjusted_mode->crtc_hblank_start - 1) |
-> > > > > +		       HBLANK_END(adjusted_mode->crtc_hblank_end - 1));
-> > > > > +	intel_de_write(display, TRANS_HSYNC_CMTG(cpu_transcoder),
-> > > > > +		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
-> > > > > +		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
-> > > > > +	intel_de_write(display, TRANS_VTOTAL_CMTG(cpu_transcoder),
-> > > > > +		       VACTIVE(crtc_vdisplay - 1) |
-> > > > > +		       VTOTAL(crtc_vtotal - 1));
-> > > > > +	intel_de_write(display, TRANS_VBLANK_CMTG(cpu_transcoder),
-> > > > > +		       VBLANK_START(crtc_vblank_start - 1) |
-> > > > > +		       VBLANK_END(crtc_vblank_end - 1));
-> > > > > +	intel_de_write(display, TRANS_VSYNC_CMTG(cpu_transcoder),
-> > > > > +		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
-> > > > > +		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
-> > > > > +	intel_de_write(display,
-> > > > TRANS_SET_CTX_LATENCY_CMTG(cpu_transcoder),
-> > > > > +		       crtc_state->set_context_latency); }
-> > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > > b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > > index 660ec513626e..53a44f505dd2 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
-> > > > > @@ -6,9 +6,12 @@
-> > > > >  #ifndef __INTEL_CMTG_H__
-> > > > >  #define __INTEL_CMTG_H__
-> > > > >
-> > > > > +#include <linux/types.h>
-> > > > > +
-> > > > >  struct intel_display;
-> > > > >  struct intel_crtc_state;
-> > > > >
-> > > > > +void intel_cmtg_set_timings(const struct intel_crtc_state
-> > > > > +*crtc_state, bool lrr);
-> > > > >  void intel_cmtg_set_clk_select(const struct intel_crtc_state
-> > > > > *crtc_state);  void intel_cmtg_sanitize(struct intel_display
-> > > > > *display);  bool intel_cmtg_is_allowed(const struct
-> > > > > intel_crtc_state *crtc_state); diff --git
-> > > > > a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > > b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > > index 4a80b88d88fd..f7fc812d8ef0 100644
-> > > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
-> > > > > @@ -20,4 +20,35 @@
-> > > > >  #define TRANS_CMTG_CTL_B		_MMIO(0x6fb88)
-> > > > >  #define  CMTG_ENABLE			REG_BIT(31)
-> > > > >
-> > > > > +#define _TRANS_HTOTAL_CMTG_A		0x6F000
-> > > > > +#define _TRANS_HTOTAL_CMTG_B		0x6F100
-> > > > > +#define TRANS_HTOTAL_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > > +						    _TRANS_HTOTAL_CMTG_A,
-> > > > _TRANS_HTOTAL_CMTG_B)
-> > > > > +#define _TRANS_HBLANK_CMTG_A		0x6F004
-> > > > > +#define _TRANS_HBLANK_CMTG_B		0x6F104
-> > > > > +#define TRANS_HBLANK_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > > +						    _TRANS_HBLANK_CMTG_A,
-> > > > _TRANS_HBLANK_CMTG_B)
-> > > > > +#define _TRANS_HSYNC_CMTG_A		0x6F008
-> > > > > +#define _TRANS_HSYNC_CMTG_B		0x6F108
-> > > > > +#define TRANS_HSYNC_CMTG(trans)
-> > > > 	_MMIO_TRANS((trans), \
-> > > > > +						    _TRANS_HSYNC_CMTG_A,
-> > > > _TRANS_HSYNC_CMTG_B)
-> > > > > +#define _TRANS_VTOTAL_CMTG_A		0x6F00C
-> > > > > +#define _TRANS_VTOTAL_CMTG_B		0x6F10C
-> > > > > +#define TRANS_VTOTAL_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > > +						    _TRANS_VTOTAL_CMTG_A,
-> > > > _TRANS_VTOTAL_CMTG_B)
-> > > > > +#define _TRANS_VBLANK_CMTG_A		0x6F010
-> > > > > +#define _TRANS_VBLANK_CMTG_B		0x6F110
-> > > > > +#define TRANS_VBLANK_CMTG(trans)	_MMIO_TRANS((trans), \
-> > > > > +						    _TRANS_VBLANK_CMTG_A,
-> > > > _TRANS_VBLANK_CMTG_B)
-> > > > > +#define _TRANS_VSYNC_CMTG_A		0x6F014
-> > > > > +#define _TRANS_VSYNC_CMTG_B		0x6F114
-> > > > > +#define TRANS_VSYNC_CMTG(trans)
-> > > > 	_MMIO_TRANS((trans), \
-> > > > > +						    _TRANS_VSYNC_CMTG_A,
-> > > > _TRANS_VSYNC_CMTG_B)
-> > > >
-> > > > I though there was already feedback that these match the regular
-> > > > transcoder registers.
-> > >
-> > > _TRANS_HTOTAL_A         0x60000
-> > > _TRANS_HTOTAL_B         0x61000
-> > >
-> > > _TRANS_HTOTAL_CMTG_A            0x6F000
-> > > _TRANS_HTOTAL_CMTG_B            0x6F100
-> > >
-> > > I am not clear how to match?
-> > 
-> > #define TRANSCODER_CMTG0_OFFSET 0x6F000
-> > #define TRANSCODER_CMTG1_OFFSET 0x6F100
-> 
-> Ok, just to double check my understanding, I am putting below all the changes which maybe you are suggesting. 
-> Can please confirm or if I am missing something please let me know.
-> 
-> Step1: Define offset macro.
-> #define TRANSCODER_CMTGA_OFFSET 0x6F000
-> #define TRANSCODER_CMTGB_OFFSET 0x6F100
 
-s/AB/01/ to actually match the spec.
+--vpcnf3kbfe5e5pil
+Content-Type: text/plain; protected-headers=v1; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v2 08/20] drm/plane: Add new atomic_create_state callback
+MIME-Version: 1.0
 
-> Step2: Add trans_cmtg_offset array in intel_display_device_info structure and initialize.
-> .trans_cmtg_offsets = {                                                      \
->                 [TRANSCODER_A] = TRANSCODER_CMTGA_OFFSET,                           \
->                 [TRANSCODER_B] = TRANSCODER_CMTGB_OFFSET,
-> },
+On Tue, Apr 21, 2026 at 03:22:22PM +0200, Thomas Zimmermann wrote:
+> Hi
+>=20
+> Am 20.03.26 um 17:27 schrieb Maxime Ripard:
+> > Commit 47b5ac7daa46 ("drm/atomic: Add new atomic_create_state callback
+> > to drm_private_obj") introduced a new pattern for allocating drm object
+> > states.
+> >=20
+> > Instead of relying on the reset() callback, it created a new
+> > atomic_create_state hook. This is helpful because reset is a bit
+> > overloaded: it's used to create the initial software state, reset it,
+> > but also reset the hardware.
+> >=20
+> > It can also be used either at probe time, to create the initial state
+> > and possibly reset the hardware to an expected default, but also during
+> > suspend/resume.
+> >=20
+> > Both these cases come with different expectations too: during the
+> > initialization, we want to initialize all states, but during
+> > suspend/resume, drm_private_states for example are expected to be kept
+> > around.
+> >=20
+> > And reset() isn't fallible, which makes it harder to handle
+> > initialization errors properly.
+> >=20
+> > And this is only really relevant for some drivers, since all the helpers
+> > for reset only create a new state, and don't touch the hardware at all.
+> >=20
+> > It was thus decided to create a new hook that would allocate and
+> > initialize a pristine state without any side effect:
+> > atomic_create_state to untangle a bit some of it, and to separate the
+> > initialization with the actual reset one might need during a
+> > suspend/resume.
+> >=20
+> > Let's continue the transition to the new pattern with planes.
+> >=20
+> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > ---
+> >   drivers/gpu/drm/drm_atomic_state_helper.c | 44 ++++++++++++++++++++++=
++++++++++
+> >   drivers/gpu/drm/drm_mode_config.c         | 21 ++++++++++++++-
+> >   include/drm/drm_atomic_state_helper.h     |  4 +++
+> >   include/drm/drm_plane.h                   | 13 +++++++++
+> >   4 files changed, 81 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/dr=
+m/drm_atomic_state_helper.c
+> > index 2548d6da13675f63304dc92423c5d225de0447a8..f4ce9d3573cbecf216904db=
+54335e0cf84a01c39 100644
+> > --- a/drivers/gpu/drm/drm_atomic_state_helper.c
+> > +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
+> > @@ -319,10 +319,29 @@ void __drm_atomic_helper_plane_reset(struct drm_p=
+lane *plane,
+> >   	plane->state =3D plane_state;
+> >   }
+> >   EXPORT_SYMBOL(__drm_atomic_helper_plane_reset);
+> > +/**
+> > + * __drm_atomic_helper_plane_create_state - initializes plane state
+> > + * @plane: plane object
+> > + * @state: new state to initialize
+> > + *
+> > + * Initializes the newly allocated @state, usually required when
+> > + * initializing the drivers.
+> > + *
+> > + * @state is assumed to be zeroed.
+> > + *
+> > + * This is useful for drivers that subclass @drm_plane_state.
+> > + */
+> > +void __drm_atomic_helper_plane_create_state(struct drm_plane *plane,
+> > +					    struct drm_plane_state *state)
+> > +{
+> > +	__drm_atomic_helper_plane_state_init(state, plane);
+> > +}
+> > +EXPORT_SYMBOL(__drm_atomic_helper_plane_create_state);
+>=20
+> Will this function have another purpuse?=A0 Could we just call
+> _plane_state_init() directly from anywhere?
 
-They are just transcoders, so they go into .trans_offsets.
-If there are any pipe register that are actually transcoder
-registers then we may also need a sort of fake .pipe_offsets
-(like we have for the EDP transcoder)
+Yeah, I guess that makes sense. I'll drop that patch and the similar ones.
 
-> Step3: Define INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET which will use trans_cmtg_offset
-> #define INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET(display, trans) \
->         (DISPLAY_INFO((display))->trans_cmtg_offsets[(trans)] - \
->          DISPLAY_INFO((display))->trans_offsets[TRANSCODER_A] + \
->          DISPLAY_MMIO_BASE((display)))
-> 
-> Step4: Define _MMIO_TRANS2_CMTG which will use INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET
-> #define _MMIO_TRANS2_CMTG(display, trans, reg)       _MMIO(INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET((display), (trans)) + (reg))
-> 
-> Step5: Define TRANS_HTOTAL_CMTG
-> #define TRANS_HTOTAL_CMTG(display, trans)	_MMIO_TRANS2_CMTG(display, (trans), _TRANS_HTOTAL_A)
-> #define TRANS_HBLANK_CMTG(display, trans)   _MMIO_TRANS2_CMTG(display, (trans), _TRANS_HBLANK_A)
+Thanks!
+Maxime
 
-No, you just use TRANS_HTOTAL() and co.
+--vpcnf3kbfe5e5pil
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Or at least that's my current thinking. Avoids all the duplicated stuff.
+-----BEGIN PGP SIGNATURE-----
 
--- 
-Ville Syrjälä
-Intel
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCaen6bgAKCRAnX84Zoj2+
+dkUrAYDOMQH1R0rdVPEd0s+OfGrebhOcAQ5OABg6Mw53VpV+rFGnujuG6stJnEmW
+zh8kcmcBfR7oI+9DExvCM0FFCfUx1IhsnPmkBHlFUpZpKjsg81n0vRIsC71Orv1I
+q2H2sY1Pyw==
+=BF+U
+-----END PGP SIGNATURE-----
+
+--vpcnf3kbfe5e5pil--
