@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EH4XGatO6mkhxgIAu9opvQ
+	id cD1qEK9O6mkhxgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFD8D45523B
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEA2E45524B
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17DAF10F1C1;
-	Thu, 23 Apr 2026 16:54:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 74E0010F1D1;
+	Thu, 23 Apr 2026 16:54:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ltctiLrh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LKnAnUz5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9DA3E10F1C1;
- Thu, 23 Apr 2026 16:53:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FF2810F1D1;
+ Thu, 23 Apr 2026 16:54:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776963240; x=1808499240;
+ t=1776963245; x=1808499245;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=XcTFHh+NZRZT7q9qoFrbkmXLf9drMdOoHA4I9wbV4as=;
- b=ltctiLrh58F1DWDZLAVPmOVk/bt3W3dwTgjyh1Y/ubGD96YSw7cT51UZ
- qgLtFl3s/H6rMU4JZE+z+uaRc8W/MLQapRvh3MKyHFcd3TXLfY6L4xdvG
- Y6qZg6CYVbHIWgZTNhRCA+JJNtpEuy0SvPT/vzz1s1r6NKM3bXf5K5Og9
- ibQOOBmdODYl8i2gIe+CLn0a9+09Avo1OmNHULR38EUcW6enjz8mo0YiB
- 7tAdxOYxTMFa50Jd6eQ05tICzeSX+/BzlLZBdbTsMDh45YavbWF4lpraN
- EtZnk4d/lsAI3mZq9GlCvw3NosI9Rdz7zhRDeYE2VTqAr9+7yMWhIoSaE w==;
-X-CSE-ConnectionGUID: DVqHGVVwQByTTn39YQkNjw==
-X-CSE-MsgGUID: gqtMUsPhSbqlYD0w3TcZ4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="88245164"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="88245164"
+ bh=wKsH4uJzTkCOyuVV99r4OKPFDOnPrH5KEYi5hOuuxXw=;
+ b=LKnAnUz5GwBfoUSVcsAcIlvKvU0YtSSoIayxw+THZnvKGL2QXrKKrzDB
+ ZeHe5+aI7aKK2sTW9YDiafacsAJ5pPmUJY9SFwAS8YobZQDa+o1Cm0Nby
+ GbsBL4Q+C6dEi41Up64ht5Sp0xDb53tY5IpYZdC8qfUu2gK9hkaIq3z2t
+ 0s7r89ze5NWfyQfK1PnVBBHUaDLjlp8SBHMIa0/A9/hAveogVxmTwrLwb
+ 8V0kDfRuJ4dRvhh5jLhGKFBWniLKsKHsnQ2XuS4r5MekT2xrKPPA28ThD
+ VQxnAjmVYtQ80pPJv8fgDxuCdHKG3VOXHp+SoQ77E0Vpf+dows1NPYbMK w==;
+X-CSE-ConnectionGUID: tmvwC/yXQM+JvrIdb3Krgw==
+X-CSE-MsgGUID: SkF+k88PQ/awA6fTaxAWSA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="88245172"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="88245172"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:00 -0700
-X-CSE-ConnectionGUID: RMRHcMJeQHK/ftx9J9oEuw==
-X-CSE-MsgGUID: eSI/shNuRimZWF28aQbFgg==
+ 23 Apr 2026 09:54:05 -0700
+X-CSE-ConnectionGUID: RtViTHJ8TqWtmpx1C/6Eaw==
+X-CSE-MsgGUID: A0Ig61LFReqZmtd7RH4pdA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="237765091"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="237765136"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.188])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:53:59 -0700
+ 23 Apr 2026 09:54:03 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/16] drm/i915: Move intel_fb_pin_params to the parent
- interface
-Date: Thu, 23 Apr 2026 19:53:31 +0300
-Message-ID: <20260423165346.20884-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/16] drm/i915: Move the i915_dpt_offset()==0 assert
+Date: Thu, 23 Apr 2026 19:53:32 +0300
+Message-ID: <20260423165346.20884-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
 References: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
@@ -100,96 +99,61 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: EFD8D45523B
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
+X-Rspamd-Queue-Id: EEA2E45524B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-strut intel_fb_pin_params will be an important part of the fb_pin
-interface, so move the definition to the parent interface file.
-
-Or maybe we should have a separate header for this kind of stuff
-since the users of the parent interface will need the struct
-definition but not the parent interface vfunc struct definitions?
+Move the i915_dpt_offset() check into the lower level
+intel_fb_pin_to_dpt() function. Clears out some of the unnecessary
+junk from the higher level code, making it easier to introduce
+the new fb_pin parent interface.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb_pin.h  | 12 +-----------
- drivers/gpu/drm/i915/display/intel_fbdev.c   |  1 +
- include/drm/intel/display_parent_interface.h | 12 ++++++++++++
- 3 files changed, 14 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/i915/i915_fb_pin.c | 13 ++++++-------
+ 1 file changed, 6 insertions(+), 7 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index 805e23067004..84530f20d7d1 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -10,21 +10,11 @@
+diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
+index b800b55530a5..400ad8768c11 100644
+--- a/drivers/gpu/drm/i915/i915_fb_pin.c
++++ b/drivers/gpu/drm/i915/i915_fb_pin.c
+@@ -101,6 +101,12 @@ intel_fb_pin_to_dpt(struct drm_gem_object *_obj, struct intel_dpt *dpt,
+ 	i915_gem_object_flush_if_display(obj);
  
- struct drm_gem_object;
- struct i915_vma;
-+struct intel_fb_pin_params;
- struct intel_plane_state;
- struct i915_gtt_view;
- struct iosys_map;
- 
--struct intel_fb_pin_params {
--	const struct i915_gtt_view *view;
--	unsigned int alignment;
--	unsigned int phys_alignment;
--	unsigned int vtd_guard;
--	bool needs_cpu_lmem_access;
--	bool needs_low_address;
--	bool needs_physical;
--	bool needs_fence;
--};
--
- struct i915_vma *
- intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
- 		     const struct intel_fb_pin_params *pin_params,
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index ce4082da30e8..aa2701795caa 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -38,6 +38,7 @@
- #include <linux/vga_switcheroo.h>
- 
- #include <drm/clients/drm_client_setup.h>
-+#include <drm/intel/display_parent_interface.h>
- #include <drm/drm_crtc.h>
- #include <drm/drm_crtc_helper.h>
- #include <drm/drm_fb_helper.h>
-diff --git a/include/drm/intel/display_parent_interface.h b/include/drm/intel/display_parent_interface.h
-index ee2e9572bfca..b363d6a85dfe 100644
---- a/include/drm/intel/display_parent_interface.h
-+++ b/include/drm/intel/display_parent_interface.h
-@@ -16,6 +16,7 @@ struct drm_mode_fb_cmd2;
- struct drm_plane_state;
- struct drm_scanout_buffer;
- struct fb_info;
-+struct i915_gtt_view;
- struct i915_vma;
- struct intel_dpt;
- struct intel_dsb_buffer;
-@@ -29,6 +30,17 @@ struct ref_tracker;
- struct seq_file;
- struct vm_area_struct;
- 
-+struct intel_fb_pin_params {
-+	const struct i915_gtt_view *view;
-+	unsigned int alignment;
-+	unsigned int phys_alignment;
-+	unsigned int vtd_guard;
-+	bool needs_cpu_lmem_access;
-+	bool needs_low_address;
-+	bool needs_physical;
-+	bool needs_fence;
-+};
+ 	i915_vma_get(vma);
 +
- /* Keep struct definitions sorted */
++	/*
++	 * The DPT object contains only one vma, and there is no VT-d
++	 * guard, so the VMA's offset within the DPT is always 0.
++	 */
++	drm_WARN_ON(&i915->drm, i915_dpt_offset(vma));
+ err:
+ 	atomic_dec(&i915->pending_fb_pin);
  
- struct intel_display_bo_interface {
+@@ -255,7 +261,6 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 		       const struct intel_plane_state *old_plane_state)
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+-	struct drm_i915_private *i915 = to_i915(plane_state->uapi.plane->dev);
+ 	struct intel_plane *plane = to_intel_plane(plane_state->uapi.plane);
+ 	const struct intel_framebuffer *fb =
+ 		to_intel_framebuffer(plane_state->hw.fb);
+@@ -304,12 +309,6 @@ int intel_plane_pin_fb(struct intel_plane_state *plane_state,
+ 		plane_state->dpt_vma = vma;
+ 
+ 		WARN_ON(plane_state->ggtt_vma == plane_state->dpt_vma);
+-
+-		/*
+-		 * The DPT object contains only one vma, and there is no VT-d
+-		 * guard, so the VMA's offset within the DPT is always 0.
+-		 */
+-		drm_WARN_ON(&i915->drm, i915_dpt_offset(plane_state->dpt_vma));
+ 	}
+ 
+ 	/*
 -- 
 2.52.0
 
