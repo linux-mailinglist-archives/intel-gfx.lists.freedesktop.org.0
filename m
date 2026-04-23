@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MDn8K81O6mkhxgIAu9opvQ
+	id MGGXGNJO6mkhxgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 643EA455296
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EEBD94552A6
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E1FBA10F1E1;
-	Thu, 23 Apr 2026 16:54:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7F7CA10F1ED;
+	Thu, 23 Apr 2026 16:54:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SgXIQAfi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iIrl0weG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB9EB10F1EE;
- Thu, 23 Apr 2026 16:54:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 40DAF10F1ED;
+ Thu, 23 Apr 2026 16:54:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776963275; x=1808499275;
+ t=1776963280; x=1808499280;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QH9QB9DLxhsFIngYqSTcWTo3XHCo9VCxtn02lfEHj70=;
- b=SgXIQAfioesoojJoeavSSEnRysoZs+6d0oQOg0ET6aX3QH3Xj1GCNXHF
- Ch+7or38ZnF/ZMoANA1MveyWFoYBrqj1io664CxZLbxiD5lM3fTrwR2qw
- amoNFXiCElXjB4YgYtAtSP0JQMu8dNGCduCCJM9faRJe6fi20Z+vTvhoL
- 9yNiDsD9wa3EiOtGF3zsf87bO1EEDxiK4OpQgkm+29r2qUMp9sZD2XQKj
- +ZAIBMWhpnyjCOctj1Wr/VMH+t1onGIl6VZnX+m/IJ7zrS9Fk2MtUAWd9
- GlTdDnxECoD6dG1/akgWqmP4HhfmGpagYjrAhu1HhY1yQ/kpezklmwPqE g==;
-X-CSE-ConnectionGUID: RhLSz1sKRwastPHeF9LOpQ==
-X-CSE-MsgGUID: zNAxJ2EWQiaKNaf+XRa21A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81799509"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="81799509"
+ bh=UwSMs6TrDtlb9QmQUzY/b7AaeYw4q7ggi383yU8q2Jw=;
+ b=iIrl0weG+vyWaW/ADb/+HcM3DU1R0DC4Fnu4N4FHkmV0ULmoaCUdloE4
+ E6RrgmW+5ApgNDf15NYp8a4TliGeopEXSlM11kDEqXWPSkWfgOcUv1qwD
+ SUY/CrA4FH1tspFAziCo0rM1RO5NBGFMm68ghoeVeRkrl/MXpqDYr6inz
+ brAi+FyMPmI4fUXYlJn2aTIlOmya4szTGBE4RaxQYGgND6R6h12kKakF3
+ 885sE/Gv+qs+ihmq6AJ1cKK3huhZtM+09kXndhILDcLoo9hMmKHyUf2K4
+ k+hePiMxw3OWiUVk2e2GiNg11V3E3B9YlOHYOms8T873TkhbCZrHlryFo A==;
+X-CSE-ConnectionGUID: 5SZAY20fSvWhAFXgooNvzg==
+X-CSE-MsgGUID: OIf4239mSSaKQ174OQV96A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81799517"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="81799517"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:35 -0700
-X-CSE-ConnectionGUID: XxdAvWcXRJynyECyTDiEsg==
-X-CSE-MsgGUID: GQUU8RJRS3+zlinPKC+WNw==
+ 23 Apr 2026 09:54:40 -0700
+X-CSE-ConnectionGUID: +egJ6E0RRs28Qb6RwVBOyw==
+X-CSE-MsgGUID: 5N/JUS3MTBmYsRdgOamvYQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232560161"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232560172"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.188])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:33 -0700
+ 23 Apr 2026 09:54:38 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 10/16] drm/xe: Introduce xe_fb_pin_dpt_(un)pin()
-Date: Thu, 23 Apr 2026 19:53:39 +0300
-Message-ID: <20260423165346.20884-11-ville.syrjala@linux.intel.com>
+Subject: [PATCH 11/16] drm/xe: Introduce xe_fb_pin_ggtt_(un)pin()
+Date: Thu, 23 Apr 2026 19:53:40 +0300
+Message-ID: <20260423165346.20884-12-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
 References: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
@@ -99,129 +99,90 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 643EA455296
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: EEBD94552A6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 Extract the inner DPT parts of intel_plane_(un)pin() into the
-xe_fb_pin_dpt_(un)pin(). These will become part of the new
+xe_fb_pin_ggtt_(un)pin(). These will become part of the new
 fb_pin parent interface.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 69 ++++++++++++++++++++++----
- 1 file changed, 59 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 41 ++++++++++++++++++++++----
+ 1 file changed, 35 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index 9774089ee75c..46f6ae6acc4e 100644
+index 46f6ae6acc4e..bdd6a4da0997 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -428,6 +428,36 @@ void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+@@ -428,6 +428,34 @@ void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
  	__xe_unpin_fb_vma(vma);
  }
  
-+static int xe_fb_pin_dpt_pin(struct drm_gem_object *obj, struct intel_dpt *dpt,
-+			     const struct intel_fb_pin_params *pin_params,
-+			     struct i915_vma **out_dpt_vma,
-+			     struct i915_vma **out_ggtt_vma,
-+			     u32 *out_offset)
++static int xe_fb_pin_ggtt_pin(struct drm_gem_object *obj,
++			      const struct intel_fb_pin_params *pin_params,
++			      struct i915_vma **out_ggtt_vma,
++			      u32 *out_offset,
++			      int *out_fence_id)
 +{
 +	struct i915_vma *ggtt_vma;
 +
-+	WARN_ON(dpt);
-+
-+	ggtt_vma = __xe_pin_fb_vma(obj, true, pin_params);
++	ggtt_vma = __xe_pin_fb_vma(obj, false, pin_params);
 +	if (IS_ERR(ggtt_vma))
 +		return PTR_ERR(ggtt_vma);
 +
-+	*out_dpt_vma = NULL; /* not used on xe */
 +	*out_ggtt_vma = ggtt_vma;
 +	*out_offset = xe_ggtt_node_addr(ggtt_vma->node);
++	if (out_fence_id)
++		*out_fence_id = -1;
 +
 +	return 0;
 +}
 +
-+static void xe_fb_pin_dpt_unpin(struct intel_dpt *dpt,
-+				struct i915_vma *dpt_vma,
-+				struct i915_vma *ggtt_vma)
++static void xe_fb_pin_ggtt_unpin(struct i915_vma *ggtt_vma,
++				 int fence_id)
 +{
-+	WARN_ON(dpt || dpt_vma);
++	WARN_ON(fence_id >= 0);
 +
 +	__xe_unpin_fb_vma(ggtt_vma);
 +}
 +
- static bool reuse_vma(struct intel_plane_state *new_plane_state,
- 		      const struct intel_plane_state *old_plane_state)
- {
-@@ -457,27 +487,35 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
- int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 		       const struct intel_plane_state *old_plane_state)
- {
--	struct drm_framebuffer *fb = new_plane_state->hw.fb;
--	struct drm_gem_object *obj = intel_fb_bo(fb);
-+	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
-+	struct drm_gem_object *obj = intel_fb_bo(&fb->base);
- 	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
- 	struct intel_fb_pin_params pin_params = {
- 		.view = &new_plane_state->view.gtt,
--		.alignment = plane->min_alignment(plane, fb, 0),
--		.needs_cpu_lmem_access = intel_fb_needs_cpu_access(fb),
-+		.alignment = plane->min_alignment(plane, &fb->base, 0),
-+		.needs_cpu_lmem_access = intel_fb_needs_cpu_access(&fb->base),
- 	};
- 	struct i915_vma *ggtt_vma = NULL;
- 	struct i915_vma *dpt_vma = NULL;
- 	int fence_id = -1;
- 	u32 offset;
-+	int ret;
- 
- 	if (reuse_vma(new_plane_state, old_plane_state))
+ static int xe_fb_pin_dpt_pin(struct drm_gem_object *obj, struct intel_dpt *dpt,
+ 			     const struct intel_fb_pin_params *pin_params,
+ 			     struct i915_vma **out_dpt_vma,
+@@ -505,11 +533,10 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
  		return 0;
  
--	ggtt_vma = __xe_pin_fb_vma(obj, intel_fb_uses_dpt(fb), &pin_params);
--	if (IS_ERR(ggtt_vma))
--		return PTR_ERR(ggtt_vma);
-+	if (!intel_fb_uses_dpt(&fb->base)) {
-+		ggtt_vma = __xe_pin_fb_vma(obj, false, &pin_params);
-+		if (IS_ERR(ggtt_vma))
-+			return PTR_ERR(ggtt_vma);
- 
--	offset = xe_ggtt_node_addr(ggtt_vma->node);
-+		offset = xe_ggtt_node_addr(ggtt_vma->node);
-+	} else {
-+		ret = xe_fb_pin_dpt_pin(obj, fb->dpt, &pin_params,
-+					&dpt_vma, &ggtt_vma, &offset);
+ 	if (!intel_fb_uses_dpt(&fb->base)) {
+-		ggtt_vma = __xe_pin_fb_vma(obj, false, &pin_params);
+-		if (IS_ERR(ggtt_vma))
+-			return PTR_ERR(ggtt_vma);
+-
+-		offset = xe_ggtt_node_addr(ggtt_vma->node);
++		ret = xe_fb_pin_ggtt_pin(obj, &pin_params,
++					 &ggtt_vma, &offset, NULL);
 +		if (ret)
 +			return ret;
-+	}
+ 	} else {
+ 		ret = xe_fb_pin_dpt_pin(obj, fb->dpt, &pin_params,
+ 					&dpt_vma, &ggtt_vma, &offset);
+@@ -530,9 +557,11 @@ void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
+ 	const struct intel_framebuffer *fb = to_intel_framebuffer(old_plane_state->hw.fb);
  
- 	new_plane_state->dpt_vma = dpt_vma;
- 	new_plane_state->ggtt_vma = ggtt_vma;
-@@ -489,8 +527,19 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+ 	if (!intel_fb_uses_dpt(&fb->base)) {
+-		__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
++		xe_fb_pin_ggtt_unpin(old_plane_state->ggtt_vma,
++				     old_plane_state->fence_id);
  
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state)
- {
--	__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
--	old_plane_state->ggtt_vma = NULL;
-+	const struct intel_framebuffer *fb = to_intel_framebuffer(old_plane_state->hw.fb);
-+
-+	if (!intel_fb_uses_dpt(&fb->base)) {
-+		__xe_unpin_fb_vma(old_plane_state->ggtt_vma);
-+
-+		old_plane_state->ggtt_vma = NULL;
-+	} else {
-+		xe_fb_pin_dpt_unpin(fb->dpt, old_plane_state->dpt_vma,
-+				    old_plane_state->ggtt_vma);
-+
-+		old_plane_state->dpt_vma = NULL;
-+		old_plane_state->ggtt_vma = NULL;
-+	}
- }
- 
- static void xe_fb_pin_get_map(struct i915_vma *vma, struct iosys_map *map)
+ 		old_plane_state->ggtt_vma = NULL;
++		old_plane_state->fence_id = -1;
+ 	} else {
+ 		xe_fb_pin_dpt_unpin(fb->dpt, old_plane_state->dpt_vma,
+ 				    old_plane_state->ggtt_vma);
 -- 
 2.52.0
 
