@@ -2,61 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8FI4Fv4t6mmfwQIAu9opvQ
+	id 8M/qIrE66mnYxAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 16:34:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 17:28:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0A8AD453C41
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 16:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A2CCE4545AB
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 17:28:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 760EA10F193;
-	Thu, 23 Apr 2026 14:34:36 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QSdCeHKO";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id BABD010E353;
+	Thu, 23 Apr 2026 15:28:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6041A10F18C;
- Thu, 23 Apr 2026 14:34:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776954874; x=1808490874;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=cab0BYV0M82CzJmceGSd7QzZ76oo6VJ/pXEW4XQFMzQ=;
- b=QSdCeHKOaURlNv8ZvJYheOzt+iycZF3y+CvdG9PnbjnUBNJdTvA3jvGz
- 5/D+5wDvioMg41+tZH9Vii9Qs+EDD4K26ZutNiEtgOMc3guSZA/Qe+TPh
- 7pLf1orZr9o4MtVA/qdWnehGMqfYXLPmX8T+fbDkkzj4b/BiKL6rZwkTi
- 5bmRAseUA+MHiY9I9OFlBdgQN4/g4cTa1dUGJRzhS9uJsfFKNKCqc4seM
- UapHh0s7Yrqs29pgUsgOOg9iyYcYu/p+0/tBsCFUnRcS9QvXY59At4SYP
- e9wUCWmtOZBRFC1X9vUOU1ldRuobQXggIx9sgdaPVqML9N1uWClYhqDuX A==;
-X-CSE-ConnectionGUID: 6JNaJjbARcO3tj7RYvrJgA==
-X-CSE-MsgGUID: nP5bHk3VRNae5ryh/PPAaQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="76957648"
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="76957648"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 07:34:34 -0700
-X-CSE-ConnectionGUID: N8yH50FHQV6xcHE4hSYdvQ==
-X-CSE-MsgGUID: hRuPic/lQcW8sK/MIg36/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,194,1770624000"; d="scan'208";a="256170460"
-Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa001.fm.intel.com with ESMTP; 23 Apr 2026 07:34:32 -0700
-From: Nemesa Garg <nemesa.garg@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 3/3] drm/i915/dp: Decode dsc max delta bpp from sink dpcd
-Date: Thu, 23 Apr 2026 20:00:35 +0530
-Message-Id: <20260423143035.2267634-4-nemesa.garg@intel.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260423143035.2267634-1-nemesa.garg@intel.com>
-References: <20260423143035.2267634-1-nemesa.garg@intel.com>
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9638410E353;
+ Thu, 23 Apr 2026 15:28:45 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5542428808843245859=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_enabl?=
+ =?utf-8?q?e_ccs_modifiers_on_dg2_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Juha-Pekka Heikkila" <juhapekka.heikkila@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 23 Apr 2026 15:28:45 -0000
+Message-ID: <177695812560.4335.16996600865659448729@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260423141148.3145665-1-juhapekka.heikkila@gmail.com>
+In-Reply-To: <20260423141148.3145665-1-juhapekka.heikkila@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,118 +42,178 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nemesa.garg@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_TO(0.00)[gmail.com];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.954];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
-X-Rspamd-Queue-Id: 0A8AD453C41
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[live:email,lists.freedesktop.org:replyto,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: A2CCE4545AB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add intel_dp_dsc_max_delta_bppx16() to parse sink dsc max
-delta bpp from dpcd when DP_DSC_MAX_BPP_DELTA_AVAILABILITY
-is set. The helper decodes RGB/YCbCr444 and YCbCr420 delta
-range from DP_DSC_MAX_BPP_DELTA.
+--===============5542428808843245859==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-With this the flow will be first check format-specific
-range, if given calculate max compressed bpp accordingly.
-If not check for sink supported max compressed bpp and
-use that. If this is also not there go with mandatory
-max range supported bpp.
+== Series Details ==
 
-v2: Reorder the check flow for max_bpp. [Ankit]
+Series: drm/i915/display: enable ccs modifiers on dg2 (rev2)
+URL   : https://patchwork.freedesktop.org/series/165352/
+State : success
 
-Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 43 +++++++++++++++++++++++--
- 1 file changed, 41 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 35b8fb5740aa..3c6893beeffa 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -2169,17 +2169,56 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
- 	return -EINVAL;
- }
- 
-+static u16 intel_dp_dsc_max_delta_bppx16(const struct intel_connector *connector,
-+					 enum intel_output_format output_format)
-+{
-+	const u8 *dsc_dpcd = connector->dp.dsc_dpcd;
-+	u8 max_bpp_delta_v1 = dsc_dpcd[DP_DSC_MAX_BPP_DELTA_VERSION_1 - DP_DSC_SUPPORT];
-+	int max_bpp;
-+
-+	if (!(dsc_dpcd[DP_DSC_MAX_BITS_PER_PIXEL_HI - DP_DSC_SUPPORT] &
-+	    DP_DSC_MAX_BPP_DELTA_AVAILABILITY))
-+		return 0;
-+
-+	switch (output_format) {
-+	case INTEL_OUTPUT_FORMAT_RGB:
-+	case INTEL_OUTPUT_FORMAT_YCBCR444:
-+		max_bpp =  max_bpp_delta_v1 &
-+			DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK;
-+		if (max_bpp >= 1 && max_bpp <= 21)
-+			max_bpp =  max_bpp + DP_DSC_BPP_DELTA_444 - 1;
-+		break;
-+	case INTEL_OUTPUT_FORMAT_YCBCR420:
-+		max_bpp = (max_bpp_delta_v1 &
-+				DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK) >>
-+				DP_DSC_BPP_DELTA_SHIFT_420;
-+		if (max_bpp >= 1 && max_bpp <= 7)
-+			max_bpp = max_bpp + DP_DSC_BPP_DELTA_420 - 1;
-+		break;
-+	default:
-+		MISSING_CASE(output_format);
-+		return 0;
-+	}
-+
-+	return max_bpp << 4;
-+}
-+
- static
- u16 intel_dp_dsc_max_sink_compressed_bppx16(const struct intel_connector *connector,
- 					    enum intel_output_format output_format,
- 					    int bpc)
- {
--	u16 max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
-+	u16 max_bppx16 = intel_dp_dsc_max_delta_bppx16(connector, output_format);
-+
-+	if (max_bppx16)
-+		return max_bppx16;
-+
-+	max_bppx16 = drm_edp_dsc_sink_output_bpp(connector->dp.dsc_dpcd);
- 
- 	if (max_bppx16)
- 		return max_bppx16;
- 	/*
--	 * If support not given in DPCD 67h, 68h use the Maximum Allowed bit rate
-+	 * If support not given in DPCD 67h, 68h, 6Eh, 6Fh use the Maximum Allowed bit rate
- 	 * values as given in spec Table 2-157 DP v2.0
- 	 */
- 	switch (output_format) {
--- 
-2.25.1
+CI Bug Log - changes from CI_DRM_18358 -> Patchwork_165352v2
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_165352v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-dg2-9:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18358/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18358/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arlh-2:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18358/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18358 -> Patchwork_165352v2
+
+  CI-20190529: 20190529
+  CI_DRM_18358: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_165352v2: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/index.html
+
+--===============5542428808843245859==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: enable ccs modifiers on dg2 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165352/">https://patchwork.freedesktop.org/series/165352/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18358 -&gt; Patchwork_165352v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_165352v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-dg2-9:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18358/bat-dg2-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/bat-dg2-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18358/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18358/bat-arlh-2/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165352v2/bat-arlh-2/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18358 -&gt; Patchwork_165352v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18358: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8871: c829dad5f9e02f627722042e429d93824b470159 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_165352v2: ecb61ba4a1f619b6944f4d0741b4d8a0910f460c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5542428808843245859==--
