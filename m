@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCgENcBO6mkhxgIAu9opvQ
+	id eLiPIcVO6mkhxgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7511455270
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58AC1455280
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 243A010F1E5;
-	Thu, 23 Apr 2026 16:54:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8572F10F1BB;
+	Thu, 23 Apr 2026 16:54:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jEOIdgnG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GPxd0sRE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C68D710F1CC;
- Thu, 23 Apr 2026 16:54:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EC85D10F1BB;
+ Thu, 23 Apr 2026 16:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776963262; x=1808499262;
+ t=1776963266; x=1808499266;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=VR9cz6rnD8gyZ/WUfIdE2KbteQrUBTGYcNtajVtJMDk=;
- b=jEOIdgnGec3Ghilg4LWXyDjKUAfOQFm8aW6iGKh3BDGx7mpW2HQOgt+u
- IirhYQLOyd7cgKaQbviiQQyoTvogXOcjn5i5qY+4zPzABRS3U3y4AB96h
- VHVz4AgmA/cL1U7J5/VuuBdq+/7RGJ1Iu307JRXlCAXVEjB/mA6t8Q2s8
- egxVEBBy0qw3sUkpHRoOKC2pqBVlnrck3adcEPvz2S2N5+fyenUljD99K
- o7JsD9HZFpZVHS0kA370X/krz1li2RRVHS3uz7NCZuIdjeOG0izGqjf3i
- uwSYhArAemyz6GTmIsZ7UZF+gHA59lLpj71OulK1xJ+4P8/FttEz0R0O7 A==;
-X-CSE-ConnectionGUID: yC35G3a9S12s3G3k9eDDuw==
-X-CSE-MsgGUID: EKNpmYG1QYyZzqExiiLvNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81799479"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="81799479"
+ bh=9WOxajnfcipNuNi1RvjNHIvEZz8vcv01mooioR2+4Yg=;
+ b=GPxd0sRE52Tey7fDxATici5wMX8/rh1IRCeXg4LaH1Gx26MSUN/egtQ2
+ 1bERCY9X2Cb1zr9wub/T1qGMN7C5GnIPXp0uj8N/TX1H1U7xAjtDV8OQ0
+ SvToEI4d1LPARMXmDmYRbiB//f1LXR2RgvLo6yWl+RWh1GwNV7mpfPELB
+ vytGiCu8nZ8+piVSJJRkVr4FrAp6KhDrY9614JlD5az1OhCG5S6ZM50zG
+ aDG7ZgBa7hQc2LscnXRG8SGm+jLQVecKazcZka77ZlN/4TWOyaGn/boN5
+ UFJqabt8Lb1NDAaXy5CvnA8scTbkYaX1B12rkPgmySqpgrwDAGDdOK+64 w==;
+X-CSE-ConnectionGUID: llEaBYeITnSR2pprV8TB6A==
+X-CSE-MsgGUID: RIFgzM4oTqCHWrWxtAuM2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81799490"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="81799490"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:22 -0700
-X-CSE-ConnectionGUID: 7B7cxmKaTyW9F0ejlME0Lw==
-X-CSE-MsgGUID: kkKscKazTCawewxQ3P81jA==
+ 23 Apr 2026 09:54:26 -0700
+X-CSE-ConnectionGUID: 4SMr6P4WQmuQu/NWPlLydw==
+X-CSE-MsgGUID: 1iFFIluLQsSe077BqB9lxw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232560085"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="232560123"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.188])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:20 -0700
+ 23 Apr 2026 09:54:24 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/16] drm/xe: Move the FORCE_WC assert into __xe_pin_fb_vma()
-Date: Thu, 23 Apr 2026 19:53:36 +0300
-Message-ID: <20260423165346.20884-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/16] drm/xe: Kill the fbdev vma reuse hack
+Date: Thu, 23 Apr 2026 19:53:37 +0300
+Message-ID: <20260423165346.20884-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
 References: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
@@ -99,53 +99,58 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux.intel.com:mid]
-X-Rspamd-Queue-Id: A7511455270
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+X-Rspamd-Queue-Id: 58AC1455280
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-No need to bother the higher level pinning code with the
-FORCE_WC assert. Move it into the lower level function.
+This fbdev vma reuse hacks is a massive layering violation. It
+really does not belong in the fb pinning code. And it's in the
+way of properly abstracting this stuff, so kill it.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_fb_pin.c | 7 +++----
- 1 file changed, 3 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 10 ----------
+ 1 file changed, 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index afb6cdda537e..487c092cd000 100644
+index 487c092cd000..bbeb5c2a6c51 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -329,6 +329,9 @@ static struct i915_vma *__xe_pin_fb_vma(struct drm_gem_object *obj, bool is_dpt,
- 	struct drm_exec exec;
- 	int ret = 0;
- 
-+	/* We reject creating !SCANOUT fb's, so this is weird.. */
-+	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
-+
- 	if (!vma)
- 		return ERR_PTR(-ENODEV);
- 
-@@ -466,7 +469,6 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+@@ -10,7 +10,6 @@
+ #include "intel_display_types.h"
+ #include "intel_fb.h"
+ #include "intel_fb_pin.h"
+-#include "intel_fbdev.h"
+ #include "xe_bo.h"
+ #include "xe_device.h"
+ #include "xe_display_vma.h"
+@@ -432,10 +431,7 @@ void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+ static bool reuse_vma(struct intel_plane_state *new_plane_state,
+ 		      const struct intel_plane_state *old_plane_state)
  {
- 	struct drm_framebuffer *fb = new_plane_state->hw.fb;
- 	struct drm_gem_object *obj = intel_fb_bo(fb);
--	struct xe_bo *bo = gem_to_xe_bo(obj);
- 	struct i915_vma *vma;
+-	struct intel_framebuffer *fb = to_intel_framebuffer(new_plane_state->hw.fb);
  	struct intel_plane *plane = to_intel_plane(new_plane_state->uapi.plane);
- 	struct intel_fb_pin_params pin_params = {
-@@ -478,9 +480,6 @@ int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 	if (reuse_vma(new_plane_state, old_plane_state))
- 		return 0;
+-	struct xe_device *xe = to_xe_device(fb->base.dev);
+-	struct intel_display *display = xe->display;
+ 	struct i915_vma *vma;
  
--	/* We reject creating !SCANOUT fb's, so this is weird.. */
--	drm_WARN_ON(bo->ttm.base.dev, !(bo->flags & XE_BO_FLAG_FORCE_WC));
+ 	if (old_plane_state->hw.fb == new_plane_state->hw.fb &&
+@@ -446,12 +442,6 @@ static bool reuse_vma(struct intel_plane_state *new_plane_state,
+ 		goto found;
+ 	}
+ 
+-	if (fb == intel_fbdev_framebuffer(display->fbdev.fbdev)) {
+-		vma = intel_fbdev_vma_pointer(display->fbdev.fbdev);
+-		if (vma)
+-			goto found;
+-	}
 -
- 	vma = __xe_pin_fb_vma(obj, intel_fb_uses_dpt(fb), &pin_params);
+ 	return false;
  
- 	if (IS_ERR(vma))
+ found:
 -- 
 2.52.0
 
