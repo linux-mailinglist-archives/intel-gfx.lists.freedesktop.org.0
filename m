@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oDS7BuJO6mkhxgIAu9opvQ
+	id 8DW8J+dO6mkhxgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:55:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7AEA94552CA
-	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B6D94552D9
+	for <lists+intel-gfx@lfdr.de>; Thu, 23 Apr 2026 18:55:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC54710F1FB;
-	Thu, 23 Apr 2026 16:54:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6513A10F1FC;
+	Thu, 23 Apr 2026 16:55:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H6q9MpR/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EIutOzw/";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 97E4F10F1FB;
- Thu, 23 Apr 2026 16:54:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B41910F1FC;
+ Thu, 23 Apr 2026 16:55:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1776963294; x=1808499294;
+ t=1776963300; x=1808499300;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=Gz+hUAMRLD9b1f352K7A5z+TTarPzYKqzJtCKRHNXj8=;
- b=H6q9MpR/rtTGSxd4ae94iikY3qiB+TbBPbmGL+2kNjuvfGE5TrQoc9dA
- yL2gcD8B71sCYLgQPRx5FlevPHvf1mRv5Iet6bxKXYFnlniT1Qrg1zrRs
- 4hHEr5iDvsN4MbOzyxT4Zd4dJV3H/vED15cgbJdl3S36R6QbA+3MadAJr
- FnSDvEGmAFOlwU9SAnLXtqsUY8kibIPgsCh7tEJ8Qeb0Z4HkuEGC8uJKf
- 4BrJsZC+Q9piXPNT5HBFoqYbJl9Tw5zeTzFNeIMTkBrxaLul8yWF0Fqn4
- XPvOPQrw9rOEGMyWtMkL8qeL3tnUqnPbEgfXxoyYyv5xy1t7Pz7tunyx0 g==;
-X-CSE-ConnectionGUID: ZunKzwfRS0ScVIWW8FDzfA==
-X-CSE-MsgGUID: R1h6q7DxT9y2qRtjUNc76Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="95498823"
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="95498823"
+ bh=ZAY7vrcCFhZ6/FUgzWAP8LbDDydpEpjiP/5BBNaxIC8=;
+ b=EIutOzw/HlMRzizy5A3ZBdtPyPuo3IB6EnH1tHDhB6Dexhdiansc1Xze
+ uXFVYjk6M1PFSpsD6Jf4tcjWydK4ryPFe0vConVlA7PHK5q5fsoRFiGhC
+ K9LhwgnXGzHeNHdr+nD8ITnfnlwaZUlsI928tM/5kvyk3QOV1Jeply7JL
+ tgFhk+eyKOCPxCqpmttgv1bhd+y+709g00XpFjj+Z8rdczpqFXjuQAxj0
+ gIl+OCya42aQd5fuHVDPn7vjnTopdL74Us0EFLRukehiPJemSu2I2hjXd
+ Fem8OpMidfWxfz4/hFjiyw00YC5C1yEHqVZa2zfZJohr1DY645x4k6IVh A==;
+X-CSE-ConnectionGUID: rAlIscWTTLuhOooO9J5qkw==
+X-CSE-MsgGUID: pVLok15tTbWK0q/8KScFiA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="95498829"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="95498829"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:52 -0700
-X-CSE-ConnectionGUID: Ss+IyiMoR+++tTHHfc8b7w==
-X-CSE-MsgGUID: gkzA0MWSQL+Ai5QGeWof6Q==
+ 23 Apr 2026 09:54:57 -0700
+X-CSE-ConnectionGUID: ZHKNtwLmRu2R1iCyY/7uXA==
+X-CSE-MsgGUID: gsWD1TSPTY+RxFMElGrQCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="236696419"
+X-IronPort-AV: E=Sophos;i="6.23,195,1770624000"; d="scan'208";a="236696423"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.188])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Apr 2026 09:54:51 -0700
+ 23 Apr 2026 09:54:55 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 14/16] drm/i915/fbdev: Use intel_parent_fb_pin_ggtt_(un)pin()
-Date: Thu, 23 Apr 2026 19:53:43 +0300
-Message-ID: <20260423165346.20884-15-ville.syrjala@linux.intel.com>
+Subject: [PATCH 15/16] drm/xe: Use xe_fb_pin_ggtt_pin() for the initial FB pin
+Date: Thu, 23 Apr 2026 19:53:44 +0300
+Message-ID: <20260423165346.20884-16-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
 References: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
@@ -99,130 +99,128 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email]
-X-Rspamd-Queue-Id: 7AEA94552CA
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,linux.intel.com:mid]
+X-Rspamd-Queue-Id: 3B6D94552D9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the intel_fb_pin_to_ggtt() and intel_fb_unpin_vma() with the
-new abstract parent interface (intel_parent_fb_pin_ggtt_(un)pin()).
+Use xe_fb_pin_ggtt_pin() instead of intel_fb_pin_to_ggtt() for
+the initial FB pin. We want to get rid of intel_fb_pin_to_ggtt()
+and just use the new fb_pin parent interface.
 
-xe no longer needs intel_fb_unpin_vma(), and in i915 it now
-becomes and internal function to i915_fb_pin.
+This still isn't quite the final solution since we bypass the
+actual parent interface and call the implementation directly.
+But sorting that out will require more cleanup to the initial
+FB code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fb_pin.h |  2 --
- drivers/gpu/drm/i915/display/intel_fbdev.c  | 14 +++++++-------
- drivers/gpu/drm/i915/i915_fb_pin.c          |  2 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c      |  5 -----
- 4 files changed, 8 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        | 21 +++++--------------
+ drivers/gpu/drm/xe/display/xe_fb_pin.h        | 12 +++++++++++
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 18 ++++++++++------
+ 3 files changed, 29 insertions(+), 22 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_fb_pin.h b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-index 84530f20d7d1..6ff17d3e2cf5 100644
---- a/drivers/gpu/drm/i915/display/intel_fb_pin.h
-+++ b/drivers/gpu/drm/i915/display/intel_fb_pin.h
-@@ -20,8 +20,6 @@ intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
- 		     const struct intel_fb_pin_params *pin_params,
- 		     int *out_fence_id);
- 
--void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id);
--
- int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
- 		       const struct intel_plane_state *old_plane_state);
- void intel_plane_unpin_fb(struct intel_plane_state *old_plane_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index aa2701795caa..8463f88149a5 100644
---- a/drivers/gpu/drm/i915/display/intel_fbdev.c
-+++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -53,7 +53,6 @@
- #include "intel_display_rpm.h"
- #include "intel_display_types.h"
- #include "intel_fb.h"
--#include "intel_fb_pin.h"
- #include "intel_fbdev.h"
- #include "intel_frontbuffer.h"
- #include "intel_parent.h"
-@@ -133,6 +132,7 @@ static int intel_fbdev_mmap(struct fb_info *info, struct vm_area_struct *vma)
- static void intel_fbdev_fb_destroy(struct fb_info *info)
- {
- 	struct drm_fb_helper *fb_helper = info->par;
-+	struct intel_display *display = to_intel_display(fb_helper->client.dev);
- 	struct intel_fbdev *ifbdev = to_intel_fbdev(fb_helper);
- 
- 	drm_fb_helper_fini(fb_helper);
-@@ -142,7 +142,7 @@ static void intel_fbdev_fb_destroy(struct fb_info *info)
- 	 * the info->screen_base mmaping. Leaking the VMA is simpler than
- 	 * trying to rectify all the possible error paths leading here.
- 	 */
--	intel_fb_unpin_vma(ifbdev->vma, -1);
-+	intel_parent_fb_pin_ggtt_unpin(display, ifbdev->vma, -1);
- 	drm_framebuffer_remove(fb_helper->fb);
- 
- 	drm_client_release(&fb_helper->client);
-@@ -274,6 +274,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 	struct i915_vma *vma;
- 	bool prealloc = false;
- 	struct drm_gem_object *obj;
-+	u32 offset;
- 	int ret;
- 
- 	ifbdev->fb = NULL;
-@@ -321,11 +322,10 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 						       DRM_MODE_ROTATE_0);
- 	pin_params.needs_low_address = intel_plane_needs_low_address(display);
- 
--	vma = intel_fb_pin_to_ggtt(obj, &pin_params, NULL);
--	if (IS_ERR(vma)) {
--		ret = PTR_ERR(vma);
-+	ret = intel_parent_fb_pin_ggtt_pin(display, obj, &pin_params,
-+					   &vma, &offset, NULL);
-+	if (ret)
- 		goto out_unlock;
--	}
- 
- 	helper->funcs = &intel_fb_helper_funcs;
- 	helper->fb = &fb->base;
-@@ -356,7 +356,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 	return 0;
- 
- out_unpin:
--	intel_fb_unpin_vma(vma, -1);
-+	intel_parent_fb_pin_ggtt_unpin(display, vma, -1);
- out_unlock:
- 	intel_display_rpm_put(display, wakeref);
- 
-diff --git a/drivers/gpu/drm/i915/i915_fb_pin.c b/drivers/gpu/drm/i915/i915_fb_pin.c
-index 1f08e364d569..cedefee46fbf 100644
---- a/drivers/gpu/drm/i915/i915_fb_pin.c
-+++ b/drivers/gpu/drm/i915/i915_fb_pin.c
-@@ -222,7 +222,7 @@ intel_fb_pin_to_ggtt(struct drm_gem_object *_obj,
- 	return vma;
- }
- 
--void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
-+static void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
- {
- 	if (fence_id >= 0)
- 		i915_vma_unpin_fence(vma);
 diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-index e2b6ce3686a3..c3171625d150 100644
+index c3171625d150..c92c30ceba36 100644
 --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
 +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
-@@ -424,11 +424,6 @@ intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
- 	return __xe_pin_fb_vma(obj, false, pin_params);
+@@ -413,22 +413,11 @@ static void __xe_unpin_fb_vma(struct i915_vma *vma)
+ 	kfree(vma);
  }
  
--void intel_fb_unpin_vma(struct i915_vma *vma, int fence_id)
+-struct i915_vma *
+-intel_fb_pin_to_ggtt(struct drm_gem_object *obj,
+-		     const struct intel_fb_pin_params *pin_params,
+-		     int *out_fence_id)
 -{
--	__xe_unpin_fb_vma(vma);
+-	if (out_fence_id)
+-		*out_fence_id = -1;
+-
+-	return __xe_pin_fb_vma(obj, false, pin_params);
 -}
 -
- static int xe_fb_pin_ggtt_pin(struct drm_gem_object *obj,
- 			      const struct intel_fb_pin_params *pin_params,
- 			      struct i915_vma **out_ggtt_vma,
+-static int xe_fb_pin_ggtt_pin(struct drm_gem_object *obj,
+-			      const struct intel_fb_pin_params *pin_params,
+-			      struct i915_vma **out_ggtt_vma,
+-			      u32 *out_offset,
+-			      int *out_fence_id)
++int xe_fb_pin_ggtt_pin(struct drm_gem_object *obj,
++		       const struct intel_fb_pin_params *pin_params,
++		       struct i915_vma **out_ggtt_vma,
++		       u32 *out_offset,
++		       int *out_fence_id)
+ {
+ 	struct i915_vma *ggtt_vma;
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.h b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+index 8a42d4009f5d..20dd8a99a25f 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.h
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.h
+@@ -4,6 +4,18 @@
+ #ifndef __XE_FB_PIN_H__
+ #define __XE_FB_PIN_H__
+ 
++#include <linux/types.h>
++
++struct drm_gem_object;
++struct i915_vma;
++struct intel_fb_pin_params;
++
++int xe_fb_pin_ggtt_pin(struct drm_gem_object *obj,
++		       const struct intel_fb_pin_params *pin_params,
++		       struct i915_vma **out_ggtt_vma,
++		       u32 *out_offset,
++		       int *out_fence_id);
++
+ extern const struct intel_display_fb_pin_interface xe_display_fb_pin_interface;
+ 
+ #endif /* __XE_FB_PIN_H__ */
+diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+index 8e3c0c4b81fe..02b46cc3b6df 100644
+--- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
++++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
+@@ -7,12 +7,16 @@
+ 
+ #include "regs/xe_gtt_defs.h"
+ 
+-#include "intel_display_types.h"
++/* FIXME move intel_remapped_info_size() & co. */
+ #include "intel_fb.h"
+-#include "intel_fb_pin.h"
++
++/* FIXME move intel_initial_plane_config */
++#include "intel_display_types.h"
++
+ #include "xe_bo.h"
+ #include "xe_display_bo.h"
+ #include "xe_display_vma.h"
++#include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_mmio.h"
+ #include "xe_vram_types.h"
+@@ -137,14 +141,16 @@ xe_initial_plane_setup(struct drm_plane_state *_plane_state,
+ 	struct intel_fb_pin_params pin_params = {
+ 		.view = &plane_state->view.gtt,
+ 	};
++	u32 offset;
++	int ret;
+ 
+-	vma = intel_fb_pin_to_ggtt(intel_fb_bo(fb), &pin_params, NULL);
+-	if (IS_ERR(vma))
+-		return PTR_ERR(vma);
++	ret = xe_fb_pin_ggtt_pin(intel_fb_bo(fb), &pin_params, &vma, &offset, NULL);
++	if (ret)
++		return ret;
+ 
+ 	plane_state->ggtt_vma = vma;
+ 
+-	plane_state->surf = xe_ggtt_node_addr(plane_state->ggtt_vma->node);
++	plane_state->surf = offset;
+ 
+ 	plane_config->vma = vma;
+ 
 -- 
 2.52.0
 
