@@ -2,77 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OC9TJ/tj62mtMAAAu9opvQ
+	id qHYKHQVk62mtMAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 14:37:15 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 14:37:25 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4BB9145E83E
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 14:37:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 22BCF45E8AD
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 14:37:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1C77010F571;
-	Fri, 24 Apr 2026 12:37:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BC9810F597;
+	Fri, 24 Apr 2026 12:37:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="gmyJUbUZ";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="jhpTfukX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-oi1-f176.google.com (mail-oi1-f176.google.com
- [209.85.167.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E3D8310F28B
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 20:54:48 +0000 (UTC)
-Received: by mail-oi1-f176.google.com with SMTP id
- 5614622812f47-479fc1fc048so1991862b6e.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 13:54:48 -0700 (PDT)
+Received: from mail-oi1-f173.google.com (mail-oi1-f173.google.com
+ [209.85.167.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DDFA810F2A3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 20:54:53 +0000 (UTC)
+Received: by mail-oi1-f173.google.com with SMTP id
+ 5614622812f47-45f053b7b90so4049785b6e.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 23 Apr 2026 13:54:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1776977688; x=1777582488; darn=lists.freedesktop.org;
+ d=gmail.com; s=20251104; t=1776977693; x=1777582493; darn=lists.freedesktop.org;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:from:to:cc:subject:date:message-id
- :reply-to; bh=zftWqWhtfgLT8BdUHmflQKmCQdRaRDCFv8UXc0/NgE8=;
- b=gmyJUbUZM1sTfnL3f/Tej9de2EkdSaYq2AZHYJ6Hb/Jk51sEFLEjGywHDm+lEIliRA
- CGNufzx2taZ//1FjY1L8/4rFvZssU7PychcbW0J4NDVeYHN0eNV2xxibBm72XPwjP8oF
- SMrETNpoQ/eiOkPeu0cujciEBKiSoOGk3TlwvveaiOdgXlIM8Y9cSCatjUxRtTgkD18V
- U3AWkQ0Hnp2dFgT81qJK5lbPl6Z/FU3OZwaQZyWlPAewbV85bGLbmwWHlcf3zdRqWlG1
- 3+QtGnrVc6Ab0RRzh2sVdJ4amN1Pcq3W2n6Kc0NjLxEzSYhudfNQTGdoZWsghXKYePxs
- 6B6A==
+ :reply-to; bh=3OHbRsO14nacRj9UKrh+9hs7l7M/scZ1A9iLFCIgQ2w=;
+ b=jhpTfukX+zmcXTsX8aIiOQazsaAjTlbmQUtu7ld3bM8fYbUx4aF82Ld+ZGksKiw07r
+ mMQdxUKaqgtEoPREm6yngKWaKct8vomeWFolbmdDn45t5ZiOUsv/O7qzR9Ya1ihPo4ud
+ aGjmnnCmutTKUkKH/yqT7AzvWIy4TD6I4KXlnsjCcIKpsdmAXBEziqKE+QVAbweqdLSU
+ FzvbLURb5eYAPjqmNhLZ3k6rvS3q0DIL4rKZd7t3qS2tqGrRR/XmlI7eBfQRR2iuCiEN
+ +O+hKhhTNFvHblT7mTgM0Da/A9gZtdfhet5UOSxt/GFd5AlhudFQDp2sHbIMl2+LpWXZ
+ ESmw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1776977688; x=1777582488;
+ d=1e100.net; s=20251104; t=1776977693; x=1777582493;
  h=cc:to:in-reply-to:references:message-id:content-transfer-encoding
  :mime-version:subject:date:from:x-gm-gg:x-gm-message-state:from:to
  :cc:subject:date:message-id:reply-to;
- bh=zftWqWhtfgLT8BdUHmflQKmCQdRaRDCFv8UXc0/NgE8=;
- b=NVaYtN6LR62MilLZ0sJpNZFuVsTZ5EicRNPSiNOVa95QPDXGgagtYB/e8z/mqnvSFQ
- 9owocohb4y0CHP7QN+EuqSusCjUREfxjVm7Zr36M6gwx1VfZDju6pRzmiDnZOqZFknm5
- Z8UotBN+pwkwbh2N/LmCeFUe8bjpLoy4toS3k37c2R5k9XcqoTSCs+SlKzEjDdR5Bp2y
- zy9YlMiqmcbcBe95G/A/RlKMhXMWOtohqGHz1J8jGwVu3LY8HR8QLp7RAKPKF8nvrQyS
- XoYIzGYFkAJuX4F/Ygpt0xbZ+5/yDXGjQN4mWVDycKo2PCZJHKo5h87Eo1NtBLwimbDu
- h35Q==
+ bh=3OHbRsO14nacRj9UKrh+9hs7l7M/scZ1A9iLFCIgQ2w=;
+ b=VnZZR9muFHXOSMZ1aRAOLZVapNwg0YxuNj8mJ2s4lOOKgc85th5taVqMCdHwPbvK/x
+ lnSknGp9elYp/3x3Qd5LUNwB6UJlzCtkRKqoYc6n3o6F84EaydqDAWE91EzgLwtB3Ily
+ 1JrKxxWz+mVcvm/0egtQSXlbzaCBzr8+u2dy+EV2g/ytKV9vTxkLyPT4w5QBhOpPHBjS
+ 1CjPS+MrKWxjAQI/Tx35/wC+8s1n2ZXSg/zmgcJA/DGc0HKWJdfE7YFjmFQ0dHRAsaW4
+ nGrlN90Z4Y0JoDkRSoounnOsnJjGk37ZoHbVYvQX8tCh17+XSNUvUZ0HI+ZGgFCUdgeD
+ vSMA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8mZc2TCwIM+x5figo/NXZe3i1vLR8DTsAtzh99rjv9GRQzva/w6svIWHGgXFj1GgH3OTo9hulzP6U=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw0RHtA5qBdjdetVnC5LP3/LvzsGHwsK5jL+bsV6Dmw+Rkfy0w9
- 3M3DntdxQ3scX2jDajpNcntzOXstE9E2fAA501Ba1qex69voq6mFkdHV
-X-Gm-Gg: AeBDiethpuLk3kaIml4FzgQeUU5FLMJtNR4P79esnv/0nwJ/sUTWrC0UC0T267kL3Vs
- GygzGWvpn4R0WRM/IJOmzYq/ShbwMwIZs29BeS1+/17tp8OgZSZbH9CIOJ/TJhQTpa0lR29AvyI
- 1hR/PA87b/qm9Z5tv62Kz/XjC7+0DoXVUMy5a2wM2w9/uiRoPFWj2xa+rsogJy7lxz6vpVW6K16
- 8axXw+SDkXK2MHkKjUsGTAiKrSzgl/fCJwGwI2hMeeBi7LWsBKg6kg6aK06jnalOqm7slbkqBnB
- vHto4ORgBm07dVOaYNa+AqFto/dR1AhdpbAVs93OboeOfVEmGCxhWDehslMB8fpsttY/2V16IhN
- yWH+TK4zDj07N6drAW2lilirLaRatd4IomFSdil27YDuxURnGct+DcpqLBDss3g+CZ4nPx8zk/k
- y0I2ssvvcQUBRHuaFdgd2Hr9PLzEhaoI4pdAqm9l/bBbkNsqN5fII1ROL4e8JBNfVeXxkDVTzo
-X-Received: by 2002:a05:6808:1384:b0:467:2926:1231 with SMTP id
- 5614622812f47-4799cabb091mr15541122b6e.33.1776977687962; 
- Thu, 23 Apr 2026 13:54:47 -0700 (PDT)
+ AFNElJ+S7fvTbLtZGaHHX0RoygKNYABCLrPS3f/uc7Leu8UFwT12NfkAcQ0EWfDrrHpeiPVJFQJzCQABT/E=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Ywv30A+7rl1AeCzQ8md+Fj+z3YWfwp9pF4sMQiBUqOetv1U0ZtF
+ rb+HQsunwFdEeZYcw1MRWJPAjQmsSU2vvwmTovTpfco3qZkzSDcIbDsj
+X-Gm-Gg: AeBDiet07QnKSsiop/vtADOZs0grWlU8zpjU5CHz09jZllBqU1u77lKli/I1MauLak0
+ lbem+a4sBcknaEJ3o/nLi/+pFd73LgdgK1Wewb1xHUt9onUK0xDxnAoORtMFFRIeS92bwkD69S4
+ 9XPuTSOuJg3lb/w5l4XflzHWplJJc/+LevdD3w3JbovYrmhJA5Bi5vh3/hpcY7GIN03fKZd3nol
+ KEWvxjW3gQAvm/Xyh6HBm00SpIBisX0+MA+h0YF36A9KQkctjZP1x/qu/sYNpbcVncmMRS83w9p
+ YKWLrBofXni2MbqYXiMGSALG2CGdYD0hwmKz0oHeF/NTUtNlpMSlIYUY2vJlNQjh3IPmd2aFFK/
+ VuTud0a7nqIlRAUecF0D+7of/L00Pv8bxmiU28vhgJ4RtUpJ7TMt61N//y3HEeja3kBBlsmJYp9
+ mqanc4+cG6bDHAPPoDOhMc1lMHAEiY5vsf6D45jp/6Lg7hpA1sUl3ipV8QlNXGKUk7ztCqcl2HP
+ 4r6+pvFN8Y=
+X-Received: by 2002:a05:6808:d4a:b0:467:49c0:5f6d with SMTP id
+ 5614622812f47-4799ca893f0mr15678939b6e.23.1776977692926; 
+ Thu, 23 Apr 2026 13:54:52 -0700 (PDT)
 Received: from [192.168.0.245] (c-98-38-17-99.hsd1.co.comcast.net.
  [98.38.17.99]) by smtp.googlemail.com with ESMTPSA id
- 5614622812f47-4799fead505sm14329744b6e.2.2026.04.23.13.54.42
+ 5614622812f47-4799fead505sm14329744b6e.2.2026.04.23.13.54.48
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 23 Apr 2026 13:54:47 -0700 (PDT)
+ Thu, 23 Apr 2026 13:54:52 -0700 (PDT)
 From: Jim Cromie <jim.cromie@gmail.com>
-Date: Thu, 23 Apr 2026 14:53:50 -0600
-Subject: [PATCH v14 09/92] test-dyndbg: fixup CLASSMAP usage error
+Date: Thu, 23 Apr 2026 14:53:51 -0600
+Subject: [PATCH v14 10/92] dyndbg: reword "class unknown," to "class:_UNKNOWN_"
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260423-submit-dyndbg-classmap-foundation-v14-9-2b809a8019d0@gmail.com>
+Message-Id: <20260423-submit-dyndbg-classmap-foundation-v14-10-2b809a8019d0@gmail.com>
 References: <20260423-submit-dyndbg-classmap-foundation-v14-0-2b809a8019d0@gmail.com>
 In-Reply-To: <20260423-submit-dyndbg-classmap-foundation-v14-0-2b809a8019d0@gmail.com>
 To: Arnd Bergmann <arnd@arndb.de>, Jason Baron <jbaron@akamai.com>, 
@@ -167,11 +168,11 @@ Cc: linux-arch@vger.kernel.org, linux-kernel@vger.kernel.org,
  linux-stm32@st-md-mailman.stormreply.com, linux-renesas-soc@vger.kernel.org, 
  etnaviv@lists.freedesktop.org, Jim Cromie <jim.cromie@gmail.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=ed25519-sha256; t=1776977636; l=1492;
+X-Developer-Signature: v=1; a=ed25519-sha256; t=1776977636; l=1024;
  i=jim.cromie@gmail.com; s=20260203; h=from:subject:message-id;
- bh=v7nXtN9RgqHdJNPNJFFsg1eD6gNLpxPo8kGjLNQhYDo=;
- b=VBe9Ut7lbIIOEurwbAbNeQYJD7LG7Pt57wkJQXnWBJg9CpLMfTuVjx/oiKOPJeZDCdXsgXfoN
- q302jYDv/rXD00pgA4KJloRhJnDOj+7pbSDUehOIPs/xW+brF00GdRj
+ bh=4QM3LS2xsg7RLYgSN87KN0NOYRoI2SlINH0Xj+sS9wE=;
+ b=zEZMT0WhA4tazHE8iUsJRCDfWjq/snV5y5Ucebwf2eD2LMkQH1VD4rtB+5MLgRCm4kUHuVv2l
+ mCQ8zw3QDM0CpaAyRTte6a4hImlzDdBhTb6cuX8iNQbekmlAYqZ0f+w
 X-Developer-Key: i=jim.cromie@gmail.com; a=ed25519;
  pk=C6E5ODlPQo7ZBynATXH9wg7K6HxP0pIXyf4s38Qw0XE=
 X-Mailman-Approved-At: Fri, 24 Apr 2026 12:37:08 +0000
@@ -189,7 +190,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4BB9145E83E
+X-Rspamd-Queue-Id: 22BCF45E8AD
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -230,42 +231,33 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[]
 
-commit 6ea3bf466ac6 ("dyndbg: test DECLARE_DYNDBG_CLASSMAP, sysfs nodes")
+When a dyndbg classname is unknown to a kernel module (as before
+previous patch), the callsite is un-addressable via >control queries.
 
-A closer look at test_dynamic_debug.ko logging output reveals a macro
-usage error:
-
-lib/test_dynamic_debug.c:105 [test_dynamic_debug]do_cats =p "LOW msg\n" class:MID
-lib/test_dynamic_debug.c:106 [test_dynamic_debug]do_cats =p "MID msg\n" class:HI
-lib/test_dynamic_debug.c:107 [test_dynamic_debug]do_cats =_ "HI msg\n" class unknown, _id:13
-
-107 says: HI is unknown, and 105,106 have a LOW/MID and MID/HI skew.
-
-DECLARE_DYNDBG_CLASSMAP() _base arg must equal the enum's 1st value,
-in this case it was _base + 1.  This leaves HI class un-selectable.
-
-NB: the macro could better validate its arguments.
+The control-file displays this condition as "class unknown,"
+currently.  That spelling is sub-optimal/too-generic, so change it to
+"class:_UNKNOWN_" to loudly announce the erroneous situation, and to
+make it uniquely greppable.
 
 Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
-Tested-by: Louis Chauvet <louis.chauvet@bootlin.com>
 Signed-off-by: Jim Cromie <jim.cromie@gmail.com>
 ---
- lib/test_dynamic_debug.c | 2 +-
+ lib/dynamic_debug.c | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/lib/test_dynamic_debug.c b/lib/test_dynamic_debug.c
-index 77c2a669b6af..396144cf351b 100644
---- a/lib/test_dynamic_debug.c
-+++ b/lib/test_dynamic_debug.c
-@@ -75,7 +75,7 @@ DD_SYS_WRAP(disjoint_bits, p);
- DD_SYS_WRAP(disjoint_bits, T);
+diff --git a/lib/dynamic_debug.c b/lib/dynamic_debug.c
+index 6b1e983cfedc..a9caf84ddb22 100644
+--- a/lib/dynamic_debug.c
++++ b/lib/dynamic_debug.c
+@@ -1166,7 +1166,7 @@ static int ddebug_proc_show(struct seq_file *m, void *p)
+ 		if (class)
+ 			seq_printf(m, " class:%s", class);
+ 		else
+-			seq_printf(m, " class unknown, _id:%d", dp->class_id);
++			seq_printf(m, " class:_UNKNOWN_ _id:%d", dp->class_id);
+ 	}
+ 	seq_putc(m, '\n');
  
- /* symbolic input, independent bits */
--enum cat_disjoint_names { LOW = 11, MID, HI };
-+enum cat_disjoint_names { LOW = 10, MID, HI };
- DECLARE_DYNDBG_CLASSMAP(map_disjoint_names, DD_CLASS_TYPE_DISJOINT_NAMES, 10,
- 			"LOW", "MID", "HI");
- DD_SYS_WRAP(disjoint_names, p);
 
 -- 
 2.53.0
