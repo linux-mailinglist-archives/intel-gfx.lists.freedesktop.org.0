@@ -2,84 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GAwUGNND62muKQAAu9opvQ
+	id AH7AG0VG62m4KQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:20:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:30:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB11C45CECB
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:20:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B5B45D139
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:30:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 697DA10F518;
-	Fri, 24 Apr 2026 10:20:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB29210E3E4;
+	Fri, 24 Apr 2026 10:30:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ui8mGOMx";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OE9Thzcu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3256810F515;
- Fri, 24 Apr 2026 10:19:58 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 167F143867;
- Fri, 24 Apr 2026 10:19:58 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 69FCFC2BCB5;
- Fri, 24 Apr 2026 10:19:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1777025997;
- bh=TZEBUuL8MVAGlaofV/40p+UHuNP/Fq0bzLy0YsAq1bg=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=ui8mGOMxLJhCc/Sp7guVq6ejeKKGinM9ndcB+/SE3t6ov5jLw30SwSLXKlCDoSVpL
- cRo2ktRmTsJ4Xn5XrS4GjZr9mQFqgj79WYqNPaWTZQQhucat+eJBMz03nfSqf177uq
- 8n5tod+6zwJp4B9S+vLIMt5cqPLQIt7I7Tm4VULE/W2x5o7ZFe3HdQ8hhyf+4GqhcM
- G0d9g9VNE5qFa2adzTdwwxPvCTOfEKyNuEIXyTGBcKoCZ8zQuyUZ1+OboruLvenqTr
- 7TZzRkVlrqeA7t1gj298zEFXRUQHI0QiuQZA4gWJg98hcMin7GkFYJuXqmuqFf25Uj
- fNDC3Pbqp/i8A==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Fri, 24 Apr 2026 12:19:00 +0200
-Subject: [PATCH v3 20/20] drm/bridge_connector: Convert to atomic_create_state
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E988B10E3E4;
+ Fri, 24 Apr 2026 10:30:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777026626; x=1808562626;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=s8qwo2sK+rkg9h6fhj/+J015SVQ0AWxHiwcL1+3gv2w=;
+ b=OE9Thzcul2KqWWdzPilMtNeL8/yx24ulhtYLLgqk24LaxKNTT/NgcE3N
+ juq8vv2OVM4pzISmfjHjW7IgFggiyibxpfL+m7P9No1fTKGvVXdKGh8Po
+ oJaBGf8L0o/RQjTQ0aKh9CBp5Y/3i2BUsTuUhl2onXCoPl58ho4G/wzYa
+ VnZaJbWlU6zxMoWRbNp/BUJE9+hPklQFj6zOHo/Ggyn2muLkHcFPyj0eA
+ sHbtsM+2nwnvouvKQ+MUKOoIQsdAqoOwdEXcAX6gaD09Gd8YlAh7wqVRm
+ ILOX0edwRkeUxyIkJW3dJsg/XsVN4+uWrzGwCs9Eld7AYT6Q/98xmRPxB A==;
+X-CSE-ConnectionGUID: Jyhvy52EQcyOl8i0YSsyTw==
+X-CSE-MsgGUID: sXih052xTgiYQuOuP/Oy6g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="77992009"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="77992009"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 03:30:25 -0700
+X-CSE-ConnectionGUID: I09/jbrTQ5OgCqFTSbNCRQ==
+X-CSE-MsgGUID: fBd1NLMaROaFlfkq7fX1fw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="263318818"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.89])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Apr 2026 03:30:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 12/16] drm/xe: Restructure reuse_vma()
+In-Reply-To: <20260423165346.20884-13-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260423165346.20884-1-ville.syrjala@linux.intel.com>
+ <20260423165346.20884-13-ville.syrjala@linux.intel.com>
+Date: Fri, 24 Apr 2026 13:30:21 +0300
+Message-ID: <85603a402f5b436b4de11fd275e9de266744c74f@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260424-drm-mode-config-init-v3-20-8b68d9db0d8b@kernel.org>
-References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
-In-Reply-To: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>, 
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>, 
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2233; i=mripard@kernel.org;
- h=from:subject:message-id; bh=TZEBUuL8MVAGlaofV/40p+UHuNP/Fq0bzLy0YsAq1bg=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJmvnScaZpgGxJpuPbCeu7f94dJNje92d5xwurj29fSUu
- j3lUme1OqayMAhzMsiKKbI8kQk7vbx9cZWD/cofMHNYmUCGMHBxCsBEHhsw1lc+Y7xmxPX7R3rR
- is5tLMzLpD8t2JV7YdK0TXJuvDv8Gb/dm5c806Wi6v39LQocVgueSjHWmayZ/uln5S0evwCFopu
- neNqkp7xuimLgn9mbcrZmy7KC3T8T/918JHGhyDRwC8uRqmYHAA==
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,91 +76,143 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: EB11C45CECB
+X-Rspamd-Queue-Id: 41B5B45D139
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx,renesas];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,qualcomm.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-The connector created by drm_bridge_connector only initializes a
-pristine state in reset, which is equivalent to what
-atomic_create_state would expect. Convert to it.
+On Thu, 23 Apr 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+>
+> Restructure reuse_vma() into a form that doesn't need the plane
+> state structs, and rename the result to xe_fb_pin_reuse_vma().
+> This will become the new fb_pin parent interface.
+>
+> Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
----
- drivers/gpu/drm/display/drm_bridge_connector.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index d72f29b73be3..4b310fe505b4 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -263,26 +263,33 @@ static void drm_bridge_connector_debugfs_init(struct drm_connector *connector,
- 		if (bridge->funcs->debugfs_init)
- 			bridge->funcs->debugfs_init(bridge, root);
- 	}
- }
- 
--static void drm_bridge_connector_reset(struct drm_connector *connector)
-+static struct drm_connector_state *
-+drm_bridge_connector_create_state(struct drm_connector *connector)
- {
- 	struct drm_bridge_connector *bridge_connector =
- 		to_drm_bridge_connector(connector);
-+	struct drm_connector_state *conn_state;
-+
-+	conn_state = drm_atomic_helper_connector_create_state(connector);
-+	if (IS_ERR(conn_state))
-+		return conn_state;
- 
--	drm_atomic_helper_connector_reset(connector);
- 	if (bridge_connector->bridge_hdmi)
- 		__drm_atomic_helper_connector_hdmi_state_init(connector,
--							      connector->state);
-+							      conn_state);
-+
-+	return conn_state;
- }
- 
- static const struct drm_connector_funcs drm_bridge_connector_funcs = {
--	.reset = drm_bridge_connector_reset,
- 	.detect = drm_bridge_connector_detect,
- 	.force = drm_bridge_connector_force,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_create_state = drm_bridge_connector_create_state,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.debugfs_init = drm_bridge_connector_debugfs_init,
- 	.oob_hotplug_event = drm_bridge_connector_oob_hotplug_event,
- };
+> ---
+>  drivers/gpu/drm/xe/display/xe_fb_pin.c | 48 ++++++++++++++------------
+>  1 file changed, 25 insertions(+), 23 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/=
+display/xe_fb_pin.c
+> index bdd6a4da0997..cd287efded28 100644
+> --- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> +++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+> @@ -486,36 +486,31 @@ static void xe_fb_pin_dpt_unpin(struct intel_dpt *d=
+pt,
+>  	__xe_unpin_fb_vma(ggtt_vma);
+>  }
+>=20=20
+> -static bool reuse_vma(struct intel_plane_state *new_plane_state,
+> -		      const struct intel_plane_state *old_plane_state)
+> +static struct i915_vma *
+> +xe_fb_pin_reuse_vma(struct i915_vma *old_ggtt_vma,
+> +		    struct drm_gem_object *old_obj,
+> +		    const struct i915_gtt_view *old_view,
+> +		    struct drm_gem_object *new_obj,
+> +		    const struct i915_gtt_view *new_view,
+> +		    u32 *out_offset)
+>  {
+> -	struct intel_plane *plane =3D to_intel_plane(new_plane_state->uapi.plan=
+e);
+> -	struct i915_vma *vma;
+> +	if (old_ggtt_vma && old_obj =3D=3D new_obj &&
+> +	    !memcmp(&old_view, &new_view, sizeof(*new_view))) {
+> +		refcount_inc(&old_ggtt_vma->ref);
+>=20=20
+> -	if (old_plane_state->hw.fb =3D=3D new_plane_state->hw.fb &&
+> -	    !memcmp(&old_plane_state->view.gtt,
+> -		    &new_plane_state->view.gtt,
+> -		    sizeof(new_plane_state->view.gtt))) {
+> -		vma =3D old_plane_state->ggtt_vma;
+> -		goto found;
+> +		*out_offset =3D xe_ggtt_node_addr(old_ggtt_vma->node);
+> +
+> +		return old_ggtt_vma;
+>  	}
+>=20=20
+> -	return false;
+> -
+> -found:
+> -	refcount_inc(&vma->ref);
+> -	new_plane_state->ggtt_vma =3D vma;
+> -
+> -	new_plane_state->surf =3D xe_ggtt_node_addr(new_plane_state->ggtt_vma->=
+node) +
+> -		plane->surf_offset(new_plane_state);
+> -
+> -	return true;
+> +	return NULL;
+>  }
+>=20=20
+>  int intel_plane_pin_fb(struct intel_plane_state *new_plane_state,
+>  		       const struct intel_plane_state *old_plane_state)
+>  {
+> -	struct intel_framebuffer *fb =3D to_intel_framebuffer(new_plane_state->=
+hw.fb);
+> +	const struct intel_framebuffer *fb =3D to_intel_framebuffer(new_plane_s=
+tate->hw.fb);
+> +	const struct intel_framebuffer *old_fb =3D to_intel_framebuffer(old_pla=
+ne_state->hw.fb);
+>  	struct drm_gem_object *obj =3D intel_fb_bo(&fb->base);
+>  	struct intel_plane *plane =3D to_intel_plane(new_plane_state->uapi.plan=
+e);
+>  	struct intel_fb_pin_params pin_params =3D {
+> @@ -529,8 +524,14 @@ int intel_plane_pin_fb(struct intel_plane_state *new=
+_plane_state,
+>  	u32 offset;
+>  	int ret;
+>=20=20
+> -	if (reuse_vma(new_plane_state, old_plane_state))
+> -		return 0;
+> +	ggtt_vma =3D xe_fb_pin_reuse_vma(old_plane_state->ggtt_vma,
+> +				       intel_fb_bo(&old_fb->base),
+> +				       &old_plane_state->view.gtt,
+> +				       intel_fb_bo(&fb->base),
+> +				       &new_plane_state->view.gtt,
+> +				       &offset);
+> +	if (ggtt_vma)
+> +		goto got_vma;
+>=20=20
+>  	if (!intel_fb_uses_dpt(&fb->base)) {
+>  		ret =3D xe_fb_pin_ggtt_pin(obj, &pin_params,
+> @@ -544,6 +545,7 @@ int intel_plane_pin_fb(struct intel_plane_state *new_=
+plane_state,
+>  			return ret;
+>  	}
+>=20=20
+> +got_vma:
+>  	new_plane_state->dpt_vma =3D dpt_vma;
+>  	new_plane_state->ggtt_vma =3D ggtt_vma;
+>  	new_plane_state->fence_id =3D fence_id;
 
--- 
-2.53.0
-
+--=20
+Jani Nikula, Intel
