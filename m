@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SJtFHYI462nRJwAAu9opvQ
+	id kOi1NYM462nRJwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 11:31:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 11:31:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1BB0645C3DF
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 11:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8BBC545C3ED
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 11:31:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9FB2910F462;
-	Fri, 24 Apr 2026 09:31:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1740110F466;
+	Fri, 24 Apr 2026 09:31:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ik1GXcZt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nx47BqPf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1211810F477;
- Fri, 24 Apr 2026 09:31:38 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B087D10F477;
+ Fri, 24 Apr 2026 09:31:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777023098; x=1808559098;
+ t=1777023100; x=1808559100;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=DfawlLkld6l04G7pQhdlUOA6zhvrcwlU27/BF7g4Wd8=;
- b=ik1GXcZtrkfDGH/Aig6TboQnyzT2yyYo2fxq1HwAhEo58ZqaeWCrDlqs
- dia/KSHjKPU6z8rHn3+MdAuXqWWRb4QPF5ifKcZnc9RV+OQGirkIXgscb
- ul8g1kBJ17EQAthJNKiMJ8TNaztq6mjjEi+0/1CWkaVnwXurX43rqPlgC
- T8foptgPhL62YeKdQSFZ1k2NUU+mRzh63MsdMDwRCBA9F7Aih6AnwiAWM
- YOzZi2Pl3UqWymqQK1C1Hhxn/C4xoBk3P501g9DUyMsUX0BvModbQZ3hS
- npD/2jL9kE7kkzP8rJPZLTf+bztKh3iMPSUHm7CRNFUmVgj4Qmy8fsING A==;
-X-CSE-ConnectionGUID: WEsjfQ25QUa2u/BMislfnw==
-X-CSE-MsgGUID: ERu0MqL9QiCHxLV1OZYKXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81859296"
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81859296"
+ bh=HE73IoN21SAiR407neVozQ8QA+lJHkcqoWp2mIAwHRo=;
+ b=nx47BqPfCbF597hllwUNajtWI2/Gq8/im0XDwYF/haf4vLqnGpSjoqw/
+ oJK+ytgxvmku6wX4eprEPekdnT/Rw0eIgH7SXQkTVaX04hJ6zclorBu7D
+ l51rVO3kSkqQIkg4dhgsVTO5AvE+HhCr7vZouLCsdICjpVT8ZlK3sfIeK
+ sZBpMcheTh9L6iO9hpmHxInOo0Dm/s6W+BkJNsnlKvQDHY+R2a9enjGkR
+ qswxVSpFUmxofzNPscRl0JI3tt83+v/F51u3P4n1WTTYDdZH2qJsu0ohF
+ 2IFElQM9NjqqSCKMWkfJV39L4Vka1jOxzyLq807qaxZWsd3wtSw2e+/kf w==;
+X-CSE-ConnectionGUID: dmkmeSjDTaq1bLsY3rDbkA==
+X-CSE-MsgGUID: DwcjByRfRIGxmY8LtfiPkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11765"; a="81859300"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="81859300"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:31:38 -0700
-X-CSE-ConnectionGUID: ZUv0sLaTRU2mi/ve5uaYOA==
-X-CSE-MsgGUID: ZkAKuYcRT0ii8NtC+2RKYA==
+ 24 Apr 2026 02:31:40 -0700
+X-CSE-ConnectionGUID: R+3mRlLVRX+iWgDJHLPJPQ==
+X-CSE-MsgGUID: rDwfmFazT2+Yoh3JUr8Vbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228572934"
+X-IronPort-AV: E=Sophos;i="6.23,196,1770624000"; d="scan'208";a="228572943"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Apr 2026 02:31:36 -0700
+ 24 Apr 2026 02:31:38 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 5/7] drm/dp: Store coasting vtotal in struct drm_dp_as_sdp
-Date: Fri, 24 Apr 2026 14:46:44 +0530
-Message-ID: <20260424091646.3060549-6-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 6/7] drm/dp: Add a helper to get the SDP type as a string
+Date: Fri, 24 Apr 2026 14:46:45 +0530
+Message-ID: <20260424091646.3060549-7-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260424091646.3060549-1-ankit.k.nautiyal@intel.com>
 References: <20260424091646.3060549-1-ankit.k.nautiyal@intel.com>
@@ -72,7 +72,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1BB0645C3DF
+X-Rspamd-Queue-Id: 8BBC545C3ED
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -101,41 +101,73 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-Add new field in struct drm_dp_as_sdp to store coasting vtotal.
-This is used by the sinks that support Panel Replay and Asynchronous
-timing during PR Active to derive refresh rate, when AS SDP transmission
-is stopped by the source.
+Introduce dp_sdp_type_get_name() to get the SDP type as a string.
+Use this to log the SDP type based on the sdp_type fields of the
+VSC and AS SDPs instead of the hardcoded strings.
+
+While at it, rename "SDP : AS_SDP" to "SDP : Adaptive Sync"
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_helper.c | 1 +
- include/drm/display/drm_dp_helper.h     | 1 +
- 2 files changed, 2 insertions(+)
+ drivers/gpu/drm/display/drm_dp_helper.c | 36 ++++++++++++++++++++++---
+ 1 file changed, 32 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index a697cc227e28..e29958f8b0b6 100644
+index e29958f8b0b6..102328d9022d 100644
 --- a/drivers/gpu/drm/display/drm_dp_helper.c
 +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -3512,6 +3512,7 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
- 	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
- 	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
- 	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
-+	drm_printf(p, "    coasting vtotal: %d\n", as_sdp->coasting_vtotal);
+@@ -3487,10 +3487,38 @@ static const char *dp_content_type_get_name(enum dp_content_type content_type)
+ 	}
  }
- EXPORT_SYMBOL(drm_dp_as_sdp_log);
  
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 1d0acd58f486..8c2d77a032f0 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -126,6 +126,7 @@ struct drm_dp_as_sdp {
- 	int duration_decr_ms;
- 	bool target_rr_divider;
- 	enum operation_mode mode;
-+	int coasting_vtotal;
- };
++static const char *dp_sdp_type_get_name(unsigned char type)
++{
++	switch (type) {
++	case DP_SDP_AUDIO_TIMESTAMP:
++		return "Audio Timestamp";
++	case DP_SDP_AUDIO_STREAM:
++		return "Audio Stream";
++	case DP_SDP_EXTENSION:
++		return "Extension";
++	case DP_SDP_AUDIO_COPYMANAGEMENT:
++		return "Audio Copy Management";
++	case DP_SDP_ISRC:
++		return "ISRC";
++	case DP_SDP_VSC:
++		return "VSC";
++	case DP_SDP_PPS:
++		return "PPS";
++	case DP_SDP_VSC_EXT_VESA:
++		return "VSC EXT VESA";
++	case DP_SDP_VSC_EXT_CEA:
++		return "VSC EXT CEA";
++	case DP_SDP_ADAPTIVE_SYNC:
++		return "Adaptive Sync";
++	default:
++		return "Unknown";
++	}
++}
++
+ void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc)
+ {
+-	drm_printf(p, "DP SDP: VSC, revision %u, length %u\n",
+-		   vsc->revision, vsc->length);
++	drm_printf(p, "DP SDP: %s, revision %u, length %u\n",
++		   dp_sdp_type_get_name(vsc->sdp_type), vsc->revision, vsc->length);
+ 	drm_printf(p, "    pixelformat: %s\n",
+ 		   dp_pixelformat_get_name(vsc->pixelformat));
+ 	drm_printf(p, "    colorimetry: %s\n",
+@@ -3505,8 +3533,8 @@ EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
  
- void drm_dp_as_sdp_log(struct drm_printer *p,
+ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp)
+ {
+-	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
+-		   as_sdp->revision, as_sdp->length);
++	drm_printf(p, "DP SDP: %s, revision %u, length %u\n",
++		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
+ 	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
+ 	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
+ 	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
 -- 
 2.45.2
 
