@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OMJ0E8hD62nZKAAAu9opvQ
+	id 8ObBAs1D62nZKAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:19:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:19:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA77245CE87
-	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:19:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B148545CE9C
+	for <lists+intel-gfx@lfdr.de>; Fri, 24 Apr 2026 12:19:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32EBC10F506;
-	Fri, 24 Apr 2026 10:19:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A583E10F50F;
+	Fri, 24 Apr 2026 10:19:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="CzeJKGyL";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="rBK889Ty";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5CFFC10F501;
- Fri, 24 Apr 2026 10:19:49 +0000 (UTC)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF75110F509;
+ Fri, 24 Apr 2026 10:19:52 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 414A640A0D;
- Fri, 24 Apr 2026 10:19:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 99B2FC2BCB5;
- Fri, 24 Apr 2026 10:19:48 +0000 (UTC)
+ by tor.source.kernel.org (Postfix) with ESMTP id 6254E600CB;
+ Fri, 24 Apr 2026 10:19:52 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 81AE2C2BCB6;
+ Fri, 24 Apr 2026 10:19:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1777025989;
- bh=r8iCVvbjhwlTQWPJs/wShGMSU9DSc+CbT8to6voKBbo=;
+ s=k20201202; t=1777025992;
+ bh=Euz7DdChlAIGYIv4MW9vjG7tVXHoxWupCrReeTOiaiE=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=CzeJKGyLvp3ygJdwmcdqShuI9sq2JW8uAHYHgS2qnM36/R5O71KrPv/Kp9E2PJat1
- 7bKI/AxkZ4pyeoLV3aLNducPlSArv3WUTBDLZEuNw/7D01pZzvYJlF6ZarCsBpniAa
- KwkJx5lMFgWOtf6n5ZsXPgWLOeR6lByqp5ajN17ZeO8h7s4vNaMO4uqb18AMQKOCl9
- 55OxcjT/iMNfk0d/OV235Q2CWjo7l13gJO3vmeC4++c9KXaW0ZmKc9W6y5qhrWF37K
- DafKiNIN5VU9fUoUhYymxmt3R4X6biPL1vjaMGkqXtnBTPoi5gmw7ekGGjsiYRMEfT
- 3jNi4UOg4EHSg==
+ b=rBK889Tyc98Ux52s++5Ud4/5N3N84H5Xh0SpFE0/x0XJlqlgTfz3bzDxuaI8qSKyN
+ c0uay22m+GT7PXUTD5nEec4JMXJxunzIjfEgn+JpM/ZSPLYuziOpU6f7bUvRDHT79E
+ W0Y9B2JroJBpxZl/3c4y0w0V/y3OfB5d9UovpH3/q/WX37EZ9377QqH1qdozHZ/Xbm
+ GYTRkExTUG8w2AXRZANQNy7tWUK214yUDklSl1so3dhUbZIG96GDnq1EI+kLp3h8xT
+ gAzPS/811aN7Jq9r+j7FQHFXTH0JyRntqJeHPO2oL2g96wfsUsbxm7QmrNvOjnxuui
+ JfUQcEShdjfAA==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Fri, 24 Apr 2026 12:18:57 +0200
-Subject: [PATCH v3 17/20] drm/drv: Switch skeleton to
+Date: Fri, 24 Apr 2026 12:18:58 +0200
+Subject: [PATCH v3 18/20] drm/tidss: Switch to
  drm_mode_config_create_initial_state()
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260424-drm-mode-config-init-v3-17-8b68d9db0d8b@kernel.org>
+Message-Id: <20260424-drm-mode-config-init-v3-18-8b68d9db0d8b@kernel.org>
 References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
 In-Reply-To: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -72,12 +72,12 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
  Maxime Ripard <mripard@kernel.org>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=997; i=mripard@kernel.org;
- h=from:subject:message-id; bh=r8iCVvbjhwlTQWPJs/wShGMSU9DSc+CbT8to6voKBbo=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJmvnSeknyrNYUr5c2HnJdlZ7CEKcZPOMrq8v5mStf2Nw
- aYfy2v3dUxlYRDmZJAVU2R5IhN2enn74ioH+5U/YOawMoEMYeDiFICJeMcy1vB992561CWyULg1
- +/Hr2wnrjVKjVXvMi88VONy8KeeyeUfK1bAfbMtTDivFPKhaWtgpzljNNif92JaKfAnpk/kXJ8x
- KFGaKbozo3fmxxOD3addsnWNParbLzH+xpsWu0nB/XtRWBQUA
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1009; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=Euz7DdChlAIGYIv4MW9vjG7tVXHoxWupCrReeTOiaiE=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDJmvnSew1029JKK7fMLF3Z7863bOOqaa8zD7Yh9vxcybK
+ w59upSu1zGVhUGYk0FWTJHliUzY6eXti6sc7Ff+gJnDygQyhIGLUwAmonGMsd5z5r7M8j6LWS4n
+ jRM3VZ16WRvqtafPXt+yXVyGL5mpv+J+loJe6K/YUPM3gYvTtHgPMtZKJemZ7S+wes7Ws7BcKut
+ YaaDvviD+IOP6ZZXnHvKdiBQIn5rgKJm58W/ZineqAUlCHQA=
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -94,7 +94,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CA77245CE87
+X-Rspamd-Queue-Id: B148545CE9C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -125,37 +125,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-The driver skeleton currently recommends calling
-drm_mode_config_reset() at probe time to create the initial state.
-
-Now that drm_mode_config_create_initial_state() exists to handle
-initial state allocation without hardware side effects, update the
-skeleton to recommend it instead.
+Now that drm_mode_config_create_initial_state() exists to create the
+initial state, use it instead of drm_mode_config_reset() during
+driver probe.
 
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
- drivers/gpu/drm/drm_drv.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/tidss/tidss_drv.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-index 985c283cf59f..f537556b06a8 100644
---- a/drivers/gpu/drm/drm_drv.c
-+++ b/drivers/gpu/drm/drm_drv.c
-@@ -340,11 +340,13 @@ void drm_minor_release(struct drm_minor *minor)
-  *
-  *		// Further setup, display pipeline etc
-  *
-  *		platform_set_drvdata(pdev, drm);
-  *
-- *		drm_mode_config_reset(drm);
-+ *		ret = drm_mode_config_create_initial_state(drm);
-+ *		if (ret)
-+ *			return ret;
-  *
-  *		ret = drm_dev_register(drm);
-  *		if (ret)
-  *			return ret;
-  *
+diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/tidss_drv.c
+index 1c8cc18bc53c..f5099d5d6e32 100644
+--- a/drivers/gpu/drm/tidss/tidss_drv.c
++++ b/drivers/gpu/drm/tidss/tidss_drv.c
+@@ -169,11 +169,15 @@ static int tidss_probe(struct platform_device *pdev)
+ 		goto err_runtime_suspend;
+ 	}
+ 
+ 	drm_kms_helper_poll_init(ddev);
+ 
+-	drm_mode_config_reset(ddev);
++	ret = drm_mode_config_create_initial_state(ddev);
++	if (ret) {
++		dev_err(dev, "failed to create initial state: %d\n", ret);
++		goto err_irq_uninstall;
++	}
+ 
+ 	ret = drm_dev_register(ddev, 0);
+ 	if (ret) {
+ 		dev_err(dev, "failed to register DRM device\n");
+ 		goto err_irq_uninstall;
 
 -- 
 2.53.0
