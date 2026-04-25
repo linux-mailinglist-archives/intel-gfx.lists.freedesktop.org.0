@@ -2,160 +2,156 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MItOI/Kg7GkhawAAu9opvQ
+	id 4MFxMskq7WlugQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2026 13:09:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2026 22:57:45 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F246466156
-	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2026 13:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EE276467AD0
+	for <lists+intel-gfx@lfdr.de>; Sat, 25 Apr 2026 22:57:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5DF0110E1B0;
-	Sat, 25 Apr 2026 11:09:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9A7B410E47F;
+	Sat, 25 Apr 2026 20:57:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="RJk2YCDy";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="cPk0xvb9";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="Ua6Jupsz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mx0a-0031df01.pphosted.com (mx0a-0031df01.pphosted.com
- [205.220.168.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 962E110E160
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 11:09:32 +0000 (UTC)
-Received: from pps.filterd (m0279867.ppops.net [127.0.0.1])
- by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 63P3Qq8K470912
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 11:09:32 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
- cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=skggYkTTFObHeIE3RudQp0G9
- 1CjiRon2TwvgONrTWQQ=; b=RJk2YCDyCRrYvpfj7deR0E+7F40sA7ecy3s5LwuC
- JwrLO0+41LY8A8E8LR/ubgVCS5crHRH15ux1KKMvHODIbUrQADAzhDKgh7DgKvuF
- boQxjUCJyrrvL6yo7vKI5fZ2xQpzDowy54280huGdhYwzFB9c65HxxfKNPRI4dgf
- TzvtBwc/KZplZZc4LERPGuSZRVGn6F/7kMgsRm/Bdsa4aRalN+daxsXP7WUoJgWj
- bYrYOvtt7Z3WHlGDs8HW63uk9QF9uu+0o4W20QEDD2bTA4LKfF5OGr5Xv65hOcT6
- YIz1ZbrnMAen9tBpnWm8cneIfIV5cwOaJh3zaOUNqYsNPQ==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com
- [209.85.221.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4drnq5rrn3-1
- (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 11:09:32 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id
- 71dfb90a1353d-56f694e2ab8so7706806e0c.1
- for <intel-gfx@lists.freedesktop.org>; Sat, 25 Apr 2026 04:09:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1777115371; x=1777720171;
- darn=lists.freedesktop.org; 
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=skggYkTTFObHeIE3RudQp0G91CjiRon2TwvgONrTWQQ=;
- b=cPk0xvb9v5B+q9mJwj3Mma6RzZcgcfccHwNbEMvIYCI+GLZK0kXBnfHEn33MAo2So8
- LR92cE7iFL82ApU2gDxoo/3QYKRjtNafeS5z3plrWtdohHdnBM5ylQq0v2Sjh111i4nQ
- D6lDrr/NXroJbEvWu15xN4jFd6frjJHiYVb+tz0W/1EOKqy4lRprNsCZIdWtFBELXOl7
- 07RIOkkIdqwEd17W5lggxqezfU8pO64+9lk2lNvXHLOskqJWC0kqcH3xGTxKvgoTwJmX
- sWFlz/KOXVuWDg3BsMOBloV9TZKyfWnafNiprpbZeZyM+bsabMGS8kDQUHxJ/9d7IPVY
- 7gMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777115371; x=1777720171;
- h=in-reply-to:content-disposition:mime-version:references:message-id
- :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
- :subject:date:message-id:reply-to;
- bh=skggYkTTFObHeIE3RudQp0G91CjiRon2TwvgONrTWQQ=;
- b=eqpdKlA3Cj38c0wO60C3xPKRI5UJBJC3bCjBVFU7thVbDNOwWH3zjPB2+pHio+bzsT
- pOYPxDSzhgMzu0omqz/yXv92M+n0It7hQ43rVFa7yAmKBN/UUvnbXtT4F2twD4xgfLWG
- wc7+uv6T4mdNHjRi8tx3ZOZ8N+fXDUHM+lKPBLVYi7fJ2eUPBcO7c+rHXVSgr7nDNVVX
- 2Cp8V7bRVag08WLpZfwfG+lkFMnAivI5qaTcaQDp1M/xKK/6qI7PeZhJLvsK3VslaKIR
- dz/6YCxS5XAmvPrEWa/d7TXZoB0yYyH4fIUxYLww4wnxlfo+rivjaek65VcPtEv3Efc7
- czuQ==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8YIKf5LIK0vRRjvcbbbfmnxhrr1HyKIhS2U6fh51yOIXT1kQNMq2dMwPwlFfHIbwGzilPsNx6pJOE=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwjGztqfS2NlkB5f0n1jDw3eOsHC5D8jkR5UEDhdAsmfc9e1X7d
- HcjRgQgNw3+pg0FfSogMdlDwDoVWIEb4OzZ2hqmgyxbSbNhpJEoLdOnJvSuYT8o0QmvGi0qFi3b
- /ZUmJ2PqmBiC1b6qLaoijPUeowbC9avpZw5CZrAWKTld+/il5+DC3alGMvE7RurgrVEzblRg=
-X-Gm-Gg: AeBDiev+GGnwhxr5Bj+vMp0MQl+VMDNEHlM359vDgGZTWS8gjHUKckOU4Pgg+BbG5iG
- Q3+BDXdIwlXQzhhty+6u3VjHvHzewg/EKrwlx8Jbtg+09ym3YfFzIXnlOsqn4OAQZe3+D77/ec3
- BDkwcr+PlyLnY8XD/ZSNQKW2kvWuJRxVCXc0EQMRJr/7qRwcgB5aOc60xg4NNRbrNI0Ejnd3yJA
- Z8MhdWftTNrqRY2j5Waar5H6BbE0pTqN0Mjiu8wOIAXRLsOIvexd1GIN+7FhzfcepRNubkUhnWR
- tw0lw26MTjbYK/YSvVH028DRV9bbysIyax0oiCVflCK+GaTJeqdj/y8A6MOk5fD6ornEddqH+pf
- +LBk9hN0d4vd9UXPm3xaWpbmtPPnxqO19h8BYGapn/aZyO2rXfsVR+HHfbHSTP9EMuZs1LVUHZ7
- zMTPcMOis6MxpmPNbgNvZyWcO/o3bxacSEBjDAeHh4oml57g==
-X-Received: by 2002:a05:6102:1611:b0:605:7a45:c7c0 with SMTP id
- ada2fe7eead31-616f70f0572mr17646757137.13.1777115371002; 
- Sat, 25 Apr 2026 04:09:31 -0700 (PDT)
-X-Received: by 2002:a05:6102:1611:b0:605:7a45:c7c0 with SMTP id
- ada2fe7eead31-616f70f0572mr17646746137.13.1777115370439; 
- Sat, 25 Apr 2026 04:09:30 -0700 (PDT)
-Received: from umbar.lan
- (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
- [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
- by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-38ecb5f64ebsm50476681fa.10.2026.04.25.04.09.29
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Sat, 25 Apr 2026 04:09:29 -0700 (PDT)
-Date: Sat, 25 Apr 2026 14:09:27 +0300
-From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>,
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>,
- Christian =?utf-8?B?S8O2bmln?= <christian.koenig@amd.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+Received: from BL2PR02CU003.outbound.protection.outlook.com
+ (mail-eastusazon11011051.outbound.protection.outlook.com [52.101.52.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB0F10E201;
+ Sat, 25 Apr 2026 20:57:38 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=ry1gRdP7CzFYht5dY+x976cA/2ygYOu+xsZGLkieqshyWpLJvb/8TD2L46CQJ9d1JR2mxHwnRlgjO+hVKi5Dm9EGTWIY2qiRnnm5Pl1osIyajN+7AG1QppfBfSWKeUEjdS6kIoNUQgyjscL24al+tgQN3MPRcLwOL5QgennfFFhzQ6bXnpnkDPWBcj+O0CFbf7+P0I3+Dpw5ZDGPw6t1Angb2jKDJ+sONYIVx1XgAoV/CNcUhyPyjRVrw8Mnc+l4tMHehXx5jIgwa+qRdkpV7JmEkwjOKjTvBdomiUZCq67qZAo5is3uWr2afww6oPgM9xDDOYq+LBFW9mvwkzsP7g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3kCDLJrzbGvosey2wmX0bNeuDHlO0iCZmi+LRb4NG0A=;
+ b=plWSg/E9atNmGXRR/hRT8kRgQ5Rg/JJnXck5GA4hLcVPQ4+f7i8fUE5gDEd8OumNVfsG0soPQJdbL1mxd+7t5YAKB3aXVaH4WHmxKYiAJ4m4PXdAKp8W1dFYbXtGEI/xICxQbF+6jbbAd9/vmprqpI6yHN7HmXvxBuyME1kPzsSmm1b0McVSIBRK4d3U+pEk8zRBPcK3C4bGK4Met2cZ6m+C6g/IOCNRz0bxnfnic65vvh7MELr404o/7Blsg/ke8zFWigvrjhuwyNt2fsio34HDsjZiDlCiekfeOJYoxotiJZXLz+3/xrOknZXNzg/5tdqYvVk7hyr7eSg+vtt6jw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
+ dkim=pass header.d=nvidia.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3kCDLJrzbGvosey2wmX0bNeuDHlO0iCZmi+LRb4NG0A=;
+ b=Ua6JupszyxSBwYh4VD4Vfq5SL+c+cLN6v/e2pHwzyZvHq7WDCrI4cGluZDaCzbJB+1yLgMvU2WENqyiuGWu8aVzZu0wrU7mrx4UVmcg4fmebAssJmrlAI9U7U4iBRRbzxfiOojXduXsgdBPmo2zV9cIAzkZroLj3U8SKBFM0/ukKmyXGWawQ10fTwbh9ffCA7cRZOgNK/RfXwYJOli6b05fExZnignO/3RdoP3yPdVFEEhLLi6sinHUzAITwk0tOckws3B3io9KmBlgBcmpRWT/w34IfvfWdFRioYTAwFUnk0jnHVe1jcQrbmDgYy6VL3mFyUaMqinav2Og8ytD20A==
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=nvidia.com;
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com (2603:10b6:8:c5::21) by
+ SA1PR12MB7344.namprd12.prod.outlook.com (2603:10b6:806:2b7::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.12; Sat, 25 Apr
+ 2026 20:57:33 +0000
+Received: from DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33]) by DS0PR12MB6486.namprd12.prod.outlook.com
+ ([fe80::88a9:f314:c95f:8b33%4]) with mapi id 15.20.9870.012; Sat, 25 Apr 2026
+ 20:57:33 +0000
+Date: Sat, 25 Apr 2026 16:57:30 -0400
+From: Joel Fernandes <joelagnelf@nvidia.com>
+To: John Hubbard <jhubbard@nvidia.com>
+Cc: linux-kernel@vger.kernel.org, Miguel Ojeda <ojeda@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Gary Guo <gary@garyguo.net>,
+ Bjorn Roy Baron <bjorn3_gh@protonmail.com>,
+ Benno Lossin <lossin@kernel.org>, Andreas Hindborg <a.hindborg@kernel.org>,
+ Alice Ryhl <aliceryhl@google.com>, Trevor Gross <tmgross@umich.edu>,
+ Danilo Krummrich <dakr@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Daniel Almeida <daniel.almeida@collabora.com>,
+ Koen Koning <koen.koning@linux.intel.com>,
+ dri-devel@lists.freedesktop.org, rust-for-linux@vger.kernel.org,
+ Nikola Djukic <ndjukic@nvidia.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
  Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Sandy Huang <hjc@rock-chips.com>,
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jonathan Corbet <corbet@lwn.net>, Alex Deucher <alexander.deucher@amd.com>,
+ Christian Koenig <christian.koenig@amd.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>,
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>,
- Jonathan Corbet <corbet@lwn.net>,
- Shuah Khan <skhan@linuxfoundation.org>, kernel@collabora.com,
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org,
- wayland-devel@lists.freedesktop.org
-Subject: Re: [PATCH v14 04/28] drm/connector: Let connectors have a say in
- their color format
-Message-ID: <5uit4utjrezpuqok36apjrkojaklze4ftgp2r4zrqolus7gkcn@nu2hsrhaj6zy>
-References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
- <20260423-color-format-v14-4-449a419ccbd4@collabora.com>
-MIME-Version: 1.0
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Lucas De Marchi <lucas.demarchi@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Helge Deller <deller@gmx.de>, Alex Gaynor <alex.gaynor@gmail.com>,
+ Boqun Feng <boqun.feng@gmail.com>,
+ Alistair Popple <apopple@nvidia.com>, Timur Tabi <ttabi@nvidia.com>,
+ Edwin Peer <epeer@nvidia.com>, Alexandre Courbot <acourbot@nvidia.com>,
+ Andrea Righi <arighi@nvidia.com>, Andy Ritger <aritger@nvidia.com>,
+ Zhi Wang <zhiw@nvidia.com>, Balbir Singh <balbirs@nvidia.com>,
+ Philipp Stanner <phasta@kernel.org>,
+ Elle Rhumsaa <elle@weathered-steel.dev>, alexeyi@nvidia.com,
+ Eliot Courtney <ecourtney@nvidia.com>, joel@joelfernandes.org,
+ linux-doc@vger.kernel.org, amd-gfx@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-fbdev@vger.kernel.org
+Subject: Re: [PATCH v11 02/20] gpu: nova-core: gsp: Extract usable FB region
+ from GSP
+Message-ID: <20260425205730.GA4071848@joelbox2>
+References: <20260415210548.3776595-1-joelagnelf@nvidia.com>
+ <20260415210548.3776595-2-joelagnelf@nvidia.com>
+ <b0c5267d-ea77-41c5-94d4-39c651761b3c@nvidia.com>
+ <20260421145521.GA51176@joelbox2>
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260423-color-format-v14-4-449a419ccbd4@collabora.com>
-X-Authority-Analysis: v=2.4 cv=QNxYgALL c=1 sm=1 tr=0 ts=69eca0ec cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
- a=A5OVakUREuEA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
- a=u7WPNUs3qKkmUXheDGA7:22 a=eoimf2acIAo5FJnRuUoq:22 a=QX4gbG5DAAAA:8
- a=EUspDBNiAAAA:8 a=vpl3xS56dgtxGFZ4nZMA:9 a=CjuIK1q_8ugA:10
- a=tNoRWFLymzeba-QzToBc:22 a=AbAUZ8qAyYyZVLSsDulk:22
-X-Proofpoint-GUID: FaezPo1gG0RTe3vmtiT5C6oHVudWb1Wq
-X-Proofpoint-ORIG-GUID: FaezPo1gG0RTe3vmtiT5C6oHVudWb1Wq
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNDI1MDExMSBTYWx0ZWRfX7S0AydR7iVwE
- bhDOc7F+2s+Ojjk/hS3VjNPbWl5FjqqCd2RpyytlvVCZe1ZPiTgbwGhVvvCfUhDcfE6kXeaIzke
- e3fNMVayvMAYYOgFqeWsUSwjS9WuGSyoD1wr/yWE9X98lcXU5vHnlpZX2HdzEvQSfY9rixkzT/p
- CmjOwrqiunaYFbrTAexssNDlZqNN0CtTA1g8Ni8M6NRBVBV93B7JkPlFUk+nAQGfkz4PhhmOyxJ
- 3YDjh3upVc2UWpg7mbOEV7YF1woQMf5tZGkI3ZF3WIS7cRyD6+u90qK87EVpvQjJ6flbUUi9hIo
- x9H7iSBFccJUMTcI6QfGxZFhs600zv1NfVwXDjGG1YfQf3XmhMQNGOGz5Txn+875aGYzfhXXDn6
- F1pENtC84W8G8wtROxzhVtPzgyq0Bqx9+Z8rejC454wLthHh6DMPfsmeTjLP+DwV4oRdsbvSKqa
- KhRz0edaxryh4B+XedQ==
-X-Proofpoint-Virus-Version: vendor=baseguard
- engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
- definitions=2026-04-25_02,2026-04-21_02,2025-10-01_01
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0
- impostorscore=0 suspectscore=0 bulkscore=0 phishscore=0 spamscore=0
- adultscore=0 priorityscore=1501 lowpriorityscore=0 malwarescore=0
- clxscore=1015 classifier=typeunknown authscore=0 authtc= authcc=
- route=outbound adjust=0 reason=mlx scancount=1 engine=8.22.0-2604200000
- definitions=main-2604250111
+In-Reply-To: <20260421145521.GA51176@joelbox2>
+X-ClientProxiedBy: CYXPR03CA0071.namprd03.prod.outlook.com
+ (2603:10b6:930:d1::12) To DS0PR12MB6486.namprd12.prod.outlook.com
+ (2603:10b6:8:c5::21)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DS0PR12MB6486:EE_|SA1PR12MB7344:EE_
+X-MS-Office365-Filtering-Correlation-Id: a937c324-4312-4e7c-c0ab-08dea30d455e
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|7416014|18002099003|22082099003|56012099003;
+X-Microsoft-Antispam-Message-Info: LEWcHncFqiY/x6lFwdxWNfy1v//L5jWb/OGcMV6QkaUlkJ0AiUdmh3zJ44h815t0QI5KTCQ2BDCdy88BMg6bfllo956hzHEt4RrNzo4ijlkrID6ymD3lKezah5dLh3YKr+1FFSQ8zg9yUCjgwo1B8Ig4byVZASMEKnXo0u7/HDKbufWYaR0fUSzTWJTyfTQH5nlbjgZ/J1sRNgZZ96VuU3L+QYzQZGwJuMLZhLBI3kz8DxjTceCqh+Kxk5auLfOWj70+KQ/HMiyqGf1NZk5PKTs8SnzvF/+JMnc9I63Zs3J+5NTgzcGymrs89BUlhf6ztcobxFFO9Pl6CgF6Hrnbk5XZXzD6tMiaof+0LmIIU0itZL4Q4ERlocEtQqGsgqf27nAr/pJDur/h59JLRsiWNAitWTJD7Ftq3i9dRJpjMTFOKY6aL+JYTea1Xpf5ZzsfmNQAipzcNVLxTEenGobwvfcronWDHy7472bITdhGvfpNw5ZXvWG5rGUX8Yt/uaFJqthzjHvuSZts/LJd3QjYTZlrqgQVohI7n4SBY73IK46IYb4lQhTA91PzP2PB56n3jNWpcd7npFQaDOHoNbvoOiQNVhEY+wjl4cQ+5GWRJFLVP60pcXnqvAdko/FJtKaOIwsL5nbj3SWmcrQXFEvFuIfcY3PiZAuDpCqvM0q+f7e/TgO1l7FRwEOTJxcG+mHLZ8kBctI2aN7BrpLjLe1DbAapnabFVqkEy7bBv6QqrMg=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS0PR12MB6486.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(7416014)(18002099003)(22082099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?HG9niSUZoeUnhvlzIuT5wG4HcLvUCjgUaRxRc9eks47rx3sAE6TLFvwR64MP?=
+ =?us-ascii?Q?6N0UZqyuG23n5Iti5+msZCDDpR4Poknpx+Tnc+a9GS6nNMTX6R+xYQhfrvMF?=
+ =?us-ascii?Q?LI3inpvw39C/VLQORyfIhReMWCJOa+rGK0rKISkwMQ92+TIWRaW/2PkSchka?=
+ =?us-ascii?Q?zo8jkiCD3WX8pFXsOYv+dzc38OVKIELJRPqqTaw9D8J8PMu1KYDFYE0o2gK+?=
+ =?us-ascii?Q?ykzfMSA0/fWdPCNcXo9hz148UG/xE3DIvJyYsoRHQ3NhBxJFBTHR26wnEjHr?=
+ =?us-ascii?Q?qDy0t8TGPiNPxpGgE3Uss/eL8dctDegZv2INmFc59Jhih/eZXudBK+79YTg3?=
+ =?us-ascii?Q?fU88zmES0Vy64IzIa7O6KoDei2e6JbGG8nGIIuf2v9dgcDxl+x129jWPWh3D?=
+ =?us-ascii?Q?bBNvJ2ZURyize/fxY23XC0ft+JQ03hN81bOlRp+ODh6rnkd4hGR/PbFX7VSi?=
+ =?us-ascii?Q?IEMTewin98OtBenKbJqzc/dBTu8eaDtK82Y6Bqez5h1m3RtLhtSV3NCJ1CDn?=
+ =?us-ascii?Q?pxryVMnWRALVoLSm/1eJAhW2lgvpKWUM5UjTS+C7ub7+2udGQaDvoWKTqKsy?=
+ =?us-ascii?Q?7r++MC05YAiX+X5YtqnMQi5rqYvRjuhYm6WCEbkv7Wjfwg5SVK6x4KvS/fLL?=
+ =?us-ascii?Q?5lL/Y1VIJXsc5sCMt+VItgOjRj+XdEB7W/7rVgZUtNp1tMryF6sp2xVIeWbK?=
+ =?us-ascii?Q?+l8LqBai7V2qd0f117t4Zb20ZIkAURefqzC5fTeMobNT14OZ6IGys1gATFG6?=
+ =?us-ascii?Q?smBgFgnz723PevbcGEjdlNocTuESh9mPWIKThDXrK4LMwui6tn6YhgZUj1LW?=
+ =?us-ascii?Q?DyUGdPX/9tj71UvfzbdqY6SdnboYnC5CQyiLCdBhJkSV2Z/gbBpfLud+zesg?=
+ =?us-ascii?Q?8pRcKIIO+qc2G9nT/NVMR5Y/4yTmuuvUvRIhwmF9hDjgrQCN4Ov1rTHmaeNX?=
+ =?us-ascii?Q?3EoEyw1oNo4x/4qKpRImGClSzqmob7m6Wb7LmC0gCbXDheYtzW4NYlX0lL9z?=
+ =?us-ascii?Q?8oMsxYRymz86yOpFmQl6veUvxOPE3MEqF+LkfQAXssST4REOBUCzURYLKCAB?=
+ =?us-ascii?Q?rjYUbTSOK/qxU2DKpha7yrtopH8byaT0y6Ag3tLa/DdGPKgk1rHjfbF5792X?=
+ =?us-ascii?Q?9pV3ySp9xgYKZqv+fBEbnc7tSX4MNH+EaFNTT9hi11oL50DpJmhWruqjLjcZ?=
+ =?us-ascii?Q?BWjMwo+WS31mm0heoAOo0r9y4GaMGgl5jTWJDq8YX/0TPsQFi3ONAsYL1jBB?=
+ =?us-ascii?Q?FPksODKLIaI80cD43XliIHDslA3/QGkIU2ewuD2Zf7Edo2RAE/5DOmJVvNTw?=
+ =?us-ascii?Q?azdT8YaD8Y3PhXhVLXdIxSMP+UcSzIfBz6M4nD2kgP4/IaIZVxpscWgL3zwP?=
+ =?us-ascii?Q?XPBWDmwBDeF5j2s8XYhgsEhgpvElYWIO0FrQo2CBSxjo7HFUJYUbq1ZRVeNi?=
+ =?us-ascii?Q?wIsjShXpthohppvh3ynH9IgSMRry8kM4mmu5E/p5mzwYDh4gxGHGVVx8AdzO?=
+ =?us-ascii?Q?zwus31ahrOFn83ZCrQTSUE7kFuz2JOepUHOo38BAgBOpdpwxRaXSyN4BUaAU?=
+ =?us-ascii?Q?T5McmAeXJcQeilq/Ly+7aquOTZGPDTG4qAoMiV45p5xZCSnuXjLzVpOz5+4y?=
+ =?us-ascii?Q?cvZmnUgjFYzD8lES/lbz+YpzeLJkVt7ouBENAxlbfHB+nzkUr/cdHGVPdLll?=
+ =?us-ascii?Q?I5uAkKYjdrgZNyrV3wxUUV7kNyluhl+V9nQfplHBZ2G//tXAd3E3FoDEHRrz?=
+ =?us-ascii?Q?hXH4qCWL4w=3D=3D?=
+X-OriginatorOrg: Nvidia.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: a937c324-4312-4e7c-c0ab-08dea30d455e
+X-MS-Exchange-CrossTenant-AuthSource: DS0PR12MB6486.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 25 Apr 2026 20:57:32.9350 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: c4pA7PyLeqZjPZob0FqyAjR49KJPki19p6hn3YtfcT2+UJZgtNmeIgSAs/fNRY88QK3l9njK/JqybSh7bDBZuw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB7344
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -170,64 +166,76 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3F246466156
+X-Rspamd-Queue-Id: EE276467AD0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[qualcomm.com,reject];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[qualcomm.com:s=qcppdkim1,oss.qualcomm.com:s=google];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[39];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:w
- ayland-devel@lists.freedesktop.org,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,garyguo.net,protonmail.com,google.com,umich.edu,redhat.com,collabora.com,linux.intel.com,lists.freedesktop.org,nvidia.com,suse.de,gmail.com,ffwll.ch,lwn.net,amd.com,intel.com,ursulin.net,gmx.de,weathered-steel.dev,joelfernandes.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dmitry.baryshkov@oss.qualcomm.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[qualcomm.com:+,oss.qualcomm.com:+];
+	RCPT_COUNT_GT_50(0.00)[54];
+	FROM_NEQ_ENVFROM(0.00)[joelagnelf@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
 	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,collabora.com:email,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Thu, Apr 23, 2026 at 09:03:27PM +0200, Nicolas Frattaroli wrote:
-> Add a function to get the connector color format from a connector state,
-> and a new function pointer in drm_connector_funcs to allow connectors to
-> override what connector color format it returns.
+On Tue, Apr 21, 2026 at 10:55:21AM -0400, Joel Fernandes wrote:
+> On Thu, Apr 16, 2026 at 04:26:48PM -0700, John Hubbard wrote:
+> > On 4/15/26 2:05 PM, Joel Fernandes wrote:
+> > ...
+> > 
+> > Apologies, I found one more minor thing, while looking at a
+> > subsequent patch in this series:
+> > 
+> > >  impl MessageFromGsp for GetGspStaticInfoReply {
+> > >      const FUNCTION: MsgFunction = MsgFunction::GetGspStaticInfo;
+> > >      type Message = GspStaticConfigInfo;
+> > > -    type InitError = Infallible;
+> > > +    type InitError = Error;
+> > >  
+> > >      fn read(
+> > >          msg: &Self::Message,
+> > > @@ -205,6 +209,7 @@ fn read(
+> > >      ) -> Result<Self, Self::InitError> {
+> > >          Ok(GetGspStaticInfoReply {
+> > >              gpu_name: msg.gpu_name_str(),
+> > > +            usable_fb_region: msg.first_usable_fb_region().ok_or(ENODEV)?,
+> > 
+> > OK, failing out is correct here. But in addition, we should also
+> > log this at dev_err!() level. This is rare, surprising, and actionable,
+> > so perfect for that level of logging.
 > 
-> This is useful for the bridge chain recursive bus format selection code,
-> which does not wish to implement connector implementation specific
-> checks like whether it involves HDMI.
-> 
-> Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-> ---
->  drivers/gpu/drm/drm_connector.c | 16 ++++++++++++++++
->  include/drm/drm_connector.h     | 12 ++++++++++++
->  2 files changed, 28 insertions(+)
-> 
+> Sure, that works for me. Will add it in for v12.
 
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+dev_err unfortunately requires passing dev into MessageFromGsp::read()
+which it doesn't today. Doing so modifies all other implementations of read()
+as well, not just GspStaticInfo. For v12 I will leave it as is, but lets
+discuss for future versions.
 
+Also, note that the error does not go undetected because it will result in
+the following dev_err firing anyway, perhaps its sufficient?
+  dev_err!(pdev, "Failed to obtain GSP static info ({:?})\n", e)
 
--- 
-With best wishes
-Dmitry
+thanks,
+
+--
+Joel Fernandes
+
