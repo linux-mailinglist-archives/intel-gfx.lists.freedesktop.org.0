@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wBUKKkko72n58QAAu9opvQ
+	id 4O6EOFQx72mb8wAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 11:11:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 11:50:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 15A2846F9E6
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 11:11:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AED047025A
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 11:50:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 20486897D4;
-	Mon, 27 Apr 2026 09:11:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E7CEA10E65C;
+	Mon, 27 Apr 2026 09:50:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m0wovnsZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eulPbmJP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BDF15897D4;
- Mon, 27 Apr 2026 09:11:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EEC8610E65A;
+ Mon, 27 Apr 2026 09:50:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777281093; x=1808817093;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9g5YYRDRXhgfMhmM03pog4G/kE81zL9Kj6DK+EOc/pc=;
- b=m0wovnsZu72aAEULMeWWiuornsDTu+4VK1KUYWHyJlyOPdRvXyDaYQmh
- ca/jrradVaevwEr+keBnkG+NTteWvv69lYyRsI1ZoYqp4QY9Zu1ibKKu2
- EI/XioSuoKHWgtokXbCBEY2E3aDgnvDUaIsLR1Mfan1wYQNepp5aDkESM
- DNGc1qPL0cfc4IHHHi1ZTeQHdgrgeRp6Vc6Z9GIGiWeW19hXdlKKmYtdX
- 3d4GmudntLRcY2fKfYeFWi/0q25IurMrmWLFiZJO1IJt9JPuc8dxbl3TZ
- C+lMCI8Gibu4b84dVqDR2Xn5Ezh8lBqPYN4oteo5h5+Z/dktEnne/e6lL w==;
-X-CSE-ConnectionGUID: XReCGRbOTjiG8QXah/7soA==
-X-CSE-MsgGUID: 7W6o2SGqTdWPtSQf1fVDiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="89626764"
-X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="89626764"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 02:11:33 -0700
-X-CSE-ConnectionGUID: cCLBB83JT/GS5AvHhJiH5A==
-X-CSE-MsgGUID: BMDF6ZuZSfiOKAmFZoZoxw==
+ t=1777283408; x=1808819408;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=k+F2Xr6g7/S7COeBUY0jXTgVuMo8nglibJbF8ZKppw4=;
+ b=eulPbmJPE7AR1hMl4gdmEGXPB4IWwRypcnVw20jzAuKGqu3cfC4jdHfc
+ l3FUf/pffu1Hc+1GqlABlqp1lgNMTP9idOS+ra+tshxSHxbVL6nSuswhh
+ J4QJsO4gi67GfT9q4FmoZIVYO6N8A5tzsaTVmgPevFLjoD+RgGVZ4Xl49
+ DH3ll/S6KBlySgEzzpyPusFPhW7VS7rKeEgz4XhafcW3Hf9RFx0OGBTTj
+ MFEP2X6Tw6EfLuw/cT449pej8mF9O7VtCC+tfWMjwysvFRtWpmCjXi0hV
+ CoXyXiRkHUmI2WBw6anH13M5QpcVP64qTE4eIfTWVZGanNnVdlF0PS1sD Q==;
+X-CSE-ConnectionGUID: 5n7W2JbpSoCuc7vwMaDr1g==
+X-CSE-MsgGUID: y4/BtMx9SdqQ4uItqEWe2w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="88480474"
+X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="88480474"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 02:50:08 -0700
+X-CSE-ConnectionGUID: 0ybsUiRmR+6XSOyBNzsczg==
+X-CSE-MsgGUID: UetQXTqGSQSqjHAUec5ppQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="229020783"
-Received: from abityuts-desk.ger.corp.intel.com (HELO
- vgovind2-mobl4.intel.com) ([10.245.245.239])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 02:11:31 -0700
-From: Vinod Govindapillai <vinod.govindapillai@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: vinod.govindapillai@intel.com,
-	ville.syrjala@intel.com
-Subject: [PATCH] drm/i915/bw: reduce the pm demand peak bw based on display
- data-rate
-Date: Mon, 27 Apr 2026 12:11:16 +0300
-Message-ID: <20260427091116.218021-1-vinod.govindapillai@intel.com>
-X-Mailer: git-send-email 2.43.0
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.23,201,1770624000"; d="scan'208";a="229267031"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.53])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 02:50:06 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v4 5/8] drm/i915/display: move GLK clock gating init to
+ display
+In-Reply-To: <20260420202252.3846880-6-luciano.coelho@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo
-Content-Transfer-Encoding: 8bit
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260420202252.3846880-1-luciano.coelho@intel.com>
+ <20260420202252.3846880-6-luciano.coelho@intel.com>
+Date: Mon, 27 Apr 2026 12:50:03 +0300
+Message-ID: <c4cea3b1fe889f18692508d7795d07b2a42b686e@intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,97 +75,277 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 15A2846F9E6
+X-Rspamd-Queue-Id: 3AED047025A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+	MID_RHS_MATCH_TO(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vinod.govindapillai@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.997];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_HAS_DN(0.00)[]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-In xe3+, soc can lower the fabric frequency when the display
-needs less bandwidth than the minimum GV point. The threshold
-has been defined as 20GB/s. So if the required display data rate
-is less than this threshold and the slelected GV point is 0 and
-the GV point peak bw is greater than 20GB/s, we could set the
-peak bw for the pm demand to this threshold. The currentc pcode
-can handle this and adjust the fabric frequency accordingly.
+On Mon, 20 Apr 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
+> Move the GLK-specific display clock gating programming into display
+> intel_display_clock_gating.c, to remove more dependencies from i915 to
+> display registers.
+>
+> Now that all remaining Gen9-family callers moved into display, we can
+> move the shared Gen9 display clock gating helper into display and
+> remove the old local helper from intel_clock_gating.c.
+>
+> Additionally, the SKL_DE_COMPRESSED_HASH_MODE programming was
+> protected by HAS_LLC(), but that's incidental, because in Gen9
+> platforms, only SKL and KBL, for which this workaround applies, have
+> LLC().  In order not to use HAS_LLC() in display code, we can simply
+> remove this check from the generic Gen9 function and move the
+> SKL_DE_COMPRESSED_HASH_MODE programming to the KBL and SKL specific
+> functions.
 
-Bspec: 68880
-Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
----
- drivers/gpu/drm/i915/display/intel_bw.c | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+The macros in i915_pci.c are hard to read, but basically for gen 9 you
+have GEN9_FEATURES and GEN9_LP_FEATURES.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 9c3a9bbb49f6..005761baca93 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -52,6 +52,8 @@ struct intel_qgv_point {
- 
- #define DEPROGBWPCLIMIT		60
- 
-+#define XE3_PEAK_BW_THRESHOLD	20000
-+
- struct intel_psf_gv_point {
- 	u8 clk; /* clock in multiples of 16.6666 MHz */
- };
-@@ -1045,6 +1047,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 	unsigned int best_rate = UINT_MAX;
- 	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
- 	unsigned int qgv_peak_bw  = 0;
-+	int qgv_point = num_qgv_points;
- 	int i;
- 	int ret;
- 
-@@ -1083,6 +1086,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 		if (max_data_rate - data_rate < best_rate) {
- 			best_rate = max_data_rate - data_rate;
- 			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
-+			qgv_point = i;
- 		}
- 
- 		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
-@@ -1102,6 +1106,18 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 		return -EINVAL;
- 	}
- 
-+	/*
-+	 * For xe3+, if display's required memory bw <= 20GB/s and the selected
-+	 * peak bw of QGV[0] is >= 20 GB/s, we can reduce the peak bw for the
-+	 * pm demand QCLK GV to 20GB/s
-+	 */
-+	if (DISPLAY_VER(display) >= 30 && data_rate <= XE3_PEAK_BW_THRESHOLD &&
-+	    qgv_point == 0 && qgv_peak_bw >= XE3_PEAK_BW_THRESHOLD) {
-+		qgv_peak_bw = XE3_PEAK_BW_THRESHOLD;
-+		drm_dbg_kms(display->drm, "Low display data-rate. Reduce PM demand bw for QGV: %d",
-+			    qgv_peak_bw);
-+	}
-+
- 	/* MTL PM DEMAND expects QGV BW parameter in multiples of 100 mbps */
- 	new_bw_state->qgv_point_peakbw = DIV_ROUND_CLOSEST(qgv_peak_bw, 100);
- 
+GEN9_FEATURES "inherits" .has_llc = 1 through GEN7_FEATURES ->
+G75_FEATURES -> GEN8_FEATURES -> GEN9_FEATURES. GEN9_LP_FEATURES does
+not have it.
+
+SKL, KBL, CFL, and CML use GEN9_FEATURES i.e. have LLC.
+
+BXT, GLK use GEN9_LP_FEATURES i.e. don't have LLC.
+
+CML and CFL share the functions, so this is a long-winded way of saying
+that intel_display_cfl_init_clock_gating() also needs the
+SKL_DE_COMPRESSED_HASH_MODE programming.
+
+
+BR,
+Jani.
+
+
+>
+> Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
+> ---
+>  .../i915/display/intel_display_clock_gating.c | 57 +++++++++++++++++++
+>  .../i915/display/intel_display_clock_gating.h |  1 +
+>  drivers/gpu/drm/i915/intel_clock_gating.c     | 44 +-------------
+>  3 files changed, 59 insertions(+), 43 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> index 59041c807d6d..b2cb18478577 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.c
+> @@ -6,11 +6,39 @@
+>  #include <drm/intel/intel_gmd_misc_regs.h>
+>  
+>  #include "intel_de.h"
+> +#include "intel_display.h"
+>  #include "intel_display_clock_gating.h"
+> +#include "intel_display_core.h"
+>  #include "intel_display_regs.h"
+>  
+> +static void intel_display_gen9_init_clock_gating(struct intel_display *display)
+> +{
+> +	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
+> +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
+> +
+> +	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
+> +	intel_de_rmw(display, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
+> +
+> +	/*
+> +	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
+> +	 * Display WA #0859: skl,bxt,kbl,glk,cfl
+> +	 */
+> +	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
+> +}
+> +
+>  void intel_display_skl_init_clock_gating(struct intel_display *display)
+>  {
+> +	/*
+> +	 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+> +	 * Display WA #0390: skl,kbl
+> +	 *
+> +	 * Must match Sampler, Pixel Back End, and Media. See
+> +	 * WaCompressedResourceSamplerPbeMediaNewHashMode.
+> +	 */
+> +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
+> +
+> +	intel_display_gen9_init_clock_gating(display);
+> +
+>  	/*
+>  	 * WaFbcTurnOffFbcWatermark:skl
+>  	 * Display WA #0562: skl
+> @@ -20,6 +48,17 @@ void intel_display_skl_init_clock_gating(struct intel_display *display)
+>  
+>  void intel_display_kbl_init_clock_gating(struct intel_display *display)
+>  {
+> +	/*
+> +	 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+> +	 * Display WA #0390: skl,kbl
+> +	 *
+> +	 * Must match Sampler, Pixel Back End, and Media. See
+> +	 * WaCompressedResourceSamplerPbeMediaNewHashMode.
+> +	 */
+> +	intel_de_rmw(display, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
+> +
+> +	intel_display_gen9_init_clock_gating(display);
+> +
+>  	/*
+>  	 * WaFbcTurnOffFbcWatermark:kbl
+>  	 * Display WA #0562: kbl
+> @@ -29,6 +68,8 @@ void intel_display_kbl_init_clock_gating(struct intel_display *display)
+>  
+>  void intel_display_cfl_init_clock_gating(struct intel_display *display)
+>  {
+> +	intel_display_gen9_init_clock_gating(display);
+> +
+>  	/*
+>  	 * WaFbcTurnOffFbcWatermark:cfl
+>  	 * Display WA #0562: cfl
+> @@ -38,6 +79,8 @@ void intel_display_cfl_init_clock_gating(struct intel_display *display)
+>  
+>  void intel_display_bxt_init_clock_gating(struct intel_display *display)
+>  {
+> +	intel_display_gen9_init_clock_gating(display);
+> +
+>  	/*
+>  	 * Wa: Backlight PWM may stop in the asserted state, causing backlight
+>  	 * to stay fully on.
+> @@ -60,3 +103,17 @@ void intel_display_bxt_init_clock_gating(struct intel_display *display)
+>  	 */
+>  	intel_de_rmw(display, DISP_ARB_CTL, 0, DISP_FBC_WM_DIS);
+>  }
+> +
+> +void intel_display_glk_init_clock_gating(struct intel_display *display)
+> +{
+> +	intel_display_gen9_init_clock_gating(display);
+> +
+> +	/*
+> +	 * WaDisablePWMClockGating:glk
+> +	 * Backlight PWM may stop in the asserted state, causing backlight
+> +	 * to stay fully on.
+> +	 */
+> +	intel_de_write(display, GEN9_CLKGATE_DIS_0,
+> +		       intel_de_read(display, GEN9_CLKGATE_DIS_0) |
+> +		       PWM1_GATING_DIS | PWM2_GATING_DIS);
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> index 6bc84a9a4342..a7784db9d97a 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_clock_gating.h
+> @@ -12,5 +12,6 @@ void intel_display_skl_init_clock_gating(struct intel_display *display);
+>  void intel_display_kbl_init_clock_gating(struct intel_display *display);
+>  void intel_display_cfl_init_clock_gating(struct intel_display *display);
+>  void intel_display_bxt_init_clock_gating(struct intel_display *display);
+> +void intel_display_glk_init_clock_gating(struct intel_display *display);
+>  
+>  #endif /* __INTEL_DISPLAY_CLOCK_GATING_H__ */
+> diff --git a/drivers/gpu/drm/i915/intel_clock_gating.c b/drivers/gpu/drm/i915/intel_clock_gating.c
+> index a9efa5ce8f6a..96fe16753e58 100644
+> --- a/drivers/gpu/drm/i915/intel_clock_gating.c
+> +++ b/drivers/gpu/drm/i915/intel_clock_gating.c
+> @@ -49,36 +49,8 @@ struct drm_i915_clock_gating_funcs {
+>  	void (*init_clock_gating)(struct drm_i915_private *i915);
+>  };
+>  
+> -static void gen9_init_clock_gating(struct drm_i915_private *i915)
+> -{
+> -	if (HAS_LLC(i915)) {
+> -		/*
+> -		 * WaCompressedResourceDisplayNewHashMode:skl,kbl
+> -		 * Display WA #0390: skl,kbl
+> -		 *
+> -		 * Must match Sampler, Pixel Back End, and Media. See
+> -		 * WaCompressedResourceSamplerPbeMediaNewHashMode.
+> -		 */
+> -		intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, SKL_DE_COMPRESSED_HASH_MODE);
+> -	}
+> -
+> -	/* See Bspec note for PSR2_CTL bit 31, Wa#828:skl,bxt,kbl,cfl */
+> -	intel_uncore_rmw(&i915->uncore, CHICKEN_PAR1_1, 0, SKL_EDP_PSR_FIX_RDWRAP);
+> -
+> -	/* WaEnableChickenDCPR:skl,bxt,kbl,glk,cfl */
+> -	intel_uncore_rmw(&i915->uncore, GEN8_CHICKEN_DCPR_1, 0, MASK_WAKEMEM);
+> -
+> -	/*
+> -	 * WaFbcWakeMemOn:skl,bxt,kbl,glk,cfl
+> -	 * Display WA #0859: skl,bxt,kbl,glk,cfl
+> -	 */
+> -	intel_uncore_rmw(&i915->uncore, DISP_ARB_CTL, 0, DISP_FBC_MEMORY_WAKE);
+> -}
+> -
+>  static void bxt_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	gen9_init_clock_gating(i915);
+> -
+>  	/* WaDisableSDEUnitClockGating:bxt */
+>  	intel_uncore_rmw(&i915->uncore, GEN8_UCGCTL6, 0, GEN8_SDEUNIT_CLOCK_GATE_DISABLE);
+>  
+> @@ -93,16 +65,7 @@ static void bxt_init_clock_gating(struct drm_i915_private *i915)
+>  
+>  static void glk_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	gen9_init_clock_gating(i915);
+> -
+> -	/*
+> -	 * WaDisablePWMClockGating:glk
+> -	 * Backlight PWM may stop in the asserted state, causing backlight
+> -	 * to stay fully on.
+> -	 */
+> -	intel_uncore_write(&i915->uncore, GEN9_CLKGATE_DIS_0,
+> -			   intel_uncore_read(&i915->uncore, GEN9_CLKGATE_DIS_0) |
+> -			   PWM1_GATING_DIS | PWM2_GATING_DIS);
+> +	intel_display_glk_init_clock_gating(i915->display);
+>  }
+>  
+>  static void g4x_disable_trickle_feed(struct drm_i915_private *dev_priv)
+> @@ -282,7 +245,6 @@ static void dg2_init_clock_gating(struct drm_i915_private *i915)
+>  static void cfl_init_clock_gating(struct drm_i915_private *i915)
+>  {
+>  	intel_pch_init_clock_gating(i915->display);
+> -	gen9_init_clock_gating(i915);
+>  
+>  	/* WAC6entrylatency:cfl */
+>  	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+> @@ -292,8 +254,6 @@ static void cfl_init_clock_gating(struct drm_i915_private *i915)
+>  
+>  static void kbl_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	gen9_init_clock_gating(i915);
+> -
+>  	/* WAC6entrylatency:kbl */
+>  	intel_uncore_rmw(&i915->uncore, FBC_LLC_READ_CTRL, 0, FBC_LLC_FULLY_OPEN);
+>  
+> @@ -312,8 +272,6 @@ static void kbl_init_clock_gating(struct drm_i915_private *i915)
+>  
+>  static void skl_init_clock_gating(struct drm_i915_private *i915)
+>  {
+> -	gen9_init_clock_gating(i915);
+> -
+>  	/* WaDisableDopClockGating:skl */
+>  	intel_uncore_rmw(&i915->uncore, GEN7_MISCCPCTL,
+>  			 GEN7_DOP_CLOCK_GATE_ENABLE, 0);
+
 -- 
-2.43.0
-
+Jani Nikula, Intel
