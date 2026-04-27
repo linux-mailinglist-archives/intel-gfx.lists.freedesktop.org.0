@@ -2,65 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iF8XAa1Y72n5AQEAu9opvQ
+	id UIhTGthZ72n5AQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:38:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:43:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88D0347298B
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:38:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C71E6472A9E
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:43:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3D5410E2A7;
-	Mon, 27 Apr 2026 12:38:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CEAED10E730;
+	Mon, 27 Apr 2026 12:43:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="icbXwVio";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iGIdCW5C";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EA2C10E2A7;
- Mon, 27 Apr 2026 12:38:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9828B10E72D;
+ Mon, 27 Apr 2026 12:43:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777293482; x=1808829482;
+ t=1777293781; x=1808829781;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=JWgW+1iyD5QoNMTVuXBn4GUNZ1JCpmE5coRR+DQsZIk=;
- b=icbXwViotZG6H235DwJ5vSDa8udkYojX7n+P6ukVLSCqlSVUFro9J7vZ
- aErVOHZuB9GfHSI6KbkWBmznZeWiue6tiJjWb9D8uk9LVQt5Vj2dnYX2k
- c0gCDJ/OeNxmL+KTtuL/fhRaP2o1nagXd8PY/X8ESpxHd4JLcufIhTPwC
- SprU5uAMAZOWMJb2fwNgY/YYL84eMTa5knJS2jUgoUuJBn4R7nENi9ILD
- YwGO8Kp8EpdF7X4GU+ABB1tcvjbSoTanBseB3vWBZuHl4FUf2aHjv/JPm
- jIHzBkVqXTGCoTx+XqlUmao3hr2S6TW4afNsygfwSwDSCzVQhdgxdtwB5 g==;
-X-CSE-ConnectionGUID: 3NOMOE2kQvyJCG8/TR0KeA==
-X-CSE-MsgGUID: Kd/wiuIaTwe8IIgNS9ODqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="78096738"
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="78096738"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 05:38:02 -0700
-X-CSE-ConnectionGUID: d+NOszsnSHms7Nhe0/ZNSA==
-X-CSE-MsgGUID: gZHm8X10SwS852mrGI7AZg==
+ bh=FMeii9FTPUPwD5o05bYuLX8B1nfiiIm7rctGGKFA1Ww=;
+ b=iGIdCW5CHFID1x+sEN5P1xa4Ha4K+PyHuefw2ktRZSNEUM5oaV7nEnDD
+ G7XbOeX0zVmz6pfm+zR9tJVGxvgkHHGthB7F/XusEyENM1hMgGRDVznBM
+ 7tDf6mAD9R+M5OLWa+f+cu1/1jpxVDHmB+SWjjVkTbnxEJJEl4ClHrAP2
+ g1rKixDgROIXL5u9xyl+oNJmb+8lrrLHlyKUgD01hjU/+f0xEujPLMR+O
+ ksI4N6JEpXqdMrRJxejzhICo2EDmHnwLgDPfqPOHhViMd2rXLKzZiYSTj
+ E1Ec3tNVIC3ZDMoiCc0myomg15bcGEwQgHsud1Y+3xhFalSFcwqhAiOJp g==;
+X-CSE-ConnectionGUID: TfHFkVu7RB2alNa+wfe7EQ==
+X-CSE-MsgGUID: mVYKJhB9Rwq/tc4udSfr7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="77885108"
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="77885108"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 05:43:01 -0700
+X-CSE-ConnectionGUID: xjFOkdI4QHeSONYFfLsjGQ==
+X-CSE-MsgGUID: TwisOFDKRzCLrDPLQeDQzg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="237591019"
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="237954108"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.116])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 05:38:00 -0700
-Date: Mon, 27 Apr 2026 15:37:56 +0300
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 05:42:59 -0700
+Date: Mon, 27 Apr 2026 15:42:55 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Vinod Govindapillai <vinod.govindapillai@intel.com>
-Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- ville.syrjala@intel.com
-Subject: Re: [PATCH] drm/i915/bw: reduce the pm demand peak bw based on
- display data-rate
-Message-ID: <ae9YpNyZcfE1k2_m@intel.com>
-References: <20260427091116.218021-1-vinod.govindapillai@intel.com>
+To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: Re: [RESEND PATCH 5/7] drm/dp: Store coasting vtotal in struct
+ drm_dp_as_sdp
+Message-ID: <ae9Zzw8dEms2NODz@intel.com>
+References: <20260424093424.3060805-1-ankit.k.nautiyal@intel.com>
+ <20260424093424.3060805-6-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260427091116.218021-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20260424093424.3060805-6-ankit.k.nautiyal@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -78,12 +79,12 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 88D0347298B
+X-Rspamd-Queue-Id: C71E6472A9E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.22 / 15.00];
+X-Spamd-Result: default: False [0.31 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.53)[subject];
+	R_MIXED_CHARSET(0.63)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
@@ -108,78 +109,55 @@ X-Spamd-Result: default: False [0.22 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Mon, Apr 27, 2026 at 12:11:16PM +0300, Vinod Govindapillai wrote:
-> In xe3+, soc can lower the fabric frequency when the display
-> needs less bandwidth than the minimum GV point. The threshold
-> has been defined as 20GB/s. So if the required display data rate
-> is less than this threshold and the slelected GV point is 0 and
-> the GV point peak bw is greater than 20GB/s, we could set the
-> peak bw for the pm demand to this threshold. The currentc pcode
-> can handle this and adjust the fabric frequency accordingly.
+On Fri, Apr 24, 2026 at 03:04:22PM +0530, Ankit Nautiyal wrote:
+> Add new field in struct drm_dp_as_sdp to store coasting vtotal.
+> This is used by the sinks that support Panel Replay and Asynchronous
+> timing during PR Active to derive refresh rate, when AS SDP transmission
+> is stopped by the source.
 > 
-> Bspec: 68880
-> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
+>  drivers/gpu/drm/display/drm_dp_helper.c | 1 +
+>  include/drm/display/drm_dp_helper.h     | 1 +
+>  2 files changed, 2 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 9c3a9bbb49f6..005761baca93 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -52,6 +52,8 @@ struct intel_qgv_point {
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
+> index a697cc227e28..e29958f8b0b6 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -3512,6 +3512,7 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
+>  	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
+>  	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
+>  	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
+> +	drm_printf(p, "    coasting vtotal: %d\n", as_sdp->coasting_vtotal);
+
+For some reason the existing fields are using '_', this one ' '.
+Looks like VSC uses ' ' as well. So the existing stuff in
+drm_dp_as_sdp_log() should be fixed to conform to the common 
+style, in a separate patch.
+
+Otherwise this looks fine
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+
+>  }
+>  EXPORT_SYMBOL(drm_dp_as_sdp_log);
 >  
->  #define DEPROGBWPCLIMIT		60
->  
-> +#define XE3_PEAK_BW_THRESHOLD	20000
-> +
->  struct intel_psf_gv_point {
->  	u8 clk; /* clock in multiples of 16.6666 MHz */
+> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+> index 1d0acd58f486..8c2d77a032f0 100644
+> --- a/include/drm/display/drm_dp_helper.h
+> +++ b/include/drm/display/drm_dp_helper.h
+> @@ -126,6 +126,7 @@ struct drm_dp_as_sdp {
+>  	int duration_decr_ms;
+>  	bool target_rr_divider;
+>  	enum operation_mode mode;
+> +	int coasting_vtotal;
 >  };
-> @@ -1045,6 +1047,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
->  	unsigned int best_rate = UINT_MAX;
->  	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
->  	unsigned int qgv_peak_bw  = 0;
-> +	int qgv_point = num_qgv_points;
->  	int i;
->  	int ret;
 >  
-> @@ -1083,6 +1086,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
->  		if (max_data_rate - data_rate < best_rate) {
->  			best_rate = max_data_rate - data_rate;
->  			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
-> +			qgv_point = i;
->  		}
->  
->  		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
-> @@ -1102,6 +1106,18 @@ static int mtl_find_qgv_points(struct intel_display *display,
->  		return -EINVAL;
->  	}
->  
-> +	/*
-> +	 * For xe3+, if display's required memory bw <= 20GB/s and the selected
-> +	 * peak bw of QGV[0] is >= 20 GB/s, we can reduce the peak bw for the
-> +	 * pm demand QCLK GV to 20GB/s
-> +	 */
-> +	if (DISPLAY_VER(display) >= 30 && data_rate <= XE3_PEAK_BW_THRESHOLD &&
-> +	    qgv_point == 0 && qgv_peak_bw >= XE3_PEAK_BW_THRESHOLD) {
-> +		qgv_peak_bw = XE3_PEAK_BW_THRESHOLD;
-> +		drm_dbg_kms(display->drm, "Low display data-rate. Reduce PM demand bw for QGV: %d",
-> +			    qgv_peak_bw);
-> +	}
-
-I can't figure out what that does. If this is the thing I think it is,
-then the plan was to just add a new QGV point (in driver) for the lower
-frequency.
-
-> +
->  	/* MTL PM DEMAND expects QGV BW parameter in multiples of 100 mbps */
->  	new_bw_state->qgv_point_peakbw = DIV_ROUND_CLOSEST(qgv_peak_bw, 100);
->  
+>  void drm_dp_as_sdp_log(struct drm_printer *p,
 > -- 
-> 2.43.0
+> 2.45.2
 
 -- 
 Ville Syrjälä
