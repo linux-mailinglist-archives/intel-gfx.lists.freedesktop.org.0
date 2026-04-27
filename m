@@ -2,69 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UIhTGthZ72n5AQEAu9opvQ
+	id SJ9WIS5b72llAgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:43:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:48:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C71E6472A9E
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:43:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F3F2472BB8
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:48:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CEAED10E730;
-	Mon, 27 Apr 2026 12:43:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C990510E724;
+	Mon, 27 Apr 2026 12:48:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="iGIdCW5C";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="C/yuP6WG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9828B10E72D;
- Mon, 27 Apr 2026 12:43:00 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6054910E724
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 12:48:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777293781; x=1808829781;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=FMeii9FTPUPwD5o05bYuLX8B1nfiiIm7rctGGKFA1Ww=;
- b=iGIdCW5CHFID1x+sEN5P1xa4Ha4K+PyHuefw2ktRZSNEUM5oaV7nEnDD
- G7XbOeX0zVmz6pfm+zR9tJVGxvgkHHGthB7F/XusEyENM1hMgGRDVznBM
- 7tDf6mAD9R+M5OLWa+f+cu1/1jpxVDHmB+SWjjVkTbnxEJJEl4ClHrAP2
- g1rKixDgROIXL5u9xyl+oNJmb+8lrrLHlyKUgD01hjU/+f0xEujPLMR+O
- ksI4N6JEpXqdMrRJxejzhICo2EDmHnwLgDPfqPOHhViMd2rXLKzZiYSTj
- E1Ec3tNVIC3ZDMoiCc0myomg15bcGEwQgHsud1Y+3xhFalSFcwqhAiOJp g==;
-X-CSE-ConnectionGUID: TfHFkVu7RB2alNa+wfe7EQ==
-X-CSE-MsgGUID: mVYKJhB9Rwq/tc4udSfr7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="77885108"
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="77885108"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 05:43:01 -0700
-X-CSE-ConnectionGUID: xjFOkdI4QHeSONYFfLsjGQ==
-X-CSE-MsgGUID: TwisOFDKRzCLrDPLQeDQzg==
+ t=1777294123; x=1808830123;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=U2QW9rPB/uMKqOLZ2MFzoqqPjdB0CVfHun3O8NYdMtU=;
+ b=C/yuP6WGDa0mYo97mZF+noNA3AsiuBXwwbAth/dJIGDr6vAmOQuW2Vra
+ UbG4fgBPJsiFFbypWpeHzEF9QQBdFwTWYFoILFHTmYh/ZGl7WxBetOfxN
+ aAHeN8q8VBNgeji7iGA193HxIHbT0VMEzqTLc6cFnf0RYVIKuRIkFVxyr
+ 0zSuzlg/IcbrsMfvjQiP/dMXefeZgLP21cWiF8M0gGDYuvai1bJs1ComN
+ lS75ppeTivJbbNZCn1oQ7fQacp2tFi8gLBBowUkYcwloZo3Ys+deIBTo3
+ jMCRfAc1M7awaM/bzyQDQuKm2sGjvfrgd+F9neE7KASZBSz30b/upVht2 g==;
+X-CSE-ConnectionGUID: bOfVUReXTEW/WeBXM2AWLg==
+X-CSE-MsgGUID: pXbMn3XvQBmUWTiWs6nWbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="95741021"
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="95741021"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 05:48:43 -0700
+X-CSE-ConnectionGUID: C3Qye8ysSOqXRf9+KrnfiA==
+X-CSE-MsgGUID: BoltTSEESTeZakOYm4YR4w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="237954108"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.116])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 05:42:59 -0700
-Date: Mon, 27 Apr 2026 15:42:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [RESEND PATCH 5/7] drm/dp: Store coasting vtotal in struct
- drm_dp_as_sdp
-Message-ID: <ae9Zzw8dEms2NODz@intel.com>
-References: <20260424093424.3060805-1-ankit.k.nautiyal@intel.com>
- <20260424093424.3060805-6-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="232642333"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.53])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 05:48:41 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Sebastian Brzezinka <sebastian.brzezinka@intel.com>, Sebastian Brzezinka
+ <sebastian.brzezinka@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: andi.shyti@linux.intel.com, krzysztof.karas@intel.com
+Subject: Re: [PATCH] drm/i915: replace fetch_and_zero() with kernel xchg()
+In-Reply-To: <DI3XYF0I8YPD.336A8XEBGNCDT@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <75ba7e77fe28617f027ae49a620df8b580cd1000.1777291964.git.sebastian.brzezinka@intel.com>
+ <7d18b591154516efd9be14c643bd576678b616bc@intel.com>
+ <DI3XYF0I8YPD.336A8XEBGNCDT@intel.com>
+Date: Mon, 27 Apr 2026 15:48:37 +0300
+Message-ID: <b7e7bf8c2f0946763f992dc06342e0bfaba98c90@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260424093424.3060805-6-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,86 +77,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C71E6472A9E
+X-Rspamd-Queue-Id: 3F3F2472BB8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.31 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.63)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:sebastian.brzezinka@intel.com,m:andi.shyti@linux.intel.com,m:krzysztof.karas@intel.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid]
 
-On Fri, Apr 24, 2026 at 03:04:22PM +0530, Ankit Nautiyal wrote:
-> Add new field in struct drm_dp_as_sdp to store coasting vtotal.
-> This is used by the sinks that support Panel Replay and Asynchronous
-> timing during PR Active to derive refresh rate, when AS SDP transmission
-> is stopped by the source.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 1 +
->  include/drm/display/drm_dp_helper.h     | 1 +
->  2 files changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index a697cc227e28..e29958f8b0b6 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -3512,6 +3512,7 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
->  	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
->  	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
->  	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
-> +	drm_printf(p, "    coasting vtotal: %d\n", as_sdp->coasting_vtotal);
+On Mon, 27 Apr 2026, Sebastian Brzezinka <sebastian.brzezinka@intel.com> wr=
+ote:
+> This patch was initially sent to trybot and received Review-by: Krzysztof
+> there. So I=E2=80=99ve copied it here.
 
-For some reason the existing fields are using '_', this one ' '.
-Looks like VSC uses ' ' as well. So the existing stuff in
-drm_dp_as_sdp_log() should be fixed to conform to the common 
-style, in a separate patch.
+In most cases, patches shouldn't be sent to trybot, and the trybot list
+shouldn't be used for reviews.
 
-Otherwise this looks fine
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Trybot is primarily for testing out an idea when you're not sure how
+things would work on a bunch of real hardware. Or when the patch is not
+intended for merging at all. It's not for a generic preliminary round of
+testing. If trybot results pass, you'll still need to send the patch for
+CI and review and merging on the actual list, and it just ends up
+wasting a CI round.
 
->  }
->  EXPORT_SYMBOL(drm_dp_as_sdp_log);
->  
-> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-> index 1d0acd58f486..8c2d77a032f0 100644
-> --- a/include/drm/display/drm_dp_helper.h
-> +++ b/include/drm/display/drm_dp_helper.h
-> @@ -126,6 +126,7 @@ struct drm_dp_as_sdp {
->  	int duration_decr_ms;
->  	bool target_rr_divider;
->  	enum operation_mode mode;
-> +	int coasting_vtotal;
->  };
->  
->  void drm_dp_as_sdp_log(struct drm_printer *p,
-> -- 
-> 2.45.2
 
--- 
-Ville Syrjälä
-Intel
+BR,
+Jani.
+
+--=20
+Jani Nikula, Intel
