@@ -2,112 +2,112 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YH+LEqDX72koGwEAu9opvQ
+	id 9TICOEfc72lAHAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 23:39:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 23:59:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 947D447AB63
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 23:39:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F91047B050
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 23:59:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E82A910E027;
-	Mon, 27 Apr 2026 21:39:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7645B892A1;
+	Mon, 27 Apr 2026 21:59:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="Ad+betp0";
+	dkim=pass (1024-bit key; unprotected) header.d=linux-foundation.org header.i=@linux-foundation.org header.b="IYFMvRTb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com
- [209.85.208.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5280410E2C9
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 21:39:40 +0000 (UTC)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-67389cf78b0so18821398a12.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:39:40 -0700 (PDT)
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com
+ [209.85.208.52])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 111AB892A1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 21:59:31 +0000 (UTC)
+Received: by mail-ed1-f52.google.com with SMTP id
+ 4fb4d7f45d1cf-677f7c29af6so9399733a12.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:59:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=linux-foundation.org; s=google; t=1777325978; x=1777930778;
+ d=linux-foundation.org; s=google; t=1777327170; x=1777931970;
  darn=lists.freedesktop.org; 
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=DjF1Jdn4Kp6xFyaBmAP2391GfFF2q7kuOVlruTChM90=;
- b=Ad+betp0zFZlIbtGBFWAso51GwA+oeW4XoBDIakDga8l2bD0BCz8nx6pQDu6+lMlvE
- rjCcuZbVezydlpYGUjOuJqy+Kmh+7B8/q70WRNRTfnRvdha+3/YzlYbDZEURM7+XML+n
- Z9QE9sZT85x2zka6SoGj0B8N1C5RXfcQ8iuZ4=
+ bh=eodThUBj1SnOvacXe/3ftYxEWQMFbYqc4B0FCa9Alx4=;
+ b=IYFMvRTbDflfUyB8N2QryVsrXRu5hg6JvQLE6eOv8WLX/g+0GkCwogeKBH66FBM8Cw
+ 4twCep8YvkUJXF1mDJz5i2ff0dqxYR8EeGz04IralWmBA7MncUJTSGV2sdiFF/mUhFTx
+ JhSf6QSg0tLFW31Tbf/NtYP5h0zF5KYzHMgB8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777325978; x=1777930778;
+ d=1e100.net; s=20251104; t=1777327170; x=1777931970;
  h=cc:to:subject:message-id:date:from:in-reply-to:references
  :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=DjF1Jdn4Kp6xFyaBmAP2391GfFF2q7kuOVlruTChM90=;
- b=bhzbOqnZvwgcrjzyFQcJF+oKDANqhcWdt3OsvAMzf31HtY59MlqRkAwXze3CpTTdh0
- YhD4h8Xbfq5YcRHPE5o/mniypukkTgrX+Jn/YQ4G8hMMXUla9856wCPBYeWI44aAlbU+
- NW8nQLBzv9MnynPo04pu85xPqZNIECEWzF9KBSKM93YQc8NzHveDhZ3VyuL2YxJ2qypv
- ZopQnMC2jRXC9/GFHb2SSP1T25EvfL5fWPDM5gesgvESEvhipuFk+2kf5HQ/GgsqyF4b
- crFEKZ1GoP909nD4RA/7AIbLGLxwW5kEXZk3o/oEY1Se1Bkp//xRo2VByLGcU49VKCbf
- ywxQ==
+ bh=eodThUBj1SnOvacXe/3ftYxEWQMFbYqc4B0FCa9Alx4=;
+ b=qegoK+qjRwolzZ4SEHRp5K/JVhrFCy7asVM9UoTlknqAuL7AFgsM+rEOX+WeD6mGLz
+ VhfF/+WjYPWVYjKot+Hs1s1IhytKPnmBOj/flHsIfbEZd7LjTJrSPNNuIgO99CJOvBwE
+ qYYNOoYmpj6gz2u4jjc0PKt50dt2E9O9sjUhIeue781ZbjomMg9IwUlEMKswhsQWdJGZ
+ Kkdk1cQXkmZ0NBMNmssB1FrQPfFDfHZVxY2FVNnjuq9k2+gm4oGgl1BAWSgxWSMv7fMx
+ 7yYLQsImzX/qPRkV7zBtsTynwZlza9IPkwwiILv61OVQvNVdaC2hmcWLEe1gJxRC5YlF
+ EYng==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+N7HXeiXz5sngNOXtbtUI+8eURT78DRLEnXUfDO5jD9CxrpHQxEUlDf2kCYdJnS/85HHEtOZodKRk=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyoU4VYZpBCxHNI7D3KtjmtCuHYLSivKEjH0rDdYEjnpL4r29+z
- 3c0J6aj+nTwNeV9/9t2Uf1S0jxiKH9u9Z5aTZJ85rZBPVQFgW3oWavMmbJx7naeTufjCNEbFSGX
- s0TLp3F2fUg==
-X-Gm-Gg: AeBDiesXeFYYcD17aPz02JvEHn/apXQQWM5jIQe5iz4XPml2ZFqNt7bu5x95KQrR+n7
- mfbNnWbqZaI+QuBLGzEy137gZmZhwBrBt9bawVUkIe1Pm+h0C6KbqJf4mwi47gzS6rJ360rMHOi
- QGhK4RZG1YH7myz4vAyz3E9lp7wNjsL7X4oT5U4ExU9ppLOQLR2oynGYInragjy/u9wW7Wp+y9r
- 3zWR3OahhkFmY4zgEhBDdb4wiYwuRc+x1JRJzhUXFCLINcYKvxSyXSq8YnqoTJR8H9TzF26mV0d
- 4GQ6ScPPRrUilGw8uZEK62tkfpEGdeEgmM+XHUaCDRVEWaBUAJo7i3f26kmGZL7ZfIOJY6ZIYEo
- tpjZXd/ENwWVBgZZgsuTHJi9hTrTOUEMQQ9O68uIOL+Sj+k+c4TBmKsLc0BN8GOzsDxxbalXyG6
- uztEtJyBOMBpzWEtaU5sqRH9/I9enV6hTJUGnlzfjeqX9E7r9L2fpSiL/bWSYxit916Img4rCr5
- MeLE9sKOUE=
-X-Received: by 2002:a05:6402:538a:b0:670:8add:2b98 with SMTP id
- 4fb4d7f45d1cf-679bb08f225mr153501a12.14.1777325978557; 
- Mon, 27 Apr 2026 14:39:38 -0700 (PDT)
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com.
- [209.85.208.53]) by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-679b684345csm139015a12.17.2026.04.27.14.39.37
+ AFNElJ8RhAsn2CnZP8QU0RBbpea6kaxAHsQaQEg0NqSmYwB49ypyPtEecTtEVrOkN78MPbuiGAvRxJcPIkU=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxBelQg2CPVZOklwZZ9MaKSM6B9pnQaXixcPG6mOYuaZi0V4yPb
+ 3R2kEiRJzrz8TUs1X7F2ORrqrL43kpyi7XgeUHEsqEB3YXxFbKX+Cw+B6nMyWc72iZJ1NB2T984
+ pdBK9zQDlDg==
+X-Gm-Gg: AeBDiesHF0+giGtrMmQTqpy9tgTzEovpLO4lXgSZhqCRCKttT2/J7ISymYCNdY1C5ah
+ F/IhsXi6HfrOV4Zi7c3q3pb1thbrQMjNejzSHiiw2E0hhjWaA0YcIVgpKhohl60B2pBKX/c1DQ0
+ /YrdNxMDIYvzf3KM0Hll4SsVjjnZ63bM+YrXpnFUD7GF2WIx93NLvSxWU+F2vR59CGcFrZd7/Ng
+ Se3jhWKwjSbHuE/LDD2o2MXcsffav+tOdF6GLrpS1x8i2SFi+sVcEIxHJcvTRk3/QwukYMZOVOo
+ rcjf+v2wo7nGyNPsk1gjusESkd6xGII3wMIhar9y0yKgXIsSayqQy11A62TGD6mdyeHpynDjO/U
+ rFG1bMfj3QLU2n6FOgQ29RuSXHtYdkVkNZ09B4OSgqudXdDHELzJgq+ARS5kcjWzuGTEClSLKgr
+ hgMWswZVrvWAt133L9pC+tGz2tYn+HcQ43QtcvsARm3iGHmq4n0B57/gZkwRE3Q+9F9trjwZPoV
+ nnXlTReohg=
+X-Received: by 2002:a17:907:6ea4:b0:ba5:1970:2bb6 with SMTP id
+ a640c23a62f3a-bb803d65634mr29486166b.34.1777327170047; 
+ Mon, 27 Apr 2026 14:59:30 -0700 (PDT)
+Received: from mail-ed1-f54.google.com (mail-ed1-f54.google.com.
+ [209.85.208.54]) by smtp.gmail.com with ESMTPSA id
+ a640c23a62f3a-bb80b2aded9sm10217966b.41.2026.04.27.14.59.29
  for <intel-gfx@lists.freedesktop.org>
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 27 Apr 2026 14:39:37 -0700 (PDT)
-Received: by mail-ed1-f53.google.com with SMTP id
- 4fb4d7f45d1cf-678a526f374so6513289a12.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:39:37 -0700 (PDT)
+ Mon, 27 Apr 2026 14:59:29 -0700 (PDT)
+Received: by mail-ed1-f54.google.com with SMTP id
+ 4fb4d7f45d1cf-66e8cf72a93so13206569a12.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 27 Apr 2026 14:59:29 -0700 (PDT)
 X-Forwarded-Encrypted: i=1;
- AFNElJ+WAjQfIRwRFewLgIWGNGRZhvcfK3mX0bbNwZClju3SVTeBM27+4V+8t3M3dD/kHzewvP09PpeNtA8=@lists.freedesktop.org
-X-Received: by 2002:a05:6402:5216:b0:679:1f4f:9d30 with SMTP id
- 4fb4d7f45d1cf-679bb04c1a2mr179970a12.4.1777325976937; Mon, 27 Apr 2026
- 14:39:36 -0700 (PDT)
+ AFNElJ8Uv+qbemuWG4v5drf0IAIif9m4OXcKaKjw9FwA9smUEg11Dvcwqq+BPusaNlhPgBnJhaDLre9XW98=@lists.freedesktop.org
+X-Received: by 2002:a05:6402:35c2:b0:677:270f:6f4b with SMTP id
+ 4fb4d7f45d1cf-679bb04a8a7mr185115a12.1.1777326742385; Mon, 27 Apr 2026
+ 14:52:22 -0700 (PDT)
 MIME-Version: 1.0
 References: <cover.1777306795.git.chleroy@kernel.org>
- <289b424e243ba2c4139ea04009cf8b9c448a87ff.1777306795.git.chleroy@kernel.org>
- <CAHk-=whC1DZojwdMB1=sJWG2=dsCdfyU8N6tDE1qx50HRZ-WJQ@mail.gmail.com>
- <20260427222914.1cb2dd3b@pumpkin>
-In-Reply-To: <20260427222914.1cb2dd3b@pumpkin>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+ <ae-j2_QirCySZD02@yury> <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+ <ae-2yLWSGnfeTvh1@yury>
+In-Reply-To: <ae-2yLWSGnfeTvh1@yury>
 From: Linus Torvalds <torvalds@linux-foundation.org>
-Date: Mon, 27 Apr 2026 14:39:20 -0700
-X-Gmail-Original-Message-ID: <CAHk-=wg0SGbRYhdZ1kvJUTv1HEvmRJyQauFtBGV_fMcZVF8UpQ@mail.gmail.com>
-X-Gm-Features: AVHnY4I-AxqvQRk42MegvhKMp_z4sSEpEzhzpgw2GyV2bV8dezSPoI0JTlwB18Y
-Message-ID: <CAHk-=wg0SGbRYhdZ1kvJUTv1HEvmRJyQauFtBGV_fMcZVF8UpQ@mail.gmail.com>
-Subject: Re: [RFC PATCH v1 5/9] uaccess: Switch to
- copy_{to/from}_user_partial() when relevant
-To: David Laight <david.laight.linux@gmail.com>
+Date: Mon, 27 Apr 2026 14:52:05 -0700
+X-Gmail-Original-Message-ID: <CAHk-=wgPrLy0FR3sEWBYQuNAac1axDASYMnTuPuxEU0WytzL7w@mail.gmail.com>
+X-Gm-Features: AVHnY4LQUFWo9ODz4M3q2vZC9Gn8nsdYr95Nd4ky5ERVHHxIyN_9ZXY5zjebfdc
+Message-ID: <CAHk-=wgPrLy0FR3sEWBYQuNAac1axDASYMnTuPuxEU0WytzL7w@mail.gmail.com>
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+To: Yury Norov <ynorov@nvidia.com>
 Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
- Yury Norov <ynorov@nvidia.com>, 
- Andrew Morton <akpm@linux-foundation.org>, Thomas Gleixner <tglx@linutronix.de>,
- linux-alpha@vger.kernel.org, linux-kernel@vger.kernel.org, 
- linux-snps-arc@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-mips@vger.kernel.org, linuxppc-dev@lists.ozlabs.org, 
- kvm@vger.kernel.org, linux-riscv@lists.infradead.org, 
- linux-s390@vger.kernel.org, sparclinux@vger.kernel.org, 
- linux-um@lists.infradead.org, dmaengine@vger.kernel.org, 
- linux-efi@vger.kernel.org, linux-fsi@lists.ozlabs.org, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- intel-gfx@lists.freedesktop.org, linux-wpan@vger.kernel.org, 
- netdev@vger.kernel.org, linux-wireless@vger.kernel.org, 
- linux-spi@vger.kernel.org, linux-media@vger.kernel.org, 
- linux-staging@lists.linux.dev, linux-serial@vger.kernel.org, 
- linux-usb@vger.kernel.org, xen-devel@lists.xenproject.org, 
- linux-fsdevel@vger.kernel.org, ocfs2-devel@lists.linux.dev, 
- bpf@vger.kernel.org, kasan-dev@googlegroups.com, linux-mm@kvack.org, 
- linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org, 
+ Andrew Morton <akpm@linux-foundation.org>, 
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, 
+ linux-alpha@vger.kernel.org, Yury Norov <yury.norov@gmail.com>, 
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org, 
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org, 
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org, 
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org, 
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org, 
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org, 
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org, 
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org, 
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev, 
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org, 
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org, 
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org, kasan-dev@googlegroups.com, 
+ linux-mm@kvack.org, linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org, 
  linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org, 
  linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org, 
  loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org, 
@@ -128,29 +128,29 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 947D447AB63
+X-Rspamd-Queue-Id: 2F91047B050
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.69 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[linux-foundation.org:s=google];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:ynorov@nvidia.com,m:chleroy@kernel.org,m:akpm@linux-foundation.org,m:david.laight.linux@gmail.com,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:yury.norov@gmail.com,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.linux.dev,m:bp
+ f@vger.kernel.org,m:kasan-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,m:davidlaightlinux@gmail.com,m:yurynorov@gmail.com,s:lists@lfdr.de];
 	DMARC_NA(0.00)[linux-foundation.org];
-	RCPT_COUNT_TWELVE(0.00)[48];
-	FORGED_RECIPIENTS(0.00)[m:david.laight.linux@gmail.com,m:chleroy@kernel.org,m:ynorov@nvidia.com,m:akpm@linux-foundation.org,m:tglx@linutronix.de,m:linux-alpha@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linux-snps-arc@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:linux-mips@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:kvm@vger.kernel.org,m:linux-riscv@lists.infradead.org,m:linux-s390@vger.kernel.org,m:sparclinux@vger.kernel.org,m:linux-um@lists.infradead.org,m:dmaengine@vger.kernel.org,m:linux-efi@vger.kernel.org,m:linux-fsi@lists.ozlabs.org,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-wpan@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-wireless@vger.kernel.org,m:linux-spi@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-staging@lists.linux.dev,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:xen-devel@lists.xenproject.org,m:linux-fsdevel@vger.kernel.org,m:ocfs2-devel@lists.linux.dev,m:bpf@vger.kernel.org,m:kas
- an-dev@googlegroups.com,m:linux-mm@kvack.org,m:linux-x25@vger.kernel.org,m:rust-for-linux@vger.kernel.org,m:linux-sound@vger.kernel.org,m:sound-open-firmware@alsa-project.org,m:linux-csky@vger.kernel.org,m:linux-hexagon@vger.kernel.org,m:loongarch@lists.linux.dev,m:linux-m68k@lists.linux-m68k.org,m:linux-openrisc@vger.kernel.org,m:linux-parisc@vger.kernel.org,m:linux-sh@vger.kernel.org,m:linux-arch@vger.kernel.org,m:davidlaightlinux@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[torvalds@linux-foundation.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[49];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[kernel.org,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
@@ -165,17 +165,24 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux-foundation.org:dkim,mail.gmail.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,nvidia.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,linux-foundation.org:dkim]
 
-On Mon, 27 Apr 2026 at 14:29, David Laight <david.laight.linux@gmail.com> wrote:
+On Mon, 27 Apr 2026 at 12:19, Yury Norov <ynorov@nvidia.com> wrote:
 >
-> I think there is a slight difference in that the normal copy_to_user()
-> will determine the exact offset of the error by retrying with byte copies.
+> This is what Linus said when added x86 implementation for copy_from_user()
+> in c512c69187197:
 
-I have this dim memory that we decided that you can't reply on byte
-exactness anyway, because not all architectures gave that guarantee
-for the user copies.
+Note that some things have happily changed in the six+ years since...
 
-But that thing came up many years ago, I might mis-remember.
+>   That's partly because we have no current users of it, but also partly
+>   because the copy_from_user() case is slightly different and cannot
+>   efficiently be implemented in terms of a unsafe_get_user() loop (because
+>   gcc can't do asm goto with outputs).
 
-            Linus
+now everybody can do asm goto with outputs.
+
+Yes, it's disabled on older versions, so it's not *always* available,
+but all modern versions do it. And if you care about performance, you
+won't be using an old compiler.
+
+             Linus
