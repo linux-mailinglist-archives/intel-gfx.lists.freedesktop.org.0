@@ -2,53 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMjNFhO572l0EQEAu9opvQ
+	id 4D/WCVfD72mLFQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 21:29:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 22:13:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFC3C4794AB
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 21:29:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCB8B479C1C
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 22:13:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1D71D10E0CA;
-	Mon, 27 Apr 2026 19:19:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0FFA810E911;
+	Mon, 27 Apr 2026 20:13:07 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="YPchTHpL";
+	dkim=pass (2048-bit key; unprotected) header.d=Nvidia.com header.i=@Nvidia.com header.b="hMJCquiW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from CH5PR02CU005.outbound.protection.outlook.com
- (mail-northcentralusazon11012060.outbound.protection.outlook.com
- [40.107.200.60])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FC3F10E2CF;
- Mon, 27 Apr 2026 19:19:51 +0000 (UTC)
+Received: from CO1PR03CU002.outbound.protection.outlook.com
+ (mail-westus2azon11010037.outbound.protection.outlook.com [52.101.46.37])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1E5C10E910;
+ Mon, 27 Apr 2026 20:13:04 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=DVhEHbKse9FapnN2cz2aJUX+HTxcItqfquBUQFwLCiP5WPrtNQiNPTnGI4MIon3AgmkAQl5HhYuSQnuQt8IDeRYhgInyB/AOQdBwrpUiHITV3f694UVLHuUrOiv9b2cfG6r3+auR6MSVkkcLuQ4Y+tF/rhfDNeBCXess0F+F/TkXrV+dz92vsSLlL5tn1Ynl2fbpcNoIAef0KBxuv6gcdjE4t82LvHJAaDNASNUKyKFm7x4T0BsLAz0/sYnIg36y560VeNc7zOL4T4Ud5AI185ZovsKb5e37aJIb1I3/TkqG0ULl2gwnmAIb6WWT/tvMtVulTJ6c/93Ndgr0CuF4fg==
+ b=BtrDbDcz6oik0VAePSzg5fGR+cooJsvCiqVpAkRyxjo7tVYcK6FTW120At87PvC2HmYqvF+zAYmUozmBiDpk3obvOrmRqnQu5b4NUoZkF4ujvP7nKdWKNRWeaLOXO5lx22JtfQpfCueE0stod3ZgwyZHZra4CSp8si7hhoGCGMHOU9NRGgQZvWgZxjvpiddt/5heAo5jaUAbusoeb6/N+ctwOqovcjGb3J/PDBJNthLIqytbew6CjsXMgRhp3uIkXxoc2xEaZ44Y9Ktv5ANbxXoHDUfrqejvOg1lxzqXzqzdTsDZXzt8mwjNLgfzVceatnj1bajoVfBGEPtevW6/ow==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/kehAw/qIO6D93HVE5am8hZKsLTTbdaFhcjGhCC5rQk=;
- b=barriPy2JoAhTOU2YWoiBczra9jgxyFIS6Vn5fMeLmZuoQbamS7hXIudelNBWOJlYCTT4fz6sLrJvnhUdW9BOtoGyJggKAsOzpYbdXTAoZYuiChGWVjjK4zj5T6ViLKFtxvsysAksVjZEfM7DJVmWiyYI9e45cpEy9i20IgZjrl32t2DE427qEOO5vlB9eYx56Yl/nXGgL4VLYapDOlIgCcuJftQuYsdND79AhJHc1YvPlUNuHXQ+n3CfukGLrY/uuf3W2l/Yujue6iK9C39RkCuvxgHmU04+3GeYVYQvrsxPBRvQZHz5V/LPu92hWZsyj93vuK0RwQezDTTJlGlNw==
+ bh=UKWQR0wFCYKwd7/WyoEVlZ7dAryoy8A/34DACb4Mweg=;
+ b=eIPokbumH3eDN+DqP5Ep1KaEMIWbZhTzgBKsNv19VF/W6X7jjPowB4UntDHWj76GVOLpVErRkTwf2pJ/YrDs45ZN6xDND6686ErEpWA2qQXwRCmtP46ysRgjHvM1NVSf8oin7VwsuXb30pKGJB4D4xu/biMyeV+73vzwzUrpYBXo7hdAidNUQHrxfYLBQEUhcH9MtIkFcqmeakpXHhSDEtl8blygh6QE25OuMpVAmZUWxT7paNvKfjp0MlyKuWB9S5BekJIjYVv4y8EE8wAO9HrTEKcIsKrwKajDUUZC4yUEssV8xNuhIqndzV8atExLn9UGWsZ3+sD76wTjiGaGgw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nvidia.com; dmarc=pass action=none header.from=nvidia.com;
  dkim=pass header.d=nvidia.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=Nvidia.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=/kehAw/qIO6D93HVE5am8hZKsLTTbdaFhcjGhCC5rQk=;
- b=YPchTHpLT9QyaGFbz/V/HaxoYwml60CPwBCohwTGccSxQF5xp4aCWy87+9L75FNFxG+fxrmiBfrijK9S2U71MhRFySlXZXPcGWovjvdfkNvvp25q1PAB1mr+HmzjdR2xRedKx7NR5nzOddAsQnNEGyggXH0WqDfgUQo8MCzVvhQJIRQ9THI7KbDluLzImajEqpi/FOh1jFu/Gzsx5Px0K5iD8tBWuFPua2hJduhxINK682Oc8hT1rNV3ppOrrAFmrK5A2egSfIVt/1zbLX+OPjABfYsc675DnlpFoxG5tXvBSDdEGGHoW1lpS7Myqc3PGBqojvAzWyzSfMH/AHuVBg==
+ bh=UKWQR0wFCYKwd7/WyoEVlZ7dAryoy8A/34DACb4Mweg=;
+ b=hMJCquiWsKvsKPfnV6x+XewanJiprCXhKZ7l3EnI0mUQee6FHRXLrWa9OPoGIpSx+3ijfDDYf7rNW7PoM7DOSBnLPvsXAImaoD6B98Y7Upx4a9+jmx8qzSA1GldDlcxK8Pewp0jwDRy5JdWZd5Oq81ubXZq43utYi9tCvPcHtbJVcvLFWW/q7KgNksf7InTQ6smdi1OyjYpNmneI+Yx09fiTp08WMkqdpQGjsSSQVU9D7WqLP1BLpIUpVlAs267Rgj9nox2HtSQ5p5eE42gWq/zkifeODpWv1mo/3UxmRXJegCDfavI3oSRox5pAtdJxjEw5pvmed4+9e03qhtyLkg==
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=nvidia.com;
 Received: from CY8PR12MB8300.namprd12.prod.outlook.com (2603:10b6:930:7d::16)
- by CY3PR12MB9678.namprd12.prod.outlook.com (2603:10b6:930:101::12)
+ by LV3PR12MB9166.namprd12.prod.outlook.com (2603:10b6:408:19c::13)
  with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.12; Mon, 27 Apr
- 2026 19:19:39 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.16; Mon, 27 Apr
+ 2026 20:12:58 +0000
 Received: from CY8PR12MB8300.namprd12.prod.outlook.com
  ([fe80::ce75:8187:3ac3:c5de]) by CY8PR12MB8300.namprd12.prod.outlook.com
  ([fe80::ce75:8187:3ac3:c5de%3]) with mapi id 15.20.9870.013; Mon, 27 Apr 2026
- 19:19:39 +0000
-Date: Mon, 27 Apr 2026 15:19:36 -0400
+ 20:12:57 +0000
+Date: Mon, 27 Apr 2026 16:12:55 -0400
 From: Yury Norov <ynorov@nvidia.com>
 To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
 Cc: Andrew Morton <akpm@linux-foundation.org>,
@@ -77,74 +76,71 @@ Cc: Andrew Morton <akpm@linux-foundation.org>,
  loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
  linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
  linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
-Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
-Message-ID: <ae-2yLWSGnfeTvh1@yury>
+Subject: Re: [RFC PATCH v1 9/9] uaccess: Convert small fixed size
+ copy_{to/from}_user() to scoped user access
+Message-ID: <ae_DR6NYwy05mhAe@yury>
 References: <cover.1777306795.git.chleroy@kernel.org>
- <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
- <ae-j2_QirCySZD02@yury>
- <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
-Content-Type: text/plain; charset=iso-8859-1
+ <8780eb2ef80575931a339e5225bc80eb13e9be6c.1777306795.git.chleroy@kernel.org>
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
-X-ClientProxiedBy: BLAPR03CA0031.namprd03.prod.outlook.com
- (2603:10b6:208:32d::6) To CY8PR12MB8300.namprd12.prod.outlook.com
+In-Reply-To: <8780eb2ef80575931a339e5225bc80eb13e9be6c.1777306795.git.chleroy@kernel.org>
+X-ClientProxiedBy: BN9PR03CA0683.namprd03.prod.outlook.com
+ (2603:10b6:408:10e::28) To CY8PR12MB8300.namprd12.prod.outlook.com
  (2603:10b6:930:7d::16)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CY8PR12MB8300:EE_|CY3PR12MB9678:EE_
-X-MS-Office365-Filtering-Correlation-Id: c742778b-fa9b-44f9-51b3-08dea491ed5d
+X-MS-TrafficTypeDiagnostic: CY8PR12MB8300:EE_|LV3PR12MB9166:EE_
+X-MS-Office365-Filtering-Correlation-Id: bdfef69d-b376-4a04-fa4d-08dea4995fc0
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|10070799003|1800799024|56012099003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: shZ1u0REr6wDLRLPyyEdIcR7HSBaBLI9bkPwQrtikVH2FtKB2JxFo1blEpu1cI3NJl8SRfbhAKLYIVGCuUMzmvBnxw+FuY/TWQm+eDHPdr22c6rn1JUuzt3nYVxIbuuLTVTRWsq+e+SUyzbYaEEs9iTQJbTfJiMIr1QcnMs7HyZ09hEYM4Y4qXo4Dqr7nhb5zdIkE0fiLtqy/Zisxe0E2yKOvU4HmFcaFOiR7Aq6DJwZzTG+BR733bn5EC71RBcWvOANFgJM2znxVv/dOuQYufc4G4dUHtXgydGyNUS+fngDUjvyX5MkmDLhOMznjZqXlYqgeu5lMUCpG8HffRFHlOXhBcrYgf+ovMMHaCYbFuDT66UC1VDFvb4rz83Hk2Lnl6vSSpPTv8rxpTSPpx4cdJdNmo0Mn5Mi/3x46vGIX9O5JTAct5Ir50zvkKLZe7/Kp1qSfB39msc26Lzz7LD733/o3mPnQXyAGLurnHZgJ5jM3FLt650dCqhJcZlPMaXHq6+AjtwJTG6y+mX2JUt2792E1LYJn7KjXVu8/xqn/7IpL5oC4IQQUgghT221wDL3lrh3xCL1IuqFJShNLP2kKxWwgFBJzIfU0pnScVGPPU9YsipaXNEtmsuD5RQqnXWq43E7KCoMjIP73gvWalBIhJkqTKcX6NUkX7ot5JSYyuNq1A833Lgaec6O0C//zC9ubi3rz9CymfV/P6BrxHZIhmtQ5semmv0gY0c6C5hRnqM=
+ ARA:13230040|10070799003|1800799024|366016|7416014|376014|22082099003|18002099003|56012099003;
+X-Microsoft-Antispam-Message-Info: od/438acft25Q7RIva94Fxe/74ILZrpC6Pf2LMgzKavMVDWiDXC8uUoFq51iqUDaeoOUGT2b7TNIfay4ho0beW8vBSY0l8mrYDUcnR7pCpHtvSlyDnRz5/wnwyZGpPSPU6HBMY0s4gTTvMQ7j0VfwxRe5kbixpH2JA3xdZrASXEZ0pDl1d1WJThBE+/uDOUOALBd8YwZ/+eeNpvnwFCD5DW3KE3lR/Xb2wgRjP9OoLwepFg1JjlfF7x6lpvxpSuiwfFobDUXA7Mqqcz9R6V0ZMrYf9s0pCS4lu/upE91liCZMK8a6QVcT7bHE1yqSUEYYdyWzmVdOCGRVsBtyzVPHpVCQ/H/ouWq0d8egAxhDCKXbaYNKhonqrA1fBXpvk7reDl5D9oT4zLApwPnJxjUXjXzFA80TEJcRTmM79P+K2WrN+x//RhjVGYrw5pmVliJLTW6G/qltB//r5oYHnZqjOuThXK718Z7PTqzjJ0ujUCmUN5I3dUam74AL7WiU47YOnjqHI9K4DCSsiwq2QroO6C3f6BX2+0WK07DzbTXOTuRKVwj1Nkp+F2oyodFlbSeL+I1H/MYBrTTz4hFS3IGNmkgEDTZWJeEFpqkCbnH+WC250/oWJ2xTuA6uT0mLue6TD/so+mr20GkqDu2inq+/ILmI9NvNmWVpTgfUNLmDuiIhDW2dC1N/PLuNJVvEX/LdXBnej8nvO2Fm1k4Q6rMCXk86ZerjhL/ymTd8rnhDvA=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CY8PR12MB8300.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(10070799003)(1800799024)(56012099003)(18002099003)(22082099003);
+ SFS:(13230040)(10070799003)(1800799024)(366016)(7416014)(376014)(22082099003)(18002099003)(56012099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?T8W6XhUXwT9dv5kuj9kFMa1Pc+caKbpom/7i+ro0mWLEx/WsMCf7Uv+yLt?=
- =?iso-8859-1?Q?gAyF6hz8bSDC1bWR1FTEkkI65aMUmC7iyx7e6/xfNDa3Fqe7SiC1j77stI?=
- =?iso-8859-1?Q?LrG24onu6fFBF8DWYf6MIuIlkdgrbAd2EiVVGxnofgYgHTQhw5136OB8qO?=
- =?iso-8859-1?Q?CnzmyDAwjI33B1CjeJnNBBJkCzrksdZvxIcHW0uIe6E0PZHf537RLpIETM?=
- =?iso-8859-1?Q?s+cBh7JvH4GNxPjZACl7GXrozKiFqXSwFIzHaU9Zd4jSjyzd0KPJpIHPKf?=
- =?iso-8859-1?Q?8h/I+NEnIGw4Lnjlmh9mYKMwd0qS2GIHpVaOy1bH5MCjGmjowRaXjQ79be?=
- =?iso-8859-1?Q?jGRLn+Oomml9guRrsFzOQ7DbbOlFy8pqy9R+D9ZnGVn8wEgYSRw75xgmry?=
- =?iso-8859-1?Q?2ACNauoKPoUzpnRmfqW3sPF9JS/tvt2t2PPNVTZJLV6vuJBnNmyWilx/9u?=
- =?iso-8859-1?Q?SrlYzTyazTZWIZbUeG2soKD4eNVokxFYJQoBgEsGEV2njiNv6HUubbi0pF?=
- =?iso-8859-1?Q?Vqp14jJqz5sSfFayA6WZcArZ+USE5vjanuqRtNQfdkNsKj0R4pEMc493o0?=
- =?iso-8859-1?Q?NCXeFBw/ojt6aGg8g6h7tHIHZcYuw7ohhZUMOvg3ffhlK9u79tO7oKpC3u?=
- =?iso-8859-1?Q?wiPOjYl6brt/0GKfD3iRNbrV6TRbbioNcjuDS7LZqgWxe6vMy7NndX+woA?=
- =?iso-8859-1?Q?uRdr5blnc5k3cJWHAzCHgJ5WF2JWGApq1uyN9UWgvqNw083HRffGg6P5ix?=
- =?iso-8859-1?Q?cG24FhHq+kscs9DSxIC+Aujk67lP+3jqbld/7XWy8cKm8qvSHwRqhWblhk?=
- =?iso-8859-1?Q?2okcTJPbDNOuvYYOSGTPE+vmAEFbkK1UHPvMUY9ATxehETfXPZs7yjb3aq?=
- =?iso-8859-1?Q?w3hdW7xtyg3/7tDEWG7+fOEy9FFT/gEBpvxotxF6oySrb2HXqp/fqrjhbq?=
- =?iso-8859-1?Q?+CZwwgugua6eO4UL5qPz9hiIFbMAfNaGqRykJRiykn+pL+t1YHattmJ89+?=
- =?iso-8859-1?Q?zMjzPmRht5LCTdelXGsXfPIKJiFXD3T9vDfN3lmWj4Ts7wlilxpgiOpMaL?=
- =?iso-8859-1?Q?p7E3h5ji6cLKiR9cNwmzJTNOGBx5zvsEG4+PNQXhBDGMpxOVgOl+EeAV9d?=
- =?iso-8859-1?Q?2s3FGgMUZVYPP9cV5NsthWoh6iNfuRN7NkopE2q3yxMVZlN6dt7HdpbO1Y?=
- =?iso-8859-1?Q?0fu25Ra/a3yy2XE0TtJPHqDm12P85rdM3CgNkUv822FbtecXgL64Qkuo5p?=
- =?iso-8859-1?Q?bU1qrEG+LOPjM/jMvPhwRHc5ppnq/gaXYhFU5FH0G3K5d4d0ixkRyi37Wv?=
- =?iso-8859-1?Q?QFsdW6QrX/SrL3DsdbaAqQnL1rxC0EQG3YCsMUYGRLPRYd9ad5xPY0x+Rq?=
- =?iso-8859-1?Q?pi74xEsiw9PrH9X+6nGn6Y3d7VcpnV6Av8/J+hqLZLRt6W9B7IXfCaTIAV?=
- =?iso-8859-1?Q?8KCRWdm4ExrgkDdvMYea8olZLEBlvgMeZtCVoxZ810+OR4vZKUUMbB37Ha?=
- =?iso-8859-1?Q?gwC1ZTD4TpsWjGJNj5Ry/c9tX5RkpCdCKRBegPQIrqdU1WX41QArSPS9fb?=
- =?iso-8859-1?Q?xDEYSUCFDpxyHnIl4mh4MFcUHTIxFSpQAIB1z5w75JzJg+rYBE9y0Z0uA2?=
- =?iso-8859-1?Q?hx89znOZLi5+tvIZldfaxSE1Dk0RrYzkMtqQuuDh61/I6rksRc2kt6jYug?=
- =?iso-8859-1?Q?hvJgjrdcklYMst8NSnorft9iaeq41s5Z02Our3r1w88xwCK/RrRq8aIdSR?=
- =?iso-8859-1?Q?gpisMPDwKRAml31b4cWNg8wz9VF+bGszAp5BtKObcEufaeReWjiKmyXNV3?=
- =?iso-8859-1?Q?qbI4euw+Po2OswoqiwgiX8xIAeThU5sXrO2JRJTwu37/nYFGOi2s?=
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?WIrm7lyr11ondb9zM/aFtj1gKgk8kypk8TAM2g+Ohof+5WQlgtD6zGVPj+Qj?=
+ =?us-ascii?Q?Fl/MRzepnMFlWaP+kwU9gjhd02anG8z5ZTflf6LYu+ClIguvgmZIH1trgYIR?=
+ =?us-ascii?Q?xpyX4jFk+mQH/otJqXtEelOmF0//lkOX7LVVqlCazvFwry5EU7dmu7JNJT/W?=
+ =?us-ascii?Q?IbGi6+a3YEyzdP/EZUUe3nrTxRbrRZDNSHUnwQzjhjLJiSehNgJ8L+6UzAPV?=
+ =?us-ascii?Q?dDiNnwHotXKiFihodbBo+fEfI9W9aOKkkT0AlLxUbPwVzVgwuLl/IAV6kHSk?=
+ =?us-ascii?Q?Kzy9/VaCvcedh+Ekb8EKVC7l56CzmOv5ObfYMSjBWAnrfSoPrNwnCy5NnRdU?=
+ =?us-ascii?Q?+FtCnuU/ZC3EWU1Q5bSAez3Rz0iUWDmQskAPeHnSo6sutK7XR5O2RLiUuC/r?=
+ =?us-ascii?Q?TIh2Opz5P54jcYUxkqzjzr+dfuklzkPQHeF1CQUTNTlOgTAHwWNUkyQLDi3E?=
+ =?us-ascii?Q?NDPoW5DvCmJyWmxlu3tHIfhbRrBWcq2jwEo4eXMYF6sudilgr+NzPPVAXOBs?=
+ =?us-ascii?Q?W6uDfUElRNq/ZzmcZcSEdDnPL0FMBctSTiRLhtrsd3gRRYkZvoBJZH9wsh0x?=
+ =?us-ascii?Q?GbgOffPEcvqnuzeH3DQD7hxNGedeVFBu5LMfUDfI8tj0JD0NoO/jMCEwwEGj?=
+ =?us-ascii?Q?7Zi4xjZGRB85BK8gVagzsgxl6saeseYWtOB89bfaFHfEn7HIk8Qq6sZMkaUV?=
+ =?us-ascii?Q?yJP5GoHZqlylAB4zzpIdOnati8J4GDK/OEUABB6jkmNyPeclWcz3JebExSLH?=
+ =?us-ascii?Q?ojb86TGjorvvhaPeWb0Yty2WVHv32UrZhDB58hWeKWGUhdof5c/zfJOiZVOT?=
+ =?us-ascii?Q?CJZCc/8139A05YvEL0fjDybsXnGcOzdz+mYd84MuTyf9vfyb2aP1taw2oHX/?=
+ =?us-ascii?Q?K0wCh7XR/H/K7aaltZN8NRbRjuDiXGsAQd9dLyhJq4YfT2SK73apbNYHwsJd?=
+ =?us-ascii?Q?3zR8++zrasGafDCm+TTNhPJkSJ1MDgMJtjv+Y9PwKG/4VF+yZvV3vgJGVFPt?=
+ =?us-ascii?Q?4YicrggVdQoDsPXtMFzhWO14linokl4iwe5aTOUhxYvXZaAyowQpt5wfurCs?=
+ =?us-ascii?Q?Ayh9RyF73+nepCUQNc4DUAy07tlFq34oGBkP1+a3753zs4MtmQJulZf3OBuZ?=
+ =?us-ascii?Q?8F1Z190YLYL3QKV3jRJoJFKhU2RgBcxzG8PxQBDiQn2AWAUsEQLhYhcpZcuj?=
+ =?us-ascii?Q?53L9khHWvM6P9qP8xVFd7/dphsBE6M7uEjQ2JGmn1fKCkKJBY/FtpAUEIEY5?=
+ =?us-ascii?Q?dYVWF6lgfU0RkNfTzK7/pit+VVUkKfk4YFbI1g+As9p6XbLpIHR9no3K8oRY?=
+ =?us-ascii?Q?v33Wt8tpGQ/3QrvQJMeRlNrgwRWMxq3uLTATB4vDm1ilG0jimpQPBgxrT/2X?=
+ =?us-ascii?Q?VPGoCPEn4HUnV1Mf+lE7vxxp/vFpjRqDvwJGbqps0Rn8nFvgrd5mY4EHSgZ6?=
+ =?us-ascii?Q?smSLlB6AP2eTUV01HAxRBefOvYtdF0qSe93p9Fi3Qzo4FDMJkG8BRLxDyuov?=
+ =?us-ascii?Q?k8rLzPpoXpCwmf+kEClhjVMbMDbLikFkJlonRdZYJawiYwXY05H8rZBhQLWP?=
+ =?us-ascii?Q?0feHNzp89zyUqPHP7LbSe0EVRO2Kaec+AqlfTVYtXHhrn6dgv4ER9PjPwQYz?=
+ =?us-ascii?Q?SGZWHJfMP3Dwbx/9JF7Ar0+yL48OyXDsjmJqC5FYyMLMeziXXEes+OYa4KgX?=
+ =?us-ascii?Q?5okmJIxxdB9AxsqQWPd+OzFWlm0XzrT0CAAYw0BwF9WQUj40YsjQQ+uWqIJ+?=
+ =?us-ascii?Q?MlBpJt8puB7ETX/Bjze8q8/K1KeWGNB4KYXANyzSR2LWPBEqi39e?=
 X-OriginatorOrg: Nvidia.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c742778b-fa9b-44f9-51b3-08dea491ed5d
+X-MS-Exchange-CrossTenant-Network-Message-Id: bdfef69d-b376-4a04-fa4d-08dea4995fc0
 X-MS-Exchange-CrossTenant-AuthSource: CY8PR12MB8300.namprd12.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 19:19:39.4410 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 27 Apr 2026 20:12:57.8040 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 43083d15-7273-40c1-b7db-39efd9ccc17a
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 40kb2lLpGDA1U6OK1K/FxB8sAmuWJ+U6w4mJNOJ6ae5Bq52M+Y3YVxXlUqHMzI9liQk01DjxzLicYADua7DWLw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY3PR12MB9678
+X-MS-Exchange-CrossTenant-UserPrincipalName: L4Ck4zF95sPRkpw+1DBvmDDt+EvJGjHXhYAqkKsZVyTO5WLUeoARd7Y3XQH+qd9LnDnkEcQd9xWJtVVZZwcboA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR12MB9166
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -159,72 +155,59 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: AFC3C4794AB
+X-Rspamd-Queue-Id: CCB8B479C1C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [5.39 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[nvidia.com : SPF not aligned (relaxed),reject];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[Nvidia.com:s=selector2];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
 	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[nvidia.com,reject];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[Nvidia.com:s=selector2];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCPT_COUNT_TWELVE(0.00)[49];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,body];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
-	DKIM_TRACE(0.00)[Nvidia.com:-];
-	NEURAL_HAM(-0.00)[-0.816];
-	FROM_NEQ_ENVFROM(0.00)[ynorov@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ynorov@nvidia.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[Nvidia.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[Nvidia.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Mon, Apr 27, 2026 at 08:20:38PM +0200, Christophe Leroy (CS GROUP) wrote:
+On Mon, Apr 27, 2026 at 07:13:50PM +0200, Christophe Leroy (CS GROUP) wrote:
+> copy_{to/from}_user() is a heavy function optimised for copy of large
+> blocs of memory between user and kernel space.
 > 
+> When the number of bytes to be copied is known at build time and small,
+> using scoped user access removes the burden of that optimisation.
 > 
-> Le 27/04/2026 à 19:58, Yury Norov a écrit :
-> > On Mon, Apr 27, 2026 at 07:13:48PM +0200, Christophe Leroy (CS GROUP) wrote:
-> > > At the time being, x86 and arm64 are missing unsafe_copy_from_user().
-> > 
-> > No, they don't. They (should) rely on a generic implementation from
-> > linux/uaccess.h, like every other arch, except for  PPC and RISCV.
-> > 
-> > But they #define arch_unsafe_get_user, and the unsafe_copy_from_user()
-> > becomes undefined conditionally on that.
-> > 
-> > So please, fix that bug instead of introducing another arch flavor.
-> > We'd always choose generic version, unless there's strong evidence
-> > that arch one is better.
+> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+> ---
+>  include/linux/uaccess.h | 47 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 > 
-> But they both implement the exact same unsafe_copy_to_user(). What is the
-> difference here ?
->
-> Should that function become generic too ?
+> diff --git a/include/linux/uaccess.h b/include/linux/uaccess.h
+> index 33b7d0f5f808..3ac544527af2 100644
+> --- a/include/linux/uaccess.h
+> +++ b/include/linux/uaccess.h
+> @@ -50,6 +50,8 @@
+>   #define mask_user_address(src) (src)
+>  #endif
+>  
+> +#define SMALL_COPY_USER		64
 
-This is what Linus said when added x86 implementation for copy_from_user()
-in c512c69187197:
+Let's make it L1_CACHE_BYTES, and maybe configurable?
 
-  Note that it only does this [arch version] for the copying _to_ user space,
-  and we still don't have a unsafe version of copy_from_user().
-  
-  That's partly because we have no current users of it, but also partly
-  because the copy_from_user() case is slightly different and cannot
-  efficiently be implemented in terms of a unsafe_get_user() loop (because
-  gcc can't do asm goto with outputs).
-
-In the unsafe_copy_to_user case, arch versions were justified. Just as
-said, I'm not against arch version for unsafe_copy_from_user(), but it
-should be explained very well.
