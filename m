@@ -2,69 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0Di3MJxd72njAgEAu9opvQ
+	id cCz3NEdf72mHAwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:59:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 15:06:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 25243473044
-	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 14:59:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 55C79473204
+	for <lists+intel-gfx@lfdr.de>; Mon, 27 Apr 2026 15:06:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9C54810E73F;
-	Mon, 27 Apr 2026 12:59:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D8A9310E2B0;
+	Mon, 27 Apr 2026 13:06:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gmaFKU3B";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SD+7uigh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5C8010E73E;
- Mon, 27 Apr 2026 12:59:04 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1ECD10E2B0;
+ Mon, 27 Apr 2026 13:06:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777294745; x=1808830745;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=Zr7y7uwvzYrjbrd/p96g8XOZA5grpDuASglNPpG0HMw=;
- b=gmaFKU3Btdu+Dz/BeKKvjYR2apaKKd4zGINXQ8J47PdCIkre7zwHVedg
- PD33F0CdFCGJ3nS6esDsd/QQp1PVY771qx09hx6pswE7k9vRcHDcDc64s
- Of3ULDliz7zDZ6Exhy9TCqioJwf4EovKT3B9W7uSKZx8rgbocfS0Xf4TJ
- KzainoOLswVerVvxaUt8VrFyA0bk15ew3sjzEPncIy9wpdQzFx4Sw0GPT
- 2L5nvI5BeFJYsEPZ1f0pMqwyeRkJBSzdnY/HKwI3P0NGKQV4Q0H7T7FaH
- M8kkAi1GZclo8CUa3bwswBisN+wjIkoqYjp8/oFnJQ16bHI0nEg1mZskt g==;
-X-CSE-ConnectionGUID: bqNwscMpQuyT1422E5KsBg==
-X-CSE-MsgGUID: ymZMGeqSSNWRSmATmQaUYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="88777783"
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="88777783"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 05:59:04 -0700
-X-CSE-ConnectionGUID: +EmezF5nSnu88kqkYxI5cw==
-X-CSE-MsgGUID: RK40oJA/Qe6bW5sCFy1Shw==
+ t=1777295172; x=1808831172;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GjOxuVG4sQL59nu/J9HwwTTI5aEbFrV3iEwnvhxyBPw=;
+ b=SD+7uighmOhUPSz/KuCrAA/+WVSrU8evPhM8FuXgpgLnS82FhdkkOcYC
+ CZFwlBjjVqiTIY8iaCg4vSqRE9dve+JAV+A9OJnujBc5IQcaXkut1oEI9
+ pJMMEbmI/w42gmqRy2v5tkkqDy/MkzC+oTq9P3QCqAkguQ+AHrIwHZ5YM
+ Sph60WmNTUuP1B0PHn26lrtJfgqf5iRUvr14KHNzFSno/eEkXiwM/8/Cy
+ Szi5fRjV3Uv56S7VoncF8w9hY3cBDYjuYwL4HnHHEB1JBsc1vQ8QOuWWa
+ cAnf8g1sLZxfYin7U0gIApZKEBqP+iRb8BFEQLo8orU56i36nF5vhbXra g==;
+X-CSE-ConnectionGUID: H3kvCgQmSrq6lFWYuMSYFA==
+X-CSE-MsgGUID: bPotMi9MQaKvXlaGwoBc8A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11768"; a="88495002"
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="88495002"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 06:06:12 -0700
+X-CSE-ConnectionGUID: 8lfCh+mpR4iNcn0hV5F2Ig==
+X-CSE-MsgGUID: T6Lqx7lTRn+o2Pf/Ri/9lA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="232753056"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.116])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 Apr 2026 05:59:02 -0700
-Date: Mon, 27 Apr 2026 15:58:59 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [RESEND PATCH 7/7] drm/dp: Add target_rr_divider field in AS SDP
- logging
-Message-ID: <ae9dk1xLGfCF-ZH3@intel.com>
-References: <20260424093424.3060805-1-ankit.k.nautiyal@intel.com>
- <20260424093424.3060805-8-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,202,1770624000"; d="scan'208";a="235400500"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.244.126])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 27 Apr 2026 06:06:11 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH] drm/i915/psr: Disable Panel Replay on Dell XPS 16 DA16260 as
+ a quirk
+Date: Mon, 27 Apr 2026 16:05:54 +0300
+Message-ID: <20260427130554.86040-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260424093424.3060805-8-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,66 +74,64 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 25243473044
+X-Rspamd-Queue-Id: 55C79473204
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.28 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.59)[subject];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid,gitlab.freedesktop.org:url]
 
-On Fri, Apr 24, 2026 at 03:04:24PM +0530, Ankit Nautiyal wrote:
-> The field target_rr_divider is missing from the AS SDP logging.
-> Add it and print the divider value (1.001 or 1.000) as per the DP 2.1 spec.
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+We are observing same problems with Dell XPS 16 DA16260 as we saw with XPS
+14 DA16260. This device seem to have also LGD panel with same feature as in
+XPS 14. Due to this disable Panel Replay as a quirk on this setup as well.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Closes: https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7682
+Signed-off-by: Jouni HÃ¶gander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_quirks.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-> ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 102328d9022d..c8421099a3ac 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -3537,6 +3537,8 @@ void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp
->  		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
->  	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
->  	drm_printf(p, "    target_rr: %d\n", as_sdp->target_rr);
-> +	drm_printf(p, "    target_rr_divider: %s\n",
-> +		   as_sdp->target_rr_divider ? "1.001" : "1.000");
->  	drm_printf(p, "    duration_incr_ms: %d\n", as_sdp->duration_incr_ms);
->  	drm_printf(p, "    duration_decr_ms: %d\n", as_sdp->duration_decr_ms);
->  	drm_printf(p, "    operation_mode: %d\n", as_sdp->mode);
-> -- 
-> 2.45.2
-
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 883f297d4b83..b6e840bffd44 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -269,6 +269,14 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
++	/* Dell XPS 16 DA16260 */
++	{
++		.device = DEVICE_ID_ANY,
++		.subsystem_vendor = 0x1028,
++		.subsystem_device = 0x0dba,
++		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
++		.hook = quirk_disable_edp_panel_replay,
++	},
+ };
+ 
+ void intel_init_quirks(struct intel_display *display)
 -- 
-Ville Syrjälä
-Intel
+2.43.0
+
