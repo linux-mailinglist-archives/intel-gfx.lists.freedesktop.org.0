@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MEU9DE+u8GkWXQEAu9opvQ
+	id 8HEYF1Cu8GkWXQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 14:55:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 14:55:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41B54855EA
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 14:55:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F17424855F1
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 14:55:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9409310ECC8;
-	Tue, 28 Apr 2026 12:55:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2397210ECDF;
+	Tue, 28 Apr 2026 12:55:42 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PE2mW2K2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GSGawLMV";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 31FCD10ECBD;
- Tue, 28 Apr 2026 12:55:38 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36BD910ECBC;
+ Tue, 28 Apr 2026 12:55:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777380938; x=1808916938;
+ t=1777380940; x=1808916940;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=wgrZptgKyoOGqBPDM03RJAWYY/QLMsVplGbxBljD6/0=;
- b=PE2mW2K2aSubtZkKbr5pTRRXgSxHWM5Rgf4aTEWKFxu2R8hICBX2TXc0
- EX9Ee/u9Nd7FlDiV+8G1mUBZI5uxx/K6bZ+v8Ol8+h6NwSgsC3bIisQXX
- 6DJcYrg3VyHDGfQ5kUYJ8gednPQ59Hz8niXKGV1HjI+L8N0aCAF3y5lLf
- tkEoWV7Dyj6vC/ZCMaC4yGJ+s0yduaN+I/92HWfBDHsUjp7pclYZ15xdw
- Z0iLifhrc4PnBI7RGyFPo9n+LfQD76504Fmq5XYGAiB3uY5OysbHfR2+8
- 0T3IlaR+an4WIBr3ClO3YLi1CDKXnDqFO62NmjXe+tWmMOuJKS8U30Bhu g==;
-X-CSE-ConnectionGUID: sxYPa+kpQyeri55gSt4aEA==
-X-CSE-MsgGUID: 7uRGryBdS6e5fK3nYS1G/g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="78203337"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="78203337"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 05:55:38 -0700
-X-CSE-ConnectionGUID: dCcu4aUjTUGyH5Qk1hjKEw==
-X-CSE-MsgGUID: eG82HEqrQz6xanHiFgQ9jg==
+ bh=cqcCpXa/SzhKGR4f4X7TS7GFfoWVEQBQCNEHEX9zmzQ=;
+ b=GSGawLMV6X+nZ/gstjts+KL80oTff87UZzzxswMvHMCCjuQQAZiywU+8
+ U74xQ7jiiOa78tvp55rDN3A4oZn7uUYpUi6mvOAV4TP10fjVXQidf5sFD
+ lXACoaNEK7T/fH8wNhDXd+H4Zaoj1RMFl7UqS8WXgboTXVO70GIR9Xi49
+ ZSsYGcQs1pjYgf62+/o++YsfYB/Ow2Vz7eR3t2cU7ykVcIu6mXWRncoqS
+ 9PzX+1jyWekM3yJ3zED+pr8FonttZIfqLg1FLUkqtYx51y9JUYV9FpQbQ
+ S35Fcbu/UAPS8O58ug7jb8uFyawoTrTh1IUkrLAdIBGzLBCLsIYx49PBx g==;
+X-CSE-ConnectionGUID: cdudBEFdTK6+Kv88PEv84A==
+X-CSE-MsgGUID: XJS0FMuVQheNV4qfsoH2vQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="88883672"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="88883672"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 05:55:40 -0700
+X-CSE-ConnectionGUID: DIn8x9LsSeudqHjl176fBQ==
+X-CSE-MsgGUID: 7iQ60FGSSHeKevRa7xMIFw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="234244952"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 05:55:38 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="230795161"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 05:55:40 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 05:55:37 -0700
+ 15.2.2562.37; Tue, 28 Apr 2026 05:55:39 -0700
 Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 05:55:37 -0700
+ 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 05:55:39 -0700
 Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.36) by
  edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 05:55:35 -0700
+ 15.2.2562.37; Tue, 28 Apr 2026 05:55:37 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SB6313DiWKeU3quwRzSqrSqXX6/0s4nkUaneE854wL3SlsTnCXlDVMJaPCZFGlPbqPNvYu8CpNXWI8Jo7ApDeiyAj/ODOyRLS1UEUgzIbWvxyBl8ZftdUSjlEec5wsaNM2dCGSZnJVodn/wKkhHxpGP55QrnL42MdofjYAVL6L1TDwtChtqQQPYJ64ScHySrdROze1fIb2WOkBMSP/XjUgmCHIJvrdvcI94DLXzTmQzWmrfLTgTQPV7Oo+5k+Myi4aO6WRIW87yWAOQXPWRcLTziz8aTuY1fE0d2X4mDyQzzq4M7ukSHsc1LeJxECcapKPNi3t4AF5KoXYnof77aZQ==
+ b=nxjFy85rX2WuMafOHHzQcsj+/nxmdZSsGrzNrviUp6dkjCvKfgjEaKE4hYqXEsJQzaM194q40AXvmf/yrZ0DGKEYXSWm2BKMhtu0GtbKZM8BCMgvTG3HePOQcWTdbFlD0H23lVwlLkgbL7bFhqSgoxWYL4S8WASblNAoAGPdlZ4Bw1p00YeI/aTudvKJw3fo6G84voLtdaDAEu+yggV5FrnvnVlbl8zxw138ow7EQDIpAr9jU5L34iKSRNXJfzDXcZZ2nt8vu44rRZc+8eNnRnA24kqaRBTnB6R4WPRzda/WDySXhTplNz3lJUP99MsirtuI4C/teHg/UZK6mBfhCw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=S2b+nWYUJXK2EbCPMHRu5Nfpz2Qq8q0ISmCbhd+1p+I=;
- b=QvRuAnPH2gD+iQdi2XdKaE9hrQyOvJsFwF9XfELzfFz1IzU+3bePOt07rsA/fhk6hdAYAPZ0LksVci5rcEd7UoPq6J6lMULJnFRKjVymU/7CQHdaA5p/rC8vJ4EHjguVW4m5mJNugIYPYHLnqaC4oVh4ASYIlBkbpsF8dBfVCmVrZy3W4SUPBCzwssBCpoa4V7RJfPDnGK2ZbW4rwXQEzm1X8FYxr16TbLqrvswt8U1p56Z0mu6IutkjOIe2x2s3QRT4tmco2L6593fZmLg/LD9Nc7Vf/k/R36GEP1ixKIAmht7+LEJ7c5MrCxwStOIfCX4moEHCWCgl4uLmrb0P3Q==
+ bh=QbHDZhHXxDD75hq0NwfnF+oOJZtlZLF9z4+qD2qp00A=;
+ b=Lo7OmBUfFaEEoRLm45/eScV9vhW+iJUP5HNs0PC+zLvCNGBeYu116A1BU3yQNv6mJpy6axdnlR3LxhyodXZgV0LLCwDtESryjwWS/Ek2hm7KVlSqpN8UZJlESiWD32Rw4x4oLYKeWzliLXRQuoEULV6iYlFCsXMEN8EoFc2uYQGqUa4In7mJ1VZLFFlIJqgHQGHvy8pd1jIm14L6s2eswzTtcs11JJZB6fzepp7qI0/V+tDdXRUuBCydhyA03ZBO5WBBxxePfHaMbl1TD2Mg1Csy9R6bEyZKU/N4gek0vp5Ll10pENyVkOV3VlTewWr7DY8PqTegM18foPGBfBabtw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -78,13 +78,13 @@ Received: from SJ0PR11MB4845.namprd11.prod.outlook.com (2603:10b6:a03:2d1::10)
 Received: from SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::9ca5:4d1d:db45:f523]) by SJ0PR11MB4845.namprd11.prod.outlook.com
  ([fe80::9ca5:4d1d:db45:f523%5]) with mapi id 15.20.9846.021; Tue, 28 Apr 2026
- 12:55:25 +0000
+ 12:55:26 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH 098/108] drm/i915/dp_link_training: Account for disabled
- configs during SST fallback
-Date: Tue, 28 Apr 2026 15:52:19 +0300
-Message-ID: <20260428125233.1664668-99-imre.deak@intel.com>
+Subject: [PATCH 099/108] drm/i915/dp_link_training: Disable failed config
+ during fallback
+Date: Tue, 28 Apr 2026 15:52:20 +0300
+Message-ID: <20260428125233.1664668-100-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20260428125233.1664668-1-imre.deak@intel.com>
 References: <20260428125233.1664668-1-imre.deak@intel.com>
@@ -98,56 +98,56 @@ X-ClientProxiedBy: GVX0EPF0005F6E8.SWEP280.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: SJ0PR11MB4845:EE_|LV3PR11MB8556:EE_
-X-MS-Office365-Filtering-Correlation-Id: a328cd18-ee41-4219-75cd-08dea52567df
+X-MS-Office365-Filtering-Correlation-Id: 53b92177-ef43-4b8d-58ba-08dea52568d7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: rri1cQ4iRYYm6BZRroocs+n2NJQwmBAmHq/3Z2nMIKSXt3qyqfJ57D5pbWw8N6W+wC+/TcBFi5UZr0SQBXhS3VJspp+IFotnMflrcGhZ1epjKFS/l46yMK7WJ/Kq+OTHNP06JFBEuoRz5HVVN9ExVrTRejcEfD/RWV5rXLALeQwz2BpjB398MijT7UWu2Bfq/ovWF9mx96wbabNKu1DMDtWMtSaIxEuCicm8szJoFn22JaaJ9Xp1ERI2yoUv5RYKeeXUnsReIQ+5jAVrq8eoA4A3w+kO2gHViUauqHQvMN2fdcoAoS1bk70PLAfgdGL1sSwidh3OrcO0ayi6AKdtmkEaW6pm5owUelPbYB1S0c4693iapajea8Zfcpd3MoF1G8KniLtDkHTbh8KHpsUQCAW78hOdo4GpHe5iboSmBsyVgW8eUoc4JUYPuMJQt7y7TtrsCNinsERsdnVcTvZbGQZ+doPqhYZqyIi/VxCnfYyXjyh92BecGUtjzn1Zh5KPmQJp1iVkpFF9B/Hp9YvD9Kloo6GzvIsonwkpxt8Dq3uGasUtjyM+TOyF2ci2lvWPez3lTU2TqxbFqb+R90DA5VX3KDGEoKscF7d9CKRfSokoKfc2oASt1ztUN59qASjTGuRlMYQ9FQV3dGVdwn8iJ6QsDq8M/HlDGndqWECbULlPeSFnXdr95fChqMTC0hRvA5z7GdN9lUuFe4+AG9r+l42/ZDiwyHX4suC5w7AzkvM=
+X-Microsoft-Antispam-Message-Info: +C9wWVvH7YkHOYaI2T0nMSwmNMxyw1uf73rm0kxGc+XO9A2GcLBlp1glIWwLohZGa4ihWNrrR3xonJtTF2YdtG29RcWPzgRUAvMGQ+4HQaUvuB4aYNOlO01HW/Lm5oq0vN1bPGCWbbI9t67J4kqAkWXXq6sT5KwUglWldLxNaEZPucEY6SwVgllbL6HzpLzJgdyT3q0+ECLp+UUCX7peanFm//vxe5Cn8OmVlJVzz/HheG0+3VeEsi5ItB6pClEuYE7wFFiOnsM58Hc1EO6qHVHgXpUKrG77+4Q1cziTPTFcrVC9sYMLDBxUgffcpV56VLDKVv/Na15JD61QwPvYxC5vGGHc/9U8S6wQNk9gjvkJSStMKcioTrIZ0OmFCLxuM8KvE8AWXyO9Uh2YrA6u+VUnymAKSMpSMbn0BbpGz6eBrbr0OdBVMATiK+n68G8ZOgTygUvpxVTSKqfQrKENWlQ4GQw8+PeeSqInbrOOSVfyYhtzg8PSZvO4zYt5V0ByT1eU1M0V3kdMHE8ULU+iK+JSmmdxbCFQdvlmaVE3QEz6iUcWB2mkTLLBmw4sXYMrKKJ1y82UZ3baL16DtXDczBqPi1KpGHI70I+mPX1qqRJ3xHWj75J33mnfZXbV31WbHL2BUYTsWikGeRKvZoZxnKfj/G364Ueb9a6uyycsYKUoiBheZYerF+/MFyex+6dF6YZm4VtGef7gTyLPni1p972mTDhEWUpVlH/BYFloX/o=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:SJ0PR11MB4845.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?/pG0nrBXxkyM3JTLAVF/BIKAfNYHR8oiCEamXUAqdOVTasWUzfpQFYD9tJKY?=
- =?us-ascii?Q?3qIjKB7Ntj26Q66xphoj0X5aux/vqeVARs3XtooWvosHvItseW1zs9AbuE+T?=
- =?us-ascii?Q?rIWVoHI85DMJKhxQ1N52SA7lt095l0qV6peCbXd3SQWiDmIbbrE5PBmNwGMb?=
- =?us-ascii?Q?1ZPpHDU6dRovSZqqNLzxoNAW3W8RtIMf27/wIKZBjKlm4gv04V0AFB0MsG+k?=
- =?us-ascii?Q?NX2l4wsi6XMvnZxRTlpPWhyIHQTAK5d8zNiBZGmI5GTljCsumi+rXmuDfRCy?=
- =?us-ascii?Q?Kog7MJW3yp2MbxhtLlvMwRCtZ03QAuNgNMuB9jx0CeHRSUx9gPAreesotuMa?=
- =?us-ascii?Q?VsaZWvbDzfSDZrGEIJb7Kp8c/x+ol3q7/y7A6kOUTMV75Q5CaqFAZRBoZWXi?=
- =?us-ascii?Q?atz/X/jjCP0EpcX82hbdfSb36sxWOcafmFR7htAZehhM666v4dMUEw2hdF0J?=
- =?us-ascii?Q?g97pSXmzi52ucymUjbU60J3s6LHoUGF07nrVyQa/dKa6ehrBFEQvxJ5Uvc7I?=
- =?us-ascii?Q?3WKTEWy++uou5qA8/J18U01Jjko7fsv5kXHjZFKVCcFKGP5ONFvUvQC7QHFC?=
- =?us-ascii?Q?vrlE4FVEgw/WYTD6fR8gUK9rGtKGbySMDmkk5OyAXhF9q79UDCpbyn4EI2yh?=
- =?us-ascii?Q?e7FpeZfPWcjsDizcV+RcwS1XOKJnrk1QDFB5DxCXJhKMeV7LRvbSUAroE7MR?=
- =?us-ascii?Q?HetxydPKDw1YNVN3hXhgUnGdnFUhNJD3KDFxwXCGcFgR9DA7ghlrOV1nZ60P?=
- =?us-ascii?Q?RiYQ4ZRh6OxxUOzbN6rrGbmz4sVih+yNbDsS/7efUQ/MwVSyVXSZxCBW6pUo?=
- =?us-ascii?Q?Ohpm7YK72pBFUqDGUCasrEm2PBN95IJ+wQu+oyTZ84StGY/ivIwE3HrEMj1k?=
- =?us-ascii?Q?59NG594tpnqt1TAiOeLBMOI5aYYV3lkbvZukultx72bcnSWoNdHjcT73t1Y/?=
- =?us-ascii?Q?WVeZ1yajz4FpDfRbn9wHGfAk5up0Deq47T6x3EMznrAujWzlx97KXTc8nGfG?=
- =?us-ascii?Q?HgvplT+BGc8ZTOM7iFgyJAu1vyuI+rbiGHXIQVCzTVTRhH0wmNegIGkD6VG+?=
- =?us-ascii?Q?lzPpuy8DYFLl0e2u/M/O/vv9cFWlqs9NlebQVgaTuj37CPTSn/pbgZLMY8KG?=
- =?us-ascii?Q?qe7U5+tXur50qH103UDcS1WkQq9fK1i6p/wNZz2rGI/bLiemOayYnAlQkAJn?=
- =?us-ascii?Q?BZ7gyzGmEBtujMsg9NeJX67Kv3NMbjudGCqw69hlb0cx7tc6G9x1/q9kOpK2?=
- =?us-ascii?Q?287T+3pK3C1UI5VRSZjce3yo6aGc99NaUpdS8Nqi9zgMsMe5Na91/qovb13S?=
- =?us-ascii?Q?afbtMnWnaZidyayA1BDpDxOE99foz3S8nfB468ygxBOCv/pCLRAh1zgII1G1?=
- =?us-ascii?Q?JeWMywr17XCMQ8cjiTi6c+j9CZ1HGEeidqS/NcWG6/gheVpjUAUvcjqEWTV5?=
- =?us-ascii?Q?iUuiPZzuf/2HPfuVEl/32bRNaGkxjbt1QM1+Pn5D+cjL5PuTy8CZgKBDePpV?=
- =?us-ascii?Q?W7NGVmsShxDD1PJC74eOeLkfDm9DsIJQ9F10gwLlinvqa1oIe0tO0AMZ66Yx?=
- =?us-ascii?Q?p/BZWuBDBqna2DcWag1XikKzFXyD/MCNxAFBdV2+oW9p6P1213Jl0jS+Ck/e?=
- =?us-ascii?Q?Pgw1bYiVOXCnypE8oGhTFK8DPTEa3PHa6rVYdX/o2yBRYriGgKN67SiVKa/j?=
- =?us-ascii?Q?gxx6ueq2FzRrTi4Ki8D+S2RYLXNn33YElrE5wUfymnwHOkGA2Tzcpb+Iu4QD?=
- =?us-ascii?Q?1ao7/MNZbw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: KpnNRx2xQEQAgqNI+6QbMg83vHt1axXM+2a3qJr78NKh/neiA0Nj8OR8RNF4c5SquSkHSRwfQOWSIANuTZK/QWK8CQRCeLmo14GsDSEWxWKeXROIRRjShMtTXrwUQOhNGsRu6OGytw5cnnCOq9O/1HfD8I9SEWNUHYbLx6JvFURHDVrNB+TVC9op1MtDrmGX5j1lMaH7dTHfpvf/x++gOb7cicvrD3zG7JKkF3cj4HHLumEJ4wZ90nBj+UE3NTu2ORgxTqsboD9m1KO/dLwrc2WxNQRnZw/ERAQHtZa4uqKppfsqj55fuQ5x3fgVRhTUuYZPnwO0x22QJwXp+/oUdQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: a328cd18-ee41-4219-75cd-08dea52567df
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?hNgCZs7rNFtGtr4TPCyKJUmvHd2hup93O5bIYDg3gmQ9QL09tAkVrg1jZ4Zj?=
+ =?us-ascii?Q?YVkbp8vFsq7rn9cFU6mlIebGFEw8AHvIiIordrjEzE/J6STHsZTrzvzMkvK6?=
+ =?us-ascii?Q?B2udJ00RBO/oy3VbEfLsDOPR6UHUZ1rIfDmHzOOy2hC4zxJ+rKcWVaERLs7A?=
+ =?us-ascii?Q?psFMNwvGvvXkxjBG4JrCHPCj+QQxycw5gIzAsOzpT7w4rAKjqwjrwqMp/DZ9?=
+ =?us-ascii?Q?Q+yO2CIoBYZtVkgq7HZCb+epQKT/tFKIpPxxTyJVLEs853h45aDyM2LukLRC?=
+ =?us-ascii?Q?8GQfir850o2G4tpo3UMRDK5fQ2MJFJ06EKFMDiTg2fPrMR40usGh2fYjiPnK?=
+ =?us-ascii?Q?w+wkAPeYazs3ROWOg2y73FjoKW77wEeqOeuuBM3AVzBS/mVdGdJPCrXRN0t4?=
+ =?us-ascii?Q?menuFlZN/T0jaqT1+p6iO3BGkGrAaxKVbKAMNYFUzoy+oTomHDamZh7MFm7u?=
+ =?us-ascii?Q?aIaSxmWpcYchNHSoLsFl2rqBsom0vmHol2VsTbGq1AEL0UbBS8Thvvo9Su+P?=
+ =?us-ascii?Q?D+KmcJfdKGZ8i0pAQE7rYsypTSGQvhcJLPzaraMA6HFYBlM0CT3rUuKFrI/I?=
+ =?us-ascii?Q?27RqY0cF6+SvQOk3fmaPZGqaYYaYZYmDECPSySRxjV/CoY6vT5FI5v4b1mxW?=
+ =?us-ascii?Q?Oeiks5aQB/fWVILdJU8SKF7LsvGMVGHcGDlwWLOrXzih9Pl/vGvIiuwEBxPv?=
+ =?us-ascii?Q?KsaWbFIYQcarcOAyVTkeS8+IfvIz3nah8xaynBWF4f3ycG6wiucy/lkWrv04?=
+ =?us-ascii?Q?uFqstfwA55GPGjy8QZgpE9lE+FxPBnl9/6RKKb+JHQAxJJPbCRsQ/PGxzZ9K?=
+ =?us-ascii?Q?liXJlwXpYSAndPiIHHxP2Hw3TGX6Jc5Hgh27m9MWnH69ewGf/2HIn1LLg8bx?=
+ =?us-ascii?Q?ODoeC4n4da++5qF69aX2Ih3e0MNLqMbXavDtusqX+6fJqo2frkQeHkRaVJzf?=
+ =?us-ascii?Q?TzgWa02Rpf2rVnn9adVMAMORzVYKhfED8ocySunUn88qGuHnAUXXa7tL3BDZ?=
+ =?us-ascii?Q?br3d86DvvopWZPDgT8hFbv7XrSOgxogHhhkQCyOWwk0zQxcIvb5+XH5FNQg3?=
+ =?us-ascii?Q?tsnYj+efDP5Q60d8lxTc1BTsKmsDWlwb3I3qF/2AkbpSq3WdCMmDyNZAzf+9?=
+ =?us-ascii?Q?XTDmZLDigpk60Bc1uGW++2LhF/g/hgbZphNy+TKx2qsQYE61+1kC0TZ9Dtfh?=
+ =?us-ascii?Q?eBm2O3h4CgV+SZjMGjubW1vdkww0c6aLOTfQOs/1U+qJJ60yttNCFEIOlD4w?=
+ =?us-ascii?Q?tUL5PyOyCeSaPz3i7+kmJmekzlUJ1NC/oqIL8CPyplTA6OP41YdoY14Td2MI?=
+ =?us-ascii?Q?KFndkt29J/w/O6CThZazGYs5NC8EW7tiVUchF+UUKIJYFmYMIpOCRLczPkKq?=
+ =?us-ascii?Q?ZK4Obskk4mRNSQ9HgHPaeJigazrk4562QBTnNKEN0IS8ca72ljWrOeogpf6V?=
+ =?us-ascii?Q?6BNfUxhV/27SogsGdG9U0BmGnh4Us9ZJFsjLoppIqZS0bw5bg0su27RuSRQF?=
+ =?us-ascii?Q?A+WnpuSQ15oPOaoJK5D43LcqBq3W3N2Iwo+VcgoVkgZUkXjQ7IVQGycOvTlF?=
+ =?us-ascii?Q?TiGedz0YKWfXXBRFULm7fF+ZkUUyob5eTiCM/8qO+HvPcLAI/tXB/f7enLbP?=
+ =?us-ascii?Q?vHdiOQB4Vz9hj46gtH4EKQwSU0oVkxpA/UTGUjR/1ez1fDcqkZGz7hTp798R?=
+ =?us-ascii?Q?Es0w7foFOwADxIyRRLWB+QDKz8H5qY9Y2dXH5RK+2O6wye3lKPE+h9aQdqIg?=
+ =?us-ascii?Q?Z7BfqGK9Dw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: KxXl+plKkC50pTM6x6Z+WM3munokaZqztAipNrTxM+oFW6jKPwdbbaF7eDND/VFxyKGPHBw0CBoay4GNFn1H/WamwQiPCD2fNHhOh0y1F2ryulazVu6l6t+DFcC5uQwbMXAmjWRVkJDEQaiz7U4KA43rvxayLYPp/wgGjTsnxla3je6H4iTNs4mVoNexKw1jK/GErw3drIkkUZnd7tqz/tF4AsLuR+DFYhEK0Bipe9up901Gtb55lSJNRL2tJackaD56gibnKPear1gUwa2KQm258h8hkMDnTGb6KpEDB6NUYnjMD+Y7La3zFhgQJCfySSQjio3PcKXcfSJ13CDghA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 53b92177-ef43-4b8d-58ba-08dea52568d7
 X-MS-Exchange-CrossTenant-AuthSource: SJ0PR11MB4845.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 12:55:21.0702 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 12:55:22.6567 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: d+ciiLCipjdEDwdbDpnv9WpQS/SVjydfujeVVDWcUZ8VCo6JLAhLxqDx3al+9lBX+HI3gkWV/bdz1d2AuGRaYg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: bYwKso3LQNLNm2/+yA6ovRJRLcbcyUqg3mE7rpv5jWa016efeBGEA9QUaUTSsaJpwI1Apshx/yIk6XEWI3dLhA==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV3PR11MB8556
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -164,7 +164,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B41B54855EA
+X-Rspamd-Queue-Id: F17424855F1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.19 / 15.00];
@@ -194,121 +194,141 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9]
 
-Account for disabled configurations when selecting the next SST
-fallback configuration in rate/lane order.
+Disable the link configuration that failed training when selecting
+fallback parameters.
 
-The rate and lane count reductions are applied independently, so the
-resulting link parameter tuple may not be an allowed configuration once
-individual configurations can be disabled. Keep reducing until an
-allowed configuration is found.
+Fallback still selects the next configuration using the existing
+fallback order, but now also removes the failed configuration from the
+allowed set. Functionally, this only affects the case where an MST <-> SST
+mode switch occurs on the same root connector: previously, a configuration
+that failed training in one mode could be reused in the other mode due
+to the differing config iteration orders.
 
-While at it add a TODO comment to the rate look-up to handle non-nominal
-computed rates.
+The current fallback logic also sets a temporary maximum link limit
+across the allowed configurations to constrain subsequent modesets. This
+legacy behavior is preserved for now; it will be removed once the
+fallback logic relies solely on the individually disabled configurations
+to restrict the allowed set.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- .../drm/i915/display/intel_dp_link_training.c | 65 ++++++++++++++++---
- 1 file changed, 57 insertions(+), 8 deletions(-)
+ .../gpu/drm/i915/display/intel_dp_link_caps.c | 29 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_dp_link_caps.h |  2 ++
+ .../drm/i915/display/intel_dp_link_training.c | 27 +++++++++++++++++
+ 3 files changed, 58 insertions(+)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+index 6eb5b67b6168b..e7f3d40c5ec08 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+@@ -1056,6 +1056,35 @@ void intel_dp_link_caps_reset_max_limits(struct intel_dp_link_caps *link_caps)
+ 	update_max_link_info(link_caps);
+ }
+ 
++/**
++ * intel_dp_link_caps_disable_config - disable a configuration
++ * @link_caps: link capabilities state
++ * @config_idx: configuration index to disable
++ *
++ * Disable the configuration identified by @config_idx and update the derived
++ * maximum-link information accordingly. This removes the configuration from
++ * the set of allowed configurations.
++ *
++ * The configuration remains disallowed until intel_dp_link_caps_reset() is
++ * called, which normally happens after a connector disconnect, or until some
++ * error condition triggers recovery because the set of allowed
++ * configurations would otherwise become empty.
++ *
++ * Return:
++ * - %true  if @config_idx was valid and the derived state was updated.
++ * - %false if @config_idx was invalid or the derived state could not be
++ *   updated.
++ */
++bool intel_dp_link_caps_disable_config(struct intel_dp_link_caps *link_caps, int config_idx)
++{
++	if (!config_idx_is_valid(link_caps, config_idx))
++		return false;
++
++	link_caps->config_table.disabled_config_mask |= BIT(config_idx);
++
++	return update_max_link_info(link_caps);
++}
++
+ static void enable_link_config_no_update(struct intel_dp_link_caps *link_caps, int config_idx)
+ {
+ 	struct intel_display *display = to_intel_display(link_caps->dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+index 1e4ce6a58e4fd..da2eb1f7453a0 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+@@ -205,6 +205,8 @@ int intel_dp_link_caps_get_max_config_idx(struct intel_dp_link_caps *link_caps,
+ 					  enum intel_dp_link_caps_config_order_key order_key,
+ 					  u32 config_mask);
+ 
++bool intel_dp_link_caps_disable_config(struct intel_dp_link_caps *link_caps, int idx);
++
+ void intel_dp_link_caps_get_max_limits(struct intel_dp_link_caps *link_caps,
+ 				       struct intel_dp_link_config *max_link_limits);
+ bool intel_dp_link_caps_set_max_limits(struct intel_dp_link_caps *link_caps,
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index fb20795a7086f..a9955f04d507f 100644
+index a9955f04d507f..c47d2bc84460a 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1834,6 +1834,7 @@ static int reduce_link_rate(struct intel_dp *intel_dp, int current_rate)
- 	if (forced_params.rate)
- 		return -1;
- 
-+	/* FIXME: Account for a non-nominal current_rate */
- 	rate_index = intel_dp_link_caps_common_rate_idx(link_caps,
- 							current_rate);
- 
-@@ -1863,30 +1864,78 @@ static int reduce_lane_count(struct intel_dp *intel_dp, int current_lane_count)
- 	return current_lane_count >> 1;
- }
- 
--static bool reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
--						  const struct intel_crtc_state *crtc_state,
--						  int *new_link_rate, int *new_lane_count)
-+static bool __reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
-+						    const struct intel_dp_link_config *old_config,
-+						    struct intel_dp_link_config *new_config)
- {
+@@ -1954,6 +1954,11 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 	struct intel_display *display = to_intel_display(intel_dp);
  	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
- 	int link_rate;
- 	int lane_count;
- 
--	lane_count = crtc_state->lane_count;
--	link_rate = reduce_link_rate(intel_dp, crtc_state->port_clock);
-+	lane_count = old_config->lane_count;
-+	link_rate = reduce_link_rate(intel_dp, old_config->rate);
- 	if (link_rate < 0) {
--		lane_count = reduce_lane_count(intel_dp, crtc_state->lane_count);
-+		lane_count = reduce_lane_count(intel_dp, old_config->lane_count);
- 		link_rate = intel_dp_link_caps_max_common_rate(link_caps);
- 	}
- 
- 	if (lane_count < 0)
- 		return false;
- 
--	*new_link_rate = link_rate;
--	*new_lane_count = lane_count;
-+	new_config->rate = link_rate;
-+	new_config->lane_count = lane_count;
- 
- 	return true;
- }
- 
-+static bool reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
-+						  const struct intel_crtc_state *crtc_state,
-+						  int *new_link_rate, int *new_lane_count)
-+{
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
-+	struct intel_dp_link_config old_config = {
+ 	struct intel_dp_link_config max_link_limits;
++	struct intel_dp_link_config current_config = {
 +		.rate = crtc_state->port_clock,
 +		.lane_count = crtc_state->lane_count,
 +	};
++	int current_config_idx;
+ 	int new_link_rate;
+ 	int new_lane_count;
+ 	int err = -1;
+@@ -1965,6 +1970,13 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 		return 0;
+ 	}
+ 
++	current_config_idx =
++		intel_dp_link_caps_find_allowed_config_idx(link_caps,
++							   INTEL_DP_LINK_CAPS_CONFIG_MATCH_FUZZY_RATE,
++							   &current_config);
++	if (drm_WARN_ON(display->drm, current_config_idx < 0))
++		return -1;
 +
+ 	/*
+ 	 * Temporarily reset the max link limit before selecting the fallback
+ 	 * config.
+@@ -1982,6 +1994,13 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 	intel_dp_link_caps_get_max_limits(link_caps, &max_link_limits);
+ 	intel_dp_link_caps_reset_max_limits(link_caps);
+ 
 +	/*
-+	 * Guaranteed to terminate: either the rate decreases, or the rate wraps
-+	 * to maximum and the lane decreases, guaranteeing that the minimum
-+	 * (rate, lane) combination is reached.
++	 * TODO: Make fallback depend only on disabling the current config,
++	 * once max_limit no longer constrains the allowed config set. Then
++	 * disabling the current config will define the allowed configs for
++	 * the subsequent modeset, so there will be no need to select a
++	 * reduced config separately here.
 +	 */
-+	for (;;) {
-+		struct intel_dp_link_config target_config;
+ 	if (!reduce_link_params(intel_dp, crtc_state, &new_link_rate, &new_lane_count))
+ 		goto out_restore_max_limits;
+ 
+@@ -1995,6 +2014,14 @@ static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+ 		goto out_restore_max_limits;
+ 	}
+ 
++	/*
++	 * Shouldn't fail: the current config was enabled, and reducing the
++	 * link parameters should still leave the fallback config allowed.
++	 */
++	if (drm_WARN_ON(display->drm,
++			!intel_dp_link_caps_disable_config(link_caps, current_config_idx)))
++		return -1;
 +
-+		if (!__reduce_link_params_in_rate_lane_order(intel_dp,
-+							     &old_config, &target_config))
-+			return false;
-+
-+		if (drm_WARN_ON(display->drm,
-+				target_config.rate >= old_config.rate &&
-+				target_config.lane_count >= old_config.lane_count))
-+			return false;
-+
-+		/*
-+		 * Rate and lane count were reduced independently, so the
-+		 * resulting tuple may not be enabled at all, and either
-+		 * parameter may even lie outside the range of enabled
-+		 * configs. The target returned above has already a nominal
-+		 * rate, so require hare an exact match.
-+		 */
-+		if (intel_dp_link_caps_find_allowed_config_idx(link_caps,
-+							       INTEL_DP_LINK_CAPS_CONFIG_MATCH_EXACT,
-+							       &target_config) >= 0) {
-+			*new_link_rate = target_config.rate;
-+			*new_lane_count = target_config.lane_count;
-+
-+			return true;
-+		}
-+
-+		old_config = target_config;
-+	}
-+}
-+
- static bool reduce_link_params(struct intel_dp *intel_dp, const struct intel_crtc_state *crtc_state,
- 			       int *new_link_rate, int *new_lane_count)
- {
+ 	lt_dbg(intel_dp, DP_PHY_DPRX,
+ 	       "Reducing link parameters from %dx%d to %dx%d\n",
+ 	       crtc_state->lane_count, crtc_state->port_clock,
 -- 
 2.49.1
 
