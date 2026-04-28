@@ -2,34 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uJajHLqA8Gn6UAEAu9opvQ
+	id YLSGANmA8Gn6UAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 11:41:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 11:41:45 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA781481AFA
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 11:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A81C7481B26
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 11:41:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D4E1010EAB9;
-	Tue, 28 Apr 2026 09:41:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 251B410EABD;
+	Tue, 28 Apr 2026 09:41:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1EFD410EAB9;
- Tue, 28 Apr 2026 09:41:10 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1631990298920820538=="
+Received: from coelho.fi (coelho.fi [88.99.146.29])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20A9910EABD;
+ Tue, 28 Apr 2026 09:41:42 +0000 (UTC)
+Received: from 37-219-152-235.nat.bb.dnainternet.fi ([37.219.152.235]
+ helo=[192.168.101.111])
+ by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+ (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
+ id 1wHewi-00000004f2U-14ID; Tue, 28 Apr 2026 12:41:38 +0300
+Message-ID: <984eda0c91a24f209660676266288464a154ccaa.camel@coelho.fi>
+From: Luca Coelho <luca@coelho.fi>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Luca Coelho
+ <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, ville.syrjala@linux.intel.com
+Date: Tue, 28 Apr 2026 12:41:34 +0300
+In-Reply-To: <6cd074a68c151a55c5b689b8dcc4e8f10f089f0e@intel.com>
+References: <20260420202252.3846880-1-luciano.coelho@intel.com>
+ <6cd074a68c151a55c5b689b8dcc4e8f10f089f0e@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.56.2-9 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/intel=5Fpanel=3A?=
- =?utf-8?q?_Fix_seamless_VRR_mode_switching_for_DRRS_panels?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Apr 2026 09:41:10 -0000
-Message-ID: <177736927011.17650.17481477836273305728@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260428083323.3745772-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260428083323.3745772-1-ankit.k.nautiyal@intel.com>
+X-Spam-Checker-Version: SpamAssassin 4.0.2 (2025-08-27) on farmhouse.coelho.fi
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
+ TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.2
+Subject: Re: [PATCH v4 0/8] drm/i915: move more display dependencies from i915
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,214 +52,88 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CA781481AFA
+X-Rspamd-Queue-Id: A81C7481B26
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.61 / 15.00];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[3];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,coelho.fi:mid];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.996];
+	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.863];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DMARC_NA(0.00)[coelho.fi];
+	RCPT_COUNT_FIVE(0.00)[5]
 
---===============1631990298920820538==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Mon, 2026-04-27 at 13:06 +0300, Jani Nikula wrote:
+> On Mon, 20 Apr 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
+> > This series continues my work of refactoring the clock gating
+> > initialization, so that i915 doesn't do display-specific stuff.
+> >=20
+> > With this, all register dependencies should be gone.
+> >=20
+> > Changes in v4:
+> > 	* Explain why HAS_LLC() is not needed anymore (Jani);
+> > 	* Replace intel_display_core.h include with intel_pch.h (Jani);
+> >=20
+> > Please review.
+>=20
+> There's the one omission in patch 5 that I pointed out that needs to be
+> fixed.
+>=20
+> Other than that, this is
+>=20
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Series Details ==
-
-Series: drm/i915/intel_panel: Fix seamless VRR mode switching for DRRS panels
-URL   : https://patchwork.freedesktop.org/series/165604/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18373 -> Patchwork_165604v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_165604v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_auth@basic-auth:
-    - bat-adlp-6:         [PASS][1] -> [DMESG-WARN][2] ([i915#15673])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-adlp-6/igt@core_auth@basic-auth.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-adlp-6/igt@core_auth@basic-auth.html
-
-  
-#### Possible fixes ####
-
-  * igt@core_debugfs@read-all-entries:
-    - bat-adlp-6:         [DMESG-WARN][3] ([i915#15673]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-adlp-6/igt@core_debugfs@read-all-entries.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-adlp-6/igt@core_debugfs@read-all-entries.html
-
-  * igt@gem_exec_fence@basic-await@vcs0:
-    - bat-adlp-11:        [FAIL][5] ([i915#15263]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-adlp-11/igt@gem_exec_fence@basic-await@vcs0.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-adlp-11/igt@gem_exec_fence@basic-await@vcs0.html
-
-  * igt@i915_selftest@live:
-    - bat-mtlp-8:         [DMESG-FAIL][7] ([i915#12061]) -> [PASS][8] +1 other test pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-mtlp-8/igt@i915_selftest@live.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-mtlp-8/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-dg2-14:         [DMESG-FAIL][9] ([i915#12061]) -> [PASS][10] +1 other test pass
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
-    - bat-arls-6:         [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-arls-6/igt@i915_selftest@live@workarounds.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15263]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15263
-  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
+Thanks for the review!
 
 
-Build changes
--------------
+> I do have a nagging feeling that further refactoring will be needed, as
+> this introduces a plethora of new display interfaces i915 core needs to
+> call, and we should work to minimize that surface. However, this is good
+> stuff for moving the display stuff out of i915 core, so let's roll with
+> this.
 
-  * Linux: CI_DRM_18373 -> Patchwork_165604v1
+Yeah, the main problem is that the calls to platform specific things
+were all over, sometimes in the beginning, sometimes in the middle and
+sometimes in the end of the flows.  Ville already mentioned that most
+of these are probably not order-sensitive, so we could generalize the
+implementation and reduce the number of interfaces.
 
-  CI-20190529: 20190529
-  CI_DRM_18373: aea2c496abcf55b647c14fe720bfc4ea555aac6a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_165604v1: aea2c496abcf55b647c14fe720bfc4ea555aac6a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/index.html
-
---===============1631990298920820538==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+I didn't want to change the order of these workarounds in this series.
+Now that the functions are inside the display code, we can start make
+some functional changes in a more isolated way.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> A minor nit for further reference. If you can, please try to avoid
+> combining code movement and other changes. Reviewing pure code movement
+> with 'git show --color-moved' is quick. Reviewing other mechanical
+> changes with 'git show --color-words' is also quick. Unfortunately,
+> having code movement and other inline changes in one breaks both
+> approaches, and you have to fall back to more manual review.
 
+Sorry for that.  I've been nagging about the same thing many times in
+the past myself, so it's silly I've done it too.  I've been moving this
+code forth and back quite a few times, and ended up mixing moves from
+actual changes. :(
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/intel_panel: Fix seamless VRR mode switching for DRRS panels</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165604/">https://patchwork.freedesktop.org/series/165604/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18373 -&gt; Patchwork_165604v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_165604v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_auth@basic-auth:<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-adlp-6/igt@core_auth@basic-auth.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-adlp-6/igt@core_auth@basic-auth.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@core_debugfs@read-all-entries:</p>
-<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-adlp-6/igt@core_debugfs@read-all-entries.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-adlp-6/igt@core_debugfs@read-all-entries.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_exec_fence@basic-await@vcs0:</p>
-<ul>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-adlp-11/igt@gem_exec_fence@basic-await@vcs0.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15263">i915#15263</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-adlp-11/igt@gem_exec_fence@basic-await@vcs0.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@workarounds:</p>
-<ul>
-<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18373/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18373 -&gt; Patchwork_165604v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18373: aea2c496abcf55b647c14fe720bfc4ea555aac6a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_165604v1: aea2c496abcf55b647c14fe720bfc4ea555aac6a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1631990298920820538==--
+--
+Cheers,
+Luca.
