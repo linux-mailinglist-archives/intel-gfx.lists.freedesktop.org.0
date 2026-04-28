@@ -2,34 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +MKvK77A8GloYQEAu9opvQ
+	id gDFoMVfC8GloYQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:14:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:21:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 14734486B02
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E53A486CEB
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:21:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F1A210EB9B;
-	Tue, 28 Apr 2026 14:14:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF04B10EBC3;
+	Tue, 28 Apr 2026 14:21:09 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IFRjEUJH";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 86FE010EB9B;
- Tue, 28 Apr 2026 14:14:19 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1268485846744009517=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D337310EBB7;
+ Tue, 28 Apr 2026 14:21:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777386069; x=1808922069;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=PRYt6HgYM60zbLlUvO7b1lkGIAJBlPIob+Er9MUvj6Q=;
+ b=IFRjEUJHd0d+B0Tca5+4wLIAqXcDOj7EwwxWj4iEqhtxhVA0Dlk4ws79
+ LTQPzPBbE5bTmbEF1Os3T/o/3KaV0ObwZp7nq23ZnbSEcd+6pGrpV5Zxw
+ 0dFsAL+WM8n1I5Q2JgDb1xudlWMiluWG3+b0cKhvBMrtAVgS+HO0BcBle
+ GlsSl1o2YLVMQPUDUeXiejRAtVVfUkb9PrdLfFMK1xmeuc07cy0DhE4a+
+ 6qvrREbg25eyvMX9EdxnFYIchjkfZP8f/3w6M7TtMT7yi4D/6DfdFXLEr
+ 8LjKFEBtkUywSwVJQSCmXk5Ao2QDpHXmYdobg7zH76PvmhQqmzrzBfb+F g==;
+X-CSE-ConnectionGUID: g1DT8gPBSu6nHtToz2fn1Q==
+X-CSE-MsgGUID: 7bLS+M3vTECqoUIeoiW95A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="89756380"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="89756380"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 07:21:03 -0700
+X-CSE-ConnectionGUID: kIb8dRnyQHGFhsQRhai2Iw==
+X-CSE-MsgGUID: NTl1k8hzSX2ouiJzb6eobA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="227445400"
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa009.fm.intel.com with ESMTP; 28 Apr 2026 07:21:02 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/6]  Enable joiner cursor fast updates
+Date: Tue, 28 Apr 2026 19:46:33 +0530
+Message-Id: <20260428141639.2373678-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Disable_P?=
- =?utf-8?q?anel_Replay_on_Dell_XPS_16_DA16260_as_a_quirk_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 28 Apr 2026 14:14:19 -0000
-Message-ID: <177738565955.21512.15377057004407657469@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260427130554.86040-1-jouni.hogander@intel.com>
-In-Reply-To: <20260427130554.86040-1-jouni.hogander@intel.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,173 +67,52 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 14734486B02
+X-Rspamd-Queue-Id: 4E53A486CEB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.560];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nemesa.garg@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,live:email,lists.freedesktop.org:replyto,workarounds:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
---===============1268485846744009517==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+    This series enables the cursor fast path for joiner mode
+and adds the missing secondary-plane handling to keep updates
+correct and synchronized.
 
-== Series Details ==
+Nemesa Garg (6):
+  drm/i915/cursor: Check joiner cursor commit status
+  drm/i915/cursor: Add helper to update cursor plane
+  drm/i915/cursor: Handle secondary cursor state
+  drm/i915/cursor: Sync joiner secondary cursor state
+  drm/i915/cursor: Program secondary cursor planes
+  drm/i915/cursor: Allow joiner cursor fast path update
 
-Series: drm/i915/psr: Disable Panel Replay on Dell XPS 16 DA16260 as a quirk (rev2)
-URL   : https://patchwork.freedesktop.org/series/165534/
-State : success
+ drivers/gpu/drm/i915/display/intel_cursor.c | 284 ++++++++++++++++----
+ 1 file changed, 230 insertions(+), 54 deletions(-)
 
-== Summary ==
+-- 
+2.25.1
 
-CI Bug Log - changes from CI_DRM_18375 -> Patchwork_165534v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_165534v2 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18375/bat-dg2-8/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/bat-dg2-8/igt@i915_selftest@live.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18375/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18375 -> Patchwork_165534v2
-
-  CI-20190529: 20190529
-  CI_DRM_18375: e066eb26712bca7174e694a358351c50a38661d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_165534v2: e066eb26712bca7174e694a358351c50a38661d6 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/index.html
-
---===============1268485846744009517==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Disable Panel Replay on Dell XPS 16 DA16260 as a quirk (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165534/">https://patchwork.freedesktop.org/series/165534/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18375 -&gt; Patchwork_165534v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_165534v2 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18375/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18375/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165534v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18375 -&gt; Patchwork_165534v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18375: e066eb26712bca7174e694a358351c50a38661d6 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8874: 4568b2c141ab630c34f8eb2b9afab8cbf8f3ce9e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_165534v2: e066eb26712bca7174e694a358351c50a38661d6 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1268485846744009517==--
