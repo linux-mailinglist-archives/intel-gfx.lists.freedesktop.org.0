@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WOCaDmLC8GloYQEAu9opvQ
+	id IHRHAWXC8GloYQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:21:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:21:25 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C7E0B486D16
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:21:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C4E08486D25
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 16:21:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EFFC10EBE2;
-	Tue, 28 Apr 2026 14:21:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C66610EC34;
+	Tue, 28 Apr 2026 14:21:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QskWz6D7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D3CAIf6U";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3B4E10EBE1;
- Tue, 28 Apr 2026 14:21:10 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26FDE10EBE1;
+ Tue, 28 Apr 2026 14:21:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777386071; x=1808922071;
+ t=1777386072; x=1808922072;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eioWoQujhyzDkDqDJMJvBv0YNTPKizO7Vnj/lxbygfc=;
- b=QskWz6D7pyvkaNCWSTOM9lWR2Pz974pHb7QtmOxZypyTKN8bKoJWiJvB
- rrTLzuFuDFyDpI4viPKFpE9O7IdLhJRfv3vS5eIdeepyVX2/hid+NunQR
- M8ftAlM2jWG+EPyIw6FFUwDh9t/NOf7Bsm+ZKifBDDPq/26Wbuiuiop80
- PmGhRsESDEKfMgUqZyQvqN0AJFGklhL8OyRdGsHa5iJW10apezWVAKjm7
- g8613NcL9+u477xFqmkImFjxZiDGxqaVhyDs1GmuvHA4aIof2Gqek8+iq
- jLNUlXfTDIyZ5nyst6b5kXFTnbuvWUhCSvmCCV5ArgCgOFANEUHCWL4/8 g==;
-X-CSE-ConnectionGUID: eo2jRDCnTxiHb9lKvOvzAQ==
-X-CSE-MsgGUID: Pt/QkJtxRs65UO94noDL7g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="89756392"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="89756392"
+ bh=BDUxG1r8EoXt1vr3jkf6Wd9gxGbMWobsQfr2VvXqfzg=;
+ b=D3CAIf6UfX/SIMKiCUV1RdxkKcxLyhM41FYr+m/+CFRlkPga+OfRb7I0
+ MgTRl8orILPieOcs+TZIabjLa4NbEBaoCnbr1tUlHV31HQ76R/TArB1Ep
+ ToNbJuW3ZFcFladMkKNLBDQyj9zK8uL6EvdAx6AzxblErC8c0Elec67sX
+ nnUwxJNiRH7Siaa4M5nAvgxFuAstKnBPxhAEwykR6seZDxJcVW69o1Gqq
+ AQFPjHO1gA609guxTuBabP1cUpephRg6Hoj0wbmJQxUeU7zLfHTlJbvMj
+ ht2T9l4Fg5ddGqbCXkCH7Za+M2bwk+wcH6sDH3csu7r+TMO8TCCUhYb// g==;
+X-CSE-ConnectionGUID: v65xQFBySEu3kJXKiCAUgA==
+X-CSE-MsgGUID: XbT14TlbSd+1bfLHrnxsIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="89756395"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="89756395"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 07:21:10 -0700
-X-CSE-ConnectionGUID: dCSZzpNRTA+zhmazwgXFCA==
-X-CSE-MsgGUID: D6BjZI0LQviRxP1UBNs2QA==
+ 28 Apr 2026 07:21:12 -0700
+X-CSE-ConnectionGUID: RGqK+TN5Tti15pLUcqRl/A==
+X-CSE-MsgGUID: pmRtFIi7Q+CoWJzhLqOeCQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="227445440"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="227445447"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa009.fm.intel.com with ESMTP; 28 Apr 2026 07:21:09 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 28 Apr 2026 07:21:11 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 5/6] drm/i915/cursor: Program secondary cursor planes
-Date: Tue, 28 Apr 2026 19:46:38 +0530
-Message-Id: <20260428141639.2373678-6-nemesa.garg@intel.com>
+Subject: [PATCH 6/6] drm/i915/cursor: Allow joiner cursor fast path update
+Date: Tue, 28 Apr 2026 19:46:39 +0530
+Message-Id: <20260428141639.2373678-7-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260428141639.2373678-1-nemesa.garg@intel.com>
 References: <20260428141639.2373678-1-nemesa.garg@intel.com>
@@ -71,7 +71,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C7E0B486D16
+X-Rspamd-Queue-Id: C4E08486D25
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -95,53 +95,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[nemesa.garg@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-During the vblank-evade, program all joined cursor
-planes using intel_plane_update_noarm()/intel_plane_update_arm()
-or intel_plane_disable_arm() based on plane visibility.
-
-V2: Check primary and secondary pipe together. [Ville]
+The legacy cursor path forced all joiner updates to the
+slow path by checking joiner_pipes.
+Drop the condition so that joiner cursor updates can use
+the fast path.
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 71795f4dfc3f..d1a70650b9b0 100644
+index d1a70650b9b0..8bbb2f05360b 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -1072,11 +1072,20 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		local_irq_disable();
- 	}
+@@ -892,12 +892,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	 * PSR2 plane and transcoder registers can only be updated during
+ 	 * vblank.
+ 	 *
+-	 * FIXME joiner fastpath would be good
+ 	 */
+ 	if (!crtc_state->hw.active ||
+ 	    intel_crtc_needs_modeset(crtc_state) ||
+-	    intel_crtc_needs_fastset(crtc_state) ||
+-	    crtc_state->joiner_pipes)
++	    intel_crtc_needs_fastset(crtc_state))
+ 		goto slow;
  
--	if (new_plane_state->uapi.visible) {
--		intel_plane_update_noarm(NULL, plane, crtc_state, new_plane_state);
--		intel_plane_update_arm(NULL, plane, crtc_state, new_plane_state);
--	} else {
--		intel_plane_disable_arm(NULL, plane, crtc_state);
-+	for (int i = 0; i < num_pipes; i++) {
-+		const struct intel_crtc_state *pipe_crtc_state =
-+						pipe_crtc_states[i];
-+
-+		if (new_pipe_states[i]->uapi.visible) {
-+			intel_plane_update_noarm(NULL, pipe_planes[i],
-+						 pipe_crtc_state,
-+						 new_pipe_states[i]);
-+			intel_plane_update_arm(NULL, pipe_planes[i],
-+					       pipe_crtc_state,
-+					       new_pipe_states[i]);
-+		} else {
-+			intel_plane_disable_arm(NULL, pipe_planes[i], pipe_crtc_state);
-+		}
- 	}
- 
- 	local_irq_enable();
+ 	/*
 -- 
 2.25.1
 
