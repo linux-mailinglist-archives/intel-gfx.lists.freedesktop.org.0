@@ -2,163 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GGvMD/+U8GnnVAEAu9opvQ
+	id ONW0Lt+F82kY4wEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 13:07:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 18:39:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91234483510
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 13:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A3FE4A5DBC
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 18:39:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF98A10EAF0;
-	Tue, 28 Apr 2026 11:07:40 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ra8FSqDC";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7589510E46A;
+	Thu, 30 Apr 2026 16:39:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E55B10E321;
- Tue, 28 Apr 2026 11:07:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777374459; x=1808910459;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=QzDPBJmaX67qa5y3YREqxnGvr6l+kd+looKzprdzakU=;
- b=Ra8FSqDCTVJuAKuWVNNHR8FVq7yAgbaWf0IhyHApOWahC/UcbR9XEiBv
- /HunbbeoO/HEUfina421JRgtwTV+iEP0tdvuKkNIgAMaAxDYL86wCDpqn
- ZrVhk83aNVKOOtpdmjCxGgbWova1ymgIa/bjY1C1qRWY8s2LsgN5eawwA
- 57bUMYrmWxgHBLowvjRw0yZOKrl5AnVur0gSt3l1iGK+X340xU/R8w9XD
- pzF7QuNGL6ar15hgC5VydgaMWjmCV+exyeaPpAIy7Bgu8zKQDKZIRWagY
- e0Q9Rizh5diycP5GKmEliYJdoDL0Na0jzBzsAucRJlwZ2LvICNOyQasKm w==;
-X-CSE-ConnectionGUID: 94j1E96eQyqDFsi/qVJuig==
-X-CSE-MsgGUID: YzLodSpIQvqUcH59mQPaXg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11769"; a="77444734"
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="77444734"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 04:07:39 -0700
-X-CSE-ConnectionGUID: 7qkPwww6Se+iwBBNHd58jw==
-X-CSE-MsgGUID: K3DRpKnXSmq3spxOQ42Slg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="237886968"
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 Apr 2026 04:07:38 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 04:07:38 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 04:07:38 -0700
-Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.68) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Tue, 28 Apr 2026 04:07:34 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=bZJ+y+rZRvYptrxMMd2o+NkIQOqeqqIeOjRRpTK9QTewF67GedlDwYJpGKN/gH4LKc0vCjDqEr8nsQkhIu5jm/azoy8ibsj3MdeS2iwgsuMBilnbHxB2UWK6J5dI7oKGaIK8x1useNzrtonWEeioAk4WYFDqN4LasugkpbfQupA6uJppfvvx/rcEYvpStRKhv6YoVc4Gy/uf7rtbAbTV5ZmMTK1AL+ODM5bLjNGd5/Rtz+Y4YMhM6kC59wB5HJkW9TvU+aBXNpuw+oTEVg8gcrKTSGqcnvZEXgnkGQUZ4zusgyJxXAXrYDToOJxBMmY8xxDyOUzPyd+7bEm8NcwHQA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=nfcmAAryy4ibjqTIj5ZZaMdWu07uC08XCPnkUBs0+iM=;
- b=kwgxB7CqcPYfxnz8UNsCSENzb4nygn6p1k6x1UppgD/0/kZn29RhA12Bn09e7KtzCpevZOMJz9jWG1BTCLwezKEgLZmTv0NJT8YOQ3UhR+zE4wYuDcGLgtUmgL1avqdnC8JmKQdJX6hXAdBWqAR0pgRt04aYObxJlIAKrZ51rWrtsYjr4szi9hhC/AAFT4TDuhxruUm0nJpLzOa6Hy9I2tUSJGWZBZJtTc10XgGHeBnzM9+9Cg4ZR1nZz1v2tRtofkckdRP92HV388v9Hvm/wjlcLAE+/W9LnqvLqRAys8QupGBv5s19MH9Dy5+ujshWVYtvKDRYoFoiAUaMY1M0fQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by IA0PR11MB7909.namprd11.prod.outlook.com (2603:10b6:208:407::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Tue, 28 Apr
- 2026 11:07:31 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9870.013; Tue, 28 Apr 2026
- 11:07:31 +0000
-Message-ID: <817ecc9f-575d-4c2f-a9dd-a82e39e08b6e@intel.com>
-Date: Tue, 28 Apr 2026 16:37:24 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/3] Fix AS SDP and VRR handling for DP branch devices
-To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-CC: <ville.syrjala@linux.intel.com>
-References: <20260424090942.3060291-1-ankit.k.nautiyal@intel.com>
-Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260424090942.3060291-1-ankit.k.nautiyal@intel.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5P287CA0058.INDP287.PROD.OUTLOOK.COM
- (2603:1096:a01:1d3::17) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+X-Greylist: delayed 537 seconds by postgrey-1.36 at gabe;
+ Tue, 28 Apr 2026 11:29:53 UTC
+Received: from gate.crashing.org (gate.crashing.org [63.228.1.57])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 0591210E6D1;
+ Tue, 28 Apr 2026 11:29:52 +0000 (UTC)
+Received: from gate.crashing.org (localhost [127.0.0.1])
+ by gate.crashing.org (8.18.1/8.18.1/Debian-2) with ESMTP id 63SBKIxF1057213;
+ Tue, 28 Apr 2026 06:20:18 -0500
+Received: (from segher@localhost)
+ by gate.crashing.org (8.18.1/8.18.1/Submit) id 63SBKHXo1057211;
+ Tue, 28 Apr 2026 06:20:17 -0500
+X-Authentication-Warning: gate.crashing.org: segher set sender to
+ segher@kernel.crashing.org using -f
+Date: Tue, 28 Apr 2026 06:20:17 -0500
+From: Segher Boessenkool <segher@kernel.crashing.org>
+To: Yury Norov <ynorov@nvidia.com>
+Cc: Linus Torvalds <torvalds@linux-foundation.org>,
+ "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ Yury Norov <yury.norov@gmail.com>, linux-kernel@vger.kernel.org,
+ linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@vger.kernel.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+Message-ID: <afCX8WlnEFUei1y6@gate>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+ <ae-j2_QirCySZD02@yury>
+ <63a4d0f6-0eb3-48cd-9f98-bf7b223b2606@kernel.org>
+ <ae-2yLWSGnfeTvh1@yury>
+ <CAHk-=wgPrLy0FR3sEWBYQuNAac1axDASYMnTuPuxEU0WytzL7w@mail.gmail.com>
+ <ae_jeJLlVWjJ4sOY@yury>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|IA0PR11MB7909:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7315c670-cbad-4c6e-8463-08dea5165786
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: T/47gEfLBzVEX/J8nPY+X7KGZ68L4Psh61m0G7q8VZy2y5RJk1Uoaz2B/9x5Uq0PSvjm/6EdDwGQ/2YxpmZXoAzBJqUnjI+I/W10ZWGOWKJWtQnqum8aeBubIKPqcUAyb5JbEbH4HbBWHBV17lwPiygqJP5Df68FitxvxOt+Ed/g6RhzeetO2SF1Idp3oWtAyeh/jzs1bALedjgQJnt/sHdHVIsqHbl73EgzUWrJ1Yw5BVys96kRhk+TYYexx/3y9JC25YoRtDUnvrnUHCxRirJBjdoyidm0/O+GLe8FaZrZaOSXBIgo7ggk8NjIRzloP7BcmrugwsS3JpEb2D3phCq/AClG99RakJunHvWqXZ4xQM1hrM3WwkVerd5HK/SZck2atvvgfmI6p1teY6Gicjqz8h5Lnzf9HTrw0AYK7w/F/EkyALQvOoQuMjnAnhUVEQzQvimsXrmfLFrXoD4J5AB0U/ggLRUTPe5a6xde3TYSJv83nooo/1bgIZ0sRDzF5c7UfqzD81lmMZW8jpbpA/vuHhZeNJWIzQ1ZPKNQKxYLuFJlzMoVkpJvOKaPNLL4pjAEHZFylFIqeixW+H6EN/wMTVmKWM9B/zNfcXc6Iwmy0kCycYH4YH+rIfX/LTh6Z+zFLEBXXP0z1e8zyCb8Vi1SLfTIam2eU8GoAEzbaA7femxHSdGireqcCf66+FbN
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?elNEK01ZeHNXejExM0lHb2tmTkUzU09PUExhQ0FLeHZDSGNkTUdDWWdOT3Ey?=
- =?utf-8?B?ZUpWNnVrZjZLcXZIT1MyQ3FpK3ZobUxxaElpOHEvQ1NJa0ZpZnJRVFY0RGxL?=
- =?utf-8?B?SVNJUmNpMFBSRGdzVmIxSklvNHpTNnVvTERiWVVacUZjdEdvbGZVSHM4Tzll?=
- =?utf-8?B?M3Bkamx4Y09reDgrMkttVlQyUG4rdnhYcmp0elRuVVJUZ2lKWFlIRTZUSXkw?=
- =?utf-8?B?R1RsbE9YUnZBc0N3SVBmV0RPNjZHZkdDREx6T0pxSnhaYkdRd1NQWk1pSUR6?=
- =?utf-8?B?aFZRZUZnTmQwTTMvR001UG1yYXQ1Tk52U2lSQkZ0YlljdlB1UzdmaGFSa05l?=
- =?utf-8?B?Qk5vck9wQ3llWXl6endvL0VIQUJOZkp6UTNhNkxqcHd3VnU5b1NwTXJwQWdi?=
- =?utf-8?B?UVBUV2FueFpLSnlsV2ppUks1RC9YRmhZQVhJaHpudEZYK0dSL01pY2Z2cGx2?=
- =?utf-8?B?OWVBdy9CZGRKd2RubDh5QlNHcVFXTjJXWktuUWhhMHg3eWRJYU9WMzc1WGtX?=
- =?utf-8?B?U1RsMU5ROFEyRWhEQVQyZy82eTJLSThTQ2lRL1lWTndTbXNHSDNZVEdBYkRS?=
- =?utf-8?B?OWpVUXhWOU1GcUQ1aFVRTEZBMHFKMnhjaG1mT2NuMFN5NUFvWFVYMTNRSUda?=
- =?utf-8?B?SXZ3b0pZbFczZG90bDZOY09scWFkYkNLRjU1ZU1wNGlJS1V6QWk5dTVKYkkv?=
- =?utf-8?B?WHBDQ1hGUkdKanB1S2hDc2F6LzJOY256bzIwUmtvYzRNSnhNbGR5VjNUYjE5?=
- =?utf-8?B?cEI3YUFQaWZlUkRBVlBkWThENnU0OUR6UEt0ZGdiRDhRdkY1TTZkUTNESWFj?=
- =?utf-8?B?clNWUkY2eFlXL0I0UUU3QndMM0lWeGhaaGp4VTY4T09aUktROWtJUTBwVEFt?=
- =?utf-8?B?K1pJSlhrcmgwdjAwK3RLeGJFTnU1MXhDRjQ2WWRnMklEbERQUmpoN0NxREln?=
- =?utf-8?B?ajkzeGFjNHYxMkpqMkpOWFNBVjVpOVFHcy8zMlRXbHNtT2VmdGw3UGdSdXRV?=
- =?utf-8?B?RkpHczlYQms5RU1mZU54YzJQdTFKZk9KeXdUYklVbjhabThUTVdndFlJSFZu?=
- =?utf-8?B?U3NjMlNBQndGSlFERmlzbnVQSTJuVEVXWkZneTFrSldTZCtnelNvditwZnFH?=
- =?utf-8?B?UzFLZmM2WE9BdGdqSFZrVnRDTU9BMVVqQmVCVHRHTmtERWZweVNRc0xRRmFj?=
- =?utf-8?B?d0llT1AyNFZrakJYRk1URnVoRjF0Nk9ObElvWkJWWkNrbUlKZWJBRzN4blNk?=
- =?utf-8?B?WWloMUtzUm85VElBOEZDamw0SDRFSkV2d3k2R0t5eGN5SG1rVFhLQTJEdVlI?=
- =?utf-8?B?d2N5cytTWlpRMjFaTTVhTXVNWjc3OVVJek9yLzBlQzltK2ZFanN6LzNVU05p?=
- =?utf-8?B?OGhRSmhHeXlkS2sxaXQ0UmIxTDhsYUQ0bFNZcWhlS3JSOURyU1RyMWNaRG5m?=
- =?utf-8?B?MVcxQXFSWWx6T1ljeEExaHZDb3ZrR3Q5bjlzVGZpY3BYOU1hcHBqTFFWTjFp?=
- =?utf-8?B?bDZlYVlCQ0hBYUtOVzgrTkE4d0dHWEUxaTVnM0srYkVNcjIxZlZXQkRsTTdx?=
- =?utf-8?B?YlQwNmxDSGY5aFFqSlIzME9HRTJMK3kwdFBUNWFYbER3ZE9vYWxQMG1GeFVr?=
- =?utf-8?B?TVo5bUtPY2I3dFVNVHEzNzhCN2pTTkRPQ3IwM1ZseWZITnFnOWt1aDNIeGVj?=
- =?utf-8?B?VUM1QnczaHRHSlRaTEo4NFNpYW54MUJkbXUzRU1HTGVsMVNONE5OZjBmS1dp?=
- =?utf-8?B?NjVTMjg0clEyU3loMGF4SlRvUlo0Yy9zVGJKclU1SUxlNkhtdkVGRmNIMENP?=
- =?utf-8?B?MUQ4UEFIZVFnM0huY2lNbXBSZzRIYXZpWG1EZnlMOHhMS2tNamt0NU96Tm90?=
- =?utf-8?B?NmQ1dkNET1NXOFF2RFgxcGpEN2dBZDVmcC9Id0FScGQ5aUZaY2paNXJKYzBv?=
- =?utf-8?B?NHZOMmpMb3FEZUVZQ2ZhSjJsZXd3QTlzbXBrUnUxSndyTDJyUERNeVVNaElk?=
- =?utf-8?B?SmNMN1FtbWVCUU0yT3F6QktDUUVuRkYxd3N1S1dYRmw1T1ZvSDZWM0I3b2t6?=
- =?utf-8?B?UDZOK0ZPa0tFWjlUQno2YTZib3gzRlppMUZrUURxS0xVUW1ZUjQza1Y0V0ZT?=
- =?utf-8?B?SEROcWF1bmc2UVZaSHVkMGF0NmkvdlB5aDQ4WWtZUXdqSTdoWjJXaU5YQy93?=
- =?utf-8?B?T1lZTDliSGM0SEFRMzVkeEhjZUVZWklUYnFqem1yQkVsY2NpbzJ0amxjZThF?=
- =?utf-8?B?UnliNm1VMURPWHhONVpDd3FJNzFLTFJjZGFhT0hpWEFQKzNrejR5c1Fzendy?=
- =?utf-8?B?Y2pjYXdXVlZqNUorQlEzR3Bkd2ZUWFR1V1NXZjBQVG14T2xZbU84TkFhRkNn?=
- =?utf-8?Q?9st1BWghO5WKW5p4=3D?=
-X-Exchange-RoutingPolicyChecked: rV/ctFapDgbyVO9ewH7kWcnfmMaU5t7Px1jnE+yVPPXUcNKCNXvd5jH2zL81Ty9Uab0HlRdkagZ5LG2dX6mQ7al1RmZgXNcpag6O/UyaZ1SKWOyNutF7mptTn5oX0ufOkzYMeBGeUttZv2XN+P+Q5JW88rcaFP1w++TYQmwjhTDpWHSHxq3r1I6siQb58OYJ6wIuOZbKnWmzslw93W7/Z1R0S9WhLRvj8CHwnCcQsoIHYA4YNA4ffX03hImX6edcgamtUKu7Qus+n3N3Z110p18xM9mqCxHQYQeEdT1vTGPteJ1jCcmeiCDDV+QP9Ckn0884+GrRLZSoaADkF/tUiA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7315c670-cbad-4c6e-8463-08dea5165786
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 11:07:31.8398 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: jPOO4Lg+GoiHmbJp3a6UeNQUWhQ0oxFwx+v3/XrzF+vejEp1e3hA2QScS1APJ+YbG5sahyz1vOcJwhk63KVMAaye3Z4jwLwtZ82zcTHwLxM=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7909
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <ae_jeJLlVWjJ4sOY@yury>
+X-Mailman-Approved-At: Thu, 30 Apr 2026 16:39:57 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -173,56 +85,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 91234483510
+X-Rspamd-Queue-Id: 0A3FE4A5DBC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [2.39 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[53];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,patchwork.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9];
-	RCPT_COUNT_THREE(0.00)[3];
-	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
+	DMARC_NA(0.00)[crashing.org];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux-foundation.org,kernel.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[50];
+	HAS_XAW(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[segher@kernel.crashing.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.990];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email]
+
+Hi!
+
+On Mon, Apr 27, 2026 at 06:30:16PM -0400, Yury Norov wrote:
+> On Mon, Apr 27, 2026 at 02:52:05PM -0700, Linus Torvalds wrote:
+> > On Mon, 27 Apr 2026 at 12:19, Yury Norov <ynorov@nvidia.com> wrote:
+> > >
+> > > This is what Linus said when added x86 implementation for copy_from_user()
+> > > in c512c69187197:
+> > 
+> > Note that some things have happily changed in the six+ years since...
+> > 
+> > >   That's partly because we have no current users of it, but also partly
+> > >   because the copy_from_user() case is slightly different and cannot
+> > >   efficiently be implemented in terms of a unsafe_get_user() loop (because
+> > >   gcc can't do asm goto with outputs).
+> > 
+> > now everybody can do asm goto with outputs.
+> > 
+> > Yes, it's disabled on older versions, so it's not *always* available,
+> > but all modern versions do it. And if you care about performance, you
+> > won't be using an old compiler.
+> 
+> The minimal GCC version is 8.1, and asm goto with outputs is supported
+> since GCC-11. That would brake the build, if we just switch to using it
+> without "CC_IS_GCC && (GCC_VERSION >= 110100)" guard.
+> 
+> Is it worth to maintain 2 version of the function? I don't know...
+
+GCC 11 was released five years and a day ago.  The last GCC 11 release
+(that of 11.5) is not even two years ago though (but there will be no
+more!)
+
+So it would be not conservative at all to require GCC 11 as minimum now,
+some people might even call it a bit aggressive.  But in a year (or
+maybe two) the lay of the land will be rather different.
 
 
-On 4/24/2026 2:39 PM, Ankit Nautiyal wrote:
-> This is a subset of patches separated from the series at
-> https://patchwork.freedesktop.org/series/164512/ for merging.
->
-> Currently VRR is not supported for DP branch devices, but AS SDP
-> handling don't fully reflect that. This small series fixes that.
->
-> Ankit Nautiyal (3):
->    drm/i915/vrr: Avoid vrr for PCON with HDMI2.1 sink
->    drm/i915/dp: Add a helper to decide if AS SDP can be used
->    drm/i915/dp: Skip AS SDP for DP branch devices
->
->   drivers/gpu/drm/i915/display/intel_dp.c  | 22 +++++++++++++++++++++-
->   drivers/gpu/drm/i915/display/intel_vrr.c | 10 ++++++++++
->   2 files changed, 31 insertions(+), 1 deletion(-)
-
-
-Thanks for the reviews, pushed to drm-intel-next.
-
-Regards,
-
-Ankit
-
-
+Segher
