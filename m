@@ -2,97 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KPK8Dx3j8GmoagEAu9opvQ
+	id kDTyG8ji8GmoagEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 18:41:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 18:39:36 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 010784892B4
-	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 18:40:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A3DA0489258
+	for <lists+intel-gfx@lfdr.de>; Tue, 28 Apr 2026 18:39:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CECA10EBE7;
-	Tue, 28 Apr 2026 16:40:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6528310ED6B;
+	Tue, 28 Apr 2026 16:39:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=embeddedor.com header.i=@embeddedor.com header.b="PoIIE7t8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DLvNpQk5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 427 seconds by postgrey-1.36 at gabe;
- Tue, 28 Apr 2026 16:40:55 UTC
-Received: from omta34.uswest2.a.cloudfilter.net
- (omta34.uswest2.a.cloudfilter.net [35.89.44.33])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2052910E2F8
- for <intel-gfx@lists.freedesktop.org>; Tue, 28 Apr 2026 16:40:55 +0000 (UTC)
-Received: from eig-obgw-6002b.ext.cloudfilter.net ([10.0.30.203])
- by cmsmtp with ESMTPS
- id Hj3ywpY7orDqVHlNbw2nAS; Tue, 28 Apr 2026 16:33:47 +0000
-Received: from gator4166.hostgator.com ([108.167.190.91]) by cmsmtp with ESMTPS
- id HlNawpIgfbONDHlNaw4jv6; Tue, 28 Apr 2026 16:33:46 +0000
-X-Authority-Analysis: v=2.4 cv=XdKJzJ55 c=1 sm=1 tr=0 ts=69f0e16a
- a=vY9Mjuda9oMEc2E4Cx1x2A==:117 a=vY9Mjuda9oMEc2E4Cx1x2A==:17
- a=IkcTkHD0fZMA:10 a=A5OVakUREuEA:10 a=7T7KSl7uo7wA:10 a=c92rfblmAAAA:8
- a=VwQbUJbxAAAA:8 a=-lHa08R6ZhYopAfIOb8A:9 a=QEXdDO2ut3YA:10
- a=GvGzcOZaWPEFPQC_NcjD:22 a=2aFnImwKRvkU0tJ3nQRT:22
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
- d=embeddedor.com; s=default; h=Content-Transfer-Encoding:Content-Type:
- In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender
- :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
- Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
- List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=kSmTUZAfKefQAJxg+Et3xbccxjjS+rHdTDM7iO/aGJg=; b=PoIIE7t8n8jY0K+Mpg66RBRyA8
- 9Fy2G6XGaYrEml+Remx4NKm4lR0Wef0L2dhGw2k5X7eX6RJy05ZE73E+w2vm4t97jj8gq7gZViMPa
- o0Q3ADNqI8PZdbJfRnvD2utGzt7kOGniLg7+EWngjPL0pdnksoKTA0VT/oi2R3lF4lExoeqfz/nAc
- ilNc6ywR9wtoH2a7OWEj9IMaL9pjI3B2GACSI6A+NLJRhMh617wiwV2IgTjKDdBglkuhXIlpDMxK3
- /p5ETmpokgvbQI9D8j8v68TI49yduwZo3vWjzxuHESCRMCMdrhi2z7S5wcUR3ogoz1NVMxLiBR7ww
- v20qHb1g==;
-Received: from [177.238.19.10] (port=48828 helo=[192.168.0.104])
- by gator4166.hostgator.com with esmtpsa (TLS1.2) tls
- TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (Exim 4.99.1)
- (envelope-from <gustavo@embeddedor.com>) id 1wHlNZ-00000002RuV-1Y66;
- Tue, 28 Apr 2026 11:33:45 -0500
-Message-ID: <2d713338-1eb5-4164-816a-6c0f91c8a9e4@embeddedor.com>
-Date: Tue, 28 Apr 2026 10:32:46 -0600
-MIME-Version: 1.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A0CC10E095;
+ Tue, 28 Apr 2026 16:39:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1777394371; x=1808930371;
+ h=message-id:date:subject:to:references:from:in-reply-to:
+ content-transfer-encoding:mime-version;
+ bh=IP3We/teO5YK9D4jgSeWkg7Ge0YBAxExy8VNqhoL49U=;
+ b=DLvNpQk5i7hJRvXvVgb30M+ucx8ItF87weI/VQkSXno2mAkZLzW54Rxv
+ WtK39K/Tq1iS+p6TIsKiNZMZzvc5iy1HTlpV/r7ZvnlICzIihssni/0RB
+ zB+PH+x4mI6PXp96PwYJhshBMKMlqRhslgGb0qfVFBJ5u9iOw5FVCqNX8
+ RHDNMRFk9LHHuT9uwqp8auBEeUHAjt23SHAL6sVKKDHDxvc95t+2xWr81
+ OqeccJ/BzN7U2nJnlV6aoc3/yrUJKUXOLD+OWYeRBKnr4auYLow1QVRHy
+ vujmLbVTTSvwS6MgEmht7FKMQ9CqwHDJWZMswQoYLOoPWt+3MEMsYKoI4 Q==;
+X-CSE-ConnectionGUID: 0GwEMUWyTQafblV+p0rO0w==
+X-CSE-MsgGUID: TaRQmb+fQ2mUaE8LBDkdww==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="78371066"
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="78371066"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 09:39:31 -0700
+X-CSE-ConnectionGUID: t8E3C5GjSLKOzFfvv34SEQ==
+X-CSE-MsgGUID: +00o3x8HQUK5MJN6cq+z3Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,204,1770624000"; d="scan'208";a="229421720"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa006.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 28 Apr 2026 09:39:31 -0700
+Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 28 Apr 2026 09:39:30 -0700
+Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 28 Apr 2026 09:39:30 -0700
+Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.4) by
+ edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 28 Apr 2026 09:39:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=NEP1ucGhpP5TRAbPgAY//yFqEScKWwR8F/o6iDl+2bT9uISDK9xGHuh+FVZhiO4Z9SwcfIeW/oE8x2G4z7qcHWqWPu6MerEsXIt6VAOzyO11EabEK0ZK5q53m+5gYErh4jWoBmyhxBLLWr4hptKQrd3GGF56cXGa4ZCFUMhha0LXhQig8h8btdV5PkfhTNTvoYZUH7p2h+ZtDduiwSk0A6Q0kZPEZxG/H50wk2xvbLUycPzU6fhXcA/CDD9BTq5v+ap+buYMQ1Y/MH+zVTXaAksi77nysWXu0lUijew/N8lkJ65u2XVF7Jgk8ZHwLzV5ImvT/DbeMCDdwBZ4s6b9nw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=t8/vb1wjw8b48lACe7Mya+UPAKr3zSQK3hhGtiW/wA8=;
+ b=IXPVzYYXfG4dv6JJ4QyiIdejC5jI6esYsClHSWeQeSbKGKp6nC3sk/27mEM2jbGP9Fi+SwWYlZsicuhdb4+NAZxQv816MrMjwB00SVd7vQ+sMlq6AmmJnTn/kOoIjvZ8dAd8mc563pjaaRo99KDfaUVyT2HFl0sZ4eJCPXmz2AYb46vho4YuC/CZ5jKCeueb0PpDGpdfucEpWDe3qHA2VsALAIANie9rojmmT6WbypEZDR2LobwOFEa6FocSN+G2YZm406Uruh3KWRVsHRCxY+/PWgYDToI91tUOe0qz+Enrfh9ybQ+tgJxc0kTcHrUQrhUIepZdjO2oZ09Z8agS2w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by PH8PR11MB8015.namprd11.prod.outlook.com (2603:10b6:510:23b::18) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.17; Tue, 28 Apr
+ 2026 16:39:24 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%6]) with mapi id 15.20.9870.016; Tue, 28 Apr 2026
+ 16:39:24 +0000
+Message-ID: <15f3c557-602f-4fd9-a2fd-d77290e255fc@intel.com>
+Date: Tue, 28 Apr 2026 22:09:15 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH][next] drm/i915/gvt: Avoid -Wflex-array-member-not-at-end
- warning
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- "Gustavo A. R. Silva" <gustavoars@kernel.org>,
- Zhenyu Wang <zhenyuw.linux@gmail.com>, Zhi Wang <zhi.wang.linux@gmail.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, linux-hardening@vger.kernel.org
-References: <ae_4GkBsNl_0SYTm@kspp>
- <4d5f5949b34f7bba00ed570ad2098074aa0c05f5@intel.com>
+Subject: Re: [RFC PATCH] drm/i915/psr: Prevent DC entry during active vblank
+ for Panel Replay
+To: "Hogander, Jouni" <jouni.hogander@intel.com>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+References: <20260428123951.3803703-1-dibin.moolakadan.subrahmanian@intel.com>
+ <70d7c60be91c179b8d47997cd00ac5d84e824c8c.camel@intel.com>
 Content-Language: en-US
-From: "Gustavo A. R. Silva" <gustavo@embeddedor.com>
-In-Reply-To: <4d5f5949b34f7bba00ed570ad2098074aa0c05f5@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse,
- please include it with any abuse report
-X-AntiAbuse: Primary Hostname - gator4166.hostgator.com
-X-AntiAbuse: Original Domain - lists.freedesktop.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - embeddedor.com
-X-BWhitelist: no
-X-Source-IP: 177.238.19.10
-X-Source-L: No
-X-Exim-ID: 1wHlNZ-00000002RuV-1Y66
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: ([192.168.0.104]) [177.238.19.10]:48828
-X-Source-Auth: gustavo@embeddedor.com
-X-Email-Count: 4
-X-Org: HG=hgshared;ORG=hostgator;
-X-Source-Cap: Z3V6aWRpbmU7Z3V6aWRpbmU7Z2F0b3I0MTY2Lmhvc3RnYXRvci5jb20=
-X-Local-Domain: yes
-X-CMAE-Envelope: MS4xfICpElY7/1YgRpG6YgxOCBpQB0I7xVsrxSR2fNBsAi65UFQ1ngSUb5hFI1dMwAthCzurXFrOyCh/0uDePk+BuHHRr+MeYT4lSJk8zauylRkWpxu90N75
- 9ps1AvjUrseW6KgChaFFoyQHaHnlXUpDQOcDpoKICrKy9TQzmneuzL8ZaRR5qcmV2j5aCDVodV2SBLIrv6Ldy/Pf9vWBNcyzLwd595yAbXjsHX1gn+OMHqHg
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <70d7c60be91c179b8d47997cd00ac5d84e824c8c.camel@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5P287CA0001.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:176::10) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|PH8PR11MB8015:EE_
+X-MS-Office365-Filtering-Correlation-Id: 45477730-3b1d-4891-6c8e-08dea544b4b7
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|22082099003|18002099003|56012099003; 
+X-Microsoft-Antispam-Message-Info: U63JXAUJnLVEXUHb6i5Kd6ljK4jlL08GgXNDuL9ydY+p9+F0ziwuIB1+yRcZd4mrdKPJUBxzx/bf5eH5fVYH63ByPvwqUO0/ATF+eLj8DAo+TOVB7I6DEjm8ZzcJcBY0pRz+2XeXiMWJuF5+qWwTiDasSLtdM1XMbl+2DaMDtn2/01t/rvJmt7stVBb5q5maUQBygqtgkn71mzKn9Z+D3xLYnbAWWeYqVSNgEwaqQD4RR4KE8+FD5UQeZobs+YalOKJIgXNNyYKxUNLHpOli0NrRU2ChSR0QU5JANk+1KLvvx7Jv6HJ071n2AgHQTAEZ8dMkMWMwA7iYujZP1KOUO7JT+VzdP+Rsn4O65weolsuWHqySS5Gx4+8AtAg3lMxTV6BXxQnQONHhbFmTxhC9gHmFkvTi34MosOi0Mb5KixDT8Ft8QOMyAZdroALLGmFscdMqd4Gx5uKaHnr0WRDNwOnWBT4v1yWNyKi0vhwJ4dB16tjn9tNSinxG3bZjkx7p+z3xiEk8KCo/eCFgyMEsaDkDdm3dmb++LGzHIJfI2Ir0IV0wR8uu0YhiIL/VsQ0iX4rGJal9qhrZUbdGO3ft76THTcSCDyGNRfe/IDIT5LvcZMsXyL/0SsQg+cZAmdcIYMK4OXalrp0LjSaLXKBMIOnKbjCJX0LHZEbbd6MzR3QhF43Cia5tWrAf8B19scR3YC1+NVwnDyaD9wX3yQ4F5tgLBnTSMtgUvIeFNbFQVMw=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(18002099003)(56012099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?bFhRMElYbVVuT2RlTDdjRmo4N0lsUDcwOEpGdGh1VVY0ZnYvUEtNazlvYkVw?=
+ =?utf-8?B?UlY0bHBpd1BtUkQ4dnFRVWViaHIreDV6QnVjeFcySWM5M3RRMFlMT2hhZUQy?=
+ =?utf-8?B?YmlGR0tSYWdIRXlLbGpNVVFTZVU3UzBLRU4yWUozYk8yak9DSXZMZXpodUd4?=
+ =?utf-8?B?Y055aGk5dUhRd0xCOEFvNTdTKzRiazhWL0lBYUVNMzBScjAreEtSUEZKRG9N?=
+ =?utf-8?B?b3kyb0xTNUZoeEFjWjVLTlk5U0JMMXRSdGw5T2pLMDVhRnQ5bksvTFhyVHdJ?=
+ =?utf-8?B?UzJNNnZieGo0L1R1YjZKTlMzZklHaUFlaVdEdmhrRFgycXZmZGFmQjUza3lQ?=
+ =?utf-8?B?cFFtOXZ2dncyazQzdC93SExaa0ZNWXVpemljRjhLSXFRV0hia3pZUndoS2Nr?=
+ =?utf-8?B?YUk5QndxODl0aDFkWEJsT1pZZURRRkJPK01ocThNR0NEME4zQUdZVHRqd0sx?=
+ =?utf-8?B?c0ZuaHpWUitFYVdWeVZKRXhUbW5DVXRPM0lUb3hRZFVkQmN2MS8zTkJCelRU?=
+ =?utf-8?B?WHhxMGswTGVWTHJQYjR2d2JpMnl3T1R4YjNtZE5sVzgvUXlxZmg1dXFGSG9z?=
+ =?utf-8?B?K3VaREtNSE9Fa1ZXRU9Nc082U3I2ZklTdktJSGFjUzdETmRMcHpvc1VpNi9Z?=
+ =?utf-8?B?aUlmVmttb29iejdTV0NXREtsUnRzci8ycXY1NlhReVUyNzhrMGtHWURpeTh3?=
+ =?utf-8?B?N0t6anVTa0VadkMrUFVrR2p5Sjd0VUtmTWZKU01NZzlnRW51QWtWc3Zvb0dp?=
+ =?utf-8?B?U3ZuMkF3NnkzZXlKQ2xBM0lqRlN5M2lOSU1Ud2Z3WEUwV2YxV3F3ZzVGTjAv?=
+ =?utf-8?B?YlkyK1VKeEJyV0Y4eTBpa1lmK0Z6N3VvNGhxcVBvK0hYd3cwSUIwZ2V0dklZ?=
+ =?utf-8?B?ZGRpWXg5T0hMd3N4M0I3d2JSZW5BdUlrTjVwVlZKemJ0Zy9ObjBBQUVkWTlQ?=
+ =?utf-8?B?M1g3Vmt5Y1JwZWRFL1NIdHA5c25xcVJRNWFOWXlXVVFNYVB1QmxKVE9YZzB2?=
+ =?utf-8?B?ZzBlNE4zdFhkU3hFSHpqd2R1K0FKS0Jwa1VpUFVuSjVYSHplbHYzWC9BbW00?=
+ =?utf-8?B?SmVTUUIwbjIrRjZLalhMc1JNbDhyT1Q4aEtDL083Z2k4ekxla0t6cFVPRmdz?=
+ =?utf-8?B?blZDWnBqREtEWFRNQ1h4VUdQMWxVclFjRUg5WHU1V2Y3QjBOdFZzZjdwMmt0?=
+ =?utf-8?B?aDZvK1IyTFhMQThOVGxpUkJYSkt4VkIzN0F0akQ1TktPMXgvM2g1aEV1SWJD?=
+ =?utf-8?B?VEZkV1RuYnU1RjE5U3NydVNTa0pRVGFDUjhjRDJKZTJwNjRtUXo2YklVN0t1?=
+ =?utf-8?B?TlVsTmxoV0R3cDBJY0g3Tm1DRFJ0Wkx3RUt1VkF5WHpSOGtTbDZDODRIcTZZ?=
+ =?utf-8?B?UEkxQUhKbzJvTWhQRlRqMDFKS3dHWndqTXk1L1o2OEpVWVFSZytzQzFIdDJL?=
+ =?utf-8?B?UjZJMXYvZC83WHVxazBGQzFLWUxGT0tZRWNJNzhKZW9USjNjeTlMd08vVklU?=
+ =?utf-8?B?aXBNSGx4Q3d3eWhHTS8vTzRPZU80bGdQYWczYlJ0eTg5RGxCd1craEdDNGJM?=
+ =?utf-8?B?eXZadWwxbngxNDRlNmRNNW15eVBKTnhjOHpoYWJqNCt2blM1RE8wNUwxYk5F?=
+ =?utf-8?B?Smc1QWN1aHVoK0FyY1ZpUjlVdU9PbzJKK1lxdlV3TXNLWkl3YUZNeDJ0RFJ3?=
+ =?utf-8?B?QTVzWWF5OHAyY3d4Zzl6OHdZSHRxOC9IelhrREphKzYzdEhwQVJud0xOa292?=
+ =?utf-8?B?YUphSUl5bnZMSlJybTczV1NOakwzRXFXRy9ZcUtFeTNSeFlIRWkzYU90blN4?=
+ =?utf-8?B?VEJpa2ZOaVUzTldURkVvWWlGbUNvNlMyTjV6UXRidFF5bFZCcFEyNHJmWWl0?=
+ =?utf-8?B?bkYybDk1K2hvNDYrQmtWcnU1bWtOeEFLZlRsZ3hoUTVETkIzV0ZIWEQ1QTl2?=
+ =?utf-8?B?NDNRRkFubmk5VDlJZmhJL0ZNdWpXZm9PM1Z1cWppU2FDQ3N2WG9rTkFVSnVx?=
+ =?utf-8?B?NUFETlltaHNzcHVyUjA4cTlMUE9UcVNPMno4NkV0eEorRm9xc3RRSVdtbWxP?=
+ =?utf-8?B?QlV5WnRHbE5YS1VPTkxBMXk4Z3JpcGlYQVdFL2tvZWNDaWxINmRjSjU2U3Ew?=
+ =?utf-8?B?aVZvWHdoMzN2WU1XdzRlbWZZWVRYa21mS2NIdmNNN1IzVlMzQjB1TWdWejRw?=
+ =?utf-8?B?TFprVUZQU3hFSkUydXF6c01VdlhrS3RLeTBXVG4rM1dva2tFTWFzMVJxb3ly?=
+ =?utf-8?B?dTQraTluTVBZS3I3U1NpVWd5bmlRVmVoTWZzZUVhNEVDY245UFVQN3JFMlFP?=
+ =?utf-8?B?ODFIYStrZFFVNEs1RFhMQmJ2SDNXL0NJWGpFeUVNZlBKYThoZ1dpYVQyMzR1?=
+ =?utf-8?Q?zhVxhTuXtcCvE3/hf+nu7lv4vWFpqdb/yn84O7bCNFkUv?=
+X-MS-Exchange-AntiSpam-MessageData-1: L0LWGLzs+0qZMQ==
+X-Exchange-RoutingPolicyChecked: J8OQEozv4i1fV1yJS1CH71WT7zlJZct1F4hr+AvcrDZhoaSoNJ2vsTIE8OxvFFyQqU4evXLpn8me0ZqeFIkaqD6MypbOYXu4/R5b+cH1UsuABE9gYJkqrRdKMK5gbL1bmXpdHeIs6fL8hlgfGnpExj2ZW0EkE38dxwJWPf/DkVZ+iSL83UiJAOufY4w7GVRhaOfs24sUp7JSxgP75FvHU3p/d/lLP0zhhPke0JjrXKzy1qNSOycJwd/eaADJazNmz2MFwzKmBLjgIot79Rn5UXqrs8XWj/gjR4s55a6njlip5nuzwKHBWAcFP9VBjXmBsLrwB9DZtWQmAPYX+GI+2w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 45477730-3b1d-4891-6c8e-08dea544b4b7
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Apr 2026 16:39:24.3496 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: zmG0+mRI+IPqie8Fh8VzO4MDqSND6odz52yPW/JJ86x/lry014qC+O1OkhHIUNtbIqypHwJRzr3AozKMEdPL9JB+iIR/RRZHFxN4nXL5DzbZh74dO2v/pHIdjUDaBKSR
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH8PR11MB8015
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,218 +177,196 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 010784892B4
+X-Rspamd-Queue-Id: A3DA0489258
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.89 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	R_DKIM_REJECT(1.00)[embeddedor.com:s=default];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[embeddedor.com];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:gustavoars@kernel.org,m:zhenyuw.linux@gmail.com,m:zhi.wang.linux@gmail.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-hardening@vger.kernel.org,m:zhenyuwlinux@gmail.com,m:zhiwanglinux@gmail.com,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,gmail.com,intel.com,ursulin.net,ffwll.ch];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[gustavo@embeddedor.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	HAS_X_SOURCE(0.00)[];
-	HAS_X_ANTIABUSE(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[gustavo@embeddedor.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[embeddedor.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_SPAM(0.00)[0.999];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,sashiko.dev:url]
+	RCVD_COUNT_SEVEN(0.00)[9]
 
 
+On 28-04-2026 18:26, Hogander, Jouni wrote:
+> On Tue, 2026-04-28 at 18:09 +0530, Dibin Moolakadan Subrahmanian wrote:
+>> On PTL+ (display ver >= 30), hold the DMC wakelock while vblank is
+>> enabled for Panel Replay. Older platforms rely on
+>> intel_display_power_set_target_dc_state() for this.
+>>
+>> The wakelock is acquired/released at two places:
+>> 1) Dynamically when vblank is enabled/disabled via
+>>     intel_psr_notify_vblank_enable_disable().
+>> 2) In the PSR enable/disable path.
+>>
+>> This handles the following ordering scenarios:
+>> 1) Panel Replay is enabled before vblank enable arrives.
+>> 2) Vblank enable arrives before Panel Replay is updated in
+>>     intel_psr_post_plane_update().
+> As discussed offline I would check if we could just take the wakelock
+> when VBI is getting enabled.
 
-On 4/28/26 01:53, Jani Nikula wrote:
-> On Mon, 27 Apr 2026, "Gustavo A. R. Silva" <gustavoars@kernel.org> wrote:
->> -Wflex-array-member-not-at-end was introduced in GCC-14, and we are
->> getting ready to enable it, globally.
->>
->> Use the TRAILING_OVERLAP() helper to fix the following warning:
->>
->> drivers/gpu/drm/i915/gvt/opregion.c:126:40: warning: structure containing a flexible array member is not at the end of another structure [-Wflex-array-member-not-at-end]
->>
->> This helper creates a union between a flexible-array member (FAM)
->> and a set of members that would otherwise follow it. This overlays
->> the trailing members onto the FAM while preserving the original
->> memory layout.
->>
->> Lastly, the static_assert() ensures the alignment between the FAM and
->> struct efp_child_device_config child0; is not inadvertently changed,
->> and it's intentionally placed inmediately after the related structure
->> (that is, no blank line in between).
->>
->> Signed-off-by: Gustavo A. R. Silva <gustavoars@kernel.org>
+Thanks for the review. As discussed offline,
+I’ll rework this and post a new series which unifies the handling
+by taking the DMC wakelock when VBI/vblank is enabled.
+
+>
+> BR,
+> Jouni Högander
+>
 >> ---
->>   drivers/gpu/drm/i915/gvt/opregion.c | 20 ++++++++++++--------
->>   1 file changed, 12 insertions(+), 8 deletions(-)
+>>   .../drm/i915/display/intel_display_types.h    |  2 +
+>>   drivers/gpu/drm/i915/display/intel_psr.c      | 55
+>> +++++++++++++++++--
+>>   2 files changed, 53 insertions(+), 4 deletions(-)
 >>
->> diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
->> index d6e76ba31d60..efe457c02788 100644
->> --- a/drivers/gpu/drm/i915/gvt/opregion.c
->> +++ b/drivers/gpu/drm/i915/gvt/opregion.c
->> @@ -122,17 +122,21 @@ struct vbt {
->>   	struct bdb_data_header general_features_header;
->>   	struct bdb_general_features general_features;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index c81916761850..f386d6dba9e5 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1775,6 +1775,8 @@ struct intel_psr {
+>>   	bool source_panel_replay_support;
+>>   	bool sink_panel_replay_support;
+>>   	bool panel_replay_enabled;
+>> +	bool panel_replay_wakelock;
+>> +	bool vblank_enabled;
+>>   	u32 dc3co_exitline;
+>>   	u32 dc3co_exit_delay;
+>>   	struct delayed_work dc3co_work;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c
+>> b/drivers/gpu/drm/i915/display/intel_psr.c
+>> index 63c19958a9e3..82bc63054906 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+>> @@ -2192,6 +2192,34 @@ static bool psr_interrupt_error_check(struct
+>> intel_dp *intel_dp)
+>>   	return true;
+>>   }
 >>   
->> -	struct bdb_data_header general_definitions_header;
->> -	struct bdb_general_definitions general_definitions;
->> -
->> -	struct efp_child_device_config child0;
->> -	struct efp_child_device_config child1;
->> -	struct efp_child_device_config child2;
->> -	struct efp_child_device_config child3;
->> -
->>   	struct bdb_data_header driver_features_header;
->>   	struct bdb_driver_features driver_features;
+>> +static void intel_panel_replay_get_wakelock_locked(struct intel_dp
+>> *intel_dp)
+>> +{
+>> +	struct intel_display *display = to_intel_display(intel_dp);
 >> +
->> +	struct bdb_data_header general_definitions_header;
+>> +	if (DISPLAY_VER(display) < 30)
+>> +		return;
 >> +
->> +	/* Must be last as it ends in a flexible-array member. */
->> +	TRAILING_OVERLAP(struct bdb_general_definitions, general_definitions, devices,
->> +		struct efp_child_device_config child0;
->> +		struct efp_child_device_config child1;
->> +		struct efp_child_device_config child2;
->> +		struct efp_child_device_config child3;
->> +	);
-> 
-> So this impacts the generation of a binary blob, parsed by the client OS
-> driver. In theory, the order of the BDB blocks shouldn't matter, but who
-> knows.
-> 
-> Anyway, I'm more worried about inadvertent padding potentially being
-> introduced. struct vbt should have __packed attribute, which is missing,
-> but I also think the union and the struct within TRAILING_OVERLAP()
-> should also have __packed.
-> 
-> Like, if struct efp_child_device_config gets extended by one byte,
-> what's going to happen with padding? It's __packed on its own, but IIUC
-> that doesn't automatically apply to the enclosing structs or unions.
-
-We have __TRAILING_OVERLAP() to add attributes like __packed to the
-overlapping group of MEMBERS.
-
-So, the patch would look as follows (including the addition of __packed to
-struct vbt):
-
-diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
-index d6e76ba31d60..f4fabba56a1b 100644
---- a/drivers/gpu/drm/i915/gvt/opregion.c
-+++ b/drivers/gpu/drm/i915/gvt/opregion.c
-@@ -122,17 +122,21 @@ struct vbt {
-         struct bdb_data_header general_features_header;
-         struct bdb_general_features general_features;
-
--       struct bdb_data_header general_definitions_header;
--       struct bdb_general_definitions general_definitions;
--
--       struct efp_child_device_config child0;
--       struct efp_child_device_config child1;
--       struct efp_child_device_config child2;
--       struct efp_child_device_config child3;
--
-         struct bdb_data_header driver_features_header;
-         struct bdb_driver_features driver_features;
--};
-+
-+       struct bdb_data_header general_definitions_header;
-+
-+       /* Must be last as it ends in a flexible-array member. */
-+       __TRAILING_OVERLAP(struct bdb_general_definitions, general_definitions, devices, __packed,
-+               struct efp_child_device_config child0;
-+               struct efp_child_device_config child1;
-+               struct efp_child_device_config child2;
-+               struct efp_child_device_config child3;
-+       );
-+} __packed;
-+static_assert(offsetof(struct vbt, general_definitions.devices) ==
-+             offsetof(struct vbt, child0));
-
-However, Sashiko says this[1]:
-
-"Does moving these fields physically change the byte-for-byte layout and
-block sequence of the VBT exposed to the guest VM?
-struct vbt represents the exact layout of the synthetic VBT exposed to the
-guest VM via the OpRegion. In intel_vgpu_init_opregion(), the structure is
-directly copied to guest memory:
-drivers/gpu/drm/i915/gvt/opregion.c:intel_vgpu_init_opregion() {
-         ...
-         memcpy(buf + INTEL_GVT_OPREGION_VBT_OFFSET, &v, sizeof(struct vbt));
-         ...
-}"
-
-If shuffling fields around actually causes any issues, I can use a different
-approach, like the one below (thanks to -fms-extensions):
-
-diff --git a/drivers/gpu/drm/i915/display/intel_vbt_defs.h b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-index 0dc13d080e8a..b238636e315e 100644
---- a/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-+++ b/drivers/gpu/drm/i915/display/intel_vbt_defs.h
-@@ -568,7 +568,7 @@ struct child_device_config {
-         u32 edp_data_rate_override_reserved:20;                 /* 263+ */
-  } __packed;
-
--struct bdb_general_definitions {
-+struct bdb_general_definitions_hdr {
-         /* DDC GPIO */
-         u8 crt_ddc_gmbus_pin;
-
-@@ -581,7 +581,10 @@ struct bdb_general_definitions {
-         /* boot device bits */
-         u8 boot_display[2];
-         u8 child_dev_size;
-+} __packed;
-
-+struct bdb_general_definitions {
-+       struct bdb_general_definitions_hdr;
-         /*
-          * Device info:
-          * If TV is present, it'll be at devices[0].
-diff --git a/drivers/gpu/drm/i915/gvt/opregion.c b/drivers/gpu/drm/i915/gvt/opregion.c
-index d6e76ba31d60..3ebdc4c28c5b 100644
---- a/drivers/gpu/drm/i915/gvt/opregion.c
-+++ b/drivers/gpu/drm/i915/gvt/opregion.c
-@@ -123,7 +123,7 @@ struct vbt {
-         struct bdb_general_features general_features;
-
-         struct bdb_data_header general_definitions_header;
--       struct bdb_general_definitions general_definitions;
-+       struct bdb_general_definitions_hdr general_definitions;
-
-         struct efp_child_device_config child0;
-         struct efp_child_device_config child1;
-@@ -132,7 +132,7 @@ struct vbt {
-
-         struct bdb_data_header driver_features_header;
-         struct bdb_driver_features driver_features;
--};
-+} __packed;
-
-  static void virt_vbt_generation(struct vbt *v)
-  {
-
-However, in this particular case, __TRAILING_OVERLAP() is more robust.
-
-Thanks for the feedback!
--Gustavo
-
-[1] https://sashiko.dev/#/patchset/ae_4GkBsNl_0SYTm%40kspp
+>> +	if (intel_dp->psr.panel_replay_wakelock)
+>> +		return;
+>> +
+>> +	intel_dmc_wl_get_noreg(display);
+>> +	intel_dp->psr.panel_replay_wakelock = true;
+>> +}
+>> +
+>> +static void intel_panel_replay_put_wakelock_locked(struct intel_dp
+>> *intel_dp)
+>> +{
+>> +	struct intel_display *display = to_intel_display(intel_dp);
+>> +
+>> +	if (DISPLAY_VER(display) < 30)
+>> +		return;
+>> +
+>> +	if (!intel_dp->psr.panel_replay_wakelock)
+>> +		return;
+>> +
+>> +	intel_dmc_wl_put_noreg(display);
+>> +	intel_dp->psr.panel_replay_wakelock = false;
+>> +}
+>> +
+>>   static void intel_psr_enable_locked(struct intel_dp *intel_dp,
+>>   				    const struct intel_crtc_state
+>> *crtc_state)
+>>   {
+>> @@ -2224,8 +2252,11 @@ static void intel_psr_enable_locked(struct
+>> intel_dp *intel_dp,
+>>   	if (!psr_interrupt_error_check(intel_dp))
+>>   		return;
+>>   
+>> -	if (intel_dp->psr.panel_replay_enabled)
+>> +	if (intel_dp->psr.panel_replay_enabled) {
+>> +		if (intel_dp->psr.vblank_enabled)
+>> +			intel_panel_replay_get_wakelock_locked(intel
+>> _dp);
+>>   		drm_dbg_kms(display->drm, "Enabling Panel
+>> Replay\n");
+>> +	}
+>>   	else
+>>   		drm_dbg_kms(display->drm, "Enabling PSR%s\n",
+>>   			    intel_dp->psr.sel_update_enabled ? "2" :
+>> "1");
+>> @@ -2344,8 +2375,10 @@ static void intel_psr_disable_locked(struct
+>> intel_dp *intel_dp)
+>>   	if (!intel_dp->psr.enabled)
+>>   		return;
+>>   
+>> -	if (intel_dp->psr.panel_replay_enabled)
+>> +	if (intel_dp->psr.panel_replay_enabled) {
+>> +		intel_panel_replay_put_wakelock_locked(intel_dp);
+>>   		drm_dbg_kms(display->drm, "Disabling Panel
+>> Replay\n");
+>> +	}
+>>   	else
+>>   		drm_dbg_kms(display->drm, "Disabling PSR%s\n",
+>>   			    intel_dp->psr.sel_update_enabled ? "2" :
+>> "1");
+>> @@ -4143,9 +4176,24 @@ void
+>> intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+>>   		struct intel_dp *intel_dp =
+>> enc_to_intel_dp(encoder);
+>>   
+>>   		mutex_lock(&intel_dp->psr.lock);
+>> +		intel_dp->psr.vblank_enabled = enable;
+>>   		if (intel_dp->psr.panel_replay_enabled) {
+>> +			/*
+>> +			 * wakelock handling for panel replay
+>> +			 * for older platform rely on
+>> intel_display_power_set_target_dc_state().
+>> +			 */
+>> +			if (DISPLAY_VER(display) < 30) {
+>> +				mutex_unlock(&intel_dp->psr.lock);
+>> +				break;
+>> +			}
+>> +
+>> +			if (enable)
+>> +				intel_panel_replay_get_wakelock_lock
+>> ed(intel_dp);
+>> +			else
+>> +				intel_panel_replay_put_wakelock_lock
+>> ed(intel_dp);
+>> +
+>>   			mutex_unlock(&intel_dp->psr.lock);
+>> -			break;
+>> +			return;
+>>   		}
+>>   
+>>   		if (intel_dp->psr.enabled && intel_dp-
+>>> psr.pkg_c_latency_used)
+>> @@ -4154,7 +4202,6 @@ void
+>> intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+>>   		mutex_unlock(&intel_dp->psr.lock);
+>>   		return;
+>>   	}
+>> -
+>>   	/*
+>>   	 * NOTE: intel_display_power_set_target_dc_state is used
+>>   	 * only by PSR * code for DC3CO handling. DC3CO target
