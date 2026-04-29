@@ -2,68 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHnLL7Ln8WlZlAEAu9opvQ
+	id KNjiOvbq8WmalQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 13:12:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 13:26:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2E3DB4935FF
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 13:12:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BF6CB4937F6
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 13:26:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2179D10EF51;
-	Wed, 29 Apr 2026 11:12:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1717210E3BB;
+	Wed, 29 Apr 2026 11:26:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UFUoc5KM";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ejvHWE1z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 897F910EF51;
- Wed, 29 Apr 2026 11:12:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777461168; x=1808997168;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=R3ynsSgGydF2MWr8dU7H5uhrEbi6RxmHbFie/XQXfvk=;
- b=UFUoc5KMHjGZyEQPMwMBYL2UkHa1KbOpjGGYrgHpUIqwO+fARRNoQVk2
- +VgNXaRuz8JloC/NMbHa693psWFJL1WWLqF41gZbEqqMkvsdbMCpfN2xh
- Ai5Qqv7ONHLOAPeljb3cnpmxH/+5XRAV9qvYW/qemxhaASFnwbi8/H7pf
- wetPlQqp5bKyjpkyFNm5GgKc7F5nsENBOCfODniFDY1DY+0nOV5sVtmBM
- Vla+IJPTe2yunvOv9tSoIWjRO116XQHx7/co7fuWEXIfSEMGs7Nmma1b6
- tcwdE+L9C4Tm0OQ3h54t7Aboy8a2o62jQ07Ujc0+EylV8+ZCU4k+E/9+O Q==;
-X-CSE-ConnectionGUID: R92WdlE3SLO1pds3mJet5w==
-X-CSE-MsgGUID: VTAGYrL0QMev9gPfqq/UoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="78281425"
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="78281425"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 04:12:47 -0700
-X-CSE-ConnectionGUID: O27xxbP/TiKmFkZMAiq8Yw==
-X-CSE-MsgGUID: ILPkbb8URwiqviJWLbyOOA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="264616901"
-Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.218])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 04:12:46 -0700
-Date: Wed, 29 Apr 2026 14:12:42 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 10/15] drm/i915/irq: move VLV/CHV LPE irq handler call
- after irq acks
-Message-ID: <afHnqlNsDmPZtf6d@intel.com>
-References: <cover.1777458161.git.jani.nikula@intel.com>
- <8932c31b9fec5c50f64dbb5d9f2e682b1e6d3d5c.1777458161.git.jani.nikula@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2343210EF9C;
+ Wed, 29 Apr 2026 11:26:43 +0000 (UTC)
+Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
+ by sea.source.kernel.org (Postfix) with ESMTP id CA92D403EB;
+ Wed, 29 Apr 2026 11:26:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 158D1C19425;
+ Wed, 29 Apr 2026 11:26:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+ s=k20201202; t=1777462002;
+ bh=HgV0q/+gZ9n2giWTxhUD6P3yQ6wEmY66ZwCWQHhgQ2g=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+ b=ejvHWE1zJ0tb1KwQu/gVCMj0KcNhlMqCOjLI4kQmWC01EPIO4HFDTFQg5PpNyMx2F
+ 7OMWgwbyfp16yd5ZKGLwfDDMuBlWK8CK9qcSIqUHZRxyhnWE4iAN+OK+xmr5WBtr4T
+ BgqmCB7r/rsFvwFu/mT2z67QkDE/mDzOf7GDi68KHsQjYM3r7svy7TXqJDW5kWsfNa
+ xYHmkznhflijvwvOUJkH6AcM42ZHWo8kZp7k26fwbFC82N/jHC8/F/rL8GlM8z6Ksh
+ UMOZ5KVH94exo80oAIrmoHKOK/k/qke5mU8V2uOXUW3Mlxuf7JynBO/Edq8wMcfI5M
+ twwrBSWDcoLLw==
+Date: Wed, 29 Apr 2026 12:26:30 +0100
+From: Will Deacon <will@kernel.org>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: Yury Norov <ynorov@nvidia.com>, Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ linux-x25@vger.kernel.org, rust-for-linux@vger.kernel.org,
+ linux-sound@vger.kernel.org, sound-open-firmware@alsa-project.org,
+ linux-csky@vger.kernel.org, linux-hexagon@vger.kernel.org,
+ loongarch@lists.linux.dev, linux-m68k@lists.linux-m68k.org,
+ linux-openrisc@vger.kernel.org, linux-parisc@vger.kernel.org,
+ linux-sh@vger.kernel.org, linux-arch@vger.kernel.org,
+ catalin.marinas@arm.com
+Subject: Re: [RFC PATCH v1 8/9] arm64: Add unsafe_copy_from_user()
+Message-ID: <afHq5vyNUJzxVwDV@willie-the-truck>
+References: <cover.1777306795.git.chleroy@kernel.org>
+ <5b09e58a84c9edcfe5724db5cd57e45d96a96bfa.1777306795.git.chleroy@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <8932c31b9fec5c50f64dbb5d9f2e682b1e6d3d5c.1777458161.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <5b09e58a84c9edcfe5724db5cd57e45d96a96bfa.1777306795.git.chleroy@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,102 +86,53 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2E3DB4935FF
+X-Rspamd-Queue-Id: BF6CB4937F6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[nvidia.com,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org,arm.com];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCPT_COUNT_GT_50(0.00)[50];
+	FROM_NEQ_ENVFROM(0.00)[will@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Wed, Apr 29, 2026 at 01:24:50PM +0300, Jani Nikula wrote:
-> The location of the intel_lpe_audio_irq_handler() call seems too
-> early. Group the handler calls together slightly later.
+[+Catalin]
+
+On Mon, Apr 27, 2026 at 07:13:49PM +0200, Christophe Leroy (CS GROUP) wrote:
+> At the time being, x86 and arm64 are missing unsafe_copy_from_user().
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> Add it.
+> 
+> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
 > ---
->  drivers/gpu/drm/i915/i915_irq.c | 18 +++++++++---------
->  1 file changed, 9 insertions(+), 9 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index ef9eadf38a53..1c87f56d668d 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -282,10 +282,6 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
->  		 * signalled in IIR */
->  		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
->  
-> -		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
-> -			   I915_LPE_PIPE_B_INTERRUPT))
-> -			intel_lpe_audio_irq_handler(display);
+>  arch/arm64/include/asm/uaccess.h | 29 ++++++++++++++++++++++++-----
+>  1 file changed, 24 insertions(+), 5 deletions(-)
 
-This thing acks the irq too, so I believe it needs to stay here.
+Why?
 
-> -
->  		/*
->  		 * VLV_IIR is single buffered, and reflects the level
->  		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
-> @@ -301,6 +297,10 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
->  		if (pm_iir)
->  			gen6_rps_irq_handler(&to_gt(dev_priv)->rps, pm_iir);
->  
-> +		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
-> +			   I915_LPE_PIPE_B_INTERRUPT))
-> +			intel_lpe_audio_irq_handler(display);
-> +
->  		if (hotplug_status)
->  			i9xx_hpd_irq_handler(display, hotplug_status);
->  
-> @@ -372,11 +372,6 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
->  		 * signalled in IIR */
->  		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
->  
-> -		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
-> -			   I915_LPE_PIPE_B_INTERRUPT |
-> -			   I915_LPE_PIPE_C_INTERRUPT))
-> -			intel_lpe_audio_irq_handler(display);
-> -
->  		/*
->  		 * VLV_IIR is single buffered, and reflects the level
->  		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
-> @@ -387,6 +382,11 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
->  		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
->  		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
->  
-> +		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
-> +			   I915_LPE_PIPE_B_INTERRUPT |
-> +			   I915_LPE_PIPE_C_INTERRUPT))
-> +			intel_lpe_audio_irq_handler(display);
-> +
->  		if (hotplug_status)
->  			i9xx_hpd_irq_handler(display, hotplug_status);
->  
-> -- 
-> 2.47.3
+And please cc the arm64 maintainers on arm64 patches next time. You've
+managed to cc most of the world apart from us.
 
--- 
-Ville Syrjälä
-Intel
+Will
