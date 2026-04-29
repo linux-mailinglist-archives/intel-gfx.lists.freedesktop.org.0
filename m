@@ -2,66 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DIQGcLc8WnKkwEAu9opvQ
+	id ACyqGuKF82kY4wEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 18:40:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 135E2492D7C
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7B55F4A5DD1
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 18:40:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AB4C710EF81;
-	Wed, 29 Apr 2026 10:26:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0540010F3D4;
+	Thu, 30 Apr 2026 16:39:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="D11ocZzZ";
+	dkim=pass (1024-bit key; unprotected) header.d=linux.dev header.i=@linux.dev header.b="syDuJ2eb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0FA2610EF80;
- Wed, 29 Apr 2026 10:26:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777458364; x=1808994364;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8wrZ8Laf/Xi4Yy3lMSyXOZvipz+/dxB+IxF/cxsvVRk=;
- b=D11ocZzZg9APqVmU+rQjQzim8d1Yy0/OH3oK+uwyup8eX0cPcqTc/+Hi
- q5G4SMqp2bNBJ9vef89lm/a3Ns0gAsNUWOZ/UuBC8nqDLJY1GUbJmg9MV
- Vvqve6pFJah8dLvZimvXTzEZwthiE5jBkV8ZltMxcklUecMep25BdMSLQ
- 91wfFKJoquxvl2rsUZ6L8CdZZbDjgBXqkSpbKH56HEbpvTpF2/I0mN1D7
- ZD+bfHj7nFlZfqG8jBj7ffvDsjWcZuNA8y78dSGz0nn8y7g4T3dxBxS0U
- teUbW2U3DdNi+i7Vgiam+GmemtpVJCORNgQsp3FGU+KZA56W4ZbZc5MDv A==;
-X-CSE-ConnectionGUID: FTqcETyuSr6ltTg/uDy6OQ==
-X-CSE-MsgGUID: ETBoB+e7RA2G1z2Nel6LjA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="103838223"
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="103838223"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 03:26:04 -0700
-X-CSE-ConnectionGUID: RRMV+QViRWKgc++g2Xjeng==
-X-CSE-MsgGUID: xK7VLyj1SIiQew/Bl2fxAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="257784579"
-Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
- ([10.245.245.175])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 03:26:02 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 15/15] drm/i915/irq: add intel_display_irq_handler() to irq
- funcs
-Date: Wed, 29 Apr 2026 13:24:55 +0300
-Message-ID: <4c2be8d52d11977f67d3d52ebf6414d4c0a341ef.1777458161.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1777458161.git.jani.nikula@intel.com>
-References: <cover.1777458161.git.jani.nikula@intel.com>
+X-Greylist: delayed 714 seconds by postgrey-1.36 at gabe;
+ Wed, 29 Apr 2026 10:37:39 UTC
+Received: from out-181.mta1.migadu.com (out-181.mta1.migadu.com
+ [95.215.58.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB73E10EF55;
+ Wed, 29 Apr 2026 10:37:39 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1777458333;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=0ubnPqyEuUH+bb9tWP9+TOUp+n6C5onOR58LCuBDEiw=;
+ b=syDuJ2ebh9z2sjffREH58o0aT6Ajjew8W5I8ReEUtvp2EQkdghmYv8iT9JcU1iX87oMIbX
+ D+xmbMoFNHgWVKDoL6XEe6kPFjJgAeA5FQrv1tK/6uUbSyjmFqItMdxDS/n3eJA5ihtrWC
+ pDy1LXDxeyfrSgRVjezaD0bM6Fa+Scc=
+From: Usama Arif <usama.arif@linux.dev>
+To: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
+Cc: Usama Arif <usama.arif@linux.dev>, Yury Norov <ynorov@nvidia.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ David Laight <david.laight.linux@gmail.com>,
+ Thomas Gleixner <tglx@linutronix.de>, linux-alpha@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linux-snps-arc@lists.infradead.org,
+ linux-arm-kernel@lists.infradead.org, linux-mips@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, kvm@vger.kernel.org,
+ linux-riscv@lists.infradead.org, linux-s390@vger.kernel.org,
+ sparclinux@vger.kernel.org, linux-um@lists.infradead.org,
+ dmaengine@vger.kernel.org, linux-efi@vger.kernel.org,
+ linux-fsi@lists.ozlabs.org, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-wpan@vger.kernel.org, netdev@vger.kernel.org,
+ linux-wireless@vger.kernel.org, linux-spi@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-staging@lists.linux.dev,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ xen-devel@lists.xenproject.org, linux-fsdevel@vger.kernel.org,
+ ocfs2-devel@lists.linux.dev, bpf@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org, linux-x25@vger.kernel.org,
+ rust-for-linux@vger.kernel.org, linux-sound@vger.kernel.org,
+ sound-open-firmware@alsa-project.org, linux-csky@vger.kernel.org,
+ linux-hexagon@vger.kernel.org, loongarch@lists.linux.dev,
+ linux-m68k@lists.linux-m68k.org, linux-openrisc@vger.kernel.org,
+ linux-parisc@vger.kernel.org, linux-sh@vger.kernel.org,
+ linux-arch@vger.kernel.org
+Subject: Re: [RFC PATCH v1 7/9] x86: Add unsafe_copy_from_user()
+Date: Wed, 29 Apr 2026 03:25:19 -0700
+Message-ID: <20260429102520.1617327-1-usama.arif@linux.dev>
+In-Reply-To: <0ee46bb228d97163fbdc14f2a7c52b93d8bc34ce.1777306795.git.chleroy@kernel.org>
+References: 
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Thu, 30 Apr 2026 16:39:57 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -76,449 +86,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 135E2492D7C
+X-Rspamd-Queue-Id: 7B55F4A5DD1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [2.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[30];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FREEMAIL_CC(0.00)[linux.dev,nvidia.com,linux-foundation.org,gmail.com,linutronix.de,vger.kernel.org,lists.infradead.org,lists.ozlabs.org,lists.freedesktop.org,lists.linux.dev,lists.xenproject.org,googlegroups.com,kvack.org,alsa-project.org,lists.linux-m68k.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[usama.arif@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	RCPT_COUNT_GT_50(0.00)[50];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-Call the platform specific display irq handler hooks via
-intel_display_irq_handler(). Add master_ctl to struct
-intel_display_irq_state, and pass the state pointer to the handler where
-necessary.
+On Mon, 27 Apr 2026 19:13:48 +0200 "Christophe Leroy (CS GROUP)" <chleroy@kernel.org> wrote:
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- .../gpu/drm/i915/display/intel_display_irq.c  | 95 ++++++++++++++++---
- .../gpu/drm/i915/display/intel_display_irq.h  | 11 +--
- drivers/gpu/drm/i915/i915_irq.c               | 48 +++-------
- drivers/gpu/drm/xe/display/xe_display.c       |  2 +-
- 4 files changed, 98 insertions(+), 58 deletions(-)
+> At the time being, x86 and arm64 are missing unsafe_copy_from_user().
+> 
+> Add it.
+> 
+> Signed-off-by: Christophe Leroy (CS GROUP) <chleroy@kernel.org>
+> ---
+>  arch/x86/include/asm/uaccess.h | 29 ++++++++++++++++++++++++-----
+>  1 file changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/arch/x86/include/asm/uaccess.h b/arch/x86/include/asm/uaccess.h
+> index 3a0dd3c2b233..10c458ffa399 100644
+> --- a/arch/x86/include/asm/uaccess.h
+> +++ b/arch/x86/include/asm/uaccess.h
+> @@ -598,7 +598,7 @@ _label:									\
+>   * We want the unsafe accessors to always be inlined and use
+>   * the error labels - thus the macro games.
+>   */
+> -#define unsafe_copy_loop(dst, src, len, type, label)				\
+> +#define unsafe_put_loop(dst, src, len, type, label)				\
+>  	while (len >= sizeof(type)) {						\
+>  		unsafe_put_user(*(type *)(src),(type __user *)(dst),label);	\
+>  		dst += sizeof(type);						\
+> @@ -611,10 +611,29 @@ do {									\
+>  	char __user *__ucu_dst = (_dst);				\
+>  	const char *__ucu_src = (_src);					\
+>  	size_t __ucu_len = (_len);					\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> -	unsafe_copy_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> +	unsafe_put_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+> +} while (0)
+> +
+> +#define unsafe_get_loop(dst, src, len, type, label)				\
+> +	while (len >= sizeof(type)) {						\
+> +		unsafe_get_user(*(type __user *)(src),(type *)(dst),label);	\
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 662081e274bf..5aec1bedbd61 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -23,6 +23,7 @@
- #include "intel_fifo_underrun.h"
- #include "intel_gmbus.h"
- #include "intel_hotplug_irq.h"
-+#include "intel_lpe_audio.h"
- #include "intel_parent.h"
- #include "intel_pipe_crc_regs.h"
- #include "intel_plane.h"
-@@ -596,8 +597,8 @@ static void i9xx_pipestat_irq_ack(struct intel_display *display,
- 	spin_unlock(&display->irq.lock);
- }
- 
--void i915_pipestat_irq_handler(struct intel_display *display,
--			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
-+static void i915_pipestat_irq_handler(struct intel_display *display,
-+				      u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
- {
- 	bool blc_event = false;
- 	enum pipe pipe;
-@@ -620,8 +621,8 @@ void i915_pipestat_irq_handler(struct intel_display *display,
- 		intel_opregion_asle_intr(display);
- }
- 
--void i965_pipestat_irq_handler(struct intel_display *display,
--			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
-+static void i965_pipestat_irq_handler(struct intel_display *display,
-+				      u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
- {
- 	bool blc_event = false;
- 	enum pipe pipe;
-@@ -647,8 +648,8 @@ void i965_pipestat_irq_handler(struct intel_display *display,
- 		intel_gmbus_irq_handler(display);
- }
- 
--void valleyview_pipestat_irq_handler(struct intel_display *display,
--				     const u32 pipe_stats[I915_MAX_PIPES])
-+static void valleyview_pipestat_irq_handler(struct intel_display *display,
-+					    const u32 pipe_stats[I915_MAX_PIPES])
- {
- 	enum pipe pipe;
- 
-@@ -1020,7 +1021,8 @@ void ilk_display_irq_master_enable(struct intel_display *display, u32 de_ier, u3
- 		intel_de_write_fw(display, SDEIER, sde_ier);
- }
- 
--bool ilk_display_irq_handler(struct intel_display *display)
-+static bool ilk_display_irq_handler(struct intel_display *display,
-+				    const struct intel_display_irq_state *state)
- {
- 	u32 de_iir;
- 	bool handled = false;
-@@ -1404,7 +1406,7 @@ static void gen8_read_and_ack_pch_irqs(struct intel_display *display, u32 *pch_i
- 		intel_de_write(display, PICAINTERRUPT_IER, pica_ier);
- }
- 
--void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
-+static void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
- {
- 	u32 iir;
- 	enum pipe pipe;
-@@ -1565,6 +1567,14 @@ void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
- 	}
- }
- 
-+static bool gen8_display_irq_handler(struct intel_display *display,
-+				     const struct intel_display_irq_state *state)
-+{
-+	gen8_de_irq_handler(display, state->master_ctl);
-+
-+	return true;
-+}
-+
- u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl)
- {
- 	u32 iir;
-@@ -1589,7 +1599,8 @@ void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir)
- 		intel_opregion_asle_intr(display);
- }
- 
--void gen11_display_irq_handler(struct intel_display *display)
-+static bool gen11_display_irq_handler(struct intel_display *display,
-+				      const struct intel_display_irq_state *state)
- {
- 	u32 disp_ctl;
- 
-@@ -1605,6 +1616,8 @@ void gen11_display_irq_handler(struct intel_display *display)
- 	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
- 
- 	intel_display_rpm_assert_unblock(display);
-+
-+	return true;
- }
- 
- static void i915gm_irq_cstate_wa_enable(struct intel_display *display)
-@@ -1920,8 +1933,8 @@ static void vlv_display_error_irq_ack(struct intel_display *display,
- 	intel_de_write(display, VLV_EMR, emr);
- }
- 
--void vlv_display_error_irq_handler(struct intel_display *display,
--				   u32 eir, u32 dpinvgtt)
-+static void vlv_display_error_irq_handler(struct intel_display *display,
-+					  u32 eir, u32 dpinvgtt)
- {
- 	drm_dbg(display->drm, "Master Error, EIR 0x%08x\n", eir);
- 
-@@ -2020,6 +2033,28 @@ static void i9xx_display_irq_ack(struct intel_display *display,
- 	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
- }
- 
-+static bool i965_display_irq_handler(struct intel_display *display,
-+				     const struct intel_display_irq_state *state)
-+{
-+	if (state->hotplug_status)
-+		i9xx_hpd_irq_handler(display, state->hotplug_status);
-+
-+	i965_pipestat_irq_handler(display, state->iir, state->pipe_stats);
-+
-+	return true;
-+}
-+
-+static bool i915_display_irq_handler(struct intel_display *display,
-+				     const struct intel_display_irq_state *state)
-+{
-+	if (state->hotplug_status)
-+		i9xx_hpd_irq_handler(display, state->hotplug_status);
-+
-+	i915_pipestat_irq_handler(display, state->iir, state->pipe_stats);
-+
-+	return true;
-+}
-+
- static u32 vlv_error_mask(void)
- {
- 	/* TODO enable other errors too? */
-@@ -2088,6 +2123,28 @@ static void vlv_display_irq_ack(struct intel_display *display,
- 	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
- }
- 
-+static bool vlv_display_irq_handler(struct intel_display *display,
-+				    const struct intel_display_irq_state *state)
-+{
-+	u32 lpe_mask = I915_LPE_PIPE_A_INTERRUPT | I915_LPE_PIPE_B_INTERRUPT;
-+
-+	if (display->platform.cherryview)
-+		lpe_mask |= I915_LPE_PIPE_C_INTERRUPT;
-+
-+	if (state->iir & lpe_mask)
-+		intel_lpe_audio_irq_handler(display);
-+
-+	if (state->hotplug_status)
-+		i9xx_hpd_irq_handler(display, state->hotplug_status);
-+
-+	if (state->iir & I915_MASTER_ERROR_INTERRUPT)
-+		vlv_display_error_irq_handler(display, state->eir, state->dpinvgtt);
-+
-+	valleyview_pipestat_irq_handler(display, state->pipe_stats);
-+
-+	return true;
-+}
-+
- static void ibx_display_irq_reset(struct intel_display *display)
- {
- 	if (HAS_PCH_NOP(display))
-@@ -2476,39 +2533,46 @@ struct intel_display_irq_funcs {
- 	void (*reset)(struct intel_display *display);
- 	void (*postinstall)(struct intel_display *display);
- 	void (*ack)(struct intel_display *display, struct intel_display_irq_state *state);
-+	bool (*handler)(struct intel_display *display, const struct intel_display_irq_state *state);
- };
- 
- struct intel_display_irq_funcs gen11_display_irq_funcs = {
- 	.reset = gen11_display_irq_reset,
- 	.postinstall = gen11_de_irq_postinstall,
-+	.handler = gen11_display_irq_handler,
- };
- 
- struct intel_display_irq_funcs gen8_display_irq_funcs = {
- 	.reset = gen8_display_irq_reset,
- 	.postinstall = gen8_de_irq_postinstall,
-+	.handler = gen8_display_irq_handler,
- };
- 
- struct intel_display_irq_funcs vlv_display_irq_funcs = {
- 	.reset = vlv_display_irq_reset,
- 	.postinstall = vlv_display_irq_postinstall,
- 	.ack = vlv_display_irq_ack,
-+	.handler = vlv_display_irq_handler,
- };
- 
- struct intel_display_irq_funcs ilk_display_irq_funcs = {
- 	.reset = ilk_display_irq_reset,
- 	.postinstall = ilk_de_irq_postinstall,
-+	.handler = ilk_display_irq_handler,
- };
- 
- struct intel_display_irq_funcs i965_display_irq_funcs = {
- 	.reset = i9xx_display_irq_reset,
- 	.postinstall = i965_display_irq_postinstall,
- 	.ack = i9xx_display_irq_ack,
-+	.handler = i965_display_irq_handler,
- };
- 
- struct intel_display_irq_funcs i915_display_irq_funcs = {
- 	.reset = i9xx_display_irq_reset,
- 	.postinstall = i915_display_irq_postinstall,
- 	.ack = i9xx_display_irq_ack,
-+	.handler = i915_display_irq_handler,
- };
- 
- void intel_display_irq_reset(struct intel_display *display)
-@@ -2528,6 +2592,15 @@ void intel_display_irq_ack(struct intel_display *display,
- 		display->irq.funcs->ack(display, state);
- }
- 
-+bool intel_display_irq_handler(struct intel_display *display,
-+			       const struct intel_display_irq_state *state)
-+{
-+	if (!display->irq.funcs->handler)
-+		return true;
-+
-+	return display->irq.funcs->handler(display, state);
-+}
-+
- void intel_display_irq_init(struct intel_display *display)
- {
- 	spin_lock_init(&display->irq.lock);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index 3773a31e48f2..a1227cee885a 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -51,14 +51,12 @@ void bdw_disable_vblank(struct drm_crtc *crtc);
- 
- void ilk_display_irq_master_disable(struct intel_display *display, u32 *de_ier, u32 *sde_ier);
- void ilk_display_irq_master_enable(struct intel_display *display, u32 de_ier, u32 sde_ier);
--bool ilk_display_irq_handler(struct intel_display *display);
--void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl);
--void gen11_display_irq_handler(struct intel_display *display);
- 
- u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl);
- void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir);
- 
- struct intel_display_irq_state {
-+	u32 master_ctl;
- 	u32 iir;
- 	u32 eir;
- 	u32 hotplug_status;
-@@ -69,6 +67,7 @@ struct intel_display_irq_state {
- void intel_display_irq_reset(struct intel_display *display);
- void intel_display_irq_postinstall(struct intel_display *display);
- void intel_display_irq_ack(struct intel_display *display, struct intel_display_irq_state *state);
-+bool intel_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
- 
- u32 i9xx_display_irq_enable_mask(struct intel_display *display);
- 
-@@ -76,12 +75,6 @@ u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
- void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
- void i915_disable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
- 
--void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
--void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
--void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
--
--void vlv_display_error_irq_handler(struct intel_display *display, u32 eir, u32 dpinvgtt);
--
- void intel_display_irq_init(struct intel_display *display);
- 
- void i915gm_irq_cstate_wa(struct intel_display *display, bool enable);
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index bb65ce9d09b2..30ce462e92ab 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -38,8 +38,6 @@
- 
- #include "display/intel_display_irq.h"
- #include "display/intel_hotplug.h"
--#include "display/intel_hotplug_irq.h"
--#include "display/intel_lpe_audio.h"
- 
- #include "gt/intel_breadcrumbs.h"
- #include "gt/intel_gt.h"
-@@ -287,17 +285,7 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
- 		if (pm_iir)
- 			gen6_rps_irq_handler(&to_gt(dev_priv)->rps, pm_iir);
- 
--		if (state.iir & (I915_LPE_PIPE_A_INTERRUPT |
--				 I915_LPE_PIPE_B_INTERRUPT))
--			intel_lpe_audio_irq_handler(display);
--
--		if (state.hotplug_status)
--			i9xx_hpd_irq_handler(display, state.hotplug_status);
--
--		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
--			vlv_display_error_irq_handler(display, state.eir, state.dpinvgtt);
--
--		valleyview_pipestat_irq_handler(display, state.pipe_stats);
-+		intel_display_irq_handler(display, &state);
- 	} while (0);
- 
- 	pmu_irq_stats(dev_priv, ret);
-@@ -362,18 +350,7 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
- 		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
- 		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
- 
--		if (state.iir & (I915_LPE_PIPE_A_INTERRUPT |
--				 I915_LPE_PIPE_B_INTERRUPT |
--				 I915_LPE_PIPE_C_INTERRUPT))
--			intel_lpe_audio_irq_handler(display);
--
--		if (state.hotplug_status)
--			i9xx_hpd_irq_handler(display, state.hotplug_status);
--
--		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
--			vlv_display_error_irq_handler(display, state.eir, state.dpinvgtt);
--
--		valleyview_pipestat_irq_handler(display, state.pipe_stats);
-+		intel_display_irq_handler(display, &state);
- 	} while (0);
- 
- 	pmu_irq_stats(dev_priv, ret);
-@@ -420,7 +397,7 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
- 		ret = IRQ_HANDLED;
- 	}
- 
--	if (ilk_display_irq_handler(display))
-+	if (intel_display_irq_handler(display, NULL))
- 		ret = IRQ_HANDLED;
- 
- 	if (GRAPHICS_VER(i915) >= 6) {
-@@ -482,8 +459,11 @@ static irqreturn_t gen8_irq_handler(int irq, void *arg)
- 
- 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
- 	if (master_ctl & ~GEN8_GT_IRQS) {
-+		const struct intel_display_irq_state state = {
-+			.master_ctl = master_ctl,
-+		};
- 		disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
--		gen8_de_irq_handler(display, master_ctl);
-+		intel_display_irq_handler(display, &state);
- 		enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
- 	}
- 
-@@ -535,7 +515,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
- 
- 	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
- 	if (master_ctl & GEN11_DISPLAY_IRQ)
--		gen11_display_irq_handler(display);
-+		intel_display_irq_handler(display, NULL);
- 
- 	gu_misc_iir = gen11_gu_misc_irq_ack(display, master_ctl);
- 
-@@ -602,7 +582,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
- 	gen11_gt_irq_handler(gt, master_ctl);
- 
- 	if (master_ctl & GEN11_DISPLAY_IRQ)
--		gen11_display_irq_handler(display);
-+		intel_display_irq_handler(display, NULL);
- 
- 	gu_misc_iir = gen11_gu_misc_irq_ack(display, master_ctl);
- 
-@@ -906,10 +886,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
- 		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
- 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
- 
--		if (state.hotplug_status)
--			i9xx_hpd_irq_handler(display, state.hotplug_status);
--
--		i915_pipestat_irq_handler(display, state.iir, state.pipe_stats);
-+		intel_display_irq_handler(display, &state);
- 	} while (0);
- 
- 	pmu_irq_stats(dev_priv, ret);
-@@ -1013,10 +990,7 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
- 		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
- 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
- 
--		if (state.hotplug_status)
--			i9xx_hpd_irq_handler(display, state.hotplug_status);
--
--		i965_pipestat_irq_handler(display, state.iir, state.pipe_stats);
-+		intel_display_irq_handler(display, &state);
- 	} while (0);
- 
- 	pmu_irq_stats(dev_priv, IRQ_HANDLED);
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 736a5e6938d6..4f283fb79554 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -214,7 +214,7 @@ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
- 		return;
- 
- 	if (master_ctl & DISPLAY_IRQ)
--		gen11_display_irq_handler(display);
-+		intel_display_irq_handler(display, NULL);
- }
- 
- void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
--- 
-2.47.3
+Hi,
 
+Just wanted to check if src and dst need to be swapped? Same for arm64 patch.
+
+> +		dst += sizeof(type);						\
+> +		src += sizeof(type);						\
+> +		len -= sizeof(type);						\
+> +	}
+> +
+> +#define unsafe_copy_from_user(_dst,_src,_len,label)			\
+> +do {									\
+> +	char *__ucu_dst = (_dst);					\
+> +	const char __user *__ucu_src = (_src);				\
+> +	size_t __ucu_len = (_len);					\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u64, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u32, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u16, label);	\
+> +	unsafe_get_loop(__ucu_dst, __ucu_src, __ucu_len, u8, label);	\
+>  } while (0)
+>  
+>  #ifdef CONFIG_CC_HAS_ASM_GOTO_OUTPUT
+> -- 
+> 2.49.0
+> 
+> 
