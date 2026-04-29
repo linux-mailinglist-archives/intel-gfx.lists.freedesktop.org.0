@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YsLLGr7c8WnvkwEAu9opvQ
+	id YNwYLcDc8WnvkwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:06 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:08 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F1F21492D25
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36A94492D50
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 12:26:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AEBD10EF72;
-	Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E97A210EF7F;
+	Wed, 29 Apr 2026 10:26:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="e0JS+H0c";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JGhd1A41";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BA1510EF70;
- Wed, 29 Apr 2026 10:25:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E3E110EF66;
+ Wed, 29 Apr 2026 10:26:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777458359; x=1808994359;
+ t=1777458360; x=1808994360;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RJIeOUReL1HPlYaEa1QrK/WwbIo4fI32BqN+eDn08ZI=;
- b=e0JS+H0cyz/JEtfo+VHtfFhdOHCCWUE30TXH/PSYQ0l1DqY8Zi5Tumph
- 5/zJW0KLWGKATA2rnuvZoWl96uPV4n9BTnZqajkoKP/kgj/fbATFcnHlC
- 7H+whpn96XWgtG9fIoxoH+m/ID5/w7cjp7UR0nQmOmlyqTfvZG/7iQgvT
- xSEvLyxe2BkumwfStyiZvX+c8YPNIdY8CKNfEER0kvliyEwQjxHs116LH
- S0uzpfVTo1ihd2q5E3o2AbOx80VILzNBW/gf+7cXZEArC8TUGh6VOGAhU
- MG6ZhqdWYGDZHV56Vtt/DXSaZSbJbq1qClcwMJYLndwoEsM2jvsgRxaez g==;
-X-CSE-ConnectionGUID: GJP85EMaSDqkScUM9y3OTw==
-X-CSE-MsgGUID: OpsYVUYxSj6So/OjqlxIzA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="103838213"
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="103838213"
+ bh=2S7+B/9d6HCV8D9VWfirPzGmCPHD2RZxbTgdmIF2N0Y=;
+ b=JGhd1A41xGGeSxmqBDP/DLOuGI4x6mE64u2/sGIpWW+4Umy9v6mDAih2
+ cDafxVlsyBCKzjGQH9guOSZ6OigYVUXk2vKc2qbTwZ5L9U8qTcbW7razp
+ g4rlY9iDjYEHItm5HQu+n6rDXK3P3xsLC9q0vdpRNQpvWDCDsdv8H5N0W
+ UcRvb1N5XMIWSvyxBuGscYKj+sBvySMsMQ+hYpboltkTLCfhTrLRmDchX
+ fFjdOOC+tWtl4u8O6Y1sG3twFiaA1zQ0oAnt2On4BO24nFxg9zC/K2Qt4
+ VAspwI2po31/+psghLH1DX3FGIEuyfmGqgtjaES4X6K2GWUFd+Qtjfdpl w==;
+X-CSE-ConnectionGUID: VVeMu3X3QWGNiESTyYGAyA==
+X-CSE-MsgGUID: T689NyBhQ3utJQdUCRR8Qw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="103838216"
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="103838216"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 03:25:59 -0700
-X-CSE-ConnectionGUID: d3PXnul7RaOcOw8r93Tdxw==
-X-CSE-MsgGUID: psZnC9DwSPSY4GbD60XN2g==
+ 29 Apr 2026 03:26:00 -0700
+X-CSE-ConnectionGUID: 8W/B8r1DSAm1L95jkPNvVA==
+X-CSE-MsgGUID: GPTW0rjTTJS84CU5w2bZ0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="257784391"
+X-IronPort-AV: E=Sophos;i="6.23,205,1770624000"; d="scan'208";a="257784446"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.245.175])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 03:25:54 -0700
+ 29 Apr 2026 03:25:58 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 13/15] drm/i915/irq: add intel_display_irq_postinstall() to
- irq funcs
-Date: Wed, 29 Apr 2026 13:24:53 +0300
-Message-ID: <113f97dd588404acbe03ff9bbffbcfde054addd1.1777458161.git.jani.nikula@intel.com>
+Subject: [PATCH 14/15] drm/i915/irq: add intel_display_irq_ack() to irq funcs
+Date: Wed, 29 Apr 2026 13:24:54 +0300
+Message-ID: <c06db55ca3003fb92c5c0631e03253849863c188.1777458161.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1777458161.git.jani.nikula@intel.com>
 References: <cover.1777458161.git.jani.nikula@intel.com>
@@ -76,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: F1F21492D25
+X-Rspamd-Queue-Id: 36A94492D50
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -106,234 +105,423 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-Call the platform specific display irq postinstall hooks via
-intel_display_irq_postinstall().
+Some platforms have a separate step for acking display irqs. Call the
+platform specific display irq ack hooks, if any, via
+intel_display_irq_ack().
+
+Introduce struct intel_display_irq_state to group together all the data
+the ack hooks need. In the follow-up, this state will be passed on to a
+shared handler function.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  | 24 ++++++++++++++-----
- .../gpu/drm/i915/display/intel_display_irq.h  |  7 +-----
- drivers/gpu/drm/i915/i915_irq.c               | 16 ++++++-------
- drivers/gpu/drm/xe/display/xe_display.c       |  2 +-
- 4 files changed, 28 insertions(+), 21 deletions(-)
+ .../gpu/drm/i915/display/intel_display_irq.c  |  42 ++++-
+ .../gpu/drm/i915/display/intel_display_irq.h  |  12 +-
+ drivers/gpu/drm/i915/i915_irq.c               | 144 +++++++-----------
+ 3 files changed, 102 insertions(+), 96 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 7505652257d8..6ba094a0df66 100644
+index 6ba094a0df66..662081e274bf 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -1981,7 +1981,7 @@ u32 i9xx_display_irq_enable_mask(struct intel_display *display)
- 	return enable_mask;
+@@ -529,8 +529,8 @@ static void i9xx_pipestat_irq_reset(struct intel_display *display)
+ 	}
  }
  
--void i915_display_irq_postinstall(struct intel_display *display)
-+static void i915_display_irq_postinstall(struct intel_display *display)
+-void i9xx_pipestat_irq_ack(struct intel_display *display,
+-			   u32 iir, u32 pipe_stats[I915_MAX_PIPES])
++static void i9xx_pipestat_irq_ack(struct intel_display *display,
++				  u32 iir, u32 pipe_stats[I915_MAX_PIPES])
  {
- 	/*
- 	 * Interrupt setup is already guaranteed to be single-threaded, this is
-@@ -1995,7 +1995,7 @@ void i915_display_irq_postinstall(struct intel_display *display)
+ 	enum pipe pipe;
+ 
+@@ -1898,8 +1898,8 @@ static void vlv_page_table_error_irq_handler(struct intel_display *display, u32
+ 	}
+ }
+ 
+-void vlv_display_error_irq_ack(struct intel_display *display,
+-			       u32 *eir, u32 *dpinvgtt)
++static void vlv_display_error_irq_ack(struct intel_display *display,
++				      u32 *eir, u32 *dpinvgtt)
+ {
+ 	u32 emr;
+ 
+@@ -2010,6 +2010,16 @@ static void i965_display_irq_postinstall(struct intel_display *display)
  	i915_enable_asle_pipestat(display);
  }
  
--void i965_display_irq_postinstall(struct intel_display *display)
-+static void i965_display_irq_postinstall(struct intel_display *display)
++static void i9xx_display_irq_ack(struct intel_display *display,
++				 struct intel_display_irq_state *state)
++{
++	if (state->iir & I915_DISPLAY_PORT_INTERRUPT)
++		state->hotplug_status = i9xx_hpd_irq_ack(display);
++
++	/* Call regardless, as some status bits might not be signalled in IIR */
++	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
++}
++
+ static u32 vlv_error_mask(void)
  {
- 	/*
- 	 * Interrupt setup is already guaranteed to be single-threaded, this is
-@@ -2057,7 +2057,7 @@ static void _vlv_display_irq_postinstall(struct intel_display *display)
- 	irq_init(display, VLV_IRQ_REGS, display->irq.vlv_imr_mask, enable_mask);
- }
- 
--void vlv_display_irq_postinstall(struct intel_display *display)
-+static void vlv_display_irq_postinstall(struct intel_display *display)
- {
- 	spin_lock_irq(&display->irq.lock);
- 	if (display->irq.vlv_display_irqs_enabled)
-@@ -2268,7 +2268,7 @@ void valleyview_disable_display_irqs(struct intel_display *display)
+ 	/* TODO enable other errors too? */
+@@ -2065,6 +2075,19 @@ static void vlv_display_irq_postinstall(struct intel_display *display)
  	spin_unlock_irq(&display->irq.lock);
  }
  
--void ilk_de_irq_postinstall(struct intel_display *display)
-+static void ilk_de_irq_postinstall(struct intel_display *display)
++static void vlv_display_irq_ack(struct intel_display *display,
++				struct intel_display_irq_state *state)
++{
++	if (state->iir & I915_DISPLAY_PORT_INTERRUPT)
++		state->hotplug_status = i9xx_hpd_irq_ack(display);
++
++	if (state->iir & I915_MASTER_ERROR_INTERRUPT)
++		vlv_display_error_irq_ack(display, &state->eir, &state->dpinvgtt);
++
++	/* Call regardless, as some status bits might not be signalled in IIR */
++	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
++}
++
+ static void ibx_display_irq_reset(struct intel_display *display)
  {
- 	u32 display_mask, extra_mask;
- 
-@@ -2312,7 +2312,7 @@ void ilk_de_irq_postinstall(struct intel_display *display)
- static void mtp_irq_postinstall(struct intel_display *display);
- static void icp_irq_postinstall(struct intel_display *display);
- 
--void gen8_de_irq_postinstall(struct intel_display *display)
-+static void gen8_de_irq_postinstall(struct intel_display *display)
- {
- 	u32 de_pipe_masked = gen8_de_pipe_fault_mask(display) |
- 		GEN8_PIPE_CDCLK_CRC_DONE;
-@@ -2439,7 +2439,7 @@ static void icp_irq_postinstall(struct intel_display *display)
- 	irq_init(display, SDE_IRQ_REGS, ~mask, 0xffffffff);
- }
- 
--void gen11_de_irq_postinstall(struct intel_display *display)
-+static void gen11_de_irq_postinstall(struct intel_display *display)
- {
- 	if (!HAS_DISPLAY(display))
- 		return;
-@@ -2451,30 +2451,37 @@ void gen11_de_irq_postinstall(struct intel_display *display)
- 
+ 	if (HAS_PCH_NOP(display))
+@@ -2452,6 +2475,7 @@ static void gen11_de_irq_postinstall(struct intel_display *display)
  struct intel_display_irq_funcs {
  	void (*reset)(struct intel_display *display);
-+	void (*postinstall)(struct intel_display *display);
+ 	void (*postinstall)(struct intel_display *display);
++	void (*ack)(struct intel_display *display, struct intel_display_irq_state *state);
  };
  
  struct intel_display_irq_funcs gen11_display_irq_funcs = {
- 	.reset = gen11_display_irq_reset,
-+	.postinstall = gen11_de_irq_postinstall,
- };
- 
- struct intel_display_irq_funcs gen8_display_irq_funcs = {
- 	.reset = gen8_display_irq_reset,
-+	.postinstall = gen8_de_irq_postinstall,
- };
- 
+@@ -2467,6 +2491,7 @@ struct intel_display_irq_funcs gen8_display_irq_funcs = {
  struct intel_display_irq_funcs vlv_display_irq_funcs = {
  	.reset = vlv_display_irq_reset,
-+	.postinstall = vlv_display_irq_postinstall,
+ 	.postinstall = vlv_display_irq_postinstall,
++	.ack = vlv_display_irq_ack,
  };
  
  struct intel_display_irq_funcs ilk_display_irq_funcs = {
- 	.reset = ilk_display_irq_reset,
-+	.postinstall = ilk_de_irq_postinstall,
- };
- 
+@@ -2477,11 +2502,13 @@ struct intel_display_irq_funcs ilk_display_irq_funcs = {
  struct intel_display_irq_funcs i965_display_irq_funcs = {
  	.reset = i9xx_display_irq_reset,
-+	.postinstall = i965_display_irq_postinstall,
+ 	.postinstall = i965_display_irq_postinstall,
++	.ack = i9xx_display_irq_ack,
  };
  
  struct intel_display_irq_funcs i915_display_irq_funcs = {
  	.reset = i9xx_display_irq_reset,
-+	.postinstall = i915_display_irq_postinstall,
+ 	.postinstall = i915_display_irq_postinstall,
++	.ack = i9xx_display_irq_ack,
  };
  
  void intel_display_irq_reset(struct intel_display *display)
-@@ -2482,6 +2489,11 @@ void intel_display_irq_reset(struct intel_display *display)
- 	display->irq.funcs->reset(display);
+@@ -2494,6 +2521,13 @@ void intel_display_irq_postinstall(struct intel_display *display)
+ 	display->irq.funcs->postinstall(display);
  }
  
-+void intel_display_irq_postinstall(struct intel_display *display)
++void intel_display_irq_ack(struct intel_display *display,
++			   struct intel_display_irq_state *state)
 +{
-+	display->irq.funcs->postinstall(display);
++	if (display->irq.funcs->ack)
++		display->irq.funcs->ack(display, state);
 +}
 +
  void intel_display_irq_init(struct intel_display *display)
  {
  	spin_lock_init(&display->irq.lock);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index 21b2145656cd..fd9873ce9755 100644
+index fd9873ce9755..3773a31e48f2 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -59,14 +59,9 @@ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl);
+@@ -58,8 +58,17 @@ void gen11_display_irq_handler(struct intel_display *display);
+ u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl);
  void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir);
  
++struct intel_display_irq_state {
++	u32 iir;
++	u32 eir;
++	u32 hotplug_status;
++	u32 dpinvgtt;
++	u32 pipe_stats[I915_MAX_PIPES];
++};
++
  void intel_display_irq_reset(struct intel_display *display);
-+void intel_display_irq_postinstall(struct intel_display *display);
+ void intel_display_irq_postinstall(struct intel_display *display);
++void intel_display_irq_ack(struct intel_display *display, struct intel_display_irq_state *state);
  
  u32 i9xx_display_irq_enable_mask(struct intel_display *display);
--void i915_display_irq_postinstall(struct intel_display *display);
--void i965_display_irq_postinstall(struct intel_display *display);
--void vlv_display_irq_postinstall(struct intel_display *display);
--void ilk_de_irq_postinstall(struct intel_display *display);
--void gen8_de_irq_postinstall(struct intel_display *display);
--void gen11_de_irq_postinstall(struct intel_display *display);
  
- u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
+@@ -67,13 +76,10 @@ u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
  void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
+ void i915_disable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
+ 
+-void i9xx_pipestat_irq_ack(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
+-
+ void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
+ void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
+ void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
+ 
+-void vlv_display_error_irq_ack(struct intel_display *display, u32 *eir, u32 *dpinvgtt);
+ void vlv_display_error_irq_handler(struct intel_display *display, u32 eir, u32 dpinvgtt);
+ 
+ void intel_display_irq_init(struct intel_display *display);
 diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index 7e0ec9294d70..7ffa0e8c5608 100644
+index 7ffa0e8c5608..bb65ce9d09b2 100644
 --- a/drivers/gpu/drm/i915/i915_irq.c
 +++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -724,7 +724,7 @@ static void ilk_irq_postinstall(struct drm_i915_private *dev_priv)
+@@ -236,17 +236,15 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
  
- 	gen5_gt_irq_postinstall(to_gt(dev_priv));
+ 	do {
+-		u32 iir, gt_iir, pm_iir;
+-		u32 eir = 0, dpinvgtt = 0;
+-		u32 pipe_stats[I915_MAX_PIPES] = {};
+-		u32 hotplug_status = 0;
++		struct intel_display_irq_state state = {};
++		u32 gt_iir, pm_iir;
+ 		u32 ier = 0;
  
--	ilk_de_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
- }
+ 		gt_iir = intel_uncore_read(&dev_priv->uncore, GTIIR);
+ 		pm_iir = intel_uncore_read(&dev_priv->uncore, GEN6_PMIIR);
+-		iir = intel_uncore_read(&dev_priv->uncore, VLV_IIR);
++		state.iir = intel_uncore_read(&dev_priv->uncore, VLV_IIR);
  
- static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
-@@ -733,7 +733,7 @@ static void valleyview_irq_postinstall(struct drm_i915_private *dev_priv)
+-		if (gt_iir == 0 && pm_iir == 0 && iir == 0)
++		if (gt_iir == 0 && pm_iir == 0 && state.iir == 0)
+ 			break;
  
- 	gen5_gt_irq_postinstall(to_gt(dev_priv));
+ 		ret = IRQ_HANDLED;
+@@ -272,22 +270,14 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+ 		if (pm_iir)
+ 			intel_uncore_write(&dev_priv->uncore, GEN6_PMIIR, pm_iir);
  
--	vlv_display_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
+-		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+-			hotplug_status = i9xx_hpd_irq_ack(display);
+-
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
+-			vlv_display_error_irq_ack(display, &eir, &dpinvgtt);
+-
+-		/* Call regardless, as some status bits might not be
+-		 * signalled in IIR */
+-		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
++		intel_display_irq_ack(display, &state);
  
- 	intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
- 	intel_uncore_posting_read(&dev_priv->uncore, VLV_MASTER_IER);
-@@ -744,7 +744,7 @@ static void gen8_irq_postinstall(struct drm_i915_private *dev_priv)
- 	struct intel_display *display = dev_priv->display;
+ 		/*
+ 		 * VLV_IIR is single buffered, and reflects the level
+ 		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
+ 		 */
+-		if (iir)
+-			intel_uncore_write(&dev_priv->uncore, VLV_IIR, iir);
++		if (state.iir)
++			intel_uncore_write(&dev_priv->uncore, VLV_IIR, state.iir);
  
- 	gen8_gt_irq_postinstall(to_gt(dev_priv));
--	gen8_de_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
+ 		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
+ 		intel_uncore_write(&dev_priv->uncore, VLV_MASTER_IER, MASTER_INTERRUPT_ENABLE);
+@@ -297,17 +287,17 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
+ 		if (pm_iir)
+ 			gen6_rps_irq_handler(&to_gt(dev_priv)->rps, pm_iir);
  
- 	gen8_master_intr_enable(intel_uncore_regs(&dev_priv->uncore));
- }
-@@ -757,7 +757,7 @@ static void gen11_irq_postinstall(struct drm_i915_private *dev_priv)
- 	u32 gu_misc_masked = GEN11_GU_MISC_GSE;
+-		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
+-			   I915_LPE_PIPE_B_INTERRUPT))
++		if (state.iir & (I915_LPE_PIPE_A_INTERRUPT |
++				 I915_LPE_PIPE_B_INTERRUPT))
+ 			intel_lpe_audio_irq_handler(display);
  
- 	gen11_gt_irq_postinstall(gt);
--	gen11_de_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
+-		if (hotplug_status)
+-			i9xx_hpd_irq_handler(display, hotplug_status);
++		if (state.hotplug_status)
++			i9xx_hpd_irq_handler(display, state.hotplug_status);
  
- 	gen2_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
+-			vlv_display_error_irq_handler(display, eir, dpinvgtt);
++		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
++			vlv_display_error_irq_handler(display, state.eir, state.dpinvgtt);
  
-@@ -778,7 +778,7 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+-		valleyview_pipestat_irq_handler(display, pipe_stats);
++		valleyview_pipestat_irq_handler(display, state.pipe_stats);
+ 	} while (0);
  
- 	gen2_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
+ 	pmu_irq_stats(dev_priv, ret);
+@@ -330,16 +320,14 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
  
--	gen11_de_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
+ 	do {
+-		u32 master_ctl, iir;
+-		u32 eir = 0, dpinvgtt = 0;
+-		u32 pipe_stats[I915_MAX_PIPES] = {};
+-		u32 hotplug_status = 0;
++		struct intel_display_irq_state state = {};
++		u32 master_ctl;
+ 		u32 ier = 0;
  
- 	dg1_master_intr_enable(intel_uncore_regs(uncore));
- 	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
-@@ -790,7 +790,7 @@ static void cherryview_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		master_ctl = intel_uncore_read(&dev_priv->uncore, GEN8_MASTER_IRQ) & ~GEN8_MASTER_IRQ_CONTROL;
+-		iir = intel_uncore_read(&dev_priv->uncore, VLV_IIR);
++		state.iir = intel_uncore_read(&dev_priv->uncore, VLV_IIR);
  
- 	gen8_gt_irq_postinstall(to_gt(dev_priv));
+-		if (master_ctl == 0 && iir == 0)
++		if (master_ctl == 0 && state.iir == 0)
+ 			break;
  
--	vlv_display_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
+ 		ret = IRQ_HANDLED;
+@@ -362,38 +350,30 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
  
- 	intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
- 	intel_uncore_posting_read(&dev_priv->uncore, GEN8_MASTER_IRQ);
-@@ -888,7 +888,7 @@ static void i915_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		gen8_gt_irq_handler(to_gt(dev_priv), master_ctl);
  
- 	gen2_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->gen2_imr_mask, enable_mask);
+-		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+-			hotplug_status = i9xx_hpd_irq_ack(display);
+-
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
+-			vlv_display_error_irq_ack(display, &eir, &dpinvgtt);
+-
+-		/* Call regardless, as some status bits might not be
+-		 * signalled in IIR */
+-		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
++		intel_display_irq_ack(display, &state);
  
--	i915_display_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
- }
+ 		/*
+ 		 * VLV_IIR is single buffered, and reflects the level
+ 		 * from PIPESTAT/PORT_HOTPLUG_STAT, hence clear it last.
+ 		 */
+-		if (iir)
+-			intel_uncore_write(&dev_priv->uncore, VLV_IIR, iir);
++		if (state.iir)
++			intel_uncore_write(&dev_priv->uncore, VLV_IIR, state.iir);
  
- static irqreturn_t i915_irq_handler(int irq, void *arg)
-@@ -997,7 +997,7 @@ static void i965_irq_postinstall(struct drm_i915_private *dev_priv)
+ 		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
+ 		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
  
- 	gen2_irq_init(uncore, GEN2_IRQ_REGS, dev_priv->gen2_imr_mask, enable_mask);
+-		if (iir & (I915_LPE_PIPE_A_INTERRUPT |
+-			   I915_LPE_PIPE_B_INTERRUPT |
+-			   I915_LPE_PIPE_C_INTERRUPT))
++		if (state.iir & (I915_LPE_PIPE_A_INTERRUPT |
++				 I915_LPE_PIPE_B_INTERRUPT |
++				 I915_LPE_PIPE_C_INTERRUPT))
+ 			intel_lpe_audio_irq_handler(display);
  
--	i965_display_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
- }
+-		if (hotplug_status)
+-			i9xx_hpd_irq_handler(display, hotplug_status);
++		if (state.hotplug_status)
++			i9xx_hpd_irq_handler(display, state.hotplug_status);
  
- static irqreturn_t i965_irq_handler(int irq, void *arg)
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index d6a4546fbe94..736a5e6938d6 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -245,7 +245,7 @@ void xe_display_irq_postinstall(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
+-			vlv_display_error_irq_handler(display, eir, dpinvgtt);
++		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
++			vlv_display_error_irq_handler(display, state.eir, state.dpinvgtt);
  
--	gen11_de_irq_postinstall(display);
-+	intel_display_irq_postinstall(display);
- }
+-		valleyview_pipestat_irq_handler(display, pipe_stats);
++		valleyview_pipestat_irq_handler(display, state.pipe_stats);
+ 	} while (0);
  
- static bool suspend_to_idle(void)
+ 	pmu_irq_stats(dev_priv, ret);
+@@ -904,39 +884,32 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+ 	do {
+-		u32 pipe_stats[I915_MAX_PIPES] = {};
++		struct intel_display_irq_state state = {};
+ 		u32 eir = 0, eir_stuck = 0;
+-		u32 hotplug_status = 0;
+-		u32 iir;
+ 
+-		iir = intel_uncore_read(&dev_priv->uncore, GEN2_IIR);
+-		if (iir == 0)
++		state.iir = intel_uncore_read(&dev_priv->uncore, GEN2_IIR);
++		if (state.iir == 0)
+ 			break;
+ 
+ 		ret = IRQ_HANDLED;
+ 
+-		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+-			hotplug_status = i9xx_hpd_irq_ack(display);
+-
+-		/* Call regardless, as some status bits might not be
+-		 * signalled in IIR */
+-		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
++		intel_display_irq_ack(display, &state);
+ 
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
++		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_ack(dev_priv, &eir, &eir_stuck);
+ 
+-		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
++		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, state.iir);
+ 
+-		if (iir & I915_USER_INTERRUPT)
+-			intel_engine_cs_irq(to_gt(dev_priv)->engine[RCS0], iir);
++		if (state.iir & I915_USER_INTERRUPT)
++			intel_engine_cs_irq(to_gt(dev_priv)->engine[RCS0], state.iir);
+ 
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
++		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
+ 
+-		if (hotplug_status)
+-			i9xx_hpd_irq_handler(display, hotplug_status);
++		if (state.hotplug_status)
++			i9xx_hpd_irq_handler(display, state.hotplug_status);
+ 
+-		i915_pipestat_irq_handler(display, iir, pipe_stats);
++		i915_pipestat_irq_handler(display, state.iir, state.pipe_stats);
+ 	} while (0);
+ 
+ 	pmu_irq_stats(dev_priv, ret);
+@@ -1013,44 +986,37 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
+ 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 
+ 	do {
+-		u32 pipe_stats[I915_MAX_PIPES] = {};
++		struct intel_display_irq_state state = {};
+ 		u32 eir = 0, eir_stuck = 0;
+-		u32 hotplug_status = 0;
+-		u32 iir;
+ 
+-		iir = intel_uncore_read(&dev_priv->uncore, GEN2_IIR);
+-		if (iir == 0)
++		state.iir = intel_uncore_read(&dev_priv->uncore, GEN2_IIR);
++		if (state.iir == 0)
+ 			break;
+ 
+ 		ret = IRQ_HANDLED;
+ 
+-		if (iir & I915_DISPLAY_PORT_INTERRUPT)
+-			hotplug_status = i9xx_hpd_irq_ack(display);
+-
+-		/* Call regardless, as some status bits might not be
+-		 * signalled in IIR */
+-		i9xx_pipestat_irq_ack(display, iir, pipe_stats);
++		intel_display_irq_ack(display, &state);
+ 
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
++		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_ack(dev_priv, &eir, &eir_stuck);
+ 
+-		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, iir);
++		intel_uncore_write(&dev_priv->uncore, GEN2_IIR, state.iir);
+ 
+-		if (iir & I915_USER_INTERRUPT)
++		if (state.iir & I915_USER_INTERRUPT)
+ 			intel_engine_cs_irq(to_gt(dev_priv)->engine[RCS0],
+-					    iir);
++					    state.iir);
+ 
+-		if (iir & I915_BSD_USER_INTERRUPT)
++		if (state.iir & I915_BSD_USER_INTERRUPT)
+ 			intel_engine_cs_irq(to_gt(dev_priv)->engine[VCS0],
+-					    iir >> 25);
++					    state.iir >> 25);
+ 
+-		if (iir & I915_MASTER_ERROR_INTERRUPT)
++		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
+ 			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
+ 
+-		if (hotplug_status)
+-			i9xx_hpd_irq_handler(display, hotplug_status);
++		if (state.hotplug_status)
++			i9xx_hpd_irq_handler(display, state.hotplug_status);
+ 
+-		i965_pipestat_irq_handler(display, iir, pipe_stats);
++		i965_pipestat_irq_handler(display, state.iir, state.pipe_stats);
+ 	} while (0);
+ 
+ 	pmu_irq_stats(dev_priv, IRQ_HANDLED);
 -- 
 2.47.3
 
