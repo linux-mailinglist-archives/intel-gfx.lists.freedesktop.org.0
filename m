@@ -2,65 +2,74 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ie3ACvzx8WmElwEAu9opvQ
+	id ED75Az3z8WmElwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 13:56:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 14:02:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A21EB493C73
-	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 13:56:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 989F3493D48
+	for <lists+intel-gfx@lfdr.de>; Wed, 29 Apr 2026 14:02:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7242510E3C4;
-	Wed, 29 Apr 2026 11:56:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDFF610EFBB;
+	Wed, 29 Apr 2026 12:01:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JNL8WWz+";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PqxKI/Ro";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E55910E3BA;
- Wed, 29 Apr 2026 11:56:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D934D10EFBB;
+ Wed, 29 Apr 2026 12:01:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777463796; x=1808999796;
+ t=1777464117; x=1809000117;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=rohmyjLVgXV29zYbBHt1SZneY2kfGap7HlTZPeWT7ek=;
- b=JNL8WWz+Mhox6fUUldOEj+/fU9vjocEBsZgwzIPYU8/IFk0y8diRLTLo
- ITz42CAJ2GCwQZQYKooF22NIOO9Mde2c0IgYWNGT4EFRb1gIJMaFZkO5G
- 3+eSe35KawSgUV2qznM6M0+mwGeHzlad2JoppFNat5/VbkoCG4lctpp0f
- FrZr3QZiRXGXlykwn585XlPV3TbZGzT88HaYtdPffz06X5zpGh6LulI8k
- 88CJPLqgEyBlsmI8S8k6MdpRwY09xguXrHyz9Nn+msZ43wOnElZGNrnI7
- Efk8SZqf+kHv/2apIkSy0zvPna9FruJuXa/CIHL+gGXFZj4Sgq+Z95u+h w==;
-X-CSE-ConnectionGUID: s9W0Scr/QWa7XZfSYs3pgA==
-X-CSE-MsgGUID: h4EdNDQESm+kkxiW0kZMJQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="82253519"
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="82253519"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 04:56:36 -0700
-X-CSE-ConnectionGUID: oGImE1ALTXqQOVTsVVt6Cg==
-X-CSE-MsgGUID: CQ5HTtu/TzOJuUtq1RIf0g==
+ bh=0VJidWTHVaftlwzlfLZvwBTk4t+x7V4x9yKwmMaH4G0=;
+ b=PqxKI/RowN+5SsCneu8X2kg0fQJNWWjBlSZJ1iCynUhO/YrQoxhMSKxg
+ 3497tMYqrZ3lmhevNWMCWHvSmT6UZ5mfxM326MqK6NyqxiKKv2+31hIKb
+ K6oveoX7fQU8CjWGZ8GMb1jZvF1DQ6HjxD9NdmO7+ndvq8+DJ1KrC9vdN
+ g6NE/ZQLrfdoIIgt3NbeQ5YUsbddb3GEyJwRDv+ABG00JKXiUqjAUoBjv
+ Qs/mjTKQZU2zc+kFoHzRvV/qjKQfA21XRjtqTleze3/f3z22FJHlhTRWq
+ klsKtDf8F16VmIdFzcpQPI/6cnD4MWalZr6k+atsDBTx9E59ZsbVGwwjZ Q==;
+X-CSE-ConnectionGUID: yL6wX6vrSy6ouMxc32/3hw==
+X-CSE-MsgGUID: Qi+b+EjEQ9uZ227xcbyVOw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11770"; a="89766258"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="89766258"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 05:01:56 -0700
+X-CSE-ConnectionGUID: IVnZHMIwQpaTcdjlOa6iDg==
+X-CSE-MsgGUID: wBqno4nKTWOvvQ0VQ6LLHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="239279087"
+X-IronPort-AV: E=Sophos;i="6.23,206,1770624000"; d="scan'208";a="233389931"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.245.218])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 04:56:34 -0700
-Date: Wed, 29 Apr 2026 14:56:30 +0300
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 05:01:54 -0700
+Date: Wed, 29 Apr 2026 15:01:51 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 15/15] drm/i915/irq: add intel_display_irq_handler() to
- irq funcs
-Message-ID: <afHx7st1NYZulnQM@intel.com>
-References: <cover.1777458161.git.jani.nikula@intel.com>
- <4c2be8d52d11977f67d3d52ebf6414d4c0a341ef.1777458161.git.jani.nikula@intel.com>
+To: "Manna, Animesh" <animesh.manna@intel.com>
+Cc: "Nikula, Jani" <jani.nikula@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
+Message-ID: <afHzL3Sri5Tc_roE@intel.com>
+References: <20260412103712.4021213-1-animesh.manna@intel.com>
+ <20260412103712.4021213-4-animesh.manna@intel.com>
+ <d9c82dabf89fb932b3c10aa0ee768fdda181c396@intel.com>
+ <DS0PR11MB804961654148D027B4F03601F9202@DS0PR11MB8049.namprd11.prod.outlook.com>
+ <aeIK8oEzWAkDJw5i@intel.com>
+ <SN7PR11MB8042195650F92982C02967A8F92A2@SN7PR11MB8042.namprd11.prod.outlook.com>
+ <aen5uNCEibNR7IGP@intel.com>
+ <DS0PR11MB80493A1ECB27DC4548EBA882F92A2@DS0PR11MB8049.namprd11.prod.outlook.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <4c2be8d52d11977f67d3d52ebf6414d4c0a341ef.1777458161.git.jani.nikula@intel.com>
+In-Reply-To: <DS0PR11MB80493A1ECB27DC4548EBA882F92A2@DS0PR11MB8049.namprd11.prod.outlook.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -78,465 +87,370 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A21EB493C73
+X-Rspamd-Queue-Id: 989F3493D48
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.36 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
 	R_MIXED_CHARSET(0.67)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_FIVE(0.00)[6];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Wed, Apr 29, 2026 at 01:24:55PM +0300, Jani Nikula wrote:
-> Call the platform specific display irq handler hooks via
-> intel_display_irq_handler(). Add master_ctl to struct
-> intel_display_irq_state, and pass the state pointer to the handler where
-> necessary.
+On Thu, Apr 23, 2026 at 11:07:55AM +0000, Manna, Animesh wrote:
 > 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_display_irq.c  | 95 ++++++++++++++++---
->  .../gpu/drm/i915/display/intel_display_irq.h  | 11 +--
->  drivers/gpu/drm/i915/i915_irq.c               | 48 +++-------
->  drivers/gpu/drm/xe/display/xe_display.c       |  2 +-
->  4 files changed, 98 insertions(+), 58 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index 662081e274bf..5aec1bedbd61 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -23,6 +23,7 @@
->  #include "intel_fifo_underrun.h"
->  #include "intel_gmbus.h"
->  #include "intel_hotplug_irq.h"
-> +#include "intel_lpe_audio.h"
->  #include "intel_parent.h"
->  #include "intel_pipe_crc_regs.h"
->  #include "intel_plane.h"
-> @@ -596,8 +597,8 @@ static void i9xx_pipestat_irq_ack(struct intel_display *display,
->  	spin_unlock(&display->irq.lock);
->  }
->  
-> -void i915_pipestat_irq_handler(struct intel_display *display,
-> -			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
-> +static void i915_pipestat_irq_handler(struct intel_display *display,
-> +				      u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
->  {
->  	bool blc_event = false;
->  	enum pipe pipe;
-> @@ -620,8 +621,8 @@ void i915_pipestat_irq_handler(struct intel_display *display,
->  		intel_opregion_asle_intr(display);
->  }
->  
-> -void i965_pipestat_irq_handler(struct intel_display *display,
-> -			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
-> +static void i965_pipestat_irq_handler(struct intel_display *display,
-> +				      u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
->  {
->  	bool blc_event = false;
->  	enum pipe pipe;
-> @@ -647,8 +648,8 @@ void i965_pipestat_irq_handler(struct intel_display *display,
->  		intel_gmbus_irq_handler(display);
->  }
->  
-> -void valleyview_pipestat_irq_handler(struct intel_display *display,
-> -				     const u32 pipe_stats[I915_MAX_PIPES])
-> +static void valleyview_pipestat_irq_handler(struct intel_display *display,
-> +					    const u32 pipe_stats[I915_MAX_PIPES])
->  {
->  	enum pipe pipe;
->  
-> @@ -1020,7 +1021,8 @@ void ilk_display_irq_master_enable(struct intel_display *display, u32 de_ier, u3
->  		intel_de_write_fw(display, SDEIER, sde_ier);
->  }
->  
-> -bool ilk_display_irq_handler(struct intel_display *display)
-> +static bool ilk_display_irq_handler(struct intel_display *display,
-> +				    const struct intel_display_irq_state *state)
->  {
->  	u32 de_iir;
->  	bool handled = false;
-> @@ -1404,7 +1406,7 @@ static void gen8_read_and_ack_pch_irqs(struct intel_display *display, u32 *pch_i
->  		intel_de_write(display, PICAINTERRUPT_IER, pica_ier);
->  }
->  
-> -void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
-> +static void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
->  {
->  	u32 iir;
->  	enum pipe pipe;
-> @@ -1565,6 +1567,14 @@ void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
->  	}
->  }
->  
-> +static bool gen8_display_irq_handler(struct intel_display *display,
-> +				     const struct intel_display_irq_state *state)
-> +{
-> +	gen8_de_irq_handler(display, state->master_ctl);
-> +
-> +	return true;
-> +}
-> +
->  u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl)
->  {
->  	u32 iir;
-> @@ -1589,7 +1599,8 @@ void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir)
->  		intel_opregion_asle_intr(display);
->  }
->  
-> -void gen11_display_irq_handler(struct intel_display *display)
-> +static bool gen11_display_irq_handler(struct intel_display *display,
-> +				      const struct intel_display_irq_state *state)
->  {
->  	u32 disp_ctl;
->  
-> @@ -1605,6 +1616,8 @@ void gen11_display_irq_handler(struct intel_display *display)
->  	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
->  
->  	intel_display_rpm_assert_unblock(display);
-> +
-> +	return true;
->  }
->  
->  static void i915gm_irq_cstate_wa_enable(struct intel_display *display)
-> @@ -1920,8 +1933,8 @@ static void vlv_display_error_irq_ack(struct intel_display *display,
->  	intel_de_write(display, VLV_EMR, emr);
->  }
->  
-> -void vlv_display_error_irq_handler(struct intel_display *display,
-> -				   u32 eir, u32 dpinvgtt)
-> +static void vlv_display_error_irq_handler(struct intel_display *display,
-> +					  u32 eir, u32 dpinvgtt)
->  {
->  	drm_dbg(display->drm, "Master Error, EIR 0x%08x\n", eir);
->  
-> @@ -2020,6 +2033,28 @@ static void i9xx_display_irq_ack(struct intel_display *display,
->  	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
->  }
->  
-> +static bool i965_display_irq_handler(struct intel_display *display,
-> +				     const struct intel_display_irq_state *state)
-> +{
-> +	if (state->hotplug_status)
-> +		i9xx_hpd_irq_handler(display, state->hotplug_status);
-> +
-> +	i965_pipestat_irq_handler(display, state->iir, state->pipe_stats);
-> +
-> +	return true;
-> +}
-> +
-> +static bool i915_display_irq_handler(struct intel_display *display,
-> +				     const struct intel_display_irq_state *state)
-> +{
-> +	if (state->hotplug_status)
-> +		i9xx_hpd_irq_handler(display, state->hotplug_status);
-> +
-> +	i915_pipestat_irq_handler(display, state->iir, state->pipe_stats);
-> +
-> +	return true;
-> +}
-> +
->  static u32 vlv_error_mask(void)
->  {
->  	/* TODO enable other errors too? */
-> @@ -2088,6 +2123,28 @@ static void vlv_display_irq_ack(struct intel_display *display,
->  	i9xx_pipestat_irq_ack(display, state->iir, state->pipe_stats);
->  }
->  
-> +static bool vlv_display_irq_handler(struct intel_display *display,
-> +				    const struct intel_display_irq_state *state)
-> +{
-> +	u32 lpe_mask = I915_LPE_PIPE_A_INTERRUPT | I915_LPE_PIPE_B_INTERRUPT;
-> +
-> +	if (display->platform.cherryview)
-> +		lpe_mask |= I915_LPE_PIPE_C_INTERRUPT;
+> > -----Original Message-----
+> > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > Sent: Thursday, April 23, 2026 4:22 PM
+> > To: Manna, Animesh <animesh.manna@intel.com>
+> > Cc: Nikula, Jani <jani.nikula@intel.com>; intel-gfx@lists.freedesktop.org;
+> > intel-xe@lists.freedesktop.org; Shankar, Uma <uma.shankar@intel.com>;
+> > Dibin Moolakadan Subrahmanian
+> > <dibin.moolakadan.subrahmanian@intel.com>
+> > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
+> > 
+> > On Thu, Apr 23, 2026 at 04:55:55AM +0000, Manna, Animesh wrote:
+> > >
+> > >
+> > > > -----Original Message-----
+> > > > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> > > > Sent: Friday, April 17, 2026 3:57 PM
+> > > > To: Manna, Animesh <animesh.manna@intel.com>
+> > > > Cc: Nikula, Jani <jani.nikula@intel.com>;
+> > > > intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org;
+> > > > Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan
+> > Subrahmanian
+> > > > <dibin.moolakadan.subrahmanian@intel.com>
+> > > > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for CMTG
+> > > >
+> > > > On Fri, Apr 17, 2026 at 06:03:52AM +0000, Manna, Animesh wrote:
+> > > > >
+> > > > >
+> > > > > > -----Original Message-----
+> > > > > > From: Nikula, Jani <jani.nikula@intel.com>
+> > > > > > Sent: Tuesday, April 14, 2026 7:03 PM
+> > > > > > To: Manna, Animesh <animesh.manna@intel.com>; intel-
+> > > > > > gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+> > > > > > Cc: Shankar, Uma <uma.shankar@intel.com>; Dibin Moolakadan
+> > > > > > Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>;
+> > Manna,
+> > > > > > Animesh <animesh.manna@intel.com>
+> > > > > > Subject: Re: [PATCH v4 03/13] drm/i915/cmtg: Set timings for
+> > > > > > CMTG
+> > > > > >
+> > > > > > On Sun, 12 Apr 2026, Animesh Manna <animesh.manna@intel.com>
+> > > > wrote:
+> > > > > > > Timing registers are separate for CMTG, read transcoder
+> > > > > > > register and program cmtg transcoder with those values.
+> > > > > > >
+> > > > > > > v2:
+> > > > > > > - Use sw state instead of reading directly from hardware.
+> > > > > > > [Jani]
+> > > > > > > - Move set_timing later after encoder enable. [Dibin]
+> > > > > > >
+> > > > > > > v3:
+> > > > > > > - Replace id with trans. [Jani]
+> > > > > > > - Program cmtg set_timing() along with primary transcoder timing.
+> > > > > > >
+> > > > > > > v4:
+> > > > > > > - Use _MMIO_TRANS() for cmtg registers instead of direct
+> > > > > > > multiplication. [Jani]
+> > > > > > >
+> > > > > > > Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> > > > > > > ---
+> > > > > > >  drivers/gpu/drm/i915/display/intel_cmtg.c     | 61
+> > > > ++++++++++++++++++-
+> > > > > > >  drivers/gpu/drm/i915/display/intel_cmtg.h     |  3 +
+> > > > > > >  .../gpu/drm/i915/display/intel_cmtg_regs.h    | 31 ++++++++++
+> > > > > > >  drivers/gpu/drm/i915/display/intel_display.c  |  4 ++
+> > > > > > >  4 files changed, 98 insertions(+), 1 deletion(-)
+> > > > > > >
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > > > > > index 403f9e10a8dc..a3db1368bd83 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> > > > > > > @@ -4,7 +4,6 @@
+> > > > > > >   */
+> > > > > > >
+> > > > > > >  #include <linux/string_choices.h> -#include <linux/types.h>
+> > > > > > >
+> > > > > > >  #include <drm/drm_device.h>
+> > > > > > >  #include <drm/drm_print.h>
+> > > > > > > @@ -222,3 +221,63 @@ void intel_cmtg_set_clk_select(const
+> > > > > > > struct
+> > > > > > intel_crtc_state *crtc_state)
+> > > > > > >  	if (clk_sel_set)
+> > > > > > >  		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr,
+> > > > > > clk_sel_set);  }
+> > > > > > > +
+> > > > > > > +void intel_cmtg_set_timings(const struct intel_crtc_state
+> > > > > > > +*crtc_state, bool lrr) {
+> > > > > > > +	struct intel_display *display = to_intel_display(crtc_state);
+> > > > > > > +	enum transcoder cpu_transcoder = crtc_state-
+> > >cpu_transcoder;
+> > > > > > > +	const struct drm_display_mode *adjusted_mode =
+> > &crtc_state-
+> > > > > > >hw.adjusted_mode;
+> > > > > > > +	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start,
+> > > > > > > +crtc_vblank_end;
+> > > > > > > +
+> > > > > > > +	if (!intel_cmtg_is_allowed(crtc_state))
+> > > > > > > +		return;
+> > > > > > > +
+> > > > > > > +	crtc_vdisplay = adjusted_mode->crtc_vdisplay;
+> > > > > > > +
+> > > > > > > +	/*
+> > > > > > > +	 * For platforms that always use VRR Timing Generator, the
+> > > > > > VTOTAL.Vtotal
+> > > > > > > +	 * bits are not required. Since the support for these bits is
+> > going to
+> > > > > > > +	 * be deprecated in upcoming platforms, avoid writing these
+> > > > > > > +bits for
+> > > > > > the
+> > > > > > > +	 * platforms that do not use legacy Timing Generator.
+> > > > > > > +	 */
+> > > > > > > +	crtc_vtotal = 1;
+> > > > > > > +
+> > > > > > > +	/*
+> > > > > > > +	 * VBLANK_START not used by hw, just clear it
+> > > > > > > +	 * to make it stand out in register dumps.
+> > > > > > > +	 */
+> > > > > > > +	crtc_vblank_start = 1;
+> > > > > > > +
+> > > > > > > +	crtc_vblank_end = adjusted_mode->crtc_vblank_end;
+> > > > > > > +
+> > > > > > > +	if (lrr) {
+> > > > > > > +		intel_de_write(display,
+> > > > > > TRANS_VTOTAL_CMTG(cpu_transcoder),
+> > > > > > > +			       VACTIVE(crtc_vdisplay - 1) |
+> > > > > > > +			       VTOTAL(crtc_vtotal - 1));
+> > > > > > > +		intel_de_write(display,
+> > > > > > TRANS_VBLANK_CMTG(cpu_transcoder),
+> > > > > > > +			       VBLANK_START(crtc_vblank_start - 1) |
+> > > > > > > +			       VBLANK_END(crtc_vblank_end - 1));
+> > > > > > > +		return;
+> > > > > > > +	}
+> > > > > > > +
+> > > > > > > +	intel_de_write(display,
+> > TRANS_HTOTAL_CMTG(cpu_transcoder),
+> > > > > > > +		       HACTIVE(adjusted_mode->crtc_hdisplay - 1) |
+> > > > > > > +		       HTOTAL(adjusted_mode->crtc_htotal - 1));
+> > > > > > > +	intel_de_write(display,
+> > TRANS_HBLANK_CMTG(cpu_transcoder),
+> > > > > > > +		       HBLANK_START(adjusted_mode-
+> > >crtc_hblank_start - 1) |
+> > > > > > > +		       HBLANK_END(adjusted_mode->crtc_hblank_end
+> > - 1));
+> > > > > > > +	intel_de_write(display,
+> > TRANS_HSYNC_CMTG(cpu_transcoder),
+> > > > > > > +		       HSYNC_START(adjusted_mode->crtc_hsync_start
+> > - 1) |
+> > > > > > > +		       HSYNC_END(adjusted_mode->crtc_hsync_end -
+> > 1));
+> > > > > > > +	intel_de_write(display,
+> > TRANS_VTOTAL_CMTG(cpu_transcoder),
+> > > > > > > +		       VACTIVE(crtc_vdisplay - 1) |
+> > > > > > > +		       VTOTAL(crtc_vtotal - 1));
+> > > > > > > +	intel_de_write(display,
+> > TRANS_VBLANK_CMTG(cpu_transcoder),
+> > > > > > > +		       VBLANK_START(crtc_vblank_start - 1) |
+> > > > > > > +		       VBLANK_END(crtc_vblank_end - 1));
+> > > > > > > +	intel_de_write(display,
+> > TRANS_VSYNC_CMTG(cpu_transcoder),
+> > > > > > > +		       VSYNC_START(adjusted_mode->crtc_vsync_start -
+> > 1) |
+> > > > > > > +		       VSYNC_END(adjusted_mode->crtc_vsync_end -
+> > 1));
+> > > > > > > +	intel_de_write(display,
+> > > > > > TRANS_SET_CTX_LATENCY_CMTG(cpu_transcoder),
+> > > > > > > +		       crtc_state->set_context_latency); }
+> > > > > > > diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > > > > > index 660ec513626e..53a44f505dd2 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> > > > > > > @@ -6,9 +6,12 @@
+> > > > > > >  #ifndef __INTEL_CMTG_H__
+> > > > > > >  #define __INTEL_CMTG_H__
+> > > > > > >
+> > > > > > > +#include <linux/types.h>
+> > > > > > > +
+> > > > > > >  struct intel_display;
+> > > > > > >  struct intel_crtc_state;
+> > > > > > >
+> > > > > > > +void intel_cmtg_set_timings(const struct intel_crtc_state
+> > > > > > > +*crtc_state, bool lrr);
+> > > > > > >  void intel_cmtg_set_clk_select(const struct intel_crtc_state
+> > > > > > > *crtc_state);  void intel_cmtg_sanitize(struct intel_display
+> > > > > > > *display);  bool intel_cmtg_is_allowed(const struct
+> > > > > > > intel_crtc_state *crtc_state); diff --git
+> > > > > > > a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > > > > > b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > > > > > index 4a80b88d88fd..f7fc812d8ef0 100644
+> > > > > > > --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > > > > > +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
+> > > > > > > @@ -20,4 +20,35 @@
+> > > > > > >  #define TRANS_CMTG_CTL_B		_MMIO(0x6fb88)
+> > > > > > >  #define  CMTG_ENABLE			REG_BIT(31)
+> > > > > > >
+> > > > > > > +#define _TRANS_HTOTAL_CMTG_A		0x6F000
+> > > > > > > +#define _TRANS_HTOTAL_CMTG_B		0x6F100
+> > > > > > > +#define TRANS_HTOTAL_CMTG(trans)
+> > 	_MMIO_TRANS((trans), \
+> > > > > > > +
+> > _TRANS_HTOTAL_CMTG_A,
+> > > > > > _TRANS_HTOTAL_CMTG_B)
+> > > > > > > +#define _TRANS_HBLANK_CMTG_A		0x6F004
+> > > > > > > +#define _TRANS_HBLANK_CMTG_B		0x6F104
+> > > > > > > +#define TRANS_HBLANK_CMTG(trans)
+> > 	_MMIO_TRANS((trans), \
+> > > > > > > +
+> > _TRANS_HBLANK_CMTG_A,
+> > > > > > _TRANS_HBLANK_CMTG_B)
+> > > > > > > +#define _TRANS_HSYNC_CMTG_A		0x6F008
+> > > > > > > +#define _TRANS_HSYNC_CMTG_B		0x6F108
+> > > > > > > +#define TRANS_HSYNC_CMTG(trans)
+> > > > > > 	_MMIO_TRANS((trans), \
+> > > > > > > +
+> > _TRANS_HSYNC_CMTG_A,
+> > > > > > _TRANS_HSYNC_CMTG_B)
+> > > > > > > +#define _TRANS_VTOTAL_CMTG_A		0x6F00C
+> > > > > > > +#define _TRANS_VTOTAL_CMTG_B		0x6F10C
+> > > > > > > +#define TRANS_VTOTAL_CMTG(trans)
+> > 	_MMIO_TRANS((trans), \
+> > > > > > > +
+> > _TRANS_VTOTAL_CMTG_A,
+> > > > > > _TRANS_VTOTAL_CMTG_B)
+> > > > > > > +#define _TRANS_VBLANK_CMTG_A		0x6F010
+> > > > > > > +#define _TRANS_VBLANK_CMTG_B		0x6F110
+> > > > > > > +#define TRANS_VBLANK_CMTG(trans)
+> > 	_MMIO_TRANS((trans), \
+> > > > > > > +
+> > _TRANS_VBLANK_CMTG_A,
+> > > > > > _TRANS_VBLANK_CMTG_B)
+> > > > > > > +#define _TRANS_VSYNC_CMTG_A		0x6F014
+> > > > > > > +#define _TRANS_VSYNC_CMTG_B		0x6F114
+> > > > > > > +#define TRANS_VSYNC_CMTG(trans)
+> > > > > > 	_MMIO_TRANS((trans), \
+> > > > > > > +
+> > _TRANS_VSYNC_CMTG_A,
+> > > > > > _TRANS_VSYNC_CMTG_B)
+> > > > > >
+> > > > > > I though there was already feedback that these match the regular
+> > > > > > transcoder registers.
+> > > > >
+> > > > > _TRANS_HTOTAL_A         0x60000
+> > > > > _TRANS_HTOTAL_B         0x61000
+> > > > >
+> > > > > _TRANS_HTOTAL_CMTG_A            0x6F000
+> > > > > _TRANS_HTOTAL_CMTG_B            0x6F100
+> > > > >
+> > > > > I am not clear how to match?
+> > > >
+> > > > #define TRANSCODER_CMTG0_OFFSET 0x6F000 #define
+> > > > TRANSCODER_CMTG1_OFFSET 0x6F100
+> > >
+> > > Ok, just to double check my understanding, I am putting below all the
+> > changes which maybe you are suggesting.
+> > > Can please confirm or if I am missing something please let me know.
+> > >
+> > > Step1: Define offset macro.
+> > > #define TRANSCODER_CMTGA_OFFSET 0x6F000 #define
+> > > TRANSCODER_CMTGB_OFFSET 0x6F100
+> > 
+> > s/AB/01/ to actually match the spec.
+> 
+> Ok.
+> 
+> > 
+> > > Step2: Add trans_cmtg_offset array in intel_display_device_info structure
+> > and initialize.
+> > > .trans_cmtg_offsets = {                                                      \
+> > >                 [TRANSCODER_A] = TRANSCODER_CMTGA_OFFSET,
+> > \
+> > >                 [TRANSCODER_B] = TRANSCODER_CMTGB_OFFSET, },
+> > 
+> > They are just transcoders, so they go into .trans_offsets.
+> > If there are any pipe register that are actually transcoder registers then we
+> > may also need a sort of fake .pipe_offsets (like we have for the EDP
+> > transcoder)
+> 
+> Only CMTG transcoder is not enough, cmtg transcoder will be enabled along with normal transcoder.
+> Normal transcoder will use .trans_offsets and cmtg transcoder need separate structure .trans_cmtg_offsets for storing offset. So added separately.
+> 
+> > 
+> > > Step3: Define INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET which will use
+> > > trans_cmtg_offset #define
+> > INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET(display, trans) \
+> > >         (DISPLAY_INFO((display))->trans_cmtg_offsets[(trans)] - \
+> > >          DISPLAY_INFO((display))->trans_offsets[TRANSCODER_A] + \
+> > >          DISPLAY_MMIO_BASE((display)))
+> > >
+> > > Step4: Define _MMIO_TRANS2_CMTG which will use
+> > INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET
+> > > #define _MMIO_TRANS2_CMTG(display, trans, reg)
+> > _MMIO(INTEL_DISPLAY_DEVICE_TRANS_CMTG_OFFSET((display), (trans)) +
+> > (reg))
+> > >
+> > > Step5: Define TRANS_HTOTAL_CMTG
+> > > #define TRANS_HTOTAL_CMTG(display, trans)
+> > 	_MMIO_TRANS2_CMTG(display, (trans), _TRANS_HTOTAL_A)
+> > > #define TRANS_HBLANK_CMTG(display, trans)
+> > _MMIO_TRANS2_CMTG(display, (trans), _TRANS_HBLANK_A)
+> > 
+> > No, you just use TRANS_HTOTAL() and co.
+> > 
+> > Or at least that's my current thinking. Avoids all the duplicated stuff.
+> 
+> Same like above - Only CMTG transcoder is not enough, cmtg transcoder will be enabled along with normal transcoder.
+> So, we need both TRANS_HTOTAL() and TRANS_HTOTAL_CMTG().
 
-I would prefer a function rather than the extra variable. The other
-option is to just use the CHV mask always. There is nothing on the
-extra bit on VLV so we never unmask it.
+We just need TRANS_HTOTAL(TRANSCODER_A) and TRANS_HTOTAL(TRANSCODER_CMTG0) (or whatever 
+transcoders we happen to use).
 
-> +
-> +	if (state->iir & lpe_mask)
-> +		intel_lpe_audio_irq_handler(display);
-> +
-> +	if (state->hotplug_status)
-> +		i9xx_hpd_irq_handler(display, state->hotplug_status);
-> +
-> +	if (state->iir & I915_MASTER_ERROR_INTERRUPT)
-> +		vlv_display_error_irq_handler(display, state->eir, state->dpinvgtt);
-> +
-> +	valleyview_pipestat_irq_handler(display, state->pipe_stats);
-> +
-> +	return true;
-> +}
-> +
->  static void ibx_display_irq_reset(struct intel_display *display)
->  {
->  	if (HAS_PCH_NOP(display))
-> @@ -2476,39 +2533,46 @@ struct intel_display_irq_funcs {
->  	void (*reset)(struct intel_display *display);
->  	void (*postinstall)(struct intel_display *display);
->  	void (*ack)(struct intel_display *display, struct intel_display_irq_state *state);
-> +	bool (*handler)(struct intel_display *display, const struct intel_display_irq_state *state);
->  };
->  
->  struct intel_display_irq_funcs gen11_display_irq_funcs = {
->  	.reset = gen11_display_irq_reset,
->  	.postinstall = gen11_de_irq_postinstall,
-> +	.handler = gen11_display_irq_handler,
->  };
->  
->  struct intel_display_irq_funcs gen8_display_irq_funcs = {
->  	.reset = gen8_display_irq_reset,
->  	.postinstall = gen8_de_irq_postinstall,
-> +	.handler = gen8_display_irq_handler,
->  };
->  
->  struct intel_display_irq_funcs vlv_display_irq_funcs = {
->  	.reset = vlv_display_irq_reset,
->  	.postinstall = vlv_display_irq_postinstall,
->  	.ack = vlv_display_irq_ack,
-> +	.handler = vlv_display_irq_handler,
->  };
->  
->  struct intel_display_irq_funcs ilk_display_irq_funcs = {
->  	.reset = ilk_display_irq_reset,
->  	.postinstall = ilk_de_irq_postinstall,
-> +	.handler = ilk_display_irq_handler,
->  };
->  
->  struct intel_display_irq_funcs i965_display_irq_funcs = {
->  	.reset = i9xx_display_irq_reset,
->  	.postinstall = i965_display_irq_postinstall,
->  	.ack = i9xx_display_irq_ack,
-> +	.handler = i965_display_irq_handler,
->  };
->  
->  struct intel_display_irq_funcs i915_display_irq_funcs = {
->  	.reset = i9xx_display_irq_reset,
->  	.postinstall = i915_display_irq_postinstall,
->  	.ack = i9xx_display_irq_ack,
-> +	.handler = i915_display_irq_handler,
->  };
->  
->  void intel_display_irq_reset(struct intel_display *display)
-> @@ -2528,6 +2592,15 @@ void intel_display_irq_ack(struct intel_display *display,
->  		display->irq.funcs->ack(display, state);
->  }
->  
-> +bool intel_display_irq_handler(struct intel_display *display,
-> +			       const struct intel_display_irq_state *state)
-> +{
-> +	if (!display->irq.funcs->handler)
-> +		return true;
-> +
-> +	return display->irq.funcs->handler(display, state);
-> +}
-> +
->  void intel_display_irq_init(struct intel_display *display)
->  {
->  	spin_lock_init(&display->irq.lock);
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> index 3773a31e48f2..a1227cee885a 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
-> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> @@ -51,14 +51,12 @@ void bdw_disable_vblank(struct drm_crtc *crtc);
->  
->  void ilk_display_irq_master_disable(struct intel_display *display, u32 *de_ier, u32 *sde_ier);
->  void ilk_display_irq_master_enable(struct intel_display *display, u32 de_ier, u32 sde_ier);
-> -bool ilk_display_irq_handler(struct intel_display *display);
-> -void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl);
-> -void gen11_display_irq_handler(struct intel_display *display);
->  
->  u32 gen11_gu_misc_irq_ack(struct intel_display *display, const u32 master_ctl);
->  void gen11_gu_misc_irq_handler(struct intel_display *display, const u32 iir);
->  
->  struct intel_display_irq_state {
-> +	u32 master_ctl;
+So just
+enum transcoder {
+...
++	 TRANSCODER_CMTG0,
++	 TRANSCODER_CMTG1,
+...
+};
 
-Ideally I'd like a separate structs for different platforms,
-but until I resurrect my old ack vs. handle split for all
-platforms I guess we don't need anything else here for
-ilk+. So good enough for now I suppose.
++ #define TRANSCODER_CMTG0_OFFSET 0x6F000
++ #define TRANSCODER_CMTG1_OFFSET 0x6F100
 
->  	u32 iir;
->  	u32 eir;
->  	u32 hotplug_status;
-> @@ -69,6 +67,7 @@ struct intel_display_irq_state {
->  void intel_display_irq_reset(struct intel_display *display);
->  void intel_display_irq_postinstall(struct intel_display *display);
->  void intel_display_irq_ack(struct intel_display *display, struct intel_display_irq_state *state);
-> +bool intel_display_irq_handler(struct intel_display *display, const struct intel_display_irq_state *state);
->  
->  u32 i9xx_display_irq_enable_mask(struct intel_display *display);
->  
-> @@ -76,12 +75,6 @@ u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
->  void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
->  void i915_disable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
->  
-> -void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
-> -void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
-> -void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
-> -
-> -void vlv_display_error_irq_handler(struct intel_display *display, u32 eir, u32 dpinvgtt);
-> -
->  void intel_display_irq_init(struct intel_display *display);
->  
->  void i915gm_irq_cstate_wa(struct intel_display *display, bool enable);
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index bb65ce9d09b2..30ce462e92ab 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -38,8 +38,6 @@
->  
->  #include "display/intel_display_irq.h"
->  #include "display/intel_hotplug.h"
-> -#include "display/intel_hotplug_irq.h"
-> -#include "display/intel_lpe_audio.h"
->  
->  #include "gt/intel_breadcrumbs.h"
->  #include "gt/intel_gt.h"
-> @@ -287,17 +285,7 @@ static irqreturn_t valleyview_irq_handler(int irq, void *arg)
->  		if (pm_iir)
->  			gen6_rps_irq_handler(&to_gt(dev_priv)->rps, pm_iir);
->  
-> -		if (state.iir & (I915_LPE_PIPE_A_INTERRUPT |
-> -				 I915_LPE_PIPE_B_INTERRUPT))
-> -			intel_lpe_audio_irq_handler(display);
-> -
-> -		if (state.hotplug_status)
-> -			i9xx_hpd_irq_handler(display, state.hotplug_status);
-> -
-> -		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
-> -			vlv_display_error_irq_handler(display, state.eir, state.dpinvgtt);
-> -
-> -		valleyview_pipestat_irq_handler(display, state.pipe_stats);
-> +		intel_display_irq_handler(display, &state);
->  	} while (0);
->  
->  	pmu_irq_stats(dev_priv, ret);
-> @@ -362,18 +350,7 @@ static irqreturn_t cherryview_irq_handler(int irq, void *arg)
->  		intel_uncore_write(&dev_priv->uncore, VLV_IER, ier);
->  		intel_uncore_write(&dev_priv->uncore, GEN8_MASTER_IRQ, GEN8_MASTER_IRQ_CONTROL);
->  
-> -		if (state.iir & (I915_LPE_PIPE_A_INTERRUPT |
-> -				 I915_LPE_PIPE_B_INTERRUPT |
-> -				 I915_LPE_PIPE_C_INTERRUPT))
-> -			intel_lpe_audio_irq_handler(display);
-> -
-> -		if (state.hotplug_status)
-> -			i9xx_hpd_irq_handler(display, state.hotplug_status);
-> -
-> -		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
-> -			vlv_display_error_irq_handler(display, state.eir, state.dpinvgtt);
-> -
-> -		valleyview_pipestat_irq_handler(display, state.pipe_stats);
-> +		intel_display_irq_handler(display, &state);
->  	} while (0);
->  
->  	pmu_irq_stats(dev_priv, ret);
-> @@ -420,7 +397,7 @@ static irqreturn_t ilk_irq_handler(int irq, void *arg)
->  		ret = IRQ_HANDLED;
->  	}
->  
-> -	if (ilk_display_irq_handler(display))
-> +	if (intel_display_irq_handler(display, NULL))
->  		ret = IRQ_HANDLED;
->  
->  	if (GRAPHICS_VER(i915) >= 6) {
-> @@ -482,8 +459,11 @@ static irqreturn_t gen8_irq_handler(int irq, void *arg)
->  
->  	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
->  	if (master_ctl & ~GEN8_GT_IRQS) {
-> +		const struct intel_display_irq_state state = {
-> +			.master_ctl = master_ctl,
-> +		};
->  		disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-> -		gen8_de_irq_handler(display, master_ctl);
-> +		intel_display_irq_handler(display, &state);
->  		enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  	}
->  
-> @@ -535,7 +515,7 @@ static irqreturn_t gen11_irq_handler(int irq, void *arg)
->  
->  	/* IRQs are synced during runtime_suspend, we don't require a wakeref */
->  	if (master_ctl & GEN11_DISPLAY_IRQ)
-> -		gen11_display_irq_handler(display);
-> +		intel_display_irq_handler(display, NULL);
->  
->  	gu_misc_iir = gen11_gu_misc_irq_ack(display, master_ctl);
->  
-> @@ -602,7 +582,7 @@ static irqreturn_t dg1_irq_handler(int irq, void *arg)
->  	gen11_gt_irq_handler(gt, master_ctl);
->  
->  	if (master_ctl & GEN11_DISPLAY_IRQ)
-> -		gen11_display_irq_handler(display);
-> +		intel_display_irq_handler(display, NULL);
->  
->  	gu_misc_iir = gen11_gu_misc_irq_ack(display, master_ctl);
->  
-> @@ -906,10 +886,7 @@ static irqreturn_t i915_irq_handler(int irq, void *arg)
->  		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
->  			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
->  
-> -		if (state.hotplug_status)
-> -			i9xx_hpd_irq_handler(display, state.hotplug_status);
-> -
-> -		i915_pipestat_irq_handler(display, state.iir, state.pipe_stats);
-> +		intel_display_irq_handler(display, &state);
->  	} while (0);
->  
->  	pmu_irq_stats(dev_priv, ret);
-> @@ -1013,10 +990,7 @@ static irqreturn_t i965_irq_handler(int irq, void *arg)
->  		if (state.iir & I915_MASTER_ERROR_INTERRUPT)
->  			i9xx_error_irq_handler(dev_priv, eir, eir_stuck);
->  
-> -		if (state.hotplug_status)
-> -			i9xx_hpd_irq_handler(display, state.hotplug_status);
-> -
-> -		i965_pipestat_irq_handler(display, state.iir, state.pipe_stats);
-> +		intel_display_irq_handler(display, &state);
->  	} while (0);
->  
->  	pmu_irq_stats(dev_priv, IRQ_HANDLED);
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 736a5e6938d6..4f283fb79554 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -214,7 +214,7 @@ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl)
->  		return;
->  
->  	if (master_ctl & DISPLAY_IRQ)
-> -		gen11_display_irq_handler(display);
-> +		intel_display_irq_handler(display, NULL);
->  }
->  
->  void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir)
-> -- 
-> 2.47.3
++ .trans_offsets[TRANSCODER_CMTG0] = TRANSCODER_CMTG0_OFFSET,
++ .trans_offsets[TRANSCODER_CMTG1] = TRANSCODER_CMTG1_OFFSET,
+
+> Please let me know for any additional details and the above change still needed or not. Because only NVL will be supporting CMTG.
+
+The CMTG code will be used (if only for disablign CMTG) on all
+platforms that have CMTG, which IIRC is ADL+.
 
 -- 
 Ville Syrjälä
