@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uGRdMNAS82k4xAEAu9opvQ
+	id KJVcLNMS82k4xAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5A5C849F3E2
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6329F49F3E9
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:07 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7CFBE10F272;
-	Thu, 30 Apr 2026 08:29:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E5FD010F29A;
+	Thu, 30 Apr 2026 08:29:05 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n2OfIIPX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hdz6rzM4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ECB5910F272;
- Thu, 30 Apr 2026 08:29:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC6AC10F297;
+ Thu, 30 Apr 2026 08:29:04 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777537741; x=1809073741;
+ t=1777537745; x=1809073745;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TN/87jowGV06VLotagJCvbUejnSZ1uYxKEG6Q8Ytv5Y=;
- b=n2OfIIPXvJ8fR2ESPBKeFpzwEY65FimCUxjvgolPEceHlbo4RAaKC/sW
- Cw34p9efWT4j6lN7IkS0/DHvd1ZxjA11MPNTEY3oK8ZgNamJgb3wJ485s
- IqcEK7xNhtPmj9tQDMQsDq9I1UGewTNdRv/uYP0LHER263m0M3jY6bw0o
- Lcwexw9ppfyv3+AyhJAwuL5k20o5SAkvXbCt6KGyuI+FaKbvaNV0eAoYX
- eHBjjTjhKHJKZ5kfnpv+j5q0Vt8+RkwBzwYx8Mgw+Ppizg9qkmamT6HTA
- TaU1I2DaLPupKZWEeoKSQYDsIYeL75n8cLMSchyNV5GJghP+YYeUnENLg A==;
-X-CSE-ConnectionGUID: OKSrNGXBSkOJZLL3AyvsJA==
-X-CSE-MsgGUID: tLSrfgWpRTq6xF9CgZ71jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="88793346"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="88793346"
+ bh=/gRA569Td9nst/GsfBCFM1+RmY+izsyNFUuK3H9OndY=;
+ b=Hdz6rzM45NjF31NKPhqqo47vsqulrYuon62hdzRxSQ6Lq+0R1HnJiks+
+ J0Qbp5+2xq+pv9gKiuIZ6lAbY4HVZ0yT1RFA3SJk83ylKIPjr7t5sQzKR
+ NbZs/R9cYIiBPa5gbrcg/bQjIHrnAFrBzp/cAzozHKPDTjYerjdt0TxVT
+ xNLD8d6ZY4mY3MZ4urm9wJCTc0szYwo9D3/TxYeiSh/5EZQ+mMDNVC7WC
+ fPfG7gpXHEx5j97f8w2rq3vum/OOwxM/dTgGGp9byLjoOmkfsZvHjgbDN
+ dqwExE0+7Q9MZrqLudPiJq/i3R5ji99Dgz0T2xtk0ZWJV9g187ZTQP+tN g==;
+X-CSE-ConnectionGUID: h3jE8ZheSFWflWDOSHERYA==
+X-CSE-MsgGUID: Q06jIlGZRcau48FNCRUA/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="88793350"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="88793350"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:01 -0700
-X-CSE-ConnectionGUID: xcH7sqXBR7CQ3kBsRKw3Qg==
-X-CSE-MsgGUID: HLjObiHMTkyEgjFUxT3VqQ==
+ 30 Apr 2026 01:29:05 -0700
+X-CSE-ConnectionGUID: RMGKM9cCR7moAharlCcbzA==
+X-CSE-MsgGUID: yXvufFeXR2mDovycGf0pMQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="228015300"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="228015316"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.68])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:00 -0700
+ 30 Apr 2026 01:29:03 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/8] drm/i915/display: move audio funcs under audio sub-struct
-Date: Thu, 30 Apr 2026 11:28:45 +0300
-Message-ID: <60d626286b77c2faa9ff0518855dd083906b24be.1777537663.git.jani.nikula@intel.com>
+Subject: [PATCH 2/8] drm/i915/display: move color funcs under color sub-struct
+Date: Thu, 30 Apr 2026 11:28:46 +0300
+Message-ID: <77cc5dd365f3346c4cbbe7a5d883bca413138c94.1777537663.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1777537663.git.jani.nikula@intel.com>
 References: <cover.1777537663.git.jani.nikula@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 5A5C849F3E2
+X-Rspamd-Queue-Id: 6329F49F3E9
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -105,7 +105,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-Move audio related functions under audio sub-struct of struct
+Move color related functions under color sub-struct of struct
 intel_display.
 
 The funcs sub-struct of struct intel_display seems unnecessary. Instead
@@ -113,107 +113,184 @@ of display->funcs.FEATURE, prefer display->FEATURE.funcs.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_audio.c    | 22 ++++++++-----------
- .../gpu/drm/i915/display/intel_display_core.h |  6 ++---
- .../gpu/drm/i915/display/intel_display_irq.c  |  4 ++++
- 3 files changed, 16 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c    | 58 +++++++++----------
+ .../gpu/drm/i915/display/intel_display_core.h |  6 +-
+ 2 files changed, 32 insertions(+), 32 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_audio.c b/drivers/gpu/drm/i915/display/intel_audio.c
-index 081627e0d917..2a6476ccc85b 100644
---- a/drivers/gpu/drm/i915/display/intel_audio.c
-+++ b/drivers/gpu/drm/i915/display/intel_audio.c
-@@ -754,10 +754,8 @@ void intel_audio_codec_enable(struct intel_encoder *encoder,
- 		    crtc->base.base.id, crtc->base.name,
- 		    drm_eld_size(crtc_state->eld));
- 
--	if (display->funcs.audio)
--		display->funcs.audio->audio_codec_enable(encoder,
--							      crtc_state,
--							      conn_state);
-+	if (display->audio.funcs)
-+		display->audio.funcs->audio_codec_enable(encoder, crtc_state, conn_state);
- 
- 	mutex_lock(&display->audio.mutex);
- 
-@@ -813,10 +811,8 @@ void intel_audio_codec_disable(struct intel_encoder *encoder,
- 		    encoder->base.base.id, encoder->base.name,
- 		    crtc->base.base.id, crtc->base.name);
- 
--	if (display->funcs.audio)
--		display->funcs.audio->audio_codec_disable(encoder,
--							       old_crtc_state,
--							       old_conn_state);
-+	if (display->audio.funcs)
-+		display->audio.funcs->audio_codec_disable(encoder, old_crtc_state, old_conn_state);
- 
- 	mutex_lock(&display->audio.mutex);
- 
-@@ -864,8 +860,8 @@ void intel_audio_codec_get_config(struct intel_encoder *encoder,
- 	if (!crtc_state->has_audio)
+diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+index e7950655434b..0531c60e5e5d 100644
+--- a/drivers/gpu/drm/i915/display/intel_color.c
++++ b/drivers/gpu/drm/i915/display/intel_color.c
+@@ -1933,7 +1933,7 @@ void intel_color_load_luts(const struct intel_crtc_state *crtc_state)
+ 	if (crtc_state->dsb_color)
  		return;
  
--	if (display->funcs.audio)
--		display->funcs.audio->audio_codec_get_config(encoder, crtc_state);
-+	if (display->audio.funcs)
-+		display->audio.funcs->audio_codec_get_config(encoder, crtc_state);
+-	display->funcs.color->load_luts(crtc_state);
++	display->color.funcs->load_luts(crtc_state);
  }
  
- static const struct intel_audio_funcs g4x_audio_funcs = {
-@@ -893,12 +889,12 @@ static const struct intel_audio_funcs hsw_audio_funcs = {
- void intel_audio_hooks_init(struct intel_display *display)
+ void intel_color_commit_noarm(struct intel_dsb *dsb,
+@@ -1941,8 +1941,8 @@ void intel_color_commit_noarm(struct intel_dsb *dsb,
  {
- 	if (display->platform.g4x)
--		display->funcs.audio = &g4x_audio_funcs;
-+		display->audio.funcs = &g4x_audio_funcs;
- 	else if (display->platform.valleyview || display->platform.cherryview ||
- 		 HAS_PCH_CPT(display) || HAS_PCH_IBX(display))
--		display->funcs.audio = &ibx_audio_funcs;
-+		display->audio.funcs = &ibx_audio_funcs;
- 	else if (display->platform.haswell || DISPLAY_VER(display) >= 8)
--		display->funcs.audio = &hsw_audio_funcs;
-+		display->audio.funcs = &hsw_audio_funcs;
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
+-	if (display->funcs.color->color_commit_noarm)
+-		display->funcs.color->color_commit_noarm(dsb, crtc_state);
++	if (display->color.funcs->color_commit_noarm)
++		display->color.funcs->color_commit_noarm(dsb, crtc_state);
  }
  
- struct aud_ts_cdclk_m_n {
+ void intel_color_commit_arm(struct intel_dsb *dsb,
+@@ -1950,15 +1950,15 @@ void intel_color_commit_arm(struct intel_dsb *dsb,
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
+-	display->funcs.color->color_commit_arm(dsb, crtc_state);
++	display->color.funcs->color_commit_arm(dsb, crtc_state);
+ }
+ 
+ void intel_color_post_update(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
+-	if (display->funcs.color->color_post_update)
+-		display->funcs.color->color_post_update(crtc_state);
++	if (display->color.funcs->color_post_update)
++		display->color.funcs->color_post_update(crtc_state);
+ }
+ 
+ void intel_color_modeset(const struct intel_crtc_state *crtc_state)
+@@ -2022,7 +2022,7 @@ void intel_color_prepare_commit(struct intel_atomic_state *state,
+ 	if (!intel_color_uses_dsb(crtc_state))
+ 		return;
+ 
+-	display->funcs.color->load_luts(crtc_state);
++	display->color.funcs->load_luts(crtc_state);
+ 
+ 	if (crtc_state->use_dsb && intel_color_uses_chained_dsb(crtc_state)) {
+ 		intel_vrr_send_push(crtc_state->dsb_color, crtc_state);
+@@ -2113,19 +2113,19 @@ int intel_color_check(struct intel_atomic_state *state,
+ 	if (!intel_crtc_needs_color_update(new_crtc_state))
+ 		return 0;
+ 
+-	return display->funcs.color->color_check(state, crtc);
++	return display->color.funcs->color_check(state, crtc);
+ }
+ 
+ void intel_color_get_config(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 
+-	display->funcs.color->get_config(crtc_state);
++	display->color.funcs->get_config(crtc_state);
+ 
+-	display->funcs.color->read_luts(crtc_state);
++	display->color.funcs->read_luts(crtc_state);
+ 
+-	if (display->funcs.color->read_csc)
+-		display->funcs.color->read_csc(crtc_state);
++	if (display->color.funcs->read_csc)
++		display->color.funcs->read_csc(crtc_state);
+ }
+ 
+ bool intel_color_lut_equal(const struct intel_crtc_state *crtc_state,
+@@ -2142,7 +2142,7 @@ bool intel_color_lut_equal(const struct intel_crtc_state *crtc_state,
+ 	if (!is_pre_csc_lut && crtc_state->c8_planes)
+ 		return true;
+ 
+-	return display->funcs.color->lut_equal(crtc_state, blob1, blob2,
++	return display->color.funcs->lut_equal(crtc_state, blob1, blob2,
+ 					       is_pre_csc_lut);
+ }
+ 
+@@ -4253,8 +4253,8 @@ intel_color_load_plane_csc_matrix(struct intel_dsb *dsb,
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+ 
+-	if (display->funcs.color->load_plane_csc_matrix)
+-		display->funcs.color->load_plane_csc_matrix(dsb, plane_state);
++	if (display->color.funcs->load_plane_csc_matrix)
++		display->color.funcs->load_plane_csc_matrix(dsb, plane_state);
+ }
+ 
+ static void
+@@ -4263,8 +4263,8 @@ intel_color_load_plane_luts(struct intel_dsb *dsb,
+ {
+ 	struct intel_display *display = to_intel_display(plane_state);
+ 
+-	if (display->funcs.color->load_plane_luts)
+-		display->funcs.color->load_plane_luts(dsb, plane_state);
++	if (display->color.funcs->load_plane_luts)
++		display->color.funcs->load_plane_luts(dsb, plane_state);
+ }
+ 
+ bool
+@@ -4346,29 +4346,29 @@ void intel_color_init_hooks(struct intel_display *display)
+ {
+ 	if (HAS_GMCH(display)) {
+ 		if (display->platform.cherryview)
+-			display->funcs.color = &chv_color_funcs;
++			display->color.funcs = &chv_color_funcs;
+ 		else if (display->platform.valleyview)
+-			display->funcs.color = &vlv_color_funcs;
++			display->color.funcs = &vlv_color_funcs;
+ 		else if (DISPLAY_VER(display) >= 4)
+-			display->funcs.color = &i965_color_funcs;
++			display->color.funcs = &i965_color_funcs;
+ 		else
+-			display->funcs.color = &i9xx_color_funcs;
++			display->color.funcs = &i9xx_color_funcs;
+ 	} else {
+ 		if (DISPLAY_VER(display) >= 12)
+-			display->funcs.color = &tgl_color_funcs;
++			display->color.funcs = &tgl_color_funcs;
+ 		else if (DISPLAY_VER(display) == 11)
+-			display->funcs.color = &icl_color_funcs;
++			display->color.funcs = &icl_color_funcs;
+ 		else if (DISPLAY_VER(display) == 10)
+-			display->funcs.color = &glk_color_funcs;
++			display->color.funcs = &glk_color_funcs;
+ 		else if (DISPLAY_VER(display) == 9)
+-			display->funcs.color = &skl_color_funcs;
++			display->color.funcs = &skl_color_funcs;
+ 		else if (DISPLAY_VER(display) == 8)
+-			display->funcs.color = &bdw_color_funcs;
++			display->color.funcs = &bdw_color_funcs;
+ 		else if (display->platform.haswell)
+-			display->funcs.color = &hsw_color_funcs;
++			display->color.funcs = &hsw_color_funcs;
+ 		else if (DISPLAY_VER(display) == 7)
+-			display->funcs.color = &ivb_color_funcs;
++			display->color.funcs = &ivb_color_funcs;
+ 		else
+-			display->funcs.color = &ilk_color_funcs;
++			display->color.funcs = &ilk_color_funcs;
+ 	}
+ }
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index c5a07090cba6..c61990ca9e29 100644
+index c61990ca9e29..db07e332af5a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -100,6 +100,9 @@ struct intel_audio_state {
- };
+@@ -319,9 +319,6 @@ struct intel_display {
  
- struct intel_audio {
-+	/* internal display audio functions */
-+	const struct intel_audio_funcs *funcs;
-+
- 	/* hda/i915 audio component */
- 	struct i915_audio_component *component;
- 	bool component_registered;
-@@ -319,9 +322,6 @@ struct intel_display {
- 
- 		/* Display internal color functions */
- 		const struct intel_color_funcs *color;
+ 		/* fdi display functions */
+ 		const struct intel_fdi_funcs *fdi;
 -
--		/* Display internal audio functions */
--		const struct intel_audio_funcs *audio;
+-		/* Display internal color functions */
+-		const struct intel_color_funcs *color;
  	} funcs;
  
  	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 70c1bba7c0a8..b5bfdebc66ca 100644
---- a/drivers/gpu/drm/i915/display/intel_display_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -2458,6 +2458,10 @@ void dg1_de_irq_postinstall(struct intel_display *display)
- 	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
- }
+@@ -365,6 +362,9 @@ struct intel_display {
+ 	} cdclk;
  
-+struct intel_display_irq_funcs {
-+	void (*reset)(struct intel_display *display);
-+};
+ 	struct {
++		/* internal color functions */
++		const struct intel_color_funcs *funcs;
 +
- void intel_display_irq_init(struct intel_display *display)
- {
- 	spin_lock_init(&display->irq.lock);
+ 		struct drm_property_blob *glk_linear_degamma_lut;
+ 	} color;
+ 
 -- 
 2.47.3
 
