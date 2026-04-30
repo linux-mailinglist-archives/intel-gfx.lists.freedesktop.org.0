@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YLmaAK9Y82lfzwEAu9opvQ
+	id WL9CKLFY82lfzwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:27:11 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:27:13 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A7F1F4A36BA
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:27:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 742F54A36C1
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:27:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D9B4B10E60D;
-	Thu, 30 Apr 2026 13:27:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BF0E310E6BE;
+	Thu, 30 Apr 2026 13:27:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bc2RtIc6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="lLqXlImy";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E95B010E6BE;
- Thu, 30 Apr 2026 13:27:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C946E10E5AF;
+ Thu, 30 Apr 2026 13:27:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777555627; x=1809091627;
+ t=1777555629; x=1809091629;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f6mDQS9sXWObE/SLyJMVIDEA6OcLyzLiq6rQoVEkrC8=;
- b=bc2RtIc6kzUZCjE01itkplaLRrIdmJmwGb5fzS2EiwIBSDNZgYaJABSw
- nmHWmpoj7MPnfBZ37k+LwpnUa9vCgeWi948l3+yCojCKZWoVo9cV1NTV5
- ZUu/aXLDkc/9KWYsIJEF/bHoCG17u5D1F3/w+147wNtyDkDACRiHVaHAp
- khAS9DJ92M5QJppe7gtiJbqEgZNJB6fVR5xsq0EPc1sQoNYaXu6JlqQh4
- IwILmXRAHPp0lQK7pMN4+ec2yBXYKUuT8MdlGr+nM7pZKZj0k9M8Y9cjT
- lsFgWTWw6N8P+54P5zRPnR7Y6aeq54Tzoh2Q0jyXUClZW2MV9j1FdVxoi g==;
-X-CSE-ConnectionGUID: uZJl6fIQTayE5DDHyg+Yyw==
-X-CSE-MsgGUID: Gpr6vuaUSzur8eJhYQb+Aw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="78398726"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="78398726"
+ bh=Cn86+/wG9q20GY40uK4gIMGTIgVyVSOLZnEWzliMBss=;
+ b=lLqXlImy45nuTBeGHxNRlmki8LbFVhC+vpWl/L1wFPbwpgOEohGPlYgq
+ qmb2YYhBtDXniwQTr+LRuYp1XijwlaBdDcDQcxpHAaynkFVax/lYh7Pq4
+ JvxxDpgLfzIoEio9BW31MGBTvv02OmjA7ZDNC2+DBL8526TvJdTQHtQgS
+ Tyk3jr+xVNwwWAIhsT4HlSWhqOGq3hdX9n37wGlmulKIKqDsQAX6bwHIk
+ uaErfP0B+Lyy8hVAtAoRbFDeAGES9rpfFIpq1GlBdJjUGKDVBKGvgS2Ec
+ RGHaH1Fug450WvozZzG5eSqTye16y9zEkLhJ8lCEMpkEdc+MDRmz9RRoP w==;
+X-CSE-ConnectionGUID: cVh0xJ8nTPKHiW0kvSdwTQ==
+X-CSE-MsgGUID: GHS/s9oiT5ytLr/6PFx+vQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="78398727"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="78398727"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:27:07 -0700
-X-CSE-ConnectionGUID: 3U7Jx5DxRA6fixXrlFvhsQ==
-X-CSE-MsgGUID: 0FtzpLYjTzCsxTxKRKiTDQ==
+ 30 Apr 2026 06:27:09 -0700
+X-CSE-ConnectionGUID: yqMJz7BEQ3ejj8w18rH3AQ==
+X-CSE-MsgGUID: 8z9OsFn0Q6Wf9sYqNo4KrA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="257919877"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="257919882"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:27:05 -0700
+ 30 Apr 2026 06:27:07 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@linux.intel.com, ville.syrjala@linux.intel.com,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 3/5] drm/i915/intel_dvo: Drop call to intel_panel_fixed_mode()
- from compute_config
-Date: Thu, 30 Apr 2026 18:42:18 +0530
-Message-ID: <20260430131220.3891497-4-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 4/5] drm/i915/intel_sdvo: Drop call to
+ intel_panel_fixed_mode() from compute_config
+Date: Thu, 30 Apr 2026 18:42:19 +0530
+Message-ID: <20260430131220.3891497-5-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260430131220.3891497-1-ankit.k.nautiyal@intel.com>
 References: <20260430131220.3891497-1-ankit.k.nautiyal@intel.com>
@@ -74,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A7F1F4A36BA
+X-Rspamd-Queue-Id: 742F54A36C1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -103,52 +103,42 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-The function intel_dvo_compute_config() calls intel_panel_fixed_mode() only
-to check if there is a valid fixed_mode and based on that it then calls
-intel_panel_compute_config().
+Currently, in intel_sdvo_compute_config(), intel_panel_fixed_mode() is
+called to get the fixed mode. However, since the call is made after
+intel_panel_compute_config, that copies the selected fixed mode to the
+adjusted mode, we can directly use the crtc_state->hw.adjusted_mode.
 
-However, since the intel_panel_compute_config() already checks for
-fixed_mode and we can drop the call to intel_panel_fixed_mode().
+So remove the extra call to intel_panel_fixed_mode() and use adjusted
+mode instead.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dvo.c | 14 ++++----------
- 1 file changed, 4 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index 65015477abed..dd1a995c2979 100644
---- a/drivers/gpu/drm/i915/display/intel_dvo.c
-+++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -246,11 +246,9 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
- 				    struct intel_crtc_state *pipe_config,
- 				    struct drm_connector_state *conn_state)
- {
--	struct intel_dvo *intel_dvo = enc_to_dvo(encoder);
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
--	const struct drm_display_mode *fixed_mode =
--		intel_panel_fixed_mode(intel_dvo->attached_connector, adjusted_mode);
-+	int ret;
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 7843eb13f2e3..c18e7d5e9c34 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -1395,8 +1395,7 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+ 							   adjusted_mode);
+ 		pipe_config->sdvo_tv_clock = true;
+ 	} else if (IS_LVDS(intel_sdvo_connector)) {
+-		const struct drm_display_mode *fixed_mode =
+-			intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
++		const struct drm_display_mode *fixed_mode;
+ 		int ret;
  
- 	/*
- 	 * If we have timings from the BIOS for the panel, put them in
-@@ -258,13 +256,9 @@ static int intel_dvo_compute_config(struct intel_encoder *encoder,
- 	 * with the panel scaling set up to source from the H/VDisplay
- 	 * of the original mode.
- 	 */
--	if (fixed_mode) {
--		int ret;
--
--		ret = intel_panel_compute_config(connector, adjusted_mode);
--		if (ret)
--			return ret;
--	}
-+	ret = intel_panel_compute_config(connector, adjusted_mode);
-+	if (ret)
-+		return ret;
+ 		ret = intel_panel_compute_config(&intel_sdvo_connector->base,
+@@ -1404,6 +1403,8 @@ static int intel_sdvo_compute_config(struct intel_encoder *encoder,
+ 		if (ret)
+ 			return ret;
  
- 	if (adjusted_mode->flags & DRM_MODE_FLAG_DBLSCAN)
- 		return -EINVAL;
++		fixed_mode = &pipe_config->hw.adjusted_mode;
++
+ 		if (!intel_sdvo_set_output_timings_from_mode(intel_sdvo,
+ 							     intel_sdvo_connector,
+ 							     fixed_mode))
 -- 
 2.45.2
 
