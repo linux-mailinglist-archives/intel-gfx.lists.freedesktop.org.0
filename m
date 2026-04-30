@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GOl8BOcS82k4xAEAu9opvQ
+	id sBVyIukS82k4xAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B69B549F40C
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3D13E49F414
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3046410F2A8;
-	Thu, 30 Apr 2026 08:29:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BCBFB10F2B3;
+	Thu, 30 Apr 2026 08:29:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LGBhVosM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXsvoIfa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 81F4D10F2A0;
- Thu, 30 Apr 2026 08:29:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB9710F2B3;
+ Thu, 30 Apr 2026 08:29:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777537763; x=1809073763;
+ t=1777537767; x=1809073767;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=5gFgUyvfL7WPRorQoWSUVmwhqB//r+c/d1zwwhGdGzY=;
- b=LGBhVosMCW0FBEruljje0YB2RCn4QUGUR1sMAN8be3ZJQzGs/gqzvEVj
- esUQKnnBg3GOi29oGJ0qqi+F1DUEZsGxhSeWt3fdEF8KIePMIZaZy29XR
- KIW+7RZvWyC06UB8am76V/mkkbMbxVnpM5H6kgYMmK0+mB8U+UsBctltT
- 09eklLSd18whScwsukd+ht0a9sO3aQM4JdzQoiHJbLR8UuDH0MCI/QLfc
- QSCBK5IvrPXZfTvOGkn76DNr5zP376DR0bfI7f+3hvG45lA8Xp/LOPbWa
- NvEk2DDiZwNiKRG0AnQH04BWiFos9X1KzgoHCqfGel5nC0PBfzICMJ/NK A==;
-X-CSE-ConnectionGUID: nhGuC5utQxK/6F+IbHeC4Q==
-X-CSE-MsgGUID: aZj2/lAzTlazhX+QVm0POA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77646064"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="77646064"
+ bh=HjAnWqQphszr9Rl8hI2PDmJXsvMpI1TMjgvpa6zL+7Y=;
+ b=SXsvoIfahZbHuyPQ6/wm6OaQ9Su4k91F2RzmF1iLiOx6zMq9h7lB2RGK
+ Nw9mbTG7LJZB6f/5jtXOJVieTcPz/y74ISzx25z0hdgyvyMtpRlRwo9Zs
+ ePWA4Xpgz8gMx4jJu/CvFxDtPvrnkdEP2Mjklx77Q3Byna/xe3vfVYaeS
+ h3fobzu5WcRuDbdQ7s2Qq8qRPc/NP2X8pyxbZyulIZRT1AW6CFxukDfpw
+ HKJZ2gVzE8It9ceCoWwwSE4APawLWUeRBrs+FEiIdg+6BYrJ6AHAqGLxI
+ 0TLvMojIqlTo/QFw8trDRrO32USOYrmd3cgVBqHC1POVdpp1uuRcLBLYd w==;
+X-CSE-ConnectionGUID: bZ6A7M1OSh+ivdQ01gTqlw==
+X-CSE-MsgGUID: KW7gMORhTQu6PX+SWLugyQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77646065"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="77646065"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:23 -0700
-X-CSE-ConnectionGUID: kupTt9nrSh2IeAjWOyizVQ==
-X-CSE-MsgGUID: /xvY5MiBSiOCQOycFAc3LA==
+ 30 Apr 2026 01:29:27 -0700
+X-CSE-ConnectionGUID: yufYzVxCR4CIrcQwWA8awA==
+X-CSE-MsgGUID: /Zl/kvPFQAmQ+48wXpUpKQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="229911378"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="229911404"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.68])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:22 -0700
+ 30 Apr 2026 01:29:26 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 7/8] drm/i915/display: move cdclk funcs under cdclk sub-struct
-Date: Thu, 30 Apr 2026 11:28:51 +0300
-Message-ID: <a3cadca7cfd03486404af497fa62efb8e2d2adcd.1777537663.git.jani.nikula@intel.com>
+Subject: [PATCH 8/8] drm/i915/display: move display funcs under modeset
+ sub-struct
+Date: Thu, 30 Apr 2026 11:28:52 +0300
+Message-ID: <7849de3a5c9755639c179917c6a298de9ac832c0.1777537663.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1777537663.git.jani.nikula@intel.com>
 References: <cover.1777537663.git.jani.nikula@intel.com>
@@ -75,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B69B549F40C
+X-Rspamd-Queue-Id: 3D13E49F414
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -99,230 +100,207 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.999];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-Move cdclk related functions under cdclk sub-struct of struct
-intel_display.
+Move generic crtc-ish modeset related functions under a new modeset
+sub-struct of struct intel_display. Rename struct intel_display_funcs to
+intel_modeset_funcs to make it a little bit more specific. Remove the
+funcs sub-struct.
 
 The funcs sub-struct of struct intel_display seems unnecessary. Instead
 of display->funcs.FEATURE, prefer display->FEATURE.funcs.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c    | 84 +++++++++----------
- .../gpu/drm/i915/display/intel_display_core.h |  6 +-
- 2 files changed, 45 insertions(+), 45 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c  | 28 +++++++++----------
+ .../gpu/drm/i915/display/intel_display_core.h | 13 ++++-----
+ .../drm/i915/display/intel_initial_plane.c    |  4 +--
+ .../drm/i915/display/intel_modeset_setup.c    |  2 +-
+ 4 files changed, 23 insertions(+), 24 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 57d714c81fc4..a1bf01021d65 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -170,27 +170,27 @@ struct intel_cdclk_funcs {
- void intel_cdclk_get_cdclk(struct intel_display *display,
- 			   struct intel_cdclk_config *cdclk_config)
- {
--	display->funcs.cdclk->get_cdclk(display, cdclk_config);
-+	display->cdclk.funcs->get_cdclk(display, cdclk_config);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 7839e663f7bc..b023cc46c863 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -4051,7 +4051,7 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
  
- static void intel_cdclk_set_cdclk(struct intel_display *display,
- 				  const struct intel_cdclk_config *cdclk_config,
- 				  enum pipe pipe)
- {
--	display->funcs.cdclk->set_cdclk(display, cdclk_config, pipe);
-+	display->cdclk.funcs->set_cdclk(display, cdclk_config, pipe);
- }
+-	if (!display->funcs.display->get_pipe_config(crtc, crtc_state))
++	if (!display->modeset.funcs->get_pipe_config(crtc, crtc_state))
+ 		return false;
  
- static int intel_cdclk_modeset_calc_cdclk(struct intel_atomic_state *state)
- {
- 	struct intel_display *display = to_intel_display(state);
+ 	crtc_state->hw.active = true;
+@@ -6739,7 +6739,7 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
  
--	return display->funcs.cdclk->modeset_calc_cdclk(state);
-+	return display->cdclk.funcs->modeset_calc_cdclk(state);
- }
+ 	intel_psr_notify_pipe_change(state, crtc, true);
  
- static u8 intel_cdclk_calc_voltage_level(struct intel_display *display,
- 					 int cdclk)
- {
--	return display->funcs.cdclk->calc_voltage_level(cdclk);
-+	return display->cdclk.funcs->calc_voltage_level(cdclk);
- }
+-	display->funcs.display->crtc_enable(state, crtc);
++	display->modeset.funcs->crtc_enable(state, crtc);
  
- static void fixed_133mhz_get_cdclk(struct intel_display *display,
-@@ -2619,7 +2619,7 @@ static void intel_set_cdclk(struct intel_display *display,
- 	if (!intel_cdclk_changed(&display->cdclk.hw, cdclk_config))
- 		return;
+ 	/* vblanks work again, re-enable pipe CRC. */
+ 	intel_crtc_enable_pipe_crc(crtc);
+@@ -6870,7 +6870,7 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
  
--	if (drm_WARN_ON_ONCE(display->drm, !display->funcs.cdclk->set_cdclk))
-+	if (drm_WARN_ON_ONCE(display->drm, !display->cdclk.funcs->set_cdclk))
- 		return;
+ 	intel_psr_notify_pipe_change(state, crtc, false);
  
- 	intel_cdclk_dump_config(display, cdclk_config, context);
-@@ -4042,100 +4042,100 @@ static const struct intel_cdclk_funcs i830_cdclk_funcs = {
- void intel_init_cdclk_hooks(struct intel_display *display)
- {
- 	if (DISPLAY_VER(display) >= 35) {
--		display->funcs.cdclk = &xe3lpd_cdclk_funcs;
-+		display->cdclk.funcs = &xe3lpd_cdclk_funcs;
- 		display->cdclk.table = xe3p_lpd_cdclk_table;
- 	} else if (DISPLAY_VER(display) >= 30) {
--		display->funcs.cdclk = &xe3lpd_cdclk_funcs;
-+		display->cdclk.funcs = &xe3lpd_cdclk_funcs;
- 		display->cdclk.table = xe3lpd_cdclk_table;
- 	} else if (DISPLAY_VER(display) >= 20) {
--		display->funcs.cdclk = &rplu_cdclk_funcs;
-+		display->cdclk.funcs = &rplu_cdclk_funcs;
- 		display->cdclk.table = xe2lpd_cdclk_table;
- 	} else if (DISPLAY_VERx100(display) >= 1401) {
--		display->funcs.cdclk = &rplu_cdclk_funcs;
-+		display->cdclk.funcs = &rplu_cdclk_funcs;
- 		display->cdclk.table = xe2hpd_cdclk_table;
- 	} else if (DISPLAY_VER(display) >= 14) {
--		display->funcs.cdclk = &rplu_cdclk_funcs;
-+		display->cdclk.funcs = &rplu_cdclk_funcs;
- 		display->cdclk.table = mtl_cdclk_table;
- 	} else if (display->platform.dg2) {
--		display->funcs.cdclk = &tgl_cdclk_funcs;
-+		display->cdclk.funcs = &tgl_cdclk_funcs;
- 		display->cdclk.table = dg2_cdclk_table;
- 	} else if (display->platform.alderlake_p) {
- 		/* Wa_22011320316:adl-p[a0] */
- 		if (intel_display_wa(display, INTEL_DISPLAY_WA_22011320316)) {
- 			display->cdclk.table = adlp_a_step_cdclk_table;
--			display->funcs.cdclk = &tgl_cdclk_funcs;
-+			display->cdclk.funcs = &tgl_cdclk_funcs;
- 		} else if (display->platform.alderlake_p_raptorlake_u) {
- 			display->cdclk.table = rplu_cdclk_table;
--			display->funcs.cdclk = &rplu_cdclk_funcs;
-+			display->cdclk.funcs = &rplu_cdclk_funcs;
- 		} else {
- 			display->cdclk.table = adlp_cdclk_table;
--			display->funcs.cdclk = &tgl_cdclk_funcs;
-+			display->cdclk.funcs = &tgl_cdclk_funcs;
- 		}
- 	} else if (display->platform.rocketlake) {
--		display->funcs.cdclk = &tgl_cdclk_funcs;
-+		display->cdclk.funcs = &tgl_cdclk_funcs;
- 		display->cdclk.table = rkl_cdclk_table;
- 	} else if (DISPLAY_VER(display) >= 12) {
--		display->funcs.cdclk = &tgl_cdclk_funcs;
-+		display->cdclk.funcs = &tgl_cdclk_funcs;
- 		display->cdclk.table = icl_cdclk_table;
- 	} else if (display->platform.jasperlake || display->platform.elkhartlake) {
--		display->funcs.cdclk = &ehl_cdclk_funcs;
-+		display->cdclk.funcs = &ehl_cdclk_funcs;
- 		display->cdclk.table = icl_cdclk_table;
- 	} else if (DISPLAY_VER(display) >= 11) {
--		display->funcs.cdclk = &icl_cdclk_funcs;
-+		display->cdclk.funcs = &icl_cdclk_funcs;
- 		display->cdclk.table = icl_cdclk_table;
- 	} else if (display->platform.geminilake || display->platform.broxton) {
--		display->funcs.cdclk = &bxt_cdclk_funcs;
-+		display->cdclk.funcs = &bxt_cdclk_funcs;
- 		if (display->platform.geminilake)
- 			display->cdclk.table = glk_cdclk_table;
- 		else
- 			display->cdclk.table = bxt_cdclk_table;
- 	} else if (DISPLAY_VER(display) == 9) {
--		display->funcs.cdclk = &skl_cdclk_funcs;
-+		display->cdclk.funcs = &skl_cdclk_funcs;
- 	} else if (display->platform.broadwell) {
--		display->funcs.cdclk = &bdw_cdclk_funcs;
-+		display->cdclk.funcs = &bdw_cdclk_funcs;
- 	} else if (display->platform.haswell) {
--		display->funcs.cdclk = &hsw_cdclk_funcs;
-+		display->cdclk.funcs = &hsw_cdclk_funcs;
- 	} else if (display->platform.cherryview) {
--		display->funcs.cdclk = &chv_cdclk_funcs;
-+		display->cdclk.funcs = &chv_cdclk_funcs;
- 	} else if (display->platform.valleyview) {
--		display->funcs.cdclk = &vlv_cdclk_funcs;
-+		display->cdclk.funcs = &vlv_cdclk_funcs;
- 	} else if (display->platform.sandybridge || display->platform.ivybridge) {
--		display->funcs.cdclk = &fixed_400mhz_cdclk_funcs;
-+		display->cdclk.funcs = &fixed_400mhz_cdclk_funcs;
- 	} else if (display->platform.ironlake) {
--		display->funcs.cdclk = &ilk_cdclk_funcs;
-+		display->cdclk.funcs = &ilk_cdclk_funcs;
- 	} else if (display->platform.gm45) {
--		display->funcs.cdclk = &gm45_cdclk_funcs;
-+		display->cdclk.funcs = &gm45_cdclk_funcs;
- 	} else if (display->platform.g45) {
--		display->funcs.cdclk = &g33_cdclk_funcs;
-+		display->cdclk.funcs = &g33_cdclk_funcs;
- 	} else if (display->platform.i965gm) {
--		display->funcs.cdclk = &i965gm_cdclk_funcs;
-+		display->cdclk.funcs = &i965gm_cdclk_funcs;
- 	} else if (display->platform.i965g) {
--		display->funcs.cdclk = &fixed_400mhz_cdclk_funcs;
-+		display->cdclk.funcs = &fixed_400mhz_cdclk_funcs;
- 	} else if (display->platform.pineview) {
--		display->funcs.cdclk = &pnv_cdclk_funcs;
-+		display->cdclk.funcs = &pnv_cdclk_funcs;
- 	} else if (display->platform.g33) {
--		display->funcs.cdclk = &g33_cdclk_funcs;
-+		display->cdclk.funcs = &g33_cdclk_funcs;
- 	} else if (display->platform.i945gm) {
--		display->funcs.cdclk = &i945gm_cdclk_funcs;
-+		display->cdclk.funcs = &i945gm_cdclk_funcs;
- 	} else if (display->platform.i945g) {
--		display->funcs.cdclk = &fixed_400mhz_cdclk_funcs;
-+		display->cdclk.funcs = &fixed_400mhz_cdclk_funcs;
- 	} else if (display->platform.i915gm) {
--		display->funcs.cdclk = &i915gm_cdclk_funcs;
-+		display->cdclk.funcs = &i915gm_cdclk_funcs;
- 	} else if (display->platform.i915g) {
--		display->funcs.cdclk = &i915g_cdclk_funcs;
-+		display->cdclk.funcs = &i915g_cdclk_funcs;
- 	} else if (display->platform.i865g) {
--		display->funcs.cdclk = &i865g_cdclk_funcs;
-+		display->cdclk.funcs = &i865g_cdclk_funcs;
- 	} else if (display->platform.i85x) {
--		display->funcs.cdclk = &i85x_cdclk_funcs;
-+		display->cdclk.funcs = &i85x_cdclk_funcs;
- 	} else if (display->platform.i845g) {
--		display->funcs.cdclk = &i845g_cdclk_funcs;
-+		display->cdclk.funcs = &i845g_cdclk_funcs;
- 	} else if (display->platform.i830) {
--		display->funcs.cdclk = &i830_cdclk_funcs;
-+		display->cdclk.funcs = &i830_cdclk_funcs;
+-	display->funcs.display->crtc_disable(state, crtc);
++	display->modeset.funcs->crtc_disable(state, crtc);
+ 
+ 	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
+ 					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
+@@ -7522,7 +7522,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
  	}
  
--	if (drm_WARN(display->drm, !display->funcs.cdclk,
-+	if (drm_WARN(display->drm, !display->cdclk.funcs,
- 		     "Unknown platform. Assuming i830\n"))
--		display->funcs.cdclk = &i830_cdclk_funcs;
-+		display->cdclk.funcs = &i830_cdclk_funcs;
+ 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
+-	display->funcs.display->commit_modeset_enables(state);
++	display->modeset.funcs->commit_modeset_enables(state);
+ 
+ 	/* FIXME probably need to sequence this properly */
+ 	intel_program_dpkgc_latency(state);
+@@ -8195,7 +8195,7 @@ intel_mode_valid_max_plane_size(struct intel_display *display,
+ 	return MODE_OK;
  }
  
- int intel_cdclk_logical(const struct intel_cdclk_state *cdclk_state)
+-static const struct intel_display_funcs skl_display_funcs = {
++static const struct intel_modeset_funcs skl_display_funcs = {
+ 	.get_pipe_config = hsw_get_pipe_config,
+ 	.crtc_enable = hsw_crtc_enable,
+ 	.crtc_disable = hsw_crtc_disable,
+@@ -8204,7 +8204,7 @@ static const struct intel_display_funcs skl_display_funcs = {
+ 	.fixup_initial_plane_config = skl_fixup_initial_plane_config,
+ };
+ 
+-static const struct intel_display_funcs ddi_display_funcs = {
++static const struct intel_modeset_funcs ddi_display_funcs = {
+ 	.get_pipe_config = hsw_get_pipe_config,
+ 	.crtc_enable = hsw_crtc_enable,
+ 	.crtc_disable = hsw_crtc_disable,
+@@ -8213,7 +8213,7 @@ static const struct intel_display_funcs ddi_display_funcs = {
+ 	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
+ };
+ 
+-static const struct intel_display_funcs pch_split_display_funcs = {
++static const struct intel_modeset_funcs pch_split_display_funcs = {
+ 	.get_pipe_config = ilk_get_pipe_config,
+ 	.crtc_enable = ilk_crtc_enable,
+ 	.crtc_disable = ilk_crtc_disable,
+@@ -8222,7 +8222,7 @@ static const struct intel_display_funcs pch_split_display_funcs = {
+ 	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
+ };
+ 
+-static const struct intel_display_funcs vlv_display_funcs = {
++static const struct intel_modeset_funcs vlv_display_funcs = {
+ 	.get_pipe_config = i9xx_get_pipe_config,
+ 	.crtc_enable = valleyview_crtc_enable,
+ 	.crtc_disable = i9xx_crtc_disable,
+@@ -8231,7 +8231,7 @@ static const struct intel_display_funcs vlv_display_funcs = {
+ 	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
+ };
+ 
+-static const struct intel_display_funcs i9xx_display_funcs = {
++static const struct intel_modeset_funcs i9xx_display_funcs = {
+ 	.get_pipe_config = i9xx_get_pipe_config,
+ 	.crtc_enable = i9xx_crtc_enable,
+ 	.crtc_disable = i9xx_crtc_disable,
+@@ -8247,16 +8247,16 @@ static const struct intel_display_funcs i9xx_display_funcs = {
+ void intel_init_display_hooks(struct intel_display *display)
+ {
+ 	if (DISPLAY_VER(display) >= 9) {
+-		display->funcs.display = &skl_display_funcs;
++		display->modeset.funcs = &skl_display_funcs;
+ 	} else if (HAS_DDI(display)) {
+-		display->funcs.display = &ddi_display_funcs;
++		display->modeset.funcs = &ddi_display_funcs;
+ 	} else if (HAS_PCH_SPLIT(display)) {
+-		display->funcs.display = &pch_split_display_funcs;
++		display->modeset.funcs = &pch_split_display_funcs;
+ 	} else if (display->platform.cherryview ||
+ 		   display->platform.valleyview) {
+-		display->funcs.display = &vlv_display_funcs;
++		display->modeset.funcs = &vlv_display_funcs;
+ 	} else {
+-		display->funcs.display = &i9xx_display_funcs;
++		display->modeset.funcs = &i9xx_display_funcs;
+ 	}
+ }
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 5a1aee340728..a319fb97dafa 100644
+index a319fb97dafa..796517e7bc6c 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -313,9 +313,6 @@ struct intel_display {
- 	struct {
- 		/* Top level crtc-ish functions */
- 		const struct intel_display_funcs *display;
+@@ -59,7 +59,7 @@ struct task_struct;
+ /* Amount of PSF GV points, BSpec precisely defines this */
+ #define I915_NUM_PSF_GV_POINTS 3
+ 
+-struct intel_display_funcs {
++struct intel_modeset_funcs {
+ 	/*
+ 	 * Returns the active state of the crtc, and if the crtc is active,
+ 	 * fills out the pipe-config with the hw state.
+@@ -309,12 +309,6 @@ struct intel_display {
+ 	/* list of all intel_crtcs sorted by pipe */
+ 	struct list_head pipe_list;
+ 
+-	/* Display functions */
+-	struct {
+-		/* Top level crtc-ish functions */
+-		const struct intel_display_funcs *display;
+-	} funcs;
 -
--		/* Display CDCLK functions */
--		const struct intel_cdclk_funcs *cdclk;
- 	} funcs;
- 
  	struct {
-@@ -345,6 +342,9 @@ struct intel_display {
- 	} bw;
+ 		bool any_task_allowed;
+ 		struct task_struct *allowed_task;
+@@ -518,6 +512,11 @@ struct intel_display {
+ 		u32 pipestat_irq_mask[I915_MAX_PIPES];
+ 	} irq;
  
- 	struct {
-+		/* Internal CDCLK functions */
-+		const struct intel_cdclk_funcs *funcs;
++	struct {
++		/* Top level crtc-ish functions */
++		const struct intel_modeset_funcs *funcs;
++	} modeset;
 +
- 		/* The current hardware cdclk configuration */
- 		struct intel_cdclk_config hw;
+ 	struct {
+ 		/* protected by wm.wm_mutex */
+ 		u16 linetime[I915_MAX_PIPES];
+diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
+index 0e5cd45f01cc..034fe199c2a1 100644
+--- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
+@@ -224,7 +224,7 @@ void intel_initial_plane_config(struct intel_display *display)
+ 		 * can even allow for smooth boot transitions if the BIOS
+ 		 * fb is large enough for the active pipe configuration.
+ 		 */
+-		display->funcs.display->get_initial_plane_config(crtc, plane_config);
++		display->modeset.funcs->get_initial_plane_config(crtc, plane_config);
+ 
+ 		/*
+ 		 * If the fb is shared between multiple heads, we'll
+@@ -232,7 +232,7 @@ void intel_initial_plane_config(struct intel_display *display)
+ 		 */
+ 		intel_find_initial_plane_obj(crtc, &all_plane_configs);
+ 
+-		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
++		if (display->modeset.funcs->fixup_initial_plane_config(crtc, plane_config))
+ 			intel_initial_plane_vblank_wait(crtc);
+ 
+ 		plane_config_fini(display, plane_config);
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index 40a65a0d7ec7..4c646b1bd0ee 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -83,7 +83,7 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
+ 		drm_WARN_ON(display->drm, IS_ERR(temp_crtc_state) || ret);
+ 	}
+ 
+-	display->funcs.display->crtc_disable(to_intel_atomic_state(state), crtc);
++	display->modeset.funcs->crtc_disable(to_intel_atomic_state(state), crtc);
+ 
+ 	drm_atomic_state_put(state);
  
 -- 
 2.47.3
