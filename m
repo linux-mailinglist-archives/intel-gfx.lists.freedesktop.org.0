@@ -2,61 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0CweNY/M8mmWuQEAu9opvQ
+	id iFItFk/N8mmWuQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:29:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:32:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AA97049CE2B
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:29:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DADE149CEEF
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:32:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 319D210F1FB;
-	Thu, 30 Apr 2026 03:29:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 886EB10F1F3;
+	Thu, 30 Apr 2026 03:32:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WaAWEt3D";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aWSqQXt4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E36D10F1F3;
- Thu, 30 Apr 2026 03:29:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D39A10F1EA;
+ Thu, 30 Apr 2026 03:32:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777519752; x=1809055752;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8vKgg6GG2BO9fXdaYpD63Hh9sI1RsI8TaomKxxD7GEg=;
- b=WaAWEt3DQdPpxOPhlMDwlb3e154WX6fFDMs6b7kIYRoFWyDrZ+9LlXq3
- 8gr3WC1FT3OjRCVfYZVmOC1NlIG1/cP3jzcrPcecb4h21FpBk7HZU1HgP
- 2IW8Ks+TndqfYmw7YFQuHAW4f1qhGF7RiaVOe848cytnXnLOJVPSAI/df
- CUOFO4wyKsw83BiWPPp/LICt+O3sRoYArnXlVhThDQklGrffMLKl3976e
- Zx9g0sXLDDEhyn+KMR5We6rYG8QFMHSbczJLCEnuIIAImeNjb8Q280ZvC
- k/627Ox5bmUKmwb7azFt7cSC6FmQyCQ/sv+2YILoUke5CmRNLKH2MtSNG w==;
-X-CSE-ConnectionGUID: uyCN+YWLQd+FvoOUiqulmA==
-X-CSE-MsgGUID: ZvrRqRbtTSu+aLhjZmKZKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="65993085"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="65993085"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 20:29:12 -0700
-X-CSE-ConnectionGUID: IORm55+CTO2mte+FZ02Mng==
-X-CSE-MsgGUID: HV2Hq2vhQEGX1YAHPdOdfg==
+ t=1777519947; x=1809055947;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=a4oeWuCJUd2YltEyT7dE2TppyO4Mbmhge1qPIZzk+Lo=;
+ b=aWSqQXt4x3QlSY2vQUZq75r0rZwAVvXliXvIalLElBZNKrPxVm3CDyLz
+ ZqgRg67x6XeDnvyiNi+Xx4mcB6XfepaqGi+7VwQD/H2IZ4jgGMMNYw09l
+ eQw5n5GXRNxUxncRJdnb6nejQ19OIvkQ+O32r/E2HKMrLlkFWTT91obQF
+ JYurQol1PKi2nbs8rwcroME6ypuPzbqABsplZLHeroMlia4dmMCdb8V7a
+ ES7XOK8Nz5lIapRkgaHnZ3qGo/4cg+NJ6CGHG1T/WpUAyEUN0OiHqpDM/
+ l8P7VpJpzQYyRvkyrWzZ3SCCcwDI610TCC8MIgR6batDbMxU7o/Fjbbo2 A==;
+X-CSE-ConnectionGUID: OeJL0CTuTeyxkoxxr8pjLQ==
+X-CSE-MsgGUID: mdRRSiNlSm+zB9iBQu6vAw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="95882094"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="95882094"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Apr 2026 20:32:27 -0700
+X-CSE-ConnectionGUID: x5AQ7DpVT7m8XW9pFuE6gg==
+X-CSE-MsgGUID: P2/zbxjBQlqBmm29nXHvwA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="238431567"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="227954514"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa003.jf.intel.com with ESMTP; 29 Apr 2026 20:29:11 -0700
+ by fmviesa009.fm.intel.com with ESMTP; 29 Apr 2026 20:32:24 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, fnu.vishwanatha@intel.com,
  santhosh.reddy.guddati@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH 2/2] drm/i915/hdcp: Drop mgr->base.lock acquisition in
- intel_conn_to_vcpi()
-Date: Thu, 30 Apr 2026 08:59:02 +0530
-Message-Id: <20260430032902.3409731-3-suraj.kandpal@intel.com>
+Subject: [PATCH 0/2] Fix MST VCPI lookup and modeset-lock splat
+Date: Thu, 30 Apr 2026 09:02:20 +0530
+Message-Id: <20260430033222.3411174-1-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260430032902.3409731-1-suraj.kandpal@intel.com>
-References: <20260430032902.3409731-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,7 +70,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: AA97049CE2B
+X-Rspamd-Queue-Id: DADE149CEEF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -100,39 +97,39 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-Now that intel_conn_to_vcpi() reads the MST topology state via
-drm_atomic_get_new_mst_topology_state(), the topology state belongs
-to this atomic commit and is already serialized through the atomic
-state's private object machinery. There is no need to additionally
-take mgr->base.lock here.
-Taking it from the HDCP enable path in commit_tail with
-state->base.acquire_ctx is also unsafe: by this point the
-acquire_ctx is no longer in a state where new modeset locks may be
-acquired through it, which produces a modeset-lock splat on MST +
-HDCP. Drop the drm_modeset_lock() call.
+intel_conn_to_vcpi() is called from the HDCP enable path in commit_tail
+to look
+up the VCPI of the MST stream that HDCP is being enabled on. Today it
+reads the
+topology state directly from mgr->base.state and takes mgr->base.lock
+with the
+in-flight state->base.acquire_ctx.
 
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_hdcp.c | 3 +--
- 1 file changed, 1 insertion(+), 2 deletions(-)
+This breaks in two ways on MST + HDCP, especially when an
+ALLOCATE_PAYLOAD
+transaction is being driven on the mgr just before HDCP enable runs:
 
-diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
-index 91d2d7d823cc..a5d4e77f810f 100644
---- a/drivers/gpu/drm/i915/display/intel_hdcp.c
-+++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
-@@ -80,9 +80,8 @@ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
- 	/* For HDMI this is forced to be 0x0. For DP SST also this is 0x0. */
- 	if (!connector->mst.port)
- 		return 0;
--	mgr = connector->mst.port->mgr;
- 
--	drm_modeset_lock(&mgr->base.lock, state->base.acquire_ctx);
-+	mgr = connector->mst.port->mgr;
- 	mst_state = drm_atomic_get_new_mst_topology_state(&state->base, mgr);
- 	if (!mst_state) {
- 		drm_dbg_kms(display->drm, "MST topology still not created\n");
+- mgr->base.state's payload list is being mutated in place by the MST
+  payload code, so drm_atomic_get_mst_payload_state() can fail to find
+  the entry for this connector's port. That trips drm_WARN_ON(!payload)
+  and HDCP ends up programmed with VCPI 0.
+
+- By the time we reach commit_tail/encoder enable,
+  state->base.acquire_ctx
+  is no longer valid for acquiring new modeset locks. Taking
+  mgr->base.lock here produces a modeset-lock splat.
+
+This series fixes both.
+
+Suraj Kandpal (2):
+  drm/915/hdcp: Use new MST topology state in intel_conn_to_vcpi()
+  drm/i915/hdcp: Drop mgr->base.lock acquisition in intel_conn_to_vcpi()
+
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
 -- 
 2.34.1
 
