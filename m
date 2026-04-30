@@ -2,66 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sBVyIukS82k4xAEAu9opvQ
+	id 3xMnGQMi82nIxQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 11:33:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3D13E49F414
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9021049FDCE
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 11:33:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BCBFB10F2B3;
-	Thu, 30 Apr 2026 08:29:27 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="SXsvoIfa";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id F10B610F2C0;
+	Thu, 30 Apr 2026 09:33:51 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3DB9710F2B3;
- Thu, 30 Apr 2026 08:29:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777537767; x=1809073767;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=HjAnWqQphszr9Rl8hI2PDmJXsvMpI1TMjgvpa6zL+7Y=;
- b=SXsvoIfahZbHuyPQ6/wm6OaQ9Su4k91F2RzmF1iLiOx6zMq9h7lB2RGK
- Nw9mbTG7LJZB6f/5jtXOJVieTcPz/y74ISzx25z0hdgyvyMtpRlRwo9Zs
- ePWA4Xpgz8gMx4jJu/CvFxDtPvrnkdEP2Mjklx77Q3Byna/xe3vfVYaeS
- h3fobzu5WcRuDbdQ7s2Qq8qRPc/NP2X8pyxbZyulIZRT1AW6CFxukDfpw
- HKJZ2gVzE8It9ceCoWwwSE4APawLWUeRBrs+FEiIdg+6BYrJ6AHAqGLxI
- 0TLvMojIqlTo/QFw8trDRrO32USOYrmd3cgVBqHC1POVdpp1uuRcLBLYd w==;
-X-CSE-ConnectionGUID: bZ6A7M1OSh+ivdQ01gTqlw==
-X-CSE-MsgGUID: KW7gMORhTQu6PX+SWLugyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77646065"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="77646065"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:27 -0700
-X-CSE-ConnectionGUID: yufYzVxCR4CIrcQwWA8awA==
-X-CSE-MsgGUID: /Zl/kvPFQAmQ+48wXpUpKQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="229911404"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.68])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:26 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH 8/8] drm/i915/display: move display funcs under modeset
- sub-struct
-Date: Thu, 30 Apr 2026 11:28:52 +0300
-Message-ID: <7849de3a5c9755639c179917c6a298de9ac832c0.1777537663.git.jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1777537663.git.jani.nikula@intel.com>
-References: <cover.1777537663.git.jani.nikula@intel.com>
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AA76510F2C0;
+ Thu, 30 Apr 2026 09:33:50 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6305241077305231545=="
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/display=3A_refac?=
+ =?utf-8?q?tor_display_funcs?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 30 Apr 2026 09:33:50 -0000
+Message-ID: <177754163068.28202.15236980106401714438@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <cover.1777537663.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1777537663.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,234 +42,175 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3D13E49F414
+X-Rspamd-Queue-Id: 9021049FDCE
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-0.999];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.554];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[i915_selftest:email,workarounds:email,live:email,gitlab.freedesktop.org:url,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,patchwork.freedesktop.org:url]
 
-Move generic crtc-ish modeset related functions under a new modeset
-sub-struct of struct intel_display. Rename struct intel_display_funcs to
-intel_modeset_funcs to make it a little bit more specific. Remove the
-funcs sub-struct.
+--===============6305241077305231545==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The funcs sub-struct of struct intel_display seems unnecessary. Instead
-of display->funcs.FEATURE, prefer display->FEATURE.funcs.
+== Series Details ==
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  | 28 +++++++++----------
- .../gpu/drm/i915/display/intel_display_core.h | 13 ++++-----
- .../drm/i915/display/intel_initial_plane.c    |  4 +--
- .../drm/i915/display/intel_modeset_setup.c    |  2 +-
- 4 files changed, 23 insertions(+), 24 deletions(-)
+Series: drm/i915/display: refactor display funcs
+URL   : https://patchwork.freedesktop.org/series/165768/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 7839e663f7bc..b023cc46c863 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4051,7 +4051,7 @@ bool intel_crtc_get_pipe_config(struct intel_crtc_state *crtc_state)
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
--	if (!display->funcs.display->get_pipe_config(crtc, crtc_state))
-+	if (!display->modeset.funcs->get_pipe_config(crtc, crtc_state))
- 		return false;
- 
- 	crtc_state->hw.active = true;
-@@ -6739,7 +6739,7 @@ static void intel_enable_crtc(struct intel_atomic_state *state,
- 
- 	intel_psr_notify_pipe_change(state, crtc, true);
- 
--	display->funcs.display->crtc_enable(state, crtc);
-+	display->modeset.funcs->crtc_enable(state, crtc);
- 
- 	/* vblanks work again, re-enable pipe CRC. */
- 	intel_crtc_enable_pipe_crc(crtc);
-@@ -6870,7 +6870,7 @@ static void intel_old_crtc_state_disables(struct intel_atomic_state *state,
- 
- 	intel_psr_notify_pipe_change(state, crtc, false);
- 
--	display->funcs.display->crtc_disable(state, crtc);
-+	display->modeset.funcs->crtc_disable(state, crtc);
- 
- 	for_each_intel_crtc_in_pipe_mask(display->drm, pipe_crtc,
- 					 intel_crtc_joined_pipe_mask(old_crtc_state)) {
-@@ -7522,7 +7522,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	}
- 
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
--	display->funcs.display->commit_modeset_enables(state);
-+	display->modeset.funcs->commit_modeset_enables(state);
- 
- 	/* FIXME probably need to sequence this properly */
- 	intel_program_dpkgc_latency(state);
-@@ -8195,7 +8195,7 @@ intel_mode_valid_max_plane_size(struct intel_display *display,
- 	return MODE_OK;
- }
- 
--static const struct intel_display_funcs skl_display_funcs = {
-+static const struct intel_modeset_funcs skl_display_funcs = {
- 	.get_pipe_config = hsw_get_pipe_config,
- 	.crtc_enable = hsw_crtc_enable,
- 	.crtc_disable = hsw_crtc_disable,
-@@ -8204,7 +8204,7 @@ static const struct intel_display_funcs skl_display_funcs = {
- 	.fixup_initial_plane_config = skl_fixup_initial_plane_config,
- };
- 
--static const struct intel_display_funcs ddi_display_funcs = {
-+static const struct intel_modeset_funcs ddi_display_funcs = {
- 	.get_pipe_config = hsw_get_pipe_config,
- 	.crtc_enable = hsw_crtc_enable,
- 	.crtc_disable = hsw_crtc_disable,
-@@ -8213,7 +8213,7 @@ static const struct intel_display_funcs ddi_display_funcs = {
- 	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
--static const struct intel_display_funcs pch_split_display_funcs = {
-+static const struct intel_modeset_funcs pch_split_display_funcs = {
- 	.get_pipe_config = ilk_get_pipe_config,
- 	.crtc_enable = ilk_crtc_enable,
- 	.crtc_disable = ilk_crtc_disable,
-@@ -8222,7 +8222,7 @@ static const struct intel_display_funcs pch_split_display_funcs = {
- 	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
--static const struct intel_display_funcs vlv_display_funcs = {
-+static const struct intel_modeset_funcs vlv_display_funcs = {
- 	.get_pipe_config = i9xx_get_pipe_config,
- 	.crtc_enable = valleyview_crtc_enable,
- 	.crtc_disable = i9xx_crtc_disable,
-@@ -8231,7 +8231,7 @@ static const struct intel_display_funcs vlv_display_funcs = {
- 	.fixup_initial_plane_config = i9xx_fixup_initial_plane_config,
- };
- 
--static const struct intel_display_funcs i9xx_display_funcs = {
-+static const struct intel_modeset_funcs i9xx_display_funcs = {
- 	.get_pipe_config = i9xx_get_pipe_config,
- 	.crtc_enable = i9xx_crtc_enable,
- 	.crtc_disable = i9xx_crtc_disable,
-@@ -8247,16 +8247,16 @@ static const struct intel_display_funcs i9xx_display_funcs = {
- void intel_init_display_hooks(struct intel_display *display)
- {
- 	if (DISPLAY_VER(display) >= 9) {
--		display->funcs.display = &skl_display_funcs;
-+		display->modeset.funcs = &skl_display_funcs;
- 	} else if (HAS_DDI(display)) {
--		display->funcs.display = &ddi_display_funcs;
-+		display->modeset.funcs = &ddi_display_funcs;
- 	} else if (HAS_PCH_SPLIT(display)) {
--		display->funcs.display = &pch_split_display_funcs;
-+		display->modeset.funcs = &pch_split_display_funcs;
- 	} else if (display->platform.cherryview ||
- 		   display->platform.valleyview) {
--		display->funcs.display = &vlv_display_funcs;
-+		display->modeset.funcs = &vlv_display_funcs;
- 	} else {
--		display->funcs.display = &i9xx_display_funcs;
-+		display->modeset.funcs = &i9xx_display_funcs;
- 	}
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index a319fb97dafa..796517e7bc6c 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -59,7 +59,7 @@ struct task_struct;
- /* Amount of PSF GV points, BSpec precisely defines this */
- #define I915_NUM_PSF_GV_POINTS 3
- 
--struct intel_display_funcs {
-+struct intel_modeset_funcs {
- 	/*
- 	 * Returns the active state of the crtc, and if the crtc is active,
- 	 * fills out the pipe-config with the hw state.
-@@ -309,12 +309,6 @@ struct intel_display {
- 	/* list of all intel_crtcs sorted by pipe */
- 	struct list_head pipe_list;
- 
--	/* Display functions */
--	struct {
--		/* Top level crtc-ish functions */
--		const struct intel_display_funcs *display;
--	} funcs;
--
- 	struct {
- 		bool any_task_allowed;
- 		struct task_struct *allowed_task;
-@@ -518,6 +512,11 @@ struct intel_display {
- 		u32 pipestat_irq_mask[I915_MAX_PIPES];
- 	} irq;
- 
-+	struct {
-+		/* Top level crtc-ish functions */
-+		const struct intel_modeset_funcs *funcs;
-+	} modeset;
-+
- 	struct {
- 		/* protected by wm.wm_mutex */
- 		u16 linetime[I915_MAX_PIPES];
-diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-index 0e5cd45f01cc..034fe199c2a1 100644
---- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-@@ -224,7 +224,7 @@ void intel_initial_plane_config(struct intel_display *display)
- 		 * can even allow for smooth boot transitions if the BIOS
- 		 * fb is large enough for the active pipe configuration.
- 		 */
--		display->funcs.display->get_initial_plane_config(crtc, plane_config);
-+		display->modeset.funcs->get_initial_plane_config(crtc, plane_config);
- 
- 		/*
- 		 * If the fb is shared between multiple heads, we'll
-@@ -232,7 +232,7 @@ void intel_initial_plane_config(struct intel_display *display)
- 		 */
- 		intel_find_initial_plane_obj(crtc, &all_plane_configs);
- 
--		if (display->funcs.display->fixup_initial_plane_config(crtc, plane_config))
-+		if (display->modeset.funcs->fixup_initial_plane_config(crtc, plane_config))
- 			intel_initial_plane_vblank_wait(crtc);
- 
- 		plane_config_fini(display, plane_config);
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index 40a65a0d7ec7..4c646b1bd0ee 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -83,7 +83,7 @@ static void intel_crtc_disable_noatomic_begin(struct intel_crtc *crtc,
- 		drm_WARN_ON(display->drm, IS_ERR(temp_crtc_state) || ret);
- 	}
- 
--	display->funcs.display->crtc_disable(to_intel_atomic_state(state), crtc);
-+	display->modeset.funcs->crtc_disable(to_intel_atomic_state(state), crtc);
- 
- 	drm_atomic_state_put(state);
- 
--- 
-2.47.3
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18387 -> Patchwork_165768v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_165768v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18387/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/bat-mtlp-8/igt@i915_selftest@live.html
+    - bat-dg2-8:          [PASS][3] -> [DMESG-FAIL][4] ([i915#12061]) +1 other test dmesg-fail
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18387/bat-dg2-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-6:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18387/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18387 -> Patchwork_165768v1
+
+  CI-20190529: 20190529
+  CI_DRM_18387: 24d77c4ca7f78614b0978654f1d96763aae651bf @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_165768v1: 24d77c4ca7f78614b0978654f1d96763aae651bf @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/index.html
+
+--===============6305241077305231545==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: refactor display funcs</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165768/">https://patchwork.freedesktop.org/series/165768/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18387 -&gt; Patchwork_165768v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_165768v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18387/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18387/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18387/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165768v1/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18387 -&gt; Patchwork_165768v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18387: 24d77c4ca7f78614b0978654f1d96763aae651bf @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8879: 02b0e01dd9a5a3ab1efe976bb8c4f13cfcdbab1a @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_165768v1: 24d77c4ca7f78614b0978654f1d96763aae651bf @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6305241077305231545==--
