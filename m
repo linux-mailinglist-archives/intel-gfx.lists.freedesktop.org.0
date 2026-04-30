@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KLbRIonM8mmWuQEAu9opvQ
+	id 2GLREY3M8mmWuQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:29:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:29:17 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0206A49CE0D
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:29:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D277B49CE14
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 05:29:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 61E5B10F1EF;
-	Thu, 30 Apr 2026 03:29:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 54CDC10F204;
+	Thu, 30 Apr 2026 03:29:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AVwQ+0bX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b0YLSUzr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B8C6210F1EA;
- Thu, 30 Apr 2026 03:29:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7CDB910F1F3;
+ Thu, 30 Apr 2026 03:29:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777519749; x=1809055749;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=a4oeWuCJUd2YltEyT7dE2TppyO4Mbmhge1qPIZzk+Lo=;
- b=AVwQ+0bXS9xlayiC3qL9xn4NlLgvKlyye/JEM4mjckSY0OUMMWw7jrCC
- 8U2TFvWcgYMXwCbWupkOhBLMcrMZ4AXwon40k2PGWpIHZEFkVKAXkm+aA
- oy3kHdmcmn54pu8OclocEr7ngqBDheoj0yHbiKb7VcgKSUAFz8lYcwm8i
- ffao9QYIH+Wcd6an3mYYhBum50U2hGK4wfgijkNAEenwvVxBKpQsXqLTL
- mUbwYY5szFlhCOQU8qQgBGgpRpHW7jnGwAm2MUoc+c3t5u8aaT7I582md
- 0Jnjow1dkSEWyVXQ4IEzMnB6qulL0uLvqRAz53ipYKxOi8n0CqTg4LiZe w==;
-X-CSE-ConnectionGUID: /xUSFtVTTD+pa9iMQN+N4g==
-X-CSE-MsgGUID: 3N0xhTegSIalq8ki2TZNFQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="65993082"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="65993082"
+ t=1777519750; x=1809055750;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=2bknRvP/utNIXPi+EO9ezxzbuxkhgRCbYXVFoLgIKTg=;
+ b=b0YLSUzrWMyF4NpEJt+7O9ryx/MqHPQ3jyL2/Nv6iVfkFiWgDOtJHV6S
+ 4OhsrDFVBPxVbf2xKGLAsiqZBSafdAdmygH8tGAxKEV2DyU/bkek/24lN
+ Z6o5pumdwcL6kFIcKJxea+8MdS7cGLSVr4hszjw59txN4XvGWQCpwwhkb
+ 7tFQg9lIwXe23IaBYk78CN9jc9SfDcBSu88EGnlKTmQq1wjQ7VWEi8dH0
+ sLARhMBQ3DFjF3BuQVg0CWucPkZ10iOCH1uWQKPR67D/Ao4eNgw3tufij
+ EVby/ggapI3EQIJno/SPxgd63KzUIHRTc5T4yPjWnw43kRNrinyKtBOB6 Q==;
+X-CSE-ConnectionGUID: w8FD7y52QZSwViCc/6MhTA==
+X-CSE-MsgGUID: T/uAucGATquzPXkOIvxuzg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="65993083"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="65993083"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Apr 2026 20:29:08 -0700
-X-CSE-ConnectionGUID: rer0MSY+RciX4UnW3yCa7w==
-X-CSE-MsgGUID: RBPfW1lVSBesPVtuNhSzsw==
+ 29 Apr 2026 20:29:10 -0700
+X-CSE-ConnectionGUID: 4+QbHV91Sx6SB04/s1Rjlw==
+X-CSE-MsgGUID: Wp++u/R4QeGRLTYr+6G8nA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="238431552"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="238431557"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa003.jf.intel.com with ESMTP; 29 Apr 2026 20:29:07 -0700
+ by orviesa003.jf.intel.com with ESMTP; 29 Apr 2026 20:29:09 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, fnu.vishwanatha@intel.com,
  santhosh.reddy.guddati@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: Fix MST VCPI lookup and modeset-lock splat
-Date: Thu, 30 Apr 2026 08:59:00 +0530
-Message-Id: <20260430032902.3409731-1-suraj.kandpal@intel.com>
+Subject: [PATCH 1/2] drm/915/hdcp: Use new MST topology state in
+ intel_conn_to_vcpi()
+Date: Thu, 30 Apr 2026 08:59:01 +0530
+Message-Id: <20260430032902.3409731-2-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
+In-Reply-To: <20260430032902.3409731-1-suraj.kandpal@intel.com>
+References: <20260430032902.3409731-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -70,7 +73,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0206A49CE0D
+X-Rspamd-Queue-Id: D277B49CE14
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -97,39 +100,53 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-intel_conn_to_vcpi() is called from the HDCP enable path in commit_tail
-to look
-up the VCPI of the MST stream that HDCP is being enabled on. Today it
-reads the
-topology state directly from mgr->base.state and takes mgr->base.lock
-with the
-in-flight state->base.acquire_ctx.
+intel_conn_to_vcpi() runs from the HDCP enable path in commit_tail
+and looks up the VCPI via mgr->base.state. When an ALLOCATE_PAYLOAD
+is being driven on the mgr just before HDCP enable, that payload
+list is being mutated in place, so the lookup can miss the port and
+trip drm_WARN_ON(!payload), causing HDCP to be programmed with
+VCPI 0.
+Use drm_atomic_get_new_mst_topology_state() to read the topology
+state attached to this atomic commit (stable, decided in
+atomic_check), and bail out cleanly when no topology state or
+payload is present for this port instead of WARNing.
 
-This breaks in two ways on MST + HDCP, especially when an
-ALLOCATE_PAYLOAD
-transaction is being driven on the mgr just before HDCP enable runs:
+Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_hdcp.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
 
-- mgr->base.state's payload list is being mutated in place by the MST
-  payload code, so drm_atomic_get_mst_payload_state() can fail to find
-  the entry for this connector's port. That trips drm_WARN_ON(!payload)
-  and HDCP ends up programmed with VCPI 0.
-
-- By the time we reach commit_tail/encoder enable,
-  state->base.acquire_ctx
-  is no longer valid for acquiring new modeset locks. Taking
-  mgr->base.lock here produces a modeset-lock splat.
-
-This series fixes both.
-
-Suraj Kandpal (2):
-  drm/915/hdcp: Use new MST topology state in intel_conn_to_vcpi()
-  drm/i915/hdcp: Drop mgr->base.lock acquisition in intel_conn_to_vcpi()
-
- drivers/gpu/drm/i915/display/intel_hdcp.c | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c b/drivers/gpu/drm/i915/display/intel_hdcp.c
+index 9b4ff3b80b05..91d2d7d823cc 100644
+--- a/drivers/gpu/drm/i915/display/intel_hdcp.c
++++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+@@ -72,6 +72,7 @@ intel_hdcp_adjust_hdcp_line_rekeying(struct intel_encoder *encoder,
+ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+ 			      struct intel_connector *connector)
+ {
++	struct intel_display *display = to_intel_display(state);
+ 	struct drm_dp_mst_topology_mgr *mgr;
+ 	struct drm_dp_mst_atomic_payload *payload;
+ 	struct drm_dp_mst_topology_state *mst_state;
+@@ -82,9 +83,14 @@ static int intel_conn_to_vcpi(struct intel_atomic_state *state,
+ 	mgr = connector->mst.port->mgr;
+ 
+ 	drm_modeset_lock(&mgr->base.lock, state->base.acquire_ctx);
+-	mst_state = to_drm_dp_mst_topology_state(mgr->base.state);
++	mst_state = drm_atomic_get_new_mst_topology_state(&state->base, mgr);
++	if (!mst_state) {
++		drm_dbg_kms(display->drm, "MST topology still not created\n");
++		return 0;
++	}
++
+ 	payload = drm_atomic_get_mst_payload_state(mst_state, connector->mst.port);
+-	if (drm_WARN_ON(mgr->dev, !payload))
++	if (!payload)
+ 		return 0;
+ 
+ 	return payload->vcpi;
 -- 
 2.34.1
 
