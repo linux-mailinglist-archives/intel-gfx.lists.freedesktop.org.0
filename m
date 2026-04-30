@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHWHB98S82k4xAEAu9opvQ
+	id cFCrFuMS82k4xAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C1A3A49F3FE
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B45BE49F405
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 10:29:22 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4D5D910F28E;
-	Thu, 30 Apr 2026 08:29:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A41810F297;
+	Thu, 30 Apr 2026 08:29:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g57VcYuN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DjIoG9S9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 163EA10F28E;
- Thu, 30 Apr 2026 08:29:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B235310F297;
+ Thu, 30 Apr 2026 08:29:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777537756; x=1809073756;
+ t=1777537759; x=1809073759;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=EjRoylg81VuzEv3SBooloBLKXUIX03h0i4SYO54I7cE=;
- b=g57VcYuNP2JgO1WjVvnkNBCo62A3zVEVZEocxzPx4X/7qCA9nNZu2sND
- 34DZaXDWwqHNJPlAScbr2bslRkviGvmBBDMYFtgy5ZJStTMGFlyqZuhTP
- JgO7fiFysBkYtACPq2TKplft2h4//QfOncuOIwucooIt37fytxaBP8ije
- PpoVAovxiDD82+MIJanFULqYm+34TwWLcQFx59YjwDX7NgtxQYWtXTwXx
- IP4FzbenHwXJyfz6RKn7qHMhe51Rkg+oAOOPNhhI9rfFIabtiInOKH5vY
- xPSlIDC89yGl4is3x4q6Q2Wd497Lt9kgh/cTd9yehmw24FJ2RbGrhEc6f A==;
-X-CSE-ConnectionGUID: BBCFxHzbRZOvLX/xs7PX4w==
-X-CSE-MsgGUID: Qe/Nsf/0TKuxU6brTmAiVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77646059"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="77646059"
+ bh=3fX2ziVZooxUjv2h1LLv/Hv9UJD8Ey5zfNvRUBvBNFw=;
+ b=DjIoG9S93f8ZptFehuJPEafzDnVuMuCJf6DdsJycLIPbDuNN0mb2ohfJ
+ DPGBPN2nffg5Dcdszj/MotrwnO042KdAgVUTFNRatdXon9icRSyEQtumV
+ KLudb+wGYZ7FesUaeJTcaJMY805gzX8hYoZ8W7z+Hk0jBLjtf0qALFzKQ
+ n7G+AGu0mPI/zAveyJ84cHvXVoHyxO06FFze0aYFMR92pSBLUWVlygZPL
+ aAl4liCxwU+ARPXqCeHnm3T2JnrNrqjGrJSUh4f440ryxiIpMzEISlxEG
+ BDAtEsjgn3Xy74VaLzdqljrXi+xz3UC8/cu7Czw9GX98WjPZMLruhXE01 A==;
+X-CSE-ConnectionGUID: NsODFQtxTTSDApHUAS0D1g==
+X-CSE-MsgGUID: HDqFBJ92RKCzo9voMIhswQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77646060"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="77646060"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:16 -0700
-X-CSE-ConnectionGUID: PJzZt97dRkue85yYyw1HCw==
-X-CSE-MsgGUID: jWCvkv4VTViddPlixkZbrQ==
+ 30 Apr 2026 01:29:19 -0700
+X-CSE-ConnectionGUID: CLVaIDyUTMWwDMTmeBsR7A==
+X-CSE-MsgGUID: qu5vj54iS6K8xnIO4Wy+Dg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="229911361"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="229911374"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.68])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 01:29:14 -0700
+ 30 Apr 2026 01:29:18 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 5/8] drm/i915/display: move hotplug irq funcs under hotplug
- sub-struct
-Date: Thu, 30 Apr 2026 11:28:49 +0300
-Message-ID: <9419cff5038d60a6c95c247b83f54b6559067e0d.1777537663.git.jani.nikula@intel.com>
+Subject: [PATCH 6/8] drm/i915/display: move dpll funcs under dpll sub-struct
+Date: Thu, 30 Apr 2026 11:28:50 +0300
+Message-ID: <02efd924d7efdf42655f5c9bfd0f79a6df5fe2b4.1777537663.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1777537663.git.jani.nikula@intel.com>
 References: <cover.1777537663.git.jani.nikula@intel.com>
@@ -76,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C1A3A49F3FE
+X-Rspamd-Queue-Id: B45BE49F405
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -106,7 +105,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-Move hotplug irq related functions under hotplug sub-struct of struct
+Move dpll related functions under dpll sub-struct of struct
 intel_display.
 
 The funcs sub-struct of struct intel_display seems unnecessary. Instead
@@ -114,120 +113,99 @@ of display->funcs.FEATURE, prefer display->FEATURE.funcs.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_core.h |  8 ++---
- .../gpu/drm/i915/display/intel_hotplug_irq.c  | 30 +++++++++----------
- 2 files changed, 19 insertions(+), 19 deletions(-)
+ .../gpu/drm/i915/display/intel_display_core.h |  6 ++--
+ drivers/gpu/drm/i915/display/intel_dpll.c     | 28 +++++++++----------
+ 2 files changed, 17 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 01394724abc9..0c2e17edbd5f 100644
+index 0c2e17edbd5f..5a1aee340728 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -47,7 +47,7 @@ struct intel_dpll_global_funcs;
- struct intel_dpll_mgr;
- struct intel_fbdev;
- struct intel_fdi_funcs;
--struct intel_hotplug_funcs;
-+struct intel_hotplug_irq_funcs;
- struct intel_initial_plane_config;
- struct intel_opregion;
- struct intel_overlay;
-@@ -155,6 +155,9 @@ struct intel_frontbuffer_tracking {
- };
- 
- struct intel_hotplug {
-+	/* internal hotplug irq functions */
-+	const struct intel_hotplug_irq_funcs *funcs;
+@@ -127,6 +127,9 @@ struct intel_audio {
+  * dpll, because on some platforms plls share registers.
+  */
+ struct intel_dpll_global {
++	/* internal dpll functions */
++	const struct intel_dpll_global_funcs *funcs;
 +
- 	struct delayed_work hotplug_work;
+ 	struct mutex lock;
  
- 	const u32 *hpd, *pch_hpd;
+ 	int num_dpll;
 @@ -313,9 +316,6 @@ struct intel_display {
  
- 		/* Display pll funcs */
- 		const struct intel_dpll_global_funcs *dpll;
+ 		/* Display CDCLK functions */
+ 		const struct intel_cdclk_funcs *cdclk;
 -
--		/* irq display functions */
--		const struct intel_hotplug_funcs *hotplug;
+-		/* Display pll funcs */
+-		const struct intel_dpll_global_funcs *dpll;
  	} funcs;
  
  	struct {
-diff --git a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-index 8865cb2ac569..539fd555edce 100644
---- a/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-+++ b/drivers/gpu/drm/i915/display/intel_hotplug_irq.c
-@@ -1420,7 +1420,7 @@ static void i915_hpd_irq_setup(struct intel_display *display)
- 					     hotplug_en);
- }
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index a1aa88598013..f40807a5566b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -1735,7 +1735,7 @@ int intel_dpll_crtc_compute_clock(struct intel_atomic_state *state,
+ 	if (!crtc_state->hw.enable)
+ 		return 0;
  
--struct intel_hotplug_funcs {
-+struct intel_hotplug_irq_funcs {
- 	/* Enable HPD sense and interrupts for all present encoders */
- 	void (*hpd_irq_setup)(struct intel_display *display);
- 	/* Enable HPD sense for a single encoder */
-@@ -1428,7 +1428,7 @@ struct intel_hotplug_funcs {
- };
+-	ret = display->funcs.dpll->crtc_compute_clock(state, crtc);
++	ret = display->dpll.funcs->crtc_compute_clock(state, crtc);
+ 	if (ret) {
+ 		drm_dbg_kms(display->drm, "[CRTC:%d:%s] Couldn't calculate DPLL settings\n",
+ 			    crtc->base.base.id, crtc->base.name);
+@@ -1759,10 +1759,10 @@ int intel_dpll_crtc_get_dpll(struct intel_atomic_state *state,
+ 	if (!crtc_state->hw.enable || crtc_state->intel_dpll)
+ 		return 0;
  
- #define HPD_FUNCS(platform)					 \
--static const struct intel_hotplug_funcs platform##_hpd_funcs = { \
-+static const struct intel_hotplug_irq_funcs platform##_hpd_funcs = { \
- 	.hpd_irq_setup = platform##_hpd_irq_setup,		 \
- 	.hpd_enable_detection = platform##_hpd_enable_detection, \
- }
-@@ -1447,8 +1447,8 @@ void intel_hpd_enable_detection(struct intel_encoder *encoder)
+-	if (!display->funcs.dpll->crtc_get_dpll)
++	if (!display->dpll.funcs->crtc_get_dpll)
+ 		return 0;
+ 
+-	ret = display->funcs.dpll->crtc_get_dpll(state, crtc);
++	ret = display->dpll.funcs->crtc_get_dpll(state, crtc);
+ 	if (ret) {
+ 		drm_dbg_kms(display->drm, "[CRTC:%d:%s] Couldn't get a shared DPLL\n",
+ 			    crtc->base.base.id, crtc->base.name);
+@@ -1776,27 +1776,27 @@ void
+ intel_dpll_init_clock_hook(struct intel_display *display)
  {
- 	struct intel_display *display = to_intel_display(encoder);
- 
--	if (display->funcs.hotplug)
--		display->funcs.hotplug->hpd_enable_detection(encoder);
-+	if (display->hotplug.funcs)
-+		display->hotplug.funcs->hpd_enable_detection(encoder);
+ 	if (HAS_LT_PHY(display))
+-		display->funcs.dpll = &xe3plpd_dpll_funcs;
++		display->dpll.funcs = &xe3plpd_dpll_funcs;
+ 	else if (DISPLAY_VER(display) >= 14)
+-		display->funcs.dpll = &mtl_dpll_funcs;
++		display->dpll.funcs = &mtl_dpll_funcs;
+ 	else if (display->platform.dg2)
+-		display->funcs.dpll = &dg2_dpll_funcs;
++		display->dpll.funcs = &dg2_dpll_funcs;
+ 	else if (DISPLAY_VER(display) >= 9 || HAS_DDI(display))
+-		display->funcs.dpll = &hsw_dpll_funcs;
++		display->dpll.funcs = &hsw_dpll_funcs;
+ 	else if (HAS_PCH_SPLIT(display))
+-		display->funcs.dpll = &ilk_dpll_funcs;
++		display->dpll.funcs = &ilk_dpll_funcs;
+ 	else if (display->platform.cherryview)
+-		display->funcs.dpll = &chv_dpll_funcs;
++		display->dpll.funcs = &chv_dpll_funcs;
+ 	else if (display->platform.valleyview)
+-		display->funcs.dpll = &vlv_dpll_funcs;
++		display->dpll.funcs = &vlv_dpll_funcs;
+ 	else if (display->platform.g4x)
+-		display->funcs.dpll = &g4x_dpll_funcs;
++		display->dpll.funcs = &g4x_dpll_funcs;
+ 	else if (display->platform.pineview)
+-		display->funcs.dpll = &pnv_dpll_funcs;
++		display->dpll.funcs = &pnv_dpll_funcs;
+ 	else if (DISPLAY_VER(display) != 2)
+-		display->funcs.dpll = &i9xx_dpll_funcs;
++		display->dpll.funcs = &i9xx_dpll_funcs;
+ 	else
+-		display->funcs.dpll = &i8xx_dpll_funcs;
++		display->dpll.funcs = &i8xx_dpll_funcs;
  }
  
- void intel_hpd_irq_setup(struct intel_display *display)
-@@ -1457,8 +1457,8 @@ void intel_hpd_irq_setup(struct intel_display *display)
- 	    !display->irq.vlv_display_irqs_enabled)
- 		return;
- 
--	if (display->funcs.hotplug)
--		display->funcs.hotplug->hpd_irq_setup(display);
-+	if (display->hotplug.funcs)
-+		display->hotplug.funcs->hpd_irq_setup(display);
- }
- 
- void intel_hotplug_irq_init(struct intel_display *display)
-@@ -1469,23 +1469,23 @@ void intel_hotplug_irq_init(struct intel_display *display)
- 
- 	if (HAS_GMCH(display)) {
- 		if (HAS_HOTPLUG(display))
--			display->funcs.hotplug = &i915_hpd_funcs;
-+			display->hotplug.funcs = &i915_hpd_funcs;
- 	} else {
- 		if (HAS_PCH_DG2(display))
--			display->funcs.hotplug = &icp_hpd_funcs;
-+			display->hotplug.funcs = &icp_hpd_funcs;
- 		else if (HAS_PCH_DG1(display))
--			display->funcs.hotplug = &dg1_hpd_funcs;
-+			display->hotplug.funcs = &dg1_hpd_funcs;
- 		else if (DISPLAY_VER(display) >= 14)
--			display->funcs.hotplug = &xelpdp_hpd_funcs;
-+			display->hotplug.funcs = &xelpdp_hpd_funcs;
- 		else if (DISPLAY_VER(display) >= 11)
--			display->funcs.hotplug = &gen11_hpd_funcs;
-+			display->hotplug.funcs = &gen11_hpd_funcs;
- 		else if (display->platform.geminilake || display->platform.broxton)
--			display->funcs.hotplug = &bxt_hpd_funcs;
-+			display->hotplug.funcs = &bxt_hpd_funcs;
- 		else if (INTEL_PCH_TYPE(display) >= PCH_ICP)
--			display->funcs.hotplug = &icp_hpd_funcs;
-+			display->hotplug.funcs = &icp_hpd_funcs;
- 		else if (INTEL_PCH_TYPE(display) >= PCH_SPT)
--			display->funcs.hotplug = &spt_hpd_funcs;
-+			display->hotplug.funcs = &spt_hpd_funcs;
- 		else
--			display->funcs.hotplug = &ilk_hpd_funcs;
-+			display->hotplug.funcs = &ilk_hpd_funcs;
- 	}
- }
+ static bool i9xx_has_pps(struct intel_display *display)
 -- 
 2.47.3
 
