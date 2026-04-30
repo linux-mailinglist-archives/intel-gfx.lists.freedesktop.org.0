@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CF+VDdRc82lfzwEAu9opvQ
+	id QF31DdZc82lfzwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:44:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:44:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 073E94A3A40
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:44:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DB41F4A3A47
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 15:44:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 578BC10EA20;
-	Thu, 30 Apr 2026 13:44:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 259F710EF5E;
+	Thu, 30 Apr 2026 13:44:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IHKPFZMU";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZVyBaY9l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 53B8A10E190;
- Thu, 30 Apr 2026 13:44:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 41C0210E9D4;
+ Thu, 30 Apr 2026 13:44:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777556688; x=1809092688;
+ t=1777556690; x=1809092690;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=N30Niq+GNiubFtSK+b61sEikeqy017BfDQkgdBdGOXk=;
- b=IHKPFZMUYM/oD403Snj1lZEN6LGAy0KgKb9krqXRbINxl7g82iRoMRKC
- t5026xpMH4fOS8t8FlZgU4yOoy5+gHfdb83yZQ67xF+l6sqb+Hvax04rF
- n6vx+SfYQRnnhwjH+UxSJemZEysqgAkDnWI9RnfLNb+VBH03GnCBBKIfM
- OHuQq3AwrirFl9Vpg0/fEm0TkhQGsRyLTUh5ThiAV1Jfg7Yg9B1TKIbmN
- MjoYbRG/192OwMv0ZiWp1zya018ZtpW9cdWCza+8B8DMMV0qC8RhbGhxF
- hth6RxJCbgXs+eh3W3ktmO8a1wyXTRfglsvp8/1ZSCx3MTEP0Y9PAt95C A==;
-X-CSE-ConnectionGUID: UYYvShiURrmrW+GG3r9UFQ==
-X-CSE-MsgGUID: iIN/Z4yFSIepuazI3lxlqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77532391"
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="77532391"
+ bh=iyDunBMWZ91no6bBewrcLSTOF8GhQrd0f0OwYmXqC8A=;
+ b=ZVyBaY9l9hQiTvzMBstm+2NPs53Bxj+UTnzHg+TLnmaSYYXTFVdm4P1U
+ +pdbf8RDIY1cjGM4ijnGd61zihKaafo9db2ejicbhxpyH3a4PdNYhuQpq
+ ifWcJFiPqht7kK2LGuJgjldmkZNOOTjPbegiCP9q9E4y/I6thEJPqco9x
+ 6TXZ8R50nebg411IskU15/OcUQpJ4m+R9yojGoJQH57M0VMXay17x5Yf+
+ Tj4VM/qJg+N06bLcApms2vPbIGwUOYi3rZeM8ORruLiC8kVsDisuuTAu7
+ fOcsopFWZTuipSwW4d9xWjBza48FYdS9cNSglova8suANUWVtJUEkUnFa w==;
+X-CSE-ConnectionGUID: c6zS0bT5SfavLZNTaBXNsw==
+X-CSE-MsgGUID: xE3WMe3eSrG0rcBLEK/iWA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="77532394"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="77532394"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:44:48 -0700
-X-CSE-ConnectionGUID: hNKHYuDvSFuDm4emeRDeWQ==
-X-CSE-MsgGUID: 5FoxaZQ7SleQP9bs9dhz2w==
+ 30 Apr 2026 06:44:50 -0700
+X-CSE-ConnectionGUID: 1VwsbP32RS6OivKVlWOPyQ==
+X-CSE-MsgGUID: y/QqNbz5Q0CHqeluFzeAuA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="236371553"
+X-IronPort-AV: E=Sophos;i="6.23,208,1770624000"; d="scan'208";a="236371559"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 06:44:47 -0700
+ 30 Apr 2026 06:44:48 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com, gustavo.sousa@intel.com,
  ankit.k.nautiyal@intel.com
-Subject: [PATCH v2 1/3] drm/i915/psr: Unify DC state handling for PSR and
- Panel Replay on VBI enable
-Date: Thu, 30 Apr 2026 19:15:03 +0530
-Message-ID: <20260430134505.1728443-2-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v2 2/3] drm/i915/dmc_wl: Expose intel_dmc_wl_supported()
+Date: Thu, 30 Apr 2026 19:15:04 +0530
+Message-ID: <20260430134505.1728443-3-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260430134505.1728443-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260430134505.1728443-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -74,7 +73,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 073E94A3A40
+X-Rspamd-Queue-Id: DB41F4A3A47
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -103,44 +102,89 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-Unify the intel_psr_notify_vblank_enable_disable() path so that
-DC state is disabled for both PSR and Panel Replay when vblank is
-enabled, and restored when vblank is disabled.
-VBI (vblank interrupt) enable is a PSR exit condition for both PSR1
-and PSR2. This is safe because once vblank is enabled, PSR will exit
-anyway, so the system will not be staying in deep DC states like DC6.
+Rename __intel_dmc_wl_supported() to intel_dmc_wl_supported() and expose
+it via the header for use outside intel_dmc_wl.c.
 
-Bspec: 49274, 68934
+This allows users to query DMC wakelock support directly and use the
+DMC wakelock APIs accordingly.
+
+Suggested-by: Gustavo Sousa <gustavo.sousa@intel.com>
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 11 ++++-------
- 1 file changed, 4 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c | 12 ++++++------
+ drivers/gpu/drm/i915/display/intel_dmc_wl.h |  1 +
+ 2 files changed, 7 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 63c19958a9e3..9acd47392192 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4143,16 +4143,13 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
- 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index ddf1a1f1ebc3..c5810ee81bd6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -277,7 +277,7 @@ static bool intel_dmc_wl_check_range(struct intel_display *display,
+ 	return false;
+ }
  
- 		mutex_lock(&intel_dp->psr.lock);
--		if (intel_dp->psr.panel_replay_enabled) {
--			mutex_unlock(&intel_dp->psr.lock);
--			break;
--		}
--
--		if (intel_dp->psr.enabled && intel_dp->psr.pkg_c_latency_used)
-+		if (intel_dp->psr.enabled &&
-+		    intel_dp->psr.pkg_c_latency_used &&
-+		    !intel_dp->psr.panel_replay_enabled)
- 			intel_psr_apply_underrun_on_idle_wa_locked(intel_dp);
+-static bool __intel_dmc_wl_supported(struct intel_display *display)
++bool intel_dmc_wl_supported(struct intel_display *display)
+ {
+ 	return display->params.enable_dmc_wl;
+ }
+@@ -344,7 +344,7 @@ void intel_dmc_wl_enable(struct intel_display *display, u32 dc_state)
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 	unsigned long flags;
  
- 		mutex_unlock(&intel_dp->psr.lock);
--		return;
-+		break;
- 	}
+-	if (!__intel_dmc_wl_supported(display))
++	if (!intel_dmc_wl_supported(display))
+ 		return;
  
- 	/*
+ 	spin_lock_irqsave(&wl->lock, flags);
+@@ -390,7 +390,7 @@ void intel_dmc_wl_disable(struct intel_display *display)
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 	unsigned long flags;
+ 
+-	if (!__intel_dmc_wl_supported(display))
++	if (!intel_dmc_wl_supported(display))
+ 		return;
+ 
+ 	intel_dmc_wl_flush_release_work(display);
+@@ -425,7 +425,7 @@ void intel_dmc_wl_flush_release_work(struct intel_display *display)
+ {
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 
+-	if (!__intel_dmc_wl_supported(display))
++	if (!intel_dmc_wl_supported(display))
+ 		return;
+ 
+ 	flush_delayed_work(&wl->work);
+@@ -436,7 +436,7 @@ void intel_dmc_wl_get(struct intel_display *display, i915_reg_t reg)
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 	unsigned long flags;
+ 
+-	if (!__intel_dmc_wl_supported(display))
++	if (!intel_dmc_wl_supported(display))
+ 		return;
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
+@@ -469,7 +469,7 @@ void intel_dmc_wl_put(struct intel_display *display, i915_reg_t reg)
+ 	struct intel_dmc_wl *wl = &display->wl;
+ 	unsigned long flags;
+ 
+-	if (!__intel_dmc_wl_supported(display))
++	if (!intel_dmc_wl_supported(display))
+ 		return;
+ 
+ 	spin_lock_irqsave(&wl->lock, flags);
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.h b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+index 5488fbdf29b8..363f6e34c89b 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.h
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.h
+@@ -29,6 +29,7 @@ struct intel_dmc_wl {
+ 	struct delayed_work work;
+ };
+ 
++bool intel_dmc_wl_supported(struct intel_display *display);
+ void intel_dmc_wl_init(struct intel_display *display);
+ void intel_dmc_wl_enable(struct intel_display *display, u32 dc_state);
+ void intel_dmc_wl_disable(struct intel_display *display);
 -- 
 2.43.0
 
