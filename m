@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCgzHao182kUygEAu9opvQ
+	id EL54Dqw182kUygEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 12:57:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 12:57:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C332D4A11F1
-	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 12:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A779F4A11FF
+	for <lists+intel-gfx@lfdr.de>; Thu, 30 Apr 2026 12:57:47 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 022DF10E12D;
-	Thu, 30 Apr 2026 10:57:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EC2BE10E12E;
+	Thu, 30 Apr 2026 10:57:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YZlVcNEF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Osxsd0mY";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F140610E12D
- for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 10:57:41 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9428C10E12E
+ for <intel-gfx@lists.freedesktop.org>; Thu, 30 Apr 2026 10:57:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777546662; x=1809082662;
+ t=1777546665; x=1809082665;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:content-transfer-encoding:mime-version;
- bh=Qy8LJwphFfWPJPtcWjMoxlDCtJQY5nI3pm182oNvtzk=;
- b=YZlVcNEFSjqsQWf4omMZJwIVXYVvlc9Oolwr5b2e1Oh6oYo2X4gu2XOO
- RX6SfZR0st/WhTkdHX7VWmKsXm9xhZ/TovFcdU33XGOoDgH74b0SEP7Ak
- 4LsNtpkYxx3UY6hI+fJUkoE81HIaTmpdeYSUQOP6W4UeHYBjVUDAJPSut
- NlXCoeHllJwMPTzXKLtzw3YP/GmABszKmSTjsQND650VGUpMXdI1Gdl4C
- xLLokR3YVMQuimve9jgci+6ghY1C7oTvb++gDnvHVA8LPXDD71GhUP7E7
- d8eJ0sfKhglIqhhryKQTJ2IaQlq2/vkRx6ZZK/mYTWhk+SjTBCiV7m8Xf A==;
-X-CSE-ConnectionGUID: irXXgSNFRfiEZ+4JSFlKhw==
-X-CSE-MsgGUID: nfdvfPTLTRisoECECpb+Dw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="89952848"
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="89952848"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 03:57:42 -0700
-X-CSE-ConnectionGUID: eukDgKy9R3WsFiokCBYI6A==
-X-CSE-MsgGUID: CHWaHdutSa+zVMFeUtS57w==
+ bh=y+bA5hsiubpGWmFz+QGoWTe40dgqQ4Ddk6PM+Df5nm8=;
+ b=Osxsd0mY8CdJNQdwO2gxk17msivVjwSlaeIowkoSj2VcKOKmWsdPNam+
+ +no7u2eBzohBwikgbt2kUAxGqaxprRhu/eseAzrFzlE8IHx6iTAiPCxsp
+ SXP8xzEgMvRrMlMPvPmMbfm33+PFWdKulCjU4TZVEjfJdNRlwFPdR7z2f
+ kcgNi0WJwZsqJe0fg0A5xWhuQeZBHiFFwNkSJ6zA01jkjdy+eyruxnMNy
+ gBMr3Xo793DT8SWJa+Asuq+s1nyuB7SeciODi7UzzaXNOTJn3aBXfOLQo
+ 65dn4OojO6gzWaEQSsOg0zmkcDmrDBd2DEUFfeu6iu0aSpkLXjxf2pXxh A==;
+X-CSE-ConnectionGUID: 8ZI7xePSRhyVzI7vWR9JaA==
+X-CSE-MsgGUID: bi9Nh7CDTLmczLD4NpnWRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11771"; a="66025144"
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="66025144"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 03:57:44 -0700
+X-CSE-ConnectionGUID: Ri8Lhe3LQ2STA2/k8RLFnA==
+X-CSE-MsgGUID: YCgCG9m0SgycB8ALV8bHRA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="264921833"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa002.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Apr 2026 03:57:42 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,207,1770624000"; d="scan'208";a="238868978"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Apr 2026 03:57:44 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 30 Apr 2026 03:57:41 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 30 Apr 2026 03:57:43 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 30 Apr 2026 03:57:41 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.43)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 30 Apr 2026 03:57:43 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.12) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 30 Apr 2026 03:57:41 -0700
+ 15.2.2562.37; Thu, 30 Apr 2026 03:57:43 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=O/8lSEZp1LOLUjfVd5cw5W89wpRf55SVyNGLmRvtnme/MRzKq+jyTKGBBTGM5Xf3PomUbITvFzCcVYQ9TYK3UlwfwOu3q2RVN9/jW3PL9YKj1Uvw0MbRPn1S/JygQpjULmm/j03xgYtNZ3S9zl2QR4Es6+Np8KcpPtcjqpiROG8wBTL6URKe9IWVI1rCNaZ/q3uh905WUgUJ6XGVcvSc9F7u0m4Nt5LEFDOD6S/18GaP1Appr6XrifrOCRM1mb2tUfbpQ9pUZ+Zu6odH9jLoVPRyA6BboU7CUplXWAFfgsHDU6glO7oroNrxvXt5M7i8Awt79kyRe8o6o5RE/4ITCQ==
+ b=PCfOCUszeoByB5EkIQSyReeV9Inl2KcObQfhRekyomnYizx+9su1TCdJJR6sBoN8KO8ZCJhIhfWMWh23HwdDgwrvbCXCc4PA/bt+0DFJShIExJ3DsXv9720d059yn5rdgsN0QaKeVv2H2VQaONZXM5O648poqdm0w91WBJwoQoX6ayORUAMzJ9gfKbrccV55/tbhS7K+mv6qqAd8T2prDeYmaKMXTqF1mUoZYGUwA4RTWHyeIreHobnymolejL0/aomHo6LYBNEiEbc1QfR0+PYceQkq6KGQIQaLLcTwEi2xqBr7NNSkP0aJd575+m1vLzUPJ4zeRJydPS3ApcP77A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=5zLhKMg3WyE5aOb+DZ+W2ngXack8jmeJ/rJP7/aENIs=;
- b=jKVe4CN7m7lAG5w7Q5DfH2Rp6KVlukBHHpo40QDpcTWyQsNoL6ugH30GWPuByloBIlK40CuxhgThuFQbACfJnPL6fcaPRp7qkORDPkmTa2CRcLpGLegLw2t+64/2fQSOBKz9tCC0/WkWnD+9dPA55AnWFObpgZv3UHXTfsME4Io3B7kYi9AufB6AzKDFp1y9JIDa6rwpAvXenO0iymBy93psQnTQXuqpsKCZtKNU+f7d+lNyrxZnTsx7J/a8U/92hJygVk0NAiUCy9d3K2530AIs0hdVdtOXhwAlXyRYQUSpU2aDQx2VUBpoxyrQDauDEIvcgaMCJfGBB0eFwaXBVg==
+ bh=tkkWYOBqYdgaPAlD8163e17K/oQlcK1HesgFkZMz4Nw=;
+ b=XUG1HWze3pTqtjcJXD+9egTrKmq7UvYeR/ixJnRu+/lsoMoF2p7uWH2gxqOhHVSMqkwQ+BLG/ot5Umh5uRB5QZrM4KoeVVeBwJ/VoC2gIp75ExVGGrYRDGMHcqvD9/RLhD6cKlykuzFt9kPmyn7bbe3CgaVi06DwNTIouX/l3FvnvJ3CUPVo7D5Z7XHQoU192esfFlVZwC8/LS15PSF3u19O1SwvhxW7h4pK6wotlywb7anTtOs9bjxdtD+Aw9UZIzV1LI5u7MJvDPgCbkR6rtCvd6DrI+G4sWSQtBJ3StXyJExuTElb6rmnzotQVnht9b+AtPUZbbHf+qD8QOGTnQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -74,11 +74,11 @@ Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
  by IA0PR11MB7696.namprd11.prod.outlook.com (2603:10b6:208:403::13)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.21; Thu, 30 Apr
- 2026 10:57:38 +0000
+ 2026 10:57:41 +0000
 Received: from CO1PR11MB5057.namprd11.prod.outlook.com
  ([fe80::3b75:a8d2:464e:30cc]) by CO1PR11MB5057.namprd11.prod.outlook.com
  ([fe80::3b75:a8d2:464e:30cc%6]) with mapi id 15.20.9870.013; Thu, 30 Apr 2026
- 10:57:38 +0000
+ 10:57:41 +0000
 From: Krzysztof Karas <krzysztof.karas@intel.com>
 To: <intel-gfx@lists.freedesktop.org>
 CC: Andi Shyti <andi.shyti@linux.intel.com>, Sebastian Brzezinka
@@ -86,10 +86,10 @@ CC: Andi Shyti <andi.shyti@linux.intel.com>, Sebastian Brzezinka
  <krzysztof.niemiec@intel.com>, Janusz Krzysztofik
  <janusz.krzysztofik@linux.intel.com>, Krzysztof Karas
  <krzysztof.karas@intel.com>
-Subject: [PATCH v8 1/2] drm/i915/selftests: Prevent userspace mapping
- invalidation
-Date: Thu, 30 Apr 2026 10:57:23 +0000
-Message-ID: <20260430105724.1590552-2-krzysztof.karas@intel.com>
+Subject: [PATCH v8 2/2] drm/i915/selftests: Run vma tests only if current->mm
+ is present
+Date: Thu, 30 Apr 2026 10:57:24 +0000
+Message-ID: <20260430105724.1590552-3-krzysztof.karas@intel.com>
 X-Mailer: git-send-email 2.34.1
 In-Reply-To: <20260430105724.1590552-1-krzysztof.karas@intel.com>
 References: <20260430105724.1590552-1-krzysztof.karas@intel.com>
@@ -101,56 +101,56 @@ X-ClientProxiedBy: TL2P290CA0001.ISRP290.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|IA0PR11MB7696:EE_
-X-MS-Office365-Filtering-Correlation-Id: da45e1e4-790f-47cf-6e1b-08dea6a74b21
+X-MS-Office365-Filtering-Correlation-Id: 4aa508b2-1098-4081-7e2b-08dea6a74ca4
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
  ARA:13230040|366016|1800799024|376014|18002099003|56012099003|22082099003; 
-X-Microsoft-Antispam-Message-Info: oz1jO/+057ZspqCRuQlTiZLcv6EIyHk7uqg3mkZq8Rq7x6XuimP88lPq7M6OJarGYnbzJEmtScDp/IxUrYYdL8T8fZjWP05udhsdLQTkjs1wmkDKJipvWU6871ikInlJJL+1Qb1l4AlU1jcWf2f4vVmb/rlpKRYRZiY0o/1DlIV+f2FoiybjAo65uIJMOF+e2p2zTM+KSn853/3CKH7zFyHGLobJHMaewMY0ky5G34YcugcLaH462alV9hIqzp7QIniSei8nqkF34msEVo6SnoKhAcYgB2fHEEQ3yleDsPcAoQ1Wc8K4EianTaeEUoVfZ4grk4Lx+Tm+vs+w8G9dKDPQVyh/krBEdXfhfK5Td1PxYhWpuvWYLm/zMq2uo5yDeDin2VC18PEHJJgld1nZS04nO07R9mrOV5WKFLVmqW/S0Mx/jI7NoD8/9LkWGZf9nTAzaGyw9vGF3lqMMCLtBG+7388f0f9yo+Dje0z4pIXk0u5YLx8srE39vmfQwfTyAS2UD8VXVhd0WryAeYjiRr37iPaXuS1epS9C+g+RmnojZvxOOcQjjgCvz87rUnTKQM4SmAV60Z+qz0pRLQ7D40qPynArzIAY9q7H9jXrZzoMSn4xBffx9LBPLyB9X16DIO0EX1m7GVKbTed3ZIagLBAQeORd22pYdzwMFhd4wt+52Ma03VDJnSL+SxODnTMY
+X-Microsoft-Antispam-Message-Info: vU1bySh5kgvhCjdQ6woGuaZ+UOyR4IJzqvJoFCcZKMOCJyWu/OHkMPoyRw6x2sxQISus+/UrcdjHMmAaQ4PxGvq9ptrEYjkPPkONY0RJpFiaP8CYWhxBR145q/HuP4XPzGvxvP95NZxC+jlmzCOA9nHYZonqHt5k1AT+udQGP6pPjvPt7dGH5cO/n0/8o+SYq4ExSrUkHlspiFppUqMPTVrHbIiyOdeyBMEgHoeoahPYJWWyndGB9wDpmOu7/wgjzGv2KZfoinI7tY6q9TjC8j2LJW4B2Kq49SokDaOKCDUZs3HKto/kG+KigqCzUiQaePHvoA8pRI8CtlC0dc76/ZBU2mfUqrt0HOINFRxt12+9qBNShvVLzNb8EMIysBi38aZRY8YOu5rdPmam/KkO/l9YGGVRB2bw4CkhYleuqaGASJHCf/X9Y05cdpOpoRCOwRCaMnIklpGFbD8/mzMJmY7g5Sp6cA3nmgqgLPU024HxXlQk22NC+8rtTdeJozXk+laMOYZS2k6X3QCWYX0rsAqz6TIAogCA5R2ohDTwK88g18iPoelJu33dPD1JQapgb6S0xHPtWWU6Bn6/mjqOwO4EA+DsZ4HH+tacsTDlIX/fTaditN2nUd7hiwz3A7tbN3u0N1XHSjJzjei8sajBj7y3tJKJ6YNtbXsaVJ2602YybOdQidR4S/LURlIwEJmvzQmCcZpZrDWVYJaRGPH4n9JDtSJpk6LrEFKJvGQfTdY=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
  SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(22082099003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?T8QUe/+K/yoFr8QFXDjyEoBGA8tW2TfHhEW0z3V8M2nPLrpRw3IChnF8mogl?=
- =?us-ascii?Q?z8NKAGd0I7orujJPmjz7WwPykhPHfUBwp1lUWuukXDDIhvmyhWLkwZz6314Y?=
- =?us-ascii?Q?QuymAe1knD/+Ha8bF+LoAcVP3Q1KvhL1DYWZREuOoaIdTn4bjP7qvz2D68+x?=
- =?us-ascii?Q?rjmh3uD8rYwSM1ms++5BQXs2+oNPvAwbTGuNqI4lShaCnZ+vSP1d8CP+SwFj?=
- =?us-ascii?Q?Sap7qCxcvh6zQKyQQ0oYAJelhEQL23IxJ0mf+Go9S+gKnc3y4xdkcJ5V1iC/?=
- =?us-ascii?Q?XLzoY/ebj3XLt/AvtD41x3d99zBpLQhXKtlYtOtENnN1YQFqR1qzAbsCnb2V?=
- =?us-ascii?Q?GvcL6KETXMqfo2CQ9s6EP/dD+4/Kjp4sHRC4NO37DpPP91Lo94BKgT3Fl5th?=
- =?us-ascii?Q?l0UXHZLr94wZcE/onA/rd7ru3s5CFQgsxxPRHsXfptU3KmWCaXfdgNSUrBBl?=
- =?us-ascii?Q?weQzn8ByEHHzvnmRQSQUbHsbqaGi7rNba6sf8ZKi3v143g/PsAjT+jo35P7w?=
- =?us-ascii?Q?xyWrQmHpI4uB3dVCJ8ApAQVsI7N55ROX65r+9q9LCO2Fu+Sh+9vHpdcCXoXv?=
- =?us-ascii?Q?yb+n6Ci2dnlvZ47DLxBC1ktZMcVi17s+JJVzpdG8E9Yssdzd7BAyx1vuCUmr?=
- =?us-ascii?Q?R41vUJaGek0sCt8wJfegAIFuyWoOG7gkmXH8bWz0IGBSu2fNyu555TihnwV+?=
- =?us-ascii?Q?7ENZlbz0UQdSuPbDmZS2HCrjAlmdBt/UmvfvCUeEBDl8txiWC/5Q8ChHjh8s?=
- =?us-ascii?Q?C+KqqVlpXjYQklCB9kYKW0I6bYRQ3My9uMg196HdlD1vVXFES2YVmPrIK+yd?=
- =?us-ascii?Q?kGffRfZ/X6/iBnyyuDXatFbvqgi1mrC+kUTtflneFhZBlybP2GufpGXoG9df?=
- =?us-ascii?Q?tx2tNGVLZNBtWPvu69EdfvwUpek3FBxxSqJG9NplgSHSIuMsWkPGaUle8P12?=
- =?us-ascii?Q?nq/aKlDDeyjyoI5zrfA7u0SMCAQf7WYv2aSTGcqRKzCWTSPSHZOjMCzREdh2?=
- =?us-ascii?Q?wIwBIYVanZJ4ocMaPHWJZ+xfjajVTaW30IdGLQeNy8IgzBKwzgsn12hInZUR?=
- =?us-ascii?Q?uHTiZ7QR6TVVblmkyAgb4V0xFXaq2uYXLfOi0GuRFBRntN8l0ZUo0atbG3ho?=
- =?us-ascii?Q?NrJJzvpLhW9fyNeXKTrv8SJz3CqjjJywTiiPm70SuXLn+e1H04IiKoz63Gfc?=
- =?us-ascii?Q?t62xhbhv5NY6TasBJlO17ul2u3mYwaaf4FH/zUlR4Vh5U4RDjCnmcvui9nXi?=
- =?us-ascii?Q?kn2uZPK64dw4p4JZruMNjkCNTEqPLo8JwQ4ppHhTQhYTS01w5ap9p4qXlO5f?=
- =?us-ascii?Q?9ywD0GcZB7KqhbELcQ+MQdKks8EyqTVE+1zHTBs18hrkwS9JnIsevXNpaf3k?=
- =?us-ascii?Q?T+cOeSh2uY9PwXELiafxOBaPbXbl03g/oL5wRxUMfTUh7qQ1IapNURrHvBFv?=
- =?us-ascii?Q?wrHNx4zWQjY94bLcZFcdZkMFShDl/HoViTVxGkIneRKXa5CgdZ4pgJasCQtJ?=
- =?us-ascii?Q?nqkmuH6qkkbsmS4iKsmAm3fTUjdpcggBWScYvH3LB68SicjtfQb/d8j0TrS8?=
- =?us-ascii?Q?tbfTw5/006TGChGr+4qsTxbzXc5Hmb6Jez8ESscmYR8DUPOGJc3Fj198Krcy?=
- =?us-ascii?Q?tkF/XcF+6yvhBuvl8TtQzXWD4bk+H8WrNQ+3s/A+d8GrTUKYROZO8ZDlDeWa?=
- =?us-ascii?Q?8hng2/gBmEtlnPbZT8+vxGfofNrzGUNibDlg3bR4JYIA4B00Cim9ykzUYgol?=
- =?us-ascii?Q?KIFJAkZr/NOZZg7e5SvL9jOU6N22E0g=3D?=
-X-Exchange-RoutingPolicyChecked: NYLpP1KwH1QygYLHh0hf94Mz9NKO4+1HklMQ5XUttJ9qeu71CS3CHnxzXufILKISC9+zhDc7vJk/GTtfIP4LlWXkF3351AUOzfmvuhrKO1v4UkOqUoI8cjUl6OYoyupudfXPnMpIlvKEw+zXZAzggAY6YkR48odseMgSbp2Gl4nTvoktzGVFqqcUW0ELjwehw6nlRfN+eS/rjXuzM++4KEz84YRhKQO9YW4k7fF9Yp8Cshh7G6A+RUt2eI19ThtKjSyiDy9HK8hLbXNfrTuBWEuXcg6TDDBEdhb4lrSsash0mFPMRXFhCBGBvGJkE4IA8zCcy1IsDRAyDAhbUmVFKQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: da45e1e4-790f-47cf-6e1b-08dea6a74b21
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?gjv7B1OkoacqQcc/BXz9+gq7uDDalcKDzrzRuojqoE+Df92tlV9tILiABVZl?=
+ =?us-ascii?Q?dv8oCNve4EVvQq2U7k8A5KbiqIp1OJCh96ia3zylZUEd65u9oM9luljuDeNW?=
+ =?us-ascii?Q?h3OpInip41ej96ML5WR7bAGSrW6dNu16Os7YefyELA+K6jVKzMU8KAzza1Vg?=
+ =?us-ascii?Q?jaX4UP+TnuVZyiN/2KZkUXaZ+S97zulwGn0JHVzaWIVZl1JGwE2gUZtKdpap?=
+ =?us-ascii?Q?O/ouJA6gouM5IMw4R2LF9U8lf6p50k22/YnnumJqOgtUC0yLqRX20prT7RBA?=
+ =?us-ascii?Q?Tnhi6mX+ykUW/TDZmiXyvHuwue5pSw/T2xJhbS7ECeDKqc2314gqHQwfyJ64?=
+ =?us-ascii?Q?JnLQbCOZucHFOGcIecHo7RoqKK6A4C4ys5kyKsf/R2cFTj04GTVewF51fypO?=
+ =?us-ascii?Q?ZHM4Dqz1GJR32QR5uR6hKTXKugxZyWC0tSkV3vIFcA+NYRwHyhCbH+plYvhL?=
+ =?us-ascii?Q?gmBxypv5LtyjCXMs22kA8gm+PfLoZ4y5a3jTVrtFw7A28nYgQ0rJsckt9qAW?=
+ =?us-ascii?Q?IcyoMpnKvPCkgvNF/30Yc1IU7kigsC6F2LP176eXIVs82VWFkigY8z1k8A7g?=
+ =?us-ascii?Q?UUTHoCZDFiE48DVLzuj78w4+5Vek3xyA4uTDFwUHYxDIFVPfL1JY8ONeq0q4?=
+ =?us-ascii?Q?fhbT67Q69NDyB1y+87NI8bH5ADfOUVD9IXRP2DG4eg57BCJoJt8R1D57lbrD?=
+ =?us-ascii?Q?teg0DS4w5Cxxs/Nwl8tRrqHJVqW2SnxGVa1dCFEYkGA3P4Oitq9Mc3uLLBYx?=
+ =?us-ascii?Q?Gf697OhoHy1ogil8LW78FmgcuB+ddPrPg7SHldm+XcUACFhmKIpwkxKdBRVO?=
+ =?us-ascii?Q?J3JsasHb5llNzdT5zc1YUxlTP1tvW7EgByWNa/WyrFOwUg4U6OvFWjTbsjEx?=
+ =?us-ascii?Q?xnATWzpxVekHyIBiIAEszhSIon51xMfRt1GWXqg74fuRmrr0jZ0KoDFKa5SN?=
+ =?us-ascii?Q?dXCREmrKPuomt/kBWwlzEKxr4H2p/SSOXPmdBwNGXwNJExvqw8KvnKhAd+Ox?=
+ =?us-ascii?Q?jxxY6461gmC5kBbVW7e1jhnPRSNURuZgFdG60XmDDobJSHtxQnfGR/lXggs7?=
+ =?us-ascii?Q?AebbL9cAA+MwfsYR5ryim2TGTICzvPAPBlPdx6gfP3GiXQchJ4LKm8QQRxzp?=
+ =?us-ascii?Q?652poycH18lmVl80SNs1ROpVtLnSyY6cLC+wnX/1Wz2XbyD8RH3qa3pJDkqS?=
+ =?us-ascii?Q?4k+UgNS4cSW71ZlM2eUMmw4Er0rPrGglpW6lTbb1UQsoPvyxzwYnkPUg7jF3?=
+ =?us-ascii?Q?rV5Cc8SUx4ooE+hcu61Zb4fo95c8T9zDEKKQXLqNu1jyOKAazyLnQHlnssgL?=
+ =?us-ascii?Q?3wKMdJDvYNGHmtHUDioW/t2PeVcL5gC61R6mJNU6O6r7D26ZGPyWbHIgmcD9?=
+ =?us-ascii?Q?jZSxT1LdB3oKJOO62DDWB5s5IXHTPYbDzPy4R1fUOL20Yp+LhADdIEw2Fj0m?=
+ =?us-ascii?Q?38oGYcXErCFV6jk2FHHmCnhFp9JZeaKHqWoJLqAx+dUbyG4eeNBc/lvrzRog?=
+ =?us-ascii?Q?dFIyvfxRZWWiKDvuQRwgy7II2ntUe40enxtv6BqyE86HwVtxfQVTjvcOEG5z?=
+ =?us-ascii?Q?AAem9qWHScCcxiSHzNoXFjHK/LxvgQgQy/2grZZ11WRjj2mOCTWZ0Cj6pcJ0?=
+ =?us-ascii?Q?o3nr9mFTSW57qldfgUStRaF4P1e4POCIXIIDJwSLzAtzhHE7Y+6I22Qy6d6G?=
+ =?us-ascii?Q?RpDJzovhkxlah65KsdLKHM4n9HxTKSjc+cmSFV0h1v3Kqgt3DNyWRjOm+ufa?=
+ =?us-ascii?Q?neB+QgHGZ1x+QoPFOJR2LohjZHf1bw0=3D?=
+X-Exchange-RoutingPolicyChecked: jd9/wHEoCKrsDH+dibaat4qg9gqKE0aE3cvtCLU3s49XsYjMAWeGLGvA4N4oyercI0CCvbQcdW5OoMhZHEK9VKvOQbp0wHs9nR7tIHuxDC0wH4g4HycV7Tao20Z/i/Ru+IzgpotB4OPTbu9XSJ/nVZSHN+sdjIKehSLsO+ca8f0CgE7O1vjNiANP8HvG795Of+DCYkXEIDykDT1/0ovZzIlXEiyuksRhRLvVRZZGExlWmSzZFVqtdLbFdVPFBKziR0u18FDy2oQZHe+j/geBDdzv3sAwzgcvTtS4taG2Dwq1QlpK4C/xGujlKqJZtH7vyBgMApXjKEmLa54P8jOtLw==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4aa508b2-1098-4081-7e2b-08dea6a74ca4
 X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5057.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 10:57:38.5183 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Apr 2026 10:57:41.0165 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ujJU3IvnuLM5vJuPvLjvACDBfF3Z9NoROxqO73Uj3yjhXsRBQEJRVCKcee7beJYcMH5bCv94MPmah1YxsIi5OGe/FATu+hf6sNeQl5HuUhM=
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7YrkIFP439rn/+VvdFvouuHfSbSg30rSGWzO/xeGTUQLhgzrbEzZdu+6C14BzKiNMPiu6F4HtGYvB2JwHcVbAwr+iQl23+X6MCE8EB+nss8=
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7696
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -167,7 +167,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C332D4A11F1
+X-Rspamd-Queue-Id: A779F4A11FF
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [1.19 / 15.00];
@@ -187,162 +187,66 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[6];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FROM_NEQ_ENVFROM(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9]
 
-Migration testing in i915 assumes current task's address space
-to allocate new userspace mapping and uses it without
-registering real user for that address space in mm_struct.
-On single NUMA node setups PCI probe executes in the same
-context as userspace process calling the test (i915_selftest
-from IGT), but when multiple nodes are available, the PCI code
-puts probe into a kernel workqueue. This switches execution to
-a kworker, which does not have its own address space in
-userspace and must borrow such memory from another process, so
-"current->active_mm" is unknown at the start of the test.
+This set of tests require userspace memory to map objects, so
+run them only if this that memory is available.
 
-It was observed that mm->mm_users would occasionally be 0
-or drop to 0 during the test due to short delay between
-scheduling and executing work in forked process, which reaped
-userspace mappings, further leading to failures upon reading
-from userland memory.
-
-Prevent this by adding a PID parameter to a trusted task, so its
-mm struct may be used if needed.
-
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-Fixes: 34b1c1c71d37 ("i915/selftest/igt_mmap: let mmap tests run in kthread")
+Reviewed-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
 ---
-v6:
- * Move mm handling to a separate function. (Andi)
- * Validate user provided PID. (Janusz)
+ .../gpu/drm/i915/gem/selftests/i915_gem_mman.c   | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
 
-v7 (Andi):
- * Add missing mm reference release on error path.
-
-v8:
- * Keep reference to mm open for the duration of test for
- readability. (Sebastian)
- * Be paranoic and explicit about keeping the mm reference,
- so we are **really** sure about userspace mappings not
- diappearing.
-
- drivers/gpu/drm/i915/i915_selftest.h          |  1 +
- .../gpu/drm/i915/selftests/i915_selftest.c    | 53 ++++++++++++++++++-
- 2 files changed, 53 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/i915_selftest.h b/drivers/gpu/drm/i915/i915_selftest.h
-index 72922028f4ba..e29ca298e7eb 100644
---- a/drivers/gpu/drm/i915/i915_selftest.h
-+++ b/drivers/gpu/drm/i915/i915_selftest.h
-@@ -35,6 +35,7 @@ struct i915_selftest {
- 	unsigned long timeout_jiffies;
- 	unsigned int timeout_ms;
- 	unsigned int random_seed;
-+	unsigned int userspace_pid;
- 	char *filter;
- 	int mock;
- 	int live;
-diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu/drm/i915/selftests/i915_selftest.c
-index 8460f0a70d04..b3cd8152667a 100644
---- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
-@@ -186,6 +186,8 @@ static int __run_selftests(const char *name,
- 			   unsigned int count,
- 			   void *data)
+diff --git a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+index 9d454d0b46f2..d01acfb7d93d 100644
+--- a/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
++++ b/drivers/gpu/drm/i915/gem/selftests/i915_gem_mman.c
+@@ -1847,11 +1847,12 @@ static int igt_mmap_revoke(void *arg)
+ int i915_gem_mman_live_selftests(struct drm_i915_private *i915)
  {
-+	int u_pid_nr = i915_selftest.userspace_pid;
-+	struct mm_struct *mm = NULL;
- 	int err = 0;
+ 	int ret;
+-	bool unuse_mm = false;
+ 	static const struct i915_subtest tests[] = {
+ 		SUBTEST(igt_partial_tiling),
+ 		SUBTEST(igt_smoke_tiling),
+ 		SUBTEST(igt_mmap_offset_exhaustion),
++	};
++	static const struct i915_subtest vma_tests[] = {
+ 		SUBTEST(igt_mmap),
+ 		SUBTEST(igt_mmap_migrate),
+ 		SUBTEST(igt_mmap_access),
+@@ -1859,15 +1860,14 @@ int i915_gem_mman_live_selftests(struct drm_i915_private *i915)
+ 		SUBTEST(igt_mmap_gpu),
+ 	};
  
- 	while (!i915_selftest.random_seed)
-@@ -201,14 +203,56 @@ static int __run_selftests(const char *name,
- 	pr_info(DRIVER_NAME ": Performing %s selftests with st_random_seed=0x%x st_timeout=%u\n",
- 		name, i915_selftest.random_seed, i915_selftest.timeout_ms);
+-	if (!current->mm) {
+-		kthread_use_mm(current->active_mm);
+-		unuse_mm = true;
+-	}
+-
+ 	ret = i915_live_subtests(tests, i915);
++	if (ret)
++		return ret;
  
-+	/*
-+	 * If we are running in a kthread on a multi NUMA system and the user passed
-+	 * a valid PID of a userspace task, then we may borrow its address space
-+	 * to prepare a safe environment for the mmap selftests.
-+	 */
-+	if (!current->mm) {
-+		struct pid *u_pid = find_get_pid(u_pid_nr);
-+		struct task_struct *task;
-+
-+		if (!u_pid) {
-+			pr_warn("Could not find PID: %d\n", u_pid_nr);
-+			goto run_tests;
-+		}
-+
-+		task = get_pid_task(u_pid, PIDTYPE_PID);
-+		put_pid(u_pid);
-+		if (!task) {
-+			pr_warn("Could not find userspace task for PID: %d\n", u_pid_nr);
-+			goto run_tests;
-+		}
-+
-+		mm = get_task_mm(task);
-+		put_task_struct(task);
-+		if (!mm) {
-+			pr_warn("Could not find address space of task with PID: %d\n", u_pid_nr);
-+			goto run_tests;
-+		}
-+
-+		kthread_use_mm(mm);
-+		if (unlikely(!current->mm)) {
-+			mmput(mm);
-+			mm = NULL;
-+			pr_warn("Could not set mm as current->mm\n");
-+		}
-+	}
-+
-+run_tests:
- 	/* Tests are listed in order in i915_*_selftests.h */
- 	for (; count--; st++) {
- 		if (!st->enabled)
- 			continue;
+-	if (unuse_mm)
+-		kthread_unuse_mm(current->active_mm);
++	if (current->mm)
++		ret = i915_live_subtests(vma_tests, i915);
++	else
++		pr_warn("No current->mm to safely borrow userspace memory from. Skipping VMA tests.\n");
  
- 		cond_resched();
--		if (signal_pending(current))
-+		if (signal_pending(current)) {
-+			if (mm) {
-+				mmput_async(mm);
-+				kthread_unuse_mm(mm);
-+			}
- 			return -EINTR;
-+		}
- 
- 		pr_info(DRIVER_NAME ": Running %s\n", st->name);
- 		if (data)
-@@ -226,6 +270,11 @@ static int __run_selftests(const char *name,
- 		 st->name, err))
- 		err = -1;
- 
-+	if (mm) {
-+		mmput_async(mm);
-+		kthread_unuse_mm(mm);
-+	}
-+
- 	return err;
+ 	return ret;
  }
- 
-@@ -507,6 +556,8 @@ void igt_hexdump(const void *buf, size_t len)
- module_param_named(st_random_seed, i915_selftest.random_seed, uint, 0400);
- module_param_named(st_timeout, i915_selftest.timeout_ms, uint, 0400);
- module_param_named(st_filter, i915_selftest.filter, charp, 0400);
-+module_param_named(st_userspace_pid, i915_selftest.userspace_pid, uint, 0400);
-+MODULE_PARM_DESC(st_userspace_pid, "For usage in tests that map userspace memory and require address space with controllable lifetime.");
- 
- module_param_named_unsafe(mock_selftests, i915_selftest.mock, int, 0400);
- MODULE_PARM_DESC(mock_selftests, "Run selftests before loading, using mock hardware (0:disabled [default], 1:run tests then load driver, -1:run tests then leave dummy module)");
 -- 
 2.34.1
 
