@@ -2,73 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qJY5NxLP+Glr1AIAu9opvQ
+	id eKDtEpHR+Gm41AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 18:53:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 19:04:17 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8F5144C1A0C
-	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 18:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 789104C1B8E
+	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 19:04:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB86E10E796;
-	Mon,  4 May 2026 16:53:35 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="CvpwrU2Z";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5C11E10E799;
+	Mon,  4 May 2026 17:04:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
- [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B85010E3EB;
- Mon,  4 May 2026 16:53:34 +0000 (UTC)
-Received: from killaraus.ideasonboard.com
- (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 4904D9C;
- Mon,  4 May 2026 18:53:31 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1777913611;
- bh=+EZl9qZ81AdPzkkEwOpCoiOGzDn6NE5XspISBAQ0FQQ=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=CvpwrU2ZVuvJEMaGn/PmoNDMHJ4B3SbUdj8uAZYFJFB4/dGDtzcjF75/LvVQ5YzAC
- RIfuJ0A5tkqa40FdmOa+pVb3ieNpgSDKRNch8yvbU7lZ/WZeC7JAT/BYdlOHosaoI3
- 2uLpdybBMGCQTjbhn81cN5aCxRU9TN2Zq1AFa1Oo=
-Date: Mon, 4 May 2026 19:53:32 +0300
-From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To: Maxime Ripard <mripard@kernel.org>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Simon Ser <contact@emersion.fr>,
- Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>,
- Sebastian Wick <sebastian.wick@redhat.com>, Alex Hung <alex.hung@amd.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 11/20] drm/atomic-state-helper: Rename
- __drm_atomic_helper_crtc_state_reset()
-Message-ID: <20260504165332.GN1344263@killaraus.ideasonboard.com>
-References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
- <20260424-drm-mode-config-init-v3-11-8b68d9db0d8b@kernel.org>
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9BA1F10E7B2;
+ Mon,  4 May 2026 17:04:13 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20260424-drm-mode-config-init-v3-11-8b68d9db0d8b@kernel.org>
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/dp=5Fmst=3A?=
+ =?utf-8?q?_Handle_torn-down_topology_gracefully_in_drm=5Fdp=5Fmst=5Ftopolog?=
+ =?utf-8?q?y=5Fqueue=5Fprobe=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jonas Emilsson" <jonas.emilsson@gmail.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 04 May 2026 17:04:13 -0000
+Message-ID: <177791425363.35773.4084503759327146413@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260503034533.1023686-1-jonas.emilsson@gmail.com>
+In-Reply-To: <20260503034533.1023686-1-jonas.emilsson@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,152 +43,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8F5144C1A0C
+X-Rspamd-Queue-Id: 789104C1B8E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[ideasonboard.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[ideasonboard.com:s=mail];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[37];
+	RCPT_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com,lists.freedesktop.org,vger.kernel.org,collabora.com,lists.infradead.org,lists.linux.dev];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[laurent.pinchart@ideasonboard.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[ideasonboard.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.998];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,killaraus.ideasonboard.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ideasonboard.com:dkim,ideasonboard.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-On Fri, Apr 24, 2026 at 12:18:51PM +0200, Maxime Ripard wrote:
-> __drm_atomic_helper_crtc_state_reset() is used to initialize a newly
-> allocated drm_crtc_state, and is being typically called by the
-> drm_crtc_funcs.reset implementation.
-> 
-> Since we want to consolidate DRM objects state allocation around the
-> atomic_create_state callback that will only allocate and initialize a
-> new drm_crtc_state instance, we will need to call
-> __drm_atomic_helper_crtc_state_reset() from both the reset and
-> atomic_create hooks.
-> 
-> To avoid any confusion, we can thus rename
-> __drm_atomic_helper_crtc_state_reset() to
-> __drm_atomic_helper_crtc_state_init().
-> 
-> Suggested-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->  drivers/gpu/drm/drm_atomic_state_helper.c | 10 +++++-----
->  drivers/gpu/drm/i915/display/intel_crtc.c |  2 +-
->  include/drm/drm_atomic_state_helper.h     |  2 +-
->  3 files changed, 7 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-> index 50fe4eec41a8..9cd8550cabb7 100644
-> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-> @@ -61,25 +61,25 @@
->   * For other drivers the building blocks are split out, see the documentation
->   * for these functions.
->   */
->  
->  /**
-> - * __drm_atomic_helper_crtc_state_reset - reset the CRTC state
-> + * __drm_atomic_helper_crtc_state_init - Initializes the CRTC state
+== Series Details ==
 
-"Initialize"
+Series: drm/dp_mst: Handle torn-down topology gracefully in drm_dp_mst_topology_queue_probe()
+URL   : https://patchwork.freedesktop.org/series/165902/
+State : failure
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+== Summary ==
 
->   * @crtc_state: atomic CRTC state, must not be NULL
->   * @crtc: CRTC object, must not be NULL
->   *
->   * Initializes the newly allocated @crtc_state with default
->   * values. This is useful for drivers that subclass the CRTC state.
->   */
->  void
-> -__drm_atomic_helper_crtc_state_reset(struct drm_crtc_state *crtc_state,
-> -				     struct drm_crtc *crtc)
-> +__drm_atomic_helper_crtc_state_init(struct drm_crtc_state *crtc_state,
-> +				    struct drm_crtc *crtc)
->  {
->  	crtc_state->crtc = crtc;
->  	crtc_state->background_color = DRM_ARGB64_PREP(0xffff, 0, 0, 0);
->  }
-> -EXPORT_SYMBOL(__drm_atomic_helper_crtc_state_reset);
-> +EXPORT_SYMBOL(__drm_atomic_helper_crtc_state_init);
->  
->  /**
->   * __drm_atomic_helper_crtc_reset - reset state on CRTC
->   * @crtc: drm CRTC
->   * @crtc_state: CRTC state to assign
-> @@ -94,11 +94,11 @@ EXPORT_SYMBOL(__drm_atomic_helper_crtc_state_reset);
->  void
->  __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
->  			       struct drm_crtc_state *crtc_state)
->  {
->  	if (crtc_state)
-> -		__drm_atomic_helper_crtc_state_reset(crtc_state, crtc);
-> +		__drm_atomic_helper_crtc_state_init(crtc_state, crtc);
->  
->  	if (drm_dev_has_vblank(crtc->dev))
->  		drm_crtc_vblank_reset(crtc);
->  
->  	crtc->state = crtc_state;
-> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
-> index b8189cd5d864..a2ed4a76e061 100644
-> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
-> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
-> @@ -179,11 +179,11 @@ struct intel_crtc_state *intel_crtc_state_alloc(struct intel_crtc *crtc)
->  void intel_crtc_state_reset(struct intel_crtc_state *crtc_state,
->  			    struct intel_crtc *crtc)
->  {
->  	memset(crtc_state, 0, sizeof(*crtc_state));
->  
-> -	__drm_atomic_helper_crtc_state_reset(&crtc_state->uapi, &crtc->base);
-> +	__drm_atomic_helper_crtc_state_init(&crtc_state->uapi, &crtc->base);
->  
->  	crtc_state->cpu_transcoder = INVALID_TRANSCODER;
->  	crtc_state->master_transcoder = INVALID_TRANSCODER;
->  	crtc_state->hsw_workaround_pipe = INVALID_PIPE;
->  	crtc_state->scaler_state.scaler_id = -1;
-> diff --git a/include/drm/drm_atomic_state_helper.h b/include/drm/drm_atomic_state_helper.h
-> index df371b2eef3e..e7fbbfdc5d69 100644
-> --- a/include/drm/drm_atomic_state_helper.h
-> +++ b/include/drm/drm_atomic_state_helper.h
-> @@ -38,11 +38,11 @@ struct drm_connector_state;
->  struct drm_private_obj;
->  struct drm_private_state;
->  struct drm_modeset_acquire_ctx;
->  struct drm_device;
->  
-> -void __drm_atomic_helper_crtc_state_reset(struct drm_crtc_state *state,
-> +void __drm_atomic_helper_crtc_state_init(struct drm_crtc_state *state,
->  					  struct drm_crtc *crtc);
->  void __drm_atomic_helper_crtc_reset(struct drm_crtc *crtc,
->  				    struct drm_crtc_state *state);
->  void drm_atomic_helper_crtc_reset(struct drm_crtc *crtc);
->  void __drm_atomic_helper_crtc_duplicate_state(struct drm_crtc *crtc,
+Address 'jonas.emilsson@gmail.com' is not on the allowlist, which prevents CI from being triggered for this patch.
+If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+Exception occurred during validation, bailing out!
 
--- 
-Regards,
 
-Laurent Pinchart
