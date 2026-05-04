@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2OZ4MVce+Wlw5wIAu9opvQ
+	id YDsAMmse+Wlw5wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:31:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:32:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 712BD4C467B
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 690944C4689
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:32:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EF67E10E8AB;
-	Mon,  4 May 2026 22:31:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7434610E8BB;
+	Mon,  4 May 2026 22:32:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XVfDxF1l";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V8oiz2mk";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5477C10E8AB;
- Mon,  4 May 2026 22:31:48 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2F76510E8B8;
+ Mon,  4 May 2026 22:32:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777933908; x=1809469908;
+ t=1777933928; x=1809469928;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=5yMXE45XY2OiC7KT9kJguw2aARuxkbEZHPrAkGKzwZE=;
- b=XVfDxF1lRtIoE1lAi7MXfbWrAs3+4KvJpeDTXxZAxi15vJrBeD8EUUvI
- l4Yr+1Px9r2AgNuHFRuh/soaaRMxhhusKGUOEcVOiwRDnQLX+ag0MM9VE
- nPUrR4i2RiproYkwsKNOd6NRkoh429a89ydnWG0Im+3COxRVN0NSTHIEJ
- PiNLvuqzr11B3OP3BU/H2gezQ4DPaCAL+LS0CNHtjznyXojFRZDGLjE5M
- EmNqbchTeIz7nt0FV17cztXiaZiOfOBuGWPDCz/XD9G5PM4xuwLVgYvrX
- VANYqs7hodSBGIFM4ze2n4azxOb1qAfBGAAGoSMQAccl1o5WtVbsX/DI9 A==;
-X-CSE-ConnectionGUID: N9Ku+MLQQ3yqppEzNCHciw==
-X-CSE-MsgGUID: qbaHUXYBT9SLuAxjm/Bstg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="66329379"
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="66329379"
+ bh=BaeTvZ5W7NMg/KbnQEtUyVcZg7D5uS4UleZkYVub1+c=;
+ b=V8oiz2mk8PSwDKb1Uo2C4y5/voJ/rL0t18+/0a/xbWxIYfz+7wyRUIVJ
+ o1LC1U8LTeKvWOzJhblY0helQG6ZdTX5wg8RqN21jqHFuLK2ZGaS63UeT
+ sRI/nviEhhro0SYLMvkMOXf5vNMaL/N0wyQ97hICUvCKbTYEwY5FR1M4O
+ wlu6TUleHQ1+FuL5CWbUKDyG+pePsJBKQvPI3VwCUrpDj2QszJtA1rup1
+ uSWC3JOeQDKqz7MRgPN4RaPkxH9QtDS1+ROZZExMek5Lq+oqtFNr6xA1K
+ sjCK4E+faGoZ/qhsHHIARaKoBGl4gpnfcFJld2wS+PP0V2Wp/qmBurpc8 Q==;
+X-CSE-ConnectionGUID: LpkSTuM2R0+YZ4t9+5LXNA==
+X-CSE-MsgGUID: 7xvIVI9RTgaBLfhUpInwgg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="66329403"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="66329403"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 15:31:48 -0700
-X-CSE-ConnectionGUID: bsMYqishT7eAieW2Q8F3Bw==
-X-CSE-MsgGUID: TnT1UTdwSOqFLUT5GFL6QA==
+ 04 May 2026 15:32:08 -0700
+X-CSE-ConnectionGUID: 1B5S1WCaQyWWoSUrg2JSrQ==
+X-CSE-MsgGUID: Pg9v3w3dRbiyVTdMMdz/gw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="239927023"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="239927041"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
  by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 15:31:47 -0700
-Date: Tue, 5 May 2026 00:31:44 +0200 (CEST)
+ 04 May 2026 15:32:07 -0700
+Date: Tue, 5 May 2026 00:32:04 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  ville.syrjala@linux.intel.com
-Subject: Re: [PATCH 3/4] drm/i915/display: add struct intel_error_regs and
- use it
-In-Reply-To: <08aab16c568f7a19dd9514cc92168abc00cf4834.1775653994.git.jani.nikula@intel.com>
-Message-ID: <8901f1d5-6bd3-8e9f-d735-ea8afe91476b@intel.com>
+Subject: Re: [PATCH 4/4] drm/i915/display: define and use intel_reg_{offset,
+ equal, valid}() helpers
+In-Reply-To: <5a94a92b723e39285c29cc400c64b577c2876cff.1775653994.git.jani.nikula@intel.com>
+Message-ID: <fece80fd-60c8-684c-4da6-dd334757e340@intel.com>
 References: <cover.1775653994.git.jani.nikula@intel.com>
- <08aab16c568f7a19dd9514cc92168abc00cf4834.1775653994.git.jani.nikula@intel.com>
+ <5a94a92b723e39285c29cc400c64b577c2876cff.1775653994.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-349730366-1777932843=:12090"
-Content-ID: <b102461c-914e-9f83-bfd5-1b37d89bb589@intel.com>
+Content-Type: multipart/mixed; BOUNDARY="8323329-1955333856-1777932879=:12090"
+Content-ID: <77c08bae-9826-6321-d2e9-3871b81e7ac9@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 712BD4C467B
+X-Rspamd-Queue-Id: 690944C4689
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
@@ -108,15 +108,15 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-349730366-1777932843=:12090
+--8323329-1955333856-1777932879=:12090
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <ac85179f-cfe6-0911-3ac1-cb4c7d59232f@intel.com>
+Content-ID: <583b94a5-b9ed-c8e8-4931-3336e91da660@intel.com>
 
 On Wed, 8 Apr 2026, Jani Nikula wrote:
-> Add struct intel_error_regs, a display version of struct
-> i915_error_regs, and use it. The goal is to reduce the dependency on
-> i915 core types and headers.
+> Add display specific helpers for getting the register offset, checking
+> for equality and validity. Add them as static inlines for increased type
+> safety.
 >
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
@@ -124,4 +124,4 @@ Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
---8323329-349730366-1777932843=:12090--
+--8323329-1955333856-1777932879=:12090--
