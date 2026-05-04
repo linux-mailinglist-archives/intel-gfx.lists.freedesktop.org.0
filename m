@@ -2,59 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kOJ2FhQd+WlB5wIAu9opvQ
+	id KEmfHBcd+WlB5wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:26:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:26:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E24494C45E1
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:26:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2411A4C45E8
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 00:26:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 16DCF10E41B;
-	Mon,  4 May 2026 22:26:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A328C10E685;
+	Mon,  4 May 2026 22:26:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hRFN9tGe";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="f9/WYUNj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id ED82810E3F1;
- Mon,  4 May 2026 22:26:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6715210E685;
+ Mon,  4 May 2026 22:26:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777933585; x=1809469585;
+ t=1777933589; x=1809469589;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kKis4wOia3Y7LMA1Y6LRKN/sWwmPb8vEl/yEJq1Js7Y=;
- b=hRFN9tGeA32hpc2qAwe/FNnvxlP7VoD12wbriLpMJaRDs2TUjldablPM
- yBEO77X/uIoz+9j5cdbmDmzNJVHgVVBZm2KlCFifGiqIQOKcyCLu6gmuD
- 1LVoTobBoMSLN7fG3wonLfi6G7BZLO94A43L3AQl3wQavDBKeLkCBbbbC
- kwYUm2qY/Q4BBgYuTj3Rdwmv4JyCtasS1ywv0HCCA6ForfQvppmh+44z+
- zp6gOWkP40Zt3+BHgBBsZcDdKaDDOZK2B2lzJbY60p4ZwW8mfpsw1Uhlh
- z2eIN95SofmnIGHwnqk8DD8/PXdYPjwSDggHPer1iM68tX7nk1rzGa2s3 A==;
-X-CSE-ConnectionGUID: mnjawJz2SVKMJQbhaKvHsA==
-X-CSE-MsgGUID: VZ76v9MjRuG+AQ0C++tnLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="77820271"
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="77820271"
+ bh=t9TbpCBRVDFUjiN+pAfbpJjXJMPdQAzhAct3nnejYbM=;
+ b=f9/WYUNjG1AUVrjrRQt7OMVc1sqr+c9BOohBE7WS6Nv1JncZlE/cWM/P
+ CWzVrkoBdSMf9xpXjngEwoCHHVwTYNBersJDLVDnncIV17ZAW10G7hjre
+ g/sCxmNxm1L2PZxM23BdEU0WMMfb0IuMjkb/b80gkCtyvSCmZ6C3mpwHf
+ Db2cp4YI6xL3tfnHmQUEB26ti673Rg51Ug8wXDExJ5bIFEFLh1IjhXAg0
+ 93Bf/XqDsWPTNJrsjlKrPktq2gefa4Mqt4uwgsEvhanP4btHdevbJrsm7
+ AUpWlWpvbg6Hek3ilr56zjGcMLF1TWvLCGpPg39JFcqcWcbdsYkNhAxcu g==;
+X-CSE-ConnectionGUID: lGB0whc8QyStwu9zLv1hPw==
+X-CSE-MsgGUID: d13A5NhwTPyY4iRaQoQITw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="77820278"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="77820278"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 15:26:24 -0700
-X-CSE-ConnectionGUID: C4Q7QErGQ2+n4MMbEWGCMg==
-X-CSE-MsgGUID: 4KW5aX7NQQWSRvZG/tOcGw==
+ 04 May 2026 15:26:29 -0700
+X-CSE-ConnectionGUID: db/eNiHpRLq/EbJzfrKIgw==
+X-CSE-MsgGUID: 20PyurW/QOKTaYqJXKUs9g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="235509337"
+X-IronPort-AV: E=Sophos;i="6.23,216,1770624000"; d="scan'208";a="235509344"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.157])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 May 2026 15:26:23 -0700
+ 04 May 2026 15:26:27 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v2 1/6] drm/i915/irq: deduplicate dg1_de_irq_postinstall() and
- gen11_de_irq_postinstall()
-Date: Tue,  5 May 2026 01:26:08 +0300
-Message-ID: <6b37c63a0475ebeaca6ba37bc5f3a48bdcecf568.1777933454.git.jani.nikula@intel.com>
+Subject: [PATCH v2 2/6] drm/i915/irq: constify pipe stats parameters
+Date: Tue,  5 May 2026 01:26:09 +0300
+Message-ID: <d661e302c91278bfc4f98f58341ce60c19ad3ad2.1777933454.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1777933454.git.jani.nikula@intel.com>
 References: <cover.1777933454.git.jani.nikula@intel.com>
@@ -76,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E24494C45E1
+X-Rspamd-Queue-Id: 2411A4C45E8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -105,64 +104,65 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid]
 
-dg1_de_irq_postinstall() and gen11_de_irq_postinstall() are exactly the
-same. Remove dg1_de_irq_postinstall() and call
-gen11_de_irq_postinstall() instead.
+The pipe stat irq handling doesn't need to modify the pipe stats
+arrays. Make them const.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_irq.c | 9 ---------
- drivers/gpu/drm/i915/display/intel_display_irq.h | 1 -
- drivers/gpu/drm/i915/i915_irq.c                  | 2 +-
- 3 files changed, 1 insertion(+), 11 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 6 +++---
+ drivers/gpu/drm/i915/display/intel_display_irq.h | 6 +++---
+ 2 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index b5bfdebc66ca..bf4b5e7b6011 100644
+index bf4b5e7b6011..d30b063714b0 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -2449,15 +2449,6 @@ void gen11_de_irq_postinstall(struct intel_display *display)
- 	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+@@ -597,7 +597,7 @@ void i9xx_pipestat_irq_ack(struct intel_display *display,
  }
  
--void dg1_de_irq_postinstall(struct intel_display *display)
--{
--	if (!HAS_DISPLAY(display))
--		return;
--
--	gen8_de_irq_postinstall(display);
--	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
--}
--
- struct intel_display_irq_funcs {
- 	void (*reset)(struct intel_display *display);
- };
+ void i915_pipestat_irq_handler(struct intel_display *display,
+-			       u32 iir, u32 pipe_stats[I915_MAX_PIPES])
++			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
+ {
+ 	bool blc_event = false;
+ 	enum pipe pipe;
+@@ -621,7 +621,7 @@ void i915_pipestat_irq_handler(struct intel_display *display,
+ }
+ 
+ void i965_pipestat_irq_handler(struct intel_display *display,
+-			       u32 iir, u32 pipe_stats[I915_MAX_PIPES])
++			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
+ {
+ 	bool blc_event = false;
+ 	enum pipe pipe;
+@@ -648,7 +648,7 @@ void i965_pipestat_irq_handler(struct intel_display *display,
+ }
+ 
+ void valleyview_pipestat_irq_handler(struct intel_display *display,
+-				     u32 pipe_stats[I915_MAX_PIPES])
++				     const u32 pipe_stats[I915_MAX_PIPES])
+ {
+ 	enum pipe pipe;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-index b25d180254d7..e2b1674fae06 100644
+index e2b1674fae06..d25b9ea4272b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-@@ -71,7 +71,6 @@ void vlv_display_irq_postinstall(struct intel_display *display);
- void ilk_de_irq_postinstall(struct intel_display *display);
- void gen8_de_irq_postinstall(struct intel_display *display);
- void gen11_de_irq_postinstall(struct intel_display *display);
--void dg1_de_irq_postinstall(struct intel_display *display);
+@@ -78,9 +78,9 @@ void i915_disable_pipestat(struct intel_display *display, enum pipe pipe, u32 st
  
- u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
- void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
-diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-index d4d8dd0a4174..ef9eadf38a53 100644
---- a/drivers/gpu/drm/i915/i915_irq.c
-+++ b/drivers/gpu/drm/i915/i915_irq.c
-@@ -778,7 +778,7 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+ void i9xx_pipestat_irq_ack(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
  
- 	gen2_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
+-void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
+-void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
+-void valleyview_pipestat_irq_handler(struct intel_display *display, u32 pipe_stats[I915_MAX_PIPES]);
++void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
++void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
++void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
  
--	dg1_de_irq_postinstall(display);
-+	gen11_de_irq_postinstall(display);
- 
- 	dg1_master_intr_enable(intel_uncore_regs(uncore));
- 	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
+ void vlv_display_error_irq_ack(struct intel_display *display, u32 *eir, u32 *dpinvgtt);
+ void vlv_display_error_irq_handler(struct intel_display *display, u32 eir, u32 dpinvgtt);
 -- 
 2.47.3
 
