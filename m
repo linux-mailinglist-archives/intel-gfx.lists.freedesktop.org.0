@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iEtKAMbI+GlQ0gIAu9opvQ
+	id CDPoMfDI+GlQ0gIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 18:26:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 18:27:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A546B4C154E
-	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 18:26:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41B054C1563
+	for <lists+intel-gfx@lfdr.de>; Mon, 04 May 2026 18:27:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2367910E760;
-	Mon,  4 May 2026 16:26:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 672C710E0D2;
+	Mon,  4 May 2026 16:27:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="C7nsBiw9";
+	dkim=pass (1024-bit key; unprotected) header.d=ideasonboard.com header.i=@ideasonboard.com header.b="TCAf1RYT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from perceval.ideasonboard.com (perceval.ideasonboard.com
  [213.167.242.64])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14FA010E3DC;
- Mon,  4 May 2026 16:26:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EA7410E0D2;
+ Mon,  4 May 2026 16:27:25 +0000 (UTC)
 Received: from killaraus.ideasonboard.com
  (2001-14ba-703d-e500--2a1.rev.dnainternet.fi [IPv6:2001:14ba:703d:e500::2a1])
- by perceval.ideasonboard.com (Postfix) with ESMTPSA id 7D36F9C;
- Mon,  4 May 2026 18:26:35 +0200 (CEST)
+ by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3605B82A;
+ Mon,  4 May 2026 18:27:22 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
- s=mail; t=1777911995;
- bh=E9px648KO3wjHBF0FvoQJ7oWqClwxx9bwOStqChZ5Dg=;
+ s=mail; t=1777912042;
+ bh=pb/tc+qet8z57KNYIbl6SB0j1yoUbSKvqYUNc/vuBQM=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=C7nsBiw9DfJdqe3vAIYvrHSaWv8vOFVzMj0n+NiBzUAPMyhk8h2a2SM2Bulaujsx8
- d1pRVOk4Ncb3L1muy/CHM/aX8ZQX1GlcGVUsDs0tNhAx+haCjF7MzMb+9wF1uQ5IaL
- OgYAB8rIqmJUXUEvwtBpDVsHyESYrjqNYazNcKwY=
-Date: Mon, 4 May 2026 19:26:36 +0300
+ b=TCAf1RYTKs7xAHfxC0MRhizC0ArrveHSDdfoVakroTl6JZ5B+7FW0w1LBbEhyc4aI
+ CBWrbU/JfNPJsl//uhwdiNCNsAdRseXr60dxZpffaOkeF9oJqEmppzgIfmIaUuf37I
+ 4sQIAaqoS+tGGO5Hw9Bl1jtP85PZqfBNW70G0HWM=
+Date: Mon, 4 May 2026 19:27:22 +0300
 From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 To: Maxime Ripard <mripard@kernel.org>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -60,14 +60,14 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 01/20] drm/atomic: Document atomic state lifetime
-Message-ID: <20260504162636.GF1344263@killaraus.ideasonboard.com>
+Subject: Re: [PATCH v3 02/20] drm/colorop: Fix typos in the doc
+Message-ID: <20260504162722.GG1344263@killaraus.ideasonboard.com>
 References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
- <20260424-drm-mode-config-init-v3-1-8b68d9db0d8b@kernel.org>
+ <20260424-drm-mode-config-init-v3-2-8b68d9db0d8b@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20260424-drm-mode-config-init-v3-1-8b68d9db0d8b@kernel.org>
+In-Reply-To: <20260424-drm-mode-config-init-v3-2-8b68d9db0d8b@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,7 +82,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A546B4C154E
+X-Rspamd-Queue-Id: 41B054C1563
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
@@ -112,131 +112,62 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:dkim,ideasonboard.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ideasonboard.com:dkim,ideasonboard.com:email,killaraus.ideasonboard.com:mid]
 
-Hi Maxime,
-
-Thank you for the patch.
-
-On Fri, Apr 24, 2026 at 12:18:41PM +0200, Maxime Ripard wrote:
-> How drm_atomic_state structures and the various entity structures are
-> allocated and freed isn't really trivial. Document it.
+On Fri, Apr 24, 2026 at 12:18:42PM +0200, Maxime Ripard wrote:
+> In the documentation of drm_colorop introduced by commit cfc27680ee20
+> ("drm/colorop: Introduce new drm_colorop mode object"), the
+> documentation of __drm_colorop_state_reset() and __drm_colorop_reset()
+> were mentioning CRTC when they really meant colorop, probably due to
+> copy and paste.
 > 
+> Fixes: cfc27680ee20 ("drm/colorop: Introduce new drm_colorop mode object")
+> Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
->  Documentation/gpu/drm-kms.rst |  6 +++++
->  drivers/gpu/drm/drm_atomic.c  | 55 +++++++++++++++++++++++++++++++++++++++++++
->  2 files changed, 61 insertions(+)
-> 
-> diff --git a/Documentation/gpu/drm-kms.rst b/Documentation/gpu/drm-kms.rst
-> index 2292e65f044c..017c7b196ed7 100644
-> --- a/Documentation/gpu/drm-kms.rst
-> +++ b/Documentation/gpu/drm-kms.rst
-> @@ -280,10 +280,16 @@ structure, ordering of committing state changes to hardware is sequenced using
->  :c:type:`struct drm_crtc_commit <drm_crtc_commit>`.
->  
->  Read on in this chapter, and also in :ref:`drm_atomic_helper` for more detailed
->  coverage of specific topics.
->  
-> +Atomic State Lifetime
-> +---------------------
-> +
-> +.. kernel-doc:: drivers/gpu/drm/drm_atomic.c
-> +   :doc: state lifetime
-> +
->  Handling Driver Private State
->  -----------------------------
->  
->  .. kernel-doc:: drivers/gpu/drm/drm_atomic.c
->     :doc: handling driver private state
-> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
-> index 41c57063f3b4..253a00f450b0 100644
-> --- a/drivers/gpu/drm/drm_atomic.c
-> +++ b/drivers/gpu/drm/drm_atomic.c
-> @@ -45,10 +45,65 @@
->  #include <drm/drm_colorop.h>
->  
->  #include "drm_crtc_internal.h"
->  #include "drm_internal.h"
->  
-> +/**
-> + * DOC: state lifetime
-> + *
-> + * &struct drm_atomic_state represents an update to video pipeline
-> + * state. Despite its confusing name, it's actually a transient object
-> + * that holds a state update as a collection of pointers to individual
-> + * objects' states. &struct drm_atomic_state has a much shorter lifetime
-> + * than the objects' states, since it's only allocated while preparing,
-> + * checking or committing the update, while object states are allocated
-> + * when preparing the update and kept alive as long as they are active
-> + * in the device.
-> + *
-> + * Their respective lifetimes are:
-> + *
-> + * - at reset time, the object reset implementation will allocate a new
-> + *   default state and will store it in the object state pointer.
-> + *
-> + * - whenever a new update is needed:
-> + *
-> + *   + A new &struct drm_atomic_state is allocated using
-> + *     drm_atomic_state_alloc().
-> + *
-> + *   + The current active state of affected entity is copied into this
-
-s/affected entity/affected entities/
-
-but maybe clearer, I'd write
-
-  + The current active state of all entities affected by the update is
-  copied ...
-
-> + *     new &struct drm_atomic_state using drm_atomic_get_plane_state(),
-> + *     drm_atomic_get_crtc_state(), drm_atomic_get_connector_state(), or
-> + *     drm_atomic_get_private_obj_state(). This new state can then be
-> + *     modified.
-> + *
-> + *     At that point, &struct drm_atomic_state stores three state
-> + *     pointers for any affected entity: the "old" and "new" states, and
-> + *     state_to_destroy. The old state is the state currently active in
-> + *     the hardware, which is either the one initialized by reset() or a
-> + *     newer one if a commit has been made. The new state is the state
-> + *     we just allocated and we might eventually commit to the hardware.
-> + *     The state_to_destroy points to the state we'll eventually have to
-> + *     free when the drm_atomic_state will be destroyed, and points to
-> + *     the new state for now since the old state is still the active
-> + *     state.
-> + *
-> + *   + After the state is populated, it is checked. If the check is
-> + *     successful, the update is committed. Part of the commit is a call
-> + *     to drm_atomic_helper_swap_state() which will turn the new states
-> + *     into the active states. Doing so involves updating the object's
-> + *     state pointer (&drm_crtc.state or similar) to point to the new
-> + *     state, and state_to_destroy will now point to the old states,
-> + *     that used to be active but aren't anymore.
-> + *
-> + *   + When the commit is done, and when all references to our &struct
-> + *     drm_atomic_state are put, drm_atomic_state_clear() runs and will
-> + *     free all state_to_destroy (ie. old states).
-
-I would also mention here that the drm_atomic_state itself is freed at
-this point (unless I'm mistaken and the drm_atomic_state still lives on
-for some time, in which case this misunderstanding is probably a sign
-that the correct behaviour should be documented :-)).
-
-With this,
 
 Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 
-> + *
-> + *   + Now, we don't have any active &struct drm_atomic_state anymore,
-> + *     and only the entity active states remain allocated.
-> + */
-> +
->  void __drm_crtc_commit_free(struct kref *kref)
+> ---
+>  drivers/gpu/drm/drm_colorop.c | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_colorop.c b/drivers/gpu/drm/drm_colorop.c
+> index 764d12060666..48d0b7ae3fc9 100644
+> --- a/drivers/gpu/drm/drm_colorop.c
+> +++ b/drivers/gpu/drm/drm_colorop.c
+> @@ -503,11 +503,11 @@ void drm_colorop_atomic_destroy_state(struct drm_colorop *colorop,
+>   * __drm_colorop_state_reset - resets colorop state to default values
+>   * @colorop_state: atomic colorop state, must not be NULL
+>   * @colorop: colorop object, must not be NULL
+>   *
+>   * Initializes the newly allocated @colorop_state with default
+> - * values. This is useful for drivers that subclass the CRTC state.
+> + * values. This is useful for drivers that subclass the colorop state.
+>   */
+>  static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+>  				      struct drm_colorop *colorop)
 >  {
->  	struct drm_crtc_commit *commit =
->  		container_of(kref, struct drm_crtc_commit, ref);
->  
+>  	u64 val;
+> @@ -526,14 +526,14 @@ static void __drm_colorop_state_reset(struct drm_colorop_state *colorop_state,
+>  /**
+>   * __drm_colorop_reset - reset state on colorop
+>   * @colorop: drm colorop
+>   * @colorop_state: colorop state to assign
+>   *
+> - * Initializes the newly allocated @colorop_state and assigns it to
+> - * the &drm_crtc->state pointer of @colorop, usually required when
+> - * initializing the drivers or when called from the &drm_colorop_funcs.reset
+> - * hook.
+> + * Initializes the newly allocated @colorop_state and assigns it to the
+> + * &drm_colorop->state pointer of @colorop, usually required when
+> + * initializing the drivers or when called from the
+> + * &drm_colorop_funcs.reset hook.
+>   *
+>   * This is useful for drivers that subclass the colorop state.
+>   */
+>  static void __drm_colorop_reset(struct drm_colorop *colorop,
+>  				struct drm_colorop_state *colorop_state)
+> 
 
 -- 
 Regards,
