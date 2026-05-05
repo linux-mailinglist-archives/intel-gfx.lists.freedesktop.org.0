@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJWHBpW1+WlKBAMAu9opvQ
+	id ATSkEZq1+WmNBAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 11:17:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 11:17:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E8AB4C96E7
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 11:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C82514C96F5
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 11:17:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 139BE10EA0B;
-	Tue,  5 May 2026 09:17:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4846910E0F1;
+	Tue,  5 May 2026 09:17:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V4wg19F7";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DJkAzmti";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F11FA10EA0F;
- Tue,  5 May 2026 09:17:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E0E8510E0F1;
+ Tue,  5 May 2026 09:17:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1777972626; x=1809508626;
+ t=1777972632; x=1809508632;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yp6jpvE3zldPXymjxXKjD5P3mCw4BPXKbCfkalw7BQE=;
- b=V4wg19F7Z4dnaJ/U8yg+zvCRuVNa15sUgoF397RObNQcTL3FXDQEjAMT
- 5eKeopy+YMaG0JONFTA4eiddPYSi5sbnv//TH8471TAJYSCq3Fj/g935T
- ZvwK0VoGCYQfEKx8zNFG7N5JG+JhVB2EQYwbZIP3521yirK8vKnJ2ucvW
- EGpq2YeLuWZOSjzs44bq/Z6+4H3U2VtTUuEpeX5OsdzTw1atwlJu/bhPW
- RoZdDJl7kh4WmeHzCmaswQMvMp0G2I5PxTcPm+vO6qqkoztNcEhb1KttG
- WRWk9jpHcjJjN2lQcu6i30D2ZesqM/ouFswtGYAB2uO+1nlWbTLcJEnRV g==;
-X-CSE-ConnectionGUID: 6TbQ1gBJRTmq1alleM6rnw==
-X-CSE-MsgGUID: hiANHkJtRD+AXfDgJayv9g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78887969"
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="78887969"
+ bh=UnT6XCus51VEK1/MPzejO4nF5Hr/qFBrNPmjQbvOSCU=;
+ b=DJkAzmtiizqhm0RzcC/k+Te2R6Ls4vLlFsqnHVWuWb46XPX2qhYygP3R
+ DNoXvQQZuYqKAApc6LkIwyROcIEqvELAZpKf/OO07afPTnnxNXdj5pQnf
+ e4eOwjLxbIm8YaTEqDNeueS0ZL5c3TgjVnpRIHvVH3DATFucHAXMQIKVM
+ IzyNI2dFibT6LnXoMl/tCWVJl3YyX0WfQpnMWhXTWUIX6ck2pE7rUUBTB
+ 3BQ/WMrgbbS0Z6KqxFBJt9DoNIWvmcOrI8xDpHwJioSqM0vC64TPGrsd4
+ fCKtZD8m01qz6JIOPtSh6j+4/nWV6tr/ekrp3WT5YvM2Tx9rCS3TpEj9p w==;
+X-CSE-ConnectionGUID: 10rM7Y13Rl2Fk5OJZ3B4/Q==
+X-CSE-MsgGUID: O+mJsEGYRIqw5NDZ+WtI5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11776"; a="78887975"
+X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="78887975"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 May 2026 02:17:05 -0700
-X-CSE-ConnectionGUID: RdGg8UieQJCwCKuVYos5Mg==
-X-CSE-MsgGUID: 82KaCja7TW6DH8dDo+V+Qw==
+ 05 May 2026 02:17:11 -0700
+X-CSE-ConnectionGUID: euM7gfM7S9a5BVnQWz37kg==
+X-CSE-MsgGUID: up9frIiyRE2DavVI1oLoKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="234752614"
+X-IronPort-AV: E=Sophos;i="6.23,217,1770624000"; d="scan'208";a="234752645"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.55])
  by orviesa006-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2026 02:17:03 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 May 2026 02:17:09 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
  ville.syrjala@linux.intel.com
-Subject: [RESEND 2/4] drm/i915/display: add struct intel_irq_regs and use it
-Date: Tue,  5 May 2026 12:16:46 +0300
-Message-ID: <56118c2e40e171e898034a7bea6c8d14f515f5c1.1777972548.git.jani.nikula@intel.com>
+Subject: [RESEND 3/4] drm/i915/display: add struct intel_error_regs and use it
+Date: Tue,  5 May 2026 12:16:47 +0300
+Message-ID: <7f909c6b1f7ae623792b5abc3d31d4a682006e24.1777972548.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1777972548.git.jani.nikula@intel.com>
 References: <cover.1777972548.git.jani.nikula@intel.com>
@@ -77,7 +77,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7E8AB4C96E7
+X-Rspamd-Queue-Id: C82514C96F5
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
@@ -106,169 +106,72 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DKIM_TRACE(0.00)[intel.com:+];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 
-Add struct intel_irq_regs, a display version of struct i915_irq_regs,
-and use it. The goal is to reduce the dependency on i915 core types and
-headers.
+Add struct intel_error_regs, a display version of struct
+i915_error_regs, and use it. The goal is to reduce the dependency on
+i915 core types and headers.
 
 Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_irq.c  |  4 +-
- .../drm/i915/display/intel_display_reg_defs.h | 10 ++++
- .../gpu/drm/i915/display/intel_display_regs.h | 48 +++++++++----------
- 3 files changed, 36 insertions(+), 26 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_irq.c      | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_reg_defs.h | 8 ++++++++
+ drivers/gpu/drm/i915/display/intel_display_regs.h     | 2 +-
+ 3 files changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-index 9bd72a99db2b..0c9c21b1290b 100644
+index 0c9c21b1290b..b679992cb1e6 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-@@ -30,7 +30,7 @@
- #include "intel_psr.h"
- #include "intel_psr_regs.h"
- 
--static void irq_reset(struct intel_display *display, struct i915_irq_regs regs)
-+static void irq_reset(struct intel_display *display, struct intel_irq_regs regs)
- {
- 	intel_de_write(display, regs.imr, 0xffffffff);
+@@ -73,7 +73,7 @@ static void irq_init(struct intel_display *display, struct intel_irq_regs regs,
  	intel_de_posting_read(display, regs.imr);
-@@ -63,7 +63,7 @@ static void assert_iir_is_zero(struct intel_display *display, intel_reg_t reg)
- 	intel_de_posting_read(display, reg);
  }
  
--static void irq_init(struct intel_display *display, struct i915_irq_regs regs,
-+static void irq_init(struct intel_display *display, struct intel_irq_regs regs,
- 		     u32 imr_val, u32 ier_val)
+-static void error_reset(struct intel_display *display, struct i915_error_regs regs)
++static void error_reset(struct intel_display *display, struct intel_error_regs regs)
  {
- 	assert_iir_is_zero(display, regs.iir);
+ 	intel_de_write(display, regs.emr, 0xffffffff);
+ 	intel_de_posting_read(display, regs.emr);
+@@ -84,7 +84,7 @@ static void error_reset(struct intel_display *display, struct i915_error_regs re
+ 	intel_de_posting_read(display, regs.eir);
+ }
+ 
+-static void error_init(struct intel_display *display, struct i915_error_regs regs,
++static void error_init(struct intel_display *display, struct intel_error_regs regs,
+ 		       u32 emr_val)
+ {
+ 	intel_de_write(display, regs.eir, 0xffffffff);
 diff --git a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-index cb46863693cd..d044967aa6d9 100644
+index d044967aa6d9..a56f8ed055f6 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_reg_defs.h
-@@ -10,6 +10,16 @@
+@@ -20,6 +20,14 @@ struct intel_irq_regs {
+ #define INTEL_IRQ_REGS(_imr, _ier, _iir) \
+ 	((const struct intel_irq_regs){ .imr = (_imr), .ier = (_ier), .iir = (_iir) })
  
- typedef i915_reg_t intel_reg_t;
- 
-+/* A triplet for IMR/IER/IIR registers. */
-+struct intel_irq_regs {
-+	intel_reg_t imr;
-+	intel_reg_t ier;
-+	intel_reg_t iir;
++struct intel_error_regs {
++	intel_reg_t emr;
++	intel_reg_t eir;
 +};
 +
-+#define INTEL_IRQ_REGS(_imr, _ier, _iir) \
-+	((const struct intel_irq_regs){ .imr = (_imr), .ier = (_ier), .iir = (_iir) })
++#define INTEL_ERROR_REGS(_emr, _eir) \
++	((const struct intel_error_regs){ .emr = (_emr), .eir = (_eir) })
 +
  #define VLV_DISPLAY_BASE		0x180000
  
  /*
 diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index dada8dc27ea4..4fc18e5ee239 100644
+index 4fc18e5ee239..d87e52d278c7 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -105,9 +105,9 @@
- #define   ERR_INT_FIFO_UNDERRUN_A	(1 << 0)
- #define   ERR_INT_FIFO_UNDERRUN(pipe)	(1 << ((pipe) * 3))
+@@ -117,7 +117,7 @@
+ #define   VLV_ERROR_PAGE_TABLE				(1 << 4)
+ #define   VLV_ERROR_CLAIM				(1 << 0)
  
--#define VLV_IRQ_REGS		I915_IRQ_REGS(VLV_IMR, \
--					      VLV_IER, \
--					      VLV_IIR)
-+#define VLV_IRQ_REGS		INTEL_IRQ_REGS(VLV_IMR, \
-+					       VLV_IER, \
-+					       VLV_IIR)
+-#define VLV_ERROR_REGS		I915_ERROR_REGS(VLV_EMR, VLV_EIR)
++#define VLV_ERROR_REGS		INTEL_ERROR_REGS(VLV_EMR, VLV_EIR)
  
- #define VLV_EIR		_MMIO(VLV_DISPLAY_BASE + 0x20b0)
- #define VLV_EMR		_MMIO(VLV_DISPLAY_BASE + 0x20b4)
-@@ -1116,9 +1116,9 @@
- #define DEIIR   _MMIO(0x44008)
- #define DEIER   _MMIO(0x4400c)
- 
--#define DE_IRQ_REGS		I915_IRQ_REGS(DEIMR, \
--					      DEIER, \
--					      DEIIR)
-+#define DE_IRQ_REGS		INTEL_IRQ_REGS(DEIMR, \
-+					       DEIER, \
-+					       DEIIR)
- 
- #define DIGITAL_PORT_HOTPLUG_CNTRL	_MMIO(0x44030)
- #define  DIGITAL_PORTA_HOTPLUG_ENABLE		(1 << 4)
-@@ -1407,9 +1407,9 @@
- #define  GEN8_PIPE_VSYNC		REG_BIT(1)
- #define  GEN8_PIPE_VBLANK		REG_BIT(0)
- 
--#define GEN8_DE_PIPE_IRQ_REGS(pipe)	I915_IRQ_REGS(GEN8_DE_PIPE_IMR(pipe), \
--						      GEN8_DE_PIPE_IER(pipe), \
--						      GEN8_DE_PIPE_IIR(pipe))
-+#define GEN8_DE_PIPE_IRQ_REGS(pipe)	INTEL_IRQ_REGS(GEN8_DE_PIPE_IMR(pipe), \
-+						       GEN8_DE_PIPE_IER(pipe), \
-+						       GEN8_DE_PIPE_IIR(pipe))
- 
- #define _HPD_PIN_DDI(hpd_pin)	((hpd_pin) - HPD_PORT_A)
- #define _HPD_PIN_TC(hpd_pin)	((hpd_pin) - HPD_PORT_TC1)
-@@ -1446,9 +1446,9 @@
- #define  TGL_DE_PORT_AUX_DDIB		REG_BIT(1)
- #define  TGL_DE_PORT_AUX_DDIA		REG_BIT(0)
- 
--#define GEN8_DE_PORT_IRQ_REGS		I915_IRQ_REGS(GEN8_DE_PORT_IMR, \
--						      GEN8_DE_PORT_IER, \
--						      GEN8_DE_PORT_IIR)
-+#define GEN8_DE_PORT_IRQ_REGS		INTEL_IRQ_REGS(GEN8_DE_PORT_IMR, \
-+						       GEN8_DE_PORT_IER, \
-+						       GEN8_DE_PORT_IIR)
- 
- /* interrupts */
- #define DE_MASTER_IRQ_CONTROL   (1 << 31)
-@@ -1499,9 +1499,9 @@
- #define  XELPDP_PMDEMAND_RSP		REG_BIT(3)
- #define  XE2LPD_DBUF_OVERLAP_DETECTED	REG_BIT(1)
- 
--#define GEN8_DE_MISC_IRQ_REGS		I915_IRQ_REGS(GEN8_DE_MISC_IMR, \
--						      GEN8_DE_MISC_IER, \
--						      GEN8_DE_MISC_IIR)
-+#define GEN8_DE_MISC_IRQ_REGS		INTEL_IRQ_REGS(GEN8_DE_MISC_IMR, \
-+						       GEN8_DE_MISC_IER, \
-+						       GEN8_DE_MISC_IIR)
- 
- #define GEN11_DISPLAY_INT_CTL		_MMIO(0x44200)
- #define  GEN11_DISPLAY_IRQ_ENABLE	(1 << 31)
-@@ -1533,9 +1533,9 @@
- 						 GEN11_TBT_HOTPLUG(HPD_PORT_TC2) | \
- 						 GEN11_TBT_HOTPLUG(HPD_PORT_TC1))
- 
--#define GEN11_DE_HPD_IRQ_REGS		I915_IRQ_REGS(GEN11_DE_HPD_IMR, \
--						      GEN11_DE_HPD_IER, \
--						      GEN11_DE_HPD_IIR)
-+#define GEN11_DE_HPD_IRQ_REGS		INTEL_IRQ_REGS(GEN11_DE_HPD_IMR, \
-+						       GEN11_DE_HPD_IER, \
-+						       GEN11_DE_HPD_IIR)
- 
- #define GEN11_TBT_HOTPLUG_CTL				_MMIO(0x44030)
- #define GEN11_TC_HOTPLUG_CTL				_MMIO(0x44038)
-@@ -1557,9 +1557,9 @@
- #define  XELPDP_TBT_HOTPLUG(hpd_pin)		REG_BIT(_HPD_PIN_TC(hpd_pin))
- #define  XELPDP_TBT_HOTPLUG_MASK		REG_GENMASK(3, 0)
- 
--#define PICAINTERRUPT_IRQ_REGS			I915_IRQ_REGS(PICAINTERRUPT_IMR, \
--							      PICAINTERRUPT_IER, \
--							      PICAINTERRUPT_IIR)
-+#define PICAINTERRUPT_IRQ_REGS			INTEL_IRQ_REGS(PICAINTERRUPT_IMR, \
-+							       PICAINTERRUPT_IER, \
-+							       PICAINTERRUPT_IIR)
- 
- #define XELPDP_PORT_HOTPLUG_CTL(hpd_pin)	_MMIO(0x16F270 + (_HPD_PIN_TC(hpd_pin) * 0x200))
- #define  XELPDP_TBT_HOTPLUG_ENABLE		REG_BIT(6)
-@@ -1875,9 +1875,9 @@
- #define SDEIIR  _MMIO(0xc4008)
- #define SDEIER  _MMIO(0xc400c)
- 
--#define SDE_IRQ_REGS			I915_IRQ_REGS(SDEIMR, \
--						      SDEIER, \
--						      SDEIIR)
-+#define SDE_IRQ_REGS			INTEL_IRQ_REGS(SDEIMR, \
-+						       SDEIER, \
-+						       SDEIIR)
- 
- #define SERR_INT			_MMIO(0xc4040)
- #define  SERR_INT_POISON		(1 << 31)
+ #define _MBUS_ABOX0_CTL			0x45038
+ #define _MBUS_ABOX1_CTL			0x45048
 -- 
 2.47.3
 
