@@ -2,97 +2,98 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yP27Msg6+Wkn7AIAu9opvQ
+	id CGmfEj87+WlF7AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 02:33:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 02:35:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7E9104C5788
-	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 02:33:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC1D24C5821
+	for <lists+intel-gfx@lfdr.de>; Tue, 05 May 2026 02:35:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A28B710E8FE;
-	Tue,  5 May 2026 00:33:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 37DD210E90B;
+	Tue,  5 May 2026 00:35:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="DkluRK/U";
-	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="BQhzmGXl";
+	dkim=pass (2048-bit key; unprotected) header.d=qualcomm.com header.i=@qualcomm.com header.b="XZ8dU3+9";
+	dkim=pass (2048-bit key; unprotected) header.d=oss.qualcomm.com header.i=@oss.qualcomm.com header.b="HajFwfI8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mx0b-0031df01.pphosted.com (mx0b-0031df01.pphosted.com
  [205.220.180.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1ADA410E8FD
- for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2026 00:33:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AD6A10E05C
+ for <intel-gfx@lists.freedesktop.org>; Tue,  5 May 2026 00:35:08 +0000 (UTC)
 Received: from pps.filterd (m0279870.ppops.net [127.0.0.1])
  by mx0a-0031df01.pphosted.com (8.18.1.11/8.18.1.11) with ESMTP id
- 644IJWnf4128668
- for <intel-gfx@lists.freedesktop.org>; Tue, 5 May 2026 00:33:07 GMT
+ 644Iq2BR4128658
+ for <intel-gfx@lists.freedesktop.org>; Tue, 5 May 2026 00:35:07 GMT
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=qualcomm.com; h=
  cc:content-type:date:from:in-reply-to:message-id:mime-version
- :references:subject:to; s=qcppdkim1; bh=zQhAbMMChSVIrW8bHgvy56iM
- nhslWxiT0BF5DVUHFIg=; b=DkluRK/Ubp0ZK8IF2ffFM2rVoZXCoe4QlbtfBKj4
- I4mQ8YouSHrlCgs8V6c2bjj9IioQUWNp84YKdftfezbluUfML/1AWvKb4+iblgTw
- SgH+oUpBsluafKU5TSMRjaJvXymB2HH8VZGj59XtJvssLgr9ukw4B0LTUcFGZLrO
- O91Mbb52dTIl7si4P53r3ytydxYfSBpMEyADoMoO2F297a4PHU6Fn8JdkInIxs8o
- Gc9Snsqj4JAVmFIdsdiIkon633fwN/czvQxDsclUePA/tZtUrk3/dqHfBlTi05vF
- QmhiQ6w/QQOsKzjRgNthshMIzJnY9ji5c5/nNfLbNM0yPw==
-Received: from mail-vk1-f197.google.com (mail-vk1-f197.google.com
- [209.85.221.197])
- by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dxsdw2twn-1
+ :references:subject:to; s=qcppdkim1; bh=uQstg63rkYXGjNgJVr/eZxEM
+ JU0++JvkQrQ5rgtmcrI=; b=XZ8dU3+9D/jxyc3MX2B8VgXlqVBGwjuY6H895wB/
+ zjMsQ/No18/RGSnXtXkh8r7TNOB55yXhHATaIzAnyxehqZQVRtmY6qMgqHO53DR7
+ 8ZtAsx9c6AiBaR7q8gtuEhoS1qKJ8xltd8mQhHdCcrjFUGxI82Y+depJKiQV2vfM
+ gg9pmItgri64DPPU8JablL//u7x+unpSUS/9DOAVzhTu0/GmFPpgbzREj1mSROd5
+ z/4u+2hS/RtSsFfy3E1IAa0PYg1AYzGYH3gB24vlr3D/rW4RB+6ttU8XF3W3Kc+4
+ KNLZyJB+2ZDBDzwMgfHi8akVh2aoRcZYVZF9xPsTBEzyLw==
+Received: from mail-qt1-f199.google.com (mail-qt1-f199.google.com
+ [209.85.160.199])
+ by mx0a-0031df01.pphosted.com (PPS) with ESMTPS id 4dxsdw2u43-1
  (version=TLSv1.3 cipher=TLS_AES_128_GCM_SHA256 bits=128 verify=NOT)
- for <intel-gfx@lists.freedesktop.org>; Tue, 05 May 2026 00:33:07 +0000 (GMT)
-Received: by mail-vk1-f197.google.com with SMTP id
- 71dfb90a1353d-5752402f5e1so3606900e0c.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 04 May 2026 17:33:07 -0700 (PDT)
+ for <intel-gfx@lists.freedesktop.org>; Tue, 05 May 2026 00:35:07 +0000 (GMT)
+Received: by mail-qt1-f199.google.com with SMTP id
+ d75a77b69052e-50d5d1c2289so116462271cf.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 04 May 2026 17:35:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=oss.qualcomm.com; s=google; t=1777941186; x=1778545986;
+ d=oss.qualcomm.com; s=google; t=1777941306; x=1778546106;
  darn=lists.freedesktop.org; 
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
- bh=zQhAbMMChSVIrW8bHgvy56iMnhslWxiT0BF5DVUHFIg=;
- b=BQhzmGXlWxEQB/OgCgyCwwEcjYTdSdyZ/Kz8D3DxPFuC1F6IIl18s4e31iaIqylxER
- LbDOGiHCKsac802H7Wem2D4wmMGr4GomFlTlazpuWUMtd5MVkZDqwBBiEfgQQhZD3hU2
- yROHw/tVoUFdKkLzpWXgBkG6l3lRCpEHaAbGi+TSl8jy++cS+TBL3BFx8M11lEnksbzJ
- 1jbYwtg5+vSL4ne6aVU+DPrM16tqPouUdoiLBRBr02jvxZTNKaKafr0EIU7i72a1Nn7F
- mYX0QCLV/EWNYO6JKL9mQ+Hs6Y/SMriTIA3bt4YRm96+GlsGGgjzGWYE35hXTrz5Hhz5
- xmaw==
+ bh=uQstg63rkYXGjNgJVr/eZxEMJU0++JvkQrQ5rgtmcrI=;
+ b=HajFwfI80n/2mHHS3+WMXnB8vbTbwi3+/y9vxm3LJtGiePI5TOYU3grneB17Wmk24P
+ TCGQXZdwGWDwOYcLqjEQa6yoV/Z9VXFi0y/znZBZhSBZvo1Fr188/Et9X9D5JLhQtOaV
+ 7UvQfsxr3zpjfqvU8omEBAkparGUntBDqe5nnPMBmzOhb/WvECyp6puLG1bIjwoDgDFD
+ N8gDzL2W7CbtkiSMQNhLbjtOpGMma+RVFgTEfdRM/IX3MCYKo8r68+4A7+T0Fz555uyF
+ +O/vVAny6TOdISHu20ufTvr13uuykmquXMSJLHuteIlCtRtOUM0hb7goTi+yWDUM1xUJ
+ qdxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1777941186; x=1778545986;
+ d=1e100.net; s=20251104; t=1777941306; x=1778546106;
  h=in-reply-to:content-disposition:mime-version:references:message-id
  :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
  :subject:date:message-id:reply-to;
- bh=zQhAbMMChSVIrW8bHgvy56iMnhslWxiT0BF5DVUHFIg=;
- b=qBTkx0GuANBPFzKazWoX9XUzdQU7tkbFI6EH75AMv+ewb2hTF9DTBAeBQfwXLCn/+l
- Yij+EKmzDrtFaS8KwvB4U5ov/KVPA3MfFadzjVMnnRXuIVsKa1fzsJXzO5maSkRNi1MF
- 9ibUWdPAU5dLWszgoTxB2DZEL776eYGNPRZ5mc8FP/+2i5U7CMtuR9Y1QPvyDzqwEbTB
- Gjbh1kLqkJyLVUSAyawAUpaPMDn8ijLuwRIA3es3vAGj6v86iOmMb77IU9MMO+3S1i83
- EoQvYY+MEhnseUP1Tv89HfYy65Gzo0TTSdXTufvPupQKzqeSw6O9W2jRQh5aKUW3y8Aw
- znTQ==
+ bh=uQstg63rkYXGjNgJVr/eZxEMJU0++JvkQrQ5rgtmcrI=;
+ b=I1DXDiPnJrHU5NUydej2FSmollLR2HLtCCytCh5TsDykrobuw+sQrVrvD6DsKZ8zPi
+ LUx8VTzezx5jJrnmDKBxX/P346ACtZZT12wIqPm8kBKLDcfNSBTottFxCgZBZyBUpyBS
+ 2Rf25aXMxLNDdm3r/ZfFve0okrEOovJM6cv/F/2hhaPB1MVEcty3tsMM9u06Z0nOTmqc
+ bsT/b5g0CpHbtz+9xf5QherOE1iZrL46HlUCMHerE+gSowynsCtBigRtWml74/oye+N5
+ wz1HJA9MDPpe+QsTbv8IIaVX30Eaj3R1f6sxVVICx0BXK7a0wOZpQqdn9ZyK7xZX/2xw
+ sHWw==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8mvlOsoZiio83ES/YMyZBZHjYlR7OiOFPgM1U4ynOOMH2GSkcb39f8FL0Cqtb88TUZaFDhgxnmw2s=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzm0/vwpUbS3SAJLfi/lXeKO+IWGKSj0soBiopUODIgMKGLxPXl
- GN8ieNbXBdFx+9mR0Yn04V10MPd8FlGvob1NuLMuVZWukJFn/ihBZSfPTFje1bQoi9JjFWPJo4b
- 5iMNS04vkDCg/7aCwb+xwmpeQAfHMTUt5bwfDn+J7HA10nUejxnI+L7cXk15z6PxDI5cZxms=
-X-Gm-Gg: AeBDiesOu2wdy5Vo5+lHEgVKoaQCHbqSRhfE53rjLu+DIDwtgaDsSb2mA7dOxuir7+5
- SluTsrsPYNkjD/9QnjAH7MQVfgNhTup69yvxsS0bPCPax6hN7XfN+r7i7vvzXC/zhKgZT+6MHwQ
- L12C26iWYRVzdQm1/qqyydMssN/neA+jOdMwgJBSQvPKcKOFdTPWzfy2nnjoVz414Msq2e2/p1H
- W9kuXdkfeURareXTxSrANj/C5rvYtEU70njjKkUnWtWRMI82i2kkIrJZ1CxOlQTJ3l77ilYza47
- 8UQSCE2jfwTly6p3jVDSGlGR0+utQP3vWCYiVk183ZWGV/SVP320mCBut3eQ+aSepDVfsxL57y/
- zfqqyI5D3xU0IKTzKmS8ZiQEQRURpVmIOKinpn8duSs4YJDoAWSPJhqOfmAPk6HXihA6Li7zef6
- nnYZXy41vGEf/Cm22FaGyMTHhvYxiLfetn4U9tQF7v5TQpmw==
-X-Received: by 2002:a05:6122:6090:b0:56f:a329:6859 with SMTP id
- 71dfb90a1353d-575482d1800mr509478e0c.7.1777941186562; 
- Mon, 04 May 2026 17:33:06 -0700 (PDT)
-X-Received: by 2002:a05:6122:6090:b0:56f:a329:6859 with SMTP id
- 71dfb90a1353d-575482d1800mr509452e0c.7.1777941186127; 
- Mon, 04 May 2026 17:33:06 -0700 (PDT)
+ AFNElJ+mMbCUMCTTwZYWzxCy3ClyoCNmHlqHcSkSanK3i4dUadY/hB+EzfDESYGpUe0fq/460VN/5MNz1j0=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzSiWQd0MvN1AY95WH3GJf/n3hv+1zSzAjWZDQVVYHFo3al/vxS
+ kUTn499CzQNk6wgmFmGjR1f4/Lz2bnjeIpxCBJK7RvMbf/k7dMRrJ4q3ptHz6qUBZvX9W5uB+NF
+ ZSXF32oJH8kBSZhGEa1knZ+TfAEpPt+jtE8hSZogcUicFDe9XsG2JRDRq+LaoFucm53S8m/LDeb
+ ltwgg=
+X-Gm-Gg: AeBDies+sLnB3x5E9/7LqJWyUjlJ+Te49IEP4dPJnsYY9ZsRkMqCO4x7CN6bm50eV8u
+ PbLE6f80y6oi1OmD9rTz7pbEf9JpbcHtp54i1nm2h+9ks7t2CgzxeaOLT91lIKYSz4vzmt7eyRx
+ vNezopY74scGKnndxLD9DBBdcCRGqlL/JFhupZTO+SVuomzy2YhqKpjDxWswK7Iee+FeQddiT2+
+ dryUPmangm0mSqckD30lzNxwlNlw3pSDjooXtOE5UoHCrU60TrrG+26vPtDVjaNSq9e0T4zZwHE
+ 6wHmMl6VOb4Lf5eTvj6xrowoQu6St8/CcRO5jRop6kjgl9IeUj5XveN8IELbAom0BolIdxCLZRY
+ B+yqRG1OtFXKG19tYmJX0w6slRXdBlyYGeGbnDCn6QuLh6Dg4my4KtIMB2srjQbXoitRPmzGHMZ
+ c9MHeMo22NoxZFGRX7wo/W6/ZFYNdWUFUX/ewSWJo2KZNn/g==
+X-Received: by 2002:ac8:7d87:0:b0:509:4406:44e0 with SMTP id
+ d75a77b69052e-5104be44e30mr177322001cf.27.1777941306332; 
+ Mon, 04 May 2026 17:35:06 -0700 (PDT)
+X-Received: by 2002:ac8:7d87:0:b0:509:4406:44e0 with SMTP id
+ d75a77b69052e-5104be44e30mr177321511cf.27.1777941305716; 
+ Mon, 04 May 2026 17:35:05 -0700 (PDT)
 Received: from umbar.lan
  (2001-14ba-a073-af00-264b-feff-fe8b-be8a.rev.dnainternet.fi.
  [2001:14ba:a073:af00:264b:feff:fe8b:be8a])
  by smtp.gmail.com with ESMTPSA id
- 38308e7fff4ca-3936db4ff8csm30303011fa.23.2026.05.04.17.33.01
+ 2adb3069b0e04-5a864c6f16esm2684204e87.15.2026.05.04.17.35.03
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 04 May 2026 17:33:03 -0700 (PDT)
-Date: Tue, 5 May 2026 03:33:00 +0300
+ Mon, 04 May 2026 17:35:04 -0700 (PDT)
+Date: Tue, 5 May 2026 03:35:01 +0300
 From: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 To: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
@@ -108,31 +109,30 @@ Cc: freedreno@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  marijn.suijten@somainline.org, laurent.pinchart+renesas@ideasonboard.com,
  dave.stevenson@raspberrypi.com, tomi.valkeinen+renesas@ideasonboard.com,
  kieran.bingham+renesas@ideasonboard.com
-Subject: Re: [PATCH v3 4/7] drm: writeback: Modify
- drm_writeback_signal_completion param
-Message-ID: <bmk67tbapjnfcsuz5bqivnzytnwrhk364c3i6oe4pnilwgisz5@25b6jebsxxq3>
+Subject: Re: [PATCH v3 6/7] drm/connector: Modify prepare_writeback_job helper
+Message-ID: <kfizwa7jgdyuqc7qxfpgjjfbqydpziptkhrfrnz5umrycahbte@zlqsjuipu5u4>
 References: <20260316083008.87466-1-suraj.kandpal@intel.com>
- <20260316083008.87466-5-suraj.kandpal@intel.com>
+ <20260316083008.87466-7-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260316083008.87466-5-suraj.kandpal@intel.com>
-X-Authority-Analysis: v=2.4 cv=a7AAM0SF c=1 sm=1 tr=0 ts=69f93ac3 cx=c_pps
- a=JIY1xp/sjQ9K5JH4t62bdg==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
+In-Reply-To: <20260316083008.87466-7-suraj.kandpal@intel.com>
+X-Authority-Analysis: v=2.4 cv=a7AAM0SF c=1 sm=1 tr=0 ts=69f93b3b cx=c_pps
+ a=WeENfcodrlLV9YRTxbY/uA==:117 a=xqWC_Br6kY4A:10 a=kj9zAlcOel0A:10
  a=NGcC8JguVDcA:10 a=s4-Qcg_JpJYA:10 a=VkNPw1HP01LnGYTKEx00:22
  a=u7WPNUs3qKkmUXheDGA7:22 a=gowsoOTTUOVcmtlkKump:22 a=QyXUC8HyAAAA:8
- a=EUspDBNiAAAA:8 a=w4tPeIWWwG8LP2YZpMkA:9 a=CjuIK1q_8ugA:10
- a=tNoRWFLymzeba-QzToBc:22
-X-Proofpoint-GUID: OLO7xKVNzp34A6ywJaqIBtQII6COsC4N
-X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA1MDAwMiBTYWx0ZWRfX32Es59XadsbT
- sGl1rc84rOvuNbiOh31MlbjuMOcXJi0YwwS7oC9hcrnd1xaskFJurGUO7xMpKmaO/BlwwEHYnhy
- GHme5bGCRJUOvRbodEfCDnL+SEQIhDRr37R49k3PnH7Wy1N2YrgVRji8Nz9zNn7SJ3YzULWtTZn
- i+qq0eB8A1SHPSIWDMOcfCHCcf7XGLz/Q8VQQARzdv96UCjOHDH1kWsZEvj8V58dMmgsA0gyloV
- WuCa8juObyHf0Gs4sYs71Ko1sBXdIccmS8q691r9nkYo6MKL7vuP7653THu6FRZ2DZdEYzy9f8R
- X8nFNZnDVXX4x9U05t9NaxqDh5LBlJnflJcq9KBWQf7M2079kkCHBhtMrg/aGBZt8fzps1hBGlA
- RmySGZioIJ8A/sjncY7jyGVPXg1WkAA0d5pTGkvgOxUMULyM51Khy9cvCfD5ZnuWDIgQZDxwx2X
- lP/nsydcehnEHo632Ug==
-X-Proofpoint-ORIG-GUID: OLO7xKVNzp34A6ywJaqIBtQII6COsC4N
+ a=EUspDBNiAAAA:8 a=EWaBjrTCu0zT9WKhau0A:9 a=CjuIK1q_8ugA:10
+ a=kacYvNCVWA4VmyqE58fU:22
+X-Proofpoint-GUID: X0hfV-0TpYdSarRBZfWISeVSnOuDbpJX
+X-Proofpoint-Spam-Details-Enc: AW1haW4tMjYwNTA1MDAwMiBTYWx0ZWRfX7sft/wzqpv/5
+ muRzfaGrQvAaS+gY79n4mJXKDR8BLbrmwQJUQeYlsnRkpeM1+x3bhLjEpND1DQrCNA/pPs08a5n
+ Hmv3CNPQdTzq6xcs3chU4K/08DEHJszzI/HKQQpeFSj8az3GPzJ7en34sSnw/FX7yfzR7HIKX2I
+ 06qxSLv1VWRvD7IvmiUmHrncrUiKoAoRXQ8EcFVaMZSfVFXyWC332sgznN67NlJy3U5+hkY1ng+
+ koW4+kNwYLmaJ0POKcPHgiy6084ispnehuuYux8PTnGJ/IDYPYvjYHNH5ECtM8zIBhFmeLsB4qP
+ edpZIM35fff+gWNBAITTuAtXv76/EATwXyBhPpBereTjnuN9wrtW5EedJ12mxzs05K60wPdcaf9
+ /N+6ROWSy9y8ADZKm+DJn1wVRUNCb8w15PGMPuUvTqKymOa8DpxM+Z2i+v8vcOjE4Z0IFuuVeId
+ 7Ni7CSyBm+VsjyRY4RA==
+X-Proofpoint-ORIG-GUID: X0hfV-0TpYdSarRBZfWISeVSnOuDbpJX
 X-Proofpoint-Virus-Version: vendor=baseguard
  engine=ICAP:2.0.293,Aquarius:18.0.1143,Hydra:6.1.51,FMLib:17.12.100.49
  definitions=2026-05-04_06,2026-04-30_02,2025-10-01_01
@@ -155,7 +155,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7E9104C5788
+X-Rspamd-Queue-Id: BC1D24C5821
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.69 / 15.00];
@@ -192,35 +192,26 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,qualcomm.com:dkim,qualcomm.com:email,oss.qualcomm.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,oss.qualcomm.com:dkim,qualcomm.com:dkim,qualcomm.com:email]
 
-On Mon, Mar 16, 2026 at 02:00:06PM +0530, Suraj Kandpal wrote:
-> Move to using drm_connector instead of drm_writeback_connector since
-
-"Make drm_writeback_signal_completion use drm_connector ...."
-
-> it now resides within drm_connector. This will also help make sure
-> drivers do not need to access drm_writeback_connector as much.
+On Mon, Mar 16, 2026 at 02:00:08PM +0530, Suraj Kandpal wrote:
+> Pass drm_connector to prepare_writeback_job since
+> drm_writeback_connector now resides within drm_connector.
+> It also makes it uniform with params passed to other
+> drm_connector_helper_funcs.
 > 
 > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c   | 2 +-
->  drivers/gpu/drm/arm/display/komeda/komeda_crtc.c    | 2 +-
->  drivers/gpu/drm/arm/malidp_hw.c                     | 6 +++---
->  drivers/gpu/drm/drm_writeback.c                     | 6 ++++--
->  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder_phys_wb.c | 4 ++--
->  drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c | 2 +-
->  drivers/gpu/drm/vc4/vc4_txp.c                       | 2 +-
->  drivers/gpu/drm/vkms/vkms_composer.c                | 2 +-
->  include/drm/drm_writeback.h                         | 2 +-
->  9 files changed, 15 insertions(+), 13 deletions(-)
+>  drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_wb.c | 2 +-
+>  drivers/gpu/drm/drm_writeback.c                      | 2 +-
+>  drivers/gpu/drm/msm/disp/dpu1/dpu_writeback.c        | 4 +---
+>  drivers/gpu/drm/renesas/rcar-du/rcar_du_writeback.c  | 6 ++----
+>  drivers/gpu/drm/vkms/vkms_writeback.c                | 2 +-
+>  include/drm/drm_modeset_helper_vtables.h             | 2 +-
+>  6 files changed, 7 insertions(+), 11 deletions(-)
 > 
 
-With the commit message fixed:
-
-
 Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-
 
 
 -- 
