@@ -2,168 +2,167 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MP45C8zs+mn3UQMAu9opvQ
+	id hqflDQrt+mkTUgMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 06 May 2026 09:25:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 06 May 2026 09:26:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 833E54D72DC
-	for <lists+intel-gfx@lfdr.de>; Wed, 06 May 2026 09:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AB2C4D730D
+	for <lists+intel-gfx@lfdr.de>; Wed, 06 May 2026 09:26:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A7BB10E13F;
-	Wed,  6 May 2026 07:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 540FE10E439;
+	Wed,  6 May 2026 07:25:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZC++EuUb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bgPrQzcv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD12A10E13F;
- Wed,  6 May 2026 07:24:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9642310E410;
+ Wed,  6 May 2026 07:25:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778052297; x=1809588297;
- h=from:to:cc:subject:date:message-id:references:
+ t=1778052358; x=1809588358;
+ h=message-id:date:subject:from:to:cc:references:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=AMvUuvyQqZ9erIMDiEl8/3unsdZ3pNZviIw1nh3EAKM=;
- b=ZC++EuUbMYZ2nh3lo6w8ct9SIbSwjz8VltUpN1rBb7kqvaZLINWI+0lD
- 1OEP/E7iTk+hCvVNLNNa1Z8llzyTANlJwTdxa7QIJxgL48bdqsyJ5Xm2e
- 52pZiso8OBakiwSUS6CNOXU8Tmgm2l9ZxkxtSdMntmvFxEA0U8i2q106p
- fd0xHaYG0kz5B1IeyGmjMPm6q8jB9lzBhiqSo71+/kwE3h/wTSQmh8RD+
- yYat9qS1Q5XT9yNKn66BkkeBgZPnwKbaDUxJ0dYcbaULz1ExV81IbGq7A
- xUkLcYAvXEIuzJmdRq5NBes54eEaGFr6SrpSXeXB3gE9x0Rei/w3QXNFd A==;
-X-CSE-ConnectionGUID: WAFKn7NZSyas7IQzOXbA9w==
-X-CSE-MsgGUID: dpoE96/YQuSjLVRkgAw3Dg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="89674448"
-X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="89674448"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 00:24:55 -0700
-X-CSE-ConnectionGUID: wJE2G4njSJ+Jrugvqb3+aw==
-X-CSE-MsgGUID: S7kB2HzhTQOOZ4eK14M9Ew==
+ bh=hnteHs0JmwjmRYNdSgZkB/Sd5HKT44V9oImqXCjLkSc=;
+ b=bgPrQzcvMWj8OaQDtRFnLtMfxmMPQ/JZa11dC9xan9xSdHvbeNW7E8e+
+ wl7BRxn8M9SCbzdOZ5oIOf1HfLuGZMd8eQbLvlIwILyEGN2rHANhinKMO
+ DzE4HtoElxwEEczAlz3vVxjDRSGYefbufOdwf1HywGeYW1X1gqQSJL14c
+ 3t3gm4w5+AZ+lKBvrLiHb8/VmTlKgXOZ0pZwXEKGQceMFIYkh6mTG0zq8
+ FOlotKAX2TGO5JaP0J16HZlQx5yc1sqvvOzrjzY5Q049eDP9OlXKdsTLA
+ +GUoL+1CXXTM6UHnVsIfNR4JbsW6DvDsAnE4qW/9/74mohmRG0UixI1Ia Q==;
+X-CSE-ConnectionGUID: 1hnV/5LpSiCRtyYiu+bDWQ==
+X-CSE-MsgGUID: xnMPcT30QrCjf5+mBHW08g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11777"; a="89283479"
+X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="89283479"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 00:25:50 -0700
+X-CSE-ConnectionGUID: dL8CYv+xS92KkDZsIwPlww==
+X-CSE-MsgGUID: /5uE6x6aSrGEZR+69DjIeg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,219,1770624000"; d="scan'208";a="241061003"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 00:24:55 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 May 2026 00:25:50 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 6 May 2026 00:24:54 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ 15.2.2562.37; Wed, 6 May 2026 00:25:49 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 6 May 2026 00:24:54 -0700
-Received: from PH0PR06CU001.outbound.protection.outlook.com (40.107.208.34) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Wed, 6 May 2026 00:25:49 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.41) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 6 May 2026 00:24:54 -0700
+ 15.2.2562.37; Wed, 6 May 2026 00:25:49 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=X3Pzr1pYv5HJqThLcaO7ETbFYVUSgl+7Xx4ILuyhEMh9/8ckwvLfYsXsr88hz09Vvb6+bsYMcyr2vR99hHw5RHmTr5AcCE9OoChqXymngcQVQtNiIFWlFQiNkBF6JBLSnsNiy+o284nyeI3gdrxvf5lpnDbVOxmESgjT2oZBhHCiluOfUKZm3UZlTnXbbpdIy/9BBkWgRA6Rb/CMKaMWOeUTM46Oa2xmLbxWc0vwU2vD0/26V75dI7Bg2F3nqaVi6k4k1+19233X4pQhZ8Qc9eqIZPeN9PrCvZ54ZQfoQaUvq0MrG2MjncF6yynmlKFxfq/risVrufe4oEeBbBw+VQ==
+ b=oXLAG6ggVy2bGbcUycewSnlLjQExwjeAuANeDdtNpuUzXr0e0wCAJxf/4AoxewIxq+O63M+zbLYDi5wN/2y+73l+t59YzkyQbpMJwI8Butf/XoHcG0bbeLPeg64eyBMHyJqe6Rs7vrvstBNMmPu2L0JEM6nH7vOMJLYRL6+X4FvAC2JaMWOSwZBAKN2nrlf3LadIZJBiR5mKIAyhY57TFjZ1n0sgKT5P+aBcXvoVp79Sq8bot10BiPx9o9s5iyG3pO0MVI5CIgOit+6s8LyglZ9RBffTcqGMA8+PRiLHl/ZoKzB9CBhZcXOCwWfMSYRA/heWvbX5iBowphX473T0cg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=AMvUuvyQqZ9erIMDiEl8/3unsdZ3pNZviIw1nh3EAKM=;
- b=AEXTQZxvn0ngJSnzdGI7ZxpuglCA6hU7Q4u4dxyu97Rm3a1JeODwDLcVPc+c5eze6//n0ndML9Zp/pa5EI7phnzXMARtGMdM1mcbSGh17R2semg9Ex9/x05qckCTqWk2YsYWqAG4yZT5wKheAIwuaMwJcgk43wAR7XGnRdTQKRovIq4umk+XDTvzxCWoqYX3u5yBno8srYFDrGNImK+yzive8UOxs5locaOVTOYDfXOmxOpH6v1QTx61Te5iGMCJban6eoF40GtqcHmI6m3RDL0OtAjT1dVd4j7WdPZo6fx6MyQjY4qP/MOs+ksHxRzW+JMBn2eG+RF43fl53qtkfg==
+ bh=P8wvCjemUnw+ZVTO78sCgOfjsJaORGN/a+YEzEn8iz8=;
+ b=hZ9fzEhYY/PnzGnUyrAItu0pzsFlzwiW7JP+OZGIj80DOd9IY/4y5CyQ0tTE09C1VZL4QHSg/jcNsMofbFFhDA+WIa5QTGYx+KZfS/j1uIZ6eUNmmp7EMjEttE7qb8Fggox/jmWU8X9uPJI5PrItL0jSbHPZKOReR7glbkom9TUsEAw0liUBiyW21HtHWUQSsAgfXPdDhiBiTA7h0cYwXGqvX6hH87cun4lq5Vq03bI+rLsBIyWryHTRnaW5f32D0KgjlEBrpE9lGC2U4hesUi21hNbCzYQ7RGaJ0be2ccHcbPF2OImNwzi8wboyM2gXu375rGx1PiSILij30qGZ8g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by CY5PR11MB6341.namprd11.prod.outlook.com
- (2603:10b6:930:3e::6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.27; Wed, 6 May
- 2026 07:24:52 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::308:3508:f7cd:9717]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::308:3508:f7cd:9717%3]) with mapi id 15.20.9891.008; Wed, 6 May 2026
- 07:24:52 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Hogander, Jouni" <jouni.hogander@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Hogander, Jouni" <jouni.hogander@intel.com>, "stable@vger.kernel.org"
- <stable@vger.kernel.org>
-Subject: RE: [PATCH 3/4] drm/i915/psr: Apply Intel DPCD workaround when SDP on
- prior line used
-Thread-Topic: [PATCH 3/4] drm/i915/psr: Apply Intel DPCD workaround when SDP
- on prior line used
-Thread-Index: AQHczJpvHUV9B/LZ2kyao+Iuw91eQLYAuQYw
-Date: Wed, 6 May 2026 07:24:52 +0000
-Message-ID: <DM3PPF208195D8D312A4D274ECBF86DE84FE33F2@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20260415054000.400070-1-jouni.hogander@intel.com>
- <20260415054000.400070-4-jouni.hogander@intel.com>
-In-Reply-To: <20260415054000.400070-4-jouni.hogander@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|CY5PR11MB6341:EE_
-x-ms-office365-filtering-correlation-id: 47bd4f37-9b9b-42ce-f6a2-08deab40906e
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|18002099003|56012099003|22082099003|38070700021;
-x-microsoft-antispam-message-info: YBlHb1W5ggDhtctZ4FcrSlgDf9atdqAN9Zm9y1wnrpqTuXTlQLwk6z1f09oWAqYZI7mEtxYak5RhhzniZg5iGexOeOrriDFXH2zQpUt1NzPyhZI/qUu0xfdSFl5xMxtVxmaJ4uLR6BPTMCZYq+m38Qe7rnfWUIhB/Gi+nJudUuC5dwBw2WsX9aIf+d5V798aOhVxK8b3PR2z0Htx9HCAVRvkf5Tbowk3BJT0W3reeD7QDQaTjI1bmJMrhXyUDXQf27ZVQ66JdYNvXK7988V1CBa0BBQKUKeF7Bl8Z68mwaRBFasTwi5YCANMFbcpiFkf5ztNjnJ0OZL+aXl2zTtHBQBymKaDgqyYS75yl6xRDR4QLI7C5Gl3ZKzC3BZ2WuIw6YcVDD2gpUMemRwuN54A9c+dxYSrs0OAJB0ojaQ6qY+idt9E6+vRROb40AR8r4GKwxwDyXNKtetATonvTryOb4SnoiDxWnwkmkBXKYA/gdiy2RTgKpVs1x5O63P9fDIYwn68WzwnYD9xge27WIxbcgFh4ZHoeM6zSVzVp/vO5NO6NkdwNGCwNpIG+5JO2kx3TZ1qQ/AS4z9VbbmC4AQvcff9Cps8SiO5qPrvDX3f7FG6L05iMM9ICY05/C5qjR4IHHjfzf36HYVz10A1DfLUg6XxBI8Mld4wEQrsn52SheqhgyVzYZMBDjpuqdTNVjuR1BDD7CEL0AUhbR2zX/RqHJLcV94YYc/HNm/saayu8HzjO9k1UIC2ZYwwsMaDRd5S
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(18002099003)(56012099003)(22082099003)(38070700021);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?VE1IL3ZEZE1pemNxVStZMDNzdmJGbHN5VWdIbVE5enFqWER3WksrUml0d3FX?=
- =?utf-8?B?UHNSQkE3VG9Dbm0yUEFYd1RyUDhHZ21UWlMydk5HWWV3YXdteU5lOXhlNE5J?=
- =?utf-8?B?eTdWSlhRZFIwVDlOODR0bjF4UXBwZEF5d1pUeW96d1RiMThZV0VXbG40S2c4?=
- =?utf-8?B?SmFMaVZSM3hYMVozWTZWeVJCQlRXVXlqVjE2eXp1ZFIvd0hxVGFnVE0vaFNU?=
- =?utf-8?B?Z3VOMGd3anJBMHVWUTJBaFNKYnA3ZWp2bU5xVTc4KzdqUU9iNFRxVkhhUXZm?=
- =?utf-8?B?V1RKTDlhL05sa29NemJrdElHdDd6U1A2N1JDSG5OOXQ1NkM0bXpCbHlPZXNi?=
- =?utf-8?B?clZ4NUY4V1dJMlhPcWd0UkZaZm5kK1ErVTUwRXJrRitLS2x6eUlPTWVMdTdS?=
- =?utf-8?B?SER2eHJIZFcwUHp5OUp1cFRyaEdNM29lVVBoVEpBc3NMRWxHQTlSc3R1amFz?=
- =?utf-8?B?QXN3VXJEN09jUE5tRWd4MFU2L2JjNkFwSGdKQUovR1gzOEJBVmU5Zjg1Nmwy?=
- =?utf-8?B?S3BKSGtjT1VPSHZEbVkwR0xjZjA3aGFGdGpoVFVXYW5WTFlWa3h6ZzR6QnZO?=
- =?utf-8?B?VXp1NXBhbk02VVJsWkFFT0lJQlJMczJNWXV6WTNmdGdiVUwrcytLWHdlSGN0?=
- =?utf-8?B?dHM0d2VoUW0zSGJTS005b1NYODZaZFkzT2hkMFF3Y21vNzJ1THJBai9lTVNO?=
- =?utf-8?B?U0dGbHpoOU5PQTc5SXJnMSsyaEtxVURpUmwveHN6OXFSeHc5WGNyYkdJaHVr?=
- =?utf-8?B?T0R1MEFOOWd5cEhXUjBLdVZlWXMyUEo4QTM5WjU4SVhmUTFqSjNXMENobnVS?=
- =?utf-8?B?NEVKc1lqeGZ6cWFGTHEzSFBmbVZzTEtZRkpMUGl4aXVVbjFNN1RsVmZrMXg4?=
- =?utf-8?B?S3VHVk01aVh0WmxWNEZuT2Nhak5CWHIrdzBEbU5DTktkMlVHczdIY0xGa28z?=
- =?utf-8?B?d3E5VXFjWWtLM3MwUWlnUDB0K2tWQW1wRCtxM1M0ZVY2aVZpT2s3SkFNR1JK?=
- =?utf-8?B?ZGNvWkJSL01xbUowSStzVlQ3UVplendVYTF2bjZyZzZxSmRwdDEra2tlQjhL?=
- =?utf-8?B?NDVvbVZieCs1ejV4WDdkQmlxU3dsZjJSbS8rNWkvVDQ3WU9Kd1dyT2ZPTzll?=
- =?utf-8?B?MHBrQk1oRTZiQ1FOQUJSZ1h5RmFJYXlYbU85QVd4YnpETU9NVk5ENjNFcGVv?=
- =?utf-8?B?VTNjNXEzRy9yQzNYWGREMUpsNWRXSzNHMC8zc1JmL0RjSXZvZU9YNENPZHhj?=
- =?utf-8?B?U2U2NjkzQ0syN0RCVVlzQzN5UjFxWnhZUllzY3lEZG5oeVBOK3Zjamt0SG9j?=
- =?utf-8?B?eHNDQVBZUklzVVFFWEhwamYrS0dKbDVHZkhBei8vL1JJSEh2T2M5WW15SWN4?=
- =?utf-8?B?ZVZ6c0RqTXU0VVNuYVZaZHR5bjJWN2ttWFZKN1R6R1FIUitHTVlyUGNsOE03?=
- =?utf-8?B?M2x1aWN4QjBnVG5BWGFUV053MzU0RXN2SCt6NUNIcFFlWEx0VXBvQm5nSGJM?=
- =?utf-8?B?a1JhT29XSUk0cDJrdkUrbjhRaExwSGFYVDQzeSs3UGd0SmpabHZJa2NZOWVy?=
- =?utf-8?B?cHlLcU1wU0Y0MkdrT3BXRWNsb0VwcjlVZ0JocW9wazl0d2JBMWlqVWNsL3Jw?=
- =?utf-8?B?dXlUeFM2Vk41TCtpSG42U3AveTBZUzAyTEtXdzl1dUxKS29HU3ZVY2MzYVQ2?=
- =?utf-8?B?Q3JVekNxMDRXY0oxMG5TM3BFdTZDa1ltWHpGL2VGUmZvT1ZTTzkwRTcrUnRP?=
- =?utf-8?B?dlNwdlZxOE1TcmRxdDlNYmh6U25vZDZkb1RpSlBkYlR6SkNwTlgrRm5DU1VT?=
- =?utf-8?B?SjdvdFBRMm5EQ1RoT1N3MjBRVW1oM1NhMjBQR0xMRXpYenRjSmRxdWc4bE9l?=
- =?utf-8?B?enZYbDEwYng1ak1NVTl4WG9uTTJXQ2JXWGZXcDhPZEg3algvWTdTc1NnTExY?=
- =?utf-8?B?MXZvcTdVTkViRU5Qb2NYT1ZmMlo4Qi93UG5Na3BEbTl2cXllRlQ2K2hxb0lr?=
- =?utf-8?B?TVUvd0RjZWpxbGdYQ1VNaWw0ZHVPaGlLMUtxU1VWQmJkS1J2UDdrOE9ZRTNn?=
- =?utf-8?B?NWpLQzZoV0VGNTBWN2s1TUMvNm4yeVhDTGwrckhJOGZSMFpHaFEveFJDcHd0?=
- =?utf-8?B?VnJUeVlHRUx4dHRMKzhoajFqUVc2SEVVQ3BhdEZBdVA5UEpCRExwS01SMVBp?=
- =?utf-8?B?T3VDc3VUaVAwamRQV2NXSDBvaklxaS93RHFlUnNsYncwWVpsVzJ5ZDBSZlpa?=
- =?utf-8?B?V3Jlek9xWHUwT0dpYUlYZW5yT0lnR3N0bGlUV3hrYVQwZE1DVDJkUnVHZDZ5?=
- =?utf-8?B?eEVBWWpzZzdtU1ZvR0pJSWdiY2lwSFBZQ1RMSURuOHgydFF2SytVQT09?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
+ by CY8PR11MB7193.namprd11.prod.outlook.com (2603:10b6:930:91::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.27; Wed, 6 May
+ 2026 07:25:46 +0000
+Received: from DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
+ ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.20.9891.008; Wed, 6 May 2026
+ 07:25:46 +0000
+Message-ID: <172dd0cf-8e0b-4e00-a50e-708196928a7e@intel.com>
+Date: Wed, 6 May 2026 12:55:38 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 2/2] drm/i915/intel_panel: Use highest refresh rate mode
+ for seamless VRR changes
+From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <jani.nikula@linux.intel.com>, Manasi Navare <navaremanasi@google.com>
+References: <20260428083323.3745772-1-ankit.k.nautiyal@intel.com>
+ <20260428083323.3745772-3-ankit.k.nautiyal@intel.com>
+ <afH2DKWGJs5nmFwh@intel.com> <11998bff-4d5c-4a41-a9e8-312e90cbe1bf@intel.com>
+ <8878f6d3-0d38-41f3-a0c5-2c229fd553ec@intel.com>
+Content-Language: en-US
+In-Reply-To: <8878f6d3-0d38-41f3-a0c5-2c229fd553ec@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MA5PR01CA0139.INDPRD01.PROD.OUTLOOK.COM
+ (2603:1096:a01:1b9::12) To DM4PR11MB5341.namprd11.prod.outlook.com
+ (2603:10b6:5:390::22)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: bSte7fo4p62iNNxmr6JmUcLsA4J/fazvPaFhbyavKnbkpN6Jg1FGq/9aZ7Sw0K3vNnxo0iXXrte0VXFonRki7ON9WWHUK+sY3pj4TX3trCvube4vfPBkGo/JjG9uLYPkcGjLJ9dHflOKrHeEiTgQYQ/+6RaowR9S7ChMQj/PtQ6642DXZ8l7b+NGo/eNe/Auq3nI1h7ax5XeJIFNl1V5rVRhKqyVJsxUETApht22rSmy5b1w310IbjcK5K7TLJ7poZjjEh0GsbhKfQU+2sY9D/5MGPeJWBdicFehDrUJz/zVFPPGPk/s8oim7KFmnRccq4284d5Lz3NLpyJszUhTFQ==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CY8PR11MB7193:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8ee74efa-4211-4844-8bbd-08deab40b058
+X-LD-Processed: 46c98d88-e344-4ed4-8496-4ed7712e255d,ExtAddr
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|376014|1800799024|56012099003|22082099003|18002099003; 
+X-Microsoft-Antispam-Message-Info: MH34VSofwKuRY+kafmL5ZqWBsqZlSZNtKyc3gBw9ciE20KeBIxe4OYvwejshbmeoz2/8i8rl4GjfDhsuCInWBeLozoNwmLQsuXRBfdY1cFeJP8f5NNhLn0zd9z2CifguJmah5k8XefdpQ9dXn/ssZG4nYu5NUpkhAHyMKTno4K0spxICOGhJd1cRBEZaw8BfQQAVESduR0ejk9LND/kzsZ0FJdvYoUaFHRAuU05V+H2WqlC2LE1ngFxcTzd3c/VbApUaHK7Ojne1jDEbImTn8DBCP+SlbVR/YlHsnVeT4UdAyHDDgwQCIqFoaG/Y6vpaNBA62kj/Kiv9V8hnclo8Fd61DVQLpwvbt6JZxHsH0SRUYILNaq0CX0AXfnuCnxx6tVZCITSOrCgN+WdX0sF0kaKagT1g0r3aUzVWXiL7T5O4MLJLGPxUcuQogjHNlWdCZNCss1Nl00pc9e2NxB5wW0Q8G+DKd9eu4dh7apO8OaC1mTfBBb0YqYXgCpdeuXbmbHxyRfBFXzQxqT65RYxw+1qSeCnQkdRq9Duas4cm2G0GZTVamI3IfPylAgwl3L9ML4i9siOpWN+SABC/uZd5Oa0Rlx0E/vp+nAASTOnOVmvyvii2AVofZv+avLG9SVRuPvHmYR7Xc6LihTTg16tX+XPD57ElrFXDl2vOr+Rl0bHt8uziSlcAvbsbUrxPiyk1
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(376014)(1800799024)(56012099003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SktWaTFkZWJVbjFzYjIwNm9JY2NYZ2x0MWY1ZDY1a3NoeHpjdFF0VHpXNEk1?=
+ =?utf-8?B?SUwyNzd1cXJ5NWxCSzh4czlQZkhaZG1jYVpsdzFlQVpXaVpmSFR1RlRiSlYx?=
+ =?utf-8?B?eWY0bVBBSWx3QlN3WlBZbGJoOXUxbkRxZFNkSTdLb2FMMjRSdFJmMDJYUjkz?=
+ =?utf-8?B?NGRjNVVGQWp2VGREVUlub24yRTB6VTgzbWd6SzlEblkyOHJXSlQ3bHprb2hk?=
+ =?utf-8?B?MTl5NXk4TTREWGZ0eG9BOFQzVCtOUHh5TkQvcE1XWjI2akZRUDJoVnRNUERx?=
+ =?utf-8?B?amhwa3FlLzUrWmZIb3ZkUGRrRlhmMzc5TXRuQnl6WXR2Znp6M1ozTmVQd2Er?=
+ =?utf-8?B?RUxZN2VEaFFCVE5SQUdTckNCM3FycEVNRDFvaThjbk1yYU03REgwbWo3UnJx?=
+ =?utf-8?B?ZEMxc2FZQy9SY0t6eXphLzRIMU1zY2hkRytoWno2Nkl0ekhyY1pmRC9DTVBl?=
+ =?utf-8?B?MDlaTFlVQ0szVWJaL3ZtZHJSOFJvRnJCLzIzVmJENGEyalZ4OUp1LzRxSUpE?=
+ =?utf-8?B?VVMraE9tV0xkMlIzWTh6RFdMeW14bGZZelEvS0pEYUI0R1BLWVJFS3pqVWpX?=
+ =?utf-8?B?YkV2TVFKbHlBQkRndXZyeU5OSmdtVnhNTDExRThNVHRnR05Wa25zQ0t3Rm5Z?=
+ =?utf-8?B?dTAwVDJjdWI3dHdzMklERTNpNUY4Z0htSG5PWlRWeHJHOXlSblYvVmFqVHor?=
+ =?utf-8?B?dEtzNDhJdFllcU5xOVdlMHpXeXU3eUNkWWhpMEsxNmxoSXljbCs5N2hUUS9u?=
+ =?utf-8?B?UHVkalZhd1dEMHVsd0pOdTNSVmRoQlFsNFE0RTI0bzc2a29PZGxrY0dBbEtR?=
+ =?utf-8?B?NVlodFh1YzROaEVQekhMeWlMK3VkNUhyKyt6VzFpRjJieGhnMGNidllSOS9x?=
+ =?utf-8?B?VS9xR0RFTVRDZlV4cDV0OVptWHJ0VUVzUFFHa1JjeUVNWW5YRjgrOElvWE5s?=
+ =?utf-8?B?aGZzRktsQi9UU2JuQ24xVmJkcHBVdXN6S3dlNHY5NVR4M1l1RVM3cXFQbndq?=
+ =?utf-8?B?WDN6L0ZadHpUU0VUMGdzVnpoc2hldmN3RjFLVVBEdXR5Z3ZqZjJDQUxwb2Fh?=
+ =?utf-8?B?NG4ySkgrdWhiYWJ2S3NBWjZxSWxnK1RHWTRMV3NkYlV1bkhBczJQQmdWQ21p?=
+ =?utf-8?B?Tk4vSnNMMllvODZQWTlsTjVLY2l6NDRwT3dsRE4xTkQ0MWRSb29DRFRKZVBX?=
+ =?utf-8?B?RG1veVdGMjNOekZZUlFNYjBUczUxYTlOcHdTdy9OdWd5cXRwaU14aGJ5UGEy?=
+ =?utf-8?B?QUJxMG4rVlpYelQxUHZBVERBMDZYbCswRG84TlBzWjVVTkp0Y3U4ZDc5eGxq?=
+ =?utf-8?B?aGdqaXRCODY3am5NOUZyaHNGRGZ4dzZVYUtpNVBzUjFxNmEzcXJUc0VxV3lW?=
+ =?utf-8?B?Y3E3U3pISGozY2hONVdDNlVMd2RYUEhWRGNjWVhyWmYrUkM1REhlYkhPN0Q2?=
+ =?utf-8?B?SmlOUTFkUE9sWHZIRG9RL1BwVzJPblFoVFBWUkx1VnlWZ1lEdHNzazR0R2k5?=
+ =?utf-8?B?U2doYjg3SkJydkRoVHBpQUwweTBmcEMxZUhrMWVuVkJsby8xZm9QV092VWQ1?=
+ =?utf-8?B?eW9kUFJ4NU4vRWlMZlhtVFp6ckpseHMzdm9mSFdJWnJGV3BKZGJqZUZkdFZz?=
+ =?utf-8?B?Z1BNVTZRQ1JtQUZtb2IrRjN3K01SOE1WTEZRL1FjZzhzczhaWDdXRjQ4aE0r?=
+ =?utf-8?B?Wm5aWUlnRTZkMkNJdURab05wVjY3SkhZbzFub2UwMEdFVWJ3NVBLeWZPbGoy?=
+ =?utf-8?B?NGllVHladW5Ya0I0RDRxR3k4SG9kWncyM0RJcEg2dC92YW5NRWhMZVh1QUlx?=
+ =?utf-8?B?dVNsRWkrdWZvTGtGTFp3SFRpWHBzbkF3aFhKeDRMeVhqM3BQZHdwOUszdEFa?=
+ =?utf-8?B?WlFCamFteE5yUDRVUUJwRjBHdW1ZZU44aEN1eVVUd2hOMXdienhER0VwdUV1?=
+ =?utf-8?B?Yy9aVjAyZUE2TGo5Z1pyWGh5V2wxS2QrVEk5Vjh2YlV2L0prcGI2Q0hOOTA3?=
+ =?utf-8?B?RnRaQWxoOTJ5ZkJhYUQwQzJSMEl3YkFZZzBJanRoRVBJZGRGNU5yeDZGTERM?=
+ =?utf-8?B?RVFoTmpFazNPOGoyVlM4KzdZTERWY25CaUUwSDRYaXJzRFI1UndCb2xoelNK?=
+ =?utf-8?B?RFBDN1FDenpHVklQbjVyVEhhU1BSaGFPamN0Nm1sVnRHcjJoOWNVTHJtK2JI?=
+ =?utf-8?B?RkIwNG0vODB3TU1uRUpFUktkSVdBdjNweXJ3Vm1qRzhBa1RiVmJDcDMrYVVK?=
+ =?utf-8?B?akp5eUpseW1Qd3c3bmFoYWRySHZCMGo4VEs2RkQ3ZEJMV1hHOEMzUEFqQVQ4?=
+ =?utf-8?B?TU8vTVU3WElvZEd4eWRhVVVjMTBRaE5hcnlqajFGbVNYZ1lDN3p2V24wVEZ0?=
+ =?utf-8?Q?rIXalESKXm+mbrJI=3D?=
+X-Exchange-RoutingPolicyChecked: E5a1C+lF3reF2fNcyqo19clGwenXGmdWWE04Y0pAj0vERWYytDcmXdKgZ4xUDQwjHJKBEVBFMWurRy3ktieTITL+XLVyYpgtgcVcRWLeHvmoE21fa0E+ZwhEnQhShlhLm1D2EetRNccAuF+/NA62nttsX45dP0tZN2cWp5eVKTNEz4RfFqvJgjrEmKA4wybwP1nic0qz8amm3b+EDBVWY3yzabLZB81pejgjBYHvekBvQa4F2b1SAP7vquJNijMoqMQqXYz/pv4egk2LOH/PhGqruewLKaAUJx+d3d0J1F3C5WX2yAIcDL2sL2ncuxQErNbGkfxY2Qayu48Dngw6DQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8ee74efa-4211-4844-8bbd-08deab40b058
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47bd4f37-9b9b-42ce-f6a2-08deab40906e
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 May 2026 07:24:52.2178 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: QpyV3bHf4o8Dixp2ABX9EisNEFTjKtnn5Qx+5G8DNZO3B4FzyE+EP4+9aWzMCe74YZychjUo88YSWLS7Qo64jA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY5PR11MB6341
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 May 2026 07:25:46.0429 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nCT+84pMM+U3GxI90/qS3O5lETg0Jeg+IGcXoIhkthdpfCNwBzsrlfVwczOIoclc25FIly2ajHa7o+tvlBvsuktzqmE4fQpkGJHW/3rZhWE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7193
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -179,94 +178,520 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 833E54D72DC
+X-Rspamd-Queue-Id: 5AB2C4D730D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.21 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_BASE64_TEXT(0.10)[];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:email,DM3PPF208195D8D.namprd11.prod.outlook.com:mid];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9];
+	MIME_TRACE(0.00)[0:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:dkim,intel.com:mid];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 
-PiBTdWJqZWN0OiBbUEFUQ0ggMy80XSBkcm0vaTkxNS9wc3I6IEFwcGx5IEludGVsIERQQ0Qgd29y
-a2Fyb3VuZCB3aGVuIFNEUCBvbg0KPiBwcmlvciBsaW5lIHVzZWQNCj4gDQo+IFRoZXJlIGlzIElu
-dGVsIHNwZWNpZmljIHdvcmthcm91bmQgRFBDRCBhZGRyZXNzIGNvbnRhaW5pbmcgd29ya2Fyb3Vu
-ZCBmb3INCj4gY2FzZSB3aGVyZSBTRFAgaXMgb24gcHJpb3IgbGluZS4gQXBwbHkgdGhpcyB3b3Jr
-YXJvdW5kIGFjY29yZGluZyB0byB2YWx1ZXMgaW4NCj4gdGhlIG9mZnNldC4NCj4gDQo+IEZpeGVz
-OiA2MWU4ODczMjllMzMgKCJkcm0vaTkxNS94ZWxwZDogSGFuZGxlIFBTUjIgU0RQIGluZGljYXRp
-b24gaW4gdGhlIHByaW9yDQo+IHNjYW5saW5lIikNCj4gQ2M6IDxzdGFibGVAdmdlci5rZXJuZWwu
-b3JnPiAjIHY1LjE1Kw0KPiBTaWduZWQtb2ZmLWJ5OiBKb3VuaSBIw7ZnYW5kZXIgPGpvdW5pLmhv
-Z2FuZGVyQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5
-L2ludGVsX3Bzci5jIHwgMzYgKysrKysrKysrKysrKysrKysrKysrLS0tDQo+ICAxIGZpbGUgY2hh
-bmdlZCwgMzIgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4gDQo+IGRpZmYgLS1naXQg
-YS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bzci5jDQo+IGIvZHJpdmVycy9n
-cHUvZHJtL2k5MTUvZGlzcGxheS9pbnRlbF9wc3IuYw0KPiBpbmRleCAxZjNmMGQzNWQ1MmEuLjM0
-MTE4NjYyMmVkNCAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2k5MTUvZGlzcGxheS9p
-bnRlbF9wc3IuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX3Bz
-ci5jDQo+IEBAIC0xMzg1LDkgKzEzODUsMzYgQEAgc3RhdGljIGJvb2wgcHNyMl9ncmFudWxhcml0
-eV9jaGVjayhzdHJ1Y3QNCj4gaW50ZWxfY3J0Y19zdGF0ZSAqY3J0Y19zdGF0ZSwNCj4gIAlyZXR1
-cm4gdHJ1ZTsNCj4gIH0NCj4gDQo+IC1zdGF0aWMgYm9vbCBfY29tcHV0ZV9wc3IyX3NkcF9wcmlv
-cl9zY2FubGluZV9pbmRpY2F0aW9uKHN0cnVjdCBpbnRlbF9kcA0KPiAqaW50ZWxfZHAsDQo+IC0J
-CQkJCQkJc3RydWN0IGludGVsX2NydGNfc3RhdGUNCj4gKmNydGNfc3RhdGUpDQo+ICtzdGF0aWMg
-Ym9vbCBhcHBseV9zY2FubGluZV9pbmRpY2F0aW9uX3dhKHN0cnVjdCBpbnRlbF9jcnRjX3N0YXRl
-ICpjcnRjX3N0YXRlLA0KPiArCQkJCQkgc3RydWN0IGludGVsX2Nvbm5lY3RvciAqY29ubmVjdG9y
-KQ0KDQpTaG91bGQgdGhlIG5hbWUgYmUgYXBwbHlfc2NhbmxpbmVfaW5kaWNhdGUsIHNpbmNlIHlv
-dSBhcmUgbm90IGFwcGx5aW5nIHRoZSB3YSBoZXJlIGp1c3Qgc29ydCBvZiBjaGVja2luZyBpZiBp
-dCBuZWVkcyB0byBiZSBkb25lDQoNClJlZ2FyZHMsDQpTdXJhaiBLYW5kcGFsDQoNCj4gIHsNCj4g
-KwlzdHJ1Y3QgaW50ZWxfZHAgKmludGVsX2RwID0gaW50ZWxfYXR0YWNoZWRfZHAoY29ubmVjdG9y
-KTsNCj4gKwl1OCBlYXJseV9zY2FubGluZV9zdXBwb3J0ID0gY29ubmVjdG9yLT5kcC5wc3JfY2Fw
-cy5pbnRlbF93YV9kcGNkICYNCj4gKw0KPiAJSU5URUxfV0FfUkVHSVNURVJfQ0FQU19QU1IyX0VB
-UkxZU0NBTkxJTkVfU0RQX1NVUFBPUlRfTUENCj4gU0s7DQo+ICsNCj4gKwlpZiAoaW50ZWxfZHAt
-PmVkcF9kcGNkWzBdID49IERQX0VEUF8xNSkNCj4gKwkJcmV0dXJuIHRydWU7DQo+ICsNCj4gKwlz
-d2l0Y2goZWFybHlfc2NhbmxpbmVfc3VwcG9ydCkNCj4gKwl7DQo+ICsJY2FzZSBJTlRFTF9XQV9S
-RUdJU1RFUl9DQVBTX0ZBTExfQkFDS19UT19QU1IxOg0KPiArCQljcnRjX3N0YXRlLT5yZXFfcHNy
-Ml9zZHBfcHJpb3Jfc2NhbmxpbmUgPSBmYWxzZTsNCj4gKwkJcmV0dXJuIGZhbHNlOw0KPiArCWNh
-c2UgSU5URUxfV0FfUkVHSVNURVJfQ0FQU19QU1IyX1dJVEhfRUFSTFlfU0NBTkxJTkU6DQo+ICsJ
-CXJldHVybiB0cnVlOw0KPiArCWNhc2UgSU5URUxfV0FfUkVHSVNURVJfQ0FQU19QU1IyX1dJVEhP
-VVRfRUFSTFlfU0NBTkxJTkU6DQo+ICsJCWNydGNfc3RhdGUtPnJlcV9wc3IyX3NkcF9wcmlvcl9z
-Y2FubGluZSA9IGZhbHNlOw0KPiArCQlyZXR1cm4gdHJ1ZTsNCj4gKwlkZWZhdWx0Og0KPiArCQlN
-SVNTSU5HX0NBU0UoZWFybHlfc2NhbmxpbmVfc3VwcG9ydCk7DQo+ICsJCXJldHVybiBmYWxzZTsN
-Cj4gKwl9DQo+ICt9DQo+ICsNCj4gK3N0YXRpYyBib29sIF9jb21wdXRlX3BzcjJfc2RwX3ByaW9y
-X3NjYW5saW5lX2luZGljYXRpb24oc3RydWN0DQo+IGludGVsX2NydGNfc3RhdGUgKmNydGNfc3Rh
-dGUsDQo+ICsJCQkJCQkJc3RydWN0IGludGVsX2Nvbm5lY3Rvcg0KPiAqY29ubmVjdG9yKSB7DQo+
-ICsJc3RydWN0IGludGVsX2RwICppbnRlbF9kcCA9IGludGVsX2F0dGFjaGVkX2RwKGNvbm5lY3Rv
-cik7DQo+ICAJc3RydWN0IGludGVsX2Rpc3BsYXkgKmRpc3BsYXkgPSB0b19pbnRlbF9kaXNwbGF5
-KGludGVsX2RwKTsNCj4gIAljb25zdCBzdHJ1Y3QgZHJtX2Rpc3BsYXlfbW9kZSAqYWRqdXN0ZWRf
-bW9kZSA9ICZjcnRjX3N0YXRlLQ0KPiA+dWFwaS5hZGp1c3RlZF9tb2RlOw0KPiAgCXUzMiBoYmxh
-bmtfdG90YWwsIGhibGFua19ucywgcmVxX25zOw0KPiBAQCAtMTQwNiw3ICsxNDMzLDggQEAgc3Rh
-dGljIGJvb2wNCj4gX2NvbXB1dGVfcHNyMl9zZHBfcHJpb3Jfc2NhbmxpbmVfaW5kaWNhdGlvbihz
-dHJ1Y3QgaW50ZWxfZHAgKmludGVsX2QNCj4gIAkJcmV0dXJuIGZhbHNlOw0KPiANCj4gIAljcnRj
-X3N0YXRlLT5yZXFfcHNyMl9zZHBfcHJpb3Jfc2NhbmxpbmUgPSB0cnVlOw0KPiAtCXJldHVybiB0
-cnVlOw0KPiArDQo+ICsJcmV0dXJuIGFwcGx5X3NjYW5saW5lX2luZGljYXRpb25fd2EoY3J0Y19z
-dGF0ZSwgY29ubmVjdG9yKTsNCj4gIH0NCj4gDQo+ICBzdGF0aWMgaW50IGludGVsX3Bzcl9lbnRy
-eV9zZXR1cF9mcmFtZXMoc3RydWN0IGludGVsX2RwICppbnRlbF9kcCwgQEAgLTE2ODcsNw0KPiAr
-MTcxNSw3IEBAIHN0YXRpYyBib29sIGludGVsX3NlbF91cGRhdGVfY29uZmlnX3ZhbGlkKHN0cnVj
-dCBpbnRlbF9jcnRjX3N0YXRlDQo+ICpjcnRjX3N0YXRlLA0KPiANCj4gY29ubl9zdGF0ZSkpDQo+
-ICAJCWdvdG8gdW5zdXBwb3J0ZWQ7DQo+IA0KPiAtCWlmICghX2NvbXB1dGVfcHNyMl9zZHBfcHJp
-b3Jfc2NhbmxpbmVfaW5kaWNhdGlvbihpbnRlbF9kcCwNCj4gY3J0Y19zdGF0ZSkpIHsNCj4gKwlp
-ZiAoIV9jb21wdXRlX3BzcjJfc2RwX3ByaW9yX3NjYW5saW5lX2luZGljYXRpb24oY3J0Y19zdGF0
-ZSwNCj4gK2Nvbm5lY3RvcikpIHsNCj4gIAkJZHJtX2RiZ19rbXMoZGlzcGxheS0+ZHJtLA0KPiAg
-CQkJICAgICJTZWxlY3RpdmUgdXBkYXRlIG5vdCBlbmFibGVkLCBTRFAgaW5kaWNhdGlvbiBkbyBu
-b3QNCj4gZml0IGluIGhibGFua1xuIik7DQo+ICAJCWdvdG8gdW5zdXBwb3J0ZWQ7DQo+IC0tDQo+
-IDIuNDMuMA0KDQo=
+
+On 5/4/2026 6:47 PM, Nautiyal, Ankit K wrote:
+>
+> On 4/29/2026 10:30 PM, Nautiyal, Ankit K wrote:
+>>
+>> On 4/29/2026 5:44 PM, Ville Syrjälä wrote:
+>>> On Tue, Apr 28, 2026 at 02:03:23PM +0530, Ankit Nautiyal wrote:
+>>>> intel_panel_fixed_mode() intends to choose a fixed mode at or above 
+>>>> the
+>>>> requested refresh rate for VRR panels, so the requested refresh can be
+>>>> reached by extending vblank.
+>>>>
+>>>> This is called in compute config to find the 'best' fixed mode for a
+>>>> requested mode and also called during mode valid phase to prune the
+>>>> unsupported fixed modes.
+>>>>
+>>>> For Non-VRR panels there is no issue:
+>>>> - When a user wants to do a full modeset (sets DRM_MODE_ALLOW_MODESET
+>>>>    flag) with a custom mode, the intel_panel_fixed_mode() gives the 
+>>>> mode
+>>>>    with refresh rate nearest to the requested mode.
+>>>> - Seamless switch to a lower mode is only possible if the platform has
+>>>>    support for Double buffered MN and the sink is Seamless-DRRS 
+>>>> capable.
+>>>>    In this case the user sets a lower refresh rate mode and doesn't 
+>>>> set
+>>>>    the DRM_MODE_ALLOW_MODESET flag the intel_panel_fixed_mode() 
+>>>> returns
+>>>>    again the fixed mode whose refresh rate is nearest to the requested
+>>>>    mode.
+>>>> - Since Duble buffered MN is not supported on LNL+, the seamless 
+>>>> switch
+>>>>    is not possible for such panels from LNL+.
+>>>>
+>>>> For VRR panels the current logic has some issues:
+>>>> - For VRR panels intel_panel_fixed_mode() intends to choose a fixed 
+>>>> mode
+>>>>    at or above the requested refresh rate so the requested refresh 
+>>>> can be
+>>>>    reached by extending vblank.
+>>>> - However, as per the current logic the helper can return a lower 
+>>>> refresh
+>>>>    rate mode, if the lower refresh rate mode is first in the list 
+>>>> of fixed
+>>>>    mode. Later, if the selected fixed mode's refresh rate < the 
+>>>> requested
+>>>>    mode's refresh rate, then the requested rate is matched by 
+>>>> extending
+>>>>    the vblank.
+>>>> - In case of a full modeset request with a custom mode this is not a
+>>>>    problem. But for the seamless switch features like LRR (Lower 
+>>>> Refresh
+>>>>    Rate) and the Seamless-DRRS this creates a problem as this 
+>>>> results in
+>>>>    change in vsync_start/end and resulting in a full modeset.
+>>>> - Furthermore, as with the Non-VRR panel case, the Seamless-DRRS is 
+>>>> not
+>>>>    supported on LNL+, but for VRR panels, the vblank can be extended
+>>>>    similar to LRR case. But due to the above mentioned problem in the
+>>>>    intel_panel_fixed_mode() this also results in full modeset.
+>>>>
+>>>> To solve these problems for the VRR panels, identify if the user 
+>>>> wants a
+>>>> full modeset or expects seamless switch. If seamless switch to a lower
+>>>> mode is desired, make intel_panel_fixed_mode() return the highest
+>>>> refresh rate mode, provided the requested rate is in vrr range. This
+>>>> will then be modified to extend the vblank to provide the desired
+>>>> refresh rate.
+>>>>
+>>>> This is particularly needed for DRRS panels on platforms without the
+>>>> double buffered M/N support (display version 20+), where seamless 
+>>>> clock
+>>>> changes are not possible.
+>>>>
+>>>> To understand the user requirement for full modeset/seamless 
+>>>> switch, the
+>>>> intel_panel_fixed_mode() and intel_panel_compute_config() need 
+>>>> access to
+>>>> the connector state to check the allow_modeset flag.
+>>>>
+>>>> Add a nullable conn_state parameter to both. The mode_valid callers 
+>>>> pass
+>>>> NULL since they have no atomic state and the compute_config callers 
+>>>> pass
+>>>> their conn_state.
+>>>>
+>>>> Also remove the VRR check from is_best_fixed_mode() since the 
+>>>> selection is
+>>>> handled upfront in intel_panel_fixed_mode().
+>>>>
+>>>> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+>>>> ---
+>>>>   drivers/gpu/drm/i915/display/icl_dsi.c     |  2 +-
+>>>>   drivers/gpu/drm/i915/display/intel_dp.c    |  6 ++--
+>>>>   drivers/gpu/drm/i915/display/intel_dsi.c   |  2 +-
+>>>>   drivers/gpu/drm/i915/display/intel_dvo.c   |  6 ++--
+>>>>   drivers/gpu/drm/i915/display/intel_lvds.c  |  4 +--
+>>>>   drivers/gpu/drm/i915/display/intel_panel.c | 35 
+>>>> +++++++++++-----------
+>>>>   drivers/gpu/drm/i915/display/intel_panel.h |  6 ++--
+>>>>   drivers/gpu/drm/i915/display/intel_sdvo.c  |  8 ++---
+>>>>   drivers/gpu/drm/i915/display/vlv_dsi.c     |  2 +-
+>>>>   9 files changed, 37 insertions(+), 34 deletions(-)
+>>>>
+>>>> diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c 
+>>>> b/drivers/gpu/drm/i915/display/icl_dsi.c
+>>>> index afbaa0465842..1efe81404d01 100644
+>>>> --- a/drivers/gpu/drm/i915/display/icl_dsi.c
+>>>> +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+>>>> @@ -1671,7 +1671,7 @@ static int gen11_dsi_compute_config(struct 
+>>>> intel_encoder *encoder,
+>>>>       pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>>>>       pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>>>>   -    ret = intel_panel_compute_config(intel_connector, 
+>>>> adjusted_mode);
+>>>> +    ret = intel_panel_compute_config(intel_connector, 
+>>>> adjusted_mode, conn_state);
+>>>>       if (ret)
+>>>>           return ret;
+>>>>   diff --git a/drivers/gpu/drm/i915/display/intel_dp.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> index 35b8fb5740aa..f014ce28e69f 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>>>> @@ -1588,7 +1588,7 @@ intel_dp_mode_valid(struct drm_connector 
+>>>> *_connector,
+>>>>       if (intel_dp_hdisplay_bad(display, mode->hdisplay))
+>>>>           return MODE_H_ILLEGAL;
+>>>>   -    fixed_mode = intel_panel_fixed_mode(connector, mode);
+>>>> +    fixed_mode = intel_panel_fixed_mode(connector, mode, NULL);
+>>>>       if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+>>>>           status = intel_panel_mode_valid(connector, mode);
+>>>>           if (status != MODE_OK)
+>>>> @@ -3577,9 +3577,9 @@ intel_dp_compute_config(struct intel_encoder 
+>>>> *encoder,
+>>>>       struct intel_connector *connector = 
+>>>> intel_dp->attached_connector;
+>>>>       int ret = 0, link_bpp_x16;
+>>>>   -    fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
+>>>> +    fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode, 
+>>>> conn_state);
+>>>>       if (intel_dp_is_edp(intel_dp) && fixed_mode) {
+>>>> -        ret = intel_panel_compute_config(connector, adjusted_mode);
+>>>> +        ret = intel_panel_compute_config(connector, adjusted_mode, 
+>>>> conn_state);
+>>>>           if (ret)
+>>>>               return ret;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dsi.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_dsi.c
+>>>> index 9005c1f5d857..a480bb79dca7 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dsi.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dsi.c
+>>>> @@ -64,7 +64,7 @@ enum drm_mode_status intel_dsi_mode_valid(struct 
+>>>> drm_connector *connector,
+>>>>       struct intel_display *display = 
+>>>> to_intel_display(connector->dev);
+>>>>       struct intel_connector *intel_connector = 
+>>>> to_intel_connector(connector);
+>>>>       const struct drm_display_mode *fixed_mode =
+>>>> -        intel_panel_fixed_mode(intel_connector, mode);
+>>>> +        intel_panel_fixed_mode(intel_connector, mode, NULL);
+>>>>       int max_dotclk = display->cdclk.max_dotclk_freq;
+>>>>       enum drm_mode_status status;
+>>>>   diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_dvo.c
+>>>> index 405b33aca9dd..0ec25d895777 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_dvo.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
+>>>> @@ -224,7 +224,7 @@ intel_dvo_mode_valid(struct drm_connector 
+>>>> *_connector,
+>>>>       struct intel_connector *connector = 
+>>>> to_intel_connector(_connector);
+>>>>       struct intel_dvo *intel_dvo = intel_attached_dvo(connector);
+>>>>       const struct drm_display_mode *fixed_mode =
+>>>> -        intel_panel_fixed_mode(connector, mode);
+>>>> +        intel_panel_fixed_mode(connector, mode, NULL);
+>>>>       int max_dotclk = display->cdclk.max_dotclk_freq;
+>>>>       int target_clock = mode->clock;
+>>>>       enum drm_mode_status status;
+>>>> @@ -259,7 +259,7 @@ static int intel_dvo_compute_config(struct 
+>>>> intel_encoder *encoder,
+>>>>       struct intel_connector *connector = 
+>>>> to_intel_connector(conn_state->connector);
+>>>>       struct drm_display_mode *adjusted_mode = 
+>>>> &pipe_config->hw.adjusted_mode;
+>>>>       const struct drm_display_mode *fixed_mode =
+>>>> - intel_panel_fixed_mode(intel_dvo->attached_connector, 
+>>>> adjusted_mode);
+>>>> + intel_panel_fixed_mode(intel_dvo->attached_connector, 
+>>>> adjusted_mode, conn_state);
+>>>>         /*
+>>>>        * If we have timings from the BIOS for the panel, put them in
+>>>> @@ -270,7 +270,7 @@ static int intel_dvo_compute_config(struct 
+>>>> intel_encoder *encoder,
+>>>>       if (fixed_mode) {
+>>>>           int ret;
+>>>>   -        ret = intel_panel_compute_config(connector, adjusted_mode);
+>>>> +        ret = intel_panel_compute_config(connector, adjusted_mode, 
+>>>> conn_state);
+>>>>           if (ret)
+>>>>               return ret;
+>>>>       }
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_lvds.c
+>>>> index cc6d4bfcff10..2e30bc3f1e62 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_lvds.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
+>>>> @@ -396,7 +396,7 @@ intel_lvds_mode_valid(struct drm_connector 
+>>>> *_connector,
+>>>>       struct intel_display *display = 
+>>>> to_intel_display(_connector->dev);
+>>>>       struct intel_connector *connector = 
+>>>> to_intel_connector(_connector);
+>>>>       const struct drm_display_mode *fixed_mode =
+>>>> -        intel_panel_fixed_mode(connector, mode);
+>>>> +        intel_panel_fixed_mode(connector, mode, NULL);
+>>>>       int max_pixclk = display->cdclk.max_dotclk_freq;
+>>>>       enum drm_mode_status status;
+>>>>   @@ -460,7 +460,7 @@ static int intel_lvds_compute_config(struct 
+>>>> intel_encoder *encoder,
+>>>>        * with the panel scaling set up to source from the H/VDisplay
+>>>>        * of the original mode.
+>>>>        */
+>>>> -    ret = intel_panel_compute_config(connector, adjusted_mode);
+>>>> +    ret = intel_panel_compute_config(connector, adjusted_mode, 
+>>>> conn_state);
+>>>>       if (ret)
+>>>>           return ret;
+>>>>   diff --git a/drivers/gpu/drm/i915/display/intel_panel.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_panel.c
+>>>> index 5e918ee0c8ea..65d017371d78 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_panel.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_panel.c
+>>>> @@ -59,24 +59,13 @@ intel_panel_preferred_fixed_mode(struct 
+>>>> intel_connector *connector)
+>>>>                       struct drm_display_mode, head);
+>>>>   }
+>>>>   -static bool is_best_fixed_mode(struct intel_connector *connector,
+>>>> -                   int vrefresh, int fixed_mode_vrefresh,
+>>>> +static bool is_best_fixed_mode(int vrefresh, int fixed_mode_vrefresh,
+>>>>                      const struct drm_display_mode *best_mode)
+>>>>   {
+>>>>       /* we want to always return something */
+>>>>       if (!best_mode)
+>>>>           return true;
+>>>>   -    /*
+>>>> -     * With VRR always pick a mode with equal/higher than requested
+>>>> -     * vrefresh, which we can then reduce to match the requested
+>>>> -     * vrefresh by extending the vblank length.
+>>>> -     */
+>>>> -    if (intel_vrr_is_in_range(connector, vrefresh) &&
+>>>> -        intel_vrr_is_in_range(connector, fixed_mode_vrefresh) &&
+>>>> -        fixed_mode_vrefresh < vrefresh)
+>>>> -        return false;
+>>>> -
+>>>>       /* pick the fixed_mode that is closest in terms of vrefresh */
+>>>>       return abs(fixed_mode_vrefresh - vrefresh) <
+>>>>           abs(drm_mode_vrefresh(best_mode) - vrefresh);
+>>>> @@ -84,15 +73,26 @@ static bool is_best_fixed_mode(struct 
+>>>> intel_connector *connector,
+>>>>     const struct drm_display_mode *
+>>>>   intel_panel_fixed_mode(struct intel_connector *connector,
+>>>> -               const struct drm_display_mode *mode)
+>>>> +               const struct drm_display_mode *mode,
+>>>> +               const struct drm_connector_state *conn_state)
+>>>>   {
+>>>>       const struct drm_display_mode *fixed_mode, *best_mode = NULL;
+>>>>       int vrefresh = drm_mode_vrefresh(mode);
+>>>>   +    /*
+>>>> +     * With VRR always pick the highest refresh rate mode,
+>>>> +     * which we can then reduce to match the requested
+>>>> +     * vrefresh by extending the vblank length.
+>>>> +     */
+>>>> +    if (conn_state && !conn_state->state->allow_modeset &&
+>>> The foo_state->state pointer should never be used. If you need the full
+>>> atomic state then plumb it through from the top.
+>>
+>> Hmm noted.
+>>
+>>
+>>>
+>>>> + intel_vrr_is_capable(connector) &&
+>>>> +        intel_vrr_is_in_range(connector, vrefresh))
+>>>> +        return intel_panel_highest_vrefresh_mode(connector);
+>>> What we want is the fixed mode that matches the current adjusted mode
+>>> exactly except for vtotal, and I think we also want to maintain the
+>>> vsync pulse location relative to vtotal.
+>>
+>> Oh alright. I was thinking the issue is in the best mode logic which 
+>> is resulting in lower mode getting picked when we wanted a higher 
+>> mode as best fixed mode.
+>>
+>> I was under the impression that since the vsync start/end of lower is 
+>> not the same with the higher mode and since this cannot be modified 
+>> on the fly, it results in full modeset.
+>>
+>> However, as you said, vsync start/end can be modified indeed the 
+>> problem becomes:
+>>
+>> - we are not scaling the vsync start/end similar to what we are doing 
+>> for vtotal.
+>> - even if we do that, we need to remove the check for vsync start/end 
+>> for fastboot.
+>>
+>> Another consideration is that is the vsync_start should be inside the 
+>> vrr guardband, but I think if the vsync_start scales up then it will 
+>> still be inside the guardband so we should be covered.
+>>
+>>
+>>>
+>>> We should in fact fix the vsync_start/end mess first.
+>>
+>> You mean the existing vsync_start/end change due to AS SDP thing? Or 
+>> you mean the above mentioned scaling up?
+>>
+>>
+>>> We need to add
+>>> TRANS_VSYNC handling to the LRR codepaths and allow that to change
+>>> during fastsets. And intel_panel_compute_config() needs to preserve
+>>> the vtotal-vsync distance when adjusting vtotal. I think that should
+>>> all be fine for DP since it doesn't really use TRANS_VSYNC for
+>>> anything.
+>>
+>> Hmm I think I got some direction here. Thanks for making it clearer.
+>
+>
+> Hi Ville,
+>
+> Going through the Bspec, I have a query on the TRANS_VSYNC part.
+>
+> For NVL onwards, the TRANS_VSYNC seems to be deprecated. As I 
+> understand, this is no more used with VRR timing generator, instead 
+> TRANS_VRR_VSYNC is used.
+> So we can avoid reading/writing it completely for platforms that 
+> support VRR Timing Generator.
+>
+> But for platforms using the legacy timing generator, BSpec says 
+> TRANS_VSYNC should not be changed while transcoder/port are enabled.
+> Given that, should we treat TRANS_VSYNC updates as modeset-only on 
+> legacy TG platforms, and only allow the fastset path where VRR TG is 
+> always used?
+>
+> Just wanted to make sure I’m interpreting your suggestion correctly 
+> before changing the fastset checks.
+>
+> Thanks,
+> Ankit
+>
+
+Just an update:
+
+Maintaining vtotal-vsync pulse seems to be working, along with the 
+change to always use highest RR mode as best mode.
+
+I still need to address the comment about avoid deriving allow_modeset 
+from connector state directly.
+
+Cc:
+
+Manasi Navare <navaremanasi@google.com>
+
+
+Regards,
+
+Ankit
+
+
+>
+>>
+>>
+>> Regards,
+>>
+>> Ankit
+>>
+>>>
+>>> +
+>>>>       list_for_each_entry(fixed_mode, 
+>>>> &connector->panel.fixed_modes, head) {
+>>>>           int fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
+>>>>   -        if (is_best_fixed_mode(connector, vrefresh,
+>>>> +        if (is_best_fixed_mode(vrefresh,
+>>>>                          fixed_mode_vrefresh, best_mode))
+>>>>               best_mode = fixed_mode;
+>>>>       }
+>>>> @@ -213,10 +213,11 @@ enum drrs_type intel_panel_drrs_type(struct 
+>>>> intel_connector *connector)
+>>>>   }
+>>>>     int intel_panel_compute_config(struct intel_connector *connector,
+>>>> -                   struct drm_display_mode *adjusted_mode)
+>>>> +                   struct drm_display_mode *adjusted_mode,
+>>>> +                   const struct drm_connector_state *conn_state)
+>>>>   {
+>>>>       const struct drm_display_mode *fixed_mode =
+>>>> -        intel_panel_fixed_mode(connector, adjusted_mode);
+>>>> +        intel_panel_fixed_mode(connector, adjusted_mode, conn_state);
+>>>>       int vrefresh, fixed_mode_vrefresh;
+>>>>       bool is_vrr;
+>>>>   @@ -414,7 +415,7 @@ intel_panel_mode_valid(struct intel_connector 
+>>>> *connector,
+>>>>                  const struct drm_display_mode *mode)
+>>>>   {
+>>>>       const struct drm_display_mode *fixed_mode =
+>>>> -        intel_panel_fixed_mode(connector, mode);
+>>>> +        intel_panel_fixed_mode(connector, mode, NULL);
+>>>>         if (!fixed_mode)
+>>>>           return MODE_OK;
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_panel.h 
+>>>> b/drivers/gpu/drm/i915/display/intel_panel.h
+>>>> index 2f7a317995ea..c1189a20c8b2 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_panel.h
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_panel.h
+>>>> @@ -32,7 +32,8 @@ const struct drm_display_mode *
+>>>>   intel_panel_preferred_fixed_mode(struct intel_connector *connector);
+>>>>   const struct drm_display_mode *
+>>>>   intel_panel_fixed_mode(struct intel_connector *connector,
+>>>> -               const struct drm_display_mode *mode);
+>>>> +               const struct drm_display_mode *mode,
+>>>> +               const struct drm_connector_state *conn_state);
+>>>>   const struct drm_display_mode *
+>>>>   intel_panel_downclock_mode(struct intel_connector *connector,
+>>>>                  const struct drm_display_mode *adjusted_mode);
+>>>> @@ -47,7 +48,8 @@ enum drm_mode_status
+>>>>   intel_panel_mode_valid(struct intel_connector *connector,
+>>>>                  const struct drm_display_mode *mode);
+>>>>   int intel_panel_compute_config(struct intel_connector *connector,
+>>>> -                   struct drm_display_mode *adjusted_mode);
+>>>> +                   struct drm_display_mode *adjusted_mode,
+>>>> +                   const struct drm_connector_state *conn_state);
+>>>>   void intel_panel_add_edid_fixed_modes(struct intel_connector 
+>>>> *connector,
+>>>>                         bool use_alt_fixed_modes);
+>>>>   void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector 
+>>>> *connector);
+>>>> diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c 
+>>>> b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>>>> index 2e1af9e869de..e07c1070a3ec 100644
+>>>> --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
+>>>> +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+>>>> @@ -797,7 +797,7 @@ intel_sdvo_create_preferred_input_timing(struct 
+>>>> intel_sdvo *intel_sdvo,
+>>>>         if (IS_LVDS(intel_sdvo_connector)) {
+>>>>           const struct drm_display_mode *fixed_mode =
+>>>> - intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
+>>>> + intel_panel_fixed_mode(&intel_sdvo_connector->base, mode, NULL);
+>>>>             if (fixed_mode->hdisplay != args.width ||
+>>>>               fixed_mode->vdisplay != args.height)
+>>>> @@ -1396,11 +1396,11 @@ static int intel_sdvo_compute_config(struct 
+>>>> intel_encoder *encoder,
+>>>>           pipe_config->sdvo_tv_clock = true;
+>>>>       } else if (IS_LVDS(intel_sdvo_connector)) {
+>>>>           const struct drm_display_mode *fixed_mode =
+>>>> - intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
+>>>> + intel_panel_fixed_mode(&intel_sdvo_connector->base, mode, 
+>>>> conn_state);
+>>>>           int ret;
+>>>>             ret = 
+>>>> intel_panel_compute_config(&intel_sdvo_connector->base,
+>>>> -                         adjusted_mode);
+>>>> +                         adjusted_mode, conn_state);
+>>>>           if (ret)
+>>>>               return ret;
+>>>>   @@ -1562,7 +1562,7 @@ static void intel_sdvo_pre_enable(struct 
+>>>> intel_atomic_state *state,
+>>>>       /* lvds has a special fixed output timing. */
+>>>>       if (IS_LVDS(intel_sdvo_connector)) {
+>>>>           const struct drm_display_mode *fixed_mode =
+>>>> - intel_panel_fixed_mode(&intel_sdvo_connector->base, mode);
+>>>> + intel_panel_fixed_mode(&intel_sdvo_connector->base, mode, 
+>>>> conn_state);
+>>>>             intel_sdvo_get_dtd_from_mode(&output_dtd, fixed_mode);
+>>>>       } else {
+>>>> diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c 
+>>>> b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>>>> index 76e8cd0f65a4..bfe465443d20 100644
+>>>> --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
+>>>> +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
+>>>> @@ -280,7 +280,7 @@ static int intel_dsi_compute_config(struct 
+>>>> intel_encoder *encoder,
+>>>>       pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+>>>>       pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
+>>>>   -    ret = intel_panel_compute_config(intel_connector, 
+>>>> adjusted_mode);
+>>>> +    ret = intel_panel_compute_config(intel_connector, 
+>>>> adjusted_mode, conn_state);
+>>>>       if (ret)
+>>>>           return ret;
+>>>>   --
+>>>> 2.45.2
