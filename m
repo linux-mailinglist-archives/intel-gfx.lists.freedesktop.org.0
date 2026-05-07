@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sKo4K7Xr+2kaIQAAu9opvQ
+	id SPaHDLfr+2llIQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 623504E2014
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 026444E201B
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:38 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD58110EF69;
-	Thu,  7 May 2026 01:32:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7873210EF6B;
+	Thu,  7 May 2026 01:32:37 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P9TeuE1o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nn9EfkmE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A47D210EF67;
- Thu,  7 May 2026 01:32:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2376710EF6B;
+ Thu,  7 May 2026 01:32:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778117554; x=1809653554;
+ t=1778117556; x=1809653556;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=SZSKMdDic9oa7kZa7FBUA4P58RDbzQ7dJKwrYVX06Ng=;
- b=P9TeuE1oMppTg18dE+8en7EqtVBJtsMhhWzG7n+Ngt00khu/ymxOD3P+
- RUlIIi7KfOE7cskeyyTGbA01+v6qaEqxpobtgri123h57qz/vDXhMQvL9
- 8kPiVD7q9Z6qHyBZRmeTkgDC1TaWI/JFvejrMhMciFOigdllbgmgMehWv
- KwYRwUF0epRS25SBlt6wxJr9fR2IyeOGP+egQbfv+26q9iMgx+OYmBV+v
- 0ceH2XftonprvjZaFiOochSA3MsxVIJ7xS4Lb0CG5MmJ/dWhRsBsWYabt
- 33pEyY0H6TMbtN3cB0XkHqvX0uHidAYBeaTnr+ps11dBEz+GrpFU/Sxpn w==;
-X-CSE-ConnectionGUID: bwrbphx7TJemx5g3n+yQgg==
-X-CSE-MsgGUID: /zn+xd6WTM6IUCIOvSF4CQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089062"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089062"
+ bh=OKIY8gpYQ+xkHXiu6za78ife2ZM6h/v7TwgRQriUEmM=;
+ b=Nn9EfkmEsiwfi3ESTNCe9mtwj0b/7OTY57nbygZUWCz9PGUJ8WrILkvW
+ DdTMBIislxtH53k4zn+E0QtavN3DLFCtUmrK/DxyhL+L8JS0pJffTWFQv
+ wqGyGzBrKH65M2cULyK0018Ac0k2NOB3enRnlWky/m7PHCyjU41j79gXC
+ u/sL8I+kfjE6Utwt2ZbvJ2VqteAsESGXrBuk91cCoRl6s592pHXOutam2
+ aXthdS218NmPbw81Rm8TtI4ny55E5oLi+vJBxQFvAgcP8p6yex8gUaskK
+ BLnqYQM2jVO/CgiOuKEvLXTOsuRgJqhQFJS5rz7iXGiDMxJwhdpimD9c5 Q==;
+X-CSE-ConnectionGUID: 2tqwGaZLQUqmeeRTc/Ipzg==
+X-CSE-MsgGUID: KdBgZLhjRXOOvrwOHg1hUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089065"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089065"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 18:32:34 -0700
-X-CSE-ConnectionGUID: sN940FhXSlu513RPrhwZYA==
-X-CSE-MsgGUID: K7AfZ6mjR3aC8WU63ZX7ew==
+ 06 May 2026 18:32:36 -0700
+X-CSE-ConnectionGUID: 1sVz3Mb2QZWvZlxVPXMbtg==
+X-CSE-MsgGUID: cNDFqqx3Qp2p4L2W89xJUA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692895"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692900"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:32:33 -0700
+ by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:32:35 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, suraj.kandpal@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 28/31] drm/i915/buf_trans: enumerate EHL's VS/PE-O indices
-Date: Thu,  7 May 2026 03:31:34 +0200
-Message-ID: <20260507013137.527510-29-michal.grzelak@intel.com>
+Subject: [PATCH v3 29/31] drm/i915/bios: parse JSL's VS/PE-O tables
+Date: Thu,  7 May 2026 03:31:35 +0200
+Message-ID: <20260507013137.527510-30-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260507013137.527510-1-michal.grzelak@intel.com>
 References: <20260507013137.527510-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 623504E2014
+X-Rspamd-Queue-Id: 026444E201B
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -104,92 +104,46 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Encapsulate EHL's VS/PE-O's indices in enum ehl_vspeo_index.
+JSL's VS/PE-O tables' layout is identical to EHL's. Parse it same way.
 
-Use index of -1 as an indication of error case. Refer to it as EHL_ERR.
-
-1st VS/PE-O's table is used for external DP with modes below HBR2
-(exclusive). With same supported modes, it is also used for eDP that
-does not use low vswing. 1st table is also used as a fallback for
-non-DPs. Refer to it as EHL_DP_HBR.
-
-2nd table is used for external DP with modes above HBR2 (inclusive).
-With same supported modes, it is also used for eDP that does not use low
-vswing. Refer to it as EHL_EDP_HBR2.
-
-3rd table is used for eDP supporting HBR3 and using low vswing. Refer to
-it as EHL_EDP_HBR3.
-
-Indices for other tables have not yet been observed to be used as of
-now.
+Add JSL to workaround for availability of VS/PE-O parsing.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c | 12 ++++++------
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h |  8 ++++++++
- 2 files changed, 14 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c | 10 +++++++---
+ 1 file changed, 7 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-index 36ba0ed4ddc68..067ab47c00883 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
-@@ -1786,31 +1786,31 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
- 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
- }
- 
--static int
-+static enum ehl_vspeo_index
- ehl_compute_index(struct intel_encoder *encoder,
- 		  const struct intel_crtc_state *crtc_state)
- {
- 	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
- 		if (use_edp_low_vswing(encoder)) {
- 			if (crtc_state->port_clock > 540000)
--				return 2;
-+				return EHL_COMBO_EDP_HBR3;
- 			else
--				return 1;
-+				return EHL_COMBO_EDP_HBR2;
- 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index 9138ec64b6b1c..22bbc659e24e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -2289,10 +2289,12 @@ parse_vswing_preemph_override(struct intel_display *display)
+ 	} else if (DISPLAY_VER(display) >= 14) {
+ 		parse_vswing_preemph_snps(bufs_mtrx, block);
+ 	} else if (DISPLAY_VER(display) == 11) {
+-		if (display->platform.elkhartlake)
++		if (display->platform.elkhartlake ||
++		    display->platform.jasperlake) {
+ 			parse_vswing_preemph_icl(bufs_mtrx, block);
+-		else
++		} else {
+ 			drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
++		}
+ 	} else {
+ 		drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
+ 	}
+@@ -2758,8 +2760,10 @@ static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
+ 	} else if (DISPLAY_VER(display) >= 14) {
+ 		parseable = true;
+ 	} else if (DISPLAY_VER(display) == 11) {
+-		if (display->platform.elkhartlake)
++		if (display->platform.elkhartlake ||
++		    display->platform.jasperlake) {
+ 			parseable = true;
++		}
  	}
  
- 	if (intel_crtc_has_dp_encoder(crtc_state)) {
- 		if (crtc_state->port_clock > 270000)
--			return 1;
-+			return EHL_COMBO_EDP_HBR2;
- 		else
--			return 0;
-+			return EHL_COMBO_DP_HBR;
- 	}
- 
- 	drm_WARN(to_intel_display(crtc_state)->drm, 1,
- 		 "non-DP (%d) encoder asks to compute VS/PE-O index\n",
- 		 crtc_state->output_types);
- 
--	return -EINVAL;
-+	return EHL_ERR;
- }
- 
- static enum snps_c10_vspeo_index
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index a8c998fa339e6..aa2a47445af76 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -107,6 +107,14 @@ enum snps_c10_vspeo_index {
- 	C10_EDP_HBR3
- };
- 
-+enum ehl_vspeo_index {
-+	EHL_ERR = -1,
-+
-+	EHL_COMBO_DP_HBR = 0,
-+	EHL_COMBO_EDP_HBR2,
-+	EHL_COMBO_EDP_HBR3
-+};
-+
- bool is_hobl_buf_trans(const struct intel_ddi_buf_trans *table);
- 
- void intel_ddi_buf_trans_init(struct intel_encoder *encoder);
+ 	if (!parseable)
 -- 
 2.45.2
 
