@@ -2,156 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SPwNNa05/GmUMwAAu9opvQ
+	id 2LZeDe9F/Gn9NgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 09:05:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 09:57:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3EEBB4E3D6B
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 09:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C03D4E44DA
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 09:57:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BE9A10EF79;
-	Thu,  7 May 2026 07:05:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D451F10E030;
+	Thu,  7 May 2026 07:57:32 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oKefP0mb";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="2OkjnZeq";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5KgvGOkr";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="2OkjnZeq";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="5KgvGOkr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3713710E1B5;
- Thu,  7 May 2026 07:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778137514; x=1809673514;
- h=date:from:to:cc:subject:message-id:mime-version;
- bh=oygo/6XQsaVgAAZ/tcSDUJHUqelXbZqybRb8Zlzpqlg=;
- b=oKefP0mbJM+FDGqnDT9NaDWmf+cW9Tve2QKVrj49G1Hzn+pEmrYlegmZ
- PkMTxzmMTsdoIj41YlX9dHzU4oG8KIbGamEAUX6NuZRlQhavnmNITmN2A
- LSICA2l7JXnnhLJZNp39c6GdtUtXKMzX67ZLpciacNTANyswSNGO/rzhx
- hRQIRWxqdoXMzxzYpeV5KGUWSiTj34qLbOzU2lsua8LSxmoQbzYlCg/XQ
- eTJN5AHaZV+P0xUwh83wb5ejjCIRu7lPPJ9J5HSRK9fT0KwSSH9SZEWaJ
- YPDrJaVLdwLm+YNiMoAR+xZ5V4XBUobswdFACi4Pnm3zZc14FStNz/eSs g==;
-X-CSE-ConnectionGUID: s50jmlpGSGii73XRwXLv1A==
-X-CSE-MsgGUID: qicbXo+GRmyiMd37yQ1kmA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="89387885"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="89387885"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 00:05:13 -0700
-X-CSE-ConnectionGUID: S8re0N5XQQiQtgpgBWi2UQ==
-X-CSE-MsgGUID: 8B3aQl8DSyizve+ZEHEk4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="235528971"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 00:05:11 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 7 May 2026 00:05:10 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 7 May 2026 00:05:10 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.43)
- by edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 7 May 2026 00:05:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=TrLSMMLQPM8xPZ9uZ90P9nUdX2fyxTYERG86SUwqco0HNwxToqYGJ4qD7+YqJ2JVN6PwNqIcHd4Fg9NFTkBTTgxExBqY/DO+nctlQEkcZIZdfC5Z2LHurhR2lWFAPZmxWYQsnvl7HAJXx8o2sGGWU5fYq+rt8NJIXSBWXlrx2+MRk0c2fnj647f7l1bwlY+X5wN1rLTmHkcuzCme3sWjM8R5KDyfAJ/niCZfHTZEpgxmgtSaie9oXK0WP1Z3lDcGLHoLv4KW4V0s+uU+eSFbV9yiDw5ajITIvHxtrhEbeuG+6YlxJUDyAJnOzzjhfaENv0ah83DcvrqXXxmP7uCr6w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IMIFAKTiVS6bEk5hc3gHP8SnCp33FnABmM2a/mP2ujA=;
- b=YJvrYjfy0/JqiAYeFvwPYGZ31blb5hphiD5mYk+x4/2XwwkqoE+JpiM2lzrOvDcQl9+sOMpitvG5uAkMLFupJtl0CUmdPcR+ClyxBeRT8vOcQZfVqmrnIrfK34uBfUpaWVsX15vdpHhZ4QETwZTm2c/Vc2iNls+9Rc54B/p14POrqY1L2ES1z4GRiNaXXpWNbLaK4r+pRz7u/eZM9bMJAJh45KChgNfhbiMJdAC4MxNLF2hSBvBSpidoh4sVFa835ioD1QJs7zrZ4NNHVPGyTZZ2qvuTj28vZA5Y9tvN9CefUM8Klyc43Rl4htwQfShg40UuFYLmP9k8VUzdGLEMHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com (2603:10b6:208:38f::5)
- by IA1PR11MB6098.namprd11.prod.outlook.com (2603:10b6:208:3d6::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.15; Thu, 7 May
- 2026 07:05:02 +0000
-Received: from BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5]) by BL3PR11MB6508.namprd11.prod.outlook.com
- ([fe80::53c9:f6c2:ffa5:3cb5%7]) with mapi id 15.20.9891.008; Thu, 7 May 2026
- 07:04:59 +0000
-Date: Thu, 7 May 2026 00:04:54 -0700
-From: Matthew Brost <matthew.brost@intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-CC: Jani Nikula <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Thomas Zimmermann
- <tzimmermann@suse.de>, Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>, "Oded
- Gabbay" <ogabbay@kernel.org>, <dri-devel@lists.freedesktop.org>,
- <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
- <dim-tools@lists.freedesktop.org>
-Subject: [PULL] drm-xe-fixes
-Message-ID: <afw5lsrjE4pStEml@gsse-cloud1.jf.intel.com>
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-X-ClientProxiedBy: BYAPR04CA0013.namprd04.prod.outlook.com
- (2603:10b6:a03:40::26) To BL3PR11MB6508.namprd11.prod.outlook.com
- (2603:10b6:208:38f::5)
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C29310E1D6
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 07:57:31 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 347DB6C1C3;
+ Thu,  7 May 2026 07:57:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1778140650; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7jF9J+Wg7SinKJYid/BjcHCj3FnLa9dFlCRWThIMBJM=;
+ b=2OkjnZeqJ0kBEFk7Qymm4/k/Zp891wkoAg2xbc7nNbLIEnzz+ZmfTUFTu5EhZBQVMU2Bke
+ yO5/D9+eos5p4rQtjfjqLroyyl1Q8JelwC557YyehUTxjZguHTe/+G1eP99cFm8DvFHF10
+ mRDe/jXHpCpq93LpE+eCtHNx2yIgzGo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1778140650;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7jF9J+Wg7SinKJYid/BjcHCj3FnLa9dFlCRWThIMBJM=;
+ b=5KgvGOkrd//70d7JmxMFvds/ySAryapij+MQVX9J8KfcYZeXMcYTtCHv27MYx7GcWETgjw
+ YMPX4NjFOvxYBeAw==
+Authentication-Results: smtp-out1.suse.de;
+	none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1778140650; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7jF9J+Wg7SinKJYid/BjcHCj3FnLa9dFlCRWThIMBJM=;
+ b=2OkjnZeqJ0kBEFk7Qymm4/k/Zp891wkoAg2xbc7nNbLIEnzz+ZmfTUFTu5EhZBQVMU2Bke
+ yO5/D9+eos5p4rQtjfjqLroyyl1Q8JelwC557YyehUTxjZguHTe/+G1eP99cFm8DvFHF10
+ mRDe/jXHpCpq93LpE+eCtHNx2yIgzGo=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1778140650;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=7jF9J+Wg7SinKJYid/BjcHCj3FnLa9dFlCRWThIMBJM=;
+ b=5KgvGOkrd//70d7JmxMFvds/ySAryapij+MQVX9J8KfcYZeXMcYTtCHv27MYx7GcWETgjw
+ YMPX4NjFOvxYBeAw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id B5110593A7;
+ Thu,  7 May 2026 07:57:29 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id EFrCKulF/GnZJAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 07 May 2026 07:57:29 +0000
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: mripard@kernel.org, maarten.lankhorst@linux.intel.com, airlied@redhat.com,
+ airlied@gmail.com, simona@ffwll.ch, admin@kodeit.net,
+ gargaditya08@proton.me, paul@crapouillou.net, zack.rusin@broadcom.com,
+ bcm-kernel-feedback-list@broadcom.com
+Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: [PATCH 00/10] drm: Improve logic behind damage handling
+Date: Thu,  7 May 2026 09:12:19 +0200
+Message-ID: <20260507075725.29738-1-tzimmermann@suse.de>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: BL3PR11MB6508:EE_|IA1PR11MB6098:EE_
-X-MS-Office365-Filtering-Correlation-Id: 38bb7b5c-44b7-4e7a-b325-08deac06f37a
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|376014|7416014|1800799024|18002099003|56012099003; 
-X-Microsoft-Antispam-Message-Info: 5LgwIcpmrw0TCT/GexSjji6Hpsn7k1rx8wOxuA+zoW/vxyMgoW1yTXC/Jmd8LbQ6YGYd9mny+4fS4a8NztdhQmteSmarLPUHFeikOPtnitlERgQCyDo1V4b1ku2tggm2653cJ1SrclSq5TZUoAii2iuyfs360LTYEuboiiaeXnYjFsypdymTWe3BaK7MVkJlrP/xe5yuZqRaxD0LjnMXCMKFvrzMAkFBTi8gZDrZ9sYkEVy5RKf3rdgi48IfPypXA9C1b/9mzN+oc72/M7QBT9qVzUYNknQjf0lTghjvsmqjSKwz+W2cKtOMWO+/sQ1Wg4RRBGkXDVWNw7Gh73f8apMnckIedTHNQuAhP74X4yEobtZpiH8jJMphVNm7Mc/tzadY2TlD1twsgSCD/y4YmJuxjpE9kfoVLkGpDMQsbVU4bPp8kCpXqBrao+dXrHuzjQxyZS1DdJWBVbAb+8CVchWA6WSrwAA5rEcBB+/VAVLG4UHsdsEOPWCIE1UHWTBY79E74pYXK8QK7w2F9HvqdkBUkJdFJXiNFxICJFXaDkGIjMPdzzCmEIfHMgM2dR40bH/r389XryiXTxbco6VQzadvcyCkQdh+PuFoG5JMmnsWBaQSstHou0MeChX/WEtdCJzcH7ulKdQOPsTIwkboJw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:BL3PR11MB6508.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(376014)(7416014)(1800799024)(18002099003)(56012099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?udbCbhzH51P3WpaB9GiPR+jOBmYsQyBBSws5N5+eAYIDH4PytlJyR21/N5rb?=
- =?us-ascii?Q?RABmP4K6Ue45sqJA6XLd0EhacNgWHSJ7mc9hoiRVhKzogKdWzAEcOxF3kU80?=
- =?us-ascii?Q?/jXHWeaoeP5BqgkVUc+NdwiZOfaQdfssSaKjR1uH+EOQys4q6AIj+F6O7uGX?=
- =?us-ascii?Q?HHkpaKCwRmu/Q6EcsBOFZZ2uYjCC2g9hPC6mcZll/pV00S/9HwzF8Qsaenqb?=
- =?us-ascii?Q?bORAjLbVK5RaXnuhBu+N8SESLEEFWB0RkFcy9UWRSKY1n/5IT0Lj/Zz44jEz?=
- =?us-ascii?Q?ER45iFEj3jbF0hnr6ylh7sCWLCKUVl3dRt7zvF9BzYNwH62DjoUlfTE6bXWW?=
- =?us-ascii?Q?sSs0h8hr3m2nIObaPUKc7gjUBEwKxu7Ien5GH0srsNsNM5sxKsX1+YIhv++M?=
- =?us-ascii?Q?qcPWzUzg41J4qpg0BVhLRVATtJnXKDUAih+UiGSEPzp41GxM1T8uwioL3ffN?=
- =?us-ascii?Q?OFuFsPtXbc0Y57MreX1vzg22cMYQhQFwOajPU2atmjPPxqI0fM1LfyrIGVmn?=
- =?us-ascii?Q?tEPZL/WXMN1jHCV0aHy/xOPxKqGHZYau3akuU7+/MyDh6gukKefwSWm9yDAH?=
- =?us-ascii?Q?XKcafnx3w0RvFSV68lYL30ixfubNMNb0fV9rrGhRFKsfpzWPWr7tvnfH4NtF?=
- =?us-ascii?Q?2bXIAouTo68zwFuYLmPSbE8bkc/t+Fimf05aiBcaFGeF6rB8jfIUC1nxpBiA?=
- =?us-ascii?Q?ojR8qqutlFYbxVUGiIovSKBdYIyteUbW5Qia27nheX5xn76PDZCSjBKBkOX7?=
- =?us-ascii?Q?a81evQEjLRrqzM9LSdsGi19OdwLX8hcieZ7vFm/S7SCGzHMf5GJHGzcgBg19?=
- =?us-ascii?Q?FXwxn5cf0uTmWj+Veu2IMejkOEnvNjmr/Lvjil2ef+jqJdqUMLVlHbUvg08H?=
- =?us-ascii?Q?fU8Uyy1wqicHpOpX82JKLnQEETsAN1ZfDz8LffkV/35IJ1sW5t0Pklq7Z6pd?=
- =?us-ascii?Q?dDeYjZ5sguQw2k+t6QnQgoPp6zrrd+qaOWi6AIES9WwxwNPjfCeCSg5Wj8Ds?=
- =?us-ascii?Q?w816TFvZIiG+nXYgtBiIaWS9qwMEZaNxiiNxeoUmEIQZD1mbhREpzEUfI953?=
- =?us-ascii?Q?Nq/mT3w6QRpMUmhqfTdR27ccU65bWe6hrTgD+/XpOHJ3cs8eRoaC2P1PAwT3?=
- =?us-ascii?Q?AOL9kVccj+/yckv1EHeD+o9Nq5yGIZwxauFBIEsDdIliRXbavavabjj4Wy/v?=
- =?us-ascii?Q?mlfIwl3jfBrcDycuRh4TQKAYsSvYXTyzLKq3hUH5mvcXjX6A9QXiYfyZ70Ry?=
- =?us-ascii?Q?28T/Ggy6M8fP2yl+cIN/InC8CsXNTwvjv5y06mwjkSapGLqdpBkJ6YrpvoFO?=
- =?us-ascii?Q?Dlt/zk5RrcJDUEcCH24qJOHY6TVKee5vPb+rWIuB6yZ46WFklSl7snkb2rPS?=
- =?us-ascii?Q?t5SfO2CbWzGGkFKDXvqJH/HsOpGu6g3o6ya/rUj/mHG7pgkd8XOHnMffYE1H?=
- =?us-ascii?Q?wSFozYkvFsUW2an2ga8kkxJvVpWcEwGtaC9wtZy3kJEcKkWrPY7TCs9eimNO?=
- =?us-ascii?Q?X6et5WbWzJ/n+CqwJUsfUDMWen7eQBDF3ZLMzXvmlDRVWtXhxcvX5fFM8LmS?=
- =?us-ascii?Q?6NpeoY8gKAR8eweELLgThWaTNkz5iYpuMQU4nHZ29EDO+8hGG0YBNS4drIP4?=
- =?us-ascii?Q?6sYHfX6eCC7kKQbS/tb308/+t06xMKvEvE3WBAccNlOkzQdMyKITNFlXCHsX?=
- =?us-ascii?Q?91EBqZ/BAItk75UGPgqXxjRNyY2Nr3WLSBSZ9MoF/kgUYg+utfmQ67OaW0hv?=
- =?us-ascii?Q?qzI/IdCTVZe0J1qSMVec3o0uqXApxlo=3D?=
-X-Exchange-RoutingPolicyChecked: tgDZ/cA1SyI4pGXOsLxGpfec/MOl60wC0/4oSyBplVpYPEm+LGLMrVyhWpKdFZLfnDhhNl1RkLBTmlSV12XpHCxL9P9E8VRCVLdmgwgLGXwXmaYxJWOOMrBFFu4asbK1Ni06inKnzRVKPM4kBjB0FG0zodGl+1unwg71oppOOFmzNWV8zAl0smgfAE6FutlsYWHb11MH5qYaQOMQesW2IPR1AKAUJ/Pe7D23sO3BxEaV+3YxmmrSErV7LylMYxyoOaZmirB0i6fKHr1kwjAjbUUDfNYFNVcidGD+171CvauD0LT7gYfVtfkTlNyzFjXPHQvYv5Ii66lqILILcxS3Pg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 38bb7b5c-44b7-4e7a-b325-08deac06f37a
-X-MS-Exchange-CrossTenant-AuthSource: BL3PR11MB6508.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 May 2026 07:04:58.9594 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: I3wJ6bJvZVnsZPZd2yn35NBuExYC0e2J7VlfpY3wHkgv2q+KFyrC1WH0/qmbjKkj4FCdqPgBlfryr4CP7f+BAA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB6098
-X-OriginatorOrg: intel.com
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -2.80
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -166,95 +100,141 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3EEBB4E3D6B
+X-Rspamd-Queue-Id: 8C03D4E44DA
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@redhat.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:admin@kodeit.net,m:gargaditya08@proton.me,m:paul@crapouillou.net,m:zack.rusin@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dri-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mips@vger.kernel.org,m:virtualization@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
+	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,redhat.com,gmail.com,ffwll.ch,kodeit.net,proton.me,crapouillou.net,broadcom.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gsse-cloud1.jf.intel.com:mid];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[matthew.brost@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[suse.de:+];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Action: no action
 
-Dave, Sima
+DRM clients can supply information on framebuffer areas to update as
+part of each page flip, called damage clipping rectangles. But DRM's
+processing of this information is inconsistent and prone to errors.
 
-Here is this weeks PR for for drm-xe-fixes. Nothing major, just a few
-small fixes.
+- There are multiple fields and tests that decide if damage clips
+should be taken or ignored.
 
-Matt
+- Sometimes, damage clips are removed behind the back of the DRM client.
 
-drm-xe-fixes-2026-05-07:
-UAPI Changes:
+- Atomic helpers evaluate damage clipping in the middle of the atomic
+check: after connectors and encoders, but before planes and CRTCs. Hence
+pipeline stages have an inconsistent view.
 
-Cross-subsystem Changes:
+- Which leads to drivers (ingenic) doing a re-evaluation if necessary.
 
-Core Changes:
+- Tests of plane source coordinates only happen during commits. At this
+point, the driver should already know if damage clips are to be taken or
+not. Because of this, some drivers (appletbdrm) might operate on incorrect
+damage information for their internal workings. This also leads to excessive
+use of the old plane state.
 
-Driver Changes:
-- Add NULL check for media_gt in intel_hdcp_gsc_check_status (Gustavo)
-- Fix EAGAIN sign in pf_migration_consume (Shuicheng)
-- Fix MMIO access using PF view instead of VF view during migration (Shuicheng)
-- Exclude indirect ring state page from ADS engine state size (Satya)
-The following changes since commit 7fd2df204f342fc17d1a0bfcd474b24232fb0f32:
+Got through DRM helpers and drivers to fix up the logic.
 
-  Linux 7.1-rc2 (2026-05-03 14:21:25 -0700)
+- Run all of the atomic checks with the damage information supplied by
+DRM clients. Afterwards evaluate plane and CRTC states on whether to
+take or ignore damage clips. Do all related tests in a single atomic
+helper.
 
-are available in the Git repository at:
+- Do not discard damage clips. Set ignore_damage_clips in struct
+drm_plane_state instead. This includes changes to plane source-coordinates.
+The damage iterator now only has to look at this flag to detect if it
+should use the damage clips. 
 
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2026-05-07
+- Go over drivers and fix up the damage handling in the plane's
+atomic_update helpers. Most drivers no longer need the old plane state
+in their update.
 
-for you to fetch changes up to b29987dfd943e655df6e3b641ecffad5cc1509c2:
+- The appletbdrm driver require a fix in how it uses damage information.
+Ingenic and vmwgfx can be simplified. These changes make the drivers better
+structured.
 
-  drm/xe/guc: Exclude indirect ring state page from ADS engine state size (2026-05-05 16:15:04 -0700)
+- Kunit tests require some changes. Drop some obsolete tests and add a new
+one for ignore_damage_flags.
 
-----------------------------------------------------------------
-UAPI Changes:
+Tested with bochs, mgag200, Kunit tests.
 
-Cross-subsystem Changes:
+Thomas Zimmermann (10):
+  drm/damage-helper: Do not alter damage clips on modeset, but ignore
+    them
+  drm/atomic-helpers: Evaluate plane damage after atomic_check
+  drm/ingenic: Remove calls to drm_atomic_helper_check_plane_damage()
+  drm/damage-helper: Test src coord in
+    drm_atomic_helper_check_plane_damage()
+  drm/appletbdrm: Allocate request/response buffers in begin_fb_access
+  drm/damage-helper: Remove old state from
+    drm_atomic_helper_damage_iter_init()
+  drm/damage-helper: Remove old state from
+    drm_atomic_helper_damage_merged()
+  drm/atomic_helper: Do not evaluate plane damage before atomic_check
+  drm/damage-helper: Rename state parameters in damage helpers
+  drm/vmwgfx: Remove unused field struct
+    vmwgfx_du_update_plane.old_state
 
-Core Changes:
+ drivers/gpu/drm/ast/ast_cursor.c              |   3 +-
+ drivers/gpu/drm/ast/ast_mode.c                |   2 +-
+ drivers/gpu/drm/drm_atomic_helper.c           |   6 +-
+ drivers/gpu/drm/drm_atomic_state_helper.c     |   1 +
+ drivers/gpu/drm/drm_damage_helper.c           |  44 ++--
+ drivers/gpu/drm/drm_fb_dma_helper.c           |   2 +-
+ drivers/gpu/drm/drm_mipi_dbi.c                |   3 +-
+ drivers/gpu/drm/gud/gud_pipe.c                |   3 +-
+ drivers/gpu/drm/hyperv/hyperv_drm_modeset.c   |   3 +-
+ drivers/gpu/drm/i915/display/intel_plane.c    |  11 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |   3 +-
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c     |   3 -
+ drivers/gpu/drm/ingenic/ingenic-ipu.c         |   8 +-
+ drivers/gpu/drm/mgag200/mgag200_mode.c        |   3 +-
+ drivers/gpu/drm/sitronix/st7571.c             |   3 +-
+ drivers/gpu/drm/sitronix/st7586.c             |   3 +-
+ drivers/gpu/drm/sitronix/st7920.c             |   3 +-
+ drivers/gpu/drm/solomon/ssd130x.c             |   9 +-
+ drivers/gpu/drm/sysfb/drm_sysfb_modeset.c     |   3 +-
+ .../gpu/drm/tests/drm_damage_helper_test.c    | 200 +++---------------
+ drivers/gpu/drm/tiny/appletbdrm.c             |  56 +++--
+ drivers/gpu/drm/tiny/bochs.c                  |   3 +-
+ drivers/gpu/drm/tiny/cirrus-qemu.c            |   2 +-
+ drivers/gpu/drm/tiny/gm12u320.c               |   2 +-
+ drivers/gpu/drm/tiny/ili9225.c                |   3 +-
+ drivers/gpu/drm/tiny/repaper.c                |   2 +-
+ drivers/gpu/drm/tiny/sharp-memory.c           |   3 +-
+ drivers/gpu/drm/udl/udl_modeset.c             |   3 +-
+ drivers/gpu/drm/virtio/virtgpu_plane.c        |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.c           |   5 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_kms.h           |   2 -
+ drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c          |  12 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c          |  15 +-
+ include/drm/drm_damage_helper.h               |   9 +-
+ 34 files changed, 124 insertions(+), 311 deletions(-)
 
-Driver Changes:
-- Add NULL check for media_gt in intel_hdcp_gsc_check_status (Gustavo)
-- Fix EAGAIN sign in pf_migration_consume (Shuicheng)
-- Fix MMIO access using PF view instead of VF view during migration (Shuicheng)
-- Exclude indirect ring state page from ADS engine state size (Satya)
+-- 
+2.54.0
 
-----------------------------------------------------------------
-Gustavo Sousa (1):
-      drm/xe/hdcp: Add NULL check for media_gt in intel_hdcp_gsc_check_status()
-
-Satyanarayana K V P (1):
-      drm/xe/guc: Exclude indirect ring state page from ADS engine state size
-
-Shuicheng Lin (2):
-      drm/xe/pf: Fix EAGAIN sign in pf_migration_consume()
-      drm/xe/pf: Fix MMIO access using PF view instead of VF view during migration
-
- drivers/gpu/drm/xe/display/xe_hdcp_gsc.c      | 12 ++++++++++--
- drivers/gpu/drm/xe/xe_gt_sriov_pf_migration.c |  8 ++++----
- drivers/gpu/drm/xe/xe_guc_ads.c               |  5 +----
- drivers/gpu/drm/xe/xe_lrc.c                   | 11 +++++++++--
- drivers/gpu/drm/xe/xe_lrc.h                   |  2 +-
- drivers/gpu/drm/xe/xe_sriov_pf_migration.c    |  7 ++++---
- 6 files changed, 29 insertions(+), 16 deletions(-)
