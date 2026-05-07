@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iDGUJbHr+2kaIQAAu9opvQ
+	id kMpvA7Xr+2kaIQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:37 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EC4D4E2004
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 766EA4E200D
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:36 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EC0D410EF65;
-	Thu,  7 May 2026 01:32:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 058E610EF68;
+	Thu,  7 May 2026 01:32:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oByQXOXm";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="F5baQCca";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBB5210EF63;
- Thu,  7 May 2026 01:32:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2444F10EF68;
+ Thu,  7 May 2026 01:32:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778117550; x=1809653550;
+ t=1778117554; x=1809653554;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zXrL8qBO6dFGApsWQm1COtJ7EQPwniRwbXO61yDcb/o=;
- b=oByQXOXmkNx3TNqgzPSGG7Z9lRdA8Btz83A+udKG+kw3tOIbW/t+3KxM
- /1cseq0ec5n5fsdQWrl7MX9oaWNpxT9RSYBaCHiGOzdSzS3a7bdhDfyAY
- USgDQyBAg5x4JVMiieKKRDZ6aSQt5beVnaL2sqWgbjokPIrTdN2ySODjI
- Nj6jFfiEIv1+Plpz+uzIsNcoUeH0uFWcXmHprSBiK9fIlYshTDadH3Sbj
- o9hzPXI/J3K21JKTlwGpBBKdTcyKoLSs//zd84nVLojJiJieqXiZQl7/V
- ZGADKmwjoVW7EALbfyjqBTR05qFB+codbhHuj6SIPNeroyrl2M66xwdJr A==;
-X-CSE-ConnectionGUID: 61oau4hRSOigo+UeZihUmw==
-X-CSE-MsgGUID: qiFg1PO1STGgnygU5JK90A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089054"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089054"
+ bh=1cnw3OSeEIDPY4M/GQ8OPaLchdH9BOyOkPDILwUqcH4=;
+ b=F5baQCcakhOmkqU1i3se6I+dWH7Ibcckmw1ehA3krlxhHaXD6CQRAks+
+ hz6fnSGBefYnCvdpJku9qsQ+fwykE4urjIVAe8WX6jyr4FOOTL/TMeFbv
+ A7r0D5VccThh8ZJbIpX0Tfq85fKAnx/PbQKN3bR/CDs/i9xf4uWynwt7m
+ mxH8i2MZDi7ETol4L5YkVo8XK1D+2YWPEVf8Xkem+uMmIBBk7CN9kgYVI
+ rGdIzuBxT0pMlfmTZXGVeSmdhtIkAL8v+VOxJZdGwNzZOuWrgHeVmOMm7
+ 3iJXVSSFX1TD1iEAaujSJ6Wde4KTNHsB77vCTsTuapwc4PgFSZI4UwB6U A==;
+X-CSE-ConnectionGUID: jPcpd5PWQyKn5K1tLLdU2w==
+X-CSE-MsgGUID: TcYOeTVkQxmracMG/ry9YQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089061"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089061"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 18:32:29 -0700
-X-CSE-ConnectionGUID: mrUCiJ0oShWRFqgcGdf0jw==
-X-CSE-MsgGUID: 0+YDQIZPS9mC4wsjxkQzkA==
+ 06 May 2026 18:32:34 -0700
+X-CSE-ConnectionGUID: Vs1K0fGOTISwBKBYzHn3Jg==
+X-CSE-MsgGUID: KWDhjCa3Qna+raSiu84CKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692875"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692883"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:32:29 -0700
+ by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:32:31 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, suraj.kandpal@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 26/31] drm/i915/bios: shrink all ICL's VS/PE tables
-Date: Thu,  7 May 2026 03:31:32 +0200
-Message-ID: <20260507013137.527510-27-michal.grzelak@intel.com>
+Subject: [PATCH v3 27/31] drm/i915/buf_trans: compute EHL's VS/PE-O index
+Date: Thu,  7 May 2026 03:31:33 +0200
+Message-ID: <20260507013137.527510-28-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260507013137.527510-1-michal.grzelak@intel.com>
 References: <20260507013137.527510-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6EC4D4E2004
+X-Rspamd-Queue-Id: 766EA4E200D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -104,62 +104,83 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Each value present in ICL's VS/PE-O table is stored on u32. In order to
-match values' size this causes icl_ddi_buf_trans to increase it's size.
+Compute the most appropriate VS/PE-O index for EHL.
 
-Nevertheless, the actual value from each ICL's VS/PE-O table is fully
-encoded in the lowest byte. Extract the lowest byte by casting to u8 and
-using it as deparsed value. This way there is no need to inflate default
-tables.
+In cases when eDP encoder uses low vswing, choose 3rd table if encoder
+supports HBR3. Otherwise use 2nd table for eDP using low vswing.
+
+In cases when eDP encoder does not use low vswing, choose 2nd table if
+encoder supports mode higher or including HBR2. Otherwise use 3rd table
+for eDP not using low vswing.
+
+For external DP use 2nd table if encoder supports modes higher than or
+including HBR2. Use 1st table if external DP encoder supports modes
+lower than HBR2.
+
+Warn if encoder does not support DP. In that case fallback to using
+default VS/PE tables.
+
+Looking from other OSes, in case when encoder does not support DP we
+could theoretically use 1st table. However, as of now, use default
+tables until it will be explicitly seen in the wild.
+
+v2->v3
+- remove unnecessary braces from if block
+- return -EINVAL instead of -1 (Suraj)
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c          | 10 +++++-----
- drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h | 10 +++++-----
- 2 files changed, 10 insertions(+), 10 deletions(-)
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 30 +++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 5e1000a72cf74..9138ec64b6b1c 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.c
-+++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2202,11 +2202,11 @@ parse_vswing_preemph_icl(union intel_ddi_buf_trans_entry **bufs_mtrx,
- 			vals = &tables[offset];
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+index 80ca9ca6b6471..36ba0ed4ddc68 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.c
+@@ -1786,6 +1786,33 @@ xe3plpd_get_lt_buf_trans(struct intel_encoder *encoder,
+ 		return intel_get_buf_trans(&xe3plpd_lt_trans_dp14, n_entries);
+ }
  
- 			entry = &bufs_mtrx[idx][row];
--			entry->icl.dw2_swing_sel = vals[0];
--			entry->icl.dw7_n_scalar = vals[1];
--			entry->icl.dw4_cursor_coeff = vals[2];
--			entry->icl.dw4_post_cursor_2 = vals[3];
--			entry->icl.dw4_post_cursor_1 = vals[4];
-+			entry->icl.dw2_swing_sel = (u8) vals[0];
-+			entry->icl.dw7_n_scalar = (u8) vals[1];
-+			entry->icl.dw4_cursor_coeff = (u8) vals[2];
-+			entry->icl.dw4_post_cursor_2 = (u8) vals[3];
-+			entry->icl.dw4_post_cursor_1 = (u8) vals[4];
++static int
++ehl_compute_index(struct intel_encoder *encoder,
++		  const struct intel_crtc_state *crtc_state)
++{
++	if (intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)) {
++		if (use_edp_low_vswing(encoder)) {
++			if (crtc_state->port_clock > 540000)
++				return 2;
++			else
++				return 1;
++		}
++	}
++
++	if (intel_crtc_has_dp_encoder(crtc_state)) {
++		if (crtc_state->port_clock > 270000)
++			return 1;
++		else
++			return 0;
++	}
++
++	drm_WARN(to_intel_display(crtc_state)->drm, 1,
++		 "non-DP (%d) encoder asks to compute VS/PE-O index\n",
++		 crtc_state->output_types);
++
++	return -EINVAL;
++}
++
+ static enum snps_c10_vspeo_index
+ snps_c10_compute_index(const struct intel_crtc_state *crtc_state)
+ {
+@@ -1857,6 +1884,9 @@ vspeo_compute_index(struct intel_encoder *encoder,
+ 			return snps_c10_compute_index(crtc_state);
+ 		else
+ 			return snps_c20_compute_index(crtc_state);
++	} else if (DISPLAY_VER(display) == 11) {
++		if (display->platform.elkhartlake)
++			return ehl_compute_index(encoder, crtc_state);
+ 	}
  
- 			offset += block->num_columns;
- 		}
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index bfb6de45a94e2..a8c998fa339e6 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-+++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-@@ -25,11 +25,11 @@ struct bxt_ddi_buf_trans {
- };
- 
- struct icl_ddi_buf_trans {
--	u32 dw2_swing_sel;
--	u32 dw7_n_scalar;
--	u32 dw4_cursor_coeff;
--	u32 dw4_post_cursor_2;
--	u32 dw4_post_cursor_1;
-+	u8 dw2_swing_sel;
-+	u8 dw7_n_scalar;
-+	u8 dw4_cursor_coeff;
-+	u8 dw4_post_cursor_2;
-+	u8 dw4_post_cursor_1;
- };
- 
- struct icl_mg_phy_ddi_buf_trans {
+ 	drm_dbg_kms(display->drm,
 -- 
 2.45.2
 
