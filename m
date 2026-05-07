@@ -2,95 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uDTKNOzd/GlFUwAAu9opvQ
+	id aI1/COHp/GkMVQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 20:46:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 21:37:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 85EFB4ED93C
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 20:46:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A5C34EE1D6
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 21:37:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E81F610E2B7;
-	Thu,  7 May 2026 18:46:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB4B610E590;
+	Thu,  7 May 2026 19:37:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MQKigppL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WoZdsN76";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C02610E2AB
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 18:45:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1778179558;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=lqy2FCaWABbSZ5XwoLHNJ+cZVmf74lpr+4emSNEVXgA=;
- b=MQKigppLAqYUoLka4ABEOOHx3qi89llrNs9wXes2ll1JQHvgsQqPwOOE5O+IztcPj8X6mb
- 678bTAbsUFAM0RixaRCn9uuB38KXsTN5pqU964Bj/Lg2hj7lASA8iStui9Q/vHjJUnkuER
- Aztm3tDenf/l/oqRZCn+httPFsJK2mY=
-Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
- [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-274-BT1vG07MMl6kqOzXmROHeg-1; Thu, 07 May 2026 14:45:56 -0400
-X-MC-Unique: BT1vG07MMl6kqOzXmROHeg-1
-X-Mimecast-MFC-AGG-ID: BT1vG07MMl6kqOzXmROHeg_1778179556
-Received: by mail-qv1-f72.google.com with SMTP id
- 6a1803df08f44-8ba9baef44cso20741546d6.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 May 2026 11:45:56 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778179556; x=1778784356;
- h=mime-version:user-agent:content-transfer-encoding:references
- :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
- :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=WgXIkCgB3aSRfVz0FcSmSasyEWuA9kchSMzu8PPJBaA=;
- b=AsmKdOhgXOXW6+HrC+h136G2Th7X3s3GjBz2RwjrwhlRfApk6nNHmLCvmX9kT8Jrrk
- WyVIk5uze+73OKChuN3/5ykyMfkjxTwKcoNQocvRzELog/BEpgH7IPQYUm1czWeGm6h6
- A0JACtWrVetWzQnhG2pVQ9PaVpi/tojqJKZ2QaYyYJhkIE8wwGCw0GSsCFm93gQBj8Ii
- Tc4Fxp1v45nUQzk2Fe2DHpp1UiAZjyCHusG7BuhQmfm83Tk02hjDcjI8LSsU3oJOxF3W
- IQB6yGQJ2ly88l+WQCZdvQx37XSF+IONyNRlqGSIupSFOVp+l1W/0wCx5NH4JsYiBE1P
- 0pHw==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/+lmmq00ZNXPbhBvcu8nt0J71hixljXehrW2uTmzhDqI95kuvXsMJDKbkx1TfCY0MGtenuBnLEi4c=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzXlMArwPvuLhRyylwcbstfiOcpIf87QaWzWjWqDCwYIgxbZP/A
- LuFCB42K3bZcqUAJKkHwStjo0hp3UgIllJ8fRF8HchTi++/e1keUnUVbQ8vI789dX+HXie18A8T
- tMIVgS7Yk+hLKljXR+Tgu+YvzEqNAXjbdGkFdGRbe9VDBkP2tYM+9eplbU+14iAtqk1WOq48GBn
- ezhA==
-X-Gm-Gg: AeBDiesqdn0Iesw2pDpfb5s52euv2SM1YcBNW42YkOK/1ICsM3fA+hpozayEv8Awwzi
- BfnH1fX+PBPDlyOasNl2s/Ng+OGftsQOBUDmlv5G0zUEiqzkGAqNLt8Cw3v4NWyr68guViLI7GD
- MOstyia50oBaN7LXOflHFraH1W5+ip5htU0UqwPSXMLdSWatoXMpyLrWEvaWrRrP2lLLVqIZNyN
- 42Fbo52pLYcM4l5qwOttu4Dq7VqDXG9OT36y1cpQ5s54TyrmEqeswVFAnP8Fwe9GHZiL6MM7Qx5
- FDnld7sDeMmWDkbTWSLJ3BDTMWe2lO0r5bSbDKOp//BXYB7jaalBBj6hg4vNTywv+4+qpj9M7Nl
- ptqQAtMI8qs8x+hmhUw==
-X-Received: by 2002:ad4:5ecb:0:b0:89c:4812:cc2 with SMTP id
- 6a1803df08f44-8bc42c63a8amr140677956d6.15.1778179555938; 
- Thu, 07 May 2026 11:45:55 -0700 (PDT)
-X-Received: by 2002:ad4:5ecb:0:b0:89c:4812:cc2 with SMTP id
- 6a1803df08f44-8bc42c63a8amr140677476d6.15.1778179555448; 
- Thu, 07 May 2026 11:45:55 -0700 (PDT)
-Received: from [192.168.8.4] ([100.0.180.93]) by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8b538a293dbsm249581016d6.2.2026.05.07.11.45.54
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 May 2026 11:45:54 -0700 (PDT)
-Message-ID: <6b3516fe9db22f223f6e558b5a6ff31fbe6aa64d.camel@redhat.com>
-Subject: Re: [PATCH] drm/dp_mst: Handle torn-down topology gracefully in
- drm_dp_mst_topology_queue_probe()
-From: lyude@redhat.com
-To: Jonas Emilsson <jonas.emilsson@gmail.com>, dri-devel@lists.freedesktop.org
-Cc: Imre Deak <imre.deak@intel.com>, stable@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org
-Date: Thu, 07 May 2026 14:45:54 -0400
-In-Reply-To: <20260503034533.1023686-1-jonas.emilsson@gmail.com>
-References: <20260503034533.1023686-1-jonas.emilsson@gmail.com>
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17C6D10E590;
+ Thu,  7 May 2026 19:37:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778182621; x=1809718621;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=0jWC/Y+l/QXEpUEHpLgyrPP4nurxRRFu7mNO+QbcntM=;
+ b=WoZdsN769U/gDvOFdbGukC6LHZbH5jC6/y0IfIAEBrXyyqzAEJKeV6Bl
+ /tvp1gtKG9FOdJeOQkhERaj0TrI2VBjLHcZDo/B0CrAlSL8CLGFRCBw7a
+ /dyFlpkTOeYQ5gdNCHtuaKu2Gf6d+K800g+7oKWLVnh6XYCAuP8q74V1J
+ CqcZAn+UuVAjd5ltdQGMSoH1rzA9Dbf2iothXuJMJw9MHC9tP1AtDDUM0
+ NDIWvJ0t94U8NRcT4racA3ylL2Qrju048sfywB48pqmbXCmJxRBmh+iHh
+ pPDaJ471OB21o5+1Zr4i00hmBTtcIlaxgpl1dS+x3x6ef+JcXFC8ehwwD A==;
+X-CSE-ConnectionGUID: T3o4ZNQmRPWBlmB4lMh25Q==
+X-CSE-MsgGUID: zPSl0p17QLiXEpT6qmuURg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="89842401"
+X-IronPort-AV: E=Sophos;i="6.23,222,1770624000"; d="scan'208";a="89842401"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 May 2026 12:37:01 -0700
+X-CSE-ConnectionGUID: gJ+rhvXASmmrrEaH1HUJRA==
+X-CSE-MsgGUID: N4R/KKZWRqCP6Arilvyz6A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,222,1770624000"; d="scan'208";a="240545345"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa003.jf.intel.com with ESMTP; 07 May 2026 12:37:00 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v3 0/1] match GEN6_PCODE_DATA naming with spec
+Date: Thu,  7 May 2026 21:36:00 +0200
+Message-ID: <20260507193601.533356-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: 20Sy2rt1P4qQrIfUveDxG26Zj5NPFbo3roaaqqr1Q68_1778179556
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -105,111 +73,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 85EFB4ED93C
+X-Rspamd-Queue-Id: 5A5C34EE1D6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:jonas.emilsson@gmail.com,m:dri-devel@lists.freedesktop.org,m:imre.deak@intel.com,m:stable@vger.kernel.org,m:jonasemilsson@gmail.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org];
-	FORGED_SENDER(0.00)[lyude@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[lyude@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FROM_NO_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,intel.com:email]
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Actually sorry - I need to take back the r-b, there's a couple of
-issues in this patch that I didn't immediately notice because it had
-trouble applying (though I don't have a clue why)
+Next version of [1].
 
-On Sun, 2026-05-03 at 05:45 +0200, Jonas Emilsson wrote:
-> A hotplug or link-loss event can tear down the MST topology
-> (setting mgr->mst_state =3D false and mgr->mst_primary =3D NULL)
-> concurrently
-> with a caller invoking drm_dp_mst_topology_queue_probe(). Since the
-> check
-> is already performed under mgr->lock, the condition is not a
-> programming
-> error but a valid race -- the topology was valid when the caller
-> decided
-> to call this function, but was torn down before the lock was
-> acquired.
->=20
-> Replace the drm_WARN_ON() with a graceful early return. This
-> eliminates
-> spurious kernel warnings and the resulting compositor crashes
-> observed
-> when connecting/disconnecting DP MST monitors, while keeping the
-> correct
-> behavior of doing nothing when MST is not active. A drm_dbg_mst()
-> trace
-> is added so the skipped probe remains observable under MST debug
-> logging.
->=20
-> The existing WARN_ON(mgr->mst_primary) in
-> drm_dp_mst_topology_mgr_set_mst()
-> already catches the case where the topology is initialized twice, so
-> no
-> diagnostic coverage is lost.
->=20
-> Fixes: dbaeef363ea5 ("drm/dp_mst: Add a helper to queue a topology
-> probe")
-> Cc: Imre Deak <imre.deak@intel.com>
-> Cc: Lyude Paul <lyude@redhat.com>
-> Cc: stable@vger.kernel.org
-> Cc: intel-gfx@lists.freedesktop.org
-> Cc: dri-devel@lists.freedesktop.org
-> Signed-off-by: Jonas Emilsson <jonas.emilsson@gmail.com>
-> ---
-> =C2=A0drivers/gpu/drm/display/drm_dp_mst_topology.c | 4 +++-
-> =C2=A01 file changed, 3 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> index 8757972e8..0cb341ce1 100644
-> --- a/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> +++ b/drivers/gpu/drm/display/drm_dp_mst_topology.c
-> @@ -3738,8 +3738,10 @@ void drm_dp_mst_topology_queue_probe(struct
-> drm_dp_mst_topology_mgr *mgr)
-> =C2=A0{
-> =C2=A0=09mutex_lock(&mgr->lock);
->=20
-> -=09if (drm_WARN_ON(mgr->dev, !mgr->mst_state || !mgr-
-> >mst_primary))
-> +=09if (!mgr->mst_state || !mgr->mst_primary) {
-> +=09=09drm_dbg_mst(mgr->dev, "queue_probe skipped: topology
-> torn down\n");
+[1] https://lore.kernel.org/intel-gfx/20260123194109.680186-1-michal.grzelak@intel.com/
 
-There is no such function named drm_dbg_mst, can you switch this to
-drm_dbg_kms() like the rest of the file and make sure it builds before
-sending another version?
+BR,
+Michał
 
-> =C2=A0=09=09goto out_unlock;
-> +=09}
->=20
-> =C2=A0=09drm_dp_mst_topology_mgr_invalidate_mstb(mgr->mst_primary);
+---
+Changelog:
+v2->v3
+- resolve conflict from rebase
+
+v1->v2
+- rebase onto drm-tip (Jani)
+
+Michał Grzelak (1):
+  drm/{i915,xe}/pcode: rename GEN6_PCODE_DATA to match spec
+
+ drivers/gpu/drm/i915/display/intel_parent.c   |  4 ++--
+ drivers/gpu/drm/i915/display/intel_parent.h   |  2 +-
+ drivers/gpu/drm/i915/gvt/handlers.c           |  2 +-
+ drivers/gpu/drm/i915/i915_reg.h               |  2 +-
+ drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  2 +-
+ drivers/gpu/drm/i915/intel_pcode.c            | 14 +++++++-------
+ drivers/gpu/drm/i915/intel_pcode.h            |  2 +-
+ drivers/gpu/drm/xe/display/xe_display_pcode.c |  4 ++--
+ drivers/gpu/drm/xe/xe_pcode.c                 |  4 ++--
+ drivers/gpu/drm/xe/xe_pcode.h                 |  2 +-
+ 10 files changed, 19 insertions(+), 19 deletions(-)
+
+-- 
+2.45.2
 
