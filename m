@@ -2,61 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EAAzA8nB/GnSTAAAu9opvQ
+	id sOmLEdzS/GlhTwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 18:46:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 19:58:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8A0364EC623
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 18:46:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 65E2A4ED1F4
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 19:58:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0C64510E299;
-	Thu,  7 May 2026 16:45:59 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Xdw/Inhj";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8FD1110FC0A;
+	Thu,  7 May 2026 17:58:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7353A10E299;
- Thu,  7 May 2026 16:45:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778172357; x=1809708357;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9fxCYMgC1JMR7siARxbn13JLvR+mCO3pGX0rRdBE8+A=;
- b=Xdw/InhjFrMckJorznYf7lvb7PfipGhgUtINhi5CvquRfc9zeMxMQmNN
- 5QHcrv3wZ+V4MiBQpd1HBYPhFx7qDgpge4QcyngYkkrcX/pdGf+DGAJb5
- QAkR76+yT6leC8Q3zd9WEyLRdGQgImnmRXcxCJyYMAh91w3BqgbQrrqlt
- q1K/xDlWOHuE4sX1ykMilA+XdZMLp0HKgVWvw7yID30hKZhirMNSBvmY/
- 0gumxgKNor7M0q5Nzm7SWEzgvcZyUow4oyVxJityT5wK/f6HZcF9AGekZ
- 5D0xyc89/DodR/STAHnrXGZ2MVI6JQmMcK2vT/gQeaBd0CXn6egA5qSER g==;
-X-CSE-ConnectionGUID: 0248NAxoRpmpMakjsuCN1A==
-X-CSE-MsgGUID: krdqbxTzRxKqIVt9Zstgbw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="104590320"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="104590320"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 09:45:57 -0700
-X-CSE-ConnectionGUID: lfOXXFamS+69UYZlLtnGOQ==
-X-CSE-MsgGUID: roV1aWMASdmgKZs0TOYhFA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="240849211"
-Received: from nex-dev-jx.fm.intel.com ([10.105.128.1])
- by orviesa004.jf.intel.com with ESMTP; 07 May 2026 09:45:57 -0700
-From: James Xiong <james.xiong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: gustavo.sousa@intel.com, jani.saarinen@intel.com,
- James Xiong <james.xiong@intel.com>
-Subject: [PATCH v2] drm/i915/dmc: fix assert_dmc_loaded WARN during async
- firmware load
-Date: Thu,  7 May 2026 09:46:05 -0700
-Message-Id: <20260507164605.608368-1-james.xiong@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39BE410FC0A;
+ Thu,  7 May 2026 17:58:48 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5409181512831490581=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_fix_asser?=
+ =?utf-8?q?t=5Fdmc=5Floaded_WARN_during_async_firmware_load?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "James Xiong" <james.xiong@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 May 2026 17:58:48 -0000
+Message-ID: <177817672822.49694.14583645831619283958@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260507164605.608368-1-james.xiong@intel.com>
+In-Reply-To: <20260507164605.608368-1-james.xiong@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -69,66 +42,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8A0364EC623
+X-Rspamd-Queue-Id: 65E2A4ED1F4
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_NEQ_ENVFROM(0.00)[james.xiong@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[intel.com:+]
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[live:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:replyto]
 X-Rspamd-Action: no action
 
-During driver probe, DMC firmware is loaded asynchronously via a
-workqueue. There is a race between parse_dmc_fw() setting the payload
-pointer (making has_dmc_id_fw() return true) and intel_dmc_load_program()
-writing the firmware to hardware registers. If the probe thread calls
-intel_dmc_enable_pipe() -> assert_dmc_loaded() in this window via
-intel_modeset_setup_hw_state(), it sees parsed payload but stale HW
-registers, triggering a ~20% intermittent WARNING on ADL-N warm boot.
+--===============5409181512831490581==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-v2: Fix by calling intel_dmc_wait_fw_load() in
-    intel_modeset_setup_hw_state() before iterating the CRTCs (Gustavo
-    Sousa).
+== Series Details ==
 
-Signed-off-by: James Xiong <james.xiong@intel.com>
----
- drivers/gpu/drm/i915/display/intel_modeset_setup.c | 2 ++
- 1 file changed, 2 insertions(+)
+Series: drm/i915/dmc: fix assert_dmc_loaded WARN during async firmware load
+URL   : https://patchwork.freedesktop.org/series/166155/
+State : success
 
-diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-index e88082c8caac..277e56848470 100644
---- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-+++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-@@ -961,6 +961,8 @@ void intel_modeset_setup_hw_state(struct intel_display *display,
- 	 * intel_sanitize_plane_mapping() may need to do vblank
- 	 * waits, so we need vblank interrupts restored beforehand.
- 	 */
-+	intel_dmc_wait_fw_load(display);
-+
- 	for_each_intel_crtc(display->drm, crtc) {
- 		struct intel_crtc_state *crtc_state =
- 			to_intel_crtc_state(crtc->base.state);
--- 
-2.34.1
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18443 -> Patchwork_166155v1
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_166155v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18443/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18443 -> Patchwork_166155v1
+
+  CI-20190529: 20190529
+  CI_DRM_18443: ca078d725c0fa0a78c4cfcbc73dcd0845589535a @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_166155v1: ca078d725c0fa0a78c4cfcbc73dcd0845589535a @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/index.html
+
+--===============5409181512831490581==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dmc: fix assert_dmc_loaded WARN during async firmware load</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166155/">https://patchwork.freedesktop.org/series/166155/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18443 -&gt; Patchwork_166155v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_166155v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18443/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18443 -&gt; Patchwork_166155v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18443: ca078d725c0fa0a78c4cfcbc73dcd0845589535a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_166155v1: ca078d725c0fa0a78c4cfcbc73dcd0845589535a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5409181512831490581==--
