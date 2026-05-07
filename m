@@ -2,55 +2,91 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SLlqFq2A/GkcQwAAu9opvQ
+	id YC/IEXGC/GkcQwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 14:08:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 14:15:45 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DCE5E4E7FDA
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 14:08:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B9AD14E8125
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 14:15:44 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0BCEB10F050;
-	Thu,  7 May 2026 12:08:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 33BB710F0A2;
+	Thu,  7 May 2026 12:15:43 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YPA4pcb9";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="ilKC27ot";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 72F1710F050
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 12:08:09 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id BA5DC61119;
- Thu,  7 May 2026 12:08:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0BCF4C2BCB8;
- Thu,  7 May 2026 12:08:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1778155688;
- bh=tNuRhkd7h+e6+sHheOR7DJNt4goXA1jo987OsBWY+z0=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YPA4pcb93hHrL6S6+XbyUeUqW9pqoCRM0mmhLnfb+e4BKuHb3ABeu0E2gmOCxryzm
- IdkWr6EYvsDLTjS6HMjBq1wbx+/YLDZDb+CTZ1JUyhaBnvFXYlmmijv8PTwetnHp8z
- tco1aCHEgDE+KoS49RTBsuperueu3cQv2YQObMoGTN8S9tDvIwbHcDta4ykN08hova
- IyiUE9QYOeUn/AZlpTDKLB3MDzi3wYcMiY+jNjvOEzdf6UmbWrVvKCbrnLLeX/kWOb
- pmKv8MLxGfEg0TgsB/ncxBmtQbDdOIjimwL/fdSdlIg/dA/hU+BCk6yXCR0EY1359E
- AXk9kG2W/EJbA==
-Date: Thu, 7 May 2026 14:08:05 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, Andi Shyti <andi.shyti@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH v8 1/2] drm/i915/selftests: Prevent userspace mapping
- invalidation
-Message-ID: <afyAZI18ZgFn9L4_@zenone.zhora.eu>
-References: <20260430105724.1590552-1-krzysztof.karas@intel.com>
- <20260430105724.1590552-2-krzysztof.karas@intel.com>
+Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com
+ [209.85.128.49])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 240DB10F0A8
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 12:15:42 +0000 (UTC)
+Received: by mail-wm1-f49.google.com with SMTP id
+ 5b1f17b1804b1-488e1a8ac40so7710845e9.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 May 2026 05:15:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1778156141; x=1778760941; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:from:to:cc:subject:date:message-id:reply-to;
+ bh=c0hToDKSMnxbi/5ufvYd8KJ5BjxBoSfijUk4UFSKZpU=;
+ b=ilKC27ot4EEvI21VKPUYtgZzCjaUSSEhXqvfKyBnio1jEnhBTYo9GwfbAAkkNUgG26
+ 76Pe44gC4KbhLuwwCGbiYTsxGJyW5QULuYFammpThnPg61yGCPgbGTk8xCvJzZuBu+5j
+ Vv3ZEXXDZIuSTPVTcwfIlfiOQbSJLoxgCftuDz9Z/JE9KG0xpfMDz2NoMZg4gca+pNns
+ 0pb+S+ii8vn8POlVpGv/F83tCvIo1rbouJFfhjdIeIbnsw+qs35aiGL09sGresQUnbtj
+ 2jCCqN6+T2mUlESn0DtF1IRbyxi7s4Q/DtguAmjqgKjolKlhx9nqCJMyOsbnk+1cIjm1
+ SQtQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1778156141; x=1778760941;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:from:date:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=c0hToDKSMnxbi/5ufvYd8KJ5BjxBoSfijUk4UFSKZpU=;
+ b=K+IHSD7cGJQ4fHmBy3UnQman/S1gOWxzrcfaOZ9bGxn08II6YqkCaAUuwxfuZ8IDRa
+ TMt5m8V5bOONV54CDo5WXhCsZd7jCffAhMMLdekQVktpLFcqrQpn9plop00RexW5hrj3
+ ZpmiAJ4pvqLj4f4GZCQ/lv3+IOFP6wYTnxdnJ7+SlQQyQ1geCgP3H6+sZSmCXiUsjc2Y
+ BjtqRWB+ejMK/wKJ3o2RVvI8bwcRXOyzk63Uz5KiuXFzj87A147imvxH9Ib21XFv4Nf+
+ Sm0jXosvT+oBMKuMtQk/icAVSmTbBpALvwY6cfpA9u9qi05Q96PzqFssu7om9Mxbm2wN
+ 6wOw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ/1ppqIsmBZcildvRmqX1LeiZ45Db8DGvWSc21ufi61oOWLKB89x0TdlaYET/lsZHgAmFtnBe0DXXM=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyYj5JArgTn6lpp0EY53J4D3Pzl5KN9Sa004YiO8onYApeoQ/Vp
+ kLUhec0nuTFaNCgqaSGnO9+qiNSm6XLqQVWs8N6KrIAgnaXf7IdHubTH
+X-Gm-Gg: AeBDievLAQPryKYmzHpfKsumwahFMKTUWMDXDzK91Q+GgTYiHLmwNfa2+Jlex0RYKbs
+ w+Lx7CQSQ8bKiLdjgQ6ghLiopHzcGqrOakQ8jL8qzcwkRTXoyC0xqNh/bqPRH5Wezz09w5bYL0Q
+ Jxwph5o9WRCJ7pxhBCjz0qXdZXJTF8+m5hWKCqaQHuy2VMjLlxSDMtSKAXN70RpFPMfjDpUmWQ6
+ Q7zWhZn42UOSALrEbrmwp+gfXNz7Wo4q+Ewo0HyoqPmfZKSmzLWtnWXhgM547RVg8VbFSSoyqJ9
+ AFWQDQj7XH+AwCm9emkMt4KxY5omteGJosGAl4Vskest/gW5q9WYov05uJrmqi9CxMzGYw2R2ds
+ mOLQdI84Gu/uZ4wueeAJ6ur++83dh4W3iAcLL+0eZCNYJZRGZZVpG6JJqXVR1Sx/2pg5Ypbi6+d
+ r1q83YcIUYo5+99vjxf1gw5fTh+Tm+eRm9umORpGvUyavIx3V0imPCK+rU7/0nbej01Vz4xvwU/
+ tC4jIhkseB0UCzvkCfAceEX
+X-Received: by 2002:a05:600c:871b:b0:48a:592c:e655 with SMTP id
+ 5b1f17b1804b1-48e51f45eddmr121794395e9.17.1778156140136; 
+ Thu, 07 May 2026 05:15:40 -0700 (PDT)
+Received: from orome (p200300e41f1c9800f22f74fffe1f3a53.dip0.t-ipconnect.de.
+ [2003:e4:1f1c:9800:f22f:74ff:fe1f:3a53])
+ by smtp.gmail.com with ESMTPSA id
+ 5b1f17b1804b1-48e530b212esm52203795e9.1.2026.05.07.05.15.38
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 07 May 2026 05:15:38 -0700 (PDT)
+Date: Thu, 7 May 2026 14:15:36 +0200
+From: Thierry Reding <thierry.reding@gmail.com>
+To: Thierry Reding <thierry.reding@kernel.org>
+Cc: Simona Vetter <simona.vetter@ffwll.ch>, 
+ DRI <dri-devel@lists.freedesktop.org>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>, 
+ Dharma Balasubiramani <dharma.b@microchip.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Manikandan Muralidharan <manikandan.m@microchip.com>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>, 
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: Re: linux-next: build failure after merge of the pinctrl-intel tree
+Message-ID: <afyCC_FE9QL5VBBm@orome>
+References: <3b729608ad4bc3bb161c3779a9768b12@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="zxepztxp53sv2ewk"
 Content-Disposition: inline
-In-Reply-To: <20260430105724.1590552-2-krzysztof.karas@intel.com>
+In-Reply-To: <3b729608ad4bc3bb161c3779a9768b12@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -65,99 +101,83 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: DCE5E4E7FDA
+X-Rspamd-Queue-Id: B9AD14E8125
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-2.91 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.karas@intel.com,m:andi.shyti@linux.intel.com,m:sebastian.brzezinka@intel.com,m:krzysztof.niemiec@intel.com,m:janusz.krzysztofik@linux.intel.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TO_DN_ALL(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:thierry.reding@kernel.org,m:simona.vetter@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:dharma.b@microchip.com,m:mripard@kernel.org,m:manikandan.m@microchip.com,m:linux-kernel@vger.kernel.org,m:linux-next@vger.kernel.org,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[thierryreding@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	TAGGED_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	FROM_NEQ_ENVFROM(0.00)[thierryreding@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,zenone.zhora.eu:mid]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
 
-...
+--zxepztxp53sv2ewk
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: linux-next: build failure after merge of the pinctrl-intel tree
+MIME-Version: 1.0
 
-> +	/*
-> +	 * If we are running in a kthread on a multi NUMA system and the user passed
-> +	 * a valid PID of a userspace task, then we may borrow its address space
-> +	 * to prepare a safe environment for the mmap selftests.
-> +	 */
-> +	if (!current->mm) {
-> +		struct pid *u_pid = find_get_pid(u_pid_nr);
-> +		struct task_struct *task;
-> +
-> +		if (!u_pid) {
-> +			pr_warn("Could not find PID: %d\n", u_pid_nr);
-> +			goto run_tests;
-> +		}
-> +
-> +		task = get_pid_task(u_pid, PIDTYPE_PID);
-> +		put_pid(u_pid);
-> +		if (!task) {
-> +			pr_warn("Could not find userspace task for PID: %d\n", u_pid_nr);
-> +			goto run_tests;
-> +		}
-> +
-> +		mm = get_task_mm(task);
-> +		put_task_struct(task);
-> +		if (!mm) {
-> +			pr_warn("Could not find address space of task with PID: %d\n", u_pid_nr);
-> +			goto run_tests;
-> +		}
-> +
-> +		kthread_use_mm(mm);
-> +		if (unlikely(!current->mm)) {
-> +			mmput(mm);
-> +			mm = NULL;
-> +			pr_warn("Could not set mm as current->mm\n");
-> +		}
-> +	}
+On Thu, May 07, 2026 at 12:47:48PM +0200, Thierry Reding wrote:
+> Hi all,
+>=20
+> After merging the drm-misc tree, today's linux-next build (x86_64
+> allmodconfig) failed like this:
 
-Didn't we agree once that this would go into a separate function?
+Sorry about the misleading subject. This was indeed introduced after
+merging the drm-misc tree, not pinctrl-intel. I need to look closer at
+the templates that are generated.
 
-Andi
+Thierry
 
-> +run_tests:
->  	/* Tests are listed in order in i915_*_selftests.h */
->  	for (; count--; st++) {
->  		if (!st->enabled)
->  			continue;
->  
->  		cond_resched();
-> -		if (signal_pending(current))
-> +		if (signal_pending(current)) {
-> +			if (mm) {
-> +				mmput_async(mm);
-> +				kthread_unuse_mm(mm);
-> +			}
->  			return -EINTR;
-> +		}
+--zxepztxp53sv2ewk
+Content-Type: application/pgp-signature; name="signature.asc"
 
-...
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAmn8gmUACgkQ3SOs138+
+s6HcUA//TIusmk3FnAe7we2CgaOJ+sqg8vpo8WhTR3tp61urf1xbiecKbG0xC7ou
+QJykdzlYPfSJYlEnJrSEakUAfpohy/38qKYtmguUVBfCH2YA3tuCFVy+9ElidkpF
+QWbUwHQ5NjJnr5rMIVnZDzcOM52NWfozCF+nXS4JRwA9krPK7FQI+yftv/ystF+c
+o8ur3EofGq6BQg885XNFd2FRGlsJsYBA9v6OWwKx4M83tKvlA2u65+vUPsNbo9So
+X+7fBWqK3P9jf/r0gBxImInqgkPcNwggNMG++u+Ngj9dxaNa5UDRAC+DgqJPAMef
+8C/2nofhRjWRSHxlWSgoWc2wmjUOFv85G3rQDr5cipG0b9Ws2b0dJFPCJf3wIaUU
+bYRGl3OoEMI6TP5vdNnST0P/Z/9NFxRWpBEA5tVogpEbVw29mfTeLzlQzNorjppq
+ldulosvdNBuRNUhMelHYX6DQ47WmDSdCJBfLtsSvXiiEhtYGHmgg1Z0GtusVAE9j
+yEWdNbQi6hJnj69wraT96UeW5YjTQkRqWlAcAYiIkQ/eUWlv85ComEu/IQZNsS4r
+qYw4RSmVUbhAcPT1LBNPjYqQDc2kEESrZRnYWFXv4EwXvcDFgSpXIQO3YhHRXASd
+GTByz1YcHtIBEjIRkVUGiICQb8ox/Fq3/wdK/F9NTLKnA5wzHcE=
+=NXs4
+-----END PGP SIGNATURE-----
+
+--zxepztxp53sv2ewk--
