@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHxvO4rr+2llIQAAu9opvQ
+	id KJcbG4zr+2llIQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:31:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:31:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C6D194E1F58
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:31:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 405EC4E1F5F
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:31:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11C9C10EF24;
-	Thu,  7 May 2026 01:31:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B373410EF2A;
+	Thu,  7 May 2026 01:31:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Mj+5P23Y";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="A3pmparS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C67E010E245;
- Thu,  7 May 2026 01:31:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4870610EF26;
+ Thu,  7 May 2026 01:31:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778117511; x=1809653511;
+ t=1778117513; x=1809653513;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=QNjYj6OGqgDXzzKCuYHFbYWHd83V2c87qD7QDfeVqNo=;
- b=Mj+5P23YtMgLgLk+UUx/DADE6pUbvSVFZpW/zon2LalqezuFssDnQlul
- LJcVRUozBvxKlMGDXHoNp+gRD5Nf2M/YGu7B9+/bYDBA/Pst+u4AdeqKB
- WEgmrpx2afW3nBlVJVPT0a6vNI2gyC7JwJ3hirdtJB8AIijs2IZUjNukZ
- /qz6k0zXqndDQQSAavjziqhMDZ+OlLWfOzc1jyjsF7+2M5wQjlOWHes2S
- 56dlbGegGuvDAsUt2z6J6Eu32LgKALNUVkZA95amb6HNKV0HoupdMdxNg
- 2nenlPdq1YEgVv1PT+FiM9TJRmVPK9UJAYiUTsuaKekdDtzkHmZxFvF+8 A==;
-X-CSE-ConnectionGUID: SNDdzACrRVWTF0QC3pNG+A==
-X-CSE-MsgGUID: /l+68tvSS+GXJ8xvcYXRKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089016"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089016"
+ bh=yZ8KmPOVks77DEs3AnKY+VHpKb0vWS0YIJ/GOFaqdTM=;
+ b=A3pmparSssgyUhc3cKCZfFNjIn2DT2ukLajs+D82ZzqIij4dT4qw4qmS
+ zjp+sSq5bybYiesxSkSoAIEGMklrVB1Drno5W2lAgGgEO3NmSCrWxOvSe
+ FgcAaCsTL7SI/8kPqZpwrGjEhHljsM+IIKEA/eUzE7Mm3xgPoxj9rNyb4
+ GkqilAQgA0E8gyQUoWOE48e5/cUSXAp9+HKZg1m2UqORAmLjjC5NFTTOH
+ T5VFsp6PxakXMq0FtkDrDKpEeEf0m2PIao8Dg+r7fPFgLchGV/K4ldP1m
+ mVUiyhZokdMfLc/ncafxskE8K/feJWDb/eRiVUZh2JRj6V8oHzTy4g8pg Q==;
+X-CSE-ConnectionGUID: S4PzWh4gQEmYGvQD/VFOhg==
+X-CSE-MsgGUID: ooTt+nk9QuuxqAOsXi157A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089018"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089018"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 18:31:51 -0700
-X-CSE-ConnectionGUID: ONgxqhhGTsmauiyvRKarqA==
-X-CSE-MsgGUID: 6mjqBtHcR+G5RWYEC3U5lQ==
+ 06 May 2026 18:31:53 -0700
+X-CSE-ConnectionGUID: sc4axW0/TCK+rSchDSxs0A==
+X-CSE-MsgGUID: nqC6neLNT1CriJesvjy83w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692730"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692735"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:31:51 -0700
+ by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:31:52 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, suraj.kandpal@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 02/31] drm/i915/bios: search for VBT #57 by default
-Date: Thu,  7 May 2026 03:31:08 +0200
-Message-ID: <20260507013137.527510-3-michal.grzelak@intel.com>
+Subject: [PATCH v3 03/31] drm/i915/bios: log unsupported VS/PE-O parsing
+Date: Thu,  7 May 2026 03:31:09 +0200
+Message-ID: <20260507013137.527510-4-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260507013137.527510-1-michal.grzelak@intel.com>
 References: <20260507013137.527510-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: C6D194E1F58
+X-Rspamd-Queue-Id: 405EC4E1F5F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -104,27 +104,53 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Start searching for Vswing / Preemphasis Override Block during VBT
-parsing at init_bdb_blocks().
+Search for VBT #57. Check for failure since pre-ICL GOPs do not contain
+the block. Check also if VBT version is appropriately up-to-date.
+
+Issue a debug message when port requests to override VS/PE and parsing
+VBT #57 for the platform has not yet been implemented.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index b6fe87c29aa7c..5700de438fdfd 100644
+index 5700de438fdfd..3f9e4d31c7375 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -200,6 +200,8 @@ static const struct {
- 	  .min_size = sizeof(struct bdb_mipi_sequence) },
- 	{ .section_id = BDB_COMPRESSION_PARAMETERS,
- 	  .min_size = sizeof(struct bdb_compression_parameters), },
-+	{ .section_id = BDB_VSWING_PREEMPH,
-+	  .min_size = sizeof(struct bdb_vswing_preemph), },
- 	{ .section_id = BDB_GENERIC_DTD,
- 	  .min_size = sizeof(struct bdb_generic_dtd), },
- };
+@@ -2185,6 +2185,23 @@ parse_compression_parameters(struct intel_display *display)
+ 	}
+ }
+ 
++static void
++parse_vswing_preemph_override(struct intel_display *display)
++{
++	const struct bdb_vswing_preemph *block;
++
++	if (display->vbt.version < 218)
++		return;
++
++	block = bdb_find_section(display, BDB_VSWING_PREEMPH);
++
++	/* pre-ICL GOP don't have VBT #57 */
++	if (!block)
++		return;
++
++	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
++}
++
+ static u8 translate_iboost(struct intel_display *display, u8 val)
+ {
+ 	static const u8 mapping[] = { 1, 3, 7 }; /* See VBT spec */
+@@ -3276,6 +3293,7 @@ void intel_bios_init(struct intel_display *display)
+ 
+ 	/* Depends on child device list */
+ 	parse_compression_parameters(display);
++	parse_vswing_preemph_override(display);
+ 
+ out:
+ 	if (!vbt) {
 -- 
 2.45.2
 
