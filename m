@@ -2,66 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sAzcG+Lp/GkMVQAAu9opvQ
+	id EJKhOfv4/GmxVwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 21:37:06 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 22:41:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EF7834EE1DD
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 21:37:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1E3B74EEC81
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 22:41:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF4C10F20A;
-	Thu,  7 May 2026 19:37:04 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kp4XLwmT";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 946BA10F25E;
+	Thu,  7 May 2026 20:41:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6439410F209;
- Thu,  7 May 2026 19:37:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778182623; x=1809718623;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=LD+Hk1oN9RgawOnsOebIYibl/DdVx2oqF5fKsYUBRbY=;
- b=kp4XLwmTN4lgxIvlP/hx7JZpo4k4p6PL6V2WzcKtOUiu0WDaV0Du8oUT
- KOcWMVjxXEoSGu2fljBxP0z15Az1nkdIfRMfv7msXiDkWtLp4ErTgL1WU
- CDqP5j26Vj9d51Lgs/pRehlpFLvHezWYR5enTZNpOiHNmIirJAI0iQy1Q
- 8xGwRgegW/4rufBS4uboQQmbxP95zL0SE7dUuduBpvuZcQJ8WHAbtEWd2
- TSB/sZFcKvfkZgf87MSKD+oSi/7wTmtVlb+USGNMbF1MQ9+8v09jTgNlM
- i6gAN8dN5GZWsbxk4OLxJZKI/QkNc8PKPQq0VVG3tCiz49hc9ySQ+j4y3 w==;
-X-CSE-ConnectionGUID: u4PY4GqLSQO7XNezH0Z0iA==
-X-CSE-MsgGUID: PMtKUaSATnuh5TZvus6ARw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="89842405"
-X-IronPort-AV: E=Sophos;i="6.23,222,1770624000"; d="scan'208";a="89842405"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 12:37:02 -0700
-X-CSE-ConnectionGUID: CdaGoXNmScOwkrMcUDzFTg==
-X-CSE-MsgGUID: tnvEcAXqR7qU+59VHE/Pqw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,222,1770624000"; d="scan'208";a="240545360"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa003.jf.intel.com with ESMTP; 07 May 2026 12:37:01 -0700
-From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: Jani Nikula <jani.nikula@intel.com>,
- =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 1/1] drm/{i915,
- xe}/pcode: rename GEN6_PCODE_DATA to match spec
-Date: Thu,  7 May 2026 21:36:01 +0200
-Message-ID: <20260507193601.533356-2-michal.grzelak@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260507193601.533356-1-michal.grzelak@intel.com>
-References: <20260507193601.533356-1-michal.grzelak@intel.com>
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5703010F25E;
+ Thu,  7 May 2026 20:41:28 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============2272081503558451046=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_match_GEN6=5FPCODE=5FDATA?=
+ =?utf-8?q?_naming_with_spec?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 May 2026 20:41:28 -0000
+Message-ID: <177818648834.50055.17839657550541897954@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260507193601.533356-1-michal.grzelak@intel.com>
+In-Reply-To: <20260507193601.533356-1-michal.grzelak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,260 +42,187 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: EF7834EE1DD
+X-Rspamd-Queue-Id: 1E3B74EEC81
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.49 / 15.00];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
-	MID_CONTAINS_FROM(1.00)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
+	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:-];
-	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-0.998];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
 X-Rspamd-Action: no action
 
-Variable naming of val and val1 should match register macro naming.
-Historically, corresponding macros were named GEN6_PCODE_DATA and
-GEN6_PCODE_DATA1.
+--===============2272081503558451046==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Rename register macro GEN6_PCODE_DATA to GEN6_PCODE_DATA0 since spec
-appended '0' to the register name. Rename val into val0 in functions
-declaring val1.
+== Series Details ==
 
-Bspec: 19978
+Series: match GEN6_PCODE_DATA naming with spec
+URL   : https://patchwork.freedesktop.org/series/166160/
+State : success
 
-Changelog:
-v2->v3
-- resolve conflict from rebase
+== Summary ==
 
-v1->v2
-- rebase onto drm-tip (Jani)
+CI Bug Log - changes from CI_DRM_18445 -> Patchwork_166160v1
+====================================================
 
-Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
----
- drivers/gpu/drm/i915/display/intel_parent.c   |  4 ++--
- drivers/gpu/drm/i915/display/intel_parent.h   |  2 +-
- drivers/gpu/drm/i915/gvt/handlers.c           |  2 +-
- drivers/gpu/drm/i915/i915_reg.h               |  2 +-
- drivers/gpu/drm/i915/intel_gvt_mmio_table.c   |  2 +-
- drivers/gpu/drm/i915/intel_pcode.c            | 14 +++++++-------
- drivers/gpu/drm/i915/intel_pcode.h            |  2 +-
- drivers/gpu/drm/xe/display/xe_display_pcode.c |  4 ++--
- drivers/gpu/drm/xe/xe_pcode.c                 |  4 ++--
- drivers/gpu/drm/xe/xe_pcode.h                 |  2 +-
- 10 files changed, 19 insertions(+), 19 deletions(-)
+Summary
+-------
 
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.c b/drivers/gpu/drm/i915/display/intel_parent.c
-index 67b21a42d354..7901b95ab114 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.c
-+++ b/drivers/gpu/drm/i915/display/intel_parent.c
-@@ -219,9 +219,9 @@ void intel_parent_pc8_unblock(struct intel_display *display)
- }
- 
- /* pcode */
--int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val, u32 *val1)
-+int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val0, u32 *val1)
- {
--	return display->parent->pcode->read(display->drm, mbox, val, val1);
-+	return display->parent->pcode->read(display->drm, mbox, val0, val1);
- }
- 
- int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms)
-diff --git a/drivers/gpu/drm/i915/display/intel_parent.h b/drivers/gpu/drm/i915/display/intel_parent.h
-index 5f0c835b9416..f095ef900a10 100644
---- a/drivers/gpu/drm/i915/display/intel_parent.h
-+++ b/drivers/gpu/drm/i915/display/intel_parent.h
-@@ -79,7 +79,7 @@ void intel_parent_pc8_block(struct intel_display *display);
- void intel_parent_pc8_unblock(struct intel_display *display);
- 
- /* pcode */
--int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val, u32 *val1);
-+int intel_parent_pcode_read(struct intel_display *display, u32 mbox, u32 *val0, u32 *val1);
- int intel_parent_pcode_write_timeout(struct intel_display *display, u32 mbox, u32 val, int timeout_ms);
- int intel_parent_pcode_write(struct intel_display *display, u32 mbox, u32 val);
- int intel_parent_pcode_request(struct intel_display *display, u32 mbox, u32 request,
-diff --git a/drivers/gpu/drm/i915/gvt/handlers.c b/drivers/gpu/drm/i915/gvt/handlers.c
-index 9f61867e2478..22dd0179863e 100644
---- a/drivers/gpu/drm/i915/gvt/handlers.c
-+++ b/drivers/gpu/drm/i915/gvt/handlers.c
-@@ -1706,7 +1706,7 @@ static int mailbox_write(struct intel_vgpu *vgpu, unsigned int offset,
- {
- 	u32 value = *(u32 *)p_data;
- 	u32 cmd = value & 0xff;
--	u32 *data0 = &vgpu_vreg_t(vgpu, GEN6_PCODE_DATA);
-+	u32 *data0 = &vgpu_vreg_t(vgpu, GEN6_PCODE_DATA0);
- 
- 	switch (cmd) {
- 	case GEN9_PCODE_READ_MEM_LATENCY:
-diff --git a/drivers/gpu/drm/i915/i915_reg.h b/drivers/gpu/drm/i915/i915_reg.h
-index 64e906380131..d873072b7a92 100644
---- a/drivers/gpu/drm/i915/i915_reg.h
-+++ b/drivers/gpu/drm/i915/i915_reg.h
-@@ -697,7 +697,7 @@
- #define    EDRAM_WAYS_IDX(cap)			(((cap) >> 5) & 0x7)
- #define    EDRAM_SETS_IDX(cap)			(((cap) >> 8) & 0x3)
- 
--#define GEN6_PCODE_DATA				_MMIO(0x138128)
-+#define GEN6_PCODE_DATA0			_MMIO(0x138128)
- #define   GEN6_PCODE_FREQ_IA_RATIO_SHIFT	8
- #define   GEN6_PCODE_FREQ_RING_RATIO_SHIFT	16
- #define GEN6_PCODE_DATA1			_MMIO(0x13812C)
-diff --git a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-index de118fae0a49..25b72b20e709 100644
---- a/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-+++ b/drivers/gpu/drm/i915/intel_gvt_mmio_table.c
-@@ -611,7 +611,7 @@ static int iterate_generic_mmio(struct intel_gvt_mmio_table_iter *iter)
- 	MMIO_D(GEN6_UCGCTL1);
- 	MMIO_D(GEN6_UCGCTL2);
- 	MMIO_F(_MMIO(0x4f000), 0x90);
--	MMIO_D(GEN6_PCODE_DATA);
-+	MMIO_D(GEN6_PCODE_DATA0);
- 	MMIO_D(_MMIO(0x13812c));
- 	MMIO_D(GEN7_ERR_INT);
- 	MMIO_D(HSW_EDRAM_CAP);
-diff --git a/drivers/gpu/drm/i915/intel_pcode.c b/drivers/gpu/drm/i915/intel_pcode.c
-index c07d48fc1b35..1c9d1f413757 100644
---- a/drivers/gpu/drm/i915/intel_pcode.c
-+++ b/drivers/gpu/drm/i915/intel_pcode.c
-@@ -58,7 +58,7 @@ static int gen7_check_mailbox_status(u32 mbox)
- }
- 
- static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
--			  u32 *val, u32 *val1,
-+			  u32 *val0, u32 *val1,
- 			  int fast_timeout_us, int slow_timeout_ms,
- 			  bool is_read)
- {
-@@ -73,7 +73,7 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
- 	if (intel_uncore_read_fw(uncore, GEN6_PCODE_MAILBOX) & GEN6_PCODE_READY)
- 		return -EAGAIN;
- 
--	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA, *val);
-+	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA0, *val0);
- 	intel_uncore_write_fw(uncore, GEN6_PCODE_DATA1, val1 ? *val1 : 0);
- 	intel_uncore_write_fw(uncore,
- 			      GEN6_PCODE_MAILBOX, GEN6_PCODE_READY | mbox);
-@@ -87,7 +87,7 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
- 		return -ETIMEDOUT;
- 
- 	if (is_read)
--		*val = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA);
-+		*val0 = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA0);
- 	if (is_read && val1)
- 		*val1 = intel_uncore_read_fw(uncore, GEN6_PCODE_DATA1);
- 
-@@ -97,12 +97,12 @@ static int __snb_pcode_rw(struct intel_uncore *uncore, u32 mbox,
- 		return gen6_check_mailbox_status(mbox);
- }
- 
--int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1)
-+int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val0, u32 *val1)
- {
- 	int err;
- 
- 	mutex_lock(&uncore->i915->sb_lock);
--	err = __snb_pcode_rw(uncore, mbox, val, val1, 500, 20, true);
-+	err = __snb_pcode_rw(uncore, mbox, val0, val1, 500, 20, true);
- 	mutex_unlock(&uncore->i915->sb_lock);
- 
- 	if (err) {
-@@ -278,11 +278,11 @@ int snb_pcode_write_p(struct intel_uncore *uncore, u32 mbcmd, u32 p1, u32 p2, u3
- 	return err;
- }
- 
--static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
-+static int intel_pcode_read(struct drm_device *drm, u32 mbox, u32 *val0, u32 *val1)
- {
- 	struct drm_i915_private *i915 = to_i915(drm);
- 
--	return snb_pcode_read(&i915->uncore, mbox, val, val1);
-+	return snb_pcode_read(&i915->uncore, mbox, val0, val1);
- }
- 
- static int intel_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
-diff --git a/drivers/gpu/drm/i915/intel_pcode.h b/drivers/gpu/drm/i915/intel_pcode.h
-index 19795ea8172e..deecc64bc1b3 100644
---- a/drivers/gpu/drm/i915/intel_pcode.h
-+++ b/drivers/gpu/drm/i915/intel_pcode.h
-@@ -11,7 +11,7 @@
- struct drm_device;
- struct intel_uncore;
- 
--int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val, u32 *val1);
-+int snb_pcode_read(struct intel_uncore *uncore, u32 mbox, u32 *val0, u32 *val1);
- int snb_pcode_write_timeout(struct intel_uncore *uncore, u32 mbox, u32 val, int timeout_ms);
- #define snb_pcode_write(uncore, mbox, val) \
- 	snb_pcode_write_timeout((uncore), (mbox), (val), 1)
-diff --git a/drivers/gpu/drm/xe/display/xe_display_pcode.c b/drivers/gpu/drm/xe/display/xe_display_pcode.c
-index f6820ef7e666..8dc9cbdb18ec 100644
---- a/drivers/gpu/drm/xe/display/xe_display_pcode.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_pcode.c
-@@ -6,12 +6,12 @@
- #include "xe_device.h"
- #include "xe_pcode.h"
- 
--static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *val, u32 *val1)
-+static int xe_display_pcode_read(struct drm_device *drm, u32 mbox, u32 *val0, u32 *val1)
- {
- 	struct xe_device *xe = to_xe_device(drm);
- 	struct xe_tile *tile = xe_device_get_root_tile(xe);
- 
--	return xe_pcode_read(tile, mbox, val, val1);
-+	return xe_pcode_read(tile, mbox, val0, val1);
- }
- 
- static int xe_display_pcode_write_timeout(struct drm_device *drm, u32 mbox, u32 val, int timeout_ms)
-diff --git a/drivers/gpu/drm/xe/xe_pcode.c b/drivers/gpu/drm/xe/xe_pcode.c
-index dc66d0c7ee06..37303ac09080 100644
---- a/drivers/gpu/drm/xe/xe_pcode.c
-+++ b/drivers/gpu/drm/xe/xe_pcode.c
-@@ -132,12 +132,12 @@ int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0, u32 data
- 	return err;
- }
- 
--int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1)
-+int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1)
- {
- 	int err;
- 
- 	mutex_lock(&tile->pcode.lock);
--	err = pcode_mailbox_rw(tile, mbox, val, val1, 1, true, false);
-+	err = pcode_mailbox_rw(tile, mbox, val0, val1, 1, true, false);
- 	mutex_unlock(&tile->pcode.lock);
- 
- 	return err;
-diff --git a/drivers/gpu/drm/xe/xe_pcode.h b/drivers/gpu/drm/xe/xe_pcode.h
-index 490e4f269607..ccb5f71c78c6 100644
---- a/drivers/gpu/drm/xe/xe_pcode.h
-+++ b/drivers/gpu/drm/xe/xe_pcode.h
-@@ -17,7 +17,7 @@ int xe_pcode_probe_early(struct xe_device *xe);
- int xe_pcode_ready(struct xe_device *xe, bool locked);
- int xe_pcode_init_min_freq_table(struct xe_tile *tile, u32 min_gt_freq,
- 				 u32 max_gt_freq);
--int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val, u32 *val1);
-+int xe_pcode_read(struct xe_tile *tile, u32 mbox, u32 *val0, u32 *val1);
- int xe_pcode_write_timeout(struct xe_tile *tile, u32 mbox, u32 val,
- 			   int timeout_ms);
- int xe_pcode_write64_timeout(struct xe_tile *tile, u32 mbox, u32 data0,
--- 
-2.45.2
+  **SUCCESS**
 
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_166160v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-mtlp-8:         [DMESG-FAIL][1] ([i915#12061]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-mtlp-8/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-mtlp-8/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-dg2-14:         [DMESG-FAIL][5] ([i915#12061]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-rpls-4:         [DMESG-WARN][7] ([i915#13400]) -> [PASS][8]
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#13400]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18445 -> Patchwork_166160v1
+
+  CI-20190529: 20190529
+  CI_DRM_18445: 36eddf6e5c9411ad95c4939b092ed1ea77f13d61 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_166160v1: 36eddf6e5c9411ad95c4939b092ed1ea77f13d61 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/index.html
+
+--===============2272081503558451046==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>match GEN6_PCODE_DATA naming with spec</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166160/">https://patchwork.freedesktop.org/series/166160/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18445 -&gt; Patchwork_166160v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_166160v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-mtlp-8:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-mtlp-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-mtlp-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+<li>bat-dg2-14:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-dg2-14/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-dg2-14/igt@i915_selftest@live@workarounds.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>bat-rpls-4:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18445/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13400">i915#13400</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166160v1/bat-rpls-4/igt@kms_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18445 -&gt; Patchwork_166160v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18445: 36eddf6e5c9411ad95c4939b092ed1ea77f13d61 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_166160v1: 36eddf6e5c9411ad95c4939b092ed1ea77f13d61 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============2272081503558451046==--
