@@ -2,91 +2,92 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0LCLNLjY/GnxUQAAu9opvQ
+	id uDTKNOzd/GlFUwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 20:23:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 20:46:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 429DC4ED5DD
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 20:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85EFB4ED93C
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 20:46:04 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2259110F23D;
-	Thu,  7 May 2026 18:23:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E81F610E2B7;
+	Thu,  7 May 2026 18:46:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="UPP1rQNi";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="MQKigppL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.129.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 976DF10E59F
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 18:23:48 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6C02610E2AB
+ for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 18:45:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1778178227;
+ s=mimecast20190719; t=1778179558;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=hfC5TMU7qe7fFGe92a7DePwBp+CqUtTa+5DFp/GTcN4=;
- b=UPP1rQNifNOIrYWsdVpl6ByR9kl/3rNA74w+mMvydscnzgBfbnhfNkltSo0uMGRviVHZJJ
- R34udb8gN4OxOOVRVCRG+a6RAIzC80SmBjvpltNqiQLZ74EE7GK6jm6+0KsshFNTDpzLkB
- fCVe68WebujdXsQoYqMaQle1fp7jAyM=
-Received: from mail-qt1-f197.google.com (mail-qt1-f197.google.com
- [209.85.160.197]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=lqy2FCaWABbSZ5XwoLHNJ+cZVmf74lpr+4emSNEVXgA=;
+ b=MQKigppLAqYUoLka4ABEOOHx3qi89llrNs9wXes2ll1JQHvgsQqPwOOE5O+IztcPj8X6mb
+ 678bTAbsUFAM0RixaRCn9uuB38KXsTN5pqU964Bj/Lg2hj7lASA8iStui9Q/vHjJUnkuER
+ Aztm3tDenf/l/oqRZCn+httPFsJK2mY=
+Received: from mail-qv1-f72.google.com (mail-qv1-f72.google.com
+ [209.85.219.72]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-647-jGi2p922P_iDThvTITBP-g-1; Thu, 07 May 2026 14:23:46 -0400
-X-MC-Unique: jGi2p922P_iDThvTITBP-g-1
-X-Mimecast-MFC-AGG-ID: jGi2p922P_iDThvTITBP-g_1778178226
-Received: by mail-qt1-f197.google.com with SMTP id
- d75a77b69052e-50faf575af4so25741501cf.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 07 May 2026 11:23:46 -0700 (PDT)
+ us-mta-274-BT1vG07MMl6kqOzXmROHeg-1; Thu, 07 May 2026 14:45:56 -0400
+X-MC-Unique: BT1vG07MMl6kqOzXmROHeg-1
+X-Mimecast-MFC-AGG-ID: BT1vG07MMl6kqOzXmROHeg_1778179556
+Received: by mail-qv1-f72.google.com with SMTP id
+ 6a1803df08f44-8ba9baef44cso20741546d6.0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 07 May 2026 11:45:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1778178226; x=1778783026;
+ d=1e100.net; s=20251104; t=1778179556; x=1778784356;
  h=mime-version:user-agent:content-transfer-encoding:references
  :in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
  :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=ftCUpj5ypvcw40llhDtRrKigurBiomW0ZRMdUhWHyXA=;
- b=cpq6+wLsbc3Ey0y/y1Df6y9EqxXdhkrFY9OM9rnYpCDxyAKjy3ukarU6LpCAO0C4Hf
- vpKXcC33rY5pxvYdO6xNWet9gQgDApmY1bn0u+RbTR5RUsrqFaxBSy34mDf5lhb+TlAu
- 5VFbvSMqCqSwXGPjXc8EBS+155yY/8rTLMMLTVGHGUWq0cccIlZRMrq4tdCfQYFCrR2B
- Eoua1rbHx/bQDPW9XGKuPufb2Mo7CtyeS1hXmtpFT+1r0/QTwkoZjk09njvP/c6ruk1P
- 1rm+Yq74oBK9dNaKDuTFPnCB6VgUq8yNDoZ/ScwDpZoGPEyDUaXiWYe6QxfpOBkaI2Cx
- 3PuQ==
+ bh=WgXIkCgB3aSRfVz0FcSmSasyEWuA9kchSMzu8PPJBaA=;
+ b=AsmKdOhgXOXW6+HrC+h136G2Th7X3s3GjBz2RwjrwhlRfApk6nNHmLCvmX9kT8Jrrk
+ WyVIk5uze+73OKChuN3/5ykyMfkjxTwKcoNQocvRzELog/BEpgH7IPQYUm1czWeGm6h6
+ A0JACtWrVetWzQnhG2pVQ9PaVpi/tojqJKZ2QaYyYJhkIE8wwGCw0GSsCFm93gQBj8Ii
+ Tc4Fxp1v45nUQzk2Fe2DHpp1UiAZjyCHusG7BuhQmfm83Tk02hjDcjI8LSsU3oJOxF3W
+ IQB6yGQJ2ly88l+WQCZdvQx37XSF+IONyNRlqGSIupSFOVp+l1W/0wCx5NH4JsYiBE1P
+ 0pHw==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8CXx/PH7XUH2/0lUaeMbD+INLZkiygckGTLCimRjFFtrG2j9dIyQf8AdyjM5L7sjg5F1iiEnK/3XI=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxscByYGcmcp7Yfela0a63tVr9+jfoxGnPPvvxwfA8P3peppQXg
- 6pczQjhYdHpMmk6C4QE1tgPvy2ycqBPTtaT0CZMgivC+2LwQcBgBRPgNVeqiq1J5FSemznyA32s
- Fi9v27RhnKwRQg13sRyum3lPHKkBXapC+2CcC/cHdXX0O4pjy95xh3/x3Dfqa+b12uef/Bg==
-X-Gm-Gg: AeBDiet6s0miTfzjMVxY1oog6pHo+O3O8KzW0nTkNCvRc+bJQcP4i2htOdSrS+q9SHR
- x+veuAaJzStZVS40Zy6hL2HXfKtOh4BN2wWrcx3LujiF5mxWs/JoODLyTsHEsyQ9gxIQU6Uxi3d
- 4+mdyLrp9QBw6Mm20nbAwblaHH760eF5EiWjcTx7sfZ9ptcFIxrAifJGc0HW4ESR0+mUDdjF6Yq
- g1qjGtldtLa4X34Pe0iZ/Uw4WU8quUQSupX1lW9NOAVSiUCRtqHHBDwGWiMwmgNDQF2uyq8oox7
- TeMet6toWfQEtJhZrxI8RQmDyswITURHJhnXLjssWjKIzWI5d2LQvJYk+yzdho4KKJAhWhvzzKX
- VVS1JTDQTyrJobEexhg==
-X-Received: by 2002:a05:622a:5c98:b0:50f:c109:b78 with SMTP id
- d75a77b69052e-514621cf190mr123147841cf.60.1778178225677; 
- Thu, 07 May 2026 11:23:45 -0700 (PDT)
-X-Received: by 2002:a05:622a:5c98:b0:50f:c109:b78 with SMTP id
- d75a77b69052e-514621cf190mr123147321cf.60.1778178225080; 
- Thu, 07 May 2026 11:23:45 -0700 (PDT)
+ AFNElJ/+lmmq00ZNXPbhBvcu8nt0J71hixljXehrW2uTmzhDqI95kuvXsMJDKbkx1TfCY0MGtenuBnLEi4c=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzXlMArwPvuLhRyylwcbstfiOcpIf87QaWzWjWqDCwYIgxbZP/A
+ LuFCB42K3bZcqUAJKkHwStjo0hp3UgIllJ8fRF8HchTi++/e1keUnUVbQ8vI789dX+HXie18A8T
+ tMIVgS7Yk+hLKljXR+Tgu+YvzEqNAXjbdGkFdGRbe9VDBkP2tYM+9eplbU+14iAtqk1WOq48GBn
+ ezhA==
+X-Gm-Gg: AeBDiesqdn0Iesw2pDpfb5s52euv2SM1YcBNW42YkOK/1ICsM3fA+hpozayEv8Awwzi
+ BfnH1fX+PBPDlyOasNl2s/Ng+OGftsQOBUDmlv5G0zUEiqzkGAqNLt8Cw3v4NWyr68guViLI7GD
+ MOstyia50oBaN7LXOflHFraH1W5+ip5htU0UqwPSXMLdSWatoXMpyLrWEvaWrRrP2lLLVqIZNyN
+ 42Fbo52pLYcM4l5qwOttu4Dq7VqDXG9OT36y1cpQ5s54TyrmEqeswVFAnP8Fwe9GHZiL6MM7Qx5
+ FDnld7sDeMmWDkbTWSLJ3BDTMWe2lO0r5bSbDKOp//BXYB7jaalBBj6hg4vNTywv+4+qpj9M7Nl
+ ptqQAtMI8qs8x+hmhUw==
+X-Received: by 2002:ad4:5ecb:0:b0:89c:4812:cc2 with SMTP id
+ 6a1803df08f44-8bc42c63a8amr140677956d6.15.1778179555938; 
+ Thu, 07 May 2026 11:45:55 -0700 (PDT)
+X-Received: by 2002:ad4:5ecb:0:b0:89c:4812:cc2 with SMTP id
+ 6a1803df08f44-8bc42c63a8amr140677476d6.15.1778179555448; 
+ Thu, 07 May 2026 11:45:55 -0700 (PDT)
 Received: from [192.168.8.4] ([100.0.180.93]) by smtp.gmail.com with ESMTPSA id
- d75a77b69052e-5148522a5adsm4018391cf.14.2026.05.07.11.23.44
+ 6a1803df08f44-8b538a293dbsm249581016d6.2.2026.05.07.11.45.54
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 07 May 2026 11:23:44 -0700 (PDT)
-Message-ID: <4de3ead617a9f706d00e8540e6c6d65353799f4f.camel@redhat.com>
+ Thu, 07 May 2026 11:45:54 -0700 (PDT)
+Message-ID: <6b3516fe9db22f223f6e558b5a6ff31fbe6aa64d.camel@redhat.com>
 Subject: Re: [PATCH] drm/dp_mst: Handle torn-down topology gracefully in
  drm_dp_mst_topology_queue_probe()
 From: lyude@redhat.com
 To: Jonas Emilsson <jonas.emilsson@gmail.com>, dri-devel@lists.freedesktop.org
 Cc: Imre Deak <imre.deak@intel.com>, stable@vger.kernel.org, 
  intel-gfx@lists.freedesktop.org
-Date: Thu, 07 May 2026 14:23:44 -0400
+Date: Thu, 07 May 2026 14:45:54 -0400
 In-Reply-To: <20260503034533.1023686-1-jonas.emilsson@gmail.com>
 References: <20260503034533.1023686-1-jonas.emilsson@gmail.com>
 User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: Jq48OEd6l3Hf5LlPHENpIsAb__MtBgSv3yZif0qlLJ0_1778178226
+X-Mimecast-MFC-PROC-ID: 20Sy2rt1P4qQrIfUveDxG26Zj5NPFbo3roaaqqr1Q68_1778179556
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: quoted-printable
@@ -104,7 +105,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 429DC4ED5DD
+X-Rspamd-Queue-Id: 85EFB4ED93C
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -141,9 +142,9 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,intel.com:email]
 X-Rspamd-Action: no action
 
-Reviewed-by: Lyude Paul <lyude@redhat.com>
-
-Will push upstream in just a moment
+Actually sorry - I need to take back the r-b, there's a couple of
+issues in this patch that I didn't immediately notice because it had
+trouble applying (though I don't have a clue why)
 
 On Sun, 2026-05-03 at 05:45 +0200, Jonas Emilsson wrote:
 > A hotplug or link-loss event can tear down the MST topology
@@ -202,6 +203,11 @@ On Sun, 2026-05-03 at 05:45 +0200, Jonas Emilsson wrote:
 > +=09if (!mgr->mst_state || !mgr->mst_primary) {
 > +=09=09drm_dbg_mst(mgr->dev, "queue_probe skipped: topology
 > torn down\n");
+
+There is no such function named drm_dbg_mst, can you switch this to
+drm_dbg_kms() like the rest of the file and make sure it builds before
+sending another version?
+
 > =C2=A0=09=09goto out_unlock;
 > +=09}
 >=20
