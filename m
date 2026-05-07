@@ -2,69 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +KeCFKin/GmwSQAAu9opvQ
+	id sB5DNBiy/GnlSgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 16:54:32 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 17:39:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 839BA4EA9DB
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 16:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 14D0B4EB34A
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 17:39:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8A85A10E26D;
-	Thu,  7 May 2026 14:54:29 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bHL3/R3L";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B9D710F1C3;
+	Thu,  7 May 2026 15:39:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB6B310E26D
- for <intel-gfx@lists.freedesktop.org>; Thu,  7 May 2026 14:54:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778165669; x=1809701669;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=jH26JiATEo9XrOOIYOZ72tWPPZMrm2lV1T25SKsNu+M=;
- b=bHL3/R3LToBaG0orXQm08/jyBnl97du4XkASG8i97g1qmUJ6kZP8a2s+
- YSzoyk6TuMDnxhrriljj5J3uA7N1a6LNTwSUBv1tZLXx04RJL3J1FBsrh
- 10S+cZb884H8wRo1q+m/Iug7KIiuqBQnyrMkWAY3WYMkpZ2Bh/IMrpIjW
- d+Wym4+huQ5hTL1CYpuvA0QzEfXWMaIyOLT2BZraGRRADgj43N883iXMG
- ymjDRUmN90AKNQQP9XPjifq8rStoEMDIycIpeg/56H4y1BSk5n09ZrgCs
- QKf7QjKeNO7yzWFzH0GXt6bLj64OWW0lcoPh3Y8vCbi2DIU55sC7N8y9P w==;
-X-CSE-ConnectionGUID: Nq/QVy0BQSibhGM9vhndPA==
-X-CSE-MsgGUID: i1o5nSahQiqhnjIHlSpA0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79133447"
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="79133447"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 07:54:29 -0700
-X-CSE-ConnectionGUID: ap5tByj3R/qC7EmlrpJRuQ==
-X-CSE-MsgGUID: ORL8HTGkTsSkOk/7VsTo0w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,221,1770624000"; d="scan'208";a="236401197"
-Received: from jkrzyszt-mobl2.ger.corp.intel.com ([10.245.245.136])
- by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 May 2026 07:54:27 -0700
-Message-ID: <cb8a871fe01b0c24687da73490a756466ac3755f.camel@linux.intel.com>
-Subject: Re: [PATCH v9 1/2] drm/i915/selftests: Prevent userspace mapping
- invalidation
-From: Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>, 
- intel-gfx@lists.freedesktop.org
-Cc: Andi Shyti <andi.shyti@linux.intel.com>, Sebastian Brzezinka	
- <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
- <krzysztof.niemiec@intel.com>
-Date: Thu, 07 May 2026 16:54:24 +0200
-In-Reply-To: <20260507142409.1913513-2-krzysztof.karas@intel.com>
-References: <20260507142409.1913513-1-krzysztof.karas@intel.com>
- <20260507142409.1913513-2-krzysztof.karas@intel.com>
-Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F1C410F1C8;
+ Thu,  7 May 2026 15:39:01 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============6173049470722029525=="
 MIME-Version: 1.0
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/intel=5Fpanel=3A?=
+ =?utf-8?q?_Reduce_redundant_intel=5Fpanel=5Ffixed=5Fmode=28=29_calls_=28rev?=
+ =?utf-8?q?2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 07 May 2026 15:39:01 -0000
+Message-ID: <177816834138.47681.13824706860363714119@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260430131220.3891497-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260430131220.3891497-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,239 +43,268 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 839BA4EA9DB
+X-Rspamd-Queue-Id: 14D0B4EB34A
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:krzysztof.karas@intel.com,m:andi.shyti@linux.intel.com,m:sebastian.brzezinka@intel.com,m:krzysztof.niemiec@intel.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[janusz.krzysztofik@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Hi Krzysztof,
+--===============6173049470722029525==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-On Thu, 2026-05-07 at 14:24 +0000, Krzysztof Karas wrote:
-> Migration testing in i915 assumes current task's address space
-> to allocate new userspace mapping and uses it without
-> registering real user for that address space in mm_struct.
-> On single NUMA node setups PCI probe executes in the same
-> context as userspace process calling the test (i915_selftest
-> from IGT), but when multiple nodes are available, the PCI code
-> puts probe into a kernel workqueue. This switches execution to
-> a kworker, which does not have its own address space in
-> userspace and must borrow such memory from another process, so
-> "current->active_mm" is unknown at the start of the test.
->=20
-> It was observed that mm->mm_users would occasionally be 0
-> or drop to 0 during the test due to short delay between
-> scheduling and executing work in forked process, which reaped
-> userspace mappings, further leading to failures upon reading
-> from userland memory.
->=20
-> Prevent this by adding a PID parameter to a trusted task, so its
-> mm struct may be used if needed.
->=20
-> Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14204
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
-> v7 (Andi):
->  * Add missing mm reference release on error path.
->=20
-> v8:
->  * Keep reference to mm open for the duration of test for
->  readability. (Sebastian)
->  * Be paranoic and explicit about keeping the mm reference,
->  so we are **really** sure about userspace mappings not
->  diappearing.
->=20
-> v9:
->  * Drop "Fixes" tag. (Andi)
->  * Revert to using a separate function for mm acquisition. (Andi)
->  * Keep kthread_use/unuse and mmget/mmput calls symmetric. (Janusz)
->=20
->  drivers/gpu/drm/i915/i915_selftest.h          |  1 +
->  .../gpu/drm/i915/selftests/i915_selftest.c    | 68 ++++++++++++++++++-
->  2 files changed, 68 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/i915_selftest.h b/drivers/gpu/drm/i915/=
-i915_selftest.h
-> index 72922028f4ba..e29ca298e7eb 100644
-> --- a/drivers/gpu/drm/i915/i915_selftest.h
-> +++ b/drivers/gpu/drm/i915/i915_selftest.h
-> @@ -35,6 +35,7 @@ struct i915_selftest {
->  	unsigned long timeout_jiffies;
->  	unsigned int timeout_ms;
->  	unsigned int random_seed;
-> +	unsigned int userspace_pid;
->  	char *filter;
->  	int mock;
->  	int live;
-> diff --git a/drivers/gpu/drm/i915/selftests/i915_selftest.c b/drivers/gpu=
-/drm/i915/selftests/i915_selftest.c
-> index 8460f0a70d04..1e8494bab14b 100644
-> --- a/drivers/gpu/drm/i915/selftests/i915_selftest.c
-> +++ b/drivers/gpu/drm/i915/selftests/i915_selftest.c
-> @@ -181,11 +181,48 @@ __wait_gsc_huc_load_completed(struct drm_i915_priva=
-te *i915)
->  		pr_warn(DRIVER_NAME "Timed out waiting for huc load via GSC!\n");
->  }
-> =20
-> +static struct mm_struct *
-> +get_mm(int u_pid_nr)
-> +{
-> +	struct pid *u_pid =3D find_get_pid(u_pid_nr);
+== Series Details ==
 
-What happens here if the st_userspace_pid module parameter is not provided?
+Series: drm/i915/intel_panel: Reduce redundant intel_panel_fixed_mode() calls (rev2)
+URL   : https://patchwork.freedesktop.org/series/165784/
+State : failure
 
-> +	struct task_struct *task =3D NULL;
-> +	struct mm_struct *mm =3D NULL;
-> +
-> +	if (!u_pid) {
-> +		pr_warn("Could not find PID: %d\n", u_pid_nr);
-> +		return NULL;
-> +	}
-> +
-> +	task =3D get_pid_task(u_pid, PIDTYPE_PID);
-> +	put_pid(u_pid);
-> +	if (!task) {
-> +		pr_warn("Could not find task for PID: %d\n", u_pid_nr);
-> +		return NULL;
-> +	}
-> +
-> +	if (task->flags & PF_KTHREAD) {
-> +		pr_warn("Task not in userspace: %d\n", u_pid_nr);
-> +		put_task_struct(task);
-> +		return NULL;
-> +	}
-> +
-> +	mm =3D get_task_mm(task);
-> +	put_task_struct(task);
-> +	if (!mm) {
-> +		pr_warn("Could not find address space of task with PID: %d\n", u_pid_n=
-r);
-> +		return NULL;
-> +	}
-> +
-> +	return mm;
-> +}
-> +
->  static int __run_selftests(const char *name,
->  			   struct selftest *st,
->  			   unsigned int count,
->  			   void *data)
->  {
-> +	int u_pid_nr =3D i915_selftest.userspace_pid;
-> +	struct mm_struct *mm =3D NULL;
->  	int err =3D 0;
-> =20
->  	while (!i915_selftest.random_seed)
-> @@ -201,14 +238,36 @@ static int __run_selftests(const char *name,
->  	pr_info(DRIVER_NAME ": Performing %s selftests with st_random_seed=3D0x=
-%x st_timeout=3D%u\n",
->  		name, i915_selftest.random_seed, i915_selftest.timeout_ms);
-> =20
-> +	/*
-> +	 * If we are running in a kthread on a multi NUMA system and the user p=
-assed
-> +	 * a valid PID of a userspace task, then we may borrow its address spac=
-e
-> +	 * to prepare a safe environment for the mmap selftests.
-> +	 */
-> +	if (!current->mm) {
+== Summary ==
 
-I think this condition should also check for a valid u_pid_nr.  To avoid=C2=
-=A0
-ambiguity, maybe the i915_selftest.userspace_pid attribute should be=C2=A0
-initialized to a negative value by default (when not overwritten with the=
-=C2=A0
-corresponding module parameter).  There is no point in submitting any=C2=A0
-warnings from here if the module parameter is not provided, I believe.
+CI Bug Log - changes from CI_DRM_18442 -> Patchwork_165784v2
+====================================================
 
-Other than that, LGTM.
+Summary
+-------
 
-Thanks,
-Janusz
+  **FAILURE**
 
-> +		mm =3D get_mm(u_pid_nr);
-> +		if (mm) {
-> +			kthread_use_mm(mm);
-> +			if (unlikely(!current->mm)) {
-> +				mmput(mm);
-> +				mm =3D NULL;
-> +				pr_warn("Could not set mm as current->mm\n");
-> +			}
-> +		}
-> +	}
-> +
->  	/* Tests are listed in order in i915_*_selftests.h */
->  	for (; count--; st++) {
->  		if (!st->enabled)
->  			continue;
-> =20
->  		cond_resched();
-> -		if (signal_pending(current))
-> +		if (signal_pending(current)) {
-> +			if (mm) {
-> +				kthread_unuse_mm(mm);
-> +				mmput_async(mm);
-> +			}
->  			return -EINTR;
-> +		}
-> =20
->  		pr_info(DRIVER_NAME ": Running %s\n", st->name);
->  		if (data)
-> @@ -226,6 +285,11 @@ static int __run_selftests(const char *name,
->  		 st->name, err))
->  		err =3D -1;
-> =20
-> +	if (mm) {
-> +		kthread_unuse_mm(mm);
-> +		mmput_async(mm);
-> +	}
-> +
->  	return err;
->  }
-> =20
-> @@ -507,6 +571,8 @@ void igt_hexdump(const void *buf, size_t len)
->  module_param_named(st_random_seed, i915_selftest.random_seed, uint, 0400=
-);
->  module_param_named(st_timeout, i915_selftest.timeout_ms, uint, 0400);
->  module_param_named(st_filter, i915_selftest.filter, charp, 0400);
-> +module_param_named(st_userspace_pid, i915_selftest.userspace_pid, uint, =
-0400);
-> +MODULE_PARM_DESC(st_userspace_pid, "For usage in tests that map userspac=
-e memory and require address space with controllable lifetime.");
-> =20
->  module_param_named_unsafe(mock_selftests, i915_selftest.mock, int, 0400)=
-;
->  MODULE_PARM_DESC(mock_selftests, "Run selftests before loading, using mo=
-ck hardware (0:disabled [default], 1:run tests then load driver, -1:run tes=
-ts then leave dummy module)");
+  Serious unknown changes coming with Patchwork_165784v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_165784v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_165784v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live:
+    - fi-ivb-3770:        [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/fi-ivb-3770/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/fi-ivb-3770/igt@i915_selftest@live.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_165784v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@hangcheck:
+    - fi-ivb-3770:        [PASS][3] -> [INCOMPLETE][4] ([i915#15975])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][5] -> [DMESG-FAIL][6] ([i915#12061]) +1 other test dmesg-fail
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-arls-5/igt@i915_selftest@live@workarounds.html
+    - bat-arls-6:         [PASS][7] -> [DMESG-FAIL][8] ([i915#12061]) +1 other test dmesg-fail
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-arls-6/igt@i915_selftest@live@workarounds.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-arls-6/igt@i915_selftest@live@workarounds.html
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [PASS][9] -> [FAIL][10] ([i915#14867])
+   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [DMESG-FAIL][11] ([i915#12061]) -> [PASS][12] +1 other test pass
+   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-dg2-8/igt@i915_selftest@live.html
+   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-dg2-8/igt@i915_selftest@live.html
+
+  * igt@kms_pm_rpm@basic-rte:
+    - bat-dg2-8:          [DMESG-WARN][13] -> [PASS][14]
+   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-dg2-8/igt@kms_pm_rpm@basic-rte.html
+   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-dg2-8/igt@kms_pm_rpm@basic-rte.html
+
+  
+#### Warnings ####
+
+  * igt@kms_psr@psr-sprite-plane-onoff:
+    - bat-dg2-8:          [SKIP][15] ([i915#9688]) -> [SKIP][16] ([i915#1072] / [i915#9732]) +3 other tests skip
+   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-dg2-8/igt@kms_psr@psr-sprite-plane-onoff.html
+   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-dg2-8/igt@kms_psr@psr-sprite-plane-onoff.html
+
+  
+  [i915#1072]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#14867]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867
+  [i915#15975]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15975
+  [i915#9688]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688
+  [i915#9732]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18442 -> Patchwork_165784v2
+
+  CI-20190529: 20190529
+  CI_DRM_18442: 13834f1c1c317cff7fe32d24e0630862c3ceafa3 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_165784v2: 13834f1c1c317cff7fe32d24e0630862c3ceafa3 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/index.html
+
+--===============6173049470722029525==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/intel_panel: Reduce redundant intel_panel_fixed_mode() calls (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165784/">https://patchwork.freedesktop.org/series/165784/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18442 -&gt; Patchwork_165784v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_165784v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_165784v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_165784v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/fi-ivb-3770/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/fi-ivb-3770/igt@i915_selftest@live.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_165784v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@hangcheck:</p>
+<ul>
+<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15975">i915#15975</a>)</li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@workarounds:</p>
+<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-arls-6/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-arls-6/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14867">i915#14867</a>)</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-rte:</p>
+<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-dg2-8/igt@kms_pm_rpm@basic-rte.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-dg2-8/igt@kms_pm_rpm@basic-rte.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h4>Warnings</h4>
+<ul>
+<li>igt@kms_psr@psr-sprite-plane-onoff:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18442/bat-dg2-8/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9688">i915#9688</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165784v2/bat-dg2-8/igt@kms_psr@psr-sprite-plane-onoff.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/1072">i915#1072</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/9732">i915#9732</a>) +3 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18442 -&gt; Patchwork_165784v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18442: 13834f1c1c317cff7fe32d24e0630862c3ceafa3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8899: 3e5747e536f148bf232049e49a00e2b683f91a83 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_165784v2: 13834f1c1c317cff7fe32d24e0630862c3ceafa3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============6173049470722029525==--
