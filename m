@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sN4qHp7r+2llIQAAu9opvQ
+	id CIwNGKDr+2llIQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 202544E1FB4
-	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36C254E1FBB
+	for <lists+intel-gfx@lfdr.de>; Thu, 07 May 2026 03:32:16 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9BAD110EF4B;
-	Thu,  7 May 2026 01:32:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B9F4910EF4D;
+	Thu,  7 May 2026 01:32:14 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QiKc1Cij";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PkKbo49g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0AFA710EF49;
- Thu,  7 May 2026 01:32:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7E63510EF4C;
+ Thu,  7 May 2026 01:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778117532; x=1809653532;
+ t=1778117533; x=1809653533;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=edkQ80jUzJwRiB6ORW65r0IdpGd+OScuTX+8j01DMpc=;
- b=QiKc1Cij6LZw/bu0V3yTyuP9fR5rXKWX8+THZoWQTzk3MqrKeqHI9QYp
- YQsQ9LekSNmus8Cyl/i70yNb62VIkKmlSKYrquL9TbE2Dac3jDXetuw74
- Pek41MhFsLXClF6Z9bRtD4MUsrH9K+9a9OsUMjil4tfNwh50gODrKBZvy
- +fQJ4eUay8OraYSAtqrjmzbuYxqB7ybU/HLsO9tM5rOJjii0oE6hmzqkh
- zOONzqEfU9BoafnE9IcW7AqwRjJa65kJtOrtXZuGLHZRLo4dMAJ8TVvw6
- KMXYeYappftvAlON77grUAMEkQlgml6TRr7rNm+OUjNiUKkxH1z6Zi7Su w==;
-X-CSE-ConnectionGUID: I2t0GEgDQaKddxmOksk9rA==
-X-CSE-MsgGUID: ZbGO/BKIT/Kp/A+A3NTBpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089036"
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089036"
+ bh=6XT7gEdaIUaARB9D9sAc0fumjaYURF1WzJI+wp6DjpQ=;
+ b=PkKbo49g/gLIMWhXtOgDpzHccRudUxxN63W5s/0J58gP1I6VdKQ3L27H
+ y8/QZ9ueDGXQ2Wz9gXhbzs4cpb6tf6ijs2fKIU5cvd1GESCbXTONnaayR
+ ITEj1G5TWN54M+xNjQnHKr1KeCDVtqELR1mg7Pw33uoUVLo4eJMHz6Q+8
+ SziSkYiAHWr6IET4mI0WwK2YcS5utKMAy6aORajVSohvgfo1RU5d497c8
+ hmHrG3VaE4UfnElnVbKl4ULaLLu0eVp5gVBCs9pDxZdztyZWmKEV93J4b
+ 8rp1fyozsHnL9VWSOO1mmKYg47XW2xCMM1RJgjCDQs8bFPraI2OED4f9J g==;
+X-CSE-ConnectionGUID: DJQTW9YBTjCshgdqjxQ/Vg==
+X-CSE-MsgGUID: bb4c919gRCOnyCbsenBKpw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11778"; a="78089038"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="78089038"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 May 2026 18:32:12 -0700
-X-CSE-ConnectionGUID: P8mgh3YaR4y+hNZJTeb1Pw==
-X-CSE-MsgGUID: x2RF7AmjTbyAQ+VsnYYMrg==
+ 06 May 2026 18:32:13 -0700
+X-CSE-ConnectionGUID: /NdUMU12QEePifeR4rdEpA==
+X-CSE-MsgGUID: ZXQD5CDoS7yM6nYP0giJ3w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692799"
+X-IronPort-AV: E=Sophos;i="6.23,220,1770624000"; d="scan'208";a="266692805"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:32:11 -0700
+ by orviesa002.jf.intel.com with ESMTP; 06 May 2026 18:32:13 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, suraj.kandpal@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 15/31] drm/i915/bios: parse LT's VS/PE-O tables
-Date: Thu,  7 May 2026 03:31:21 +0200
-Message-ID: <20260507013137.527510-16-michal.grzelak@intel.com>
+Subject: [PATCH v3 16/31] drm/i915/bios: shrink all LT's VS/PE tables
+Date: Thu,  7 May 2026 03:31:22 +0200
+Message-ID: <20260507013137.527510-17-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260507013137.527510-1-michal.grzelak@intel.com>
 References: <20260507013137.527510-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 202544E1FB4
+X-Rspamd-Queue-Id: 36C254E1FBB
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -104,111 +104,56 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-LT's VS/PE-O tables have less columns than xe3plpd_lt_phy_buf_trans
-contains fields. This prevents casting block->tables to point at
-xe3plpd_lt_phy_buf_trans and parsing it trivially.
+Each value present in LT's VS/PE-O table is stored on u32. In order to
+match values' size this causes xe3plpd_lt_phy_buf_trans to increase it's
+size.
 
-Parse each entry from every table into kzalloc'd buffers' matrix. Read
-number of tables and number of columns from the block. Assume that each
-table contains 16 rows.
-
-Inflate xe3plpd_lt_phy_buf_trans since each VBT-based value is
-stored on u32. Reducing the size will be done in separate commit.
-
-Add LT to workaround for availability of VS/PE-O parsing.
-
-v2->v3
-- remove unnecessary braces from if blocks
+Nevertheless, the actual value from each LT's VS/PE-O table is fully
+encoded in the lowest byte. Extract the lowest byte by casting to u8 and
+using it as deparsed value. This way there is no need to inflate default
+tables.
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c     | 33 ++++++++++++++++++-
- .../drm/i915/display/intel_ddi_buf_trans.h    | 10 +++---
- 2 files changed, 37 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bios.c          |  6 +++---
+ drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h | 10 +++++-----
+ 2 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index b2ee556e9d1f3..2328429b562df 100644
+index 2328429b562df..1b14cffe641ae 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2187,6 +2187,30 @@ parse_compression_parameters(struct intel_display *display)
- 	}
- }
+@@ -2202,9 +2202,9 @@ parse_vswing_preemph_lt(union intel_ddi_buf_trans_entry **bufs_mtrx,
+ 			vals = &tables[offset];
  
-+static void
-+parse_vswing_preemph_lt(union intel_ddi_buf_trans_entry **bufs_mtrx,
-+			const struct bdb_vswing_preemph *block)
-+{
-+	union intel_ddi_buf_trans_entry *entry;
-+	const u32 *tables = block->tables;
-+	u8 num_rows = 16;
-+	size_t offset = 0;
-+	const u32 *vals;
-+
-+	for (int idx = 0; idx < block->num_tables; idx++) {
-+		for (int row = 0; row < num_rows; row++) {
-+			vals = &tables[offset];
-+
-+			entry = &bufs_mtrx[idx][row];
-+			entry->lt.main_cursor = vals[0];
-+			entry->lt.pre_cursor = vals[1];
-+			entry->lt.post_cursor = vals[2];
-+
-+			offset += block->num_columns;
-+		}
-+	}
-+}
-+
- static void
- parse_vswing_preemph_override(struct intel_display *display)
- {
-@@ -2210,7 +2234,10 @@ parse_vswing_preemph_override(struct intel_display *display)
- 	for (int idx = 0; idx < block->num_tables; idx++)
- 		bufs_mtrx[idx] = kzalloc_objs(**bufs_mtrx, num_rows);
+ 			entry = &bufs_mtrx[idx][row];
+-			entry->lt.main_cursor = vals[0];
+-			entry->lt.pre_cursor = vals[1];
+-			entry->lt.post_cursor = vals[2];
++			entry->lt.main_cursor = (u8) vals[0];
++			entry->lt.pre_cursor = (u8) vals[1];
++			entry->lt.post_cursor = (u8) vals[2];
  
--	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
-+	if (HAS_LT_PHY(display))
-+		parse_vswing_preemph_lt(bufs_mtrx, block);
-+	else
-+		drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
- 
- 	display->vbt.vspeo.bufs_mtrx = bufs_mtrx;
- 	display->vbt.vspeo.num_tables = block->num_tables;
-@@ -2659,6 +2686,7 @@ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
- 
- static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
- {
-+	struct intel_display *display = devdata->display;
- 	struct intel_ddi_buf_trans *buf_trans;
- 	bool parseable = false;
- 
-@@ -2667,6 +2695,9 @@ static void override_vswing_preemph(struct intel_bios_encoder_data *devdata)
- 	if (!intel_bios_encoder_overrides_vswing(devdata))
- 		return;
- 
-+	if (HAS_LT_PHY(display))
-+		parseable = true;
-+
- 	if (!parseable)
- 		return;
- 
+ 			offset += block->num_columns;
+ 		}
 diff --git a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
-index ac9acdec6d298..bc4bc80ba6588 100644
+index bc4bc80ba6588..ac9acdec6d298 100644
 --- a/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
 +++ b/drivers/gpu/drm/i915/display/intel_ddi_buf_trans.h
 @@ -51,11 +51,11 @@ struct dg2_snps_phy_buf_trans {
  };
  
  struct xe3plpd_lt_phy_buf_trans {
--	u8 main_cursor;
--	u8 pre_cursor;
--	u8 post_cursor;
--	u8 txswing;
--	u8 txswing_level;
-+	u32 main_cursor;
-+	u32 pre_cursor;
-+	u32 post_cursor;
-+	u32 txswing;
-+	u32 txswing_level;
+-	u32 main_cursor;
+-	u32 pre_cursor;
+-	u32 post_cursor;
+-	u32 txswing;
+-	u32 txswing_level;
++	u8 main_cursor;
++	u8 pre_cursor;
++	u8 post_cursor;
++	u8 txswing;
++	u8 txswing_level;
  };
  
  union intel_ddi_buf_trans_entry {
