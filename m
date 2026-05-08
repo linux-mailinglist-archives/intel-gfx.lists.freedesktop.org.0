@@ -2,60 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0L3JEcUn/mm9nQAAu9opvQ
+	id 0HERFtMp/mn/nQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 20:13:25 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 20:22:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA7A24FA70F
-	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 20:13:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2ACD74FA877
+	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 20:22:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6BBCC10F59C;
-	Fri,  8 May 2026 18:13:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 848D010F5A2;
+	Fri,  8 May 2026 18:22:06 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jvFTUOlD";
+	dkim=fail reason="signature verification failed" (2048-bit key; secure) header.d=infradead.org header.i=@infradead.org header.b="3oZLkdmP";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E9DAD10F59C;
- Fri,  8 May 2026 18:13:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778264001; x=1809800001;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=Np0mnHcjd5WfQgsi3Petr7NjT2ttji6ooPDgahRnhAk=;
- b=jvFTUOlDcogJMdbS7BnRJ612wm7ULdyBNmQdAj1mLiLhJ9uGYU5CNS+K
- aYIH5fw1K2CwyG60kii1bqyFHgwy/4gFGPvNCEMWNbXf/tFcNpy5qKKFL
- Ddh24u8vkSNwo9uYTu+tXeOqr9QrVUb/rcj7kTzAi8BXy00DIvVttd5rn
- NYMKZBZHuytw57kluOqCBcyi3wJpRw61MvnnLLEgT9H6aoRf1C4bSGqKJ
- 11UsiXEDhK6fokCi2l4uQt4FfXmvWn4jOzy7Whh16z00yaZjwh3plnvTp
- VF28enD5f9GMVp+8FH2WwtZCJ/YTfuy2/8wWuL9l9XmhjB1kxv2JdxB3z Q==;
-X-CSE-ConnectionGUID: 1YEHxbCYQpWWC1a8zbDkzw==
-X-CSE-MsgGUID: jjxUghiJTRyyxw/6v5Ab0w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="78265984"
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="78265984"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 11:13:21 -0700
-X-CSE-ConnectionGUID: blSLoaTpQymNtZvzMbY8sg==
-X-CSE-MsgGUID: 3IZv1J2RTpOxC1fcVqmrRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="232481497"
-Received: from nex-dev-jx.fm.intel.com ([10.105.128.1])
- by fmviesa010.fm.intel.com with ESMTP; 08 May 2026 11:13:20 -0700
-From: James Xiong <james.xiong@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: gustavo.sousa@intel.com, jani.nikula@linux.intel.com,
- James Xiong <james.xiong@intel.com>
-Subject: [PATCH v3] drm/i915/dmc: fix assert_dmc_loaded WARN during async
- firmware load
-Date: Fri,  8 May 2026 11:13:29 -0700
-Message-Id: <20260508181329.666762-1-james.xiong@intel.com>
-X-Mailer: git-send-email 2.34.1
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67E2510E33F;
+ Fri,  8 May 2026 18:22:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=fD79LjbLJzRV4SU5PUp0N6BYWSilqW/UE9YNtO6ZM6w=; b=3oZLkdmPo6NbLo4vBhDBSZkIk5
+ mPtsJ0KZOtzO4pfdTFH9DJ9wOKlMzcJnKdAjPANzKGIIkMRUDSGrMFJac5FGznslOQFOZ6kmr4VRL
+ uMy5euj+BuFydpcglmgVUwXWlCUYwACPx9exoiZgd7VxNJZtbZr73Xxdzubu0jrZgN2/ZDgcDJ2L3
+ rSZ+a7TOg7Qbb+Xi3A9nWyHCz/KrOO7XcEK5UMfR8pc13e7kaEUOkhpE5JgiaWZKnxxKhONo2SajO
+ LW/LXDAsnANICdARyu1ldMLQW00aGHneqQcAjOYAaM6QPwYov0M0i4MLHG8OKX/HkkCtYDE0nqxSI
+ Iqp8sogw==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
+ id 1wLPpq-00000007FRf-2Pvf; Fri, 08 May 2026 18:22:02 +0000
+Message-ID: <4aba5b5e-75a5-4800-bedb-8f7cc673c7f7@infradead.org>
+Date: Fri, 8 May 2026 11:22:01 -0700
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] Documentation/gpu: add dedicated documentation for
+ Intel display
+To: Jani Nikula <jani.nikula@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-doc@vger.kernel.org
+Cc: rodrigo.vivi@intel.com, Matthew Brost <matthew.brost@intel.com>,
+ =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net
+References: <cover.1778235406.git.jani.nikula@intel.com>
+ <21bfa7777eb0926eadd309d4c6f5c9cf48405cf0.1778235406.git.jani.nikula@intel.com>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <21bfa7777eb0926eadd309d4c6f5c9cf48405cf0.1778235406.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -71,73 +67,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: CA7A24FA70F
+X-Rspamd-Queue-Id: 2ACD74FA877
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[james.xiong@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[infradead.org:-];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,infradead.org:email,infradead.org:mid]
 X-Rspamd-Action: no action
 
-During driver probe, DMC firmware is loaded asynchronously via a
-workqueue. There is a race between parse_dmc_fw() setting the payload
-pointer (making has_dmc_id_fw() return true) and intel_dmc_load_program()
-writing the firmware to hardware registers. If the probe thread calls
-intel_dmc_enable_pipe() -> assert_dmc_loaded() in this window via
-intel_modeset_setup_hw_state(), it sees parsed payload but stale HW
-registers, triggering a ~20% intermittent WARNING on ADL-N warm boot.
 
-v2: Fix by calling intel_dmc_wait_fw_load() in
-    intel_modeset_setup_hw_state() before iterating the CRTCs (Gustavo
-    Sousa).
 
-v3: Move intel_dmc_wait_fw_load() into intel_dmc_enable_pipe() itself
-    so the function is self-contained (Jani Nikula, Gustavo Sousa).
+On 5/8/26 3:20 AM, Jani Nikula wrote:
+> diff --git a/Documentation/gpu/intel-display/index.rst b/Documentation/gpu/intel-display/index.rst
+> new file mode 100644
+> index 000000000000..8d40363b8f90
+> --- /dev/null
+> +++ b/Documentation/gpu/intel-display/index.rst
+> @@ -0,0 +1,40 @@
+> +.. SPDX-License-Identifier: MIT
+> +.. Copyright © 2026 Intel Corporation
+> +
+> +.. _drm/intel-display:
+> +
+> +====================
+> +Intel Display Driver
+> +====================
+> +
+> +The Intel display driver provides the display, or :ref:`drm-kms`, support for
+> +both the :ref:`drm/xe <drm/xe>` and :ref:`drm/i915 <drm/i915>` Intel GPU
+> +drivers.
+> +
+> +The source code currently resides under ``drivers/gpu/drm/i915/display`` due to
+> +historical reasons, and it's compiled separately into both drm/xe and drm/i915
+> +kernel modules.
+> +
+> +The drm/xe and drm/i915 drivers are the "core" or "parent" drivers for display,
+> +as they initialize and own the drm device, and pass that on to the display
+> +driver. The display driver isn't an independent driver in that sense.
+> +
+> +.. toctree::
+> +   :maxdepth: 1
+> +   :caption: Detailed display topics
+> +
+> +   async-flip
+> +   audio
+> +   cdclk
+> +   dmc
+> +   dpio
+> +   dpll
+> +   drrs
+> +   dsb
+> +   fbc
+> +   fifo-underrun
+> +   frontbuffer
+> +   hotplug
+> +   plane
+> +   psr
+> +   vbt
 
-Signed-off-by: James Xiong <james.xiong@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dmc.c | 7 ++++++-
- 1 file changed, 6 insertions(+), 1 deletion(-)
+Is this in almost-alphabetical order or just random?  :)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 0df4f42ba3e3..4151eae92744 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -786,7 +786,12 @@ void intel_dmc_enable_pipe(const struct intel_crtc_state *crtc_state)
- 	enum pipe pipe = crtc->pipe;
- 	enum intel_dmc_id dmc_id = PIPE_TO_DMC_ID(pipe);
- 
--	if (!is_valid_dmc_id(dmc_id) || !has_dmc_id_fw(display, dmc_id))
-+	if (!is_valid_dmc_id(dmc_id))
-+		return;
-+
-+	intel_dmc_wait_fw_load(display);
-+
-+	if (!has_dmc_id_fw(display, dmc_id))
- 		return;
- 
- 	if (!can_enable_pipedmc(crtc_state)) {
+Tested-by: Randy Dunlap <rdunlap@infradead.org>
+
 -- 
-2.34.1
-
+~Randy
