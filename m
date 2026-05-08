@@ -2,68 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6KiOA2X1/Wn5lAAAu9opvQ
+	id KBeDKVT2/Wn5lAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 16:38:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 16:42:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 66D014F7DDE
-	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 16:38:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 159CA4F7F04
+	for <lists+intel-gfx@lfdr.de>; Fri, 08 May 2026 16:42:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DE99810F526;
-	Fri,  8 May 2026 14:38:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8534210E5E5;
+	Fri,  8 May 2026 14:42:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IInGxdR2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BW5lbC5d";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA7E410F526;
- Fri,  8 May 2026 14:38:25 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 434A410E0B9;
+ Fri,  8 May 2026 14:42:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778251106; x=1809787106;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=GPJJjl5X/3lXWI/FH29zpPakong5zTs42mxiQE1zlZU=;
- b=IInGxdR2KNZFzirFQ/ws3SmdUwpHas1yZrxTysMXc/gMiss5Ejcz9lMX
- qfUGydPpeWOV8yKQzzOUpr8AUeI6tpBNvnEAi9cvX6FTUEIt2zfPjHkKx
- umjqTn6isR/NOi6hfMUA505V+kc3QJw+7uGOpD3Is/+VmIRdLv79osWXi
- oCs8oIJ6/mSPEqMCtTqyGxod77a2C6x4AeVG6D88DO8MxNhkxcGntcDU0
- RPwIH7yjMr+me6iItMA2AEvhfNm+iQ0xulBYDdQ/L4SGzlAOgopHqtkgy
- d0cMAvefRBXu1MZTpDTEBWnAxQHlz5mF1l2xPOIElxKmpzYmM6Q43NkUh w==;
-X-CSE-ConnectionGUID: w6wI6KCpSbm6ANp7EVFXdw==
-X-CSE-MsgGUID: 7hy1z8P9T62Nk6RCd/ww5g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="101894066"
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="101894066"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 07:38:26 -0700
-X-CSE-ConnectionGUID: etR/9558QrKvskR7Gq6ywQ==
-X-CSE-MsgGUID: lhLNZetiS8CXwfdRp0JJSA==
+ t=1778251344; x=1809787344;
+ h=from:to:subject:in-reply-to:references:date:message-id:
+ mime-version; bh=L9atX5SZFWNouSYJhqu1tV2vrxchfVuB1/bN3moV0EI=;
+ b=BW5lbC5dRq4OuZYRKDBbPLDwvKLpK1139uYrZa3owmEbHj/ymXS0Ggy1
+ n7E34R0meOMyy3K+p0LXHZoGxw7rVxVqEfmuyZ37YgIqSf+Ud+fsAi2gZ
+ VmPr3xpSJDOD3mbJTME7hQj4aRQE0PZ2uc6XkNBGoe9HWytANckiFZ+aK
+ UOlxi38D1xJ8/97HwdIfXsUJDXkYcjbUBTOL9ri0dRZY1snDq6UPwBZrL
+ RDaT2vqezDtg8ggWdgOD3JEulRcxlSzmnLMu8gNUHflZt3UTAh9gouHQZ
+ DuZZWPc8IOThvmnaa4bmQ2CLPrEdOBovmDdhS3T7u5bpbjC4obqwHZ5cG g==;
+X-CSE-ConnectionGUID: NJ/7NPh3R+OC/uTPL6qcUg==
+X-CSE-MsgGUID: oQzBvdu2R/6837j9IpLnGg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11780"; a="81784555"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="81784555"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 07:42:24 -0700
+X-CSE-ConnectionGUID: 9oI9ot+wQ+KYsn8XVUMGHw==
+X-CSE-MsgGUID: vvrVgJFzTBCZpp0abx90pw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="236897761"
-Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
- ([10.245.244.104])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 May 2026 07:38:23 -0700
-Date: Fri, 8 May 2026 17:38:20 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, jani.nikula@linux.intel.com
-Subject: Re: [PATCH 7/9] drm/dp: Add a helper to get the SDP type as a string
-Message-ID: <af31XJIB7mrif6BX@intel.com>
-References: <20260428074457.3566918-1-ankit.k.nautiyal@intel.com>
- <20260428074457.3566918-8-ankit.k.nautiyal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; d="scan'208";a="232443532"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.40])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 May 2026 07:42:23 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 017/108] drm/i915/dp_link_training: Add helper to mark
+ link training failure
+In-Reply-To: <20260428125233.1664668-18-imre.deak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260428125233.1664668-1-imre.deak@intel.com>
+ <20260428125233.1664668-18-imre.deak@intel.com>
+Date: Fri, 08 May 2026 17:42:20 +0300
+Message-ID: <1df1beb8661ad06de0b6e29b983720507ab72b06@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260428074457.3566918-8-ankit.k.nautiyal@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,29 +74,30 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 66D014F7DDE
+X-Rspamd-Queue-Id: 159CA4F7F04
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
@@ -109,80 +106,102 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-On Tue, Apr 28, 2026 at 01:14:55PM +0530, Ankit Nautiyal wrote:
-> Introduce dp_sdp_type_get_name() to get the SDP type as a string.
-> Use this to log the SDP type based on the sdp_type fields of the
-> VSC and AS SDPs instead of the hardcoded strings.
-> 
-> v2: Modify the SDP names to match the DisplayPort Spec. (Ville)
-> 
-> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-
+On Tue, 28 Apr 2026, Imre Deak <imre.deak@intel.com> wrote:
+> Add link_recovery_mark_train_failure() to record the failure and make
+> the link recovery state transition explicit after a link training
+> failure: recovery can continue with an autoretrain, or must be handed
+> over to userspace after fallback selection.
+>
+> This also prepares for replacing the sequential link training failure
+> counter with an enum in a follow-up change.
+>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/display/drm_dp_helper.c | 36 ++++++++++++++++++++++---
->  1 file changed, 32 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-> index 5f523d0514a5..654be04431ad 100644
-> --- a/drivers/gpu/drm/display/drm_dp_helper.c
-> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
-> @@ -3487,10 +3487,38 @@ static const char *dp_content_type_get_name(enum dp_content_type content_type)
->  	}
+>  .../drm/i915/display/intel_dp_link_training.c | 33 +++++++++++++++++--
+>  1 file changed, 30 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index 1c2cef7d61f37..eb922dca69c5b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -1277,6 +1277,33 @@ link_recovery_autoretrain_allowed(struct intel_dp_link_training *link_training)
+>  	return link_training->seq_train_failures < MAX_SEQ_TRAIN_FAILURES;
 >  }
 >  
-> +static const char *dp_sdp_type_get_name(unsigned char type)
+> +/**
+> + * link_recovery_mark_train_failure - record a link training failure
+> + * @link_training: link training state
+> + *
+> + * Record a link training failure and advance the recovery state to
+> + * indicate the next required recovery step.
+> + *
+> + * The caller must proceed with recovery as instructed by the return
+> + * value, either via automatic retraining or, once automatic retraining
+> + * is no longer possible, via userspace modesets after fallback
+> + * selection.
+> + *
+> + * Return:
+> + * - %true  if recovery should continue via automatic retraining.
+> + * - %false if automatic retraining is no longer possible and recovery
+> + *          must be delegated to userspace.
+> + */
+> +static bool
+> +link_recovery_mark_train_failure(struct intel_dp_link_training *link_training)
 > +{
-> +	switch (type) {
-> +	case DP_SDP_AUDIO_TIMESTAMP:
-> +		return "Audio_TimeStamp";
-> +	case DP_SDP_AUDIO_STREAM:
-> +		return "Audio_Stream";
-> +	case DP_SDP_EXTENSION:
-> +		return "Extension";
-> +	case DP_SDP_AUDIO_COPYMANAGEMENT:
-> +		return "Audio_CopyManagement";
-> +	case DP_SDP_ISRC:
-> +		return "ISRC";
-> +	case DP_SDP_VSC:
-> +		return "VSC";
-> +	case DP_SDP_PPS:
-> +		return "PPS";
-> +	case DP_SDP_VSC_EXT_VESA:
-> +		return "VSC_EXT_VESA";
-> +	case DP_SDP_VSC_EXT_CEA:
-> +		return "VSC_EXT_CEA";
-> +	case DP_SDP_ADAPTIVE_SYNC:
-> +		return "Adaptive-Sync";
-> +	default:
-> +		return "Unknown";
-> +	}
+> +	if (link_recovery_autoretrain_allowed(link_training))
+
+Yeah, I still think combining the above check with the below reads
+wrong.
+
+> +		/* Move to autoretrain pending or autoretrain disabled state. */
+> +		link_training->seq_train_failures++;
+> +
+> +	return link_recovery_autoretrain_allowed(link_training);
 > +}
 > +
->  void drm_dp_vsc_sdp_log(struct drm_printer *p, const struct drm_dp_vsc_sdp *vsc)
->  {
-> -	drm_printf(p, "DP SDP: VSC, revision %u, length %u\n",
-> -		   vsc->revision, vsc->length);
-> +	drm_printf(p, "DP SDP: %s, revision %u, length %u\n",
-> +		   dp_sdp_type_get_name(vsc->sdp_type), vsc->revision, vsc->length);
->  	drm_printf(p, "    pixelformat: %s\n",
->  		   dp_pixelformat_get_name(vsc->pixelformat));
->  	drm_printf(p, "    colorimetry: %s\n",
-> @@ -3505,8 +3533,8 @@ EXPORT_SYMBOL(drm_dp_vsc_sdp_log);
+>  /**
+>   * intel_dp_stop_link_train - stop link training
+>   * @intel_dp: DP struct
+> @@ -1813,6 +1840,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  	struct intel_encoder *encoder = &dig_port->base;
+>  	struct intel_dp_link_training *link_training =
+>  		intel_dp->link.training;
+> +	bool can_autoretrain;
+>  	bool passed;
+>  	/*
+>  	 * Reinit the LTTPRs here to ensure that they are switched to
+> @@ -1844,8 +1872,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  		return;
+>  	}
 >  
->  void drm_dp_as_sdp_log(struct drm_printer *p, const struct drm_dp_as_sdp *as_sdp)
->  {
-> -	drm_printf(p, "DP SDP: AS_SDP, revision %u, length %u\n",
-> -		   as_sdp->revision, as_sdp->length);
-> +	drm_printf(p, "DP SDP: %s, revision %u, length %u\n",
-> +		   dp_sdp_type_get_name(as_sdp->sdp_type), as_sdp->revision, as_sdp->length);
->  	drm_printf(p, "    vtotal: %d\n", as_sdp->vtotal);
->  	drm_printf(p, "    target rr: %d\n", as_sdp->target_rr);
->  	drm_printf(p, "    duration increase ms: %d\n", as_sdp->duration_incr_ms);
-> -- 
-> 2.45.2
+> -	if (link_recovery_autoretrain_allowed(link_training))
+> -		link_training->seq_train_failures++;
+> +	can_autoretrain = link_recovery_mark_train_failure(link_training);
+
+The documentation says "the caller must" but the variable says "can".
+
+Maybe the code here would read better if this wasn't conveyed in the
+return value but rather in a separate call to
+link_recovery_autoretrain_allowed().
+
+Or should it be link_recovery_must_autoretrain() or
+link_recovery_need_autoretrain()?
+
+BR,
+Jani.
+
+>  
+>  	/*
+>  	 * Ignore the link failure in CI
+> @@ -1864,7 +1891,7 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
+>  		return;
+>  	}
+>  
+> -	if (link_recovery_autoretrain_allowed(link_training))
+> +	if (can_autoretrain)
+>  		return;
+>  
+>  	if (intel_dp_schedule_fallback_link_training(state, intel_dp, crtc_state))
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
