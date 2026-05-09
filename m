@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aB40Itpj/2k86AAAu9opvQ
+	id AKHgLdtj/2k86AAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 09 May 2026 18:42:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 09 May 2026 18:42:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 59F9D500867
-	for <lists+intel-gfx@lfdr.de>; Sat, 09 May 2026 18:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 83B07500871
+	for <lists+intel-gfx@lfdr.de>; Sat, 09 May 2026 18:42:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C3D4910E3E0;
-	Sat,  9 May 2026 16:42:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 025A110E239;
+	Sat,  9 May 2026 16:42:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AMG6CIIT";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K/q2BeLd";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D4AF10E3FB;
- Sat,  9 May 2026 16:41:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F37510E239;
+ Sat,  9 May 2026 16:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778344919; x=1809880919;
+ t=1778344921; x=1809880921;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=b9bP0JzdEfj+hitbno5lq/UaoikE5n8pEulyHFwAO3E=;
- b=AMG6CIITd1Kc+1oUDwarM2XldyIPbpF5/fok14SdixDirqAd2HqsKMG7
- PyxBKfoOH9bytb/e11MNanhgDXBF/oo4IRqzkJZQSluT5XATR2Hu2EiE2
- wkr3ffQPfc8u4gW1MEAoCwMiiR91c8CvrRCA/Pk9Q+YYafMW/bb1FTzbc
- frNk6W8rQ3xM+Tyhsfrmx40Lc7JorprMzzKVsZ1DOO1vrhMo2gVi8eRWI
- u/JoUCSk8Sb9sNAcwUJNpFEZn1f60QAJgjTmYwQGbjf0Tw9XqElHMr2zK
- mcsqfp1iAl23nEObwti5nUgpujlU11SU50yog7lNFVpPsLnqQ0z6BzV3m Q==;
-X-CSE-ConnectionGUID: UKutjh2DS+GcG8YBZWQmtw==
-X-CSE-MsgGUID: XfgQNI9BRRu/xKou8qVExg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11781"; a="90763620"
-X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="90763620"
+ bh=RK1M5bf2B9NR38tLBIFiQOqQuyTE1Ps+TTrMrP8Crlo=;
+ b=K/q2BeLdYgCtjH2lSkA7x3DG1cTJLpXXw4JReE+gHyNu+8jBZ6YDcW7T
+ 6sEWv7TXOOKM9EdiNDJJ9B4QP9CYBgYCNY0EC5iXwoZGwAqO8I4U8mlfq
+ SQiH7iKO5pgMowBCpzK8AAeZTHCINcFOlgsq91Ybgfp9+f81Wb9nF3K4l
+ yZYPt6B8u8gLX8XP3t1YOwhu3v+Bu8V1nOUlCjGoy7C9Mxw2GX9VUYwlr
+ TkaS3WxnXBh0euPcZxDdFfKzmHy5umwRCEBaf+3hL+pgj1l0lboEHAUZS
+ kI5pOWic+5+09U1pvv1FSpVT19F8gV9Lii+2fpPciaagpdMEAEhp9IkrU g==;
+X-CSE-ConnectionGUID: TbvSXuZISPumceyFdEnoCA==
+X-CSE-MsgGUID: 15svfzugStWweyWkqpEb+Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11781"; a="90763621"
+X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="90763621"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 May 2026 09:41:59 -0700
-X-CSE-ConnectionGUID: 2Hl8Qs3KQHiKME2z9sm9Hw==
-X-CSE-MsgGUID: W9x/yAS7QquBY6G1LAcf7Q==
+ 09 May 2026 09:42:01 -0700
+X-CSE-ConnectionGUID: vWxWlL7GTniP9Ik3Icddmg==
+X-CSE-MsgGUID: aibcmLOpT5WjoqD7+fvuIQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="236212270"
+X-IronPort-AV: E=Sophos;i="6.23,225,1770624000"; d="scan'208";a="236212275"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP; 09 May 2026 09:41:57 -0700
+ by orviesa010.jf.intel.com with ESMTP; 09 May 2026 09:41:59 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, nemesa.garg@intel.com,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v3 8/9] drm/i915/scaler: abstract scaler searching loop
-Date: Sat,  9 May 2026 18:40:47 +0200
-Message-ID: <20260509164048.627399-9-michal.grzelak@intel.com>
+Subject: [PATCH v3 9/9] drm/i915/scaler: eliminate dead code
+Date: Sat,  9 May 2026 18:40:48 +0200
+Message-ID: <20260509164048.627399-10-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260509164048.627399-1-michal.grzelak@intel.com>
 References: <20260509164048.627399-1-michal.grzelak@intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 59F9D500867
+X-Rspamd-Queue-Id: 83B07500871
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -101,69 +101,35 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Add a helper function hiding the search for scaler_id.
-
-Changelog:
-v2->v3
-- keep ctl inside the loop (Ville)
-- separate impure function call from variable declaration block (Ville)
+We short-cut skl_scaler_get_config() when skl_pipe_scaler_get_hw_state()
+has failed. Remove codepaths that assume scaler_id < 0.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 27 +++++++++++++++--------
- 1 file changed, 18 insertions(+), 9 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 4e2f4c4ffc45..6acb54d5781b 100644
+index 6acb54d5781b..7994b983d509 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -836,6 +836,22 @@ void skl_pfit_enable(const struct intel_crtc_state *crtc_state)
- 			  PS_WIN_XSIZE(width) | PS_WIN_YSIZE(height));
+@@ -991,10 +991,7 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
+ 	scaler_state->scalers[scaler_id].in_use = true;
+ 
+ 	scaler_state->scaler_id = scaler_id;
+-	if (scaler_id >= 0)
+-		scaler_state->scaler_users |= (1 << SKL_CRTC_INDEX);
+-	else
+-		scaler_state->scaler_users &= ~(1 << SKL_CRTC_INDEX);
++	scaler_state->scaler_users |= (1 << SKL_CRTC_INDEX);
  }
  
-+static int skl_pipe_scaler_get_hw_state(struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_display *display = to_intel_display(crtc_state);
-+	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
-+
-+	for (int scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
-+		u32 ctl;
-+
-+		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, scaler_id));
-+		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) == (PS_SCALER_EN | PS_BINDING_PIPE))
-+			return scaler_id;
-+	}
-+
-+	return -1;
-+}
-+
- void
- skl_program_plane_scaler(struct intel_dsb *dsb,
- 			 struct intel_plane *plane,
-@@ -954,15 +970,8 @@ void skl_scaler_get_config(struct intel_crtc_state *crtc_state)
- 	u32 pos, size;
- 
- 	/* find scaler attached to this pipe */
--	for (scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
--		u32 ctl;
--
--		ctl = intel_de_read(display, SKL_PS_CTRL(crtc->pipe, scaler_id));
--		if ((ctl & (PS_SCALER_EN | PS_BINDING_MASK)) == (PS_SCALER_EN | PS_BINDING_PIPE))
--			break;
--	}
--
--	if (scaler_id == crtc->num_scalers)
-+	scaler_id = skl_pipe_scaler_get_hw_state(crtc_state);
-+	if (scaler_id < 0)
- 		return;
- 
- 	if (scaler_has_casf(display, scaler_id))
+ void adl_scaler_ecc_mask(const struct intel_crtc_state *crtc_state)
 -- 
 2.45.2
 
