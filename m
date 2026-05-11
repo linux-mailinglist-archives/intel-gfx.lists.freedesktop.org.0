@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QJYYEY7LAWqgjwEAu9opvQ
+	id OI/3CY/LAWqgjwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:29:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:29:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B960F50DC2E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F0E8E50DC35
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:29:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 449FD10E73A;
-	Mon, 11 May 2026 12:29:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE4410E739;
+	Mon, 11 May 2026 12:29:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ws8FMUgW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="fMMAbkHF";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0BD3E10E738;
- Mon, 11 May 2026 12:28:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CB3C10E73D;
+ Mon, 11 May 2026 12:29:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778502539; x=1810038539;
+ t=1778502541; x=1810038541;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=P5Xa6gr2F62WMauL56MZSupIoaFF8ap3EfxqLaGBOus=;
- b=Ws8FMUgWHmZ7LCo2FyT3UTvNAbqqyv7G8EMEe5sd7TuJKfKGLqmYYlRS
- gRpfjUfkqNHajF81M+pGBIIt67MVl4Ia3DpJgdQC6MUDn/jpJAlXEM1SX
- G/ZGVM1Xi7k0Jc0aROfPCIZPmFO7UheycoKrDg7J5PJK2htnP8B0fu4lw
- RQXfSgZI8UezgBYhGIqxELLuXExbcSoeUDiJvMpD6hB5WcRjqFGVksOMR
- MClYyH+C9yH+YeY/PH5yidlRbByfxwmIYWHB+W5YSbUA1wUPvfrdGXbNQ
- zGpAwzVYBJ5golx9iNGNq7t4ycEYOODw0IWT81O4nHSa8AD8+8SoexY/V g==;
-X-CSE-ConnectionGUID: 9PvUbpSfQ1+1zisTrV/xcA==
-X-CSE-MsgGUID: YYddd14RQx2Mp0/6iRaVGA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762809"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762809"
+ bh=vjQ50gGZcVErV0REW3vIfQHm8W2PijXBmka4HiCYlJ4=;
+ b=fMMAbkHFIj/Mrixvi6z3coTYMW6/TUIETh5Zdf1DxtWJMPrgptySoKgH
+ YyageGXJa1GnRjbtSWvcOVDAxDvsC+2vkI62v2FdVINyfVzOuqEj7Xf3E
+ HKIoahFooiC2tnXYJablMMSWtEjOxyCp6oSXVhU2j7G8NOkLaKVo1gcu5
+ rrN80fiNzPb1724nkAu2lqSXA8zMzTPQQ07KflDu5zC7cjkudJ0gJw9LD
+ HujK86PWsGW9DZWAKGgI0FhWyYyyn6TF1hqsZoP4us8rRbCHHOMJHcJa/
+ RiM4f6xvJb1TWcBdZKwfRGOw7i7BJkHE00kCohvBIuFm2ei6ubXDdAfOY w==;
+X-CSE-ConnectionGUID: oPjGiAhLS+uSC2Bh7tIJ6Q==
+X-CSE-MsgGUID: Pk5thvW0SWaye6dPEn5LlQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762815"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762815"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:28:59 -0700
-X-CSE-ConnectionGUID: sO6N/IN2Q+yBHiz0wpZ5pg==
-X-CSE-MsgGUID: OXVwoo2TTRe2QNRIh7SNew==
+ 11 May 2026 05:29:01 -0700
+X-CSE-ConnectionGUID: i1VjWBXfT1ilp3nco7W+7w==
+X-CSE-MsgGUID: nsmMQjkMSVi2o9ik7vGoWQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801455"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801459"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.16])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:28:57 -0700
+ 11 May 2026 05:29:00 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 09/11] drm/i915/bw: consolidate the debug info of
- bw/dgv/psf data
-Date: Mon, 11 May 2026 15:28:14 +0300
-Message-ID: <20260511122816.1235478-10-vinod.govindapillai@intel.com>
+Subject: [PATCH v2 10/11] drm/i915/bw: extract update_sagv_status()
+Date: Mon, 11 May 2026 15:28:15 +0300
+Message-ID: <20260511122816.1235478-11-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
 References: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
@@ -77,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B960F50DC2E
+X-Rspamd-Queue-Id: F0E8E50DC35
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -100,97 +99,79 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[vinod.govindapillai@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.998];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Consolidate all the detaills about the bw, gqv and psf gv into
-a common function and present it in an organised format
+Extract the code to update the sagv status based on the number of
+QGV points into a separate function and use it.
 
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 40 +++++++++++++++++--------
- 1 file changed, 27 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 33 +++++++++++--------------
+ 1 file changed, 15 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 858da1710a61..0bda13a3e31b 100644
+index 0bda13a3e31b..938c0294c251 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -483,6 +483,28 @@ static const struct intel_sa_info xe3lpd_3002_sa_info = {
- 	.derating = 10,
- };
+@@ -505,6 +505,19 @@ static void debug_print_bw_info(struct intel_display *display)
+ 	}
+ }
  
-+static void debug_print_bw_info(struct intel_display *display)
++static void update_sagv_status(struct intel_display *display, int qgv_points)
 +{
-+	int num_groups = ARRAY_SIZE(display->bw.max);
-+	int i;
-+
-+	for (i = 0; i < num_groups; i++) {
-+		struct intel_bw_info *bi = &display->bw.max[i];
-+		int j;
-+
-+		drm_dbg_kms(display->drm, "BW%d: num_planes=%d num_qgv_points:%d\n",
-+			    i, bi->num_planes, bi->num_qgv_points);
-+
-+		for (j = 0; j < bi->num_qgv_points; j++)
-+			drm_dbg_kms(display->drm, "\tQGV %d: deratedbw=%u peakbw=%u\n",
-+				    j,  bi->deratedbw[j], bi->peakbw[j]);
-+
-+		for (j = 0; j < bi->num_psf_gv_points; j++)
-+			drm_dbg_kms(display->drm, "\tPSF GV %d bw=%u\n",
-+				    j, bi->psf_bw[j]);
-+	}
++	/*
++	 * In case if SAGV is disabled in BIOS, we always get 1
++	 * SAGV point, but we can't send PCode commands to restrict it
++	 * as it will fail and pointless anyway.
++	 */
++	if (qgv_points == 1)
++		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
++	else
++		display->sagv.status = I915_SAGV_ENABLED;
 +}
 +
  static bool is_tile_y_factored(struct intel_display *display)
  {
  	/* TGL supports Y-tile for LPDDR4/5, but not for DDR4 */
-@@ -544,12 +566,11 @@ static int icl_get_bw_info(struct intel_display *display,
+@@ -571,15 +584,7 @@ static int icl_get_bw_info(struct intel_display *display,
  
- 			bi->deratedbw[j] = min(maxdebw,
- 					       bw * (100 - sa->derating) / 100);
--
--			drm_dbg_kms(display->drm,
--				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
--				    i, j, bi->num_planes, bi->deratedbw[j]);
- 		}
- 	}
-+
-+	debug_print_bw_info(display);
-+
- 	/*
- 	 * In case if SAGV is disabled in BIOS, we always get 1
- 	 * SAGV point, but we can't send PCode commands to restrict it
-@@ -650,24 +671,17 @@ static int tgl_get_bw_info(struct intel_display *display,
- 			bi->peakbw[j] = DIV_ROUND_CLOSEST(sp->dclk *
- 							  num_channels *
- 							  qi.channel_width, 8);
--
--			drm_dbg_kms(display->drm,
--				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
--				    i, j, bi->num_planes, bi->deratedbw[j],
--				    bi->peakbw[j]);
- 		}
+ 	debug_print_bw_info(display);
  
- 		for (j = 0; j < qi.num_psf_points; j++) {
- 			const struct intel_psf_gv_point *sp = &qi.psf_points[j];
+-	/*
+-	 * In case if SAGV is disabled in BIOS, we always get 1
+-	 * SAGV point, but we can't send PCode commands to restrict it
+-	 * as it will fail and pointless anyway.
+-	 */
+-	if (qi.num_points == 1)
+-		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+-	else
+-		display->sagv.status = I915_SAGV_ENABLED;
++	update_sagv_status(display, qi.num_points);
  
- 			bi->psf_bw[j] = adl_calc_psf_bw(sp->clk);
--
--			drm_dbg_kms(display->drm,
--				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
--				    i, j, bi->num_planes, bi->psf_bw[j]);
- 		}
- 	}
+ 	return 0;
+ }
+@@ -682,15 +687,7 @@ static int tgl_get_bw_info(struct intel_display *display,
  
-+	debug_print_bw_info(display);
-+
- 	/*
- 	 * In case if SAGV is disabled in BIOS, we always get 1
- 	 * SAGV point, but we can't send PCode commands to restrict it
+ 	debug_print_bw_info(display);
+ 
+-	/*
+-	 * In case if SAGV is disabled in BIOS, we always get 1
+-	 * SAGV point, but we can't send PCode commands to restrict it
+-	 * as it will fail and pointless anyway.
+-	 */
+-	if (qi.num_points == 1)
+-		display->sagv.status = I915_SAGV_NOT_CONTROLLED;
+-	else
+-		display->sagv.status = I915_SAGV_ENABLED;
++	update_sagv_status(display, qi.num_points);
+ 
+ 	return 0;
+ }
 -- 
 2.43.0
 
