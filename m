@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iKUuFytNAmrIqgEAu9opvQ
+	id MHQmEi5NAmrIqgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2BC395166DB
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E11825166E3
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C5DD10E8F3;
-	Mon, 11 May 2026 21:42:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73C1C10E8EF;
+	Mon, 11 May 2026 21:42:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="POOBWp1s";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GYDFittw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8CC4110E8F2;
- Mon, 11 May 2026 21:41:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B81BC10E8EF;
+ Mon, 11 May 2026 21:42:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778535720; x=1810071720;
+ t=1778535724; x=1810071724;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=//mYb+Vnkb+++qHjecxnMqrfpMUrRfF7zBPXSsZHf4A=;
- b=POOBWp1sq3LU0omtOqASkXK5gVCm6VzFEXbyfBWWcdlK1CH74reBivEr
- meolwQf+0HHsfro93N6uk+HWg5aKGpC8Us/VZ+RWVZLWThBn3YWoyY7KP
- xzNTbNz4p7Nzf8PxvN5M6LjV46cajnQBwly77legGQKEK6DK88T8nM5WN
- JsDjjK3k1uG95L50uQSDi+SaYayumEnpY4WdNmkG3k2IJsNXWkwCbC6ai
- V4DvXnBg3pABx1mukLC3GURQMtbxLAkUBYoHtlnxNZv8TzbiqTXY67fV8
- Kwz+bJyGVMhGI3uhagFZMPGdW9bPABryFCoDiLVXKCVTSED/d/0hY4Klu w==;
-X-CSE-ConnectionGUID: OCbW8SSJTBKq0OKmnnB8kQ==
-X-CSE-MsgGUID: Rr9NuyMTSYqNp9OZD0NGyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816879"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816879"
+ bh=nsarxqYB0Yxt7W83AvNh53eZQUq+WzCG9d//n4Q28tE=;
+ b=GYDFittwpwuyFxgacj/cIOJIsqMGxwTmSQOG1BloT937T6asZkKlemYc
+ hb7YqFFTabFb1bQ2moDiBAJ91wB5wAdmlsr6SD0KtOEHhItAXiqb43Ekw
+ bQZm2vfyg3goP328vrsDIINGxDmnPaitD6asKtYB3tHWWoe/+zZz4+k10
+ WmKuSq7bpAx6ioe5kUY1cwGrkx0/47VvEAlpaMrnbwQMi1rvDrCOvhb3F
+ a5vOAELqmszdgHcGhGyzySLL9MaQhwQJ0KaGBrdbXRXjghExNQ7iIfH9F
+ WzvjMp07yg152mb2yooPmSNJDeXSGIhRkiSTmJcr2iUDkEXEmoSZvkGSS g==;
+X-CSE-ConnectionGUID: S7RRKo6mTzaH6b5Myoq0JA==
+X-CSE-MsgGUID: 3rVcuRgsRZirOSdS7nmoUw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816884"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816884"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:41:59 -0700
-X-CSE-ConnectionGUID: pfKv0/8+SQWa5XUiEkhDjA==
-X-CSE-MsgGUID: 65YxtfEtQDaYDXbqGe32zQ==
+ 11 May 2026 14:42:04 -0700
+X-CSE-ConnectionGUID: EPkZbFBXTMCNrvkYKtrzlA==
+X-CSE-MsgGUID: MM2UzseBQImGuGg6BlGATg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702916"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702919"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.104])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:41:58 -0700
+ 11 May 2026 14:42:02 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/14] drm/xe: Print a debug message if we have no stolen for
- the initial FB
-Date: Tue, 12 May 2026 00:41:16 +0300
-Message-ID: <20260511214122.8468-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/14] drm/xe: Abstract the initial FB PTE checks a bit
+Date: Tue, 12 May 2026 00:41:17 +0300
+Message-ID: <20260511214122.8468-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
@@ -76,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2BC395166DB
+X-Rspamd-Queue-Id: E11825166E3
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -107,41 +106,56 @@ X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Inform the poor sop reading the logs why the initial FB was rejected
-if there is no stolen memory.
-
-Technically this should perhaps be an error since the plane is known
-to be enabled at this point, and if there is no stolen then it clearly
-can't be scanning out from anywhere. But maybe there are some
-virtualization passthrough cases and whatnot where we might not be
-able to get access to stolen, so keep it as debug (same as i915).
+Add a few helpers that allow us to abstract the xe initial FB PTE
+check a bit. Still very ad-hoc compared to the nicely abstracted
+i915 counterpart, but whatever.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 17 ++++++++++++++---
+ 1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 14ac4cd8b7ff..b7e0685351bb 100644
+index b7e0685351bb..0dabc5709d01 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -67,10 +67,14 @@ initial_plane_bo(struct xe_device *xe,
- 			    "Using phys_base=%pa, based on initial plane programming\n",
- 			    &phys_base);
- 	} else {
--		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+		struct ttm_resource_manager *stolen;
+@@ -18,8 +18,19 @@
+ #include "xe_fb_pin.h"
+ #include "xe_ggtt.h"
+ #include "xe_mmio.h"
++#include "xe_ttm_stolen_mgr.h"
+ #include "xe_vram_types.h"
  
--		if (!stolen)
-+		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-+		if (!stolen) {
-+			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
- 			return NULL;
-+		}
++static bool is_pte_local(u64 pte)
++{
++	return pte & XE_GGTT_PTE_DM;
++}
 +
- 		phys_base = base;
- 		flags |= XE_BO_FLAG_STOLEN;
- 	}
++static bool need_pte_local(struct xe_device *xe)
++{
++	return IS_DGFX(xe);
++}
++
+ static struct xe_bo *
+ initial_plane_bo(struct xe_device *xe,
+ 		 struct intel_initial_plane_config *plane_config)
+@@ -43,13 +54,13 @@ initial_plane_bo(struct xe_device *xe,
+ 	if (IS_DGFX(xe)) {
+ 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+ 
+-		if (!(pte & XE_GGTT_PTE_DM)) {
+-			drm_err(&xe->drm,
+-				"Initial plane programming missing DM bit\n");
++		if (is_pte_local(pte) != need_pte_local(xe)) {
++			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+ 			return NULL;
+ 		}
+ 
+ 		phys_base = pte & ~(page_size - 1);
++
+ 		flags |= XE_BO_FLAG_VRAM0;
+ 
+ 		/*
 -- 
 2.52.0
 
