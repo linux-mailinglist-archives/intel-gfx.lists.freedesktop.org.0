@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cI8HOhdNAmpaqQEAu9opvQ
+	id UAh7CRhNAmpaqQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B6FB516687
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AE2B051668A
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DBD0A10E8E6;
-	Mon, 11 May 2026 21:41:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42DEB10E1F0;
+	Mon, 11 May 2026 21:41:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CPM9VrFA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Ysy2a/zt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1151710E8E6;
- Mon, 11 May 2026 21:41:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0993710E8E9;
+ Mon, 11 May 2026 21:41:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778535695; x=1810071695;
+ t=1778535699; x=1810071699;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WJVe5RHAEjNht8kJxBpwwDorVArUGUur/5QeA80YAww=;
- b=CPM9VrFAsdAhfgj316+KQhcSTP/YD161KFdKjCL+gvtqjtii1x+1dU7f
- cIopHWTWiHEiaQ37ylJ1O1mbo+L8W6dJZco2YdfK2tn5CBHn3h7ivPY7o
- leiWEOP5cJKQP5Ocro11dkYbiDBd04syXpBsepNLnJfKIIvDbERe7WMqB
- nyo+h2+67yAcf5XIT+NOfROEmg+uO483R6BMSSp8Y8G+OSThxR1FDePut
- 7akMcx8c4Cuv0x0z8pnCuRC6alNGtsR9jZdRM5rxBKuTeeKfp861OgIhm
- fnen0beFPffnAOuld1Gc9Hv8pv/hiZlJlqdeCItvBP/N+Uxm1jW92WZ1k A==;
-X-CSE-ConnectionGUID: yDPs+XnVRoKYDPcTFN+DJw==
-X-CSE-MsgGUID: SlTqdqYrQ4iS36YXrAavYw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79618476"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79618476"
+ bh=FdaOP7dEh2URLgggIA7vq0fTLFfNFD9SSxcNc9fajq4=;
+ b=Ysy2a/zt4jSJuvOddWCqcJzZfIMGTl80tp5A7QkSnXy1oHFEBRMWnUVO
+ XJPmjqMq+VMWBjOAYFRV90Pp05OS6cznV0ma8CRmsWToFUM83if7eYV4k
+ Z1R22JfTW63al4ium/yUtvrpd2Lc+xMCIomJLyRsS5don5aDfy3qvV97G
+ pgDzx6ExBhM+jGAIpb1U2929mpxE2vnV8Jd0eVeDvXTx4mq7e4fRCNr9G
+ kZgUr1uYUCmVjmiCbP7LE6sLDawYKr7EZkdV4YNG8CIM3JrZ+6iJA8K4K
+ vKbixY2UVPpx7atk5tjpOrDfaOe7IZnhw3GVOsz6DCSYyuvCpi4WmtC87 g==;
+X-CSE-ConnectionGUID: wrRnVVdhQrO3KrzZJW+Htw==
+X-CSE-MsgGUID: URo7IlW4RNOwBodFPjzVGQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79618483"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79618483"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:41:35 -0700
-X-CSE-ConnectionGUID: 6EdbpGsGSrqgIMuBig8BqA==
-X-CSE-MsgGUID: qYCL+m2wSc6ow/+FPre3hw==
+ 11 May 2026 14:41:39 -0700
+X-CSE-ConnectionGUID: 9nOQgXgASq2opWtW4T2w1g==
+X-CSE-MsgGUID: 5fjt619oQcWB2agddZnTmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="233097247"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="233097266"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.104])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:41:33 -0700
+ 11 May 2026 14:41:37 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/14] drm/i915/fbdev: Extract bios_fb_ok()
-Date: Tue, 12 May 2026 00:41:10 +0300
-Message-ID: <20260511214122.8468-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/14] drm/i915: Throw away the BIOS fb if has the wrong
+ depth/bpp
+Date: Tue, 12 May 2026 00:41:11 +0300
+Message-ID: <20260511214122.8468-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
@@ -75,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7B6FB516687
+X-Rspamd-Queue-Id: AE2B051668A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -101,63 +102,47 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,linux.intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:email,intel.com:dkim]
 X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Pull the "is the BIOS FB OK?" checks to a helper function. We'll
-add other relevant checks there later.
+Respect the user's choice of depth/bpp for the fbdev framebuffer
+and throw out the fb we inherited from the BIOS if it doesn't
+match.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_fbdev.c | 26 +++++++++++++++-------
- 1 file changed, 18 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_fbdev.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm/i915/display/intel_fbdev.c
-index df1d3d9dc3e5..f9c135400453 100644
+index f9c135400453..3754810cc187 100644
 --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
 +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
-@@ -262,6 +262,23 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
+@@ -268,6 +268,8 @@ static bool bios_fb_ok(const struct intel_framebuffer *fb,
+ 	struct intel_display *display = to_intel_display(fb->base.dev);
+ 	int width = fb->base.width;
+ 	int height = fb->base.height;
++	int depth = fb->base.format->depth;
++	int bpp = fb->base.format->cpp[0] * 8;
  
- }
+ 	if (sizes->fb_width > width || sizes->fb_height > height) {
+ 		drm_dbg_kms(display->drm,
+@@ -276,6 +278,13 @@ static bool bios_fb_ok(const struct intel_framebuffer *fb,
+ 		return false;
+ 	}
  
-+static bool bios_fb_ok(const struct intel_framebuffer *fb,
-+		       const struct drm_fb_helper_surface_size *sizes)
-+{
-+	struct intel_display *display = to_intel_display(fb->base.dev);
-+	int width = fb->base.width;
-+	int height = fb->base.height;
-+
-+	if (sizes->fb_width > width || sizes->fb_height > height) {
++	if (sizes->surface_depth != depth || sizes->surface_bpp != bpp) {
 +		drm_dbg_kms(display->drm,
-+			    "BIOS fb too small (%dx%d), we require (%dx%d), releasing it\n",
-+			    width, height, sizes->fb_width, sizes->fb_height);
++			    "BIOS fb using wrong depth/bpp (%d/%d), we require (%d/%d), releasing it\n",
++			    depth, bpp, sizes->surface_depth, sizes->surface_bpp);
 +		return false;
 +	}
 +
-+	return true;
-+}
-+
- int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
- 				   struct drm_fb_helper_surface_size *sizes)
- {
-@@ -279,14 +296,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+ 	return true;
+ }
  
- 	ifbdev->fb = NULL;
- 
--	if (fb &&
--	    (sizes->fb_width > fb->base.width ||
--	     sizes->fb_height > fb->base.height)) {
--		drm_dbg_kms(display->drm,
--			    "BIOS fb too small (%dx%d), we require (%dx%d),"
--			    " releasing it\n",
--			    fb->base.width, fb->base.height,
--			    sizes->fb_width, sizes->fb_height);
-+	if (fb && !bios_fb_ok(fb, sizes)) {
- 		drm_framebuffer_put(&fb->base);
- 		fb = NULL;
- 	}
 -- 
 2.52.0
 
