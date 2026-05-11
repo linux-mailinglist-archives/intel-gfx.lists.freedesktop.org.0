@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sOTzJqlvAWptZQEAu9opvQ
+	id qDVfItJmAWpvXwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:56:57 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 32C3D5084ED
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B1580508220
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DED910E495;
-	Mon, 11 May 2026 05:56:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C623710E47C;
+	Mon, 11 May 2026 05:19:11 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VbRLn8LW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="NQzuCnWG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C04110E495;
- Mon, 11 May 2026 05:56:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D457010E47A;
+ Mon, 11 May 2026 05:19:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778479014; x=1810015014;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=/AwnVgoxrR4fwd2D3iMk+JyvHPem5E5kKse7hw4tPN4=;
- b=VbRLn8LW2DSHQi8TU/84Q/D+1ehzljIymu/MJFV8/Qyhs+Z46IbeLu+J
- qs4qtB8wxtpIEnbqKvvYUkxgIzJAVpVa7QkGyoHTdBmQIzbE6qwsIGEEv
- oJoe3Ryf/te4V9lw+5QtN0AycTJA7ZOxId8foOgDG7e7Zd27oZWy/v2ZO
- 0rHEqFp4g9NFOXc+XGxUzSxE4Ic6zkLoZ0EmHwAr3RbchF6S9sjaQc5p/
- 8F0XA7nZXKUgnaHoFOFcoAMY0ggej0XVDtwDUctmos8HC14UhSlMXU7y0
- HhSBhttLhGg0WsuGqs9UfU3ZUWgXzz/CSupV/RZ/xZ0wjNvCkSth+o2Qd g==;
-X-CSE-ConnectionGUID: xYA+wBfkQjef+IZKPmKypw==
-X-CSE-MsgGUID: urhrWRnWR9+2I1INtrGy0A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="81922867"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="81922867"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ t=1778476750; x=1810012750;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=zH7KDmfdPWQflsBYL6kTy3844hOnH/j2JPlvbUjDzdU=;
+ b=NQzuCnWG5IUuH613H5gTjjDNa74rhDOOJ1IFt+RDjG4WUT9oG2Xd+XYO
+ dzoK9K8PSdIC1qQdtTqtF95X+JLrj/NQVXxV3f5KL2Oy8ge3o2D/1IsLb
+ t637dGUkaeMyooBsIemeK90pbCrvCwU1u8bdkrzCUWkIMsat5djCx8tVg
+ p7zJLJ4WrP1Wt6w9UYtv6nW/7ZUN/RCeLV1lSYICUiF0pzqhE4FvNAg3Z
+ awacGGM3XX/UvT/B3DLjD62sMIH1jPjs2pZP9XDg3UMg/UqC7VqHN7qBj
+ U2flinFAsqcY7mEi4iG5OoVgf3mi1dTKQQcMLVG3g/bgXLmJ9NZfKEBsi A==;
+X-CSE-ConnectionGUID: 5gUlck9+QQ2TjviqJWG1xg==
+X-CSE-MsgGUID: g6itszSwS56g5y2YZQk7YA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="81921091"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="81921091"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2026 22:56:54 -0700
-X-CSE-ConnectionGUID: H3qiWkbvQeyn0iEq8l16yA==
-X-CSE-MsgGUID: 6f3ZUOrhQS+RR9DINoxpbg==
+ 10 May 2026 22:19:09 -0700
+X-CSE-ConnectionGUID: EFZ6WwfFSEquGORLuXe+sQ==
+X-CSE-MsgGUID: 3F2aQYZ1TPSuA+VvgBFLow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="241719963"
-Received: from dut-2a59.iind.intel.com ([10.190.239.113])
- by orviesa004.jf.intel.com with ESMTP; 10 May 2026 22:56:52 -0700
-From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="261086222"
+Received: from kunal-x299-aorus-gaming-3-pro.iind.intel.com ([10.190.239.13])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 May 2026 22:19:08 -0700
+From: Kunal Joshi <kunal1.joshi@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, uma.shankar@intel.com,
- chaitanya.kumar.borah@intel.com, pranay.samala@intel.com
-Subject: [PATCH v3 4/4] drm/i915: Fix color blob reference handling in
- intel_plane_state
-Date: Mon, 11 May 2026 11:02:13 +0530
-Message-Id: <20260511053213.3122314-5-chaitanya.kumar.borah@intel.com>
+Cc: imre.deak@intel.com, jani.nikula@intel.com,
+ Kunal Joshi <kunal1.joshi@intel.com>
+Subject: [RFC 0/7] drm/display/dp_tunnel: Add debugfs surface for BWA
+ validation
+Date: Mon, 11 May 2026 11:10:21 +0530
+Message-Id: <20260511054028.1310995-1-kunal1.joshi@intel.com>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260511053213.3122314-1-chaitanya.kumar.borah@intel.com>
-References: <20260511053213.3122314-1-chaitanya.kumar.borah@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,103 +72,71 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 32C3D5084ED
+X-Rspamd-Queue-Id: B1580508220
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[kunal1.joshi@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.998];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Take proper references for hw color blobs (degamma_lut, gamma_lut,
-ctm, lut_3d) in intel_plane_duplicate_state() and drop them in
-intel_plane_destroy_state().
+Add a debugfs surface to the DRM display DP-tunnel core so IGT
+(kms_tbt) can drive deterministic tests of Bandwidth Allocation
+Mode on Thunderbolt / USB4 docks without depending on transient
+sink behaviour.
 
-v2:
-- handle blobs in hw state clear
+Three debugfs files are exposed per tunnel:
+  - info       (read-only)  estimated BW, allocated BW, DPRX caps, BWA state
+  - bw_alloc_enable (r/w)   toggle BWA on/off
+  - bw_limit        (r/w)   inject a BW cap for mode-filtering pressure
 
-Fixes: 3b7476e786c2 ("drm/i915/color: Add framework to program PRE/POST CSC LUT")
-Fixes: a78f1b6baf4d ("drm/i915/color: Add framework to program CSC")
-Fixes: 65db7a1f9cf7 ("drm/i915/color: Add 3D LUT to color pipeline")
-Reviewed-by: Pranay Samala <pranay.samala@intel.com> #v1
-Signed-off-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
----
- drivers/gpu/drm/i915/display/intel_plane.c | 27 ++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Patches 1-3 add the DRM-core helpers, 4-5 wire them into i915,
+and 6-7 fix two latent BWA bugs found while testing:
+  - allocated_bw not synced after BWA enable (teardown loop)
+  - MST children lose dp_tunnel/ after tunnel re-detect
 
-diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
-index 559eef467dda..54b2c32473cc 100644
---- a/drivers/gpu/drm/i915/display/intel_plane.c
-+++ b/drivers/gpu/drm/i915/display/intel_plane.c
-@@ -145,6 +145,15 @@ intel_plane_duplicate_state(struct drm_plane *plane)
- 	if (intel_state->hw.fb)
- 		drm_framebuffer_get(intel_state->hw.fb);
- 
-+	if (intel_state->hw.degamma_lut)
-+		drm_property_blob_get(intel_state->hw.degamma_lut);
-+	if (intel_state->hw.gamma_lut)
-+		drm_property_blob_get(intel_state->hw.gamma_lut);
-+	if (intel_state->hw.ctm)
-+		drm_property_blob_get(intel_state->hw.ctm);
-+	if (intel_state->hw.lut_3d)
-+		drm_property_blob_get(intel_state->hw.lut_3d);
-+
- 	return &intel_state->uapi;
- }
- 
-@@ -168,6 +177,16 @@ intel_plane_destroy_state(struct drm_plane *plane,
- 	__drm_atomic_helper_plane_destroy_state(&plane_state->uapi);
- 	if (plane_state->hw.fb)
- 		drm_framebuffer_put(plane_state->hw.fb);
-+
-+	if (plane_state->hw.degamma_lut)
-+		drm_property_blob_put(plane_state->hw.degamma_lut);
-+	if (plane_state->hw.gamma_lut)
-+		drm_property_blob_put(plane_state->hw.gamma_lut);
-+	if (plane_state->hw.ctm)
-+		drm_property_blob_put(plane_state->hw.ctm);
-+	if (plane_state->hw.lut_3d)
-+		drm_property_blob_put(plane_state->hw.lut_3d);
-+
- 	kfree(plane_state);
- }
- 
-@@ -340,6 +359,14 @@ static void intel_plane_clear_hw_state(struct intel_plane_state *plane_state)
- {
- 	if (plane_state->hw.fb)
- 		drm_framebuffer_put(plane_state->hw.fb);
-+	if (plane_state->hw.degamma_lut)
-+		drm_property_blob_put(plane_state->hw.degamma_lut);
-+	if (plane_state->hw.gamma_lut)
-+		drm_property_blob_put(plane_state->hw.gamma_lut);
-+	if (plane_state->hw.ctm)
-+		drm_property_blob_put(plane_state->hw.ctm);
-+	if (plane_state->hw.lut_3d)
-+		drm_property_blob_put(plane_state->hw.lut_3d);
- 
- 	memset(&plane_state->hw, 0, sizeof(plane_state->hw));
- }
+Companion IGT series (kms_tbt) posted separately.
+
+Kunal Joshi (7):
+  drm/display/dp_tunnel: Add debugfs interface with info file
+  drm/display/dp_tunnel: Add bw_alloc_enable debugfs knob
+  drm/display/dp_tunnel: Add bw_limit debugfs cap for BW pressure
+    injection
+  drm/i915/dp_tunnel: Wire up DP tunnel debugfs from DRM core
+  drm/i915/display: Expose DP tunnel debugfs under each connector
+  drm/display/dp_tunnel: Sync SW allocated_bw after enabling BW alloc
+  drm/i915/dp_tunnel: Re-attach dp_tunnel debugfs to MST children on
+    re-detect
+
+ drivers/gpu/drm/display/drm_dp_tunnel.c       | 402 +++++++++++++++++-
+ .../drm/i915/display/intel_display_debugfs.c  |  22 +
+ drivers/gpu/drm/i915/display/intel_dp.c       |  11 +
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |  11 +
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    |  50 ++-
+ include/drm/display/drm_dp_tunnel.h           |  17 +
+ 6 files changed, 511 insertions(+), 2 deletions(-)
+
 -- 
 2.25.1
 
