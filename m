@@ -2,34 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yCz0FrNAAmo/pgEAu9opvQ
+	id 6PMAIwtNAmpaqQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 22:48:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D419516018
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 22:48:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0A81F51665E
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 900AD10E8D6;
-	Mon, 11 May 2026 20:48:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BEB0810E219;
+	Mon, 11 May 2026 21:41:28 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="LFNNWe73";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C21D010E20E;
- Mon, 11 May 2026 20:48:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7021185921798106918=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 77D1E10E1F0;
+ Mon, 11 May 2026 21:41:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778535688; x=1810071688;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=7W9KyHt0F/FY39vf1SkxzsgQgT1aNNz/w6w/H3zP+qQ=;
+ b=LFNNWe73wZoJ8VO+7NxJVU1iU1/6PQmRXkXPdIvObaJDv9Tu1CjJbfbd
+ DO1SvziwCmnU8UCjPfLj5NIKWgaarf25+9xEGcdh67y9ixC13ZkIDI9pn
+ 7BoCqaIYxblyStcRUR4SUT+g59BXdDuxh5Ku0sW3bvxBczEezOrm22b12
+ yrX/VtJkqtk9Jaio09h+t8ecqRCL91kR8ql6cC3XqXlGmiqgqgqBHtns8
+ gfjvCQ6dtxgij4bnLWlmjfT+XX42jWptlxsdMiZvWeJ8LfVwfmt/dXqCn
+ kF/GQ1jZJy42GKJpUCHixqvjaoUNXlH/8xLIEKjGKI/fHJLhMrdlLi7vc w==;
+X-CSE-ConnectionGUID: FdlzicepSLOjcwKae9ph6w==
+X-CSE-MsgGUID: cMDOR5tSRdGCpAXcSILX4w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79618467"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79618467"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 14:41:27 -0700
+X-CSE-ConnectionGUID: le0wSKfaRYKSttBaxaV4ew==
+X-CSE-MsgGUID: 5McJSn9lQQqcbk5C2VBHSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="233097233"
+Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.104])
+ by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 14:41:26 -0700
+From: Ville Syrjala <ville.syrjala@linux.intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+Subject: [PATCH 00/14] drm/{i915,xe}: BIOS FB takeover fixes
+Date: Tue, 12 May 2026 00:41:08 +0300
+Message-ID: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
+X-Mailer: git-send-email 2.52.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dmc=3A_fix_asser?=
- =?utf-8?q?t=5Fdmc=5Floaded_WARN_during_async_firmware_load_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "James Xiong" <james.xiong@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 11 May 2026 20:48:46 -0000
-Message-ID: <177853252678.58917.1823558897071977866@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260511173101.723421-1-james.xiong@intel.com>
-In-Reply-To: <20260511173101.723421-1-james.xiong@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,173 +71,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9D419516018
+X-Rspamd-Queue-Id: 0A81F51665E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	NEURAL_SPAM(0.00)[0.658];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,live:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,i915_selftest:email,lists.freedesktop.org:replyto,patchwork.freedesktop.org:url]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,linux.intel.com:mid]
 X-Rspamd-Action: no action
 
---===============7021185921798106918==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-== Series Details ==
+Try to fix the BIOS FB readout to actually work on xe+integrated GPUs.
+It's still semi-crap due to the xe ggtt code being stupid, but at 
+least it kinda works now.
 
-Series: drm/i915/dmc: fix assert_dmc_loaded WARN during async firmware load (rev3)
-URL   : https://patchwork.freedesktop.org/series/166155/
-State : success
+I've also included some generic BIOS FB stuff that applies to both
+i915 and xe, and I fixed a few minor issues in the i915 specific parts
+as well.
 
-== Summary ==
+Ville Syrjälä (14):
+  drm/i915: Disable the plane if initial plane config readout failed
+  drm/i915/fbdev: Extract bios_fb_ok()
+  drm/i915: Throw away the BIOS fb if has the wrong depth/bpp
+  drm/i915: Introduce intel_bo_fbdev_bios_fb_ok()
+  drm/i915: Use drm_dbg_kms() for initial FB debugs
+  drm/xe: Do the initial FB size alignment earlier
+  drm/xe/ggtt: Decouple lmem/stolen physcial offset from GGTT offset
+  drm/xe: Print a debug message if we have no stolen for the initial FB
+  drm/xe: Abstract the initial FB PTE checks a bit
+  drm/xe: Check the PTE local memory bit for initial FB in stolen
+  drm/xe: s/bar2/lmembar/
+  drm/xe: Use the correct stolen offset in initial FB readout
+  drm/i915: Fix BIOS FB memory region name debug prints
+  drm/i915: Print the phys_base in addition to the dma_addr for the BIOS
+    FB
 
-CI Bug Log - changes from CI_DRM_18467 -> Patchwork_166155v3
-====================================================
+ drivers/gpu/drm/i915/display/intel_bo.c       |  5 +
+ drivers/gpu/drm/i915/display/intel_bo.h       |  1 +
+ drivers/gpu/drm/i915/display/intel_fbdev.c    | 40 ++++++--
+ .../drm/i915/display/intel_initial_plane.c    |  6 +-
+ drivers/gpu/drm/i915/i915_bo.c                | 13 ++-
+ drivers/gpu/drm/i915/i915_bo.h                |  6 --
+ drivers/gpu/drm/i915/i915_initial_plane.c     | 26 ++----
+ drivers/gpu/drm/xe/display/xe_display_bo.c    | 14 ++-
+ drivers/gpu/drm/xe/display/xe_display_bo.h    |  6 --
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  6 +-
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 93 +++++++++++++------
+ drivers/gpu/drm/xe/xe_bo.c                    | 56 +++++++----
+ drivers/gpu/drm/xe/xe_bo.h                    |  4 +-
+ drivers/gpu/drm/xe/xe_eu_stall.c              |  3 +-
+ drivers/gpu/drm/xe/xe_ttm_stolen_mgr.c        | 16 ++--
+ include/drm/intel/display_parent_interface.h  |  1 +
+ 16 files changed, 191 insertions(+), 105 deletions(-)
 
-Summary
--------
+-- 
+2.52.0
 
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_166155v3 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-mtlp-9:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18467/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18467/bat-dg2-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/bat-dg2-8/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18467 -> Patchwork_166155v3
-
-  CI-20190529: 20190529
-  CI_DRM_18467: f8ee23694aa6be213355905a78f79bb1b0861565 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_166155v3: f8ee23694aa6be213355905a78f79bb1b0861565 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/index.html
-
---===============7021185921798106918==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dmc: fix assert_dmc_loaded WARN during async firmware load (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166155/">https://patchwork.freedesktop.org/series/166155/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18467 -&gt; Patchwork_166155v3</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_166155v3 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-mtlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18467/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/bat-mtlp-9/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18467/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166155v3/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18467 -&gt; Patchwork_166155v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18467: f8ee23694aa6be213355905a78f79bb1b0861565 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8902: d28bd0b9e0347c58ca9b012c02de7e2ad5ffe847 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_166155v3: f8ee23694aa6be213355905a78f79bb1b0861565 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7021185921798106918==--
