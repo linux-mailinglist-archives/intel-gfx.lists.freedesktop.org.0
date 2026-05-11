@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mPLaHEBNAmpaqQEAu9opvQ
+	id uKDqAkRNAmrIqgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4769F5166FF
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D15A6516708
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BA20810E900;
-	Mon, 11 May 2026 21:42:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6577B10E8FF;
+	Mon, 11 May 2026 21:42:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rx4aNY+a";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uhq9HYxi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4A910E8FC;
- Mon, 11 May 2026 21:42:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E2E210E8FC;
+ Mon, 11 May 2026 21:42:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778535741; x=1810071741;
+ t=1778535746; x=1810071746;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=f0FmiBaZb0UgEGiiJTFNfkVbToFrW5HdHWlb30dGZcw=;
- b=Rx4aNY+aXatQJmEuB8nux2a12bzCdVa+iHCE+gRWG9dUtNiGjP9xXxn6
- KfcZBmL6++s64EB0Nfm9e3CgQqbQ7YPT3wLoF2xSAJiCV+5JXrOC6Vfvi
- vIUZGeNirRtKtbR83HUeEyQsMwM53Z27r2wMm5ZZtR33o7eQPAdachw9Y
- 4ethjGTjrH8WZv+C7iMs1soltUppskdtx6Ky1hvJdjdk3Tk+Sito7k7wK
- 0OlkxKdwuFX7YS8RzPhMi9OF3FNCzqMWsJWNJHHK3YhJ0DFksfmmsccS1
- p2UccvGlD8B+eaOT1r2rlEyxBZFwyQNve38Z4BaBESdc5XYFTsVX9KHDj w==;
-X-CSE-ConnectionGUID: Z5s1G0fBRUOgnWGxN2fDuA==
-X-CSE-MsgGUID: CQYd4VLSRmWVHmCmG2ILdA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816919"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816919"
+ bh=ugm3i+5fWFPSZ0GYc1oA+c313LbbpCDLgX7nq5ut95w=;
+ b=Uhq9HYxi3tNeIDp1Aan4PhZXBoOsqm1rFKiyXJZa8wfNlUPvCeZ5ghqy
+ roxBTD9If0jVZuoXDb7VOE2XS5NYqGndCzTmQdOVgp/fyWQdqix/UwIeB
+ 5V+EDk+r+H+rGguVWIp98xBmgjGEKlUrN6ehuP+7UrQpjnwpjDyNWPShS
+ m8tNwb+78A4uhAWB2N18x+MX1+3LY0fsSrOdSziQSYKcZtuW/Kuzuq9e3
+ Sj7SA4pdEkBHRaaZbGwgJCMnyRXASEbmzeDdDRGzQZUBNtUqbpgFOk1RL
+ YhMkkN6kZFOQJI7Kvz9oqaQQqZJtUoKi/l4/ff4LfT5IiVXVQLEvCxSgC Q==;
+X-CSE-ConnectionGUID: 6QjAmLG8Sc2YYWdzmVUnXQ==
+X-CSE-MsgGUID: zRV67957SYikmBTz32LGtg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816934"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816934"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:42:21 -0700
-X-CSE-ConnectionGUID: AbVsSfpXR3ubKtfM5SHOEA==
-X-CSE-MsgGUID: //NawgfQTIikJivEpdSlSQ==
+ 11 May 2026 14:42:26 -0700
+X-CSE-ConnectionGUID: JxFHvxTdQW+Ws/aixXfBXQ==
+X-CSE-MsgGUID: drNK+B3pQUy1VNzq4qyECg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702962"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702964"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.104])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:42:19 -0700
+ 11 May 2026 14:42:24 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 13/14] drm/i915: Fix BIOS FB memory region name debug prints
-Date: Tue, 12 May 2026 00:41:21 +0300
-Message-ID: <20260511214122.8468-14-ville.syrjala@linux.intel.com>
+Subject: [PATCH 14/14] drm/i915: Print the phys_base in addition to the
+ dma_addr for the BIOS FB
+Date: Tue, 12 May 2026 00:41:22 +0300
+Message-ID: <20260511214122.8468-15-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
@@ -75,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 4769F5166FF
+X-Rspamd-Queue-Id: D15A6516708
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -106,9 +107,9 @@ X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Apparently we never initialize the name of the struct resource
-underlying the memory region. Instead we need to look at the
-name stored directly in the memory region itself.
+Print the dma_addr, phys_base and memory region name for the BIOS FB.
+Should make it a bit easier to see whether everything looks correct or
+not.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
@@ -116,34 +117,24 @@ Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-index 62365ba1ff97..90095a913428 100644
+index 90095a913428..d7792b65ec15 100644
 --- a/drivers/gpu/drm/i915/i915_initial_plane.c
 +++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-@@ -57,14 +57,14 @@ initial_plane_phys(struct drm_i915_private *i915,
- 
- 	if (intel_memory_type_is_local(mem->type) != is_local) {
- 		drm_err(&i915->drm, "Initial plane FB PTE unsuitable for %s\n",
--			mem->region.name);
-+			mem->name);
+@@ -68,12 +68,12 @@ initial_plane_phys(struct drm_i915_private *i915,
  		return false;
  	}
  
- 	if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
- 		drm_err(&i915->drm,
- 			"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
--			&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
-+			&dma_addr, mem->name, &mem->region.start, &mem->region.end);
- 		return false;
- 	}
+-	drm_dbg_kms(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
+-		    &dma_addr);
+-
+ 	*out_phys_base = dma_addr - mem->region.start;
+ 	*out_mem = mem;
  
-@@ -106,7 +106,7 @@ initial_plane_vma(struct drm_i915_private *i915,
- 					       I915_BO_PREALLOC);
- 	if (IS_ERR(obj)) {
- 		drm_dbg_kms(&i915->drm, "Failed to preallocate initial FB in %s\n",
--			    mem->region.name);
-+			    mem->name);
- 		return NULL;
- 	}
++	drm_dbg_kms(&i915->drm, "Initial plane dma_addr=%pa phys_base=%pa mem=%s\n",
++		    &dma_addr, out_phys_base, mem->name);
++
+ 	return true;
+ }
  
 -- 
 2.52.0
