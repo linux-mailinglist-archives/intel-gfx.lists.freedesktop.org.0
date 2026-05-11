@@ -2,64 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UL8vG5vKAWqfjwEAu9opvQ
+	id kO8iNXPLAWqgjwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:24:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:28:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1DD6050DA99
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 67CA550DBBE
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:28:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6914B10E711;
-	Mon, 11 May 2026 12:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD8C410E715;
+	Mon, 11 May 2026 12:28:33 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="IYhlVw2l";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D98D10E716
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2026 12:24:56 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 510B967E9A;
- Mon, 11 May 2026 12:24:29 +0000 (UTC)
-Authentication-Results: smtp-out2.suse.de;
-	none
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id DDF95593A3;
- Mon, 11 May 2026 12:24:28 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 4A0ANXzKAWolYwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Mon, 11 May 2026 12:24:28 +0000
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: mripard@kernel.org, maarten.lankhorst@linux.intel.com, airlied@redhat.com,
- airlied@gmail.com, simona@ffwll.ch, admin@kodeit.net,
- gargaditya08@proton.me, paul@crapouillou.net, zack.rusin@broadcom.com,
- bcm-kernel-feedback-list@broadcom.com
-Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v2 10/10] drm/vmwgfx: Remove unused field struct
- vmwgfx_du_update_plane.old_state
-Date: Mon, 11 May 2026 14:22:34 +0200
-Message-ID: <20260511122421.114014-11-tzimmermann@suse.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <20260511122421.114014-1-tzimmermann@suse.de>
-References: <20260511122421.114014-1-tzimmermann@suse.de>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D4B9610E715;
+ Mon, 11 May 2026 12:28:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778502513; x=1810038513;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=EImN/DOGpckX48zbhbLLuiWw416hn2+ZBUvKDC76f3I=;
+ b=IYhlVw2l95M+vh7gdL+DitUftmUroD66uoWCw1IarnDwcAqSNQrw5vaG
+ baanjJpjQyDts2Z/XHF2rPhj6p24UO45Hj9LjS+IgLWhqOINK+JM4h0Ee
+ aWMaDYrbblYeSrV7I83Xy0dGk+/DzF+9eNK/Ea+YL/EAf2o6XLrwaHluV
+ O3lExP/UiRtvqZgalYn3TTyzJwZl68rNlwGRaT5JMS8wmLVDGLmhzskzQ
+ LMuUeJ03E4B4XJWnjVYBx28KufUdZdTD5EQMnLuYkO1gfMIpf3u4RFCw3
+ j+J2CEzYtNejIeNYmw1oZbpdd/F0Jm3peCImAFSFhFGoVUYV/Zmj0Ompo g==;
+X-CSE-ConnectionGUID: F1Hk+GdKSlG5jy4nCY26+w==
+X-CSE-MsgGUID: gmt6i6u4S2adDhDnjHjiPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762736"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762736"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 05:28:32 -0700
+X-CSE-ConnectionGUID: Hw+8bTTXSqeyhwyy4t6dGw==
+X-CSE-MsgGUID: vZ7zX6YZQaaBouW/8wazSA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801410"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
+ vgovind2-mobl4.intel.com) ([10.245.245.16])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 05:28:31 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
+To: intel-xe@lists.freedesktop.org,
+	intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH v2 00/11] drm/i915/display: reduce the pm demand peak bw based
+ on display data rate
+Date: Mon, 11 May 2026 15:28:05 +0300
+Message-ID: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo
 Content-Transfer-Encoding: 8bit
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
-X-Spam-Score: -4.00
-X-Rspamd-Pre-Result: action=no action; module=replies;
- Message is reply to one we originated
-X-Spam-Flag: NO
-X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,182 +75,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1DD6050DA99
+X-Rspamd-Queue-Id: 67CA550DBBE
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.99 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[suse.de : SPF not aligned (relaxed), No valid DKIM,none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[17];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@redhat.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:admin@kodeit.net,m:gargaditya08@proton.me,m:paul@crapouillou.net,m:zack.rusin@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dri-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mips@vger.kernel.org,m:virtualization@lists.linux.dev,m:tzimmermann@suse.de,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,redhat.com,gmail.com,ffwll.ch,kodeit.net,proton.me,crapouillou.net,broadcom.com];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vinod.govindapillai@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	R_DKIM_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	NEURAL_HAM(-0.00)[-0.999];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.296];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,suse.de:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Plane updates no longer require the old plane state. Remove the field
-from struct vmwgfx_du_update_plane and fix all callers.
+In xe3+, soc can lower the fabric frequency when the display
+needs less bandwidth than the minimum GV point.
 
-Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
----
- drivers/gpu/drm/vmwgfx/vmwgfx_kms.h  |  2 --
- drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c | 12 ++----------
- drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c | 11 ++---------
- 3 files changed, 4 insertions(+), 21 deletions(-)
+v1: pmdemand peak bw is updated to 20GB/s is the required data rate
+    is low and less than 20GB/s even though there are no QGV point
+    with 20GB/s. Only the peak_ww is changed based on the conditions 
 
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
-index 2224d7d91d1b..8c2072b82062 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_kms.h
-@@ -19,7 +19,6 @@
- /**
-  * struct vmw_du_update_plane - Closure structure for vmw_du_helper_plane_update
-  * @plane: Plane which is being updated.
-- * @old_state: Old state of plane.
-  * @dev_priv: Device private.
-  * @du: Display unit on which to update the plane.
-  * @vfb: Framebuffer which is blitted to display unit.
-@@ -102,7 +101,6 @@ struct vmw_du_update_plane {
- 				    struct drm_rect *bb);
- 
- 	struct drm_plane *plane;
--	struct drm_plane_state *old_state;
- 	struct vmw_private *dev_priv;
- 	struct vmw_display_unit *du;
- 	struct vmw_framebuffer *vfb;
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c b/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
-index c83061cf7455..fa84bc7ab5bb 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_scrn.c
-@@ -530,7 +530,6 @@ static uint32_t vmw_stud_bo_post_clip(struct vmw_du_update_plane  *update,
-  */
- static int vmw_sou_plane_update_bo(struct vmw_private *dev_priv,
- 				   struct drm_plane *plane,
--				   struct drm_plane_state *old_state,
- 				   struct vmw_framebuffer *vfb,
- 				   struct vmw_fence_obj **out_fence)
- {
-@@ -538,7 +537,6 @@ static int vmw_sou_plane_update_bo(struct vmw_private *dev_priv,
- 
- 	memset(&bo_update, 0, sizeof(struct vmw_du_update_plane_buffer));
- 	bo_update.base.plane = plane;
--	bo_update.base.old_state = old_state;
- 	bo_update.base.dev_priv = dev_priv;
- 	bo_update.base.du = vmw_crtc_to_du(plane->state->crtc);
- 	bo_update.base.vfb = vfb;
-@@ -692,7 +690,6 @@ static uint32_t vmw_sou_surface_post_clip(struct vmw_du_update_plane *update,
-  */
- static int vmw_sou_plane_update_surface(struct vmw_private *dev_priv,
- 					struct drm_plane *plane,
--					struct drm_plane_state *old_state,
- 					struct vmw_framebuffer *vfb,
- 					struct vmw_fence_obj **out_fence)
- {
-@@ -700,7 +697,6 @@ static int vmw_sou_plane_update_surface(struct vmw_private *dev_priv,
- 
- 	memset(&srf_update, 0, sizeof(struct vmw_du_update_plane_surface));
- 	srf_update.base.plane = plane;
--	srf_update.base.old_state = old_state;
- 	srf_update.base.dev_priv = dev_priv;
- 	srf_update.base.du = vmw_crtc_to_du(plane->state->crtc);
- 	srf_update.base.vfb = vfb;
-@@ -721,7 +717,6 @@ static void
- vmw_sou_primary_plane_atomic_update(struct drm_plane *plane,
- 				    struct drm_atomic_commit *state)
- {
--	struct drm_plane_state *old_state = drm_atomic_get_old_plane_state(state, plane);
- 	struct drm_plane_state *new_state = drm_atomic_get_new_plane_state(state, plane);
- 	struct drm_crtc *crtc = new_state->crtc;
- 	struct vmw_fence_obj *fence = NULL;
-@@ -734,12 +729,9 @@ vmw_sou_primary_plane_atomic_update(struct drm_plane *plane,
- 			vmw_framebuffer_to_vfb(new_state->fb);
- 
- 		if (vfb->bo)
--			ret = vmw_sou_plane_update_bo(dev_priv, plane,
--						      old_state, vfb, &fence);
-+			ret = vmw_sou_plane_update_bo(dev_priv, plane, vfb, &fence);
- 		else
--			ret = vmw_sou_plane_update_surface(dev_priv, plane,
--							   old_state, vfb,
--							   &fence);
-+			ret = vmw_sou_plane_update_surface(dev_priv, plane, vfb, &fence);
- 		if (ret != 0)
- 			DRM_ERROR("Failed to update screen.\n");
- 	} else {
-diff --git a/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c b/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
-index f0df2b1c8465..474e3badb80f 100644
---- a/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
-+++ b/drivers/gpu/drm/vmwgfx/vmwgfx_stdu.c
-@@ -1240,7 +1240,6 @@ vmw_stdu_bo_populate_update_cpu(struct vmw_du_update_plane  *update, void *cmd,
-  */
- static int vmw_stdu_plane_update_bo(struct vmw_private *dev_priv,
- 				    struct drm_plane *plane,
--				    struct drm_plane_state *old_state,
- 				    struct vmw_framebuffer *vfb,
- 				    struct vmw_fence_obj **out_fence)
- {
-@@ -1248,7 +1247,6 @@ static int vmw_stdu_plane_update_bo(struct vmw_private *dev_priv,
- 
- 	memset(&bo_update, 0, sizeof(struct vmw_du_update_plane_buffer));
- 	bo_update.base.plane = plane;
--	bo_update.base.old_state = old_state;
- 	bo_update.base.dev_priv = dev_priv;
- 	bo_update.base.du = vmw_crtc_to_du(plane->state->crtc);
- 	bo_update.base.vfb = vfb;
-@@ -1350,7 +1348,6 @@ vmw_stdu_surface_populate_update(struct vmw_du_update_plane  *update, void *cmd,
-  */
- static int vmw_stdu_plane_update_surface(struct vmw_private *dev_priv,
- 					 struct drm_plane *plane,
--					 struct drm_plane_state *old_state,
- 					 struct vmw_framebuffer *vfb,
- 					 struct vmw_fence_obj **out_fence)
- {
-@@ -1363,7 +1360,6 @@ static int vmw_stdu_plane_update_surface(struct vmw_private *dev_priv,
- 
- 	memset(&srf_update, 0, sizeof(struct vmw_du_update_plane));
- 	srf_update.plane = plane;
--	srf_update.old_state = old_state;
- 	srf_update.dev_priv = dev_priv;
- 	srf_update.du = vmw_crtc_to_du(plane->state->crtc);
- 	srf_update.vfb = vfb;
-@@ -1424,12 +1420,9 @@ vmw_stdu_primary_plane_atomic_update(struct drm_plane *plane,
- 			DRM_ERROR("Failed to bind surface to STDU.\n");
- 
- 		if (vfb->bo)
--			ret = vmw_stdu_plane_update_bo(dev_priv, plane,
--						       old_state, vfb, &fence);
-+			ret = vmw_stdu_plane_update_bo(dev_priv, plane, vfb, &fence);
- 		else
--			ret = vmw_stdu_plane_update_surface(dev_priv, plane,
--							    old_state, vfb,
--							    &fence);
-+			ret = vmw_stdu_plane_update_surface(dev_priv, plane, vfb, &fence);
- 		if (ret)
- 			DRM_ERROR("Failed to update STDU.\n");
- 	} else {
+v2: At the time of BW info calculations, a new row is inserted with
+    peakbw as 20GB/s and deratebw also to 20GB/s and the required
+    pmdemand peakbw is automatically calculated based on the old
+    logic.    
+
+Vinod Govindapillai (11):
+  drm/i915/wm: clear the plane ddb_y entries on plane disable
+  drm/i915/pm_demand: introduce HAS_PMDEMAND macro
+  drm/i915/display: sagv pre/post plane calls to check pmdemand support
+  drm/i915/bw: Extract icl_init_qgv_info()
+  drm/i915/bw: sort the qgv points based on the dclk
+  drm/i915/bw: update the routine to get max dclk from qgv points
+  drm/i915/bw: update the routine to find the peakbw in MTL
+  drm/i915/bw: update the tile-y dependency based on the display version
+  drm/i915/bw: consolidate the debug info of bw/dgv/psf data
+  drm/i915/bw: extract update_sagv_status()
+  drm/i915/bw: insert a sw bw info entry to cater low data rate usecases
+
+ drivers/gpu/drm/i915/display/intel_bw.c       | 215 +++++++++++++-----
+ .../drm/i915/display/intel_display_device.h   |   2 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |   2 +-
+ .../drm/i915/display/intel_display_power.c    |   4 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c |  12 +-
+ drivers/gpu/drm/i915/display/skl_watermark.c  |   8 +-
+ 6 files changed, 178 insertions(+), 65 deletions(-)
+
 -- 
-2.54.0
+2.43.0
 
