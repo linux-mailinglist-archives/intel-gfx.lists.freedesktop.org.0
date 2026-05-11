@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CBHcLdRmAWpUYAEAu9opvQ
+	id wIHgLdZmAWpvXwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6A81050822E
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69A9B508235
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E6C8210E480;
-	Mon, 11 May 2026 05:19:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E026810E488;
+	Mon, 11 May 2026 05:19:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V5xo7ND9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EPLe35Do";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A221610E47D;
- Mon, 11 May 2026 05:19:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89C3710E481;
+ Mon, 11 May 2026 05:19:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778476753; x=1810012753;
+ t=1778476755; x=1810012755;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yLYnPBwUobZ3ya0wdl9jRERZCjsDA375wKPeFl2nkpQ=;
- b=V5xo7ND9N7MhQoUcPUGwU2tGqDNJdG53WkjCOEBLLS/JMuH0cbTvQtAj
- esCx7it74iwvEerXsgykbys+VdPQCqlOw7/jvkO4AjweHnSydWB46FHCZ
- zLvWKe4FEVVmEEiyfwbpuvCziL0bMi6mpGLALYbd4tPnGUh/Ish54mIlv
- nbsMsGSSrKBiFCF4q/F6GFgsQQ43vYTJBcv/NoINjx+y4/arXinF1TsHq
- RNHCcj+IpL5VkbroewH9mlsaIabCprwV4Lq/xWyscj3Wl7RBfTAlpA+dB
- l67LJZav7dlbPIIAEbB1BEZa83lWmtuLmVcQhfkX1Dfk1rzIMoYB+nlxO g==;
-X-CSE-ConnectionGUID: Q786zgHQQ8O5BmmHOFLI+A==
-X-CSE-MsgGUID: 3pfYcj2iTZSa2V8QAAzZbA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="81921099"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="81921099"
+ bh=71J/CImOf0L08MJ0vhd1RSHuhYIsnjEaIXmJvrNepbs=;
+ b=EPLe35Do0NksRbejFxafdud9mGB+XWD8OX4YP0SqnQ0q59z0ri9NsR2K
+ NpDf8Hnoi1dsSU6e/HXd9bjtKCRkaMIcpGa7qX+VPP2VLCTKZJUiaHbzh
+ XLPGcdyivJbe2RnVuNPzehKeB7d1WTWckqxJhfcFsJ4HXNpJq2yUYeAHL
+ uhR5n9Z/TVXmlI8RGJQDbCPK6NIUK3M3e8JaqeZwCiHeYjdmLHIukKRt+
+ BpiQ+17pdkJWHZlhpvPsPcz7qGoPkEedE/1kxTdBK5POqEWpkPuPoRQJo
+ emIq370fIBNx5C5wC14+ntU3yQcg2hiwKNIZzmA9MQnNGdnngV/W04X9T w==;
+X-CSE-ConnectionGUID: KpUHFswSS5ib1sTg0YJx6A==
+X-CSE-MsgGUID: DHRlCF7CQmul7uo+7BykOg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="81921100"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="81921100"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2026 22:19:13 -0700
-X-CSE-ConnectionGUID: ZorYuYnFQiuvDpDxY+pmiA==
-X-CSE-MsgGUID: 5EesldX0SxSVUlL7CWVANw==
+ 10 May 2026 22:19:15 -0700
+X-CSE-ConnectionGUID: HeYsfoHYRTSlil7gKmgZdA==
+X-CSE-MsgGUID: QfgTnd58RTG4W3IWMTy8iA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="261086235"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="261086247"
 Received: from kunal-x299-aorus-gaming-3-pro.iind.intel.com ([10.190.239.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2026 22:19:12 -0700
+ 10 May 2026 22:19:14 -0700
 From: Kunal Joshi <kunal1.joshi@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com, jani.nikula@intel.com,
  Kunal Joshi <kunal1.joshi@intel.com>
-Subject: [RFC 2/7] drm/display/dp_tunnel: Add bw_alloc_enable debugfs knob
-Date: Mon, 11 May 2026 11:10:23 +0530
-Message-Id: <20260511054028.1310995-3-kunal1.joshi@intel.com>
+Subject: [RFC 3/7] drm/display/dp_tunnel: Add bw_limit debugfs cap for BW
+ pressure injection
+Date: Mon, 11 May 2026 11:10:24 +0530
+Message-Id: <20260511054028.1310995-4-kunal1.joshi@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260511054028.1310995-1-kunal1.joshi@intel.com>
 References: <20260511054028.1310995-1-kunal1.joshi@intel.com>
@@ -73,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6A81050822E
+X-Rspamd-Queue-Id: 69A9B508235
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -102,76 +103,88 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-IGT needs to toggle Bandwidth Allocation Mode on a live tunnel to
-validate BWA disable/re-enable flows and confirm the driver
-recovers allocation correctly. Add a writable 'bw_alloc_enable'
-file under each tunnel's debugfs subdir; reading returns 0/1
-(round-trippable via kstrtobool_from_user()), writing toggles
-the BWA state. The writer serializes against teardown via
-mgr->debugfs_lock.
+IGT needs to inject deterministic BW pressure to validate mode
+filtering and fallback paths without requiring a real sink that
+consumes a specific amount of bandwidth. Add a writable 'bw_limit'
+file (in kB/s) under each tunnel's debugfs subdir that caps the
+value reported by drm_dp_tunnel_available_bw(). Writing 0 clears
+the cap.
 
 Cc: Imre Deak <imre.deak@intel.com>
 Assisted-by: Copilot:claude-sonnet-4-6
 Signed-off-by: Kunal Joshi <kunal1.joshi@intel.com>
 ---
- drivers/gpu/drm/display/drm_dp_tunnel.c | 77 ++++++++++++++++++++++++-
- 1 file changed, 74 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/display/drm_dp_tunnel.c | 76 ++++++++++++++++++++++++-
+ 1 file changed, 75 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
-index 79d35d0be6b75..b29dd59263ae2 100644
+index b29dd59263ae2..c16b36d3bcf8a 100644
 --- a/drivers/gpu/drm/display/drm_dp_tunnel.c
 +++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
-@@ -213,9 +213,17 @@ struct drm_dp_tunnel_mgr {
- 	 * also taken when flipping tunnel->destroyed in
- 	 * drm_dp_tunnel_destroy() so debugfs writers and
- 	 * drm_dp_tunnel_debugfs_add() can observe the teardown and
--	 * bail out. It does NOT synchronize against driver-side
--	 * modeset paths; the debug knobs are intended for test /
--	 * validation use only.
-+	 * bail out.
-+	 *
-+	 * Note: the bw_alloc_enable writer holds this lock across
-+	 * drm_dp_tunnel_{enable,disable}_bw_alloc(), which issue
-+	 * AUX/DPCD transactions. No driver-side path takes this lock,
-+	 * so there is no nesting against AUX-internal locks; however
-+	 * callers must not acquire this lock from any context that
-+	 * already holds an AUX or DPCD lock.
-+	 *
-+	 * It does NOT synchronize against driver-side modeset paths;
-+	 * the debug knobs are intended for test / validation use only.
- 	 */
- 	struct mutex debugfs_lock;
- #endif
-@@ -2019,6 +2027,67 @@ static int tunnel_info_show(struct seq_file *m, void *data)
- }
- DEFINE_SHOW_ATTRIBUTE(tunnel_info);
+@@ -154,6 +154,7 @@ struct drm_dp_tunnel {
  
-+static int tunnel_bw_alloc_enable_show(struct seq_file *m, void *data)
+ #ifdef CONFIG_DEBUG_FS
+ 	struct list_head debugfs_dirs;
++	int bw_limit;
+ #endif
+ };
+ 
+@@ -1445,10 +1446,26 @@ EXPORT_SYMBOL(drm_dp_tunnel_max_dprx_lane_count);
+  * Returns the @tunnel group's estimated total available bandwidth in kB/s
+  * units, or -1 if the available BW isn't valid (the BW allocation mode is
+  * not enabled or the tunnel's state hasn't been updated).
++ *
++ * If a debug BW cap has been set via the "dp_tunnel/bw_limit" debugfs
++ * file, the returned value is min(group->available_bw, bw_limit). The
++ * cap defaults to 0 (no cap) and is only available when CONFIG_DEBUG_FS
++ * is enabled.
+  */
+ int drm_dp_tunnel_available_bw(const struct drm_dp_tunnel *tunnel)
+ {
+-	return tunnel->group->available_bw;
++	int bw = tunnel->group->available_bw;
++
++#ifdef CONFIG_DEBUG_FS
++	{
++		int limit = READ_ONCE(tunnel->bw_limit);
++
++		if (bw > 0 && limit > 0)
++			bw = min(bw, limit);
++	}
++#endif
++
++	return bw;
+ }
+ EXPORT_SYMBOL(drm_dp_tunnel_available_bw);
+ 
+@@ -2088,6 +2105,61 @@ static const struct file_operations tunnel_bw_alloc_enable_fops = {
+ 	.write		= tunnel_bw_alloc_enable_write,
+ };
+ 
++static int tunnel_bw_limit_show(struct seq_file *m, void *data)
 +{
 +	struct drm_dp_tunnel *tunnel = m->private;
 +
-+	/*
-+	 * Print 0/1 so the file is round-trippable through
-+	 * kstrtobool_from_user(): cat foo > saved && cat saved > foo.
-+	 * The human-readable state is also available in 'info'.
-+	 */
-+	seq_printf(m, "%d\n", drm_dp_tunnel_bw_alloc_is_enabled(tunnel));
++	seq_printf(m, "%d\n", READ_ONCE(tunnel->bw_limit));
 +
 +	return 0;
 +}
 +
-+static ssize_t tunnel_bw_alloc_enable_write(struct file *file,
-+					    const char __user *ubuf,
-+					    size_t len, loff_t *offp)
++static ssize_t tunnel_bw_limit_write(struct file *file,
++				     const char __user *ubuf,
++				     size_t len, loff_t *offp)
 +{
 +	struct seq_file *m = file->private_data;
 +	struct drm_dp_tunnel *tunnel = m->private;
-+	bool enable;
++	int limit;
 +	int ret;
 +
-+	ret = kstrtobool_from_user(ubuf, len, &enable);
++	ret = kstrtoint_from_user(ubuf, len, 0, &limit);
 +	if (ret)
 +		return ret;
++
++	if (limit < 0)
++		return -EINVAL;
 +
 +	mutex_lock(&tunnel->group->mgr->debugfs_lock);
 +
@@ -180,12 +193,8 @@ index 79d35d0be6b75..b29dd59263ae2 100644
 +		goto unlock;
 +	}
 +
-+	if (enable == drm_dp_tunnel_bw_alloc_is_enabled(tunnel))
-+		ret = 0;
-+	else if (enable)
-+		ret = drm_dp_tunnel_enable_bw_alloc(tunnel);
-+	else
-+		ret = drm_dp_tunnel_disable_bw_alloc(tunnel);
++	WRITE_ONCE(tunnel->bw_limit, limit);
++	ret = 0;
 +
 +unlock:
 +	mutex_unlock(&tunnel->group->mgr->debugfs_lock);
@@ -193,29 +202,29 @@ index 79d35d0be6b75..b29dd59263ae2 100644
 +	return ret < 0 ? ret : len;
 +}
 +
-+static int tunnel_bw_alloc_enable_open(struct inode *inode, struct file *file)
++static int tunnel_bw_limit_open(struct inode *inode, struct file *file)
 +{
-+	return single_open(file, tunnel_bw_alloc_enable_show, inode->i_private);
++	return single_open(file, tunnel_bw_limit_show, inode->i_private);
 +}
 +
-+static const struct file_operations tunnel_bw_alloc_enable_fops = {
++static const struct file_operations tunnel_bw_limit_fops = {
 +	.owner		= THIS_MODULE,
-+	.open		= tunnel_bw_alloc_enable_open,
++	.open		= tunnel_bw_limit_open,
 +	.read		= seq_read,
 +	.llseek		= seq_lseek,
 +	.release	= single_release,
-+	.write		= tunnel_bw_alloc_enable_write,
++	.write		= tunnel_bw_limit_write,
 +};
 +
  /**
   * drm_dp_tunnel_debugfs_add - Add DP tunnel debugfs entries
   * @tunnel: Tunnel object the entries are registered for
-@@ -2079,6 +2148,8 @@ void drm_dp_tunnel_debugfs_add(struct drm_dp_tunnel *tunnel, struct dentry *root
- 	list_add(&d->link, &tunnel->debugfs_dirs);
- 
+@@ -2150,6 +2222,8 @@ void drm_dp_tunnel_debugfs_add(struct drm_dp_tunnel *tunnel, struct dentry *root
  	debugfs_create_file("info", 0444, dir, tunnel, &tunnel_info_fops);
-+	debugfs_create_file("bw_alloc_enable", 0644, dir, tunnel,
-+			    &tunnel_bw_alloc_enable_fops);
+ 	debugfs_create_file("bw_alloc_enable", 0644, dir, tunnel,
+ 			    &tunnel_bw_alloc_enable_fops);
++	debugfs_create_file("bw_limit", 0644, dir, tunnel,
++			    &tunnel_bw_limit_fops);
  
  unlock:
  	mutex_unlock(&tunnel->group->mgr->debugfs_lock);
