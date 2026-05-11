@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IJ5QKB5NAmrGqgEAu9opvQ
+	id kNTvHiJNAmrGqgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76E5F5166B6
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20E765166BD
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:41:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EDE8F10E8E7;
-	Mon, 11 May 2026 21:41:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD1DB10E8E0;
+	Mon, 11 May 2026 21:41:52 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="cgEIDnTi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H1cR1Wek";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B10710E8DB;
- Mon, 11 May 2026 21:41:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 300DE10E8E0;
+ Mon, 11 May 2026 21:41:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778535707; x=1810071707;
+ t=1778535711; x=1810071711;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=iBCnCyOP0JC3g1sq6zscXNUoP+a0BlNRaOPEdHVAX7Q=;
- b=cgEIDnTiIdiCZU05CqZ0ZgGY1jionY9eDQmPu2xHP4eOT8sYz39S1/QV
- Jh6y6oNni56nJlChOUZQ39XxZLXa4EhiVFqjl9jn2Rg7WdWPfKCVGGvx3
- kwXgBCWkodD89WuqQKCirW7QFp6+o9RYDyI2uGSVeiBSBzNxm3nDozn0B
- mSgEOsimsK8ggEhm+ohd0uTkgJ4ZsrdjId7/5+YDASsD3DUf9GtuX3Z+5
- 11P78IY20Cp64m/xOkJd4ph/TLnDkEA7832YKSHyhAPo7DCduf9pFjTiB
- UbNlw4Fyyl5bJ6HT/YWHQ0sd5GWj2eTZfJzr42RfBF0vEh7yyh9cLRExq g==;
-X-CSE-ConnectionGUID: cL32+uFqRdq42R690r2ilw==
-X-CSE-MsgGUID: 7bJpivc5SvGB6sThb9fpwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79618493"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79618493"
+ bh=ugkyY10UWLSfjQxLpg7TiOy5dhP4DfXOnZotqoPsfT0=;
+ b=H1cR1Wek7/tIFqLnAR4Rfdt2TltFTlWhQEKMR5fog0/Wxm3xM7M4VaD/
+ YVjQejle8tjLXI3WZ3wuT7vPsDdiPg3iv0bIbj9vHX4IYoZEP7Ky8QrRo
+ Rv5gGFeO7R5YFZr8jaMrTaZCRrjILoPhLiu/4ENChadBoW3mTPssLDCGr
+ kxMYlrqhB8iOp85bw2jtDktpUeW8PAaAgkCJmHT02U77+nQruIQWqNVPD
+ flHt1FzrCFO8UuiABkspGX5A+Mr/NrkGbtMk8N/6/euuejJqGcFPNxMoI
+ DBXVSXUdYckqT5ghnCRwKYW+b5SCcxhyjjZuJ6zRSRYq+rPYpfMyLHo6z A==;
+X-CSE-ConnectionGUID: nExNvHgDQuqMNKN6CVo0PA==
+X-CSE-MsgGUID: biNAsIFBTiqa4aHUCs4A7w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79618496"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79618496"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:41:47 -0700
-X-CSE-ConnectionGUID: mn8V5aLySYupOhJKZ7Po8A==
-X-CSE-MsgGUID: SZ9YTJCAS4injtVRHc1OoQ==
+ 11 May 2026 14:41:51 -0700
+X-CSE-ConnectionGUID: gS6uvOeURemtu1CHeqYeMA==
+X-CSE-MsgGUID: sPtL0pS2RxGUNZc+cBXgAg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="233097291"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="233097298"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.104])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:41:46 -0700
+ 11 May 2026 14:41:50 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/14] drm/i915: Use drm_dbg_kms() for initial FB debugs
-Date: Tue, 12 May 2026 00:41:13 +0300
-Message-ID: <20260511214122.8468-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/14] drm/xe: Do the initial FB size alignment earlier
+Date: Tue, 12 May 2026 00:41:14 +0300
+Message-ID: <20260511214122.8468-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
@@ -75,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 76E5F5166B6
+X-Rspamd-Queue-Id: 20E765166BD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -106,60 +106,42 @@ X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The initial FB stuff is ultimately about display stuff, so
-use the proper display specific debug level for it.
+For some reason we've split the alignment of 'base' vs. 'size'
+to live on separate sides of the xe initial plane PTE readout.
+There's no reason for this split, so make things less confusing
+by aligning both at the same time.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/i915_initial_plane.c     |  4 ++--
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 12 ++++++------
- 2 files changed, 8 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
-index 56d31f83707b..62365ba1ff97 100644
---- a/drivers/gpu/drm/i915/i915_initial_plane.c
-+++ b/drivers/gpu/drm/i915/i915_initial_plane.c
-@@ -68,8 +68,8 @@ initial_plane_phys(struct drm_i915_private *i915,
- 		return false;
- 	}
- 
--	drm_dbg(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
--		&dma_addr);
-+	drm_dbg_kms(&i915->drm, "Using dma_addr=%pa, based on initial plane programming\n",
-+		    &dma_addr);
- 
- 	*out_phys_base = dma_addr - mem->region.start;
- 	*out_mem = mem;
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index 1f2919797f6f..37cfc8a55031 100644
+index 37cfc8a55031..584ce82b2564 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -59,9 +59,9 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
- 		}
+@@ -36,6 +36,10 @@ initial_plane_bo(struct xe_device *xe,
+ 	flags = XE_BO_FLAG_FORCE_WC | XE_BO_FLAG_GGTT;
  
--		drm_dbg(&xe->drm,
--			"Using phys_base=%pa, based on initial plane programming\n",
--			&phys_base);
-+		drm_dbg_kms(&xe->drm,
-+			    "Using phys_base=%pa, based on initial plane programming\n",
-+			    &phys_base);
- 	} else {
- 		struct ttm_resource_manager *stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+ 	base = round_down(plane_config->base, page_size);
++	size = round_up(plane_config->base + plane_config->size,
++			page_size);
++	size -= base;
++
+ 	if (IS_DGFX(xe)) {
+ 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
  
-@@ -78,9 +78,9 @@ initial_plane_bo(struct xe_device *xe,
+@@ -71,10 +75,6 @@ initial_plane_bo(struct xe_device *xe,
+ 		flags |= XE_BO_FLAG_STOLEN;
+ 	}
+ 
+-	size = round_up(plane_config->base + plane_config->size,
+-			page_size);
+-	size -= base;
+-
  	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base,
  					  ttm_bo_type_kernel, flags, 0, false);
  	if (IS_ERR(bo)) {
--		drm_dbg(&xe->drm,
--			"Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
--			&phys_base, size, flags, PTR_ERR(bo));
-+		drm_dbg_kms(&xe->drm,
-+			    "Failed to create bo phys_base=%pa size %u with flags %x: %li\n",
-+			    &phys_base, size, flags, PTR_ERR(bo));
- 		return NULL;
- 	}
- 
 -- 
 2.52.0
 
