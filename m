@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6JIYOofLAWqgjwEAu9opvQ
+	id uBgAEYvLAWqgjwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:28:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:28:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BE0ED50DC20
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0017750DC27
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 14:28:58 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 39B2E10E745;
-	Mon, 11 May 2026 12:28:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8344F10E732;
+	Mon, 11 May 2026 12:28:57 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="P3ZpfKQL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OsGIUPUL";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 069E410E729;
- Mon, 11 May 2026 12:28:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 88C3210E739;
+ Mon, 11 May 2026 12:28:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778502533; x=1810038533;
+ t=1778502536; x=1810038536;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=K/7+BKMo2nEbiedWcX1DvQZ2HDtTrtkjl8BtC5iK3Yw=;
- b=P3ZpfKQL79a7uvjBh9NhZBGJOVkvgckHRByluGjGASabqXaZnGNIT0nS
- D/4iQ0UeSXFuGQ/scYvNZXpFnLVtw7XHWW3BxPCjRqod2z+qEJhh5usr9
- ofQx84lDgrUu8FWBhd5pfmgUmwZ9MV3NrWTfhjAI6SSEsxY3aWgzKOnvt
- PGBpbveNXmWdwFms7KTGbOVvvmf9EYRomJu7FSnN6m/ezNCSN8PF5u8JM
- KsdPH5lR7wlJ3lJVqp6BGV82TjwRH/QLWMGtmOCAifgYa53FXKoc/Xlzl
- rped45lm/PTtU4w1LjsqJUe1QNjBgv1A0YyGctE+eyDYQzltH8gHZxmyN Q==;
-X-CSE-ConnectionGUID: jhhvh99WTvi0d+FMImgcfg==
-X-CSE-MsgGUID: hFZDx1I9QWO7i2wZZhcQKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762794"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762794"
+ bh=ZZZcZxrOB0V0LatZO3KfAJhOTjGbfoiJ/fyYXdHiPFc=;
+ b=OsGIUPULLBNik2GENmioYe6s8S9TlfDd0pICXZ7mNBdb0d8M3ZLhBZfr
+ IVwBRUqDcAyY2lqyXxOYTQN4KsChM7x7LLedw3cnVkM8opU9kLcHm/rUC
+ +km2AvJorkocMsephHETjBLdI6VzPtBigf4zXmPR//o7VaCncpsS0pR1y
+ TT5ABgT/kkqF609VaPsHfywvyWQibNxNMoGjI/g/S8M1w1nNVzQmTGjY1
+ U45RMRhq3TypuEDiL42pGitJUl8ZLlRy+VagvZLIazklWC+/by8IRcSD4
+ E6EIEGXWhHGuHU+X3pbKh1ojeMTfs4VIItCsAoOS2yys1vuTlrDH5O2+q Q==;
+X-CSE-ConnectionGUID: DikSxeoYQQmS22/IDLEcrQ==
+X-CSE-MsgGUID: fAyQD8MTRVedWp+hABOs2Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90762802"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90762802"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:28:53 -0700
-X-CSE-ConnectionGUID: aa4Cwc0ASmOMU5qNfF7ikw==
-X-CSE-MsgGUID: EFPvXUhuSSGJsVadDztwIw==
+ 11 May 2026 05:28:55 -0700
+X-CSE-ConnectionGUID: 7ATI+pFdREyGI5rpLkG83w==
+X-CSE-MsgGUID: pnwNZjXhRG2M/XwXMUypdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801449"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="267801452"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO
  vgovind2-mobl4.intel.com) ([10.245.245.16])
  by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 05:28:52 -0700
+ 11 May 2026 05:28:54 -0700
 From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: vinod.govindapillai@intel.com,
 	ville.syrjala@linux.intel.com
-Subject: [PATCH v2 07/11] drm/i915/bw: update the routine to find the peakbw
- in MTL
-Date: Mon, 11 May 2026 15:28:12 +0300
-Message-ID: <20260511122816.1235478-8-vinod.govindapillai@intel.com>
+Subject: [PATCH v2 08/11] drm/i915/bw: update the tile-y dependency based on
+ the display version
+Date: Mon, 11 May 2026 15:28:13 +0300
+Message-ID: <20260511122816.1235478-9-vinod.govindapillai@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
 References: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
@@ -77,7 +77,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BE0ED50DC20
+X-Rspamd-Queue-Id: 0017750DC27
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -104,60 +104,57 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-As the QGV points are sorted based on dclk for pmdemand cases,
-there is no need to go through the entire QGV points to find
-out the acceptable peak bw. We could break the loop as soon as
-we find out the first QGV point with the acceptable deratedbw
-for the current display required bw.
+Consolidate the tile-y dependency into a separate function and
+use it to determine whether tile-y need to take into account for
+the bw calculations. Especially for post MTL cases, as per the
+bspec, no need to take the tile_y into account for the
+de interleave values.
 
+Bspec: 64631, 68859
 Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 13 +++----------
- 1 file changed, 3 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 13 +++++++++++--
+ 1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index f05fdb5f24c9..177c3fd8f74a 100644
+index 177c3fd8f74a..858da1710a61 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1080,10 +1080,8 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 			       unsigned int num_active_planes,
- 			       struct intel_bw_state *new_bw_state)
+@@ -483,12 +483,21 @@ static const struct intel_sa_info xe3lpd_3002_sa_info = {
+ 	.derating = 10,
+ };
+ 
++static bool is_tile_y_factored(struct intel_display *display)
++{
++	/* TGL supports Y-tile for LPDDR4/5, but not for DDR4 */
++	if (DISPLAY_VER(display) >= 14)
++		return false;
++
++	return true;
++}
++
+ static int icl_get_bw_info(struct intel_display *display,
+ 			   const struct dram_info *dram_info,
+ 			   const struct intel_sa_info *sa)
  {
--	unsigned int best_rate = UINT_MAX;
- 	unsigned int num_qgv_points = display->bw.max[0].num_qgv_points;
- 	unsigned int qgv_peak_bw  = 0;
--	int i;
- 	int ret;
- 
- 	ret = intel_atomic_lock_global_state(&new_bw_state->base);
-@@ -1105,7 +1103,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 	 * Find the best QGV point by comparing the data_rate with max data rate
- 	 * offered per plane group
- 	 */
--	for (i = 0; i < num_qgv_points; i++) {
-+	for (int i = 0; i < num_qgv_points; i++) {
- 		unsigned int bw_index =
- 			tgl_max_bw_index(display, num_active_planes, i);
- 		unsigned int max_data_rate;
-@@ -1118,13 +1116,8 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 		if (max_data_rate < data_rate)
- 			continue;
- 
--		if (max_data_rate - data_rate < best_rate) {
--			best_rate = max_data_rate - data_rate;
--			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
--		}
--
--		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
--			    i, max_data_rate, data_rate, qgv_peak_bw);
-+		qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
-+		break;
- 	}
- 
- 	drm_dbg_kms(display->drm, "Matching peaks QGV bw: %d for required data rate: %d\n",
+ 	struct intel_qgv_info qi = {};
+-	bool is_y_tile = true; /* assume y tile may be used */
++	bool is_y_tile = is_tile_y_factored(display);
+ 	int num_channels = max_t(u8, 1, dram_info->num_channels);
+ 	int ipqdepth, ipqdepthpch = 16;
+ 	int dclk_max;
+@@ -559,7 +568,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+ 			   const struct intel_sa_info *sa)
+ {
+ 	struct intel_qgv_info qi = {};
+-	bool is_y_tile = true; /* assume y tile may be used */
++	bool is_y_tile = is_tile_y_factored(display);
+ 	int num_channels = max_t(u8, 1, dram_info->num_channels);
+ 	int ipqdepth, ipqdepthpch = 16;
+ 	int dclk_max;
 -- 
 2.43.0
 
