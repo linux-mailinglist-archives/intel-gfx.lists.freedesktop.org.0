@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MHQmEi5NAmrIqgEAu9opvQ
+	id oN9YMTJNAmrIqgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:06 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E11825166E3
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E20D5166EA
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73C1C10E8EF;
-	Mon, 11 May 2026 21:42:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 26D5710E8F4;
+	Mon, 11 May 2026 21:42:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GYDFittw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="S0aUHqvi";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B81BC10E8EF;
- Mon, 11 May 2026 21:42:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0CDC110E8F4;
+ Mon, 11 May 2026 21:42:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778535724; x=1810071724;
+ t=1778535728; x=1810071728;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nsarxqYB0Yxt7W83AvNh53eZQUq+WzCG9d//n4Q28tE=;
- b=GYDFittwpwuyFxgacj/cIOJIsqMGxwTmSQOG1BloT937T6asZkKlemYc
- hb7YqFFTabFb1bQ2moDiBAJ91wB5wAdmlsr6SD0KtOEHhItAXiqb43Ekw
- bQZm2vfyg3goP328vrsDIINGxDmnPaitD6asKtYB3tHWWoe/+zZz4+k10
- WmKuSq7bpAx6ioe5kUY1cwGrkx0/47VvEAlpaMrnbwQMi1rvDrCOvhb3F
- a5vOAELqmszdgHcGhGyzySLL9MaQhwQJ0KaGBrdbXRXjghExNQ7iIfH9F
- WzvjMp07yg152mb2yooPmSNJDeXSGIhRkiSTmJcr2iUDkEXEmoSZvkGSS g==;
-X-CSE-ConnectionGUID: S7RRKo6mTzaH6b5Myoq0JA==
-X-CSE-MsgGUID: 3rVcuRgsRZirOSdS7nmoUw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816884"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816884"
+ bh=0TMPOXwK081fLbC0tAcUlpyCXqh5NH4+3dmzkLoN17Q=;
+ b=S0aUHqviNr4sy+IeIpy0xKzK/8AXm1qSr8PXmAhCRkkrp/YRgZCOnC+L
+ fTudxqgm2mEogmVJO2hLAb84M7N2MDKhxlzww7TgCqewUdO1ksgoFgeHJ
+ QXcSqNq/EnI1qQo+lqHRTxs0VbeUWigRJt15jklceBRs12Tipb5ys/q/j
+ 4EVkja7U1nH7jfkNxhVs393279QoV4bwXepV9sU3Oe/GUm2d6nwuPGubP
+ gsCj1cHijgIR0nzS66dCAMaPDnvRHzaBT7CmdQgYoHxoM7LXSW0nJ05G8
+ ZeV3rzOzjTmOqP3RUSbwBh4TrWwT/O4GnmWdpKdA07VLKUo8TyN+/DbYK g==;
+X-CSE-ConnectionGUID: tCYspLUNQX6y8rYGOmCANw==
+X-CSE-MsgGUID: E1wdDLTfSkKIiekZk/YvfA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816887"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816887"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:42:04 -0700
-X-CSE-ConnectionGUID: EPkZbFBXTMCNrvkYKtrzlA==
-X-CSE-MsgGUID: MM2UzseBQImGuGg6BlGATg==
+ 11 May 2026 14:42:08 -0700
+X-CSE-ConnectionGUID: R+tCfIYNQGuf8LT/91Udbw==
+X-CSE-MsgGUID: ev52ijFlRnOHTrIL5m/+cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702919"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702931"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.104])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:42:02 -0700
+ 11 May 2026 14:42:06 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 09/14] drm/xe: Abstract the initial FB PTE checks a bit
-Date: Tue, 12 May 2026 00:41:17 +0300
-Message-ID: <20260511214122.8468-10-ville.syrjala@linux.intel.com>
+Subject: [PATCH 10/14] drm/xe: Check the PTE local memory bit for initial FB
+ in stolen
+Date: Tue, 12 May 2026 00:41:18 +0300
+Message-ID: <20260511214122.8468-11-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
@@ -75,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: E11825166E3
+X-Rspamd-Queue-Id: 9E20D5166EA
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -106,56 +107,58 @@ X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Add a few helpers that allow us to abstract the xe initial FB PTE
-check a bit. Still very ad-hoc compared to the nicely abstracted
-i915 counterpart, but whatever.
+Do the PTE local memory bit check also for the case when
+the initial FB lives in stolen. We have two cases to worry about
+here: MTL+ with LMEMBAR, and pre-MTL with stolen being just
+(slightly special) physical memory.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 17 ++++++++++++++---
- 1 file changed, 14 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/xe/display/xe_initial_plane.c | 15 ++++++++++++++-
+ 1 file changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index b7e0685351bb..0dabc5709d01 100644
+index 0dabc5709d01..d0a9f8599096 100644
 --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -18,8 +18,19 @@
- #include "xe_fb_pin.h"
- #include "xe_ggtt.h"
- #include "xe_mmio.h"
-+#include "xe_ttm_stolen_mgr.h"
- #include "xe_vram_types.h"
+@@ -26,9 +26,14 @@ static bool is_pte_local(u64 pte)
+ 	return pte & XE_GGTT_PTE_DM;
+ }
  
-+static bool is_pte_local(u64 pte)
++static bool has_lmembar(struct xe_device *xe)
 +{
-+	return pte & XE_GGTT_PTE_DM;
++	return GRAPHICS_VERx100(xe) >= 1270;
 +}
 +
-+static bool need_pte_local(struct xe_device *xe)
-+{
-+	return IS_DGFX(xe);
-+}
-+
+ static bool need_pte_local(struct xe_device *xe)
+ {
+-	return IS_DGFX(xe);
++	return IS_DGFX(xe) || has_lmembar(xe);
+ }
+ 
  static struct xe_bo *
- initial_plane_bo(struct xe_device *xe,
- 		 struct intel_initial_plane_config *plane_config)
-@@ -43,13 +54,13 @@ initial_plane_bo(struct xe_device *xe,
- 	if (IS_DGFX(xe)) {
- 		u64 pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
+@@ -79,6 +84,7 @@ initial_plane_bo(struct xe_device *xe,
+ 			    &phys_base);
+ 	} else {
+ 		struct ttm_resource_manager *stolen;
++		u64 pte;
  
--		if (!(pte & XE_GGTT_PTE_DM)) {
--			drm_err(&xe->drm,
--				"Initial plane programming missing DM bit\n");
-+		if (is_pte_local(pte) != need_pte_local(xe)) {
-+			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+ 		stolen = ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
+ 		if (!stolen) {
+@@ -86,6 +92,13 @@ initial_plane_bo(struct xe_device *xe,
  			return NULL;
  		}
  
- 		phys_base = pte & ~(page_size - 1);
++		pte = xe_ggtt_read_pte(tile0->mem.ggtt, base);
 +
- 		flags |= XE_BO_FLAG_VRAM0;
- 
- 		/*
++		if (is_pte_local(pte) != need_pte_local(xe)) {
++			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
++			return NULL;
++		}
++
+ 		phys_base = base;
+ 		flags |= XE_BO_FLAG_STOLEN;
+ 	}
 -- 
 2.52.0
 
