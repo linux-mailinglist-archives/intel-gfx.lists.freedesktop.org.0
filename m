@@ -2,169 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CGfDE5iUAWoefAEAu9opvQ
+	id 8HaACW6iAWpKhAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 10:34:32 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 11:33:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A6F50A299
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 10:34:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 861C250AF73
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 11:33:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 80B1710E107;
-	Mon, 11 May 2026 08:34:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 09F3E10E151;
+	Mon, 11 May 2026 09:33:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="OvzDTsXR";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="oKuflpx4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D3C5510E107
- for <intel-gfx@lists.freedesktop.org>; Mon, 11 May 2026 08:34:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 87FAC10E06B;
+ Mon, 11 May 2026 09:33:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778488468; x=1810024468;
- h=date:from:to:cc:subject:message-id:references:
- in-reply-to:mime-version;
- bh=oQ5HDFOAnGBLbFl8FvjlqFR9Baw1GbglAoYCc/Laesk=;
- b=OvzDTsXRvRDG0SzHMVtJPriraS7vcNB1L1txJhFDQs2LyEM6LS7UwOyA
- RnubPD68fbKjr1oU6Crx6JSWr0URrVvHVOIfld9IAX36xcird5QSVeAW7
- E3ZalvBaBETnczVnhXPYSL+sXqE5m53XrRv4aBZgOWU2+hjVXlYZJTBMV
- KaqPWeREixPAo2RpfdqxJfLu6yOelUrAhIDAltKxps2bTtAx2j9JhbIAk
- 1z44ARWzujwUz8xnF7X0meI5XCgxjKV+Ydc7Ei0FlXijbia47JylqMEL4
- YS31qnr9Cdawp2Kple+l/Orty1EzeaohyHVvRAUMcUsv2XunSojLAGea+ Q==;
-X-CSE-ConnectionGUID: GSYbiNZQTEOxAgpFPxdn0g==
-X-CSE-MsgGUID: pA43wCFRTqWkC/Cn9ekjqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="89953671"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="89953671"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 01:34:23 -0700
-X-CSE-ConnectionGUID: IMB8P4pMQLuko8vrdCYnRQ==
-X-CSE-MsgGUID: ufcmpFTzSzenrj8UAdtLIw==
+ t=1778492010; x=1810028010;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Nxn/SJxFgpyHXhNu+xmkiMum9B7+qkLommG6kbe2hTk=;
+ b=oKuflpx4ss9kvxOozisGS+qdHjKihtTeMAQQ98MfjttgzHB1OX3GsTSE
+ fNdh6o9Hzt92jXx9G76vFmru+oi8XcjXu99jrjn1elnFqtUmdxAiVwuZ0
+ /DkRQgC1iDUoQrBV8Q5xqjgSe7tVHGgsUbzVxU888OckM6MmNiJcQT8m2
+ tkewwO/TAHCo9ZDztERBEBLT3kp5MEbpj1ZXcD0s1Oe2LuyVIW5dp4YRk
+ pf1BL0eDLyViUU/3Rn4dk5iDWfObN9Y2heVj3+oq6mU/rGxVIdrVh0T59
+ F++6KXh0HNKove9oKHwSK/6fvgPVLl78Cl0NgcxNZpBXO540IOcFodhl2 w==;
+X-CSE-ConnectionGUID: lVDG/9wfTlyrC7+n2SyNGA==
+X-CSE-MsgGUID: J8kTdF3vTayfqiY59xJAZQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="90751103"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="90751103"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 02:33:29 -0700
+X-CSE-ConnectionGUID: zwhdx/fdQZSUhe4FLlBejw==
+X-CSE-MsgGUID: SYQIv4xNSNWmwSjhhkCBJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="275526510"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa001.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 01:34:24 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 11 May 2026 01:34:22 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 11 May 2026 01:34:22 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.28) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 11 May 2026 01:34:22 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=SRkwT8q6VBAPiBtkrUZp3PlmqdYxu+6O67Ma78YBjqfpVeeolXPfAWpFvEts94Rvzc5Q7KG1vYGiG5bOwIkLPkZrk96OyBb/iIr3CLSEaNYra71dw3/o1Oq9rf8wgS9ByAr05ap9ERQr+ZTDqzHKqbsgbPhb8+fY9PpgmPjqFGTD1y1l2Qhz++H/oBtSztzAIWspL0/I4G2CD04IlLv5SbaDZnlWj0ED9+dMGvD9CpDsV1LiTkG4QXyQx3ziGmb31hR+704WXEBAEK9iAagy5KA7a84perLl14eTEmDrqrJgeI+bBNghyq1egjQHlpikpVK0W4pJJr2GJZ1JNhp5XQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=IDz+egbMgVV0OQQEt09XrQRs+pFIJwqQ4w1Scu67xmM=;
- b=YW7DntSA79h9fR2yDqsiyhmkJKOjb0fuI6/ohETjx1TiZwVIbILtVdAsFB+YSdBes3E/sbXOZ9l/uiPKzeCDaTtEVr2OdGFR8uMrWKitLrdjb1yWL4xol4A3rSNHh2Xu0nnbBKo2VNBUJPl0u5TeXDGk7Wm/LLzw0TfL50aqmrKiTmZnev9dtWU1AOCbqSa0ZAzfmFdId41pa7socWBlHiD5jgBiScSOwU16IEzC7ZcLxWzIN36wjULjC04gtu8/TNHxegIdu97zSLCDBKOlFrupu2xitGvd4SFPjVLFF8R+m0o2DvwVdKdCwfgbh+UXgHtRyUsI7/9HKKbYWQPKzg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from CO1PR11MB5057.namprd11.prod.outlook.com (2603:10b6:303:6c::15)
- by DS0PR11MB7652.namprd11.prod.outlook.com (2603:10b6:8:14e::18) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Mon, 11 May
- 2026 08:34:14 +0000
-Received: from CO1PR11MB5057.namprd11.prod.outlook.com
- ([fe80::3b75:a8d2:464e:30cc]) by CO1PR11MB5057.namprd11.prod.outlook.com
- ([fe80::3b75:a8d2:464e:30cc%6]) with mapi id 15.20.9891.021; Mon, 11 May 2026
- 08:34:14 +0000
-Date: Mon, 11 May 2026 08:34:03 +0000
-From: Krzysztof Karas <krzysztof.karas@intel.com>
-To: Andi Shyti <andi.shyti@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, Sebastian Brzezinka
- <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
- <krzysztof.niemiec@intel.com>, Janusz Krzysztofik
- <janusz.krzysztofik@linux.intel.com>
-Subject: Re: [PATCH v10 1/2] drm/i915/selftests: Prevent userspace mapping
- invalidation
-Message-ID: <brhzl3yc5i52n5jlsxnc4zb4nkkxwosttbek3bmvmoltavauo3@p4ilob3vfjso>
-"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
- 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
-References: <20260508080214.1979686-1-krzysztof.karas@intel.com>
- <20260508080214.1979686-2-krzysztof.karas@intel.com>
- <af2vusysmtwp2bzU@ashyti-mobl2.lan>
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-In-Reply-To: <af2vusysmtwp2bzU@ashyti-mobl2.lan>
-X-ClientProxiedBy: DU6P191CA0031.EURP191.PROD.OUTLOOK.COM
- (2603:10a6:10:53f::10) To CO1PR11MB5057.namprd11.prod.outlook.com
- (2603:10b6:303:6c::15)
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="241376626"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.253])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 02:33:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Aaron Esau <aaron1esau@gmail.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ rodrigo.vivi@intel.com, joonas.lahtinen@linux.intel.com,
+ tursulin@ursulin.net, mika.kahola@intel.com, stable@vger.kernel.org, Aaron
+ Esau <aaron1esau@gmail.com>, Marco Nenciarini <mnencia@kcore.it>, Imre
+ Deak <imre.deak@intel.com>, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 0/3] drm/i915/cx0: fix PLL enable failure handling on
+ Meteor Lake
+In-Reply-To: <20260509162407.510539-1-aaron1esau@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260509162407.510539-1-aaron1esau@gmail.com>
+Date: Mon, 11 May 2026 12:33:21 +0300
+Message-ID: <cdf591ba648d7b3d6a4ae5fead14f5faa92e52ca@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: CO1PR11MB5057:EE_|DS0PR11MB7652:EE_
-X-MS-Office365-Filtering-Correlation-Id: b8a3ef44-6303-406e-b62c-08deaf38150c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|56012099003|22082099003|18002099003; 
-X-Microsoft-Antispam-Message-Info: yV/wOL04vkv9Q9aUj34TQDsJqtyz4/K2cPcChjgsg/CaU/9pj9C2AtvbYp7aiyRsV23Kg2idSdsBFI9ERJKIKKrzFl4S2O33c2Y2EgBxwez8MCctt6yyZIxreDcruEF2IUxvka0wJASBo8G4xrk3G884BAnJ6B0UItsJUkiXRsWZmGqzLyB84azeUZ07hNAqoFqjM2Xj5M+ouJtS6FwjQMuHHkdn2BKdEDBP9nCJslAPuHVNPABOk2p1DvJGLQuTHZp5vd/UUjkg0KjQEkKRUo62Fy5131aQKbv+8kL2ibfm8ALZEGvrZ3tXRwJaxygcYysf5claVpnh3UsFYBWTz607h0KWvvny8eW88Tk8ZIwHaGoSJPMBIsNwLPpREcruYRijDLdcf3+atktAoTs53xHevwEj7uueHIsdJO8stVh6SmazyuISbWcPa9qCjAte+o6Mshsoe1mrNo1dvlAz1AibGEJs7FK3Zgnfn1BPfm3BqgyZQDwnUZtu1rhnRS6gw0koaYvp82HEQaYatV6wv/AJ4LaEukOPxK+epbwkDE1gdJmS4rzh4AkP+vedyBZEana2loL1dU8EEu9rxA026iKFOMN/vLBoJb+vn3WKLGGJqvjKVEvNTzKN+asXzFHia2/X4svHAionN8wJhOgnQYT9qdHdOuASXmtJlrQl4eUjXUFQYw4hLqMpBA6/ulq9
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:CO1PR11MB5057.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(56012099003)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?SWFLTlZXakxBVnRYMHRGQUtLeVozWVhBdCt4eEhzMEthNnhPR0ovM0t0enFh?=
- =?utf-8?B?RzB2NUh3SnNXaWkzQllYRS9vaFVUR0lGb3o5eEdaRStGd3VxRSs3K3NqZG5B?=
- =?utf-8?B?Rm1NQ2I4YVc3WS9PZjZXU0VEYWhPNytQSGZpN3k5UEpXTU1KNVhhUHJ1cGwy?=
- =?utf-8?B?Z1hqSGpyV2RROE42K2pveWtRTE9LWFVVbmRHZWMxT3dIRE5TWHRicXo1eTFo?=
- =?utf-8?B?QjRuRDdTdElPc1BPYjFJUVVBQUJyNk5SZER6WHRsaUd4dUQ5TmJSZklaUDVL?=
- =?utf-8?B?OC9KbjRVWWN0SXpwYkh2ZTVMNTNtbUNSWnloUVNMQndZT1pFTncya2ppOGhi?=
- =?utf-8?B?OUFlaFcrbjZzYlVjQnUzTGVNMU5RY050VGNVYnR0NnN3ZmlTNUNibU9mV1Vo?=
- =?utf-8?B?RXlSSHAyM2xjY2pUNU5KdUxDU1dZbGdteWRrWmpjSkN2REFxNi9MQTR6UUJE?=
- =?utf-8?B?N3daVlJ2QVdsK00vNnZOSEZ1Tm1yRlpiZEQraTVwQUo5RFA3dCtPZHl0aE1P?=
- =?utf-8?B?OFNTcElvTnJjTCtzVmQvU0dSb0FocnBwcXBOV0c2VzNaNjNtalo0TkI0Zk54?=
- =?utf-8?B?ZFhHdnAyR1AzdEdiQ1N6VDJ0UlRFZTNydmdzN3AxcVpIV2lzcEc5R2s1Mk1X?=
- =?utf-8?B?dUpubXQzb2VSK2M4MHY4OTY4UGM3a2tackVKLzQ0U0VQZUNHVUp5cWZVTERW?=
- =?utf-8?B?RHFKcDRmcnRXeEdIRVpKaTVabVROYW5TUDZaUzQrRkxBNXV5STFUL1VMbFh5?=
- =?utf-8?B?TmxjeHJFSnBacUtGMmpRZzdqM1lBK1NDMTRDUlYzK1hDcndZMDRwTjlMeTRk?=
- =?utf-8?B?QlFUSmVDSVBHK0dwNHN2NDVrN2I0S2FnTy9LdzhMVkFDYVFMYXRBSEk1WHhJ?=
- =?utf-8?B?dkJXZ2QwcnRIN004aXBzRFQ1UTkrUlIvQzZXdmhxQStDajlwenZEcUdLakZo?=
- =?utf-8?B?Q1pVODlsVmJmaWhzRHVUQzBubWpIYkV1Uy9VWmx0aWZxQ3ZBbmlyS0FVLzM5?=
- =?utf-8?B?SHJJWE83Z0xFaGJhRGxLSW1GdUtBQVF1T3VpM3orb3pmeSt3c3BmWjR1S2hu?=
- =?utf-8?B?Zm9xbURTL29RdE1BVVR2OHJsMm1nSi94eG90Sk9SZjRjK0x2d0NZZGV6aGhY?=
- =?utf-8?B?Q2E0NStLWTkrWHJuMzlQZVFlNU5pUkZHV3M4ZGRnN0xwa21LSGhVU2k3U0FO?=
- =?utf-8?B?em4wNjRUb0tLSndxeXdtSXpMeUUvdllIQ25YMnhESm4xb1Bvb0JkQ0h6dllk?=
- =?utf-8?B?eDg5WGQ3dkZHNlBCZmtLTzluNzdJdld6SlVJblB5clRyNFVvckdQUHZHQXRz?=
- =?utf-8?B?QWwxZmV0Y2xGMit6dkFya0h1Q290MzdjZHNQbk55WWw4K1g2VEFLeG9Qb2ha?=
- =?utf-8?B?Zy96QXRHT09XQW93bjQ4dkhLcGg0ODE2UXVxYkJ5ZE9OOWV3NEtXT2JkZDU4?=
- =?utf-8?B?VFoyek9NWlNiSUFkRExkNkxZeWNhRWhCTmhNQ0VRck1WNmhQUm1YV0xicExS?=
- =?utf-8?B?ek9zTkc5dm0wemVMcnZxUEN0SHFjOUJoWHEzRGJINmYrWDNaZndEdXEzUTNp?=
- =?utf-8?B?ZHNtL2dlaUJ1L2dkQk1DUzRHem01N3BHRG81bTlIYkdWeERqV08zNHUvcTI5?=
- =?utf-8?B?dXJ3cDU2Vm9pd2RnT3k3cnBNUExIZVZOWDZYSGJyZ052QkFUbzFLendCc3pk?=
- =?utf-8?B?TkFoZjRGS2lMcUt0SmxsMlovUnh5bzU0WTE5bWVib3FvWktwTTVpNW5laGVS?=
- =?utf-8?B?dW5GMCtBUTZOM2FoZDRaMTN1Y1hqOVFLbmtzYVQ2M0dOZEhCanF2UDdEaTIx?=
- =?utf-8?B?TDlhaDh0ZDRlcEliNXd2bUlnNjF3eU84ZGJPcFBJVHUyUnYwdEgyeUppUTVB?=
- =?utf-8?B?Z0crNVp2MlFZVmdjNEcyYmh6WVByZ2UzMlRoZ3drYlF5aEhNUlRPWXFtY2xx?=
- =?utf-8?B?Z2NEZ01XSVRFZ2doekVJZ0FxUVNyTjRua1gvQ0FXU0hxbDl4WWZFUEVDSkhn?=
- =?utf-8?B?RkJ1RFVyL2lnRTRZL29JOGlnSDVuTDA4NmY5YkNqWUovY1VPRThid3dOSm5i?=
- =?utf-8?B?Y3NzNE44cHdYWXhGWEdVYXVtbG1NRHZTYUpMWno1emhSZnBPYk5rUStiQ0Rn?=
- =?utf-8?B?TzhwdGJrS2I4YmpPTXBwTEEvNG1uczVXNW9KS3BzY2gzZHpxRlRzdHp3ajlY?=
- =?utf-8?B?bUo2WkNKb0hyakt1cGZGSW9ZeVFzVDVjRndXSXJKSmNwZ0xZaVBFb3QxWnBX?=
- =?utf-8?B?T09BMWNnbWo2M1VWVExSZ0MrZ3lUZnpnVGtxd3RGWUk4clFXL2hWOVZKdUpa?=
- =?utf-8?B?c3pFalFZb3U4cWRqLzMyWHFNbnYwc1JlN0IzaUxrdWlpVUkxMVZzVncvZUtm?=
- =?utf-8?Q?6J1r276zqS34HK68=3D?=
-X-Exchange-RoutingPolicyChecked: AObKg/UGbyPLN22a/Zr5Znu3vcqEkbij9OoRDmOhuS2Zut6v+t7hKl2CoxiKrpvL0qkvEJQogeKrfSyDWEhb2vG9/S4UMutLK3FP4qxenWgPohrf4jh+jdTFyEMdbb6S14dX8zoiHbVBJGcm9KQFjBgv4c0XgCLeJ3QbjMqUcGLeSZX3jwSyVxM2owQcOvuOLwlvmrVNMnvvZz5qa9uPIN7JD0XwAWAP8vbaMxWpUAkJ42dKvUfml2T8DReoKeP5MvQLkTsZAgvL4k99gP+z3mdMNGx+5LhLlLib3Q+dBoBalQZIYs/bBd+AcPmTQnJs1Oipygwet6gbGXoLdxkH0Q==
-X-MS-Exchange-CrossTenant-Network-Message-Id: b8a3ef44-6303-406e-b62c-08deaf38150c
-X-MS-Exchange-CrossTenant-AuthSource: CO1PR11MB5057.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 08:34:14.2556 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hcgvt2RFWYYprqcmgrH9jcDJHwZMFcvF5A11pQXjHg5X5cJCOkVbB8VQ84pYB6x3E6t9cjfjBRPqRwWTxkDzPoXETtryIzO1riCbpACaRZY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7652
-X-OriginatorOrg: intel.com
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -179,68 +79,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A1A6F50A299
+X-Rspamd-Queue-Id: 861C250AF73
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:andi.shyti@linux.intel.com,m:sebastian.brzezinka@intel.com,m:krzysztof.niemiec@intel.com,m:janusz.krzysztofik@linux.intel.com,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	FREEMAIL_TO(0.00)[gmail.com,lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,intel.com,linux.intel.com,ursulin.net,vger.kernel.org,gmail.com,kcore.it];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
+	NEURAL_HAM(-0.00)[-0.994];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Hi Andi,
+On Sat, 09 May 2026, Aaron Esau <aaron1esau@gmail.com> wrote:
+> On Meteor Lake with a hybrid Intel/NVIDIA GPU setup, s2idle resume can
+> leave the CX0 PHY MSGBUS unresponsive. When this happens, the PLL
+> enable sequence silently fails: register writes via MSGBUS are dropped,
+> the PLL never locks, but the driver marks it as enabled and proceeds to
+> drive the pipe.
+>
+> The root cause of the MSGBUS becoming unresponsive appears to be the
+> NVIDIA dGPU not participating in S0ix (addressed via the
+> NVreg_EnableS0ixPowerManagement module parameter). However, the i915
+> driver should handle PLL enable failures gracefully regardless of the
+> trigger.
 
-On 2026-05-08 at 11:41:14 +0200, Andi Shyti wrote:
-> Hi Krzysztof,
-> 
-> ...
-> 
-> > +static struct mm_struct *
-> > +get_mm(int u_pid_nr)
-> 
-> This fits in one line, no need to break it.
-> 
-> I'm not a big fan of the name "get_mm()". It's too generic and
-> sounds like a library function.
-> 
-> With the two above changed:
-> 
-> Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
-> 
-> On the other hand I don't want to ask for v11: if it's OK with
-> you I would bring the lines together and change the function to
-> get_selftest_mm() before merging.
-> 
-> Let me know,
-> Andi
-Yeah, that would be wonderful, go for it :)
+The way I read this is: There's an issue with an out-of-tree proprietary
+driver, you can only reproduce the issue with said proprietary driver,
+and the upstream driver should jump through hoops to workaround the
+issue in the proprietary driver, in ways that we won't be able to test
+in our CI. And the expectation to work around this upstream is because
+you can't really do anything about the proprietary driver.
+
+Is that about right?
+
+Apart from adding a bunch of generic error handling code superficially
+unrelated to the proprietary driver.
+
+The reason the CRTC enable path generally doesn't have error propagation
+is that 1) the allowed errors on atomic commit are *very* limited, 2)
+nonblocking commits are even more limited, and 3) even on failures the
+display pipe must be running.
+
+You simply can't bail out in the middle of hsw_crtc_enable() like
+suggested in patch 2.
+
+See [1] for more. Also see parts about tainted kernels in [2].
+
+
+BR,
+Jani.
+
+
+[1] https://docs.kernel.org/gpu/drm-kms.html#c.drm_mode_config_funcs
+[2] https://docs.kernel.org/admin-guide/reporting-issues.html
+
+
+>
+> This series:
+>   1. Fixes intel_cx0_pll_is_enabled() to check the hardware ACK bit,
+>      not just the driver-set REQUEST bit, so a PLL that failed to lock
+>      is correctly reported as disabled.
+>   2. Adds error propagation through the DPLL enable path: changes the
+>      .enable callback to return int, threads errors through
+>      _intel_enable_shared_dpll() and intel_dpll_enable(), and checks
+>      the result in hsw_crtc_enable() and ilk_pch_enable().
+>   3. Makes the CX0 PLL enable path return -ETIMEDOUT when the PHY
+>      fails to come out of reset or the PLL fails to lock.
+>
+> Found on a Lenovo ThinkPad with Intel Ultra 7 155H and NVIDIA RTX 2000
+> Ada. Kernel traces before each crash:
+>
+>   i915: Failed to bring PHY A to idle.
+>   i915: PHY A Read 0c70 failed after 3 retries.
+>   i915: Timeout waiting for DDI BUF A to get active
+>   i915: [CRTC:149:pipe A] flip_done timed out
+>
+> Aaron Esau (3):
+>   drm/i915/cx0: check PLL ACK bit in intel_cx0_pll_is_enabled()
+>   drm/i915/dpll: add error propagation to DPLL enable path
+>   drm/i915/cx0: return errors from CX0 PLL enable on failure
+>
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.c  | 54 ++++++++----
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h  |  6 +-
+>  drivers/gpu/drm/i915/display/intel_display.c  | 10 ++-
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 87 ++++++++++++++-----
+>  drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  2 +-
+>  .../gpu/drm/i915/display/intel_pch_display.c  |  7 +-
+>  6 files changed, 117 insertions(+), 49 deletions(-)
 
 -- 
-Best Regards,
-Krzysztof
+Jani Nikula, Intel
