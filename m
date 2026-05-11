@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qEDiOdpmAWpUYAEAu9opvQ
+	id SHeAKdxmAWpUYAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9BCDC508243
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 64E7550824A
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 07:19:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 186D810E48C;
-	Mon, 11 May 2026 05:19:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D9E4910E48B;
+	Mon, 11 May 2026 05:19:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MP8ONWbA";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kuyTZdJX";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5652710E48A;
- Mon, 11 May 2026 05:19:19 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BF4010E48F;
+ Mon, 11 May 2026 05:19:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778476759; x=1810012759;
+ t=1778476761; x=1810012761;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=AzAf+RbtoKnr80tkXmxnMeO9xfCkGU/XQ2HU4KIhoEA=;
- b=MP8ONWbAuPMzjlKomZrg2TbuYyl1q3F/GZj/MvimNW3Gssqi9ntLB7KN
- EQVnt+kqUsyRGTAxiZzt59WkQG6O5Lc/8JENYKmUBEhGzkbgNnpNvevMx
- uoOnyQBPQi9hzc2z9346yE0kveyVKy4YPOCxmISuW75sWE4giOt3Ai28s
- Sedz44h6mNM8vNSG4PKy92gkf4Yhz3og+LrH4k0sWoGOUl8ZlaykNuyXX
- TwgO9GJpYqDas1qeWi+5aRZMivjzh4Mhg9WvQ7UPxapfcsYzT6jwL1O+j
- cDOPPQHGkh5UcvU2B2Dd0/A5l7c5WNnGl4u+3WEAZXM+oCQwqSTuQerjY A==;
-X-CSE-ConnectionGUID: q3cTgd5oTC+LjXXMr3kkiw==
-X-CSE-MsgGUID: DJTRZmuWQTeBg3dYIqmFzw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="81921106"
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="81921106"
+ bh=P7kZZuSFlvHn4IDtHBOxOZvoJxiraOESWNlxlRQAeEA=;
+ b=kuyTZdJXYWSwYek2gHkcBn6Opez+pAuZxqPTrPiHxR2d7FWIQX8yTlRc
+ UCTCvFofL5h8nL1nNswk8DL1MM8UJGSICV4mImauU2lXwZB67cffc6U2z
+ jin7dhCTIS9bLmECaVw/HGb05sm1LnIUyXQjHXrHgW9A0HMNi+Eaw/sY4
+ HtgZr2diaxsP/cZ0jCMYLVWof4T7klsY8daDO5EComMj8m658R5D1jF2X
+ qXcWHXYXGcFbiyx7hqO6iNlXGsCZX6is/QW1IHBriWaqEubFjKqnfZWJX
+ I2t0lSLOgKAFaC4ofljDNZ53EIH4eoj8HQkjMjEEBeNCNlB0+6e2j2vgL g==;
+X-CSE-ConnectionGUID: sM5/RsEXTHizUbK5u8fToA==
+X-CSE-MsgGUID: iAm7OHKwSc6zv0tf4itCsw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11782"; a="81921107"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="81921107"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2026 22:19:19 -0700
-X-CSE-ConnectionGUID: dz8APxKzRo+ZJ8rBFqSKXA==
-X-CSE-MsgGUID: 9RYZ9A3nQeWv8da9b6NSFw==
+ 10 May 2026 22:19:21 -0700
+X-CSE-ConnectionGUID: 2LNZDZZ+SZCAYFfKp8E/qw==
+X-CSE-MsgGUID: OgqwuER+S2WgVZyrhnF8Fw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="261086257"
+X-IronPort-AV: E=Sophos;i="6.23,228,1770624000"; d="scan'208";a="261086271"
 Received: from kunal-x299-aorus-gaming-3-pro.iind.intel.com ([10.190.239.13])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 May 2026 22:19:18 -0700
+ 10 May 2026 22:19:19 -0700
 From: Kunal Joshi <kunal1.joshi@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com, jani.nikula@intel.com,
  Kunal Joshi <kunal1.joshi@intel.com>
-Subject: [RFC 5/7] drm/i915/display: Expose DP tunnel debugfs under each
- connector
-Date: Mon, 11 May 2026 11:10:26 +0530
-Message-Id: <20260511054028.1310995-6-kunal1.joshi@intel.com>
+Subject: [RFC 6/7] drm/display/dp_tunnel: Sync SW allocated_bw after enabling
+ BW alloc
+Date: Mon, 11 May 2026 11:10:27 +0530
+Message-Id: <20260511054028.1310995-7-kunal1.joshi@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260511054028.1310995-1-kunal1.joshi@intel.com>
 References: <20260511054028.1310995-1-kunal1.joshi@intel.com>
@@ -74,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9BCDC508243
+X-Rspamd-Queue-Id: 64E7550824A
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -103,117 +103,51 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-The dp_tunnel/ subdir is only registered for the primary connector.
-MST child connectors that share the same backing tunnel need their
-own dp_tunnel/ entry so IGT can read per-connector tunnel state.
+After drm_dp_tunnel_enable_bw_alloc() the read-back DP_ALLOCATED_BW
+is not synced back to tunnel->allocated_bw, leaving a stale SW
+value. The next drm_dp_tunnel_update_state() call sees a SW vs. HW
+mismatch, trips tunnel_info_changes_are_valid(), and returns
+-EINVAL causing the driver to tear down and re-detect the tunnel
+even though BWA enabled correctly.
 
-Register dp_tunnel/ from intel_connector_debugfs_add() for every
-DP/eDP connector that owns a tunnel, resolving intel_dp via
-connector->mst.dp for MST children. Add
-drm_dp_tunnel_debugfs_remove() from both SST/eDP and MST
-->early_unregister hooks to prevent stale dentry pointers when
-connectors are torn down before the tunnel.
+Sync tunnel->allocated_bw from the just-read register value after
+the post-enable verification, mirroring the initial sync done in
+create_tunnel().
 
 Cc: Imre Deak <imre.deak@intel.com>
 Assisted-by: Copilot:claude-sonnet-4-6
 Signed-off-by: Kunal Joshi <kunal1.joshi@intel.com>
 ---
- .../drm/i915/display/intel_display_debugfs.c  | 22 +++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp.c       | 11 ++++++++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c   | 11 ++++++++++
- 3 files changed, 44 insertions(+)
+ drivers/gpu/drm/display/drm_dp_tunnel.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-index 81bef000a4e3e..b77e320348a83 100644
---- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_file.h>
- #include <drm/drm_fourcc.h>
- #include <drm/drm_print.h>
-+#include <drm/display/drm_dp_tunnel.h>
- #include <drm/intel/intel_gmd_misc_regs.h>
- 
- #include "hsw_ips.h"
-@@ -1338,6 +1339,27 @@ void intel_connector_debugfs_add(struct intel_connector *connector)
- 	intel_dp_link_training_debugfs_add(connector);
- 	intel_link_bw_connector_debugfs_add(connector);
- 
-+	if (connector_type == DRM_MODE_CONNECTOR_DisplayPort ||
-+	    connector_type == DRM_MODE_CONNECTOR_eDP) {
-+		struct intel_dp *intel_dp;
-+
-+		/*
-+		 * For MST child connectors the relevant intel_dp is
-+		 * pointed to by connector->mst.dp; intel_attached_dp()
-+		 * follows the SST/eDP encoder path. Pick the right one
-+		 * so MST children also get a dp_tunnel/ subdir under
-+		 * their own connector debugfs root.
-+		 */
-+		if (connector_type == DRM_MODE_CONNECTOR_DisplayPort &&
-+		    connector->mst.dp)
-+			intel_dp = connector->mst.dp;
-+		else
-+			intel_dp = intel_attached_dp(connector);
-+
-+		if (intel_dp && intel_dp->tunnel)
-+			drm_dp_tunnel_debugfs_add(intel_dp->tunnel, root);
-+	}
-+
- 	if (DISPLAY_VER(display) >= 11 &&
- 	    ((connector_type == DRM_MODE_CONNECTOR_DisplayPort && !connector->mst.dp) ||
- 	     connector_type == DRM_MODE_CONNECTOR_eDP)) {
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 86123614b7bae..540cd03a7a40d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6644,6 +6644,17 @@ intel_dp_connector_unregister(struct drm_connector *_connector)
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+diff --git a/drivers/gpu/drm/display/drm_dp_tunnel.c b/drivers/gpu/drm/display/drm_dp_tunnel.c
+index c16b36d3bcf8a..e0474e09f4388 100644
+--- a/drivers/gpu/drm/display/drm_dp_tunnel.c
++++ b/drivers/gpu/drm/display/drm_dp_tunnel.c
+@@ -1048,6 +1048,22 @@ int drm_dp_tunnel_enable_bw_alloc(struct drm_dp_tunnel *tunnel)
+ 		goto out;
+ 	}
  
 +	/*
-+	 * Drop any DP tunnel debugfs entries registered under this
-+	 * connector before drm_connector core tears down the connector
-+	 * debugfs root. The SST tunnel object itself outlives the
-+	 * connector (destroyed in intel_dp_encoder_flush_work()), so
-+	 * stale dentries would otherwise be left on tunnel->debugfs_dirs.
++	 * Sync the SW allocated_bw to whatever the HW reports right after
++	 * enabling BWA mode. The TBT CM may settle to a different
++	 * allocation than the SW state held before BWA was disabled (e.g.
++	 * after a disable/enable toggle while streams are active, or after
++	 * suspend/resume). Without this sync, the next
++	 * drm_dp_tunnel_update_state() call - which does NOT pass
++	 * ALLOW_ALLOCATED_BW_CHANGE - would observe the SW/HW mismatch in
++	 * tunnel_info_changes_are_valid() and return -EINVAL, triggering
++	 * an unnecessary tunnel teardown/re-detect.
 +	 */
-+	if (intel_dp->tunnel)
-+		drm_dp_tunnel_debugfs_remove(intel_dp->tunnel,
-+					     connector->base.debugfs_entry);
++	tunnel->allocated_bw = tunnel_reg(&regs, DP_ALLOCATED_BW) *
++			       tunnel->bw_granularity;
++	if (!tunnel->allocated_bw)
++		tunnel->allocated_bw = -1;
 +
- 	drm_dp_cec_unregister_connector(&intel_dp->aux);
- 	drm_dp_aux_unregister(&intel_dp->aux);
- 	intel_connector_unregister(&connector->base);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 8f73e01db17c9..7ed6722fb7f79 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -32,6 +32,7 @@
- #include <drm/drm_fixed.h>
- #include <drm/drm_print.h>
- #include <drm/drm_probe_helper.h>
-+#include <drm/display/drm_dp_tunnel.h>
- #include <drm/intel/step.h>
+ 	if (!tunnel->max_dprx_rate)
+ 		update_dprx_caps(tunnel, &regs);
  
- #include "intel_atomic.h"
-@@ -1435,6 +1436,16 @@ static void
- mst_connector_early_unregister(struct drm_connector *_connector)
- {
- 	struct intel_connector *connector = to_intel_connector(_connector);
-+	struct intel_dp *intel_dp = connector->mst.dp;
-+
-+	/*
-+	 * Drop the per-connector dp_tunnel/ debugfs entry before the
-+	 * connector's debugfs root is recursively removed, so the
-+	 * tunnel does not retain a stale dentry pointer.
-+	 */
-+	if (intel_dp && intel_dp->tunnel)
-+		drm_dp_tunnel_debugfs_remove(intel_dp->tunnel,
-+					     connector->base.debugfs_entry);
- 
- 	intel_connector_unregister(&connector->base);
- 	drm_dp_mst_connector_early_unregister(&connector->base, connector->mst.port);
 -- 
 2.25.1
 
