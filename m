@@ -2,153 +2,152 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AAJLK/ZbAmosrgEAu9opvQ
+	id CCoqCAZdAmosrgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 00:45:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 00:49:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1A443517101
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 00:45:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9024A51714F
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 00:49:41 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 802AC10E908;
-	Mon, 11 May 2026 22:45:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 205F710E906;
+	Mon, 11 May 2026 22:49:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="H2WM1hQa";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XrCCo3f1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D488E10E8FA;
- Mon, 11 May 2026 22:45:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C074310E1E3;
+ Mon, 11 May 2026 22:49:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778539507; x=1810075507;
+ t=1778539779; x=1810075779;
  h=date:from:to:cc:subject:message-id:references:
  in-reply-to:mime-version;
- bh=NNHAJa8zJSIyg7+hnw1n4LMoOYlr5e7m4jtNipzchpQ=;
- b=H2WM1hQabkOSnwj5njc+VsCDMR93S7fz97Ehd2ZsYYhTxEOW4zfrz2cZ
- ODoVoe8mWZITcUEOYrtxevB9CrtJrdQ8K35iM7nl8UhTvI7MtW5L5OksN
- CkoQ4J8HaNjK0Ax0dElaDU/SampWQzv0ekzIvaJe1fcQg7+axRMSX9h4P
- gePC4xA5XMY6XcGgI/hNAY224MIj+34gVvrA05KeaAIrtV/JlSGL/xnxI
- /AiXaU9Rj6IgjIVtemrEisSdis/4xZ/ovCW/fjgGnLp+Q+tXzziGdR/H9
- 5OImiYgiNIDluM3EppVOknqDeKyXk0quBaCdO7b+NW2QXQqYR4n4pBY9Y g==;
-X-CSE-ConnectionGUID: Xw7b1UpJTwmrWg6E1nz2Mg==
-X-CSE-MsgGUID: rezuTBRSTHOL4Li49WhkeQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79336670"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79336670"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 15:45:06 -0700
-X-CSE-ConnectionGUID: G6OsYT97TBeWc3aRSrD5BQ==
-X-CSE-MsgGUID: mxgWl3iRSteXH8uD2KogSg==
+ bh=hLDJ8S+lrSXN3P1RV2xc8bf12gdhlCIqJGlX0/MEV5U=;
+ b=XrCCo3f115YVlqDBz1Y2VejX6Iwl+KrkrhgDDX60ApLG3Wi4g6oGt6OS
+ 4qTNM3XLfYo3MLbPxVOVhtQL8z5xt5tsnUZKjNfdq9+2KqWq9U/hNgyQa
+ B2E+I13whawg4LJ3W+aTRP/2eJxifGZ0O78wSXY8zhq74hnigJaJLpyec
+ ujdU0O4mdmcoGdSgoxYlKWWAwJ7LAvYw3FXODgebQccXjdBVtNSG5jI8P
+ nLiHUsLiOVUsGyaj0idf7a8jiKvrNN4QQRC+CN8RtmHHJvtZqs7Etm/VO
+ GCBRhfe3bLuSVVcoZkInlK0uhEv16GheJoj5cK4vU7TAaC1vak4IM+p01 g==;
+X-CSE-ConnectionGUID: JFZ7R5RVSv6VOwhAvr8i9g==
+X-CSE-MsgGUID: URejlLRnQbm6J3b19NyiVw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79160078"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="79160078"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 15:49:39 -0700
+X-CSE-ConnectionGUID: 4p9Hw5prS5eFzC62S2v9sA==
+X-CSE-MsgGUID: T9iiKlVaTZaWpLRoNgVUyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="261082550"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 15:45:06 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="234534295"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 11 May 2026 15:49:38 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 11 May 2026 15:49:37 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 11 May 2026 15:45:05 -0700
-Received: from ORSEDG902.ED.cps.intel.com (10.7.248.12) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Mon, 11 May 2026 15:49:37 -0700
+Received: from PH8PR06CU001.outbound.protection.outlook.com (40.107.209.25) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 11 May 2026 15:45:05 -0700
-Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.7) by
- edgegateway.intel.com (134.134.137.112) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 11 May 2026 15:45:05 -0700
+ 15.2.2562.37; Mon, 11 May 2026 15:49:34 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=AByvPiRGc9P8vF5xoJiHLS8XnZ9MUCNLxC+LZddMbvjXlPSUhNu0x2AU2Ylo40CEfxJ0+x6wNqZ+5/TadUjywl2GTCwQ6UY2wQdPYXe9P1+LilpeBb4gh6BhU7BiVm4WYUF1d9fbtT8beteNrtKsEDpVSSlb56DSdNgvdOtMXQ0KtJ96G9paKfYHVM/bVxTb/dnT7mA1k2IqYds0AC9gobb2FEyAO/6dmu7pcXSHgmoypLVcHxOamfmDUotF/oxyYI6I3gAOFk9fRE5T+jpM+D39vWZHOYEQ1zu8gCBHur5GQGHo1Bt2tWypdzcjRfblgDxBsBYJG16IBmfvMHXL1w==
+ b=OYVQ37Z8dlz3G8xjZp1Yr/e10p4AMiuZCcgfhEklFlwmIdFJsM3+hbkWuPcLCdHrMEgcJnq4reOUOlhv5RQS/6hN9NKvfTA9rfsgumWBhTAJ5dyk4jxfj6pTujnw/Y0GQKNhlsN5S04oaEPYpW1BDxXb7iMsmq8+iEQ6Ws9dYBngo5uktzmK6+wL0ZtKB0y/6ch16sskTn0Lnpf+SaQqgcM32Ka/J+xbFkXtYg86M3UojSsqXI91oJeEMUXjMluguP1EIi4AuCQ4V35QdIQtSDy1vEo/jzbT8rijk8PpErIfjK78D6w3YCduZV8e1Hhd4cpYJAV3s3/lDWAXsP97qA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=54caJQWufF48RLDGLQDx+iYNDS8PXih8guO1W9zn6lc=;
- b=MjmsbiJc8CN0FIAJl5MC24TkmO+Zh+pnrV+Sr2LcSeUn5RzyrCFv8ozSQ55Hm9JUeSkSpruTm082gcdoPxgsmQ1wfznV5bWD8ZQ0JU0ZR8svpN0IoqEpGtniJcGrGcPhvqNojtecCSqqi4V2BDb9zFOfMigJsrbH5aagvIhh93rSmLLBIplhyst3Ca2wpphN6nSvjgGdtd0SZX5xqrpr7K3jaTeJEFxCCISymxEe2QcI0Cfc+lmc6PV/3oQjKVCYkWCo88NBSY/UESD4xvSqxqIR7GhCh7XrL1znNssZC86mO9kmlNMOoco2OAUfstTxPFD9RgMMGn4kqPzyvukCBQ==
+ bh=wRlSXx7GUmVEWkbN8zt179zIMATo13VTrNabBiqIi5E=;
+ b=Jnglf2Z4EekioiFLCz7NsCTteSBS+6Gm0LV2lzweH1JpF4wmA/HPFqcdBPGbu4S7HPb9+w3IA1oIv6q9CdQ+utrn6mXCUCmi6pl1k2W4HY8U7t3CE20h6y6tTyNGNYHJOYIs2Nn7TO8Ssjj7eD1DJLOSgGY/XqJlMa4WlZoMH+cZcE/aldIFfi6pKC5SQruCcZgSv1vp+IPCGikJ6m8LA8E21b0ZB6/DVVM+SzU2NdHwFCONT+MvFElz9PAz4quiBWBlbWh56jCEJ0rdqF7mmpzJOYQD++t+obn8/9f2TQspMBR0TqKaRc4zH+e136ZacX6zcvzN3ZtNE4/AwwiRog==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com (2603:10b6:8:163::17)
- by SJ5PPF8622363CD.namprd11.prod.outlook.com (2603:10b6:a0f:fc02::83c) with
+ by SJ0PR11MB6766.namprd11.prod.outlook.com (2603:10b6:a03:47c::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9891.23; Mon, 11 May
- 2026 22:45:01 +0000
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9870.27; Mon, 11 May
+ 2026 22:49:26 +0000
 Received: from DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::7b65:81e6:c6c4:449e]) by DS0PR11MB8182.namprd11.prod.outlook.com
  ([fe80::7b65:81e6:c6c4:449e%7]) with mapi id 15.20.9891.021; Mon, 11 May 2026
- 22:44:57 +0000
-Date: Mon, 11 May 2026 15:44:54 -0700
+ 22:49:25 +0000
+Date: Mon, 11 May 2026 15:49:23 -0700
 From: Matt Roper <matthew.d.roper@intel.com>
 To: Gustavo Sousa <gustavo.sousa@intel.com>
 CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>, "Jani
  Nikula" <jani.nikula@intel.com>
-Subject: Re: [PATCH v2 3/4] drm/i915/bw: Rename struct intel_sa_info to
- intel_display_bw_params
-Message-ID: <20260511224454.GA2131374@mdroper-desk1.amr.corp.intel.com>
+Subject: Re: [PATCH v2 4/4] drm/i915/bw: Extract get_display_bw_params()
+Message-ID: <20260511224923.GB2131374@mdroper-desk1.amr.corp.intel.com>
 References: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-0-e762cb8662da@intel.com>
- <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-3-e762cb8662da@intel.com>
+ <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-4-e762cb8662da@intel.com>
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-3-e762cb8662da@intel.com>
-X-ClientProxiedBy: SJ0PR05CA0065.namprd05.prod.outlook.com
- (2603:10b6:a03:332::10) To DS0PR11MB8182.namprd11.prod.outlook.com
+In-Reply-To: <20260511-separate-platform-from-diplay-ip-specific-bw-params-v2-4-e762cb8662da@intel.com>
+X-ClientProxiedBy: BYAPR11CA0044.namprd11.prod.outlook.com
+ (2603:10b6:a03:80::21) To DS0PR11MB8182.namprd11.prod.outlook.com
  (2603:10b6:8:163::17)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ5PPF8622363CD:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4d40f2ed-a08a-4a0d-1940-08deafaeecfa
+X-MS-TrafficTypeDiagnostic: DS0PR11MB8182:EE_|SJ0PR11MB6766:EE_
+X-MS-Office365-Filtering-Correlation-Id: 8233c6b1-500e-4372-0388-08deafaf8d2f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|22082099003|56012099003|18002099003|3023799003|11063799003;
-X-Microsoft-Antispam-Message-Info: iqfFrJsLIyaQR+vcOQu5TG58q1uIxlegpMNhjvx5++XTLBcz1OgKEoKL2vC4mWZ7d5ZLWrJHrjJn9DyQPZ39LXuez17bKovwpCag5OX5auU9cW04GRcEGRkNnMpBRRInUfnDpaaXYZ2ZjfE/7YG7HmLYqQVbj2kPk6yu4VEduTYZzLPh2cqanM02GdJi/pU0UmBbXbau/VnS61bjyLb3oJax8bc4RxstL5C3n3Fb7DzohSG9tgXjGnmDzUw6210iHBVkOVREgpD/l31KlZit4zoGdlO/CobbUsO1mxlnwZc/J8I7NPYY6u4qZ+Vo609nLJn6UQ00aSIdBCXyPZlkRKf6iTrl/LZSGPwu6x8P2vVn8bSTfgDK2mFyqMyywfqHcfndSEm7UQxHudh1edUyu5vam8lmL1o42MF/UVMmqI22lj11GrvznMTTglaS0/9CEquozXOZrNxL1bOZaM2ZReeW13hbqM+HqFpAprAFyE+IOC69niyMdnkHosDohEsLDmx8aTFHfA39Dn77OSuBIUHw6WJBKuLM2Pbbj/3jPQPnIA+LebSOUDGd21SoMkMVL+sI8rWBsXlNFFSmiIZbDeC/MXRcUz1l0Q+HZxJqGPpEPG/uiNC9I+X6nc9DeOV4PKsM+cXNi+tQiQ5GS65q5CTWMg1U1uH5b2yZGzIFaNQ+z1onwyxQV3Fpp3PtIpqo
+ ARA:13230040|1800799024|366016|376014|3023799003|56012099003|22082099003|18002099003|11063799003;
+X-Microsoft-Antispam-Message-Info: usYNtKpZ8xIO31K3Jlqdt/ASiAWiRNo0d3dM5EDRdjyXZ3aQSN9YHBdS53IPu5iJcULR5OcQ6Is4zbDWSBMtyb3Xv2+8fCUYkjZQeprvOR+qELVtOY2nXoXdf/sKIILRNeKoZzZrqTRTEO7SFSFIrTfLXrE/BK8HRfEKbpPU0PNC4DT1cvd7THyt2rYxBcbJSpesgu6pzjlqxW7rGAJYqQoeOo8RRVoB77fNi9M3+db9YKx3x0iFNoVFg7NWS6DsONdu+aXE62+nYB5y0e15w7EEpqQ4oEiauujayq4veQ5U4kyDHi/Gb0LCCB1qk217fNnKqGfYCPQToTcQYUv9/K/RrCZh+xN0UPCGVi8hPCrhZKyO3L0zz0QVIPj/OdH7SfEfCw68vOgV8EubzfFTjQrcH/g7tDE9hvAhhkQdzvGUwIXmNZNcZ4f9jHCVM+kNV1KM/I6j88ECoaubv5t2ex4SvWdnob/HY6vyMAkPJHM8ahfzJqwcoWJmQha5J8bdu7qDhzWBIvYMOjbJl4CTSScG8CpA7SYwKMo/CKEMlHBlHoTDVcUmVnKOqf4zhxgiuQP/529t7asNXy2hrwMJHmBd5cfmVUL+eLiicNEogvGdkQcVWDt3ZwA9hOsDpGZlCRzyjSPNNmAuKPUNtg/zepUPrEW1Dhz+d9o2ok2g24kuEd9AZoCGJlBbuBYukdIR
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:DS0PR11MB8182.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(22082099003)(56012099003)(18002099003)(3023799003)(11063799003);
+ SFS:(13230040)(1800799024)(366016)(376014)(3023799003)(56012099003)(22082099003)(18002099003)(11063799003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?TZoNUz1XW8aDo6za7deQZvviFj4hiJP9lg0WLnBmyIWYGZxtYhrF2ge85GKA?=
- =?us-ascii?Q?arGVMs+6CDD05jNQ2onNzNespK202pWGVY3ZSmNwmljQRcjAm54GTBacQQid?=
- =?us-ascii?Q?nUrN0h8KGrTy+vdDIt55K6h4/S2uaqkv2ITzhpvrPo64m7xjLYymY7kYkmk5?=
- =?us-ascii?Q?HQYOYVyi8Zw2QRtquAIA2pfC0MLBMItLx+GczejeVQV7T4NwMoA2cJoQmiHs?=
- =?us-ascii?Q?Fphof4Kd9+p8q7hxmBeWAuXM36zIldw9tOmk01BuZTYcQ6gDcWKooS/3ZVMp?=
- =?us-ascii?Q?56qhUfXupAtLW6t2jbE6yik7w7TpOU8ftnAU4eDStvHDLzuEy645Sq3vD0cH?=
- =?us-ascii?Q?cNmO3/q8CupYrjAL+xDnIHrSClBku9Sbh1hUFDKlpcaIeSxcTZqx2Y/sIw7y?=
- =?us-ascii?Q?uxWAS3oV6XioJN2JWm/CYLOkD4H7Upr030ab7j9pAW/2cMv0RiyEw1XheEhH?=
- =?us-ascii?Q?vCrFpEFsLsKnolLh+MkLBUcO3dcU9GbaiBClQ9e3XyKQz9Hz5tbCiGyc651b?=
- =?us-ascii?Q?3ljFU64zN913mstdWRY18aTusrmqqpQLs0N3Sus9RpjPzsM0kg4NGeQ4Iib1?=
- =?us-ascii?Q?R5h9u+eU3O/eVgHHx3afphBEoBB2DtimELge2RTpy2anO+0JwxC69u2h139n?=
- =?us-ascii?Q?yjtbCQGTQ3yPZr0prJZSuCPTZHbVbZPMniARHhuYOCWY1aXylw/yli5qwnt0?=
- =?us-ascii?Q?6Olatp8mzt4HBZFeOExYGvxuK8Ao4hLj9r7SC1EUF18J753XjdxY+N3u4/mZ?=
- =?us-ascii?Q?Z02nQTTkMSMs23Y7xvA8vEzQDmxchY97NFlOhglkZoqmdhKWreetaNwn6u+D?=
- =?us-ascii?Q?mSbenAXqeOxAlEvSoveuyjg0xkIthhoUjf5JHDADSqlrTd1nRosOWo2Scool?=
- =?us-ascii?Q?RWtcmEJaJAXTGhTqsvp148nQcoZt94uY70pUiJfVWiH9NnkRj9P/gy3qrze9?=
- =?us-ascii?Q?XaMuUUCUtMZu4N2NCb27er0ZHr5EH+dMt7g0BkDyT3/7QDw4Om3UVhjmprtR?=
- =?us-ascii?Q?xiaygFRKXp1kcMsPl0D45BPASn/Tx08QTc5R2WTvN59Eaq/0gW8X4RwA7HCx?=
- =?us-ascii?Q?crfL8VKTix3v/bQGiY6lrIMzgcHrkuSeI0JoRTGwSCWo5/Fv89Tp4YsKh0eh?=
- =?us-ascii?Q?DVOXmvg7lo+tTUZoK0Jo1fJ44ljAOpfKrxi6B9nhmBgPkU1Ri1lkWHr9zPUD?=
- =?us-ascii?Q?C9BRwdqc5xx26k46ZAqCaJUOtaKK1RYdRUEEos1RkiX9R0um8U+WiyXTn6dk?=
- =?us-ascii?Q?dq0pypmJxC8C4AGQfa/qGNbi1l9h75de24AopQuUgVHcjo/ZDHBFB0hT8t+M?=
- =?us-ascii?Q?lBpceqlsR+4FNm77DyM85V/sGvQEpjiVQ8PIZktWkgIVb4B9CHlA725lA8cE?=
- =?us-ascii?Q?6v7/IscNQbbin0XhTSKsYAWt3P2uEV3wttkI9iclJb0kVbsfjLY4le4Ag24G?=
- =?us-ascii?Q?RjS6SkcENh1U8FDj54i3aq59VdTa4i9Z4o013ifbHRVL6aiGXHIuOuRA20el?=
- =?us-ascii?Q?crTBS7Pn237xa7cRMKCmRyVCV0JD+GX9gWLi+QdXVzcD+Yi9FN1HHI4dweNw?=
- =?us-ascii?Q?xfh6mzf5NJ/aDUoA/OajnjjD9Atd9fxzPTnjs+B5qVenu7oKNalLYjpfbfuj?=
- =?us-ascii?Q?rIxSK3+S0Z8Q6KsC3yh+KkECasm9FBjvmeqV53ro/uI0mCxskuI8tAM3LwMp?=
- =?us-ascii?Q?QVzHh+bo+3Tn5Bw/Wy6nvD7yfP/Cks5ZR7RgvOlGA/Q+36ZHVPzwm9Lz6KAV?=
- =?us-ascii?Q?yX50X8tazAQOqaX3yKLNJjRWkjvcmtM=3D?=
-X-Exchange-RoutingPolicyChecked: lZ1y9aIvp/YEPY5Q5AonJJlL1u2sQRuoRyB1kEStQ4C5zR7qxoVGBrzm0h9WKWCib4+QqkOuBrV0p8mSLkBQqasEZBW1j5rmwBsifdA9I2sKyV0jIk/NQ2NZZcc8YLnCae0efZ2l8Q4qwwshapuMzziKh7W79bDTy9iXg3KFcdHQNcq85TAHGvVoCYJNXjZCWo6Dxx/amnwfrnj/RAWL9CpxEGi6ppoY8FXsn+WH0iJsBPwmZqmlD7Z7elPhIhzLx0FT1gubF1dYlQZ/lNVumja+tiVyrq+z8xm7evUtYjM0b5TwDTaUJzBVpje1CnzLxtxEdPO/Xb30lwDelP/l6g==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4d40f2ed-a08a-4a0d-1940-08deafaeecfa
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?F2s7OKybgrMmZohE69hwOX5YpzuvvDsru2mY5okuQ5HN9a5tmJU5i/zo9Q7h?=
+ =?us-ascii?Q?6LfhEuNwi6OUXWjxipj9U6pL7M8ORnYjBjlHdWH5+ZOlb4c6+OoZmw7tyKi+?=
+ =?us-ascii?Q?UyPi7zUCOYON0u5TPRt+DBcuDOQ97tz1UZ5g8Y3Gu2xbBSrwWdnddIp7r4vD?=
+ =?us-ascii?Q?AL3kJB8+qrEFIhqdccgkOCAUsN9jT1TOElJkcWOhi5xe/H99RYDSLWnygNJU?=
+ =?us-ascii?Q?t08qiF7nSz1vb+DasMMeHzcFLVp9jpMlPruahq08FnyPQhN6TVFNTv65FGG7?=
+ =?us-ascii?Q?NXQleb5+02gjGI4JQmvrrKfv7nf3UUO+6zHdAKFgmIR8hcNsCyPN7knwnVCg?=
+ =?us-ascii?Q?X/VYXu62xgdNrdpG7Cj07c7N74z2IT0IEzPx7cJ1No0JD/pNWbL2+2uDqyKt?=
+ =?us-ascii?Q?ZMV5bPv+KDVOdFUOTpncUgRgh/ptcwMBvkoM2kETpBcunFuSMbz3bUStRF8b?=
+ =?us-ascii?Q?l/fg1ATxeupd9UKhgFZYyQRrQlKDSPGXbPHsVDOLYNMmrs9ABKxudWLUgwtf?=
+ =?us-ascii?Q?OoqzWkIrk/DmLYMGi2yuVh1/e9TliJ4ASiYeOshyxnoVBs56qU+Ic2tT94TE?=
+ =?us-ascii?Q?C0zsBVfxyCFfXykOT8Wi+ka06m/uMRYkQxKSHCqJ0RKzaBXw+cTjz8/aLYn9?=
+ =?us-ascii?Q?OO7ItD+CTgcGS8c6Y1vOtYA2ZNfB/+4ZfO47QyhKPHBCbPovybEOFQJqQW9k?=
+ =?us-ascii?Q?5g+JaqNBhLiBXX3bqb/zCLeB1FgUm1rcUPfPS0qbrzB4xIyNUPbL2BC2HHqD?=
+ =?us-ascii?Q?V9vAx2mvZG5Zlw6aUvGsZ5qTwadRsq4LV6x3Qw3HIDTrgC009vE22JnuCWj/?=
+ =?us-ascii?Q?TcIfbVXftioXe/Id8oUBVhLWJO2q5H92/+sYIVwfBhq6MHx6ruQnxL74/C9n?=
+ =?us-ascii?Q?N+9C6HGH7pIOi2o4o2xyUZLFbqKuagZNnil0EOFUQp14xnNauJeLoc6ZeMP0?=
+ =?us-ascii?Q?7JI1BHA3ZQGqqIz9Pr124LkCd6erFKg4GnHryyrPxeuqrmKpcdOzc3++jhUh?=
+ =?us-ascii?Q?nSAZ66LBV1SV7dwYz7FaA90igG8bu6r9zEyj17Je0kzoUg7e5xX/2EKU4vA9?=
+ =?us-ascii?Q?9YgUyIC5gbtGwHWssNSl9FOd8OPb6sOOtQNwYsm/suQCy99Wz9fIqsC2Xokk?=
+ =?us-ascii?Q?GNbNXPsH+Na3k0IrX1smYv5uXx6MxJfAYNaaAIljeY7I7gqbKrS8QEuaSDsZ?=
+ =?us-ascii?Q?OfoJ9J6A2+hrUDnINDPztELexJC40MKcfzANLULSgFhXmhs3X+iiN6rnrZBc?=
+ =?us-ascii?Q?BwTiK8WmIk7TCLg9UvvCMMLloKLx7RMcX7XVYyDiIAJMqAYTUqJMsdBXwoBI?=
+ =?us-ascii?Q?mi7t895yULd+khPNj394Z7SARnNs61dQBlGOnq0bE3ESdNBP363YV3UOS6ON?=
+ =?us-ascii?Q?K9tN4qCTnX211sNKCzBRiz60qp0nnyXIJyMyS05BFJ0Thw46aRiAaLsQDjrK?=
+ =?us-ascii?Q?RY/Jfjy68qJCmoj1feBJG4rXTiNuDudmGMYVLfI3zC72r5rFSRWWow1kPUdr?=
+ =?us-ascii?Q?wZPaVaa7rttChfkUCk/PpK+9S7T6EoinEHXj/DKhwoFjS6bQx9zinKvXzCIC?=
+ =?us-ascii?Q?5tkZheklTXYvLb4mWJ9M1dUGarthGJGJRWtEkmEI6DzxVFI1LTVaVVnUNO3s?=
+ =?us-ascii?Q?rC3gCNJmJM8sXZYaaVT3X9Xxp8NeaPBN1w9M5Tt2mPIedeffIIQIKWeP6Z5x?=
+ =?us-ascii?Q?3RHRJaKbPI4wviUVNMu4pgVLXs7b76nN2Pq2v+Q8Md6B2NnPZPWbQ5uJEmVo?=
+ =?us-ascii?Q?Q9aXjmwlrbsM4jhWxCbygb07Z0RpbXo=3D?=
+X-Exchange-RoutingPolicyChecked: hoxqULtvSK5uLx00mC94zq52mIycwsZS7DmwVW6gzOvEs0WeU9632MGTey0caC0JNrV6vTDUkdLqDtG+i4VjzU7JijMEhCy/wuvJ0cQWZEJ6SafialZM+LvEYPYNJlcACrHXcGMg88JsBiTbiP1aENg+dYmEpAmakYJ4cNSA2w3g/7oZCCYgBKnUzrT6UV+6PSlUA37Dr5t/GZyMliqVGWLJg1+gpEUv3LYK4RkA5+6XoxBoR4RAYH/8ARL2mzyuFkm07gpNvShBcgg1l5CuXxxTpBfLsAHGJezJZGIfvxCVNc0w3+Zpq7sCa0u3iKHkgc6C8N/XSdpp+ftMLBk0zA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8233c6b1-500e-4372-0388-08deafaf8d2f
 X-MS-Exchange-CrossTenant-AuthSource: DS0PR11MB8182.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 22:44:57.0328 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 11 May 2026 22:49:25.7925 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: aCXnzxEoeF7UI7zqP/iOSvkej+11cAAHpT1e5h2uUJn6yabe/Xn6gN8P1AsIDS2kU3D07kCAlLQvLLGLNdqz4P0jYTbLIaxnmcoyNXmPWB4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ5PPF8622363CD
+X-MS-Exchange-CrossTenant-UserPrincipalName: WNWtvQGMl2CGOg2jvtNxdTRPbAXxMxVHk6o/qtZZ52SInqCt/ClWJvcqPmbfsLh8DEYj9pJSK7mV+AJS5HfjTyLLlQvkwVrqsoe4aAEnxSE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB6766
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -164,7 +163,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1A443517101
+X-Rspamd-Queue-Id: 9024A51714F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
@@ -176,7 +175,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[mdroper-desk1.amr.corp.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,mdroper-desk1.amr.corp.intel.com:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
@@ -193,148 +192,95 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
-On Mon, May 11, 2026 at 01:30:58PM -0300, Gustavo Sousa wrote:
-> To align with struct intel_platform_bw_params, rename struct
-> intel_sa_info to intel_display_bw_params.  Also add comments to contrast
-> their purposes.
+On Mon, May 11, 2026 at 01:30:59PM -0300, Gustavo Sousa wrote:
+> Just like it is done for the platform-specific bandwidth parameters, use
+> a separate function named get_display_bw_params() to return the display
+> IP-specific parameters.  This simplifies intel_bw_init_hw() by having
+> just one call for each of the *_get_bw_info() functions.
 > 
 > v2:
->   - Use gen11 and gen12 as prefixes for ICL's and TGL's display-specific
->     parameters variables. (Matt)
->   - Prefer to use "display" instead of "disp" in variable names. (Jani)
->   - Drop the redundant "disp" from the variable names.
+>   - Prefer to call get_display_bw_params() only once in
+>     intel_bw_init_hw() instead of having multiple calls in each of the
+>     affected *_get_bw_info() functions. (Jani)
 > 
 > Cc: Jani Nikula <jani.nikula@intel.com>
-> Cc: Matt Roper <matthew.d.roper@intel.com>
 > Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
-
-Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
-
 > ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 36 ++++++++++++++++++++-------------
->  1 file changed, 22 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bw.c | 36 +++++++++++++++++++++------------
+>  1 file changed, 23 insertions(+), 13 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 2e580c1a3fab..c01356d38e64 100644
+> index c01356d38e64..acd1b6901b46 100644
 > --- a/drivers/gpu/drm/i915/display/intel_bw.c
 > +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -372,6 +372,10 @@ static int icl_sagv_max_dclk(const struct intel_qgv_info *qi)
->  	return dclk;
->  }
->  
-> +/*
-> + * Bandwidth parameters that are tied to the SoC (as opposed to struct
-> + * intel_display_bw_params).
-> + */
->  struct intel_soc_bw_params {
->  	u8 deprogbwlimit;
->  	u8 derating;
-> @@ -465,22 +469,26 @@ static const struct intel_soc_bw_params *get_soc_bw_params(struct intel_display
->  	return NULL;
->  }
->  
-> -struct intel_sa_info {
-> +/*
-> + * Bandwidth parameters that are tied to the display IP (as opposed to struct
-> + * intel_soc_bw_params).
-> + */
-> +struct intel_display_bw_params {
->  	u16 displayrtids;
->  	u8 deburst;
->  };
->  
-> -static const struct intel_sa_info icl_sa_info = {
-> +static const struct intel_display_bw_params gen11_bw_params = {
->  	.deburst = 8,
->  	.displayrtids = 128,
->  };
->  
-> -static const struct intel_sa_info tgl_sa_info = {
-> +static const struct intel_display_bw_params gen12_bw_params = {
->  	.deburst = 16,
+> @@ -493,6 +493,26 @@ static const struct intel_display_bw_params xelpdp_bw_params = {
 >  	.displayrtids = 256,
 >  };
 >  
-> -static const struct intel_sa_info mtl_sa_info = {
-> +static const struct intel_display_bw_params xelpdp_bw_params = {
->  	.deburst = 32,
->  	.displayrtids = 256,
->  };
-> @@ -488,7 +496,7 @@ static const struct intel_sa_info mtl_sa_info = {
+> +static const struct intel_display_bw_params *get_display_bw_params(struct intel_display *display)
+> +{
+> +	if (DISPLAY_VER(display) >= 14) {
+> +		return &xelpdp_bw_params;
+> +	} else if (DISPLAY_VER(display) >= 12) {
+> +		/*
+> +		 * RKL's SoC was based on ICL and the display, even though being
+> +		 * gen12, had changes to the memory interface to match gen11's,
+> +		 * consequently inheriting gen11's display-specific bandwidth
+> +		 * parameters.
+> +		 */
+> +		if (display->platform.rocketlake)
+> +			return &gen11_bw_params;
+> +		else
+> +			return &gen12_bw_params;
+> +	} else {
+> +		return &gen11_bw_params;
+
+It doesn't really matter, but this is technically going to assign gen11
+parameters for all the pre-gen11 platforms that call through here on
+i915.  If we never use the values it probably doesn't hurt anything, but
+it might be best to make this a condition on gen11 rather than an 'else'
+just to avoid any confusion.
+
+
+Matt
+
+> +	}
+> +}
+> +
 >  static int icl_get_bw_info(struct intel_display *display,
 >  			   const struct dram_info *dram_info,
 >  			   const struct intel_soc_bw_params *soc_bw_params,
-> -			   const struct intel_sa_info *sa)
-> +			   const struct intel_display_bw_params *display_bw_params)
+> @@ -843,6 +863,7 @@ void intel_bw_init_hw(struct intel_display *display)
 >  {
->  	struct intel_qgv_info qi = {};
->  	bool is_y_tile = true; /* assume y tile may be used */
-> @@ -508,7 +516,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>  	const struct dram_info *dram_info = intel_dram_info(display);
+>  	const struct intel_soc_bw_params *soc_bw_params = get_soc_bw_params(display);
+> +	const struct intel_display_bw_params *display_bw_params = get_display_bw_params(display);
 >  
->  	dclk_max = icl_sagv_max_dclk(&qi);
->  	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
-> -	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
-> +	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
->  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+> @@ -858,23 +879,12 @@ void intel_bw_init_hw(struct intel_display *display)
 >  
->  	for (i = 0; i < num_groups; i++) {
-> @@ -516,7 +524,7 @@ static int icl_get_bw_info(struct intel_display *display,
->  		int clpchgroup;
->  		int j;
->  
-> -		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
-> +		clpchgroup = (display_bw_params->deburst * qi.deinterleave / num_channels) << i;
->  		bi->num_planes = (ipqdepth - clpchgroup) / clpchgroup + 1;
->  
->  		bi->num_qgv_points = qi.num_points;
-> @@ -560,7 +568,7 @@ static int icl_get_bw_info(struct intel_display *display,
->  static int tgl_get_bw_info(struct intel_display *display,
->  			   const struct dram_info *dram_info,
->  			   const struct intel_soc_bw_params *soc_bw_params,
-> -			   const struct intel_sa_info *sa)
-> +			   const struct intel_display_bw_params *display_bw_params)
->  {
->  	struct intel_qgv_info qi = {};
->  	bool is_y_tile = true; /* assume y tile may be used */
-> @@ -598,7 +606,7 @@ static int tgl_get_bw_info(struct intel_display *display,
->  	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
->  	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
->  
-> -	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
-> +	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
->  	/*
->  	 * clperchgroup = 4kpagespermempage * clperchperblock,
->  	 * clperchperblock = 8 / num_channels * interleave
-> @@ -611,7 +619,7 @@ static int tgl_get_bw_info(struct intel_display *display,
->  		int clpchgroup;
->  		int j;
->  
-> -		clpchgroup = (sa->deburst * qi.deinterleave / num_channels) << i;
-> +		clpchgroup = (display_bw_params->deburst * qi.deinterleave / num_channels) << i;
->  
->  		if (i < num_groups - 1) {
->  			bi_next = &display->bw.max[i + 1];
-> @@ -851,7 +859,7 @@ void intel_bw_init_hw(struct intel_display *display)
 >  	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
 >  		xe2_hpd_get_bw_info(display, dram_info, soc_bw_params);
->  	} else if (DISPLAY_VER(display) >= 14) {
-> -		tgl_get_bw_info(display, dram_info, soc_bw_params, &mtl_sa_info);
-> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &xelpdp_bw_params);
+> -	} else if (DISPLAY_VER(display) >= 14) {
+> -		tgl_get_bw_info(display, dram_info, soc_bw_params, &xelpdp_bw_params);
 >  	} else if (display->platform.dg2) {
 >  		dg2_get_bw_info(display);
 >  	} else if (DISPLAY_VER(display) >= 12) {
-> @@ -862,11 +870,11 @@ void intel_bw_init_hw(struct intel_display *display)
->  		 * parameters.
->  		 */
->  		if (display->platform.rocketlake)
-> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &icl_sa_info);
-> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
->  		else
-> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &tgl_sa_info);
-> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen12_bw_params);
+> -		/*
+> -		 * RKL's SoC was based on ICL and the display, even though being
+> -		 * gen12, had changes to the memory interface to match gen11's,
+> -		 * consequently inheriting gen11's display-specific bandwidth
+> -		 * parameters.
+> -		 */
+> -		if (display->platform.rocketlake)
+> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
+> -		else
+> -			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen12_bw_params);
+> +		tgl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
 >  	} else if (DISPLAY_VER(display) == 11) {
-> -		icl_get_bw_info(display, dram_info, soc_bw_params, &icl_sa_info);
-> +		icl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
+> -		icl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
+> +		icl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
 >  	}
 >  }
 >  
