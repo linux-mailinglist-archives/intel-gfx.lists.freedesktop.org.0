@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id uACAJjxNAmpaqQEAu9opvQ
+	id mPLaHEBNAmpaqQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:20 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 152B35166F8
-	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4769F5166FF
+	for <lists+intel-gfx@lfdr.de>; Mon, 11 May 2026 23:42:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 914AA10E8F9;
-	Mon, 11 May 2026 21:42:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA20810E900;
+	Mon, 11 May 2026 21:42:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MDKgjjSj";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rx4aNY+a";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2315010E8FE;
- Mon, 11 May 2026 21:42:17 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A4A910E8FC;
+ Mon, 11 May 2026 21:42:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778535737; x=1810071737;
+ t=1778535741; x=1810071741;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ROd+F48g1AeRAQa5Wq9i4Gq1uL0o7XbjXNj/nhDyUUM=;
- b=MDKgjjSj+ziqtfUzTDgEft9vbqLPfWvEJiKL+r21iICcMale9MZCv4sX
- d0MqlnRCFlewzCmnumL50W20jJ2EG8r68ytB39Rz/gwafmhJX9hf2k/5g
- RTVeEXCesNyTvAyUwl5O6+RBYaHVRsTQ5uCxHXQ3CtnIMn32fQhpb3q5G
- ax57OSd2MNaoT1Rx5GhOBXy1sQj9jGgLVtL0980VXrv7xRjvp+Rt5jqHY
- 1ZZgs9g0MOgwYd5bO8LTOVbsrK4/q87QZUfSAEmXJZvHh3dltXgjirt3L
- j3lgJcHNcahs6phGtls1EpURj27dN/raNZXPaEgGmbnNr/pX/DJmhRVYK w==;
-X-CSE-ConnectionGUID: Us5VXekiTnS+V9+MkDYQyg==
-X-CSE-MsgGUID: fEr2b4cJSwWKlyPJZFqcTA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816905"
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816905"
+ bh=f0FmiBaZb0UgEGiiJTFNfkVbToFrW5HdHWlb30dGZcw=;
+ b=Rx4aNY+aXatQJmEuB8nux2a12bzCdVa+iHCE+gRWG9dUtNiGjP9xXxn6
+ KfcZBmL6++s64EB0Nfm9e3CgQqbQ7YPT3wLoF2xSAJiCV+5JXrOC6Vfvi
+ vIUZGeNirRtKtbR83HUeEyQsMwM53Z27r2wMm5ZZtR33o7eQPAdachw9Y
+ 4ethjGTjrH8WZv+C7iMs1soltUppskdtx6Ky1hvJdjdk3Tk+Sito7k7wK
+ 0OlkxKdwuFX7YS8RzPhMi9OF3FNCzqMWsJWNJHHK3YhJ0DFksfmmsccS1
+ p2UccvGlD8B+eaOT1r2rlEyxBZFwyQNve38Z4BaBESdc5XYFTsVX9KHDj w==;
+X-CSE-ConnectionGUID: Z5s1G0fBRUOgnWGxN2fDuA==
+X-CSE-MsgGUID: CQYd4VLSRmWVHmCmG2ILdA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90816919"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="90816919"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:42:17 -0700
-X-CSE-ConnectionGUID: DKCoENdPSyalD7BGMQYyEg==
-X-CSE-MsgGUID: xtLlpUUDTeSDMQ0wr7s21A==
+ 11 May 2026 14:42:21 -0700
+X-CSE-ConnectionGUID: AbVsSfpXR3ubKtfM5SHOEA==
+X-CSE-MsgGUID: //NawgfQTIikJivEpdSlSQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702943"
+X-IronPort-AV: E=Sophos;i="6.23,229,1770624000"; d="scan'208";a="275702962"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.104])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 11 May 2026 14:42:15 -0700
+ 11 May 2026 14:42:19 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 12/14] drm/xe: Use the correct stolen offset in initial FB
- readout
-Date: Tue, 12 May 2026 00:41:20 +0300
-Message-ID: <20260511214122.8468-13-ville.syrjala@linux.intel.com>
+Subject: [PATCH 13/14] drm/i915: Fix BIOS FB memory region name debug prints
+Date: Tue, 12 May 2026 00:41:21 +0300
+Message-ID: <20260511214122.8468-14-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
@@ -76,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 152B35166F8
+X-Rspamd-Queue-Id: 4769F5166FF
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -107,111 +106,44 @@ X-Rspamd-Action: no action
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The current assumption that the initial FB offset into stolen and
-GGTT are the same is completely wrong for MTL+. On these platforms
-the GOP always places the FB at start of stolen, but then maps it
-to the top of GGTT.
-
-Read the correct phys_base from the PTE so that we at least take
-over the correct part of the physical memory.
-
-The GGTT offset is more annoying to deal with there. The horrible
-ggtt->start and GUC_GGTT_TOP hacks prevent us from even keeping the
-original GGTT mapping (ggtt->start blocks pre-MTL hardware and
-GUC_GGTT_TOP blcoks MTL+). For now just hack this and remap the
-FB to live at ggtt->start. On MTL+ this might even work correctly
-since we're unlikely to overlap with the original mapping. But on
-earlier platforms we're guaranteed to have an overlap if the FB
-is larger than ggtt->start. Such an overlap will cause visible
-glitches on the screen as the PTEs get overwritten while the
-display hardware is still using them for scanout.
-
-On i915 we don't have the ggtt->start hack and thus can always
-bind the FB to actual start of GGTT. i915 does have the equivalent
-of GUC_GGTT_TOP so it can't leave the mapping to the end of GGTT
-either sadly.
+Apparently we never initialize the name of the struct resource
+underlying the memory region. Instead we need to look at the
+name stored directly in the memory region itself.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_initial_plane.c | 35 +++++++++++++++----
- 1 file changed, 28 insertions(+), 7 deletions(-)
+ drivers/gpu/drm/i915/i915_initial_plane.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-index d0a9f8599096..da44f6d1a5f8 100644
---- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
-+++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-@@ -42,6 +42,7 @@ initial_plane_bo(struct xe_device *xe,
- {
- 	struct xe_tile *tile0 = xe_device_get_root_tile(xe);
- 	struct xe_bo *bo;
-+	dma_addr_t dma_addr;
- 	resource_size_t phys_base;
- 	u32 base, size, flags;
- 	u64 page_size = xe->info.vram_flags & XE_VRAM_FLAGS_NEED64K ? SZ_64K : SZ_4K;
-@@ -64,7 +65,8 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
- 		}
+diff --git a/drivers/gpu/drm/i915/i915_initial_plane.c b/drivers/gpu/drm/i915/i915_initial_plane.c
+index 62365ba1ff97..90095a913428 100644
+--- a/drivers/gpu/drm/i915/i915_initial_plane.c
++++ b/drivers/gpu/drm/i915/i915_initial_plane.c
+@@ -57,14 +57,14 @@ initial_plane_phys(struct drm_i915_private *i915,
  
--		phys_base = pte & ~(page_size - 1);
-+		dma_addr = pte & ~(page_size - 1);
-+		phys_base = dma_addr;
- 
- 		flags |= XE_BO_FLAG_VRAM0;
- 
-@@ -78,10 +80,6 @@ initial_plane_bo(struct xe_device *xe,
- 				&phys_base);
- 			return NULL;
- 		}
--
--		drm_dbg_kms(&xe->drm,
--			    "Using phys_base=%pa, based on initial plane programming\n",
--			    &phys_base);
- 	} else {
- 		struct ttm_resource_manager *stolen;
- 		u64 pte;
-@@ -99,11 +97,29 @@ initial_plane_bo(struct xe_device *xe,
- 			return NULL;
- 		}
- 
--		phys_base = base;
-+		dma_addr = pte & ~(page_size - 1);
-+		phys_base = dma_addr - xe_ttm_stolen_gpu_offset(xe);
-+
- 		flags |= XE_BO_FLAG_STOLEN;
+ 	if (intel_memory_type_is_local(mem->type) != is_local) {
+ 		drm_err(&i915->drm, "Initial plane FB PTE unsuitable for %s\n",
+-			mem->region.name);
++			mem->name);
+ 		return false;
  	}
  
--	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base, phys_base,
-+	drm_dbg_kms(&xe->drm,
-+		    "Initial plane dma_addr=%pa phys_base=%pa\n",
-+		    &dma_addr, &phys_base);
-+
-+	/*
-+	 * Pin to xe_ggtt_start() to avoid conflicting with
-+	 * the horrible ggtt->start and GUC_GGTT_TOP hacks.
-+	 *
-+	 * FIXME this is complete crap. To do this properly we
-+	 * need to prevent the original PTEs from being overwritten
-+	 * while bindind to the new address. Any overlap between
-+	 * the old and new ranges will corrupt the old PTEs that
-+	 * the display hardware is currently using for scanout.
-+	 */
-+	base = xe_ggtt_start(tile0->mem.ggtt);
-+
-+	bo = xe_bo_create_pin_map_at_novm(xe, tile0, size, phys_base, base,
- 					  ttm_bo_type_kernel, flags, 0, false);
- 	if (IS_ERR(bo)) {
- 		drm_dbg_kms(&xe->drm,
-@@ -112,6 +128,11 @@ initial_plane_bo(struct xe_device *xe,
+ 	if (dma_addr < mem->region.start || dma_addr > mem->region.end) {
+ 		drm_err(&i915->drm,
+ 			"Initial plane programming using invalid range, dma_addr=%pa (%s [%pa-%pa])\n",
+-			&dma_addr, mem->region.name, &mem->region.start, &mem->region.end);
++			&dma_addr, mem->name, &mem->region.start, &mem->region.end);
+ 		return false;
+ 	}
+ 
+@@ -106,7 +106,7 @@ initial_plane_vma(struct drm_i915_private *i915,
+ 					       I915_BO_PREALLOC);
+ 	if (IS_ERR(obj)) {
+ 		drm_dbg_kms(&i915->drm, "Failed to preallocate initial FB in %s\n",
+-			    mem->region.name);
++			    mem->name);
  		return NULL;
  	}
- 
-+	drm_dbg_kms(&xe->drm,
-+		    "Initial plane fb bound to 0x%llx in the ggtt (original 0x%x)\n",
-+		    xe_ggtt_node_addr(bo->ggtt_node[tile0->id]),
-+		    plane_config->base);
-+
- 	return bo;
- }
  
 -- 
 2.52.0
