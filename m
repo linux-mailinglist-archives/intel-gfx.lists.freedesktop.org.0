@@ -2,47 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cE9IKtMlA2oF1AEAu9opvQ
+	id WDrBGtYlA2oF1AEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 15:06:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 15:06:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 353CD520ABE
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 15:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B5ED520AD7
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 15:06:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1488910EA99;
-	Tue, 12 May 2026 13:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 67C1C10EAA8;
+	Tue, 12 May 2026 13:06:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="GGxZx8KW";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="pwp2Y9xG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 213E110EA99;
- Tue, 12 May 2026 13:06:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 26F6610EA9E;
+ Tue, 12 May 2026 13:06:26 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by sea.source.kernel.org (Postfix) with ESMTP id 06191444C0;
- Tue, 12 May 2026 13:06:23 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5EA07C2BCFC;
- Tue, 12 May 2026 13:06:22 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 0C9D94434D;
+ Tue, 12 May 2026 13:06:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 62E40C2BCFA;
+ Tue, 12 May 2026 13:06:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1778591182;
- bh=8gKR8nH9fdwkklOxC1orkJLxbt3pf9ySjt3LJ0StlRk=;
+ s=k20201202; t=1778591185;
+ bh=fl6z0LfliVCc5jA4Pfmq25TAh8lEdW0hYIuxPKlSz3I=;
  h=From:Date:Subject:References:In-Reply-To:To:Cc:From;
- b=GGxZx8KW4BSriBhJaMPGvB3SXhxjVOOLsk9Y8Jr7sqdb6k3bB6CBc0MT0A87tMdjZ
- HZR8PCv6rVGbklxUlg1yXZfM+n19jM0aHi6D4mcWTA/Yv/QpAwMuLcMYBA2fjxKjkr
- 6bartXn7ScRBz7zE0xSq9Z9a6ZrXc9wFwLbq9UbcAmnqJDQv+YJBLBIiO2VKxs0mB+
- FyziphPUBuKeRXAZxln0Gs4VETqzp1eYv9ekcJCXWXsRiaYnNhcLFOzq61QHb/2BBm
- NeU+CNcMrUwy6GGakhgdrFo4Ry91pD6+8GjrK7FwkRz7HA/dQay5jwlbZgsRWFIHlI
- DOYnx3EGOlBTQ==
+ b=pwp2Y9xGBuhGo9kicy3s6VhcvSpicrT6FhoprL8oh65mlR2LmlqZpCWuDnFFSSOc9
+ Go6SQc+gIB7LikhaIsxRGvbS6rHbrsE9p6JsLFKHUjqd5Tt8wcKWgP0mTKLHWshmwl
+ quq/Ez08YX2hKAE7tIaBZZcqG5AQEtbm0gCIvMiY3SMxs1vtWTOX0bd8WNP3X6VIUg
+ SpFNUgcKwG0QExf8lYOZq1/8CwizJTTE4KyxVHHR03Hwhrxe4Xwqty7dN0T9nepMk5
+ ixdP+7KvXpDUk93UwzTv8pxUjbNLbZ6Pl7Nb8GrVqddz7Nbouu7rHjpXEq4TpTUhsN
+ CJjfE8Cg/Glzw==
 From: Maxime Ripard <mripard@kernel.org>
-Date: Tue, 12 May 2026 15:06:01 +0200
-Subject: [PATCH v4 03/20] drm/atomic: Drop drm_private_obj.state assignment
- from create_state
+Date: Tue, 12 May 2026 15:06:02 +0200
+Subject: [PATCH v4 04/20] drm/atomic: Expand atomic_create_state
+ expectations for drm_private_obj
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260512-drm-mode-config-init-v4-3-591dfdcc1bf9@kernel.org>
+Message-Id: <20260512-drm-mode-config-init-v4-4-591dfdcc1bf9@kernel.org>
 References: <20260512-drm-mode-config-init-v4-0-591dfdcc1bf9@kernel.org>
 In-Reply-To: <20260512-drm-mode-config-init-v4-0-591dfdcc1bf9@kernel.org>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -73,12 +73,12 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  Maxime Ripard <mripard@kernel.org>, 
  Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=1621; i=mripard@kernel.org;
- h=from:subject:message-id; bh=8gKR8nH9fdwkklOxC1orkJLxbt3pf9ySjt3LJ0StlRk=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFnMqrtD1/1LyxZpaGTR47182WtKWs+JnQc33evRO2k6o
- 68k+z5bx1QWBmFOBlkxRZYnMmGnl7cvrnKwX/kDZg4rE8gQBi5OAZjIvHWMDRsN2vRvsDixPdn9
- vHZC+mWOzokGDkGtd09a/IoVE3Z8M79924PTC9JNWKR+HzH+GP12K2PDHefTIQoneRL+cNVVLig
- XSC8/tfDMI9t/f2r+1QZ/KPRhNj835daVSeEyWkpen+cF768CAA==
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1304; i=mripard@kernel.org;
+ h=from:subject:message-id; bh=fl6z0LfliVCc5jA4Pfmq25TAh8lEdW0hYIuxPKlSz3I=;
+ b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFnMqrubt0rsU7siusStsmW6wf+EOktr9bkqIelMf6/Pb
+ Yu8sSO8YyoLgzAng6yYIssTmbDTy9sXVznYr/wBM4eVCWQIAxenAExENZyxPuN35dHzT/J3fpAu
+ LgiPPXFJ6iIX37SHG+R/7pyQWsm67pru1YzSk2X+jXFrPjMX+STuYWzYZlbcp3cwJjmo+XhRbH2
+ Q/Oky9Suu4T2fuEt3HZDbceR+rJrc+oo9XHbXfk3vfbQqYCsA
 X-Developer-Key: i=mripard@kernel.org; a=openpgp;
  fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -95,7 +95,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 353CD520ABE
+X-Rspamd-Queue-Id: 1B5ED520AD7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
@@ -126,45 +126,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,ideasonboard.com:email]
 X-Rspamd-Action: no action
 
-The initial intent of the atomic_create_state hook was to simply
-allocate a proper drm_private_state and return it, without any side
-effect.
+The atomic_create_state callback documentation for planes, CRTCs, and
+connectors explicitly states the expected behaviour: the returned
+state must not be assigned to the object's state pointer, and hardware
+must not be touched.
 
-However, __drm_atomic_helper_private_obj_create_state(), which most
-atomic_create_state implementations call, introduces a side effect by
-setting drm_private_obj.state to the newly allocated state.
+The drm_private_state_funcs.atomic_create_state documentation is
+missing this clarification. Add it for consistency.
 
-This assignment defeats the purpose, but is also redundant since
-drm_atomic_private_obj_init(), the only call site for the
-atomic_create_state hook, will also set this pointer to the newly
-allocated state.
-
-Drop the assignment in __drm_atomic_helper_private_obj_create_state().
-
-Fixes: e7be39ed1716 ("drm/atomic-helper: Add private_obj atomic_create_state helper")
 Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 Signed-off-by: Maxime Ripard <mripard@kernel.org>
 ---
- drivers/gpu/drm/drm_atomic_state_helper.c | 2 --
- 1 file changed, 2 deletions(-)
+ include/drm/drm_atomic.h | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-index cc70508d4fdb..a82568d87e4f 100644
---- a/drivers/gpu/drm/drm_atomic_state_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-@@ -729,12 +729,10 @@ EXPORT_SYMBOL(drm_atomic_helper_connector_destroy_state);
- void __drm_atomic_helper_private_obj_create_state(struct drm_private_obj *obj,
- 						  struct drm_private_state *state)
- {
- 	if (state)
- 		state->obj = obj;
--
--	obj->state = state;
- }
- EXPORT_SYMBOL(__drm_atomic_helper_private_obj_create_state);
- 
- /**
-  * __drm_atomic_helper_private_obj_duplicate_state - copy atomic private state
+diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
+index 1a80a8cdf269..88087910ab1a 100644
+--- a/include/drm/drm_atomic.h
++++ b/include/drm/drm_atomic.h
+@@ -263,11 +263,14 @@ struct drm_private_state;
+ struct drm_private_state_funcs {
+ 	/**
+ 	 * @atomic_create_state:
+ 	 *
+ 	 * Allocates a pristine, initialized, state for the private
+-	 * object and returns it.
++	 * object and returns it. This callback must have no side
++	 * effects: in particular, the returned state must not be
++	 * assigned to the object's state pointer and it must not affect
++	 * the hardware state.
+ 	 *
+ 	 * RETURNS:
+ 	 *
+ 	 * A new, pristine, private state instance or an error pointer
+ 	 * on failure.
 
 -- 
 2.54.0
