@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IFO/IhsAA2rdzQEAu9opvQ
+	id kEZyGyIBA2rdzQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:25:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:29:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A135E51E81A
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:25:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F16EC51E918
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:29:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F9B810E074;
-	Tue, 12 May 2026 10:25:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E923310E1E6;
+	Tue, 12 May 2026 10:29:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Rna23VeH";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="UyHBP+BT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84DA310E074;
- Tue, 12 May 2026 10:25:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A1BC010E09D;
+ Tue, 12 May 2026 10:29:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778581529; x=1810117529;
+ t=1778581791; x=1810117791;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=vg1nFlgc7cN48KZ/YcegDVopL2MqvEXBOS2B1XJfYW0=;
- b=Rna23VeHX9u+KRnYj5iVFq4r0gPMFV2JELtn9t1jJiRYrKKn4nmlFI1s
- YlIaF9PQwCal8qjewJpHpXX5kWsFXkkY7TZoZudYgb/UIMfFVWDda93J0
- 2n10OuI0lZSw5y33CzTZkOeOQYngBZuJxfUazgpUgBO4c1XQnKfF422Bz
- 0+accEBqqMWWNPQaIdRW54VF/YJD8o40Iw7xmGqEQFkbRHqfxiH1e9p/y
- MO3HTT2U+K9oicKKh6UXa7riPwOWnPsjjecrfwg1vrN5YBXd3dyWrsvSa
- Kmspssvc4EiPlZOUT+XOxIMZHM3/Hk49vP2GGTQe53hUr3vdrp0s6FsAn A==;
-X-CSE-ConnectionGUID: iwoU1xiHRaiHP0mWw9mIMg==
-X-CSE-MsgGUID: cWrt9TgXQr2xX09of5zwwQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90869250"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="90869250"
+ bh=lrBcZHIGPmn7EU99aSM17iQZr9Xy6ZmPB9UxNt+LWOg=;
+ b=UyHBP+BT+Ng0UQpBKynYRTqmZKGyZpnhGyQG7XP3Df/mSC8s5MEmo8Q1
+ rJzzBb4dCD3ytIx9aBFSk9ckTVTKSLzt61GBRxaAfXIOGVYR2k6GgT1w4
+ vonZWp9wV0TBSEu/Fs4H9BWSDyWuWopY3yU0HcXv6eRnNLeq1D/wyfnxL
+ /BQLWgfIIRxnzlFCQAcG1DWgI6fLQBcFfntThFizdrbNXcFT2QzDA/7sc
+ yYbyea3BcDFBNS+om3ZyDTs/w95cjve2auAd8KAduSbvEYhE74MlLrSyx
+ VBpN+A07T95zXNoLPutdlhvIf5JsYSvyUKerEPeWekHgh/5SGRen4LinI w==;
+X-CSE-ConnectionGUID: 2I/nbpH4T/WzwnflHdrgMw==
+X-CSE-MsgGUID: 8MC+AMdqTXyROJXPdd44uQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90869572"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="90869572"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 03:25:28 -0700
-X-CSE-ConnectionGUID: JbvF/CYGT0S1R719PrZfIg==
-X-CSE-MsgGUID: bzLyrX06STydoUsagkNARQ==
+ 12 May 2026 03:29:50 -0700
+X-CSE-ConnectionGUID: iLNe98UgRnK21yihZkM+YQ==
+X-CSE-MsgGUID: fEeydMW6RouhGA4W8Jq75g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237971573"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="237972307"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.245.203])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 03:25:26 -0700
+ 12 May 2026 03:29:49 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 01/14] drm/i915: Disable the plane if initial plane
- config readout failed
-In-Reply-To: <20260511214122.8468-2-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 02/14] drm/i915/fbdev: Extract bios_fb_ok()
+In-Reply-To: <20260511214122.8468-3-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
- <20260511214122.8468-2-ville.syrjala@linux.intel.com>
-Date: Tue, 12 May 2026 13:25:22 +0300
-Message-ID: <34a35363d74c216b3e655b6c07d9d2904b4fe298@intel.com>
+ <20260511214122.8468-3-ville.syrjala@linux.intel.com>
+Date: Tue, 12 May 2026 13:29:44 +0300
+Message-ID: <b4cd01b6b2eff29d1d4a7194d329612db9abd515@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -77,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A135E51E81A
+X-Rspamd-Queue-Id: F16EC51E918
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
@@ -94,8 +93,8 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
 	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
@@ -110,52 +109,63 @@ X-Rspamd-Action: no action
 On Tue, 12 May 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Properly turn off the plane if it is enabled but
-> .get_initial_plane_config() failed for whatever reason.
->
-> The hardware does (or at least did) perform some kind of automagic
-> plane disable when the pipe gets disabled, but we don't rely on that
-> anywhere else either. Also the GGTT/actual memory may get clobbered
-> afterwards, so leaving the plane enabled here could result in visual
-> corruption/GTT faults/etc.
+> Pull the "is the BIOS FB OK?" checks to a helper function. We'll
+> add other relevant checks there later.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_initial_plane.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_fbdev.c | 26 +++++++++++++++-------
+>  1 file changed, 18 insertions(+), 8 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c b/drivers=
-/gpu/drm/i915/display/intel_initial_plane.c
-> index 034fe199c2a1..4d87627c6f6d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> +++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> @@ -128,11 +128,10 @@ intel_find_initial_plane_obj(struct intel_crtc *crt=
-c,
+> diff --git a/drivers/gpu/drm/i915/display/intel_fbdev.c b/drivers/gpu/drm=
+/i915/display/intel_fbdev.c
+> index df1d3d9dc3e5..f9c135400453 100644
+> --- a/drivers/gpu/drm/i915/display/intel_fbdev.c
+> +++ b/drivers/gpu/drm/i915/display/intel_fbdev.c
+> @@ -262,6 +262,23 @@ __intel_fbdev_fb_alloc(struct intel_display *display,
 >=20=20
->  	/*
->  	 * TODO:
-> -	 *   Disable planes if get_initial_plane_config() failed.
->  	 *   Make sure things work if the surface base is not page aligned.
->  	 */
->  	if (!plane_config->fb)
-> -		return;
-> +		goto nofb;
->=20=20
->  	if (intel_alloc_initial_plane_obj(display, plane_config)) {
->  		fb =3D plane_config->fb;
-> @@ -184,7 +183,8 @@ intel_find_initial_plane_obj(struct intel_crtc *crtc,
->  	 * simplest solution is to just disable the primary plane now and
->  	 * pretend the BIOS never had it enabled.
->  	 */
-> -	intel_plane_disable_noatomic(crtc, plane);
-> +	if (plane_state->uapi.visible)
-> +		intel_plane_disable_noatomic(crtc, plane);
 >  }
 >=20=20
->  static void plane_config_fini(struct intel_display *display,
+> +static bool bios_fb_ok(const struct intel_framebuffer *fb,
+> +		       const struct drm_fb_helper_surface_size *sizes)
+> +{
+> +	struct intel_display *display =3D to_intel_display(fb->base.dev);
+> +	int width =3D fb->base.width;
+> +	int height =3D fb->base.height;
+> +
+> +	if (sizes->fb_width > width || sizes->fb_height > height) {
+> +		drm_dbg_kms(display->drm,
+> +			    "BIOS fb too small (%dx%d), we require (%dx%d), releasing it\n",
+> +			    width, height, sizes->fb_width, sizes->fb_height);
+> +		return false;
+> +	}
+> +
+> +	return true;
+> +}
+> +
+>  int intel_fbdev_driver_fbdev_probe(struct drm_fb_helper *helper,
+>  				   struct drm_fb_helper_surface_size *sizes)
+>  {
+> @@ -279,14 +296,7 @@ int intel_fbdev_driver_fbdev_probe(struct drm_fb_hel=
+per *helper,
+>=20=20
+>  	ifbdev->fb =3D NULL;
+>=20=20
+> -	if (fb &&
+> -	    (sizes->fb_width > fb->base.width ||
+> -	     sizes->fb_height > fb->base.height)) {
+> -		drm_dbg_kms(display->drm,
+> -			    "BIOS fb too small (%dx%d), we require (%dx%d),"
+> -			    " releasing it\n",
+> -			    fb->base.width, fb->base.height,
+> -			    sizes->fb_width, sizes->fb_height);
+> +	if (fb && !bios_fb_ok(fb, sizes)) {
+>  		drm_framebuffer_put(&fb->base);
+>  		fb =3D NULL;
+>  	}
 
 --=20
 Jani Nikula, Intel
