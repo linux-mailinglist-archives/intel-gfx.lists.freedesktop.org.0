@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOXDH94EA2r1zgEAu9opvQ
+	id KCjRH4QFA2r1zgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:45:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:48:36 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EC7E451ECFF
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:45:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0AED651ED42
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 12:48:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7017C10E11B;
-	Tue, 12 May 2026 10:45:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3EA9B10EA1E;
+	Tue, 12 May 2026 10:48:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nd2Hlz8W";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="bLl8Ziac";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 77CDF10E11B;
- Tue, 12 May 2026 10:45:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3AB5A10E2F8;
+ Tue, 12 May 2026 10:48:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778582748; x=1810118748;
+ t=1778582912; x=1810118912;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=byaVFHUwvts6/LFnPLYfvfc246ZQDro/177MK5/Ulso=;
- b=Nd2Hlz8WLzi+EpbDbhippmRcBvoXW5oWYcWwTc+NAeHUMAmhFwRtqxx0
- uNw00WSDw7WCqJj90ElH/EuS0bscvG6jEh+96AZaFyrGiT65r3SJT8d6T
- DTJ7lV5KeRA/PwjGNBlV944KihjHaix0JcJvpA6ST5g1YCIurWY/T7ItE
- xv2Bism/wWcUamCvmsX8ZTR6qLpvfzLGhGhI/L/ZMWvgGvNYJOylehFLl
- rXz5hdcZPnwepXGsaTxt1SQ3k0BITemjkwErSRBtjHdJ1rKDUPTodY/Wy
- GtGOFqDlho68R+idPkDQ0Gd5WGqo8oh8hZ8UbSas+2CboNn4uM4A/pNrP A==;
-X-CSE-ConnectionGUID: SBvrkBtMT/6NV49jd1hJGw==
-X-CSE-MsgGUID: t9jq0KnmTi2wG3pIStshcA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="89790361"
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="89790361"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 03:45:47 -0700
-X-CSE-ConnectionGUID: ArpE1PKiRbeDUllS6lygyA==
-X-CSE-MsgGUID: dljJdHxoRKGD56+H4Q6HUA==
+ bh=QZgLnludgqHy+zk/QMFxd0FbIc3BUwgZifollD34RgA=;
+ b=bLl8ZiacvRj81t0h12gsnZ0430jRuZuadHexgPkKADLN+GUPjK8UqiQS
+ 53vXUKRtgLtemAYGFQSFHeCRV03p0WH37LY1aCOvGDaSPB15L7hw+u4uR
+ G2QrbkG8UHYnc5rgwPu8jNs4GgTNYfgLwxuTqRNjRFgfY9gloWHusINso
+ vn/eL56unPd2egNQC7zxHClCoBS6yb9iYdASPE8koX+wg/9CCHXr5bbCF
+ SEZEQ1OlxN5JIxvQxE2zKDebtOEFJQa7StVXnC/9SSUYZ2MVi0XH0FLn9
+ c2WdHycmniY3cfH2Ft6u7jJoWDvpLqMXq8hs2FTWOMoh13TglHjF7HlPM g==;
+X-CSE-ConnectionGUID: 8chSfjBjTfGRdarzx1Q0tA==
+X-CSE-MsgGUID: FcPrQSrES/GSg4J5IoxI/Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="90589452"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="90589452"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 03:48:29 -0700
+X-CSE-ConnectionGUID: tYQP95IKRqmonz6SDG+LnQ==
+X-CSE-MsgGUID: 8ecKhElmQGCu1GUoUBFxkQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="261227152"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="236880081"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.245.203])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 03:45:45 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 03:48:26 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 08/14] drm/xe: Print a debug message if we have no
- stolen for the initial FB
-In-Reply-To: <20260511214122.8468-9-ville.syrjala@linux.intel.com>
+Subject: Re: [PATCH 09/14] drm/xe: Abstract the initial FB PTE checks a bit
+In-Reply-To: <20260511214122.8468-10-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260511214122.8468-1-ville.syrjala@linux.intel.com>
- <20260511214122.8468-9-ville.syrjala@linux.intel.com>
-Date: Tue, 12 May 2026 13:45:41 +0300
-Message-ID: <a7fc052011cc1525083eb509f9dd88e78bdf5464@intel.com>
+ <20260511214122.8468-10-ville.syrjala@linux.intel.com>
+Date: Tue, 12 May 2026 13:48:22 +0300
+Message-ID: <4cc2bd3086c250786df3a059cec22921242575d9@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -77,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: EC7E451ECFF
+X-Rspamd-Queue-Id: 0AED651ED42
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
@@ -94,8 +93,8 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
 	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
@@ -110,46 +109,63 @@ X-Rspamd-Action: no action
 On Tue, 12 May 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Inform the poor sop reading the logs why the initial FB was rejected
-> if there is no stolen memory.
->
-> Technically this should perhaps be an error since the plane is known
-> to be enabled at this point, and if there is no stolen then it clearly
-> can't be scanning out from anywhere. But maybe there are some
-> virtualization passthrough cases and whatnot where we might not be
-> able to get access to stolen, so keep it as debug (same as i915).
+> Add a few helpers that allow us to abstract the xe initial FB PTE
+> check a bit. Still very ad-hoc compared to the nicely abstracted
+> i915 counterpart, but whatever.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
 > ---
->  drivers/gpu/drm/xe/display/xe_initial_plane.c | 8 ++++++--
->  1 file changed, 6 insertions(+), 2 deletions(-)
+>  drivers/gpu/drm/xe/display/xe_initial_plane.c | 17 ++++++++++++++---
+>  1 file changed, 14 insertions(+), 3 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/xe/display/xe_initial_plane.c b/drivers/gpu/=
 drm/xe/display/xe_initial_plane.c
-> index 14ac4cd8b7ff..b7e0685351bb 100644
+> index b7e0685351bb..0dabc5709d01 100644
 > --- a/drivers/gpu/drm/xe/display/xe_initial_plane.c
 > +++ b/drivers/gpu/drm/xe/display/xe_initial_plane.c
-> @@ -67,10 +67,14 @@ initial_plane_bo(struct xe_device *xe,
->  			    "Using phys_base=3D%pa, based on initial plane programming\n",
->  			    &phys_base);
->  	} else {
-> -		struct ttm_resource_manager *stolen =3D ttm_manager_type(&xe->ttm, XE_=
-PL_STOLEN);
-> +		struct ttm_resource_manager *stolen;
+> @@ -18,8 +18,19 @@
+>  #include "xe_fb_pin.h"
+>  #include "xe_ggtt.h"
+>  #include "xe_mmio.h"
+> +#include "xe_ttm_stolen_mgr.h"
+
+Not sure how this is related to the changes here.
+
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+
+
+>  #include "xe_vram_types.h"
 >=20=20
-> -		if (!stolen)
-> +		stolen =3D ttm_manager_type(&xe->ttm, XE_PL_STOLEN);
-> +		if (!stolen) {
-> +			drm_dbg_kms(&xe->drm, "No stolen for initial FB\n");
->  			return NULL;
-> +		}
+> +static bool is_pte_local(u64 pte)
+> +{
+> +	return pte & XE_GGTT_PTE_DM;
+> +}
 > +
->  		phys_base =3D base;
->  		flags |=3D XE_BO_FLAG_STOLEN;
->  	}
+> +static bool need_pte_local(struct xe_device *xe)
+> +{
+> +	return IS_DGFX(xe);
+> +}
+> +
+>  static struct xe_bo *
+>  initial_plane_bo(struct xe_device *xe,
+>  		 struct intel_initial_plane_config *plane_config)
+> @@ -43,13 +54,13 @@ initial_plane_bo(struct xe_device *xe,
+>  	if (IS_DGFX(xe)) {
+>  		u64 pte =3D xe_ggtt_read_pte(tile0->mem.ggtt, base);
+>=20=20
+> -		if (!(pte & XE_GGTT_PTE_DM)) {
+> -			drm_err(&xe->drm,
+> -				"Initial plane programming missing DM bit\n");
+> +		if (is_pte_local(pte) !=3D need_pte_local(xe)) {
+> +			drm_err(&xe->drm, "Initial plane PTE has bad local memory bit\n");
+>  			return NULL;
+>  		}
+>=20=20
+>  		phys_base =3D pte & ~(page_size - 1);
+> +
+>  		flags |=3D XE_BO_FLAG_VRAM0;
+>=20=20
+>  		/*
 
 --=20
 Jani Nikula, Intel
