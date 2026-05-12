@@ -2,40 +2,40 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YOdDKRELA2pmzwEAu9opvQ
+	id mPkqDG8MA2pmzwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:12:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:18:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 57FC951F1FD
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:12:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8E85851F385
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:18:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 510F710EA35;
-	Tue, 12 May 2026 11:12:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 70B2810E0FC;
+	Tue, 12 May 2026 11:18:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="YrT55/kJ";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="MI/cMLhr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EB7B10E25B;
- Tue, 12 May 2026 11:12:12 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 83F6410E0FC;
+ Tue, 12 May 2026 11:18:03 +0000 (UTC)
 Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 0CED36001A;
- Tue, 12 May 2026 11:12:12 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 3210FC2BCB0;
- Tue, 12 May 2026 11:12:11 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 40BE843D6B;
+ Tue, 12 May 2026 11:18:03 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 968C9C2BCB0;
+ Tue, 12 May 2026 11:18:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1778584331;
- bh=O7iu6+OHQt+UcCqoDQCwDlQvXcpD6wcdi/7smEjbNtk=;
+ s=k20201202; t=1778584683;
+ bh=izVpPklsgFhgBJ6UDkzs+YdvB1EtAk+r3l+WycQYVK0=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=YrT55/kJDMGUXJeFkWGNBK9FzoIl4HS2K6NQ40lshLexigxa5igujPnwY12XGUrdu
- 3oOa+gU1cmvJzjolELAzIxd1yfyzBMid+STDPGTAVRXPms6RXDWIpzMXF38HeWtyme
- Ka4fvM+RMH0KUQI8fV+iGOT4B8dK8A4buH5UB0r4sTDQf1kgCzyFayooBEM7pzO/PJ
- GoGMSrEhq+0uNzqLXoY1e31sUQOX3HcKOGlCi98r4NmTLZpXDf20q4FjJlcrWrtAdj
- 3zudKRjf0pgTQ9Q85TuX+CuSQUL1OfuEfr/+Uo0tklnbaK2GOoVSx1wYq74kryTblm
- kMgb/SVWhPzKw==
-Date: Tue, 12 May 2026 13:12:08 +0200
+ b=MI/cMLhrJ0d6BbO5le9N/pjNBvowsmBJX5p2aGRXKCvkEru0ZhZYb0gC7XQnEZJ3S
+ LbRF3MViww/nf4lziH+Eyn5CqRWN1xAAY+NODlFsE2tYoYO0ItSuFKmC+uxkBX8a8X
+ NczYDhnIJP3RPyMpEKx9+amQX5rXMHSWJL9zlYhhoLDuh9Y5EZMAhQYR4KpTBLjfaP
+ bafp/z9rmbrAtMGhR93r+nb1a+uJhZuZS2KU9Ooj/7LEIrVi65TnLMqZamjMXLNi8V
+ uTmLFAldAGbTgqHThC1qQJAzZY0sC1GqT3r7UNYFHkVHUQOiuOoBNVbBVnXJ61NZn/
+ OvCU2yP1S1Awg==
+Date: Tue, 12 May 2026 13:18:00 +0200
 From: Maxime Ripard <mripard@kernel.org>
 To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -63,17 +63,17 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 16/20] drm/mode-config: Create
+Subject: Re: [PATCH v3 18/20] drm/tidss: Switch to
  drm_mode_config_create_initial_state()
-Message-ID: <20260512-thundering-premium-cassowary-8bfdb6@houat>
+Message-ID: <20260512-partridge-of-unexpected-contentment-ccceef@houat>
 References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
- <20260424-drm-mode-config-init-v3-16-8b68d9db0d8b@kernel.org>
- <20260504174148.GS1344263@killaraus.ideasonboard.com>
+ <20260424-drm-mode-config-init-v3-18-8b68d9db0d8b@kernel.org>
+ <20260504174907.GT1344263@killaraus.ideasonboard.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="4wqckenerejplylm"
+ protocol="application/pgp-signature"; boundary="y4bfkipmhdhmpwea"
 Content-Disposition: inline
-In-Reply-To: <20260504174148.GS1344263@killaraus.ideasonboard.com>
+In-Reply-To: <20260504174907.GT1344263@killaraus.ideasonboard.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,7 +88,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 57FC951F1FD
+X-Rspamd-Queue-Id: 8E85851F385
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-1.41 / 15.00];
 	SIGNED_PGP(-2.00)[];
@@ -110,7 +110,7 @@ X-Spamd-Result: default: False [-1.41 / 15.00];
 	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com,lists.freedesktop.org,vger.kernel.org,collabora.com,lists.infradead.org,lists.linux.dev];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[kernel.org:+];
@@ -118,53 +118,69 @@ X-Spamd-Result: default: False [-1.41 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,bootlin.com:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
 
---4wqckenerejplylm
+--y4bfkipmhdhmpwea
 Content-Type: text/plain; protected-headers=v1; charset=us-ascii
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 16/20] drm/mode-config: Create
+Subject: Re: [PATCH v3 18/20] drm/tidss: Switch to
  drm_mode_config_create_initial_state()
 MIME-Version: 1.0
 
-On Mon, May 04, 2026 at 08:41:48PM +0300, Laurent Pinchart wrote:
-> > Historically, this was one
-> > + *   of drm_mode_config_reset() job, so one might still encounter it in
-> > + *   a driver.
-> > + *
-> > + * - at reset time, for example during suspend/resume,
-> > + *   drm_mode_config_reset() will reset the software and hardware state
-> > + *   to a known default and will store it in the object's state pointe=
-r.
-> > + *   Not all objects are affected by drm_mode_config_reset() though.
+On Mon, May 04, 2026 at 08:49:07PM +0300, Laurent Pinchart wrote:
+> Hi Maxime,
 >=20
-> Does the reset implementation store a new state in the object's state
-> pointer, or does it reset the contents of the already allocated state ?
-> I read the documentation here as meaning the former, if it's actually
-> the latter it should be reworded.
+> Thank you for the patch.
+>=20
+> On Fri, Apr 24, 2026 at 12:18:58PM +0200, Maxime Ripard wrote:
+> > Now that drm_mode_config_create_initial_state() exists to create the
+> > initial state, use it instead of drm_mode_config_reset() during
+> > driver probe.
+> >=20
+> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
+> > ---
+> >  drivers/gpu/drm/tidss/tidss_drv.c | 6 +++++-
+> >  1 file changed, 5 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/drivers/gpu/drm/tidss/tidss_drv.c b/drivers/gpu/drm/tidss/=
+tidss_drv.c
+> > index 1c8cc18bc53c..f5099d5d6e32 100644
+> > --- a/drivers/gpu/drm/tidss/tidss_drv.c
+> > +++ b/drivers/gpu/drm/tidss/tidss_drv.c
+> > @@ -169,11 +169,15 @@ static int tidss_probe(struct platform_device *pd=
+ev)
+> >  		goto err_runtime_suspend;
+> >  	}
+> > =20
+> >  	drm_kms_helper_poll_init(ddev);
+> > =20
+> > -	drm_mode_config_reset(ddev);
+> > +	ret =3D drm_mode_config_create_initial_state(ddev);
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to create initial state: %d\n", ret);
+> > +		goto err_irq_uninstall;
+> > +	}
+>=20
+> There's also a call to drm_mode_config_reset() in tidss_modeset_init(),
+> shouldn't it be dropped ?
 
-It's undefined. Both approach works, most drivers will destroy the old
-one and allocate a new one, but mediatek will just clear and
-re-initialize the old one:
-
-https://elixir.bootlin.com/linux/v7.1-rc3/source/drivers/gpu/drm/mediatek/m=
-tk_plane.c#L28
+This has been fixed by f468fef38716 which is in drm-misc-next
 
 Maxime
 
---4wqckenerejplylm
+--y4bfkipmhdhmpwea
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCagMK/gAKCRAnX84Zoj2+
-dkDYAXsF9DsH6J/5fuYI/okfNgVOZH2InlN8hfiL7W1ViQhomunSdZTAPqO4sg2a
-qYX3ht8BgPEsGsJ4a24dNbTDI8IuNZgDQ5B+kNfoyQNlBIPqgsydcK5kBH91+hEB
-93znUn0Yeg==
-=9Kyz
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCagMMaAAKCRAnX84Zoj2+
+duMkAX9Rlb2ZlLxkiSYUwHnQLHcT3AspaIvuP3QQ2XkS9gd4+lhw1TxXVQYzOpx/
+xIszD98Bf2NlJxIM0uLxiH3sjS3jGpTbz+Ge+VMI9xSNO/XbIt4c4tka1DCPybKM
+tJoOYMCdnA==
+=YKv1
 -----END PGP SIGNATURE-----
 
---4wqckenerejplylm--
+--y4bfkipmhdhmpwea--
