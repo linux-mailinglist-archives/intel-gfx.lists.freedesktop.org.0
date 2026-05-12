@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CFBMJFgzA2oA1gEAu9opvQ
+	id 8JKFOG0vA2qN1QEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 16:04:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 15:47:25 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3B5D5521EC8
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 16:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1F7D9521939
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 15:47:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B45E510EB3C;
-	Tue, 12 May 2026 14:04:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 55E6810EAC6;
+	Tue, 12 May 2026 13:47:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="h6LgfvOB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TfI2O+Wf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E96510EB45;
- Tue, 12 May 2026 14:04:05 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4BA4E10E276;
+ Tue, 12 May 2026 13:47:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778594646; x=1810130646;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=rEKZiNNO3AxjLeiZtQojzB9Qg7mIiRS/0104ONr40NE=;
- b=h6LgfvOBG4l5qhO9naaMlQk2+UMapb1BUPOqFjVkwCnaiooIOTyvYkc4
- hEphu+teIDEH2J2igXvsWb0O3zGO1tcXiWpNbh+YrUEyB21XDvY8zCAcD
- 6R6G2wTvms+DcGdx9trb/wZ21ebh+M+XqffX6y3zkSOIbPnXK7FKziQz2
- oblyEoJnMCdqllJ7/I6Q7Zrf7ohLqBgSXTtw96R/ZFcM1a8xPeyxvl83d
- caQADbJgvRBFb/PL5RoxSgdjpkwub/Cjd8Rbbx9uPvaoXDHfjKl2Rjgum
- k/+M4jjc3/eulYnGfMfW/ounO2HehTsCFlTgQN6bF+wI+WGZ2lLqmb995 Q==;
-X-CSE-ConnectionGUID: 6E5dRH3WQ0qFKXJNHu1jRQ==
-X-CSE-MsgGUID: ud4vkFw+QwiOoZ4aZNK4yw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="89806398"
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="89806398"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 May 2026 07:04:06 -0700
-X-CSE-ConnectionGUID: oYwhwmsDSt+06u+nVZ5q3Q==
-X-CSE-MsgGUID: hwb8Q4hsTbyE3QA6KAIZ1g==
+ t=1778593641; x=1810129641;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=GTQcBV/1RrhAvaWV+gebjB0QCh0DkpGaRlrbDaGrFqo=;
+ b=TfI2O+WfHiiI0D7BDG+reqO7NqHfZF3rn0/p8pX4ArrCEg8I984kbGja
+ nSwRZlpzoxxXlQwgXBdOmpYBmL4HOe6BVBQTOMg+rpf6H5lzFc174O1Ck
+ IcQXT+90MASDQrXRxL4iry1EXSQ4Fxq7faN4UggvWrsQ/re0QVsRpfPsg
+ ilpxFc/UvTZMgmsljHMCWOmuzN35iKfTN1h0rmghXCj8P6+rfkSynSCsp
+ IL/ZjUGSHMRz2uSOXIAnSSIjk8cbAjwzq5akyQ55u0J9gqpEhPs9nm9fs
+ uT3rnqwDCmcd4yPbikz/hYmU7mqe5SpEDrBRKs+tomGchkwxXT/UZyjzx Q==;
+X-CSE-ConnectionGUID: ekTIu5fKT5GUpo+8ETeJNw==
+X-CSE-MsgGUID: VQlCUFamSTO9knMRsi6dmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="90604309"
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="90604309"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 06:47:20 -0700
+X-CSE-ConnectionGUID: WQGu3xAeR6Sdle/1x8Yn8w==
+X-CSE-MsgGUID: TAGSMZAoRF6FHd+aXh4Ouw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="233311437"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
- by fmviesa006.fm.intel.com with ESMTP; 12 May 2026 07:04:00 -0700
-From: Animesh Manna <animesh.manna@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,231,1770624000"; d="scan'208";a="261257368"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 06:47:17 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
- ville.syrjala@linux.intel.com, jani.nikula@intel.com,
- Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v5 15/15] drm/i915/cmtg: Restore CMTG after DC6 entry
-Date: Tue, 12 May 2026 19:02:08 +0530
-Message-Id: <20260512133208.1363116-16-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20260512133208.1363116-1-animesh.manna@intel.com>
-References: <20260512133208.1363116-1-animesh.manna@intel.com>
+Cc: ville.syrjala@linux.intel.com, jani.nikula@linux.intel.com,
+ navaremanasi@google.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 0/6] drm/i915/intel_panel: Fix seamless VRR mode switching for
+ DRRS panels
+Date: Tue, 12 May 2026 19:02:43 +0530
+Message-ID: <20260512133249.2475882-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,134 +72,86 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 3B5D5521EC8
+X-Rspamd-Queue-Id: 1F7D9521939
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[animesh.manna@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-0.999];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Restore CMTG registers after DC6 exit, as they lose their values
-in the low-power state.
+Currently intel_panel_fixed_mode() can return a lower refresh rate mode
+for VRR panels if the lower refresh rate mode is first in the list.
+This creates problems for seamless switch features like LRR and
+Seamless-DRRS, as it results in changes to vsync_start/end causing a
+full modeset instead of a seamless switch.
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c  | 12 ++++++++-
- .../drm/i915/display/intel_display_power.c    | 25 +++++++++++++++++++
- .../drm/i915/display/intel_display_power.h    |  3 +++
- 3 files changed, 39 insertions(+), 1 deletion(-)
+This is particularly problematic for DRRS panels on platforms without
+double buffered M/N support for LNL+ (display version 20+), where
+seamless clock changes are not possible.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 6dc561713c35..324a2c722422 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7544,9 +7544,19 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
- 		bool modeset = intel_crtc_needs_modeset(new_crtc_state);
-+		bool dc3co_to_dc6 = intel_display_power_get_dc3co_to_dc6(display);
- 
- 		/* CMTG needs to be restored on DC6 exit and on modset*/
--		if (modeset && new_crtc_state->hw.active && !crtc->cmtg.enabled) {
-+		if ((modeset || dc3co_to_dc6) && new_crtc_state->hw.active && !crtc->cmtg.enabled) {
-+			if (dc3co_to_dc6) {
-+				intel_cmtg_set_clk_select(new_crtc_state);
-+				intel_cmtg_set_timings(new_crtc_state, false);
-+				intel_cmtg_set_vrr_timings(new_crtc_state);
-+				intel_cmtg_set_vrr_ctl(new_crtc_state);
-+				intel_cmtg_set_m_n(new_crtc_state);
-+				intel_display_power_reset_dc3co_to_dc6(display);
-+			}
-+
- 			intel_cmtg_enable_sync(new_crtc_state);
- 			intel_cmtg_set_hwgb(new_crtc_state);
- 			intel_cmtg_enable_ddi(new_crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 80ecf373fb19..94f6f4b1f388 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -285,6 +285,27 @@ sanitize_target_dc_state(struct intel_display *display,
- 	return target_dc_state;
- }
- 
-+bool intel_display_power_get_dc3co_to_dc6(struct intel_display *display)
-+{
-+	struct i915_power_domains *power_domains = &display->power.domains;
-+	bool ret;
-+
-+	mutex_lock(&power_domains->lock);
-+	ret = power_domains->dc3co_to_dc6;
-+	mutex_unlock(&power_domains->lock);
-+
-+	return ret;
-+}
-+
-+void intel_display_power_reset_dc3co_to_dc6(struct intel_display *display)
-+{
-+	struct i915_power_domains *power_domains = &display->power.domains;
-+
-+	mutex_lock(&power_domains->lock);
-+	power_domains->dc3co_to_dc6 = false;
-+	mutex_unlock(&power_domains->lock);
-+}
-+
- /**
-  * intel_display_power_set_target_dc_state - Set target dc state.
-  * @display: display device
-@@ -320,6 +341,10 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
- 	if (!dc_off_enabled)
- 		intel_power_well_enable(display, power_well);
- 
-+	if (power_domains->target_dc_state == DC_STATE_EN_UPTO_DC3CO &&
-+	    state == DC_STATE_EN_UPTO_DC6)
-+		power_domains->dc3co_to_dc6 = true;
-+
- 	power_domains->target_dc_state = state;
- 
- 	if (!dc_off_enabled)
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index d616d5d09cbe..ce1225bbc789 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -138,6 +138,7 @@ struct i915_power_domains {
- 	 */
- 	bool initializing;
- 	bool display_core_suspended;
-+	bool dc3co_to_dc6;
- 	int power_well_count;
- 
- 	u32 dc_state;
-@@ -183,6 +184,8 @@ void intel_display_power_suspend_late(struct intel_display *display, bool s2idle
- void intel_display_power_resume_early(struct intel_display *display);
- void intel_display_power_suspend(struct intel_display *display);
- void intel_display_power_resume(struct intel_display *display);
-+bool intel_display_power_get_dc3co_to_dc6(struct intel_display *display);
-+void intel_display_power_reset_dc3co_to_dc6(struct intel_display *display);
- void intel_display_power_set_target_dc_state(struct intel_display *display,
- 					     u32 state);
- u32 intel_display_power_get_current_dc_state(struct intel_display *display);
+This series attempts to fix this by:
+1. Adding a helper to get the highest refresh rate mode from the list of
+   fixed modes for a connector.
+2. When a seamless switch to a lower mode is desired, making
+   intel_panel_fixed_mode() return the highest refresh rate mode,
+   provided the requested rate is in VRR range. The vblank is then
+   extended to provide the desired refresh rate.
+
+To determine whether a full modeset or seamless switch is intended, the
+connector state is checked for the allow_modeset flag. A nullable
+conn_state parameter is added to intel_panel_fixed_mode() and
+intel_panel_compute_config() for this purpose.
+
+Rev2:
+ - Address Ville's comments to preserve Vtotal-Vsync distance while
+   adjusting VTOTAL.
+ - Address Manasi's comments to always go with highest RR mode
+   irrespective of allow_modeset flag for modes that have same clock but
+   different votal.
+
+Ankit Nautiyal (6):
+  drm/i915/display: Deprecate TRANS_VSYNC where VRR TG is always on
+  drm/i915/panel: Preserve Vtotal-Vsync distance while adjusting vtotal
+  drm/i915/intel_panel: Add a helper to get the highest refresh rate
+    mode
+  drm/i915/intel_panel: Pass crtc_state to intel_panel_compute_config
+  drm/i915/intel_panel: Use highest refresh rate mode for VRR panels
+  drm/i915/intel_panel: Refine VRR fixed mode selection for DRRS panels
+
+ drivers/gpu/drm/i915/display/icl_dsi.c       |  2 +-
+ drivers/gpu/drm/i915/display/intel_display.c | 19 +++-
+ drivers/gpu/drm/i915/display/intel_dp.c      |  2 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c   | 94 ++++++++++++++++----
+ drivers/gpu/drm/i915/display/intel_panel.h   |  9 +-
+ drivers/gpu/drm/i915/display/intel_sdvo.c    |  8 +-
+ drivers/gpu/drm/i915/display/intel_vrr.c     | 31 +++++--
+ drivers/gpu/drm/i915/display/vlv_dsi.c       |  2 +-
+ 10 files changed, 130 insertions(+), 41 deletions(-)
+
 -- 
-2.29.0
+2.45.2
 
