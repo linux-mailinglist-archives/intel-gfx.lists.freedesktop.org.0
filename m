@@ -2,78 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oy/RFvcMA2pr0AEAu9opvQ
+	id sMu6CsATA2r20AEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:20:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:49:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9E69D51F439
-	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:20:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7EAE751F921
+	for <lists+intel-gfx@lfdr.de>; Tue, 12 May 2026 13:49:19 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A82B310EA3A;
-	Tue, 12 May 2026 11:20:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A37B810EA54;
+	Tue, 12 May 2026 11:49:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="J8YO0ZSO";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KHYvMWpg";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 08FFF10EA3A;
- Tue, 12 May 2026 11:20:20 +0000 (UTC)
-Received: from smtp.kernel.org (transwarp.subspace.kernel.org [100.75.92.58])
- by tor.source.kernel.org (Postfix) with ESMTP id 4E86D600CB;
- Tue, 12 May 2026 11:20:19 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7BE45C2BCF7;
- Tue, 12 May 2026 11:20:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
- s=k20201202; t=1778584819;
- bh=2jedvzRODIy0aM0w0b/E87Dat827KNFORoAv3LWRrz4=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
- b=J8YO0ZSOzIjflSZJr0DZKPnr+DRX60e09MiC6pW9JdF5OF34lueN+dZ0PZphtTH0e
- l9WILXKX2odoqHyWAy0oNOBQDr32THa7Khl7IQ5esV84ijRdQMhEQjNd2hDPQNtwKP
- CUmC6AZPr3/BkcTJ3grVxb4E62K8oVYzQQqXzJUndlDacVwwhUnu8mO9ca5NJSU90b
- dPShj06d1FySYphQkeqnA1EKB3oDt/0ZFHbY5D5gdJjncplMam3xpYKcYK9SfIdjdu
- T6hb46FbdEeBSPK47ciqG89Q/ZY4ldpcyB0aeMM0r/oRPRlESBPuK9+Mcg3LpQEaXu
- +bre36YCOR+ig==
-Date: Tue, 12 May 2026 13:20:16 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, 
- Robert Foss <rfoss@kernel.org>, Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Simon Ser <contact@emersion.fr>, 
- Harry Wentland <harry.wentland@amd.com>, Melissa Wen <mwen@igalia.com>, 
- Sebastian Wick <sebastian.wick@redhat.com>, Alex Hung <alex.hung@amd.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Chen-Yu Tsai <wens@kernel.org>, Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?utf-8?B?TWHDrXJh?= Canal <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>,
- dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev
-Subject: Re: [PATCH v3 17/20] drm/drv: Switch skeleton to
- drm_mode_config_create_initial_state()
-Message-ID: <20260512-juicy-civet-of-finesse-ec3afa@houat>
-References: <20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org>
- <20260424-drm-mode-config-init-v3-17-8b68d9db0d8b@kernel.org>
- <20260504180216.GU1344263@killaraus.ideasonboard.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4B06010EA54;
+ Tue, 12 May 2026 11:49:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778586555; x=1810122555;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=BLq5+O88Kh6Kzv5OsnmrqvqMr7iJej2JQkqg8LAGuFI=;
+ b=KHYvMWpgjnoHDjlETcoZLe9CF+5mfJE8T7dujT81WacQabIcGih/oJUr
+ r4DDsNeAI3yf2J8m3tWDtGFXizCoi6L+pXHHZZ51PKUCn1hqPg5THYc+y
+ eKJAqFL/GEv/J6x3tymoLogFPXAQnEZYjCJnY6XYllEyNy87S5oHGTwHa
+ xVPGSSK0njulygKS4KWs0QALHzkHEAq1lheneTBe6ScTQ7rqk2P38WLn7
+ 8aBbnXSqxFKdA1IpFobhum/xxKdnNpI0qTpvR7JGXALNeU3j1l51r0fcu
+ PO/Eka4GRdT7zUYqJfK6vLSXlKdD7p38kRiTRBtmDrg0STaCRrkzdhQyW g==;
+X-CSE-ConnectionGUID: a32KdQK3QgyD+Cft5F7nHw==
+X-CSE-MsgGUID: eeSIyZggTAyHuaTWUdDISg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11783"; a="79387177"
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="79387177"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 04:49:15 -0700
+X-CSE-ConnectionGUID: let36zcUT7GadWoM5eBzZw==
+X-CSE-MsgGUID: hapty+zlSCa2a7a3d6KPWw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,230,1770624000"; d="scan'208";a="242714767"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.203])
+ by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 12 May 2026 04:49:13 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: vinod.govindapillai@intel.com, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v2 09/11] drm/i915/bw: consolidate the debug info of
+ bw/dgv/psf data
+In-Reply-To: <20260511122816.1235478-10-vinod.govindapillai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260511122816.1235478-1-vinod.govindapillai@intel.com>
+ <20260511122816.1235478-10-vinod.govindapillai@intel.com>
+Date: Tue, 12 May 2026 14:49:08 +0300
+Message-ID: <ccf20fd4bdfdadfc1b8f7497126362c980232595@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="rygcy26rmi7yaxid"
-Content-Disposition: inline
-In-Reply-To: <20260504180216.GU1344263@killaraus.ideasonboard.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,103 +76,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 9E69D51F439
+X-Rspamd-Queue-Id: 7EAE751F921
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20201202];
-	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[37];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com,lists.freedesktop.org,vger.kernel.org,collabora.com,lists.infradead.org,lists.linux.dev];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-0.999];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
+On Mon, 11 May 2026, Vinod Govindapillai <vinod.govindapillai@intel.com> wrote:
+> Consolidate all the detaills about the bw, gqv and psf gv into
+> a common function and present it in an organised format
+>
+> Signed-off-by: Vinod Govindapillai <vinod.govindapillai@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 40 +++++++++++++++++--------
+>  1 file changed, 27 insertions(+), 13 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 858da1710a61..0bda13a3e31b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -483,6 +483,28 @@ static const struct intel_sa_info xe3lpd_3002_sa_info = {
+>  	.derating = 10,
+>  };
+>  
+> +static void debug_print_bw_info(struct intel_display *display)
+> +{
+> +	int num_groups = ARRAY_SIZE(display->bw.max);
+> +	int i;
+> +
+> +	for (i = 0; i < num_groups; i++) {
+> +		struct intel_bw_info *bi = &display->bw.max[i];
+> +		int j;
+> +
+> +		drm_dbg_kms(display->drm, "BW%d: num_planes=%d num_qgv_points:%d\n",
+> +			    i, bi->num_planes, bi->num_qgv_points);
+> +
+> +		for (j = 0; j < bi->num_qgv_points; j++)
+> +			drm_dbg_kms(display->drm, "\tQGV %d: deratedbw=%u peakbw=%u\n",
 
---rygcy26rmi7yaxid
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH v3 17/20] drm/drv: Switch skeleton to
- drm_mode_config_create_initial_state()
-MIME-Version: 1.0
+Please use a drm_printer, and drm_printf_indent().
 
-On Mon, May 04, 2026 at 09:02:16PM +0300, Laurent Pinchart wrote:
-> On Fri, Apr 24, 2026 at 12:18:57PM +0200, Maxime Ripard wrote:
-> > The driver skeleton currently recommends calling
-> > drm_mode_config_reset() at probe time to create the initial state.
-> >=20
-> > Now that drm_mode_config_create_initial_state() exists to handle
-> > initial state allocation without hardware side effects, update the
-> > skeleton to recommend it instead.
-> >=20
-> > Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> > ---
-> >  drivers/gpu/drm/drm_drv.c | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/gpu/drm/drm_drv.c b/drivers/gpu/drm/drm_drv.c
-> > index 985c283cf59f..f537556b06a8 100644
-> > --- a/drivers/gpu/drm/drm_drv.c
-> > +++ b/drivers/gpu/drm/drm_drv.c
-> > @@ -340,11 +340,13 @@ void drm_minor_release(struct drm_minor *minor)
-> >   *
-> >   *		// Further setup, display pipeline etc
-> >   *
-> >   *		platform_set_drvdata(pdev, drm);
-> >   *
-> > - *		drm_mode_config_reset(drm);
-> > + *		ret =3D drm_mode_config_create_initial_state(drm);
-> > + *		if (ret)
-> > + *			return ret;
->=20
-> There's one point I'm still not sure to understand properly. The
-> skeleton example (and the tidss driver, which you convert to the new API
-> in this series) both call drm_mode_config_helper_resume(). This in turn
-> calls drm_atomic_helper_resume(), and drm_mode_config_reset(). For
-> drivers that implement .atomic_create_state() instead of .reset() (such
-> as tidss, after its conversion in this series), drm_mode_config_reset()
-> will call the drm_mode_config_*_create_state() helpers, which allocate
-> and initialize a new state (through .atomic_create_state()), and store
-> that new state in the object's ->state field. Won't this leak the state
-> previously stored there ?
+> +				    j,  bi->deratedbw[j], bi->peakbw[j]);
+> +
+> +		for (j = 0; j < bi->num_psf_gv_points; j++)
+> +			drm_dbg_kms(display->drm, "\tPSF GV %d bw=%u\n",
+> +				    j, bi->psf_bw[j]);
+> +	}
+> +}
+> +
+>  static bool is_tile_y_factored(struct intel_display *display)
+>  {
+>  	/* TGL supports Y-tile for LPDDR4/5, but not for DDR4 */
+> @@ -544,12 +566,11 @@ static int icl_get_bw_info(struct intel_display *display,
+>  
+>  			bi->deratedbw[j] = min(maxdebw,
+>  					       bw * (100 - sa->derating) / 100);
+> -
+> -			drm_dbg_kms(display->drm,
+> -				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
+> -				    i, j, bi->num_planes, bi->deratedbw[j]);
+>  		}
+>  	}
+> +
+> +	debug_print_bw_info(display);
+> +
+>  	/*
+>  	 * In case if SAGV is disabled in BIOS, we always get 1
+>  	 * SAGV point, but we can't send PCode commands to restrict it
+> @@ -650,24 +671,17 @@ static int tgl_get_bw_info(struct intel_display *display,
+>  			bi->peakbw[j] = DIV_ROUND_CLOSEST(sp->dclk *
+>  							  num_channels *
+>  							  qi.channel_width, 8);
+> -
+> -			drm_dbg_kms(display->drm,
+> -				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
+> -				    i, j, bi->num_planes, bi->deratedbw[j],
+> -				    bi->peakbw[j]);
+>  		}
+>  
+>  		for (j = 0; j < qi.num_psf_points; j++) {
+>  			const struct intel_psf_gv_point *sp = &qi.psf_points[j];
+>  
+>  			bi->psf_bw[j] = adl_calc_psf_bw(sp->clk);
+> -
+> -			drm_dbg_kms(display->drm,
+> -				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
+> -				    i, j, bi->num_planes, bi->psf_bw[j]);
+>  		}
+>  	}
+>  
+> +	debug_print_bw_info(display);
+> +
+>  	/*
+>  	 * In case if SAGV is disabled in BIOS, we always get 1
+>  	 * SAGV point, but we can't send PCode commands to restrict it
 
-Thanks for spotting this, you're totally right!
-
-I'll fix it in the next version
-Maxime
-
---rygcy26rmi7yaxid
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCagMM8AAKCRAnX84Zoj2+
-dqMTAX4+C/N/6qqumlD90BfbZjdzWkhPBQkqLDNaYwKx9LU0sBlx0VJLQ4knia38
-EOykUagBgIU9TribMz2NX8ktAEEMvAeCv8zw4fHOO2haBPYlQ/2XygkooyEr/wld
-Ls4x7K64WA==
-=UCOU
------END PGP SIGNATURE-----
-
---rygcy26rmi7yaxid--
+-- 
+Jani Nikula, Intel
