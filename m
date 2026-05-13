@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id +NLXFg1OBGrNGgIAu9opvQ
+	id CBHuKg9OBGrNGgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 12:10:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 12:10:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73D515312B6
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 12:10:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 541FF5312C4
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 12:10:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0078210EDC6;
-	Wed, 13 May 2026 10:10:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91CF110EDCA;
+	Wed, 13 May 2026 10:10:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aFavV7zs";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Hbq1Gric";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6AE3110EDC1;
- Wed, 13 May 2026 10:10:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EA34D10EDC8;
+ Wed, 13 May 2026 10:10:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778667016; x=1810203016;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9GA7yrJX3qsaOvGNA8YZYZU2zql7q7T5FhkjtXqrHGM=;
- b=aFavV7zs8lsHeMvK0Ez2pZmG6SqoDXMNe3HLc2+xDrRPs940be5cvbTw
- O/z+tsT12vt4xjuYJUo+Opsse7wbvwqyqRfIa/3+4ZJ71lA2CS4PVXilS
- XHuZUdnLeOiat8ZYAUflFU5Nf6t3ZIjbn9AA6ma0Le5iFq8v/Tkg3p6zc
- xwcGgqYLHjcpyut4Y/CDQebz/Xh4ewsdT5KkZOBy0N02beYtVrZWvVMUv
- iFo0hx8A3z1c0Jmw3XF5yivdId2PpADzLcXHDMecJLXgN1fUpyqoUbVpb
- GRJwMnNhnBgBm1zFQKtPOddH+OgxHh4TuyhWGs3nFnjjWQQavyf2AmXpB w==;
-X-CSE-ConnectionGUID: 9FrWiPfiQuuAeFxTU+z9DA==
-X-CSE-MsgGUID: 7v5PyluhSum/oYWZ7a/RqA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="90973151"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="90973151"
+ t=1778667020; x=1810203020;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=kKis4wOia3Y7LMA1Y6LRKN/sWwmPb8vEl/yEJq1Js7Y=;
+ b=Hbq1GricNaM4vzyfJJhOf8WWelalMCbsuPXZJkDDtYMmibOA1gpQwcyH
+ 2eZCjcQvx8rGic9+Mh84HUAhdAdkq5J178A/emHUrOHqiwAiGXQ+Sp9Wy
+ bUqaABKGPKIEVu6xGhMRPSmu2zO+AgOzUmQBFjwF/ln5rlOpSe/oyBMWP
+ //5wp+UAQofn9SbQ/+bjX/pSKsqVy9Hmw+gTcjG0bBCgHMgui+b3zv7jR
+ kKFaabw4QFxOyHDUReTdsIyvt02AbxsYb9E8K1jdWdZN3pMjZ4T44AGJV
+ 4oYkv6o9OnqatWx2yAUTpnsj27pXOhv8WKEt7a/Pm8fxH3s7NvD2b/7AK Q==;
+X-CSE-ConnectionGUID: CJWwwuC4RJKypeCcJRnvIA==
+X-CSE-MsgGUID: SuBAdbmnQaeRB33T4+MT9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="90973157"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="90973157"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 03:10:16 -0700
-X-CSE-ConnectionGUID: lYMae2dsS7yWU47wt8QUeA==
-X-CSE-MsgGUID: MlfLNW5lTDKZGMnQ+seJfA==
+ 13 May 2026 03:10:20 -0700
+X-CSE-ConnectionGUID: lv6SMY6wRdyFKfjp7D1meA==
+X-CSE-MsgGUID: lIz1ZpvsTtihPeKbeKVYUg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="233770335"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="233770350"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.102])
  by fmviesa010-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 03:10:15 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 03:10:18 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH v3 0/6] drm/i915: add display irq hooks
-Date: Wed, 13 May 2026 13:10:05 +0300
-Message-ID: <cover.1778666967.git.jani.nikula@intel.com>
+Subject: [PATCH v3 1/6] drm/i915/irq: deduplicate dg1_de_irq_postinstall() and
+ gen11_de_irq_postinstall()
+Date: Wed, 13 May 2026 13:10:06 +0300
+Message-ID: <c2aee2c9968751e7a536423ef2cec5ccd22617bf.1778666967.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <cover.1778666967.git.jani.nikula@intel.com>
+References: <cover.1778666967.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -72,7 +75,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 73D515312B6
+X-Rspamd-Queue-Id: 541FF5312C4
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -84,47 +87,80 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
 	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-v3 of [1].
+dg1_de_irq_postinstall() and gen11_de_irq_postinstall() are exactly the
+same. Remove dg1_de_irq_postinstall() and call
+gen11_de_irq_postinstall() instead.
 
+Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_display_irq.c | 9 ---------
+ drivers/gpu/drm/i915/display/intel_display_irq.h | 1 -
+ drivers/gpu/drm/i915/i915_irq.c                  | 2 +-
+ 3 files changed, 1 insertion(+), 11 deletions(-)
 
-[1] https://lore.kernel.org/r/cover.1777933454.git.jani.nikula@intel.com
-
-
-Jani Nikula (6):
-  drm/i915/irq: deduplicate dg1_de_irq_postinstall() and
-    gen11_de_irq_postinstall()
-  drm/i915/irq: constify pipe stats parameters
-  drm/i915/irq: add display irq funcs, start with
-    intel_display_irq_reset()
-  drm/i915/irq: add intel_display_irq_postinstall() to irq funcs
-  drm/i915/irq: add intel_display_irq_ack() to irq funcs
-  drm/i915/irq: add intel_display_irq_handler() to irq funcs
-
- .../gpu/drm/i915/display/intel_display_core.h |   3 +
- .../gpu/drm/i915/display/intel_display_irq.c  | 238 +++++++++++++++---
- .../gpu/drm/i915/display/intel_display_irq.h  |  37 +--
- drivers/gpu/drm/i915/i915_irq.c               | 182 +++++---------
- drivers/gpu/drm/xe/display/xe_display.c       |   6 +-
- 5 files changed, 277 insertions(+), 189 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index b5bfdebc66ca..bf4b5e7b6011 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -2449,15 +2449,6 @@ void gen11_de_irq_postinstall(struct intel_display *display)
+ 	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+ }
+ 
+-void dg1_de_irq_postinstall(struct intel_display *display)
+-{
+-	if (!HAS_DISPLAY(display))
+-		return;
+-
+-	gen8_de_irq_postinstall(display);
+-	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+-}
+-
+ struct intel_display_irq_funcs {
+ 	void (*reset)(struct intel_display *display);
+ };
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+index b25d180254d7..e2b1674fae06 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.h
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+@@ -71,7 +71,6 @@ void vlv_display_irq_postinstall(struct intel_display *display);
+ void ilk_de_irq_postinstall(struct intel_display *display);
+ void gen8_de_irq_postinstall(struct intel_display *display);
+ void gen11_de_irq_postinstall(struct intel_display *display);
+-void dg1_de_irq_postinstall(struct intel_display *display);
+ 
+ u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
+ void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
+diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+index d4d8dd0a4174..ef9eadf38a53 100644
+--- a/drivers/gpu/drm/i915/i915_irq.c
++++ b/drivers/gpu/drm/i915/i915_irq.c
+@@ -778,7 +778,7 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+ 
+ 	gen2_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
+ 
+-	dg1_de_irq_postinstall(display);
++	gen11_de_irq_postinstall(display);
+ 
+ 	dg1_master_intr_enable(intel_uncore_regs(uncore));
+ 	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
 -- 
 2.47.3
 
