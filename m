@@ -2,62 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OBpgG1UvBGo/FAIAu9opvQ
+	id 2MqmOM8vBGo/FAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 09:59:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 10:01:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1FB3852F386
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 09:59:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A8F5652F3FB
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 10:01:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7BDFC10ED3C;
-	Wed, 13 May 2026 07:59:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 297CC10ED6B;
+	Wed, 13 May 2026 08:01:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nX5Y5xpc";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="n71NpYoj";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 94C1B10ED3C;
- Wed, 13 May 2026 07:59:14 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 36B8310ED55
+ for <intel-gfx@lists.freedesktop.org>; Wed, 13 May 2026 08:01:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778659155; x=1810195155;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=wHZ7WuzgzFtIt0VcF/BcIb+bO3ks7aI4AHAB5T6jZlI=;
- b=nX5Y5xpcogNbz2/+wdp47l7VMHjElIzTvmEcFPCUfBC9LbPIT4O1NPY7
- obRgSNQdYGYNyXiO8w+WbIIEXQcjELvZeRnvMCHkStz7IVUPYoshZ0f8/
- wORh2PPP4GWdI74p7rhUUM1AkD/hPMalhar5LqMiBfM73aBrZfogSVwPu
- cBtKRSR/Cv1tXwWMvuWY/7K1NIMr/2rrUe2KhI2icXI0/UDRtkiGy644F
- X0Vn6bOoOOwScWqWOvZchpEoBC3kwfDvr3vEzY78bBxP5PtgFYaeNy1Kk
- 85s3VuLpJb3WhIyh7qVspmiFGx0imL+kPFV0y2vLiQKgHY1cDKRP6cBT+ A==;
-X-CSE-ConnectionGUID: 0hDbf42ARfyDU0n15cgL1Q==
-X-CSE-MsgGUID: RBvoBrsYRqi5ee2JKGaJDQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="78606902"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="78606902"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 00:59:14 -0700
-X-CSE-ConnectionGUID: Rw++UB7bSYegKKhJpDHzeQ==
-X-CSE-MsgGUID: VeiwHVP7R4ygbPNoSzz8pw==
+ t=1778659272; x=1810195272;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=dEFrmP4xl9dTUtPtQUwgXn55uj92pnbmKfuCmbAHaKM=;
+ b=n71NpYojdwydss2E4WeJ4IS8i+Iq3JhiAXStcsXw9/V0hAkdB3tkS9Rm
+ Z2tz+tRktW3UJSYOcljFgNvWP2Bh9/I6+GzELzzlc74K/4wbh8b9rvtmM
+ RbqWL9f28zdVdjMO7GSMhwUWqN1HgdxLydMCZK0pQeohmnx6xtfAsSLpj
+ lKeBBzfZOBCmsQZnjdMhrbIzUzj/IKMcIE8ATFnL+PolT1XcA1amUeHKr
+ ++j/6a5yNhM0CpszNtNgTHMQ5Uf21XUNkZTqc/y/7clqYQXmDoqRfaKZ8
+ m/u01zl0VQrn3YqgSn6muqOWpF2KD+pgwni5yVIs8f7Tt3E8l6B+/MpkG w==;
+X-CSE-ConnectionGUID: /Ad0tbJuQnaZJ+f77mOGpw==
+X-CSE-MsgGUID: 6qFEFvDTTBy117roKYYquQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="89884149"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="89884149"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 01:01:12 -0700
+X-CSE-ConnectionGUID: N168wn/6SJSdrnzbllUptg==
+X-CSE-MsgGUID: 48tWwSB/RuGsDvLJA3SCVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="238257329"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="237163488"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.61])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 00:59:12 -0700
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 01:01:09 -0700
 From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [RESEND 6/6] drm/i915/display: stop passing i to
- for_each_pipe_crtc_modeset_{enable, disable}()
-Date: Wed, 13 May 2026 10:58:40 +0300
-Message-ID: <2270d4a10663bb55d5b16902b02798234f440517.1778659089.git.jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>
+Subject: [RESEND] drm/i915/sdvo: use the i2c bus locking functions
+Date: Wed, 13 May 2026 11:01:03 +0300
+Message-ID: <20260513080103.169402-1-jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <cover.1778659089.git.jani.nikula@intel.com>
-References: <cover.1778659089.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -76,246 +72,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 1FB3852F386
+X-Rspamd-Queue-Id: A8F5652F3FB
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[intel.com:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RSPAMD_EMAILBL_FAIL(0.00)[jani.nikula.intel.com:query timed out];
+	TO_DN_SOME(0.00)[];
+	SEM_URIBL_UNKNOWN_FAIL(0.00)[intel.com:query timed out];
+	RBL_SEM_FAIL(0.00)[131.252.210.177:query timed out];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_SPAM(0.00)[0.301];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Refactor for_each_pipe_crtc_modeset_{enable,disable}() and their
-underlying for_each_crtc_in_masks{,_reverse}() helpers to utilize
-__UNIQUE_ID() to avoid having to pass the for loop variable to them.
+Use i2c_lock_bus(), i2c_trylock_bus(), and i2c_unlock_bus() instead of
+poking at i2c adapter's lock_ops directly.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c     |  8 ++----
- drivers/gpu/drm/i915/display/intel_display.c | 12 ++++----
- drivers/gpu/drm/i915/display/intel_display.h | 30 ++++++++++----------
- drivers/gpu/drm/i915/display/intel_dp_mst.c  |  9 +++---
- 4 files changed, 27 insertions(+), 32 deletions(-)
+ drivers/gpu/drm/i915/display/intel_sdvo.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 34e2b5ea9d0d..1d4bb59a0501 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -3230,9 +3230,8 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct intel_crtc *pipe_crtc;
- 	bool is_hdmi = intel_crtc_has_type(old_crtc_state, INTEL_OUTPUT_HDMI);
--	int i;
+diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
+index 23c511a9a2ad..ba54c90828f4 100644
+--- a/drivers/gpu/drm/i915/display/intel_sdvo.c
++++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
+@@ -3319,7 +3319,7 @@ static void proxy_lock_bus(struct i2c_adapter *adapter,
+ 	struct intel_sdvo_ddc *ddc = adapter->algo_data;
+ 	struct intel_sdvo *sdvo = ddc->sdvo;
  
--	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
- 		const struct intel_crtc_state *old_pipe_crtc_state =
- 			intel_atomic_get_old_crtc_state(state, pipe_crtc);
+-	sdvo->i2c->lock_ops->lock_bus(sdvo->i2c, flags);
++	i2c_lock_bus(sdvo->i2c, flags);
+ }
  
-@@ -3259,7 +3258,7 @@ static void intel_ddi_post_disable_hdmi_or_sst(struct intel_atomic_state *state,
+ static int proxy_trylock_bus(struct i2c_adapter *adapter,
+@@ -3328,7 +3328,7 @@ static int proxy_trylock_bus(struct i2c_adapter *adapter,
+ 	struct intel_sdvo_ddc *ddc = adapter->algo_data;
+ 	struct intel_sdvo *sdvo = ddc->sdvo;
  
- 	intel_ddi_disable_transcoder_func(old_crtc_state);
+-	return sdvo->i2c->lock_ops->trylock_bus(sdvo->i2c, flags);
++	return i2c_trylock_bus(sdvo->i2c, flags);
+ }
  
--	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
- 		const struct intel_crtc_state *old_pipe_crtc_state =
- 			intel_atomic_get_old_crtc_state(state, pipe_crtc);
+ static void proxy_unlock_bus(struct i2c_adapter *adapter,
+@@ -3337,7 +3337,7 @@ static void proxy_unlock_bus(struct i2c_adapter *adapter,
+ 	struct intel_sdvo_ddc *ddc = adapter->algo_data;
+ 	struct intel_sdvo *sdvo = ddc->sdvo;
  
-@@ -3516,7 +3515,6 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
- 	struct intel_crtc *pipe_crtc;
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
- 	bool is_hdmi = intel_crtc_has_type(crtc_state, INTEL_OUTPUT_HDMI);
--	int i;
+-	sdvo->i2c->lock_ops->unlock_bus(sdvo->i2c, flags);
++	i2c_unlock_bus(sdvo->i2c, flags);
+ }
  
- 	/* 128b/132b SST */
- 	if (!is_hdmi && intel_dp_is_uhbr(crtc_state)) {
-@@ -3550,7 +3548,7 @@ static void intel_ddi_enable(struct intel_atomic_state *state,
- 
- 	intel_ddi_wait_for_fec_status(encoder, crtc_state, true);
- 
--	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, crtc_state, i) {
-+	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, crtc_state) {
- 		const struct intel_crtc_state *pipe_crtc_state =
- 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index cf9afc90e301..ce5a3d5dbb79 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1653,11 +1653,10 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	enum transcoder cpu_transcoder = new_crtc_state->cpu_transcoder;
- 	struct intel_crtc *pipe_crtc;
--	int i;
- 
- 	if (drm_WARN_ON(display->drm, crtc->active))
- 		return;
--	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state) {
- 		const struct intel_crtc_state *new_pipe_crtc_state =
- 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
- 
-@@ -1671,7 +1670,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	intel_encoders_pre_enable(state, crtc);
- 
--	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state) {
- 		const struct intel_crtc_state *pipe_crtc_state =
- 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
- 
-@@ -1689,7 +1688,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 	if (!transcoder_is_dsi(cpu_transcoder))
- 		hsw_configure_cpu_transcoder(new_crtc_state);
- 
--	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state) {
- 		const struct intel_crtc_state *pipe_crtc_state =
- 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
- 
-@@ -1719,7 +1718,7 @@ static void hsw_crtc_enable(struct intel_atomic_state *state,
- 
- 	intel_encoders_enable(state, crtc);
- 
--	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, new_crtc_state) {
- 		const struct intel_crtc_state *pipe_crtc_state =
- 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
- 		enum pipe hsw_workaround_pipe;
-@@ -1787,7 +1786,6 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- 	const struct intel_crtc_state *old_crtc_state =
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_crtc *pipe_crtc;
--	int i;
- 
- 	/*
- 	 * FIXME collapse everything to one hook.
-@@ -1800,7 +1798,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- 
- 	intel_encoders_post_pll_disable(state, crtc);
- 
--	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
- 		const struct intel_crtc_state *old_pipe_crtc_state =
- 			intel_atomic_get_old_crtc_state(state, pipe_crtc);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 7d4f83ad9412..31588011d659 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -325,29 +325,29 @@ enum phy_fia {
- 			     ((connector) = to_intel_connector((__state)->base.connectors[__i].ptr), \
- 			     (new_connector_state) = to_intel_digital_connector_state((__state)->base.connectors[__i].new_state), 1))
- 
--#define for_each_crtc_in_masks(display, crtc, first_pipes, second_pipes, i) \
--	for ((i) = 0; \
-+#define __for_each_crtc_in_masks(display, crtc, first_pipes, second_pipes, i) \
-+	for (int (i) = 0; \
- 	     (i) < (I915_MAX_PIPES * 2) && ((crtc) = intel_crtc_for_pipe(display, (i) % I915_MAX_PIPES), 1); \
- 	     (i)++) \
- 		for_each_if((crtc) && ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)) & BIT(i))
- 
--#define for_each_crtc_in_masks_reverse(display, crtc, first_pipes, second_pipes, i) \
--	for ((i) = (I915_MAX_PIPES * 2 - 1); \
-+#define __for_each_crtc_in_masks_reverse(display, crtc, first_pipes, second_pipes, i) \
-+	for (int (i) = (I915_MAX_PIPES * 2 - 1); \
- 	     (i) >= 0 && ((crtc) = intel_crtc_for_pipe(display, (i) % I915_MAX_PIPES), 1); \
- 	     (i)--) \
- 		for_each_if((crtc) && ((first_pipes) | ((second_pipes) << I915_MAX_PIPES)) & BIT(i))
- 
--#define for_each_pipe_crtc_modeset_disable(display, crtc, crtc_state, i) \
--	for_each_crtc_in_masks(display, crtc, \
--			       _intel_modeset_primary_pipes(crtc_state), \
--			       _intel_modeset_secondary_pipes(crtc_state), \
--			       i)
--
--#define for_each_pipe_crtc_modeset_enable(display, crtc, crtc_state, i) \
--	for_each_crtc_in_masks_reverse(display, crtc, \
--				       _intel_modeset_primary_pipes(crtc_state), \
--				       _intel_modeset_secondary_pipes(crtc_state), \
--				       i)
-+#define for_each_pipe_crtc_modeset_disable(display, crtc, crtc_state) \
-+	__for_each_crtc_in_masks(display, crtc, \
-+				 _intel_modeset_primary_pipes(crtc_state), \
-+				 _intel_modeset_secondary_pipes(crtc_state), \
-+				 __UNIQUE_ID(i))
-+
-+#define for_each_pipe_crtc_modeset_enable(display, crtc, crtc_state) \
-+	__for_each_crtc_in_masks_reverse(display, crtc,			\
-+					 _intel_modeset_primary_pipes(crtc_state), \
-+					 _intel_modeset_secondary_pipes(crtc_state), \
-+					 __UNIQUE_ID(i))
- 
- int intel_atomic_check(struct drm_device *dev, struct drm_atomic_commit *state);
- u8 intel_calc_enabled_pipes(struct intel_atomic_state *state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index be8febe3d234..724d3ee23350 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1065,14 +1065,13 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
- 		drm_atomic_get_mst_payload_state(new_mst_state, connector->mst.port);
- 	struct intel_crtc *pipe_crtc;
- 	bool last_mst_stream;
--	int i;
- 
- 	last_mst_stream = intel_dp_mst_dec_active_streams(intel_dp);
- 
- 	drm_WARN_ON(display->drm, DISPLAY_VER(display) >= 12 && last_mst_stream &&
- 		    !intel_dp_mst_is_master_trans(old_crtc_state));
- 
--	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
- 		const struct intel_crtc_state *old_pipe_crtc_state =
- 			intel_atomic_get_old_crtc_state(state, pipe_crtc);
- 
-@@ -1099,7 +1098,7 @@ static void mst_stream_post_disable(struct intel_atomic_state *state,
- 
- 	intel_ddi_disable_transcoder_func(old_crtc_state);
- 
--	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state, i) {
-+	for_each_pipe_crtc_modeset_disable(display, pipe_crtc, old_crtc_state) {
- 		const struct intel_crtc_state *old_pipe_crtc_state =
- 			intel_atomic_get_old_crtc_state(state, pipe_crtc);
- 
-@@ -1310,7 +1309,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
- 	enum transcoder trans = pipe_config->cpu_transcoder;
- 	bool first_mst_stream = intel_dp_mst_active_streams(intel_dp) == 1;
- 	struct intel_crtc *pipe_crtc;
--	int ret, i;
-+	int ret;
- 
- 	drm_WARN_ON(display->drm, pipe_config->has_pch_encoder);
- 
-@@ -1355,7 +1354,7 @@ static void mst_stream_enable(struct intel_atomic_state *state,
- 
- 	intel_enable_transcoder(pipe_config);
- 
--	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, pipe_config, i) {
-+	for_each_pipe_crtc_modeset_enable(display, pipe_crtc, pipe_config) {
- 		const struct intel_crtc_state *pipe_crtc_state =
- 			intel_atomic_get_new_crtc_state(state, pipe_crtc);
- 
+ static const struct i2c_lock_operations proxy_lock_ops = {
 -- 
 2.47.3
 
