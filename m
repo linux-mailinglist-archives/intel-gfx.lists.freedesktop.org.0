@@ -2,61 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id H+d8NnqVBGoTLwIAu9opvQ
+	id cFFJDjWjBGogMQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 17:15:06 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 18:13:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 710A4535DF1
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 17:15:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B700F536D78
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 18:13:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E041910EF1B;
-	Wed, 13 May 2026 15:15:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4927610EF38;
+	Wed, 13 May 2026 16:13:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="XUTNBPXN";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BVcTqEci";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3324F10E5F5;
- Wed, 13 May 2026 15:15:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Vh4HQrQm9GFKlIqiEab4T+AecgO/Zv8btuEpFSr95JM=; b=XUTNBPXNa3nIuiuEdCgFxdz3AI
- dA09Cqi9ehi+zvOWoJ5l4dP3B0r4Dwnjl0JJDpkU7Ej0gJtS3wAkwNWprmqi7+/TAFDi2UEM4NSu4
- 60RZFSgj3EdACzTF6rYZEbP/rnZWptu/Foia12sDvVGJuTHvzivi72LBM+ZISMWFLGl9Fc5n2UFP0
- YXquL/S3iDjnqvbWR/Hz9KlcPBnj0CDUDEB1YhGNdMqz8gruL/52lKLlNJfWgYzT1SS2XX4XzBMnt
- XK4/wuDpbqI65gqBoFBwMKI7C7UQmnzs8G4sC0Nt+tAk5uusdMvRUKa4tY6F6yeNECH1jlTWaUL1C
- 5gK9vd/Q==;
-Received: from [90.240.106.137] (helo=localhost)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wNBIN-00A1It-Di; Wed, 13 May 2026 17:14:47 +0200
-Date: Wed, 13 May 2026 16:14:46 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <agSVZmNC_qV4G6jQ@linux>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F07B10EF69;
+ Wed, 13 May 2026 16:13:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778688817; x=1810224817;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=gj0f4i27u2rXS/pj6+vTwFzGKJREIGDDdAROuya0Qts=;
+ b=BVcTqEci+iVRFvQlE6lKk3yCnfWHiwaOgXFQU9YDjCtw41oxLCWfbn5K
+ vBKfzM5IrLHo2xIbyitReIX5P+c5VuWnemvJMzEdDYVi4GIgYDb1rMT5h
+ cVtqM5lswFGYelYDGA64frVpgliTuDYTx7oUOc4mkMq6wrAynbj7sbSTm
+ AaKiHFL5ZEs7Sf2mDcMDa1aGZT9LnztJX0g+Z+RI1s5Q0FY1Dy9g1mhrO
+ C0mJaxBAuOqcnEk5BseQZDGUbrWUU/AcnJy5PAJKNnGcvVASO6trFyF6X
+ aQNiy5aQJ1QA3QIch1cSOxP3+WHoLwoHWABRDeoOztL+zcv/boMNeaOPY g==;
+X-CSE-ConnectionGUID: nLdRF8myQDaYxXwIQ+hvHQ==
+X-CSE-MsgGUID: sKqrEupPSDyu9gcN54uCEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11785"; a="79517149"
+X-IronPort-AV: E=Sophos;i="6.23,233,1770624000"; d="scan'208";a="79517149"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 09:13:36 -0700
+X-CSE-ConnectionGUID: F2aDSXItT52eJMQd8e6Ycw==
+X-CSE-MsgGUID: if1l0/yJSDeShhBwGwrI6w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,233,1770624000"; d="scan'208";a="261631579"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.124])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 09:13:35 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com
+Subject: [PATCH v4 0/8] drm/i915: add display irq hooks
+Date: Wed, 13 May 2026 19:13:23 +0300
+Message-ID: <cover.1778688699.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,71 +74,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 710A4535DF1
+X-Rspamd-Queue-Id: B700F536D78
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.99 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
-	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.996];
-	FROM_NEQ_ENVFROM(0.00)[tursulin@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
+v4 of [1], splitting patches 5-6 into two, resulting in patches 5-8
+here. There's no diff between the end results of v3 and v4, just the
+intermediate steps are there.
 
-Hi Dave, Sima,
+BR,
+Jani.
 
-Two fixes this week. One for a rare race on the SandyBridge reset path and
-one to fix dynamic range setting on RGB formats over DisplayPort.
+[1] https://lore.kernel.org/r/cover.1778666967.git.jani.nikula@intel.com
 
-Tvrtko
+Jani Nikula (8):
+  drm/i915/irq: deduplicate dg1_de_irq_postinstall() and
+    gen11_de_irq_postinstall()
+  drm/i915/irq: constify pipe stats parameters
+  drm/i915/irq: add display irq funcs, start with
+    intel_display_irq_reset()
+  drm/i915/irq: add intel_display_irq_postinstall() to irq funcs
+  drm/i915/irq: add platform specific display irq ack functions
+  drm/i915/irq: add platform specific display irq handler functions
+  drm/i915/irq: add intel_display_irq_ack() to irq funcs
+  drm/i915/irq: add intel_display_irq_handler() to irq funcs
 
-drm-intel-fixes-2026-05-13:
-- Skip __i915_request_skip() for already signaled requests (Sebastian Brzezinka)
-- Fix VSC dynamic range signaling for RGB formats [dp] (Chaitanya Kumar Borah)
-The following changes since commit 5d6919055dec134de3c40167a490f33c74c12581:
+ .../gpu/drm/i915/display/intel_display_core.h |   3 +
+ .../gpu/drm/i915/display/intel_display_irq.c  | 238 +++++++++++++++---
+ .../gpu/drm/i915/display/intel_display_irq.h  |  37 +--
+ drivers/gpu/drm/i915/i915_irq.c               | 182 +++++---------
+ drivers/gpu/drm/xe/display/xe_display.c       |   6 +-
+ 5 files changed, 277 insertions(+), 189 deletions(-)
 
-  Linux 7.1-rc3 (2026-05-10 14:08:09 -0700)
+-- 
+2.47.3
 
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-05-13
-
-for you to fetch changes up to 1ae15b6c7965d137eef21f2cc7d367b29cb88369:
-
-  drm/i915/dp: Fix VSC dynamic range signaling for RGB formats (2026-05-12 08:05:24 +0100)
-
-----------------------------------------------------------------
-- Skip __i915_request_skip() for already signaled requests (Sebastian Brzezinka)
-- Fix VSC dynamic range signaling for RGB formats [dp] (Chaitanya Kumar Borah)
-
-----------------------------------------------------------------
-Chaitanya Kumar Borah (1):
-      drm/i915/dp: Fix VSC dynamic range signaling for RGB formats
-
-Sebastian Brzezinka (1):
-      drm/i915: skip __i915_request_skip() for already signaled requests
-
- drivers/gpu/drm/i915/display/intel_dp.c | 9 +++++++--
- drivers/gpu/drm/i915/gt/intel_reset.c   | 3 ++-
- 2 files changed, 9 insertions(+), 3 deletions(-)
