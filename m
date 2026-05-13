@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HLHLnqCBGrVKwIAu9opvQ
+	id eEEXIJSCBGrVKwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:54:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:54:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 296145346F0
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0514A53470D
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:54:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2B40110E331;
-	Wed, 13 May 2026 13:54:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6A01110E23D;
+	Wed, 13 May 2026 13:54:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAQuRpEt";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kaRAq7SG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6B04B10E23D;
- Wed, 13 May 2026 13:53:59 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 495E810E23D;
+ Wed, 13 May 2026 13:54:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778680440; x=1810216440;
+ t=1778680466; x=1810216466;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=v8mq8XInBTTOEiUdw/27rTNH6AdjyRgp8GCGJN0p89M=;
- b=eAQuRpEtX4JTWqREYoCPbpYvrTocaUzhBfkB3Osg1AeGr+xdZI8zH9KZ
- p/w2/y29bqYMpgzJ69L6Cs5iQ9x93z2jneyQ0I+X7slSs/MiJjxQyjVUj
- UCWQROHvQGjXR/uvkSIU5UVfRAypD8z/qgKzA4Pf1aRNUpx5d5cyRcMdb
- 2K5fBVU6H/Bjm0BFyJ7C275aS2DoT2+64CvCUJvZpdnW0MsPBhotjHOrV
- qtSBeDyX+Vtp3wi/J/3c8Ck70mpOf6rsqL6cJ2uMtEUG1gL6n8eG7zITu
- Q6t7b439BMEOFp5oFzzmtyLRREqvX8dE3D4zU3QiKPibGh3ozg3EZHOkv g==;
-X-CSE-ConnectionGUID: 57f33c9OSKWbkOE5tc3llw==
-X-CSE-MsgGUID: e0u7QWtqTX6voXvOeXiXaw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="67137022"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="67137022"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 06:53:59 -0700
-X-CSE-ConnectionGUID: 45LbsvB5QrGrpOSZUHkI5w==
-X-CSE-MsgGUID: jhhZ2uIxS+C0+zGHA1eZEw==
+ bh=MUhNhtljgPnMk4Q/hSWxPNkEdmTh9T45ENKF4u6QOXM=;
+ b=kaRAq7SGxewavyhCIwtxEUCYO0XkWOtj04APPM/KWwlcjCr2FXj59lAy
+ fsxfvxoVh8Nj/2E49+bR1W5EqtaGgQyTVDFmUNOGy5YoHjtLiqnoF+ztr
+ 1DzCIhsGj2puL23d0scr/jGXmqLU6Q2D3SF9sQTm/WROEvVyn04aHQ0eT
+ SJwe+kbtanGVC50+Z/6tehqYBoF5NZF3Q3xYZSUQvMWxKxX3tlPeqCSdn
+ IJn3QSmtOSD7eDiPSTNxsSLgBwFmX+mLPHYFZs70p1KscDms7u9XBU5NV
+ jNDsRwB+FopD4N1jjevyfFkAxm/u03obfAD/9HtK/yDhJtnIgqp9myN/H w==;
+X-CSE-ConnectionGUID: Q6XHnx6aS4SRsBf5tbIi3A==
+X-CSE-MsgGUID: jCLSl5RuSZeD4m5qgOvG0g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="89913715"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="89913715"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 06:54:25 -0700
+X-CSE-ConnectionGUID: ev6mgISLRzymUPoi2Bm/FQ==
+X-CSE-MsgGUID: H+C6SzYxRBmycSQCrfcSew==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="233640889"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="238341145"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.10])
- by fmviesa006-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 06:53:58 -0700
-Date: Wed, 13 May 2026 16:53:54 +0300
+ by orviesa007-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 06:54:23 -0700
+Date: Wed, 13 May 2026 16:54:20 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v3 1/6] drm/i915/irq: deduplicate
- dg1_de_irq_postinstall() and gen11_de_irq_postinstall()
-Message-ID: <agSCcvdakO1RZSLO@intel.com>
+Subject: Re: [PATCH v3 2/6] drm/i915/irq: constify pipe stats parameters
+Message-ID: <agSCjK1FIeaXrDEg@intel.com>
 References: <cover.1778666967.git.jani.nikula@intel.com>
- <c2aee2c9968751e7a536423ef2cec5ccd22617bf.1778666967.git.jani.nikula@intel.com>
+ <679387717b7d086174676714db5aa5eed8ef1643.1778666967.git.jani.nikula@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <c2aee2c9968751e7a536423ef2cec5ccd22617bf.1778666967.git.jani.nikula@intel.com>
+In-Reply-To: <679387717b7d086174676714db5aa5eed8ef1643.1778666967.git.jani.nikula@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -77,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 296145346F0
+X-Rspamd-Queue-Id: 0514A53470D
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.36 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
@@ -106,69 +105,70 @@ X-Spamd-Result: default: False [0.36 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-On Wed, May 13, 2026 at 01:10:06PM +0300, Jani Nikula wrote:
-> dg1_de_irq_postinstall() and gen11_de_irq_postinstall() are exactly the
-> same. Remove dg1_de_irq_postinstall() and call
-> gen11_de_irq_postinstall() instead.
+On Wed, May 13, 2026 at 01:10:07PM +0300, Jani Nikula wrote:
+> The pipe stat irq handling doesn't need to modify the pipe stats
+> arrays. Make them const.
 > 
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_display_irq.c | 9 ---------
->  drivers/gpu/drm/i915/display/intel_display_irq.h | 1 -
->  drivers/gpu/drm/i915/i915_irq.c                  | 2 +-
->  3 files changed, 1 insertion(+), 11 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_irq.c | 6 +++---
+>  drivers/gpu/drm/i915/display/intel_display_irq.h | 6 +++---
+>  2 files changed, 6 insertions(+), 6 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> index b5bfdebc66ca..bf4b5e7b6011 100644
+> index bf4b5e7b6011..d30b063714b0 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
 > +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
-> @@ -2449,15 +2449,6 @@ void gen11_de_irq_postinstall(struct intel_display *display)
->  	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+> @@ -597,7 +597,7 @@ void i9xx_pipestat_irq_ack(struct intel_display *display,
 >  }
 >  
-> -void dg1_de_irq_postinstall(struct intel_display *display)
-> -{
-> -	if (!HAS_DISPLAY(display))
-> -		return;
-> -
-> -	gen8_de_irq_postinstall(display);
-> -	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
-> -}
-> -
->  struct intel_display_irq_funcs {
->  	void (*reset)(struct intel_display *display);
->  };
+>  void i915_pipestat_irq_handler(struct intel_display *display,
+> -			       u32 iir, u32 pipe_stats[I915_MAX_PIPES])
+> +			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
+>  {
+>  	bool blc_event = false;
+>  	enum pipe pipe;
+> @@ -621,7 +621,7 @@ void i915_pipestat_irq_handler(struct intel_display *display,
+>  }
+>  
+>  void i965_pipestat_irq_handler(struct intel_display *display,
+> -			       u32 iir, u32 pipe_stats[I915_MAX_PIPES])
+> +			       u32 iir, const u32 pipe_stats[I915_MAX_PIPES])
+>  {
+>  	bool blc_event = false;
+>  	enum pipe pipe;
+> @@ -648,7 +648,7 @@ void i965_pipestat_irq_handler(struct intel_display *display,
+>  }
+>  
+>  void valleyview_pipestat_irq_handler(struct intel_display *display,
+> -				     u32 pipe_stats[I915_MAX_PIPES])
+> +				     const u32 pipe_stats[I915_MAX_PIPES])
+>  {
+>  	enum pipe pipe;
+>  
 > diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> index b25d180254d7..e2b1674fae06 100644
+> index e2b1674fae06..d25b9ea4272b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
 > +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
-> @@ -71,7 +71,6 @@ void vlv_display_irq_postinstall(struct intel_display *display);
->  void ilk_de_irq_postinstall(struct intel_display *display);
->  void gen8_de_irq_postinstall(struct intel_display *display);
->  void gen11_de_irq_postinstall(struct intel_display *display);
-> -void dg1_de_irq_postinstall(struct intel_display *display);
+> @@ -78,9 +78,9 @@ void i915_disable_pipestat(struct intel_display *display, enum pipe pipe, u32 st
 >  
->  u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
->  void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
-> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
-> index d4d8dd0a4174..ef9eadf38a53 100644
-> --- a/drivers/gpu/drm/i915/i915_irq.c
-> +++ b/drivers/gpu/drm/i915/i915_irq.c
-> @@ -778,7 +778,7 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+>  void i9xx_pipestat_irq_ack(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
 >  
->  	gen2_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
+> -void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
+> -void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, u32 pipe_stats[I915_MAX_PIPES]);
+> -void valleyview_pipestat_irq_handler(struct intel_display *display, u32 pipe_stats[I915_MAX_PIPES]);
+> +void i915_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
+> +void i965_pipestat_irq_handler(struct intel_display *display, u32 iir, const u32 pipe_stats[I915_MAX_PIPES]);
+> +void valleyview_pipestat_irq_handler(struct intel_display *display, const u32 pipe_stats[I915_MAX_PIPES]);
 >  
-> -	dg1_de_irq_postinstall(display);
-> +	gen11_de_irq_postinstall(display);
->  
->  	dg1_master_intr_enable(intel_uncore_regs(uncore));
->  	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
+>  void vlv_display_error_irq_ack(struct intel_display *display, u32 *eir, u32 *dpinvgtt);
+>  void vlv_display_error_irq_handler(struct intel_display *display, u32 eir, u32 dpinvgtt);
 > -- 
 > 2.47.3
 
