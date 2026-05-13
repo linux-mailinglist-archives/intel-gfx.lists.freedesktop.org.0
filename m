@@ -2,68 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mNvuAZ2BBGrmKwIAu9opvQ
+	id 2HLHLnqCBGrVKwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:50:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:54:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E6E534611
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:50:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 296145346F0
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 15:54:02 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B20DF10EE85;
-	Wed, 13 May 2026 13:50:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2B40110E331;
+	Wed, 13 May 2026 13:54:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nnd1R8TF";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eAQuRpEt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 958D410EEAB;
- Wed, 13 May 2026 13:50:16 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6B04B10E23D;
+ Wed, 13 May 2026 13:53:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778680216; x=1810216216;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=0cWMOH3cBRmJY22XSyVGBt4aRE7ovrIk3k3C8xamZW8=;
- b=Nnd1R8TF+XH1IcM7MbTybqqzS/RhFKbChZA6mK39BlXr4gVo7Qt7YiSQ
- CjVXPrB0KrBPZnTzBYF0cZ9foc53zQvBCF5MzmhcR9ngkZ4NvgUy05Cec
- yTMnhZR67/F7mXSUR7YRWArLonlL7VZwoNZw4dFxMoMMSe2BcQ5xwdj6k
- bsBzrb4B6Y/7aqHR7mwGaQ4OiTibrXNz1F5cg71C9IcyktLnBmwSQM7iW
- fgzj2uFWMKDdffFBr5kzOxp2vgT8RifxuEzHgjCY04M/vsUigWdB7lrRl
- kqFeDyrDN9rIlTJbu1HKXhZwfvWDB/mPXjTG8DLOssgMvNslDNthmyP5S g==;
-X-CSE-ConnectionGUID: EgqEz0pfRGGdf3p97NSDvw==
-X-CSE-MsgGUID: uYmO6f+kQk2jMWD3wUVT2g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="78635159"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="78635159"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 06:50:16 -0700
-X-CSE-ConnectionGUID: W5aOwUh/RU2xFlm3KMfU7g==
-X-CSE-MsgGUID: Uz66MMtwQAyGw+1Z5TKNEQ==
+ t=1778680440; x=1810216440;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=v8mq8XInBTTOEiUdw/27rTNH6AdjyRgp8GCGJN0p89M=;
+ b=eAQuRpEtX4JTWqREYoCPbpYvrTocaUzhBfkB3Osg1AeGr+xdZI8zH9KZ
+ p/w2/y29bqYMpgzJ69L6Cs5iQ9x93z2jneyQ0I+X7slSs/MiJjxQyjVUj
+ UCWQROHvQGjXR/uvkSIU5UVfRAypD8z/qgKzA4Pf1aRNUpx5d5cyRcMdb
+ 2K5fBVU6H/Bjm0BFyJ7C275aS2DoT2+64CvCUJvZpdnW0MsPBhotjHOrV
+ qtSBeDyX+Vtp3wi/J/3c8Ck70mpOf6rsqL6cJ2uMtEUG1gL6n8eG7zITu
+ Q6t7b439BMEOFp5oFzzmtyLRREqvX8dE3D4zU3QiKPibGh3ozg3EZHOkv g==;
+X-CSE-ConnectionGUID: 57f33c9OSKWbkOE5tc3llw==
+X-CSE-MsgGUID: e0u7QWtqTX6voXvOeXiXaw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="67137022"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="67137022"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 06:53:59 -0700
+X-CSE-ConnectionGUID: 45LbsvB5QrGrpOSZUHkI5w==
+X-CSE-MsgGUID: jhhZ2uIxS+C0+zGHA1eZEw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="237109554"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.124])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 06:50:15 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Subject: Re: [RESEND 0/4] drm/i915/display: start switching to display
- specific reg types
-In-Reply-To: <agRvJsmqqi1q0MnL@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1777972548.git.jani.nikula@intel.com>
- <0fb8d06a63af7f22dea6d08d69d94350c97a1e83@intel.com>
- <agRvJsmqqi1q0MnL@intel.com>
-Date: Wed, 13 May 2026 16:50:11 +0300
-Message-ID: <558ac9d46f77130a5a70cd16c6e7af65717682a1@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="233640889"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.10])
+ by fmviesa006-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 13 May 2026 06:53:58 -0700
+Date: Wed, 13 May 2026 16:53:54 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH v3 1/6] drm/i915/irq: deduplicate
+ dg1_de_irq_postinstall() and gen11_de_irq_postinstall()
+Message-ID: <agSCcvdakO1RZSLO@intel.com>
+References: <cover.1778666967.git.jani.nikula@intel.com>
+ <c2aee2c9968751e7a536423ef2cec5ccd22617bf.1778666967.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <c2aee2c9968751e7a536423ef2cec5ccd22617bf.1778666967.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,9 +77,11 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B5E6E534611
+X-Rspamd-Queue-Id: 296145346F0
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [0.36 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.67)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
@@ -88,49 +89,89 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-On Wed, 13 May 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Fri, May 08, 2026 at 02:29:50PM +0300, Jani Nikula wrote:
->> On Tue, 05 May 2026, Jani Nikula <jani.nikula@intel.com> wrote:
->> > Jani Nikula (4):
->> >   drm/i915/display: add typedef for intel_reg_t and use it
->> >   drm/i915/display: add struct intel_irq_regs and use it
->> >   drm/i915/display: add struct intel_error_regs and use it
->> >   drm/i915/display: define and use intel_reg_{offset,equal,valid}()
->> >     helpers
->>=20
->> Ville, ack on this one?
->
-> Looks fine by me
->
-> For the series
-> Acked-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
+On Wed, May 13, 2026 at 01:10:06PM +0300, Jani Nikula wrote:
+> dg1_de_irq_postinstall() and gen11_de_irq_postinstall() are exactly the
+> same. Remove dg1_de_irq_postinstall() and call
+> gen11_de_irq_postinstall() instead.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-Thanks for the review and ack, pushed to drm-intel-next.
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-BR,
-Jani.
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_irq.c | 9 ---------
+>  drivers/gpu/drm/i915/display/intel_display_irq.h | 1 -
+>  drivers/gpu/drm/i915/i915_irq.c                  | 2 +-
+>  3 files changed, 1 insertion(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> index b5bfdebc66ca..bf4b5e7b6011 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+> @@ -2449,15 +2449,6 @@ void gen11_de_irq_postinstall(struct intel_display *display)
+>  	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+>  }
+>  
+> -void dg1_de_irq_postinstall(struct intel_display *display)
+> -{
+> -	if (!HAS_DISPLAY(display))
+> -		return;
+> -
+> -	gen8_de_irq_postinstall(display);
+> -	intel_de_write(display, GEN11_DISPLAY_INT_CTL, GEN11_DISPLAY_IRQ_ENABLE);
+> -}
+> -
+>  struct intel_display_irq_funcs {
+>  	void (*reset)(struct intel_display *display);
+>  };
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+> index b25d180254d7..e2b1674fae06 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_irq.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+> @@ -71,7 +71,6 @@ void vlv_display_irq_postinstall(struct intel_display *display);
+>  void ilk_de_irq_postinstall(struct intel_display *display);
+>  void gen8_de_irq_postinstall(struct intel_display *display);
+>  void gen11_de_irq_postinstall(struct intel_display *display);
+> -void dg1_de_irq_postinstall(struct intel_display *display);
+>  
+>  u32 i915_pipestat_enable_mask(struct intel_display *display, enum pipe pipe);
+>  void i915_enable_pipestat(struct intel_display *display, enum pipe pipe, u32 status_mask);
+> diff --git a/drivers/gpu/drm/i915/i915_irq.c b/drivers/gpu/drm/i915/i915_irq.c
+> index d4d8dd0a4174..ef9eadf38a53 100644
+> --- a/drivers/gpu/drm/i915/i915_irq.c
+> +++ b/drivers/gpu/drm/i915/i915_irq.c
+> @@ -778,7 +778,7 @@ static void dg1_irq_postinstall(struct drm_i915_private *dev_priv)
+>  
+>  	gen2_irq_init(uncore, GEN11_GU_MISC_IRQ_REGS, ~gu_misc_masked, gu_misc_masked);
+>  
+> -	dg1_de_irq_postinstall(display);
+> +	gen11_de_irq_postinstall(display);
+>  
+>  	dg1_master_intr_enable(intel_uncore_regs(uncore));
+>  	intel_uncore_posting_read(uncore, DG1_MSTR_TILE_INTR);
+> -- 
+> 2.47.3
 
-
---=20
-Jani Nikula, Intel
+-- 
+Ville Syrjälä
+Intel
