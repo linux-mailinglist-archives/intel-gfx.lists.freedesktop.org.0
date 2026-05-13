@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YGn+N0EvBGo/FAIAu9opvQ
+	id UBsPF0YvBGo/FAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 09:58:57 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 09:59:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B90A152F359
-	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 09:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5F1852F362
+	for <lists+intel-gfx@lfdr.de>; Wed, 13 May 2026 09:59:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 056AB10ED41;
-	Wed, 13 May 2026 07:58:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 561BC10ED43;
+	Wed, 13 May 2026 07:59:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KEW7nuJq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSVuWX+t";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CAF7E10ED40;
- Wed, 13 May 2026 07:58:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F53910ED46;
+ Wed, 13 May 2026 07:58:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778659134; x=1810195134;
+ t=1778659139; x=1810195139;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=cFmnIaTFT7jzyqgHpONbiexBDjrada2t8gP9aYQlOnM=;
- b=KEW7nuJqC9kyvNkuv5/0fvtrX2ywkEi/OqDV79ZTVT405qElhsHxP3kW
- 7yOpqK6XN+xtKHJWLiKTklnP5zeWj2QQeZ4SNKFRtNVPxBPTgW28lhv5c
- iOwA92uA4h1Z+Q3Hf8SlZzOrr5C4jyjbhIobPndtRKMc2oTJlU50EMbv1
- HOse5nzRqhtsgBPggX0xF7RPdPl1arWRDpZv6tjtvgKIQXPbP2PIxdwDa
- HtXG+BhFW7y2iy5+JMUq0zqAgmNY5QufH2aJ/DY6L5SZZbnKZRc7LzQkA
- lTMzGdnxCZTkrjDbRgND014EJYGr84YDTRZU3n+6nAVWXx3e5L8ae9buK g==;
-X-CSE-ConnectionGUID: 2srXX4D9R1+NEV+0hzzXpw==
-X-CSE-MsgGUID: uhIvtHyvS92NVBOonL9kdw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="90159443"
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="90159443"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 00:58:54 -0700
-X-CSE-ConnectionGUID: IuLyJUWzSra3MuZnyopLnw==
-X-CSE-MsgGUID: UPDGKsE5Q528mWIqJQ8qfA==
+ bh=bae0w6bpiRCW3QhV0j+b3LZY4yKhvNDeTh3NLpc88fI=;
+ b=nSVuWX+tLVw4GdHqeJInjKYp2wBEWF8IsRcwp4I37sXjOrw5lKGOQmpE
+ voPQ7uQil/r3YMEykiZAw63QZJflSbpPQ4DsbGHMJOPIqsQAsOuvW0ey6
+ DR/ZwrD0xvIhNd4whrp8B7zW84qoR5eM1afZuEcD2EUiLXH/OrWp/W6sZ
+ 104IuCyzgkFmdEO/0XkSvTakl4CtEXcgRKhtYUHiCRkRgVByZiQZ6bpZ8
+ n/nHrKXNPtA2iAszGZLIPlR1pUSBVvGOQ5dFEzfyBsK1a2p0w/WATFb50
+ 1YXZV8xOogk4TFlqZYwEacJWsiz3kdGqTzxHrESNlzmS818cLOFZG1AcO g==;
+X-CSE-ConnectionGUID: fPHVYyGYTe6bYNAjAM61ZA==
+X-CSE-MsgGUID: XQDBy5o2QaGqoH0hg8gROQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11784"; a="78606885"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="78606885"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 00:58:59 -0700
+X-CSE-ConnectionGUID: wRbgmf2XT1e4WTW9mPq7pQ==
+X-CSE-MsgGUID: t9XojvHoSEGnUnqsRKi/cg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="242970657"
+X-IronPort-AV: E=Sophos;i="6.23,232,1770624000"; d="scan'208";a="238257273"
 Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.61])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 May 2026 00:58:53 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 13 May 2026 00:58:57 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [RESEND 2/6] drm/i915/display: switch from drm_for_each_crtc() to
- for_each_intel_crtc()
-Date: Wed, 13 May 2026 10:58:36 +0300
-Message-ID: <8ee4320cd15bc35a8b40676faae6db4b33eb50eb.1778659089.git.jani.nikula@intel.com>
+Subject: [RESEND 3/6] drm/i915/display: always pass display->drm to
+ for_each_intel_crtc*()
+Date: Wed, 13 May 2026 10:58:37 +0300
+Message-ID: <447a5b2309e213abb849601727d45b406d440c88.1778659089.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1778659089.git.jani.nikula@intel.com>
 References: <cover.1778659089.git.jani.nikula@intel.com>
@@ -76,7 +76,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: B90A152F359
+X-Rspamd-Queue-Id: E5F1852F362
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -106,48 +106,77 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-intel_has_pending_fb_unpin() has the last direct user of
-drm_for_each_crtc() in i915. Switch to for_each_intel_crtc() to ensure
-pipe order iteration in all cases.
+In preparation for always passing struct intel_display to
+for_each_intel_crtc*() family of iterators, start off by unifying their
+usage to always having struct intel_display *display around, and passing
+display->drm to them.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c       | 3 ++-
+ drivers/gpu/drm/i915/display/intel_display.c | 3 ++-
+ drivers/gpu/drm/i915/display/intel_plane.c   | 3 ++-
+ 3 files changed, 6 insertions(+), 3 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 33d8f6b6afea..4cd07410ad72 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -3533,10 +3533,11 @@ static void ilk_pipe_wm_get_hw_state(struct intel_crtc *crtc)
+ 
+ static int ilk_sanitize_watermarks_add_affected(struct drm_atomic_commit *state)
+ {
++	struct intel_display *display = to_intel_display(state->dev);
+ 	struct drm_plane *plane;
+ 	struct intel_crtc *crtc;
+ 
+-	for_each_intel_crtc(state->dev, crtc) {
++	for_each_intel_crtc(display->drm, crtc) {
+ 		struct intel_crtc_state *crtc_state;
+ 
+ 		crtc_state = intel_atomic_get_crtc_state(state, crtc);
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 50feca52b962..682a0514ec81 100644
+index 682a0514ec81..7126a88ca090 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -714,22 +714,22 @@ static void icl_set_pipe_chicken(const struct intel_crtc_state *crtc_state)
- 
- bool intel_has_pending_fb_unpin(struct intel_display *display)
+@@ -5692,6 +5692,7 @@ int intel_modeset_commit_pipes(struct intel_display *display,
+  */
+ static int hsw_mode_set_planes_workaround(struct intel_atomic_state *state)
  {
--	struct drm_crtc *crtc;
-+	struct intel_crtc *crtc;
- 	bool cleanup_done;
++	struct intel_display *display = to_intel_display(state);
+ 	struct intel_crtc_state *crtc_state;
+ 	struct intel_crtc *crtc;
+ 	struct intel_crtc_state *first_crtc_state = NULL;
+@@ -5719,7 +5720,7 @@ static int hsw_mode_set_planes_workaround(struct intel_atomic_state *state)
+ 		return 0;
  
--	drm_for_each_crtc(crtc, display->drm) {
+ 	/* w/a possibly needed, check how many crtc's are already enabled. */
+-	for_each_intel_crtc(state->base.dev, crtc) {
 +	for_each_intel_crtc(display->drm, crtc) {
- 		struct drm_crtc_commit *commit;
--		spin_lock(&crtc->commit_lock);
--		commit = list_first_entry_or_null(&crtc->commit_list,
-+		spin_lock(&crtc->base.commit_lock);
-+		commit = list_first_entry_or_null(&crtc->base.commit_list,
- 						  struct drm_crtc_commit, commit_entry);
- 		cleanup_done = commit ?
- 			try_wait_for_completion(&commit->cleanup_done) : true;
--		spin_unlock(&crtc->commit_lock);
-+		spin_unlock(&crtc->base.commit_lock);
+ 		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
+ 		if (IS_ERR(crtc_state))
+ 			return PTR_ERR(crtc_state);
+diff --git a/drivers/gpu/drm/i915/display/intel_plane.c b/drivers/gpu/drm/i915/display/intel_plane.c
+index a1f9558d53af..911ae261d1b5 100644
+--- a/drivers/gpu/drm/i915/display/intel_plane.c
++++ b/drivers/gpu/drm/i915/display/intel_plane.c
+@@ -1794,6 +1794,7 @@ static u8 intel_joiner_affected_planes(struct intel_atomic_state *state,
+ static int intel_joiner_add_affected_planes(struct intel_atomic_state *state,
+ 					    u8 joined_pipes)
+ {
++	struct intel_display *display = to_intel_display(state);
+ 	u8 prev_affected_planes, affected_planes = 0;
  
- 		if (cleanup_done)
- 			continue;
+ 	/*
+@@ -1811,7 +1812,7 @@ static int intel_joiner_add_affected_planes(struct intel_atomic_state *state,
+ 	do {
+ 		struct intel_crtc *crtc;
  
--		intel_crtc_wait_for_next_vblank(to_intel_crtc(crtc));
-+		intel_crtc_wait_for_next_vblank(crtc);
+-		for_each_intel_crtc_in_pipe_mask(state->base.dev, crtc, joined_pipes) {
++		for_each_intel_crtc_in_pipe_mask(display->drm, crtc, joined_pipes) {
+ 			int ret;
  
- 		return true;
- 	}
+ 			ret = intel_crtc_add_planes_to_state(state, crtc, affected_planes);
 -- 
 2.47.3
 
