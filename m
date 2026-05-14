@@ -2,64 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eHwEJdEgBmpDewIAu9opvQ
+	id qPRUIlfzBmqtpQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2026 21:21:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 12:20:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47857546509
-	for <lists+intel-gfx@lfdr.de>; Thu, 14 May 2026 21:21:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B20B54D343
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 12:20:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9D23810E3F0;
-	Thu, 14 May 2026 19:21:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AFC6E10E5FF;
+	Fri, 15 May 2026 10:20:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nKyVP68+";
+	dkim=pass (2048-bit key; unprotected) header.d=worksmobile.com header.i=@worksmobile.com header.b="n8kHmuWE";
+	dkim=pass (1024-bit key; unprotected) header.d=korea.ac.kr header.i=@korea.ac.kr header.b="Zc9nNL6n";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DEC2110F324;
- Thu, 14 May 2026 19:21:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778786511; x=1810322511;
- h=from:date:subject:mime-version:content-transfer-encoding:
- message-id:references:in-reply-to:to:cc;
- bh=0+xIWUjqZP8UpZr0Zsu97heHOAtPYHie0adElNZ5HmQ=;
- b=nKyVP68+dX8RG8HcBYhlrnIg2V7VW6kdCAZJfUe4fuTsgDU+c2KSxr0L
- slREmx4OCe/QdSKrrNibcp5jOtloq4EUzuWByNYMalyUZDapYxJZEf+Kj
- 81bTARFarE5EXGtXTbnFDMGRNCBbU8FSRxa4iL8k5Mb7sxe54FTjGYK1Q
- tyIi7sIFk4f++2QEFG48Yr2gWe6OuTKaZybTaVQuwQG1EJ97OO4iBJFJJ
- v3bXOKA4OqpFEhVyV6gbsLJ15zxyKaF0Oll9vQMltj+XKiIh3Ufac1QNx
- 60/ilzjZcovaxOjz92RiamEjjYWE5/Tdlm7JJ0V7t3E5RckRZ6ogkxNWc Q==;
-X-CSE-ConnectionGUID: IiL5W60hQPix2A35yzRS3A==
-X-CSE-MsgGUID: 1O2i+ANQSbOL6j1AdEC6tw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="83351257"
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="83351257"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 12:21:50 -0700
-X-CSE-ConnectionGUID: p0dXt/QnSG6uJIqDoMBvzw==
-X-CSE-MsgGUID: 2mmBACIkQACbWeMPPxbTZw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,235,1770624000"; d="scan'208";a="237611829"
-Received: from aschofie-mobl2.amr.corp.intel.com (HELO [192.168.1.16])
- ([10.124.221.189])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 14 May 2026 12:21:50 -0700
-From: Gustavo Sousa <gustavo.sousa@intel.com>
-Date: Thu, 14 May 2026 16:19:34 -0300
-Subject: [PATCH v3 5/5] drm/i915/bw: Extract get_display_bw_params()
+X-Greylist: delayed 602 seconds by postgrey-1.36 at gabe;
+ Thu, 14 May 2026 19:42:33 UTC
+Received: from cvsmtppost105.wmail.worksmobile.com
+ (cvsmtppost105.wmail.worksmobile.com [125.209.209.76])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5766510E3DB
+ for <intel-gfx@lists.freedesktop.org>; Thu, 14 May 2026 19:42:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=worksmobile.com;
+ s=s20171120; t=1778787150;
+ bh=1eHtKfnZZvV2FZWSbFdMFCZ/Jeqh4dQweFotTtU0Uak=;
+ h=From:To:Subject:Date:Message-Id:From:Subject:Feedback-ID:
+ X-Works-Security;
+ b=n8kHmuWElZGmiBaw0VKb3pQgBkPBbzRCcjMfvQiLc1uIJsH8+c7aG/tlQmgqwlgBl
+ GqMHpIGk8xi1sUoaSIUU2rTfALamHYaUASDLa6vTkEcx8j6pMhZFc0L8bE8OUch8/y
+ /ZNnpZaBAqZcv/OR53ocUwspk/z8hHZtnyHhJbk/HV4eLZwCW8PqZW5n5+sjBwy8ok
+ So17h+JjaMJJXHPTRLBe6maPxx8+1cBGYf6wzq/vuJ2bYdSyGeTasLSyyqz0njUgJv
+ f2KA1V/xpHwNvXLqQb/mWaFTrq75XtF2fE+uN3fkmtN8RVkRfaYJRI/X8TZD1SSI95
+ pBabM9LX+o/pg==
+X-Originating-IP: 163.152.163.130
+Received: from cvsendbo001.wmail ([10.113.20.163])
+ by cvsmtppost105.wmail.worksmobile.com with ESMTP id V-k3iwlWTcClvV6sWv-7zA
+ for <intel-gfx@lists.freedesktop.org>;
+ Thu, 14 May 2026 19:32:30 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=korea.ac.kr;
+ s=naverworks; t=1778787150;
+ bh=1eHtKfnZZvV2FZWSbFdMFCZ/Jeqh4dQweFotTtU0Uak=;
+ h=From:To:Subject:Date:Message-Id:From:Subject:Feedback-ID:
+ X-Works-Security;
+ b=Zc9nNL6nQmVpoqHx3BhhpSVgEdphZnO22JN7CihzTL/vanUJo7RFGjGO9fT9gOHRP
+ hggV07eGEVMd7EaiU4HQhOXF24/hg6C5JGXUaJ7Go3SNeH+6UjbZkEhbyIcrIJXEUq
+ GZ8Zr4BtdzWI/JevJzUZAl0umBZrKqvlgwGP0+Og=
+X-Session-ID: DSRmjtN-SyWT0Zk01YbWfA
+X-Originating-IP: 163.152.163.130
+X-Works-Send-Opt: penljAIYjHm/FqM9FqJYFxMqFNwYjAg=
+X-Works-Smtp-Source: A9K9Fq2XFqJZ+HmlFAbd+6E=
+Received: from s2lab05.. ([163.152.163.130])
+ by jvnsmtp403.gwmail.worksmobile.com with ESMTP id DSRmjtN-SyWT0Zk01YbWfA
+ for <multiple recipients>
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Thu, 14 May 2026 19:32:29 -0000
+From: Ingyu Jang <ingyujang25@korea.ac.kr>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/gt: Use IS_ERR() check for kernel_context() in
+ selftests
+Date: Fri, 15 May 2026 04:32:27 +0900
+Message-Id: <20260514193227.2472962-1-ingyujang25@korea.ac.kr>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-5-68727d6fe3ec@intel.com>
-References: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-0-68727d6fe3ec@intel.com>
-In-Reply-To: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-0-68727d6fe3ec@intel.com>
-To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>, 
- Jani Nikula <jani.nikula@intel.com>, Matt Roper <matthew.d.roper@intel.com>
-X-Mailer: b4 0.15-dev
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 15 May 2026 10:20:01 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,134 +87,128 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 47857546509
+X-Rspamd-Queue-Id: 9B20B54D343
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[korea.ac.kr,none];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[worksmobile.com:s=s20171120,korea.ac.kr:s=naverworks];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FORGED_SENDER(0.00)[ingyujang25@korea.ac.kr,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim];
+	DKIM_TRACE(0.00)[worksmobile.com:+,korea.ac.kr:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	HAS_XOIP(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ingyujang25@korea.ac.kr,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[intel.com:+]
+	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Action: no action
 
-Just like it is done for the platform-specific bandwidth parameters, use
-a separate function named get_display_bw_params() to return the display
-IP-specific parameters.  This simplifies intel_bw_init_hw() by having
-just one call for each of the *_get_bw_info() functions.
+kernel_context() returns an error pointer on failure, never NULL, so
+the NULL checks on its return value are unreachable. On a real
+allocation failure the subsequent dereference of the returned ERR_PTR
+(e.g. ctx_hi->sched.priority = ...) would oops the test kernel.
 
-v2:
-  - Prefer to call get_display_bw_params() only once in
-    intel_bw_init_hw() instead of having multiple calls in each of the
-    affected *_get_bw_info() functions. (Jani)
+Use IS_ERR() and propagate the actual error via PTR_ERR() in
+live_preempt(), live_late_preempt(), live_preempt_timeout() and
+preempt_client_init().
 
-v3:
-  - Call get_display_bw_params() only after the check on
-    HAS_DISPLAY(display). (Jani)
-  - Return &gen11_bw_params only if display version is 11. (Matt)
-
-Cc: Jani Nikula <jani.nikula@intel.com>
-Cc: Matt Roper <matthew.d.roper@intel.com>
-Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+Signed-off-by: Ingyu Jang <ingyujang25@korea.ac.kr>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 41 ++++++++++++++++++++++-----------
- 1 file changed, 28 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/gt/selftest_execlists.c | 28 ++++++++++++--------
+ 1 file changed, 17 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 5821397dc27f..07407384e261 100644
---- a/drivers/gpu/drm/i915/display/intel_bw.c
-+++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -490,6 +490,30 @@ static const struct intel_display_bw_params xelpdp_bw_params = {
- 	.displayrtids = 256,
- };
+diff --git a/drivers/gpu/drm/i915/gt/selftest_execlists.c b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+index 21e5ed9f72a30..36f51805f74e3 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_execlists.c
++++ b/drivers/gpu/drm/i915/gt/selftest_execlists.c
+@@ -1742,13 +1742,15 @@ static int live_preempt(void *arg)
+ 	int err = -ENOMEM;
  
-+static const struct intel_display_bw_params *get_display_bw_params(struct intel_display *display)
-+{
-+	if (DISPLAY_VER(display) >= 14) {
-+		return &xelpdp_bw_params;
-+	} else if (DISPLAY_VER(display) >= 12) {
-+		/*
-+		 * RKL's SoC was based on ICL and the display, even though being
-+		 * gen12, had changes to the memory interface to match gen11's,
-+		 * consequently inheriting gen11's display-specific bandwidth
-+		 * parameters.
-+		 */
-+		if (display->platform.rocketlake)
-+			return &gen11_bw_params;
-+		else
-+			return &gen12_bw_params;
-+	} else if (DISPLAY_VER(display) == 11) {
-+		return &gen11_bw_params;
+ 	ctx_hi = kernel_context(gt->i915, NULL);
+-	if (!ctx_hi)
+-		return -ENOMEM;
++	if (IS_ERR(ctx_hi))
++		return PTR_ERR(ctx_hi);
+ 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
+ 
+ 	ctx_lo = kernel_context(gt->i915, NULL);
+-	if (!ctx_lo)
++	if (IS_ERR(ctx_lo)) {
++		err = PTR_ERR(ctx_lo);
+ 		goto err_ctx_hi;
 +	}
-+
-+	drm_WARN(display->drm, 1, "Display-specific bandwidth parameters not found!\n");
-+
-+	return NULL;
-+}
-+
- static int icl_get_bw_info(struct intel_display *display,
- 			   const struct dram_info *dram_info,
- 			   const struct intel_soc_bw_params *soc_bw_params,
-@@ -840,6 +864,7 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
+ 
+ 	if (igt_spinner_init(&spin_hi, gt))
+@@ -1834,12 +1836,14 @@ static int live_late_preempt(void *arg)
+ 	int err = -ENOMEM;
+ 
+ 	ctx_hi = kernel_context(gt->i915, NULL);
+-	if (!ctx_hi)
+-		return -ENOMEM;
++	if (IS_ERR(ctx_hi))
++		return PTR_ERR(ctx_hi);
+ 
+ 	ctx_lo = kernel_context(gt->i915, NULL);
+-	if (!ctx_lo)
++	if (IS_ERR(ctx_lo)) {
++		err = PTR_ERR(ctx_lo);
+ 		goto err_ctx_hi;
++	}
+ 
+ 	if (igt_spinner_init(&spin_hi, gt))
+ 		goto err_ctx_lo;
+@@ -1934,8 +1938,8 @@ struct preempt_client {
+ static int preempt_client_init(struct intel_gt *gt, struct preempt_client *c)
  {
- 	const struct dram_info *dram_info;
- 	const struct intel_soc_bw_params *soc_bw_params;
-+	const struct intel_display_bw_params *display_bw_params;
+ 	c->ctx = kernel_context(gt->i915, NULL);
+-	if (!c->ctx)
+-		return -ENOMEM;
++	if (IS_ERR(c->ctx))
++		return PTR_ERR(c->ctx);
  
- 	if (!HAS_DISPLAY(display))
- 		return;
-@@ -849,6 +874,7 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	if (igt_spinner_init(&c->spin, gt))
+ 		goto err_ctx;
+@@ -3384,13 +3388,15 @@ static int live_preempt_timeout(void *arg)
+ 		return 0;
  
- 	dram_info = intel_dram_info(display);
- 	soc_bw_params = get_soc_bw_params(display);
-+	display_bw_params = get_display_bw_params(display);
+ 	ctx_hi = kernel_context(gt->i915, NULL);
+-	if (!ctx_hi)
+-		return -ENOMEM;
++	if (IS_ERR(ctx_hi))
++		return PTR_ERR(ctx_hi);
+ 	ctx_hi->sched.priority = I915_CONTEXT_MAX_USER_PRIORITY;
  
- 	/*
- 	 * Starting with Xe3p_LPD, the hardware tells us whether memory has ECC
-@@ -861,23 +887,12 @@ void intel_bw_init_hw(struct intel_display *display)
+ 	ctx_lo = kernel_context(gt->i915, NULL);
+-	if (!ctx_lo)
++	if (IS_ERR(ctx_lo)) {
++		err = PTR_ERR(ctx_lo);
+ 		goto err_ctx_hi;
++	}
+ 	ctx_lo->sched.priority = I915_CONTEXT_MIN_USER_PRIORITY;
  
- 	if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
- 		xe2_hpd_get_bw_info(display, dram_info, soc_bw_params);
--	} else if (DISPLAY_VER(display) >= 14) {
--		tgl_get_bw_info(display, dram_info, soc_bw_params, &xelpdp_bw_params);
- 	} else if (display->platform.dg2) {
- 		dg2_get_bw_info(display);
- 	} else if (DISPLAY_VER(display) >= 12) {
--		/*
--		 * RKL's SoC was based on ICL and the display, even though being
--		 * gen12, had changes to the memory interface to match gen11's,
--		 * consequently inheriting gen11's display-specific bandwidth
--		 * parameters.
--		 */
--		if (display->platform.rocketlake)
--			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
--		else
--			tgl_get_bw_info(display, dram_info, soc_bw_params, &gen12_bw_params);
-+		tgl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
- 	} else if (DISPLAY_VER(display) == 11) {
--		icl_get_bw_info(display, dram_info, soc_bw_params, &gen11_bw_params);
-+		icl_get_bw_info(display, dram_info, soc_bw_params, display_bw_params);
- 	}
- }
- 
-
+ 	if (igt_spinner_init(&spin_lo, gt))
 -- 
-2.53.0
+2.34.1
 
