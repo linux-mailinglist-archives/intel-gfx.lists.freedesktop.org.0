@@ -2,159 +2,151 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oEM+EKk2B2rftQIAu9opvQ
+	id hgasA7g+B2oCvAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 17:07:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 17:41:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A0D74551DEF
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 17:07:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D06552525
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 17:41:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A060410F561;
-	Fri, 15 May 2026 15:07:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E0510F573;
+	Fri, 15 May 2026 15:41:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Fl2PHlRI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gfevskSQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2D86410F560;
- Fri, 15 May 2026 15:07:17 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D36510F56A;
+ Fri, 15 May 2026 15:41:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778857637; x=1810393637;
- h=from:to:cc:subject:date:message-id:references:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=REv4OlRoOcJUTQuzTu3cyGi61M7XYDXE15X4MeySvBY=;
- b=Fl2PHlRIvpbJv92IRdZsan5UaUZZrpQb/dZnr8DUso5cDSxtO84OVEiK
- ko53HTS/Dm/usKnGzEdO2aE7mRfQNoNJqIn6ypjA9zZ5HWabXVK6rGT+c
- hGYfvAYTRG4sLisRE9QL2r5xzSmDUw83/E2ARt81njkTN0hJhZUQRJA9R
- q1/2cWQTYzynjEpc1mTNocqhT9/bXn21sD23B1kqLRKusOQ1wSJTYFOeO
- kX//aj1dZk28HwZ98ExbGArS2cvjD+FLn4jT3Wp3dR76ETLCFWER2O2kG
- IXAGlbv7lD+D3RG8Ygjy82dCF3ZzvH1VpEhHWQ/LkEssm/LKrc6g2yS7n w==;
-X-CSE-ConnectionGUID: UuzpiPn+TuuUxYb7Z5O+gw==
-X-CSE-MsgGUID: 1MtorvRvTHSoWpxoG+SlLw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="82379883"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="82379883"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 08:07:16 -0700
-X-CSE-ConnectionGUID: bRcRDoq6RLShBgJHXWCI3w==
-X-CSE-MsgGUID: ggdvPp34TRCLLHcuMChfWw==
+ t=1778859700; x=1810395700;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=dt0qimhKGXxPgGmwb0KjX+TxTHGGrR0caXO9xrBs8Yg=;
+ b=gfevskSQdzPMbKiGE/49GjlhPOFAadOmkOib1HxJOYcW/EQQpr6GHJfR
+ lT0JLPI/WQKFxa0t+yW6DGq8cALaNtimlqbghmgwgm0p9wx1JT+BbHowU
+ jZbp4HcBUX/tuJJtofyyeAxNE+8OXyVa2FAzj5X18/NOd8U7v1L+0qF//
+ DWrY188r6rieo8Oxv/lZyBQGhdYKBQLgoK9iCjaRL9RCrUz8kx9ELJ4fN
+ 4gUjSEFsOZmcDc+U1u+1JrSEioP370d8pMu1yNs4C+IQQNsDMCeS+AG5C
+ CriS3y9J7oRaIYPj+5VVBk2GZJ1OxAfm/uIJV7eGBP2ZNe47O6bd0LSwv A==;
+X-CSE-ConnectionGUID: DIDVVd+dR5WbV1fUe5CTmA==
+X-CSE-MsgGUID: qWHTobOES6SMjZPDKiMMmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="83687580"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="83687580"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 08:41:40 -0700
+X-CSE-ConnectionGUID: yO05cfFZR/u65tjM9oqYxw==
+X-CSE-MsgGUID: q15VAAJ0QB2/YQuRMqid1A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="243689591"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="235679841"
 Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 08:07:16 -0700
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 08:41:39 -0700
 Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
  fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 15 May 2026 08:07:15 -0700
+ 15.2.2562.37; Fri, 15 May 2026 08:41:38 -0700
 Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
  FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 15 May 2026 08:07:15 -0700
-Received: from BN8PR05CU002.outbound.protection.outlook.com (52.101.57.5) by
+ 15.2.2562.37 via Frontend Transport; Fri, 15 May 2026 08:41:38 -0700
+Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.68) by
  edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 15 May 2026 08:07:14 -0700
+ 15.2.2562.37; Fri, 15 May 2026 08:41:36 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=dE00qul76dOA8lQDzaknHgjkx6kj0AJKc65Niee5wO8ZNhthDxilgyIR3VyOMHJpCVY/WsE4qIgGvJeywAz6Oo0GtDXKdMNn3lwAwseAXXxm14UhYRIeI3F9/Tb1+QUTAbeZTctIPQRZc/CStCR2nx48x90Pu9JiqU3Q3j9w7GODwGcWqHF5/cbGERQcq4jrXy5kZ6Nj3ymzF3v1uCwQFsuwNbOuTCrsJgFo9xjyuYTB4yXQnoeXur+jH5/ONw9U/QS0XyDMZE7n2LVOVLuIS0deLn76GBGsUXVHF28mN6bNEbYXbK1WNum7/eDLDYeEb7EVV15+zY4fHVqmqfMYZw==
+ b=jDqL4NIE62opi8IZhVLiZUzpPNapVzgDoVN7lvqfMdyspboYNXdACjR7eA9Jzu8ty3AwnxU+FXSjLQH7JCnyRTQadw/YjzZjiUoXhEJL/7G2/qd5wFsrJwLz4AthzEtLcvpgvlUpKxW04jB3oRlSHaQy1YJEv9+HG8Ne66aPgo1q3c9YITGh6BgSMgDz92vIXA7yCwGuJESpPjZdcnHlrWrD4KPrbBlDNSeMPiYcRV96ieP7JOvGO17SMCHhzY2Ay33OXT4jEEHC60WDfuMtVfGNw30g3DOxr3AD1amtnkDz65PYUMt0xa62jZSagWrxyDtiAChDQpuc4M0MpfX99w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=fN5OIHc2xLGtgSwokY9BvM7mGV8g3xvGrRSQRNNQjqM=;
- b=Z6Ve/0NTl3lMfZWOutg1m+DCBHAnSp/k3kEbWc24VjK0pbuJZF6HNzfg+4yT+t1L1urO9sgQ4oMrvJ/kg+c1tgmL8p3WEs9g/3wZVMRqWlnTnzyeyMo1iAxR8eaLmKbpqszq0hpbEo077nRrkQIp3btiQKSqtyQAfEaHE4khA8PpxHhI/SGWSMr+uzOc2MjBYO2v1Sz+EBsx8YC0YyOpNj7es/uzOJwBzxdhJvmX6W99aOoXaJrbzfAW3yyOMW/KU7DwK/OLobE+6m9neZamLBPisoESQ7mt4KC0Gj4TldUEUMhFfnuiG+BNJfhjCqcl6+a7E0aLvq+ZMUNKCS2dbQ==
+ bh=MN2HJHJ/fsTQivL3e+P7vnkUXmMNk/8GBJ+E94B2lJs=;
+ b=nt618lh15q+pWM3kWeyYKIrG1iL+XbaE17QQVvungezR6vX7ZdkM3107Yd86H0aMtaJZcK2t2D4ZCehpr/CB3kCJzCQZGSQpsV6D7L5Pa+lm102FPqNfO6iSjYL4FP/QNp/uqNFl1nisbR05bhjqDcjimlBH8m/4DSVn47fBxoe12Bf300oYWVECI66/LZRtje6b2JFmuAWYxhwny/8HanBCFLQcCFNbb/IPHQg8FjOnkOeBQegzVFTcg8rrOxA1rfBIuWYyMLG1dq7glYLfgjNPTmY3p6WmNw9GeaeEaWDNRxRkauGnL20oXt637xKAzDWQc5wsPUWNCI3SJ5duzg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- (2603:10b6:f:fc00::f13) by IA0PR11MB7813.namprd11.prod.outlook.com
- (2603:10b6:208:402::19) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Fri, 15 May
- 2026 15:07:11 +0000
-Received: from DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::308:3508:f7cd:9717]) by DM3PPF208195D8D.namprd11.prod.outlook.com
- ([fe80::308:3508:f7cd:9717%3]) with mapi id 15.20.9913.009; Fri, 15 May 2026
- 15:07:11 +0000
-From: "Kandpal, Suraj" <suraj.kandpal@intel.com>
-To: "Sousa, Gustavo" <gustavo.sousa@intel.com>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-CC: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, "Murthy, Arun R"
- <arun.r.murthy@intel.com>
-Subject: RE: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver >=
- 30
-Thread-Topic: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver
- >= 30
-Thread-Index: AQHc5ERRwRj9Up3Kxk2Kig5c92abY7YPLT6AgAACsiA=
-Date: Fri, 15 May 2026 15:07:11 +0000
-Message-ID: <DM3PPF208195D8D69D833B6EB37257F1497E3042@DM3PPF208195D8D.namprd11.prod.outlook.com>
-References: <20260515082443.975592-1-suraj.kandpal@intel.com>
- <87ik8opvrq.fsf@intel.com>
-In-Reply-To: <87ik8opvrq.fsf@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: dkim=none (message not signed)
+Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: DM3PPF208195D8D:EE_|IA0PR11MB7813:EE_
-x-ms-office365-filtering-correlation-id: e9b93e0c-6323-4ab4-3ec0-08deb293a406
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|38070700021|11063799003|18002099003|22082099003|56012099003|4143699003;
-x-microsoft-antispam-message-info: cOkeZxGPjftUplulO8WT4ZJ3bWKwBI4pUuoiaNkxQ+93ViwJ8Plon4lEtT5OqQ62ulOJkjXxILCDkBh07yrDDMFyfuwTo92BdW/3ezi3wL0MJLTvojgBAIzlPE8NtdN5/o/lpt7KCMPDtfL2HbxrRmOFFxgFTVD+yHK/AExdtF0srN+ArVUG3Sbccfl9p0BXYeDO8QhlBuIqBlQHkEeqyL6/RDB1UPzGWVoEjHl/MT7Np2UYMA6SHxm06HpLQ/1lbrw5jkbgSMtxIxNQiR42ydKYoB4wLs++jxnBEQqWZmJR56BCGhdHZyzv2xaIrHWFs604urA+DepcRLZrZImGKbl8l/tHR1twncz2XHBPCqOJAbQ6M7sRQMwIEKTqR29EtkxPHYZgrzC17zBqAcAlL8QHVs9iLif+ppzi3DUKZxqTFPy4YoxLBtbfgLyuR66vqPDJ+1nsaB2r3EYwpgf2WeUHpEW11d77nCLCxRenmGNfm2GR+WdNFEgxbnX/IX9KoO0T4tJa9iLTF4iXR8o1V794Du/Y6p/4TXgXHOda5MjTfN9na83zqb3aWNkKJKNntRp4O3NvLPgCKOlWLccQa/9zInip/hymD63gdO/zTS4gLckTTUTl6qVadpZci6nkM31yuDs77O8Dt1XvR04YeP9vElqpVS/r9XF3eof7Dvsm6liEO59/genP+KPPlRBcCPxq8ShadTGDefeAlvH7OUgxuBzt1MQgJ39kD1LOydSx1RhOlWDAtM8xqxKcyZ87
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM3PPF208195D8D.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(38070700021)(11063799003)(18002099003)(22082099003)(56012099003)(4143699003);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?iMvsoB7zLiuUkvj1O3gL76i8k3sXK+gCX0P+2fdKtcS3cI6dkifbHkA7PsDY?=
- =?us-ascii?Q?Q50O+5FPww/ZV5q27zL7GX9Kpu1Lenp0GRyUGO+KJL51Z39ODlU8emvlCN68?=
- =?us-ascii?Q?Tj4iEFVnEKZXOFQmUyqOST1TQaO25IyWzZtZtKGa1f3/jSJ8CPJIZzDSnD+F?=
- =?us-ascii?Q?QEdDJnuwPoGWhxm/YF4sk8fsZ0VAfWre8QP7n55OsAClFog6A52Y8aK4HvnI?=
- =?us-ascii?Q?oyJcaDtPulUfb0HQZsAjDxDGy+bR57w1Ke8Fp4Qt60qk0F/6yqtidn8sdqzp?=
- =?us-ascii?Q?10/Lj67eVS2XLOJdumC4eft2PXuiui51c4OVdsHtNkKk9FzW/Pq9lLxQgond?=
- =?us-ascii?Q?mLH2IyNLvWbXFI49/2N2I5k0iSnlt78hVwnBiJnGGD3xetpaH0mdoFgi3gKZ?=
- =?us-ascii?Q?nKNNCptHa7yra3QF3nG205UOC9R0pSxBx9WfXTeZHF/uYgsdE9IESGUueEW5?=
- =?us-ascii?Q?N4t0kgvS4GmcIyW+86RTYBs+UuMFN15sicEQU/gTFiqS1uVANiv0bliaTXjl?=
- =?us-ascii?Q?VGc77VU81tdjOzseWJpbEhz/k2O5pwqz1T6aBOL0lXJDt3PGWirRQSQCodkM?=
- =?us-ascii?Q?fmONGZ/WL14FK85UPZbLWRPVBh4mu+actTcb1hqMsefTtM5FpmpMp4YaHrX4?=
- =?us-ascii?Q?0MRvwRhNGJcvzVIcnhG1Edzr5gn9arh+eM6EI24lu0a5Z5k1YxGT16ItCsxu?=
- =?us-ascii?Q?zbTc32m6GxZv+PSk9uBIBfa/ptw0oIIJYDm0vMW59VZX6z1OrzC9q5hguRoa?=
- =?us-ascii?Q?E0n5l0wYm5fF2WF4qDiWVG1VP8Fqxkk1OuxPptmHGKTMk6LJ1l5onf2g2GC/?=
- =?us-ascii?Q?9pRQOezqsuVycrmwOPpuV0SAiIdXpOW+AcolH1aa7sVU7ze+48nXUfW8aSlR?=
- =?us-ascii?Q?Z2g8aO73kIi0a45a/bjUlyqG0SeWeo+yFjEyYbj7E5XxCSpdk1q1af2mNBFK?=
- =?us-ascii?Q?d7fUEfBf9HG6xNG/t+P2nKFBUgvHGVDpghGe1dCwI0EY+B5kyM7fMcmVDlbC?=
- =?us-ascii?Q?HPOPpcDKy/Q+DM/cbfweVxY0TSPlR87+hgEMRYfE1NNRSPu1NBRSVLtbYdw3?=
- =?us-ascii?Q?vtx9LRlB/9f7dLCNTfrLNP/dCi8avdl+sj714XHqqXr7R3hJf4eB8WvtvGOc?=
- =?us-ascii?Q?6YG7yPbRkzBhxCfdZw7KOvl261hHEUJhmbYVD0fo59hoQQtEy1x5N2gCkWLO?=
- =?us-ascii?Q?rxDaoWeADrKS9S7Hi+yBgItY4g2nX3lC/zN6Lqq4QJtvrnciOjH0QUDm2oH5?=
- =?us-ascii?Q?gZUDFzuP199weE+3npz4P6CuZfU9f29ojADuQfwbahrwlHlHzmOiCNv28xKn?=
- =?us-ascii?Q?9r0of6mjltcX94KXVRNLtQ3OGn7zgpw1idFUBPD6dV+k/R0D/6o18BP7Q2Hu?=
- =?us-ascii?Q?xVAblnOVYux7uelbfnRztTEqcMhcXi2FBTtLY8JrOEVJvhiNPhWjLtMRUP3P?=
- =?us-ascii?Q?dcsFy1YtrOSO59ojXjF2pWtqEtBSOGas58A0WJj4HM+RjooIzXwvuWp0Dawf?=
- =?us-ascii?Q?qbuLVojdObPJbWG1gudRQtV3aMF+9s4zLpDG23ppS8zp3OoimrPh3AULJRPf?=
- =?us-ascii?Q?UhEY0OmuuM58JUqYdQiyXZz/Jzk4qSrRObvaRqr/fSM4L+F8avBQCdyJM+OA?=
- =?us-ascii?Q?774XFqzrNPHE8mVqFN6Ye2obhQF7jGwUoEft9Owa6Rih3gOobSKcY6049czn?=
- =?us-ascii?Q?i2Y4SrtcZ7pjiXB0dpjY2ybXIlF4eOqLR6r4hL7uJxzo+LJMa4y3WEqggMr1?=
- =?us-ascii?Q?vxo/DKZBZg=3D=3D?=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com (2603:10b6:510:1c7::14)
+ by PH7PR11MB7002.namprd11.prod.outlook.com (2603:10b6:510:209::17)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.9913.11; Fri, 15 May
+ 2026 15:41:32 +0000
+Received: from PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a]) by PH8PR11MB8287.namprd11.prod.outlook.com
+ ([fe80::a0e5:e99c:ee7b:620a%5]) with mapi id 15.20.9913.009; Fri, 15 May 2026
+ 15:41:32 +0000
+From: Gustavo Sousa <gustavo.sousa@intel.com>
+To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: Jani Nikula <jani.nikula@intel.com>, Matt Roper
+ <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v3 2/5] drm/i915/bw: Extract platform-specific parameters
+In-Reply-To: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-2-68727d6fe3ec@intel.com>
+References: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-0-68727d6fe3ec@intel.com>
+ <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-2-68727d6fe3ec@intel.com>
+Date: Fri, 15 May 2026 12:41:28 -0300
+Message-ID: <87cxywptnb.fsf@intel.com>
+Content-Type: text/plain
+X-ClientProxiedBy: SJ0PR03CA0054.namprd03.prod.outlook.com
+ (2603:10b6:a03:33e::29) To PH8PR11MB8287.namprd11.prod.outlook.com
+ (2603:10b6:510:1c7::14)
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: CZiH0JaHUDetAjZMUya7X6YUvU03cUjCtO35Q2KxaXrPDilaFSTmiAuJxfhuoUpuh7G2G6mFQfnk4OnVyBZQz6qvMeXbPTGjYNLnLJ0Y9bzEMVYpvPf5Wvt6GjmpzxZmDBzMGMpo1VZKuMMoM5IDDtbbkXFggYKTbblW3KEhp+uFRXEQfv5EzXCts4nelWopoLG5770PWD4Hkx/OH9AA+s/ksCM0rU3aLbYYQAYeobi2D6x7Jw3C9MbT0nURWZIioWkyDS6lFFwVrgJt656BT398ynjeV4Up+1eqb1sJ84X+7+2s+ATZs1OFkNDlMRr4XYoVZfpcl4bsKBeqPqvxCw==
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH8PR11MB8287:EE_|PH7PR11MB7002:EE_
+X-MS-Office365-Filtering-Correlation-Id: 971797f8-da6f-4a02-f21d-08deb2987017
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|376014|1800799024|366016|22082099003|11063799003|56012099003|18002099003|3023799003|4143699003;
+X-Microsoft-Antispam-Message-Info: oFaht8kFcUfIEaHwzJTFqSBGkdvZsAm2OoAL2r0oHvlnZMTLNwvwywvxR2dAINptWxqzmRPsCoNSpbUfNIX0qvFMQiOe7LLQkz1DCUdQonEtBEKoDV2xNUp3DdQ1dcCJDN+QWPmdGzuMEJSEkYXfphqasvx/olveK05OSjXnVwdluDupmI0Yr04WwsMinfkh6toYpIDodFgzZOi4ztmmt/AolELXCKT8MIliNhnfB9Q3ZgVFjXGiut4KrSAhV+mwfECKfHW02MRVcPX9B4mnDdRADw98/2h7HSOl6I6veNo2S82wpRaYKETec+ORgrrD1tNWxJDfQHGHpyUdUx7SbUmEaAgsCHmeYsNPlm9tISfzoE413+B0t0GF0AJZqDJ03ghBCmWc4VHNBBtxCRne+kv7DEE9xVjyDcM/c0/3AbJV1Hiv6Pqxpg+7tTYZd68sKiq40TQH+cQ1X5JmYl9Lp/07tVotMN3FeUwLBMrkpducqu0noUbhJSvD6g+1vyyZtvcD1jchqVc+qvZZorfgUpmbcdsjAA2n+CCQvszZcmGGvEhp/4MGqzF2UzruTANWzrFXxu2BFPGBd1sQ/W4UbH7J8q5Ut9V2yRodZbRw56Eh0btuDhQ19MNC/+nEyfOTf9efGNI922uFFsk1gFclBLoWINErPI6HKGdSbnn5n9g8QNzwbQmNRvF1GPejOX74
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH8PR11MB8287.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(1800799024)(366016)(22082099003)(11063799003)(56012099003)(18002099003)(3023799003)(4143699003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?scV7XlAp7Xc/Te4Xn5VV80Drt880EzKJmd3ppbf+bvLXws2WMzYmHk6wwWVX?=
+ =?us-ascii?Q?uwlc1YkHBSvY/tCSCgTKZzFyA7EFOF59DXDEwSGe5W2xI4W9nRxY/MxRf4rg?=
+ =?us-ascii?Q?9KOMp08/MDu/dySgY9tzyQc+cFw1g2WifR7/0ZX/etQuO/nTup3jNCFBWs+7?=
+ =?us-ascii?Q?EmtvNLZbrcejlnRbZUxqi1MHfGIPisRP36pyHey2FxgswbZtcwflH/L3f15e?=
+ =?us-ascii?Q?L4BDzMINdowsYZyF8aU36KqkjY00JOPF7RM7UZBhn6JP6+N6iMmow9NRf2PH?=
+ =?us-ascii?Q?2Z0RI83DT6zd3NzrPOHXoc4XWe7L64p8To8TnwBc/SSY/s89XrSQdJoAWRH9?=
+ =?us-ascii?Q?58OEvlDVBa3iIKbQqrT7KEtxFTubN5/M8WbsFuhCe1tW6cbi/vz+JBA9skle?=
+ =?us-ascii?Q?SmedkHGz7NliDW8DQnRz9OstrAGVKjU1o+SrBlItvjuOSNfK1OmXFBiXRT3F?=
+ =?us-ascii?Q?NHghG7j8EoHDHJv4ds29TEu3dPmDOat4i1ynMn+5ovuUhJ4xD5wxsOyIOv76?=
+ =?us-ascii?Q?V0s2NbpWQKDp1R0GRPbyD5qxmRRf0NXykGIa9K9v2MlLXqj6HXcnwaxM5wI5?=
+ =?us-ascii?Q?4snoZpAi+vn2dzvkqP1nuYZ8Ir0cCKx+DMPdtFhgxJYhzmOiT+i5SQH+PS06?=
+ =?us-ascii?Q?E/xxFanh0bqZ3mYnVGS3FAfv/xEhIprlPM2Kwfyt3Q0edGjG2/8myGuy3wT5?=
+ =?us-ascii?Q?F0vue7AJ07XZ7Z5w+h2BzWmrcDRrtt11VfOEs7wKOsTxlrqqI1w72rO0wiai?=
+ =?us-ascii?Q?9aoqUjAVKZ4AEhmnW0OxKMjiZWuTGmFDoCK4HxDY9mkB4UvNwN5vcJ14KkCl?=
+ =?us-ascii?Q?9/ewuNnulb6VxrBwzv2sVQS0gkHJMD2hmcPSeI1qd2efHVG4XOBH0B0/U3EM?=
+ =?us-ascii?Q?I2VYDSkhxN3hWoXsrkyULcjNTmwxlL2gUidk0U13cgxbIcoSirqH22CKA6e2?=
+ =?us-ascii?Q?CpsL6yysj4McoOMk6g+3cQk2pI7vZsRNVujQs4lUz6b6rtzfpr/nf3cax9pf?=
+ =?us-ascii?Q?knI3BOHjaMWQZTXe91+EgPz/feKwrHxtwJwOmDOIjrRaZGDg0XSVgXsBWkFF?=
+ =?us-ascii?Q?az65zjoZwSAtFk0pYhzgAIPnKVXWiVaWNIG+QM9wcjznfq73aKyyUZA8Olpj?=
+ =?us-ascii?Q?efTSjY9uRKRnq3S19aFi/j5le4KAZQlD5F2fzyiHNC2vNhyt5tYWLtac3Hz0?=
+ =?us-ascii?Q?SkWN5xbXDkMS8Iv56otpR6k62UdbscjSTIUQm4L0Iiz36qSe+r3aUIjSPk8Z?=
+ =?us-ascii?Q?2N23P3skkXNBolPfOiLVmdj43LaOudh9Uz+Hurfg0C5MqybpPpIKBKXAwH5I?=
+ =?us-ascii?Q?bo31PjDK3zhBWEDfL8jF2C8US37QyM5spSLnIYpTSIZIpPe1ucjbgBVC7WOQ?=
+ =?us-ascii?Q?58KivXdW1z/a29nCxOyxwmcsmluWBdxy+iXRsWNy28/Ty50JDiySDChjBu51?=
+ =?us-ascii?Q?KiffSjwYk35pucxsWKVqyrug7qnmy4CUACsOyDECizNzhjs3wb6iYM1dKlCA?=
+ =?us-ascii?Q?37rYuSN/5OCBRr6aJA56k+RfaeEvdmrcgcrBuBMXcgEjzk0J6UW3N24V/9eD?=
+ =?us-ascii?Q?bmPeke34XQtbnavkA87FQ2+OlG9bnBrJKk5SxY/gjfIlzjaD28DiwAlcqDXw?=
+ =?us-ascii?Q?XdBmumfeW/T7GxtHM41aBQLk8z3v8gN9GcXr9lI/806ImvA707Gyd/VELfQO?=
+ =?us-ascii?Q?obYNbvX8mck4/nLP0jPeS1yG9D8tTUNT8NiDShnvxUJdK7vKz39iwHTdEpQL?=
+ =?us-ascii?Q?UQ7PU4arGw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: kCP8ylG+fzSBLk0LwEU1Ke5e21OXkqgNiNAP2wItVSqm/8f4cp/KLAWSP5XjOnsUxUnkONi/POlxFF5o0aqstXhCPPaRVROJXVmeZm3P6hso7QwJ2N8f3a6sueXBu7O3uXE5qOjn1gzS4Q2iYUe2Yv6KSLi60qZbPZPljuOmNwQkg+cYMWTtJZTvynk8SuCwRdYOWKuUOioYnsoMmoBFYKWFSrlfxMnRhscxRPd2W4IbIl0Agl+G6EbZs+/GrdEtsPtCC7c4X5g3WzjXm0gC1A/xlstNRs8Z63NQcj4DPVpfotJJVJCNF6JHkw4bVqvhR2zEHgd0/Q42hcJXyPK1ng==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 971797f8-da6f-4a02-f21d-08deb2987017
+X-MS-Exchange-CrossTenant-AuthSource: PH8PR11MB8287.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM3PPF208195D8D.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e9b93e0c-6323-4ab4-3ec0-08deb293a406
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 May 2026 15:07:11.4703 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pUPfo5t13FmGmuo1ZlnQzKPo65Uuz/0SzsvFHKdkWhQMndPuaNFS5QLZrEyyeoeJq+QMOcxgdzS9EhYTTupD0Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7813
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 May 2026 15:41:32.1954 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: RFceGiEFioaL28bjHMBDQYLZ/NxiSv4yD4nfcF638lMS+A3j3yAvXDRlGIgHK9wmv9uNkxBdLFJI7UTpDbuBYA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7002
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -170,162 +162,399 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: A0D74551DEF
+X-Rspamd-Queue-Id: 68D06552525
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,DM3PPF208195D8D.namprd11.prod.outlook.com:mid,intel.com:email,intel.com:dkim];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	FROM_NEQ_ENVFROM(0.00)[gustavo.sousa@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Action: no action
 
-> Subject: Re: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display
-> ver >=3D 30
->=20
-> Suraj Kandpal <suraj.kandpal@intel.com> writes:
->=20
-> > Starting with display version 30, the per-pipe frame timestamp is read
-> > from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
-> > legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the
-> > display and select the appropriate register based on DISPLAY_VER(),
-> > and update all callers (intel_vblank, intel_initial_plane) accordingly.
-> >
-> > Bspec: 79482
-> > WA: 14022946399
->=20
-> Why is this workaround being mentioned here?
->=20
-> If this is part of the workaround implementation, we should use the prope=
-r
-> display workaround infra (intel_display_wa.*) and we probably don't need =
-to
-> add this commit trailer IMO.
->=20
-> Is the idea to use the PIPEDMC_FRMTMSTMP register as an alternative for t=
-he
-> workaround in display IPs that support such a register? If so, I think th=
-is
-> alternative will not apply to previous display versions, right?
+Gustavo Sousa <gustavo.sousa@intel.com> writes:
 
-Sure will use the intel_display_wa framework
+> We got confirmation from the hardware team that the bandwidth parameters
+> deprogbwlimit and derating are platform-specific and not tied to the
+> display IP.  As such, let's make sure that we use platform checks for
+> those.
+>
+> The rest of the members of struct intel_sa_info are tied to the display
+> IP and we will deal with them as a follow-up.
+>
+> v2:
+>   - Use good old if-ladder instead of weird-looking pattern "assign ret,
+>     check platform, then return ret". (Jani, Matt)
+>   - Have a single call site for get_platform_bw_params() and pass the
+>     result as parameter to the *_get_bw_info() functions. (Jani)
+>   - Avoid using "plat" as abbreviation for "platform". (Jani)
+>   - s/_plat_bw_params/_bw_params/, since all of the instances are
+>     prefixed with platform names. (Jani)
+>   - s/struct intel_platform_bw_params/struct intel_soc_bw_params/.
+>     (Matt)
+>   - Do not return a default value; prefer to return NULL and
+>     intentionally cause a NULL pointer dereference if a platform is
+>     missing. (Gustavo)
+>
+> v3:
+>   - Call get_soc_bw_params() only after the check on
+>     HAS_DISPLAY(display). (Jani)
+>   - Combine if-ladder branches for adl_s_bw_params into a single one.
+>     (Matt)
+>   - Flatten if-ladder by checking for WCL before PTL (as opposed to
+>     checking for WCL inside the brace for PTL). (Matt)
+>   - Bail out of intel_bw_init_hw() if display version is below 11.
+>     (Gustavo)
+>
+> Cc: Jani Nikula <jani.nikula@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_bw.c | 162 ++++++++++++++++++++++----------
+>  1 file changed, 114 insertions(+), 48 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index 7eef693b51ad..351ecf741b54 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -372,81 +372,144 @@ static int icl_sagv_max_dclk(const struct intel_qgv_info *qi)
+>  	return dclk;
+>  }
+>  
+> +struct intel_soc_bw_params {
+> +	u8 deprogbwlimit;
+> +	u8 derating;
+> +};
+> +
+> +static const struct intel_soc_bw_params icl_bw_params = {
+> +	.deprogbwlimit = 25,
+> +	.derating = 10,
+> +};
+> +
+> +static const struct intel_soc_bw_params tgl_bw_params = {
+> +	.deprogbwlimit = 34,
+> +	.derating = 10,
+> +};
+> +
+> +static const struct intel_soc_bw_params rkl_bw_params = {
+> +	.deprogbwlimit = 20,
+> +	.derating = 10,
+> +};
+> +
+> +static const struct intel_soc_bw_params adl_s_bw_params = {
+> +	.deprogbwlimit = 38,
+> +	.derating = 10,
+> +};
+> +
+> +static const struct intel_soc_bw_params adl_p_bw_params = {
+> +	.deprogbwlimit = 38,
+> +	.derating = 20,
+> +};
+> +
+> +static const struct intel_soc_bw_params bmg_bw_params = {
+> +	.deprogbwlimit = 53,
+> +	.derating = 30,
+> +};
+> +
+> +static const struct intel_soc_bw_params bmg_ecc_bw_params = {
+> +	.deprogbwlimit = 53,
+> +	.derating = 45,
+> +};
+> +
+> +static const struct intel_soc_bw_params ptl_bw_params = {
+> +	.deprogbwlimit = 65,
+> +	.derating = 10,
+> +};
+> +
+> +static const struct intel_soc_bw_params wcl_bw_params = {
+> +	.deprogbwlimit = 22,
+> +	.derating = 10,
+> +};
+> +
+> +static const struct intel_soc_bw_params *get_soc_bw_params(struct intel_display *display)
+> +{
+> +	if (display->platform.dgfx) {
+> +		if (display->platform.dg1) {
+> +			return &tgl_bw_params;
+> +		} else if (display->platform.battlemage) {
+> +			const struct dram_info *dram_info = intel_dram_info(display);
+> +
+> +			if (dram_info->type == INTEL_DRAM_GDDR_ECC)
+> +				return &bmg_ecc_bw_params;
+> +			else
+> +				return &bmg_bw_params;
+> +		}
+> +	} else {
+> +		if (display->platform.icelake ||
+> +		    display->platform.jasperlake ||
+> +		    display->platform.elkhartlake)
+> +			return &icl_bw_params;
+> +		else if (display->platform.tigerlake)
+> +			return &tgl_bw_params;
+> +		else if (display->platform.rocketlake)
+> +			return &rkl_bw_params;
+> +		else if (display->platform.alderlake_s ||
+> +			 display->platform.meteorlake ||
+> +			 display->platform.lunarlake)
+> +			return &adl_s_bw_params;
+> +		else if (display->platform.alderlake_p)
+> +			return &adl_p_bw_params;
+> +		else if (display->platform.pantherlake_wildcatlake)
+> +			return &wcl_bw_params;
+> +		else if (display->platform.pantherlake ||
+> +			 display->platform.novalake)
+> +			return &ptl_bw_params;
+> +	}
+> +
+> +	drm_WARN(display->drm, 1, "Platform-specific bandwidth parameters not found!\n");
 
->=20
-> Another important question is: is this register updated even when the DMC=
- is
-> not loaded?
+CI shows the warning because DG2 does not use bandwidth
+parameters and get_soc_bw_params() rightfully does not cover DG2.
 
-Its actually does not, I have fixed the issue which will arise from this ma=
-inly in intel_inital_wait_for_vblank() and will refloat that in the next re=
-vision.
+We could just get rid of the warnings in get_soc_bw_params() and
+get_display_bw_params() all together.  The idea of the warning was to
+serve as an aid to the developer, but I guess tracing the null pointer
+dereference back to those functions shouldn't be too hard?
 
-Regards,
-Suraj Kandpal
+Another idea is to make sure that only the functions that use those
+parameters make the call to get_{soc,display}_bw_params().
 
->=20
-> --
-> Gustavo Sousa
->=20
-> > Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_display_regs.h  | 7 +++++--
-> > drivers/gpu/drm/i915/display/intel_initial_plane.c | 4 ++--
-> >  drivers/gpu/drm/i915/display/intel_vblank.c        | 4 ++--
-> >  3 files changed, 9 insertions(+), 6 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> > b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> > index 4321f8b529da..579f802215d3 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-> > +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-> > @@ -3149,8 +3149,11 @@ enum skl_power_gate {
-> >  /* g4x+, except vlv/chv! */
-> >  #define _PIPE_FRMTMSTMP_A		0x70048
-> >  #define _PIPE_FRMTMSTMP_B		0x71048
-> > -#define PIPE_FRMTMSTMP(pipe)		\
-> > -	_MMIO_PIPE(pipe, _PIPE_FRMTMSTMP_A, _PIPE_FRMTMSTMP_B)
-> > +#define _PIPEDMC_FRMTMSTMP_A		0x5f0ac
-> > +#define _PIPEDMC_FRMTMSTMP_B		0x5f4ac
-> > +#define PIPE_FRMTMSTMP(display, pipe)	(DISPLAY_VER(display) >=3D 30 ?
-> \
-> > +	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A,
-> _PIPEDMC_FRMTMSTMP_B) : \
-> > +	_MMIO_PIPE(pipe, _PIPE_FRMTMSTMP_A, _PIPE_FRMTMSTMP_B))
-> >
-> >  /* g4x+, except vlv/chv! */
-> >  #define _PIPE_FLIPTMSTMP_A		0x7004C
-> > diff --git a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > index 034fe199c2a1..004cbdb6be32 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_initial_plane.c
-> > @@ -34,9 +34,9 @@ void intel_initial_plane_vblank_wait(struct intel_crt=
-c
-> *crtc)
-> >  		return;
-> >  	}
-> >
-> > -	start_ts =3D intel_de_read(display, PIPE_FRMTMSTMP(crtc->pipe));
-> > +	start_ts =3D intel_de_read(display, PIPE_FRMTMSTMP(display,
-> > +crtc->pipe));
-> >
-> > -	ret =3D poll_timeout_us(end_ts =3D intel_de_read(display,
-> PIPE_FRMTMSTMP(crtc->pipe)),
-> > +	ret =3D poll_timeout_us(end_ts =3D intel_de_read(display,
-> > +PIPE_FRMTMSTMP(display, crtc->pipe)),
-> >  			      end_ts !=3D start_ts, 1000, 1000 * 1000, false);
-> >  	if (ret)
-> >  		drm_warn(display->drm, "[CRTC:%d:%s] early vblank wait
-> timed
-> > out\n", diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c
-> > b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > index 28d81199792e..52ff47936f9e 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_vblank.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-> > @@ -157,7 +157,7 @@ static u32
-> intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
-> >  		 * is sampled at every start of vertical blank.
-> >  		 */
-> >  		scan_prev_time =3D intel_de_read_fw(display,
-> > -						  PIPE_FRMTMSTMP(crtc-
-> >pipe));
-> > +						  PIPE_FRMTMSTMP(display,
-> crtc->pipe));
-> >
-> >  		/*
-> >  		 * The TIMESTAMP_CTR register has the current @@ -166,7
-> +166,7 @@
-> > static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc=
- *crtc)
-> >  		scan_curr_time =3D intel_de_read_fw(display,
-> IVB_TIMESTAMP_CTR);
-> >
-> >  		scan_post_time =3D intel_de_read_fw(display,
-> > -						  PIPE_FRMTMSTMP(crtc-
-> >pipe));
-> > +						  PIPE_FRMTMSTMP(display,
-> crtc->pipe));
-> >  	} while (scan_post_time !=3D scan_prev_time);
-> >
-> >  	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
-> > --
-> > 2.34.1
+Jani, I know you preferred the other way around, but maybe this is a
+compelling reason for moving the call to the direct users?
+
+--
+Gustavo Sousa
+
+> +
+> +	return NULL;
+> +}
+> +
+>  struct intel_sa_info {
+>  	u16 displayrtids;
+> -	u8 deburst, deprogbwlimit, derating;
+> +	u8 deburst;
+>  };
+>  
+>  static const struct intel_sa_info icl_sa_info = {
+>  	.deburst = 8,
+> -	.deprogbwlimit = 25, /* GB/s */
+>  	.displayrtids = 128,
+> -	.derating = 10,
+>  };
+>  
+>  static const struct intel_sa_info tgl_sa_info = {
+>  	.deburst = 16,
+> -	.deprogbwlimit = 34, /* GB/s */
+>  	.displayrtids = 256,
+> -	.derating = 10,
+>  };
+>  
+>  static const struct intel_sa_info rkl_sa_info = {
+>  	.deburst = 8,
+> -	.deprogbwlimit = 20, /* GB/s */
+>  	.displayrtids = 128,
+> -	.derating = 10,
+>  };
+>  
+>  static const struct intel_sa_info adls_sa_info = {
+>  	.deburst = 16,
+> -	.deprogbwlimit = 38, /* GB/s */
+>  	.displayrtids = 256,
+> -	.derating = 10,
+>  };
+>  
+>  static const struct intel_sa_info adlp_sa_info = {
+>  	.deburst = 16,
+> -	.deprogbwlimit = 38, /* GB/s */
+>  	.displayrtids = 256,
+> -	.derating = 20,
+>  };
+>  
+>  static const struct intel_sa_info mtl_sa_info = {
+>  	.deburst = 32,
+> -	.deprogbwlimit = 38, /* GB/s */
+>  	.displayrtids = 256,
+> -	.derating = 10,
+> -};
+> -
+> -static const struct intel_sa_info xe2_hpd_sa_info = {
+> -	.derating = 30,
+> -	.deprogbwlimit = 53,
+> -	/* Other values not used by simplified algorithm */
+> -};
+> -
+> -static const struct intel_sa_info xe2_hpd_ecc_sa_info = {
+> -	.derating = 45,
+> -	.deprogbwlimit = 53,
+> -	/* Other values not used by simplified algorithm */
+>  };
+>  
+>  static const struct intel_sa_info xe3lpd_sa_info = {
+>  	.deburst = 32,
+> -	.deprogbwlimit = 65, /* GB/s */
+>  	.displayrtids = 256,
+> -	.derating = 10,
+>  };
+>  
+>  static const struct intel_sa_info xe3lpd_3002_sa_info = {
+>  	.deburst = 32,
+> -	.deprogbwlimit = 22, /* GB/s */
+>  	.displayrtids = 256,
+> -	.derating = 10,
+>  };
+>  
+>  static int icl_get_bw_info(struct intel_display *display,
+>  			   const struct dram_info *dram_info,
+> +			   const struct intel_soc_bw_params *soc_bw_params,
+>  			   const struct intel_sa_info *sa)
+>  {
+>  	struct intel_qgv_info qi = {};
+> @@ -466,7 +529,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>  	}
+>  
+>  	dclk_max = icl_sagv_max_dclk(&qi);
+> -	maxdebw = min(sa->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
+> +	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, dclk_max * 16 * 6 / 10);
+>  	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
+>  	qi.deinterleave = DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+>  
+> @@ -496,7 +559,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>  			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+>  
+>  			bi->deratedbw[j] = min(maxdebw,
+> -					       bw * (100 - sa->derating) / 100);
+> +					       bw * (100 - soc_bw_params->derating) / 100);
+>  
+>  			drm_dbg_kms(display->drm,
+>  				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
+> @@ -518,6 +581,7 @@ static int icl_get_bw_info(struct intel_display *display,
+>  
+>  static int tgl_get_bw_info(struct intel_display *display,
+>  			   const struct dram_info *dram_info,
+> +			   const struct intel_soc_bw_params *soc_bw_params,
+>  			   const struct intel_sa_info *sa)
+>  {
+>  	struct intel_qgv_info qi = {};
+> @@ -554,7 +618,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+>  	dclk_max = icl_sagv_max_dclk(&qi);
+>  
+>  	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
+> -	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
+> +	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
+>  
+>  	ipqdepth = min(ipqdepthpch, sa->displayrtids / num_channels);
+>  	/*
+> @@ -599,7 +663,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+>  			bw = DIV_ROUND_UP(sp->dclk * clpchgroup * 32 * num_channels, ct);
+>  
+>  			bi->deratedbw[j] = min(maxdebw,
+> -					       bw * (100 - sa->derating) / 100);
+> +					       bw * (100 - soc_bw_params->derating) / 100);
+>  			bi->peakbw[j] = DIV_ROUND_CLOSEST(sp->dclk *
+>  							  num_channels *
+>  							  qi.channel_width, 8);
+> @@ -661,7 +725,7 @@ static void dg2_get_bw_info(struct intel_display *display)
+>  
+>  static int xe2_hpd_get_bw_info(struct intel_display *display,
+>  			       const struct dram_info *dram_info,
+> -			       const struct intel_sa_info *sa)
+> +			       const struct intel_soc_bw_params *soc_bw_params)
+>  {
+>  	struct intel_qgv_info qi = {};
+>  	int num_channels = dram_info->num_channels;
+> @@ -676,14 +740,14 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
+>  	}
+>  
+>  	peakbw = num_channels * qi.channel_width / 8 * icl_sagv_max_dclk(&qi);
+> -	maxdebw = min(sa->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 10);
+> +	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 10);
+>  
+>  	for (i = 0; i < qi.num_points; i++) {
+>  		const struct intel_qgv_point *point = &qi.points[i];
+>  		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
+>  
+>  		display->bw.max[0].deratedbw[i] =
+> -			min(maxdebw, (100 - sa->derating) * bw / 100);
+> +			min(maxdebw, (100 - soc_bw_params->derating) * bw / 100);
+>  		display->bw.max[0].peakbw[i] = bw;
+>  
+>  		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
+> @@ -792,11 +856,16 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
+>  void intel_bw_init_hw(struct intel_display *display)
+>  {
+>  	const struct dram_info *dram_info;
+> +	const struct intel_soc_bw_params *soc_bw_params;
+>  
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+>  
+> +	if (DISPLAY_VER(display) < 11)
+> +		return;
+> +
+>  	dram_info = intel_dram_info(display);
+> +	soc_bw_params = get_soc_bw_params(display);
+>  
+>  	/*
+>  	 * Starting with Xe3p_LPD, the hardware tells us whether memory has ECC
+> @@ -809,28 +878,25 @@ void intel_bw_init_hw(struct intel_display *display)
+>  
+>  	if (DISPLAY_VER(display) >= 30) {
+>  		if (DISPLAY_VERx100(display) == 3002)
+> -			tgl_get_bw_info(display, dram_info, &xe3lpd_3002_sa_info);
+> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &xe3lpd_3002_sa_info);
+>  		else
+> -			tgl_get_bw_info(display, dram_info, &xe3lpd_sa_info);
+> +			tgl_get_bw_info(display, dram_info, soc_bw_params, &xe3lpd_sa_info);
+>  	} else if (DISPLAY_VERx100(display) >= 1401 && display->platform.dgfx) {
+> -		if (dram_info->type == INTEL_DRAM_GDDR_ECC)
+> -			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_ecc_sa_info);
+> -		else
+> -			xe2_hpd_get_bw_info(display, dram_info, &xe2_hpd_sa_info);
+> +		xe2_hpd_get_bw_info(display, dram_info, soc_bw_params);
+>  	} else if (DISPLAY_VER(display) >= 14) {
+> -		tgl_get_bw_info(display, dram_info, &mtl_sa_info);
+> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &mtl_sa_info);
+>  	} else if (display->platform.dg2) {
+>  		dg2_get_bw_info(display);
+>  	} else if (display->platform.alderlake_p) {
+> -		tgl_get_bw_info(display, dram_info, &adlp_sa_info);
+> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &adlp_sa_info);
+>  	} else if (display->platform.alderlake_s) {
+> -		tgl_get_bw_info(display, dram_info, &adls_sa_info);
+> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &adls_sa_info);
+>  	} else if (display->platform.rocketlake) {
+> -		tgl_get_bw_info(display, dram_info, &rkl_sa_info);
+> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &rkl_sa_info);
+>  	} else if (DISPLAY_VER(display) == 12) {
+> -		tgl_get_bw_info(display, dram_info, &tgl_sa_info);
+> +		tgl_get_bw_info(display, dram_info, soc_bw_params, &tgl_sa_info);
+>  	} else if (DISPLAY_VER(display) == 11) {
+> -		icl_get_bw_info(display, dram_info, &icl_sa_info);
+> +		icl_get_bw_info(display, dram_info, soc_bw_params, &icl_sa_info);
+>  	}
+>  }
+>  
+>
+> -- 
+> 2.53.0
