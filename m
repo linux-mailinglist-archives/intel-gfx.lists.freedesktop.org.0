@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yOmFBMLYBmrKoQIAu9opvQ
+	id GIrbHfjZBmoGogIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 10:26:42 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 10:31:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BC66454B423
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 10:26:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B9D154B54F
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 10:31:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A28A110F3CA;
-	Fri, 15 May 2026 08:26:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7B7FC10F47F;
+	Fri, 15 May 2026 08:31:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZZHgiqj6";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4ABvMfs";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCEE010F3CA;
- Fri, 15 May 2026 08:26:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB8E10F47F
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2026 08:31:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778833595; x=1810369595;
+ t=1778833909; x=1810369909;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=pM9LBdf+qEY0gHKZZJcPA9iGg5XWc1ed6iXwYY/4pzQ=;
- b=ZZHgiqj62lng06uOOud0/D8tX+KVMjiuVIQHHB8t+tpJZ7h5nQoWCKxJ
- uMcFFSKckz3z+2CaW3W2zT/fI+HLHyeGkomJGXBrlMjC3ljqXDqFxpVZG
- mEJjgZCubhxmuPqoBfxQUeNfOseTokCTxhS+hnAP7xT3DEmXgGBjJf6oW
- gWD057mqjBrUiGZFT7PgOkc3tTe7H9U982JNmc/pItJN56wfQrwHCb2Dm
- ysCF8HZdkZlPBf+qPWx1QtQ6znn3EQR+mTQ0YFyxjlCB8W4s6gUn4p2fs
- RGJ/XN22S8AeJmmkDzqxjjAPEpC4irjjyQCxCeL9R+vx7lKqlSmTKWl6O A==;
-X-CSE-ConnectionGUID: XLubfoNoQwKIisqzsHsbeA==
-X-CSE-MsgGUID: T5DIn3lQSVSh7l6E4g0xYQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="90889722"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="90889722"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 01:26:34 -0700
-X-CSE-ConnectionGUID: Ff2H5J9YROKv4E5V1xe+4A==
-X-CSE-MsgGUID: mReUAsQWSFybiPIPfV60Eg==
+ bh=/QXe8Fz7eUf5Y2mXXOejvLhu2WfyzpNBlbcvLtJc/Sc=;
+ b=O4ABvMfsXLyRq49LkX8MQszCV7g8vLqOj1zEJR02FNTPtaHqjAFqAEEt
+ TcyYZeyN/QDW0GgEB5YqDZ9TA729oaxmIPiO2E51+TPstmP7FHwvXB9Kc
+ AWSC3d2xx4G3Lkk8ORuwUi5kps8uMBYubQKw2R3v+/aD8A3//XmmFisiu
+ bcIyzAuTuSPJvOvUfzpmYSvpepACKxGoV3vGbjdIXsa3ItpmrhzxjLO+S
+ uRCS+2eidd8FXWNpl0jJ8R6uWs+y2Czmw+hAP8H+TRHXb0tW7FT/ZuXNI
+ 4NSqrWE67JGg0aN3jk53ETAhtSQp/EODdSJFU9ua7idr1/DCEU5TPcADP A==;
+X-CSE-ConnectionGUID: B+l6VWQJTe+OQDcQNEKEqQ==
+X-CSE-MsgGUID: S+y6QMyBTPCGxGVFumBdWg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="79907521"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79907521"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 01:31:49 -0700
+X-CSE-ConnectionGUID: 4nnrcWeKSX2CC34QorKnHQ==
+X-CSE-MsgGUID: 1lEvKwGWTEyRh4Ah0LYCYg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="242628784"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="234381754"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.71])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 01:26:33 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Gustavo Sousa <gustavo.sousa@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Gustavo Sousa <gustavo.sousa@intel.com>
-Subject: Re: [PATCH v3 1/5] drm/i915/bw: Don't call intel_dram_info() too early
-In-Reply-To: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-1-68727d6fe3ec@intel.com>
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 01:31:48 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: reconicreferenssse <reconicpreferensse@proton.me>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: Kernel panic in xe_display_flush_cleanup_work (NULL pointer
+ dereference Alder Lake + Arc A370M)
+In-Reply-To: <sdiBHig2vClGj4J4dEEkXxWHsF6SBPX9B2vSkScXXRR9XKzYpv5WxsxcdbRwAjPfkqulToypH9qwndGaVqbOH6HLNbCNfvVzVpfTno2IqbQ=@proton.me>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-0-68727d6fe3ec@intel.com>
- <20260514-separate-platform-from-diplay-ip-specific-bw-params-v3-1-68727d6fe3ec@intel.com>
-Date: Fri, 15 May 2026 11:26:29 +0300
-Message-ID: <1607a6c47f563d56cb315a7b556a80303ee8a55b@intel.com>
+References: <sdiBHig2vClGj4J4dEEkXxWHsF6SBPX9B2vSkScXXRR9XKzYpv5WxsxcdbRwAjPfkqulToypH9qwndGaVqbOH6HLNbCNfvVzVpfTno2IqbQ=@proton.me>
+Date: Fri, 15 May 2026 11:31:45 +0300
+Message-ID: <4f9f30384c24683925e88d266b943d2102c442e3@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -75,71 +75,63 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: BC66454B423
+X-Rspamd-Queue-Id: 0B9D154B54F
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
 	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:reconicpreferensse@proton.me,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_EQ_ADDR_SOME(0.00)[]
 X-Rspamd-Action: no action
 
-On Thu, 14 May 2026, Gustavo Sousa <gustavo.sousa@intel.com> wrote:
-> If we end-up bailing early from intel_bw_init_hw() due to
-> !HAS_DISPLAY(display), the call to intel_dram_info() to initialize
-> dram_info will be meaningless.  Move the call to be done after that
-> check.
->
-> Cc: Jani Nikula <jani.nikula@intel.com>
-> Signed-off-by: Gustavo Sousa <gustavo.sousa@intel.com>
+On Wed, 13 May 2026, reconicreferenssse <reconicpreferensse@proton.me> wrote:
+> I am reporting a fatal NULL pointer dereference (address:
+> 00000000000005d8) in the 'xe' driver. This is a critical boot-blocker
+> on hybrid Alder Lake-P + DG2 platforms, causing a Kernel Panic during
+> early KMS initialization (initramfs) before the LUKS password prompt.
 
-Reviewed-by: Jani Nikula <jani.nikula@intel.com>
+...
 
-> ---
->  drivers/gpu/drm/i915/display/intel_bw.c | 4 +++-
->  1 file changed, 3 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index 9c3a9bbb49f6..7eef693b51ad 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -791,11 +791,13 @@ static unsigned int icl_qgv_bw(struct intel_display *display,
->  
->  void intel_bw_init_hw(struct intel_display *display)
->  {
-> -	const struct dram_info *dram_info = intel_dram_info(display);
-> +	const struct dram_info *dram_info;
->  
->  	if (!HAS_DISPLAY(display))
->  		return;
->  
-> +	dram_info = intel_dram_info(display);
-> +
->  	/*
->  	 * Starting with Xe3p_LPD, the hardware tells us whether memory has ECC
->  	 * enabled that would impact display bandwidth.  However, so far there
+> Steps to Reproduce:
+> 1. Boot with: xe.force_probe=46a6,5693 i915.force_probe=!46a6,!5693
+
+The xe driver does not properly support ADL-P or DG2. As you know, since
+you're forcing the probe, and it taints the kernel.
+
+We might have a look if this is generic and unrelated to the platform,
+but otherwise you should use the i915 driver with ADL-P and DG2.
+
+BR,
+Jani.
 
 -- 
 Jani Nikula, Intel
