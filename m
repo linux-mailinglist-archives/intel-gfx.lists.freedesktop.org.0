@@ -2,65 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GIrbHfjZBmoGogIAu9opvQ
+	id mFeAF8rtBmrOowIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 10:31:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 11:56:26 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0B9D154B54F
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 10:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD65D54CD85
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 11:56:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7B7FC10F47F;
-	Fri, 15 May 2026 08:31:50 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="O4ABvMfs";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8C08610E0CB;
+	Fri, 15 May 2026 09:56:23 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8FB8E10F47F
- for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2026 08:31:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778833909; x=1810369909;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=/QXe8Fz7eUf5Y2mXXOejvLhu2WfyzpNBlbcvLtJc/Sc=;
- b=O4ABvMfsXLyRq49LkX8MQszCV7g8vLqOj1zEJR02FNTPtaHqjAFqAEEt
- TcyYZeyN/QDW0GgEB5YqDZ9TA729oaxmIPiO2E51+TPstmP7FHwvXB9Kc
- AWSC3d2xx4G3Lkk8ORuwUi5kps8uMBYubQKw2R3v+/aD8A3//XmmFisiu
- bcIyzAuTuSPJvOvUfzpmYSvpepACKxGoV3vGbjdIXsa3ItpmrhzxjLO+S
- uRCS+2eidd8FXWNpl0jJ8R6uWs+y2Czmw+hAP8H+TRHXb0tW7FT/ZuXNI
- 4NSqrWE67JGg0aN3jk53ETAhtSQp/EODdSJFU9ua7idr1/DCEU5TPcADP A==;
-X-CSE-ConnectionGUID: B+l6VWQJTe+OQDcQNEKEqQ==
-X-CSE-MsgGUID: S+y6QMyBTPCGxGVFumBdWg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="79907521"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79907521"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 01:31:49 -0700
-X-CSE-ConnectionGUID: 4nnrcWeKSX2CC34QorKnHQ==
-X-CSE-MsgGUID: 1lEvKwGWTEyRh4Ah0LYCYg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="234381754"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.71])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 01:31:48 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: reconicreferenssse <reconicpreferensse@proton.me>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Subject: Re: Kernel panic in xe_display_flush_cleanup_work (NULL pointer
- dereference Alder Lake + Arc A370M)
-In-Reply-To: <sdiBHig2vClGj4J4dEEkXxWHsF6SBPX9B2vSkScXXRR9XKzYpv5WxsxcdbRwAjPfkqulToypH9qwndGaVqbOH6HLNbCNfvVzVpfTno2IqbQ=@proton.me>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <sdiBHig2vClGj4J4dEEkXxWHsF6SBPX9B2vSkScXXRR9XKzYpv5WxsxcdbRwAjPfkqulToypH9qwndGaVqbOH6HLNbCNfvVzVpfTno2IqbQ=@proton.me>
-Date: Fri, 15 May 2026 11:31:45 +0300
-Message-ID: <4f9f30384c24683925e88d266b943d2102c442e3@intel.com>
+Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F18010E0CB;
+ Fri, 15 May 2026 09:56:22 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5821080339009130880=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Refactor_?=
+ =?utf-8?q?and_extend_SCL_handling_for_VRRTG?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 15 May 2026 09:56:22 -0000
+Message-ID: <177883898236.74821.2811790465050959364@5ab824fced77>
+X-Patchwork-Hint: ignore
+References: <20260515073616.2794146-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260515073616.2794146-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,65 +42,177 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0B9D154B54F
+X-Rspamd-Queue-Id: AD65D54CD85
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:reconicpreferensse@proton.me,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.894];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_EQ_ADDR_SOME(0.00)[]
+	MISSING_XM_UA(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
 X-Rspamd-Action: no action
 
-On Wed, 13 May 2026, reconicreferenssse <reconicpreferensse@proton.me> wrote:
-> I am reporting a fatal NULL pointer dereference (address:
-> 00000000000005d8) in the 'xe' driver. This is a critical boot-blocker
-> on hybrid Alder Lake-P + DG2 platforms, causing a Kernel Panic during
-> early KMS initialization (initramfs) before the LUKS password prompt.
+--===============5821080339009130880==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> Steps to Reproduce:
-> 1. Boot with: xe.force_probe=46a6,5693 i915.force_probe=!46a6,!5693
+Series: drm/i915/psr: Refactor and extend SCL handling for VRRTG
+URL   : https://patchwork.freedesktop.org/series/166627/
+State : success
 
-The xe driver does not properly support ADL-P or DG2. As you know, since
-you're forcing the probe, and it taints the kernel.
+== Summary ==
 
-We might have a look if this is generic and unrelated to the platform,
-but otherwise you should use the i915 driver with ADL-P and DG2.
+CI Bug Log - changes from CI_DRM_18493 -> Patchwork_166627v1
+====================================================
 
-BR,
-Jani.
+Summary
+-------
 
--- 
-Jani Nikula, Intel
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_166627v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@workarounds:
+    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-arls-5/igt@i915_selftest@live@workarounds.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-dg2-8:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-dg2-8/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-dg2-8/igt@i915_selftest@live.html
+    - bat-rplp-1:         [DMESG-WARN][5] ([i915#15976]) -> [PASS][6] +1 other test pass
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-rplp-1/igt@i915_selftest@live.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-rplp-1/igt@i915_selftest@live.html
+
+  
+  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
+  [i915#15976]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15976
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18493 -> Patchwork_166627v1
+
+  CI-20190529: 20190529
+  CI_DRM_18493: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8913: f9032c7b81a57d3044f08585edd306d60b29a95c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_166627v1: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html
+
+--===============5821080339009130880==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/psr: Refactor and extend SCL handling for VRRTG</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166627/">https://patchwork.freedesktop.org/series/166627/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18493 -&gt; Patchwork_166627v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_166627v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@workarounds:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-rplp-1/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15976">i915#15976</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-rplp-1/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18493 -&gt; Patchwork_166627v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18493: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8913: f9032c7b81a57d3044f08585edd306d60b29a95c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_166627v1: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5821080339009130880==--
