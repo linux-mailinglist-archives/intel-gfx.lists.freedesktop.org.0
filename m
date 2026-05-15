@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QElQMF3QBmqKoAIAu9opvQ
+	id OOs5NFvQBmqKoAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 09:50:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 09:50:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7125754AD28
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 09:50:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A9F8954AD30
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 09:50:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8AF7410F447;
-	Fri, 15 May 2026 07:50:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1181E10F450;
+	Fri, 15 May 2026 07:50:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jKcazpRy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KPcJXt0l";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8052110E425;
- Fri, 15 May 2026 07:50:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3189910F44C;
+ Fri, 15 May 2026 07:50:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778831446; x=1810367446;
+ t=1778831448; x=1810367448;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=fc5qMshkvAFRwTu0Nb37Yfwf/ho7y3XJPiHsAGaLCCM=;
- b=jKcazpRyGB17GOHmHyiF80lvDTZzh6LI1SIlPR7OUbd2Bwujfr4QANrm
- SvufFI0CI/YmOIoFd7EE1OW7q9136latfjKrDmJUU72gGpDHZ/fXu7Qu7
- tj/PZn7JNe1GTco3ra/4/pdBmooy7FBl/MWR5EmNDX0s8stAHGyO1KbtI
- mW92o1eBQaNk1sVrgft2lbSOZenH/3xAMSXOJJHFGcp8+cB36RMdQqCGG
- 0T+HYnKIXRZipoNhb73ibobKttpvN2JnIkjDwQjy8y5+rD0R4vgvGYEyZ
- bxXqion2vQHKbOQ/hTRN6WARCF6bhStc1PkIjf4tzOm6fVAEUvkHZHWrg Q==;
-X-CSE-ConnectionGUID: mphkSY8ARnuDxa07HgIO6w==
-X-CSE-MsgGUID: KLEum3kgTYyZoKrJxwwKAg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="90480655"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="90480655"
+ bh=/diA7HZc8Jg/ZudJPSG9JyfdwS04MMQN7aFFi5ye1VU=;
+ b=KPcJXt0lcc9nptTMnbJ7NsC48zNloQADvHIPyfg4Oq7iVgm7psrnE6Bo
+ CEKkWR/HLFuMBfMmzBahBrkDjjrf+sUPRwFyCdAo6FDIHqQtcGz1ePlHX
+ 4UxFBp4AGx4QflHP8UfRU8NzKsPGY/3hKySq86zTtvm9LPaEIh2SUc6Au
+ l5ZRkcPkjNhcCZIk5JPj1oBW2exAViKhZXaHBPiHtB/0GqGHAP43rsplw
+ pAX1KTQORR37zs9OomtF6gYllsoJ4pNR8/IHmGQigUnIS55DoQzYaH+MG
+ KSfeVxx0K2IAi3VizYrZ20Sxdb+E9HI7QklSIGTXJDNOPAmr9yxAdsF6H w==;
+X-CSE-ConnectionGUID: n/+o4ZCfQsW7h6VVwY7emQ==
+X-CSE-MsgGUID: 3/E+SaksR6aUGur4K0GZkw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="90480657"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="90480657"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 00:50:46 -0700
-X-CSE-ConnectionGUID: ucm1njCrRCKpqgQeEtDzEQ==
-X-CSE-MsgGUID: GJ12YmwbS5mo/lvf2L3XRw==
+ 15 May 2026 00:50:48 -0700
+X-CSE-ConnectionGUID: qkyE2V4lTj+0RgoeIMy8uw==
+X-CSE-MsgGUID: iHpxeeYgSaiCjlPz1Ajlfg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="243604216"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="243604221"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 00:50:44 -0700
+ 15 May 2026 00:50:46 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jouni.hogander@intel.com,
 	Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 1/2] drm/i915/psr: Simplify the conditions for SCL computation
-Date: Fri, 15 May 2026 13:06:15 +0530
-Message-ID: <20260515073616.2794146-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 2/2] drm/i915/psr: Allow SCL=0 on platforms with always-on VRR
+ TG
+Date: Fri, 15 May 2026 13:06:16 +0530
+Message-ID: <20260515073616.2794146-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260515073616.2794146-1-ankit.k.nautiyal@intel.com>
 References: <20260515073616.2794146-1-ankit.k.nautiyal@intel.com>
@@ -73,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7125754AD28
+X-Rspamd-Queue-Id: A9F8954AD30
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -102,40 +103,33 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-The SCL condition checks can be combined into one expression.
-needs_sel_update is common for both display version branches, so check it
-once and keep the version specific checks together.
+For Legacy timing generator, if there are no panel replay/sel_update or other
+SRD constraints, the Set context latency (SCL) window should be at least 1.
+
+However, for VRR timing generator the SCL window can be 0. It has other
+guardband constraints, but that are checked during guardband computation.
+
+Allow SCL to be 0 for platforms that have VRR TG always on.
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 13 +++++--------
- 1 file changed, 5 insertions(+), 8 deletions(-)
+ drivers/gpu/drm/i915/display/intel_psr.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 8f70b7dcd881..5bf1d782188c 100644
+index 5bf1d782188c..12c2e2a70bd8 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1477,15 +1477,12 @@ int _intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state
+@@ -1477,7 +1477,8 @@ int _intel_psr_min_set_context_latency(const struct intel_crtc_state *crtc_state
  	 * SRD_STATUS is used by PSR1 and Panel Replay DP on LunarLake.
  	 */
  
--	if (DISPLAY_VER(display) >= 30 && (needs_panel_replay ||
--					   needs_sel_update))
-+	if (needs_sel_update ||
-+	    (DISPLAY_VER(display) >= 30 && needs_panel_replay) ||
-+	    (DISPLAY_VER(display) < 30 && intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)))
+-	if (needs_sel_update ||
++	if (intel_vrr_always_use_vrr_tg(display) ||
++	    needs_sel_update ||
+ 	    (DISPLAY_VER(display) >= 30 && needs_panel_replay) ||
+ 	    (DISPLAY_VER(display) < 30 && intel_crtc_has_type(crtc_state, INTEL_OUTPUT_EDP)))
  		return 0;
--	else if (DISPLAY_VER(display) < 30 && (needs_sel_update ||
--					       intel_crtc_has_type(crtc_state,
--								   INTEL_OUTPUT_EDP)))
--		return 0;
--	else
--		return 1;
-+
-+	return 1;
- }
- 
- static bool _wake_lines_fit_into_vblank(const struct intel_crtc_state *crtc_state,
 -- 
 2.45.2
 
