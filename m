@@ -2,63 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id YOtWA5lFB2qgvwIAu9opvQ
+	id WEM0EshHB2qrwQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 18:11:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 18:20:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6F900552C85
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 18:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 41D055530AD
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 18:20:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E908210F5A2;
-	Fri, 15 May 2026 16:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B27DF10E377;
+	Fri, 15 May 2026 16:20:21 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AyaQVwiq";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="GG8HHw73";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 199A410F583;
- Fri, 15 May 2026 16:11:02 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C763C10E377
+ for <intel-gfx@lists.freedesktop.org>; Fri, 15 May 2026 16:20:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778861462; x=1810397462;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=kjkfywNHxl/uItXweCrTEh2p5VmOonndEClKUAIur4c=;
- b=AyaQVwiq11yEEGBK+CHyS4F2kvLxg+RcYbPsFKAM7bj4cGOzvtzgrwUw
- vb/LJltb5jhk8KeHvJtlQbAU8SisyfQ5Nbrkzlz0eFUoB6/FfT41BZPH1
- 7tqexRZTfXxk7UTqzc9bb5AogQFG15eTBRXRXe046j1TOn7x64pV+MOep
- o2yOL6e7LA+34KLE3hpx0Al4TrxUOIiL5C8ezyjzCVfkF3jvO9fqtwq+9
- 4LXoD/Xw/FVLSgJEwyTHv/Y0LvW38gYYXjNnfyl3NDH+QdodAjJ2eSAqJ
- MQeD0iWrEeh7hkcjm1NMgvMSAW4v+fMPQ6xa0tQTAtt0odcw5XmjH1bap w==;
-X-CSE-ConnectionGUID: VmDiMhMWQaaDw0ArH21lXg==
-X-CSE-MsgGUID: XeDPKjsSRMyNOwInv3yb+g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79798549"
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79798549"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 May 2026 09:11:01 -0700
-X-CSE-ConnectionGUID: i+esdDu8R+uIbORGc+/jNg==
-X-CSE-MsgGUID: lRzRcIEvRqy1IJFuzMXZxQ==
+ t=1778862020; x=1810398020;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=kNZZo2RDqXIo/RY+I1f7cA03vvW60+yS/qMH/VDNF8Y=;
+ b=GG8HHw73OcrhRzfaulMF2j2avDVhxANw1NwEXir//YxaMJw/iIiQdt+B
+ 8jc62g8c3B5MeYqWvTCPOarx7vgZ3XsH/jpeQJDR7YLA/bf+mdGamyRvq
+ PsfbGLh4NdyDWwZYMUAyurysQX9uRc2OGrE/UoAtZIQkC0iibqknsHiiz
+ Dwa6PehHkbUmnt26cXuCKf1sALMZRB4ghK4IjWIk6dodKIddiZU7awZOB
+ Jn08RYwC22URu/ra0AhLCEE6UdDDshtv0VbF0QL0OWZPjVzhXUp2+UD7Q
+ 2wELL/3my+Xo8+RlZdl9yLeKUfgZm/ut54xENLh0goO1g0D2PwPM2PtqT Q==;
+X-CSE-ConnectionGUID: Ksaw+br3Qx2JF5tPcMDE7Q==
+X-CSE-MsgGUID: 8Q4/lGbATQSEc97KNxy7PA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11787"; a="79784486"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="79784486"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 09:20:20 -0700
+X-CSE-ConnectionGUID: TEvnPB3cTI2yeRD28tMS3Q==
+X-CSE-MsgGUID: GSyeNQUcSRqv65Yrc3433g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="243705492"
-Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by orviesa005.jf.intel.com with ESMTP; 15 May 2026 09:10:58 -0700
-From: Suraj Kandpal <suraj.kandpal@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- gustavo.sousa@intel.com, jani.nikula@intel.com,
- Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver >= 30
-Date: Fri, 15 May 2026 21:40:56 +0530
-Message-Id: <20260515161056.1007030-1-suraj.kandpal@intel.com>
-X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260515155340.1000997-1-suraj.kandpal@intel.com>
-References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="238854489"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.71])
+ by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 09:20:18 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: reconicreferenssse <reconicpreferensse@proton.me>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+Subject: Re: Kernel panic in xe_display_flush_cleanup_work (NULL pointer
+ dereference Alder Lake + Arc A370M)
+In-Reply-To: <4f9f30384c24683925e88d266b943d2102c442e3@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <sdiBHig2vClGj4J4dEEkXxWHsF6SBPX9B2vSkScXXRR9XKzYpv5WxsxcdbRwAjPfkqulToypH9qwndGaVqbOH6HLNbCNfvVzVpfTno2IqbQ=@proton.me>
+ <4f9f30384c24683925e88d266b943d2102c442e3@intel.com>
+Date: Fri, 15 May 2026 19:20:15 +0300
+Message-ID: <7976babe35c874c4e17a6326a2a1a036049d81dd@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,138 +76,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 6F900552C85
+X-Rspamd-Queue-Id: 41D055530AD
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:reconicpreferensse@proton.me,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim,proton.me:email];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[3];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[]
 X-Rspamd-Action: no action
 
-Starting with display version 30, the per-pipe frame timestamp is read
-from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
-legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
-and select the appropriate register based on DISPLAY_VER(), and update
-all callers intel_vblank accordingly.
+On Fri, 15 May 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
+> On Wed, 13 May 2026, reconicreferenssse <reconicpreferensse@proton.me> wrote:
+>> I am reporting a fatal NULL pointer dereference (address:
+>> 00000000000005d8) in the 'xe' driver. This is a critical boot-blocker
+>> on hybrid Alder Lake-P + DG2 platforms, causing a Kernel Panic during
+>> early KMS initialization (initramfs) before the LUKS password prompt.
+>
+> ...
+>
+>> Steps to Reproduce:
+>> 1. Boot with: xe.force_probe=46a6,5693 i915.force_probe=!46a6,!5693
+>
+> The xe driver does not properly support ADL-P or DG2. As you know, since
+> you're forcing the probe, and it taints the kernel.
+>
+> We might have a look if this is generic and unrelated to the platform,
+> but otherwise you should use the i915 driver with ADL-P and DG2.
 
-Bspec: 79482
-Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
----
-v1 -> v2:
-- Define registers in correct location (Jani)
-- Use the intel_display_wa() helper to select the correct register (Gustavo)
-- Fix early vblank timeout issue when DMC is not loaded
+Yeah, I think this one's unrelated to the platform. See [1].
 
- .../gpu/drm/i915/display/intel_display_wa.c    |  2 ++
- .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h  |  6 ++++++
- drivers/gpu/drm/i915/display/intel_vblank.c    | 18 ++++++++++++++----
- 4 files changed, 23 insertions(+), 4 deletions(-)
+Reporting the i915 specific issues you mentioned would still be
+appreciated.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 7d3d63a59882..44c2a503c911 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -110,6 +110,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return DISPLAY_VERx100(display) == 3000 ||
- 			DISPLAY_VERx100(display) == 2000 ||
- 			DISPLAY_VERx100(display) == 1401;
-+	case INTEL_DISPLAY_WA_14022946399:
-+		return DISPLAY_VER(display) >= 30;
- 	case INTEL_DISPLAY_WA_14025769978:
- 		return DISPLAY_VER(display) == 35;
- 	case INTEL_DISPLAY_WA_15013987218:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 15fec843f15e..884463a894c8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -42,6 +42,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_14014143976,
- 	INTEL_DISPLAY_WA_14016740474,
- 	INTEL_DISPLAY_WA_14020863754,
-+	INTEL_DISPLAY_WA_14022946399,
- 	INTEL_DISPLAY_WA_14025769978,
- 	INTEL_DISPLAY_WA_15013987218,
- 	INTEL_DISPLAY_WA_15018326506,
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 38e342b45af0..985642a79a52 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -644,4 +644,10 @@ enum pipedmc_event_id {
- #define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
- #define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
- 							   _PIPEDMC_DCB_BALANCE_RESET_B)
-+
-+#define _PIPEDMC_FRMTMSTMP_A			0x5f0ac
-+#define _PIPEDMC_FRMTMSTMP_B			0x5f4ac
-+#define PIPEDMC_FRMTMSTMP(pipe)			\
-+	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B)
-+
- #endif /* __INTEL_DMC_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 28d81199792e..145c342f445f 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -15,6 +15,8 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
-+#include "intel_dmc_regs.h"
- #include "intel_vblank.h"
- #include "intel_vrr.h"
- 
-@@ -156,8 +158,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 * pipe frame time stamp. The time stamp value
- 		 * is sampled at every start of vertical blank.
- 		 */
--		scan_prev_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-+			scan_prev_time = intel_de_read_fw(display,
-+							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-+		else
-+			scan_prev_time = intel_de_read_fw(display,
-+							  PIPE_FRMTMSTMP(crtc->pipe));
- 
- 		/*
- 		 * The TIMESTAMP_CTR register has the current
-@@ -165,8 +171,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 */
- 		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
- 
--		scan_post_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-+			scan_post_time = intel_de_read_fw(display,
-+							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-+		else
-+			scan_post_time = intel_de_read_fw(display,
-+							  PIPE_FRMTMSTMP(crtc->pipe));
- 	} while (scan_post_time != scan_prev_time);
- 
- 	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
+And for anyone else wondering, the mentioned but unreferenced gitlab
+issue is likely [2].
+
+
+BR,
+Jani.
+
+
+[1] https://lore.kernel.org/r/20260515160920.1082842-1-jani.nikula@intel.com
+[2] https://gitlab.freedesktop.org/drm/xe/kernel/-/work_items/7904
+
+
 -- 
-2.34.1
-
+Jani Nikula, Intel
