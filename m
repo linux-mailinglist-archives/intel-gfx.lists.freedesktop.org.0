@@ -2,34 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mFeAF8rtBmrOowIAu9opvQ
+	id kKsELjXuBmrOowIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 11:56:26 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 11:58:13 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD65D54CD85
-	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 11:56:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3AD1D54CE04
+	for <lists+intel-gfx@lfdr.de>; Fri, 15 May 2026 11:58:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C08610E0CB;
-	Fri, 15 May 2026 09:56:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0D08110F4DE;
+	Fri, 15 May 2026 09:58:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T/kEsN0V";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5F18010E0CB;
- Fri, 15 May 2026 09:56:22 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5821080339009130880=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A001710E0F3;
+ Fri, 15 May 2026 09:58:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1778839089; x=1810375089;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=T+yHUO7WVfxoQVY5CdQsCD5439j0m53pXLBNoct6L4s=;
+ b=T/kEsN0VpewcSefoe2lNjlGtyVmXqb98GpyRISximRJljJVdxGW1REbj
+ 65fzv/ms+gZ0DP82J+6ORJlguN9W8kvjlyFoKc8ywaYyBnqjA5P9n54jt
+ tm0fch2GLoAqu5bAwu1gDyMM79VPcMYDzzvbfLFegZjtpA2e3JgyGR1F/
+ QGd7f/Ts4ui6lxUZrgJcgVDHTZzYd6vN5R+jLl+N+HZ2/spMcwi0miDW9
+ wr1dKPY2T3QZ/5MdJUMRm7NkGQjqOLmgTsInQ57xI0vqPY4ZwvaUlDZld
+ vobsznr98XHZ2ktIBdfSbpE/d52CJ5k5EpZImdsRxz4gmN/XBaTWQDrKU Q==;
+X-CSE-ConnectionGUID: dqoM6/JvSKOFNHuci3ydPg==
+X-CSE-MsgGUID: xGRv4oOqSmuwDYkV9GWIuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11786"; a="82360377"
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="82360377"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 02:58:09 -0700
+X-CSE-ConnectionGUID: UWxX8XcHSWmyU58ZAmWQnA==
+X-CSE-MsgGUID: jirng/1UQziFlxn1E7g5Ow==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,236,1770624000"; d="scan'208";a="235601801"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.20])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 May 2026 02:58:08 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: [PATCH v2 0/4] PSR2 SDP on Prior Scanline workarounds
+Date: Fri, 15 May 2026 12:57:52 +0300
+Message-ID: <20260515095756.2799483-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/psr=3A_Refactor_?=
- =?utf-8?q?and_extend_SCL_handling_for_VRRTG?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 15 May 2026 09:56:22 -0000
-Message-ID: <177883898236.74821.2811790465050959364@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260515073616.2794146-1-ankit.k.nautiyal@intel.com>
-In-Reply-To: <20260515073616.2794146-1-ankit.k.nautiyal@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,177 +71,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: AD65D54CD85
+X-Rspamd-Queue-Id: 3AD1D54CE04
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.894];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_THREE(0.00)[3];
+	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Action: no action
 
---===============5821080339009130880==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+This patch set implements two workarounds:
 
-== Series Details ==
+1. There are problem in PSR2 SDP on Prior Scanline implementation in
+   several panels due to eDP1.4b spec ambiguity. Two tackle this there is
+   Intel specific DPCD register for panel to indicate implementation
+   compatibility with Intel source implementation. eDP1.5 doesn't have
+   this problem.
 
-Series: drm/i915/psr: Refactor and extend SCL handling for VRRTG
-URL   : https://patchwork.freedesktop.org/series/166627/
-State : success
+2. In NVL there is an HW optimization done. When there is an SU triggered in
+   Capture state, Link will be kept ON post Capture CRC SDP. Before valid SU
+   pixels Intel source will transmit dummy pixels. Some TCONS are improperly
+   considering these dummy pixels as a valid pixel data. Prior NVL link was
+   was turned of even if there was SU triggered in Capture state and no dummy
+   pixels were transmitted. These dummy pixels are problem only if SDP on
+   prior scanline is used and Early Transport is not in use. The workaround is
+   to start SU area always at scanline 0.
 
-== Summary ==
+v2:
+  - add INTEL_DPCD_ prefix to definitions
+  - use intel_display_wa
 
-CI Bug Log - changes from CI_DRM_18493 -> Patchwork_166627v1
-====================================================
+Jouni Högander (4):
+  drm/i915/psr: Add defininitions for INTEL_WA_REGISTER_CAPS DPCD
+    register
+  drm/i915/psr: Read Intel DPCD workaround register
+  drm/i915/psr: Apply Intel DPCD workaround when SDP on prior line used
+  drm/i915/psr: Apply SDP on prior scanline workaround for Xe3p
 
-Summary
--------
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ .../gpu/drm/i915/display/intel_display_wa.c   |  2 +
+ .../gpu/drm/i915/display/intel_display_wa.h   |  1 +
+ drivers/gpu/drm/i915/display/intel_dpcd.h     | 15 ++++++
+ drivers/gpu/drm/i915/display/intel_psr.c      | 49 +++++++++++++++++--
+ 5 files changed, 63 insertions(+), 5 deletions(-)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dpcd.h
 
-  **SUCCESS**
+-- 
+2.43.0
 
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_166627v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@workarounds:
-    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#12061]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-arls-5/igt@i915_selftest@live@workarounds.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-arls-5/igt@i915_selftest@live@workarounds.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - bat-dg2-8:          [DMESG-FAIL][3] ([i915#12061]) -> [PASS][4] +1 other test pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-dg2-8/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-dg2-8/igt@i915_selftest@live.html
-    - bat-rplp-1:         [DMESG-WARN][5] ([i915#15976]) -> [PASS][6] +1 other test pass
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-rplp-1/igt@i915_selftest@live.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-rplp-1/igt@i915_selftest@live.html
-
-  
-  [i915#12061]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061
-  [i915#15976]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15976
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18493 -> Patchwork_166627v1
-
-  CI-20190529: 20190529
-  CI_DRM_18493: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8913: f9032c7b81a57d3044f08585edd306d60b29a95c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_166627v1: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html
-
---===============5821080339009130880==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/psr: Refactor and extend SCL handling for VRRTG</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166627/">https://patchwork.freedesktop.org/series/166627/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18493 -&gt; Patchwork_166627v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_166627v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live@workarounds:<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-arls-5/igt@i915_selftest@live@workarounds.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-arls-5/igt@i915_selftest@live@workarounds.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-dg2-8:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-dg2-8/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/12061">i915#12061</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-dg2-8/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18493/bat-rplp-1/igt@i915_selftest@live.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15976">i915#15976</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166627v1/bat-rplp-1/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18493 -&gt; Patchwork_166627v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18493: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8913: f9032c7b81a57d3044f08585edd306d60b29a95c @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_166627v1: b9819223b7e92173091b674c2212252b99ea6c4b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5821080339009130880==--
