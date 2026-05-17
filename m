@@ -2,61 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCgNFukrCWrIMAQAu9opvQ
+	id MDX+DzYsCWrIMAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 May 2026 04:46:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Sun, 17 May 2026 04:47:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D02155F0B6
-	for <lists+intel-gfx@lfdr.de>; Sun, 17 May 2026 04:45:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E52155F0CD
+	for <lists+intel-gfx@lfdr.de>; Sun, 17 May 2026 04:47:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB3D810E05F;
-	Sun, 17 May 2026 02:45:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A304C10E22F;
+	Sun, 17 May 2026 02:47:15 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Uz6e+RVG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Plu2nauT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7995910E05F;
- Sun, 17 May 2026 02:45:57 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8E0C10E22F;
+ Sun, 17 May 2026 02:47:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1778985957; x=1810521957;
+ t=1778986034; x=1810522034;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=kjkfywNHxl/uItXweCrTEh2p5VmOonndEClKUAIur4c=;
- b=Uz6e+RVGfd+e8WwRtwfADudoXHw7iiNl6wJEh1hQyMKNzLlEsyqjeLOc
- cJL6V39jflTOsV28eal2CSnBMvv5PPAfDDZy8+RLZx2EK3MHisthFAHeL
- ooEKoVsU2qwUGd3+fUe7NUKqg11foL4Vm9erl26xHnQxW7olzfHiD3ijV
- hPgU0zhRdO9WSRoA0VUy05kLfmRSyYhIuREC4Z0BPcCw64z48qXdHI3oo
- L4WtsPlwkHTI7ezgbrL8xaXbUi8ulyswZtpfKlZiomKhGFhbj8eubvK1m
- 1IfQt19KtDtMip2Pe+GCJn4ljLxM68GOFGxl8OnGnTGrDUPcUuwVmTLdU w==;
-X-CSE-ConnectionGUID: ft+h7WkXT8eR3RKy4bS54w==
-X-CSE-MsgGUID: WOihAu4yQ1ymcFmn2dhrEw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="79783048"
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="79783048"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 May 2026 19:45:57 -0700
-X-CSE-ConnectionGUID: IL2gXEHjSJWT/ha8xJJVmg==
-X-CSE-MsgGUID: Vh5QcHQGTl6uP2sTgYeoyw==
+ bh=NnVmRh74bzU4s0rzDm5vd1frnNUHKvjU0xREINI6OyY=;
+ b=Plu2nauTOpoTJnA2ejUAAdEWzyaKl4N9X3qYyUkzkxxVOE3dA/x3cNQf
+ 3EiCcoG0mJA7nhU7+wYgzQkdS98BXeUzodzEnBWNgXqsFocQlbzqNG1YW
+ RE6ZDlPqPPa9bjfCJtnFJWQ91N3rWEySEofdNt0javkqfSHvIwcAPe+oe
+ n/Rs4KwzQGWm1o1NqqQ2y4tH/3jZ1o4oyER7xFSA8+qgwnUHvXls1ybGW
+ cz5p3/cD+bRLtvEYmgylTdLeWpz4C7MCf6Y9g6HHIl4QJFoS7xL7alb5O
+ PggqWgzrUoOFkLunqc42I+yjyxH/xGPhN1FjAnY9T5rrdP+8FTuclbAUh Q==;
+X-CSE-ConnectionGUID: 3PK6+0BpTt+nOco36X+ztQ==
+X-CSE-MsgGUID: A3EF0EhCR4aWR7yy/OnaHg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11788"; a="79601236"
+X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="79601236"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 16 May 2026 19:47:14 -0700
+X-CSE-ConnectionGUID: 1N7paj3LQpyVohbL9WqelA==
+X-CSE-MsgGUID: eoxxLsgQRo2cyPZKeErH2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="234624361"
+X-IronPort-AV: E=Sophos;i="6.23,239,1770624000"; d="scan'208";a="244055009"
 Received: from kandpal-x299-ud4-pro.iind.intel.com ([10.190.239.10])
- by fmviesa006.fm.intel.com with ESMTP; 16 May 2026 19:45:55 -0700
+ by orviesa005.jf.intel.com with ESMTP; 16 May 2026 19:47:12 -0700
 From: Suraj Kandpal <suraj.kandpal@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- gustavo.sousa@intel.com, jani.nikula@intel.com,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH] drm/i915/display: Use PIPEDMC_FRMTMSTMP on display ver >= 30
-Date: Sun, 17 May 2026 08:15:51 +0530
-Message-Id: <20260517024551.1015553-1-suraj.kandpal@intel.com>
+Subject: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
+Date: Sun, 17 May 2026 08:17:09 +0530
+Message-Id: <20260517024709.1016121-1-suraj.kandpal@intel.com>
 X-Mailer: git-send-email 2.34.1
-In-Reply-To: <20260515082443.975592-1-suraj.kandpal@intel.com>
-References: <20260515082443.975592-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -73,138 +72,116 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 2D02155F0B6
+X-Rspamd-Queue-Id: 9E52155F0CD
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[suraj.kandpal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Action: no action
 
-Starting with display version 30, the per-pipe frame timestamp is read
-from the PIPEDMC register block (PIPEDMC_FRMTMSTMP) instead of the
-legacy PIPE_FRMTMSTMP MMIO. Extend PIPE_FRMTMSTMP() to take the display
-and select the appropriate register based on DISPLAY_VER(), and update
-all callers intel_vblank accordingly.
+This reverts commit 40d2f5820951dee818d05c14677277048bd85f9f.
 
-Bspec: 79482
+Removing the try_vesa_interface gate caused a backlight regression on
+panels whose VBT correctly reports INTEL_BACKLIGHT_DISPLAY_DDI and whose
+PWM path is the actual backlight control, but whose DPCD optimistically
+advertises DP_EDP_BACKLIGHT_AUX_ENABLE_CAP / _BRIGHTNESS_AUX_SET_CAP.
+After the commit such panels silently bind to the VESA AUX backlight
+funcs; AUX writes complete but the panel ignores them, leaving
+brightness stuck (no-op backlight). Observed on at least KBL and TGL
+eDP setups.
+
 Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
-v1 -> v2:
-- Define registers in correct location (Jani)
-- Use the intel_display_wa() helper to select the correct register (Gustavo)
-- Fix early vblank timeout issue when DMC is not loaded
+ .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++-------
+ 1 file changed, 12 insertions(+), 7 deletions(-)
 
- .../gpu/drm/i915/display/intel_display_wa.c    |  2 ++
- .../gpu/drm/i915/display/intel_display_wa.h    |  1 +
- drivers/gpu/drm/i915/display/intel_dmc_regs.h  |  6 ++++++
- drivers/gpu/drm/i915/display/intel_vblank.c    | 18 ++++++++++++++----
- 4 files changed, 23 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.c b/drivers/gpu/drm/i915/display/intel_display_wa.c
-index 7d3d63a59882..44c2a503c911 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.c
-@@ -110,6 +110,8 @@ bool __intel_display_wa(struct intel_display *display, enum intel_display_wa wa,
- 		return DISPLAY_VERx100(display) == 3000 ||
- 			DISPLAY_VERx100(display) == 2000 ||
- 			DISPLAY_VERx100(display) == 1401;
-+	case INTEL_DISPLAY_WA_14022946399:
-+		return DISPLAY_VER(display) >= 30;
- 	case INTEL_DISPLAY_WA_14025769978:
- 		return DISPLAY_VER(display) == 35;
- 	case INTEL_DISPLAY_WA_15013987218:
-diff --git a/drivers/gpu/drm/i915/display/intel_display_wa.h b/drivers/gpu/drm/i915/display/intel_display_wa.h
-index 15fec843f15e..884463a894c8 100644
---- a/drivers/gpu/drm/i915/display/intel_display_wa.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_wa.h
-@@ -42,6 +42,7 @@ enum intel_display_wa {
- 	INTEL_DISPLAY_WA_14014143976,
- 	INTEL_DISPLAY_WA_14016740474,
- 	INTEL_DISPLAY_WA_14020863754,
-+	INTEL_DISPLAY_WA_14022946399,
- 	INTEL_DISPLAY_WA_14025769978,
- 	INTEL_DISPLAY_WA_15013987218,
- 	INTEL_DISPLAY_WA_15018326506,
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 38e342b45af0..985642a79a52 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -644,4 +644,10 @@ enum pipedmc_event_id {
- #define _PIPEDMC_DCB_BALANCE_RESET_B		0x986a8
- #define PIPEDMC_DCB_BALANCE_RESET(pipe)		_MMIO_PIPE(pipe, _PIPEDMC_DCB_BALANCE_RESET_A,\
- 							   _PIPEDMC_DCB_BALANCE_RESET_B)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+index a8d56ebf06a2..7a6c07f6aaeb 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+@@ -691,10 +691,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	struct intel_dp *intel_dp = intel_attached_dp(connector);
+ 	struct drm_device *dev = connector->base.dev;
+ 	struct intel_panel *panel = &connector->panel;
+-	bool try_intel_interface = false;
++	bool try_intel_interface = false, try_vesa_interface = false;
+ 
+-	/*
+-	 * Check the VBT and user's module parameters to figure out which
++	/* Check the VBT and user's module parameters to figure out which
+ 	 * interfaces to probe
+ 	 */
+ 	switch (display->params.enable_dpcd_backlight) {
+@@ -703,6 +702,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	case INTEL_DP_AUX_BACKLIGHT_AUTO:
+ 		switch (panel->vbt.backlight.type) {
+ 		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
++			try_vesa_interface = true;
+ 			break;
+ 		case INTEL_BACKLIGHT_DISPLAY_DDI:
+ 			try_intel_interface = true;
+@@ -715,12 +715,20 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
+ 			try_intel_interface = true;
+ 
++		try_vesa_interface = true;
++		break;
++	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
++		try_vesa_interface = true;
+ 		break;
+ 	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
+ 		try_intel_interface = true;
+ 		break;
+ 	}
+ 
++	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
++	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
++		try_vesa_interface = true;
 +
-+#define _PIPEDMC_FRMTMSTMP_A			0x5f0ac
-+#define _PIPEDMC_FRMTMSTMP_B			0x5f4ac
-+#define PIPEDMC_FRMTMSTMP(pipe)			\
-+	_MMIO_PIPE(pipe, _PIPEDMC_FRMTMSTMP_A, _PIPEDMC_FRMTMSTMP_B)
-+
- #endif /* __INTEL_DMC_REGS_H__ */
-diff --git a/drivers/gpu/drm/i915/display/intel_vblank.c b/drivers/gpu/drm/i915/display/intel_vblank.c
-index 28d81199792e..145c342f445f 100644
---- a/drivers/gpu/drm/i915/display/intel_vblank.c
-+++ b/drivers/gpu/drm/i915/display/intel_vblank.c
-@@ -15,6 +15,8 @@
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_display_utils.h"
-+#include "intel_display_wa.h"
-+#include "intel_dmc_regs.h"
- #include "intel_vblank.h"
- #include "intel_vrr.h"
+ 	/*
+ 	 * Since Intel has their own backlight control interface, the majority of machines out there
+ 	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
+@@ -733,9 +741,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
+ 	 * backlight interface at all. This means that the only sensible way for us to detect both
+ 	 * interfaces is to probe for Intel's first, and VESA's second.
+-	 *
+-	 * Also there is a chance some VBTs may advertise false Intel backlight support even if the
+-	 * TCON DPCD says otherwise. This means we keep VESA interface as fallback in that case.
+ 	 */
+ 	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
+ 	    intel_dp_aux_supports_hdr_backlight(connector)) {
+@@ -745,7 +750,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+ 		return 0;
+ 	}
  
-@@ -156,8 +158,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 * pipe frame time stamp. The time stamp value
- 		 * is sampled at every start of vertical blank.
- 		 */
--		scan_prev_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-+			scan_prev_time = intel_de_read_fw(display,
-+							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-+		else
-+			scan_prev_time = intel_de_read_fw(display,
-+							  PIPE_FRMTMSTMP(crtc->pipe));
- 
- 		/*
- 		 * The TIMESTAMP_CTR register has the current
-@@ -165,8 +171,12 @@ static u32 intel_crtc_scanlines_since_frame_timestamp(struct intel_crtc *crtc)
- 		 */
- 		scan_curr_time = intel_de_read_fw(display, IVB_TIMESTAMP_CTR);
- 
--		scan_post_time = intel_de_read_fw(display,
--						  PIPE_FRMTMSTMP(crtc->pipe));
-+		if (intel_display_wa(display, INTEL_DISPLAY_WA_14022946399))
-+			scan_post_time = intel_de_read_fw(display,
-+							  PIPEDMC_FRMTMSTMP(crtc->pipe));
-+		else
-+			scan_post_time = intel_de_read_fw(display,
-+							  PIPE_FRMTMSTMP(crtc->pipe));
- 	} while (scan_post_time != scan_prev_time);
- 
- 	return div_u64(mul_u32_u32(scan_curr_time - scan_prev_time,
+-	if (intel_dp_aux_supports_vesa_backlight(connector)) {
++	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
+ 		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
+ 			    connector->base.base.id, connector->base.name);
+ 		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
 -- 
 2.34.1
 
