@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QIkKLBijCmqL4QQAu9opvQ
+	id 8LD9OBmjCmqL4QQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 07:26:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 07:26:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7FAB656623E
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 07:26:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 966A4566245
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 07:26:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C16C110E5A3;
-	Mon, 18 May 2026 05:26:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E0AAD10E5A1;
+	Mon, 18 May 2026 05:26:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RkQn+XQy";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Eqt4qflM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B7EDA10E5A1;
- Mon, 18 May 2026 05:26:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F14F610E5C5;
+ Mon, 18 May 2026 05:26:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779082004; x=1810618004;
+ t=1779082007; x=1810618007;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=+9qitLJRAiMGVE3LpBDcg95Rgz3qmcGInO4o2aq3+hs=;
- b=RkQn+XQypAeUmvBlsXRX98vxdApdx/1d/zGukIkkk/+KFPCfOAw59jZK
- jb/V2phddZxQOCQf30Es6XaugAdEZ+4qC1noayS2Yrq8kRTJG7XfPV8AL
- 4qBrr/yESYxskBV26AOES16wPqe/W0WyXMxNRaHeSJJQNAgQgc7bVRtCw
- ZJftEvta3i5kTLJUtLPFnThWQblolXEPP1OIKg72lVaSFOB61/VBztLjB
- F5ioRvCK5czq2zWyLV6to+UAI8JxUqzQo5kuDDNwIFl63MOE+i1WUFsdF
- 1PoNsJEGuFQyVX9yD0Ac8qLd4n1dBDBk8XOGihOTZJBYWSynb1lMFa9Kg Q==;
-X-CSE-ConnectionGUID: tZPUX4gySxmrS939nmwqeg==
-X-CSE-MsgGUID: Nw0K3jhCQB6MNCdWXBcxpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="79064898"
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="79064898"
+ bh=HIS4vkCiFELVb77AwYohAwVrffB2TUB69rlyMofqxp4=;
+ b=Eqt4qflMeTQH8QUL/cBmrqGDOuaeU5G6DkO7cZZBWHpQoSKSpH4IUeSO
+ U2R4oEQX3o+2jPHOSAD0l7oG8Dh8cVYOhas2kBsKkxYsN9YpngiXtqBS5
+ pa/8nZoVXyPm+WXQkViRr7mEokCBHgnSfh2zTrwfS9po+mRBzJHy0pAqX
+ Ak+pLbMIyYcbwbOh7U+TWMZrc6gQsAVc15rd6smoxuG1WnqsABjnmZURJ
+ /bkC1YNHu5dJvCCDaSbcjDwICh8t3jsgDdB/ioBi0HagRvXXyza59N6x1
+ oophRP9hqgrOBmPMtHEVDzAR68JMeKJrj2T1t2MXPYKCF0hNAFxJjeat4 Q==;
+X-CSE-ConnectionGUID: tsIQRln+S+GseeroQuh/+g==
+X-CSE-MsgGUID: LI6cjDkKTEu9bzg5Kd3mnQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="79064905"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="79064905"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2026 22:26:44 -0700
-X-CSE-ConnectionGUID: GunjJWKTRriJ4VXBEu266Q==
-X-CSE-MsgGUID: jxF1iYz0TACfYWu6mw7r5A==
+ 17 May 2026 22:26:46 -0700
+X-CSE-ConnectionGUID: YLNjuWFbRRe8LJaa69Ms8g==
+X-CSE-MsgGUID: Qe5lnweSQbyKq2rT+vX09g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="243606154"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="243606170"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2026 22:26:43 -0700
+ 17 May 2026 22:26:45 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 01/12] drm/i915/psr: Add helper to get Async Video timing
- support in PR active
-Date: Mon, 18 May 2026 10:42:04 +0530
-Message-ID: <20260518051216.2936634-2-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 02/12] drm/i915/dp: Add member to intel_dp to store AS SDP v2
+ support
+Date: Mon, 18 May 2026 10:42:05 +0530
+Message-ID: <20260518051216.2936634-3-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260518051216.2936634-1-ankit.k.nautiyal@intel.com>
 References: <20260518051216.2936634-1-ankit.k.nautiyal@intel.com>
@@ -74,7 +74,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 7FAB656623E
+X-Rspamd-Queue-Id: 966A4566245
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -103,48 +103,119 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Introduce a helper to check if Panel Replay has Async Video Timing support
-during PR Active state.
+eDP v1.5a advertises support for Adaptive Sync SDP and with that the
+support for AS SDP v2 is mandatory.
 
-v2: Confirm that Panel Replay is supported before checking for
-    Async Video Timing Support during PR active. (Ville)
+DP v2.1 SCR advertises support for FAVT payload fields parsing in DPCD
+0x2214 Bit 2. This indicates the support for Adaptive-Sync SDP version 2
+(AS SDP v2), which allows the source to set the version in HB2[4:0] and the
+payload length in HB3[5:0] of the AS SDP header.
+
+DP v2.1 SCR also introduces ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR in the
+Panel Replay Capability DPCD 0x00b1 (Bit 3). When this bit is set, the sink
+does not support asynchronous video timing while in a Panel Replay Active
+state and the source is required to keep transmitting Adaptive-Sync
+SDPs. The spec mandates that such sinks shall support AS SDP v2.
+
+Infer AS SDP v2 support from these capabilities and store it in
+struct intel_dp for use by subsequent feature enablement changes.
+
+v2:
+ - Include parsing ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR bit to
+   determine AS SDP v2 support. (Ville)
+v3:
+ - Use helper to determine asynch video timing support.
+v4:
+ - Add AS SDP v2 support for eDP as per v1.5a.
+ - Add a check for Panel Replay support before checking for Async video
+   timing support in PR
+ - Add a TODO for Display ID and PCON considerations. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 11 +++++++++++
- drivers/gpu/drm/i915/display/intel_psr.h |  1 +
- 2 files changed, 12 insertions(+)
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 49 +++++++++++++++++++
+ 2 files changed, 50 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 892d209dce1b..431468103f51 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -4655,3 +4655,14 @@ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index b7bcf8fefa3e..e9b95879c797 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1871,6 +1871,7 @@ struct intel_dp {
+ 	/* connector directly attached - won't be use for modeset in mst world */
+ 	struct intel_connector *attached_connector;
+ 	bool as_sdp_supported;
++	bool as_sdp_v2_supported;
  
- 	return HAS_PSR_TRANS_PUSH_FRAME_CHANGE(display) && crtc_state->has_psr;
+ 	struct drm_dp_tunnel *tunnel;
+ 	bool tunnel_suspended:1;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1920d2f02666..92a650a728d8 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -6365,6 +6365,46 @@ intel_dp_unset_edid(struct intel_dp *intel_dp)
+ 					       false);
  }
-+
-+bool intel_psr_pr_async_video_timing_supported(struct intel_dp *intel_dp)
-+{
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	u8 *dpcd = connector->dp.panel_replay_caps.dpcd;
-+	u8 pr_support = dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_SUPPORT)];
-+	u8 pr_cap = dpcd[INTEL_PR_DPCD_INDEX(DP_PANEL_REPLAY_CAP_CAPABILITY)];
-+
-+	return (pr_support & DP_PANEL_REPLAY_SUPPORT) &&
-+		!(pr_cap & DP_PANEL_REPLAY_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR);
-+}
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
-index 394b641840b3..29723e63888f 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.h
-+++ b/drivers/gpu/drm/i915/display/intel_psr.h
-@@ -86,5 +86,6 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
- 				   struct intel_crtc_state *crtc_state);
- int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
- bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
-+bool intel_psr_pr_async_video_timing_supported(struct intel_dp *intel_dp);
  
- #endif /* __INTEL_PSR_H__ */
++static bool
++intel_dp_sink_supports_as_sdp_v2(struct intel_dp *intel_dp)
++{
++	u8 rx_features;
++
++	/*
++	 * The DP spec does not explicitly provide the AS SDP v2 capability.
++	 * So based on the DP v2.1 SCR, we infer it from the following bits:
++	 *
++	 * DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED indicates support for
++	 * FAVT, which is explicitly defined to use AS SDP v2.
++	 *
++	 * DP_ASYNC_VIDEO_TIMING_NOT_SUPPORTED_IN_PR indicates that the sink
++	 * does not support asynchronous video timing while in PR Active,
++	 * requiring the source to keep transmitting Adaptive-Sync SDPs. The
++	 * spec mandates that such sinks shall support AS SDP v2.
++	 *
++	 * #TODO: Check the Adaptive-Sync DisplayID 2.1 block once DisplayID
++	 * parsing is available. This may help detect AS SDP v2 support for
++	 * native DP 2.1 sinks that do not expose FAVT or PR-based capability
++	 * bits.
++	 *
++	 * In the presence of PCONs, check PCON support from DPCD and sink
++	 * support from Display ID.
++	 */
++
++	if (drm_dp_dpcd_read_byte(&intel_dp->aux,
++				  DP_DPRX_FEATURE_ENUMERATION_LIST_CONT_1,
++				  &rx_features) == 1) {
++		if (rx_features & DP_AS_SDP_FAVT_PAYLOAD_FIELDS_PARSING_SUPPORTED)
++			return true;
++	}
++
++	if (intel_dp->psr.sink_panel_replay_support &&
++	    !intel_psr_pr_async_video_timing_supported(intel_dp))
++		return true;
++
++	return false;
++}
++
+ static void
+ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
+ {
+@@ -6372,6 +6412,15 @@ intel_dp_detect_sdp_caps(struct intel_dp *intel_dp)
+ 
+ 	intel_dp->as_sdp_supported = HAS_AS_SDP(display) &&
+ 		drm_dp_as_sdp_supported(&intel_dp->aux, intel_dp->dpcd);
++
++	if (!intel_dp->as_sdp_supported)
++		return;
++
++	/* eDP Adaptive-Sync SDP always uses AS SDP v2 */
++	if (intel_dp_is_edp(intel_dp))
++		intel_dp->as_sdp_v2_supported =  true;
++	else
++		intel_dp->as_sdp_v2_supported = intel_dp_sink_supports_as_sdp_v2(intel_dp);
+ }
+ 
+ static bool intel_dp_needs_dpcd_probe(struct intel_dp *intel_dp, bool force_on_external)
 -- 
 2.45.2
 
