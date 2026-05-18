@@ -2,150 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Hr9LvvoCmpt9QQAu9opvQ
+	id +JFKF3bpCmpt9QQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:24:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:27:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 179A556AA21
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B7CDC56AAB6
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:27:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96FB910E770;
-	Mon, 18 May 2026 10:24:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 80CF710E028;
+	Mon, 18 May 2026 10:26:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hjpbxh/X";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jtK7WLRU";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 02A6A10E028
- for <intel-gfx@lists.freedesktop.org>; Mon, 18 May 2026 10:24:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5A55310E028;
+ Mon, 18 May 2026 10:26:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779099896; x=1810635896;
- h=from:to:cc:subject:date:message-id:
- content-transfer-encoding:mime-version;
- bh=RcbhU4pi6KBj1e64VoF/MQuzn6PhZGvdK0wKhxedAcI=;
- b=hjpbxh/XLLn4uiKpCqHWxgSbgOX8uOaSZaLA6A/gjTkWm1H+rzhCpfiE
- bGlHzmzKoLQ9flkeqYuyYh71ORtapCddLzNbKlJatjDovB3FqOJUHWXjE
- XfE5AI19bX/Xi1pwYYaBfCwpOkqYoixjGCT1yjydkJZ4Ew8JXdz+iqEFY
- YoyPi7+cL5QGpK7FHT561lPD29XG1MTIHweRVP/EUyZJaDsYA9U1N3KD1
- /8iIFI3P5XDPgr3Qgjd83ieFAAYID1nXLWbide8eu2h/vII72cO3staWt
- /2z2z7zY1U+h62+GU8V6Rt2V8HaerCvQa+I6VFKfzV/q9qO0HA7Fef8Wb Q==;
-X-CSE-ConnectionGUID: Am4ugu34Qjqs+0G62ET+4Q==
-X-CSE-MsgGUID: r4f5ZVi0RPSgJp+eEsSDXA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="97379264"
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="97379264"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 03:24:55 -0700
-X-CSE-ConnectionGUID: LqDXEU7pQ4aO/QgCx8Lr4w==
-X-CSE-MsgGUID: 1hE9cR1JTaq3dFRikExcgQ==
+ t=1779100018; x=1810636018;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=R6QdQq9ZMrOvYLXJRddgkXpxL9n0sG0DU0SFfG5vqkw=;
+ b=jtK7WLRUaH8EZxo3IY9Cu/2jPQ2FfnUdY4rYI52EXDjdHerJtfh/wnH8
+ WF0eQq/JtOA7cCP1tYXLx8230le5mmywd+rCW7ovGpuDqlXdVfdHpiFbP
+ 9LFNwgsvF8fT3OUa90+Of1ZkZROQPDx012Cuc6ORrXLPT7eFlsDIchZqA
+ Zoh45qHFu6+qLMgFxsv2g9KgF1AihYXVETo4V2C9xyT5zqYSfoF7o2DhM
+ FymNFerRQXkv7D883gwQpg6Dj9O3aSagQAX+BurR2UpbbxDZXw27cbmbA
+ vH5FpUhhgW3jGamk2B5SW8WvccoRTKeH9HunOnUQPEk0UZKpaS3kyZgjm w==;
+X-CSE-ConnectionGUID: ZcMyZYrxTrGZmBqH2G7m1g==
+X-CSE-MsgGUID: /30eEH1sTHiS9ewdwpoOuw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="67477741"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="67477741"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 03:26:58 -0700
+X-CSE-ConnectionGUID: pbiSeRX4RlCFPNAOBGtjFg==
+X-CSE-MsgGUID: 8tVA6qnWSoCW2F8L473fiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="243384288"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 03:24:56 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 18 May 2026 03:24:54 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 18 May 2026 03:24:54 -0700
-Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.1) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 18 May 2026 03:24:53 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=k8DHO7+wV+MvcdLJLchmDnx4EKs8tPp0O2zwcsoeT6cowC5J+tk5/m0+otwZW1uXmOaiuWHkRwbrqcU07bTXvQimUFA15W9JLUmbQlgAjdwgX/6gYZPuor70FbXsiIhasdLqc0yr+BUt5pfKIz4tmvb06s9Wi0rwikceML6XvARI1bUpJuqexar41X22ra0XD61Bpabcs0HbCJz9yjojOP2wB/AVqWaSxgq8gYacxaR5Gw7HyQ5LAZVQwDzjp/HyjYXN5cIIgog0Hy2N6oZIy2zs2x95SwCirkTDsNHVN6zSiDSuNj+LkPeGa+TGEq9dds3ZheKmyyFH3CsjiDg0lQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=WWR3z1U08I3a3XjojSsdrHYXmDXvNi3hiZ/klwg09jI=;
- b=nqzPA6cbatKux6xl5lcg96VNQ3j74ea6MG62vG5giXfjVwvfMOPO8cK/IrUz92KZfcWbx//KN9Ld5+iu+aGScCXj+MtBbiujFRjU5qgatWffxytK0imdSEdphipw/jmtDoIyWEBEY+qPKI8pQysl/iQP5Zd4VdenGboNPMXHvLxgrzl1Yz6gAOUWr5ZuxTTdNQgmcXbnAFSJVm96CuuaNSY+WRzc7ZPgMGt40EpdD4+2XTqf1snnHn77CGBFBRNpK3r6ecT4sfEQCv5x4UxNwb8y3WgdcOqJPQtXydXNGMJtSFb7YOt8+OVNAaM+np8qqdNzCWBEL4M1oGbkGekJHw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from MW4PR11MB6909.namprd11.prod.outlook.com (2603:10b6:303:224::12)
- by CH3PR11MB7819.namprd11.prod.outlook.com (2603:10b6:610:125::20)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.25.23; Mon, 18 May
- 2026 10:24:51 +0000
-Received: from MW4PR11MB6909.namprd11.prod.outlook.com
- ([fe80::9eab:962:806:3794]) by MW4PR11MB6909.namprd11.prod.outlook.com
- ([fe80::9eab:962:806:3794%4]) with mapi id 15.20.9846.025; Mon, 18 May 2026
- 10:24:51 +0000
-From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-To: <intel-gfx@lists.freedesktop.org>
-CC: Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- <andi.shyti@linux.intel.com>, <krzysztof.karas@intel.com>
-Subject: [PATCH] drm/i915/gt: Fix wakeref underflow on device hotplug rebind
-Date: Mon, 18 May 2026 12:24:44 +0200
-Message-ID: <20260518102444.5406-1-sebastian.brzezinka@intel.com>
-X-Mailer: git-send-email 2.53.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ClientProxiedBy: DB3PR08CA0005.eurprd08.prod.outlook.com (2603:10a6:8::18)
- To MW4PR11MB6909.namprd11.prod.outlook.com (2603:10b6:303:224::12)
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="236759499"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.21])
+ ([10.245.244.21])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 May 2026 03:26:56 -0700
+Message-ID: <fef9056c-460e-4a49-bed8-f2882109e886@linux.intel.com>
+Date: Mon, 18 May 2026 12:26:52 +0200
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4PR11MB6909:EE_|CH3PR11MB7819:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4c467a4a-eb10-421f-46d9-08deb4c7b1dd
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|18002099003|56012099003|11063799003; 
-X-Microsoft-Antispam-Message-Info: PxsC8LsjeVfSfUn8SCrKmZ35GP+ibTGWWEptdoBjqaage62Fqrm7hBSEyVRQWSzIqpD2W4paK+2N32EWPY3mOuYif6NJ8NtmEHEcWjPDrD1DyOrRiW5W3kZ8qQMdmSizaOvOxIH6NFIGwhYYLT8kxjhqUOIns50yfJ4J3ITngk4lLl1YKQ6BWKAymBQSIHWbbCP7H6/oAzHzpZjJRplawpchntWZgxVf54OHFheh6OXJ5W9b1IXxrCP+/kfg4dt/Epy2idxObH4uXT0O21dXu1nhd4tUMBARv35k6SZUHv5pXIfnT0unIVj1NXwpfv7SIlObOLw0Q6YuF/XrJBl1MOuSf4iSL2EnV+uyXSmsd9YqziJ1uQbs2rJlfCfxAaMcwzH75OBTZXnxLuMYGmGkoeDIkXUbf7LdZuoIAD9f8jNmg+5fhfp0FAIwSdzJLfC1FDQ9CVrB5/XGjj12ZhLdakuoLyygyW7ZuFGx+28M8Ln5Fpqp0cZfhBbTVF/+9tWro8jv33XjVhJpn9AZ1Em0++oVEO7+OIPwFcZMylP1HXxIksfqVhellIOT8e/+ADlvvWHNt0nOZjT/3bLr05WsinMfLmeOJZz4ArQx3n1FL+PKB2cxTqzXzCgJvz97OxNmt9Hhwjap887Ql1IwfeUBpw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4PR11MB6909.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(18002099003)(56012099003)(11063799003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?R9BR0aH3UvdAy6bar0iDpQETmGTJBDJKO3IzdkkHyvrIRVv7BBrWVIwGU63o?=
- =?us-ascii?Q?Cq/kjAWo7h1Q9g+vGa8Yxp4f95UX83BP3HKlhHGri4yOfz5koc20hyXBFa9X?=
- =?us-ascii?Q?TxGLZCAbZrN2klF1wZ2uqa4kZs5eb6/STPFx1NMjWdsqs3xUUcutXTtJoLv4?=
- =?us-ascii?Q?7wUMAO0q2wNQTQTloGYgnTHffVxS36PtooL3k1hEDUq85LeoQaUn2+gSr2QS?=
- =?us-ascii?Q?ULfBKlBsHxxnlodONthoX420g1Uax3/P7Q0ZhC0QnsMBJeIv+FWDRSq9FVtr?=
- =?us-ascii?Q?Qu9T/HS1CMSaEK42At+E72ZtIT6dIHB8ZM3wwHAoT4vI+hDzS7nxGJ0+LoEU?=
- =?us-ascii?Q?zbre8r6hLFeSU8cmdtPvbPT2avOnOAVF9Bq466og09/WN0rW0UqXO35mN3sA?=
- =?us-ascii?Q?OK1PORalSbVYE5bwXx8zrZK3d40yPqgM+2s6WiliRXVBzHhAi3Cmo7kv56Kp?=
- =?us-ascii?Q?rim22VM19Np2PnCYSVroYQ9SiqVAcxnaX4Pi7w8je6tto2pYd4pB7UcxW0E9?=
- =?us-ascii?Q?Dqqim82Cz1pc9sNYXVPz2192IsFPsVAMDCpZ5Ys7Rh/REHrsWQNlyQPhAD4u?=
- =?us-ascii?Q?0Fpgem6CNbLCcaQOmUYcvvYf7B2Ha0q05ZvvHh2ygbs8bAyT93zPfv4F645i?=
- =?us-ascii?Q?PQjmigTlWA44P11txKXbgGSXQJHiHMq9oEK9RvPUQbNkKDSAy6ghbIwJKpv5?=
- =?us-ascii?Q?5QgQ5EUasqMNmnoKtKo+2mwRHhv9+1gxS4XnD22zLiAuvaZY3rbTyWVvtxGe?=
- =?us-ascii?Q?e+0KsYcjhEGWf+pMSFA41OXhuiZEDFwMq6DCKro8K57/LWJDcmTapvcnuJnq?=
- =?us-ascii?Q?MwKYKRFydocABW94pybdYvVqSMaIEJl1vic5HlahX7givPq5VaBRljoBSxwP?=
- =?us-ascii?Q?xGeiB5YaOJL4WafMpzlbP1xZ9srsNtP7tLKzJta7olNYcE+0I7+N/oSTnreZ?=
- =?us-ascii?Q?cL1Qu5ujSEmTO9XkJ3XkXIEK/X32ql53KALapRDNwJn6qySGSVBe4lOpU1nL?=
- =?us-ascii?Q?9Xcdkhd3XBUB60+q5tqfT4rsb4Yj+pUPo83YWLp4552E8GIbtZp86iAV/LEu?=
- =?us-ascii?Q?yYGmq53D0uRIzP0OurcVMO9LTVfV65nO1QtWub51aNmJu2hjM698AM6s2Uka?=
- =?us-ascii?Q?gvJ87LtA1cE8/XMgaMp6qPSTJDuwo47rhtW16jVbju5fag/iseZx0Nf/ysWt?=
- =?us-ascii?Q?w8Zw/amlOL0KXdq8jTOgQH5SCtjYgz+TGJAKApW6A0A5kfobbtmFfm5LHcy4?=
- =?us-ascii?Q?c1CTGLMDgQDrJTmyJ+wBHzG95G5yaAN0zNWJQidGB1x278Rgcl9EyfPUjDMO?=
- =?us-ascii?Q?dqJi/gzxGXpS3YzQDoBhDT3RCC6Jgdyxb60kcfB22cA5rBjqZHv1r+suuTeb?=
- =?us-ascii?Q?HI/zrF0j5tsPL3lsS++4t7mIEstssXPoxA9d3N8lorAbjx0ggDKmHfYDGPxc?=
- =?us-ascii?Q?p9DDCqPpxzk9abyWGjiI/2fLmotQME9ZetCmLU2DpOmJqsOQZKchmQtZ7BXQ?=
- =?us-ascii?Q?vqWzP8F0uNpHWPGeK6+8xyj8ABL4NwWrPxZSs0aQOSAcoy8F4l+A6BXcFgUg?=
- =?us-ascii?Q?Kdv/YV2l7qY6b0WYLWO6vx1E+fLidI0ZrjtoSjxqoVpsnNvMwQtWEMwfRw3d?=
- =?us-ascii?Q?CqrisYFVu42ocZxzyOz7WiWarDUNcXtWjKYNJ8g0ycomvJBCAfajB2X4hJX+?=
- =?us-ascii?Q?BiV2AxhA6F2y8aCScH6cPl6FWfyKuX7zFthOnGn62OEMQZWMRn2lPq1rDzN8?=
- =?us-ascii?Q?EaGFSiP2l5gJ45JzhcCAQz0YHtPmf4M=3D?=
-X-Exchange-RoutingPolicyChecked: VR8ckJTNx9gReyW9oqz0MyUQoXFYN5lrSRgfpYe998hcgXlv5PCAgmG2JPVCIvtt16yW5kHWcletAGQrjTnIsbFFytMS4FA84B+edDWyP/6IQZucxqwP8l+3X2PVio1FamCs4UjgQ4Pvdj6TDoFnvZhSOP+ngN9FVCyaoCHccO3KfVtSfMH1UGDEfsnUJDueo9LSrXdbaSJKN592PDvEesfoVCKvNAEFZLqYzVky4H8owQneuZVGb8JGIZVIt0KnSiks1dHXh1GfeE5Y9o04xNxXjIuuibrVxeF4xxAtFLZSF52qbe85yjlkGLzj0cdQzyDvqaKfO1Ji1fFTYqCrww==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4c467a4a-eb10-421f-46d9-08deb4c7b1dd
-X-MS-Exchange-CrossTenant-AuthSource: MW4PR11MB6909.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 May 2026 10:24:51.1421 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: Jq3SWG9cqA2xfOv5jYS3v5K04ZUmVZ+eO37CdEOnRMm88D0ACZPKyBAtplWpzeKL5HIW5XkK2ArmKxMZxK5IUfQ1Q49VMnSxS+b9u/LSjRA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR11MB7819
-X-OriginatorOrg: intel.com
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/intel/display: Add support for pipe background color
+ (v4)
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ Maarten Lankhorst <dev@lankhorst.se>, intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Chandra Konduru <chandra.konduru@intel.com>,
+ dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
+References: <20260505200133.636584-2-dev@lankhorst.se>
+ <a734e41d-3665-402b-a56a-43fd4f8819ff@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <a734e41d-3665-402b-a56a-43fd4f8819ff@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -160,113 +79,286 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 179A556AA21
+X-Rspamd-Queue-Id: B7CDC56AAB6
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [1.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,intel.com:mid,intel.com:dkim,retire.work:url,gitlab.freedesktop.org:url];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.brzezinka@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-0.998];
+	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:email,intel.com:email,intel.com:dkim];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Action: no action
 
-During device hotplug unbind-rebind cycles, the i915 driver crashes with
-a BUG_ON in intel_wakeref.h when retiring stale requests that outlive the
-device unbind. The crash occurs because pending requests in timelines are
-not forced to retire before device teardown. Upon rebind, fresh engine
-structures are created with new PM wakeref counters initialized to zero.
-If a stale request from the previous device instance is still queued,
-it will execute in the retire worker and attempt to drop a PM wakeref
-that was never acquired, causing underflow.
-```
-<2> [368.095702] kernel BUG at ./drivers/gpu/drm/i915/intel_wakeref.h:157!
-...
-<4> [368.099735] Workqueue: i915-unordered engine_retire [i915]
-...
-<4> [368.100280] Call Trace:
-<4> [368.100280]  <TASK>
-<4> [368.100280]  intel_context_exit+0xf1/0x1b0 [i915]
-<4> [368.100280]  ? i915_request_retire.part.0+0xb0/0x520 [i915]
-<4> [368.106309]  i915_request_retire.part.0+0x1b9/0x520 [i915]
-<4> [368.107123]  i915_request_retire+0x1c/0x40 [i915]
-<4> [368.107123]  engine_retire+0x122/0x180 [i915]
-<4> [368.109586]  process_one_work+0x239/0x740
-<4> [368.109586]  worker_thread+0x200/0x3f0
-<4> [368.109586]  ? __pfx_worker_thread+0x10/0x10
-<4> [368.109586]  kthread+0x10d/0x150
-<4> [368.109586]  ? __pfx_kthread+0x10/0x10
-<4> [368.109586]  ret_from_fork+0x3bd/0x470
-<4> [368.109586]  ? __pfx_kthread+0x10/0x10
-<4> [368.109586]  ret_from_fork_asm+0x1a/0x30
-<4> [368.109586]  </TASK>
-```
+Hello,
 
-The fix forces retirement of all pending requests in
-intel_gt_fini_requests() before cancelling the delayed work. This ensures
-requests are fully retired before engines are torn down, preventing them
-from reexecuting on a freshly initialized device. A check
-is also added to intel_context_exit_engine() to safely skip the engine
-PM put if the wakeref count is already zero, providing a safety net for
-any remaining races.
+Den 2026-05-18 kl. 11:30, skrev Borah, Chaitanya Kumar:
+> 
+> 
+> On 5/6/2026 1:31 AM, Maarten Lankhorst wrote:
+>> Gen9 platforms allow CRTC's to be programmed with a background/canvas
+>> color below the programmable planes.  Let's expose this as a property to
+>> allow userspace to program a desired value.
+>>
+>> This patch is based on earlier work by Chandra Konduru and Matt Roper.
+>> Between 2018 and now, intel/display has changed so much that another
+>> rewrite was necessary.
+>>
+>> v2:
+>>   - Set initial background color (black) via proper helper function (Bob)
+>>   - Fix debugfs output
+>>   - General rebasing
+>> v3 (Maarten):
+>>   - Rebase on top of recent changes.
+>> v4 (Maarten):
+>>   - Complete rewrite based on the solution that went upstream, and
+>>     on the new intel color management features.
+>>
+>> Cc: Chandra Konduru <chandra.konduru@intel.com>
+>> Cc: dri-devel@lists.freedesktop.org
+>> Co-developed-by: Matt Roper <matthew.d.roper@intel.com>
+>> Signed-off-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>> ---
+>> Corresponding IGT: https://patchwork.freedesktop.org/series/166016/
+>>
+>>   drivers/gpu/drm/i915/display/intel_color.c    | 47 ++++++++++++-------
+>>   drivers/gpu/drm/i915/display/intel_color.h    |  3 ++
+>>   drivers/gpu/drm/i915/display/intel_crtc.c     |  4 ++
+>>   drivers/gpu/drm/i915/display/intel_display.c  |  5 ++
+>>   .../drm/i915/display/intel_display_debugfs.c  |  6 +++
+>>   .../drm/i915/display/intel_display_types.h    |  1 +
+>>   .../drm/i915/display/intel_modeset_setup.c    |  2 +
+>>   7 files changed, 52 insertions(+), 16 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
+>> index 0531c60e5e5d5..2365cf06cd514 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_color.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_color.c
+>> @@ -1102,19 +1102,37 @@ static void skl_get_config(struct intel_crtc_state *crtc_state)
+>>   {
+>>       struct intel_display *display = to_intel_display(crtc_state);
+>>       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>> +    u32 color;
+>>         crtc_state->gamma_mode = hsw_read_gamma_mode(crtc);
+>>       crtc_state->csc_mode = ilk_read_csc_mode(crtc);
+>>   +    color = intel_de_read(display, SKL_BOTTOM_COLOR(crtc->pipe));
+>>       if (DISPLAY_VER(display) < 35) {
+>> -        u32 tmp = intel_de_read(display, SKL_BOTTOM_COLOR(crtc->pipe));
+>> -
+>> -        if (tmp & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
+>> +        if (color & SKL_BOTTOM_COLOR_GAMMA_ENABLE)
+>>               crtc_state->gamma_enable = true;
+>>   -        if (tmp & SKL_BOTTOM_COLOR_CSC_ENABLE)
+>> +        if (color & SKL_BOTTOM_COLOR_CSC_ENABLE)
+>>               crtc_state->csc_enable = true;
+>>       }
+>> +
+>> +    crtc_state->hw.background_color = color & GENMASK(29, 0);
+>> +}
+>> +
+>> +u32 intel_color_hw_background_color(u64 drm_background_color)
+>> +{
+>> +    return (DRM_ARGB64_GETR_BPC(drm_background_color, 10) << 20) |
+>> +           (DRM_ARGB64_GETG_BPC(drm_background_color, 10) << 10) |
+>> +           (DRM_ARGB64_GETB_BPC(drm_background_color, 10));
+>> +}
+>> +
+>> +u64 intel_color_drm_background_color(u32 hw_background_color)
+>> +{
+>> +    uint16_t r = (hw_background_color >> 20) & 0x3ff;
+>> +    uint16_t g = (hw_background_color >> 10) & 0x3ff;
+>> +    uint16_t b = hw_background_color & 0x3ff;
+>> +
+>> +    return DRM_ARGB64_PREP_BPC(0x3ff, r, g, b, 10);
+>>   }
+> 
+> nit:
+> Better names?
+> 
+> intel_color_background_color_drm_to_hw
+> intel_color_background_color_hw_to_drm
+> 
+> Stick to kernel types u16?
+> 
+>>     static void skl_color_commit_arm(struct intel_dsb *dsb,
+>> @@ -1123,16 +1141,11 @@ static void skl_color_commit_arm(struct intel_dsb *dsb,
+>>       struct intel_display *display = to_intel_display(crtc_state);
+>>       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>>       enum pipe pipe = crtc->pipe;
+>> -    u32 val = 0;
+>> +    u32 val = crtc_state->hw.background_color;
+>>         if (crtc_state->has_psr)
+>>           ilk_load_csc_matrix(dsb, crtc_state);
+>>   -    /*
+>> -     * We don't (yet) allow userspace to control the pipe background color,
+>> -     * so force it to black, but apply pipe gamma and CSC appropriately
+>> -     * so that its handling will match how we program our planes.
+>> -     */
+>>       if (crtc_state->gamma_enable)
+>>           val |= SKL_BOTTOM_COLOR_GAMMA_ENABLE;
+>>       if (crtc_state->csc_enable)
+>> @@ -1151,11 +1164,7 @@ static void icl_color_commit_arm(struct intel_dsb *dsb,
+>>       struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+>>       enum pipe pipe = crtc->pipe;
+>>   -    /*
+>> -     * We don't (yet) allow userspace to control the pipe background color,
+>> -     * so force it to black.
+>> -     */
+>> -    intel_de_write_dsb(display, dsb, SKL_BOTTOM_COLOR(pipe), 0);
+>> +    intel_de_write_dsb(display, dsb, SKL_BOTTOM_COLOR(pipe), crtc_state->hw.background_color);
+>>         intel_de_write_dsb(display, dsb, GAMMA_MODE(crtc->pipe), crtc_state->gamma_mode);
+>>   @@ -2107,9 +2116,15 @@ int intel_color_check(struct intel_atomic_state *state,
+>>        * May need to update pipe gamma enable bits
+>>        * when C8 planes are getting enabled/disabled.
+>>        */
+>> -    if (!old_crtc_state->c8_planes != !new_crtc_state->c8_planes)
+>> +    if (!old_crtc_state->c8_planes != !new_crtc_state->c8_planes ||
+>> +        old_crtc_state->hw.background_color != new_crtc_state->hw.background_color)
+>>           new_crtc_state->uapi.color_mgmt_changed = true;
+>>   +    if (DRM_ARGB64_GETA(new_crtc_state->uapi.background_color) != 0xffff) {
+>> +        drm_dbg_kms(display->drm, "New background not completely opaque\n");
+>> +        return -EINVAL;
+>> +    }
+>> +
+> 
+> can be within a old != new check, not to invoke it unconditionally.
+The check we have above checks hw.background_color old vs new, the value programmed
+into the hardware without alpha component.
 
-Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16037
-Fixes: dea397e818b1 ("drm/i915/gt: Flush retire.work timer object on unload")
-Signed-off-by: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
----
- drivers/gpu/drm/i915/gt/intel_context.c     | 5 +++++
- drivers/gpu/drm/i915/gt/intel_gt_requests.c | 3 +++
- 2 files changed, 8 insertions(+)
+This check is about uapi.background_color which does have the alpha component.
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_context.c b/drivers/gpu/drm/i915/gt/intel_context.c
-index b1b8695ba7c9..90fc755f551a 100644
---- a/drivers/gpu/drm/i915/gt/intel_context.c
-+++ b/drivers/gpu/drm/i915/gt/intel_context.c
-@@ -475,6 +475,11 @@ void intel_context_enter_engine(struct intel_context *ce)
- 
- void intel_context_exit_engine(struct intel_context *ce)
- {
-+	if (unlikely(atomic_read(&ce->engine->wakeref.count) <= 0)) {
-+		intel_timeline_exit(ce->timeline);
-+		return;
-+	}
-+
- 	intel_timeline_exit(ce->timeline);
- 	intel_engine_pm_put(ce->engine);
- }
-diff --git a/drivers/gpu/drm/i915/gt/intel_gt_requests.c b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-index 93298820bee2..8f22438bc5d9 100644
---- a/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-+++ b/drivers/gpu/drm/i915/gt/intel_gt_requests.c
-@@ -230,6 +230,9 @@ void intel_gt_unpark_requests(struct intel_gt *gt)
- 
- void intel_gt_fini_requests(struct intel_gt *gt)
- {
-+	intel_gt_retire_requests(gt);
-+	flush_delayed_work(&gt->requests.retire_work);
-+
- 	/* Wait until the work is marked as finished before unloading! */
- 	cancel_delayed_work_sync(&gt->requests.retire_work);
- 
--- 
-2.53.0
+I can put it in a new vs old check, but it would have to be a separate one and
+there is no benefit to having 2 comparisons vs 1.
+
+
+> 
+>>       if (!intel_crtc_needs_color_update(new_crtc_state))
+>>           return 0;
+>>   diff --git a/drivers/gpu/drm/i915/display/intel_color.h b/drivers/gpu/drm/i915/display/intel_color.h
+>> index c21b9bdf7bb8a..f2cbce57b63d7 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_color.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_color.h
+>> @@ -47,4 +47,7 @@ void intel_color_plane_program_pipeline(struct intel_dsb *dsb,
+>>   void intel_color_plane_commit_arm(struct intel_dsb *dsb,
+>>                     const struct intel_plane_state *plane_state);
+>>   bool intel_color_crtc_has_3dlut(struct intel_display *display, enum pipe pipe);
+>> +u32 intel_color_hw_background_color(u64 drm_background_color);
+>> +u64 intel_color_drm_background_color(u32 hw_background_color);
+>> +
+>>   #endif /* __INTEL_COLOR_H__ */
+>> diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+>> index 03de219f7a645..b7600cecafc85 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_crtc.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+>> @@ -7,6 +7,7 @@
+>>   #include <linux/slab.h>
+>>     #include <drm/drm_atomic_helper.h>
+>> +#include <drm/drm_blend.h>
+>>   #include <drm/drm_fourcc.h>
+>>   #include <drm/drm_plane.h>
+>>   #include <drm/drm_print.h>
+>> @@ -405,6 +406,9 @@ static int __intel_crtc_init(struct intel_display *display, enum pipe pipe)
+>>                           BIT(DRM_SCALING_FILTER_DEFAULT) |
+>>                           BIT(DRM_SCALING_FILTER_NEAREST_NEIGHBOR));
+>>   +    if (DISPLAY_VER(display) >= 9)
+>> +        drm_crtc_attach_background_color_property(&crtc->base);
+>> +
+>>       intel_color_crtc_init(crtc);
+>>       intel_drrs_crtc_init(crtc);
+>>       intel_crtc_crc_init(crtc);
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+>> index 2fa10f8582794..306908f20b5a0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> @@ -4505,6 +4505,8 @@ intel_crtc_copy_uapi_to_hw_state_nomodeset(struct intel_atomic_state *state,
+>>                     crtc_state->uapi.gamma_lut);
+>>       drm_property_replace_blob(&crtc_state->hw.ctm,
+>>                     crtc_state->uapi.ctm);
+>> +    crtc_state->hw.background_color =
+>> +        intel_color_hw_background_color(crtc_state->uapi.background_color);
+>>   }
+>>     static void
+>> @@ -4544,6 +4546,7 @@ copy_joiner_crtc_state_nomodeset(struct intel_atomic_state *state,
+>>                     primary_crtc_state->hw.gamma_lut);
+>>       drm_property_replace_blob(&secondary_crtc_state->hw.ctm,
+>>                     primary_crtc_state->hw.ctm);
+>> +    secondary_crtc_state->hw.background_color = primary_crtc_state->hw.background_color;
+>>         secondary_crtc_state->uapi.color_mgmt_changed = primary_crtc_state->uapi.color_mgmt_changed;
+>>   }
+>> @@ -5356,6 +5359,8 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+>>           else
+>>               PIPE_CONF_CHECK_X(csc_mode);
+>>           PIPE_CONF_CHECK_BOOL(gamma_enable);
+>> +
+>> +        PIPE_CONF_CHECK_X(hw.background_color);
+>>           PIPE_CONF_CHECK_BOOL(csc_enable);
+>>           PIPE_CONF_CHECK_BOOL(wgc_enable);
+>>   diff --git a/drivers/gpu/drm/i915/display/intel_display_debugfs.c b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> index 81bef000a4e3e..336ef29d0c5b5 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_debugfs.c
+>> @@ -572,6 +572,12 @@ static void intel_crtc_info(struct seq_file *m, struct intel_crtc *crtc)
+>>         intel_scaler_info(m, crtc);
+>>   +    if (DISPLAY_VER(display) >= 9) {
+>> +        u32 background = crtc_state->hw.background_color;
+>> +
+>> +        seq_printf(m, "\tbackground color (10bpc XRGB210101010): %08x\n", background);
+> 
+> Typo: XRGB2101010
+> 
+> ==
+> Chaitanya
+> 
+Oops, missed that one!
+
+Kind regards,
+~Maarten Lankhorst
+
+>> +    }
+>> +
+>>       if (crtc_state->joiner_pipes)
+>>           seq_printf(m, "\tLinked to 0x%x pipes as a %s\n",
+>>                  crtc_state->joiner_pipes,
+>> diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> index c819167618502..aa07be41648c4 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+>> @@ -1034,6 +1034,7 @@ struct intel_crtc_state {
+>>           /* logical state of LUTs */
+>>           struct drm_property_blob *degamma_lut, *gamma_lut, *ctm;
+>>           struct drm_display_mode mode, pipe_mode, adjusted_mode;
+>> +        u32 background_color;
+>>           enum drm_scaling_filter scaling_filter;
+>>           u8 sharpness_strength;
+>>       } hw;
+>> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+>> index 4c646b1bd0ee0..d3b2433eae791 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+>> @@ -334,6 +334,8 @@ static void intel_crtc_copy_hw_to_uapi_state(struct intel_crtc_state *crtc_state
+>>       crtc_state->uapi.adjusted_mode = crtc_state->hw.adjusted_mode;
+>>       crtc_state->uapi.scaling_filter = crtc_state->hw.scaling_filter;
+>>       crtc_state->uapi.sharpness_strength = crtc_state->hw.sharpness_strength;
+>> +    crtc_state->uapi.background_color =
+>> +        intel_color_drm_background_color(crtc_state->hw.background_color);
+>>         if (DISPLAY_INFO(display)->color.degamma_lut_size) {
+>>           /* assume 1:1 mapping */
+> 
 
