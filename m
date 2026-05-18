@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCltKsLrCmo89gQAu9opvQ
+	id qMiXH8XrCmo89gQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:36:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:36:53 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40B7656ACA1
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:36:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 31D8856ACB7
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 12:36:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 534DD10E798;
-	Mon, 18 May 2026 10:36:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7663410E7A1;
+	Mon, 18 May 2026 10:36:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="JoevIpzE";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eb+LPnN7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57F9910E7AF;
- Mon, 18 May 2026 10:36:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8B18D10E5BF;
+ Mon, 18 May 2026 10:36:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779100607; x=1810636607;
+ t=1779100609; x=1810636609;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=++HE8gdXBHjM7gUeDCiHVEnVlm6F8bAovBSm0lLW5ww=;
- b=JoevIpzEIUBqWqx8d3bXzKycanx12B97ZKzae26uyyeSK7SFIfc0MmTN
- tA9oBCCa65TWiXBEJdt8Pj092g5m08hngKbQK41/VXazoVtFXGGZeXCoL
- MIQQCj8uL6BUL7Xmu1yg28F9D6ezGFOMAUt1PtasKJlyvatv0jjQWo13J
- h4X+LFKZiI0AerQEzisiFcy19bVa4zmKSKRzxsRIq5vM+ZEUx+MDieemg
- 0Q0xlIdLwsj10WGqku2MRYqSvaAiAtKQLrStz0zq0fCzhzkjs1GKM/9In
- 9OVn4+YBMo/tVUCvDvvqIWZkNdsvTR9zPEZsSflkTvZCW2cbBHv0jNLtt A==;
-X-CSE-ConnectionGUID: CC5MOU/PSqq9MJHl/dyM3w==
-X-CSE-MsgGUID: PEMQfXXZRtmSNjpK+19KoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="83820614"
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="83820614"
+ bh=Olyw0mWp1QgYcLr6Rt3ZNVl4k5m8EKgu+P3QcI1fffU=;
+ b=eb+LPnN7ngigLrwlVWYYwxsKLV34N4iZQPegVbf1qr5qKKysoWZZq0++
+ uSyR/tmxaxqp7v4nD9B9VYjmWHSCvov3Pqv9RtaHZiMXMywrxLd4/vdFS
+ CIpn4/7zrBPJULGf5w0eWAnypOEft7ruGuAnB+OjMSywSr+LVPuS9d/C6
+ MtyAJ5uVxRPYQxDaBHMJcB+D1BDQcGkl/N7Y8JRnIfZwfb561YbliWZjq
+ c6KlsqIbRzljqbUBSfPZTF9g/9xU+KMS2LN3/r/oZ0VMHhxKl5hpuxsY+
+ C8eJ2k3RpoPGTT/IvenerhyOCKTZa0NbYez7juVpKuWwfvspwbjNcglZy Q==;
+X-CSE-ConnectionGUID: Xrqi1CgKQti/DX4cyP6QOQ==
+X-CSE-MsgGUID: jfOmdMbDRsGiKSI3ZBjIYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="83820617"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="83820617"
 Received: from fmviesa001.fm.intel.com ([10.60.135.141])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 03:36:47 -0700
-X-CSE-ConnectionGUID: ciY5Tk2JQLOIXQ1WnMs+eQ==
-X-CSE-MsgGUID: T5vs75fUSS+3q4Vc38vACA==
+ 18 May 2026 03:36:48 -0700
+X-CSE-ConnectionGUID: 58Kt79AnScO4e9foWhRtgg==
+X-CSE-MsgGUID: 06tB8hiNRXW3dVYValOYZA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="263173313"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="263173317"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa001.fm.intel.com with ESMTP; 18 May 2026 03:36:46 -0700
+ by fmviesa001.fm.intel.com with ESMTP; 18 May 2026 03:36:47 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH 2/4] drm/i915/display: Add DG2 MPLLB DPLL manager support
-Date: Mon, 18 May 2026 10:36:40 +0000
-Message-ID: <20260518103642.3678448-3-mika.kahola@intel.com>
+Subject: [PATCH 3/4] drm/i915/display: Prepare DG2 DDI and compute paths for
+ DPLL framework
+Date: Mon, 18 May 2026 10:36:41 +0000
+Message-ID: <20260518103642.3678448-4-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260518103642.3678448-1-mika.kahola@intel.com>
 References: <20260518103642.3678448-1-mika.kahola@intel.com>
@@ -71,7 +72,7 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 40B7656ACA1
+X-Rspamd-Queue-Id: 31D8856ACB7
 X-Rspamd-Server: lfdr
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
@@ -100,308 +101,107 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-Add DG2-specific DPLL manager infrastructure for MPLLB-backed port PLLs.
+Prepare DG2 users to obtain clock state and reserve PLLs through the
+shared DPLL framework.
 
-Introduce PLL id mapping, DG2-specific DPLL callbacks for
-enable/disable/readout/frequency calculation, and manager callbacks
-for compute/get/dump/compare. The platform is not switched over yet.
-
-DG2's PLL-to-encoder lookup prefers the active encoder using the PLL,
-but fall back to a matching encoder for the fixed port-to-PLL mapping
-when no active user can be identified.
-
-This keeps the active-user fix for operational paths while allowing
-readout and verification paths to resolve the PHY even when
-pll->active_mask does not identify an active user.
+Replace the DG2-specific compute hook with the generic framework-backed
+helpers.
 
 Assisted-by: Copilot:claude-sonnet-4-6
 Signed-off-by: Mika Kahola <mika.kahola@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 227 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  22 ++
- 2 files changed, 249 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c  | 28 ++++++++++++++++++++---
+ drivers/gpu/drm/i915/display/intel_dpll.c | 22 ++----------------
+ 2 files changed, 27 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-index bb487e647f76..c03560532d94 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
-@@ -42,6 +42,7 @@
- #include "intel_lt_phy.h"
- #include "intel_mg_phy_regs.h"
- #include "intel_pch_refclk.h"
-+#include "intel_snps_phy.h"
- #include "intel_tc.h"
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 86520848892e..b6799ed24de4 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4307,11 +4307,33 @@ static void mtl_ddi_tc_phy_get_config(struct intel_encoder *encoder,
+ 				       mtl_port_to_pll_id(display, encoder->port));
+ }
  
- /**
-@@ -4735,6 +4736,232 @@ static const struct intel_dpll_mgr xe3plpd_pll_mgr = {
- 	.compare_hw_state = xe3plpd_compare_hw_state,
++static struct intel_dpll *dg2_ddi_get_pll(struct intel_encoder *encoder)
++{
++	struct intel_display *display = to_intel_display(encoder);
++
++	return intel_get_dpll_by_id(display, dg2_port_to_pll_id(encoder->port));
++}
++
+ static void dg2_ddi_get_config(struct intel_encoder *encoder,
+-				struct intel_crtc_state *crtc_state)
++			       struct intel_crtc_state *crtc_state)
+ {
+-	intel_mpllb_readout_hw_state(encoder, &crtc_state->dpll_hw_state.mpllb);
+-	crtc_state->port_clock = intel_mpllb_calc_port_clock(encoder, &crtc_state->dpll_hw_state.mpllb);
++	struct icl_port_dpll *port_dpll = &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
++	struct intel_dpll *pll = dg2_ddi_get_pll(encoder);
++
++	if (pll)
++		intel_ddi_get_clock(encoder, crtc_state, pll);
++
++	/*
++	 * Keep the hw readout robust against unexpected NULL PLL lookups,
++	 * so modeset verify always has intel_dpll populated for DG2.
++	 */
++	if (!crtc_state->intel_dpll) {
++		port_dpll->pll = pll;
++		intel_mpllb_readout_hw_state(encoder, &port_dpll->hw_state.mpllb);
++		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
++		crtc_state->port_clock = intel_mpllb_calc_port_clock(encoder,
++								     &port_dpll->hw_state.mpllb);
++	}
+ 
+ 	intel_ddi_get_config(encoder, crtc_state);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
+index f40807a5566b..20fd091cb9db 100644
+--- a/drivers/gpu/drm/i915/display/intel_dpll.c
++++ b/drivers/gpu/drm/i915/display/intel_dpll.c
+@@ -22,7 +22,6 @@
+ #include "intel_lvds_regs.h"
+ #include "intel_panel.h"
+ #include "intel_pps.h"
+-#include "intel_snps_phy.h"
+ #include "vlv_dpio_phy_regs.h"
+ #include "vlv_sideband.h"
+ 
+@@ -1194,24 +1193,6 @@ static int hsw_crtc_get_dpll(struct intel_atomic_state *state,
+ 	return intel_dpll_reserve(state, crtc, encoder);
+ }
+ 
+-static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
+-				  struct intel_crtc *crtc)
+-{
+-	struct intel_crtc_state *crtc_state =
+-		intel_atomic_get_new_crtc_state(state, crtc);
+-	struct intel_encoder *encoder =
+-		intel_get_crtc_new_encoder(state, crtc_state);
+-	int ret;
+-
+-	ret = intel_mpllb_calc_state(crtc_state, encoder);
+-	if (ret)
+-		return ret;
+-
+-	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+-
+-	return 0;
+-}
+-
+ static int ilk_fb_cb_factor(const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+@@ -1682,7 +1663,8 @@ static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
  };
  
-+enum intel_dpll_id dg2_port_to_pll_id(enum port port)
-+{
-+	switch (port) {
-+	case PORT_A:
-+		return DPLL_ID_DG2_DPLL_A;
-+	case PORT_B:
-+		return DPLL_ID_DG2_DPLL_B;
-+	case PORT_C:
-+		return DPLL_ID_DG2_DPLL_C;
-+	case PORT_D_XELPD:
-+		return DPLL_ID_DG2_DPLL_D;
-+	case PORT_TC1:
-+		return DPLL_ID_DG2_DPLL_E;
-+	default:
-+		MISSING_CASE(port);
-+		return DPLL_ID_DG2_DPLL_A;
-+	}
-+}
-+
-+static struct intel_encoder *dg2_get_intel_encoder(struct intel_display *display,
-+						   const struct intel_dpll *pll)
-+{
-+	struct intel_encoder *encoder;
-+	struct intel_encoder *fallback = NULL;
-+
-+	for_each_intel_encoder(display->drm, encoder) {
-+		struct intel_crtc *crtc = to_intel_crtc(encoder->base.crtc);
-+
-+		if (dg2_port_to_pll_id(encoder->port) != pll->info->id)
-+			continue;
-+
-+		/*
-+		 * Multiple encoder objects may exist for the same physical port.
-+		 * Prefer the encoder that is actively using this PLL.
-+		 */
-+		if (crtc && (pll->active_mask & BIT(crtc->pipe)))
-+			return encoder;
-+
-+		/*
-+		 * Fall back to a matching encoder so that readout paths can
-+		 * still resolve the PHY when active_mask does not identify an
-+		 * active user.
-+		 */
-+		if (!fallback)
-+			fallback = encoder;
-+	}
-+
-+	return fallback;
-+}
-+
-+static void dg2_mpllb_enable(struct intel_display *display,
-+			     struct intel_dpll *pll,
-+			     const struct intel_dpll_hw_state *dpll_hw_state)
-+{
-+	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-+
-+	if (drm_WARN_ON(display->drm, !encoder))
-+		return;
-+
-+	intel_mpllb_enable_phy(encoder, &dpll_hw_state->mpllb);
-+}
-+
-+static void dg2_mpllb_disable(struct intel_display *display,
-+			      struct intel_dpll *pll)
-+{
-+	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-+
-+	if (drm_WARN_ON(display->drm, !encoder))
-+		return;
-+
-+	intel_mpllb_disable(encoder);
-+}
-+
-+static bool dg2_mpllb_get_hw_state(struct intel_display *display,
-+				   struct intel_dpll *pll,
-+				   struct intel_dpll_hw_state *dpll_hw_state)
-+{
-+	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-+	enum phy phy;
-+	i915_reg_t enable_reg;
-+	struct ref_tracker *wakeref;
-+	bool ret = false;
-+	u32 val;
-+
-+	if (!encoder)
-+		return false;
-+
-+	wakeref = intel_display_power_get_if_enabled(display,
-+						     POWER_DOMAIN_DISPLAY_CORE);
-+	if (!wakeref)
-+		return false;
-+
-+	phy = intel_encoder_to_phy(encoder);
-+	enable_reg = (phy <= PHY_D ? DG2_PLL_ENABLE(phy) : MG_PLL_ENABLE(0));
-+
-+	val = intel_de_read(display, enable_reg);
-+	if (!(val & PLL_ENABLE))
-+		goto out;
-+
-+	intel_mpllb_readout_hw_state(encoder, &dpll_hw_state->mpllb);
-+	ret = true;
-+
-+out:
-+	intel_display_power_put(display, POWER_DOMAIN_DISPLAY_CORE, wakeref);
-+	return ret;
-+}
-+
-+static int dg2_mpllb_get_freq(struct intel_display *display,
-+			      const struct intel_dpll *pll,
-+			      const struct intel_dpll_hw_state *dpll_hw_state)
-+{
-+	struct intel_encoder *encoder = dg2_get_intel_encoder(display, pll);
-+
-+	if (drm_WARN_ON(display->drm, !encoder))
-+		return 0;
-+
-+	return intel_mpllb_calc_port_clock(encoder, &dpll_hw_state->mpllb);
-+}
-+
-+static const struct intel_dpll_funcs mpllb_pll_funcs = {
-+	.enable = dg2_mpllb_enable,
-+	.disable = dg2_mpllb_disable,
-+	.get_hw_state = dg2_mpllb_get_hw_state,
-+	.get_freq = dg2_mpllb_get_freq,
-+};
-+
-+static const struct dpll_info dg2_plls[] = {
-+	{ .name = "MPLLB A", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_A, },
-+	{ .name = "MPLLB B", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_B, },
-+	{ .name = "MPLLB C", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_C, },
-+	{ .name = "MPLLB D", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_D, },
-+	{ .name = "MPLLB E", .funcs = &mpllb_pll_funcs, .id = DPLL_ID_DG2_DPLL_E, },
-+	{}
-+};
-+
-+static int dg2_compute_dplls(struct intel_atomic_state *state,
-+			     struct intel_crtc *crtc,
-+			     struct intel_encoder *encoder)
-+{
-+	struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct icl_port_dpll *port_dpll =
-+		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-+	int ret;
-+
-+	ret = intel_mpllb_calc_state(crtc_state, encoder);
-+	if (ret)
-+		return ret;
-+
-+	port_dpll->hw_state = crtc_state->dpll_hw_state;
-+
-+	/* this is mainly for the fastset check */
-+	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-+
-+	crtc_state->port_clock = intel_mpllb_calc_port_clock(encoder,
-+							     &port_dpll->hw_state.mpllb);
-+
-+	return 0;
-+}
-+
-+static int dg2_get_dplls(struct intel_atomic_state *state,
-+			 struct intel_crtc *crtc,
-+			 struct intel_encoder *encoder)
-+{
-+	struct intel_crtc_state *crtc_state =
-+		intel_atomic_get_new_crtc_state(state, crtc);
-+	struct icl_port_dpll *port_dpll =
-+		&crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-+	enum intel_dpll_id dpll_id = dg2_port_to_pll_id(encoder->port);
-+
-+	port_dpll->pll = intel_find_dpll(state, crtc,
-+					 &port_dpll->hw_state,
-+					 BIT(dpll_id));
-+	if (!port_dpll->pll)
-+		return -EINVAL;
-+
-+	intel_reference_dpll(state, crtc,
-+			     port_dpll->pll, &port_dpll->hw_state);
-+
-+	icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-+
-+	return 0;
-+}
-+
-+static void dg2_dump_hw_state(struct drm_printer *p,
-+			      const struct intel_dpll_hw_state *dpll_hw_state)
-+{
-+	const struct intel_mpllb_state *hw_state = &dpll_hw_state->mpllb;
-+
-+	drm_printf(p, "dpll_hw_state: mpllb_cp: 0x%x, mpllb_div: 0x%x, "
-+		   "mpllb_div2: 0x%x, mpllb_fracn1: 0x%x, "
-+		   "mpllb_fracn2: 0x%x, mpllb_sscen: 0x%x, "
-+		   "mpllb_sscstep: 0x%x, ref_control: 0x%x\n",
-+		   hw_state->mpllb_cp, hw_state->mpllb_div,
-+		   hw_state->mpllb_div2, hw_state->mpllb_fracn1,
-+		   hw_state->mpllb_fracn2, hw_state->mpllb_sscen,
-+		   hw_state->mpllb_sscstep, hw_state->ref_control);
-+}
-+
-+static bool dg2_compare_hw_state(const struct intel_dpll_hw_state *_a,
-+				 const struct intel_dpll_hw_state *_b)
-+{
-+	const struct intel_mpllb_state *a = &_a->mpllb;
-+	const struct intel_mpllb_state *b = &_b->mpllb;
-+
-+	return a->mpllb_cp == b->mpllb_cp &&
-+		a->mpllb_div == b->mpllb_div &&
-+		a->mpllb_div2 == b->mpllb_div2 &&
-+		a->mpllb_fracn1 == b->mpllb_fracn1 &&
-+		a->mpllb_fracn2 == b->mpllb_fracn2 &&
-+		a->mpllb_sscen == b->mpllb_sscen &&
-+		a->mpllb_sscstep == b->mpllb_sscstep;
-+}
-+
-+__maybe_unused
-+static const struct intel_dpll_mgr dg2_pll_mgr = {
-+	.dpll_info = dg2_plls,
-+	.compute_dplls = dg2_compute_dplls,
-+	.get_dplls = dg2_get_dplls,
-+	.put_dplls = icl_put_dplls,
-+	.update_active_dpll = icl_update_active_dpll,
-+	.update_ref_clks = icl_update_dpll_ref_clks,
-+	.dump_hw_state = dg2_dump_hw_state,
-+	.compare_hw_state = dg2_compare_hw_state,
-+};
-+
- /**
-  * intel_dpll_init - Initialize DPLLs
-  * @display: intel_display device
-diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-index d408ccf6f902..f4b84733a58c 100644
---- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-+++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.h
-@@ -169,9 +169,31 @@ enum intel_dpll_id {
- 	 * @DPLL_ID_DG1_DPLL3: DG1 combo PHY DPLL3
- 	 */
- 	DPLL_ID_DG1_DPLL3 = 3,
-+
-+	/**
-+	 * @DPLL_ID_DG2_DPLL_A: DG2 port PLL for PHY A (PORT_A)
-+	 */
-+	DPLL_ID_DG2_DPLL_A = 0,
-+	/**
-+	 * @DPLL_ID_DG2_DPLL_B: DG2 port PLL for PHY B (PORT_B)
-+	 */
-+	DPLL_ID_DG2_DPLL_B = 1,
-+	/**
-+	 * @DPLL_ID_DG2_DPLL_C: DG2 port PLL for PHY C (PORT_C)
-+	 */
-+	DPLL_ID_DG2_DPLL_C = 2,
-+	/**
-+	 * @DPLL_ID_DG2_DPLL_D: DG2 port PLL for PHY D (PORT_D_XELPD)
-+	 */
-+	DPLL_ID_DG2_DPLL_D = 3,
-+	/**
-+	 * @DPLL_ID_DG2_DPLL_E: DG2 port PLL for PHY F (PORT_TC1)
-+	 */
-+	DPLL_ID_DG2_DPLL_E = 4,
+ static const struct intel_dpll_global_funcs dg2_dpll_funcs = {
+-	.crtc_compute_clock = dg2_crtc_compute_clock,
++	.crtc_compute_clock = hsw_crtc_compute_clock,
++	.crtc_get_dpll = hsw_crtc_get_dpll,
  };
  
- #define I915_NUM_PLLS 9
-+enum intel_dpll_id dg2_port_to_pll_id(enum port port);
- 
- enum icl_port_dpll_id {
- 	ICL_PORT_DPLL_DEFAULT,
+ static const struct intel_dpll_global_funcs hsw_dpll_funcs = {
 -- 
 2.43.0
 
