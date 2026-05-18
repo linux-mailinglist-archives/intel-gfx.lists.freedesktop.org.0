@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qKKHABSRCmpg3gQAu9opvQ
+	id yFhdJxWRCmpg3gQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 06:09:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 06:09:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8418F565977
-	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 06:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7342056597E
+	for <lists+intel-gfx@lfdr.de>; Mon, 18 May 2026 06:09:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 01B1C10E654;
-	Mon, 18 May 2026 04:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EBD1410E661;
+	Mon, 18 May 2026 04:09:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DNEPBzwL";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nSNSvQK+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 92F3810E654;
- Mon, 18 May 2026 04:09:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F0E4010E5B1;
+ Mon, 18 May 2026 04:09:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779077392; x=1810613392;
+ t=1779077395; x=1810613395;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=eXo7hB6qXOVfhbKfPewhKxC9sldOpCSB4wcE+wKNpbk=;
- b=DNEPBzwLMnaDeE3tJ82dhgBNgHrCBl0N/wAW4NqkDWp1xXS6bCRHRUcL
- EjyFKyCkV4aKA70enONIxuXoQGYDgxY1P57Ee7cmyEw9fj/XT7D+ya5jV
- xpyEArbkf90MVWsGs9XTIaVdIaYh3UUaLw6siURtBuyYxExUkVc1SeANI
- Ye23LdtfHJkRBVd/Pq8mXMitoIqqdXM6U3RfCBd66SX2xUXrwfE2g6EB4
- 7EKq4s3dizcyKZR84N41jvBaIXQ/ayBWern6g2zhQd+UT3yxJeV+JwquZ
- XKkqEhvrXqGZ6ocFfsgnHuB15csvF9U+bcZeakTjgqIE5wyacf22IksNS Q==;
-X-CSE-ConnectionGUID: B17yAifXTK+fgsH8PQSjuw==
-X-CSE-MsgGUID: er0MwnWJQwi0oqXLILN8kg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="97495627"
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="97495627"
+ bh=RtZFT7ABsmZlK3dCW48QayfmGAPQ/tOPtnvOBFt7spY=;
+ b=nSNSvQK+20kV84op4NYUIhnJparqX7WCY+28U+25wpUJp4mSacFY9ugC
+ svsimI3lerSj5MukrRue7pdM/SYUzRItmGlIjeAv9Q5qLKjb5cYXY1n8z
+ yhJXCmaitNQaKgmHcM/bGbt+LDE8xKJ3EBE8XD+wISjurGGu4d2POMnrB
+ BL0Enm3rYZFAOoIgiftF4GRsWT8dCHKyXOm/8tPF0e9xsqRinaA614Kvv
+ SscJ0qPg9l/TC3QS1yXx8KFnbMC/1OWJdeNvHhhVhEA5OfaQnRdYAao68
+ c3QwJn3YWcXRS5LBQVeQmHG2OD5VcDQeiqBQFh4lpSWT3Qu40hpR2YZWh A==;
+X-CSE-ConnectionGUID: HDi/Vxt3Rbeb4LISHuynyg==
+X-CSE-MsgGUID: iNORfifET96aGDDbqktcUg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11789"; a="97495628"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="97495628"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2026 21:09:52 -0700
-X-CSE-ConnectionGUID: BMMJCkB+S6WGNQGcZ0DY8A==
-X-CSE-MsgGUID: Fbyc0wN1TRGSW1g7pPying==
+ 17 May 2026 21:09:55 -0700
+X-CSE-ConnectionGUID: 5y6EL6WNSF+MSKPYcY/Zwg==
+X-CSE-MsgGUID: PhyckMaXS9u5lxTqpr4OaQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="277403645"
+X-IronPort-AV: E=Sophos;i="6.23,241,1770624000"; d="scan'208";a="277403659"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 May 2026 21:09:50 -0700
+ 17 May 2026 21:09:53 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
  animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 10/11] drm/i915/dp: Compute and include coasting vtotal for AS
- SDP
-Date: Mon, 18 May 2026 09:25:00 +0530
-Message-ID: <20260518035502.2909359-11-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 11/11] drm/i915/dp: Always enable AS SDP if supported by
+ source + sink
+Date: Mon, 18 May 2026 09:25:01 +0530
+Message-ID: <20260518035502.2909359-12-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260518035502.2909359-1-ankit.k.nautiyal@intel.com>
 References: <20260518035502.2909359-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,117 +74,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 8418F565977
+X-Rspamd-Queue-Id: 7342056597E
 X-Rspamd-Server: lfdr
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_FIVE(0.00)[6];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
+	RCPT_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-1.000];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Action: no action
 
-DP v2.1 allows the source to temporarily suspend Adaptive-Sync SDP
-transmission while Panel Replay is active when the sink supports
-asynchronous video timing.
+Currently AS SDP is only configured when VRR is enabled. However, other
+use cases like CMRR, Panel Replay, etc. also send information to the sink
+via AS SDPs.
 
-In such cases, the sink relies on the last transmitted AS SDP timing
-information to maintain the refresh rate. To support this behavior,
-compute and populate the coasting vtotal field in the AS SDP payload.
+With optimized guardband, we also need to account for wakeup time and other
+relevant details that depend on the AS SDP position whenever AS SDP is
+enabled. If a feature enabling AS SDP gets turned on later (after modeset),
+the guardband might not be sufficient and may need to increase, triggering
+a full modeset.
 
-Include coasting vtotal in AS SDP packing, unpacking, and comparison,
-and set it during late AS SDP configuration for PR with Aux-less ALPM
-when asynchronous video timing is supported.
+To avoid this, always send AS SDP whenever:
+ - the source and sink both support it, AND,
+ - there is a possibility to use it for VRR and Panel Replay for
+   synchronization.
 
-Note:
-The coasting vtotal value is fully under driver control i.e. the HW does
-not overwrite these payload bytes. HW only samples the PR_ALPM_CTL[AS SDP
-Transmission in Active Disable] bit during PR active state and reflects it
-in the AS SDP payload at the appropriate time.
+v2: Check if AS SDP can be used for synchronization for VRR or PR. (Ville)
 
 Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c |  3 ++-
- drivers/gpu/drm/i915/display/intel_dp.c      | 19 +++++++++++++++++++
- 2 files changed, 21 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 757a78c75bbf..043d1c667379 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4889,7 +4889,8 @@ intel_compare_dp_as_sdp(const struct drm_dp_as_sdp *a,
- 		a->duration_incr_ms == b->duration_incr_ms &&
- 		a->duration_decr_ms == b->duration_decr_ms &&
- 		a->target_rr_divider == b->target_rr_divider &&
--		a->mode == b->mode;
-+		a->mode == b->mode &&
-+		a->coasting_vtotal == b->coasting_vtotal;
- }
- 
- static bool
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index c1c6f394eb0b..69eb474fede7 100644
+index 69eb474fede7..2c1dbcb0a2ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5181,6 +5181,9 @@ static ssize_t intel_dp_as_sdp_pack(const struct drm_dp_as_sdp *as_sdp,
- 	if (as_sdp->target_rr_divider)
- 		sdp->db[4] |= 0x20;
+@@ -3181,7 +3181,11 @@ static bool intel_dp_needs_as_sdp(struct intel_dp *intel_dp,
+ 	if (drm_dp_is_branch(intel_dp->dpcd))
+ 		return false;
  
-+	sdp->db[7] = as_sdp->coasting_vtotal & 0xFF;
-+	sdp->db[8] = (as_sdp->coasting_vtotal >> 8) & 0xFF;
-+
- 	return length;
- }
- 
-@@ -5365,6 +5368,7 @@ int intel_dp_as_sdp_unpack(struct drm_dp_as_sdp *as_sdp,
- 	as_sdp->vtotal = (sdp->db[2] << 8) | sdp->db[1];
- 	as_sdp->target_rr = ((sdp->db[4] & 0x3) << 8) | sdp->db[3];
- 	as_sdp->target_rr_divider = sdp->db[4] & 0x20 ? true : false;
-+	as_sdp->coasting_vtotal = (sdp->db[8] << 8) | sdp->db[7];
- 
- 	return 0;
- }
-@@ -7471,6 +7475,21 @@ void intel_dp_as_sdp_compute_config_late(struct intel_dp *intel_dp,
- 	} else {
- 		as_sdp->mode = DP_AS_SDP_AVT_FIXED_VTOTAL;
- 	}
-+
-+	/*
-+	 * For Panel Replay with Async Video Timing support, the source can
-+	 * disable sending the AS SDP during PR Active state. In that case,
-+	 * the sink needs the coasting vtotal value to maintain the refresh
-+	 * rate.
-+	 *
-+	 * #TODO:
-+	 * If we ever advertise support for coasting at other refresh targets,
-+	 * this logic could be revisited. For now, use the minimum refresh rate
-+	 * as the only safe coasting value.
-+	 */
+-	return crtc_state->vrr.enable;
 +	if (intel_alpm_is_alpm_aux_less(intel_dp, crtc_state) &&
-+	    intel_psr_pr_async_video_timing_supported(intel_dp))
-+		as_sdp->coasting_vtotal = crtc_state->vrr.vmax;
++	    !intel_psr_pr_async_video_timing_supported(intel_dp))
++		return true;
++
++	return intel_vrr_possible(crtc_state);
  }
  
- static
+ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
 -- 
 2.45.2
 
