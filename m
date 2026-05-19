@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IHpiJrbxC2rnRgUAu9opvQ
+	id qFiGHrfxC2rnRgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 07:14:30 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 07:14:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71B5257760C
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 07:14:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2B421577615
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 07:14:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 89D7810EA40;
-	Tue, 19 May 2026 05:14:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BEBA10EA46;
+	Tue, 19 May 2026 05:14:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PTMlXcMw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BypeF7TB";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5B410EA40
- for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2026 05:14:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38F5810EA40
+ for <intel-gfx@lists.freedesktop.org>; Tue, 19 May 2026 05:14:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779167666; x=1810703666;
+ t=1779167668; x=1810703668;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=X2wBLjRYqVLMsLXpx7C7JRgYOLYHln4sd0Px89eBem0=;
- b=PTMlXcMwm6n/oYpxIsW2hvUuE3CJxBweU3tsNF6Jduj2CW9bAuRjTPrU
- MFHaYurV19+yWipqDZxlOVJp4O1+LAgocNAyJUFnkch59fr5TD4QVLPGo
- /OehVcLxB7S7dSXLtydA7axabmovuh2+E9mp9/lZHb1hbIY1mEQcigsXm
- xE/NmIohD0Ym4le43lvMU7FQ0fVWEaTpU8+6IYXmjXqZEpYeHyX7AGQXc
- JCrcQ0DJ/Jydpv4/1O3YD4+5IlUfzLe9LS6RHv8MiamJ8PfAadpiDyBuA
- C0tw7buL3M3/LPC2nQEHSHODPhIeiZIeSvaHG3oH8E1+pP1GhB8gbEEHo w==;
-X-CSE-ConnectionGUID: ondWow1NT7+3ekrXwWxPOA==
-X-CSE-MsgGUID: Bh85Z+vdSNGgCXx3XWDoiQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97603543"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="97603543"
+ bh=ndnb1efJUmsflhmU6+yHQiPTk9MZiBfOir5FTQYO3D4=;
+ b=BypeF7TB96O8/M8rWz7uvxp9TVFn0viqeNCqIsktKfCu8G5A+cCZnZnf
+ dC3myU+kzf8LpWDiEk2bgV4vzjv/Ge5OF0S3+mFo7chlZQ2Y39q8LPDJY
+ eOTh5r7VOkFzQ1cp9ZTIurlH2uZJoZa8dv2E8ArE2zojCGGqKD/AQaUPL
+ 3N9fG/EqNCjCL3SzxuhiXaRBtav+wcr8u83VCpKCSxzZE0WuW1eA3GQ93
+ TZtvqma1k//mSUHHN0CBl/mlZVysEDs0FomQENTIrcuSRfB8jhuYlGA91
+ ZNKVsGU709kugr4BILrRaXrFKc02Uh1J9ekCNnupFAtQEEcP/Dc8dtrVl w==;
+X-CSE-ConnectionGUID: TCUA6SA7RYeOBKLv/mdewg==
+X-CSE-MsgGUID: X9IuLQDyTuCLS8vQTYSoLg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97603546"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="97603546"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 18 May 2026 22:14:26 -0700
-X-CSE-ConnectionGUID: k2U4pVmCTqKF1ybHmE850A==
-X-CSE-MsgGUID: AU4tu/xoSdirXfW6vJt0NA==
+ 18 May 2026 22:14:28 -0700
+X-CSE-ConnectionGUID: v+87iA+BStSrAF9OeR8Hog==
+X-CSE-MsgGUID: qo8HHcldSAuSHb2UHMg5Mg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="243635809"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="243635814"
 Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa003.jf.intel.com with ESMTP; 18 May 2026 22:14:25 -0700
+ by orviesa003.jf.intel.com with ESMTP; 18 May 2026 22:14:26 -0700
 From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: mitulkumar.ajitkumar.golani@intel.com, ankit.k.nautiyal@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v1 4/8] drm/i915/display: Add state dump for CMRR params
-Date: Tue, 19 May 2026 10:33:18 +0530
-Message-ID: <20260519050322.3677451-5-mitulkumar.ajitkumar.golani@intel.com>
+Subject: [PATCH v1 5/8] i915/display/vrr: Compute CMRR params along with fixed
+ refresh rate params
+Date: Tue, 19 May 2026 10:33:19 +0530
+Message-ID: <20260519050322.3677451-6-mitulkumar.ajitkumar.golani@intel.com>
 X-Mailer: git-send-email 2.48.1
 In-Reply-To: <20260519050322.3677451-1-mitulkumar.ajitkumar.golani@intel.com>
 References: <20260519050322.3677451-1-mitulkumar.ajitkumar.golani@intel.com>
@@ -96,35 +97,85 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 71B5257760C
+X-Rspamd-Queue-Id: 2B421577615
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add state dump for CMRR params to track CMRR crtc state config
-alongside the existing VRR state dump.
+CMRR is not a separate VRR operating mode but a special case of
+fixed refresh rate with the VRR timing generator enabled.
+Like regular fixed-RR, CMRR operates with vmin = vmax = flipline,
+but derives the vtotal via a fractional multiplier rather than using
+the nominal mode vtotal directly.
+
+When CMRR fraction is required on an eDP panel,
+cmrr_get_vtotal() is used to compute the fractional vtotal; otherwise
+the standard mode vtotal is used.
 
 Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_crtc_state_dump.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 33 +++++++-----------------
+ 1 file changed, 10 insertions(+), 23 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-index 4493483f10a9..0563e37042ab 100644
---- a/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-+++ b/drivers/gpu/drm/i915/display/intel_crtc_state_dump.c
-@@ -300,6 +300,12 @@ void intel_crtc_state_dump(const struct intel_crtc_state *pipe_config,
- 		   pipe_config->vrr.pipeline_full, pipe_config->vrr.guardband,
- 		   pipe_config->vrr.vsync_start, pipe_config->vrr.vsync_end);
+diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
+index 8d79d289378b..bbc68c614667 100644
+--- a/drivers/gpu/drm/i915/display/intel_vrr.c
++++ b/drivers/gpu/drm/i915/display/intel_vrr.c
+@@ -230,23 +230,6 @@ cmrr_get_vtotal(struct intel_crtc_state *crtc_state, bool video_mode_required)
+ 	return vtotal;
+ }
  
-+	drm_printf(&p, "vrr: cmrr: %s, cmrr m: %llu, cmrr n: %llu fraction level: %s\n",
-+		   str_yes_no(pipe_config->vrr.cmrr.enable),
-+		   pipe_config->vrr.cmrr.cmrr_m,
-+		   pipe_config->vrr.cmrr.cmrr_n,
-+		   intel_vrr_cmrr_level_to_string(pipe_config->vrr.cmrr.level));
-+
- 	drm_printf(&p, "vrr: vmin vblank: %d, vmax vblank: %d, vmin vtotal: %d, vmax vtotal: %d\n",
- 		   intel_vrr_vmin_vblank_start(pipe_config), intel_vrr_vmax_vblank_start(pipe_config),
- 		   intel_vrr_vmin_vtotal(pipe_config), intel_vrr_vmax_vtotal(pipe_config));
+-static
+-void intel_vrr_compute_cmrr_timings(struct intel_crtc_state *crtc_state)
+-{
+-	/*
+-	 * TODO: Compute precise target refresh rate to determine
+-	 * if video_mode_required should be true. Currently set to
+-	 * false due to uncertainty about the precise target
+-	 * refresh Rate.
+-	 */
+-	crtc_state->vrr.vmax = cmrr_get_vtotal(crtc_state, false);
+-	crtc_state->vrr.vmin = crtc_state->vrr.vmax;
+-	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+-
+-	crtc_state->vrr.cmrr.enable = true;
+-	crtc_state->mode_flags |= I915_MODE_FLAG_VRR;
+-}
+-
+ static
+ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
+ 				   int vmin, int vmax)
+@@ -260,10 +243,16 @@ void intel_vrr_compute_vrr_timings(struct intel_crtc_state *crtc_state,
+ }
+ 
+ static
+-void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state)
++void intel_vrr_compute_fixed_rr_timings(struct intel_crtc_state *crtc_state,
++					bool is_edp)
+ {
+-	/* For fixed rr,  vmin = vmax = flipline */
+-	crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
++	if (is_cmrr_frac_required(crtc_state) && is_edp) {
++		/* For CMRR, vmin = vmax = flipline = Dethered Vtotal */
++		crtc_state->vrr.vmax = cmrr_get_vtotal(crtc_state, false);
++	} else {
++		/* For fixed rr,  vmin = vmax = flipline */
++		crtc_state->vrr.vmax = crtc_state->hw.adjusted_mode.crtc_vtotal;
++	}
+ 	crtc_state->vrr.vmin = crtc_state->vrr.vmax;
+ 	crtc_state->vrr.flipline = crtc_state->vrr.vmin;
+ }
+@@ -468,10 +457,8 @@ intel_vrr_compute_config(struct intel_crtc_state *crtc_state,
+ 
+ 	if (crtc_state->uapi.vrr_enabled && vmin < vmax)
+ 		intel_vrr_compute_vrr_timings(crtc_state, vmin, vmax);
+-	else if (is_cmrr_frac_required(crtc_state) && is_edp)
+-		intel_vrr_compute_cmrr_timings(crtc_state);
+ 	else
+-		intel_vrr_compute_fixed_rr_timings(crtc_state);
++		intel_vrr_compute_fixed_rr_timings(crtc_state, is_edp);
+ 
+ 	if (HAS_AS_SDP(display)) {
+ 		crtc_state->vrr.vsync_start =
 -- 
 2.48.1
 
