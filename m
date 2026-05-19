@@ -2,65 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wAl/AtOODGpnjAUAu9opvQ
+	id MJ+2H3SPDGp1jAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 18:24:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 18:27:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9306C5823FF
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 18:24:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DC23A582568
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 18:27:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 14DB210EDC1;
-	Tue, 19 May 2026 16:24:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B92B410EDBB;
+	Tue, 19 May 2026 16:27:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b7iZLxVb";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Nsrtbew7";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4FD7510EDBB;
- Tue, 19 May 2026 16:24:47 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ABF310EDBB;
+ Tue, 19 May 2026 16:27:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779207887; x=1810743887;
- h=from:to:subject:in-reply-to:references:date:message-id:
- mime-version:content-transfer-encoding;
- bh=OgDVUayIMmskblBn8E46plonnLiG6Vx6TUH2CYtX50I=;
- b=b7iZLxVbXXppSXL4LJgxFgwk3Ccv88qpidcQY8Nh5Bb9GibVzjsjWbJZ
- Y8sYgntMLt4gsW8+LcLVIRZdkqwOiOey/tw9nBH0kjWeCFOOCsBu0+gJk
- iTj9vaCrOXC6cgIxgv7OTJeK/ZfaqcH9mxO99C+TlXJDWoFoX21zWR4mz
- ErbM1Hy8EqXtCgVgs+uIPhPZr3u8+pvArwpEl+ziDx2VQ4tW7+8xVTGiT
- vt2KGH7i2G85kLE2r4laA+HGL40hWIk5+/OwTJ1W+MvPcV+7aUpd12KRb
- 9yyIdG3jLKiMTM/GVzuu1ClqQb0GoAKYhZ79JXdPWfK29iZuPxlymbp2g g==;
-X-CSE-ConnectionGUID: sPJm6wD+RBiafd1h1bTpVg==
-X-CSE-MsgGUID: 8yxMCg9ORymkIMDGbqHjyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="83706761"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="83706761"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 09:24:47 -0700
-X-CSE-ConnectionGUID: A/Bl0MSgQgWQP8Sy8SiXgg==
-X-CSE-MsgGUID: Oi8GSFD/TsWeIs9sXAOoQw==
+ t=1779208048; x=1810744048;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=3LzFi/6/g9T/wa3rJ6jSGLMahhUdpNE6toetCS9jqYg=;
+ b=Nsrtbew7TLw9WB5yv/QsJjz6rZe+2vO0FMFyn2Q9EeuT4z6Q58FaidSu
+ Z/6UBZ2Yq2i85SpeCaRjQ9BrZJWdCbgvRx9ovbg48dKWPQ/+XKOmTAKSG
+ 8Rd+153IlRS5dNb/BdsPyTSFSC6XR+a826V6uVMW7sIDjUtQnwfY3gj/T
+ qTvMf1wbS9uogNvbuur0qBXXFwTJLEWWTxI7dU22TpiAC7rmzXk3NbY7P
+ 7FI8auyT9nrdDJT8UDIkiCw4AGtrquoRLu9o1YnwORzazgSsHoVbvIALO
+ 9BqCYA2DWMErva0Q/jE0LAmf4WsgtH+FRxrxtkxz+LTQ2N8SQHO9f0cZ8 g==;
+X-CSE-ConnectionGUID: 5DAazheuQS6U4QT/J9FTOA==
+X-CSE-MsgGUID: EWM2bgNpTSiEAG8F8mXkDQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="91198174"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="91198174"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 09:27:28 -0700
+X-CSE-ConnectionGUID: AbeiZtWWSBGHiDmrwQzkIg==
+X-CSE-MsgGUID: EQgujk5jTza9jwVPJ1+z8A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="243826776"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="263334962"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.218])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 09:24:45 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 09:27:26 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: "Kandpal, Suraj" <suraj.kandpal@intel.com>, "Grzelak, Michal"
  <michal.grzelak@intel.com>, "intel-gfx@lists.freedesktop.org"
  <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
  <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v3 03/31] drm/i915/bios: log unsupported VS/PE-O parsing
-In-Reply-To: <DM3PPF208195D8DD99F697F238A2D0CBC37E3032@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
+Subject: RE: [PATCH v3 04/31] drm/i915/bios: store VBT #57's metadata in
+ intel_vbt_data
+In-Reply-To: <DM3PPF208195D8D19839A5B3145823CC4FAE3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260507013137.527510-1-michal.grzelak@intel.com>
- <20260507013137.527510-4-michal.grzelak@intel.com>
- <DM3PPF208195D8DD99F697F238A2D0CBC37E3032@DM3PPF208195D8D.namprd11.prod.outlook.com>
-Date: Tue, 19 May 2026 19:24:42 +0300
-Message-ID: <3f7b814400b2d1513425ea498e78dd1cc9bd08cb@intel.com>
+ <20260507013137.527510-5-michal.grzelak@intel.com>
+ <DM3PPF208195D8D19839A5B3145823CC4FAE3002@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Date: Tue, 19 May 2026 19:27:24 +0300
+Message-ID: <bd8fd489ed736d970e0ab2b181d9d9bb45c8b7a1@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -80,101 +82,129 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 9306C5823FF
+X-Rspamd-Queue-Id: DC23A582568
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 18 May 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
->> Subject: [PATCH v3 03/31] drm/i915/bios: log unsupported VS/PE-O parsing
+On Tue, 19 May 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> -----Original Message-----
+>> From: Grzelak, Michal <michal.grzelak@intel.com>
+>> Sent: Thursday, May 7, 2026 7:01 AM
+>> To: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
+>> Cc: Nikula, Jani <jani.nikula@intel.com>; Kandpal, Suraj
+>> <suraj.kandpal@intel.com>; Grzelak, Michal <michal.grzelak@intel.com>
+>> Subject: [PATCH v3 04/31] drm/i915/bios: store VBT #57's metadata in
+>> intel_vbt_data
 >>=20
->> Search for VBT #57. Check for failure since pre-ICL GOPs do not contain =
-the
->> block. Check also if VBT version is appropriately up-to-date.
+>> Store number of rows and number of tables in intel_vbt_data when search =
+for
+>> the VBT #57 succeeded.
 >>=20
->> Issue a debug message when port requests to override VS/PE and parsing V=
-BT
->> #57 for the platform has not yet been implemented.
+>> Display version determines number of rows present in each table. pre-MTL
+>> platforms should have 10 rows while MTL+ should have 16 rows.
 >>=20
 >> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
 >> ---
->>  drivers/gpu/drm/i915/display/intel_bios.c | 18 ++++++++++++++++++
->>  1 file changed, 18 insertions(+)
+>>  drivers/gpu/drm/i915/display/intel_bios.c         | 7 +++++++
+>>  drivers/gpu/drm/i915/display/intel_display_core.h | 3 +++
+>>  2 files changed, 10 insertions(+)
 >>=20
 >> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c
 >> b/drivers/gpu/drm/i915/display/intel_bios.c
->> index 5700de438fdfd..3f9e4d31c7375 100644
+>> index 3f9e4d31c7375..d64668c1022a7 100644
 >> --- a/drivers/gpu/drm/i915/display/intel_bios.c
 >> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
->> @@ -2185,6 +2185,23 @@ parse_compression_parameters(struct intel_display
->> *display)
->>  	}
+>> @@ -2200,6 +2200,9 @@ parse_vswing_preemph_override(struct
+>> intel_display *display)
+>>  		return;
+>>=20
+>>  	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n");
+>> +
+>> +	display->vbt.num_tables =3D block->num_tables;
+>> +	display->vbt.num_rows =3D DISPLAY_VER(display) >=3D 14 ? 16 : 10;
+>
+> Where did you get these numbers from. Bspec reference maybe.
+> I also see you harcoding this in the next patches maybe you need a helper=
+ that can be used.
+> Also DG2 also uses 16 rows from what I can see=20
+>
 >>  }
 >>=20
->> +static void
->> +parse_vswing_preemph_override(struct intel_display *display) {
->> +	const struct bdb_vswing_preemph *block;
+>>  static u8 translate_iboost(struct intel_display *display, u8 val) @@ -2=
+997,6
+>> +3000,10 @@ init_vbt_defaults(struct intel_display *display)
+>>=20
+>> !HAS_PCH_SPLIT(display));
+>>  	drm_dbg_kms(display->drm, "Set default to SSC at %d kHz\n",
+>>  		    display->vbt.lvds_ssc_freq);
 >> +
->> +	if (display->vbt.version < 218)
->> +		return;
->> +
->> +	block =3D bdb_find_section(display, BDB_VSWING_PREEMPH);
->> +
->> +	/* pre-ICL GOP don't have VBT #57 */
+>> +	/* Vswing / Preemphasis Override */
+>> +	display->vbt.num_tables =3D 0;
+>> +	display->vbt.num_rows =3D 0;
 >
-> If we already know pre ICL does have VBT #57 for sure why even try the fi=
-nd section for check vbt versions lets just return early after display_ver(=
-) check , which is done even before the vbt.version check .
+> Why expilicitly make the 0 now vbt gets initialized with everything 0'd o=
+ut. As intel_display is kazalloc'd
+>
+>>  }
+>>=20
+>>  /* Common defaults which may be overridden by VBT. */ diff --git
+>> a/drivers/gpu/drm/i915/display/intel_display_core.h
+>> b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> index 76745ce6a716e..36ea4873deeb0 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_display_core.h
+>> +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
+>> @@ -242,6 +242,9 @@ struct intel_vbt_data {
+>>  	struct list_head display_devices;
+>>  	struct list_head bdb_blocks;
+>>=20
+>> +	int num_tables;
+>> +	int num_rows;
+>
+> Lets keep this u8 here too for consistency
 
-Please don't add unnecessary platform or display version checks in
-intel_bios.c.
+Why? IMO always use int *unless* there's a reason not to.
+
+> Also maybe num_vswing_tables,
+> num_vswing_rows_per_table.
+
+I'd rather see a sub-struct.
 
 BR,
 Jani.
+
 
 >
 > Regards,
 > Suraj Kandpal
 >
->> +	if (!block)
->> +		return;
 >> +
->> +	drm_dbg_kms(display->drm, "VS/PE-O parsing not yet supported\n"); }
->> +
->>  static u8 translate_iboost(struct intel_display *display, u8 val)  {
->>  	static const u8 mapping[] =3D { 1, 3, 7 }; /* See VBT spec */ @@ -3276=
-,6
->> +3293,7 @@ void intel_bios_init(struct intel_display *display)
->>=20
->>  	/* Depends on child device list */
->>  	parse_compression_parameters(display);
->> +	parse_vswing_preemph_override(display);
->>=20
->>  out:
->>  	if (!vbt) {
+>>  	struct sdvo_device_mapping {
+>>  		u8 initialized;
+>>  		u8 dvo_port;
 >> --
 >> 2.45.2
 >
