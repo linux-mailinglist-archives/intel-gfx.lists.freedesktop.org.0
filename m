@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IB9SBVNODGqxeQUAu9opvQ
+	id WKwaCYFODGpIeQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:49:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:50:25 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 26DB557E014
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:49:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA65E57E052
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:50:24 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AA0F910E5EB;
-	Tue, 19 May 2026 11:49:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 47A5D10EC72;
+	Tue, 19 May 2026 11:50:23 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CZF3Rhra";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PUu6H7oo";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 643D310E5E6;
- Tue, 19 May 2026 11:49:35 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 97E2610E5E6;
+ Tue, 19 May 2026 11:50:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779191375; x=1810727375;
+ t=1779191422; x=1810727422;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=+dqRGqDNM4KHv4k0sr1lIn06IRQheS9hCkNYyPGE08A=;
- b=CZF3RhratB5HMaLusmU6aN5eE9/LRZNUcHFJK5RR6HUxwKq3UKx4QIHw
- A5bsYF3gkW0cse4+l3re7CVHoDSrEpJVg5sd0L7rCWhx1AcS12RZdVhJ4
- b5eRp57t/anQz9wbbl+xkAHAGgvSgDknkVTgY+AHGluFmPY1Ou6aVdPnn
- vr3pxh7EwRgD6qtTlckeJz7ebXdTDaYVNEpvSty8UlaQknNJWieUSOdn7
- 6cOCp9d+hFKK+1+eFaUJnGNqgwHvfDENgB/LLRAzvfllpDwFcLZ37pS26
- mnmLZMvVWNSOayeq+bFt2K2yIdxP+DFwFSiYSPorYEtHPsnPcCrjE9mxu A==;
-X-CSE-ConnectionGUID: ks7I3uJ2TcS8TI9vWnfVDg==
-X-CSE-MsgGUID: 8UG2qgUnQ9ieFRjuEmoRVg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="79967098"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="79967098"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 04:49:35 -0700
-X-CSE-ConnectionGUID: 8pQs7QMqSH+mq+IDbBbaJA==
-X-CSE-MsgGUID: gkZzXVz6Ssycpdh7t9chpw==
+ bh=bQ4DH/nbn8zRDgQscMKFnw+OhUSe6BBsqoGmaaq4xWk=;
+ b=PUu6H7oowvl/8BC0ksqMpq/cwDJ6RVentjKJ9zYi97qeSFhdt+YC5pUa
+ VSW90Kolpjq7Dxh68zcQFG+Phan3HCBnUB8OQ9r1101263V3mxNG1xgsW
+ ALAZmtCeQcXAd8byL5dbqgnegjBuBKuRrGt0J1Y07hJ/Dk+I4ELS9CjJt
+ CjsmjHm7FiGpQysoCpGkEihE6ujG2bXJY7O/V23ZN12eyjAWb5BnqlX2U
+ PLWkug3l6bZn2lkxoBxmjQS3QwggpycSrPEzvJyX/lbS8OcE82VNVmLsn
+ Y2lRjlG35M/MTKu8ZGOVQgKl90uBPABlkzMOb/VrbtUn72JObF1QW/GCx Q==;
+X-CSE-ConnectionGUID: Ugudp/QlSLegMJ5k4UIWCw==
+X-CSE-MsgGUID: tTY0GUVlQnacIe4Aefz4/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="80096899"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="80096899"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 04:50:21 -0700
+X-CSE-ConnectionGUID: XW0TP70ARf6Ij8KKFzKxFA==
+X-CSE-MsgGUID: WaAq91OeTHub8/s9NShWMA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="235304776"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="241586183"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.218])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 04:49:34 -0700
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 May 2026 04:50:19 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Luca Coelho <luciano.coelho@intel.com>, intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/4] drm/i915/display: harden masks in
- HSW_AUD_PIN_ELD_CP_VLD macros
-In-Reply-To: <20260519112243.1454375-2-luciano.coelho@intel.com>
+Subject: Re: [PATCH 2/4] drm/i915/display: harden shifts in
+ ICL_DPCLKA_CFGCR0_DDI_CLK_SEL macros
+In-Reply-To: <20260519112243.1454375-3-luciano.coelho@intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260519112243.1454375-1-luciano.coelho@intel.com>
- <20260519112243.1454375-2-luciano.coelho@intel.com>
-Date: Tue, 19 May 2026 14:49:31 +0300
-Message-ID: <44b3a002fbba80bdafd440fcbb8c912bb1243765@intel.com>
+ <20260519112243.1454375-3-luciano.coelho@intel.com>
+Date: Tue, 19 May 2026 14:50:17 +0300
+Message-ID: <ddb9dc51c32a0f681825a42e84f7a671715825d6@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -102,62 +102,55 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 26DB557E014
+X-Rspamd-Queue-Id: BA65E57E052
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On Tue, 19 May 2026, Luca Coelho <luciano.coelho@intel.com> wrote:
-> HSW_AUD_PIN_ELD_CP_VLD has a 4-bit field per transcoder for
-> TRANSCODER_A..TRANSCODER_D only (bits 0..15).  Any other transcoder
-> value (TRANSCODER_EDP, TRANSCODER_DSI_*, INVALID_TRANSCODER) is not
-> valid here.
+> ICL_DPCLKA_CFGCR0 has a 2-bit DDI_CLK_SEL field per combo PHY, for
+> PHY_A..PHY_D only.  Any other phy value (PHY_NONE, Type-C/SNPS PHYs)
+> is not valid here.
 >
-> This is not a problem with the current implementation, because trans
-> is always valid when these macros are called, but it's more robust to
-> mask the index to the low 2 bits so the shift is always well-defined.
+> This is not a problem with the current implementation, because phy is
+> always valid when these macros are called, but it's more robust to
+> cast to unsigned so the shift is always well-defined.
 >
 > Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_audio_regs.h | 16 ++++++++++++----
->  1 file changed, 12 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_display_regs.h | 13 ++++++++++---
+>  1 file changed, 10 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/display/intel_audio_regs.h b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> index 4c31844d21df..25df7af4f67f 100644
-> --- a/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> +++ b/drivers/gpu/drm/i915/display/intel_audio_regs.h
-> @@ -109,12 +109,20 @@
->  #define _HSW_AUD_EDID_DATA_B		0x65150
->  #define HSW_AUD_EDID_DATA(trans)	_MMIO_TRANS(trans, _HSW_AUD_EDID_DATA_A, _HSW_AUD_EDID_DATA_B)
->  
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> index 4321f8b529da..bc90a21e8b46 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_regs.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+> @@ -2869,9 +2869,16 @@ enum skl_power_gate {
+>  #define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PORT_4 ? \
+>  						       (tc_port) + 12 : \
+>  						       (tc_port) - TC_PORT_4 + 21))
+> -#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	((phy) * 2)
+> -#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+> -#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
 > +/*
-> + * HSW_AUD_PIN_ELD_CP_VLD has a 4-bit field per transcoder for
-> + * TRANSCODER_A..TRANSCODER_D only (bits 0..15).  Any other transcoder
-> + * value (TRANSCODER_EDP, TRANSCODER_DSI_*, INVALID_TRANSCODER) is not
-> + * valid here.  Mask the index to the low 2 bits so the shift is
-> + * always well-defined.
+> + * ICL_DPCLKA_CFGCR0 has a 2-bit DDI_CLK_SEL field per combo PHY, for
+> + * PHY_A..PHY_D only.  Any other phy value (PHY_NONE, TypeC/SNPS PHYs)
+> + * is not valid here.  Cast to unsigned so the shift is always
+> + * well-defined.
 > + */
->  #define HSW_AUD_PIPE_CONV_CFG		_MMIO(0x6507c)
->  #define HSW_AUD_PIN_ELD_CP_VLD		_MMIO(0x650c0)
-> -#define   AUDIO_INACTIVE(trans)		((1 << 3) << ((trans) * 4))
-> -#define   AUDIO_OUTPUT_ENABLE(trans)	((1 << 2) << ((trans) * 4))
-> -#define   AUDIO_CP_READY(trans)		((1 << 1) << ((trans) * 4))
-> -#define   AUDIO_ELD_VALID(trans)	((1 << 0) << ((trans) * 4))
-> +#define   __AUDIO_MASK_TRANS(trans)	(((unsigned int)(trans) & 0x3) * 4)
-> +#define   AUDIO_INACTIVE(trans)		((u32)BIT(3) << __AUDIO_MASK_TRANS(trans))
-> +#define   AUDIO_OUTPUT_ENABLE(trans)	((u32)BIT(2) << __AUDIO_MASK_TRANS(trans))
-> +#define   AUDIO_CP_READY(trans)		((u32)BIT(1) << __AUDIO_MASK_TRANS(trans))
-> +#define   AUDIO_ELD_VALID(trans)	((u32)BIT(0) << __AUDIO_MASK_TRANS(trans))
+> +#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	((unsigned int)(phy) * 2)
+> +#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	((u32)3 << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+> +#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((u32)(pll) << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+> +
 
-Please use REG_BIT() instead of (u32)BIT().
-
-All of this would be cleaner with the REG_GENMASK() stuff too.
+Here too, please avoid direct casts; we have the REG_* helpers exactly
+for this purpose.
 
 BR,
 Jani.
 
->  
->  #define _AUD_TCA_DP_2DOT0_CTRL		0x650bc
->  #define _AUD_TCB_DP_2DOT0_CTRL		0x651bc
+>  #define  RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	_PICK(phy, 0, 2, 4, 27)
+>  #define  RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy) \
+>  	(3 << RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
 
 -- 
 Jani Nikula, Intel
