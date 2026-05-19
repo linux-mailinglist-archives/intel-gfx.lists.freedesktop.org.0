@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sIpFBxlIDGprdAUAu9opvQ
+	id EE60FRpIDGprdAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:23:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:23:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E3D1357D80F
-	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:23:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2CCFA57D818
+	for <lists+intel-gfx@lfdr.de>; Tue, 19 May 2026 13:23:06 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 65BB010EC6B;
-	Tue, 19 May 2026 11:23:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E08210EC6C;
+	Tue, 19 May 2026 11:23:04 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VCoSJIFS";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="m+gDn2Zb";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6997910EC69;
- Tue, 19 May 2026 11:23:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B365310EC6C;
+ Tue, 19 May 2026 11:23:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779189782; x=1810725782;
+ t=1779189784; x=1810725784;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zh0u/VM60Tc7r2vCS/agZ6DmQFyItACPwlg3aLnTfhQ=;
- b=VCoSJIFSAGVNAZaMsEzrxLr86pdI7AHFIEAH6LHhlQCGKZ0ebgRwt3I9
- XtIYpy7ObuX9ZukvoH7ZweKXcqaj7pYjbL2wzWpm0I6Fis55aZFUHBWoh
- p5my1+2OmKmpBQiLrgNyUldG0H4wzjsghxgALI+6LpHms7xqU+AXMdqQv
- 5sLY4095ylYUl5nCRR/1z86Dr7aVqrT3CaKNb1aMhBedHtJADoLsia0gj
- FuiRsHj/LIjGl4iOusp9yDCWWCzI//gXrDArXi4ULXHmCS2lP9H6280nN
- byAu3eOcNd3z+VOXBnY8x7NFWlgzHiLhZ3U6fiOB2iiSPEsVmINlYYfDN g==;
-X-CSE-ConnectionGUID: 2IONUXv/QMuvAmMWrayhKA==
-X-CSE-MsgGUID: liE2U7ptQseJU7XENJkO6g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97498517"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="97498517"
+ bh=3GmO9xt/RY4f28hUdvLLrD45bl+dJTBiQF/Nu1qTpnw=;
+ b=m+gDn2ZbW0chCoPnR94GD1pnUoEvnOEcnSX14bjGSfl6KOGQnQFXXNRt
+ H9aQE9YfC7rOK+5z0uGS281nvP2M7nGDQDiQvKA9zcVimQwynruWL9Cgi
+ g4TfGS1m0Upqsq5t59VKIajB5muqIYV6zvLXPSW/c+BMWqwdYbPwbeN+D
+ nOY0UKHRj2Z7Zfar++Ot5QII+DUizod/UsctzM2N5pOPyeSA3XRMvgBtk
+ LMcPohI081Isnk8AmLgQxizta0k7s8obVsvXok0zT6musm6GdylX80XR9
+ fId8r7k2okvr7zdG1lCVPddnNzSdJAsGl/Ai/BDTgcfZ0VvVunLHm87Os A==;
+X-CSE-ConnectionGUID: /vByM0OEQ5aybII7No2n8Q==
+X-CSE-MsgGUID: 0QNVY4wISXOBFbnal1bz1w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11790"; a="97498519"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="97498519"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 04:23:02 -0700
-X-CSE-ConnectionGUID: 8bHmdG3zRq2sDxH8SdczhQ==
-X-CSE-MsgGUID: fVNAXWG3TxaS136dD96dRA==
+ 19 May 2026 04:23:03 -0700
+X-CSE-ConnectionGUID: wazGstbwSWCSo0IBNPWebQ==
+X-CSE-MsgGUID: 3CIcZx2mTXKLHw/wQQdxuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="239606451"
+X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="239606458"
 Received: from smoticic-mobl1.ger.corp.intel.com (HELO hazy.intel.com)
  ([10.245.245.12])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 May 2026 04:23:01 -0700
+ 19 May 2026 04:23:02 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 3/4] drm/i915/display: harden shift in
- intel_ddi_compute_config_late()
-Date: Tue, 19 May 2026 14:11:15 +0300
-Message-ID: <20260519112243.1454375-4-luciano.coelho@intel.com>
+Subject: [PATCH 4/4] drm/i915/display: harden shift in
+ intel_pmdemand_update_phys_mask()
+Date: Tue, 19 May 2026 14:11:16 +0300
+Message-ID: <20260519112243.1454375-5-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260519112243.1454375-1-luciano.coelho@intel.com>
 References: <20260519112243.1454375-1-luciano.coelho@intel.com>
@@ -97,37 +97,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_NONE(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: E3D1357D80F
+X-Rspamd-Queue-Id: 2CCFA57D818
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-BIT() takes a non-negative shift amount, but cpu_transcoder is of type
-enum transcoder, which can in theory be INVALID_TRANSCODER (-1).
+BIT() takes a non-negative shift amount, but phy is of type enum phy,
+which can in theory be PHY_NONE (-1).
 
-This is not a problem with the current implementation, because
-cpu_transcoder is always valid when this code is reached, but it's
-more robust to cast to unsigned so the shift is always well-defined.
+This is not a problem with the current implementation, because phy is
+always valid when this code is reached (Type-C encoders are rejected
+earlier), but it's more robust to store it as unsigned int so the
+shifts are always well-defined.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 86520848892e..c02c4d62c96e 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4637,8 +4637,8 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_pmdemand.c b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+index 7819b724795b..d02ac2408e29 100644
+--- a/drivers/gpu/drm/i915/display/intel_pmdemand.c
++++ b/drivers/gpu/drm/i915/display/intel_pmdemand.c
+@@ -150,7 +150,7 @@ intel_pmdemand_update_phys_mask(struct intel_display *display,
+ 				struct intel_pmdemand_state *pmdemand_state,
+ 				bool set_bit)
+ {
+-	enum phy phy;
++	unsigned int phy;
  
- 	if (crtc_state->master_transcoder == crtc_state->cpu_transcoder) {
- 		crtc_state->master_transcoder = INVALID_TRANSCODER;
--		crtc_state->sync_mode_slaves_mask =
--			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
-+		crtc_state->sync_mode_slaves_mask = port_sync_transcoders &
-+			~BIT((unsigned int) crtc_state->cpu_transcoder);
- 	}
- 
- 	return 0;
+ 	if (DISPLAY_VER(display) < 14)
+ 		return;
 -- 
 2.53.0
 
