@@ -2,67 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yEelGFNwDWroxQUAu9opvQ
+	id ePjYGtyRDWpyzgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2026 10:26:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2026 12:50:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A4AB589BA3
-	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2026 10:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CA1D358BF2E
+	for <lists+intel-gfx@lfdr.de>; Wed, 20 May 2026 12:50:03 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B5E6D10EF80;
-	Wed, 20 May 2026 08:26:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4F3B310E0AD;
+	Wed, 20 May 2026 10:50:02 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="K3ZVKGlh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AJ4+JzWZ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD26310EF80;
- Wed, 20 May 2026 08:26:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6EFD210E0AD;
+ Wed, 20 May 2026 10:50:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779265615; x=1810801615;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KljXN0tuGQ3hI7hkByWX4VM7tUVUiaaAJJLh6IWnWoA=;
- b=K3ZVKGlh//F5zNgJkyDbcOB6eETYjYklKTyreOwDjxhDchH/oEnV2qbS
- 2qCbswcmPOlAZNNPnPHFCgBxPoFBFZ4LXejzm7Msipk4P6ZDl0ZXgP/+V
- /N3cBuVIvCc3wOmGTPqURrsSNEFYFOyNonhRJ6YTA2/SKIVQV7s5PDQ8R
- PR5KYnIbSFpFlMZkiYDmP4LgiJv+Mh9ZcGlwByVbqOzvGCOA69aQWLeFX
- /KwT0Jd05o8kk7+O5HZqaU8VuWte83vYAduXBTuykMM3Rc4EiI0B4FYql
- MLc8A7AdPWFTZ1p9r37mXoviVhttZ1sypchjp+W8MfR/uXjHs89FM8ahE Q==;
-X-CSE-ConnectionGUID: F5CLQb5qSjikyuwHwCElYQ==
-X-CSE-MsgGUID: BV+gMoF8QpmwnDo/j2jlkw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="79304109"
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="79304109"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 01:26:52 -0700
-X-CSE-ConnectionGUID: PbHh0iIWR1i8ShTwC/WtuQ==
-X-CSE-MsgGUID: KnEvvWHLQaWmCE/6GBYeaA==
+ t=1779274202; x=1810810202;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=5vZ3OqcwnWZ0kd4MNTjhgTqGUB9tPftXckCRzIfYkdI=;
+ b=AJ4+JzWZUYvXLXrwNH8kLQrrW3L50/BC6INT1VohD6fykR2iLm5Xir00
+ Sy64j9luYxAxAVdNIh1XKe8G3IY2J1jHZ/hGhryxL4cahOstQjUDjdAWM
+ xFBrGHrk8lASiepqJK8V4zPzUpH9FTVMWiddfRF6pXx75QKGqnZCMpinT
+ WUmlsGbxcC26cYpUIxXX3N0H24txYDFmflmOitmTVYTJfkUpTIUj5v7E1
+ xSAI25sLyHNGAKuauClvI9waORrsOHE7pEkPAgJ3Q94zgPiBRlqeYZPjT
+ g1ZmTkLgzyEF+xmChrf4piTEj6MKF0iQ7ZkreiCofjGDHzrS5kOaMqk23 A==;
+X-CSE-ConnectionGUID: 7WiETFmiSdmbYM6mY6ePnw==
+X-CSE-MsgGUID: f3ghYyukSMOqC17q05ucOw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11791"; a="84023487"
+X-IronPort-AV: E=Sophos;i="6.23,244,1770624000"; d="scan'208";a="84023487"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2026 03:50:01 -0700
+X-CSE-ConnectionGUID: jIYS//fMTBKL3m3/CdlrNQ==
+X-CSE-MsgGUID: C3CobzTXTm6BbFtDM4hsEQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,243,1770624000"; d="scan'208";a="235817379"
-Received: from klitkey1-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.148])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 20 May 2026 01:26:51 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>, Suraj Kandpal
- <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: arun.r.murthy@intel.com
-Subject: Re: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
-In-Reply-To: <5ddd368a-6efc-40b6-a411-1dacfb797e2f@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
- <20260517024709.1016121-1-suraj.kandpal@intel.com>
- <5ddd368a-6efc-40b6-a411-1dacfb797e2f@intel.com>
-Date: Wed, 20 May 2026 11:26:48 +0300
-Message-ID: <2b7f8ce64f4f26ae041b6002677ca8ed2b53aa1f@intel.com>
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO
+ jhogande-mobl3.intel.com) ([10.245.246.114])
+ by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 20 May 2026 03:49:59 -0700
+From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>,
+ stable@vger.kernel.org,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.co>
+Subject: [PATCH v2 1/2] drm/i915/psr: Block DC states on vblank enable when
+ Panel Replay supported
+Date: Wed, 20 May 2026 13:49:43 +0300
+Message-ID: <20260520104944.239797-1-jouni.hogander@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,9 +75,8 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
@@ -88,126 +85,88 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	RCPT_COUNT_FIVE(0.00)[5];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[jouni.hogander@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 3A4AB589BA3
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[intel.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.co:email]
+X-Rspamd-Queue-Id: CA1D358BF2E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 20 May 2026, "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com> wrote:
-> On 5/17/2026 8:17 AM, Suraj Kandpal wrote:
->> This reverts commit 40d2f5820951dee818d05c14677277048bd85f9f.
->>
->> Removing the try_vesa_interface gate caused a backlight regression on
->> panels whose VBT correctly reports INTEL_BACKLIGHT_DISPLAY_DDI and whose
->> PWM path is the actual backlight control, but whose DPCD optimistically
->> advertises DP_EDP_BACKLIGHT_AUX_ENABLE_CAP / _BRIGHTNESS_AUX_SET_CAP.
->> After the commit such panels silently bind to the VESA AUX backlight
->> funcs; AUX writes complete but the panel ignores them, leaving
->> brightness stuck (no-op backlight). Observed on at least KBL and TGL
->> eDP setups.
->>
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->
-> This will re-open the gitlab issue: 
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15679
->
-> We might need to add a quirk for the above cases where VBT cannot be 
-> trusted.
->
-> Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Currently we are blocking DC states only when Panel Replay is enabled on
+vblank enable. It may happen that Panel Replay is getting enabled when
+vblank is already enabled. Fix this by blocking DC states always if Panel
+Replay is supported.
 
-I think this is a mess of a thread, with two completely different things
-in one. Needs to be sent separately.
+While at it take care of possible dual eDP case by looping all encoders
+supporting PSR.
 
-BR,
-Jani.
+Fixes: 0c427ac78a1d ("drm/i915/psr: Add interface to notify PSR of vblank enable/disable")
+Cc: <stable@vger.kernel.org> # v6.16+
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+Reviewed-by: Michał Grzelak <michal.grzelak@intel.co>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
->
->
->> ---
->>   .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++-------
->>   1 file changed, 12 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> index a8d56ebf06a2..7a6c07f6aaeb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> @@ -691,10 +691,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>   	struct intel_dp *intel_dp = intel_attached_dp(connector);
->>   	struct drm_device *dev = connector->base.dev;
->>   	struct intel_panel *panel = &connector->panel;
->> -	bool try_intel_interface = false;
->> +	bool try_intel_interface = false, try_vesa_interface = false;
->>   
->> -	/*
->> -	 * Check the VBT and user's module parameters to figure out which
->> +	/* Check the VBT and user's module parameters to figure out which
->>   	 * interfaces to probe
->>   	 */
->>   	switch (display->params.enable_dpcd_backlight) {
->> @@ -703,6 +702,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>   	case INTEL_DP_AUX_BACKLIGHT_AUTO:
->>   		switch (panel->vbt.backlight.type) {
->>   		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
->> +			try_vesa_interface = true;
->>   			break;
->>   		case INTEL_BACKLIGHT_DISPLAY_DDI:
->>   			try_intel_interface = true;
->> @@ -715,12 +715,20 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>   		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
->>   			try_intel_interface = true;
->>   
->> +		try_vesa_interface = true;
->> +		break;
->> +	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
->> +		try_vesa_interface = true;
->>   		break;
->>   	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
->>   		try_intel_interface = true;
->>   		break;
->>   	}
->>   
->> +	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
->> +	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
->> +		try_vesa_interface = true;
->> +
->>   	/*
->>   	 * Since Intel has their own backlight control interface, the majority of machines out there
->>   	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
->> @@ -733,9 +741,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>   	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
->>   	 * backlight interface at all. This means that the only sensible way for us to detect both
->>   	 * interfaces is to probe for Intel's first, and VESA's second.
->> -	 *
->> -	 * Also there is a chance some VBTs may advertise false Intel backlight support even if the
->> -	 * TCON DPCD says otherwise. This means we keep VESA interface as fallback in that case.
->>   	 */
->>   	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
->>   	    intel_dp_aux_supports_hdr_backlight(connector)) {
->> @@ -745,7 +750,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>   		return 0;
->>   	}
->>   
->> -	if (intel_dp_aux_supports_vesa_backlight(connector)) {
->> +	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
->>   		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
->>   			    connector->base.base.id, connector->base.name);
->>   		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b0414bd1dc6b..70108e0a4c0c 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -4180,32 +4180,33 @@ void intel_psr_notify_vblank_enable_disable(struct intel_display *display,
+ 					    bool enable)
+ {
+ 	struct intel_encoder *encoder;
++	bool block_dc_states = false;
+ 
+ 	for_each_intel_encoder_with_psr(display->drm, encoder) {
+ 		struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+ 
+ 		mutex_lock(&intel_dp->psr.lock);
+-		if (intel_dp->psr.panel_replay_enabled) {
+-			mutex_unlock(&intel_dp->psr.lock);
+-			break;
+-		}
++		if (CAN_PANEL_REPLAY(intel_dp))
++			block_dc_states = true;
+ 
+-		if (intel_dp->psr.enabled && intel_dp->psr.pkg_c_latency_used)
++		if (intel_dp->psr.enabled && !intel_dp->psr.panel_replay_enabled &&
++		    intel_dp->psr.pkg_c_latency_used)
+ 			intel_psr_apply_underrun_on_idle_wa_locked(intel_dp);
+ 
+ 		mutex_unlock(&intel_dp->psr.lock);
+-		return;
+ 	}
+ 
+ 	/*
+ 	 * NOTE: intel_display_power_set_target_dc_state is used
+-	 * only by PSR * code for DC3CO handling. DC3CO target
++	 * only by PSR code for DC3CO handling. DC3CO target
+ 	 * state is currently disabled in * PSR code. If DC3CO
+ 	 * is taken into use we need take that into account here
+ 	 * as well.
+ 	 */
+-	intel_display_power_set_target_dc_state(display, enable ? DC_STATE_DISABLE :
+-						DC_STATE_EN_UPTO_DC6);
++	if (block_dc_states)
++		intel_display_power_set_target_dc_state(display, enable ?
++							DC_STATE_DISABLE :
++							DC_STATE_EN_UPTO_DC6);
+ }
+ 
+ static void
 -- 
-Jani Nikula, Intel
+2.43.0
+
