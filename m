@@ -2,48 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id eOVsMPRKDmrL9gUAu9opvQ
+	id 2HcLJ/VKDmoM9gUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 01:59:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 01:59:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9A1AB59D138
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 01:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 711CB59D140
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 01:59:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 15E1610F19C;
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE67610F1A6;
 	Wed, 20 May 2026 23:59:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="TJrg2id1";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="RpURz9q3";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B39E10F194;
- Wed, 20 May 2026 23:59:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EAC8C10F19E;
+ Wed, 20 May 2026 23:59:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
  h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Message-ID:Date:Subject:To:From:Sender:Reply-To:Cc:Content-Type:Content-ID:
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=QZVneoNntdUpE4xvmWXYwKpPmpxRqUQMOuBIOqci0zM=; b=TJrg2id1HrytEQgcMNJyKS9P62
- hpd0TFEBG5JDYUialq19Pz6f7a8qcZ153HHxP9RF0t/vEI9XKjFMYfnmnFh65uA69bDk/wY6xZJe7
- TRi1CH76iBN+dGtkXmUo8YKHGYmgR+nVFXr8gzPu8oy9huMLeDO+t+4P/OelqL01GoNg9B3w9dhDU
- Dec9OS/UGZWeNANqXY+g9pzoy2STWak0P0dl3lYJ9K6TZ1MVwJczlRhOtdIiK8w/NZyY9cYfQguBn
- GdREKB8K7bE7KHLoTaQZWwcZj5Sov7KjLxxEQAPFoCrnECC+aZJITC/1ZOoOmPPzTZC/GNfpZ/WeA
- t0oUwjuQ==;
+ bh=o0fJPbvAKGHOnCDTDq7ULeMlMC+anyrI+jJXLbe2StY=; b=RpURz9q3sgRjFKn1hsogYtdrym
+ H5xojogjjCUUsdoJAZ9HXnh+Z5IeVDBynnr0n249xAfRQuQ+hAN22Ps9cKR2hEd57Nh7xhUgch5gQ
+ Q7QzNufzNid5uzEm0762RJlV1Pdt6bLgL534Bq9zh3b5bOyXmTigIUPG3hCBOKxBmr4WFC0gG9U3R
+ NLKT/QekGZ3t68vI1ShuABbbkpLQEQD0Q96cZ2ZnWlMXhMOgNbwOn80iUALpIvlrOv6v4N+QA9Rd6
+ ThSmXXnZFerJyld9O33RYSK52V1lllIcJTKDiNQvBNV3accQqLGKEUDSDkVvIk2Nn3zPL8x4ClFJd
+ ej0lkmMw==;
 Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
  helo=localhost.localdomain) by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wPqpD-00456i-Jg; Thu, 21 May 2026 01:59:44 +0200
+ id 1wPqpE-00456i-Vs; Thu, 21 May 2026 01:59:45 +0200
 From: John Harrison <John.Harrison@Igalia.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Rodrigo Siqueira <siqueira@igalia.com>
-Subject: [PATCH 5/9] drm/i915/display: Disable pixel_rate check for writeback
-Date: Wed, 20 May 2026 16:58:16 -0700
-Message-ID: <20260520235820.2313192-6-John.Harrison@Igalia.com>
+Subject: [PATCH 6/9] drm/i915/display: Fix vblank wait timed out with writeback
+Date: Wed, 20 May 2026 16:58:17 -0700
+Message-ID: <20260520235820.2313192-7-John.Harrison@Igalia.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260325110744.1096786-1-suraj.kandpal@intel.com>
 References: <20260325110744.1096786-1-suraj.kandpal@intel.com>
@@ -73,62 +72,61 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FUZZY_RATELIMITED(0.00)[rspamd.com];
 	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[John.Harrison@Igalia.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_SPAM(0.00)[0.988];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,Igalia.com:mid]
-X-Rspamd-Queue-Id: 9A1AB59D138
+	NEURAL_SPAM(0.00)[0.992];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,Igalia.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 711CB59D140
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Rodrigo Siqueira <siqueira@igalia.com>
+When running kms_writeback, the following warning pops up:
+[  +0.000015] xe 0000:00:02.0: [drm] vblank wait timed out on crtc 0
+[  +0.000014] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x179/0x1e0 [drm], CPU#7: kms_writeback/1191
 
-Fix for 'drm/i915/writeback: Modify state verify function'.
+Waiting for vblank to ensure configuration changes have taken effect
+is not a relevant concept for writeback connectors. So just skip the
+wait when configuring writeback.
 
-That patch disables a bunch of checks for writeback connectors as they
-are not relevant. One is the pixel rate. However, rather than just
-putting an 'if(!writeback)' around the existing check, a new check was
-added with the if. Or more likely, a rebase somewhere re-instated the
-original check without the if. Either way, the original check was
-still present and still firing.
-
-Signed-off-by: Rodrigo Siqueira <siqueira@igalia.com>
+Signed-off-by: John Harrison <John.Harrison@Igalia.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 787566c8a743..35ca757c76e6 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -5445,12 +5445,11 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
- 		PIPE_CONF_CHECK_RECT(pch_pfit.dst);
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 03de219f7a64..fe3384f1aaa8 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -33,6 +33,7 @@
+ #include "intel_sprite.h"
+ #include "intel_vblank.h"
+ #include "intel_vrr.h"
++#include "intel_writeback.h"
+ #include "skl_universal_plane.h"
  
- 		PIPE_CONF_CHECK_I(scaler_state.scaler_id);
--		PIPE_CONF_CHECK_I(pixel_rate);
-+		if (!is_writeback)
-+			PIPE_CONF_CHECK_I(pixel_rate);
- 		PIPE_CONF_CHECK_BOOL(hw.casf_params.casf_enable);
- 		PIPE_CONF_CHECK_I(hw.casf_params.win_size);
- 		PIPE_CONF_CHECK_I(hw.casf_params.strength);
--		if (!is_writeback)
--			PIPE_CONF_CHECK_I(pixel_rate);
+ static void assert_vblank_disabled(struct drm_crtc *crtc)
+@@ -65,6 +66,9 @@ struct intel_crtc *intel_crtc_for_pipe(struct intel_display *display,
  
- 		PIPE_CONF_CHECK_X(gamma_mode);
- 		if (display->platform.cherryview)
+ void intel_crtc_wait_for_next_vblank(struct intel_crtc *crtc)
+ {
++	if (intel_writeback_transcoder_is_wd(crtc->config->cpu_transcoder))
++		return;
++
+ 	drm_crtc_wait_one_vblank(&crtc->base);
+ }
+ 
 -- 
 2.43.0
 
