@@ -2,64 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOrEN+Z6D2rLMgYAu9opvQ
+	id 4BxUMZV8D2rLMgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 23:36:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 23:43:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDA1E5AC229
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 23:36:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 418255AC2AB
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 23:43:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95F7310E649;
-	Thu, 21 May 2026 21:36:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3673510F416;
+	Thu, 21 May 2026 21:43:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="BMo5beud";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YF2Q4Jiv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F1E510E25E;
- Thu, 21 May 2026 21:36:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1754810F415;
+ Thu, 21 May 2026 21:43:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779399393; x=1810935393;
+ t=1779399826; x=1810935826;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=1kBLjB/oQZ5BM210VtbU92jo2CjotHlpg+PzC35zi64=;
- b=BMo5beudQuVgYSVIMXqNdZMhKlTOplH4EgU25XiqNoFsDGiM4yBP3m/l
- yFAx+ae/Bq77vCCfTgUacKvUXoHFG/ZY3lnsdr7MhZAqPsibiprJmAQWp
- 1P6qNsFrsaBAupTrNV5FmkcPzDWE6UpMhQZ2uXL56x6LYsoa8ivOqAQcW
- tOQ4V8EmcxxVfAF+r7UTAbITNJqjm5qAq+pJZDeVA+Q2i7oDFq0JqwmDZ
- v9PqYkTpHAH3rTRtd/HNgmwZabPGQB4/Afr2BO2BMQHBro+ALFqcDDvQf
- gr6hYvApEAa++JlXXXZaYEQyo0iKvMHalk7K511tLT71EivdderZfzhmY A==;
-X-CSE-ConnectionGUID: AGkgAnClRrivpnTZPK1sOg==
-X-CSE-MsgGUID: gzpGPohRQQ+9K1RNPXZF/A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80182558"
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="80182558"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:36:32 -0700
-X-CSE-ConnectionGUID: jd5uSWtuSDqU303mOd8BvQ==
-X-CSE-MsgGUID: 7OlT/jrlSLGkfvICDPNHkw==
+ bh=z8ESGZvoh6hpGp29vvh6HA5wTU+JFbt49mCO5guI5XI=;
+ b=YF2Q4JivRzPdwho8h+DMJ9erVT4t7pOsaa70bEdlSh1K/7X265vo38Zu
+ kfgRiMNTd2eqVmD7E9uVGP3hpgdB5dTi63hg/0wsg8JuOg6+mi2cDIBG9
+ GR39q+iiueBMNIANaRngoYAFL2Axgd6jER9tZSOme96FCVUAJVZLv5K7x
+ CbIHyIcupWQGuBdbTZSXMIRCt3R82U9/Lfye851d1hEfkti7v1YF8Rwb0
+ tDDEnwuokkompB8pBcffUdgx+KI6YHtM8FozMM5o0R8tgoimfViwUdJZ0
+ YRPi5BWbXhGfCKzp8Su9Mv2nt8dNc/deRj6IYs/mmzjgqc2Mcbq5jDnLO w==;
+X-CSE-ConnectionGUID: fMfXKY22QiKN+fhdVorqSQ==
+X-CSE-MsgGUID: AWgfa+DIQxSfGgezTk+ZOQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80228496"
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="80228496"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 14:43:46 -0700
+X-CSE-ConnectionGUID: 8Llj9EcpRgiCwKOgoQOTkA==
+X-CSE-MsgGUID: AqFtnxV7QAG33QTjrWZBRg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="242481655"
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="236422324"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.86])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:36:31 -0700
-Date: Fri, 22 May 2026 00:36:27 +0300
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 14:43:44 -0700
+Date: Fri, 22 May 2026 00:43:41 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
 To: Imre Deak <imre.deak@intel.com>
 Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/5] drm/i915/dp: Add helpers to reset link params
-Message-ID: <ag962-z5WD8SVS9I@intel.com>
+Subject: Re: [PATCH 5/5] drm/i915/dp: Detect changes in common link parameters
+Message-ID: <ag98jVxomfBDkzQ4@intel.com>
 References: <20260518112427.2460725-1-imre.deak@intel.com>
- <20260518112427.2460725-2-imre.deak@intel.com>
+ <20260518112427.2460725-6-imre.deak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260518112427.2460725-2-imre.deak@intel.com>
+In-Reply-To: <20260518112427.2460725-6-imre.deak@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -83,7 +83,7 @@ X-Spamd-Result: default: False [0.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -105,196 +105,133 @@ X-Spamd-Result: default: False [0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: BDA1E5AC229
+X-Rspamd-Queue-Id: 418255AC2AB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 18, 2026 at 02:24:22PM +0300, Imre Deak wrote:
-> Add helpers to defer and handle link params resets instead of
-> open-coding the same. Rename intel_dp_reset_link_params() to
-> intel_dp_reset_link_params_force() to align its name with the new
-> deferred reset helpers.
+On Mon, May 18, 2026 at 02:24:26PM +0300, Imre Deak wrote:
+> Detect DPRX capability changes without a long HPD or RX_CAP_CHANGED
+> signal and queue a corresponding link params reset.
 > 
-> When deferring a reset, return whether a new reset was queued, used by a
-> follow-up change.
+> Besides detecting the above unexpected capability changes, this also
+> avoids races between queuing and handling a deferred link params reset.
 > 
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
->  drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
->  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
->  drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++----
->  drivers/gpu/drm/i915/display/intel_dp.h       |  3 +-
->  .../drm/i915/display/intel_dp_link_training.c |  4 +-
->  5 files changed, 38 insertions(+), 14 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_dp.c | 50 +++++++++++++++++++++----
+>  1 file changed, 43 insertions(+), 7 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-> index 5ff1cdf4581a5..c20a97e21419b 100644
-> --- a/drivers/gpu/drm/i915/display/g4x_dp.c
-> +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-> @@ -1265,7 +1265,7 @@ static void intel_dp_encoder_reset(struct drm_encoder *encoder)
->  
->  	intel_dp->DP = intel_de_read(display, intel_dp->output_reg);
->  
-> -	intel_dp->reset_link_params = true;
-> +	intel_dp_reset_link_params_defer(intel_dp);
->  	intel_dp_invalidate_source_oui(intel_dp);
->  
->  	if (display->platform.valleyview || display->platform.cherryview)
-> diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 86520848892e0..77819aaeccb76 100644
-> --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4664,7 +4664,7 @@ static void intel_ddi_encoder_reset(struct drm_encoder *encoder)
->  	struct intel_dp *intel_dp = enc_to_intel_dp(to_intel_encoder(encoder));
->  	struct intel_digital_port *dig_port = enc_to_dig_port(to_intel_encoder(encoder));
->  
-> -	intel_dp->reset_link_params = true;
-> +	intel_dp_reset_link_params_defer(intel_dp);
->  	intel_dp_invalidate_source_oui(intel_dp);
->  
->  	intel_pps_encoder_reset(intel_dp);
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 1920d2f026665..13163dd085e91 100644
+> index 6c4dadfc35806..dd968c2d9fa64 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -3710,7 +3710,11 @@ void intel_dp_set_link_params(struct intel_dp *intel_dp,
->  	intel_dp->lane_count = lane_count;
+> @@ -362,19 +362,25 @@ int intel_dp_max_source_lane_count(struct intel_digital_port *dig_port)
+>  	return max_lanes;
 >  }
 >  
-> -void intel_dp_reset_link_params(struct intel_dp *intel_dp)
+> -/* Theoretical max between source and sink */
+> -static void intel_dp_set_max_common_lane_count(struct intel_dp *intel_dp)
 > +/*
-> + * Reset link params now, preserving any deferred connector
-> + * detect-time reset request.
+> + * Theoretical max between source and sink.
+> + * Return %true if the max common lane count changed.
 > + */
-> +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp)
+> +static bool intel_dp_set_max_common_lane_count(struct intel_dp *intel_dp)
 >  {
->  	intel_dp->link.max_lane_count = intel_dp_max_common_lane_count(intel_dp);
->  	intel_dp->link.max_rate = intel_dp_max_common_rate(intel_dp);
-> @@ -3720,6 +3724,28 @@ void intel_dp_reset_link_params(struct intel_dp *intel_dp)
->  	intel_dp->link.seq_train_failures = 0;
+>  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+>  	int source_max = intel_dp_max_source_lane_count(dig_port);
+>  	int sink_max = intel_dp->max_sink_lane_count;
+>  	int lane_max = intel_tc_port_max_lane_count(dig_port);
+>  	int lttpr_max = drm_dp_lttpr_max_lane_count(intel_dp->lttpr_common_caps);
+> +	int old_max_common_lane_count = intel_dp->max_common_lane_count;
+>  
+>  	if (lttpr_max)
+>  		sink_max = min(sink_max, lttpr_max);
+>  
+>  	intel_dp->max_common_lane_count = min3(source_max, sink_max, lane_max);
+> +
+> +	return intel_dp->max_common_lane_count != old_max_common_lane_count;
 >  }
 >  
-> +/*
-> + * Reset link params during the next connector detect.
-> + * Return %true if a new reset was queued.
-> + */
-> +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp)
-
-I find the intel_dp_reset_link_params_defer() vs.
-intel_dp_reset_link_params_force() naming rather confusing.
-
-Can't immediately think of a really good name for
-intel_dp_reset_link_params_defer() so maybe it's better to not
-have a function for it at all (ie. just drop this patch)? Then
-you at least see that it's just setting the flag. AFAICS you
-only have a single place (in the last patch) that uses this
-return value for anything, so could just do the check+set
-dance there on the spot.
-
-> +{
-> +	bool reset_was_pending = intel_dp->reset_link_params;
-> +
-> +	intel_dp->reset_link_params = true;
-> +
-> +	return !reset_was_pending;
-> +}
-> +
-> +static void intel_dp_handle_deferred_link_params_reset(struct intel_dp *intel_dp)
-> +{
-> +	if (!intel_dp->reset_link_params)
-> +		return;
-> +
-> +	intel_dp->reset_link_params = false;
-> +	intel_dp_reset_link_params_force(intel_dp);
-> +}
-> +
->  /* Enable backlight PWM and backlight PP control. */
->  void intel_edp_backlight_on(const struct intel_crtc_state *crtc_state,
->  			    const struct drm_connector_state *conn_state)
-> @@ -4066,7 +4092,7 @@ void intel_dp_sync_state(struct intel_encoder *encoder,
->  	intel_dp_tunnel_resume(intel_dp, crtc_state, dpcd_updated);
+>  int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
+> @@ -792,13 +798,20 @@ int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate, int lan
+>  	return -1;
+>  }
 >  
->  	if (crtc_state) {
-> -		intel_dp_reset_link_params(intel_dp);
-> +		intel_dp_reset_link_params_force(intel_dp);
->  		intel_dp_set_link_params(intel_dp, crtc_state->port_clock, crtc_state->lane_count);
->  		intel_dp->link.active = true;
+> -static void intel_dp_set_common_rates(struct intel_dp *intel_dp)
+> +/* Return %true if the common rates changed. */
+> +static bool intel_dp_set_common_rates(struct intel_dp *intel_dp)
+>  {
+>  	struct intel_display *display = to_intel_display(intel_dp);
+> +	int num_old_common_rates = intel_dp->num_common_rates;
+> +	int old_common_rates[DP_MAX_SUPPORTED_RATES];
+>  
+>  	drm_WARN_ON(display->drm,
+>  		    !intel_dp->num_source_rates || !intel_dp->num_sink_rates);
+>  
+> +	static_assert(sizeof(old_common_rates) == sizeof(intel_dp->common_rates));
+
+Could also assert the element size/type match. Maybe (as a followup
+later) introduce a proper type for this rates[]+num construct and then
+we could just copy the darn thing with a normal assignment and not have
+to worry about this kind of stuff at all...
+
+> +	memcpy(old_common_rates, intel_dp->common_rates,
+> +	       num_old_common_rates * sizeof(old_common_rates[0]));
+> +
+>  	intel_dp->num_common_rates = intersect_rates(intel_dp->source_rates,
+>  						     intel_dp->num_source_rates,
+>  						     intel_dp->sink_rates,
+> @@ -810,13 +823,26 @@ static void intel_dp_set_common_rates(struct intel_dp *intel_dp)
+>  		intel_dp->common_rates[0] = 162000;
+>  		intel_dp->num_common_rates = 1;
 >  	}
-> @@ -6487,10 +6513,7 @@ intel_dp_detect(struct drm_connector *_connector,
+> +
+> +	return num_old_common_rates != intel_dp->num_common_rates ||
+> +	       memcmp(old_common_rates, intel_dp->common_rates,
+> +		      num_old_common_rates * sizeof(old_common_rates[0]));
+>  }
 >  
->  	intel_dp_detect_sdp_caps(intel_dp);
+> -static void intel_dp_set_common_link_params(struct intel_dp *intel_dp)
+> +/* Return %true if any common link param changed. */
+> +static bool intel_dp_set_common_link_params(struct intel_dp *intel_dp)
+>  {
+> -	intel_dp_set_common_rates(intel_dp);
+> -	intel_dp_set_max_common_lane_count(intel_dp);
+> +	bool params_changed = false;
+> +
+> +	if (intel_dp_set_common_rates(intel_dp))
+> +		params_changed = true;
+> +
+> +	if (intel_dp_set_max_common_lane_count(intel_dp))
+> +		params_changed = true;
+> +
+>  	intel_dp_link_config_init(intel_dp);
+> +
+> +	return params_changed;
+>  }
 >  
-> -	if (intel_dp->reset_link_params) {
-> -		intel_dp_reset_link_params(intel_dp);
-> -		intel_dp->reset_link_params = false;
-> -	}
-> +	intel_dp_handle_deferred_link_params_reset(intel_dp);
+>  bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
+> @@ -4911,9 +4937,19 @@ intel_dp_has_sink_count(struct intel_dp *intel_dp)
 >  
->  	intel_dp_mst_configure(intel_dp);
+>  void intel_dp_update_sink_caps(struct intel_dp *intel_dp)
+>  {
+> +	struct intel_display *display = to_intel_display(intel_dp);
+> +
+>  	intel_dp_set_sink_rates(intel_dp);
+>  	intel_dp_set_max_sink_lane_count(intel_dp);
+> -	intel_dp_set_common_link_params(intel_dp);
+> +	/*
+> +	 * Handle unexpected sink cap changes, or a race between setting
+> +	 * the deferred link params flag in the HPD IRQ handler and
+> +	 * clearing the flag during connector detect.
+> +	 */
+> +	if (intel_dp_set_common_link_params(intel_dp) &&
+> +	    intel_dp_reset_link_params_defer(intel_dp))
+> +		drm_dbg_kms(display->drm,
+> +			    "DPRX capabilities changed before long HPD or RX_CAP_CHANGED signal\n");
+>  }
 >  
-> @@ -6944,7 +6967,7 @@ intel_dp_hpd_pulse(struct intel_digital_port *dig_port, bool long_hpd)
->  
->  		intel_dp_read_dprx_caps(intel_dp, dpcd);
->  
-> -		intel_dp->reset_link_params = true;
-> +		intel_dp_reset_link_params_defer(intel_dp);
->  		intel_dp_invalidate_source_oui(intel_dp);
->  
->  		return IRQ_NONE;
-> @@ -7252,7 +7275,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  		     encoder->base.name))
->  		return false;
->  
-> -	intel_dp->reset_link_params = true;
-> +	intel_dp_reset_link_params_defer(intel_dp);
->  
->  	/* Preserve the current hw state. */
->  	intel_dp->DP = intel_de_read(display, intel_dp->output_reg);
-> @@ -7317,7 +7340,7 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
->  
->  	intel_dp_set_source_rates(intel_dp);
->  	intel_dp_set_common_rates(intel_dp);
-> -	intel_dp_reset_link_params(intel_dp);
-> +	intel_dp_reset_link_params_force(intel_dp);
->  
->  	/* init MST on ports that can support it */
->  	intel_dp_mst_encoder_init(dig_port, connector->base.base.id);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-> index f41480d247142..7c24d3dbb6983 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-> @@ -114,7 +114,8 @@ int intel_dp_rate_index(const int *rates, int len, int rate);
->  int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate, int lane_count);
->  void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int *link_rate, int *lane_count);
->  void intel_dp_update_sink_caps(struct intel_dp *intel_dp);
-> -void intel_dp_reset_link_params(struct intel_dp *intel_dp);
-> +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp);
-> +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp);
->  
->  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
->  			   u8 *link_bw, u8 *rate_select);
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index a26094223f780..b7075060e7bd3 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -1935,7 +1935,7 @@ static ssize_t i915_dp_force_link_rate_write(struct file *file,
->  	if (err)
->  		return err;
->  
-> -	intel_dp_reset_link_params(intel_dp);
-> +	intel_dp_reset_link_params_force(intel_dp);
->  	intel_dp->link.force_rate = rate;
->  
->  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-> @@ -2037,7 +2037,7 @@ static ssize_t i915_dp_force_lane_count_write(struct file *file,
->  	if (err)
->  		return err;
->  
-> -	intel_dp_reset_link_params(intel_dp);
-> +	intel_dp_reset_link_params_force(intel_dp);
->  	intel_dp->link.force_lane_count = lane_count;
->  
->  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>  static bool
 > -- 
 > 2.49.1
 
