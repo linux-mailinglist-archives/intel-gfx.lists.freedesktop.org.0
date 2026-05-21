@@ -2,34 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sGhJKjtXD2o8JQYAu9opvQ
+	id ftw0IVRcD2oCJgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 21:04:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 21:26:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 134335AB545
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 21:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 97B645AB6C1
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 21:26:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09DC210E559;
-	Thu, 21 May 2026 19:04:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2990110E1E9;
+	Thu, 21 May 2026 19:26:10 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wx6uqMt4";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5ab824fced77 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C02110F3F3;
- Thu, 21 May 2026 19:04:24 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============2538463504504125519=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3FE2910E1E9;
+ Thu, 21 May 2026 19:26:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779391569; x=1810927569;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=SsHtvxTpztaNOsLjc/7RUHto2SwGWLMrSh8erHOqqBA=;
+ b=Wx6uqMt4iOOt/8eHI45AmTgtB0XkthCOwjer5KwN/rV9AqgN+vrjZI7Z
+ vAeflTzyGrjX+/gtMR+yNoP7xGJgYAFfAHJLiNupV2u/+TYjZYqowWsAT
+ iVX5ZeA9pb3hP12/7cJe1QfqJSVsyD/p01edvJXW96pqyURkvN0LEKiYb
+ MhwkuGo76NJLFjcuDOYlAELKUs8rMDjupAGOMxo8o7EAnjAMbprMA6Stv
+ IXevKZuJWQ8oZz9n/OljrDPGJMoGzcKRe8IWonjKbs38yczhg5e+JySW5
+ Vk1AouUIFTqZz0dlNr96lf3dWVoiDyOLMJ9msIqnnlj2mukf2dUU5qlbI g==;
+X-CSE-ConnectionGUID: hkmHScPmShapKIGEb3htAA==
+X-CSE-MsgGUID: 7qqzb6tZSa+zjlMNgIksQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="67841697"
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="67841697"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 12:26:08 -0700
+X-CSE-ConnectionGUID: QETMUOy0TxaMcipZnkokXQ==
+X-CSE-MsgGUID: ILoVOG03Q4ypSPhxsFPKbA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="245602913"
+Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.174])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 12:26:05 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Marco Nenciarini <mnencia@kcore.it>, Jakub Bystron <jb@elitecode.cz>
+Cc: intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, Aaron
+ Esau <aaron1esau@gmail.com>, Imre Deak <imre.deak@intel.com>, Mika Kahola
+ <mika.kahola@intel.com>
+Subject: Re: [BUG] xe: Meteor Lake 7d55 eDP PHY A/DPLL state mismatch,
+ flip_done timeout
+In-Reply-To: <ag9HiZKGsQcBRBot@spark.kcore.it>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <TDn3cEkpVu-dBI63qMzn4sYGIkclsctG5pYDF70-dxuekRCixI_FpRQmeJL6UjZH_MtI8PBkjEsJxc93SEV9OmQvlT_CCrD2-qDb8Ss8X-Q=@elitecode.cz>
+ <ag9HiZKGsQcBRBot@spark.kcore.it>
+Date: Thu, 21 May 2026 22:26:03 +0300
+Message-ID: <fd9fb7205ddce152b54d9dbfe10606cc2289f412@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_fixes_to_DRM_doc_=26_para?=
- =?utf-8?q?meter=27s_print?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 21 May 2026 19:04:24 -0000
-Message-ID: <177939026404.96802.15737768704852315720@5ab824fced77>
-X-Patchwork-Hint: ignore
-References: <20260521155231.1821935-1-michal.grzelak@intel.com>
-In-Reply-To: <20260521155231.1821935-1-michal.grzelak@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,173 +75,78 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com,intel.com];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.998];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,patchwork.freedesktop.org:url,live:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,all-tests:email,requests:email]
-X-Rspamd-Queue-Id: 134335AB545
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 97B645AB6C1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============2538463504504125519==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Thu, 21 May 2026, Marco Nenciarini <mnencia@kcore.it> wrote:
+> Cross-reference: Aaron Esau (Cc'd) posted a 3-patch series targeting
+> this on intel-gfx@ on 2026-05-09 [1]. The series received pushback
+> from Imre, Jani N, and Mika arguing for catching the failure pre-commit
+> so the atomic_commit can fail cleanly at check time rather than
+> mid-commit. The series is currently stalled. With Jakub's report,
+> Aaron's report, and mine, the bug reproduces on at least three
+> independent setups across i915 and xe, ARL-H and MTL, with and without
+> an active NVIDIA driver.
+>
+> On the NVIDIA framing: Aaron's cover letter attributed the MSGBUS
+> unresponsiveness to the NVIDIA dGPU not participating in S0ix
+> (NVreg_EnableS0ixPowerManagement). That framing has two cracks. My
+> reproduction has S0ix participation enabled AND NVIDIA runtime PM
+> fully disabled (NVreg_DynamicPowerManagement=0x00, dGPU stays in D0
+> since boot, never enters D3), yet the bug still fires. Jakub's setup
+> has xe forcing the iGPU and no active NVIDIA driver in dmesg. So
+> whatever platform-side condition causes the PHY to wedge, the NVIDIA
+> module parameters are not the lever, and the bug occurs without an
+> active NVIDIA driver. The fix has to be on the i915/xe side.
 
-== Series Details ==
+Looks like Jakub sent the same message twice. I replied to the other one
+[1], with references to existing gitlab issues.
 
-Series: fixes to DRM doc & parameter's print
-URL   : https://patchwork.freedesktop.org/series/167035/
-State : success
+I'll reiterate that 1) any combo with an out-of-tree module loaded gets
+no priority, 2) MTL/ARL with the xe driver doesn't get much priority,
+and 3) the proposed series from Aaron is not viable.
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18537 -> Patchwork_167035v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_167035v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - bat-atsm-1:         NOTRUN -> [SKIP][1] ([i915#15931])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/bat-atsm-1/igt@dmabuf@all-tests.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@requests:
-    - bat-atsm-1:         [INCOMPLETE][2] ([i915#14564]) -> [PASS][3] +1 other test pass
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18537/bat-atsm-1/igt@i915_selftest@live@requests.html
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/bat-atsm-1/igt@i915_selftest@live@requests.html
-
-  
-  [i915#14564]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14564
-  [i915#15931]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15931
+That said, it does look like a regression with MTL/ARL and the i915
+driver and without out-of-tree modules loaded, and we're looking into
+it.
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_18537 -> Patchwork_167035v1
-
-  CI-20190529: 20190529
-  CI_DRM_18537: f103db97c610a41177720b08aa4a2a05f9b42d49 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8930: 8930
-  Patchwork_167035v1: f103db97c610a41177720b08aa4a2a05f9b42d49 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/index.html
-
---===============2538463504504125519==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+BR,
+Jani.
 
 
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+[1] https://lore.kernel.org/r/fb38414a888f689b96135f65706c2125059e53ca@intel.com
 
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>fixes to DRM doc &amp; parameter&#x27;s print</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167035/">https://patchwork.freedesktop.org/series/167035/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18537 -&gt; Patchwork_167035v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_167035v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@dmabuf@all-tests:<ul>
-<li>bat-atsm-1:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/bat-atsm-1/igt@dmabuf@all-tests.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15931">i915#15931</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_selftest@live@requests:<ul>
-<li>bat-atsm-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18537/bat-atsm-1/igt@i915_selftest@live@requests.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14564">i915#14564</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167035v1/bat-atsm-1/igt@i915_selftest@live@requests.html">PASS</a> +1 other test pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18537 -&gt; Patchwork_167035v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18537: f103db97c610a41177720b08aa4a2a05f9b42d49 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8930: 8930<br />
-  Patchwork_167035v1: f103db97c610a41177720b08aa4a2a05f9b42d49 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============2538463504504125519==--
+-- 
+Jani Nikula, Intel
