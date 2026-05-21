@@ -2,125 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2HnzI4EZD2osFwYAu9opvQ
+	id UD8+I+ZREGrgWAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 16:41:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 14:53:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EAC365A7789
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 16:41:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 368765B48EC
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 14:53:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C176F10E4C9;
-	Thu, 21 May 2026 14:41:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 628AB10F5DB;
+	Fri, 22 May 2026 12:53:56 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="fpPt8P12";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="fL5+WLJl";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pl1-f182.google.com (mail-pl1-f182.google.com
- [209.85.214.182])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8363510F35D
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 14:41:01 +0000 (UTC)
-Received: by mail-pl1-f182.google.com with SMTP id
- d9443c01a7336-2b9fcf7c91bso65951425ad.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 07:41:01 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1779374461; cv=none;
- d=google.com; s=arc-20240605;
- b=CGYuwBBNQyD37qk/E9lUSgJ7NGcvp/lRHdb2tE+z284cVnjZrG3ckGD8BblbHzP2wA
- hBd/8JO9Kh17cxtAYGNiin+zXoIB3mmYxvDOGnup2I+ycJBjnwgUDoHQ+Qw7edcpyjxc
- sztRUOaKSpPOZ6fx/Xe2Ldo/oykwz8jZO7d3XEn1TKpJgc/Hwd2J7KBXzgn9WIFjBgg0
- hpdaxTjvFUcf7PNtCMF/tMw1M96bZxa1mVtxY/t18diq8apqbR77XTQxtH7iZzEaI6ai
- WSeDpEyWyqyL+GuNHV0h3Gd7EQdM4vGKN1SDPghIR1f9mtj0wDjAnGTX7Iht0iUcv9LM
- rB5Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=RI8RcJrMlrGpgo/P0j5rPAmC/BUqQ0jZHOTebzV+Hvs=;
- fh=96oUWKQatLzgyJXlA7pq9GYhT3OeKhBA/hW2zcruFgQ=;
- b=Nf7/ot0MUJg1FwjCR1HHQlfVH+lOEdxqp8XbuWWVbjs5jVDTDG1HU22YWMHxW7rtg7
- KOM3K1YcbZtEZ/4FtnFE3z7NdvjfrOSJBAHJ7f6i9fu7WmEXXIyEvGu9qzCNPq9htzwU
- C4tUvr8HKP12y/z+qL4qnXyJdRGiuNb7+1s6e0nLKVURc9p1Kum+mwFKENphhQDeXBX1
- 2vaQj2ITISlFK7MMRnN6CK2l8t+PdasGa69DJf0pxuPradkNwjy2Kis+kQubGD906R4J
- gZXZTer8Xg5e9RpLukoNkgomo4gs33R9Xz4Ss+N8TZtB2Ib2R+xuULRkKvZog5fFt2NH
- zLRA==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
+Received: from mail-wm1-f42.google.com (mail-wm1-f42.google.com
+ [209.85.128.42])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 835DF10F346
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 14:45:27 +0000 (UTC)
+Received: by mail-wm1-f42.google.com with SMTP id
+ 5b1f17b1804b1-4903fd19957so1147305e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 07:45:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=fooishbar.org; s=google; t=1779374461; x=1779979261;
- darn=lists.freedesktop.org; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=RI8RcJrMlrGpgo/P0j5rPAmC/BUqQ0jZHOTebzV+Hvs=;
- b=fpPt8P12fUNdMUXb8E4v259pENQikVsG8rYsQX6klE1idNU7TA3Wk5GZPOs2b7o7zm
- Xnrpaw0VzDMnV4nBB5dDvF/L41ZV8nclP0R6AE4yfyZPy7LhGft291pLTtSy0bVi8Gd0
- 9RWc8Oa7nDq25dIPb8aapdWb9Rdvz2fElhEiGiAh+oTQKyChnTHv+Nrk5ZE80VT9WvPl
- J0IoNIjOB/JFLhjSv0rCuarR1wv0Wk1BfmdY+2gGNRcCrHFTiJGyYhbDyIDw8WP0Ocg8
- BlGJxSS79Cc7MXZ7k0NMtOUM13msZFeKwV9q/NCKE2igzXuQNa2shRDjz95xSWZfCE31
- X1NA==
+ d=gmail.com; s=20251104; t=1779374726; x=1779979526; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
+ bh=H2yWVwJxTaScCgj+pdDqJvd1+BNm6/dyL9FgYCmk8UQ=;
+ b=fL5+WLJldpB9wXbhmidcSfD2q6/TqKbojRadFwfIZhEGPwb+r1CYPaYpUsSTnwJZiT
+ cHM5cS3qCAgKozrkGorzGWl//v7feYeRYGsiyG3ztTWUTAX6Yf+LBjVKekf+VOdWnpjG
+ uFZKqYMXvviTPSWCPprDNbRMuT/XzSfAipUas/V+LKgo9HtwBd/ZXQpjz4tJoScHQEeP
+ weDagi6a7lsWdyAdRcxAmiqfd+lIEywqIF/XdjWs/dOZle+KtUjeGOV4SFdZui1r+K7a
+ otoe3L4BK/czsxLgy+V4gNKdL9yrmp2Kh30tMxTtXo9ssrK9th8a+PZksrBTr4Tfx9BD
+ Q+ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779374461; x=1779979261;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=1e100.net; s=20251104; t=1779374726; x=1779979526;
+ h=content-transfer-encoding:mime-version:message-id:date:subject:cc
+ :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
  :message-id:reply-to;
- bh=RI8RcJrMlrGpgo/P0j5rPAmC/BUqQ0jZHOTebzV+Hvs=;
- b=UTFrmZby0GqhhizII1llsWlvFEnCZ7zvBeKSr6CvKlOAifr1UrUW5RmCAYWOm8kkC+
- nidisW8hDJ9OfnUcwZCe7aAVQLmmAMEYX3jrSvkDnDL0ojNCCWv5IbU6A1uVS07AileS
- HGNovosD7cj+cNZl4SsH2NBxudBrJ28sfnVSp0355JoINRRvijKNdE49L/3iCKCaVIMx
- jPtogIyaCaN0VJWLgQOvuhSYus0GwXMCq0yx83zS4z/AXRTlGy+n1w6KUm/1+ljW7Bck
- 2oUU0C27fX9vtWUotPWzKO0B9K5URiNStFlZ0j98hTKPAWUFfsY9A5PrbDODI9Q8nLyX
- gYhA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+KDctZB3hAXvfuJEX7XN3ZhNZQwp3c/82KQFT6PUVUHGlRGraZP5KJ4LhEa5mXQJEIHa9gGSwQwSA=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yzg3ezs63/a2venWtqfLXKWPUd647iAckJ/y7KBOGuizNrkmQpI
- hjyPduHTuupIHuFTC397RMcjQMIblvL0tP4ynEt7BQ+HNuwym2P7sjwnDBIbtFj6MFOgYOZDSMh
- 1pQwlPZwI12yKHgdEjWeZHuGglkruxlJLcwfuz/Yb2Q==
-X-Gm-Gg: Acq92OHeUNlPs9mVTUIXl34jhBluI5BmfAIE9t+t1BBa90+Qnu0X0zY1pvhSJ0JJY53
- hfyp3nvxomVjidj5VR7C643PxDVbGbzZrmOZ+yyhX7ukE94zEQ4QgAI1kS8XdZHNdxD9V4HZ2wo
- ytzmSu98omhYcmNMBLU0RmQvS9x4zUnMAh3x9TIeEEAwihLifdbPoUle8ZMKlzVZlo/+k4GVODy
- EZzDWVG43NpNryUk5pi+JuKtiD4KMSJpSeId4qQg1pEvawcUSBEuZS5w84OEiz8V5yW9IR5PiSh
- tlBv/T2qH+n49XItSBW0GD+gHfojSUDUXj3AFVLGg3TqVSWO4g==
-X-Received: by 2002:a17:903:1b10:b0:2bc:e62a:979b with SMTP id
- d9443c01a7336-2bea33d166emr36661465ad.30.1779374460988; Thu, 21 May 2026
- 07:41:00 -0700 (PDT)
+ bh=H2yWVwJxTaScCgj+pdDqJvd1+BNm6/dyL9FgYCmk8UQ=;
+ b=mcI6Fs+NS8MlWibIsmX4D5RpHGf4l9B42SRsTFFfqzfDcfHWq/FraFv3PG/dgbpfrJ
+ Lzd/7nu7JB/2NItCkhyQrSZib1Gur4+L+BrN3A1AMKWX2rUyOwe0NOM5DHCx8XnxmlZo
+ vgsDZsgNOBcdrFP3fiV/F29M531U+VOfUiQeePsTZWYoSNJmupw5gpefEBXI7RwXcPXi
+ +RamOS291BHUaZyJ1lUDY6Z4kxQZNYXa61amNW+FuExRfpPwfcoK0SpeLrR4XTXi/feE
+ V1MfJCObyHeLBXuhGKGYyCJH50uy94cjQP5dHPapG9nriw4MhOcMuOLspSKyLA1+k5ly
+ f12Q==
+X-Gm-Message-State: AOJu0Yy5Rq7zzB9LgUUBLaJZKMmZXOh9jr9QVrB1s8U4s9P5e86jQKmy
+ MdzMRccaTOMqIM0O4VmD88vVPR6CS+PZjG1AaR5XvZ54dyfNzgwuaLKONfUGDh7j6h2E2A==
+X-Gm-Gg: Acq92OF+JgE8FbMZhT//Cnk7jKC5y/f6nkeDNmoIW/5nJEXaCAjptxYVZskroqiIvx4
+ AjcEsLlrcDD1o09S8ujlVZSyneLas1uakDRaIFTD5YPU24dz7mn0mGaKWIEd0a/KBL8PEr4oLF8
+ z9yHXoZBsjJKAr/ivgWfv41Op0eXrp5zRIDXpM9yI/35q5YXxwuPsUyiA8QhiQbkUKbB3+GJ4V8
+ WkdOGxtgO8fdRYVtIkoPQSI883kVsNFJRG/e8xPR2RpkEz5LsJOxNQlYRPz2mJKSGMjZLl3oeG3
+ 14kTMheSHw/Xl7SKIz2WDwMt63msCxyExXwpUvYrx1kQIHezdy6klMhhWToT5U9acjvxBn00QSU
+ V69ISt64+uTBxhXAfcsq+3nE2opLUMv55Jr9hCoG4WMqQZsJyQKydPiFmzgyPOc8NUKF7r18+np
+ NSMWEBzefB30oVDvwoiYVwrV5/yDJ/+U9GQD+asVYdARTwhWJVt3eBMR8=
+X-Received: by 2002:a05:6000:2403:b0:45e:655d:6f7 with SMTP id
+ ffacd0b85a97d-45ea3ae887emr5723344f8f.24.1779374725641; 
+ Thu, 21 May 2026 07:45:25 -0700 (PDT)
+Received: from nixos-office (195-23-151-163.net.novis.pt. [195.23.151.163])
+ by smtp.gmail.com with ESMTPSA id
+ ffacd0b85a97d-45eaa7da46esm3699744f8f.14.2026.05.21.07.45.24
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 21 May 2026 07:45:24 -0700 (PDT)
+From: Julian Braha <julianbraha@gmail.com>
+To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Julian Braha <julianbraha@gmail.com>
+Subject: [PATCH] drm/i915: use 'depends on' with visible DEBUG_OBJECTS for
+ DRM_I915_DEBUG and DRM_I915_SW_FENCE_DEBUG_OBJECTS
+Date: Thu, 21 May 2026 15:45:18 +0100
+Message-ID: <20260521144518.410717-1-julianbraha@gmail.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
- <20260423-color-format-v14-20-449a419ccbd4@collabora.com>
-In-Reply-To: <20260423-color-format-v14-20-449a419ccbd4@collabora.com>
-From: Daniel Stone <daniel@fooishbar.org>
-Date: Thu, 21 May 2026 15:40:49 +0100
-X-Gm-Features: AVHnY4LM5MR-pydhp54-iciGhQnPfxKOlxWC92SZdhfzMOyTtShVga8wCcjC3D0
-Message-ID: <CAPj87rOBvjw4v+PER+6+FMuDRajXNnPSKAke8a=tVgiSRg8QTg@mail.gmail.com>
-Subject: Re: [PATCH v14 20/28] drm/rockchip: dw_hdmi_qp: Implement "color
- format" DRM property
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>,
- Alex Deucher <alexander.deucher@amd.com>, 
- =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
- =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- kernel@collabora.com, 
- amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
- linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- wayland-devel@lists.freedesktop.org, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 22 May 2026 12:53:52 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -135,56 +92,88 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[fooishbar.org:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[fooishbar.org];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER(0.00)[daniel@fooishbar.org,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:w
- ayland-devel@lists.freedesktop.org,m:cristian.ciocaltea@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[fooishbar.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:julianbraha@gmail.com,s:lists@lfdr.de];
+	ARC_NA(0.00)[];
+	FORGED_SENDER(0.00)[julianbraha@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
 	TO_DN_SOME(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[daniel@fooishbar.org,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,gmail.com];
+	DKIM_TRACE(0.00)[gmail.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mail.gmail.com:mid,collabora.com:email,fooishbar.org:dkim]
-X-Rspamd-Queue-Id: EAC365A7789
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[julianbraha@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.805];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 368765B48EC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi,
+A previous version of this patch[1] accidentally introduced an unmet
+dependency bug, because DRM_I915_DEBUG selects
+DRM_I915_SW_FENCE_DEBUG_OBJECTS without also depending on DEBUG_OBJECTS.
 
-On Thu, 23 Apr 2026 at 20:06, Nicolas Frattaroli
-<nicolas.frattaroli@collabora.com> wrote:
-> +       bridge = drm_bridge_chain_get_first_bridge(encoder);
-> +       if (!bridge)
-> +               return 0;
-> +
-> +       bstate = drm_atomic_get_bridge_state(conn_state->state, bridge);
-> +       if (!bstate)
-> +               return 0;
+DRM_I915_SW_FENCE_DEBUG_OBJECTS currently selects DEBUG_OBJECTS even though
+DEBUG_OBJECTS is visible to users. Other config options use 'depends on'
+for DEBUG_OBJECTS, so let's do the same here.
 
-IS_ERR() + PTR_ERR()
+In this new version of the patch, let's also add the dependency on
+DEBUG_OBJECTS to DRM_I915_DEBUG, to prevent the unmet dependency.
 
-Cheers,
-Daniel
+This select-visible Kconfig misusage was detected by Kconfirm, a static
+analysis tool for Kconfig.
+
+Link 1:
+https://lore.kernel.org/all/20260502191932.4491-1-julianbraha@gmail.com/
+
+Signed-off-by: Julian Braha <julianbraha@gmail.com>
+---
+ drivers/gpu/drm/i915/Kconfig.debug | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/i915/Kconfig.debug b/drivers/gpu/drm/i915/Kconfig.debug
+index 3562a02ef7ad..657cdf49181e 100644
+--- a/drivers/gpu/drm/i915/Kconfig.debug
++++ b/drivers/gpu/drm/i915/Kconfig.debug
+@@ -35,6 +35,7 @@ config DRM_I915_REPLAY_GPU_HANGS_API
+ 
+ config DRM_I915_DEBUG
+ 	bool "Enable additional driver debugging"
++	depends on DEBUG_OBJECTS
+ 	depends on DRM_I915
+ 	depends on EXPERT # only for developers
+ 	depends on !COMPILE_TEST # never built by robots
+@@ -153,7 +154,7 @@ config DRM_I915_TRACE_GTT
+ config DRM_I915_SW_FENCE_DEBUG_OBJECTS
+ 	bool "Enable additional driver debugging for fence objects"
+ 	depends on DRM_I915
+-	select DEBUG_OBJECTS
++	depends on DEBUG_OBJECTS
+ 	default n
+ 	help
+ 	  Choose this option to turn on extra driver debugging that may affect
+-- 
+2.53.0
+
