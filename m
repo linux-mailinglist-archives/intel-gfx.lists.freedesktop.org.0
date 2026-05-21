@@ -2,170 +2,117 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4Bb+AG39DmrrDwYAu9opvQ
+	id cHetH6sJD2oHEgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 14:41:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 15:33:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EB0C5A4F95
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 14:41:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CD33A5A5DE1
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 15:33:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F4E210E4ED;
-	Thu, 21 May 2026 12:41:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8B4CD10E503;
+	Thu, 21 May 2026 13:33:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="XDkct8+w";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="ENRvP//N";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA0E110E4EA;
- Thu, 21 May 2026 12:41:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779367273; x=1810903273;
- h=message-id:date:subject:to:cc:references:from:
- in-reply-to:content-transfer-encoding:mime-version;
- bh=4gVzFlWxSGx8SoH37gFYfN2XckNWmLvqG3z9dzj8hCA=;
- b=XDkct8+wuPRTViUEVRpbCgrpEnSR1k7qpDxK31Tg54+obzcCkyrdEI5j
- BZyjLEFLfAHftFQ9pYJ4DkKVexDpqhw4madtqxrQmw+p0kdktoyXcuRE2
- TxC8RCgyGJz7Ql+EnKLqaPJ4fMYMIFtfBCoFvhxaWt8aKE3PTJEnLchB8
- K9xxIukmpMlJMxjUhpd+NX+MvhlehHozrbzxAyDz60xN7/tCn/7/WZhnE
- Ulmf661Lqqt7S1hyr12zKcEh7v3B/IOvAybWPEplElzYuilU8hFQdKHfC
- gi73r+G5diEJDfX1OHNKe+41ZfMul9m2+xpOy4avIXrWpMrkAbXhkIEzW Q==;
-X-CSE-ConnectionGUID: dDKFc7sETIWf0C8N2z/DSQ==
-X-CSE-MsgGUID: 1cAY3dJ/Rdm38/wEA+nr3g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="97853958"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="97853958"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 05:41:13 -0700
-X-CSE-ConnectionGUID: qNadAwq7QDifxXw/6K44eg==
-X-CSE-MsgGUID: Bolw3kReSlSiCguSS97RhA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="244797798"
-Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
- by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 05:41:13 -0700
-Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 05:41:11 -0700
-Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 05:41:11 -0700
-Received: from CO1PR03CU002.outbound.protection.outlook.com (52.101.46.68) by
- edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 05:41:10 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ZaO77HHH2u3tYMU5sDYDDdsCWeiqysZw3LTGgu9AyMoWjTw4gA1iLWvtK6QHv5/ay0k3luFBFV1SXA1jkiYkNGuW+0ZL7+f8YM+C1bPJkxb1UOiwp3nJO48vN7P/0C/XrP9cvgEzOda75DqvaHRTC2m6k4SimWLTxP8Q022voHZl1HgdiYMpLcEvlnRzr9P/CsG4FJ8860Mr7izwTlPMSCiIdK+QT4Z+G2HXDxwTCL542/i1nYvokGX/9NiOvN9ECs3y/vQ9hgfzubOWqEQujQhf7J0q3n260QbYsFvXTNdkbY05uz3QpKuwJA0awNcRidAatdJqQHn9CeUAlkgzrQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/LBCiuwFwcUw7iTQzwOtM7Un5dafm3+agXZgReAu9s8=;
- b=jJw6jJQUVzlmxNVXNNtcAHFCQOm+wj3SD+WVoYh2PNPhaEfCGMEtJdEoj0C6os2lJ+Cv8LB8+4YFN5bUIZBDk1xKjqVZhA1h7SEs1oDQRtdPbEpfASuEmEBowoCUBy//Pp5xCnvvatlqIw5RyrfSXQ9Ky0AsPCJ4Ja1AqX9+yr1Eh2b+9La4CxLU3m/a9/DsJeI2uVfQxboBdfHdVdyqNLgl3yQKBuBeZDJHJrnyW3cysqrBvVR68brGWOA5Zy0BQS9kyrfRMtbMXihBsAGBTX0j5oJf5xz6juG3njZ9KcC1WbdKBnz4DoT9uAlhhyRrAL1EqVWHSSpaca8IBKZYww==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
- by DSWPR11MB9762.namprd11.prod.outlook.com (2603:10b6:8:354::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Thu, 21 May
- 2026 12:41:08 +0000
-Received: from DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
- ([fe80::d9c7:d2fb:680d:1ee1%5]) with mapi id 15.21.0025.022; Thu, 21 May 2026
- 12:41:08 +0000
-Message-ID: <916d3184-7f00-4a90-85e8-43cb9a8b3466@intel.com>
-Date: Thu, 21 May 2026 18:11:01 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v6 02/16] drm/i915/cmtg: Set CMTG clock select
-To: "Manna, Animesh" <animesh.manna@intel.com>,
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
- "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-CC: "Shankar, Uma" <uma.shankar@intel.com>, "ville.syrjala@linux.intel.com"
- <ville.syrjala@linux.intel.com>, "Nikula, Jani" <jani.nikula@intel.com>
-References: <20260513163857.1541888-1-animesh.manna@intel.com>
- <20260513163857.1541888-3-animesh.manna@intel.com>
- <79f55f66-805f-473c-b7f6-f3e9b1fead37@intel.com>
- <DS0PR11MB8049D2B45198589AD80248F1F90E2@DS0PR11MB8049.namprd11.prod.outlook.com>
-Content-Language: en-US
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-In-Reply-To: <DS0PR11MB8049D2B45198589AD80248F1F90E2@DS0PR11MB8049.namprd11.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA5PR01CA0195.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1b2::6) To DM4PR11MB7183.namprd11.prod.outlook.com
- (2603:10b6:8:111::10)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5524D10E510;
+ Thu, 21 May 2026 13:33:27 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 9E93660210;
+ Thu, 21 May 2026 13:33:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52B451F000E9;
+ Thu, 21 May 2026 13:33:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1779370406;
+ bh=JMvTXrLi2fecyuCzobJPBmjEJITlU0vYIW862WydbuI=;
+ h=From:To:Cc:Subject:Date;
+ b=ENRvP//NxlPse9MxCJOFh1AogZslAel87SB2mSCIhsf3jItcOS+woGIBwiFJXxxJO
+ /vrcLfGb5f9Zgybo+8/jwPpcfxzDdtk9qobrtYv1Jx7qF2CaHOv9To+pMFVf+CxBaj
+ Txk/IJPdMMNkgGbRiVQjeh8OyeTtBQ2jV3/sTZSlJcvRZB5VWyLoc9rDPU3aPLI4HL
+ h0jOm1f2w6p8YOUlM5pSaTCh9uIPDhngu0K2kHqivFsRg/751UQV/kKlDAKhtjc0hL
+ ruCH8xG0ElU6V7TuBi+cEWySHRlk4t3CmGbCJy8V2gQGUgE/wtg5mB81jG8Jj8LiQq
+ dMkB09LzsXQtw==
+From: Kees Cook <kees@kernel.org>
+To: Luis Chamberlain <mcgrof@kernel.org>
+Cc: Kees Cook <kees@kernel.org>, Pengpeng Hou <pengpeng@iscas.ac.cn>,
+ Petr Pavlu <petr.pavlu@suse.com>, Richard Weinberger <richard@nod.at>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Corey Minyard <corey@minyard.net>, Gabriel Somlo <somlo@cmu.edu>,
+ "Michael S. Tsirkin" <mst@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Bart Van Assche <bvanassche@acm.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Hannes Reinecke <hare@suse.de>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
+ Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
+ =?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
+ Tiwei Bie <tiwei.btw@antgroup.com>,
+ Benjamin Berg <benjamin.berg@intel.com>,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "David E. Box" <david.e.box@linux.intel.com>,
+ "Maciej W. Rozycki" <macro@orcam.me.uk>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Thomas Gleixner <tglx@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Vinod Koul <vkoul@kernel.org>,
+ Frank Li <Frank.Li@kernel.org>, Daniel Gomez <da.gomez@kernel.org>,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Aaron Tomlin <atomlin@atomlin.com>,
+ Alexander Potapenko <glider@google.com>, Marco Elver <elver@google.com>,
+ Dmitry Vyukov <dvyukov@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ John Johansen <john.johansen@canonical.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Georgia Garcia <georgia.garcia@canonical.com>, kvm@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-modules@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, linux-um@lists.infradead.org,
+ linux-acpi@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
+ qemu-devel@nongnu.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org,
+ linux-usb@vger.kernel.org, usb-storage@lists.one-eyed-alien.net,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arch@vger.kernel.org, netdev@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: [PATCH 00/11] Convert moduleparams to seq_buf
+Date: Thu, 21 May 2026 06:33:13 -0700
+Message-Id: <20260521133315.work.845-kees@kernel.org>
+X-Mailer: git-send-email 2.34.1
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|DSWPR11MB9762:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4ad7a75a-0518-4a65-5a79-08deb7363b73
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|6133799003|18002099003|22082099003|56012099003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: BWMmw2he0Zq/D3KlhmO/ni1E1hK5mVsAZy0NwIf/eJv+6lxrafqn/EYmX6DO/h8hd7ZwpJrcXnYGGbNxmHsOsTUo9tr40u9k0zIT/D8ViwSehngJzDTX+6KZBnbZBO0yhSpG9LN33r3zBR/yNkIJc+Asb15YDIDjdE7cp+8GfdF/F1JT3Rw9ZKi+vQI3t8mnhVHnoDf6xHKRpgv/10nm2fzPPae238IKaweqXxL0pWRRMaeAo8yft0xu9XPeakZAtAnIFRK2ju0xwuaLXQnUI4st6bEmbXLggbq4xy7FxzFmLs/48PS+hKm3ZjLh6Swgh1CXFsQEAZ8Lph6QBVWHLG5XjLbTm89fSEwxCxWsnvLQMSPUsH+w4N1d4Ymsne9GCyeNTdDdPw1iB36107uGOb4qu1dHSGgUQKv8FcCYT/I8SGQiupvV7zR9xp2+NnzQ8e7gwUHmYi4qaIXlaVvUPiaaFSR7MP/OEkNUkJZNun2wl3p24iacAO8/2njQzSkoVNx3YXg83MTUdQ1i7Lc9NpcTJheIyF5jnhNWZo9LWnaXLKnVjUE6tM5uSJOO7z1Ixn2LZKnFklzRUgDryBt/WTKPfpLZNkAjQ1nO220MiL9zu6caBRU1gE/th4oUeiJMh9h+IHTKu9n3gQ4cYDg57BckMow5vwBHLw0eSUajMfYdzoq6NoliBM9RiSGQf3S1
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(6133799003)(18002099003)(22082099003)(56012099003)(11063799006)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aXBtaTU1OEd2OGQrd056WXRaOWFJOHRvZTMxMmsxZVNTeXMvSkc0ZFRsZlF3?=
- =?utf-8?B?NjN3L2tVZDU2VnFGWkl5Vnh2bW05bUt4RkRvNmZoVFpwaHRzQ011T2Y5OVA1?=
- =?utf-8?B?MFIxZTBUTGF3SFJocFViZWJyMytEcmtNU2lmSG1uZmFwVW5OdVNKcHMvWkpD?=
- =?utf-8?B?VWljdml0UERTNExBQUtFdG9veS9ZMkZGNm1rMXpFUWU1YlNCZEVSRXV2YmE4?=
- =?utf-8?B?QUZKN25Cci8ydEs3M09yczBWYjNjYXV1QkNPMDhvY3BKeTVEVHhZcEJFQVI4?=
- =?utf-8?B?enRGTWtBK2JoODV1a2dkbGtnM1VETU5JTjk3OUFqTWtucVpSUk1pYTJadS82?=
- =?utf-8?B?Y0xyRm9oMm5MOXNsdjRkVytmYklrMlVPbDhTQkFOOXZSWWZmbU1hd2cvUkNH?=
- =?utf-8?B?N2VMZTN6TlNEcy9WMGVXVTZwdGp2V1FrWTRkSlkwaEQ4aGpzd01DL2RnMkd6?=
- =?utf-8?B?VHJyckR3U2dZMFlCTkUxS1lBVEw2ajB1TzVwb25qbTcydUdKdEt4WFZpbENT?=
- =?utf-8?B?NFgwM2hwQVZTZnFSYVBEY1NER1Z4L2JhQWVId2NJTTEzL3lrQTdma1l2R21I?=
- =?utf-8?B?cnpWSUlTNjRuQTFqRWgyNmF6ZkxQWXdNYWdqUGNsSEpJK1drL3hwMlRaSmRj?=
- =?utf-8?B?bElrbXVyemlHdGFrRTR3SHlCLzJLZTFvc0xiYTF5OVRrZzdlem4wNmc0TTRJ?=
- =?utf-8?B?QmdqSEwxU2I5RTROamNUVllXcTNjTHNhTEcyalFtRnkzTkNFUjJSU2psTmpk?=
- =?utf-8?B?VkRjSVZjWGFlNWZPVnhvVkZxcG9xZjhvZFp4Qk1QVFA1OWU4SUFGaGo2Rm10?=
- =?utf-8?B?YWNhTjNra3daZG9QbWt0VWtaaVdFSFpIclhLdVFITFBOREp3Q0RCYzBSTHBl?=
- =?utf-8?B?NzRaVzhFdkozTmxhVE9vYW9oRXoxRERES3ZUWmJNdDd1MkNFOE5OUEJmUVhK?=
- =?utf-8?B?QkllSkpVcDZ6TDlLbGdFcTYwTmMyMWpoTkZHeE91YzVidXk0Q0k0RU9ZREk2?=
- =?utf-8?B?TXdyV21CWHI5aHIveEY2cldidXk2UFF3b004TUQzbzVpelpnZEE3c1FFanJV?=
- =?utf-8?B?ZkRJRnlBQlBGL3JOTnhxdjZhYlkxZ0c0S0V2MFF6U01Lc3lYSTRQclNkZVZH?=
- =?utf-8?B?N1kyQ2dhMVduTHFYZDVvK2p2RlNSZVhCem1TNFRYT00ycHZRTTA0d2lXUjhY?=
- =?utf-8?B?Y05vbXRiNWp1TjNmSWN0V2xNeGlTOEQ3UFZ6T1hxR2s2cSthVjlWZXZ2RkFl?=
- =?utf-8?B?b2xacTVFUlVpK2ZpNHdyZHdzNzc4aEU1L3VwVlByM0x5MlZqbDBMeE1rRnV5?=
- =?utf-8?B?ajRoSWg3UG1jMjBZdFlJanY0K21MNk42MzdoSHc0UzZySm5YQ0VIWkd1RGti?=
- =?utf-8?B?eUFJWDErSkxZN0hHSGJLQkhTdTVwdVR2N0g5VjhWOVVhVXVhV3E4eUpoenpz?=
- =?utf-8?B?NTBKTk4vcUx6NWNaMlVRRTNjM0FDd3R1NExiZ2lFTWJmN3hhcnd6Wk5vQjU5?=
- =?utf-8?B?c3FySkZmNDA4RWlPWnZXSjRybHFmbHdIT0lTMXl5dTJyYzFINjBkVG9uamxr?=
- =?utf-8?B?RWFadmlIekZlL0FTNHZBeVBrUUpHNE84STJxdFBweWFkVktySk5ybVpMc1dk?=
- =?utf-8?B?NWFvUWxiRW9teG9wVEQ0dkJCK05xT3J1TVFPcWdNVGkzMlVFV3BZRFFNMXl3?=
- =?utf-8?B?bEtGczRwT0F1anFhTkF2YWRlTXY2Mk9waXNNRXRuamc4eGx4cGNuVGxjUWF6?=
- =?utf-8?B?SFk0MHlHOEtuZTJLWTc5ZFg1cGtyNmhPOUZsWThDb3U3TGQ5b1B3d1JsVXhy?=
- =?utf-8?B?NFBFRGNqY2FON1MvekM0R0F5U0FIQUZVMkRuR1U5TTNWTVhUVVh5ejdtQm5P?=
- =?utf-8?B?cU5EclUwTWhuQTBjTFI4RzZJQnBXa0lDMkV1Z3l2ZThuZnZqL2tpRWQ3V2tp?=
- =?utf-8?B?bzBxWTV5UFR1T3J3NDNYcytGZjdnQ0xwSVFWc1hVYjV5cklJWHQwd0t5elZk?=
- =?utf-8?B?RnRCTGluTFh1OUlzSkdMTlExd1ZxcVZvcDNlV2xHRG5JQnFNY2JUOXhYZ2FN?=
- =?utf-8?B?TnFuZ2J3YmUyQ0NqTU4rRktseGJKdnF1YlcycHNVWkY2WUY2WWllTFlncFZ2?=
- =?utf-8?B?a0lRbEZRMkUrbFZyOEtEQjlaU0toVFdTT0ZYQXhkbDR3YXZlN1J1ODMrR3Mx?=
- =?utf-8?B?cUJ1cnAzUlFSeTZzS2tabzJUQ3IvejNBM1NpS2JUSkg4Y3FTYjYzbHhNQnE1?=
- =?utf-8?B?K05nYnhHTGkzWUxxdE5VL29sSVhLUWNRZnRGZTVwbWxTcngxaFRHYUtaTWJK?=
- =?utf-8?B?SE91cGxKdlg1ZnpNbkNZQXM0cUpaYXNhcDB5b2NneVB3eDRvNWU0N0FQT1FE?=
- =?utf-8?Q?SdjHlyb720nRk2WbAKw2YRA1IsrecxzOq2RTTrTQ3GxjM?=
-X-MS-Exchange-AntiSpam-MessageData-1: 8n6MzFEhyPiPAA==
-X-Exchange-RoutingPolicyChecked: MnCl7OFSRxJ73ja3WAUGlSIA1ttXV+pHJG1q+hpitfoDerW/zGtNUs/5hoAm2tgkWuklD07nl6huiy6RZhdAQGMZTcG3/EiL6TmY1YR5FaO40y+oA4cwF9x/hevMz/KRSZ26iDxHGRsITAtJQ6hOJpK7xsBCScOEJjyIjSILSQfmZabiiqgi4N0ftbPOPxgOSky94akCxnvMzec3x1XjxrdV+PFphbEKeWuB9+Il8u6l71CeNlLWkCnAX0tkimwDU3Wvb0thtsdVroqUOx36qGZtKrisg3Vj/0HCDksWMFsNqCh/vwOA2Eqxnbq9R7ftS+g3TP9HBpQobh0XB95gdQ==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ad7a75a-0518-4a65-5a79-08deb7363b73
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 12:41:08.8151 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: ELGm5D3v8KkPFhOvKuOPylvWvjKdfzZFolAz1nRPfBDf1eo+cGmA78s5jJ1JFgD9f34kLyjXvdbeefbx1MfX33PboqarkgxfcCfZ5aq2jwQcgw+O/iaDsNfJ6zhJi7Tm
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DSWPR11MB9762
-X-OriginatorOrg: intel.com
+X-Developer-Signature: v=1; a=openpgp-sha256; l=8383; i=kees@kernel.org;
+ h=from:subject:message-id; bh=iRiRSOifqAhDEW+rM5ucutf2vqbqOCl0n39wA2pC2nE=;
+ b=owGbwMvMwCVmps19z/KJym7G02pJDFn8nPP5NjJqfrXdrfdzgRzzhL0cEUvVFLTFyz0Emuo2S
+ cuk+1zsKGVhEONikBVTZAmyc49z8XjbHu4+VxFmDisTyBAGLk4BmMjpjYwMW1sezs9aJ6S4pvfM
+ 9cD7+tJ32F5enlDXEpZXkNZ/g4mVnZFh3zrv5UmSl4OP8839kFvnc/3g3qNPdE9ob/yzv04h4/U
+ XTgA=
+X-Developer-Key: i=kees@kernel.org; a=openpgp;
+ fpr=A5C3F68F229DD60F723E6E138972F4DFDC6DC026
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -180,190 +127,194 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [1.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,iscas.ac.cn,suse.com,nod.at,cambridgegreys.com,sipsolutions.net,minyard.net,cmu.edu,redhat.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,acm.org,ziepe.ca,ideasonboard.com,google.com,suse.de,HansenPartnership.com,oracle.com,arm.com,linuxfoundation.org,rowland.harvard.edu,linux.alibaba.com,akamai.com,antgroup.com,orcam.me.uk,infradead.org,linux.ibm.com,alien8.de,zytor.com,atomlin.com,linux-foundation.org,canonical.com,paul-moore.com,namei.org,hallyn.com,vger.kernel.org,googlegroups.com,kvack.org,lists.ubuntu.com,lists.infradead.org,lists.sourceforge.net,nongnu.org,lists.freedesktop.org,lists.ozlabs.org,lists.one-eyed-alien.net,lists.linux.dev];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:email];
+	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[99];
+	FROM_NEQ_ENVFROM(0.00)[kees@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 5EB0C5A4F95
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: CD33A5A5DE1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+Hi,
 
-On 21-05-2026 17:41, Manna, Animesh wrote:
->
->> -----Original Message-----
->> From: Dibin Moolakadan Subrahmanian
->> <dibin.moolakadan.subrahmanian@intel.com>
->> Sent: Thursday, May 21, 2026 2:01 PM
->> To: Manna, Animesh <animesh.manna@intel.com>; intel-
->> gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org
->> Cc: Shankar, Uma <uma.shankar@intel.com>; ville.syrjala@linux.intel.com;
->> Nikula, Jani <jani.nikula@intel.com>
->> Subject: Re: [PATCH v6 02/16] drm/i915/cmtg: Set CMTG clock select
->>
->>
->> On 13-05-2026 22:08, Animesh Manna wrote:
->>> Program the CMTG Clock Select register based on the transcoder used.
->>>
->>> v2:
->>> - Correct mask for PHY B. [Jani]
->>> - Use REG_FIELD_PREP() for enable value. [Dibin]
->>> - Extend cmtg clock select for xe3plpd. [Dibin]
->>>
->>> v3:
->>> - CMTG support removed for old platform.
->>>
->>> v4:
->>> - Optimize further with else-if. [Uma]
->>> - Correct CMTG_CLK_SEL_B_MASK. [Uma]
->>>
->>> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
->>> Signed-off-by: Dibin Moolakadan Subrahmanian
->>> <dibin.moolakadan.subrahmanian@intel.com>
->>> ---
->>>    drivers/gpu/drm/i915/display/intel_cmtg.c     | 22 +++++++++++++++++++
->>>    drivers/gpu/drm/i915/display/intel_cmtg.h     |  1 +
->>>    .../gpu/drm/i915/display/intel_cmtg_regs.h    |  2 ++
->>>    drivers/gpu/drm/i915/display/intel_cx0_phy.c  |  5 +++++
->>>    4 files changed, 30 insertions(+)
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c
->>> b/drivers/gpu/drm/i915/display/intel_cmtg.c
->>> index dc039bea452c..cfe59c604506 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
->>> @@ -198,3 +198,25 @@ bool intel_cmtg_is_allowed(const struct
->>> intel_crtc_state *crtc_state)
->>>
->>>    	return false;
->>>    }
->>> +
->>> +void intel_cmtg_set_clk_select(const struct intel_crtc_state
->>> +*crtc_state) {
->>> +	struct intel_display *display = to_intel_display(crtc_state);
->>> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
->>> +	u32 clk_sel_clr = 0;
->>> +	u32 clk_sel_set = 0;
->>> +
->>> +	if (!intel_cmtg_is_allowed(crtc_state))
->>> +		return;
->>> +
->>> +	if (cpu_transcoder == TRANSCODER_A) {
->>> +		clk_sel_clr = CMTG_CLK_SEL_A_MASK;
->>> +		clk_sel_set = CMTG_CLK_SELECT_PHYA_ENABLE;
->>> +	} else if (cpu_transcoder == TRANSCODER_B) {
->>> +		clk_sel_clr = CMTG_CLK_SEL_B_MASK;
->>> +		clk_sel_set = CMTG_CLK_SELECT_PHYB_ENABLE;
->>> +	}
->>> +
->>> +	if (clk_sel_set)
->>> +		intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr,
->> clk_sel_set); }
->>
->> This comment applies to the entire CMTG programming series, but adding it
->> here since this is the first TRANSCODER/PHY programming step.
->>
->> There are IGT cases where TRANSCODER_B is not mapped to PORT_B, so the
->> current|else if| flow can fail because PHY B may not be enabled.
->>
->> Please check whether the programming sequence here is correct and what
->> TRANSCODER/PORT/PHY combinations are supported for CMTG.
-> We should restrict CMTG usage if port and transcoder is not matching. This is limitation from hardware.
-> The Dc3co should not be allowed if transcoder and port is not matching.
-> CMTG will rely on target_dc_state which will be set if dc3co is allowed.
+I tried to trim the CC list here, but it's still pretty huge...
 
-TRANSCODER_A,PORT_B configuration is valid for DC3CO.
+We've had a long-standing issue with "write to a string pointer" callbacks
+that don't bounds check the destination (and for which the bounds is
+also not part of the callback prototype, even if it is "known" to be
+PAGE_SIZE, which sysfs_emit() depends on). Both moduleparams and sysfs
+use this pattern. As a first step, and to test the migration method,
+migrate moduleparams first.
 
-as per Bspec DC3CO is supported in below combinations.
-Transcoder A to port A or B
-Transcoder B to port A or B
+There are 2 "mechanical" treewide patches that are handled by Coccinelle:
+- treewide: Convert struct kernel_param_ops initializers to DEFINE_KERNEL_PARAM_OPS
+- treewide: Convert custom kernel_param_ops .get callbacks to seq_buf via cocci
 
->
-> Regards,
-> Animesh
->   
->>> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h
->>> b/drivers/gpu/drm/i915/display/intel_cmtg.h
->>> index ed540581738f..87092ce6d67b 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
->>> @@ -11,6 +11,7 @@
->>>    struct intel_display;
->>>    struct intel_crtc_state;
->>>
->>> +void intel_cmtg_set_clk_select(const struct intel_crtc_state
->>> +*crtc_state);
->>>    void intel_cmtg_sanitize(struct intel_display *display);
->>>    bool intel_cmtg_is_allowed(const struct intel_crtc_state
->>> *crtc_state);
->>>
->>> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
->>> b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
->>> index 945a35578284..4a80b88d88fd 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
->>> +++ b/drivers/gpu/drm/i915/display/intel_cmtg_regs.h
->>> @@ -10,8 +10,10 @@
->>>
->>>    #define CMTG_CLK_SEL			_MMIO(0x46160)
->>>    #define CMTG_CLK_SEL_A_MASK		REG_GENMASK(31, 29)
->>> +#define CMTG_CLK_SELECT_PHYA_ENABLE
->> 	REG_FIELD_PREP(CMTG_CLK_SEL_A_MASK, 0x4)
->>>    #define CMTG_CLK_SEL_A_DISABLED
->> 	REG_FIELD_PREP(CMTG_CLK_SEL_A_MASK, 0)
->>>    #define CMTG_CLK_SEL_B_MASK		REG_GENMASK(15, 13)
->>> +#define CMTG_CLK_SELECT_PHYB_ENABLE
->> 	REG_FIELD_PREP(CMTG_CLK_SEL_B_MASK, 0x6)
->>>    #define CMTG_CLK_SEL_B_DISABLED
->> 	REG_FIELD_PREP(CMTG_CLK_SEL_B_MASK, 0)
->>>    #define TRANS_CMTG_CTL_A		_MMIO(0x6fa88)
->>> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> index d832e44ef62a..6a7481578e61 100644
->>> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.c
->>> @@ -9,6 +9,7 @@
->>>    #include <drm/drm_print.h>
->>>
->>>    #include "intel_alpm.h"
->>> +#include "intel_cmtg.h"
->>>    #include "intel_cx0_phy.h"
->>>    #include "intel_cx0_phy_regs.h"
->>>    #include "intel_display_regs.h"
->>> @@ -3418,10 +3419,14 @@ void intel_mtl_pll_enable(struct intel_encoder
->> *encoder,
->>>    void intel_mtl_pll_enable_clock(struct intel_encoder *encoder,
->>>    				const struct intel_crtc_state *crtc_state)
->>>    {
->>> +	struct intel_display *display = to_intel_display(encoder);
->>>    	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
->>>
->>>    	if (intel_tc_port_in_tbt_alt_mode(dig_port))
->>>    		intel_mtl_tbt_pll_enable_clock(encoder, crtc_state-
->>> port_clock);
->>> +
->>> +	if (HAS_LT_PHY(display))
->>> +		intel_cmtg_set_clk_select(crtc_state);
->>>    }
->>>
->>>    /*
+The last treewide patch is manual, and may need to be broken up into
+per-subsystem patches, though I'd prefer to avoid this, as it would
+extend the migration from 1 relase to at least 2 releases. (1 to
+release the migration infrastructure, then 1 release to collect all the
+subsystem changes, and possibly 1 more release to remove the migration
+infrastructure.)
+
+Thoughts, questions?
+
+-Kees
+
+Kees Cook (10):
+  panic: Replace panic_print_get() with generic helper
+  moduleparam: Add DEFINE_KERNEL_PARAM_OPS macro family
+  treewide: Convert struct kernel_param_ops initializers to
+    DEFINE_KERNEL_PARAM_OPS
+  moduleparam: Rename .get field to .get_str
+  moduleparam: Add seq_buf-based .get callback alongside .get_str
+  moduleparam: Route DEFINE_KERNEL_PARAM_OPS get pointer via _Generic
+  params: Convert generic kernel_param_ops .get helpers to seq_buf
+  treewide: Convert custom kernel_param_ops .get callbacks to seq_buf
+    via cocci
+  treewide: Manually convert custom kernel_param_ops .get callbacks
+  moduleparam: Drop legacy kernel_param_ops .get_str field and dispatch
+    logic
+
+Pengpeng Hou (1):
+  params: bound array element output to the caller's page buffer
+
+ include/linux/dynamic_debug.h                 |   8 +-
+ include/linux/moduleparam.h                   |  65 +++++++---
+ security/apparmor/include/lib.h               |   3 +-
+ mm/kfence/core.c                              |  15 ++-
+ arch/powerpc/kvm/book3s_hv.c                  |   5 +-
+ arch/s390/kernel/perf_cpum_sf.c               |  12 +-
+ arch/um/drivers/vfio_kern.c                   |   9 +-
+ arch/um/drivers/virtio_uml.c                  |  18 +--
+ arch/x86/kernel/msr.c                         |  11 +-
+ arch/x86/kvm/mmu/mmu.c                        |  28 ++--
+ arch/x86/kvm/svm/avic.c                       |  14 +-
+ arch/x86/kvm/vmx/vmx.c                        |  24 ++--
+ arch/x86/platform/uv/uv_nmi.c                 |  24 ++--
+ block/disk-events.c                           |   6 +-
+ drivers/acpi/button.c                         |  19 ++-
+ drivers/acpi/ec.c                             |  14 +-
+ drivers/acpi/sysfs.c                          | 114 ++++++++--------
+ drivers/block/loop.c                          |  12 +-
+ drivers/block/null_blk/main.c                 |  12 +-
+ drivers/block/rnbd/rnbd-srv.c                 |   6 +-
+ drivers/block/ublk_drv.c                      |  12 +-
+ drivers/char/ipmi/ipmi_msghandler.c           |  12 +-
+ drivers/char/ipmi/ipmi_watchdog.c             |  50 +++----
+ drivers/crypto/hisilicon/hpre/hpre_main.c     |  16 +--
+ drivers/crypto/hisilicon/sec2/sec_main.c      |  23 +---
+ drivers/crypto/hisilicon/zip/zip_crypto.c     |   5 +-
+ drivers/crypto/hisilicon/zip/zip_main.c       |  21 +--
+ drivers/dma/dmatest.c                         |  34 ++---
+ drivers/edac/i10nm_base.c                     |   6 +-
+ drivers/firmware/efi/efi-pstore.c             |   6 +-
+ drivers/firmware/qcom/qcom_scm.c              |  18 +--
+ drivers/firmware/qemu_fw_cfg.c                |  40 +++---
+ drivers/gpu/drm/drm_panic.c                   |  13 +-
+ drivers/gpu/drm/i915/i915_mitigations.c       |  31 ++---
+ drivers/gpu/drm/imagination/pvr_fw_trace.c    |   6 +-
+ drivers/hid/hid-cougar.c                      |   6 +-
+ drivers/hid/hid-steam.c                       |   6 +-
+ drivers/infiniband/hw/hfi1/driver.c           |  12 +-
+ drivers/infiniband/ulp/iser/iscsi_iser.c      |   6 +-
+ drivers/infiniband/ulp/isert/ib_isert.c       |   6 +-
+ drivers/infiniband/ulp/srp/ib_srp.c           |  12 +-
+ drivers/infiniband/ulp/srpt/ib_srpt.c         |   5 +-
+ drivers/input/misc/ati_remote2.c              |  23 ++--
+ drivers/input/mouse/psmouse-base.c            |  15 ++-
+ drivers/md/md.c                               |   5 +-
+ drivers/media/pci/tw686x/tw686x-core.c        |   6 +-
+ drivers/media/usb/uvc/uvc_driver.c            |  14 +-
+ drivers/misc/lis3lv02d/lis3lv02d.c            |   5 +-
+ drivers/net/wireless/ath/wil6210/main.c       |  10 +-
+ drivers/nvme/host/multipath.c                 |  17 +--
+ drivers/nvme/host/pci.c                       |  18 +--
+ drivers/nvme/target/rdma.c                    |   5 +-
+ drivers/nvme/target/tcp.c                     |   5 +-
+ drivers/pci/pcie/aspm.c                       |  17 ++-
+ drivers/platform/x86/acerhdf.c                |   5 +-
+ drivers/power/supply/bq27xxx_battery.c        |   6 +-
+ drivers/power/supply/test_power.c             | 122 +++++++++---------
+ drivers/scsi/fcoe/fcoe_transport.c            |  22 ++--
+ drivers/scsi/sg.c                             |   6 +-
+ drivers/target/target_core_user.c             |  25 ++--
+ .../processor_thermal_soc_slider.c            |  24 ++--
+ drivers/thermal/intel/intel_powerclamp.c      |  34 ++---
+ drivers/tty/hvc/hvc_iucv.c                    |  24 ++--
+ drivers/tty/sysrq.c                           |   6 +-
+ drivers/ufs/core/ufs-fault-injection.c        |  12 +-
+ drivers/ufs/core/ufs-mcq.c                    |  18 +--
+ drivers/ufs/core/ufs-txeq.c                   |   5 +-
+ drivers/ufs/core/ufshcd.c                     |  12 +-
+ drivers/usb/core/quirks.c                     |   6 +-
+ drivers/usb/gadget/legacy/serial.c            |   5 +-
+ drivers/usb/storage/usb.c                     |  25 ++--
+ drivers/vhost/scsi.c                          |  12 +-
+ drivers/virt/nitro_enclaves/ne_misc_dev.c     |   6 +-
+ drivers/virtio/virtio_mmio.c                  |  27 ++--
+ fs/ceph/super.c                               |  10 +-
+ fs/fuse/dir.c                                 |   5 +-
+ fs/nfs/namespace.c                            |  12 +-
+ fs/nfs/super.c                                |   6 +-
+ fs/ocfs2/dlmfs/dlmfs.c                        |   5 +-
+ fs/overlayfs/copy_up.c                        |   5 +-
+ fs/ubifs/super.c                              |   6 +-
+ kernel/locking/locktorture.c                  |  12 +-
+ kernel/panic.c                                |  11 +-
+ kernel/params.c                               | 122 +++++++++---------
+ kernel/power/hibernate.c                      |   6 +-
+ kernel/rcu/tree.c                             |  24 ++--
+ kernel/sched/ext.c                            |  11 +-
+ kernel/workqueue.c                            |  18 ++-
+ lib/dynamic_debug.c                           |  16 ++-
+ lib/test_dynamic_debug.c                      |  12 +-
+ mm/damon/lru_sort.c                           |  33 +++--
+ mm/damon/reclaim.c                            |  33 +++--
+ mm/damon/stat.c                               |  16 +--
+ mm/memory_hotplug.c                           |  30 +++--
+ mm/page_reporting.c                           |  11 +-
+ mm/shuffle.c                                  |   6 +-
+ mm/zswap.c                                    |  14 +-
+ net/batman-adv/bat_algo.c                     |   6 +-
+ net/ceph/ceph_common.c                        |  10 +-
+ net/ipv4/tcp_dctcp.c                          |   6 +-
+ net/sunrpc/auth.c                             |  12 +-
+ net/sunrpc/svc.c                              |   5 +-
+ net/sunrpc/xprtsock.c                         |  18 +--
+ samples/damon/mtier.c                         |   6 +-
+ samples/damon/prcl.c                          |   6 +-
+ samples/damon/wsse.c                          |   6 +-
+ security/apparmor/lib.c                       |  27 ++--
+ security/apparmor/lsm.c                       |  75 +++++------
+ sound/hda/controllers/intel.c                 |   5 +-
+ sound/usb/card.c                              |   7 +-
+ 110 files changed, 854 insertions(+), 1066 deletions(-)
+
+-- 
+2.34.1
+
