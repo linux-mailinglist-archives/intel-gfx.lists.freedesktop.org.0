@@ -2,133 +2,124 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id EHMnKMsPD2qSEgYAu9opvQ
+	id LRdqL/sSD2otFAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 15:59:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 16:13:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0F91E5A69FB
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 15:59:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629A85A6F21
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 16:13:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 02E3C10F322;
-	Thu, 21 May 2026 13:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D1D7010F335;
+	Thu, 21 May 2026 14:13:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=google.com header.i=@google.com header.b="LaeHuEPF";
+	dkim=pass (2048-bit key; secure) header.d=fooishbar.org header.i=@fooishbar.org header.b="B0KS206S";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-pg1-f202.google.com (mail-pg1-f202.google.com
- [209.85.215.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C53310F322
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 13:59:35 +0000 (UTC)
-Received: by mail-pg1-f202.google.com with SMTP id
- 41be03b00d2f7-c829366cf25so9100256a12.0
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 06:59:35 -0700 (PDT)
+Received: from mail-pf1-f169.google.com (mail-pf1-f169.google.com
+ [209.85.210.169])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 58E0110F337
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 14:13:11 +0000 (UTC)
+Received: by mail-pf1-f169.google.com with SMTP id
+ d2e1a72fcca58-83659d38e38so2460115b3a.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 07:13:11 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1779372791; cv=none;
+ d=google.com; s=arc-20240605;
+ b=klNnGC1c2wD0bIL1NMNMzYb4x5dgBtf+T3Y6Ivir8SPl9oOxpITFP0RCpqr++Nl8ME
+ OUY3CguriKTXOYuxn77UUFU04Q3naj1J/qw/ho08rZMulp5GeHq3IkON6yHOoywQ2MbG
+ bNuOx/fI1EYIZU5Ft4Cgj9++NbDoj5qrxrZuk3eB7CoGwTwrb0vWB5k0w25eNP9I4GCC
+ 5XgALAvRzTQdWCEnR9WfNX9VwQDrb5ospo88xj/Eii9R2o5uiqnufDuR/P//M54cCxn7
+ ZazXFDxOz4mwnuuqiDyAcn9vOP58sNFDwsDnx8WOuCxDqyN2sB/6CYOrpyb1vJmwqhrg
+ 5Xqg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=arc-20240605; 
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:dkim-signature;
+ bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
+ fh=OlfsZMRLi3yE297MXEARvRA8ae6m/UO2xtl0b8zwSVM=;
+ b=P0PTDEygBh1A5wbWdUfkZF18ordPLM4niy6M/G1lhsqWiT7jnPvLcPjfbsV8hk8jk7
+ juAkTn+OQU7UUBp4tv5L+YnFtir4qV7Sy2SBykGd94x+Zib21BMFBCk8lkhsUDXga9EI
+ f5sOZYjEZHHAJmtChjIoS0S0fxDq3/Wpsq25wuUxop29NqY7ROnztN+K0r4zDOeYxtEK
+ ixmvga+j25syQXc/TczMJE2TBnRp9q/yTScUtDRWAp3t2EJrpPTpXqSC5Atu1zI67F57
+ fZeR1ukdXZMDifkzZwdl216yqgyH2mZc3wY+p4b67DEz5PCxnkQR3zrdUzGC2xqrJfyh
+ 5Dqg==; darn=lists.freedesktop.org
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1779371975; x=1779976775;
+ d=fooishbar.org; s=google; t=1779372791; x=1779977591;
  darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=tqeEG6FXEKElqAGUt/Z2qfbIbuB++N7b4Fh1Zt6D5dk=;
- b=LaeHuEPF4pjPUTSbVcOjQruLCEQrUjktDsmvyqaeq1dt+/a9exufdiJb2cXAzubyyO
- mJWWuRCfqukKNmIGiYBymo7u5pechE6jmFTi1g9HfcOJ8WvGr+ZYcI0wHzKeOVvfzt96
- jzo52EuD0fUSmbVnpKDRKcmZ3ieQIZC68HEW8FUwtJc1bjYj5rMye7/78XdDRoFEj1wp
- nXYWRrG4p+QoQ6qDi/OFZZ7D5dZJewBHH5TGDYMcpp4yVBX/+wl/1rIkNzbs40jiPZ1w
- Llu6IXFwix4/yEJAi5v/WmE2H/CEV2sgIxeEWRY8GZrjlNqMtzhYz5WbitmKyQHBcsgb
- 8akA==
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:from:to:cc:subject:date:message-id:reply-to;
+ bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
+ b=B0KS206SJCDMlPBj3enN0FsCW+bO+4qoyBjEbW/roKfA8sJwk/nfyATTMyS+9k1Bsc
+ F+j7F9k2ubY32CFqKo+cXnsazki1e1I0ster1uIDj8Kyy4sHYuZuBlDMrUX6BCpQIuSW
+ Pgb5txZ6LQ53Be20KEG+ZVZN8Uf6ptBqiZqDxwOGJcu8JMOHGhkvpqFT/FA2jmj0+IHM
+ OYywnIpcZYYvDnk7z367KV+anBeBUnuGIVtvFj/8dUDCFqBEwaqhHo1JrWYKDpECAt0K
+ z14Hb9qOlw8IkC1saAzEr01e/V8QRYPio5xwP/XNk6oko3d7OY1/B5Baj6BS6QwTnLLk
+ 6zFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779371975; x=1779976775;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=tqeEG6FXEKElqAGUt/Z2qfbIbuB++N7b4Fh1Zt6D5dk=;
- b=AcS9+tBmU5wtoKb9QYFasKEI5rV3UDLObB5Qor+nD9Wi3WWlUjD1wEEuCXYIKoGCro
- NBuyEV7b5kE8kw6sRt8IT0nG5lSdQ0zkMdw4c+pb3NXhAULgZ3jeSgZ/y90d42oTFAHm
- ol2t5FAzOzlr2oGKKFaZQnmlYkxkbTP7jgCIiVTcs91by2Cgurzn0a7rWUsYqMz2xEFG
- AoPvHrZES9J+V4ww73/cFmQvqDjSKotJt9CJQ/bowbaHjS0klToE2zzggtwO2IAovFm8
- lXPl7cm5k0xAM+k8V/6s2+pppEzbG143yjS64SxW6sAIVxsiEZiFdkwczAl/l+jjjmtE
- jKzw==
+ d=1e100.net; s=20251104; t=1779372791; x=1779977591;
+ h=cc:to:subject:message-id:date:from:in-reply-to:references
+ :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=REP4STaURwNBwYLUxnT2eThrBHI2vGspRNmg6btJygo=;
+ b=KFQEtxs3+AhAQM0mdoy1CzXz79Wiiwr0rb9ReJ6CVVDxyyRY1q/iMdIQEHng1arHjF
+ hAK+wkEx+Mn4p6KZbYBEh1+cSygtvZH0kVARAdWMYheRpvsXkGfK4SywZZsvivt7yQad
+ ckHHCaTFxmXE8E1KWfXXN9ZfzaeDC1X3rDkGhVzEXhEQMY0nQ7JrIIc9YTTddKSbTknr
+ 3bWDF6w1LiU7rrTq9wpcdwMlZkI6DVQ7metueffghm9tEBffGv4o3JQMVETu4VQv7aDu
+ Zy6QH20/pUha4qz/VJDI/Nu3kQRENYNDeR84NyEtdaDJN4QEudJ82uBT+Qr6laQqo6T3
+ DlGg==
 X-Forwarded-Encrypted: i=1;
- AFNElJ/vTiydmjwOrdNmmbT5m58xoLzyy5wR8vIzbfMcX9LAcIlXpteC9pCROpFf5l1924BRTj71X8U7GAQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Yw9pUsUz5dqw0odojZXJeSa3mQONtUqQpObkEcIfvhYJYZTqgCE
- E/2yzrO8aH/rqU+xbrA9wi6yPwbFO1lVrexbkWPOFvjCQ+fDW2o4Kn+sm3j8OZXGWficByfCY0E
- 2WOUFdQ==
-X-Received: from pge1.prod.google.com ([2002:a05:6a02:2d01:b0:c79:83b3:cdf8])
- (user=seanjc job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6a20:431a:b0:39c:a78e:dba9
- with SMTP id adf61e73a8af0-3b308ac1b14mr3725831637.40.1779371973881; Thu, 21
- May 2026 06:59:33 -0700 (PDT)
-Date: Thu, 21 May 2026 06:59:33 -0700
-In-Reply-To: <20260521133326.2465264-4-kees@kernel.org>
-Mime-Version: 1.0
-References: <20260521133315.work.845-kees@kernel.org>
- <20260521133326.2465264-4-kees@kernel.org>
-Message-ID: <ag8PxTTi5NxT51EW@google.com>
-Subject: Re: [PATCH 04/11] treewide: Convert struct kernel_param_ops
- initializers to DEFINE_KERNEL_PARAM_OPS
-From: Sean Christopherson <seanjc@google.com>
-To: Kees Cook <kees@kernel.org>
-Cc: Luis Chamberlain <mcgrof@kernel.org>, Pengpeng Hou <pengpeng@iscas.ac.cn>, 
- Petr Pavlu <petr.pavlu@suse.com>, Richard Weinberger <richard@nod.at>, 
- Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- Johannes Berg <johannes@sipsolutions.net>, 
- "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
- Corey Minyard <corey@minyard.net>, 
- Gabriel Somlo <somlo@cmu.edu>, "Michael S. Tsirkin" <mst@redhat.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Bart Van Assche <bvanassche@acm.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>, 
- Hans de Goede <hansg@kernel.org>, Mauro Carvalho Chehab <mchehab@kernel.org>, 
- Bjorn Helgaas <bhelgaas@google.com>, Hannes Reinecke <hare@suse.de>, 
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>, 
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Daniel Lezcano <daniel.lezcano@kernel.org>, 
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, 
- Alan Stern <stern@rowland.harvard.edu>, Jason Wang <jasowang@redhat.com>, 
- Xuan Zhuo <xuanzhuo@linux.alibaba.com>, 
- "Eugenio =?utf-8?B?UMOpcmV6?=" <eperezma@redhat.com>,
- Jason Baron <jbaron@akamai.com>, 
- Jim Cromie <jim.cromie@gmail.com>, Tiwei Bie <tiwei.btw@antgroup.com>, 
- Benjamin Berg <benjamin.berg@intel.com>, 
- "Ilpo =?utf-8?B?SsOkcnZpbmVu?=" <ilpo.jarvinen@linux.intel.com>, 
- "David E. Box" <david.e.box@linux.intel.com>,
- "Maciej W. Rozycki" <macro@orcam.me.uk>, 
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Peter Zijlstra <peterz@infradead.org>, 
- Heiko Carstens <hca@linux.ibm.com>, Vasily Gorbik <gor@linux.ibm.com>, 
- Paolo Bonzini <pbonzini@redhat.com>, Thomas Gleixner <tglx@kernel.org>,
- Ingo Molnar <mingo@redhat.com>, 
- Borislav Petkov <bp@alien8.de>, Dave Hansen <dave.hansen@linux.intel.com>,
- x86@kernel.org, 
- "H. Peter Anvin" <hpa@zytor.com>, Vinod Koul <vkoul@kernel.org>,
- Frank Li <Frank.Li@kernel.org>, 
- Daniel Gomez <da.gomez@kernel.org>, Sami Tolvanen <samitolvanen@google.com>, 
- Aaron Tomlin <atomlin@atomlin.com>, Alexander Potapenko <glider@google.com>,
- Marco Elver <elver@google.com>, 
- Dmitry Vyukov <dvyukov@google.com>, Andrew Morton <akpm@linux-foundation.org>, 
- John Johansen <john.johansen@canonical.com>, Paul Moore <paul@paul-moore.com>, 
- James Morris <jmorris@namei.org>, "Serge E. Hallyn" <serge@hallyn.com>, 
- Andy Shevchenko <andriy.shevchenko@linux.intel.com>, 
- Georgia Garcia <georgia.garcia@canonical.com>, kvm@vger.kernel.org, 
- dmaengine@vger.kernel.org, linux-modules@vger.kernel.org, 
- kasan-dev@googlegroups.com, linux-mm@kvack.org, apparmor@lists.ubuntu.com, 
- linux-security-module@vger.kernel.org, linux-um@lists.infradead.org, 
- linux-acpi@vger.kernel.org, openipmi-developer@lists.sourceforge.net, 
- qemu-devel@nongnu.org, intel-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org, 
- linux-media@vger.kernel.org, linux-pci@vger.kernel.org, 
- linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org, 
- linux-usb@vger.kernel.org, usb-storage@lists.one-eyed-alien.net, 
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org, 
- linux-arch@vger.kernel.org, netdev@vger.kernel.org, 
- linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
-Content-Type: text/plain; charset="us-ascii"
+ AFNElJ9U2KyfwTzO+6JJp8yTIW0dpWY8huMEnuD4A5ijGC5zkbevLdE3JOk3t72ALCmM1hna/34l6PNfaDk=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yxc8glWccJme5Rl+ZzwFnhjWq4WnqAeJJ+YbrUQ/68KY2MEDoWK
+ K/AJyVmOGJtj2oVCcji5yS+wFFHv7jPkgv1g8Gg2CEMOFRSlkNvdakiGHizNh75NEJLLiWJ1Cdn
+ AZ0splbRYAv0eAPRdRvKah4C4VhlPe42iY+w+xJDqiw==
+X-Gm-Gg: Acq92OH8DbcSPP3pfttlb9cdALp5JUwsiu4FHqTkvI/kkAqA/4phFek5xM20D1azmG7
+ HI2E6bRojseWxmR0syuk1pmc82/tsqW4msRFRGrSb/BZgcxdkXzf0t4dJc1TKABTq0Ws4FLx/yw
+ sRFA99LbC5g/3QwphHKuWN0u6WbYAbi9/vfU2BPfUqE/+QOI0C5oagTyFHlB94qkfBSs/enoHxV
+ f7xxIusd5+hiADXERWvMKUqJYC92xdplTGnFt5+ygfH6vNb3BuNPpVQJDnM70228ltWETzT/yum
+ d8t1EpdFXZgneFm/Rhhz62vQRpi2AXmDHX0MnEs=
+X-Received: by 2002:a05:6a00:170c:b0:83f:2568:d45f with SMTP id
+ d2e1a72fcca58-8414ae0067emr3410992b3a.23.1779372790773; Thu, 21 May 2026
+ 07:13:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20260423-color-format-v14-0-449a419ccbd4@collabora.com>
+ <20260423-color-format-v14-3-449a419ccbd4@collabora.com>
+In-Reply-To: <20260423-color-format-v14-3-449a419ccbd4@collabora.com>
+From: Daniel Stone <daniel@fooishbar.org>
+Date: Thu, 21 May 2026 15:12:59 +0100
+X-Gm-Features: AVHnY4IhuE52xfR4O7ZsBvGU9UxEW_nGPaKeUuOJKbLW6yd-ftNZQIcte9EpFTU
+Message-ID: <CAPj87rOgkSAhVzzHyuKEGPxVYeDhJKLGVNrBA2BkG00gvMJjYQ@mail.gmail.com>
+Subject: Re: [PATCH v14 03/28] drm: Add new general DRM property "color format"
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
+Cc: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
+ Rodrigo Siqueira <siqueira@igalia.com>,
+ Alex Deucher <alexander.deucher@amd.com>, 
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, 
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, 
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang <hjc@rock-chips.com>, 
+ =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
+ Andy Yan <andy.yan@rock-chips.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
+ Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
+ kernel@collabora.com, 
+ amd-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
+ linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, 
+ linux-rockchip@lists.infradead.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, linux-doc@vger.kernel.org, 
+ wayland-devel@lists.freedesktop.org, Werner Sembach <wse@tuxedocomputers.com>, 
+ Andri Yngvason <andri@yngvason.is>, Marius Vlad <marius.vlad@collabora.com>
+Content-Type: text/plain; charset="UTF-8"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -143,61 +134,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	MV_CASE(0.50)[];
+	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[fooishbar.org:s=google];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[fooishbar.org];
 	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_SENDER(0.00)[daniel@fooishbar.org,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:kees@kernel.org,m:mcgrof@kernel.org,m:pengpeng@iscas.ac.cn,m:petr.pavlu@suse.com,m:richard@nod.at,m:anton.ivanov@cambridgegreys.com,m:johannes@sipsolutions.net,m:rafael@kernel.org,m:lenb@kernel.org,m:corey@minyard.net,m:somlo@cmu.edu,m:mst@redhat.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:bvanassche@acm.org,m:jgg@ziepe.ca,m:leon@kernel.org,m:laurent.pinchart@ideasonboard.com,m:hansg@kernel.org,m:mchehab@kernel.org,m:bhelgaas@google.com,m:hare@suse.de,m:James.Bottomley@hansenpartnership.com,m:martin.petersen@oracle.com,m:daniel.lezcano@kernel.org,m:rui.zhang@intel.com,m:lukasz.luba@arm.com,m:gregkh@linuxfoundation.org,m:jirislaby@kernel.org,m:stern@rowland.harvard.edu,m:jasowang@redhat.com,m:xuanzhuo@linux.alibaba.com,m:eperezma@redhat.com,m:jbaron@akamai.com,m:jim.cromie@gmail.com,m:tiwei.btw@antgroup.com,m:benjamin.berg@intel.com,m:ilpo.jarvinen
- @linux.intel.com,m:david.e.box@linux.intel.com,m:macro@orcam.me.uk,m:srinivas.pandruvada@linux.intel.com,m:peterz@infradead.org,m:hca@linux.ibm.com,m:gor@linux.ibm.com,m:pbonzini@redhat.com,m:tglx@kernel.org,m:mingo@redhat.com,m:bp@alien8.de,m:dave.hansen@linux.intel.com,m:x86@kernel.org,m:hpa@zytor.com,m:vkoul@kernel.org,m:Frank.Li@kernel.org,m:da.gomez@kernel.org,m:samitolvanen@google.com,m:atomlin@atomlin.com,m:glider@google.com,m:elver@google.com,m:dvyukov@google.com,m:akpm@linux-foundation.org,m:john.johansen@canonical.com,m:paul@paul-moore.com,m:jmorris@namei.org,m:serge@hallyn.com,m:andriy.shevchenko@linux.intel.com,m:georgia.garcia@canonical.com,m:kvm@vger.kernel.org,m:dmaengine@vger.kernel.org,m:linux-modules@vger.kernel.org,m:kasan-dev@googlegroups.com,m:linux-mm@kvack.org,m:apparmor@lists.ubuntu.com,m:linux-security-module@vger.kernel.org,m:linux-um@lists.infradead.org,m:linux-acpi@vger.kernel.org,m:openipmi-developer@lists.sourceforge.net,m:qemu-devel@nongnu.org,m:dri-de
- vel@lists.freedesktop.org,m:linux-rdma@vger.kernel.org,m:linux-media@vger.kernel.org,m:linux-pci@vger.kernel.org,m:linux-scsi@vger.kernel.org,m:linux-pm@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:linux-serial@vger.kernel.org,m:linux-usb@vger.kernel.org,m:usb-storage@lists.one-eyed-alien.net,m:virtualization@lists.linux.dev,m:linux-kernel@vger.kernel.org,m:linux-arch@vger.kernel.org,m:netdev@vger.kernel.org,m:linux-fsdevel@vger.kernel.org,m:linux-hardening@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[seanjc@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[kernel.org,iscas.ac.cn,suse.com,nod.at,cambridgegreys.com,sipsolutions.net,minyard.net,cmu.edu,redhat.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,acm.org,ziepe.ca,ideasonboard.com,google.com,suse.de,hansenpartnership.com,oracle.com,arm.com,linuxfoundation.org,rowland.harvard.edu,linux.alibaba.com,akamai.com,antgroup.com,orcam.me.uk,infradead.org,linux.ibm.com,alien8.de,zytor.com,atomlin.com,linux-foundation.org,canonical.com,paul-moore.com,namei.org,hallyn.com,vger.kernel.org,googlegroups.com,kvack.org,lists.ubuntu.com,lists.infradead.org,lists.sourceforge.net,nongnu.org,lists.freedesktop.org,lists.ozlabs.org,lists.one-eyed-alien.net,lists.linux.dev];
+	RCPT_COUNT_TWELVE(0.00)[42];
+	FORGED_RECIPIENTS(0.00)[m:nicolas.frattaroli@collabora.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:christian.koenig@amd.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:lumag@kernel.org,m:s.hauer@pengutronix.de,m:robh@kernel.org,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:kernel@collabora.com,m:amd-gfx@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:linux-arm-kernel@lists.infradead.org,m:linux-rockchip@lists.infradead.org,m:intel-xe@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:w
+ ayland-devel@lists.freedesktop.org,m:wse@tuxedocomputers.com,m:andri@yngvason.is,m:marius.vlad@collabora.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[fooishbar.org:+];
+	TO_DN_SOME(0.00)[];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_GT_50(0.00)[98];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[seanjc@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[daniel@fooishbar.org,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,tuxedocomputers.com,yngvason.is];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 0F91E5A69FB
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[mail.gmail.com:mid,fooishbar.org:dkim]
+X-Rspamd-Queue-Id: 629A85A6F21
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 21, 2026, Kees Cook wrote:
-> Using Coccinelle, rewrite every struct kernel_param_ops initializer that
-> sets .get into a DEFINE_KERNEL_PARAM_OPS-family macro invocation,
-> for example:
-> 
-> @@
-> declarer name DEFINE_KERNEL_PARAM_OPS;
-> identifier OPS;
-> expression SET, GET;
-> @@
-> - const struct kernel_param_ops OPS = {
-> -       .set = SET,
-> -       .get = GET,
-> - };
-> + DEFINE_KERNEL_PARAM_OPS(OPS, SET, GET);
+Hi,
 
-IMO, "OPS, GET, SET" is more intuitive, especially since that's the order used
-by DEFINE_SIMPLE_ATTRIBUTE and DEFINE_DEBUGFS_ATTRIBUTE.
+On Thu, 23 Apr 2026 at 20:04, Nicolas Frattaroli
+<nicolas.frattaroli@collabora.com> wrote:
+> +       } else if (property == connector->color_format_property) {
+> +               if (val > INT_MAX || !drm_connector_color_format_valid(val)) {
+> +                       drm_dbg_atomic(connector->dev,
+> +                                      "[CONNECTOR:%d:%s] unknown color format %llu\n",
+> +                                      connector->base.id, connector->name, val);
+> +                       return -EINVAL;
+> +               }
+
+Shouldn't this already be ensured by drm_property_change_valid_get()?
+
+Cheers,
+Daniel
