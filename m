@@ -2,87 +2,88 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id wN2tLKtfD2qXJgYAu9opvQ
+	id +BZWDp9pD2qOLAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 21:40:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 22:22:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B88D5AB846
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 21:40:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D88A25ABB9B
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 22:22:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DEF1E10E48D;
-	Thu, 21 May 2026 19:40:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9BFD210F3FC;
+	Thu, 21 May 2026 20:22:49 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="OsaLrwbN";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="OHVXCe+g";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
- [209.85.128.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC07010E560
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 19:40:24 +0000 (UTC)
-Received: by mail-yw1-f173.google.com with SMTP id
- 00721157ae682-7cd35604a95so57706047b3.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 21 May 2026 12:40:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=poorly.run; s=google; t=1779392424; x=1779997224; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=HmIdxc0lOd0CxowYMAnyi/yzRzGd3DC7R3Y/lI6Dr6Y=;
- b=OsaLrwbNb+gapRHXe1AJ56dMeHVP8ygv5bSoUUo4tAiFozWo543BAzEBHcGMzh2NTl
- B6Nb1/fWCrBmau9rcDpmZFm68btR/T8eT5wSwKR369F5v4qwF/xyVc6rUuP8+exqo+XO
- G34p6Icl+ssTKk/hAt9JnqB9Zf42DgpkBMr/AoCrk1ybUqQUYsRm8MG/kriLeVyRFQZa
- NUGWMT4+d+BGDIFhZb3xdnCe7zWJUX59gPqvw9AWa2RO9Hi3beSucFpn3cAo9tKWurHa
- y6OTkRUWqNwnGkL0Xn3EdtDFj+3PHCFGipVKV/1NhW0GeLk+JuCd2p4ZMbEzwui6PCPj
- 1CUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779392424; x=1779997224;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=HmIdxc0lOd0CxowYMAnyi/yzRzGd3DC7R3Y/lI6Dr6Y=;
- b=DPHsMT5LI7RazSOnpJREH3yEJPF8OiEG12TDpN4WFJwpzkxUfNEyPj+B5/T2fUhRPN
- fm2ZVQcyb/IycaFqCUOEGhis84h7D3YR2XONrNWzcNscMsQWeOGRPLLdmd4BZTe3tONW
- kykjQfmfnDh9V+7DyPutQycLvdsDsEInvycBAbGJceH0ZXFIRhjhpwY7fzd/0G56aIbi
- FgKB26VeeoGyFKgtX91lNoVP3N3AMTX+8omwKu8PqpcbJTHZghLsewCOWAQ/xSx4yLSd
- GJHcp7D/Gnl8MToNe0Mqlr87TcWV5i/T2zleOSftZqaoOni5FOFc3hsCfwK/IBK7aioE
- Pn5Q==
-X-Gm-Message-State: AOJu0YwwJh26d7dkQQ9kg35mPNTgJJCdHrj95T77pY925G4NSFXoAj/i
- wxkmOZDSwdIDvaenuJghSuvrxM8tIoOk8fxJzEO3Oi27cF8LANXyyIam9Q1FzeuCs8lF7nJZA1p
- iEXZTYMA=
-X-Gm-Gg: Acq92OG85yRktlBsoyD4opXmM0ytdWdNP7b0VahwjI1aciw5kazv/mOO6mocvu39P1u
- C1WLBrIN4FpdQZJV9HkiEdom5i8yViekk6i6mqgZmfv/qbOuu+VOHpeuFWgN5Jy3DlzjjgFSzcl
- NIWSTkE+7PBELL3oGRGKz0i8naSU3wkv6aif4eFI+aXBiMd15vMNkJ0eTwrsKYfGJAoPMF72iZ5
- VIeaOqrEsWEYB7eEzH7UzJwYaFVdeTr51c4cbr7Xnduby6i9qtijhGuCr4qwVBLwfK469LwT3E9
- o0TO3bG10/BwtStopQzyY/cOyvDF1pAAcR7tnYY9lLLeQmI0UUg7u8YGps4MT7KRqQ0l4BEjNnP
- uqAvoYnzyXsAT0teRqo/Ru8usjtzygSRSIzHUZy8t4eztTt+AkTXy4XibbosxnBHb99ki0Zxoh0
- 9BxX8xQ0HYTqd/wduRbDcbZ+ZJxwFgtXzgAWXhwOGYhuvvGN5dcP5hSJc=
-X-Received: by 2002:a05:690c:7446:b0:7b6:783f:2122 with SMTP id
- 00721157ae682-7d356236f08mr2231767b3.9.1779392423699; 
- Thu, 21 May 2026 12:40:23 -0700 (PDT)
-Received: from localhost (182.221.85.34.bc.googleusercontent.com.
- [34.85.221.182]) by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7d35f7d8684sm323507b3.25.2026.05.21.12.40.23
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 21 May 2026 12:40:23 -0700 (PDT)
-From: Sean Paul <sean@poorly.run>
-To: intel-gfx@lists.freedesktop.org
-Cc: jani.nikula@linux.intel.com, Sean Paul <seanpaul@google.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v2 2/2] drm/i915/color: Fix Pre-CSC degamma LUT bounds
-Date: Thu, 21 May 2026 15:39:45 -0400
-Message-ID: <20260521194018.2445206-2-sean@poorly.run>
-X-Mailer: git-send-email 2.54.0.794.g4f17f83d09-goog
-In-Reply-To: <20260521194018.2445206-1-sean@poorly.run>
-References: <6d8e36e2aea806f9973b3c501aad4523f7316d6a@intel.com>
- <20260521194018.2445206-1-sean@poorly.run>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E13010E20B;
+ Thu, 21 May 2026 20:22:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Content-Type:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=dLH47khp6dTbaqV12m7BRmMvYC5A6tOGJci12TkiRzw=; b=OHVXCe+gaufJ5CtM3bc1BXHLRp
+ qs3lfP3384IeaLQP9r5j2MTwtyaO8bLCrRGtge0oESsFYn0EmBfExHFgqkLRx+2Eqb7CjRIbIE9CB
+ NTmMVeIrjdLxWY2Evu5eDXX+EoafgjbR5PyCUxyPGidbtPQIrwR/otn5+RQpjeMq5Wt6AHlOdHccd
+ /siUwDoUJ0sEhUrW/apLlYRrwX/7karFr8CTFNHv8PbID/+XghsiybgZagMlGx2LgHTb7U0Ug1vkf
+ HCksQ4zakdEEgYExMrH+oTVRP9Pm+Eq3c5OEJGeJCJR/fySjbCLLCAS3s2HQpDunnHL0FKPbED7hp
+ EqskxVxA==;
+Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
+ helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wQ9uh-004XCP-Tk; Thu, 21 May 2026 22:22:40 +0200
+Content-Type: multipart/alternative;
+ boundary="------------s0YQ9023fgdLmWWJR6PmzlKj"
+Message-ID: <7ab49cd4-3c81-4441-bfed-c58c3e1bead0@Igalia.com>
+Date: Thu, 21 May 2026 13:22:26 -0700
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "freedreno@lists.freedesktop.org" <freedreno@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "kernel-list@raspberrypi.com" <kernel-list@raspberrypi.com>,
+ "amd-gfx@lists.freedesktop.org" <amd-gfx@lists.freedesktop.org>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "Shankar, Uma" <uma.shankar@intel.com>,
+ "dmitry.baryshkov@oss.qualcomm.com" <dmitry.baryshkov@oss.qualcomm.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "Nikula, Jani" <jani.nikula@intel.com>,
+ "harry.wentland@amd.com" <harry.wentland@amd.com>,
+ "siqueira@igalia.com" <siqueira@igalia.com>,
+ "alexander.deucher@amd.com" <alexander.deucher@amd.com>,
+ "christian.koenig@amd.com" <christian.koenig@amd.com>,
+ "airlied@gmail.com" <airlied@gmail.com>, "simona@ffwll.ch"
+ <simona@ffwll.ch>, "liviu.dudau@arm.com" <liviu.dudau@arm.com>,
+ "maarten.lankhorst@linux.intel.com" <maarten.lankhorst@linux.intel.com>,
+ "mripard@kernel.org" <mripard@kernel.org>,
+ "robin.clark@oss.qualcomm.com" <robin.clark@oss.qualcomm.com>,
+ "abhinav.kumar@linux.dev" <abhinav.kumar@linux.dev>,
+ "tzimmermann@suse.de" <tzimmermann@suse.de>, "sean@poorly.ru"
+ <sean@poorly.ru>,
+ "marijn.suijten@somainline.org" <marijn.suijten@somainline.org>,
+ "laurent.pinchart+renesas@ideasonboard.com"
+ <laurent.pinchart+renesas@ideasonboard.com>,
+ "dave.stevenson@raspberrypi.com" <dave.stevenson@raspberrypi.com>,
+ "tomi.valkeinen+renesas@ideasonboard.com"
+ <tomi.valkeinen+renesas@ideasonboard.com>,
+ "kieran.bingham+renesas@ideasonboard.com"
+ <kieran.bingham+renesas@ideasonboard.com>,
+ "kernel-dev@igalia.com" <kernel-dev@igalia.com>
+References: <20260316083008.87466-3-suraj.kandpal@intel.com>
+ <9628ae91-a725-469b-976b-e66546d82214@Igalia.com>
+ <DM3PPF208195D8DBB2DD0F9EEAC64C8AD2FE30E2@DM3PPF208195D8D.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: John Harrison <John.Harrison@Igalia.com>
+In-Reply-To: <DM3PPF208195D8DBB2DD0F9EEAC64C8AD2FE30E2@DM3PPF208195D8D.namprd11.prod.outlook.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -97,89 +98,240 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.69 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[poorly.run:s=google];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[poorly.run];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[linux.intel.com,google.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[sean@poorly.run,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[intel.com,oss.qualcomm.com,amd.com,igalia.com,gmail.com,ffwll.ch,arm.com,linux.intel.com,kernel.org,linux.dev,suse.de,poorly.ru,somainline.org,ideasonboard.com,raspberrypi.com];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	NEURAL_HAM(-0.00)[-0.816];
+	FROM_NEQ_ENVFROM(0.00)[John.Harrison@Igalia.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[poorly.run:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[igalia.com:-];
+	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,poorly.run:mid,poorly.run:dkim]
-X-Rspamd-Queue-Id: 5B88D5AB846
+	TAGGED_RCPT(0.00)[intel-gfx,renesas];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: D88A25ABB9B
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Sean Paul <seanpaul@google.com>
+This is a multi-part message in MIME format.
+--------------s0YQ9023fgdLmWWJR6PmzlKj
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
 
-Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut
-for Segment 2 degamma programming, changing 'while (i++ > 130)' to
-'while (i++ < 130)'. Also clamp Segment 2 to the last user-provided
-LUT entry value instead of hardcoding it to 1.0 (1 << 24) to fix
-a step discontinuity.
+On 5/20/26 20:25, Kandpal, Suraj wrote:
+>> -----Original Message-----
+>> From: John Harrison<John.Harrison@Igalia.com>
+>> Sent: Monday, May 4, 2026 11:15 PM
+>> To: Kandpal, Suraj<suraj.kandpal@intel.com>;
+>> freedreno@lists.freedesktop.org;dri-devel@lists.freedesktop.org; kernel-
+>> list@raspberrypi.com;amd-gfx@lists.freedesktop.org; linux-
+>> kernel@vger.kernel.org;intel-xe@lists.freedesktop.org; intel-
+>> gfx@lists.freedesktop.org
+>> Cc: Nautiyal, Ankit K<ankit.k.nautiyal@intel.com>; Shankar, Uma
+>> <uma.shankar@intel.com>;dmitry.baryshkov@oss.qualcomm.com; Murthy,
+>> Arun R<arun.r.murthy@intel.com>; Nikula, Jani<jani.nikula@intel.com>;
+>> harry.wentland@amd.com;siqueira@igalia.com;
+>> alexander.deucher@amd.com;christian.koenig@amd.com;
+>> airlied@gmail.com;simona@ffwll.ch;liviu.dudau@arm.com;
+>> maarten.lankhorst@linux.intel.com;mripard@kernel.org;
+>> robin.clark@oss.qualcomm.com;abhinav.kumar@linux.dev;
+>> tzimmermann@suse.de;sean@poorly.ru;marijn.suijten@somainline.org;
+>> laurent.pinchart+renesas@ideasonboard.com;
+>> dave.stevenson@raspberrypi.com;
+>> tomi.valkeinen+renesas@ideasonboard.com;
+>> kieran.bingham+renesas@ideasonboard.com;kernel-dev@igalia.com
+>> Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
+>>
+>> On 3/16/26 01:30, Suraj Kandpal wrote:
+>>> Now with drm_writeback_connector moved to drm_connector it makes
+>> more
+>>> sense use drm_connector as an argument rather than
+>>> drm_writeback_connector. The writeback connector can easily be derived
+>>> from drm_connector.
+> Hi John
+> First of all thanks for helping to move this series forward.
+>
+>> So this patch and all five subsequent patches are basically the same search
+>> and replace of base_conn->wb_conn to base_conn in the DRM level helper
+>> functions, yes? I would add a little more explanation of why "it makes more
+>> sense". Something like: "Some of the writeback helper functions require
+>> access to the parent drm_connector object as well as the
+>> drm_writeback_connector object itself. So, pass in the top level object and
+>> traverse down rather than passing in the lower level object and traversing
+>> back up. Even where such is not the case, update to use the top level object
+>> for consistency across the interface."
+> Sure will update the commit message.
+>
+>> Also, there could be better consistency across these 'modify' patches.
+>> First, the subject of patches 1-5 should be 'drm/writeback: ...' not
+>> 'drm: writeback: ...'. Then you have 'modify XXX helpers', 'modify XXX params'
+>> and 'modify params for XXX'.
+> Sure will keep the subject consistent
+>
+>> It would be cleaner to pick a single variant and
+>> use that for all the patches. Lastly, are the final two patches really
+>> 'drm/connector:'? The header file with the function declarations being
+>> updated is drm_modeset_helper_vtables.h. Which would make the prefix
+>> 'drm/modeset'? Although, given that the declarations are specific to
+>> writeback support, I would just stick with 'drm/writeback'
+>> for all seven patches.
+> Sure will update the prefix for last two patches as well.
+> Although in regard to drm/writeback after grepping the git log it seems that
+> drm: writeback: is the correct prefix actually the correct wording would be more prevalent prefix. So I would like to keep that
+> the consistently across all my patches as well.
+Just because someone else got it wrong earlier doesn't mean we should 
+continue to get it wrong ;).
 
-Link: https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/ #v1
-Signed-off-by: Sean Paul <seanpaul@google.com>
+General consensus for DRM patches is "drm/xxx/yyy: zzzz" rather than 
+'drm: xxx: yyy: zzz". As demonstrated:
+   git log --oneline | grep -E 'drm: [a-z\:\ ]+:' | wc -l
+   1607
+   git log --oneline | grep -E 'drm/[a-z\/]+:' | wc -l
+   67140
 
-Changes in v2:
-- Split out into separate patches for pre/post csc fixes
-- Dropped loop bounds fix in favor of [1]
+Not sure if there is an official statement in the style guide about it 
+though, and maybe it is just personal preference. So not a blocker from 
+me, but personally, I would go with the majority on this one.
 
-[1]- https://lore.kernel.org/r/20260519075245.383864-1-pranay.samala@intel.com
----
- drivers/gpu/drm/i915/display/intel_color.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+John.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 90d5dc2ef3e4..469011c83f9b 100644
---- a/drivers/gpu/drm/i915/display/intel_color.c
-+++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -3953,6 +3953,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- 	enum plane_id plane = to_intel_plane(state->plane)->id;
- 	const struct drm_color_lut32 *pre_csc_lut = plane_state->hw.degamma_lut->data;
- 	u32 i, lut_size;
-+	u32 lut_val = 1 << 24;
- 
- 	if (icl_is_hdr_plane(display, plane)) {
- 		lut_size = 128;
-@@ -3963,7 +3964,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- 
- 		if (pre_csc_lut) {
- 			for (i = 0; i < lut_size; i++) {
--				u32 lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
-+				lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
- 
- 				intel_de_write_dsb(display, dsb,
- 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-@@ -3975,7 +3976,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
- 			do {
- 				intel_de_write_dsb(display, dsb,
- 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   (1 << 24));
-+						   lut_val);
- 			} while (i++ > 130);
- 		} else {
- 			for (i = 0; i < lut_size; i++) {
--- 
-Sean Paul, Software Engineer, Google / Chromium OS
+--------------s0YQ9023fgdLmWWJR6PmzlKj
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  </head>
+  <body>
+    <div class="moz-cite-prefix">On 5/20/26 20:25, Kandpal, Suraj wrote:<span
+      style="white-space: pre-wrap">
+</span></div>
+    <blockquote type="cite"
+cite="mid:DM3PPF208195D8DBB2DD0F9EEAC64C8AD2FE30E2@DM3PPF208195D8D.namprd11.prod.outlook.com">
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">-----Original Message-----
+From: John Harrison <a class="moz-txt-link-rfc2396E" href="mailto:John.Harrison@Igalia.com">&lt;John.Harrison@Igalia.com&gt;</a>
+Sent: Monday, May 4, 2026 11:15 PM
+To: Kandpal, Suraj <a class="moz-txt-link-rfc2396E" href="mailto:suraj.kandpal@intel.com">&lt;suraj.kandpal@intel.com&gt;</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:freedreno@lists.freedesktop.org">freedreno@lists.freedesktop.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:dri-devel@lists.freedesktop.org">dri-devel@lists.freedesktop.org</a>; kernel-
+<a class="moz-txt-link-abbreviated" href="mailto:list@raspberrypi.com">list@raspberrypi.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:amd-gfx@lists.freedesktop.org">amd-gfx@lists.freedesktop.org</a>; linux-
+<a class="moz-txt-link-abbreviated" href="mailto:kernel@vger.kernel.org">kernel@vger.kernel.org</a>; <a class="moz-txt-link-abbreviated" href="mailto:intel-xe@lists.freedesktop.org">intel-xe@lists.freedesktop.org</a>; intel-
+<a class="moz-txt-link-abbreviated" href="mailto:gfx@lists.freedesktop.org">gfx@lists.freedesktop.org</a>
+Cc: Nautiyal, Ankit K <a class="moz-txt-link-rfc2396E" href="mailto:ankit.k.nautiyal@intel.com">&lt;ankit.k.nautiyal@intel.com&gt;</a>; Shankar, Uma
+<a class="moz-txt-link-rfc2396E" href="mailto:uma.shankar@intel.com">&lt;uma.shankar@intel.com&gt;</a>; <a class="moz-txt-link-abbreviated" href="mailto:dmitry.baryshkov@oss.qualcomm.com">dmitry.baryshkov@oss.qualcomm.com</a>; Murthy,
+Arun R <a class="moz-txt-link-rfc2396E" href="mailto:arun.r.murthy@intel.com">&lt;arun.r.murthy@intel.com&gt;</a>; Nikula, Jani <a class="moz-txt-link-rfc2396E" href="mailto:jani.nikula@intel.com">&lt;jani.nikula@intel.com&gt;</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:harry.wentland@amd.com">harry.wentland@amd.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:siqueira@igalia.com">siqueira@igalia.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:alexander.deucher@amd.com">alexander.deucher@amd.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:christian.koenig@amd.com">christian.koenig@amd.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:airlied@gmail.com">airlied@gmail.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:simona@ffwll.ch">simona@ffwll.ch</a>; <a class="moz-txt-link-abbreviated" href="mailto:liviu.dudau@arm.com">liviu.dudau@arm.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:maarten.lankhorst@linux.intel.com">maarten.lankhorst@linux.intel.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:mripard@kernel.org">mripard@kernel.org</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:robin.clark@oss.qualcomm.com">robin.clark@oss.qualcomm.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:abhinav.kumar@linux.dev">abhinav.kumar@linux.dev</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:tzimmermann@suse.de">tzimmermann@suse.de</a>; <a class="moz-txt-link-abbreviated" href="mailto:sean@poorly.ru">sean@poorly.ru</a>; <a class="moz-txt-link-abbreviated" href="mailto:marijn.suijten@somainline.org">marijn.suijten@somainline.org</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:laurent.pinchart+renesas@ideasonboard.com">laurent.pinchart+renesas@ideasonboard.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:dave.stevenson@raspberrypi.com">dave.stevenson@raspberrypi.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:tomi.valkeinen+renesas@ideasonboard.com">tomi.valkeinen+renesas@ideasonboard.com</a>;
+<a class="moz-txt-link-abbreviated" href="mailto:kieran.bingham+renesas@ideasonboard.com">kieran.bingham+renesas@ideasonboard.com</a>; <a class="moz-txt-link-abbreviated" href="mailto:kernel-dev@igalia.com">kernel-dev@igalia.com</a>
+Subject: Re: [v3,2/7] drm: writeback: Modify writeback init helpers
+
+On 3/16/26 01:30, Suraj Kandpal wrote:
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">Now with drm_writeback_connector moved to drm_connector it makes
+</pre>
+        </blockquote>
+        <pre wrap="" class="moz-quote-pre">more
+</pre>
+        <blockquote type="cite">
+          <pre wrap="" class="moz-quote-pre">sense use drm_connector as an argument rather than
+drm_writeback_connector. The writeback connector can easily be derived
+from drm_connector.
+</pre>
+        </blockquote>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Hi John
+First of all thanks for helping to move this series forward.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">So this patch and all five subsequent patches are basically the same search
+and replace of base_conn-&gt;wb_conn to base_conn in the DRM level helper
+functions, yes? I would add a little more explanation of why "it makes more
+sense". Something like: "Some of the writeback helper functions require
+access to the parent drm_connector object as well as the
+drm_writeback_connector object itself. So, pass in the top level object and
+traverse down rather than passing in the lower level object and traversing
+back up. Even where such is not the case, update to use the top level object
+for consistency across the interface."
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Sure will update the commit message.
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">
+Also, there could be better consistency across these 'modify' patches.
+First, the subject of patches 1-5 should be 'drm/writeback: ...' not
+'drm: writeback: ...'. Then you have 'modify XXX helpers', 'modify XXX params'
+and 'modify params for XXX'. 
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Sure will keep the subject consistent
+
+</pre>
+      <blockquote type="cite">
+        <pre wrap="" class="moz-quote-pre">It would be cleaner to pick a single variant and
+use that for all the patches. Lastly, are the final two patches really
+'drm/connector:'? The header file with the function declarations being
+updated is drm_modeset_helper_vtables.h. Which would make the prefix
+'drm/modeset'? Although, given that the declarations are specific to
+writeback support, I would just stick with 'drm/writeback'
+for all seven patches.
+</pre>
+      </blockquote>
+      <pre wrap="" class="moz-quote-pre">
+Sure will update the prefix for last two patches as well.
+Although in regard to drm/writeback after grepping the git log it seems that
+drm: writeback: is the correct prefix actually the correct wording would be more prevalent prefix. So I would like to keep that
+the consistently across all my patches as well.</pre>
+    </blockquote>
+    Just because someone else got it wrong earlier doesn't mean we
+    should continue to get it wrong ;).<br>
+    <br>
+    General consensus for DRM patches is "drm/xxx/yyy: zzzz" rather than
+    'drm: xxx: yyy: zzz". As demonstrated:<br>
+      git log --oneline | grep -E 'drm: [a-z\:\ ]+:' | wc -l<br>
+      1607<br>
+      git log --oneline | grep -E 'drm/[a-z\/]+:' | wc -l<br>
+      67140<br>
+    <br>
+    Not sure if there is an official statement in the style guide about
+    it though, and maybe it is just personal preference. So not a
+    blocker from me, but personally, I would go with the majority on
+    this one.<br>
+    <br>
+    John.<br>
+    <br>
+  </body>
+</html>
+
+--------------s0YQ9023fgdLmWWJR6PmzlKj--
