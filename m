@@ -2,67 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4BxUMZV8D2rLMgYAu9opvQ
+	id CGd2C4KRD2rqNQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 23:43:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 01:13:06 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 418255AC2AB
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 23:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CFA2D5AC875
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 01:13:05 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3673510F416;
-	Thu, 21 May 2026 21:43:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B952710F438;
+	Thu, 21 May 2026 23:13:01 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YF2Q4Jiv";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="VU+2Ql1i";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1754810F415;
- Thu, 21 May 2026 21:43:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779399826; x=1810935826;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=z8ESGZvoh6hpGp29vvh6HA5wTU+JFbt49mCO5guI5XI=;
- b=YF2Q4JivRzPdwho8h+DMJ9erVT4t7pOsaa70bEdlSh1K/7X265vo38Zu
- kfgRiMNTd2eqVmD7E9uVGP3hpgdB5dTi63hg/0wsg8JuOg6+mi2cDIBG9
- GR39q+iiueBMNIANaRngoYAFL2Axgd6jER9tZSOme96FCVUAJVZLv5K7x
- CbIHyIcupWQGuBdbTZSXMIRCt3R82U9/Lfye851d1hEfkti7v1YF8Rwb0
- tDDEnwuokkompB8pBcffUdgx+KI6YHtM8FozMM5o0R8tgoimfViwUdJZ0
- YRPi5BWbXhGfCKzp8Su9Mv2nt8dNc/deRj6IYs/mmzjgqc2Mcbq5jDnLO w==;
-X-CSE-ConnectionGUID: fMfXKY22QiKN+fhdVorqSQ==
-X-CSE-MsgGUID: AWgfa+DIQxSfGgezTk+ZOQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80228496"
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="80228496"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:43:46 -0700
-X-CSE-ConnectionGUID: 8Llj9EcpRgiCwKOgoQOTkA==
-X-CSE-MsgGUID: AqFtnxV7QAG33QTjrWZBRg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="236422324"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.86])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 14:43:44 -0700
-Date: Fri, 22 May 2026 00:43:41 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Imre Deak <imre.deak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 5/5] drm/i915/dp: Detect changes in common link parameters
-Message-ID: <ag98jVxomfBDkzQ4@intel.com>
-References: <20260518112427.2460725-1-imre.deak@intel.com>
- <20260518112427.2460725-6-imre.deak@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4E51B10E044;
+ Thu, 21 May 2026 23:13:00 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 23789600FF;
+ Thu, 21 May 2026 23:12:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 139381F000E9;
+ Thu, 21 May 2026 23:12:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1779405178;
+ bh=6u2hntw1Lr69V2xQYJN7KxqGRupMkIinljKiZkdvoc8=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=VU+2Ql1ionlWfy/YF5AyB6k17GCNQuyheld0wx6rPU1iNnBjSzMz7R78rVq7m9mrs
+ g3qHaCDq3F6r6m694PUTTpQU61ei9jQTXdQW6rmJEoFzqR4V+He6Irpvq/UWvX2Ah9
+ 3Aq2/HQzg2EH5Uibbn3KhedjtxYB43CUMTHS9BsXia1ciGg2KJWhvky49u9YherY9C
+ NflksuPQCr6niHXH0nBdZM802PhWNh6ij1s7p0Jlc8xfB1yEwrZ9MMlZ3MJcRXTvmZ
+ aLs0eigqY/dDX4UfnEBfbqBTuuCOpyiWxxQZN+DR10FNfOnrAA1wnUQx9jVw3NUxf7
+ 2ztCjpYDRACVg==
+Date: Thu, 21 May 2026 18:12:52 -0500
+From: Bjorn Andersson <andersson@kernel.org>
+To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
+ Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>, 
+ Andrzej Hajda <andrzej.hajda@intel.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, 
+ Robert Foss <rfoss@kernel.org>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
+ Adrien Grassein <adrien.grassein@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>, 
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
+ Tvrtko Ursulin <tursulin@ursulin.net>, Kevin Hilman <khilman@baylibre.com>, 
+ Jerome Brunet <jbrunet@baylibre.com>,
+ Martin Blumenstingl <martin.blumenstingl@googlemail.com>, 
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
+ Abhinav Kumar <abhinav.kumar@linux.dev>, Jessica Zhang <jesszhan0024@gmail.com>,
+ Sean Paul <sean@poorly.run>, Marijn Suijten <marijn.suijten@somainline.org>, 
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Konrad Dybcio <konradybcio@kernel.org>, 
+ Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>, 
+ Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, 
+ linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, 
+ linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
+Subject: Re: [PATCH RESEND v3 2/6] drm/bridge: pass down IRQ_HPD to the drivers
+Message-ID: <ag-QgNs4fC56GgUx@baldur>
+References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
+ <20260513-hpd-irq-events-v3-2-086857017f16@oss.qualcomm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260518112427.2460725-6-imre.deak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+In-Reply-To: <20260513-hpd-irq-events-v3-2-086857017f16@oss.qualcomm.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,164 +89,360 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.63)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[42];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[andersson@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 418255AC2AB
+	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email]
+X-Rspamd-Queue-Id: CFA2D5AC875
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, May 18, 2026 at 02:24:26PM +0300, Imre Deak wrote:
-> Detect DPRX capability changes without a long HPD or RX_CAP_CHANGED
-> signal and queue a corresponding link params reset.
+On Wed, May 13, 2026 at 09:23:22PM +0300, Dmitry Baryshkov wrote:
+> Pass down the notifications about the IRQ_HPD events down to the
+> individual drivers, letting them handle those as required.
 > 
-> Besides detecting the above unexpected capability changes, this also
-> avoids races between queuing and handling a deferred link params reset.
-> 
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+
+I think patch 2 through 6 relies on patch 1's commit message to
+establish the motivation for each change, but they are scattered across
+a variety of drivers/files.
+
+It would be preferable to have the commit message of each patch stand on
+its own.
+
+Regards,
+Bjorn
+
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 > ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 50 +++++++++++++++++++++----
->  1 file changed, 43 insertions(+), 7 deletions(-)
+>  drivers/gpu/drm/bridge/chrontel-ch7033.c       |  3 ++-
+>  drivers/gpu/drm/bridge/lontium-lt8912b.c       |  3 ++-
+>  drivers/gpu/drm/bridge/lontium-lt9611uxc.c     |  3 ++-
+>  drivers/gpu/drm/bridge/ti-tfp410.c             |  4 ++--
+>  drivers/gpu/drm/display/drm_bridge_connector.c | 22 +++++++++++++---------
+>  drivers/gpu/drm/drm_bridge.c                   |  5 +++--
+>  drivers/gpu/drm/drm_connector.c                |  2 +-
+>  drivers/gpu/drm/i915/display/intel_dp.c        |  3 ++-
+>  drivers/gpu/drm/meson/meson_encoder_hdmi.c     |  3 ++-
+>  drivers/gpu/drm/msm/dp/dp_display.c            |  3 ++-
+>  drivers/gpu/drm/msm/dp/dp_drm.h                |  3 ++-
+>  drivers/gpu/drm/omapdrm/dss/hdmi4.c            |  3 ++-
+>  include/drm/drm_bridge.h                       |  9 ++++++---
+>  include/drm/drm_connector.h                    |  3 ++-
+>  14 files changed, 43 insertions(+), 26 deletions(-)
 > 
+> diff --git a/drivers/gpu/drm/bridge/chrontel-ch7033.c b/drivers/gpu/drm/bridge/chrontel-ch7033.c
+> index 54d49d4882c8..04e6b4c00a28 100644
+> --- a/drivers/gpu/drm/bridge/chrontel-ch7033.c
+> +++ b/drivers/gpu/drm/bridge/chrontel-ch7033.c
+> @@ -259,7 +259,8 @@ static const struct drm_connector_helper_funcs ch7033_connector_helper_funcs = {
+>  	.best_encoder = ch7033_connector_best_encoder,
+>  };
+>  
+> -static void ch7033_hpd_event(void *arg, enum drm_connector_status status)
+> +static void ch7033_hpd_event(void *arg, enum drm_connector_status status,
+> +			     enum drm_connector_status_extra extra_status)
+>  {
+>  	struct ch7033_priv *priv = arg;
+>  
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt8912b.c b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> index 8a0b48efca58..b404f0cbf60d 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt8912b.c
+> @@ -504,7 +504,8 @@ static int lt8912_attach_dsi(struct lt8912 *lt)
+>  	return 0;
+>  }
+>  
+> -static void lt8912_bridge_hpd_cb(void *data, enum drm_connector_status status)
+> +static void lt8912_bridge_hpd_cb(void *data, enum drm_connector_status status,
+> +				 enum drm_connector_status_extra extra_status)
+>  {
+>  	struct lt8912 *lt = data;
+>  
+> diff --git a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> index 11aab07d88df..ca41ebe9f26f 100644
+> --- a/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> +++ b/drivers/gpu/drm/bridge/lontium-lt9611uxc.c
+> @@ -430,7 +430,8 @@ static const struct drm_edid *lt9611uxc_bridge_edid_read(struct drm_bridge *brid
+>  
+>  static void lt9611uxc_bridge_hpd_notify(struct drm_bridge *bridge,
+>  					struct drm_connector *connector,
+> -					enum drm_connector_status status)
+> +					enum drm_connector_status status,
+> +					enum drm_connector_status_extra extra_status)
+>  {
+>  	const struct drm_edid *drm_edid;
+>  
+> diff --git a/drivers/gpu/drm/bridge/ti-tfp410.c b/drivers/gpu/drm/bridge/ti-tfp410.c
+> index 3b6b0e92cf89..199916662895 100644
+> --- a/drivers/gpu/drm/bridge/ti-tfp410.c
+> +++ b/drivers/gpu/drm/bridge/ti-tfp410.c
+> @@ -39,7 +39,6 @@ drm_bridge_to_tfp410(struct drm_bridge *bridge)
+>  {
+>  	return container_of(bridge, struct tfp410, bridge);
+>  }
+> -
+>  static inline struct tfp410 *
+>  drm_connector_to_tfp410(struct drm_connector *connector)
+>  {
+> @@ -110,7 +109,8 @@ static void tfp410_hpd_work_func(struct work_struct *work)
+>  		drm_helper_hpd_irq_event(dvi->bridge.dev);
+>  }
+>  
+> -static void tfp410_hpd_callback(void *arg, enum drm_connector_status status)
+> +static void tfp410_hpd_callback(void *arg, enum drm_connector_status status,
+> +				enum drm_connector_status_extra extra_status)
+>  {
+>  	struct tfp410 *dvi = arg;
+>  
+> diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+> index 39cc18f78eda..5fdb1a231cec 100644
+> --- a/drivers/gpu/drm/display/drm_bridge_connector.c
+> +++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+> @@ -141,7 +141,8 @@ struct drm_bridge_connector {
+>   */
+>  
+>  static void drm_bridge_connector_hpd_notify(struct drm_connector *connector,
+> -					    enum drm_connector_status status)
+> +					    enum drm_connector_status status,
+> +					    enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_bridge_connector *bridge_connector =
+>  		to_drm_bridge_connector(connector);
+> @@ -149,12 +150,13 @@ static void drm_bridge_connector_hpd_notify(struct drm_connector *connector,
+>  	/* Notify all bridges in the pipeline of hotplug events. */
+>  	drm_for_each_bridge_in_chain_scoped(bridge_connector->encoder, bridge) {
+>  		if (bridge->funcs->hpd_notify)
+> -			bridge->funcs->hpd_notify(bridge, connector, status);
+> +			bridge->funcs->hpd_notify(bridge, connector, status, extra_status);
+>  	}
+>  }
+>  
+>  static void drm_bridge_connector_handle_hpd(struct drm_bridge_connector *drm_bridge_connector,
+> -					    enum drm_connector_status status)
+> +					    enum drm_connector_status status,
+> +					    enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_connector *connector = &drm_bridge_connector->base;
+>  	struct drm_device *dev = connector->dev;
+> @@ -163,24 +165,26 @@ static void drm_bridge_connector_handle_hpd(struct drm_bridge_connector *drm_bri
+>  	connector->status = status;
+>  	mutex_unlock(&dev->mode_config.mutex);
+>  
+> -	drm_bridge_connector_hpd_notify(connector, status);
+> +	drm_bridge_connector_hpd_notify(connector, status, extra_status);
+>  
+>  	drm_kms_helper_connector_hotplug_event(connector);
+>  }
+>  
+>  static void drm_bridge_connector_hpd_cb(void *cb_data,
+> -					enum drm_connector_status status)
+> +					enum drm_connector_status status,
+> +					enum drm_connector_status_extra extra_status)
+>  {
+> -	drm_bridge_connector_handle_hpd(cb_data, status);
+> +	drm_bridge_connector_handle_hpd(cb_data, status, extra_status);
+>  }
+>  
+>  static void drm_bridge_connector_oob_hotplug_event(struct drm_connector *connector,
+> -						   enum drm_connector_status status)
+> +						   enum drm_connector_status status,
+> +						   enum drm_connector_status_extra extra_status)
+>  {
+>  	struct drm_bridge_connector *bridge_connector =
+>  		to_drm_bridge_connector(connector);
+>  
+> -	drm_bridge_connector_handle_hpd(bridge_connector, status);
+> +	drm_bridge_connector_handle_hpd(bridge_connector, status, extra_status);
+>  }
+>  
+>  static void drm_bridge_connector_enable_hpd(struct drm_connector *connector)
+> @@ -223,7 +227,7 @@ drm_bridge_connector_detect(struct drm_connector *connector, bool force)
+>  		if (hdmi)
+>  			drm_atomic_helper_connector_hdmi_hotplug(connector, status);
+>  
+> -		drm_bridge_connector_hpd_notify(connector, status);
+> +		drm_bridge_connector_hpd_notify(connector, status, DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  	} else {
+>  		switch (connector->connector_type) {
+>  		case DRM_MODE_CONNECTOR_DPI:
+> diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
+> index d6f512b73389..c8c3301cd936 100644
+> --- a/drivers/gpu/drm/drm_bridge.c
+> +++ b/drivers/gpu/drm/drm_bridge.c
+> @@ -1444,7 +1444,8 @@ EXPORT_SYMBOL_GPL(drm_bridge_edid_read);
+>   */
+>  void drm_bridge_hpd_enable(struct drm_bridge *bridge,
+>  			   void (*cb)(void *data,
+> -				      enum drm_connector_status status),
+> +				      enum drm_connector_status status,
+> +				      enum drm_connector_status_extra extra_status),
+>  			   void *data)
+>  {
+>  	if (!(bridge->ops & DRM_BRIDGE_OP_HPD))
+> @@ -1509,7 +1510,7 @@ void drm_bridge_hpd_notify(struct drm_bridge *bridge,
+>  {
+>  	mutex_lock(&bridge->hpd_mutex);
+>  	if (bridge->hpd_cb)
+> -		bridge->hpd_cb(bridge->hpd_data, status);
+> +		bridge->hpd_cb(bridge->hpd_data, status, DRM_CONNECTOR_NO_EXTRA_STATUS);
+>  	mutex_unlock(&bridge->hpd_mutex);
+>  }
+>  EXPORT_SYMBOL_GPL(drm_bridge_hpd_notify);
+> diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+> index edee9daccd51..415eb834808c 100644
+> --- a/drivers/gpu/drm/drm_connector.c
+> +++ b/drivers/gpu/drm/drm_connector.c
+> @@ -3532,7 +3532,7 @@ void drm_connector_oob_hotplug_event(struct fwnode_handle *connector_fwnode,
+>  		return;
+>  
+>  	if (connector->funcs->oob_hotplug_event)
+> -		connector->funcs->oob_hotplug_event(connector, status);
+> +		connector->funcs->oob_hotplug_event(connector, status, extra_status);
+>  
+>  	drm_connector_put(connector);
+>  }
 > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> index 6c4dadfc35806..dd968c2d9fa64 100644
+> index 4955bd8b11d7..98bbcab2067b 100644
 > --- a/drivers/gpu/drm/i915/display/intel_dp.c
 > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -362,19 +362,25 @@ int intel_dp_max_source_lane_count(struct intel_digital_port *dig_port)
->  	return max_lanes;
+> @@ -6779,7 +6779,8 @@ static int intel_dp_connector_atomic_check(struct drm_connector *_connector,
 >  }
 >  
-> -/* Theoretical max between source and sink */
-> -static void intel_dp_set_max_common_lane_count(struct intel_dp *intel_dp)
-> +/*
-> + * Theoretical max between source and sink.
-> + * Return %true if the max common lane count changed.
-> + */
-> +static bool intel_dp_set_max_common_lane_count(struct intel_dp *intel_dp)
+>  static void intel_dp_oob_hotplug_event(struct drm_connector *_connector,
+> -				       enum drm_connector_status hpd_state)
+> +				       enum drm_connector_status hpd_state,
+> +				       enum drm_connector_status_extra extra_status)
 >  {
->  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
->  	int source_max = intel_dp_max_source_lane_count(dig_port);
->  	int sink_max = intel_dp->max_sink_lane_count;
->  	int lane_max = intel_tc_port_max_lane_count(dig_port);
->  	int lttpr_max = drm_dp_lttpr_max_lane_count(intel_dp->lttpr_common_caps);
-> +	int old_max_common_lane_count = intel_dp->max_common_lane_count;
+>  	struct intel_connector *connector = to_intel_connector(_connector);
+>  	struct intel_display *display = to_intel_display(connector);
+> diff --git a/drivers/gpu/drm/meson/meson_encoder_hdmi.c b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> index 1abb0572bb5f..691b9996c8a4 100644
+> --- a/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> +++ b/drivers/gpu/drm/meson/meson_encoder_hdmi.c
+> @@ -323,7 +323,8 @@ static int meson_encoder_hdmi_atomic_check(struct drm_bridge *bridge,
 >  
->  	if (lttpr_max)
->  		sink_max = min(sink_max, lttpr_max);
->  
->  	intel_dp->max_common_lane_count = min3(source_max, sink_max, lane_max);
-> +
-> +	return intel_dp->max_common_lane_count != old_max_common_lane_count;
->  }
->  
->  int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
-> @@ -792,13 +798,20 @@ int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate, int lan
->  	return -1;
->  }
->  
-> -static void intel_dp_set_common_rates(struct intel_dp *intel_dp)
-> +/* Return %true if the common rates changed. */
-> +static bool intel_dp_set_common_rates(struct intel_dp *intel_dp)
+>  static void meson_encoder_hdmi_hpd_notify(struct drm_bridge *bridge,
+>  					  struct drm_connector *connector,
+> -					  enum drm_connector_status status)
+> +					  enum drm_connector_status status,
+> +					  enum drm_connector_status_extra extra_status)
 >  {
->  	struct intel_display *display = to_intel_display(intel_dp);
-> +	int num_old_common_rates = intel_dp->num_common_rates;
-> +	int old_common_rates[DP_MAX_SUPPORTED_RATES];
+>  	struct meson_encoder_hdmi *encoder_hdmi = bridge_to_meson_encoder_hdmi(bridge);
 >  
->  	drm_WARN_ON(display->drm,
->  		    !intel_dp->num_source_rates || !intel_dp->num_sink_rates);
+> diff --git a/drivers/gpu/drm/msm/dp/dp_display.c b/drivers/gpu/drm/msm/dp/dp_display.c
+> index d2124d625485..7a0623fdbd8e 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_display.c
+> +++ b/drivers/gpu/drm/msm/dp/dp_display.c
+> @@ -1785,7 +1785,8 @@ void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge)
 >  
-> +	static_assert(sizeof(old_common_rates) == sizeof(intel_dp->common_rates));
-
-Could also assert the element size/type match. Maybe (as a followup
-later) introduce a proper type for this rates[]+num construct and then
-we could just copy the darn thing with a normal assignment and not have
-to worry about this kind of stuff at all...
-
-> +	memcpy(old_common_rates, intel_dp->common_rates,
-> +	       num_old_common_rates * sizeof(old_common_rates[0]));
-> +
->  	intel_dp->num_common_rates = intersect_rates(intel_dp->source_rates,
->  						     intel_dp->num_source_rates,
->  						     intel_dp->sink_rates,
-> @@ -810,13 +823,26 @@ static void intel_dp_set_common_rates(struct intel_dp *intel_dp)
->  		intel_dp->common_rates[0] = 162000;
->  		intel_dp->num_common_rates = 1;
->  	}
-> +
-> +	return num_old_common_rates != intel_dp->num_common_rates ||
-> +	       memcmp(old_common_rates, intel_dp->common_rates,
-> +		      num_old_common_rates * sizeof(old_common_rates[0]));
->  }
->  
-> -static void intel_dp_set_common_link_params(struct intel_dp *intel_dp)
-> +/* Return %true if any common link param changed. */
-> +static bool intel_dp_set_common_link_params(struct intel_dp *intel_dp)
+>  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>  			      struct drm_connector *connector,
+> -			      enum drm_connector_status status)
+> +			      enum drm_connector_status status,
+> +			      enum drm_connector_status_extra extra_status)
 >  {
-> -	intel_dp_set_common_rates(intel_dp);
-> -	intel_dp_set_max_common_lane_count(intel_dp);
-> +	bool params_changed = false;
-> +
-> +	if (intel_dp_set_common_rates(intel_dp))
-> +		params_changed = true;
-> +
-> +	if (intel_dp_set_max_common_lane_count(intel_dp))
-> +		params_changed = true;
-> +
->  	intel_dp_link_config_init(intel_dp);
-> +
-> +	return params_changed;
->  }
+>  	struct msm_dp_bridge *msm_dp_bridge = to_dp_bridge(bridge);
+>  	struct msm_dp *msm_dp_display = msm_dp_bridge->msm_dp_display;
+> diff --git a/drivers/gpu/drm/msm/dp/dp_drm.h b/drivers/gpu/drm/msm/dp/dp_drm.h
+> index 9eb3431dd93a..74da3ef6b625 100644
+> --- a/drivers/gpu/drm/msm/dp/dp_drm.h
+> +++ b/drivers/gpu/drm/msm/dp/dp_drm.h
+> @@ -41,6 +41,7 @@ void msm_dp_bridge_hpd_enable(struct drm_bridge *bridge);
+>  void msm_dp_bridge_hpd_disable(struct drm_bridge *bridge);
+>  void msm_dp_bridge_hpd_notify(struct drm_bridge *bridge,
+>  			      struct drm_connector *connector,
+> -			      enum drm_connector_status status);
+> +			      enum drm_connector_status status,
+> +			      enum drm_connector_status_extra extra_status);
 >  
->  bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
-> @@ -4911,9 +4937,19 @@ intel_dp_has_sink_count(struct intel_dp *intel_dp)
+>  #endif /* _DP_DRM_H_ */
+> diff --git a/drivers/gpu/drm/omapdrm/dss/hdmi4.c b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> index 29b2dfb90b5f..a7288791b2a5 100644
+> --- a/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> +++ b/drivers/gpu/drm/omapdrm/dss/hdmi4.c
+> @@ -429,7 +429,8 @@ static void hdmi4_bridge_disable(struct drm_bridge *bridge,
 >  
->  void intel_dp_update_sink_caps(struct intel_dp *intel_dp)
+>  static void hdmi4_bridge_hpd_notify(struct drm_bridge *bridge,
+>  				    struct drm_connector *connector,
+> -				    enum drm_connector_status status)
+> +				    enum drm_connector_status status,
+> +				    enum drm_connector_status_extra extra_status)
 >  {
-> +	struct intel_display *display = to_intel_display(intel_dp);
-> +
->  	intel_dp_set_sink_rates(intel_dp);
->  	intel_dp_set_max_sink_lane_count(intel_dp);
-> -	intel_dp_set_common_link_params(intel_dp);
-> +	/*
-> +	 * Handle unexpected sink cap changes, or a race between setting
-> +	 * the deferred link params flag in the HPD IRQ handler and
-> +	 * clearing the flag during connector detect.
-> +	 */
-> +	if (intel_dp_set_common_link_params(intel_dp) &&
-> +	    intel_dp_reset_link_params_defer(intel_dp))
-> +		drm_dbg_kms(display->drm,
-> +			    "DPRX capabilities changed before long HPD or RX_CAP_CHANGED signal\n");
->  }
+>  	struct omap_hdmi *hdmi = drm_bridge_to_hdmi(bridge);
 >  
->  static bool
+> diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+> index a8d67bd9ee50..3e4672fbd7a8 100644
+> --- a/include/drm/drm_bridge.h
+> +++ b/include/drm/drm_bridge.h
+> @@ -615,7 +615,8 @@ struct drm_bridge_funcs {
+>  	 */
+>  	void (*hpd_notify)(struct drm_bridge *bridge,
+>  			   struct drm_connector *connector,
+> -			   enum drm_connector_status status);
+> +			   enum drm_connector_status status,
+> +			   enum drm_connector_status_extra extra_status);
+>  
+>  	/**
+>  	 * @hpd_enable:
+> @@ -1260,7 +1261,8 @@ struct drm_bridge {
+>  	 * @hpd_cb: Hot plug detection callback, registered with
+>  	 * drm_bridge_hpd_enable().
+>  	 */
+> -	void (*hpd_cb)(void *data, enum drm_connector_status status);
+> +	void (*hpd_cb)(void *data, enum drm_connector_status status,
+> +		       enum drm_connector_status_extra extra_status);
+>  	/**
+>  	 * @hpd_data: Private data passed to the Hot plug detection callback
+>  	 * @hpd_cb.
+> @@ -1550,7 +1552,8 @@ const struct drm_edid *drm_bridge_edid_read(struct drm_bridge *bridge,
+>  					    struct drm_connector *connector);
+>  void drm_bridge_hpd_enable(struct drm_bridge *bridge,
+>  			   void (*cb)(void *data,
+> -				      enum drm_connector_status status),
+> +				      enum drm_connector_status status,
+> +				      enum drm_connector_status_extra extra_status),
+>  			   void *data);
+>  void drm_bridge_hpd_disable(struct drm_bridge *bridge);
+>  void drm_bridge_hpd_notify(struct drm_bridge *bridge,
+> diff --git a/include/drm/drm_connector.h b/include/drm/drm_connector.h
+> index e05197e970d3..5ac5a64f83d9 100644
+> --- a/include/drm/drm_connector.h
+> +++ b/include/drm/drm_connector.h
+> @@ -1720,7 +1720,8 @@ struct drm_connector_funcs {
+>  	 * has been received from a source outside the display driver / device.
+>  	 */
+>  	void (*oob_hotplug_event)(struct drm_connector *connector,
+> -				  enum drm_connector_status status);
+> +				  enum drm_connector_status status,
+> +				  enum drm_connector_status_extra extra_status);
+>  
+>  	/**
+>  	 * @debugfs_init:
+> 
 > -- 
-> 2.49.1
-
--- 
-Ville Syrjälä
-Intel
+> 2.47.3
+> 
