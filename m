@@ -2,164 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id IOkLJ5HwDmqmDQYAu9opvQ
+	id cKGzCMDwDmqmDQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 13:46:25 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 13:47:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F2B625A435F
-	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 13:46:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A022D5A4370
+	for <lists+intel-gfx@lfdr.de>; Thu, 21 May 2026 13:47:11 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5362B10E495;
-	Thu, 21 May 2026 11:46:23 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63F0C10E196;
+	Thu, 21 May 2026 11:47:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eQgs0n+o";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AXmaROJp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9657F10E495;
- Thu, 21 May 2026 11:46:22 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C39BB10E196;
+ Thu, 21 May 2026 11:47:08 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779363983; x=1810899983;
+ t=1779364029; x=1810900029;
  h=message-id:date:subject:to:cc:references:from:
  in-reply-to:content-transfer-encoding:mime-version;
- bh=FbFkrgO8ASMioQ83gJIK9ara6pmLxMnDvy4CfJTLFNc=;
- b=eQgs0n+oY+8XsaymTNDVHZmnFQFWiJAIzSmFqWBlrWnw+tlgOAC7MZjm
- tDost9z7zlmb8Ed7v0HsojzgdscBED4HpPF6v4fvIdVVz8aW6QeeMDxc9
- 3viVbLxthXmZHuEBJOVVG5/lLt8M2Z7y4blCax2huK74WELjRvuQ2fTIK
- f6atfCAYs28tQwMNGIHtF88wJTG3Sb/JM0zs6FaQjc97pBjLqy3sPrIZl
- /hJO+S8K2oY7MsGTwNOUX5iTBQSsSY5Y3Jo2RcjbiHQYDZGs7hUZMjFRa
- ACuAQCzb4uLayHXpMvb4GGGqJ1HZkpK90GYAyJtL57dJykTwB+q7d/+zD w==;
-X-CSE-ConnectionGUID: WUGa844sR/iq2fVplGfGxw==
-X-CSE-MsgGUID: VI2lebFMTjKWhCmjSsibxg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="91751368"
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="91751368"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 04:46:22 -0700
-X-CSE-ConnectionGUID: Yk1EGaHqQTmkA/LwbY2maQ==
-X-CSE-MsgGUID: 9KIXK/ZbTA2/IqeOVVLqhw==
+ bh=kqr0z+Xpou9XH7zu8VaVQLxnSexAh27KM//Ajkv9UXQ=;
+ b=AXmaROJpD6XkcOsCEJ5c/qOZJ6mjbBggIYlS9090Mf6ZBXz9b2C2j90G
+ k7pH5Fx/VCBSKfTXlSsU9/3zXS/gH0eFlTYjGcapMtnA3A317GeWximxc
+ o6aZ35mxzA6HOxTx8vYDPfwCHpg2Be63r8P5QUWLI/VB2zzMJ7EAkbKsQ
+ D3aLlxvIt4e5stwYjm9uNDoZnSZ74yzUdzj9ufxpUpZxfdp4RrQJaw+1+
+ y0cYNULBXyFE2dkcjQclQxI6Mk2KY8RXcn8//U1R8RVlnHzDSl4/owME8
+ m0WqiOZlrs+ymFYYA2OhD4E2N6CGuKZnlVnedEtFtlNFKQxcFgX6XLj07 g==;
+X-CSE-ConnectionGUID: QiBCk+1HTvCqxFTj3qxn6g==
+X-CSE-MsgGUID: rN60s4qTSsCPi/daHgJPXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11792"; a="90854328"
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="90854328"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 04:47:09 -0700
+X-CSE-ConnectionGUID: p5JyJyxxS76YQmwoTfLGhg==
+X-CSE-MsgGUID: RBoVvdIQS5CIwhBhe/M+0g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="240742152"
-Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 21 May 2026 04:46:22 -0700
-Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.23,246,1770624000"; d="scan'208";a="237480399"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 21 May 2026 04:47:08 -0700
+Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 04:46:21 -0700
-Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
- ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ 15.2.2562.37; Thu, 21 May 2026 04:47:07 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 04:46:21 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.30) by
- edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ 15.2.2562.37 via Frontend Transport; Thu, 21 May 2026 04:47:07 -0700
+Received: from DM5PR21CU001.outbound.protection.outlook.com (52.101.62.62) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Thu, 21 May 2026 04:46:20 -0700
+ 15.2.2562.37; Thu, 21 May 2026 04:47:07 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=frfWC4WoPq+D3zlDpzC1DsUQ+NdtzOEeCkq8u6YBcUJBs1WILg4ktrJIySSsYlOK/WplrCb3pDbLSwYCHbcyJl/J3B06Z/DcyIExllOBVXwkAmffQnQv3oWCLvGjjh3mOWG3U6RPFyXrLRYEtPCapmGp64rgQbpHlFdOGavjx2up5w67L8Sqf7DK6eVBU0JzYb5NGSJ/Sfhjxth2eR01Q0DM/d1YRUb0Yase1nDxRbjm2NKBmoA/4mg3qA7OqDadwY6LEGOnKsEuhBrp9NHFBs3h5qKbIZ8X1HZqXbAcPBqk1kkgyCJHVr2EvUsCmzNNJr/CkSIIMQoWdXL5DoPaVA==
+ b=lDiUcSHeFMzaGmGfF3hSXnk3S7OOYN+eioGjqxeTTFm5nFkYK8j6iV/dhU8vr7otiqbLz7Rpj+PN4jNT7eGgTaIyOoPmhNBPt17AoU/ztURd9FfesNSgbqnIojysuBRVa5G69jicFVhITyHbVjKRNlZ1bf5CJrXrnD6qOmgUG5QoyM5UEwGnAjE5IywLBE+h9kX+IUjroKzCk+MPgUhytR3bcbj/yYhUs1fMsSni0t2h1ijTD0O9N1KMwAVeoOFem/R4hPugA1qxMKTlZakjhvOhGj5zRQoBdpliU3jwXRQ/hczc9H+Wx3iSSAvqKhSTRPaDz7SfdyAPgqMeB1xtXA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=7EbSspp8GM0P+pqz32NSKq7IwqKxep60jDfeh/Pk9aA=;
- b=ewlBptyxr706jz3nou6rTUxnDtHNo4Al9NLMTNL93mChAY9fV37xPYmTeMBNduNTcvOAxL2328+Kgsqs3WIkpP0RhQcBeq9hS+ROwIZXxeML6DjhWxRWgCxpY0yYmIJ11FO3wCypOhlTd0MSMJiv/gyrn5nEFI2ymGPrCV8dLB4Ra5GzD32nu2I90EntQrnirQ9c51xeAAzMLJjjcdnjUvbWHSeSi5gLELbg8oWBsPSbPYihAgUnRAo4dTW6UOKKR+PB/8lMyC25cVssbY76iWwtOPPj+F72/+stsnA2zJpTsIBfwkPatp3jjHcviWIdUaASTrXjj5KDmzhqAQQ2BA==
+ bh=vNawfrGAsF6IYnXID1Am08LSdR1D4fm7mNxqg0ITuMQ=;
+ b=nLIWH3kXKxLDYDg0HlUeCNKt5O8Q/zPk2Ae7POafkHQAeJlz6dgQq0Zbg5ZwIqzbvmnmWxaqMVAtZRCfNtajir5BXoSLnL4uLQAE6EjH8XpNCmHL5ha31BwzKWAyh9tN2gCn6VN94mHttns5wF9StiJXDBzqOn8TgYcVAkLo9z99ukqJX57WZT2fUkGdUD0staYtUySDX9aWafib8/DtK71zj1iCN/qPAPGu7m4KyknlCLkHN6B7TwpDku7deTtkfsPFJx7ipLyoWFb18H27kETn1E6h8vHIMujlJYwzx73RgCooWE16wD4HrNajXZNb4BhC+uT5IXyw1s+GZN/xSg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Authentication-Results: dkim=none (message not signed)
  header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com (2603:10b6:5:390::22)
- by CH2PR11MB8834.namprd11.prod.outlook.com (2603:10b6:610:284::13) with
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by CY8PR11MB7244.namprd11.prod.outlook.com (2603:10b6:930:97::18) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Thu, 21 May
- 2026 11:46:12 +0000
-Received: from DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4]) by DM4PR11MB5341.namprd11.prod.outlook.com
- ([fe80::68b9:ea3c:8166:3cc4%4]) with mapi id 15.21.0048.013; Thu, 21 May 2026
- 11:46:12 +0000
-Message-ID: <da36b86a-067c-4d1d-91a7-8b6cc64dc95b@intel.com>
-Date: Thu, 21 May 2026 17:16:04 +0530
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.14; Thu, 21 May
+ 2026 11:47:05 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%5]) with mapi id 15.21.0025.022; Thu, 21 May 2026
+ 11:47:05 +0000
+Message-ID: <30d795ef-ffb1-4369-a814-7b60195386e0@intel.com>
+Date: Thu, 21 May 2026 17:16:57 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/display: use set_context_latency for DSB W2-line
- waits
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-References: <20260518060522.2945720-1-ankit.k.nautiyal@intel.com>
- <agsnuYVMWNSJwf4F@intel.com>
+Subject: Re: [PATCH v6 15/16] drm/i915/cmtg: Restore CMTG after DC6 entry
+To: Animesh Manna <animesh.manna@intel.com>,
+ <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
+CC: <uma.shankar@intel.com>, <ville.syrjala@linux.intel.com>,
+ <jani.nikula@intel.com>
+References: <20260513163857.1541888-1-animesh.manna@intel.com>
+ <20260513163857.1541888-16-animesh.manna@intel.com>
 Content-Language: en-US
-From: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>
-In-Reply-To: <agsnuYVMWNSJwf4F@intel.com>
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260513163857.1541888-16-animesh.manna@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0225.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1f3::18) To DM4PR11MB5341.namprd11.prod.outlook.com
- (2603:10b6:5:390::22)
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0002.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:176::11) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR11MB5341:EE_|CH2PR11MB8834:EE_
-X-MS-Office365-Filtering-Correlation-Id: d86f8166-9143-45a4-b553-08deb72e8e86
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|CY8PR11MB7244:EE_
+X-MS-Office365-Filtering-Correlation-Id: c3307e4b-a8e2-4b0a-6fe6-08deb72eae3f
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|6133799003|18002099003|22082099003|56012099003|3023799007|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: JxjdN8trgAQgGZ8R3A6xhio0eLKAZ3+9ViaY2TsJxE7bieZsEISVhDx3j9wpkYGxBurZJh/69IVHpsS3UsD80d16/XO6wZioHd4qDgY/JfijKtPReHesWgaZQIXTAHNJWlEunh2G/sSwYUuyqDr7XnTmxAyQWVewgP1+37CV2q1/B+oudD+njVIYdDCKcfX98qdzMX3z935OundIwTWllUVEnmZ9CJLmsHJXfTwKhJDypdr4mE7OxpKpbjGYUfeBsqCniWnXAYMjEn/wkcCiAxsbHKZhHromujm+JnaVRJGLeRmBs66QrIBb3xU931LtGU1BVxwhebc7NiETDjeBNQGXVnb4vSXMU0xlGoHltQeKWn32RAw+aZO86gyi3pIZ5a9pckf80J67R4xkZonzCt7La1bNqhV8ZvITUotKoPM9K1DzZECpGX9uWjg/TrHzt16DX4g2PS5XQpX9EJU2uSmQNxPtVwRRrNZAcV68QMttc3HzNDBXhc2ft9ZqYv9wvY07orWP5z1fwRhU7BfpSSFvDtgKtiQdIenamRQWWUq1dQi0tim90L/xeuS04a3y9fMCoYKnrKhvf6PW7y3/VZ4WKZN1Qc8frfJrHRsgiHqndoJ5lP5I7wjMwPxfxKXjcGKcDab2gAoPRY+41293FFvKgLNGr0ztIv4tAfE0HST48z2S0VKONzOAvGQxWNgx
+ ARA:13230040|1800799024|376014|366016|4143699003|18002099003|56012099003|11063799006|22082099003|6133799003;
+X-Microsoft-Antispam-Message-Info: JwutH6UER5GwIeAMfpHnjyg0VRVHng/Id90ggJrQpmOH8KMyXedFJZQEjyLY/f3QeSJHdr5JOq2LNrTynuGisWWY8vOqBwmHZ0J900CgDecozwk4xJbf11iChGI0pYMKpsbQ/sHCICtQ2OPDH9kfAcNu0fYpm5k6G5+DfacdtDHHxKCjQhdcocrWkeo5e9EEtQgpfAl3PbHUKehXdDEhjr9XeRTfH3q/sVvsyZ1XPiqGno8nJkiwMfvBe8kSqkFkBNjz/kHxG4jLAugIkt5CWjuT7Fg//F8N2NEhkjCvPVwsYheWE3HtRqNAKxNSFrI207OcKidRAN1PSKRaeh92/OuDufH25nBjC0pFSSz8nhEPzNTIWjXmVBJgUYqacci3oTcbggJm8XEn5hTUlnippmVYqBcenFAWd/z6cy50KJ0t2VMrOYqJn5Zg7a81wq5i9bPQyLpte4tSmZsaY4QJS3DldEOq1NEsN59tYlZTb9p7kAD6uEL863p1ZW8GODqdU3A1Mi1RCtMQozPvbjptv+8QU25pe9TcAtJz97Ejz+Yjzshe3d+5zVKpDLxQqzgSQh+b40lAuaFBfQyuq9kcjWhTOojVYBszt3lvDTv14nx5Wqu9LEsaBm0bVJguKeq1y9CJswzUrLpzymbXlkN53EOI19AovqTL8+q9BSx96/OEVnP1l+JX+3Aa7U3+8rcR
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR11MB5341.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(6133799003)(18002099003)(22082099003)(56012099003)(3023799007)(11063799006)(4143699003);
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(4143699003)(18002099003)(56012099003)(11063799006)(22082099003)(6133799003);
  DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?cE1LSG82NnZ6bFVTM3NucUhLM2xYVEJBNjRET2JFd3NId3dsN1c0cUV5RXpu?=
- =?utf-8?B?UXpFbGhqQnh1dHNNMzFCSjk1Mld6MVhnNmZlTmpVd0JKYnpmQlRTT3c3bDhk?=
- =?utf-8?B?YmNKN253NCt5WURhRjUyaEx5aE5wM2JXYzV4MzdFcmpId2VkMmxPZ2lZWk9X?=
- =?utf-8?B?UStZNTg0Mk1saEdxcDJtY3Zka1EvRkNGblNzWWpPMjZCcTBoWllFdldQR2xL?=
- =?utf-8?B?WGRYaGFzOFN1NTBLb2d3ODh5L2NRSVZjZjI0UVJNZUpNM3MvYXlxdk1DVEd4?=
- =?utf-8?B?ZWxEbXR3c2txNE5kc29aTWRmNzJGaWJtSjhkd3pwRTEwcFVoekFMSGNuSEdo?=
- =?utf-8?B?cjFsZ1FucGJLeitlcUkreWkvblI1bmpZSEFkQnBhZnlmKzNlOE9mK3Y0Z0FC?=
- =?utf-8?B?dEZjbFdqU2grZW5CMlM1bURRaXQ0ajhEWWpVWVIvTTBhc1c4RHpyYmM1ejd5?=
- =?utf-8?B?ZjlSZWlyc29TU0lXQ2p1Y1ZrTnhHTGhTTEhOVlh3bE5Ec0Q2WmpsZ3A5S1kx?=
- =?utf-8?B?LzlKRXQwYzNvSWg4bityZGVjSjN1TGpOQkE1Tk02dUdyWTl1Tmw5TzRPWDl3?=
- =?utf-8?B?MU1pU3JIaDZ6SVI4ekJTVXBjdDdUZXNRalU3b21hQ3JLMmdVVE5Sbm9pcFFv?=
- =?utf-8?B?M2RlVEc3ZDFCRGNYZDRFRmdLZU9lRUNuV2RtREdmaFBIRkM1ald4YmdrRjdz?=
- =?utf-8?B?elJ4b2lZMElUK2FPcUtVL0xHU0RUUVpLS0JCdTh6dFB3cWdTVDRrVWJzTGJO?=
- =?utf-8?B?YlFlQ0RaUThnRWZweFNyVkRYVlhQN3FGUnNJeXN4cUNnNmNaUVVlM0lSOXhQ?=
- =?utf-8?B?endsbC8wU1g2V21tQjFxckx6NFAzdVg0ajdBTy9LZHdnK0t5dVdNSGhSTGdI?=
- =?utf-8?B?blBvYXpmbmcxOU9iUXh3bkVtZE5yTy9oaFFCZzZDeUx1NUtlZlR3U3JRWkFm?=
- =?utf-8?B?Z21yTkQ4WHJoU2twTXlkWVRVUW1rUmlpNDExTkRtTkVVMmZQZUNCem9yZnV6?=
- =?utf-8?B?ZHUwOEVIM0JGa29RQTJCYTdER0RqR3NONlNWaHUzeDF5S2hhSXE1SFdFSFpy?=
- =?utf-8?B?aTA1R1ZNcWtpQlVjeUhYMGRvUTNUOElkYk5ENXNodFNIalNvTk5QSFI1VGdy?=
- =?utf-8?B?QmNUQklzVWkxZEluWUxCL3JnWTBRTWdySG5VZ0gzUjZHTE1wSWRqeWU4aVZQ?=
- =?utf-8?B?a01RM3hVRWlJL1NZQ0dJV2srd2xmYWE5TmVGeWNBRXlwMDh2ejluc2ZoQ0lZ?=
- =?utf-8?B?ZkVaK2I4Vzg3c3ZNa2Y0clRCdzRZNFFtay9BNlF5OFQ5ZW9rd3dnRCtGVGpx?=
- =?utf-8?B?ckFySmxUZ09SbTc0UDFuZXpIMi9rUlJiS3hRdmdVcmVhcWxhT0xNdDdiV3g3?=
- =?utf-8?B?WTJ0Q0UwWG9jRWszRFYvd2drbCt6MzRJL3hYUSsyczNRRlJUYUtSNXBuVGlY?=
- =?utf-8?B?aWl0UlEwVEU5cHlEcS80VmtLQWJ3bkJ1RzlWenhIRE5tNmJvZmlvVGxxVGdJ?=
- =?utf-8?B?Q24wUzY5R3NzVHV5TVZ0N0FZZitHdEY0aERYL3F0eTNla0ViN2NZSkl3RDZ4?=
- =?utf-8?B?R2E3VG96T1JnbDc5QW9CWms5TW1lbHdvdTc3L2dXTkhjZmliMWI2RTZ6Z25Z?=
- =?utf-8?B?NklUVUxwRHBmeVhmQWEwemNSODRFMXdvOFJmTTBxMDJDMlBpUHlXZzYrWkEz?=
- =?utf-8?B?b1NuRUVXVWtpSmpBcGk3V2x6WnkvRmJFcTQvMS9GL0w4clFUNHR6V2lzTDlh?=
- =?utf-8?B?Ylp2UVFiTXk2VUdKNmxkU2xzK0N5RjNMMVJMUnhWZVpxb0lKN05kNU5RT0lV?=
- =?utf-8?B?SXZOMU04SW5XUmhlbXRVejVwRUw3Y3lhR0M3MUJwS3VRTWV4ejF1U1RPcWhC?=
- =?utf-8?B?bks4YnFUYjY4aVh2QmVMViszUUVIdExzSFI5K1NZaWJrTUIrQVJLL01jTXZu?=
- =?utf-8?B?N3pnL3JSaWhIcU9NR094a0kydEF0cFFENkJ4UjFmditnaGJyd1g4RjJRZDhk?=
- =?utf-8?B?VWlHSmZtVDF2Vjg5SnpKMzRoeS9VeHNDbzJieUM3Um41RHFoUUs3YjI5dlB0?=
- =?utf-8?B?QmRkWjR2a0pIdWFpUzVFNzFtdHBjZHF6YXp0WHFTWGdmZzljWlJBeUZNa0dI?=
- =?utf-8?B?SHhGak5wdkhNcEhLN3pQSWJHZTQ1M0ZhZkprRXY1Tk5tcDA4QWgwK1hUejM2?=
- =?utf-8?B?UUkzK2RLTTdxNHNaUFozV1lRcWZqVjVEcjJweVN0V1BRV2QrN1A5ckZBSjk5?=
- =?utf-8?B?WVV5eEVnbmc1VHJjdHE0Nng3bkhmQTJkNTNhSlc1SE05THhUQmlwMUU2SmlM?=
- =?utf-8?B?UXlNMXVpMjBiQmZDZDlNTDhHNTgxeVFMRWtsN0FmOGI0bXAzUDFtOVFaa2lY?=
- =?utf-8?Q?9i1ixEY7MNRIFfcA=3D?=
-X-Exchange-RoutingPolicyChecked: Zb0pMi96mFF97MJeLUMd8NKXwt6NHFqvnTojKQiVbL9FEhhKYyvY0s9FGV8R9rpB2JbP/Wkb3Twk4+5KpbVSOQrQYLpPseBsTHdEqE9+BqeZsRRlsXUvVLqdoCiVCHPEYr4d3EcXDYGT3SX9Lf6zZrmhAI3Q5U3EqjZGM8TVoE6BGtciE+V0u2jKWJnkWQoZlGGzyCCXh6Yh9Y/hevps2gbqLEUJ0EyLuDG1LxDBoxfUW30iwcpRI/KlWGfDpvgCK49uWWD/CyKYPJMzMrGjGHXcp6G7TFWrOGhIStbclCKG4/RYcWxG8TaUV3gsZXMs0njWpz38WTYiBjeRCuEwwg==
-X-MS-Exchange-CrossTenant-Network-Message-Id: d86f8166-9143-45a4-b553-08deb72e8e86
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB5341.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 2
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?WnQ3aXZNcWd4RFVUbVdycVJ5Ti9VbVI4Z09ENTFrS1NDLzJWTFV3MjFaUzhE?=
+ =?utf-8?B?YlB0RE1GNSs1YkIwMTVkUDJqRk5HV01aRTA3V2E5S3ZJOXJ0SENib3FlQjN5?=
+ =?utf-8?B?VWw3blZXL2ZoVkNMWXhLN3Q3dmV6WXdndU5wZlVkd2NSY05FL2dOUHR3bjZm?=
+ =?utf-8?B?V2dpdTB3NndtdXVXMXVwaGtJV0lvT3cyWDk3eWYwUEFtSjBYK3p2ZkVreU5i?=
+ =?utf-8?B?Q1ZNTVZDYkNUYm5BMEVKV3VGdjdnbUNDKzIxc2dVT0dDR3VHTlA3SmN6Tnhs?=
+ =?utf-8?B?aGo3YXFMY3FUdnBacCtmeXZDSXlKd3ZyMU45Z3VuSjZOSDhsY1FKYmZGQmww?=
+ =?utf-8?B?Y0NKWTVoLzN1OVBqNjFZeXp0SmhJb2dRWERkdUhvR2RGNTRVYUV5QkdqL09O?=
+ =?utf-8?B?cmVYS2ZHVHM3UmgxdzVhQkZBaTd4YmxNNVU5ZEt1Vis0OFg2RFBFbWIzeWVO?=
+ =?utf-8?B?dnNCTm1sQ0gydXhqQm8wODVOK0NkZWpURmxMV3RpdlIzTnRCam9ka1R3QlNL?=
+ =?utf-8?B?cElSN0RRVmI2ZFZtMzhjS3pWc2VSOGM5cEh6WitiQ2wvUmRwbFUvQnlHSEdm?=
+ =?utf-8?B?NjRxSDBNOEE0dXFTRzZSQmkyRWNXUjVuQ0xMeVZDcU5ueklOVjlFVlhndGJ2?=
+ =?utf-8?B?a2JvVkluQndTZTZBNkZGTVdVOC9iK2dhWWZJZ3hXU1ZCK0puZ0RoUHg0U1ZM?=
+ =?utf-8?B?cEd3VlhTTlBVbW9ERGhNQVQrZnpvQjBKenhMeW9wdHcyTUgwRXBrdTJ0YWZk?=
+ =?utf-8?B?cmx1VEFsVzVUNFkzdFVLVU42WTgvcHFKQ0s4MVBIaTRIcjFHQTJ0U3MyZEQz?=
+ =?utf-8?B?WjhQbStjdk1pOFAvQ3VGYTRjNmpwNU5sdG1rNWZqbUQza3UyQnFIUjV1SzRy?=
+ =?utf-8?B?V2EzRENSemFQc3BMZHQ1VU1QVFk1ZldsWjJlNVVnaTZieHdpQVE0NmROTGtJ?=
+ =?utf-8?B?U3VKSXdWWTVvWVVySmhEWldpaHFmZTVBcWJoRnNMaHFtWUlvVUphZmVsM3Mv?=
+ =?utf-8?B?SkxxMEtodS9hS041UG44TUtSZGVxUGRoR2trOHo4MVlGam5rR0dCeWV5V2pk?=
+ =?utf-8?B?OVkrUWlnYnl5VXNNSUo1UUFIYUxJT2lOT2M0TVpzKzJOYlB5WGg0NW1GOGQz?=
+ =?utf-8?B?MXE0TGhaUzI5WDFYQUw3R3FQdytMdGZMbk0zR3lUVUpPM2pWNEJ5RUI0MDg0?=
+ =?utf-8?B?ZXN1Y2JCa1lidDFmL3VwK1gzeVZOVDJndTBJellIeXJmWlV4U285ZVJmejh3?=
+ =?utf-8?B?QkZaUUdpekVkejUwMXJIeHVmeHNxdVpDTE5HL2dRRGNwazJaelQ2YnAvYmJt?=
+ =?utf-8?B?N21TOU9PU3VHU1dyd2h6ZTJqS0xZRVByem5DYzlEMHI5WmhVclZ4aUxBYWJm?=
+ =?utf-8?B?UC9qWldzUytvN1BDdTVoeTZEbVZuWlcyZGdxNjZORzZwdW41SEIxc2EyVk5j?=
+ =?utf-8?B?WU0zT25oYnh2UDdTUVRMT0dxQUt5eDNiemRrVGJMTXR1NThpekxscTgzbmNT?=
+ =?utf-8?B?RDA2STJuRUNSdHhremttK3VtWUZvUVRWWVNVWHNvMEh6blBVWG9taHlONTg4?=
+ =?utf-8?B?dTl2K210M3FGSXZ2Y2xLbHdiTFAwcVRUK3hibno4d3dOZWZYbUtmMGY3K0ly?=
+ =?utf-8?B?L045MHJYTlRjS3FQZnJIVjBOdzQxYXF3Q3E3NU82WVo3RDhKNVJzbU1XZ3My?=
+ =?utf-8?B?dFc1UUlHM3NLb1ZoaStCVi9IYUJPWFJMakhRaXFlRTZUZGRyVitmaTNMU2ZX?=
+ =?utf-8?B?cnZPN3hpcm9ibVdGaGY0Z3hUYlNXelhZOEpsRXF6blNxcDVFTjQ1QVg2UmZk?=
+ =?utf-8?B?ZmNsSEc4R3o3VWkvZ2NJN1RkWnNwUTZLUTZDMTI3N3l4N09GZ2hUeWd4bjNk?=
+ =?utf-8?B?UnI0d0VJaWN0a0xGNUZ5QzdyTnIzRUNtcmdRR1JuYVZ2dm9WTkgvM29ZdzYr?=
+ =?utf-8?B?RndoUUtwcFNDNDQrSlF3UHc1OUVBRVYvUzNvZE12QjVUdURsOFdZQ2pqUjdX?=
+ =?utf-8?B?MUFBWlVabk84ZWlWbE5BaEtVVHlTOTdENENxNFJ4eTFoWVZlVjBVdVIxRkNl?=
+ =?utf-8?B?VUVsN3Z5UlE0eXpaRnlGdkora0JkOTJ5dWhmSVJVK1IwSUdBdGNubmxjbHEr?=
+ =?utf-8?B?M3FMZG9ZY2Nncyt6NkkvY0RuOVRWck9ZdHJ6NVJKNGJvUVltZnlUQ3p4ZmEr?=
+ =?utf-8?B?WmZ6cFJZMEpaWkkxUE45bDhITzcraGxLQUphMWJMTnY0MzJwSTNJUm1yVlZQ?=
+ =?utf-8?B?L285UW14VzN6bEJVMVJORHNyTlY0cEhFaktDMnFKbGtaVGw2K1JiRXVlTGJ4?=
+ =?utf-8?B?MEEwT3l1WTdDMFpXb3JtTlYvUXF4YjNkd3hmdng5cUdxRWhTMWtjVGIwb2lo?=
+ =?utf-8?Q?aIqMXU5uPthYZ5jfoI45RP+S93yWmxsi4lsACD0kjqvxk?=
+X-MS-Exchange-AntiSpam-MessageData-1: EVMMJ/ES4pRmdw==
+X-Exchange-RoutingPolicyChecked: cP42U3944AWdbqSNRna01wLXZvmzCUNVaXhIJigNcFPpOGQXoimSN/dRYF/aGl0Hnqb4YdOtaIHYR/foaSsTN6rTYTUof/0MiDtYSt5TRdmyJ9ZTT73XEAQ1t+BLKK5UM6S7Czx7ZcJc1DmRBVUfSB6CnF8FFh8l+jSrZ53yL/1b6o+n8BhtR16WM8BlI94Y+2rdJKySeqUS/b7eXDUJl03bmade4B5pRJdmcpeBSXT3N7ZjiJDccRcAQ+CxyA4sM4YGUQ5yTOwpUNB3zLrLypcnAVnZinA9nT/Hh8Ov+idu9rMdOO1Szg5gNtWvufhGrTOPTnkl+YHMJWbgRkQRBQ==
+X-MS-Exchange-CrossTenant-Network-Message-Id: c3307e4b-a8e2-4b0a-6fe6-08deb72eae3f
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 11:46:12.6402 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 May 2026 11:47:05.4511 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: KfJJeJfMbolWybro5uCvr2aduVPS3kD07pYkdbtYTyZkf5GlcQrJKfPpej1reigFL45OaB3+Yk7s59y4k0AcSSV1HRE0tgPtxvVRtn27IBA=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB8834
+X-MS-Exchange-CrossTenant-UserPrincipalName: dUI7CzmPCUXDkxKxb1gzunLeA4xXmKn+Cg1+0zowgEmlavy4ZMm+YgMbwiqEfD5VTCSb8qJcCNuqVxgC46EUGOUdi0zBboKh3cSEcEemkmt6qzyzaQCF5QymcWxySMTH
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7244
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -192,139 +194,133 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_FIVE(0.00)[6];
 	FROM_HAS_DN(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: F2B625A435F
+X-Rspamd-Queue-Id: A022D5A4370
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
-On 5/18/2026 8:22 PM, Ville Syrjälä wrote:
-> On Mon, May 18, 2026 at 11:35:22AM +0530, Ankit Nautiyal wrote:
->> set_context_latency represents W2 window/latency lines.
->> Earlier, delayed and undelayed vblank coincided, so this matched the
->> distance from vactive end to undelayed vblank start.
->>
->> After guardband optimization changes, delayed vblank start can move
->> away from undelayed vblank. In DSB non-VRR paths, the older
->> intel_mode_vblank_delay() is still used in some code paths.
->>
->> Fix this by using set_context_latency directly for W2-line waits.
->>
->> Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> ---
->>   drivers/gpu/drm/i915/display/intel_dsb.c | 11 ++---------
->>   1 file changed, 2 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
->> index fec8a56e21ea..8521f5969aca 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dsb.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dsb.c
->> @@ -745,6 +745,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
->>   		intel_pre_commit_crtc_state(state, crtc);
->>   	int latency = intel_usecs_to_scanlines(&crtc_state->hw.adjusted_mode,
->>   					       intel_dsb_arm_exec_time_us());
->> +	int vblank_delay = crtc_state->set_context_latency;
->>   	int start, end;
->>   
->>   	/*
->> @@ -760,7 +761,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
->>   		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
->>   
->>   	if (pre_commit_is_vrr_active(state, crtc) && crtc_state->vrr.dc_balance.enable) {
->> -		int vblank_delay = crtc_state->set_context_latency;
->>   		int vmin_vblank_start, vmax_vblank_start;
->>   
->>   		vmin_vblank_start = intel_vrr_dcb_vmin_vblank_start_next(crtc_state);
->> @@ -789,8 +789,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
->>   		start = end - vblank_delay - latency;
->>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
->>   	} else if (pre_commit_is_vrr_active(state, crtc)) {
->> -		int vblank_delay = crtc_state->set_context_latency;
->> -
->>   		end = intel_vrr_vmin_vblank_start(crtc_state);
->>   		start = end - vblank_delay - latency;
->>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
->> @@ -799,8 +797,6 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
->>   		start = end - vblank_delay - latency;
->>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
->>   	} else {
->> -		int vblank_delay = intel_mode_vblank_delay(&crtc_state->hw.adjusted_mode);
->> -
->>   		end = intel_mode_vblank_start(&crtc_state->hw.adjusted_mode);
->>   		start = end - vblank_delay - latency;
->>   		intel_dsb_wait_scanline_out(state, dsb, start, end);
->> @@ -889,7 +885,7 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
->>   		intel_pre_commit_crtc_state(state, crtc);
->>   	const struct drm_display_mode *adjusted_mode =
->>   		&crtc_state->hw.adjusted_mode;
->> -	int wait_scanlines;
->> +	int wait_scanlines = crtc_state->set_context_latency + 1;
->>   
->>   	if (pre_commit_is_vrr_active(state, crtc)) {
->>   		/*
->> @@ -912,9 +908,6 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
->>   		 * scanline until the delayed vblank occurs after
->>   		 * TRANS_PUSH has been written.
->>   		 */
->> -		wait_scanlines = crtc_state->set_context_latency + 1;
->> -	} else {
->> -		wait_scanlines = intel_mode_vblank_delay(adjusted_mode);
-> After further consideration I think the current code is in fact correct.
-> intel_dsb_wait_vblanks()/DSB_WAIT_FOR_VBLANK will wait for the undelayed
-> vblank when VRR is disabled, so this does need the full wait.
+On 13-05-2026 22:08, Animesh Manna wrote:
+> Restore CMTG registers after DC6 exit, as they lose their values
+> in the low-power state.
 >
-> So I think the actual issue is more of a userspace bug in that they
-> assume the event fires at vblank_start and guesstimate the deadline
-> based on the time when the event was received. What they need to do
-> is calculate the deadline based on the event timestamp.
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>   drivers/gpu/drm/i915/display/intel_display.c  | 12 ++++++++-
+>   .../drm/i915/display/intel_display_power.c    | 25 +++++++++++++++++++
+>   .../drm/i915/display/intel_display_power.h    |  3 +++
+>   3 files changed, 39 insertions(+), 1 deletion(-)
 >
-> Another option might be to switch to using the safe window even for
-> the '!vrr && always_use_vrr_tg()' case. But that probably needs some
-> actual thought...
+> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+> index 6dc561713c35..324a2c722422 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+> @@ -7544,9 +7544,19 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
+>   
+>   	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i) {
+>   		bool modeset = intel_crtc_needs_modeset(new_crtc_state);
+> +		bool dc3co_to_dc6 = intel_display_power_get_dc3co_to_dc6(display);
+>   
+>   		/* CMTG needs to be restored on DC6 exit and on modset*/
+> -		if (modeset && new_crtc_state->hw.active && !crtc->cmtg.enabled) {
+> +		if ((modeset || dc3co_to_dc6) && new_crtc_state->hw.active && !crtc->cmtg.enabled) {
+> +			if (dc3co_to_dc6) {
+> +				intel_cmtg_set_clk_select(new_crtc_state);
+> +				intel_cmtg_set_timings(new_crtc_state, false);
 
-Using the safe window for the above case with changing the 
-pre_commit_is_vrr_active() to return true for have always_use_vrr_tg() 
-works in general.
+In the restore path, will the `lrr` argument always be false?
+In patch 4, the same function is called with `lrr = true`.
 
-However there seem to be an issue with non-VRR case:
+> +				intel_cmtg_set_vrr_timings(new_crtc_state);
+> +				intel_cmtg_set_vrr_ctl(new_crtc_state);
+> +				intel_cmtg_set_m_n(new_crtc_state);
+> +				intel_display_power_reset_dc3co_to_dc6(display);
+> +			}
+> +
+>   			intel_cmtg_enable_sync(new_crtc_state);
 
-It looks like WAIT_VBLANKS / DSB_WAIT_FOR_VBLANK is releasing right at 
-the vblank edge,
+As this path also executes after DC6 exit, please also follow the BSpec
+CMTG enable sequence for the PSR2 deep sleep case.
 
-or perhaps sometimes one scanline early (its not SCL though).
+CMTG will not start running until PSR2 deep sleep exit completes, so this
+sequence can fail here for the non-modeset case.
 
-So by the time DSB reaches the WAIT_DSL_OUT(safe_window_start, 
-vmin_safe_window_end),
+>   			intel_cmtg_set_hwgb(new_crtc_state);
+>   			intel_cmtg_enable_ddi(new_crtc_state);
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+> index 80ecf373fb19..a0ea46895e2e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+> @@ -285,6 +285,27 @@ sanitize_target_dc_state(struct intel_display *display,
+>   	return target_dc_state;
+>   }
+>   
+> +bool intel_display_power_get_dc3co_to_dc6(struct intel_display *display)
+> +{
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+> +	bool ret;
+> +
+> +	mutex_lock(&power_domains->lock);
+> +	ret = power_domains->dc3co_to_dc6;
+> +	mutex_unlock(&power_domains->lock);
+> +
+> +	return ret;
+> +}
+> +
+> +void intel_display_power_reset_dc3co_to_dc6(struct intel_display *display)
+> +{
+> +	struct i915_power_domains *power_domains = &display->power.domains;
+> +
+> +	mutex_lock(&power_domains->lock);
+> +	power_domains->dc3co_to_dc6 = false;
+> +	mutex_unlock(&power_domains->lock);
+> +}
+> +
+>   /**
+>    * intel_display_power_set_target_dc_state - Set target dc state.
+>    * @display: display device
+> @@ -320,6 +341,10 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
+>   	if (!dc_off_enabled)
+>   		intel_power_well_enable(display, power_well);
+>   
+> +	if (power_domains->target_dc_state == DC_STATE_EN_DC3CO &&
+> +	    state == DC_STATE_EN_UPTO_DC6)
+> +		power_domains->dc3co_to_dc6 = true;
+> +
 
-PIPEDSL is sitting exactly at safe_window_start (or just below perhaps).
+This only updates the software target DC state and does not guarantee an
+actual DC6 entry or exit.
+If the intent is to detect a real DC6 exit transition, then
+gen9_disable_dc_states() looks like the more appropriate place for this.
+I can also see existing PHY restore related comments there.
 
-When DSB instruction checks perhaps is sees that this as "not in window" 
-and the wait gets skipped.
-
-The following WAIT_USEC(SCL + 1) then starts from too early, and results 
-in DSB interrupt getting fired earlier that expected.
-
-Adding a 1 scanline delay (actually even a smaller usec delay is 
-sufficient) is helping here.
-
-I am wondering why this is not observed with VRR case, though.
-
-
-Regards,
-
-Ankit
-
-
-
->
->>   	}
->>   
->>   	intel_dsb_wait_usec(dsb, intel_scanlines_to_usecs(adjusted_mode, wait_scanlines));
->> -- 
->> 2.45.2
+>   	power_domains->target_dc_state = state;
+>   
+>   	if (!dc_off_enabled)
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+> index d616d5d09cbe..ce1225bbc789 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_power.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+> @@ -138,6 +138,7 @@ struct i915_power_domains {
+>   	 */
+>   	bool initializing;
+>   	bool display_core_suspended;
+> +	bool dc3co_to_dc6;
+>   	int power_well_count;
+>   
+>   	u32 dc_state;
+> @@ -183,6 +184,8 @@ void intel_display_power_suspend_late(struct intel_display *display, bool s2idle
+>   void intel_display_power_resume_early(struct intel_display *display);
+>   void intel_display_power_suspend(struct intel_display *display);
+>   void intel_display_power_resume(struct intel_display *display);
+> +bool intel_display_power_get_dc3co_to_dc6(struct intel_display *display);
+> +void intel_display_power_reset_dc3co_to_dc6(struct intel_display *display);
+>   void intel_display_power_set_target_dc_state(struct intel_display *display,
+>   					     u32 state);
+>   u32 intel_display_power_get_current_dc_state(struct intel_display *display);
