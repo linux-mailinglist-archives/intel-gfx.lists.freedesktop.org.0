@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UMMiJK+2EGpDcwYAu9opvQ
+	id ULtUDsC2EGpDcwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:03:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 65BDC5B9DBC
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DED3D5B9DE8
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DAAAB10E568;
-	Fri, 22 May 2026 20:03:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 550F810F6E3;
+	Fri, 22 May 2026 20:04:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WyWtHPxV";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kio8FypJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 52C6510E568;
- Fri, 22 May 2026 20:03:56 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACD2110E2A6;
+ Fri, 22 May 2026 20:04:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779480237; x=1811016237;
+ t=1779480252; x=1811016252;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=MUMHXfMEKI664gtM/L3Cj0apNgP7qBO0RoZsqG7Yb9s=;
- b=WyWtHPxV7v7oHcDYP9cPoIGCnrtRaXfRxe5Km/rutGsh0BPhMJpETpv/
- +sI6jKAzEh1+AiuMJFF5EjrRoj6h9DWWfsei7r3S3U0YoOMhIKI8p6Akx
- GnN6C6BiglcHBSerj+nbYM1xzeIPZqU/vLtjAn62dn6pM+4kJV4jteQ21
- rmYuRVu7GbJXcKct5yi2Bl8yKjNo7fOs0FhWUCjMVF3MnYcmwKddq8htu
- WABoQGG0OS993UY2LG5sSX0aooNpgDxcOG4FIMtReWyvv6DsJytZ/U4Fw
- 8/D6yDoPHOTlyUDGkgjADq+DiSdiTyEmOVVp4GdPp9EesEwgXEhT2HmTy A==;
-X-CSE-ConnectionGUID: dSB+ckN8RtmJ0DlhiUJjJQ==
-X-CSE-MsgGUID: 8b6eXNjSR2qbFD6kiF1HSg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84299656"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="84299656"
+ bh=s108ls3Kfd0ZZN5WwZkcMpbd3HpoR53LanD72TLqj6U=;
+ b=kio8FypJzktiukU+5nYW2qtm/zohi2MUvG0YSr8TixLBHWsJsxTupZS7
+ 4j/QyIf0FGaMMtP5LDrAKNljP3e18M0Z0lBfFgJ/khvbauze2eIf3rJnF
+ nsgeday6u6CAx76irOcemThQU+5eOPOs/yBAaVjvbzIbSJE1gFwXpqTfh
+ HBAXXvlmAKLIg1SNp7lFT6dqQXcbBkIkaLXxVhR0Nzy10j2ZHfRCKZCaJ
+ xBLDZvMP+ystH5f2giahSXDCXzxFYEg3t5i1Sz2TimdeONLYvD8H4rNEM
+ UWMF/QXKYJuQzgxECjoy/l9R6A4+befWoriC3pW9hRlbE5C61XBIWO54s A==;
+X-CSE-ConnectionGUID: iv+mQDbGSf+0kn3AHZfZLg==
+X-CSE-MsgGUID: g24oSchiRGC8IzDn/TOw1g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84299663"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="84299663"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:03:57 -0700
-X-CSE-ConnectionGUID: 6HAUbOtZSvS0ZozrhPgMRA==
-X-CSE-MsgGUID: AD2DzoC6RzWYz4h1KaFB3A==
+ 22 May 2026 13:04:02 -0700
+X-CSE-ConnectionGUID: bqrMD/Y/Qxa5xigiiG2GEw==
+X-CSE-MsgGUID: n7lLRt8tQUamPtYRs6ktrg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="245042161"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="245042177"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.71])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:03:55 -0700
+ 22 May 2026 13:03:59 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 01/10] drm/i915/bw: Fix num_planes handling on TGL+
-Date: Fri, 22 May 2026 23:03:37 +0300
-Message-ID: <20260522200346.17377-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 02/10] drm/i915/bw: Fix DCLK rounding mess
+Date: Fri, 22 May 2026 23:03:38 +0300
+Message-ID: <20260522200346.17377-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
 References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
@@ -99,53 +99,103 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 65BDC5B9DBC
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: DED3D5B9DE8
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The TGL+ bw code has an off by one error on the num_planes
-calculation, and tgl_max_bw_index() incorrectly bumps
-the num_planes to 1 from 0.
+Fix up the total mess when calculating the DCLK
+frequency. Some codepaths are trying to do both DIV_ROUND_UP()
+and an open coded "round to nearest" at the same time. The
+MTL+ codepath was the only one that was correct (using
+DIV_ROUND_CLOSEST()).
 
-That approach made sense on ICL where num_planes is more or
-a less minimum number of planes to consider for the group,
-but on TGL+ num_planes really is a maximum number of planes,
-so these adjustments no longer make any sense there.
+Let's unify all of them, and borrow the actual '100/6'
+approach from adl_calc_psf_bw() so that we get even less
+rounding errors.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 8 +-------
- 1 file changed, 1 insertion(+), 7 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 26 +++++++++++++------------
+ 1 file changed, 14 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index d7b2bc80f8e3..d10eebec196e 100644
+index d10eebec196e..442e6b657ca5 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -636,8 +636,7 @@ static int tgl_get_bw_info(struct intel_display *display,
- 			bi_next = &display->bw.max[i + 1];
+@@ -67,25 +67,31 @@ struct intel_qgv_info {
+ 	u8 deinterleave;
+ };
  
- 			if (clpchgroup < clperchgroup)
--				bi_next->num_planes = (ipqdepth - clpchgroup) /
--						       clpchgroup + 1;
-+				bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup;
- 			else
- 				bi_next->num_planes = 0;
- 		}
-@@ -802,11 +801,6 @@ static unsigned int tgl_max_bw_index(struct intel_display *display,
++static int dclk_freq_mhz(int ratio)
++{
++	/* multiple of 16.666 MHz (100/6) */
++	return DIV_ROUND_CLOSEST(ratio * 100, 6);
++}
++
+ static int dg1_mchbar_read_qgv_point_info(struct intel_display *display,
+ 					  struct intel_qgv_point *sp,
+ 					  int point)
  {
- 	int i;
+-	u32 dclk_ratio, dclk_reference;
++	u32 dclk_ratio;
+ 	u32 val;
  
--	/*
--	 * Let's return max bw for 0 planes
--	 */
--	num_planes = max(1, num_planes);
--
- 	for (i = ARRAY_SIZE(display->bw.max) - 1; i >= 0; i--) {
- 		const struct intel_bw_info *bi =
- 			&display->bw.max[i];
+ 	val = intel_mchbar_read(display, SA_PERF_STATUS_0_0_0_MCHBAR_PC);
+ 	dclk_ratio = REG_FIELD_GET(DG1_QCLK_RATIO_MASK, val);
+ 	if (val & DG1_QCLK_REFERENCE)
+-		dclk_reference = 6; /* 6 * 16.666 MHz = 100 MHz */
++		dclk_ratio *= 6; /* 6 * 16.666 MHz = 100 MHz */
+ 	else
+-		dclk_reference = 8; /* 8 * 16.666 MHz = 133 MHz */
+-	sp->dclk = DIV_ROUND_UP((16667 * dclk_ratio * dclk_reference) + 500, 1000);
++		dclk_ratio *= 8; /* 8 * 16.666 MHz = 133 MHz */
+ 
+ 	val = intel_mchbar_read(display, SKL_MC_BIOS_DATA_0_0_0_MCHBAR_PCU);
+ 	if (val & DG1_GEAR_TYPE)
+-		sp->dclk *= 2;
++		dclk_ratio *= 2;
+ 
++	sp->dclk = dclk_freq_mhz(dclk_ratio);
+ 	if (sp->dclk == 0)
+ 		return -EINVAL;
+ 
+@@ -107,7 +113,6 @@ static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+ 					 int point)
+ {
+ 	u32 val = 0, val2 = 0;
+-	u16 dclk;
+ 	int ret;
+ 
+ 	ret = intel_parent_pcode_read(display, ICL_PCODE_MEM_SUBSYSYSTEM_INFO |
+@@ -116,9 +121,7 @@ static int icl_pcode_read_qgv_point_info(struct intel_display *display,
+ 	if (ret)
+ 		return ret;
+ 
+-	dclk = val & 0xffff;
+-	sp->dclk = DIV_ROUND_UP((16667 * dclk) + (DISPLAY_VER(display) >= 12 ? 500 : 0),
+-				1000);
++	sp->dclk = dclk_freq_mhz(val & 0xffff);
+ 	sp->t_rp = (val & 0xff0000) >> 16;
+ 	sp->t_rcd = (val & 0xff000000) >> 24;
+ 
+@@ -208,12 +211,11 @@ static int mtl_read_qgv_point_info(struct intel_display *display,
+ 				   struct intel_qgv_point *sp, int point)
+ {
+ 	u32 val, val2;
+-	u16 dclk;
+ 
+ 	val = intel_de_read(display, MTL_MEM_SS_INFO_QGV_POINT_LOW(point));
+ 	val2 = intel_de_read(display, MTL_MEM_SS_INFO_QGV_POINT_HIGH(point));
+-	dclk = REG_FIELD_GET(MTL_DCLK_MASK, val);
+-	sp->dclk = DIV_ROUND_CLOSEST(16667 * dclk, 1000);
++
++	sp->dclk = dclk_freq_mhz(REG_FIELD_GET(MTL_DCLK_MASK, val));
+ 	sp->t_rp = REG_FIELD_GET(MTL_TRP_MASK, val);
+ 	sp->t_rcd = REG_FIELD_GET(MTL_TRCD_MASK, val);
+ 
 -- 
 2.52.0
 
