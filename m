@@ -2,34 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4JNpBLJbEGqDWgYAu9opvQ
+	id oBu6NLpcEGrEWgYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:35:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:40:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4CA795B5412
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:35:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 694375B5547
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:40:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A7D0810E00C;
-	Fri, 22 May 2026 13:35:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DD54110E07D;
+	Fri, 22 May 2026 13:40:08 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QrThRZPB";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A91110E00C;
- Fri, 22 May 2026 13:35:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8007402037900757553=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A71710E07D;
+ Fri, 22 May 2026 13:40:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779457207; x=1810993207;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version:content-id;
+ bh=AqzWIe15rSPR2qFTMV0hV+sdzraVnQlAGYI8gzdLoy0=;
+ b=QrThRZPB1GCRjrIP8oUliX3be73s1vlbKS59DNtSOe4DuEYoHa5cfqGY
+ B6HQLsgX28HqoHM45kv5er1yzZxWhnpWsfAovtrS2g5f8QW9HP9uXtKtA
+ tOwXYXtQEx7LmbJNUo9+F/Zk22G4AUmVJ8BVd+n6SQ+ke3HX22mRth6CT
+ JkrnKcJUvM0k5w46G4Xotom4YfqG2cVH80RlSVBfKu54wqnMuzpAZ0xTE
+ Qq7bSMGac1O/OMn0vz/7AeRGPdR3Ygr0g29D9xUwaSaCQD6Q2861lPA7U
+ muGYokJLnOxjCrAI05vqUB4Ufpxoxa8sop+g6Nw1Bgg8x7m7exMdiIiBw Q==;
+X-CSE-ConnectionGUID: E9u/wFDZSFyNUdJnOsSS4w==
+X-CSE-MsgGUID: HOLCDxRtTB2lI+RFtbjVYA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="91778777"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="91778777"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 06:40:07 -0700
+X-CSE-ConnectionGUID: yGGLmTkkQ0SkhpaPtpcYMw==
+X-CSE-MsgGUID: 0HgWlebzRxq3Mt5xv1JXfQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="234562688"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 06:40:04 -0700
+Date: Fri, 22 May 2026 15:40:02 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v1 2/2] drm/managed: fix drmm_add_mod_or_reset() kernel-doc
+In-Reply-To: <8b886c39-f474-463e-99c5-2cc91466f1b9@intel.com>
+Message-ID: <676b9ad7-46f7-fabe-163e-33012a23030c@intel.com>
+References: <20260521155231.1821935-1-michal.grzelak@intel.com>
+ <20260521155231.1821935-3-michal.grzelak@intel.com>
+ <8b886c39-f474-463e-99c5-2cc91466f1b9@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_Add_new_general_DRM_prope?=
- =?utf-8?q?rty_=22color_format=22_=28rev12=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nicolas Frattaroli" <nicolas.frattaroli@collabora.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 May 2026 13:35:42 -0000
-Message-ID: <177945694236.12.13911829486521715950@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
-In-Reply-To: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
+Content-Type: multipart/mixed; BOUNDARY="8323329-969468146-1779456677=:1544314"
+Content-ID: <7e91f919-70b4-ad0c-8680-dc597dce2f86@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,165 +76,82 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.810];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
-X-Rspamd-Queue-Id: 4CA795B5412
+	MIME_TRACE(0.00)[0:+,1:+];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[]
+X-Rspamd-Queue-Id: 694375B5547
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============8007402037900757553==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323329-969468146-1779456677=:1544314
+Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
+Content-ID: <95e88270-d98b-7af7-d8da-c2e395bb1814@intel.com>
 
-Series: Add new general DRM property "color format" (rev12)
-URL   : https://patchwork.freedesktop.org/series/157910/
-State : failure
+On Fri, 22 May 2026, Borah, Chaitanya Kumar wrote:
+> On 5/21/2026 9:22 PM, Micha³ Grzelak wrote:
+>> Kernel-doc of drmm_add_mode_or_reset() references @releases which is not
+>> on argument list. Swap '@' between 'releases' and 'action' words to fix
+>> the documentation.
+>
+> s/drmm_add_mode_or_reset/drmm_add_action
+>
 
-== Summary ==
+Title would like to see that as well...
 
-CI Bug Log - changes from CI_DRM_18540 -> Patchwork_157910v12
-====================================================
+BR,
+Micha³
 
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_157910v12 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_157910v12, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_157910v12:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:
-    - fi-skl-6600u:       [PASS][1] -> [DMESG-WARN][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18540/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18540 -> Patchwork_157910v12
-
-  CI-20190529: 20190529
-  CI_DRM_18540: 127c8434a6a018110189cdb654719a9844702ff7 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8935: 8935
-  Patchwork_157910v12: 127c8434a6a018110189cdb654719a9844702ff7 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/index.html
-
---===============8007402037900757553==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>Add new general DRM property &quot;color format&quot; (rev12)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157910/">https://patchwork.freedesktop.org/series/157910/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18540 -&gt; Patchwork_157910v12</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_157910v12 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_157910v12, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_157910v12:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@kms_cursor_legacy@basic-flip-after-cursor-atomic:<ul>
-<li>fi-skl-6600u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18540/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157910v12/fi-skl-6600u/igt@kms_cursor_legacy@basic-flip-after-cursor-atomic.html">DMESG-WARN</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18540 -&gt; Patchwork_157910v12</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18540: 127c8434a6a018110189cdb654719a9844702ff7 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8935: 8935<br />
-  Patchwork_157910v12: 127c8434a6a018110189cdb654719a9844702ff7 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8007402037900757553==--
+>> 
+>> Signed-off-by: Micha³ Grzelak <michal.grzelak@intel.com>
+>> ---
+>>   include/drm/drm_managed.h | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+>> index 72bfac002c06..72d0d68be226 100644
+>> --- a/include/drm/drm_managed.h
+>> +++ b/include/drm/drm_managed.h
+>> @@ -18,7 +18,7 @@ typedef void (*drmres_release_t)(struct drm_device *dev, 
+>> void *res);
+>>    * @action: function which should be called when @dev is released
+>>    * @data: opaque pointer, passed to @action
+>>    *
+>> - * This function adds the @release action with optional parameter @data to 
+>> the
+>> + * This function adds the release @action with optional parameter @data to 
+>> the
+>>    * list of cleanup actions for @dev. The cleanup actions will be run in 
+>> reverse
+>>    * order in the final drm_dev_put() call for @dev.
+>>    */
+>
+>
+--8323329-969468146-1779456677=:1544314--
