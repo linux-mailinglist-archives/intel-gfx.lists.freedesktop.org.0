@@ -2,157 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kG6oA6cLEGpqSwYAu9opvQ
+	id mMVQFRAVEGphTQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 09:54:15 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 10:34:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6C55B5B0412
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 09:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B41BF5B0A2E
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 10:34:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75D8110F50B;
-	Fri, 22 May 2026 07:54:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C10A210F4F0;
+	Fri, 22 May 2026 08:34:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Kty2LCVY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N/3o6oOW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0E20410F4E1;
- Fri, 22 May 2026 07:54:10 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F20BA10F4E9;
+ Fri, 22 May 2026 08:34:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779436451; x=1810972451;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=24Aj7JWGdGr21PDyJwZmsrDzslggjjAUCzRvRxbMTPE=;
- b=Kty2LCVYmNudbBhzk538KbTQjscUDqq/N0CYzWIsCel7bnvz0d1CvPax
- tRBsToKxUKbPHcoyOHsMfPHPMts8YsX3VNpRXmf407r6lxYc5GA4Y0iqC
- d6lM9f0DU6COkzpDDrj9DrzbTmaws/1KVLyXLh+Wq32Mco3dvSGkUD1wL
- fZeQB4/THvZ2PT/xluDrpGQakVw/85aIjYbtxVLIX1p/NJPvVHfZOnzid
- pg1s9vc0uVMMXaG+EgPTczx+4DkDVKoDBNYtMBBDIf+MB7VM//JVunrim
- rTDA0y7O7x1bgf4u9Szm3JdM2nhUI2KFLx5awYgAM8rjBgUj3E77FwzKa Q==;
-X-CSE-ConnectionGUID: 6J5LnbXnS8Gx+7T6q4JYzQ==
-X-CSE-MsgGUID: DNM1DEZ7QZKiFxiPy5Kfgg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80093989"
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="80093989"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 00:54:10 -0700
-X-CSE-ConnectionGUID: cdAP6Yr3QDC0DqAHQoLMlA==
-X-CSE-MsgGUID: KiID1ERPSwekeHDETg8JQg==
+ t=1779438859; x=1810974859;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=5qoVotUYYlbK/js3E2Xm6TB2KDKK7XUnn+MYIbfw2DM=;
+ b=N/3o6oOWxUuCE7PlI5Nn0XHkDPVte7xuUE8rZtcdwIDfL+3rv1Y0f5mB
+ 9ir/H0egzMxEJNU3OQygmImKMaX59JKXTYVMQlkNBVEXKhb0i8H1PVj+F
+ KmTC4ed94fADUIGNj2cAm37lfafb8THq57O/n06BNwb8Bit7sVh6szOWK
+ CbCvs5iPlaB13Xkcxw/Fm3WAEWcMmRlR/jsswFecjviiynu8a0Mguq+YI
+ /3WP6m8Zm0DsblAg7FePYFlfPkPCE9RXtl4ttE5am0RXwZj0oZvoCGKLU
+ BlnQJfefgaCOCqOnFqTflnlBbWFL+kLPZWsLxNJaMBVjqvDSIvvYmWdzk w==;
+X-CSE-ConnectionGUID: 8DD6jjK7TV2GbfqajO56eA==
+X-CSE-MsgGUID: IFwduw9pSU6zf6YiIhFOug==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="67891478"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="67891478"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 01:34:19 -0700
+X-CSE-ConnectionGUID: YMt9LvWDRZmhhvPKeFouiQ==
+X-CSE-MsgGUID: YkGPd7bDTjG0f2zb87ZSow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,161,1774335600"; d="scan'208";a="238243055"
-Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
- by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 00:54:09 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 22 May 2026 00:54:08 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Fri, 22 May 2026 00:54:08 -0700
-Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.36) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Fri, 22 May 2026 00:54:08 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=lHfEECHhcYSY+KCXGqjyVuXYQJnkrhdeX2gO/zFDa4nPHm5M/4sZ6jEwzDTa5QbI6DEOMg/Zsy7vgs0ZKZo4I1GmCAGL5xc/206+5UZKXoK4f2BwXBs7aRP/fl9rfEYqk6WTlBri20buloQIbGsriF/rlS7wlcDiKLi7thcxuPKe6A/+9IIZ0y6tOC2ryssUeHo2llTKDOAa3WZEk5J8xclDQWRFtJrrPDpvno9NhSZsyK6+Q45eswjYSVZIgk26uQupNE7qtwotXKYRmQidPG3L1Vxyp7FzmaYsM8vYMki4h4v3w1EfZmUP8529gREy6UHOYmcwps3BZKWWbKCwDQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=mAXe+d/2SnJmhULmjrvJOmx263KwaluAslIVvqZRLT4=;
- b=kLIC/Og+5ugJP+v/kUfUkfXi8saHU83oEsogfNL3wZL0tzKkGoAYJ8zoAXZewmGIl9L/hFJ08qCXnesUidiX7Y+RpvzYF/1X916z+DBaGI7QFmqOWKC2+ZUaKH5NF+Uwiq1pWyR8t/8C3ffFrOMqtGllibGIyJuPmRO6+payWKrQGNkKzN9Aefy+oIzSc0ev39lKUbpHG9Q9dCT7zsUlzavs7NPRl2Pu3njAVAvzZUJJHNkwxhaUqh1pGvQvbxYb+S9JOpdPn8kM949KrNiY3r8hIV7O7HCP6vaGVZiriaBZjodJw7qRpWKEz9rCjueTSRtZq/ZM7nxYREQRT2pKeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Authentication-Results: dkim=none (message not signed)
- header.d=none;dmarc=none action=none header.from=intel.com;
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by PH7PR11MB7719.namprd11.prod.outlook.com (2603:10b6:510:2b4::19)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.17; Fri, 22 May
- 2026 07:54:06 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.20.9913.009; Fri, 22 May 2026
- 07:54:05 +0000
-Date: Fri, 22 May 2026 10:54:01 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH 5/5] drm/i915/dp: Detect changes in common link parameters
-Message-ID: <ahALmSY6pGpdi0tD@ideak-desk.lan>
-References: <20260518112427.2460725-1-imre.deak@intel.com>
- <20260518112427.2460725-6-imre.deak@intel.com>
- <ag98jVxomfBDkzQ4@intel.com>
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ag98jVxomfBDkzQ4@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GVX0EPF0005F6A0.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::127) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="234497699"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.1])
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 01:34:16 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: imre.deak@intel.com
+Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [RESEND 1/6] drm/{i915, xe}: move
+ xe_display_flush_cleanup_work() to i915 display
+In-Reply-To: <agSRBmiw7mVNxKC2@ideak-desk.lan>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <cover.1778659089.git.jani.nikula@intel.com>
+ <7aecde385b66dbf7d0e61759528c6cd643581a3d.1778659089.git.jani.nikula@intel.com>
+ <agRp6Was9FCQbKee@intel.com>
+ <a6cb2e030e9118084abfc315c557a8b11d8db3d7@intel.com>
+ <agSRBmiw7mVNxKC2@ideak-desk.lan>
+Date: Fri, 22 May 2026 11:34:14 +0300
+Message-ID: <6c89542bba35b03826d5c9237e33383c7ba9f489@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|PH7PR11MB7719:EE_
-X-MS-Office365-Filtering-Correlation-Id: 6ec5d049-1424-4106-87b2-08deb7d74c17
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|366016|376014|18002099003|56012099003|22082099003|4143699003|6133799003|11063799006;
-X-Microsoft-Antispam-Message-Info: 8scd9dj6OwfnJO6zaBlCR/DUcvhrsd7BIzdcrcrX3sL8MqGqu6MAfzY36sxNmEB+e1GUl7G0pGIyQzVmXVpVkuHrFJhNgum5fr7DX8iYIQU8lViDOp80H2jRNdvi/LcgRr4SUPegJl3a8cNVDPeiJHy6ohHq6cIrL+b7J7PKQGljh7H1unvs/1i89Pz7Iyg66zv2qlFyfKlM/lIjBb4gIX54R7TIoUKhRpFs1jxCear6XdYqm0EECPOpPbavJigu2szgQjmHxqTsXJ7FAQ4RsXMq89sKEItDktjsdZZcoztATqSBcku1Ws7EOXu//Q491Rb67ngHzSSF453hx2htFMyEOUn6CzLFjWea5bg138bTJYWWQr1B5rWkNoPumxk/0xkQKdX91m6uuUaMupZbEIiFa7imD4QhczCqrjdAOuR4DBjxhnG/9HMy1c+nSkqBquN6AfX9mca+qYorMnaFvL/6qAo1Va5tg9K3JQvR5eGlm1qmzDf5LFRId6TZ3ICUQuhKZvVqIapnHXAMgxHXmBivcgVLIs/+Aj3qd2gc8GS+H+qxOQo6OmwbtWGAgkzJIYSEgsmXAgmjE3K+RxB3a9z3Fw9oj+5QoPRgw1rVb6Efziy9XrXqy9vBNYKn/6nojQd+n2vUsSo0V6xuTKO4xHTtrPo+srnHLOyANvshUnoxvGs7+LiDt3HjeGeHvdvh
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(366016)(376014)(18002099003)(56012099003)(22082099003)(4143699003)(6133799003)(11063799006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?9jM0jAzsCwxtelHWYz/HehtfFY3bmOzbJAyy37uQ2IzMhy7VOIBM7e+jul?=
- =?iso-8859-1?Q?buuKRUiRon/MMwYjmqka/rJU/XqNY0Nw6AEeB1tf6mTl9o+EeCPLeSjz8k?=
- =?iso-8859-1?Q?5+Gs3ei/ZOa6XNubN2JydawWjKuMgc6warHlFGg5yQGTYfaEsdNdtV+j0j?=
- =?iso-8859-1?Q?CTNJ46l4TLHGhuWauef9PVLr9jvwhTIXAQymVpEUuRBXHAimxykrlgnC0u?=
- =?iso-8859-1?Q?yeutxroNggV4ROfr0lXjBj3KuPMYTJx4ypAUxEMHoYE2+upuDidPD/yaCq?=
- =?iso-8859-1?Q?oswsWgBb3LvP0Uc8Nf7a2Jr4SmBEzMX3cXheYXY9tCjCZw3Xf06+dbB4zV?=
- =?iso-8859-1?Q?AuXYV3Rd4z42HAN1ZuZPZD+3hxjtT5OLPIpiopQ3CLth+tXtqog26ExaNP?=
- =?iso-8859-1?Q?re2eas3r8FPM4mIp3miqMthMZVnG3DMoK8Gt+Tmhc98ZAagDdS19PpOETF?=
- =?iso-8859-1?Q?JZZqtvqTsRSikoUWkkTB2P64D8QsNpHox9T8r5wiHmOvXVOUgnQZP9AsXO?=
- =?iso-8859-1?Q?wRXrcxuPY5VoJdfkToRA+31NlPAMx6uiUOA1EdyqT/3PpwAD3YuKP1n9Nl?=
- =?iso-8859-1?Q?bfiX2hllxiH5yDS1sGYhNhDgLGz8bb05mvJHMbc+bi7xTm9zxF5Gt/HpHf?=
- =?iso-8859-1?Q?MRNKHSYLG/2miYdoAglhGOZdeY8TRe0HiU+TAE/m8Q0m6/788rqMzl/Z95?=
- =?iso-8859-1?Q?hYf+Eq084NIK+BdF6omr/UIj8Rg3QuHnjw7wiTZ1MZke5yZYSjqfu4FLfL?=
- =?iso-8859-1?Q?5yI0lo9ysbSSzSd/RKgohfJ4s3/YgH1tOnKs4RwmX1UlEHMDcFWKaby41+?=
- =?iso-8859-1?Q?fT9lSlRjRAYmSkcCHGA9Yl6/677KeJezHHtQIlxgurIorIq0zJzhfmVOXN?=
- =?iso-8859-1?Q?CqTyjUSBsnzJr4LCv++mTYvsmPuEsXDc72ZnCaTzg9c9eFeFFPg089daqn?=
- =?iso-8859-1?Q?RFBVe4UowBnL3Tn9b1SaAmsW/DMaz+uvqtO6WNo+6YqDbMe7u0lyEW36Su?=
- =?iso-8859-1?Q?QzjWHvEouM7uKhEul0XIa4lulW47yr80M38WKh5uoESTf1g9gWKwqY3R/R?=
- =?iso-8859-1?Q?RdiADPe4Z1Jq5+jWtfqJhMFfYghq2lyl/ieaFyjWdBB7Fv8Ktia2cjvuBj?=
- =?iso-8859-1?Q?L29v4OBnmGvzDHi6B5mYTMhqWVr1mHn99fpm/eLoYmaRkr19f9gApsImBi?=
- =?iso-8859-1?Q?zvlAFLf42MH5qSaVTYZ/o6zzTKEUZOL48w/1r1JZxYRT3rMrGFxSliS8MN?=
- =?iso-8859-1?Q?XrI8wOlsUXbAuELAtv1GdDoJMWnTVqdYR/RXTUOJW8r2ocsRO3KXcMEalq?=
- =?iso-8859-1?Q?yqrcNfiOqpZaZ8IfInJyxI8xxscY0EAwgWe3YwYuTvMP+eqk47rfQmwC+s?=
- =?iso-8859-1?Q?DDIioSo8+XPsdHy68H0Yq32VMgM8JzZH54Tsf22Nsbgiq0HEVIKRWdEiVt?=
- =?iso-8859-1?Q?YNg59etlIOEyyxZo48VAxdmWbcxaw7akD8TPyRQSDg66tG7gHZAnZjudxd?=
- =?iso-8859-1?Q?vcpV4UQDeUtGYTy18dyLyFLWFp6RMWhWNC3W/cWxRm9jS80M40X5ZU1/a7?=
- =?iso-8859-1?Q?lWdku+itP1EUaN2qnf3irH3BZsc+QMIZJ+8qzEPzdop4mLtQAVVAxzHSCT?=
- =?iso-8859-1?Q?q6QB9pYYLH5/ChxmfvXeOptFygpOXiexrgSZ6w7JnUW2v3ssb9eGj9Ztct?=
- =?iso-8859-1?Q?D9XrL/mHCb7x95FBMsIoHA4SvEg0wNbnBiaNzpQ5cywuVmXGOSq9apv15F?=
- =?iso-8859-1?Q?0CNB+cnjh7JL+Dmmz5v9TdvrS3aIvgYFWwb33MFCtQjvPUQbmb9MMu0WLo?=
- =?iso-8859-1?Q?IKUOfKcybA=3D=3D?=
-X-Exchange-RoutingPolicyChecked: OnorkVpPv2rH3H0h5MtrvFx/Ey+FvVXQBJ+ETp85obWLpe2Cc4kTpLbzhP9f0DBqH5vK0xnnNIM24/hZg0Ou0zftl7EXZLxaRoOb/GrJWJ0pQeYVpqg0Eguqb2RTubQ8cQ48aC6gpYhw5IeTSucrTz6tfACKlEU5zkv+et3YmCh1HB7kIexy0zAc6zoy0WoklEMK7M883mWUWDlDk7oM4ofH0dbU7AJScj1z20F/rpdXcx/d59x2E5NK7OWmtaLYKBCPzQfHLtZltnL2a8RK8Zjn6/62ymItgLcrnK3HuwwNaGHeOk0jSY/ZOCY/HLN1sWefkbrYYNh7DIjiBWKAYA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 6ec5d049-1424-4106-87b2-08deb7d74c17
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 May 2026 07:54:05.8433 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 6/8VbeuJQ+JpHK09qTlFECDKiq7sSn4Y8ulVTCE8e8V3f/dRAP5R8V4t7MrOScOAw4md9pAhqM/ponCvtk9KOg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH7PR11MB7719
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -165,175 +78,238 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.49 / 15.00];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:replyto,intel.com:email];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[imre.deak@intel.com];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[imre.deak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:-];
-	NEURAL_HAM(-0.00)[-0.993];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 6C55B5B0412
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: B41BF5B0A2E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 22, 2026 at 12:43:41AM +0300, Ville Syrjälä wrote:
-> On Mon, May 18, 2026 at 02:24:26PM +0300, Imre Deak wrote:
-> > Detect DPRX capability changes without a long HPD or RX_CAP_CHANGED
-> > signal and queue a corresponding link params reset.
-> > 
-> > Besides detecting the above unexpected capability changes, this also
-> > avoids races between queuing and handling a deferred link params reset.
-> > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/display/intel_dp.c | 50 +++++++++++++++++++++----
-> >  1 file changed, 43 insertions(+), 7 deletions(-)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-> > index 6c4dadfc35806..dd968c2d9fa64 100644
-> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> > @@ -362,19 +362,25 @@ int intel_dp_max_source_lane_count(struct intel_digital_port *dig_port)
-> >  	return max_lanes;
-> >  }
-> >  
-> > -/* Theoretical max between source and sink */
-> > -static void intel_dp_set_max_common_lane_count(struct intel_dp *intel_dp)
-> > +/*
-> > + * Theoretical max between source and sink.
-> > + * Return %true if the max common lane count changed.
-> > + */
-> > +static bool intel_dp_set_max_common_lane_count(struct intel_dp *intel_dp)
-> >  {
-> >  	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-> >  	int source_max = intel_dp_max_source_lane_count(dig_port);
-> >  	int sink_max = intel_dp->max_sink_lane_count;
-> >  	int lane_max = intel_tc_port_max_lane_count(dig_port);
-> >  	int lttpr_max = drm_dp_lttpr_max_lane_count(intel_dp->lttpr_common_caps);
-> > +	int old_max_common_lane_count = intel_dp->max_common_lane_count;
-> >  
-> >  	if (lttpr_max)
-> >  		sink_max = min(sink_max, lttpr_max);
-> >  
-> >  	intel_dp->max_common_lane_count = min3(source_max, sink_max, lane_max);
-> > +
-> > +	return intel_dp->max_common_lane_count != old_max_common_lane_count;
-> >  }
-> >  
-> >  int intel_dp_max_common_lane_count(struct intel_dp *intel_dp)
-> > @@ -792,13 +798,20 @@ int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate, int lan
-> >  	return -1;
-> >  }
-> >  
-> > -static void intel_dp_set_common_rates(struct intel_dp *intel_dp)
-> > +/* Return %true if the common rates changed. */
-> > +static bool intel_dp_set_common_rates(struct intel_dp *intel_dp)
-> >  {
-> >  	struct intel_display *display = to_intel_display(intel_dp);
-> > +	int num_old_common_rates = intel_dp->num_common_rates;
-> > +	int old_common_rates[DP_MAX_SUPPORTED_RATES];
-> >  
-> >  	drm_WARN_ON(display->drm,
-> >  		    !intel_dp->num_source_rates || !intel_dp->num_sink_rates);
-> >  
-> > +	static_assert(sizeof(old_common_rates) == sizeof(intel_dp->common_rates));
-> 
-> Could also assert the element size/type match. Maybe (as a followup
-> later) introduce a proper type for this rates[]+num construct and then
-> we could just copy the darn thing with a normal assignment and not have
-> to worry about this kind of stuff at all...
+On Wed, 13 May 2026, Imre Deak <imre.deak@intel.com> wrote:
+> On Wed, May 13, 2026 at 05:19:19PM +0300, Jani Nikula wrote:
+>> On Wed, 13 May 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
+com> wrote:
+>> > On Wed, May 13, 2026 at 10:58:35AM +0300, Jani Nikula wrote:
+>> >> xe_display_flush_cleanup_work() is a bit of an oddball function in xe
+>> >> display code. There shouldn't be anything this specific or xe
+>> >> specific. While I'm not sure what the correct refactor for the functi=
+on
+>> >> should be, move it to shared display code for starters, next to the
+>> >> eerily similar but slightly different intel_has_pending_fb_unpin() th=
+at
+>> >> is only called from i915 core.
+>> >>=20
+>> >> The main goal here is to unblock some refactors on
+>> >> for_each_intel_crtc().
+>> >>=20
+>> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+>> >> ---
+>> >>  drivers/gpu/drm/i915/display/intel_display.c | 21 +++++++++++++++
+>> >>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
+>> >>  drivers/gpu/drm/xe/display/xe_display.c      | 27 +++---------------=
+--
+>> >>  3 files changed, 25 insertions(+), 24 deletions(-)
+>> >>=20
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
+pu/drm/i915/display/intel_display.c
+>> >> index d5cf1476c7b9..50feca52b962 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
+>> >> @@ -737,6 +737,27 @@ bool intel_has_pending_fb_unpin(struct intel_dis=
+play *display)
+>> >>  	return false;
+>> >>  }
+>> >>=20=20
+>> >> +void intel_display_flush_cleanup_work(struct intel_display *display)
+>> >> +{
+>> >> +	struct intel_crtc *crtc;
+>> >> +
+>> >> +	for_each_intel_crtc(display->drm, crtc) {
+>> >> +		struct drm_crtc_commit *commit;
+>> >> +
+>> >> +		spin_lock(&crtc->base.commit_lock);
+>> >> +		commit =3D list_first_entry_or_null(&crtc->base.commit_list,
+>> >> +						  struct drm_crtc_commit, commit_entry);
+>> >> +		if (commit)
+>> >> +			drm_crtc_commit_get(commit);
+>> >> +		spin_unlock(&crtc->base.commit_lock);
+>> >> +
+>> >> +		if (commit) {
+>> >> +			wait_for_completion(&commit->cleanup_done);
+>> >> +			drm_crtc_commit_put(commit);
+>> >> +		}
+>> >> +	}
+>> >> +}
+>> >> +
+>> >>  /*
+>> >>   * Finds the encoder associated with the given CRTC. This can only be
+>> >>   * used when we know that the CRTC isn't feeding multiple encoders!
+>> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/g=
+pu/drm/i915/display/intel_display.h
+>> >> index a43ada0c0502..65f8c81a7bae 100644
+>> >> --- a/drivers/gpu/drm/i915/display/intel_display.h
+>> >> +++ b/drivers/gpu/drm/i915/display/intel_display.h
+>> >> @@ -402,6 +402,7 @@ void intel_disable_transcoder(const struct intel_=
+crtc_state *old_crtc_state);
+>> >>  void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
+>> >>  void i830_disable_pipe(struct intel_display *display, enum pipe pipe=
+);
+>> >>  bool intel_has_pending_fb_unpin(struct intel_display *display);
+>> >> +void intel_display_flush_cleanup_work(struct intel_display *display);
+>> >>  void intel_encoder_destroy(struct drm_encoder *encoder);
+>> >>  struct drm_display_mode *
+>> >>  intel_encoder_current_mode(struct intel_encoder *encoder);
+>> >> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/dr=
+m/xe/display/xe_display.c
+>> >> index aa73023b7398..ef27fdfdbab2 100644
+>> >> --- a/drivers/gpu/drm/xe/display/xe_display.c
+>> >> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+>> >> @@ -258,27 +258,6 @@ static bool suspend_to_idle(void)
+>> >>  	return false;
+>> >>  }
+>> >>=20=20
+>> >> -static void xe_display_flush_cleanup_work(struct xe_device *xe)
+>> >> -{
+>> >> -	struct intel_crtc *crtc;
+>> >> -
+>> >> -	for_each_intel_crtc(&xe->drm, crtc) {
+>> >> -		struct drm_crtc_commit *commit;
+>> >> -
+>> >> -		spin_lock(&crtc->base.commit_lock);
+>> >> -		commit =3D list_first_entry_or_null(&crtc->base.commit_list,
+>> >> -						  struct drm_crtc_commit, commit_entry);
+>> >> -		if (commit)
+>> >> -			drm_crtc_commit_get(commit);
+>> >> -		spin_unlock(&crtc->base.commit_lock);
+>> >> -
+>> >> -		if (commit) {
+>> >> -			wait_for_completion(&commit->cleanup_done);
+>> >> -			drm_crtc_commit_put(commit);
+>> >> -		}
+>> >> -	}
+>> >> -}
+>> >> -
+>> >>  static void xe_display_enable_d3cold(struct xe_device *xe)
+>> >>  {
+>> >>  	struct intel_display *display =3D xe->display;
+>> >> @@ -292,7 +271,7 @@ static void xe_display_enable_d3cold(struct xe_de=
+vice *xe)
+>> >>  	 */
+>> >>  	intel_power_domains_disable(display);
+>> >>=20=20
+>> >> -	xe_display_flush_cleanup_work(xe);
+>> >> +	intel_display_flush_cleanup_work(display);
+>> >>=20=20
+>> >>  	intel_opregion_suspend(display, PCI_D3cold);
+>> >>=20=20
+>> >> @@ -347,7 +326,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+>> >>  		intel_display_driver_suspend(display);
+>> >>  	}
+>> >>=20=20
+>> >> -	xe_display_flush_cleanup_work(xe);
+>> >> +	intel_display_flush_cleanup_work(display);
+>> >
+>> > intel_display_driver_suspend() already flushes the cleanup wq. So I
+>> > think this is doing nothing. The correct answer seems to be to nuke
+>> > the whole thing. We are missing the wq flush from the shutdown() path
+>> > in i915 however, so I suppose we should add it there.
+>> >
+>> >>=20=20
+>> >>  	intel_encoder_block_all_hpds(display);
+>> >>=20=20
+>> >> @@ -379,7 +358,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+>> >>  		intel_display_driver_suspend(display);
+>> >
+>> > This should rather be the same atomic helper shutdown that i915 uses.
+>> > I guess what we want is a intel_display_driver_shutdown() to pair
+>> > up with intel_display_driver_suspend().
+>>=20
+>> Yeah, well, another "Hal fixes a light bulb" moment. I just wanted to
+>> clean up the iterators, but I can't do that with xe having crtc
+>> iteration, which it never should have had in the first place.
+>>=20
+>> I think all of the i915/xe/display probe/cleanup/suspend/resume paths
+>> are a gigantic mess. It was a mess with just i915, and xe added another,
+>> *different* mess. They both do things differently, but *neither* should
+>> be calling low-level display stuff directly.
+>>=20
+>> I'll try to cook something up for this.
+>
+> Fwiw, this came up already earlier [1] and then I came up with
+> https://github.com/ideak/linux/commits/suspend-shutdown-refactor
+>
+> but haven't followed up with it. For reference I rebased it now on
+> drm-tip.
+>
+> [1] https://lore.kernel.org/all/aIjizdet9ZUXB-yx@ideak-desk
 
-Yes, makes sense. I'd have to pass common rates to
-intel_dp_link_config_init() later (in the link capability refactor
-patchset), so could do what you suggest at that point.
+I've started on this, but I'm planning on taking a slightly different
+route from what Imre has there. The direction is the same, move more of
+this detailed stuff to display.
 
-The struct could be used then for source and sink rates as well.
+But Imre also has a change similar to the patch at hand as the first
+thing.
 
-> 
-> > +	memcpy(old_common_rates, intel_dp->common_rates,
-> > +	       num_old_common_rates * sizeof(old_common_rates[0]));
-> > +
-> >  	intel_dp->num_common_rates = intersect_rates(intel_dp->source_rates,
-> >  						     intel_dp->num_source_rates,
-> >  						     intel_dp->sink_rates,
-> > @@ -810,13 +823,26 @@ static void intel_dp_set_common_rates(struct intel_dp *intel_dp)
-> >  		intel_dp->common_rates[0] = 162000;
-> >  		intel_dp->num_common_rates = 1;
-> >  	}
-> > +
-> > +	return num_old_common_rates != intel_dp->num_common_rates ||
-> > +	       memcmp(old_common_rates, intel_dp->common_rates,
-> > +		      num_old_common_rates * sizeof(old_common_rates[0]));
-> >  }
-> >  
-> > -static void intel_dp_set_common_link_params(struct intel_dp *intel_dp)
-> > +/* Return %true if any common link param changed. */
-> > +static bool intel_dp_set_common_link_params(struct intel_dp *intel_dp)
-> >  {
-> > -	intel_dp_set_common_rates(intel_dp);
-> > -	intel_dp_set_max_common_lane_count(intel_dp);
-> > +	bool params_changed = false;
-> > +
-> > +	if (intel_dp_set_common_rates(intel_dp))
-> > +		params_changed = true;
-> > +
-> > +	if (intel_dp_set_max_common_lane_count(intel_dp))
-> > +		params_changed = true;
-> > +
-> >  	intel_dp_link_config_init(intel_dp);
-> > +
-> > +	return params_changed;
-> >  }
-> >  
-> >  bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
-> > @@ -4911,9 +4937,19 @@ intel_dp_has_sink_count(struct intel_dp *intel_dp)
-> >  
-> >  void intel_dp_update_sink_caps(struct intel_dp *intel_dp)
-> >  {
-> > +	struct intel_display *display = to_intel_display(intel_dp);
-> > +
-> >  	intel_dp_set_sink_rates(intel_dp);
-> >  	intel_dp_set_max_sink_lane_count(intel_dp);
-> > -	intel_dp_set_common_link_params(intel_dp);
-> > +	/*
-> > +	 * Handle unexpected sink cap changes, or a race between setting
-> > +	 * the deferred link params flag in the HPD IRQ handler and
-> > +	 * clearing the flag during connector detect.
-> > +	 */
-> > +	if (intel_dp_set_common_link_params(intel_dp) &&
-> > +	    intel_dp_reset_link_params_defer(intel_dp))
-> > +		drm_dbg_kms(display->drm,
-> > +			    "DPRX capabilities changed before long HPD or RX_CAP_CHANGED signal\n");
-> >  }
-> >  
-> >  static bool
-> > -- 
-> > 2.49.1
-> 
-> -- 
-> Ville Syrjälä
-> Intel
+And that's the thing. I feel like starting to fix this one in xe code
+blocks the remainder of this series, and blocks the straighforward
+refactors of the probe/remove/suspend/remove parts. IMO it's easier to
+unify with all this code moved to display first.
+
+Ville, as I wrote in the commit message, can we just move this out of
+the way to unblock further changes? It's a non-functional change,
+doesn't make anything better or worse, apart from removing CRTC
+iteration from xe code, and unblocks further work.
+
+
+BR,
+Jani.
+
+
+>
+>>=20
+>>=20
+>> BR,
+>> Jani.
+>>=20
+>>=20
+>> >
+>> >>  	}
+>> >>=20=20
+>> >> -	xe_display_flush_cleanup_work(xe);
+>> >> +	intel_display_flush_cleanup_work(display);
+>> >>  	intel_dp_mst_suspend(display);
+>> >>  	intel_encoder_block_all_hpds(display);
+>> >>  	intel_hpd_cancel_work(display);
+>> >> --=20
+>> >> 2.47.3
+>>=20
+>> --=20
+>> Jani Nikula, Intel
+
+--=20
+Jani Nikula, Intel
