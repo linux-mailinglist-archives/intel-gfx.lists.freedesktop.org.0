@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2AEgC4FNEGq5VwYAu9opvQ
+	id aE/0EopNEGoJWAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 14:35:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 14:35:22 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C07AC5B41BC
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 14:35:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F2C015B41EB
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 14:35:21 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2E80310F68A;
-	Fri, 22 May 2026 12:35:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A14D10F649;
+	Fri, 22 May 2026 12:35:20 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="Iq5LaUkG";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="KrnOxiYQ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28C1F10F664;
- Fri, 22 May 2026 12:35:08 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1779453301; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA1B10F64B;
+ Fri, 22 May 2026 12:35:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1779453311; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=FUTh4Mywy+7xMNOuhhhDuALBrbR00CMy7h+2/X6JuFQvzcnaLdJDbRZQF09Opi7GOXrZadtc1Ph75qeOoKvdXZkR8JRIZA8mIqgsZw1DPN/Ustse7yeurkM4NyjXBXdlakNvSOxGcSi78l2SC9OUOEpDV/gbINa+HctbLEVO6t4=
+ b=nTfy3OrN+xWL1+TuLzoX26zQ4yAGdPW+cmQioRZQJXwOdc9+kfAynxX2gIIEhsmQgGbPpNdEG95hL0WX409FfPP5QwKvTXUDczZL6caRd4WKBSWCwmRdkV/zltZu1VscsAMLT9Zy1ncx8NamgNZQKeZHeIkXzLrruii/KllD5rY=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1779453301;
+ s=zohoarc; t=1779453311;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=27zEwOtXJrBMBnHQwkLTjVD6n+CH7JKtJblWcUpdbqQ=; 
- b=baMQabsgUD6BaifRsUksjV+uYcQ1nzCljvkCBvz5WUvdYKxnRNLH4VbgaRXkPThzaKLOdVmgszHE7w6KsEKlfS0C962h8gtb70po0kdVIeIoNW5XvtnH8A2OoO9c/KoYRP1kcFgxtq/BLTrDJGSOHoMTQ4SLDSmIUlG8OJQpa3Q=
+ bh=lhpOcDUseMmiySnppKFJblATZJIPKhIANmNobJ5QKtA=; 
+ b=L5ZdSKHsuO932wNH9ULd5v6tPpN8t30gb/iV9/i5qcdWfe64J8tUJTmd7bKVXHkDeDcSQpidEqYsBUJ0xOc2zaZ/TyRID45ihxWx7qQCe4uvFFFk8InxC9HeExNrEzFnXvR2+Zp7TrRWH7NOiN44SMeiXJT7xKTSR55iqVXhXfs=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779453301; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779453311; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=27zEwOtXJrBMBnHQwkLTjVD6n+CH7JKtJblWcUpdbqQ=;
- b=Iq5LaUkG26Uftvjk0+luxzb5Vfq1P7T2h2KI87WmFMpcw0MPF2Ht6sePOe2DP8Nu
- cKKojZuAZAFtbSdgt0Mzktk7iQLWwQxCDvKrqhn8QN/4hDTBSptPvq/i0rdDI65aOj7
- +skGhOnnkex03vLOfDJm3mIArvpTjBlMiFBO94Dw=
-Received: by mx.zohomail.com with SMTPS id 1779453299324733.4769972371035;
- Fri, 22 May 2026 05:34:59 -0700 (PDT)
+ bh=lhpOcDUseMmiySnppKFJblATZJIPKhIANmNobJ5QKtA=;
+ b=KrnOxiYQw1lUgWrmsKPC/3GDgMtgp1Nc3r+8kdXiMRfdTw4xV1CBWfryeInyp25g
+ 3SFBQ8vqt4ByzrNnz9QgYs3WaWvMBG5OyeyfVcwK3BZyY2MxWcsOt9T7nlnEBJWZHjq
+ emRrIxnC6HSKQrtINLSl0uVgPGrPam8V8VZf3hrc=
+Received: by mx.zohomail.com with SMTPS id 1779453308771435.58874419763436;
+ Fri, 22 May 2026 05:35:08 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Fri, 22 May 2026 14:32:07 +0200
-Subject: [PATCH v15 16/28] drm/rockchip: vop2: Add RK3576 to the RG swap
- special case
+Date: Fri, 22 May 2026 14:32:08 +0200
+Subject: [PATCH v15 17/28] drm/rockchip: vop2: Recognise 10-bit YUV422 as
+ YUV format
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260522-color-format-v15-16-21fb136c9df2@collabora.com>
+Message-Id: <20260522-color-format-v15-17-21fb136c9df2@collabora.com>
 References: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
 In-Reply-To: <20260522-color-format-v15-0-21fb136c9df2@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -79,7 +79,7 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Andy Yan <andyshrk@163.com>
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 X-Mailer: b4 0.15.2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -99,61 +99,62 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
-	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-0.998];
 	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,163.com];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,collabora.com:email,collabora.com:mid,collabora.com:dkim,fooishbar.org:email]
-X-Rspamd-Queue-Id: C07AC5B41BC
+X-Rspamd-Queue-Id: F2C015B41EB
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Much like RK3588, RK3576 requires an RG swap to be performed for YUV444
-8-bit and YUV444 10-bit bus formats.
+The Rockchip VOP2 video output driver has a "is_yuv_output" function,
+which returns true when a given bus format is a YUV format, and false
+otherwise.
 
-Add its version to the already existing check for RK3588, so that YUV444
-output is correct on this platform.
+This switch statement is lacking the bus format used for YUV422 10-bit.
 
-Fixes: 944757a4cba6 ("drm/rockchip: vop2: Add support for rk3576")
-Reviewed-by: Andy Yan <andyshrk@163.com>
+Add the two component orderings of the YUV422 10-bit bus formats to the
+switch statement.
+
+Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
+Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Reviewed-by: Daniel Stone <daniel@fooishbar.org>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index a160077a507f..be7830c9001c 100644
+index be7830c9001c..a268bd2fbaaa 100644
 --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
 +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -337,7 +337,8 @@ static bool vop2_output_uv_swap(u32 bus_format, u32 output_mode)
- 
- static bool vop2_output_rg_swap(struct vop2 *vop2, u32 bus_format)
- {
--	if (vop2->version == VOP_VERSION_RK3588) {
-+	if (vop2->version == VOP_VERSION_RK3588 ||
-+	    vop2->version == VOP_VERSION_RK3576) {
- 		if (bus_format == MEDIA_BUS_FMT_YUV8_1X24 ||
- 		    bus_format == MEDIA_BUS_FMT_YUV10_1X30)
- 			return true;
+@@ -352,6 +352,8 @@ static bool is_yuv_output(u32 bus_format)
+ 	switch (bus_format) {
+ 	case MEDIA_BUS_FMT_YUV8_1X24:
+ 	case MEDIA_BUS_FMT_YUV10_1X30:
++	case MEDIA_BUS_FMT_YUYV10_1X20:
++	case MEDIA_BUS_FMT_UYVY10_1X20:
+ 	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
+ 	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
+ 	case MEDIA_BUS_FMT_YUYV8_2X8:
 
 -- 
 2.54.0
