@@ -2,68 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oBu6NLpcEGrEWgYAu9opvQ
+	id iJIoHFJgEGobWwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:40:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:55:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 694375B5547
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:40:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EA8AD5B5995
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 15:55:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DD54110E07D;
-	Fri, 22 May 2026 13:40:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78D7910F6D8;
+	Fri, 22 May 2026 13:55:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QrThRZPB";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jfIS3sjn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A71710E07D;
- Fri, 22 May 2026 13:40:07 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 828C410F6D8;
+ Fri, 22 May 2026 13:55:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779457207; x=1810993207;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=AqzWIe15rSPR2qFTMV0hV+sdzraVnQlAGYI8gzdLoy0=;
- b=QrThRZPB1GCRjrIP8oUliX3be73s1vlbKS59DNtSOe4DuEYoHa5cfqGY
- B6HQLsgX28HqoHM45kv5er1yzZxWhnpWsfAovtrS2g5f8QW9HP9uXtKtA
- tOwXYXtQEx7LmbJNUo9+F/Zk22G4AUmVJ8BVd+n6SQ+ke3HX22mRth6CT
- JkrnKcJUvM0k5w46G4Xotom4YfqG2cVH80RlSVBfKu54wqnMuzpAZ0xTE
- Qq7bSMGac1O/OMn0vz/7AeRGPdR3Ygr0g29D9xUwaSaCQD6Q2861lPA7U
- muGYokJLnOxjCrAI05vqUB4Ufpxoxa8sop+g6Nw1Bgg8x7m7exMdiIiBw Q==;
-X-CSE-ConnectionGUID: E9u/wFDZSFyNUdJnOsSS4w==
-X-CSE-MsgGUID: HOLCDxRtTB2lI+RFtbjVYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="91778777"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="91778777"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:40:07 -0700
-X-CSE-ConnectionGUID: yGGLmTkkQ0SkhpaPtpcYMw==
-X-CSE-MsgGUID: 0HgWlebzRxq3Mt5xv1JXfQ==
+ t=1779458128; x=1810994128;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=30td6Qe00ivsErn6mHuLefubhQdif2UM7K8DI8YAF7I=;
+ b=jfIS3sjnsTY0oY9vbvDEIVgoPsp2cKtbQerZ8WF0EegF+TPag0tLZqi0
+ fZ86sJoCWC2uhggp6cX8+3fh6BOSStnlk3EBh/99cAaGwCbHzUmugXGDX
+ P1AJvcBRL76MjcdYXb5n/np0F3W5z1FXdcge0dsc+04+k6c24CbKIMtd9
+ /rk1SF7vMlaMAitTM2zJ7zIUpC2fHjopr9ZA3WiXUVuE5dmJUsZ+70oko
+ xIkChp9Fu7whViaMaqhtsBgAm6BFaLW3hkRPd2JB3kh+1ZaOjR55MvKFn
+ Nz+QS955P5qtqd7GtHFirRJ+4FWKKc/5o+ncC+xhAs0W4Y73r/36UrlQn g==;
+X-CSE-ConnectionGUID: GnTfEqPxRsWx754QYfRdZQ==
+X-CSE-MsgGUID: EnwbmYJSQqGRvkqMbZoysQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="97809507"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="97809507"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 06:55:27 -0700
+X-CSE-ConnectionGUID: bkZwtChaQlmC/pKL64C/KQ==
+X-CSE-MsgGUID: 03thC8SCTPGuUvBENyOBpw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="234562688"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa009.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 06:40:04 -0700
-Date: Fri, 22 May 2026 15:40:02 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v1 2/2] drm/managed: fix drmm_add_mod_or_reset() kernel-doc
-In-Reply-To: <8b886c39-f474-463e-99c5-2cc91466f1b9@intel.com>
-Message-ID: <676b9ad7-46f7-fabe-163e-33012a23030c@intel.com>
-References: <20260521155231.1821935-1-michal.grzelak@intel.com>
- <20260521155231.1821935-3-michal.grzelak@intel.com>
- <8b886c39-f474-463e-99c5-2cc91466f1b9@intel.com>
+ by fmviesa003.fm.intel.com with ESMTP; 22 May 2026 06:55:25 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v2 0/2] fixes to DRM doc & parameter's print
+Date: Fri, 22 May 2026 15:55:18 +0200
+Message-ID: <20260522135520.1862848-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-969468146-1779456677=:1544314"
-Content-ID: <7e91f919-70b4-ad0c-8680-dc597dce2f86@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,79 +76,51 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	URIBL_MULTI_FAIL(0.00)[gabe.freedesktop.org:server fail,intel.com:server fail];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
 	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	TO_DN_SOME(0.00)[]
-X-Rspamd-Queue-Id: 694375B5547
+X-Rspamd-Queue-Id: EA8AD5B5995
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Next version of [1]. Changed commit message to mention kernel-doc of
+actually changed macro.
 
---8323329-969468146-1779456677=:1544314
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <95e88270-d98b-7af7-d8da-c2e395bb1814@intel.com>
-
-On Fri, 22 May 2026, Borah, Chaitanya Kumar wrote:
-> On 5/21/2026 9:22 PM, Micha≥ Grzelak wrote:
->> Kernel-doc of drmm_add_mode_or_reset() references @releases which is not
->> on argument list. Swap '@' between 'releases' and 'action' words to fix
->> the documentation.
->
-> s/drmm_add_mode_or_reset/drmm_add_action
->
-
-Title would like to see that as well...
+[1] https://lore.kernel.org/intel-gfx/20260521155231.1821935-1-michal.grzelak@intel.com/
 
 BR,
-Micha≥
+Micha≈Ç
 
->> 
->> Signed-off-by: Micha≥ Grzelak <michal.grzelak@intel.com>
->> ---
->>   include/drm/drm_managed.h | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
->> index 72bfac002c06..72d0d68be226 100644
->> --- a/include/drm/drm_managed.h
->> +++ b/include/drm/drm_managed.h
->> @@ -18,7 +18,7 @@ typedef void (*drmres_release_t)(struct drm_device *dev, 
->> void *res);
->>    * @action: function which should be called when @dev is released
->>    * @data: opaque pointer, passed to @action
->>    *
->> - * This function adds the @release action with optional parameter @data to 
->> the
->> + * This function adds the release @action with optional parameter @data to 
->> the
->>    * list of cleanup actions for @dev. The cleanup actions will be run in 
->> reverse
->>    * order in the final drm_dev_put() call for @dev.
->>    */
->
->
---8323329-969468146-1779456677=:1544314--
+Micha≈Ç Grzelak (2):
+  drm/print: describe 6th & 9th bit of drm.debug
+  drm/managed: fix drmm_add_action() kernel-doc
+
+ drivers/gpu/drm/drm_print.c | 4 +++-
+ include/drm/drm_managed.h   | 2 +-
+ include/drm/drm_print.h     | 2 +-
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+
+-- 
+2.45.2
+
