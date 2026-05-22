@@ -2,67 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mMVQFRAVEGphTQYAu9opvQ
+	id 4BMHCh0wEGoaUwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 10:34:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 12:29:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B41BF5B0A2E
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 10:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 791185B21C3
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 12:29:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C10A210F4F0;
-	Fri, 22 May 2026 08:34:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EEF8210E1D9;
+	Fri, 22 May 2026 10:29:46 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="N/3o6oOW";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eX8wMRj+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F20BA10F4E9;
- Fri, 22 May 2026 08:34:18 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5C0D810E1D9;
+ Fri, 22 May 2026 10:29:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779438859; x=1810974859;
+ t=1779445785; x=1810981785;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=5qoVotUYYlbK/js3E2Xm6TB2KDKK7XUnn+MYIbfw2DM=;
- b=N/3o6oOWxUuCE7PlI5Nn0XHkDPVte7xuUE8rZtcdwIDfL+3rv1Y0f5mB
- 9ir/H0egzMxEJNU3OQygmImKMaX59JKXTYVMQlkNBVEXKhb0i8H1PVj+F
- KmTC4ed94fADUIGNj2cAm37lfafb8THq57O/n06BNwb8Bit7sVh6szOWK
- CbCvs5iPlaB13Xkcxw/Fm3WAEWcMmRlR/jsswFecjviiynu8a0Mguq+YI
- /3WP6m8Zm0DsblAg7FePYFlfPkPCE9RXtl4ttE5am0RXwZj0oZvoCGKLU
- BlnQJfefgaCOCqOnFqTflnlBbWFL+kLPZWsLxNJaMBVjqvDSIvvYmWdzk w==;
-X-CSE-ConnectionGUID: 8DD6jjK7TV2GbfqajO56eA==
-X-CSE-MsgGUID: IFwduw9pSU6zf6YiIhFOug==
-X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="67891478"
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="67891478"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 01:34:19 -0700
-X-CSE-ConnectionGUID: YMt9LvWDRZmhhvPKeFouiQ==
-X-CSE-MsgGUID: YkGPd7bDTjG0f2zb87ZSow==
+ bh=fMS1A/iD1uQbfbOfmjoWxWs9lpzqYP9T92jFlkZ2U+0=;
+ b=eX8wMRj+HkKJ/e66D5Yk+gQdd5a7rjmP4ra5TxPY8M7ygYxFE9C8eadd
+ Kd5lSjtoV1kT8UMQYxY6llYayCZCehwG1EsV6x2UTNeKpFfjUeSnOrg2R
+ ZlUKX8BW8a2mNNUwG0p4Jh6IZVUrVhK/Aa5XGigu++eeeXnav2uQhGJGd
+ 00V4xne3P4DfZnZZCgSCmHaDyRuSKxuFnvThijO26UMHT+ja1vfwYjohP
+ jKw/topjSnuRoUxhbMaYlwd0BS2Kz6hGXRmz2kcymUXrHMUxqDhyQPK96
+ 0lf9ovwc5XBgbDB4RnGM9KsJvv3aHQuvfVOxaP/GJTf3/RUQDy2vC9ZDu A==;
+X-CSE-ConnectionGUID: cYl0kIZKRw+c5T4ck4UeRA==
+X-CSE-MsgGUID: G+vPmFmRSKGwrzozeUrX5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11793"; a="80427787"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="80427787"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 03:29:45 -0700
+X-CSE-ConnectionGUID: 5vE4l0/oTcq6wfjJePjHvQ==
+X-CSE-MsgGUID: 6HQ7pncdTWq11n4fKUw79w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="234497699"
+X-IronPort-AV: E=Sophos;i="6.24,162,1774335600"; d="scan'208";a="245152258"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.1])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 01:34:16 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: imre.deak@intel.com
-Cc: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 03:29:42 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: imre.deak@intel.com, Ville =?utf-8?B?U3lyasOkbMOk?=
+ <ville.syrjala@linux.intel.com>
+Cc: Jouni Hogander <jouni.hogander@intel.com>,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [RESEND 1/6] drm/{i915, xe}: move
- xe_display_flush_cleanup_work() to i915 display
-In-Reply-To: <agSRBmiw7mVNxKC2@ideak-desk.lan>
+Subject: Re: [PATCH 1/5] drm/i915/dp: Add helpers to reset link params
+In-Reply-To: <ahAJPJUYbSRvWPQT@ideak-desk.lan>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <cover.1778659089.git.jani.nikula@intel.com>
- <7aecde385b66dbf7d0e61759528c6cd643581a3d.1778659089.git.jani.nikula@intel.com>
- <agRp6Was9FCQbKee@intel.com>
- <a6cb2e030e9118084abfc315c557a8b11d8db3d7@intel.com>
- <agSRBmiw7mVNxKC2@ideak-desk.lan>
-Date: Fri, 22 May 2026 11:34:14 +0300
-Message-ID: <6c89542bba35b03826d5c9237e33383c7ba9f489@intel.com>
+References: <20260518112427.2460725-1-imre.deak@intel.com>
+ <20260518112427.2460725-2-imre.deak@intel.com>
+ <ag962-z5WD8SVS9I@intel.com> <ahAJPJUYbSRvWPQT@ideak-desk.lan>
+Date: Fri, 22 May 2026 13:29:39 +0300
+Message-ID: <6b7498358483981472e9a9c6b0c76739de0b028a@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -80,236 +78,282 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: B41BF5B0A2E
+X-Rspamd-Queue-Id: 791185B21C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Wed, 13 May 2026, Imre Deak <imre.deak@intel.com> wrote:
-> On Wed, May 13, 2026 at 05:19:19PM +0300, Jani Nikula wrote:
->> On Wed, 13 May 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.=
-com> wrote:
->> > On Wed, May 13, 2026 at 10:58:35AM +0300, Jani Nikula wrote:
->> >> xe_display_flush_cleanup_work() is a bit of an oddball function in xe
->> >> display code. There shouldn't be anything this specific or xe
->> >> specific. While I'm not sure what the correct refactor for the functi=
-on
->> >> should be, move it to shared display code for starters, next to the
->> >> eerily similar but slightly different intel_has_pending_fb_unpin() th=
-at
->> >> is only called from i915 core.
->> >>=20
->> >> The main goal here is to unblock some refactors on
->> >> for_each_intel_crtc().
->> >>=20
->> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> >> ---
->> >>  drivers/gpu/drm/i915/display/intel_display.c | 21 +++++++++++++++
->> >>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
->> >>  drivers/gpu/drm/xe/display/xe_display.c      | 27 +++---------------=
---
->> >>  3 files changed, 25 insertions(+), 24 deletions(-)
->> >>=20
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/g=
-pu/drm/i915/display/intel_display.c
->> >> index d5cf1476c7b9..50feca52b962 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
->> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
->> >> @@ -737,6 +737,27 @@ bool intel_has_pending_fb_unpin(struct intel_dis=
-play *display)
->> >>  	return false;
->> >>  }
->> >>=20=20
->> >> +void intel_display_flush_cleanup_work(struct intel_display *display)
->> >> +{
->> >> +	struct intel_crtc *crtc;
->> >> +
->> >> +	for_each_intel_crtc(display->drm, crtc) {
->> >> +		struct drm_crtc_commit *commit;
->> >> +
->> >> +		spin_lock(&crtc->base.commit_lock);
->> >> +		commit =3D list_first_entry_or_null(&crtc->base.commit_list,
->> >> +						  struct drm_crtc_commit, commit_entry);
->> >> +		if (commit)
->> >> +			drm_crtc_commit_get(commit);
->> >> +		spin_unlock(&crtc->base.commit_lock);
->> >> +
->> >> +		if (commit) {
->> >> +			wait_for_completion(&commit->cleanup_done);
->> >> +			drm_crtc_commit_put(commit);
->> >> +		}
->> >> +	}
->> >> +}
->> >> +
->> >>  /*
->> >>   * Finds the encoder associated with the given CRTC. This can only be
->> >>   * used when we know that the CRTC isn't feeding multiple encoders!
->> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/g=
-pu/drm/i915/display/intel_display.h
->> >> index a43ada0c0502..65f8c81a7bae 100644
->> >> --- a/drivers/gpu/drm/i915/display/intel_display.h
->> >> +++ b/drivers/gpu/drm/i915/display/intel_display.h
->> >> @@ -402,6 +402,7 @@ void intel_disable_transcoder(const struct intel_=
-crtc_state *old_crtc_state);
->> >>  void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
->> >>  void i830_disable_pipe(struct intel_display *display, enum pipe pipe=
-);
->> >>  bool intel_has_pending_fb_unpin(struct intel_display *display);
->> >> +void intel_display_flush_cleanup_work(struct intel_display *display);
->> >>  void intel_encoder_destroy(struct drm_encoder *encoder);
->> >>  struct drm_display_mode *
->> >>  intel_encoder_current_mode(struct intel_encoder *encoder);
->> >> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/dr=
-m/xe/display/xe_display.c
->> >> index aa73023b7398..ef27fdfdbab2 100644
->> >> --- a/drivers/gpu/drm/xe/display/xe_display.c
->> >> +++ b/drivers/gpu/drm/xe/display/xe_display.c
->> >> @@ -258,27 +258,6 @@ static bool suspend_to_idle(void)
->> >>  	return false;
->> >>  }
->> >>=20=20
->> >> -static void xe_display_flush_cleanup_work(struct xe_device *xe)
->> >> -{
->> >> -	struct intel_crtc *crtc;
->> >> -
->> >> -	for_each_intel_crtc(&xe->drm, crtc) {
->> >> -		struct drm_crtc_commit *commit;
->> >> -
->> >> -		spin_lock(&crtc->base.commit_lock);
->> >> -		commit =3D list_first_entry_or_null(&crtc->base.commit_list,
->> >> -						  struct drm_crtc_commit, commit_entry);
->> >> -		if (commit)
->> >> -			drm_crtc_commit_get(commit);
->> >> -		spin_unlock(&crtc->base.commit_lock);
->> >> -
->> >> -		if (commit) {
->> >> -			wait_for_completion(&commit->cleanup_done);
->> >> -			drm_crtc_commit_put(commit);
->> >> -		}
->> >> -	}
->> >> -}
->> >> -
->> >>  static void xe_display_enable_d3cold(struct xe_device *xe)
->> >>  {
->> >>  	struct intel_display *display =3D xe->display;
->> >> @@ -292,7 +271,7 @@ static void xe_display_enable_d3cold(struct xe_de=
-vice *xe)
->> >>  	 */
->> >>  	intel_power_domains_disable(display);
->> >>=20=20
->> >> -	xe_display_flush_cleanup_work(xe);
->> >> +	intel_display_flush_cleanup_work(display);
->> >>=20=20
->> >>  	intel_opregion_suspend(display, PCI_D3cold);
->> >>=20=20
->> >> @@ -347,7 +326,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
->> >>  		intel_display_driver_suspend(display);
->> >>  	}
->> >>=20=20
->> >> -	xe_display_flush_cleanup_work(xe);
->> >> +	intel_display_flush_cleanup_work(display);
->> >
->> > intel_display_driver_suspend() already flushes the cleanup wq. So I
->> > think this is doing nothing. The correct answer seems to be to nuke
->> > the whole thing. We are missing the wq flush from the shutdown() path
->> > in i915 however, so I suppose we should add it there.
->> >
->> >>=20=20
->> >>  	intel_encoder_block_all_hpds(display);
->> >>=20=20
->> >> @@ -379,7 +358,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
->> >>  		intel_display_driver_suspend(display);
->> >
->> > This should rather be the same atomic helper shutdown that i915 uses.
->> > I guess what we want is a intel_display_driver_shutdown() to pair
->> > up with intel_display_driver_suspend().
+On Fri, 22 May 2026, Imre Deak <imre.deak@intel.com> wrote:
+> On Fri, May 22, 2026 at 12:36:27AM +0300, Ville Syrj=C3=A4l=C3=A4 wrote:
+>> On Mon, May 18, 2026 at 02:24:22PM +0300, Imre Deak wrote:
+>> > Add helpers to defer and handle link params resets instead of
+>> > open-coding the same. Rename intel_dp_reset_link_params() to
+>> > intel_dp_reset_link_params_force() to align its name with the new
+>> > deferred reset helpers.
+>> >=20
+>> > When deferring a reset, return whether a new reset was queued, used by=
+ a
+>> > follow-up change.
+>> >=20
+>> > Signed-off-by: Imre Deak <imre.deak@intel.com>
+>> > ---
+>> >  drivers/gpu/drm/i915/display/g4x_dp.c         |  2 +-
+>> >  drivers/gpu/drm/i915/display/intel_ddi.c      |  2 +-
+>> >  drivers/gpu/drm/i915/display/intel_dp.c       | 41 +++++++++++++++----
+>> >  drivers/gpu/drm/i915/display/intel_dp.h       |  3 +-
+>> >  .../drm/i915/display/intel_dp_link_training.c |  4 +-
+>> >  5 files changed, 38 insertions(+), 14 deletions(-)
+>> >=20
+>> > diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i=
+915/display/g4x_dp.c
+>> > index 5ff1cdf4581a5..c20a97e21419b 100644
+>> > --- a/drivers/gpu/drm/i915/display/g4x_dp.c
+>> > +++ b/drivers/gpu/drm/i915/display/g4x_dp.c
+>> > @@ -1265,7 +1265,7 @@ static void intel_dp_encoder_reset(struct drm_en=
+coder *encoder)
+>> >=20=20
+>> >  	intel_dp->DP =3D intel_de_read(display, intel_dp->output_reg);
+>> >=20=20
+>> > -	intel_dp->reset_link_params =3D true;
+>> > +	intel_dp_reset_link_params_defer(intel_dp);
+>> >  	intel_dp_invalidate_source_oui(intel_dp);
+>> >=20=20
+>> >  	if (display->platform.valleyview || display->platform.cherryview)
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/dr=
+m/i915/display/intel_ddi.c
+>> > index 86520848892e0..77819aaeccb76 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+>> > @@ -4664,7 +4664,7 @@ static void intel_ddi_encoder_reset(struct drm_e=
+ncoder *encoder)
+>> >  	struct intel_dp *intel_dp =3D enc_to_intel_dp(to_intel_encoder(encod=
+er));
+>> >  	struct intel_digital_port *dig_port =3D enc_to_dig_port(to_intel_enc=
+oder(encoder));
+>> >=20=20
+>> > -	intel_dp->reset_link_params =3D true;
+>> > +	intel_dp_reset_link_params_defer(intel_dp);
+>> >  	intel_dp_invalidate_source_oui(intel_dp);
+>> >=20=20
+>> >  	intel_pps_encoder_reset(intel_dp);
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm=
+/i915/display/intel_dp.c
+>> > index 1920d2f026665..13163dd085e91 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp.c
+>> > @@ -3710,7 +3710,11 @@ void intel_dp_set_link_params(struct intel_dp *=
+intel_dp,
+>> >  	intel_dp->lane_count =3D lane_count;
+>> >  }
+>> >=20=20
+>> > -void intel_dp_reset_link_params(struct intel_dp *intel_dp)
+>> > +/*
+>> > + * Reset link params now, preserving any deferred connector
+>> > + * detect-time reset request.
+>> > + */
+>> > +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp)
+>> >  {
+>> >  	intel_dp->link.max_lane_count =3D intel_dp_max_common_lane_count(int=
+el_dp);
+>> >  	intel_dp->link.max_rate =3D intel_dp_max_common_rate(intel_dp);
+>> > @@ -3720,6 +3724,28 @@ void intel_dp_reset_link_params(struct intel_dp=
+ *intel_dp)
+>> >  	intel_dp->link.seq_train_failures =3D 0;
+>> >  }
+>> >=20=20
+>> > +/*
+>> > + * Reset link params during the next connector detect.
+>> > + * Return %true if a new reset was queued.
+>> > + */
+>> > +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp)
 >>=20
->> Yeah, well, another "Hal fixes a light bulb" moment. I just wanted to
->> clean up the iterators, but I can't do that with xe having crtc
->> iteration, which it never should have had in the first place.
+>> I find the intel_dp_reset_link_params_defer() vs.
+>> intel_dp_reset_link_params_force() naming rather confusing.
 >>=20
->> I think all of the i915/xe/display probe/cleanup/suspend/resume paths
->> are a gigantic mess. It was a mess with just i915, and xe added another,
->> *different* mess. They both do things differently, but *neither* should
->> be calling low-level display stuff directly.
->>=20
->> I'll try to cook something up for this.
+>> Can't immediately think of a really good name for
+>> intel_dp_reset_link_params_defer() so maybe it's better to not
+>> have a function for it at all (ie. just drop this patch)?
 >
-> Fwiw, this came up already earlier [1] and then I came up with
-> https://github.com/ideak/linux/commits/suspend-shutdown-refactor
+> The idea was to have an interface to reset the link params directly or
+> in a deferred way, instead of a direct access of the flag.
 >
-> but haven't followed up with it. For reference I rebased it now on
-> drm-tip.
->
-> [1] https://lore.kernel.org/all/aIjizdet9ZUXB-yx@ideak-desk
+> The names are not great yes. I could use what Jouni suggested instead,
+> or if the above argument is not good enough I can also drop this patch.
 
-I've started on this, but I'm planning on taking a slightly different
-route from what Imre has there. The direction is the same, move more of
-this detailed stuff to display.
+I suggest intel_dp_reset_link_params() keeps its name, or gets renamed
+to intel_dp_link_params_reset(). It just does the thing, no "force".
 
-But Imre also has a change similar to the patch at hand as the first
-thing.
+Then the other two use something like:
 
-And that's the thing. I feel like starting to fix this one in xe code
-blocks the remainder of this series, and blocks the straighforward
-refactors of the probe/remove/suspend/remove parts. IMO it's easier to
-unify with all this code moved to display first.
+- submit/process
+- queue/process
+- stage/handle
 
-Ville, as I wrote in the commit message, can we just move this out of
-the way to unblock further changes? It's a non-functional change,
-doesn't make anything better or worse, apart from removing CRTC
-iteration from xe code, and unblocks further work.
+or some combination i.e. something like:
 
+intel_dp_link_params_reset()
+intel_dp_link_params_reset_submit()
+intel_dp_link_params_reset_process()
 
 BR,
 Jani.
 
-
+>
+>> Then you at least see that it's just setting the flag. AFAICS you only
+>> have a single place (in the last patch) that uses this return value
+>> for anything, so could just do the check+set dance there on the spot.
 >
 >>=20
->>=20
->> BR,
->> Jani.
->>=20
->>=20
->> >
->> >>  	}
->> >>=20=20
->> >> -	xe_display_flush_cleanup_work(xe);
->> >> +	intel_display_flush_cleanup_work(display);
->> >>  	intel_dp_mst_suspend(display);
->> >>  	intel_encoder_block_all_hpds(display);
->> >>  	intel_hpd_cancel_work(display);
->> >> --=20
->> >> 2.47.3
+>> > +{
+>> > +	bool reset_was_pending =3D intel_dp->reset_link_params;
+>> > +
+>> > +	intel_dp->reset_link_params =3D true;
+>> > +
+>> > +	return !reset_was_pending;
+>> > +}
+>> > +
+>> > +static void intel_dp_handle_deferred_link_params_reset(struct intel_d=
+p *intel_dp)
+>> > +{
+>> > +	if (!intel_dp->reset_link_params)
+>> > +		return;
+>> > +
+>> > +	intel_dp->reset_link_params =3D false;
+>> > +	intel_dp_reset_link_params_force(intel_dp);
+>> > +}
+>> > +
+>> >  /* Enable backlight PWM and backlight PP control. */
+>> >  void intel_edp_backlight_on(const struct intel_crtc_state *crtc_state,
+>> >  			    const struct drm_connector_state *conn_state)
+>> > @@ -4066,7 +4092,7 @@ void intel_dp_sync_state(struct intel_encoder *e=
+ncoder,
+>> >  	intel_dp_tunnel_resume(intel_dp, crtc_state, dpcd_updated);
+>> >=20=20
+>> >  	if (crtc_state) {
+>> > -		intel_dp_reset_link_params(intel_dp);
+>> > +		intel_dp_reset_link_params_force(intel_dp);
+>> >  		intel_dp_set_link_params(intel_dp, crtc_state->port_clock, crtc_sta=
+te->lane_count);
+>> >  		intel_dp->link.active =3D true;
+>> >  	}
+>> > @@ -6487,10 +6513,7 @@ intel_dp_detect(struct drm_connector *_connecto=
+r,
+>> >=20=20
+>> >  	intel_dp_detect_sdp_caps(intel_dp);
+>> >=20=20
+>> > -	if (intel_dp->reset_link_params) {
+>> > -		intel_dp_reset_link_params(intel_dp);
+>> > -		intel_dp->reset_link_params =3D false;
+>> > -	}
+>> > +	intel_dp_handle_deferred_link_params_reset(intel_dp);
+>> >=20=20
+>> >  	intel_dp_mst_configure(intel_dp);
+>> >=20=20
+>> > @@ -6944,7 +6967,7 @@ intel_dp_hpd_pulse(struct intel_digital_port *di=
+g_port, bool long_hpd)
+>> >=20=20
+>> >  		intel_dp_read_dprx_caps(intel_dp, dpcd);
+>> >=20=20
+>> > -		intel_dp->reset_link_params =3D true;
+>> > +		intel_dp_reset_link_params_defer(intel_dp);
+>> >  		intel_dp_invalidate_source_oui(intel_dp);
+>> >=20=20
+>> >  		return IRQ_NONE;
+>> > @@ -7252,7 +7275,7 @@ intel_dp_init_connector(struct intel_digital_por=
+t *dig_port,
+>> >  		     encoder->base.name))
+>> >  		return false;
+>> >=20=20
+>> > -	intel_dp->reset_link_params =3D true;
+>> > +	intel_dp_reset_link_params_defer(intel_dp);
+>> >=20=20
+>> >  	/* Preserve the current hw state. */
+>> >  	intel_dp->DP =3D intel_de_read(display, intel_dp->output_reg);
+>> > @@ -7317,7 +7340,7 @@ intel_dp_init_connector(struct intel_digital_por=
+t *dig_port,
+>> >=20=20
+>> >  	intel_dp_set_source_rates(intel_dp);
+>> >  	intel_dp_set_common_rates(intel_dp);
+>> > -	intel_dp_reset_link_params(intel_dp);
+>> > +	intel_dp_reset_link_params_force(intel_dp);
+>> >=20=20
+>> >  	/* init MST on ports that can support it */
+>> >  	intel_dp_mst_encoder_init(dig_port, connector->base.base.id);
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm=
+/i915/display/intel_dp.h
+>> > index f41480d247142..7c24d3dbb6983 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp.h
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp.h
+>> > @@ -114,7 +114,8 @@ int intel_dp_rate_index(const int *rates, int len,=
+ int rate);
+>> >  int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_ra=
+te, int lane_count);
+>> >  void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int=
+ *link_rate, int *lane_count);
+>> >  void intel_dp_update_sink_caps(struct intel_dp *intel_dp);
+>> > -void intel_dp_reset_link_params(struct intel_dp *intel_dp);
+>> > +void intel_dp_reset_link_params_force(struct intel_dp *intel_dp);
+>> > +bool intel_dp_reset_link_params_defer(struct intel_dp *intel_dp);
+>> >=20=20
+>> >  void intel_dp_compute_rate(struct intel_dp *intel_dp, int port_clock,
+>> >  			   u8 *link_bw, u8 *rate_select);
+>> > diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/d=
+rivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > index a26094223f780..b7075060e7bd3 100644
+>> > --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+>> > @@ -1935,7 +1935,7 @@ static ssize_t i915_dp_force_link_rate_write(str=
+uct file *file,
+>> >  	if (err)
+>> >  		return err;
+>> >=20=20
+>> > -	intel_dp_reset_link_params(intel_dp);
+>> > +	intel_dp_reset_link_params_force(intel_dp);
+>> >  	intel_dp->link.force_rate =3D rate;
+>> >=20=20
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > @@ -2037,7 +2037,7 @@ static ssize_t i915_dp_force_lane_count_write(st=
+ruct file *file,
+>> >  	if (err)
+>> >  		return err;
+>> >=20=20
+>> > -	intel_dp_reset_link_params(intel_dp);
+>> > +	intel_dp_reset_link_params_force(intel_dp);
+>> >  	intel_dp->link.force_lane_count =3D lane_count;
+>> >=20=20
+>> >  	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+>> > --=20
+>> > 2.49.1
 >>=20
 >> --=20
->> Jani Nikula, Intel
+>> Ville Syrj=C3=A4l=C3=A4
+>> Intel
 
 --=20
 Jani Nikula, Intel
