@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AP/ENsq2EGqFcwYAu9opvQ
+	id iELPM862EGpDcwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:26 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73DA15B9DFD
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A833D5B9E04
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F28BC10F73F;
-	Fri, 22 May 2026 20:04:24 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0718A89151;
+	Fri, 22 May 2026 20:04:29 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kf15A8L4";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CCgNmeXG";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C975B10F73F;
- Fri, 22 May 2026 20:04:23 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2A17610E50E;
+ Fri, 22 May 2026 20:04:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779480264; x=1811016264;
+ t=1779480268; x=1811016268;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6P7eAT9/lRKoDrhInWxdtruq/dYzPOtg5B8rVdH6GBQ=;
- b=kf15A8L43t0ccHkDl60X1k8kOfMtxG4BhGDb0RXI+g+wV6LastDovUTj
- zHI8A/qlbOWoBxUVCdiK7HF6I+uQpRvIEYr/ntPbRpE/gZD1ODoVqEw7b
- fUjF0O5GxxvxILuEx2n1ODBRvidcUrw/GYYxsTqV4osS7sOgpONrG9E8H
- p3IVfn8eXrBakCa1NXQbmCA7rmLWiTYKGBaYPibYYmbKvkl3xJQfVdyVD
- DgJfcrNeqquIA5l1F7/6rBCLwqnLjMaBPp/iYuXLD3gwuW2LFFp4F0dsB
- xcNiqEQa665HQUrkep1yBOgJOIe0IurkpFDXGvWxqi0CA49BMrTBck/Wc g==;
-X-CSE-ConnectionGUID: 3wYJY0xvT6mNXLTPrXonkQ==
-X-CSE-MsgGUID: j6sPCy9BRumRxKJrVnTuTw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80396801"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="80396801"
+ bh=RcXRVlIADDxTdhyhh/JN5lQwH2a5m2ps3QpaNG+vNSA=;
+ b=CCgNmeXGGDoZoJlcqBkQdP0Q7FiFUSwWbA9fOa7IF0c7WWuW+0+uGm/y
+ 0bh8tBVL/IbopzZXpOw4TKfUj+TCR6tju9E21WKxLga7kJ1abedI4lJQG
+ mjWdpa/5w6e5oRfF2Dre0fLELdVjrsp0TLAWbLHB/vw+mZX+/1UOLBNjQ
+ k6IWnlTc10ZGjyK3fy3Lv6kGPzr2FWTTxzW60SGsQ5JDhrDKEfcnt8dDj
+ RacSEEQyJvAgznGGE50in81Zj2or175dq3IH+LFPKnDTKiB4otLtMIHRr
+ MVm8xaMCnxwLWBOFB+2KOpNLMx6rr5AOmLA9LqTC5VDK4hym3WWuh5lbf A==;
+X-CSE-ConnectionGUID: REqmYHsZSuWd2W8NE5c+SA==
+X-CSE-MsgGUID: 8dWnhJJkTe+PqAArODZhbQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80396809"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="80396809"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:04:24 -0700
-X-CSE-ConnectionGUID: 2Go0j7fuQUeHZ2ifASrqZQ==
-X-CSE-MsgGUID: Lo0txDrkTh21HQuJwlHKUQ==
+ 22 May 2026 13:04:28 -0700
+X-CSE-ConnectionGUID: 8JFkRZHCTAaSGtIe7fQTEw==
+X-CSE-MsgGUID: s9DDluAUR42eN9YIllKGdg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="234649127"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="234649140"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.71])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:04:22 -0700
+ 22 May 2026 13:04:26 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/10] drm/i915/bw: Fix/unify peakbw calculations
-Date: Fri, 22 May 2026 23:03:43 +0300
-Message-ID: <20260522200346.17377-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/10] drm/i915/bw: Round the PM demand bandwidth down
+Date: Fri, 22 May 2026 23:03:44 +0300
+Message-ID: <20260522200346.17377-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
 References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
@@ -100,87 +100,33 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 73DA15B9DFD
+X-Rspamd-Queue-Id: A833D5B9E04
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We have several copies of the same memory peak bandwidth calculations,
-and the rounding directions are all over the place in some of them.
-Unify it all into one small function (with rounding matching what Bspec
-says).
-
-Note that 'channel_width' is always a multiple of 8 anyway, so for
-'channnel_width / 8' the rounding direction doesn't actually matter.
+Bspec asks us to round down instead of closest doing the /100 for
+the PM demand bandwidth. Make it so.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 20 ++++++++++----------
- 1 file changed, 10 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index f2c7e7061ffa..5bb3aa70d570 100644
+index 5bb3aa70d570..39191f8579df 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -578,6 +578,11 @@ static int icl_get_bw_info(struct intel_display *display,
- 	return 0;
- }
- 
-+static int tgl_peakbw(int num_channels, int channel_width, int dclk)
-+{
-+	return num_channels * (channel_width / 8) * dclk;
-+}
-+
- static int tgl_get_bw_info(struct intel_display *display,
- 			   const struct dram_info *dram_info,
- 			   const struct intel_soc_bw_params *soc_bw_params,
-@@ -587,7 +592,6 @@ static int tgl_get_bw_info(struct intel_display *display,
- 	bool is_y_tile = true; /* assume y tile may be used */
- 	int num_channels = max_t(u8, 1, dram_info->num_channels);
- 	int ipqdepth, ipqdepthpch = 16;
--	int dclk_max;
- 	int maxdebw, peakbw;
- 	int clperchgroup;
- 	int num_groups = ARRAY_SIZE(display->bw.max);
-@@ -614,9 +618,7 @@ static int tgl_get_bw_info(struct intel_display *display,
- 	if (qi.max_numchannels != 0)
- 		num_channels = min_t(u8, num_channels, qi.max_numchannels);
- 
--	dclk_max = icl_sagv_max_dclk(&qi);
--
--	peakbw = num_channels * DIV_ROUND_UP(qi.channel_width, 8) * dclk_max;
-+	peakbw = tgl_peakbw(num_channels, qi.channel_width, icl_sagv_max_dclk(&qi));
- 	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
- 
- 	ipqdepth = min(ipqdepthpch, display_bw_params->displayrtids / num_channels);
-@@ -662,9 +664,7 @@ static int tgl_get_bw_info(struct intel_display *display,
- 
- 			bi->deratedbw[j] = min(maxdebw,
- 					       bw * (100 - soc_bw_params->derating) / 100);
--			bi->peakbw[j] = DIV_ROUND_CLOSEST(sp->dclk *
--							  num_channels *
--							  qi.channel_width, 8);
-+			bi->peakbw[j] = tgl_peakbw(num_channels, qi.channel_width, sp->dclk);
- 
- 			drm_dbg_kms(display->drm,
- 				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
-@@ -737,12 +737,12 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
- 		return ret;
+@@ -1150,7 +1150,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
  	}
  
--	peakbw = num_channels * qi.channel_width / 8 * icl_sagv_max_dclk(&qi);
-+	peakbw = tgl_peakbw(num_channels, qi.channel_width, icl_sagv_max_dclk(&qi));
- 	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
+ 	/* MTL PM DEMAND expects QGV BW parameter in multiples of 100 mbps */
+-	new_bw_state->qgv_point_peakbw = DIV_ROUND_CLOSEST(qgv_peak_bw, 100);
++	new_bw_state->qgv_point_peakbw = qgv_peak_bw / 100;
  
- 	for (i = 0; i < qi.num_points; i++) {
--		const struct intel_qgv_point *point = &qi.points[i];
--		int bw = num_channels * (qi.channel_width / 8) * point->dclk;
-+		const struct intel_qgv_point *sp = &qi.points[i];
-+		int bw = tgl_peakbw(num_channels, qi.channel_width, sp->dclk);
- 
- 		display->bw.max[0].deratedbw[i] =
- 			min(maxdebw, (100 - soc_bw_params->derating) * bw / 100);
+ 	return 0;
+ }
 -- 
 2.52.0
 
