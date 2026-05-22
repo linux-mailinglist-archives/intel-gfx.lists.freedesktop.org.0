@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SIObBETiEGp5fAYAu9opvQ
+	id GJYKAYfjEGqOfAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 01:09:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 01:15:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 787E25BB5D0
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 01:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0BD6F5BB681
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 01:15:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0A6FE10E29D;
-	Fri, 22 May 2026 23:09:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8694410E590;
+	Fri, 22 May 2026 23:15:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z7iv88fZ";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kVfZu19G";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 117E510E579;
- Fri, 22 May 2026 23:09:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A75B110E590;
+ Fri, 22 May 2026 23:15:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779491393; x=1811027393;
+ t=1779491715; x=1811027715;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=bHOzWjmnns4DSlJkzVhdZR7TXbpwauIL/1xHcPW5hX8=;
- b=Z7iv88fZ0Hpvr5hVNF0ml81L/y5JYn5UYF+Nt/dvUydvhJ1jfsFUxrky
- +u7XZO0KXFric8VknsDjeNjKxRJFODoBd8SMsKwDWWwU6WzVdai1nZMEg
- KMU9uvWWPXyW/e42NVtUT9ryu6pdeufRGX6azH3a7rFL6aA8pUVQDTXzZ
- 0vw5upzafZ7wNKMeWPss9SUCDND/rW/xoI9EiJKoN+nfyHW2PwxXXBOaZ
- 2ZdBPA0U3jS2+udZFSCTs5ThsZCE6vIGi9cZsnwT1wD1w+7/mE78jGy27
- lZbLMywx4o+1Zwy3f8O4mdsp4CPosWoPxNb/ibKSyEi1Xhw60CF4QWDYv g==;
-X-CSE-ConnectionGUID: MtyMRETnRgeH25D3/8XPzw==
-X-CSE-MsgGUID: NhdERFtyQTm2SgUrPbZJ7Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="91812259"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="91812259"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 16:09:52 -0700
-X-CSE-ConnectionGUID: JKWuOpjdR/mF902Y8G9KsQ==
-X-CSE-MsgGUID: AcfXSgr/TCiwWiqNHMFEtw==
+ bh=P6tOisLKTVm9Nme4i9b+tDhGcqStHTsNoXfRHuCVzA0=;
+ b=kVfZu19GzstJOiYnI+CCCm+MVjNtFsdusvdME/Onxl6AJ4n6UvDq2mUO
+ U4HoGZGk6tveN7UFPz+YPYYI/3jM2syC8kQ1Dtx0Z63wR95ezTeve0bYZ
+ cnUWH5lzI+Bjl1k1QN3BAfOf2Vk8D8Iq8HDYAnI8q1upGeSk4Z2jT+r1T
+ XgLdtGHMpLsiBbMhvOAanaplIdVfkfXw9ly74cAr3CsW+2iNRstx0T/lo
+ IDqN1ofV5KmppKRr3bWK8/8N6by0GAXL6didKLrsqqqCuxxd3J1RydXgA
+ JG6cvfhG/pLwFzGErkIP5fAzFe/SnXTvELyLX7H9AUXthCdBXQwc+jiV3 Q==;
+X-CSE-ConnectionGUID: BS6Z+6toRMafbmrp/gpUlA==
+X-CSE-MsgGUID: MscYTR7uRDSlITbderdWZw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84041294"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="84041294"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 16:15:15 -0700
+X-CSE-ConnectionGUID: nXI3XE8xReWbJcqGvU9gNw==
+X-CSE-MsgGUID: Di4sODZMSjaCyHG3+4SlnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="242846738"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="236821210"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 16:09:51 -0700
-Date: Sat, 23 May 2026 01:09:49 +0200 (CEST)
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 May 2026 16:15:14 -0700
+Date: Sat, 23 May 2026 01:15:12 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-Subject: Re: [PATCH] drm/i915: Add the blend mode property to all planes that
- support alpha blending
-In-Reply-To: <20260522194935.27411-1-ville.syrjala@linux.intel.com>
-Message-ID: <49b74707-e537-a96a-856c-119106a0697d@intel.com>
-References: <20260522194935.27411-1-ville.syrjala@linux.intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 01/10] drm/i915/bw: Fix num_planes handling on TGL+
+In-Reply-To: <20260522200346.17377-2-ville.syrjala@linux.intel.com>
+Message-ID: <1a500c2b-e112-cc4b-8f76-dd94a3ad6478@intel.com>
+References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
+ <20260522200346.17377-2-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-818621189-1779490872=:1544314"
-Content-ID: <ccabacc6-c6ad-0b71-242d-b13efd54d166@intel.com>
+Content-Type: multipart/mixed;
+ BOUNDARY="8323329-1254044371-1779491164=:1544314"
+Content-ID: <9f358f9c-8a61-0348-9834-8daea5c00a95@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,42 +93,78 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
 	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,collabora.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 787E25BB5D0
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 0BD6F5BB681
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-818621189-1779490872=:1544314
+--8323329-1254044371-1779491164=:1544314
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <be373144-1671-335c-ef1f-005dd3a1d4a0@intel.com>
+Content-ID: <e00af2b3-acc6-53f8-46ba-0b732c90c4cb@intel.com>
 
 On Fri, 22 May 2026, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 >
-> Currently only SKL+ universal planes have the blend mode property.
-> Assuming it now becomes mandatory for all planes that support
-> alpha blending we need to add it to cursors on all platforms,
-> and VLV/CHV primary/sprite planes.
+> The TGL+ bw code has an off by one error on the num_planes
+> calculation, and tgl_max_bw_index() incorrectly bumps
+> the num_planes to 1 from 0.
 >
-> TODO: For VLV/CHV primary/sprite planes we could fairly easily
-> implement DRM_MODE_BLEND_PIXEL_NONE by remapping the A format
-> to the corresponding X format, and on CHV pipe B (but not pipes
-> A/C) we could probably even implement DRM_MODE_BLEND_COVERAGE.
->
-> Cc: Leandro Ribeiro <leandro.ribeiro@collabora.com>
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> That approach made sense on ICL where num_planes is more or
+> a less minimum number of planes to consider for the group,
 
+Not entirely sure but sounds better to me when s/a less/less/.
+
+Otherwise:
 Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
---8323329-818621189-1779490872=:1544314--
+
+> but on TGL+ num_planes really is a maximum number of planes,
+> so these adjustments no longer make any sense there.
+>
+> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> ---
+> drivers/gpu/drm/i915/display/intel_bw.c | 8 +-------
+> 1 file changed, 1 insertion(+), 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+> index d7b2bc80f8e3..d10eebec196e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bw.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
+> @@ -636,8 +636,7 @@ static int tgl_get_bw_info(struct intel_display *display,
+> 			bi_next = &display->bw.max[i + 1];
+>
+> 			if (clpchgroup < clperchgroup)
+> -				bi_next->num_planes = (ipqdepth - clpchgroup) /
+> -						       clpchgroup + 1;
+> +				bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup;
+> 			else
+> 				bi_next->num_planes = 0;
+> 		}
+> @@ -802,11 +801,6 @@ static unsigned int tgl_max_bw_index(struct intel_display *display,
+> {
+> 	int i;
+>
+> -	/*
+> -	 * Let's return max bw for 0 planes
+> -	 */
+> -	num_planes = max(1, num_planes);
+> -
+> 	for (i = ARRAY_SIZE(display->bw.max) - 1; i >= 0; i--) {
+> 		const struct intel_bw_info *bi =
+> 			&display->bw.max[i];
+> -- 
+> 2.52.0
+>
+>
+--8323329-1254044371-1779491164=:1544314--
