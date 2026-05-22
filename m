@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iELPM862EGpDcwYAu9opvQ
+	id OHWKDtO2EGpDcwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:30 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A833D5B9E04
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E1795B9E0C
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 22:04:35 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0718A89151;
-	Fri, 22 May 2026 20:04:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8F62210F686;
+	Fri, 22 May 2026 20:04:33 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CCgNmeXG";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hzcME4Q8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2A17610E50E;
- Fri, 22 May 2026 20:04:28 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 721AD10E2BC;
+ Fri, 22 May 2026 20:04:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779480268; x=1811016268;
+ t=1779480273; x=1811016273;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RcXRVlIADDxTdhyhh/JN5lQwH2a5m2ps3QpaNG+vNSA=;
- b=CCgNmeXGGDoZoJlcqBkQdP0Q7FiFUSwWbA9fOa7IF0c7WWuW+0+uGm/y
- 0bh8tBVL/IbopzZXpOw4TKfUj+TCR6tju9E21WKxLga7kJ1abedI4lJQG
- mjWdpa/5w6e5oRfF2Dre0fLELdVjrsp0TLAWbLHB/vw+mZX+/1UOLBNjQ
- k6IWnlTc10ZGjyK3fy3Lv6kGPzr2FWTTxzW60SGsQ5JDhrDKEfcnt8dDj
- RacSEEQyJvAgznGGE50in81Zj2or175dq3IH+LFPKnDTKiB4otLtMIHRr
- MVm8xaMCnxwLWBOFB+2KOpNLMx6rr5AOmLA9LqTC5VDK4hym3WWuh5lbf A==;
-X-CSE-ConnectionGUID: REqmYHsZSuWd2W8NE5c+SA==
-X-CSE-MsgGUID: 8dWnhJJkTe+PqAArODZhbQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80396809"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="80396809"
+ bh=7uL8luzHMNAsbyyAVwTGNpBOirPpXnDpRrhTlOcl/ps=;
+ b=hzcME4Q82CmZSfgFmzwI2YpW0C3KSylW4O2L3mF+me/m8efiF0zLRXYn
+ Bh3E7vgZLo+sEk6XA81x56v9ta6Ft8m+2y2ucbYntqe3Y75MDcMB9BKvv
+ kwt52W33kAxcKqtXjztZ3K/e3/spwlnZsciyNBEUarIHQylGKDcvxGoi5
+ 71y2aXjVvKnXM0neVibTY/8CUqioPkkNTp3aLWhWX16b93riEbavLnRj3
+ ojLTDfdXf/Hq0Wu6VpVTvo7tUO0CKCZaf3ClEH8+Bar3a64ouWRVDrE9O
+ mb2UtUmNG/X7v17UJCirga8ufsoISynOSWHgxr8Baay35N5vLiILpIsHN w==;
+X-CSE-ConnectionGUID: LosNFgHFQoKnAQQMspkzKw==
+X-CSE-MsgGUID: 4JOAWgyFT5uuQkqMSQKRPA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="80396815"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="80396815"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:04:28 -0700
-X-CSE-ConnectionGUID: 8JFkRZHCTAaSGtIe7fQTEw==
-X-CSE-MsgGUID: s9DDluAUR42eN9YIllKGdg==
+ 22 May 2026 13:04:32 -0700
+X-CSE-ConnectionGUID: IUIqwtwMToixXV4ZnxWDhA==
+X-CSE-MsgGUID: fkwG694zRyWhfFUXylvdOQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="234649140"
+X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="234649154"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.245.71])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 13:04:26 -0700
+ 22 May 2026 13:04:31 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 08/10] drm/i915/bw: Round the PM demand bandwidth down
-Date: Fri, 22 May 2026 23:03:44 +0300
-Message-ID: <20260522200346.17377-9-ville.syrjala@linux.intel.com>
+Subject: [PATCH 09/10] drm/i915/bw: Remove deinterleave fallback for TGL+
+Date: Fri, 22 May 2026 23:03:45 +0300
+Message-ID: <20260522200346.17377-10-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.52.0
 In-Reply-To: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
 References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
@@ -100,33 +100,35 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,intel.com:email,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: A833D5B9E04
+X-Rspamd-Queue-Id: 0E1795B9E0C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Bspec asks us to round down instead of closest doing the /100 for
-the PM demand bandwidth. Make it so.
+Remove the deinterleave fallback calculation from the TGL+ codepath.
+The fallback is using the ICL deinterleave calculation which was never
+in the TGL+ algorithm. All supported memory types have the correct
+deinterleave already specified for TGL+ anyway, so this is dead code.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 2 --
+ 1 file changed, 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 5bb3aa70d570..39191f8579df 100644
+index 39191f8579df..8256ad8bcc8b 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -1150,7 +1150,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
- 	}
+@@ -608,8 +608,6 @@ static int tgl_get_bw_info(struct intel_display *display,
+ 	    (dram_info->type == INTEL_DRAM_LPDDR4 || dram_info->type == INTEL_DRAM_LPDDR5))
+ 		num_channels *= 2;
  
- 	/* MTL PM DEMAND expects QGV BW parameter in multiples of 100 mbps */
--	new_bw_state->qgv_point_peakbw = DIV_ROUND_CLOSEST(qgv_peak_bw, 100);
-+	new_bw_state->qgv_point_peakbw = qgv_peak_bw / 100;
+-	qi.deinterleave = qi.deinterleave ? : DIV_ROUND_UP(num_channels, is_y_tile ? 4 : 2);
+-
+ 	if (num_channels < qi.max_numchannels && DISPLAY_VER(display) >= 12)
+ 		qi.deinterleave = max(qi.deinterleave / 2, 1);
  
- 	return 0;
- }
 -- 
 2.52.0
 
