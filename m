@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kDLbEcqPEGqIZgYAu9opvQ
+	id UNMhAe2WEGqBZwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 19:18:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 19:48:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C77DF5B8100
-	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 19:18:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 58E835B884A
+	for <lists+intel-gfx@lfdr.de>; Fri, 22 May 2026 19:48:27 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 499C210F6C5;
-	Fri, 22 May 2026 17:17:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E107710E0B7;
+	Fri, 22 May 2026 17:48:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1576010E25D;
- Fri, 22 May 2026 17:17:58 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D273510E0B7;
+ Fri, 22 May 2026 17:48:24 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============5414126471051123624=="
+ boundary="===============8917835508278803312=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Don=27t_set_m?=
- =?utf-8?q?in=5Fcdclk_in_the_initial_crtc=5Fstate_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/intel=5Fpanel=3A?=
+ =?utf-8?q?_Fix_seamless_VRR_mode_switching_for_DRRS_panels_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Marius Hoch" <mail@mariushoch.de>
+To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 22 May 2026 17:17:58 -0000
-Message-ID: <177947027808.289.12952914791197767946@6beec6c84f66>
+Date: Fri, 22 May 2026 17:48:24 -0000
+Message-ID: <177947210485.1246.2607034071295917601@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260521180722.328317-2-mail@mariushoch.de>
-In-Reply-To: <20260521180722.328317-2-mail@mariushoch.de>
+References: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
+In-Reply-To: <20260522132511.321540-1-ankit.k.nautiyal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -62,7 +62,7 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-0.711];
+	NEURAL_HAM(-0.00)[-0.838];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
@@ -71,24 +71,24 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org]
-X-Rspamd-Queue-Id: C77DF5B8100
+X-Rspamd-Queue-Id: 58E835B884A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============5414126471051123624==
+--===============8917835508278803312==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/i915: Don't set min_cdclk in the initial crtc_state (rev2)
-URL   : https://patchwork.freedesktop.org/series/167094/
+Series: drm/i915/intel_panel: Fix seamless VRR mode switching for DRRS panels (rev3)
+URL   : https://patchwork.freedesktop.org/series/165604/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_18542 -> Patchwork_167094v2
+CI Bug Log - changes from CI_DRM_18542 -> Patchwork_165604v3
 ====================================================
 
 Summary
@@ -98,35 +98,46 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167094v2/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/index.html
 
 Participating hosts (42 -> 40)
 ------------------------------
 
   Missing    (2): bat-dg2-13 fi-snb-2520m 
 
+Known issues
+------------
 
-Changes
--------
+  Here are the changes found in Patchwork_165604v3 that come from known issues:
 
-  No changes found
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [PASS][1] -> [SKIP][2] ([i915#13030])
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18542/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+
+  
+  [i915#13030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13030
 
 
 Build changes
 -------------
 
-  * Linux: CI_DRM_18542 -> Patchwork_167094v2
+  * Linux: CI_DRM_18542 -> Patchwork_165604v3
 
   CI-20190529: 20190529
   CI_DRM_18542: 60d51bdeabf700864c26264c51b146a86b0a9124 @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_167094v2: 60d51bdeabf700864c26264c51b146a86b0a9124 @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_165604v3: 60d51bdeabf700864c26264c51b146a86b0a9124 @ git://anongit.freedesktop.org/gfx-ci/linux
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167094v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/index.html
 
---===============5414126471051123624==
+--===============8917835508278803312==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -146,34 +157,42 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/i915: Don&#x27;t set min_cdclk in the initial crtc_state (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167094/">https://patchwork.freedesktop.org/series/167094/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915/intel_panel: Fix seamless VRR mode switching for DRRS panels (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165604/">https://patchwork.freedesktop.org/series/165604/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167094v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167094v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_18542 -&gt; Patchwork_167094v2</h1>
+    <h1>CI Bug Log - changes from CI_DRM_18542 -&gt; Patchwork_165604v3</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167094v2/index.html</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/index.html</p>
 <h2>Participating hosts (42 -&gt; 40)</h2>
 <p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_165604v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@kms_hdmi_inject@inject-audio:<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18542/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165604v3/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13030">i915#13030</a>)</li>
+</ul>
+</li>
+</ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_18542 -&gt; Patchwork_167094v2</li>
+<li>Linux: CI_DRM_18542 -&gt; Patchwork_165604v3</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_18542: 60d51bdeabf700864c26264c51b146a86b0a9124 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_167094v2: 60d51bdeabf700864c26264c51b146a86b0a9124 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_165604v3: 60d51bdeabf700864c26264c51b146a86b0a9124 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 
 </body>
 </html>
 
---===============5414126471051123624==--
+--===============8917835508278803312==--
