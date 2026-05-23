@@ -2,39 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qBeWKeeZFWrnWgcAu9opvQ
+	id kHGXJeeZFWqNWgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:02:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 378A95D5FA6
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:02:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 445E05D5FA4
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:02:30 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5139510E62D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 433C010E629;
 	Tue, 26 May 2026 13:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W/qwAMS1";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="AYrP9ADM";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 913B010E06C;
- Sat, 23 May 2026 00:38:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9FCBA10E06C;
+ Sat, 23 May 2026 00:45:55 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 7697440390;
- Sat, 23 May 2026 00:38:08 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCE81F000E9;
- Sat, 23 May 2026 00:38:04 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id B5E3542A04;
+ Sat, 23 May 2026 00:45:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 0D8D01F000E9;
+ Sat, 23 May 2026 00:45:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1779496688;
- bh=ke0QgGP72oU1/KHDzVSs1lh/gkg7Mw8fFDTolKbzoHA=;
+ s=k20260515; t=1779497154;
+ bh=Z9Ii4kFnGASPrJVUv4pLJyz9ASaQSsUSFT2aMNSnQpw=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=W/qwAMS1ok+56HAwvYiYz0R5wmKsD0RscuUhy5BVEzThMnr+wQxbKIW0Yk+lqtg0R
- dxN4FM+nLAHenqFi1JvSelOt20CYFnYpdSX3hvz5/mvzq/JXO7gcBTjSStG/A5FM8j
- 0Dk4RFZ90/nX0Xzby8V+5D3uQDTYP8o1bo3XSKlx4rKPB6vCO/Oui18woqanoP+n4U
- enXhw+/EJeP6Kw2ZiII29eiMOdyHFC3VD0U1T97Mm+aD6rZa6A+hyeA7zcgLPdsptw
- 8LWGxoojes1mewesgkVxxy+dLIhtJlwu3XyRYodcKxBzIRSnWjQs++a/owD5p2CmBM
- RNz3sazG7iMhQ==
+ b=AYrP9ADMMstpZMK07X7RJX7Vi+LssxAckCYKP0qcdmy4tA9a9uGeNKXekQFeMbDY2
+ LDBidZU8qfyCeiIO2lTcwcq4IenY+1Wd9qlBghobsMk+v2M/w+YRP79CHe0dVbDprH
+ 6m4cKDcu9eoRxsj9K8pW3klTEaPK47F9haaWHiA44qhhUhE1d+q0p7agQTc1CqKY7Y
+ TIm3cavZyfg5Ocnp8Ulrf7LvNxFf6kEk1G4wZqQ5n3xAgZSAUkznMwff7nIEvl1Awg
+ MCkN/vkTJiTtDyoIlmLFKVmTKKTBPE0rS5dN7mvUamAdq3cIcL7ggZ6AdKA3393vQz
+ kGvcVXqs9FgPQ==
 From: SeongJae Park <sj@kernel.org>
 To: Kees Cook <kees@kernel.org>
 Cc: SeongJae Park <sj@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
@@ -99,13 +99,14 @@ Cc: SeongJae Park <sj@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
  linux-usb@vger.kernel.org, usb-storage@lists.one-eyed-alien.net,
  virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
  linux-arch@vger.kernel.org, netdev@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 04/11] treewide: Convert struct kernel_param_ops
- initializers to DEFINE_KERNEL_PARAM_OPS
-Date: Fri, 22 May 2026 17:38:01 -0700
-Message-ID: <20260523003801.86344-1-sj@kernel.org>
+ linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org,
+ damon@lists.linux.dev
+Subject: Re: [PATCH 09/11] treewide: Convert custom kernel_param_ops .get
+ callbacks to seq_buf via cocci
+Date: Fri, 22 May 2026 17:45:43 -0700
+Message-ID: <20260523004543.86540-1-sj@kernel.org>
 X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260521133326.2465264-4-kees@kernel.org>
+In-Reply-To: <20260521133326.2465264-9-kees@kernel.org>
 References: 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
@@ -144,7 +145,7 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[100];
+	RCPT_COUNT_GT_50(0.00)[101];
 	FROM_NEQ_ENVFROM(0.00)[sj@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
@@ -152,44 +153,61 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 378A95D5FA6
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:email]
+X-Rspamd-Queue-Id: 445E05D5FA4
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, 21 May 2026 06:33:17 -0700 Kees Cook <kees@kernel.org> wrote:
++ damon@lists.linux.dev
 
-> Using Coccinelle, rewrite every struct kernel_param_ops initializer that
-> sets .get into a DEFINE_KERNEL_PARAM_OPS-family macro invocation,
-> for example:
+On Thu, 21 May 2026 06:33:22 -0700 Kees Cook <kees@kernel.org> wrote:
+
+> Using the following Coccinelle script, convert struct kernel_param_ops
+> .get callbacks from "char *" to "struct seq_buf *" when the only write
+> to the buffer is via a final call of scnprintf(), snprintf(), sprintf(),
+> or sysfs_emit().
+> 
+> Since seq_buf_printf() will return -1 on overflow, and struct
+> kernel_param_ops .get callbacks are expected to truncate without error,
+> we must ignore the return value from seq_buf_print() and always return 0
+> (as the length is calculated in the common dispatcher code).
 > 
 > @@
-> declarer name DEFINE_KERNEL_PARAM_OPS;
-> identifier OPS;
-> expression SET, GET;
+> identifier FN, BUF, KP;
+> expression FMT;
+> expression list ARGS;
 > @@
-> - const struct kernel_param_ops OPS = {
-> -       .set = SET,
-> -       .get = GET,
-> - };
-> + DEFINE_KERNEL_PARAM_OPS(OPS, SET, GET);
+>  int FN(
+> -               char *BUF
+> +               struct seq_buf *BUF
+>                 , const struct kernel_param *KP)
+>  {
+>         ... when any
+> (
+> -       return scnprintf(BUF, PAGE_SIZE, FMT, ARGS);
+> |
+> -       return snprintf(BUF, PAGE_SIZE, FMT, ARGS);
+> |
+> -       return sprintf(BUF, FMT, ARGS);
+> |
+> -       return sysfs_emit(BUF, FMT, ARGS);
+> )
+> +       seq_buf_printf(BUF, FMT, ARGS);
+> +       return 0;
+>  }
 > 
-> Using the macro for initialization means future changes can manipulate
-> the struct layout and callback prototypes without having to change every
-> initializer.
+> No struct kernel_param_ops initializations need changing since
+> DEFINE_KERNEL_PARAM_OPS already routes the pointer to .get or .get_str
+> via _Generic based on the function signature, so converted callbacks
+> are automatically moved from the .get_str to the .get callback.
 > 
 > Signed-off-by: Kees Cook <kees@kernel.org>
-> ---
 [...]
->  mm/damon/lru_sort.c                           | 19 ++---
->  mm/damon/reclaim.c                            | 19 ++---
->  mm/damon/stat.c                               |  6 +-
-[...]
->  samples/damon/mtier.c                         |  6 +-
->  samples/damon/prcl.c                          |  6 +-
->  samples/damon/wsse.c                          |  6 +-
+>  mm/damon/lru_sort.c                           | 14 +++---
+>  mm/damon/reclaim.c                            | 14 +++---
+>  mm/damon/stat.c                               | 10 ++--
 
-For the above DAMON part changes,
+For the above DAMON changes,
 
 Reviewed-by: SeongJae Park <sj@kernel.org>
 
