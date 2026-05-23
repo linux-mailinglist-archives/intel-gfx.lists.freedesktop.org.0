@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 0NOJIr4DEmqntQYAu9opvQ
+	id KCaKHcYDEmqntQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:45:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:45:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC6C5C081C
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:45:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E29175C0824
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:45:09 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE56610E320;
-	Sat, 23 May 2026 19:44:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1340210E405;
+	Sat, 23 May 2026 19:45:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="AuTtPEmZ";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=nicolas.frattaroli@collabora.com header.b="aKzytCsu";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 870E010E317;
- Sat, 23 May 2026 19:44:58 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1779565488; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C690E10E322;
+ Sat, 23 May 2026 19:45:05 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1779565496; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=GeW0j8HgfdnTz/6VO/sIo4i6siH4Y2uICsByq8WzQ08xC2z5CIohPUCw6eapODwdcJem9J9kjIHu5IUkLF4dRldrlofQ7G62DsnpQV5afKN5iOzMMtcVTd6/+BG9vEJOr4FQ5m9g57jQvp0ueA17h11vwV4f0Jq5HoQvJUA5XY0=
+ b=FHPceuywvCiBetJgEwUy/9rXO6+RwlVK5C+h3gLHPAxDxtsDZnxHwRoLZfavFEBztj2Gs1UthK7PyDRo3hlGvylIDQkeLIrY9Ptul2Tfb5S65I66ThxZDn7L6EP+8rCkqkUB2fsLsfvPBUJTEvOxKiBsEpuCp3M6en6Bdz80koA=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1779565488;
+ s=zohoarc; t=1779565496;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=uMEEZn+x23X3/iGLCH74HTpR0e0r7hhMuh0rntSsrbY=; 
- b=j0yrkzvB+4OGrnyHRIkkGTX97ahcewFaCNupHxmKhKl/5Q7f4kbEiFsYpOSCcK/9vuuHIXF33b3sQneUez9CZdh05SqGtvglbn3R/efQDqRDZnI5lv0ddOp2AF5GGWa3bIE21DHbBWerEd5/e8hfHX8Fj0wDJoJsWN4NinzVmIQ=
+ bh=rn3P+1HjcNDik0Ghl9x1nmsSuObudzrApaXdu1dLsLg=; 
+ b=FeLnC/2iepU9/E6pYCL18up3LdthdrPcHfK/ko/V6Jwp0lUUWdGwEr9eZOQxoLdk9GfisV1TTkyEuJzfGqhVYPuKoJDO+MBipyFAX299zAa17Yq2OeteufThDeinQcY3t6ZfHVtnqsdOK+D2mF0BnpYIWc4S2smwSEq+5PnGMyk=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779565487; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779565495; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=uMEEZn+x23X3/iGLCH74HTpR0e0r7hhMuh0rntSsrbY=;
- b=AuTtPEmZzY7WREJoBUB3CUFqgr+IScEBNoMDYDFQ1rZsZS6T+STalkSLJKEKPXKK
- 2bIwDf4497PrknHu1TanCVK55rn2ztJAt/QmpRUb1uvyzWaxBBKemAvXe1CSW3JnaLU
- L1ezBjRjWPzIipF0HholfjcSgO34BfdhbLspD5Lk=
-Received: by mx.zohomail.com with SMTPS id 1779565485684287.4308773740099;
- Sat, 23 May 2026 12:44:45 -0700 (PDT)
+ bh=rn3P+1HjcNDik0Ghl9x1nmsSuObudzrApaXdu1dLsLg=;
+ b=aKzytCsuyL/wcYRFh5feSndFukalu0ohumdg2PfNsQihX0K9zP8t5FbchRRS3dks
+ iPU66q1uOXiP0aMDdvC9lgBoMWzI03+HW8xl5hALVziKMtS1eKNHd8rguYIYvonp/8Z
+ IwVpd5H0fCaulBGfu45Geknt2JyLytINFwklCVWA=
+Received: by mx.zohomail.com with SMTPS id 1779565494537845.7980813429721;
+ Sat, 23 May 2026 12:44:54 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Sat, 23 May 2026 21:43:36 +0200
-Subject: [PATCH v16 01/28] drm/amd/display: Remove unnecessary
- SIGNAL_TYPE_HDMI_TYPE_A check
+Date: Sat, 23 May 2026 21:43:37 +0200
+Subject: [PATCH v16 02/28] drm/display: hdmi-state-helper: Use default case
+ for unsupported formats
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260523-color-format-v16-1-24340c5e4732@collabora.com>
+Message-Id: <20260523-color-format-v16-2-24340c5e4732@collabora.com>
 References: <20260523-color-format-v16-0-24340c5e4732@collabora.com>
 In-Reply-To: <20260523-color-format-v16-0-24340c5e4732@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -79,8 +79,7 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Werner Sembach <wse@tuxedocomputers.com>, 
- Andri Yngvason <andri@yngvason.is>
+ Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 X-Mailer: b4 0.15.2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -111,7 +110,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[42];
+	RCPT_COUNT_TWELVE(0.00)[41];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -121,53 +120,49 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:mid,collabora.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,yngvason.is:email,tuxedocomputers.com:email]
-X-Rspamd-Queue-Id: 3CC6C5C081C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,collabora.com:mid,collabora.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: E29175C0824
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-From: Werner Sembach <wse@tuxedocomputers.com>
+Switch statements that do not handle all possible values of an
+enumeration will generate a warning during compilation. In preparation
+for adding a COUNT value to the end of the enum, this needs to be dealt
+with.
 
-Remove unnecessary SIGNAL_TYPE_HDMI_TYPE_A check that was performed in the
-drm_mode_is_420_only() case, but not in the drm_mode_is_420_also() &&
-force_yuv420_output case.
+Add a default case to sink_supports_format_bpc's DRM_OUTPUT_COLOR_FORMAT
+switch statement, and move the log-and-return unknown pixel format
+handling into it.
 
-Without further knowledge if YCbCr 4:2:0 is supported outside of HDMI,
-there is no reason to use RGB when the display
-reports drm_mode_is_420_only() even on a non HDMI connection.
+No functional change.
 
-This patch also moves both checks in the same if-case. This  eliminates an
-extra else-if-case.
-
-Signed-off-by: Werner Sembach <wse@tuxedocomputers.com>
-Signed-off-by: Andri Yngvason <andri@yngvason.is>
-Tested-by: Andri Yngvason <andri@yngvason.is>
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
+Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
 Reviewed-by: Daniel Stone <daniel@fooishbar.org>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 9 +++------
- 1 file changed, 3 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/display/drm_hdmi_state_helper.c | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index ba7f98a87808..dfe97897127c 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -6917,12 +6917,9 @@ static void fill_stream_properties_from_drm_display_mode(
- 	timing_out->v_border_top = 0;
- 	timing_out->v_border_bottom = 0;
- 	/* TODO: un-hardcode */
--	if (drm_mode_is_420_only(info, mode_in)
--			&& stream->signal == SIGNAL_TYPE_HDMI_TYPE_A)
--		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
--	else if (drm_mode_is_420_also(info, mode_in)
--			&& aconnector
--			&& aconnector->force_yuv420_output)
-+	if (drm_mode_is_420_only(info, mode_in) ||
-+	    (aconnector && aconnector->force_yuv420_output &&
-+	     drm_mode_is_420_also(info, mode_in)))
- 		timing_out->pixel_encoding = PIXEL_ENCODING_YCBCR420;
- 	else if ((connector->display_info.color_formats & BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422))
- 			&& aconnector
+diff --git a/drivers/gpu/drm/display/drm_hdmi_state_helper.c b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+index 4867edbf2622..3ba47564caad 100644
+--- a/drivers/gpu/drm/display/drm_hdmi_state_helper.c
++++ b/drivers/gpu/drm/display/drm_hdmi_state_helper.c
+@@ -541,10 +541,11 @@ sink_supports_format_bpc(const struct drm_connector *connector,
+ 		drm_dbg_kms(dev, "YUV444 format supported in that configuration.\n");
+ 
+ 		return true;
+-	}
+ 
+-	drm_dbg_kms(dev, "Unsupported pixel format.\n");
+-	return false;
++	default:
++		drm_dbg_kms(dev, "Unsupported pixel format.\n");
++		return false;
++	}
+ }
+ 
+ static enum drm_mode_status
 
 -- 
 2.54.0
