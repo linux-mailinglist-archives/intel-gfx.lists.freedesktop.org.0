@@ -2,63 +2,114 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GJYKAYfjEGqOfAYAu9opvQ
+	id qBeWKeeZFWrnWgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 01:15:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:02:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0BD6F5BB681
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 01:15:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 378A95D5FA6
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:02:31 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8694410E590;
-	Fri, 22 May 2026 23:15:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5139510E62D;
+	Tue, 26 May 2026 13:02:28 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kVfZu19G";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="W/qwAMS1";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A75B110E590;
- Fri, 22 May 2026 23:15:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779491715; x=1811027715;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=P6tOisLKTVm9Nme4i9b+tDhGcqStHTsNoXfRHuCVzA0=;
- b=kVfZu19GzstJOiYnI+CCCm+MVjNtFsdusvdME/Onxl6AJ4n6UvDq2mUO
- U4HoGZGk6tveN7UFPz+YPYYI/3jM2syC8kQ1Dtx0Z63wR95ezTeve0bYZ
- cnUWH5lzI+Bjl1k1QN3BAfOf2Vk8D8Iq8HDYAnI8q1upGeSk4Z2jT+r1T
- XgLdtGHMpLsiBbMhvOAanaplIdVfkfXw9ly74cAr3CsW+2iNRstx0T/lo
- IDqN1ofV5KmppKRr3bWK8/8N6by0GAXL6didKLrsqqqCuxxd3J1RydXgA
- JG6cvfhG/pLwFzGErkIP5fAzFe/SnXTvELyLX7H9AUXthCdBXQwc+jiV3 Q==;
-X-CSE-ConnectionGUID: BS6Z+6toRMafbmrp/gpUlA==
-X-CSE-MsgGUID: MscYTR7uRDSlITbderdWZw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11794"; a="84041294"
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="84041294"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 16:15:15 -0700
-X-CSE-ConnectionGUID: nXI3XE8xReWbJcqGvU9gNw==
-X-CSE-MsgGUID: Di4sODZMSjaCyHG3+4SlnA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,163,1774335600"; d="scan'208";a="236821210"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 May 2026 16:15:14 -0700
-Date: Sat, 23 May 2026 01:15:12 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Ville Syrjala <ville.syrjala@linux.intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 01/10] drm/i915/bw: Fix num_planes handling on TGL+
-In-Reply-To: <20260522200346.17377-2-ville.syrjala@linux.intel.com>
-Message-ID: <1a500c2b-e112-cc4b-8f76-dd94a3ad6478@intel.com>
-References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
- <20260522200346.17377-2-ville.syrjala@linux.intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 913B010E06C;
+ Sat, 23 May 2026 00:38:09 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 7697440390;
+ Sat, 23 May 2026 00:38:08 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id EDCE81F000E9;
+ Sat, 23 May 2026 00:38:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1779496688;
+ bh=ke0QgGP72oU1/KHDzVSs1lh/gkg7Mw8fFDTolKbzoHA=;
+ h=From:To:Cc:Subject:Date:In-Reply-To:References;
+ b=W/qwAMS1ok+56HAwvYiYz0R5wmKsD0RscuUhy5BVEzThMnr+wQxbKIW0Yk+lqtg0R
+ dxN4FM+nLAHenqFi1JvSelOt20CYFnYpdSX3hvz5/mvzq/JXO7gcBTjSStG/A5FM8j
+ 0Dk4RFZ90/nX0Xzby8V+5D3uQDTYP8o1bo3XSKlx4rKPB6vCO/Oui18woqanoP+n4U
+ enXhw+/EJeP6Kw2ZiII29eiMOdyHFC3VD0U1T97Mm+aD6rZa6A+hyeA7zcgLPdsptw
+ 8LWGxoojes1mewesgkVxxy+dLIhtJlwu3XyRYodcKxBzIRSnWjQs++a/owD5p2CmBM
+ RNz3sazG7iMhQ==
+From: SeongJae Park <sj@kernel.org>
+To: Kees Cook <kees@kernel.org>
+Cc: SeongJae Park <sj@kernel.org>, Luis Chamberlain <mcgrof@kernel.org>,
+ Pengpeng Hou <pengpeng@iscas.ac.cn>, Petr Pavlu <petr.pavlu@suse.com>,
+ Richard Weinberger <richard@nod.at>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>, Len Brown <lenb@kernel.org>,
+ Corey Minyard <corey@minyard.net>, Gabriel Somlo <somlo@cmu.edu>,
+ "Michael S. Tsirkin" <mst@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Bart Van Assche <bvanassche@acm.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Hannes Reinecke <hare@suse.de>,
+ "James E.J. Bottomley" <James.Bottomley@HansenPartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
+ Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
+ =?UTF-8?q?Eugenio=20P=C3=A9rez?= <eperezma@redhat.com>,
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
+ Tiwei Bie <tiwei.btw@antgroup.com>,
+ Benjamin Berg <benjamin.berg@intel.com>,
+ =?UTF-8?q?Ilpo=20J=C3=A4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "David E. Box" <david.e.box@linux.intel.com>,
+ "Maciej W. Rozycki" <macro@orcam.me.uk>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>, Thomas Gleixner <tglx@kernel.org>,
+ Ingo Molnar <mingo@redhat.com>, Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Vinod Koul <vkoul@kernel.org>,
+ Frank Li <Frank.Li@kernel.org>, Daniel Gomez <da.gomez@kernel.org>,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Aaron Tomlin <atomlin@atomlin.com>,
+ Alexander Potapenko <glider@google.com>, Marco Elver <elver@google.com>,
+ Dmitry Vyukov <dvyukov@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ John Johansen <john.johansen@canonical.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Georgia Garcia <georgia.garcia@canonical.com>, kvm@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-modules@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org, apparmor@lists.ubuntu.com,
+ linux-security-module@vger.kernel.org, linux-um@lists.infradead.org,
+ linux-acpi@vger.kernel.org, openipmi-developer@lists.sourceforge.net,
+ qemu-devel@nongnu.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-rdma@vger.kernel.org,
+ linux-media@vger.kernel.org, linux-pci@vger.kernel.org,
+ linux-scsi@vger.kernel.org, linux-pm@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, linux-serial@vger.kernel.org,
+ linux-usb@vger.kernel.org, usb-storage@lists.one-eyed-alien.net,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arch@vger.kernel.org, netdev@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH 04/11] treewide: Convert struct kernel_param_ops
+ initializers to DEFINE_KERNEL_PARAM_OPS
+Date: Fri, 22 May 2026 17:38:01 -0700
+Message-ID: <20260523003801.86344-1-sj@kernel.org>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260521133326.2465264-4-kees@kernel.org>
+References: 
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- BOUNDARY="8323329-1254044371-1779491164=:1544314"
-Content-ID: <9f358f9c-8a61-0348-9834-8daea5c00a95@intel.com>
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Tue, 26 May 2026 13:02:27 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,98 +124,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [2.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[84];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[kernel.org,iscas.ac.cn,suse.com,nod.at,cambridgegreys.com,sipsolutions.net,minyard.net,cmu.edu,redhat.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,acm.org,ziepe.ca,ideasonboard.com,google.com,suse.de,HansenPartnership.com,oracle.com,arm.com,linuxfoundation.org,rowland.harvard.edu,linux.alibaba.com,akamai.com,antgroup.com,orcam.me.uk,infradead.org,linux.ibm.com,alien8.de,zytor.com,atomlin.com,linux-foundation.org,canonical.com,paul-moore.com,namei.org,hallyn.com,vger.kernel.org,googlegroups.com,kvack.org,lists.ubuntu.com,lists.infradead.org,lists.sourceforge.net,nongnu.org,lists.freedesktop.org,lists.ozlabs.org,lists.one-eyed-alien.net,lists.linux.dev];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[100];
+	FROM_NEQ_ENVFROM(0.00)[sj@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	NEURAL_HAM(-0.00)[-0.999];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 0BD6F5BB681
+X-Rspamd-Queue-Id: 378A95D5FA6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Thu, 21 May 2026 06:33:17 -0700 Kees Cook <kees@kernel.org> wrote:
 
---8323329-1254044371-1779491164=:1544314
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
-Content-ID: <e00af2b3-acc6-53f8-46ba-0b732c90c4cb@intel.com>
-
-On Fri, 22 May 2026, Ville Syrjala wrote:
-> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->
-> The TGL+ bw code has an off by one error on the num_planes
-> calculation, and tgl_max_bw_index() incorrectly bumps
-> the num_planes to 1 from 0.
->
-> That approach made sense on ICL where num_planes is more or
-> a less minimum number of planes to consider for the group,
-
-Not entirely sure but sounds better to me when s/a less/less/.
-
-Otherwise:
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
-
-BR,
-Micha³
-
-> but on TGL+ num_planes really is a maximum number of planes,
-> so these adjustments no longer make any sense there.
->
-> Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> Using Coccinelle, rewrite every struct kernel_param_ops initializer that
+> sets .get into a DEFINE_KERNEL_PARAM_OPS-family macro invocation,
+> for example:
+> 
+> @@
+> declarer name DEFINE_KERNEL_PARAM_OPS;
+> identifier OPS;
+> expression SET, GET;
+> @@
+> - const struct kernel_param_ops OPS = {
+> -       .set = SET,
+> -       .get = GET,
+> - };
+> + DEFINE_KERNEL_PARAM_OPS(OPS, SET, GET);
+> 
+> Using the macro for initialization means future changes can manipulate
+> the struct layout and callback prototypes without having to change every
+> initializer.
+> 
+> Signed-off-by: Kees Cook <kees@kernel.org>
 > ---
-> drivers/gpu/drm/i915/display/intel_bw.c | 8 +-------
-> 1 file changed, 1 insertion(+), 7 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-> index d7b2bc80f8e3..d10eebec196e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_bw.c
-> +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-> @@ -636,8 +636,7 @@ static int tgl_get_bw_info(struct intel_display *display,
-> 			bi_next = &display->bw.max[i + 1];
->
-> 			if (clpchgroup < clperchgroup)
-> -				bi_next->num_planes = (ipqdepth - clpchgroup) /
-> -						       clpchgroup + 1;
-> +				bi_next->num_planes = (ipqdepth - clpchgroup) / clpchgroup;
-> 			else
-> 				bi_next->num_planes = 0;
-> 		}
-> @@ -802,11 +801,6 @@ static unsigned int tgl_max_bw_index(struct intel_display *display,
-> {
-> 	int i;
->
-> -	/*
-> -	 * Let's return max bw for 0 planes
-> -	 */
-> -	num_planes = max(1, num_planes);
-> -
-> 	for (i = ARRAY_SIZE(display->bw.max) - 1; i >= 0; i--) {
-> 		const struct intel_bw_info *bi =
-> 			&display->bw.max[i];
-> -- 
-> 2.52.0
->
->
---8323329-1254044371-1779491164=:1544314--
+[...]
+>  mm/damon/lru_sort.c                           | 19 ++---
+>  mm/damon/reclaim.c                            | 19 ++---
+>  mm/damon/stat.c                               |  6 +-
+[...]
+>  samples/damon/mtier.c                         |  6 +-
+>  samples/damon/prcl.c                          |  6 +-
+>  samples/damon/wsse.c                          |  6 +-
+
+For the above DAMON part changes,
+
+Reviewed-by: SeongJae Park <sj@kernel.org>
+
+
+Thanks,
+SJ
+
+[...]
