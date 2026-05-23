@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ClgDagAEmpPtQYAu9opvQ
+	id YB98LNgAEmpPtQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:31:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:32:40 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA4255C0750
-	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:31:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3ABD25C0758
+	for <lists+intel-gfx@lfdr.de>; Sat, 23 May 2026 21:32:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52C6A10E1CD;
-	Sat, 23 May 2026 19:31:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BD2DE10E0D7;
+	Sat, 23 May 2026 19:32:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="T4vj4LS8";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hrlkmRWJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 228E310E0D7;
- Sat, 23 May 2026 19:31:49 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3BEE710E0D7;
+ Sat, 23 May 2026 19:32:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779564709; x=1811100709;
+ t=1779564757; x=1811100757;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=oSbKpjwQzwiSmo7iFEbAhNY2J2Qo7+LYdeNRnak0+zk=;
- b=T4vj4LS833liBNGzvoGojv/QPz0e3952aO4IbOtffIG8x1RYIQNlz+ud
- 9na3ethcpOijJJHgjM/HLbionN8HYOp2UZPa1WMZWkJJhNwRLlNP3MPe7
- wpBYcSMgD4y9R1fd0O0oiV6ioM6GiEweJxQtliHRa2TvRQGBfE6t7HCSl
- tlvi7y4X18Jy4rxzJH/9QXlQqymgSmFyStbuyIxc2BciGIS3bjhTGM+tC
- B01+mcEmsZswTdJQ/QLAjSUz75U59eZHDSkDLba9PAA+wVnJ8IQPOpc8o
- 8iveN/I+WkPBmsW189+oMFPup6pRJHLyt/msrf9TPbpCTql5MVPC+x2I9 A==;
-X-CSE-ConnectionGUID: QFkxT2K9RHO/W5/AA9PB5A==
-X-CSE-MsgGUID: dtnyvclfSjiEvU7xHJkAJw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11795"; a="105915702"
-X-IronPort-AV: E=Sophos;i="6.24,164,1774335600"; d="scan'208";a="105915702"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2026 12:31:49 -0700
-X-CSE-ConnectionGUID: 9QidCPGPTBCDuP+1NPgNog==
-X-CSE-MsgGUID: Ms0csgRmTB2hnDNYgnRSUA==
+ bh=9S0jBaB3I/RsZsG/l6oU2s0ai8nCAJJ1wVPDyOws/1s=;
+ b=hrlkmRWJVRwK0cmrornLjQx8JNrBB1dvVWU2JekPqOuzNkLY24pesQ4Q
+ VMIAjUkUm2GUzYVpGYgaDDh8VOp4a8k45kY0olu0ezvlIMhnY7rNQRABE
+ KNGME4OV5AhsA3UlgCMDUijBwMNoSM0UuYKM4XzBDheTH99AxYEA/+4Xo
+ UPx4gBt5JbLKg2VVBbAuYX7c3evC462qW3trnhFcXeR5V9SXBBggE71kh
+ LDzMhWTjqIXZMUdMvYdi5TiMKO3gpoPPLtRUL/bqU9LZCizUWTAN8X2Hl
+ n+0TeDTA4nE4/q/YEVUB+7sOCi5vbty2KoeAoRsLVzgIjQHkbVngQKn1l w==;
+X-CSE-ConnectionGUID: VPrlrW5+QJyhLiF19PnWCQ==
+X-CSE-MsgGUID: JosaEF+ETkSn6aaspmnjRA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11795"; a="80572633"
+X-IronPort-AV: E=Sophos;i="6.24,164,1774335600"; d="scan'208";a="80572633"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2026 12:32:37 -0700
+X-CSE-ConnectionGUID: zl3t1UvCQAKseIQV7cmJ8Q==
+X-CSE-MsgGUID: dtg/IhuTQpmXXpffhsXhow==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,164,1774335600"; d="scan'208";a="241418587"
+X-IronPort-AV: E=Sophos;i="6.24,164,1774335600"; d="scan'208";a="236996475"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 May 2026 12:31:46 -0700
-Date: Sat, 23 May 2026 21:31:45 +0200 (CEST)
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 23 May 2026 12:32:36 -0700
+Date: Sat, 23 May 2026 21:32:33 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 05/10] drm/i915/bw: Fix rounding direction in clperchgroup
- calculation
-In-Reply-To: <20260522200346.17377-6-ville.syrjala@linux.intel.com>
-Message-ID: <4c5fc890-fcd4-be40-26cf-95fa5aa6c15f@intel.com>
+Subject: Re: [PATCH 06/10] drm/i915/bw: Fix DEPROGBWPCLIMIT handling on BMG
+In-Reply-To: <20260522200346.17377-7-ville.syrjala@linux.intel.com>
+Message-ID: <9f5eee34-5848-da1a-a7b2-1b352ad98fcf@intel.com>
 References: <20260522200346.17377-1-ville.syrjala@linux.intel.com>
- <20260522200346.17377-6-ville.syrjala@linux.intel.com>
+ <20260522200346.17377-7-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-995698574-1779532764=:1544314"
-Content-ID: <0108e86d-b3ab-115c-8354-65185d005f16@intel.com>
+Content-Type: multipart/mixed;
+ BOUNDARY="8323329-2137229257-1779532839=:1544314"
+Content-ID: <a1c051a1-2068-6b8d-f79f-6355502c8e72@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,26 +99,31 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: CA4255C0750
+X-Rspamd-Queue-Id: 3ABD25C0758
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-995698574-1779532764=:1544314
+--8323329-2137229257-1779532839=:1544314
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <ca6d8f33-d55d-b1c9-3921-08341f249220@intel.com>
+Content-ID: <34c39158-55b2-84cf-4063-f5df9f9dd340@intel.com>
 
 On Fri, 22 May 2026, Ville Syrjala wrote:
 > From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 >
-> The '8/num_channels' in the clperchgroup is supposed to be rounded
-> down according to the spec. Make it so.
+> DEPROGBWPCLIMIT is specified in %, so divide by 100 instead of 10.
 >
-> Not sure we can ever actually have a non-power of two number of
-> channels, so this might not matter.
+> Fortunately the deprobbwlimit is much lower than the peak memory
+> bandwidth on BMG, so whether we take 60% or 600% of the peak
+> bandwidth doesn't matter as the min() will pick the lower
+> deprobbwlimit anyway.
+>
+> Eg. on the BMG here I get (with or without the fix):
+> QGV 0: deratedbw=33600 peakbw=48000
+> QGV 1: deratedbw=53000 peakbw=456000
 >
 > Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
@@ -126,4 +131,4 @@ Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
---8323329-995698574-1779532764=:1544314--
+--8323329-2137229257-1779532839=:1544314--
