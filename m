@@ -2,34 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MFLHBs1dFGqgMwcAu9opvQ
+	id MIaIFpZkFGoxNAcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 16:33:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 17:02:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 63B525CBC6B
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 16:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ACE095CC09E
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 17:02:45 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DA95C10E3A4;
-	Mon, 25 May 2026 14:33:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8BB0E10E399;
+	Mon, 25 May 2026 15:02:43 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="abQDFWZo";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B183310E39B;
- Mon, 25 May 2026 14:33:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6644196620932719229=="
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0BBE810E399;
+ Mon, 25 May 2026 15:02:43 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 4B584600C3;
+ Mon, 25 May 2026 15:02:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B3711F000E9;
+ Mon, 25 May 2026 15:02:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1779721362;
+ bh=oE/uAUi1ZJ8Z07LJo3PiENxZ5di8rJGAwdTc2Ip5hJM=;
+ h=Date:From:To:Cc:Subject;
+ b=abQDFWZoeoIySS5uM50oNQAhEjFEVdVhPVHyVFnb4M3QzXnsXKnjMt0FinMac5pWX
+ OjO7kExt7XscZ3Kvd5x77xeMvRUYkV5eH1ALelDj3wJaSovdgCXh155PFpm53LUPNe
+ nYkMYpYhoDn77oPoKMZsbEGSBIIJOqWZmyvdsuHDkGG3Xdm/9IimafUBUJW4z/k3SZ
+ NxrOyUeiujK/5hl+P8aOeVKMbqrDFcUC9SDVEEjD4D2R63Sw/t76Og7BAKWJSYkGVp
+ p/QIre4pVFgcM+LjoxRieN7stJ1lR+QuXj4p6b1mhqq7NzyeXejHvsUITNnd2cQ1dJ
+ ahEkFWGsGtkfQ==
+Date: Mon, 25 May 2026 16:02:37 +0100
+From: Mark Brown <broonie@kernel.org>
+To: Maxime Ripard <mripard@kernel.org>, Dave Airlie <airlied@redhat.com>,
+ Icenowy Zheng <zhengxingda@iscas.ac.cn>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>,
+ Intel Graphics <intel-gfx@lists.freedesktop.org>,
+ DRI <dri-devel@lists.freedesktop.org>
+Cc: Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ Linux Next Mailing List <linux-next@vger.kernel.org>
+Subject: linux-next: build failure after merge of the drm-misc tree
+Message-ID: <ahRkjeEjdeF_icWN@sirena.org.uk>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gt=3A_Fix_wakere?=
- =?utf-8?q?f_underflow_on_device_hotplug_rebind_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Sebastian Brzezinka" <sebastian.brzezinka@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 May 2026 14:33:44 -0000
-Message-ID: <177971962471.4776.7800243620857385085@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260521092656.2761-1-sebastian.brzezinka@intel.com>
-In-Reply-To: <20260521092656.2761-1-sebastian.brzezinka@intel.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature"; boundary="GroEncpA0Meuaket"
+Content-Disposition: inline
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,172 +64,229 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-3.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
+	TO_DN_ALL(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.880];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,i915_selftest:email,live:email,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 63B525CBC6B
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[broonie@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[sirena.org.uk:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: ACE095CC09E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============6644196620932719229==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
 
-== Series Details ==
+--GroEncpA0Meuaket
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Series: drm/i915/gt: Fix wakeref underflow on device hotplug rebind (rev4)
-URL   : https://patchwork.freedesktop.org/series/166762/
-State : success
+Hi all,
 
-== Summary ==
+After merging the drm-misc tree, today's linux-next build (x86_64
+allmodconfig) failed like this:
 
-CI Bug Log - changes from CI_DRM_18548 -> Patchwork_166762v4
-====================================================
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:43:48:
+error: 'struct drm_atomic_state' declared inside parameter list will
+not be visible outside of this definition or declaration [-Werror]
+   43 |                                         struct drm_atomic_state *state)
+      |                                                ^~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+In function 'vs_cursor_plane_atomic_check':
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:45:82:
+error: passing argument 1 of 'drm_atomic_get_new_plane_state' from
+incompatible pointer type [-Wincompatible-pointer-types]
+   45 |         struct drm_plane_state *new_plane_state = drm_atomic_get_new_plane_state(state,
+      |                                                                                  ^~~~~
+      |                                                                                  |
+      |                                                                                  struct
+      |                                                                                  drm_atomic_state
+      |                                                                                  *
+In file included from
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:12:
+/tmp/next/build/include/drm/drm_atomic.h:824:64: note: expected
+'const struct drm_atomic_commit *' but argument is of type 'struct
+drm_atomic_state *'
+  824 | drm_atomic_get_new_plane_state(const struct drm_atomic_commit *state,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:55:60:
+error: passing argument 1 of 'drm_atomic_get_new_crtc_state' from
+incompatible pointer type [-Wincompatible-pointer-types]
+   55 |                 crtc_state = drm_atomic_get_new_crtc_state(state, crtc);
+      |                                                            ^~~~~
+      |                                                            | struct
+      |                                                            drm_atomic_state
+      |                                                            *
+/tmp/next/build/include/drm/drm_atomic.h:794:63: note: expected
+'const struct drm_atomic_commit *' but argument is of type 'struct
+drm_atomic_state *'
+  794 | drm_atomic_get_new_crtc_state(const struct drm_atomic_commit *state,
+      |                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+At top level:
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:101:51:
+error: 'struct drm_atomic_state' declared inside parameter list will
+not be visible outside of this definition or declaration [-Werror]
+  101 |                                            struct drm_atomic_state *atomic_state)
+      |                                                   ^~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+In function 'vs_cursor_plane_atomic_enable':
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:103:72:
+error: passing argument 1 of 'drm_atomic_get_new_plane_state' from
+incompatible pointer type [-Wincompatible-pointer-types]
+  103 |         struct drm_plane_state *state = drm_atomic_get_new_plane_state(atomic_state,
+      |                                                                        ^~~~~~~~~~~~
+      |                                                                        |
+      |                                                                        struct
+      |                                                                        drm_atomic_state
+      |                                                                        *
+/tmp/next/build/include/drm/drm_atomic.h:824:64: note: expected
+'const struct drm_atomic_commit *' but argument is of type 'struct
+drm_atomic_state *'
+  824 | drm_atomic_get_new_plane_state(const struct drm_atomic_commit *state,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+At top level:
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:118:52:
+error: 'struct drm_atomic_state' declared inside parameter list will
+not be visible outside of this definition or declaration [-Werror]
+  118 |                                             struct drm_atomic_state *atomic_state)
+      |                                                    ^~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+In function 'vs_cursor_plane_atomic_disable':
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:120:72:
+error: passing argument 1 of 'drm_atomic_get_old_plane_state' from
+incompatible pointer type [-Wincompatible-pointer-types]
+  120 |         struct drm_plane_state *state = drm_atomic_get_old_plane_state(atomic_state,
+      |                                                                        ^~~~~~~~~~~~
+      |                                                                        |
+      |                                                                        struct
+      |                                                                        drm_atomic_state
+      |                                                                        *
+/tmp/next/build/include/drm/drm_atomic.h:809:64: note: expected
+'const struct drm_atomic_commit *' but argument is of type 'struct
+drm_atomic_state *'
+  809 | drm_atomic_get_old_plane_state(const struct drm_atomic_commit *state,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+At top level:
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:135:51:
+error: 'struct drm_atomic_state' declared inside parameter list will
+not be visible outside of this definition or declaration [-Werror]
+  135 |                                            struct drm_atomic_state *atomic_state)
+      |                                                   ^~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+In function 'vs_cursor_plane_atomic_update':
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:137:72:
+error: passing argument 1 of 'drm_atomic_get_new_plane_state' from
+incompatible pointer type [-Wincompatible-pointer-types]
+  137 |         struct drm_plane_state *state = drm_atomic_get_new_plane_state(atomic_state,
+      |                                                                        ^~~~~~~~~~~~
+      |                                                                        |
+      |                                                                        struct
+      |                                                                        drm_atomic_state
+      |                                                                        *
+/tmp/next/build/include/drm/drm_atomic.h:824:64: note: expected
+'const struct drm_atomic_commit *' but argument is of type 'struct
+drm_atomic_state *'
+  824 | drm_atomic_get_new_plane_state(const struct drm_atomic_commit *state,
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:147:55:
+error: passing argument 2 of 'vs_cursor_plane_atomic_disable' from
+incompatible pointer type [-Wincompatible-pointer-types]
+  147 |                 vs_cursor_plane_atomic_disable(plane, atomic_state);
+      |                                                       ^~~~~~~~~~~~
+      |                                                       | struct
+      |                                                       drm_atomic_state
+      |                                                       *
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:118:70:
+note: expected 'struct drm_atomic_state *' but argument is of type
+'struct drm_atomic_state *'
+  118 |                                             struct drm_atomic_state *atomic_state)
+      |                                             ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:
+At top level:
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:225:27:
+error: initialization of 'int (*)(struct drm_plane *, struct
+drm_atomic_commit *)' from incompatible pointer type 'int (*)(struct
+drm_plane *, struct drm_atomic_state *)' [-Wincompatible-pointer-types]
+  225 |         .atomic_check   = vs_cursor_plane_atomic_check,
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:225:27:
+note: (near initialization for
+'vs_cursor_plane_helper_funcs.atomic_check')
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:226:27:
+error: initialization of 'void (*)(struct drm_plane *, struct
+drm_atomic_commit *)' from incompatible pointer type 'void (*)(struct
+drm_plane *, struct drm_atomic_state *)' [-Wincompatible-pointer-types]
+  226 |         .atomic_update  = vs_cursor_plane_atomic_update,
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:226:27:
+note: (near initialization for
+'vs_cursor_plane_helper_funcs.atomic_update')
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:227:27:
+error: initialization of 'void (*)(struct drm_plane *, struct
+drm_atomic_commit *)' from incompatible pointer type 'void (*)(struct
+drm_plane *, struct drm_atomic_state *)' [-Wincompatible-pointer-types]
+  227 |         .atomic_enable  = vs_cursor_plane_atomic_enable,
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:227:27:
+note: (near initialization for
+'vs_cursor_plane_helper_funcs.atomic_enable')
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:228:27:
+error: initialization of 'void (*)(struct drm_plane *, struct
+drm_atomic_commit *)' from incompatible pointer type 'void (*)(struct
+drm_plane *, struct drm_atomic_state *)' [-Wincompatible-pointer-types]
+  228 |         .atomic_disable = vs_cursor_plane_atomic_disable,
+      |                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/tmp/next/build/drivers/gpu/drm/verisilicon/vs_cursor_plane.c:228:27:
+note: (near initialization for
+'vs_cursor_plane_helper_funcs.atomic_disable')
 
-Summary
--------
+Caused by commit
 
-  **SUCCESS**
+  8c4ae21891255 (drm: verisilicon: add support for cursor planes)
 
-  No regressions found.
+interacting with
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/index.html
+  5164f7e7ff8ec (drm: Rename struct drm_atomic_state to drm_atomic_commit)
 
-Participating hosts (42 -> 40)
-------------------------------
+which appears to be an ancestor of the verisilicon commit.  I have used
+the version from next-20260522 instead.
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+--GroEncpA0Meuaket
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Known issues
-------------
+-----BEGIN PGP SIGNATURE-----
 
-  Here are the changes found in Patchwork_166762v4 that come from known issues:
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAmoUZIwACgkQJNaLcl1U
+h9DN8Qf/XuhsmNTm6pM5E0zNbbxWHWulWwJR/Ew5fOfYo7OrEPRrSuPtdQAtut5S
+hEBMfjyeSf4zBnDpN/k6Q4Qgzt7xkXaD1okSbNf/445x10ZnejyNR/uVkcJga89Y
+4GXCtPZtY6VQq6sIvgkUz4wWuFHhh4nUkhLuI+EEkS3aagdGcF/aa9THi8CFnUQ/
+5xXN5VmNXybd0axsMDPsyH8PQyZhL3yIK24Sf4B7hsJWV8naQVWwN+TUNxLTT0qJ
+Vx0G/8dzXjBj7as37v/7ifRZqqsjYtswtWdGCE4oMfnUXH8BMUO+HMY/4uCXWymB
+T7xr3DtMEHxQTpuEuThcIHWHqdUchg==
+=5+80
+-----END PGP SIGNATURE-----
 
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - bat-arls-5:         [PASS][1] -> [DMESG-FAIL][2] ([i915#15963]) +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/bat-arls-5/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/bat-arls-5/igt@i915_selftest@live.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#15673]) +51 other tests dmesg-warn
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
-  [i915#15963]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15963
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18548 -> Patchwork_166762v4
-
-  CI-20190529: 20190529
-  CI_DRM_18548: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_166762v4: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/index.html
-
---===============6644196620932719229==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gt: Fix wakeref underflow on device hotplug rebind (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166762/">https://patchwork.freedesktop.org/series/166762/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18548 -&gt; Patchwork_166762v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_166762v4 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/bat-arls-5/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/bat-arls-5/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15963">i915#15963</a>) +1 other test dmesg-fail</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166762v4/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) +51 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18548 -&gt; Patchwork_166762v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18548: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_166762v4: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6644196620932719229==--
+--GroEncpA0Meuaket--
