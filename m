@@ -2,81 +2,81 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id kAMVG5F2FGokNgcAu9opvQ
+	id 4KZjAbJ3FGokNgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 18:19:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 18:24:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1CB6F5CCB9E
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 18:19:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A964C5CCD03
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 18:24:17 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DDC9F10E225;
-	Mon, 25 May 2026 16:19:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D411510E3B2;
+	Mon, 25 May 2026 16:24:13 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="Ky5AnU/i";
+	dkim=pass (2048-bit key; unprotected) header.d=suse.com header.i=@suse.com header.b="VZHNJ2GT";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com
- [209.85.128.51])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D7FD610E19A
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 16:19:24 +0000 (UTC)
-Received: by mail-wm1-f51.google.com with SMTP id
- 5b1f17b1804b1-49041e84237so26867515e9.1
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 09:19:24 -0700 (PDT)
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com
+ [209.85.221.51])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8AE5B10E3B2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 16:24:12 +0000 (UTC)
+Received: by mail-wr1-f51.google.com with SMTP id
+ ffacd0b85a97d-44a14580111so7325118f8f.0
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 09:24:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=suse.com; s=google; t=1779725963; x=1780330763; darn=lists.freedesktop.org; 
+ d=suse.com; s=google; t=1779726251; x=1780331051; darn=lists.freedesktop.org; 
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :from:to:cc:subject:date:message-id:reply-to;
- bh=6YA+/JJXQ9abERc/NViF0XyaL5qdJ2pUb4chRkVwshY=;
- b=Ky5AnU/iW+SQBM+YsY9krb6ebNwwtRlEWe9HD6RJ9RRNW9kCM29oC/Fw2QaLZ20lFZ
- g/qNqucBxq4cbP0RCOkUkMNXfrGHEd6nkIljQ5kH2upZxAjjWn1c0DaADKWbeYoGPjek
- kO96s396lx/JQwfA0rB2H7Dq++qKJiv5XGW32LFDk5hWeqdMU6RItPPyxkBoOoe8k12t
- e8K3F5+ohVjwHuOeMjR+CFXittBYmVZbDapOSgiIVhy/p8pdTbqtIz4nEGkH5WPVsz6t
- NTlFg3f6JB4K18tM+Acv1RBCUMHoHruSKdvDuQc9ODYaYYZEpxkuq+Jv7ftQJE3JLLDb
- w1eQ==
+ bh=WThGrJlj0+d9TTzzXLAp8aZigkvM5HszOOE/MfwSIgg=;
+ b=VZHNJ2GTrl43XFDDSt9YfqTICh80PrFMFg2kLEQCoEUGMDLoNCvANX0XPmCJFg71j+
+ JPL1y+JcB0IF3oqHslsDrCAHCGSSoA/qepLvJUw/xxAeFReDhC5JyG1IAXoB6SM/ww4j
+ 3SPj70IoeFKHx0iNO/d/yMq4Lb8DKSzYolG1QRyUVrSVqWyp3WgyrFWm24q+hs1eMhpm
+ 4IiU3H86re1AB90ThjoUjNtM+X6Ux0L6AVfQ9Vhl0WyQcOm1LnRLZaISvHiLvswOKmQH
+ 8M9IDEiZ38gwN2qzwHnRoYDQcetU566KapQi/hFdJFU9oKwkZDjQtXk2BGYouocCEO+Y
+ HdQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779725963; x=1780330763;
+ d=1e100.net; s=20251104; t=1779726251; x=1780331051;
  h=content-transfer-encoding:in-reply-to:from:content-language
  :references:cc:to:subject:user-agent:mime-version:date:message-id
  :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=6YA+/JJXQ9abERc/NViF0XyaL5qdJ2pUb4chRkVwshY=;
- b=RzqzieWBFQvRDbQ08/ncRE0KVCGTWWfrr64wUHJzWvBe9WpvoD5/t+l6/FBGBxvogs
- ABgV0fqBO1ChLPraGEkeh7yi1YoCj+MdJRPp6pIBNM92qSxLUDExLCC5eaQ/qLEkYNN7
- kJYLY4qNpu1eJTz+FhoORCAVzCQslmOqUTc7o8/qCWPjtBwFxqJ7DZbVU5M5VUn6eNpt
- LlJeDX+ll2AA+YuiK+G0Sx9PLYuyAkmE/Wzewbk3OqAuBH+2iiESzzBsyOgR/Grv5Pvs
- ZFK84I4sW1qZwkdxdoXaUiU6E4H/etsSPoxy6hlnT6N8efIWWdqlTx++xhNvWooZTIQL
- W7TQ==
+ bh=WThGrJlj0+d9TTzzXLAp8aZigkvM5HszOOE/MfwSIgg=;
+ b=NEMcRoMz9OVqdxf4rXCTwS9+MH86tTQWPdtof+kK8I/d5AfyM3vDjkDkcgE+OxxX2s
+ hV44hz6hc3zWIsxcStarMh2TpQdEpket26l094FTz21/JqE6DgOVyAaOcR16IEEDWel0
+ yMG8PQoLXxwDq2jHGHRQA0lIgcnKhwSSAQ9izI0+KR+1QP0l9cO5+svH91M8zGyjWn9X
+ +OUPRMW2Ry/HCyabwmQHuBHA8jAwjbRo5ZR85beOaqdD+yDdByrwVD0I2zqP90P8iQGV
+ tXY08zOusO7hOTZC2NHVDM3M5/t95m7qVqdJE+MM12aDOBrV815V3MzgiDzXMDQCf6uV
+ iQBQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8fuC272e/xg/0zQVvKUlWXFxPIKkBsuXcEvXfqS7sp+O0nG91yl3GLwbYwlDfEjyBV6Bi5RE0gikQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzM6mG6Y2iy1HB9HytVTRBU4HvuN6US6KTOX0SF4ufFkV8hB111
- 1g5o+KjolMDOtlX9QuSlUEhJn9BTzd4KjWCoz8XEzK/dGWIPXDgL5AWqadEpqn8/puw=
-X-Gm-Gg: Acq92OGvZqEeO15fNre21WjuAdP2+U6A6LvT7oQYPy2eMR3nqaTZDkqGrVzVrC0q3yX
- qPDOkSgitC7IXDb1ElL5VqMXIVIBg3iaD1B3fJAjr2UJa7fk7VODB+cp2Mey9XJJTcwkmgfKCIK
- xGC7mK1W/+YtHRwALKp7Pw1oMLSWZE/25TG8JTQIRW4e6prj6ekcrY7Xd47CCr2rJYpLVsc88s4
- fhB08fP/yObsKJzWmM/olnaTxzt7WRCTYH4DgpKCV2klv0/0EenJu+nJiLsJVXTDLNMFjUv3gxR
- UTZ+D2U82x9mg/4ckorv/3faA13BsElBG+x9GLMi5Uk9jeVQu+yyoIOa2fFJ0Jz8mXoej/ydwA/
- PCMjLV92Qto+OqgJ31r4FZa8i8qnhUXMW3frd3KL1EXNnEG6uxniQfxTWhaQI3Uvk9Vr0lu9aF0
- yc53eUc/YYJJej/0HoDgOsMUm1/o7Xl7AR9jCb3B4cFuC8LM8q6cr6mvjjN8h0gGvAE+GpxR9fP
- MdAKg4QEOJqai1HwHjgv2tGPZcuj8b6CUEUMmlsnkHBSRmpbYIekYP0eUZqMXc2cU4ecw==
-X-Received: by 2002:a05:600c:3b07:b0:490:f7c:b19 with SMTP id
- 5b1f17b1804b1-490420f67f5mr197977845e9.0.1779725963153; 
- Mon, 25 May 2026 09:19:23 -0700 (PDT)
+ AFNElJ/CInhEiYNw4dD1sWLV0uZ8YjB2kMnm+YMXK+cJxtiZbUcdqMOv4irjYe58ps7NZiuuqNdPRgPMyLo=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yz3f+wsghzp5BIZfiamrmlrKA2ZlfG26O1qIiWOZmsazVnV0T6G
+ XOe6p0kDl0T4xmF/qOO1KsOFMAxXBJ1StfIzpWah7ChHNmywVK85ivoBgfbkp9mX/uM=
+X-Gm-Gg: Acq92OFI0et6rc455mM4SYTS2pg/7ekYZqu9GRpinIXxll9QPy9M2zZZRUaaZdHXCkc
+ nen+/YD6TzP61nXALL/ULVoJsX255XwlfYDrzdFWmL/qoY7+O7YJyw3lkfc/HABe61Z11X9WSnB
+ 5pwWKPrwVNlrsDD1+7fJf8UI0rIA13m+8ILwZDtAANAuAqH6p1jk3fAgkpbh86LY3PiAMl3Pm9s
+ yHCcNhXytxkodI+3lQzlcs+XShV6HqacsDls2hz9eHfZ/Tv4806hET6QAV8YOoMBh9ya+BK2D71
+ URytSqfWbOZr1cySB9MkHPk2tVbvk/o+LZOTbGugCbyggPh0phD8kCvRnGIHfrpF0wh5QLWtjXP
+ AmA54qealbz3RotuNxUp6iP2QFWc+/ZiANn8xQxsPTVm5bhOZEj5AkoFW9VEQ61riBnowUhLap2
+ q81KS071aI9rhuBrZbpzv+wqKtwEHncLlKo0oBR1l11mb5ROZkhIGLwHuBCMHjfirjetX3y7EPY
+ 05KL7ecd5ge6sVikEF8UGXV4yNnBPYU70lYOssvvBVx6YU2wQi6xIIbw7Azhg2k3tOORA==
+X-Received: by 2002:a05:6000:26cf:b0:45e:b215:12e9 with SMTP id
+ ffacd0b85a97d-45eb368903emr24724531f8f.6.1779726250728; 
+ Mon, 25 May 2026 09:24:10 -0700 (PDT)
 Received: from ?IPV6:2a00:1028:838d:271e:8e3b:4aff:fe4c:a100?
  (dynamic-2a00-1028-838d-271e-8e3b-4aff-fe4c-a100.ipv6.o2.cz.
  [2a00:1028:838d:271e:8e3b:4aff:fe4c:a100])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-49059cc9a91sm48939425e9.1.2026.05.25.09.19.19
+ ffacd0b85a97d-45eb6d47b82sm28202483f8f.19.2026.05.25.09.24.07
  (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Mon, 25 May 2026 09:19:22 -0700 (PDT)
-Message-ID: <a4c7ccee-6189-4c74-bad8-57d1438c7d8d@suse.com>
-Date: Mon, 25 May 2026 18:19:19 +0200
+ Mon, 25 May 2026 09:24:10 -0700 (PDT)
+Message-ID: <4e54ae4a-4f7b-451d-9b37-97f30b8fefba@suse.com>
+Date: Mon, 25 May 2026 18:24:07 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 06/11] moduleparam: Add seq_buf-based .get callback
- alongside .get_str
+Subject: Re: [PATCH 07/11] moduleparam: Route DEFINE_KERNEL_PARAM_OPS get
+ pointer via _Generic
 To: Kees Cook <kees@kernel.org>
 Cc: Luis Chamberlain <mcgrof@kernel.org>, Pengpeng Hou
  <pengpeng@iscas.ac.cn>, Richard Weinberger <richard@nod.at>,
@@ -138,10 +138,10 @@ Cc: Luis Chamberlain <mcgrof@kernel.org>, Pengpeng Hou
  linux-arch@vger.kernel.org, netdev@vger.kernel.org,
  linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
 References: <20260521133315.work.845-kees@kernel.org>
- <20260521133326.2465264-6-kees@kernel.org>
+ <20260521133326.2465264-7-kees@kernel.org>
 Content-Language: en-US
 From: Petr Pavlu <petr.pavlu@suse.com>
-In-Reply-To: <20260521133326.2465264-6-kees@kernel.org>
+In-Reply-To: <20260521133326.2465264-7-kees@kernel.org>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -192,36 +192,96 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:email,suse.com:mid,suse.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 1CB6F5CCB9E
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:email,suse.com:mid,suse.com:dkim]
+X-Rspamd-Queue-Id: A964C5CCD03
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 On 5/21/26 3:33 PM, Kees Cook wrote:
-> Add a new struct kernel_param_ops::get callback whose signature
-> takes a struct seq_buf instead of a raw char buffer:
+> Make the DEFINE_KERNEL_PARAM_OPS family route their _get argument to
+> either .get (struct seq_buf *) or .get_str (char *) at compile time
+> based on the pointer's actual function signature. Two helper macros
+> do the routing:
 > 
->   int (*get)(struct seq_buf *sb, const struct kernel_param *kp);
+>   _KERNEL_PARAM_OPS_GET     - return the pointer if it has the seq_buf
+>                               signature, otherwise NULL of that type
+>   _KERNEL_PARAM_OPS_GET_STR - mirror image for the char * signature
 > 
-> The previously-legacy .get field is now .get_str (char *buffer);
-> .get is the new seq_buf-aware form.  param_attr_show() prefers .get
-> when set, otherwise falls back to .get_str.  WARN_ON_ONCE() if both
-> are set.  Return contract for .get:
+> Both use _Generic; only the two valid function-pointer types are
+> listed, so any third-party type is a compile error rather than
+> silently falling through.
 > 
->   < 0 : errno propagated to userspace; seq_buf contents discarded
->   = 0 : success; length derived from seq_buf_used()
->   > 0 : forbidden; the dispatcher WARN_ON_ONCE()s and treats as 0
-> 
-> The default policy on seq_buf_has_overflowed() is silent truncation,
-> matching scnprintf()/sysfs_emit() behaviour.  Callbacks that want a
-> specific overflow errno can check seq_buf_has_overflowed() and
-> return their preferred error.
-> 
-> No callbacks use .get yet; the legacy path is still the only one in use
-> after this commit. A subsequent commit teaches DEFINE_KERNEL_PARAM_OPS
-> to route initializers by type.
+> Now a callback whose body has been migrated from char * to struct
+> seq_buf * needs no change at its kernel_param_ops initialization site,
+> because the macro picks up the new type automatically and assigns to
+> the correct field.
 > 
 > Signed-off-by: Kees Cook <kees@kernel.org>
+> ---
+>  include/linux/moduleparam.h | 33 ++++++++++++++++++++++++++-------
+>  1 file changed, 26 insertions(+), 7 deletions(-)
+> 
+> diff --git a/include/linux/moduleparam.h b/include/linux/moduleparam.h
+> index c52120f6ac28..795bc7c654ef 100644
+> --- a/include/linux/moduleparam.h
+> +++ b/include/linux/moduleparam.h
+> @@ -85,15 +85,32 @@ struct kernel_param_ops {
+>   *
+>   *   static DEFINE_KERNEL_PARAM_OPS(my_ops, my_set, my_get);
+>   *
+> - * Routing the @_set and @_get function pointers through the macro
+> - * (rather than naming the struct fields at every call site) lets the
+> - * field layout change in one place when callbacks are migrated to a
+> - * new signature.
+> + * @_get may be either of:
+> + *   int (*)(struct seq_buf *, const struct kernel_param *) (seq_buf)
+> + *   int (*)(char *, const struct kernel_param *)           (legacy)
+> + *
+> + * The macro uses _Generic to route the function pointer to the
+> + * matching field (.get or .get_str) at compile time, leaving the
+> + * other field NULL. Each helper matches the wrong prototype signature
+> + * and returns NULL, falling through to the default branch otherwise;
+> + * if @_get has neither expected signature the assignment to the
+> + * fields gets a normal compile-time type-mismatch error.
+>   */
+> +#define _KERNEL_PARAM_OPS_GET(_get)					\
+> +	_Generic((_get),						\
+> +	    int (*)(char *, const struct kernel_param *): NULL,		\
+> +	    default: (_get))
+> +
+> +#define _KERNEL_PARAM_OPS_GET_STR(_get)					\
+> +	_Generic((_get),						\
+> +	    int (*)(struct seq_buf *, const struct kernel_param *): NULL, \
+> +	    default: (_get))
+> +
+>  #define DEFINE_KERNEL_PARAM_OPS(_name, _set, _get)			\
+>  	const struct kernel_param_ops _name = {				\
+>  		.set = (_set),						\
+> -		.get_str = (_get),					\
+> +		.get = _KERNEL_PARAM_OPS_GET(_get),			\
+> +		.get_str = _KERNEL_PARAM_OPS_GET_STR(_get),		\
+>  	}
+>  
+>  /* As DEFINE_KERNEL_PARAM_OPS, with KERNEL_PARAM_OPS_FL_NOARG set. */
+> @@ -101,14 +118,16 @@ struct kernel_param_ops {
+>  	const struct kernel_param_ops _name = {				\
+>  		.flags = KERNEL_PARAM_OPS_FL_NOARG,			\
+>  		.set = (_set),						\
+> -		.get_str = (_get),					\
+> +		.get = _KERNEL_PARAM_OPS_GET(_get),			\
+> +		.get_str = _KERNEL_PARAM_OPS_GET_STR(_get),		\
+>  	}
+>  
+>  /* As DEFINE_KERNEL_PARAM_OPS, with an additional .free callback. */
+>  #define DEFINE_KERNEL_PARAM_OPS_FREE(_name, _set, _get, _free)		\
+>  	const struct kernel_param_ops _name = {				\
+>  		.set = (_set),						\
+> -		.get_str = (_get),					\
+> +		.get = _KERNEL_PARAM_OPS_GET(_get),			\
+> +		.get_str = _KERNEL_PARAM_OPS_GET_STR(_get),		\
+>  		.free = (_free),					\
+>  	}
+>  
 
 Reviewed-by: Petr Pavlu <petr.pavlu@suse.com>
 
