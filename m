@@ -2,69 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mLkDN09VFGp2MgcAu9opvQ
+	id 6IwmI1VVFGp2MgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 15:57:35 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 15:57:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4371D5CB69E
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 15:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34B785CB6BA
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 15:57:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A1FEB10E122;
-	Mon, 25 May 2026 13:57:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 665C310E31D;
+	Mon, 25 May 2026 13:57:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="drl1dbHg";
+	dkim=pass (2048-bit key; unprotected) header.d=poorly.run header.i=@poorly.run header.b="VyWwa/km";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f180.google.com (mail-yw1-f180.google.com
- [209.85.128.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7CB6D10E131
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 13:57:32 +0000 (UTC)
-Received: by mail-yw1-f180.google.com with SMTP id
- 00721157ae682-7cff695e6b1so63283337b3.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 06:57:32 -0700 (PDT)
+Received: from mail-yw1-f173.google.com (mail-yw1-f173.google.com
+ [209.85.128.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 37E7F10E135
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 13:57:37 +0000 (UTC)
+Received: by mail-yw1-f173.google.com with SMTP id
+ 00721157ae682-7bdf83185bbso93351817b3.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 06:57:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=poorly.run; s=google; t=1779717451; x=1780322251; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:from:to:cc:subject:date:message-id:reply-to;
- bh=R2Pnx/Mi+Y/3KV/4Sc1GEttUJtfyf8f5vLDsmZdB3eA=;
- b=drl1dbHgFn46jD9/1E+ftFwo8fyEynU0mzF7rrsOJG1h+Djaa6JbjM/0SZA7UKgPY+
- NTP4j9vJukZhEAOb3N0Gwf2AXoIZvsjx1EYXFe1PfN5T71l3Dd2VwSYWehPWVEcAck91
- kmxGWZvOVMf0nt+5vo2UFGKOJuGr3uP5CIG7PaSbpy8HMU7dTK2a/ozJ9KObsaZL+uE/
- ssFFqp4gMhzStA13VF4M4lSVQr6mbknzlOJRiu31kE5AqlTvTH5Q8xhkKoYli8Qfv7vQ
- oU/INzDTwA6xF+EeNktGhPrRBvdsytBWoBAzlnxFbTGPAkHpc8p0j2bd8fjTpncTxIDu
- 24VQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1779717451; x=1780322251;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
+ d=poorly.run; s=google; t=1779717456; x=1780322256; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
  :message-id:reply-to;
- bh=R2Pnx/Mi+Y/3KV/4Sc1GEttUJtfyf8f5vLDsmZdB3eA=;
- b=a6o5It5EhzeCkfSaBQ7U3XCwiWaDEP24a29fmfTx4GyECllCbfIVeP3nEVqNC76qIx
- ffOMOtDP+JE1+OdJUWdsjnWQoLgeO24Jup9+WprJp0GEtuImazyWiU2//es2XIi1RfOv
- UuMNRJwmbQ5yepbdypZu488/sNWYs9Lrt7w2OBfoSGlVJKZ4tUGL11sKtPGGQyq4b5GY
- iMM68hAZdvyScEhExkRriGsLWjlzpTMOp/WNcoqjCmxxNmuvtEWZSHgCpp94xbqW7Nkw
- gImTMhF3Idr9zVSJdyGMoIX6hJMN/5zkk4coWyGnBwJrWj9oUKQfY4beEuaUrz9s84X8
- jQJA==
-X-Gm-Message-State: AOJu0YyUXbBmQcFG2+u+ifVfx/rht0xqRYNjciMxx4eHLQhd6d6dJoc1
- w4FVEkNed5Fj67MWR2nPngvhWX94IcDlzPCxFrC24Ai58QgPbqcGxNsSZ3/1CRW/ptdycup6PVY
- SV/veZFr+Sw==
-X-Gm-Gg: Acq92OHQFJhmHl1Y2k/MNALTyyvdez4jT9JDDPcDNPChTcqhkozQ+pIXAawCfWr3oSF
- ZbsuPJzMhL28FMrLoEKHA1WHaLupjSJgAiZSUkX7F8kx4Pcs+NXO3LOM7Cd6pDKFRkFnK2Bv9bo
- zghwRV77CsZOBtE4lx6UXuKOOQg1iZF3XQMPnWVY53CfK/sOF2ks6w02nIdkt4Tpt+bfLbk9edz
- NUIe7xIEb67mrED4SkdlLrcZFjWFL0tBK1wrAgHs5hD0Xx8AfEcK/M6JPRz5vr2swVOW7uspmnY
- QjB+IZovdf8kEmoJ4PCCUDc6miosWs5Tw5u24G34PtHtTLnANuhFIy5PZsXt008MbNxlhqYVxse
- YjzrWSjr+M26SkwDPkgjtwTSdZ4RQzJ/N7L6NiiqfDsMRP3+nUga7HupqUa489IdBJ0jFj9x6vR
- gU97uU0g/B9RK4jsiXudYrrNOcJ3TEi+RMT1wB073IwA5OI8XcuqmavpI=
-X-Received: by 2002:a05:690c:338e:b0:7c9:30f5:2054 with SMTP id
- 00721157ae682-7d33a95ca47mr156744337b3.40.1779717451418; 
- Mon, 25 May 2026 06:57:31 -0700 (PDT)
+ bh=gIiu1ri2o7Ro6bhV4J7LIEJCYOdJihANjgjmW46ndBY=;
+ b=VyWwa/kmvRYntINVD3k92mcfzF709r74BBo/7cJy3Dpis6ybpoV1FLuaU7R9Vrqc+L
+ Wc26WRcgc3OXWloggpfweikJy4k1kApXF0rKVL7LetZdmhBHGFP/VNWXU3j4pL7a0g2m
+ IyTLFu3VQxwkTh1fHqqZCV+3HRSOMxYDO9b7YHxTPF+YjufKdA/gNjcMXnpSkWTLWcv7
+ gPt+h9jUt05BuJO+qcL1f25vP3PjRwYh0babRQL/3SVsUF3mwIzU7lGPPC5cu46lXmGB
+ Tylg9MMUs8ADdCi0AEt6m7f7OBSPdMikJ6VHdl2oSTJ2lbXtT9PWT0E5cDVcwU8mdSFT
+ NAQw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779717456; x=1780322256;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=gIiu1ri2o7Ro6bhV4J7LIEJCYOdJihANjgjmW46ndBY=;
+ b=eeR36+OFoRWS5QiKKrNP3S+pNnl517QqOMpsd9ISDBQihm2yHRQjyNGPC1RZjZNSg+
+ c+GY8YdtYN2o52dfVRkSiotDOv7HR62SSCEV+kZJBosQci+QY3vesHWfezeu5qBgrsdh
+ rVTlN/sFk5OX5TMsVDKU0YFoQu+tUhr9av0UOJWuEwR770NQ0ijvJ3XsMMmmon76f4yy
+ FxxZDkSsPG/cCTFiOCnxsFprzOjrdpxgwoxlaSn7n7i4g4XBROFPryFCi2KxWQ7sJ6Ue
+ 1ABwZhAdDvVK472a0IP4EGNBBoVbx3VlSCYU+KfOEUeWVmtfkWCLS7kVsgxFEJqhAS33
+ YcZw==
+X-Gm-Message-State: AOJu0YzqaNZVylAUDbNjBUPYl9u08Bhv07q1ZWLRqJeLcfJQ8j6ml0ZK
+ iTpAAoprqHyZi6kadFi19V4aNH/aTLKGl6LSP0TsjzaBP6/bTLYzplODVDV9eRNso4qASbaJ4nM
+ ARzJPOZnGPQ==
+X-Gm-Gg: Acq92OETTLfoDi7U2hxQnoXNPzEIcgki+RftPg5FiwhFP9OuN0ZEZ51rusN3ja2DrIG
+ e9US3UX4e142PQZe8gSPvEwSrp5IhVsFrCzJx/hoRuBeUlhIhOORPB2sV9FaScELYEbv3GH6g5q
+ UQRuNDk4O7bVpZTJoahJVVqlGEWbiC8eW+DNvbnLKCASaiwoD+Ay/eKuUAJH/TRX8jsxNbjMWbw
+ rcAlPtd2EaVEbWjYw3yHwa32T1Vw3+AeV5oTOY/8SK37b0JreDQ1Bzh/ilv1xEDVS+ht6AyGg5p
+ Sizdhd+l2JXKvX6C3ExeeJwwaes68m3eP2bm8xCTi8TJu0i9AZRmTDV3Es+NxfGVLgr97Pjkb2j
+ 4B51TiHKHaNfVlbuZIz5kWT3+TyCVp7X+Sj+X2yhaBeUQj6oV2RKdUlkD3KPT+er/GEBd8fFh9J
+ 3B5jT7QxnR7okJUtIxZbjfDf8eKEYBOfKKyFOyLRG+PoSy8uvpYJxQ6MI=
+X-Received: by 2002:a05:690c:6982:b0:7cf:e690:3e3c with SMTP id
+ 00721157ae682-7d338488bc8mr153718117b3.11.1779717456255; 
+ Mon, 25 May 2026 06:57:36 -0700 (PDT)
 Received: from localhost (191.99.245.35.bc.googleusercontent.com.
  [35.245.99.191]) by smtp.gmail.com with ESMTPSA id
- 00721157ae682-7d389d176a9sm46721407b3.16.2026.05.25.06.57.30
+ 00721157ae682-7d38be2dc9csm46036237b3.24.2026.05.25.06.57.35
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 25 May 2026 06:57:30 -0700 (PDT)
+ Mon, 25 May 2026 06:57:35 -0700 (PDT)
 From: Sean Paul <sean@poorly.run>
 To: intel-gfx@lists.freedesktop.org,
 	jani.nikula@linux.intel.com
@@ -73,11 +74,12 @@ Cc: Sean Paul <seanpaul@google.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
  Simona Vetter <simona@ffwll.ch>, intel-xe@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH v2.1 1/2] drm/i915/color: Fix step discontinuity in Post-CSC
- Gamma LUT
-Date: Mon, 25 May 2026 09:56:04 -0400
-Message-ID: <20260525135730.1122696-1-sean@poorly.run>
+Subject: [PATCH v2.1 2/2] drm/i915/color: Fix Pre-CSC degamma LUT bounds
+Date: Mon, 25 May 2026 09:56:05 -0400
+Message-ID: <20260525135730.1122696-2-sean@poorly.run>
 X-Mailer: git-send-email 2.54.0.794.g4f17f83d09-goog
+In-Reply-To: <20260525135730.1122696-1-sean@poorly.run>
+References: <20260525135730.1122696-1-sean@poorly.run>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -104,9 +106,9 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	ARC_NA(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	DMARC_NA(0.00)[poorly.run];
@@ -122,15 +124,17 @@ X-Spamd-Result: default: False [0.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FROM_HAS_DN(0.00)[]
-X-Rspamd-Queue-Id: 4371D5CB69E
+X-Rspamd-Queue-Id: 34B785CB6BA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Sean Paul <seanpaul@google.com>
 
-Fix a step discontinuity in the Post-CSC Gamma LUT when SDR dimming
-is active by clamping Segment 2 to the last user-provided LUT entry
-value instead of hardcoding it to 1.0 (1 << 24).
+Fix a typo in the loop condition in xelpd_program_plane_pre_csc_lut
+for Segment 2 degamma programming, changing 'while (i++ > 130)' to
+'while (i++ < 130)'. Also clamp Segment 2 to the last user-provided
+LUT entry value instead of hardcoding it to 1.0 (1 << 24) to fix
+a step discontinuity.
 
 Link: https://lore.kernel.org/intel-gfx/20260521180143.2143262-1-sean@poorly.run/ #v1
 Signed-off-by: Sean Paul <seanpaul@google.com>
@@ -145,27 +149,39 @@ Changes in v2:
 Changes in v2.1:
 - Rebased on Pranay's patch and sending without in-reply-to
 
- drivers/gpu/drm/i915/display/intel_color.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 7ef870cd9a16..7185f3628dcf 100644
+index 7185f3628dcf..458508bcf1f4 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4038,11 +4038,11 @@ xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
- 						   lut_val);
- 			}
+@@ -3968,6 +3968,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
+ 	enum plane_id plane = to_intel_plane(state->plane)->id;
+ 	const struct drm_color_lut32 *pre_csc_lut = plane_state->hw.degamma_lut->data;
+ 	u32 i, lut_size;
++	u32 lut_val = 1 << 24;
  
--			/* Segment 2 */
-+			/* Segment 2 - clamp to the last LUT value to prevent step discontinuity */
+ 	if (icl_is_hdr_plane(display, plane)) {
+ 		lut_size = 128;
+@@ -3978,7 +3979,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
+ 
+ 		if (pre_csc_lut) {
+ 			for (i = 0; i < lut_size; i++) {
+-				u32 lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
++				lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
+ 
+ 				intel_de_write_dsb(display, dsb,
+ 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+@@ -3990,7 +3991,7 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
  			do {
  				intel_de_write_dsb(display, dsb,
- 						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+ 						   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
 -						   (1 << 24));
 +						   lut_val);
- 			} while (i++ < 34);
+ 			} while (i++ < 130);
  		} else {
- 			/*TODO: Add for segment 0 */
+ 			for (i = 0; i < lut_size; i++) {
 -- 
 Sean Paul, Software Engineer, Google / Chromium OS
 
