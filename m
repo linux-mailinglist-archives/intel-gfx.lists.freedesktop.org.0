@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id yJHyF5IWFGqFJgcAu9opvQ
+	id qEuQNZQWFGqFJgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 11:29:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 11:29:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E2E6E5C8998
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 11:29:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC4FC5C89A6
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 11:29:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2EF0A10E023;
-	Mon, 25 May 2026 09:29:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7BCDC10E02E;
+	Mon, 25 May 2026 09:29:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KbYvjMW9";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Z4XGkVHh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 949A610E023
- for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 09:29:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A072710E023
+ for <intel-gfx@lists.freedesktop.org>; Mon, 25 May 2026 09:29:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779701391; x=1811237391;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=PBH302dUkKyj55V66cyV5vBK1lkAjUHtzR/ZBApYPpc=;
- b=KbYvjMW9vtja6eFeH5BTVcyMnf2NXfE6QsaPliRSx0W55tCaGmvW+QAR
- Cn5MZB0jfHmHUcqXM0abqI71qInOst5AG3WinNY0ukKLGV6zL8ICWwDLR
- Rdb/1JLSLKneMwq8mljscy0vpAmPtwissEwZtsb3KnT4c7Pg6ygNeY10s
- luTTH5+bBBfiybIoxHJYaKiZkip9AjL8nPqdiPw3hfcCGX1ob6A3raQaC
- vIFLEkb0kYN6ajSm35beVme+WgieAdnKB1Dj/Y5t9YuHO7V8R2AzWbyxk
- pPDBa+BybnIafeaG6wMDuNkyhJ1RzKow890HSX7H5et3bENJF6YmBgCyW g==;
-X-CSE-ConnectionGUID: uL3o1lAaTf6+x4dHaqwo/w==
-X-CSE-MsgGUID: Ie2nUoR/QxSN0uKuZAclwg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="84373776"
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="84373776"
+ t=1779701392; x=1811237392;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=1HeWvyoozWdvPsHXI9p9uCC3TMSszMx74+xZHpL3R0s=;
+ b=Z4XGkVHhqJc6hwt0bbFUUomHM8o9kT/zava/yK9LuTqJLAc2wG8rl9yW
+ Gnzw7pjpsE5Vdx6S9YSEiQBaUubjaQsK1awq5F2AzgATmNTUrxtLWHmHE
+ Z0DN64fhK0D7Z7706oASgsAqk6N+AknUyoBDnYaxV3xrQucMeEj8pe51v
+ jHUyT7QG0uneAM3RRnSb1Q6rVUIXH1uaYx/Ckm3ZHk5123ol3UIk4OlR1
+ ZwMfL503bt7BiXAz8n90r7iMXX5SV2IotL65XbyOg7/GHypsZWfazb2e9
+ 2tzN0kOj8wXoYkcce6eSujEhjJ5kBnLrdBx5faA2Ao97TlUJVx9CZk5Se w==;
+X-CSE-ConnectionGUID: XDcMCrmoT0axD1o5BnNRPA==
+X-CSE-MsgGUID: L74FuYDRQFqR+eVjcZB3tg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="84373778"
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="84373778"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:29:50 -0700
-X-CSE-ConnectionGUID: ncsAYmQNSbWaTPoBycntCw==
-X-CSE-MsgGUID: VryN28/KQg+mHwfJaBdJ7w==
+ 25 May 2026 02:29:51 -0700
+X-CSE-ConnectionGUID: E5IMPoPYTKWfEoTI8wX3jA==
+X-CSE-MsgGUID: 19c4IB1NSJusoy2kGhU5ZQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="241418187"
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="241418192"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by orviesa008-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:29:48 -0700
+ 25 May 2026 02:29:49 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/2] Extend VRR safe window wait for VRR TG
-Date: Mon, 25 May 2026 14:41:57 +0530
-Message-ID: <20260525091159.564066-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 1/2] drm/i915/dsb: wait one scanline before delayed-vblank DSL
+ wait
+Date: Mon, 25 May 2026 14:41:58 +0530
+Message-ID: <20260525091159.564066-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260525091159.564066-1-ankit.k.nautiyal@intel.com>
+References: <20260525091159.564066-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -95,22 +98,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: E2E6E5C8998
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: AC4FC5C89A6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Currently VRR safe window wait is only used for case where VRR is
-active. This can be extended for platforms that always run with VRR
-timing generator.
+In intel_dsb_wait_for_delayed_vblank() the VRR path issues a
+WAIT_DSL_OUT(safe_window_start, vmin_safe_window_end) followed by a
+WAIT_USEC for SCL+1 scanlines to land on the delayed vblank.
 
-Ankit Nautiyal (2):
-  drm/i915/dsb: wait one scanline before delayed-vblank DSL wait
-  drm/i915/dsb: handle always_use_vrr_tg in pre_commit_is_vrr_active()
+Experimentally, when PIPEDSL is exactly at safe_window_start as the
+WAIT_DSL_OUT is reached, the wait is skipped and the DSB falls
+through immediately. The following WAIT_USEC then runs from too
+early a reference and the DSB interrupt (flip-done event) fires
+roughly one frame ahead of the delayed vblank.
 
- drivers/gpu/drm/i915/display/intel_dsb.c | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+Wait one scanline first so PIPEDSL has moved into the window before
+WAIT_DSL_OUT runs.
 
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_dsb.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
+index fec8a56e21ea..dae8ea33d069 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsb.c
++++ b/drivers/gpu/drm/i915/display/intel_dsb.c
+@@ -902,7 +902,15 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
+ 		 * the hardware itself guarantees that we're SCL lines
+ 		 * away from the delayed vblank, and we won't be inside
+ 		 * the vmin safe window so this extra wait does nothing.
++		 *
++		 * Experimentally, when PIPEDSL is exactly at
++		 * safe_window_start as the next WAIT_DSL_OUT is reached,
++		 * the wait is skipped immediately.
++		 *
++		 * Wait one scanline first so PIPEDSL has moved into the
++		 * window before WAIT_DSL_OUT runs.
+ 		 */
++		intel_dsb_wait_usec(dsb, intel_scanlines_to_usecs(adjusted_mode, 1));
+ 		intel_dsb_wait_scanline_out(state, dsb,
+ 					    intel_vrr_safe_window_start(crtc_state),
+ 					    intel_vrr_vmin_safe_window_end(crtc_state));
 -- 
 2.45.2
 
