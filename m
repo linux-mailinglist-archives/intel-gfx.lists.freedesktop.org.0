@@ -2,34 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8CSfFPBxFGqXNQcAu9opvQ
+	id +Eq9LHF2FGokNgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 17:59:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 18:18:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 93FA25CC95C
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 17:59:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F38CE5CCB87
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 18:18:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6F40B10E14C;
-	Mon, 25 May 2026 15:59:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7ECF10E235;
+	Mon, 25 May 2026 16:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B643910E14C;
- Mon, 25 May 2026 15:59:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 014DE10E235;
+ Mon, 25 May 2026 16:18:53 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7263830060748203979=="
+ boundary="===============4686119976889548933=="
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/atomic=3A_track_indiv?=
- =?utf-8?q?idual_colorop_updates_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_crtc_iteratio?=
+ =?utf-8?q?n_cleanups_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+To: "Jani Nikula" <jani.nikula@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 25 May 2026 15:59:39 -0000
-Message-ID: <177972477973.4776.11857934528932445087@6beec6c84f66>
+Date: Mon, 25 May 2026 16:18:52 -0000
+Message-ID: <177972593299.5829.12430077728246548409@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260525100524.304263-1-mwen@igalia.com>
-In-Reply-To: <20260525100524.304263-1-mwen@igalia.com>
+References: <cover.1778659089.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1778659089.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -48,7 +48,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -63,7 +63,7 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.734];
+	NEURAL_HAM(-0.00)[-0.838];
 	RCVD_COUNT_TWO(0.00)[2];
 	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
 	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
@@ -71,25 +71,25 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,basic-pci-d3-state:email,kms_pm_rpm:email,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 93FA25CC95C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[basic-pci-d3-state:email,patchwork.freedesktop.org:url,kms_pm_rpm:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,gitlab.freedesktop.org:url,01.org:url,lists.freedesktop.org:replyto]
+X-Rspamd-Queue-Id: F38CE5CCB87
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============7263830060748203979==
+--===============4686119976889548933==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
 
 == Series Details ==
 
-Series: drm/atomic: track individual colorop updates (rev2)
-URL   : https://patchwork.freedesktop.org/series/166921/
+Series: drm/i915: crtc iteration cleanups (rev3)
+URL   : https://patchwork.freedesktop.org/series/165525/
 State : success
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_18548 -> Patchwork_166921v2
+CI Bug Log - changes from CI_DRM_18548 -> Patchwork_165525v3
 ====================================================
 
 Summary
@@ -99,7 +99,7 @@ Summary
 
   No regressions found.
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/index.html
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/index.html
 
 Participating hosts (42 -> 40)
 ------------------------------
@@ -109,16 +109,16 @@ Participating hosts (42 -> 40)
 Known issues
 ------------
 
-  Here are the changes found in Patchwork_166921v2 that come from known issues:
+  Here are the changes found in Patchwork_165525v3 that come from known issues:
 
 ### IGT changes ###
 
 #### Issues hit ####
 
   * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2] ([i915#15673]) +52 other tests dmesg-warn
+    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2] ([i915#15673]) +51 other tests dmesg-warn
    [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
 
   
   [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
@@ -127,18 +127,18 @@ Known issues
 Build changes
 -------------
 
-  * Linux: CI_DRM_18548 -> Patchwork_166921v2
+  * Linux: CI_DRM_18548 -> Patchwork_165525v3
 
   CI-20190529: 20190529
   CI_DRM_18548: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux
   IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_166921v2: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux
+  Patchwork_165525v3: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux
 
 == Logs ==
 
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/index.html
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/index.html
 
---===============7263830060748203979==
+--===============4686119976889548933==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -158,42 +158,42 @@ Content-Transfer-Encoding: 7bit
 
 <b>Patch Details</b>
 <table>
-<tr><td><b>Series:</b></td><td>drm/atomic: track individual colorop updates (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166921/">https://patchwork.freedesktop.org/series/166921/</a></td></tr>
+<tr><td><b>Series:</b></td><td>drm/i915: crtc iteration cleanups (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165525/">https://patchwork.freedesktop.org/series/165525/</a></td></tr>
 <tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/index.html</a></td></tr>
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/index.html</a></td></tr>
 
 </table>
 
 
-    <h1>CI Bug Log - changes from CI_DRM_18548 -&gt; Patchwork_166921v2</h1>
+    <h1>CI Bug Log - changes from CI_DRM_18548 -&gt; Patchwork_165525v3</h1>
 <h2>Summary</h2>
 <p><strong>SUCCESS</strong></p>
 <p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/index.html</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/index.html</p>
 <h2>Participating hosts (42 -&gt; 40)</h2>
 <p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
 <h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_166921v2 that come from known issues:</p>
+<p>Here are the changes found in Patchwork_165525v3 that come from known issues:</p>
 <h3>IGT changes</h3>
 <h4>Issues hit</h4>
 <ul>
 <li>igt@kms_pm_rpm@basic-pci-d3-state:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166921v2/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) +52 other tests dmesg-warn</li>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18548/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165525v3/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) +51 other tests dmesg-warn</li>
 </ul>
 </li>
 </ul>
 <h2>Build changes</h2>
 <ul>
-<li>Linux: CI_DRM_18548 -&gt; Patchwork_166921v2</li>
+<li>Linux: CI_DRM_18548 -&gt; Patchwork_165525v3</li>
 </ul>
 <p>CI-20190529: 20190529<br />
   CI_DRM_18548: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux<br />
   IGT_8936: 98b65acc4f6edf68cd52b30f27b83049c4c5c83b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_166921v2: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+  Patchwork_165525v3: 04d475020800d0a1033ca89a0d6d5fc638ddc65b @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 
 </body>
 </html>
 
---===============7263830060748203979==--
+--===============4686119976889548933==--
