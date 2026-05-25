@@ -2,72 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OJ/QFvgYFGo4JgcAu9opvQ
+	id KAJDFSIfFGobKAcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 11:40:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 12:06:26 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5D405C8BE6
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 11:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 047285C8F42
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 12:06:25 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7031C10E084;
-	Mon, 25 May 2026 09:40:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3134310E1C7;
+	Mon, 25 May 2026 10:06:18 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KO39SrHQ";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="Y0YTuY2Z";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0BA10E084;
- Mon, 25 May 2026 09:40:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779702005; x=1811238005;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=Pb8ZxQLNtSWGEc+bq65SJao1sGnUBNpWPTxHc1Pbs1c=;
- b=KO39SrHQ/CJjX+WdBUsgSZAPkM7gB7dhe/EMkI2K2g9rO4v4Z3KGyreK
- hmLr+wUZ0Czuf/7jYdzHeqiiO8JVXpSFb/YyAq92S39uLgzRw8U/NcTJa
- f5xJtbuclLNtPqbuWLDzJikRj9NWZiwH8zp9Z6MhKOm4ER/cTJzyuk6+f
- Gfcrw/Oo062svXp+jQu0/MlTMtrR4dMXv6bkJBJCcs2bhwH9DZulhUxRI
- Eo7QPALG0oynXVRISSzcy3swfyOhrs92laFVUh0IMfkynQyci1bhuzHc/
- 37nBepT+T7PdXytUTbe52ezt/aFPrfxkcwVj1MdSrn5b412VAuZ4lGm6l A==;
-X-CSE-ConnectionGUID: 8rfbNAaNTwae6lLxpwn2Gg==
-X-CSE-MsgGUID: WGiq7rKsQXmbOxJgwQmMiA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="80375622"
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="80375622"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:40:05 -0700
-X-CSE-ConnectionGUID: 9KGJoRI7Tz6kKYzesS1/IA==
-X-CSE-MsgGUID: DgFjbGTLThq4/L2V7xvC9A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; d="scan'208";a="245836079"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.245.216])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 May 2026 02:40:02 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Maarten Lankhorst <dev@lankhorst.se>, "Borah, Chaitanya Kumar"
- <chaitanya.kumar.borah@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, intel-xe@lists.freedesktop.org
-Cc: intel-gfx@lists.freedesktop.org, Chandra Konduru
- <chandra.konduru@intel.com>, dri-devel@lists.freedesktop.org, Matt Roper
- <matthew.d.roper@intel.com>
-Subject: Re: [PATCH] drm/intel/display: Add support for pipe background
- color (v4)
-In-Reply-To: <f1f09a62-b36e-4ddf-b42c-dad300a72aef@lankhorst.se>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260505200133.636584-2-dev@lankhorst.se>
- <a734e41d-3665-402b-a56a-43fd4f8819ff@intel.com>
- <fef9056c-460e-4a49-bed8-f2882109e886@linux.intel.com>
- <090aca95-975d-4564-8b44-30df139800b5@intel.com>
- <f1f09a62-b36e-4ddf-b42c-dad300a72aef@lankhorst.se>
-Date: Mon, 25 May 2026 12:39:58 +0300
-Message-ID: <a24f9d8ecff945b2cdc032ae95bdc834ee9c248a@intel.com>
+Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2CEC210E210;
+ Mon, 25 May 2026 10:06:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
+ s=20170329;
+ h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
+ Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
+ Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+ In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ List-Post:List-Owner:List-Archive;
+ bh=vbBesheMMq554jXUMZrm1tMPW4M3xt3l04YxRg3d9fI=; b=Y0YTuY2ZbXRuMynqtPpJXcfony
+ RLkgNZ+9dJZ04e6qM6C5jfjYe1ML31gPn4hT/yPEjxaM5TtJW7lNa7HC1L2WsWeOzewj4cKcuPxKa
+ 7tbOEnmsMxxQqbCgDlCpMvvlS8Cec9B2QxqASv7jh9I1BKbX4UjL/YYUidWhyDXAcCae1UyCzhUld
+ WNNtoav1PEqKOnbKyYsArtJcL6rSOA3lhNJUwWPPapTbKadQlXRoU2CvnMr/KjcKYTKGMyuIBGUxU
+ BU+LGN197BCdIMP9BUoFTZbS8LixrG1SKPYgzonptPnvWaKVPRtL2xNIBj1VNdu3T1mcaa5qakVmU
+ hY6pbA5Q==;
+Received: from [79.117.146.159] (helo=killbill.home)
+ by fanzine2.igalia.com with esmtpsa 
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
+ id 1wRSBj-007xuT-0r; Mon, 25 May 2026 12:05:35 +0200
+From: Melissa Wen <mwen@igalia.com>
+To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
+ harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
+ mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
+ sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>,
+ Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Subject: [PATCH v7 0/4] drm/atomic: track individual colorop updates
+Date: Mon, 25 May 2026 11:49:57 +0200
+Message-ID: <20260525100524.304263-1-mwen@igalia.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -82,62 +78,115 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,igalia.com,suse.de];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
+	FREEMAIL_CC(0.00)[amd.com,emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
+	DKIM_TRACE(0.00)[igalia.com:-];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	NEURAL_HAM(-0.00)[-0.911];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lankhorst.se:email]
-X-Rspamd-Queue-Id: E5D405C8BE6
+	FORGED_SENDER_MAILLIST(0.00)[]
+X-Rspamd-Queue-Id: 047285C8F42
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, 22 May 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
-> Den 2026-05-18 kl. 12:47, skrev Borah, Chaitanya Kumar:
->> I will leave the name change up to your discretion. The i915 CI needs a re-run, though.
->> 
->> With the typo and checkpatch issues fixed, LGTM.
->> 
->> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
->> 
->
-> Addressed and renamed the functions.
-> Pushed!
+This is a partial of [1], only with patches related to individual
+colorop update tracking. I.e., I'm detaching from here fixes regarding
+attempts of changing colorops that are not part of an active color
+pipeline, or in the transition between active and inactive color
+pipelines.
 
-Please do not change patches while applying.
+This series focus on tracking updates for each individual color
+operation, allowing the driver to react accordingly.
 
-It's only okay to tweak commit messages, whitespace and maybe comments,
-but function renames need a new version on the list. There are no
-exceptions.
+- Patches 1 and 2 make lut1d_interpolation and lut3d_interpolation
+  colorops correctly behave as mutable, handling their changes via
+  drm_colorop_state.
 
-Commit e2d57ceaa72d ("drm/intel/display: Add support for pipe background
-color (v4)") in the tree says it's v4 and references this patch, but
-they're not the same.
+- Patches 3 and 4 track colorop updates of a given plane color
+  pipeline by setting plane `color_mgmt_changed` flag, similar to what
+  is done for tracking CRTC color mgmt property changes with CRTC
+  `color_mgmt_changed` flag. The flag also tracks when a different color
+  pipeline is set to a given plane, but doesn't consider as a change
+  when the same color pipeline value is set to the plane COLOR_PIPELINE
+  prop. That way, the driver can react accordingly and update their
+  color blocks. As interpolation properties become mutable, they are
+  also tracked here.
 
+It also fixes shaper/3D LUT updates when changing night mode settings on
+gamescope with a custom branch that supports `COLOR_PIPELINE`:
+- https://github.com/ValveSoftware/gamescope/pull/2113
 
-BR,
-Jani.
+v1: https://lore.kernel.org/dri-devel/20260318162348.299807-1-mwen@igalia.com/
+Changes:
+- include linux types for function's bool return type (kernel bot on MSM
+  driver)
+- add Harry's r-b tags
+
+v2: https://lore.kernel.org/dri-devel/20260323131942.494217-1-mwen@igalia.com/
+Changes:
+- [NEW] two patches to only consider colorop updates from active color
+  pipelines (Chaitanya)
+- [NEW] make lut interpolation properties mutable + Alex H patch for
+  kernel docs
+- track lut(1/3)d_interpolation updates (Chaitanya)
+- rebase changes according to new patches
+
+v3: https://lore.kernel.org/dri-devel/20260403135909.214378-1-mwen@igalia.com/
+Changes: rebase on drm-misc-next
+
+v4: https://lore.kernel.org/dri-devel/20260501132527.522320-1-mwen@igalia.com/
+Changes: fix kernel doc (kernel bot)
+
+v5: https://lore.kernel.org/dri-devel/20260506192633.16066-1-mwen@igalia.com/
+Changes:
+- rebase on drm-misc-next
+- fix kernel-doc and correctly reword (atomic) state to plane_state (Chaitanya)
+- reject inactive colorop updates in atomic check time, instead of
+  during property's setup, to avoid ordering dependency as pointed out by Chaitanya
+- use `|= replaced` for consistency (Chaitanya)
+- add Chaitanya's r-b tags to patches 1,3-5
+
+[1] v6: https://lore.kernel.org/dri-devel/20260519211111.228303-1-mwen@igalia.com/
+Changes:
+- detach patches that implement individual tracking from those related
+  to inactive colorop updates.
+
+Alex Hung (1):
+  drm/colorop: Remove read-only comments from interpolation fields
+
+Melissa Wen (3):
+  drm/colorop: make lut(1/3)d_interpolation mutable
+  drm/atomic: track individual colorop updates
+  drm/amd/display: use plane color_mgmt_changed to track colorop changes
+
+ .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +-
+ drivers/gpu/drm/drm_atomic.c                  |  4 +-
+ drivers/gpu/drm/drm_atomic_uapi.c             | 68 +++++++++++++++----
+ drivers/gpu/drm/drm_colorop.c                 | 16 ++++-
+ include/drm/drm_atomic_uapi.h                 |  4 +-
+ include/drm/drm_colorop.h                     | 34 +++++-----
+ 6 files changed, 93 insertions(+), 39 deletions(-)
 
 -- 
-Jani Nikula, Intel
+2.53.0
+
