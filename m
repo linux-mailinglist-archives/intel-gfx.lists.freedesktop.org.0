@@ -2,71 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MHhaJR8fFGobKAcAu9opvQ
+	id SG0YCp8gFGpjKAcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 12:06:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 12:12:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4A2CF5C8F11
-	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 12:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A630C5C91B3
+	for <lists+intel-gfx@lfdr.de>; Mon, 25 May 2026 12:12:46 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73DAF10E1B5;
-	Mon, 25 May 2026 10:06:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A85810E05A;
+	Mon, 25 May 2026 10:12:44 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=igalia.com header.i=@igalia.com header.b="CVZoYFPP";
+	dkim=pass (2048-bit key; unprotected) header.d=lankhorst.se header.i=@lankhorst.se header.b="N1v33egE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1627210E10C;
- Mon, 25 May 2026 10:06:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=vW8EALGYTy/WpC33rrQSfEN/yWS4dck6KWQC4Mwe7uo=; b=CVZoYFPPODITDGwU2nf2BEXTWc
- NxgS1V5vYje6wGZaND8lCzoo0poCrsUAel0WjA4vdiYLPkpOuq6kwGAKR9rPvtPy+6p26z+1DuMfd
- V1rUQg6sunlwfWBvu+GWpcURsme2JXfPXjfS2RXPDgGyr1/CnsMkZXcqKx2n20RZYtH4g/PFaTAYi
- y1o4ecIApL4nOGKQeWfCg+7NFRmiBj/2SKpg0WhDZYhq6Z6z/5+5QVgGc9gPzkfFZn4nD/Av59Hrt
- Rb06lxcUeVOcUFQn+5guyMuRdNC4Z+ATZmtIV0k0yKnhrIKa4TwibQxInT9WMgI3MeAXYq0mDIcV9
- YECfcl9Q==;
-Received: from [79.117.146.159] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wRSBq-007xuT-DV; Mon, 25 May 2026 12:05:42 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: airlied@gmail.com, alexander.deucher@amd.com, christian.koenig@amd.com,
- harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Alex Hung <alex.hung@amd.com>, Simon Ser <contact@emersion.fr>,
- Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v7 4/4] drm/amd/display: use plane color_mgmt_changed to track
- colorop changes
-Date: Mon, 25 May 2026 11:50:01 +0200
-Message-ID: <20260525100524.304263-5-mwen@igalia.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260525100524.304263-1-mwen@igalia.com>
-References: <20260525100524.304263-1-mwen@igalia.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5593710E05A;
+ Mon, 25 May 2026 10:12:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1779703961;
+ bh=+MxXb4nBc7rJZhFiYVaR3/C1CkpWdublLqUdpodHn/s=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=N1v33egEjVp+yHxFpO90Oyz5Zz/AaLQNzN6kGfKTshEV0J/Zuam7/Yen0nMEjzcBf
+ nwPqveqi7zQvjSwL93xqT3lZxYYMjyor4GOfILYHIn6D4ixMjmbcNomyE/AMvA1ixz
+ MCoeMlyAMhMFnip/hTpDcp2R6QwbIQdw/dKUjFUGa2TdazTOcDdSDO6fk4fdmLJNDr
+ X9MY6O62D0Ot5NSOgVLS0P/OO7CfIRvn8KM4gs8EKdRrPDdC7nCOy9UHwzUfIGZBDq
+ rbiKHIgLJ0EZy6/A33Jkr/d4FsW8yNIm7g8lJK1EZ8fvttdAyJ3uOF/ZHjEGI2JIah
+ fWyjsMOfMZc/w==
+Message-ID: <f36a6be9-940f-4ad9-acef-5e192f0ed8fc@lankhorst.se>
+Date: Mon, 25 May 2026 12:12:33 +0200
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/intel/display: Add support for pipe background color
+ (v4)
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ intel-xe@lists.freedesktop.org
+Cc: intel-gfx@lists.freedesktop.org,
+ Chandra Konduru <chandra.konduru@intel.com>,
+ dri-devel@lists.freedesktop.org, Matt Roper <matthew.d.roper@intel.com>
+References: <20260505200133.636584-2-dev@lankhorst.se>
+ <a734e41d-3665-402b-a56a-43fd4f8819ff@intel.com>
+ <fef9056c-460e-4a49-bed8-f2882109e886@linux.intel.com>
+ <090aca95-975d-4564-8b44-30df139800b5@intel.com>
+ <f1f09a62-b36e-4ddf-b42c-dad300a72aef@lankhorst.se>
+ <a24f9d8ecff945b2cdc032ae95bdc834ee9c248a@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <dev@lankhorst.se>
+In-Reply-To: <a24f9d8ecff945b2cdc032ae95bdc834ee9c248a@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -81,73 +68,61 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,igalia.com,suse.de];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
-	FREEMAIL_CC(0.00)[amd.com,emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.885];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:dkim];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: 4A2CF5C8F11
+	ARC_NA(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	NEURAL_HAM(-0.00)[-1.000];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+]
+X-Rspamd-Queue-Id: A630C5C91B3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Ensure the driver tracks changes in any colorop property of a plane
-color pipeline by using the same mechanism of CRTC color management and
-update plane color blocks when any colorop property changes. It fixes an
-issue observed on gamescope settings for night mode which is done via
-shaper/3D-LUT updates.
+Hey,
 
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+Den 2026-05-25 kl. 11:39, skrev Jani Nikula:
+> On Fri, 22 May 2026, Maarten Lankhorst <dev@lankhorst.se> wrote:
+>> Den 2026-05-18 kl. 12:47, skrev Borah, Chaitanya Kumar:
+>>> I will leave the name change up to your discretion. The i915 CI needs a re-run, though.
+>>>
+>>> With the typo and checkpatch issues fixed, LGTM.
+>>>
+>>> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>>>
+>>
+>> Addressed and renamed the functions.
+>> Pushed!
+> 
+> Please do not change patches while applying.
+> 
+> It's only okay to tweak commit messages, whitespace and maybe comments,
+> but function renames need a new version on the list. There are no
+> exceptions.
+> 
+> Commit e2d57ceaa72d ("drm/intel/display: Add support for pipe background
+> color (v4)") in the tree says it's v4 and references this patch, but
+> they're not the same.
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index d590f0df6abd..36425d9c2a67 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -10198,7 +10198,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_commit *state,
- 			continue;
- 
- 		bundle->surface_updates[planes_count].surface = dc_plane;
--		if (new_pcrtc_state->color_mgmt_changed) {
-+		if (new_pcrtc_state->color_mgmt_changed || new_plane_state->color_mgmt_changed) {
- 			bundle->surface_updates[planes_count].gamma = &dc_plane->gamma_correction;
- 			bundle->surface_updates[planes_count].in_transfer_func = &dc_plane->in_transfer_func;
- 			bundle->surface_updates[planes_count].gamut_remap_matrix = &dc_plane->gamut_remap_matrix;
-@@ -12024,6 +12024,10 @@ static bool should_reset_plane(struct drm_atomic_commit *state,
- 	if (new_crtc_state->color_mgmt_changed)
- 		return true;
- 
-+	/* Plane color pipeline or its colorop changes. */
-+	if (new_plane_state->color_mgmt_changed)
-+		return true;
-+
- 	/*
- 	 * On zpos change, planes need to be reordered by removing and re-adding
- 	 * them one by one to the dc state, in order of descending zpos.
--- 
-2.53.0
+Thanks, I'll be more careful next time. I did compile test to ensure nothing would break,
+but send a new version next time and wait for CI results.
 
+Kind regards,
+~Maarten Lankhorst
