@@ -2,34 +2,147 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id UOMdHXbtFWogfAcAu9opvQ
+	id CFtyDPvxFWp7fQcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 20:59:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:18:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CB59D5DBA5D
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 20:59:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36F145DBE46
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:18:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0642010E1D7;
-	Tue, 26 May 2026 18:59:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E94610E1DF;
+	Tue, 26 May 2026 19:18:16 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="M6OTps0c";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2DA7710E1D7;
- Tue, 26 May 2026 18:58:58 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8288710757614086011=="
+Received: from us-smtp-delivery-124.mimecast.com
+ (us-smtp-delivery-124.mimecast.com [170.10.133.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C16BF10E4AC
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2026 19:18:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
+ s=mimecast20190719; t=1779823091;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=SG0VZXgnE7joBtOWfwYOMPFB5VPQhatA/6aMDA97+AE=;
+ b=M6OTps0csmz0t/rT0tJzTuCjwM3XzEPEJ06A4n7nBW+DXYcqHs6LN3D4BCJ/VI/klornA+
+ HmBwx1vZrqA2fQAed4yFrmF+ABs0kt6NzIOVQF5lIXfko2WPMI9QBQcSr+KFwEpZfTPGpK
+ mg6CCGFCx2z1grXHlc1Xt1LdmM0GDHs=
+Received: from mail-qv1-f71.google.com (mail-qv1-f71.google.com
+ [209.85.219.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
+ us-mta-624-pFO_Jh7NNVOqop9JTHSm5A-1; Tue, 26 May 2026 15:18:04 -0400
+X-MC-Unique: pFO_Jh7NNVOqop9JTHSm5A-1
+X-Mimecast-MFC-AGG-ID: pFO_Jh7NNVOqop9JTHSm5A_1779823079
+Received: by mail-qv1-f71.google.com with SMTP id
+ 6a1803df08f44-8b49424ad88so99234816d6.1
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2026 12:18:04 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1779823079; x=1780427879;
+ h=mime-version:user-agent:content-transfer-encoding:autocrypt
+ :references:in-reply-to:date:cc:to:from:subject:message-id:x-gm-gg
+ :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+ bh=LZ9mzM83+bK6+sNc7KbfJmscHayOTSlO+YYGLuPW7gs=;
+ b=ZkqZuBtNYDU02un8V2SwdltZX119F8kNH8/dL7xsdA8zrQOC8xkdZB186LfoHpsVl0
+ 5ykylxEoNsYc4AFeV1f1DzQ2/jjv8pKPf5Ek5Mz366Zd7FHRZD17EOwlUfqII1au/9yC
+ 0CwTx3bhdHop0EPAGVKoQKV1BzIXTwrc1g48XRJykNBARIROt4g6tgxupt2kfNZiWwFR
+ ebX7FSN7ctwBDJt+h/SVabpEVmnNTdVm6PMioO1R4G3NuTA0fEmxQWw66pm+JkE3hJMl
+ kyfjb4tl7Qm3lB4GrIQ0FeaQgmbfiPAwBkhRep1I49gIWGRdwVj1V4UYLTb+jSNLx3oU
+ jyBw==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ8xgerD8Uq/NDSZr0+tUp3IwaQ4UywQXX5wAhxJQO+FNcRT0Dtrv5gCdsVo2MtLOTiOcRF9InUOo7w=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx1uWtidKXhEzEOp5kRn3rEwyTsZ8BUgZf4eZ725MbfQoxBeNYM
+ 7J/KYYXbE+R0CRzXaqb9sXEEjSxJoLIL/Sry1H+9zS9x/rSSZokLSKqDNW/khbosNZRkHAEY3dT
+ wMqZIs8+aczFIFHYAYrdYNkxByS3jrFZTOy/NjwphzsIvZ47JORNebTowQWZl5HE9ZoSZjA==
+X-Gm-Gg: Acq92OEnzImKeRETkjweAZmHH5DeZNwcBJ1YDr52yGJvl2ZmIIDZza4jDWc145dfWU0
+ jwdDiBWC0hDUezvktCxbi8uCWNeqQktaQNFaEx8GfDgY2VvLa3T/Gisi/qwYitu8PEwCXr7ljYx
+ iHeF7ZnZc+oLXh0AJPLhsTFrZBpDtNgO0inxfh7uFmcBgFMzT1ErL+rFswa1ibDlDL/s5UTgVYM
+ XmoUpWJgphMZZtgSsu00d4Qa7UP58sHEpkx5wja2pU7AzHVan9wCwpbZN9poc9BUCpeAKzSI5IE
+ yj32yBvhALnmS/7E15TJDGzi7tJjb2se5S7slxWkxF3Mc9+m/u9fA7jIChx5aew+qkSETdkzuQ2
+ +L8m+VVARzVT9ht4x1FOwf8zjKZIZ
+X-Received: by 2002:a05:6214:4508:b0:89c:eabb:f58d with SMTP id
+ 6a1803df08f44-8cc7b5dc35bmr328432576d6.47.1779823079392; 
+ Tue, 26 May 2026 12:17:59 -0700 (PDT)
+X-Received: by 2002:a05:6214:4508:b0:89c:eabb:f58d with SMTP id
+ 6a1803df08f44-8cc7b5dc35bmr328432106d6.47.1779823078882; 
+ Tue, 26 May 2026 12:17:58 -0700 (PDT)
+Received: from [192.168.8.4] ([100.0.180.93]) by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8cc80decd48sm155816336d6.14.2026.05.26.12.17.57
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Tue, 26 May 2026 12:17:58 -0700 (PDT)
+Message-ID: <7fd6c044ef7f7c661cb2dfdae4806a0b7f24d02c.camel@redhat.com>
+Subject: Re: [PATCH] drm/dp: Add DSC virtual DPCD quirk for Realtek MST
+ branch device
+From: lyude@redhat.com
+To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: Shawn C Lee <shawn.c.lee@intel.com>
+Date: Tue, 26 May 2026 15:17:57 -0400
+In-Reply-To: <20260525125516.2794636-1-imre.deak@intel.com>
+References: <20260525125516.2794636-1-imre.deak@intel.com>
+Autocrypt: addr=lyude@redhat.com; prefer-encrypt=mutual;
+ keydata=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
+ 8doKQgPpApRcFGaE=
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43)
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/atomic=3A_Rework_init?=
- =?utf-8?q?ial_state_allocation_=28rev5=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Maxime Ripard" <mripard@kernel.org>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 26 May 2026 18:58:58 -0000
-Message-ID: <177982193817.11680.12886113287500535353@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
-In-Reply-To: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
+X-Mimecast-Spam-Score: 0
+X-Mimecast-MFC-PROC-ID: Rirgd4JbXgIbtBX5cJ0ms6D7ioKCpH4fHwAAckgnnfE_1779823079
+X-Mimecast-Originator: redhat.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,371 +155,87 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FORGED_RECIPIENTS(0.00)[m:imre.deak@intel.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:shawn.c.lee@intel.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[lyude@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[lyude@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[redhat.com:+];
+	FROM_NO_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.753];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROM(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: CB59D5DBA5D
+X-Rspamd-Queue-Id: 36F145DBE46
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============8288710757614086011==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Reviewed-by: Lyude Paul <lyude@redhat.com>
 
-== Series Details ==
+On Mon, 2026-05-25 at 15:55 +0300, Imre Deak wrote:
+> The ASUS DC301 USB-C dock containing a Realtek MST branch device
+> supports the DSC decompression functionality on each of the dock's
+> downstream connectors, even though there is no discoverable peer-to-
+> peer
+> virtual device in the MST topology (which the DP Standard
+> requires/suggests to control the DSC functionality on a per-DFP
+> basis).
+> Add the DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD quirk for this branch
+> device as well to enable the DSC decompression functionality on all
+> DFP
+> connectors of the dock, similarly to how this is done for dock's
+> containing older Synaptics branch devices.
+>=20
+> Cc: Lyude Paul <lyude@redhat.com>
+> Reported-and-tested-by: Shawn C Lee <shawn.c.lee@intel.com>
+> Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
+> =C2=A0drivers/gpu/drm/display/drm_dp_helper.c | 2 ++
+> =C2=A01 file changed, 2 insertions(+)
+>=20
+> diff --git a/drivers/gpu/drm/display/drm_dp_helper.c
+> b/drivers/gpu/drm/display/drm_dp_helper.c
+> index a6067471dd563..9c31e14cc413b 100644
+> --- a/drivers/gpu/drm/display/drm_dp_helper.c
+> +++ b/drivers/gpu/drm/display/drm_dp_helper.c
+> @@ -2546,6 +2546,8 @@ static const struct dpcd_quirk
+> dpcd_quirk_list[] =3D {
+> =C2=A0=09{ OUI(0x00, 0x00, 0x00), DEVICE_ID('C', 'H', '7', '5', '1',
+> '1'), false, BIT(DP_DPCD_QUIRK_NO_SINK_COUNT) },
+> =C2=A0=09/* Synaptics DP1.4 MST hubs can support DSC without virtual
+> DPCD */
+> =C2=A0=09{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true,
+> BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
+> +=09/* Realtek DP1.4 MST hubs can support DSC without virtual
+> DPCD */
+> +=09{ OUI(0x00, 0xe0, 0x4c), DEVICE_ID('D', 'p', '1', '.', '4',
+> 0), true, BIT(DP_DPCD_QUIRK_DSC_WITHOUT_VIRTUAL_DPCD) },
+> =C2=A0=09/* Synaptics DP1.4 MST hubs require DSC for some modes on
+> which it applies HBLANK expansion. */
+> =C2=A0=09{ OUI(0x90, 0xCC, 0x24), DEVICE_ID_ANY, true,
+> BIT(DP_DPCD_QUIRK_HBLANK_EXPANSION_REQUIRES_DSC) },
+> =C2=A0=09/* MediaTek panels (at least in U3224KBA) require DSC for
+> modes with a short HBLANK on UHBR links. */
 
-Series: drm/atomic: Rework initial state allocation (rev5)
-URL   : https://patchwork.freedesktop.org/series/163608/
-State : failure
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18556 -> Patchwork_163608v5
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_163608v5 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_163608v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_163608v5:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@hangcheck:
-    - fi-ivb-3770:        [PASS][1] -> [INCOMPLETE][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18556/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html
-
-  
-New tests
----------
-
-  New tests have been introduced between CI_DRM_18556 and Patchwork_163608v5:
-
-### New IGT tests (15) ###
-
-  * igt@kms_flip@basic-flip-vs-dpms@c-vga1:
-    - Statuses : 2 pass(s)
-    - Exec time: [0.91] s
-
-  * igt@kms_flip@basic-flip-vs-modeset@c-vga1:
-    - Statuses : 2 pass(s)
-    - Exec time: [0.96] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.83, 1.57] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a2:
-    - Statuses : 4 pass(s)
-    - Exec time: [1.05, 1.27] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1:
-    - Statuses : 5 pass(s)
-    - Exec time: [1.08, 1.90] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-hdmi-a1:
-    - Statuses : 7 pass(s)
-    - Exec time: [0.81, 1.44] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-hdmi-a2:
-    - Statuses : 4 pass(s)
-    - Exec time: [1.01, 1.08] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@b-vga1:
-    - Statuses : 5 pass(s)
-    - Exec time: [1.01, 1.80] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a1:
-    - Statuses : 6 pass(s)
-    - Exec time: [0.87, 1.43] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:
-    - Statuses : 5 pass(s)
-    - Exec time: [1.01, 3.09] s
-
-  * igt@kms_flip@basic-flip-vs-wf_vblank@c-vga1:
-    - Statuses : 2 pass(s)
-    - Exec time: [1.15, 1.16] s
-
-  * igt@kms_flip@basic-plain-flip@a-hdmi-a2:
-    - Statuses : 4 pass(s)
-    - Exec time: [0.76, 0.90] s
-
-  * igt@kms_flip@basic-plain-flip@b-hdmi-a2:
-    - Statuses : 4 pass(s)
-    - Exec time: [0.75, 0.80] s
-
-  * igt@kms_flip@basic-plain-flip@c-hdmi-a2:
-    - Statuses : 5 pass(s)
-    - Exec time: [0.75, 2.66] s
-
-  * igt@kms_flip@basic-plain-flip@c-vga1:
-    - Statuses : 2 pass(s)
-    - Exec time: [0.87, 0.88] s
-
-  
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_163608v5 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live:
-    - fi-ivb-3770:        [PASS][3] -> [INCOMPLETE][4] ([i915#16033])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18556/fi-ivb-3770/igt@i915_selftest@live.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/fi-ivb-3770/igt@i915_selftest@live.html
-
-  
-  [i915#16033]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16033
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18556 -> Patchwork_163608v5
-
-  CI-20190529: 20190529
-  CI_DRM_18556: 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8937: 8937
-  Patchwork_163608v5: 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/index.html
-
---===============8288710757614086011==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/atomic: Rework initial state allocation (rev5)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/163608/">https://patchwork.freedesktop.org/series/163608/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18556 -&gt; Patchwork_163608v5</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_163608v5 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_163608v5, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_163608v5:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@hangcheck:<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18556/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/fi-ivb-3770/igt@i915_selftest@live@hangcheck.html">INCOMPLETE</a></li>
-</ul>
-</li>
-</ul>
-<h2>New tests</h2>
-<p>New tests have been introduced between CI_DRM_18556 and Patchwork_163608v5:</p>
-<h3>New IGT tests (15)</h3>
-<ul>
-<li>
-<p>igt@kms_flip@basic-flip-vs-dpms@c-vga1:</p>
-<ul>
-<li>Statuses : 2 pass(s)</li>
-<li>Exec time: [0.91] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-modeset@c-vga1:</p>
-<ul>
-<li>Statuses : 2 pass(s)</li>
-<li>Exec time: [0.96] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a1:</p>
-<ul>
-<li>Statuses : 7 pass(s)</li>
-<li>Exec time: [0.83, 1.57] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-hdmi-a2:</p>
-<ul>
-<li>Statuses : 4 pass(s)</li>
-<li>Exec time: [1.05, 1.27] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@a-vga1:</p>
-<ul>
-<li>Statuses : 5 pass(s)</li>
-<li>Exec time: [1.08, 1.90] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-hdmi-a1:</p>
-<ul>
-<li>Statuses : 7 pass(s)</li>
-<li>Exec time: [0.81, 1.44] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-hdmi-a2:</p>
-<ul>
-<li>Statuses : 4 pass(s)</li>
-<li>Exec time: [1.01, 1.08] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@b-vga1:</p>
-<ul>
-<li>Statuses : 5 pass(s)</li>
-<li>Exec time: [1.01, 1.80] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a1:</p>
-<ul>
-<li>Statuses : 6 pass(s)</li>
-<li>Exec time: [0.87, 1.43] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-hdmi-a2:</p>
-<ul>
-<li>Statuses : 5 pass(s)</li>
-<li>Exec time: [1.01, 3.09] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-flip-vs-wf_vblank@c-vga1:</p>
-<ul>
-<li>Statuses : 2 pass(s)</li>
-<li>Exec time: [1.15, 1.16] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@a-hdmi-a2:</p>
-<ul>
-<li>Statuses : 4 pass(s)</li>
-<li>Exec time: [0.76, 0.90] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@b-hdmi-a2:</p>
-<ul>
-<li>Statuses : 4 pass(s)</li>
-<li>Exec time: [0.75, 0.80] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@c-hdmi-a2:</p>
-<ul>
-<li>Statuses : 5 pass(s)</li>
-<li>Exec time: [0.75, 2.66] s</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_flip@basic-plain-flip@c-vga1:</p>
-<ul>
-<li>Statuses : 2 pass(s)</li>
-<li>Exec time: [0.87, 0.88] s</li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_163608v5 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>fi-ivb-3770:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18556/fi-ivb-3770/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_163608v5/fi-ivb-3770/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16033">i915#16033</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18556 -&gt; Patchwork_163608v5</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18556: 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8937: 8937<br />
-  Patchwork_163608v5: 1e5fbf0d628cd02dced6cfb1ebe39717f121fb4c @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8288710757614086011==--
