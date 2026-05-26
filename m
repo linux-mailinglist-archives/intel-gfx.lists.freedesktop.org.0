@@ -2,146 +2,168 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QHLzLJBpFWqyUwcAu9opvQ
+	id wCN/JN1qFWrxUwcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:36:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:41:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1D5E95D36BE
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:36:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D011D5D3854
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:41:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7043010E05E;
-	Tue, 26 May 2026 09:36:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D61B110E61B;
+	Tue, 26 May 2026 09:41:45 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="W//chOT9";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="J/ZM3I/F";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="W0lr0wQ2";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="Mu8lSDY/";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Cc2ZoFU5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A8D910E2A8
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2026 09:36:13 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id E1A296B158;
- Tue, 26 May 2026 09:36:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1779788172; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=0TYzxBo6YYni/YvihchIYDS6WS2my53hnhjsZy7G6kk=;
- b=W//chOT96fM5Q6mOKy+1WnsKLMKs29ilrazvg7PGpWKNkpNT3Jj1eHvEZJVyo3JB7mZZbj
- A8TYogk0gmoDzQzfqlIXr55ai6Lj+sC159D6UIdAJ9/CjEzVByUpD5zHJ+kprJ3QUb1iTC
- Rv/n7RKaZRzjS7Pwy9eZTM7S2Wqmyu8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1779788172;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=0TYzxBo6YYni/YvihchIYDS6WS2my53hnhjsZy7G6kk=;
- b=J/ZM3I/FVYIPO50Q+ou1D0SQ1LGqbHaPUevd0R/XYnuXrP2Aw6neXmLQw72o7qpJuX2D4q
- PxD6+tF9uOpfHjBw==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b=W0lr0wQ2;
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="Mu8lSDY/"
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1779788171; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=0TYzxBo6YYni/YvihchIYDS6WS2my53hnhjsZy7G6kk=;
- b=W0lr0wQ2Hj6RzqkTrAK41Sd6ZphAOFDgnkszUMT0Dff29O1+nQYwy3h/7jxm3r8/jBU49q
- N3faH1TERDqjgDijgQChC2NHEfEOUuxgvkHyV/OSIL6KLVMxNRYO1cRnH4fN0Ca/G3p/Io
- jFTg4i+eRQfJ0fuhmQ1YCeAGyXxWyT8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1779788171;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=0TYzxBo6YYni/YvihchIYDS6WS2my53hnhjsZy7G6kk=;
- b=Mu8lSDY/aNRFbojgtuwTNbIjctkPIXvP2shk5GJ6efj4VMDZhedfSulzGFRCgFWbabxG87
- bilWMX+wfBnN/0DQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 02D285A132;
- Tue, 26 May 2026 09:36:10 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id ONarOoppFWo8CQAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 26 May 2026 09:36:10 +0000
-Message-ID: <7af4b63e-027c-4be3-8ded-6bd770037d3c@suse.de>
-Date: Tue, 26 May 2026 11:36:10 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 00/19] drm/atomic: Rework initial state allocation
-To: Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>,
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>,
- Jyri Sarha <jyri.sarha@iki.fi>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>,
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>,
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>,
- Samuel Holland <samuel@sholland.org>,
- Dave Stevenson <dave.stevenson@raspberrypi.com>,
- =?UTF-8?Q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>,
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-References: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 74A1710E47F;
+ Tue, 26 May 2026 09:41:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779788504; x=1811324504;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=DwYtZFYXuFZMoFDMhmQ9jLt7v1lUXKdRdrvLIkx0PL4=;
+ b=Cc2ZoFU50w3NnqLh/NYVXDOkUq71+yeOIVO9GRB4W1tLKZOrotmRU2T/
+ Qr4rZynKCq9FBnIgZzWksxlNYH5mjfCqSd3kTCnAaE+JX4UdLLZ1cmoMJ
+ ugtdCLEN3DKNQjXcSkCbLiQ5FyY5ZcJ0mVzt7vuv6XE+G+bUJmOkH3IDC
+ RbSkyxDIbGdmXKpl9kryR9NAQNYtYUiGSdIN9IWH4cVO030QBUL3vn1EV
+ tTlwIrbfyBizUFOaDHhvzZkbPm0kZVdvcGzByo4bwdr3ikjGzW9IrfSRx
+ rpqjYqpAmk6vjYNuqyfrL2yBJfaWnKDGJMs3NRbprcVCdZgipPpQ0WsTg Q==;
+X-CSE-ConnectionGUID: lVOr/20IT5uJ4t85v2spUA==
+X-CSE-MsgGUID: aPo4KII7Sw67skuofmI8QA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="90897528"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="90897528"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 02:41:44 -0700
+X-CSE-ConnectionGUID: HbnQBCjESOu9YtwnuWAGSA==
+X-CSE-MsgGUID: m3GQyOxVTkq5hQN9Erg8rA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="239273664"
+Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
+ by fmviesa008.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 02:41:43 -0700
+Received: from ORSMSX903.amr.corp.intel.com (10.22.229.25) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 26 May 2026 02:41:43 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 26 May 2026 02:41:43 -0700
+Received: from DM1PR04CU001.outbound.protection.outlook.com (52.101.61.44) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 26 May 2026 02:41:43 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=P2jrKA5Kda4T1LIe+3DmBAVMgpkEzEahFcF6lzmdsAQWmMY8SweuTjNI/T9G/BBe9FMd55gl7zYstOvNbzMY4mpfiXStFR7o9MeToy/lcd2rjcfCY/EHUkNCKzB0vFNYmEEZs/DZ2yKlKHN/jzDEjybiu3wuutuRGq7ChrpjR1B8ggoZx9jdhev12th9Eu0hil9RjGVx6Dp5olGHbnqOFdlPmCIpeiCVOkaL1FARwnr4Mo8mCRmGKGg5mU7hykiS6z/TxoDO7WZ0Yz1Kom/DoWzmfzJS8t6u99qR60THwSPWbKnyyPCSUFph/JW7TjDI9HO60VRo5ayiZbVoVryDYQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=DwYtZFYXuFZMoFDMhmQ9jLt7v1lUXKdRdrvLIkx0PL4=;
+ b=L9pp8yHVQU/woRtzVKdpziKR0+ltwoiQivPCfWld7NRn6rp2K3FYvWIZ7Qhqa33N91/NM4QA5Tjja0FdHiHucwy40sBtDC8eRvc2IDBWMVxNmkSrUiJFbTRIXsB0oiFo8OrgC0hqWIUoqBdxagX+PbYe1THjCrdazK4YCv+jjwxXyA6+KxVzsdqxQycq4V23d1dzzgDk0DomVb+Jf8y/bbBb9NSk0QGtFs98jawW2BR3EVZ1tPTqqVKJYaU36FdisuNnczKJGmWmA9XQtTaCFc5yYEmLRL7YltPNpRyx9te+1Zqv1NMia6kgvHivfztnJcRBTxmu0MRHajjz9OThMQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ (2603:10b6:f:fc02::28) by IA4PR11MB9442.namprd11.prod.outlook.com
+ (2603:10b6:208:55f::17) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.48.19; Tue, 26 May
+ 2026 09:41:41 +0000
+Received: from DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::88d6:ba41:128b:4081]) by DS4PPF69154114F.namprd11.prod.outlook.com
+ ([fe80::88d6:ba41:128b:4081%6]) with mapi id 15.21.0071.010; Tue, 26 May 2026
+ 09:41:41 +0000
+From: "Kahola, Mika" <mika.kahola@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>
+CC: Lyude Paul <lyude@redhat.com>, "Lee, Shawn C" <shawn.c.lee@intel.com>
+Subject: RE: [PATCH] drm/dp: Add DSC virtual DPCD quirk for Realtek MST branch
+ device
+Thread-Topic: [PATCH] drm/dp: Add DSC virtual DPCD quirk for Realtek MST
+ branch device
+Thread-Index: AQHc7EXgtuvvLgNwcEuzN0L4LG0kRLYgDv1A
+Date: Tue, 26 May 2026 09:41:40 +0000
+Message-ID: <DS4PPF69154114FB149E173A1C8A47D8982EF0B2@DS4PPF69154114F.namprd11.prod.outlook.com>
+References: <20260525125516.2794636-1-imre.deak@intel.com>
+In-Reply-To: <20260525125516.2794636-1-imre.deak@intel.com>
+Accept-Language: en-US
 Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Score: -3.01
-X-Spam-Level: 
-X-Spam-Flag: NO
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DS4PPF69154114F:EE_|IA4PR11MB9442:EE_
+x-ms-office365-filtering-correlation-id: 216e9eb6-16c2-4ed4-1454-08debb0afd7e
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|38070700021|18002099003|22082099003|56012099003|11063799006;
+x-microsoft-antispam-message-info: +i/UoqfHt3Uhj6aXlhhdjjDUmynWosawn0TAu9jTlcbxJzLU4EiCNWG9NguUVRpGCff3fm+1WY6CTWt5hm6WPQSiEsFbUP+8feQe3lI25D57ssi9c5um40oXfQw1K93Whb9hmra6IAghQlFLTSvKQnko0ndhIkJkLawtNwSSfzrEwihPZEAPlv9zy/B8cHRDtrV93C5XE9d6W5+tv4Ndm+ZrOMd6PMTymitAyDNjlQPSDKUdxFNTG8ngUgRfiCwwbt7ZPKvLGl07sYJw6p0kNsP5LJGWvw6xRoh4VS/vMoXvGCq4NTB5eLktF9gjpeN34Xu6qBnXnTuBBwUrySXYS7m1QfRQ/BSQAJ1cdosUkkUjGXCsZ/3CeL+Wb4Ja1fIL0WmPBQyqzAdSmC6h+b7cqw0l8mj89G9DCLG7ls6+EKaZfdqFteGLiT+4Yh70Svbp8rrCy56pN1A3bWf+I4hC1v76XbjjfsIqym/J07jwO/GkreLKByxi5wL9HgAGbpr1J/rkICVBMLkPDPMSa7MFi3HdLFXdyaHNcSUOoRysj2kMog/IaGg6axIVRrhZRHvxOM5jt82XhJcnJDFalZOzGtGfT8qBkbvbx685s1VmEvWYzFBUk2BEnBmT3m+Qy2twjUyyoly8ygY0q03JAc3gYSlZjBWid6pPyMOk+e145FbSuNrdpEvEZfJUATayTjrLyWmDT7VlU7Mihr7b0b26sFiIf/TsxAmZOp6YWw3cGImcu5R4d25mMfWPXcrmbvGO
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DS4PPF69154114F.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(38070700021)(18002099003)(22082099003)(56012099003)(11063799006);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?M0xXbVpUTW9xREhGeWIwZHJjN1I3SldzL1A0K3FNd250TSsvRE1NOFdIZGp6?=
+ =?utf-8?B?eUxadVVUTXFhci92eEk3MUVBSXowVW8xL1pPLzlvdS9YVFIvZCs0ODg5a3dr?=
+ =?utf-8?B?Skh6ZEYyQUczd0JRbUw2N1lBTUdVVlZKTnoxai9lOVBYWUdGcVF4Mkh4ckMz?=
+ =?utf-8?B?LzUrdUlaOW9OYjlJaE4xTGJPUEs1Vk40bFdRRTcyR3BReU1NUkhJNEcvdXl2?=
+ =?utf-8?B?MStkWm9SM0tqVldxMjJQVHc5elBoczFReDNvOGxWNmFXTGNJM1FTSXdDUkd0?=
+ =?utf-8?B?TThkdG5keEhPVWJhUVAwZTl0V21OejFLRGIzYjhBbXhsUHFCL0FleFdsc2lN?=
+ =?utf-8?B?elZGUjZFZGhVZDlMZU80ZUgyRDdkZ056ZFNpaVFyeW1KSWVkMkdRUDFPcGxn?=
+ =?utf-8?B?RTBPRkZ4Rzg0YVJJNUNocEI5c0krMzVSR2QwTVBrV0wyYUNIbXkwdk9RRENG?=
+ =?utf-8?B?ZnIvNVp6bnFVZk5qcUNxZ1EyTEdCaUEwUllPVUFtQmtsNlh2dXVnVmtCYll6?=
+ =?utf-8?B?VDFOWitHbHhmclBZdk9NMjhiUzZTUzVDWDYvMWFBUndGRXpPdUt3ZE5HUWpD?=
+ =?utf-8?B?Njl4NHdCVy92MUJBNnM3alh5TEtiSXRScmlHS2hoQm9qcjY1dkRrMGE2eDYx?=
+ =?utf-8?B?eXZ2ZHkvb21VcW8zbkhuMk9xWU9XS2ZyZnlrc3VVOHc3UndLd2tlUUQ4Mmhq?=
+ =?utf-8?B?OC8xbHBWUU1nMnlmaG1NNldndzMrZ1hucm1xaW0zcUs1SUsweTVHeU1FVFp1?=
+ =?utf-8?B?VmQ2RzgvcWhYZ2xNdVNUa2tzZ0grZy8vQmV1bm9LMlhYZGFaNyttVC9US3Nw?=
+ =?utf-8?B?USs0dnVENmNYOXArYXc1dmF4bmdna1dPa3IycmxYZ3VZUUZ5c1Qydm85YUUy?=
+ =?utf-8?B?TmFXVXFkUkVPODE1UHRpdUN1UmpwaG8yc1lLcGRZTWRqekFjRWpZanliczZV?=
+ =?utf-8?B?aU5ZTnN6VXZWNG1DSnI1Vlp5NG5qNzJ6ZTFKb2JSeTJDOHYrME5aaEY3ckFX?=
+ =?utf-8?B?bHYvYUZjblJsSkUrT3dSS2grK3htV3p1NHFDUmlwZUliUkRocWoyRTdPeHRJ?=
+ =?utf-8?B?VHNMZmZOalJhSVlFcjdyYm5aYXlvMDBQK2pUWjB4RFhTKzRmRi9uaVIwT3Qy?=
+ =?utf-8?B?VGRIM09nN0oxdzNURHNONThNYm96cENGbTdjRHYzenE5Rm5xLzYyRVRSblc0?=
+ =?utf-8?B?R2F2KzhvTnY5ZmNpNGJCMCt2V3pZV3hNSzAxS0xUdVpmdVY0TGxSKzA0Nkpj?=
+ =?utf-8?B?aDY1ZFlhdStvMUVCUzNPZmF6c1ZXQldYRGtacFJiWUx5cXFjbTVnY1ppUnVE?=
+ =?utf-8?B?UHh6eStSRVNPVVZ4TXk1a2FnSUtYY1VWVU11dEt0dWpCQS9ZbmJ3WHl0UDB3?=
+ =?utf-8?B?WGR3MkdOYVlxanplZVdYMFRDWWowU043Q0p6cDlpelVhcDhWWUxleVhvZFBJ?=
+ =?utf-8?B?aVNpWkpHcjU4RUZtMmNaMGs2MjJqTTJ5QTdDdnJoOElEZzFmK2lNTXhTVHUw?=
+ =?utf-8?B?QkozNGlpb25hZ2FtUFFnV3VUS3pCWHkvanlEdzI5TkdkQ1lwU1pRWUZ5YmZp?=
+ =?utf-8?B?N2hvbHloQUN1eTRmMXJGT0ptVEVmd3RoaDJtc3JtcThJSExDSDZrdkNkMWtw?=
+ =?utf-8?B?NEhLZ0l2NzM1dlIxRGt1VFRPYUJzMTd3MHhnREhwM3FpdSttUGR5R2FXU0ov?=
+ =?utf-8?B?V1FkSEF3WWVmb091N01HbjhBcGw2R3R0bzlHeGZvZFJ6SUVqQUdhbHkxUVhK?=
+ =?utf-8?B?T0U0Y1R2eU1aRGF6ZFhsTUVxaWdpRHQveTYyNVFwTVNzZzV6T3pnSEh6UnVB?=
+ =?utf-8?B?ck1BVVA0dVhJMWdUUzVFMFV4MlovVXUvN1JrbktBNnhQK0U3WkkvVHQxaG9n?=
+ =?utf-8?B?b3M1dUFkREc1NnlQaFpUR2JuMEtONEJmbjR3Q1NmcWpBVWdFTDlGN1F6Mm15?=
+ =?utf-8?B?c3FsOC9oMGFBZ1JRYkJBZmE4RW1mcnc0TjcyaXhiUm5ZUWhMWmhxYlBtT2FG?=
+ =?utf-8?B?d1FIQVQ0QnZlTVFkSGJxNEJrVS9TR2lNdkE0RmR3TXZHSy9OZHRHQnVhU2FI?=
+ =?utf-8?B?MEpDdksxUWhKazIxRENGYkJTUWw1NHZNa0ZWT0pnRjVSNE85SjU0UVYyWlFk?=
+ =?utf-8?B?U1c5T1U3Q1pWa2h0RkdKK2NDc2tKanZCNnF6cEE5YWFOYURqV0p3Vy8xblBF?=
+ =?utf-8?B?UGhzbmhpaFBERnpSdXBtalNtcHdVSnRNa3NzckNGTlNuY2xCaERIN1NwTUlK?=
+ =?utf-8?B?WXFJVTdQWmJ2U2RmV3NPcUJoN1FrZnNBOFZ0WmRkNS9wVGpmclVoejRXZVB1?=
+ =?utf-8?Q?5m33+AIhsH0ize12OT?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: EqYOg3omD4nwnutInpQkpC6fZDKRUy+cpQwfg+Wl3VrgnKA9kAO/D1N0K47SASqJMvEy3i9JbJtXcDQtksDqC6sgqwkWwUD5F6w+JGD5V2Qh2TAagsQ2gv5X78AEbWpWCl1mPvf/sDtB4GpFjmRWnsKgiOICsZxbu+Fnzf8ctIqezTbFsL4Tl5fi6NU95zQB5GBVACccdziKi4OBgGt9Hwlfgbsf70u3/CJ9RpaHdeqWqiDPfvKUNrlDKCGoxjcCD2k9/3hrYAQ5sZOMR24L6qVwKc2Wb7/MUCDV4Kthkh1Jo4M/Fyl/eMLI2Ijp+/rA20+E9Mms9C8AjTnd2jkH9w==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DS4PPF69154114F.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 216e9eb6-16c2-4ed4-1454-08debb0afd7e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 26 May 2026 09:41:41.0087 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 0GJAH2SCsXoPfHJLSyZP8Om6Q6s4lSd95sLH6VgTdjUctGp+aW6AXMotmlNlvx36lRf+pCpVtJYsGu1OK2lsTg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9442
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -156,178 +178,78 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.79 / 15.00];
+	MIME_BASE64_TEXT_BOGUS(1.00)[];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	MIME_BASE64_TEXT(0.10)[];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:corbet@lwn.net,m:skhan@linuxfoundation.org,m:dmitry.baryshkov@oss.qualcomm.com,m:jyri.sarha@iki.fi,m:tomi.valkeinen@ideasonboard.com,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:contact@emersion.fr,m:harry.wentland@amd.com,m:mwen@igalia.com,m:sebastian.wick@redhat.com,m:alex.hung@amd.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:wens@kernel.org,m:samuel@sholland.org,m:dave.stevenson@raspberrypi.com,m:mcanal@igalia.com,m:kernel-list@raspberrypi.com,m:dri-devel@lists.freedesktop.org,m:linux-doc@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:daniels@collabora.com,m:intel-xe@lists.freedesktop.org,m:linux-arm-kernel@lists.infradead.org,m:linux-sunxi@lists.linux.dev,m:laurent.pinchart+ren
- esas@ideasonboard.com,m:jernejskrabec@gmail.com,m:laurent.pinchart@ideasonboard.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[38];
-	FREEMAIL_TO(0.00)[kernel.org,linux.intel.com,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:email,DS4PPF69154114F.namprd11.prod.outlook.com:mid];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	NEURAL_HAM(-0.00)[-0.998];
-	TAGGED_RCPT(0.00)[intel-gfx,renesas];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:url,suse.de:mid,suse.de:dkim]
-X-Rspamd-Queue-Id: 1D5E95D36BE
+	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
+	NEURAL_HAM(-0.00)[-0.924];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: D011D5D3854
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-I only had comments on the writing. Looks good otherwise.
-
-Best regards
-Thomas
-
-Am 19.05.26 um 11:01 schrieb Maxime Ripard:
-> Hi,
->
-> This series started from my work on the hardware state readout[1], and
-> more specifically a discussion with Thomas[2].
->
-> This series expands the work that has been merged recently to make
-> drm_private_obj and drm_private_state allocation a bit more consistent
-> and ended up creating a new atomic_create_state callback to allocate a
-> new state with no side effect.
->
-> The first patches document the existing behaviour and fix a few
-> cleanups and typos.
->
-> Then, __drm_*_state_reset() helpers are renamed to
-> __drm_*_state_init() to clarify that they initialize rather than
-> reset state, and we add the new atomic_create_state callback to
-> every other DRM object (planes, CRTCs, connectors, colorops).
->
-> Next, we leverage those new callbacks to create a new helper,
-> drm_mode_config_create_initial_state(), to create the initial state
-> for all the objects of a driver, and update the driver skeleton to
-> recommend it.
->
-> Finally, we convert the tidss driver and the bridge_connector to the
-> new pattern.
->
-> This was tested on a TI SK-AM62, with the tidss driver.
->
-> Let me know what you think,
-> Maxime
->
-> 1: https://lore.kernel.org/dri-devel/20250902-drm-state-readout-v1-0-14ad5315da3f@kernel.org/
-> 2: https://lore.kernel.org/dri-devel/5920ffe5-b6b1-484b-b320-332b9eb9db82@suse.de/
->
-> Signed-off-by: Maxime Ripard <mripard@kernel.org>
-> ---
-> Changes in v5:
-> - Address sashiko reviews
-> - Improve the docs
-> - Fix drmm_connector_hdmi_init
-> - Drop drm/tidss: Switch to drm_mode_config_create_initial_state since
->    not all possible bridges would have been converted to create_state
-> - Link to v4: https://lore.kernel.org/r/20260512-drm-mode-config-init-v4-0-591dfdcc1bf9@kernel.org
->
-> Changes in v4:
-> - Rebased on current drm-misc-next
-> - Update drm_atomic_state to drm_atomic_commit
-> - Various doc impromvements
-> - Don't call drm_crtc_vblank_reset in create_state
-> - Prevent mem leak if states already have a state when
->    drm_mode_config_reset or _create_initial_state are called
-> - Link to v3: https://lore.kernel.org/r/20260424-drm-mode-config-init-v3-0-8b68d9db0d8b@kernel.org
->
-> Changes in v3:
-> - Reintroduce state documentation that was dropped by accident
-> - Change name to drm_mode_config_create_initial_state()
-> - Don't call drm_mode_config_create_initial_state() in drm_dev_register
->    anymore
-> - Drop __drm_atomic_helper_*_create_state
-> - Improve documentation and commit messages where necessary
-> - Collected tags
-> - Link to v2: https://lore.kernel.org/r/20260320-drm-mode-config-init-v2-0-c63f1134e76c@kernel.org
->
-> Changes in v2:
-> - Change the _state_reset function names to _state_init
-> - Change the colorop too
-> - Various doc improvements
-> - Link to v1: https://lore.kernel.org/r/20260310-drm-mode-config-init-v1-0-de7397c8e1cf@kernel.org
->
-> ---
-> Maxime Ripard (19):
->        drm/atomic: Document atomic commit lifetime
->        drm/colorop: Fix typos in the doc
->        drm/atomic: Drop drm_private_obj.state assignment from create_state
->        drm/atomic: Expand atomic_create_state expectations for drm_private_obj
->        drm/mode-config: Document drm_private_obj exclusion from drm_mode_config_reset()
->        drm/colorop: Rename __drm_colorop_state_reset()
->        drm/colorop: Create drm_atomic_helper_colorop_create_state()
->        drm/atomic-state-helper: Fix __drm_atomic_helper_plane_reset() doc typo
->        drm/atomic-state-helper: Rename __drm_atomic_helper_plane_state_reset()
->        drm/plane: Add new atomic_create_state callback
->        drm/atomic-state-helper: Rename __drm_atomic_helper_crtc_state_reset()
->        drm/crtc: Add new atomic_create_state callback
->        drm/atomic-state-helper: Rename __drm_atomic_helper_connector_state_reset()
->        drm/hdmi: Rename __drm_atomic_helper_connector_hdmi_reset()
->        drm/connector: Add new atomic_create_state callback
->        drm/mode-config: Create drm_mode_config_create_initial_state()
->        drm/drv: Switch skeleton to drm_mode_config_create_initial_state()
->        drm/tidss: Convert to atomic_create_state
->        drm/bridge_connector: Convert to atomic_create_state
->
->   Documentation/gpu/drm-kms.rst                      |   6 +
->   drivers/gpu/drm/display/drm_bridge_connector.c     |  17 +-
->   drivers/gpu/drm/display/drm_hdmi_state_helper.c    |  15 +-
->   drivers/gpu/drm/drm_atomic.c                       |  67 ++++++++
->   drivers/gpu/drm/drm_atomic_state_helper.c          | 114 ++++++++++---
->   drivers/gpu/drm/drm_colorop.c                      |  41 ++++-
->   drivers/gpu/drm/drm_connector.c                    |  10 +-
->   drivers/gpu/drm/drm_drv.c                          |   4 +-
->   drivers/gpu/drm/drm_mode_config.c                  | 189 ++++++++++++++++++++-
->   drivers/gpu/drm/i915/display/intel_crtc.c          |   2 +-
->   drivers/gpu/drm/i915/display/intel_plane.c         |   2 +-
->   drivers/gpu/drm/sun4i/sun4i_hdmi_enc.c             |   2 +-
->   drivers/gpu/drm/tests/drm_hdmi_state_helper_test.c |   2 +-
->   drivers/gpu/drm/tidss/tidss_crtc.c                 |  17 +-
->   drivers/gpu/drm/tidss/tidss_plane.c                |   2 +-
->   drivers/gpu/drm/vc4/vc4_hdmi.c                     |   2 +-
->   include/drm/display/drm_hdmi_state_helper.h        |   4 +-
->   include/drm/drm_atomic.h                           |   5 +-
->   include/drm/drm_atomic_state_helper.h              |  12 +-
->   include/drm/drm_colorop.h                          |   2 +
->   include/drm/drm_connector.h                        |  16 ++
->   include/drm/drm_crtc.h                             |  16 ++
->   include/drm/drm_mode_config.h                      |   1 +
->   include/drm/drm_plane.h                            |  16 ++
->   24 files changed, 496 insertions(+), 68 deletions(-)
-> ---
-> base-commit: 69c95e4c529297c25503e60acba757fba24fdc95
-> change-id: 20260310-drm-mode-config-init-1e1f52b745d0
->
-> Best regards,
-
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
-
-
+PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC1nZnggPGludGVsLWdm
+eC1ib3VuY2VzQGxpc3RzLmZyZWVkZXNrdG9wLm9yZz4gT24gQmVoYWxmIE9mIEltcmUgRGVhaw0K
+PiBTZW50OiBNb25kYXksIDI1IE1heSAyMDI2IDE1LjU1DQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMu
+ZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmc7IGRyaS1kZXZl
+bEBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gQ2M6IEx5dWRlIFBhdWwgPGx5dWRlQHJlZGhhdC5j
+b20+OyBMZWUsIFNoYXduIEMgPHNoYXduLmMubGVlQGludGVsLmNvbT4NCj4gU3ViamVjdDogW1BB
+VENIXSBkcm0vZHA6IEFkZCBEU0MgdmlydHVhbCBEUENEIHF1aXJrIGZvciBSZWFsdGVrIE1TVCBi
+cmFuY2ggZGV2aWNlDQo+IA0KPiBUaGUgQVNVUyBEQzMwMSBVU0ItQyBkb2NrIGNvbnRhaW5pbmcg
+YSBSZWFsdGVrIE1TVCBicmFuY2ggZGV2aWNlIHN1cHBvcnRzIHRoZSBEU0MgZGVjb21wcmVzc2lv
+biBmdW5jdGlvbmFsaXR5IG9uIGVhY2ggb2YNCj4gdGhlIGRvY2sncyBkb3duc3RyZWFtIGNvbm5l
+Y3RvcnMsIGV2ZW4gdGhvdWdoIHRoZXJlIGlzIG5vIGRpc2NvdmVyYWJsZSBwZWVyLXRvLXBlZXIg
+dmlydHVhbCBkZXZpY2UgaW4gdGhlIE1TVCB0b3BvbG9neSAod2hpY2gNCj4gdGhlIERQIFN0YW5k
+YXJkIHJlcXVpcmVzL3N1Z2dlc3RzIHRvIGNvbnRyb2wgdGhlIERTQyBmdW5jdGlvbmFsaXR5IG9u
+IGEgcGVyLURGUCBiYXNpcykuDQo+IEFkZCB0aGUgRFBfRFBDRF9RVUlSS19EU0NfV0lUSE9VVF9W
+SVJUVUFMX0RQQ0QgcXVpcmsgZm9yIHRoaXMgYnJhbmNoIGRldmljZSBhcyB3ZWxsIHRvIGVuYWJs
+ZSB0aGUgRFNDIGRlY29tcHJlc3Npb24NCj4gZnVuY3Rpb25hbGl0eSBvbiBhbGwgREZQIGNvbm5l
+Y3RvcnMgb2YgdGhlIGRvY2ssIHNpbWlsYXJseSB0byBob3cgdGhpcyBpcyBkb25lIGZvciBkb2Nr
+J3MgY29udGFpbmluZyBvbGRlciBTeW5hcHRpY3MgYnJhbmNoIGRldmljZXMuDQo+IA0KPiBDYzog
+THl1ZGUgUGF1bCA8bHl1ZGVAcmVkaGF0LmNvbT4NCj4gUmVwb3J0ZWQtYW5kLXRlc3RlZC1ieTog
+U2hhd24gQyBMZWUgPHNoYXduLmMubGVlQGludGVsLmNvbT4NCg0KUmV2aWV3ZWQtYnk6IE1pa2Eg
+S2Fob2xhIDxtaWthLmthaG9sYUBpbnRlbC5jb20+IA0KDQo+IFNpZ25lZC1vZmYtYnk6IEltcmUg
+RGVhayA8aW1yZS5kZWFrQGludGVsLmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vZGlz
+cGxheS9kcm1fZHBfaGVscGVyLmMgfCAyICsrDQo+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRp
+b25zKCspDQo+IA0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvZHJtX2Rw
+X2hlbHBlci5jIGIvZHJpdmVycy9ncHUvZHJtL2Rpc3BsYXkvZHJtX2RwX2hlbHBlci5jDQo+IGlu
+ZGV4IGE2MDY3NDcxZGQ1NjMuLjljMzFlMTRjYzQxM2IgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMv
+Z3B1L2RybS9kaXNwbGF5L2RybV9kcF9oZWxwZXIuYw0KPiArKysgYi9kcml2ZXJzL2dwdS9kcm0v
+ZGlzcGxheS9kcm1fZHBfaGVscGVyLmMNCj4gQEAgLTI1NDYsNiArMjU0Niw4IEBAIHN0YXRpYyBj
+b25zdCBzdHJ1Y3QgZHBjZF9xdWlyayBkcGNkX3F1aXJrX2xpc3RbXSA9IHsNCj4gIAl7IE9VSSgw
+eDAwLCAweDAwLCAweDAwKSwgREVWSUNFX0lEKCdDJywgJ0gnLCAnNycsICc1JywgJzEnLCAnMScp
+LCBmYWxzZSwgQklUKERQX0RQQ0RfUVVJUktfTk9fU0lOS19DT1VOVCkgfSwNCj4gIAkvKiBTeW5h
+cHRpY3MgRFAxLjQgTVNUIGh1YnMgY2FuIHN1cHBvcnQgRFNDIHdpdGhvdXQgdmlydHVhbCBEUENE
+ICovDQo+ICAJeyBPVUkoMHg5MCwgMHhDQywgMHgyNCksIERFVklDRV9JRF9BTlksIHRydWUsIEJJ
+VChEUF9EUENEX1FVSVJLX0RTQ19XSVRIT1VUX1ZJUlRVQUxfRFBDRCkgfSwNCj4gKwkvKiBSZWFs
+dGVrIERQMS40IE1TVCBodWJzIGNhbiBzdXBwb3J0IERTQyB3aXRob3V0IHZpcnR1YWwgRFBDRCAq
+Lw0KPiArCXsgT1VJKDB4MDAsIDB4ZTAsIDB4NGMpLCBERVZJQ0VfSUQoJ0QnLCAncCcsICcxJywg
+Jy4nLCAnNCcsIDApLCB0cnVlLA0KPiArQklUKERQX0RQQ0RfUVVJUktfRFNDX1dJVEhPVVRfVklS
+VFVBTF9EUENEKSB9LA0KPiAgCS8qIFN5bmFwdGljcyBEUDEuNCBNU1QgaHVicyByZXF1aXJlIERT
+QyBmb3Igc29tZSBtb2RlcyBvbiB3aGljaCBpdCBhcHBsaWVzIEhCTEFOSyBleHBhbnNpb24uICov
+DQo+ICAJeyBPVUkoMHg5MCwgMHhDQywgMHgyNCksIERFVklDRV9JRF9BTlksIHRydWUsIEJJVChE
+UF9EUENEX1FVSVJLX0hCTEFOS19FWFBBTlNJT05fUkVRVUlSRVNfRFNDKSB9LA0KPiAgCS8qIE1l
+ZGlhVGVrIHBhbmVscyAoYXQgbGVhc3QgaW4gVTMyMjRLQkEpIHJlcXVpcmUgRFNDIGZvciBtb2Rl
+cyB3aXRoIGEgc2hvcnQgSEJMQU5LIG9uIFVIQlIgbGlua3MuICovDQo+IC0tDQo+IDIuNDkuMQ0K
+DQo=
