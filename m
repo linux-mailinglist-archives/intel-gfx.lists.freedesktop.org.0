@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qCiNM+mbFWr9WgcAu9opvQ
+	id WE3MKaGpFWpGXgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:11:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 16:09:37 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 051F95D61CE
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 15:11:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F4C15D718D
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 16:09:37 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8097010E173;
-	Tue, 26 May 2026 13:11:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B876B10E4C6;
+	Tue, 26 May 2026 14:09:35 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PXZTyHH5";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Tg+hCvBS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1445610E173
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2026 13:11:01 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B6BE710E4C6;
+ Tue, 26 May 2026 14:09:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779801061; x=1811337061;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=eEqaUk7OC5E6TAruqUfMbnkFvdOi4GXKt5/05lTwxbU=;
- b=PXZTyHH5XlRJbHy9bzMVm6H40TDoOkrkAtURtw84iv2fWnM3a0VQZ1E2
- 9683ENX17r6I1/Zr8xYxv+ILOmi5zz4u0aDYNbHDD2afHfMQ3/DzWui1m
- XwWwc6VmtYkB+yzjN+pNp8go71wqTt1fX00jbQE6k8ri8+/fi5RQQjxhb
- geF7jIG/ksk9OdMXv8AzPkXXQYckgNim8O+GcJdgw357oI8dQatk2xtt2
- q1aQOfJg1JOUYNFpQLDMv1enVTuANaWdUM/7YHEpSt5kXdHedCzCIOdFu
- 6zNbj2ViPPTpWBZPvNT+j7j9oo+vMcTu/w4PdZleKheexrYAZvPRXWwVJ Q==;
-X-CSE-ConnectionGUID: Oc7BWOWoS2eCLApMrGdFhg==
-X-CSE-MsgGUID: CWBclrIeTnqQJOVZJhsUrw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91182912"
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="91182912"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 06:11:00 -0700
-X-CSE-ConnectionGUID: 8dHS1r6hSjqfjYiTc4yREw==
-X-CSE-MsgGUID: vtzKGPoeSh6/8e8gttpcwg==
+ t=1779804574; x=1811340574;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=6zy68fqOQWwXeJ6XuEC/NgxFeNi8jGZAsJfGf//jDfU=;
+ b=Tg+hCvBSYoZJndzLNch7+/PJiSMJJ7t4E6Ivoncm5znv5eWEpceebOhV
+ 5l67pNJFQA+nZYxSQHI3DG5yce5tJ4vgl/ftZXSIy7mgUfBCoYOJcO660
+ JZQXQTU6HhXaZGw3XTSpMjI1olux+hfJSDEjmJsmIfoPwRVE3PyuskH2p
+ TI51LAdlEGyl0Xf3FrSwli8CIeioeMtpgDtfx5QroC3S2hinLEM6SW4cX
+ kE9W2PyYTyrrZVBPYc6U/LZRgRcvrGkL2ujk+PPym/dV+rocVxc938PL4
+ RWekwBafbHltSdN71iCVttqUZWGLi/7O+y+0AJhdON9uSkxNUeH7/FaBe Q==;
+X-CSE-ConnectionGUID: uwOAfYczSziMCmUjB54ynA==
+X-CSE-MsgGUID: n/Gdg2NpQsuFolEtNap2hg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="98041694"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="98041694"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 07:09:34 -0700
+X-CSE-ConnectionGUID: autP5l33TrWC5nf2K3eI8w==
+X-CSE-MsgGUID: 0ozxd3fOSbmOCw4tBFL6oA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="245953742"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 06:10:59 -0700
-Date: Tue, 26 May 2026 15:10:57 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-cc: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>
-Subject: Re: [PATCH] drm/i915: relocate intel_hpd_cancel_work() call
-In-Reply-To: <20260516101852.1373108-1-jani.nikula@intel.com>
-Message-ID: <ad9f755c-7beb-c72f-a81c-8f4c624219c9@intel.com>
-References: <20260516101852.1373108-1-jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; d="scan'208";a="235578066"
+Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.223.74.76])
+ by fmviesa009.fm.intel.com with ESMTP; 26 May 2026 07:09:31 -0700
+From: Animesh Manna <animesh.manna@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
+ ville.syrjala@linux.intel.com, jani.nikula@intel.com,
+ Animesh Manna <animesh.manna@intel.com>
+Subject: [PATCH v7 00/15] CMTG enablement
+Date: Tue, 26 May 2026 19:07:56 +0530
+Message-Id: <20260526133811.2621675-1-animesh.manna@intel.com>
+X-Mailer: git-send-email 2.29.0
 MIME-Version: 1.0
-Content-Type: multipart/mixed;
- boundary="8323329-1630270024-1779801060=:1544314"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,64 +73,74 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
+	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+,1:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@intel.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	URIBL_MULTI_FAIL(0.00)[gabe.freedesktop.org:server fail,intel.com:server fail];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	NEURAL_HAM(-0.00)[-1.000];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 051F95D61CE
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[animesh.manna@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: 3F4C15D718D
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Common mode timing generator (CMTG) support is added NVL onwards.
+Enable CMTG which will be needed by other fearure like dynamic dc
+state enablement later.
 
---8323329-1630270024-1779801060=:1544314
-Content-Type: text/plain; charset=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
+Testing ongoing, currently counters are incrementing as expected.
 
-On Sat, 16 May 2026, Jani Nikula wrote:
-> The i915 and xe calls to display, in particular for
-> probe/cleanup/suspend/resume, need to be unified. It does not help to
-> have the related calls scattered around. As a small step forward,
-> relocate the intel_hpd_cancel_work() call from intel_irq_uninstall() to
-> i915_driver_remove().
->
-> Note that the other intel_irq_uninstall() call sites don't need the
-> call, as they're on error paths where hotplug hasn't been enabled yet.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+Animesh Manna (12):
+  drm/i915/cmtg: Add intel_cmtg_is_allowed() for CMTG
+  drm/i915/cmtg: Set CMTG clock select
+  drm/i915/cmtg: Add cmtg transcoder offset in struct _device_info
+  drm/i915/cmtg: Set timings for CMTG
+  drm/i915/cmtg: Program VRR registers of CMTG
+  drm/i915/cmtg: Set transcoder mn for CMTG
+  drm/i915/cmtg: Add hook to enable CMTG with sync to port
+  drm/i915/cmtg: Add a hook to make eDP transcoder secondary
+  drm/i915/cmtg: Add CMTG interrupt handling
+  drm/i915/cmtg: Add trigger to enable/disable cmtg
+  drm/i915/cmtg: Restore CMTG after DC6 exit
+  [Not for Review] Debug patch
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+Dibin Moolakadan Subrahmanian (3):
+  drm/i915/cmtg: Modify existing hook to disable CMTG
+  drm/i915/cmtg: Add CMTG HWGB programming
+  drm/i915/cmtg: Add CMTG scan line programming
 
-BR,
-Micha³
---8323329-1630270024-1779801060=:1544314--
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 318 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_cmtg.h     |  15 +
+ .../gpu/drm/i915/display/intel_cmtg_regs.h    |  24 +-
+ drivers/gpu/drm/i915/display/intel_cx0_phy.c  |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  42 ++-
+ .../drm/i915/display/intel_display_device.c   |  14 +
+ .../drm/i915/display/intel_display_device.h   |   2 +-
+ .../gpu/drm/i915/display/intel_display_irq.c  |  12 +
+ .../drm/i915/display/intel_display_limits.h   |   2 +
+ .../drm/i915/display/intel_display_power.c    |  17 +
+ .../drm/i915/display/intel_display_power.h    |   2 +
+ .../gpu/drm/i915/display/intel_display_regs.h |   6 +
+ .../drm/i915/display/intel_display_types.h    |   4 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |   5 +
+ 14 files changed, 456 insertions(+), 12 deletions(-)
+
+-- 
+2.29.0
+
