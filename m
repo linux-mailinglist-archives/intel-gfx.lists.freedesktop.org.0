@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SDs8NiLyFWp7fQcAu9opvQ
+	id XI67NyjyFWphfwcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:18:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:19:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4DF975DBE7C
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:18:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E76FA5DBE85
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:19:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 955C410E536;
-	Tue, 26 May 2026 19:18:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C8FBF10E539;
+	Tue, 26 May 2026 19:18:59 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hMeXts/R";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="V5RqUgkA";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4EE9510E536;
- Tue, 26 May 2026 19:18:55 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0540B10E539;
+ Tue, 26 May 2026 19:18:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779823135; x=1811359135;
+ t=1779823137; x=1811359137;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=OVtJifa0+KDX7ogA8pjB+t+51zrz9rxPDdWGmcWFBGs=;
- b=hMeXts/R48LBBz+YkvteUGpSJCkSO2oevBvkynMEU4TVt5UmHyfwT1vC
- /eYkvcvdIqfS9gmWCDocq+1QwIUwZwia3vuk3wcK9p2TvvWuUyvfBKKfI
- 6L7uiTkHYGZ+umptjvS/YfULimlFHbCn5l2KGNpwi9o4uot6adYKtetWa
- nVLrkQ/+MAC8wR6bQBLz8h+bc2raK35NX5qYXnt6a5OJMH4f+QSyhM2oz
- tuUFNxAu6AjxSWE0+yPn12XLX27Qg8Tiw9iz8P3rE8M4gFeelCSEv1f5V
- 8c6sLy3U7d0GVa8/hLU1awT6rSTbFfO9eTZcUzobZrl8Ev/SqyIDh245x Q==;
-X-CSE-ConnectionGUID: lvoRJSVBSXe5cdU/4ayttQ==
-X-CSE-MsgGUID: Gg4NZiXaQb6sf7qgGUTIIA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="83226278"
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="83226278"
+ bh=eW5Uvhd/2RFWdFSODoALg6u9U8xlYenQtAdX6lxrbi0=;
+ b=V5RqUgkAR0nt8mmvi7ZOAvqd3FdNGO4Ej0VbF+NgXQ1Ha5XE0Oux3pc2
+ BgPGUrn9FxfeHE/U5ZaNHyRIiNvYFjxUULnGrF8hj+L4jGJ0gjHGCWTE4
+ 2BVoNDSdPUTtDF09AUcv8fldH8DTYKBfLK71NYpS9VBYGPpd2SJVeb+vy
+ 7r/Dy7SZVU3n0Id9MJ8zAiBxWQDPLfrIt7WeY4glpfFQ0vkdYrZrGQPuO
+ aTYmws0bOYIOk9hClxAjtIwB2lHhcE2WghIrtWiwG+csJP78H3WrO0+w0
+ j6Lik+BJ9zUUnCfPBjyOGZwGAERTzQobPkOns2lZt+PaxR7V2XLEkTil/ A==;
+X-CSE-ConnectionGUID: EkYNLo4STTS7yehUBXtWvw==
+X-CSE-MsgGUID: kJDMJfbpSIqg1ERi39VhIw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="83226280"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="83226280"
 Received: from fmviesa010.fm.intel.com ([10.60.135.150])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 12:18:55 -0700
-X-CSE-ConnectionGUID: HElzSTG8Ttu+9henMcLgMA==
-X-CSE-MsgGUID: dIH4EU8VTjWwddGuIVBsyA==
+ 26 May 2026 12:18:57 -0700
+X-CSE-ConnectionGUID: tupFduShQsGFEFiOOCxpMw==
+X-CSE-MsgGUID: AIF9byVWRqCPl+VlKlZ7/w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="237841838"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="237841843"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 12:18:53 -0700
+ 26 May 2026 12:18:55 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com,
 	uma.shankar@intel.com
-Subject: [PATCH v4 01/13] drm/i915/display: Remove TGL DC3CO support
-Date: Wed, 27 May 2026 00:48:14 +0530
-Message-ID: <20260526191826.3786009-2-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v4 02/13] drm/i915/display: Switch DC3CO enable from
+ standalone bit to DC level encoding
+Date: Wed, 27 May 2026 00:48:15 +0530
+Message-ID: <20260526191826.3786009-3-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260526191826.3786009-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260526191826.3786009-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -97,389 +98,109 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim,dc3co_work.work:url]
-X-Rspamd-Queue-Id: 4DF975DBE7C
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: E76FA5DBE85
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Remove all Tiger Lake DC3CO-related functions from intel_psr.c and
-intel_display_power_well.c, as the feature is not enabled and not used.
-Also remove the TGL/DG1 DC3CO count debugfs entry from intel_dmc.c,
-as DC3CO is not active on those platforms. A new debugfs entry for
-Xe3LP will be added in a subsequent patch.
+On platforms prior to xe3, DC3CO was controlled via a standalone enable
+bit. Starting with xe3, DC3CO is encoded as part of the existing
+DC_STATE_EN_UPTO_DC* field.
 
-Remove the unused dc3co_exitline field from struct intel_psr and
-struct intel_crtc_state, along with the corresponding EXITLINE register
-read in intel_psr_get_config().
+No functional change, as DC3CO is not enabled on platforms prior to xe3.
 
 Changes in v2:
-- Squash "Remove unused PSR dc3co_exitline field" and
-  "Remove unused dc3co_exitline from crtc_state" into this patch
+- Update commit header (Uma Shankar)
 
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- .../i915/display/intel_display_power_well.c   |  25 ---
- .../drm/i915/display/intel_display_types.h    |   3 -
- drivers/gpu/drm/i915/display/intel_dmc.c      |   6 -
- drivers/gpu/drm/i915/display/intel_psr.c      | 171 ------------------
- 4 files changed, 205 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c      | 6 +++---
+ drivers/gpu/drm/i915/display/intel_display_power_well.c | 4 ++--
+ drivers/gpu/drm/i915/display/intel_display_regs.h       | 2 +-
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c             | 2 +-
+ 4 files changed, 7 insertions(+), 7 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 751e6b7d4a29..c70971ffd9f0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -267,7 +267,7 @@ sanitize_target_dc_state(struct intel_display *display,
+ 	static const u32 states[] = {
+ 		DC_STATE_EN_UPTO_DC6,
+ 		DC_STATE_EN_UPTO_DC5,
+-		DC_STATE_EN_DC3CO,
++		DC_STATE_EN_UPTO_DC3CO,
+ 		DC_STATE_DISABLE,
+ 	};
+ 	int i;
+@@ -999,10 +999,10 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
+ 
+ 	switch (requested_dc) {
+ 	case 4:
+-		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC6;
++		mask |= DC_STATE_EN_UPTO_DC3CO | DC_STATE_EN_UPTO_DC6;
+ 		break;
+ 	case 3:
+-		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC5;
++		mask |= DC_STATE_EN_UPTO_DC3CO | DC_STATE_EN_UPTO_DC5;
+ 		break;
+ 	case 2:
+ 		mask |= DC_STATE_EN_UPTO_DC6;
 diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 04bd0dde5bed..2f0d0a77c1a2 100644
+index 2f0d0a77c1a2..611f784d8a7a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -866,23 +866,6 @@ void gen9_set_dc_state(struct intel_display *display, u32 state)
- 	power_domains->dc_state = val & mask;
+@@ -772,7 +772,7 @@ static u32 gen9_dc_mask(struct intel_display *display)
+ 	mask = DC_STATE_EN_UPTO_DC5;
+ 
+ 	if (DISPLAY_VER(display) >= 12)
+-		mask |= DC_STATE_EN_DC3CO | DC_STATE_EN_UPTO_DC6
++		mask |= DC_STATE_EN_UPTO_DC3CO | DC_STATE_EN_UPTO_DC6
+ 					  | DC_STATE_EN_DC9;
+ 	else if (DISPLAY_VER(display) == 11)
+ 		mask |= DC_STATE_EN_UPTO_DC6 | DC_STATE_EN_DC9;
+@@ -1022,7 +1022,7 @@ static void bxt_verify_dpio_phy_power_wells(struct intel_display *display)
+ static bool gen9_dc_off_power_well_enabled(struct intel_display *display,
+ 					   struct i915_power_well *power_well)
+ {
+-	return ((intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_DC3CO) == 0 &&
++	return ((intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_UPTO_DC3CO) == 0 &&
+ 		(intel_de_read(display, DC_STATE_EN) & DC_STATE_EN_UPTO_DC5_DC6_MASK) == 0);
  }
  
--static void tgl_enable_dc3co(struct intel_display *display)
--{
--	drm_dbg_kms(display->drm, "Enabling DC3CO\n");
--	gen9_set_dc_state(display, DC_STATE_EN_DC3CO);
--}
--
--static void tgl_disable_dc3co(struct intel_display *display)
--{
--	drm_dbg_kms(display->drm, "Disabling DC3CO\n");
--	intel_de_rmw(display, DC_STATE_EN, DC_STATE_DC3CO_STATUS, 0);
--	gen9_set_dc_state(display, DC_STATE_DISABLE);
--	/*
--	 * Delay of 200us DC3CO Exit time B.Spec 49196
--	 */
--	usleep_range(200, 210);
--}
--
- static void assert_can_enable_dc5(struct intel_display *display)
- {
- 	enum i915_power_well_id high_pg;
-@@ -1061,11 +1044,6 @@ void gen9_disable_dc_states(struct intel_display *display)
- 	struct intel_cdclk_config cdclk_config = {};
- 	u32 old_state = power_domains->dc_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 4321f8b529da..680e7dfdcf1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -3070,13 +3070,13 @@ enum skl_power_gate {
+ /* GEN9 DC */
+ #define DC_STATE_EN			_MMIO(0x45504)
+ #define  DC_STATE_DISABLE		0
+-#define  DC_STATE_EN_DC3CO		REG_BIT(30)
+ #define  DC_STATE_DC3CO_STATUS		REG_BIT(29)
+ #define  HOLD_PHY_CLKREQ_PG1_LATCH	REG_BIT(21)
+ #define  HOLD_PHY_PG1_LATCH		REG_BIT(20)
+ #define  DC_STATE_EN_UPTO_DC5		(1 << 0)
+ #define  DC_STATE_EN_DC9		(1 << 3)
+ #define  DC_STATE_EN_UPTO_DC6		(2 << 0)
++#define  DC_STATE_EN_UPTO_DC3CO		(3 << 0)
+ #define  DC_STATE_EN_UPTO_DC5_DC6_MASK   0x3
  
--	if (power_domains->target_dc_state == DC_STATE_EN_DC3CO) {
--		tgl_disable_dc3co(display);
--		return;
--	}
--
- 	if (HAS_DISPLAY(display)) {
- 		intel_dmc_wl_get_noreg(display);
- 		gen9_set_dc_state(display, DC_STATE_DISABLE);
-@@ -1114,9 +1092,6 @@ static void gen9_dc_off_power_well_disable(struct intel_display *display,
- 		return;
- 
- 	switch (power_domains->target_dc_state) {
+ #define  DC_STATE_DEBUG                  _MMIO(0x45520)
+diff --git a/drivers/gpu/drm/i915/display/intel_dmc_wl.c b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+index b007343721e1..ab4e0e9573df 100644
+--- a/drivers/gpu/drm/i915/display/intel_dmc_wl.c
++++ b/drivers/gpu/drm/i915/display/intel_dmc_wl.c
+@@ -267,7 +267,7 @@ static bool intel_dmc_wl_check_range(struct intel_display *display,
+ 	 * the DMC and requires a DC exit for proper access.
+ 	 */
+ 	switch (dc_state) {
 -	case DC_STATE_EN_DC3CO:
--		tgl_enable_dc3co(display);
--		break;
- 	case DC_STATE_EN_UPTO_DC6:
- 		skl_enable_dc6(display);
++	case DC_STATE_EN_UPTO_DC3CO:
+ 		ranges = xe3lpd_dc3co_dmc_ranges;
  		break;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index f44be5c689ae..1cfc585530dc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1184,7 +1184,6 @@ struct intel_crtc_state {
- 	bool pkg_c_latency_used;
- 	/* Only used for state verification. */
- 	enum intel_panel_replay_dsc_support panel_replay_dsc_support;
--	u32 dc3co_exitline;
- 	u16 su_y_granularity;
- 	u8 active_non_psr_pipes;
- 	u8 entry_setup_frames;
-@@ -1776,9 +1775,7 @@ struct intel_psr {
- 	bool source_panel_replay_support;
- 	bool sink_panel_replay_support;
- 	bool panel_replay_enabled;
--	u32 dc3co_exitline;
- 	u32 dc3co_exit_delay;
--	struct delayed_work dc3co_work;
- 	u8 entry_setup_frames;
- 
- 	u8 io_wake_lines;
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index 481fb65b7110..4785001644f5 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1647,19 +1647,13 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		   DMC_VERSION_MINOR(dmc->version));
- 
- 	if (DISPLAY_VER(display) >= 12) {
--		intel_reg_t dc3co_reg;
--
- 		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
--			dc3co_reg = DG1_DMC_DEBUG3;
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
--			dc3co_reg = TGL_DMC_DEBUG3;
- 			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
- 			dc6_reg = TGL_DMC_DEBUG_DC6_COUNT;
- 		}
- 
--		seq_printf(m, "DC3CO count: %d\n",
--			   intel_de_read(display, dc3co_reg));
- 	} else {
- 		dc5_reg = display->platform.broxton ? BXT_DMC_DC3_DC5_COUNT :
- 			SKL_DMC_DC3_DC5_COUNT;
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index b0414bd1dc6b..730ca7af7873 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -88,22 +88,6 @@
-  * issues the self-refresh re-enable code is done from a work queue, which
-  * must be correctly synchronized/cancelled when shutting down the pipe."
-  *
-- * DC3CO (DC3 clock off)
-- *
-- * On top of PSR2, GEN12 adds a intermediate power savings state that turns
-- * clock off automatically during PSR2 idle state.
-- * The smaller overhead of DC3co entry/exit vs. the overhead of PSR2 deep sleep
-- * entry/exit allows the HW to enter a low-power state even when page flipping
-- * periodically (for instance a 30fps video playback scenario).
-- *
-- * Every time a flips occurs PSR2 will get out of deep sleep state(if it was),
-- * so DC3CO is enabled and tgl_dc3co_disable_work is schedule to run after 6
-- * frames, if no other flip occurs and the function above is executed, DC3CO is
-- * disabled and PSR2 is configured to enter deep sleep, resetting again in case
-- * of another flip.
-- * Front buffer modifications do not trigger DC3CO activation on purpose as it
-- * would bring a lot of complexity and most of the moderns systems will only
-- * use page flips.
-  */
- 
- /*
-@@ -1217,108 +1201,6 @@ static void psr2_program_idle_frames(struct intel_dp *intel_dp,
- 		     EDP_PSR2_IDLE_FRAMES(idle_frames));
- }
- 
--static void tgl_psr2_enable_dc3co(struct intel_dp *intel_dp)
--{
--	struct intel_display *display = to_intel_display(intel_dp);
--
--	psr2_program_idle_frames(intel_dp, 0);
--	intel_display_power_set_target_dc_state(display, DC_STATE_EN_DC3CO);
--}
--
--static void tgl_psr2_disable_dc3co(struct intel_dp *intel_dp)
--{
--	struct intel_display *display = to_intel_display(intel_dp);
--
--	intel_display_power_set_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
--	psr2_program_idle_frames(intel_dp, psr_compute_idle_frames(intel_dp));
--}
--
--static void tgl_dc3co_disable_work(struct work_struct *work)
--{
--	struct intel_dp *intel_dp =
--		container_of(work, typeof(*intel_dp), psr.dc3co_work.work);
--
--	mutex_lock(&intel_dp->psr.lock);
--	/* If delayed work is pending, it is not idle */
--	if (delayed_work_pending(&intel_dp->psr.dc3co_work))
--		goto unlock;
--
--	tgl_psr2_disable_dc3co(intel_dp);
--unlock:
--	mutex_unlock(&intel_dp->psr.lock);
--}
--
--static void tgl_disallow_dc3co_on_psr2_exit(struct intel_dp *intel_dp)
--{
--	if (!intel_dp->psr.dc3co_exitline)
--		return;
--
--	cancel_delayed_work(&intel_dp->psr.dc3co_work);
--	/* Before PSR2 exit disallow dc3co*/
--	tgl_psr2_disable_dc3co(intel_dp);
--}
--
--static bool
--dc3co_is_pipe_port_compatible(struct intel_dp *intel_dp,
--			      struct intel_crtc_state *crtc_state)
--{
--	struct intel_display *display = to_intel_display(intel_dp);
--	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
--	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
--	enum port port = dig_port->base.port;
--
--	if (display->platform.alderlake_p || DISPLAY_VER(display) >= 14)
--		return pipe <= PIPE_B && port <= PORT_B;
--	else
--		return pipe == PIPE_A && port == PORT_A;
--}
--
--static void
--tgl_dc3co_exitline_compute_config(struct intel_dp *intel_dp,
--				  struct intel_crtc_state *crtc_state)
--{
--	struct intel_display *display = to_intel_display(intel_dp);
--	const u32 crtc_vdisplay = crtc_state->uapi.adjusted_mode.crtc_vdisplay;
--	struct i915_power_domains *power_domains = &display->power.domains;
--	u32 exit_scanlines;
--
--	/*
--	 * FIXME: Due to the changed sequence of activating/deactivating DC3CO,
--	 * disable DC3CO until the changed dc3co activating/deactivating sequence
--	 * is applied. B.Specs:49196
--	 */
--	return;
--
--	/*
--	 * DMC's DC3CO exit mechanism has an issue with Selective Fecth
--	 * TODO: when the issue is addressed, this restriction should be removed.
--	 */
--	if (crtc_state->enable_psr2_sel_fetch)
--		return;
--
--	if (!(power_domains->allowed_dc_mask & DC_STATE_EN_DC3CO))
--		return;
--
--	if (!dc3co_is_pipe_port_compatible(intel_dp, crtc_state))
--		return;
--
--	/* Wa_16011303918:adl-p */
--	if (intel_display_wa(display, INTEL_DISPLAY_WA_16011303918))
--		return;
--
--	/*
--	 * DC3CO Exit time 200us B.Spec 49196
--	 * PSR2 transcoder Early Exit scanlines = ROUNDUP(200 / line time) + 1
--	 */
--	exit_scanlines =
--		intel_usecs_to_scanlines(&crtc_state->uapi.adjusted_mode, 200) + 1;
--
--	if (drm_WARN_ON(display->drm, exit_scanlines > crtc_vdisplay))
--		return;
--
--	crtc_state->dc3co_exitline = crtc_vdisplay - exit_scanlines;
--}
--
- static bool intel_psr2_sel_fetch_config_valid(struct intel_dp *intel_dp,
- 					      struct intel_crtc_state *crtc_state)
- {
-@@ -1688,8 +1570,6 @@ static bool intel_psr2_config_valid(struct intel_dp *intel_dp,
- 		return false;
- 	}
- 
--	tgl_dc3co_exitline_compute_config(intel_dp, crtc_state);
--
- 	return true;
- }
- 
-@@ -2004,12 +1884,6 @@ void intel_psr_get_config(struct intel_encoder *encoder,
- 	}
- 
- 	pipe_config->enable_psr2_su_region_et = intel_dp->psr.su_region_et_enabled;
--
--	if (DISPLAY_VER(display) >= 12) {
--		val = intel_de_read(display,
--				    TRANS_EXITLINE(display, cpu_transcoder));
--		pipe_config->dc3co_exitline = REG_FIELD_GET(EXITLINE_MASK, val);
--	}
- unlock:
- 	mutex_unlock(&intel_dp->psr.lock);
- }
-@@ -2137,16 +2011,6 @@ static void intel_psr_enable_source(struct intel_dp *intel_dp,
- 
- 	psr_irq_control(intel_dp);
- 
--	/*
--	 * TODO: if future platforms supports DC3CO in more than one
--	 * transcoder, EXITLINE will need to be unset when disabling PSR
--	 */
--	if (intel_dp->psr.dc3co_exitline)
--		intel_de_rmw(display,
--			     TRANS_EXITLINE(display, cpu_transcoder),
--			     EXITLINE_MASK,
--			     intel_dp->psr.dc3co_exitline << EXITLINE_SHIFT | EXITLINE_ENABLE);
--
- 	if (HAS_PSR_HW_TRACKING(display) && HAS_PSR2_SEL_FETCH(display))
- 		intel_de_rmw(display, CHICKEN_PAR1_1, IGNORE_PSR2_HW_TRACKING,
- 			     intel_dp->psr.psr2_sel_fetch_enabled ?
-@@ -2246,7 +2110,6 @@ static void intel_psr_enable_locked(struct intel_dp *intel_dp,
- 	/* DC5/DC6 requires at least 6 idle frames */
- 	val = usecs_to_jiffies(intel_get_frame_time_us(crtc_state) * 6);
- 	intel_dp->psr.dc3co_exit_delay = val;
--	intel_dp->psr.dc3co_exitline = crtc_state->dc3co_exitline;
- 	intel_dp->psr.psr2_sel_fetch_enabled = crtc_state->enable_psr2_sel_fetch;
- 	intel_dp->psr.su_region_et_enabled = crtc_state->enable_psr2_su_region_et;
- 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
-@@ -2325,8 +2188,6 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
- 		intel_de_rmw(display, TRANS_DP2_CTL(intel_dp->psr.transcoder),
- 			     TRANS_DP2_PANEL_REPLAY_ENABLE, 0);
- 	} else if (intel_dp->psr.sel_update_enabled) {
--		tgl_disallow_dc3co_on_psr2_exit(intel_dp);
--
- 		val = intel_de_rmw(display,
- 				   EDP_PSR2_CTL(display, cpu_transcoder),
- 				   EDP_PSR2_ENABLE, 0);
-@@ -2468,7 +2329,6 @@ void intel_psr_disable(struct intel_dp *intel_dp,
- 
- 	mutex_unlock(&intel_dp->psr.lock);
- 	cancel_work_sync(&intel_dp->psr.work);
--	cancel_delayed_work_sync(&intel_dp->psr.dc3co_work);
- }
- 
- /**
-@@ -2499,7 +2359,6 @@ void intel_psr_pause(struct intel_dp *intel_dp)
- 	mutex_unlock(&psr->lock);
- 
- 	cancel_work_sync(&psr->work);
--	cancel_delayed_work_sync(&psr->dc3co_work);
- }
- 
- /**
-@@ -3650,34 +3509,6 @@ void intel_psr_invalidate(struct intel_display *display,
- 		mutex_unlock(&intel_dp->psr.lock);
- 	}
- }
--/*
-- * When we will be completely rely on PSR2 S/W tracking in future,
-- * intel_psr_flush() will invalidate and flush the PSR for ORIGIN_FLIP
-- * event also therefore tgl_dc3co_flush_locked() require to be changed
-- * accordingly in future.
-- */
--static void
--tgl_dc3co_flush_locked(struct intel_dp *intel_dp, unsigned int frontbuffer_bits,
--		       enum fb_op_origin origin)
--{
--	struct intel_display *display = to_intel_display(intel_dp);
--
--	if (!intel_dp->psr.dc3co_exitline || !intel_dp->psr.sel_update_enabled ||
--	    !intel_dp->psr.active)
--		return;
--
--	/*
--	 * At every frontbuffer flush flip event modified delay of delayed work,
--	 * when delayed work schedules that means display has been idle.
--	 */
--	if (!(frontbuffer_bits &
--	    INTEL_FRONTBUFFER_ALL_MASK(intel_dp->psr.pipe)))
--		return;
--
--	tgl_psr2_enable_dc3co(intel_dp);
--	mod_delayed_work(display->wq.unordered, &intel_dp->psr.dc3co_work,
--			 intel_dp->psr.dc3co_exit_delay);
--}
- 
- static void _psr_flush_handle(struct intel_dp *intel_dp)
- {
-@@ -3764,7 +3595,6 @@ void intel_psr_flush(struct intel_display *display,
- 		if (origin == ORIGIN_FLIP ||
- 		    (origin == ORIGIN_CURSOR_UPDATE &&
- 		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
--			tgl_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
- 			goto unlock;
- 		}
- 
-@@ -3823,7 +3653,6 @@ void intel_psr_init(struct intel_dp *intel_dp)
- 		intel_dp->psr.link_standby = connector->panel.vbt.psr.full_link;
- 
- 	INIT_WORK(&intel_dp->psr.work, intel_psr_work);
--	INIT_DELAYED_WORK(&intel_dp->psr.dc3co_work, tgl_dc3co_disable_work);
- 	mutex_init(&intel_dp->psr.lock);
- }
- 
+ 	case DC_STATE_EN_UPTO_DC5:
 -- 
 2.43.0
 
