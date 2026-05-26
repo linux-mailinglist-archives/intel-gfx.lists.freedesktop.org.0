@@ -2,88 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qMm4FtdhFWo9UwcAu9opvQ
+	id 6Ey5L/hhFWo9UwcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:03:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:03:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9D67A5D2E95
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34F485D2EAC
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 11:03:52 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2939410E478;
-	Tue, 26 May 2026 09:03:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7039E10E47C;
+	Tue, 26 May 2026 09:03:50 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="ssazCIfk";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="k09tBqN/";
-	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="cDFJ/fIa";
-	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="kyNGaIPN";
+	dkim=pass (1024-bit key; unprotected) header.d=suse.de header.i=@suse.de header.b="fcaLr41w";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QY6iM1B9";
+	dkim=pass (1024-bit key) header.d=suse.de header.i=@suse.de header.b="fcaLr41w";
+	dkim=permerror (0-bit key) header.d=suse.de header.i=@suse.de header.b="QY6iM1B9";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D1E1A10E471
- for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2026 09:03:14 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1B8C10E47C
+ for <intel-gfx@lists.freedesktop.org>; Tue, 26 May 2026 09:03:48 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 7B9356B2FB;
- Tue, 26 May 2026 09:03:08 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id A68FE75DE3;
+ Tue, 26 May 2026 09:03:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1779786193; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1779786227; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=1yHSAnSnfei8Gpn2LyHnScleECQ2X3M3l4lHkpRdlsY=;
- b=ssazCIfkbn/XH8qvMDgaTEmoPRG0iN7BpVes7jP6wzLpPdPpf7XhxPspDKmhRGrWrWnEcD
- HUh3FO5qjERqbV5N3xoIBF4nV3HiJmtBErWqgfZ11hJ1w+HJQwUp8ErS5bruCK9F4ClxoY
- KmcdsDzvdTodr8w0YyVjEVv0YvBEQIo=
+ bh=J5dGxZtpy5ij+pAHk4WPSXIy03xOLi19OuSp2R26ZrU=;
+ b=fcaLr41wi6LlSI+nAzE4H+LuevRdosexi678VlNlWmQQsScmJJnz6o4OXVnyEd0LD613Dt
+ 8A2PmGmB5b+PSvMiY3Iqj5XDbCufeGcykjd2iNnHphZW7EW6dMdKJv7RTgVlDob8nnk2vf
+ lHrTDHvUs1IodnOcjanH29ghKCFTTiM=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1779786193;
+ s=susede2_ed25519; t=1779786227;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=1yHSAnSnfei8Gpn2LyHnScleECQ2X3M3l4lHkpRdlsY=;
- b=k09tBqN/nuw/Yzpcik8gNJC/9N5tQ/YhIZX6GeULjf4G1J5nKOwBaIvzi5f4hUwfBy3VGC
- BVL+2GbqYR7y6+Cg==
-Authentication-Results: smtp-out1.suse.de;
- dkim=pass header.d=suse.de header.s=susede2_rsa header.b="cDFJ/fIa";
- dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=kyNGaIPN
+ bh=J5dGxZtpy5ij+pAHk4WPSXIy03xOLi19OuSp2R26ZrU=;
+ b=QY6iM1B9Tob4ne3W8JlwDd8PA1xqKMuk2ClDgxqF7DDaJt0TvdjXG8i3wRWMODY/NWOoR0
+ V3Ox4qfuOI8+OSBA==
+Authentication-Results: smtp-out2.suse.de;
+	none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1779786188; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1779786227; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=1yHSAnSnfei8Gpn2LyHnScleECQ2X3M3l4lHkpRdlsY=;
- b=cDFJ/fIaPTLps14vShNqkeLQ2ry751FTf598fjLwi++BhSaPRJArHvYHnNs2o8K1x1p9ZM
- WYmKvGNoSTsR5qxRfvBEkeET1ApRsnXK6bSgmOEB2po1lJpHYIl0qv7C1IKuSv770Enfux
- B/amjK67/jPITJ+88L+F77xLF6rjPN0=
+ bh=J5dGxZtpy5ij+pAHk4WPSXIy03xOLi19OuSp2R26ZrU=;
+ b=fcaLr41wi6LlSI+nAzE4H+LuevRdosexi678VlNlWmQQsScmJJnz6o4OXVnyEd0LD613Dt
+ 8A2PmGmB5b+PSvMiY3Iqj5XDbCufeGcykjd2iNnHphZW7EW6dMdKJv7RTgVlDob8nnk2vf
+ lHrTDHvUs1IodnOcjanH29ghKCFTTiM=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1779786188;
+ s=susede2_ed25519; t=1779786227;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=1yHSAnSnfei8Gpn2LyHnScleECQ2X3M3l4lHkpRdlsY=;
- b=kyNGaIPNw+IYlG1o6Yr0yD6ud8RKRG6VXC/MTwB+b/XtPgHLGgQVcqGfmLlfZ8ktEs28rV
- CeQn3BXUiwkMbfCA==
+ bh=J5dGxZtpy5ij+pAHk4WPSXIy03xOLi19OuSp2R26ZrU=;
+ b=QY6iM1B9Tob4ne3W8JlwDd8PA1xqKMuk2ClDgxqF7DDaJt0TvdjXG8i3wRWMODY/NWOoR0
+ V3Ox4qfuOI8+OSBA==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 8723A5A112;
- Tue, 26 May 2026 09:03:07 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id BCBDD5A110;
+ Tue, 26 May 2026 09:03:46 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id /jKuH8thFWrHZwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 26 May 2026 09:03:07 +0000
-Message-ID: <0f581544-69aa-4d88-9b72-9341a4c847ea@suse.de>
-Date: Tue, 26 May 2026 11:03:07 +0200
+ by imap1.dmz-prg2.suse.org with ESMTPSA id BzDhLPJhFWr+aAAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 26 May 2026 09:03:46 +0000
+Message-ID: <044b1285-186b-4c88-b8d4-8dc5e9af324a@suse.de>
+Date: Tue, 26 May 2026 11:03:46 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v5 03/19] drm/atomic: Drop drm_private_obj.state
- assignment from create_state
+Subject: Re: [PATCH v5 04/19] drm/atomic: Expand atomic_create_state
+ expectations for drm_private_obj
 To: Maxime Ripard <mripard@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
@@ -111,7 +109,7 @@ Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org,
  linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev,
  Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 References: <20260519-drm-mode-config-init-v5-0-388b03321e38@kernel.org>
- <20260519-drm-mode-config-init-v5-3-388b03321e38@kernel.org>
+ <20260519-drm-mode-config-init-v5-4-388b03321e38@kernel.org>
 Content-Language: en-US
 From: Thomas Zimmermann <tzimmermann@suse.de>
 Autocrypt: addr=tzimmermann@suse.de; keydata=
@@ -138,10 +136,10 @@ Autocrypt: addr=tzimmermann@suse.de; keydata=
  SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
  Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
  4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260519-drm-mode-config-init-v5-3-388b03321e38@kernel.org>
+In-Reply-To: <20260519-drm-mode-config-init-v5-4-388b03321e38@kernel.org>
 Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
-X-Spam-Score: -3.01
+X-Spam-Score: -2.80
 X-Spam-Level: 
 X-Spam-Flag: NO
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -191,56 +189,51 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	TAGGED_RCPT(0.00)[intel-gfx,renesas];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.com:url,ideasonboard.com:email]
-X-Rspamd-Queue-Id: 9D67A5D2E95
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ideasonboard.com:email,suse.com:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: 34F485D2EAC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 
 
 Am 19.05.26 um 11:01 schrieb Maxime Ripard:
-> The initial intent of the atomic_create_state hook was to simply
-> allocate a proper drm_private_state and return it, without any side
-> effect.
+> The atomic_create_state callback documentation for planes, CRTCs, and
+> connectors explicitly states the expected behaviour: the returned
+> state must not be assigned to the object's state pointer, and hardware
+> must not be touched.
 >
-> However, __drm_atomic_helper_private_obj_create_state(), which most
-> atomic_create_state implementations call, introduces a side effect by
-> setting drm_private_obj.state to the newly allocated state.
+> The drm_private_state_funcs.atomic_create_state documentation is
+> missing this clarification. Add it for consistency.
 >
-> This assignment defeats the purpose, but is also redundant since
-> drm_atomic_private_obj_init(), the only call site for the
-> atomic_create_state hook, will also set this pointer to the newly
-> allocated state.
->
-> Drop the assignment in __drm_atomic_helper_private_obj_create_state().
->
-> Fixes: e7be39ed1716 ("drm/atomic-helper: Add private_obj atomic_create_state helper")
 > Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
 > Signed-off-by: Maxime Ripard <mripard@kernel.org>
 
 Reviewed-by: Thomas Zimmermann <tzimmermann@suse.de>
 
 > ---
->   drivers/gpu/drm/drm_atomic_state_helper.c | 2 --
->   1 file changed, 2 deletions(-)
+>   include/drm/drm_atomic.h | 5 ++++-
+>   1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-> index cc70508d4fdb..a82568d87e4f 100644
-> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-> @@ -729,12 +729,10 @@ EXPORT_SYMBOL(drm_atomic_helper_connector_destroy_state);
->   void __drm_atomic_helper_private_obj_create_state(struct drm_private_obj *obj,
->   						  struct drm_private_state *state)
->   {
->   	if (state)
->   		state->obj = obj;
-> -
-> -	obj->state = state;
->   }
->   EXPORT_SYMBOL(__drm_atomic_helper_private_obj_create_state);
->   
->   /**
->    * __drm_atomic_helper_private_obj_duplicate_state - copy atomic private state
+> diff --git a/include/drm/drm_atomic.h b/include/drm/drm_atomic.h
+> index 1a80a8cdf269..88087910ab1a 100644
+> --- a/include/drm/drm_atomic.h
+> +++ b/include/drm/drm_atomic.h
+> @@ -263,11 +263,14 @@ struct drm_private_state;
+>   struct drm_private_state_funcs {
+>   	/**
+>   	 * @atomic_create_state:
+>   	 *
+>   	 * Allocates a pristine, initialized, state for the private
+> -	 * object and returns it.
+> +	 * object and returns it. This callback must have no side
+> +	 * effects: in particular, the returned state must not be
+> +	 * assigned to the object's state pointer and it must not affect
+> +	 * the hardware state.
+>   	 *
+>   	 * RETURNS:
+>   	 *
+>   	 * A new, pristine, private state instance or an error pointer
+>   	 * on failure.
 >
 
 -- 
