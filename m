@@ -2,84 +2,149 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id OFIONZvOFWoPcQcAu9opvQ
+	id IZHUMkDRFWogcgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 18:47:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 18:58:40 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5045C5DA083
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 18:47:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 133DC5DA39C
+	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 18:58:40 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AACAF10E737;
-	Tue, 26 May 2026 16:47:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58C9210E73C;
+	Tue, 26 May 2026 16:58:38 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="C8kmmIBd";
+	dkim=pass (1024-bit key; unprotected) header.d=amd.com header.i=@amd.com header.b="Rhg8YZC+";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BA73410E72D;
- Tue, 26 May 2026 16:47:20 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 961014054F;
- Tue, 26 May 2026 16:47:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id C2FAC1F000E9;
- Tue, 26 May 2026 16:47:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1779814040;
- bh=GoXBOAsCBLkRgIlTLAaPNEvsIAgN10v/xLJsKPeWKHc=;
- h=From:Date:Subject:References:In-Reply-To:To:Cc;
- b=C8kmmIBdZcidMYCHRPP8N77C3zSxCRkolviS65VmH1HGOaOVhDqbY/xXyPDl5eK+d
- b5K6y+5BF96u0pTcADOOytkwh/y98u8I1uqJRxYRo1Y8BtbTa3z4jU+TTx82RW2qME
- BSQxczZxbFuJWBe2pdJvXTfNGr6OWk5MZ4FtNs29jbkYgLSW9e54grHQlf0Sh8ZDfn
- gPM1ivgNT2VtN9qBCVJvk4ox5cU7E8kmrE3j2+NgpQyypdGyPuqkKwIuNV10TkOtkV
- vUpXmKjplaLA+AIBtaqxVJlDAhSKlxfbv93r7RIwtpFshcjzCYGa2tdrwqSvyRahIK
- hkcRssgmlr+Og==
-From: Maxime Ripard <mripard@kernel.org>
-Date: Tue, 26 May 2026 18:46:31 +0200
-Subject: [PATCH v6 19/19] drm/bridge_connector: Convert to atomic_create_state
+Received: from CH4PR04CU002.outbound.protection.outlook.com
+ (mail-northcentralusazon11013067.outbound.protection.outlook.com
+ [40.107.201.67])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CD63F10E6FE;
+ Tue, 26 May 2026 16:58:36 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=h+LR99m7uW25TOlMLx+9W7xYRjK2MtrDigOK3ht10ZqOz9zbEU8SG/5sbydLyuhLkTHSwMoSSfzs3kjUTRZe4K2ptixPfoCZSxBijMiVJ3ZiUiF2F5/qqPEJIiD/UXfRcFsu3Yc+FFPRq4eBCetu03YIYCVLCs79Cmrd+88zr/kY0mALX9M8T0UfWbuCG4djG1cDxlEd1si7a2L5eJiALsH21oM7pg60GPCiECFT6OvT/1qlmg3b+PZImZHIMHobRZlWkMbeCkDws37hZ6avyUW65fa68QM+3RpV60kdOaglTh7o8a8SGutJlJ6djaJffYIF5g5uGxpDTHPGif5myw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=3jin9ZQEW5ieNr+p+7yj4fk5UYi8kamWaStvk8pYotc=;
+ b=DUMqX1oE9SqaOpRbb96e6LFzcvjcI44PSghF3NC5+7qVyFmAqmwWhVg2RvtDYe7dirwXnWOzo+xEdfK6dpWkvRlKsmvYB1nUo0fqSUgLOhAFdZ+E6oOIJ6EBQ2ST+lG5oCwPUA35TT7Z6VNMmBUxd/Ju1IjaFXKfI1BVZ4cqm7BHc35z6FvVrL46noTShoceeThdYI6gFqQMqUmDZrA0dYrA0OydK6vlEPoI24xCZsROniMXs7SY+sSRRW2j1AuQOsj4mB+dTZPS6+iGeTtmVRQ+XqdLMQ3fNVpcafLF+MHctTBEv2OJvl3OIQKPJl9H34h0reVthqbDo6TBZzIn5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3jin9ZQEW5ieNr+p+7yj4fk5UYi8kamWaStvk8pYotc=;
+ b=Rhg8YZC+b139tKwk/uMR2gcRualUpGk6V+m+UjrbXzn7qVmKxr5v9dJ2UT92d42Npo/1uoZkN40XzMsQIRHAh6hePouHmihEAJXmUZtlfBrVlXX97fvIaP/LUzCe13OQCtxQOKBOJ+Ifl0hJ0NTKyEhvN/piYbf7IF47i4BFlHE=
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=amd.com;
+Received: from DM4PR12MB8476.namprd12.prod.outlook.com (2603:10b6:8:17e::15)
+ by SN7PR12MB7131.namprd12.prod.outlook.com (2603:10b6:806:2a3::9) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.12; Tue, 26 May
+ 2026 16:58:31 +0000
+Received: from DM4PR12MB8476.namprd12.prod.outlook.com
+ ([fe80::2d79:122f:c62b:1cd8]) by DM4PR12MB8476.namprd12.prod.outlook.com
+ ([fe80::2d79:122f:c62b:1cd8%6]) with mapi id 15.21.0071.010; Tue, 26 May 2026
+ 16:58:31 +0000
+Message-ID: <c90c7607-aa9b-4353-b900-1e8e9f2bfbda@amd.com>
+Date: Tue, 26 May 2026 10:58:28 -0600
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v7 4/4] drm/amd/display: use plane color_mgmt_changed to
+ track colorop changes
+To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
+ alexander.deucher@amd.com, christian.koenig@amd.com, harry.wentland@amd.com,
+ maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
+ siqueira@igalia.com, sunpeng.li@amd.com, tzimmermann@suse.de
+Cc: Simon Ser <contact@emersion.fr>, Uma Shankar <uma.shankar@intel.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Xaver Hugl <xaver.hugl@kde.org>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>,
+ Matthew Schwartz <matthew.schwartz@linux.dev>,
+ amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
+ Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
+ <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
+ Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
+ Marijn Suijten <marijn.suijten@somainline.org>,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+References: <20260525100524.304263-1-mwen@igalia.com>
+ <20260525100524.304263-5-mwen@igalia.com>
+ <85aad1b1-3ac8-464a-ab5a-69c92a491925@amd.com>
+ <9d30ef2d-cea8-44dc-9669-492ddaa02108@igalia.com>
+Content-Language: en-US
+From: Alex Hung <alex.hung@amd.com>
+In-Reply-To: <9d30ef2d-cea8-44dc-9669-492ddaa02108@igalia.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: MW3PR06CA0009.namprd06.prod.outlook.com
+ (2603:10b6:303:2a::14) To DM4PR12MB8476.namprd12.prod.outlook.com
+ (2603:10b6:8:17e::15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260526-drm-mode-config-init-v6-19-852346394200@kernel.org>
-References: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
-In-Reply-To: <20260526-drm-mode-config-init-v6-0-852346394200@kernel.org>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Jonathan Corbet <corbet@lwn.net>, 
- Shuah Khan <skhan@linuxfoundation.org>, 
- Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>, 
- Jyri Sarha <jyri.sarha@iki.fi>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Simon Ser <contact@emersion.fr>, Harry Wentland <harry.wentland@amd.com>, 
- Melissa Wen <mwen@igalia.com>, Sebastian Wick <sebastian.wick@redhat.com>, 
- Alex Hung <alex.hung@amd.com>, Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Chen-Yu Tsai <wens@kernel.org>, 
- Samuel Holland <samuel@sholland.org>, 
- Dave Stevenson <dave.stevenson@raspberrypi.com>, 
- =?utf-8?q?Ma=C3=ADra_Canal?= <mcanal@igalia.com>, 
- Raspberry Pi Kernel Maintenance <kernel-list@raspberrypi.com>
-Cc: dri-devel@lists.freedesktop.org, linux-doc@vger.kernel.org, 
- linux-kernel@vger.kernel.org, Daniel Stone <daniels@collabora.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-sunxi@lists.linux.dev, 
- Maxime Ripard <mripard@kernel.org>, 
- Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-X-Mailer: b4 0.14.3
-X-Developer-Signature: v=1; a=openpgp-sha256; l=2233; i=mripard@kernel.org;
- h=from:subject:message-id; bh=n4eohByrrLdrAD3Xh6iy0bQauhz8JMCGndNHIg0F7dc=;
- b=owGbwMvMwCmsHn9OcpHtvjLG02pJDFmi5+KKsw9J67S4+LT7hnIIfvn922i2MV/qz8c/QrhsX
- DSTl1Z0TGVhEOZkkBVTZHkiE3Z6efviKgf7lT9g5rAygQxh4OIUgImk3WJs+C/7eeruiPrYPam3
- Ju94bjDFIOiLkcLuMIs5fYF3+OzXv7MujT8ULbKUaa2v6L5lHNuWMjZ82detLrREx8G8fOZinid
- aNwq9i17zmz+t5dHn2r7zypxdnI6bmyKLKhZ13lr4zDDkgjkA
-X-Developer-Key: i=mripard@kernel.org; a=openpgp;
- fpr=BE5675C37E818C8B5764241C254BCFC56BF6CE8D
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR12MB8476:EE_|SN7PR12MB7131:EE_
+X-MS-Office365-Filtering-Correlation-Id: effca768-db33-427c-e422-08debb4803ea
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|7416014|376014|366016|18002099003|22082099003|11063799006|4143699003|56012099006|921020;
+X-Microsoft-Antispam-Message-Info: JIUlunbgtUqGT9Z1NksZicqtDJbJ6+7nEgj4skd6ffBDm69OEhWfhCubNb8WOaX8iXMo4WOyhUJFuIUsH9sQZVYu+UEkUMhr5dc2IrcW3wpm6wjATPzjiGMAnXNYrSgtBMJhrWbPZvD/jXqZnoH0EuHpNaXFuGUMzkB6xRqAlQ2iNtVo7zGvjVnM3PVryiftCDYlYQke3vbJbF+RMtsEdopUptHPmG/Eckpdr7v8NPnKcnMYvcfGFsc7PuZPW5j+JbmKF6ulwRpCezKsUdsDobyv5x3W4f1qnFEbO0siMajvCMJBL/qYtf8y3IIGGTksg7epnBYga/OxLdPW0YXNSU8F/ff4U+fKcBLfHT2Me7q5coZVkHz+Xbw8FwjDKjv8tIA+Ik4IRRGiejMDJRPJpfEW4AjOOiYY6yFsjT/MCXpBiQ9g8SDdORbn3I5v3ePDa/uCLju/NFv/hCqB439MbtUbU1pUJzInf9ANWsW+YQXaZO91lM1SduD5jVUyUaEPmXlTaKZrGDM656CA7Ux8ggUK2i6HjQwMP097tOHgrE6m6vXK23DMElUxAdLJr+z5ud8QplMV5njaBP12jcwJWJZzD5FRVO7MO1PwRiMl3B9AR2x0CPKFeNbLmTyScZnM7dBwyQK5vgu9jPx2mV3lStpaNVNCmWjBvy+OP5jZbWMCDGvmWKgk6WEVyuTavXqtUOAVFITM/Jzj4J49pF5fuwjZJt06tY8l2cJ0Tgl1F10=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR12MB8476.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(7416014)(376014)(366016)(18002099003)(22082099003)(11063799006)(4143699003)(56012099006)(921020);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eXgzNnBRdTliNmRPZThVZWhJSDNVT3dGOXBLd2RCUTFLd2dxeGx3K1BnMDhZ?=
+ =?utf-8?B?WSs0OWZSS01uMW4xdGdySmx2Wlp3blRjTWkyOEIxUkh5YVhDNVdNcUFJZWt4?=
+ =?utf-8?B?YWw1RzY3ejV2cmFuT1FlUDBnZ1FaZFMxTTRWSHhZcXBUc3ZtczNpVm5lSXVi?=
+ =?utf-8?B?WDdFaEVDOTQxcEZhTnpvdkpaOTlJQ1ZPamVuVWd4UjNTblJSWTh6a3RTMDlr?=
+ =?utf-8?B?T0N1L3BBVndseUdKYWhtdFdZME9wa0NuWEtRd3JBdk9PSlN1aTd2VldhN1d3?=
+ =?utf-8?B?WGNndWN5a2pkMmo4SzZralIzRlVncDNpbG53Vnl1UkE5WmtJQ0J1YXo1bC9K?=
+ =?utf-8?B?aVREWm1vWjc2cDFOR2QvY2orUFFMMHR1WUtEK0pnRmJvemdRalp6cWl0NThq?=
+ =?utf-8?B?Sy9vb09kcDBQT2dYTkRCVjBuL3FzSmdFUzluY3FtQ24rTTk2VTdIaHVMOFhr?=
+ =?utf-8?B?RXlWOE5kTjA3MGROWHFkZlRTWlRXaUdkTFF5OXJBZ0Q1WVA2UUJJTEJsTnpa?=
+ =?utf-8?B?ZndhM0UrNzN3bXRPSXBldnpFZ01Kem54UlFKNG1SMDEvTHZyYVBJc09Sb0V5?=
+ =?utf-8?B?bVRKZFgrSVE4c0RMRlBnOWx2aUtXS0VBdVdxdnY0bCtvYlYvLzJKS2JPYUhF?=
+ =?utf-8?B?bldmTXY0Zi9uUGpRb05MT2toSUdJeFduTDZlcWl4dEVZcE9BajVZRFp3U2lY?=
+ =?utf-8?B?OGhxaDFyeUJ6c1RuMHdFMmNFbXhsa3l6UVBqb2lMYkdzTEtJdlptVnZ0d2gv?=
+ =?utf-8?B?b3RUam1ENXpleDd6cmt3ak1kU0RHY2RnOVFnYk1tdXNtOTFRdEJSK1VNaFg1?=
+ =?utf-8?B?RkplRE9DVkgxYUU5VHNYYVYrdXg5aE9zcXBGbGoyNWRCdy9UdXRDcFNqQnFt?=
+ =?utf-8?B?aEtwTjI3alFhQnFpQUhlYXZWZGdvMDRKY0dHUWRyL3Nhb25CUnI0dDBGcHNj?=
+ =?utf-8?B?Zi9RdXFONnJVRS9jREJ4NXRtZW9sMVdrSURRVTFqY1drdVpZNFRPSHhxblZF?=
+ =?utf-8?B?RisyVjVkRzRxd2NHSWZMWDBqdVU2Vjk4b3h6dGdUbTZPNGhKVVZFeHo3OEdq?=
+ =?utf-8?B?MWhHTHEwWUFSOVEvcXlOMkZYNWJCdjJPL05hVkZ3WFkvMC9panFoYXNLOTBs?=
+ =?utf-8?B?TlRNcDl3Um5GZ3hOMHd6VW96aGQ0TnFCU3hDUitFYWFiL2NjWHZJZmpFSGM3?=
+ =?utf-8?B?dG1QazhlMWJWdFhLcFdSVzZPYXZnWDlMblViaUNUemF5bmtBRWVlcW55a1RU?=
+ =?utf-8?B?VlB5QkFpczgvSzg1eGY5bGRraXZrbEE3MkdubDYzZVoxZWd2am1udTdXbTBj?=
+ =?utf-8?B?WDY3YTQybnZuaXdueFQ2TXd4Ri9KVDVyaHFncnVyMzdtV3RCVVRlQ0xTaHZD?=
+ =?utf-8?B?N0cwQ3FQTCt5NXpDM3VVTTNnNW1xNUhSUFNVLytFVXl0WUN0M3Bvb2dKRHI0?=
+ =?utf-8?B?ZjJlODBwRm95bFkwZm41elZPVWx0S1EweUhVQWV5eXBnZVRZUkU0Wit5SlVO?=
+ =?utf-8?B?NlF3Q3crOXcyL0VDSUoyRm9jRTJCbU5ReW5mOStPeFJCbmRkcmZXUE1BMWor?=
+ =?utf-8?B?WC9NYjk4SDIzTENsZkFaZlU4R0oxU3lCOWQxNTFyQ1dqTVc1aHExVFg3TXF6?=
+ =?utf-8?B?MjZhZG9YZ3RhVkpjQ3c3bWRucXlMS2ZUSDJtdEs1ZlAzL1FhejF1MHVDYjRu?=
+ =?utf-8?B?cUIwWmEzY0p5bWJPR1hTLzIyWEdEK2thZTJ4dW9ST1JBZDFnU2IvVU4xRVF6?=
+ =?utf-8?B?YUhxbVdROVlRTVhGNldwWjdibnZIemNpbXg3Q0d3RkovSUtwRjBiTDZucExF?=
+ =?utf-8?B?OElZY0RHUjFycEFFTUVrU1QzYUR6c3htNkk1R1E4aE8vVFU0SGo5a0hvMGNH?=
+ =?utf-8?B?VWpnb2RUZmVLUGo4Zkh3bnlORDkxcGZNakEzejQrOHZFT2d4OWdXK0swOXRm?=
+ =?utf-8?B?MnNpeDY4REJoWGJQSmlLamkwbGdzWXI1QVdjMU15Q29meE9odkxnTDVVeFBW?=
+ =?utf-8?B?WGdwTElNYUpYWTFFcm1uMWNXMGpTZEJ2Mkw2Q0NxWmp3dGJwbFp6K2xQa3JB?=
+ =?utf-8?B?MHp3Tk5pVjhaVlpoL2xYQ0lXejNva0dkU2RZRFRvZkd1bDU0aEsvdWJCektY?=
+ =?utf-8?B?d1NuVUFuenZGV0tmQXlSVVpxdVk5MUFOczB6L0RXZVBqalhoZjVjL0NtRTF0?=
+ =?utf-8?B?OW9kTGh3S05nNDl0UjREQ3g5K0c4OERQUDh4Mjl3TnljT1dmZWErZmxwcXVY?=
+ =?utf-8?B?ZklsVkNWNGFLZnp0NWp1UldFQ3NRVzJwcXpNWERocHR2RGdIK3B0dEJiR1Fj?=
+ =?utf-8?B?UEVacnA1OCsrdTAzdkM2Y2xMalJxdTVySG9vN202TWVnanNieVFkZz09?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: effca768-db33-427c-e422-08debb4803ea
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB8476.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 May 2026 16:58:31.3631 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: ImotAoUcOb0WJK6ggbHW4pm48PqEAVtymO89y/SS+dSbiGP5j4PSocqwmJBP0AT8y8OTQN6cepa0trAWMj2Q5g==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN7PR12MB7131
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,91 +159,105 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,lwn.net,linuxfoundation.org,oss.qualcomm.com,iki.fi,ideasonboard.com,intel.com,linaro.org,kernel.org,kwiboo.se,emersion.fr,amd.com,igalia.com,redhat.com,ursulin.net,sholland.org,raspberrypi.com];
+	FREEMAIL_TO(0.00)[igalia.com,gmail.com,amd.com,linux.intel.com,kernel.org,ffwll.ch,suse.de];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[31];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[39];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-0.999];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	TO_DN_SOME(0.00)[];
 	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx,renesas];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[alex.hung@amd.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,qualcomm.com:email,ideasonboard.com:email]
-X-Rspamd-Queue-Id: 5045C5DA083
+	DKIM_TRACE(0.00)[amd.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,igalia.com:email]
+X-Rspamd-Queue-Id: 133DC5DA39C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The connector created by drm_bridge_connector only initializes a
-pristine state in reset, which is equivalent to what
-atomic_create_state would expect. Convert to it.
 
-Reviewed-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Signed-off-by: Maxime Ripard <mripard@kernel.org>
----
- drivers/gpu/drm/display/drm_bridge_connector.c | 15 +++++++++++----
- 1 file changed, 11 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
-index 50408af746d8..cafa498c3848 100644
---- a/drivers/gpu/drm/display/drm_bridge_connector.c
-+++ b/drivers/gpu/drm/display/drm_bridge_connector.c
-@@ -263,26 +263,33 @@ static void drm_bridge_connector_debugfs_init(struct drm_connector *connector,
- 		if (bridge->funcs->debugfs_init)
- 			bridge->funcs->debugfs_init(bridge, root);
- 	}
- }
- 
--static void drm_bridge_connector_reset(struct drm_connector *connector)
-+static struct drm_connector_state *
-+drm_bridge_connector_create_state(struct drm_connector *connector)
- {
- 	struct drm_bridge_connector *bridge_connector =
- 		to_drm_bridge_connector(connector);
-+	struct drm_connector_state *conn_state;
-+
-+	conn_state = drm_atomic_helper_connector_create_state(connector);
-+	if (IS_ERR(conn_state))
-+		return conn_state;
- 
--	drm_atomic_helper_connector_reset(connector);
- 	if (bridge_connector->bridge_hdmi)
- 		__drm_atomic_helper_connector_hdmi_state_init(connector,
--							      connector->state);
-+							      conn_state);
-+
-+	return conn_state;
- }
- 
- static const struct drm_connector_funcs drm_bridge_connector_funcs = {
--	.reset = drm_bridge_connector_reset,
- 	.detect = drm_bridge_connector_detect,
- 	.force = drm_bridge_connector_force,
- 	.fill_modes = drm_helper_probe_single_connector_modes,
-+	.atomic_create_state = drm_bridge_connector_create_state,
- 	.atomic_duplicate_state = drm_atomic_helper_connector_duplicate_state,
- 	.atomic_destroy_state = drm_atomic_helper_connector_destroy_state,
- 	.debugfs_init = drm_bridge_connector_debugfs_init,
- 	.oob_hotplug_event = drm_bridge_connector_oob_hotplug_event,
- };
+On 5/26/26 10:09, Melissa Wen wrote:
+> 
+> 
+> On 26/05/2026 05:29, Alex Hung wrote:
+>> Reviewed-by: Alex Hung <alex.hung@amd.com>
+> 
+> Hi Alex,
+> 
+> Thanks for the reviews.
+> As this last patch depends on the previous one, I think the entire 
+> series should go via AMD's branch, instead of drm-misc.
+> WDYT?
 
--- 
-2.54.0
+More changes in drm than amdgpu so I think drm-misc will be a better 
+choice, but I am fine with either.
+
+Hi Alex Deucher,
+
+Do you have any suggestions?
+
+> 
+> Melissa
+> 
+>>
+>> On 5/25/26 03:50, Melissa Wen wrote:
+>>> Ensure the driver tracks changes in any colorop property of a plane
+>>> color pipeline by using the same mechanism of CRTC color management and
+>>> update plane color blocks when any colorop property changes. It fixes an
+>>> issue observed on gamescope settings for night mode which is done via
+>>> shaper/3D-LUT updates.
+>>>
+>>> Reviewed-by: Harry Wentland <harry.wentland@amd.com>
+>>> Signed-off-by: Melissa Wen <mwen@igalia.com>
+>>> ---
+>>>   drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++++-
+>>>   1 file changed, 5 insertions(+), 1 deletion(-)
+>>>
+>>> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/ 
+>>> drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> index d590f0df6abd..36425d9c2a67 100644
+>>> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
+>>> @@ -10198,7 +10198,7 @@ static void amdgpu_dm_commit_planes(struct 
+>>> drm_atomic_commit *state,
+>>>               continue;
+>>>             bundle->surface_updates[planes_count].surface = dc_plane;
+>>> -        if (new_pcrtc_state->color_mgmt_changed) {
+>>> +        if (new_pcrtc_state->color_mgmt_changed || new_plane_state- 
+>>> >color_mgmt_changed) {
+>>>               bundle->surface_updates[planes_count].gamma = 
+>>> &dc_plane->gamma_correction;
+>>> bundle->surface_updates[planes_count].in_transfer_func = &dc_plane- 
+>>> >in_transfer_func;
+>>> bundle->surface_updates[planes_count].gamut_remap_matrix = &dc_plane- 
+>>> >gamut_remap_matrix;
+>>> @@ -12024,6 +12024,10 @@ static bool should_reset_plane(struct 
+>>> drm_atomic_commit *state,
+>>>       if (new_crtc_state->color_mgmt_changed)
+>>>           return true;
+>>>   +    /* Plane color pipeline or its colorop changes. */
+>>> +    if (new_plane_state->color_mgmt_changed)
+>>> +        return true;
+>>> +
+>>>       /*
+>>>        * On zpos change, planes need to be reordered by removing and 
+>>> re-adding
+>>>        * them one by one to the dc state, in order of descending zpos.
+>>
+> 
 
