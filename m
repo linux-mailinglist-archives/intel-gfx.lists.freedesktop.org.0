@@ -2,70 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id QKoxLwj0FWqzfwcAu9opvQ
+	id UHrvMUpHGGr2iQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:27:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 15:46:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E352D5DBF7A
-	for <lists+intel-gfx@lfdr.de>; Tue, 26 May 2026 21:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE7C75F2F44
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 15:46:49 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 45C4910E73F;
-	Tue, 26 May 2026 19:27:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4A27110F1D8;
+	Thu, 28 May 2026 13:46:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="l8LzCLyb";
+	dkim=pass (1024-bit key; unprotected) header.d=collabora.com header.i=leandro.ribeiro@collabora.com header.b="YsEWBvJn";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 736FB10E54A;
- Tue, 26 May 2026 19:27:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779823620; x=1811359620;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=XUlm4NrneVC0y0C2zaPfYIoy6URHchuBZBiAqmm9Mtw=;
- b=l8LzCLybOPhForX29QuPbKlR5dgdW8TnN80On75GQUssRuTHpTc6KvYL
- quMwridwUSl8cp4BhBM6U/ZSAKpK6bQH7LWs2QVFZPPXzxfOXFfXmqOaw
- OSc/0WFHwcV+SVe/iin9aCvko4lXc1BmY767lh7QKbUl+SbTu0rgGukaQ
- Qgt9ApQS8jUwOJlwBT8nVaozXutQHefDJMF4PUG8xMDWmeIQGnfFCvwdQ
- q+i7RvQbN2KKvst+zY0GszRDZwhL0LKk3xmdLOmIuIoUbrol59nyggz/w
- sXyvLKaFRq08wy6WgDIpwn2rb551uiH0m0gcSal3iExou90B/aym+PIOm Q==;
-X-CSE-ConnectionGUID: t9i+EV0mTP+qRMomrkR4RA==
-X-CSE-MsgGUID: PxfSkJG2TxuGdRpNMUpW+Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="91218974"
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="91218974"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 12:27:00 -0700
-X-CSE-ConnectionGUID: otcDxWbUS1qr1hxlWJ2khw==
-X-CSE-MsgGUID: Xy8XTRCcQROTVKafYqOzZQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="235654051"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 May 2026 12:26:59 -0700
-Date: Tue, 26 May 2026 22:26:55 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2] drm/{i915,xe}: move xe_display_flush_cleanup_work()
- to i915 display
-Message-ID: <ahXz_-57PY4HMymt@intel.com>
-References: <7aecde385b66dbf7d0e61759528c6cd643581a3d.1778659089.git.jani.nikula@intel.com>
- <20260525110553.651208-1-jani.nikula@intel.com>
- <ahXaTZD-L-koRduP@intel.com>
- <75b8149df41c3d4f0665eec68d42829e44279230@intel.com>
+Received: from sender4-op-o12.zoho.com (sender4-op-o12.zoho.com
+ [136.143.188.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C008910E6BA;
+ Tue, 26 May 2026 19:33:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1779823986; cv=none; 
+ d=zohomail.com; s=zohoarc; 
+ b=H+03uf04wb1kpMPe0hNp+nB0pL1vGbOxtXFW18nZQLIRHY7BrERuLljnlXNFKvL0NT68xom9Gha24rgpXMZDafmq9v7TrbOypbgMQF6V2jsUXOjmvMkHOnAelcq4H2RlbcUcYwBeqNUf1leDv9eEYA6WQltul7Wsz31aBQtwyGs=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
+ s=zohoarc; t=1779823986;
+ h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=GtcuprZ94UHAcAaoXrOE+xI/bhw9j8o4Bjc4rnleg1Q=; 
+ b=Ugo27+AATavxX1RaKEWHlWrBAnYQXsrEMJ+Dh03NoghcJrg3QeJYLYP8KcEiqQef0teOxpP1YJPKXknw6Vyg2Q70BcLj14wBt2sbzYBLq4JnsDCMVOcpxzWwD0SBmMjBiLzP3qMAX3y1Xa+mJdYCGWWnbkz3/zyhHtmEnaMWAmM=
+ARC-Authentication-Results: i=1; mx.zohomail.com;
+ dkim=pass  header.i=collabora.com;
+ spf=pass  smtp.mailfrom=leandro.ribeiro@collabora.com;
+ dmarc=pass header.from=<leandro.ribeiro@collabora.com>
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1779823986; 
+ s=zohomail; d=collabora.com; i=leandro.ribeiro@collabora.com; 
+ h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=GtcuprZ94UHAcAaoXrOE+xI/bhw9j8o4Bjc4rnleg1Q=;
+ b=YsEWBvJnqBqRwkYMZ2aL1E1RRSf/TbpxrXuUtZ0y8immSBoLTXm848mx3y4OwIWP
+ 3dd3BH68/eDGzmewYBDtX71oOqKbbOyeDcWyIKLBrvrqpORUafc4Y5eT89kkJehs8Rg
+ 7ewJJ7osDK5zu0qg5L5aDLfNU04UpHX4yS7v8of4=
+Received: by mx.zohomail.com with SMTPS id 1779823984185292.3656549840649;
+ Tue, 26 May 2026 12:33:04 -0700 (PDT)
+Message-ID: <128ff48a-bfb2-4163-a721-3625b2e2af02@collabora.com>
+Date: Tue, 26 May 2026 16:33:01 -0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/i915: Add the blend mode property to all planes that
+ support alpha blending
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org
+References: <20260522194935.27411-1-ville.syrjala@linux.intel.com>
+Content-Language: en-US
+From: Leandro Ribeiro <leandro.ribeiro@collabora.com>
+In-Reply-To: <20260522194935.27411-1-ville.syrjala@linux.intel.com>
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <75b8149df41c3d4f0665eec68d42829e44279230@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ZohoMailClient: External
+X-Mailman-Approved-At: Thu, 28 May 2026 13:46:47 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,181 +73,102 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.40 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.71)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DATE_IN_PAST(1.00)[42];
+	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: E352D5DBF7A
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	MID_RHS_MATCH_FROM(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_THREE(0.00)[3];
+	FROM_NEQ_ENVFROM(0.00)[leandro.ribeiro@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[collabora.com:+]
+X-Rspamd-Queue-Id: DE7C75F2F44
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, May 26, 2026 at 09:09:28PM +0300, Jani Nikula wrote:
-> On Tue, 26 May 2026, Ville Syrj‰l‰ <ville.syrjala@linux.intel.com> wrote:
-> > On Mon, May 25, 2026 at 02:05:53PM +0300, Jani Nikula wrote:
-> >> xe_display_flush_cleanup_work() is a bit of an oddball function in xe
-> >> display code. There shouldn't be anything this specific or xe
-> >> specific. While I'm not sure what the correct refactor for the function
-> >> should be, move it to shared display code for starters, next to the
-> >> eerily similar but slightly different intel_has_pending_fb_unpin() that
-> >> is only called from i915 core.
-> >> 
-> >> The main goal here is to unblock some refactors on
-> >> for_each_intel_crtc().
-> >> 
-> >> v2: Add FIXME comment (Ville)
-> >> 
-> >> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> >> ---
-> >>  drivers/gpu/drm/i915/display/intel_display.c | 22 ++++++++++++++++
-> >>  drivers/gpu/drm/i915/display/intel_display.h |  1 +
-> >>  drivers/gpu/drm/xe/display/xe_display.c      | 27 +++-----------------
-> >>  3 files changed, 26 insertions(+), 24 deletions(-)
-> >> 
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-> >> index 6c8935f69db1..a6cee0f81358 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> >> @@ -737,6 +737,28 @@ bool intel_has_pending_fb_unpin(struct intel_display *display)
-> >>  	return false;
-> >>  }
-> >>  
-> >> +/* FIXME: All callers need to be audited and unified between i915 and xe */
-> >
-> > That makes me think we want to keep this. I was more thinking of
-> > something like
-> > /* FIXME remove this and just flush the cleanup wq where appropriate */
-> 
-> Fair enough. Can I push with that?
 
-Acked-by: Ville Syrj‰l‰ <ville.syrjala@linux.intel.com>
 
+On 5/22/26 16:49, Ville Syrjala wrote:
+> From: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 > 
-> >
-> >> +void intel_display_flush_cleanup_work(struct intel_display *display)
-> >> +{
-> >> +	struct intel_crtc *crtc;
-> >> +
-> >> +	for_each_intel_crtc(display->drm, crtc) {
-> >> +		struct drm_crtc_commit *commit;
-> >> +
-> >> +		spin_lock(&crtc->base.commit_lock);
-> >> +		commit = list_first_entry_or_null(&crtc->base.commit_list,
-> >> +						  struct drm_crtc_commit, commit_entry);
-> >> +		if (commit)
-> >> +			drm_crtc_commit_get(commit);
-> >> +		spin_unlock(&crtc->base.commit_lock);
-> >> +
-> >> +		if (commit) {
-> >> +			wait_for_completion(&commit->cleanup_done);
-> >> +			drm_crtc_commit_put(commit);
-> >> +		}
-> >> +	}
-> >> +}
-> >> +
-> >>  /*
-> >>   * Finds the encoder associated with the given CRTC. This can only be
-> >>   * used when we know that the CRTC isn't feeding multiple encoders!
-> >> diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-> >> index 45a90d2fe6ec..72f33113a5a3 100644
-> >> --- a/drivers/gpu/drm/i915/display/intel_display.h
-> >> +++ b/drivers/gpu/drm/i915/display/intel_display.h
-> >> @@ -402,6 +402,7 @@ void intel_disable_transcoder(const struct intel_crtc_state *old_crtc_state);
-> >>  void i830_enable_pipe(struct intel_display *display, enum pipe pipe);
-> >>  void i830_disable_pipe(struct intel_display *display, enum pipe pipe);
-> >>  bool intel_has_pending_fb_unpin(struct intel_display *display);
-> >> +void intel_display_flush_cleanup_work(struct intel_display *display);
-> >>  void intel_encoder_destroy(struct drm_encoder *encoder);
-> >>  struct drm_display_mode *
-> >>  intel_encoder_current_mode(struct intel_encoder *encoder);
-> >> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> >> index 8d08da60336d..a5066de3d789 100644
-> >> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> >> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> >> @@ -244,27 +244,6 @@ static bool suspend_to_idle(void)
-> >>  	return false;
-> >>  }
-> >>  
-> >> -static void xe_display_flush_cleanup_work(struct xe_device *xe)
-> >> -{
-> >> -	struct intel_crtc *crtc;
-> >> -
-> >> -	for_each_intel_crtc(&xe->drm, crtc) {
-> >> -		struct drm_crtc_commit *commit;
-> >> -
-> >> -		spin_lock(&crtc->base.commit_lock);
-> >> -		commit = list_first_entry_or_null(&crtc->base.commit_list,
-> >> -						  struct drm_crtc_commit, commit_entry);
-> >> -		if (commit)
-> >> -			drm_crtc_commit_get(commit);
-> >> -		spin_unlock(&crtc->base.commit_lock);
-> >> -
-> >> -		if (commit) {
-> >> -			wait_for_completion(&commit->cleanup_done);
-> >> -			drm_crtc_commit_put(commit);
-> >> -		}
-> >> -	}
-> >> -}
-> >> -
-> >>  static void xe_display_enable_d3cold(struct xe_device *xe)
-> >>  {
-> >>  	struct intel_display *display = xe->display;
-> >> @@ -278,7 +257,7 @@ static void xe_display_enable_d3cold(struct xe_device *xe)
-> >>  	 */
-> >>  	intel_power_domains_disable(display);
-> >>  
-> >> -	xe_display_flush_cleanup_work(xe);
-> >> +	intel_display_flush_cleanup_work(display);
-> >>  
-> >>  	intel_opregion_suspend(display, PCI_D3cold);
-> >>  
-> >> @@ -333,7 +312,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
-> >>  		intel_display_driver_suspend(display);
-> >>  	}
-> >>  
-> >> -	xe_display_flush_cleanup_work(xe);
-> >> +	intel_display_flush_cleanup_work(display);
-> >>  
-> >>  	intel_encoder_block_all_hpds(display);
-> >>  
-> >> @@ -365,7 +344,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
-> >>  		intel_display_driver_suspend(display);
-> >>  	}
-> >>  
-> >> -	xe_display_flush_cleanup_work(xe);
-> >> +	intel_display_flush_cleanup_work(display);
-> >>  	intel_dp_mst_suspend(display);
-> >>  	intel_encoder_block_all_hpds(display);
-> >>  	intel_hpd_cancel_work(display);
-> >> -- 
-> >> 2.47.3
+> Currently only SKL+ universal planes have the blend mode property.
+> Assuming it now becomes mandatory for all planes that support
+> alpha blending we need to add it to cursors on all platforms,
+> and VLV/CHV primary/sprite planes.
 > 
-> -- 
-> Jani Nikula, Intel
+> TODO: For VLV/CHV primary/sprite planes we could fairly easily
+> implement DRM_MODE_BLEND_PIXEL_NONE by remapping the A format
+> to the corresponding X format, and on CHV pipe B (but not pipes
+> A/C) we could probably even implement DRM_MODE_BLEND_COVERAGE.
+> 
+> Cc: Leandro Ribeiro <leandro.ribeiro@collabora.com>
+> Signed-off-by: Ville Syrj√§l√§ <ville.syrjala@linux.intel.com>
 
--- 
-Ville Syrj‰l‰
-Intel
+Ack, looks good to me (with the caveat I'm not familiar with i915 codebase).
+
+> ---
+>  drivers/gpu/drm/i915/display/i9xx_plane.c   | 4 ++++
+>  drivers/gpu/drm/i915/display/intel_cursor.c | 3 +++
+>  drivers/gpu/drm/i915/display/intel_sprite.c | 4 ++++
+>  3 files changed, 11 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/i9xx_plane.c b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> index 70734d32a409..490908f59141 100644
+> --- a/drivers/gpu/drm/i915/display/i9xx_plane.c
+> +++ b/drivers/gpu/drm/i915/display/i9xx_plane.c
+> @@ -1108,6 +1108,10 @@ intel_primary_plane_create(struct intel_display *display, enum pipe pipe)
+>  						   DRM_MODE_ROTATE_0,
+>  						   supported_rotations);
+>  
+> +	if (display->platform.valleyview || display->platform.cherryview)
+> +		drm_plane_create_blend_mode_property(&plane->base,
+> +						     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = 0;
+>  	drm_plane_create_zpos_immutable_property(&plane->base, zpos);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
+> index 52347668f27d..344cee13ea97 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cursor.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
+> @@ -1078,6 +1078,9 @@ intel_cursor_plane_create(struct intel_display *display,
+>  
+>  	intel_cursor_add_size_hints_property(cursor);
+>  
+> +	drm_plane_create_blend_mode_property(&cursor->base,
+> +					     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = DISPLAY_RUNTIME_INFO(display)->num_sprites[pipe] + 1;
+>  	drm_plane_create_zpos_immutable_property(&cursor->base, zpos);
+>  
+> diff --git a/drivers/gpu/drm/i915/display/intel_sprite.c b/drivers/gpu/drm/i915/display/intel_sprite.c
+> index 6a65f92e8a03..3e38960bbbd8 100644
+> --- a/drivers/gpu/drm/i915/display/intel_sprite.c
+> +++ b/drivers/gpu/drm/i915/display/intel_sprite.c
+> @@ -1722,6 +1722,10 @@ intel_sprite_plane_create(struct intel_display *display,
+>  					  DRM_COLOR_YCBCR_BT709,
+>  					  DRM_COLOR_YCBCR_LIMITED_RANGE);
+>  
+> +	if (display->platform.valleyview || display->platform.cherryview)
+> +		drm_plane_create_blend_mode_property(&plane->base,
+> +						     BIT(DRM_MODE_BLEND_PREMULTI));
+> +
+>  	zpos = sprite + 1;
+>  	drm_plane_create_zpos_immutable_property(&plane->base, zpos);
+>  
+
