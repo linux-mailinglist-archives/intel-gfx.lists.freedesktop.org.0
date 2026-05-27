@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CCS5GmI/F2qg9wcAu9opvQ
+	id QEC1FWE/F2qg9wcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3635C5E94E7
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E867E5E94E0
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:48 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5708710E93D;
-	Wed, 27 May 2026 19:00:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E84010E939;
+	Wed, 27 May 2026 19:00:47 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DMnPlacp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b+7HpFTr";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C427E10E928;
- Wed, 27 May 2026 19:00:44 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D44010E939;
+ Wed, 27 May 2026 19:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779908445; x=1811444445;
+ t=1779908446; x=1811444446;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=bp0ZqlZBe6qyoUsuxM3UzttEB1/j0g/z3VNZFIMz/qc=;
- b=DMnPlacp9yPox26l1Hn/TdgWAiaC6eJBXUm5FzqKprqi6Jds7p9r5qhw
- EZPIzDMZpIBZ7gB2siS0a72Tf2AFzfHzW8bY5Xj1+wuRg15GymqdBGHnW
- 5cB9KQczAcK0PpvVJ699JyRnDax7bu9TvaolPyvOmbCqT27tezNYL+lAo
- tMmWV1d8cHqHWRv+woINlfvcO86gzIbjSrW2pyg5aKfPj18VNy3Z6acM9
- BJKGTnEivfK2b8sgzfQ/CDEfKyVd96+U5XOKEwe4+8VqrNa7BpyooP+n7
- U46Fsfd4lS0PH984myav/KjI0O9vR3qu/In8uV7FogZNaPtd5G7NJJtvH w==;
-X-CSE-ConnectionGUID: M9byXkSTQEaz+Qe3+E5rsg==
-X-CSE-MsgGUID: al8ve+RhSZCONNCtUWOpdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80602145"
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80602145"
+ bh=CPQ6fLlml3rWBsXufp0JPr2U0Um2VUiAXhwSHEQtc9Q=;
+ b=b+7HpFTrC0CLo72X1/j8jGfAGS5k9ocwffFtpNjPL8a4V+RD+LKDGa1P
+ a8/ePMZke4PPvj//zX39cTugFrsol0599iWeP+65k05zRAS8XCa9WCyVC
+ uX5CbETarVKi/ybzrOve8n1NOBF5GxLf8gd+YY0RNm78jI0onUZxbc7dh
+ yIxJLsGRA1mopj83Irl13gOUPJ2QiOs0SAll7g+A7bldjZCoIREGvt30O
+ Em59kINLrESK+fqjuyPMJJV1Q9gQkQ/oOzPkyljkTMnZ6TH/TaKY8a3Ki
+ PTZrpQtDRjBWDDwaSKchC2sRPpmTaYI9pnDUsW5756SPUwnrz9J381ml8 A==;
+X-CSE-ConnectionGUID: 1GoMB9NpSKy1aLcjHIPlXA==
+X-CSE-MsgGUID: Hk4HV4SAQSS4o9kKQ+flmA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80602147"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80602147"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 12:00:45 -0700
-X-CSE-ConnectionGUID: iAiNSbPnTDq2mCr0RUyYAQ==
-X-CSE-MsgGUID: DoOtljZhSmO5m5zWDwElfw==
+ 27 May 2026 12:00:46 -0700
+X-CSE-ConnectionGUID: 9yc7psCmRsWxq8NpaqHaOQ==
+X-CSE-MsgGUID: JYPMAH8iQNCewvcSUDr9Pg==
 X-ExtLoop1: 1
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 12:00:43 -0700
+ 27 May 2026 12:00:44 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI 10/17] drm/i915/display: PSR2: Set idle_frames to 0 for DC3CO
-Date: Thu, 28 May 2026 00:29:57 +0530
-Message-ID: <20260527190004.118730-11-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI 11/17] drm/i915/display: Enable DC3CO idle protocol in ALPM
+Date: Thu, 28 May 2026 00:29:58 +0530
+Message-ID: <20260527190004.118730-12-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260527190004.118730-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260527190004.118730-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -95,43 +95,56 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 3635C5E94E7
+X-Rspamd-Queue-Id: E867E5E94E0
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Force idle_frames to 0 when DC3CO is eligible.
+Add PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL bit definition and set it
+when DC3CO is allowed.
 
 Changes in v2:
-- Extend existing Wa_16025596647 condition
-  instead of adding a new if block (Uma Shankar)
+- Squash "Define DC3CO idle protocol bit in PR_ALPM_CTL"
+  into this patch (Uma Shankar)
+- Use intel_display_power_dc3co_allowed(display)
+  instead of intel_dc3co_allowed(state)
 
 BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_psr.c | 9 +++++----
- 1 file changed, 5 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_alpm.c     | 6 ++++++
+ drivers/gpu/drm/i915/display/intel_psr_regs.h | 1 +
+ 2 files changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index d4b294beecef..b4ce3d49d76e 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -1079,10 +1079,11 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
- 	u32 psr_val = 0;
- 	u8 idle_frames;
+diff --git a/drivers/gpu/drm/i915/display/intel_alpm.c b/drivers/gpu/drm/i915/display/intel_alpm.c
+index a7350ce8e716..6394d1568b54 100644
+--- a/drivers/gpu/drm/i915/display/intel_alpm.c
++++ b/drivers/gpu/drm/i915/display/intel_alpm.c
+@@ -389,6 +389,12 @@ static void lnl_alpm_configure(struct intel_dp *intel_dp,
+ 			if (crtc_state->disable_as_sdp_when_pr_active)
+ 				pr_alpm_ctl |= PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE;
  
--	/* Wa_16025596647 */
--	if ((DISPLAY_VER(display) == 20 ||
--	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
--	    is_dc5_dc6_blocked(intel_dp) && intel_dp->psr.pkg_c_latency_used)
-+	/* DC3CO / Wa_16025596647 */
-+	if (intel_dp->psr.dc3co_eligible ||
-+	    ((DISPLAY_VER(display) == 20 ||
-+	      IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
-+	     is_dc5_dc6_blocked(intel_dp) && intel_dp->psr.pkg_c_latency_used))
- 		idle_frames = 0;
- 	else
- 		idle_frames = psr_compute_idle_frames(intel_dp);
++			if (intel_display_power_dc3co_allowed(display) &&
++			    intel_display_power_dc3co_supported(display))
++				pr_alpm_ctl |= PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++			else
++				pr_alpm_ctl &= ~PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL;
++
+ 			intel_de_write(display, PR_ALPM_CTL(display, cpu_transcoder),
+ 				       pr_alpm_ctl);
+ 		}
+diff --git a/drivers/gpu/drm/i915/display/intel_psr_regs.h b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+index 8afbf5a38335..16a9e3af198d 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_psr_regs.h
+@@ -268,6 +268,7 @@
+ 
+ #define _PR_ALPM_CTL_A	0x60948
+ #define PR_ALPM_CTL(dev_priv, tran)	_MMIO_TRANS2(dev_priv, tran, _PR_ALPM_CTL_A)
++#define  PR_ALPM_CTL_USE_DC3CO_IDLE_PROTOCOL			BIT(7)
+ #define  PR_ALPM_CTL_ALLOW_LINK_OFF_BETWEEN_AS_SDP_AND_SU	BIT(6)
+ #define  PR_ALPM_CTL_RFB_UPDATE_CONTROL				BIT(5)
+ #define  PR_ALPM_CTL_AS_SDP_TRANSMISSION_IN_ACTIVE_DISABLE	BIT(4)
 -- 
 2.43.0
 
