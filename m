@@ -2,55 +2,55 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 2FXVKWM/F2qg9wcAu9opvQ
+	id CCS5GmI/F2qg9wcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 465875E94F5
-	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3635C5E94E7
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 21:00:50 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 59FC310E928;
-	Wed, 27 May 2026 19:00:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5708710E93D;
+	Wed, 27 May 2026 19:00:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kQ2hzh7v";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DMnPlacp";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7EE7310E937;
- Wed, 27 May 2026 19:00:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C427E10E928;
+ Wed, 27 May 2026 19:00:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779908444; x=1811444444;
+ t=1779908445; x=1811444445;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=m6ENMEOndhvWvCPY713OuGNdOIVZHnyS7w9tl8eLHTg=;
- b=kQ2hzh7vSGY2oXyFO3/dY9ncmEI9xWyJtBG/Gp8FRDcUOisnST2O71eH
- CXtI4iXWzmtuz7fR6BoBmqLEFxpBQ7QctEfnNzl87EkDwnnkv28RKX1nv
- TD6o0mawj4HLfS/F657rx5W5KuYQuRGXYEEhJxxStVfGUBPxEtsFy54rS
- wj/+ygh/hYWcIR6uBhlY+U/W1vH8qdWpNlM5YI5llbQwmU0uSiq55UHMf
- w41pBh5c6bFjcEBLTOK4ir4Yj+BcNEGKua2dSsYjsU+pUdgMjwP9UD0fe
- JRsAg8tlthOI/jnfdJpEP1Md80uWKF4Mwl6PWb7Apx8i5CCw9bHbiO53E Q==;
-X-CSE-ConnectionGUID: j/UZnOMbRTeg+UCDF3U2mg==
-X-CSE-MsgGUID: PXz1u6HARv+ZQCng0h73Bw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80602143"
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80602143"
+ bh=bp0ZqlZBe6qyoUsuxM3UzttEB1/j0g/z3VNZFIMz/qc=;
+ b=DMnPlacp9yPox26l1Hn/TdgWAiaC6eJBXUm5FzqKprqi6Jds7p9r5qhw
+ EZPIzDMZpIBZ7gB2siS0a72Tf2AFzfHzW8bY5Xj1+wuRg15GymqdBGHnW
+ 5cB9KQczAcK0PpvVJ699JyRnDax7bu9TvaolPyvOmbCqT27tezNYL+lAo
+ tMmWV1d8cHqHWRv+woINlfvcO86gzIbjSrW2pyg5aKfPj18VNy3Z6acM9
+ BJKGTnEivfK2b8sgzfQ/CDEfKyVd96+U5XOKEwe4+8VqrNa7BpyooP+n7
+ U46Fsfd4lS0PH984myav/KjI0O9vR3qu/In8uV7FogZNaPtd5G7NJJtvH w==;
+X-CSE-ConnectionGUID: M9byXkSTQEaz+Qe3+E5rsg==
+X-CSE-MsgGUID: al8ve+RhSZCONNCtUWOpdQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80602145"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80602145"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 12:00:43 -0700
-X-CSE-ConnectionGUID: 5gTbqqvYSAKnIFILQmyLKA==
-X-CSE-MsgGUID: o1Tp/sKrTt2ACEPlqw+FyQ==
+ 27 May 2026 12:00:45 -0700
+X-CSE-ConnectionGUID: iAiNSbPnTDq2mCr0RUyYAQ==
+X-CSE-MsgGUID: DoOtljZhSmO5m5zWDwElfw==
 X-ExtLoop1: 1
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 12:00:42 -0700
+ 27 May 2026 12:00:43 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI 09/17] drm/i915/display: Store DC3CO eligibility in PSR state
-Date: Thu, 28 May 2026 00:29:56 +0530
-Message-ID: <20260527190004.118730-10-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI 10/17] drm/i915/display: PSR2: Set idle_frames to 0 for DC3CO
+Date: Thu, 28 May 2026 00:29:57 +0530
+Message-ID: <20260527190004.118730-11-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260527190004.118730-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260527190004.118730-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -95,79 +95,43 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 465875E94F5
+X-Rspamd-Queue-Id: 3635C5E94E7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Store DC3CO eligibility in intel_dp->psr during
-intel_psr_post_plane_update() so PSR configuration
-can take DC3CO into account.
-
-This will be used to control PSR2 parameters such as idle frames.
+Force idle_frames to 0 when DC3CO is eligible.
 
 Changes in v2:
-- Use intel_display_power_dc3co_allowed(display) instead
-  of intel_dc3co_allowed(state)
+- Extend existing Wa_16025596647 condition
+  instead of adding a new if block (Uma Shankar)
 
-Changes in v4:
-- Update psr.dc3co_eligible before
-  intel_psr_enable_locked() call (sashiko)
-
+BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
- drivers/gpu/drm/i915/display/intel_psr.c           | 7 +++++++
- 2 files changed, 9 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 156e52aa1bab..d6c2dd40949e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1774,6 +1774,8 @@ struct intel_psr {
- 	ktime_t last_exit;
- 	bool sink_not_reliable;
- 	bool irq_aux_error;
-+	/* DC3CO eligibility used to control PSR configuration */
-+	bool dc3co_eligible;
- 	u16 su_w_granularity;
- 	u16 su_y_granularity;
- 	bool source_panel_replay_support;
 diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index 730ca7af7873..d4b294beecef 100644
+index d4b294beecef..b4ce3d49d76e 100644
 --- a/drivers/gpu/drm/i915/display/intel_psr.c
 +++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -2300,6 +2300,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
- 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
- 	intel_dp->psr.active_non_psr_pipes = 0;
- 	intel_dp->psr.pkg_c_latency_used = 0;
-+	intel_dp->psr.dc3co_eligible = false;
- }
+@@ -1079,10 +1079,11 @@ static void hsw_activate_psr2(struct intel_dp *intel_dp)
+ 	u32 psr_val = 0;
+ 	u8 idle_frames;
  
- /**
-@@ -3090,10 +3091,14 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	struct intel_encoder *encoder;
-+	bool dc3co_eligible;
- 
- 	if (!crtc_state->has_psr)
- 		return;
- 
-+	dc3co_eligible = intel_display_power_dc3co_allowed(display) &&
-+			      intel_display_power_dc3co_supported(display);
-+
- 	verify_panel_replay_dsc_state(crtc_state);
- 
- 	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
-@@ -3121,6 +3126,8 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
- 			keep_disabled = true;
- 		}
- 
-+		intel_dp->psr.dc3co_eligible = dc3co_eligible;
-+
- 		if (!psr->enabled && !keep_disabled)
- 			intel_psr_enable_locked(intel_dp, crtc_state);
- 		else if (psr->enabled && !crtc_state->wm_level_disabled)
+-	/* Wa_16025596647 */
+-	if ((DISPLAY_VER(display) == 20 ||
+-	     IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
+-	    is_dc5_dc6_blocked(intel_dp) && intel_dp->psr.pkg_c_latency_used)
++	/* DC3CO / Wa_16025596647 */
++	if (intel_dp->psr.dc3co_eligible ||
++	    ((DISPLAY_VER(display) == 20 ||
++	      IS_DISPLAY_VERx100_STEP(display, 3000, STEP_A0, STEP_B0)) &&
++	     is_dc5_dc6_blocked(intel_dp) && intel_dp->psr.pkg_c_latency_used))
+ 		idle_frames = 0;
+ 	else
+ 		idle_frames = psr_compute_idle_frames(intel_dp);
 -- 
 2.43.0
 
