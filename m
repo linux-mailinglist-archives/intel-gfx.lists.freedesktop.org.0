@@ -2,62 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id SNEpNUpHGGr2iQgAu9opvQ
+	id ALvKKQZzFmoAmgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 15:46:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 06:28:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DF6395F2F45
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 15:46:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2212B5DF296
+	for <lists+intel-gfx@lfdr.de>; Wed, 27 May 2026 06:28:54 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 47F2E10F1D6;
-	Thu, 28 May 2026 13:46:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4EA7210E71D;
+	Wed, 27 May 2026 04:28:52 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="kyjwDNrR";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 418 seconds by postgrey-1.36 at gabe;
- Wed, 27 May 2026 04:16:10 UTC
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD8E010E660
- for <intel-gfx@lists.freedesktop.org>; Wed, 27 May 2026 04:16:10 +0000 (UTC)
-Received: from dfae2b116770.home.arpa (unknown [36.110.52.3])
- by APP-05 (Coremail) with SMTP id zQCowABHntFfbhZqLZmGEQ--.5022S2;
- Wed, 27 May 2026 12:09:03 +0800 (CST)
-From: Wentao Liang <vulab@iscas.ac.cn>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Kees Cook <kees@kernel.org>, Wentao Liang <vulab@iscas.ac.cn>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Subject: [PATCH] drm: i915: selftests: fix oa_config refcount leak in
- test_stream()
-Date: Wed, 27 May 2026 04:08:35 +0000
-Message-Id: <20260527040835.854065-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.34.1
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4D4A210E715;
+ Wed, 27 May 2026 04:28:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1779856127; x=1811392127;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=LnXjuZC/H6yMy3u+weAjhhdX/4uTF1fNDEtaWNrfFwY=;
+ b=kyjwDNrRywvnMMg2v7cD6youX7qUPPW8bFwskt1SdbqeaUeR8n/1tc+A
+ 19EinpFhZgmHrBXUUciTP/S+Msf3EQ9vnU3buCmW7k/Uiy4wZzts+8PHU
+ LLsyOUazqvACMy5bIuZy3uu5NCKI6tVlkVOXSDyT2NWzWiEYbrieK3WDf
+ OWs94+oL6mlDsEfUHOmDUsGl0wp0nHyltEyB/cXR21B08y979gZTZJn56
+ 79CDIs3QGzOkxI1v6sP5cCsUFBoWanfdW6SQ9HE6biBVN2VVp1u4bNGfj
+ oCaCJ6qkgfg0sjOIJMd36XqByxLarlKwACLQbHoZlTJ2Ii0CChB53ldZd A==;
+X-CSE-ConnectionGUID: THoCo+b7QbmF7nfqzq+uow==
+X-CSE-MsgGUID: 5g+zi92YQ8OUEWDRhKJS8g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11798"; a="80405774"
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="80405774"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 21:28:45 -0700
+X-CSE-ConnectionGUID: csKZB5yZQK2uek9nK4h29A==
+X-CSE-MsgGUID: 8QcnGA/HTXOu+SCwTyC3dA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,170,1774335600"; d="scan'208";a="272452340"
+Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
+ by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 May 2026 21:28:38 -0700
+From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: ville.syrjala@linux.intel.com, jouni.hogander@intel.com,
+ animesh.manna@intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 00/12] Fix Adaptive-Sync SDP for PR with Link ON + Auxless-ALPM
+Date: Wed, 27 May 2026 09:40:38 +0530
+Message-ID: <20260527041050.601735-1-ankit.k.nautiyal@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowABHntFfbhZqLZmGEQ--.5022S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7KFyUWry7Gr1DKw15Zw13urg_yoW8Gr4kpa
- 13Aa4YyrW5GF1ftayUGa4rKFy3Aas3GF48C3sFkwn3uw13AFy8tFsakFyfXF95ArZ3ZF17
- tFZ2kFWSgr1UArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26F4j
- 6r4UJwA2z4x0Y4vEx4A2jsIE14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gc
- CE3s1le2I262IYc4CY6c8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E
- 2Ix0cI8IcVAFwI0_Jr0_Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJV
- W8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFIxGxcIEc7CjxVA2
- Y2ka0xkIwI1lc7CjxVAaw2AFwI0_Jw0_GFyl42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x
- 0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
- zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF
- 4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r4j6F4UMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWU
- CwCI42IY6I8E87Iv67AKxVWUJVW8JwCI42IY6I8E87Iv6xkF7I0E14v26r4j6r4UJbIYCT
- nIWIevJa73UjIFyTuYvjfUonmRUUUUU
-X-Originating-IP: [36.110.52.3]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiCREAA2oWPLmz8QAAsg
-X-Mailman-Approved-At: Thu, 28 May 2026 13:46:47 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,83 +72,123 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.89 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[33];
-	R_MISSING_CHARSET(0.50)[];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:kees@kernel.org,m:vulab@iscas.ac.cn,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FORGED_SENDER(0.00)[vulab@iscas.ac.cn,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
-	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	TO_DN_SOME(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,intel-gfx-bounces@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-1.000];
+	RCPT_COUNT_FIVE(0.00)[6];
+	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	HAS_XOIP(0.00)[];
-	R_DKIM_NA(0.00)[];
-	NEURAL_HAM(-0.00)[-0.984];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: DF6395F2F45
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim,patchwork.freedesktop.org:url];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: 2212B5DF296
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-test_stream() calls i915_perf_get_oa_config() which takes a reference
-on the returned oa_config. On the error path where stream allocation
-fails, the function returns without calling i915_oa_config_put() on
-the oa_config, leaking the reference.
+Enable Adaptive Sync SDP for Panel replay + auxless ALPM.
+First few patches are fixes in existing AS SDP enablement and drm core
+changes for Panel replay with SDP.
+Later patches add the support to send AS SDP for Panel replay with Link
+ON and with auxless ALPM (Link-Off). 
 
-Move the oa_config check after the props.engine check and add
-i915_oa_config_put(oa_config) on the error path to properly release
-the reference.
+This series is in continuation from discussions in [1] [2] [3]
+and is actually revision 5 of the series [4].
 
-Fixes: 9677a9f3b1ad ("drm/i915/perf: Move gt-specific data from i915->perf to gt->perf")
-Cc: stable@vger.kernel.org
-Signed-off-by: Wentao Liang <vulab@iscas.ac.cn>
----
- drivers/gpu/drm/i915/selftests/i915_perf.c | 8 +++++---
- 1 file changed, 5 insertions(+), 3 deletions(-)
+While sending patches Rev 3 of [4], patchwork encountered an issue and
+somehow dropped few patches from the series, and created new patchwork
+links with incomplete list of patches for rev 3 and 4. With this CI couldnt
+pick up the series for testing.
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_perf.c b/drivers/gpu/drm/i915/selftests/i915_perf.c
-index e9469e27f42a..a3e0afb0549e 100644
---- a/drivers/gpu/drm/i915/selftests/i915_perf.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_perf.c
-@@ -104,14 +104,16 @@ test_stream(struct i915_perf *perf)
- 	struct i915_perf_stream *stream;
- 	struct intel_gt *gt;
- 
--	if (!props.engine)
--		return NULL;
--
- 	gt = props.engine->gt;
- 
- 	if (!oa_config)
- 		return NULL;
- 
-+	if (!props.engine) {
-+		i915_oa_config_put(oa_config);
-+		return NULL;
-+	}
-+
- 	props.metrics_set = oa_config->id;
- 
- 	stream = kzalloc_obj(*stream);
+To avoid further confusion and more patchwork links with missing patches,
+I am modifying the subject of the series to create new 'final' patchwork
+link (with a hope that patchwork doesn't miss anymore patches) for which
+we can get the CI results.
+
+As the first few drm core changes get reviews, I intend to send those
+separately and get them merge next.
+
+[1] https://lore.kernel.org/all/1b8c6c6de1e5fe0db83e6ae942dfee7e6f950767.camel@intel.com/
+[2] https://lore.kernel.org/all/aPtqdAxDwiuQZbrn@intel.com/
+[3] https://lore.kernel.org/intel-gfx/7c2d6f4e-69e6-452a-89cc-5fd4254430bd@intel.com/T/#m6e8beab2cc3b6ff9d61f740f107d83a2f4e08114
+[4] https://patchwork.freedesktop.org/series/161977/#rev2
+
+Changes from last revision of Series [4]
+ - Add helper to print SDP version in the logs and use it.
+ - Fill missing sdp_type field in AS SDP unpack.
+ - Check PR support also in helper
+   intel_psr_pr_async_video_timing_supported()
+ - Add #TODO to check Display ID 2.0 blocks for AS SDP for determining
+   AS SDP v2 support.
+ - Check if PR is enabled along with AS SDP enable before setting
+   relevant Downspread CTRL DPCD bits.
+
+Rev 5:
+ - Since all DRM core changes and PCON related fixes are merged, rebase
+   the remaining patches.
+
+Rev 6:
+ - Re-spin of previous 11-patch series with one previously omitted patch
+   added as 12/12. Patches 1-11 are unchanged from previous revision.
+
+Rev 7:
+ - Address review comments form Ville.
+ - Drop patch to split AS SDP computation between compute_config and
+   compute_config_late.
+
+Rev 8:
+ - In "Enable AS SDP whenever VRR is possible or PR !async": use
+   intel_psr_needs_alpm_aux_less() instead of intel_alpm_is_alpm_aux_less()
+   so the LOBF case is not pulled in. (Ville)
+
+Rev 9:
+ - Add missing patch to move intel_dp_compute_as_sdp() after
+   intel_psr_compute_config(), since the new AS SDP check depends on
+   crtc_state->has_panel_replay set by PSR compute.
+
+Ankit Nautiyal (12):
+  drm/i915/psr: Add helper to get Async Video timing support in PR
+    active
+  drm/i915/dp: Add member to intel_dp to store AS SDP v2 support
+  drm/i915/dp: Allow AS SDP only if v2 is supported
+  drm/i915/psr: Write the PR config DPCDs in burst mode
+  drm/i915/display: Add helper for AS SDP transmission time selection
+  drm/i915/psr: Program Panel Replay CONFIG3 using AS SDP transmission
+    time
+  drm/i915/dp: Set relevant Downspread Ctrl DPCD bits for PR + Auxless
+    ALPM
+  drm/i915/dp: Program AS SDP DB[1:0] for PR with Link off
+  drm/i915/dp: Compute and include coasting vtotal for AS SDP
+  drm/i915/dp: Compute AS SDP after PSR compute config
+  drm/i915/dp: Enable AS SDP whenever VRR is possible or PR !async
+  drm/i915/dp: Account for AS_SDP guardband only when enabled
+
+ drivers/gpu/drm/i915/display/intel_alpm.c     |  20 +++-
+ drivers/gpu/drm/i915/display/intel_display.c  |   3 +-
+ .../drm/i915/display/intel_display_types.h    |   1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 102 ++++++++++++++++--
+ drivers/gpu/drm/i915/display/intel_dp.h       |   2 +
+ .../drm/i915/display/intel_dp_link_training.c |  20 +++-
+ .../drm/i915/display/intel_dp_link_training.h |   3 +-
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      |  40 ++++---
+ drivers/gpu/drm/i915/display/intel_psr.h      |   1 +
+ 10 files changed, 166 insertions(+), 28 deletions(-)
+
 -- 
-2.34.1
+2.45.2
 
