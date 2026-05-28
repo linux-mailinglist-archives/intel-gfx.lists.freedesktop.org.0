@@ -2,58 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oJMkIFsaGGoBdQgAu9opvQ
+	id iNVtIF8aGGoBdQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:07 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0CDED5F0A57
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54A7E5F0A66
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0559210EFB9;
-	Thu, 28 May 2026 10:35:05 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3099A10EFBE;
+	Thu, 28 May 2026 10:35:09 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="epTwgpKh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DSIJi0BJ";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7C72A10EFB6;
- Thu, 28 May 2026 10:35:03 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8CF1D10EFBB;
+ Thu, 28 May 2026 10:35:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779964504; x=1811500504;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=SDkgc6KWVN9nvvrFpnbEarQdMfwyTdYTy+nPp16z+5I=;
- b=epTwgpKhhAYFbqsuyCjStDhxWootLsEN71lgxEMIdcePDXP4f+RJQ2Un
- o/kLkjHUHtrDY4aWbj+GInYtbUXRBn0kTDZy0WAtfWEvTsjP0VEneUAeo
- SMLIiquR9beEl9oDwRb/+BIrea0ROIDMCr8gJlbaYlQfsw0LZncTS7mgE
- cwzcR5w/QYKQjHbmOF8IfmvMpC572LgMRrHiFnahMlk0TQjj8UAt70ClQ
- g1Yev0S/ONpu4o0KYo19lVeXj2EjWMeemjPyGAnJRTSrZ02tBW+oRzomz
- vJOp/BDKR2dZ0G5TuqdV2wDB/PbyFt0DxPXKdBiAiwoPnTNdQjZTOS+Cx A==;
-X-CSE-ConnectionGUID: Wq1gyhLwQweaRshnVDCjgw==
-X-CSE-MsgGUID: wnyMdmafTIKnzW3wKw0dKA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="98221190"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="98221190"
+ t=1779964508; x=1811500508;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=FO5PgDtAqxhnpRjX5vBzDxLUpqz4TErkjfeZ25m5Kr4=;
+ b=DSIJi0BJW55BKWTfcrU/17a0Xwfah3HAbVQRDJwBsgKxypqR/2VfA7D7
+ vwG+uUaC+iLRaXAd4Xy/qefYpJdLEG5D56Jm1LEYJqCrnZZHEng78NAll
+ LtBGzU8xZXmf8EHd3OXrF4+EmvfDaPcHnj9p6vRbS/q/1l2aXWXUcF1ML
+ TTgei0RompEakeJ08FlJHX+hns9ckt/t4L2VNPAQvP1ITO8k5NEgw4B57
+ ezqTwVM/K1jMOS4GLa3GblOSJ8+2ZiwiG5tyPcuXFRA9WI2sOxsGL0EKI
+ RkuZ6jnYghtZxDvpybqbLHsZ0krvoqiTP3RbOmdg9PTKP7K7168VpxQgN A==;
+X-CSE-ConnectionGUID: xgVstZtTRpepksDhHbMhKw==
+X-CSE-MsgGUID: gxWW6dePRfSxcGRySl5qjg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="98221210"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="98221210"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 03:35:03 -0700
-X-CSE-ConnectionGUID: 8Lp9xg8IRGKsaPHZ3Bg+Bg==
-X-CSE-MsgGUID: TRoFaIfKRYqFsq6SjqroIQ==
+ 28 May 2026 03:35:07 -0700
+X-CSE-ConnectionGUID: jqY3aQ7fQ0mmiE4Y9MZuPg==
+X-CSE-MsgGUID: jmAsoP4cR4aDOfkxC/ki/A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="241682259"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="241682300"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.166])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 03:35:02 -0700
+ 28 May 2026 03:35:07 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/11] drm/i915/bw: Cleanups
-Date: Thu, 28 May 2026 13:34:47 +0300
-Message-ID: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 01/11] drm/i915/bw: Don't memcpy() pointlessly
+Date: Thu, 28 May 2026 13:34:48 +0300
+Message-ID: <20260528103458.18069-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
+References: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -85,45 +87,47 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 0CDED5F0A57
+X-Rspamd-Queue-Id: 54A7E5F0A66
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Clean up some of the mess in the bw/sagv code.
+Structs can be copied with a simple assingment. Eliminate
+the pointless memcpy().
 
-Ville Syrjälä (11):
-  drm/i915/bw: Don't memcpy() pointlessly
-  drm/i915/bw: Streamline dg2_get_bw_info()
-  drm/i915/bw: Initialize num_planes sensibly for the first plane group
-    in TGL+
-  drm/i915/bw: Move 'bi_next' to tighter scope
-  drn/i915/bw: s/num_points/num_qgv_points/
-  drm/i915/bw: Move num_{qgv,psf}_points out from the plane group
-  drm/i915/bw: Move psf_bw[] out from the plane group
-  drm/i915/bw: Move peakbw[] out from the plane group
-  drm/i915/bw: Print derated bandwidth numbers for DG2
-  drm/i915/bw: Use icl_qgv_bw()
-  drm/i915/bw: Simplify the best max_data_rate search
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bw.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_bw.c       | 168 ++++++++----------
- .../gpu/drm/i915/display/intel_display_core.h |  12 +-
- 2 files changed, 82 insertions(+), 98 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
+index dc5a5b639d87..d0ceffc93f36 100644
+--- a/drivers/gpu/drm/i915/display/intel_bw.c
++++ b/drivers/gpu/drm/i915/display/intel_bw.c
+@@ -758,8 +758,7 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
+ 	display->bw.max[0].num_planes = 1;
+ 	display->bw.max[0].num_qgv_points = qi.num_points;
+ 	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
+-		memcpy(&display->bw.max[i], &display->bw.max[0],
+-		       sizeof(display->bw.max[0]));
++		display->bw.max[i] = display->bw.max[0];
+ 
+ 	/*
+ 	 * Xe2_HPD should always have exactly two QGV points representing
 -- 
 2.53.0
 
