@@ -2,57 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oOh5DGDMF2o7RAgAu9opvQ
+	id CMKeKGTMF2oLRQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E10C25ECA05
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 485DE5ECA1A
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:28 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 649BF10EC0B;
-	Thu, 28 May 2026 05:02:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C726710EC14;
+	Thu, 28 May 2026 05:02:26 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjlSBVFw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="eMMqyl/5";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A42E10EC06;
- Thu, 28 May 2026 05:02:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BA5B210EC0C;
+ Thu, 28 May 2026 05:02:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779944542; x=1811480542;
+ t=1779944543; x=1811480543;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=YxUib487iN2L7i3Tt9qrM+TtqHSveW2snRpSRXqNrNM=;
- b=YjlSBVFwUHkAoEHZfwBHkgqctub9bhA6P4Xr3MiveXHtbHQecN9WsG4G
- hVnuk02/OdvYzgyRvlG3EU/3RPfMdFzy6J+tADGCzBhWSgDIeaIzv0gwK
- u5r7USwJ+U35g9kavKbvSBkKv69c+leJ0da66y+PDAx5DqOxY6aRZCgMU
- T0vbXMNUqDPbT2lNNArOvMokUy+J0IWpgzPrPOe9md5iFr0H5kBEePj2j
- 7n92hRi+LiizGocclq+Abfhx5rALWn62ACaaT2SDHhyQ+r/OQ8o1pd6rg
- +L4S3pve0D8axHVbvlZykiLGktEZ1jKC/keQTLqU1cmuLAq1YBJ2dtrQW Q==;
-X-CSE-ConnectionGUID: zRI5VksdS6OYZNl7NHU1Kw==
-X-CSE-MsgGUID: SCQBASZyQEC1we3HMdJ0BQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895724"
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895724"
+ bh=55XkpO80ukMVWdvSoNlTzJqTzVtV8GyXu+AltXJfNVE=;
+ b=eMMqyl/5tMkRczWpPcMszjsMQf9KZETnFNCQVNBUI8RusEVNb6lDit0Q
+ PLD/tTy8jbEIsHVdS7NfadnLOhhds0upPHEIVGVzh/kJuMj8dWG9y7MZ5
+ tvRAWECSvTP8FP7lq37spkwMW52wZeKSnVC/p0YrOvgFtsUDtwfmXDjXA
+ oN5oZt8eai6OMcQvN1Td/5euZfbPZAUzA1fkSAY8bqJ5Rvl9ngCTFWBXe
+ kSwrV9cpDretGw2VCk/OsQhPqv01Hjm5TK/JzrYhqPItiQufH338F+B31
+ dDOlbejWxlQN9Xbd+iWhBP7mNW/Jx9oSJcJq4SqWXz+O84q9C4CgOSHLp w==;
+X-CSE-ConnectionGUID: SN2sav3qSOSaD7EhGvN0mg==
+X-CSE-MsgGUID: gAMlXXlfSO6E4VtPjKiqeA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895725"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895725"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:22 -0700
-X-CSE-ConnectionGUID: l2iH8mf1T/ipyqMrXHU9Cg==
-X-CSE-MsgGUID: o5O48ewrQRmZU7ueCCWYbA==
+ 27 May 2026 22:02:23 -0700
+X-CSE-ConnectionGUID: ILj/xM6LT+Ob/naLH1MYmg==
+X-CSE-MsgGUID: phkLVInTTO2PfiNf1mH53g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025994"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238026004"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:20 -0700
+ 27 May 2026 22:02:22 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v2 16/17] drm/i915/display: Add RO bit masking
- gen9_write_dc_state()
-Date: Thu, 28 May 2026 10:31:30 +0530
-Message-ID: <20260528050131.466351-17-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v2 17/17] drm/i915/display: Enable DC3CO for display version 35+
+Date: Thu, 28 May 2026 10:31:31 +0530
+Message-ID: <20260528050131.466351-18-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -97,66 +96,33 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: E10C25ECA05
+X-Rspamd-Queue-Id: 485DE5ECA1A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-BIT 10 and BIT 11 is defined as RO bits
-set by HW , so mask these bits to avoid while writing and reading
-DC_STATE_EN to avaoid unnessory re writes.
+Display version 35+ supports DC3CO power state. Set max_dc to 4
+for these platforms to allow DC3CO along with DC6 state.
 
-BSpec: 69115
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_power_well.c | 13 ++++++++++++-
- drivers/gpu/drm/i915/display/intel_display_regs.h   |  3 +++
- 2 files changed, 15 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 0e7e6a2b1547..bba80e5e8b6f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -732,6 +732,17 @@ static void gen9_write_dc_state(struct intel_display *display,
- 	int rewrites = 0;
- 	int rereads = 0;
- 	u32 v;
-+	u32 ro_mask = 0;
-+
-+	/*
-+	 * mask the RO bits from state and read back to avoid
-+	 * unnecessary rewrites.
-+	 * FIXME: Implement RO mask for remaining display versions.
-+	 */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index 463f581c0b95..535c744196de 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -1010,7 +1010,9 @@ static u32 get_allowed_dc_mask(struct intel_display *display, int enable_dc)
+ 	if (!HAS_DISPLAY(display))
+ 		return 0;
+ 
+-	if (DISPLAY_VER(display) >= 20)
 +	if (DISPLAY_VER(display) >= 35)
-+		ro_mask = DC_STATE_EN_RO_MASK;
-+
-+	state = (state & ~ro_mask);
- 
- 	intel_de_write(display, DC_STATE_EN, state);
- 
-@@ -741,7 +752,7 @@ static void gen9_write_dc_state(struct intel_display *display,
- 	 * we are confident that state is exactly what we want.
- 	 */
- 	do  {
--		v = intel_de_read(display, DC_STATE_EN);
-+		v = intel_de_read(display, DC_STATE_EN) & ~ro_mask;
- 
- 		if (v != state) {
- 			intel_de_write(display, DC_STATE_EN, state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index d9efe5b0ba46..e58e53f1e2f7 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -3086,6 +3086,9 @@ enum skl_power_gate {
- #define  DC_STATE_EN_UPTO_DC6		REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 2)
- #define  DC_STATE_EN_UPTO_DC3CO	REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 3)
- 
-+/* Display ver 35+ */
-+#define  DC_STATE_EN_RO_MASK           REG_GENMASK(11, 10)
-+
- #define  DC_STATE_DEBUG                  _MMIO(0x45520)
- #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
- #define  DC_STATE_DEBUG_MASK_MEMORY_UP	(1 << 1)
++		max_dc = 4;
++	else if (DISPLAY_VER(display) >= 20)
+ 		max_dc = 2;
+ 	else if (display->platform.dg2)
+ 		max_dc = 1;
 -- 
 2.43.0
 
