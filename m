@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 6MpjJXkaGGoBdQgAu9opvQ
+	id kPzKKn8aGGoBdQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:43 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 47F6C5F0AAA
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 610505F0AB1
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:43 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 93C2910EFC7;
-	Thu, 28 May 2026 10:35:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F3FBA10EFC9;
+	Thu, 28 May 2026 10:35:41 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ngY9yexu";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="g9b42YXf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4626710EFBA;
- Thu, 28 May 2026 10:35:34 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A7E1410EFC8;
+ Thu, 28 May 2026 10:35:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779964534; x=1811500534;
+ t=1779964538; x=1811500538;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=nB7vr3R83XT6uBNz/Qnn47KU5mA2/whWir8d5fNNtTw=;
- b=ngY9yexueCjPIIuh2SNqtwu7HP8/myZO04juFIIhAGqXNBapFM8nWjE7
- FMH0D3MTMJs6Tgz32O9Gy7ErM0Fkn3ifb3LHRuXlUv5VTnNr7g6ohT+JN
- x6JdhiYze2oXs4szvREMqw8zp0SgfUBoH8GgkcGw870ccKiDWGWWPCbNq
- ZRMCqxzAHw9y1ovyCW92d70dJLFp6LMfzJOEBB+NfjlFZ8oHezi56TIm7
- Rw5UYT1Kp2Z1nbHVgZCwh5e52ZMYO8+DR9JFvpPAPdJb2t5Yop1xuo9Cs
- 88lW2CcbSuhxd1wE10+mCnidspDPz9wZpMdfNTNEc5maKEdSUuGTibmuq w==;
-X-CSE-ConnectionGUID: v2uf7IRBQeyy0WsJHqIBjg==
-X-CSE-MsgGUID: jJHMw1DATHGas1b5DzFzmg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="79837669"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="79837669"
+ bh=EeaIwU9H8mZAh++SgjIvISF1RUU8zSSZ/vWK7UClYWU=;
+ b=g9b42YXfHY0ZXcLZSLt4GR9T/axlWTM1NIUCNYwtagv52sDaRPo88fUP
+ 5gSTP67vRr+1WsIFjiL0wcB4EX9KA+PhCrSIEPzGDZpkE2nnCNiqaRi7F
+ LUz0AUH0RTDv9dRHKv1cyOB4Dh/Jg/3SDa90N0szKA0bnLDXy+455md5s
+ rnT0IgqwUQU645syjDEy8bgtO+ewKMTTf6lRi8HL/80xKvnvoa1TP4a3S
+ ac3Sa9E9zKXs3Yh1JAEoOoJfbI/VhWvTYiFxYYYdfXgaRf3U47Q0azIAk
+ GJc+udik3EzYyfK61vuhpUJCaL0VCrjbJVp1w4cggM8QfpKp8w01dAavg Q==;
+X-CSE-ConnectionGUID: M6kmhyIoRnaRRfBnA0Kj/w==
+X-CSE-MsgGUID: Q+OznyF8Qt+/uuT6GXg+Lg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="79837680"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="79837680"
 Received: from orviesa005.jf.intel.com ([10.64.159.145])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 03:35:34 -0700
-X-CSE-ConnectionGUID: PijNq6KbSt6MtZPOP387zg==
-X-CSE-MsgGUID: NFHmaau0QwuC1L42q/ll7g==
+ 28 May 2026 03:35:38 -0700
+X-CSE-ConnectionGUID: hZMvVYnhRjKCwO/tGlMBwA==
+X-CSE-MsgGUID: wwirla8YRMy3V56xoevJ3Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="247458897"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="247458902"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.166])
  by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 03:35:33 -0700
+ 28 May 2026 03:35:37 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 07/11] drm/i915/bw: Move psf_bw[] out from the plane group
-Date: Thu, 28 May 2026 13:34:54 +0300
-Message-ID: <20260528103458.18069-8-ville.syrjala@linux.intel.com>
+Subject: [PATCH 08/11] drm/i915/bw: Move peakbw[] out from the plane group
+Date: Thu, 28 May 2026 13:34:55 +0300
+Message-ID: <20260528103458.18069-9-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
 References: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
@@ -100,75 +100,93 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 47F6C5F0AAA
+X-Rspamd-Queue-Id: 610505F0AB1
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-The PSF bandwidth doesn't depend on the number of planes, so there
-is no need to repeat the same information for each plane group.
+The peak bandwidth doesn't depend on the number of planes,
+so there is no need to repeat the same information for each
+plane group.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c         | 17 ++++++-----------
- .../gpu/drm/i915/display/intel_display_core.h   |  4 ++--
- 2 files changed, 8 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c       | 24 ++++++++++++-------
+ .../gpu/drm/i915/display/intel_display_core.h |  4 ++--
+ 2 files changed, 17 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index 6495924d0be8..ef86fac8e664 100644
+index ef86fac8e664..59df01b8ad7c 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -673,16 +673,14 @@ static int tgl_get_bw_info(struct intel_display *display,
- 				    i, j, bi->num_planes, bi->deratedbw[j],
- 				    bi->peakbw[j]);
+@@ -666,15 +666,21 @@ static int tgl_get_bw_info(struct intel_display *display,
+ 
+ 			bi->deratedbw[j] = min(maxdebw,
+ 					       bw * (100 - soc_bw_params->derating) / 100);
+-			bi->peakbw[j] = tgl_peakbw(num_channels, qi.channel_width, sp->dclk);
+ 
+ 			drm_dbg_kms(display->drm,
+-				    "BW%d / QGV %d: num_planes=%d deratedbw=%u peakbw: %u\n",
+-				    i, j, bi->num_planes, bi->deratedbw[j],
+-				    bi->peakbw[j]);
++				    "BW%d / QGV %d: num_planes=%d deratedbw=%u\n",
++				    i, j, bi->num_planes, bi->deratedbw[j]);
  		}
-+	}
- 
--		for (j = 0; j < qi.num_psf_points; j++) {
--			const struct intel_psf_gv_point *sp = &qi.psf_points[j];
-+	for (i = 0; i < qi.num_psf_points; i++) {
-+		const struct intel_psf_gv_point *sp = &qi.psf_points[i];
- 
--			bi->psf_bw[j] = adl_calc_psf_bw(sp->clk);
-+		display->bw.psf_bw[i] = adl_calc_psf_bw(sp->clk);
- 
--			drm_dbg_kms(display->drm,
--				    "BW%d / PSF GV %d: num_planes=%d bw=%u\n",
--				    i, j, bi->num_planes, bi->psf_bw[j]);
--		}
-+		drm_dbg_kms(display->drm, "PSF GV %d: bw=%u\n", i, display->bw.psf_bw[i]);
  	}
  
- 	/*
-@@ -810,10 +808,7 @@ static unsigned int tgl_max_bw_index(struct intel_display *display,
- static unsigned int adl_psf_bw(struct intel_display *display,
- 			       int psf_gv_point)
- {
--	const struct intel_bw_info *bi =
--			&display->bw.max[0];
--
--	return bi->psf_bw[psf_gv_point];
-+	return display->bw.psf_bw[psf_gv_point];
- }
++	for (i = 0; i < qi.num_qgv_points; i++) {
++		const struct intel_qgv_point *sp = &qi.points[i];
++
++		display->bw.peakbw[i] = tgl_peakbw(num_channels, qi.channel_width, sp->dclk);
++
++		drm_dbg_kms(display->drm, "QGV %d: peakbw=%u\n", i, display->bw.peakbw[i]);
++	}
++
+ 	for (i = 0; i < qi.num_psf_points; i++) {
+ 		const struct intel_psf_gv_point *sp = &qi.psf_points[i];
  
- static unsigned int icl_qgv_bw(struct intel_display *display,
+@@ -741,11 +747,11 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
+ 
+ 		display->bw.max[0].deratedbw[i] =
+ 			min(maxdebw, (100 - soc_bw_params->derating) * bw / 100);
+-		display->bw.max[0].peakbw[i] = bw;
+ 
+-		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw: %u\n",
+-			    i, display->bw.max[0].deratedbw[i],
+-			    display->bw.max[0].peakbw[i]);
++		display->bw.peakbw[i] = bw;
++
++		drm_dbg_kms(display->drm, "QGV %d: deratedbw=%u peakbw=%u\n",
++			    i, display->bw.max[0].deratedbw[i], display->bw.peakbw[i]);
+ 	}
+ 
+ 	/* Bandwidth does not depend on # of planes; set all groups the same */
+@@ -1110,7 +1116,7 @@ static int mtl_find_qgv_points(struct intel_display *display,
+ 
+ 		if (max_data_rate - data_rate < best_rate) {
+ 			best_rate = max_data_rate - data_rate;
+-			qgv_peak_bw = display->bw.max[bw_index].peakbw[i];
++			qgv_peak_bw = display->bw.peakbw[i];
+ 		}
+ 
+ 		drm_dbg_kms(display->drm, "QGV point %d: max bw %d required %d qgv_peak_bw: %d\n",
 diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index f13fa810ccca..58cd0961031b 100644
+index 58cd0961031b..3c17cac1eb97 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_core.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_core.h
 @@ -325,12 +325,12 @@ struct intel_display {
  		struct intel_bw_info {
  			/* for each QGV point */
  			unsigned int deratedbw[I915_NUM_QGV_POINTS];
--			/* for each PSF GV point */
--			unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
- 			/* Peak BW for each QGV point */
- 			unsigned int peakbw[I915_NUM_QGV_POINTS];
+-			/* Peak BW for each QGV point */
+-			unsigned int peakbw[I915_NUM_QGV_POINTS];
  			u8 num_planes;
  		} max[6];
-+		/* for each PSF GV point */
-+		unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
+ 		/* for each PSF GV point */
+ 		unsigned int psf_bw[I915_NUM_PSF_GV_POINTS];
++		/* Peak BW for each QGV point */
++		unsigned int peakbw[I915_NUM_QGV_POINTS];
  		u8 num_qgv_points;
  		u8 num_psf_gv_points;
  	} bw;
