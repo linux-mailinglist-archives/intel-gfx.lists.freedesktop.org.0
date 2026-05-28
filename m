@@ -2,71 +2,34 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id KCXUKWuQGGrWlAgAu9opvQ
+	id 6Hz0DwOdGGr+lQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 20:58:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 21:52:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CC71E5F6C63
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 20:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 76F105F7593
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 21:52:34 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 951C510F584;
-	Thu, 28 May 2026 18:58:48 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QDyQP7e8";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D79BD10F600;
+	Thu, 28 May 2026 19:52:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3817810F582;
- Thu, 28 May 2026 18:58:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779994727; x=1811530727;
- h=message-id:date:mime-version:from:to:cc:subject:
- content-transfer-encoding;
- bh=h4nhAIFlrHYsBUZIJY8m5NPO1FEasVZKpDgboRZoYxA=;
- b=QDyQP7e81DDEOq0bl+TVDFufykG1fYD2gc2tsdhxCZHOn27C7QLcKwaf
- 9OYzRnPWfl9ii5bpg44mDFASZqYr/zA1jt3Yo9ghIZVtCk0VYRp4HZDry
- S80ul+GouhyTxDQVyOS9uNkcJ1hWXKi91cy5sCsZoYKnY4Rr8MWAyQX/o
- QreNC/axLvnfhrzbJqpFH82yRSJB+g7rmc98fKH1QhYE8PU6Ck6euKTUo
- I3CW8xpVTVCr+J56fe3ymlr0C6BSn/ROvsj0MBPEsbdSS/5RBeSXDht91
- ajn7DT8GIOIWpis0y7EiVC+FW3Ut1nEUCDV5C+saYhdix46/sCD0pFp/G A==;
-X-CSE-ConnectionGUID: f125N+QCTnSCoSg1OflcoA==
-X-CSE-MsgGUID: HaCnfPA+TMmc8SGHgBT3+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="79993814"
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="79993814"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 11:58:46 -0700
-X-CSE-ConnectionGUID: 8lEdAd/HSmOMtmrCJdGT5g==
-X-CSE-MsgGUID: ur2Erzv8QnSFYBYyYJla4w==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,174,1774335600"; d="scan'208";a="241597324"
-Received: from ettammin-mobl3.ger.corp.intel.com (HELO [10.245.244.82])
- ([10.245.244.82])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 11:58:43 -0700
-Message-ID: <ef65f43c-becf-473c-a5cc-203fdfecd491@linux.intel.com>
-Date: Thu, 28 May 2026 20:58:30 +0200
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9DFAD10F600;
+ Thu, 28 May 2026 19:52:31 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1337812888635611304=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/display=3A_updat?=
+ =?utf-8?q?e_BW_buddy_initialization_for_LPDDR4_and_LPDDR5?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Vinod Govindapillai" <vinod.govindapillai@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Thu, 28 May 2026 19:52:31 -0000
+Message-ID: <177999795163.21318.13424981715472614056@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260528182601.205595-1-vinod.govindapillai@intel.com>
+In-Reply-To: <20260528182601.205595-1-vinod.govindapillai@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,320 +42,205 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_TO(0.00)[ffwll.ch,gmail.com];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	NEURAL_HAM(-0.00)[-1.000];
-	DKIM_TRACE(0.00)[intel.com:+]
-X-Rspamd-Queue-Id: CC71E5F6C63
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	NEURAL_HAM(-0.00)[-0.990];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kms_flip:email]
+X-Rspamd-Queue-Id: 76F105F7593
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Hi Dave, Sima,
+--===============1337812888635611304==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Last drm-misc-next pull-request, with last minute changes for tegra, nouveau and host1x.
+== Series Details ==
 
-Kind regards,
-~Maarten Lankhorst
+Series: drm/i915/display: update BW buddy initialization for LPDDR4 and LPDDR5
+URL   : https://patchwork.freedesktop.org/series/167481/
+State : failure
 
-drm-misc-next-2026-05-28:
-drm-misc-next for v7.2-rc1:
+== Summary ==
 
-UAPI Changes:
-- amdxdna: Revert read-only user-pointer BO mappings.
-- panthor: Add eviction and reclaim info to fdinfo.
+CI Bug Log - changes from CI_DRM_18571 -> Patchwork_167481v1
+====================================================
 
-Cross-subsystem Changes:
-- Convert DMA-buf system and cma heap allocators to module.
+Summary
+-------
 
-Core Changes:
-- Cleanup driver misuses of drm/exec.
+  **FAILURE**
 
-Driver Changes:
-- Add LG LP129WT232166, AM-1280800W8TZQW-T00H, NEC NL6448BC33-70C,
-  Riverdi RVT70HSLNWCA0 and RVT101HVLNWC00 panels.
-- Add support for RZ/T2H SoC to renesas.
-- Add cursor plane support to verisilicon.
-- Support DVI outputs in ite-it66121 bridge.
-- Assorted bugfixes, docbook updates and improvements to ivpu, tegra,
-  host1x, nouveau.
-- Add DSC quirk for ASUS DC301 USB-C dock.
-- Use drm client buffer for tegra framebuffer.
-- Add support for GA100 to nouveau.
+  Serious unknown changes coming with Patchwork_167481v1 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_167481v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
 
-The following changes since commit bed29492d413349e5b13f21936655064cdb63c91:
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/index.html
 
-  Merge v7.1-rc5 into drm-next (2026-05-28 09:58:36 +0200)
+Participating hosts (42 -> 40)
+------------------------------
 
-are available in the Git repository at:
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-2026-05-28
+Possible new issues
+-------------------
 
-for you to fetch changes up to 61de054a772a1feda6364931ab1baf9038abf1c8:
+  Here are the unknown changes that may have been introduced in Patchwork_167481v1:
 
-  drm/nouveau/gsp: formally support GA100 (2026-05-28 19:30:15 +0200)
+### IGT changes ###
 
-----------------------------------------------------------------
-drm-misc-next for v7.2-rc1:
+#### Possible regressions ####
 
-UAPI Changes:
-- amdxdna: Revert read-only user-pointer BO mappings.
-- panthor: Add eviction and reclaim info to fdinfo.
+  * igt@i915_selftest@live@hangcheck:
+    - bat-arls-6:         [PASS][1] -> [DMESG-FAIL][2] +1 other test dmesg-fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18571/bat-arls-6/igt@i915_selftest@live@hangcheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/bat-arls-6/igt@i915_selftest@live@hangcheck.html
 
-Cross-subsystem Changes:
-- Convert DMA-buf system and cma heap allocators to module.
+  
+Known issues
+------------
 
-Core Changes:
-- Cleanup driver misuses of drm/exec.
+  Here are the changes found in Patchwork_167481v1 that come from known issues:
 
-Driver Changes:
-- Add LG LP129WT232166, AM-1280800W8TZQW-T00H, NEC NL6448BC33-70C,
-  Riverdi RVT70HSLNWCA0 and RVT101HVLNWC00 panels.
-- Add support for RZ/T2H SoC to renesas.
-- Add cursor plane support to verisilicon.
-- Support DVI outputs in ite-it66121 bridge.
-- Assorted bugfixes, docbook updates and improvements to ivpu, tegra,
-  host1x, nouveau.
-- Add DSC quirk for ASUS DC301 USB-C dock.
-- Use drm client buffer for tegra framebuffer.
-- Add support for GA100 to nouveau.
+### IGT changes ###
 
-----------------------------------------------------------------
-Aaron Kling (1):
-      drm/tegra: Enable cmu for Tegra186 and Tegra194
+#### Possible fixes ####
 
-Andrzej Kacprowski (1):
-      accel/ivpu: Remove disable_d0i3_msg workaround
+  * igt@kms_flip@basic-flip-vs-wf_vblank:
+    - fi-bsw-n3050:       [DMESG-WARN][3] -> [PASS][4] +1 other test pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18571/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html
 
-Artur Kowalski (1):
-      gpu: host1x: trace: fix string fields in host1x traces
+  * igt@kms_hdmi_inject@inject-audio:
+    - fi-tgl-1115g4:      [FAIL][5] ([i915#16115]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18571/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
 
-Ben Dooks (1):
-      gpu: host1x: Fix missing 'host1x_context_device_bus_type'
+  
+  [i915#16115]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16115
 
-Dario Binacchi (2):
-      dt-bindings: display: simple: Add AM-1280800W8TZQW-T00H
-      drm/panel: simple: Add AM-1280800W8TZQW-T00H
 
-Dongyang Jin (1):
-      drm/panel: fix kernel-doc warning for devm_drm_panel_add()
+Build changes
+-------------
 
-Felix Gu (2):
-      gpu: host1x: mipi: Fix device_node reference leak in tegra_mipi_request()
-      drm/tegra: dc: Fix device node reference leak in tegra_dc_has_output()
+  * Linux: CI_DRM_18571 -> Patchwork_167481v1
 
-Guangshuo Li (1):
-      gpu: host1x: Fix device reference leak in host1x_device_parse_dt() error path
+  CI-20190529: 20190529
+  CI_DRM_18571: 3561a5c5f9c0e19145a27624ada4f2866ec3a181 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8941: 0e365bfe5ccc6d1f7607db10bc21c72d30292cea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_167481v1: 3561a5c5f9c0e19145a27624ada4f2866ec3a181 @ git://anongit.freedesktop.org/gfx-ci/linux
 
-Hongling Zeng (5):
-      nouveau/gsp: cleanup IS_ERR_OR_NULL in rm_alloc functions
-      nouveau/gsp: cleanup IS_ERR_OR_NULL in rpc_rd
-      nouveau/gsp/rm: cleanup IS_ERR_OR_NULL in core implementation
-      nouveau/gsp/rm: cleanup WARN_ON(IS_ERR_OR_NULL)
-      nouveau/gsp/rm: cleanup remaining IS_ERR_OR_NULL usage
+== Logs ==
 
-Icenowy Zheng (3):
-      drm: verisilicon: add max cursor size to HWDB
-      drm: verisilicon: add support for cursor planes
-      drm: verisilicon: fix build failure of cursor plane code
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/index.html
 
-Imre Deak (1):
-      drm/dp: Add DSC virtual DPCD quirk for Realtek MST branch device
+--===============1337812888635611304==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Ion Agorria (1):
-      drm/tegra: gr2d/gr3d: Contain PM in the gr*d_probe/gr*d_remove
 
-Jacob McLemore (1):
-      drm/tegra: sor: Remove usage of drm_simple_encoder_init()
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
 
-Javier Martinez Canillas (3):
-      drm/bridge: ite-it66121: Switch to the HDMI connector helpers
-      drm/bridge: ite-it66121: Move .mode_set logic to .atomic_enable
-      drm/bridge: ite-it66121: Select HDMI or DVI mode based on sink type
 
-Jérôme de Bretagne (1):
-      drm/panel-edp: Add LG LP129WT232166 panel
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/display: update BW buddy initialization for LPDDR4 and LPDDR5</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167481/">https://patchwork.freedesktop.org/series/167481/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
 
-Karol Wachowski (1):
-      accel/ivpu: Document why full JSM message size is always used
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/index.html</a></td></tr>
 
-Lad Prabhakar (4):
-      dt-bindings: display: renesas,rzg2l-du: Add RZ/T2H and RZ/N2H support
-      drm: renesas: rz-du: Make DU reset control optional for RZ/T2H support
-      drm: renesas: rz-du: Move mode_valid logic to per-SoC clock limits
-      drm: renesas: rz-du: Add support for RZ/T2H SoC
+</table>
 
-Lizhi Hou (1):
-      Revert "accel/amdxdna: Support read-only user-pointer BO mappings"
 
-Maxime Ripard (4):
-      dma-buf: heaps: Export mem_accounting parameter
-      dma-buf: heaps: cma: Turn the heap into a module
-      dma-buf: heaps: system: Turn the heap into a module
-      arm64: defconfig: Enable dma-buf heaps
+    <h1>CI Bug Log - changes from CI_DRM_18571 -&gt; Patchwork_167481v1</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_167481v1 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_167481v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_167481v1:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@hangcheck:<ul>
+<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18571/bat-arls-6/igt@i915_selftest@live@hangcheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/bat-arls-6/igt@i915_selftest@live@hangcheck.html">DMESG-FAIL</a> +1 other test dmesg-fail</li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_167481v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@kms_flip@basic-flip-vs-wf_vblank:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18571/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html">DMESG-WARN</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/fi-bsw-n3050/igt@kms_flip@basic-flip-vs-wf_vblank.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_hdmi_inject@inject-audio:</p>
+<ul>
+<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18571/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16115">i915#16115</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167481v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18571 -&gt; Patchwork_167481v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18571: 3561a5c5f9c0e19145a27624ada4f2866ec3a181 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8941: 0e365bfe5ccc6d1f7607db10bc21c72d30292cea @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_167481v1: 3561a5c5f9c0e19145a27624ada4f2866ec3a181 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
 
-Mikko Perttunen (3):
-      gpu: host1x: Allow entries in BO caches to be freed
-      gpu: host1x: Fix iommu_map_sgtable() return value check
-      drm/tegra: Fix iommu_map_sgtable() return value check
+</body>
+</html>
 
-Nicolas Frattaroli (2):
-      drm/panthor: Implement evicted status for GEM objects
-      drm/panthor: Reduce padding in gems debugfs for refcount
-
-Randy Dunlap (2):
-      drm/tegra: dp: fix kernel-doc warnings in dp.h
-      drm/tegra: tegra_drm.h: fix all uapi kernel-doc warnings
-
-Souradipto Das (1):
-      drm/tegra: hdmi: Open-code drm_simple_encoder_init()
-
-Steffen Trumtrar (2):
-      dt-bindings: display: simple: Add NEC NL6448BC33-70C panel
-      drm/panel: simple: add NEC NL6448BC33-70C
-
-Svyatoslav Ryhel (1):
-      drm/tegra: gr2d/gr3d: Initialize address register map before HOST1X client is registered
-
-Tanmay Patil (2):
-      gpu: host1x: Skip redundant syncpoint loads in host1x_syncpt_wait()
-      gpu: host1x: Skip redundant HW state update
-
-Thomas Hellström (4):
-      drm/exec: Remove the index parameter from drm_exec_for_each_locked_obj[_reverse]
-      drm/exec: Make the drm_exec_until_all_locked() macro more readable
-      drm/exec, drm/xe: Avoid abusing the drm_exec retry pointer
-      drm/exec, drm/xe, drm/amdgpu: Add an accessor for struct drm_exec::ticket
-
-Thomas Zimmermann (6):
-      Merge drm/drm-next into drm-misc-next
-      drm/tegra: fbdev: Do not assign to struct drm_fb_helper.info
-      drm/tegra: fbdev: Remove offset into framebuffer memory
-      drm/tegra: fbdev: Calculate buffer geometry with format helpers
-      drm/tegra: fbdev: Use a DRM client buffer
-      drm/tegra: Make tegra_fb_alloc() an internal interface
-
-Thorsten Blum (2):
-      drm/tegra: dp: use str_plural in drm_dp_link_train_{full,fast}
-      drm/tegra: sor: use str_plural in tegra_sor_dp_link_configure
-
-Timur Tabi (9):
-      drm/nouveau/gsp: add SEC2 to GA100 chip table
-      drm/nouveau/gsp: use fb.bios.addr for gspFwWprEnd instead of vga_workspace.addr
-      drm/nouveau/gsp: read MMU_LOCK to fix WPR placement on GA100
-      drm/nouveau: only boot FRTS if its region is allocated
-      drm/nouveau: GA100 has an FRTS region size of zero
-      drm/nouveau/bios: specify correct display fuse register for Ampere and Ada
-      drm/nouveau/bios: skip the IFR header if present
-      drm/nouveau/gsp: require GSP-RM for GA100 support
-      drm/nouveau/gsp: formally support GA100
-
-Tommaso Merciai (1):
-      dt-bindings: display: renesas,rzg2l-du: Refuse port@1 for RZ/G2UL
-
-Vitor Soares (1):
-      dt-bindings: display: panel-lvds: Add Riverdi RVT70HSLNWCA0 and RVT101HVLNWC00
-
-shayderrr (1):
-      host1x: bus: Fix missing ops null check in error teardown
-
- .../bindings/display/panel/panel-lvds.yaml         |   4 +
- .../bindings/display/panel/panel-simple.yaml       |   4 +
- .../bindings/display/renesas,rzg2l-du.yaml         |  21 +-
- arch/arm64/configs/defconfig                       |   3 +
- drivers/accel/amdxdna/amdxdna_ubuf.c               |  29 +-
- drivers/accel/ivpu/ivpu_drv.h                      |   3 -
- drivers/accel/ivpu/ivpu_fw.c                       |  23 +-
- drivers/accel/ivpu/ivpu_ipc.c                      |   6 +-
- drivers/accel/ivpu/ivpu_jsm_msg.c                  |   3 -
- drivers/accel/ivpu/vpu_boot_api.h                  |   6 +-
- drivers/dma-buf/dma-heap.c                         |   1 +
- drivers/dma-buf/heaps/Kconfig                      |   4 +-
- drivers/dma-buf/heaps/cma_heap.c                   |   3 +
- drivers/dma-buf/heaps/system_heap.c                |   5 +
- drivers/gpu/drm/amd/amdgpu/amdgpu_amdkfd_gpuvm.c   |   4 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c             |  15 +-
- drivers/gpu/drm/amd/amdgpu/amdgpu_eviction_fence.c |   3 +-
- drivers/gpu/drm/bridge/Kconfig                     |   2 +
- drivers/gpu/drm/bridge/ite-it66121.c               | 310 +++++++++++++++------
- drivers/gpu/drm/display/drm_dp_helper.c            |   2 +
- drivers/gpu/drm/drm_exec.c                         |   9 +-
- drivers/gpu/drm/drm_gpuvm.c                        |   3 +-
- drivers/gpu/drm/drm_panel.c                        |   1 +
- drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h  |   8 +-
- drivers/gpu/drm/nouveau/nvkm/engine/device/base.c  |  10 +-
- .../gpu/drm/nouveau/nvkm/subdev/bios/shadowramin.c |   3 +-
- .../gpu/drm/nouveau/nvkm/subdev/bios/shadowrom.c   | 110 +++++++-
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/ga100.c    |   1 -
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/alloc.c    |   4 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c  |   2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c |   2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c  |  10 +-
- drivers/gpu/drm/nouveau/nvkm/subdev/gsp/tu102.c    |  69 ++++-
- drivers/gpu/drm/panel/panel-edp.c                  |   1 +
- drivers/gpu/drm/panel/panel-simple.c               |  57 ++++
- drivers/gpu/drm/panthor/panthor_gem.c              |  16 +-
- drivers/gpu/drm/panthor/panthor_gem.h              |  10 +
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_crtc.c      |   9 +-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.c       |  20 +-
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_drv.h       |  14 +
- drivers/gpu/drm/renesas/rz-du/rzg2l_du_encoder.c   |   9 +-
- drivers/gpu/drm/tegra/dc.c                         | 120 +++++++-
- drivers/gpu/drm/tegra/dc.h                         |  13 +
- drivers/gpu/drm/tegra/dp.c                         |   6 +-
- drivers/gpu/drm/tegra/dp.h                         |  12 +-
- drivers/gpu/drm/tegra/drm.h                        |   5 -
- drivers/gpu/drm/tegra/fb.c                         |   1 +
- drivers/gpu/drm/tegra/fbdev.c                      |  88 +++---
- drivers/gpu/drm/tegra/gem.c                        |  22 +-
- drivers/gpu/drm/tegra/gr2d.c                       |  19 +-
- drivers/gpu/drm/tegra/gr3d.c                       |  19 +-
- drivers/gpu/drm/tegra/hdmi.c                       |  10 +-
- drivers/gpu/drm/tegra/sor.c                        |  37 ++-
- drivers/gpu/drm/tegra/submit.c                     |   3 +-
- drivers/gpu/drm/verisilicon/Makefile               |   3 +-
- drivers/gpu/drm/verisilicon/vs_crtc.c              |  11 +-
- drivers/gpu/drm/verisilicon/vs_cursor_plane.c      | 272 ++++++++++++++++++
- drivers/gpu/drm/verisilicon/vs_cursor_plane_regs.h |  44 +++
- drivers/gpu/drm/verisilicon/vs_hwdb.c              |   4 +
- drivers/gpu/drm/verisilicon/vs_hwdb.h              |   5 +
- drivers/gpu/drm/verisilicon/vs_plane.h             |   1 +
- drivers/gpu/drm/xe/xe_validation.c                 |   4 +-
- drivers/gpu/drm/xe/xe_validation.h                 |   2 +-
- drivers/gpu/drm/xe/xe_vm.c                         |   3 +-
- drivers/gpu/host1x/bus.c                           |  66 ++++-
- drivers/gpu/host1x/context.c                       |   1 +
- drivers/gpu/host1x/context.h                       |   3 +-
- drivers/gpu/host1x/context_bus.c                   |   1 +
- drivers/gpu/host1x/intr.c                          |   8 +-
- drivers/gpu/host1x/job.c                           |  10 +-
- drivers/gpu/host1x/mipi.c                          |   6 +-
- drivers/gpu/host1x/syncpt.c                        |  23 +-
- include/drm/drm_exec.h                             |  71 +++--
- include/linux/host1x.h                             |   7 +
- include/trace/events/host1x.h                      |  50 ++--
- include/uapi/drm/tegra_drm.h                       |  16 ++
- 76 files changed, 1393 insertions(+), 392 deletions(-)
- create mode 100644 drivers/gpu/drm/verisilicon/vs_cursor_plane.c
- create mode 100644 drivers/gpu/drm/verisilicon/vs_cursor_plane_regs.h
+--===============1337812888635611304==--
