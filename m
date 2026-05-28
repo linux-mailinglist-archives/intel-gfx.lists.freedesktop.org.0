@@ -2,56 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id aKMPIWDMF2o7RAgAu9opvQ
+	id oOh5DGDMF2o7RAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5BAD65ECA0C
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E10C25ECA05
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 07:02:23 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C168810EC0D;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 649BF10EC0B;
 	Thu, 28 May 2026 05:02:22 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="EtlsZubX";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="YjlSBVFw";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3B0C410EC06;
- Thu, 28 May 2026 05:02:20 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A42E10EC06;
+ Thu, 28 May 2026 05:02:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779944540; x=1811480540;
+ t=1779944542; x=1811480542;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=j4IRDBKWWVd3Hx5eMzYZUuswfQAqEg144JkteJSeb0A=;
- b=EtlsZubXJ5vhNgqJOIQA6V2+EQKBd4mNeLp2dOuz05U4b55C4Ssvrt15
- UjUYqbLYTCw8rDvpZ4EWYPOvW+1hetQJkK3hrwbbhoKihhZExtnVag9Qn
- uYWcvpWqFsdUxJwB0xszCjz22bdlV15+yiTTgyt1eonG0vK1x+QfJwtdn
- DctOawh4cgYlwW9HoFe6iiJrkjYmmT5pa23PUTDnqxlb1aQ/YnQGLmOln
- Qrj2i/nqbl0uQ8MLwQTc6cX3hAAMYoam4lQZ4klRkPf4OnnEoyNco0jgs
- wbrnIKBMPybUobecgw+C4g5R9466+W1znc30LvUCzkrnw4ELFK1N1yhTh w==;
-X-CSE-ConnectionGUID: QUTI858kRPCC04/qT31/dQ==
-X-CSE-MsgGUID: mnKaVG5RQbmZ8zY9ZR6Prw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895722"
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895722"
+ bh=YxUib487iN2L7i3Tt9qrM+TtqHSveW2snRpSRXqNrNM=;
+ b=YjlSBVFwUHkAoEHZfwBHkgqctub9bhA6P4Xr3MiveXHtbHQecN9WsG4G
+ hVnuk02/OdvYzgyRvlG3EU/3RPfMdFzy6J+tADGCzBhWSgDIeaIzv0gwK
+ u5r7USwJ+U35g9kavKbvSBkKv69c+leJ0da66y+PDAx5DqOxY6aRZCgMU
+ T0vbXMNUqDPbT2lNNArOvMokUy+J0IWpgzPrPOe9md5iFr0H5kBEePj2j
+ 7n92hRi+LiizGocclq+Abfhx5rALWn62ACaaT2SDHhyQ+r/OQ8o1pd6rg
+ +L4S3pve0D8axHVbvlZykiLGktEZ1jKC/keQTLqU1cmuLAq1YBJ2dtrQW Q==;
+X-CSE-ConnectionGUID: zRI5VksdS6OYZNl7NHU1Kw==
+X-CSE-MsgGUID: SCQBASZyQEC1we3HMdJ0BQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="80895724"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="80895724"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:20 -0700
-X-CSE-ConnectionGUID: 00NWhH4JQc6FADIVxG6qsw==
-X-CSE-MsgGUID: b2R/sP9cQ0ieDSXZ4D9bAA==
+ 27 May 2026 22:02:22 -0700
+X-CSE-ConnectionGUID: l2iH8mf1T/ipyqMrXHU9Cg==
+X-CSE-MsgGUID: o5O48ewrQRmZU7ueCCWYbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025981"
+X-IronPort-AV: E=Sophos;i="6.24,172,1774335600"; d="scan'208";a="238025994"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 27 May 2026 22:02:19 -0700
+ 27 May 2026 22:02:20 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v2 15/17] drm/i915/display: program CMTG before DC3CO enable
-Date: Thu, 28 May 2026 10:31:29 +0530
-Message-ID: <20260528050131.466351-16-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v2 16/17] drm/i915/display: Add RO bit masking
+ gen9_write_dc_state()
+Date: Thu, 28 May 2026 10:31:30 +0530
+Message-ID: <20260528050131.466351-17-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260528050131.466351-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -96,50 +97,66 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 5BAD65ECA0C
+X-Rspamd-Queue-Id: E10C25ECA05
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-CMTG provides the clock required in DC3CO state.
-Gate the DC3CO enable on successful CMTG enable.
+BIT 10 and BIT 11 is defined as RO bits
+set by HW , so mask these bits to avoid while writing and reading
+DC_STATE_EN to avaoid unnessory re writes.
 
+BSpec: 69115
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ .../gpu/drm/i915/display/intel_display_power_well.c | 13 ++++++++++++-
+ drivers/gpu/drm/i915/display/intel_display_regs.h   |  3 +++
+ 2 files changed, 15 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index f4d11bd91e72..f04ca01dbf30 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7518,6 +7518,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] = {};
- 	struct ref_tracker *wakeref = NULL;
- 	u32 target_dc_state;
-+	bool cmtg_status = false;
-+	bool dc3co_allowed = intel_display_power_dc3co_allowed(display);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 0e7e6a2b1547..bba80e5e8b6f 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -732,6 +732,17 @@ static void gen9_write_dc_state(struct intel_display *display,
+ 	int rewrites = 0;
+ 	int rereads = 0;
+ 	u32 v;
++	u32 ro_mask = 0;
++
++	/*
++	 * mask the RO bits from state and read back to avoid
++	 * unnecessary rewrites.
++	 * FIXME: Implement RO mask for remaining display versions.
++	 */
++	if (DISPLAY_VER(display) >= 35)
++		ro_mask = DC_STATE_EN_RO_MASK;
++
++	state = (state & ~ro_mask);
  
- 	/*
- 	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
-@@ -7635,7 +7637,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* FIXME probably need to sequence this properly */
- 	intel_program_dpkgc_latency(state);
+ 	intel_de_write(display, DC_STATE_EN, state);
  
--	intel_cmtg_program(state);
-+	if (dc3co_allowed)
-+		cmtg_status = intel_cmtg_program(state);
+@@ -741,7 +752,7 @@ static void gen9_write_dc_state(struct intel_display *display,
+ 	 * we are confident that state is exactly what we want.
+ 	 */
+ 	do  {
+-		v = intel_de_read(display, DC_STATE_EN);
++		v = intel_de_read(display, DC_STATE_EN) & ~ro_mask;
  
- 	intel_wait_for_vblank_workers(state);
+ 		if (v != state) {
+ 			intel_de_write(display, DC_STATE_EN, state);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index d9efe5b0ba46..e58e53f1e2f7 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -3086,6 +3086,9 @@ enum skl_power_gate {
+ #define  DC_STATE_EN_UPTO_DC6		REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 2)
+ #define  DC_STATE_EN_UPTO_DC3CO	REG_FIELD_PREP(DC_STATE_EN_UPTO_DC5_DC6_MASK, 3)
  
-@@ -7732,7 +7735,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	}
- 
- 	if (intel_display_power_dc3co_supported(display)) {
--		if (intel_display_power_dc3co_allowed(display)) {
-+		if (dc3co_allowed && cmtg_status) {
- 			/*
- 			 * Use minimal re-enable delay to allow DC3CO entry on
- 			 * the next idle frame, unlike the 17ms guard needed to
++/* Display ver 35+ */
++#define  DC_STATE_EN_RO_MASK           REG_GENMASK(11, 10)
++
+ #define  DC_STATE_DEBUG                  _MMIO(0x45520)
+ #define  DC_STATE_DEBUG_MASK_CORES	(1 << 0)
+ #define  DC_STATE_DEBUG_MASK_MEMORY_UP	(1 << 1)
 -- 
 2.43.0
 
