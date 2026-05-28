@@ -2,57 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id WNqbDmIaGGoBdQgAu9opvQ
+	id WBSAGGcaGGoBdQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0EEC85F0A6D
-	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E5A395F0A76
+	for <lists+intel-gfx@lfdr.de>; Thu, 28 May 2026 12:35:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 91A5E10EFC0;
-	Thu, 28 May 2026 10:35:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6F65010EFBC;
+	Thu, 28 May 2026 10:35:17 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="gO4JYFMw";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="RgKAvHZa";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 033D210EFC0;
- Thu, 28 May 2026 10:35:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B1ED10EFC1;
+ Thu, 28 May 2026 10:35:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1779964512; x=1811500512;
+ t=1779964516; x=1811500516;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=yDeeVmQkX42QA3RAhjQ1NGhTCehM/n5odcopU476yqU=;
- b=gO4JYFMw8g6AHJrq87LwSGAvR5I8L7w9FxP01sKPCDnZuCNsn53TCSt1
- xCe5UizLqJw8C2MJBKvmVmhpd/t9lYZINSOPeSOyhSjmei1vNGoxac6nV
- 63q/f7SjdXVETREuZg//kpdOXTWhhXtG5G8exn+4pO0qDAeW3KsEkkRnY
- 3Pn07GxzlSJDFWh74tkoG92HTXBYPIQG1P+zRcoxL+3NEraLy7DVV6SqU
- mPkHPSuWHi4Q02HEZ++An91gJ/MSHnoHOe00kw55HJBtFE6MpvlWWEdGS
- ed15cshSqcGbyRhj4ywBAaVLL6FDR0+xT5WeMWlfTi4N3xzLORsOGGP8y Q==;
-X-CSE-ConnectionGUID: Cpn6snKrRWCWk2dHe8kyzw==
-X-CSE-MsgGUID: TPJm4gKQQveL2Payd/rt8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="98221225"
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="98221225"
+ bh=4u9gfrmpkqntKYqQwrTsJGKOLcJR9u8G8+H1VqGRYsw=;
+ b=RgKAvHZa+Feo2qdrRUARyyjzcHKIeYFU6FhbxG6TGBk6q5OLQsCWqjtG
+ u7iUkgb+D2vc5TyVO2tiGMfwJqITuFDrahE8NSQmXTfT31yPW1APA6nZO
+ AAQigygUxW/yeCYfAKbl2nRjd8BiPRWJF9yxOZFjZzsuxYQTKCPM2KYXa
+ yRQG8eqS6YjDfrVkWNlFHJ+VAOdxJJ5M/of7irt1yoKMA3m7S0XyWxX9s
+ iUXN95YMqP8GCA5Rf8+DbrDtEyIzmTbjiN+khy+kqYlvZomCBtTod4Zw9
+ DjLuEsacdZYp2bgy5PDN9twJ/jeZfAw6AfyF3TRjmpDFzB02fXDAe94YH A==;
+X-CSE-ConnectionGUID: kjFaiKu1RdOBWopJd+Kj6w==
+X-CSE-MsgGUID: a1KiJH9OTVi9F9rUJe87DQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11799"; a="98221234"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="98221234"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 03:35:12 -0700
-X-CSE-ConnectionGUID: X2XVSRoET4eeJgbGIOS7nA==
-X-CSE-MsgGUID: OrDb/KgST2+Divp0uT1B1w==
+ 28 May 2026 03:35:16 -0700
+X-CSE-ConnectionGUID: r2JoprWmSY2KW93k1PJgPA==
+X-CSE-MsgGUID: AiUW2Rs2SmCnSN/4xz+1aQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="241682319"
+X-IronPort-AV: E=Sophos;i="6.24,173,1774335600"; d="scan'208";a="241682353"
 Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
  ([10.245.245.166])
  by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 28 May 2026 03:35:11 -0700
+ 28 May 2026 03:35:15 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/11] drm/i915/bw: Streamline dg2_get_bw_info()
-Date: Thu, 28 May 2026 13:34:49 +0300
-Message-ID: <20260528103458.18069-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/11] drm/i915/bw: Initialize num_planes sensibly for the
+ first plane group in TGL+
+Date: Thu, 28 May 2026 13:34:50 +0300
+Message-ID: <20260528103458.18069-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
 References: <20260528103458.18069-1-ville.syrjala@linux.intel.com>
@@ -100,57 +101,79 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:dkim,linux.intel.com:mid]
-X-Rspamd-Queue-Id: 0EEC85F0A6D
+X-Rspamd-Queue-Id: E5A395F0A76
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Make dg2_get_bw_info() look a bit more like xe2_hpd_get_bw_info()
-so that we don't have so many different ways of writing the same
-stuff (namely the "set all plane groups to the same value" part).
+The way the TGL+ bw algorithm works is that 'num_planes'
+is really a maximum number of allowed planes (whereas in
+the ICL version it was more of a minimum), and the
+assumption is that the first plane group (max[0]) can be
+used with any number of planes (tgl_max_bw_index() always
+returns 0 at the end).
+
+To make things a bit less weird let's just set the first
+plane group's num_planes to some big number to indicate it
+has no real limit on the number of planes.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bw.c | 22 ++++++----------------
- 1 file changed, 6 insertions(+), 16 deletions(-)
+ drivers/gpu/drm/i915/display/intel_bw.c | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bw.c b/drivers/gpu/drm/i915/display/intel_bw.c
-index d0ceffc93f36..887628144864 100644
+index 887628144864..4b5db4ca7773 100644
 --- a/drivers/gpu/drm/i915/display/intel_bw.c
 +++ b/drivers/gpu/drm/i915/display/intel_bw.c
-@@ -699,25 +699,15 @@ static int tgl_get_bw_info(struct intel_display *display,
+@@ -629,6 +629,8 @@ static int tgl_get_bw_info(struct intel_display *display,
+ 	 */
+ 	clperchgroup = 4 * (8 / num_channels) * qi.deinterleave;
  
- static void dg2_get_bw_info(struct intel_display *display)
++	display->bw.max[0].num_planes = U8_MAX;
++
+ 	for (i = 0; i < num_groups; i++) {
+ 		struct intel_bw_info *bi = &display->bw.max[i];
+ 		struct intel_bw_info *bi_next;
+@@ -701,10 +703,10 @@ static void dg2_get_bw_info(struct intel_display *display)
  {
--	unsigned int deratedbw = display->platform.dg2_g11 ? 38000 : 50000;
--	int num_groups = ARRAY_SIZE(display->bw.max);
  	int i;
  
--	/*
--	 * DG2 doesn't have SAGV or QGV points, just a constant max bandwidth
--	 * that doesn't depend on the number of planes enabled. So fill all the
--	 * plane group with constant bw information for uniformity with other
--	 * platforms. DG2-G10 platforms have a constant 50 GB/s bandwidth,
--	 * whereas DG2-G11 platforms have 38 GB/s.
--	 */
--	for (i = 0; i < num_groups; i++) {
--		struct intel_bw_info *bi = &display->bw.max[i];
-+	display->bw.max[0].deratedbw[0] = display->platform.dg2_g11 ? 38000 : 50000;
++	display->bw.max[0].num_planes = U8_MAX;
+ 	display->bw.max[0].deratedbw[0] = display->platform.dg2_g11 ? 38000 : 50000;
  
--		bi->num_planes = 1;
--		/* Need only one dummy QGV point per group */
--		bi->num_qgv_points = 1;
--		bi->deratedbw[0] = deratedbw;
--	}
-+	/* Bandwidth does not depend on # of planes; set all groups the same */
-+	display->bw.max[0].num_planes = 1;
-+	display->bw.max[0].num_qgv_points = 1;
-+	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
-+		display->bw.max[i] = display->bw.max[0];
+ 	/* Bandwidth does not depend on # of planes; set all groups the same */
+-	display->bw.max[0].num_planes = 1;
+ 	display->bw.max[0].num_qgv_points = 1;
+ 	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
+ 		display->bw.max[i] = display->bw.max[0];
+@@ -731,6 +733,8 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
+ 	peakbw = tgl_peakbw(num_channels, qi.channel_width, icl_sagv_max_dclk(&qi));
+ 	maxdebw = min(soc_bw_params->deprogbwlimit * 1000, peakbw * DEPROGBWPCLIMIT / 100);
  
- 	display->sagv.status = I915_SAGV_NOT_CONTROLLED;
++	display->bw.max[0].num_planes = U8_MAX;
++
+ 	for (i = 0; i < qi.num_points; i++) {
+ 		const struct intel_qgv_point *sp = &qi.points[i];
+ 		int bw = tgl_peakbw(num_channels, qi.channel_width, sp->dclk);
+@@ -745,7 +749,6 @@ static int xe2_hpd_get_bw_info(struct intel_display *display,
+ 	}
+ 
+ 	/* Bandwidth does not depend on # of planes; set all groups the same */
+-	display->bw.max[0].num_planes = 1;
+ 	display->bw.max[0].num_qgv_points = qi.num_points;
+ 	for (i = 1; i < ARRAY_SIZE(display->bw.max); i++)
+ 		display->bw.max[i] = display->bw.max[0];
+@@ -808,7 +811,7 @@ static unsigned int tgl_max_bw_index(struct intel_display *display,
+ 			return i;
+ 	}
+ 
+-	return 0;
++	return UINT_MAX;
  }
+ 
+ static unsigned int adl_psf_bw(struct intel_display *display,
 -- 
 2.53.0
 
