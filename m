@@ -2,34 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id ACkHFkPNGWqNzAgAu9opvQ
+	id 9jFxILvPGWr/zAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 19:30:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 19:41:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AF3C606793
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 19:30:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1EFE0606B40
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 19:41:15 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1F1F8112304;
-	Fri, 29 May 2026 17:30:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 18565112341;
+	Fri, 29 May 2026 17:41:11 +0000 (UTC)
+Authentication-Results: gabe.freedesktop.org;
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="jDW8ApJD";
+	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 374E6112303;
- Fri, 29 May 2026 17:30:39 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4626619550396827178=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AFF111233E;
+ Fri, 29 May 2026 17:41:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780076470; x=1811612470;
+ h=message-id:date:mime-version:from:subject:to:cc:
+ references:in-reply-to:content-transfer-encoding;
+ bh=K9pLffMFCqJp1006okxYERprdr0XSFWhIpHQqySsqPQ=;
+ b=jDW8ApJD9cwxWtaeVmkDBNDYtHFjRCcZ/yHsQNjwVo1BLH5++L5YCJPj
+ vcg5c9rzSADkk5dAgGurXFbkpAnd2m2gpw1JwqmO/j4UAaTMDTwpGpsQ7
+ 1x0v4dWr1p3+3rAgEsvGmy+cWtQRC8ueabMZ/eO0oOqqavD0/9urSaftG
+ 1QDzcczSJhshyLLWKJ7sQTcIjrfm5K/l8MfTfSVWldj7AOHhur8MFtXqB
+ eekQ+DJ0eCej9MkT8PMntsiUfuLcOpu5zaNGnzcyFMd9IeIl3XtNkTxeT
+ Vx2FYXbxRwP4ZFQ4QOjd3kY7iGJZqD3RBl9IDj4Q+ujrAi7wnn+ewPnYn w==;
+X-CSE-ConnectionGUID: WRSjdSssSFK4SU0WzHLhUw==
+X-CSE-MsgGUID: TeUqshRtRt+V1fkNqRA0kw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="98508578"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="98508578"
+Received: from fmviesa008.fm.intel.com ([10.60.135.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 10:41:09 -0700
+X-CSE-ConnectionGUID: w2XtUBaTRgGZgJINMp6xpQ==
+X-CSE-MsgGUID: eXOYA3E6SN2XFa/+d+SFxw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="240365175"
+Received: from amilburn-desk.amilburn-desk (HELO [10.245.244.139])
+ ([10.245.244.139])
+ by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 10:41:07 -0700
+Message-ID: <c9cdcf8a-d531-4e79-a238-97fd39b8c108@intel.com>
+Date: Fri, 29 May 2026 18:41:05 +0100
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/gvt=3A_validate_?=
- =?utf-8?q?LRCA-derived_guest_context_range?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Nikita Zhandarovich" <n.zhandarovich@fintech.ru>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 29 May 2026 17:30:39 -0000
-Message-ID: <178007583921.23779.14778796923257533730@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260529132430.1636603-1-n.zhandarovich@fintech.ru>
-In-Reply-To: <20260529132430.1636603-1-n.zhandarovich@fintech.ru>
+User-Agent: Mozilla Thunderbird
+From: Matthew Auld <matthew.auld@intel.com>
+Subject: Re: [PATCH v4 1/2] gpu/buddy: replace dual-tree/force_merge with
+ decoupled clear tracker
+To: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>,
+ christian.koenig@amd.com, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+Cc: alexander.deucher@amd.com
+References: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Language: en-GB
+In-Reply-To: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -42,159 +76,110 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[131.252.210.177:from];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	NEURAL_HAM(-0.00)[-0.985];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[unbind-rebind:email,01.org:url,lists.freedesktop.org:replyto,gitlab.freedesktop.org:url,patchwork.freedesktop.org:url]
-X-Rspamd-Queue-Id: 5AF3C606793
+	FROM_NEQ_ENVFROM(0.00)[matthew.auld@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[intel.com:+]
+X-Rspamd-Queue-Id: 1EFE0606B40
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
---===============4626619550396827178==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hi,
 
-== Series Details ==
+On 27/05/2026 12:29, Arunpravin Paneer Selvam wrote:
+> The current buddy allocator maintains separate clear_tree[] and
+> dirty_tree[] rbtrees per order, preventing coalescing between cleared
+> and dirty buddies. Under mixed workloads, this creates a merge barrier:
+> adjacent buddies frequently end up split across trees, forcing reliance
+> on __force_merge() during allocation.
+> 
+> __force_merge() performs an O(N x max_order) scan under the VRAM manager
+> lock, leading to allocation stalls and failures for large contiguous
+> requests even when sufficient total free memory is available.
 
-Series: drm/i915/gvt: validate LRCA-derived guest context range
-URL   : https://patchwork.freedesktop.org/series/167551/
-State : success
+So is this contig with non power-of-two sizes?
 
-== Summary ==
+Do we know if we could force_merge everything in one go or somehow be 
+more aggressive and do more than needed now, at the first sign of 
+contention here, instead of doing it piecemeal? Downside would be losing 
+more of the clear tracking, when this happens, but more re-merging.
 
-CI Bug Log - changes from CI_DRM_18587 -> Patchwork_167551v1
-====================================================
+Could we have another per-order list, of all blocks that we failed to 
+merge, when we did the free step? When doing the force merge step, we 
+maybe don't need to search blindly and can focus instead on the stuff 
+tracked in those lists? Maybe it doesn't need to be a list, but could be 
+another rb-tree?
 
-Summary
--------
+We know the size of the total allocation, if we trigger force_merge, 
+could we try to merge enough in one go for the entire allocation, 
+instead of restarting the entire thing on the next iteration? Would that 
+help at all?
 
-  **SUCCESS**
+But I guess these are more for the stalling side, and won't help much 
+with the contig angle?
 
-  No regressions found.
+For the extent idea, is there any merit in maybe doing this for all 
+contig blobs, and not just cleared stuff? Or is the workload you are 
+seeing only benefit users that want cleared stuff? Wondering if this 
+would benefit all users that want contig? Like if we hypothetically kept 
+clear and dirty separate, like we do now, but with an improved 
+force_merge, and then have extent tracking for all contig blobs and 
+replace the try_harder stuff? When you do a contig alloc, the individual 
+clear/dirty is still all there within the range, so you can skip 
+re-clearing in some cases. I guess downside is overall more fuzzy contig 
++ clear/free path, but I guess you would never get allocation failures, 
+when there is sufficient contig space?
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/index.html
+> 
+> Solution
+> 
+> Replace the dual-tree design with:
+> - A single free_tree[order] rbtree for dirty and mixed free blocks
+>    (fully cleared free blocks float outside this tree)
+> - A lightweight out-of-band clear tracker (gpu_clear_tracker)
+> 
+> Fully cleared free blocks are tracked outside the buddy trees using an
+> augmented interval rbtree, enabling O(log E) lookup of the largest
+> cleared extents.
+> 
+> Buddy coalescing is now unconditional in __gpu_buddy_free(), regardless
+> of clear/dirty state. This removes the merge barrier and eliminates the
+> need for __force_merge().
+> 
+> Benefits
+> 
+> - Correct high-order allocations after mixed clear/dirty workloads
+> - Elimination of O(N x max_order) merge cost from the allocation path
+> - O(log E) cleared-extent lookup replacing O(N) scans
+> - Predictable allocation latency under fragmentation
+> - Reduced complexity with a single tree per order
 
-Participating hosts (42 -> 40)
-------------------------------
+Since there is no separate tracking for dirty stuff, is the non-cleared 
+alloc path a bit more "fuzzy" now, with it potentially stealing cleared 
+memory, or is it the same behaviour still?
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+For drivers that don't use free tracking, is there some benefit? Are 
+there any downsides there? I assume that clear tracker is always empty.
 
-Known issues
-------------
-
-  Here are the changes found in Patchwork_167551v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@core_hotunplug@unbind-rebind:
-    - fi-bsw-n3050:       [PASS][1] -> [DMESG-WARN][2] ([i915#16057])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18587/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html
-
-  
-  [i915#16057]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16057
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18587 -> Patchwork_167551v1
-
-  CI-20190529: 20190529
-  CI_DRM_18587: e2e7ab743222926cd40363f52eacdeea74356f44 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8943: 8943
-  Patchwork_167551v1: e2e7ab743222926cd40363f52eacdeea74356f44 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/index.html
-
---===============4626619550396827178==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/gvt: validate LRCA-derived guest context range</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167551/">https://patchwork.freedesktop.org/series/167551/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18587 -&gt; Patchwork_167551v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_167551v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@core_hotunplug@unbind-rebind:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18587/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167551v1/fi-bsw-n3050/igt@core_hotunplug@unbind-rebind.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16057">i915#16057</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18587 -&gt; Patchwork_167551v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18587: e2e7ab743222926cd40363f52eacdeea74356f44 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8943: 8943<br />
-  Patchwork_167551v1: e2e7ab743222926cd40363f52eacdeea74356f44 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4626619550396827178==--
