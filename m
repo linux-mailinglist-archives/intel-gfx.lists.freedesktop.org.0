@@ -2,84 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id iP15DwadGWoOyAgAu9opvQ
+	id eA3HEiidGWq7xwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:04:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:05:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E131B6033E8
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:04:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4DE860340F
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:05:26 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 58E5E10FFA0;
-	Fri, 29 May 2026 14:04:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C09710FF9E;
+	Fri, 29 May 2026 14:05:25 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="PzF0txoY";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="agB55+sf";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 033D610FF9D;
- Fri, 29 May 2026 14:04:50 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id BB16240B73;
- Fri, 29 May 2026 14:04:49 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id E97FA1F00893;
- Fri, 29 May 2026 14:04:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1780063489;
- bh=uvb5N2t0ImORcoosIY39Tpj5MtrUeKYq4hi4uWxUSeU=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=PzF0txoYlN14C5R/lIRWeNek2EP4bG+AH1WlPwfb072fXV3CLH6nq3c2LNyM5bl+x
- MPE8VuJmFglQF2ykVzaI+Q3QYY1oUXPPLMMWbYFrjrGjbnvxhmYmyRWVZBFK7QTKls
- 9f1aEeJMylDnsegbfl3ejKp77Q+9FZutTFtSEIOjlyUevHQMsFJpETzJbtd98nsjMk
- CWQ7MkxmiivOJTUgd4ddF7VmVczKW3lXfh4AQPIJI0RADND+G+uavoXDjpUpiSNoRv
- JO76wQoVwSZR5UyLm6wnAap0vfnQfGgLjHimxMZdvzN92VqZbBfdyjElIwDI24AgyR
- XcAyoEiKW6k1Q==
-Date: Fri, 29 May 2026 16:04:46 +0200
-From: Maxime Ripard <mripard@kernel.org>
-To: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>,
- Heikki Krogerus <heikki.krogerus@linux.intel.com>, 
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, 
- Jernej Skrabec <jernej.skrabec@gmail.com>,
- Adrien Grassein <adrien.grassein@gmail.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, 
- Kevin Hilman <khilman@baylibre.com>, Jerome Brunet <jbrunet@baylibre.com>, 
- Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
- Rob Clark <robin.clark@oss.qualcomm.com>, 
- Dmitry Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>, 
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>, 
- Marijn Suijten <marijn.suijten@somainline.org>,
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>, 
- Bjorn Andersson <andersson@kernel.org>, Konrad Dybcio <konradybcio@kernel.org>,
- Pengyu Luo <mitltlatltl@gmail.com>, Nikita Travkin <nikita@trvn.ru>, 
- Yongxing Mou <yongxing.mou@oss.qualcomm.com>, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, 
- linux-usb@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, 
- linux-amlogic@lists.infradead.org, linux-arm-kernel@lists.infradead.org, 
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org
-Subject: Re: [PATCH RESEND v3 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-Message-ID: <20260529-screeching-rugged-shellfish-4dcde3@houat>
-References: <20260513-hpd-irq-events-v3-0-086857017f16@oss.qualcomm.com>
- <20260513-hpd-irq-events-v3-1-086857017f16@oss.qualcomm.com>
- <20260521-funny-astonishing-mackerel-cc5a01@penduick>
- <vpd5hyote5wspmlpad64kf5peoy5g7wv6c7xjn6ammcmjtai7r@q2tarmr5aoqn>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 62CEB10FF9E;
+ Fri, 29 May 2026 14:05:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780063525; x=1811599525;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=UrYyY//1QP7ZW0C22ur9jMEF6YnoCI3RSaPIDv+Qoos=;
+ b=agB55+sfLMMiq3Gk60DctRmlQsy5tV10tCzg9DuJ3F1XDGrQEdUk2QLL
+ CPEi+kAGAicQyu7ktpIi6OdTjhVx1VNNx4HKv5IxsUBM36RZ9O8augmIE
+ iSOhjh98eTM9u2DXv9tbrDcdtVC+hIFhmN+zmJ492yoxfmHN+7JAxOydL
+ Bt8MzIkB05b5baBBOn87U03GTMIdJovIL4Ung+c0If8Qa9J2MvqHT0L29
+ p/CFGOLgBjF/4MAx547jUrDx/nit/ZGurwFLmTLPFwtOvSTl3b0ik9e9/
+ 0698fAsManDLFwqvZcaAlgnuJnE0X+0WoP49DnjkWyAkPqi+nQNr7fqMn A==;
+X-CSE-ConnectionGUID: CUaVgnGDRRKz68/eMgxKjg==
+X-CSE-MsgGUID: cDWkcHfiTy6pKjw8pAQ52Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="91225165"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="91225165"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 07:05:24 -0700
+X-CSE-ConnectionGUID: 9RXLSDhzSb2ewWQTw9KkZQ==
+X-CSE-MsgGUID: z5FjHzUCRcWTqqVFG2wAnw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="239858235"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.182])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 07:05:21 -0700
+Date: Fri, 29 May 2026 17:05:18 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ imre.deak@intel.com
+Subject: Re: [PATCH 14/24] drm/{i915,xe}: add
+ intel_display_driver_shutdown_late()
+Message-ID: <ahmdHiDErBTHnl6H@intel.com>
+References: <cover.1780051905.git.jani.nikula@intel.com>
+ <0738680bb4946b7296c703c5f3d07c382a68fc27.1780051905.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha384;
- protocol="application/pgp-signature"; boundary="igbxyj2yvssgkryc"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <vpd5hyote5wspmlpad64kf5peoy5g7wv6c7xjn6ammcmjtai7r@q2tarmr5aoqn>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <0738680bb4946b7296c703c5f3d07c382a68fc27.1780051905.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -94,145 +79,139 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-1.41 / 15.00];
-	SIGNED_PGP(-2.00)[];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+X-Spamd-Result: default: False [0.52 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.83)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_TWELVE(0.00)[42];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FREEMAIL_CC(0.00)[linux.intel.com,suse.de,gmail.com,ffwll.ch,linuxfoundation.org,intel.com,linaro.org,kernel.org,ideasonboard.com,kwiboo.se,ursulin.net,baylibre.com,googlemail.com,oss.qualcomm.com,linux.dev,poorly.run,somainline.org,trvn.ru,lists.freedesktop.org,vger.kernel.org,lists.infradead.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	NEURAL_HAM(-0.00)[-1.000];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[qualcomm.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: E131B6033E8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: B4DE860340F
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
+On Fri, May 29, 2026 at 02:03:58PM +0300, Jani Nikula wrote:
+> Add new function intel_display_driver_shutdown_late() to be called
+> "later" in the struct pci_driver .shutdown hook.
+> 
+> There's a slight functional change in that
+> intel_display_driver_shutdown_late() returns early for
+> !HAS_DISPLAY(). Assume this is what we want, and there are no cases
+> where display engine is present but all pipes have been fused off.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
---igbxyj2yvssgkryc
-Content-Type: text/plain; protected-headers=v1; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-Subject: Re: [PATCH RESEND v3 1/6] drm/connector: report IRQ_HPD events to
- drm_connector_oob_hotplug_event()
-MIME-Version: 1.0
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-On Thu, May 21, 2026 at 03:05:11PM +0300, Dmitry Baryshkov wrote:
-> On Thu, May 21, 2026 at 09:47:29AM +0200, Maxime Ripard wrote:
-> > On Wed, May 13, 2026 at 09:23:21PM +0300, Dmitry Baryshkov wrote:
-> > > The DisplayPort standard defines a special kind of events called IRQ.
-> > > These events are used to notify DP Source about the events on the Sink
-> > > side. It is extremely important for DP MST handling, where the MST
-> > > events are reported through this IRQ.
-> > >=20
-> > > In case of the USB-C DP AltMode there is no actual HPD pulse, but the
-> > > events are ported through the bits in the AltMode VDOs.
-> > >=20
-> > > Extend the drm_connector_oob_hotplug_event() interface and report IRQ
-> > > events to the DisplayPort Sink drivers.
-> > >=20
-> > > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
-> > > ---
-> > >  drivers/gpu/drm/drm_connector.c          |  5 ++++-
-> > >  drivers/usb/typec/altmodes/displayport.c | 15 +++++++++++----
-> > >  include/drm/drm_connector.h              | 19 ++++++++++++++++++-
-> > >  3 files changed, 33 insertions(+), 6 deletions(-)
-> > >=20
-> > > diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_co=
-nnector.c
-> > > index 47dc53c4a738..edee9daccd51 100644
-> > > --- a/drivers/gpu/drm/drm_connector.c
-> > > +++ b/drivers/gpu/drm/drm_connector.c
-> > > @@ -3510,6 +3510,8 @@ struct drm_connector *drm_connector_find_by_fwn=
-ode(struct fwnode_handle *fwnode)
-> > >   * drm_connector_oob_hotplug_event - Report out-of-band hotplug even=
-t to connector
-> > >   * @connector_fwnode: fwnode_handle to report the event on
-> > >   * @status: hot plug detect logical state
-> > > + * @extra_status: additional information provided by the sink withou=
-t changing
-> > > + * the HPD state (or in addition to such a change).
-> > >   *
-> > >   * On some hardware a hotplug event notification may come from outsi=
-de the display
-> > >   * driver / device. An example of this is some USB Type-C setups whe=
-re the hardware
-> > > @@ -3520,7 +3522,8 @@ struct drm_connector *drm_connector_find_by_fwn=
-ode(struct fwnode_handle *fwnode)
-> > >   * a drm_connector reference through calling drm_connector_find_by_f=
-wnode().
-> > >   */
-> > >  void drm_connector_oob_hotplug_event(struct fwnode_handle *connector=
-_fwnode,
-> > > -				     enum drm_connector_status status)
-> > > +				     enum drm_connector_status status,
-> > > +				     enum drm_connector_status_extra extra_status)
-> > >  {
-> > >  	struct drm_connector *connector;
-> > > =20
-> > > diff --git a/drivers/usb/typec/altmodes/displayport.c b/drivers/usb/t=
-ypec/altmodes/displayport.c
-> > > index 35d9c3086990..7182a8e2e710 100644
-> > > --- a/drivers/usb/typec/altmodes/displayport.c
-> > > +++ b/drivers/usb/typec/altmodes/displayport.c
-> > > @@ -189,7 +189,9 @@ static int dp_altmode_status_update(struct dp_alt=
-mode *dp)
-> > >  	} else {
-> > >  		drm_connector_oob_hotplug_event(dp->connector_fwnode,
-> > >  						hpd ? connector_status_connected :
-> > > -						      connector_status_disconnected);
-> > > +						      connector_status_disconnected,
-> > > +						(hpd && irq_hpd) ? DRM_CONNECTOR_DP_IRQ_HPD :
-> > > +								   DRM_CONNECTOR_NO_EXTRA_STATUS);
-> >=20
-> > Since the extra status itself, and what the options mean, are DP specif=
-ic, do we really want to
-> > extend drm_connector_oob_hotplug_event()? I think I'd prefer to have a =
-DP specific variant, with its
-> > own set of parameters.
->=20
-> I can try arguing that drm_connector_oob_hotplug_event() is DP-specific,
-> there are no other users for it, only the DP AltMode driver.
->=20
-> Anyway, do you just mean new API here or new API and a new connector
-> callback?
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_driver.c | 13 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_display_driver.h |  1 +
+>  drivers/gpu/drm/i915/i915_driver.c                  |  7 ++-----
+>  drivers/gpu/drm/xe/display/xe_display.c             |  7 +------
+>  4 files changed, 17 insertions(+), 11 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 7fee9ef88224..7f2d191b9ef0 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -681,6 +681,19 @@ void intel_display_driver_unregister(struct intel_display *display)
+>  	intel_vga_unregister(display);
+>  }
+>  
+> +void intel_display_driver_shutdown_late(struct intel_display *display)
+> +{
+> +	if (!HAS_DISPLAY(display))
+> +		return;
+> +
+> +	/*
+> +	 * The only requirement is to reboot with display DC states disabled,
+> +	 * for now leaving all display power wells in the INIT power domain
+> +	 * enabled.
+> +	 */
+> +	intel_display_power_driver_remove(display);
+> +}
+> +
+>  /*
+>   * turn all crtc's off, but do not adjust state
+>   * This has to be paired with a call to intel_modeset_setup_hw_state.
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
+> index adfde02465ea..61515577758b 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.h
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
+> @@ -24,6 +24,7 @@ void intel_display_driver_remove(struct intel_display *display);
+>  void intel_display_driver_remove_noirq(struct intel_display *display);
+>  void intel_display_driver_remove_nogem(struct intel_display *display);
+>  void intel_display_driver_unregister(struct intel_display *display);
+> +void intel_display_driver_shutdown_late(struct intel_display *display);
+>  
+>  int intel_display_driver_pm_suspend(struct intel_display *display);
+>  void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2idle);
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index b637c4dedf1b..140c562a8627 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -1073,17 +1073,14 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+>  	i915_gem_suspend(i915);
+>  
+>  	/*
+> -	 * The only requirement is to reboot with display DC states disabled,
+> -	 * for now leaving all display power wells in the INIT power domain
+> -	 * enabled.
+> -	 *
+>  	 * TODO:
+>  	 * - unify the pci_driver::shutdown sequence here with the
+>  	 *   pci_driver.driver.pm.poweroff,poweroff_late sequence.
+>  	 * - unify the driver remove and system/runtime suspend sequences with
+>  	 *   the above unified shutdown/poweroff sequence.
+>  	 */
+> -	intel_display_power_driver_remove(display);
+> +
+> +	intel_display_driver_shutdown_late(display);
+>  	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+>  
+>  	intel_runtime_pm_driver_last_release(&i915->runtime_pm);
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index e17e05a8854c..fdc999c62bc9 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -219,12 +219,7 @@ void xe_display_shutdown_late(struct xe_device *xe)
+>  	if (!xe->info.probe_display)
+>  		return;
+>  
+> -	/*
+> -	 * The only requirement is to reboot with display DC states disabled,
+> -	 * for now leaving all display power wells in the INIT power domain
+> -	 * enabled.
+> -	 */
+> -	intel_display_power_driver_remove(display);
+> +	intel_display_driver_shutdown_late(display);
+>  }
+>  
+>  /* IRQ-related functions */
+> -- 
+> 2.47.3
 
-If drm_connector_oob_hotplug_event is truly only used for DP, then I
-don't mind keeping it as is but we should make it more obvious and
-document it, both in the function documentation, but also by having a
-better name for the extra status. drm_connector_dp_oob_status maybe?
-
-Maxime
-
---igbxyj2yvssgkryc
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCahmc9AAKCRAnX84Zoj2+
-djO+AX9GD3UDymFlG73wL8mTckVK3mCkw2t3NcDn6047apScJWb1XRrN+lO8trM6
-73C+84cBfRq9ZR8HId0E6cdzLBqaHSBYmjoTlzIx0kiwM44c3apdybiB2SfFjOBv
-SX2rCZoICg==
-=Fbz6
------END PGP SIGNATURE-----
-
---igbxyj2yvssgkryc--
+-- 
+Ville Syrjälä
+Intel
