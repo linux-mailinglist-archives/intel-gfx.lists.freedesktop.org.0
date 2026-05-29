@@ -2,68 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id gIpAD4NvGWqEwggAu9opvQ
+	id uOlQK95vGWqNwggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 12:50:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 12:52:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9659B6011C0
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 12:50:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D7CD601260
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 12:52:13 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AC0F10FCF0;
-	Fri, 29 May 2026 10:50:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 00DF210FCF3;
+	Fri, 29 May 2026 10:52:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="TsrgTHhM";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="PCKKIiVI";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 681B210FCF0;
- Fri, 29 May 2026 10:50:40 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AE7DE10FCF3;
+ Fri, 29 May 2026 10:52:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780051841; x=1811587841;
+ t=1780051931; x=1811587931;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:content-transfer-encoding:in-reply-to;
- bh=At6pGDYBmFae8H9REaMjzKtV8lxBXUwZ+p8a/hWpL28=;
- b=TsrgTHhM1e5Vp1P028mpfsoNTd43elAe4bmRvDYgpRL2F5o8hMHSNu5o
- +z4PxB4EgvsjVe6sl2G07+Dx27nl0yaWdy5l+tC7gx05S58w6kno6kcJM
- 3kx1eUcHQ6MKbqJJpMobV7aFJNvwoCBATAFkbvBEwBZdVVKza7e1RakF4
- O6uEYwsxSTCJZiguesge0VzzfxXAaIyoeb0tbf3SvIDGf7NSTiHMgvb3i
- kRZQ7OarrLL5jt4WmyTxiH15rZ8jMP1jSRhv9S15v1beD3PM0zdN5vDr9
- D/FM2qyosRSN11TYl134ZHaf+pqJEZlsTypPlO9cJmOIdV58g4hqfMAQl Q==;
-X-CSE-ConnectionGUID: x7NnRpdZS++RbIuscZvVVQ==
-X-CSE-MsgGUID: lnqjLvm9TWO0ZnnBrBRb3Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="92013979"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="92013979"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 03:50:40 -0700
-X-CSE-ConnectionGUID: evMHl+reSiexWXcRxvywEg==
-X-CSE-MsgGUID: 5+swiAc2RC64IWAMhRycUg==
+ bh=5fqI9O2l9lZdU/NqnMWcsXlzcYVhGZK49MUttijiTH0=;
+ b=PCKKIiVI8/Tchb08tz+H9FaxsDm9opGGhyNBedlG+kwJjyJisc6IeQQA
+ ncnllkKWE47XIPWxOzFbwTxRFV7EiE79eRZtjobhimFgngAtTl4sBoaCn
+ zYB1o0Cq88FpWtoMMxNwjTNcoGnDPrzHIvd7mLO727LAS5jCy7ThaNgt0
+ pTrpV+5dmoe8xuuEBRkgwyRqwvSiWtvb1lb7KZ15KZjRipNdBg/fuJIM3
+ zU4UI9XboHuGA2/27kQKpIVbJueFunMHTgYLOQSNkJ8BFqAjI2YMC0QPF
+ tonsEmnnEHmQM5vTjaasrxy1EFnfkyLBlYtqlexsYqBmYUOflOS6NmCmM Q==;
+X-CSE-ConnectionGUID: fbC+Z+zlQPWYTrQ5ineBpA==
+X-CSE-MsgGUID: kyWI3EbFRaOdyuoRCD/Qhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="84527346"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="84527346"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 03:52:10 -0700
+X-CSE-ConnectionGUID: XMazAdRSSw2/DDicLZue/A==
+X-CSE-MsgGUID: I3x2wY13S760H/qOnzS13g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="241778300"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236469221"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.182])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 03:50:38 -0700
-Date: Fri, 29 May 2026 13:50:34 +0300
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 03:52:08 -0700
+Date: Fri, 29 May 2026 13:52:04 +0300
 From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Subject: Re: [PATCH] drm/xe/ggtt: use full-range drm_mm with reserved nodes
- on PF
-Message-ID: <ahlvesSbbOdk47m3@intel.com>
-References: <20260527144527.3701844-2-rodrigo.vivi@intel.com>
- <c5b06289-f353-47eb-a918-102288fac7e9@intel.com>
- <ahjBn2vYp5dppkYp@intel.com>
+To: Animesh Manna <animesh.manna@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
+ jani.nikula@intel.com
+Subject: Re: [PATCH v7 08/15] drm/i915/cmtg: Add a hook to make eDP
+ transcoder secondary
+Message-ID: <ahlv1JSW-psLZ1Lg@intel.com>
+References: <20260526133811.2621675-1-animesh.manna@intel.com>
+ <20260526133811.2621675-9-animesh.manna@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ahjBn2vYp5dppkYp@intel.com>
+In-Reply-To: <20260526133811.2621675-9-animesh.manna@intel.com>
 X-Patchwork-Hint: comment
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
@@ -81,9 +80,9 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.28 / 15.00];
+X-Spamd-Result: default: False [0.22 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.59)[subject];
+	R_MIXED_CHARSET(0.53)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
@@ -107,189 +106,65 @@ X-Spamd-Result: default: False [0.28 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5]
-X-Rspamd-Queue-Id: 9659B6011C0
+	RCPT_COUNT_FIVE(0.00)[6]
+X-Rspamd-Queue-Id: 1D7CD601260
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Thu, May 28, 2026 at 06:28:47PM -0400, Rodrigo Vivi wrote:
-> On Fri, May 29, 2026 at 12:11:22AM +0200, Michal Wajdeczko wrote:
-> > 
-> > 
-> > On 5/27/2026 4:45 PM, Rodrigo Vivi wrote:
-> > > The PF GGTT allocator was initialised over a relative [0, usable_size)
-> > > range, with ggtt->start added on every address conversion to get the
-> > > actual hardware address.  Two consequences of that model were considered
-> > > "horrible hacks":
-> > > 
-> > >   - ggtt->start (the WOPCM offset) had to be carried around and added
-> > >     to every drm_mm result.
-> > 
-> > hmm, but this an internal detail of the xe_ggtt implementation, so why
-> > would someone else complain about it?
-> > 
-> > >   - The GUC_GGTT_TOP ceiling silently truncated the GGTT range instead
-> > 
-> > hmm, for the record, this GGTT cap on the top was added back in 2023
-> > 
-> > commit ab10e976fbda8349163ceee2ce99b2bfc97031b8
-> > Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
-> > Date:   Wed Jun 14 10:47:54 2023 -0700
-> > 
-> >     drm/xe: limit GGTT size to GUC_GGTT_TOP
-> > 
-> > +        * The GuC address space is limited on both ends of the GGTT, because
-> > +        * the GuC shim HW redirects accesses to those addresses to other HW
-> > +        * areas instead of going through the GGTT. On the bottom end, the GuC
-> > +        * can't access offsets below the WOPCM size, while on the top side the
-> > +        * limit is fixed at GUC_GGTT_TOP. To keep things simple, instead of
-> > +        * checking each object to see if they are accessed by GuC or not, we
-> > +        * just exclude those areas from the allocator. Additionally, to
-> > +        * simplify the driver load, we use the maximum WOPCM size in this logic
-> > 
-> > >     of being made explicit, leaving PTEs in [GUC_GGTT_TOP, total_size)
-> > >     untouched during the initial clear.
-> > 
-> > and that likely will not be changed by this patch as after allocating 'two
-> > permanent zones', the drm_mm_for_each_hole will not iterate over them
+On Tue, May 26, 2026 at 07:08:04PM +0530, Animesh Manna wrote:
+> Program DDI_FUNC_CTL2 to configure the eDP transcoder as secondary
+> to the CMTG transcoder.
 > 
-> right...
+> v2:
+> - Update commit header to be more clear. [Uma]
 > 
-> > 
-> > > 
-> > > Fix this for the PF case by initialising drm_mm over the full hardware
-> > > GGTT range [0, total_size) and permanently reserving the two forbidden
-> > > zones:
-> > > 
-> > >   - [0, wopcm)           — inaccessible below WOPCM
-> > >   - [GUC_GGTT_TOP, total_size) — inaccessible above GUC_GGTT_TOP
-> > 
-> > that looks odds: why pretend to claim manageability of full [0, 4GB)
-> > of the GGTT and then immediately permanently reserve two end zones to
-> > end up with real [wopcm, GUC_TOP) which is what we already have?
+> Reviewed-by: Uma Shankar <uma.shankar@intel.com>
+> Signed-off-by: Animesh Manna <animesh.manna@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cmtg.c | 13 +++++++++++++
+>  drivers/gpu/drm/i915/display/intel_cmtg.h |  1 +
+>  2 files changed, 14 insertions(+)
 > 
-> yes...
-> 
-> > 
-> > > 
-> > > A new mm_offset field (zero for PF) carries the base offset used in
-> > > address conversions, unifying the existing VF relative model (where
-> > > mm_offset == vf_base) with the new PF absolute model.
-> > 
-> > but public xe_ggtt API already uses absolute addressing in PF and VF
-> 
-> I know...
-> 
-> > 
-> > >  The public
-> > > xe_ggtt_start() / xe_ggtt_size() API continues to return the usable
-> > > [wopcm, GUC_GGTT_TOP) boundaries, so callers such as the SR-IOV PF
-> > > config code are unaffected.
-> > > 
-> > > xe_ggtt_shift_nodes() now updates both ggtt->start and ggtt->mm_offset
-> > > so the VF recovery path remains a single O(1) WRITE_ONCE pair.
-> > 
-> > maybe it's just me - but I can't figure out the real rationale for this
-> > patch - what did I miss?
-> 
-> This series:
-> https://lore.kernel.org/intel-xe/20260511214122.8468-1-ville.syrjala@linux.intel.com/
-> 
-> And more specifically the discussion in this patch:
-> https://lore.kernel.org/intel-xe/20260511214122.8468-13-ville.syrjala@linux.intel.com/
-> 
-> > 
-> > > 
-> > > Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> > > Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
-> > > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > > Assisted-by: GitHub-Copilot:claude-sonnet-4.6
-> > > Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> > > ---
-> > >  drivers/gpu/drm/xe/xe_ggtt.c | 123 ++++++++++++++++++++++++++++-------
-> > >  1 file changed, 101 insertions(+), 22 deletions(-)
-> > > 
-> > > diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
-> > > index a351c578b170..00a6cd2b8a51 100644
-> > > --- a/drivers/gpu/drm/xe/xe_ggtt.c
-> > > +++ b/drivers/gpu/drm/xe/xe_ggtt.c
-> > > @@ -137,6 +137,17 @@ struct xe_ggtt {
-> > >  	const struct xe_ggtt_pt_ops *pt_ops;
-> > >  	/** @mm: The memory manager used to manage individual GGTT allocations */
-> > >  	struct drm_mm mm;
-> > > +	/**
-> > > +	 * @mm_offset: base offset added to drm_mm node addresses to obtain hardware
-> > > +	 * GGTT addresses. For PF this is 0 (drm_mm uses absolute hardware addresses).
-> > > +	 * For VF this equals @start (drm_mm uses relative addresses from VF base).
-> > > +	 * Updated atomically by xe_ggtt_shift_nodes() during VF recovery.
-> > > +	 */
-> > > +	u64 mm_offset;
-> > > +	/** @reserved_bottom: permanently reserved [0, WOPCM) drm_mm node for PF */
-> > > +	struct drm_mm_node reserved_bottom;
-> > > +	/** @reserved_top: permanently reserved [GUC_GGTT_TOP, total) drm_mm node for PF */
-> > > +	struct drm_mm_node reserved_top;
-> > 
-> > maybe all we need is to separate concepts of:
-> > 
-> > * raw GGTT - fixed range [0, 4GB)
-> > 
-> > from
-> > 
-> > * allocable GGTT - configurable sub-range [start, end)
-> >   * [wopcm, GUC_TOP) on PF
-> >   * [base, base+size) on VF
-> > 
-> > and then we can continue to use drm_mm.init(0, end-start) to manage
-> > that [start, end) range in a common way on both PF and VF?
-> 
-> we need to be able to use a ggtt buffer that comes out of this range,
-> so I'm afraid it doesn't solve all the cases.
+> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> index 63e430f7e63b..34715280d65d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
+> @@ -359,3 +359,16 @@ void intel_cmtg_enable_sync(const struct intel_crtc_state *crtc_state)
+>  			 transcoder_name(cpu_transcoder));
+>  	}
+>  }
+> +
+> +void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state)
+> +{
+> +	struct intel_display *display = to_intel_display(crtc_state);
+> +	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+> +
+> +	if (!intel_cmtg_is_allowed(crtc_state))
+> +		return;
+> +
+> +	intel_de_rmw(display, TRANS_DDI_FUNC_CTL2(display, cpu_transcoder), 0, CMTG_SECONDARY_MODE);
 
-Basically what the display needs is:
-1. specify where in ggtt the buffer was originally placed by the GOP,
-   this may be partially or fully inside these GuC reserved ranges
-2. bind the buffer to some acceptable location (assuming the original
-   location wasn't acceptable) without overwriting the PTEs for the
-   original location
+We already have a place where we configure TRANS_DDI_FUNC_CTL2.
+Why is this not there?
 
-I suppose this could be achieved even with this "mm doesn't cover the
-ends" hack, but step 1 there becomes a bit dodgy because we can't
-insert the mm node if it's fully outside the mm. I suppose it could 
-still work if you hide it in a function that only validates the real
-ggtt offsets, but then ignores the fact that the node can't be
-inserted due to being fully inside those reserved ranges. And then
-whatever cleans up that original mm node must also ignore the fact
-that the node maybe wasn't even allocated. And also
-xe_ggtt_initial_clear() will need special code to clear the
-reserved ranges.
-
-My original idea was that we'd just include the reserved regions
-in the mm, and then the display could just keep the buffer at its
-original location, and later the guc code can reserve what is
-left over. So we could skip step 2 above completely. But after
-a second thought we probably don't want to skip that step because
-we might free the display bo later, at which point we might free
-up some of the reserved ranges. So I guess we'd still want to keep
-step 2. But I think it'd still result in less special cases in the
-code. We'd just need the guc code to reserve what it needs, after
-the display code has rebound the bo to an acceptable location.
-
-So we'd end up with:
-1. insert node for the bo's original ggtt location
-2. rebind the display bo to an acceptable ggtt location
-3. undo step 1
-4. xe_ggtt_initial_clear() (now also clears the reserved ranges
-   without any special code)
-5. guc steals the reserved ranges explicitly
-
-So only two special cases left really, and all the rest
-of the code is blissfully unaware of any of it.
-
-Hmm, although hibernation might still be a slight issue for
-xe_ggtt_initial_clear(). As in how would the reserved regions
-get cleared during resume from hibernation? I have no idea 
-how the current xe ggtt code handles resume at all...
+> +
+> +	drm_dbg_kms(display->drm, "CMTG: %s enabled\n", transcoder_name(cpu_transcoder));
+> +}
+> diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.h b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> index 64ff6a19948a..12abbafa7d08 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cmtg.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cmtg.h
+> @@ -11,6 +11,7 @@
+>  struct intel_display;
+>  struct intel_crtc_state;
+>  
+> +void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state);
+>  void intel_cmtg_enable_sync(const struct intel_crtc_state *crtc_state);
+>  void intel_cmtg_set_m_n(const struct intel_crtc_state *crtc_state);
+>  void intel_cmtg_set_vrr_timings(const struct intel_crtc_state *crtc_state);
+> -- 
+> 2.29.0
 
 -- 
-Ville Syrjälä
+Ville Syrj�l�
 Intel
