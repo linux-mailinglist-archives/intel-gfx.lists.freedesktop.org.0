@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id MHpIIdFyGWoQwwgAu9opvQ
+	id cLhBCdhyGWoQwwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:04:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:04:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 39665601449
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B3B4F601450
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:04:55 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5D99410FD22;
-	Fri, 29 May 2026 11:04:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4915010FD21;
+	Fri, 29 May 2026 11:04:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HM+ZpSau";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="ZJiCcDCt";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A63C910FD2B;
- Fri, 29 May 2026 11:04:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 67A8E10FD2E;
+ Fri, 29 May 2026 11:04:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780052685; x=1811588685;
+ t=1780052689; x=1811588689;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=FUivx5NhTNW9LPRh+gwzPWfh3ZWC35YfzeO/57sq+yY=;
- b=HM+ZpSauze6OXhP7iJNMCKxwZAhjmTx8H6RAGX5CqU3/SeGXuEvFiMma
- /tngi6gsYtihfDuZbHXuUm0y8hO/42w7PTfNU12u0PtJJJZsLKubke4aD
- JApfT2joMsSMZ4gPPDCkoETVxPYS/ihyG6IRmUnhFaGQmU1QR3bFpQNVP
- 0NtmpIjcWDpuyf6ucKsYDWak8MeX3Ss1gPEePZg2hp9AeD3S0qr4c66Hm
- cfgmWA/UX4+3D4WAuTJQtZHHbfrLydYyrk4K5dPkgsz+3hZ0Wk1hSmYf8
- ImXrxUpMDJ3T4E4ORD0+ijyD7dhXzPUDQb3+BWsMP+LeDrj/1SxHV7oxA w==;
-X-CSE-ConnectionGUID: Ijc0YZzDScuPVI/ISIb/ng==
-X-CSE-MsgGUID: 3YoLA1VbSrauISfwhWXTYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80629236"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80629236"
+ bh=3bhYRPd7OXlh5IdQ7cWJWYHfOiJkXx/KysActJv5MRY=;
+ b=ZJiCcDCtl40lnlG+L1QcluVg3Xx+BThXygnS29Ms73sNaZ8+gHBhFjqH
+ U2FW1wbFejhevHizp/kJXELFHpo5E8O5zk0rIR/TIxvcaHHFUjFgRneqq
+ nZC5qVKTyi94ukQ3+ALrm71DD5PyJZN9ayubvi8fe/HO6aEce/9F8vRdD
+ lY6fsyriPBaIcYOuv4DTVBE3FYT9nKmIEbbxngruBbX0ZU4vSqxOjl1JP
+ kwXlT1b134aLwG1swx8nlZY2LlgMFXjgU2lND8QAXYe18UXr2G94ixdFQ
+ b7iQW/+b88OjVsr8kNSE8m8qfn3zNEpI8ffQ9PD0m/3JgekTl2uAJBH6M g==;
+X-CSE-ConnectionGUID: p5CEAU3oRNmzqPvNIEwceA==
+X-CSE-MsgGUID: 8EewZ7qNRcK27q1gFhNWuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80629244"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80629244"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:04:45 -0700
-X-CSE-ConnectionGUID: sU3GN2n5SSeQfUbH+u9gwA==
-X-CSE-MsgGUID: lamkW8kEQQKyRNhsg5PnTw==
+ 29 May 2026 04:04:49 -0700
+X-CSE-ConnectionGUID: nEpox5KHQVKZcxaZHdPtKg==
+X-CSE-MsgGUID: MhGa1w6fTV+wIJ/S4Vshlg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236470835"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236470839"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:04:43 -0700
+ 29 May 2026 04:04:47 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 06/24] drm/i915/display: add "pm" to
- intel_display_driver_{suspend, resume}() names
-Date: Fri, 29 May 2026 14:03:50 +0300
-Message-ID: <1659ad8bfa0bf6c4e420221d80275ba5ffccc1f3.1780051905.git.jani.nikula@intel.com>
+Subject: [PATCH 07/24] drm/xe/display: rename xe_display_pm_shutdown*() to
+ xe_display_shutdown*()
+Date: Fri, 29 May 2026 14:03:51 +0300
+Message-ID: <ed6969b44d160d13d4f19d8fcd7c758f6157c27c.1780051905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780051905.git.jani.nikula@intel.com>
 References: <cover.1780051905.git.jani.nikula@intel.com>
@@ -76,14 +76,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -96,134 +96,113 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:-];
-	NEURAL_HAM(-0.00)[-0.970];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:email]
-X-Rspamd-Queue-Id: 39665601449
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: B3B4F601450
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Start naming the functions that are supposed to be called from the
-struct dem_pm_ops hooks with intel_display_driver_pm_*() to distinguish
-them better from the rest.
+The shutdown functions get called from the struct pci_driver .shutdown
+hook, not through the struct dev_pm_ops hooks. Name accordingly,
+dropping the "pm" from the name, even if shutdown has a lot of
+similarities with suspend.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c |  4 ++--
- drivers/gpu/drm/i915/display/intel_display_driver.h |  5 +++--
- drivers/gpu/drm/i915/i915_driver.c                  | 12 ++++++------
- drivers/gpu/drm/xe/display/xe_display.c             |  6 +++---
- 4 files changed, 14 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c |  4 ++--
+ drivers/gpu/drm/xe/display/xe_display.h | 10 ++++++----
+ drivers/gpu/drm/xe/xe_device.c          |  4 ++--
+ 3 files changed, 10 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index d0729936f681..9be4c94740dc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -678,7 +678,7 @@ void intel_display_driver_unregister(struct intel_display *display)
-  * turn all crtc's off, but do not adjust state
-  * This has to be paired with a call to intel_modeset_setup_hw_state.
-  */
--int intel_display_driver_suspend(struct intel_display *display)
-+int intel_display_driver_pm_suspend(struct intel_display *display)
- {
- 	struct drm_atomic_commit *state;
- 	int ret;
-@@ -741,7 +741,7 @@ __intel_display_driver_resume(struct intel_display *display,
- 	return ret;
- }
- 
--void intel_display_driver_resume(struct intel_display *display)
-+void intel_display_driver_pm_resume(struct intel_display *display)
- {
- 	struct drm_atomic_commit *state = display->restore.modeset_state;
- 	struct drm_modeset_acquire_ctx ctx;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index 5270c26a32e0..d8a08ca68d4e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
-@@ -24,8 +24,9 @@ void intel_display_driver_remove(struct intel_display *display);
- void intel_display_driver_remove_noirq(struct intel_display *display);
- void intel_display_driver_remove_nogem(struct intel_display *display);
- void intel_display_driver_unregister(struct intel_display *display);
--int intel_display_driver_suspend(struct intel_display *display);
--void intel_display_driver_resume(struct intel_display *display);
-+
-+int intel_display_driver_pm_suspend(struct intel_display *display);
-+void intel_display_driver_pm_resume(struct intel_display *display);
- 
- /* interface for intel_display_reset.c */
- int __intel_display_driver_resume(struct intel_display *display,
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 60d5e06675ab..bd73d64c1ccb 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1114,10 +1114,10 @@ static int i915_drm_prepare(struct drm_device *dev)
- 	intel_pxp_suspend_prepare(i915->pxp);
- 
- 	/*
--	 * NB intel_display_driver_suspend() may issue new requests after we've
--	 * ostensibly marked the GPU as ready-to-sleep here. We need to
--	 * split out that work and pull it forward so that after point,
--	 * the GPU is not woken again.
-+	 * NB intel_display_driver_pm_suspend() may issue new requests after
-+	 * we've ostensibly marked the GPU as ready-to-sleep here. We need to
-+	 * split out that work and pull it forward so that after point, the GPU
-+	 * is not woken again.
- 	 */
- 	return i915_gem_backup_suspend(i915);
- }
-@@ -1139,7 +1139,7 @@ static int i915_drm_suspend(struct drm_device *dev)
- 		intel_display_driver_disable_user_access(display);
- 	}
- 
--	intel_display_driver_suspend(display);
-+	intel_display_driver_pm_suspend(display);
- 
- 	intel_encoder_block_all_hpds(display);
- 
-@@ -1325,7 +1325,7 @@ static int i915_drm_resume(struct drm_device *dev)
- 
- 	intel_encoder_unblock_all_hpds(display);
- 
--	intel_display_driver_resume(display);
-+	intel_display_driver_pm_resume(display);
- 
- 	if (intel_display_device_present(display)) {
- 		intel_display_driver_enable_user_access(display);
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 8d55e7a37d6d..d1c450a18713 100644
+index d1c450a18713..3567b3018083 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -309,7 +309,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
- 	if (intel_display_device_present(display)) {
- 		drm_kms_helper_poll_disable(&xe->drm);
- 		intel_display_driver_disable_user_access(display);
--		intel_display_driver_suspend(display);
-+		intel_display_driver_pm_suspend(display);
- 	}
+@@ -326,7 +326,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
+ 	intel_dmc_suspend(display);
+ }
  
- 	intel_encoder_block_all_hpds(display);
-@@ -339,7 +339,7 @@ void xe_display_pm_shutdown(struct xe_device *xe)
- 	if (intel_display_device_present(display)) {
- 		drm_kms_helper_poll_disable(&xe->drm);
- 		intel_display_driver_disable_user_access(display);
--		intel_display_driver_suspend(display);
-+		intel_display_driver_pm_suspend(display);
- 	}
+-void xe_display_pm_shutdown(struct xe_device *xe)
++void xe_display_shutdown(struct xe_device *xe)
+ {
+ 	struct intel_display *display = xe->display;
  
- 	intel_encoder_block_all_hpds(display);
-@@ -447,7 +447,7 @@ void xe_display_pm_resume(struct xe_device *xe)
- 	intel_encoder_unblock_all_hpds(display);
+@@ -400,7 +400,7 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
+ 	intel_dmc_wl_flush_release_work(display);
+ }
  
- 	if (intel_display_device_present(display)) {
--		intel_display_driver_resume(display);
-+		intel_display_driver_pm_resume(display);
- 		intel_display_driver_enable_user_access(display);
- 		drm_kms_helper_poll_enable(&xe->drm);
- 	}
+-void xe_display_pm_shutdown_late(struct xe_device *xe)
++void xe_display_shutdown_late(struct xe_device *xe)
+ {
+ 	struct intel_display *display = xe->display;
+ 
+diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
+index 60291cb154df..e5f9aed93206 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.h
++++ b/drivers/gpu/drm/xe/display/xe_display.h
+@@ -29,15 +29,16 @@ int xe_display_init(struct xe_device *xe);
+ void xe_display_register(struct xe_device *xe);
+ void xe_display_unregister(struct xe_device *xe);
+ 
++void xe_display_shutdown(struct xe_device *xe);
++void xe_display_shutdown_late(struct xe_device *xe);
++
+ void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl);
+ void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir);
+ void xe_display_irq_reset(struct xe_device *xe);
+ void xe_display_irq_postinstall(struct xe_device *xe);
+ 
+ void xe_display_pm_suspend(struct xe_device *xe);
+-void xe_display_pm_shutdown(struct xe_device *xe);
+ void xe_display_pm_suspend_late(struct xe_device *xe);
+-void xe_display_pm_shutdown_late(struct xe_device *xe);
+ void xe_display_pm_resume_early(struct xe_device *xe);
+ void xe_display_pm_resume(struct xe_device *xe);
+ void xe_display_pm_runtime_suspend(struct xe_device *xe);
+@@ -65,15 +66,16 @@ static inline int xe_display_init(struct xe_device *xe) { return 0; }
+ static inline void xe_display_register(struct xe_device *xe) {}
+ static inline void xe_display_unregister(struct xe_device *xe) {}
+ 
++static inline void xe_display_shutdown(struct xe_device *xe) {}
++static inline void xe_display_shutdown_late(struct xe_device *xe) {}
++
+ static inline void xe_display_irq_handler(struct xe_device *xe, u32 master_ctl) {}
+ static inline void xe_display_irq_enable(struct xe_device *xe, u32 gu_misc_iir) {}
+ static inline void xe_display_irq_reset(struct xe_device *xe) {}
+ static inline void xe_display_irq_postinstall(struct xe_device *xe) {}
+ 
+ static inline void xe_display_pm_suspend(struct xe_device *xe) {}
+-static inline void xe_display_pm_shutdown(struct xe_device *xe) {}
+ static inline void xe_display_pm_suspend_late(struct xe_device *xe) {}
+-static inline void xe_display_pm_shutdown_late(struct xe_device *xe) {}
+ static inline void xe_display_pm_resume_early(struct xe_device *xe) {}
+ static inline void xe_display_pm_resume(struct xe_device *xe) {}
+ static inline void xe_display_pm_runtime_suspend(struct xe_device *xe) {}
+diff --git a/drivers/gpu/drm/xe/xe_device.c b/drivers/gpu/drm/xe/xe_device.c
+index d224861b6f6f..ec065b168bb9 100644
+--- a/drivers/gpu/drm/xe/xe_device.c
++++ b/drivers/gpu/drm/xe/xe_device.c
+@@ -1128,14 +1128,14 @@ void xe_device_shutdown(struct xe_device *xe)
+ 
+ 	drm_dbg(&xe->drm, "Shutting down device\n");
+ 
+-	xe_display_pm_shutdown(xe);
++	xe_display_shutdown(xe);
+ 
+ 	xe_irq_suspend(xe);
+ 
+ 	for_each_gt(gt, xe, id)
+ 		xe_gt_shutdown(gt);
+ 
+-	xe_display_pm_shutdown_late(xe);
++	xe_display_shutdown_late(xe);
+ 
+ 	if (!xe_driver_flr_disabled(xe)) {
+ 		/* BOOM! */
 -- 
 2.47.3
 
