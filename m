@@ -2,80 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4IEAFseYGWrVxggAu9opvQ
+	id OI9mNu+cGWq7xwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 15:46:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:04:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 11F0960309E
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 15:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 609CA6033B2
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:04:29 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 822A110FF64;
-	Fri, 29 May 2026 13:46:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBCFF10FF97;
+	Fri, 29 May 2026 14:04:27 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="HbuDu6gi";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="McBMZGsz";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD85910E187;
- Fri, 29 May 2026 13:46:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 973B710FF96;
+ Fri, 29 May 2026 14:04:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780062404; x=1811598404;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=KahDASigffRrYNY2fcECjx0aBmuc/lCu2aotDwcoHh0=;
- b=HbuDu6giLhsMv81S3KduuJ8PaUmhDnSLGs5o8bwTEmSp2mvexP1eHtkG
- bb+VKubLGkJwqTT6x+gsJ+5wCDOz8OOWKYNWAD1Q50yLAU8RHheXFh7DP
- F6meR/bL6IPsIGDYMctJmmHBho0suluDtXM+nhO5LEByIhiw1dM5fDE/y
- EwBfV+x2KIfkWpgos7WtZp7T7vQ8nRy2LzXvWICpec9z6DMhaC2RVc17i
- YxSNjNWPyeBTCIDbaGkkCKZ/lCTFkjHYR6QPyCbPh1FOSqqBHqzTo3OX7
- UySvqSLRpeJIxXdO8ufIuzhE2UWQ15HDmCIP+tbt/+DfW5PZ8iI5y46n/ g==;
-X-CSE-ConnectionGUID: skarcxdbQO6zDQ5oLLPuTQ==
-X-CSE-MsgGUID: rOuONZ80QGCZ/i2y5oFyyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="84800477"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="84800477"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 06:46:43 -0700
-X-CSE-ConnectionGUID: qs/w7OeFSaKMoNNE015oFw==
-X-CSE-MsgGUID: 0cI2WQZgQ0qk3t7kkDhJUg==
+ t=1780063467; x=1811599467;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=RdYIANGUvtkr3czZ8hbZ7/1csdbpVJYnEFzKI+B2IrA=;
+ b=McBMZGszzB0EAB/GCpvhXx4miwioz2RZ3P1v9JokTTN+Nev2lWbnUtEf
+ /nU6tqZYuHBHSsiPxFFfirmbrfBjxlsVXps21l1BdnTyivpEWyJpNyZNR
+ vcVQezLJ5qKxw7NxRShWc0zYCD4mlIBlUinzzLUbjli815oaW4K9fvFsp
+ NLptZueqm6eag9WWwgaJX1LV3cB98ZgrGUGav2rGwjFPwgGbzXGGx8jaW
+ G4tmGg1PlURjwUudMpEi7IXhNXFQQLq3wsKum2dolCeg7hcrlQoim0+Ud
+ EVMd1a+6qdxkGq2ioN4e8TamCu4WujAolBX7tv7BjrbloWv6hChmuuXxK Q==;
+X-CSE-ConnectionGUID: Wi+J5XYoQryAcjWrJmMW0A==
+X-CSE-MsgGUID: MPNie+3lReaq+dQGG2RvVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80908989"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80908989"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 07:04:26 -0700
+X-CSE-ConnectionGUID: SFi97Q57TdaFvlEwLhDzFw==
+X-CSE-MsgGUID: pJKsfeSSQC6CBbm5kdTmFg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="247950446"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.147])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 06:46:36 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Alex Hung <alex.hung@amd.com>, Melissa Wen <mwen@igalia.com>,
- airlied@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- simona@ffwll.ch, tzimmermann@suse.de
-Cc: Simon Ser <contact@emersion.fr>, Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>, Xaver Hugl
- <xaver.hugl@kde.org>, Pekka Paalanen <pekka.paalanen@collabora.com>, Louis
- Chauvet <louis.chauvet@bootlin.com>, Matthew Schwartz
- <matthew.schwartz@linux.dev>, John Harrison <John.Harrison@Igalia.com>,
- Rodrigo Siqueira <siqueira@igalia.com>, amd-gfx@lists.freedesktop.org,
- kernel-dev@igalia.com, Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry
- Baryshkov <lumag@kernel.org>, Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: Re: [PATCH 1/3] drm/atomic: only add states of active or transient
- active colorops
-In-Reply-To: <e8aaf4da-8fb6-4d6a-95d6-563ac0562b49@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260526142940.504911-1-mwen@igalia.com>
- <20260526142940.504911-2-mwen@igalia.com>
- <e8aaf4da-8fb6-4d6a-95d6-563ac0562b49@amd.com>
-Date: Fri, 29 May 2026 16:46:32 +0300
-Message-ID: <4452e675c4853faf665b520a8932a960946206bb@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="246872569"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.182])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 07:04:24 -0700
+Date: Fri, 29 May 2026 17:04:20 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ imre.deak@intel.com
+Subject: Re: [PATCH 13/24] drm/{i915,xe}: move more calls inside
+ intel_display_driver_{register,unregister}()
+Message-ID: <ahmc5G5cNrlQpsl3@intel.com>
+References: <cover.1780051905.git.jani.nikula@intel.com>
+ <6c62aaa40707fbc68b73a16929df2bb0566424ee.1780051905.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <6c62aaa40707fbc68b73a16929df2bb0566424ee.1780051905.git.jani.nikula@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -90,159 +79,137 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [0.28 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.59)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,linux.intel.com,kernel.org,ffwll.ch,suse.de];
-	FREEMAIL_CC(0.00)[emersion.fr,intel.com,kde.org,collabora.com,bootlin.com,linux.dev,Igalia.com,igalia.com,lists.freedesktop.org,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
-	RCPT_COUNT_TWELVE(0.00)[29];
-	HAS_ORG_HEADER(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,igalia.com:email,amd.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 11F0960309E
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 609CA6033B2
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Tue, 26 May 2026, Alex Hung <alex.hung@amd.com> wrote:
-> On 5/26/26 08:17, Melissa Wen wrote:
->> Only consider affected colorop states those that are part of an active
->> color pipeline or a pipeline that is about to be activated or
->> deactivated in the same atomic commit, i.e., colorop is in the chain of
->> old/new plane color pipeline property. To cover color_pipeline
->> deactivation, remove the condition for plane_state->color_pipeline.
->> 
->> Signed-off-by: Melissa Wen <mwen@igalia.com>
->> ---
->>   drivers/gpu/drm/drm_atomic.c | 67 +++++++++++++++++++++++++++++++-----
->>   1 file changed, 58 insertions(+), 9 deletions(-)
->> 
->> diff --git a/drivers/gpu/drm/drm_atomic.c b/drivers/gpu/drm/drm_atomic.c
->> index 170de30c28ae..4fb3a23e862a 100644
->> --- a/drivers/gpu/drm/drm_atomic.c
->> +++ b/drivers/gpu/drm/drm_atomic.c
->> @@ -812,6 +812,59 @@ static int drm_atomic_plane_check(const struct drm_plane_state *old_plane_state,
->>   	return 0;
->>   }
->>   
->> +/*
->> + * This function walks old and new plane state color pipelines and adds all
->> + * colorops in use by @plane to the atomic configuration @state. This is useful
->> + * when an atomic commit needs to check all currently enabled or about to be
->> + * enabled colorop on @plane, e.g. when changing the mode. This also avoids
->> + * including colorop states that are not part of the atomic state.
->> + *
->> + * Returns:
->> + * 0 on success or can fail with -EDEADLK or -ENOMEM. When the error is EDEADLK
->> + * then the w/w mutex code has detected a deadlock and the entire atomic
->> + * sequence must be restarted. All other errors are fatal.
->> + */
->> +static int
->> +drm_atomic_add_pipeline_colorops(struct drm_atomic_commit *state,
->> +				 struct drm_plane *plane)
->> +{
->> +	struct drm_colorop *colorop;
->> +	struct drm_colorop_state *colorop_state;
->> +	struct drm_plane_state *new_plane_state, *old_plane_state;
->> +
->> +	new_plane_state = drm_atomic_get_new_plane_state(state, plane);
->> +	old_plane_state = drm_atomic_get_old_plane_state(state, plane);
->> +
->> +	if (WARN_ON(!new_plane_state || !old_plane_state))
->> +		return -EINVAL;
->> +
->> +	drm_dbg_atomic(plane->dev,
->> +		       "Adding old+new pipeline colorops for [PLANE:%d:%s]\n",
->> +		       plane->base.id, plane->name);
->> +
->> +	for (colorop = new_plane_state->color_pipeline;
->> +	     colorop;
->> +	     colorop = colorop->next) {
->
-> This for-loop is used 5 times in this patchset. How about a macro in 
-> drm_colorop.h?
->
-> #define drm_for_each_colorop_in_pipeline(colorop, pipeline) \
->      for ((colorop) = (pipeline); (colorop); (colorop) = (colorop)->next)
+On Fri, May 29, 2026 at 02:03:57PM +0300, Jani Nikula wrote:
+> The intel_display_driver_register() and
+> intel_display_driver_unregister() calls are followed and preceded by
+> intel_display_power_enable() and intel_display_power_disable() calls,
+> respectively. Move them inside the register/unregister calls.
+> 
+> Semantically, this is a weird location, as there's nothing really
+> "register" or "unregister" about them, but they retain the existing
+> sequence. Add comments to note that.
+> 
+> There's a slight functional change for !HAS_DISPLAY() in that
+> register/unregister return early. Assume this is what we want, and there
+> are no cases where display engine is present but all pipes have been
+> fused off.
+> 
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_display_driver.c | 6 ++++++
+>  drivers/gpu/drm/i915/i915_driver.c                  | 2 --
+>  drivers/gpu/drm/xe/display/xe_display.c             | 2 --
+>  3 files changed, 6 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 77fa4497b442..7fee9ef88224 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -578,6 +578,9 @@ void intel_display_driver_register(struct intel_display *display)
+>  					DISPLAY_RUNTIME_INFO(display), &p);
+>  
+>  	intel_register_dsm_handler();
+> +
+> +	/* Semantically out of place, just for the sequence */
+> +	intel_display_power_enable(display);
+>  }
+>  
+>  /* part #1: call before irq uninstall */
+> @@ -652,6 +655,9 @@ void intel_display_driver_unregister(struct intel_display *display)
+>  	if (!HAS_DISPLAY(display))
+>  		return;
+>  
+> +	/* Semantically out of place, just for the sequence */
+> +	intel_display_power_disable(display);
+> +
+>  	intel_unregister_dsm_handler();
+>  
+>  	drm_client_dev_unregister(display->drm);
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index 6fd3e8b155b1..b637c4dedf1b 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -661,7 +661,6 @@ static int i915_driver_register(struct drm_i915_private *dev_priv)
+>  
+>  	intel_display_driver_register(display);
+>  
+> -	intel_display_power_enable(display);
 
-Is there a reason struct drm_colorop reinvents lists and doesn't have
-struct list_head node?
+Maybe these deserve their own display_driver_runtime_pm_{en,dis}able()
+things.
 
-BR,
-Jani.
+Although I'm not sure why we even do this so late. We could probably
+do this as soon as the readout is done. And I think ideally we wouldn't
+even use the INIT domain for this and would just do something to keep
+the already enabled power wells enabled until the readout is done.
+But that's a whole different can of worms.
 
->
->> +		colorop_state = drm_atomic_get_colorop_state(state, colorop);
->> +		if (IS_ERR(colorop_state))
->> +			return PTR_ERR(colorop_state);
->> +	}
->> +
->> +	/* Same color pipeline as new; no point walking old. */
->> +	if (new_plane_state->color_pipeline == old_plane_state->color_pipeline)
->> +		return 0;
->> +
->> +	for (colorop = old_plane_state->color_pipeline;
->> +	     colorop;
->> +	     colorop = colorop->next) {
->> +		colorop_state = drm_atomic_get_colorop_state(state, colorop);
->> +		if (IS_ERR(colorop_state))
->> +			return PTR_ERR(colorop_state);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->>   static void drm_atomic_colorop_print_state(struct drm_printer *p,
->>   					   const struct drm_colorop_state *state)
->>   {
->> @@ -1591,11 +1644,9 @@ drm_atomic_add_affected_planes(struct drm_atomic_commit *state,
->>   		if (IS_ERR(plane_state))
->>   			return PTR_ERR(plane_state);
->>   
->> -		if (plane_state->color_pipeline) {
->> -			ret = drm_atomic_add_affected_colorops(state, plane);
->> -			if (ret)
->> -				return ret;
->> -		}
->> +		ret = drm_atomic_add_pipeline_colorops(state, plane);
->> +		if (ret)
->> +			return ret;
->>   	}
->>   	return 0;
->>   }
->> @@ -1607,10 +1658,8 @@ EXPORT_SYMBOL(drm_atomic_add_affected_planes);
->>    * @plane: DRM plane
->>    *
->>    * This function walks the current configuration and adds all colorops
->> - * currently used by @plane to the atomic configuration @state. This is useful
->> - * when an atomic commit also needs to check all currently enabled colorop on
->> - * @plane, e.g. when changing the mode. It's also useful when re-enabling a plane
->> - * to avoid special code to force-enable all colorops.
->> + * currently used by @plane to the atomic configuration @state. It's useful
->> + * when re-enabling a plane to avoid special code to force-enable all colorops.
->>    *
->>    * Since acquiring a colorop state will always also acquire the w/w mutex of the
->>    * current plane for that colorop (if there is any) adding all the colorop states for
->
+>  	intel_runtime_pm_enable(&dev_priv->runtime_pm);
+>  
+>  	if (i915_switcheroo_register(dev_priv))
+> @@ -683,7 +682,6 @@ static void i915_driver_unregister(struct drm_i915_private *dev_priv)
+>  	i915_switcheroo_unregister(dev_priv);
+>  
+>  	intel_runtime_pm_disable(&dev_priv->runtime_pm);
+> -	intel_display_power_disable(display);
+>  
+>  	intel_display_driver_unregister(display);
+>  
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index bbd4f527d5e3..e17e05a8854c 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -177,7 +177,6 @@ void xe_display_register(struct xe_device *xe)
+>  		return;
+>  
+>  	intel_display_driver_register(display);
+> -	intel_display_power_enable(display);
+>  }
+>  
+>  void xe_display_unregister(struct xe_device *xe)
+> @@ -187,7 +186,6 @@ void xe_display_unregister(struct xe_device *xe)
+>  	if (!xe->info.probe_display)
+>  		return;
+>  
+> -	intel_display_power_disable(display);
+>  	intel_display_driver_unregister(display);
+>  }
+>  
+> -- 
+> 2.47.3
 
 -- 
-Jani Nikula, Intel
+Ville Syrjälä
+Intel
