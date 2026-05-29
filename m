@@ -2,69 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 8ODTFKCPGWpTxggAu9opvQ
+	id KONzJg+RGWrVxggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 15:07:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 15:13:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 682B1602A79
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 15:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4E667602BCA
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 15:13:51 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5B06910FEE0;
-	Fri, 29 May 2026 13:07:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6EAF010FEF4;
+	Fri, 29 May 2026 13:13:48 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="CJ4oMI/f";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KDDfpmXS";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 09EB910FEE0;
- Fri, 29 May 2026 13:07:39 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0394410FEF0;
+ Fri, 29 May 2026 13:13:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780060060; x=1811596060;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=H+rNrkQXNiyKviVQYiaDLi1oZh+RVy67DScacrSgvFM=;
- b=CJ4oMI/feTrpu+nvLDzYQix3/tvdg+6s6EczSuNnONi/CkUwHXVeBtu4
- K0mUGwY+v9isxVa4zjK5YTujJddhNWhOlpapN49/mYTFFp9fW3/HXmpk8
- GqlLX4nLwpZxt1nvTY3/XPwOOo7qA/NqT04emxGjfQwmBbcSjjuTm6onG
- oHYU+Y3Q41FU5yOCiWqZhEz8ud3CKWEjBbflgHr4fKqeB2JAN8Z34UkWH
- glvpo9mD4ol3gfV6Bc4rtQ+qPY4JiiKvvtH/LZW3F894DjPxlSYcxAG4v
- AkLpJhIOHcEEni2Pq8k93g154t+nHfrlfX9m+CyxlSrS4OyikYVeGWQg7 w==;
-X-CSE-ConnectionGUID: DuMjlswISOuu0rP9k7hgyA==
-X-CSE-MsgGUID: IUsPg65cQGqKqyMP048+jQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80637635"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80637635"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 06:07:39 -0700
-X-CSE-ConnectionGUID: nMORqc28Q7+oqbeB8dDETQ==
-X-CSE-MsgGUID: c8iqDmI1Tu+ykFx87ASbNA==
+ t=1780060427; x=1811596427;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=Q5Qwz2albalOj7cbm8MiM98vDezCZ5eP+DfY0naHO+U=;
+ b=KDDfpmXSvhyJ+sj+Hr9jUGsgrzAuupqefypk6rPfnuxGgnbL1jRRXny3
+ kyn1TuNyg+7fXxfQnk8Gj0cyVxKtEz6FaN9jo6Jx8J4NIyGbSTGuVft1K
+ zBIG0AMnzXDtLmkVl2LsGXMnyKGzu4lkxUgsK7P9G/oeEXNR7SY+psdz7
+ CsQqXiP4J8GkuCyVGPg4UqabLrs+/o+zRVSGq6R7vsgnDjNM2ZGcwqRhO
+ qILpspH4nUM77ZwLwE66W5IXVMs4ZBJJG9aPH89TVoiFlZpcdyA/uWCry
+ e+hgCHjoGaNIBXvUJ2vwTXMdgeGh4dX/28h+OoHxrUNyBu8b4WQNjvj5z Q==;
+X-CSE-ConnectionGUID: o2On7sa+SBOzqm/ogeJj2w==
+X-CSE-MsgGUID: F/PYrcbDRCeEjpWNY7T+kg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="80811803"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80811803"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 06:13:46 -0700
+X-CSE-ConnectionGUID: P1PawXPcQn+K1BUaIMdZOw==
+X-CSE-MsgGUID: mUKuah4sQROS27MP1xATbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236494832"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 06:07:38 -0700
-Date: Fri, 29 May 2026 16:07:34 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com
-Subject: Re: [PATCH 03/24] drm/i915: add flush_workqueue(display->wq.cleanup)
- on shutdown
-Message-ID: <ahmPlh5w3D-zSGet@intel.com>
-References: <cover.1780051905.git.jani.nikula@intel.com>
- <187ed77534a4d6ae37a4b64084d8efda744e0c6c.1780051905.git.jani.nikula@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="246863169"
+Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.147])
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 May 2026 06:13:44 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Mario Limonciello <superm1@kernel.org>, "Chia-Lin Kao (AceLan)"
+ <acelan.kao@canonical.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, ville.syrjala@linux.intel.com
+Subject: Re: [PATCH v2] drm/dp: Add byte-by-byte fallback for broken USB-C
+ adapters
+In-Reply-To: <685f4a41-b90c-4f8f-b4be-531eae1905ce@kernel.org>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20251204024647.1462866-1-acelan.kao@canonical.com>
+ <685f4a41-b90c-4f8f-b4be-531eae1905ce@kernel.org>
+Date: Fri, 29 May 2026 16:13:41 +0300
+Message-ID: <61e9fb8c40b40fc6a1588b29bc2283fdaa313e1d@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <187ed77534a4d6ae37a4b64084d8efda744e0c6c.1780051905.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,83 +77,201 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.36 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[6];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: 682B1602A79
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 4E667602BCA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 29, 2026 at 02:03:47PM +0300, Jani Nikula wrote:
-> We're missing the cleanup workqueue flush on the shutdown path. Add it.
-> 
-> Unfortunately have to briefly include intel_display_core.c here. To be
-> removed later.
-> 
-> Link: https://lore.kernel.org/r/agRp6Was9FCQbKee@intel.com
-> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/i915_driver.c | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 93940cfe91a0..60d5e06675ab 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -54,6 +54,7 @@
->  #include "display/intel_bw.h"
->  #include "display/intel_cdclk.h"
->  #include "display/intel_crtc.h"
-> +#include "display/intel_display_core.h"
->  #include "display/intel_display_device.h"
->  #include "display/intel_display_driver.h"
->  #include "display/intel_display_power.h"
-> @@ -1053,6 +1054,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
->  		drm_atomic_helper_shutdown(&i915->drm);
->  	}
->  
-> +	flush_workqueue(display->wq.cleanup);
+On Fri, 09 Jan 2026, Mario Limonciello <superm1@kernel.org> wrote:
+> On 12/3/25 8:46 PM, Chia-Lin Kao (AceLan) wrote:
+>> Some USB-C hubs and adapters have buggy firmware where multi-byte AUX
+>> reads consistently timeout, while single-byte reads from the same address
+>> work correctly.
+>> 
+>> Known affected devices that exhibit this issue:
+>> - Lenovo USB-C to VGA adapter (VIA VL817 chipset)
+>>    idVendor=17ef, idProduct=7217
+>> - Dell DA310 USB-C mobile adapter hub
+>>    idVendor=413c, idProduct=c010
+>> 
+>> Analysis of the failure pattern shows:
+>> - Single-byte probes to 0xf0000 (LTTPR) succeed
+>> - Single-byte probes to 0x00102 (TRAINING_AUX_RD_INTERVAL) succeed
+>> - Multi-byte reads from 0x00000 (DPCD capabilities) timeout with -ETIMEDOUT
+>> - Retrying does not help - the failure is consistent across all attempts
+>> 
+>> The issue appears to be a firmware bug in the AUX transaction handling
+>> that specifically affects multi-byte reads.
+>> 
+>> Add a fallback mechanism in drm_dp_dpcd_read_data() that attempts
+>> byte-by-byte reading when the normal multi-byte read fails. This
+>> workaround only activates for adapters that fail the standard read path,
+>> ensuring no impact on correctly functioning hardware.
+>> 
+>> Tested with:
+>> - Lenovo USB-C to VGA adapter (VIA VL817) - now works with fallback
+>> - Dell DA310 USB-C hub - now works with fallback
+>> - Dell/Analogix Slimport adapter - continues to work with normal path
+>> 
+>> Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
+>
+> Reviewed-by: Mario Limonciello (AMD) <superm1@kernel.org>
+>
+> As this fixes reads for some existing hardware on the market and is just 
+> in fallback path I feel this is low risk.  I've applied this to 
+> drm-misc-fixes.
 
-The suspend case explicitly needed this for the DPT eviction.
-Not sure why xe needs it for shutdown, but doing it the same
-way for suspend vs. shutdown doesn't seem like a particularly
-bad idea regardless.
+I've stumbled on this when I was looking at drm_dp_dpcd_read_data(). I
+never received the original patch, for whatever reason, even though Lore
+says I was Cc'd.
 
-Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+> a8f49a0043011 (HEAD -> drm-misc-fixes) drm/dp: Add byte-by-byte fallback 
+> for broken USB-C adapters
+>
+>> ---
+>> v2. 1. Move the workaround from intel_dp_read_dprx_caps() to
+>>         drm_dp_dpcd_read_data(), so that it applies to all DPCD reads across
+>>         all DRM drivers benefit from this fix, not just i915.
+>>      2. Move the definition of drm_dp_dpcd_readb() before
+>>         drm_dp_dpcd_read_data()
+>> ---
+>>   include/drm/display/drm_dp_helper.h | 57 +++++++++++++++++++----------
+>>   1 file changed, 37 insertions(+), 20 deletions(-)
+>> 
+>> diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
+>> index df2f24b950e4..14d2859f0bda 100644
+>> --- a/include/drm/display/drm_dp_helper.h
+>> +++ b/include/drm/display/drm_dp_helper.h
+>> @@ -551,6 +551,22 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
+>>   ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
+>>   			  void *buffer, size_t size);
+>>   
+>> +/**
+>> + * drm_dp_dpcd_readb() - read a single byte from the DPCD
+>> + * @aux: DisplayPort AUX channel
+>> + * @offset: address of the register to read
+>> + * @valuep: location where the value of the register will be stored
+>> + *
+>> + * Returns the number of bytes transferred (1) on success, or a negative
+>> + * error code on failure. In most of the cases you should be using
+>> + * drm_dp_dpcd_read_byte() instead.
+>> + */
+>> +static inline ssize_t drm_dp_dpcd_readb(struct drm_dp_aux *aux,
+>> +					unsigned int offset, u8 *valuep)
+>> +{
+>> +	return drm_dp_dpcd_read(aux, offset, valuep, 1);
+>> +}
+>> +
+>>   /**
+>>    * drm_dp_dpcd_read_data() - read a series of bytes from the DPCD
+>>    * @aux: DisplayPort AUX channel (SST or MST)
+>> @@ -570,12 +586,29 @@ static inline int drm_dp_dpcd_read_data(struct drm_dp_aux *aux,
+>>   					void *buffer, size_t size)
+>>   {
+>>   	int ret;
+>> +	size_t i;
+>> +	u8 *buf = buffer;
+>>   
+>>   	ret = drm_dp_dpcd_read(aux, offset, buffer, size);
+>> -	if (ret < 0)
+>> -		return ret;
+>> -	if (ret < size)
+>> -		return -EPROTO;
+>> +	if (ret >= 0) {
+>> +		if (ret < size)
+>> +			return -EPROTO;
+>> +		return 0;
+>> +	}
+>> +
+>> +	/*
+>> +	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
+>> +	 * multi-byte AUX reads but work with single-byte reads.
+>> +	 * Known affected devices:
+>> +	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
+>> +	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
+>> +	 * Attempt byte-by-byte reading as a fallback.
+>> +	 */
+>> +	for (i = 0; i < size; i++) {
+>> +		ret = drm_dp_dpcd_readb(aux, offset + i, &buf[i]);
 
-> +
->  	intel_dp_mst_suspend(display);
->  
->  	intel_encoder_block_all_hpds(display);
-> -- 
-> 2.47.3
+drm_dp_dpcd_read_byte() should be preferred over drm_dp_dpcd_readb()...
+
+>> +		if (ret < 0)
+
+...because drm_dp_dpcd_readb() might return 0 on failures. You need to
+use drm_dp_dpcd_readb() == 1 to check for success, which is why
+drm_dp_dpcd_read_byte() and drm_dp_dpcd_read_data() were introduced in
+the first place.
+
+Moreover, this ugly workaround only impacts drm_dp_dpcd_read_data()
+callers, but there are lots and lots of direct drm_dp_dpcd_read() calls
+all over the place, which go unfixed.
+
+It should be emphasized that DP AUX changes that affect absolutely all
+drivers should go through more scrutiny, and require more acks.
+
+This needs follow-up fixes.
+
+
+BR,
+Jani.
+
+
+>> +			return ret;
+>> +	}
+>>   
+>>   	return 0;
+>>   }
+>> @@ -609,22 +642,6 @@ static inline int drm_dp_dpcd_write_data(struct drm_dp_aux *aux,
+>>   	return 0;
+>>   }
+>>   
+>> -/**
+>> - * drm_dp_dpcd_readb() - read a single byte from the DPCD
+>> - * @aux: DisplayPort AUX channel
+>> - * @offset: address of the register to read
+>> - * @valuep: location where the value of the register will be stored
+>> - *
+>> - * Returns the number of bytes transferred (1) on success, or a negative
+>> - * error code on failure. In most of the cases you should be using
+>> - * drm_dp_dpcd_read_byte() instead.
+>> - */
+>> -static inline ssize_t drm_dp_dpcd_readb(struct drm_dp_aux *aux,
+>> -					unsigned int offset, u8 *valuep)
+>> -{
+>> -	return drm_dp_dpcd_read(aux, offset, valuep, 1);
+>> -}
+>> -
+>>   /**
+>>    * drm_dp_dpcd_writeb() - write a single byte to the DPCD
+>>    * @aux: DisplayPort AUX channel
+>
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
