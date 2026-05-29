@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id sHCtJ+ByGWoQwwgAu9opvQ
+	id EIlZJupyGWoQwwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:05:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:05:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54043601473
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:05:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4F0F0601492
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:05:14 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C87D510FD25;
-	Fri, 29 May 2026 11:05:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D48A410FD4D;
+	Fri, 29 May 2026 11:05:12 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AMZ4tjdW";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WRk24XBR";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 06E0610FD36;
- Fri, 29 May 2026 11:05:02 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31F6E10FD40;
+ Fri, 29 May 2026 11:05:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780052702; x=1811588702;
+ t=1780052706; x=1811588706;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ESvUhOQMykLtyaM+ty2VCdI+gsrpUKJKx13CDvPMncI=;
- b=AMZ4tjdW2Cwj4xHnELJkd7mA2Hduk52RWOC/Q10yD9GX72RwAihVprKP
- TDWhXpmCk3U9x/NqT1lcS9m4hxRQ1m2VKMx6ZU796F3mjbu7CPcK/pd/m
- wHdO5ZhlDlDxLgPE3DI5Ik0TTMlrOyMVChq8JbSaV2pufVPIaIH1Jr1Hn
- wIgzw3+G93XgahhlljufiSVVAEzy14PTQ45SjR7A1flOxcDrs9MTiXsPV
- Xfx6KkVdx+WNe44tIkJbrc8aEhjAUGq8+GN6bIwgKk9d6M6wAihkqcd/L
- Sz2H92dRoQeH4p9ORWQ78Q0tDjdoTVvxpO3rxhm5yG72RgK06gKwl3Kqz Q==;
-X-CSE-ConnectionGUID: cqQG0DduQ5WuG+QmZ3rEGw==
-X-CSE-MsgGUID: Bd2hsXUSRbSokLVF4Dic4w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80629255"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80629255"
+ bh=KZ3lWg2kEcNEczczbyDUyalhx75fC6TClCZeUdPGrb4=;
+ b=WRk24XBRB0PckS+Qu2Am0SEstzeZ0Ocsn7rCe0Cooef2T2tyt88ALnNL
+ KPZrDAct49fGxD4KOU2etI6bi7Re/nYPjMacESl0h+IxzRVvGoow79VBf
+ 9NBJ0l1ZkujnTpdOHm0zzKoM82W4ge7AqFJs6L4sWk3xWvkSG8kvKG8vj
+ 64keJyo1vU3DLQWgdI2W5vpUPGgJ6/otMCe0RMF9ELdHEcWHHeBONcav9
+ rZqETO0++xL/mSY5Toyq56Q2eBJ9e4OyFz+HSwn+i8/HIK/frUd6WHW9+
+ BR2K9t+XZTy8VRUa9VnRRigQxVR5fOKwH6dscbTgVb/fg2Ozg762W68Lm Q==;
+X-CSE-ConnectionGUID: 5VRghLjQQd+iVgxK6b1Zow==
+X-CSE-MsgGUID: Q2F5SQkJQPSYtOeDKMfCjw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="80629257"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="80629257"
 Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:01 -0700
-X-CSE-ConnectionGUID: vy1qwOHnRNKyPagArt7z9Q==
-X-CSE-MsgGUID: ThPJJOZxRVKxw6zgEjQrdA==
+ 29 May 2026 04:05:06 -0700
+X-CSE-ConnectionGUID: z2z6ajzURvilYFFxxDH/CA==
+X-CSE-MsgGUID: il6EJ/otSPeBKwVbHzl2GA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236470863"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="236470877"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:00 -0700
+ 29 May 2026 04:05:04 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 10/24] drm/{i915,
- xe}: move more calls inside intel_display_driver_pm_suspend()
-Date: Fri, 29 May 2026 14:03:54 +0300
-Message-ID: <12d3749c215c7277d460bba4eeb9f78b8a5fea42.1780051905.git.jani.nikula@intel.com>
+Subject: [PATCH 11/24] drm/{i915,
+ xe}: move more calls inside intel_display_driver_pm_resume()
+Date: Fri, 29 May 2026 14:03:55 +0300
+Message-ID: <440eb1a957a092dcd9676dfa9d679480414d10a3.1780051905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780051905.git.jani.nikula@intel.com>
 References: <cover.1780051905.git.jani.nikula@intel.com>
@@ -97,113 +97,137 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:-];
-	NEURAL_HAM(-0.00)[-0.968];
+	NEURAL_HAM(-0.00)[-0.969];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:mid,intel.com:email]
-X-Rspamd-Queue-Id: 54043601473
+X-Rspamd-Queue-Id: 4F0F0601492
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The intel_display_driver_pm_suspend() calls are surrounded by near
+The intel_display_driver_pm_resume() calls are surrounded by near
 identical display calls. Move the calls inside
-intel_display_driver_pm_suspend().
+intel_display_driver_pm_resume().
 
 There's a slight functional change in that
-intel_display_driver_pm_suspend() returns early for
+intel_display_driver_pm_resume() returns early for
 !HAS_DISPLAY(). Assume this is what we want, and there are no cases
 where display engine is present but all pipes have been fused off.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- .../drm/i915/display/intel_display_driver.c   | 11 ++++++++++
- drivers/gpu/drm/i915/i915_driver.c            |  9 --------
- drivers/gpu/drm/xe/display/xe_display.c       | 22 ++-----------------
- 3 files changed, 13 insertions(+), 29 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   | 18 +++++++++++++++
+ drivers/gpu/drm/i915/i915_driver.c            | 19 ----------------
+ drivers/gpu/drm/xe/display/xe_display.c       | 22 +------------------
+ 3 files changed, 19 insertions(+), 40 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 9be4c94740dc..41a2244985fa 100644
+index 41a2244985fa..f362532c6834 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -686,6 +686,17 @@ int intel_display_driver_pm_suspend(struct intel_display *display)
+@@ -43,6 +43,7 @@
+ #include "intel_dp_tunnel.h"
+ #include "intel_dpll.h"
+ #include "intel_dpll_mgr.h"
++#include "intel_encoder.h"
+ #include "intel_fb.h"
+ #include "intel_fbc.h"
+ #include "intel_fbdev.h"
+@@ -761,6 +762,12 @@ void intel_display_driver_pm_resume(struct intel_display *display)
  	if (!HAS_DISPLAY(display))
- 		return 0;
+ 		return;
  
-+	/*
-+	 * We do a lot of poking in a lot of registers, make sure they work
-+	 * properly.
-+	 */
-+	intel_display_power_disable(display);
++	intel_display_driver_resume_access(display);
 +
-+	drm_client_dev_suspend(display->drm);
++	intel_hpd_init(display);
 +
-+	drm_kms_helper_poll_disable(display->drm);
-+	intel_display_driver_disable_user_access(display);
++	intel_encoder_unblock_all_hpds(display);
 +
- 	state = drm_atomic_helper_suspend(display->drm);
- 	ret = PTR_ERR_OR_ZERO(state);
- 	if (ret)
+ 	/* MST sideband requires HPD interrupts enabled */
+ 	intel_dp_mst_resume(display);
+ 
+@@ -790,4 +797,15 @@ void intel_display_driver_pm_resume(struct intel_display *display)
+ 			"Restoring old state failed with %i\n", ret);
+ 	if (state)
+ 		drm_atomic_commit_put(state);
++
++	intel_display_driver_enable_user_access(display);
++	drm_kms_helper_poll_enable(display->drm);
++
++	intel_hpd_poll_disable(display);
++
++	intel_opregion_resume(display);
++
++	drm_client_dev_resume(display->drm);
++
++	intel_display_power_enable(display);
+ }
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index bd73d64c1ccb..f161723f653e 100644
+index f161723f653e..063d4bdec2d9 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1130,15 +1130,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+@@ -1309,27 +1309,8 @@ static int i915_drm_resume(struct drm_device *dev)
  
- 	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+ 	intel_clock_gating_init(&dev_priv->drm);
  
--	/* We do a lot of poking in a lot of registers, make sure they work
--	 * properly. */
--	intel_display_power_disable(display);
--	drm_client_dev_suspend(dev);
--	if (intel_display_device_present(display)) {
--		drm_kms_helper_poll_disable(dev);
--		intel_display_driver_disable_user_access(display);
--	}
+-	if (intel_display_device_present(display))
+-		intel_display_driver_resume_access(display);
 -
- 	intel_display_driver_pm_suspend(display);
+-	intel_hpd_init(display);
+-
+-	intel_encoder_unblock_all_hpds(display);
+-
+ 	intel_display_driver_pm_resume(display);
  
- 	intel_encoder_block_all_hpds(display);
+-	if (intel_display_device_present(display)) {
+-		intel_display_driver_enable_user_access(display);
+-		drm_kms_helper_poll_enable(dev);
+-	}
+-	intel_hpd_poll_disable(display);
+-
+-	intel_opregion_resume(display);
+-
+-	drm_client_dev_resume(dev);
+-
+-	intel_display_power_enable(display);
+-
+ 	intel_gvt_resume(dev_priv);
+ 
+ 	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 38ebcc2b712a..027db7b6ceb5 100644
+index 027db7b6ceb5..f34a9d2ffc16 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -198,14 +198,7 @@ void xe_display_shutdown(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
+@@ -341,27 +341,7 @@ void xe_display_pm_resume(struct xe_device *xe)
  
--	intel_display_power_disable(display);
--	drm_client_dev_suspend(&xe->drm);
+ 	intel_display_driver_init_hw(display);
+ 
+-	if (intel_display_device_present(display))
+-		intel_display_driver_resume_access(display);
+-
+-	intel_hpd_init(display);
+-
+-	intel_encoder_unblock_all_hpds(display);
 -
 -	if (intel_display_device_present(display)) {
--		drm_kms_helper_poll_disable(&xe->drm);
--		intel_display_driver_disable_user_access(display);
--		intel_display_driver_pm_suspend(display);
+-		intel_display_driver_pm_resume(display);
+-		intel_display_driver_enable_user_access(display);
+-		drm_kms_helper_poll_enable(&xe->drm);
 -	}
-+	intel_display_driver_pm_suspend(display);
- 
- 	intel_encoder_block_all_hpds(display);
- 	intel_hpd_cancel_work(display);
-@@ -297,18 +290,7 @@ void xe_display_pm_suspend(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
- 
--	/*
--	 * We do a lot of poking in a lot of registers, make sure they work
--	 * properly.
--	 */
--	intel_display_power_disable(display);
--	drm_client_dev_suspend(&xe->drm);
 -
--	if (intel_display_device_present(display)) {
--		drm_kms_helper_poll_disable(&xe->drm);
--		intel_display_driver_disable_user_access(display);
--		intel_display_driver_pm_suspend(display);
--	}
-+	intel_display_driver_pm_suspend(display);
+-	if (intel_display_device_present(display))
+-		intel_hpd_poll_disable(display);
+-
+-	intel_opregion_resume(display);
+-
+-	drm_client_dev_resume(&xe->drm);
+-
+-	intel_display_power_enable(display);
++	intel_display_driver_pm_resume(display);
+ }
  
- 	intel_encoder_block_all_hpds(display);
- 
+ static void xe_display_enable_d3cold(struct xe_device *xe)
 -- 
 2.47.3
 
