@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id GF3sERhzGWogwwgAu9opvQ
+	id 0CsXEBpzGWogwwgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:06:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:06:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4C6C601502
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:05:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E57AC601509
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 13:06:01 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1DF0A10FD58;
-	Fri, 29 May 2026 11:05:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7AA3710FD5A;
+	Fri, 29 May 2026 11:06:00 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QkA3L0RI";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B0RgNC8B";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A62EA10FD5A;
- Fri, 29 May 2026 11:05:54 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D7AD410FD5A;
+ Fri, 29 May 2026 11:05:56 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780052755; x=1811588755;
+ t=1780052757; x=1811588757;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9xnAOAvYIm9+yca0dcDTd2YTKzCeD34LMG6yfIpde/U=;
- b=QkA3L0RI+Nod8sA7FBDJg/hXhILKjkW6Jgg+PAk/IVVudNd0/L90BnIb
- fz2rMOdLdUAMMQijd+L+wg6RnpD1wODb5z4sx68BUHVaNVDnkxtLxX108
- SEve44SWQNNYIIiVZQCoMiKD1F09cJrZVd9Do2vy+M8Z4dvkifBZRLF0F
- OqLKS86mQ3zxg5bJyNXnf3+cysl7dIf5FY1PVlmzmSk0sft1EXgayr6NQ
- q7VXCM3hHnYJOmfpa8cxfRST7fBDLRrF+jySWJHx41nQQqilKwyKp5AHX
- ksqdCU2RrHmMwY9IAYGAJWIqyKW6YQCIhx6ex0fU6/lx8PSKzfawsoMGw w==;
-X-CSE-ConnectionGUID: Ee0cJpn9QAGUdIUxWFe/yw==
-X-CSE-MsgGUID: LnXTdxd0SMy9afTX7MjYKQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="81087061"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="81087061"
+ bh=q5MyP/PEnii/XQFKzbbqyYa0nAduwpdHdHCM6skf3qU=;
+ b=B0RgNC8BswNw/Q+ON72qCrNDzRUJEXNmlofe2tjccwMaS8lkRteij63m
+ zWxXSEH4RqgIMSE1d0j1mOkn1kDuWg6MZSXycQyMLHqhp/Z9U9v7jcxuI
+ 8VPh11vRU+q1gT6wu17MsOX2pp+ZpOIAIyRHWctEuW3GhiKJxTqV7QGwH
+ +u/G5xy8eg95m9QCNbCVlgJ6E+az77o/bQE/TunHlwDQyw+9nGIq4Rux6
+ E5R9p3oNO5qzyVz6opvDtDSjo471qxLR6eJaMdntDfJD8xIBMhubg3gyo
+ +omb1wMu5svFuJQc5rVyaVAaImuTgiwUkfGS3itSbt5kj+nbE3yzAdYBx w==;
+X-CSE-ConnectionGUID: rlAXhNxjQVaPi4FM7LDRlg==
+X-CSE-MsgGUID: hNeexdYLQKaxRoI1bWJUYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11800"; a="81087063"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="81087063"
 Received: from fmviesa008.fm.intel.com ([10.60.135.148])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:53 -0700
-X-CSE-ConnectionGUID: LzuunOdrS6i5Rz3MGSEatQ==
-X-CSE-MsgGUID: UilhzwieRIaUxBovUMpdjw==
+ 29 May 2026 04:05:57 -0700
+X-CSE-ConnectionGUID: yX/MZPNoQLOb1IQXu6oUgA==
+X-CSE-MsgGUID: rxGImM4iQYWTUVuUPmzCHQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="240273012"
+X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="240273015"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.147])
  by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 04:05:50 -0700
+ 29 May 2026 04:05:55 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com, imre.deak@intel.com
-Subject: [PATCH 21/24] drm/{i915,
- xe}: keep moving stuff to intel_display_driver_pm_resume()
-Date: Fri, 29 May 2026 14:04:05 +0300
-Message-ID: <91a5bee38be9c985a124b02189f9646a78d59b2a.1780051905.git.jani.nikula@intel.com>
+Subject: [PATCH 22/24] drm/i915: add intel_display_driver_pm_runtime*()
+ functions
+Date: Fri, 29 May 2026 14:04:06 +0300
+Message-ID: <9417d53a338b5a14b9bf50cb8585b13b7379a6d3.1780051905.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780051905.git.jani.nikula@intel.com>
 References: <cover.1780051905.git.jani.nikula@intel.com>
@@ -76,14 +76,14 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [1.99 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
@@ -96,103 +96,203 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	TO_DN_NONE(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:-];
-	NEURAL_HAM(-0.00)[-0.971];
+	DKIM_TRACE(0.00)[intel.com:+];
+	NEURAL_HAM(-0.00)[-1.000];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: D4C6C601502
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: E57AC601509
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-The calls to intel_display_driver_pm_resume() are preceded with similar
-calls. Move the calls inside intel_display_driver_pm_resume().
+Add new functions intel_display_driver_pm_runtime_suspend(),
+intel_display_driver_pm_runtime_suspend_late(),
+intel_display_driver_pm_runtime_resume_early(), and
+intel_display_driver_pm_runtime_resume(). Initially, only migrate i915,
+as there are some differences with xe that will be addressed later.
 
-In i915 the calls are interspersed among other things, so this is a
-functional change. Fingers crossed.
+There are a few functional changes, which should be benign:
 
-There's a slight functional change in that
-intel_display_driver_pm_resume() returns early for
-!HAS_DISPLAY(). Assume this is what we want, and there are no cases
-where display engine is present but all pipes have been fused off.
+- i915_pm_runtime_suspend() moves assert_forcewakes_inactive() call
+  before opregion calls.
+
+- i915_pm_runtime_resume() moves intel_opregion_notify_adapter() call
+  slightly later.
+
+In the interest of not introducing more severe functional changes, the
+calls become slightly asymmetric. We might want to address this later.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 6 ++++++
- drivers/gpu/drm/i915/i915_driver.c                  | 8 --------
- drivers/gpu/drm/xe/display/xe_display.c             | 7 -------
- 3 files changed, 6 insertions(+), 15 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   | 56 +++++++++++++++++++
+ .../drm/i915/display/intel_display_driver.h   |  5 ++
+ drivers/gpu/drm/i915/i915_driver.c            | 44 ++-------------
+ 3 files changed, 65 insertions(+), 40 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 1525ff7a1dc2..84807a9bff2b 100644
+index 84807a9bff2b..a27ddf21b08b 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -831,6 +831,12 @@ void intel_display_driver_pm_resume(struct intel_display *display)
- 	if (!HAS_DISPLAY(display))
- 		return;
+@@ -884,3 +884,59 @@ void intel_display_driver_pm_resume(struct intel_display *display)
  
-+	intel_dmc_resume(display);
+ 	intel_display_power_enable(display);
+ }
 +
-+	drm_mode_config_reset(display->drm);
++void intel_display_driver_pm_runtime_suspend(struct intel_display *display)
++{
++	intel_display_power_runtime_suspend(display);
++}
 +
-+	intel_display_driver_init_hw(display);
++void intel_display_driver_pm_runtime_suspend_late(struct intel_display *display)
++{
++	/*
++	 * FIXME: We really should find a document that references the arguments
++	 * used below!
++	 */
++	if (display->platform.broadwell) {
++		/*
++		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
++		 * being detected, and the call we do at i915_pm_runtime_resume()
++		 * won't be able to restore them. Since PCI_D3hot matches the
++		 * actual specification and appears to be working, use it.
++		 */
++		intel_opregion_notify_adapter(display, PCI_D3hot);
++	} else {
++		/*
++		 * current versions of firmware which depend on this opregion
++		 * notification have repurposed the D1 definition to mean
++		 * "runtime suspended" vs. what you would normally expect (D3)
++		 * to distinguish it from notifications that might be sent via
++		 * the suspend path.
++		 */
++		intel_opregion_notify_adapter(display, PCI_D1);
++	}
 +
- 	intel_display_driver_resume_access(display);
++	if (!display->platform.valleyview && !display->platform.cherryview)
++		intel_hpd_poll_enable(display);
++}
++
++void intel_display_driver_pm_runtime_resume_early(struct intel_display *display)
++{
++	intel_opregion_notify_adapter(display, PCI_D0);
++
++	intel_display_power_runtime_resume(display);
++}
++
++void intel_display_driver_pm_runtime_resume(struct intel_display *display)
++{
++	/*
++	 * On VLV/CHV display interrupts are part of the display
++	 * power well, so hpd is reinitialized from there. For
++	 * everyone else do it here.
++	 */
++	if (!display->platform.valleyview && !display->platform.cherryview) {
++		intel_hpd_init(display);
++		intel_hpd_poll_disable(display);
++	}
++
++	skl_watermark_ipc_update(display);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
+index 7eca3d17dd82..1b494337d629 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_driver.h
++++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
+@@ -43,5 +43,10 @@ void intel_display_driver_suspend_access(struct intel_display *display);
+ void intel_display_driver_resume_access(struct intel_display *display);
+ bool intel_display_driver_check_access(struct intel_display *display);
  
- 	intel_hpd_init(display);
++void intel_display_driver_pm_runtime_suspend(struct intel_display *display);
++void intel_display_driver_pm_runtime_suspend_late(struct intel_display *display);
++void intel_display_driver_pm_runtime_resume_early(struct intel_display *display);
++void intel_display_driver_pm_runtime_resume(struct intel_display *display);
++
+ #endif /* __INTEL_DISPLAY_DRIVER_H__ */
+ 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 7d0f98cbf5d9..6b9e1b268a89 100644
+index 6b9e1b268a89..519a519d2d96 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -57,7 +57,6 @@
- #include "display/intel_display_device.h"
- #include "display/intel_display_driver.h"
- #include "display/intel_display_power.h"
--#include "display/intel_dmc.h"
- #include "display/intel_dp.h"
- #include "display/intel_dpt.h"
- #include "display/intel_dram.h"
-@@ -1233,8 +1232,6 @@ static int i915_drm_resume(struct drm_device *dev)
- 	/* Must be called after GGTT is resumed. */
- 	intel_dpt_resume(display);
+@@ -1521,7 +1521,7 @@ static int i915_pm_runtime_suspend(struct device *kdev)
+ 	for_each_gt(gt, dev_priv, i)
+ 		intel_uncore_suspend(gt->uncore);
  
--	intel_dmc_resume(display);
--
- 	i9xx_display_sr_restore(display);
+-	intel_display_power_runtime_suspend(display);
++	intel_display_driver_pm_runtime_suspend(display);
  
- 	intel_gmbus_reset(display);
-@@ -1255,13 +1252,8 @@ static int i915_drm_resume(struct drm_device *dev)
- 	 */
- 	intel_irq_resume(dev_priv);
+ 	ret = vlv_suspend_complete(dev_priv);
+ 	if (ret) {
+@@ -1555,33 +1555,9 @@ static int i915_pm_runtime_suspend(struct device *kdev)
+ 	if (root_pdev)
+ 		pci_d3cold_disable(root_pdev);
  
--	if (intel_display_device_present(display))
--		drm_mode_config_reset(dev);
+-	/*
+-	 * FIXME: We really should find a document that references the arguments
+-	 * used below!
+-	 */
+-	if (IS_BROADWELL(dev_priv)) {
+-		/*
+-		 * On Broadwell, if we use PCI_D1 the PCH DDI ports will stop
+-		 * being detected, and the call we do at i915_pm_runtime_resume()
+-		 * won't be able to restore them. Since PCI_D3hot matches the
+-		 * actual specification and appears to be working, use it.
+-		 */
+-		intel_opregion_notify_adapter(display, PCI_D3hot);
+-	} else {
+-		/*
+-		 * current versions of firmware which depend on this opregion
+-		 * notification have repurposed the D1 definition to mean
+-		 * "runtime suspended" vs. what you would normally expect (D3)
+-		 * to distinguish it from notifications that might be sent via
+-		 * the suspend path.
+-		 */
+-		intel_opregion_notify_adapter(display, PCI_D1);
+-	}
 -
- 	i915_gem_resume(dev_priv);
+ 	assert_forcewakes_inactive(&dev_priv->uncore);
  
--	intel_display_driver_init_hw(display);
--
- 	intel_clock_gating_init(&dev_priv->drm);
+-	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv))
+-		intel_hpd_poll_enable(display);
++	intel_display_driver_pm_runtime_suspend_late(display);
  
- 	intel_display_driver_pm_resume(display);
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 73891b36341b..b153bf9c83d8 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -301,13 +301,6 @@ void xe_display_pm_resume(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
+ 	drm_dbg(&dev_priv->drm, "Device suspended\n");
+ 	return 0;
+@@ -1605,8 +1581,6 @@ static int i915_pm_runtime_resume(struct device *kdev)
+ 	drm_WARN_ON_ONCE(&dev_priv->drm, atomic_read(&rpm->wakeref_count));
+ 	disable_rpm_wakeref_asserts(rpm);
  
--	intel_dmc_resume(display);
+-	intel_opregion_notify_adapter(display, PCI_D0);
 -
--	if (intel_display_device_present(display))
--		drm_mode_config_reset(&xe->drm);
+ 	root_pdev = pcie_find_root_port(pdev);
+ 	if (root_pdev)
+ 		pci_d3cold_enable(root_pdev);
+@@ -1615,7 +1589,7 @@ static int i915_pm_runtime_resume(struct device *kdev)
+ 		drm_dbg(&dev_priv->drm,
+ 			"Unclaimed access during suspend, bios?\n");
+ 
+-	intel_display_power_runtime_resume(display);
++	intel_display_driver_pm_runtime_resume_early(display);
+ 
+ 	ret = vlv_resume_prepare(dev_priv, true);
+ 
+@@ -1633,17 +1607,7 @@ static int i915_pm_runtime_resume(struct device *kdev)
+ 
+ 	intel_pxp_runtime_resume(dev_priv->pxp);
+ 
+-	/*
+-	 * On VLV/CHV display interrupts are part of the display
+-	 * power well, so hpd is reinitialized from there. For
+-	 * everyone else do it here.
+-	 */
+-	if (!IS_VALLEYVIEW(dev_priv) && !IS_CHERRYVIEW(dev_priv)) {
+-		intel_hpd_init(display);
+-		intel_hpd_poll_disable(display);
+-	}
 -
--	intel_display_driver_init_hw(display);
--
- 	intel_display_driver_pm_resume(display);
- }
+-	skl_watermark_ipc_update(display);
++	intel_display_driver_pm_runtime_resume(display);
+ 
+ 	enable_rpm_wakeref_asserts(rpm);
  
 -- 
 2.47.3
