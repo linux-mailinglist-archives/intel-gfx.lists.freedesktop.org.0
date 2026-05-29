@@ -2,69 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id CPc5JtelGWptyAgAu9opvQ
+	id GDVqDIGpGWodyQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:42:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:58:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7CD2603C99
-	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:42:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AF3C76041B6
+	for <lists+intel-gfx@lfdr.de>; Fri, 29 May 2026 16:58:08 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D96011202A;
-	Fri, 29 May 2026 14:42:28 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QfV47nxg";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id D13F7112060;
+	Fri, 29 May 2026 14:58:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C558F11202A;
- Fri, 29 May 2026 14:42:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780065747; x=1811601747;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=w+lxVO+VKo6AR0VOu0nB6G0TJbsAnOA5uZ0zCCeSC0g=;
- b=QfV47nxg8pG/uzzeOIGO9Bul6Y7MD+on2pd8qpUc/B6CgfgaXwmaEgxu
- HaNKVIO1HMs7d/cCsjIVz3skT2P4R8fYn2oW+jjFLG7M1LEwTCqNHUlVI
- 7DnJv9yvwFjfui2wup34L3xCRhmQNu3fDJmjId5DIu8OGbmoIgjeQeWlz
- SChyrRQzyQGS+IEh6eNy0HCK1jlQXOgI/3tIspAmSKhUI7OsE01ZJR//e
- QdytFLwZdzH5aY7cjPmJyPpbEjjICuBqCW0iH2s6EdHjI8aYDhXnZG8w6
- jSCYXOYHHdePiCO/mF6kHYB7lEeBkO8OIX32bhlcjbym6rQ0BDvlFE1+c A==;
-X-CSE-ConnectionGUID: ZIKPfb/LTLG9QDAQFtflCA==
-X-CSE-MsgGUID: bi7TUE2VQCKOEXXTyj63og==
-X-IronPort-AV: E=McAfee;i="6800,10657,11801"; a="98492582"
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="98492582"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 07:42:27 -0700
-X-CSE-ConnectionGUID: 3C3wB2UhS8WX4w8eKh1W3w==
-X-CSE-MsgGUID: vwY+or2cRZO0mwXvQow10g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,175,1774335600"; d="scan'208";a="266491999"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.182])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 May 2026 07:42:24 -0700
-Date: Fri, 29 May 2026 17:42:21 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- imre.deak@intel.com
-Subject: Re: [PATCH 20/24] drm/{i915,xe}: move intel_opregion_suspend() to
- intel_display_driver_pm_suspend_late()
-Message-ID: <ahmlzZDcd8eLFhfv@intel.com>
-References: <cover.1780051905.git.jani.nikula@intel.com>
- <ab953d87a5c4233a713b65aba9e45148bd77dbaa.1780051905.git.jani.nikula@intel.com>
+Received: from exchange.fintech.ru (exchange.fintech.ru [195.54.195.159])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 57574112067;
+ Fri, 29 May 2026 14:58:05 +0000 (UTC)
+Received: from Ex16-01.fintech.ru (10.0.10.18) by exchange.fintech.ru
+ (195.54.195.169) with Microsoft SMTP Server (TLS) id 14.3.498.0; Fri, 29 May
+ 2026 17:58:03 +0300
+Received: from localhost (10.0.253.153) by Ex16-01.fintech.ru (10.0.10.18)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.2242.4; Fri, 29 May
+ 2026 17:58:02 +0300
+From: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+To: Jani Nikula <jani.nikula@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+CC: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>, <dri-devel@lists.freedesktop.org>,
+ <linux-kernel@vger.kernel.org>, <lvc-project@linuxtesting.org>
+Subject: [PATCH v2] drm/i915/edp: Check supported link rates DPCD read
+Date: Fri, 29 May 2026 17:57:58 +0300
+Message-ID: <20260529145759.1640646-1-n.zhandarovich@fintech.ru>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ab953d87a5c4233a713b65aba9e45148bd77dbaa.1780051905.git.jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
+X-Originating-IP: [10.0.253.153]
+X-ClientProxiedBy: Ex16-02.fintech.ru (10.0.10.19) To Ex16-01.fintech.ru
+ (10.0.10.18)
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,122 +56,82 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.40 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.71)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.89 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[fintech.ru];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_CC(0.00)[fintech.ru,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[n.zhandarovich@fintech.ru,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	HAS_XOIP(0.00)[];
+	R_DKIM_NA(0.00)[];
+	NEURAL_HAM(-0.00)[-0.909];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: B7CD2603C99
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linuxtesting.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: AF3C76041B6
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Fri, May 29, 2026 at 02:04:04PM +0300, Jani Nikula wrote:
-> Try to unify the suspend paths and behaviour by moving the
-> intel_opregion_suspend() calls to
-> intel_display_driver_pm_suspend_late().
-> 
-> This is a change in the suspend sequences. The idea behind adding this
-> to intel_display_driver_pm_suspend_late() is primarily based on not
-> having to pass the s2idle parameter to more functions than that.
-> 
-> This also changes behaviour for i915 hibernation, going for PCI_D3cold
-> instead of PCI_D1 on hibernate. It's probably the correct thing to do
-> anyway, I don't think it should matter all that much, but fingers
-> crossed.
+intel_edp_set_sink_rates() reads DP_SUPPORTED_LINK_RATES into a local
+stack array and then parses the array unconditionally. If the read
+fails, the array contents are not valid and may result in bogus sink
+link rates being used.
 
-acpi_target_system_state() should always return S4 for
-hibernation. I'm not sure why we even check !hibernation
-here... Looks like it's just a pointless thing left over
-by commit c7b5abd3e030 ("drm/i915: Remove i915_drm_suspend_mode")
+Use drm_dp_dpcd_read_data() and clear the sink rate array on failure,
+so the existing parser falls back to the default sink rate handling.
 
-> 
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
->  drivers/gpu/drm/i915/i915_driver.c                  | 4 ----
->  drivers/gpu/drm/xe/display/xe_display.c             | 3 ---
->  3 files changed, 2 insertions(+), 7 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index 6cac36157bea..1525ff7a1dc2 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -770,6 +770,8 @@ void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2
->  	if (!HAS_DISPLAY(display))
->  		return;
->  
-> +	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
-> +
->  	intel_display_power_suspend_late(display, s2idle);
->  }
->  
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 40fc15017486..7d0f98cbf5d9 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -1096,7 +1096,6 @@ static int i915_drm_suspend(struct drm_device *dev)
->  {
->  	struct drm_i915_private *dev_priv = to_i915(dev);
->  	struct intel_display *display = dev_priv->display;
-> -	pci_power_t opregion_target_state;
->  
->  	disable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
->  
-> @@ -1110,9 +1109,6 @@ static int i915_drm_suspend(struct drm_device *dev)
->  
->  	i9xx_display_sr_save(display);
->  
-> -	opregion_target_state = suspend_to_idle(dev_priv) ? PCI_D1 : PCI_D3cold;
-> -	intel_opregion_suspend(display, opregion_target_state);
-> -
->  	dev_priv->suspend_count++;
->  
->  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 9416405667d8..73891b36341b 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -266,14 +266,11 @@ static bool suspend_to_idle(void)
->  void xe_display_pm_suspend(struct xe_device *xe)
->  {
->  	struct intel_display *display = xe->display;
-> -	bool s2idle = suspend_to_idle();
->  
->  	if (!xe->info.probe_display)
->  		return;
->  
->  	intel_display_driver_pm_suspend(display);
-> -
-> -	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
->  }
->  
->  void xe_display_pm_suspend_late(struct xe_device *xe)
-> -- 
-> 2.47.3
+Found by Linux Verification Center (linuxtesting.org) with static
+analysis tool SVACE.
 
--- 
-Ville Syrjälä
-Intel
+Fixes: 68f357cb7347 ("drm/i915/dp: generate and cache sink rate array for all DP, not just eDP 1.4")
+Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+---
+v1 -> v2:
+- Use drm_dp_dpcd_read_data() instead of drm_dp_dpcd_read().
+- Avoid the goto by clearing sink_rates on read failure, as suggested by
+  Jani Nikula.
+- Adjust patch description.
+
+ drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 6ef2a0043cda..5c3e816b0135 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -4678,10 +4678,17 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
+ 
+ 	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
+ 		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
++		int ret;
+ 		int i;
+ 
+-		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
+-				 sink_rates, sizeof(sink_rates));
++		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
++					    DP_SUPPORTED_LINK_RATES,
++					    sink_rates, sizeof(sink_rates));
++		if (ret < 0) {
++			drm_dbg_kms(display->drm,
++				    "Unable to read eDP supported link rates, using default rates\n");
++			memset(sink_rates, 0, sizeof(sink_rates));
++		}
+ 
+ 		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
+ 			int rate;
