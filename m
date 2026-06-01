@@ -2,63 +2,159 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cP33CDNAHWoNXwkAu9opvQ
+	id UPdcC4Y/HWq8XgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:17:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:15:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C418E61B587
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:17:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 202F061B4FA
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:15:00 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 404B0112F6F;
-	Mon,  1 Jun 2026 08:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E47010E633;
+	Mon,  1 Jun 2026 08:14:58 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="Wiohujfh";
+	dkim=fail reason="signature verification failed" (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="J2CnEi+o";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F2694112F58;
- Mon,  1 Jun 2026 08:17:51 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 473C210E73B;
+ Mon,  1 Jun 2026 08:14:57 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780301872; x=1811837872;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=d1CU6pTGG3CvDErA/fvdp7fOTsmA8oXHKJ5sjuZImh0=;
- b=Wiohujfh8Nbg3034BT7xPhh35Jeio6hBbaygneHXrauqAsEAvIwMs4+4
- zjrmWrvDbeC9VMcceNn6rvIyDYM5G4may2Yw+NaotCCcW3293ayQ4FDhy
- eS7+JnGgNUv2hVseqCvIztF18P/mEjGg9QEEdPXarp1dbPxmWAIYp8jS8
- UjJVwH5ZpIngbzEjvg0kVo2nT8xhSry8rX9PyBjNLUCDmT5entZT1Br5w
- IroEOZ5t1Cse/JR4YAC6sAyC229sdrdxt3CytiaC4hge5qeankCdoqkV3
- HL2+k3K6a6IUn2YaybsMjVJ6exf0g9Ct9YSYg0i0HY8SZ7Dy2YZDT0x94 Q==;
-X-CSE-ConnectionGUID: hvj3UoYXSiCdNI8fqps5oQ==
-X-CSE-MsgGUID: Vz9IMvSNTAC/yvIJ/MGNoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80786207"
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="80786207"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:17:47 -0700
-X-CSE-ConnectionGUID: njqr/4P6R+ya77jlFSPkOA==
-X-CSE-MsgGUID: /SxAA+I4RUOyTKsnOHDoYA==
+ t=1780301697; x=1811837697;
+ h=date:from:to:cc:subject:message-id:reply-to:references:
+ content-transfer-encoding:in-reply-to:mime-version;
+ bh=iWZMXPmO+eU/lqwg9BrxuiAlFSNcazG1ZD3nkfsposY=;
+ b=J2CnEi+o3fAeNkX/I6JW6i74dfow7EccgyrZA4S2rx79U0ImsoSW7IP+
+ SG7nZYPj/kAGaaKfLbEJOlIXprEToSGH9b4Xt1PD7R4l+sa4x94FRneTQ
+ Vj1hdAVagVU9iUgum50KYQYkhb7Q58796Hrw8vtdITZQp0fdhYtor5XBv
+ k/YGztAEoJeZfBfiuMsqCo5H83jVeAlFEZVU1drhN/RgSwWutbCw+4vtR
+ Uk9qMhkXeZZq0EyUiSyGX7zj7dPlbP2AKSjp3O788ar8NrG5d6CuGkKQi
+ lo2DuhcOy15qgDOWu+xz4dd6i49TjF/QhomkCrvP+YbIeg0f3XQp8CZtA w==;
+X-CSE-ConnectionGUID: 5WRLuEV7QcKp2IWCdzEjVQ==
+X-CSE-MsgGUID: XPimUCU+T/uRlkEg55k5CA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80088226"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="80088226"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 01:14:57 -0700
+X-CSE-ConnectionGUID: fQv6+zxkSTS9awHktHoiFw==
+X-CSE-MsgGUID: zf2nJObzRDCnTr8j4tAKfw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="248602119"
-Received: from abityuts-desk.ger.corp.intel.com (HELO hazy) ([10.245.245.124])
- by fmviesa005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 01:17:46 -0700
-From: Luca Coelho <luciano.coelho@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org,
-	jani.nikula@linux.intel.com
-Subject: [PATCH v4 4/4] drm/i915/display: remove unnecessary PHY_NONE
- definition
-Date: Mon,  1 Jun 2026 11:14:35 +0300
-Message-ID: <20260601081730.3146922-5-luciano.coelho@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260601081730.3146922-1-luciano.coelho@intel.com>
-References: <20260601081730.3146922-1-luciano.coelho@intel.com>
-MIME-Version: 1.0
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="248422633"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jun 2026 01:14:56 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 1 Jun 2026 01:14:56 -0700
+Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 1 Jun 2026 01:14:56 -0700
+Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.58) by
+ edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 1 Jun 2026 01:14:54 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=Rzi4LWUm6H4euTGmjEYrwgjPWw/Vlr1Dz/6I8mXJhXZnooIDEGL4/tJ4MF7pSQ8a5dR0am3WJzFVys9CzYUNMiqmnOLnbpm7dCvAW06ssxg5kPbOTqdm9U+Mog2LRgXvG0KUfhhajgCsSHfxExXKQahN4U82GyGx4wc+eWC7rR5KAUVJ1Qf9iB9Gav73ca0174z8XeglPgoeJKG6aru9w3iZ8raRo4wla2hgZukzfhiYQ7o3v23r+uHX4JxbOVoBG9ZjAmxIkJpDxW2/8luglVrr3MQGzZayqClWqMAidmyQU+6+ofRD4JpLo4R0nW7KESnSMbl5KlURekrFxvO7dQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=I8ME0EaX6ik8/1oxC8crWnzDVv4PsoKnrNz2WmymPbM=;
+ b=lVtJljR2yzzpQJSEg8k+qHTPJ9tA+SQiRgHNfdHry2vR6L46gkZxUf1vtCZUJtx6/Yweg3lIkp3/FrUMrxtdLleXbaaW4VgOIS/w6QZyIdMu9Q1J6yo4/IvBTz2ufOqGuH50vc8DrrghJhoH63hcsC6L0NtfzNj5rIT1Ped9M52OdIqVDNkeGCjrR3Nx8mFBsExzK92VWZA1F+z88zCheZHdRP8Z3mcU3YWbNWvXYQ6bG5b4OrVMrqj9ARbEHfLAa5br3g7bKHx8jkGOqI6UEg6clzyyoVeBFnSxboCMUd/ffv78ubeulC7N8zxRIAuNW8x/o6QZfcx0rHL8yOXeDA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Authentication-Results: dkim=none (message not signed)
+ header.d=none;dmarc=none action=none header.from=intel.com;
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
+ by IA0PR11MB7933.namprd11.prod.outlook.com (2603:10b6:208:407::19)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Mon, 1 Jun 2026
+ 08:14:52 +0000
+Received: from IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
+ ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0071.011; Mon, 1 Jun 2026
+ 08:14:52 +0000
+Date: Mon, 1 Jun 2026 11:14:46 +0300
+From: Imre Deak <imre.deak@intel.com>
+To: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+CC: Jani Nikula <jani.nikula@intel.com>, <intel-gfx@lists.freedesktop.org>,
+ <intel-xe@lists.freedesktop.org>
+Subject: Re: [PATCH 19/24] drm/{i915,xe}: make intel_dmc_suspend() part of
+ display suspend/shutdown calls
+Message-ID: <ah0_dmDcVbWmntpS@ideak-desk.lan>
+References: <cover.1780051905.git.jani.nikula@intel.com>
+ <96b661da7cec4ef7f9c0e5e140f59990659281cf.1780051905.git.jani.nikula@intel.com>
+ <ahmfy87QdRbD4Pi-@intel.com>
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ahmfy87QdRbD4Pi-@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+X-ClientProxiedBy: GV3PEPF0001DC15.SWEP280.PROD.OUTLOOK.COM
+ (2603:10a6:158:400::27c) To IA3PR11MB9273.namprd11.prod.outlook.com
+ (2603:10b6:208:573::17)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|IA0PR11MB7933:EE_
+X-MS-Office365-Filtering-Correlation-Id: 4f1475ef-f447-4c1a-54af-08debfb5db88
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|376014|366016|22082099003|18002099003|11063799006|4143699003|56012099006;
+X-Microsoft-Antispam-Message-Info: Ea1Fie2TwBOwbdeslhMmf2qccdy1QtutlRczG96rCNN1V7XBIlaqNe2gZUyMAyZy3HnHq81KAKuZRwCk9ep/mCoMXb/9T3jx89oE4MCPPgdwM2rE6Pnpt6bdeJgnuGxgWh2ZmUDR9ZTnZbU2rdhXr49kWYP1ku8ESoqsOqIpzKwUuOCn6HDuJDRw9ljIcWz5UHmIT+A30vnU/a6LXz45kQ/+DtLRoqNFDgOrylq21kkHgA4FGEPMcTZZi7s8521orZukv3L6pFDLo5Ohx1uGNbVNidhNtsPrEIXXAAkAQv+U8Hf8IizeX8n0E4hzmToOoC2Z6I+ncR37M7/TOXlfqD1j639YNssY6CwDS6qxf0s1/mkNYVHqFbznNZS+SN0FXnC4y512ZWm8w75iGTOzI/PfMqlTqu+MsdoKKwpl46nkcJd0k2z/Ktm/k0nKJmlaAaaTjhUfYqayi7TOADKSp+zk/NYe74Sv8kBIyGcKkLwuRjpjsTCxXEH4Ml6GcGimdxVvT9QFfTFG0Oz+GoBkPjbjISmxqsvjNW4MNDcqFLDkTYvSzIrcYknH40ijXJXI2sUcOI+4NXNKEAaiIubXSaXwjafZt9/J9kHsOYeciG9mVKPcCvHx8TSVEfvSs3gJupkMekSEJbw/vvcAJrLqUbvdxoFNrnQc1KkhgORDmPr5iiqYy/ia339LuOXX3/duTPKGqStBq6a2UGlGqsLf/g==
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(11063799006)(4143699003)(56012099006);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?iso-8859-1?Q?dmbmyKv3IfVs7qFtz2WfzzW/mCEO4R4/cbgyuUGJDdL/iokyjvT3XTOBj4?=
+ =?iso-8859-1?Q?x06YDHR+Y6LCLQJrevNl2Vdf7AKnLS6Yt5bKGUT3wwEhQ8cGFZyIme/NVl?=
+ =?iso-8859-1?Q?BiaB+YacKCM5SxNPYezzjBcB5Ve/j0W8Cg/s5H3q6ppZMUVf7qMgkXeuSU?=
+ =?iso-8859-1?Q?3UyEk2xtgSkfd0YTrHc24w8icfarngFN1KtPWP9rPZxuS7H/RYm/hggJky?=
+ =?iso-8859-1?Q?xpqfz0GZwHv7GJ4ucaFX0HdBzWDpAQ2AH1KXShGZnMbcvIWWddxe14Fy57?=
+ =?iso-8859-1?Q?v/nHdn61El54r0Rqu4f7eXL5Tmh/Xqj+KaPnuBMU5aDfFP4ygZFzvD0WEp?=
+ =?iso-8859-1?Q?JBOS0GHyszBCy+LlISmCAIWonopSqeNLUz++2+UiGTa1Kk0yT5sXdLhYSt?=
+ =?iso-8859-1?Q?jmP+2f8WwPCX2M6Bt0x36/XzX+jn1HnymHfSutdolOMMRptVVZH7WBjmDq?=
+ =?iso-8859-1?Q?UnSCpwJHUTFEGV+6ECB9tb9kVBwSs+vXOZ9MFsD4wmBH5sn2JdyE4OnFC5?=
+ =?iso-8859-1?Q?M+hIGk+wcFaV2ycfluMrS9C8DsHz7zWGrfWGTH6xug18UTRX6OTOay7IX2?=
+ =?iso-8859-1?Q?ToF8KlpUiIfDn12Q4y9oyJGIFuhkeAVtWAt7i/yEcIwSNA3ZnQ4sVL57zO?=
+ =?iso-8859-1?Q?mCfMZEHpQzYxaiV62OD/NnISIFIHPe2ZLUs2Sx1P4goLS9TsiVnAGhzYl8?=
+ =?iso-8859-1?Q?nrasRW6i12RYSLqk/f1qNs2IWkWlZTJKlV1rk9vTQ6cxu1CUt43KHi/WYA?=
+ =?iso-8859-1?Q?7Wq2C+A6+/MJStyH2EbZkp6veBTIgMio1zdxCWVnNnmxCGmFhA5Pb5IvWT?=
+ =?iso-8859-1?Q?6dmJR2RCxIG5RF+mOJTkQMMBhp7swdzR3IBRxN6BHe/zsRWhSJX2m9e84q?=
+ =?iso-8859-1?Q?uNIgY9ey8XmTkLHiO2YeDV56JrW6hEAt22Bzn/RzH5auAoFuAYvFwGz9s5?=
+ =?iso-8859-1?Q?c3kPkbFPIi+IGYXYSVMLXR9NvUZHpyrT3gOZFLgCvaAKn4/Uv9gHlbJjUS?=
+ =?iso-8859-1?Q?ITuR5Okumop4C2vEGiFC6k5PhS0C/N5lVbyAxdN0CDtrXsB4Vk+dFv2STF?=
+ =?iso-8859-1?Q?HdoTRA5YrwtMh0KlrD+MGzup3Kmq39S6HHtpCNiCKEUlrJZz/OsWVxZkmq?=
+ =?iso-8859-1?Q?yqOubDlJVWEzb+bT8zTqAVP1jKMdBT+ILgjkIpMYQopWFnJrwZVoyO31kg?=
+ =?iso-8859-1?Q?yst/xEhwAD0gJfbTlgNoOoNwhFdc9+wi7qH9X8+OaEZiYARkrMwi9GX3J6?=
+ =?iso-8859-1?Q?aq+SlbBj+WVknRQ8p8xZe+d5Ro+YdN1sKfLmfsiSJbAZFCag9FP6ouPHeK?=
+ =?iso-8859-1?Q?YT2dJqUhtkbT46kHtmPYaa95eJIHzL2qUKpDSMlbiN/6QG1L8diTJLj8Gr?=
+ =?iso-8859-1?Q?ErU0u6J/b52Wi9JGBceCNzAH+u1ziB22UyYORKwsrgXq9b5hKhWJiSC3xu?=
+ =?iso-8859-1?Q?o7wj6rW4IsynNGXKy7Nku6A7FEmTyJncWbuuUJuT95Kw/8FqGavrMzBg+k?=
+ =?iso-8859-1?Q?WorywH7ggbCZwDdlchj6JMniBsQy7o4wJlhuIQahRa7PuNeyF6PUcn8/Ut?=
+ =?iso-8859-1?Q?skoYlhoG93Q0WXhX2dhEGob1Z1jS8ByzJ7N6lLJXJjZgvE6Ll2OJP0mU2F?=
+ =?iso-8859-1?Q?ceB8bU9ERW/0SO7y10IWxHb7KA/49DO2/bdnrBivE/YPKH4am90I2jREVT?=
+ =?iso-8859-1?Q?nHBEfEeIPdzCA3J8+I7VE1hihifCOn/0L9vdEV720mVqrfXPakBTOF9xGz?=
+ =?iso-8859-1?Q?f2ntQKX7qblqP3t88IBAoM/5DMQMzH5+sVxHFHL6+0jFiEGcNiNLlEfGY2?=
+ =?iso-8859-1?Q?ml3MiVXeRw=3D=3D?=
+X-Exchange-RoutingPolicyChecked: tFnYG6mo+zmICqOQGmGHb23Nuyqz6ajr92W3adaorQq0vDtPer6qEF+oaE9cGTrcqk6bDsLpM1QWcvOQTtYhM856i9tnxk0FHZisFt6AAMIY3e5UdMoYZ1NWJYUlMwsrAXhj3pMy3wXSrF9cnN8+1OYi6ltoXxZbwydDTpWwNmfDDDe9+CubXk3FVnQ/R5TE30v4t9LoPAKcpFF9pjOfN6CwbkPVyamodruAAzfVEJCTySSh09A0tEaEfsFLo5xM4OqDuhqFEfN4b0+g+7jo3iP6tnNYedO6D2r+s7t5r3cRrwlH9/hku7RGOea8ibqfg/EfK9dpFjnvb9uZsr9RQg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4f1475ef-f447-4c1a-54af-08debfb5db88
+X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 08:14:52.7440 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: WBWEDCgcBalcPgVsZLQWmGu0SbFDhNGw//AE1rY7AD6FPQDbsVAVNzxYhOe97uDHPxzKdc5V9hKaz73TugWCvA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA0PR11MB7933
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -71,135 +167,135 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [1.49 / 15.00];
+	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:replyto,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[luciano.coelho@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:-];
+	HAS_REPLYTO(0.00)[imre.deak@intel.com];
+	REPLYTO_ADDR_EQ_FROM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[imre.deak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	NEURAL_HAM(-0.00)[-1.000];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	NEURAL_HAM(-0.00)[-0.760];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: C418E61B587
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_THREE(0.00)[4];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
+X-Rspamd-Queue-Id: 202F061B4FA
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-PHY_NONE is not really used, but we define it and, thus, need to check
-for it in a few places we use phy.  The only potential places where
-phy may become PHY_NONE, is in intel_port_to_phy(), where it derives
-from port, which can be PORT_NONE.  Many of its callers don't check
-for PHY_NONE, which can cause unknown behavior.  Additionally, this
-can only happen if the encoder used has PORT_NONE, which should not be
-the case either, without unexpected consequences.
+On Fri, May 29, 2026 at 05:16:43PM +0300, Ville Syrjälä wrote:
+> On Fri, May 29, 2026 at 02:04:03PM +0300, Jani Nikula wrote:
+> > Move the intel_dmc_suspend() calls from i915 and xe suspend and shutdown
+> > hooks all the way down to a shared location in
+> > __intel_display_driver_pm_suspend().
+> > 
+> > This is a change in the suspend/shutdown sequences, but hopefully one
+> > without problems.
+> > 
+> > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
+> >  drivers/gpu/drm/i915/i915_driver.c                  | 4 ----
+> >  drivers/gpu/drm/xe/display/xe_display.c             | 4 ----
+> >  3 files changed, 2 insertions(+), 8 deletions(-)
+> > 
+> > diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > index bc632ac8c9b4..6cac36157bea 100644
+> > --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> > @@ -755,6 +755,8 @@ static int __intel_display_driver_pm_suspend(struct intel_display *display, bool
+> >  
+> >  	intel_encoder_suspend_all(display);
+> >  
+> > +	intel_dmc_suspend(display);
+> > +
+> >  	return ret;
+> >  }
+> >  
+> > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> > index 209ac512455d..40fc15017486 100644
+> > --- a/drivers/gpu/drm/i915/i915_driver.c
+> > +++ b/drivers/gpu/drm/i915/i915_driver.c
+> > @@ -1045,8 +1045,6 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
+> >  
+> >  	intel_irq_suspend(i915);
+> >  
+> > -	intel_dmc_suspend(display);
+> > -
+> 
+> I wonder what we're even trying to achieve here. Just to make sure
+> the DMC firmware has been loaded before we system suspend? That might
+> be reasonable, but we now wait for the firmware load somewhere during
+> driver init due to flip queue needing it. So this all seems rather
+> redundant now.
 
-Remove the PHY_NONE definition entirely and add a couple of WARNs at
-the relevant places, just to be sure.
+Enabling/disabling the display power wells on demand during runtime is
+prevented if DMC is not loaded, by holding the INIT domain reference.
+This reference must be still dropped for suspend (and then reacquired
+during resume). This - besides waiting for the firmware to load - is
+done in intel_dmc_suspend()/intel_dmc_resume().
 
-Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
----
- drivers/gpu/drm/i915/display/intel_display.c           | 10 ++++++----
- drivers/gpu/drm/i915/display/intel_display.h           |  2 --
- .../gpu/drm/i915/display/intel_display_power_well.c    |  6 +++++-
- drivers/gpu/drm/i915/display/intel_hti.c               |  3 ---
- 4 files changed, 11 insertions(+), 10 deletions(-)
+Yes, waiting for the firmware to load could be removed from
+intel_dmc_suspend() after it's waited already during driver
+loading/resume.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8e269b71f18e..341408951dc8 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1810,9 +1810,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- /* Prefer intel_encoder_is_combo() */
- bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
- {
--	if (phy == PHY_NONE)
--		return false;
--	else if (display->platform.alderlake_s)
-+	if (display->platform.alderlake_s)
- 		return phy <= PHY_E;
- 	else if (display->platform.dg1 || display->platform.rocketlake)
- 		return phy <= PHY_D;
-@@ -1866,7 +1864,7 @@ bool intel_phy_is_snps(struct intel_display *display, enum phy phy)
- 	 * For DG2, and for DG2 only, all four "combo" ports and the TC1 port
- 	 * (PHY E) use Synopsis PHYs. See intel_phy_is_tc().
- 	 */
--	return display->platform.dg2 && phy > PHY_NONE && phy <= PHY_E;
-+	return display->platform.dg2 && phy <= PHY_E;
- }
- 
- /* Prefer intel_encoder_to_phy() */
-@@ -1884,6 +1882,10 @@ enum phy intel_port_to_phy(struct intel_display *display, enum port port)
- 		 port == PORT_D)
- 		return PHY_A;
- 
-+	if (drm_WARN(display->drm, port < 0,
-+		     "PHY is invalid if port < 0 (%d), assuming PHY_A\n"), port)
-+		return PHY_A;
-+
- 	return PHY_A + port - PORT_A;
- }
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
-index 1963dbc80221..c55692e8aa27 100644
---- a/drivers/gpu/drm/i915/display/intel_display.h
-+++ b/drivers/gpu/drm/i915/display/intel_display.h
-@@ -136,8 +136,6 @@ enum tc_port {
- };
- 
- enum phy {
--	PHY_NONE = -1,
--
- 	PHY_A = 0,
- 	PHY_B,
- 	PHY_C,
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-index 04bd0dde5bed..daea2452a19e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
-@@ -325,7 +325,11 @@ static enum phy icl_aux_pw_to_phy(struct intel_display *display,
- {
- 	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
- 
--	return encoder ? intel_encoder_to_phy(encoder) : PHY_NONE;
-+	if (drm_WARN(display->drm, !encoder,
-+		     "PHY is invalid if encoder is NULL, assuming PHY_A\n"))
-+		return PHY_A;
-+
-+	return intel_encoder_to_phy(encoder);
- }
- 
- static bool icl_aux_pw_is_tc_phy(struct intel_display *display,
-diff --git a/drivers/gpu/drm/i915/display/intel_hti.c b/drivers/gpu/drm/i915/display/intel_hti.c
-index dc454420c134..56602240ceff 100644
---- a/drivers/gpu/drm/i915/display/intel_hti.c
-+++ b/drivers/gpu/drm/i915/display/intel_hti.c
-@@ -23,9 +23,6 @@ void intel_hti_init(struct intel_display *display)
- 
- bool intel_hti_uses_phy(struct intel_display *display, enum phy phy)
- {
--	if (drm_WARN_ON(display->drm, phy == PHY_NONE))
--		return false;
--
- 	return display->hti.state & HDPORT_ENABLED &&
- 		display->hti.state & HDPORT_DDI_USED(phy);
- }
--- 
-2.53.0
-
+> 
+> >  	i915_gem_suspend(i915);
+> >  
+> >  	/*
+> > @@ -1117,8 +1115,6 @@ static int i915_drm_suspend(struct drm_device *dev)
+> >  
+> >  	dev_priv->suspend_count++;
+> >  
+> > -	intel_dmc_suspend(display);
+> > -
+> >  	enable_rpm_wakeref_asserts(&dev_priv->runtime_pm);
+> >  
+> >  	i915_gem_drain_freed_objects(dev_priv);
+> > diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> > index 561ec1ed6845..9416405667d8 100644
+> > --- a/drivers/gpu/drm/xe/display/xe_display.c
+> > +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> > @@ -198,8 +198,6 @@ void xe_display_shutdown(struct xe_device *xe)
+> >  	intel_display_driver_shutdown(display);
+> >  
+> >  	intel_opregion_suspend(display, PCI_D3cold);
+> > -
+> > -	intel_dmc_suspend(display);
+> >  }
+> >  
+> >  void xe_display_shutdown_late(struct xe_device *xe)
+> > @@ -276,8 +274,6 @@ void xe_display_pm_suspend(struct xe_device *xe)
+> >  	intel_display_driver_pm_suspend(display);
+> >  
+> >  	intel_opregion_suspend(display, s2idle ? PCI_D1 : PCI_D3cold);
+> > -
+> > -	intel_dmc_suspend(display);
+> >  }
+> >  
+> >  void xe_display_pm_suspend_late(struct xe_device *xe)
+> > -- 
+> > 2.47.3
+> 
+> -- 
+> Ville Syrjälä
+> Intel
