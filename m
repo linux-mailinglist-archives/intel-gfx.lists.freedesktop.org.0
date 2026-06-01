@@ -2,74 +2,115 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id AG6OCOziHWoPfwkAu9opvQ
+	id iL/cHLrkHWoPfwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 21:52:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 21:59:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B8045624C98
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 21:52:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C22F2624D4A
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 21:59:53 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1663410E8EB;
-	Mon,  1 Jun 2026 19:52:09 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A900710E8FF;
+	Mon,  1 Jun 2026 19:59:51 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="QyGXJkQa";
+	dkim=pass (2048-bit key; unprotected) header.d=kernel.org header.i=@kernel.org header.b="jPPf1HSE";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5FD1410E8E9;
- Mon,  1 Jun 2026 19:52:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780343528; x=1811879528;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=kcoZ0HqwTkFisxUb4c2CrruoAAmphlVicQ9/aPV60q0=;
- b=QyGXJkQapmqLPNw7SHt0ZhO8fEUuyBmnkeKqshf+dt7s+G5T3Pjg/A8i
- xOUAK2qYGwUjfW8lSYfqN0NwtbA1fCZpZqL6xd/Fr25VQnOhVbQ5XawVY
- oDaB45ojChfXo7nQP+TvAGaWwGRRc7hiH9QfElYDVI+5ZenbAzweHNqf6
- PYYUg8BOahrbUb76HsCX9YzY8Ks2vTqyBJGO2fzwr3plor+/BvqyDHami
- 1trzDn3B1hRA1KyhclNt8zrXmDd4UuQ532p0lXrTDvWNWDvn8iMtAy+HZ
- 2L09o9BsViE+ZU3/aIZ0SmK4ASN4YYXOFBywD7btEE8x/yQtD+9PI4xPQ Q==;
-X-CSE-ConnectionGUID: rcAdHvZfQDKVEs3taAS5OQ==
-X-CSE-MsgGUID: kijHQzH9Qvi+w5RHBOS9TQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="84968226"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="84968226"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 12:52:07 -0700
-X-CSE-ConnectionGUID: kvGwteXORg6nd1ie53dcTg==
-X-CSE-MsgGUID: TtHMA+6FTdyHv5xpNzKpvg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="245490895"
-Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.121])
- by fmviesa004-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 12:52:03 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, Dave Airlie
- <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten
- Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
- <mripard@kernel.org>, Matthew Brost <matthew.brost@intel.com>, Thomas
- =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>, Oded Gabbay
- <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: Re: [PULL] drm-misc-fixes
-In-Reply-To: <24042986-6ef1-49a2-a060-aabf6e189473@suse.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260529070009.GA313534@linux.fritz.box>
- <ddf0233e50044059c85279f928661563ef6a55bf@intel.com>
- <e1a2cc27fb04a88be23973d3cb7868f3d4471d0d@intel.com>
- <d479f1185cd1ae6eb52a7d44e944408c3447c8e4@intel.com>
- <24042986-6ef1-49a2-a060-aabf6e189473@suse.de>
-Date: Mon, 01 Jun 2026 22:52:00 +0300
-Message-ID: <7b9794c1b6a948b6d509c6fa885e1c3c1912aa9d@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C80E010E8FF;
+ Mon,  1 Jun 2026 19:59:50 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 4E93A40825;
+ Mon,  1 Jun 2026 19:59:50 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D6831F00893;
+ Mon,  1 Jun 2026 19:59:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1780343990;
+ bh=XNCn/hiuq2TSQD0/7268qMBjDGPldqx55TcTTgULBQo=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=jPPf1HSEtTmrOkKgXG7yZ4L4yWlXriv9f4UInH3EUjfr7uRqEixqsswHEVJD66e/i
+ UYMnZm3AwHRFYgRV2ih8KtH9UMVsaXegF2blXd/AV6FabDLb+h4l5NmMOw9ZVrD++N
+ KcX2jHWXOHM02LWFJzDj4MfNwHTR6omd404TzjNZvpI6ZIAf59Yvhv/clTseKbIOtO
+ ETM1funcq4ukCXv67pvcGJzgYBqL/gNfgi123wCjIaYqeaTkJBGmaBAvvqiI5vVIDR
+ F9G7b/Sg9jjyGT7K98XQKfJ06MeRLxen4rImVcQChLpFwv+lALs23w52eL46/a7lq6
+ WVHwgppy+tSkw==
+Date: Mon, 1 Jun 2026 12:59:49 -0700
+From: Kees Cook <kees@kernel.org>
+To: Petr Pavlu <petr.pavlu@suse.com>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, Pengpeng Hou <pengpeng@iscas.ac.cn>,
+ Richard Weinberger <richard@nod.at>,
+ Anton Ivanov <anton.ivanov@cambridgegreys.com>,
+ Johannes Berg <johannes@sipsolutions.net>,
+ "Rafael J. Wysocki" <rafael@kernel.org>,
+ Len Brown <lenb@kernel.org>, Corey Minyard <corey@minyard.net>,
+ Gabriel Somlo <somlo@cmu.edu>, "Michael S. Tsirkin" <mst@redhat.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Bart Van Assche <bvanassche@acm.org>,
+ Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
+ Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+ Hans de Goede <hansg@kernel.org>,
+ Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Bjorn Helgaas <bhelgaas@google.com>, Hannes Reinecke <hare@suse.de>,
+ "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
+ "Martin K. Petersen" <martin.petersen@oracle.com>,
+ Daniel Lezcano <daniel.lezcano@kernel.org>,
+ Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
+ Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ Jiri Slaby <jirislaby@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
+ Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
+ Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
+ Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
+ Tiwei Bie <tiwei.btw@antgroup.com>,
+ Benjamin Berg <benjamin.berg@intel.com>,
+ Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
+ "David E. Box" <david.e.box@linux.intel.com>,
+ "Maciej W. Rozycki" <macro@orcam.me.uk>,
+ Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
+ Peter Zijlstra <peterz@infradead.org>, Heiko Carstens <hca@linux.ibm.com>,
+ Vasily Gorbik <gor@linux.ibm.com>, Sean Christopherson <seanjc@google.com>,
+ Paolo Bonzini <pbonzini@redhat.com>,
+ Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
+ Borislav Petkov <bp@alien8.de>,
+ Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
+ "H. Peter Anvin" <hpa@zytor.com>, Vinod Koul <vkoul@kernel.org>,
+ Frank Li <Frank.Li@kernel.org>, Daniel Gomez <da.gomez@kernel.org>,
+ Sami Tolvanen <samitolvanen@google.com>,
+ Aaron Tomlin <atomlin@atomlin.com>,
+ Alexander Potapenko <glider@google.com>,
+ Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ John Johansen <john.johansen@canonical.com>,
+ Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
+ "Serge E. Hallyn" <serge@hallyn.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ Georgia Garcia <georgia.garcia@canonical.com>, kvm@vger.kernel.org,
+ dmaengine@vger.kernel.org, linux-modules@vger.kernel.org,
+ kasan-dev@googlegroups.com, linux-mm@kvack.org,
+ apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
+ linux-um@lists.infradead.org, linux-acpi@vger.kernel.org,
+ openipmi-developer@lists.sourceforge.net, qemu-devel@nongnu.org,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ linux-rdma@vger.kernel.org, linux-media@vger.kernel.org,
+ linux-pci@vger.kernel.org, linux-scsi@vger.kernel.org,
+ linux-pm@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
+ usb-storage@lists.one-eyed-alien.net,
+ virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
+ linux-arch@vger.kernel.org, netdev@vger.kernel.org,
+ linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
+Subject: Re: [PATCH 00/11] Convert moduleparams to seq_buf
+Message-ID: <202606011259.CE6E74CE@keescook>
+References: <20260521133315.work.845-kees@kernel.org>
+ <88c5ca1d-eeda-4023-bc7a-397b92780db9@suse.com>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <88c5ca1d-eeda-4023-bc7a-397b92780db9@suse.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -84,110 +125,69 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[suse.de,gmail.com,ffwll.ch];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[15];
-	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,iscas.ac.cn,nod.at,cambridgegreys.com,sipsolutions.net,minyard.net,cmu.edu,redhat.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,acm.org,ziepe.ca,ideasonboard.com,google.com,suse.de,hansenpartnership.com,oracle.com,arm.com,linuxfoundation.org,rowland.harvard.edu,linux.alibaba.com,akamai.com,antgroup.com,orcam.me.uk,infradead.org,linux.ibm.com,alien8.de,zytor.com,atomlin.com,linux-foundation.org,canonical.com,paul-moore.com,namei.org,hallyn.com,vger.kernel.org,googlegroups.com,kvack.org,lists.ubuntu.com,lists.infradead.org,lists.sourceforge.net,nongnu.org,lists.freedesktop.org,lists.ozlabs.org,lists.one-eyed-alien.net,lists.linux.dev];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	NEURAL_HAM(-0.00)[-1.000];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_GT_50(0.00)[98];
+	FROM_NEQ_ENVFROM(0.00)[kees@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[]
-X-Rspamd-Queue-Id: B8045624C98
+X-Rspamd-Queue-Id: C22F2624D4A
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-On Mon, 01 Jun 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
-> Hi
->
-> Am 01.06.26 um 17:49 schrieb Jani Nikula:
->> On Mon, 01 Jun 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>> On Mon, 01 Jun 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
->>>> On Fri, 29 May 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->>>>> Rajat Gupta (1):
->>>>>        drm: prevent integer overflows in dumb buffer creation helpers
->>>> Looks like this commit 5ab62dd3687b ("drm: prevent integer overflows in
->>>> dumb buffer creation helpers") regressed in our CI, awaiting
->>>> confirmation.
->
-> That CI report is where?
+On Tue, May 26, 2026 at 08:53:06AM +0200, Petr Pavlu wrote:
+> On 5/21/26 3:33 PM, Kees Cook wrote:
+> > Hi,
+> > 
+> > I tried to trim the CC list here, but it's still pretty huge...
+> > 
+> > We've had a long-standing issue with "write to a string pointer" callbacks
+> > that don't bounds check the destination (and for which the bounds is
+> > also not part of the callback prototype, even if it is "known" to be
+> > PAGE_SIZE, which sysfs_emit() depends on). Both moduleparams and sysfs
+> > use this pattern. As a first step, and to test the migration method,
+> > migrate moduleparams first.
+> > 
+> > There are 2 "mechanical" treewide patches that are handled by Coccinelle:
+> > - treewide: Convert struct kernel_param_ops initializers to DEFINE_KERNEL_PARAM_OPS
+> > - treewide: Convert custom kernel_param_ops .get callbacks to seq_buf via cocci
+> > 
+> > The last treewide patch is manual, and may need to be broken up into
+> > per-subsystem patches, though I'd prefer to avoid this, as it would
+> > extend the migration from 1 relase to at least 2 releases. (1 to
+> > release the migration infrastructure, then 1 release to collect all the
+> > subsystem changes, and possibly 1 more release to remove the migration
+> > infrastructure.)
+> > 
+> > Thoughts, questions?
+> 
+> This looks reasonable to me. I added a few minor comments on the patches
+> but they already look solid.
 
-It's currently really thin on details, I'm afraid [1].
+Thanks for the review! I'll get a v2 prepared with your notes addressed. :)
 
-[1] https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16308
-
->>> The IGT test kms_big_fb uses max width and height from GetResources, and
->>> i915 and xe use max_width 16384 and max_height 16384 in mode config.
->>>
->>> The regressing commit adds random hard limits not based on anything:
->>>
->>> +       /* Reject unreasonable inputs early.  Dumb buffers are for software
->>> +        * rendering; nothing legitimate needs more than 8192x8192 at 32bpp.
->>> +        * This prevents overflows in downstream alignment helpers.
->>> +        */
->>> +       if (args->width >= 8192 || args->height >= 8192 || args->bpp > 32)
->>> +               return -EINVAL;
->>>
->>> This is now in v7.1-rc6. Please revert ASAP.
->> Ah, missed this clue in the pull request:
->>
->> On Fri, 29 May 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
->>> here is this week's PR from drm-misc-fixes. There's one cross-subsys
->>> commit to the dma-buf code. Commit 5ab62dd3687b ("drm: prevent integer
->>> overflows in dumb buffer creation helpers") has not Link tag because
->>> it went through the security list.
->> We have the whole review and CI processes in place to catch silly
->> mistakes, and then we proceed to shoot ourselves in the foot and bypass
->> all of that because "security", and expedite the regressions
->> everywhere. I'll bet this will be in stable kernels in no time too. This
->> is stupid.
->
-> Indeed. But that's how this fix got in.
->
-> It fixes a possible overflow elsewhere and using dumb buffers with 
-> higher values that given here is questionable. Instead of outright 
-> reverting this, let's first look what actually broke.
-
-There's the kms_big_fb.c test [2]. It uses drmModeGetResources() to get
-the max framebuffer size for the device. It's 16384x16384 for most Intel
-devices that aren't ancient [3]. (Ditto for AMD I think.) Now the
-CREATE_DUMB ioctl fails, because 5ab62dd3687b introduced new arbitrary
-fixed scanout size limits that don't reflect the actual device limits.
-
-Why is it questionable to use dumb buffers that are within the device
-limits? Why is it not questionable to add arbitrary fixed limits?
-
-Don't get me wrong, fixing overflows is great, but this part is an
-unwarranted UABI change, and they shouldn't be rushed in masqueraded as
-security fixes.
-
-
-BR,
-Jani.
-
-
-[2] https://gitlab.freedesktop.org/drm/igt-gpu-tools/-/blob/master/tests/intel/kms_big_fb.c?ref_type=heads#L994
-
-[3] https://gitlab.freedesktop.org/drm/i915/kernel/-/blob/drm-intel-next/drivers/gpu/drm/i915/display/intel_display_driver.c?ref_type=heads#L133
-
+-Kees
 
 -- 
-Jani Nikula, Intel
+Kees Cook
