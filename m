@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4MCAMzNAHWoNXwkAu9opvQ
+	id iBUEIjRAHWq8XgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:17:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:17:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A119461B58F
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:17:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5968561B596
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 10:17:56 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 95114112F73;
-	Mon,  1 Jun 2026 08:17:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3E38E112F78;
+	Mon,  1 Jun 2026 08:17:54 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="nZXJFx/M";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="WbbpFVt4";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67995112F66;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB729112F58;
  Mon,  1 Jun 2026 08:17:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780301871; x=1811837871;
+ t=1780301872; x=1811837872;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=1OVnYw2Z5GGCcKklj4wein5BzmanwWGx1NEXr1GGSBs=;
- b=nZXJFx/MKCjX9Jdrqcvq1Xrf9nUQJ/b+5wZJijA25/OpaFv1bO62G3/O
- ooVQuYAfaJRTks/z0M8iJ944eRZ+qcfyrJn7nnDsSTaPNIOAQkF+D/+5p
- JP5BxdGtRofPfRZvBw1V1XXaKEwgevHRZ1vHaL4GfmvQ38Xx55fGxsvPk
- 8eitMv8DzIEyDLqe8E/V1IGBBWXZWo7+KKCPcXEO8xNtdGw69Xl2/6S4L
- V8GLvP7FrGFB+PrcufGlDrWWpFSPA41yIaMU9/jHBH0+4EvmnC/NNjHqh
- 59bY4Ds3Xg9DIVQ3gykfm60dF0NPI5iWTBYrSag776ireVlgZc+jE9LiK w==;
-X-CSE-ConnectionGUID: P4YG0bAlSD65r44hPrF5jw==
-X-CSE-MsgGUID: zEiEkgY9Rb+l0wQhr3DQng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80786194"
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="80786194"
+ bh=azAN9ioMofgssmczHhEEadQWCShkURa4kQQDJQnD3Y0=;
+ b=WbbpFVt40DyHoqr8eM9qj56e4HTpX6KLp9s1IJpotXIsO1EtTtLkXOFW
+ 2iwlACWRTNPy1/sKgADeIl1pywxJtrtevo09/rM9bEEZlbZRO3vFz8fxs
+ 914QQapr035mppiv+ZGIQuOqmfQJBbA6MZb7/Wc+A8Onxq66MuqW7ldt1
+ 5q+1AL/UDYHzkCdm6ps9TLUZxTQHyAVQ/mR0ZoM2tsOHaTkgP5pZkDrH8
+ b6kN0PpCVORTFtTkx04qSnR9481O7WSm/BI0JhJOSp2qpCimgwXApIlhp
+ 2nhWY7kR4l5aj52yk5HDtWVBoKQcX/07Af9YF+aKMw8WIC/EfokHiZ7Zc A==;
+X-CSE-ConnectionGUID: 3uh3XngnQqysO1ta58fI/w==
+X-CSE-MsgGUID: 5ZpesHjHS3qLFpoqzrWF+A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80786203"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="80786203"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 01:17:44 -0700
-X-CSE-ConnectionGUID: dUHiysvnQYyyJ6lmCMPnxQ==
-X-CSE-MsgGUID: auaxpi4zRbynAcjZTpk46Q==
+ 01 Jun 2026 01:17:46 -0700
+X-CSE-ConnectionGUID: Or1Hpxm3TPqOpDmMOA8qZA==
+X-CSE-MsgGUID: /kX5L0UGRUidwwCtfFcNCA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="248602104"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="248602111"
 Received: from abityuts-desk.ger.corp.intel.com (HELO hazy) ([10.245.245.124])
  by fmviesa005-auth.fm.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 01:17:43 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 01:17:44 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	jani.nikula@linux.intel.com
-Subject: [PATCH v4 2/4] drm/i915/display: harden shifts in
- ICL_DPCLKA_CFGCR0_DDI_CLK_SEL macros
-Date: Mon,  1 Jun 2026 11:14:33 +0300
-Message-ID: <20260601081730.3146922-3-luciano.coelho@intel.com>
+Subject: [PATCH v4 3/4] drm/i915/display: harden shift in
+ intel_ddi_compute_config_late()
+Date: Mon,  1 Jun 2026 11:14:34 +0300
+Message-ID: <20260601081730.3146922-4-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260601081730.3146922-1-luciano.coelho@intel.com>
 References: <20260601081730.3146922-1-luciano.coelho@intel.com>
@@ -98,50 +98,37 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
-X-Rspamd-Queue-Id: A119461B58F
+X-Rspamd-Queue-Id: 5968561B596
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-ICL_DPCLKA_CFGCR0 has a 2-bit DDI_CLK_SEL field per combo PHY, for
-PHY_A..PHY_D only.  Any other phy value (PHY_NONE, TypeC/SNPS PHYs) is
-not valid here.
+BIT() takes a non-negative shift amount, but cpu_transcoder is of type
+enum transcoder, which can in theory be INVALID_TRANSCODER (-1).
 
-This is not a problem with the current implementation, because phy is
-always valid when these macros are called, but it's more robust to
-cast to unsigned so the shift is always well-defined.
+This is not a problem with the current implementation, because
+cpu_transcoder is always valid when this code is reached, but it's
+more robust to cast to unsigned so the shift is always well-defined.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- .../gpu/drm/i915/display/intel_display_regs.h    | 16 +++++++++++++---
- 1 file changed, 13 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 4321f8b529da..2dcbbad70174 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2869,9 +2869,19 @@ enum skl_power_gate {
- #define  ICL_DPCLKA_CFGCR0_TC_CLK_OFF(tc_port)	(1 << ((tc_port) < TC_PORT_4 ? \
- 						       (tc_port) + 12 : \
- 						       (tc_port) - TC_PORT_4 + 21))
--#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	((phy) * 2)
--#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy)	(3 << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
--#define  ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy)	((pll) << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-+
-+/*
-+ * ICL_DPCLKA_CFGCR0 has a 2-bit DDI_CLK_SEL field per combo PHY, for
-+ * PHY_A..PHY_D only.  Any other phy value (PHY_NONE, TypeC/SNPS PHYs)
-+ * is not valid here.
-+ */
-+#define ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	_PICK(phy & 0x3, 0, 2, 4, 6)
-+#define ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy) \
-+	REG_GENMASK(ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy) + 1, \
-+		    ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-+#define ICL_DPCLKA_CFGCR0_DDI_CLK_SEL(pll, phy) \
-+	((pll) << ICL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
-+
- #define  RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy)	_PICK(phy, 0, 2, 4, 27)
- #define  RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_MASK(phy) \
- 	(3 << RKL_DPCLKA_CFGCR0_DDI_CLK_SEL_SHIFT(phy))
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 205978c9feb6..cbdadb6cade4 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -4635,8 +4635,8 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
+ 
+ 	if (crtc_state->master_transcoder == crtc_state->cpu_transcoder) {
+ 		crtc_state->master_transcoder = INVALID_TRANSCODER;
+-		crtc_state->sync_mode_slaves_mask =
+-			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
++		crtc_state->sync_mode_slaves_mask = port_sync_transcoders &
++			~REG_BIT(crtc_state->cpu_transcoder);
+ 	}
+ 
+ 	return 0;
 -- 
 2.53.0
 
