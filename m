@@ -2,78 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id 4DbPAEldHWoBZwkAu9opvQ
+	id GMPVEmldHWoBZwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:22:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:22:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CD4661D40A
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:22:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id ABABD61D43E
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:22:32 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A2DE311314C;
-	Mon,  1 Jun 2026 10:21:58 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3114A113157;
+	Mon,  1 Jun 2026 10:22:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="Fh8kOxPS";
+	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="JHA1kqDv";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 766D710E75F
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 10:21:57 +0000 (UTC)
+ (us-smtp-delivery-124.mimecast.com [170.10.129.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E3C12113157
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 10:22:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1780309316;
+ s=mimecast20190719; t=1780309349;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=cbduX2ADEGxdwqbVWpmygVu5C4B36x/+bcdfT1PUUqQ=;
- b=Fh8kOxPSn/lxFv1d61cWQt17Jk0urX8ZaNGsAfu9uWwe0lAGNTqQOlLIeHNNezYO4GWOIu
- u+SBHytoVl6cGzI25wkg1PAeZ5bfWdQW85bo1m6LoNSKiaKZ/jvj8hLA+qn05r5TwQbweq
- 7fQ45+ybHAsleAk64lKuiy4wniYwpt0=
-Received: from mail-wm1-f71.google.com (mail-wm1-f71.google.com
- [209.85.128.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=UYSWdrjn4aqQxQd0Cf2jKHSTVgv+zTIrZalUlPmgVOc=;
+ b=JHA1kqDvAphyub391mJ3rxaYpdSzwIn+04KfRcyzlWz5wXXW6pSNMJ4vj83E3uTatCvXA2
+ Ww05f0Jbw3q0ZPoYox1Ts3E90NKI0VoEdpeNTaEHhXFLcZ0ECYI2hzlBn6cMT1HdmwDI/x
+ qt38PHDCTYIy+83yiiimchMw7E12pps=
+Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
+ [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-548-Ktn2wD_kNU-fE3yAWFEhWQ-1; Mon, 01 Jun 2026 06:21:53 -0400
-X-MC-Unique: Ktn2wD_kNU-fE3yAWFEhWQ-1
-X-Mimecast-MFC-AGG-ID: Ktn2wD_kNU-fE3yAWFEhWQ_1780309312
-Received: by mail-wm1-f71.google.com with SMTP id
- 5b1f17b1804b1-49049100a40so61746445e9.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2026 03:21:53 -0700 (PDT)
+ us-mta-283-HaLAOuAgNMSHLd9-2FjJEg-1; Mon, 01 Jun 2026 06:22:27 -0400
+X-MC-Unique: HaLAOuAgNMSHLd9-2FjJEg-1
+X-Mimecast-MFC-AGG-ID: HaLAOuAgNMSHLd9-2FjJEg_1780309346
+Received: by mail-wm1-f70.google.com with SMTP id
+ 5b1f17b1804b1-490af284fd8so1141575e9.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2026 03:22:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780309312; x=1780914112;
+ d=1e100.net; s=20251104; t=1780309346; x=1780914146;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=cbduX2ADEGxdwqbVWpmygVu5C4B36x/+bcdfT1PUUqQ=;
- b=rz/7uYzVb0mqyByn3lrMpm2JYVssstv+ViM2PiTNOngwdTIvvawKA62/3mHQuZ9ImL
- ejenefx+6OL13T9mmhwed+6fmpcKGp6YGiog8jM9PtRDtzTQjBGbAQWXEim43Mr51F80
- QQkSLR0gaJ0SIplvLMa7XcBjtERa60QC3+rSFrheeeVYH5R6lDGkA8K1Wqfz7naGOpFp
- +CjGFWoP2/i9QO9HrQ8VbzInOYe1QmZPFzCIrId+p1V/GABwN35YQNcW3IEsGsl+FxE1
- FzhrzsnQyiR+NjiLRNgWvIRD3MRp3X7OImoBxvXrbSOeX8KHGHCnPIHzrR6afkC5WE5E
- vOAA==
+ bh=UYSWdrjn4aqQxQd0Cf2jKHSTVgv+zTIrZalUlPmgVOc=;
+ b=Y+cRdc4kgcLFdr2bYpEUtxv9GZjcebbzRhJAJ4Ggt0vJQa23nzcttS6jXErxYmWm2a
+ pIh5ZV3bI0qlDqXfSJD4blgeeTR59QAsVZVBUyxAN3aXbb+43qI91ycEHQLshZ7OGjQV
+ sTrcTNrVCYKxWRWnY2251yrx41GYK0J9zgyJkT/3nXayj0RWPnr6o65oirzKSYZ+RGO2
+ 60sGAQZOni8G0rBAvkspguIwMZW/0sayFnSfUg8Al/ObbaSX81iY/xkFLKHUef0MtAXt
+ j0P+xOsqxmpLNfcK30TkPTgn00WTV/4eeSUd61BK6aGZuyZ408wY4LRbbd97bj0mhEjk
+ LLbA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8hWjNhpUZVrpUsuBvYgT9CdRlUG0fjhuVphHoaMmUATxqxXu+inbvEfLWiMkwNsp/KefU1i4KA1q8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0Ywvchm0z3LzY5/jFe7RtyN71iWhoT0Nnnr1oiBSKQhd8msmR6SD
- R4D5E3ius4w8c3dyQYr218mJJa/h9SNbvLnH3VnwrnoR5LAPUZEYXqoi/wAcOOYnNiZ6liCxTbK
- v40s17XboqDVwPFDhouv5yLBGShor5hQ+OjoaubZYENABVY8fbCp6mVNeTtyiMLRJcUoTrw==
-X-Gm-Gg: Acq92OEDyh5vxZ6RKUaxCf9DL7lAj/iDMG5F6rupzsTxdbZv/CLshmJbvOl2FAnw0NS
- 3JOu1iJiJRw845r+CSt329SXxmtr3NwUrOb2z+eSz47OvmS48bVmP6q/q+RrBpXPqj6+ANuZfW9
- 2JDKwpFyQIe/tqDZ17k0UadtMoBKNTQnSaAnKHe/hQvXWLj0C8qu4KHu8VEfpPxiAqVbq0+CDLY
- 2iSexi5rKgQZInOsWX6NeLSG9iTx2qNQMk9NbpBCvRIuADo/Jqjoq5sFRYvuQrxNsaTLlJnOoWj
- AX550So78EPin/dCgKUkaPTOldjvoPexoqLt1tp9uSVfZghLjb+a1+9+c1A+VsFl95rOT56LBkg
- GTBDMgaXqTBe0+qGZ5tq/VzvDROxKoYeM3UG2w+asBdCVGUlV7XZYfyvBsbeeo96+a2S+rEzIQ3
- 5Jh3UL+QgZ6XOZTT4=
-X-Received: by 2002:a05:600c:a415:b0:490:60cb:55f0 with SMTP id
- 5b1f17b1804b1-490a292febdmr182719275e9.21.1780309311984; 
- Mon, 01 Jun 2026 03:21:51 -0700 (PDT)
-X-Received: by 2002:a05:600c:a415:b0:490:60cb:55f0 with SMTP id
- 5b1f17b1804b1-490a292febdmr182718675e9.21.1780309311464; 
- Mon, 01 Jun 2026 03:21:51 -0700 (PDT)
+ AFNElJ8Hwr6sthQkH0P0h1RbrJQJ+Bnugdp8RLerTQAO1Zoqma+WBnufT+aGpMPwsYmsb0xcCe24uV5lObs=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YwUfwPmSO3lNvm/TDgfW1+dg/TjnihraD9HwZLHfg2n6Fb575S8
+ RzUGDsCTdHoOdmDNRRjohaHbftn0lrw9xFKAkyXnq+8avg+snbdymWOicQsTbkSZUURmkdoQjNm
+ RVyvKn5pY9C6V/CwVkGMeYphLXooXeWM3M0lpfXs/fcLj9P3aUa7oMfPio0x3Ap5h3uT5Jg==
+X-Gm-Gg: Acq92OE6nbNSDoAPJP60Sbdsar2xq0y4HK1p9aoIlNi/aJJGE6l4ZBaJKYaQ5X3EFRS
+ bW6DgjVsBKjDIztoKQruXTggPqZ5WB8bMhZa9o8IVK3wogIoixyWoUPtur84y6VoOccZk1lu+Ch
+ KQda5Ijm4WB6lfgRpTtRMigmXMlu4GZ56YXSqCNahit353cQ/iylKrddr/iV5roppWREIuzkGdx
+ 50jcE5/u3nE0OF2nNiCT69pKhm0nCGZDfd/1RzpxT6qDhN28jxx3hxCBF5SzcqkFs8SKyJHwDcO
+ dx0xAWiP99QL/wHmYjhjwUR+rCJF4aWhq53ybExe2zo/jgfgTd7vAd2SZhXkU5CM0GKer8IAB2d
+ LduJ/yddzNHC4gZsPGwt8vQI8l5G/8bG9iR4PdZBYZ7cZNpk4pAQLcQemoybSQvoZW++KQ7CX39
+ OPoiLkWx+eFnLEPiU=
+X-Received: by 2002:a05:600d:848c:10b0:490:a1a9:4ffe with SMTP id
+ 5b1f17b1804b1-490a291197bmr137427635e9.12.1780309346494; 
+ Mon, 01 Jun 2026 03:22:26 -0700 (PDT)
+X-Received: by 2002:a05:600d:848c:10b0:490:a1a9:4ffe with SMTP id
+ 5b1f17b1804b1-490a291197bmr137427265e9.12.1780309346037; 
+ Mon, 01 Jun 2026 03:22:26 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- 5b1f17b1804b1-4909d68a925sm366735475e9.2.2026.06.01.03.21.50
+ 5b1f17b1804b1-490aaebf4f1sm74962075e9.12.2026.06.01.03.22.25
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2026 03:21:50 -0700 (PDT)
+ Mon, 01 Jun 2026 03:22:25 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
@@ -84,16 +84,16 @@ Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-mips@vger.kernel.org, virtualization@lists.linux.dev, Thomas
  Zimmermann <tzimmermann@suse.de>
-Subject: Re: [PATCH v4 04/10] drm/appletbdrm: Allocate request/response
- buffers in begin_fb_access
-In-Reply-To: <20260530185716.65688-5-tzimmermann@suse.de>
+Subject: Re: [PATCH v4 05/10] drm/atomic_helper: Do not evaluate plane
+ damage before atomic_check
+In-Reply-To: <20260530185716.65688-6-tzimmermann@suse.de>
 References: <20260530185716.65688-1-tzimmermann@suse.de>
- <20260530185716.65688-5-tzimmermann@suse.de>
-Date: Mon, 01 Jun 2026 12:21:50 +0200
-Message-ID: <87pl2alfwh.fsf@ocarina.mail-host-address-is-not-set>
+ <20260530185716.65688-6-tzimmermann@suse.de>
+Date: Mon, 01 Jun 2026 12:22:24 +0200
+Message-ID: <87mrxelfvj.fsf@ocarina.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: m_oLN4qZXxvxDkAX7gpnvwvdY--0pYnML-8P9qa-x0o_1780309312
+X-Mimecast-MFC-PROC-ID: udD9fdEXoPEiK3VHrO-SuBkZeC0bW9bJ5BiUrdgmkcI_1780309346
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -143,25 +143,20 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ocarina.mail-host-address-is-not-set:mid,suse.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 6CD4661D40A
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,broadcom.com:email,ocarina.mail-host-address-is-not-set:mid]
+X-Rspamd-Queue-Id: ABABD61D43E
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
 Thomas Zimmermann <tzimmermann@suse.de> writes:
 
-> In atomic_check, damage handling is not fully evaluated. Another
-> atomic_check helper could trigger a full modeset and thus invalidate
-> damage clips.
+> Remove the call to drm_atomic_helper_check_plane_damage() from before
+> calling the atomic_check helpers. The call has no longer any purpose,
+> as the actual evaluation happens after running atomic_check.
 >
-> Allocation of the request/response buffers in appletbdrm depends on
-> correct damage information. Otherwise it might allocate incorrectly
-> sized buffers. Allocate the buffers in the driver's begin_fb_access
-> helper. It runs early during the commit when damage clipping has been
-> fully evaluated.
->
-> v2:
-> - allocate before drm_gem_begin_shadow_fb_access() to avoid leak on error
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Acked-by: Zack Rusin <zack.rusin@broadcom.com>
+> ---
 
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
