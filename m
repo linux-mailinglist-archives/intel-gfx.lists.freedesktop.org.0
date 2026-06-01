@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id qFeKDFU7HWoqWQkAu9opvQ
+	id iF2qLlY7HWqDXgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 09:57:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 09:57:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0088861B2B8
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 09:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6837961B2CC
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 09:57:10 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 75344112F3D;
-	Mon,  1 Jun 2026 07:57:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D639E112F40;
+	Mon,  1 Jun 2026 07:57:08 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="hE4gRUrp";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="B007Jqnh";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B499112F3B;
- Mon,  1 Jun 2026 07:57:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 804E3112F3E;
+ Mon,  1 Jun 2026 07:57:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780300627; x=1811836627;
+ t=1780300628; x=1811836628;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=azAN9ioMofgssmczHhEEadQWCShkURa4kQQDJQnD3Y0=;
- b=hE4gRUrpdGCS13R1+8xChF5u/1e2TDsKSKcOGXHQ+9I2Ij6pxNmnYONQ
- GOVRzjO4wrbm40XHUyBedk2LP4QClPK7Jv14nw2N85Okv+RIXb3D8kALg
- UwIzkIshpU6zqB2my+vJNL5q4UbeDxH0I+zjplU2JOieshdXuR96hEkT9
- aiRGfdfmYw7C/yDRizCfBfWckrhkxSRKQMGYg7ZYCCKUwULiZFpiSznpf
- 6nlnM2TIf++5HeAHvHva7zZlmqCUJ/5LolgZlEss94F4z0g8rMVlGezGQ
- NtA2YFDl+qli/41/QCQNvXz0ldzZfkknjTHmkpbIe0RLqt9xDfD3jN4oM g==;
-X-CSE-ConnectionGUID: ElSfdWd8Q1qykY7NgSd9tw==
-X-CSE-MsgGUID: X2bV0WM4SsSWMhIRWj8UDA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="84941130"
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="84941130"
+ bh=gP2CqqxaGbn7MVm5OTAXSXcRRJld8ex5iiuEO/QW9GE=;
+ b=B007JqnhlH5PnHLmPofK9dWAVkEhGKk3J7GHs8iLi5busOpzTBdfZH/T
+ X2VzbFj+cH5E8B4aKf3Hlzo7+Wu7yKUNeU6HibN0qjE1fk0IkHcFewbPy
+ t9ec8HD9EHa3NNMmFTeCRlcylN/y/Za/SafZAjo1F9gaiyr4Vc5dDl61Q
+ wV5wq2xKzyGIhxC8RcoRm3jDRUaS4yhrUdnP/CiWtqoHB+3um+pW1ZYPO
+ NzxbCPJ7jHHCM9DepNOoa304TCWu6paAEpprerQBpMdu4Ddx+aYMvCL/t
+ e2YsLKddfi8w+ro6lFLIQwirkq5jk/nScKUkZVsWsCGHIa7w5HBI7kpWS A==;
+X-CSE-ConnectionGUID: lR3i8vyfSdOrXKZTL2327Q==
+X-CSE-MsgGUID: wNDimVuxR9eByTxBlJp0RA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="84941145"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="84941145"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 00:56:48 -0700
-X-CSE-ConnectionGUID: ZmsAjaHZTICmTlSY5vOZ5g==
-X-CSE-MsgGUID: hhTRH0itQPyBJCmyt2PLFA==
+ 01 Jun 2026 00:56:49 -0700
+X-CSE-ConnectionGUID: 6uq+nXz3REe0qMCA3z4C0g==
+X-CSE-MsgGUID: sCWzBbjLROyhumnCr6+FRQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="243601839"
+X-IronPort-AV: E=Sophos;i="6.24,180,1774335600"; d="scan'208";a="243601850"
 Received: from abityuts-desk.ger.corp.intel.com (HELO hazy) ([10.245.245.124])
  by orviesa009-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 00:56:46 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 00:56:47 -0700
 From: Luca Coelho <luciano.coelho@intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org,
 	jani.nikula@linux.intel.com
-Subject: [PATCH v3 3/4] drm/i915/display: harden shift in
- intel_ddi_compute_config_late()
-Date: Mon,  1 Jun 2026 10:55:55 +0300
-Message-ID: <20260601075631.3102348-4-luciano.coelho@intel.com>
+Subject: [PATCH v3 4/4] drm/i915/display: remove unnecessary PHY_NONE
+ definition
+Date: Mon,  1 Jun 2026 10:55:56 +0300
+Message-ID: <20260601075631.3102348-5-luciano.coelho@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260601075631.3102348-1-luciano.coelho@intel.com>
 References: <20260601075631.3102348-1-luciano.coelho@intel.com>
@@ -97,38 +97,109 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	NEURAL_HAM(-0.00)[-1.000];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 0088861B2B8
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: 6837961B2CC
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-BIT() takes a non-negative shift amount, but cpu_transcoder is of type
-enum transcoder, which can in theory be INVALID_TRANSCODER (-1).
+PHY_NONE is not really used, but we define it and, thus, need to check
+for it in a few places we use phy.  The only potential places where
+phy may become PHY_NONE, is in intel_port_to_phy(), where it derives
+from port, which can be PORT_NONE.  Many of its callers don't check
+for PHY_NONE, which can cause unknown behavior.  Additionally, this
+can only happen if the encoder used has PORT_NONE, which should not be
+the case either, without unexpected consequences.
 
-This is not a problem with the current implementation, because
-cpu_transcoder is always valid when this code is reached, but it's
-more robust to cast to unsigned so the shift is always well-defined.
+Remove the PHY_NONE definition entirely and add a couple of WARNs at
+the relevant places, just to be sure.
 
 Signed-off-by: Luca Coelho <luciano.coelho@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_ddi.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display.c           | 10 ++++++----
+ drivers/gpu/drm/i915/display/intel_display.h           |  2 --
+ .../gpu/drm/i915/display/intel_display_power_well.c    |  6 +++++-
+ drivers/gpu/drm/i915/display/intel_hti.c               |  3 ---
+ 4 files changed, 11 insertions(+), 10 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 205978c9feb6..cbdadb6cade4 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4635,8 +4635,8 @@ static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8e269b71f18e..b839d844ffef 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -1810,9 +1810,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
+ /* Prefer intel_encoder_is_combo() */
+ bool intel_phy_is_combo(struct intel_display *display, enum phy phy)
+ {
+-	if (phy == PHY_NONE)
+-		return false;
+-	else if (display->platform.alderlake_s)
++	if (display->platform.alderlake_s)
+ 		return phy <= PHY_E;
+ 	else if (display->platform.dg1 || display->platform.rocketlake)
+ 		return phy <= PHY_D;
+@@ -1866,7 +1864,7 @@ bool intel_phy_is_snps(struct intel_display *display, enum phy phy)
+ 	 * For DG2, and for DG2 only, all four "combo" ports and the TC1 port
+ 	 * (PHY E) use Synopsis PHYs. See intel_phy_is_tc().
+ 	 */
+-	return display->platform.dg2 && phy > PHY_NONE && phy <= PHY_E;
++	return display->platform.dg2 && phy <= PHY_E;
+ }
  
- 	if (crtc_state->master_transcoder == crtc_state->cpu_transcoder) {
- 		crtc_state->master_transcoder = INVALID_TRANSCODER;
--		crtc_state->sync_mode_slaves_mask =
--			port_sync_transcoders & ~BIT(crtc_state->cpu_transcoder);
-+		crtc_state->sync_mode_slaves_mask = port_sync_transcoders &
-+			~REG_BIT(crtc_state->cpu_transcoder);
- 	}
+ /* Prefer intel_encoder_to_phy() */
+@@ -1884,6 +1882,10 @@ enum phy intel_port_to_phy(struct intel_display *display, enum port port)
+ 		 port == PORT_D)
+ 		return PHY_A;
  
- 	return 0;
++	if(drm_WARN(display->drm, port < 0,
++		    "PHY is invalid if port < 0 (%d), assuming PHY_A\n"), port)
++		return PHY_A;
++
+ 	return PHY_A + port - PORT_A;
+ }
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.h b/drivers/gpu/drm/i915/display/intel_display.h
+index 1963dbc80221..c55692e8aa27 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.h
++++ b/drivers/gpu/drm/i915/display/intel_display.h
+@@ -136,8 +136,6 @@ enum tc_port {
+ };
+ 
+ enum phy {
+-	PHY_NONE = -1,
+-
+ 	PHY_A = 0,
+ 	PHY_B,
+ 	PHY_C,
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 04bd0dde5bed..d799391dbc07 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -325,7 +325,11 @@ static enum phy icl_aux_pw_to_phy(struct intel_display *display,
+ {
+ 	struct intel_encoder *encoder = icl_aux_pw_to_encoder(display, power_well);
+ 
+-	return encoder ? intel_encoder_to_phy(encoder) : PHY_NONE;
++	if(drm_WARN(display->drm, !encoder,
++		    "PHY is invalid if encoder is NULL, assuming PHY_A\n"))
++		return PHY_A;
++
++	return intel_encoder_to_phy(encoder);
+ }
+ 
+ static bool icl_aux_pw_is_tc_phy(struct intel_display *display,
+diff --git a/drivers/gpu/drm/i915/display/intel_hti.c b/drivers/gpu/drm/i915/display/intel_hti.c
+index dc454420c134..56602240ceff 100644
+--- a/drivers/gpu/drm/i915/display/intel_hti.c
++++ b/drivers/gpu/drm/i915/display/intel_hti.c
+@@ -23,9 +23,6 @@ void intel_hti_init(struct intel_display *display)
+ 
+ bool intel_hti_uses_phy(struct intel_display *display, enum phy phy)
+ {
+-	if (drm_WARN_ON(display->drm, phy == PHY_NONE))
+-		return false;
+-
+ 	return display->hti.state & HDPORT_ENABLED &&
+ 		display->hti.state & HDPORT_DDI_USED(phy);
+ }
 -- 
 2.53.0
 
