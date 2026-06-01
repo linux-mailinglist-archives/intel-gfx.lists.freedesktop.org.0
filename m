@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id mE5+InFgHWojZwkAu9opvQ
+	id 4KZdAnZgHWojZwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:35:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:35:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8BC61D944
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:35:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CEC3F61D94C
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:35:33 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EA5511318F;
-	Mon,  1 Jun 2026 10:35:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9ECA01130C9;
+	Mon,  1 Jun 2026 10:35:31 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="MS6U72Ek";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="b1H8SH4N";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C6753113194;
- Mon,  1 Jun 2026 10:35:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 65CC81130C9;
+ Mon,  1 Jun 2026 10:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780310126; x=1811846126;
+ t=1780310131; x=1811846131;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ufK8bbdV/PFgIR1iNHOV++mXiDSjhHJGDPn3rIFm/70=;
- b=MS6U72EkhxbpvdE4lQZftzKdUn+p2PLbSGFNhYGFQ9bZk0cHJRtQKz+B
- AOiDi9zlCtfGEs/Uwp+z65XSWVR0sIvM0JY87eXhvcTMkzI2AnVwAntqN
- PiJbvJ0Dp985b7h5NoJN6Jwf/LsNreG3OHOWt3hRxT2MPJYxn45v+YlaL
- NIkiWy+jjPMrb5ZZyBRS08YDqYLkokhNWYnkk4L4Bc+XOCxEXqIEAytbA
- Oy80iFXniMWTmTetcLPxNlhS/bR3ktswGbLWxOI/elRel6R0KzCJzI++z
- iOSDi7vkvXDTVZMUxTYBwdDQWBjvPf+9qAHbbXkU6C3j3EERzSosff8tT A==;
-X-CSE-ConnectionGUID: LXVHzsnlSYCgb/DrpM5awA==
-X-CSE-MsgGUID: qFdwSTI8QlSMJponTYRvRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80797245"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="80797245"
+ bh=DdzuOlTLU+6rKDWQjhVzJnK0AzqBt2U8yOGfPpqklSc=;
+ b=b1H8SH4NzJnOX8PBJp5iedRAjHWYSq8Wau8j7uSS+PCnyH7lC8ES1OVO
+ qFCKvK5gpzYzhdLlQBho88OdVoIj3GJvEF0YZmzC4HAorqPPXe4Bht7S0
+ FYNevMbVVUUhE38GrYjY9erKjVwZlif8yh++WUFPut7qTyWF+Noqp+fPQ
+ MIMfkTh2qSF55E/K8pLytFiu6qTO10JFeGgNYTsICwTTmTtYPgwnvX00J
+ yRW2vU17/04hew4el56pErCHs+5XkHo4p7upm9cJhjcI1eQO5BO7COUZW
+ OL0pgGdu99loz7lKkSKzAMo5sKYkKreH1kgh3Rpa8xkEvdjvGdmA8b4XL Q==;
+X-CSE-ConnectionGUID: hCV+rvZnQFqvA3pCDg+WUQ==
+X-CSE-MsgGUID: Urbh3y5fRDechO3jjPl8oA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80797257"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="80797257"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 03:35:26 -0700
-X-CSE-ConnectionGUID: Y738e6S7SB2dhu5vLFyjow==
-X-CSE-MsgGUID: xrZdIhouQKa4PZHdOWrN9Q==
+ 01 Jun 2026 03:35:30 -0700
+X-CSE-ConnectionGUID: C5zgB/a5R0aHJfUobtsfFw==
+X-CSE-MsgGUID: Y6qKlosqR/qOIg8pFN2C1g==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="242728461"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="242728527"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.245.121])
  by orviesa010-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 03:35:24 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Jun 2026 03:35:29 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: imre.deak@intel.com, ville.syrjala@linux.intel.com, jani.nikula@intel.com
-Subject: [CI 3/5] drm/i915: add flush_workqueue(display->wq.cleanup) on
- shutdown
-Date: Mon,  1 Jun 2026 13:34:58 +0300
-Message-ID: <047afe4f8589d4391b95dfc4bff084292ba3bf32.1780310011.git.jani.nikula@intel.com>
+Subject: [CI 4/5] drm/xe/display: remove intel_display_flush_cleanup_work()
+ calls on suspend/shutdown
+Date: Mon,  1 Jun 2026 13:34:59 +0300
+Message-ID: <8a6059f0cb63ad9a8e035583a79134c250b0ec71.1780310011.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780310011.git.jani.nikula@intel.com>
 References: <cover.1780310011.git.jani.nikula@intel.com>
@@ -100,45 +100,44 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	NEURAL_HAM(-0.00)[-0.999];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: 2B8BC61D944
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,intel.com:mid,intel.com:dkim]
+X-Rspamd-Queue-Id: CEC3F61D94C
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-We're missing the cleanup workqueue flush on the shutdown path. Add it.
-
-Unfortunately have to briefly include intel_display_core.c here. To be
-removed later.
+intel_display_driver_suspend() already has drm_atomic_helper_suspend()
+and cleanup workqueue flush. The intel_display_flush_cleanup_work()
+calls on suspend/shutdown should be redundant. Remove.
 
 Link: https://lore.kernel.org/r/agRp6Was9FCQbKee@intel.com
 Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/display/xe_display.c | 3 ---
+ 1 file changed, 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 93940cfe91a0..60d5e06675ab 100644
---- a/drivers/gpu/drm/i915/i915_driver.c
-+++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -54,6 +54,7 @@
- #include "display/intel_bw.h"
- #include "display/intel_cdclk.h"
- #include "display/intel_crtc.h"
-+#include "display/intel_display_core.h"
- #include "display/intel_display_device.h"
- #include "display/intel_display_driver.h"
- #include "display/intel_display_power.h"
-@@ -1053,6 +1054,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 		drm_atomic_helper_shutdown(&i915->drm);
+diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+index c0d3e7d12823..6e82dc70ca89 100644
+--- a/drivers/gpu/drm/xe/display/xe_display.c
++++ b/drivers/gpu/drm/xe/display/xe_display.c
+@@ -312,8 +312,6 @@ void xe_display_pm_suspend(struct xe_device *xe)
+ 		intel_display_driver_suspend(display);
  	}
  
-+	flush_workqueue(display->wq.cleanup);
-+
- 	intel_dp_mst_suspend(display);
- 
+-	intel_display_flush_cleanup_work(display);
+-
  	intel_encoder_block_all_hpds(display);
+ 
+ 	intel_hpd_cancel_work(display);
+@@ -344,7 +342,6 @@ void xe_display_pm_shutdown(struct xe_device *xe)
+ 		intel_display_driver_suspend(display);
+ 	}
+ 
+-	intel_display_flush_cleanup_work(display);
+ 	intel_dp_mst_suspend(display);
+ 	intel_encoder_block_all_hpds(display);
+ 	intel_hpd_cancel_work(display);
 -- 
 2.47.3
 
