@@ -2,101 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id oCy2DulbHWrnZgkAu9opvQ
+	id qMzxAvqZHWpOcgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:16:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 16:40:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8FC5761D2C6
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 12:16:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB7796210C7
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 16:40:57 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8E7010E78C;
-	Mon,  1 Jun 2026 10:16:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C9D58113430;
+	Mon,  1 Jun 2026 14:40:55 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (1024-bit key; unprotected) header.d=redhat.com header.i=@redhat.com header.b="bG97OOPA";
+	dkim=pass (2048-bit key; unprotected) header.d=gmail.com header.i=@gmail.com header.b="c6GaRZ6j";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from us-smtp-delivery-124.mimecast.com
- (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A040C10E78C
- for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 10:16:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1780308964;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- in-reply-to:in-reply-to:references:references;
- bh=Ec/J4tNvrAMdwkOq5RTOf80WrT+IRWDMG7cFT7/0gaw=;
- b=bG97OOPAoHu9sfEqhiUz+D42kqucPKFn4+sshDR/VXpNGLmDVaTEgP2R54uiN2L3HHo2zO
- jzvjYnrPIG4a3Jzhet9bvw/ibed2K84i6Ofv5Wc+4N19MY+Z1W2OQ3QyccwWNqWYrsA6Y5
- yHQkjhDV+Vc7NUW2GqIz90nagSVmSFw=
-Received: from mail-wm1-f70.google.com (mail-wm1-f70.google.com
- [209.85.128.70]) by relay.mimecast.com with ESMTP with STARTTLS
- (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-590-Fp-vQwvbPQaIu-d6MXfOmA-1; Mon, 01 Jun 2026 06:16:03 -0400
-X-MC-Unique: Fp-vQwvbPQaIu-d6MXfOmA-1
-X-Mimecast-MFC-AGG-ID: Fp-vQwvbPQaIu-d6MXfOmA_1780308962
-Received: by mail-wm1-f70.google.com with SMTP id
- 5b1f17b1804b1-490ae4d89e2so3130675e9.3
- for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2026 03:16:03 -0700 (PDT)
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com
+ [209.85.222.175])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44718113149
+ for <intel-gfx@lists.freedesktop.org>; Mon,  1 Jun 2026 10:17:48 +0000 (UTC)
+Received: by mail-qk1-f175.google.com with SMTP id
+ af79cd13be357-91550ec5026so13811085a.2
+ for <intel-gfx@lists.freedesktop.org>; Mon, 01 Jun 2026 03:17:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1780309067; x=1780913867; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=Uyi2sYWA7KnoTyDbcBaVRwZrLhvu1wK8b394EY11sq8=;
+ b=c6GaRZ6j+HxLvwfoAgRNBzYfbkJSZ2wLcMeDsccQO4gGeHl0fNLV2/Z4BT1cHxKAGs
+ j2j9w740mE6aveYd9zuQlROVzsRCp6jZSXNnjtkq7sYDjW/fEStuHqKLSPMA0wg5tIPm
+ nfJ6sFFrEqCJJLnRboeCmMxOkJcP6IUIZd6/mgj12TbOlSDjmqDCvWuFKKb1RhCc0bWe
+ z5Ud12MDIu67bEBphcsWoTD1FT4uyg4z+ExrcmcKMUtxxlii9Mfk36NGyJU/PIIXQdDl
+ 0DcOVfCKK6xbglJfp5pV4IM4ZgUL9ekmBaRJ/7bnmRnzwkJXFlwpu2pVpqNKL3dFAsGo
+ obxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780308962; x=1780913762;
- h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
- :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=Ec/J4tNvrAMdwkOq5RTOf80WrT+IRWDMG7cFT7/0gaw=;
- b=AT79/nxfbesNFmh3002RI9ONmlzMSbRJoslKaukNCNBKO3fsatuwK2mgUdV270q3AO
- GnntUg/BZR71Eg6FnNcyoA0trN9lzbzDOkYDVOQN+f5DGWn3olR70brcsWJBXRM+owqO
- 9Rfzdkisvx3c9g+SzJix59xn4VI4ZhG01U3WWcgRHV/l8xF8KuMeKAQUqpvv9Z+wPsP4
- YqVjZPcsQkklEYK5gRrEPopevTGTiIKtARFyOW+y9Nzwj1YpLFIx99wzqUvTd6y3j+HJ
- osjgcH7/+drk+VpbphES6F+o6jGTWtaIjFgbYWzkcu1Bc2y4lQR6RANPgO8OmcztaTqK
- dTGg==
+ d=1e100.net; s=20251104; t=1780309067; x=1780913867;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=Uyi2sYWA7KnoTyDbcBaVRwZrLhvu1wK8b394EY11sq8=;
+ b=RsPlOsih/xPCwMZKpI8U1KRJafMnVnGelXROX/8DWG1U9VTBah4VPvGplubRFlvNWH
+ 0YT3CYU5Tr3ryUEVcZ82zew8Q0yNtPfwPv0gaByMSmgpl/Y6Q4KaA1ApJbTToZjcSA9D
+ 8wAFpTXyVPJPfY/jYk/o+HLZnj9OimQ6lVF6QAl/wQrt6Jm00mQQEAPFPHfGCof3ifrf
+ UGvPAsPDg2O4dUdCSjhHdly7fAsyLUOcpVL38IMxw3LiX56RR5s8CtLQzUgrjUHQGVh0
+ mk8nk5dhiSY7ALxeS+GFI9MOnCSYX/Uju5QbeKbl03zLu8HvISWAG55wSufk1sqc7Q3n
+ YqrQ==
 X-Forwarded-Encrypted: i=1;
- AFNElJ+NRzJ3OH8ml/dPeUoM7n4Vp5d1jLM1mOkCe87OMGgPb1HdYxoB4ayiDkfE5fOe8TTE7em+cKjyO+8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwrbBaXHZQpxWiFHEwMF6UYZbMHwhkqp5JEJ/9pIoUCwOxn0CCT
- DTlOCguKihaKcP+uhpBHneRXCkFNSULcUeisuziVGjkZPG3jWfwFY3yz4f0XENKe4PbBlwA89at
- gFhK3nflTbgYwMZo0q6FmPWrS5/wK/UtIKub/7PxuzPifV4AVh5IgGUo1IICiEBgFapoF0koBFH
- LSww==
-X-Gm-Gg: Acq92OHXEN2jvp+1jvINFtvU3vcQM86yQeyEa9LTLZtjrwj/8P0UYbWaUD7z+cpSuVn
- VwncTPUdmWiYTHGH+1LTiX4QSy7QmLIzB0X4564O3Qc9jl6fhyQV+1SCsZjckjl64+r3TH41Imj
- e8PenFDb2H+OfHddt2p80yXTcHx2U+g/tMsM5S5Ixq2ZaSb1IK4V/aORZQnnw6VSD2aToAifYer
- N0//xZkvB2jk6t6QUqXxSkii/0gHz29szdUGIxeG4bPTH1mTLK+/f/gNpHJ66TAjZ8INj8+OQiw
- f7tsjJ3hZ91xX7dHVqs6sjp4eK57TxzAcN96Dsvr8oPlyVi1VaVAxECI7MfAmAli1xkyz17MIYJ
- 5EtgmFTsWTgpaTHd+j5MdOWLyrjbpi1o2OGz7YATjGO/8AimEUyxaJA2j51ANemxmz5TQFaWTUD
- 7FDQIFQmgS4oqUiy0=
-X-Received: by 2002:a05:600c:1c06:b0:490:a298:3859 with SMTP id
- 5b1f17b1804b1-490a29838b6mr211911525e9.24.1780308962206; 
- Mon, 01 Jun 2026 03:16:02 -0700 (PDT)
-X-Received: by 2002:a05:600c:1c06:b0:490:a298:3859 with SMTP id
- 5b1f17b1804b1-490a29838b6mr211910935e9.24.1780308961705; 
- Mon, 01 Jun 2026 03:16:01 -0700 (PDT)
-Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
+ AFNElJ/ycAuzo6SY1/zG61CirnhAY7206x1w1jFH4t8cb3Jiq/T57ZbE3sLpjhgmASokzi3rYHRb5ePMpy8=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyM7JTl4mrFfhowsC9WAk15gL2ZZKq+Rf98jejuc6WA2gEQg9Jz
+ TxKI2qsKsTfLlX9z1SwIDoajC1w5yVdSsK8tJlsvkVw11MBpe0cQdGxh
+X-Gm-Gg: Acq92OH0u12Cg29nZLYvH6J9/ua1jZcfuTpxiLEhEIsEQ+SZxdy6G+aTiAeOBRmm5TK
+ yEqgTc6A0nCl3fPfsqvb8ODTNOejUt7+LHDWzBbBToJUFTuEv9HEUUd0hGvlfGpjYUtNpeqZ5vn
+ c9RlnOA6legUaemaPh5ec+L2l00yGwZjqK1uHOdbBLRstfKKa+Rqk/GP2EgMZidpJGfMigoS0gJ
+ Gf6WlgLbgAZQrcyr5ipv8VfRzHlsaAx5YsS+8XWPR8hhgahxr7IKfpwxjxwbPm0RtE2cpygNyvF
+ Erqs0+VkSo4mwGH1V14+mdcxVls6MoUhhoDP/auRqASgYqMATSqYMYsBhKCtlrcLYvhwIs+PPUu
+ H7nWSigrq55m/Ufc+TG5wOR6iLOra0o/XsHDiRUk6cMbP9uAnJscyGWfpgBB0Nm4jLXAQBccQF+
+ /g13sivngLPKz6wOhT1lhPwN1TQgGhuXUAWm3Qyd2Ijr1HQHM3NWcsQ2jLQGMvxN1vBYtwH2PUe
+ SxJ35Lwcq8FJf714vGS
+X-Received: by 2002:a05:620a:6111:b0:915:4ca0:1210 with SMTP id
+ af79cd13be357-9154ca013ffmr513150185a.3.1780309067135; 
+ Mon, 01 Jun 2026 03:17:47 -0700 (PDT)
+Received: from debian-t14-gen1-fuhrysteve.fuhry.app
+ (6.sub-75-230-138.myvzw.com. [75.230.138.6])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-45ef32fabcasm23621879f8f.0.2026.06.01.03.16.00
+ af79cd13be357-91532486089sm976503585a.17.2026.06.01.03.17.45
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 01 Jun 2026 03:16:01 -0700 (PDT)
-From: Javier Martinez Canillas <javierm@redhat.com>
-To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
- maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
- simona@ffwll.ch, admin@kodeit.net, gargaditya08@proton.me,
- paul@crapouillou.net, jani.nikula@linux.intel.com, mhklinux@outlook.com,
- zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com
-Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-mips@vger.kernel.org, virtualization@lists.linux.dev, Thomas
- Zimmermann <tzimmermann@suse.de>, stable@vger.kernel.org
-Subject: Re: [PATCH v4 01/10] drm/damage-helper: Do not alter damage clips
- on modeset, but ignore them
-In-Reply-To: <20260530185716.65688-2-tzimmermann@suse.de>
-References: <20260530185716.65688-1-tzimmermann@suse.de>
- <20260530185716.65688-2-tzimmermann@suse.de>
-Date: Mon, 01 Jun 2026 12:16:00 +0200
-Message-ID: <87y0gylg67.fsf@ocarina.mail-host-address-is-not-set>
+ Mon, 01 Jun 2026 03:17:46 -0700 (PDT)
+From: "Stephen J. Fuhry" <fuhrysteve@gmail.com>
+To: arun.r.murthy@intel.com
+Cc: Stephen Fuhry <fuhrysteve@gmail.com>,
+	intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disable
+Date: Mon,  1 Jun 2026 06:17:43 -0400
+Message-ID: <20260601101743.1676771-1-fuhrysteve@gmail.com>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260519070959.648987-1-arun.r.murthy@intel.com>
+References: <20260519070959.648987-1-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: eQVGdfH_OyP5GIHb3G4WCbOWz3hdhS0vI1O0fntbgas_1780308962
-X-Mimecast-Originator: redhat.com
-Content-Type: text/plain
+Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Mon, 01 Jun 2026 14:40:34 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,125 +96,44 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[redhat.com,quarantine];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[redhat.com:s=mimecast20190719];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@redhat.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:admin@kodeit.net,m:gargaditya08@proton.me,m:paul@crapouillou.net,m:jani.nikula@linux.intel.com,m:mhklinux@outlook.com,m:zack.rusin@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:dri-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mips@vger.kernel.org,m:virtualization@lists.linux.dev,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	FREEMAIL_TO(0.00)[suse.de,kernel.org,linux.intel.com,redhat.com,gmail.com,ffwll.ch,kodeit.net,proton.me,crapouillou.net,outlook.com,broadcom.com];
+	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:fuhrysteve@gmail.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[javierm@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[redhat.com:+];
-	MISSING_XM_UA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_SENDER(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[javierm@redhat.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	NEURAL_HAM(-0.00)[-1.000];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	NEURAL_HAM(-0.00)[-1.000];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,ocarina.mail-host-address-is-not-set:mid]
-X-Rspamd-Queue-Id: 8FC5761D2C6
+	DKIM_TRACE(0.00)[gmail.com:+];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+X-Rspamd-Queue-Id: BB7796210C7
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Thomas Zimmermann <tzimmermann@suse.de> writes:
+From: Stephen Fuhry <fuhrysteve@gmail.com>
 
-Hello Thomas,
-
-> User space supplies rectangles for damage clipping in a plane property.
-> For full mode sets, drivers still require a full plane update. In this
-> case, leave the information as-is and set the ignore_damage_clips flag
-> instead. The damage iterator will later ignore any damage information.
->
-> Also fixes a bug where ignore_damage_clips was not cleared across plane-
-> state duplications.
->
-> Leaving the damage information as-is might be helpful to drivers that
-> benefit from this information even on full modesets (e.g., for cache
-> management). It will also help with consolidating the damage-handling
-> logic.
->
-> Also add a new unit test that evaluates the ignore_damage_clips flag. It
-> sets two damage clips plus the flag and tests if the reported damage
-> covers the entire framebuffer.
->
-> v4:
-> - slightly reword the commit description
->
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Fixes: 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers to ignore damage clips")
-> Acked-by: Zack Rusin <zack.rusin@broadcom.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: <stable@vger.kernel.org> # v6.10+
-> ---
->  drivers/gpu/drm/drm_atomic_state_helper.c     |  1 +
->  drivers/gpu/drm/drm_damage_helper.c           |  6 ++--
->  .../gpu/drm/tests/drm_damage_helper_test.c    | 28 +++++++++++++++++++
->  3 files changed, 31 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/drm_atomic_state_helper.c b/drivers/gpu/drm/drm_atomic_state_helper.c
-> index cc70508d4fdb..84d5231ccac1 100644
-> --- a/drivers/gpu/drm/drm_atomic_state_helper.c
-> +++ b/drivers/gpu/drm/drm_atomic_state_helper.c
-> @@ -359,6 +359,7 @@ void __drm_atomic_helper_plane_duplicate_state(struct drm_plane *plane,
->  	state->fence = NULL;
->  	state->commit = NULL;
->  	state->fb_damage_clips = NULL;
-> +	state->ignore_damage_clips = false;
->  	state->color_mgmt_changed = false;
->  }
-
-I would split this as a separate patch since is the bug you are fixing for
-commit 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers to
-ignore damage clips").
-
->  EXPORT_SYMBOL(__drm_atomic_helper_plane_duplicate_state);
-> diff --git a/drivers/gpu/drm/drm_damage_helper.c b/drivers/gpu/drm/drm_damage_helper.c
-> index 74a7f4252ecf..945fac8dc27b 100644
-> --- a/drivers/gpu/drm/drm_damage_helper.c
-> +++ b/drivers/gpu/drm/drm_damage_helper.c
-> @@ -78,10 +78,8 @@ void drm_atomic_helper_check_plane_damage(struct drm_atomic_commit *state,
->  		if (WARN_ON(!crtc_state))
->  			return;
->  
-> -		if (drm_atomic_crtc_needs_modeset(crtc_state)) {
-> -			drm_property_blob_put(plane_state->fb_damage_clips);
-> -			plane_state->fb_damage_clips = NULL;
-> -		}
-> +		if (drm_atomic_crtc_needs_modeset(crtc_state))
-> +			plane_state->ignore_damage_clips = true;
->  	}
->  }
-
-This makes sense to me as well and I agree that re-using the flag for this
-is better than making plane_state->fb_damage_clips == NULL the condition.
-
-As mentioned though, I would make it a separate patch. Both changes look
-good to me:
-
-Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
-
--- 
-Best regards,
-
-Javier Martinez Canillas
-Core Platforms
-Red Hat
-
+Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
