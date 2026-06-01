@@ -2,69 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cBVMJENTHWp/YwkAu9opvQ
+	id 6IZEM0ZTHWp/YwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 11:39:15 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 11:39:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4556561C96C
-	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 11:39:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 636A661C981
+	for <lists+intel-gfx@lfdr.de>; Mon, 01 Jun 2026 11:39:18 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4AE61130BB;
-	Mon,  1 Jun 2026 09:39:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 10A801130BC;
+	Mon,  1 Jun 2026 09:39:16 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="KcUnwLc2";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="aw/8KKU8";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1DDE21130B6;
- Mon,  1 Jun 2026 09:39:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CA9031130B4;
+ Mon,  1 Jun 2026 09:39:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780306752; x=1811842752;
+ t=1780306755; x=1811842755;
  h=from:to:subject:date:message-id:in-reply-to:references:
  content-transfer-encoding:mime-version;
- bh=vQHlShcGTDjT4CgJmuX1EvCHUEbls1uaA/QLob/EcHc=;
- b=KcUnwLc2oy8kftDvs/HFgX3QgyOpJSRWbLszArrzkDGOMd2nQqWvSYOz
- mTImQoqAR39JgZw2K+V3CcmTJ4fZD7gdiCWEZmIbcMkX0OgA8OLrqp5xC
- GKhkygkvjAJsqXzpm9P2319BSVreVrXq4r14TxD83iQHRA2EC+bEVcAIU
- 8WRaoHXG9KXCdZWVp3NcWYfIjbZmN2Dn4WTAe5Oeozem1wT7rJLcdcMHX
- Kx91GZZaIYXNuVQanYSN/rpbNrU1wyN19M1Y3dZloL6ybCKj1I+SI2Cqv
- DGNQxlSlma4IWkbCJijmOlMaZP5sR6InyzIPr97bG/G7S7yTIEm27jW+/ A==;
-X-CSE-ConnectionGUID: 3uojifP0S7m5eDm6sWeVrQ==
-X-CSE-MsgGUID: SN5sjrWFT2u6MqTAKo+yFg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80094035"
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="80094035"
+ bh=oBCluMiDZV3Mc2NEYieu+Ps0tlHTHcnb6ki9Ch2e4PY=;
+ b=aw/8KKU8huEhGPPzRtHntS9Yh3Rnb8Meg+LikLePSyrlSBR4bOXtHdNJ
+ 6nofADiNyisPrMYzUzW9IkD+REh8rmhM/8/OHh3W10FyiYT8R3+Af0WBx
+ k/A5h2QZwS8rmPPXRmpdwNE1hLkoB7+Qnb/5QdxIi1JJVbTlxYezGInwi
+ rI4lJ23IqO5AbunHss2+iU5PzcUsx9velidw6S++fHPX7JEOmbuCAnebm
+ d7qLLm36B1W13xnIWG5jUIUbJUMgV85OZs2boTAjkOQ2coF3Eln+wvjys
+ ENXW03CNqr9odVwblTrHOUQAxrcQva9/CKqtbkqxQY7verVxoAbi+6g0i w==;
+X-CSE-ConnectionGUID: XjIhFfMrRRC/HMrk7rOsSQ==
+X-CSE-MsgGUID: d3maT+XMR2iT81XAv8zd1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11803"; a="80094039"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="80094039"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 02:39:12 -0700
-X-CSE-ConnectionGUID: t8sF3EVLSJ2CVlXTHS0U1w==
-X-CSE-MsgGUID: rR2kASEZT3OcaVANs0UoEw==
+ 01 Jun 2026 02:39:14 -0700
+X-CSE-ConnectionGUID: R6dswlZNSVGZZAYkDIWXMw==
+X-CSE-MsgGUID: ueWBrfq0RyKoOfDKWz5fFQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="267160561"
+X-IronPort-AV: E=Sophos;i="6.24,181,1774335600"; d="scan'208";a="267160573"
 Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
  by fmviesa002.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jun 2026 02:39:11 -0700
-Received: from ORSMSX901.amr.corp.intel.com (10.22.229.23) by
+ 01 Jun 2026 02:39:14 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 1 Jun 2026 02:39:11 -0700
+ 15.2.2562.37; Mon, 1 Jun 2026 02:39:13 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
- ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 1 Jun 2026 02:39:11 -0700
+ 15.2.2562.37 via Frontend Transport; Mon, 1 Jun 2026 02:39:13 -0700
 Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.36) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 1 Jun 2026 02:39:08 -0700
+ 15.2.2562.37; Mon, 1 Jun 2026 02:39:11 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ts94QT1oZ6qDyY7p7UJ5oQUu6bDsfuLcDWCOrmTTpb+AFv64oOlHF100FUIrbzdWuob2TNja/7LKbx5IW7ZO3nR26jE/gSuXs7X7OLydEMue986D8jj5SUk7U2Bh76hNz93bKFsN2Hsg6Q4AtJwzgropO+J/UUe3z+0bGDtj3wWbrYa+C2cV6hbMiBdhImyCleidSPdacQ2UxZwDebUBknHPMmjcUNw49I/DHnB0bmq0qoeLqGeu+XpAVhX/jkTTb1QAO46b+2fDGP696pwW+pXaqPwEqanrew6toVtW+iSfSekXI6nKthukl9lWeYfoqD4yH98rl3j6p6B3thT4PA==
+ b=F9FEQAQ02AG8IxR8jXyr4v+CLUnZxbWG5Veca+bBiklFHgXJ6inPgf7pcU7fYTColHPJXl5TIEE4yd18VeAffJpv0+9Spx0d8jgICUqmAQTgBuwT/Z5qR8by64In8kmSpMmj9VY4fxdGzcOsQXCHQjgh075lPbi0FnquvFDuri9PVSZul5vKruOadMW5YarGXdiRG3nPf3VVBw/uqHIJ/GNpMDFd2SEpnJPPc1U881JyzasjSCqN5kdXQ0yhq+cczv3WvXXqaqzKR3M2ICjtZZUlMRHPVcUkNgYHq+fyRoxKqO+j4UaD18eMnnMebPUjRd9+vREBwEF6kx8wNMZdQg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=M0rqWPYUnwPeRKuD5reQa1fvbwhAh2hUmZ7BwgAnoqY=;
- b=CjkL2kZq4axL5yt2wSHREo8OBa9+YVi6Nvg/9oKSOG/AQhuOG6BflQ1TgDUPhGCX2GcucyxAY5pO68yGUciG+wJZGEgMzgAu8Tmn4U++KCB4w9F99Kd+9NIBZZeBIXWrYBsvnCln9xL/zHRP1O3uw0IHlYC93ueMr8aBfbscVFeo3exCcpDcdJ6BEO2SyV7pHutMQ06JqkEEDt2iU9LujQh4CSCxQZoYpGUzNLJ+zYsw2vKc4YEYsj9RTlrAZhVgcZJ5uVoDDbFe/VcnyyEA/6Uo06up4ZTc/2VTd1yl2icgnoOzjlT/Wd0Pg+MXj6JFDNYePgYmIXiQ2ctTDqLe+g==
+ bh=8QAVtsYUfHx1wreDbQ6b8JZWGG1RAqheBa0fE86nV8Y=;
+ b=P/QbMHLkp8xiGeY/UjmleovzyDkCP7n5EXzrHoAXJSeZy9YIZgMwuqKAZM/xH8uy3hDkLHrP10SstHserCbxntZZxSsY2L4Uj//mAMAgGfWzS9LVtJfZcv02j8K72mqlgj5rnU1F2FJyJuWGwpK2U/hzOIJf33hS4zAGEZ7KBKV8Zhb0hNeus1U2ApiuooPHht+X2ZnXL4ffXwuLn2jVe+LlA2Zmv6dVfjVDqAidlCyHIMwJ/i4+FPPZOW+VSw1Cw+VVpfoZQWa+jefG6vhkYlflyU5sw7fxDeuo4nF0XXRY0f/CJ9YTGfPuFlGrxPxSBkhopWBE3TT+c2/OtTB97A==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
@@ -74,17 +74,17 @@ Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
  by MW4PR11MB5891.namprd11.prod.outlook.com (2603:10b6:303:169::5)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.71.16; Mon, 1 Jun 2026
- 09:38:59 +0000
+ 09:39:00 +0000
 Received: from IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
  ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0071.011; Mon, 1 Jun 2026
- 09:38:58 +0000
+ 09:39:00 +0000
 From: Imre Deak <imre.deak@intel.com>
 To: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: [PATCH v2 03/22] drm/i915/dp_link_training: Flush commits in debugfs
- entries
-Date: Mon, 1 Jun 2026 12:38:16 +0300
-Message-ID: <20260601093836.3057345-4-imre.deak@intel.com>
+Subject: [PATCH v2 04/22] drm/i915/dp_link_training: Move link training
+ helpers to link training code
+Date: Mon, 1 Jun 2026 12:38:17 +0300
+Message-ID: <20260601093836.3057345-5-imre.deak@intel.com>
 X-Mailer: git-send-email 2.49.1
 In-Reply-To: <20260601093836.3057345-1-imre.deak@intel.com>
 References: <20260601093836.3057345-1-imre.deak@intel.com>
@@ -98,56 +98,56 @@ X-ClientProxiedBy: GV2PEPF000239FB.SWEP280.PROD.OUTLOOK.COM
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
 X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|MW4PR11MB5891:EE_
-X-MS-Office365-Filtering-Correlation-Id: 07efa575-6d7b-4906-b315-08debfc19af6
+X-MS-Office365-Filtering-Correlation-Id: 8eaaaa6d-7a4a-4f97-51b5-08debfc19bc7
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|366016|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: wow7qGh8sMghImC6tCYOxBDWGTTo6U5sZSMcHXpOedQoTIksCTDp+V24xKJIy8Av+wXMecJuQP4ZzDfHWHNJWWXd34b8ab+oOTFts9bSrwExAHyhdtvDOocpfuLSKyl1qEZIs9JW3wDJQfCp1d6QrI7kapMJDtH1TYv2EH60415d8W5Q0xuy7eTnOy6oQ6inWT0wF0b4+s/oIO3eoZP3V7/AxCm7DICFvjCUO19yXuTJO6T96CMG4Kn8xGKRbqw0ermu06IRRm0x4aQKIpNrYE356ZdKqeeePAKFXQp1qJ9oUjZrlayBc5kyNl4ODeyW2xzbcXhYfCJvgDlsjFmzX8tieBYmerhObkVM2QjKwLbKLvBqaWVUnncmJk+ookMJaAJUXP7qza2MfG4RK6se9AGduTeAlUZcLi18Vree1pUiachYffdNHiQaSON3rfDMAcz6+ca3gNL31WXqnj/4QoTVTZtEHZN4SLr/gRIXGimOkaRRWVA+3dl8XfGJLjIJ3WTgct4oJ6NFu2TKA7xLsb0Z2G3JYHHkt3wN5hwqs9hwIkhUmQndIfeLHI69hqNeyUii4owsUOsUvKIWlVtEVYOYWx6MWmpgwOGqDxfrAHQqqhkNedncyyF44VHyCnsJIFw7CIMRSTj+VINKT3N8WSawT40YyLl431SS6c5ev3fin1ltUZ6ikKWah8lR3yVA
+ ARA:13230040|1800799024|376014|366016|6133799003|22082099003|3023799007|18002099003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: Ec9/+nqu+bSmpWlTd75w63fhPafG4mk7rBR5bO5TYFKyclwSN+PBwEGhE2/vxubDjjSXYJdfx4UDgFdz86/szwHUhFFOmM1HE5kWJ/VBtV8nf8ZTLdx6vCJubUBjbP7+IxavRnX1Un1fNPsEPzallGcG24LQz6jc38xYPyZUiHJRzmPsW9OfAcGYgt17YUYVvB4fieB47tB6QvGPBixXFrhnTCHme4zX1EQM8tE0uphiJsttnIMejCHpzQq497Sy6oo/qQo4TAbdPVY3LuAY2Y+q3vSxX0B7VX8qXCEiksMYenobYrLhLd3hNKVDIj12q8TlTc3bvyoOoxjVEKoohUiX+SJ2uBLolfRdp3vTvp54y+fTvD1h7Z2QJXEOWn17mFu08wHnkOxo5cVUaaFj97AJqcbOQOwd3mY8zZfzgnwPdUY2fg0QZQYOR8aW9aH/V5/fHLr6e08dJoRa4I8XoblE3uxYWIa+/69N5ldUZlK4ZUIJg5b84HfRlQScjmChSnALiYnGm/z6Bq5/eH6VfCjhITytnYOrEepHc3dodYP3Ubwd1BqWt7ALqkco99W4UKF/ZvQyjps0gqpFwEVIHiJfHL9N1oACGHm3HcRjZihudnSUrl1CEtku5Otj1Tuejngsl3XC10tlr1vbbVsuqAD01T1BEbi7cN7gZCtNRRSRAS3L3x9oanOR5ZNCIRkG
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(366016)(22082099003)(18002099003)(11063799006)(56012099006);
+ SFS:(13230040)(1800799024)(376014)(366016)(6133799003)(22082099003)(3023799007)(18002099003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?UBJ0kTi1VDI4QzfoLfn/QDxEsDUNDCNCqGaM320qGdrV/dRQCRaiQglc2+G3?=
- =?us-ascii?Q?B3es0UYP+oURq9D0NFqGZ7flzgF9pH+NJi9+cvMjjdkavkGmGd89Hx7/0nx2?=
- =?us-ascii?Q?bKErmi+/hHoQz4/Y3nq8kvoEuBbfCfM/cLl/QxnOjOUMCBKBaj5vQJngv87C?=
- =?us-ascii?Q?o1Kp9B8tR/jX34HqvOc67XxYvfUkor3DR9svt/2eP1SHbgxV3kacA8WDwNuD?=
- =?us-ascii?Q?vw+1v4hC4ZjwsIwsU6RoKy2aQYKDLA9796zPQlI9X1XhX2/IN+sQ6QrOpUYL?=
- =?us-ascii?Q?DKtQSH1quhSSV1qmT1pbSenRUbSeRmVRcXWe7HcYMcaUiar46Zm7/pho4pM8?=
- =?us-ascii?Q?OyFtjdsbd9rELyXO+XVV9qF8kjEmbVQW9UKcSFrfT0fu03G7LMp2xzmqwRVQ?=
- =?us-ascii?Q?U5Ect/JxaPqTs8sxODnSQh44Z8QcjkrgC68mNh/EggRQm6jfhIGFhXBl+8ac?=
- =?us-ascii?Q?KTG0MauBL9hyXhNbNElbN0Bu35PAf7ZnXq/iE1Q/NKV74ygMb/qy5iuaLrdQ?=
- =?us-ascii?Q?ykQ8HICfjeMRQ8Z4wCGC4mdux5oSZLNmQXRpUTSlqCK+hz+o9yhR/AhBvWWU?=
- =?us-ascii?Q?HMZW7bLqgeJ6IKJp0yDFEzLsGZ8OW/QK6IQjn3w48pTNa8w5P94v4lRWVbw8?=
- =?us-ascii?Q?wcoQd2/JfbUjXY+cgwKZRUZxIXl/qW2lS4mWIYrdf4Dut0vvSaDAT5M99/tl?=
- =?us-ascii?Q?MGzcabvIApEN8GNNnhtKv4BXIS4FxZ+ZmqbPTBjBlexqL0htXA9Q1iF+/+HG?=
- =?us-ascii?Q?Hw6xQ777AM3pYaTNiRjI9tlcFYGs7aUMq2jOH5b1mLNRH8dhwoGtNEh1i0Nw?=
- =?us-ascii?Q?BBOwu4bjDz2Maue3ZmmNvWD/uO7HdFrEPQIG9JgQYTMq1OIEQuUovMLq5keu?=
- =?us-ascii?Q?ec88Ar2DNCscd9ZtWu8ZuWlZXHL+Jl5EoHHwnp6izb8eKk8mRibT9fsZbqk+?=
- =?us-ascii?Q?JyiC5iBjtB7LaoiNGfOCTdMJ7GIM0qVP0LMjluRCQWQQC5t4+z+EIPMDcChV?=
- =?us-ascii?Q?5QbAgl5G2Kmgo5+aD25CnZvX6UCvAZklIU8Jc0ds5O2c65uf2MfYKacve5JC?=
- =?us-ascii?Q?IaDkGMPENFatFZ26EmXAiEJUgt9Vn74Be0ZA38bJ+vlrb8oZGQaSNEhwW+RM?=
- =?us-ascii?Q?mzVidtvLxuXQ6xyXPGpj6+pRgE0YPhvshu7gUGsbd9ZebB1EjG0Z2efuQprO?=
- =?us-ascii?Q?CvY30wJNdCObhkcDroI3en77cshTKio5c9XuYPJv6Tp+v5xtwqAcNP4CSb36?=
- =?us-ascii?Q?uxi8C9XlGsxBB15ySX9bcqa/rDJf2ulNcx+p3KXc+rdxkjcQT8aMWLlXbgbP?=
- =?us-ascii?Q?If8an9OLTtjYcw88uqy18KAINoLVTxFtbXUvSF/fS4TumT27FikzxJ86oMcE?=
- =?us-ascii?Q?cvO2z4MT9B1eOqfMCIU6F7CK7O3nyyLc0B2msnmGTDn6yIW4M4+SXuejCE4K?=
- =?us-ascii?Q?LG75BXqNy4WDDO9PlRmV3iPoegQZPpRiKwhJ/Rzmoot5gIyy8zeK27APwyPN?=
- =?us-ascii?Q?YDyfF2vY9e3qxESR8Lih2sNGZRz1bZ6f7o2nRG26LigvYGu5H4fl1y/UXW6n?=
- =?us-ascii?Q?WTslm0jb74L98j+O5s/ss8FDIxRncp9jAtE4L6xtD2fXaQFSxlj5ArhWNcsN?=
- =?us-ascii?Q?eG3egXFFi3X95pc2neRP4XU8mUQDDzHZU3b2oHINL9yDjXWnn3uz5dNtF9Wa?=
- =?us-ascii?Q?5+EE0O4j82e9DVQEm8qzYJ5PsoJd/ZFj8PFmAjLPuukEJYsDSWzaC7qjXiQu?=
- =?us-ascii?Q?LmfM7jP1Qw=3D=3D?=
-X-Exchange-RoutingPolicyChecked: IYPur1SXVqhLPCoSOLWBglbo2KOHmbSkFRHNtt4KbGE7xscwWy4kJogOkvL0vURlb/zTV7Vknt4e1A0b1fWljm1KOAKmZ58HTA8ohbW0joIemI999Py+eb0CgC/qtsuP/n7RAcZbFQNPuQR+n1DaHWGqJqtPbtU3Ockvl3u+cdD6vsmUnpWk7YgrlL63HDuNJ2FwPCzZmjcr5Rx2VN9oO4bRld0Q+hYHkVmi1oIoAbTICya5AZ/w3ZcViQE8xLhfYyUAVTmnL5P8Cnx5DRJCgpYO14F9N2NpV8apoC2FtzKb8bvY/sGCIweazTthzoOI/BDvTrkjdPOF/vUD3ALQgA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 07efa575-6d7b-4906-b315-08debfc19af6
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?7fF659raE0BY2yCQCeI0mY6yG5KPGBQWyhtFvDFiQQKitGl7uYSkoecGUCfb?=
+ =?us-ascii?Q?p8Un2Njl6my5JordCsR9Sk6eAgOzwtuyQTVdLa13dsgpgDPasrt3GhmCoDxg?=
+ =?us-ascii?Q?LBvHnvy8q/P4c+Nd2Xjjn5x7oSgohcOXbyVLLDEZh+aVVwryEXZk8qDtYWdt?=
+ =?us-ascii?Q?bhWKpOl3WzPUkZnxrhZomUGXLUfx9nwPQemP0BT5f16566jgV9rADCjiTECG?=
+ =?us-ascii?Q?GbLuppyP6riRSSE9qwnp5x+Y8zPv7WuYOKnuX4r6L6+xZvXIbICNbU1uaN+J?=
+ =?us-ascii?Q?/5SiXBQUfgIs3yFOQWkGb3koTK4yby2A2KrFNDHUT9HmJSOONT0BY8cbQZF4?=
+ =?us-ascii?Q?/4rBx+okTBXVTpxhPGjrkE8EZ+TeJqEBw3Gf4gN72unD43bBgWoij/KlJrFG?=
+ =?us-ascii?Q?ni734Y4Chz0N0Urz+shWKzWqc2zgybZf45dTrUDbfY0E4AdLc4yCrxguSvOc?=
+ =?us-ascii?Q?Ic0cSwSV6xeXsQQDQHFIvOSGAA9kaQqwF2fZ3Bp6iwOJjfXzylHFauBOnNd7?=
+ =?us-ascii?Q?DJakGnbVgb3EcSJLY/C87N9Q2foroCJWufP3oGcLxWpc6cJNSugSixeWuiLI?=
+ =?us-ascii?Q?ibz4fKfaEVUmqiVNzIx7wxpmJ8dSQg9FXFgXJ7iEfOyZEhzaLi7u6+LWwgQN?=
+ =?us-ascii?Q?Od4t8uHqVnd90G0bYqg5xH0hRVA7ilW+vEXCKavIYpZkRqEj6yIQxh4Gn/NF?=
+ =?us-ascii?Q?JTEDwhV+82fxvnNdwS7KBQ5c9ZjtlRrKoT8/gXcQ4VwYde5fGKmccuvwbAU/?=
+ =?us-ascii?Q?aNJeusSQzPRyQE5oGf5hter4PANZpnFiw+tJJofXWRN0RwQjy5CCe3OTMwIV?=
+ =?us-ascii?Q?3mVfyJYIZv1BZ49GGKCtRGEAy6Ap8CBbYbLo7rSz5L3bLsTbGbr38Q+6szPI?=
+ =?us-ascii?Q?HCfkbeqf5U1puGDQ9vIRKliUQb2+lGY2gSDeGelfYOQwa0asTw41pFxyskhY?=
+ =?us-ascii?Q?BzKCa2cFkYcLYai70ge4cnQGIXxmKxm8RVg7ALWBF11/yaBNOg79VDAfVzjj?=
+ =?us-ascii?Q?7V7wOibl+yKhgW/H3eC2Jxim2jAK/dqIC43SUkzQ+BLpcmcBF/VdsDVWytw0?=
+ =?us-ascii?Q?3kazYEMF6QrJtUqchi1ZqjVxzGInz8DU3gjDUVl9jW1sG1zeQpoBCBofTUaO?=
+ =?us-ascii?Q?svjc3/UaXmmp0ucJiMSybPQuUeePHghsL1YJz6k78H6ZyAm4nPrJLt2LhYTv?=
+ =?us-ascii?Q?UFQQdicDYDKj/FUwTb3XGGXWtrBuszPm3eQaOGE/wd6Gsvcn3t5qWdOsoGI6?=
+ =?us-ascii?Q?YNEboGB1QD+NMKk1m06+3UGipOTyezKglGvwONhbshCbpTgrM/b6oRyvHNWk?=
+ =?us-ascii?Q?08SISUMaY/KJGS2WMZfZIgsYZtjJPnm5gbl+w0liCLOJWVA5+9lv3FSoWCjy?=
+ =?us-ascii?Q?JrhZ/oTy3klZoFUu9ifngRdQSQOE4Z/ak0UmfZ2jcQlh3khzkL/VashuzJ65?=
+ =?us-ascii?Q?H48davEhzN/fLcw/WwEoBjVeZpGexLwA7ePgkW7niumi+vZ0T47qRiz43qx7?=
+ =?us-ascii?Q?BoS1E3sRHeeVeV/fmU1u3wstbFSVNTQprCc5Z/eb5xdg4o9yUrFVRXK+S3Qc?=
+ =?us-ascii?Q?0X49ANmt5v8TaP6WKb2JSuuQL4e92H54EoJjv6hbdO4a0L+GTm9HN35BJs16?=
+ =?us-ascii?Q?ReI5okrzWGxvDgY3NXYklslAJRVQ0bzmee943Y5u4WBEzj3G/pBBBxcj8xDi?=
+ =?us-ascii?Q?dKO2SJHXnXmCwTBI7tK0AYMOYWlikXX5vgO963qz9YiZI606QTBIChyc6XzR?=
+ =?us-ascii?Q?kadY/ToCAQ=3D=3D?=
+X-Exchange-RoutingPolicyChecked: oJuhLb7HjqV0K8r0ukHyhIqmQesEYhyrA8SnBCOVr3Vx4DL82bmIzGBV6Qb7im5d+mG/7v1J9wb/X2/2uXWqoanXlQXPbZZAP8tNcUSTiG6FSNkNX41c57sRJt4BaryAIOPSH6nFI5X4imF0x0rwTP8ch4zVrEUod475EYzHegsb104i8q/JsYeQiy7ZejbpGFvBRMQHBK1tH5/mfDIK/zQ6mf6erj/byyCAhn31QR//Oxv2tX3NPfEVLyXvzxU59fl6vRubw6SD2xMHroP1x+yX8Oc1OBWhK3bIMJW0VX6C+GPuiMJivLdnPofgw9QTDpbfIz6dAklV6IjCbm6+yg==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8eaaaa6d-7a4a-4f97-51b5-08debfc19bc7
 X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 09:38:58.5101 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jun 2026 09:38:59.9330 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: a2ToCLjD4Jzes3xktoH7JuSRflPWNoDf12Bp8JCGPZeUu+cn/fWWesDopFTCB4Cqszt6BoNgB4IZh3jlHQwErg==
+X-MS-Exchange-CrossTenant-UserPrincipalName: pcgzfc1uao9MRdh9S6gPbLKVNFfmVn21kwWdt7d4iHYIJvmLkliKaS7Sjn/wWWYYzfxX8B5AOMk8mljw6pt9Bw==
 X-MS-Exchange-Transport-CrossTenantHeadersStamped: MW4PR11MB5891
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -190,128 +190,517 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCVD_COUNT_SEVEN(0.00)[9]
-X-Rspamd-Queue-Id: 4556561C96C
+X-Rspamd-Queue-Id: 636A661C981
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Flush pending connector commits before accessing the link training state
-from debugfs. Access to connector state - like the link training state -
-that may be updated from an asynchronous commit tail must hold the
-connection mutex and wait for the tail to complete. The commit tail
-cannot hold the connection mutex, so all other accessors must wait for
-it explicitly.
+Move the link retraining helpers to intel_dp_link_training.c, next to the
+other link training helpers.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 ---
- .../drm/i915/display/intel_dp_link_training.c | 23 +++++++++++++++++++
- 1 file changed, 23 insertions(+)
+ drivers/gpu/drm/i915/display/intel_dp.c       | 197 -----------------
+ drivers/gpu/drm/i915/display/intel_dp.h       |   4 -
+ .../drm/i915/display/intel_dp_link_training.c | 199 ++++++++++++++++++
+ .../drm/i915/display/intel_dp_link_training.h |   7 +
+ 4 files changed, 206 insertions(+), 201 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 1bbbff0733e35..980659f5ace6e 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -847,25 +847,6 @@ static bool intel_dp_set_common_link_params(struct intel_dp *intel_dp)
+ 	return params_changed;
+ }
+ 
+-bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
+-				u8 lane_count)
+-{
+-	/*
+-	 * FIXME: we need to synchronize the current link parameters with
+-	 * hardware readout. Currently fast link training doesn't work on
+-	 * boot-up.
+-	 */
+-	if (link_rate == 0 ||
+-	    link_rate > intel_dp->link.max_rate)
+-		return false;
+-
+-	if (lane_count == 0 ||
+-	    lane_count > intel_dp_max_lane_count(intel_dp))
+-		return false;
+-
+-	return true;
+-}
+-
+ u32 intel_dp_mode_to_fec_clock(u32 mode_clock)
+ {
+ 	return div_u64(mul_u32_u32(mode_clock, DP_DSC_FEC_OVERHEAD_FACTOR),
+@@ -5668,32 +5649,6 @@ void intel_read_dp_sdp(struct intel_encoder *encoder,
+ 	}
+ }
+ 
+-static bool intel_dp_link_ok(struct intel_dp *intel_dp,
+-			     u8 link_status[DP_LINK_STATUS_SIZE])
+-{
+-	struct intel_display *display = to_intel_display(intel_dp);
+-	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
+-	bool uhbr = intel_dp->link_rate >= 1000000;
+-	bool ok;
+-
+-	if (uhbr)
+-		ok = drm_dp_128b132b_lane_channel_eq_done(link_status,
+-							  intel_dp->lane_count);
+-	else
+-		ok = drm_dp_channel_eq_ok(link_status, intel_dp->lane_count);
+-
+-	if (ok)
+-		return true;
+-
+-	intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
+-	drm_dbg_kms(display->drm,
+-		    "[ENCODER:%d:%s] %s link not ok, retraining\n",
+-		    encoder->base.base.id, encoder->base.name,
+-		    uhbr ? "128b/132b" : "8b/10b");
+-
+-	return false;
+-}
+-
+ static void
+ intel_dp_mst_hpd_irq(struct intel_dp *intel_dp, u8 *esi, u8 *ack)
+ {
+@@ -5800,78 +5755,6 @@ intel_dp_handle_hdmi_link_status_change(struct intel_dp *intel_dp)
+ 	}
+ }
+ 
+-static int
+-intel_dp_read_link_status(struct intel_dp *intel_dp, u8 link_status[DP_LINK_STATUS_SIZE])
+-{
+-	int err;
+-
+-	memset(link_status, 0, DP_LINK_STATUS_SIZE);
+-
+-	if (intel_dp_mst_active_streams(intel_dp) > 0)
+-		err = drm_dp_dpcd_read_data(&intel_dp->aux, DP_LANE0_1_STATUS_ESI,
+-					    link_status, DP_LINK_STATUS_SIZE - 2);
+-	else
+-		err = drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, DP_PHY_DPRX,
+-						       link_status);
+-
+-	if (err)
+-		return err;
+-
+-	if (link_status[DP_LANE_ALIGN_STATUS_UPDATED - DP_LANE0_1_STATUS] &
+-	    DP_DOWNSTREAM_PORT_STATUS_CHANGED)
+-		WRITE_ONCE(intel_dp->downstream_port_changed, true);
+-
+-	return 0;
+-}
+-
+-static bool
+-intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+-{
+-	u8 link_status[DP_LINK_STATUS_SIZE];
+-
+-	if (!intel_dp->link.active)
+-		return false;
+-
+-	/*
+-	 * While PSR source HW is enabled, it will control main-link sending
+-	 * frames, enabling and disabling it so trying to do a retrain will fail
+-	 * as the link would or not be on or it could mix training patterns
+-	 * and frame data at the same time causing retrain to fail.
+-	 * Also when exiting PSR, HW will retrain the link anyways fixing
+-	 * any link status error.
+-	 */
+-	if (intel_psr_enabled(intel_dp))
+-		return false;
+-
+-	if (intel_dp->link.force_retrain)
+-		return true;
+-
+-	if (intel_dp_read_link_status(intel_dp, link_status) < 0)
+-		return false;
+-
+-	/*
+-	 * Validate the cached values of intel_dp->link_rate and
+-	 * intel_dp->lane_count before attempting to retrain.
+-	 *
+-	 * FIXME would be nice to user the crtc state here, but since
+-	 * we need to call this from the short HPD handler that seems
+-	 * a bit hard.
+-	 */
+-	if (!intel_dp_link_params_valid(intel_dp, intel_dp->link_rate,
+-					intel_dp->lane_count))
+-		return false;
+-
+-	if (intel_dp->link.retrain_disabled)
+-		return false;
+-
+-	if (intel_dp->link.seq_train_failures)
+-		return true;
+-
+-	/* Retrain if link not ok */
+-	return !intel_dp_link_ok(intel_dp, link_status) &&
+-		!intel_psr_link_ok(intel_dp);
+-}
+-
+ bool intel_dp_has_connector(struct intel_dp *intel_dp,
+ 			    const struct drm_connector_state *conn_state)
+ {
+@@ -5963,86 +5846,6 @@ void intel_dp_flush_connector_commits(struct intel_connector *connector)
+ 	wait_for_connector_hw_done(connector->base.state);
+ }
+ 
+-static bool intel_dp_is_connected(struct intel_dp *intel_dp)
+-{
+-	struct intel_connector *connector = intel_dp->attached_connector;
+-
+-	return connector->base.status == connector_status_connected ||
+-		intel_dp->is_mst;
+-}
+-
+-static int intel_dp_retrain_link(struct intel_encoder *encoder,
+-				 struct drm_modeset_acquire_ctx *ctx)
+-{
+-	struct intel_display *display = to_intel_display(encoder);
+-	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
+-	u8 pipe_mask;
+-	int ret;
+-
+-	if (!intel_dp_is_connected(intel_dp))
+-		return 0;
+-
+-	ret = drm_modeset_lock(&display->drm->mode_config.connection_mutex,
+-			       ctx);
+-	if (ret)
+-		return ret;
+-
+-	if (!intel_dp_needs_link_retrain(intel_dp))
+-		return 0;
+-
+-	ret = intel_dp_get_active_pipes(intel_dp, ctx, &pipe_mask);
+-	if (ret)
+-		return ret;
+-
+-	if (pipe_mask == 0)
+-		return 0;
+-
+-	if (!intel_dp_needs_link_retrain(intel_dp))
+-		return 0;
+-
+-	drm_dbg_kms(display->drm,
+-		    "[ENCODER:%d:%s] retraining link (forced %s)\n",
+-		    encoder->base.base.id, encoder->base.name,
+-		    str_yes_no(intel_dp->link.force_retrain));
+-
+-	ret = intel_modeset_commit_pipes(display, pipe_mask, ctx);
+-	if (ret == -EDEADLK)
+-		return ret;
+-
+-	intel_dp->link.force_retrain = false;
+-
+-	if (ret)
+-		drm_dbg_kms(display->drm,
+-			    "[ENCODER:%d:%s] link retraining failed: %pe\n",
+-			    encoder->base.base.id, encoder->base.name,
+-			    ERR_PTR(ret));
+-
+-	return ret;
+-}
+-
+-void intel_dp_link_check(struct intel_encoder *encoder)
+-{
+-	struct drm_modeset_acquire_ctx ctx;
+-	int ret;
+-
+-	intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret)
+-		ret = intel_dp_retrain_link(encoder, &ctx);
+-}
+-
+-void intel_dp_check_link_state(struct intel_dp *intel_dp)
+-{
+-	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
+-	struct intel_encoder *encoder = &dig_port->base;
+-
+-	if (!intel_dp_is_connected(intel_dp))
+-		return;
+-
+-	if (!intel_dp_needs_link_retrain(intel_dp))
+-		return;
+-
+-	intel_encoder_link_check_queue_work(encoder, 0);
+-}
+-
+ static void intel_dp_handle_device_service_irq(struct intel_dp *intel_dp, u8 irq_mask)
+ {
+ 	struct intel_display *display = to_intel_display(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
+index 27cc95a344936..92ce048523267 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.h
++++ b/drivers/gpu/drm/i915/display/intel_dp.h
+@@ -59,8 +59,6 @@ int intel_dp_get_active_pipes(struct intel_dp *intel_dp,
+ 			      struct drm_modeset_acquire_ctx *ctx,
+ 			      u8 *pipe_mask);
+ void intel_dp_flush_connector_commits(struct intel_connector *connector);
+-void intel_dp_link_check(struct intel_encoder *encoder);
+-void intel_dp_check_link_state(struct intel_dp *intel_dp);
+ void intel_dp_set_power(struct intel_dp *intel_dp, u8 mode);
+ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
+ 					   const struct intel_crtc_state *crtc_state);
+@@ -209,8 +207,6 @@ void intel_dp_get_dsc_sink_cap(u8 dpcd_rev,
+ 			       struct intel_connector *connector);
+ bool intel_dp_has_gamut_metadata_dip(struct intel_encoder *encoder);
+ 
+-bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
+-				u8 lane_count);
+ bool intel_dp_has_connector(struct intel_dp *intel_dp,
+ 			    const struct drm_connector_state *conn_state);
+ int intel_dp_dsc_max_src_input_bpc(struct intel_display *display);
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index eb75819a85c05..eea75a744b5ba 100644
+index eea75a744b5ba..d8f1834e50433 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1882,8 +1882,11 @@ static int i915_dp_force_link_rate_show(struct seq_file *m, void *data)
- 	if (err)
- 		return err;
+@@ -33,9 +33,11 @@
+ #include "intel_display_utils.h"
+ #include "intel_dp.h"
+ #include "intel_dp_link_training.h"
++#include "intel_dp_mst.h"
+ #include "intel_encoder.h"
+ #include "intel_hdmi.h"
+ #include "intel_hotplug.h"
++#include "intel_modeset_lock.h"
+ #include "intel_panel.h"
+ #include "intel_psr.h"
  
-+	intel_dp_flush_connector_commits(connector);
+@@ -1868,6 +1870,203 @@ void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
+ 	lt_dbg(intel_dp, DP_PHY_DPRX, "DP2.0 SDP CRC16 for 128b/132b enabled\n");
+ }
+ 
++bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
++				u8 lane_count)
++{
++	/*
++	 * FIXME: we need to synchronize the current link parameters with
++	 * hardware readout. Currently fast link training doesn't work on
++	 * boot-up.
++	 */
++	if (link_rate == 0 ||
++	    link_rate > intel_dp->link.max_rate)
++		return false;
 +
- 	if (intel_dp->link.active)
- 		current_rate = intel_dp->link_rate;
++	if (lane_count == 0 ||
++	    lane_count > intel_dp_max_lane_count(intel_dp))
++		return false;
 +
- 	force_rate = intel_dp->link.force_rate;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -1955,6 +1958,8 @@ static ssize_t i915_dp_force_link_rate_write(struct file *file,
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	return true;
++}
 +
- 	intel_dp_reset_link_params(intel_dp);
- 	intel_dp->link.force_rate = rate;
- 
-@@ -1980,6 +1985,8 @@ static int i915_dp_force_lane_count_show(struct seq_file *m, void *data)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++static bool intel_dp_link_ok(struct intel_dp *intel_dp,
++			     u8 link_status[DP_LINK_STATUS_SIZE])
++{
++	struct intel_display *display = to_intel_display(intel_dp);
++	struct intel_encoder *encoder = &dp_to_dig_port(intel_dp)->base;
++	bool uhbr = intel_dp->link_rate >= 1000000;
++	bool ok;
 +
- 	if (intel_dp->link.active)
- 		current_lane_count = intel_dp->lane_count;
- 	force_lane_count = intel_dp->link.force_lane_count;
-@@ -2057,6 +2064,8 @@ static ssize_t i915_dp_force_lane_count_write(struct file *file,
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	if (uhbr)
++		ok = drm_dp_128b132b_lane_channel_eq_done(link_status,
++							  intel_dp->lane_count);
++	else
++		ok = drm_dp_channel_eq_ok(link_status, intel_dp->lane_count);
 +
- 	intel_dp_reset_link_params(intel_dp);
- 	intel_dp->link.force_lane_count = lane_count;
- 
-@@ -2079,6 +2088,8 @@ static int i915_dp_max_link_rate_show(void *data, u64 *val)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	if (ok)
++		return true;
 +
- 	*val = intel_dp->link.max_rate;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -2098,6 +2109,8 @@ static int i915_dp_max_lane_count_show(void *data, u64 *val)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	intel_dp_dump_link_status(intel_dp, DP_PHY_DPRX, link_status);
++	drm_dbg_kms(display->drm,
++		    "[ENCODER:%d:%s] %s link not ok, retraining\n",
++		    encoder->base.base.id, encoder->base.name,
++		    uhbr ? "128b/132b" : "8b/10b");
 +
- 	*val = intel_dp->link.max_lane_count;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -2117,6 +2130,8 @@ static int i915_dp_force_link_training_failure_show(void *data, u64 *val)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	return false;
++}
 +
- 	*val = intel_dp->link.force_train_failure;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -2138,6 +2153,8 @@ static int i915_dp_force_link_training_failure_write(void *data, u64 val)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++static int
++intel_dp_read_link_status(struct intel_dp *intel_dp, u8 link_status[DP_LINK_STATUS_SIZE])
++{
++	int err;
 +
- 	intel_dp->link.force_train_failure = val;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -2159,6 +2176,8 @@ static int i915_dp_force_link_retrain_show(void *data, u64 *val)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	memset(link_status, 0, DP_LINK_STATUS_SIZE);
 +
- 	*val = intel_dp->link.force_retrain;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -2177,6 +2196,8 @@ static int i915_dp_force_link_retrain_write(void *data, u64 val)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	if (intel_dp_mst_active_streams(intel_dp) > 0)
++		err = drm_dp_dpcd_read_data(&intel_dp->aux, DP_LANE0_1_STATUS_ESI,
++					    link_status, DP_LINK_STATUS_SIZE - 2);
++	else
++		err = drm_dp_dpcd_read_phy_link_status(&intel_dp->aux, DP_PHY_DPRX,
++						       link_status);
 +
- 	intel_dp->link.force_retrain = val;
- 
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
-@@ -2200,6 +2221,8 @@ static int i915_dp_link_retrain_disabled_show(struct seq_file *m, void *data)
- 	if (err)
- 		return err;
- 
-+	intel_dp_flush_connector_commits(connector);
++	if (err)
++		return err;
 +
- 	seq_printf(m, "%s\n", str_yes_no(intel_dp->link.retrain_disabled));
++	if (link_status[DP_LANE_ALIGN_STATUS_UPDATED - DP_LANE0_1_STATUS] &
++	    DP_DOWNSTREAM_PORT_STATUS_CHANGED)
++		WRITE_ONCE(intel_dp->downstream_port_changed, true);
++
++	return 0;
++}
++
++static bool
++intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
++{
++	u8 link_status[DP_LINK_STATUS_SIZE];
++
++	if (!intel_dp->link.active)
++		return false;
++
++	/*
++	 * While PSR source HW is enabled, it will control main-link sending
++	 * frames, enabling and disabling it so trying to do a retrain will fail
++	 * as the link would or not be on or it could mix training patterns
++	 * and frame data at the same time causing retrain to fail.
++	 * Also when exiting PSR, HW will retrain the link anyways fixing
++	 * any link status error.
++	 */
++	if (intel_psr_enabled(intel_dp))
++		return false;
++
++	if (intel_dp->link.force_retrain)
++		return true;
++
++	if (intel_dp_read_link_status(intel_dp, link_status) < 0)
++		return false;
++
++	/*
++	 * Validate the cached values of intel_dp->link_rate and
++	 * intel_dp->lane_count before attempting to retrain.
++	 *
++	 * FIXME would be nice to user the crtc state here, but since
++	 * we need to call this from the short HPD handler that seems
++	 * a bit hard.
++	 */
++	if (!intel_dp_link_params_valid(intel_dp, intel_dp->link_rate,
++					intel_dp->lane_count))
++		return false;
++
++	if (intel_dp->link.retrain_disabled)
++		return false;
++
++	if (intel_dp->link.seq_train_failures)
++		return true;
++
++	/* Retrain if link not ok */
++	return !intel_dp_link_ok(intel_dp, link_status) &&
++		!intel_psr_link_ok(intel_dp);
++}
++
++static bool intel_dp_is_connected(struct intel_dp *intel_dp)
++{
++	struct intel_connector *connector = intel_dp->attached_connector;
++
++	return connector->base.status == connector_status_connected ||
++		intel_dp->is_mst;
++}
++
++static int intel_dp_retrain_link(struct intel_encoder *encoder,
++				 struct drm_modeset_acquire_ctx *ctx)
++{
++	struct intel_display *display = to_intel_display(encoder);
++	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
++	u8 pipe_mask;
++	int ret;
++
++	if (!intel_dp_is_connected(intel_dp))
++		return 0;
++
++	ret = drm_modeset_lock(&display->drm->mode_config.connection_mutex,
++			       ctx);
++	if (ret)
++		return ret;
++
++	if (!intel_dp_needs_link_retrain(intel_dp))
++		return 0;
++
++	ret = intel_dp_get_active_pipes(intel_dp, ctx, &pipe_mask);
++	if (ret)
++		return ret;
++
++	if (pipe_mask == 0)
++		return 0;
++
++	if (!intel_dp_needs_link_retrain(intel_dp))
++		return 0;
++
++	drm_dbg_kms(display->drm,
++		    "[ENCODER:%d:%s] retraining link (forced %s)\n",
++		    encoder->base.base.id, encoder->base.name,
++		    str_yes_no(intel_dp->link.force_retrain));
++
++	ret = intel_modeset_commit_pipes(display, pipe_mask, ctx);
++	if (ret == -EDEADLK)
++		return ret;
++
++	intel_dp->link.force_retrain = false;
++
++	if (ret)
++		drm_dbg_kms(display->drm,
++			    "[ENCODER:%d:%s] link retraining failed: %pe\n",
++			    encoder->base.base.id, encoder->base.name,
++			    ERR_PTR(ret));
++
++	return ret;
++}
++
++void intel_dp_link_check(struct intel_encoder *encoder)
++{
++	struct drm_modeset_acquire_ctx ctx;
++	int ret;
++
++	intel_modeset_lock_ctx_retry(&ctx, NULL, 0, ret)
++		ret = intel_dp_retrain_link(encoder, &ctx);
++}
++
++void intel_dp_check_link_state(struct intel_dp *intel_dp)
++{
++	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
++	struct intel_encoder *encoder = &dig_port->base;
++
++	if (!intel_dp_is_connected(intel_dp))
++		return;
++
++	if (!intel_dp_needs_link_retrain(intel_dp))
++		return;
++
++	intel_encoder_link_check_queue_work(encoder, 0);
++}
++
+ static int i915_dp_force_link_rate_show(struct seq_file *m, void *data)
+ {
+ 	struct intel_connector *connector = to_intel_connector(m->private);
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+index c9a1ca4557f46..36ba9535fc34f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+@@ -13,6 +13,7 @@ struct intel_connector;
+ struct intel_crtc_state;
+ struct intel_dp;
+ struct intel_dp_link_training;
++struct intel_encoder;
  
- 	drm_modeset_unlock(&display->drm->mode_config.connection_mutex);
+ int intel_dp_read_dprx_caps(struct intel_dp *intel_dp, u8 dpcd[DP_RECEIVER_CAP_SIZE]);
+ int intel_dp_init_lttpr_and_dprx_caps(struct intel_dp *intel_dp);
+@@ -55,6 +56,12 @@ static inline u8 intel_dp_training_pattern_symbol(u8 pattern)
+ void intel_dp_128b132b_sdp_crc16(struct intel_dp *intel_dp,
+ 				 const struct intel_crtc_state *crtc_state);
+ 
++bool intel_dp_link_params_valid(struct intel_dp *intel_dp, int link_rate,
++				u8 lane_count);
++
++void intel_dp_link_check(struct intel_encoder *encoder);
++void intel_dp_check_link_state(struct intel_dp *intel_dp);
++
+ void intel_dp_link_training_debugfs_add(struct intel_connector *connector);
+ 
+ void intel_dp_link_training_reset(struct intel_dp_link_training *link_training);
 -- 
 2.49.1
 
