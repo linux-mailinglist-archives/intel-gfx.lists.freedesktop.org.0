@@ -2,72 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /eB9GQpSH2opkQAAu9opvQ
+	id QdqwNv9RH2oakQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 23:58:34 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 23:58:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1279E632420
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 23:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D3C10632401
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 23:58:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=FU2va5St;
+	dkim=pass header.d=intel.com header.s=Intel header.b=VPXyvy+e;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A6D99113B4D;
-	Tue,  2 Jun 2026 21:58:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 60824113B40;
+	Tue,  2 Jun 2026 21:58:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE989113B4A;
- Tue,  2 Jun 2026 21:58:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
- Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
- Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
- :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=Fukk5KLK5wyO7l2hCG6rqCiBklgfEsxQauSgjFaJQks=; b=FU2va5St+0Lie+vajfVC4ybZUz
- YKJXeCOZU2gc9L43zSP+uI7/n64+uaTEz0DeXKwCVrkf0HWcSF0ZNzAMOwH3G1f6d97paTuuZsUEm
- hRvuh7aqlJ2t1RhTXyaPKn8PYPz3g4YzZx9aNyYfErS3n85tEkbtYwe7S0Tr3rRecEfl1g7HAem1p
- pQF9yYDMRIyDOFQfnjotzaC3xKoa/wMoGZWmwRZAZjfIUaLVsjY0bCW6Mhm7rK6deVDC4gDomStLU
- xIMX6muKXbXeH6KvKIF2VsVsx1PAWjYKqtScjgCXic+s8aJaV6ToVbFZSVHYJWYEQVrr//X/K9YdQ
- tZtSqzqw==;
-Received: from [79.117.146.159] (helo=killbill.home)
- by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wUX7a-00BuCE-3R; Tue, 02 Jun 2026 23:58:02 +0200
-From: Melissa Wen <mwen@igalia.com>
-To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- harry.wentland@amd.com, louis.chauvet@bootlin.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, mwen@igalia.com,
- sebastian.wick@redhat.com, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>,
- Dmitry Baryshkov <lumag@kernel.org>,
- Abhinav Kumar <abhinav.kumar@linux.dev>,
- Jessica Zhang <jesszhan0024@gmail.com>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-Subject: [PATCH v8 4/4] drm/amd/display: use plane color_mgmt_changed to track
- colorop changes
-Date: Tue,  2 Jun 2026 23:53:56 +0200
-Message-ID: <20260602215743.914265-5-mwen@igalia.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260602215743.914265-1-mwen@igalia.com>
-References: <20260602215743.914265-1-mwen@igalia.com>
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3209F113B40;
+ Tue,  2 Jun 2026 21:58:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780437500; x=1811973500;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=MfkKPtXQcB8aUW3HP/zdBEUmEP6RpNmrG8kxLpJOJ2o=;
+ b=VPXyvy+ekPz9+LjTiD8Wod93P9zfGghZZ9uUFqLbepXVaI2Mrmxpq3eX
+ y+F1wGfLodgC0hNHQzDv1MktyECGXhU6o0GZY1hTdcTDXmt2WOxBK+gL/
+ /s1L5LJ/c71wNG8v6GEW8VbQKdxcHKDh8qXx1w2MpoDQ7udUjEQchLxCh
+ gL8WtALaAZMNAuMj5p8zixodyFOCmLbW4knnKPqVS185YfEx/m4SzvZjy
+ PYNsjfdukE8yVua7V8+SdJE23ZhWSlZeDrCroh84ZnYTl//7cYa4YuwbJ
+ EIjU9SEHOeI1ljqPOJKjqgfl8Y+P/VoLi7C4lYuzpCmbGv70xc5VHDgoH w==;
+X-CSE-ConnectionGUID: fUbyu5dzRt6AOmw1XOCfwg==
+X-CSE-MsgGUID: opy6VB8qSOe1UzZbddZ9KA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="91547644"
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="91547644"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 14:58:19 -0700
+X-CSE-ConnectionGUID: vIF6VZFiQcy0HsyxwYX7oA==
+X-CSE-MsgGUID: Ll/EKqWaSNeDih+M8w0nBQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="248318077"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 14:58:16 -0700
+Date: Tue, 2 Jun 2026 23:58:14 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
+cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH v2 2/2] drm/managed: fix drmm_add_action() kernel-doc
+In-Reply-To: <e645a8cf-45a2-423c-81c5-cdb9f6c57faf@intel.com>
+Message-ID: <423f5568-0cc6-8e28-8886-9178d78847c8@intel.com>
+References: <20260522135520.1862848-1-michal.grzelak@intel.com>
+ <20260522135520.1862848-3-michal.grzelak@intel.com>
+ <e645a8cf-45a2-423c-81c5-cdb9f6c57faf@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/mixed; boundary="8323329-18171511-1780437498=:1544314"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -83,75 +79,84 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.99 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[34];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[gmail.com,amd.com,emersion.fr,collabora.com,bootlin.com,linux.intel.com,kernel.org,igalia.com,redhat.com,ffwll.ch,suse.de];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[igalia.com:-];
+	MIME_TRACE(0.00)[0:+,1:+];
+	RCVD_COUNT_THREE(0.00)[4];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mwen@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_CC(0.00)[intel.com,kde.org,collabora.com,linux.dev,lists.freedesktop.org,igalia.com,oss.qualcomm.com,kernel.org,gmail.com,poorly.run,somainline.org,vger.kernel.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[amd.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1279E632420
+X-Rspamd-Queue-Id: D3C10632401
 
-Ensure the driver tracks changes in any colorop property of a plane
-color pipeline by using the same mechanism of CRTC color management and
-update plane color blocks when any colorop property changes. It fixes an
-issue observed on gamescope settings for night mode which is done via
-shaper/3D-LUT updates.
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-Fixes: 9ba25915efba ("drm/amd/display: Add support for sRGB EOTF in DEGAM block")
-Reviewed-by: Harry Wentland <harry.wentland@amd.com>
-Reviewed-by: Alex Hung <alex.hung@amd.com>
-Signed-off-by: Melissa Wen <mwen@igalia.com>
----
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+--8323329-18171511-1780437498=:1544314
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-index ba7f98a87808..ca97f1da8c0e 100644
---- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-+++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-@@ -10215,7 +10215,7 @@ static void amdgpu_dm_commit_planes(struct drm_atomic_commit *state,
- 			continue;
- 
- 		bundle->surface_updates[planes_count].surface = dc_plane;
--		if (new_pcrtc_state->color_mgmt_changed) {
-+		if (new_pcrtc_state->color_mgmt_changed || new_plane_state->color_mgmt_changed) {
- 			bundle->surface_updates[planes_count].gamma = &dc_plane->gamma_correction;
- 			bundle->surface_updates[planes_count].in_transfer_func = &dc_plane->in_transfer_func;
- 			bundle->surface_updates[planes_count].gamut_remap_matrix = &dc_plane->gamut_remap_matrix;
-@@ -12057,6 +12057,10 @@ static bool should_reset_plane(struct drm_atomic_commit *state,
- 	if (new_crtc_state->color_mgmt_changed)
- 		return true;
- 
-+	/* Plane color pipeline or its colorop changes. */
-+	if (new_plane_state->color_mgmt_changed)
-+		return true;
-+
- 	/*
- 	 * On zpos change, planes need to be reordered by removing and re-adding
- 	 * them one by one to the dc state, in order of descending zpos.
--- 
-2.53.0
+On Tue, 26 May 2026, Borah, Chaitanya Kumar wrote:
+> On 5/22/2026 7:25 PM, Michał Grzelak wrote:
+>> Kernel-doc of drmm_add_action() references @releases which is not
+>> on argument list. Swap '@' between 'releases' and 'action' words to fix
+>> the documentation.
+>> 
+>
+> LGTM
+> Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+>
 
+Thank you Chaitanya for the review. Do you think this series can be
+merged via drm-misc-next branch from drm-misc [1]? Asking because I
+don't have commiter right to any of drm-* repositories.
+
+BR,
+Michał
+
+[1] https://drm.pages.freedesktop.org/maintainer-tools/repositories/drm-misc.html
+
+>> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+>> ---
+>>   include/drm/drm_managed.h | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>> 
+>> diff --git a/include/drm/drm_managed.h b/include/drm/drm_managed.h
+>> index 72bfac002c06..72d0d68be226 100644
+>> --- a/include/drm/drm_managed.h
+>> +++ b/include/drm/drm_managed.h
+>> @@ -18,7 +18,7 @@ typedef void (*drmres_release_t)(struct drm_device *dev, 
+>> void *res);
+>>    * @action: function which should be called when @dev is released
+>>    * @data: opaque pointer, passed to @action
+>>    *
+>> - * This function adds the @release action with optional parameter @data to 
+>> the
+>> + * This function adds the release @action with optional parameter @data to 
+>> the
+>>    * list of cleanup actions for @dev. The cleanup actions will be run in 
+>> reverse
+>>    * order in the final drm_dev_put() call for @dev.
+>>    */
+>
+>
+--8323329-18171511-1780437498=:1544314--
