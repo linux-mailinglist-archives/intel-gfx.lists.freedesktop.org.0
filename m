@@ -2,105 +2,166 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CKN3BC4MIGoKvAAAu9opvQ
+	id N3rJDoz4HmpCbAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 13:12:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 17:36:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 710A3636E22
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 13:12:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7949062FD69
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 17:36:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=LJZLdFS9;
+	dkim=pass header.d=intel.com header.s=Intel header.b=GUrReKXB;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0810210FC23;
-	Wed,  3 Jun 2026 11:12:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CDBC110F2B3;
+	Tue,  2 Jun 2026 15:36:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f181.google.com (mail-yw1-f181.google.com
- [209.85.128.181])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EBBC510F29F
- for <intel-gfx@lists.freedesktop.org>; Tue,  2 Jun 2026 15:33:22 +0000 (UTC)
-Received: by mail-yw1-f181.google.com with SMTP id
- 00721157ae682-7df68e68103so3476457b3.2
- for <intel-gfx@lists.freedesktop.org>; Tue, 02 Jun 2026 08:33:22 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1780414402; cv=none;
- d=google.com; s=arc-20240605;
- b=MkZY4+PlzY2jzhkA3aBNwhWgB2Q/WgtvHQtu4GP2vfySZRw0s+00fp+xeu51VO8gHH
- qQTAKCkMUtH82llRX7fjseLXS237LVDDehV6A0G2dEjStycqAaP9lbuV7+CH9enlZMdf
- m6QmJ1AEK7BVpzV+hmLYVEhqSIxqMqbT0Uzul/JqbbSlI3VSeHUmqPu8OMCGIbZqJqAx
- wEWmDT9W8M9Y9ShD2mHj+tq8HhKwbhubxGdehDmVW8LTEZmpa8CdHS6AfppPMxAlUxdb
- ZM51cH9MktMhs9iSvlgE8B3Wn7BHgb4E3pfY1N6jijr/VhtsO+RBXV0BUX3wHU7Kjn15
- M29A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:dkim-signature;
- bh=NmfxpBfBbWASxbPJNVgn2gVJCuYpwNY94Qe3A+FmlTQ=;
- fh=/Ru6bvl0A7Xya/HqntTcH7jUxVIMgsVXAam/lGm46SM=;
- b=lulq4ZN+Op5XXFvXvzNdKc8KJ8lcm1zp4DJ8Y5TuMK6DiWxTZWRJjAhbISkFafbk1j
- N6ydsL1B6avC2591jnupceyD3r8eZY+mTRgbOhfj8c0blkrGQBzLw+y0kpqiI84+nzh2
- PUANDpVYcherkInLDcjanirDqhdypOX9iUzuNWuK+ta+m0hjKWcbs607ERyIp32sENhB
- bqe9dLWMlRT8FYPtBJDyO38xsnvEHAgbYMb3346DJnv20cHbki/mak0oJuhi1VmhKvz8
- kl2eSB8ie3ZZZKJhM2hc9ayVmo7iUsGQPhg6KBgNc2nmZtqs27PGK3B1cOtFRKvO0S9M
- EuCQ==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1780414402; x=1781019202; darn=lists.freedesktop.org;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:from:to:cc:subject:date:message-id:reply-to;
- bh=NmfxpBfBbWASxbPJNVgn2gVJCuYpwNY94Qe3A+FmlTQ=;
- b=LJZLdFS9I7NL9PRrBu4vm8w/7ROXML39ozplSy94UrvVD6Nt5/RZ5vGn+y7oNyZJo9
- gy6i36S+zEegqtROpgz3gNOag6hbyhacMXfaN3FWFZIawThqsNuB+HU2PiYZEqBtRldu
- 0/HT0PV8MepdaHSmXxq+JmZDmJ2wezJBLX2rn5iF1FztVnMwhSJh2FqH+oCSlVKqeZ5Q
- M+0/g8Gdv+9gdOIKo0+Haf9bjVgzuAHFw4Iy8OApCsgP2eE0Pl5tdQOy2b50PF0BsSeg
- M3EXxcxKHTNAxasFp/giRI0XWNfs/4cGlEtR+2/T/N8IhGOstWHRxlZrygQpPpAt3v6D
- dZKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1780414402; x=1781019202;
- h=cc:to:subject:message-id:date:from:in-reply-to:references
- :mime-version:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=NmfxpBfBbWASxbPJNVgn2gVJCuYpwNY94Qe3A+FmlTQ=;
- b=tMP4WS/nSsxDbEZCyFWYpH0OSxqstgUEKAJ551NYalip/TYEe/2BqRsid+3xmkm2CA
- baPJgpUkAN9h2Ij2l+gjybluTYpXC9GluEZVyXXJ61HJw/4nX4g5EmzxpsUN2+/4aZgH
- VHA6m0XEGqEkEcml9lUNpBy8DhZlLxRN9YT2Fn9jDxo8oYQajQrS9dzqu64tac34omuK
- BpMVqCY0XDcT1mAzs9nN9MlLwvGP0wzVv6jLK2FpIFl7EFUnz5FmII3PQrEjW54yuevQ
- ml7U3d0AzLMXit+WODm7ooWDq9p2aZziulqQSNXWZp7ttewcbBvCC4VJ1gPqTjxv+5Nt
- DhuA==
-X-Forwarded-Encrypted: i=1;
- AFNElJ9i8fo77E+yMzFBz2bkSCfIH91jQsIQkZ4wknfOt0nkzP2kG/6/u83f51r4bL/kSButF9l/0E9uxgM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxLgTQ/m1gUaUPJWQR/YV1xcWwkB6d/9uEjLpjkI6dDZZBiB3e6
- TKnnoPmxCacl9VTKYHUWoz+PvNWhDBD2fsXKXLLgOZ2FiqLY4KiPCsr8RMl+APxPadPsHAdq83O
- uI7IdhZ3IZThRiVB9JHkTNTPranbN8e8=
-X-Gm-Gg: Acq92OGmKjXdsTTqhJLhXRSHaY3vPm8ZGDpowPSgJF1A8kHbeaze/nO2kKvoQ3/NHdx
- hZkVmrn5zMWtK7gYQ+rWzFbzgvcMtMmsQeQN4VRtF7z/9LLEVIxgebZazF5Zwc5sn11Pa0I5FG8
- DdVoRm4HrTXPWniFfmiPbuAzk8M1PS3+yn7EjEfixTNgNW0ywS7z3rMQJYTpH/qF/OTd2a5/rik
- l1mK192NYrcuzEaRFcTd38c0KR5QWa5vtXD4heHuLARJZF2Y8wQ+NGFsYl4M/YsJXZrMHBjU2Jl
- /808OrN9e2kOykJkBOLa3Mbp0bnFB84ECDcJDfbv9xRHf370UYQRhc6MlxFuWc8Q/12Pu/EZOok
- D1Nzh+y9E
-X-Received: by 2002:a05:690c:38b:b0:79f:4908:38a4 with SMTP id
- 00721157ae682-7e060a5b1c2mr90803337b3.7.1780414401571; Tue, 02 Jun 2026
- 08:33:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20260601142943.1481728-1-arun.r.murthy@intel.com>
- <ah60jJkzbbw25R-L@ideak-desk.lan>
- <IA0PR11MB7307C39641297A08DB4C6A1ABA122@IA0PR11MB7307.namprd11.prod.outlook.com>
- <ah7c59mNa4WfTJKu@ideak-desk.lan>
-In-Reply-To: <ah7c59mNa4WfTJKu@ideak-desk.lan>
-From: Stephen Fuhry <fuhrysteve@gmail.com>
-Date: Tue, 2 Jun 2026 11:33:09 -0400
-X-Gm-Features: AVHnY4JZNWs47W-XefQcdJhlytZ1kV2lDLlrJk6jiwHeBEQvdNncUNe1kYoEWyY
-Message-ID: <CAEraX5wnHv5qC3fwqNmWbDCu7qxB3+ByTHK8QYpVen3Z23tJQw@mail.gmail.com>
-Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disable
-To: imre.deak@intel.com
-Cc: "Murthy, Arun R" <arun.r.murthy@intel.com>, 
- "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>, 
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 153F510F30A;
+ Tue,  2 Jun 2026 15:36:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780414600; x=1811950600;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=6c6WxyuYHMvEzZQhyCJLITV+1l5E3+4KiENLSRcaqOg=;
+ b=GUrReKXBOXOQvMnLU7vwRkOVW1jm3QrmWtbtZP236125BCVOH48LALbp
+ iBfZPzQnhiDSIeWyhGZLs6iv6OW4aUxKyYYQZu7gfcqfW5oL2wRy24FCW
+ UozGbCLlkpCKgGsgraJk+bM0YJ+V1m1Scmqx6N0kteU8eroUiHEsh3Y+d
+ Hg309SdgsK5a52A7YB7maeInQqctOt+rA4CjCKlxtesbFNnqcvBBE1lcE
+ HGrfKaaSVE1IZyLFiy9H9xDNqU7AKFT3fLykX1+0vLbz/qAQJBuXbND/W
+ y3yHtsJDi5HKz6vSJOOso2UQJJN3YzIcnDAkmKwGA2BNJwspspxHPiQFi g==;
+X-CSE-ConnectionGUID: yI9HksqyTDe+Wsp+FeXcDw==
+X-CSE-MsgGUID: Q2/n7q0STJqKW0RCLhT8SA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="98768569"
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="98768569"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 08:36:40 -0700
+X-CSE-ConnectionGUID: ztZTCWJnS0GEOP3vheZE8w==
+X-CSE-MsgGUID: Tf8VdJ9YTpy7iXtzGz4E3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="243779224"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 08:36:39 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 2 Jun 2026 08:36:38 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Tue, 2 Jun 2026 08:36:38 -0700
+Received: from BL2PR02CU003.outbound.protection.outlook.com (52.101.52.26) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Tue, 2 Jun 2026 08:36:38 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=FzAL0yq4qcNXMDjn/hJsZTArTFLjX+A+50Rtfy1ziBWi5MlZdUVxDBTrskFrewQVKhrVPRsWLYJ2lX/UQ798MZrGJXwFNSS5MOKVA/h4wnwEnb9fcWpJZa1dwvSYVnn39RCN1ky+gwEn+MhYZ8/GMeuyVPSLJkntkX5UGUvAUR8R/U3ctk8P+Nz6CqKYflOdXG4sAvAj4QiJlbHmoYrjq+uTiGTxGJBASAwxlVHK74d245MHkRA/QXhQz999d9nzecMSXdHdyvEcJm1t/y2lgXWA8R8RSzEz3aLcigP+vLbBKpJ7yHg5URt5YhqrPQhxbbVhDBL3dJ1A9bNuTBZEgw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=6c6WxyuYHMvEzZQhyCJLITV+1l5E3+4KiENLSRcaqOg=;
+ b=AhHbr+vuhNgZlyIzv0Y6sC/lKDk9z9uxvU/96WdoUZUJA4BBDPOcGd0a+IweVZ5jLg0+tSP2ZNfPlfG0kvoaJfuhoq1qDIMeuf7y6MgdpTTXSVoJprK85m2DjXYzVX8ZkgEemP7KtdYEdSJ4zjr3Z0EizhMnaBPOVbV1OJWsIMDU/9z8dXgRDu5HkDxdAUCODzwbQZPkEmhZas3pnZw0uCKoEJK8u9M+mS3FDHED+CDsewuR8r5cGwQNcQ2Z/2DyxnwysmP6NWQNZZ1uKCSQSlWB7PowOFXy1vUhcjjpt/Rodo6ahNb+VnhIKXI0yy8d8KcfxEnLDQhcgMM6pslA5w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com (2603:10b6:8:bd::12) by
+ DS7PR11MB9473.namprd11.prod.outlook.com (2603:10b6:8:258::22) with
+ Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.21.92.7; Tue, 2 Jun 2026 15:36:30 +0000
+Received: from DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::22d9:ae03:5db1:680]) by DM4PR11MB6360.namprd11.prod.outlook.com
+ ([fe80::22d9:ae03:5db1:680%5]) with mapi id 15.21.0092.006; Tue, 2 Jun 2026
+ 15:36:29 +0000
+From: "Shankar, Uma" <uma.shankar@intel.com>
+To: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
  "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
-Content-Type: multipart/alternative; boundary="000000000000f56deb065347076b"
-X-Mailman-Approved-At: Wed, 03 Jun 2026 11:12:41 +0000
+CC: "ville.syrjala@linux.intel.com" <ville.syrjala@linux.intel.com>, "Samala, 
+ Pranay" <pranay.samala@intel.com>
+Subject: RE: [v4 0/3] More Fixes for color pipeline
+Thread-Topic: [v4 0/3] More Fixes for color pipeline
+Thread-Index: AQHc8aQ+NRctVgazCkqece9qg3hc+rYrZ53A
+Date: Tue, 2 Jun 2026 15:36:28 +0000
+Message-ID: <DM4PR11MB636008C559B7AC74A0AFD3B6F4122@DM4PR11MB6360.namprd11.prod.outlook.com>
+References: <20260601082953.128539-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260601082953.128539-1-chaitanya.kumar.borah@intel.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: DM4PR11MB6360:EE_|DS7PR11MB9473:EE_
+x-ms-office365-filtering-correlation-id: 340b3efd-9418-480c-3aae-08dec0bcb705
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|1800799024|366016|376014|18002099003|22082099003|11063799006|56012099006|38070700021;
+x-microsoft-antispam-message-info: RHDW/cbiM35o/WiIAzH4cxI/Vo2eWNatkxcz2mtQpLJQkyvDJOMc+Ic1Lt3COTDRURsMdLRDBMZh+48/FxqaptBNgD7/g0Kxpnr/dkh8l7XHIG2wrvxNCmm/1fvjFmnLS9cf+zo24P+FgWer7Tm4kqczUXAiIV18QqTrmT23rMLYsUkRMsj0kVaBsphq32nb5VEJ0cRBP27WNZj5kiuKRpFM+KCV5W6k+fEzhFqA6PHsQJsLHxc/JzNAHDMirvNrwFRio+XeIgkuA7BMcsx5j3CHGYT2HE2wicqLMnInVkifoJtkbI8NM2+b0+2EW6Z6r7Elr79GW1Z6J6kVseJ9WtKSQdgM3HiOp6vwZ0QsFzUk+rSbI3PTEBgODSD0Z+sOq405NK22xXzgRuK7tpCmHKwmiW9OWRaVQFj4auIznyYAG1FGRkpmchKhpfVsyc9+TltVsP1AEqYFb85Ws6UFEP+50F1/S2AcFDz873J7Rc8qfZSi/AAqsL8HGx/nHMmFwPxfjHDbR5fMx5K95sc+XzkGhMM/2KJrnwIH8nSqyT0rdGlFKyo7gt27vFNm4ejJM7QHX6rOnoYAvd/P0LOAuOtYaFzxPazZViwBDx4EA9HwvGDDbJcu0JBMp0XssnKt3LJCw06yCZP709hI1D5mueUrjOjSUUXUdyvcMtJBoE7gINxLICRf5abD+Td40wIJgjOpp3HNZU3jCA92kR1lPQLtJXqLNrEkUS5UnIO20NbfhgC1XJ6UY2WAhyij73z9
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB6360.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(366016)(376014)(18002099003)(22082099003)(11063799006)(56012099006)(38070700021);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?utf-8?B?b25PeE5nOEdZeFZQNDM1ODQzUmxOTXE1b3ZoYllNeVlacFFpUWNtUUx4aFFN?=
+ =?utf-8?B?S21OS09DRlpYSTNScE52Z3B4aUVZYkVrS080dHdqZTZZOW5vWkhrc1dJUTgv?=
+ =?utf-8?B?M1RoLzFMMnlTOEd3MVIwU3BnQUZ6UVpGU21EL2lHQ3lHalNFMlREQ3dPU2FK?=
+ =?utf-8?B?aHIzZWZ3OHdZcCtUNlhvaDFoWi9zSW1zYnp0T3BBcTF1MXdwZWwyUzdndDVw?=
+ =?utf-8?B?b1pUOWh2RTVYVGQvOTliN3haWmRabGU4b0pJY01KalYrdW5qYmxVWmVOczd5?=
+ =?utf-8?B?cEZnTzBFb3dVSXFiQ3BpbVNoekRKbHN6TVdFa0Y0S0FIcTMzM0ZaeGJzcFBq?=
+ =?utf-8?B?QW5uRkZlY1UxeFlXeG10YytQRHdhM1NnUnlpYyt0eEJ3WFREeHNZMVFMbkdL?=
+ =?utf-8?B?OTlpanR5d0huNzFHY1lydEs2Z3pVYmJiMW5TUlVOL0ttd2RoRzVQMHdLMUtL?=
+ =?utf-8?B?NjE0TXNnd1l3RCtER1A1WDk4b0VwcGpXdEQvTXdvTWgvTkxUeGhFQTFHNFQ5?=
+ =?utf-8?B?NUppSVBOMnFsVERsSDAzN2JRNG9xQXRzSUV3QTI4cTlwUDVMSHVyZ3JlakdV?=
+ =?utf-8?B?RkZKU0NubWRTSlFtd3pocUx6L204MWJrNmJRRXdneXBYdEUybHl3L2FBbHNO?=
+ =?utf-8?B?cXN5TVM1SjgvdTFtdDlnanA3ZGkwTzFmRERSd0NWT3hhaCtOUDNzMnFCY0wv?=
+ =?utf-8?B?RmorWkZTQlJ0Umk2YzBSREhFZ2hhcjhLd3NxZ3VRYytlaGV1RThpWWpzZlFk?=
+ =?utf-8?B?S1FITEVGeS9UQkh0RE9tK1poc0VmU2tlUm9YLzBMV2IzdTlwRXA5NTBVdzVv?=
+ =?utf-8?B?WWlJV0xMaVZLOW9GZUQ3a2tzSm1DUEhFOGlST0tNeUJoeWJkbEhDcmxqQ25T?=
+ =?utf-8?B?eXI4V0tSalpmTWFkMkw3bW8yUXd6b2hCblplWGRuNEJWN2hyMG1pKzR5LzRv?=
+ =?utf-8?B?RTVlTExOMEoxYm5Scm80RWxlWmFjQmRDaE13YU5zSWJQSFVFaWdnN2JFL1No?=
+ =?utf-8?B?czZCQlhhMlRrbnErdEVPb2ZZWVRJTjRQc3N2OHA2SEZZeHFVMW5MNU9lVTVT?=
+ =?utf-8?B?OEJ1czZBZDhwNngxb0podUpvN3FGY2wvUTV0TDJnL0lPd2gzUFd3SWlQVGEw?=
+ =?utf-8?B?OXNmdFpkRmJ1R1MzWTJvOTFydmd5WHJjbEJOOWZoRHJBSmcyOVJmTkE0YlEr?=
+ =?utf-8?B?MjJRU1NxcTN6Vlh1YWZ4TDNkZ0Zadml0M1lJd1paaThOL1pBVG1kS1pCWFNs?=
+ =?utf-8?B?NW1XNEhPclZWM0hrL0ZWa2dVVDZndnN4eUtpOVl0UmxTb3FWcHd4K1huTjY4?=
+ =?utf-8?B?Njd6aVRVdWV5WmxRT1pZRGN4MTU5T0JpQmRCblNENEUwUzVaMWpVc1gySTdz?=
+ =?utf-8?B?SlZDUTZaRm5lcjRHRGp5TTJ2QmZCVk5JVFdGR3d6a05tOW1uaDdUUXJrTW5G?=
+ =?utf-8?B?cWVtbDJERUl4VDFsT0NxTlI4R2FxcHpHU3FabFR0Ukk0cTY2U203R2N5NHdO?=
+ =?utf-8?B?bVNiQjNwTWFBSDVPZHdSYlpmb2NCK1dMdW5qSVlXMGNpSTZzOHpyL21nUmxQ?=
+ =?utf-8?B?cUd5aFNiOE8zM3psUnBhWjVVbDhkSUNRQk8wbVFxcnlqMmJLMjNBOURoTldq?=
+ =?utf-8?B?OG50cU5wQzZMR1pxU1JBck1ZVjN2ZDR4Mm5iZ3o2YXNJOTRuK3ROQjBVTkJ4?=
+ =?utf-8?B?UituS3JjK3RLNXViNVlvNEZkdHJ6NVRsODdENkFONU8wQVNuMXJjbjg3SjJk?=
+ =?utf-8?B?Q1ZsOW12aDU2Z1dQVG5iK2ZJOXE2aGVOM20yQzR2UmZ5SndiaS9LTHZMWkQ2?=
+ =?utf-8?B?K1BVOGRsZEpZdFo1Z1FDcCtsUEkva05xNTlZNG1pSG16M2RZVG9OeDVOYXFX?=
+ =?utf-8?B?Uyt0WERwSzVxdUJ0N21aRVV6Sit6TVphWTRQOCswOTI1Qy90Z3JMMFI2VTlZ?=
+ =?utf-8?B?SngvK0QzOTVUMStrd2NkSXVjbHZKUkVSK1pLQUF6dnlQMklQZHpiWG5CeEJE?=
+ =?utf-8?B?Y2xzZDFHM0FJd0lkaFVuVld2aXlJZ3JaRmEyNVVNV2FjR0pMQlNsV3dBTzl3?=
+ =?utf-8?B?T2FyMGZFb0xtSnArMmh5Nk5EdUFWODhnZnl0eENUWG5WM2U4ejBtU1NPLzVG?=
+ =?utf-8?B?Z3ljRVhaOXErTkVRUnkxWHNiWnE3TEVvN3VVNmd1bXF4QkhTTHhLNmF2dEpO?=
+ =?utf-8?B?UlNjTG5WcHc5ZXFaUjFLVFZWVktWYkwxOTQ5Skl6UmJXeTJBSThYcU1HVzc4?=
+ =?utf-8?B?RzZCemk0bVNPRkVyeUpjRGpIQm9SaUFmQzE0QXJ4VWQ0YlUxQld0NG9NcHly?=
+ =?utf-8?B?YUFtdG1HbjJob2VkNllRVjFxMmhMM0Ftb2Q0aDhiR3k3Y0IxRWxiQT09?=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-Exchange-RoutingPolicyChecked: LZM19XC/Ftewvkvv2dV0vT78udUWBVDLPvT92uMAAy4VQfN+5Dhb29GNjAloR4OlhupczlJxJ6CllgRVO7j9Cju7UWlEqbDY0NrrPoFQcmssCiEH0I2/0b4E9X+cmreCMbJgyIn5Us1uywHOMzmDlJzH8r+2Dr58tdFA9vCsof8KgCopyR6fbzzmQ/MoL0boQbTvV+IO774dlHgJpL0CTho26+oAD/0SZKOZ0s8tpRC012fImZwLmMPPCpHF2rTaB+EuoNO1Ww3gbnwDvRRo+OGlolFxC/TNy0/3f6rWieGHCSTwXV65G6YO73d3+3bFpSC+NWdPrTgvEdO3Jw2iPw==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB6360.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 340b3efd-9418-480c-3aae-08dec0bcb705
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jun 2026 15:36:28.9612 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: z8u9KDokD6chefekxv2xh6/ltmhb4bEAW99sU2AX0r2nGajtwXKbjotKCxKksXT/oXfLqnve9K8xmhUFm91HIw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS7PR11MB9473
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,709 +177,58 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+X-Spamd-Result: default: False [-2.21 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_BASE64_TEXT(0.10)[];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:imre.deak@intel.com,m:arun.r.murthy@intel.com,m:intel-xe@lists.freedesktop.org,s:lists@lfdr.de];
-	FROM_HAS_DN(0.00)[];
-	FORGED_SENDER(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FREEMAIL_FROM(0.00)[gmail.com];
 	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:dkim,intel.com:from_mime,intel.com:email,DM4PR11MB6360.namprd11.prod.outlook.com:mid];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[uma.shankar@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,intel.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 710A3636E22
+X-Rspamd-Queue-Id: 7949062FD69
 
---000000000000f56deb065347076b
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-I can share some observations from the debug logs captured on the affected
-system (drm.debug=3D0x10e, Alder Lake-P [8086:46a6], ThinkPad dock, 1080p o=
-n
-pipe B + 4K DSC on pipe C) that may help clarify the root cause.
-
-Imre's assertion about the enable/disable gating appears to be correct from
-the logs. The active_links sequence across every modeset cycle in the
-captured trace is always clean:
-
-  disable: 2 -> 1 -> 0  (intel_mst_disable_dp, intel_encoders_post_disable)
-  enable:  0 -> 1 -> 2  (intel_mst_pre_enable_dp, intel_mst_enable_dp)
-
-No interleaving, no double-calls. intel_ddi_enable_fec and
-intel_ddi_disable_fec are each called exactly once per link per modeset
-cycle, as expected.
-
-The mismatch and cascade are instead driven by repeated failures in the
-fastset check. In the cable-unplug log, 8 "fastset requirement not met,
-forcing full modeset" messages fire for both pipes between t=3D110.803s and
-t=3D110.899s -- before a single active_links change occurs. After replug,
-there are dozens more at ~20ms intervals (t=3D125.5s to t=3D126.3s) as the
-driver re-probes the dock, each one attempting and failing to commit a
-modeset.
-
-The direction of the first mismatch after dock connect is notable. The
-very first fastset failure shows:
-
-  [CRTC:186:pipe C] fastset requirement not met in fec_enable
-                    (expected no, found yes)
-  [CRTC:186:pipe C] fastset requirement not met in
-hw.pipe_mode.crtc_hdisplay
-                    (expected 1920, found 3840)
-  [CRTC:186:pipe C] fastset requirement not met in dsc.config.pic_width
-                    (expected 0, found 3840)
-
-The SW computed state has pipe C at 1920x1080 with no DSC and no FEC, while
-HW has it at 3840x2160 with DSC and FEC active (from the previous
-session/firmware state). The modeset that follows clears FEC. The next
-compute correctly selects DSC (and therefore FEC), triggering the opposite
-mismatch ("expected yes, found no"). This back-and-forth drives the cascade=
-.
-
-The question of why the first SW compute produces fec_enable=3Dno for pipe =
-C
-when DSC is needed seems to be where the actual root cause lies -- whether
-that's a mode-negotiation timing issue (compositor requesting 1080p before
-4K+DSC is negotiated) or something in the compute ordering in
-intel_dp_mst_compute_config.
-
-Full log (drm.debug=3D0x10e, cable unplug/replug) is attached to issue #163=
-03
-if useful.
-
-Stephen Fuhry
-
-On Tue, Jun 2, 2026 at 9:39=E2=80=AFAM Imre Deak <imre.deak@intel.com> wrot=
-e:
-
-> On Tue, Jun 02, 2026 at 04:35:42PM +0300, Murthy, Arun R wrote:
-> >
-> > > -----Original Message-----
-> > > From: Deak, Imre <imre.deak@intel.com>
-> > > Sent: Tuesday, June 2, 2026 4:17 PM
-> > > To: Murthy, Arun R <arun.r.murthy@intel.com>
-> > > Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org;
-> Stephen
-> > > Fuhry <fuhrysteve@gmail.com>
-> > > Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disabl=
-e
-> > >
-> > > On Mon, Jun 01, 2026 at 07:59:43PM +0530, Arun R Murthy wrote:
-> > > > The FEC_ENABLE bit is per port basis and is enabled/disabled on ddi
-> > > > pre_enable and post_disable. This fec is shared across the mst
-> streams
-> > > > and can be enabled per stream basis as well.
-> > > > So have a refcount to track the usage of FEC and then enable/disabl=
-e
-> > > > accordingly.
-> > > >
-> > > > Closes:
-> > > > https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
-> > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> > > > Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
-> > > > ---
-> > > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 66
-> +++++++++++++++++++
-> > > >  drivers/gpu/drm/i915/display/intel_ddi.h      |  1 +
-> > > >  .../drm/i915/display/intel_display_types.h    | 12 ++++
-> > > >  .../drm/i915/display/intel_modeset_setup.c    |  6 ++
-> > > >  4 files changed, 85 insertions(+)
-> > > >
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > index 86520848892e..e12a3d6d6a67 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> > > > @@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct
-> intel_encoder
-> > > *encoder)
-> > > >           encoder->disable_clock(encoder);
-> > > >  }
-> > > >
-> > > > +/**
-> > > > + * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcounts from
-> > > > +active CRTCs
-> > > > + * @display: display device
-> > > > + *
-> > > > + * intel_digital_port::fec_active_streams is the per-port refcount
-> > > > +that gates
-> > > > + * programming of the shared DP_TP_CTL_FEC_ENABLE bit. After initi=
-al
-> > > > +HW state
-> > > > + * readout (driver load, resume, GPU reset takeover), the persiste=
-nt
-> > > > + * crtc_state->fec_enable values reflect what HW currently has; we
-> > > > +need to
-> > > > + * align the refcount with that so the first paired disable doesn'=
-t
-> > > > +underflow
-> > > > + * and the next enable doesn't incorrectly skip programming the HW
-> bit.
-> > > > + *
-> > > > + * Must be called once after intel_modeset_readout_hw_state(),
-> before
-> > > > +any new
-> > > > + * modeset commit can run.
-> > > > + */
-> > > > +void intel_ddi_seed_fec_refcounts(struct intel_display *display) {
-> > > > + struct intel_crtc *crtc;
-> > > > +
-> > > > + for_each_intel_crtc(display->drm, crtc) {
-> > > > +         const struct intel_crtc_state *crtc_state =3D
-> > > > +                 to_intel_crtc_state(crtc->base.state);
-> > > > +         struct intel_encoder *encoder;
-> > > > +
-> > > > +         if (!crtc_state->hw.active || !crtc_state->fec_enable)
-> > > > +                 continue;
-> > > > +
-> > > > +         for_each_intel_encoder(display->drm, encoder) {
-> > > > +                 struct intel_digital_port *dig_port;
-> > > > +
-> > > > +                 if (encoder->base.crtc !=3D &crtc->base)
-> > > > +                         continue;
-> > > > +                 if (!intel_encoder_is_dig_port(encoder))
-> > > > +                         continue;
-> > > > +
-> > > > +                 dig_port =3D enc_to_dig_port(encoder);
-> > > > +                 dig_port->fec_active_streams++;
-> > > > +                 break;
-> > > > +         }
-> > > > + }
-> > > > +}
-> > > > +
-> > > >  void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder
-> > > > *encoder)  {
-> > > >   struct intel_display *display =3D to_intel_display(encoder); @@
-> > > > -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct
-> intel_encoder
-> > > *encoder,
-> > > >                            const struct intel_crtc_state
-> *crtc_state)  {
-> > > >   struct intel_display *display =3D to_intel_display(encoder);
-> > > > + struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> > > >   int i;
-> > > >   int ret;
-> > > >
-> > > >   if (!crtc_state->fec_enable)
-> > > >           return;
-> > > >
-> > > > + /*
-> > > > +  * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port while
-> > > > +  * crtc_state->fec_enable is per-stream. For DP MST, several
-> streams
-> > > > +  * on this port share the bit. Only program HW on the first strea=
-m
-> > > > +  * needing FEC; subsequent streams just bump the refcount.
-> > > > +  */
-> > > > + if (dig_port->fec_active_streams++ > 0)
-> > > > +         return;
-> > >
-> > > This doesn't make sense to me. FEC is enabled for the MST link and if
-> it's
-> > > enabled then fec_enabled is set in the crtc_state for all the streams
-> in the MST
-> > > topology. intel_ddi_enable_fec() will be called only for the first MS=
-T
-> stream
-> > > being enabled and intel_ddi_disable_fec() will be called only for the
-> last MST
-> > > stream being disabled. So I don't see why the above refcounting would
-> be
-> > > needed.
-> >
-> > The  logs mentioned in the above listed gitlab issue shows mismatch in
-> > fec enable/disable in the MST scenario. Hence added this refcount
-> > logic to overcome the mismatch.
->
-> The root cause for the mismatch should be better understood then. I
-> still think that it's something else than the lack of refcounting.
->
-> > Thanks and Regards,
-> > Arun R Murthy
-> > --------------------
-> > > > +
-> > > >   intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-> > > >                0, DP_TP_CTL_FEC_ENABLE);
-> > > >
-> > > > @@ -2454,10 +2505,25 @@ static void intel_ddi_disable_fec(struct
-> > > intel_encoder *encoder,
-> > > >                             const struct intel_crtc_state
-> *crtc_state)  {
-> > > >   struct intel_display *display =3D to_intel_display(encoder);
-> > > > + struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
-> > > >
-> > > >   if (!crtc_state->fec_enable)
-> > > >           return;
-> > > >
-> > > > + /*
-> > > > +  * FEC is a link-wide property and DP_TP_CTL_FEC_ENABLE is a
-> per-port
-> > > > +  * register, but crtc_state->fec_enable is per-stream. For DP MST=
-,
-> > > > +  * multiple streams on the same port share this bit. Refcount the
-> > > > +  * active FEC users on the port and only clear the HW bit when th=
-e
-> > > > +  * last user goes away, otherwise tearing down one MST stream wou=
-ld
-> > > > +  * disable FEC for sibling streams still using it.
-> > > > +  */
-> > > > + if (drm_WARN_ON(display->drm, dig_port->fec_active_streams <=3D 0=
-))
-> > > > +         return;
-> > > > +
-> > > > + if (--dig_port->fec_active_streams > 0)
-> > > > +         return;
-> > > > +
-> > > >   intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
-> > > >                DP_TP_CTL_FEC_ENABLE, 0);
-> > > >   intel_de_posting_read(display, dp_tp_ctl_reg(encoder, crtc_state)=
-);
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > > b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > > index 580ecb09b8b6..3678c28a0dc9 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
-> > > > @@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encod=
-er
-> > > *intel_encoder,
-> > > >                          enum transcoder cpu_transcoder,
-> > > >                          bool enable, u32 hdcp_mask);  void
-> > > > intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder
-> *encoder);
-> > > > +void intel_ddi_seed_fec_refcounts(struct intel_display *display);
-> > > >  int intel_ddi_level(struct intel_encoder *encoder,
-> > > >               const struct intel_crtc_state *crtc_state,
-> > > >               int lane);
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > index f44be5c689ae..84bd0d993197 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-> > > > @@ -1987,6 +1987,18 @@ struct intel_digital_port {
-> > > >   struct ref_tracker *ddi_io_wakeref;
-> > > >   struct ref_tracker *aux_wakeref;
-> > > >
-> > > > + /*
-> > > > +  * Number of active streams on this port currently using FEC.
-> > > > +  *
-> > > > +  * DP_TP_CTL_FEC_ENABLE is a per-port (link-wide) HW bit, but
-> > > > +  * crtc_state->fec_enable is per-stream. For DP MST several strea=
-ms
-> > > > +  * share the same port and therefore the same FEC enable bit. Tra=
-ck
-> > > > +  * how many active streams want FEC so that the HW bit is only
-> > > > +  * programmed on the first enable and only cleared on the last
-> > > > +  * disable. Modified under the modeset locks.
-> > > > +  */
-> > > > + int fec_active_streams;
-> > > > +
-> > > >   struct intel_tc_port *tc;
-> > > >
-> > > >   struct {
-> > > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > > index e88082c8caac..14f038b8ef81 100644
-> > > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
-> > > > @@ -950,6 +950,12 @@ void intel_modeset_setup_hw_state(struct
-> > > > intel_display *display,
-> > > >
-> > > >   intel_modeset_readout_hw_state(display);
-> > > >
-> > > > + /*
-> > > > +  * Seed per-port FEC refcounts from the just-populated active
-> > > > +  * crtc_states before anything can issue an enable/disable.
-> > > > +  */
-> > > > + intel_ddi_seed_fec_refcounts(display);
-> > > > +
-> > > >   /* HW state is read out, now we need to sanitize this mess. */
-> > > >   get_encoder_power_domains(display);
-> > > >
-> > > > --
-> > > > 2.25.1
-> > > >
->
-
---000000000000f56deb065347076b
-Content-Type: text/html; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-<div dir=3D"ltr">I can share some observations from the debug logs captured=
- on the affected<br>system (drm.debug=3D0x10e, Alder Lake-P [8086:46a6], Th=
-inkPad dock, 1080p on<br>pipe B + 4K DSC on pipe C) that may help clarify t=
-he root cause.<br><br>Imre&#39;s assertion about the enable/disable gating =
-appears to be correct from<br>the logs. The active_links sequence across ev=
-ery modeset cycle in the<br>captured trace is always clean:<br><br>=C2=A0 d=
-isable: 2 -&gt; 1 -&gt; 0 =C2=A0(intel_mst_disable_dp, intel_encoders_post_=
-disable)<br>=C2=A0 enable: =C2=A00 -&gt; 1 -&gt; 2 =C2=A0(intel_mst_pre_ena=
-ble_dp, intel_mst_enable_dp)<br><br>No interleaving, no double-calls. intel=
-_ddi_enable_fec and<br>intel_ddi_disable_fec are each called exactly once p=
-er link per modeset<br>cycle, as expected.<br><br>The mismatch and cascade =
-are instead driven by repeated failures in the<br>fastset check. In the cab=
-le-unplug log, 8 &quot;fastset requirement not met,<br>forcing full modeset=
-&quot; messages fire for both pipes between t=3D110.803s and<br>t=3D110.899=
-s -- before a single active_links change occurs. After replug,<br>there are=
- dozens more at ~20ms intervals (t=3D125.5s to t=3D126.3s) as the<br>driver=
- re-probes the dock, each one attempting and failing to commit a<br>modeset=
-.<br><br>The direction of the first mismatch after dock connect is notable.=
- The<br>very first fastset failure shows:<br><br>=C2=A0 [CRTC:186:pipe C] f=
-astset requirement not met in fec_enable<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (expected no, found yes)<br>=C2=A0 [=
-CRTC:186:pipe C] fastset requirement not met in hw.pipe_mode.crtc_hdisplay<=
-br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 (e=
-xpected 1920, found 3840)<br>=C2=A0 [CRTC:186:pipe C] fastset requirement n=
-ot met in dsc.config.pic_width<br>=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0=
- =C2=A0 =C2=A0 =C2=A0 =C2=A0 (expected 0, found 3840)<br><br>The SW compute=
-d state has pipe C at 1920x1080 with no DSC and no FEC, while<br>HW has it =
-at 3840x2160 with DSC and FEC active (from the previous<br>session/firmware=
- state). The modeset that follows clears FEC. The next<br>compute correctly=
- selects DSC (and therefore FEC), triggering the opposite<br>mismatch (&quo=
-t;expected yes, found no&quot;). This back-and-forth drives the cascade.<br=
-><br>The question of why the first SW compute produces fec_enable=3Dno for =
-pipe C<br>when DSC is needed seems to be where the actual root cause lies -=
-- whether<br>that&#39;s a mode-negotiation timing issue (compositor request=
-ing 1080p before<br>4K+DSC is negotiated) or something in the compute order=
-ing in<br>intel_dp_mst_compute_config.<br><br>Full log (drm.debug=3D0x10e, =
-cable unplug/replug) is attached to issue #16303<br>if useful.<br><br>Steph=
-en Fuhry</div><br><div class=3D"gmail_quote gmail_quote_container"><div dir=
-=3D"ltr" class=3D"gmail_attr">On Tue, Jun 2, 2026 at 9:39=E2=80=AFAM Imre D=
-eak &lt;<a href=3D"mailto:imre.deak@intel.com">imre.deak@intel.com</a>&gt; =
-wrote:<br></div><blockquote class=3D"gmail_quote" style=3D"margin:0px 0px 0=
-px 0.8ex;border-left:1px solid rgb(204,204,204);padding-left:1ex">On Tue, J=
-un 02, 2026 at 04:35:42PM +0300, Murthy, Arun R wrote:<br>
-&gt; <br>
-&gt; &gt; -----Original Message-----<br>
-&gt; &gt; From: Deak, Imre &lt;<a href=3D"mailto:imre.deak@intel.com" targe=
-t=3D"_blank">imre.deak@intel.com</a>&gt;<br>
-&gt; &gt; Sent: Tuesday, June 2, 2026 4:17 PM<br>
-&gt; &gt; To: Murthy, Arun R &lt;<a href=3D"mailto:arun.r.murthy@intel.com"=
- target=3D"_blank">arun.r.murthy@intel.com</a>&gt;<br>
-&gt; &gt; Cc: <a href=3D"mailto:intel-gfx@lists.freedesktop.org" target=3D"=
-_blank">intel-gfx@lists.freedesktop.org</a>; <a href=3D"mailto:intel-xe@lis=
-ts.freedesktop.org" target=3D"_blank">intel-xe@lists.freedesktop.org</a>; S=
-tephen<br>
-&gt; &gt; Fuhry &lt;<a href=3D"mailto:fuhrysteve@gmail.com" target=3D"_blan=
-k">fuhrysteve@gmail.com</a>&gt;<br>
-&gt; &gt; Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/di=
-sable<br>
-&gt; &gt; <br>
-&gt; &gt; On Mon, Jun 01, 2026 at 07:59:43PM +0530, Arun R Murthy wrote:<br=
->
-&gt; &gt; &gt; The FEC_ENABLE bit is per port basis and is enabled/disabled=
- on ddi<br>
-&gt; &gt; &gt; pre_enable and post_disable. This fec is shared across the m=
-st streams<br>
-&gt; &gt; &gt; and can be enabled per stream basis as well.<br>
-&gt; &gt; &gt; So have a refcount to track the usage of FEC and then enable=
-/disable<br>
-&gt; &gt; &gt; accordingly.<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; Closes:<br>
-&gt; &gt; &gt; <a href=3D"https://gitlab.freedesktop.org/drm/i915/kernel/-/=
-work_items/16073" rel=3D"noreferrer" target=3D"_blank">https://gitlab.freed=
-esktop.org/drm/i915/kernel/-/work_items/16073</a><br>
-&gt; &gt; &gt; Signed-off-by: Arun R Murthy &lt;<a href=3D"mailto:arun.r.mu=
-rthy@intel.com" target=3D"_blank">arun.r.murthy@intel.com</a>&gt;<br>
-&gt; &gt; &gt; Tested-by: Stephen Fuhry &lt;<a href=3D"mailto:fuhrysteve@gm=
-ail.com" target=3D"_blank">fuhrysteve@gmail.com</a>&gt;<br>
-&gt; &gt; &gt; ---<br>
-&gt; &gt; &gt;=C2=A0 drivers/gpu/drm/i915/display/intel_ddi.c=C2=A0 =C2=A0 =
-=C2=A0 | 66 +++++++++++++++++++<br>
-&gt; &gt; &gt;=C2=A0 drivers/gpu/drm/i915/display/intel_ddi.h=C2=A0 =C2=A0 =
-=C2=A0 |=C2=A0 1 +<br>
-&gt; &gt; &gt;=C2=A0 .../drm/i915/display/intel_display_types.h=C2=A0 =C2=
-=A0 | 12 ++++<br>
-&gt; &gt; &gt;=C2=A0 .../drm/i915/display/intel_modeset_setup.c=C2=A0 =C2=
-=A0 |=C2=A0 6 ++<br>
-&gt; &gt; &gt;=C2=A0 4 files changed, 85 insertions(+)<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c<br>
-&gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_ddi.c<br>
-&gt; &gt; &gt; index 86520848892e..e12a3d6d6a67 100644<br>
-&gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_ddi.c<br>
-&gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_ddi.c<br>
-&gt; &gt; &gt; @@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct i=
-ntel_encoder<br>
-&gt; &gt; *encoder)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0encoder-&gt;disable_=
-clock(encoder);<br>
-&gt; &gt; &gt;=C2=A0 }<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; +/**<br>
-&gt; &gt; &gt; + * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcoun=
-ts from<br>
-&gt; &gt; &gt; +active CRTCs<br>
-&gt; &gt; &gt; + * @display: display device<br>
-&gt; &gt; &gt; + *<br>
-&gt; &gt; &gt; + * intel_digital_port::fec_active_streams is the per-port r=
-efcount<br>
-&gt; &gt; &gt; +that gates<br>
-&gt; &gt; &gt; + * programming of the shared DP_TP_CTL_FEC_ENABLE bit. Afte=
-r initial<br>
-&gt; &gt; &gt; +HW state<br>
-&gt; &gt; &gt; + * readout (driver load, resume, GPU reset takeover), the p=
-ersistent<br>
-&gt; &gt; &gt; + * crtc_state-&gt;fec_enable values reflect what HW current=
-ly has; we<br>
-&gt; &gt; &gt; +need to<br>
-&gt; &gt; &gt; + * align the refcount with that so the first paired disable=
- doesn&#39;t<br>
-&gt; &gt; &gt; +underflow<br>
-&gt; &gt; &gt; + * and the next enable doesn&#39;t incorrectly skip program=
-ming the HW bit.<br>
-&gt; &gt; &gt; + *<br>
-&gt; &gt; &gt; + * Must be called once after intel_modeset_readout_hw_state=
-(), before<br>
-&gt; &gt; &gt; +any new<br>
-&gt; &gt; &gt; + * modeset commit can run.<br>
-&gt; &gt; &gt; + */<br>
-&gt; &gt; &gt; +void intel_ddi_seed_fec_refcounts(struct intel_display *dis=
-play) {<br>
-&gt; &gt; &gt; + struct intel_crtc *crtc;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt; + for_each_intel_crtc(display-&gt;drm, crtc) {<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct intel_crtc_s=
-tate *crtc_state =3D<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0to_intel_crtc_state(crtc-&gt;base.state);<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0struct intel_encoder *enc=
-oder;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0if (!crtc_state-&gt;hw.ac=
-tive || !crtc_state-&gt;fec_enable)<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0continue;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0for_each_intel_encoder(di=
-splay-&gt;drm, encoder) {<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0struct intel_digital_port *dig_port;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0if (encoder-&gt;base.crtc !=3D &amp;crtc-&gt;base)<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0continue;<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0if (!intel_encoder_is_dig_port(encoder))<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0continue;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0dig_port =3D enc_to_dig_port(encoder);<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0dig_port-&gt;fec_active_streams++;<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0break;<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0}<br>
-&gt; &gt; &gt; + }<br>
-&gt; &gt; &gt; +}<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt;=C2=A0 void intel_ddi_sanitize_encoder_pll_mapping(struct int=
-el_encoder<br>
-&gt; &gt; &gt; *encoder)=C2=A0 {<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct intel_display *display =3D to_intel_displ=
-ay(encoder); @@<br>
-&gt; &gt; &gt; -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct=
- intel_encoder<br>
-&gt; &gt; *encoder,<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 const struct intel_crtc_state *crtc_=
-state)=C2=A0 {<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct intel_display *display =3D to_intel_displ=
-ay(encoder);<br>
-&gt; &gt; &gt; + struct intel_digital_port *dig_port =3D enc_to_dig_port(en=
-coder);<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0int i;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0int ret;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0if (!crtc_state-&gt;fec_enable)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; + /*<br>
-&gt; &gt; &gt; +=C2=A0 * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port=
- while<br>
-&gt; &gt; &gt; +=C2=A0 * crtc_state-&gt;fec_enable is per-stream. For DP MS=
-T, several streams<br>
-&gt; &gt; &gt; +=C2=A0 * on this port share the bit. Only program HW on the=
- first stream<br>
-&gt; &gt; &gt; +=C2=A0 * needing FEC; subsequent streams just bump the refc=
-ount.<br>
-&gt; &gt; &gt; +=C2=A0 */<br>
-&gt; &gt; &gt; + if (dig_port-&gt;fec_active_streams++ &gt; 0)<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt; &gt; <br>
-&gt; &gt; This doesn&#39;t make sense to me. FEC is enabled for the MST lin=
-k and if it&#39;s<br>
-&gt; &gt; enabled then fec_enabled is set in the crtc_state for all the str=
-eams in the MST<br>
-&gt; &gt; topology. intel_ddi_enable_fec() will be called only for the firs=
-t MST stream<br>
-&gt; &gt; being enabled and intel_ddi_disable_fec() will be called only for=
- the last MST<br>
-&gt; &gt; stream being disabled. So I don&#39;t see why the above refcounti=
-ng would be<br>
-&gt; &gt; needed.<br>
-&gt;<br>
-&gt; The=C2=A0 logs mentioned in the above listed gitlab issue shows mismat=
-ch in<br>
-&gt; fec enable/disable in the MST scenario. Hence added this refcount<br>
-&gt; logic to overcome the mismatch.<br>
-<br>
-The root cause for the mismatch should be better understood then. I<br>
-still think that it&#39;s something else than the lack of refcounting.<br>
-<br>
-&gt; Thanks and Regards,<br>
-&gt; Arun R Murthy<br>
-&gt; --------------------<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0intel_de_rmw(display, dp_tp_ctl_reg(encoder, crt=
-c_state),<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 0, DP=
-_TP_CTL_FEC_ENABLE);<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; @@ -2454,10 +2505,25 @@ static void intel_ddi_disable_fec(st=
-ruct<br>
-&gt; &gt; intel_encoder *encoder,<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const struct intel_crtc_state =
-*crtc_state)=C2=A0 {<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct intel_display *display =3D to_intel_displ=
-ay(encoder);<br>
-&gt; &gt; &gt; + struct intel_digital_port *dig_port =3D enc_to_dig_port(en=
-coder);<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0if (!crtc_state-&gt;fec_enable)<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; + /*<br>
-&gt; &gt; &gt; +=C2=A0 * FEC is a link-wide property and DP_TP_CTL_FEC_ENAB=
-LE is a per-port<br>
-&gt; &gt; &gt; +=C2=A0 * register, but crtc_state-&gt;fec_enable is per-str=
-eam. For DP MST,<br>
-&gt; &gt; &gt; +=C2=A0 * multiple streams on the same port share this bit. =
-Refcount the<br>
-&gt; &gt; &gt; +=C2=A0 * active FEC users on the port and only clear the HW=
- bit when the<br>
-&gt; &gt; &gt; +=C2=A0 * last user goes away, otherwise tearing down one MS=
-T stream would<br>
-&gt; &gt; &gt; +=C2=A0 * disable FEC for sibling streams still using it.<br=
->
-&gt; &gt; &gt; +=C2=A0 */<br>
-&gt; &gt; &gt; + if (drm_WARN_ON(display-&gt;drm, dig_port-&gt;fec_active_s=
-treams &lt;=3D 0))<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt; + if (--dig_port-&gt;fec_active_streams &gt; 0)<br>
-&gt; &gt; &gt; +=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0return;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0intel_de_rmw(display, dp_tp_ctl_reg(encoder, crt=
-c_state),<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 DP_TP=
-_CTL_FEC_ENABLE, 0);<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0intel_de_posting_read(display, dp_tp_ctl_reg(enc=
-oder, crtc_state));<br>
-&gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h<br>
-&gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_ddi.h<br>
-&gt; &gt; &gt; index 580ecb09b8b6..3678c28a0dc9 100644<br>
-&gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_ddi.h<br>
-&gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_ddi.h<br>
-&gt; &gt; &gt; @@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct inte=
-l_encoder<br>
-&gt; &gt; *intel_encoder,<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 enum transcoder cpu_transcoder,<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=
-=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 bool enable, u32 hdcp_mask);=C2=A0 void<br>
-&gt; &gt; &gt; intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder =
-*encoder);<br>
-&gt; &gt; &gt; +void intel_ddi_seed_fec_refcounts(struct intel_display *dis=
-play);<br>
-&gt; &gt; &gt;=C2=A0 int intel_ddi_level(struct intel_encoder *encoder,<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0const =
-struct intel_crtc_state *crtc_state,<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0 =C2=A0int la=
-ne);<br>
-&gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_display_type=
-s.h<br>
-&gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_display_types.h<br>
-&gt; &gt; &gt; index f44be5c689ae..84bd0d993197 100644<br>
-&gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_display_types.h<br>
-&gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_display_types.h<br>
-&gt; &gt; &gt; @@ -1987,6 +1987,18 @@ struct intel_digital_port {<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct ref_tracker *ddi_io_wakeref;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct ref_tracker *aux_wakeref;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; + /*<br>
-&gt; &gt; &gt; +=C2=A0 * Number of active streams on this port currently us=
-ing FEC.<br>
-&gt; &gt; &gt; +=C2=A0 *<br>
-&gt; &gt; &gt; +=C2=A0 * DP_TP_CTL_FEC_ENABLE is a per-port (link-wide) HW =
-bit, but<br>
-&gt; &gt; &gt; +=C2=A0 * crtc_state-&gt;fec_enable is per-stream. For DP MS=
-T several streams<br>
-&gt; &gt; &gt; +=C2=A0 * share the same port and therefore the same FEC ena=
-ble bit. Track<br>
-&gt; &gt; &gt; +=C2=A0 * how many active streams want FEC so that the HW bi=
-t is only<br>
-&gt; &gt; &gt; +=C2=A0 * programmed on the first enable and only cleared on=
- the last<br>
-&gt; &gt; &gt; +=C2=A0 * disable. Modified under the modeset locks.<br>
-&gt; &gt; &gt; +=C2=A0 */<br>
-&gt; &gt; &gt; + int fec_active_streams;<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct intel_tc_port *tc;<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0struct {<br>
-&gt; &gt; &gt; diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setu=
-p.c<br>
-&gt; &gt; &gt; b/drivers/gpu/drm/i915/display/intel_modeset_setup.c<br>
-&gt; &gt; &gt; index e88082c8caac..14f038b8ef81 100644<br>
-&gt; &gt; &gt; --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c<br>
-&gt; &gt; &gt; +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c<br>
-&gt; &gt; &gt; @@ -950,6 +950,12 @@ void intel_modeset_setup_hw_state(struc=
-t<br>
-&gt; &gt; &gt; intel_display *display,<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0intel_modeset_readout_hw_state(display);<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; + /*<br>
-&gt; &gt; &gt; +=C2=A0 * Seed per-port FEC refcounts from the just-populate=
-d active<br>
-&gt; &gt; &gt; +=C2=A0 * crtc_states before anything can issue an enable/di=
-sable.<br>
-&gt; &gt; &gt; +=C2=A0 */<br>
-&gt; &gt; &gt; + intel_ddi_seed_fec_refcounts(display);<br>
-&gt; &gt; &gt; +<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0/* HW state is read out, now we need to sanitize=
- this mess. */<br>
-&gt; &gt; &gt;=C2=A0 =C2=A0get_encoder_power_domains(display);<br>
-&gt; &gt; &gt;<br>
-&gt; &gt; &gt; --<br>
-&gt; &gt; &gt; 2.25.1<br>
-&gt; &gt; &gt;<br>
-</blockquote></div>
-
---000000000000f56deb065347076b--
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogQm9yYWgsIENoYWl0YW55
+YSBLdW1hciA8Y2hhaXRhbnlhLmt1bWFyLmJvcmFoQGludGVsLmNvbT4NCj4gU2VudDogTW9uZGF5
+LCBKdW5lIDEsIDIwMjYgMjowMCBQTQ0KPiBUbzogaW50ZWwtZ2Z4QGxpc3RzLmZyZWVkZXNrdG9w
+Lm9yZzsgaW50ZWwteGVAbGlzdHMuZnJlZWRlc2t0b3Aub3JnDQo+IENjOiB2aWxsZS5zeXJqYWxh
+QGxpbnV4LmludGVsLmNvbTsgU2hhbmthciwgVW1hIDx1bWEuc2hhbmthckBpbnRlbC5jb20+Ow0K
+PiBCb3JhaCwgQ2hhaXRhbnlhIEt1bWFyIDxjaGFpdGFueWEua3VtYXIuYm9yYWhAaW50ZWwuY29t
+PjsgU2FtYWxhLCBQcmFuYXkNCj4gPHByYW5heS5zYW1hbGFAaW50ZWwuY29tPg0KPiBTdWJqZWN0
+OiBbdjQgMC8zXSBNb3JlIEZpeGVzIGZvciBjb2xvciBwaXBlbGluZQ0KPiANCj4gdjQ6DQo+IC0g
+UmVtb3ZlIGFscmVhZHkgbWVyZ2VkIHBhdGNoDQo+ICAgODZlZDJkOTZkYjE5ICgiZHJtL2k5MTUv
+ZGlzcGxheTogQ29weSBjb2xvciBwaXBlbGluZSBmcm9tIHBsYW5lIGluIHRoZSBwcmltYXJ5DQo+
+IGpvaW5lciBwaXBlIikNCj4gLSBkcm9wIHRoZSBleHRyYSBzcGFjZXMgYmVmb3JlID0ncyAoSmFu
+aSkNCj4gDQo+IHYzOg0KPiAtIFJlLWFycmFuZ2UgcGF0Y2hlcw0KPiANCj4gdjI6DQo+IC0gTWFr
+ZSBkZXBlbmRlbmN5IG9uIGF0b21pYyBzdGF0ZSBtb3JlIGV4cGxpY2l0IChWaWxsZSkNCj4gLSBo
+YW5kbGUgYmxvYnMgaW4gaHcgc3RhdGUgY2xlYXINCg0KQ2hhbmdlcyBwdXNoZWQgdG8gZHJtLWlu
+dGVsLW5leHQuIFRoYW5rcyBmb3IgdGhlIGNvbnRyaWJ1dGlvbiBhbmQgZml4ZXMuDQoNClJlZ2Fy
+ZHMsDQpVbWEgU2hhbmthcg0KDQo+IENoYWl0YW55YSBLdW1hciBCb3JhaCAoMyk6DQo+ICAgZHJt
+L2k5MTUvZGlzcGxheTogRG9u4oCZdCB1c2UgYXRvbWljIHN0YXRlIGJhY2stcG9pbnRlciB0byBk
+ZXJpdmUgY29sb3INCj4gICAgIHBpcGVsaW5lDQo+ICAgZHJtL2k5MTU6IEF2b2lkIHByb2dyYW1t
+aW5nIGNvbG9yIEhXIGJsb2NrcyBmb3IgTlYxMiBZIHBsYW5lcw0KPiAgIGRybS9pOTE1OiBGaXgg
+Y29sb3IgYmxvYiByZWZlcmVuY2UgaGFuZGxpbmcgaW4gaW50ZWxfcGxhbmVfc3RhdGUNCj4gDQo+
+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2N1cnNvci5jICAgfCAgMiArLQ0K
+PiAgLi4uL2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfaW5pdGlhbF9wbGFuZS5jICAgIHwgIDIgKy0N
+Cj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfcGxhbmUuYyAgICB8IDcxICsr
+KysrKysrKysrKysrLS0tLS0NCj4gIGRyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxf
+cGxhbmUuaCAgICB8ICA1ICstDQo+ICA0IGZpbGVzIGNoYW5nZWQsIDU4IGluc2VydGlvbnMoKyks
+IDIyIGRlbGV0aW9ucygtKQ0KPiANCj4gLS0NCj4gMi4yNS4xDQoNCg==
