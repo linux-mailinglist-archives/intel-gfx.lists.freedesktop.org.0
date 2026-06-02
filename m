@@ -1,131 +1,66 @@
 Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
-	by lfdr with LMTP
-	id UN6vKxC+Hmr1KAAAu9opvQ
+	by mail.lfdr.de with LMTP
+	id Yo5XCUK/HmryCwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 13:27:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 13:32:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0D38E62D755
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 13:27:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68BB062D8CF
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 13:32:17 +0200 (CEST)
+Authentication-Results: mail.lfdr.de;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Plu+CY6+;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9511A10EF8C;
-	Tue,  2 Jun 2026 11:27:10 +0000 (UTC)
-Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="AiCd+as0";
-	dkim-atps=neutral
+	by gabe.freedesktop.org (Postfix) with ESMTP id B1C4810EFBC;
+	Tue,  2 Jun 2026 11:32:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E60EA10EF8B;
- Tue,  2 Jun 2026 11:27:08 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E37EE10EFA2;
+ Tue,  2 Jun 2026 11:32:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780399629; x=1811935629;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:in-reply-to;
- bh=vFe0YHJbZeLES+sUauMUh5hZ46dD8ew9Ej6lDFLoT9Q=;
- b=AiCd+as03z8JI0M3Tj2YhyIJtEf/1xYRptnl2Rojlyp8DjaDezbkIZBd
- g/zzdmxqJZPRBuoRAh1hPgdf2pGg37uc51dN0t6aZojMZ+uqcMIwTWTyK
- VLrEONVj2k6ETI9bERCjxtlZBerWW+6F6I9UXq9QNbsT+V9eZsymVe8Ql
- x+RkPjckJ1FgoqWc22nidpp7TLfdFVbr++uCZdWAHCTborfGhl64P8Z0F
- TKfs7JXGV1wezDnPtaKtS6NFx4zqaJ4UHpcD6kWi9sguLEntwoUxMpU6/
- nKSqOCBwUZkrC+IcztggUECzS0BWb8L7knL35TMb8zFytHHi7f5WjhWbC g==;
-X-CSE-ConnectionGUID: SuwkAiTrQYuK/QrRj8b5fw==
-X-CSE-MsgGUID: VxOfMnlDTcySMDcU/EIKnw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="84804992"
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="84804992"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 04:27:07 -0700
-X-CSE-ConnectionGUID: 57WJuzJhQk+bJIT4F8AZnw==
-X-CSE-MsgGUID: InV+5AxmRSKrEz4WoNh7bQ==
+ t=1780399934; x=1811935934;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=oV0o3UxniiF1PmPxd3CG+hy2mKngzalvy18mNLnIK4o=;
+ b=Plu+CY6+Z/QFMRfbU1nP26phs/zmB447zl6fKMxyDvBOOFh6gLTqH89z
+ Zurs+djbG0lX/fOqvBmYliH4FqFQnmCZZ+ZGhZtumQciQFj5E+/+7Rb3n
+ DgWwW1z3pseNcOLk3SzZv97elvka41zlnN5PQ8TiH0tHBmUbee/HqU8ie
+ sTxOlpEptLSLs9VtWYgoBwTds+6Z2SN0/AHqsOMqSXHs4W2/FjVZRwr54
+ N0VIHJ4MJankjyDGfUb9HEw0jVnjCvm3kjxiaBPj8uQcR8x9vJ1+11juh
+ RJGtMSki9tp0xRPX3IUOOxjqcj/jRW9w7oqshzdRYhZi+6Cdxb32G05+t A==;
+X-CSE-ConnectionGUID: EL5PGGRuR6Sl1pxxmMhw8A==
+X-CSE-MsgGUID: kqxGixOJQ+eTJu+BS40Vmw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="92667113"
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="92667113"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 04:32:13 -0700
+X-CSE-ConnectionGUID: v3tTf7JySESt5gQQM2MBcg==
+X-CSE-MsgGUID: Tn9xK4wIRiSRKF8Z2Ds+jQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="240879149"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.229])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 04:26:48 -0700
-Date: Tue, 2 Jun 2026 14:26:46 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Kees Cook <kees@kernel.org>
-Cc: Luis Chamberlain <mcgrof@kernel.org>,
- Pengpeng Hou <pengpeng@iscas.ac.cn>, stable@vger.kernel.org,
- Petr Pavlu <petr.pavlu@suse.com>, Richard Weinberger <richard@nod.at>,
- Anton Ivanov <anton.ivanov@cambridgegreys.com>,
- Johannes Berg <johannes@sipsolutions.net>,
- "Rafael J. Wysocki" <rafael@kernel.org>,
- Len Brown <lenb@kernel.org>, Corey Minyard <corey@minyard.net>,
- Gabriel Somlo <somlo@cmu.edu>, "Michael S. Tsirkin" <mst@redhat.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Bart Van Assche <bvanassche@acm.org>,
- Jason Gunthorpe <jgg@ziepe.ca>, Leon Romanovsky <leon@kernel.org>,
- Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
- Hans de Goede <hansg@kernel.org>,
- Mauro Carvalho Chehab <mchehab@kernel.org>,
- Bjorn Helgaas <bhelgaas@google.com>, Hannes Reinecke <hare@suse.de>,
- "James E.J. Bottomley" <James.Bottomley@hansenpartnership.com>,
- "Martin K. Petersen" <martin.petersen@oracle.com>,
- Daniel Lezcano <daniel.lezcano@kernel.org>,
- Zhang Rui <rui.zhang@intel.com>, Lukasz Luba <lukasz.luba@arm.com>,
- Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
- Jiri Slaby <jirislaby@kernel.org>, Alan Stern <stern@rowland.harvard.edu>,
- Jason Wang <jasowang@redhat.com>, Xuan Zhuo <xuanzhuo@linux.alibaba.com>,
- Eugenio =?iso-8859-1?Q?P=E9rez?= <eperezma@redhat.com>,
- Jason Baron <jbaron@akamai.com>, Jim Cromie <jim.cromie@gmail.com>,
- Tiwei Bie <tiwei.btw@antgroup.com>,
- Benjamin Berg <benjamin.berg@intel.com>,
- Ilpo =?iso-8859-1?Q?J=E4rvinen?= <ilpo.jarvinen@linux.intel.com>,
- "David E. Box" <david.e.box@linux.intel.com>,
- "Maciej W. Rozycki" <macro@orcam.me.uk>,
- Srinivas Pandruvada <srinivas.pandruvada@linux.intel.com>,
- Peter Zijlstra <peterz@infradead.org>, Heiko Carstens <hca@linux.ibm.com>,
- Vasily Gorbik <gor@linux.ibm.com>, Sean Christopherson <seanjc@google.com>,
- Paolo Bonzini <pbonzini@redhat.com>,
- Thomas Gleixner <tglx@kernel.org>, Ingo Molnar <mingo@redhat.com>,
- Borislav Petkov <bp@alien8.de>,
- Dave Hansen <dave.hansen@linux.intel.com>, x86@kernel.org,
- "H. Peter Anvin" <hpa@zytor.com>, Vinod Koul <vkoul@kernel.org>,
- Frank Li <Frank.Li@kernel.org>, Daniel Gomez <da.gomez@kernel.org>,
- Sami Tolvanen <samitolvanen@google.com>,
- Aaron Tomlin <atomlin@atomlin.com>,
- Alexander Potapenko <glider@google.com>,
- Marco Elver <elver@google.com>, Dmitry Vyukov <dvyukov@google.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- John Johansen <john.johansen@canonical.com>,
- Paul Moore <paul@paul-moore.com>, James Morris <jmorris@namei.org>,
- "Serge E. Hallyn" <serge@hallyn.com>,
- Georgia Garcia <georgia.garcia@canonical.com>, kvm@vger.kernel.org,
- dmaengine@vger.kernel.org, linux-modules@vger.kernel.org,
- kasan-dev@googlegroups.com, linux-mm@kvack.org,
- apparmor@lists.ubuntu.com, linux-security-module@vger.kernel.org,
- linux-um@lists.infradead.org, linux-acpi@vger.kernel.org,
- openipmi-developer@lists.sourceforge.net, qemu-devel@nongnu.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-rdma@vger.kernel.org, linux-media@vger.kernel.org,
- linux-pci@vger.kernel.org, linux-scsi@vger.kernel.org,
- linux-pm@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- linux-serial@vger.kernel.org, linux-usb@vger.kernel.org,
- usb-storage@lists.one-eyed-alien.net,
- virtualization@lists.linux.dev, linux-kernel@vger.kernel.org,
- linux-arch@vger.kernel.org, netdev@vger.kernel.org,
- linux-fsdevel@vger.kernel.org, linux-hardening@vger.kernel.org
-Subject: Re: [PATCH 01/11] params: bound array element output to the caller's
- page buffer
-Message-ID: <ah699hwLxIIOZ0-7@ashevche-desk.local>
-References: <20260521133315.work.845-kees@kernel.org>
- <20260521133326.2465264-1-kees@kernel.org>
+X-IronPort-AV: E=Sophos;i="6.24,183,1774335600"; d="scan'208";a="243991786"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 04:32:11 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: imre.deak@intel.com,
+	uma.shankar@intel.com,
+	jani.nikula@linux.intel.com
+Subject: [PATCH v3] drm/i915/display: Mask RO bits in gen9_write_dc_state()
+Date: Tue,  2 Jun 2026 17:01:34 +0530
+Message-ID: <20260602113134.2477070-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260601090131.1840805-1-dibin.moolakadan.subrahmanian@intel.com>
+References: <20260601090131.1840805-1-dibin.moolakadan.subrahmanian@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20260521133326.2465264-1-kees@kernel.org>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -140,97 +75,120 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Queue-Id: 0D38E62D755
-X-Rspamd-Server: lfdr
+X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_GT_50(0.00)[99];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[kernel.org,iscas.ac.cn,vger.kernel.org,suse.com,nod.at,cambridgegreys.com,sipsolutions.net,minyard.net,cmu.edu,redhat.com,linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,acm.org,ziepe.ca,ideasonboard.com,google.com,suse.de,hansenpartnership.com,oracle.com,arm.com,linuxfoundation.org,rowland.harvard.edu,linux.alibaba.com,akamai.com,antgroup.com,orcam.me.uk,infradead.org,linux.ibm.com,alien8.de,zytor.com,atomlin.com,linux-foundation.org,canonical.com,paul-moore.com,namei.org,hallyn.com,googlegroups.com,kvack.org,lists.ubuntu.com,lists.infradead.org,lists.sourceforge.net,nongnu.org,lists.freedesktop.org,lists.ozlabs.org,lists.one-eyed-alien.net,lists.linux.dev];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RBL_SPAMHAUS_BLOCKED_OPENRESOLVER(0.00)[131.252.210.177:from];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[ashevche-desk.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim]
-X-Rspamd-Action: no action
+	DNSWL_BLOCKED(0.00)[131.252.210.177:from,198.175.65.12:received,10.190.239.19:received,10.64.159.147:received];
+	DWL_DNSWL_BLOCKED(0.00)[intel.com:dkim];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,lists.freedesktop.org:from_smtp]
+X-Rspamd-Server: lfdr
+X-Rspamd-Queue-Id: 68BB062D8CF
 
-On Thu, May 21, 2026 at 06:33:14AM -0700, Kees Cook wrote:
-> 
-> param_array_get() appends each element's string representation into the
-> shared sysfs page buffer by passing buffer + off to the element getter.
-> 
-> That works for getters that only write a small bounded string, but
-> param_get_charp() and similar helpers format against PAGE_SIZE from the
-> pointer they receive. Once off is non-zero, an element getter can
-> therefore write past the end of the original sysfs page buffer.
-> 
-> Collect each element into a temporary PAGE_SIZE buffer first and then
-> copy only the remaining space into the caller's page buffer.
+The DC_STATE_EN register has read-only status bits that are set by
+hardware on some platforms. These bits may cause the read-back
+verification loop in gen9_write_dc_state() to spuriously retry.
 
-...
+Mask the RO bits from the read-back comparison to prevent
+unnecessary retries.
 
-> +	elem_buf = kmalloc(PAGE_SIZE, GFP_KERNEL);
+Changes in v2:
+- Rename patch from
+  "drm/i915/display: Use rmw in gen9_write_dc_state() to preserve non-DC
+bits"
+  to
+  "drm/i915/display: Mask RO bits in gen9_write_dc_state()"
+- Mask only RO bits rather than masking all non DC state bits
+  in DC_STATE_EN.  As the register has also some clear-on-write flags,
+  like 'Display DC*CO State Status DSI'(Imre Deak)
 
-get_free_page() (or how it is called)?
+Changes in v3:
+- Limit ro mask to read-back comparison.
 
-> +	if (!elem_buf)
-> +		return -ENOMEM;
-> +
->  	for (i = off = 0; i < (arr->num ? *arr->num : arr->max); i++) {
-> -		/* Replace \n with comma */
-> -		if (i)
-> -			buffer[off - 1] = ',';
->  		p.arg = arr->elem + arr->elemsize * i;
->  		check_kparam_locked(p.mod);
-> -		ret = arr->ops->get(buffer + off, &p);
-> +		ret = arr->ops->get(elem_buf, &p);
->  		if (ret < 0)
-> -			return ret;
-> +			goto out;
-> +		ret = min(ret, (int)(PAGE_SIZE - 1 - off));
+BSpec: 49437,69115
+Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+---
+ .../i915/display/intel_display_power_well.c   | 24 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 4 deletions(-)
 
-It's usually discouraged to use castings in min/max/clamp. Can we make ret long
-or do something different here?
-
-> +		if (!ret)
-> +			break;
-
-> +		/* Replace the previous element's trailing newline with a comma. */
-> +		if (i)
-> +			buffer[off - 1] = ',';
-
-Can't we do this after with help of strreplace()?
-
-> +		memcpy(buffer + off, elem_buf, ret);
->  		off += ret;
-> +		if (off == PAGE_SIZE - 1)
-> +			break;
->  	}
->  	buffer[off] = '\0';
-> -	return off;
-> +	ret = off;
-> +out:
-> +	kfree(elem_buf);
-> +	return ret;
-
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power_well.c b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+index 04bd0dde5bed..ab0200701a73 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power_well.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power_well.c
+@@ -726,12 +726,28 @@ static void assert_can_disable_dc9(struct intel_display *display)
+ 	  */
+ }
+ 
++static u32 dc_state_ro_mask(struct intel_display *display)
++{
++	if (DISPLAY_VER(display) >= 20)
++		return BIT(10) | BIT(11);
++	else if (DISPLAY_VER(display) >= 13 && !display->platform.dg2)
++		return BIT(10);
++
++	return 0;
++}
++
+ static void gen9_write_dc_state(struct intel_display *display,
+ 				u32 state)
+ {
+ 	int rewrites = 0;
+ 	int rereads = 0;
+ 	u32 v;
++	/*
++	 * Mask out RO status bits from read-back comparison.
++	 * HW may set these bits independently, so exclude them
++	 * to prevent the verify loop from retrying due to RO bits mismatch.
++	 */
++	u32 ro_mask = dc_state_ro_mask(display);
+ 
+ 	intel_de_write(display, DC_STATE_EN, state);
+ 
+@@ -743,7 +759,7 @@ static void gen9_write_dc_state(struct intel_display *display,
+ 	do  {
+ 		v = intel_de_read(display, DC_STATE_EN);
+ 
+-		if (v != state) {
++		if ((v & ~ro_mask) != (state & ~ro_mask)) {
+ 			intel_de_write(display, DC_STATE_EN, state);
+ 			rewrites++;
+ 			rereads = 0;
+@@ -753,10 +769,10 @@ static void gen9_write_dc_state(struct intel_display *display,
+ 
+ 	} while (rewrites < 100);
+ 
+-	if (v != state)
++	if ((v & ~ro_mask) != (state & ~ro_mask))
+ 		drm_err(display->drm,
+-			"Writing dc state to 0x%x failed, now 0x%x\n",
+-			state, v);
++			"Writing dc state to 0x%x failed, now 0x%x (ro_mask=0x%x)\n",
++			state, v, ro_mask);
+ 
+ 	/* Most of the times we need one retry, avoid spam */
+ 	if (rewrites > 1)
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.43.0
 
