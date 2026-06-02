@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by lfdr with LMTP
-	id cFi8DGOVHmrPlAkAu9opvQ
+	id YDKCJ2aVHmrPlAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 10:33:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 10:33:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D7B3762A9B4
-	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 10:33:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 50DAE62A9C3
+	for <lists+intel-gfx@lfdr.de>; Tue, 02 Jun 2026 10:33:42 +0200 (CEST)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4B5711393A;
-	Tue,  2 Jun 2026 08:33:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D513811392A;
+	Tue,  2 Jun 2026 08:33:40 +0000 (UTC)
 Authentication-Results: gabe.freedesktop.org;
-	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="VstjUcjh";
+	dkim=pass (2048-bit key; unprotected) header.d=intel.com header.i=@intel.com header.b="DzKuyamW";
 	dkim-atps=neutral
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EC009113940;
- Tue,  2 Jun 2026 08:33:34 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C55BE11392A;
+ Tue,  2 Jun 2026 08:33:39 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780389215; x=1811925215;
+ t=1780389220; x=1811925220;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6G/AfSqIukvlsAwJCKnDidSmS3/qmLo+GIUY7lP7dls=;
- b=VstjUcjh5+m6wTtwC8mfOoz9cNHbluDRBluq0YSjzr1sNszte1JpJJid
- RVeIJzyCMIgWNyf/kxwPDUuiTImhKxv4XL3GyJBReE9o6rtoOw73Gcqfg
- fAYHVsXpDIF07vrPH7yhtSTUWhxpq2qepuaopubOivJpZu4y9aAc41tfb
- ztWx+ddBneIHaOCYexRvaj4/XdWBRJk5ZObqfXwSXT732/QVosivAmZ+x
- m1ePnG01CwtuHAIg19O3FjLMPpOaaAI2hYfXybrHlqrDY8V39tIYF7nG+
- eiQL0N29zcET0kKeyZeyjXg2LbOe6dhT553gtJXjfwzCma3VzvqsyC4ss A==;
-X-CSE-ConnectionGUID: Vx2+VLfaQlqiakfnFK+Gog==
-X-CSE-MsgGUID: EWy8nipjSQ+iFPpLY1S3fA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="103830274"
-X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="103830274"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 01:33:34 -0700
-X-CSE-ConnectionGUID: Dc8oumrTTQmHor+iHDtuSQ==
-X-CSE-MsgGUID: pH67TK3dQAu5N0Z4uzYGgA==
+ bh=SJlqwgbyJJkf99h9xRKNhz6ulppVaPE8XY+Mq82B564=;
+ b=DzKuyamWRWhsCAU3yeeE3lSEmDtBjc2hSu0ToQwj4TltaeZKpjTr6tnc
+ 06fKwUWbGiM+YJTm6FDaky0+y2csUsEVVuaV517kalpD/0JraqKcMN2hM
+ gSzpx9PTO2/jn1mTs8dB+aSkgRYN2zLJHTi1v5P+b91Nz0qp4DHI9tgZh
+ DAiBk8YClQMuEJsRJ9gRLbNyKZCQsFEvQAKv1Mm8kpNZnG0v8pOY94pFd
+ e+m8VSd1t00j4LXYsLvOBrkH/Jr66f9M9lj3XiciRow1cgxS7hyxKB/13
+ oVhfuKCKSYQoJptD4UWN/gl9Iwr7j0SMiE24I4jvIfEb3tTvZ+RL3YGz/ g==;
+X-CSE-ConnectionGUID: ePAptOnIRbi8EBnYFh4JKA==
+X-CSE-MsgGUID: KayeEgBaSjqH/qpRTnG2IA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11804"; a="85056701"
+X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="85056701"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 01:33:40 -0700
+X-CSE-ConnectionGUID: cZwb64jRTYG+IPEh+7THYA==
+X-CSE-MsgGUID: cGhDb1c2QIKBVfhcXYRqbQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="267484387"
+X-IronPort-AV: E=Sophos;i="6.24,182,1774335600"; d="scan'208";a="281953317"
 Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
  ([10.245.245.253])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jun 2026 01:33:33 -0700
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jun 2026 01:33:38 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, imre.deak@intel.com, jani.nikula@intel.com
-Subject: [CI 08/12] drm/{i915,xe}: add intel_display_driver_shutdown_late()
-Date: Tue,  2 Jun 2026 11:32:48 +0300
-Message-ID: <d200966191a3845e6b9586d20884e285670734d1.1780389001.git.jani.nikula@intel.com>
+Subject: [CI 09/12] drm/i915: add intel_display_driver_shutdown()
+Date: Tue,  2 Jun 2026 11:32:49 +0300
+Message-ID: <b6a3ed62d11b4b4999611e9b34c0bd1c531c1069.1780389001.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780389001.git.jani.nikula@intel.com>
 References: <cover.1780389001.git.jani.nikula@intel.com>
@@ -101,105 +101,124 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
-X-Rspamd-Queue-Id: D7B3762A9B4
+X-Rspamd-Queue-Id: 50DAE62A9C3
 X-Rspamd-Action: no action
 X-Rspamd-Server: lfdr
 
-Add new function intel_display_driver_shutdown_late() to be called
-"later" in the struct pci_driver .shutdown hook.
+Add intel_display_driver_shutdown() to be called from the struct
+pci_driver .shutdown path. Initially, only migrate i915, as there are
+some subtle differences with xe that will be addressed later.
+
+Pick up as much as we can at this point without making major functional
+changes.
 
 There's a slight functional change in that
-intel_display_driver_shutdown_late() returns early for
-!HAS_DISPLAY(). Assume this is what we want, and there are no cases
-where display engine is present but all pipes have been fused off.
+intel_display_driver_shutdown() returns early for !HAS_DISPLAY(). Assume
+this is what we want, and there are no cases where display engine is
+present but all pipes have been fused off.
 
 Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_driver.c | 13 +++++++++++++
- drivers/gpu/drm/i915/display/intel_display_driver.h |  1 +
- drivers/gpu/drm/i915/i915_driver.c                  |  7 ++-----
- drivers/gpu/drm/xe/display/xe_display.c             |  7 +------
- 4 files changed, 17 insertions(+), 11 deletions(-)
+ .../drm/i915/display/intel_display_driver.c   | 28 +++++++++++++++++++
+ .../drm/i915/display/intel_display_driver.h   |  1 +
+ drivers/gpu/drm/i915/i915_driver.c            | 24 +---------------
+ 3 files changed, 30 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index 77fa4497b442..0326a292ee1e 100644
+index 0326a292ee1e..ab0639e8101a 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -675,6 +675,19 @@ void intel_display_driver_unregister(struct intel_display *display)
+@@ -675,6 +675,34 @@ void intel_display_driver_unregister(struct intel_display *display)
  	intel_vga_unregister(display);
  }
  
-+void intel_display_driver_shutdown_late(struct intel_display *display)
++void intel_display_driver_shutdown(struct intel_display *display)
 +{
 +	if (!HAS_DISPLAY(display))
 +		return;
 +
-+	/*
-+	 * The only requirement is to reboot with display DC states disabled,
-+	 * for now leaving all display power wells in the INIT power domain
-+	 * enabled.
-+	 */
-+	intel_display_power_driver_remove(display);
++	intel_display_power_disable(display);
++
++	drm_client_dev_suspend(display->drm);
++	drm_kms_helper_poll_disable(display->drm);
++
++	intel_display_driver_disable_user_access(display);
++
++	drm_atomic_helper_shutdown(display->drm);
++
++	flush_workqueue(display->wq.cleanup);
++
++	intel_dp_mst_suspend(display);
++
++	intel_encoder_block_all_hpds(display);
++
++	intel_hpd_cancel_work(display);
++
++	intel_display_driver_suspend_access(display);
++
++	intel_encoder_suspend_all(display);
++	intel_encoder_shutdown_all(display);
 +}
 +
- /*
-  * turn all crtc's off, but do not adjust state
-  * This has to be paired with a call to intel_modeset_setup_hw_state.
+ void intel_display_driver_shutdown_late(struct intel_display *display)
+ {
+ 	if (!HAS_DISPLAY(display))
 diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.h b/drivers/gpu/drm/i915/display/intel_display_driver.h
-index adfde02465ea..61515577758b 100644
+index 61515577758b..7eca3d17dd82 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_driver.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_driver.h
 @@ -24,6 +24,7 @@ void intel_display_driver_remove(struct intel_display *display);
  void intel_display_driver_remove_noirq(struct intel_display *display);
  void intel_display_driver_remove_nogem(struct intel_display *display);
  void intel_display_driver_unregister(struct intel_display *display);
-+void intel_display_driver_shutdown_late(struct intel_display *display);
++void intel_display_driver_shutdown(struct intel_display *display);
+ void intel_display_driver_shutdown_late(struct intel_display *display);
  
  int intel_display_driver_pm_suspend(struct intel_display *display);
- void intel_display_driver_pm_suspend_late(struct intel_display *display, bool s2idle);
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 6fd3e8b155b1..99fa42561989 100644
+index 99fa42561989..2458a8a684e9 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1075,17 +1075,14 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
- 	i915_gem_suspend(i915);
+@@ -54,7 +54,6 @@
+ #include "display/intel_bw.h"
+ #include "display/intel_cdclk.h"
+ #include "display/intel_crtc.h"
+-#include "display/intel_display_core.h"
+ #include "display/intel_display_device.h"
+ #include "display/intel_display_driver.h"
+ #include "display/intel_display_power.h"
+@@ -1044,29 +1043,8 @@ void i915_driver_shutdown(struct drm_i915_private *i915)
  
- 	/*
--	 * The only requirement is to reboot with display DC states disabled,
--	 * for now leaving all display power wells in the INIT power domain
--	 * enabled.
--	 *
- 	 * TODO:
- 	 * - unify the pci_driver::shutdown sequence here with the
- 	 *   pci_driver.driver.pm.poweroff,poweroff_late sequence.
- 	 * - unify the driver remove and system/runtime suspend sequences with
- 	 *   the above unified shutdown/poweroff sequence.
- 	 */
--	intel_display_power_driver_remove(display);
-+
-+	intel_display_driver_shutdown_late(display);
- 	enable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 	disable_rpm_wakeref_asserts(&i915->runtime_pm);
+ 	intel_runtime_pm_disable(&i915->runtime_pm);
+-	intel_display_power_disable(display);
+-
+-	drm_client_dev_suspend(&i915->drm);
+-	if (intel_display_device_present(display)) {
+-		drm_kms_helper_poll_disable(&i915->drm);
+-		intel_display_driver_disable_user_access(display);
+-
+-		drm_atomic_helper_shutdown(&i915->drm);
+-	}
+-
+-	flush_workqueue(display->wq.cleanup);
+-
+-	intel_dp_mst_suspend(display);
+-
+-	intel_encoder_block_all_hpds(display);
+-
+-	intel_hpd_cancel_work(display);
  
- 	intel_runtime_pm_driver_last_release(&i915->runtime_pm);
-diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index bbd4f527d5e3..28bcfaacc240 100644
---- a/drivers/gpu/drm/xe/display/xe_display.c
-+++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -221,12 +221,7 @@ void xe_display_shutdown_late(struct xe_device *xe)
- 	if (!xe->info.probe_display)
- 		return;
+-	if (intel_display_device_present(display))
+-		intel_display_driver_suspend_access(display);
+-
+-	intel_encoder_suspend_all(display);
+-	intel_encoder_shutdown_all(display);
++	intel_display_driver_shutdown(display);
  
--	/*
--	 * The only requirement is to reboot with display DC states disabled,
--	 * for now leaving all display power wells in the INIT power domain
--	 * enabled.
--	 */
--	intel_display_power_driver_remove(display);
-+	intel_display_driver_shutdown_late(display);
- }
+ 	intel_irq_suspend(i915);
  
- /* IRQ-related functions */
 -- 
 2.47.3
 
