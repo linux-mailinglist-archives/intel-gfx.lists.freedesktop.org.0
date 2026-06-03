@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id QoR0HfVEIGqRzgAAu9opvQ
+	id KVT7OPlEIGqUzgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 17:15:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 17:15:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20FB5639050
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 17:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8145063905B
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 17:15:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=eIpcNubZ;
+	dkim=pass header.d=intel.com header.s=Intel header.b=CQIMhmS5;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6CBC10FFBE;
-	Wed,  3 Jun 2026 15:14:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1358010FFC0;
+	Wed,  3 Jun 2026 15:15:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 611A410FFC2;
- Wed,  3 Jun 2026 15:14:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7FC5B10FFC2;
+ Wed,  3 Jun 2026 15:15:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780499698; x=1812035698;
+ t=1780499702; x=1812035702;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=TfgMoUxVCAGeBcQaYvzYCyz34zlmQpfAUpt94mR5Lhg=;
- b=eIpcNubZkN6PULmMTfEWFJeqJO8XovYqFEI9lFiCdn3g60Unbrylsoy6
- vseL55L5XGJnJRexhW6FlbPnC4QDJHUhyz+nO1L6TxtsLAbKFhXNpPM7G
- oBVam6af15U7SB97lxl4cGlwhzKZJVrCBk7X32388i9Be887tufsXX1jq
- QqqEdWVmYqIUIdFJYTRlLj2+TxlQIAUrd16zlTxeQiRMawHm/zrw2K+VS
- SG1yj8eDMVjurmHheoiefo9CtNlyYPv/xgFqvH40EwPRYhPKUg8UsbrKu
- HqwEB0EoP8qBADtzyCa+wM/VeHyNfpyojmb6ILM8EvCxoFFlD4dk37bz0 Q==;
-X-CSE-ConnectionGUID: Mlq+aRPAS5GGnrKbZY+p9g==
-X-CSE-MsgGUID: cJ3N3RFDSESgaSNseIXtOA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="98886430"
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="98886430"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 08:14:58 -0700
-X-CSE-ConnectionGUID: BEQ34UyGQ4ebpkurZmYvcg==
-X-CSE-MsgGUID: IKf4rDJiTB6W5K6trAkONw==
+ bh=iX+dJuZGdc4DHv7UdPJUXLpQlOjTsSgdsArACdh2EWo=;
+ b=CQIMhmS5GqLt+p7hVkygvtwsdc8P6P9YM0H+qPV1wQmb+dUToHBev+yO
+ Jg5JZugAxVoiYiDkqrfu5SitNtj0jr1/3nKBs9jH0hYX9Ray6+cY4eEds
+ hcpHbxbbq0TalMX5So4sSM57G5RiNdBdMjjW/pE/1CeP1q+HZcdDg3ErX
+ o6K1e0lGI3uWwOQANaj2y4EgVGseo3zh8QRi8lyo8+ioSrvm7hS7SBF5f
+ 04slNixod/t76AV9j0O/0l+LfkmZXRqP0LGq6b5xZmIRccYb8R0UxVvIe
+ lEqNlFcRF6sH1UVfIcPSaYnCKi7FXv4wouA3dTINT0ikZXAIhMhpbsGk2 A==;
+X-CSE-ConnectionGUID: XkpSHxdfTJKbqI4nXBp8Rw==
+X-CSE-MsgGUID: d91NMQjPQTOiJB+ozXMOIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="92421189"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="92421189"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 08:15:02 -0700
+X-CSE-ConnectionGUID: BMx9xj8KRbKVwZz5oTR09Q==
+X-CSE-MsgGUID: QJ6aqJc7RtONgWCT/ekPuQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="243425754"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="244380881"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.189])
- by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 08:14:57 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 08:15:01 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 4/8] drm/i915/color: reduce indent in
- xelpd_program_plane_post_csc_lut()
-Date: Wed,  3 Jun 2026 18:14:31 +0300
-Message-ID: <cb60ebb0c5fe67331425ba51280cea4ba111c577.1780499355.git.jani.nikula@intel.com>
+Subject: [PATCH 5/8] drm/i915/color: join loops in
+ xelpd_program_plane_pre_csc_lut()
+Date: Wed,  3 Jun 2026 18:14:32 +0300
+Message-ID: <6d4f8bb713a998c199606c079bed924458f04f54.1780499355.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1780499355.git.jani.nikula@intel.com>
 References: <cover.1780499355.git.jani.nikula@intel.com>
@@ -103,114 +103,69 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 20FB5639050
+X-Rspamd-Queue-Id: 8145063905B
 
-Return early for !icl_is_hdr_plane() to reduce indent.
+Use single for loops instead of two. Especially switching from a
+for-loop to a do-while-loop with the same loop index is confusing, and
+it's hard to figure out the end index. Define the end in terms of
+lut_size; there's three more entries after the first 128.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-
 ---
-
-'git show -w' for easy review
----
- drivers/gpu/drm/i915/display/intel_color.c | 79 +++++++++++-----------
- 1 file changed, 40 insertions(+), 39 deletions(-)
+ drivers/gpu/drm/i915/display/intel_color.c | 27 ++++++++--------------
+ 1 file changed, 9 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_color.c b/drivers/gpu/drm/i915/display/intel_color.c
-index 429eb6daa7d2..5209a4cdd14d 100644
+index 5209a4cdd14d..48f09c73e513 100644
 --- a/drivers/gpu/drm/i915/display/intel_color.c
 +++ b/drivers/gpu/drm/i915/display/intel_color.c
-@@ -4024,48 +4024,49 @@ xelpd_program_plane_post_csc_lut(struct intel_dsb *dsb,
- 	int i, lut_size = 32;
- 	u32 lut_val;
+@@ -3978,35 +3978,26 @@ xelpd_program_plane_pre_csc_lut(struct intel_dsb *dsb,
+ 			   PLANE_PAL_PREC_AUTO_INCREMENT);
  
--	if (icl_is_hdr_plane(display, plane)) {
--		intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, 0),
--				   PLANE_PAL_PREC_AUTO_INCREMENT);
--		/* TODO: Add macro */
--		intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, 0),
--				   PLANE_PAL_PREC_AUTO_INCREMENT);
--		if (post_csc_lut) {
--			for (i = 0; i < lut_size; i++) {
--				lut_val = drm_color_lut32_extract(post_csc_lut[i].green, 24);
--
--				intel_de_write_dsb(display, dsb,
--						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   lut_val);
--			}
--
--			/* Segment 2 - clamp to the last LUT value to prevent step discontinuity */
--			do {
--				intel_de_write_dsb(display, dsb,
--						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   lut_val);
--			} while (i++ < 34);
--		} else {
--			/*TODO: Add for segment 0 */
--			for (i = 0; i < lut_size; i++) {
--				lut_val = (i * ((1 << 24) - 1)) / (lut_size - 1);
--
--				intel_de_write_dsb(display, dsb,
--						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   lut_val);
--			}
--
--			do {
--				intel_de_write_dsb(display, dsb,
--						   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
--						   1 << 24);
--			} while (i++ < 34);
-+	if (!icl_is_hdr_plane(display, plane))
-+		return;
-+
-+	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, 0),
-+			   PLANE_PAL_PREC_AUTO_INCREMENT);
-+	/* TODO: Add macro */
-+	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, 0),
-+			   PLANE_PAL_PREC_AUTO_INCREMENT);
-+	if (post_csc_lut) {
-+		for (i = 0; i < lut_size; i++) {
-+			lut_val = drm_color_lut32_extract(post_csc_lut[i].green, 24);
-+
-+			intel_de_write_dsb(display, dsb,
-+					   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-+					   lut_val);
-+		}
-+
-+		/* Segment 2 - clamp to the last LUT value to prevent step discontinuity */
-+		do {
-+			intel_de_write_dsb(display, dsb,
-+					   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-+					   lut_val);
-+		} while (i++ < 34);
-+	} else {
-+		/*TODO: Add for segment 0 */
-+		for (i = 0; i < lut_size; i++) {
-+			lut_val = (i * ((1 << 24) - 1)) / (lut_size - 1);
-+
-+			intel_de_write_dsb(display, dsb,
-+					   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-+					   lut_val);
+ 	if (pre_csc_lut) {
+-		for (i = 0; i < lut_size; i++) {
+-			lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
++		for (i = 0; i < lut_size + 3; i++) {
++			if (i < lut_size)
++				lut_val = drm_color_lut32_extract(pre_csc_lut[i].green, 24);
++			/* else duplicate last lut_val */
+ 
+ 			intel_de_write_dsb(display, dsb,
+ 					   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+ 					   lut_val);
  		}
+-
+-		/* Program the max register to clamp values > 1.0. */
+-		/* TODO: Restrict to 0x7ffffff */
+-		do {
+-			intel_de_write_dsb(display, dsb,
+-					   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+-					   lut_val);
+-		} while (i++ < 130);
+ 	} else {
+-		for (i = 0; i < lut_size; i++) {
+-			lut_val = (i * ((1 << 24) - 1)) / (lut_size - 1);
++		for (i = 0; i < lut_size + 3; i++) {
++			if (i < lut_size)
++				lut_val = (i * ((1 << 24) - 1)) / (lut_size - 1);
++			else
++				lut_val = 1 << 24;
  
--		intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, 0), 0);
--		intel_de_write_dsb(display, dsb,
--				   PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, 0), 0);
-+		do {
-+			intel_de_write_dsb(display, dsb,
-+					   PLANE_POST_CSC_GAMC_DATA_ENH(pipe, plane, 0),
-+					   1 << 24);
-+		} while (i++ < 34);
+ 			intel_de_write_dsb(display, dsb,
+ 					   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+ 					   lut_val);
+ 		}
+-
+-		do {
+-			intel_de_write_dsb(display, dsb,
+-					   PLANE_PRE_CSC_GAMC_DATA_ENH(pipe, plane, 0),
+-					   1 << 24);
+-		} while (i++ < 130);
  	}
-+
-+	intel_de_write_dsb(display, dsb, PLANE_POST_CSC_GAMC_INDEX_ENH(pipe, plane, 0), 0);
-+	intel_de_write_dsb(display, dsb,
-+			   PLANE_POST_CSC_GAMC_SEG0_INDEX_ENH(pipe, plane, 0), 0);
- }
  
- static void
+ 	intel_de_write_dsb(display, dsb, PLANE_PRE_CSC_GAMC_INDEX_ENH(pipe, plane, 0), 0);
 -- 
 2.47.3
 
