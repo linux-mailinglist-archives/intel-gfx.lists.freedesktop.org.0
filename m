@@ -2,38 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qm3YGPuqIGoI6gAAu9opvQ
+	id JUwgLFezIGpz6wAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 00:30:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 01:05:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A5F0B63B988
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 00:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0949A63BB90
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 01:05:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=VY4KXV3B;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 433C3112434;
-	Wed,  3 Jun 2026 22:30:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9144911246B;
+	Wed,  3 Jun 2026 23:05:57 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C9716112434;
- Wed,  3 Jun 2026 22:30:16 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6231445784142144335=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CA7211246A;
+ Wed,  3 Jun 2026 23:05:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780527957; x=1812063957;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=Qexud8my5w6lQp0xeA4iuil5/uQknJcGTg4X1T/4ius=;
+ b=VY4KXV3BR4aaiS5n/i97XqtoXxU7eunIbr0DrIv3mJYbP3aDh28b0vr9
+ HQNlU2VbtmMMUZls2+NYiUAyfJoUm5VHW96I7q5q1gdkF5VTo8KrynP4k
+ gZMX2DlQMX0+ea7zxtGmqcOmsZIYE1BHTx8aimYZcFBw15rM2MN5TzTur
+ Tw+z4kvxTbLM/lLZ68LZBW4QdLPBezFNi1A+mhsCdRyYwZBbY70U5RgF6
+ o6Hfky/1JpSN1yWKgZ2kbOVskSMfwXJqFIM3PamCq7DVf6g+Fc5BYqN+R
+ ykgu3nGcz2xgnBkmPRusknny3d9zhkpqXSFuP6Owt13wuhtUvJEOEcC1N Q==;
+X-CSE-ConnectionGUID: rCt4HKYJTZuC3Q2P6ySlsA==
+X-CSE-MsgGUID: 0GTPr9J4QSagKtEpvZZl2g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="104013963"
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="104013963"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 16:05:56 -0700
+X-CSE-ConnectionGUID: B5eGPCstTke7/gVavPysDA==
+X-CSE-MsgGUID: qyNFV4ugTJ+Rs6FKwoV46g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="244223622"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa008.jf.intel.com with ESMTP; 03 Jun 2026 16:05:55 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Jani Nikula <jani.nikula@intel.com>,
+ Suraj Kandpal <suraj.kandpal@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v6 0/8] Vswing / Preemphasis Override
+Date: Thu,  4 Jun 2026 01:05:36 +0200
+Message-ID: <20260603230544.1993439-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_CMTG_enablement_=28rev8?=
- =?utf-8?q?=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Animesh Manna" <animesh.manna@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 03 Jun 2026 22:30:16 -0000
-Message-ID: <178052581681.41774.6119711511276913453@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260603195416.91639-1-animesh.manna@intel.com>
-In-Reply-To: <20260603195416.91639-1-animesh.manna@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,139 +73,101 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime,gitlab.freedesktop.org:url,patchwork.freedesktop.org:url,01.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:from_mime,intel.com:dkim,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A5F0B63B988
+X-Rspamd-Queue-Id: 0949A63BB90
 
---===============6231445784142144335==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Next version of [1]. IGT is at [2] and still pends v2.
 
-== Series Details ==
+This version finally fixes NULL pointer dereference seen consistently on
+module load on fi-hsw-4770, which blocked all of i915 testing.
 
-Series: CMTG enablement (rev8)
-URL   : https://patchwork.freedesktop.org/series/157664/
-State : success
+Booted and successfully overridden default VS/PE with custom VBT on PTL.
 
-== Summary ==
+BR,
+Michał
 
-CI Bug Log - changes from CI_DRM_18621 -> Patchwork_157664v8
-====================================================
+[1] https://lore.kernel.org/intel-gfx/20260602170031.1163205-1-michal.grzelak@intel.com
+[2] https://lore.kernel.org/igt-dev/20260507012821.527453-1-michal.grzelak@intel.com
 
-Summary
--------
+---
+Changelog:
+v5->v6
+- check if devdata is not NULL
+- add Bspec (Suraj)
+- remove drm_WARN_ONCE (Suraj)
+- pass default VS/PE tables to LT's BIOS accessor (Suraj)
+- set txswing & _level from default VS/PE tables (Suraj)
+- add helper checking if VS/PE-O has been allocated (Suraj)
 
-  **SUCCESS**
+v4->v5
+- set devdata->vspeo->num_entries in intel_bios.c
+- add if-ladder instead of function pointer
+- blend index computation with table parsing
+- remove WARN and debug messages
+- remove enums entirely
+- add spaces around operators (Suraj)
+- remove spaces after type casting (Suraj)
+- remove INTEL_DISPLAY_STATE_WARN (Suraj)
+- change funcs prefix from snps_ to mtl_ (Suraj)
 
-  No regressions found.
+v3->v4
+- add Bspec (Suraj)
+- remove unnecessary init of VS/PE-O metadata (Suraj)
+- add helper for computing number of rows (Suraj)
+- fix num_rows's type (Jani, Suraj)
+- declare num_rows (Suraj)
+- change debug message when requesting VS/PE-O (Suraj)
+- stick to solely changing VBT data into current structures (Jani)
+- move iterator declaration to declaration block (Suraj)
 
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157664v8/index.html
+v2->v3
+- remove unnecessary braces from if block (Suraj)
+- return -EINVAL instead of -1 (Suraj)
 
-Participating hosts (42 -> 40)
-------------------------------
+Michał Grzelak (8):
+  drm/i915/bios: search for VBT #57 by default
+  drm/i915/bios: store VBT #57's metadata in intel_vbt_data
+  drm/i915/bios: print VS/PE-O port info
+  drm/i915/bios: de/allocate VS/PE-O buffer for each port
+  drm/i915: override LT's VS/PE when requested
+  drm/i915: override Snps's VS/PE when requested
+  drm/i915: override Combo's VS/PE when requested
+  drm/i915/bios: remove VS/PE-O warning
 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+ drivers/gpu/drm/i915/display/intel_bios.c     | 184 +++++++++++++++++-
+ drivers/gpu/drm/i915/display/intel_bios.h     |  13 ++
+ .../drm/i915/display/intel_ddi_buf_trans.c    | 133 ++++++++++++-
+ .../gpu/drm/i915/display/intel_display_core.h |   7 +
+ 4 files changed, 327 insertions(+), 10 deletions(-)
 
+-- 
+2.45.2
 
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18621 -> Patchwork_157664v8
-
-  CI-20190529: 20190529
-  CI_DRM_18621: 3ce80e5f47ffd09fbecde6d279a37a53c9a15fc3 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_157664v8: 3ce80e5f47ffd09fbecde6d279a37a53c9a15fc3 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157664v8/index.html
-
---===============6231445784142144335==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>CMTG enablement (rev8)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/157664/">https://patchwork.freedesktop.org/series/157664/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157664v8/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157664v8/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18621 -&gt; Patchwork_157664v8</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_157664v8/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18621 -&gt; Patchwork_157664v8</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18621: 3ce80e5f47ffd09fbecde6d279a37a53c9a15fc3 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_157664v8: 3ce80e5f47ffd09fbecde6d279a37a53c9a15fc3 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6231445784142144335==--
