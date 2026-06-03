@@ -2,68 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yq5zGlP2H2o1tQAAu9opvQ
+	id AZl5C1sCIGrVtwAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 11:39:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 12:30:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C242B6363A9
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 11:39:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C85F96369CF
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 12:30:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=ChgNY3wr;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ZUiWkIGH;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E922F10FADA;
-	Wed,  3 Jun 2026 09:39:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DBFD310FB91;
+	Wed,  3 Jun 2026 10:30:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 733C710FAD7;
- Wed,  3 Jun 2026 09:39:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 634A410FB75;
+ Wed,  3 Jun 2026 10:30:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780479568; x=1812015568;
+ t=1780482646; x=1812018646;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=ai/Q0j191z64bA2k77aRNgjeIieXktAgLTqmnJOMi4Q=;
- b=ChgNY3wrr2Lb1re3QLd5iqFhPbuVOkpkWRiK8m3xqDCFBRXTIhGplXJ/
- UyinniRwEjKHjW+8c8X6bgU2xxeQJzfk7S9ElOWM6pOlLPJhxBSWL8HGx
- HYb9v1FlEpVHmaRk2lEYG0MOqnZOXGOLHO2t/fBUxLC3dOylY6p1HxXlY
- zuRCStPQ6VnimV32vwTuPdBXZj7OxNpoTY7uDWQvxtxLakUcN6ZlGQQ+3
- fklSEGVnEJspEefC9ocLGwx0HzH93jMFyPqFKbdxugMMa6fTqvz1DLV7X
- /qTRvMcHcrLlkX88dKY7YvtkholXDioV8RXe+aIxxsT7Q9aidTHdFG44k w==;
-X-CSE-ConnectionGUID: +f3jCFgVSieNDbfZiOMntQ==
-X-CSE-MsgGUID: vSdWeb4PTuOvQZCGQirY8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="85168965"
-X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="85168965"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 02:39:27 -0700
-X-CSE-ConnectionGUID: thPgsvknT/2pjYKYcTbiOQ==
-X-CSE-MsgGUID: wpxLxYkFR0eajaXcSfab7A==
+ bh=+o0nU3Fx162eyxsoNvnUFfGHK6gbbBVlEk6LSDt3N2c=;
+ b=ZUiWkIGHmk/bUVgbWAGjjWQ7oV1KPGCv2l53nUMAzxpfHEfsX3meHRIz
+ ecqjN62W0BPBsZFaA/KPbbfnht8fAolZJWyntiEIAPTZETI0dnR4izlEC
+ Xzyv2eUHfHHO8gnMA9BUcPXg1ocMq3+vWjJ5HinZQ7qtILHxnnW/7BHHz
+ bSC+63x6ZDGGsloYMpiDe9d2FuIF0mD7a7F6pIMaq3/EWTqfzBFCdWzM2
+ /STPi9cIKRWWJC3Lf6/ea4ascKFSp7lA3kZ1SXdP9PdVYa5jPA31uSoPw
+ 4RQsRyTEeefDjXJWwrc+kNeDTxnLo2FMaeMp94mUmV66mRuBpjJxJJEb2 A==;
+X-CSE-ConnectionGUID: Em1e7Q7LSYqgBrfss2OeFg==
+X-CSE-MsgGUID: 4rlTbaCwTq6K4vhTmuywCA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="81316526"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="81316526"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 03:30:45 -0700
+X-CSE-ConnectionGUID: Cq9ieJebQ+KCsjOczaBhsA==
+X-CSE-MsgGUID: +31VtOuHS1mBytnk9wzvcg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,184,1774335600"; d="scan'208";a="241182534"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="249104959"
 Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.189])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 03 Jun 2026 02:39:24 -0700
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 03:30:41 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Rodrigo Vivi
- <rodrigo.vivi@intel.com>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Nikita Zhandarovich <n.zhandarovich@fintech.ru>, Tvrtko Ursulin
- <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
- <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, lvc-project@linuxtesting.org
-Subject: Re: [PATCH v2] drm/i915/edp: Check supported link rates DPCD read
-In-Reply-To: <824c6ced1095635f86527709822c8af3ddff7c8c@intel.com>
+To: Thomas Zimmermann <tzimmermann@suse.de>, rajat.gupta@oss.qualcomm.com,
+ jani.saarinen@intel.com, simona@ffwll.ch, airlied@gmail.com,
+ mripard@kernel.org, maarten.lankhorst@linux.intel.com
+Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
+Subject: Re: [PATCH] drm/dumb-buffer: Drop buffer-size limits for now
+In-Reply-To: <20260602112842.252279-1-tzimmermann@suse.de>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260529145759.1640646-1-n.zhandarovich@fintech.ru>
- <824c6ced1095635f86527709822c8af3ddff7c8c@intel.com>
-Date: Wed, 03 Jun 2026 12:39:21 +0300
-Message-ID: <7b19689e97c8dc714d6dc28d0f92b0d6fd859c23@intel.com>
+References: <20260602112842.252279-1-tzimmermann@suse.de>
+Date: Wed, 03 Jun 2026 13:30:37 +0300
+Message-ID: <d161a00845f2b3df00c319ddc8706a9a1ca372d2@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -90,83 +87,76 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_CC(0.00)[fintech.ru,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,linuxtesting.org];
-	RCPT_COUNT_TWELVE(0.00)[12];
 	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[suse.de,oss.qualcomm.com,intel.com,ffwll.ch,gmail.com,kernel.org,linux.intel.com];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:email,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp,qualcomm.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C242B6363A9
+X-Rspamd-Queue-Id: C85F96369CF
 
-On Fri, 29 May 2026, Jani Nikula <jani.nikula@linux.intel.com> wrote:
-> On Fri, 29 May 2026, Nikita Zhandarovich <n.zhandarovich@fintech.ru> wrote:
->> intel_edp_set_sink_rates() reads DP_SUPPORTED_LINK_RATES into a local
->> stack array and then parses the array unconditionally. If the read
->> fails, the array contents are not valid and may result in bogus sink
->> link rates being used.
->>
->> Use drm_dp_dpcd_read_data() and clear the sink rate array on failure,
->> so the existing parser falls back to the default sink rate handling.
->>
->> Found by Linux Verification Center (linuxtesting.org) with static
->> analysis tool SVACE.
->>
->> Fixes: 68f357cb7347 ("drm/i915/dp: generate and cache sink rate array for all DP, not just eDP 1.4")
->> Signed-off-by: Nikita Zhandarovich <n.zhandarovich@fintech.ru>
+On Tue, 02 Jun 2026, Thomas Zimmermann <tzimmermann@suse.de> wrote:
+> The size limits break some of the CI tests. So drop them for now. Keep
+> the other overflow tests from commit 5ab62dd3687b ("drm: prevent integer
+> overflows in dumb buffer creation helpers") in place.
 >
-> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
-
-And pushed to drm-intel-next, thanks for the patch.
-
+> There is still a pre-existing overflow check for 32-bit type limits in
+> drm_mode_create_dumb() that will catch the really absurd size requests.
+> Drivers that still do not use drm_mode_size_dumb() should be updated. The
+> helper calculates dumb-buffer geometry with overflow checks.
 >
->> ---
->> v1 -> v2:
->> - Use drm_dp_dpcd_read_data() instead of drm_dp_dpcd_read().
->> - Avoid the goto by clearing sink_rates on read failure, as suggested by
->>   Jani Nikula.
->> - Adjust patch description.
->>
->>  drivers/gpu/drm/i915/display/intel_dp.c | 11 +++++++++--
->>  1 file changed, 9 insertions(+), 2 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
->> index 6ef2a0043cda..5c3e816b0135 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
->> @@ -4678,10 +4678,17 @@ intel_edp_set_sink_rates(struct intel_dp *intel_dp)
->>  
->>  	if (intel_dp->edp_dpcd[0] >= DP_EDP_14) {
->>  		__le16 sink_rates[DP_MAX_SUPPORTED_RATES];
->> +		int ret;
->>  		int i;
->>  
->> -		drm_dp_dpcd_read(&intel_dp->aux, DP_SUPPORTED_LINK_RATES,
->> -				 sink_rates, sizeof(sink_rates));
->> +		ret = drm_dp_dpcd_read_data(&intel_dp->aux,
->> +					    DP_SUPPORTED_LINK_RATES,
->> +					    sink_rates, sizeof(sink_rates));
->> +		if (ret < 0) {
->> +			drm_dbg_kms(display->drm,
->> +				    "Unable to read eDP supported link rates, using default rates\n");
->> +			memset(sink_rates, 0, sizeof(sink_rates));
->> +		}
->>  
->>  		for (i = 0; i < ARRAY_SIZE(sink_rates); i++) {
->>  			int rate;
+> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+> Fixes: 5ab62dd3687b ("drm: prevent integer overflows in dumb buffer creation helpers")
+> Reported-by: Jani Nikula <jani.nikula@linux.intel.com>
+> Closes: https://lore.kernel.org/dri-devel/ddf0233e50044059c85279f928661563ef6a55bf@intel.com/
+> Cc: Rajat Gupta <rajat.gupta@oss.qualcomm.com>
+> Cc: Thomas Zimmermann <tzimmermann@suse.de>
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <mripard@kernel.org>
+
+Thanks for following up. Maybe we need to return to this with less
+urgency.
+
+Acked-by: Jani Nikula <jani.nikula@intel.com>
+
+> ---
+>  drivers/gpu/drm/drm_dumb_buffers.c | 7 -------
+>  1 file changed, 7 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/drm_dumb_buffers.c b/drivers/gpu/drm/drm_dumb_buffers.c
+> index e60130b2bb0c..8e9ff17538e7 100644
+> --- a/drivers/gpu/drm/drm_dumb_buffers.c
+> +++ b/drivers/gpu/drm/drm_dumb_buffers.c
+> @@ -201,13 +201,6 @@ int drm_mode_create_dumb(struct drm_device *dev,
+>  	if (!args->width || !args->height || !args->bpp)
+>  		return -EINVAL;
+>  
+> -	/* Reject unreasonable inputs early.  Dumb buffers are for software
+> -	 * rendering; nothing legitimate needs more than 8192x8192 at 32bpp.
+> -	 * This prevents overflows in downstream alignment helpers.
+> -	 */
+> -	if (args->width >= 8192 || args->height >= 8192 || args->bpp > 32)
+> -		return -EINVAL;
+> -
+>  	/* overflow checks for 32bit size calculations */
+>  	if (args->bpp > U32_MAX - 8)
+>  		return -EINVAL;
+>
+> base-commit: a980196655477a8f5067112946401fe52e510664
 
 -- 
 Jani Nikula, Intel
