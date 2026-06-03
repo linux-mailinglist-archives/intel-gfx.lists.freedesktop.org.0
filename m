@@ -2,38 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JsrGCgsjIGoDwwAAu9opvQ
+	id ENMTHdMkIGozxQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 14:50:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 14:57:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5448E637B18
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 14:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4D181637C62
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 14:57:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=f1ikxPCo;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E000510FD7A;
-	Wed,  3 Jun 2026 12:50:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A9E1C10FD97;
+	Wed,  3 Jun 2026 12:57:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CD1E710FD6D;
- Wed,  3 Jun 2026 12:50:14 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7359308808848488001=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C6C1410FD97;
+ Wed,  3 Jun 2026 12:57:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780491471; x=1812027471;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=s9llO3Hohndfoy83MAv1XcEbxsNHcKyI6JApsMMn1+I=;
+ b=f1ikxPCoMzwgjOAgA1C1w7cZd4qlq6tYmVnuBTw3G+5K4kzPPiiBTRDu
+ IwszS+Xmz0mc+z0/QVX+Tm50h7FamIBkKC4VopE3cVhYxnFF2KhhDSagG
+ ZKQqI1Jj3lx842KCNixUL7o56FP2bMQBMRxSATDbdjbChz/eYOJzGxb1W
+ CtKD7mbhRE8Q5PW45O+MqMzGh1P9gGKL9ZNtIow0FQqRD+0hXJ11T3HpJ
+ GVef9paUUQ/Uyz7Mb/qF2VERRQeyjbfTxIL1HvXw2Smw5cHaJ9Vup6kNQ
+ q6ugUfewL7WJZLH1dNwzsluz+cq1N5S7IyVTuq46Ws8a//33VnurDYj2n g==;
+X-CSE-ConnectionGUID: QD9ncC9VQJKvWZ8i9UbfCw==
+X-CSE-MsgGUID: sfkPwJs+SXuk7W79Dbwzqg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11805"; a="68839104"
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="68839104"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 05:57:50 -0700
+X-CSE-ConnectionGUID: +V9fGis7SHakdxarDD9YxQ==
+X-CSE-MsgGUID: VbTiVN8hQQCW3bVhbH6FaA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,185,1774335600"; d="scan'208";a="267881749"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.210])
+ ([10.245.244.210])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 05:57:49 -0700
+Message-ID: <80f3d370-7211-437f-a4d1-ef246eb47b7b@linux.intel.com>
+Date: Wed, 3 Jun 2026 14:57:48 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915=3A_Fix_double_cl?=
- =?utf-8?q?eanup_in_error_paths?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kory Maincent" <kory.maincent@bootlin.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 03 Jun 2026 12:50:14 -0000
-Message-ID: <178049101483.39437.2409806583434206333@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260603-fix_i915-v1-0-7479ff64e705@bootlin.com>
-In-Reply-To: <20260603-fix_i915-v1-0-7479ff64e705@bootlin.com>
+User-Agent: Mozilla Thunderbird
+Subject: [PATCH] drm/xe/ggtt: clear reserved area at GUC_GGTT_TOP.
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>, intel-gfx@lists.freedesktop.org,
+ intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>,
+ Michal Wajdeczko <michal.wajdeczko@intel.com>
+References: <20260527144527.3701844-2-rodrigo.vivi@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20260527144527.3701844-2-rodrigo.vivi@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,236 +75,109 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,gitlab.freedesktop.org:url,lists.freedesktop.org:email,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,01.org:url]
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ARC_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5448E637B18
+X-Rspamd-Queue-Id: 4D181637C62
 
---===============7359308808848488001==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello,
 
-== Series Details ==
+On 5/27/26 16:45, Rodrigo Vivi wrote:
+> The PF GGTT allocator was initialised over a relative [0, usable_size)
+> range, with ggtt->start added on every address conversion to get the
+> actual hardware address.  Two consequences of that model were considered
+> "horrible hacks":
+> 
+>   - ggtt->start (the WOPCM offset) had to be carried around and added
+>     to every drm_mm result.
+This is still the case, only we add a separate variable now that is usually 0.
+We always have to ensure that this is correctly accounted
+for, otherwise we get subtle bugs, so there's no reason not to use it,
+if it's already used everywhere.
 
-Series: drm/i915: Fix double cleanup in error paths
-URL   : https://patchwork.freedesktop.org/series/167808/
-State : failure
+Whether it's 0 or wopcm_start doesn't change the result.
 
-== Summary ==
+>   - The GUC_GGTT_TOP ceiling silently truncated the GGTT range instead
+>     of being made explicit, leaving PTEs in [GUC_GGTT_TOP, total_size)
+>     untouched during the initial clear.
+This is a valid concern, but it's very easily be fixed inside the initial clear
+by calling xe_ggtt_clear once more with a comment for !VF case.
 
-CI Bug Log - changes from CI_DRM_18616 -> Patchwork_167808v1
-====================================================
+Something like below is enough to fix it. Adding a reserved region at the end/start
+is not the way to do so and just adds more complications.
+---8<---
+When initialising GGTT, we never clear the part above GUC_GGTT_TOP.
+Add a member to &xe_ggtt that holds the full GGTT size, and clear it
+during the pass at xe_ggtt_initial_clear.
 
-Summary
--------
+Reported-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
+---
+diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+index 8ec23862477fc..497b99a932f0d 100644
+--- a/drivers/gpu/drm/xe/xe_ggtt.c
++++ b/drivers/gpu/drm/xe/xe_ggtt.c
+@@ -115,6 +115,8 @@ struct xe_ggtt {
+ 	u64 start;
+ 	/** @size: Total usable size of this GGTT */
+ 	u64 size;
++	/** @entire_size: complete size of the accessible GGTT, reserved regions inclusive */
++	u64 entire_size;
+ 	/**
+ 	 * @flags: Flags for this GGTT.
+ 	 * Acceptable flags:
+@@ -406,7 +408,8 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 			return -ENOMEM;
+ 		}
+ 		ggtt_start = wopcm;
+-		ggtt_size = (gsm_size / 8) * (u64)XE_PAGE_SIZE - ggtt_start;
++		ggtt->entire_size = (gsm_size / 8) * (u64)XE_PAGE_SIZE;
++		ggtt_size = ggtt->entire_size - ggtt_start;
+ 	} else {
+ 		ggtt_start = xe_tile_sriov_vf_ggtt_base(ggtt->tile);
+ 		ggtt_size = xe_tile_sriov_vf_ggtt(ggtt->tile);
+@@ -417,6 +420,7 @@ int xe_ggtt_init_early(struct xe_ggtt *ggtt)
+ 				    ggtt_start, ggtt_start + ggtt_size - 1);
+ 			return -ERANGE;
+ 		}
++		ggtt->entire_size = ggtt_size;
+ 	}
+ 
+ 	ggtt->gsm = ggtt->tile->mmio.regs + SZ_8M;
+@@ -461,6 +465,10 @@ static void xe_ggtt_initial_clear(struct xe_ggtt *ggtt)
+ 	drm_mm_for_each_hole(hole, &ggtt->mm, start, end)
+ 		xe_ggtt_clear(ggtt, ggtt->start + start, end - start);
+ 
++	end = ggtt->start + ggtt->size;
++	if (ggtt->entire_size > end)
++		xe_ggtt_clear(ggtt, end, ggtt->entire_size - end);
++
+ 	xe_ggtt_invalidate(ggtt);
+ 	mutex_unlock(&ggtt->lock);
+ }
 
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_167808v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_167808v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/index.html
-
-Participating hosts (41 -> 38)
-------------------------------
-
-  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_167808v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_module_load@load:
-    - bat-arlh-2:         [PASS][1] -> [ABORT][2]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-arlh-2/igt@i915_module_load@load.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-arlh-2/igt@i915_module_load@load.html
-    - bat-adlp-9:         [PASS][3] -> [ABORT][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-adlp-9/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-adlp-9/igt@i915_module_load@load.html
-    - fi-kbl-7567u:       [PASS][5] -> [ABORT][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-kbl-7567u/igt@i915_module_load@load.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-kbl-7567u/igt@i915_module_load@load.html
-    - fi-cfl-8700k:       [PASS][7] -> [ABORT][8]
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-cfl-8700k/igt@i915_module_load@load.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-cfl-8700k/igt@i915_module_load@load.html
-    - fi-kbl-8809g:       [PASS][9] -> [ABORT][10]
-   [9]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-kbl-8809g/igt@i915_module_load@load.html
-   [10]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-kbl-8809g/igt@i915_module_load@load.html
-    - bat-kbl-2:          [PASS][11] -> [ABORT][12]
-   [11]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-kbl-2/igt@i915_module_load@load.html
-   [12]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-kbl-2/igt@i915_module_load@load.html
-    - bat-arls-5:         [PASS][13] -> [ABORT][14]
-   [13]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-arls-5/igt@i915_module_load@load.html
-   [14]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-arls-5/igt@i915_module_load@load.html
-    - bat-rplp-1:         [PASS][15] -> [ABORT][16]
-   [15]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-rplp-1/igt@i915_module_load@load.html
-   [16]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-rplp-1/igt@i915_module_load@load.html
-    - fi-cfl-guc:         [PASS][17] -> [ABORT][18]
-   [17]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-cfl-guc/igt@i915_module_load@load.html
-   [18]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-cfl-guc/igt@i915_module_load@load.html
-    - bat-arls-6:         [PASS][19] -> [ABORT][20]
-   [19]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-arls-6/igt@i915_module_load@load.html
-   [20]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-arls-6/igt@i915_module_load@load.html
-    - fi-kbl-x1275:       [PASS][21] -> [ABORT][22]
-   [21]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-kbl-x1275/igt@i915_module_load@load.html
-   [22]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-kbl-x1275/igt@i915_module_load@load.html
-    - bat-adlp-11:        [PASS][23] -> [ABORT][24]
-   [23]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-adlp-11/igt@i915_module_load@load.html
-   [24]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-adlp-11/igt@i915_module_load@load.html
-
-  
-Known issues
-------------
-
-  Here are the changes found in Patchwork_167808v1 that come from known issues:
-
-### IGT changes ###
-
-#### Possible fixes ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [SKIP][25] ([i915#13030]) -> [PASS][26]
-   [25]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [26]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#13030]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13030
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18616 -> Patchwork_167808v1
-
-  CI-20190529: 20190529
-  CI_DRM_18616: eb42f7e0ec818a6be55482d88145d757acf3e093 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_167808v1: eb42f7e0ec818a6be55482d88145d757acf3e093 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/index.html
-
---===============7359308808848488001==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: Fix double cleanup in error paths</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167808/">https://patchwork.freedesktop.org/series/167808/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18616 -&gt; Patchwork_167808v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_167808v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_167808v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 38)</h2>
-<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_167808v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>bat-arlh-2:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-arlh-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-arlh-2/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-adlp-9/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-adlp-9/igt@i915_module_load@load.html">ABORT</a></li>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-kbl-7567u/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-kbl-7567u/igt@i915_module_load@load.html">ABORT</a></li>
-<li>fi-cfl-8700k:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-cfl-8700k/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-cfl-8700k/igt@i915_module_load@load.html">ABORT</a></li>
-<li>fi-kbl-8809g:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-kbl-8809g/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-kbl-8809g/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-kbl-2:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-kbl-2/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-kbl-2/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-arls-5/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-arls-5/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-rplp-1:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-rplp-1/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-rplp-1/igt@i915_module_load@load.html">ABORT</a></li>
-<li>fi-cfl-guc:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-cfl-guc/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-cfl-guc/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-arls-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-arls-6/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-arls-6/igt@i915_module_load@load.html">ABORT</a></li>
-<li>fi-kbl-x1275:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-kbl-x1275/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-kbl-x1275/igt@i915_module_load@load.html">ABORT</a></li>
-<li>bat-adlp-11:        <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/bat-adlp-11/igt@i915_module_load@load.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/bat-adlp-11/igt@i915_module_load@load.html">ABORT</a></li>
-</ul>
-</li>
-</ul>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_167808v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18616/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13030">i915#13030</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167808v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18616 -&gt; Patchwork_167808v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18616: eb42f7e0ec818a6be55482d88145d757acf3e093 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_167808v1: eb42f7e0ec818a6be55482d88145d757acf3e093 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7359308808848488001==--
