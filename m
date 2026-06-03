@@ -2,69 +2,39 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id swfAEEDtH2ofsgAAu9opvQ
+	id OUBsFy7vH2pssgAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 11:00:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 11:09:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99C7E635F21
-	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 11:00:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CDBF1636002
+	for <lists+intel-gfx@lfdr.de>; Wed, 03 Jun 2026 11:09:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=04B6lho+;
+	dkim=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=bootlin.com
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 245BB113C6F;
-	Wed,  3 Jun 2026 09:00:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C3BBB113C88;
+	Wed,  3 Jun 2026 09:08:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B02A5113C6D;
- Wed,  3 Jun 2026 09:00:40 +0000 (UTC)
-Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id 4BE034E42DFE;
- Wed,  3 Jun 2026 09:00:39 +0000 (UTC)
-Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 2072C5FD24;
- Wed,  3 Jun 2026 09:00:39 +0000 (UTC)
-Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 2723110888413; 
- Wed,  3 Jun 2026 11:00:36 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1780477237; h=from:subject:date:message-id:to:cc:mime-version:content-type:
- content-transfer-encoding:in-reply-to:references;
- bh=YQGOVjJ70TJqHQ6t2vTYiGOL39RZYVDa4SJTFCWKyZo=;
- b=04B6lho+Bh//vim3TDYdAaLB6/BgNYrsH6G8def+gohQ4WgWK2QOntZiy/TTDyjGkLdJM6
- xT3A2e75f8OvhX4GZJ4pn/xI917zNPAopGnmTAanFRNzstyTO8xdSC/c1dv/kLudqcK2V0
- IDXHDfRcqjUMJMYJ6W45S/a4TkYWtA1Kb/KVVUSFkkV3yC1WcFtc5LIsLRfPbLj+swReab
- 4gXvU7+o7GdnjYoERGvFoS8i+X+aNvyQfukBvoPX7+3UxpCGHtGKiAtoB9Dwt5pw/P2ZnR
- e3YRQACR5R/Jo1pgt/HVqLEBQMF4GLybIQ4xNYkTAnN34NT3m0OnVlBSAzZDuA==
-From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Wed, 03 Jun 2026 10:59:54 +0200
-Subject: [PATCH 3/3] drm/i915/display/intel_dp: Drop redundant
- intel_dp_aux_fini() on init failure
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 45F8A113C87;
+ Wed,  3 Jun 2026 09:08:59 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1288232716767181857=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260603-fix_i915-v1-3-7479ff64e705@bootlin.com>
-References: <20260603-fix_i915-v1-0-7479ff64e705@bootlin.com>
-In-Reply-To: <20260603-fix_i915-v1-0-7479ff64e705@bootlin.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, 
- Simona Vetter <simona@ffwll.ch>, Chris Wilson <chris@chris-wilson.co.uk>, 
- Eric Anholt <eric@anholt.net>, Dave Airlie <airlied@redhat.com>, 
- Jesse Barnes <jbarnes@virtuousgeek.org>
-Cc: Thomas Petazzoni <thomas.petazzoni@bootlin.com>, 
- Louis Chauvet <louis.chauvet@bootlin.com>, 
- Mark Yacoub <markyacoub@google.com>, Sean Paul <seanpaul@google.com>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- Simona Vetter <simona.vetter@ffwll.ch>, 
- Kory Maincent <kory.maincent@bootlin.com>, stable@vger.kernel.org
-X-Mailer: b4 0.15.0
-X-Last-TLS-Session-Version: TLSv1.3
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D=3A_d?=
+ =?utf-8?q?isplay_=28runtime=29_suspend/resume/shutdown_unification=2C_part_?=
+ =?utf-8?q?2_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 03 Jun 2026 09:08:59 -0000
+Message-ID: <178047773927.38805.13362579311976309627@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <cover.1780389001.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1780389001.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,69 +47,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[bootlin.com,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,chris-wilson.co.uk,anholt.net,redhat.com,virtuousgeek.org];
-	RCPT_COUNT_TWELVE(0.00)[21];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[bootlin.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[bootlin.com:mid,bootlin.com:dkim,bootlin.com:from_mime,bootlin.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,emeril.freedesktop.org:from_mime,6beec6c84f66:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 99C7E635F21
+X-Rspamd-Queue-Id: CDBF1636002
 
-intel_dp_aux_fini() is already invoked via intel_dp_encoder_flush_work()
-in the encoder destroy path (intel_dp_encoder_destroy() and
-intel_ddi_encoder_destroy()). Calling it explicitly when
-intel_edp_init_connector() fails before jumping to the fail label
-therefore results in a double invocation. Drop the redundant call.
+--===============1288232716767181857==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Cc: stable@vger.kernel.org
-Fixes: c191eca110a37 ("drm/i915: Move intel_connector->unregister to connector->early_unregister")
-Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 4 +---
- 1 file changed, 1 insertion(+), 3 deletions(-)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f01a6eed38395..f4fab568172f4 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -7310,10 +7310,8 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		connector->get_hw_state = intel_connector_get_hw_state;
- 	connector->sync_state = intel_dp_connector_sync_state;
- 
--	if (!intel_edp_init_connector(intel_dp, connector)) {
--		intel_dp_aux_fini(intel_dp);
-+	if (!intel_edp_init_connector(intel_dp, connector))
- 		goto fail;
--	}
- 
- 	intel_dp_set_source_rates(intel_dp);
- 	intel_dp_set_common_rates(intel_dp);
+Series: drm/{i915, xe}: display (runtime) suspend/resume/shutdown unification, part 2 (rev2)
+URL   : https://patchwork.freedesktop.org/series/167725/
+State : success
 
--- 
-2.43.0
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18614 -> Patchwork_167725v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v2/index.html
+
+Participating hosts (42 -> 39)
+------------------------------
+
+  Missing    (3): bat-dg2-13 bat-kbl-2 fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18614 -> Patchwork_167725v2
+
+  CI-20190529: 20190529
+  CI_DRM_18614: b391419dc37a62b41f8e1a2489a8ae868109abee @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_167725v2: b391419dc37a62b41f8e1a2489a8ae868109abee @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v2/index.html
+
+--===============1288232716767181857==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}: display (runtime) suspend/resume/shutdown unification, part 2 (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167725/">https://patchwork.freedesktop.org/series/167725/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18614 -&gt; Patchwork_167725v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167725v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 39)</h2>
+<p>Missing    (3): bat-dg2-13 bat-kbl-2 fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18614 -&gt; Patchwork_167725v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18614: b391419dc37a62b41f8e1a2489a8ae868109abee @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8947: e322bfd77da04314dd310da9a6cf0562b5751f1f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_167725v2: b391419dc37a62b41f8e1a2489a8ae868109abee @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1288232716767181857==--
