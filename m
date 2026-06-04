@@ -2,122 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id koHlJOUVIWoS/AAAu9opvQ
+	id Y/MGAJMYIWqK/AAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 08:06:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 08:17:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DD81D63D23D
-	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 08:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B1D563D35E
+	for <lists+intel-gfx@lfdr.de>; Thu, 04 Jun 2026 08:17:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=OhVTnpwT;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=sMOi3rm3;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=OhVTnpwT;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=sMOi3rm3;
+	dkim=pass header.d=intel.com header.s=Intel header.b=XDt8o5bd;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=suse.de
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B269811268E;
-	Thu,  4 Jun 2026 06:06:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5521B1126A4;
+	Thu,  4 Jun 2026 06:17:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id EF0F8112690
- for <intel-gfx@lists.freedesktop.org>; Thu,  4 Jun 2026 06:06:24 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 5F02067DA0;
- Thu,  4 Jun 2026 06:06:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1780553183; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=vSG1oluyWb68Qc72lyluwslRTtXBVMAThZyTYxUHB74=;
- b=OhVTnpwTkNnGqjpfIWeNVOAx+gKH3ncfAxrh9wSakqOORO3ptEYsMXYYEklGxpFNLpdjS6
- NKSVewJWSUhyIt4nACbHN3LdbBeZJU7k6W5oD7x+8NgCVEyPNOJXPh4IFcI13BPw9DrCa8
- TsvxoztOljY6QHOrzc557f3Q5Qg1TW8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1780553183;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=vSG1oluyWb68Qc72lyluwslRTtXBVMAThZyTYxUHB74=;
- b=sMOi3rm3586EfVJoC6OGZA2E6roi2/rms/7+zR9AwheIJsdBzHYHBteJCzYBAeUosjS99n
- U9xW7icOKpRbUlCQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1780553183; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=vSG1oluyWb68Qc72lyluwslRTtXBVMAThZyTYxUHB74=;
- b=OhVTnpwTkNnGqjpfIWeNVOAx+gKH3ncfAxrh9wSakqOORO3ptEYsMXYYEklGxpFNLpdjS6
- NKSVewJWSUhyIt4nACbHN3LdbBeZJU7k6W5oD7x+8NgCVEyPNOJXPh4IFcI13BPw9DrCa8
- TsvxoztOljY6QHOrzc557f3Q5Qg1TW8=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1780553183;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
- bh=vSG1oluyWb68Qc72lyluwslRTtXBVMAThZyTYxUHB74=;
- b=sMOi3rm3586EfVJoC6OGZA2E6roi2/rms/7+zR9AwheIJsdBzHYHBteJCzYBAeUosjS99n
- U9xW7icOKpRbUlCQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 19ACC779A8;
- Thu,  4 Jun 2026 06:06:23 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id veUWBd8VIWrFBAAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Thu, 04 Jun 2026 06:06:23 +0000
-Message-ID: <1712a4ee-fc93-481f-bdf8-524cbc089509@suse.de>
-Date: Thu, 4 Jun 2026 08:06:22 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7A30B1126A2;
+ Thu,  4 Jun 2026 06:17:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780553871; x=1812089871;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=VewMYKYNxJ/lLTYp0EjWtZx8EnEQWJi+/7gmjpPrlzM=;
+ b=XDt8o5bd89YfPzGBTVnmNEXuABUZTWwtoE48ltK6/XBxbuplqq9ThmR1
+ ECHldZs3JlW0UVzASTA/EcX76/Tn15dTxMG0rIqRR/P7zg6oJORkvWoz/
+ M0kz3szcqJ/TgsfM6mULRO2GbSvAtmdpRq4vYa4c4EvmMDElE0QgtLb4I
+ IWPE1qQbD30rtQ+cB8XVrE4B3SOw3quPoUWZZLl+etX1r2e4mgOquOWUs
+ RNowXUpU/cEF6t3dO+17Jl8vX2YBaNKD+1q/xvDhM5QLqUwIG5lg7nsBh
+ dF0VsGdK6nzDE38+5cKnFF64cd8GPkdiowpjXgTUzZTCTg+P9n6Op9rnB A==;
+X-CSE-ConnectionGUID: I2zbdcPmSWqZNJtd10o0cQ==
+X-CSE-MsgGUID: QfwZD/kER5qmXdKrkynJXg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11806"; a="80515144"
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="80515144"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 23:17:50 -0700
+X-CSE-ConnectionGUID: 8ui+0tk5Tw6qe2suNQFDVA==
+X-CSE-MsgGUID: hOOir+qxRUOUJArg9s7Fsg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,186,1774335600"; d="scan'208";a="282555123"
+Received: from vpanait-mobl.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.33])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 03 Jun 2026 23:17:48 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Suraj Kandpal <suraj.kandpal@intel.com>, =?utf-8?Q?Micha=C5=82?= Grzelak
+ <michal.grzelak@intel.com>
+Subject: Re: [PATCH v6 1/8] drm/i915/bios: search for VBT #57 by default
+In-Reply-To: <20260603230544.1993439-2-michal.grzelak@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260603230544.1993439-1-michal.grzelak@intel.com>
+ <20260603230544.1993439-2-michal.grzelak@intel.com>
+Date: Thu, 04 Jun 2026 09:17:44 +0300
+Message-ID: <364052e487b8627fefa31f49a9f1d594f4aa9987@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/dumb-buffer: Drop buffer-size limits for now
-To: rajat.gupta@oss.qualcomm.com, jani.nikula@linux.intel.com,
- jani.saarinen@intel.com, simona@ffwll.ch, airlied@gmail.com,
- mripard@kernel.org, maarten.lankhorst@linux.intel.com
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org
-References: <20260602112842.252279-1-tzimmermann@suse.de>
-Content-Language: en-US
-From: Thomas Zimmermann <tzimmermann@suse.de>
-Autocrypt: addr=tzimmermann@suse.de; keydata=
- xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
- XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
- BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
- hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
- 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
- AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
- AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
- AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
- lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
- U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
- vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
- 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
- j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
- T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
- 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
- GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
- hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
- EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
- C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
- yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
- SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
- Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
- 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
-In-Reply-To: <20260602112842.252279-1-tzimmermann@suse.de>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -4.30
-X-Spam-Level: 
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -134,91 +80,111 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:rajat.gupta@oss.qualcomm.com,m:jani.nikula@linux.intel.com,m:jani.saarinen@intel.com,m:simona@ffwll.ch,m:airlied@gmail.com,m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[oss.qualcomm.com,linux.intel.com,intel.com,ffwll.ch,gmail.com,kernel.org];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[suse.de:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	TO_DN_NONE(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_FIVE(0.00)[5];
 	MID_RHS_MATCH_FROM(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,qualcomm.com:email,suse.com:url,lists.freedesktop.org:from_smtp]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DD81D63D23D
+X-Rspamd-Queue-Id: 3B1D563D35E
 
-Merged into drm-misc-fixes
-
-Am 02.06.26 um 13:24 schrieb Thomas Zimmermann:
-> The size limits break some of the CI tests. So drop them for now. Keep
-> the other overflow tests from commit 5ab62dd3687b ("drm: prevent integer
-> overflows in dumb buffer creation helpers") in place.
+On Thu, 04 Jun 2026, Micha=C5=82 Grzelak <michal.grzelak@intel.com> wrote:
+> Start searching for Vswing / Preemphasis Override Block during VBT
+> parsing at init_bdb_blocks().
 >
-> There is still a pre-existing overflow check for 32-bit type limits in
-> drm_mode_create_dumb() that will catch the really absurd size requests.
-> Drivers that still do not use drm_mode_size_dumb() should be updated. The
-> helper calculates dumb-buffer geometry with overflow checks.
+> Check for failure since pre-ICL GOPs do not contain the block. Check
+> also if VBT version is appropriately up-to-date.
 >
-> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
-> Fixes: 5ab62dd3687b ("drm: prevent integer overflows in dumb buffer creation helpers")
-> Reported-by: Jani Nikula <jani.nikula@linux.intel.com>
-> Closes: https://lore.kernel.org/dri-devel/ddf0233e50044059c85279f928661563ef6a55bf@intel.com/
-> Cc: Rajat Gupta <rajat.gupta@oss.qualcomm.com>
-> Cc: Thomas Zimmermann <tzimmermann@suse.de>
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <mripard@kernel.org>
+> Issue a debug message when port requests to override VS/PE and parsing
+> VBT #57 for the platform has not yet been implemented.
+>
+> v3->v4
+> - add Bspec (Suraj)
+>
+> Bspec: 32063
+> Signed-off-by: Micha=C5=82 Grzelak <michal.grzelak@intel.com>
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 > ---
->   drivers/gpu/drm/drm_dumb_buffers.c | 7 -------
->   1 file changed, 7 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_bios.c | 20 ++++++++++++++++++++
+>  1 file changed, 20 insertions(+)
 >
-> diff --git a/drivers/gpu/drm/drm_dumb_buffers.c b/drivers/gpu/drm/drm_dumb_buffers.c
-> index e60130b2bb0c..8e9ff17538e7 100644
-> --- a/drivers/gpu/drm/drm_dumb_buffers.c
-> +++ b/drivers/gpu/drm/drm_dumb_buffers.c
-> @@ -201,13 +201,6 @@ int drm_mode_create_dumb(struct drm_device *dev,
->   	if (!args->width || !args->height || !args->bpp)
->   		return -EINVAL;
->   
-> -	/* Reject unreasonable inputs early.  Dumb buffers are for software
-> -	 * rendering; nothing legitimate needs more than 8192x8192 at 32bpp.
-> -	 * This prevents overflows in downstream alignment helpers.
-> -	 */
-> -	if (args->width >= 8192 || args->height >= 8192 || args->bpp > 32)
-> -		return -EINVAL;
-> -
->   	/* overflow checks for 32bit size calculations */
->   	if (args->bpp > U32_MAX - 8)
->   		return -EINVAL;
->
-> base-commit: a980196655477a8f5067112946401fe52e510664
+> diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/=
+i915/display/intel_bios.c
+> index b6fe87c29aa7c..420b09b4d01ef 100644
+> --- a/drivers/gpu/drm/i915/display/intel_bios.c
+> +++ b/drivers/gpu/drm/i915/display/intel_bios.c
+> @@ -200,6 +200,8 @@ static const struct {
+>  	  .min_size =3D sizeof(struct bdb_mipi_sequence) },
+>  	{ .section_id =3D BDB_COMPRESSION_PARAMETERS,
+>  	  .min_size =3D sizeof(struct bdb_compression_parameters), },
+> +	{ .section_id =3D BDB_VSWING_PREEMPH,
+> +	  .min_size =3D sizeof(struct bdb_vswing_preemph), },
+>  	{ .section_id =3D BDB_GENERIC_DTD,
+>  	  .min_size =3D sizeof(struct bdb_generic_dtd), },
+>  };
+> @@ -2183,6 +2185,23 @@ parse_compression_parameters(struct intel_display =
+*display)
+>  	}
+>  }
+>=20=20
+> +static void
+> +parse_vswing_preemph_override(struct intel_display *display)
+> +{
+> +	const struct bdb_vswing_preemph *block;
+> +
+> +	if (display->vbt.version < 218)
+> +		return;
+> +
+> +	block =3D bdb_find_section(display, BDB_VSWING_PREEMPH);
+> +
+> +	/* pre-ICL GOPs don't have VBT #57 */
+> +	if (!block)
+> +		return;
+> +
+> +	drm_dbg_kms(display->drm, "valid VS/PE-O request but not yet supported\=
+n");
+> +}
+> +
+>  static u8 translate_iboost(struct intel_display *display, u8 val)
+>  {
+>  	static const u8 mapping[] =3D { 1, 3, 7 }; /* See VBT spec */
+> @@ -3274,6 +3293,7 @@ void intel_bios_init(struct intel_display *display)
+>=20=20
+>  	/* Depends on child device list */
+>  	parse_compression_parameters(display);
+> +	parse_vswing_preemph_override(display);
 
--- 
---
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
+This does not depend on the child device list
+(display->vbt.display_devices) which is filled by
+parse_general_definitions(). The call should be placed at the end of the
+group above this.
 
+BR,
+Jani.
 
+>=20=20
+>  out:
+>  	if (!vbt) {
+
+--=20
+Jani Nikula, Intel
