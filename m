@@ -2,66 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3yi9BzKlImrBbQEAu9opvQ
+	id mwN4INSnImpSbgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:30:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:41:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A1A0F64756E
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 147F96476F6
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:41:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=IYUj25gq;
+	dkim=pass header.d=intel.com header.s=Intel header.b="NJ3Li/B6";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 375BF11A702;
-	Fri,  5 Jun 2026 10:30:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D585E11A727;
+	Fri,  5 Jun 2026 10:41:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B30D011A6FE;
- Fri,  5 Jun 2026 10:30:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0A06F11A727;
+ Fri,  5 Jun 2026 10:41:20 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780655406; x=1812191406;
+ t=1780656080; x=1812192080;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=s7VurJ5X5Xu2NQ/39pHpOsCz2FduqI/LV+Xf70qGwu0=;
- b=IYUj25gqPr4uNORtgAspircRdKTSV2enrifZVURS3UVLj5lsrbLNJjcp
- bIonNa2gXkscfTi+BCSlsdO9YSWTPvwyRgcx1jHaBPitOJiOfw00FEAPL
- 9nK9269ggZnrEmr316vfTUJgghQR8BEmLXZFXhu8BtSDOmbYTYIoeYKhZ
- oyKhHyz0V0lsYN7WjiQV3VFUSGnyHwvtE3VB7xTAAM6a7Gh2BXlEu24XG
- vBoqhM3JF/fRweNT+xAzND/y4wWGvprHvBRPVxc69AbYaa2T6Ph4oGOXU
- ouSZ3wbWFZaNDxrMP2sZzWWlnzeyhLPAz3LRqf09RcykljyhG/legWd59 A==;
-X-CSE-ConnectionGUID: fkgZgvhuTHCBoDTCqIdffA==
-X-CSE-MsgGUID: JOVPkIrVSMqNlJpOBmKDEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81521225"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81521225"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 03:30:06 -0700
-X-CSE-ConnectionGUID: UkvjYA5oTCyO9vsfiQtLOQ==
-X-CSE-MsgGUID: ogIY5SM/RZKT2UbHB+3Vsw==
+ bh=Sx6lVU1L+Zsw3CUHvXxA70jueTljn6iEkxjyHDTVScs=;
+ b=NJ3Li/B6XKRGLy/ttzsi8jvcx6KA+R1e4yy6Kbc3VeMjLXJqvRdZWi3c
+ 4d4XEHQrmBzYNaZEkfwM9+IoUh0DHPx0Af17mrpgbetmAxmZiR/DI1K4j
+ wDF82xHWrykdqJ3jpoHGALBQEzZponfyDTUlt1WcCAncjN3vJzWhIDVlJ
+ FXCluZeU8daEFff8qHHdp52TmkN2LFhOQIeC/k9f2F0xVQVxh8RtHCy4u
+ Zb0S22AKF0mtnhOT1nS+F+KO9QIwwyU5Cf/K5CIVkCj2e2sZDyDS9yLBV
+ BMJRtg6nQ8Lr+p8/W9naDhGCxyRrpnfOmXxAo3X+9YFg7OlRoazgrAiWL g==;
+X-CSE-ConnectionGUID: xdgYQWvLSJ6ZZNy/HTOZzQ==
+X-CSE-MsgGUID: IHVQyqeMTXilhsYNn7fmNQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81549668"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81549668"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 03:41:20 -0700
+X-CSE-ConnectionGUID: SnvPTtbsRG+gRGnrVwad4g==
+X-CSE-MsgGUID: S7j3JnVxSoyZp52AtQHrfA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="244670644"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="244935357"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 03:30:04 -0700
-Date: Fri, 5 Jun 2026 12:30:02 +0200 (CEST)
+ by orviesa007.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 03:41:18 -0700
+Date: Fri, 5 Jun 2026 12:41:15 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 cc: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>, 
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  Suraj Kandpal <suraj.kandpal@intel.com>
 Subject: Re: [PATCH v6 5/8] drm/i915: override LT's VS/PE when requested
-In-Reply-To: <3ca0f1aa374e5aa8e860602023b0920281b8b428@intel.com>
-Message-ID: <e44a7bca-56ee-65dd-132e-b7726cac9329@intel.com>
+In-Reply-To: <e60ee78abc4044c8ecf33c2e85e89aa638bfdaaf@intel.com>
+Message-ID: <ac325364-a5bf-1038-e942-f8a6b69a05c3@intel.com>
 References: <20260603230544.1993439-1-michal.grzelak@intel.com>
  <20260603230544.1993439-6-michal.grzelak@intel.com>
- <3ca0f1aa374e5aa8e860602023b0920281b8b428@intel.com>
+ <e60ee78abc4044c8ecf33c2e85e89aa638bfdaaf@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-701852861-1780608084=:1544314"
-Content-ID: <b43a6e83-5a92-308c-e594-31a5a46a8ee6@intel.com>
+Content-Type: multipart/mixed; BOUNDARY="8323329-566949545-1780609719=:1544314"
+Content-ID: <5751acfc-f516-8adb-78be-7774f8d681f6@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,17 +102,17 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A1A0F64756E
+X-Rspamd-Queue-Id: 147F96476F6
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-701852861-1780608084=:1544314
+--8323329-566949545-1780609719=:1544314
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <62349cfc-395f-0dfe-0819-50c255597109@intel.com>
+Content-ID: <de9a46a0-efa0-11f9-34f0-862261439cb8@intel.com>
 
 On Thu, 4 Jun 2026, Jani Nikula wrote:
 > On Thu, 04 Jun 2026, Micha³ Grzelak <michal.grzelak@intel.com> wrote:
@@ -186,6 +186,10 @@ On Thu, 4 Jun 2026, Jani Nikula wrote:
 >> +{
 >> +	return !!devdata->vspeo;
 >> +}
+>
+> Please don't add this function. Just return NULL from get call below and
+> handle it in the caller.
+>
 >> +
 >>  bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata)
 >>  {
@@ -202,6 +206,18 @@ On Thu, 4 Jun 2026, Jani Nikula wrote:
 >> +	struct intel_display *display = devdata->display;
 >> +	struct intel_ddi_buf_trans *vspeo = (void *)devdata->vspeo;
 >> +	union intel_ddi_buf_trans_entry *entries = (void *)vspeo->entries;
+>
+> What's with the casts?
+
+.entries from intel_ddi_buf_trans has a const qualifier which made me to
+do this sketchy cast since we need to write deparsed data into it. Other
+option would be to remove entirely const qualifier from
+intel_ddi_buf_trans definition, don't know which is actually worse.
+
+And vspeo = (void *)devdata->vspeo; cast isn't needed at all, will
+remove it in next version.
+
+>
 >> +	const u32 *tables = display->vbt.vspeo.tables;
 >> +	int num_columns = display->vbt.vspeo.num_columns;
 >> +	int num_rows = display->vbt.vspeo.num_rows;
@@ -209,6 +225,10 @@ On Thu, 4 Jun 2026, Jani Nikula wrote:
 >> +	int level;
 >> +
 >> +	offset += idx * num_rows * num_columns;
+>
+> I think the division of responsibilities is not great if the caller
+> passes in an index that's tied to the VBT data format.
+>
 >> +
 >> +	for (level = 0; level < num_rows; level++) {
 >> +		u8 txswing = buf_trans->entries[level].lt.txswing;
@@ -265,17 +285,6 @@ On Thu, 4 Jun 2026, Jani Nikula wrote:
 >> +	const struct intel_ddi_buf_trans *buf_trans;
 >> +
 >> +	buf_trans = encoder->get_buf_trans(encoder, crtc_state, n_entries);
->
-> Also not fond of encoder->get_buf_trans() being called here. Really,
-> there should be only *one* place where that is called.
->
-
-Agreed. Thus LT will be temporarily excluded from patch series, since it
-is a corner case.
-
-BR,
-Micha³
-
 >> +	if (intel_crtc_has_dp_encoder(crtc_state)) {
 >> +		if (intel_dp_is_uhbr(crtc_state))
 >> +			return intel_bios_get_lt_vspeo(encoder->devdata, buf_trans, 5);
@@ -285,6 +294,44 @@ Micha³
 >> +
 >> +	return buf_trans;
 >> +}
+>
+> I need to think about this.
+>
+> Basically this approach is duplicating the platform if-else ladders
+> *and* the CRTC type and port clock etc. checks already existing in this
+> file. It's not great for maintainability, and it's a lot of code for the
+> feature.
+>
+> Plus there's all the added code in intel_bios.c too.
+
+With the comments applied I can move the checks into intel_bios_get_*
+functions. Then caller will set eg. has_dp, has_edp and port_clock when
+calling those. This will spare couple lines as intel_bios_get_*
+functions then can be directly called from intel_ddi_buf_trans_get(),
+I mean something like:
+
+[...]
+if (DISPLAY_VER(display) >= 14) {
+ 	if (intel_encoder_is_c10phy(encoder))
+ 		buf_trans = intel_bios_get_c10_vspeo(devdata, has_dp, port_clock, has_edp);
+ 	else
+ 		buf_trans = intel_bios_get_c20_vspeo(devdata, has_dp, is_uhbr);
+} else if (DISPLAY_VER(display) == 11) {
+ 	if (display->platform.jasperlake)
+ 		buf_trans = intel_bios_get_jsl_combo_vspeo(devdata, has_dp, port_clock, low_vswing_edp);
+ 	else if (display->platform.elkhartlake)
+ 		buf_trans = intel_bios_get_ehl_combo_vspeo(devdata, has_dp, port_clock, has_edp);
+}
+[...]
+
+But I don't see how to remove the checks entirely nor the if-else
+ladder. I guess that's the fallout of compatibility with the other
+driver. :(
+
+BR,
+Micha³
+
+>
 >> +
 >>  void intel_ddi_buf_trans_init(struct intel_encoder *encoder)
 >>  {
@@ -298,6 +345,9 @@ Micha³
 >> +	const struct intel_ddi_buf_trans *buf_trans;
 >> +
 >> +	if (!encoder->devdata)
+>
+> The intel_bios_* functions need to check that, not here.
+>
 >> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
 >> +
 >> +	if (!intel_bios_encoder_requests_vspeo(encoder->devdata))
@@ -305,6 +355,9 @@ Micha³
 >> +
 >> +	if (!intel_bios_encoder_allocated_vspeo(encoder->devdata))
 >> +		return encoder->get_buf_trans(encoder, crtc_state, n_entries);
+>
+> Ditto for the allocation, don't check here.
+>
 >> +
 >> +	if (HAS_LT_PHY(display))
 >> +		buf_trans = xe3plpd_get_lt_vspeo_buf_trans(encoder, crtc_state, n_entries);
@@ -312,9 +365,13 @@ Micha³
 >> +		buf_trans = encoder->get_buf_trans(encoder, crtc_state, n_entries);
 >> +
 >> +	return intel_get_buf_trans(buf_trans, n_entries);
+>
+> This function has four paths to call encoder->get_buf_trans(). There
+> *must* be only one.
+>
 >>  }
 >
 > -- 
 > Jani Nikula, Intel
 >
---8323329-701852861-1780608084=:1544314--
+--8323329-566949545-1780609719=:1544314--
