@@ -2,62 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2Y19M62gImqxbAEAu9opvQ
+	id 8ZcUI1ahImrnbAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:10:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:13:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 162C1647308
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 34AE364735C
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 12:13:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=qxP05mxb;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=Si7tSzM5;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD53B10E12C;
-	Fri,  5 Jun 2026 10:10:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7407910E547;
+	Fri,  5 Jun 2026 10:13:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BF2710E116;
- Fri,  5 Jun 2026 10:10:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 91AFC10E2A8;
+ Fri,  5 Jun 2026 10:13:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Type:MIME-Version:Message-ID:Subject:Cc:To:From:Date:
- Sender:Reply-To:Content-Transfer-Encoding:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
- List-Post:List-Owner:List-Archive;
- bh=25uilpvB8H/MrMiKprmEmW2Ha22sjKIqcfJce1S5JNQ=; b=qxP05mxbVyizPIeNqIhIn66mbc
- pV7/dAVApJo0QROyKUv+2Z6xLLr7DOAVEkdTftaUzna02JvRt6Z10cn7lBzhiTRJOirmeCsSZJkgc
- m6BL/icGFhC2MB+B+OrvqIr+c8sp7Qk2KPZYh4yt3Fl20Hh+KhcJ6Ly82YcljyJvccmhs/GdpqfQe
- dbQG9uR8FjHb0PdotRduUQ+R7Pvn5xLf5pVyoiQhYZrb0HTMRUq4v3hYcWN7VZ1x+4DYGFuHYbRJe
- zwfwKDX9BKHA1BKXzMHfDqxQxAaYvHr3SNv3P8ihLlvQyZKB2AQ+HySivksnkJs3W0Ik5SG3VvD1c
- g11ldcFw==;
-Received: from [90.240.106.137] (helo=localhost)
+ h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
+ References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
+ Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+ Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
+ List-Subscribe:List-Post:List-Owner:List-Archive;
+ bh=olLqF1n1Cx/+v/Stbc0WTULGeRSHFc7JdDIug5kIWs8=; b=Si7tSzM5wzOFy8I36rwbvT4m3M
+ T+0IWTwfD0v7R7Nx8LAWHslqN1GM/WFjXppJ1H4JGiWgp4UlvqbrrTz5h7fdSCuVmnc5NgAhsJJUL
+ g7ZthKzM+C3dwwLaOeupTNVDhkWzV3GK19kzH6gp7nTH5oHsTe85VW1YBKDdTAIHdLv+vtDQKVA0C
+ AzLkttEpMMauDaDYB2JpMnYpec6+4Y8C0xgWIqRh/YRKxdlBn0T+RU+P3s5acZjUB1iQqBcj4rLOP
+ w3xHbF6RuiSQgNZJJJrMhYPY9O//6QZ//0XRX3cpNYIyoSmugu9lKtc6ctV0/bxFV8PfFH0EClErn
+ 5zqhr0lw==;
+Received: from [90.240.106.137] (helo=[192.168.0.116])
  by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_SECP256R1__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wVRVc-00D5qo-RM; Fri, 05 Jun 2026 12:10:37 +0200
-Date: Fri, 5 Jun 2026 11:10:35 +0100
-From: Tvrtko Ursulin <tursulin@igalia.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>,
- Lucas De Marchi <lucas.demarchi@intel.com>,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-intel-fixes
-Message-ID: <aiKgmwz7VGOaFXIv@linux>
+ (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
+ id 1wVRYQ-00D5t9-Ub; Fri, 05 Jun 2026 12:13:30 +0200
+Message-ID: <990ab0a5-64c1-4f10-841f-2eac6332ec97@igalia.com>
+Date: Fri, 5 Jun 2026 11:13:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ Thorsten Leemhuis <regressions@leemhuis.info>,
+ Tvrtko Ursulin <tursulin@igalia.com>, Dave Airlie <airlied@gmail.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>
+Cc: "Nautiyal, Ankit K" <ankit.k.nautiyal@intel.com>,
+ "Murthy, Arun R" <arun.r.murthy@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "Vivi, Rodrigo" <rodrigo.vivi@intel.com>,
+ Linux kernel regressions list <regressions@lists.linux.dev>,
+ ML dri-devel <dri-devel@lists.freedesktop.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
+ <20260517024709.1016121-1-suraj.kandpal@intel.com>
+ <53a2a8dd-d1b6-41c5-ade2-7ed870d074ac@leemhuis.info>
+ <ffac6caf-0376-4a0c-908e-b89cce48d28f@leemhuis.info>
+ <c7764bbd-7990-4d11-832e-ec7283c1a6c1@igalia.com>
+ <DS4PPFE901A304FD9E40779C9B78A29E661E3112@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Content-Language: en-GB
+From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+In-Reply-To: <DS4PPFE901A304FD9E40779C9B78A29E661E3112@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,70 +81,205 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.99 / 15.00];
+X-Spamd-Result: default: False [0.49 / 15.00];
 	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
-	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	FREEMAIL_TO(0.00)[intel.com,leemhuis.info,igalia.com,gmail.com,ffwll.ch];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	RCPT_COUNT_TWELVE(0.00)[13];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tursulin@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[tvrtko.ursulin@igalia.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[igalia.com:-];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,gitlab.freedesktop.org:url,igalia.com:from_mime,linux:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 162C1647308
+X-Rspamd-Queue-Id: 34AE364735C
 
 
-Hi Dave, Sima,
+On 05/06/2026 11:04, Kandpal, Suraj wrote:
+>> -----Original Message-----
+>> From: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+>> Sent: Friday, June 5, 2026 3:23 PM
+>> To: Thorsten Leemhuis <regressions@leemhuis.info>; Tvrtko Ursulin
+>> <tursulin@igalia.com>; Dave Airlie <airlied@gmail.com>; Simona Vetter
+>> <simona.vetter@ffwll.ch>; Kandpal, Suraj <suraj.kandpal@intel.com>
+>> Cc: Nautiyal, Ankit K <ankit.k.nautiyal@intel.com>; Murthy, Arun R
+>> <arun.r.murthy@intel.com>; intel-gfx@lists.freedesktop.org; intel-
+>> xe@lists.freedesktop.org; Vivi, Rodrigo <rodrigo.vivi@intel.com>; Linux kernel
+>> regressions list <regressions@lists.linux.dev>; ML dri-devel <dri-
+>> devel@lists.freedesktop.org>; Jani Nikula <jani.nikula@linux.intel.com>
+>> Subject: Re: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
+>>
+>>
+>> Hi Suraj,
+>>
+>> On 05/06/2026 07:58, Thorsten Leemhuis wrote:
+>>> On 6/4/26 15:55, Thorsten Leemhuis wrote:
+>>>> On 5/17/26 04:47, Suraj Kandpal wrote:
+>>>>> This reverts commit 40d2f5820951dee818d05c14677277048bd85f9f.
+>>>>>
+>>>>> Removing the try_vesa_interface gate caused a backlight regression
+>>>>> on panels whose VBT correctly reports INTEL_BACKLIGHT_DISPLAY_DDI
+>>>>> and whose PWM path is the actual backlight control, but whose DPCD
+>>>>> optimistically advertises DP_EDP_BACKLIGHT_AUX_ENABLE_CAP /
+>> _BRIGHTNESS_AUX_SET_CAP.
+>>>>> After the commit such panels silently bind to the VESA AUX backlight
+>>>>> funcs; AUX writes complete but the panel ignores them, leaving
+>>>>> brightness stuck (no-op backlight). Observed on at least KBL and TGL
+>>>>> eDP setups.
+>>>>
+>>>> Lo! What's the status of this regression fix? It's a -next for two
+>>>> weeks now as f30fddb4402313 ("Revert "drm/i915/backlight: Remove
+>>>> try_vesa_interface""), but from the outside and checking
+>>>> https://gitlab.freedesktop.org/drm/i915/kernel/-/commits/drm-intel-fi
+>>>> xes it looks like it's scheduled for merging in the next cycle.
+>>>
+>>> Resending to Tvrtko, who sent the i915 PR yesterday (which didn't
+>>> contain that fix), as well as Dave and Simona.
+>>>
+>>> FWIW, due to the lack of response to various inquiries I'm considering
+>>> to ask Linus to directly pick up the mentioned regression fix to
+>>> ensure it makes it into rc7.
+>>>
+>>> In case anyone wonder what regression I'm talking about:
+>>>
+>>> * https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16015 /
+>>> https://lore.kernel.org/lkml/CADo9pHjr-
+>> zZ9C3%2B026y5%2BXOGPSeRzSJMCHof
+>>> 27TVPtAUNgTc8A@mail.gmail.com/
+>>> * https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16043
+>>> * https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16097 /
+>>> https://lore.kernel.org/lkml/d2de7933-e650-4b19-8d88-90d66693dcfc@mess
+>>> age-id.googlemail.com/
+>>>
+>>> Ciao, Thorsten
+>>>
+>>>> But I think it should be merged this cycle (ideally before -rc7, as
+>>>> Linus wants all known regression fixed by -rc6), as it fixes a
+>>>> regression that is known since the -rc1 days. I already asked for the
+>>>> mainlining plans in gitlab tickets about a week ago (and since then
+>>>> affected users spoke up, too), but there was no conclusive answer for
+>>>> the plans, which is why I'm trying this way now.
+>>
+>> Was there a reason the revert was not marked with a Fixes: tag? Or in other
+>> words, any particular reason why it should *not* be picked up for drm-intel-
+>> fixes?
+> 
+> There wasn't any particular reason.
+> Tbh I didn't think we would require it since this revert was fixing the issue caused by the patch in question being reverted.
 
-Last minute updated pull request due a relatively urgent revert for fixing
-the backlight on some laptops. Plus the other fix you haven't pulled yet.
+Okay then, thank you. I've cherry picked it and sent a new pull request. 
+The previous one hasn't been pulled yet so hopefully this is still in time.
+
+Regards,
 
 Tvrtko
 
-drm-intel-fixes-2026-06-05:
-- Fix color blob reference handling in intel_plane_state (Chaitanya Kumar Borah)
-- Revert "drm/i915/backlight: Remove try_vesa_interface" [backlight] (Suraj Kandpal)
-The following changes since commit e43ffb69e0438cddd72aaa30898b4dc446f664f8:
+>>>> Ciao, Thorsten
+>>>>
+>>>>
+>>>>> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+>>>>> ---
+>>>>>    .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++-------
+>>>>>    1 file changed, 12 insertions(+), 7 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> index a8d56ebf06a2..7a6c07f6aaeb 100644
+>>>>> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
+>>>>> @@ -691,10 +691,9 @@ int intel_dp_aux_init_backlight_funcs(struct
+>> intel_connector *connector)
+>>>>>    	struct intel_dp *intel_dp = intel_attached_dp(connector);
+>>>>>    	struct drm_device *dev = connector->base.dev;
+>>>>>    	struct intel_panel *panel = &connector->panel;
+>>>>> -	bool try_intel_interface = false;
+>>>>> +	bool try_intel_interface = false, try_vesa_interface = false;
+>>>>>
+>>>>> -	/*
+>>>>> -	 * Check the VBT and user's module parameters to figure out which
+>>>>> +	/* Check the VBT and user's module parameters to figure out which
+>>>>>    	 * interfaces to probe
+>>>>>    	 */
+>>>>>    	switch (display->params.enable_dpcd_backlight) { @@ -703,6 +702,7
+>>>>> @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector
+>> *connector)
+>>>>>    	case INTEL_DP_AUX_BACKLIGHT_AUTO:
+>>>>>    		switch (panel->vbt.backlight.type) {
+>>>>>    		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
+>>>>> +			try_vesa_interface = true;
+>>>>>    			break;
+>>>>>    		case INTEL_BACKLIGHT_DISPLAY_DDI:
+>>>>>    			try_intel_interface = true;
+>>>>> @@ -715,12 +715,20 @@ int intel_dp_aux_init_backlight_funcs(struct
+>> intel_connector *connector)
+>>>>>    		if (panel->vbt.backlight.type !=
+>> INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
+>>>>>    			try_intel_interface = true;
+>>>>>
+>>>>> +		try_vesa_interface = true;
+>>>>> +		break;
+>>>>> +	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
+>>>>> +		try_vesa_interface = true;
+>>>>>    		break;
+>>>>>    	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
+>>>>>    		try_intel_interface = true;
+>>>>>    		break;
+>>>>>    	}
+>>>>>
+>>>>> +	/* For eDP 1.5 and above we are supposed to use VESA interface for
+>> brightness control */
+>>>>> +	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
+>>>>> +		try_vesa_interface = true;
+>>>>> +
+>>>>>    	/*
+>>>>>    	 * Since Intel has their own backlight control interface, the majority of
+>> machines out there
+>>>>>    	 * using DPCD backlight controls with Intel GPUs will be using
+>>>>> this interface as opposed to @@ -733,9 +741,6 @@ int
+>> intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
+>>>>>    	 * panel with Intel's OUI - which is also required for us to be able to
+>> detect Intel's
+>>>>>    	 * backlight interface at all. This means that the only sensible way for us
+>> to detect both
+>>>>>    	 * interfaces is to probe for Intel's first, and VESA's second.
+>>>>> -	 *
+>>>>> -	 * Also there is a chance some VBTs may advertise false Intel backlight
+>> support even if the
+>>>>> -	 * TCON DPCD says otherwise. This means we keep VESA interface as
+>> fallback in that case.
+>>>>>    	 */
+>>>>>    	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
+>>>>>    	    intel_dp_aux_supports_hdr_backlight(connector)) { @@ -745,7
+>>>>> +750,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector
+>> *connector)
+>>>>>    		return 0;
+>>>>>    	}
+>>>>>
+>>>>> -	if (intel_dp_aux_supports_vesa_backlight(connector)) {
+>>>>> +	if (try_vesa_interface &&
+>>>>> +intel_dp_aux_supports_vesa_backlight(connector)) {
+>>>>>    		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP
+>> backlight controls\n",
+>>>>>    			    connector->base.base.id, connector->base.name);
+>>>>>    		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
+>>>>
+>>>
+> 
 
-  Linux 7.1-rc6 (2026-05-31 15:14:24 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/i915/kernel.git tags/drm-intel-fixes-2026-06-05
-
-for you to fetch changes up to 2914709c914101eb704e01bed2351070d4161ccf:
-
-  Revert "drm/i915/backlight: Remove try_vesa_interface" (2026-06-05 11:07:24 +0100)
-
-----------------------------------------------------------------
-- Fix color blob reference handling in intel_plane_state (Chaitanya Kumar Borah)
-- Revert "drm/i915/backlight: Remove try_vesa_interface" [backlight] (Suraj Kandpal)
-
-----------------------------------------------------------------
-Chaitanya Kumar Borah (1):
-      drm/i915: Fix color blob reference handling in intel_plane_state
-
-Suraj Kandpal (1):
-      Revert "drm/i915/backlight: Remove try_vesa_interface"
-
- .../gpu/drm/i915/display/intel_dp_aux_backlight.c  | 19 +++++++++------
- drivers/gpu/drm/i915/display/intel_plane.c         | 27 ++++++++++++++++++++++
- 2 files changed, 39 insertions(+), 7 deletions(-)
