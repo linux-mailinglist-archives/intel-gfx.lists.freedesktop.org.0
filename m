@@ -2,87 +2,100 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bYZaEgx2ImoOXwEAu9opvQ
+	id yKQ7FhB6ImpnYAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:09:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:26:08 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 607FF645C95
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:08:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BDEC0645F2C
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:26:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=leemhuis.info header.s=key2 header.b=kL+qe9jF;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ZSIV9Lvu;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="/Y9IiZR8";
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=bqGHECoE;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=QjuUPYIW;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=none) header.from=suse.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E4F1E11A4D3;
-	Fri,  5 Jun 2026 07:08:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 52E7A112ABD;
+	Fri,  5 Jun 2026 07:26:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 526 seconds by postgrey-1.36 at gabe;
- Fri, 05 Jun 2026 07:08:56 UTC
-Received: from relay.yourmailgateway.de (relay.yourmailgateway.de
- [194.59.206.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3BB7011A4D2;
- Fri,  5 Jun 2026 07:08:56 +0000 (UTC)
-Received: from relay02-mors.netcup.net (localhost [127.0.0.1])
- by relay02-mors.netcup.net (Postfix) with ESMTPS id 4gWskw3pGWz4HNY;
- Fri,  5 Jun 2026 09:00:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=leemhuis.info;
- s=key2; t=1780642808;
- bh=C4LywOONUo9mM7SYCl9JaZ1nEcm3gsy9ldzredo9jW0=;
- h=Date:Subject:From:To:Cc:References:In-Reply-To:From;
- b=kL+qe9jFQlDIIFWazrdM9DPHT8ZxTESUvlVZ5eHBkQwY4fZJyPV4J/Csp8xt7zZFy
- XACWiPgKk8OtyQMUjwLIy5KrvZZvz6LoN9g8tljf4aHhAydHkLFGzSCzrFIJbcP4SS
- 45Elvf7avy7ydyXoj3kTM6C/ZPUgcF6eX82AkWy6h2p94+uiGe1Cg1UP0lTTqBf4ls
- 3BaNScqlouL3TNQa1GcTX8dn/4jcAmoKLqevI92Ayls7BJEnfbV7DATNj6bmh8V1mo
- +b+mSwKmcZAv/xf7WreQ3u3vIAgyUs/177aIu//SKSetVjXqnUP4EKBt0zuLpSIhNh
- e1uRHnOTYDUeA==
-Received: from policy01-mors.netcup.net (unknown [46.38.225.35])
- by relay02-mors.netcup.net (Postfix) with ESMTPS id 4gWshp18Q2z7wPS;
- Fri,  5 Jun 2026 08:58:18 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at policy01-mors.netcup.net
-X-Spam-Flag: NO
-X-Spam-Score: -2.898
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.898 required=6.31 tests=[ALL_TRUSTED=-1,
- BAYES_00=-1.9, SPF_PASS=-0.001, URIBL_BLOCKED=0.001,
- URIBL_DBL_BLOCKED_OPENDNS=0.001, URIBL_ZEN_BLOCKED_OPENDNS=0.001]
- autolearn=ham autolearn_force=no
-Received: from mxe9fb.netcup.net (unknown [10.243.12.53])
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8BA112ABA
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 07:26:05 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest
- SHA256) (No client certificate requested)
- by policy01-mors.netcup.net (Postfix) with ESMTPS id 4gWshl5Cl8z8tXj;
- Fri,  5 Jun 2026 08:58:15 +0200 (CEST)
-Received: from [IPV6:2a02:8108:8984:1d00:a0cf:1912:4be:477f] (unknown
- [IPv6:2a02:8108:8984:1d00:a0cf:1912:4be:477f])
- by mxe9fb.netcup.net (Postfix) with ESMTPSA id 6D2A65F9DD;
- Fri,  5 Jun 2026 08:58:14 +0200 (CEST)
-Received-SPF: pass (mxe9fb: connection is authenticated)
-Message-ID: <ffac6caf-0376-4a0c-908e-b89cce48d28f@leemhuis.info>
-Date: Fri, 5 Jun 2026 08:58:13 +0200
-MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] Revert "drm/i915/backlight: Remove try_vesa_interface"
-From: Thorsten Leemhuis <regressions@leemhuis.info>
-To: Tvrtko Ursulin <tursulin@igalia.com>, Dave Airlie <airlied@gmail.com>,
- Simona Vetter <simona.vetter@ffwll.ch>
-Cc: ankit.k.nautiyal@intel.com, arun.r.murthy@intel.com,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id D57146B139;
+ Fri,  5 Jun 2026 07:26:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780644364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
+ b=ZSIV9LvuE9XuWWyWr+zTptJnTD2j8IIm9fWNA/wBVBqKSNij0L1jfL0f612iA62VKSzye2
+ 1/Se7o3v9/JsDlob5ZiQuI7UYVgoONs+UHJUCDNhCaa+t898mwePF0JXVIBSEnxWb573jG
+ ODE1xNi3E1b3zCERQOmpaPFS2OmL/e4=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780644364;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
+ b=/Y9IiZR89aZGjQZNOAdxQUEjNWloeN4j7wOZkHHo7ii0v+hMBIDFFyc4wUhsfF3jNT85MA
+ mdTOec8xiduOwoDQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780644363; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
+ b=bqGHECoEn9hZpzo7jsSTE3hNmjPQ7cxYU2J6ga+LlDxj0wLeOFAsqCGQ4uYWEKliaPjmhh
+ 1idKIWXNRpK5YVeTdhmfyT5Kd0QV/bf2TctBLhXw/lCRug4aSe+fhGRjgQzEEf2oi2Vfd6
+ QRl2TFQL1vuARLNgNeW1O3zcXWAW08c=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780644363;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding;
+ bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
+ b=QjuUPYIWnLXxU5qaL0fNKGSYpeE2/eIjUsDJWjscox9nt7QVIiB7m+TEgWxthuEhJR6jhu
+ UX119Orl4fwos4BQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 72EB0779A8;
+ Fri,  5 Jun 2026 07:26:03 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id d7bfGgt6Imo2LwAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Fri, 05 Jun 2026 07:26:03 +0000
+Date: Fri, 5 Jun 2026 09:26:02 +0200
+From: Thomas Zimmermann <tzimmermann@suse.de>
+To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
+Cc: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Linux kernel regressions list <regressions@lists.linux.dev>,
- ML dri-devel <dri-devel@lists.freedesktop.org>,
- Suraj Kandpal <suraj.kandpal@intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-References: <20260515155340.1000997-1-suraj.kandpal@intel.com>
- <20260517024709.1016121-1-suraj.kandpal@intel.com>
- <53a2a8dd-d1b6-41c5-ade2-7ed870d074ac@leemhuis.info>
-Content-Language: de-DE, en-US
-In-Reply-To: <53a2a8dd-d1b6-41c5-ade2-7ed870d074ac@leemhuis.info>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-PPP-Message-ID: <178064269494.1178932.8212265372479905459@mxe9fb.netcup.net>
-X-NC-CID: yZFu1qiK5+qb6kd4Rl2AdMorZ6t1O6HYlhAKMN1jnvJ0Ik1JIE4=
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
+ Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dim-tools@lists.freedesktop.org
+Subject: [PULL] drm-misc-fixes
+Message-ID: <20260605072602.GA268798@linux.fritz.box>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -4.51
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,150 +111,151 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[leemhuis.info:s=key2];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[leemhuis.info];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[igalia.com,gmail.com,ffwll.ch];
-	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[leemhuis.info:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.de:+];
+	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[regressions@leemhuis.info,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,suse.com:url,suse.de:from_mime,suse.de:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,linux.fritz.box:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 607FF645C95
+X-Rspamd-Queue-Id: BDEC0645F2C
 
-On 6/4/26 15:55, Thorsten Leemhuis wrote:
-> On 5/17/26 04:47, Suraj Kandpal wrote:
->> This reverts commit 40d2f5820951dee818d05c14677277048bd85f9f.
->>
->> Removing the try_vesa_interface gate caused a backlight regression on
->> panels whose VBT correctly reports INTEL_BACKLIGHT_DISPLAY_DDI and whose
->> PWM path is the actual backlight control, but whose DPCD optimistically
->> advertises DP_EDP_BACKLIGHT_AUX_ENABLE_CAP / _BRIGHTNESS_AUX_SET_CAP.
->> After the commit such panels silently bind to the VESA AUX backlight
->> funcs; AUX writes complete but the panel ignores them, leaving
->> brightness stuck (no-op backlight). Observed on at least KBL and TGL
->> eDP setups.
-> 
-> Lo! What's the status of this regression fix? It's a -next for two weeks
-> now as f30fddb4402313 ("Revert "drm/i915/backlight: Remove
-> try_vesa_interface""), but from the outside and checking
-> https://gitlab.freedesktop.org/drm/i915/kernel/-/commits/drm-intel-fixes
-> it looks like it's scheduled for merging in the next cycle.
+Hi Dave, Sima,
 
-Resending to Tvrtko, who sent the i915 PR yesterday (which didn't
-contain that fix), as well as Dave and Simona.
+this is the weekly fixes PR from DRM misc.
 
-FWIW, due to the lack of response to various inquiries I'm considering
-to ask Linus to directly pick up the mentioned regression fix to ensure
-it makes it into rc7.
+Best regards
+Thomas
 
-In case anyone wonder what regression I'm talking about:
+drm-misc-fixes-2026-06-05:
+Short summary of fixes pull:
 
-* https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16015 /
-https://lore.kernel.org/lkml/CADo9pHjr-zZ9C3%2B026y5%2BXOGPSeRzSJMCHof27TVPtAUNgTc8A@mail.gmail.com/
-* https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16043
-* https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16097 /
-https://lore.kernel.org/lkml/d2de7933-e650-4b19-8d88-90d66693dcfc@message-id.googlemail.com/
+dumb-buffer:
+- remove strict limits on buffer geometry
 
-Ciao, Thorsten
+ethosu:
+- reject unsupported NPU_OP_RESIZE
+- fix index of IFM region
+- fix weight index
+- fix overflows in DMA-size calculations
+- reject DMA commands with uninitialized length
+- fix OOB write in ethosu_gem_cmdstream_copy_and_validate
 
-> But I think it should be merged this cycle (ideally before -rc7, as
-> Linus wants all known regression fixed by -rc6), as it fixes a
-> regression that is known since the -rc1 days. I already asked for the
-> mainlining plans in gitlab tickets about a week ago (and since then
-> affected users spoke up, too), but there was no conclusive answer for
-> the plans, which is why I'm trying this way now.
-> 
-> Ciao, Thorsten
-> 
-> 
->> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
->> ---
->>  .../drm/i915/display/intel_dp_aux_backlight.c | 19 ++++++++++++-------
->>  1 file changed, 12 insertions(+), 7 deletions(-)
->>
->> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> index a8d56ebf06a2..7a6c07f6aaeb 100644
->> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
->> @@ -691,10 +691,9 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>  	struct intel_dp *intel_dp = intel_attached_dp(connector);
->>  	struct drm_device *dev = connector->base.dev;
->>  	struct intel_panel *panel = &connector->panel;
->> -	bool try_intel_interface = false;
->> +	bool try_intel_interface = false, try_vesa_interface = false;
->>  
->> -	/*
->> -	 * Check the VBT and user's module parameters to figure out which
->> +	/* Check the VBT and user's module parameters to figure out which
->>  	 * interfaces to probe
->>  	 */
->>  	switch (display->params.enable_dpcd_backlight) {
->> @@ -703,6 +702,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>  	case INTEL_DP_AUX_BACKLIGHT_AUTO:
->>  		switch (panel->vbt.backlight.type) {
->>  		case INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE:
->> +			try_vesa_interface = true;
->>  			break;
->>  		case INTEL_BACKLIGHT_DISPLAY_DDI:
->>  			try_intel_interface = true;
->> @@ -715,12 +715,20 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>  		if (panel->vbt.backlight.type != INTEL_BACKLIGHT_VESA_EDP_AUX_INTERFACE)
->>  			try_intel_interface = true;
->>  
->> +		try_vesa_interface = true;
->> +		break;
->> +	case INTEL_DP_AUX_BACKLIGHT_FORCE_VESA:
->> +		try_vesa_interface = true;
->>  		break;
->>  	case INTEL_DP_AUX_BACKLIGHT_FORCE_INTEL:
->>  		try_intel_interface = true;
->>  		break;
->>  	}
->>  
->> +	/* For eDP 1.5 and above we are supposed to use VESA interface for brightness control */
->> +	if (intel_dp->edp_dpcd[0] >= DP_EDP_15)
->> +		try_vesa_interface = true;
->> +
->>  	/*
->>  	 * Since Intel has their own backlight control interface, the majority of machines out there
->>  	 * using DPCD backlight controls with Intel GPUs will be using this interface as opposed to
->> @@ -733,9 +741,6 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>  	 * panel with Intel's OUI - which is also required for us to be able to detect Intel's
->>  	 * backlight interface at all. This means that the only sensible way for us to detect both
->>  	 * interfaces is to probe for Intel's first, and VESA's second.
->> -	 *
->> -	 * Also there is a chance some VBTs may advertise false Intel backlight support even if the
->> -	 * TCON DPCD says otherwise. This means we keep VESA interface as fallback in that case.
->>  	 */
->>  	if (try_intel_interface && intel_dp->edp_dpcd[0] <= DP_EDP_14b &&
->>  	    intel_dp_aux_supports_hdr_backlight(connector)) {
->> @@ -745,7 +750,7 @@ int intel_dp_aux_init_backlight_funcs(struct intel_connector *connector)
->>  		return 0;
->>  	}
->>  
->> -	if (intel_dp_aux_supports_vesa_backlight(connector)) {
->> +	if (try_vesa_interface && intel_dp_aux_supports_vesa_backlight(connector)) {
->>  		drm_dbg_kms(dev, "[CONNECTOR:%d:%s] Using VESA eDP backlight controls\n",
->>  			    connector->base.base.id, connector->base.name);
->>  		panel->backlight.funcs = &intel_dp_vesa_bl_funcs;
-> 
+imx:
+- fix kernel-doc warnings
 
+ivpu:
+- add overflow checks in firmware handling and get_info_ioctl
+
+v3d:
+- wait for pending L2T flush before cleaning caches
+- fix leak of vaddr
+- skip CSD when it has zeroed workgroups
+- fix ref counting in performance monitoring
+The following changes since commit 5ab62dd3687bcc2cc542b99385aabac5c996db6f:
+
+  drm: prevent integer overflows in dumb buffer creation helpers (2026-05-29 08:30:47 +0200)
+
+are available in the Git repository at:
+
+  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-06-05
+
+for you to fetch changes up to c0837b9cf6eabbad8b8cbddaff1a46a6d0a2e29d:
+
+  accel/ethosu: fix OOB write in ethosu_gem_cmdstream_copy_and_validate() (2026-06-04 22:07:59 -0500)
+
+----------------------------------------------------------------
+Short summary of fixes pull:
+
+dumb-buffer:
+- remove strict limits on buffer geometry
+
+ethosu:
+- reject unsupported NPU_OP_RESIZE
+- fix index of IFM region
+- fix weight index
+- fix overflows in DMA-size calculations
+- reject DMA commands with uninitialized length
+- fix OOB write in ethosu_gem_cmdstream_copy_and_validate
+
+imx:
+- fix kernel-doc warnings
+
+ivpu:
+- add overflow checks in firmware handling and get_info_ioctl
+
+v3d:
+- wait for pending L2T flush before cleaning caches
+- fix leak of vaddr
+- skip CSD when it has zeroed workgroups
+- fix ref counting in performance monitoring
+
+----------------------------------------------------------------
+Andrzej Kacprowski (3):
+      accel/ivpu: Add bounds check for firmware runtime memory
+      accel/ivpu: Add bounds checks for firmware log indices
+      accel/ivpu: Add buffer overflow check in MS get_info_ioctl
+
+Maíra Canal (4):
+      drm/v3d: Wait for pending L2T flush before cleaning caches
+      drm/v3d: Fix vaddr leak when indirect CSD has zeroed workgroups
+      drm/v3d: Skip CSD when it has zeroed workgroups
+      drm/v3d: Fix global performance monitor reference counting
+
+Muhammad Bilal (6):
+      accel/ethosu: fix IFM region index out-of-bounds in command stream parser
+      accel/ethosu: reject NPU_OP_RESIZE commands from userspace
+      accel/ethosu: fix wrong weight index in NPU_SET_SCALE1_LENGTH on U85
+      accel/ethosu: fix arithmetic issues in dma_length()
+      accel/ethosu: reject DMA commands with uninitialized length
+      accel/ethosu: fix OOB write in ethosu_gem_cmdstream_copy_and_validate()
+
+Thomas Zimmermann (1):
+      drm/dumb-buffer: Drop buffer-size limits for now
+
+Yicong Hui (1):
+      drm/imx: Fix three kernel-doc warnings in dcss-scaler.c
+
+ drivers/accel/ethosu/ethosu_gem.c      | 35 +++++++++++++++++++++++++---------
+ drivers/accel/ivpu/ivpu_fw.c           | 16 ++++++++++++++++
+ drivers/accel/ivpu/ivpu_fw_log.c       |  5 +++++
+ drivers/accel/ivpu/ivpu_ms.c           |  7 +++++++
+ drivers/gpu/drm/drm_dumb_buffers.c     |  7 -------
+ drivers/gpu/drm/imx/dcss/dcss-scaler.c |  3 +++
+ drivers/gpu/drm/v3d/v3d_gem.c          |  8 ++++++++
+ drivers/gpu/drm/v3d/v3d_perfmon.c      | 24 ++++++++++++++++++-----
+ drivers/gpu/drm/v3d/v3d_sched.c        | 17 ++++++++++++++---
+ 9 files changed, 98 insertions(+), 24 deletions(-)
+
+-- 
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
