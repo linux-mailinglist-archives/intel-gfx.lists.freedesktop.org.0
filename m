@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id e3RmIKOMImohaAEAu9opvQ
+	id CseUA6aMImoiaAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:26 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2D94564683A
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AD7D564683D
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:25 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=TbcT+o5O;
+	dkim=pass header.d=intel.com header.s=Intel header.b=iJV361yp;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C11ED11A5D8;
-	Fri,  5 Jun 2026 08:45:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3FF5711A5DC;
+	Fri,  5 Jun 2026 08:45:24 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F73F11A5C7;
- Fri,  5 Jun 2026 08:45:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F005C11A5DD;
+ Fri,  5 Jun 2026 08:45:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780649121; x=1812185121;
+ t=1780649123; x=1812185123;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uoqYfTEnao6SvZGxb370mTSyOh9EH02SA6L1am1bgVc=;
- b=TbcT+o5ObgVNyzndbQUP3sD8s8oyGSSYDbg97Hg7VueN9o1/iTqPYfXi
- 7G0gEtOF5ExoH7nWOSVFmKcMVfWqe7+Z3sZfBOoBlVp0X7x7D22ogzm+r
- Tg9sVN8055NBR9otb+obAtFvr7fCPAXK9pves3gF+fFqHqFxQW5zQF3mj
- giPUmKzKFaAv4huSOdh564R28IsXdyIYwuAw7ug8oPzlMv5JXNfbMu/fm
- SHZj7v0PXn8GrZlQm5IBetNmcKqcIHyBiMLTU05ry2JqNRUKKxSNd0fQ3
- eUfiY73vLqQosvR7vXCEnmgmQ3m68W1gd+Os0Ksn0i8wEzsRDXE/D3y2q Q==;
-X-CSE-ConnectionGUID: x2hgl4q1RcyH9lz572FCpg==
-X-CSE-MsgGUID: rbzK737IQtCzfdvxdZ3Dig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81666419"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81666419"
+ bh=nn+TZNOmi2/1ZsB4rVoWJILcES4Bmgu6Y4EsdS1vUbs=;
+ b=iJV361ypOZFogxFrcBz4RA/YELxC3xwBD74F7w3itu5mOqCXIoBwUOS1
+ qF8bu+1/U7+CLNIBkqDG1myE5rJAuQBc7jw/ZdBcjSY4N7JMckGdfnh8u
+ aAbmnqslQNavC3P6rm8UvcDSLNG9VqofIg5+TqKg1WjlCp10rT9alHCjK
+ smXGMFNgy8zjfCNd8RRCtZr4JZzyjInvcH0wk6yoewsqvnaIQGdquaGgz
+ EHzsXmSKgak1Xu2/em76XcUJQSHc2YqfW7F0/0d69+h7jw38Tv1zuL5oz
+ eqsDEe4bQ3dmNxEuatzQs/0U2KmVTO68Qus5guEtwL/N/U0Y4iT/3SXL4 g==;
+X-CSE-ConnectionGUID: ht7y8lhGQ02x3/p6jShE1A==
+X-CSE-MsgGUID: pvdhPHsKRRuneag7n3f+Gg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81666420"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81666420"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 01:45:21 -0700
-X-CSE-ConnectionGUID: KfkpxO77SJG0znxlW9oV2w==
-X-CSE-MsgGUID: dp7v5wR9Sv2KchbnAPjWww==
+ 05 Jun 2026 01:45:23 -0700
+X-CSE-ConnectionGUID: 3NAFrK2bTfmgfU9JTo+rqg==
+X-CSE-MsgGUID: zJfjj7sqQ2+StIzNcOkrZw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="246624184"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="246624194"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 01:45:19 -0700
+ 05 Jun 2026 01:45:21 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: animesh.manna@intel.com, uma.shankar@intel.com, jani.nikula@linux.intel.com
-Subject: [PATCH v5 08/14] drm/i915/display: Add DC3CO compute and set target
- state in commit tail
-Date: Fri,  5 Jun 2026 14:14:15 +0530
-Message-ID: <20260605084421.3912865-9-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [PATCH v5 09/14] drm/i915/display: Store DC3CO eligibility in PSR
+ state
+Date: Fri,  5 Jun 2026 14:14:16 +0530
+Message-ID: <20260605084421.3912865-10-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260605084421.3912865-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260605084421.3912865-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -101,322 +101,79 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2D94564683A
+X-Rspamd-Queue-Id: AD7D564683D
 
-Compute if dc3co is allowed in intel_atomic_commit_tail()
-based on pipe/port constraints and runtime triggers and store
-result in display->power.dc3co.
+Store DC3CO eligibility in intel_dp->psr during
+intel_psr_post_plane_update() so PSR configuration
+can take DC3CO into account.
 
-When DC3CO can be enabled, request DC_STATE_EN_UPTO_DC3CO and
-reduce the DC entry delay. Otherwise, retain the existing
-delay and set default DC_STATE_EN_UPTO_DC6.
+This will be used to control PSR2 parameters such as idle frames.
+
+Changes in v2:
+- Use intel_display_power_dc3co_allowed(display) instead
+  of intel_dc3co_allowed(state)
+
+Changes in v4:
+- Update psr.dc3co_eligible before
+  intel_psr_enable_locked() call (sashiko)
 
 Changes in v5:
-- Move DC3CO compute logic from intel_atomic_check()
-  to intel_atomic_commit_tail as it is not advisable to
-  change persistent state in atomic check (Jani Nikula)
-- Add psr2 deep sleep check in dc3co compute.
-- Move allowed computation logic inside dc3co update (Jani Nikula).
-- Add dc3co support check in dc3co allowed function (Jani Nikula)
-- Move all dc3co functions to intel_display_power.c and
-  rename functions accordingly  (Jani Nikula)
-- Clean up dc3co/dc6 power async delay in
-  intel_atomic_commit_tail() (Jani Nikula)
+- rename eligible to allowed (Jani Nikula)
 
-BSpec: 75253
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c  |  14 +-
- .../gpu/drm/i915/display/intel_display_core.h |   2 +
- .../drm/i915/display/intel_display_power.c    | 135 ++++++++++++++++++
- .../drm/i915/display/intel_display_power.h    |  37 +++++
- 4 files changed, 183 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/intel_display_types.h | 2 ++
+ drivers/gpu/drm/i915/display/intel_psr.c           | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8e269b71f18e..083a77de752b 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -7428,6 +7428,7 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	struct intel_crtc *crtc;
- 	struct intel_power_domain_mask put_domains[I915_MAX_PIPES] = {};
- 	struct ref_tracker *wakeref = NULL;
-+	int power_async_delay;
- 
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state)
- 		intel_atomic_dsb_prepare(state, crtc);
-@@ -7536,6 +7537,8 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 	/* Now enable the clocks, plane, pipe, and connectors that we set up. */
- 	display->modeset.funcs->commit_modeset_enables(state);
- 
-+	intel_display_power_dc3co_compute(state);
-+
- 	/* FIXME probably need to sequence this properly */
- 	intel_program_dpkgc_latency(state);
- 
-@@ -7632,11 +7635,12 @@ static void intel_atomic_commit_tail(struct intel_atomic_state *state)
- 		 */
- 		intel_uncore_arm_unclaimed_mmio_detection(uncore);
- 	}
--	/*
--	 * Delay re-enabling DC states by 17 ms to avoid the off->on->off
--	 * toggling overhead at and above 60 FPS.
--	 */
--	intel_display_power_put_async_delay(display, POWER_DOMAIN_DC_OFF, wakeref, 17);
-+
-+	power_async_delay = intel_display_power_select_target_dc_state(state);
-+
-+	intel_display_power_put_async_delay(display,
-+					    POWER_DOMAIN_DC_OFF, wakeref, power_async_delay);
-+
- 	intel_display_rpm_put(display, state->wakeref);
- 
- 	/*
-diff --git a/drivers/gpu/drm/i915/display/intel_display_core.h b/drivers/gpu/drm/i915/display/intel_display_core.h
-index 09ce25a6d4b1..6068d0f5089e 100644
---- a/drivers/gpu/drm/i915/display/intel_display_core.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_core.h
-@@ -538,6 +538,8 @@ struct intel_display {
- 
- 	struct {
- 		struct i915_power_domains domains;
-+		/* DC3CO state */
-+		struct intel_dc3co_state dc3co;
- 
- 		/* Shadow for DISPLAY_PHY_CONTROL which can't be safely read */
- 		u32 chv_phy_control;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index eadae8eb5709..193129e171cd 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -14,7 +14,9 @@
- #include "intel_cdclk.h"
- #include "intel_clock_gating.h"
- #include "intel_combo_phy.h"
-+#include "intel_crtc.h"
- #include "intel_de.h"
-+#include "intel_display.h"
- #include "intel_display_power.h"
- #include "intel_display_power_map.h"
- #include "intel_display_power_well.h"
-@@ -30,6 +32,8 @@
- #include "intel_pch_refclk.h"
- #include "intel_pmdemand.h"
- #include "intel_pps_regs.h"
-+#include "intel_psr.h"
-+#include "intel_psr_regs.h"
- #include "intel_snps_phy.h"
- #include "skl_watermark.h"
- #include "skl_watermark_regs.h"
-@@ -368,6 +372,136 @@ bool intel_display_power_dc3co_supported(struct intel_display *display)
- 	return (power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) == DC_STATE_EN_UPTO_DC3CO;
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index cb9c1d6a0afa..5b1d0fa3e888 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1771,6 +1771,8 @@ struct intel_psr {
+ 	ktime_t last_exit;
+ 	bool sink_not_reliable;
+ 	bool irq_aux_error;
++	/* DC3CO allowed used to control PSR configuration */
++	bool dc3co_allowed;
+ 	u16 su_w_granularity;
+ 	u16 su_y_granularity;
+ 	bool source_panel_replay_support;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index 932aff386023..0f4263885416 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2330,6 +2330,7 @@ static void intel_psr_disable_locked(struct intel_dp *intel_dp)
+ 	intel_dp->psr.psr2_sel_fetch_cff_enabled = false;
+ 	intel_dp->psr.active_non_psr_pipes = 0;
+ 	intel_dp->psr.pkg_c_latency_used = 0;
++	intel_dp->psr.dc3co_allowed = false;
  }
  
-+bool intel_display_power_dc3co_allowed(struct intel_display *display)
-+{
-+	struct intel_dc3co_state *dc3co = &display->power.dc3co;
-+	bool allowed;
-+
-+	if (!intel_display_power_dc3co_supported(display))
-+		return false;
-+
-+	mutex_lock(&dc3co->lock);
-+	allowed = dc3co->allowed;
-+	mutex_unlock(&dc3co->lock);
-+
-+	return allowed;
-+}
-+
-+void intel_display_power_dc3co_update(struct intel_display *display, u32 trigger)
-+{
-+	struct intel_dc3co_state *dc3co = &display->power.dc3co;
-+
-+	if (!intel_display_power_dc3co_supported(display))
-+		return;
-+
-+	mutex_lock(&dc3co->lock);
-+	dc3co->trigger = trigger;
-+	dc3co->allowed = !!trigger;
-+	mutex_unlock(&dc3co->lock);
-+	drm_dbg_kms(display->drm, "DC3CO allowed=%d trigger=0x%x\n",
-+		    dc3co->allowed, dc3co->trigger);
-+}
-+
-+static bool intel_dc3co_port_pipe_compatible(struct intel_dp *intel_dp,
-+					     const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	enum pipe pipe = to_intel_crtc(crtc_state->uapi.crtc)->pipe;
-+	enum port port = dig_port->base.port;
-+	int num_pipes = intel_crtc_num_joined_pipes(crtc_state);
-+
-+	/* Need to follow 1:1 mapping because of CMTG restriction */
-+	if (DISPLAY_VER(to_intel_display(crtc_state)) == 35)
-+		return num_pipes == 1 &&
-+		       ((pipe == PIPE_A && port == PORT_A) ||
-+			(pipe == PIPE_B && port == PORT_B));
-+	else
-+		return num_pipes == 1 && pipe <= PIPE_B && port <= PORT_B;
-+}
-+
-+void intel_display_power_dc3co_compute(struct intel_atomic_state *state)
-+{
-+	struct intel_display *display = to_intel_display(state);
-+	struct intel_crtc *crtc;
-+	struct intel_crtc_state *crtc_state;
-+	struct intel_encoder *encoder;
-+	struct intel_dp *intel_dp;
-+	u8 active_pipes = 0;
-+	enum pipe pipe;
-+	u32 trigger = DC3CO_TRIGGER_NONE;
-+
-+	if (!intel_display_power_dc3co_supported(display))
-+		return;
-+
-+	for_each_intel_crtc(display, crtc)
-+		active_pipes |= crtc->active ? BIT(crtc->pipe) : 0;
-+
-+	active_pipes = intel_calc_active_pipes(state, active_pipes);
-+
-+	if (hweight8(active_pipes) != 1)
-+		goto done;
-+
-+	pipe = ffs(active_pipes) - 1;
-+	crtc = intel_crtc_for_pipe(display, pipe);
-+
-+	crtc_state = to_intel_crtc_state(crtc->base.state);
-+
-+	for_each_intel_encoder_mask(display->drm, encoder,
-+				    crtc_state->uapi.encoder_mask) {
-+		if (encoder->type != INTEL_OUTPUT_EDP)
-+			goto done;
-+
-+		intel_dp = enc_to_intel_dp(encoder);
-+
-+		if (!intel_dc3co_port_pipe_compatible(intel_dp, crtc_state))
-+			goto done;
-+
-+		if (intel_psr2_in_deep_sleep(intel_dp))
-+			goto done;
-+	}
-+
-+	if (crtc_state->has_lobf)
-+		trigger |= DC3CO_TRIGGER_LOBF;
-+	if (crtc_state->has_panel_replay && intel_dp->as_sdp_supported)
-+		trigger |= DC3CO_TRIGGER_PANEL_REPLAY;
-+	if (crtc_state->has_sel_update)
-+		trigger |= DC3CO_TRIGGER_PSR2;
-+
-+done:
-+	intel_display_power_dc3co_update(display, trigger);
-+}
-+
-+/*
-+ * Select the target DC state for this commit and return the async-put delay
-+ * to use when releasing the DC_OFF reference.
-+ *
-+ * Picks DC_STATE_EN_UPTO_DC3CO when DC3CO can be enabled
-+ * otherwise falls back to default DC state of DC_STATE_EN_UPTO_DC6.
-+ * The chosen target is programmed via intel_display_power_set_target_dc_state().
-+ *
-+ * Returns the async-put delay (in ms) to use when releasing the DC_OFF
-+ * reference: DC3CO_PUT_ASYNC_DELAY_MS when DC3CO was selected, otherwise
-+ * DC6_PUT_ASYNC_DELAY_MS.
-+ */
-+int intel_display_power_select_target_dc_state(struct intel_atomic_state *state)
-+{
-+	struct intel_display *display = to_intel_display(state);
-+	u32 target_dc_state;
-+
-+	if (!intel_display_power_dc3co_supported(display))
-+		return DC6_PUT_ASYNC_DELAY_MS;
-+
-+	if (intel_display_power_dc3co_allowed(display))
-+		target_dc_state = DC_STATE_EN_UPTO_DC3CO;
-+	else
-+		target_dc_state = DC_STATE_EN_UPTO_DC6;
-+
-+	intel_display_power_set_target_dc_state(display, target_dc_state);
-+
-+	return target_dc_state == DC_STATE_EN_UPTO_DC3CO ?
-+		DC3CO_PUT_ASYNC_DELAY_MS : DC6_PUT_ASYNC_DELAY_MS;
-+}
-+
- static void __async_put_domains_mask(struct i915_power_domains *power_domains,
- 				     struct intel_power_domain_mask *mask)
- {
-@@ -1047,6 +1181,7 @@ int intel_display_power_init(struct intel_display *display)
- 		sanitize_target_dc_state(display, DC_STATE_EN_UPTO_DC6);
+ /**
+@@ -3120,10 +3121,13 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	struct intel_encoder *encoder;
++	bool dc3co_allowed;
  
- 	mutex_init(&power_domains->lock);
-+	mutex_init(&display->power.dc3co.lock);
+ 	if (!crtc_state->has_psr)
+ 		return;
  
- 	INIT_DELAYED_WORK(&power_domains->async_put_work,
- 			  intel_display_power_put_async_work);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 06b3e49e5f8b..7470b541677b 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -9,9 +9,12 @@
- #include <linux/mutex.h>
- #include <linux/workqueue.h>
++	dc3co_allowed = intel_display_power_dc3co_allowed(display);
++
+ 	verify_panel_replay_dsc_state(crtc_state);
  
-+#include "intel_display_limits.h"
-+
- enum aux_ch;
- enum port;
- struct i915_power_well;
-+struct intel_atomic_state;
- struct intel_display;
- struct intel_encoder;
- struct ref_tracker;
-@@ -131,6 +134,36 @@ struct intel_power_domain_mask {
- 	DECLARE_BITMAP(bits, POWER_DOMAIN_NUM);
- };
+ 	for_each_intel_encoder_mask_with_psr(state->base.dev, encoder,
+@@ -3151,6 +3155,8 @@ void intel_psr_post_plane_update(struct intel_atomic_state *state,
+ 			keep_disabled = true;
+ 		}
  
-+/*
-+ * DC3CO enabling triggers (bitmask).
-+ * DC3CO may be enabled when at least one of these triggers is active.
-+ * Additional constraints may still apply.
-+ */
-+#define DC3CO_TRIGGER_NONE		(0)
-+#define DC3CO_TRIGGER_PSR2		BIT(0)
-+#define DC3CO_TRIGGER_LOBF		BIT(1)
-+#define DC3CO_TRIGGER_PANEL_REPLAY	BIT(2)
-+#define DC3CO_TRIGGER_ALL		(DC3CO_TRIGGER_PSR2 | \
-+					 DC3CO_TRIGGER_LOBF | \
-+					 DC3CO_TRIGGER_PANEL_REPLAY)
++		intel_dp->psr.dc3co_allowed = dc3co_allowed;
 +
-+/*
-+ * Delay to re-enable DC5/DC6 states by 17 ms to avoid the off->on->off
-+ * toggling overhead at and above 60 FPS.
-+ */
-+#define DC6_PUT_ASYNC_DELAY_MS		17
-+/*
-+ * Use minimal re-enable delay to allow DC3CO entry on
-+ * the next idle frame.
-+ */
-+#define DC3CO_PUT_ASYNC_DELAY_MS	1
-+
-+struct intel_dc3co_state {
-+	struct mutex lock; /* protects allowed and trigger fields */
-+	bool allowed; /* DC3CO compute result */
-+	u32 trigger; /* Bitmask of active DC3CO triggers */
-+};
-+
- struct i915_power_domains {
- 	/*
- 	 * Power wells needed for initialization at driver init and suspend
-@@ -183,6 +216,10 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
- 					     u32 state);
- u32 intel_display_power_get_current_dc_state(struct intel_display *display);
- bool intel_display_power_dc3co_supported(struct intel_display *display);
-+void intel_display_power_dc3co_update(struct intel_display *display, u32 trigger);
-+bool intel_display_power_dc3co_allowed(struct intel_display *display);
-+void intel_display_power_dc3co_compute(struct intel_atomic_state *state);
-+int intel_display_power_select_target_dc_state(struct intel_atomic_state *state);
- 
- void intel_display_power_runtime_suspend(struct intel_display *display);
- void intel_display_power_runtime_resume(struct intel_display *display);
+ 		if (!psr->enabled && !keep_disabled)
+ 			intel_psr_enable_locked(intel_dp, crtc_state);
+ 		else if (psr->enabled && !crtc_state->wm_level_disabled)
 -- 
 2.43.0
 
