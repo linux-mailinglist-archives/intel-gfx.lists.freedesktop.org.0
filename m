@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Jud3CajzImqifgEAu9opvQ
+	id zq3QIqnzImqjfgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 18:04:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 18:04:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B66EF64992F
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 18:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 54F7C649932
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 18:04:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=mA20H2rT;
+	dkim=pass header.d=intel.com header.s=Intel header.b="nB4DnGY/";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 49FC810E631;
-	Fri,  5 Jun 2026 16:04:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B757F10E511;
+	Fri,  5 Jun 2026 16:04:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E25BD10E511;
- Fri,  5 Jun 2026 16:04:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ADF4110E511;
+ Fri,  5 Jun 2026 16:04:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780675493; x=1812211493;
+ t=1780675495; x=1812211495;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=GrhNLs/f5Ggoz30GnyY+xb9tJm+PFeyVExDE70WACXY=;
- b=mA20H2rT1iB0F8+XmdWdlenL54lcpkxXewMqP94OmGYAU9IZgkS8f/sI
- TkwWBxu9zpW05H1G4ipjpyHPedLcbTPNbwNAcpbrtekL1LNXRD1QNsOoC
- 5cPiDkuiaSK/Co6t7gWrUQXRbnpihYsJFOO1u+pa2mA5WP94+EuhcZ63F
- 20tC/G1FrtdOwiPdr+YYjeM8AzP83VKlrmbnjDez0p4etG2dYLVAfr2w5
- HbyJKWFYFINmUi0LGHyJAAHEdi8BF904o/oxyIgwpjAVSUt8GoOG0gNrE
- vXeMvxdTW2DLLpU/fEKATePkr6D6RYmXtXS2oEJkkaSTXKW2tpKy0CR3L w==;
-X-CSE-ConnectionGUID: tMzF4IJuSB2AqZClxUs4iw==
-X-CSE-MsgGUID: QCXT7DqyRvqb6dIZF8oRpw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="98928774"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="98928774"
+ bh=n+pmT9aLIgIWmdlRu6E2QHM/4DPYbUSAGm4f0ZJ4Hj4=;
+ b=nB4DnGY/X9CkrmfGcvIuuwQsmja80D4m4G5JKqiqwuzfNXrSbGBgpijr
+ q/hTBjW1DenCQIELbWyXDyGo+mYCjMJoJ7tjy6xso+j7A2TmllWGqodlI
+ b4X6tAGzOkx0XFZYrYK4P/hvmm1DgML7Q5u+Z1lK3qVS2SvBmD7ZrNCEK
+ HsJoZF2on6Mo80mXoJPTAVlKdW4VeQ+piZ0ji6sPefLyBBbXRus/ZXLwv
+ 0Qd3G/FFXWqvo5XGfB5MwzO0Edxl/cGyeqU5jAbnfMHkR12BN9uT06qIl
+ glOUaMrgf64W5IUThqIRP2zdMum8pKtoR6WamZS/6+kyv4/Cu8hmmavgU Q==;
+X-CSE-ConnectionGUID: z8RR3aBOSWeChff4oWZJgQ==
+X-CSE-MsgGUID: rcEv99GRQ4WA6ZyuXjpjnw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="98928781"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="98928781"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 09:04:53 -0700
-X-CSE-ConnectionGUID: PPZqQAA7TbWZ4e6lBE36aw==
-X-CSE-MsgGUID: /BP5JwIYQJSx7Z1bxHssnQ==
+ 05 Jun 2026 09:04:55 -0700
+X-CSE-ConnectionGUID: cMIGcQ7XR1qKWLgnefdoRw==
+X-CSE-MsgGUID: yiFR2VNHQTi0sttEtDRXRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="268566308"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="268566314"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
  by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 09:04:51 -0700
+ 05 Jun 2026 09:04:53 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  raag.jadav@intel.com
-Subject: [PATCH 2/5] drm/xe/heci: Use xe print functions in xe_heci_gsc.c
-Date: Sat,  6 Jun 2026 00:04:41 +0800
-Message-ID: <20260605160444.3833295-3-jonathan.cavitt@intel.com>
+Subject: [PATCH 3/5] drm/xe/i2c: Use xe print functions in xe_i2c.c
+Date: Sat,  6 Jun 2026 00:04:42 +0800
+Message-ID: <20260605160444.3833295-4-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260605160444.3833295-1-jonathan.cavitt@intel.com>
 References: <20260605160444.3833295-1-jonathan.cavitt@intel.com>
@@ -99,112 +99,57 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B66EF64992F
+X-Rspamd-Queue-Id: 54F7C649932
 
-Update xe_heci_gsc.c to use the xe error reporting helper functions in
+Update xe_i2c.c to use the xe error reporting helper functions in
 xe_printk.h instead of directly calling the associated drm print
 functions from drm_print.h
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_heci_gsc.c | 21 ++++++++++-----------
- 1 file changed, 10 insertions(+), 11 deletions(-)
+ drivers/gpu/drm/xe/xe_i2c.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
-index 5af8903e10af..d716371fbbe9 100644
---- a/drivers/gpu/drm/xe/xe_heci_gsc.c
-+++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
-@@ -8,10 +8,9 @@
- #include <linux/pci.h>
- #include <linux/sizes.h>
+diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
+index 706783863d07..148e82e01ae8 100644
+--- a/drivers/gpu/drm/xe/xe_i2c.c
++++ b/drivers/gpu/drm/xe/xe_i2c.c
+@@ -5,7 +5,6 @@
+  * Copyright (C) 2025 Intel Corporation.
+  */
  
 -#include <drm/drm_print.h>
--
- #include "xe_device_types.h"
- #include "xe_heci_gsc.h"
+ #include <linux/array_size.h>
+ #include <linux/container_of.h>
+ #include <linux/device.h>
+@@ -30,6 +29,7 @@
+ #include "xe_device.h"
+ #include "xe_i2c.h"
+ #include "xe_mmio.h"
 +#include "xe_printk.h"
- #include "regs/xe_gsc_regs.h"
- #include "xe_platform_types.h"
+ #include "xe_sriov.h"
  #include "xe_survivability_mode.h"
-@@ -112,13 +111,13 @@ static int heci_gsc_irq_setup(struct xe_device *xe)
  
- 	heci_gsc->irq = irq_alloc_desc(0);
- 	if (heci_gsc->irq < 0) {
--		drm_err(&xe->drm, "gsc irq error %d\n", heci_gsc->irq);
-+		xe_err(xe, "gsc irq error %d\n", heci_gsc->irq);
- 		return heci_gsc->irq;
- 	}
- 
- 	ret = heci_gsc_irq_init(heci_gsc->irq);
- 	if (ret < 0)
--		drm_err(&xe->drm, "gsc irq init failed %d\n", ret);
-+		xe_err(xe, "gsc irq init failed %d\n", ret);
- 
- 	return ret;
- }
-@@ -151,7 +150,7 @@ static int heci_gsc_add_device(struct xe_device *xe, const struct heci_gsc_def *
- 
- 	ret = auxiliary_device_init(aux_dev);
- 	if (ret < 0) {
--		drm_err(&xe->drm, "gsc aux init failed %d\n", ret);
-+		xe_err(xe, "gsc aux init failed %d\n", ret);
- 		kfree(adev);
- 		return ret;
- 	}
-@@ -159,7 +158,7 @@ static int heci_gsc_add_device(struct xe_device *xe, const struct heci_gsc_def *
- 	heci_gsc->adev = adev; /* needed by the notifier */
- 	ret = auxiliary_device_add(aux_dev);
- 	if (ret < 0) {
--		drm_err(&xe->drm, "gsc aux add failed %d\n", ret);
-+		xe_err(xe, "gsc aux add failed %d\n", ret);
- 		heci_gsc->adev = NULL;
- 
- 		/* adev will be freed with the put_device() and .release sequence */
-@@ -190,7 +189,7 @@ int xe_heci_gsc_init(struct xe_device *xe)
- 	}
- 
- 	if (!def || !def->name) {
--		drm_warn(&xe->drm, "HECI is not implemented!\n");
-+		xe_warn(xe, "HECI is not implemented!\n");
- 		return 0;
- 	}
- 
-@@ -215,7 +214,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
+@@ -285,7 +285,7 @@ void xe_i2c_pm_suspend(struct xe_device *xe)
  		return;
  
- 	if (!xe->info.has_heci_gscfi) {
--		drm_warn_once(&xe->drm, "GSC irq: not supported");
-+		xe_warn_once(xe, "GSC irq: not supported");
- 		return;
- 	}
- 
-@@ -224,7 +223,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
- 
- 	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
- 	if (ret)
--		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
-+		xe_err_ratelimited(xe, "error handling GSC irq: %d\n", ret);
+ 	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, (__force u32)PCI_D3hot);
+-	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
++	xe_dbg(xe, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
  }
  
- void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
-@@ -235,7 +234,7 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
- 		return;
+ void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
+@@ -299,7 +299,7 @@ void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
+ 		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY | PCI_COMMAND_MASTER);
  
- 	if (!xe->info.has_heci_cscfi) {
--		drm_warn_once(&xe->drm, "CSC irq: not supported");
-+		xe_warn_once(xe, "CSC irq: not supported");
- 		return;
- 	}
- 
-@@ -244,5 +243,5 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
- 
- 	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
- 	if (ret)
--		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
-+		xe_err_ratelimited(xe, "error handling GSC irq: %d\n", ret);
+ 	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, (__force u32)PCI_D0);
+-	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
++	xe_dbg(xe, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
  }
+ 
+ static void xe_i2c_remove(void *data)
 -- 
 2.53.0
 
