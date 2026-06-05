@@ -2,63 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mcfGJzI6I2qwlAEAu9opvQ
+	id 7CN3BbdBI2qVmQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:37:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3C57C64B4B7
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1D1DA64B722
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:37:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=mwCmV642;
+	dkim=pass header.d=sms-medipool.de header.s=mail header.b=gfTTqF9w;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=reject) header.from=sms-medipool.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C49F3112C29;
-	Fri,  5 Jun 2026 21:05:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A169A11AB43;
+	Fri,  5 Jun 2026 21:37:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CF95A112C21;
- Fri,  5 Jun 2026 21:05:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780693551; x=1812229551;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=XpIvs/s0R4uGCxmmrAdRjqLwdAHk4Hsns1QvYez5Wu8=;
- b=mwCmV6424IP0R+7Vhh1siPSTU3XEOnQSIrzhT/3cpaHsyzZz+xAaALNM
- ltS5TbTawhoaMiM/jzh1U2HNiN8Brd8G29rtMysDdDoNODBD3GatJbdbb
- veGGTsYR9GmNBIAvEnuwtdTsWOTgGrPEROpWkn/lOK6yi+3TxcEVTGwSQ
- Gu1uBhdGspyfkhlIfa32ew7jdX3HY99oWtOl4GmU5K/6Hro6t1r3F5Dc+
- DE4hBNeH10wk8L+PKXnxllrbJia/ie1tSvwH24C50KLHfjOH9IwX9Xx+a
- me88g+FLWHMncFPVy7jkzOj7PiOY60xp3pmzni69b+mYePDxpsegrHIme A==;
-X-CSE-ConnectionGUID: vWgqvDY7TH+EWxMK+R6yhg==
-X-CSE-MsgGUID: COOG8j8hSgiQuo6dcA8YRQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064582"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064582"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:51 -0700
-X-CSE-ConnectionGUID: xPlSziWkRRCNBMjH40OHGw==
-X-CSE-MsgGUID: ItRyG9ceTxqE8vh0wSPurQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994711"
-Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:50 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- raag.jadav@intel.com, Michal.Wajdeczko@intel.com
-Subject: [PATCH v3 5/5] drm/xe/i2c: Report i2c irq handler issue
-Date: Sat,  6 Jun 2026 05:05:34 +0800
-Message-ID: <20260605210534.3843211-6-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
-References: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
+X-Greylist: delayed 554 seconds by postgrey-1.36 at gabe;
+ Fri, 05 Jun 2026 21:37:54 UTC
+Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0E64411AB42;
+ Fri,  5 Jun 2026 21:37:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
+ s=mail; t=1780694918;
+ bh=B/EE8eEHQIgCSYl/OhEX/QNJofrBnUOSNrtEk+TU1F4=;
+ h=From:To:Cc:Subject:Date:From;
+ b=gfTTqF9w041qeJhDnC7Mx8ARk9dd3xh4S4OAWbIu2y54cQVUX6sSw+PKe7Sof3VTS
+ Ok8/SI44r2TtryIl5kZA2SBf07OI2ivroFk90xXJ5UE1jhgQouoKyCocBVjFBbJ+6/
+ cxq+66DXzER+YxHfvP6QlHD9DfXhrJJUk4pb0BEBBfmsD0mIbB7F6s4ezaNvX5I1tS
+ rHSK+Kx0QEwhRMBm3+TfKLiBEgvEU8NUSJMfmQVQ6L6wHOanFFFVxhwyKVtUGRX6VB
+ 71vHOZaA3FBt2PSJukS9n5TcF6ak6UzdZM7tLTgVl/Wamxs0thoINyy3PsLFmVJ67R
+ ytNGWCGMrvEfg==
+Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
+ by mail.sms-medipool.de (Postfix) with ESMTPS id 7529C3362B;
+ Fri,  5 Jun 2026 23:28:38 +0200 (CEST)
+Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
+ by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
+ Fri, 5 Jun 2026 23:28:37 +0200
+From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ Alexander Kaplan <alexander.kaplan@sms-medipool.de>,
+ Imre Deak <imre.deak@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH] drm/i915/tc: Disable outputs instead of modesetting them on
+ link reset
+Date: Fri,  5 Jun 2026 23:28:37 +0200
+Message-ID: <20260605212837.4265-1-alexander.kaplan@sms-medipool.de>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -75,70 +69,158 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[sms-medipool.de,reject];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[sms-medipool.de:s=mail];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cavitt@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
+	ARC_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,lists.freedesktop.org:from_smtp];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[alexander.kaplan@sms-medipool.de,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[sms-medipool.de:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3C57C64B4B7
+X-Rspamd-Queue-Id: 1D1DA64B722
 
-Error logging is expected but not included in xe_i2c_irq_handler() for
-generic_handle_irq_safe(), so add error logging there.
+After a DP-alt sink is disconnected with the link still active,
+intel_tc_port_link_reset_work() tries to recover the link via a
+modeset, flagging the active CRTCs with connectors_changed in
+reset_link_commit(). By that point intel_dp_detect() has already
+reset the sink capabilities (EDID, dfp.*, DSC DPCD - see the FIXME in
+intel_dp_detect()), so the recovery modeset is computed without them.
+Depending on which capabilities the connected mode requires, this
+either fails the atomic check with -EINVAL, triggering the WARN in
+intel_tc_port_link_reset_work():
 
-This issue was caught by static analysis.
+  i915 0000:00:02.0: [drm] drm_WARN_ON(ret)
+  WARNING: ... at drivers/gpu/drm/i915/display/intel_tc.c:1838
+           intel_tc_port_link_reset_work+0x38c/0x420
 
-v2:
-- Reword error message (Wajdeczko)
+or commits a configuration the disconnected link can't sustain: link
+training fails and the output is left enabled on the disconnected
+port. Either way the output stays enabled, keeping the TC PHY
+ownership held and the TC mode locked. AUX transfers then get
+rejected based on intel_digital_port_connected_locked(), so detecting
+a newly connected sink keeps failing as well: the port can't be
+recovered without disabling the output by some other means (in
+practice a reboot).
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Disable the affected outputs instead of modesetting them, matching
+how commit c598c335da42 ("drm/i915/tc: Reset TypeC PHYs left enabled
+in DP-alt mode after the sink disconnects") handles the equivalent
+situation during boot/resume sanitization, for the same reason. The
+disable also releases the PHY ownership synchronously - via the
+encoder's post-PLL-disable hook - avoiding the IOM/TCSS firmware
+timeout the above commit worked around, and unblocking the HPD status
+updates of other TypeC ports. The output gets re-enabled via the
+normal hotplug flow once a sink is connected again.
+
+Preserving the sink capabilities across the disconnect instead (the
+direction proposed for the DSC caps in the gitlab reports below)
+would avoid the -EINVAL, but not the second failure mode: the
+recovery modeset would still be committed against a dead link,
+leaving the enabled output behind after a failed link training.
+Disabling the output covers both.
+
+Observed on PTL with a DP-alt -> HDMI 2.1 PCON adapter on a TV power
+cycle (both failure modes above); reports with the matching WARN on
+ADL and MTL in the links below.
+
+Fixes: c598c335da42 ("drm/i915/tc: Reset TypeC PHYs left enabled in DP-alt mode after the sink disconnects")
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/14807
+Link: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/11551
+Cc: Imre Deak <imre.deak@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
 ---
- drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+diff --git a/drivers/gpu/drm/i915/display/intel_tc.c b/drivers/gpu/drm/i915/display/intel_tc.c
+index a21dd4e3fe4c..ae9da59ca8e3 100644
+--- a/drivers/gpu/drm/i915/display/intel_tc.c
++++ b/drivers/gpu/drm/i915/display/intel_tc.c
+@@ -5,6 +5,7 @@
 
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 148e82e01ae8..84171021e6ea 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -177,12 +177,15 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
- void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	int ret;
- 
- 	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
- 		return;
- 
- 	/* Forward interrupt to I2C adapter */
--	generic_handle_irq_safe(xe->i2c->adapter_irq);
-+	ret = generic_handle_irq_safe(xe->i2c->adapter_irq);
-+	if (ret)
-+		xe_err_ratelimited(xe, "I2C: irq handling failure (%pe)\n", ERR_PTR(ret));
- 
- 	/* Deassert after I2C adapter clears the interrupt */
- 	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
--- 
-2.53.0
+ #include <linux/iopoll.h>
+
++#include <drm/drm_atomic_uapi.h>
+ #include <drm/drm_print.h>
+
+ #include "intel_atomic.h"
+@@ -1764,9 +1765,13 @@ static int reset_link_commit(struct intel_tc_port *tc,
+ 	struct intel_display *display = to_intel_display(tc->dig_port);
+ 	struct intel_digital_port *dig_port = tc->dig_port;
+ 	struct intel_dp *intel_dp = enc_to_intel_dp(&dig_port->base);
++	struct drm_connector_state *conn_state;
++	struct drm_connector *connector;
++	struct drm_plane_state *plane_state;
++	struct drm_plane *plane;
+ 	struct intel_crtc *crtc;
+ 	u8 pipe_mask;
+-	int ret;
++	int i, ret;
+
+ 	ret = drm_modeset_lock(&display->drm->mode_config.connection_mutex, ctx);
+ 	if (ret)
+@@ -1779,6 +1784,13 @@ static int reset_link_commit(struct intel_tc_port *tc,
+ 	if (!pipe_mask)
+ 		return 0;
+
++	/*
++	 * The sink is gone, so intel_dp_detect() has already reset the sink
++	 * capabilities, and recomputing the config for the still active mode
++	 * would fail (see the FIXME in intel_dp_detect()). Disable the
++	 * outputs instead; the next sink connect re-enables them via the
++	 * normal hotplug flow.
++	 */
+ 	for_each_intel_crtc_in_pipe_mask(display, crtc, pipe_mask) {
+ 		struct intel_crtc_state *crtc_state;
+
+@@ -1786,7 +1798,33 @@ static int reset_link_commit(struct intel_tc_port *tc,
+ 		if (IS_ERR(crtc_state))
+ 			return PTR_ERR(crtc_state);
+
+-		crtc_state->uapi.connectors_changed = true;
++		crtc_state->uapi.active = false;
++
++		ret = drm_atomic_set_mode_prop_for_crtc(&crtc_state->uapi, NULL);
++		if (ret)
++			return ret;
++
++		ret = drm_atomic_add_affected_planes(&state->base, &crtc->base);
++		if (ret)
++			return ret;
++
++		ret = drm_atomic_add_affected_connectors(&state->base, &crtc->base);
++		if (ret)
++			return ret;
++	}
++
++	for_each_new_connector_in_state(&state->base, connector, conn_state, i) {
++		ret = drm_atomic_set_crtc_for_connector(conn_state, NULL);
++		if (ret)
++			return ret;
++	}
++
++	for_each_new_plane_in_state(&state->base, plane, plane_state, i) {
++		ret = drm_atomic_set_crtc_for_plane(plane_state, NULL);
++		if (ret)
++			return ret;
++
++		drm_atomic_set_fb_for_plane(plane_state, NULL);
+ 	}
+
+ 	if (!__intel_tc_port_link_needs_reset(tc))
 
