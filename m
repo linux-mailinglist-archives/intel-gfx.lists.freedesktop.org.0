@@ -2,64 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 55jrGbCMImopaAEAu9opvQ
+	id +uqWBRKNImpMaAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:36 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:47:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 36F5B64685C
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 69F5A6468A8
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:47:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=hkNI+65O;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=kFpQxx6j;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=MqyMEOWn;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Fhh4LrbJ;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="rPhR/gNf";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=none) header.from=suse.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B31A711A5E5;
-	Fri,  5 Jun 2026 08:45:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0115A11A5F4;
+	Fri,  5 Jun 2026 08:47:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 868FA11A5E2;
- Fri,  5 Jun 2026 08:45:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780649133; x=1812185133;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=uO+g5hiN8/BW113XUBMnFRAhf4SVaw1HAKnXXSRfha0=;
- b=hkNI+65Of2ifYtn5KqSYHjWfK+nQ8gjSllDlg0XblKMklHu3OmHXwwi/
- dzJi26UcfdGBWgb8y7qlb+fsAlg/+Gtta2vdjTJ+I91rYsrY017YJFRgk
- ZTIesuusw3/jKs1xz8VZdnC78VI2yTdie8MGqKT1kp3BkCg3yYfvlKxWB
- 0462FR768EzFeWGpvjhX+KlOC6zCEoBUr17k7MCMla0JURf962g4pXtUt
- 6Icv+hY8UOgwjfQ2ubTl7happRjxrR+5gzeVnl3EdbF8gqRjUYWfuGinh
- nrI3oyRbiBggPv2BiamybCOVPgOe8maVsH1732XDzcm0CivP1GNs0AZrQ A==;
-X-CSE-ConnectionGUID: tFQdajktQzaj+FnZZVKwvg==
-X-CSE-MsgGUID: 45j7RuQGQheidePlXeNw1g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81666430"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81666430"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 01:45:33 -0700
-X-CSE-ConnectionGUID: yiglwuCVRkCV3cSQmjn/YA==
-X-CSE-MsgGUID: XCFwEzctRzGQkvPiOwyV4A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="246624251"
-Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 01:45:31 -0700
-From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: animesh.manna@intel.com, uma.shankar@intel.com, jani.nikula@linux.intel.com
-Subject: [PATCH v5 14/14] drm/i915/display: Add DC3CO count and residency in
- dmc debugfs
-Date: Fri,  5 Jun 2026 14:14:21 +0530
-Message-ID: <20260605084421.3912865-15-dibin.moolakadan.subrahmanian@intel.com>
-X-Mailer: git-send-email 2.43.0
-In-Reply-To: <20260605084421.3912865-1-dibin.moolakadan.subrahmanian@intel.com>
-References: <20260605084421.3912865-1-dibin.moolakadan.subrahmanian@intel.com>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE99511A5F1
+ for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 08:47:10 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id 306576A7ED;
+ Fri,  5 Jun 2026 08:47:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780649229; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nZA5qkS5xbW9UHiYKI2mdN44MH2LzJK8McXEFj8Pos4=;
+ b=kFpQxx6jB0x7clx8kVCHqO5xDsScpXYF6PER1hsSxRaUB5trK1Jc8ZvcNR7NPgNbq+kzFd
+ 6IfiooqqvxCDjMQoF20rm4rJESKlyEZFuB5HjGxc8xrmtHfj+Mm0p5BkGrULPF2czOqoYV
+ 3Jnw0Q9QTebPY9uHcVFSfRVATvLigtQ=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780649229;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nZA5qkS5xbW9UHiYKI2mdN44MH2LzJK8McXEFj8Pos4=;
+ b=MqyMEOWndiUE0GDa27UJg2L6EA0QUKtCY1fRfZWpQvVrBi5KYV9+0cI5exHBaUYfu/8Y7V
+ zrF01drKT5EuqQBw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1780649228; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nZA5qkS5xbW9UHiYKI2mdN44MH2LzJK8McXEFj8Pos4=;
+ b=Fhh4LrbJZ/FWvTKTuwzn7TF/nRMptOqfVWoa/Udstv6gWzt0UXWhJ5iyOLXExO880lZGKG
+ TO26eTrrNCOQf8hHGhKXlJkbQnNI4Tu7MLWqLfZDyTarjsNA8Ds5x/kcg9SlIQLL69oCxu
+ qCuaZ/JblXrlKLG9MPZm2qfeNsvhBsE=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1780649228;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
+ bh=nZA5qkS5xbW9UHiYKI2mdN44MH2LzJK8McXEFj8Pos4=;
+ b=rPhR/gNfBhCyM5faxGNbyHomUaRlIFgCorSkGBe6ksjaKTagEgLvpWTL6jvzAVvnj8rj8M
+ YRWwsQzHAEQRSVCw==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 9D0A6779A8;
+ Fri,  5 Jun 2026 08:47:07 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id yj4YJAuNImrxfQAAD6G6ig
+ (envelope-from <pjakobsson@suse.de>); Fri, 05 Jun 2026 08:47:07 +0000
+From: Patrik Jakobsson <pjakobsson@suse.de>
+To: ville.syrjala@linux.intel.com, Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Imre Deak <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH RESEND] drm/i915/display: Add quirk for interlane align bit on
+ CH7511
+Date: Fri,  5 Jun 2026 10:46:40 +0200
+Message-ID: <20260605084641.50778-1-pjakobsson@suse.de>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Level: 
+X-Spam-Score: -3.01
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,80 +103,123 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:imre.deak@intel.com,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_SENDER(0.00)[pjakobsson@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.de:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[pjakobsson@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,suse.de:mid,suse.de:dkim,suse.de:from_mime,suse.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 36F5B64685C
+X-Rspamd-Queue-Id: 69F5A6468A8
 
-Expose DC3CO count and residency for xe3lp platforms via debugfs.
+When disabling pattern training after successful link training the
+CH7511 bridge incorrectly clears the INTERLANE_ALIGN_DONE bit. This is
+interpreted as link failure when rechecking the link status and triggers
+an endless loop of retraining sequences.
 
-Changes in v4:
-- Keep dc5_reg register initialization to avoid any
-  invalid access (sashiko)
+This patch adds a quirk to pretend the bit is still set and no
+retraining is needed.
 
-Changes in v5:
-- Change XE3P_DMC_DC3CO_COUNT address to lower case (Manna Animesh).
-
-Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+Fixes: 3b3be899fc81 ("drm/i915/dp: Recheck link state after modeset")
+Signed-off-by: Patrik Jakobsson <pjakobsson@suse.de>
 ---
- drivers/gpu/drm/i915/display/intel_dmc.c      | 9 ++++++++-
- drivers/gpu/drm/i915/display/intel_dmc_regs.h | 2 ++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     |  9 +++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.c | 17 +++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_quirks.h |  1 +
+ 3 files changed, 27 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc.c b/drivers/gpu/drm/i915/display/intel_dmc.c
-index a133785c815b..5ffe2b1c3c51 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc.c
-+++ b/drivers/gpu/drm/i915/display/intel_dmc.c
-@@ -1650,7 +1650,14 @@ static int intel_dmc_debugfs_status_show(struct seq_file *m, void *unused)
- 		   DMC_VERSION_MINOR(dmc->version));
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 85d3aa3b9894..5b269b1f18d7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -5875,6 +5875,15 @@ intel_dp_needs_link_retrain(struct intel_dp *intel_dp)
+ 	if (intel_dp->link.seq_train_failures)
+ 		return true;
  
- 	if (DISPLAY_VER(display) >= 12) {
--		if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
-+		if (DISPLAY_VER(display) >= 35) {
-+			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
-+			seq_printf(m, "DC3CO count: %d\n",
-+				   intel_de_read(display, XE3P_DMC_DC3CO_COUNT));
++	/*
++	 * The CH7511 bridge incorrectly clears the INTERLANE_ALIGN_DONE bit
++	 * when disabling training pattern.
++	 */
++	if (intel_has_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT)) {
++		link_status[DP_LANE_ALIGN_STATUS_UPDATED - DP_LANE0_1_STATUS] |=
++			DP_INTERLANE_ALIGN_DONE;
++	}
 +
-+			seq_printf(m, "DC3CO residency: %d\n",
-+				   intel_de_read(display, DC_STATE_DC3CO_RESIDENCY));
-+		} else if (display->platform.dgfx || DISPLAY_VER(display) >= 14) {
- 			dc5_reg = DG1_DMC_DEBUG_DC5_COUNT;
- 		} else {
- 			dc5_reg = TGL_DMC_DEBUG_DC5_COUNT;
-diff --git a/drivers/gpu/drm/i915/display/intel_dmc_regs.h b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-index 38e342b45af0..6b7978fb8986 100644
---- a/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_dmc_regs.h
-@@ -531,6 +531,8 @@ enum pipedmc_event_id {
- #define TGL_DMC_DEBUG3		_MMIO(0x101090)
- #define DG1_DMC_DEBUG3		_MMIO(0x13415c)
+ 	/* Retrain if link not ok */
+ 	return !intel_dp_link_ok(intel_dp, link_status) &&
+ 		!intel_psr_link_ok(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.c b/drivers/gpu/drm/i915/display/intel_quirks.c
+index 33245f44c0d5..2cec0a945528 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.c
++++ b/drivers/gpu/drm/i915/display/intel_quirks.c
+@@ -100,6 +100,14 @@ static void quirk_disable_psr2(struct intel_display *display)
+ 	drm_info(display->drm, "PSR2 support not currently available for this setup, applying disable PSR2 quirk\n");
+ }
  
-+#define XE3P_DMC_DC3CO_COUNT	_MMIO(0x8f05c)
++static void quirk_ignore_interlane_align_bit(struct intel_dp *intel_dp)
++{
++	struct intel_display *display = to_intel_display(intel_dp);
 +
- #define DMC_WAKELOCK_CFG	_MMIO(0x8F1B0)
- #define  DMC_WAKELOCK_CFG_ENABLE REG_BIT(31)
- #define DMC_WAKELOCK1_CTL	_MMIO(0x8F140)
++	intel_set_dpcd_quirk(intel_dp, QUIRK_IGNORE_INTERLANE_ALIGN_BIT);
++	drm_info(display->drm, "Applying ignore interlane align bit quirk\n");
++}
++
+ struct intel_quirk {
+ 	int device;
+ 	int subsystem_vendor;
+@@ -286,6 +294,15 @@ static const struct intel_dpcd_quirk intel_dpcd_quirks[] = {
+ 		.sink_oui = SINK_OUI(0x00, 0x22, 0xb9),
+ 		.hook = quirk_disable_edp_panel_replay,
+ 	},
++	/* Nodka TPC6000-C152 */
++	{
++		.device = 0x0f31,
++		.subsystem_vendor = 0x8086,
++		.subsystem_device = 0x0f31,
++		.sink_oui = SINK_OUI(0x2b, 0x02, 0xf0),
++		.sink_device_id = SINK_DEVICE_ID('C', 'H', '7', '5', '1', '1'),
++		.hook = quirk_ignore_interlane_align_bit,
++	},
+ };
+ 
+ void intel_init_quirks(struct intel_display *display)
+diff --git a/drivers/gpu/drm/i915/display/intel_quirks.h b/drivers/gpu/drm/i915/display/intel_quirks.h
+index 970a4fe52faf..7fcc3967f84f 100644
+--- a/drivers/gpu/drm/i915/display/intel_quirks.h
++++ b/drivers/gpu/drm/i915/display/intel_quirks.h
+@@ -23,6 +23,7 @@ enum intel_quirk_id {
+ 	QUIRK_EDP_LIMIT_RATE_HBR2,
+ 	QUIRK_DISABLE_EDP_PANEL_REPLAY,
+ 	QUIRK_DISABLE_PSR2,
++	QUIRK_IGNORE_INTERLANE_ALIGN_BIT,
+ };
+ 
+ void intel_init_quirks(struct intel_display *display);
 -- 
-2.43.0
+2.54.0
 
