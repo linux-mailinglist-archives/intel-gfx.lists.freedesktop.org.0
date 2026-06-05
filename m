@@ -2,71 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3IuXHoaBImr3ZAEAu9opvQ
+	id pltcDZWMImoWaAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:57:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E327E646338
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 769FD64680E
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 10:45:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=BCshmgIC;
+	dkim=pass header.d=intel.com header.s=Intel header.b=SZ+q0b5q;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5E43D11A55D;
-	Fri,  5 Jun 2026 07:57:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E753F11A5C3;
+	Fri,  5 Jun 2026 08:45:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCAD911A55A;
- Fri,  5 Jun 2026 07:57:54 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9843310E51E;
+ Fri,  5 Jun 2026 08:45:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780646276; x=1812182276;
- h=message-id:date:mime-version:from:to:cc:subject:
+ t=1780649106; x=1812185106;
+ h=from:to:cc:subject:date:message-id:mime-version:
  content-transfer-encoding;
- bh=1aRfajY/mlCdD9J+IkNfAwMP9z+4dWk+xwz1iwDVNh8=;
- b=BCshmgIC1n+QAy29jyOmtQVcZ8bWI1kzlDGScLJSAcBVoPJDfURjRXHJ
- 7YTPBM5LXCIfmOCCJXF2UBeW1whALvRhawKBSPMDtZ0dw0OyE9iI3+ncv
- Pnos1+iavLAmWJmblc0LZkisP2AGwq+LHujAmxzJLdB/5rnBNrFc7Ze5s
- muk4FaB5VJUaagQajDIIBNkQ4F7v7t/aThQqmS+613iwUh8Wf24cdw+Uv
- rLzUdsqhbWyhjw0qZBXix3MBE38MWDPmVjMaxV7XcEdDWtOUgVWHz9olr
- eTLR9Vgk7ZxmOak/qBXeNWxmQY4lryyYW+zecoF/rNMCt7XYvep9rGkFa Q==;
-X-CSE-ConnectionGUID: 3HuXiKkwRD6FlNEtaixwMw==
-X-CSE-MsgGUID: qhlBC/GaRcafH4f9ydeUxw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="98897434"
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="98897434"
-Received: from fmviesa006.fm.intel.com ([10.60.135.146])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 00:57:54 -0700
-X-CSE-ConnectionGUID: RH9pUXxoTcan0NI+fLf/CQ==
-X-CSE-MsgGUID: 8cvysP7MQPavaeYoNwReHQ==
+ bh=IvpY4Wv928RHSDMiLHHYuoyLwVPGWLE/RU9RLwl2Elc=;
+ b=SZ+q0b5qiofkgrJf58faixDJb1aQAgJq7VBgvUNmxv1OwZ8Cvl7SNGYl
+ Tai+1b2w6vkUrSTop9JUHtcb068Gd2rnpZkbPPJ9mDkJhSAK9maNn/hdd
+ k+Ov2nYaUv4jqzj6xkGErsdeMJUzEEH0hQj2YLNxrXn4CLxGmvN30m/T1
+ vN3b16j9k7YwF7Tq1KrHAExlGZ1hrfkPEUGiIKlJXD42eLKwc2Iu2wmL3
+ 0F4jmo4VmOTBCes719USUIGjsawtVC4qDhdONFLaT6oZrO4PPhi2deBk0
+ t85ytEQlbdf9pu3/IaEIIVxVKse6IYktF17/c3T72wcvlj8dTmGKX0pD8 Q==;
+X-CSE-ConnectionGUID: J3Kv7IHgRhiPSqrxRhK+/Q==
+X-CSE-MsgGUID: 5Lw0tWMNTyOBFYxj2hcbhw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="81666408"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="81666408"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa108.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 01:45:05 -0700
+X-CSE-ConnectionGUID: ME4tPHENQDC+Vf3plqECeQ==
+X-CSE-MsgGUID: gORTPVfkRC6zb1op7JeruQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="240328795"
-Received: from ncintean-mobl1.ger.corp.intel.com (HELO [10.245.245.227])
- ([10.245.245.227])
- by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 00:57:50 -0700
-Message-ID: <a4a5bf50-3fc8-4faf-884b-08121687124a@linux.intel.com>
-Date: Fri, 5 Jun 2026 09:57:51 +0200
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="246624098"
+Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 01:45:03 -0700
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: animesh.manna@intel.com, uma.shankar@intel.com, jani.nikula@linux.intel.com
+Subject: [PATCH v5 00/14] drm/i915/display: Add DC3CO support
+Date: Fri,  5 Jun 2026 14:14:07 +0530
+Message-ID: <20260605084421.3912865-1-dibin.moolakadan.subrahmanian@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-To: Simona Vetter <simona.vetter@ffwll.ch>, Dave Airlie <airlied@gmail.com>
-Cc: dim-tools@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- Oded Gabbay <ogabbay@kernel.org>,
- =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Maxime Ripard <mripard@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>
-Subject: [PULL] drm-misc-next-fixes
-Content-Language: en-US
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -83,96 +72,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FREEMAIL_TO(0.00)[ffwll.ch,gmail.com];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:from_mime,linux.intel.com:mid,lists.freedesktop.org:from_smtp,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E327E646338
+X-Rspamd-Queue-Id: 769FD64680E
 
-Hi Dave, Sima,
+This series adds initial DC3CO support for display version 35+ and adds
+debugfs visibility into DC3CO count/residency.
 
-drm-misc-next-fixes for v7.2-rc1!
+The series also includes required PSR/ALPM updates for DC3CO enablement.
 
-Kind regards,
-~Maarten Lankhorst
+This series is based on the CMTG enablement series currently under
+review:
+https://patchwork.freedesktop.org/series/157664/
 
-drm-misc-next-fixes-2026-06-05:
-drm-misc-next-fixes for v7.2-rc1:
-- Revert last minute IS_ERR_OR_NULL changes in nouveau/gsp.
-- Fix build warning in drm scheduler.
-- Flush caches and TLB before v3d runtime suspend.
-- Fix a trace and debug command in amdxdna.
-- Fix heap buffer address validation when PASID is disabled in amdxdna.
-The following changes since commit 61de054a772a1feda6364931ab1baf9038abf1c8:
+DC3CO is not enabled by this series since power_domains->allowed_dc_mask
+is not updated to include DC3CO.
 
-  drm/nouveau/gsp: formally support GA100 (2026-05-28 19:30:15 +0200)
+TODO:
+- Enable DC3CO in power_domains->allowed_dc_mask
 
-are available in the Git repository at:
+Changes in v2:
+- Move dc3co state from intel_atomic_state to display->power
+- Squash cleanup and related patches to reduce series from 19 to 13
+  patches
 
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-next-fixes-2026-06-05
+Changes in v3:
+- Fix trigger always returning zero in intel_dc3co_compute_state().
 
-for you to fetch changes up to 62c1671f6454ceaa80e9ceff63f821aa36f35154:
+Changes in v4:
+- Call intel_display_power_set_target_dc_state() only when
+  DC3CO is supported.
+- Add as_sdp_supported check for Panel Replay trigger.
+- Add 1:1 pipe-port mapping check for display version 35
+  in intel_dc3co_port_pipe_compatible() and change 
+  dc3co eligibility compute logic.
+- Re-arm DC3CO work in PSR resume, and schedule it 
+  from intel_psr_post_plane_update() to cover cases
+  where no PSR flush occurs.
+- Remove dc state validation that could break the fallback mechanism.
+- Keep dc5_reg initialization in the xe3lp debugfs
+  to avoid invalid register access.
 
-  accel/amdxdna: Return errors for failed debug BO commands (2026-06-03 11:47:12 -0700)
+Changes in v5:
+- Move dc3co functions to intel_display_power.c.
+- Add psr2_deep_sleep helper API.
+- Rename dc3co_eligible to dc3co_allowed
+- Add DC3CO compute and set target state in commit tail.
 
-----------------------------------------------------------------
-drm-misc-next-fixes for v7.2-rc1:
-- Revert last minute IS_ERR_OR_NULL changes in nouveau/gsp.
-- Fix build warning in drm scheduler.
-- Flush caches and TLB before v3d runtime suspend.
-- Fix a trace and debug command in amdxdna.
-- Fix heap buffer address validation when PASID is disabled in amdxdna.
+Dibin Moolakadan Subrahmanian (14):
+  drm/i915/display: Remove TGL DC3CO support
+  drm/i915/display: Switch DC3CO enable from standalone bit to DC level
+    encoding
+  drm/i915/display: Use FIELD_PREP() for DC state enable bits
+  drm/i915/display: Add DC3CO DC_STATE enable/disable support
+  drm/i915/display: Add HAS_DC3CO() macro
+  drm/i915/display: Add DC3CO support check
+  drm/i915/psr: Add psr2 deep sleep helper API
+  drm/i915/display: Add DC3CO compute and set target state in commit
+    tail
+  drm/i915/display: Store DC3CO eligibility in PSR state
+  drm/i915/display: PSR2: Set idle_frames to 0 for DC3CO
+  drm/i915/display: Enable DC3CO idle protocol in ALPM
+  drm/i915/display: PSR Add delayed work to exit DC3CO
+  drm/i915/display: Add helper to enable DC counter
+  drm/i915/display: Add DC3CO count and residency in dmc debugfs
 
-----------------------------------------------------------------
-Lizhi Hou (3):
-      accel/amdxdna: Preserve user address when PASID is disabled
-      accel/amdxdna: Remove drv_cmd tracing from job free callback
-      accel/amdxdna: Return errors for failed debug BO commands
+ drivers/gpu/drm/i915/display/intel_alpm.c     |   5 +
+ drivers/gpu/drm/i915/display/intel_display.c  |  14 +-
+ .../gpu/drm/i915/display/intel_display_core.h |   2 +
+ .../drm/i915/display/intel_display_device.h   |   1 +
+ .../drm/i915/display/intel_display_power.c    | 151 +++++++++-
+ .../drm/i915/display/intel_display_power.h    |  38 +++
+ .../i915/display/intel_display_power_well.c   |  49 ++--
+ .../i915/display/intel_display_power_well.h   |   1 +
+ .../gpu/drm/i915/display/intel_display_regs.h |  14 +-
+ .../drm/i915/display/intel_display_types.h    |   7 +-
+ drivers/gpu/drm/i915/display/intel_dmc.c      |  16 +-
+ drivers/gpu/drm/i915/display/intel_dmc_regs.h |   2 +
+ drivers/gpu/drm/i915/display/intel_dmc_wl.c   |   2 +-
+ drivers/gpu/drm/i915/display/intel_psr.c      | 265 ++++++------------
+ drivers/gpu/drm/i915/display/intel_psr.h      |   1 +
+ drivers/gpu/drm/i915/display/intel_psr_regs.h |   1 +
+ 16 files changed, 351 insertions(+), 218 deletions(-)
 
-Lyude Paul (5):
-      Revert "nouveau/gsp/rm: cleanup remaining IS_ERR_OR_NULL usage"
-      Revert "nouveau/gsp/rm: cleanup IS_ERR_OR_NULL in core implementation"
-      Revert "nouveau/gsp/rm: cleanup WARN_ON(IS_ERR_OR_NULL)"
-      Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rpc_rd"
-      Revert "nouveau/gsp: cleanup IS_ERR_OR_NULL in rm_alloc functions"
+-- 
+2.43.0
 
-Maíra Canal (2):
-      drm/v3d: Flush MMU TLB and cache during runtime resume
-      drm/v3d: Clean caches before runtime suspend
-
-Tvrtko Ursulin (1):
-      drm/sched: Fix clang build warning in kunit tests
-
- drivers/accel/amdxdna/aie2_ctx.c                   | 16 +++++------
- drivers/accel/amdxdna/amdxdna_gem.c                |  5 +++-
- drivers/gpu/drm/nouveau/include/nvkm/subdev/gsp.h  |  8 +++---
- .../drm/nouveau/nvkm/subdev/gsp/rm/r535/alloc.c    |  4 +--
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/bar.c  |  2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/ctrl.c |  2 +-
- .../gpu/drm/nouveau/nvkm/subdev/gsp/rm/r535/rpc.c  | 10 +++----
- drivers/gpu/drm/scheduler/tests/tests_scheduler.c  | 12 ++-------
- drivers/gpu/drm/v3d/v3d_mmu.c                      | 31 +++++++++++++++-------
- drivers/gpu/drm/v3d/v3d_power.c                    |  2 ++
- 10 files changed, 50 insertions(+), 42 deletions(-)
