@@ -2,100 +2,168 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yKQ7FhB6ImpnYAEAu9opvQ
+	id foGqAUKAImoDZAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:26:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:52:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id BDEC0645F2C
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:26:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5CBDE646268
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 09:52:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=ZSIV9Lvu;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="/Y9IiZR8";
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=bqGHECoE;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=QjuUPYIW;
+	dkim=pass header.d=intel.com header.s=Intel header.b="lR4/zzs+";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=suse.de
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 52E7A112ABD;
-	Fri,  5 Jun 2026 07:26:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E215A11A52E;
+	Fri,  5 Jun 2026 07:52:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E8BA112ABA
- for <intel-gfx@lists.freedesktop.org>; Fri,  5 Jun 2026 07:26:05 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id D57146B139;
- Fri,  5 Jun 2026 07:26:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1780644364; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
- b=ZSIV9LvuE9XuWWyWr+zTptJnTD2j8IIm9fWNA/wBVBqKSNij0L1jfL0f612iA62VKSzye2
- 1/Se7o3v9/JsDlob5ZiQuI7UYVgoONs+UHJUCDNhCaa+t898mwePF0JXVIBSEnxWb573jG
- ODE1xNi3E1b3zCERQOmpaPFS2OmL/e4=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1780644364;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
- b=/Y9IiZR89aZGjQZNOAdxQUEjNWloeN4j7wOZkHHo7ii0v+hMBIDFFyc4wUhsfF3jNT85MA
- mdTOec8xiduOwoDQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1780644363; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
- b=bqGHECoEn9hZpzo7jsSTE3hNmjPQ7cxYU2J6ga+LlDxj0wLeOFAsqCGQ4uYWEKliaPjmhh
- 1idKIWXNRpK5YVeTdhmfyT5Kd0QV/bf2TctBLhXw/lCRug4aSe+fhGRjgQzEEf2oi2Vfd6
- QRl2TFQL1vuARLNgNeW1O3zcXWAW08c=
-DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1780644363;
- h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding;
- bh=0qPw1IaSk2oUHyFt9atfgvw4vgsM+o6i1yuF73ABbOw=;
- b=QjuUPYIWnLXxU5qaL0fNKGSYpeE2/eIjUsDJWjscox9nt7QVIiB7m+TEgWxthuEhJR6jhu
- UX119Orl4fwos4BQ==
-Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 72EB0779A8;
- Fri,  5 Jun 2026 07:26:03 +0000 (UTC)
-Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id d7bfGgt6Imo2LwAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Fri, 05 Jun 2026 07:26:03 +0000
-Date: Fri, 5 Jun 2026 09:26:02 +0200
-From: Thomas Zimmermann <tzimmermann@suse.de>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-misc-fixes
-Message-ID: <20260605072602.GA268798@linux.fritz.box>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D1E8C11A52C;
+ Fri,  5 Jun 2026 07:52:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780645950; x=1812181950;
+ h=message-id:date:subject:to:cc:references:from:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=zEFwuLvhbT5sNAcqFgIa0PDFRqA4C3OxTSkvHBEKyC0=;
+ b=lR4/zzs+9nxup2RHKtqnspytXgcBhuZXYatLPz5O8Wi2n4YYkwxYrFSC
+ YU8LVFb8u/ptU+TdfZ+c1qhzIBGdCo5q9xKOhC8/2t3YS/ohdDwRuHbRk
+ KmK++23UPHvqz/2pZF9FDlXL4v5k7GwAI7/EQCmRni6iWq+MiAMUMiz0B
+ lXqiAlSLn8l4dlADMJ6SVNGYTe2UfE8gj3AG20h50JCtMyxh8r+R6TBRr
+ dlAv9TyGCY6kRhytkFYXQ9Qmuv9OGNndUDeFL5ioYOopZlg3A6QtmQbyE
+ Di4lGrkkcR9RDCfqp7KEu7Zp7BSn7Fjqp7G5NCA89G7OA6k7gDmmhmRgM A==;
+X-CSE-ConnectionGUID: CTNktW8vTQuWKJ3YZc2flQ==
+X-CSE-MsgGUID: Z/XTWRnZQl6hZetQSgvOUA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11807"; a="80515657"
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="80515657"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 00:52:29 -0700
+X-CSE-ConnectionGUID: RjKn/e3YQJavTXq1A8ypdw==
+X-CSE-MsgGUID: Q3rf4EbkRgG73Hix9HZJwg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,188,1774335600"; d="scan'208";a="268709665"
+Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 05 Jun 2026 00:52:29 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 5 Jun 2026 00:52:29 -0700
+Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Fri, 5 Jun 2026 00:52:29 -0700
+Received: from PH7PR06CU001.outbound.protection.outlook.com (52.101.201.5) by
+ edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Fri, 5 Jun 2026 00:52:27 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=hYHFW3y85HJec0SmkuuL4xzTybXjsaaxNld+SXgkAD/av6ER4ZgdI8RiUS+Vzve/UEw0Rt90Q1WjgVRtyH+DEoBTPxWhQzM2GbS3nyrKuqxquMBfyS28RAfsE3ENStjwMP5tgFVvizvtGeBm0snVi9MD1pD87AtacaeVQCZLgojgR1bhKn/AxbCAWjmsWntoVaxF/id7k6SDR7/kB2DkhUUSOh0zMiMTxO6pprIWujj0YQJ+UTDW36Ku0SPtE1bMAQ7QzCGoq1yCOiw3c960eQtn7G6q68IVDHnQqZnmBFF2JLt26+VtI3XafVPXeujEkuOT5Mc/BmRpKQcEJBwJBA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=x2fLStkG6LwoG/cQacKN74a/WL052/2VL7AqfkxB05s=;
+ b=kgSMTHzhcIPugJbPFCSQpRG0Bximy909DKuJIP9KSIdKVEgwcgN5BjqXG2AyRXSXKVmoYFdbV3WQeSn7pGY/NajwmeO5kM0BKcFropYPy8jeYAOrNtJF3AvrX75cE/SXzvoB96WxOyXHipWgqIrKrr3Grd1Ajq+HMaQ/6bagF6BT2Olwt7q2gNWWttiHWj2hcL6KcyD2okQhemZDenLd8+MQBKNEGH58qJlobouLPJ6wR03m9mhZJOFimX8ZfZYoBI2TPcn02wud25BezKoey2BdIMoU9cyLsYVNWaxGP/9W+qeKrjk9BCTHeHidzXe8Wxj7hkTMEvOCKhJZwC9hSg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com (2603:10b6:8:111::10)
+ by BL1PR11MB5320.namprd11.prod.outlook.com (2603:10b6:208:316::13) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Fri, 5 Jun 2026
+ 07:52:21 +0000
+Received: from DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1]) by DM4PR11MB7183.namprd11.prod.outlook.com
+ ([fe80::d9c7:d2fb:680d:1ee1%5]) with mapi id 15.21.0092.006; Fri, 5 Jun 2026
+ 07:52:21 +0000
+Message-ID: <559c9705-f959-4fe7-9c77-1247b86a3222@intel.com>
+Date: Fri, 5 Jun 2026 13:22:12 +0530
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v3] drm/i915/display: Mask RO bits in gen9_write_dc_state()
+To: Jani Nikula <jani.nikula@linux.intel.com>, <imre.deak@intel.com>
+CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <uma.shankar@intel.com>
+References: <20260601090131.1840805-1-dibin.moolakadan.subrahmanian@intel.com>
+ <20260602113134.2477070-1-dibin.moolakadan.subrahmanian@intel.com>
+ <9de0611a934b0a1fcfbcb5b78822611ee45cb2b9@intel.com>
+ <aiATv_6EYar1AQHX@ideak-desk.lan>
+ <2b4a8d43bf1e2c5c578d9a3fe93c3da932bb9742@intel.com>
+Content-Language: en-US
+From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <2b4a8d43bf1e2c5c578d9a3fe93c3da932bb9742@intel.com>
+Content-Type: text/plain; charset="UTF-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: MA5P287CA0126.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:1d0::7) To DM4PR11MB7183.namprd11.prod.outlook.com
+ (2603:10b6:8:111::10)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-X-Spam-Flag: NO
-X-Spam-Score: -4.51
-X-Spam-Level: 
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: DM4PR11MB7183:EE_|BL1PR11MB5320:EE_
+X-MS-Office365-Filtering-Correlation-Id: 6a3e8ffe-ed6f-49b9-bc7f-08dec2d75f62
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|366016|1800799024|376014|11063799006|56012099006|4143699003|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: BsT/jgmtuKxkEu/iFImrDSLYuNrAdArPbekCGCEo2fizezaBeOyYoaAKDa6TCxH4MXmePVArHSlKtUWw1rfUfGynlIiUBK2JdUTefyeb2yR2FfBjQ7RbtNwiqDOqoQFPtK0ApgxIM1KMFsIrcrawwN0aFmm0oBHL7riNFE3FDY9gtcNDRRhJ0wekHuAxJMgIvVtsMqKHLImr8DO5H4A0O4P8XdtsZfre4Gzs41QrF4ffLlLwqL5plreIYsXHxZbXiWzB03j4wddKKyQ/SyoWABxWF1+nrTsee57C85eHtbAF61ZMA+hAkLJFQpTotvZVAjFQIYjAW31sqnp8mJVk3A1DrMhsKvLKyP1FHVi2VYgO0kl914X0uvpL0aryDkTJYpriBhcmBihOhhiHXGRm6IZVzNRMoQchfDvlal3G8aairGoDQPzlBuvFW9kGT1sTJh5T0Zv4XD7qyakFowpYME3IpR58nAnAqGRZVmphWespBqOmzAeycP3ETyf4bNazHgsaoIcBPyjDrsmAtm/twZBSFneyA2jci+Qmr+t5MrxMbVL/YFjRrRCvP6DI9jsrwDoJw+kAve3GDLfS+a2aR3hRnDsHDZX/lMFO6Q9qSOnAsu972rN4wv5wn8tqXnLF1psShW2t6ElLTo+KFGtOqezWvK/64Y4hdk6l3bIDgOv4VzigdfWcC2uCAAh9Zewm
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:DM4PR11MB7183.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(366016)(1800799024)(376014)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dTRENkYvQzFxd0JVZUNueGU1WFYvbStzOWNJK2pRdGZmOXNSUVUxOE9tMTRN?=
+ =?utf-8?B?SzNzeW9YWWluK1pjMFN5WXRLV1dRejNJQUQ5UzlrbW1BRTN0UTVIbDh0S2tY?=
+ =?utf-8?B?TUJKb0lIR3lJOU5WQ1lYbE50djhoR2ZLMkg3RmZWb0hDdmo4b21VbzBsRDBK?=
+ =?utf-8?B?NVB5WE5QWE9ZYjNLZ0tZQVR1NXFqajNFMjM1RHFueURvdXZkOGhZTjNSeHh5?=
+ =?utf-8?B?MTlIZDU5ZkNBNmJiaENOQmtsM2hKQWdKSjkzQktvUnBpaWRGbm1yYWpmWlN5?=
+ =?utf-8?B?TmhDOEkrMVlOK3p6M01JL2VuZjVSa3RzZzlBYnl0THlOYWpjVmhKWjZkZER4?=
+ =?utf-8?B?TE5ScG5aZWI5aUJZNVc2TkZiY05lenNsM3dyeHVPRS8yNFk4QmpiOVFIRmtO?=
+ =?utf-8?B?d3Q1M3crNWNhNDZkRThNcjlLZWJGSzVDbTczZUsyMEVOTjJ4SmgrdWZSTjJz?=
+ =?utf-8?B?elBzd0gwTlZ4RVVEQWgyekZsTkpFdkd5MXBKZHI2TEYvTnc3cU9YTHBmTEw5?=
+ =?utf-8?B?NFZFMkp0TWJGZlM0bDNDbXBSRC90NUswMHQwdnJoQWd4TExydjJ1UmgrTUVG?=
+ =?utf-8?B?Ukh4aTZhakxiMjU5djVJWmVwNEVPazZuNVVyc29nN1RiUkpjY2RQT2hINjQ5?=
+ =?utf-8?B?RFJWcjdSa1NuUm56a1VXYlJzN1FnM3MzZlZpVWxvRFRMQUsvT1FSWC9VOHhl?=
+ =?utf-8?B?ZC91UzNBSzBYUGdPaW1UM1c0WDBSOTVQY21YQzlTdHJ3REhDdFc0ZVFjQlcx?=
+ =?utf-8?B?cSszKzhUdHQ0V01XbEZJZU0wQ3pqcGkxQWdyTkhsOEhrMkt6OHZlMWw1VElp?=
+ =?utf-8?B?aWZ1d1FwZE9FUkN5ejUvUm16a3M1RGlxMmVFWk5wME5UYVg2dTJMUlFMbG85?=
+ =?utf-8?B?cFVCaUdFYzdaV1FUdkNxRGgyNmVOdkk3ZkxsVE11eEQ0MTM0SmVRVlZpNExF?=
+ =?utf-8?B?N1lPNnVWU2VVdGhqY1ZUR1lKMDMyeElmOFRDakpNUHZKM2hKQ2Ixd25ObjRa?=
+ =?utf-8?B?d2xqc3FsZ2l0YjdkOW92cFZQOUYxUHJPdC9LVkpaMlN0ZExtVlRkSzh4b2p2?=
+ =?utf-8?B?RU1DQzQxemdwTkgwVDhsU2VQZXp0a0JjMWZ5Vy9PQzhWQloxU00vNGRoaFMx?=
+ =?utf-8?B?TkNkOXNUNmh4RWM0S0c4SnpJSlZHellrR0FXZlhxeUlOa2xleHlVc1F6QlZM?=
+ =?utf-8?B?anMwYjJ3YU9OTklFQkdTSTJHZUkxeWpXcXJOaGpQNWpqelpNVFNSSEQ3MSta?=
+ =?utf-8?B?UUxCWS8xU1RBbys5aDRCSGQ1aG1wRHIvdkU2V1c4citEalk2QkZJUVFxa1Z5?=
+ =?utf-8?B?a1c0UUYwVEtCTTRyNmhIMEhwNlRSUHNpZFpkbXZidGUzeFBSZHpUdXFDamMr?=
+ =?utf-8?B?OEFEUUpMajFwUXpObkNLS3BsUXJjNXlGZDgzZzI0MmxUalp6SFI0cytKNzRj?=
+ =?utf-8?B?WlJFM2kzb2VIQXRCbHljdkRLMW1TWFUvMWdCWWF4NWNGVjJON3h4RmQxK3Iv?=
+ =?utf-8?B?NDgrdWpzd3BWR1VIVy9qY0ZDV0M0allnZUtTSFBVSFBoUUNzRzhnZ0pISUk1?=
+ =?utf-8?B?eXZ2anRSMVN3cExTa1BRb2Z0elhMNmQ3Q2dQYjU1UTlxVVRTeGRjcktJRW1S?=
+ =?utf-8?B?ZWFBTWhmcEhhdkhJdFB5NisrSmdCL3BkODF5R3Ixckp5cUZpTTE3OUNpZ3Vq?=
+ =?utf-8?B?YlRldWQ4a0JyUGZTY2duY2M2NzhYSlF0QkgxYXVITkxPOTg5aHp5TFdjMXNW?=
+ =?utf-8?B?OWRZMDRzaUFURWlmQ2dYSm8yUURCdGR0T1lLNXRZTDVhb3BRb1R4Mjg0UXJB?=
+ =?utf-8?B?Q1F1T0VkRjNJMmZNWldMTjd0MFNJRU1KS0JrUzA4OHpRa1JGaC9RZWJ2Q29F?=
+ =?utf-8?B?bkJNWEVCZTdTelR4d3ZJcW1UUk1nLy9CclZ2QkZoMmZQcERxdDZlRXpNQVpq?=
+ =?utf-8?B?Q2dKOXg1a3ByeGZTeGxVTnQ0amU5N2ozUGVyMFlWY1I1M2dwNmQ1eHp1WjEv?=
+ =?utf-8?B?V1N3RitaUmRUSmVqVVJxb01WYnNvSU96d3o0b3RDbEY4c3ArK3ZPSFhKVis3?=
+ =?utf-8?B?QVRLNjV0TEhoa3NVeXRPM2cvOUd0K1ZFREF2Vk1lVklXRDFzV2hLMm1waVox?=
+ =?utf-8?B?NUtPTUtjMXQ3KzhYN1lPajU1ZFNZRlZlYmR1dTdjL0JEOHBlOGhmMXZ0aytr?=
+ =?utf-8?B?RitIazZrS21jVnJ1MkJ3UnhKSWN4cDUrUVVqTnBPYmpPTU5ZQ3ZIQ0JYaHJD?=
+ =?utf-8?B?NHIxSVZuMGF4MmdPeEk2a3M3dm1Sam1kM3FEeEdVR0NTMjBRNmo4OW5sT1Yz?=
+ =?utf-8?B?bUE4cDZ3c0lGNzUwOVBUakFZMUpkdEtwZ3lOUm9LQ1J3OXZnTjNYRmpUME01?=
+ =?utf-8?Q?GvG87WwCh643MVokGPzIeVlnblcQ3ybwme0It?=
+X-Exchange-RoutingPolicyChecked: eYrjaowHDRsuPP0QdoC2NIIvBGDbhqN9EQKBVha39Q4d++dPlcNfjv3EZaMvwi4GR3ppBMFnyRCyZEdG4HUL7kVDnPn4RwwHMQUovK+6oDByFpE9GsYUuvSmByj2kjPSPH4Ec5P2cuNr/tN8yZajH/CaM/cobSS595JvGD3H1Gw3bi19k4KGNjdNCZR0Oy55cAjn4fCGmAYVe1SVFeeW7oIY6bQvOpXZMPHQaxtW1fGPEUQIOtsFR5R2Iwxv68sRgoc9TiqUZWCXwqrGgA7hfY3314t4I2UBfOpo02jlg0/hkDiedx++Y9ViUPZ7wN5ofvz9s1Yap84Mhn158UGoxA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 6a3e8ffe-ed6f-49b9-bc7f-08dec2d75f62
+X-MS-Exchange-CrossTenant-AuthSource: DM4PR11MB7183.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 05 Jun 2026 07:52:21.2627 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: StIyK0u3r9pjJ/OKKprhwGifXI305zvtltfRZdfJLiLn405eY275nGOC7+gNZRpbaiAa0nJjZgwpxXJM/qYPbEM45ifCpg/dwjdP2+EvvcE0HvIyfZgCCU1gjOwLzkTi
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL1PR11MB5320
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -111,151 +179,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:airlied@gmail.com,m:simona.vetter@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:rodrigo.vivi@intel.com,m:tzimmermann@suse.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:ogabbay@kernel.org,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:dim-tools@lists.freedesktop.org,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[suse.de:+];
-	MISSING_XM_UA(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[dibin.moolakadan.subrahmanian@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,suse.com:url,suse.de:from_mime,suse.de:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gitlab.freedesktop.org:url,linux.fritz.box:mid]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: BDEC0645F2C
+X-Rspamd-Queue-Id: 5CBDE646268
 
-Hi Dave, Sima,
+On 6/3/2026 8:46 PM, Jani Nikula wrote:
+> On Wed, 03 Jun 2026, Imre Deak <imre.deak@intel.com> wrote:
+>> On Wed, Jun 03, 2026 at 11:30:04AM +0300, Jani Nikula wrote:
+>>> On Tue, 02 Jun 2026, Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com> wrote:
+>>>> +static u32 dc_state_ro_mask(struct intel_display *display)
+>>>> +{
+>>>> +	if (DISPLAY_VER(display) >= 20)
+>>>> +		return BIT(10) | BIT(11);
+>>>> +	else if (DISPLAY_VER(display) >= 13 && !display->platform.dg2)
+>>>> +		return BIT(10);
+>>> Register contents need to be defined next to the register definition.
+>>>
+>>> But even so, the caller already has the mask we want to change, I
+>>> already suggested passing that in. What's wrong with that?
+>> The mask used by the caller only contains the bits which the driver
+>> changes. However I would like to know that writing all the other bits in
+>> the register also take their effect, reflected by the read-back after the
+>> write.
+> Fair enough. The first comment still stands, let's not hardcode the bits
+> here inline.
 
-this is the weekly fixes PR from DRM misc.
+Thank you Imre, Jani for confirming mask logic.
+I will keep the mask logic as is for next version and add bit definitions
+next to DC_STATE_EN register.
 
-Best regards
-Thomas
+> BR,
+> Jani.
+>
+>
 
-drm-misc-fixes-2026-06-05:
-Short summary of fixes pull:
-
-dumb-buffer:
-- remove strict limits on buffer geometry
-
-ethosu:
-- reject unsupported NPU_OP_RESIZE
-- fix index of IFM region
-- fix weight index
-- fix overflows in DMA-size calculations
-- reject DMA commands with uninitialized length
-- fix OOB write in ethosu_gem_cmdstream_copy_and_validate
-
-imx:
-- fix kernel-doc warnings
-
-ivpu:
-- add overflow checks in firmware handling and get_info_ioctl
-
-v3d:
-- wait for pending L2T flush before cleaning caches
-- fix leak of vaddr
-- skip CSD when it has zeroed workgroups
-- fix ref counting in performance monitoring
-The following changes since commit 5ab62dd3687bcc2cc542b99385aabac5c996db6f:
-
-  drm: prevent integer overflows in dumb buffer creation helpers (2026-05-29 08:30:47 +0200)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/misc/kernel.git tags/drm-misc-fixes-2026-06-05
-
-for you to fetch changes up to c0837b9cf6eabbad8b8cbddaff1a46a6d0a2e29d:
-
-  accel/ethosu: fix OOB write in ethosu_gem_cmdstream_copy_and_validate() (2026-06-04 22:07:59 -0500)
-
-----------------------------------------------------------------
-Short summary of fixes pull:
-
-dumb-buffer:
-- remove strict limits on buffer geometry
-
-ethosu:
-- reject unsupported NPU_OP_RESIZE
-- fix index of IFM region
-- fix weight index
-- fix overflows in DMA-size calculations
-- reject DMA commands with uninitialized length
-- fix OOB write in ethosu_gem_cmdstream_copy_and_validate
-
-imx:
-- fix kernel-doc warnings
-
-ivpu:
-- add overflow checks in firmware handling and get_info_ioctl
-
-v3d:
-- wait for pending L2T flush before cleaning caches
-- fix leak of vaddr
-- skip CSD when it has zeroed workgroups
-- fix ref counting in performance monitoring
-
-----------------------------------------------------------------
-Andrzej Kacprowski (3):
-      accel/ivpu: Add bounds check for firmware runtime memory
-      accel/ivpu: Add bounds checks for firmware log indices
-      accel/ivpu: Add buffer overflow check in MS get_info_ioctl
-
-Maíra Canal (4):
-      drm/v3d: Wait for pending L2T flush before cleaning caches
-      drm/v3d: Fix vaddr leak when indirect CSD has zeroed workgroups
-      drm/v3d: Skip CSD when it has zeroed workgroups
-      drm/v3d: Fix global performance monitor reference counting
-
-Muhammad Bilal (6):
-      accel/ethosu: fix IFM region index out-of-bounds in command stream parser
-      accel/ethosu: reject NPU_OP_RESIZE commands from userspace
-      accel/ethosu: fix wrong weight index in NPU_SET_SCALE1_LENGTH on U85
-      accel/ethosu: fix arithmetic issues in dma_length()
-      accel/ethosu: reject DMA commands with uninitialized length
-      accel/ethosu: fix OOB write in ethosu_gem_cmdstream_copy_and_validate()
-
-Thomas Zimmermann (1):
-      drm/dumb-buffer: Drop buffer-size limits for now
-
-Yicong Hui (1):
-      drm/imx: Fix three kernel-doc warnings in dcss-scaler.c
-
- drivers/accel/ethosu/ethosu_gem.c      | 35 +++++++++++++++++++++++++---------
- drivers/accel/ivpu/ivpu_fw.c           | 16 ++++++++++++++++
- drivers/accel/ivpu/ivpu_fw_log.c       |  5 +++++
- drivers/accel/ivpu/ivpu_ms.c           |  7 +++++++
- drivers/gpu/drm/drm_dumb_buffers.c     |  7 -------
- drivers/gpu/drm/imx/dcss/dcss-scaler.c |  3 +++
- drivers/gpu/drm/v3d/v3d_gem.c          |  8 ++++++++
- drivers/gpu/drm/v3d/v3d_perfmon.c      | 24 ++++++++++++++++++-----
- drivers/gpu/drm/v3d/v3d_sched.c        | 17 ++++++++++++++---
- 9 files changed, 98 insertions(+), 24 deletions(-)
-
--- 
-Thomas Zimmermann
-Graphics Driver Developer
-SUSE Software Solutions Germany GmbH
-Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
-GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
