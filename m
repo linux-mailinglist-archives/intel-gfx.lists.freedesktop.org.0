@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4n1hHSk6I2qplAEAu9opvQ
+	id EBz1JSs6I2qqlAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3F8A764B4A2
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 42AA964B4A7
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:47 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=DfMVtLAQ;
+	dkim=pass header.d=intel.com header.s=Intel header.b="c/nwi+Sg";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AF4D1112C1E;
-	Fri,  5 Jun 2026 21:05:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C2703112C25;
+	Fri,  5 Jun 2026 21:05:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7128D112C1E;
- Fri,  5 Jun 2026 21:05:42 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5367112C20;
+ Fri,  5 Jun 2026 21:05:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780693542; x=1812229542;
+ t=1780693544; x=1812229544;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ObHa+CKKCJ5pI4SGqwkGQZlPbdi6mey9UdKl/WyzJIs=;
- b=DfMVtLAQB2JMY3FqZfjgQRwEummrWjS3+EGN7R2YIQ6Fh7FmeE9kXBe+
- 7nAEanuD+mytLE4IgqGs3y0mB8skqgpdRioXCzK62ZWsTn76KBcGy2KX0
- Qzknx8JL+Wax/aWgOs4SUOo/smWYH6XKssYRyJjNnUGNJJ70Dh65ZDDC+
- Ep7ypQ8FfFY7xIDlBiidN8YZQjx6oERvvd/g7KtHCOtPc40VC2dPPo/4A
- gJKK4eCELS7I0OS5VMCLzYSbBLL4ln/0/8sGhHf7hLkHR5Svvepg+YTAf
- b55ql4O//9rRrruZtQC7x0x1mLsZn6tsDFmvOG++Zgu7YJHz1IHtUOIDu w==;
-X-CSE-ConnectionGUID: xThUi0+WQ6645eSmF2ksdA==
-X-CSE-MsgGUID: 3tD5OQdsSTiakGoGgYXM0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064548"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064548"
+ bh=DFwEbM0UdJfjkt5Es8i/CqBZMVoUCNpKhD3XKMVNcVg=;
+ b=c/nwi+SgxKA2czKBT3ER29+H0X0uwTod/RRnrG5YU023BDTb6jHMUww6
+ V60Qbkhg5V8OGWDYxgaC1kJGLEUgIxjtRyCFi7RrbTXlAgihJUMebpz5k
+ d5wADNIeCI4K/Lz9Dmea960pCDNQbQdsVnMFpKemLNLZFu8kj32a6pjJY
+ CdAz6NCIJH2yovconT//MNjAdxYZSz7u2iim4Yc3CMTvqekWd66YL6/Af
+ Jmx1G21l7qpX+535SSq47DovCfnNMpyfDn4VdqHRXT24U7CtNBFwsWraY
+ Mv+bgPc545Sqc8rJWJLqZS5t2i7xOsWjkEm1X+yt9Sps6cRCyON1OnHui g==;
+X-CSE-ConnectionGUID: GbO/BVz0TRSCkmGE3nQsOw==
+X-CSE-MsgGUID: w9st8erqRLGrNfA4BR5c/w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064558"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064558"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:42 -0700
-X-CSE-ConnectionGUID: 5gfSxfseQW+pK/pplmAe1g==
-X-CSE-MsgGUID: OAff4eM9SR6v/7eAhwG5iQ==
+ 05 Jun 2026 14:05:44 -0700
+X-CSE-ConnectionGUID: d1vc0PYqTeajLbpurvZcHg==
+X-CSE-MsgGUID: MNcRrN64RhWzYJ5Fbw8T0A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994694"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994697"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:40 -0700
+ 05 Jun 2026 14:05:42 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  raag.jadav@intel.com, Michal.Wajdeczko@intel.com
-Subject: [PATCH v3 1/5] drm/xe/printk: Add xe_warn_once()
-Date: Sat,  6 Jun 2026 05:05:30 +0800
-Message-ID: <20260605210534.3843211-2-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 2/5] drm/xe/heci: Use xe print functions in xe_heci_gsc.c
+Date: Sat,  6 Jun 2026 05:05:31 +0800
+Message-ID: <20260605210534.3843211-3-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
 References: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
@@ -101,30 +101,118 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3F8A764B4A2
+X-Rspamd-Queue-Id: 42AA964B4A7
 
-Create a wrapper function xe_warn_once() that calls drm_warn_once().
+Update xe_heci_gsc.c to use the xe error reporting helper functions in
+xe_printk.h instead of directly calling the associated drm print
+functions from drm_print.h.  While we're here, we should update the
+error messages to print the error codes in a more friendly way.
+
+v2:
+- Update the error messages to print the error codes in a more friendly
+  way (Wajdeczko)
 
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+Cc: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
 ---
- drivers/gpu/drm/xe/xe_printk.h | 3 +++
- 1 file changed, 3 insertions(+)
+ drivers/gpu/drm/xe/xe_heci_gsc.c | 21 ++++++++++-----------
+ 1 file changed, 10 insertions(+), 11 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_printk.h b/drivers/gpu/drm/xe/xe_printk.h
-index c5be2385aa95..afa787fcdeb6 100644
---- a/drivers/gpu/drm/xe/xe_printk.h
-+++ b/drivers/gpu/drm/xe/xe_printk.h
-@@ -27,6 +27,9 @@
- #define xe_warn(_xe, _fmt, ...) \
- 	xe_printk((_xe), warn, _fmt, ##__VA_ARGS__)
+diff --git a/drivers/gpu/drm/xe/xe_heci_gsc.c b/drivers/gpu/drm/xe/xe_heci_gsc.c
+index 5af8903e10af..13123990c4e2 100644
+--- a/drivers/gpu/drm/xe/xe_heci_gsc.c
++++ b/drivers/gpu/drm/xe/xe_heci_gsc.c
+@@ -8,12 +8,11 @@
+ #include <linux/pci.h>
+ #include <linux/sizes.h>
  
-+#define xe_warn_once(_xe, _fmt, ...) \
-+	xe_printk((_xe), warn_once, _fmt, ##__VA_ARGS__)
-+
- #define xe_notice(_xe, _fmt, ...) \
- 	xe_printk((_xe), notice, _fmt, ##__VA_ARGS__)
+-#include <drm/drm_print.h>
+-
+ #include "xe_device_types.h"
+ #include "xe_heci_gsc.h"
+ #include "regs/xe_gsc_regs.h"
+ #include "xe_platform_types.h"
++#include "xe_printk.h"
+ #include "xe_survivability_mode.h"
  
+ #define GSC_BAR_LENGTH  0x00000FFC
+@@ -112,13 +111,13 @@ static int heci_gsc_irq_setup(struct xe_device *xe)
+ 
+ 	heci_gsc->irq = irq_alloc_desc(0);
+ 	if (heci_gsc->irq < 0) {
+-		drm_err(&xe->drm, "gsc irq error %d\n", heci_gsc->irq);
++		xe_err(xe, "GSC: irq allocation failed (%pe)\n", ERR_PTR(heci_gsc->irq));
+ 		return heci_gsc->irq;
+ 	}
+ 
+ 	ret = heci_gsc_irq_init(heci_gsc->irq);
+ 	if (ret < 0)
+-		drm_err(&xe->drm, "gsc irq init failed %d\n", ret);
++		xe_err(xe, "GSC: irq initialization failed (%pe)\n", ERR_PTR(ret));
+ 
+ 	return ret;
+ }
+@@ -151,7 +150,7 @@ static int heci_gsc_add_device(struct xe_device *xe, const struct heci_gsc_def *
+ 
+ 	ret = auxiliary_device_init(aux_dev);
+ 	if (ret < 0) {
+-		drm_err(&xe->drm, "gsc aux init failed %d\n", ret);
++		xe_err(xe, "gsc aux init failed %d\n", ret);
+ 		kfree(adev);
+ 		return ret;
+ 	}
+@@ -159,7 +158,7 @@ static int heci_gsc_add_device(struct xe_device *xe, const struct heci_gsc_def *
+ 	heci_gsc->adev = adev; /* needed by the notifier */
+ 	ret = auxiliary_device_add(aux_dev);
+ 	if (ret < 0) {
+-		drm_err(&xe->drm, "gsc aux add failed %d\n", ret);
++		xe_err(xe, "gsc aux add failed %d\n", ret);
+ 		heci_gsc->adev = NULL;
+ 
+ 		/* adev will be freed with the put_device() and .release sequence */
+@@ -190,7 +189,7 @@ int xe_heci_gsc_init(struct xe_device *xe)
+ 	}
+ 
+ 	if (!def || !def->name) {
+-		drm_warn(&xe->drm, "HECI is not implemented!\n");
++		xe_warn(xe, "HECI is not implemented!\n");
+ 		return 0;
+ 	}
+ 
+@@ -215,7 +214,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
+ 		return;
+ 
+ 	if (!xe->info.has_heci_gscfi) {
+-		drm_warn_once(&xe->drm, "GSC irq: not supported");
++		xe_warn_once(xe, "GSC: unexpected irq %#x\n", iir);
+ 		return;
+ 	}
+ 
+@@ -224,7 +223,7 @@ void xe_heci_gsc_irq_handler(struct xe_device *xe, u32 iir)
+ 
+ 	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
+ 	if (ret)
+-		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
++		xe_err_ratelimited(xe, "GSC: irq handling failed (%pe)\n", ERR_PTR(ret));
+ }
+ 
+ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
+@@ -235,7 +234,7 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
+ 		return;
+ 
+ 	if (!xe->info.has_heci_cscfi) {
+-		drm_warn_once(&xe->drm, "CSC irq: not supported");
++		xe_warn_once(xe, "CSC: unexpected irq %#x\n", iir);
+ 		return;
+ 	}
+ 
+@@ -244,5 +243,5 @@ void xe_heci_csc_irq_handler(struct xe_device *xe, u32 iir)
+ 
+ 	ret = generic_handle_irq_safe(xe->heci_gsc.irq);
+ 	if (ret)
+-		drm_err_ratelimited(&xe->drm, "error handling GSC irq: %d\n", ret);
++		xe_err_ratelimited(xe, "CSC: irq handling failed (%pe)\n", ERR_PTR(ret));
+ }
 -- 
 2.53.0
 
