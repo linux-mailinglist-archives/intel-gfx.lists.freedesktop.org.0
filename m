@@ -2,61 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +/l7OCc6I2qnlAEAu9opvQ
+	id 4n1hHSk6I2qplAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:45 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 02BB264B49C
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F8A764B4A2
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=kmBL8dS5;
+	dkim=pass header.d=intel.com header.s=Intel header.b=DfMVtLAQ;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8E822112C1C;
-	Fri,  5 Jun 2026 21:05:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AF4D1112C1E;
+	Fri,  5 Jun 2026 21:05:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5EC0B112C1D;
- Fri,  5 Jun 2026 21:05:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7128D112C1E;
+ Fri,  5 Jun 2026 21:05:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780693540; x=1812229540;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=86CcQQ2ImdJlzBxYdhiby7/VvR7wwXBhITaaIuea/9M=;
- b=kmBL8dS5zJyespEEJAm5iZjWO3P4G9WWYRPjb9Bvdb42nD1VXc9CCmQl
- l3Gk1qRJIiDcrSNii6IzN6zMq6uWiUrSWRYdc6siTzpNN+Z36kf64aweE
- Dk4C9uHpAj/JXG77+qkNiVsr+KsNzq14uf1FrKeDOcVN8dKUsdteV3Zo9
- j2BBqpm1rGFz3XHkXcfMexTbNpR8b1tdT2VoteQflCItBlCLyPq+F3kjP
- DgtxoADkvm+p79O/3C9cSz+QBhYOqyA9Km/gkgYAocVDMP/RgSlepExRu
- phnhqIMvNa0WT+BEiaFDts3I8VmOUufozYI7g8mefg/ijYmKbK1CjdICR Q==;
-X-CSE-ConnectionGUID: YRZN1BJVQRae7JByJQkO/g==
-X-CSE-MsgGUID: ICEgDrqURQ2v6e/FhoxmwA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064541"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064541"
+ t=1780693542; x=1812229542;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=ObHa+CKKCJ5pI4SGqwkGQZlPbdi6mey9UdKl/WyzJIs=;
+ b=DfMVtLAQB2JMY3FqZfjgQRwEummrWjS3+EGN7R2YIQ6Fh7FmeE9kXBe+
+ 7nAEanuD+mytLE4IgqGs3y0mB8skqgpdRioXCzK62ZWsTn76KBcGy2KX0
+ Qzknx8JL+Wax/aWgOs4SUOo/smWYH6XKssYRyJjNnUGNJJ70Dh65ZDDC+
+ Ep7ypQ8FfFY7xIDlBiidN8YZQjx6oERvvd/g7KtHCOtPc40VC2dPPo/4A
+ gJKK4eCELS7I0OS5VMCLzYSbBLL4ln/0/8sGhHf7hLkHR5Svvepg+YTAf
+ b55ql4O//9rRrruZtQC7x0x1mLsZn6tsDFmvOG++Zgu7YJHz1IHtUOIDu w==;
+X-CSE-ConnectionGUID: xThUi0+WQ6645eSmF2ksdA==
+X-CSE-MsgGUID: 3tD5OQdsSTiakGoGgYXM0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064548"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064548"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:40 -0700
-X-CSE-ConnectionGUID: rZ+yuXKbQH2EpgWmgWlrRA==
-X-CSE-MsgGUID: QtXR7vjgQjSBxHCVTqc9nQ==
+ 05 Jun 2026 14:05:42 -0700
+X-CSE-ConnectionGUID: 5gfSxfseQW+pK/pplmAe1g==
+X-CSE-MsgGUID: OAff4eM9SR6v/7eAhwG5iQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994690"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994694"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:38 -0700
+ 05 Jun 2026 14:05:40 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  raag.jadav@intel.com, Michal.Wajdeczko@intel.com
-Subject: [PATCH v3 0/5] drm/{i915,
- xe}: Refactor generic_handle_irq_safe() error messages
-Date: Sat,  6 Jun 2026 05:05:29 +0800
-Message-ID: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 1/5] drm/xe/printk: Add xe_warn_once()
+Date: Sat,  6 Jun 2026 05:05:30 +0800
+Message-ID: <20260605210534.3843211-2-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
+References: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -98,60 +99,32 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:mid,intel.com:from_mime,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 02BB264B49C
+X-Rspamd-Queue-Id: 3F8A764B4A2
 
-Currently, all but one uses of generic_handle_irq_safe() report error
-messages using .*_err_ratelimited() error reporting helper functions.
-These helper functions declare their error messages in the following
-form:
+Create a wrapper function xe_warn_once() that calls drm_warn_once().
 
-"error handling [COMPONENT NAME] irq: %d\n"
+Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Reviewed-by: Michal Wajdeczko <michal.wajdeczko@intel.com>
+---
+ drivers/gpu/drm/xe/xe_printk.h | 3 +++
+ 1 file changed, 3 insertions(+)
 
-.*_err_ratelimited() already logs "error" as a part of the error
-message, so declaring the error is redundant.  Reword it.
-
-The last usage of generic_handle_irq_safe() is in xe_i2c_irq_present(),
-and it currently lacks the same error reporting as in the other cases.
-This is not intentional, so put some logging there.
-
-While we're here, we should also update the XE cases to use
-xe_err_ratelimited() instead of directly calling drm_err_ratelimited().
-However, mixing drm error reporting functions with xe error reporting
-functions in the same file looks unprofessional, so update all drm error
-reporting functions in xe_heci_gsc.c and xe_i2c.c to use their xe
-counterparts.
-
-This includes updating drm_warn_once() to use xe_warn_once() instead.
-Unfortunately, xe_warn_once() does not exist, so create it.
-
-We should also update some of the error messages on XE and I915 to
-better report the error codes while we're touching them.
-
-v2:
-- Split XE and I915 refactors, squashing the XE refactors earlier
-  (Wajdeczko)
-- Use different error message for generic_handle_irq_safe() (Wajdeczko)
-- Refactor other error reporting functions on XE (Wajdeczko)
-
-v3:
-- Fix compile error (jcavitt)
-
-Jonathan Cavitt (5):
-  drm/xe/printk: Add xe_warn_once()
-  drm/xe/heci: Use xe print functions in xe_heci_gsc.c
-  drm/xe/i2c: Use xe print functions in xe_i2c.c
-  drm/i915: Refactor generic_handle_irq_safe() error messages
-  drm/xe/i2c: Report i2c irq handler issue
-
- .../gpu/drm/i915/display/intel_lpe_audio.c    |  2 +-
- drivers/gpu/drm/i915/gt/intel_gsc.c           |  2 +-
- drivers/gpu/drm/xe/xe_heci_gsc.c              | 21 +++++++++----------
- drivers/gpu/drm/xe/xe_i2c.c                   | 11 ++++++----
- drivers/gpu/drm/xe/xe_printk.h                |  3 +++
- 5 files changed, 22 insertions(+), 17 deletions(-)
-
+diff --git a/drivers/gpu/drm/xe/xe_printk.h b/drivers/gpu/drm/xe/xe_printk.h
+index c5be2385aa95..afa787fcdeb6 100644
+--- a/drivers/gpu/drm/xe/xe_printk.h
++++ b/drivers/gpu/drm/xe/xe_printk.h
+@@ -27,6 +27,9 @@
+ #define xe_warn(_xe, _fmt, ...) \
+ 	xe_printk((_xe), warn, _fmt, ##__VA_ARGS__)
+ 
++#define xe_warn_once(_xe, _fmt, ...) \
++	xe_printk((_xe), warn_once, _fmt, ##__VA_ARGS__)
++
+ #define xe_notice(_xe, _fmt, ...) \
+ 	xe_printk((_xe), notice, _fmt, ##__VA_ARGS__)
+ 
 -- 
 2.53.0
 
