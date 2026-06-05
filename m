@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2p7lGS06I2qtlAEAu9opvQ
+	id BlpGNy86I2qulAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 34AB764B4AA
-	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AB9A064B4AF
+	for <lists+intel-gfx@lfdr.de>; Fri, 05 Jun 2026 23:05:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=PSTq31uD;
+	dkim=pass header.d=intel.com header.s=Intel header.b=PJl5xoXd;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B7E0E112C20;
-	Fri,  5 Jun 2026 21:05:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D81D112C26;
+	Fri,  5 Jun 2026 21:05:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1F1F9112C20;
- Fri,  5 Jun 2026 21:05:47 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F7C5112C24;
+ Fri,  5 Jun 2026 21:05:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780693547; x=1812229547;
+ t=1780693549; x=1812229549;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=n+pmT9aLIgIWmdlRu6E2QHM/4DPYbUSAGm4f0ZJ4Hj4=;
- b=PSTq31uDEN7WhUOcCECe6lYAhd0puvfpSEtbCXRuxQbWsqKbFUSrCnqR
- mUj9gYEG/oYfo3PRMMnmmVhojsFy0L7rGOSekeb2mfVrBibxwZE8lGBFo
- QNON1Ejfr9Ex4QWoTTZvCMRgUM7Rl111UMfB+YeZ8xkRih0u4cZJbajzY
- A+RNuHhx6yC5hUCfiyfFTIkwHgyqCw7znDQxyuI6ZTxBEq2wkJI9g82uo
- T3xvV2sID+xOVYPZKrRbLe1nHEPQYQ0n0JTgATZJeHRfZS1RvIp+fC3hx
- 4vyEtqxTXy6JbUkosif1+Px9/p2lKly6NYwEg88Qp3HwDiAZkJxjHo41c w==;
-X-CSE-ConnectionGUID: f1VQjwlRRVWFDlp5CtkdfQ==
-X-CSE-MsgGUID: cqwyh+a/SJWEj8zFXDMpzQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064565"
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064565"
+ bh=YezZB7JsIh5BuBWPJEGraTZMw5MNQ6UUalq531g+gIQ=;
+ b=PJl5xoXdNZGMoNJqGqELsobbluC/Zd/EpY2xs5qXdC+5rDXYY8jR/sZ4
+ /rHtrkbu63KcnuPMIz1ELdUBjOda6vEwVzkfUrfxczbGvdJ5E5DLUfYyb
+ 4Qd9R3ikdR6hf91DYMBpPApOYJ2IccLdYjHHOCFV7ATy37Fu52rNjO01k
+ pyLM26UPCf/XJijKJxsRloxjrZ7lF8mnVIrBhBc7rWrSDTdPOSmQ0r5Tj
+ MyL3siQ+ktJN4WyzHylQDa8DcN+vXtGI6BxGipj7Ov7rclYthhAdnPrC9
+ YCeuBx4JG9qVyAB6t+vhU5LVYvWE5brDnZX+PDOsiCjn47OOO87lqMucW g==;
+X-CSE-ConnectionGUID: 5lIpHFIlS1Wr+bkZTaFpGg==
+X-CSE-MsgGUID: oTLUzbDhQp6/AHvVLQkJ5A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11808"; a="69064571"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="69064571"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:46 -0700
-X-CSE-ConnectionGUID: yo8rwZWrQ2mIwsSV0eXoWg==
-X-CSE-MsgGUID: R647S36uS/qyDUD2q+b8Gg==
+ 05 Jun 2026 14:05:49 -0700
+X-CSE-ConnectionGUID: NkvYDl6aR16j4sHhX6U2Yw==
+X-CSE-MsgGUID: 4pu5bFNdSC2HoycsLiVysQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994705"
+X-IronPort-AV: E=Sophos;i="6.24,189,1774335600"; d="scan'208";a="244994708"
 Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 05 Jun 2026 14:05:45 -0700
+ 05 Jun 2026 14:05:47 -0700
 From: Jonathan Cavitt <jonathan.cavitt@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
  raag.jadav@intel.com, Michal.Wajdeczko@intel.com
-Subject: [PATCH v3 3/5] drm/xe/i2c: Use xe print functions in xe_i2c.c
-Date: Sat,  6 Jun 2026 05:05:32 +0800
-Message-ID: <20260605210534.3843211-4-jonathan.cavitt@intel.com>
+Subject: [PATCH v3 4/5] drm/i915: Refactor generic_handle_irq_safe() error
+ messages
+Date: Sat,  6 Jun 2026 05:05:33 +0800
+Message-ID: <20260605210534.3843211-5-jonathan.cavitt@intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
 References: <20260605210534.3843211-1-jonathan.cavitt@intel.com>
@@ -101,55 +102,58 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 34AB764B4AA
+X-Rspamd-Queue-Id: AB9A064B4AF
 
-Update xe_i2c.c to use the xe error reporting helper functions in
-xe_printk.h instead of directly calling the associated drm print
-functions from drm_print.h
+Refactor all error messages resulting from generic_handle_irq_safe()
+failures in I915 for clarity.
 
+v2:
+- Use drm_err_ratelimited() correctly (jcavitt)
+
+v3:
+- Use xe_err_ratelimited() instead (Jadav)
+- Split into patch series (jcavitt)
+
+v4:
+- Use suggested phrasing (Wajdeczko)
+
+v5:
+- s/PTR_ERR/ERR_PTR (jcavitt)
+
+Suggested-by: Raag Jadav <raag.jadav@intel.com>
+Suggested-by: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
 Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
 ---
- drivers/gpu/drm/xe/xe_i2c.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+ drivers/gpu/drm/i915/gt/intel_gsc.c            | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 706783863d07..148e82e01ae8 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -5,7 +5,6 @@
-  * Copyright (C) 2025 Intel Corporation.
-  */
- 
--#include <drm/drm_print.h>
- #include <linux/array_size.h>
- #include <linux/container_of.h>
- #include <linux/device.h>
-@@ -30,6 +29,7 @@
- #include "xe_device.h"
- #include "xe_i2c.h"
- #include "xe_mmio.h"
-+#include "xe_printk.h"
- #include "xe_sriov.h"
- #include "xe_survivability_mode.h"
- 
-@@ -285,7 +285,7 @@ void xe_i2c_pm_suspend(struct xe_device *xe)
- 		return;
- 
- 	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, (__force u32)PCI_D3hot);
--	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-+	xe_dbg(xe, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
+diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+index 022ad18044bf..ff2cf479d8e1 100644
+--- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
++++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+@@ -265,7 +265,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+ 	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+ 	if (ret)
+ 		drm_err_ratelimited(display->drm,
+-				    "error handling LPE audio irq: %d\n", ret);
++				    "LPE audio: irq handling failed (%pe)\n", ERR_PTR(ret));
  }
  
- void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
-@@ -299,7 +299,7 @@ void xe_i2c_pm_resume(struct xe_device *xe, bool d3cold)
- 		xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_MEMORY | PCI_COMMAND_MASTER);
+ /**
+diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
+index 050d909fb4f8..1c06bf76568a 100644
+--- a/drivers/gpu/drm/i915/gt/intel_gsc.c
++++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+@@ -286,7 +286,7 @@ static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
  
- 	xe_mmio_rmw32(mmio, I2C_CONFIG_PMCSR, PCI_PM_CTRL_STATE_MASK, (__force u32)PCI_D0);
--	drm_dbg(&xe->drm, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
-+	xe_dbg(xe, "pmcsr: 0x%08x\n", xe_mmio_read32(mmio, I2C_CONFIG_PMCSR));
+ 	ret = generic_handle_irq_safe(gt->gsc.intf[intf_id].irq);
+ 	if (ret)
+-		gt_err_ratelimited(gt, "error handling GSC irq: %d\n", ret);
++		gt_err_ratelimited(gt, "GSC: irq handling failed (%pe)\n", ERR_PTR(ret));
  }
  
- static void xe_i2c_remove(void *data)
+ void intel_gsc_irq_handler(struct intel_gt *gt, u32 iir)
 -- 
 2.53.0
 
