@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BIDyOt0XJ2ogrgIAu9opvQ
+	id LhsvEt4XJ2ohrgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 21:28:29 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 21:28:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F099465A0C6
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 21:28:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1224865A0C9
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 21:28:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=WplTBUu3;
+	dkim=pass header.d=intel.com header.s=Intel header.b=HcQXGBni;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4BC310F90C;
-	Mon,  8 Jun 2026 19:28:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D2DD310F90D;
+	Mon,  8 Jun 2026 19:28:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 23C9A10F90A;
- Mon,  8 Jun 2026 19:28:25 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5021010F90A;
+ Mon,  8 Jun 2026 19:28:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780946905; x=1812482905;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=tIBJfrpfS1980OC51vJM498f7xF34wSDo517NKENftw=;
- b=WplTBUu3O+uHbehmAIq+xdq2bi6ksmbGbdWMOnsucVQ97y/RYSGu9Ldz
- SSiSgABptuBJFxXaA7LlHNHCJhcapzNzLhgap4II+8MG+ybE5/5JSdDjR
- RTQwBQ8WyLU2pnL4QIXvA/Q7JjPOy0ulmPjkRAoSJCmWhhcIoHQ8QYHIs
- MGC9nwLz4aPfxr/51TFXfI8NwIij/EWL5UvYX0WN4GWffpZYwEKTRwy33
- bUW4OjHcoHjYn1S3+tSRiqp5lkidAxTUQBVEsyVjZWk+PCmuFoUhl0lSx
- 1lpk8HtTLx5BTurhQZmn30HKatizbe/KMGMqknvEVkcoNz6BfnA38rvnk Q==;
-X-CSE-ConnectionGUID: e8VJHLsVRa2Pf97xangF/g==
-X-CSE-MsgGUID: XX9dfvo5R1CpfYEVMYN/6w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85324010"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85324010"
+ t=1780946906; x=1812482906;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=M4MUpdWuyGJwcYOHoN4MIV3Mq0oArzil1Q9owsXEm4I=;
+ b=HcQXGBnizsIVQWauPk0yt1oPpPt/2aGKs43OY/f89QGSLXk1xrhIrQTg
+ fWibC96U1fw9QnEkaX3D5hEVXNOkV4BKynjTn/pC8k6z5sOXtC0M1RYNd
+ lIg4rdjtGhuvjCJwFpi+5EIzxIzvwFXQdC/wGceGm5NXS/+/7qPyQxnUH
+ PkAiuKqbT2L83s9WEnt9eYUlnL3jD8QFZWCXR6pmnmYTJDbdh6mFlOUxh
+ mQAjy36p+jvwlVlC25JGXxaqolyXRHpvCraWSNfb4W3578aKoipp6roUZ
+ hAMTi4of54HBh3DXS7pLX7dPRghRikTsZtE07BGvhFUZY/KQu+T5Q0o6N w==;
+X-CSE-ConnectionGUID: YNAXB68SSOGXjgTsWc7Apg==
+X-CSE-MsgGUID: eSUVFHxVR+CDEiSXhaeUYQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85324012"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85324012"
 Received: from orviesa006.jf.intel.com ([10.64.159.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 12:28:25 -0700
-X-CSE-ConnectionGUID: svR4dGvPR7a208q+FejdTw==
-X-CSE-MsgGUID: JGUPx/xqSBublx1HLVB1dw==
+ 08 Jun 2026 12:28:26 -0700
+X-CSE-ConnectionGUID: WACvNpt0QpWtwGD9kywkFA==
+X-CSE-MsgGUID: MlyhipkDRxmMNMy6Ba+AiA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="244513568"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="244513571"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa006.jf.intel.com with ESMTP; 08 Jun 2026 12:28:23 -0700
+ by orviesa006.jf.intel.com with ESMTP; 08 Jun 2026 12:28:25 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v7 0/8] Vswing / Pre-emphasis Override
-Date: Mon,  8 Jun 2026 21:28:13 +0200
-Message-ID: <20260608192821.3414590-1-michal.grzelak@intel.com>
+Subject: [PATCH v7 1/8] drm/i915/bios: search for VBT #57 by default
+Date: Mon,  8 Jun 2026 21:28:14 +0200
+Message-ID: <20260608192821.3414590-2-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260608192821.3414590-1-michal.grzelak@intel.com>
+References: <20260608192821.3414590-1-michal.grzelak@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
@@ -87,10 +89,10 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -100,84 +102,73 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:mid,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F099465A0C6
+X-Rspamd-Queue-Id: 1224865A0C9
 
-Next version of [1]. IGT v2 for decoding is at [2].
+Start searching for Vswing / Preemphasis Override Block during VBT
+parsing at init_bdb_blocks().
 
-Loaded xe on PTL with custom VBT#57 with Vswing/Pre-emphasis Override
-request.
+Check for failure since pre-ICL GOPs do not contain the block. Check
+also if VBT version is appropriately up-to-date.
 
-[1] https://lore.kernel.org/intel-gfx/20260603230544.1993439-1-michal.grzelak@intel.com/
-[2] https://lore.kernel.org/igt-dev/20260608124121.3131410-1-michal.grzelak@intel.com/
-
-BR,
-Michał
-
----
-Changelog:
 v6->v7
-- parse VBT#57 before blocks dependant on child device list (Jani)
-- expand VS/PE-O acronym in debug logging (Jani)
-- handle VS/PE-O's VBT details in intel_bios_* functions (Jani)
-- remove vspeo's cast to (void *) (Jani)
-- check devdata->vspeo if VS/PE-O was requested
-- call encoder->get_buf_trans() once (Jani)
-- return NULL from intel_bios_get_* when using default (Jani)
-- validate VS/PE-O in intel_bios.c (Jani)
-- inline *_get_vspeo_buf_trans()
-- remove temporarily LT
-
-v5->v6
-- check if devdata is not NULL
-- add Bspec (Suraj)
-- remove drm_WARN_ONCE (Suraj)
-- pass default VS/PE tables to LT's BIOS accessor (Suraj)
-- set txswing & _level from default VS/PE tables (Suraj)
-- add helper checking if VS/PE-O has been allocated (Suraj)
-
-v4->v5
-- set devdata->vspeo->num_entries in intel_bios.c
-- add if-ladder instead of function pointer
-- blend index computation with table parsing
-- remove WARN and debug messages
-- remove enums entirely
-- add spaces around operators (Suraj)
-- remove spaces after type casting (Suraj)
-- remove INTEL_DISPLAY_STATE_WARN (Suraj)
-- change funcs prefix from snps_ to mtl_ (Suraj)
+- parse VBT#57 before blocks dependent on child device list (Jani)
+- remove debug message (Suraj)
 
 v3->v4
 - add Bspec (Suraj)
-- remove unnecessary init of VS/PE-O metadata (Suraj)
-- add helper for computing number of rows (Suraj)
-- fix num_rows's type (Jani, Suraj)
-- declare num_rows (Suraj)
-- change debug message when requesting VS/PE-O (Suraj)
-- stick to solely changing VBT data into current structures (Jani)
-- move iterator declaration to declaration block (Suraj)
 
-v2->v3
-- remove unnecessary braces from if block (Suraj)
-- return -EINVAL instead of -1 (Suraj)
+Bspec: 32063
+Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_bios.c | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-Michał Grzelak (8):
-  drm/i915/bios: search for VBT #57 by default
-  drm/i915/bios: store VBT #57's metadata in intel_vbt_data
-  drm/i915/bios: print VS/PE-O port info
-  drm/i915/bios: de/allocate VS/PE-O buffer for each port
-  drm/i915: override Snps's VS/PE when requested
-  drm/i915: override Combo's VS/PE when requested
-  drm/i915/bios: remove VS/PE-O warning
-  drm/i915: override LT's VS/PE when requested
-
- drivers/gpu/drm/i915/display/intel_bios.c     | 320 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_bios.h     |  18 +
- .../drm/i915/display/intel_ddi_buf_trans.c    |  29 ++
- .../gpu/drm/i915/display/intel_display_core.h |   7 +
- 4 files changed, 365 insertions(+), 9 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
+index b6fe87c29aa7..0c7385a3bb75 100644
+--- a/drivers/gpu/drm/i915/display/intel_bios.c
++++ b/drivers/gpu/drm/i915/display/intel_bios.c
+@@ -200,6 +200,8 @@ static const struct {
+ 	  .min_size = sizeof(struct bdb_mipi_sequence) },
+ 	{ .section_id = BDB_COMPRESSION_PARAMETERS,
+ 	  .min_size = sizeof(struct bdb_compression_parameters), },
++	{ .section_id = BDB_VSWING_PREEMPH,
++	  .min_size = sizeof(struct bdb_vswing_preemph), },
+ 	{ .section_id = BDB_GENERIC_DTD,
+ 	  .min_size = sizeof(struct bdb_generic_dtd), },
+ };
+@@ -2183,6 +2185,21 @@ parse_compression_parameters(struct intel_display *display)
+ 	}
+ }
+ 
++static void
++parse_vswing_preemph_override(struct intel_display *display)
++{
++	const struct bdb_vswing_preemph *block;
++
++	if (display->vbt.version < 218)
++		return;
++
++	block = bdb_find_section(display, BDB_VSWING_PREEMPH);
++
++	/* pre-ICL GOPs don't have VBT #57 */
++	if (!block)
++		return;
++}
++
+ static u8 translate_iboost(struct intel_display *display, u8 val)
+ {
+ 	static const u8 mapping[] = { 1, 3, 7 }; /* See VBT spec */
+@@ -3271,6 +3288,7 @@ void intel_bios_init(struct intel_display *display)
+ 	parse_general_features(display);
+ 	parse_general_definitions(display);
+ 	parse_driver_features(display);
++	parse_vswing_preemph_override(display);
+ 
+ 	/* Depends on child device list */
+ 	parse_compression_parameters(display);
 -- 
 2.45.2
 
