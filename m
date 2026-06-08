@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id f9j2AcTNJmpFkwIAu9opvQ
+	id Fg4DEMXNJmpGkwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 16:12:20 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 16:12:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91A72656FC8
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 16:12:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C8AC1656FCF
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 16:12:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=YQ06Yqyk;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Jcm7I1in;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1FB0B10F44E;
-	Mon,  8 Jun 2026 14:12:18 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 16AC810F44F;
+	Mon,  8 Jun 2026 14:12:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7A510F44C;
- Mon,  8 Jun 2026 14:12:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 29DE410F44F;
+ Mon,  8 Jun 2026 14:12:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780927936; x=1812463936;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=2LfJpOFJQDWmPPAUg0jJ6VMu58gz/1tf1ZamPn5pAHE=;
- b=YQ06YqyknkssY+KfrdwDOpNFNRHiim+weEaocCDH5/lZKGb5z3WnBak2
- lZGdkBLBF6QtWIpXfAl7X57Gcdn4wPhJkpXbcI7Qfjr2kkQ1U8wdBfTB1
- cWHRp+g1+JZdLIG4sY8saSlwoUGT0KL9UKueUpao8T6ER2onCqS1BKDqx
- ylI3sGC7NI6pevsTsMC7/5RIrLAIkyLks4Oi8F/cxzD6w5IbTRWxJpFxx
- x103lEcDG4piLZ4Tht53DVpxkgJwH/9cbcENUM0O0HaSQg0Iajx2IyT3G
- Td3cJvH85iu626bESRLPfCAYSNsG9ySzLZuxQj6ydpX7i624QoeOwbTqx g==;
-X-CSE-ConnectionGUID: pp4rC1I2RDiX/KH6dan1XA==
-X-CSE-MsgGUID: 2fkkcFxqSwOetHzIDf7/rQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81781290"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81781290"
+ t=1780927938; x=1812463938;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=fFbaASA6lj0SpsVjvDv/Dlzy86pSDsKsPVdrm1ZI234=;
+ b=Jcm7I1intXFRoPL5waZCqvYLUrTHaBERbhn2K2+AEGUPuuXertaafkN5
+ AQqy7k8bFvDqCOT4fJhnS+V5mXKXEAKFUTD6c5u+HKCOH1itco/Wu+Fo8
+ N/Sj5QuG46P7b1MG5nZAyGIj/4yHG3sWFhl6tV6iUUXxxVF7OUlTvRJFM
+ aT6OGSOyTTs4FsyjFGTTzFG4iHMIMCL8sJcQzbb+BLwMqxAiLJwxuHmE6
+ LxVJA6bgwnOEbDiwVnf3deAetzTWi/+m5nBi4rBpwR3pmkjC27jnEa4kw
+ z2RP6dfDS/rQqs1NTwd/IdSHrgsK4EpypZHCN7NP6Toupae3UeZ+a1vG3 g==;
+X-CSE-ConnectionGUID: S4UMCsDBTH2ki4KQETXZTw==
+X-CSE-MsgGUID: yV0hHPxfQcqzqaOmPiZ9hg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81781295"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81781295"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 07:12:16 -0700
-X-CSE-ConnectionGUID: r99k8BmtQlWewM47HMEAIw==
-X-CSE-MsgGUID: 1Cej73C3RuCKLmrD+n70mw==
+ 08 Jun 2026 07:12:18 -0700
+X-CSE-ConnectionGUID: SEhf5yRFQxOcdHz60Sj7+Q==
+X-CSE-MsgGUID: tzFh1AzvSD2ReDKwRCN1tg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="241113691"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="241113694"
 Received: from carterle-desk.ger.corp.intel.com (HELO
  jhogande-mobl3.intel.com) ([10.245.246.213])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 07:12:15 -0700
+ 08 Jun 2026 07:12:16 -0700
 From: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Jouni=20H=C3=B6gander?= <jouni.hogander@intel.com>
-Subject: [PATCH 0/7] Enable FEC when using DP Panel Replay
-Date: Mon,  8 Jun 2026 17:11:17 +0300
-Message-ID: <20260608141124.144878-1-jouni.hogander@intel.com>
+Subject: [PATCH 1/7] drm/i915/psr: Check FEC support for DP Panel Replay
+Date: Mon,  8 Jun 2026 17:11:18 +0300
+Message-ID: <20260608141124.144878-2-jouni.hogander@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260608141124.144878-1-jouni.hogander@intel.com>
+References: <20260608141124.144878-1-jouni.hogander@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
@@ -100,36 +102,37 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 91A72656FC8
+X-Rspamd-Queue-Id: C8AC1656FCF
 
-This patch set is doing necessary modifications to enable FEC when DP
-Panel Replay is in use. Based on DP specification FEC usage is
-mandatory when Panel Replay is enabled.
+DP Panel Replay spec mentions FEC needs to be enabled when using Panel
+Replay. Check support for FEC and disable Panel Replay if not supported.
 
-Jouni Högander (7):
-  drm/i915/psr: Check FEC support for DP Panel Replay
-  drm/i915/psr: Stop using intel_dsc_enabled_on_link to detect crtc DSC
-    status
-  drm/i915/display: Rename compression_enabled_on_link and
-    link_dsc_pipes
-  drm/i915/psr: Split PSR compute config
-  drm/i915/psr: Move DP/eDP Panel Replay compute config to pre compute
-    config
-  drm/i915/psr: Add PSR specific pre compute config
-  drm/i915/psr: Enable FEC if using DP Panel Replay
+Signed-off-by: Jouni Högander <jouni.hogander@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_psr.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
- drivers/gpu/drm/i915/display/intel_display.c  |   2 +-
- .../drm/i915/display/intel_display_types.h    |   2 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   7 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |  20 ++--
- drivers/gpu/drm/i915/display/intel_link_bw.c  |  16 +--
- drivers/gpu/drm/i915/display/intel_link_bw.h  |   2 +-
- drivers/gpu/drm/i915/display/intel_psr.c      | 108 +++++++++++++-----
- drivers/gpu/drm/i915/display/intel_psr.h      |   3 +
- drivers/gpu/drm/i915/display/intel_vdsc.c     |   8 +-
- drivers/gpu/drm/i915/display/intel_vdsc.h     |   2 +-
- 10 files changed, 119 insertions(+), 51 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index e138982dc91f6..ad2f6c79f5808 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -1851,8 +1851,15 @@ static bool _panel_replay_compute_config(struct intel_crtc_state *crtc_state,
+ 	crtc_state->link_off_after_as_sdp_when_pr_active = compute_link_off_after_as_sdp_when_pr_active(connector);
+ 	crtc_state->disable_as_sdp_when_pr_active = compute_disable_as_sdp_when_pr_active(connector);
+ 
+-	if (!intel_dp_is_edp(intel_dp))
++	if (!intel_dp_is_edp(intel_dp)) {
++		if (!intel_dp_supports_fec(intel_dp, connector, crtc_state)) {
++			drm_dbg_kms(display->drm,
++				    "Panel Replay not enabled because FEC not supported\n");
++			return false;
++		}
++
+ 		return true;
++	}
+ 
+ 	/* Remaining checks are for eDP only */
+ 
 -- 
 2.43.0
 
