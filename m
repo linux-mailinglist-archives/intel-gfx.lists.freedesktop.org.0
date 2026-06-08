@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4P2SH4dhJmqtVgIAu9opvQ
+	id qMEAKYphJmquVgIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 08:30:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 08:30:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1657E65321F
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 08:30:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B768653224
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 08:30:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=m3UJGnWw;
+	dkim=pass header.d=intel.com header.s=Intel header.b="A/k1XnYs";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A5EEC10ED78;
-	Mon,  8 Jun 2026 06:30:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D95BB10ED79;
+	Mon,  8 Jun 2026 06:30:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 76B6410ED78;
- Mon,  8 Jun 2026 06:30:27 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 39B1410ED7A;
+ Mon,  8 Jun 2026 06:30:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780900227; x=1812436227;
+ t=1780900232; x=1812436232;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ya6zZBRepE62H65Dgd6ur0hlDx4EMahWzHwiG0VJfqA=;
- b=m3UJGnWwte78YchwVSpEb86DEz4VYeKa5z7HyPEhtiyIkDVcfa/HZJdP
- eWgbT3phErfZ7bT33YdX1UcLEOQ7LcEWbazaDTNNbZX+tJobdBodg7utX
- BKNJug54AEkvHPkNvsvexK3SeDdxvJK6Loi1S+aOXvyZzAAu47yDgu358
- s8TxrAD/nhvWwXNQyzWHCZUABrX2TX3EdOtxN5+GhJWYoHrg4eIpRgf4y
- LC52qsboyr7Gu+zVbgjAc4BGmhOiLmT5lfBU4AxE/6wQ+c2QkLL2YA8x5
- YbnsOOstLEUHgavc437InO3efKsbj/1adJUGrMO1gR8E17ci/GNPZD/Tu g==;
-X-CSE-ConnectionGUID: EQiOeodRQYmPV7XCsRjEKw==
-X-CSE-MsgGUID: ugozRCisSyyBZKWnKZTo5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="85482626"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85482626"
+ bh=LWJIk9iAbOnLx/cUewNGrzbINjHiyuLjpYOWr4eiGP4=;
+ b=A/k1XnYsdquqptXjysnJKeiYl8xscLLJ3FycHh+rzlj2Q9FMnO++4gSI
+ j39067Hh7nedzegHs4WxUJoMMUFy/PO2xeuyBnx0ChStTrHc+uk0/3Sli
+ DH/Qeqve/yF3RcdVH9AjhpW16lOcHONdaNGHHW/HR72YSc15XYUzqTyDA
+ GyHHo8v81/pSjogTTE6f2M8xEIHozgoRTz5QOfetkth1LISSMpd2CLZ45
+ digRWHe9AYQFjH0gRLBqBhsvfeOpTvbP6xcQfMOPL4q2JAxeXnH4PtndX
+ lsvT0Ge5NiKC1QXzj+A85ubG2stIDHmux8ogAeOl2VeNe5acpBVv6ymD4 A==;
+X-CSE-ConnectionGUID: t6gy+P6uSHG8g1ufFfxfbQ==
+X-CSE-MsgGUID: e8v0nnHfRFCPouMmGxhXJA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="85482645"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85482645"
 Received: from fmviesa002.fm.intel.com ([10.60.135.142])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jun 2026 23:30:27 -0700
-X-CSE-ConnectionGUID: 9evwRnx/RUu/loGABOhoYA==
-X-CSE-MsgGUID: j2TXBo+eTfSTlbwAANUzgA==
+ 07 Jun 2026 23:30:32 -0700
+X-CSE-ConnectionGUID: mhrTUWm4T++vR2Ok+Q02uQ==
+X-CSE-MsgGUID: mZkKGhgtTsy3/1IE/4cv+w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269158538"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="269158572"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa002.fm.intel.com with ESMTP; 07 Jun 2026 23:30:26 -0700
+ by fmviesa002.fm.intel.com with ESMTP; 07 Jun 2026 23:30:31 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 1/6] drm/i915/cursor: Check joiner cursor commit status
-Date: Mon,  8 Jun 2026 11:56:24 +0530
-Message-Id: <20260608062629.820477-2-nemesa.garg@intel.com>
+Subject: [PATCH 2/6] drm/i915/cursor: Add helper to update cursor plane
+Date: Mon,  8 Jun 2026 11:56:25 +0530
+Message-Id: <20260608062629.820477-3-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260608062629.820477-1-nemesa.garg@intel.com>
 References: <20260608062629.820477-1-nemesa.garg@intel.com>
@@ -99,113 +99,76 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1657E65321F
+X-Rspamd-Queue-Id: 5B768653224
 
-In joiner mode, secondary cursor commits may still be running
-even when the primary cursor commit is done. Walking the secondary
-pipes also requires holding the secondary planes modeset locks.
-Add intel_cursor_lock_joined_planes() to acquire modeset locks
-for all secondary cursor planes. Check all joined cursor commit
-status before taking the fast path. If any commit is still pending,
-fallback to slow path.
-
-v2: Use intel_crtc_joined_pipe_mask(). [Ville]
-v3: Lock secondary cursor CRTCs and planes. [sashiko]
+Move cursor fast path plane state update into helper
+function.
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 63 +++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 41 +++++++++++++++------
+ 1 file changed, 29 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 88384dea868b..f8b24865c93a 100644
+index f8b24865c93a..38234c6292ec 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -13,6 +13,7 @@
- #include <drm/drm_vblank.h>
- 
- #include "intel_atomic.h"
-+#include "intel_crtc.h"
- #include "intel_cursor.h"
- #include "intel_cursor_regs.h"
- #include "intel_de.h"
-@@ -796,6 +797,58 @@ void intel_cursor_unpin_work(struct kthread_work *base)
- 	intel_plane_destroy_state(&plane->base, &plane_state->uapi);
+@@ -849,6 +849,31 @@ intel_cursor_joiner_commits_idle(struct intel_display *display,
+ 	return true;
  }
  
-+static int intel_cursor_lock_joined_planes(struct intel_display *display,
-+					   const struct intel_crtc_state *crtc_state,
-+					   struct intel_plane *primary_plane,
-+					   struct drm_modeset_acquire_ctx *ctx)
++static void
++intel_cursor_fastpath_update_plane_state(struct intel_plane_state *plane_state,
++					 struct drm_framebuffer *fb,
++					 struct drm_crtc *uapi_crtc,
++					 struct intel_crtc *hw_crtc,
++					 int crtc_x, int crtc_y,
++					 unsigned int crtc_w, unsigned int crtc_h,
++					 u32 src_x, u32 src_y,
++					 u32 src_w, u32 src_h)
 +{
-+	struct intel_crtc *pipe_crtc;
-+	int ret;
++	drm_atomic_set_fb_for_plane(&plane_state->uapi, fb);
 +
-+	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
-+					 intel_crtc_joined_pipe_mask(crtc_state)) {
-+		struct intel_plane *pipe_plane =
-+			intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
++	plane_state->uapi.crtc = uapi_crtc;
++	plane_state->uapi.src_x = src_x;
++	plane_state->uapi.src_y = src_y;
++	plane_state->uapi.src_w = src_w;
++	plane_state->uapi.src_h = src_h;
++	plane_state->uapi.crtc_x = crtc_x;
++	plane_state->uapi.crtc_y = crtc_y;
++	plane_state->uapi.crtc_w = crtc_w;
++	plane_state->uapi.crtc_h = crtc_h;
 +
-+		if (pipe_plane == primary_plane)
-+			continue;
-+
-+		ret = drm_modeset_lock(&pipe_crtc->base.mutex, ctx);
-+		if (ret)
-+			return ret;
-+
-+		ret = drm_modeset_lock(&pipe_plane->base.mutex, ctx);
-+		if (ret)
-+			return ret;
-+	}
-+	return 0;
-+}
-+
-+static bool
-+intel_cursor_joiner_commits_idle(struct intel_display *display,
-+				 const struct intel_crtc_state *crtc_state)
-+{
-+	struct intel_crtc *pipe_crtc;
-+
-+	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
-+					 intel_crtc_joined_pipe_mask(crtc_state)) {
-+		struct intel_plane *pipe_plane;
-+		struct intel_plane_state *pipe_plane_state;
-+
-+		if (pipe_crtc == to_intel_crtc(crtc_state->uapi.crtc))
-+			continue;
-+
-+		pipe_plane = intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
-+		pipe_plane_state = to_intel_plane_state(pipe_plane->base.state);
-+
-+		if (pipe_plane_state->uapi.commit &&
-+		    !try_wait_for_completion(&pipe_plane_state->uapi.commit->hw_done))
-+			return false;
-+	}
-+
-+	return true;
++	intel_plane_copy_uapi_to_hw_state(NULL, plane_state, plane_state, hw_crtc);
 +}
 +
  static int
  intel_legacy_cursor_update(struct drm_plane *_plane,
  			   struct drm_crtc *_crtc,
-@@ -842,6 +895,16 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	    !try_wait_for_completion(&old_plane_state->uapi.commit->hw_done))
- 		goto slow;
+@@ -928,18 +953,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 		goto out_free;
+ 	}
  
-+	ret = intel_cursor_lock_joined_planes(display, crtc_state, plane, ctx);
-+	if (ret == -EDEADLK)
-+		return ret;
-+	if (ret)
-+		goto slow;
-+
-+	/* Check all joined pipes for pending commits */
-+	if (!intel_cursor_joiner_commits_idle(display, crtc_state))
-+		goto slow;
-+
- 	/*
- 	 * If any parameters change that may affect watermarks,
- 	 * take the slowpath. Only changing fb or position should be
+-	drm_atomic_set_fb_for_plane(&new_plane_state->uapi, fb);
+-
+-	new_plane_state->uapi.src_x = src_x;
+-	new_plane_state->uapi.src_y = src_y;
+-	new_plane_state->uapi.src_w = src_w;
+-	new_plane_state->uapi.src_h = src_h;
+-	new_plane_state->uapi.crtc_x = crtc_x;
+-	new_plane_state->uapi.crtc_y = crtc_y;
+-	new_plane_state->uapi.crtc_w = crtc_w;
+-	new_plane_state->uapi.crtc_h = crtc_h;
+-
+-	intel_plane_copy_uapi_to_hw_state(NULL, new_plane_state, new_plane_state, crtc);
++	intel_cursor_fastpath_update_plane_state(new_plane_state, fb,
++						 &crtc->base, crtc,
++						 crtc_x, crtc_y, crtc_w, crtc_h,
++						 src_x, src_y, src_w, src_h);
+ 
+ 	ret = intel_plane_atomic_check_with_state(crtc_state, new_crtc_state,
+ 						  old_plane_state, new_plane_state);
 -- 
 2.25.1
 
