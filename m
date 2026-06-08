@@ -2,64 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 83C5LHMKJ2qyqgIAu9opvQ
+	id ABpMFaQPJ2oCrAIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 20:31:15 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 20:53:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7C866659BE9
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 20:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8DD9659E31
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 20:53:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=OocuP4AO;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D882610E36C;
-	Mon,  8 Jun 2026 18:31:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E3AD10F8D6;
+	Mon,  8 Jun 2026 18:53:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E5CB810E36C;
- Mon,  8 Jun 2026 18:31:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780943472; x=1812479472;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=n3Htdh3STriAkeHY7JIhiAfqBpMIJxOMiNiJ88GlhU4=;
- b=OocuP4AOOUWSvh7myLRC083ymJ5GXXkPPE7SQBEnFxpVQExL4X/YjQrB
- zYqrduE50Rfw1iZIHpX6WDnGvuBfMH1q5FQl0eb+G9JCvNPeKKo9Datwr
- 7SlvhXTS6V5mjw2Y1RTJrAGp8JxReA6srS4/Dkcb5CStFGPLDIov0DK+o
- t/G/gFfi4WUvpPkKERPe5al7vkz3D8tFs8/fdWzg3i/KP9l84BTcNfUVl
- MLmXN5qD2zP7aBwVrfooO1kllKqDjBT1WxaSztHsNVjsiff01nWEIho5g
- T4fiV13SelwWz3hl5X9uvLe8MO1DyH5d2qo1qlfRe8LTPDHdGKauSsyPr g==;
-X-CSE-ConnectionGUID: aDyrxpoTR0600jXNL+l1TA==
-X-CSE-MsgGUID: qt/pGUgVT3m5I5e/97byuQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85544011"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85544011"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 11:31:09 -0700
-X-CSE-ConnectionGUID: RbuJKsQcRjuWQQtipddHiA==
-X-CSE-MsgGUID: G/AVYwmfT/+fYHMMQxemig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="249542065"
-Received: from osgc-sh-dragon.sh.intel.com ([10.239.81.44])
- by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 11:31:07 -0700
-From: Jonathan Cavitt <jonathan.cavitt@intel.com>
-To: intel-xe@lists.freedesktop.org,
-	intel-gfx@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
- raag.jadav@intel.com, Michal.Wajdeczko@intel.com
-Subject: [PATCH v4 5/5] drm/xe/i2c: Report i2c irq handler issue
-Date: Tue,  9 Jun 2026 02:30:50 +0800
-Message-ID: <20260608183050.3875235-6-jonathan.cavitt@intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260608183050.3875235-1-jonathan.cavitt@intel.com>
-References: <20260608183050.3875235-1-jonathan.cavitt@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5AFEC10F8D5;
+ Mon,  8 Jun 2026 18:53:21 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/gvt=3A?=
+ =?utf-8?q?_fix_refcount_leak_in_intel=5Fvgpu=5Fshadow=5Fmm=5Fpin=28=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Wentao Liang" <vulab@iscas.ac.cn>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 08 Jun 2026 18:53:21 -0000
+Message-ID: <178094480136.54361.18162264877702160267@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260606103519.57715-1-vulab@iscas.ac.cn>
+In-Reply-To: <20260606103519.57715-1-vulab@iscas.ac.cn>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,74 +46,51 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jonathan.cavitt@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:email,lists.freedesktop.org:from_smtp,intel.com:url,iscas.ac.cn:email,patchwork.freedesktop.org:url,emeril.freedesktop.org:from_mime,6beec6c84f66:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7C866659BE9
+X-Rspamd-Queue-Id: D8DD9659E31
 
-Error logging is expected but not included in xe_i2c_irq_handler() for
-generic_handle_irq_safe(), so add error logging there.
+== Series Details ==
 
-This issue was caught by static analysis.
+Series: drm/i915/gvt: fix refcount leak in intel_vgpu_shadow_mm_pin()
+URL   : https://patchwork.freedesktop.org/series/168088/
+State : failure
 
-v2:
-- Reword error message (Wajdeczko)
+== Summary ==
 
-Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-Reviewed-by: Raag Jadav <raag.jadav@intel.com>
-Cc: Raag Jadav <raag.jadav@intel.com>
-Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
----
- drivers/gpu/drm/xe/xe_i2c.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+Address 'vulab@iscas.ac.cn' is not on the allowlist, which prevents CI from being triggered for this patch.
+If you want Intel GFX CI to accept this address, please contact the script maintainers at i915-ci-infra@lists.freedesktop.org.
+Exception occurred during validation, bailing out!
+Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/179081/ (on built-in)
 
-diff --git a/drivers/gpu/drm/xe/xe_i2c.c b/drivers/gpu/drm/xe/xe_i2c.c
-index 148e82e01ae8..84171021e6ea 100644
---- a/drivers/gpu/drm/xe/xe_i2c.c
-+++ b/drivers/gpu/drm/xe/xe_i2c.c
-@@ -177,12 +177,15 @@ static bool xe_i2c_irq_present(struct xe_device *xe)
- void xe_i2c_irq_handler(struct xe_device *xe, u32 master_ctl)
- {
- 	struct xe_mmio *mmio = xe_root_tile_mmio(xe);
-+	int ret;
- 
- 	if (!(master_ctl & I2C_IRQ) || !xe_i2c_irq_present(xe))
- 		return;
- 
- 	/* Forward interrupt to I2C adapter */
--	generic_handle_irq_safe(xe->i2c->adapter_irq);
-+	ret = generic_handle_irq_safe(xe->i2c->adapter_irq);
-+	if (ret)
-+		xe_err_ratelimited(xe, "I2C: irq handling failure (%pe)\n", ERR_PTR(ret));
- 
- 	/* Deassert after I2C adapter clears the interrupt */
- 	xe_mmio_rmw32(mmio, I2C_CONFIG_CMD, 0, PCI_COMMAND_INTX_DISABLE);
--- 
-2.53.0
 
