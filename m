@@ -2,134 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 43ilDZu+JmrNcAIAu9opvQ
+	id gKbtFZm/JmoacQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 15:07:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 15:11:53 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 76D69656706
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 15:07:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EF7D8656798
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 15:11:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=adVYHmRp;
+	dkim=pass header.d=intel.com header.s=Intel header.b=OhR+bASB;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F323E10F382;
-	Mon,  8 Jun 2026 13:07:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6D17410F392;
+	Mon,  8 Jun 2026 13:11:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from PH7PR06CU001.outbound.protection.outlook.com
- (mail-westus3azon11010063.outbound.protection.outlook.com [52.101.201.63])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3406610F382;
- Mon,  8 Jun 2026 13:07:36 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=Cf6RhPUtedmsJytdOoM9e3dxulGS9i/DmhLO7POjY2jEadT9RPkVgAgo/0NM0/vXE/rHwaexF31MPkp5N+mJdDqUp8/KVrswrqmlvpXT+bOIAsw1f3r8lAdthrwZAtuFEwtKs1ytHYG0LKmS1FPNtreYFkEYMhyuOt0b3k87F6B5JObszYgEaJxDcC7m6Db7DIU/lLvQRVGcI6YPGdmhXuuueXLcmhZlGPRKVNArmOlVl6/3SMRLTJrTZL/Ozd5d3Pr67naJWlW20rYxCvj1PpjnqVbtUeKvudz1YXj8Xa7855+Moqi9OLNU+ABuk1yGliLy5Ez6gZhp138uNT7MdA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=jNsroXYNuArXh7IbKwecUSApu5hnUUoCeyo/kCodmGQ=;
- b=MiVE45FSAyXLUQloC+BhC1BQ9vT6C1eeRVDAhMEq1RPaLmD/kiolBwBZOQ+a7T+f5UXtK/HzH9cqDtRiM9E68qn3lSdArAv+tjTDXJSonQ3dB/yvaDj6IeY4hpMvv/gWHqhHIFsw1UxgmZix7jHKQHVONr3E+i+5H6gUDspwrwCFY8YsvzVryVAIvbDMEMDhVY1ccDWMnU6jIQ+IE8Ft8awC114wP1kFRNQrM//U8ZXUfYSKTr9Clrotcu4EpRBnUR5B8sGXRf7CWj9O+1F+rU7vVFYn6W6LP7IJ+opzVciaWVCbJwOwtSBU7GTMRdOUgoq9E7erYD6PYljTOO7Qqw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jNsroXYNuArXh7IbKwecUSApu5hnUUoCeyo/kCodmGQ=;
- b=adVYHmRpzlp/two9F5G1Hpizhvt7vR2ad3f+djqyxk32hvY1WQlPLJN3T8mS+Q6+TRnF+4i/gDUpQgDT5epVeb1LDvAU6nTNQu4tPO2A0F897AsdVt2TQ1VlOKfZvRQPml+EXUo5EJaLxjz3o39AHEx6gqd4Z996gLDoCnCDiik=
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
- by SA5PPF916D632A9.namprd12.prod.outlook.com
- (2603:10b6:80f:fc04::8d6) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.9; Mon, 8 Jun 2026
- 13:07:32 +0000
-Received: from PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
- ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0092.006; Mon, 8 Jun 2026
- 13:07:32 +0000
-Message-ID: <bb2adbe0-5962-4b33-a245-02a11c8cf64b@amd.com>
-Date: Mon, 8 Jun 2026 15:07:23 +0200
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 1/1] drm/amdgpu: check individual moved list instead of
- invalidated
-To: =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>,
- dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org
-Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>,
- Alex Deucher <alexander.deucher@amd.com>
-References: <20260512162711.51118-4-christian.koenig@amd.com>
- <20260608122316.3131299-1-michal.grzelak@intel.com>
- <20260608122316.3131299-2-michal.grzelak@intel.com>
-Content-Language: en-US
-From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
-In-Reply-To: <20260608122316.3131299-2-michal.grzelak@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: BN9PR03CA0593.namprd03.prod.outlook.com
- (2603:10b6:408:10d::28) To PH7PR12MB5685.namprd12.prod.outlook.com
- (2603:10b6:510:13c::22)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0454A10F392;
+ Mon,  8 Jun 2026 13:11:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780924310; x=1812460310;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:content-transfer-encoding:in-reply-to;
+ bh=AoE59+ntjyX2ToXPemNXUbIHpmXPm2aRKjnUsPsJaQ8=;
+ b=OhR+bASBS2+QBJHmZnfVxgPbyL7IHNWR+i8KNc7VgWVGXvhhr80ZfaXS
+ /G9z6ABT6L4afnYhye4SYPw5mzBrMi3+jcByN67BK445pLWIEPPga1g3S
+ 35JcIRZ8UE4qf1lk20sz/ly5VTmRV0tRxncisZu9Qt8LyLe3MI+SRkvP3
+ z62Ui4jur5TnvFEOw9AO5daJaWH5LE1ynvQJhBvoYDEPf0ElPsDbNgAwK
+ 8e7CONEwy7d6CkKs0A/wl0/RwZN7B3WQXpogbojvZq8pzYac6EpZ/4rv2
+ fQp6OvWxxcWfMhyUIIaL1Br2SGBhRNLBiVbYuB45UV6K47Wvi6JQTOqgA A==;
+X-CSE-ConnectionGUID: NZSgW5ClQsCF7WN8BvP9Fw==
+X-CSE-MsgGUID: hKPoucAFTMG1CT45UbGt5g==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="92764884"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="92764884"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 06:11:49 -0700
+X-CSE-ConnectionGUID: OtaOoTXaRaasEJSdfod1/A==
+X-CSE-MsgGUID: 9b+nvLCGSlm9xBndoq0Skw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="241385588"
+Received: from jkrzyszt-mobl2.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.230])
+ by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 06:11:47 -0700
+Date: Mon, 8 Jun 2026 16:11:43 +0300
+From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To: Nemesa Garg <nemesa.garg@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [RFC PATCH 1/2] drm/i915/cdclk: Avoid VCO-change glitches
+Message-ID: <aia_jxWyNrCWEPEW@intel.com>
+References: <20260608125009.979672-1-nemesa.garg@intel.com>
+ <20260608125009.979672-2-nemesa.garg@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|SA5PPF916D632A9:EE_
-X-MS-Office365-Filtering-Correlation-Id: 4edb061e-4dc8-41ac-944a-08dec55ee6c3
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|366016|1800799024|56012099006|11063799006|4143699003|18002099003|22082099003;
-X-Microsoft-Antispam-Message-Info: e+vrtIgoeeV17qTpZA5iSgsXTyKiPxU4UVSrntpdpAPlb+5Nbmp/I57/X5HL0AJkkQi2hVpLBwpMkzJ44lqFzgZY86qxDeSicu0g+tzrrHXfpn9K9rvXjbD2AEN56T77l4fAPWwfY5N5n+EgINGsEcazR8AmRAngyQaN3ujXtk8mnIBDMK/JsZvrs5i0HPF3SlYuCtC4OE248QeUFQ0mLTgvCfK4OT/q4EP/bSYz/DU4CsVmzJpBldCW/EJVX5vEQG7Y6EtazE0Pb6mP5SrXoj61lqDfqGUkNszUbABEa4nPeqUzqcbVHr809MQRU/bacbMw/Muk8rOoNfp90OEZPmPWzZ7SznwzVGSDKipQrLbJqoUSYbbdPKxPhXqfN4kP25iQoiQLDObGzRTvYAlS837262R5puzKpvmFOE3s8xLI2a/M7ZyCSxm1qhF63jy9nwjmmshoM4OyZBRmrW3VTgMz75MB8vVCK04rzdUi4ZHOK3h4+GEXeAsPf669D51YAipTGLdMQAlAdzn2ma0V4e/uPBPH0jIcHoU27HXV4dQWUc+7gA2XCxUIgju/WW/WjoiLCGOUdER8++F8n8gwaaxzHlRqVwZpDQ8HnN95DXmn2Fjo+zIOkTcuoL8KoRQJ0pLY6NQUlSXK8FyT/FVglHNwzR0RjRjqqWYwLSp5Jsqo6ilz+b8lT+BF5EWSFNrw
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(366016)(1800799024)(56012099006)(11063799006)(4143699003)(18002099003)(22082099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RWh3VDdkV3h1Zm1OWFIyMmdwdjBIS2Q2QmVkZXd6Z1NGSHB2bkhndXA1OEE5?=
- =?utf-8?B?eGhyTW56RVplbU9vYzBLTmtoV3dvckxPLzJkQSthSEpCQlQ3cnhJZlJkSjdG?=
- =?utf-8?B?clpwaWdoT1BzR3hhUGxIdkFSbHZiR1BkYXdOZkxNQWs4UU5kV3VvQ2puU1NZ?=
- =?utf-8?B?bmI1MHR4THlXRGdHMEFhMmxYS0wrY0NLUFg3T0V5Zi9WODZCeE9QTzdkc2Rp?=
- =?utf-8?B?WmVCSXFZYXZFc0M0U0xkWFM4YUlyaW5PclZjcHIyTEhKWHRnR2toN3QvbThX?=
- =?utf-8?B?VzJXYW1MYlRxcEpCeWZHcFhmbGQ3SWRydDlYUXZjR1dDNFd0c2FPWFk3ak1q?=
- =?utf-8?B?YUNOODdvQnJpenhmR3cvMUFZVzYyV3hiZVhMVmYvN1kxWWwxOEcyMy9WKzhC?=
- =?utf-8?B?VDZwSXl1U3NMYTZROXQ4cGlSelNKSEdQdWNtWmJicEhNZTg5Nkd5dWFtV1Jn?=
- =?utf-8?B?ZWFPb1JZUU9aRmZuQzcrTlFvK285Y1FKR3FQdlRJUkROTG00UU16VFpkcjR4?=
- =?utf-8?B?aUs4ai9Fb2tvUFdiOHo0cXNFdFlDd0dwOU5ZekN3MU1zUWhyMUE0cVduQ1lF?=
- =?utf-8?B?eVAxcG9JRlBuWlQrbEk4S0NGN2czcmhrTU5hT2tlWUJCdHhkUzZWZldCTzkz?=
- =?utf-8?B?UXMzUmJ4Qy9XRXJFU3ZDSHVtT3czTDlyR3VUSWpIb3BGN2R4VFh1N25Qanl1?=
- =?utf-8?B?ZlpCcSswOGdYS204cVNpNHc4UkQ0RGVGNEZyTHdnQzRZTXRBeThoYmlGWjBh?=
- =?utf-8?B?ajhrSlRLdzdjV1Z5ckppelJkdjhyaXZTMjJxQ29JMWNJanRQcmNBTWIyQVE5?=
- =?utf-8?B?eWRGYWZKZjZnVUxsQU43WlV6Wk1tSkVwRGg1UFNVSVpubUh6Q1VuRGtZN1BW?=
- =?utf-8?B?Z0J0TlV2Ri9PbmdacjBDVU1TWm1sRUljSHdRc3BYV2gvM3NmVjgzL0ttRGph?=
- =?utf-8?B?UXFocHlJenl4UmEyQk1EdDBsWUdlUStJSGsrVFprZjVFbVpHb3FSNDhrNU5s?=
- =?utf-8?B?WkNzRVZDanZyTDhLYlNkM0poKzNLekNCc0JrWVBNdEJSSDFNaGRSRDlIWWNP?=
- =?utf-8?B?WTFFakw1cmxQZWF6L0FyZDJ2dWlXOEt3bVhmdHJUM1ZsMmFicnlLOFU5UkJq?=
- =?utf-8?B?d2NEVXVpOVVLOW9pdDRDOFA0eXJCemxKUWtlUmVhWnhzRVAzVFZBOEp0R1c0?=
- =?utf-8?B?cFY1eG1XUXdvdGdWOGhLVlJoaXNKcnpDYjFPTXlDN1hpZ3VNZU9UNjFUVStG?=
- =?utf-8?B?RmFDSjM1akY2cHFXbEovbUlWSTB0QTdlSUNTMjJCa0R4OE9XLzhzMHgwVVJh?=
- =?utf-8?B?UjBjUlJIVVNZOVZHenpPVXlMaVQ5TTBGaitNTTBhZGxvaWtueUJzUXhLRS8y?=
- =?utf-8?B?NnVGUmZwMDREVHBTbWRkOHl0ZWNtUUE1Z1RiV2xlZGhOanZjVTg3R3RrSWg5?=
- =?utf-8?B?U2pmWjl4TDFyZ2E5WnRuRFZvSE1OZms0a1dCVGg2MldxZTRTSkpnU2ZzTzJx?=
- =?utf-8?B?WU1TdkNUc3VqRklUYndNMHpmR0xNUDlPR2tEK01xQjkyanJuYWVQRlc0ZVJV?=
- =?utf-8?B?Q09nb253RnhkNUFDWWdINE1RUWVNVlNsakxmMnhETzJ2ZUpUaWRQVnBLM1Np?=
- =?utf-8?B?NHdjaHh1djZwaGVDZTc2SU5kUVQxRVRlbVlmTHRDeVRhbWk0K3QrLy8zV3pM?=
- =?utf-8?B?a2FXeWVzbG1XN2VYczhXZnVzc1dmbGcxekE1VTJCcy8zVWovRHo2VVN1NHFs?=
- =?utf-8?B?Q3I5Qkp3Ykh0Zk0rOHBWdmRLcGd6eERWTWFhQTlMOFN4MHF6YjEvdWZKTWtI?=
- =?utf-8?B?M1hLQWZ6RTAyZnR5d2ZEWVFNWkVQaGg4M1Q3NmxocTNUZ1pIVHF6SExJLzE5?=
- =?utf-8?B?VUI1RlVUU1BqYzJuVnlzS04xMlo0L2swVUczNHA0YkQ0dm5nbytyYzdQU1cz?=
- =?utf-8?B?N3luWkFqUzJrWnpNTkxOTTRER1dXSDUyenlBRGkzd3ZSSG4rd0pqc3o0RDZp?=
- =?utf-8?B?c1FoT2p1SHpFQnlmdGdBbEE4dXlLL0ZMejdqMklvSHhJd2ppRS9QaDdRQVlv?=
- =?utf-8?B?Tm9oUVN6bHpDbWJLZEJXU1c2YlFPVXNWaHpoczBUKytZNDJITWxyQTdabnIw?=
- =?utf-8?B?bmlHOHBoL3Y4M0ZHdlBJeGk3Nlhrc2hEVHJlT0J6UUdUUzVUT0QvdmRLRGFL?=
- =?utf-8?B?dHg2MnVndkxaTTU1OWNKTmMwRGY4SUU0Z3hiRnY5SzNQRFJqV0NScEt4QkF5?=
- =?utf-8?B?clBSSnlOdXQxVHJ4SUF5VE9NWWVoTmpRVlNkdFN3T2RzRm5nSXJRTUxJWEZN?=
- =?utf-8?Q?KnA6UcFtqMV/cC4HP5?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4edb061e-4dc8-41ac-944a-08dec55ee6c3
-X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 08 Jun 2026 13:07:32.4405 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: xHsRwJVRNK4FoQWU5faJSHeJ414u9zkUub5jqe6icqks/SWSRov9eKrKlHWtysji
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA5PPF916D632A9
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260608125009.979672-2-nemesa.garg@intel.com>
+X-Patchwork-Hint: comment
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -145,67 +79,133 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [0.36 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MIXED_CHARSET(0.67)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	DKIM_TRACE(0.00)[amd.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:email];
-	RCPT_COUNT_FIVE(0.00)[6]
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 76D69656706
+X-Rspamd-Queue-Id: EF7D8656798
 
-On 6/8/26 14:23, Michał Grzelak wrote:
-> Checking `invalidated` field causes build to fail since it is absent in
-> struct amdgpu_vm. Replace it with &vm->individual.moved identically
-> as did commit 59720bfd8c6d ("drm/amdgpu: restart the CS if some parts of
-> the VM are still invalidated").
+On Mon, Jun 08, 2026 at 06:20:08PM +0530, Nemesa Garg wrote:
+> On platforms with both cdclk squash and crawl, bxt_modeset_calc_cdclk()
+> can pick a target cdclk whose VCO differs from the current one. The
+> resulting transition causes pipe FIFO underruns:
 > 
-> Cc: Vitaly Prosyak <vitaly.prosyak@amd.com>
-> Cc: Christian König <christian.koenig@amd.com>
-> Cc: Alex Deucher <alexander.deucher@amd.com>
-> Fixes: 40396ffdf612 ("drm/amdgpu: restart the CS if some parts of the VM are still invalidated")
-> Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
+>   - Up-crawl from VCO 614400: intermediate frequencies fall below
+>     min_cdclk.
 
-The field is renamed by a different patch so looks like a rebase/merge issue to me, could be that the Fixes tag needs double checking.
+Should not happen, and cdclk_compute_crawl_and_squash_midpoint() will
+WARN if the mid cdclk comes out too low.
 
-But either way Reviewed-by: Christian König <christian.koenig@amd.com>
+Since you've provided no logs of what you think is happening I can't 
+even speculate what might be going on.
 
-Thanks,
-Christian.
-
+>   - Down-crawl from VCO 1382400: DBUF ratio changes mid-commit before
+>     watermarks for the new ratio are programmed.
+> 
+> On a VCO-changing transition, prefer the lowest cdclk_table entry that
+> satisfies min_cdclk at the current VCO (pure squash, no DBUF ratio
+> change). If none exists, fall back to max_cdclk_freq on the up-crawl
+> path and stay at the current cdclk on the down-crawl path.
+> 
+> Assisted-by: Claude:claude-sonnet-4.6
+> Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 > ---
->  drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 47 ++++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
 > 
-> diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> index 548a4f14a9f8..5d8f5848bc0e 100644
-> --- a/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> +++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c
-> @@ -1323,7 +1323,7 @@ static int amdgpu_cs_submit(struct amdgpu_cs_parser *p,
->  		e->range = NULL;
->  	}
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 189ae2d3cfc9..ead8e59e44a4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1598,6 +1598,26 @@ static int bxt_calc_cdclk(struct intel_display *display, int min_cdclk)
+>  	return display->cdclk.max_cdclk_freq;
+>  }
 >  
-> -	if (r || !list_empty(&vm->invalidated)) {
-> +	if (r || !list_empty(&vm->individual.moved)) {
->  		r = -EAGAIN;
->  		mutex_unlock(&p->adev->notifier_lock);
->  		return r;
+> +/*
+> + * Lowest cdclk_table entry that satisfies min_cdclk AND keeps the
+> + * supplied VCO. Returns 0 if no such entry exists.
+> + */
+> +static int bxt_calc_cdclk_for_vco(struct intel_display *display,
+> +				  int min_cdclk, int vco)
+> +{
+> +	const struct intel_cdclk_vals *table = display->cdclk.table;
+> +	int i;
+> +
+> +	for (i = 0; table[i].refclk; i++) {
+> +		if (table[i].refclk == display->cdclk.hw.ref &&
+> +		    table[i].cdclk >= min_cdclk &&
+> +		    display->cdclk.hw.ref * table[i].ratio == vco)
+> +			return table[i].cdclk;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+>  static int bxt_calc_cdclk_pll_vco(struct intel_display *display, int cdclk)
+>  {
+>  	const struct intel_cdclk_vals *table = display->cdclk.table;
+> @@ -3300,6 +3320,33 @@ static int bxt_modeset_calc_cdclk(struct intel_atomic_state *state)
+>  	cdclk = bxt_calc_cdclk(display, min_cdclk);
+>  	vco = bxt_calc_cdclk_pll_vco(display, cdclk);
+>  
+> +	/*
+> +	 * Guard against VCO-changing CDCLK transitions that cause pipe FIFO
+> +	 * underruns. When crawling up from VCO 614400 the intermediate
+> +	 * frequencies are below min_cdclk; when crawling down from VCO
+> +	 * 1382400 the DBUF ratio changes mid-modeset before watermarks are
+> +	 * reprogrammed. Prefer a same-VCO cdclk_table entry (pure squash,
+> +	 * no DBUF ratio change); only fall back to max_cdclk_freq when no
+> +	 * such entry can satisfy min_cdclk.
+> +	 */
+> +	if (HAS_CDCLK_SQUASH(display) && HAS_CDCLK_CRAWL(display) &&
+> +	    display->cdclk.hw.vco > 0 && vco > 0 &&
+> +	    display->cdclk.hw.vco != vco) {
+> +		if (cdclk > display->cdclk.hw.cdclk) {
+> +			int same_vco_cdclk;
+> +
+> +			same_vco_cdclk = bxt_calc_cdclk_for_vco(display, min_cdclk,
+> +								display->cdclk.hw.vco);
+> +			if (same_vco_cdclk)
+> +				cdclk = same_vco_cdclk;
+> +			else
+> +				cdclk = display->cdclk.max_cdclk_freq;
+> +		} else {
+> +			cdclk = display->cdclk.hw.cdclk;
+> +		}
+> +		vco = bxt_calc_cdclk_pll_vco(display, cdclk);
+> +	}
+> +
+>  	cdclk_state->logical.vco = vco;
+>  	cdclk_state->logical.cdclk = cdclk;
+>  	cdclk_state->logical.voltage_level =
+> -- 
+> 2.25.1
 
+-- 
+Ville Syrj�l�
+Intel
