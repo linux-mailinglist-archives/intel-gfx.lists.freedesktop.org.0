@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GTeHLYm7JmrQbwIAu9opvQ
+	id Qb8TG4y7JmrRbwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:36 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5AC2F65658C
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D1B656593
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=J5dfICJV;
+	dkim=pass header.d=intel.com header.s=Intel header.b=CEz6iVaR;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 402B910F358;
-	Mon,  8 Jun 2026 12:54:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7FB9310F35D;
+	Mon,  8 Jun 2026 12:54:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1037710F35C;
- Mon,  8 Jun 2026 12:54:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 66C4210F35D;
+ Mon,  8 Jun 2026 12:54:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780923271; x=1812459271;
+ t=1780923274; x=1812459274;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=jazbHiP+/VVO60pQSt3WWjdMCkmxyBvJc2lfq5LwAFM=;
- b=J5dfICJVI4rhZlr7LehLJeVtndc8E2TQvAabUC+6shBgKL2cUouL+sBM
- uxcSsONY1x/OvjIpT9QOKTOS+7Ls+IjX903hJMfHrxMfxELspZlKvnoW1
- NB7iIKKkfF0GSyGwF8rjM0sP5JiL2emuT+25O2z44zlvO7MOfUgD8Ny4v
- gqo74DimnT3gUuRJDhzslpTiGyt+WIWsPgSyUEgnlE81eRShIMSZu8s/1
- PRogddFh3MhzF10iUSm4whcNN6o5Ofe+s5e5x1MgsJr0qaV+OpP7tdPiG
- 0Hxq6l6nIUuInP8cHO+wMnY3GZTOgx4KQ14IeNA0g9GyyGoPI5rls8s1s A==;
-X-CSE-ConnectionGUID: zMEm42UZSX+6CgPrvKFSxQ==
-X-CSE-MsgGUID: WH1tyUVhT1uwO3lPT16giQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81401587"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81401587"
+ bh=wRXV4Q39DGfj0gCd9tAAAF9UNfwrjdKxuapY18NrnIE=;
+ b=CEz6iVaRuOWOG9P4B73iMJQZKkc4i7ig2k5n7KwLKckkoqglRy9e6x7R
+ V4B3t+v3fVcqnxyJGH8ltCO4JE3Q7AmkKaDpxNtlX8VsyT7K8i9qP1Fr3
+ artR/446gr+Z/TTiYkzFbbRJnjuVL570NLg3lQyFXcsYrQkUbXlEnWTdY
+ tga4OQLvWZeyvefWhKG5YDIj4a7jDWiYp5if1nGdX7J5aCeNroYJMSclj
+ 2h76W1ywiFIy9YLGw5bokPR2qAyWB2QyaQ6MMCGpoX1HtiP2OX6Ji9v35
+ tUa+tWucvFTMWsKPshOEjIyooSjFxzbbeST9PvB66jpqv9CpKjol4IhBn Q==;
+X-CSE-ConnectionGUID: ND6RLcIkTy65uiQcnpK4+A==
+X-CSE-MsgGUID: Os0L+tffTji+C8JeazPdtA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81401593"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81401593"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 05:54:30 -0700
-X-CSE-ConnectionGUID: a7GtS5WbQ7y92rdJIoSIjg==
-X-CSE-MsgGUID: ISrx4NocTbGue0ztJs/24w==
+ 08 Jun 2026 05:54:34 -0700
+X-CSE-ConnectionGUID: 0MT4JP9DTdG639k+Bq++vw==
+X-CSE-MsgGUID: MHl7N2s0RWyM7F2ZytP8xA==
 X-ExtLoop1: 1
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by fmviesa003.fm.intel.com with ESMTP; 08 Jun 2026 05:54:29 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 08 Jun 2026 05:54:32 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [RFC PATCH 1/2] drm/i915/cdclk: Avoid VCO-change glitches
-Date: Mon,  8 Jun 2026 18:20:08 +0530
-Message-Id: <20260608125009.979672-2-nemesa.garg@intel.com>
+Subject: [RFC PATCH 2/2] drm/i915/wm: Wait a vblank before shrinking plane DDB
+Date: Mon,  8 Jun 2026 18:20:09 +0530
+Message-Id: <20260608125009.979672-3-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260608125009.979672-1-nemesa.garg@intel.com>
 References: <20260608125009.979672-1-nemesa.garg@intel.com>
@@ -98,93 +98,88 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5AC2F65658C
+X-Rspamd-Queue-Id: 15D1B656593
 
-On platforms with both cdclk squash and crawl, bxt_modeset_calc_cdclk()
-can pick a target cdclk whose VCO differs from the current one. The
-resulting transition causes pipe FIFO underruns:
-
-  - Up-crawl from VCO 614400: intermediate frequencies fall below
-    min_cdclk.
-  - Down-crawl from VCO 1382400: DBUF ratio changes mid-commit before
-    watermarks for the new ratio are programmed.
-
-On a VCO-changing transition, prefer the lowest cdclk_table entry that
-satisfies min_cdclk at the current VCO (pure squash, no DBUF ratio
-change). If none exists, fall back to max_cdclk_freq on the up-crawl
-path and stay at the current cdclk on the down-crawl path.
+Back-to-back atomic commits that keep the per-pipe DBUF
+allocation, MBUS join state and slice mask unchanged but
+reshuffle per-plane PLANE_BUF_CFG sub-ranges can cause
+pipe FIFO underruns. Wait a vblank on the CRTC if any plane
+is shrink (stays allocated, range got smaller) or swap (new
+range overlaps another plane's old range on the same pipe).
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 47 ++++++++++++++++++++++
- 1 file changed, 47 insertions(+)
+ drivers/gpu/drm/i915/display/skl_watermark.c | 49 ++++++++++++++++++++
+ 1 file changed, 49 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 189ae2d3cfc9..ead8e59e44a4 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1598,6 +1598,26 @@ static int bxt_calc_cdclk(struct intel_display *display, int min_cdclk)
- 	return display->cdclk.max_cdclk_freq;
+diff --git a/drivers/gpu/drm/i915/display/skl_watermark.c b/drivers/gpu/drm/i915/display/skl_watermark.c
+index 5a3677ea25b0..fdd09700e808 100644
+--- a/drivers/gpu/drm/i915/display/skl_watermark.c
++++ b/drivers/gpu/drm/i915/display/skl_watermark.c
+@@ -3648,6 +3648,53 @@ void intel_dbuf_mbus_post_ddb_update(struct intel_atomic_state *state)
+ 
  }
  
 +/*
-+ * Lowest cdclk_table entry that satisfies min_cdclk AND keeps the
-+ * supplied VCO. Returns 0 if no such entry exists.
++ * Pre-program shrinking plane DDBs and wait a vblank so HW retires
++ * the old (larger) ranges before the main commit places new/grown planes
++ * into the freed space. Avoids the brief DDB overlap that causes pipe
++ * FIFO underruns. Only handles pure shrinks (new range contained in old);
++ * swaps are not handled here.
 + */
-+static int bxt_calc_cdclk_for_vco(struct intel_display *display,
-+				  int min_cdclk, int vco)
++static void skl_dbuf_pre_shrink(struct intel_atomic_state *state)
 +{
-+	const struct intel_cdclk_vals *table = display->cdclk.table;
-+	int i;
++	struct intel_display *display = to_intel_display(state);
++	const struct intel_crtc_state *old_cs, *new_cs;
++	struct intel_crtc *crtc;
 +
-+	for (i = 0; table[i].refclk; i++) {
-+		if (table[i].refclk == display->cdclk.hw.ref &&
-+		    table[i].cdclk >= min_cdclk &&
-+		    display->cdclk.hw.ref * table[i].ratio == vco)
-+			return table[i].cdclk;
++	if (DISPLAY_VER(display) != 30)
++		return;
++
++	for_each_oldnew_intel_crtc_in_state(state, crtc, old_cs, new_cs) {
++		struct intel_plane *plane;
++		bool need_wait = false;
++
++		if (!old_cs->hw.active || !new_cs->hw.active)
++			continue;
++
++		for_each_intel_plane_on_crtc(display->drm, crtc, plane) {
++			enum plane_id pid = plane->id;
++			enum pipe pipe = crtc->pipe;
++			const struct skl_ddb_entry *o = &old_cs->wm.skl.plane_ddb[pid];
++			const struct skl_ddb_entry *n = &new_cs->wm.skl.plane_ddb[pid];
++			u16 osz = skl_ddb_entry_size(o), nsz = skl_ddb_entry_size(n);
++
++			if (pid == PLANE_CURSOR || !osz || !nsz || nsz >= osz ||
++			    n->start < o->start || n->end > o->end)
++				continue;
++
++			intel_de_write(display, PLANE_BUF_CFG(pipe, pid),
++				       PLANE_BUF_END(n->end - 1) | PLANE_BUF_START(n->start));
++			/* Arm by re-writing PLANE_SURF (same value -> no visible flip). */
++			intel_de_write(display, PLANE_SURF(pipe, pid),
++				       intel_de_read(display, PLANE_SURF(pipe, pid)));
++			need_wait = true;
++		}
++
++		if (need_wait)
++			intel_crtc_wait_for_next_vblank(crtc);
 +	}
-+
-+	return 0;
 +}
 +
- static int bxt_calc_cdclk_pll_vco(struct intel_display *display, int cdclk)
+ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
  {
- 	const struct intel_cdclk_vals *table = display->cdclk.table;
-@@ -3300,6 +3320,33 @@ static int bxt_modeset_calc_cdclk(struct intel_atomic_state *state)
- 	cdclk = bxt_calc_cdclk(display, min_cdclk);
- 	vco = bxt_calc_cdclk_pll_vco(display, cdclk);
+ 	struct intel_display *display = to_intel_display(state);
+@@ -3660,6 +3707,8 @@ void intel_dbuf_pre_plane_update(struct intel_atomic_state *state)
+ 	if (!new_dbuf_state)
+ 		return;
  
-+	/*
-+	 * Guard against VCO-changing CDCLK transitions that cause pipe FIFO
-+	 * underruns. When crawling up from VCO 614400 the intermediate
-+	 * frequencies are below min_cdclk; when crawling down from VCO
-+	 * 1382400 the DBUF ratio changes mid-modeset before watermarks are
-+	 * reprogrammed. Prefer a same-VCO cdclk_table entry (pure squash,
-+	 * no DBUF ratio change); only fall back to max_cdclk_freq when no
-+	 * such entry can satisfy min_cdclk.
-+	 */
-+	if (HAS_CDCLK_SQUASH(display) && HAS_CDCLK_CRAWL(display) &&
-+	    display->cdclk.hw.vco > 0 && vco > 0 &&
-+	    display->cdclk.hw.vco != vco) {
-+		if (cdclk > display->cdclk.hw.cdclk) {
-+			int same_vco_cdclk;
++	skl_dbuf_pre_shrink(state);
 +
-+			same_vco_cdclk = bxt_calc_cdclk_for_vco(display, min_cdclk,
-+								display->cdclk.hw.vco);
-+			if (same_vco_cdclk)
-+				cdclk = same_vco_cdclk;
-+			else
-+				cdclk = display->cdclk.max_cdclk_freq;
-+		} else {
-+			cdclk = display->cdclk.hw.cdclk;
-+		}
-+		vco = bxt_calc_cdclk_pll_vco(display, cdclk);
-+	}
-+
- 	cdclk_state->logical.vco = vco;
- 	cdclk_state->logical.cdclk = cdclk;
- 	cdclk_state->logical.voltage_level =
+ 	old_slices = old_dbuf_state->enabled_slices;
+ 	new_slices = old_dbuf_state->enabled_slices | new_dbuf_state->enabled_slices;
+ 
 -- 
 2.25.1
 
