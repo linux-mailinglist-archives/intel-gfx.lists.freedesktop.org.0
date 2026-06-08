@@ -2,67 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xFnWFSrHJmq+kQIAu9opvQ
+	id 779dESrHJmq8kQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 15:44:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 848F1656C15
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A396656C14
 	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 15:44:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=foxmail.com header.s=s201512 header.b=PzWSBM9a;
+	dkim=pass header.d=foxmail.com header.s=s201512 header.b=Ixts1PTr;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=foxmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7A46910F3F3;
+	by gabe.freedesktop.org (Postfix) with ESMTP id ADFDF10F3F4;
 	Mon,  8 Jun 2026 13:44:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out162-62-57-49.mail.qq.com (out162-62-57-49.mail.qq.com
- [162.62.57.49])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 455ED10F02C;
- Mon,  8 Jun 2026 09:20:20 +0000 (UTC)
+X-Greylist: delayed 1697 seconds by postgrey-1.36 at gabe;
+ Mon, 08 Jun 2026 09:44:31 UTC
+Received: from out203-205-221-153.mail.qq.com (out203-205-221-153.mail.qq.com
+ [203.205.221.153])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D8C6310F078;
+ Mon,  8 Jun 2026 09:44:31 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=foxmail.com;
- s=s201512; t=1780910417;
- bh=Zk1OdM/FO04pIv727zNRuWZ1i1r0L3Cf7ZaDQS1VgWA=;
+ s=s201512; t=1780911868;
+ bh=gkEGl6klor+eq4IPgefmvgOhe0uBLMOYG1nnW7uhDxI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References;
- b=PzWSBM9alNqXMoa2mM71LqLO153CwfbsVMcI0DEtnZe8dsXV1+HyYDjZaldxTmIGi
- dD5QNS1nZ3gVMqwW6J4qk9ZZGNzp6d2tO5cPikLbD3GFlpt61iGZ1BYEpMXYtNZQKD
- RbYCbHLi/aS4J1WvV5/J78xav7Re6DbLtwSITSB0=
+ b=Ixts1PTrxIvsqsJ31J0CfO0eICCfrZ91XlU/NvEW1Pq6K3XZ2V1BkDcSoO1nolWQ9
+ 0CK3Tq0mulnXVP/sLef8ql8HZk0X7Uir/or56k5Apa6J7p1m/GkXPAUGW44xmhaT69
+ WU8u+0YkMFVen/3SiCii/U6wybgoqXbI+TvcQk0U=
 Received: from chafi-Matebook-Ubuntu.. ([117.25.98.102])
  by newxmesmtplogicsvrszb43-0.qq.com (NewEsmtp) with SMTP
  id 32F830C7; Mon, 08 Jun 2026 17:12:47 +0800
-X-QQ-mid: xmsmtpt1780909978t83o855lm
-Message-ID: <tencent_AEC2C2C7582DD97B19BFA51196A256151F05@qq.com>
-X-QQ-XMAILINFO: N1MQIlrHEcYy/L89GIYSaW/e9aFe/SJF0uC3bXmon5vt/U7LMi+32NnruVI7rS
- KguiKs5agSU/BSXlNnpt5SKG2wmzDlD6o+xeAtnERJmcUWvCCL/OHsCCEIVIB6+QAIyN9mCVpKmg
- ySA6IyaXMmXsalXWYryIoBMbg7vWQlK7XiYG6eEG8HBNK+oPzYCADVeCc/uJKfLrXPbNT+AuhwCp
- eVKmXU89LvhPxAsgZdgvPoCfLZUwKbJLsApqdpq9AW4grP2XdzmmYU1Bg3TjgbOp/FyWPaZNP4Ar
- EvuoXS1IB+t9ze07rifiT8lr5l6KRSTISC6DVFWom0wF6uB7Atapf8BmAJ7jVfLEa1U1ppz8uCzp
- zOVIwBJLCeYafF5jNvOfG/WvDDxBab9ELsMziPbx3MwzSPWper5ONHYlDAujigFXDCrIbjLRwWGX
- H4CfIuP5LHTaPYpKrh9MJYNWLVvDbZvqKLyems4IW6HJUPC1G/6U51TUVHqOVZ5YhHPErr2Q2y1r
- RjpW6gqhW8mVBBvoBp1+F543cJ2Pn8xPNQRc8Xy8wwMmQse+fish1CxoU5XdWpvIp/GxBzSFSdY4
- gHiENFpT8NBBS7rQortD24PeJyQWIeGEdL4W9FwAjK+tCzOB9tT35NsQOvl6uY8h1KLYC2b3nqn3
- IfyDVmKKM+6geJy1ITDO1WLD/j/u8IG0o8oMAoRWtsTGHCNhP26rcqoCaaJLM7Swa7Il0QnVmm5V
- 6DNOSJE20cLQ7iyy512sPdDrsOMP3m0uwCKv1IWDx2yM2vf6kOMw/xDKR1cMaBKiK/24ZdlYPpj/
- E22JlHuri4neDlDRNcP1OCw1RiP0dte5c7aONRyJ3vg3YCZor9vkFPyJ9UqufWtQVmZUyZlWh6AV
- vTNS+/X1nKmaZq8c5mDlWqkF8MWu0sPzf5U7NcjFlhLZYLHhcKotuRZNox+JHKBkHISGhY1dERBw
- 0C4nwxTuJ63WTJ56g14YSYTkoTHoq4+LRUQREE4UcJ55/Yph+poWg3/iHdt1exHXApVpfbEFSi/5
- yot/aS5Jr0BmO4gQUf34QTh4ythxgzjpmy+wNJAg==
-X-QQ-XMRINFO: NI4Ajvh11aEjEMj13RCX7UuhPEoou2bs1g==
+X-QQ-mid: xmsmtpt1780909979t5qps3k3l
+Message-ID: <tencent_F96A6D2FFEB6459BF167B2F2F27E8B016C06@qq.com>
+X-QQ-XMAILINFO: NsH3EniEpYuY++gQphxxtp/UKwZBf4XhDzLzDtrRZifbrTQvBxvaNEq0FlYZbL
+ 3qBQKHdMw5W4QsLhqXaGMdfm39g98LLduA+c5gFDTrPAGre/FTj/68z2V3QbOvIWEea1Tml0OYKZ
+ 0e2K0fuB8TX3h6PpQi0C9D7H31XmQ+DZb4aQau/sAOvyZEe8/KhklLVHUhrGU+PG/kFAlSMvPowR
+ jKJZ90m8aAcjQP2iDOjwCaQjyu8Mp4U+YL0SVLENDPsSQ6yIxDrOMLobvM3TghuPDgN/y1s5TnGu
+ iPm5Oo4hmGU98luxc2/4W6z0URNdTbKCeD1f0FP76Qk00QJGb9kN7h9FjPW5o1QuJpCX4xIGyF7Z
+ XF5yA+vE+9N1kw0ul2cnJnI4Q312pwmS5kDolmJ6kyUVznoE6OZbxmREmMNSL3RnKxT3iJM0NlC/
+ 7PfR0q2aWT25nZ3ycYymyACUujfkLtsu4QRzCA2fMkBtD46b+xVpiMHiDDljU79PrH8KsxODZ+/u
+ w7on4AMawXrIO+0SURa/Gq4N0DNlhp9Dpc6WiIdhd6uD6xeVsOkscOM5KeKKrDRg33GSZ/wtcyr7
+ vqyzmRCjxwDyWacQ80+lTJ64PJ+OFZNKRas8FrcqWNKDkGeTzlyViWMY1upQZoYOJ64OODUntFVd
+ ZA08suZCY/AvfTBoy1ughid9o6a0TKe/ie1nErLzvBnoPIrlbFS+x68XNCIL0+QvzP015TZD9XL+
+ 05fjlVyFgcP3KDwiLGhTSGiDcTDICKMxHtUcVyHVH51M/Yf8i0NTHXw3SJw4BUqlCSfYp5Eng1J9
+ r/l/HINXICrBL2IBjilcbeenPxfF5aNMLX/JUpcCQrNRL5UeiByLqbAD3WYBf5jF3mUwzFIAT3G2
+ 7FqyNNYCVnsKJBOOskMH9NoCcTOqyn+dKYtTw5woI+fxNyeugH5YE9lfeIbiry01q47d3z/XAh8x
+ PdqWtk9xgbG/TXJnDNRWQ6N/qvfqcNn1DCJShy80Whwe1HCUlNwwfEoXdrHKsceeZIJ2qwHLxV1z
+ /DqzRI52XYpXnlmqga7620aSnnqZ6Kc+/edfo7951LHBZuTexx
+X-QQ-XMRINFO: OWPUhxQsoeAVwkVaQIEGSKwwgKCxK/fD5g==
 From: chafi <chafiprc@foxmail.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org, stable@vger.kernel.org,
  Yu Zhang <chafiprc@foxmail.com>
-Subject: [PATCH 2/3] drm/i915/dsi: Fix hsync readout for dual-link command mode
-Date: Mon,  8 Jun 2026 17:12:43 +0800
-X-OQ-MSGID: <20260608091245.462464-2-chafiprc@foxmail.com>
+Subject: [PATCH 3/3] drm/i915/dsi: Fix TE pin configuration for dual-link DSI
+Date: Mon,  8 Jun 2026 17:12:44 +0800
+X-OQ-MSGID: <20260608091245.462464-3-chafiprc@foxmail.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260608091245.462464-1-chafiprc@foxmail.com>
 References: <20260608091245.462464-1-chafiprc@foxmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Mon, 08 Jun 2026 13:44:06 +0000
+X-Mailman-Approved-At: Mon, 08 Jun 2026 13:44:07 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -103,48 +105,41 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	DKIM_TRACE(0.00)[foxmail.com:+];
 	RCPT_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,qq.com:mid,foxmail.com:dkim,foxmail.com:email,foxmail.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,qq.com:mid,foxmail.com:dkim,foxmail.com:email,foxmail.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 848F1656C15
+X-Rspamd-Queue-Id: 5A396656C14
 
 From: Yu Zhang <chafiprc@foxmail.com>
 
-gen11_dsi_get_timings() only doubles hsync_start/end for dual-link
-DSI in video mode. For command mode dual-link, the hardware stores
-per-link values (e.g. hsync_start=1380 instead of 2762), but the
-readout does not compensate, causing:
+gen11_dsi_config_util_pin() skips UTIL_PIN configuration for any port
+mask that includes PORT_B. For dual-link (PORT_A | PORT_B), PORT_A
+still needs UTIL_PIN as TE (Tearing Effect) input. Without it, vblank
+interrupts never fire and flip_done operations time out on command
+mode dual-link panels.
 
-  [drm] *ERROR* hw.pipe_mode.crtc_hsync_start (expected 2762, found 1380)
+Only PORT_B-only configurations should skip this step, as TE comes
+from the slave DSI1 through GPIO in that case.
 
-Fix this by applying the dual-link hsync doubling unconditionally,
-matching the SET side where hsync is now halved for all modes.
-
-Fixes: d1aeb5f399d9 ("drm/i915/icl: Configure DSI transcoder timings")
+Fixes: 963bbdb32b47 ("drm/i915/dsi: add support for ICL+ native MIPI GPIO sequence")
 Cc: stable@vger.kernel.org
 Signed-off-by: Yu Zhang <chafiprc@foxmail.com>
 ---
- drivers/gpu/drm/i915/display/icl_dsi.c | 8 +++-----
- 1 file changed, 3 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index c667d5941..f579cba28 100644
+index f579cba28..cb60aad92 100644
 --- a/drivers/gpu/drm/i915/display/icl_dsi.c
 +++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1527,11 +1527,9 @@ static void gen11_dsi_get_timings(struct intel_encoder *encoder,
- 	adjusted_mode->crtc_hblank_start = adjusted_mode->crtc_hdisplay;
- 	adjusted_mode->crtc_hblank_end = adjusted_mode->crtc_htotal;
+@@ -1113,7 +1113,7 @@ static void gen11_dsi_config_util_pin(struct intel_encoder *encoder,
+ 	 * for dual link/DSI1 TE is from slave DSI1
+ 	 * through GPIO.
+ 	 */
+-	if (is_vid_mode(intel_dsi) || (intel_dsi->ports & BIT(PORT_B)))
++	if (is_vid_mode(intel_dsi) || intel_dsi->ports == BIT(PORT_B))
+ 		return;
  
--	if (intel_dsi->operation_mode == INTEL_DSI_VIDEO_MODE) {
--		if (intel_dsi->dual_link) {
--			adjusted_mode->crtc_hsync_start *= 2;
--			adjusted_mode->crtc_hsync_end *= 2;
--		}
-+	if (intel_dsi->dual_link) {
-+		adjusted_mode->crtc_hsync_start *= 2;
-+		adjusted_mode->crtc_hsync_end *= 2;
- 	}
- 	adjusted_mode->crtc_vblank_start = adjusted_mode->crtc_vdisplay;
- 	adjusted_mode->crtc_vblank_end = adjusted_mode->crtc_vtotal;
+ 	tmp = intel_de_read(display, UTIL_PIN_CTL);
 -- 
 2.43.0
 
