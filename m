@@ -2,61 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IcyAKKG7JmrcbwIAu9opvQ
+	id nWmxK4i7JmrObwIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:57 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49D616565A8
-	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 26432656586
+	for <lists+intel-gfx@lfdr.de>; Mon, 08 Jun 2026 14:54:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=d4DDy9tq;
+	dkim=pass header.d=intel.com header.s=Intel header.b=UBL7UHvX;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D019610F366;
-	Mon,  8 Jun 2026 12:54:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A6A510F35A;
+	Mon,  8 Jun 2026 12:54:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A874A10F362;
- Mon,  8 Jun 2026 12:54:53 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id ACDB910F358;
+ Mon,  8 Jun 2026 12:54:27 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780923294; x=1812459294;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=mJZ7nsWWnEokAHYyxaXK7jBOONn0FERZ3+Y/uA1Q4F4=;
- b=d4DDy9tqvwSqJ4soRLMM+z8Mx1lr448r0cuTrwtbGD1w226NbfC7Qi9j
- urhYahpTFH4Q53FPC7YpVYzJcZmJAOOhVLU8F+Ijd/AgtJ5oVMXo6JPT1
- +5sYNtbbcR3pgJatNUu9FI/Czd9PfvQCjF4wKsdmLHTLQqXrrib33oyKn
- RM7bDOL+j2oMx2XhYe1TpUE9VBHNnzoWydAtxPJBEhKheJOPgjo+jcIen
- jDF9TDV1WgL3CFTHuhxDziSoxahOgIXHl0cdtwxrKm6IqZc1bpBN0u3+x
- V9NBUpxx7buAWmNRrb0rZg7KyoOgi2rgiCjF56yxm4YpSEIrROoCknzln A==;
-X-CSE-ConnectionGUID: woojD1hfTGCPdyicyAkcQw==
-X-CSE-MsgGUID: b8PENO5hQNq50uzXVBSiSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="85282748"
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="85282748"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 05:54:54 -0700
-X-CSE-ConnectionGUID: IrG25nzaRgOZT1bwlLYvGQ==
-X-CSE-MsgGUID: tpMcruOZRDO8UoEK4eFFMg==
+ t=1780923268; x=1812459268;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=4Me0ohWrWn3CTiN/3QpM22fHUezTkivbSmrzYmClpf8=;
+ b=UBL7UHvX5Y9u6MGM8cAARDv68MKmFFLXJFBIzs7rXqeHt2HyUs9nOd6Y
+ ODX6YIG6J3jGwQzmlone7xqJImBBL6ZvSLaffV1geY5oylvo3MEaA4prk
+ EiLZLHvSPYRnxUHIuZGMiASn34QBnlrf93IER+7R55tRwl7gZWPcxBQh6
+ hy4Lz7FB/xs3V30vL+KyR4tOtyWINugIX8q3o0E8w3E8+pOYRj3Kov6hA
+ G8yZ31gzzUIICHuQxNSO+EqBfy8KwRV5F54SPQ29WNoTsXz+CfcMfCWkX
+ CfNwnlwAyspwBzILFbWclSguKC8TgmPysZzlJjeQo4j/8og/cPG1w9JSw A==;
+X-CSE-ConnectionGUID: N3teSNf7RNq6Au2DNIvR6g==
+X-CSE-MsgGUID: q+gex+8cTxC/Vu35Pm2Yhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11810"; a="81401583"
+X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="81401583"
+Received: from fmviesa003.fm.intel.com ([10.60.135.143])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 05:54:28 -0700
+X-CSE-ConnectionGUID: +rVb9wCCQb+U1ZCv6c/7IQ==
+X-CSE-MsgGUID: M295jJijQpmNUkJ8TBlw8w==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,194,1774335600"; d="scan'208";a="242585943"
-Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 05:54:52 -0700
-From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Received: from nemesa.iind.intel.com ([10.190.239.22])
+ by fmviesa003.fm.intel.com with ESMTP; 08 Jun 2026 05:54:26 -0700
+From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 2/2] drm/i915/dsb: Use safe window path when VRR TG is used
-Date: Mon,  8 Jun 2026 18:07:10 +0530
-Message-ID: <20260608123711.1121908-3-ankit.k.nautiyal@intel.com>
-X-Mailer: git-send-email 2.45.2
-In-Reply-To: <20260608123711.1121908-1-ankit.k.nautiyal@intel.com>
-References: <20260608123711.1121908-1-ankit.k.nautiyal@intel.com>
+Cc: Nemesa Garg <nemesa.garg@intel.com>
+Subject: [PATCH 0/2] Fix pipe fifo underruns during cdclk/DDB transitions
+Date: Mon,  8 Jun 2026 18:20:07 +0530
+Message-Id: <20260608125009.979672-1-nemesa.garg@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -90,98 +86,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_THREE(0.00)[3];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[nemesa.garg@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:mid,intel.com:dkim,intel.com:from_mime,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:mid,intel.com:from_mime,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49D616565A8
+X-Rspamd-Queue-Id: 26432656586
 
-When the VRR timing generator is always used, the hardware behaves
-as VRR-active regardless of crtc_state->vrr.enable.
+	This series fixes two distinct classes of pipe FIFO underruns
+observed during modesets and back-to-back atomic commits.
 
-The DSB paths that depend on the VRR safe window therefore need to follow
-the VRR code paths in that case too:
-- dsb_chicken(): program the SAFE_WINDOW chicken bits,
-- intel_dsb_vblank_evade(): use vmin/vmax vblank starts for the
-  wait window,
-- intel_dsb_wait_for_delayed_vblank(): wait inside the vmin safe window
-  before the scanline-based delayed vblank wait.
+1. Patch 1 avoids cdclk VCO-change glitches in bxt_modeset_calc_cdclk()
+by preferring a same-VCO table entry (pure squash, no DBUF ratio
+change) over an intermediate that drops below min_cdclk or flips the
+DBUF ratio mid-commit.
 
-Introduce helper pre_commit_use_safe_window() and use it in the three sites
+2. Patch 2 closes a brief DDB-overlap window when back-to-back commits
+reshuffle per-plane PLANE_BUF_CFG sub-ranges without changing the per-pipe
+DBUF allocation, MBUS join or slice mask. Shrinking ranges are pre-
+programmed and a vblank is awaited so hw retires the old (larger) ranges
+before grown/new planes occupy the freed space.
 
-v2: Instead of modifying pre_commit_is_vrr_active() use a new helper and
-use it only in the required places. (Ville).
+Nemesa Garg (2):
+  drm/i915/cdclk: Avoid VCO-change glitches
+  drm/i915/wm: wait a vblank before shrinking plane DDB
 
-Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dsb.c | 20 ++++++++++++++++----
- 1 file changed, 16 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c   | 47 +++++++++++++++++++
+ drivers/gpu/drm/i915/display/skl_watermark.c | 49 ++++++++++++++++++++
+ 2 files changed, 96 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsb.c b/drivers/gpu/drm/i915/display/intel_dsb.c
-index 07dd6318d9cc..d1441a86d1cc 100644
---- a/drivers/gpu/drm/i915/display/intel_dsb.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsb.c
-@@ -210,6 +210,18 @@ static int dsb_scanline_to_hw(struct intel_atomic_state *state,
- 	return (scanline + vtotal - intel_crtc_scanline_offset(crtc_state)) % vtotal;
- }
- 
-+static
-+bool pre_commit_use_safe_window(struct intel_atomic_state *state,
-+				struct intel_crtc *crtc)
-+{
-+	struct intel_display *display = to_intel_display(crtc->base.dev);
-+
-+	if (intel_vrr_always_use_vrr_tg(display))
-+		return true;
-+
-+	return pre_commit_is_vrr_active(state, crtc);
-+}
-+
- /*
-  * Bspec suggests that we should always set DSB_SKIP_WAITS_EN. We have approach
-  * different from what is explained in Bspec on how flip is considered being
-@@ -229,7 +241,7 @@ static u32 dsb_chicken(struct intel_atomic_state *state,
- 	u32 chicken = intel_psr_use_trans_push(new_crtc_state) ?
- 		DSB_SKIP_WAITS_EN : 0;
- 
--	if (pre_commit_is_vrr_active(state, crtc))
-+	if (pre_commit_use_safe_window(state, crtc))
- 		chicken |= DSB_CTRL_WAIT_SAFE_WINDOW |
- 			DSB_CTRL_NO_WAIT_VBLANK |
- 			DSB_INST_WAIT_SAFE_WINDOW |
-@@ -759,7 +771,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
- 	if (crtc_state->has_psr)
- 		intel_dsb_emit_wait_dsl(dsb, DSB_OPCODE_WAIT_DSL_OUT, 0, 0);
- 
--	if (pre_commit_is_vrr_active(state, crtc) && crtc_state->vrr.dc_balance.enable) {
-+	if (pre_commit_use_safe_window(state, crtc) && crtc_state->vrr.dc_balance.enable) {
- 		int vblank_delay = crtc_state->set_context_latency;
- 		int vmin_vblank_start, vmax_vblank_start;
- 
-@@ -788,7 +800,7 @@ void intel_dsb_vblank_evade(struct intel_atomic_state *state,
- 		end = vmax_vblank_start;
- 		start = end - vblank_delay - latency;
- 		intel_dsb_wait_scanline_out(state, dsb, start, end);
--	} else if (pre_commit_is_vrr_active(state, crtc)) {
-+	} else if (pre_commit_use_safe_window(state, crtc)) {
- 		int vblank_delay = crtc_state->set_context_latency;
- 
- 		end = intel_vrr_vmin_vblank_start(crtc_state);
-@@ -891,7 +903,7 @@ void intel_dsb_wait_for_delayed_vblank(struct intel_atomic_state *state,
- 		&crtc_state->hw.adjusted_mode;
- 	int wait_scanlines;
- 
--	if (pre_commit_is_vrr_active(state, crtc)) {
-+	if (pre_commit_use_safe_window(state, crtc)) {
- 		/*
- 		 * If the push happened before the vmin decision boundary
- 		 * we don't know how far we are from the undelayed vblank.
 -- 
-2.45.2
+2.25.1
 
