@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1stRDUyEJ2rYyQIAu9opvQ
+	id O+6UAk2EJ2rZyQIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 05:11:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 05:11:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADFED65BFC9
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 05:11:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A458B65BFCC
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 05:11:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=CMpiZIzW;
+	dkim=pass header.d=intel.com header.s=Intel header.b=VX8ymA8F;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 35E0810E067;
-	Tue,  9 Jun 2026 03:11:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 31E0E10E06F;
+	Tue,  9 Jun 2026 03:11:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3EE7E10E064;
- Tue,  9 Jun 2026 03:11:04 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 86B9C10E064;
+ Tue,  9 Jun 2026 03:11:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780974665; x=1812510665;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=z9p25p0vVkNvirUffzHXMr2pU+NWfa5Rb3UzJ0FFnhg=;
- b=CMpiZIzWu8w87DACDv6ATFjIqRL+c/duzFyVzhfFj/d3TzuKcel+2EX0
- VcqKtlBJLqAblo9XHcuqmwc+uSM2V1bnWLJ+xt6E6qDaAFVF1extoe95j
- /7fTSK/JMffj+yFXh5w1qp/j3Ul4+U8uyEP2ZTGM1LM62Lyan1tki5VBD
- SGO5mqO0b0grk8qcRAZvLxY1X5bkAxT9yqHT1FcffkT82tz/zSvw+3kcw
- Vur1Lywtf2K8TiS0Jnrz+xCODyHDWkTJabHd/p95OzuepZqx8GH1DjFfi
- yTQprtdw57HRfYurOBXZS1EI38kyBdMkbQ0Vi4pZR6MOgcBfSBxIN1SZG Q==;
-X-CSE-ConnectionGUID: +oX507kBR2SfWwVz7IWMhA==
-X-CSE-MsgGUID: GcL/pWw+REiQ14+sOd9arA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85351715"
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="85351715"
+ t=1780974666; x=1812510666;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=yQXHpNToIvpIhKaG+ghb4K2hzAFg2zxeRAu3B/My5q8=;
+ b=VX8ymA8FmNg6qXgG314qKaRyfATCDOaVBhHVYZqgDDr+UYWPwvZ64jih
+ GqROrCXlIuCHiUdU2gRnGetcPOevVJS1UoNq0xudXrxeBdNuRK7inHygP
+ HRteQ1dnDY13uiipEpGKjlcWEHkKtWSYTklegcQJJPuTuKta0cPXCGKg2
+ S7Ogq2eSo6veTztfTurAkKb1nkZt3Xl8hc64XsUE99TBbYxDYIFM2+Wwj
+ iS0D0+ovPpMK/70jI62J8pEUJDDOdriBR7UzoHZnc4Omvq3C869LRj1pX
+ I6A/OcCcmAWPActrHi+PSQc2RncJ3OJIFh8aTpJdhCOhe5sRSWj111XhL g==;
+X-CSE-ConnectionGUID: 4Y6df4O9QD2viGM1+Fjwyw==
+X-CSE-MsgGUID: 4aNphwlfRQ2xRPkHYKsHLA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85351716"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="85351716"
 Received: from fmviesa006.fm.intel.com ([10.60.135.146])
  by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 20:11:04 -0700
-X-CSE-ConnectionGUID: jouVcOXPTDSPdaCvQSuBcA==
-X-CSE-MsgGUID: MtkfgtVdSLC6/XpLx+akvw==
+ 08 Jun 2026 20:11:06 -0700
+X-CSE-ConnectionGUID: kgQBk1CFRsqRXChwyL1gDw==
+X-CSE-MsgGUID: TVrfpTf5QMO8Po0ElEWEfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="241287283"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="241287287"
 Received: from srr4-3-linux-103-aknautiy.iind.intel.com ([10.223.34.160])
  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 08 Jun 2026 20:11:02 -0700
+ 08 Jun 2026 20:11:03 -0700
 From: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: ville.syrjala@linux.intel.com, Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH 0/2] drm/i915: Handle VSYNC timing changes in the LRR path
-Date: Tue,  9 Jun 2026 08:23:23 +0530
-Message-ID: <20260609025325.1128543-1-ankit.k.nautiyal@intel.com>
+Subject: [PATCH 1/2] drm/i915/display: Handle VSYNC timing in LRR path
+Date: Tue,  9 Jun 2026 08:23:24 +0530
+Message-ID: <20260609025325.1128543-2-ankit.k.nautiyal@intel.com>
 X-Mailer: git-send-email 2.45.2
+In-Reply-To: <20260609025325.1128543-1-ankit.k.nautiyal@intel.com>
+References: <20260609025325.1128543-1-ankit.k.nautiyal@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -92,38 +94,70 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo];
 	FROM_NEQ_ENVFROM(0.00)[ankit.k.nautiyal@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCPT_COUNT_THREE(0.00)[4];
 	ALIAS_RESOLVED(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ADFED65BFC9
+X-Rspamd-Queue-Id: A458B65BFCC
 
-This two patch series was originally part of [1], where these were
-reviewed by Ville. The rest of that series is being reworked along
-the lines suggested in [2], so splitting these out for separate
-merge.
+LRR already updates crtc_vtotal/crtc_vblank_end seamlessly.
+Extend the same handling to crtc_vsync_start/crtc_vsync_end so
+VSYNC timing changes are programmed and accepted via the LRR path instead
+of forcing a full modeset.
 
-Patch 1 extends the LRR fast-update path to also program TRANS_VSYNC,
-so VSYNC-only timing changes go through LRR instead of a full modeset.
+v2: Add comment explaining why TRANS_VSYNC update is safe for DP LRR.
+    (Ville)
 
-Patch 2 keeps the Vtotal-to-Vsync distance constant when vtotal is
-stretched for a lower refresh rate on fixed modes.
-
-Minor review comments from v1 are addressed in the individual commits.
-
-[1] https://patchwork.freedesktop.org/series/165604/#rev3
-[2] https://lore.kernel.org/intel-xe/aiA8bL4E1SCZQVsw@intel.com/
-
-Ankit Nautiyal (2):
-  drm/i915/display: Handle VSYNC timing in LRR path
-  drm/i915/panel: Preserve Vtotal-Vsync distance while adjusting vtotal
-
+Signed-off-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
  drivers/gpu/drm/i915/display/intel_display.c | 16 ++++++++++++++--
- drivers/gpu/drm/i915/display/intel_panel.c   |  9 ++++++++-
- 2 files changed, 22 insertions(+), 3 deletions(-)
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 8e269b71f18e..90a0f3799476 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -2816,6 +2816,16 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
+ 	intel_de_write(display, TRANS_VBLANK(display, cpu_transcoder),
+ 		       VBLANK_START(crtc_vblank_start - 1) |
+ 		       VBLANK_END(crtc_vblank_end - 1));
++
++	/*
++	 * DP doesn't have vertical sync, so TRANS_VSYNC only affects
++	 * the position of the vsync interrupt (and does so even when
++	 * using the VRR timing generator!). Thus updating TRANS_VSYNC
++	 * here seems fine even if it isn't double buffered.
++	 */
++	intel_de_write(display, TRANS_VSYNC(display, cpu_transcoder),
++		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
++		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
+ 	/*
+ 	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
+ 	 * bits are not required. Since the support for these bits is going to
+@@ -5189,9 +5199,9 @@ intel_pipe_config_compare(const struct intel_crtc_state *current_config,
+ 	PIPE_CONF_CHECK_I(name.crtc_vdisplay); \
+ 	if (!fastset || !allow_vblank_delay_fastset(current_config)) \
+ 		PIPE_CONF_CHECK_I(name.crtc_vblank_start); \
+-	PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
+-	PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+ 	if (!fastset || !pipe_config->update_lrr) { \
++		PIPE_CONF_CHECK_I(name.crtc_vsync_start); \
++		PIPE_CONF_CHECK_I(name.crtc_vsync_end); \
+ 		PIPE_CONF_CHECK_I(name.crtc_vtotal); \
+ 		PIPE_CONF_CHECK_I(name.crtc_vblank_end); \
+ 	} \
+@@ -5805,6 +5815,8 @@ static bool lrr_params_changed(const struct intel_crtc_state *old_crtc_state,
+ 
+ 	return old_adjusted_mode->crtc_vblank_start != new_adjusted_mode->crtc_vblank_start ||
+ 		old_adjusted_mode->crtc_vblank_end != new_adjusted_mode->crtc_vblank_end ||
++		old_adjusted_mode->crtc_vsync_start != new_adjusted_mode->crtc_vsync_start ||
++		old_adjusted_mode->crtc_vsync_end != new_adjusted_mode->crtc_vsync_end ||
+ 		old_adjusted_mode->crtc_vtotal != new_adjusted_mode->crtc_vtotal ||
+ 		old_crtc_state->set_context_latency != new_crtc_state->set_context_latency;
+ }
 -- 
 2.45.2
 
