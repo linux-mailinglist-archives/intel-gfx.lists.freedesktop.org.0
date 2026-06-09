@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cCJPOSobKGo0+AIAu9opvQ
+	id k3deOysbKGo5+AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 903B9660C40
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9B5E3660C50
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=NKWAMzkE;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=nQkQ04Hx;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62EE010E3CE;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE0EF10E3F8;
 	Tue,  9 Jun 2026 13:54:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com
  [95.215.58.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2B410E0D7
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:37:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5A410E0D7;
+ Tue,  9 Jun 2026 06:37:49 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780986458;
+ t=1780986476;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ZrojwXEBMB/P79bsKRHj5UlAkbCjSpysFG8D760YAYc=;
- b=NKWAMzkED0iwSsplBCqatf8ppHySaCSLdpL/bsV2wcHhaniHEa4DrJKj5/YKEKDH5LIYJ0
- YA+OmzUXKnTynxMf3ONQ9Pdo6L/MshQELjc7teUVMdQb+/NeGlb9xqhofXw4J1os8gDyE8
- xGlwu4UCbTQs16gUlhpG6eFxpC8upIo=
+ bh=pVP90aZfoMU3nDWsWVHDnmxnGfHB/XcgdiFcpaREBAc=;
+ b=nQkQ04Hx7MJOzmWhwtxPMaOrKg3/OyhY75/K8lNIYoyIka8WsaFwgxUMtN9Mm0pmMaudPz
+ wyWVT2+Hedpjo6PWVVc+59wp0b7AsRtjuz6XrSyPbd3VaG/lB0q4BDKFXJ8GHwRDncPhrx
+ rt1hq3RzreC8SzsEbAT653uUHfoFEaI=
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Muchun Song <muchun.song@linux.dev>,
@@ -82,9 +82,9 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Kaitao Cheng <kaitao.cheng@linux.dev>,
  Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 06/14] drm/ttm: Open-code reservation list walk
-Date: Tue,  9 Jun 2026 14:25:18 +0800
-Message-ID: <20260609062526.94907-4-kaitao.cheng@linux.dev>
+Subject: [PATCH v2 07/14] spi: fsi: Open-code message transfer walk
+Date: Tue,  9 Jun 2026 14:25:19 +0800
+Message-ID: <20260609062526.94907-5-kaitao.cheng@linux.dev>
 In-Reply-To: <20260609062526.94907-1-kaitao.cheng@linux.dev>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
  <20260609062526.94907-1-kaitao.cheng@linux.dev>
@@ -113,69 +113,64 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,intel.com,redhat.com,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,infradead.org,kernel.org,bootlin.com,linux.dev,kylinos.cn];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:muchun.song@linux.dev,m:philipp.reisner@linbit.com,m:lars.ellenberg@linbit.com,m:christoph.boehmwalder@linbit.com,m:axboe@kernel.dk,m:o-takashi@sakamocchi.jp,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:christian.koenig@amd.com,m:ray.huang@amd.com,m:eajames@linux.ibm.com,m:broonie@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:ldewangan@nvidia.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:skomatineni@nvidia.com,m:dave@stgolabs.net,m:paulmck@kernel.org,m:josh@joshtriplett.org,m:peterz@infradead.org,m:mingo@redhat.com,m:will@kernel.org,m:boqun@kernel.org,m:lgirdwood@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:Laurent.pinchart@ideaso
- nboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:longman@redhat.com,m:drbd-dev@lists.linbit.com,m:linux-block@vger.kernel.org,m:linux1394-devel@lists.sourceforge.net,m:dri-devel@lists.freedesktop.org,m:linux-spi@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-tegra@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:akpm@linux-foundation.org,m:rdunlap@infradead.org,m:brauner@kernel.org,m:dhowells@redhat.com,m:luca.ceresoli@bootlin.com,m:kaitao.cheng@linux.dev,m:chengkaitao@kylinos.cn,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	ARC_NA(0.00)[];
 	FREEMAIL_TO(0.00)[linux.intel.com,linux.dev,linbit.com,kernel.dk,sakamocchi.jp,intel.com,linaro.org,kernel.org,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,linux.ibm.com,foss.st.com,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,perex.cz,suse.com];
-	FORGED_SENDER(0.00)[kaitao.cheng@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,intel.com,redhat.com,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,infradead.org,kernel.org,bootlin.com,linux.dev,kylinos.cn];
+	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	RCVD_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[kaitao.cheng@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[linux.dev:+];
 	RCPT_COUNT_GT_50(0.00)[63];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[kylinos.cn:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
+	ALIAS_RESOLVED(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 903B9660C40
+X-Rspamd-Queue-Id: 9B5E3660C50
 
 From: Kaitao Cheng <chengkaitao@kylinos.cn>
 
 A later change will make list_for_each_entry() cache the next element
-before entering the loop body. ttm_eu_reserve_buffers() may move the
-current validation buffer to the duplicates list and then rewinds the
-cursor before continuing.
+before entering the loop body. fsi_spi_transfer_one_message() can combine
+the current transfer with the following transfer and then advance the
+cursor to that consumed entry.
 
-Keep the reservation walk open-coded so the loop step uses the cursor
-selected by that duplicate handling. This preserves the existing
-traversal semantics and prepares the code for the list iterator update.
+Keep the transfer walk open-coded so the loop step observes that cursor
+update and skips the consumed transfer. This preserves the existing
+message sequencing semantics and prepares the code for the list iterator
+update.
 
 Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
 ---
- drivers/gpu/drm/ttm/ttm_execbuf_util.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/spi/spi-fsi.c | 5 ++++-
+ 1 file changed, 4 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_execbuf_util.c b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
-index bc7a83a9fe44..8072f07d5557 100644
---- a/drivers/gpu/drm/ttm/ttm_execbuf_util.c
-+++ b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
-@@ -86,7 +86,9 @@ int ttm_eu_reserve_buffers(struct ww_acquire_ctx *ticket,
- 	if (ticket)
- 		ww_acquire_init(ticket, &reservation_ww_class);
+diff --git a/drivers/spi/spi-fsi.c b/drivers/spi/spi-fsi.c
+index f6a75f0184c4..44999f00f5f6 100644
+--- a/drivers/spi/spi-fsi.c
++++ b/drivers/spi/spi-fsi.c
+@@ -434,7 +434,10 @@ static int fsi_spi_transfer_one_message(struct spi_controller *ctlr,
+ 	if (rc)
+ 		goto error;
  
--	list_for_each_entry(entry, list, head) {
-+	for (entry = list_first_entry(list, typeof(*entry), head);
-+	     !list_entry_is_head(entry, list, head);
-+	     entry = list_next_entry(entry, head)) {
- 		struct ttm_buffer_object *bo = entry->bo;
- 		unsigned int num_fences;
+-	list_for_each_entry(transfer, &mesg->transfers, transfer_list) {
++	for (transfer = list_first_entry(&mesg->transfers,
++					 typeof(*transfer), transfer_list);
++	     !list_entry_is_head(transfer, &mesg->transfers, transfer_list);
++	     transfer = list_next_entry(transfer, transfer_list)) {
+ 		struct fsi_spi_sequence seq;
+ 		struct spi_transfer *next = NULL;
  
 -- 
 2.43.0
