@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id M+sPGSkbKGot+AIAu9opvQ
+	id sQcqHisbKGo3+AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0477C660C2D
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 23FBF660C48
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=kQ+kUgOr;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=Z8zV2BjC;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EAD9210E34C;
-	Tue,  9 Jun 2026 13:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 78FF410E3E7;
+	Tue,  9 Jun 2026 13:54:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 323 seconds by postgrey-1.36 at gabe;
- Tue, 09 Jun 2026 06:20:48 UTC
-Received: from out-174.mta0.migadu.com (out-174.mta0.migadu.com
- [91.218.175.174])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC2F010E070
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:20:48 +0000 (UTC)
+Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com
+ [91.218.175.186])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2B3D510E0BC
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:22:48 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780985712;
+ t=1780985728;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding;
- bh=i2jpIDCVnNVhXSYDVvdDiQ1s+6wApppzolFVa3ePcBA=;
- b=kQ+kUgOrV6W6Jc16Kii3uxt27H6tnGH4ZT13H/tGloTnC2pxAr0+1e0lN87mGDlSsCwwUT
- byRLJdWy+OF38KcDXWI7VaMSELJjoswljJztiskoxvxrLRlYswbpJIeHHZA8qm2XiuHT4d
- nSyAaMFF4R+0aR7kWu7ve4uMSn0m2lc=
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=OIHUqXQmUUYiluUxjJGbqlbmrFVz6UQUb/30/LyGMbo=;
+ b=Z8zV2BjCyIIWmJUOuq+lpPC144tcwa3dYQzA0MbEaPU04Q8HQiL3ytDgkjwXu7qSG5Vt1G
+ 8EHmclu6rvc8oemzxv47fNi8tHF1o9R4NOTCl0imYYdSuEjWYjWaCaZ0rzlyzknIGPhr36
+ Z9cyhUeg/Vahz+UVQh1W/YpfPZkITdc=
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Muchun Song <muchun.song@linux.dev>,
@@ -81,10 +80,13 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Christian Brauner <brauner@kernel.org>,
  David Howells <dhowells@redhat.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Kaitao Cheng <kaitao.cheng@linux.dev>, Kaito Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor state
-Date: Tue,  9 Jun 2026 14:13:33 +0800
-Message-ID: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+ Kaitao Cheng <kaitao.cheng@linux.dev>,
+ Kaitao Cheng <chengkaitao@kylinos.cn>
+Subject: [PATCH v2 01/14] drbd: Open-code transfer log list walk
+Date: Tue,  9 Jun 2026 14:13:34 +0800
+Message-ID: <20260609061347.93688-2-kaitao.cheng@linux.dev>
+In-Reply-To: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -141,66 +143,40 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0477C660C2D
+X-Rspamd-Queue-Id: 23FBF660C48
 
-From: Kaito Cheng <chengkaitao@kylinos.cn>
+From: Kaitao Cheng <chengkaitao@kylinos.cn>
 
-This series prepares for, and then updates, the list_for_each_entry()
-family so the common entry iterators cache their next or previous cursor
-before the loop body runs.
+A later change will make list_for_each_entry() cache the next element
+before entering the loop body. That is the desired behaviour for the
+common case, but this transfer log walk temporarily drops
+resource->req_lock and revalidates the cursor before continuing.
 
-The first 13 patches open-code loops that intentionally depend on the
-old "derive the next entry from the current cursor at the end of the
-iteration" behaviour.  These loops append work to the list being walked,
-restart traversal after dropping a lock, skip an entry consumed by the
-current iteration, or otherwise adjust the cursor in the loop body.
+Keep the loop open-coded so the next request is derived after the body
+has completed and after the cursor has been adjusted. This preserves the
+existing traversal semantics and prepares the code for the list iterator
+update.
 
-The final patch changes include/linux/list.h to keep a private cursor in
-the common entry iterators while preserving the public macro interface.
-The safe variants remain available when callers need the temporary
-cursor explicitly or have stronger mutation requirements.
+Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
+---
+ drivers/block/drbd/drbd_debugfs.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-Changes in v2 (Muchun Song, Andy Shevchenko):
- - Drop the list_for_each_entry_mutable*() helpers from v1 and make the
-   cursor change directly in the existing list_for_each_entry*() helpers.
- - Open-code special list walks that rely on updating the loop cursor in
-   the body, preserving their existing traversal semantics.
-
-Link to v1:
-https://lore.kernel.org/all/20260529082149.76764-1-kaitao.cheng@linux.dev/
-
-Kaitao Cheng (14):
-  drbd: Open-code transfer log list walk
-  firewire: core: Open-code topology list walk
-  drm/bridge: Open-code bridge chain list walks
-  drm/i915/gt: Open-code active timeline walk
-  drm/i915: Open-code DFS dependency list walk
-  drm/ttm: Open-code reservation list walk
-  spi: fsi: Open-code message transfer walk
-  spi: stm32-ospi: Open-code message transfer walk
-  spi: stm32-qspi: Open-code message transfer walk
-  spi: tegra210-quad: Open-code message transfer walk
-  locking/locktorture: Open-code ww mutex list walk
-  locking/ww_mutex: Open-code stress reorder list walk
-  ASoC: dapm: Open-code widget invalidation walk
-  list: Cache cursors in entry iterators
-
- drivers/block/drbd/drbd_debugfs.c      |  4 ++-
- drivers/firewire/core-topology.c       |  4 ++-
- drivers/gpu/drm/drm_bridge.c           |  7 ++--
- drivers/gpu/drm/i915/gt/intel_reset.c  |  4 ++-
- drivers/gpu/drm/i915/i915_scheduler.c  |  4 ++-
- drivers/gpu/drm/ttm/ttm_execbuf_util.c |  4 ++-
- drivers/spi/spi-fsi.c                  |  5 ++-
- drivers/spi/spi-stm32-ospi.c           |  4 ++-
- drivers/spi/spi-stm32-qspi.c           |  5 ++-
- drivers/spi/spi-tegra210-quad.c        |  4 ++-
- include/linux/list.h                   | 46 ++++++++++++++++++++------
- kernel/locking/locktorture.c           |  4 ++-
- kernel/locking/test-ww_mutex.c         |  4 ++-
- sound/soc/soc-dapm.c                   |  4 ++-
- 14 files changed, 78 insertions(+), 25 deletions(-)
-
+diff --git a/drivers/block/drbd/drbd_debugfs.c b/drivers/block/drbd/drbd_debugfs.c
+index 12460b584bcb..e90cead90e9d 100644
+--- a/drivers/block/drbd/drbd_debugfs.c
++++ b/drivers/block/drbd/drbd_debugfs.c
+@@ -308,7 +308,9 @@ static void seq_print_resource_transfer_log_summary(struct seq_file *m,
+ 
+ 	seq_puts(m, "n\tdevice\tvnr\t" RQ_HDR);
+ 	spin_lock_irq(&resource->req_lock);
+-	list_for_each_entry(req, &connection->transfer_log, tl_requests) {
++	for (req = list_first_entry(&connection->transfer_log, typeof(*req), tl_requests);
++	     !list_entry_is_head(req, &connection->transfer_log, tl_requests);
++	     req = list_next_entry(req, tl_requests)) {
+ 		unsigned int tmp = 0;
+ 		unsigned int s;
+ 		++count;
 -- 
 2.43.0
 
