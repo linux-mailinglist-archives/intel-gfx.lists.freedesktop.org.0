@@ -2,38 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id WZOFKASPKGoSGQMAu9opvQ
+	id Hj0lOPCdKGppGwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 00:09:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 01:12:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2841666474C
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 00:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2D18B664BDC
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 01:12:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b="a/t3teIW";
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 140BB10E3A3;
-	Tue,  9 Jun 2026 22:09:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E88FD10E640;
+	Tue,  9 Jun 2026 23:12:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 950D410E3A3;
- Tue,  9 Jun 2026 22:09:04 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============7821428637136350970=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3277010E3CA;
+ Tue,  9 Jun 2026 23:12:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781046763; x=1812582763;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=kj/M6s77bsHCr2vvNpu/TpQEhGBDFqaBATLZsVp7c18=;
+ b=a/t3teIWwFC+FTSmPVngEt5jAl0aWJpsfjugp+e/dy/IT2pEnDY/RvV5
+ zYjVXdaXP5gPOhZpGngWwG1FP+uvSx0aO7pXJNrX0UKRDt8RfCyZ2tUJX
+ wuZAwAvVbUR0T+iNYDzoHRbCxrYeRTJ5E0PxGFQW+xxuqWw26KQnH/oID
+ r6jDo8ht9Jygwf+9Dk0Rjmz/gXQvi8q6Zb2+nAaMXFJhXZGWhiiH4dG3B
+ /FKvRk1DGI2x2DPefLUdbFwY5Qrx3PsqbRJKbKqvyjZSWxpLCABBkMKAb
+ 4/gMuyKb+EewsnB5AF02QkOpMBiQaYM6FMdVmiRoPcfvhiEyo2ANi5G22 g==;
+X-CSE-ConnectionGUID: dFoLM5F5Qoe+62EwiX4R1g==
+X-CSE-MsgGUID: AjqBo6vrTbaYxcIeQukyhg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="104492294"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="104492294"
+Received: from orviesa002.jf.intel.com ([10.64.159.142])
+ by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2026 16:12:42 -0700
+X-CSE-ConnectionGUID: VJhbUGJ4SP2QMKe4b3LCgw==
+X-CSE-MsgGUID: 0GhWusudStGT0eXyurRlJg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="276187963"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa002.jf.intel.com with ESMTP; 09 Jun 2026 16:12:42 -0700
+From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
+ Nemesa Garg <nemesa.garg@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
+Subject: [PATCH v1 0/9] drm/i915/scaler: allocation cleanup
+Date: Wed, 10 Jun 2026 01:12:08 +0200
+Message-ID: <20260609231217.208357-1-michal.grzelak@intel.com>
+X-Mailer: git-send-email 2.45.2
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dg2=3A_Add_per-c?=
- =?utf-8?q?ontext_control_for_Wa=5F22013059131_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jia Yao" <jia.yao@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Jun 2026 22:09:04 -0000
-Message-ID: <178104294460.62501.16593197831572558638@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260609183002.1051500-1-jia.yao@intel.com>
-In-Reply-To: <20260609183002.1051500-1-jia.yao@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,139 +73,63 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,01.org:url,6beec6c84f66:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2841666474C
+X-Rspamd-Queue-Id: 2D18B664BDC
 
---===============7821428637136350970==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Apparently during review of commit 17d70a0760f2 ("drm/i915/casf: Extract
+scaler_has_casf()") I missed that argument plane_state isn't used
+anymore. While at it couple other fixes included.
 
-== Series Details ==
+This series will almost surely need a better splitting than currently
+is, but I hope now it is slightly easier to review.
 
-Series: drm/i915/dg2: Add per-context control for Wa_22013059131 (rev4)
-URL   : https://patchwork.freedesktop.org/series/164198/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18653 -> Patchwork_164198v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v4/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+BR,
+Michał
 
 
-Changes
--------
+Michał Grzelak (9):
+  drm/i915/scaler: remove unused plane_state argument
+  drm/i915/scaler: s/i/scaler_id/
+  drm/i915/scaler: de-Morgan-ize !scaler_has_casf()
+  drm/i915/scaler: move independent CASF check
+  drm/i915/scaler: check CASF before allocation's loop
+  drm/i915/scaler: inline CASF scaler allocation
+  drm/i915/scaler: linearize scaler allocation
+  drm/i915/scaler: move CASF alloc check into
+    intel_atomic_setup_scaler()
+  drm/i915/scaler: move CASF alloc check into setup_crtc_scaler()
 
-  No changes found
+ drivers/gpu/drm/i915/display/skl_scaler.c | 43 ++++++++++++-----------
+ 1 file changed, 22 insertions(+), 21 deletions(-)
 
+-- 
+2.45.2
 
-Build changes
--------------
-
-  * Linux: CI_DRM_18653 -> Patchwork_164198v4
-
-  CI-20190529: 20190529
-  CI_DRM_18653: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8956: 8956
-  Patchwork_164198v4: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v4/index.html
-
---===============7821428637136350970==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Add per-context control for Wa_22013059131 (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164198/">https://patchwork.freedesktop.org/series/164198/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18653 -&gt; Patchwork_164198v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v4/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18653 -&gt; Patchwork_164198v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18653: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8956: 8956<br />
-  Patchwork_164198v4: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============7821428637136350970==--
