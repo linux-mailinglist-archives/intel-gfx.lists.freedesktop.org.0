@@ -2,24 +2,24 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GTvYEWgDKGob7QIAu9opvQ
+	id 2TiVJ2gDKGoe7QIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:13:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 16C7165FE8B
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E4F365FE8F
 	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:13:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=ASveM78L;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=FmEL7FWS;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 50AD510E352;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 987C310E35B;
 	Tue,  9 Jun 2026 12:13:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 62B6E10E30B;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 064D610E2F2;
  Tue,  9 Jun 2026 12:13:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
@@ -28,16 +28,16 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com;
  Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
  :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=qmlJi/qdHLqPjbUxZpc3UcGGMVP8OZZ5OmPbfVTXTng=; b=ASveM78LHq23CtvM8Mwf1xBHDD
- 71lcZ48I/sXfAOmFUsbjivGoAJ50OuGxqioe9GBwb7VI/LemcLs2UF9RwGwIt34XPj/4oD4quhyhM
- uHc+tVtcUlkgnKNhTQn9omV1tJx5YTL1kGaYYq24mZUabIytiJxticEbPeWWnvgfqy6U0W9OaU/Fu
- noOsJ2EDOTCOL1+Vh6zqQJikD4cCLhCWvYV5puWsZvxkZOr+bOUOnlbho0pHqonKxeVFFpzanyBjn
- ZUqPHYVXDGoWLjhJYGWOTLIfpIeBw9LrlF4v1BorJJIpya5IILtvuhdbIe9XoRMhnFDGs+py6ZKAb
- aNk4GbjQ==;
+ bh=rOMwe3iepfg/Vhh9MbZOiWLka6jhyTg12/cdz/MWt2g=; b=FmEL7FWSpPfDdBwgeUxiA2ZNlp
+ lgaMsEeRP555Uo/e/DgI4dToFdjzWHW54Y+G5UFrIpFJa1W9G2zcJ3Q52O4ItMDI47zFOTEZHfw2o
+ GShmdLiUxtBFU2IxuNOwa1n/lycJMKAkxgZvvKU3Q4sbAI9A/XASw5rjqr6n/NCIhfFKBuLouzlv6
+ uqlXdM2try4s+nCY92Z2fgG5WRzWpSbDjLQDgoc1OZFcQrqxajXSnnTsfRhJjLGcutOMggWlaDoWG
+ 6aiz6bEB76/YrQQQyyEfHjFqszNyLCMkm0KSd1lg/4H1+op9y7nYyhF3pbj+KdInKumkmFQmmsD07
+ O0kBd6Jg==;
 Received: from [79.117.146.159] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWvK6-00EvWP-I3; Tue, 09 Jun 2026 14:12:50 +0200
+ id 1wWvK8-00EvWP-Cj; Tue, 09 Jun 2026 14:12:52 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
  aurabindo.pillai@amd.com, christian.koenig@amd.com, contact@emersion.fr,
@@ -57,9 +57,9 @@ Cc: Uma Shankar <uma.shankar@intel.com>,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH v3 5/7] drm/amd/display: make shaper bypass mode cleaner
-Date: Tue,  9 Jun 2026 13:51:39 +0200
-Message-ID: <20260609121230.1358786-6-mwen@igalia.com>
+Subject: [PATCH v3 6/7] drm/amd/display: fix bnld colorop bypass mode
+Date: Tue,  9 Jun 2026 13:51:40 +0200
+Message-ID: <20260609121230.1358786-7-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260609121230.1358786-1-mwen@igalia.com>
 References: <20260609121230.1358786-1-mwen@igalia.com>
@@ -107,56 +107,34 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 16C7165FE8B
+X-Rspamd-Queue-Id: 6E4F365FE8F
 
-Start shaper tranfer function setup in bypass mode, i.e. tf->type ==
-TF_TYPE_BYPASS and let the helper checks set it to a different mode
-according to userspace request.
+If userspace set blnd colorop to bypass, AMD driver just skips blnd
+transfer function configuration. Currently, this is not an issue since
+dc plane state is a reset/default state, but it's not fully correct and
+doesn't mirror shaper tf helper. Make bypass mode setup clear by
+initially set tf->type as BYPASS and let the helper change its type
+according to userspace requests.
 
+Fixes: 52da8325996b ("drm/amd/display: Add support for sRGB EOTF in BLND block")
 Signed-off-by: Melissa Wen <mwen@igalia.com>
 ---
- drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c | 8 ++------
- 1 file changed, 2 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-index 84ff136183ee..2f51009b2978 100644
+index 2f51009b2978..2dc3951c8e39 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm_color.c
-@@ -1611,10 +1611,11 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
- 	struct dc_transfer_func *tf = &dc_plane_state->in_shaper_func;
- 	const struct drm_color_lut32 *shaper_lut;
- 	struct drm_device *dev = colorop->dev;
--	bool enabled = false;
- 	u32 shaper_size;
- 	int i = 0, ret = 0;
+@@ -1773,6 +1773,8 @@ __set_dm_plane_colorop_blend(struct drm_plane_state *plane_state,
+ 	uint32_t blend_size = 0;
+ 	int i = 0;
  
 +	tf->type = TF_TYPE_BYPASS;
 +
- 	/* 1D Curve - SHAPER TF */
+ 	/* 1D Curve - BLND TF */
  	old_colorop = colorop;
  	for_each_new_colorop_in_state(state, colorop, new_colorop_state, i) {
-@@ -1633,7 +1634,6 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
- 		ret = __set_output_tf(tf, 0, 0, false);
- 		if (ret)
- 			return ret;
--		enabled = true;
- 	}
- 
- 	/* 1D LUT - SHAPER LUT */
-@@ -1665,13 +1665,9 @@ __set_dm_plane_colorop_shaper(struct drm_plane_state *plane_state,
- 			ret = __set_output_tf_32(tf, shaper_lut, shaper_size, false);
- 			if (ret)
- 				return ret;
--			enabled = true;
- 		}
- 	}
- 
--	if (!enabled)
--		tf->type = TF_TYPE_BYPASS;
--
- 	return 0;
- }
- 
 -- 
 2.53.0
 
