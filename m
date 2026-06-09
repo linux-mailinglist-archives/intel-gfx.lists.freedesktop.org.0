@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id k3deOysbKGo5+AIAu9opvQ
+	id LjBaACgbKGon+AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9B5E3660C50
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EC247660C1B
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=nQkQ04Hx;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=isl8KKJu;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EE0EF10E3F8;
-	Tue,  9 Jun 2026 13:54:44 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 51D3110E356;
+	Tue,  9 Jun 2026 13:54:42 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com
- [95.215.58.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3E5A410E0D7;
- Tue,  9 Jun 2026 06:37:49 +0000 (UTC)
+Received: from out-170.mta1.migadu.com (out-170.mta1.migadu.com
+ [95.215.58.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20C1410E0D9;
+ Tue,  9 Jun 2026 06:37:50 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780986476;
+ t=1780986497;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=pVP90aZfoMU3nDWsWVHDnmxnGfHB/XcgdiFcpaREBAc=;
- b=nQkQ04Hx7MJOzmWhwtxPMaOrKg3/OyhY75/K8lNIYoyIka8WsaFwgxUMtN9Mm0pmMaudPz
- wyWVT2+Hedpjo6PWVVc+59wp0b7AsRtjuz6XrSyPbd3VaG/lB0q4BDKFXJ8GHwRDncPhrx
- rt1hq3RzreC8SzsEbAT653uUHfoFEaI=
+ bh=MR1hTzP95VNUKx7/pKpDVtm2601TjwJtZ4ASjUfdk1Y=;
+ b=isl8KKJuAUNED6y7PqRYss/yrCZzRxABbNH7LLFjXBudV0mEVhbPjitoJS3k0/o1vcGfft
+ s62so6ieDuNj/XVJ1vkk1Q7CcR4Ey2KkfWmakHlovNnr2LJm+7oGH2kB4IAdYCBbQxOFWn
+ FuuaYym3pHtVPMmNAZdGoQnflBzoQlE=
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Muchun Song <muchun.song@linux.dev>,
@@ -82,9 +82,9 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Kaitao Cheng <kaitao.cheng@linux.dev>,
  Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 07/14] spi: fsi: Open-code message transfer walk
-Date: Tue,  9 Jun 2026 14:25:19 +0800
-Message-ID: <20260609062526.94907-5-kaitao.cheng@linux.dev>
+Subject: [PATCH v2 08/14] spi: stm32-ospi: Open-code message transfer walk
+Date: Tue,  9 Jun 2026 14:25:20 +0800
+Message-ID: <20260609062526.94907-6-kaitao.cheng@linux.dev>
 In-Reply-To: <20260609062526.94907-1-kaitao.cheng@linux.dev>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
  <20260609062526.94907-1-kaitao.cheng@linux.dev>
@@ -137,14 +137,14 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9B5E3660C50
+X-Rspamd-Queue-Id: EC247660C1B
 
 From: Kaitao Cheng <chengkaitao@kylinos.cn>
 
 A later change will make list_for_each_entry() cache the next element
-before entering the loop body. fsi_spi_transfer_one_message() can combine
-the current transfer with the following transfer and then advance the
-cursor to that consumed entry.
+before entering the loop body. stm32_ospi_transfer_one_message() can
+consume the following transfer as part of the current operation and then
+advance the loop cursor to that entry.
 
 Keep the transfer walk open-coded so the loop step observes that cursor
 update and skips the consumed transfer. This preserves the existing
@@ -153,25 +153,24 @@ update.
 
 Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
 ---
- drivers/spi/spi-fsi.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/spi/spi-stm32-ospi.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/spi/spi-fsi.c b/drivers/spi/spi-fsi.c
-index f6a75f0184c4..44999f00f5f6 100644
---- a/drivers/spi/spi-fsi.c
-+++ b/drivers/spi/spi-fsi.c
-@@ -434,7 +434,10 @@ static int fsi_spi_transfer_one_message(struct spi_controller *ctlr,
- 	if (rc)
- 		goto error;
+diff --git a/drivers/spi/spi-stm32-ospi.c b/drivers/spi/spi-stm32-ospi.c
+index 4461c6e24b9e..4dc2b56b4c20 100644
+--- a/drivers/spi/spi-stm32-ospi.c
++++ b/drivers/spi/spi-stm32-ospi.c
+@@ -675,7 +675,9 @@ static int stm32_ospi_transfer_one_message(struct spi_controller *ctrl,
  
--	list_for_each_entry(transfer, &mesg->transfers, transfer_list) {
-+	for (transfer = list_first_entry(&mesg->transfers,
-+					 typeof(*transfer), transfer_list);
-+	     !list_entry_is_head(transfer, &mesg->transfers, transfer_list);
+ 	gpiod_set_value_cansleep(cs_gpiod, true);
+ 
+-	list_for_each_entry(transfer, &msg->transfers, transfer_list) {
++	for (transfer = list_first_entry(&msg->transfers, typeof(*transfer), transfer_list);
++	     !list_entry_is_head(transfer, &msg->transfers, transfer_list);
 +	     transfer = list_next_entry(transfer, transfer_list)) {
- 		struct fsi_spi_sequence seq;
- 		struct spi_transfer *next = NULL;
+ 		u8 dummy_bytes = 0;
  
+ 		memset(&op, 0, sizeof(op));
 -- 
 2.43.0
 
