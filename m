@@ -2,56 +2,73 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id GocdFCobKGox+AIAu9opvQ
+	id IPFsKAu3J2oY1AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 08:47:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE015660C38
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04E3365CEC4
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 08:47:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=Uf7zi2A8;
+	dkim=pass header.d=intel.com header.s=Intel header.b=kpQ3nSGT;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=linux.dev
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id EB16510E3BD;
-	Tue,  9 Jun 2026 13:54:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 83E2610E109;
+	Tue,  9 Jun 2026 06:47:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com
- [91.218.175.173])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 612F810E0E2
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:43:02 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780987378;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=aY/Q2Y4YJZOouDOZHMnVH0A77nfCK6zvU7h1qy64BMY=;
- b=Uf7zi2A8S1Vt216no9vzZ3Kbmiu5WNcJlAjtZ2+I6gLXdoyBsFLfGuy4jDTTeA3xO1+pln
- Ds87oWHmnpQTX0CVJXI1T2pOOcEbz3YgF0qLAuuBFcwrnzZevA48QTk2qsWUyaePK41llH
- LokoxYxt8pU9/doCU/rEpYO3EWSrNiI=
-From: Kaitao Cheng <kaitao.cheng@linux.dev>
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
- Muchun Song <muchun.song@linux.dev>,
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B2C7B10E0E4;
+ Tue,  9 Jun 2026 06:47:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1780987656; x=1812523656;
+ h=date:from:to:cc:subject:message-id:references:
+ mime-version:in-reply-to;
+ bh=JtgXQ+CUhI8fqj7NEQN4vNa7+C8S/fPck+oJyjJdK2k=;
+ b=kpQ3nSGTVttOwWGNobS+IC4i0fCpDM0hevIMLeDnN+FnHSp8Tg+o2+7+
+ iUsl2bsFYQgzGqDCJmiYP2JI+s8uQ3ORT7OiJiPFI8pf5fCypASbgoLQt
+ KSoaWRnfjHwlUWmk1m9OXF7TEkU/q9frDYMyAbqTWmnRlcFyIbsGHNfQL
+ 6woofQDB5pHRrQFuvzDaCgylnkMZi2AndsQgHZRc9R3vYHmxV7V75O8ZX
+ m5OqH+3NQeh7He0w+LN/EFlXvmxNneSNq2m6Xyf5+qcDa4TOICmBMz6vn
+ ALcebFmFidcODUCjYvqwgdpnNfQXGV3PZjSBYIAk6UICLScxlOMgPNWLD g==;
+X-CSE-ConnectionGUID: sfDoTrKRTj2HKSr28I1aNA==
+X-CSE-MsgGUID: /vUoybC1TyCbpKyFJPaZRQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="81783739"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="81783739"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 23:47:34 -0700
+X-CSE-ConnectionGUID: +shHRdOKTfGiz+VFC8i6ig==
+X-CSE-MsgGUID: c7oiHZEDR2ikmK04/uJN0A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="250060711"
+Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.39])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 08 Jun 2026 23:47:22 -0700
+Date: Tue, 9 Jun 2026 09:47:19 +0300
+From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To: Kaitao Cheng <kaitao.cheng@linux.dev>
+Cc: Muchun Song <muchun.song@linux.dev>,
  Philipp Reisner <philipp.reisner@linbit.com>,
  Lars Ellenberg <lars.ellenberg@linbit.com>,
- =?UTF-8?q?Christoph=20B=C3=B6hmwalder?= <christoph.boehmwalder@linbit.com>,
+ Christoph =?iso-8859-1?Q?B=F6hmwalder?= <christoph.boehmwalder@linbit.com>,
  Jens Axboe <axboe@kernel.dk>, Takashi Sakamoto <o-takashi@sakamocchi.jp>,
  Andrzej Hajda <andrzej.hajda@intel.com>,
  Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
  Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>,
  Tvrtko Ursulin <tursulin@ursulin.net>,
- Christian Koenig <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>,
- Eddie James <eajames@linux.ibm.com>, Mark Brown <broonie@kernel.org>,
+ Christian Koenig <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Eddie James <eajames@linux.ibm.com>,
+ Mark Brown <broonie@kernel.org>,
  Maxime Coquelin <mcoquelin.stm32@gmail.com>,
  Alexandre Torgue <alexandre.torgue@foss.st.com>,
  Laxman Dewangan <ldewangan@nvidia.com>,
@@ -61,18 +78,18 @@ To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Davidlohr Bueso <dave@stgolabs.net>,
  "Paul E . McKenney" <paulmck@kernel.org>,
  Josh Triplett <josh@joshtriplett.org>,
- Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
- Will Deacon <will@kernel.org>, Boqun Feng <boqun@kernel.org>,
- Liam Girdwood <lgirdwood@gmail.com>, Jaroslav Kysela <perex@perex.cz>,
- Takashi Iwai <tiwai@suse.com>
-Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+ Boqun Feng <boqun@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
  Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>, Waiman Long <longman@redhat.com>,
- drbd-dev@lists.linbit.com, linux-block@vger.kernel.org,
- linux1394-devel@lists.sourceforge.net, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, linux-spi@vger.kernel.org,
- linux-stm32@st-md-mailman.stormreply.com,
+ Matthew Brost <matthew.brost@intel.com>,
+ Waiman Long <longman@redhat.com>, drbd-dev@lists.linbit.com,
+ linux-block@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ linux-spi@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
  linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
  linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
  Andrew Morton <akpm@linux-foundation.org>,
@@ -80,18 +97,17 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Christian Brauner <brauner@kernel.org>,
  David Howells <dhowells@redhat.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Kaitao Cheng <kaitao.cheng@linux.dev>,
- Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 14/14] list: Cache cursors in entry iterators
-Date: Tue,  9 Jun 2026 14:41:22 +0800
-Message-ID: <20260609064122.95825-2-kaitao.cheng@linux.dev>
-In-Reply-To: <20260609064122.95825-1-kaitao.cheng@linux.dev>
+ Kaito Cheng <chengkaitao@kylinos.cn>
+Subject: Re: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor
+ state
+Message-ID: <aie299WveL1utNya@ashevche-desk.local>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
- <20260609064122.95825-1-kaitao.cheng@linux.dev>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Tue, 09 Jun 2026 13:54:41 +0000
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
+ krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -107,186 +123,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.69 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
-	MAILLIST(-0.20)[mailman];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[ideasonboard.com,kwiboo.se,gmail.com,intel.com,redhat.com,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,infradead.org,kernel.org,bootlin.com,linux.dev,kylinos.cn];
-	FORGED_RECIPIENTS(0.00)[m:andriy.shevchenko@linux.intel.com,m:muchun.song@linux.dev,m:philipp.reisner@linbit.com,m:lars.ellenberg@linbit.com,m:christoph.boehmwalder@linbit.com,m:axboe@kernel.dk,m:o-takashi@sakamocchi.jp,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:christian.koenig@amd.com,m:ray.huang@amd.com,m:eajames@linux.ibm.com,m:broonie@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:ldewangan@nvidia.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:skomatineni@nvidia.com,m:dave@stgolabs.net,m:paulmck@kernel.org,m:josh@joshtriplett.org,m:peterz@infradead.org,m:mingo@redhat.com,m:will@kernel.org,m:boqun@kernel.org,m:lgirdwood@gmail.com,m:perex@perex.cz,m:tiwai@suse.com,m:Laurent.pinchart@ideaso
- nboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:longman@redhat.com,m:drbd-dev@lists.linbit.com,m:linux-block@vger.kernel.org,m:linux1394-devel@lists.sourceforge.net,m:dri-devel@lists.freedesktop.org,m:linux-spi@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-tegra@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:akpm@linux-foundation.org,m:rdunlap@infradead.org,m:brauner@kernel.org,m:dhowells@redhat.com,m:luca.ceresoli@bootlin.com,m:kaitao.cheng@linux.dev,m:chengkaitao@kylinos.cn,m:mcoquelinstm32@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[linux.dev,linbit.com,kernel.dk,sakamocchi.jp,intel.com,linaro.org,kernel.org,linux.intel.com,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,linux.ibm.com,foss.st.com,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,perex.cz,suse.com,ideasonboard.com,kwiboo.se,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,bootlin.com,kylinos.cn];
+	RCVD_TLS_LAST(0.00)[];
 	ARC_NA(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,linux.dev,linbit.com,kernel.dk,sakamocchi.jp,intel.com,linaro.org,kernel.org,suse.de,gmail.com,ffwll.ch,ursulin.net,amd.com,linux.ibm.com,foss.st.com,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,perex.cz,suse.com];
-	FORGED_SENDER(0.00)[kaitao.cheng@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[kaitao.cheng@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	RCPT_COUNT_GT_50(0.00)[63];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	MISSING_XM_UA(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,ashevche-desk.local:mid,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE015660C38
+X-Rspamd-Queue-Id: 04E3365CEC4
 
-From: Kaitao Cheng <chengkaitao@kylinos.cn>
+On Tue, Jun 09, 2026 at 02:13:33PM +0800, Kaitao Cheng wrote:
+> 
+> This series prepares for, and then updates, the list_for_each_entry()
+> family so the common entry iterators cache their next or previous cursor
+> before the loop body runs.
+> 
+> The first 13 patches open-code loops that intentionally depend on the
+> old "derive the next entry from the current cursor at the end of the
+> iteration" behaviour.  These loops append work to the list being walked,
+> restart traversal after dropping a lock, skip an entry consumed by the
+> current iteration, or otherwise adjust the cursor in the loop body.
+> 
+> The final patch changes include/linux/list.h to keep a private cursor in
+> the common entry iterators while preserving the public macro interface.
+> The safe variants remain available when callers need the temporary
+> cursor explicitly or have stronger mutation requirements.
 
-The non-safe list_for_each_entry() family advances by deriving the next
-element from the current cursor in the loop step. If the loop body
-unlinks the current entry, the step can no longer rely on the current
-entry's list pointers.
+Something is really wrong with the patch series email chaining.
+Patches 3, 10, and 13 start the subthreads. Please, check your
+tools and fix them accordingly.
 
-Callers can use the _safe variants today, but those interfaces require a
-temporary cursor to be declared outside the macro. That is necessary when
-the caller actually needs the temporary cursor, but it looks redundant
-and awkward when the cursor is only there to satisfy the macro and is
-never otherwise used.
+Note, `git format-patch ...` should not have this "side-effect"
+when used correctly.
 
-Add private next and previous cursors for the common entry iterators and
-use unique internal names so callers keep the same interface. This lets
-the loop step use a cursor captured before the body runs, while callers
-that need to alter traversal state can still open-code the walk.
-
-The safe variants remain useful when the caller needs access to the
-temporary cursor or has stronger mutation requirements. Update their
-comments to steer users toward the simpler iterators when that temporary
-cursor is not needed.
-
-Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
----
- include/linux/list.h | 46 +++++++++++++++++++++++++++++++++-----------
- 1 file changed, 35 insertions(+), 11 deletions(-)
-
-diff --git a/include/linux/list.h b/include/linux/list.h
-index 09d979976b3b..9df84a56a789 100644
---- a/include/linux/list.h
-+++ b/include/linux/list.h
-@@ -809,6 +809,29 @@ static inline size_t list_count_nodes(struct list_head *head)
- #define list_entry_is_head(pos, head, member)				\
- 	list_is_head(&pos->member, (head))
- 
-+#define __list_for_each_entry(pos, next, head, member)			\
-+	for (typeof(pos) next = list_next_entry(pos =			\
-+		list_first_entry(head, typeof(*pos), member), member);	\
-+	     !list_entry_is_head(pos, head, member);			\
-+	     pos = next, next = list_next_entry(next, member))
-+
-+#define __list_for_each_entry_reverse(pos, prev, head, member)		\
-+	for (typeof(pos) prev = list_prev_entry(pos =			\
-+		list_last_entry(head, typeof(*pos), member), member);	\
-+	     !list_entry_is_head(pos, head, member);			\
-+	     pos = prev, prev = list_prev_entry(prev, member))
-+
-+#define __list_for_each_entry_continue(pos, next, head, member)		\
-+	for (typeof(pos) next = list_next_entry(pos =			\
-+		list_next_entry(pos, member), member);			\
-+	     !list_entry_is_head(pos, head, member);			\
-+	     pos = next, next = list_next_entry(next, member))
-+
-+#define __list_for_each_entry_from(pos, next, head, member)		\
-+	for (typeof(pos) next = list_next_entry(pos, member);		\
-+	     !list_entry_is_head(pos, head, member);			\
-+	     pos = next, next = list_next_entry(next, member))
-+
- /**
-  * list_for_each_entry	-	iterate over list of given type
-  * @pos:	the type * to use as a loop cursor.
-@@ -816,9 +839,7 @@ static inline size_t list_count_nodes(struct list_head *head)
-  * @member:	the name of the list_head within the struct.
-  */
- #define list_for_each_entry(pos, head, member)				\
--	for (pos = list_first_entry(head, typeof(*pos), member);	\
--	     !list_entry_is_head(pos, head, member);			\
--	     pos = list_next_entry(pos, member))
-+	__list_for_each_entry(pos, __UNIQUE_ID(next), head, member)
- 
- /**
-  * list_for_each_entry_reverse - iterate backwards over list of given type.
-@@ -827,9 +848,7 @@ static inline size_t list_count_nodes(struct list_head *head)
-  * @member:	the name of the list_head within the struct.
-  */
- #define list_for_each_entry_reverse(pos, head, member)			\
--	for (pos = list_last_entry(head, typeof(*pos), member);		\
--	     !list_entry_is_head(pos, head, member); 			\
--	     pos = list_prev_entry(pos, member))
-+	__list_for_each_entry_reverse(pos, __UNIQUE_ID(prev), head, member)
- 
- /**
-  * list_prepare_entry - prepare a pos entry for use in list_for_each_entry_continue()
-@@ -852,9 +871,7 @@ static inline size_t list_count_nodes(struct list_head *head)
-  * the current position.
-  */
- #define list_for_each_entry_continue(pos, head, member) 		\
--	for (pos = list_next_entry(pos, member);			\
--	     !list_entry_is_head(pos, head, member);			\
--	     pos = list_next_entry(pos, member))
-+	__list_for_each_entry_continue(pos, __UNIQUE_ID(next), head, member)
- 
- /**
-  * list_for_each_entry_continue_reverse - iterate backwards from the given point
-@@ -879,8 +896,7 @@ static inline size_t list_count_nodes(struct list_head *head)
-  * Iterate over list of given type, continuing from current position.
-  */
- #define list_for_each_entry_from(pos, head, member) 			\
--	for (; !list_entry_is_head(pos, head, member);			\
--	     pos = list_next_entry(pos, member))
-+	__list_for_each_entry_from(pos, __UNIQUE_ID(next), head, member)
- 
- /**
-  * list_for_each_entry_from_reverse - iterate backwards over list of given type
-@@ -901,6 +917,8 @@ static inline size_t list_count_nodes(struct list_head *head)
-  * @n:		another type * to use as temporary storage
-  * @head:	the head for your list.
-  * @member:	the name of the list_head within the struct.
-+ *
-+ * Prefer list_for_each_entry() unless the temporary cursor is needed.
-  */
- #define list_for_each_entry_safe(pos, n, head, member)			\
- 	for (pos = list_first_entry(head, typeof(*pos), member),	\
-@@ -917,6 +935,8 @@ static inline size_t list_count_nodes(struct list_head *head)
-  *
-  * Iterate over list of given type, continuing after current point,
-  * safe against removal of list entry.
-+ *
-+ * Prefer list_for_each_entry_continue() unless the temporary cursor is needed.
-  */
- #define list_for_each_entry_safe_continue(pos, n, head, member) 		\
- 	for (pos = list_next_entry(pos, member), 				\
-@@ -933,6 +953,8 @@ static inline size_t list_count_nodes(struct list_head *head)
-  *
-  * Iterate over list of given type from current point, safe against
-  * removal of list entry.
-+ *
-+ * Prefer list_for_each_entry_from() unless the temporary cursor is needed.
-  */
- #define list_for_each_entry_safe_from(pos, n, head, member) 			\
- 	for (n = list_next_entry(pos, member);					\
-@@ -948,6 +970,8 @@ static inline size_t list_count_nodes(struct list_head *head)
-  *
-  * Iterate backwards over list of given type, safe against removal
-  * of list entry.
-+ *
-+ * Prefer list_for_each_entry_reverse() unless the temporary cursor is needed.
-  */
- #define list_for_each_entry_safe_reverse(pos, n, head, member)		\
- 	for (pos = list_last_entry(head, typeof(*pos), member),		\
 -- 
-2.43.0
+With Best Regards,
+Andy Shevchenko
+
 
