@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sQcqHisbKGo3+AIAu9opvQ
+	id m9qtJSobKGoy+AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 23FBF660C48
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 439DB660C3D
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=Z8zV2BjC;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=mu4x5jso;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 78FF410E3E7;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 634BC10E3D5;
 	Tue,  9 Jun 2026 13:54:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-186.mta0.migadu.com (out-186.mta0.migadu.com
- [91.218.175.186])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2B3D510E0BC
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:22:48 +0000 (UTC)
+Received: from out-173.mta0.migadu.com (out-173.mta0.migadu.com
+ [91.218.175.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0F29610E0BA
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:22:47 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780985728;
+ t=1780985744;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=OIHUqXQmUUYiluUxjJGbqlbmrFVz6UQUb/30/LyGMbo=;
- b=Z8zV2BjCyIIWmJUOuq+lpPC144tcwa3dYQzA0MbEaPU04Q8HQiL3ytDgkjwXu7qSG5Vt1G
- 8EHmclu6rvc8oemzxv47fNi8tHF1o9R4NOTCl0imYYdSuEjWYjWaCaZ0rzlyzknIGPhr36
- Z9cyhUeg/Vahz+UVQh1W/YpfPZkITdc=
+ bh=8IbZbE3jo0O5k9m8Y0Atqn05/3xjZN/raHrVYg8v9cA=;
+ b=mu4x5jsoYo0l0ovgG3zOUnjhNAQicGnTrtTFx6Idq1wmNye60WV1RaPHTgTt8LrIeGV3Rp
+ z1sQSh8qYQYqgD+WB2P0Pz0U+UWtH+CwphgBLPih3SdT7bmzxnYsrxKQ46Ig7exityyWy0
+ /VoZbB9nTPAPZ3JdijaeFc0zLpE0Zho=
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Muchun Song <muchun.song@linux.dev>,
@@ -82,9 +82,9 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Kaitao Cheng <kaitao.cheng@linux.dev>,
  Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 01/14] drbd: Open-code transfer log list walk
-Date: Tue,  9 Jun 2026 14:13:34 +0800
-Message-ID: <20260609061347.93688-2-kaitao.cheng@linux.dev>
+Subject: [PATCH v2 02/14] firewire: core: Open-code topology list walk
+Date: Tue,  9 Jun 2026 14:13:35 +0800
+Message-ID: <20260609061347.93688-3-kaitao.cheng@linux.dev>
 In-Reply-To: <20260609061347.93688-1-kaitao.cheng@linux.dev>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
 MIME-Version: 1.0
@@ -143,40 +143,39 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 23FBF660C48
+X-Rspamd-Queue-Id: 439DB660C3D
 
 From: Kaitao Cheng <chengkaitao@kylinos.cn>
 
 A later change will make list_for_each_entry() cache the next element
-before entering the loop body. That is the desired behaviour for the
-common case, but this transfer log walk temporarily drops
-resource->req_lock and revalidates the cursor before continuing.
+before entering the loop body. for_each_fw_node() intentionally appends
+newly discovered child nodes to the temporary walk list while the list is
+being traversed.
 
-Keep the loop open-coded so the next request is derived after the body
-has completed and after the cursor has been adjusted. This preserves the
-existing traversal semantics and prepares the code for the list iterator
-update.
+Keep the loop open-coded so the next node is looked up only after
+children have been appended. This preserves the current breadth-first
+traversal semantics and prepares the code for the list iterator update.
 
 Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
 ---
- drivers/block/drbd/drbd_debugfs.c | 4 +++-
+ drivers/firewire/core-topology.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/block/drbd/drbd_debugfs.c b/drivers/block/drbd/drbd_debugfs.c
-index 12460b584bcb..e90cead90e9d 100644
---- a/drivers/block/drbd/drbd_debugfs.c
-+++ b/drivers/block/drbd/drbd_debugfs.c
-@@ -308,7 +308,9 @@ static void seq_print_resource_transfer_log_summary(struct seq_file *m,
+diff --git a/drivers/firewire/core-topology.c b/drivers/firewire/core-topology.c
+index bb2d2db30795..df2ac0dab106 100644
+--- a/drivers/firewire/core-topology.c
++++ b/drivers/firewire/core-topology.c
+@@ -272,7 +272,9 @@ static void for_each_fw_node(struct fw_card *card, struct fw_node *root,
+ 	fw_node_get(root);
+ 	list_add_tail(&root->link, &list);
+ 	parent = NULL;
+-	list_for_each_entry(node, &list, link) {
++	for (node = list_first_entry(&list, typeof(*node), link);
++	     !list_entry_is_head(node, &list, link);
++	     node = list_next_entry(node, link)) {
+ 		node->color = card->color;
  
- 	seq_puts(m, "n\tdevice\tvnr\t" RQ_HDR);
- 	spin_lock_irq(&resource->req_lock);
--	list_for_each_entry(req, &connection->transfer_log, tl_requests) {
-+	for (req = list_first_entry(&connection->transfer_log, typeof(*req), tl_requests);
-+	     !list_entry_is_head(req, &connection->transfer_log, tl_requests);
-+	     req = list_next_entry(req, tl_requests)) {
- 		unsigned int tmp = 0;
- 		unsigned int s;
- 		++count;
+ 		for (i = 0; i < node->port_count; i++) {
 -- 
 2.43.0
 
