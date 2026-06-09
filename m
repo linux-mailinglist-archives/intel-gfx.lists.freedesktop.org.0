@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IrzrDXbzJ2rO6AIAu9opvQ
+	id 5unZE3fzJ2rR6AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 13:05:26 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 13:05:27 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D46A165F44F
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 13:05:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id EDAE065F458
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 13:05:26 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=q3x0k5yL;
+	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b="Vy/A20Fi";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5C5A910E289;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9831010E28D;
 	Tue,  9 Jun 2026 11:05:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3D31610E262;
- Tue,  9 Jun 2026 11:05:12 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 22B2410E271;
+ Tue,  9 Jun 2026 11:05:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
  s=20170329;
- h=Content-Transfer-Encoding:MIME-Version:Message-ID:Date:Subject:
- Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:Content-Description:
- Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
- In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+ h=Content-Transfer-Encoding:MIME-Version:References:In-Reply-To:
+ Message-ID:Date:Subject:Cc:To:From:Sender:Reply-To:Content-Type:Content-ID:
+ Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+ :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
  List-Post:List-Owner:List-Archive;
- bh=PJk8M4v6GaqLAHcClw4DhGsWZP0jf2JV25pqDSZ0gFM=; b=q3x0k5yLfgOgq27DmHTi2uBG+l
- 3P6ORcXJRHK0RoQtGblNgH7bnYOEHDx4gRYKrvmnN3H/CD5lfxNn3G1J9GWcZasYS2Jix+jYPrn3P
- HbAQSCHUZAskYZylBwlKKzLwMTZ+vcobsb6/nnScHzH37XRy7Jdq6t4YP2WzTnqkIvCFIwTGoGfab
- aUdPH2xutBEhAdDfp1sOhXWxQL5ITc9s0UkeO9fhBrYczwhFDv7v7ILh8TBi4e7/m92gvs6curO5r
- yixsjsKA+XZExFjkWuCphrOJLNBhovMSWzTZpD6WaPqnGE/T2/1OV9WoCWmhJt0flb7uhu4QyUyO6
- E3c+AFAQ==;
+ bh=hdXIQx3O8t+5fRWRaEGrsm+4NQb2B1dwQl8vnIUQGso=; b=Vy/A20FiViObB/9ILejxwRsAat
+ 9kcmO+oqxoCf4FCdsQrKOaQkFqEGQ0hVxMXO2E8dd1pdUlQ82f7Y9vgepJmjmiX5bbXeQEdGYZD1U
+ TNmhn7pm1GOG6SB0m+PrEQtVpkSWfrysYpQzxk/EntKjuQzhyWy+gQy4xTGr29jpZ6sFGdgMW54nS
+ tTSYxaKGTdw6YjDWUfwGxQXZEDRGjDeh5GBAsDasm0SN35ewON4aDqbPh8ujZt9Yv3F0ea2kFlX4i
+ Pxlyl3RIdo+IbHuPXZE4nct30Cok1h5F3ReijtGvP4KDIVzzKzBDvjNTRQs41lPcklHIMryzlPXFS
+ xMQE8zeg==;
 Received: from [79.117.146.159] (helo=killbill.home)
  by fanzine2.igalia.com with esmtpsa 
  (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_256_GCM:256) (Exim)
- id 1wWuG0-00Etww-4h; Tue, 09 Jun 2026 13:04:32 +0200
+ id 1wWuG2-00Etww-8q; Tue, 09 Jun 2026 13:04:34 +0200
 From: Melissa Wen <mwen@igalia.com>
 To: airlied@gmail.com, alexander.deucher@amd.com, alex.hung@amd.com,
  christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
@@ -57,10 +57,13 @@ Cc: Uma Shankar <uma.shankar@intel.com>,
  linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
  intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
  dri-devel@lists.freedesktop.org
-Subject: [PATCH v9 0/4] drm/atomic: track individual colorop updates
-Date: Tue,  9 Jun 2026 12:20:17 +0200
-Message-ID: <20260609110420.1298352-1-mwen@igalia.com>
+Subject: [PATCH v9 1/4] drm/colorop: Remove read-only comments from
+ interpolation fields
+Date: Tue,  9 Jun 2026 12:20:18 +0200
+Message-ID: <20260609110420.1298352-2-mwen@igalia.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260609110420.1298352-1-mwen@igalia.com>
+References: <20260609110420.1298352-1-mwen@igalia.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -104,108 +107,64 @@ X-Spamd-Result: default: False [1.99 / 15.00];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,amd.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D46A165F44F
+X-Rspamd-Queue-Id: EDAE065F458
 
-This version is just a rebase on top of `drm-misc-fixes` instead of
-`drm-misc-next`. The entire set of fixes targets issues in commits that
-are in the kernel v6.18, but the second patch conflicts with:
+From: Alex Hung <alex.hung@amd.com>
 
-- 8e135a47d35 ("drm/colorop: Rename __drm_colorop_state_reset()")
-- 5164f7e7ff8 ("drm: Rename struct drm_atomic_state to drm_atomic_commit")
-- 0c44d8dc6df ("drm/atomic: prefer drm_printf_indent() over inline \t")
+The lut1d_interpolation and lut3d_interpolation fields and their
+associated properties were marked as read-only, but userspace
+can set them via drm_atomic_colorop_set_property().
 
-This series is a partial of [1], only with patches related to individual
-colorop update tracking. I.e., I'm detaching from here fixes regarding
-attempts of changing colorops that are not part of an active color
-pipeline, or in the transition between active and inactive color
-pipelines.
+Fixes: 7fa3ee8c0a79 ("drm/colorop: Define LUT_1D interpolation")
+Fixes: db971856bbe0 ("drm/colorop: Add 3D LUT support to color pipeline")
+Reviewed-by: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+Signed-off-by: Alex Hung <alex.hung@amd.com>
+Fixes: 9ba25915efba ("drm/amd/display: Add support for sRGB EOTF in DEGAM block")
+Signed-off-by: Melissa Wen <mwen@igalia.com>
+---
+ include/drm/drm_colorop.h | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
-This series focus on tracking updates for each individual color
-operation, allowing the driver to react accordingly. This new version
-just adds r-b and Fixes tag accordingly. During the Display Next
-Hackfest we also agree that it should be applied to drm-misc-fixes and
-it can be backported by AMD after.
-
-- Patches 1 and 2 make lut1d_interpolation and lut3d_interpolation
-  colorops correctly behave as mutable, handling their changes via
-  drm_colorop_state.
-
-- Patches 3 and 4 track colorop updates of a given plane color
-  pipeline by setting plane `color_mgmt_changed` flag, similar to what
-  is done for tracking CRTC color mgmt property changes with CRTC
-  `color_mgmt_changed` flag. The flag also tracks when a different color
-  pipeline is set to a given plane, but doesn't consider as a change
-  when the same color pipeline value is set to the plane COLOR_PIPELINE
-  prop. That way, the driver can react accordingly and update their
-  color blocks. As interpolation properties become mutable, they are
-  also tracked here.
-
-It also fixes shaper/3D LUT updates when changing night mode settings on
-gamescope with a custom branch that supports `COLOR_PIPELINE`:
-- https://github.com/ValveSoftware/gamescope/pull/2113
-
-v1: https://lore.kernel.org/dri-devel/20260318162348.299807-1-mwen@igalia.com/
-Changes:
-- include linux types for function's bool return type (kernel bot on MSM
-  driver)
-- add Harry's r-b tags
-
-v2: https://lore.kernel.org/dri-devel/20260323131942.494217-1-mwen@igalia.com/
-Changes:
-- [NEW] two patches to only consider colorop updates from active color
-  pipelines (Chaitanya)
-- [NEW] make lut interpolation properties mutable + Alex H patch for
-  kernel docs
-- track lut(1/3)d_interpolation updates (Chaitanya)
-- rebase changes according to new patches
-
-v3: https://lore.kernel.org/dri-devel/20260403135909.214378-1-mwen@igalia.com/
-Changes: rebase on drm-misc-next
-
-v4: https://lore.kernel.org/dri-devel/20260501132527.522320-1-mwen@igalia.com/
-Changes: fix kernel doc (kernel bot)
-
-v5: https://lore.kernel.org/dri-devel/20260506192633.16066-1-mwen@igalia.com/
-Changes:
-- rebase on drm-misc-next
-- fix kernel-doc and correctly reword (atomic) state to plane_state (Chaitanya)
-- reject inactive colorop updates in atomic check time, instead of
-  during property's setup, to avoid ordering dependency as pointed out by Chaitanya
-- use `|= replaced` for consistency (Chaitanya)
-- add Chaitanya's r-b tags to patches 1,3-5
-
-[1] v6: https://lore.kernel.org/dri-devel/20260519211111.228303-1-mwen@igalia.com/
-Changes:
-- detach patches that implement individual tracking from those related
-  to inactive colorop updates.
-
-v7: https://lore.kernel.org/dri-devel/20260525100524.304263-1-mwen@igalia.com/
-Changes:
-- add Fixes and r-b tags
-
-v8: https://lore.kernel.org/dri-devel/20260602215743.914265-1-mwen@igalia.com/
-Changes:
-- moving from `drm-misc-next` to `drm-misc-fixes`
-
-Alex Hung (1):
-  drm/colorop: Remove read-only comments from interpolation fields
-
-Melissa Wen (3):
-  drm/colorop: make lut(1/3)d_interpolation props correctly behave as
-    mutable
-  drm/atomic: track individual colorop updates
-  drm/amd/display: use plane color_mgmt_changed to track colorop changes
-
- .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  6 +-
- drivers/gpu/drm/drm_atomic.c                  |  4 +-
- drivers/gpu/drm/drm_atomic_uapi.c             | 68 +++++++++++++++----
- drivers/gpu/drm/drm_colorop.c                 | 16 ++++-
- include/drm/drm_atomic_uapi.h                 |  4 +-
- include/drm/drm_colorop.h                     | 34 +++++-----
- 6 files changed, 93 insertions(+), 39 deletions(-)
-
+diff --git a/include/drm/drm_colorop.h b/include/drm/drm_colorop.h
+index bd082854ca74..61cc8206b4c4 100644
+--- a/include/drm/drm_colorop.h
++++ b/include/drm/drm_colorop.h
+@@ -309,7 +309,6 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut1d_interpolation:
+ 	 *
+-	 * Read-only
+ 	 * Interpolation for DRM_COLOROP_1D_LUT
+ 	 */
+ 	enum drm_colorop_lut1d_interpolation_type lut1d_interpolation;
+@@ -317,7 +316,6 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut3d_interpolation:
+ 	 *
+-	 * Read-only
+ 	 * Interpolation for DRM_COLOROP_3D_LUT
+ 	 */
+ 	enum drm_colorop_lut3d_interpolation_type lut3d_interpolation;
+@@ -325,7 +323,7 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut1d_interpolation_property:
+ 	 *
+-	 * Read-only property for DRM_COLOROP_1D_LUT interpolation
++	 * Property for DRM_COLOROP_1D_LUT interpolation
+ 	 */
+ 	struct drm_property *lut1d_interpolation_property;
+ 
+@@ -353,7 +351,7 @@ struct drm_colorop {
+ 	/**
+ 	 * @lut3d_interpolation_property:
+ 	 *
+-	 * Read-only property for DRM_COLOROP_3D_LUT interpolation
++	 * Property for DRM_COLOROP_3D_LUT interpolation
+ 	 */
+ 	struct drm_property *lut3d_interpolation_property;
+ 
 -- 
 2.53.0
 
