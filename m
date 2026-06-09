@@ -2,53 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BuW1E6K6J2rx1AIAu9opvQ
+	id /9mLAWu7J2oX1QIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 09:02:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 09:06:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 99DF665D034
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 09:02:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A023B65D097
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 09:06:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=HhxtLC+3;
+	dkim=pass header.d=intel.com header.s=Intel header.b="V1Q/svxB";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2A0D910E10F;
-	Tue,  9 Jun 2026 07:02:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6104210E112;
+	Tue,  9 Jun 2026 07:06:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2050C10E10F;
- Tue,  9 Jun 2026 07:02:55 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 00B8110E107;
+ Tue,  9 Jun 2026 07:06:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1780988576; x=1812524576;
+ t=1780988775; x=1812524775;
  h=date:from:to:cc:subject:message-id:references:
  mime-version:in-reply-to;
- bh=yzH6uJSi6Qy/tGngU0UZEQlj4llniF58GR8UVGOo5h0=;
- b=HhxtLC+3DtIZry9DaHdwPlRDQhjNmMMLt4qt68nqfIvlC0bs3jG+oU9+
- k9oysQLfrFyHiBvblQuXJIO6AaNUA/Dx9Y79zwhp6+uYfS3BzyIbcpbYN
- jOGKz1NFJIxJEcCHllojj5xHeVBzxuM3wIgkO71CXuJHQTDv1ntkIgg2m
- uBwkUAQPVPKWorwLIUx6E7VHJFzRGN+bAW8a6o93A7caO7cfs9UKAhZHC
- NePGdh4BCjt/fiPORIUk9N4HsYVypBzOvzPg86RWMRXjDv4pbHG6qtdR0
- BI7jFB1dhlRczhthMRcEI1akzOwjEesME6IOCHHbNbRgs+gJm+aYj+E1t Q==;
-X-CSE-ConnectionGUID: n1FxodbbQIm2Dk25S8jc6Q==
-X-CSE-MsgGUID: Wc4vfLSeRqGOV9wBq3iYjg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="85364897"
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="85364897"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 00:02:55 -0700
-X-CSE-ConnectionGUID: NtMsANXzRtq8/DTsdCsIOw==
-X-CSE-MsgGUID: Qc9xZ1QCR5ObTHR46qYy4w==
+ bh=wPNxaq+MxK/SZuHOphqim3jNSNXgk7q+4ZcK8M927Ho=;
+ b=V1Q/svxBQIKze/UXIJSjOVKgrHKSgASIHCOspehkIKVQv2bX/4KShqag
+ d/zBQ8UonmmfCj23Qs6t014+PRFWP64qdiRXDWUO2OGNx4EEGAO2w7sCU
+ LzHdXSmmXEbVpF2R8KUvg9khSMXFrJq7Vl7L5BPkpGUIiiD5fiYxw3W59
+ 4FQh6ok8g54u9bkh5DW/Blm+yyV0i7ZfxxRM0zm2LuMO17UyyOq9quxWQ
+ m9u+KlPrFKZMmipRXS8dPL0QcSU9emqYxGViqZqE8at93dpxdLxORPsZ3
+ 1zs8+uHOBOMxAuYOXU3Mg0bhso5WN1KqbjVHLVl3SqfMuxV7UvOnW0AtV w==;
+X-CSE-ConnectionGUID: q3kVeI/eRE+9bvOu2aRrNw==
+X-CSE-MsgGUID: gFoPRw9pR32BYdLVYqlJFg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11811"; a="69275335"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="69275335"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2026 00:06:13 -0700
+X-CSE-ConnectionGUID: 0Fv2wpZjRBeJ47Uck52CjA==
+X-CSE-MsgGUID: onLxLx0PQVGxZ3J/XwQjww==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="243342065"
+X-IronPort-AV: E=Sophos;i="6.24,195,1774335600"; d="scan'208";a="242837949"
 Received: from egrumbac-mobl6.ger.corp.intel.com (HELO localhost)
  ([10.245.245.39])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 00:02:42 -0700
-Date: Tue, 9 Jun 2026 10:02:40 +0300
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 09 Jun 2026 00:06:01 -0700
+Date: Tue, 9 Jun 2026 10:05:58 +0300
 From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
 To: Kaitao Cheng <kaitao.cheng@linux.dev>
 Cc: Muchun Song <muchun.song@linux.dev>,
@@ -97,16 +97,16 @@ Cc: Muchun Song <muchun.song@linux.dev>,
  Christian Brauner <brauner@kernel.org>,
  David Howells <dhowells@redhat.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: Re: [PATCH v2 07/14] spi: fsi: Open-code message transfer walk
-Message-ID: <aie6kH06I6mMeoED@ashevche-desk.local>
+ Kaito Cheng <chengkaitao@kylinos.cn>
+Subject: Re: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor
+ state
+Message-ID: <aie7Vlcg76naApoC@ashevche-desk.local>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
- <20260609062526.94907-1-kaitao.cheng@linux.dev>
- <20260609062526.94907-5-kaitao.cheng@linux.dev>
+ <aie299WveL1utNya@ashevche-desk.local>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20260609062526.94907-5-kaitao.cheng@linux.dev>
+In-Reply-To: <aie299WveL1utNya@ashevche-desk.local>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
  krs, Bertel Jungin Aukio 5, 02600 Espoo
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -150,36 +150,36 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,ashevche-desk.local:mid,linux.intel.com:from_mime,intel.com:dkim]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp,ashevche-desk.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 99DF665D034
+X-Rspamd-Queue-Id: A023B65D097
 
-On Tue, Jun 09, 2026 at 02:25:19PM +0800, Kaitao Cheng wrote:
->
-> A later change will make list_for_each_entry() cache the next element
-> before entering the loop body. fsi_spi_transfer_one_message() can combine
-> the current transfer with the following transfer and then advance the
-> cursor to that consumed entry.
+On Tue, Jun 09, 2026 at 09:47:34AM +0300, Andy Shevchenko wrote:
+> On Tue, Jun 09, 2026 at 02:13:33PM +0800, Kaitao Cheng wrote:
+> > 
+> > This series prepares for, and then updates, the list_for_each_entry()
+> > family so the common entry iterators cache their next or previous cursor
+> > before the loop body runs.
+
+While code looks okay, this doesn't explain "why?" aspects.
+
+> > The first 13 patches open-code loops that intentionally depend on the
+> > old "derive the next entry from the current cursor at the end of the
+> > iteration" behaviour.  These loops append work to the list being walked,
+> > restart traversal after dropping a lock, skip an entry consumed by the
+> > current iteration, or otherwise adjust the cursor in the loop body.
+> > 
+> > The final patch changes include/linux/list.h to keep a private cursor in
+> > the common entry iterators while preserving the public macro interface.
+> > The safe variants remain available when callers need the temporary
+> > cursor explicitly or have stronger mutation requirements.
 > 
-> Keep the transfer walk open-coded so the loop step observes that cursor
-> update and skips the consumed transfer. This preserves the existing
-> message sequencing semantics and prepares the code for the list iterator
-> update.
-
-...
-
-> -	list_for_each_entry(transfer, &mesg->transfers, transfer_list) {
-> +	for (transfer = list_first_entry(&mesg->transfers,
-> +					 typeof(*transfer), transfer_list);
-
-You can keep this on a single line for more logical split.
-
-	for (transfer = list_first_entry(&mesg->transfers, typeof(*transfer), transfer_list);
-
-it's under relaxed limits for the line length.
-
-> +	     !list_entry_is_head(transfer, &mesg->transfers, transfer_list);
-> +	     transfer = list_next_entry(transfer, transfer_list)) {
+> Something is really wrong with the patch series email chaining.
+> Patches 3, 10, and 13 start the subthreads. Please, check your
+> tools and fix them accordingly.
+> 
+> Note, `git format-patch ...` should not have this "side-effect"
+> when used correctly.
 
 -- 
 With Best Regards,
