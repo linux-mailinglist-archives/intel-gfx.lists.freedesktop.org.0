@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wqUQLSsbKGo4+AIAu9opvQ
+	id cCJPOSobKGo0+AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61745660C4D
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 903B9660C40
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=UtZFil2Q;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=NKWAMzkE;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9A4CA10E3F5;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 62EE010E3CE;
 	Tue,  9 Jun 2026 13:54:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com
- [95.215.58.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CB12810E0D4
- for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:32:47 +0000 (UTC)
+Received: from out-186.mta1.migadu.com (out-186.mta1.migadu.com
+ [95.215.58.186])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7B2B410E0D7
+ for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:37:46 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780986436;
+ t=1780986458;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=ImZshMJ6+rspWDeU8PSyvvgq3b/Nfm8OW56yaLbG3dc=;
- b=UtZFil2Qiyf1bDjOVvq/sutmRnZDzRBz0mxmZmocH7V7GJ3JZLqhNR8l1YcXQOvn7aT91+
- 3CdWLOMklrI+61UeG3BWmhHLYUDDgSi0l5QZOgmd5IAalJcZZgGNxEgjE6g9mU5olbJqo8
- QJQ9UeAjc0f/P6GAuyrqcyNXuq5/3yk=
+ bh=ZrojwXEBMB/P79bsKRHj5UlAkbCjSpysFG8D760YAYc=;
+ b=NKWAMzkED0iwSsplBCqatf8ppHySaCSLdpL/bsV2wcHhaniHEa4DrJKj5/YKEKDH5LIYJ0
+ YA+OmzUXKnTynxMf3ONQ9Pdo6L/MshQELjc7teUVMdQb+/NeGlb9xqhofXw4J1os8gDyE8
+ xGlwu4UCbTQs16gUlhpG6eFxpC8upIo=
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Muchun Song <muchun.song@linux.dev>,
@@ -82,9 +82,9 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Kaitao Cheng <kaitao.cheng@linux.dev>,
  Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 05/14] drm/i915: Open-code DFS dependency list walk
-Date: Tue,  9 Jun 2026 14:25:17 +0800
-Message-ID: <20260609062526.94907-3-kaitao.cheng@linux.dev>
+Subject: [PATCH v2 06/14] drm/ttm: Open-code reservation list walk
+Date: Tue,  9 Jun 2026 14:25:18 +0800
+Message-ID: <20260609062526.94907-4-kaitao.cheng@linux.dev>
 In-Reply-To: <20260609062526.94907-1-kaitao.cheng@linux.dev>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
  <20260609062526.94907-1-kaitao.cheng@linux.dev>
@@ -142,40 +142,41 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[kylinos.cn:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 61745660C4D
+X-Rspamd-Queue-Id: 903B9660C40
 
 From: Kaitao Cheng <chengkaitao@kylinos.cn>
 
 A later change will make list_for_each_entry() cache the next element
-before entering the loop body. __i915_schedule() builds its DFS work list
-while walking it by moving newly discovered dependencies to the tail.
+before entering the loop body. ttm_eu_reserve_buffers() may move the
+current validation buffer to the duplicates list and then rewinds the
+cursor before continuing.
 
-Keep the DFS walk open-coded so the next dependency is resolved after any
-tail moves performed by the body. This preserves the existing traversal
-semantics and prepares the code for the list iterator update.
+Keep the reservation walk open-coded so the loop step uses the cursor
+selected by that duplicate handling. This preserves the existing
+traversal semantics and prepares the code for the list iterator update.
 
 Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
 ---
- drivers/gpu/drm/i915/i915_scheduler.c | 4 +++-
+ drivers/gpu/drm/ttm/ttm_execbuf_util.c | 4 +++-
  1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_scheduler.c b/drivers/gpu/drm/i915/i915_scheduler.c
-index aec1342402ca..da1f60282df8 100644
---- a/drivers/gpu/drm/i915/i915_scheduler.c
-+++ b/drivers/gpu/drm/i915/i915_scheduler.c
-@@ -190,7 +190,9 @@ static void __i915_schedule(struct i915_sched_node *node,
- 	 * end result is a topological list of requests in reverse order, the
- 	 * last element in the list is the request we must execute first.
- 	 */
--	list_for_each_entry(dep, &dfs, dfs_link) {
-+	for (dep = list_first_entry(&dfs, typeof(*dep), dfs_link);
-+	     !list_entry_is_head(dep, &dfs, dfs_link);
-+	     dep = list_next_entry(dep, dfs_link)) {
- 		struct i915_sched_node *node = dep->signaler;
+diff --git a/drivers/gpu/drm/ttm/ttm_execbuf_util.c b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
+index bc7a83a9fe44..8072f07d5557 100644
+--- a/drivers/gpu/drm/ttm/ttm_execbuf_util.c
++++ b/drivers/gpu/drm/ttm/ttm_execbuf_util.c
+@@ -86,7 +86,9 @@ int ttm_eu_reserve_buffers(struct ww_acquire_ctx *ticket,
+ 	if (ticket)
+ 		ww_acquire_init(ticket, &reservation_ww_class);
  
- 		/* If we are already flying, we know we have no signalers */
+-	list_for_each_entry(entry, list, head) {
++	for (entry = list_first_entry(list, typeof(*entry), head);
++	     !list_entry_is_head(entry, list, head);
++	     entry = list_next_entry(entry, head)) {
+ 		struct ttm_buffer_object *bo = entry->bo;
+ 		unsigned int num_fences;
+ 
 -- 
 2.43.0
 
