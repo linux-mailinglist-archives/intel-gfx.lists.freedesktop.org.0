@@ -2,40 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qffEOSgbKGos+AIAu9opvQ
+	id tPCIKykbKGou+AIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 937B5660C26
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5AD5F660C2E
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:54:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=hAcwtJDC;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=YYIJiCTk;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A137110E35A;
-	Tue,  9 Jun 2026 13:54:42 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EAEBF10E3BB;
+	Tue,  9 Jun 2026 13:54:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-X-Greylist: delayed 366 seconds by postgrey-1.36 at gabe;
- Tue, 09 Jun 2026 06:32:47 UTC
-Received: from out-180.mta1.migadu.com (out-180.mta1.migadu.com
- [95.215.58.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6C08610E0BD
+Received: from out-171.mta1.migadu.com (out-171.mta1.migadu.com
+ [95.215.58.171])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C590E10E0D3
  for <intel-gfx@lists.freedesktop.org>; Tue,  9 Jun 2026 06:32:47 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1780986398;
+ t=1780986417;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=QgWAksApTGvLxjW8jDqRXxXlqcSTxmsvhz5k9DI0lic=;
- b=hAcwtJDCWZFRSYLTEPue3KI/vBKMw7McXz6aBCAwYSHGbCZ8691Hb8Q9SEjvRfQxb72Tta
- DvZFdo/ENYvZXhMqWs/CaNmhp2HC/ZidkwGpdCsM2noviPsBOF++1vKdv+wycU7cucS29B
- gJe3i3hLPUY6TqgCUx2oYjH058D/AcI=
+ bh=Np0x5OABf11sd/lWEcYRius1zQG4TmMrbP89pTQvYBE=;
+ b=YYIJiCTkH8MjZ7BoGs7INCC4Vg7NTV50EYqh5qyQzaNnUUn/ixKMeAHTMaJlWsazr68AZc
+ 9cDm4beZcV6ZDk9JRuLp/AOZC3eNoRHb5vZWf2PEag6On3FypjVNmaFjgVo30iqjkj1FaQ
+ vdscYyTKn9RpAnTOcvy8RuzssJ18YbI=
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
 To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
  Muchun Song <muchun.song@linux.dev>,
@@ -84,11 +82,12 @@ Cc: Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
  Luca Ceresoli <luca.ceresoli@bootlin.com>,
  Kaitao Cheng <kaitao.cheng@linux.dev>,
  Kaitao Cheng <chengkaitao@kylinos.cn>
-Subject: [PATCH v2 03/14] drm/bridge: Open-code bridge chain list walks
-Date: Tue,  9 Jun 2026 14:25:15 +0800
-Message-ID: <20260609062526.94907-1-kaitao.cheng@linux.dev>
-In-Reply-To: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+Subject: [PATCH v2 04/14] drm/i915/gt: Open-code active timeline walk
+Date: Tue,  9 Jun 2026 14:25:16 +0800
+Message-ID: <20260609062526.94907-2-kaitao.cheng@linux.dev>
+In-Reply-To: <20260609062526.94907-1-kaitao.cheng@linux.dev>
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+ <20260609062526.94907-1-kaitao.cheng@linux.dev>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -143,51 +142,41 @@ X-Spamd-Result: default: False [1.69 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,linux.dev:mid,linux.dev:from_mime,kylinos.cn:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 937B5660C26
+X-Rspamd-Queue-Id: 5AD5F660C2E
 
 From: Kaitao Cheng <chengkaitao@kylinos.cn>
 
-A later change will make list_for_each_entry_from() and
-list_for_each_entry_reverse() cache the next or previous element before
-entering the loop body. The bridge enable and disable ordering code
-adjusts its cursor to skip ranges that have already been handled.
+A later change will make list_for_each_entry() cache the next element
+before entering the loop body. __intel_gt_unset_wedged() drops
+timelines->lock while waiting on a fence and then restarts the walk from
+the list head after the lock is reacquired.
 
-Keep those walks open-coded so the loop step observes the cursor
-selected by the body. This preserves the existing bridge ordering
+Keep the loop open-coded so the next timeline is selected after that
+restart logic has run. This preserves the existing lock-drop traversal
 semantics and prepares the code for the list iterator update.
 
 Signed-off-by: Kaitao Cheng <chengkaitao@kylinos.cn>
 ---
- drivers/gpu/drm/drm_bridge.c | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_reset.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/drm_bridge.c b/drivers/gpu/drm/drm_bridge.c
-index d6f512b73389..a538aabc4e0b 100644
---- a/drivers/gpu/drm/drm_bridge.c
-+++ b/drivers/gpu/drm/drm_bridge.c
-@@ -868,7 +868,8 @@ void drm_atomic_bridge_chain_post_disable(struct drm_bridge *bridge,
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index adff482a6c9c..fe0d87e248a7 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -1077,7 +1077,9 @@ static bool __intel_gt_unset_wedged(struct intel_gt *gt)
+ 	 * No more can be submitted until we reset the wedged bit.
+ 	 */
+ 	spin_lock(&timelines->lock);
+-	list_for_each_entry(tl, &timelines->active_list, link) {
++	for (tl = list_first_entry(&timelines->active_list, typeof(*tl), link);
++	     !list_entry_is_head(tl, &timelines->active_list, link);
++	     tl = list_next_entry(tl, link)) {
+ 		struct dma_fence *fence;
  
- 	encoder = bridge->encoder;
- 
--	list_for_each_entry_from(bridge, &encoder->bridge_chain, chain_node) {
-+	for (; !list_entry_is_head(bridge, &encoder->bridge_chain, chain_node);
-+	     bridge = list_next_entry(bridge, chain_node)) {
- 		limit = NULL;
- 
- 		if (!list_is_last(&bridge->chain_node, &encoder->bridge_chain)) {
-@@ -962,7 +963,9 @@ void drm_atomic_bridge_chain_pre_enable(struct drm_bridge *bridge,
- 
- 	encoder = bridge->encoder;
- 
--	list_for_each_entry_reverse(iter, &encoder->bridge_chain, chain_node) {
-+	for (iter = list_last_entry(&encoder->bridge_chain, typeof(*iter), chain_node);
-+	     !list_entry_is_head(iter, &encoder->bridge_chain, chain_node);
-+	     iter = list_prev_entry(iter, chain_node)) {
- 		if (iter->pre_enable_prev_first) {
- 			next = iter;
- 			limit = bridge;
+ 		fence = i915_active_fence_get(&tl->last_request);
 -- 
 2.43.0
 
