@@ -2,85 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +E4xE7YLKGrR8wIAu9opvQ
+	id O5omESsQKGpi9QIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:48:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:07:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AB97B660374
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CECBE660658
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 15:07:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=TZOtp8AQ;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 23D0710E5E6;
-	Tue,  9 Jun 2026 12:48:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5CA1610E382;
+	Tue,  9 Jun 2026 13:07:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7465E10E5E6;
- Tue,  9 Jun 2026 12:48:51 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1781009320; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=GH7myePk3LRGsbgAmGXuH3EGnYY5p1aWd2TQOT9JXuNCUb2ZaygjDvf3dpXQXiTxD7g09h+g3Yykx1HLZ7JuD9aGEDbD0hWm7aG1DG7oySA9Z0Q3gzy2q8Ddz9Z6BYPyevKS+HDL60WJ0lqlz/ZiwOmSNmwYPKfJFAiEvTIsEW0=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1781009320;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=62KYxCZxFK08w+RoMa7NxzfH3ErdgYCWI77kkaQwXBw=; 
- b=abLDcoRckTiNhs1dSvBk8+q1eGiXMBaqLVAARsf1J9WRzKtFKEAuL8ksgwAczZnQSav7qXoxC5DHlkcAEnzJiNLjWpmaUk+tN+yR21EOMeUcRlvMNDL8d8jB5xIiBhA8eOPlO4CxxNDOAqjhnmKxkMir8JhuUoxsPp8UsyjmV2E=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
- dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781009320; 
- s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
- h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=62KYxCZxFK08w+RoMa7NxzfH3ErdgYCWI77kkaQwXBw=;
- b=TZOtp8AQuNu7JEwZOdLH8trhDXm8lhVECu/0faPGLeeugrfwxkljmmyY9YA85Lta
- FuIWuNjs9NNPEMA3Q51HXgQfvrv+f9bqgn6tRkRbDGHUOocl0uMHbbDbTsr60KnpDmp
- 4dRiEFGWBdo3AZcYj1qN3Ryy+N3BjVFKann7zHLM=
-Received: by mx.zohomail.com with SMTPS id 1781009319488398.85945429547075;
- Tue, 9 Jun 2026 05:48:39 -0700 (PDT)
-From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 09 Jun 2026 14:44:15 +0200
-Subject: [PATCH v17 28/28] drm/i915/dp: Implement "color format" DRM property
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9EE10E382;
+ Tue,  9 Jun 2026 13:07:51 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0579823465247030938=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Message-Id: <20260609-color-format-v17-28-35739b5782cc@collabora.com>
-References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
-In-Reply-To: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
-To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
- Rodrigo Siqueira <siqueira@igalia.com>, 
- Alex Deucher <alexander.deucher@amd.com>, 
- =?utf-8?q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- Andrzej Hajda <andrzej.hajda@intel.com>, 
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>, 
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>, 
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>, 
- Sandy Huang <hjc@rock-chips.com>, 
- =?utf-8?q?Heiko_St=C3=BCbner?= <heiko@sntech.de>, 
- Andy Yan <andy.yan@rock-chips.com>, 
- Jani Nikula <jani.nikula@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, 
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Tvrtko Ursulin <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, 
- Sascha Hauer <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, 
- Jonathan Corbet <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, 
- Daniel Stone <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
- Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-X-Mailer: b4 0.15.2
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_For_CI_only=3A_DC3CO/CMTG?=
+ =?utf-8?q?_validation_series_=28rev4=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Dibin Moolakadan Subrahmanian" <dibin.moolakadan.subrahmanian@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 09 Jun 2026 13:07:51 -0000
+Message-ID: <178101047164.60431.10919919004814256858@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260609120250.867750-1-dibin.moolakadan.subrahmanian@intel.com>
+In-Reply-To: <20260609120250.867750-1-dibin.moolakadan.subrahmanian@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,150 +46,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
-	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,fooishbar.org:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AB97B660374
+X-Rspamd-Queue-Id: CECBE660658
 
-Implement the "color format" DRM property for DP. The values of the
-property include RGB, YCbCr420, YCbCr444 and Auto. Auto will pick RGB,
-with a fallback to YCbCr420.
+--===============0579823465247030938==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-The mask of supported formats by the source exposed by the property is
-an optimistic scenario, as specific DFP-related caveats can't be
-established before an EDID is present.
+== Series Details ==
 
-Should the explicitly requested color format not be supported by the
-sink (or by the source in combination with the sink), then an error is
-returned to userspace, so that it can make a better choice.
+Series: For CI only: DC3CO/CMTG validation series (rev4)
+URL   : https://patchwork.freedesktop.org/series/167407/
+State : success
 
-Reviewed-by: Daniel Stone <daniel@fooishbar.org>
-Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 61 ++++++++++++++++++++++++++++++---
- 1 file changed, 57 insertions(+), 4 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 7c69d3badf9f..8c189e784adb 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3434,10 +3434,10 @@ intel_dp_compute_output_format(struct intel_encoder *encoder,
- }
- 
- static int
--intel_dp_compute_formats(struct intel_encoder *encoder,
--			 struct intel_crtc_state *crtc_state,
--			 struct drm_connector_state *conn_state,
--			 bool respect_downstream_limits)
-+intel_dp_compute_formats_auto(struct intel_encoder *encoder,
-+			      struct intel_crtc_state *crtc_state,
-+			      struct drm_connector_state *conn_state,
-+			      bool respect_downstream_limits)
- {
- 	struct intel_display *display = to_intel_display(encoder);
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
-@@ -3473,6 +3473,34 @@ intel_dp_compute_formats(struct intel_encoder *encoder,
- 	return ret;
- }
- 
-+static int
-+intel_dp_compute_formats(struct intel_encoder *encoder,
-+			 struct intel_crtc_state *crtc_state,
-+			 struct drm_connector_state *conn_state,
-+			 bool respect_downstream_limits)
-+{
-+	switch (conn_state->color_format) {
-+	case DRM_CONNECTOR_COLOR_FORMAT_RGB444:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_RGB);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR444:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_YCBCR444);
-+	case DRM_CONNECTOR_COLOR_FORMAT_YCBCR420:
-+		return intel_dp_compute_output_format(encoder, crtc_state, conn_state,
-+						      respect_downstream_limits,
-+						      INTEL_OUTPUT_FORMAT_YCBCR420);
-+	case DRM_CONNECTOR_COLOR_FORMAT_AUTO:
-+		return intel_dp_compute_formats_auto(encoder, crtc_state, conn_state,
-+						     respect_downstream_limits);
-+	default:
-+		MISSING_CASE(conn_state->color_format);
-+		return -EINVAL;
-+	}
-+}
-+
- void
- intel_dp_audio_compute_config(struct intel_encoder *encoder,
- 			      struct intel_crtc_state *pipe_config,
-@@ -7027,6 +7055,29 @@ intel_dp_has_gamut_metadata_dip(struct intel_encoder *encoder)
- 	return false;
- }
- 
-+static void
-+intel_dp_attach_color_format_property(struct intel_dp *intel_dp)
-+{
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+	struct intel_digital_port *dig_port = dp_to_dig_port(intel_dp);
-+	unsigned long fmts = BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444);
-+	bool has_pcon = false;
-+
-+	if (!connector)
-+		return;
-+
-+	if (dig_port && intel_bios_encoder_is_lspcon(dig_port->base.devdata))
-+		has_pcon = true;
-+
-+	if (has_pcon || source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR420))
-+		fmts |= BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR420);
-+
-+	if (has_pcon || source_can_output(intel_dp, INTEL_OUTPUT_FORMAT_YCBCR444))
-+		fmts |= BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444);
-+
-+	drm_connector_attach_color_format_property(&connector->base, fmts);
-+}
-+
- static void
- intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *_connector)
- {
-@@ -7059,6 +7110,8 @@ intel_dp_add_properties(struct intel_dp *intel_dp, struct drm_connector *_connec
- 
- 	if (HAS_VRR(display))
- 		drm_connector_attach_vrr_capable_property(&connector->base);
-+
-+	intel_dp_attach_color_format_property(intel_dp);
- }
- 
- static void
+CI Bug Log - changes from CI_DRM_18648 -> Patchwork_167407v4
+====================================================
 
--- 
-2.54.0
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167407v4/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18648 -> Patchwork_167407v4
+
+  CI-20190529: 20190529
+  CI_DRM_18648: 1e8798282ef0590ad21ca33d80e225208d9c7864 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8955: 8955
+  Patchwork_167407v4: 1e8798282ef0590ad21ca33d80e225208d9c7864 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167407v4/index.html
+
+--===============0579823465247030938==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>For CI only: DC3CO/CMTG validation series (rev4)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167407/">https://patchwork.freedesktop.org/series/167407/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167407v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167407v4/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18648 -&gt; Patchwork_167407v4</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167407v4/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18648 -&gt; Patchwork_167407v4</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18648: 1e8798282ef0590ad21ca33d80e225208d9c7864 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8955: 8955<br />
+  Patchwork_167407v4: 1e8798282ef0590ad21ca33d80e225208d9c7864 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0579823465247030938==--
