@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 9uUTCFELKGqW8wIAu9opvQ
+	id xD98E1wLKGqe8wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:47:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:47:24 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A04A16602E9
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 96AD96602F6
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:47:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b="dUdUnwl/";
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=FrmFdary;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("zohomail.com:s=zohoarc:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F408910E4E3;
-	Tue,  9 Jun 2026 12:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1FE9010E505;
+	Tue,  9 Jun 2026 12:47:22 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 42F3F10E4E1;
- Tue,  9 Jun 2026 12:47:10 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1781009220; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F321910E4E4;
+ Tue,  9 Jun 2026 12:47:19 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1781009228; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=Ghb6usqO2wHxAMjnHigN4rE1kUO3CvqRaFxPuTZRXZNNqIEb2A3bJoMbAzRF05P42zKutthG/PAdLvH6o9dYS8NvouzoO06I4mL2a3OOTgAdBIq9DVaN3oC1DKdBjg52Gzn0mF6rzqNDCVNEe27dD6HiFUQ5ARXsKVe8SbZp2Ro=
+ b=bsfboea6G5vI0xOEWFQ88Ev/r4Z/11zOoD6o/4IeLx0V5p9zOGzEHQ6SB1JUJcZEWmjfbP/c9Wch69xyaEmOPGM0QhiRpR+UAfLxH0ZDXziM7KxeA6qHc9g7fFEeKOTfri47j2LqewS7WR0BMwvxqcpTQLSDYQfsdB3oFmvNvi4=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1781009220;
+ s=zohoarc; t=1781009228;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=8uhvifl0KjV7h78DpGOaJw8xIKxgprEXatY1NDwlp1s=; 
- b=aX671Ikl1fB8mYVEpeI9jq2l7NedXdi46S8dTYe5p8z191TFgloQCCDlanTZv27q7TP+WDg82Mh6CBG0besEFNxqMGtr8KbjsGmzyj1hKazbD94R6sS1vgxdayXQ+A/e+I3WQpbzayN7oLujcmKvgDXYCrWZ+riDYEFQVqlp2xo=
+ bh=D7OkGrx5RITojvZL5wh8fRAx5u92UWvLcmHWUyxRNHY=; 
+ b=JWyTsxf+Tg+0wblwoEIUJNvn1fHh42xiOqKMFusEDrT1tfEBmZXLyZkd7s1lW3Ihb6hHuNCMyajVL1Y2jb/zG1eM2elPUgd23AWC+01ScvXu6aDOr4YelgqjHOHONZu5ZurtjyxQqqflWtwdd/Hf46RXu1Ciz3xsY3jXSERFHqc=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781009220; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781009228; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=8uhvifl0KjV7h78DpGOaJw8xIKxgprEXatY1NDwlp1s=;
- b=dUdUnwl/h/U7I3GNWlwoJqHlGElMcw+dE7OClSs27eLj11ziN2cwn8s0XDDzw0Tj
- YZTmF7pF0hm5Qd71pX7Vz59LTjzpWWNpQHieBXwQFc9GbsjNIOIoo9hhujhnANrpcGn
- 9+kMdULqNJyvAv4Go3Cc6TwsfIfPviKTKccVspYc=
-Received: by mx.zohomail.com with SMTPS id 1781009217953519.0504266425163;
- Tue, 9 Jun 2026 05:46:57 -0700 (PDT)
+ bh=D7OkGrx5RITojvZL5wh8fRAx5u92UWvLcmHWUyxRNHY=;
+ b=FrmFdary03ftKUeD3RGpPC6bNeqU5RbO3YkJThWZd4s0g+FVOd6R+8/FU9NZQ6uB
+ wGxbvrm/SPR2g12B5bbJ+BNg45riE52wWAPLUAO00mUo3p4vMuqn7Z/axyXbT14gYSE
+ 333Knk5iBenRSAAGbHOVgiZcrNyCgvvjV6LYMWRc=
+Received: by mx.zohomail.com with SMTPS id 17810092273981019.8164379359182;
+ Tue, 9 Jun 2026 05:47:07 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 09 Jun 2026 14:44:04 +0200
-Subject: [PATCH v17 17/28] drm/rockchip: dw_hdmi_qp: Set supported_formats
- platdata
+Date: Tue, 09 Jun 2026 14:44:05 +0200
+Subject: [PATCH v17 18/28] drm/connector: Register color format property on
+ HDMI connectors
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260609-color-format-v17-17-35739b5782cc@collabora.com>
+Message-Id: <20260609-color-format-v17-18-35739b5782cc@collabora.com>
 References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
 In-Reply-To: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -81,7 +81,7 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 X-Mailer: b4 0.15.2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -123,42 +123,39 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[fooishbar.org:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fooishbar.org:email,qualcomm.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A04A16602E9
+X-Rspamd-Queue-Id: 96AD96602F6
 
-With the introduction of the supported_formats member in the
-dw-hdmi-qp platform data struct, drivers that have access to this
-information should now set it.
+The drmm_connector_hdmi_init function can figure out what DRM color
+formats are supported by a particular connector based on the supported
+HDMI format bitmask that's passed in.
 
-Set it in the rockchip dw_hdmi_qp glue driver.
+Use it to register the drm color format property.
 
-This allows this information to be passed down to the dw-hdmi-qp core,
-which sets it in the bridge it creates, and consequently will allow the
-common HDMI bridge code to act on it.
-
-Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Reviewed-by: Maxime Ripard <mripard@kernel.org>
+Reviewed-by: Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
 Reviewed-by: Daniel Stone <daniel@fooishbar.org>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c | 4 ++++
+ drivers/gpu/drm/drm_connector.c | 4 ++++
  1 file changed, 4 insertions(+)
 
-diff --git a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-index b77ef92ae954..815f9ea7bcbe 100644
---- a/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-+++ b/drivers/gpu/drm/rockchip/dw_hdmi_qp-rockchip.c
-@@ -602,6 +602,10 @@ static int dw_hdmi_qp_rockchip_bind(struct device *dev, struct device *master,
- 	plat_data.phy_data = hdmi;
- 	plat_data.max_bpc = 10;
+diff --git a/drivers/gpu/drm/drm_connector.c b/drivers/gpu/drm/drm_connector.c
+index 95c65ed18709..26d7449d0feb 100644
+--- a/drivers/gpu/drm/drm_connector.c
++++ b/drivers/gpu/drm/drm_connector.c
+@@ -636,6 +636,10 @@ int drmm_connector_hdmi_init(struct drm_device *dev,
+ 	if (max_bpc > 8)
+ 		drm_connector_attach_hdr_output_metadata_property(connector);
  
-+	plat_data.supported_formats = BIT(DRM_OUTPUT_COLOR_FORMAT_RGB444) |
-+				      BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR444) |
-+				      BIT(DRM_OUTPUT_COLOR_FORMAT_YCBCR422);
++	ret = drm_connector_attach_color_format_property(connector, supported_formats);
++	if (ret)
++		return ret;
 +
- 	encoder = &hdmi->encoder.encoder;
- 	encoder->possible_crtcs = drm_of_find_possible_crtcs(drm, dev->of_node);
+ 	connector->hdmi.funcs = hdmi_funcs;
  
+ 	return 0;
 
 -- 
 2.54.0
