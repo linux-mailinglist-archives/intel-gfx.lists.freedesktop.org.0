@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 8SrCLfWdKGpvGwMAu9opvQ
+	id KMhXBvqdKGpxGwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 01:12:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 01:12:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 88799664BF0
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 01:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DA1F2664BF8
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 01:12:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="Ntmp1/7K";
+	dkim=pass header.d=intel.com header.s=Intel header.b=Gn13ifep;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 17B6310E683;
-	Tue,  9 Jun 2026 23:12:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5A7C410E699;
+	Tue,  9 Jun 2026 23:12:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5884C10E683;
- Tue,  9 Jun 2026 23:12:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CF4F710E683;
+ Tue,  9 Jun 2026 23:12:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781046770; x=1812582770;
+ t=1781046771; x=1812582771;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=zazuMbNF8ARsUIfoV0FNnll96KsINTMimz7HrhJmkaI=;
- b=Ntmp1/7Kn8ueDratcrNXHkz2Gi901O49IF5QTcjx5irI7v9BFJXQhDdH
- vgVPrZE+rUzWLdUiBg8Nj5ISDG/h3AJh+zrxImDzAk8tmXEsiKyB3oQAD
- 6hztTVkaO68CKgHwF17uaV0cz/JfZDEKOigdJeGIbnxEY/oqyb19dha8R
- +ok5nGU3Kz0hnfenQ4ta8bBs+lA59vysEQm7G5qc6Ew78u1GCwQTWpsce
- O8Of5+c6P9B2svkIvIRnH+u0jOOud/Yze8tfcTyvdAHCmEu/m2DUXD8/k
- rQNmxq274CR0CnCR9lngeHU/dPuFIIC1N9LdIwJAWrEnlm3U8krB6Pij3 A==;
-X-CSE-ConnectionGUID: H2p6/E8NSeWpPGbYVHeetg==
-X-CSE-MsgGUID: yfiMvN1qRdKISOs1NTVbGw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="104492306"
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="104492306"
+ bh=nDC8pT0NvrAnaDOdx4T1itHkX1YbM5/+WaYmS1hEBOw=;
+ b=Gn13ifepTcsBsFKiKAmi8DNc6UckKdETbCz8u/ynM+fAfu7wVyUajAIA
+ hfy9Rn6iZEZKW7Ug22l4sZZmh/YqzfYe2ECgU49vp4DqHin0PVNs6zmae
+ VsByOOYD1edTlKRGyCiAXbvCMzfoUgFzW886UMkSQonLrI/Cs/uA2Wahi
+ tbzTUrzDxJmUdM6t8m86R+hZ+iTaYjuFQB1hO2zVXARo51c2FafH6N1VQ
+ t3ziTm1e1d8gDnYl4XVhCEnnl6dq9yblCoQG9fheQzrToI4K7PmjWHE7K
+ yPxAU98rsHHr+FX5Bmh7YL/q4QKsu/M8Ss1iD1a1nepIST1aRnGUXGF6s w==;
+X-CSE-ConnectionGUID: g+OjteUeT+OsXFjFp+y96w==
+X-CSE-MsgGUID: inn35x2SRXKWxftVe4FYMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="104492308"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="104492308"
 Received: from orviesa002.jf.intel.com ([10.64.159.142])
  by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 16:12:50 -0700
-X-CSE-ConnectionGUID: 9s0xOSFSRByk2FsN3UIfNw==
-X-CSE-MsgGUID: v6P+3QNWT76/b8Rn2kpR9A==
+ 09 Jun 2026 16:12:51 -0700
+X-CSE-ConnectionGUID: LHsF1esXSBSTopozMvfVKg==
+X-CSE-MsgGUID: VILFJbAaTFm0TRBm7CS1bQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="276187982"
+X-IronPort-AV: E=Sophos;i="6.24,196,1774335600"; d="scan'208";a="276187985"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa002.jf.intel.com with ESMTP; 09 Jun 2026 16:12:49 -0700
+ by orviesa002.jf.intel.com with ESMTP; 09 Jun 2026 16:12:51 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>,
  =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v1 5/9] drm/i915/scaler: check CASF before allocation's loop
-Date: Wed, 10 Jun 2026 01:12:13 +0200
-Message-ID: <20260609231217.208357-6-michal.grzelak@intel.com>
+Subject: [PATCH v1 6/9] drm/i915/scaler: inline CASF scaler allocation
+Date: Wed, 10 Jun 2026 01:12:14 +0200
+Message-ID: <20260609231217.208357-7-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260609231217.208357-1-michal.grzelak@intel.com>
 References: <20260609231217.208357-1-michal.grzelak@intel.com>
@@ -104,54 +104,46 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 88799664BF0
+X-Rspamd-Queue-Id: DA1F2664BF8
 
-intel_allocate_scaler() checks if casf_scaler is true and either
-allocates second scaler or fails if it was already allocated. Mimic this
-outside of the loop. Also fail the allocation if number of scalers is
-less than 2.
+Combine all CASF checks into one and invert it. By doing so check when
+to allocate CASF instead of checking when to fail it.
 
 Cc: Nemesa Garg <nemesa.garg@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/skl_scaler.c | 18 +++++++++++++-----
- 1 file changed, 13 insertions(+), 5 deletions(-)
+ drivers/gpu/drm/i915/display/skl_scaler.c | 16 ++++++----------
+ 1 file changed, 6 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-index 59a5a3cd3e6a..29e4047c3f99 100644
+index 29e4047c3f99..89920954c4b3 100644
 --- a/drivers/gpu/drm/i915/display/skl_scaler.c
 +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-@@ -339,16 +339,24 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
- 	struct intel_display *display = to_intel_display(crtc);
+@@ -340,17 +340,13 @@ static int intel_allocate_scaler(struct intel_crtc_scaler_state *scaler_state,
  	int scaler_id;
  
--	if (casf_scaler && !HAS_CASF(display))
--		return -1;
-+	if (casf_scaler) {
-+		if (!HAS_CASF(display))
-+			return -1;
-+
-+		if (crtc->num_scalers < 2)
-+			return -1;
-+
-+		if (scaler_state->scalers[1].in_use)
-+			return -1;
-+
-+		scaler_state->scalers[1].in_use = true;
-+		return 1;
-+	}
+ 	if (casf_scaler) {
+-		if (!HAS_CASF(display))
+-			return -1;
+-
+-		if (crtc->num_scalers < 2)
+-			return -1;
+-
+-		if (scaler_state->scalers[1].in_use)
+-			return -1;
++		if (HAS_CASF(display) && crtc->num_scalers >= 2 &&
++		    !scaler_state->scalers[1].in_use) {
++			scaler_state->scalers[1].in_use = true;
++			return 1;
++		}
+ 
+-		scaler_state->scalers[1].in_use = true;
+-		return 1;
++		return -1;
+ 	}
  
  	for (scaler_id = 0; scaler_id < crtc->num_scalers; scaler_id++) {
- 		if (scaler_state->scalers[scaler_id].in_use)
- 			continue;
- 
--		if (casf_scaler && scaler_id != 1)
--			continue;
--
- 		scaler_state->scalers[scaler_id].in_use = true;
- 
- 		return scaler_id;
 -- 
 2.45.2
 
