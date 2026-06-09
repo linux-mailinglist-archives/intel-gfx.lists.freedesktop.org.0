@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0/LxCzazJ2oj0wIAu9opvQ
+	id TJESMCm0J2ph0wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 08:31:18 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 08:35:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4866165CC91
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 08:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20AA265CD14
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 08:35:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5262710E0C8;
-	Tue,  9 Jun 2026 06:31:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9423310E0D4;
+	Tue,  9 Jun 2026 06:35:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A4F5310E0BD;
- Tue,  9 Jun 2026 06:31:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A33B10E0D3;
+ Tue,  9 Jun 2026 06:35:18 +0000 (UTC)
 Content-Type: multipart/alternative;
- boundary="===============7605639053437103504=="
+ boundary="===============7872405838197218386=="
 MIME-Version: 1.0
 Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_Handle_VSYNC_?=
  =?utf-8?q?timing_changes_in_the_LRR_path?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Ankit Nautiyal" <ankit.k.nautiyal@intel.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 09 Jun 2026 06:31:14 -0000
-Message-ID: <178098667466.57588.10691429480650838688@6beec6c84f66>
+Date: Tue, 09 Jun 2026 06:35:18 -0000
+Message-ID: <178098691842.57587.2037616796814494988@6beec6c84f66>
 X-Patchwork-Hint: ignore
 References: <20260609025325.1128543-1-ankit.k.nautiyal@intel.com>
 In-Reply-To: <20260609025325.1128543-1-ankit.k.nautiyal@intel.com>
@@ -78,11 +78,11 @@ X-Spamd-Result: default: False [5.89 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,patchwork.freedesktop.org:url,emeril.freedesktop.org:from_mime,gitlab.freedesktop.org:url,6beec6c84f66:mid,01.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4866165CC91
+X-Rspamd-Queue-Id: 20AA265CD14
 
---===============7605639053437103504==
+--===============7872405838197218386==
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -154,7 +154,7 @@ Build changes
 
 For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168144v1/index.html
 
---===============7605639053437103504==
+--===============7872405838197218386==
 Content-Type: text/html; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
@@ -221,4 +221,4 @@ Content-Transfer-Encoding: 7bit
 </body>
 </html>
 
---===============7605639053437103504==--
+--===============7872405838197218386==--
