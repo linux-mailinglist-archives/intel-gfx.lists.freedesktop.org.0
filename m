@@ -2,56 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0vXIDy8LKGqG8wIAu9opvQ
+	id QDNrJzYLKGqH8wIAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:46:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:46:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF5BD6602BB
-	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:46:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 478E56602C2
+	for <lists+intel-gfx@lfdr.de>; Tue, 09 Jun 2026 14:46:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=bWhwT80T;
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=ccaqK+I+;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("zohomail.com:s=zohoarc:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 34D1D10E44E;
-	Tue,  9 Jun 2026 12:46:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AED3D10E48B;
+	Tue,  9 Jun 2026 12:46:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4794710E3E0;
- Tue,  9 Jun 2026 12:46:35 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1781009182; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1099310E498;
+ Tue,  9 Jun 2026 12:46:43 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1781009192; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=nw+jpieMRzbySSOsDs8UjoOOF9cKoqbhc2gfXmCcSA1D/wJVw3S42ZscAxP9noE/rRtiAT9T3DPf+fMUehwaRHdlYq9BO+LQhQJTFLun5v9CKIaeNjLBYi+TVsLsZ6yI7bcqsdijrXDxtqV5VDc+cl+9EuBoowNsRrqdlCm9kkc=
+ b=nOIPQLbeDBn1Bt8BAB0/0g1vkcCeToAwa59y5TESDTsh2rPKIUpTBM9Ps2UeeXaTU3ZpT4Zqa2Zmd9MgA7Y1YTUparVhB+9FWE5Ah6De/9/eBCENNg5QHnAFX0xcEnElo0+anKyTwChPVXYXLyRfSQbKzjjuT70wZga19vAvhHo=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1781009182;
+ s=zohoarc; t=1781009192;
  h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=SChu0J3DJvJoXhWUxdgRxQlJ8WknqsXxC3OLvWADNVs=; 
- b=iKJ6XTskzLHQGH+utwY8KDgbVMuV2BSpILNqUhZ8cybmgIhZvDlgKAaXir05DNioQu2QIrKQkcyndseGxBccmOwp+lWZg9W6oOBo7shwviUL1vANqoW9tjqzgcK4fEjOS+oAauTxEkLD0kmAvs9x2+Qh9EIDQcRfebyySsxn1vM=
+ bh=tcD/rsO9xynf7NP8eA8bnOejKKWGyFuEY+zDeq4pxrM=; 
+ b=RJQce/JfNI+71NKsv8zsqknhje6eHbxvOQNxtqxC0QjxWAiag/oYVEpo2HqjOjSKpwukO5wy/xYCzTJVEL/Gm4rXNGpNelEwreyavMYmO9KJsUiXf+urlT8BTg+prSsjVCooyjwNFFMQ6Zr3j+p+P4ifDA+1zL0+5WE1Sg9YJ9I=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=nicolas.frattaroli@collabora.com;
  dmarc=pass header.from=<nicolas.frattaroli@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781009182; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1781009192; 
  s=zohomail; d=collabora.com; i=nicolas.frattaroli@collabora.com;
  h=From:From:Date:Date:Subject:Subject:MIME-Version:Content-Type:Content-Transfer-Encoding:Message-Id:Message-Id:References:In-Reply-To:To:To:Cc:Cc:Reply-To;
- bh=SChu0J3DJvJoXhWUxdgRxQlJ8WknqsXxC3OLvWADNVs=;
- b=bWhwT80TbOafRGNmgYtA0BNqchuGLJs+5dU9/XC+G5JYWH0MilP1GJsigPlegbj9
- Fc0yio+e41PlACxUtBKEQemblW/dzAep6AzERSRvyOg6VjRkbaIV/wg4zmmFurFRNVO
- G7s25eVK5we0mXEVqbxgQKQJILa+hfJ+VMuT6apM=
-Received: by mx.zohomail.com with SMTPS id 1781009179890860.0573231065;
- Tue, 9 Jun 2026 05:46:19 -0700 (PDT)
+ bh=tcD/rsO9xynf7NP8eA8bnOejKKWGyFuEY+zDeq4pxrM=;
+ b=ccaqK+I+AAsu0wRbnTiDXR81MY2E5iqrml42d/wCYcm3mKAr3CQ3Jj0RYHVF0zbM
+ VoHugWxlkLbSjwCXBaU8gor6qwbLgVhmS+eSD11WYx/aqXPjH7q7ow/6LN0PudjumgL
+ lAbgRjlAzfx/xPen84Zf/X0OIFr0jyTJYc4Rr+uY=
+Received: by mx.zohomail.com with SMTPS id 1781009189380792.875917367303;
+ Tue, 9 Jun 2026 05:46:29 -0700 (PDT)
 From: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
-Date: Tue, 09 Jun 2026 14:44:00 +0200
-Subject: [PATCH v17 13/28] drm/rockchip: vop2: Recognise 10-bit YUV422 as
- YUV format
+Date: Tue, 09 Jun 2026 14:44:01 +0200
+Subject: [PATCH v17 14/28] drm/rockchip: vop2: Set correct output format
+ for RK3576 YUV422
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260609-color-format-v17-13-35739b5782cc@collabora.com>
+Message-Id: <20260609-color-format-v17-14-35739b5782cc@collabora.com>
 References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
 In-Reply-To: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
 To: Harry Wentland <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, 
@@ -81,7 +81,7 @@ Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, 
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, 
- Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+ Andy Yan <andyshrk@163.com>
 X-Mailer: b4 0.15.2
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -102,61 +102,75 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
 	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
 	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
 	FREEMAIL_TO(0.00)[amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[41];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[41];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	DKIM_TRACE(0.00)[collabora.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[nicolas.frattaroli@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[collabora.com,lists.freedesktop.org,vger.kernel.org,lists.infradead.org,163.com];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,fooishbar.org:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,fooishbar.org:email,collabora.com:dkim,collabora.com:email,collabora.com:mid,collabora.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CF5BD6602BB
+X-Rspamd-Queue-Id: 478E56602C2
 
-The Rockchip VOP2 video output driver has a "is_yuv_output" function,
-which returns true when a given bus format is a YUV format, and false
-otherwise.
+For RK3576 to be able to output YUV422 signals, it first needs to be
+able to pick the right output mode in the display controller to do so.
 
-This switch statement is lacking the bus format used for YUV422 10-bit.
+The RK3576 hardware specifies different output formats depending on the
+used display protocol.
 
-Add the two component orderings of the YUV422 10-bit bus formats to the
-switch statement.
+Adjust the written register value based on the SoC and connector, so
+other users of vcstate->output_mode don't have to care about this.
 
-Fixes: 604be85547ce ("drm/rockchip: Add VOP2 driver")
-Reviewed-by: Cristian Ciocaltea <cristian.ciocaltea@collabora.com>
+Reviewed-by: Andy Yan <andyshrk@163.com>
 Reviewed-by: Daniel Stone <daniel@fooishbar.org>
 Signed-off-by: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>
 ---
- drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/gpu/drm/rockchip/rockchip_drm_vop2.c | 16 ++++++++++++++++
+ 1 file changed, 16 insertions(+)
 
 diff --git a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-index 6230735bbabc..3fad79fe2d89 100644
+index 3fad79fe2d89..4cce3e336f5b 100644
 --- a/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
 +++ b/drivers/gpu/drm/rockchip/rockchip_drm_vop2.c
-@@ -352,6 +352,8 @@ static bool is_yuv_output(u32 bus_format)
- 	switch (bus_format) {
- 	case MEDIA_BUS_FMT_YUV8_1X24:
- 	case MEDIA_BUS_FMT_YUV10_1X30:
-+	case MEDIA_BUS_FMT_YUYV10_1X20:
-+	case MEDIA_BUS_FMT_UYVY10_1X20:
- 	case MEDIA_BUS_FMT_UYYVYY8_0_5X24:
- 	case MEDIA_BUS_FMT_UYYVYY10_0_5X30:
- 	case MEDIA_BUS_FMT_YUYV8_2X8:
+@@ -1824,6 +1824,22 @@ static void vop2_crtc_atomic_enable(struct drm_crtc *crtc,
+ 	if (vcstate->output_mode == ROCKCHIP_OUT_MODE_AAAA &&
+ 	    !(vp_data->feature & VOP2_VP_FEATURE_OUTPUT_10BIT))
+ 		out_mode = ROCKCHIP_OUT_MODE_P888;
++	else if (vcstate->output_mode == ROCKCHIP_OUT_MODE_YUV422 &&
++		 vop2->version == VOP_VERSION_RK3576)
++		switch (vcstate->output_type) {
++		case DRM_MODE_CONNECTOR_DisplayPort:
++		case DRM_MODE_CONNECTOR_eDP:
++			out_mode = ROCKCHIP_OUT_MODE_YUV422_RK3576_DP;
++			break;
++		case DRM_MODE_CONNECTOR_HDMIA:
++			out_mode = ROCKCHIP_OUT_MODE_YUV422_RK3576_HDMI;
++			break;
++		default:
++			drm_err(vop2->drm, "Unknown DRM_MODE_CONNECTOR %d\n",
++				vcstate->output_type);
++			vop2_unlock(vop2);
++			return;
++		}
+ 	else
+ 		out_mode = vcstate->output_mode;
+ 
 
 -- 
 2.54.0
