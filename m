@@ -2,37 +2,37 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id +yYNJneiKWosbAMAu9opvQ
+	id 8ysXGXaiKWoqbAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:44:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:44:22 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4515E66C072
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:44:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BCDA366C06A
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:44:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sms-medipool.de header.s=mail header.b=WRhGzsKQ;
+	dkim=pass header.d=sms-medipool.de header.s=mail header.b=nUv3IEOX;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=reject) header.from=sms-medipool.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 43AB210EB44;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 382FE10E1C4;
 	Wed, 10 Jun 2026 17:44:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A96C210E1C4;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AB4E110E528;
  Wed, 10 Jun 2026 17:44:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
  s=mail; t=1781113456;
- bh=YgVJz4WwQdlTleUrTkNoFqn5Uqj/4xhgLc17gnJGJ38=;
+ bh=xP/kZT3mUaeUNX4TxlYlkVie+felP3LU6Vg0yA2SbC4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=WRhGzsKQDfdcq5tJSSNLZTrOA/t203jrFrbsU4ZY7+WtHKpZjNHv+/cLOwgA1laq/
- zIxTSyHsCCGkJGn1IAexeS71+74EQTueHWeldu+N0HmVE/wmgwdLybVgALfrk1VNaj
- CaStcDbmkllSVElatKLHwwNrKPj1EP4MWj/Eazw4lpMZJA9W4m7nXrL3Roqe9psy//
- DhU8jHLJeNfUQzqcLpqm8XjVWfAwZwIxOI+FSWe+8c24SKoNjcjGXE069jhTyTmnco
- Jhg6hEV2LVDgev4+1AJxpkl0M0bImPgqLEHqxCXYGFwrlJ0NncQ2EVtWIMnGae6z7a
- GVI8Cqxdhzyqw==
+ b=nUv3IEOX5VLfPbySMEC764y58XOKYf3BneYmkemFwdsI39v7q1KyoP8GcB2WhTsyw
+ MENeivEsg0E3AgSTW48ntE31z3jDn3HgRNaBq6kdd4Sy7Mx8jLrYjcN5iDqaLCJ0vq
+ /hWae2daoi4l2L2Ge9s7VVHMqgL07JFd888N2kxo5AgDiGTGmBu9OcmE+m+4SMZO4v
+ cq90kiKKlXJNl6RACMCgaw6Dop/lYXlVCK7ABFtZRrZBd9DG8gdSooUjGxmSpaxH17
+ xUao0tD3NG283s0bxyHl4YUekeUhrxcSCg099hIpJWIuli0e5b4ACcGBSW758ucegn
+ dv2qVtI1zZlzw==
 Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id D680F11D3B;
+ by mail.sms-medipool.de (Postfix) with ESMTPS id D82F711B54;
  Wed, 10 Jun 2026 19:44:15 +0200 (CEST)
 Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
  by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
@@ -47,10 +47,10 @@ Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
  Nicolas Frattaroli <nicolas.frattaroli@collabora.com>,
  Jani Nikula <jani.nikula@linux.intel.com>,
  Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: [PATCH 2/3] drm/i915/dp: Ignore the sink's DSC max FRL rate without a
- PCON DSC encoder
-Date: Wed, 10 Jun 2026 19:44:12 +0200
-Message-ID: <20260610174413.5881-3-alexander.kaplan@sms-medipool.de>
+Subject: [PATCH 3/3] drm/i915/dp: Check FRL bandwidth limits in the HDMI bpc
+ computation
+Date: Wed, 10 Jun 2026 19:44:13 +0200
+Message-ID: <20260610174413.5881-4-alexander.kaplan@sms-medipool.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
 References: <20260610174413.5881-1-alexander.kaplan@sms-medipool.de>
@@ -75,88 +75,135 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	DMARC_POLICY_ALLOW(-0.50)[sms-medipool.de,reject];
+	R_DKIM_ALLOW(-0.20)[sms-medipool.de:s=mail];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[sms-medipool.de:s=mail];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	ARC_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[sms-medipool.de:+];
+	ARC_NA(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[alexander.kaplan@sms-medipool.de,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,sms-medipool.de:dkim,sms-medipool.de:email,sms-medipool.de:mid,sms-medipool.de:from_mime];
+	RCPT_COUNT_SEVEN(0.00)[10];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:email,sms-medipool.de:dkim,sms-medipool.de:email,sms-medipool.de:mid,sms-medipool.de:from_mime];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[sms-medipool.de:+]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4515E66C072
+X-Rspamd-Queue-Id: BCDA366C06A
 
-intel_dp_hdmi_sink_max_frl() limits the sink's max FRL rate by its
-DSC max FRL rate whenever the sink supports DSC 1.2.
-However, the DSC max FRL rate (HF-VSDB DSC_Max_FRL_Rate) only applies
-to compressed video transport, which requires a DSC 1.2 encoder in
-the PCON (configured via intel_dp_pcon_dsc_configure()).
-Without such an encoder the HDMI link always carries uncompressed
-video, for which the regular Max_FRL_Rate is the correct limit.
+The bpc computation for HDMI sinks behind a DP branch device
+(intel_dp_hdmi_compute_bpc()) validates each bpc candidate against
+the sink's TMDS character rate limits, even if the video will be
+transmitted over an FRL link, where those limits don't apply.
 
-Applying the DSC limit unconditionally trains the FRL link at a lower
-rate than both the PCON and the sink support.
-E.g. an LG OLED G4 (Max_FRL_Rate 48 Gbps, DSC_Max_FRL_Rate 24 Gbps)
-behind a Synaptics VMM7100 PCON (PCON max FRL bw 48 Gbps, no DSC
-encoder):
+This caps such sinks at 8bpc whenever a deep color mode's
+TMDS-equivalent character rate exceeds the TMDS limit, although the
+FRL link has plenty of bandwidth.
+E.g. 4k60 RGB 10bpc corresponds to a ~742 MHz TMDS character rate,
+above the typical 600 MHz limit, but only needs ~17.8 Gbps of e.g. a
+48 Gbps FRL link.
+Modes whose rate exceeds the TMDS limit already at 8bpc (e.g. 4k120)
+are additionally forced from RGB to YCbCr 4:2:0 output.
 
-  Sink max rate from EDID = 24 Gbps
-  FRL trained with : 24 Gbps
+If both the PCON and the sink support FRL, validate the required
+bandwidth against the FRL bandwidth the link will be trained with
+(the same min() of the PCON's and the sink's max FRL rate that
+intel_dp_pcon_start_frl_training() uses) instead of the TMDS limits.
+This mirrors how intel_dp_mode_valid_downstream() already validates
+modes against the FRL bandwidth for such sinks.
+Sinks without FRL support behind an FRL capable PCON keep using the
+TMDS limits, since the PCON transmits to them in TMDS mode.
 
-while Windows/macOS train the same hardware at 40/48 Gbps.
-The too low FRL rate needlessly constrains the formats available to
-the sink.
+The sink's deep color EDID capabilities still apply via
+intel_hdmi_bpc_possible(), and the DP link side limits are handled
+separately, as before.
 
-Only apply the sink's DSC max FRL rate if the PCON has a DSC 1.2
-encoder, matching the gate in intel_dp_pcon_dsc_configure().
-PCONs with a DSC encoder keep the current conservative behavior,
-since the link is trained once and compressed transport may be used
-for any subsequent mode.
-With this the setup above trains at 48 Gbps.
+intel_dp_mode_valid_downstream() currently checks the FRL bandwidth
+only against the PCON's limit and also skips the TMDS checks for
+non-FRL sinks behind an FRL capable PCON.
+Aligning it with the limit used here is left for a separate change.
 
-Tested on PTL (xe) with the above PCON/sink combo.
+Tested on PTL (xe) with a Synaptics VMM7100 PCON and an LG OLED G4:
+4k60 goes from RGB 8bpc (dithered 6bpc pipe) to RGB 12bpc with HDR,
+matching macOS (12bpc) and Windows (10bpc) on the same hardware.
 
-Fixes: 10fec80b48c5 ("drm/i915/display: Configure PCON for DSC1.1 to DSC1.2 encoding")
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c | 9 ++++++++-
- 1 file changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_dp.c | 37 ++++++++++++++++++++++++-
+ 1 file changed, 36 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 13cfccf60490..2831b274d88a 100644
+index 2831b274d88a..511d99326af4 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -4254,7 +4254,14 @@ static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp)
- 	rate_per_lane = info->hdmi.max_frl_rate_per_lane;
- 	max_frl_rate = max_lanes * rate_per_lane;
+@@ -124,6 +124,7 @@ bool intel_dp_is_edp(struct intel_dp *intel_dp)
+ }
  
--	if (info->hdmi.dsc_cap.v_1p2) {
+ static void intel_dp_unset_edid(struct intel_dp *intel_dp);
++static int intel_dp_hdmi_sink_max_frl(struct intel_dp *intel_dp);
+ 
+ /* Is link rate UHBR and thus 128b/132b? */
+ bool intel_dp_is_uhbr(const struct intel_crtc_state *crtc_state)
+@@ -1347,6 +1348,40 @@ static int frl_required_bw(int clock, int bpc,
+ 	return clock * bpc * 3;
+ }
+ 
++static enum drm_mode_status
++intel_dp_hdmi_clock_valid(struct intel_dp *intel_dp,
++			  int clock, int bpc,
++			  enum intel_output_format sink_format,
++			  bool respect_downstream_limits)
++{
++	int max_frl_bw;
++
++	if (!respect_downstream_limits)
++		return MODE_OK;
++
++	/* The FRL bandwidth the link will be trained with */
++	max_frl_bw = min(intel_dp->dfp.pcon_max_frl_bw,
++			 intel_dp_hdmi_sink_max_frl(intel_dp));
++
 +	/*
-+	 * The sink's DSC max FRL rate only applies to compressed video
-+	 * transport, which requires a DSC 1.2 encoder in the PCON. Without
-+	 * one the HDMI link always carries uncompressed video, for which
-+	 * the regular max FRL rate is the limit.
++	 * If both the PCON and the sink support FRL, the PCON transmits
++	 * to the sink in FRL mode, where the TMDS character rate limits
++	 * don't apply.
 +	 */
-+	if (drm_dp_pcon_enc_is_dsc_1_2(intel_dp->pcon_dsc_dpcd) &&
-+	    info->hdmi.dsc_cap.v_1p2) {
- 		max_dsc_lanes = info->hdmi.dsc_cap.max_lanes;
- 		dsc_rate_per_lane = info->hdmi.dsc_cap.max_frl_rate_per_lane;
- 		if (max_dsc_lanes && dsc_rate_per_lane)
++	if (max_frl_bw > 0) {
++		/* converting bw from Gbps to Kbps */
++		max_frl_bw = max_frl_bw * 1000000;
++
++		if (frl_required_bw(clock, bpc, sink_format) > max_frl_bw)
++			return MODE_CLOCK_HIGH;
++
++		return MODE_OK;
++	}
++
++	return intel_dp_tmds_clock_valid(intel_dp, clock, bpc,
++					 sink_format, respect_downstream_limits);
++}
++
+ static enum drm_mode_status
+ intel_dp_mode_valid_downstream(struct intel_connector *connector,
+ 			       const struct drm_display_mode *mode,
+@@ -1831,7 +1866,7 @@ static int intel_dp_hdmi_compute_bpc(struct intel_dp *intel_dp,
+ 	for (; bpc >= 8; bpc -= 2) {
+ 		if (intel_hdmi_bpc_possible(crtc_state, bpc,
+ 					    intel_dp_has_hdmi_sink(intel_dp)) &&
+-		    intel_dp_tmds_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
++		    intel_dp_hdmi_clock_valid(intel_dp, clock, bpc, crtc_state->sink_format,
+ 					      respect_downstream_limits) == MODE_OK)
+ 			return bpc;
+ 	}
 -- 
 2.54.0
 
