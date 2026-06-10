@@ -2,58 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id M26QNL2ZKWrRaQMAu9opvQ
+	id BZKgKMKZKWrXaQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5890966BD71
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3F12966BD80
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=f91uygHv;
+	dkim=pass header.d=intel.com header.s=Intel header.b=A58gyMDV;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E5F4610EB14;
-	Wed, 10 Jun 2026 17:07:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C42FA10E685;
+	Wed, 10 Jun 2026 17:07:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B421710E689;
- Wed, 10 Jun 2026 17:07:06 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7793510E682;
+ Wed, 10 Jun 2026 17:07:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781111226; x=1812647226;
+ t=1781111232; x=1812647232;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=6tgYfBnaE0vIpQ0zMFwSMa19fUSXJpi0joM7uRJ8lgY=;
- b=f91uygHvErS8oRu0NCAF5jc1gHoyPQxcyy6Od/lFCGGliwmxaigyl3r3
- ZPWbYq0LMsu4buQ5JRb4AUwC41n7+dez6W94G7+3JNVl1mz/PWM58or2Q
- xnvLcnHX92gSv7IixRNBD/+0iWFarTnp5BNf0rgMuwvGqDXQYqqxJ/S7o
- vjI4AlYpSN0y/9DCkuMHiTd+31PtH8RINXg+yniYFWlUNRLDSi0qTePF5
- yu2PKaqeU9CcXmwkLiOQU5bB9dEhTsLNZBbLvWZxEb4DqSQaXjGZTO4rp
- GMgjC7wmWPLsPOz3O3/wby63HTSvHSVQyQ25DVCwM+/S6ktxcAcabXBaS A==;
-X-CSE-ConnectionGUID: 9m325HMAT+qirnCOZHLMGw==
-X-CSE-MsgGUID: dExvUG04TJKtQmDMYFvTYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="99490277"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="99490277"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:07:06 -0700
-X-CSE-ConnectionGUID: vdaYAJcWTP6Z49uj6wR+/Q==
-X-CSE-MsgGUID: AUUrGMh+QQqIhHZYzJyCAQ==
+ bh=Xxr8JoMbT2dO9AlPxsvnqCtILx229EFg1nhlIvN5vZ8=;
+ b=A58gyMDVv3SoLy8dqO9ZTN/yZHdT5NYoRPaD3mn2V+pDXtJbodcBK0OQ
+ kRSodYYxUHOD6TZyFU+enKfDylcQw8SnaGZnsEvNNRPBTeK903eDCXj1T
+ bR5roCTg7UNIaQiJHj03aeZRg3t9L+T0wzwDLiT8DMN+zg+9mRuyPWoLl
+ Q/2UbKaxE54/3doGETCKhA9xm10iqlCxHlLa1tQQ/LqocynOW460kNOgb
+ V4PbNlhPofGMBfEGRqowjPbdD+LMIjJWhZKtheFq/hNkDiVxKzrWsLizd
+ 6K8D1dLwAqNIi9g/hZl8j2sDgrK0SS2qnTD8deAi2HP0l7ICG4qrTjxQH g==;
+X-CSE-ConnectionGUID: fEq186dkQmKYrmQEjaIC2Q==
+X-CSE-MsgGUID: bPb5G3sIQiCTRZbyuQU5cA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81887157"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81887157"
+Received: from orviesa007.jf.intel.com ([10.64.159.147])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 10:07:12 -0700
+X-CSE-ConnectionGUID: UbDu+yFcSqix60pecDor6w==
+X-CSE-MsgGUID: /iJIHFTjSEe5JuvpPk3bfQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250507278"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="246306373"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.62])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:07:05 -0700
+ by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 10:07:10 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 02/14] drm/i915/cdclk: Pass CDCLK in MHz to pcode on DG2
-Date: Wed, 10 Jun 2026 20:06:39 +0300
-Message-ID: <20260610170652.5320-3-ville.syrjala@linux.intel.com>
+Subject: [PATCH 03/14] drm/i915/cdclk: Do the DG2 CDCLK/pipe power well notify
+ properly
+Date: Wed, 10 Jun 2026 20:06:40 +0300
+Message-ID: <20260610170652.5320-4-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
 References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
@@ -103,47 +104,63 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.intel.com:mid,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5890966BD71
+X-Rspamd-Queue-Id: 3F12966BD80
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-We are currently trying to pass the CDCLK in kHz to the pcode
-on DG2, while the pcode expects a value in MHz units. Adjust
-the units appropriately.
+The pcode post notufy needs to happen after the CDCLK has been
+changed, not before. Also move the pre_notify call a bit for the
+sake of symmetry.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 8 ++++++--
- 1 file changed, 6 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 9ca56bab281f..9718062d8d6c 100644
+index 9718062d8d6c..d60b3369b4d2 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2703,8 +2703,10 @@ static void intel_cdclk_pcode_pre_notify(struct intel_atomic_state *state)
- 	 * if CDCLK is decreasing or not changing, set bits 25:16 to current CDCLK,
- 	 * which basically means we choose the maximum of old and new CDCLK, if we know both
- 	 */
--	if (change_cdclk)
-+	if (change_cdclk) {
- 		cdclk = max(new_cdclk_state->actual.cdclk, old_cdclk_state->actual.cdclk);
-+		cdclk = DIV_ROUND_UP(cdclk, 1000);
-+	}
+@@ -2796,9 +2796,6 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
+ 				 &new_cdclk_state->actual))
+ 		return;
  
- 	/*
- 	 * According to "Sequence For Pipe Count Change",
-@@ -2740,8 +2742,10 @@ static void intel_cdclk_pcode_post_notify(struct intel_atomic_state *state)
- 	 * According to "Sequence After Frequency Change",
- 	 * set bits 25:16 to current CDCLK
- 	 */
--	if (update_cdclk)
-+	if (update_cdclk) {
- 		cdclk = new_cdclk_state->actual.cdclk;
-+		cdclk = DIV_ROUND_UP(cdclk, 1000);
-+	}
+-	if (display->platform.dg2)
+-		intel_cdclk_pcode_pre_notify(state);
+-
+ 	if (new_cdclk_state->disable_pipes) {
+ 		cdclk_config = new_cdclk_state->actual;
+ 		pipe = INVALID_PIPE;
+@@ -2823,6 +2820,9 @@ intel_set_cdclk_pre_plane_update(struct intel_atomic_state *state)
  
- 	/*
- 	 * According to "Sequence For Pipe Count Change",
+ 	drm_WARN_ON(display->drm, !new_cdclk_state->base.changed);
+ 
++	if (display->platform.dg2)
++		intel_cdclk_pcode_pre_notify(state);
++
+ 	intel_set_cdclk(display, &cdclk_config, pipe,
+ 			"Pre changing CDCLK to");
+ }
+@@ -2851,9 +2851,6 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+ 				 &new_cdclk_state->actual))
+ 		return;
+ 
+-	if (display->platform.dg2)
+-		intel_cdclk_pcode_post_notify(state);
+-
+ 	if (!new_cdclk_state->disable_pipes &&
+ 	    new_cdclk_state->actual.cdclk < old_cdclk_state->actual.cdclk)
+ 		pipe = new_cdclk_state->pipe;
+@@ -2864,6 +2861,9 @@ intel_set_cdclk_post_plane_update(struct intel_atomic_state *state)
+ 
+ 	intel_set_cdclk(display, &new_cdclk_state->actual, pipe,
+ 			"Post changing CDCLK to");
++
++	if (display->platform.dg2)
++		intel_cdclk_pcode_post_notify(state);
+ }
+ 
+ /* pixels per CDCLK */
 -- 
 2.53.0
 
