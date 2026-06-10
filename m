@@ -2,60 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id f3iMCLWZKWrJaQMAu9opvQ
+	id Ur+2DbmZKWrNaQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A6F9666BD5D
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DD4D766BD69
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=i7N3nXkW;
+	dkim=pass header.d=intel.com header.s=Intel header.b=dZfXJuXT;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2783A10E511;
-	Wed, 10 Jun 2026 17:06:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7058A10E631;
+	Wed, 10 Jun 2026 17:07:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AD58F10E50A;
- Wed, 10 Jun 2026 17:06:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 08BA710E643;
+ Wed, 10 Jun 2026 17:07:02 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781111217; x=1812647217;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=6yD6w63qbg8RKnbzyJqPL0v7NMj/K+wtyq1MWmhVzcM=;
- b=i7N3nXkWztnlKnXDNvm1Md/c0BmTUDCajdmrIguHX6fMKHs7PlKlkR7j
- SE2P7kp+yhPllPMzEZm7fkGOz9WzvutHmxF0pGXA3xLDhSbn14sAtJKJ5
- GSjSQN++vDghSo5vWLDj+sNotAWhSKtm68hK8dBVgiS3XTsvbblFcge1t
- vwW96iOm8HU5IzflbAQHGA1fm0YgGns+ThMqYGCGP05jI7V8Tk4TGidi+
- 8nMbrMu0x8iyK4dcCCgDSMS0s9DHReS0ebH8ZboHqIhGVC/Sa7heaMAlF
- pbhYJgEUF+rmygY/Zcp3dThW8ypp6Ckj/tc5E4Kx7KPUMnydbw14kHQNA w==;
-X-CSE-ConnectionGUID: tuFh4ymeRGC5nPaVR/Safg==
-X-CSE-MsgGUID: /93AVLkkT/iuv4881xz8+A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="99490257"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="99490257"
+ t=1781111222; x=1812647222;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=LPIAmBR9OhrxNdaYl4+cfF7nHGYcYW/S/zRlMQw113o=;
+ b=dZfXJuXTvvD2veAh0BNomIK9tTsUAAQuXS/qK480wzUIJAwiUdqz318l
+ xRVWyDeRcYciUW5bZ2HZwg89+VkJ+oDE4QIkVllctdvlbMEZ/pzrM2UIf
+ RmWTtJGPKkboQme41FiRspPGeF8KGvdUJbNUTGuWA40hzPCIoQNo2brfR
+ ghc2Jfvc5j1c2PoEIY4KyQUC9WJu++3JpgrCqVlHIKU2bgFx1y7ltDsqw
+ jDBXPtZYYJoXBRU2bpl5Us78aD8tvp+qMBip05eGo/rZGlZkip6Sjk3Gs
+ xRJ8uAPR5EPCw/2X82ALRrQZxiOIt+y3NwAcg9400OF2HItJoWWeMmPzd Q==;
+X-CSE-ConnectionGUID: uz4Z1SyxQQK+kkq3sbNWow==
+X-CSE-MsgGUID: E4n9hJ6pSMWdEjAKQX+gRw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="99490268"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="99490268"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:06:57 -0700
-X-CSE-ConnectionGUID: 6yCSQVUzQq+0+X/o8IE93g==
-X-CSE-MsgGUID: ZA/MRzwVRWSU4qrfN2e13Q==
+ 10 Jun 2026 10:07:01 -0700
+X-CSE-ConnectionGUID: GnxEMSwwRTCsDs9kgD0B7Q==
+X-CSE-MsgGUID: giT01X7JTWeQy4KlrU1w5A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250507217"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250507250"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.62])
  by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:06:56 -0700
+ 10 Jun 2026 10:07:00 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 00/14] drm/i915/cdclk: cdclk pcode related fixes and
- refactoring
-Date: Wed, 10 Jun 2026 20:06:37 +0300
-Message-ID: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH 01/14] drm/i915/cdclk: Don't bail if pcode post nofify fails
+Date: Wed, 10 Jun 2026 20:06:38 +0300
+Message-ID: <20260610170652.5320-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
+References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -102,35 +103,37 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.intel.com:mid,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A6F9666BD5D
+X-Rspamd-Queue-Id: DD4D766BD69
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Fix up some bugs around the cdclk pcode notificatiosn on DG2,
-follow up with some unification/cleanups, and finally convert
-the pcode stuff (except on dg2, due to it doing weird things)
-into vfuncs (goal being to make the code less messy).
+We already changed the actual cdclk frequency by the time we do
+the pcode post notify. So skipping the subsequent readout is plain
+wrong.
 
-Ville Syrjälä (14):
-  drm/i915/cdclk: Don't bail if pcode post nofify fails
-  drm/i915/cdclk: Pass CDCLK in MHz to pcode on DG2
-  drm/i915/cdclk: Do the DG2 CDCLK/pipe power well notify properly
-  drm/i915/cdclk: Notify DG2 pcode about pipe power wells regardless of
-    CDCLK
-  drm/i915/cdclk: Stop forcing voltage level to 3 all the time on DG2
-  drm/i915/cdclk: Drop pointless platform check from bxt_set_cdclk()
-  drm/i915/dg2: s/intel_/dg2_/ for DG2 specific stuff
-  drm/i915/cdclk: Unify the pcode pre/post notify in bxt_set_cdclk()
-  drm/i915/cdclk: Unify pcode related debugs
-  drm/i915/cdclk: Extract bdw_cdclk_pcode_{pre,post}_notify()
-  drm/i915/cdclk: Extract skl_cdclk_pcode_{pre,post}_notify()
-  drm/i915/cdclk: Extract bxt_cdclk_pcode_{pre,post}_notify()
-  drm/i915/cdclk: Introduce CDCLK .{pre,post}_notify() vfuncs
-  drm/i915/cdclk: Hoist intel_cdclk_{pre,post}_notify() calls upwards
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_cdclk.c | 301 ++++++++++++---------
- 1 file changed, 171 insertions(+), 130 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+index 189ae2d3cfc9..9ca56bab281f 100644
+--- a/drivers/gpu/drm/i915/display/intel_cdclk.c
++++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+@@ -2301,12 +2301,10 @@ static void bxt_set_cdclk(struct intel_display *display,
+ 						       HSW_PCODE_DE_WRITE_FREQ_REQ,
+ 						       cdclk_config->voltage_level, 2);
+ 	}
+-	if (ret) {
++	if (ret)
+ 		drm_err(display->drm,
+ 			"PCode CDCLK freq set failed, (err %d, freq %d)\n",
+ 			ret, cdclk);
+-		return;
+-	}
+ 
+ 	intel_update_cdclk(display);
+ 
 -- 
 2.53.0
 
