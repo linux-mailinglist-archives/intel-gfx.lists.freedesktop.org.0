@@ -2,78 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cR9lBu2BKWrdYAMAu9opvQ
+	id zxdTAfGBKWrkYAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:25:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:25:37 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B817B66AB91
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:25:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A32B066ABAD
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:25:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=lmPGu+Ys;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=RIOnc1xz;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=lmPGu+Ys;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=RIOnc1xz;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=UPlsKJOw;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=7FpMHr4e;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=UPlsKJOw;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=7FpMHr4e;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=suse.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D146610EA7E;
-	Wed, 10 Jun 2026 15:25:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C6D7E10EA8F;
+	Wed, 10 Jun 2026 15:25:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 20D7110EA85
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 15:25:29 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 415E510EA8F
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 15:25:33 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id F19D46AEA6;
- Wed, 10 Jun 2026 15:25:18 +0000 (UTC)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E47416AEA8;
+ Wed, 10 Jun 2026 15:25:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
  t=1781105119; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Mxql3716pXqWQmEE2LeoKEN1xwiz6N2JV4+1RCYfKw0=;
- b=lmPGu+YsH6vuslQO3NcxMiJCOgCfsBTiLtq7CIKTjIiUM86f++StXUdrsBJFtg0PwuRx7w
- k67FvJRDe5jVJna5FGo0mYqLXAb7XCMmlkFC0BHH2PdQ1+45F9p0o2FPAYH9GqQ9SxOZGz
- uY5mqP/uvtmkQo7WeDuCbxwQ4TF2vBg=
+ bh=GFESXTPcE3Y+rjrUnIDIihl7ns8gRcpEocg6I0wkelM=;
+ b=UPlsKJOwz0OtoxvOQUccXAF3ETu2oy6z1kdiA7LLNhbaKRIqoFYx0yt6+avqbyk6VTz7Ay
+ W2h6hgMycHHK/8f6IPptElkzePQmuP3gtEK6xpKEpxkvabC31OUvjXr9G5D17KTO1QPBQT
+ pazgzdTzWXqmrJgFVJY3U3N1aQ176dk=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_ed25519; t=1781105119;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Mxql3716pXqWQmEE2LeoKEN1xwiz6N2JV4+1RCYfKw0=;
- b=RIOnc1xzz9T+R2qdG/VOw252ZL/cinH1eb7Ns1BAL0cfGO/r1DUlc+zqs6gMPdLv0yMmg3
- TFT7v7EtFZDaMpBQ==
+ bh=GFESXTPcE3Y+rjrUnIDIihl7ns8gRcpEocg6I0wkelM=;
+ b=7FpMHr4ewgDGbhKphuteZT8SXxUORYW1dm1zPKQcopgTz96a689V0Mf2d4zXgIHkEWC0uE
+ up4RiPKp/tn51EBQ==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
  t=1781105119; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Mxql3716pXqWQmEE2LeoKEN1xwiz6N2JV4+1RCYfKw0=;
- b=lmPGu+YsH6vuslQO3NcxMiJCOgCfsBTiLtq7CIKTjIiUM86f++StXUdrsBJFtg0PwuRx7w
- k67FvJRDe5jVJna5FGo0mYqLXAb7XCMmlkFC0BHH2PdQ1+45F9p0o2FPAYH9GqQ9SxOZGz
- uY5mqP/uvtmkQo7WeDuCbxwQ4TF2vBg=
+ bh=GFESXTPcE3Y+rjrUnIDIihl7ns8gRcpEocg6I0wkelM=;
+ b=UPlsKJOwz0OtoxvOQUccXAF3ETu2oy6z1kdiA7LLNhbaKRIqoFYx0yt6+avqbyk6VTz7Ay
+ W2h6hgMycHHK/8f6IPptElkzePQmuP3gtEK6xpKEpxkvabC31OUvjXr9G5D17KTO1QPBQT
+ pazgzdTzWXqmrJgFVJY3U3N1aQ176dk=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
  s=susede2_ed25519; t=1781105119;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=Mxql3716pXqWQmEE2LeoKEN1xwiz6N2JV4+1RCYfKw0=;
- b=RIOnc1xzz9T+R2qdG/VOw252ZL/cinH1eb7Ns1BAL0cfGO/r1DUlc+zqs6gMPdLv0yMmg3
- TFT7v7EtFZDaMpBQ==
+ bh=GFESXTPcE3Y+rjrUnIDIihl7ns8gRcpEocg6I0wkelM=;
+ b=7FpMHr4ewgDGbhKphuteZT8SXxUORYW1dm1zPKQcopgTz96a689V0Mf2d4zXgIHkEWC0uE
+ up4RiPKp/tn51EBQ==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 230CA779A7;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 05B7E779A9;
  Wed, 10 Jun 2026 15:25:18 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id UEgpB96BKWr3HwAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 6HoBAN+BKWr3HwAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Wed, 10 Jun 2026 15:25:18 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: mripard@kernel.org, maarten.lankhorst@linux.intel.com, airlied@redhat.com,
@@ -89,10 +89,10 @@ Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
  amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH v5 08/15] drm/atomic-helpers: Evaluate plane damage after
- atomic_check
-Date: Wed, 10 Jun 2026 17:18:24 +0200
-Message-ID: <20260610152505.260172-9-tzimmermann@suse.de>
+Subject: [PATCH v5 09/15] drm/ingenic: Remove calls to
+ drm_atomic_helper_check_plane_damage()
+Date: Wed, 10 Jun 2026 17:18:25 +0200
+Message-ID: <20260610152505.260172-10-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260610152505.260172-1-tzimmermann@suse.de>
 References: <20260610152505.260172-1-tzimmermann@suse.de>
@@ -148,44 +148,69 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.de:dkim,suse.de:email,suse.de:mid,suse.de:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,broadcom.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.de:dkim,suse.de:email,suse.de:mid,suse.de:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B817B66AB91
+X-Rspamd-Queue-Id: A32B066ABAD
 
-Each plane's and CRTC's atomic_check might trigger a full modeset. As
-this affects the plane's damage handling, evaluate damage clips after
-running the atomic_check helpers.
-
-Examples can be found in a number of drivers, such as ast, gud, ingenic,
-mgag200 or vmwgfx, which all set mode_changed in the CRTC state to true.
-Ingenic even re-evaluates damage information in its plane's atomic_check.
-Doing this after the atomic_check helpers ran benefits all drivers.
-
-There's already a damage evaluation before the calls to atomic_check.
-With a few fixes to drivers, this can be removed.
+Atomic helpers call drm_atomic_helper_check_plane_damage() after the
+atomic_check anyway. See atomic_helper_check_planes(). Remove the calls
+from the planes' atomic_check.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 Acked-by: Zack Rusin <zack.rusin@broadcom.com>
 ---
- drivers/gpu/drm/drm_atomic_helper.c | 4 ++++
- 1 file changed, 4 insertions(+)
+ drivers/gpu/drm/ingenic/ingenic-drm-drv.c | 3 ---
+ drivers/gpu/drm/ingenic/ingenic-ipu.c     | 8 ++------
+ 2 files changed, 2 insertions(+), 9 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
-index 285aac3554df..8e080a42aec4 100644
---- a/drivers/gpu/drm/drm_atomic_helper.c
-+++ b/drivers/gpu/drm/drm_atomic_helper.c
-@@ -1071,6 +1071,10 @@ drm_atomic_helper_check_planes(struct drm_device *dev,
- 		}
- 	}
+diff --git a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+index 42c86f195c66..e99b44e3ac92 100644
+--- a/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
++++ b/drivers/gpu/drm/ingenic/ingenic-drm-drv.c
+@@ -519,9 +519,6 @@ static int ingenic_drm_plane_atomic_check(struct drm_plane *plane,
+ 	     old_plane_state->fb->format->format != new_plane_state->fb->format->format))
+ 		crtc_state->mode_changed = true;
  
-+	for_each_oldnew_plane_in_state(state, plane, old_plane_state, new_plane_state, i) {
-+		drm_atomic_helper_check_plane_damage(state, new_plane_state);
-+	}
-+
- 	return ret;
+-	if (priv->soc_info->map_noncoherent)
+-		drm_atomic_helper_check_plane_damage(state, new_plane_state);
+-
+ 	return 0;
  }
- EXPORT_SYMBOL(drm_atomic_helper_check_planes);
+ 
+diff --git a/drivers/gpu/drm/ingenic/ingenic-ipu.c b/drivers/gpu/drm/ingenic/ingenic-ipu.c
+index 56143a191f36..fd17c642c7ac 100644
+--- a/drivers/gpu/drm/ingenic/ingenic-ipu.c
++++ b/drivers/gpu/drm/ingenic/ingenic-ipu.c
+@@ -594,7 +594,7 @@ static int ingenic_ipu_plane_atomic_check(struct drm_plane *plane,
+ 
+ 	if (!new_plane_state->crtc ||
+ 	    !crtc_state->mode.hdisplay || !crtc_state->mode.vdisplay)
+-		goto out_check_damage;
++		return 0;
+ 
+ 	/* Plane must be fully visible */
+ 	if (new_plane_state->crtc_x < 0 || new_plane_state->crtc_y < 0 ||
+@@ -611,7 +611,7 @@ static int ingenic_ipu_plane_atomic_check(struct drm_plane *plane,
+ 		return -EINVAL;
+ 
+ 	if (!osd_changed(new_plane_state, old_plane_state))
+-		goto out_check_damage;
++		return 0;
+ 
+ 	crtc_state->mode_changed = true;
+ 
+@@ -645,10 +645,6 @@ static int ingenic_ipu_plane_atomic_check(struct drm_plane *plane,
+ 	ipu_state->denom_w = denom_w;
+ 	ipu_state->denom_h = denom_h;
+ 
+-out_check_damage:
+-	if (ingenic_drm_map_noncoherent(ipu->master))
+-		drm_atomic_helper_check_plane_damage(state, new_plane_state);
+-
+ 	return 0;
+ }
+ 
 -- 
 2.54.0
 
