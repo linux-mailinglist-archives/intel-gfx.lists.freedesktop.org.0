@@ -2,68 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NDsVNUVcKWqqVgMAu9opvQ
+	id r/e0IGxfKWqjVwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 14:44:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 14:58:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5CAA966963F
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 14:44:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 532FB6697FF
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 14:58:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="auAM5ll/";
+	dkim=pass header.d=intel.com header.s=Intel header.b=HMqXlgNa;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E86E010E5F6;
-	Wed, 10 Jun 2026 12:44:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BFD9210E933;
+	Wed, 10 Jun 2026 12:58:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE93610E5F6;
- Wed, 10 Jun 2026 12:44:50 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A673410E933;
+ Wed, 10 Jun 2026 12:58:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781095491; x=1812631491;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=hIWCz3UA4vNH9IueJBRqoaIAuCwHOvIq3PBAp5wQmDU=;
- b=auAM5ll/K796DgQKcO2YBMLNn3Qn/BdI5HwLoxHbzrM2WZeiW29O07HP
- bF0BjJfXWHFxBNvQXxKEtlw5fn5aF7+MvBzCzxFLb9ZMVxAX6KRnZ8xnp
- uvCvNchD6sH2yPXT9yzU//JiAoyZMbhn9h62lTZdCaynszshZ7lD/qWpL
- 6xoeyvdznfBu8LBjHetTH13CTJyCVeptXc+Gh1VOJm379MK79rDzzRcTC
- njNMwVofXXWQq2qcF+FCN1f/Yr3xpGJr2kqoJzphOwc0O/RwBYBdufTMO
- pJ22ay1BxzJ6hpS99A/+v+mA241251rhccMvhMf63/pRRvbeIbNOXulxP A==;
-X-CSE-ConnectionGUID: Nw/N3SubQomXGSH8CHp8hA==
-X-CSE-MsgGUID: ZRCYjFkDQ1KlcyfBQSdozA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="92205677"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="92205677"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 05:44:50 -0700
-X-CSE-ConnectionGUID: G5I+w7t3QfOI/Z44Q2pZ1w==
-X-CSE-MsgGUID: kGGTfdADQ2ySA6y2DxnChg==
+ t=1781096297; x=1812632297;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=6WgdMP9OoXN6z5IVN41bG26QZw45g9rfEHnSkDkcKdg=;
+ b=HMqXlgNa0kyGf6QH7it7iJTJBmOyo4DrXgRtrylEz014rPhrwUNqCZBI
+ Owr637MQNh76KGWKIPOB0MlatxmGO5lNBVcsGl7hZ1j4BC5kmxA0jHaln
+ 8sh9OedyKajMmRRm/ji3XgpKzbr1AZdFGOwDUf7oFgfFJeCcB2Mf2jHYV
+ 1cA0jz4up1E21b8VnsFWABw52GXKA1Tf6Lobgke5SXpbu+TyoeCyxcr9b
+ 0LG9KBKgIj17062mWRqnq+jKUQHB6jOu9ISGpqKdkusPIHrGUOm2iHyLV
+ N1tLpW5JwgDhdnhuy5WyBsVmjwd/VnUKYF3ReGIkhSFLOJLZzMw4e1T/r w==;
+X-CSE-ConnectionGUID: Xtr9pjpYQjKJa0zyl92DZg==
+X-CSE-MsgGUID: yefuvWP2Qk6BH23XG3C8hw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="99306823"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="99306823"
+Received: from orviesa010.jf.intel.com ([10.64.159.150])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 05:58:17 -0700
+X-CSE-ConnectionGUID: vS/+9V1AT4ugIoJwzoXgmw==
+X-CSE-MsgGUID: fl4crEApR+SiYOSzAt4sng==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="242024690"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.62])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 05:44:48 -0700
-Date: Wed, 10 Jun 2026 15:44:44 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Nemesa Garg <nemesa.garg@intel.com>
-Subject: Re: [PATCH v1 0/9] drm/i915/scaler: allocation cleanup
-Message-ID: <ailcPBpmqJ0wa7--@intel.com>
-References: <20260609231217.208357-1-michal.grzelak@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="245316436"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.3])
+ by orviesa010-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 05:58:13 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
+ intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org
+Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com,
+ raag.jadav@intel.com, Michal.Wajdeczko@intel.com
+Subject: Re: [PATCH v4 4/5] drm/i915: Refactor generic_handle_irq_safe()
+ error messages
+In-Reply-To: <20260608183050.3875235-5-jonathan.cavitt@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260608183050.3875235-1-jonathan.cavitt@intel.com>
+ <20260608183050.3875235-5-jonathan.cavitt@intel.com>
+Date: Wed, 10 Jun 2026 15:58:10 +0300
+Message-ID: <ba60b79c77cdc2aaba3137c1aac3f4588530c120@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260609231217.208357-1-michal.grzelak@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,75 +79,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.46 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.77)[subject];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	HAS_ORG_HEADER(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,intel.com:dkim,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5CAA966963F
+X-Rspamd-Queue-Id: 532FB6697FF
 
-On Wed, Jun 10, 2026 at 01:12:08AM +0200, Michał Grzelak wrote:
-> Apparently during review of commit 17d70a0760f2 ("drm/i915/casf: Extract
-> scaler_has_casf()") I missed that argument plane_state isn't used
-> anymore. While at it couple other fixes included.
-> 
-> This series will almost surely need a better splitting than currently
-> is, but I hope now it is slightly easier to review.
-> 
-> BR,
-> Michał
-> 
-> 
-> Michał Grzelak (9):
->   drm/i915/scaler: remove unused plane_state argument
->   drm/i915/scaler: s/i/scaler_id/
+On Tue, 09 Jun 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
+> Refactor all error messages resulting from generic_handle_irq_safe()
+> failures in I915 for clarity.
 
-Those seem fine.
+This needs to be sent separately from the rest, and merged via
+drm-intel-next, while the rest should go through drm-xe-next.
 
->   drm/i915/scaler: de-Morgan-ize !scaler_has_casf()
->   drm/i915/scaler: move independent CASF check
->   drm/i915/scaler: check CASF before allocation's loop
->   drm/i915/scaler: inline CASF scaler allocation
->   drm/i915/scaler: linearize scaler allocation
->   drm/i915/scaler: move CASF alloc check into
->     intel_atomic_setup_scaler()
->   drm/i915/scaler: move CASF alloc check into setup_crtc_scaler()
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-This looks like it's replacing a simple "does this scale have CASF?"
-check with some kind of more complicated special casing of the CASF
-scaler elsewhere. I don't like it.
-
-> 
->  drivers/gpu/drm/i915/display/skl_scaler.c | 43 ++++++++++++-----------
->  1 file changed, 22 insertions(+), 21 deletions(-)
-> 
-> -- 
-> 2.45.2
+>
+> v2:
+> - Use drm_err_ratelimited() correctly (jcavitt)
+>
+> v3:
+> - Use xe_err_ratelimited() instead (Jadav)
+> - Split into patch series (jcavitt)
+>
+> v4:
+> - Use suggested phrasing (Wajdeczko)
+>
+> v5:
+> - s/PTR_ERR/ERR_PTR (jcavitt)
+>
+> Suggested-by: Raag Jadav <raag.jadav@intel.com>
+> Suggested-by: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_lpe_audio.c | 2 +-
+>  drivers/gpu/drm/i915/gt/intel_gsc.c            | 2 +-
+>  2 files changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_lpe_audio.c b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> index 022ad18044bf..ff2cf479d8e1 100644
+> --- a/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> +++ b/drivers/gpu/drm/i915/display/intel_lpe_audio.c
+> @@ -265,7 +265,7 @@ void intel_lpe_audio_irq_handler(struct intel_display *display)
+>  	ret = generic_handle_irq_safe(display->audio.lpe.irq);
+>  	if (ret)
+>  		drm_err_ratelimited(display->drm,
+> -				    "error handling LPE audio irq: %d\n", ret);
+> +				    "LPE audio: irq handling failed (%pe)\n", ERR_PTR(ret));
+>  }
+>  
+>  /**
+> diff --git a/drivers/gpu/drm/i915/gt/intel_gsc.c b/drivers/gpu/drm/i915/gt/intel_gsc.c
+> index 050d909fb4f8..1c06bf76568a 100644
+> --- a/drivers/gpu/drm/i915/gt/intel_gsc.c
+> +++ b/drivers/gpu/drm/i915/gt/intel_gsc.c
+> @@ -286,7 +286,7 @@ static void gsc_irq_handler(struct intel_gt *gt, unsigned int intf_id)
+>  
+>  	ret = generic_handle_irq_safe(gt->gsc.intf[intf_id].irq);
+>  	if (ret)
+> -		gt_err_ratelimited(gt, "error handling GSC irq: %d\n", ret);
+> +		gt_err_ratelimited(gt, "GSC: irq handling failed (%pe)\n", ERR_PTR(ret));
+>  }
+>  
+>  void intel_gsc_irq_handler(struct intel_gt *gt, u32 iir)
 
 -- 
-Ville Syrjälä
-Intel
+Jani Nikula, Intel
