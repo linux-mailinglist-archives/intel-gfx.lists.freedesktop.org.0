@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4p4hMMuZKWrbaQMAu9opvQ
+	id 34AeGNGZKWreaQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 54F6E66BD92
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F166D66BD9D
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:07:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=UpftDAQD;
+	dkim=pass header.d=intel.com header.s=Intel header.b=LosPJ7yo;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D8DF910EB40;
-	Wed, 10 Jun 2026 17:07:21 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 82D8310EB4E;
+	Wed, 10 Jun 2026 17:07:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0334910EB2C;
- Wed, 10 Jun 2026 17:07:20 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9E06810EB54;
+ Wed, 10 Jun 2026 17:07:25 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781111242; x=1812647242;
+ t=1781111245; x=1812647245;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=IPOOIMeDM9vDODJQ2VQQ5mNC4cSEPgeHK+2MZkqn9bI=;
- b=UpftDAQDhJiA7zBPwbim4F61+JJmJRM0uGD0NJoJrAkEfjI7pd/Zg2kD
- BDMVEACUsiHrAOJ4NDMPh5KpzuLdEgPQJQ1WIZVtaL9fWwI7krhINrCvd
- VhJYoIu981xXYZK06LTJGQfpxkUZp3TurE2IGdZl8FOc56q6vdA/gG2e1
- TM6Tv95iiccNjpSTFrvlkkU09m/OpUTupAeBh2agRGGuImS569jOZRdqj
- myKow2fJ0CdgWnk+h6Tf4fwGAEpXWvtC811sKDr+8Mkxfbm0dAfYvoNrr
- 0vnR+rlVJil9RkhfdwGVUVQrSO/jryPaGTB7OBkwidtuar9omqWDpWRmG g==;
-X-CSE-ConnectionGUID: mxcyf0lTTomTG2cksNUYyw==
-X-CSE-MsgGUID: ReTrRnGKQRq8UfoWU7p6Pw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="81887163"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81887163"
-Received: from orviesa007.jf.intel.com ([10.64.159.147])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:07:21 -0700
-X-CSE-ConnectionGUID: /V2RYZ2tT0WfiHhQmwoWWA==
-X-CSE-MsgGUID: SekIDn6WRfihjgIukGTdpQ==
+ bh=uJqr+/D9HEdLW3qrIEYrRHXZAtLR2bH88H3IIB5UMZg=;
+ b=LosPJ7yodgCS8wRPxawz6p6TaVaSC5sKxEviUDx+ZPkgo4Nj1QanHKty
+ zqMCaAtHCmUwThvB7SX5KTpTeOhQxlqzjHcKQehG4E7DiYJZmfv8eyCAc
+ gPztjrCiPbxVkHXW46ZiZSJPYG4z+o0Ei1bBLK0ltGgvWmscAOcgkP9GJ
+ NDp3UKb2BGbg3QHX+oWRPPx/j+Me5C3ReT68wBnNCGN/6e5T1iU1Vk5j5
+ O7nAryTLvnbwzx9uVpEbPzAY0WJtlOPvhALbZWs+ywNXD8r3zuXJ1yjmY
+ VS3LLRKRqPD3e/cIjJNPOU61v3Ag+bGEoA8icMMCBXTVOnpKX0BBJPdU4 A==;
+X-CSE-ConnectionGUID: BwGSNQqnTFe4/i5T8XxQZA==
+X-CSE-MsgGUID: vc6jhm0wSOGdT0x3I6vv6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="99490311"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="99490311"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 10:07:25 -0700
+X-CSE-ConnectionGUID: vR916hEUR560ZlKyN8PIfQ==
+X-CSE-MsgGUID: NR3tSYGyTm+SgIi0g+Jg6Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="246306416"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250507320"
 Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.62])
- by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:07:20 -0700
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 10:07:24 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 05/14] drm/i915/cdclk: Stop forcing voltage level to 3 all the
- time on DG2
-Date: Wed, 10 Jun 2026 20:06:42 +0300
-Message-ID: <20260610170652.5320-6-ville.syrjala@linux.intel.com>
+Subject: [PATCH 06/14] drm/i915/cdclk: Drop pointless platform check from
+ bxt_set_cdclk()
+Date: Wed, 10 Jun 2026 20:06:43 +0300
+Message-ID: <20260610170652.5320-7-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
 References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
@@ -102,34 +102,48 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,linux.intel.com:mid,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.intel.com:mid,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 54F6E66BD92
+X-Rspamd-Queue-Id: F166D66BD9D
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-SKL_CDCLK_PREPARE_FOR_CHANGE == DISPLAY_TO_PCODE_VOLTAGE(3) so
-we are currently forcing the voltage level to 3 all the time on
-DG2. Remove SKL_CDCLK_PREPARE_FOR_CHANGE from the mask to avoid
-this.
+Overwrite cdclk.hw.voltage_level from intel_update_cdclk() at the
+end on bxt_set_cdclk() also on bxt/glk. While this isn't actually
+necessary due to bxt/glk not having any extra DDI based voltage
+level requirements, it does avoid one less silly 'if' in the code.
+
+On icl+ the value derived by bxt_get_cdclk() may not be correct
+if the voltage level was bumped up due to DDI requirements, thus
+overwriting the assumed value is crucial there.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cdclk.c | 1 -
- 1 file changed, 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_cdclk.c | 11 +++++------
+ 1 file changed, 5 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 7259048361a7..ecb6be3383ca 100644
+index ecb6be3383ca..bbf3603f889b 100644
 --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -2598,7 +2598,6 @@ static void intel_pcode_notify(struct intel_display *display,
- 		update_mask |= DISPLAY_TO_PCODE_PIPE_COUNT_VALID;
+@@ -2308,12 +2308,11 @@ static void bxt_set_cdclk(struct intel_display *display,
  
- 	ret = intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
--					 SKL_CDCLK_PREPARE_FOR_CHANGE |
- 					 update_mask,
- 					 SKL_CDCLK_READY_FOR_CHANGE,
- 					 SKL_CDCLK_READY_FOR_CHANGE, 3);
+ 	intel_update_cdclk(display);
+ 
+-	if (DISPLAY_VER(display) >= 11)
+-		/*
+-		 * Can't read out the voltage level :(
+-		 * Let's just assume everything is as expected.
+-		 */
+-		display->cdclk.hw.voltage_level = cdclk_config->voltage_level;
++	/*
++	 * Can't read out the voltage level :(
++	 * Let's just assume everything is as expected.
++	 */
++	display->cdclk.hw.voltage_level = cdclk_config->voltage_level;
+ }
+ 
+ static void bxt_sanitize_cdclk(struct intel_display *display)
 -- 
 2.53.0
 
