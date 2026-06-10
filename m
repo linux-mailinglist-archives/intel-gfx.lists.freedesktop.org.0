@@ -2,92 +2,172 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id wCyTLiMbKWr0QgMAu9opvQ
+	id 8p8LImsbKWoPQwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 10:06:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 10:08:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3375F666EBD
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 10:06:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9AC00666F12
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 10:08:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=ursulin.net header.s=google header.b=rONbnDjl;
+	dkim=pass header.d=amd.com header.s=selector1 header.b=U0c85P2n;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=none
+	dmarc=pass (policy=quarantine) header.from=amd.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E484C10E79C;
-	Wed, 10 Jun 2026 08:06:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2C8DE10E79D;
+	Wed, 10 Jun 2026 08:08:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-ed1-f45.google.com (mail-ed1-f45.google.com
- [209.85.208.45])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CA27A10E794
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 08:06:53 +0000 (UTC)
-Received: by mail-ed1-f45.google.com with SMTP id
- 4fb4d7f45d1cf-69165354c87so4767373a12.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 01:06:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=ursulin.net; s=google; t=1781078812; x=1781683612; darn=lists.freedesktop.org;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :from:to:cc:subject:date:message-id:reply-to;
- bh=tV8bVaCGg3y34HefJ73rptnGNh2U6CedJrnOiZid/gE=;
- b=rONbnDjlWhCUWVkBGCfXJ/v0I9qF6oTYPiXwzAfhBglbcmBX1v6q5d0htVnkvqcbg5
- 1+AxjtAhAlPW6Lnv/xYOCJprJdYdRSLlhhi2hnqp4YgFj9CzHqEVIaGh045fAsy+RqHL
- MTatj8XovCKYmYQcShxbFkMbNtb7QbLGhP2o4tzwLHoNopU1m0CMtEl6kuCYGpunwjwp
- US1Wxri8z5ZhATpq8thaMV3m5/EkkVNNyACvJ/6FDV3IB/q2eXJs4ijpYj6OJlyLewvb
- Sj6Pg7UYkUZCYKW1GwF+wYYi0pZ5pE1RYR1KOK8rQqLfuDGiB0lMbtCUtO3wv40si2nK
- N+uw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781078812; x=1781683612;
- h=content-transfer-encoding:in-reply-to:from:content-language
- :references:cc:to:subject:user-agent:mime-version:date:message-id
- :x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
- :reply-to;
- bh=tV8bVaCGg3y34HefJ73rptnGNh2U6CedJrnOiZid/gE=;
- b=gGPwM9PnpIrjARskOUTgdlk5Eao0jOPS62PyhecyxVZeHqe2t6/ycIgg6Jlgut6WAL
- 9qsvkpD7uk6f+YR+bA/FYRls53AVnhEG6J7hCfKgEI+Lx8yKUFkIk1ptizcf+GXM7Kqg
- DaD42sMjDvU4GTWMVD/lNBbQG+sWNb6RlQtuzS28EaE1hElckQg1Mb/A5VFK1CiKhvE7
- a4Boqej6BVfaZuPUg4aIsXotNrk3S9j89wvPcqbAw5Q2iiMbKkSJ7gc8XGO/SuU5kPqM
- /qJzF0Fu6hSwYKhyT7uCW7TEqS8R4uZiZclDMCMIdH+IKaSVmSVNtB9K2K7R1szwMaOC
- Xj+g==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8Fn/h+bun6BbtOZ+7N4c2TElm/sBmzPf6BfMO6IMagvb0EJ3HjIlqpH5oDahwt62aoNppji9357ZQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YxEFlabGb8DsrpCPAyYm/90YmLOXMDzYiOBxhH4D9bmjNA116gt
- XulASt2lrkyYEhAkPlN/cRc2guN0McTKeU9EajZ70kX6qi5RODE5QJtyidxFZZ3lB6s=
-X-Gm-Gg: Acq92OFokCfh9PsCZFM8cOTXThvsNTkyv74lr8GBuY0wx9AKWiLLdFoE5VcWgRo8T9d
- O8r4CJ5Q83Eem3WANxmBbd/EWP5akkeUNKFYoSa2nOZIt2i/D27mre3WjJiM5l6Nqdg2YQT2QLB
- oboC1sH0FBO2i9TQwbIbJMbIE5IDaggmMG8WESW8MRnZd/EdiOX5vcRbJdtynfghEHGtoGHxbAC
- 9hZS5mv4AbXFwjCaLMYgYcUl6SiC/SWxmWfY0/169S64IolCJhJHQ1C+X6bEyloAMDizpK0KZZ8
- LNjpjTg3HMuf51V7B2uHPXXam+Grne1gZwGvqMQD0HvM5OPyewZub5UWRQCS5LBbhpz543gsT5P
- 4lsPcvxIGIy8f9PzKP5UQVtwqyVubzBrOdQEHRYrc1GoC3r57kl0hdqu/roEIOYbuzX+lSGFBbF
- roN8aUpG+jPiyf1R6ZjtnA+mOuMZfl5DXUJ5eaAXWZJ8U2sGHMErD5Vlc=
-X-Received: by 2002:a05:6402:d0d:b0:676:988e:8eb6 with SMTP id
- 4fb4d7f45d1cf-68fa5354446mr10490926a12.26.1781078812054; 
- Wed, 10 Jun 2026 01:06:52 -0700 (PDT)
-Received: from [192.168.0.116] ([90.240.106.137])
- by smtp.gmail.com with ESMTPSA id
- 4fb4d7f45d1cf-68e6585154dsm9480292a12.15.2026.06.10.01.06.51
- (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
- Wed, 10 Jun 2026 01:06:51 -0700 (PDT)
-Message-ID: <9f827a2e-bb9a-4356-96d1-6b10d100695b@ursulin.net>
-Date: Wed, 10 Jun 2026 09:06:50 +0100
-MIME-Version: 1.0
+Received: from PH7PR06CU001.outbound.protection.outlook.com
+ (mail-westus3azon11010020.outbound.protection.outlook.com [52.101.201.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7422210E79D;
+ Wed, 10 Jun 2026 08:08:07 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bNkaqkOVFjhH21ZuywHUPXBUtjF8MTKcgGQkSuhllLLaApRDi3lHVndKNiVfs0FXM2M3qNGH+v2m0jV9beNhm1MXmKjNbxmiphDE5Wsn8puQenWoiUShigfkwILE8Ma/6law4RNI7356xTn7tAufJ2QZZY644CjIoUGlTnLVDS0Dr8CsjReulgC4G3P9gy/8uKWy4Ji65HrrQ3Oiozf3zB3WaLbuKAy7Pmervdcm6dbXpNFjD87xjcSIT79LH5fLwXiYSYLn0xdbvs++HP8fgihyW7HbbPWmBNPiiVDZHkX+Z8UGzNGOuii4tvMnJrJ/20wr+IhNpCGwHgUng+jHfQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=nbGKZZeqXl0I3jIvv4zrXT60WcWn3r0FjCw0D0clQE0=;
+ b=sGXlPtLyvs4dX/m6eFTJZAvr/r4bPCXiE1M29MKB1vGdFYKDVr3g/jbyLqxLtnOzSB09XGrpQ6J8lAqaMbjwKOIbSGIdCsTD91X4BmegXpgDJK8/sIl10vfhZaPzO5xgivTE8weNYvw9gjrwt/Ck5TX5zQGwPNZY6hSFhA4I4lxvmokPeH37Y4lVCIp5/o3hYsu2IpNqXUY3z7mZlE+Fcuy/KDDQ/f2O+oe68+NxgDPtMTZiPe+H4i9I1Kv98O3pH8vRzAQvECyCucCf/QDVLkfMBqmJjaZKmusocBC6Fft0nFnF/hhfX+x1rybK1KNBnPodZdj8ZmuoqdpqJrPvdQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
+ header.d=amd.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nbGKZZeqXl0I3jIvv4zrXT60WcWn3r0FjCw0D0clQE0=;
+ b=U0c85P2nyNZkhOVpCxmQJoVPTwz8wcKJn6VJZN9yOeHvYxEcBcUiJGpUHg0iDI6WXzYt82Uxnn/aWq2TaOPVPrdhlSUQDqkuKDYrrlMQELrQ3Bq/nq4M3xwDV12GiIR8h1DeuGz6rEQ9OdOMPL62tGfJiqvoWYNIAEEy4vjCLeY=
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com (2603:10b6:510:13c::22)
+ by LV9PR12MB9805.namprd12.prod.outlook.com (2603:10b6:408:2ee::15)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.92.14; Wed, 10 Jun
+ 2026 08:08:03 +0000
+Received: from PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c]) by PH7PR12MB5685.namprd12.prod.outlook.com
+ ([fe80::ce69:cfae:774d:a65c%5]) with mapi id 15.21.0092.006; Wed, 10 Jun 2026
+ 08:08:03 +0000
+Message-ID: <6b2efdee-95b0-4306-a682-0d0466497ddb@amd.com>
+Date: Wed, 10 Jun 2026 10:07:48 +0200
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH] drm/i915/gem: Fix phys BO pread/pwrite with offset
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>
-Cc: Direct Rendering Infrastructure - Development
- <dri-devel@lists.freedesktop.org>,
- "Matthew Wilcox (Oracle)" <willy@infradead.org>, stable@vger.kernel.org,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>
-References: <20260610060314.26111-1-joonas.lahtinen@linux.intel.com>
-Content-Language: en-GB
-From: Tvrtko Ursulin <tursulin@ursulin.net>
-In-Reply-To: <20260610060314.26111-1-joonas.lahtinen@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: Re: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor
+ state
+To: Kaitao Cheng <kaitao.cheng@linux.dev>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Thierry Reding <thierry.reding@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Sowjanya Komatineni <skomatineni@nvidia.com>,
+ Davidlohr Bueso <dave@stgolabs.net>, "Paul E . McKenney"
+ <paulmck@kernel.org>, Josh Triplett <josh@joshtriplett.org>,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Will Deacon <will@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Eddie James <eajames@linux.ibm.com>, Mark Brown <broonie@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Laxman Dewangan <ldewangan@nvidia.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Waiman Long <longman@redhat.com>,
+ drbd-dev@lists.linbit.com, linux-block@vger.kernel.org,
+ linux1394-devel@lists.sourceforge.net, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-spi@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Christian Brauner
+ <brauner@kernel.org>, David Howells <dhowells@redhat.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Kaito Cheng <chengkaitao@kylinos.cn>, Muchun Song <muchun.song@linux.dev>,
+ Philipp Reisner <philipp.reisner@linbit.com>,
+ Lars Ellenberg <lars.ellenberg@linbit.com>,
+ =?UTF-8?Q?Christoph_B=C3=B6hmwalder?= <christoph.boehmwalder@linbit.com>,
+ Jens Axboe <axboe@kernel.dk>, Takashi Sakamoto <o-takashi@sakamocchi.jp>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+ <bd0b7393-8ccb-4d67-8bfc-18c68347122c@amd.com>
+ <5152089a-2808-4fe9-b633-b03018105dd2@linux.dev>
+Content-Language: en-US
+From: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+In-Reply-To: <5152089a-2808-4fe9-b633-b03018105dd2@linux.dev>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-ClientProxiedBy: BN0PR04CA0196.namprd04.prod.outlook.com
+ (2603:10b6:408:e9::21) To PH7PR12MB5685.namprd12.prod.outlook.com
+ (2603:10b6:510:13c::22)
+MIME-Version: 1.0
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR12MB5685:EE_|LV9PR12MB9805:EE_
+X-MS-Office365-Filtering-Correlation-Id: 85825337-3575-4d69-2f6c-08dec6c76501
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|23010399003|366016|1800799024|7416014|376014|5023799004|11063799006|56012099006|4143699003|6133799003|22082099003|18002099003;
+X-Microsoft-Antispam-Message-Info: 5wK+o6SmdROth+udKW36JmZvOpN+fjaHzQbrcYUJyNcEGhiRBssI2SJ0EaD1hNGYXzVREYz+h4BocGjaRx3o/UpjMzYNiBbfcdQw2sN0FzKSPmFdzJAZe2ErKl4F8mYNr+uckBTtzyhJUa+LhhuoJllvGeVpVdPlS6xYnkjIMMoOw88qhPRzsaTD0ALfQ2gb8pGt4gLcVDtf6KqBvEvEFxyhR5Pxn5lsQWq33cp3Jn97kcQJ2OVKyuaNrMhKB5UXwU4ujhhFLHaRbLwVDAJka9bUUgs49eI2seI0786oN26wnPYyKIFFpEkc1awUFIw/AYuV695XIhwo0UgqnmkFptj+GB8Zs4XUxxdZNbNXS9oGq4PtzZE+FSsnZNN/l4/5EUYIWmVVTHy+j+CTIWEjp2gw5s6hJfqh/q09YZdlMY8AYqVO6RDw2aqxC2ulR9rTHAUg3i31OYTvSelzs7GwhfMiTbGul2GmWFdWIHMsRqNlUlRQ9BcjbUL0dsTZH8cRAbORoStyxGuCRhbO06kkTo14ArelDqKVSSnzyVZosNB5awKMTJjYUkivv3e5KtE/L60J/2aI1wJ7LXosqJBT17uCUscx2YLqE2PCqeSqaAuKjmMsgHF6AlVJBByH5SOyvvcmps8zpc0wkf3h40PUMjsaUBq/l06WzyVOpt9A6KMZliU3ANc5HyxI2YmxSjzs
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR12MB5685.namprd12.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(1800799024)(7416014)(376014)(5023799004)(11063799006)(56012099006)(4143699003)(6133799003)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?eVpBd1o3RDg3bjVDOFprWEZEQmZqaVUweDBhbFArTkd4dGN1TWtkeEtaQXVO?=
+ =?utf-8?B?NWpacm0xSW00em5DMVIzb2NxMUxKK3ZBQjRNUnY2WWNtcVlVNlkxd1IrcU1Y?=
+ =?utf-8?B?bXdwa1duREZCdDNDQmhaTVkrZW5iMitTV2ljalZhK1k5OGZQZ3NtQ3I3Tktw?=
+ =?utf-8?B?S3BxOERxaWdvMmFvVWxoMTZrOGVOQ3h4L2ZYVjUySWYxNVZOa0laMUxzbjhQ?=
+ =?utf-8?B?ZnQ0T3VMeHRYYS9qdDQwcUJ5MTVrdUVLL2ZuVmFkZTVuYjlzd2ZGTmdtUzFm?=
+ =?utf-8?B?Mm80SHBlUzhjbWg1Zm90eW9JM2F3TjRRajVkckdOaFhyaFNVdmpMM2YvU0RT?=
+ =?utf-8?B?eFZGYk9Jc3hUaU9PcXAyUkV2dE43VDdYNGRmdFpnUG55VmZ0NDgwV2lPMlhM?=
+ =?utf-8?B?aVQyYUo2Yk5MU1RZNGEzMk00WkJvYzBUbnRxTCt0YXo5Z3BXTHM3aGJsc2tH?=
+ =?utf-8?B?T1AzZ3hyeTVBQ2VGOWxSOWs2WUd1MkZqdEF5eGtqZWUwYkQ5QUphZUU5VDBV?=
+ =?utf-8?B?bjIvQU1QWU1TRlNnZm03OGRvYmJjZFE5d0RxRFpCRVczeXowZGwyaUNtbGpS?=
+ =?utf-8?B?RU9xNG5Ga2pLWVNvcTVybEo2SjliRVhCdTEvOFRXcWV5TG9RVDdHWUplWnlJ?=
+ =?utf-8?B?eFpqVnpmUTU5aVFyMnFwVUJKdW9BeWo1UjFKTzI5enF2TEo2MTNTNDhyY0Fx?=
+ =?utf-8?B?QVFxbStDMW1NaE5EVGYybG91eDJKTU9wQ2h1Y3l4TVhqTER5N3VLcG8yOXgz?=
+ =?utf-8?B?azBqRjlYMVJyLzdMNUovOGpLVGJLUkRJYTgyZmVoUEZtRnZnV3lSMDl5Q1RT?=
+ =?utf-8?B?a014SEpDTG40cVdOY3Q0SW5kS3Eya2E4Vi9Oc1FLSHBSbFQ2TWRyMVNpdGFR?=
+ =?utf-8?B?VUVsSVE1eFh4dFFicmVHelNWSDhFbUhGK3hFbDhSUFk1cW5SMDNsWW1LTDg0?=
+ =?utf-8?B?MGR3MDc0TUE1RjM1aXRLODVGSjVKR1Y2V3QzdXVZd3lYUUhueWtBM0cxK0xM?=
+ =?utf-8?B?OWFTc2kvN3B6VEtTN2VRTDI0SFV6TVcrM2loNEN3THdVMmpMTC96c2t1dnc0?=
+ =?utf-8?B?WGF4WCtRMWNkS0xhUVFPMndvWHhDWVpnS1kwNDJWTTZlQ0Y4di94cUptV3ZE?=
+ =?utf-8?B?YzNIcE5wL0ZrZjl5cEJiMjBVMXhkRjZSWUZMY0o1MnFUa0FtQjluQkQxTTVD?=
+ =?utf-8?B?VVJSMng0UkMxc01hbDNxbEZvcVJrVmNKdUF4RitZNU1uVjR3KzJGZjNKYk5S?=
+ =?utf-8?B?dVIrb3lFTkJyWFlmQmxqSFJmRzNlYnRKc2d6cUdKN1JDQTdLOW9Zc01GZEEw?=
+ =?utf-8?B?WkJIcjFJbGM3UkV3SjFXM05XNS8yZEM5T3NsOE5KOFh3V3lWakJMbUlDajJn?=
+ =?utf-8?B?dU9IWE05L2NQd213THRxV05SanR4L3pPQjUzbEgvN2Z0c09NV0JsOTNMbGt2?=
+ =?utf-8?B?UEpsbTZNZmdURDcwR1ZRM2NPQTdSTW5mY0VDS2dBUTIrVG5WZFlqRTltTTlj?=
+ =?utf-8?B?ZU11WmJZMjlvcWhPeXVEWklBQjZoaEVNUFVZbU5DcVlKcTJ1R05oVVNsRUht?=
+ =?utf-8?B?RjBjL0oraHNyOUk4bmY0K1d5YThrRXB6M0trZ3JNTXFjNnF2eUd5RW9LZks3?=
+ =?utf-8?B?V2lyRVkybEtJUXJ3ZVpyekYzT1B3dXBmMFFadFJOclhoN2dQNWxYWVJkb2Q5?=
+ =?utf-8?B?Y2wxVS95U1BlL3RkLy9haE15NTlVUmdmckVOZmhxWW0xVEtrNkdjQktxVW1o?=
+ =?utf-8?B?UWljT0xZUGtQYnJ3UkxKOUFaQ2ZlUjUydEJKcXJpeU45c1h5QmRZeWllZ0sx?=
+ =?utf-8?B?N2EyS0lvOHEwVkpqRmYzcE1HVGppOHBrOWRCZjNnSkhHQUZJQ0MxRDJPN1hr?=
+ =?utf-8?B?UngwVWhwWTlxS2pFeGpzclVQVlZMMmVMT0lycklYTGRhUTlteVc3MGNicUJ3?=
+ =?utf-8?B?OUxqTU9IV2tySnVGQ2FKemx4cmUxa0U4M0EwODM3OHpSaG1HcnNKekRHTk1K?=
+ =?utf-8?B?eVNCdUovS29vallVVHZLaTIrV0ZQc1FtZWZlMEtaZFhXODF4VnBuZGZZSGZL?=
+ =?utf-8?B?ZEE2aHl4Yy8zVlBtTXhqMnRqcnM2YkhaQmxIVTRmNkRrMHF6K2pLV0Uxc3h0?=
+ =?utf-8?B?ZENCR0JUVkRqeUVmOUx4VlYyaVdma0M4Y2lhOG5Qc3A5SVhrMVJJSEtSNFdz?=
+ =?utf-8?B?cUhqTGdhalBNdjlubzkxK21IQWpnV3VpNTdtZzV4N1ZPTHNGN0tjWjlXZThW?=
+ =?utf-8?B?MmtHVW0vbjdsSmx0MExDRUJaY2lBTC9Ob3g4aVhYdXExMi9iME1BUEJhR1NH?=
+ =?utf-8?Q?gICrX7V/d0oA5xIALp?=
+X-OriginatorOrg: amd.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 85825337-3575-4d69-2f6c-08dec6c76501
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR12MB5685.namprd12.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Jun 2026 08:08:03.0363 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: a1kD1DwgCZ8NV+dNiKiLTLuFtF7gCyir3WjITMUCRWSkOHA9QLpUHImJK7ekUjTo
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: LV9PR12MB9805
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -104,122 +184,103 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[ursulin.net:s=google];
+	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:dri-devel@lists.freedesktop.org,m:willy@infradead.org,m:stable@vger.kernel.org,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,s:lists@lfdr.de];
-	DMARC_NA(0.00)[ursulin.net];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[tursulin@ursulin.net,intel-gfx-bounces@lists.freedesktop.org];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[ursulin.net:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[tursulin@ursulin.net,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,gmail.com,linux.intel.com,intel.com,ursulin.net,amd.com,linux.ibm.com,foss.st.com,linaro.org,suse.de,ffwll.ch,ideasonboard.com,kwiboo.se,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,bootlin.com,kylinos.cn,linux.dev,linbit.com,kernel.dk,sakamocchi.jp,perex.cz,suse.com];
+	MIME_TRACE(0.00)[0:+];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	FROM_NEQ_ENVFROM(0.00)[christian.koenig@amd.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[amd.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,infradead.org:email,ffwll.ch:email,ursulin.net:dkim,ursulin.net:email,ursulin.net:mid,ursulin.net:from_mime,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,amd.com:dkim,amd.com:mid,amd.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3375F666EBD
+X-Rspamd-Queue-Id: 9AC00666F12
 
+On 6/10/26 08:14, Kaitao Cheng wrote:
+> 在 2026/6/9 18:33, Christian König 写道:
+>> On 6/9/26 08:13, Kaitao Cheng wrote:
+>>> From: Kaito Cheng <chengkaitao@kylinos.cn>
+>>>
+>>> This series prepares for, and then updates, the list_for_each_entry()
+>>> family so the common entry iterators cache their next or previous cursor
+>>> before the loop body runs.
+>>
+>> Why in the world would we want to do that?
+>>
+>> The safe and non-safe variants have very distinct use cases and that is completely intentional.
+>>
+>> What we could improve maybe is the documentation, from my experience an astonishing large amount of people have misconceptions about the safe variants.
+>>
+>>> The first 13 patches open-code loops that intentionally depend on the
+>>> old "derive the next entry from the current cursor at the end of the
+>>> iteration" behaviour.  These loops append work to the list being walked,
+>>> restart traversal after dropping a lock, skip an entry consumed by the
+>>> current iteration, or otherwise adjust the cursor in the loop body.
+>>
+>> Well I have to clearly reject the changes for subsystems/components I'm maintaining, that just looks horrible to me and I clearly don't see a good reason for that.
+> 
+> Hi Christian and Andy Shevchenko,
+> 
+> Thanks for taking a look. I would like to clarify the point you raised.
+> 
+> The reason I started looking at this is the original motivation behind
+> the _safe() variants.  They exist because some users need to remove, move
+> or otherwise consume the current entry while walking the list.  In that
+> case the next cursor has to be preserved before the loop body can modify
+> the current entry.
+> 
+> The unfortunate part is that this could not be expressed with the
+> existing list_for_each_entry() interface without changing its calling
+> convention.  The _safe() variants had to grow an extra argument for the
+> temporary cursor, and that is why we ended up with a separate family of
+> macros.
+> 
+> But conceptually, the distinction does not have to be exposed as two
+> different iterator families forever.  The difference is an implementation
+> detail: whether the iterator keeps the next/previous cursor before the
+> body runs.  This series makes the common list_for_each_entry() iterators
+> do that internally, so the safe and non-safe forms can effectively be
+> folded together, or at least the need for a separate public _safe()
+> interface becomes much weaker.
+> 
+> There is also a usability issue with the current _safe() interface.  The
+> caller is forced to define a temporary cursor outside the macro and pass
+> it in, even though almost all users never use that cursor directly.  It is
+> just boilerplate required by the macro implementation.  I find that
+> redundant and awkward: the temporary cursor is an internal detail of the
+> iteration, but every caller has to spell it out.
+> 
+> With the updated list_for_each_entry() implementation, that extra cursor
+> can be kept inside the iterator itself.  Callers that only want to walk
+> the list, including callers that delete or consume the current entry, no
+> longer need to carry an otherwise-unused temporary variable just to make
+> the macro work.
 
-On 10/06/2026 07:03, Joonas Lahtinen wrote:
-> sg_page() returns struct page pointer not (void *) so the scaling
-> of pread/pwrite is wrong for phys BO and wrong parts of BO would be
-> accessed if non-zero offset is used.
-> 
-> Last impacted platform with overlay or cursor planes using phys
-> mapping was Gen3/945G/Lakeport.
-> 
-> Reported-by: Matthew Wilcox (Oracle) <willy@infradead.org>
-> Fixes: c6790dc22312 ("drm/i915: Wean off drm_pci_alloc/drm_pci_free")
-> Cc: <stable@vger.kernel.org> # v4.5+
-> Cc: Tvrtko Ursulin <tursulin@ursulin.net>
-> Cc: Simona Vetter <simona@ffwll.ch>
-> Cc: Jani Nikula <jani.nikula@linux.intel.com>
-> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-> Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-> ---
->   drivers/gpu/drm/i915/gem/i915_gem_phys.c | 19 +++++++++++++++----
->   1 file changed, 15 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_phys.c b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> index e375afbf458e..d53129eb5603 100644
-> --- a/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> +++ b/drivers/gpu/drm/i915/gem/i915_gem_phys.c
-> @@ -18,6 +18,17 @@
->   #include "i915_gem_tiling.h"
->   #include "i915_scatterlist.h"
->   
-> +/* Abuse scatterlist to store pointer instead of struct page. */
-> +static inline void __set_phys_vaddr(struct scatterlist *sg, void *vaddr)
-> +{
-> +	sg_assign_page(sg, (struct page *)vaddr);
-> +}
-> +
-> +static inline void *__get_phys_vaddr(struct scatterlist *sg)
-> +{
-> +	return (void *)sg_page(sg);
-> +}
-> +
->   static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
->   {
->   	struct address_space *mapping = obj->base.filp->f_mapping;
-> @@ -58,7 +69,7 @@ static int i915_gem_object_get_pages_phys(struct drm_i915_gem_object *obj)
->   	sg->offset = 0;
->   	sg->length = obj->base.size;
->   
-> -	sg_assign_page(sg, (struct page *)vaddr);
-> +	__set_phys_vaddr(sg, vaddr);
->   	sg_dma_address(sg) = dma;
->   	sg_dma_len(sg) = obj->base.size;
->   
-> @@ -99,7 +110,7 @@ i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
->   			       struct sg_table *pages)
->   {
->   	dma_addr_t dma = sg_dma_address(pages->sgl);
-> -	void *vaddr = sg_page(pages->sgl);
-> +	void *vaddr = __get_phys_vaddr(pages->sgl);
->   
->   	__i915_gem_object_release_shmem(obj, pages, false);
->   
-> @@ -139,7 +150,7 @@ i915_gem_object_put_pages_phys(struct drm_i915_gem_object *obj,
->   int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
->   				const struct drm_i915_gem_pwrite *args)
->   {
-> -	void *vaddr = sg_page(obj->mm.pages->sgl) + args->offset;
-> +	void *vaddr = __get_phys_vaddr(obj->mm.pages->sgl) + args->offset;
->   	char __user *user_data = u64_to_user_ptr(args->data_ptr);
->   	struct drm_i915_private *i915 = to_i915(obj->base.dev);
->   	int err;
-> @@ -170,7 +181,7 @@ int i915_gem_object_pwrite_phys(struct drm_i915_gem_object *obj,
->   int i915_gem_object_pread_phys(struct drm_i915_gem_object *obj,
->   			       const struct drm_i915_gem_pread *args)
->   {
-> -	void *vaddr = sg_page(obj->mm.pages->sgl) + args->offset;
-> +	void *vaddr = __get_phys_vaddr(obj->mm.pages->sgl) + args->offset;
->   	char __user *user_data = u64_to_user_ptr(args->data_ptr);
->   	int err;
->   
+Well the distinction between list_for_each_entry() and list_for_each_entry_safe() is *not* there because you need an extra variable to hold the next pointer, but because just 'iterating the list' and 'iterating the list while you modify it' are two distinct use cases.
 
-Reviewed-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Apart from the technical implications this also has some documentation value for the code using it.
+
+What we could consider with C99 at hand is to have _safe() variants who uses a local hidden variable to hold the next element.
+
+Or maybe come up with a better name instead of _safe() because people seem to misunderstand that quite often.
+
+But mangling the two use cases together just because it is now technical possible is among the worst ideas I've ever heard.
 
 Regards,
-
-Tvrtko
-
+Christian.
