@@ -2,117 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zaoVH6R8KWr6XgMAu9opvQ
+	id D6dDEKF+KWqTXwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:03:00 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:11:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 24DB966A86C
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:02:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8DD7C66A947
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 17:11:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=TpH+7KDu;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 915BA10EA09;
-	Wed, 10 Jun 2026 15:02:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B4D4F10E47A;
+	Wed, 10 Jun 2026 15:11:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 48D2B10E9FD;
- Wed, 10 Jun 2026 15:02:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781103769; x=1812639769;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=wdD+yxiW9aVoMld4LMPC1DWLru4HtTsU9EmgfMnk6eg=;
- b=TpH+7KDu9yBxBpX9N9OUkqwoqYHkRAhhb4yUIMHmvV/iWg0eazJFy8uo
- Gk3a9O9aO7tTQ5ZGpjRmWtlD+wfS5ojx3IhHP7YejfZ1K45V17FqQ1fEN
- EgchDFRxG6R5gKdXoMpshqnIMF6cwgafaBTNj1EVHyr7Z/ogY5PPurCi0
- W58MOvXhsOOKFe+EGb5mQYIhIA/66e/ofsc5yNk0f4D0CktRpbiPlCa7R
- w1xfQU5fu0O8aNbAIP+U3b1bn3EefemfbpxlFM7KSOV7hCKjn5OiuGJ8c
- MU5IGSm4X6S9Q6ozxvFihkcfaCcfccTqmtNT+TutOuaEDhHc2ASQ5V0cg g==;
-X-CSE-ConnectionGUID: Ow+h21Q0SfmEBQZc13Yesw==
-X-CSE-MsgGUID: +E4Xi8VrRJWBqzNo36L+KA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="107334576"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="107334576"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 08:02:48 -0700
-X-CSE-ConnectionGUID: vFiAK4i9TuuPvjj1ruVuyA==
-X-CSE-MsgGUID: yPzj5/7BTy26oZg8/7CqtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="251275772"
-Received: from hrotuna-mobl2.ger.corp.intel.com (HELO localhost)
- ([10.245.244.38])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 08:02:35 -0700
-Date: Wed, 10 Jun 2026 18:02:32 +0300
-From: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To: Christian =?iso-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>
-Cc: Kaitao Cheng <kaitao.cheng@linux.dev>,
- Thierry Reding <thierry.reding@kernel.org>,
- Jonathan Hunter <jonathanh@nvidia.com>,
- Sowjanya Komatineni <skomatineni@nvidia.com>,
- Davidlohr Bueso <dave@stgolabs.net>,
- "Paul E . McKenney" <paulmck@kernel.org>,
- Josh Triplett <josh@joshtriplett.org>,
- Peter Zijlstra <peterz@infradead.org>,
- Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
- Boqun Feng <boqun@kernel.org>, Liam Girdwood <lgirdwood@gmail.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Huang Rui <ray.huang@amd.com>, Eddie James <eajames@linux.ibm.com>,
- Mark Brown <broonie@kernel.org>,
- Maxime Coquelin <mcoquelin.stm32@gmail.com>,
- Alexandre Torgue <alexandre.torgue@foss.st.com>,
- Laxman Dewangan <ldewangan@nvidia.com>,
- Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
- Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
- Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
- Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>,
- Waiman Long <longman@redhat.com>, drbd-dev@lists.linbit.com,
- linux-block@vger.kernel.org, linux1394-devel@lists.sourceforge.net,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- linux-spi@vger.kernel.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
- linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
- Andrew Morton <akpm@linux-foundation.org>,
- Randy Dunlap <rdunlap@infradead.org>,
- Christian Brauner <brauner@kernel.org>,
- David Howells <dhowells@redhat.com>,
- Luca Ceresoli <luca.ceresoli@bootlin.com>,
- Kaito Cheng <chengkaitao@kylinos.cn>, Muchun Song <muchun.song@linux.dev>,
- Philipp Reisner <philipp.reisner@linbit.com>,
- Lars Ellenberg <lars.ellenberg@linbit.com>,
- Christoph =?iso-8859-1?Q?B=F6hmwalder?= <christoph.boehmwalder@linbit.com>,
- Jens Axboe <axboe@kernel.dk>, Takashi Sakamoto <o-takashi@sakamocchi.jp>,
- Andrzej Hajda <andrzej.hajda@intel.com>,
- Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Subject: Re: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor
- state
-Message-ID: <ail8iNvPrJnE7p58@ashevche-desk.local>
-References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
- <bd0b7393-8ccb-4d67-8bfc-18c68347122c@amd.com>
- <5152089a-2808-4fe9-b633-b03018105dd2@linux.dev>
- <6b2efdee-95b0-4306-a682-0d0466497ddb@amd.com>
- <2399841f-d834-4652-8285-4a15c7d9a9b9@linux.dev>
- <d974a2ea-6102-45ff-bf36-3b25a2404e40@amd.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6A37B10E47A;
+ Wed, 10 Jun 2026 15:11:24 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0631268673393595760=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <d974a2ea-6102-45ff-bf36-3b25a2404e40@amd.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs, Bertel Jungin Aukio 5, 02600 Espoo
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/displayid=3A_fix_Tile?=
+ =?utf-8?q?d_Display_Topology_ID_size?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 10 Jun 2026 15:11:24 -0000
+Message-ID: <178110428442.64488.6732731555823644779@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260610141549.555605-1-jani.nikula@intel.com>
+In-Reply-To: <20260610141549.555605-1-jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,68 +46,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FREEMAIL_CC(0.00)[linux.dev,kernel.org,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,gmail.com,linux.intel.com,intel.com,ursulin.net,amd.com,linux.ibm.com,foss.st.com,linaro.org,suse.de,ffwll.ch,ideasonboard.com,kwiboo.se,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,bootlin.com,kylinos.cn,linbit.com,kernel.dk,sakamocchi.jp,perex.cz,suse.com];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[62];
-	FROM_NEQ_ENVFROM(0.00)[andriy.shevchenko@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RSPAMD_EMAILBL_FAIL(0.00)[intel-gfx-bounces@lists.freedesktop.org:query timed out];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,ashevche-desk.local:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,emeril.freedesktop.org:from_mime,01.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 24DB966A86C
+X-Rspamd-Queue-Id: 8DD7C66A947
 
-On Wed, Jun 10, 2026 at 11:11:34AM +0200, Christian König wrote:
-> On 6/10/26 10:18, Kaitao Cheng wrote:
-> > 在 2026/6/10 16:07, Christian König 写道:
+--===============0631268673393595760==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-...
+== Series Details ==
 
-> > Should we revert to v1, or keep list_for_each_entry() and
-> > list_for_each_entry_safe() as they are, close this thread, and make no
-> > changes?
-> > 
-> > Link to v1:
-> > https://lore.kernel.org/all/20260529082149.76764-1-kaitao.cheng@linux.dev/
-> > 
-> > Or do you have any better suggestions?
-> 
-> v1 looks perfectly reasonable to me.
+Series: drm/displayid: fix Tiled Display Topology ID size
+URL   : https://patchwork.freedesktop.org/series/168251/
+State : success
 
-But why not just hiding that once for all (in case they don't use the temporary
-iterator)? Easy to automate, robust — everyone is happy?
+== Summary ==
 
-> You should just include some patches in the same patch set to actually use
-> the new macros.
-> 
-> If you modify the files under drivers/dma-buf or drivers/gpu/drm/amd to use
-> the new macro I'm happy to review that.
+CI Bug Log - changes from CI_DRM_18654 -> Patchwork_168251v1
+====================================================
 
--- 
-With Best Regards,
-Andy Shevchenko
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168251v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
 
 
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18654 -> Patchwork_168251v1
+
+  CI-20190529: 20190529
+  CI_DRM_18654: fc59f76558703febba8056be87d1c97d14f7485e @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8956: 8956
+  Patchwork_168251v1: fc59f76558703febba8056be87d1c97d14f7485e @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168251v1/index.html
+
+--===============0631268673393595760==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/displayid: fix Tiled Display Topology ID size</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168251/">https://patchwork.freedesktop.org/series/168251/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168251v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168251v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18654 -&gt; Patchwork_168251v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168251v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18654 -&gt; Patchwork_168251v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18654: fc59f76558703febba8056be87d1c97d14f7485e @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8956: 8956<br />
+  Patchwork_168251v1: fc59f76558703febba8056be87d1c97d14f7485e @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0631268673393595760==--
