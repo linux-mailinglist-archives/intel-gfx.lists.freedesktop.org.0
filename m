@@ -2,65 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6xYuNQihKWrCawMAu9opvQ
+	id +Jd0NTKhKWrNawMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:38:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:38:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 412E966C007
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00C8C66C01F
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 19:38:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=gm8OjmiR;
+	dkim=pass header.d=intel.com header.s=Intel header.b=WkPzaIYI;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C57C210EB30;
-	Wed, 10 Jun 2026 17:38:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 843CB10E6C0;
+	Wed, 10 Jun 2026 17:38:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 36DAC10E6C0;
- Wed, 10 Jun 2026 17:38:13 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3DA5810E6C0;
+ Wed, 10 Jun 2026 17:38:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781113093; x=1812649093;
+ t=1781113135; x=1812649135;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version:content-transfer-encoding;
- bh=Sf0jn/pAn4BJalRzTGwBnPAfWFB/wt5tQ9VxWTw0epA=;
- b=gm8OjmiR2nGmu4t/b4pjH4IzGntrYfOPqy2sULwQdH3drBnwT0l3b+IA
- OoCoZK6eu6AycvOCd90gjVUuvVVdkVHdfW45zFaxIi1ueZ1iN4a4H9h/a
- u/PkZ7P29aPdwzl9DiX8V9ZhceB5Zsm1c7BTN2ou3pdoTaxh585CAF2/l
- ghHvlmaYAkqTtmq6RCl2VljkT2wfgr1ezD6CjXk5/o8iz6v+ICctFINcU
- Yb7mkkuAFh0953xaI9+QaqgEIkLVl95e+t75DcFxHS92qfMWb85cqiDCC
- WTNp3W+gqmLfCBn21pVT+oSS0K01WdvqqIBuQzWZUHETgcAQSud/9ihtQ A==;
-X-CSE-ConnectionGUID: zUxHlQxCTwC3vZ8mu4LjmA==
-X-CSE-MsgGUID: r5flnDhbSY+l89RUfjDVNw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="92589820"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="92589820"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:38:13 -0700
-X-CSE-ConnectionGUID: bRrSmoByR+KcGWfm2DwcUw==
-X-CSE-MsgGUID: Rvbj3EPwRoGanLDsazjzlA==
+ bh=t7m/SkIUP3at+KRcdDUw8ZbV0EvETxcnnQ5bfPW/p2U=;
+ b=WkPzaIYIt/743moIT0RSAKgdtJy8mxbEsxbbUvB9mkC8izeyzou1t3Cx
+ Pli6X4DdqAt2xanvcfc1ZT8Wejd+SkgzfgaaCwJvas8MxK3e83WO9/49n
+ phx4dQwTACKrCWAhRWCkJTpLqbI5xJOB2uwLkroZH0yD6z2LyW+t4joAl
+ 5zk0UMao92VuKVkH94/pEVh65FUpnnFYj4rGdF0PODIqGdx9B7JFl0aRC
+ 09terJELa5umf2RpkHQG+xzYEOBvJntgm2gENnCNZ4JXmZQ7A1EBbeYwh
+ d3hlirc+EpvIQWEp6ANsTITZsP1fwc00lAkPix+5aCqoBD/ZbZKU7bheB w==;
+X-CSE-ConnectionGUID: z0DfEvQbQJyeNp0ymjI7eA==
+X-CSE-MsgGUID: rZcm3g0STF23iV7mw721OQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11813"; a="82024299"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="82024299"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 10:38:55 -0700
+X-CSE-ConnectionGUID: M5X4EX/5QWOOGoptG8qfYg==
+X-CSE-MsgGUID: JbF0waf6ROWXqte5jqt7wg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="243284046"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250152470"
 Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
  ([10.245.244.3])
- by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 10:38:11 -0700
+ by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 10:38:54 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
 To: Ville Syrjala <ville.syrjala@linux.intel.com>,
  intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 10/14] drm/i915/cdclk: Extract bdw_cdclk_pcode_{pre,
+Subject: Re: [PATCH 11/14] drm/i915/cdclk: Extract skl_cdclk_pcode_{pre,
  post}_notify()
-In-Reply-To: <20260610170652.5320-11-ville.syrjala@linux.intel.com>
+In-Reply-To: <20260610170652.5320-12-ville.syrjala@linux.intel.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 References: <20260610170652.5320-1-ville.syrjala@linux.intel.com>
- <20260610170652.5320-11-ville.syrjala@linux.intel.com>
-Date: Wed, 10 Jun 2026 20:38:09 +0300
-Message-ID: <8f1198901587c6b2dea2a90a13d872881270d23e@intel.com>
+ <20260610170652.5320-12-ville.syrjala@linux.intel.com>
+Date: Wed, 10 Jun 2026 20:38:50 +0300
+Message-ID: <8e57317fbcbf5dba0923c386881045705744503c@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Transfer-Encoding: quoted-printable
@@ -106,71 +106,100 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 412E966C007
+X-Rspamd-Queue-Id: 00C8C66C01F
 
 On Wed, 10 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
 > From: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 >
-> Extract the BSW pcode notify stuff to a few small helpers. The
-> plan is to unify these between all the platforms and turn them
-> into vfuncs.
+> Extract the SKL/ICL+ pcode notify stuff to a few small helpers.
+> The plan is to unify these between all the platforms and turn
+> them into vfuncs.
 >
 > Signed-off-by: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
 
 Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
 > ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c | 18 +++++++++++++++---
->  1 file changed, 15 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 32 +++++++++++++---------
+>  1 file changed, 19 insertions(+), 13 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
 /i915/display/intel_cdclk.c
-> index 542724256d0f..041b1fc8b3ee 100644
+> index 041b1fc8b3ee..bb47fc4c86ee 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -872,6 +872,19 @@ static u32 bdw_cdclk_freq_sel(int cdclk)
+> @@ -1170,6 +1170,21 @@ static u32 skl_cdclk_freq_sel(struct intel_display=
+ *display,
 >  	}
 >  }
 >=20=20
-> +static int bdw_cdclk_pcode_pre_notify(struct intel_display *display)
+> +static int skl_cdclk_pcode_pre_notify(struct intel_display *display)
 > +{
-> +	return intel_parent_pcode_write(display, BDW_PCODE_DISPLAY_FREQ_CHANGE_=
-REQ,
-> +					0x0);
+> +	return intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
+> +					  SKL_CDCLK_PREPARE_FOR_CHANGE,
+> +					  SKL_CDCLK_READY_FOR_CHANGE,
+> +					  SKL_CDCLK_READY_FOR_CHANGE, 3);
 > +}
 > +
-> +static int bdw_cdclk_pcode_post_notify(struct intel_display *display,
+> +static int skl_cdclk_pcode_post_notify(struct intel_display *display,
 > +				       const struct intel_cdclk_config *cdclk_config)
 > +{
-> +	return intel_parent_pcode_write(display, HSW_PCODE_DE_WRITE_FREQ_REQ,
+> +	return intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
 > +					cdclk_config->voltage_level);
 > +}
 > +
->  static void bdw_set_cdclk(struct intel_display *display,
+>  static void skl_set_cdclk(struct intel_display *display,
 >  			  const struct intel_cdclk_config *cdclk_config,
 >  			  enum pipe pipe)
-> @@ -888,7 +901,7 @@ static void bdw_set_cdclk(struct intel_display *displ=
-ay,
->  		     "trying to change cdclk frequency with cdclk not enabled\n"))
->  		return;
+> @@ -1190,10 +1205,7 @@ static void skl_set_cdclk(struct intel_display *di=
+splay,
+>  	drm_WARN_ON_ONCE(display->drm,
+>  			 display->platform.skylake && vco =3D=3D 8640000);
 >=20=20
-> -	ret =3D intel_parent_pcode_write(display, BDW_PCODE_DISPLAY_FREQ_CHANGE=
-_REQ, 0x0);
-> +	ret =3D bdw_cdclk_pcode_pre_notify(display);
+> -	ret =3D intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
+> -					 SKL_CDCLK_PREPARE_FOR_CHANGE,
+> -					 SKL_CDCLK_READY_FOR_CHANGE,
+> -					 SKL_CDCLK_READY_FOR_CHANGE, 3);
+> +	ret =3D skl_cdclk_pcode_pre_notify(display);
 >  	if (ret) {
 >  		drm_err(display->drm,
 >  			"Failed to inform PCODE about start of CDCLK change (%d)\n", ret);
-> @@ -918,8 +931,7 @@ static void bdw_set_cdclk(struct intel_display *displ=
-ay,
->  	if (ret)
->  		drm_err(display->drm, "Switching back to LCPLL failed\n");
+> @@ -1235,9 +1247,7 @@ static void skl_set_cdclk(struct intel_display *dis=
+play,
+>  	intel_de_write(display, CDCLK_CTL, cdclk_ctl);
+>  	intel_de_posting_read(display, CDCLK_CTL);
 >=20=20
-> -	ret =3D intel_parent_pcode_write(display, HSW_PCODE_DE_WRITE_FREQ_REQ,
+> -	/* inform PCU of the change */
+> -	ret =3D intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
 > -				       cdclk_config->voltage_level);
-> +	ret =3D bdw_cdclk_pcode_post_notify(display, cdclk_config);
+> +	ret =3D skl_cdclk_pcode_post_notify(display, cdclk_config);
 >  	if (ret)
 >  		drm_err(display->drm,
 >  			"Failed to inform PCODE about end of CDCLK change (%d)\n", ret);
+> @@ -2266,10 +2276,7 @@ static void bxt_set_cdclk(struct intel_display *di=
+splay,
+>  	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+>  		ret =3D 0; /* NOOP */
+>  	else if (DISPLAY_VER(display) >=3D 11)
+> -		ret =3D intel_parent_pcode_request(display, SKL_PCODE_CDCLK_CONTROL,
+> -						 SKL_CDCLK_PREPARE_FOR_CHANGE,
+> -						 SKL_CDCLK_READY_FOR_CHANGE,
+> -						 SKL_CDCLK_READY_FOR_CHANGE, 3);
+> +		ret =3D skl_cdclk_pcode_pre_notify(display);
+>  	else
+>  		/*
+>  		 * BSpec requires us to wait up to 150usec, but that leads to
+> @@ -2302,8 +2309,7 @@ static void bxt_set_cdclk(struct intel_display *dis=
+play,
+>  	if (DISPLAY_VER(display) >=3D 14 || display->platform.dg2)
+>  		ret =3D 0; /* NOOP */
+>  	else if (DISPLAY_VER(display) >=3D 11)
+> -		ret =3D intel_parent_pcode_write(display, SKL_PCODE_CDCLK_CONTROL,
+> -					       cdclk_config->voltage_level);
+> +		ret =3D skl_cdclk_pcode_post_notify(display, cdclk_config);
+>  	else
+>  		/*
+>  		 * The timeout isn't specified, the 2ms used here is based on
 
 --=20
 Jani Nikula, Intel
