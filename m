@@ -2,38 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id VF8YL9QxKWrSSAMAu9opvQ
+	id Tb+TJ1E9KWpTSwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 11:43:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 12:32:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2B8AF667F31
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 11:43:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AD0E6684D7
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 12:32:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b=csvThB7Y;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B6A5F10E849;
-	Wed, 10 Jun 2026 09:43:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D3BA410E461;
+	Wed, 10 Jun 2026 10:32:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 054E210E849;
- Wed, 10 Jun 2026 09:43:46 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4236671856687919959=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E63D10E0B4;
+ Wed, 10 Jun 2026 10:32:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781087564; x=1812623564;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=4QR48FPX6NW6pWd+A0RB2168FFt8Kbmy8OacTeDGsas=;
+ b=csvThB7Y8q0udoW7y2PMRPaqLQsLEnAy+EHkVJ8aPjFLMGWx1S+3SPlH
+ +b+TEHnazMhAoLk3CHoc/j/caX0roQcrvH/WblhbhYOFFPd1+szKhsd20
+ wmxxSh4EQXrSQOhXV3RUnb39xxe7MevDm+bjt4e7HdbQgHE3mG8TBG7Ko
+ vBeNf/tPYr19cc+GeT3Uyg+Ot7UScLxLG0LcLvJbdHK8M1PKFzsA2ywcb
+ lRGK16F+ucBUn73BnQ6I94AckaSz6QEGTXWmdYKBaVnDzfH11vjj21wJJ
+ QJjKnJJpmKwrG5CkhodXIl9MLlSsLvlZ3dnyiMBTi069+wxTbzNVb9g9j A==;
+X-CSE-ConnectionGUID: wrgDms+6Rn2+YYyWIB8U4A==
+X-CSE-MsgGUID: 4csHF8trSIKch5ihDWMGQQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="85721122"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="85721122"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 03:32:44 -0700
+X-CSE-ConnectionGUID: 7vHeeByYR6mbP2vHMrx5EQ==
+X-CSE-MsgGUID: HeuP8FBRTDSW4l3PyZ1Pfw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250415777"
+Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.3])
+ by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 03:32:32 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Harry Wentland
+ <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
+ <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
+ =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
+ <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
+ <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
+ Robert Foss <rfoss@kernel.org>, Laurent Pinchart
+ <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
+ Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang
+ <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan
+ <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas
+ Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer
+ <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, Jonathan Corbet
+ <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Daniel Stone
+ <daniel@fooishbar.org>
+Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, Nicolas
+ Frattaroli <nicolas.frattaroli@collabora.com>
+Subject: Re: [PATCH v17 21/28] drm/tests: bridge: Add KUnit tests for bridge
+ chain format selection
+In-Reply-To: <20260609-color-format-v17-21-35739b5782cc@collabora.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
+ <20260609-color-format-v17-21-35739b5782cc@collabora.com>
+Date: Wed, 10 Jun 2026 13:32:29 +0300
+Message-ID: <04ff70850213ae0f75486b1a27a7edb6fb4e71c3@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/scaler=3A_alloca?=
- =?utf-8?q?tion_cleanup?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: =?utf-8?q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Jun 2026 09:43:46 -0000
-Message-ID: <178108462601.64047.2844339123030036499@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260609231217.208357-1-michal.grzelak@intel.com>
-In-Reply-To: <20260609231217.208357-1-michal.grzelak@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,166 +98,145 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[40];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:email,lists.freedesktop.org:from_smtp,6beec6c84f66:mid,emeril.freedesktop.org:from_mime,01.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:from_mime,collabora.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2B8AF667F31
+X-Rspamd-Queue-Id: 2AD0E6684D7
 
---===============4236671856687919959==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 09 Jun 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com> =
+wrote:
+> diff --git a/drivers/gpu/drm/tests/drm_bridge_test.c b/drivers/gpu/drm/te=
+sts/drm_bridge_test.c
+> index 64b665580a88..92f142ca6695 100644
+> --- a/drivers/gpu/drm/tests/drm_bridge_test.c
+> +++ b/drivers/gpu/drm/tests/drm_bridge_test.c
+> @@ -2,15 +2,23 @@
+>  /*
+>   * Kunit test for drm_bridge functions
+>   */
+> +#include <linux/cleanup.h>
+> +#include <linux/media-bus-format.h>
+> +
+>  #include <drm/drm_atomic_state_helper.h>
+> +#include <drm/drm_atomic_uapi.h>
+>  #include <drm/drm_bridge.h>
+>  #include <drm/drm_bridge_connector.h>
+>  #include <drm/drm_bridge_helper.h>
+> +#include <drm/drm_edid.h>
+>  #include <drm/drm_kunit_helpers.h>
+> +#include <drm/drm_managed.h>
+>=20=20
+>  #include <kunit/device.h>
+>  #include <kunit/test.h>
+>=20=20
+> +#include "drm_kunit_edid.h"
 
-== Series Details ==
+So here's the problem with adding *any* arrays into headers: every
+compilation unit that includes them duplicates all the arrays. It's only
+really okay for single use.
 
-Series: drm/i915/scaler: allocation cleanup
-URL   : https://patchwork.freedesktop.org/series/168207/
-State : failure
+And, in this case, most of the included arrays are unused, leading to
+build failures:
 
-== Summary ==
+  CC [M]  drivers/gpu/drm/tests/drm_bridge_test.o
+In file included from ../drivers/gpu/drm/tests/drm_bridge_test.c:21:
+../drivers/gpu/drm/tests/drm_kunit_edid.h:958:28: error: =E2=80=98test_edid=
+_hdmi_4k_rgb_yuv420_dc_max_340mhz=E2=80=99 defined but not used [-Werror=3D=
+unused-const-variable=3D]
+  958 | static const unsigned char test_edid_hdmi_4k_rgb_yuv420_dc_max_340m=
+hz[] =3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:726:28: error: =E2=80=98test_edid=
+_hdmi_1080p_rgb_yuv_dc_max_340mhz=E2=80=99 defined but not used [-Werror=3D=
+unused-const-variable=3D]
+  726 | static const unsigned char test_edid_hdmi_1080p_rgb_yuv_dc_max_340m=
+hz[] =3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:612:28: error: =E2=80=98test_edid=
+_hdmi_1080p_rgb_yuv_dc_max_200mhz=E2=80=99 defined but not used [-Werror=3D=
+unused-const-variable=3D]
+  612 | static const unsigned char test_edid_hdmi_1080p_rgb_yuv_dc_max_200m=
+hz[] =3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
+~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:498:28: error: =E2=80=98test_edid=
+_hdmi_1080p_rgb_max_340mhz=E2=80=99 defined but not used [-Werror=3Dunused-=
+const-variable=3D]
+  498 | static const unsigned char test_edid_hdmi_1080p_rgb_max_340mhz[] =
+=3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:390:28: error: =E2=80=98test_edid=
+_hdmi_1080p_rgb_max_200mhz_hdr=E2=80=99 defined but not used [-Werror=3Dunu=
+sed-const-variable=3D]
+  390 | static const unsigned char test_edid_hdmi_1080p_rgb_max_200mhz_hdr[=
+] =3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:271:28: error: =E2=80=98test_edid=
+_hdmi_1080p_rgb_max_200mhz=E2=80=99 defined but not used [-Werror=3Dunused-=
+const-variable=3D]
+  271 | static const unsigned char test_edid_hdmi_1080p_rgb_max_200mhz[] =
+=3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:163:28: error: =E2=80=98test_edid=
+_hdmi_1080p_rgb_max_100mhz=E2=80=99 defined but not used [-Werror=3Dunused-=
+const-variable=3D]
+  163 | static const unsigned char test_edid_hdmi_1080p_rgb_max_100mhz[] =
+=3D {
+      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../drivers/gpu/drm/tests/drm_kunit_edid.h:57:28: error: =E2=80=98test_edid_=
+dvi_1080p=E2=80=99 defined but not used [-Werror=3Dunused-const-variable=3D]
+   57 | static const unsigned char test_edid_dvi_1080p[] =3D {
+      |                            ^~~~~~~~~~~~~~~~~~~
+cc1: all warnings being treated as errors
 
-CI Bug Log - changes from CI_DRM_18653 -> Patchwork_168207v1
-====================================================
+This breaks the build for me, I don't know how it didn't for any of you.
 
-Summary
--------
+Reverting these two fixes it:
 
-  **FAILURE**
+ce1d0139adac ("drm/tests: bridge: Add test for HDMI output bus formats help=
+er")
+082fbc179c01 ("drm/tests: bridge: Add KUnit tests for bridge chain format s=
+election")
 
-  Serious unknown changes coming with Patchwork_168207v1 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_168207v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): bat-dg2-13 fi-glk-j4005 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_168207v1:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live:
-    - bat-twl-1:          [PASS][1] -> [DMESG-FAIL][2] +1 other test dmesg-fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18653/bat-twl-1/igt@i915_selftest@live.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/bat-twl-1/igt@i915_selftest@live.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18653 -> Patchwork_168207v1
-
-  CI-20190529: 20190529
-  CI_DRM_18653: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8956: 8956
-  Patchwork_168207v1: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/index.html
-
---===============4236671856687919959==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+I think the proper fix would be to move the arrays into a .c file, and
+only have declarations in the headers. But that needs to happen real
+soon or the commits need to be reverted.
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/scaler: allocation cleanup</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168207/">https://patchwork.freedesktop.org/series/168207/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/index.html</a></td></tr>
-
-</table>
+BR,
+Jani.
 
 
-    <h1>CI Bug Log - changes from CI_DRM_18653 -&gt; Patchwork_168207v1</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_168207v1 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_168207v1, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): bat-dg2-13 fi-glk-j4005 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_168207v1:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live:<ul>
-<li>bat-twl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18653/bat-twl-1/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168207v1/bat-twl-1/igt@i915_selftest@live.html">DMESG-FAIL</a> +1 other test dmesg-fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18653 -&gt; Patchwork_168207v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18653: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8956: 8956<br />
-  Patchwork_168207v1: 724e06af260b571e2d970d4a806ae3d620ff0b7a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4236671856687919959==--
+--=20
+Jani Nikula, Intel
