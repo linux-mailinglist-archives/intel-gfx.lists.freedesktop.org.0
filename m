@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vY/3Kc/EKWoadAMAu9opvQ
+	id lkIhAOzLKWrzdQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 22:10:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 22:41:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E30AC66CB38
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 22:10:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C58966CDE1
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 22:41:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7270510E73E;
-	Wed, 10 Jun 2026 20:10:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BB36010E4F1;
+	Wed, 10 Jun 2026 20:41:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BB74810E73E;
- Wed, 10 Jun 2026 20:10:51 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B899E10E49C;
+ Wed, 10 Jun 2026 20:41:12 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/dp=3A_Servi?=
- =?utf-8?q?ce_the_CEC_tunneling_IRQ_flags_without_CEC=5FIRQ_in_ESI1?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/dp=3A_Read_?=
+ =?utf-8?q?the_PCON_max_FRL_bandwidth_only_for_HDMI_DFPs_=28rev2=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Alexander Kaplan" <alexander.kaplan@sms-medipool.de>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Jun 2026 20:10:51 -0000
-Message-ID: <178112225176.66769.1729304736278241013@6beec6c84f66>
+Date: Wed, 10 Jun 2026 20:41:12 -0000
+Message-ID: <178112407275.66769.10396186767969281713@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260610174833.6284-1-alexander.kaplan@sms-medipool.de>
-In-Reply-To: <20260610174833.6284-1-alexander.kaplan@sms-medipool.de>
+References: <20260610193825.2933-1-alexander.kaplan@sms-medipool.de>
+In-Reply-To: <20260610193825.2933-1-alexander.kaplan@sms-medipool.de>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,7 +53,7 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
@@ -76,14 +76,14 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[sms-medipool.de:email,intel.com:url,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,emeril.freedesktop.org:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[emeril.freedesktop.org:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:url,sms-medipool.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E30AC66CB38
+X-Rspamd-Queue-Id: 3C58966CDE1
 
 == Series Details ==
 
-Series: drm/dp: Service the CEC tunneling IRQ flags without CEC_IRQ in ESI1
-URL   : https://patchwork.freedesktop.org/series/168283/
+Series: drm/dp: Read the PCON max FRL bandwidth only for HDMI DFPs (rev2)
+URL   : https://patchwork.freedesktop.org/series/168280/
 State : failure
 
 == Summary ==
@@ -91,6 +91,6 @@ State : failure
 Series author address 'alexander.kaplan@sms-medipool.de' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/179167/ (on built-in)
+Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/179169/ (on built-in)
 
 
