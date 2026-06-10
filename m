@@ -2,90 +2,71 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Tb+TJ1E9KWpTSwMAu9opvQ
+	id W7DAAQBKKWo2TwMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 12:32:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 13:26:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2AD0E6684D7
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 12:32:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A823668C73
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 13:26:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=csvThB7Y;
+	dkim=pass header.d=intel.com header.s=Intel header.b=WC1VuJnO;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D3BA410E461;
-	Wed, 10 Jun 2026 10:32:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C41E310E489;
+	Wed, 10 Jun 2026 11:26:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E63D10E0B4;
- Wed, 10 Jun 2026 10:32:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3CD0C10E489;
+ Wed, 10 Jun 2026 11:26:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781087564; x=1812623564;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=4QR48FPX6NW6pWd+A0RB2168FFt8Kbmy8OacTeDGsas=;
- b=csvThB7Y8q0udoW7y2PMRPaqLQsLEnAy+EHkVJ8aPjFLMGWx1S+3SPlH
- +b+TEHnazMhAoLk3CHoc/j/caX0roQcrvH/WblhbhYOFFPd1+szKhsd20
- wmxxSh4EQXrSQOhXV3RUnb39xxe7MevDm+bjt4e7HdbQgHE3mG8TBG7Ko
- vBeNf/tPYr19cc+GeT3Uyg+Ot7UScLxLG0LcLvJbdHK8M1PKFzsA2ywcb
- lRGK16F+ucBUn73BnQ6I94AckaSz6QEGTXWmdYKBaVnDzfH11vjj21wJJ
- QJjKnJJpmKwrG5CkhodXIl9MLlSsLvlZ3dnyiMBTi069+wxTbzNVb9g9j A==;
-X-CSE-ConnectionGUID: wrgDms+6Rn2+YYyWIB8U4A==
-X-CSE-MsgGUID: 4csHF8trSIKch5ihDWMGQQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="85721122"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="85721122"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 03:32:44 -0700
-X-CSE-ConnectionGUID: 7vHeeByYR6mbP2vHMrx5EQ==
-X-CSE-MsgGUID: HeuP8FBRTDSW4l3PyZ1Pfw==
+ t=1781090811; x=1812626811;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=PeA8aPSlXwTVyTyNUlux7CWXrFut0CSVlH8D5ZVqmx0=;
+ b=WC1VuJnOAzDyBbuOjJjBgGcrGxhnYhG6O2X6U/I0qZWuNEeae/DiN0lD
+ yu+k39mB30pryYN+pTCPL8Rd/YjbbyfApPEasTHYk453Cf79KkER+b/7v
+ A/HX4kR6lkNRmG6nt+JSTN8D9V4GPRbOqF+hzzmRBpLzfYlhY34snOA2s
+ aSu77uzUsB2jv1Ju8663dOMSDh6M3UaPUVzQ5F08PbvKbLptZtTw2ZVL1
+ kEhuX6/fQdtfnGrCc2ooyrazLwATch5sBvBwkt2642x93wJK1GVn64UXF
+ vW3qSeAYcDZP/t2+uRGANfR2hroYBYVG2hvkbbFz3tmuHLiVAY7x8mI+d A==;
+X-CSE-ConnectionGUID: QIbxWzheSMGkl8AvyNCI/w==
+X-CSE-MsgGUID: 5WZY5HbjRlexxHJsTT5l/A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="81858736"
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="81858736"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 04:26:51 -0700
+X-CSE-ConnectionGUID: PtGp7vv9QUOwc9V5dtytHA==
+X-CSE-MsgGUID: Sep6VJ8tQ9G2nKsZC2efEg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="250415777"
-Received: from fpallare-mobl4.ger.corp.intel.com (HELO localhost)
- ([10.245.244.3])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 10 Jun 2026 03:32:32 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Nicolas Frattaroli <nicolas.frattaroli@collabora.com>, Harry Wentland
- <harry.wentland@amd.com>, Leo Li <sunpeng.li@amd.com>, Rodrigo Siqueira
- <siqueira@igalia.com>, Alex Deucher <alexander.deucher@amd.com>, Christian
- =?utf-8?Q?K=C3=B6nig?= <christian.koenig@amd.com>, David Airlie
- <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, Andrzej Hajda
- <andrzej.hajda@intel.com>, Neil Armstrong <neil.armstrong@linaro.org>,
- Robert Foss <rfoss@kernel.org>, Laurent Pinchart
- <Laurent.pinchart@ideasonboard.com>, Jonas Karlman <jonas@kwiboo.se>,
- Jernej Skrabec <jernej.skrabec@gmail.com>, Sandy Huang
- <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan
- <andy.yan@rock-chips.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>, Joonas
- Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
- <tursulin@ursulin.net>, Dmitry Baryshkov <lumag@kernel.org>, Sascha Hauer
- <s.hauer@pengutronix.de>, Rob Herring <robh@kernel.org>, Jonathan Corbet
- <corbet@lwn.net>, Shuah Khan <skhan@linuxfoundation.org>, Daniel Stone
- <daniel@fooishbar.org>
-Cc: kernel@collabora.com, amd-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- linux-arm-kernel@lists.infradead.org, linux-rockchip@lists.infradead.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- linux-doc@vger.kernel.org, wayland-devel@lists.freedesktop.org, Nicolas
- Frattaroli <nicolas.frattaroli@collabora.com>
-Subject: Re: [PATCH v17 21/28] drm/tests: bridge: Add KUnit tests for bridge
- chain format selection
-In-Reply-To: <20260609-color-format-v17-21-35739b5782cc@collabora.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260609-color-format-v17-0-35739b5782cc@collabora.com>
- <20260609-color-format-v17-21-35739b5782cc@collabora.com>
-Date: Wed, 10 Jun 2026 13:32:29 +0300
-Message-ID: <04ff70850213ae0f75486b1a27a7edb6fb4e71c3@intel.com>
+X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="251067339"
+Received: from abityuts-desk.ger.corp.intel.com (HELO [10.245.244.43])
+ ([10.245.244.43])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 10 Jun 2026 04:26:43 -0700
+Message-ID: <023d3548-c44b-412d-987a-915a2a38ceff@linux.intel.com>
+Date: Wed, 10 Jun 2026 13:26:38 +0200
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] drm/xe/ggtt: use full-range drm_mm with reserved nodes on
+ PF
+To: Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+References: <20260527144527.3701844-2-rodrigo.vivi@intel.com>
+ <c5b06289-f353-47eb-a918-102288fac7e9@intel.com> <ahjBn2vYp5dppkYp@intel.com>
+ <ahlvesSbbOdk47m3@intel.com> <ahn_O3ZSTE2Th-tz@intel.com>
+ <aiAp7R00bY-pgIL0@intel.com> <aiAvsds-BPvw-Lu6@intel.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <aiAvsds-BPvw-Lu6@intel.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,142 +82,293 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[40];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[collabora.com,amd.com,igalia.com,gmail.com,ffwll.ch,linux.intel.com,kernel.org,suse.de,intel.com,linaro.org,ideasonboard.com,kwiboo.se,rock-chips.com,sntech.de,ursulin.net,pengutronix.de,lwn.net,linuxfoundation.org,fooishbar.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:from_mime,collabora.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:mid]
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ARC_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,linux.intel.com:mid,linux.intel.com:from_mime];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2AD0E6684D7
+X-Rspamd-Queue-Id: 5A823668C73
 
-On Tue, 09 Jun 2026, Nicolas Frattaroli <nicolas.frattaroli@collabora.com> =
-wrote:
-> diff --git a/drivers/gpu/drm/tests/drm_bridge_test.c b/drivers/gpu/drm/te=
-sts/drm_bridge_test.c
-> index 64b665580a88..92f142ca6695 100644
-> --- a/drivers/gpu/drm/tests/drm_bridge_test.c
-> +++ b/drivers/gpu/drm/tests/drm_bridge_test.c
-> @@ -2,15 +2,23 @@
->  /*
->   * Kunit test for drm_bridge functions
->   */
-> +#include <linux/cleanup.h>
-> +#include <linux/media-bus-format.h>
-> +
->  #include <drm/drm_atomic_state_helper.h>
-> +#include <drm/drm_atomic_uapi.h>
->  #include <drm/drm_bridge.h>
->  #include <drm/drm_bridge_connector.h>
->  #include <drm/drm_bridge_helper.h>
-> +#include <drm/drm_edid.h>
->  #include <drm/drm_kunit_helpers.h>
-> +#include <drm/drm_managed.h>
->=20=20
->  #include <kunit/device.h>
->  #include <kunit/test.h>
->=20=20
-> +#include "drm_kunit_edid.h"
+Hello,
 
-So here's the problem with adding *any* arrays into headers: every
-compilation unit that includes them duplicates all the arrays. It's only
-really okay for single use.
+On 6/3/26 15:44, Rodrigo Vivi wrote:
+> On Wed, Jun 03, 2026 at 04:19:41PM +0300, Ville Syrjälä wrote:
+>> On Fri, May 29, 2026 at 05:03:55PM -0400, Rodrigo Vivi wrote:
+>>> On Fri, May 29, 2026 at 01:50:34PM +0300, Ville Syrjälä wrote:
+>>>> On Thu, May 28, 2026 at 06:28:47PM -0400, Rodrigo Vivi wrote:
+>>>>> On Fri, May 29, 2026 at 12:11:22AM +0200, Michal Wajdeczko wrote:
+>>>>>>
+>>>>>>
+>>>>>> On 5/27/2026 4:45 PM, Rodrigo Vivi wrote:
+>>>>>>> The PF GGTT allocator was initialised over a relative [0, usable_size)
+>>>>>>> range, with ggtt->start added on every address conversion to get the
+>>>>>>> actual hardware address.  Two consequences of that model were considered
+>>>>>>> "horrible hacks":
+>>>>>>>
+>>>>>>>   - ggtt->start (the WOPCM offset) had to be carried around and added
+>>>>>>>     to every drm_mm result.
+>>>>>>
+>>>>>> hmm, but this an internal detail of the xe_ggtt implementation, so why
+>>>>>> would someone else complain about it?
+>>>>>>
+>>>>>>>   - The GUC_GGTT_TOP ceiling silently truncated the GGTT range instead
+>>>>>>
+>>>>>> hmm, for the record, this GGTT cap on the top was added back in 2023
+>>>>>>
+>>>>>> commit ab10e976fbda8349163ceee2ce99b2bfc97031b8
+>>>>>> Author: Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>
+>>>>>> Date:   Wed Jun 14 10:47:54 2023 -0700
+>>>>>>
+>>>>>>     drm/xe: limit GGTT size to GUC_GGTT_TOP
+>>>>>>
+>>>>>> +        * The GuC address space is limited on both ends of the GGTT, because
+>>>>>> +        * the GuC shim HW redirects accesses to those addresses to other HW
+>>>>>> +        * areas instead of going through the GGTT. On the bottom end, the GuC
+>>>>>> +        * can't access offsets below the WOPCM size, while on the top side the
+>>>>>> +        * limit is fixed at GUC_GGTT_TOP. To keep things simple, instead of
+>>>>>> +        * checking each object to see if they are accessed by GuC or not, we
+>>>>>> +        * just exclude those areas from the allocator. Additionally, to
+>>>>>> +        * simplify the driver load, we use the maximum WOPCM size in this logic
+>>>>>>
+>>>>>>>     of being made explicit, leaving PTEs in [GUC_GGTT_TOP, total_size)
+>>>>>>>     untouched during the initial clear.
+>>>>>>
+>>>>>> and that likely will not be changed by this patch as after allocating 'two
+>>>>>> permanent zones', the drm_mm_for_each_hole will not iterate over them
+>>>>>
+>>>>> right...
+>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>> Fix this for the PF case by initialising drm_mm over the full hardware
+>>>>>>> GGTT range [0, total_size) and permanently reserving the two forbidden
+>>>>>>> zones:
+>>>>>>>
+>>>>>>>   - [0, wopcm)           — inaccessible below WOPCM
+>>>>>>>   - [GUC_GGTT_TOP, total_size) — inaccessible above GUC_GGTT_TOP
+>>>>>>
+>>>>>> that looks odds: why pretend to claim manageability of full [0, 4GB)
+>>>>>> of the GGTT and then immediately permanently reserve two end zones to
+>>>>>> end up with real [wopcm, GUC_TOP) which is what we already have?
+>>>>>
+>>>>> yes...
+>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>> A new mm_offset field (zero for PF) carries the base offset used in
+>>>>>>> address conversions, unifying the existing VF relative model (where
+>>>>>>> mm_offset == vf_base) with the new PF absolute model.
+>>>>>>
+>>>>>> but public xe_ggtt API already uses absolute addressing in PF and VF
+>>>>>
+>>>>> I know...
+>>>>>
+>>>>>>
+>>>>>>>  The public
+>>>>>>> xe_ggtt_start() / xe_ggtt_size() API continues to return the usable
+>>>>>>> [wopcm, GUC_GGTT_TOP) boundaries, so callers such as the SR-IOV PF
+>>>>>>> config code are unaffected.
+>>>>>>>
+>>>>>>> xe_ggtt_shift_nodes() now updates both ggtt->start and ggtt->mm_offset
+>>>>>>> so the VF recovery path remains a single O(1) WRITE_ONCE pair.
+>>>>>>
+>>>>>> maybe it's just me - but I can't figure out the real rationale for this
+>>>>>> patch - what did I miss?
+>>>>>
+>>>>> This series:
+>>>>> https://lore.kernel.org/intel-xe/20260511214122.8468-1-ville.syrjala@linux.intel.com/
+>>>>>
+>>>>> And more specifically the discussion in this patch:
+>>>>> https://lore.kernel.org/intel-xe/20260511214122.8468-13-ville.syrjala@linux.intel.com/
+>>>>>
+>>>>>>
+>>>>>>>
+>>>>>>> Suggested-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+>>>>>>> Cc: Michal Wajdeczko <michal.wajdeczko@intel.com>
+>>>>>>> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+>>>>>>> Assisted-by: GitHub-Copilot:claude-sonnet-4.6
+>>>>>>> Signed-off-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
+>>>>>>> ---
+>>>>>>>  drivers/gpu/drm/xe/xe_ggtt.c | 123 ++++++++++++++++++++++++++++-------
+>>>>>>>  1 file changed, 101 insertions(+), 22 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/gpu/drm/xe/xe_ggtt.c b/drivers/gpu/drm/xe/xe_ggtt.c
+>>>>>>> index a351c578b170..00a6cd2b8a51 100644
+>>>>>>> --- a/drivers/gpu/drm/xe/xe_ggtt.c
+>>>>>>> +++ b/drivers/gpu/drm/xe/xe_ggtt.c
+>>>>>>> @@ -137,6 +137,17 @@ struct xe_ggtt {
+>>>>>>>  	const struct xe_ggtt_pt_ops *pt_ops;
+>>>>>>>  	/** @mm: The memory manager used to manage individual GGTT allocations */
+>>>>>>>  	struct drm_mm mm;
+>>>>>>> +	/**
+>>>>>>> +	 * @mm_offset: base offset added to drm_mm node addresses to obtain hardware
+>>>>>>> +	 * GGTT addresses. For PF this is 0 (drm_mm uses absolute hardware addresses).
+>>>>>>> +	 * For VF this equals @start (drm_mm uses relative addresses from VF base).
+>>>>>>> +	 * Updated atomically by xe_ggtt_shift_nodes() during VF recovery.
+>>>>>>> +	 */
+>>>>>>> +	u64 mm_offset;
+>>>>>>> +	/** @reserved_bottom: permanently reserved [0, WOPCM) drm_mm node for PF */
+>>>>>>> +	struct drm_mm_node reserved_bottom;
+>>>>>>> +	/** @reserved_top: permanently reserved [GUC_GGTT_TOP, total) drm_mm node for PF */
+>>>>>>> +	struct drm_mm_node reserved_top;
+>>>>>>
+>>>>>> maybe all we need is to separate concepts of:
+>>>>>>
+>>>>>> * raw GGTT - fixed range [0, 4GB)
+>>>>>>
+>>>>>> from
+>>>>>>
+>>>>>> * allocable GGTT - configurable sub-range [start, end)
+>>>>>>   * [wopcm, GUC_TOP) on PF
+>>>>>>   * [base, base+size) on VF
+>>>>>>
+>>>>>> and then we can continue to use drm_mm.init(0, end-start) to manage
+>>>>>> that [start, end) range in a common way on both PF and VF?
+>>>>>
+>>>>> we need to be able to use a ggtt buffer that comes out of this range,
+>>>>> so I'm afraid it doesn't solve all the cases.
+>>>>
+>>>> Basically what the display needs is:
+>>>> 1. specify where in ggtt the buffer was originally placed by the GOP,
+>>>>    this may be partially or fully inside these GuC reserved ranges
+>>>> 2. bind the buffer to some acceptable location (assuming the original
+>>>>    location wasn't acceptable) without overwriting the PTEs for the
+>>>>    original location
+>>>>
+>>>> I suppose this could be achieved even with this "mm doesn't cover the
+>>>> ends" hack, but step 1 there becomes a bit dodgy because we can't
+>>>> insert the mm node if it's fully outside the mm. I suppose it could 
+>>>> still work if you hide it in a function that only validates the real
+>>>> ggtt offsets, but then ignores the fact that the node can't be
+>>>> inserted due to being fully inside those reserved ranges. And then
+>>>> whatever cleans up that original mm node must also ignore the fact
+>>>> that the node maybe wasn't even allocated. And also
+>>>> xe_ggtt_initial_clear() will need special code to clear the
+>>>> reserved ranges.
+>>>
+>>> right, so basically we could keep the xe_ggtt as is and provide
+>>> 2 hooks:
+>>>
+>>> 1. one to reserve the portion of the BIOS FB that goes
+>>> inside our managed ggtt area
+>>> 2. a special clear for this area
+>>>
+>>> And in between you do the rebind with existing infrastructure
+>>> to an empty region?! Is this what you are thinking now?
+>>>
+>>>>
+>>>> My original idea was that we'd just include the reserved regions
+>>>> in the mm, and then the display could just keep the buffer at its
+>>>> original location, and later the guc code can reserve what is
+>>>> left over. So we could skip step 2 above completely. But after
+>>>> a second thought we probably don't want to skip that step because
+>>>> we might free the display bo later, at which point we might free
+>>>> up some of the reserved ranges. So I guess we'd still want to keep
+>>>> step 2. But I think it'd still result in less special cases in the
+>>>> code. We'd just need the guc code to reserve what it needs, after
+>>>> the display code has rebound the bo to an acceptable location.
+>>>>
+>>>> So we'd end up with:
+>>>> 1. insert node for the bo's original ggtt location
+>>>> 2. rebind the display bo to an acceptable ggtt location
+>>>> 3. undo step 1
+>>>> 4. xe_ggtt_initial_clear() (now also clears the reserved ranges
+>>>>    without any special code)
+>>>> 5. guc steals the reserved ranges explicitly
+>>>>
+>>>> So only two special cases left really, and all the rest
+>>>> of the code is blissfully unaware of any of it.
+>>>>
+>>>> Hmm, although hibernation might still be a slight issue for
+>>>> xe_ggtt_initial_clear(). As in how would the reserved regions
+>>>> get cleared during resume from hibernation? I have no idea 
+>>>> how the current xe ggtt code handles resume at all...
+>>>
+>>> The resume should only restore the pinned bo's one by one, nothing
+>>> special.
+>>
+>> Looks like currently xe_ggtt_initial_clear() is never even called
+>> during resume from hibernation, so in that case parts of the GGTT
+>> will be left with whatever garbage the GOP put there. So that's
+>> one thing that needs fixing.
+>>
+>>> So I guess if we keep the original code we are okay,
+>>> but if we start to managing the full range with the reserved areas
+>>> we might have some difficulties here on the way...
+>>
+>> If we had a full range mm I suppose we'd need a bit of special code
+>> to remove the reserved nodes before xe_ggtt_initial_clear() gets
+>> called, at least for the resume from hibernation case.
+> 
+> it looks like Maarten suggestion fix the clear portion.
+> But for the steps 1 and 3 above we would need a special reservation
+> with a node area only within our managed area?!
+> 
+> something like (for step 1):
+> 
+> mm_start = max(start, ggtt->start);
+> mm_end = min(start + size, ggtt->start + ggtt->size);
+> 
+> node->base.start = mm_start - ggtt->start;
+> node->base.size = mm_end - mm_start;
+> 
+> drm_mm_reserve_node(&ggtt->mm, &node->base);
 
-And, in this case, most of the included arrays are unused, leading to
-build failures:
+I completely missed this, but that function exists.
 
-  CC [M]  drivers/gpu/drm/tests/drm_bridge_test.o
-In file included from ../drivers/gpu/drm/tests/drm_bridge_test.c:21:
-../drivers/gpu/drm/tests/drm_kunit_edid.h:958:28: error: =E2=80=98test_edid=
-_hdmi_4k_rgb_yuv420_dc_max_340mhz=E2=80=99 defined but not used [-Werror=3D=
-unused-const-variable=3D]
-  958 | static const unsigned char test_edid_hdmi_4k_rgb_yuv420_dc_max_340m=
-hz[] =3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:726:28: error: =E2=80=98test_edid=
-_hdmi_1080p_rgb_yuv_dc_max_340mhz=E2=80=99 defined but not used [-Werror=3D=
-unused-const-variable=3D]
-  726 | static const unsigned char test_edid_hdmi_1080p_rgb_yuv_dc_max_340m=
-hz[] =3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:612:28: error: =E2=80=98test_edid=
-_hdmi_1080p_rgb_yuv_dc_max_200mhz=E2=80=99 defined but not used [-Werror=3D=
-unused-const-variable=3D]
-  612 | static const unsigned char test_edid_hdmi_1080p_rgb_yuv_dc_max_200m=
-hz[] =3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~=
-~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:498:28: error: =E2=80=98test_edid=
-_hdmi_1080p_rgb_max_340mhz=E2=80=99 defined but not used [-Werror=3Dunused-=
-const-variable=3D]
-  498 | static const unsigned char test_edid_hdmi_1080p_rgb_max_340mhz[] =
-=3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:390:28: error: =E2=80=98test_edid=
-_hdmi_1080p_rgb_max_200mhz_hdr=E2=80=99 defined but not used [-Werror=3Dunu=
-sed-const-variable=3D]
-  390 | static const unsigned char test_edid_hdmi_1080p_rgb_max_200mhz_hdr[=
-] =3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:271:28: error: =E2=80=98test_edid=
-_hdmi_1080p_rgb_max_200mhz=E2=80=99 defined but not used [-Werror=3Dunused-=
-const-variable=3D]
-  271 | static const unsigned char test_edid_hdmi_1080p_rgb_max_200mhz[] =
-=3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:163:28: error: =E2=80=98test_edid=
-_hdmi_1080p_rgb_max_100mhz=E2=80=99 defined but not used [-Werror=3Dunused-=
-const-variable=3D]
-  163 | static const unsigned char test_edid_hdmi_1080p_rgb_max_100mhz[] =
-=3D {
-      |                            ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-../drivers/gpu/drm/tests/drm_kunit_edid.h:57:28: error: =E2=80=98test_edid_=
-dvi_1080p=E2=80=99 defined but not used [-Werror=3Dunused-const-variable=3D]
-   57 | static const unsigned char test_edid_dvi_1080p[] =3D {
-      |                            ^~~~~~~~~~~~~~~~~~~
-cc1: all warnings being treated as errors
+Extend xe_ggtt_insert_node to xe_ggtt_insert_node_at, and xe_ggtt_node_remove.
+The display code needs to truncate start/end/size as needed, because
+size is passed as argument.
 
-This breaks the build for me, I don't know how it didn't for any of you.
+The proposal I made in the original series that spawned this
+discussion, had the same idea. You can argue the clipping should be done by
+xe_ggtt, in which case I'm open for a xe_ggtt_node_reserve_region(begin, end),
+with clipping done by xe_ggtt. But I believe xe_ggtt_insert_node_at is more
+generic, and can be used in more places.
 
-Reverting these two fixes it:
+This also removes the workaround we added that required adding 'xe_ggtt_insert_bo_at'
 
-ce1d0139adac ("drm/tests: bridge: Add test for HDMI output bus formats help=
-er")
-082fbc179c01 ("drm/tests: bridge: Add KUnit tests for bridge chain format s=
-election")
+> 
+> and another special function to delete this special node
+> if needed to be created?
+> 
+> Or what do you have on mind for the full area? I believe the full
+> area is this patch, but with some additions anyway since we need
+> to handle this buffer plus ensure it gets reserved when we don't
+> have it...
+> 
+> I'd like to avoid complications like the phys offset addition or
+> the full range if possible.
+> 
+> Could you please incorporate something simple in a v2 of your series?
+> 
+> Thanks,
+> Rodrigo.
+> 
+>>
+>> -- 
+>> Ville Syrjälä
+>> Intel
 
-I think the proper fix would be to move the arrays into a .c file, and
-only have declarations in the headers. But that needs to happen real
-soon or the commits need to be reverted.
-
-
-BR,
-Jani.
-
-
---=20
-Jani Nikula, Intel
+Kind regards,
+~Maarten Lankhorst
