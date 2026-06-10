@@ -2,69 +2,94 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1xdWA/3/KGqgOgMAu9opvQ
+	id lcPDBwR4KWpIXQMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 08:11:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 16:43:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 86A3366619A
-	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 08:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C246C66A538
+	for <lists+intel-gfx@lfdr.de>; Wed, 10 Jun 2026 16:43:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Sjk0oTor;
+	dkim=pass header.d=linux.dev header.s=key1 header.b="S/EuK96p";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1458010E71A;
-	Wed, 10 Jun 2026 06:11:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A83E710E9F1;
+	Wed, 10 Jun 2026 14:43:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2423710E71A
- for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 06:11:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781071866; x=1812607866;
- h=mime-version:content-transfer-encoding:in-reply-to:
- references:subject:from:cc:to:date:message-id;
- bh=T4PLCV/Au02rSPIrD7i86UW7KEfAeOZVAklV1H4aAPU=;
- b=Sjk0oTorO38FLtCbSRuawDHcjEwzTiqrfQUVmHI4MCzGbJK0wOWddM2t
- GXts3T8qC1x9xOvLD1xP0kIrfsWef5kUVWF6sjUf6AWcsK9jX7lYcKLFC
- qOOX8AOQAN7BvNcD2Na2QsrWwvnQQlJe4sGuK4c3huVVmV0RSzCkEyfuX
- sDCTNSebos2qeaOAyqdlgt9NUsIG4uYbW1KBt4QCO4ig9UoRtCBqhTOYV
- E/e6UEg9d2yC/d6Dr7VceyAqRJnzjXJHJlujnNrsGhHm5rvr9pgZEi0sY
- 1hoPdes+t01O3/N0ApnUAr1ILLXJ5JBd/VZ4MG9GONWHUp/jxCt1WdZnN w==;
-X-CSE-ConnectionGUID: Fh44BgPAQDmxf/Bb3PSdhQ==
-X-CSE-MsgGUID: tXffx0LWRoSn/J+iwxLZPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11812"; a="92962646"
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="92962646"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 23:11:05 -0700
-X-CSE-ConnectionGUID: j1Eh5tCDRrGC8NbEcy/+hw==
-X-CSE-MsgGUID: U0DO/QqVQIKsdbxl8t6LLg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,197,1774335600"; d="scan'208";a="241941084"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.208])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 09 Jun 2026 23:11:02 -0700
-Content-Type: text/plain; charset="utf-8"
+Received: from out-173.mta1.migadu.com (out-173.mta1.migadu.com
+ [95.215.58.173])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1BB1A10E72E
+ for <intel-gfx@lists.freedesktop.org>; Wed, 10 Jun 2026 06:15:17 +0000 (UTC)
+Message-ID: <5152089a-2808-4fe9-b633-b03018105dd2@linux.dev>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1781072103;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=GCPO9v7e2NaYcPW5zVGvXXPxzu/fCfdM58tRqJXSo9A=;
+ b=S/EuK96pTXAWUBg+8TCiJYM+danZr1codL6zDdrR1CXWZbSAz8OZt88gSb3T73P2+Oj0bR
+ ye5UJbetTGxWmds/F2K/tlbDAkWts/YSgQ0PrY0mv2jpzcQt2r4zQh26U4ohdHNt5eRxKb
+ jqr9Nyh610YgX0sau/FOqrE+b1XuGGI=
+Date: Wed, 10 Jun 2026 14:14:06 +0800
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20260609183002.1051500-1-jia.yao@intel.com>
-References: <20260609183002.1051500-1-jia.yao@intel.com>
-Subject: Re: [PATCH v4] drm/i915/dg2: Add per-context control for
- Wa_22013059131
-From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Jia Yao <jia.yao@intel.com>, stable@vger.kernel.org,
- Shuicheng Lin <shuicheng.lin@intel.com>,
- Matt Roper <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Maciej Plewka <maciej.plewka@intel.com>,
- Andi Shyti <andi.shyti@linux.intel.com>
-To: Jia Yao <jia.yao@intel.com>, intel-gfx@lists.freedesktop.org
-Date: Wed, 10 Jun 2026 09:10:59 +0300
-Message-ID: <178107185934.29382.9213110661861924376@jlahtine-mobl>
-User-Agent: alot/0.13.dev2+g40c57d620
+Subject: Re: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor
+ state
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
+ Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Thierry Reding <thierry.reding@kernel.org>,
+ Jonathan Hunter <jonathanh@nvidia.com>,
+ Sowjanya Komatineni <skomatineni@nvidia.com>,
+ Davidlohr Bueso <dave@stgolabs.net>, "Paul E . McKenney"
+ <paulmck@kernel.org>, Josh Triplett <josh@joshtriplett.org>,
+ Peter Zijlstra <peterz@infradead.org>, Ingo Molnar <mingo@redhat.com>,
+ Will Deacon <will@kernel.org>, Boqun Feng <boqun@kernel.org>,
+ Liam Girdwood <lgirdwood@gmail.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Huang Rui <ray.huang@amd.com>,
+ Eddie James <eajames@linux.ibm.com>, Mark Brown <broonie@kernel.org>,
+ Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+ Alexandre Torgue <alexandre.torgue@foss.st.com>,
+ Laxman Dewangan <ldewangan@nvidia.com>,
+ Neil Armstrong <neil.armstrong@linaro.org>, Robert Foss <rfoss@kernel.org>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+ Jonas Karlman <jonas@kwiboo.se>, Jernej Skrabec <jernej.skrabec@gmail.com>,
+ Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>, Waiman Long <longman@redhat.com>,
+ drbd-dev@lists.linbit.com, linux-block@vger.kernel.org,
+ linux1394-devel@lists.sourceforge.net, dri-devel@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org, linux-spi@vger.kernel.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-tegra@vger.kernel.org,
+ linux-sound@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Randy Dunlap <rdunlap@infradead.org>, Christian Brauner
+ <brauner@kernel.org>, David Howells <dhowells@redhat.com>,
+ Luca Ceresoli <luca.ceresoli@bootlin.com>,
+ Kaito Cheng <chengkaitao@kylinos.cn>, Muchun Song <muchun.song@linux.dev>,
+ Philipp Reisner <philipp.reisner@linbit.com>,
+ Lars Ellenberg <lars.ellenberg@linbit.com>,
+ =?UTF-8?Q?Christoph_B=C3=B6hmwalder?= <christoph.boehmwalder@linbit.com>,
+ Jens Axboe <axboe@kernel.dk>, Takashi Sakamoto <o-takashi@sakamocchi.jp>,
+ Andrzej Hajda <andrzej.hajda@intel.com>, Jaroslav Kysela <perex@perex.cz>,
+ Takashi Iwai <tiwai@suse.com>
+References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
+ <bd0b7393-8ccb-4d67-8bfc-18c68347122c@amd.com>
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+From: Kaitao Cheng <kaitao.cheng@linux.dev>
+In-Reply-To: <bd0b7393-8ccb-4d67-8bfc-18c68347122c@amd.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
+X-Mailman-Approved-At: Wed, 10 Jun 2026 14:43:11 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,67 +105,155 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,gmail.com,linux.intel.com,intel.com,ursulin.net,amd.com,linux.ibm.com,foss.st.com,linaro.org,suse.de,ffwll.ch,ideasonboard.com,kwiboo.se,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,bootlin.com,kylinos.cn,linux.dev,linbit.com,kernel.dk,sakamocchi.jp,perex.cz,suse.com];
+	FORGED_RECIPIENTS(0.00)[m:christian.koenig@amd.com,m:andriy.shevchenko@linux.intel.com,m:thierry.reding@kernel.org,m:jonathanh@nvidia.com,m:skomatineni@nvidia.com,m:dave@stgolabs.net,m:paulmck@kernel.org,m:josh@joshtriplett.org,m:peterz@infradead.org,m:mingo@redhat.com,m:will@kernel.org,m:boqun@kernel.org,m:lgirdwood@gmail.com,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:ray.huang@amd.com,m:eajames@linux.ibm.com,m:broonie@kernel.org,m:mcoquelin.stm32@gmail.com,m:alexandre.torgue@foss.st.com,m:ldewangan@nvidia.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:longman@redhat.com,m:drbd-dev@lists.linbit.com,m:linux-block@vger.kernel.org,m:linux1394-devel@lists.sourceforg
+ e.net,m:dri-devel@lists.freedesktop.org,m:linux-spi@vger.kernel.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-tegra@vger.kernel.org,m:linux-sound@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:akpm@linux-foundation.org,m:rdunlap@infradead.org,m:brauner@kernel.org,m:dhowells@redhat.com,m:luca.ceresoli@bootlin.com,m:chengkaitao@kylinos.cn,m:muchun.song@linux.dev,m:philipp.reisner@linbit.com,m:lars.ellenberg@linbit.com,m:christoph.boehmwalder@linbit.com,m:axboe@kernel.dk,m:o-takashi@sakamocchi.jp,m:andrzej.hajda@intel.com,m:perex@perex.cz,m:tiwai@suse.com,m:mcoquelinstm32@gmail.com,m:jernejskrabec@gmail.com,s:lists@lfdr.de];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:jia.yao@intel.com,m:stable@vger.kernel.org,m:shuicheng.lin@intel.com,m:matthew.d.roper@intel.com,m:rodrigo.vivi@intel.com,m:maciej.plewka@intel.com,m:andi.shyti@linux.intel.com,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	FORGED_SENDER(0.00)[kaitao.cheng@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[kaitao.cheng@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[62];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,jlahtine-mobl:mid]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,kylinos.cn:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 86A3366619A
+X-Rspamd-Queue-Id: C246C66A538
 
-Quoting Jia Yao (2026-06-09 21:30:02)
-> Wa_22013059131 sets FORCE_1_SUB_MESSAGE_PER_FRAGMENT in LSC_CHICKEN_BIT_0
-> at engine init, but this is known to cause GPU hangs in certain workloads.
-> Add I915_CONTEXT_PARAM_WA_22013059131 so userspace that handles the
-> workaround itself (e.g. by limiting SLM size) can set it to 1 to let the
-> kernel know bit 15 programming is not needed for that context.
->=20
-> LSC_CHICKEN_BIT_0 is not context-saved by hardware, so the kernel restores
-> the correct value on every context switch via the indirect context
-> batchbuffer to avoid leaking state between contexts. The old unconditional
-> application of Wa22013059131 in intel_workarounds.c is removed.
->=20
-> v4:
-> - Add a link of the userspace using this API
->=20
-> v3:
-> - Kernel-internal context will not change workaround settings
->=20
-> Bspec: 54833
-> Fixes: 645cc0b9d972 ("drm/i915/dg2: Add initial gt/ctx/engine workarounds=
-")
+在 2026/6/9 18:33, Christian König 写道:
+> On 6/9/26 08:13, Kaitao Cheng wrote:
+>> From: Kaito Cheng <chengkaitao@kylinos.cn>
+>>
+>> This series prepares for, and then updates, the list_for_each_entry()
+>> family so the common entry iterators cache their next or previous cursor
+>> before the loop body runs.
+> 
+> Why in the world would we want to do that?
+> 
+> The safe and non-safe variants have very distinct use cases and that is completely intentional.
+> 
+> What we could improve maybe is the documentation, from my experience an astonishing large amount of people have misconceptions about the safe variants.
+> 
+>> The first 13 patches open-code loops that intentionally depend on the
+>> old "derive the next entry from the current cursor at the end of the
+>> iteration" behaviour.  These loops append work to the list being walked,
+>> restart traversal after dropping a lock, skip an entry consumed by the
+>> current iteration, or otherwise adjust the cursor in the loop body.
+> 
+> Well I have to clearly reject the changes for subsystems/components I'm maintaining, that just looks horrible to me and I clearly don't see a good reason for that.
 
-This is not a fixup to be backported to older kernels, this is a new
-feature, so please drop this. It'll cause unnecessary noise.
+Hi Christian and Andy Shevchenko,
 
-> Link: https://github.com/intel/compute-runtime/pull/919
-> Cc: stable@vger.kernel.org
+Thanks for taking a look. I would like to clarify the point you raised.
 
-Definitely not for stable for above reasons.
+The reason I started looking at this is the original motivation behind
+the _safe() variants.  They exist because some users need to remove, move
+or otherwise consume the current entry while walking the list.  In that
+case the next cursor has to be preserved before the loop body can modify
+the current entry.
 
-Regards, Joonas
+The unfortunate part is that this could not be expressed with the
+existing list_for_each_entry() interface without changing its calling
+convention.  The _safe() variants had to grow an extra argument for the
+temporary cursor, and that is why we ended up with a separate family of
+macros.
+
+But conceptually, the distinction does not have to be exposed as two
+different iterator families forever.  The difference is an implementation
+detail: whether the iterator keeps the next/previous cursor before the
+body runs.  This series makes the common list_for_each_entry() iterators
+do that internally, so the safe and non-safe forms can effectively be
+folded together, or at least the need for a separate public _safe()
+interface becomes much weaker.
+
+There is also a usability issue with the current _safe() interface.  The
+caller is forced to define a temporary cursor outside the macro and pass
+it in, even though almost all users never use that cursor directly.  It is
+just boilerplate required by the macro implementation.  I find that
+redundant and awkward: the temporary cursor is an internal detail of the
+iteration, but every caller has to spell it out.
+
+With the updated list_for_each_entry() implementation, that extra cursor
+can be kept inside the iterator itself.  Callers that only want to walk
+the list, including callers that delete or consume the current entry, no
+longer need to carry an otherwise-unused temporary variable just to make
+the macro work.
+
+>>
+>> The final patch changes include/linux/list.h to keep a private cursor in
+>> the common entry iterators while preserving the public macro interface.
+>> The safe variants remain available when callers need the temporary
+>> cursor explicitly or have stronger mutation requirements.
+>>
+>> Changes in v2 (Muchun Song, Andy Shevchenko):
+>>  - Drop the list_for_each_entry_mutable*() helpers from v1 and make the
+>>    cursor change directly in the existing list_for_each_entry*() helpers.
+>>  - Open-code special list walks that rely on updating the loop cursor in
+>>    the body, preserving their existing traversal semantics.
+>>
+>> Link to v1:
+>> https://lore.kernel.org/all/20260529082149.76764-1-kaitao.cheng@linux.dev/
+>>
+>> Kaitao Cheng (14):
+>>   drbd: Open-code transfer log list walk
+>>   firewire: core: Open-code topology list walk
+>>   drm/bridge: Open-code bridge chain list walks
+>>   drm/i915/gt: Open-code active timeline walk
+>>   drm/i915: Open-code DFS dependency list walk
+>>   drm/ttm: Open-code reservation list walk
+>>   spi: fsi: Open-code message transfer walk
+>>   spi: stm32-ospi: Open-code message transfer walk
+>>   spi: stm32-qspi: Open-code message transfer walk
+>>   spi: tegra210-quad: Open-code message transfer walk
+>>   locking/locktorture: Open-code ww mutex list walk
+>>   locking/ww_mutex: Open-code stress reorder list walk
+>>   ASoC: dapm: Open-code widget invalidation walk
+>>   list: Cache cursors in entry iterators
+>>
+>>  drivers/block/drbd/drbd_debugfs.c      |  4 ++-
+>>  drivers/firewire/core-topology.c       |  4 ++-
+>>  drivers/gpu/drm/drm_bridge.c           |  7 ++--
+>>  drivers/gpu/drm/i915/gt/intel_reset.c  |  4 ++-
+>>  drivers/gpu/drm/i915/i915_scheduler.c  |  4 ++-
+>>  drivers/gpu/drm/ttm/ttm_execbuf_util.c |  4 ++-
+>>  drivers/spi/spi-fsi.c                  |  5 ++-
+>>  drivers/spi/spi-stm32-ospi.c           |  4 ++-
+>>  drivers/spi/spi-stm32-qspi.c           |  5 ++-
+>>  drivers/spi/spi-tegra210-quad.c        |  4 ++-
+>>  include/linux/list.h                   | 46 ++++++++++++++++++++------
+>>  kernel/locking/locktorture.c           |  4 ++-
+>>  kernel/locking/test-ww_mutex.c         |  4 ++-
+>>  sound/soc/soc-dapm.c                   |  4 ++-
+>>  14 files changed, 78 insertions(+), 25 deletions(-)
+>>
+>> --
+>> 2.43.0
+>>
+> 
+
+-- 
+Thanks
+Kaitao Cheng
+
