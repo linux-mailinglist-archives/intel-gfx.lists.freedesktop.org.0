@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2d9fC1MELGrEJgQAu9opvQ
+	id xU16CUcELGq2JgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:06:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:06:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 985FB679A25
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:06:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2F180679A01
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:06:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=WXdGfeEV;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=rFXXpM7I;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2AEDD10EA3B;
-	Fri, 12 Jun 2026 13:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3386710EA4A;
+	Fri, 12 Jun 2026 13:06:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com
- [91.218.175.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0DFD410EEAD
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 12:05:38 +0000 (UTC)
-Message-ID: <0a333eb8-fc29-4b85-993e-6b726f4c7cf0@linux.dev>
+Received: from out-182.mta0.migadu.com (out-182.mta0.migadu.com
+ [91.218.175.182])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F13AE10E769
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 12:28:10 +0000 (UTC)
+Message-ID: <27b726c2-9b72-4b44-9d85-9b1aa12851a2@linux.dev>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1781179534;
+ t=1781180888;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=5DWhVGO5QRW1VdI6faudwwsJfHG4kEahgJYviymqApU=;
- b=WXdGfeEVGSAo++golesa9RqlwDWjUI0heMbmJ+0qysjw6M0vMDyoHOMF4BIo7IvkX4TAc/
- st1Pw4GNLqtv7J36ZsIWUbhzXpD6Xr1bl3yfaJx2Itop5AMoYvIiJY7F17AB8z2GFhlVk4
- dNxzkmi6tes/wrxDPVh7NfIty6mQlso=
-Date: Thu, 11 Jun 2026 20:04:40 +0800
+ bh=/UsUeGpou3lVapXWhjq32I6t+zBdHKuqjJl90iVDSiA=;
+ b=rFXXpM7IJOrHQFdgRhKujVf5VdxV6jkKNFlDsX25IoXEP9KJZ8Dv8l5c0nKTafwKXUsRZ9
+ 3BPFb1LLg9n4GliYQt3h1fAcAsjSrL2AfeU8aUx/g3f9LERtMslSnnlcG3/NjMtCHL+fHf
+ 5Y0xERqt55aedIITIkiJCvpkmeFBkwg=
+Date: Thu, 11 Jun 2026 20:27:05 +0800
 MIME-Version: 1.0
 Subject: Re: [PATCH v2 00/14] list: Prepare entry iterators to cache cursor
  state
-To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
- Thierry Reding <thierry.reding@kernel.org>,
+To: Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+ =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: Thierry Reding <thierry.reding@kernel.org>,
  Jonathan Hunter <jonathanh@nvidia.com>,
  Sowjanya Komatineni <skomatineni@nvidia.com>,
  Davidlohr Bueso <dave@stgolabs.net>, "Paul E . McKenney"
@@ -83,15 +83,16 @@ Cc: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>,
 References: <20260609061347.93688-1-kaitao.cheng@linux.dev>
  <bd0b7393-8ccb-4d67-8bfc-18c68347122c@amd.com>
  <5152089a-2808-4fe9-b633-b03018105dd2@linux.dev>
- <ail4AvzqAOXNaU6N@ashevche-desk.local>
- <9b98e860-11df-44bf-9a95-3046d2c274a6@linux.dev>
- <aipbojSeMH-usARY@ashevche-desk.local>
- <83ba73d8-27d3-4ee9-a143-7dfe4cb827be@linux.dev>
- <aippVAj83dCzscTN@ashevche-desk.local>
+ <6b2efdee-95b0-4306-a682-0d0466497ddb@amd.com>
+ <2399841f-d834-4652-8285-4a15c7d9a9b9@linux.dev>
+ <d974a2ea-6102-45ff-bf36-3b25a2404e40@amd.com>
+ <ail8iNvPrJnE7p58@ashevche-desk.local>
+ <92683537-8404-47fe-a4ba-160e54870f0b@amd.com>
+ <aipx1goKIsk40vrF@ashevche-desk.local>
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 From: Kaitao Cheng <kaitao.cheng@linux.dev>
-In-Reply-To: <aippVAj83dCzscTN@ashevche-desk.local>
+In-Reply-To: <aipx1goKIsk40vrF@ashevche-desk.local>
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 X-Migadu-Flow: FLOW_OUT
@@ -113,7 +114,7 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [1.19 / 15.00];
 	SUSPICIOUS_RECIPS(1.50)[];
-	DATE_IN_PAST(1.00)[25];
+	DATE_IN_PAST(1.00)[24];
 	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
@@ -121,7 +122,7 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FREEMAIL_CC(0.00)[amd.com,kernel.org,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,gmail.com,linux.intel.com,intel.com,ursulin.net,linux.ibm.com,foss.st.com,linaro.org,suse.de,ffwll.ch,ideasonboard.com,kwiboo.se,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,bootlin.com,kylinos.cn,linux.dev,linbit.com,kernel.dk,sakamocchi.jp,perex.cz,suse.com];
+	FREEMAIL_CC(0.00)[kernel.org,nvidia.com,stgolabs.net,joshtriplett.org,infradead.org,redhat.com,gmail.com,linux.intel.com,intel.com,ursulin.net,amd.com,linux.ibm.com,foss.st.com,linaro.org,suse.de,ffwll.ch,ideasonboard.com,kwiboo.se,lists.linbit.com,vger.kernel.org,lists.sourceforge.net,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org,linux-foundation.org,bootlin.com,kylinos.cn,linux.dev,linbit.com,kernel.dk,sakamocchi.jp,perex.cz,suse.com];
 	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
@@ -145,134 +146,70 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 985FB679A25
+X-Rspamd-Queue-Id: 2F180679A01
 
 
 
-在 2026/6/11 15:52, Andy Shevchenko 写道:
-> On Thu, Jun 11, 2026 at 03:36:01PM +0800, Kaitao Cheng wrote:
->> 在 2026/6/11 14:54, Andy Shevchenko 写道:
->>> On Thu, Jun 11, 2026 at 12:42:02PM +0800, Kaitao Cheng wrote:
->>>> 在 2026/6/10 22:43, Andy Shevchenko 写道:
->>>>> On Wed, Jun 10, 2026 at 02:14:06PM +0800, Kaitao Cheng wrote:
->>>>>> 在 2026/6/9 18:33, Christian König 写道:
->>>>>>> On 6/9/26 08:13, Kaitao Cheng wrote:
->>>
->>>>>>>> This series prepares for, and then updates, the list_for_each_entry()
->>>>>>>> family so the common entry iterators cache their next or previous cursor
->>>>>>>> before the loop body runs.
->>>>>>>
->>>>>>> Why in the world would we want to do that?
->>>>>>>
->>>>>>> The safe and non-safe variants have very distinct use cases and that is completely intentional.
->>>>>>>
->>>>>>> What we could improve maybe is the documentation, from my experience an astonishing large amount of people have misconceptions about the safe variants.
->>>>>>>
->>>>>>>> The first 13 patches open-code loops that intentionally depend on the
->>>>>>>> old "derive the next entry from the current cursor at the end of the
->>>>>>>> iteration" behaviour.  These loops append work to the list being walked,
->>>>>>>> restart traversal after dropping a lock, skip an entry consumed by the
->>>>>>>> current iteration, or otherwise adjust the cursor in the loop body.
->>>>>>>
->>>>>>> Well I have to clearly reject the changes for subsystems/components I'm maintaining, that just looks horrible to me and I clearly don't see a good reason for that.
->>>>>>
->>>>>> Hi Christian and Andy Shevchenko,
->>>>>>
->>>>>> Thanks for taking a look. I would like to clarify the point you raised.
->>>>>>
->>>>>> The reason I started looking at this is the original motivation behind
->>>>>> the _safe() variants.  They exist because some users need to remove, move
->>>>>> or otherwise consume the current entry while walking the list.  In that
->>>>>> case the next cursor has to be preserved before the loop body can modify
->>>>>> the current entry.
->>>>>>
->>>>>> The unfortunate part is that this could not be expressed with the
->>>>>> existing list_for_each_entry() interface without changing its calling
->>>>>> convention.  The _safe() variants had to grow an extra argument for the
->>>>>> temporary cursor, and that is why we ended up with a separate family of
->>>>>> macros.
->>>>>>
->>>>>> But conceptually, the distinction does not have to be exposed as two
->>>>>> different iterator families forever.  The difference is an implementation
->>>>>> detail: whether the iterator keeps the next/previous cursor before the
->>>>>> body runs.  This series makes the common list_for_each_entry() iterators
->>>>>> do that internally, so the safe and non-safe forms can effectively be
->>>>>> folded together, or at least the need for a separate public _safe()
->>>>>> interface becomes much weaker.
->>>>>>
->>>>>> There is also a usability issue with the current _safe() interface.  The
->>>>>> caller is forced to define a temporary cursor outside the macro and pass
->>>>>> it in, even though almost all users never use that cursor directly.  It is
->>>>>> just boilerplate required by the macro implementation.  I find that
->>>>>> redundant and awkward: the temporary cursor is an internal detail of the
->>>>>> iteration, but every caller has to spell it out.
+在 2026/6/11 16:29, Andy Shevchenko 写道:
+> On Thu, Jun 11, 2026 at 10:01:25AM +0200, Christian König wrote:
+>> On 6/10/26 17:02, Andy Shevchenko wrote:
+>>> On Wed, Jun 10, 2026 at 11:11:34AM +0200, Christian König wrote:
+>>>> On 6/10/26 10:18, Kaitao Cheng wrote:
+>>>>> 在 2026/6/10 16:07, Christian König 写道:
+> 
+> ...
+> 
+>>>>> Should we revert to v1, or keep list_for_each_entry() and
+>>>>> list_for_each_entry_safe() as they are, close this thread, and make no
+>>>>> changes?
 >>>>>
->>>>> Ah, I think the distinct macro families is that what we want.
->>>>> But the hiding of the parameter can be done inside list_for_each_*_safe().
->>>>> You can do a treewide change with coccinelle.
+>>>>> Link to v1:
+>>>>> https://lore.kernel.org/all/20260529082149.76764-1-kaitao.cheng@linux.dev/
 >>>>>
->>>>> Sorry if I didn't get the whole idea from your previous contributions.
->>>>>
->>>>> Note, even cases that would need a temporary cursor may be switched to
->>>>> new list_for_each_*_safe(), see how PCI macros for iterating over resources
->>>>> are implemented (include/linux/pci.h).
+>>>>> Or do you have any better suggestions?
 >>>>
->>>> Thanks for your suggestions. I've written a demo based on your feedback.
->>>> Could you please review it and share your thoughts on this approach?
+>>>> v1 looks perfectly reasonable to me.
 >>>
->>> Have you checked how many users actually need the temporary storage?
+>>> But why not just hiding that once for all (in case they don't use the temporary
+>>> iterator)? Easy to automate, robust — everyone is happy?
 >>
->> In Muchun's reply, he mentioned the following:
+>> As far as I can see that is an extremely bad idea.
 >>
->> There are 9,925 list_for_each_entry() call sites in total. Among them,
->> 9,919 do not require any adaptation, and only 6 need to be refactored:
->>
->> As for list_for_each_entry_safe(), there are 4,572 callers. 4,550 of them
->> can be directly replaced by the new list_for_each_entry(), while 22 cannot
->> be replaced
->>
->> https://lore.kernel.org/all/2B3BFA1E-08B8-42AB-87D6-A28BF15E5C58@linux.dev/
->>
->> I only used Coccinelle to scan for list_for_each_entry() call sites, and
->> found the 13 call sites shown in the current patch series, which cover
->> the 6 cases mentioned in Muchun's email. I have not yet run the Coccinelle
->> scan for list_for_each_entry_safe().
->>
->> If we need to handle all 9,925 list_for_each_entry() call sites or all 4,572
->> list_for_each_entry_safe() call sites in one go, would such a change be too
->> large? I expect it would affect almost every kernel subsystem.
+>> The distinction between the use cases of 'iterating the list' and 'iterating
+>> the list while you modify it' is completely intentional.
+
+I agree with this point. It is very reasonable for list_for_each_entry()
+to be used only for 'iterating the list'. In practice, however, we do not
+have an effective way to enforce that rule for users, whereas the distinction
+between bool and int can be enforced by the compiler. The 13 patches in the
+current series are all real examples where users modify the list while using
+list_for_each_entry(). Is a rule that cannot actually be enforced reasonable?
+This is just my humble opinion, and I am raising it here only for discussion.
+
+> What I meant is to keep the name, just drop the parameter (make it hidden and
+> being defined inside list_for_each_*_safe() cases).
+
+I agree with this approach, but the specific details still need to be settled,
+including the issue described in the link below.
+
+https://lore.kernel.org/all/0a333eb8-fc29-4b85-993e-6b726f4c7cf0@linux.dev/
+
+Of course, there is also the suffix-renaming issue raised by Christian.
+
+>> See the bool type can be implemented by int as well, but it is just a
+>> different use case.
 > 
-> If it's done by Linus himself during the day when he prepares -rc1, it's fine.
-> You would need to provide a good justification for the change, though.
+>>>> You should just include some patches in the same patch set to actually use
+>>>> the new macros.
+>>>>
+>>>> If you modify the files under drivers/dma-buf or drivers/gpu/drm/amd to use
+>>>> the new macro I'm happy to review that.
+>>>
+>>
 > 
-> But in the above statistics the 4572 vs 4550, so the first step is to investigate
-> why temporary cursor is used in those 22 cases and what we can do to avoid that.
 
-Here is one example: in shmem_unuse() in mm/shmem.c, list_for_each_entry_safe()
-is used. In this case, the caller releases shmem_swaplist_lock inside the loop.
-During that window, the list may be modified, and the previously saved next may
-become stale. Therefore, next needs to be recomputed so that subsequent iteration
-is based on the latest list state.
-
-This leads to two possible approaches:
-
-1. Change list_for_each_entry_safe(pos, n, head, member) directly to
-list_for_each_entry_safe(pos, head, member). If we do this, the case
-above would need to be converted to an open-coded form.
-
-2. Support both forms, list_for_each_entry_safe(pos, n, head, member)
-and list_for_each_entry_safe(pos, head, member), as described in the
-link below.
-https://lore.kernel.org/all/9b98e860-11df-44bf-9a95-3046d2c274a6@linux.dev/
-
-Do you have any other thoughts on this?
-
->> I wonder whether it would be better to first provide the necessary
->> compatibility APIs, and then let each subsystem owner update their code as
->> appropriate. That would make the impact more controlled, similar to how
->> the current folio replacement of page is being handled.
 -- 
 Thanks
 Kaitao Cheng
