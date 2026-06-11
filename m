@@ -2,79 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qChrMdqJKmr3rwMAu9opvQ
+	id wcemGP+JKmoLsAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 12:11:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 12:12:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 73C45670B90
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 12:11:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0E459670BB8
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 12:12:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=hESG0yP2;
+	dkim=pass header.d=redhat.com header.s=mimecast20190719 header.b=jQH+Awhi;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=redhat.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0855B10EE03;
-	Thu, 11 Jun 2026 10:11:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8A2E210EE00;
+	Thu, 11 Jun 2026 10:12:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from us-smtp-delivery-124.mimecast.com
  (us-smtp-delivery-124.mimecast.com [170.10.133.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B12BB10EE03
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 10:11:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8E29610EE05
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 10:12:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=redhat.com;
- s=mimecast20190719; t=1781172694;
+ s=mimecast20190719; t=1781172730;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  in-reply-to:in-reply-to:references:references;
- bh=8J03CxoywVvGkdqDT93IzLl+xZxTV2J8FpCDOD6Xyq8=;
- b=hESG0yP22EjsOuceMxmvHq0try/hmvXON1cklcBWSDb3jed8sWkNNGrJ0Vn9f7umH6sygY
- Gz/I6kSciv/yt8nFX7fOvZTY1LILN3Ew4Jd2oQO+cWl+gga0Pl7JeSH0A/I1PyG39rZHug
- 7lmwe0HqxiW8OJ/8Ii9fhq77GsO6Odc=
-Received: from mail-wr1-f71.google.com (mail-wr1-f71.google.com
- [209.85.221.71]) by relay.mimecast.com with ESMTP with STARTTLS
+ bh=q0r9Bb05wU768Bts6kNipr0zjojivSJzgQogOHI5wH0=;
+ b=jQH+AwhiNYfDNE+fpr4EyyfDzX+dLcde4fPwRfQtPkFv4U4Ir1NylXa63M2xY7sHY9Lsh0
+ 2QjNaTT2VebPP1X4WLmCuDf8Q08O5dzGXjc8KU7LN722trj0LbRBVADxg9kRbg8AOdBkGb
+ FynE6i7WfrFwElLyvj9LvMXWaXI+0/g=
+Received: from mail-wm1-f69.google.com (mail-wm1-f69.google.com
+ [209.85.128.69]) by relay.mimecast.com with ESMTP with STARTTLS
  (version=TLSv1.3, cipher=TLS_AES_256_GCM_SHA384) id
- us-mta-52-UmsANVcvPHKTV7fWXSh-og-1; Thu, 11 Jun 2026 06:11:28 -0400
-X-MC-Unique: UmsANVcvPHKTV7fWXSh-og-1
-X-Mimecast-MFC-AGG-ID: UmsANVcvPHKTV7fWXSh-og_1781172687
-Received: by mail-wr1-f71.google.com with SMTP id
- ffacd0b85a97d-45ef697092fso4890458f8f.1
- for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 03:11:28 -0700 (PDT)
+ us-mta-402-sDy_fw_NN9Oi3Y1ZZa1Ayg-1; Thu, 11 Jun 2026 06:12:09 -0400
+X-MC-Unique: sDy_fw_NN9Oi3Y1ZZa1Ayg-1
+X-Mimecast-MFC-AGG-ID: sDy_fw_NN9Oi3Y1ZZa1Ayg_1781172728
+Received: by mail-wm1-f69.google.com with SMTP id
+ 5b1f17b1804b1-490ae0167ceso36863915e9.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 03:12:09 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781172687; x=1781777487;
+ d=1e100.net; s=20251104; t=1781172728; x=1781777528;
  h=mime-version:message-id:date:references:in-reply-to:subject:cc:to
  :from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date:message-id
  :reply-to;
- bh=8J03CxoywVvGkdqDT93IzLl+xZxTV2J8FpCDOD6Xyq8=;
- b=pPD0dL7XRySuZa7eEzeTNO94zEZ5r8O8RWnJwL94OZbbEYmrYeR/kt0cVkaX4K0g2p
- 0dIhmt85/8OmxJpm6sYU4ryujdQVdGTJlJ6rZNRHNIMPS9MhQWomqP0/i1qJHrTbO7ul
- 5DokGOxawERgFlRFYM0BNnUmrVJZfGCec2XWa0f+FvITfxONizJLHG0yTQO8Ko4iPGnd
- hRic1bmLs0vbvV8ccg2IDeHDL4KrHDVkSqkehjMsFvaUTRBspAVg9wVzihBtTqAlY17P
- eQN9Y9M0LgzUuzJaFW9yO3C5I64np3h0xoXX0BR4f3wwVp2Pc3k3LVYHioE0SIx0xw+R
- pEPA==
+ bh=q0r9Bb05wU768Bts6kNipr0zjojivSJzgQogOHI5wH0=;
+ b=g+mw74oW3nF+OFM8jRo7KUNeB1CwdfjHzntVzTixtVyk+Rjwu5gCaGIM82MFIvK9Yh
+ Pz1pW8SkiDuk3YIxkwahhnNAtZ1SH3QXZUcVY4BZg6EcFe4x3E4a+zzAgwhlqbZll87J
+ N7NKvqdrhd16ka3m8FYEGE8w3dVg2h09asNf0UFoxZTtNt8ie1HTdsWQoId7rIAdeQii
+ PH6ockWNP4t3QQeDEUBrOtf2xflqke5NboSAevp9jj1auJWb5Cy3Oeh/NAw5z3kM5gJy
+ If8ik54uG/l+iwxodeDwnZkQLKCffB3gYS0YcKQ+5pK35HxRkRYnp0xxFbzl48iY32xu
+ kDtA==
 X-Forwarded-Encrypted: i=1;
- AFNElJ8YSJW5yCo59Hp2qbnC2++3tMXun6LgOymEj3Annaau3+TGwJu730MRRSrndGJGxfwBlMCOcmfhwL8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YwGczBIkLjN6an3dI2UTW09cERAiCo/A/xqMpfEW21QN49/tUX4
- J7hTPEuCZXXQ2sk/OjMmiXeESILSKCJYpAAQ70NmC/L2fZtnXHhDr9nJ4prYqLHLOfjFmzyW8uj
- TxvTGHmPaojFQulqCKEzpJpgQcYSmewpQPTiZMn4DC3QM9GxZ3MEV8aAHh+WnnbxEKHvNJQ==
-X-Gm-Gg: Acq92OGeiI0ok4Q0sB7SPNny05p2TwGES4f1NlICFY/9dPRvaB3iU3vJmdEaJZrKBq5
- bT4UtbSVVtVs94igKYUqgkqKRbxlG2tZH06s1UO8j21hmxq8UZeotUJkBIPaoLqU08LEL02fSwA
- md9F65qWz83gFo/0UR2RMkzGRSgRZYbuyBuREIDTYNc2gEZarH7rexbvHazt11FDj5DkO13D49g
- M6GAq/h7wde3Fo6h2RE9Xt0tI6K0bMUYyMVoIdIxYk7BptH674GBWVJSs0u5osXl5T6deUZQm83
- Y9Pqqpes+rpALmWM+bAXWhYf5gi2kBiVD66gVvaWHdC0qYGnMtzIZJtuEh2DvgxpnCK/dmLDDFX
- tiAXQguAiDFsW9fREyOAV53HC884Fp2jaw3nt/sfREuFfal40kDxV8rwJ/8pUcCAkgBG8qUt5nM
- bNXXx1xIwvtZSIhOo=
-X-Received: by 2002:a5d:524f:0:b0:460:3233:bee8 with SMTP id
- ffacd0b85a97d-460677b28camr2150165f8f.40.1781172687215; 
- Thu, 11 Jun 2026 03:11:27 -0700 (PDT)
-X-Received: by 2002:a5d:524f:0:b0:460:3233:bee8 with SMTP id
- ffacd0b85a97d-460677b28camr2150129f8f.40.1781172686816; 
- Thu, 11 Jun 2026 03:11:26 -0700 (PDT)
+ AFNElJ/SGrES1sCTEtOVNEg2ADvSI9u2yIdqc1xQz7PFaiPVuuqP2oMxWuJ7ER0WQEEHU/d/HaObegjrgLY=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0Yx/4/H9w5lsJgH3clqjVTv6Z75ccIepPNGRoUEWnPd6Da9d9vAF
+ 3ZAXXWk/m6yFEPCo29IHPoJLqftuxjYH2YT/Tcinl5puiTZk5rPwDKSDI88Q5NIKi8IheRNyzyp
+ OhzWC/FrHP70eN4J2vKDYYlZLglP/bbgukdM/H9On/rMrZHHXt7SEU7JnBAwsx8LlGKpzHw==
+X-Gm-Gg: Acq92OFV9N1TxuRWC0Rzf/7xYqVm0dbwSg8sZKfqYV8kHZFwCKIlcuSL2E4xlOqKEvC
+ FjYFm263TYFsDoTnT6pIN8jp0Rug/r5bOmFTNDqQ5iQKB2KwQs9MWzzoEfvKqsNvOspuDQ5f6xI
+ 0vZ+GTL2wZI43fJKXTrymZRl4KwnKcHOlE8f6CBXnnhmh3sj9VppIzJLWeiCR/n/jAvJbqQbqqM
+ 5pndPfQAlAcLC8xQ6VXeSHvQCvW19z8hvGio8O3iu7EEwy9O0tL0r95GC2gOGyVz6V9GBCHvpLA
+ o7lJZzFX/CxxTXYBWqTrPsXAgSUpn819iKheh/grBbyiHPLGu3yn3RXMvrgQsRB4xpGc1LlOkAQ
+ k5YzHl9x8+A2DPYodPcHdyQod1wy0E1B7U0fZoFCmnwJ3M1yYGcfWmgwtRvyoAo6C42Dnv7uHKi
+ PEtZFIJGKZtHM9Es4=
+X-Received: by 2002:a05:600c:a39b:b0:490:c08b:b24b with SMTP id
+ 5b1f17b1804b1-490e5607e3cmr15876085e9.26.1781172728113; 
+ Thu, 11 Jun 2026 03:12:08 -0700 (PDT)
+X-Received: by 2002:a05:600c:a39b:b0:490:c08b:b24b with SMTP id
+ 5b1f17b1804b1-490e5607e3cmr15875655e9.26.1781172727683; 
+ Thu, 11 Jun 2026 03:12:07 -0700 (PDT)
 Received: from localhost (62-151-111-63.jazzfree.ya.com. [62.151.111.63])
  by smtp.gmail.com with ESMTPSA id
- ffacd0b85a97d-4601f2e4b18sm63288157f8f.10.2026.06.11.03.11.26
+ 5b1f17b1804b1-490e2d09a85sm51975965e9.14.2026.06.11.03.12.06
  (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Thu, 11 Jun 2026 03:11:26 -0700 (PDT)
+ Thu, 11 Jun 2026 03:12:07 -0700 (PDT)
 From: Javier Martinez Canillas <javierm@redhat.com>
 To: Thomas Zimmermann <tzimmermann@suse.de>, mripard@kernel.org,
  maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
@@ -90,17 +90,17 @@ Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
  linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
  amd-gfx@lists.freedesktop.org, Thomas Zimmermann <tzimmermann@suse.de>,
- stable@vger.kernel.org, Zack Rusin <zackr@vmware.com>
-Subject: Re: [PATCH v5 02/15] drm/i915/display: Handle struct
+ Zack Rusin <zackr@vmware.com>, stable@vger.kernel.org
+Subject: Re: [PATCH v5 03/15] drm/vboxvideo: Handle struct
  drm_plane_state.ignore_damage_clips
-In-Reply-To: <20260610152505.260172-3-tzimmermann@suse.de>
+In-Reply-To: <20260610152505.260172-4-tzimmermann@suse.de>
 References: <20260610152505.260172-1-tzimmermann@suse.de>
- <20260610152505.260172-3-tzimmermann@suse.de>
-Date: Thu, 11 Jun 2026 12:11:25 +0200
-Message-ID: <87v7bp5quq.fsf@ocarina.mail-host-address-is-not-set>
+ <20260610152505.260172-4-tzimmermann@suse.de>
+Date: Thu, 11 Jun 2026 12:12:06 +0200
+Message-ID: <87se6t5qtl.fsf@ocarina.mail-host-address-is-not-set>
 MIME-Version: 1.0
 X-Mimecast-Spam-Score: 0
-X-Mimecast-MFC-PROC-ID: OzfhJ_2hxREAjcgN8H1ttCwyXdI7nqug_WKoon4cbNg_1781172687
+X-Mimecast-MFC-PROC-ID: oFjkCqRCiPD5db7oIEnRq7hYfChYgWNgUkEX6ko0adY_1781172728
 X-Mimecast-Originator: redhat.com
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -127,7 +127,7 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@redhat.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:admin@kodeit.net,m:gargaditya08@proton.me,m:paul@crapouillou.net,m:jani.nikula@linux.intel.com,m:mhklkml@zohomail.com,m:zack.rusin@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mips@vger.kernel.org,m:virtualization@lists.linux.dev,m:amd-gfx@lists.freedesktop.org,m:stable@vger.kernel.org,m:zackr@vmware.com,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:tzimmermann@suse.de,m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@redhat.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:admin@kodeit.net,m:gargaditya08@proton.me,m:paul@crapouillou.net,m:jani.nikula@linux.intel.com,m:mhklkml@zohomail.com,m:zack.rusin@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mips@vger.kernel.org,m:virtualization@lists.linux.dev,m:amd-gfx@lists.freedesktop.org,m:zackr@vmware.com,m:stable@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
 	FREEMAIL_TO(0.00)[suse.de,kernel.org,linux.intel.com,redhat.com,gmail.com,ffwll.ch,kodeit.net,proton.me,crapouillou.net,zohomail.com,broadcom.com,amd.com,igalia.com,intel.com,ursulin.net,collabora.com,chromium.org];
@@ -151,29 +151,31 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,ocarina.mail-host-address-is-not-set:mid,suse.de:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[ocarina.mail-host-address-is-not-set:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 73C45670B90
+X-Rspamd-Queue-Id: 0E459670BB8
 
 Thomas Zimmermann <tzimmermann@suse.de> writes:
 
 > The mode-setting pipeline can disabled damage clippings for a commit
 > by setting ignore_damage_clips in struct drm_plane_state. The commit
-> will then do a full display update. Commit 35ed38d58257 ("drm: Allow
-> drivers to indicate the damage helpers to ignore damage clips") introduced
-> ignore_damage_clips to selectively ignore damage clipping in certain
-> framebuffer changes.
+> will then do a full display update.
 >
-> The i915 driver does not modify the flag, but DRM's damage iterator
-> will soon rely on it. Calling drm_atomic_helper_check_plane_damage()
-> right before drm_atomic_helper_damage_merged() guarantees that it
-> has the correct state. The i915 driver does not do this elsewhere
-> so far.
+> Test the flag in the primary plane's atomic_update and do a full update
+> if it has been set.
+>
+> Commit 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers
+> to ignore damage clips") introduced ignore_damage_clips to selectively
+> ignore damage clipping in certain framebuffer changes. Vboxvideo does not
+> do that, but DRM's damage iterator will soon rely on the flag. Therefore
+> supporting it here as well make sense for consistency.
+>
+> While at it, also replace uint32_t with the preferred u32.
 >
 > Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 > Fixes: 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers to ignore damage clips")
 
-Same comment here than for patch #1. I don't think this is a fix.
+And for this one as well.
 
 Reviewed-by: Javier Martinez Canillas <javierm@redhat.com>
 
