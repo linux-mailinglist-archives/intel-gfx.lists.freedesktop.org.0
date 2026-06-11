@@ -2,59 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id tNtyD0HSKmooxgMAu9opvQ
+	id koF9I0UELGq0JgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 17:20:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:06:13 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B7BF6673054
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 17:20:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 40D5C6799F9
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:06:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sms-medipool.de header.s=mail header.b=opECYIuR;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=sms-medipool.de
+	dkim=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=gmail.com (policy=none);
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 44FF010E7BB;
-	Thu, 11 Jun 2026 15:20:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3A93E10F4A3;
+	Fri, 12 Jun 2026 13:06:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4D66410E7BB;
- Thu, 11 Jun 2026 15:20:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
- s=mail; t=1781191227;
- bh=xOV2aUFkVma787OXRJ1Qw2lSfZjRs5JNr/yEhO5HvRo=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=opECYIuRdPjgIpdwkhR4V7GXAEPDTsa/psaVl9SkNGp7wRp/EBzAexyYgkdyD3gsr
- NI4YBgL1Ua+wdrdmM5yTIBoSFYxX3VSz419VAM++gbCb1+be0cnFIA/hsEMJI/vrlA
- Wpgb/MKi6b2V4ZsOnaZK9nA0xdmWRS4wkm4malS0PzGS1xsrtuRgugnoCMI2xv5BUQ
- +8ctmlC8fkr7q4jJT3cqHgs/dvZ5QGF+opmGiB7nTTiXS8ZiI4Mg/kgMtqgzFtzcYJ
- ciYYHRS4dYNvGU0tCW7lGtSemZR2wjT+HiWhdqn9WN97DYbzjeYfh+Mt1aRnYAWRfw
- Tpz4ESiVte+AQ==
-Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id CB85A151DB;
- Thu, 11 Jun 2026 17:20:27 +0200 (CEST)
-Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
- by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Thu, 11 Jun 2026 17:20:25 +0200
-From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-To: Imre Deak <imre.deak@intel.com>
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, alexander.kaplan@sms-medipool.de
-Subject: Re: [PATCH 2/2] drm/i915/dp: Skip RBR for sinks with the
- NO_LINK_RATE_RBR quirk
-Date: Thu, 11 Jun 2026 17:20:25 +0200
-Message-ID: <20260611152025.25115-1-alexander.kaplan@sms-medipool.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <airFbeAOC7_czAe5@ideak-desk.lan>
-References: <airFbeAOC7_czAe5@ideak-desk.lan>
+Received: from mail-qv1-f53.google.com (mail-qv1-f53.google.com
+ [209.85.219.53])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EB84110F000
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 15:45:17 +0000 (UTC)
+Received: by mail-qv1-f53.google.com with SMTP id
+ 6a1803df08f44-8ccef6cbd0eso44916d6.1
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 08:45:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781192717; x=1781797517;
+ h=mime-version:content-transfer-encoding:references:in-reply-to
+ :subject:cc:to:from:date:message-id:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=1hYUOez/VrABHBpS6NHt7hGpb7MijgsYC8xxIeD/ouw=;
+ b=XcwI9pI598LFmX0Efd1G0wTV+8zRmFktPq1ZVa/gyY03YQ8zalmdWB38pmuQ0wb5aa
+ CgNQrBKmReijENXIehcGrHbYw/AzyfZ6niX/Vescni9l3KcDiKsPQRRIegFt1mnWvMYX
+ tA54WOoYNLy8sLMqB4AZs2Z1Q6aomXPgqdnoFzoX3x9kxxdCmMErSm6tPWgizObsyiEc
+ xousl5bf9s6dDHiqJNjqoFbAoLfTnai+WSlHnYH1ZRvQo/LzI36PXY9jttBjI0na1zal
+ wL/BCKQde6uS/6vpsc3W94C54xp4mlgK4elVrFZWlhweKicQobhwJnU9A0MJOinNIPx5
+ RAYQ==
+X-Gm-Message-State: AOJu0YxbEjaq/JyyaFvCmyPn+OvU+Lm6co1AFlQ41hGbeuQbVz3PSMtf
+ mxQaVzAhN1AA3Aq3T/8I6lA2vq4CFIMrtYCZBzxLY9jG8Yf/flYty9RQitadoKZl
+X-Gm-Gg: Acq92OHh7Mo3I4XZbJCMz5zHF4cILvXYn/SR3/RTXgPg8T1a+KaP5eJo8/fVdTkHOSZ
+ RFk1W9kznJ0I8dKLUaDjtqjJbmOwkJ+IxWsPZuyiJYMIbzpfJUxWYd2hvvBuLk0iBeQpwKkV090
+ z/Y04mm+KoMlq7P4hcoGFbsqVieBbqzkMa9lTb2ghkzS1qsmlUzGIN4CkH5pw4PMdseJ9LvTB2c
+ dj06/L2Wcq3Mg2bl7rFDAKtKN5ONH3POUThLywecSRIu1X6POVVXz0aCiwaqcoqjI3RkUVkjU2g
+ ca5mDE/uBVV2L5RinpGLq66/GYpTi2J3piGmiriyOC8B2rscp4eYXNMooa7rve9R8Z/Z6/+HX6s
+ So0Dgaps8DPKa8e/DdamWlOvxBksjN5AxbIAGmX1fvlbHn4YHS+XME9oS524uq3VTyhDJcWS1BH
+ YBd5Rsx6YVNc7K3utXXMk0KrxmtImrU80V0BTMBWSkoQlLG9O8N3rnbBo/94n0A1LIE6/21qGYS
+ 5zP7aZ/+lSOAJJh0eM6apzTDczG0hpvw5rmtjum7PKy5QhL32ZyAT/1UA6tvBbGpjfvG9Ngb9Ft
+ jA==
+X-Received: by 2002:a05:6214:23c6:b0:8ac:4fd1:2d5d with SMTP id
+ 6a1803df08f44-8d1dbbc32d1mr33900006d6.5.1781192716713; 
+ Thu, 11 Jun 2026 08:45:16 -0700 (PDT)
+Received: from debian-t14-gen1-fuhrysteve.fuhry.app
+ (6.sub-75-230-138.myvzw.com. [75.230.138.6])
+ by smtp.gmail.com with ESMTPSA id
+ 6a1803df08f44-8d1ea7c170csm21161846d6.28.2026.06.11.08.45.15
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Thu, 11 Jun 2026 08:45:16 -0700 (PDT)
+Message-ID: <6a2ad80c.dc7b3156.376f02.dea5@mx.google.com>
+Date: Thu, 11 Jun 2026 08:45:16 -0700 (PDT)
+From: Stephen J. Fuhry <fuhrysteve@gmail.com>
+To: intel-gfx@lists.freedesktop.org
+Cc: Jouni =?utf-8?q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ Animesh Manna <animesh.manna@intel.com>,
+ Jani Nikula <jani.nikula@linux.intel.com>
+Subject: Re: [PATCH] drm/i915/display: fix ALPM error handling in
+ psr_alpm_check()
+In-Reply-To: <20260611144956.710911-1-fuhrysteve@gmail.com>
+References: <20260611125408.676626-1-fuhrysteve@gmail.com>
+ <20260611144956.710911-1-fuhrysteve@gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Fri, 12 Jun 2026 13:06:10 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,74 +88,37 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[sms-medipool.de,reject];
+X-Spamd-Result: default: False [-0.51 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[sms-medipool.de:s=mail];
 	MIME_GOOD(-0.10)[text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[gmail.com : SPF not aligned (relaxed), No valid DKIM,none];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.kaplan@sms-medipool.de,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[sms-medipool.de:+];
 	ALIAS_RESOLVED(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
+	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[10];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,mx.google.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B7BF6673054
+X-Rspamd-Queue-Id: 40D5C6799F9
 
-On Thu, Jun 11, 2026 at 05:25:49PM +0300, Imre Deak wrote:
-> Thanks for the tests and root causing of the issue.
->
-> I think the right solution to avoid using a problematic link
-> configuartion is to rely on the existing mechanism which is the link
-> training fallback logic. A quirk in this patch would add another way,
-> which is less generic and would potentially disable the link config on a
-> non-affected device as well (I did read your test results above, but I
-> still think it's possible that another device would use the same
-> OUI/device ID without this issue).
+Thanks for the explanation Jouni. I missed the has_psr guard in
+intel_alpm_enable_lobf() -- LOBF can't be active while PSR2 is running,
+so the double-read consequence is benign.
 
-Hi Imre,
-
-thanks for the review, that is a fair point.
-I agree that the fallback logic is the better place for this and I am
-dropping the series.
-
-I read the cover letter of [1].
-If I understand the plan correctly, the follow-up switch to a
-bandwidth ordered configuration selection would already avoid the
-greeter case described here.
-A 1080p60 mode would then pick a 5.4 Gbps configuration such as
-2x270000 instead of the 6.48 Gbps 4x162000, and 2x270000 is what the
-device trains today with the quirk applied.
-The remaining modes that still compute to 4x162000 would fail
-training once and then be handled by the per-configuration fallback.
-That fully covers this device, so nothing is lost by dropping the
-quirk.
-
-Until then carrying the patch locally works fine for me.
-
-One offer regarding testing.
-This PCON fails channel equalization at 4x RBR deterministically on
-every boot, so I have a reliable reproducer for the fallback paths on
-PTL with the xe driver.
-Feel free to ping me whenever the fallback rework or any other part
-of the series could use a Tested-by on real failing hardware.
-
-[1] https://lore.kernel.org/all/20260428125233.1664668-1-imre.deak@intel.com
-
-Thanks,
-Alex
-
+Dropping this patch.
