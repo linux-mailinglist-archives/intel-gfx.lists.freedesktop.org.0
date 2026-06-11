@@ -2,61 +2,137 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id lXRjISuWKmootAMAu9opvQ
+	id XIzTEIOXKmqatAMAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 13:04:11 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 13:09:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C755767120F
-	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 13:04:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DDC5F6712AC
+	for <lists+intel-gfx@lfdr.de>; Thu, 11 Jun 2026 13:09:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=sms-medipool.de header.s=mail header.b=mVoMeNkI;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=04bfJD45;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=pgvPdq4t;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=n4EqzNXY;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=S0X4n+wt;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=sms-medipool.de
+	dmarc=pass (policy=none) header.from=suse.de
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B265310EE85;
-	Thu, 11 Jun 2026 11:04:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD9C310EE8B;
+	Thu, 11 Jun 2026 11:09:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail.sms-medipool.de (mail.sms-medipool.de [178.63.14.108])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6D9A910EE75;
- Thu, 11 Jun 2026 11:04:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sms-medipool.de;
- s=mail; t=1781175846;
- bh=sbqTH6csCbYzGVd++Hm2MAfMl1HHDKWuOAqr7ifXNfQ=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=mVoMeNkI1xgrP7xlwdAP749yeOOecY1LF/Dw+i8lNLEEUlNFugBXcR+82Mo+A3qZn
- ag0Bl7i+iUymb+s0WruPuQgOSeksice3vxHUWTyFMx0xwJNJNMI0+QFEN+7BpbVERu
- uLNKDTjKvpI3TA3GctnD7cbbwzhmQR+pd3n0kQA1QgAjM6FBYD9yMy1hg7ja3cDTI0
- 6GPFsGhNIZd7X3ikXmOHXDJpuwSTopdPvbfB/ZcpSCKD6HPosnP9eoKTQtXVz8H7/y
- LJjMPwtzkiAJWe+cqvZlORbzZKB9CF/CgDDvWBIbEUgWEMKcObXfmmdfz1dqNY15Xf
- JtijXr5QvuNPA==
-Received: from mail.stoss-medica.de (mail.stoss-medica.de [213.147.17.40])
- by mail.sms-medipool.de (Postfix) with ESMTPS id E3A3D141C6;
- Thu, 11 Jun 2026 13:04:05 +0200 (CEST)
-Received: from NUC16-Linux.sb.golima.de ([95.88.98.111])
- by mail.stoss-medica.de (Kerio Connect 10.0.8 patch 2) with ESMTP;
- Thu, 11 Jun 2026 13:04:04 +0200
-From: Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-To: Hans Verkuil <hverkuil+cisco@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Hans Verkuil <hverkuil@kernel.org>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Alexander Kaplan <alexander.kaplan@sms-medipool.de>
-Subject: Re: [PATCH] drm/dp: Service the CEC tunneling IRQ flags without
- CEC_IRQ in ESI1
-Date: Thu, 11 Jun 2026 13:04:04 +0200
-Message-ID: <20260611110404.11637-1-alexander.kaplan@sms-medipool.de>
-X-Mailer: git-send-email 2.54.0
-In-Reply-To: <e3b30034-70c2-43ce-be46-938e2b07d5ba@kernel.org>
-References: <e3b30034-70c2-43ce-be46-938e2b07d5ba@kernel.org>
+Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6F60E10EE8B
+ for <intel-gfx@lists.freedesktop.org>; Thu, 11 Jun 2026 11:09:51 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by smtp-out1.suse.de (Postfix) with ESMTPS id E96936AD43;
+ Thu, 11 Jun 2026 11:09:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1781176190; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=C8NwLi3aRktSXx2ctXNhlpfjgqj4pFbqX0m47VY3N48=;
+ b=04bfJD45ru0R6EVcZbkb1Q/B3t505Zq/JWtXJqkBXN9DOFbLU+IqWsku/xwXHg9BAPyeHV
+ X5OuSy85UJNmN+9jNzBS3VCnTUxcSKBO5RrWPhDBvY9pAqVFVpyp24fJmw540uO9AQ4ybh
+ VHQf2KV+XvtzPsmUQfNIMhnUDuBtnWM=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1781176190;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=C8NwLi3aRktSXx2ctXNhlpfjgqj4pFbqX0m47VY3N48=;
+ b=pgvPdq4tX4DG6TIuYE4xdJmaICC1rNR+bRMkdZGCM605FCy5QmM6MVXi5cvQDhdm5wjNAE
+ /sZjfTCf7WsbEzCA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
+ t=1781176188; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=C8NwLi3aRktSXx2ctXNhlpfjgqj4pFbqX0m47VY3N48=;
+ b=n4EqzNXYuWR2O9LFImyYScYyBS9aTbovofu853dyssJ+CV7ZGFq2Uw9bycw6gpsJRk1c3X
+ /QlTgDNCR6HX+GH3LzAt5My+UlnQtWBqVErkq+YBiJ6tkUwX6XXWVbguZwv+0BPWj7r5Ih
+ 5D30KdLdS9Xzd2KeigFRvC9eYAHHVyw=
+DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
+ s=susede2_ed25519; t=1781176188;
+ h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references:autocrypt:autocrypt;
+ bh=C8NwLi3aRktSXx2ctXNhlpfjgqj4pFbqX0m47VY3N48=;
+ b=S0X4n+wtXa6Ptd/dW60I5yWPMxkBzi1NZjXRnv2RZ5qC7sIkfKo/9flPx3K5Qbb9vNZEhr
+ 16zNS3ppWDtockAQ==
+Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
+ (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+ key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
+ (No client certificate requested)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 12BDC779A7;
+ Thu, 11 Jun 2026 11:09:48 +0000 (UTC)
+Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
+ by imap1.dmz-prg2.suse.org with ESMTPSA id 0ZEnA3yXKmpcCgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Thu, 11 Jun 2026 11:09:48 +0000
+Message-ID: <be1848f1-6a29-4c4f-999c-ea79de82f250@suse.de>
+Date: Thu, 11 Jun 2026 13:09:47 +0200
 MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v5 01/15] drm/amd/display: Handle struct
+ drm_plane_state.ignore_damage_clips
+To: Javier Martinez Canillas <javierm@redhat.com>, mripard@kernel.org,
+ maarten.lankhorst@linux.intel.com, airlied@redhat.com, airlied@gmail.com,
+ simona@ffwll.ch, admin@kodeit.net, gargaditya08@proton.me,
+ paul@crapouillou.net, jani.nikula@linux.intel.com, mhklkml@zohomail.com,
+ zack.rusin@broadcom.com, bcm-kernel-feedback-list@broadcom.com,
+ harry.wentland@amd.com, sunpeng.li@amd.com, siqueira@igalia.com,
+ alexander.deucher@amd.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net,
+ dmitry.osipenko@collabora.com, gurchetansingh@chromium.org, olvaffe@gmail.com
+Cc: dri-devel@lists.freedesktop.org, linux-hyperv@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ linux-mips@vger.kernel.org, virtualization@lists.linux.dev,
+ amd-gfx@lists.freedesktop.org, Zack Rusin <zackr@vmware.com>,
+ stable@vger.kernel.org
+References: <20260610152505.260172-1-tzimmermann@suse.de>
+ <20260610152505.260172-2-tzimmermann@suse.de>
+ <87y0gl5qw8.fsf@ocarina.mail-host-address-is-not-set>
+ <45aec54a-ec80-48ed-9bcc-84e7bccc11eb@suse.de>
+ <87mrx15om7.fsf@ocarina.mail-host-address-is-not-set>
+Content-Language: en-US
+From: Thomas Zimmermann <tzimmermann@suse.de>
+Autocrypt: addr=tzimmermann@suse.de; keydata=
+ xsBNBFs50uABCADEHPidWt974CaxBVbrIBwqcq/WURinJ3+2WlIrKWspiP83vfZKaXhFYsdg
+ XH47fDVbPPj+d6tQrw5lPQCyqjwrCPYnq3WlIBnGPJ4/jreTL6V+qfKRDlGLWFjZcsrPJGE0
+ BeB5BbqP5erN1qylK9i3gPoQjXGhpBpQYwRrEyQyjuvk+Ev0K1Jc5tVDeJAuau3TGNgah4Yc
+ hdHm3bkPjz9EErV85RwvImQ1dptvx6s7xzwXTgGAsaYZsL8WCwDaTuqFa1d1jjlaxg6+tZsB
+ 9GluwvIhSezPgnEmimZDkGnZRRSFiGP8yjqTjjWuf0bSj5rUnTGiyLyRZRNGcXmu6hjlABEB
+ AAHNJ1Rob21hcyBaaW1tZXJtYW5uIDx0emltbWVybWFubkBzdXNlLmRlPsLAjgQTAQgAOAIb
+ AwULCQgHAgYVCgkICwIEFgIDAQIeAQIXgBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftODH
+ AAoJEGgNwR1TC3ojx1wH/0hKGWugiqDgLNXLRD/4TfHBEKmxIrmfu9Z5t7vwUKfwhFL6hqvo
+ lXPJJKQpQ2z8+X2vZm/slsLn7J1yjrOsoJhKABDi+3QWWSGkaGwRJAdPVVyJMfJRNNNIKwVb
+ U6B1BkX2XDKDGffF4TxlOpSQzdtNI/9gleOoUA8+jy8knnDYzjBNOZqLG2FuTdicBXblz0Mf
+ vg41gd9kCwYXDnD91rJU8tzylXv03E75NCaTxTM+FBXPmsAVYQ4GYhhgFt8S2UWMoaaABLDe
+ 7l5FdnLdDEcbmd8uLU2CaG4W2cLrUaI4jz2XbkcPQkqTQ3EB67hYkjiEE6Zy3ggOitiQGcqp
+ j//OwE0EWznS4AEIAMYmP4M/V+T5RY5at/g7rUdNsLhWv1APYrh9RQefODYHrNRHUE9eosYb
+ T6XMryR9hT8XlGOYRwKWwiQBoWSDiTMo/Xi29jUnn4BXfI2px2DTXwc22LKtLAgTRjP+qbU6
+ 3Y0xnQN29UGDbYgyyK51DW3H0If2a3JNsheAAK+Xc9baj0LGIc8T9uiEWHBnCH+RdhgATnWW
+ GKdDegUR5BkDfDg5O/FISymJBHx2Dyoklv5g4BzkgqTqwmaYzsl8UxZKvbaxq0zbehDda8lv
+ hFXodNFMAgTLJlLuDYOGLK2AwbrS3Sp0AEbkpdJBb44qVlGm5bApZouHeJ/+n+7r12+lqdsA
+ EQEAAcLAdgQYAQgAIAIbDBYhBHIX+6yM6c9jRKFo5WgNwR1TC3ojBQJftOH6AAoJEGgNwR1T
+ C3ojVSkIALpAPkIJPQoURPb1VWjh34l0HlglmYHvZszJWTXYwavHR8+k6Baa6H7ufXNQtThR
+ yIxJrQLW6rV5lm7TjhffEhxVCn37+cg0zZ3j7zIsSS0rx/aMwi6VhFJA5hfn3T0TtrijKP4A
+ SAQO9xD1Zk9/61JWk8OysuIh7MXkl0fxbRKWE93XeQBhIJHQfnc+YBLprdnxR446Sh8Wn/2D
+ Ya8cavuWf2zrB6cZurs048xe0UbSW5AOSo4V9M0jzYI4nZqTmPxYyXbm30Kvmz0rYVRaitYJ
+ 4kyYYMhuULvrJDMjZRvaNe52tkKAvMevcGdt38H4KSVXAylqyQOW5zvPc4/sq9c=
+In-Reply-To: <87mrx15om7.fsf@ocarina.mail-host-address-is-not-set>
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: 8bit
+X-Spam-Flag: NO
+X-Spam-Score: -4.51
+X-Spam-Level: 
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,103 +148,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.69 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[sms-medipool.de,reject];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[suse.de,none];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[sms-medipool.de:s=mail];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[suse.de:s=susede2_rsa,suse.de:s=susede2_ed25519];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[12];
+	FORGED_RECIPIENTS(0.00)[m:javierm@redhat.com,m:mripard@kernel.org,m:maarten.lankhorst@linux.intel.com,m:airlied@redhat.com,m:airlied@gmail.com,m:simona@ffwll.ch,m:admin@kodeit.net,m:gargaditya08@proton.me,m:paul@crapouillou.net,m:jani.nikula@linux.intel.com,m:mhklkml@zohomail.com,m:zack.rusin@broadcom.com,m:bcm-kernel-feedback-list@broadcom.com,m:harry.wentland@amd.com,m:sunpeng.li@amd.com,m:siqueira@igalia.com,m:alexander.deucher@amd.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:dmitry.osipenko@collabora.com,m:gurchetansingh@chromium.org,m:olvaffe@gmail.com,m:dri-devel@lists.freedesktop.org,m:linux-hyperv@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mips@vger.kernel.org,m:virtualization@lists.linux.dev,m:amd-gfx@lists.freedesktop.org,m:zackr@vmware.com,m:stable@vger.kernel.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[sms-medipool.de:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[alexander.kaplan@sms-medipool.de,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	TO_DN_SOME(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx,cisco];
-	ALIAS_RESOLVED(0.00)[];
+	FREEMAIL_TO(0.00)[redhat.com,kernel.org,linux.intel.com,gmail.com,ffwll.ch,kodeit.net,proton.me,crapouillou.net,zohomail.com,broadcom.com,amd.com,igalia.com,intel.com,ursulin.net,collabora.com,chromium.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[32];
+	FORGED_SENDER(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[suse.de:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,sms-medipool.de:dkim,sms-medipool.de:mid,sms-medipool.de:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[tzimmermann@suse.de,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[suse.de:dkim,suse.de:email,suse.de:mid,suse.de:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,suse.com:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C755767120F
+X-Rspamd-Queue-Id: DDC5F6712AC
 
-On 11/06/2026 09:01, Hans Verkuil wrote:
-> I saw that you added a quirk for this device in this patch series:
+Hi
+
+Am 11.06.26 um 12:59 schrieb Javier Martinez Canillas:
+> Thomas Zimmermann <tzimmermann@suse.de> writes:
 >
-> https://lore.kernel.org/all/20260610174807.6231-2-alexander.kaplan@sms-medipool.de/
+>> Hi Javier
+>>
+>> Am 11.06.26 um 12:10 schrieb Javier Martinez Canillas:
+>>> Thomas Zimmermann <tzimmermann@suse.de> writes:
+>>>
+>>> Hello Thomas,
+>>>
+>>>> The mode-setting pipeline can disabled damage clippings for a commit
+>>>> by setting ignore_damage_clips in struct drm_plane_state. The commit
+>>>> will then do a full display update.
+>>>>
+>>>> Test the flag in DCN code and do a full update in DCN code if it has
+>>>> been set.
+>>>>
+>>>> Commit 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers
+>>>> to ignore damage clips") introduced ignore_damage_clips to selectively
+>>>> ignore damage clipping in certain framebuffer changes. This driver does
+>>>> not do that, but DRM's damage iterator will soon rely on the flag.
+>>>> Therefore supporting it here as well make sense for consistency.
+>>>>
+>>>> Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+>>>> Fixes: 35ed38d58257 ("drm: Allow drivers to indicate the damage helpers to ignore damage clips")
+>>> I don't think that a Fixes tag is correct here? Your patch series
+>>> is changing the 'struct drm_plane_state.ignore_damage_clips' and
+>>> the changes make sense, but definitely isn't a fix in my opinion.
+>> But shouldn't we have added this test in amdgpu and the other drivers as
+>> part of commit 35ed38d58257 ? Sure, these drivers don't use
+>> ignore_damage_clips, but it's still an inconsistency wrt damage
+> I don't think so, since the original scope of ignore_damage_clips was for DRM
+> driver of virtual devices (namely virtio-gpu and vmwgfx). These do per-buffer
+> uploads instead of per-plane uploads, and so there was a need to force a full
+> plane update if the framebuffer attached to the plane was changed.
 >
-> Should we add a quirk for this as well? It's not worth it if that's a lot of work,
-> but if it is easy to add, then I think that's the better approach for this.
+> Your series are now extending the scope of ignore_damage_clips to be used by
+> core helpers and force a full plane update when doing a modeset. This makes
+> sense to me but it wasn't the original intention of the propery and that is
+> why I don't think that should be considered a fix.
+>
+> The only patch that IMO is really a fix for commit 35ed38d58257 is patch #6.
+> Because is true that the plane state ignore_damage_clips was carried over
+> when the state was duplicated.
 
-Hi Hans,
+Ok, I'll drop the Fixes tags then.
 
-thanks for the suggestion. A quirk would indeed be easy to add.
-drm_dp_cec.c already reads the branch ident for its status debugfs,
-so gating the relaxed ESI check on a DPCD quirk entry is a handful
-of lines.
+Best regards
+Thomas
 
-However, while validating which devices such a quirk should cover,
-I found a firmware problem that makes me withdraw this patch
-instead.
+>
 
-I tested all three Synaptics VMM7100 based devices I have:
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 Nürnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG Nürnberg)
 
-- Club3D CAC-2505 (branch ID "SYNAq", FW 7.1): CEC works with my
-  patch. This is the device the patch was written for.
-- A USB-C to HDMI dongle with the macOS 4K120 firmware (branch ID
-  "SYNAq", FW 7.2): announces CEC capability but never services the
-  tunneling registers. TX requests and incoming bus traffic are
-  both ignored.
-- A Thunderbolt 4 dock (branch ID "SYNAa", FW 6.5): same dead stub.
-
-On the one working device the firmware causes an audible audio
-dropout of roughly 100 ms for every CEC message it handles while
-CEC tunneling is enabled.
-This affects its own transmissions, directed traffic and even
-broadcasts it does not ack.
-My LG TV broadcasts its vendor ID and polls for playback devices
-every 14 seconds, around the clock.
-With a configured CEC adapter that means a dropout every few
-seconds during audio playback.
-I verified this by correlating heard dropouts against monitored
-CEC messages, 9 out of 9 matched to the second with no false
-positives.
-With tunneling disabled the same bus traffic causes no dropouts
-at all.
-
-The dropout length matches the frame time on the CEC wire and AUX
-stays fully responsive during the stall.
-It also reproduces with the kernel completely uninvolved when I
-drive the DPCD tunneling registers directly from userspace.
-So the stall happens inside the dongle MCU while it bit-bangs the
-CEC line and I see no host-reachable way to fix or mitigate it.
-
-That changes the picture for the patch.
-The only known device family with working CEC tunneling has this
-defect.
-Merging it would hand users working CEC plus broken audio, and
-setups like Kodi configure CEC automatically, so exactly those
-users would then have to disable CEC again to get clean audio.
-That is a bad trade, even behind a quirk.
-
-My guess is that Synaptics never shipped the CEC firmware glue
-before.
-The CAC-2505 is a recent product and probably carries the newest
-firmware branch, the other two devices are older designs.
-If a future firmware shows up with working CEC and without the
-audio stall, I will resubmit this together with the device quirk
-you suggested.
-
-Sorry for the noise, and thanks for the review.
-
-Alexander
 
