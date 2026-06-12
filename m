@@ -2,39 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FOiZCBEILGrgJwQAu9opvQ
+	id rxTtEscPLGqTKgQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:22:25 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:55:19 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 81973679BBE
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D755D67A001
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 15:55:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0005110F506;
-	Fri, 12 Jun 2026 13:22:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 63E7910F531;
+	Fri, 12 Jun 2026 13:55:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 097D410F4A4;
- Fri, 12 Jun 2026 13:22:22 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 32CBF10EA54;
+ Fri, 12 Jun 2026 13:55:16 +0000 (UTC)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915/displa?=
- =?utf-8?q?y=3A_guard_intel=5Falpm=5Fget=5Ferror=28=29_against_non-ALPM_sink?=
- =?utf-8?q?s_=28rev2=29?=
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_drm/i915=3A_cle?=
+ =?utf-8?q?ar_CRTC_color_blob_pointers_after_dropping_refs_=28rev3=29?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Stephen Fuhry" <fuhrysteve@gmail.com>
+To: "Guangshuo Li" <lgs201920130244@gmail.com>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 12 Jun 2026 13:22:22 -0000
-Message-ID: <178127054203.74019.4026462905145736567@6beec6c84f66>
+Date: Fri, 12 Jun 2026 13:55:16 -0000
+Message-ID: <178127251620.74019.3149964661911182310@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260611125408.676626-1-fuhrysteve@gmail.com>
-In-Reply-To: <20260611125408.676626-1-fuhrysteve@gmail.com>
+References: <20260612035310.3013066-1-lgs201920130244@gmail.com>
+In-Reply-To: <20260612035310.3013066-1-lgs201920130244@gmail.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,21 +77,21 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:url,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,patchwork.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:url,emeril.freedesktop.org:from_mime,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 81973679BBE
+X-Rspamd-Queue-Id: D755D67A001
 
 == Series Details ==
 
-Series: drm/i915/display: guard intel_alpm_get_error() against non-ALPM sinks (rev2)
-URL   : https://patchwork.freedesktop.org/series/168435/
+Series: drm/i915: clear CRTC color blob pointers after dropping refs (rev3)
+URL   : https://patchwork.freedesktop.org/series/168258/
 State : failure
 
 == Summary ==
 
-Series author address 'fuhrysteve@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
+Series author address 'lgs201920130244@gmail.com' is not on the allowlist, which prevents CI from being automatically triggered.
 If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
 Exception occurred during validation, bailing out!
-Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/179293/ (on built-in)
+Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/179295/ (on built-in)
 
 
