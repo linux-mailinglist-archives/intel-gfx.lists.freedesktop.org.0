@@ -2,66 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id DxulJdhDLGpZOgQAu9opvQ
+	id 0uGHERROLGp9PAQAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 19:37:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 20:21:08 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 137DA67B63F
-	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 19:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 819F067BA0D
+	for <lists+intel-gfx@lfdr.de>; Fri, 12 Jun 2026 20:21:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b="moP/hXUq";
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A03E610F623;
-	Fri, 12 Jun 2026 17:37:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1DBDC10E30F;
+	Fri, 12 Jun 2026 18:21:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C8C1710F61F;
- Fri, 12 Jun 2026 17:37:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781285846; x=1812821846;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=77cQtP8xjX1Zcrmk/9xSBD1oeSbgCX2SNxxuPa/vYzc=;
- b=moP/hXUqSI2ex1UImtBDrq/ad8mXHUjfpyzgBKyDqojUe1bosjO3QUDM
- Vq+4qftIQU4KJBvAX5kTL2T1WiXgkBBOUFIQcEyggZEonwwBoJnwzn6IJ
- jaYXBcxdlbUJrvxYoNTk1CAlxXePXnUF/r+UDxRevl4Fxjreo2i7lFZqJ
- d8hKxxMl7JlNdIMdTYXNIxlX1TCf3Qs8X8BQWOHQVXYz6wVReNaEGjlgp
- 0Dy4mgHRjjnQy2mBvWm9oilXqEtFlKw11OwstFL1y9jgh8E5XlQT8+4st
- M5pwpEytf6NKgRI6iVMa3ZMT/0Z8Ml6fpMVddjW6qYZfmpC8rzUA+DIxX Q==;
-X-CSE-ConnectionGUID: R+6TbOPCSKKp5KBn2BerBA==
-X-CSE-MsgGUID: 41jeMtgFTPirOgeoOW6S5A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11815"; a="99697778"
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="99697778"
-Received: from fmviesa002.fm.intel.com ([10.60.135.142])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 10:37:25 -0700
-X-CSE-ConnectionGUID: jTxDTDkvQnGZagugS7Ta9A==
-X-CSE-MsgGUID: T299LPAqTJS+VskLAHy8dg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,201,1774335600"; d="scan'208";a="270540282"
-Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.245.89])
- by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 12 Jun 2026 10:37:24 -0700
-From: Ville Syrjala <ville.syrjala@linux.intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 6/6] drm/i915/cdclk: Use the TGL+ CD2x pipe select bits also
- on ICL
-Date: Fri, 12 Jun 2026 20:36:53 +0300
-Message-ID: <20260612173653.7830-7-ville.syrjala@linux.intel.com>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260612173653.7830-1-ville.syrjala@linux.intel.com>
-References: <20260612173653.7830-1-ville.syrjala@linux.intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE69C10E30F;
+ Fri, 12 Jun 2026 18:21:04 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0031027302956203427=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/mtl+=3A_Enable_P?=
+ =?utf-8?q?PS_before_PLL?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Imre Deak" <imre.deak@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 12 Jun 2026 18:21:04 -0000
+Message-ID: <178128846477.75226.12551329123485801752@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260612172617.3427027-1-imre.deak@intel.com>
+In-Reply-To: <20260612172617.3427027-1-imre.deak@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,101 +46,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
 	RCPT_COUNT_TWO(0.00)[2];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	HAS_ORG_HEADER(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:mid,linux.intel.com:from_mime,intel.com:dkim,intel.com:email,lists.freedesktop.org:from_smtp]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url,6beec6c84f66:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 137DA67B63F
+X-Rspamd-Queue-Id: 819F067BA0D
 
-From: Ville Syrjälä <ville.syrjala@linux.intel.com>
+--===============0031027302956203427==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Turns out both CDCLK_CTL pipe select 0b110 (what Bspec lists for
-pipe C on ICL) and 0b100 (what BSpec lists for pipe C on TGL+)
-actually select pipe C on ICL. So we can get rid of the weird
-ICL special case and just use the simpler TGL+ definition of
-the pipe select bits.
+== Series Details ==
 
-This was reverse engineered with a hacked up intel_display_poller.
+Series: drm/i915/mtl+: Enable PPS before PLL
+URL   : https://patchwork.freedesktop.org/series/168455/
+State : success
 
-Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
----
- drivers/gpu/drm/i915/display/intel_cdclk.c        | 11 ++---------
- drivers/gpu/drm/i915/display/intel_display_regs.h |  7 ++-----
- 2 files changed, 4 insertions(+), 14 deletions(-)
+== Summary ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-index 8db79758187d..d3c5e3438d19 100644
---- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-+++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-@@ -1946,9 +1946,7 @@ static void adlp_cdclk_pll_crawl(struct intel_display *display, int vco)
- 
- static u32 bxt_cdclk_cd2x_pipe_mask(struct intel_display *display)
- {
--	if (DISPLAY_VER(display) >= 12)
--		return TGL_CDCLK_CD2X_PIPE_MASK;
--	else if (DISPLAY_VER(display) >= 11)
-+	if (DISPLAY_VER(display) >= 11)
- 		return ICL_CDCLK_CD2X_PIPE_MASK;
- 	else
- 		return BXT_CDCLK_CD2X_PIPE_MASK;
-@@ -1956,12 +1954,7 @@ static u32 bxt_cdclk_cd2x_pipe_mask(struct intel_display *display)
- 
- static u32 bxt_cdclk_cd2x_pipe(struct intel_display *display, enum pipe pipe)
- {
--	if (DISPLAY_VER(display) >= 12) {
--		if (pipe == INVALID_PIPE)
--			return TGL_CDCLK_CD2X_PIPE_NONE;
--		else
--			return TGL_CDCLK_CD2X_PIPE(pipe);
--	} else if (DISPLAY_VER(display) >= 11) {
-+	if (DISPLAY_VER(display) >= 11) {
- 		if (pipe == INVALID_PIPE)
- 			return ICL_CDCLK_CD2X_PIPE_NONE;
- 		else
-diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
-index 0c9db44da254..62c103fb1c8d 100644
---- a/drivers/gpu/drm/i915/display/intel_display_regs.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
-@@ -2783,12 +2783,9 @@ enum skl_power_gate {
- #define  BXT_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 20) /* bxt/glk */
- #define  BXT_CDCLK_CD2X_PIPE(pipe)	REG_FIELD_PREP(BXT_CDCLK_CD2X_PIPE_MASK, (pipe))
- #define  BXT_CDCLK_CD2X_PIPE_NONE	REG_FIELD_PREP(BXT_CDCLK_CD2X_PIPE_MASK, 3)
--#define  ICL_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 19) /* icl */
--#define  ICL_CDCLK_CD2X_PIPE(pipe)	REG_FIELD_PREP(ICL_CDCLK_CD2X_PIPE_MASK, _PICK((pipe), 0, 1, 3) << 1)
-+#define  ICL_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 19) /* icl+ */
-+#define  ICL_CDCLK_CD2X_PIPE(pipe)	REG_FIELD_PREP(ICL_CDCLK_CD2X_PIPE_MASK, (pipe) << 1)
- #define  ICL_CDCLK_CD2X_PIPE_NONE	REG_FIELD_PREP(ICL_CDCLK_CD2X_PIPE_MASK, 7)
--#define  TGL_CDCLK_CD2X_PIPE_MASK	REG_GENMASK(21, 19) /* tgl+ */
--#define  TGL_CDCLK_CD2X_PIPE(pipe)	REG_FIELD_PREP(TGL_CDCLK_CD2X_PIPE_MASK, (pipe) << 1)
--#define  TGL_CDCLK_CD2X_PIPE_NONE	REG_FIELD_PREP(TGL_CDCLK_CD2X_PIPE_MASK, 7)
- #define  CDCLK_DIVMUX_CD_OVERRIDE	REG_BIT(19) /* pre-icl */
- #define  BXT_CDCLK_SSA_PRECHARGE_ENABLE	REG_BIT(16) /* bxt/glk */
- #define  CDCLK_FREQ_DECIMAL_MASK	REG_GENMASK(10, 0) /* pre-lnl */
--- 
-2.53.0
+CI Bug Log - changes from CI_DRM_18670 -> Patchwork_168455v1
+====================================================
 
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_168455v1 that come from known issues:
+
+### IGT changes ###
+
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - bat-arls-5:         [DMESG-FAIL][1] ([i915#16304]) -> [PASS][2] +1 other test pass
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18670/bat-arls-5/igt@i915_selftest@live.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/bat-arls-5/igt@i915_selftest@live.html
+
+  
+  [i915#16304]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16304
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18670 -> Patchwork_168455v1
+
+  CI-20190529: 20190529
+  CI_DRM_18670: 536f4e1338749a805ec4a7b82b1444dae2c6fe4d @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8961: 8961
+  Patchwork_168455v1: 536f4e1338749a805ec4a7b82b1444dae2c6fe4d @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/index.html
+
+--===============0031027302956203427==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/mtl+: Enable PPS before PLL</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168455/">https://patchwork.freedesktop.org/series/168455/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18670 -&gt; Patchwork_168455v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_168455v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Possible fixes</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-arls-5:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18670/bat-arls-5/igt@i915_selftest@live.html">DMESG-FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16304">i915#16304</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168455v1/bat-arls-5/igt@i915_selftest@live.html">PASS</a> +1 other test pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18670 -&gt; Patchwork_168455v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18670: 536f4e1338749a805ec4a7b82b1444dae2c6fe4d @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8961: 8961<br />
+  Patchwork_168455v1: 536f4e1338749a805ec4a7b82b1444dae2c6fe4d @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0031027302956203427==--
