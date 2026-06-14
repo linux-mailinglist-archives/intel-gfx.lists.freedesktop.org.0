@@ -2,66 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id u+nWLuMuLmq0qQQAu9opvQ
+	id jrzIHf71L2qSKAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 Jun 2026 06:32:35 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 14:54:22 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 917A76805AC
-	for <lists+intel-gfx@lfdr.de>; Sun, 14 Jun 2026 06:32:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 286366866E2
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 14:54:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=F1IKW2PD;
+	dkim=pass header.d=163.com header.s=s110527 header.b=aa7BqSPW;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=none) header.from=163.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4872F10E02F;
-	Sun, 14 Jun 2026 04:32:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6E5BF10E3F6;
+	Mon, 15 Jun 2026 12:54:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F0F210E02F;
- Sun, 14 Jun 2026 04:32:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781411552; x=1812947552;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=pEzwc33I+vz9xZ829eO2FVzpDvYkQciYxWWKN3oXB3A=;
- b=F1IKW2PDIrPJKgGWzMrHkUoEETlo0wJgpa0zsHQGXXsnUYwVMm6OFuVH
- QOfQ1VYRkf5xVLbbbKV0/YRdmjPei9jKCtWlxfm1vSdEkq5MY8lOHT7wd
- hieD6ka06A7OglxgkH0G4oExU5zx5bYy5JLapFtk7+B0d0AI4ng3XMDEh
- kVRrLxoLMpqSuD+3Ird7dUV2tAhAudOYId+i1IUC/g5eCVVX8cgYc1URM
- +MeBvQEdB1ouJRzwUrgYYMXEpRNL0rYmgwQ9lGxLxw+sJ7oQBZ+Hfs6zf
- BCg/2EIQr813s7IUfZkrrfkF3lMgfNKESrhLRkfT4UhGIP87G3eUIogEc A==;
-X-CSE-ConnectionGUID: OBCc987+S+m3L25Vuhh/JA==
-X-CSE-MsgGUID: znZecObRQlaIxXeiCySLEA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11816"; a="92511785"
-X-IronPort-AV: E=Sophos;i="6.24,204,1774335600"; d="scan'208";a="92511785"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by orvoesa103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 13 Jun 2026 21:32:31 -0700
-X-CSE-ConnectionGUID: 6y8kqXZFQ+OiGU/dMaGFPw==
-X-CSE-MsgGUID: nH2iJGEgRICFpNUxtlq1fA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,204,1774335600"; d="scan'208";a="277368509"
-Received: from lkp-server01.sh.intel.com (HELO f0d55cb201f0) ([10.239.97.150])
- by orviesa002.jf.intel.com with ESMTP; 13 Jun 2026 21:32:29 -0700
-Received: from kbuild by f0d55cb201f0 with local (Exim 4.98.2)
- (envelope-from <lkp@intel.com>) id 1wYcWI-00000000QYE-1c2b;
- Sun, 14 Jun 2026 04:32:26 +0000
-Date: Sun, 14 Jun 2026 12:31:45 +0800
-From: kernel test robot <lkp@intel.com>
-To: Dave Airlie <airlied@redhat.com>
-Cc: oe-kbuild-all@lists.linux.dev, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, Matthew Brost <matthew.brost@intel.com>
-Subject: [drm-tip:drm-tip 1/9]
- drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c:203:1: warning: label 'retry' defined
- but not used
-Message-ID: <202606141218.CqTOhIHC-lkp@intel.com>
-User-Agent: s-nail v14.9.25
+X-Greylist: delayed 413 seconds by postgrey-1.36 at gabe;
+ Sun, 14 Jun 2026 14:30:36 UTC
+Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.5])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D28C410E0A0;
+ Sun, 14 Jun 2026 14:30:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+ s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=kA
+ dOHfVqDF74w3XFEUTLT8kIauibT8ourgUuTIUthpI=; b=aa7BqSPWBx+ZsHbuj9
+ 6Wu9SQatN3VxQpQ3q5QN/229UPfEDZrGX+fHr+RseAJaL93yhtdIDNnGquBwFSJK
+ y5+Xq0JGTx650zr8OwMFOucCbJRzmF3zkIvmtn68ZNcaVZoiMbm+sJoRclLfrw2S
+ gT2Pshk+6puKmMsEDbwAumDaM=
+Received: from ubuntu.. (unknown [])
+ by gzga-smtp-mtada-g1-4 (Coremail) with SMTP id
+ _____wDH1uI8uS5q3zRWDg--.41766S4; 
+ Sun, 14 Jun 2026 22:22:56 +0800 (CST)
+From: Ma Ke <make_ruc2021@163.com>
+To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
+ joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
+ simona@ffwll.ch, hansg@kernel.org, vivek.kasireddy@intel.com,
+ matthew.d.roper@intel.com
+Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ akpm@linux-foundation.org, Ma Ke <make_ruc2021@163.com>,
+ stable@vger.kernel.org
+Subject: [PATCH] drm/i915/dsi: fix i2c adapter reference leak in
+ i2c_adapter_lookup()
+Date: Sun, 14 Jun 2026 22:22:49 +0800
+Message-ID: <20260614142250.2001136-1-make_ruc2021@163.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: _____wDH1uI8uS5q3zRWDg--.41766S4
+X-Coremail-Antispam: 1Uf129KBjvJXoW7WF4Dtr1xJw15Gw13Jw13Arb_yoW8JFW8pr
+ W7WFWUCrWYqF92q3y7AF1UuFW7uayIy3s3KFZ7Cw13uF1kuw18Jr9YyrW2gFyDWa9rXa1D
+ trnrJ3yUKFyjyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0zMc_-DUUUUU=
+X-Originating-IP: [202.112.113.208]
+X-CM-SenderInfo: 5pdnvshuxfjiisr6il2tof0z/xtbC1ACkr2ouuUArbQAA3k
+X-Mailman-Approved-At: Mon, 15 Jun 2026 12:54:17 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -77,195 +72,73 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,kernel.org];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,amd.com:email,lists.freedesktop.org:from_smtp];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
+	FREEMAIL_FROM(0.00)[163.com];
+	RCPT_COUNT_TWELVE(0.00)[16];
+	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[make_ruc2021@163.com,intel-gfx-bounces@lists.freedesktop.org];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
+	HAS_XOIP(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,linux-foundation.org,163.com];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DKIM_TRACE(0.00)[163.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[lkp@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	DKIM_TRACE(0.00)[intel.com:+]
+	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 917A76805AC
+X-Rspamd-Queue-Id: 286366866E2
 
-tree:   https://gitlab.freedesktop.org/drm/tip.git drm-tip
-head:   5fc0f82c971ea3b4e1c58602c0be573a802a8670
-commit: f8363c190f6fe6cffebc8733c2375330112327f9 [1/9] Merge remote-trackin=
-g branch 'drm/drm-next' into drm-tip
-config: um-allyesconfig (https://download.01.org/0day-ci/archive/20260614/2=
-02606141218.CqTOhIHC-lkp@intel.com/config)
-compiler: gcc-14 (Debian 14.2.0-19) 14.2.0
-reproduce (this is a W=3D1 build): (https://download.01.org/0day-ci/archive=
-/20260614/202606141218.CqTOhIHC-lkp@intel.com/reproduce)
+i2c_adapter_lookup() acquires a reference on the i2c adapter through
+i2c_acpi_find_adapter_by_handle() but not releases it.  Each
+invocation of this ACPI resource callback leaks one device reference,
+potentially leading to resource exhaustion over repeated driver
+load/unload cycles.
 
-If you fix the issue in a separate patch/commit (i.e. not just a new versio=
-n of
-the same patch/commit), kindly add following tags
-| Reported-by: kernel test robot <lkp@intel.com>
-| Closes: https://lore.kernel.org/oe-kbuild-all/202606141218.CqTOhIHC-lkp@i=
-ntel.com/
+Calling path: i2c_acpi_find_adapter_by_handle() -> bus_find_device()
+-> get_device.
 
-All warnings (new ones prefixed by >>):
+Found by code review.
 
-   drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c: In function 'amdgpu_hmm_range_g=
-et_pages':
->> drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c:203:1: warning: label 'retry' de=
-fined but not used [-Wunused-label]
-     203 | retry:
-         | ^~~~~
+Signed-off-by: Ma Ke <make_ruc2021@163.com>
+Cc: stable@vger.kernel.org
+Fixes: 8cbf89db2941 ("drm/i915/dsi: Parse the I2C element from the VBT MIPI sequence block (v3)")
+---
+ drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
+diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+index fe12041e913c..2097c5d17cb7 100644
+--- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
++++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
+@@ -460,8 +460,10 @@ static int i2c_adapter_lookup(struct acpi_resource *ares, void *data)
+ 		return 1;
+ 
+ 	adapter = i2c_acpi_find_adapter_by_handle(adapter_handle);
+-	if (adapter)
++	if (adapter) {
+ 		intel_dsi->i2c_bus_num = adapter->nr;
++		put_device(&adapter->dev);
++	}
+ 
+ 	return 1;
+ }
+-- 
+2.43.0
 
-vim +/retry +203 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c
-
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  168 =20
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  169  int amdgpu_hmm_range_get_pages(struct mmu_interval_notifi=
-er *notifier,
-d4cbff464d2932 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2022-11-09  170  			       uint64_t start, uint64_t npages, bool read=
-only,
-c5b3cc417b0260 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Sunil Khatri        =
- 2025-09-17  171  			       void *owner,
-737da5363cc07c drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Sunil Khatri        =
- 2025-10-10  172  			       struct amdgpu_hmm_range *range)
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  173  {
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  174  	const u64 max_bytes =3D SZ_2G;
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  175 =20
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  176  	struct hmm_range *hmm_range =3D &range->hmm_range;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  177  	unsigned long *pfns;
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  178  	unsigned long end;
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  179  	int r;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  180 =20
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  181  	pfns =3D kvmalloc_array(npages, sizeof(*pfns), GFP_KERNE=
-L);
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  182  	if (unlikely(!pfns)) {
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  183  		r =3D -ENOMEM;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  184  		goto out_free_range;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  185  	}
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  186 =20
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  187  	hmm_range->notifier =3D notifier;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  188  	hmm_range->default_flags =3D HMM_PFN_REQ_FAULT;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  189  	if (!readonly)
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  190  		hmm_range->default_flags |=3D HMM_PFN_REQ_WRITE;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  191  	hmm_range->hmm_pfns =3D pfns;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  192  	hmm_range->start =3D start;
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  193  	end =3D start + npages * PAGE_SIZE;
-8c21fc49a8e637 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Alex Sierra         =
- 2021-05-06  194  	hmm_range->dev_private_owner =3D owner;
-d8a3c1c80ceb65 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2021-03-30  195 =20
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  196  	hmm_range->notifier_seq =3D mmu_interval_read_begin=
-(notifier);
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  197  	do {
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  198  		hmm_range->end =3D min(hmm_range->start + max_byte=
-s, end);
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  199 =20
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  200  		pr_debug("hmm range: start =3D 0x%lx, end =3D 0x%lx",
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  201  			hmm_range->start, hmm_range->end);
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  202 =20
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24 @203  retry:
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  204  		r =3D hmm_range_fault(hmm_range);
-342981fff32802 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Honglei Huang       =
- 2026-05-29  205  		if (unlikely(r))
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  206  			goto out_free_pfns;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  207 =20
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  208  		if (hmm_range->end =3D=3D end)
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  209  			break;
-962d684b5dc074 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Christian K=C3=B6nig=
-      2026-02-18  210  		hmm_range->hmm_pfns +=3D max_bytes >> PAGE_SHIFT;
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  211  		hmm_range->start =3D hmm_range->end;
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  212  	} while (hmm_range->end < end);
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  213 =20
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  214  	hmm_range->start =3D start;
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  215  	hmm_range->hmm_pfns =3D pfns;
-c1420a5dd4dd2a drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c James Zhu           =
- 2022-11-17  216 =20
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  217  	return 0;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  218 =20
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  219  out_free_pfns:
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  220  	kvfree(pfns);
-dfc74e37bdb487 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Srinivasan Shanmugam=
- 2025-10-23  221  	hmm_range->hmm_pfns =3D NULL;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  222  out_free_range:
-9095e5544061b1 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Philip Yang         =
- 2024-04-30  223  	if (r =3D=3D -EBUSY)
-9095e5544061b1 drivers/gpu/drm/amd/amdgpu/amdgpu_hmm.c Philip Yang         =
- 2024-04-30  224  		r =3D -EAGAIN;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  225  	return r;
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  226  }
-04d8d73dbcbe64 drivers/gpu/drm/amd/amdgpu/amdgpu_mn.c  Philip Yang         =
- 2020-02-24  227 =20
-
-:::::: The code at line 203 was first introduced by commit
-:::::: 04d8d73dbcbe645a378fca6adc6f0e7111e46c17 drm/amdgpu: add common HMM =
-get pages function
-
-:::::: TO: Philip Yang <Philip.Yang@amd.com>
-:::::: CC: Alex Deucher <alexander.deucher@amd.com>
-
---
-0-DAY CI Kernel Test Service
-https://github.com/intel/lkp-tests/wiki
