@@ -2,62 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jfvUFWX+L2rRLQUAu9opvQ
+	id qYDvBwUAMGpALgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 15:30:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 15:37:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 75B88686C12
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 15:30:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 29976686CA9
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 15:37:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=mailbox.org header.s=mail20150812 header.b=su42XTgI;
+	dkim=pass header.d=intel.com header.s=Intel header.b=hlZWeRS+;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=mailbox.org
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D05AB10E430;
-	Mon, 15 Jun 2026 13:30:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 32A0C10E42C;
+	Mon, 15 Jun 2026 13:37:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mout-p-201.mailbox.org (mout-p-201.mailbox.org [80.241.56.171])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1E75910E47D;
- Mon, 15 Jun 2026 13:30:09 +0000 (UTC)
-Received: from smtp102.mailbox.org (smtp102.mailbox.org [10.196.197.102])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
- (No client certificate requested)
- by mout-p-201.mailbox.org (Postfix) with ESMTPS id 4gf9wF0nJRz9v6G;
- Mon, 15 Jun 2026 15:30:05 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mailbox.org;
- s=mail20150812; t=1781530205;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=/Eeo3qNSAbrMgU1daWGabstVi1rfUwgjmPmbJwDBqhA=;
- b=su42XTgInLS6w+P7+6dVJAw+vDxvxfdpI5YqVGtyK8+pCbrAW3tZ3LspomS/dlgAHR+buQ
- 3PF3VXMeWoxvTaDC4QFZphSNkVtmrm2lpHkma/yw8Aus3f9OJGBWSXiFBEYKm2AngzFml/
- LLz936YKPJhbibYmS6bd2byNe1Whq2/awrLWAq28clYs/jz1rhTrqb7cgt3EtgtEuKFhNh
- PxqhkuskUmyYsDsduaphfvlWnFgoYwrXKNkQjw495WXAGSHiIUFg5wt2k15LUpp/5uUWUx
- gt/jKL1G29Qa8dtC75LRG783BsgV9rsdaVDMBQism4SsQyUyTaXTrCvRzR49IA==
-Message-ID: <7402a175-a1d9-4428-8536-e37f06c1e186@mailbox.org>
-Date: Mon, 15 Jun 2026 15:30:00 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3046510E42B;
+ Mon, 15 Jun 2026 13:37:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781530625; x=1813066625;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=13PuLa8yb/uKOhD4f+Fdd/dJkOCfJL2kjaRUxwFQm0Y=;
+ b=hlZWeRS+Boup6Bp4+yJPTwjCBqmrSIyhPQxD3vW5gVkIpRO428y8qqlZ
+ G0GeIFcQnMnpgosFEydeoOV/vRct5znXa6kI+WwdzLa7aMZEcN8Z6gThc
+ Du75I2hRARhEGL5pD9ma8674O+W79Fr53xqDlnCcbld+eeFhV1VMG9vFt
+ UMH1Yb+VXcRJ+c5ygaCdSQyzAyFhNaNMVGKkokq/+/s+kOwiutKx/Fd7u
+ Uy4HVUbgmgyYQThtZ063YcIQje1v6s4RUhGtfQkdxdXFfAg3mreFPfoe8
+ 5QLAj8FhJaedZM2+VPbjNVQN8HM9elZ5obZ/BoYLaTQFZtJxEWa/C9iP9 g==;
+X-CSE-ConnectionGUID: DJ2+iNabQQOc2geWQa7IIw==
+X-CSE-MsgGUID: eONRycJITvWtPN3bOyvnSQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82280786"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="82280786"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 06:37:04 -0700
+X-CSE-ConnectionGUID: DiCxVDVhRL+gCSG/iaxl9Q==
+X-CSE-MsgGUID: /2OK5J+DRqGMbzLbnB7Y/Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="271555518"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.28])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 06:36:50 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Vidya Srinivas <vidya.srinivas@intel.com>, intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com, Vidya Srinivas
+ <vidya.srinivas@intel.corp-partner.google.com>, Vidya Srinivas
+ <vidya.srinivas@intel.com>, Charlton Lin <charlton.lin@intel.com>
+Subject: Re: [PATCH] [RFC] drm/i915/display: Fix PPC-granularity and limit
+ 2nd scaler to 1:1
+In-Reply-To: <20260608140510.629170-1-vidya.srinivas@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260608140510.629170-1-vidya.srinivas@intel.com>
+Date: Mon, 15 Jun 2026 16:36:46 +0300
+Message-ID: <3150787bd3916f3a2a51ee222248d0e81ee4d996@intel.com>
 MIME-Version: 1.0
-Subject: Re: [PATCH 0/4] drm/i915: Work harder to enable VRR based refresh
- rate changes on eDP
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org
-References: <20260612144203.31715-1-ville.syrjala@linux.intel.com>
- <3d441831-71bc-49fd-823f-3af443e55b20@mailbox.org>
- <31da350f-adfc-4b2c-a7c5-5ed884ffd9ca@mailbox.org>
- <ai_40qUa-MVdbOEf@intel.com>
-From: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>
-Content-Language: en-CA
-In-Reply-To: <ai_40qUa-MVdbOEf@intel.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-MBO-RS-META: 3ujfq8xumwefn9kq5pz33zjsd6qrsj4d
-X-MBO-RS-ID: 127b0e11a3ca2261d62
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,79 +78,167 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[mailbox.org,reject];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[mailbox.org:s=mail20150812];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	MIME_TRACE(0.00)[0:+];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	HAS_ORG_HEADER(0.00)[];
 	TO_DN_SOME(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[michel.daenzer@mailbox.org,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ALIAS_RESOLVED(0.00)[];
-	DKIM_TRACE(0.00)[mailbox.org:+]
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 75B88686C12
+X-Rspamd-Queue-Id: 29976686CA9
 
-On 6/15/26 15:06, Ville Syrjälä wrote:
-> On Mon, Jun 15, 2026 at 11:08:59AM +0200, Michel Dänzer wrote:
->> On 6/15/26 11:06, Michel Dänzer wrote:
->>> On 6/12/26 16:41, Ville Syrjala wrote:
->>>> From: Ville Syrjälä <ville.syrjala@linux.intel.com>
->>>>
->>>> Tweak the eDP fixed mode selection algorithm to allow
->>>> userspace to do refresh rate changes on VRR capable
->>>> eDP panels without full modesets.
->>>>
->>>> Ville Syrjälä (4):
->>>>   drm/modes: Add DRM_MODE_MATCH_TIMINGS_VRR
->>>>   drm/i915: Pass the full atomic state to .compute_config()
->>>>   drm/i915/panel: Adjust intel_panel_compute_config() calling convention
->>>>   drm/i915/panel: Attempt VRR based refresh rate change for
->>>>     !allow_modeset
->>>
->>> What's the motivation for this approach?
->>>
->>> Per https://gitlab.gnome.org/GNOME/mutter/-/merge_requests/5091#note_2784749 , it comes as a bit of a surprise. The approach we've been discussing at display hackfests instead is to add properties for controlling the maximum & minimum refresh rates.
-> 
-> This has nothing to do with limiting the VRR range. What we're doing
-> here is selecting the actual timings to drive an internal laptop panel,
-> given some random cooked up modeline from userspace.
+On Mon, 08 Jun 2026, Vidya Srinivas <vidya.srinivas@intel.com> wrote:
+> From: Vidya Srinivas <vidya.srinivas@intel.corp-partner.google.com>
+>
+> The existing icl_plane_min_cdclk() uses a simple pixel_rate/PPC
+> calculation that does not account for the pipeline granularity
+> adjustment when horizontal downscaling is active. The effective
+> pixels-per-clock throughput is reduced due to integer pipeline
+> granularity, requiring a higher CDCLK than the current one computes.
+> This causes FIFO underruns on multi-pipe configurations near max CDCLK.
+>
+> Additionally, limit second scaler to 1:1
+> (no horizontal or vertical downscaling) on DISPLAY_VER > 14
+>
+> Also apply CDCLK PLL disable/enable WA for DISPLAY_VER 30
+>
+> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
+> Signed-off-by: Charlton Lin <charlton.lin@intel.com>
 
-This use case would be covered by setting the same values for both properties.
+If you're sending a patch from you, why is Charlton's Signed-off-by
+here? Who is the author? Did you inted to add Co-developed-by: Charlton?
 
-(There are other use cases where changing mode alone isn't enough though, e.g. involving the compositor setting a narrow range between maximum & minimum refresh rate)
+BR,
+Jani.
 
 
-> For non-VRR panels we just pick the fixed mode whose refresh rate is closest to the
-> user specified mode, and reject the commit if it's not close enough (<= 1 Hz).
 
-Sounds like that wouldn't be good enough for some video use cases I'm afraid.
-
-
->>> While the approach in this series could be considered an alternative for the maximum, AFAICT it doesn't allow enforcing a minimum refresh rate which differs from the maximum and default minimum.
-> 
-> The timings specify the absolute max refresh rate you can achieve. So
-> a separate max VRR refresh rate knob would be mostly redundant, but as
-> we've discussed before, it could have its uses for the non-integer
-> vtotal use cases (CMRR in Intel parlance).
-
-None of that addresses the lack of control of the minimum refresh range.
-
+> ---
+>  drivers/gpu/drm/i915/display/intel_cdclk.c    |  3 +-
+>  drivers/gpu/drm/i915/display/skl_scaler.c     |  4 +-
+>  .../drm/i915/display/skl_universal_plane.c    | 58 +++++++++++++++++--
+>  3 files changed, 57 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> index 189ae2d3cfc9..f724227c3726 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -2149,7 +2149,8 @@ static bool cdclk_compute_crawl_and_squash_midpoint(struct intel_display *displa
+>  
+>  static bool pll_enable_wa_needed(struct intel_display *display)
+>  {
+> -	return (DISPLAY_VERx100(display) == 2000 ||
+> +	return (DISPLAY_VERx100(display) == 3000 ||
+> +		DISPLAY_VERx100(display) == 2000 ||
+>  		DISPLAY_VERx100(display) == 1400 ||
+>  		display->platform.dg2) &&
+>  		display->cdclk.hw.vco > 0;
+> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
+> index 7994b983d509..3673b52de4da 100644
+> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
+> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
+> @@ -382,8 +382,10 @@ calculate_max_scale(struct intel_crtc *crtc,
+>  
+>  		if (scaler_id == 0)
+>  			*max_vscale = 0x30000 - 1;
+> -		else
+> +		else {
+> +			*max_hscale = 0x10000;
+>  			*max_vscale = 0x10000;
+> +		}
+>  	} else if (DISPLAY_VER(display) >= 10 || !is_yuv_semiplanar) {
+>  		*max_hscale = 0x30000 - 1;
+>  		*max_vscale = 0x30000 - 1;
+> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> index ad4bfff6903d..c49f330c4878 100644
+> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
+> @@ -264,12 +264,58 @@ bool icl_is_hdr_plane(struct intel_display *display, enum plane_id plane_id)
+>  }
+>  
+>  static int icl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
+> -			       const struct intel_plane_state *plane_state)
+> -{
+> -	unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
+> -
+> -	/* two pixels per clock */
+> -	return DIV_ROUND_UP(pixel_rate, 2);
+> +                   const struct intel_plane_state *plane_state)
+> +{
+> +    struct intel_display *display = to_intel_display(crtc_state);
+> +    unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
+> +
+> +    if (DISPLAY_VER(display) >= 30) {
+> +        unsigned int src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
+> +        unsigned int dst_w = drm_rect_width(&plane_state->uapi.dst);
+> +        unsigned int src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
+> +        unsigned int dst_h = drm_rect_height(&plane_state->uapi.dst);
+> +        const unsigned int ppc = 2;
+> +
+> +        /*
+> +         * "Resolution Support" PPC-granularity:
+> +         *   Hscale_PPC = (src_w / dst_w) * PPC
+> +         *   int_part = floor(Hscale_PPC)
+> +         *   frac = Hscale_PPC - int_part
+> +         *   adjusted_frac = frac > 0 ? 1/ROUNDUP(1/frac) : 0
+> +         *   H_down = int_part/PPC + adjusted_frac
+> +         *   min_cdclk = crtc_clock * H_down * V_down / PPC
+> +         */
+> +        if (dst_w && dst_h && src_w > dst_w) {
+> +            unsigned int hscale_ppc = src_w * ppc;
+> +            unsigned int int_part = hscale_ppc / dst_w;
+> +            unsigned int frac_num = hscale_ppc % dst_w;
+> +            unsigned int v_num = max(src_h, dst_h);
+> +            u64 num;
+> +
+> +            if (frac_num) {
+> +                unsigned int recip_ceil = DIV_ROUND_UP(dst_w, frac_num);
+> +                /* H_down = (int_part * recip_ceil + ppc) / (ppc * recip_ceil) */
+> +                unsigned int h_num = int_part * recip_ceil + ppc;
+> +                unsigned int h_den = ppc * recip_ceil;
+> +
+> +                num = mul_u32_u32(crtc_state->pixel_rate, h_num);
+> +                num *= v_num;
+> +                return DIV_ROUND_UP_ULL(num,
+> +                            (u64)h_den * ppc * dst_h);
+> +            }
+> +
+> +            /* frac == 0: H_down = int_part / ppc exactly */
+> +            num = mul_u32_u32(crtc_state->pixel_rate, int_part);
+> +            num *= v_num;
+> +            return DIV_ROUND_UP_ULL(num, (u64)ppc * ppc * dst_h);
+> +        }
+> +
+> +        /* No horizontal downscale */
+> +        return DIV_ROUND_UP(pixel_rate, ppc);
+> +    }
+> +
+> +    /* two pixels per clock */
+> +    return DIV_ROUND_UP(pixel_rate, 2);
+>  }
+>  
+>  static void
 
 -- 
-Earthling Michel Dänzer       \        GNOME / Xwayland / Mesa developer
-https://redhat.com             \               Libre software enthusiast
+Jani Nikula, Intel
