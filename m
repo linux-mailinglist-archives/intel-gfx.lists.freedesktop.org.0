@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZmDsBUJeMGrRSAUAu9opvQ
+	id C64MHkReMGrUSAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8624689C60
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 46AEA689C6D
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=RPzyHNg7;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=VO0ufo7k;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1524810E6A2;
-	Mon, 15 Jun 2026 20:18:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2D36F10E69A;
+	Mon, 15 Jun 2026 20:18:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9B710E672;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF63E10E673;
  Mon, 15 Jun 2026 20:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1781554725;
- bh=r10AAnKUQPrCjn4nwCrtFvliOfdGv8y4HVOMxu4pQsU=;
+ bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=RPzyHNg7hvxY4KH+CHQ31ZGhf7GcHRMsSokHWc02q1Qw13qqOtCKsOw73bPl/2G1d
- EB865K+ml4gQDnoZHzLeIVWR5YG+4R836SDaaXrZW0oMGfRioDXVHVBGUg9gCdNqQv
- TbqY0xV2qie8M5vy3anRhTLnAzZxNkzMYVogdBLHZxHanMDtA9N/soqafh55CGEKog
- OJt8YOXCGGb62YZiEfdXzdea2vem5LfB7m2wYGEeIgfEL/TJiC9fPLMiZv7Niw5R94
- Qs2REgu1+9dSQicUuzynhs0b45kwdgBw7UuA+YR8PzmqROdZgnZ7Qxup4iApMgMBLx
- /Zvks48Mn7VyA==
+ b=VO0ufo7kyoUMDPb5P9F6S0Ce3o2aFMF/26qJYjSQ5PXgw5C2aDCDaHPlIbnOiuQG6
+ hNwoyEw4IZX5VXVTusBXj922G0UEhiu4hRGlclUHT5nXVdmy9Aa4nPyVMLKUu5jIAC
+ 3s10FzXgKUh4gFV/zARD/4XlwVUY8aAz54CPRgPy+HTLcRyRUthaVz9GYaEc4pq40B
+ /NqY2sJCn/br+tgKjKjly7IJI+vId8qw2rqvlUyXJSbtHyE1K+E/3y0Q3rUeto2Ut2
+ 28zL3rCVtcRAXLxZcJwMXslHFXWJedUEiP/dX7JNzfyvuLlPR2Hqo9dNiHE3iyUJbJ
+ MXKpat+V3HrDA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 20/27] drm/i915/display: Remove uncore lock from
- vlv_atomic_update_fifo
-Date: Mon, 15 Jun 2026 22:18:38 +0200
-Message-ID: <20260615201846.307297-21-dev@lankhorst.se>
+Subject: [PATCH v8 21/27] drm/i915: Use sleeping selftests for igt_atomic on
+ PREEMPT_RT
+Date: Mon, 15 Jun 2026 22:18:39 +0200
+Message-ID: <20260615201846.307297-22-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
 References: <20260615201846.307297-1-dev@lankhorst.se>
@@ -86,45 +86,38 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D8624689C60
+X-Rspamd-Queue-Id: 46AEA689C6D
 
-TODO: Grab uncore lock during entire vblank evasion before disabling
-interrupts, and check what breaks?
+This makes the i915 selftests slightly happier, especially
+related to GPU reset.
+
+I believe this may be a better approach than trying to convert
+uncore->lock to raw_spinlock
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
- 1 file changed, 4 deletions(-)
+ drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
-index 86d1c9f7f0ff0..e07303f0b3cc4 100644
---- a/drivers/gpu/drm/i915/display/i9xx_wm.c
-+++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
-@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 				   struct intel_crtc *crtc)
- {
- 	struct intel_display *display = to_intel_display(crtc);
--	struct intel_uncore *uncore = to_intel_uncore(display->drm);
- 	const struct intel_crtc_state *crtc_state =
- 		intel_atomic_get_new_crtc_state(state, crtc);
- 	const struct vlv_fifo_state *fifo_state =
-@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	 * intel_pipe_update_start() has already disabled interrupts
- 	 * for us, so a plain spin_lock() is sufficient here.
- 	 */
--	spin_lock(&uncore->lock);
- 
- 	switch (crtc->pipe) {
- 	case PIPE_A:
-@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
- 	}
- 
- 	intel_de_read_fw(display, DSPARB(display));
--
--	spin_unlock(&uncore->lock);
+diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+index fb506b6990956..8ae39cf570b76 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
++++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+@@ -39,7 +39,14 @@ static void __hardirq_end(void)
+ 	local_irq_enable();
  }
  
- #undef VLV_FIFO
++static void __maybe_unused __nop(void)
++{}
++
+ const struct igt_atomic_section igt_atomic_phases[] = {
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	{ "sleeping", __nop, __nop },
++	{ },
++#endif
+ 	{ "preempt", __preempt_begin, __preempt_end },
+ 	{ "softirq", __softirq_begin, __softirq_end },
+ 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.53.0
 
