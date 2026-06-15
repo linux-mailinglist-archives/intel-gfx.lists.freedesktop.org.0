@@ -2,64 +2,90 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id n44zDTAaMGprNgUAu9opvQ
+	id vSLQI7hxMmpA0AUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 17:28:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 12:06:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D4D2687ACC
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 17:28:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 114E569841C
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 12:06:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=naKvnPKj;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=ddNz9s11;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 217BB10E50B;
-	Mon, 15 Jun 2026 15:28:46 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7921910EF33;
+	Wed, 17 Jun 2026 10:06:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C6A410E505;
- Mon, 15 Jun 2026 15:28:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781537324; x=1813073324;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=jbJy6h47RtheuI3fo3h3cMXQoSr559B606X+Z4Cx0ZU=;
- b=naKvnPKjyejdGCyhdOLsbIwZlmH7J8xldvL+TP3YZFmyrzp3/Oe5J8Ar
- SuJviQzoUNW65gygxSftJa5Wh6YinWNb3Mqe8nbQeFyrNheNKJenHwc7U
- pDgXbYxPQbNctsW32Tt+tLkAPeOHdZOfbuT+rd9NaaU1/rDC1dtJB0g3G
- IvT5pJM/vXqO4H0ZO8kWNgPQUh/KD9rJPb1AJ+/l0lKvmbauno4Zj6p5K
- CecQtg8SppwIV4lSS7Tjl0AQtqEoC8dkGGWxtzYxK39ISWvFYgUcFu7p2
- hmxdWuZQON+JYsEj7QtMjiqO8Iq5AMuNu6GvexA6aR9r9tKUnOmtC0TIO A==;
-X-CSE-ConnectionGUID: Z7Nr7O3YR9Kdh53vsVV6OA==
-X-CSE-MsgGUID: h48CdmGbTrWF+4ywSazEpA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="86181128"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="86181128"
-Received: from fmviesa010.fm.intel.com ([10.60.135.150])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 08:28:44 -0700
-X-CSE-ConnectionGUID: jIkCG+CYTZarRAMFdLnLuQ==
-X-CSE-MsgGUID: W7nwjW6qTDem5rZ180wDjw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="243335475"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.28])
- by fmviesa010-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 08:28:42 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com
-Subject: [PATCH] drm/intel: drop driver include from mchbar_regs.h
-Date: Mon, 15 Jun 2026 18:28:37 +0300
-Message-ID: <20260615152837.1898991-1-jani.nikula@intel.com>
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com
+ [209.85.222.170])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8C84A10E512
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 15:31:16 +0000 (UTC)
+Received: by mail-qk1-f170.google.com with SMTP id
+ af79cd13be357-9157b840d37so35470885a.3
+ for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 08:31:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1781537475; x=1782142275; darn=lists.freedesktop.org;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:from:to:cc:subject:date
+ :message-id:reply-to;
+ bh=FXObSinxGqcj+ceUNFdr8EDig9lUL9VyLWIR4Uh3ABU=;
+ b=ddNz9s11v1Ck9GT9JU5kcCOhe9Neu9fOG5hQpMzyMk4JehY03G74BfxsAxfiHqANCl
+ /zBXGkIBWVTAeu18sJJ9yDIzM11Jji+UR9B7tiracwC67T3b+rbIB4wXhMyicv3jiGhJ
+ DOlUUQjWte8G52zcH0cLfr7rg79QY8VT9Gnl4pbbJDxeyUBSej9k6myAfj6rk4xbDBOI
+ ufS6bbNUzAMi/uKkcx36dhbbcTpLbSZ2NRBxwI4wNjEmxVkVl39gShQ8kOG6Bp+sLStG
+ MSp63bSpIKg+ihDBvLa6A+rOIQISLhsOq+zYE1ZxQMKy4/44lX2wffHQe7W6Yu8ed7IP
+ AvxA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1781537475; x=1782142275;
+ h=content-transfer-encoding:mime-version:references:in-reply-to
+ :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
+ :to:cc:subject:date:message-id:reply-to;
+ bh=FXObSinxGqcj+ceUNFdr8EDig9lUL9VyLWIR4Uh3ABU=;
+ b=IT+F9eofpgL/UHaDOtCipc9B8Pqe+keOXruKEzzumk4FR2SyGjSn5DwYVHPCa2Uj1d
+ T42scacm0ej8xLtnS926QhlxgUdQrsXOdlAiybYFHvyckAe1L+Nw0q2xuppjjHCducj2
+ E9wvMpYyerHnBXxtCUPczlim8gVrBeirOuSetG0gNBYN/Zn+8A9wFiXpbZguDg551dy/
+ UM483K55z2SsxDbNxkbA/B409srjiBiEVoJo3Mk5hWm5hz2GutLaXsTcQoj3dfew68rb
+ CQaQGLzbXyWdpfa68GN9/iGKD9pqyKbJdXeo3rs9OMd8fwiiFeiY2mBqz1iNlaalD8L1
+ 4DDg==
+X-Forwarded-Encrypted: i=1;
+ AFNElJ847CMsrBgO/HFrgRpYT5UullLQAb6rQBD6xVm/AoK+3BspnF1NZeJ6jkf0vduAi/22AYi4XcArYzI=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YyoFCMqbC8VMs5R15oVN2QIGfJfEuue+jjytoBa3Fo6wQD3Mo/F
+ G/AfpNcd/ZQBRRc+p4j3qh3d3JozhdGwl+gdvJ+6uLgO+pkJoexKXrYX
+X-Gm-Gg: Acq92OE1vK2HO9DNBMuOWDw8stbbgd4GJTpufxdKMw84WWgGil6ekhYYdMekdnbkoCl
+ qLL1KQ2xZTWgtzk4/W32rfUxJpKjL7/S6LwlG+/rkf7lkXCvk5vEuoMHoRFuF6KClH1CO5cOpCE
+ Xk6raq0Zcnl13P4gaxq4t3yHa8ulklTGOHvKb9D6euSS30LJti/kcuZgkmv5HvLumyUn7HQQdhF
+ Z+2y81EZoxO2AuhR2LewyUd7qjikhZKoAHihsxFOrx60LHzm/mQfb02mHsPYuIUQdsZ01l0ysQ9
+ 6NYCD0asF0Tos1bVNEE6QYwp4bhrINjmhVh3YM80qtUPBftGw9hiN/XmW3dCZNgJAR1/BXe+Jbk
+ Pb3OL9sAefewjpkJ4bIGcC3voxZQ3+dWZh9VNDcgg51IujGptmH41NsoIvyS5Yk+0ylV8A8FPNV
+ zNzI/2aaLPSH5thhf02rKwB1E+dzcb+BwSIOdqmCAuxCaRpFmncG4xmnYzOwdiUFTpw2vH1qLuE
+ 1+XPnff9FrjpBVP1vfddlvGQJySngTxAq9Bi9wQH+8cTGTyEdvixN7arSLiVudO0Z+aXBIifv3I
+X-Received: by 2002:a05:620a:2714:b0:911:295d:59a1 with SMTP id
+ af79cd13be357-9161bd4df47mr1340145985a.8.1781537471396; 
+ Mon, 15 Jun 2026 08:31:11 -0700 (PDT)
+Received: from debian-t14-gen1-fuhrysteve.fuhry.app
+ (6.sub-75-230-138.myvzw.com. [75.230.138.6])
+ by smtp.gmail.com with ESMTPSA id
+ af79cd13be357-9161a035855sm1138721985a.32.2026.06.15.08.31.09
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 15 Jun 2026 08:31:10 -0700 (PDT)
+From: Steve Fuhry <fuhrysteve@gmail.com>
+X-Google-Original-From: Steve Fuhry <steve@tpastream.com>
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: "Stephen J . Fuhry" <fuhrysteve@gmail.com>, intel-gfx@lists.freedesktop.org
+Subject: Re: [2/2] drm/i915/display: Refcount for fec enable/disable
+Date: Mon, 15 Jun 2026 11:31:08 -0400
+Message-ID: <20260615153108.10548-1-steve@tpastream.com>
 X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260612091807.2123172-3-arun.r.murthy@intel.com>
+References: <20260612091807.2123172-1-arun.r.murthy@intel.com>
+ <20260612091807.2123172-2-arun.r.murthy@intel.com>
+ <20260612091807.2123172-3-arun.r.murthy@intel.com>
 MIME-Version: 1.0
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 17 Jun 2026 10:06:45 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,56 +101,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	DATE_IN_PAST(1.00)[42];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:fuhrysteve@gmail.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_THREE(0.00)[3];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,tpastream.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8D4D2687ACC
+X-Rspamd-Queue-Id: 114E569841C
 
-Headers under include/ aren't supposed to try to include headers from
-driver directories, such as i915_reg_defs.h. Remove it.
+From: Stephen J. Fuhry <fuhrysteve@gmail.com>
 
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- include/drm/intel/mchbar_regs.h | 2 --
- 1 file changed, 2 deletions(-)
+Tested the full series (1/2 + 2/2) on top of linux-source-7.0
+(7.0.10-1~bpo13+1, Debian trixie-backports) with a local adaptation
+for the for_each_intel_crtc API difference between 7.0.x and drm-tip.
 
-diff --git a/include/drm/intel/mchbar_regs.h b/include/drm/intel/mchbar_regs.h
-index ca0d421be16c..66498ca5e40b 100644
---- a/include/drm/intel/mchbar_regs.h
-+++ b/include/drm/intel/mchbar_regs.h
-@@ -6,8 +6,6 @@
- #ifndef __INTEL_MCHBAR_REGS__
- #define __INTEL_MCHBAR_REGS__
- 
--#include "i915_reg_defs.h"
--
- /*
-  * MCHBAR mirror.
-  *
--- 
-2.47.3
+Test: cold replug of a ThinkPad USB-C Dock Gen2 driving two monitors
+over DP-MST (10s unplugged), with USB_QUIRK_NO_LPM applied for
+17ef:a391 and 17ef:a392.
+
+Result: zero fec_enable fastset mismatches in dmesg (previously 40
+hits in a ~3s window on unpatched drm-tip for the same replug) and no
+i915/DRM events at all — displays recovered without a full modeset.
+
+Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
 
