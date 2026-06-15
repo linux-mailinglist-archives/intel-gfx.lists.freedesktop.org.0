@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id cFHJFTRiMGppSQUAu9opvQ
+	id 6jicMTdiMGptSQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:07 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DA76E689E79
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3A8C8689E89
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=E6HGK9IP;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ly2vyPhi;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6587E10E6C4;
-	Mon, 15 Jun 2026 20:36:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C022210E6D0;
+	Mon, 15 Jun 2026 20:36:05 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E799210E6CC;
- Mon, 15 Jun 2026 20:36:00 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E8FEF10E6D2;
+ Mon, 15 Jun 2026 20:36:03 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781555761; x=1813091761;
+ t=1781555764; x=1813091764;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=ExyFgoMYt8x1uwsA/D+BNmaL7KtcBYIuIExK4DKxF64=;
- b=E6HGK9IPx4Ka9Lm2Dbccg/VBgdw6VSeGJ0Z4Iektj9HqAma+cW+3IKCK
- xFpnYMB0LDTAcG4EuLi04+Iws7E2fMPIxmuO2kRWjeaGHwVSVmEJ55sir
- UEqpTWPnbmHU25NnSllh7psjjxyySjg8ptQjtq6pFEOy0agcSDoYta657
- WPCDh8T9v4waf50MbbcklUlVZugGMmjWaQ9+Wwhcudg6+sWMg3FIYOd1w
- nXMCY4UzbBMMb4ZsGKzke4yHc0cUj+LATh4gVsgfM0fW9cYarxGDZigaf
- tcCoHtT4VN/DNaam05xRQKOoCE/L/AMZ3q3O8aCdvabYYoZAe/TP4exDJ w==;
-X-CSE-ConnectionGUID: bKeheUHxQr2UqzfFW5DU0A==
-X-CSE-MsgGUID: f2rCmyoZS+uoUR9prcFSGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694746"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694746"
+ bh=13J8DZBgZGqDUinGpuk0keq9glQhKNYS/1F3TDJTt8s=;
+ b=ly2vyPhikWbC4Fv3VEpdH5Tumj0XSW32m6/zuktmO9NSySYO3pQXR+PR
+ zYrOEZQ9BLrUYH/CfNf5iuMZDO/A3bR0uJf9BZ1AuGPl4BE5h1Xhcvjrf
+ RINiBI6IxSptcZcDocB8VnipHKO7El7o9FG7SsG4D8/RaXMYRXHllRgvg
+ WgfTsmPq3at9KOpPUHNogABXyWt2TbXdQMdW/QiRcajvy+yNb0H35ONOk
+ TsxWxBH+uCR9U6gppKHe1DPghd4VMQ7w7wIitZLbogUdRyYFgLa/nHElK
+ gUhG+I9eBWtHWfAZzIKOYZM0TqcyQJ+m8/gZUXWalDMWQxbQ3xnDseoj6 w==;
+X-CSE-ConnectionGUID: B9yMgjP0QfGcPEiepTiE4g==
+X-CSE-MsgGUID: N0P6uPQ9TMKyTJUuwoMJyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694755"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694755"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 13:36:01 -0700
-X-CSE-ConnectionGUID: SI/80vO/R6Wqf8o2n0tsyA==
-X-CSE-MsgGUID: kp/7pxVtTwG6YlpTsVEnQA==
+ 15 Jun 2026 13:36:04 -0700
+X-CSE-ConnectionGUID: U/9pwDPmSvqBjklmboR/Gg==
+X-CSE-MsgGUID: scK0upUIS+2vNuEsTXTAHQ==
 X-ExtLoop1: 1
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa003.fm.intel.com with ESMTP; 15 Jun 2026 13:35:59 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 15 Jun 2026 13:36:02 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
  ville.syrjala@linux.intel.com, jani.nikula@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v9 06/22] drm/i915/display: Skip DP_MIN_HBLANK_CTL programming
- for CMTG transcoders
-Date: Tue, 16 Jun 2026 01:33:23 +0530
-Message-Id: <20260615200339.885190-7-animesh.manna@intel.com>
+Subject: [PATCH v9 07/22] drm/i915/display: Pass transcoder to
+ intel_set_transcoder_timings_lrr()
+Date: Tue, 16 Jun 2026 01:33:24 +0530
+Message-Id: <20260615200339.885190-8-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260615200339.885190-1-animesh.manna@intel.com>
 References: <20260615200339.885190-1-animesh.manna@intel.com>
@@ -99,35 +99,72 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DA76E689E79
+X-Rspamd-Queue-Id: 3A8C8689E89
 
-DP_MIN_HBLANK_CTL is a CPU transcoder register and must not be written
-for the CMTG transcoders. Skip the programming when the target
-transcoder is TRANSCODER_CMTG0 or TRANSCODER_CMTG1.
+Make intel_set_transcoder_timings_lrr() take the target transcoder as an
+explicit parameter instead of always using crtc_state->cpu_transcoder.
+This allows the LRR timing programming sequence to be reused for other
+transcoders (e.g. CMTG).
+
+Move the intel_vrr_set_fixed_rr_timings() and intel_vrr_transcoder_enable()
+calls out of intel_set_transcoder_timings_lrr() and into its only caller
+intel_pipe_fastset(), so the helper now strictly programs the LRR timing
+registers for the given transcoder.
+
+No functional change intended.
+
+v2:
+- Add separate patch for renaming the cpu_transcoder variable. [Ville]
 
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/intel_display.c | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index c11def137711..8f8e24565a6d 100644
+index 8f8e24565a6d..049038742517 100644
 --- a/drivers/gpu/drm/i915/display/intel_display.c
 +++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -2761,7 +2761,9 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
- 			       VACTIVE(crtc_vdisplay - 1) |
- 			       VTOTAL(crtc_vtotal - 1));
+@@ -2777,10 +2777,10 @@ static void intel_set_transcoder_timings(const struct intel_crtc_state *crtc_sta
+ 	}
+ }
  
--	if (DISPLAY_VER(display) >= 30) {
-+	if (DISPLAY_VER(display) >= 30 &&
-+	    transcoder != TRANSCODER_CMTG0 &&
-+	    transcoder != TRANSCODER_CMTG1) {
- 		/*
- 		 * Address issues for resolutions with high refresh rate that
- 		 * have small Hblank, specifically where Hblank is smaller than
+-static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc_state)
++static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc_state,
++					     enum transcoder cpu_transcoder)
+ {
+ 	struct intel_display *display = to_intel_display(crtc_state);
+-	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	const struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	u32 crtc_vdisplay, crtc_vtotal, crtc_vblank_start, crtc_vblank_end;
+ 
+@@ -2845,9 +2845,6 @@ static void intel_set_transcoder_timings_lrr(const struct intel_crtc_state *crtc
+ 	intel_de_write(display, TRANS_VTOTAL(display, cpu_transcoder),
+ 		       VACTIVE(crtc_vdisplay - 1) |
+ 		       VTOTAL(crtc_vtotal - 1));
+-
+-	intel_vrr_set_fixed_rr_timings(crtc_state);
+-	intel_vrr_transcoder_enable(crtc_state);
+ }
+ 
+ static void intel_set_pipe_src_size(const struct intel_crtc_state *crtc_state)
+@@ -6694,8 +6691,11 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
+ 		intel_cpu_transcoder_set_m1_n1(crtc, new_crtc_state->cpu_transcoder,
+ 					       &new_crtc_state->dp_m_n);
+ 
+-	if (new_crtc_state->update_lrr)
+-		intel_set_transcoder_timings_lrr(new_crtc_state);
++	if (new_crtc_state->update_lrr) {
++		intel_set_transcoder_timings_lrr(new_crtc_state, new_crtc_state->cpu_transcoder);
++		intel_vrr_set_fixed_rr_timings(new_crtc_state);
++		intel_vrr_transcoder_enable(new_crtc_state);
++	}
+ }
+ 
+ static void commit_pipe_pre_planes(struct intel_atomic_state *state,
 -- 
 2.29.0
 
