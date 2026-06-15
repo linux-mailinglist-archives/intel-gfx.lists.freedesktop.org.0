@@ -2,48 +2,65 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id gZZoIEFeMGrQSAUAu9opvQ
+	id iqNJL8NhMGpMSQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:34:11 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5113B689C5B
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 011B0689E13
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:34:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=DvQSe4Un;
+	dkim=pass header.d=intel.com header.s=Intel header.b=aunuM3Wr;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=lankhorst.se
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 96D3310E679;
-	Mon, 15 Jun 2026 20:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7E9DD10E687;
+	Mon, 15 Jun 2026 20:34:09 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5DA8210E68E;
- Mon, 15 Jun 2026 20:18:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554729;
- bh=rFyIJr/5ItYxtHFx9GPLcQKPSSM1zAWX5HycYL8oBWU=;
- h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=DvQSe4UngBVkaI4HZIErFo+CqL+MdGbwYGsLYwZehMs+C7LTq33oxmgYqY2i6PFUL
- D+Y9HE/AmGqTBHa0N6zIxcCyyKx+rPPckNiHpXaLDmyxKDxNJwuuMDqmxYIDkliqx7
- Qd4bN60cDGTv28lGv5l1qMkC6SZkcqnHIaXQfiY8E2hJNvR+iq6ks/3VpHzpnbXTFi
- XckfE/jBrPH6+pFznkX/Eym4Sw2j0Cd/mdYEZloLqwCDbsMMbl1v1km1bhhlsKH6/O
- eWHzIMDg0N2qznT2QpDvQXw8m+G+Ponp7vkVFkSKWpxLCO09ESUPw1bI/DzYEx6AlZ
- KT0wKiY9R0fBg==
-From: Maarten Lankhorst <dev@lankhorst.se>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C5E0310E66C;
+ Mon, 15 Jun 2026 20:34:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781555649; x=1813091649;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=ajUm+NiL0ekiFLT1H5CJpRQUvuW2JdszuCXi7sh/WtU=;
+ b=aunuM3WrGm20FBYAFLjZ8RHI7mo30N8e98gykLXG4cZE2sR290Sa3LG2
+ HN7BWmYj6iiSt4imivKw7l81a23kP3RicfTqc/5/RqJBVkITVRJ+2jkTH
+ oQiaVbTxTEFoFQiKe0xNwn+HxlOpurakPChNNPiYzj3PSwvAcnoTQdTfT
+ W7mDZRDD8OfXey256ycSEQ/0kE14pm/D8wfcEqjGnVUaoguN5NNFqFpys
+ 57Kd8Py5IwnXneubyRMqAFVxwgh5atZedhe3OPzDzVj5mwRiEjC6fUQ2m
+ x6xly688r3fVtpC2r2fcSH2to3WV+ljnSdPyOpg9lS+D8gbKPdCY1sBR6 g==;
+X-CSE-ConnectionGUID: coYriyo5RKaVn+1bw0GK4w==
+X-CSE-MsgGUID: MAm4VAZ0RFqOLiUf7f03fg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694558"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694558"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 13:34:08 -0700
+X-CSE-ConnectionGUID: 2x/i28pMSnitAVG4IEmIYw==
+X-CSE-MsgGUID: AY4AoYDITumj3zonCggw2A==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="252538403"
+Received: from ettammin-mobl2.ger.corp.intel.com (HELO
+ vgovind2-mobl4.intel.com) ([10.245.245.246])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 13:34:06 -0700
+From: Vinod Govindapillai <vinod.govindapillai@intel.com>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
-Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 27/27] drm/xe/display: Prefer not to allocate a
- framebuffers in stolen memory
-Date: Mon, 15 Jun 2026 22:18:45 +0200
-Message-ID: <20260615201846.307297-28-dev@lankhorst.se>
-X-Mailer: git-send-email 2.53.0
-In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
-References: <20260615201846.307297-1-dev@lankhorst.se>
+Cc: vinod.govindapillai@intel.com,
+	ville.syrjala@linux.intel.com
+Subject: [PATCH v3 0/7] drm/i915/display: reduce the pm demand peak bw based
+ on display data rate
+Date: Mon, 15 Jun 2026 23:33:48 +0300
+Message-ID: <20260615203355.218578-1-vinod.govindapillai@intel.com>
+X-Mailer: git-send-email 2.43.0
 MIME-Version: 1.0
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -63,94 +80,66 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCPT_COUNT_THREE(0.00)[4];
-	RCVD_COUNT_TWO(0.00)[2];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	MIME_TRACE(0.00)[0:+];
+	TO_DN_NONE(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[vinod.govindapillai@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5113B689C5B
+X-Rspamd-Queue-Id: 011B0689E13
 
-For the same reasons as using stolen memory for DPT, it's also a bad
-idea for framebuffers. Allocate new framebuffers always in system memory
-when we don't inherit them, and prohibit inheriting stolen framebuffers
-when CONFIG_PREEMPT_RT is enabled.
+In xe3+, soc can lower the fabric frequency when the display
+needs less bandwidth than the minimum GV point. Also some cleanups
+in intel_bw.c
 
-Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
----
- drivers/gpu/drm/xe/display/xe_display_bo.c | 35 +++++-----------------
- 1 file changed, 7 insertions(+), 28 deletions(-)
+v1: pmdemand peak bw is updated to 20GB/s is the required data rate
+    is low and less than 20GB/s even though there are no QGV point
+    with 20GB/s. Only the peak_ww is changed based on the conditions 
 
-diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
-index 7fbac223b0977..5b54d247cb212 100644
---- a/drivers/gpu/drm/xe/display/xe_display_bo.c
-+++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-@@ -127,7 +127,7 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
- 	if (!stolen)
- 		return false;
- 
--	if (IS_DGFX(xe))
-+	if (IS_DGFX(xe) || IS_ENABLED(CONFIG_PREEMPT_RT))
- 		return false;
- 
- 	if (XE_DEVICE_WA(xe, 22019338487_display))
-@@ -146,33 +146,12 @@ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm,
- 	struct xe_device *xe = to_xe_device(drm);
- 	struct xe_bo *obj;
- 
--	obj = ERR_PTR(-ENODEV);
--
--	if (xe_display_bo_fbdev_prefer_stolen(xe, size)) {
--		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
--						size,
--						ttm_bo_type_kernel,
--						XE_BO_FLAG_FORCE_WC |
--						XE_BO_FLAG_STOLEN |
--						XE_BO_FLAG_GGTT,
--						false);
--		if (!IS_ERR(obj))
--			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
--		else
--			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
--	} else {
--		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not preferred.\n");
--	}
--
--	if (IS_ERR(obj)) {
--		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
--						ttm_bo_type_kernel,
--						XE_BO_FLAG_FORCE_WC |
--						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
--						XE_BO_FLAG_GGTT,
--						false);
--	}
--
-+	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
-+					ttm_bo_type_kernel,
-+					XE_BO_FLAG_FORCE_WC |
-+					XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
-+					XE_BO_FLAG_GGTT,
-+					false);
- 	if (IS_ERR(obj)) {
- 		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", obj);
- 		return ERR_PTR(-ENOMEM);
+v2: At the time of BW info calculations, a new row is inserted with
+    peakbw as 20GB/s and deratebw also to 20GB/s and the required
+    pmdemand peakbw is automatically calculated based on the old
+    logic.
+
+v3: change in the logic after Ville's refactoring of the intel_bw
+    code. An extra QGV point for this low peakbw threshold is added
+    Some cleanup patches from the v2 are dropped.
+
+Vinod Govindapillai (7):
+  drm/i915/wm: clear the plane ddb_y entries on plane disable
+  drm/i915/pm_demand: introduce HAS_PMDEMAND macro
+  drm/i915/display: sagv pre/post plane calls to check pmdemand support
+  drm/i915/bw: Extract icl_init_qgv_info()
+  drm/i915/bw: extract update_sagv_status()
+  drm/i915/bw: avoid replicating the update_sagv_status() calls
+  drm/i915/bw: introduce the peak bandwidth threshold
+
+ drivers/gpu/drm/i915/display/intel_bw.c       | 94 +++++++++++++------
+ .../drm/i915/display/intel_display_device.h   |  2 +
+ .../gpu/drm/i915/display/intel_display_irq.c  |  2 +-
+ .../drm/i915/display/intel_display_power.c    |  4 +-
+ drivers/gpu/drm/i915/display/intel_pmdemand.c | 12 +--
+ drivers/gpu/drm/i915/display/skl_watermark.c  |  8 +-
+ 6 files changed, 83 insertions(+), 39 deletions(-)
+
 -- 
-2.53.0
+2.43.0
 
