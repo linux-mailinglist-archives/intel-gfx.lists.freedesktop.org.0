@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FbFrLmRiMGqASQUAu9opvQ
+	id BhPVImdiMGqBSQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5EEE2689ED3
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36756689ED6
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:36:55 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=a1m8hlS1;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Yv9N0gQv;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E8DA110E6F8;
-	Mon, 15 Jun 2026 20:36:50 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id BA86D10E6FC;
+	Mon, 15 Jun 2026 20:36:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8D51810E6F8;
- Mon, 15 Jun 2026 20:36:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 710FD10E6FB;
+ Mon, 15 Jun 2026 20:36:52 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781555810; x=1813091810;
+ t=1781555813; x=1813091813;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=rMYbm9HEjaEmsuPv+oAzeHMHdv27kLobsI9Bq3O9AYk=;
- b=a1m8hlS1c/pojo3QXf3Q7vYV6RjonOnUAb0ZqKk9eVuIkdtk42yAFA2x
- iOr68yNW7Bp3a+NWDBKGsApjn+YL6lsgkA0Nq3CxhutzGQ2NXAR1h6gcD
- FUnqL0IQo7cDZLzxduyyQHQgvdLSuUY39VtefD0+fb3r43h0ZUx2rCf6T
- f7D4r2xcBWhByUybX1WBWtc2VJMOdD41xkxeWxCYNaRKKLe+BH0wI833d
- C3YDVY5tSach7fqqR093jtsWD5OyKMaS7JE7krtyc15oORRsPBCl1R9F+
- LD3agcQvkLOAz8QW5ALBlBSnHKUKU+nuch8J9GMIiOwKuhBqnaQ7WKVnz g==;
-X-CSE-ConnectionGUID: htHyVv66SFmk4PMaDkn73A==
-X-CSE-MsgGUID: 8UrfQhVgQrqTqV5wpiWq1w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694847"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694847"
+ bh=oXX14TjRM9/OpfpPyGkIKqyKLizaNqwmrSrRtkaIFQA=;
+ b=Yv9N0gQvIi4SUEOjL2gO3SjGJNtu0vsTOfIicKdEoRbYv0pmnJLUXpE9
+ EZGaSIitzhBdgfOD2QlbNN+oa83DzfNJt6VcT3jE7561ncYCAPVSt8qbD
+ ZI5h6yhynQw2mTm8qYAbIfHrlGDmng2itb2rR0hfzYJn/1o6cjFQ89thV
+ lQH2mERtp0T3ZgIBE0lYd/2fruxQ8ijzk90VzpN8ASALoJjPTi8Jgjtga
+ TVbwUaLn118ceKHI3E6PdG7qCLtLDw/pgCFyk+5SZOwai56XGelzarPmj
+ ZCqeMkJwUa5dm2qwtcXXdowkH/sj6v0Q7ejN0QAArQiCPfy3sfWgmKH3B g==;
+X-CSE-ConnectionGUID: C4gzpnokR/26+HP7FlWLVw==
+X-CSE-MsgGUID: hkRMPhMYRGqQYqB0J0PTGA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="93694856"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="93694856"
 Received: from fmviesa003.fm.intel.com ([10.60.135.143])
  by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 13:36:49 -0700
-X-CSE-ConnectionGUID: wxqLbCapRn2MXiUdNPAIbA==
-X-CSE-MsgGUID: eAsifYGxTyy3Mk2TVbFF0w==
+ 15 Jun 2026 13:36:52 -0700
+X-CSE-ConnectionGUID: /X3QuDqyQQ+wD4Dgm052fg==
+X-CSE-MsgGUID: om5WIRMPTF6S1KfgEKAR9w==
 X-ExtLoop1: 1
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa003.fm.intel.com with ESMTP; 15 Jun 2026 13:36:47 -0700
+ by fmviesa003.fm.intel.com with ESMTP; 15 Jun 2026 13:36:50 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
  ville.syrjala@linux.intel.com, jani.nikula@intel.com,
  Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v9 21/22] drm/i915/cmtg: Restore CMTG after DC6 exit
-Date: Tue, 16 Jun 2026 01:33:38 +0530
-Message-Id: <20260615200339.885190-22-animesh.manna@intel.com>
+Subject: [PATCH v9 22/22] drm/i915/cmtg: Add CMTG interrupt handling
+Date: Tue, 16 Jun 2026 01:33:39 +0530
+Message-Id: <20260615200339.885190-23-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260615200339.885190-1-animesh.manna@intel.com>
 References: <20260615200339.885190-1-animesh.manna@intel.com>
@@ -98,135 +98,159 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5EEE2689ED3
+X-Rspamd-Queue-Id: 36756689ED6
 
-Restore CMTG registers after DC6 exit, as they lose their values
-in the low-power state.
+Add support for the CMTG vblank interrupt, which is delivered
+through the DE port interrupt block. Enable/disable the interrupt
+via the DE port IMR around CMTG enable/disable, and dispatch the
+CMTG_VBLANK_{A,B} bits to the corresponding pipe vblank handler in
+the gen8 DE IRQ handler.
 
-v2: Introduce intel_cmtg_restore() instead of calling multiple cmtg
-functions. [Uma]
+Wired up for DISPLAY_VER 35. The CMTG interrupt is not enabled via
+IER today because CMTG is brought up together with the eDP
+transcoder; this can be revisited later.
+
+v2:
+- Use consistent DC3co check as used in earlier patches. [Uma]
+- Use else-if instead of separate if block. [Uma]
+- Merge mask and unmask function as it is similar. [Uma]
+- Modify DISPLAY_VER() check. [Uma]
+
+v3:
+- Enable only vblank interrupt. [Dibin]
+
+v4:
+- Keep irq related code to intel_display_irq.c. [Jani, Uma]
 
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cmtg.c     | 21 +++++++++++++----
- .../drm/i915/display/intel_display_power.c    | 23 +++++++++++++++++++
- .../drm/i915/display/intel_display_power.h    |  2 ++
- 3 files changed, 42 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cmtg.c     | 24 ++++++++++++++++++-
+ .../gpu/drm/i915/display/intel_display_irq.c  | 19 +++++++++++++++
+ .../gpu/drm/i915/display/intel_display_irq.h  |  2 ++
+ .../gpu/drm/i915/display/intel_display_regs.h |  2 ++
+ 4 files changed, 46 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index 8684d2ec2f83..ae59d7e755f3 100644
+index ae59d7e755f3..6da28c185080 100644
 --- a/drivers/gpu/drm/i915/display/intel_cmtg.c
 +++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -391,20 +391,33 @@ static void intel_cmtg_set_hwgb(const struct intel_crtc_state *crtc_state)
- 	intel_de_write(display, CMTG_HW_GB(cpu_transcoder), val);
+@@ -14,6 +14,7 @@
+ #include "intel_de.h"
+ #include "intel_display.h"
+ #include "intel_display_device.h"
++#include "intel_display_irq.h"
+ #include "intel_display_power.h"
+ #include "intel_display_regs.h"
+ #include "intel_display_types.h"
+@@ -177,7 +178,7 @@ void intel_cmtg_disable(const struct intel_crtc_state *crtc_state)
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
+ 	enum transcoder cmtg_transcoder = to_cmtg_transcoder(crtc_state->cpu_transcoder);
+-	u32 clk_sel_clr = 0;
++	u32 clk_sel_clr = 0, interrupt_mask = 0;
+ 
+ 	if (!crtc->cmtg.enabled)
+ 		return;
+@@ -210,6 +211,13 @@ void intel_cmtg_disable(const struct intel_crtc_state *crtc_state)
+ 	intel_de_rmw(display, CMTG_CLK_SEL, clk_sel_clr, 0);
+ 
+ 	drm_dbg_kms(display->drm, "CMTG: %s disabled\n", transcoder_name(cpu_transcoder));
++
++	if (cpu_transcoder == TRANSCODER_A)
++		interrupt_mask = CMTG_VBLANK_A;
++	else if (cpu_transcoder == TRANSCODER_B)
++		interrupt_mask = CMTG_VBLANK_B;
++
++	intel_display_irq_port_interrupt_mask(display, interrupt_mask, true);
  }
  
-+static void intel_cmtg_restore(const struct intel_crtc_state *crtc_state)
-+{
-+	intel_cmtg_set_clk_select(crtc_state);
-+	intel_cmtg_set_timings(crtc_state, MODESET);
-+	intel_cmtg_set_vrr_timings(crtc_state);
-+	intel_cmtg_set_vrr_ctl(crtc_state);
-+	intel_cmtg_set_m_n(crtc_state);
-+}
-+
- void intel_cmtg_program(struct intel_atomic_state *state)
- {
-+	struct intel_display *display = to_intel_display(state);
- 	struct intel_crtc *crtc;
- 	struct intel_crtc_state *new_crtc_state;
-+	bool dc3co_to_dc6 = intel_display_power_get_and_reset_dc3co_to_dc6(display);
+ /*
+@@ -355,11 +363,25 @@ static void intel_cmtg_enable_ddi(const struct intel_crtc_state *crtc_state)
+ 	struct intel_display *display = to_intel_display(crtc_state);
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
++	u32 interrupt_mask = 0;
  
- 	for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state) {
- 		bool modeset = intel_crtc_needs_modeset(new_crtc_state);
- 
- 		if (!intel_cmtg_is_allowed(new_crtc_state))
- 			continue;
--		/*
--		 * TODO: CMTG needs to be restored on DC6 exit.
--		 */
--		if (modeset && new_crtc_state->hw.active && !crtc->cmtg.enabled) {
+ 	intel_de_rmw(display, TRANS_DDI_FUNC_CTL2(display, cpu_transcoder), 0, CMTG_SECONDARY_MODE);
+ 	intel_de_rmw(display, CMTG_SCANLINE_GB1(cpu_transcoder), 0, CMTG_HW_GB_ENABLE);
+ 	crtc->cmtg.enabled = true;
+ 	drm_dbg_kms(display->drm, "CMTG: %s enabled\n", transcoder_name(cpu_transcoder));
 +
-+		if ((modeset || dc3co_to_dc6) &&
-+		    new_crtc_state->hw.active && !crtc->cmtg.enabled) {
-+			if (dc3co_to_dc6)
-+				intel_cmtg_restore(new_crtc_state);
-+
- 			intel_cmtg_enable_sync(new_crtc_state);
- 			intel_cmtg_set_hwgb(new_crtc_state);
- 			intel_cmtg_enable_ddi(new_crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index 2e51dfcd5dce..9783257651d2 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -285,6 +285,19 @@ sanitize_target_dc_state(struct intel_display *display,
- 	return target_dc_state;
- }
- 
-+bool intel_display_power_get_and_reset_dc3co_to_dc6(struct intel_display *display)
-+{
-+	struct i915_power_domains *power_domains = &display->power.domains;
-+	bool ret;
-+
-+	mutex_lock(&power_domains->lock);
-+	ret = power_domains->dc3co_to_dc6;
-+	power_domains->dc3co_to_dc6 = false;
-+	mutex_unlock(&power_domains->lock);
-+
-+	return ret;
-+}
-+
- /**
-  * intel_display_power_set_target_dc_state - Set target dc state.
-  * @display: display device
-@@ -300,6 +313,7 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
- 	struct i915_power_well *power_well;
- 	bool dc_off_enabled;
- 	struct i915_power_domains *power_domains = &display->power.domains;
-+	u32 old_target_dc_state;
- 
- 	mutex_lock(&power_domains->lock);
- 	power_well = lookup_power_well(display, SKL_DISP_DC_OFF);
-@@ -320,8 +334,17 @@ void intel_display_power_set_target_dc_state(struct intel_display *display,
- 	if (!dc_off_enabled)
- 		intel_power_well_enable(display, power_well);
- 
-+	old_target_dc_state =  power_domains->target_dc_state;
- 	power_domains->target_dc_state = state;
- 
 +	/*
-+	 * CMTG must be restored explicitly after DC6 exit. The dc3co_to_dc6
-+	 * flag helps CMTG determine whether restoration is required.
++	 * TODO: Currently cmtg is enabled along with eDP transcoder so cmtg
++	 * interrupt is not enabled through IER, need to do some fine
++	 * tuning in future.
 +	 */
-+	if (old_target_dc_state == DC_STATE_EN_DC3CO &&
-+	    power_domains->target_dc_state == DC_STATE_EN_UPTO_DC6)
-+		power_domains->dc3co_to_dc6 = true;
 +
- 	if (!dc_off_enabled)
- 		intel_power_well_disable(display, power_well);
++	if (cpu_transcoder == TRANSCODER_A)
++		interrupt_mask = CMTG_VBLANK_A;
++	else if (cpu_transcoder == TRANSCODER_B)
++		interrupt_mask = CMTG_VBLANK_B;
++
++	intel_display_irq_port_interrupt_mask(display, interrupt_mask, false);
+ }
  
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index 56dc89eed3f8..b9c9b68072af 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -138,6 +138,7 @@ struct i915_power_domains {
- 	 */
- 	bool initializing;
- 	bool display_core_suspended;
-+	bool dc3co_to_dc6;
- 	int power_well_count;
+ /* Bspec: 75253 */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.c b/drivers/gpu/drm/i915/display/intel_display_irq.c
+index 4a821b0674fd..bcb0ee22fb56 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.c
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.c
+@@ -1469,6 +1469,18 @@ static void gen8_de_irq_handler(struct intel_display *display, u32 master_ctl)
+ 				found = true;
+ 			}
  
- 	u32 dc_state;
-@@ -179,6 +180,7 @@ void intel_display_power_sanitize_state(struct intel_display *display);
++			if (DISPLAY_VER(display) == 35) {
++				if (iir & CMTG_VBLANK_A) {
++					intel_handle_vblank(display, PIPE_A);
++					found = true;
++				}
++
++				if (iir & CMTG_VBLANK_B) {
++					intel_handle_vblank(display, PIPE_B);
++					found = true;
++				}
++			}
++
+ 			if (DISPLAY_VER(display) >= 11) {
+ 				u32 te_trigger = iir & (DSI0_TE | DSI1_TE);
  
- void intel_display_power_suspend_late(struct intel_display *display, bool s2idle);
- void intel_display_power_resume_early(struct intel_display *display);
-+bool intel_display_power_get_and_reset_dc3co_to_dc6(struct intel_display *display);
- void intel_display_power_set_target_dc_state(struct intel_display *display,
- 					     u32 state);
- u32 intel_display_power_get_current_dc_state(struct intel_display *display);
+@@ -2666,3 +2678,10 @@ void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *s
+ 	drm_printf(p, "DERRMR: 0x%08x\n", snapshot->derrmr);
+ 	drm_printf(p, "ERR_INT: 0x%08x\n", snapshot->err_int);
+ }
++
++void intel_display_irq_port_interrupt_mask(struct intel_display *display, u32 bits, bool mask)
++{
++	spin_lock_irq(&display->irq.lock);
++	bdw_update_port_irq(display, bits, mask ? 0 : bits);
++	spin_unlock_irq(&display->irq.lock);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_display_irq.h b/drivers/gpu/drm/i915/display/intel_display_irq.h
+index a1227cee885a..84446bf53401 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_irq.h
++++ b/drivers/gpu/drm/i915/display/intel_display_irq.h
+@@ -82,4 +82,6 @@ void i915gm_irq_cstate_wa(struct intel_display *display, bool enable);
+ struct intel_display_irq_snapshot *intel_display_irq_snapshot_capture(struct intel_display *display);
+ void intel_display_irq_snapshot_print(const struct intel_display_irq_snapshot *snapshot, struct drm_printer *p);
+ 
++void intel_display_irq_port_interrupt_mask(struct intel_display *display, u32 bits, bool mask);
++
+ #endif /* __INTEL_DISPLAY_IRQ_H__ */
+diff --git a/drivers/gpu/drm/i915/display/intel_display_regs.h b/drivers/gpu/drm/i915/display/intel_display_regs.h
+index 4321f8b529da..fe851fe39222 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_regs.h
++++ b/drivers/gpu/drm/i915/display/intel_display_regs.h
+@@ -1458,6 +1458,8 @@
+ #define  GEN9_AUX_CHANNEL_B		(1 << 25)
+ #define  DSI1_TE			(1 << 24)
+ #define  DSI0_TE			(1 << 23)
++#define  CMTG_VBLANK_B			(1 << 17)
++#define  CMTG_VBLANK_A			(1 << 14)
+ #define  GEN8_DE_PORT_HOTPLUG(hpd_pin)	REG_BIT(3 + _HPD_PIN_DDI(hpd_pin))
+ #define  BXT_DE_PORT_HOTPLUG_MASK	(GEN8_DE_PORT_HOTPLUG(HPD_PORT_A) | \
+ 					 GEN8_DE_PORT_HOTPLUG(HPD_PORT_B) | \
 -- 
 2.29.0
 
