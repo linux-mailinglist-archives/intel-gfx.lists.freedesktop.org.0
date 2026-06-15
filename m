@@ -2,67 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id qYDvBwUAMGpALgUAu9opvQ
+	id xebBMUoHMGozMAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 15:37:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 16:08:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 29976686CA9
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 15:37:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E538B686F0A
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 16:08:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=hlZWeRS+;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 32A0C10E42C;
-	Mon, 15 Jun 2026 13:37:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9C0EE10E486;
+	Mon, 15 Jun 2026 14:08:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3046510E42B;
- Mon, 15 Jun 2026 13:37:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781530625; x=1813066625;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=13PuLa8yb/uKOhD4f+Fdd/dJkOCfJL2kjaRUxwFQm0Y=;
- b=hlZWeRS+Boup6Bp4+yJPTwjCBqmrSIyhPQxD3vW5gVkIpRO428y8qqlZ
- G0GeIFcQnMnpgosFEydeoOV/vRct5znXa6kI+WwdzLa7aMZEcN8Z6gThc
- Du75I2hRARhEGL5pD9ma8674O+W79Fr53xqDlnCcbld+eeFhV1VMG9vFt
- UMH1Yb+VXcRJ+c5ygaCdSQyzAyFhNaNMVGKkokq/+/s+kOwiutKx/Fd7u
- Uy4HVUbgmgyYQThtZ063YcIQje1v6s4RUhGtfQkdxdXFfAg3mreFPfoe8
- 5QLAj8FhJaedZM2+VPbjNVQN8HM9elZ5obZ/BoYLaTQFZtJxEWa/C9iP9 g==;
-X-CSE-ConnectionGUID: DJ2+iNabQQOc2geWQa7IIw==
-X-CSE-MsgGUID: eONRycJITvWtPN3bOyvnSQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82280786"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="82280786"
-Received: from fmviesa001.fm.intel.com ([10.60.135.141])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 06:37:04 -0700
-X-CSE-ConnectionGUID: DiCxVDVhRL+gCSG/iaxl9Q==
-X-CSE-MsgGUID: /2OK5J+DRqGMbzLbnB7Y/Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="271555518"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.28])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 06:36:50 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Vidya Srinivas <vidya.srinivas@intel.com>, intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, uma.shankar@intel.com, Vidya Srinivas
- <vidya.srinivas@intel.corp-partner.google.com>, Vidya Srinivas
- <vidya.srinivas@intel.com>, Charlton Lin <charlton.lin@intel.com>
-Subject: Re: [PATCH] [RFC] drm/i915/display: Fix PPC-granularity and limit
- 2nd scaler to 1:1
-In-Reply-To: <20260608140510.629170-1-vidya.srinivas@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260608140510.629170-1-vidya.srinivas@intel.com>
-Date: Mon, 15 Jun 2026 16:36:46 +0300
-Message-ID: <3150787bd3916f3a2a51ee222248d0e81ee4d996@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 44B5010E447;
+ Mon, 15 Jun 2026 14:08:06 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============5349621744940014801=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/=7Bi915=2C_xe=7D/pani?=
+ =?utf-8?q?c=3A_drop_dependency_on_struct_intel=5Fframebuffer_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Jun 2026 14:08:06 -0000
+Message-ID: <178153248627.78267.12719428551203946302@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <cover.1780394867.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1780394867.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,170 +46,194 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [5.89 / 15.00];
+	URL_MULTIPLE_AT_SIGNS(6.00)[3];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	GREYLIST(0.00)[pass,meta];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_HAS_DN(0.00)[]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:email,lists.freedesktop.org:from_smtp,emeril.freedesktop.org:from_mime,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 29976686CA9
+X-Rspamd-Queue-Id: E538B686F0A
 
-On Mon, 08 Jun 2026, Vidya Srinivas <vidya.srinivas@intel.com> wrote:
-> From: Vidya Srinivas <vidya.srinivas@intel.corp-partner.google.com>
->
-> The existing icl_plane_min_cdclk() uses a simple pixel_rate/PPC
-> calculation that does not account for the pipeline granularity
-> adjustment when horizontal downscaling is active. The effective
-> pixels-per-clock throughput is reduced due to integer pipeline
-> granularity, requiring a higher CDCLK than the current one computes.
-> This causes FIFO underruns on multi-pipe configurations near max CDCLK.
->
-> Additionally, limit second scaler to 1:1
-> (no horizontal or vertical downscaling) on DISPLAY_VER > 14
->
-> Also apply CDCLK PLL disable/enable WA for DISPLAY_VER 30
->
-> Signed-off-by: Vidya Srinivas <vidya.srinivas@intel.com>
-> Signed-off-by: Charlton Lin <charlton.lin@intel.com>
+--===============5349621744940014801==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-If you're sending a patch from you, why is Charlton's Signed-off-by
-here? Who is the author? Did you inted to add Co-developed-by: Charlton?
+== Series Details ==
 
-BR,
-Jani.
+Series: drm/{i915, xe}/panic: drop dependency on struct intel_framebuffer (rev2)
+URL   : https://patchwork.freedesktop.org/series/167731/
+State : failure
+
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_18682 -> Patchwork_167731v2
+====================================================
+
+Summary
+-------
+
+  **FAILURE**
+
+  Serious unknown changes coming with Patchwork_167731v2 absolutely need to be
+  verified manually.
+  
+  If you think the reported changes have nothing to do with the changes
+  introduced in Patchwork_167731v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
+  to document this new failure mode, which will reduce false positives in CI.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Possible new issues
+-------------------
+
+  Here are the unknown changes that may have been introduced in Patchwork_167731v2:
+
+### IGT changes ###
+
+#### Possible regressions ####
+
+  * igt@i915_selftest@live@gt_pm:
+    - bat-arlh-3:         [PASS][1] -> [INCOMPLETE][2]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18682/bat-arlh-3/igt@i915_selftest@live@gt_pm.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/bat-arlh-3/igt@i915_selftest@live@gt_pm.html
+
+  
+Known issues
+------------
+
+  Here are the changes found in Patchwork_167731v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live:
+    - bat-arlh-3:         [PASS][3] -> [INCOMPLETE][4] ([i915#16139])
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18682/bat-arlh-3/igt@i915_selftest@live.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/bat-arlh-3/igt@i915_selftest@live.html
+
+  
+  [i915#16139]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16139
 
 
+Build changes
+-------------
 
-> ---
->  drivers/gpu/drm/i915/display/intel_cdclk.c    |  3 +-
->  drivers/gpu/drm/i915/display/skl_scaler.c     |  4 +-
->  .../drm/i915/display/skl_universal_plane.c    | 58 +++++++++++++++++--
->  3 files changed, 57 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> index 189ae2d3cfc9..f724227c3726 100644
-> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
-> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
-> @@ -2149,7 +2149,8 @@ static bool cdclk_compute_crawl_and_squash_midpoint(struct intel_display *displa
->  
->  static bool pll_enable_wa_needed(struct intel_display *display)
->  {
-> -	return (DISPLAY_VERx100(display) == 2000 ||
-> +	return (DISPLAY_VERx100(display) == 3000 ||
-> +		DISPLAY_VERx100(display) == 2000 ||
->  		DISPLAY_VERx100(display) == 1400 ||
->  		display->platform.dg2) &&
->  		display->cdclk.hw.vco > 0;
-> diff --git a/drivers/gpu/drm/i915/display/skl_scaler.c b/drivers/gpu/drm/i915/display/skl_scaler.c
-> index 7994b983d509..3673b52de4da 100644
-> --- a/drivers/gpu/drm/i915/display/skl_scaler.c
-> +++ b/drivers/gpu/drm/i915/display/skl_scaler.c
-> @@ -382,8 +382,10 @@ calculate_max_scale(struct intel_crtc *crtc,
->  
->  		if (scaler_id == 0)
->  			*max_vscale = 0x30000 - 1;
-> -		else
-> +		else {
-> +			*max_hscale = 0x10000;
->  			*max_vscale = 0x10000;
-> +		}
->  	} else if (DISPLAY_VER(display) >= 10 || !is_yuv_semiplanar) {
->  		*max_hscale = 0x30000 - 1;
->  		*max_vscale = 0x30000 - 1;
-> diff --git a/drivers/gpu/drm/i915/display/skl_universal_plane.c b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> index ad4bfff6903d..c49f330c4878 100644
-> --- a/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> +++ b/drivers/gpu/drm/i915/display/skl_universal_plane.c
-> @@ -264,12 +264,58 @@ bool icl_is_hdr_plane(struct intel_display *display, enum plane_id plane_id)
->  }
->  
->  static int icl_plane_min_cdclk(const struct intel_crtc_state *crtc_state,
-> -			       const struct intel_plane_state *plane_state)
-> -{
-> -	unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
-> -
-> -	/* two pixels per clock */
-> -	return DIV_ROUND_UP(pixel_rate, 2);
-> +                   const struct intel_plane_state *plane_state)
-> +{
-> +    struct intel_display *display = to_intel_display(crtc_state);
-> +    unsigned int pixel_rate = intel_plane_pixel_rate(crtc_state, plane_state);
-> +
-> +    if (DISPLAY_VER(display) >= 30) {
-> +        unsigned int src_w = drm_rect_width(&plane_state->uapi.src) >> 16;
-> +        unsigned int dst_w = drm_rect_width(&plane_state->uapi.dst);
-> +        unsigned int src_h = drm_rect_height(&plane_state->uapi.src) >> 16;
-> +        unsigned int dst_h = drm_rect_height(&plane_state->uapi.dst);
-> +        const unsigned int ppc = 2;
-> +
-> +        /*
-> +         * "Resolution Support" PPC-granularity:
-> +         *   Hscale_PPC = (src_w / dst_w) * PPC
-> +         *   int_part = floor(Hscale_PPC)
-> +         *   frac = Hscale_PPC - int_part
-> +         *   adjusted_frac = frac > 0 ? 1/ROUNDUP(1/frac) : 0
-> +         *   H_down = int_part/PPC + adjusted_frac
-> +         *   min_cdclk = crtc_clock * H_down * V_down / PPC
-> +         */
-> +        if (dst_w && dst_h && src_w > dst_w) {
-> +            unsigned int hscale_ppc = src_w * ppc;
-> +            unsigned int int_part = hscale_ppc / dst_w;
-> +            unsigned int frac_num = hscale_ppc % dst_w;
-> +            unsigned int v_num = max(src_h, dst_h);
-> +            u64 num;
-> +
-> +            if (frac_num) {
-> +                unsigned int recip_ceil = DIV_ROUND_UP(dst_w, frac_num);
-> +                /* H_down = (int_part * recip_ceil + ppc) / (ppc * recip_ceil) */
-> +                unsigned int h_num = int_part * recip_ceil + ppc;
-> +                unsigned int h_den = ppc * recip_ceil;
-> +
-> +                num = mul_u32_u32(crtc_state->pixel_rate, h_num);
-> +                num *= v_num;
-> +                return DIV_ROUND_UP_ULL(num,
-> +                            (u64)h_den * ppc * dst_h);
-> +            }
-> +
-> +            /* frac == 0: H_down = int_part / ppc exactly */
-> +            num = mul_u32_u32(crtc_state->pixel_rate, int_part);
-> +            num *= v_num;
-> +            return DIV_ROUND_UP_ULL(num, (u64)ppc * ppc * dst_h);
-> +        }
-> +
-> +        /* No horizontal downscale */
-> +        return DIV_ROUND_UP(pixel_rate, ppc);
-> +    }
-> +
-> +    /* two pixels per clock */
-> +    return DIV_ROUND_UP(pixel_rate, 2);
->  }
->  
->  static void
+  * Linux: CI_DRM_18682 -> Patchwork_167731v2
 
--- 
-Jani Nikula, Intel
+  CI-20190529: 20190529
+  CI_DRM_18682: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_167731v2: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/index.html
+
+--===============5349621744940014801==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}/panic: drop dependency on struct intel_framebuffer (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167731/">https://patchwork.freedesktop.org/series/167731/</a></td></tr>
+<tr><td><b>State:</b></td><td>failure</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18682 -&gt; Patchwork_167731v2</h1>
+<h2>Summary</h2>
+<p><strong>FAILURE</strong></p>
+<p>Serious unknown changes coming with Patchwork_167731v2 absolutely need to be<br />
+  verified manually.</p>
+<p>If you think the reported changes have nothing to do with the changes<br />
+  introduced in Patchwork_167731v2, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
+  to document this new failure mode, which will reduce false positives in CI.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Possible new issues</h2>
+<p>Here are the unknown changes that may have been introduced in Patchwork_167731v2:</p>
+<h3>IGT changes</h3>
+<h4>Possible regressions</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_pm:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18682/bat-arlh-3/igt@i915_selftest@live@gt_pm.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/bat-arlh-3/igt@i915_selftest@live@gt_pm.html">INCOMPLETE</a></li>
+</ul>
+</li>
+</ul>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_167731v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live:<ul>
+<li>bat-arlh-3:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18682/bat-arlh-3/igt@i915_selftest@live.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v2/bat-arlh-3/igt@i915_selftest@live.html">INCOMPLETE</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16139">i915#16139</a>)</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18682 -&gt; Patchwork_167731v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18682: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_167731v2: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============5349621744940014801==--
