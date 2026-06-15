@@ -2,38 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id n9w0JfcVMGrqNAUAu9opvQ
+	id S7zzLC8YMGqoNQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 17:10:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 17:20:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 0367768781B
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 17:10:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C97B6687950
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 17:20:14 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b=bucWbcG3;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81D8D10E4E6;
-	Mon, 15 Jun 2026 15:10:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5E71310E4FA;
+	Mon, 15 Jun 2026 15:20:13 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 421F510E4E6;
- Mon, 15 Jun 2026 15:10:44 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============3494592175482276729=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D635410E4F5;
+ Mon, 15 Jun 2026 15:20:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781536811; x=1813072811;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version:content-transfer-encoding;
+ bh=gtrSkE+6aBdyhSdyVLWn+zmd9fy5btvjeKIZHxuO8rg=;
+ b=bucWbcG3IZ2JMc1W/B0+huQwDhV20xE+Nca6nCPC21OxvKdbUefkSB1e
+ fiWIpFqt5woZ0uc95SIx03nfRzcfVakAtmUcW2IjA+qBKYdFpj947ma1s
+ VWi0dI8a6gFxtD1cRtsbKfkE4rGvDZO5jjtTwdafFlSuSijG0lTKNkFJ5
+ FpggWduMlnBOG8IqtpiIx+DjtRwaRhtVaOHXfMBaBqqnL3RCG39Kw4aVJ
+ YS4k2KMEkn0xr8v55XOh6Q9XfI6ao4sTvgw+3eCP8UNZmJLqQHZNIYWHM
+ jsUpI9J44jZZt/O6i4wteTygxCi5L252+AHxTPuaVjAPN8+ZjzZjzx0// Q==;
+X-CSE-ConnectionGUID: oGi8ypVnQQCykyGHJqf/Iw==
+X-CSE-MsgGUID: 9+j2TsfKReWCHosHKRcR7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="86180241"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="86180241"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 08:20:10 -0700
+X-CSE-ConnectionGUID: VmGy7RC7RFKPeOM4VBi+gw==
+X-CSE-MsgGUID: pr6SN36jSdS4V48Pw8E01w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="246389526"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.28])
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 08:20:08 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Cc: Jouni =?utf-8?Q?H=C3=B6gander?= <jouni.hogander@intel.com>
+Subject: Re: [PATCH] drm/i915/psr: Force fastset on debugfs write for each
+ connector supporting PSR
+In-Reply-To: <20260609044149.274249-1-jouni.hogander@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260609044149.274249-1-jouni.hogander@intel.com>
+Date: Mon, 15 Jun 2026 18:20:05 +0300
+Message-ID: <c9246940e0f15570906d3fd6f134c5ede55e9fe7@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_un?=
- =?utf-8?q?ify_runtime_pm_calls?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 15 Jun 2026 15:10:44 -0000
-Message-ID: <178153624426.79279.18373865655476378200@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <cover.1781527161.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1781527161.git.jani.nikula@intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,158 +75,74 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,01.org:url,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,linux.intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 0367768781B
+X-Rspamd-Queue-Id: C97B6687950
 
---===============3494592175482276729==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Tue, 09 Jun 2026, Jouni H=C3=B6gander <jouni.hogander@intel.com> wrote:
+> Currently intel_psr_fast_set_force is forcing fastset only for eDP
+> connectors. Panel Replay is supported on DP as well and writing
+> i915_edp_psr_debug is setting debug parameters for each DP transcoder
+> (struct intel_dp:psr:debug). Force fastset for each connector supporting
+> PSR.
+>
+> Signed-off-by: Jouni H=C3=B6gander <jouni.hogander@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_psr.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i=
+915/display/intel_psr.c
+> index e138982dc91f6..78795bd3ceba4 100644
+> --- a/drivers/gpu/drm/i915/display/intel_psr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_psr.c
+> @@ -3446,10 +3446,12 @@ static int intel_psr_fastset_force(struct intel_d=
+isplay *display)
+>  retry:
+>  	drm_connector_list_iter_begin(display->drm, &conn_iter);
+>  	drm_for_each_connector_iter(conn, &conn_iter) {
+> +		struct intel_connector *intel_connector =3D to_intel_connector(conn);
 
-== Series Details ==
+	for_each_intel_connector_iter(connector, &conn_iter)
 
-Series: drm/{i915,xe}: unify runtime pm calls
-URL   : https://patchwork.freedesktop.org/series/168520/
-State : success
+>  		struct drm_connector_state *conn_state;
+>  		struct drm_crtc_state *crtc_state;
+>=20=20
+> -		if (conn->connector_type !=3D DRM_MODE_CONNECTOR_eDP)
+> +		if (!intel_connector->dp.psr_caps.support &&
+> +		    !intel_connector->dp.panel_replay_caps.support)
+>  			continue;
+>=20=20
+>  		conn_state =3D drm_atomic_get_connector_state(state, conn);
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18682 -> Patchwork_168520v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_168520v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#16115])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18682/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#16115]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16115
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18682 -> Patchwork_168520v1
-
-  CI-20190529: 20190529
-  CI_DRM_18682: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_168520v1: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/index.html
-
---===============3494592175482276729==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}: unify runtime pm calls</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168520/">https://patchwork.freedesktop.org/series/168520/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18682 -&gt; Patchwork_168520v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_168520v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18682/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16115">i915#16115</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18682 -&gt; Patchwork_168520v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18682: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_168520v1: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============3494592175482276729==--
+--=20
+Jani Nikula, Intel
