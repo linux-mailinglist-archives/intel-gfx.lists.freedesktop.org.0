@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fU4eBUFeMGrPSAUAu9opvQ
+	id ZmDsBUJeMGrRSAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D4DAA689C55
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D8624689C60
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b="d/Taj2qF";
+	dkim=pass header.d=lankhorst.se header.s=default header.b=RPzyHNg7;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2ACE410E638;
-	Mon, 15 Jun 2026 20:18:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1524810E6A2;
+	Mon, 15 Jun 2026 20:18:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 84F8B10E66C;
- Mon, 15 Jun 2026 20:18:45 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9B710E672;
+ Mon, 15 Jun 2026 20:18:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554724;
- bh=j+kZhrKGeVLe6Kwb9Av2wRwsLfG3GUrsHoYClLpC+34=;
+ s=default; t=1781554725;
+ bh=r10AAnKUQPrCjn4nwCrtFvliOfdGv8y4HVOMxu4pQsU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=d/Taj2qFN2f/uPI3PALuhBZ4JgmLsrvEfik5z3NllJAvSZ9CN9ESjMi5nFDvsVeBH
- rSrEpTPG5CcgXtaeXaYEB2vqNK+rM1/KQC7CqJ/b6XWJhiFnlgb/AjVZmQvz2z+Ger
- Yn8gD1tkIA9VVgMW0xt3wUGF+baQmPnYk//Gr5ERwKGdbIYNzpaHfB+wIs7LPOtLin
- HeHUV8APJ4lcLtc9VoCyRB21o8ZPTu0dHfstRCD1SiOwE3pvM+1s++/JjdT4jzYOkL
- iOpb8hkM0J5LvGBstqejb50/xONGI4qaTW8jjWPV1ldKLi/Baa1fXWYQ1NBLaXb7s6
- YAxv4r8rd5tsg==
+ b=RPzyHNg7hvxY4KH+CHQ31ZGhf7GcHRMsSokHWc02q1Qw13qqOtCKsOw73bPl/2G1d
+ EB865K+ml4gQDnoZHzLeIVWR5YG+4R836SDaaXrZW0oMGfRioDXVHVBGUg9gCdNqQv
+ TbqY0xV2qie8M5vy3anRhTLnAzZxNkzMYVogdBLHZxHanMDtA9N/soqafh55CGEKog
+ OJt8YOXCGGb62YZiEfdXzdea2vem5LfB7m2wYGEeIgfEL/TJiC9fPLMiZv7Niw5R94
+ Qs2REgu1+9dSQicUuzynhs0b45kwdgBw7UuA+YR8PzmqROdZgnZ7Qxup4iApMgMBLx
+ /Zvks48Mn7VyA==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 19/27] drm/i915/gt: Set stop_timeout() correctly on
- PREEMPT-RT
-Date: Mon, 15 Jun 2026 22:18:37 +0200
-Message-ID: <20260615201846.307297-20-dev@lankhorst.se>
+Subject: [PATCH v8 20/27] drm/i915/display: Remove uncore lock from
+ vlv_atomic_update_fifo
+Date: Mon, 15 Jun 2026 22:18:38 +0200
+Message-ID: <20260615201846.307297-21-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
 References: <20260615201846.307297-1-dev@lankhorst.se>
@@ -86,29 +86,45 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D4DAA689C55
+X-Rspamd-Queue-Id: D8624689C60
 
-Also check if RCU is disabled for PREEMPT-RT, which is the case when
-local_bh_disable() is called.
+TODO: Grab uncore lock during entire vblank evasion before disabling
+interrupts, and check what breaks?
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c0fd349a4600c..9dd9665128caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
- 
- static unsigned long stop_timeout(const struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 86d1c9f7f0ff0..e07303f0b3cc4 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc)
  {
--	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
- 		return 0;
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	const struct vlv_fifo_state *fifo_state =
+@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	 * intel_pipe_update_start() has already disabled interrupts
+ 	 * for us, so a plain spin_lock() is sufficient here.
+ 	 */
+-	spin_lock(&uncore->lock);
  
- 	/*
+ 	switch (crtc->pipe) {
+ 	case PIPE_A:
+@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	}
+ 
+ 	intel_de_read_fw(display, DSPARB(display));
+-
+-	spin_unlock(&uncore->lock);
+ }
+ 
+ #undef VLV_FIFO
 -- 
 2.53.0
 
