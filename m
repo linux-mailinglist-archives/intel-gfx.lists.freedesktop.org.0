@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 270eIujyL2plJgUAu9opvQ
+	id puEeDOzyL2ppJgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 14:41:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 14:41:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 40FD46864E9
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 14:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C34706864F1
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 14:41:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=MW9IrZOy;
+	dkim=pass header.d=intel.com header.s=Intel header.b=U3ELd8pi;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id BD1A410E3EE;
-	Mon, 15 Jun 2026 12:41:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 533F910E3ED;
+	Mon, 15 Jun 2026 12:41:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3F3EF10E3E7;
- Mon, 15 Jun 2026 12:41:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 630A110E3E8;
+ Mon, 15 Jun 2026 12:41:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781527269; x=1813063269;
+ t=1781527273; x=1813063273;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=7Kbjphpql+ThHpQe7/5Q4sIwV9BLYwxbr3qobSFsoG0=;
- b=MW9IrZOy8S/ST0KXOU+TXo6rxwIwJLx4Q/mM5m9mdTV5bCCceJAffYe5
- 5mKtfy7Q77X20DPmGbDe+CXlYLpt6waLCy0H5D2PwUrbkCy3xMRvkQsQS
- Myy5meRU9Pj6OMFhabTQcuL8GzBh1gwLWjJGTysvuU/rPTtnpSAz8/k+w
- YhcZN4HJfHhBqWoyysULO4YsreHZ5H+D+p7x+KVoHO79trTfzEWL0n+uo
- PAenWnhdShmIsga+ULYnpl6Y2DoFbDgog4vYtbNnKllcIllnjDXyhTAV5
- ewCcGPxb7i+GPz0iaZ2QkDVOflW1wzfetQ0K8JXbFD4IDtrgW/usrE/8q Q==;
-X-CSE-ConnectionGUID: xkbqcgp5T2S0k0ywsnyd4g==
-X-CSE-MsgGUID: 2+jjYfkRTSyCgh1boU6Zng==
-X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="104935009"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="104935009"
-Received: from orviesa006.jf.intel.com ([10.64.159.146])
- by orvoesa101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 05:41:09 -0700
-X-CSE-ConnectionGUID: PXDQYm8yQ+29PdW11sqNzA==
-X-CSE-MsgGUID: nE9r74bBQkm20yIBDZ8ZCg==
+ bh=Bmk7CMP47bSL+iZxANLEKIkXIEVn+VuauVVzMF5s0LA=;
+ b=U3ELd8piAPupTsKNaOJsyrZjVDp4U93STSVmi5PWJs5uRmUFRagIr9uP
+ IXxeRz2M5PFy9PIUsfCOIU7/SbPY1brRXDgQ7S88RxtcyZbYqiGBj9KDD
+ 33Rgdej1MUMFSLWzsZugv5QSZTMD39TLl3/+bbo/SeNlVjeSQnXhCBnc6
+ PKndhOrEx8c7lJ6yJWcq4kNAm7fyBat1T5hQb6DxfvDZWJ6tjiUpMBwtj
+ hXwdWetlv/I9OeXuaMGDyPN4FixuPnZRvpfAvy4gJ7badcLlZ5mkxCVX1
+ zrpW1ZYicH6YEGUpH0rcrMMhou734z4BYivXYK7qaCT/I0UKxkKh0ayGi w==;
+X-CSE-ConnectionGUID: JQ4RFoSZSzWsOOSFnxDrYw==
+X-CSE-MsgGUID: tDrMrh+1SSOmlwEAkE0W9w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11817"; a="82112405"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="82112405"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by fmvoesa111.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 05:41:13 -0700
+X-CSE-ConnectionGUID: whE2zSrFRGSCzl3mzeCRLA==
+X-CSE-MsgGUID: r1TEIYptS1CUPZsfVtJSXA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="246349851"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="271160399"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.28])
- by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 05:41:07 -0700
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 05:41:11 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH 3/4] drm/xe/display: separate d3cold handling from
- xe_display_pm_runtime_suspend_late()
-Date: Mon, 15 Jun 2026 15:40:47 +0300
-Message-ID: <83b257cac313967d4344185669187dc7140049f4.1781527161.git.jani.nikula@intel.com>
+Subject: [PATCH 4/4] drm/xe/display: unify runtime suspend/resume with i915
+ for non-d3cold
+Date: Mon, 15 Jun 2026 15:40:48 +0300
+Message-ID: <9495bbd32c47e67de43d984382cdc0303073e068.1781527161.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1781527161.git.jani.nikula@intel.com>
 References: <cover.1781527161.git.jani.nikula@intel.com>
@@ -106,51 +106,73 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 40FD46864E9
+X-Rspamd-Queue-Id: C34706864F1
 
-Make the special d3cold paths completely separate from the rest of the
-runtime pm calls.
+With the special d3cold handling in xe runtime suspend/resume separated,
+unify the non-d3cold paths with i915. There are multiple changes here at
+once that probably wouldn't make much sense to split out further.
 
-The intel_dmc_wl_flush_release_work() call right after
-xe_display_pm_suspend_late() might be completely redundant, but this
-avoids any functional changes.
+Add the call to intel_display_driver_pm_runtime_suspend(), which in turn
+starts calling intel_display_power_runtime_suspend(). Deep down, this
+should take care of intel_dmc_wl_flush_release_work(), allowing us to
+drop the extra call in xe_display_pm_runtime_suspend_late().
 
-Wiggle the comment while at it. It gets duplicated for now, but this
-will be addressed in the follow-up.
+Add the call to intel_display_driver_pm_runtime_suspend_late(), which
+starts calling intel_opregion_notify_adapter(). The
+intel_hpd_poll_enable() call is also done here, postponed from the
+previous location in xe_display_pm_runtime_suspend().
 
-v2: Update comments
+Add the call to intel_display_driver_pm_runtime_resume_early(), which
+contains the intel_display_power_runtime_resume() and
+intel_opregion_notify_adapter() counterparts found in
+intel_display_power_runtime_suspend() and
+intel_display_power_runtime_suspend_late(). (They are not symmetric.)
+
+Finally, intel_display_driver_pm_runtime_resume() replaces the direct
+calls to intel_hpd_init(), intel_hpd_poll_disable(), and
+skl_watermark_ipc_update().
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Acked-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/xe/display/xe_display.c | 10 ++++------
+ 1 file changed, 4 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 493e9e09b6c9..bdafc010fae1 100644
+index bdafc010fae1..8c147610f721 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -389,14 +389,14 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
- 	if (!xe->info.probe_display)
+@@ -379,7 +379,7 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe)
  		return;
+ 	}
  
--	if (xe->d3cold.allowed)
-+	if (xe->d3cold.allowed) {
- 		xe_display_pm_suspend_late(xe);
-+		/* Ensure the wakelock release work gets flushed */
-+		intel_dmc_wl_flush_release_work(display);
-+		return;
-+	}
- 
--	/*
--	 * If xe_display_pm_suspend_late() is not called, it is likely
--	 * that we will be on dynamic DC states with DMC wakelock enabled. We
--	 * need to flush the release work in that case.
--	 */
-+	/* Ensure the wakelock release work gets flushed */
- 	intel_dmc_wl_flush_release_work(display);
+-	intel_hpd_poll_enable(display);
++	intel_display_driver_pm_runtime_suspend(display);
  }
+ 
+ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
+@@ -396,8 +396,7 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
+ 		return;
+ 	}
+ 
+-	/* Ensure the wakelock release work gets flushed */
+-	intel_dmc_wl_flush_release_work(display);
++	intel_display_driver_pm_runtime_suspend_late(display);
+ }
+ 
+ void xe_display_pm_runtime_resume(struct xe_device *xe)
+@@ -412,9 +411,8 @@ void xe_display_pm_runtime_resume(struct xe_device *xe)
+ 		return;
+ 	}
+ 
+-	intel_hpd_init(display);
+-	intel_hpd_poll_disable(display);
+-	skl_watermark_ipc_update(display);
++	intel_display_driver_pm_runtime_resume_early(display);
++	intel_display_driver_pm_runtime_resume(display);
+ }
+ 
  
 -- 
 2.47.3
