@@ -2,44 +2,45 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id C64MHkReMGrUSAUAu9opvQ
+	id CBtGM0BeMGrOSAUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:12 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 46AEA689C6D
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 85BCF689C53
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 22:19:12 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=VO0ufo7k;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=OSI32251;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2D36F10E69A;
-	Mon, 15 Jun 2026 20:18:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 12A7310E6A0;
+	Mon, 15 Jun 2026 20:18:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BF63E10E673;
- Mon, 15 Jun 2026 20:18:46 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7177910E683;
+ Mon, 15 Jun 2026 20:18:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1781554725;
- bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
+ s=default; t=1781554726;
+ bh=bvf3RHGbi5q5Jtj6LoRjwYoOARoPWEB04P4tBVx9AYY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=VO0ufo7kyoUMDPb5P9F6S0Ce3o2aFMF/26qJYjSQ5PXgw5C2aDCDaHPlIbnOiuQG6
- hNwoyEw4IZX5VXVTusBXj922G0UEhiu4hRGlclUHT5nXVdmy9Aa4nPyVMLKUu5jIAC
- 3s10FzXgKUh4gFV/zARD/4XlwVUY8aAz54CPRgPy+HTLcRyRUthaVz9GYaEc4pq40B
- /NqY2sJCn/br+tgKjKjly7IJI+vId8qw2rqvlUyXJSbtHyE1K+E/3y0Q3rUeto2Ut2
- 28zL3rCVtcRAXLxZcJwMXslHFXWJedUEiP/dX7JNzfyvuLlPR2Hqo9dNiHE3iyUJbJ
- MXKpat+V3HrDA==
+ b=OSI32251xe/F7alWhz2OqA2pBbIYJme/caUeKIB5pMvVeWaXGqd3vaIyjzUR1Eadi
+ IT/2KIe4gbSX0JGgWTRutYrS0Rusp1h38lln8TtzGVb10uh+Zob2YitwcFB/q9EJjr
+ 3Z/XJ6j1EFfdMTDMLeshxNIBg0tMFocj14cuMYa0DSFwp9bcTD9xbWBeaH2GOiEmox
+ RGH8TmzJcKgDBACTaeCDL2kUpgrdsGDyN+VCxhOZYi3LV6ge0aWie2eNz75DLA44es
+ ZvYzZwft35h4yjhDahVbFR/xRcWOHWki8h76l8gklCIkzMIGTrsWUhWjLiRC0VDpWf
+ DAsvvFEJyUGhw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-xe@lists.freedesktop.org,
 	intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
-	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v8 21/27] drm/i915: Use sleeping selftests for igt_atomic on
- PREEMPT_RT
-Date: Mon, 15 Jun 2026 22:18:39 +0200
-Message-ID: <20260615201846.307297-22-dev@lankhorst.se>
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
+ Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v8 22/27] Revert "drm/i915: Depend on !PREEMPT_RT."
+Date: Mon, 15 Jun 2026 22:18:40 +0200
+Message-ID: <20260615201846.307297-23-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260615201846.307297-1-dev@lankhorst.se>
 References: <20260615201846.307297-1-dev@lankhorst.se>
@@ -62,62 +63,57 @@ Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+	R_MISSING_CHARSET(0.50)[];
+	MAILLIST(-0.20)[mailman];
 	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	SUBJECT_HAS_EXCLAIM(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[lankhorst.se:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_FIVE(0.00)[6];
 	RCVD_COUNT_TWO(0.00)[2];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[igalia.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,linutronix.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 46AEA689C6D
+X-Rspamd-Queue-Id: 85BCF689C53
 
-This makes the i915 selftests slightly happier, especially
-related to GPU reset.
+From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-I believe this may be a better approach than trying to convert
-uncore->lock to raw_spinlock
+Once the known issues are addressed, it should be safe to enable the
+driver.
 
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/i915/Kconfig | 1 -
+ 1 file changed, 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
-index fb506b6990956..8ae39cf570b76 100644
---- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
-+++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
-@@ -39,7 +39,14 @@ static void __hardirq_end(void)
- 	local_irq_enable();
- }
- 
-+static void __maybe_unused __nop(void)
-+{}
-+
- const struct igt_atomic_section igt_atomic_phases[] = {
-+#if IS_ENABLED(CONFIG_PREEMPT_RT)
-+	{ "sleeping", __nop, __nop },
-+	{ },
-+#endif
- 	{ "preempt", __preempt_begin, __preempt_end },
- 	{ "softirq", __softirq_begin, __softirq_end },
- 	{ "hardirq", __hardirq_begin, __hardirq_end },
+diff --git a/drivers/gpu/drm/i915/Kconfig b/drivers/gpu/drm/i915/Kconfig
+index 5e939004b6463..40a9234e6e5dc 100644
+--- a/drivers/gpu/drm/i915/Kconfig
++++ b/drivers/gpu/drm/i915/Kconfig
+@@ -3,7 +3,6 @@ config DRM_I915
+ 	tristate "Intel 8xx/9xx/G3x/G4x/HD Graphics"
+ 	depends on DRM
+ 	depends on X86 && PCI
+-	depends on !PREEMPT_RT
+ 	select INTEL_GTT if X86
+ 	select INTERVAL_TREE
+ 	# we need shmfs for the swappable backing store, and in particular
 -- 
 2.53.0
 
