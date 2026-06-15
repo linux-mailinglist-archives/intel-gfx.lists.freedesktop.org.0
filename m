@@ -2,90 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Imn8A7hxMmo/0AUAu9opvQ
+	id ujw/Ig0iMGp2OgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 12:06:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 18:02:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 58ED569841B
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 12:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3C66E6880C6
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 18:02:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=lRKdZqEA;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E66A610EF1D;
-	Wed, 17 Jun 2026 10:06:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B555B10E52B;
+	Mon, 15 Jun 2026 16:02:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-yw1-f172.google.com (mail-yw1-f172.google.com
- [209.85.128.172])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E318610E512
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 15:31:58 +0000 (UTC)
-Received: by mail-yw1-f172.google.com with SMTP id
- 00721157ae682-7fb2444cbc2so1179547b3.2
- for <intel-gfx@lists.freedesktop.org>; Mon, 15 Jun 2026 08:31:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781537518; x=1782142318; darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:from:to:cc:subject:date
- :message-id:reply-to;
- bh=gKcucg5HwaEhqTY906NOw0hSNqAQiV7nPnjw1bHrvgk=;
- b=lRKdZqEAx5i7RF/AUS38zvWRE84o0U/2V/dW6/Ps1qRMP30VN14kAm8mCbe62CLBQF
- HC8GeQcAP3PFZ9zAGCJvm35tylZB3eI35atfxToWkUUU/76rKJHJY53nfEcOLSnslidw
- UrO9WMc2yZ23OyToTVs4sUYGSamN5izFQCissEoe7rEW0ubVUMhnPMYLGIx4MdyHX647
- QkFOyG9MwszDHIix/3t2m9o+54dmHpl+uPPybeKI6enpvMoBAbQZ7y16q4gKsixeiori
- 4dOo36FLIOun0d5IlNiTkQWAKjc/QNnwELJXRu8HcAh7QMK6AEQSwKT2rsJYEWnho1Bt
- WbXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781537518; x=1782142318;
- h=content-transfer-encoding:mime-version:references:in-reply-to
- :message-id:date:subject:cc:to:from:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=gKcucg5HwaEhqTY906NOw0hSNqAQiV7nPnjw1bHrvgk=;
- b=iqWgJLcLz9BMpV+f3Wf7xl+IGhYlgvi9BwiulMnLgL+LL2LNDcpdj020nLLV0KXClZ
- IPokN3W3orMEjgXqIh7yv3bTiQkIOGCdLMl1dP88yRRAf4DrDcan5La+uMjw3rmTBorj
- IFmzqxc3RgGKNGCtFbOOEKE8xfC2TX7FN98M+xIp4Q4bHSLpTLs7JW65ry6nh2cPlnpG
- Y19tvQHJFECv0Rg6ZOrC0yTU67TRxSN1XlzMaAOM6PYmBMXl/3vFBxFnA0QGHAEShuBN
- B7l5LoqocDP7Dl8bDIat6oYzCoL2os8clbooqW97ALtK070QjIJ6hrXF/mjkGefayqfM
- kgSg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ8hVSlxFhJ18gw+a9PhmKpmPmEac63IBp+kjdySWC3Anhg4lxs2tZzPmcuCTxMVXMLsisSzlpB/2dQ=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyfQ3EHCpISdUob7lG5EQPoL3tjD7wYSUbxKnEzjfTJzZZ6NPiH
- 69gchrApwBCACx3jeM9txNDEK3k/Kns0fqHnQ3RtrriJNVvAAwxXU2Dz
-X-Gm-Gg: Acq92OFobVqGLVEJynJux6CiYZEywxtmJ8/WZrHyKC/+mEy5RG+PEA/2kDb1BrQQ41U
- DOsbnfvkzcze3h+yWNerBKMnS1cJ7ZhrUWSYaaduis0Si40eYL33/k//PejDJbftMAO41oNbk/q
- IeUQU6cu1JbNczIf8cxlaofaJyrgYgU3Ow2yn8XC6tDowb7hYSaMvIeTaXydvm2GwhPKuGHkNUF
- FkzUMbFLSf4uPZUU5T8o0PtUwLfWLM0l+an3BOxH2Kh9AwpnDsXF9DhD4sT3Iax6uLPPwRpL8of
- K3NVVCwSL4d33ZnOSsNEw+CvS7G+tB8KaCzcSZK25NBdD6zRmjYMAEc09JSglLIZGD+FSlG0waq
- 0QOv9j2gwuwD4QRD1hAkSREQ71YZdfsx8zjm2qnF5+LdOfSgDGiSeD3f5jeHmyTn7RlYaB1S8sC
- o4fFCZtDOBDbYKCdGM/VhAZM1x3NWOi0JsUFn418XMNTuostFv3KHi07KZEGW5MwK5q/wthrtV6
- op+LiLinsp05ERdDVsxvSeBwN5v2NdeXWuk1f1lbxjfUdWMSCH63A5+HMgVigIcfhos7Ebykfub
- fQ==
-X-Received: by 2002:a05:690c:18:b0:7f0:9099:daed with SMTP id
- 00721157ae682-7f7b2eac7cdmr94041657b3.0.1781537517565; 
- Mon, 15 Jun 2026 08:31:57 -0700 (PDT)
-Received: from debian-t14-gen1-fuhrysteve.fuhry.app
- (6.sub-75-230-138.myvzw.com. [75.230.138.6])
- by smtp.gmail.com with ESMTPSA id
- 6a1803df08f44-8d9f132185fsm1788916d6.2.2026.06.15.08.31.56
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Jun 2026 08:31:56 -0700 (PDT)
-From: "Stephen J. Fuhry" <fuhrysteve@gmail.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>
-Cc: "Stephen J . Fuhry" <fuhrysteve@gmail.com>, intel-gfx@lists.freedesktop.org
-Subject: Re: [2/2] drm/i915/display: Refcount for fec enable/disable
-Date: Mon, 15 Jun 2026 11:31:55 -0400
-Message-ID: <20260615153155.10736-1-fuhrysteve@gmail.com>
-X-Mailer: git-send-email 2.47.3
-In-Reply-To: <20260612091807.2123172-3-arun.r.murthy@intel.com>
-References: <20260612091807.2123172-1-arun.r.murthy@intel.com>
- <20260612091807.2123172-2-arun.r.murthy@intel.com>
- <20260612091807.2123172-3-arun.r.murthy@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3A86910E52B;
+ Mon, 15 Jun 2026 16:02:17 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7725852215633514511=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Mailman-Approved-At: Wed, 17 Jun 2026 10:06:45 +0000
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2C_xe=7D/pani?=
+ =?utf-8?q?c=3A_drop_dependency_on_struct_intel=5Fframebuffer_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jani Nikula" <jani.nikula@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 15 Jun 2026 16:02:17 -0000
+Message-ID: <178153933723.79171.18356423103610339539@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <cover.1780394867.git.jani.nikula@intel.com>
+In-Reply-To: <cover.1780394867.git.jani.nikula@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -98,57 +46,139 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.69 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[42];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_FROM(0.00)[gmail.com];
-	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:fuhrysteve@gmail.com,s:lists@lfdr.de];
-	TO_DN_SOME(0.00)[];
-	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[fuhrysteve@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FREEMAIL_CC(0.00)[gmail.com,lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,emeril.freedesktop.org:from_mime,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 58ED569841B
+X-Rspamd-Queue-Id: 3C66E6880C6
 
-Tested the full series (1/2 + 2/2) on top of linux-source-7.0
-(7.0.10-1~bpo13+1, Debian trixie-backports) with a local adaptation
-for the for_each_intel_crtc API difference between 7.0.x and drm-tip.
+--===============7725852215633514511==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Test: cold replug of a ThinkPad USB-C Dock Gen2 driving two monitors
-over DP-MST (10s unplugged), with USB_QUIRK_NO_LPM applied for
-17ef:a391 and 17ef:a392.
+== Series Details ==
 
-Result: zero fec_enable fastset mismatches in dmesg (previously 40
-hits in a ~3s window on unpatched drm-tip for the same replug) and no
-i915/DRM events at all — displays recovered without a full modeset.
+Series: drm/{i915, xe}/panic: drop dependency on struct intel_framebuffer (rev3)
+URL   : https://patchwork.freedesktop.org/series/167731/
+State : success
 
-Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
+== Summary ==
 
+CI Bug Log - changes from CI_DRM_18682 -> Patchwork_167731v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v3/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+
+Changes
+-------
+
+  No changes found
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18682 -> Patchwork_167731v3
+
+  CI-20190529: 20190529
+  CI_DRM_18682: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_167731v3: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v3/index.html
+
+--===============7725852215633514511==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/{i915, xe}/panic: drop dependency on struct intel_framebuffer (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/167731/">https://patchwork.freedesktop.org/series/167731/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18682 -&gt; Patchwork_167731v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_167731v3/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Changes</h2>
+<p>No changes found</p>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18682 -&gt; Patchwork_167731v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18682: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8963: b19a1c7c50adbf0e090be48d9cbc90596a3434bf @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_167731v3: 0984dfdee2a4f9e1922fe919a6b469e115e23360 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7725852215633514511==--
