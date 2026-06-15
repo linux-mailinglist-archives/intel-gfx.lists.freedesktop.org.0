@@ -2,60 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LQGyJPBIMGpxQwUAu9opvQ
+	id xCl9BvVIMGpyQwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 20:48:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 20:48:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FD46689495
-	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 20:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A40EB689498
+	for <lists+intel-gfx@lfdr.de>; Mon, 15 Jun 2026 20:48:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=fU1EKhD+;
+	dkim=pass header.d=intel.com header.s=Intel header.b="YnVsWQU/";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E95EC10E5C8;
-	Mon, 15 Jun 2026 18:48:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3B19910E5DD;
+	Mon, 15 Jun 2026 18:48:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0182510E5C8;
- Mon, 15 Jun 2026 18:48:13 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 506B910E5DC;
+ Mon, 15 Jun 2026 18:48:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781549294; x=1813085294;
+ t=1781549298; x=1813085298;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=HmITvIHEmwdA41jDXMuKcIKtIygreAB2xIqS/dtrl1c=;
- b=fU1EKhD++rjP/CBCgs+wo914nxpAQ7+TMjfMMZlCfYVVsctNspL4NbDz
- 6BzNlmKI82jMWsJANA4mKF+xQ1nS1jLA4kmfhSxl/i0GmHigI7pkkd39d
- LREorIGb2Dv2IuWUTPY2j/7P0aoSfaH+IYqpDRcQDFEeEayWm7HOCA73D
- diW23+ll3s62MkeEPxIWNl14yl1ESBQRGcPoN1/RhRIIhpKtChPj6apuJ
- m7isrMhYHOF9pJ0jYrJb+fH2K6Z/p7yzpinqHBp16oVh1fVB4UShlCPV7
- 5PS77in8K1RE+iA8Ud5gUiPe5urWN0gQr+ft4I3PYf6INX8VrglYxYz0V A==;
-X-CSE-ConnectionGUID: Wga/PNz1SU68ZPK9tlKdig==
-X-CSE-MsgGUID: sYwcXZV3QdKXAFOMgm7o2w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81438579"
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="81438579"
+ bh=0UeFM+yCKVy4UbyTLk6+LcLiTGh1ICHzhY3LQtCn7oY=;
+ b=YnVsWQU/CZHSmVIZqK+kK0mdeGT1foIa2BszMsC9L1sHuH7iIB1x6MXF
+ swwsSvKSoeZWyVPaPlddmvA2l9oI1+xBKgyKpgpWK+HmhiX/wF+1jx/D1
+ 2nNHiM6qEOmDUb2hr+Ky/dkeHKyHaelAP3ASi1q4bmi0osYNQsZH+/Gzs
+ 1g2fvv3Ux1+vpJ4SE3hVomRInYqBe6+RIHdkwwGd8fo4OvkQurBgB6i/4
+ TGR3unydqt1EOFoK97QkNAHpc/pxTMxbgfALZ4ygUEjcsc5ZuuuB4yvJg
+ cQh0m2APYTBpwPUnOkWvoLZX9XYJeNjL/M6BH1BWxNFftY2UaKqKoJH5n A==;
+X-CSE-ConnectionGUID: ud+VYAP+SGuIuNakzM1EmA==
+X-CSE-MsgGUID: rFJxOWkITQyHNlHY4lPoQw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81438580"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="81438580"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:48:14 -0700
-X-CSE-ConnectionGUID: wKmCO3Z0TVygVSXkJ/RDcQ==
-X-CSE-MsgGUID: uEQ+Ot/2TV6yPNXpup5w7A==
+ 15 Jun 2026 11:48:18 -0700
+X-CSE-ConnectionGUID: mn049pFbTpyrl86mZvGEGA==
+X-CSE-MsgGUID: A8kVCyXESrGfrVzsmFqJ1Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="247628545"
+X-IronPort-AV: E=Sophos;i="6.24,206,1774335600"; d="scan'208";a="247628574"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.28])
  by orviesa007-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 11:48:12 -0700
+ 15 Jun 2026 11:48:17 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com
-Subject: [PATCH 1/6] drm/i915: move intel_display_device_probe() call a level
- higher
-Date: Mon, 15 Jun 2026 21:47:58 +0300
-Message-ID: <c97a8790a5cb1f6b10061286adad8148972c5b3b.1781549229.git.jani.nikula@intel.com>
+Subject: [PATCH 2/6] drm/i915: remove superfluous checks for pdev->msi_enabled
+Date: Mon, 15 Jun 2026 21:47:59 +0300
+Message-ID: <71f61eee227178b61af9c1211be8545828a3f3ef.1781549229.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1781549229.git.jani.nikula@intel.com>
 References: <cover.1781549229.git.jani.nikula@intel.com>
@@ -104,65 +103,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5FD46689495
+X-Rspamd-Queue-Id: A40EB689498
 
-Having display probe be called from i915_driver_create() is slightly
-misleading, and an artefact from the past. Move the
-intel_display_device_probe() call a level higher.
-
-Use the shared PCI disable error path while at it.
+pci_disable_msi() checks for pdev->msi_enabled internally. There's no
+need to peek at pdev internals in i915. Remove them.
 
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/i915/i915_driver.c | 6 ++----
+ 1 file changed, 2 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 0520cd124686..a69eb3a84005 100644
+index a69eb3a84005..d1d3f039483f 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -802,7 +802,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	const struct intel_device_info *match_info =
- 		(struct intel_device_info *)ent->driver_data;
- 	struct drm_i915_private *i915;
--	struct intel_display *display;
+@@ -583,8 +583,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
  
- 	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
- 				  struct drm_i915_private, drm);
-@@ -817,12 +816,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
- 	/* Set up device info and initial runtime info. */
- 	intel_device_info_driver_create(i915, pdev->device, match_info);
+ err_opregion:
+ 	intel_opregion_cleanup(display);
+-	if (pdev->msi_enabled)
+-		pci_disable_msi(pdev);
++	pci_disable_msi(pdev);
+ err_mem_regions:
+ 	intel_memory_regions_driver_release(dev_priv);
+ err_ggtt:
+@@ -610,8 +609,7 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
  
--	display = intel_display_device_probe(pdev, &parent);
--	if (IS_ERR(display))
--		return ERR_CAST(display);
--
--	i915->display = display;
--
- 	return i915;
+ 	intel_opregion_cleanup(display);
+ 
+-	if (pdev->msi_enabled)
+-		pci_disable_msi(pdev);
++	pci_disable_msi(pdev);
  }
  
-@@ -851,11 +844,17 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
- 
- 	i915 = i915_driver_create(pdev, ent);
- 	if (IS_ERR(i915)) {
--		pci_disable_device(pdev);
--		return PTR_ERR(i915);
-+		ret = PTR_ERR(i915);
-+		goto out_pci_disable;
- 	}
- 
--	display = i915->display;
-+	display = intel_display_device_probe(pdev, &parent);
-+	if (IS_ERR(display)) {
-+		ret = PTR_ERR(display);
-+		goto out_pci_disable;
-+	}
-+
-+	i915->display = display;
- 
- 	ret = i915_driver_early_probe(i915);
- 	if (ret < 0)
+ /**
 -- 
 2.47.3
 
