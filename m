@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uUS2GoRFMWpAfwUAu9opvQ
+	id tdrZD4VFMWpCfwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3815D68F837
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0F11F68F842
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Y60JOVZR;
+	dkim=pass header.d=intel.com header.s=Intel header.b=YmbJ5oEP;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9569410EB31;
-	Tue, 16 Jun 2026 12:45:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 756D710EB33;
+	Tue, 16 Jun 2026 12:45:55 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA3C10EB28;
- Tue, 16 Jun 2026 12:45:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C608010EB33;
+ Tue, 16 Jun 2026 12:45:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781613953; x=1813149953;
+ t=1781613955; x=1813149955;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=E5Ytt8VuR5xUZZ1ZiMuTLN9GoyoURWZbnOiO6+ZgV3Y=;
- b=Y60JOVZRlVRRkshfgm1PQyXI2+4cgXJK+72uXmgqlNoeLFPXqUNHJWLy
- pR7Ciafi51fOZfPfG6cbMd2d34f7AZoQCk2GpgYiDg4lkZuHvMGsPW7j/
- Y4jLf3YzHUoHLqTlIydYoOC1kXdyiK6GwvbLlZo8gw1txk03wUO1Ii2ES
- O7eo/kTE6hXqGEHJuuF2xAOp9hlyDd1/amFWgfMr1+dxjW1GfBkO3gpvS
- EVQZVp+89RvpfyXUqy2GzsVpIX18nSLaJcWDwmMqwwFNJF7UNB664mMgd
- PeU8s35bM+6GaxlSwk/+ofV4CcE+oZbjsHIMtCTFXYmWr9UOWdQYFfCsN A==;
-X-CSE-ConnectionGUID: ZXhmCzw4SkmJRDHamE6IXQ==
-X-CSE-MsgGUID: oQkIaoZDSvWve3OPPr7IgA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513274"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513274"
+ bh=4O7jCaC9LVEtxPi/6o3FAIs7OqIjjAjhNKtB4Rv0Zu8=;
+ b=YmbJ5oEP3hAGnH2JHtKTHFXG8lA2aI5SqCW+51Sbr3qsCCNNWQdhmJII
+ XHZV+QD8cmddroSJ5jiRwJEz+Uv7G20p24q4KgzIhw8E7mQo+tJgZyROE
+ RQYE2Xbm+17Ix21t2LIuB2icliQceJi9b+11Sv1JDhYsjYpzePpgaQIKM
+ FXUaHPhCWQZ7njWAMyh4NhwCZKl9ZBig4pINa9TkgcQ3oSm45IUOsZg7u
+ W64UhsFoJN6iE8VTDNvpoOed/LJ1PPyOCjAVo99xdOS9+L7mRVYG3xTqV
+ cjQyDt1R8+wzp1eWGahla5ClLgDkzNmUxVBh40TYV9IPTGtAR6m6Qpvix Q==;
+X-CSE-ConnectionGUID: SR4S8spySFe069bSvTJctw==
+X-CSE-MsgGUID: 0AwCrQbVRAKK8sC+X1NtvA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513279"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513279"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:45:53 -0700
-X-CSE-ConnectionGUID: pGsEYavcStSN/lycfCE+Jw==
-X-CSE-MsgGUID: UIgRakm/TOGvFXQJRodxnA==
+ 16 Jun 2026 05:45:54 -0700
+X-CSE-ConnectionGUID: u/PVlJnTQsO3jimhoAbB4g==
+X-CSE-MsgGUID: EznWwyTxRYaUogWz3toyRw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876362"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876363"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:45:52 -0700
+ 16 Jun 2026 05:45:53 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v4 28/39] drm/i915/display: Add DC3CO support check
-Date: Tue, 16 Jun 2026 18:14:04 +0530
-Message-ID: <20260616124416.2442161-29-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v4 29/39] drm/i915/psr: Add psr2 deep sleep helper API
+Date: Tue, 16 Jun 2026 18:14:05 +0530
+Message-ID: <20260616124416.2442161-30-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -99,54 +99,61 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3815D68F837
+X-Rspamd-Queue-Id: 0F11F68F842
 
-Add intel_display_power_dc3co_supported() helper to query DC3CO
-support from allowed_dc_mask.
-
-Changes in v5:
-- Add HAS_DC3CO() check to intel_display_power_dc3co_supported().
+Add intel_psr2_in_deep_sleep() to check whether PSR2 is currently in
+DEEP_SLEEP state. Will be used in subsequent patches.
 
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_power.c | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_display_power.h |  1 +
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_psr.c | 21 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_psr.h |  1 +
+ 2 files changed, 22 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
-index e313d719fea1..9e66f9a4fcdc 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.c
-@@ -381,6 +381,16 @@ u32 intel_display_power_get_current_dc_state(struct intel_display *display)
- 	return current_dc_state;
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
+index b7344f2b865e..932aff386023 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.c
++++ b/drivers/gpu/drm/i915/display/intel_psr.c
+@@ -2219,6 +2219,27 @@ static void intel_psr_exit(struct intel_dp *intel_dp)
+ 	intel_dp->psr.active = false;
  }
  
-+bool intel_display_power_dc3co_supported(struct intel_display *display)
++bool intel_psr2_in_deep_sleep(struct intel_dp *intel_dp)
 +{
-+	struct i915_power_domains *power_domains = &display->power.domains;
++	struct intel_display *display = to_intel_display(intel_dp);
++	enum transcoder cpu_transcoder;
++	bool in_deep_sleep = false;
++	u32 val;
 +
-+	if (!HAS_DC3CO(display))
-+		return false;
++	mutex_lock(&intel_dp->psr.lock);
 +
-+	return (power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) == DC_STATE_EN_UPTO_DC3CO;
++	if (!intel_dp->psr.enabled || !intel_dp->psr.sel_update_enabled)
++		goto out;
++
++	cpu_transcoder = intel_dp->psr.transcoder;
++	val = intel_de_read(display, EDP_PSR2_STATUS(display, cpu_transcoder));
++	in_deep_sleep = (val & EDP_PSR2_STATUS_STATE_MASK) ==
++		EDP_PSR2_STATUS_STATE_DEEP_SLEEP;
++out:
++	mutex_unlock(&intel_dp->psr.lock);
++	return in_deep_sleep;
 +}
 +
- static void __async_put_domains_mask(struct i915_power_domains *power_domains,
- 				     struct intel_power_domain_mask *mask)
+ static void intel_psr_wait_exit_locked(struct intel_dp *intel_dp)
  {
-diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
-index b9c9b68072af..41b4be9018b4 100644
---- a/drivers/gpu/drm/i915/display/intel_display_power.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_power.h
-@@ -184,6 +184,7 @@ bool intel_display_power_get_and_reset_dc3co_to_dc6(struct intel_display *displa
- void intel_display_power_set_target_dc_state(struct intel_display *display,
- 					     u32 state);
- u32 intel_display_power_get_current_dc_state(struct intel_display *display);
-+bool intel_display_power_dc3co_supported(struct intel_display *display);
+ 	struct intel_display *display = to_intel_display(intel_dp);
+diff --git a/drivers/gpu/drm/i915/display/intel_psr.h b/drivers/gpu/drm/i915/display/intel_psr.h
+index 29723e63888f..d545fdaa0de7 100644
+--- a/drivers/gpu/drm/i915/display/intel_psr.h
++++ b/drivers/gpu/drm/i915/display/intel_psr.h
+@@ -87,5 +87,6 @@ void intel_psr_compute_config_late(struct intel_dp *intel_dp,
+ int intel_psr_min_guardband(struct intel_crtc_state *crtc_state);
+ bool intel_psr_use_trans_push(const struct intel_crtc_state *crtc_state);
+ bool intel_psr_pr_async_video_timing_supported(struct intel_dp *intel_dp);
++bool intel_psr2_in_deep_sleep(struct intel_dp *intel_dp);
  
- void intel_display_power_runtime_suspend(struct intel_display *display);
- void intel_display_power_runtime_resume(struct intel_display *display);
+ #endif /* __INTEL_PSR_H__ */
 -- 
 2.43.0
 
