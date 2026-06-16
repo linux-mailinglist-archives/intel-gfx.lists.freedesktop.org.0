@@ -2,61 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id kxNsFX7qMGrMYgUAu9opvQ
+	id zdGQDYDqMGrNYgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:34 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:36 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CA04868C703
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B5E5168C708
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:35 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Jp1fEkim;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Aq6Z81I7;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5623F10E837;
-	Tue, 16 Jun 2026 06:17:32 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4844E10E83B;
+	Tue, 16 Jun 2026 06:17:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5827410E641;
- Tue, 16 Jun 2026 06:17:31 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB9410E83B;
+ Tue, 16 Jun 2026 06:17:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781590651; x=1813126651;
- h=from:subject:date:message-id:mime-version:
- content-transfer-encoding:to:cc;
- bh=VVzBew4jt0Y80n9awoySAfXUnfrFxZh9rQjcUS3IXzQ=;
- b=Jp1fEkimdgeElvMHnnjXQ7IEtF4SCSspwCZCGq7JN3Fq8HDuhydnMopi
- lyXuQok7WSuZOvauqF84gCjL5vxmkhPgxwgdHVMJM/FsPApIpgVO4Yv6+
- uFBWlg+k9Bq59UV7UhORZQkhs5kLx9cdnEZxXmhFT7MUbnS9VTqGur1oM
- rIg9Un9vhXpAyy72hYpeKKuu3F/4LgCe5CgvPewpHj1564MXle2WP9eAw
- pajA5JnJ8milVW437O99lcQaUJNVt+dO+WvgBc3hOrnKg9rUEzVVD79ns
- 44Z4YubsgHFkHyPmpJmwY3P3ZVstwr3eS69iP+AkQHIpwR8Cdy938ybqZ Q==;
-X-CSE-ConnectionGUID: dzk2169tSbyVpBKyZdHz3w==
-X-CSE-MsgGUID: Bw8GGeqvQNezF9nRdHqjqQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82088140"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82088140"
+ t=1781590652; x=1813126652;
+ h=from:date:subject:mime-version:content-transfer-encoding:
+ message-id:references:in-reply-to:to:cc;
+ bh=/XGrpxPGb55IpTx7akQQugcWr2GN9ixap6aMES0KxIk=;
+ b=Aq6Z81I7vhMfptIrx5JE13L+aMgNfMPJRLzB5WvIXBqdQpPMelq50j6i
+ dqlAo9cKenRjyxRkFvoE58fktpZn8UWuG7ig2IgbJ0zoAhcyG27jsZrkj
+ X9k78Cndy1EdCcpjNWhnRvagJA+APXobt6M7qDiw3mffO7VMZ7Sq4iafE
+ hGZ1Zrrc+NdAYYCs5rQWsbs2KmEEfABiu+a2b9AB8t1rhOgz1MhfFUkXj
+ CrkKiThhNV1WWBM0S1bDsRgAOmkuKlUR7SY4q6YtEHNywL4Ez8lLrLjnQ
+ IlOU85RXYmC1sc3VZ/kgEMjTSdEuVJj9ndm177NR3O08AJwoNMxFLuLZS A==;
+X-CSE-ConnectionGUID: usu+tGJYQ3uzATS3FmqrgA==
+X-CSE-MsgGUID: 5tJCdcQ1TFKnK3Phm9Lnyg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82088145"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82088145"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 23:17:30 -0700
-X-CSE-ConnectionGUID: MchZDW+xRSWy15ro4D8dYg==
-X-CSE-MsgGUID: Z9kH+YRnQMC6YuC675CwCQ==
+ 15 Jun 2026 23:17:32 -0700
+X-CSE-ConnectionGUID: BE64fp1eTlyaDsFN+y5xig==
+X-CSE-MsgGUID: ArUsgMj/SdCJ4Hu2ES9qmA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="251973646"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="251973659"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 23:17:29 -0700
+ by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 23:17:31 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: [PATCH v2 0/2] Unify fec enable/disable across the mst streams
-Date: Tue, 16 Jun 2026 11:45:50 +0530
-Message-Id: <20260616-fec-v2-0-49a22680138c@intel.com>
+Date: Tue, 16 Jun 2026 11:45:51 +0530
+Subject: [PATCH v2 1/2] drm/i915/mst: Unify fec_enable across mst streams
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIABbqMGoC/6tWKk4tykwtVrJSqFYqSi3LLM7MzwNyjHQUlJIzE
- vPSU3UzU4B8JSMDIzMDM0Mz3bTUZF0Lo0TjFCPzVIM0Q0MloMqCotS0zAqwKdGxtbUAfcb8kFU
- AAAA=
-X-Change-ID: 20260616-fec-82a3d27e0f11
+Message-Id: <20260616-fec-v2-1-49a22680138c@intel.com>
+References: <20260616-fec-v2-0-49a22680138c@intel.com>
+In-Reply-To: <20260616-fec-v2-0-49a22680138c@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
 Cc: Arun R Murthy <arun.r.murthy@intel.com>, 
  Stephen Fuhry <fuhrysteve@gmail.com>
@@ -100,30 +98,134 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CA04868C703
+X-Rspamd-Queue-Id: B5E5168C708
 
-First version of the patch included only one patch i.e the ref count
-https://patchwork.freedesktop.org/series/167664/
+FEC is a link-wide property: DP_TP_CTL_FEC_ENABLE is a per-port HW bit
+while crtc_state->fec_enable is per-stream. With DP MST several streams
+share the same port, so if any sibling stream needs FEC the per-port HW
+bit is on for every sibling. If sibling crtc_states disagree the
+following two symptoms appear:
 
+- intel_pipe_config_compare() rejects fastset on the sibling whose new
+  crtc_state->fec_enable disagrees with the old (HW) value
+  ("fastset requirement not met in fec_enable"), forcing an
+  unnecessary full modeset.
+- verify_crtc_state() after commit reports a fec_enable mismatch
+  ("[CRTC:..] mismatch in fec_enable (expected no, found yes)") because
+  the per-port HW bit is read back into every sibling's hw state.
+
+Walk every MST connector on @mst_mgr, pulling currently-active siblings
+into @state if they are not already in it (covers the case where the
+user's commit touches only a subset of MST streams on the link). Then OR
+all sibling fec_enable values together and write the unified result back
+into every sibling crtc_state. The unification only widens
+(false -> true), never narrows, so a stream that genuinely needs FEC
+keeps it.
+
+This runs from intel_dp_mst_atomic_check_link(), which is invoked after
+intel_atomic_check_config_and_link() has finished all per-stream
+compute_config and compute_config_late passes but before
+intel_crtc_check_fastset() and the post-commit verify, so the unified
+value is visible to both checks.
+
+Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
 ---
-Arun R Murthy (2):
-      drm/i915/mst: Unify fec_enable across mst streams
-      drm/i915/display: Refcount for fec enable/disable
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 70 +++++++++++++++++++++++++++++
+ 1 file changed, 70 insertions(+)
 
- drivers/gpu/drm/i915/display/intel_ddi.c           | 58 ++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_ddi.h           |  1 +
- drivers/gpu/drm/i915/display/intel_display_types.h |  3 +
- drivers/gpu/drm/i915/display/intel_dp_mst.c        | 70 ++++++++++++++++++++++
- drivers/gpu/drm/i915/display/intel_modeset_setup.c |  6 ++
- 5 files changed, 138 insertions(+)
----
-base-commit: c585a0a7e48a48aca80f7c0acb7294c7bf301bb7
-change-id: 20260616-fec-82a3d27e0f11
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+index bcdc504913471a1ac7d255cde49a907c9f3d88a6..d487f1c90dcd2671754e6c6f28f207f32ace9ee2 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
+@@ -881,6 +881,72 @@ static int intel_dp_mst_check_bw(struct intel_atomic_state *state,
+ 	return ret ? : -EAGAIN;
+ }
+ 
++/*
++ * Unify crtc_state->fec_enable across every MST sibling stream on @mst_mgr.
++ */
++static int intel_dp_mst_unify_fec_enable(struct intel_atomic_state *state,
++					 struct drm_dp_mst_topology_mgr *mst_mgr)
++{
++	struct intel_display *display = to_intel_display(state);
++	struct drm_connector_list_iter connector_list_iter;
++	struct intel_connector *connector;
++	struct intel_crtc *crtcs[I915_MAX_PIPES];
++	int n_crtcs = 0;
++	bool need_fec = false;
++	int ret = 0;
++	int i;
++
++	drm_connector_list_iter_begin(display->drm, &connector_list_iter);
++	for_each_intel_connector_iter(connector, &connector_list_iter) {
++		struct intel_digital_connector_state *conn_state;
++		struct intel_crtc_state *crtc_state;
++		struct intel_crtc *crtc;
++
++		if (&connector->mst.dp->mst.mgr != mst_mgr)
++			continue;
++
++		conn_state = intel_atomic_get_digital_connector_state(state,
++								      connector);
++		if (IS_ERR(conn_state)) {
++			ret = PTR_ERR(conn_state);
++			break;
++		}
++
++		if (!conn_state->base.crtc)
++			continue;
++
++		crtc = to_intel_crtc(conn_state->base.crtc);
++		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
++		if (IS_ERR(crtc_state)) {
++			ret = PTR_ERR(crtc_state);
++			break;
++		}
++
++		if (!crtc_state->hw.active)
++			continue;
++
++		if (drm_WARN_ON(display->drm, n_crtcs >= ARRAY_SIZE(crtcs)))
++			break;
++
++		crtcs[n_crtcs++] = crtc;
++		if (crtc_state->fec_enable)
++			need_fec = true;
++	}
++	drm_connector_list_iter_end(&connector_list_iter);
++
++	if (ret || !need_fec)
++		return ret;
++
++	for (i = 0; i < n_crtcs; i++) {
++		struct intel_crtc_state *crtc_state =
++			intel_atomic_get_new_crtc_state(state, crtcs[i]);
++
++		crtc_state->fec_enable = true;
++	}
++
++	return 0;
++}
++
+ /**
+  * intel_dp_mst_atomic_check_link - check all modeset MST link configuration
+  * @state: intel atomic state
+@@ -908,6 +974,10 @@ int intel_dp_mst_atomic_check_link(struct intel_atomic_state *state,
+ 	int i;
+ 
+ 	for_each_new_mst_mgr_in_state(&state->base, mgr, mst_state, i) {
++		ret = intel_dp_mst_unify_fec_enable(state, mgr);
++		if (ret)
++			return ret;
++
+ 		ret = intel_dp_mst_check_dsc_change(state, mgr, limits);
+ 		if (ret)
+ 			return ret;
 
-Best regards,
 -- 
-Arun R Murthy <arun.r.murthy@intel.com>
+2.25.1
 
