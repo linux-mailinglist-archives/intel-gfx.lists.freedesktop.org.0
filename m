@@ -2,62 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oojsLW9jMWqQiQUAu9opvQ
+	id 2y9dBGx1MWpjjwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 16:53:35 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 18:10:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 61AF8690B14
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 16:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 48969691C2A
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 18:10:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=PDmslOv3;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DF04110EC45;
-	Tue, 16 Jun 2026 14:53:33 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D10698924B;
+	Tue, 16 Jun 2026 16:10:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2522710EC1B;
- Tue, 16 Jun 2026 14:53:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781621612; x=1813157612;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=WR2uN6mf420VlnTtyCseJhPOlmOKUXnoTS7gPc0v7aE=;
- b=PDmslOv3iu/pKMnQvm1SnRvAVTnhjdweqBdBv6+VaWPgeB/mHPAiL8G8
- 3xX4YnlVLYKiZuhAwiq0tQgdFh+dVwKHwyLQOLacTuW6O+ejiAJXQZdo3
- efoubWz3hFRBMmuOxDIqkMn5WZAj+uGArnndQV99J/LkoVyoBUmzYakJN
- zaOFHD0cS2rS+aUm3ohSYH/QhTPH6utUSJTQhshGE5McwU6YaFWAcQth5
- lyWQI92n1UDz3NFQsGMsTH1oQ0gi1SiuaEO5US0hd3QHEHqCJLyt3U6Ga
- kHKgh1UvWAiUmF+vo1YYnGYcw5NVZfZTLelKTYgx+4YGzX0r5TywIV9S+ w==;
-X-CSE-ConnectionGUID: Gf/a58OTRWOB3sPZF7+PHw==
-X-CSE-MsgGUID: j8xkzaplSVit8gC+EkhDig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="69932851"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="69932851"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 07:53:32 -0700
-X-CSE-ConnectionGUID: tgqtyv4+SFmw6/ayPXVbWw==
-X-CSE-MsgGUID: Df4HdyUqSsCA4qiQEaLwFg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="285896367"
-Received: from mgolanimitul-x299-ud4-pro.iind.intel.com ([10.190.239.114])
- by orviesa001.jf.intel.com with ESMTP; 16 Jun 2026 07:53:29 -0700
-From: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-To: intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- chaitanya.kumar.borah@intel.com
-Subject: [PATCH v2 11/11] drm/i915/vrr: Enable cmrr
-Date: Tue, 16 Jun 2026 20:12:32 +0530
-Message-ID: <20260616144233.832276-12-mitulkumar.ajitkumar.golani@intel.com>
-X-Mailer: git-send-email 2.48.1
-In-Reply-To: <20260616144233.832276-1-mitulkumar.ajitkumar.golani@intel.com>
-References: <20260616144233.832276-1-mitulkumar.ajitkumar.golani@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 43C278924B;
+ Tue, 16 Jun 2026 16:10:16 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============0075658472376459391=="
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Enable_CMRR_in_fixed-RR_V?=
+ =?utf-8?q?RR_path_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Mitul Golani" <mitulkumar.ajitkumar.golani@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 16 Jun 2026 16:10:16 -0000
+Message-ID: <178162621626.85468.6859661269065768759@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260616144233.832276-1-mitulkumar.ajitkumar.golani@intel.com>
+In-Reply-To: <20260616144233.832276-1-mitulkumar.ajitkumar.golani@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,100 +46,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [5.89 / 15.00];
+	URL_MULTIPLE_AT_SIGNS(6.00)[3];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mitulkumar.ajitkumar.golani@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	TO_DN_NONE(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	GREYLIST(0.00)[pass,meta];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,6beec6c84f66:mid,gitlab.freedesktop.org:url,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 61AF8690B14
+X-Rspamd-Queue-Id: 48969691C2A
 
-Enable CMRR during compute config and add related state
-checker for the same.
+--===============0075658472376459391==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
----
- drivers/gpu/drm/i915/display/intel_vrr.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+== Series Details ==
 
-diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index 2d5f0f17bf3c..9ef559195c68 100644
---- a/drivers/gpu/drm/i915/display/intel_vrr.c
-+++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -285,6 +285,8 @@ intel_vrr_cmrr_compute_config(struct intel_crtc_state *crtc_state)
- 	adjusted_pixel_rate = mul_u32_u32(adjusted_mode->crtc_clock, 1000) * multiplier_n;
- 	crtc_state->vrr.cmrr.cmrr_m = do_div(adjusted_pixel_rate, crtc_state->vrr.cmrr.cmrr_n);
- 
-+	crtc_state->vrr.cmrr.enable = true;
-+
- 	return;
- }
- 
-@@ -876,6 +878,7 @@ intel_vrr_enable_cmrr(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 vrr_ctl = intel_de_read(display, TRANS_VRR_CTL(display, cpu_transcoder));
- 
- 	intel_de_write(display, TRANS_CMRR_M_HI(display, cpu_transcoder),
- 		       upper_32_bits(crtc_state->vrr.cmrr.cmrr_m));
-@@ -885,6 +888,9 @@ intel_vrr_enable_cmrr(const struct intel_crtc_state *crtc_state)
- 		       lower_32_bits(crtc_state->vrr.cmrr.cmrr_n));
- 	intel_de_write(display, TRANS_CMRR_N_HI(display, cpu_transcoder),
- 		       upper_32_bits(crtc_state->vrr.cmrr.cmrr_n));
-+
-+	vrr_ctl |= VRR_CTL_CMRR_ENABLE;
-+	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), vrr_ctl);
- }
- 
- static void
-@@ -892,11 +898,15 @@ intel_vrr_disable_cmrr(const struct intel_crtc_state *crtc_state)
- {
- 	struct intel_display *display = to_intel_display(crtc_state);
- 	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
-+	u32 vrr_ctl = intel_de_read(display, TRANS_VRR_CTL(display, cpu_transcoder));
- 
- 	intel_de_write(display, TRANS_CMRR_M_HI(display, cpu_transcoder), 0);
- 	intel_de_write(display, TRANS_CMRR_M_LO(display, cpu_transcoder), 0);
- 	intel_de_write(display, TRANS_CMRR_N_LO(display, cpu_transcoder), 0);
- 	intel_de_write(display, TRANS_CMRR_N_HI(display, cpu_transcoder), 0);
-+
-+	vrr_ctl &= ~VRR_CTL_CMRR_ENABLE;
-+	intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder), vrr_ctl);
- }
- 
- static void
-@@ -1138,6 +1148,7 @@ void intel_vrr_get_config(struct intel_crtc_state *crtc_state)
- 				      TRANS_VRR_CTL(display, cpu_transcoder));
- 
- 	if (HAS_CMRR(display)) {
-+		crtc_state->vrr.cmrr.enable = trans_vrr_ctl & VRR_CTL_CMRR_ENABLE;
- 		crtc_state->vrr.cmrr.cmrr_n =
- 			intel_de_read64_2x32(display, TRANS_CMRR_N_LO(display, cpu_transcoder));
- 		crtc_state->vrr.cmrr.cmrr_m =
--- 
-2.48.1
+Series: Enable CMRR in fixed-RR VRR path (rev2)
+URL   : https://patchwork.freedesktop.org/series/166819/
+State : success
 
+== Summary ==
+
+CI Bug Log - changes from CI_DRM_18686 -> Patchwork_166819v2
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_166819v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@sanitycheck:
+    - bat-apl-1:          [PASS][1] -> [DMESG-WARN][2] ([i915#13735]) +37 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18686/bat-apl-1/igt@i915_selftest@live@sanitycheck.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/bat-apl-1/igt@i915_selftest@live@sanitycheck.html
+
+  
+  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18686 -> Patchwork_166819v2
+
+  CI-20190529: 20190529
+  CI_DRM_18686: 70646d7ea3ac559ed269c0a38cd3699fea4e1eeb @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8965: 8965
+  Patchwork_166819v2: 70646d7ea3ac559ed269c0a38cd3699fea4e1eeb @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/index.html
+
+--===============0075658472376459391==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Enable CMRR in fixed-RR VRR path (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/166819/">https://patchwork.freedesktop.org/series/166819/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18686 -&gt; Patchwork_166819v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_166819v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@sanitycheck:<ul>
+<li>bat-apl-1:          <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18686/bat-apl-1/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_166819v2/bat-apl-1/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) +37 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18686 -&gt; Patchwork_166819v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18686: 70646d7ea3ac559ed269c0a38cd3699fea4e1eeb @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8965: 8965<br />
+  Patchwork_166819v2: 70646d7ea3ac559ed269c0a38cd3699fea4e1eeb @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============0075658472376459391==--
