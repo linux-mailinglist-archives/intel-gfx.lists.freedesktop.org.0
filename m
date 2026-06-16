@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id laZlLnFFMWorfwUAu9opvQ
+	id lXGvCG9FMWonfwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 64E3268F7EE
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B56FC68F7E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=P8qE5R1G;
+	dkim=pass header.d=intel.com header.s=Intel header.b=UGB27Ejf;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C4FF310EAF0;
-	Tue, 16 Jun 2026 12:45:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4237C10EAEE;
+	Tue, 16 Jun 2026 12:45:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DE05810EAB7;
- Tue, 16 Jun 2026 12:45:30 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2340E10EAFC;
+ Tue, 16 Jun 2026 12:45:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781613931; x=1813149931;
+ t=1781613932; x=1813149932;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=Pp9D2Vg61Qh5RYSt8GubiNPsXL1zXZD4e9hKz6mPitQ=;
- b=P8qE5R1GuyJajYJou7QsageUcTZlj7moHsN0UeyNRNQxikVI1w6AqIS2
- EpnGqXMLFKE6ogOOICzTsqwbXDrLIY9uOkb1zZbEyL3CAzd/sd7+hKF+G
- FNW/VyBtNdUY5GvHUokudVcDdSQuEzTmBYs7d9siLeS8A4b4ReTYXZMVn
- Z95afqHBDdsO6mat1qXQ1ja4ssmwM6qxMM7GaB5rQbzg/rpI5bYTzaNnr
- OzzBHBbSV9GjFQqKsmxMPWqu2aD9+xO+WJEY/jEc84EmbVNK8YwU3nkA0
- jobIdgJSt/13XSa5FprKKAqXo36pzztLcWEimOIiRW8amA/zwG+SYFQYz Q==;
-X-CSE-ConnectionGUID: wVCQJsVeTkC2DjSWrL4Kfw==
-X-CSE-MsgGUID: TDSd5VMGRku88g0dkKAk0Q==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513237"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513237"
+ bh=1SCRIWldmdAVbd49yfKA6ZSKtMssvMroeByvTzEY9t4=;
+ b=UGB27Ejf4pFOyoxTaBgv1mft55kNAZWUmdye3MmFGY9Zyk2Qbc914LK+
+ 5UWQLVkhHwQQnHOpjPUrqumWZBgGJDhMAkZ9bFaD33cPbuh4zQ9MllL0s
+ ReqgR7RW/Sn9sOIG5UyGMFELRapsiudnNu6zeqH4Xt619gtiI8C0AeM2X
+ rD6V66Q/HnCiQZvdwKbNtVeTWf/Um6I/qbNCHB4L1sofpkGxdHhyZx6CK
+ 1HKHfNkUVlJvB3HlrMsM3aC04ipR8oVtF9xu6AbZfqtCw30RWVocrEMxo
+ 1iRR9D9qJhLvYBR1IpCuao+XhgOOsJVpLg9FsP+fJXzDLsUVKnGNwjgK9 Q==;
+X-CSE-ConnectionGUID: 5vDjMFrkRpWlxmIM6WAoRQ==
+X-CSE-MsgGUID: nI4I+oppR+icYe6rlukjcg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513240"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513240"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:45:31 -0700
-X-CSE-ConnectionGUID: coBYvjuVQC+/VAP3B4nHRA==
-X-CSE-MsgGUID: B+YzYps8TNKpAJdT7ctzxg==
+ 16 Jun 2026 05:45:32 -0700
+X-CSE-ConnectionGUID: wezWc4VxRkWGAdUkj3C15A==
+X-CSE-MsgGUID: znG9TEFfQnW1VgrKzvggVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876264"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876265"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:45:30 -0700
+ 16 Jun 2026 05:45:31 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v4 10/39] drm/i915/vrr: Pass transcoder to
- intel_vrr_set_fixed_rr_timings()
-Date: Tue, 16 Jun 2026 18:13:46 +0530
-Message-ID: <20260616124416.2442161-11-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v4 11/39] drm/i915/display: Rename cpu_transcoder parameter to
+ transcoder in VRR fixed-rr path
+Date: Tue, 16 Jun 2026 18:13:47 +0530
+Message-ID: <20260616124416.2442161-12-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -100,102 +100,60 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 64E3268F7EE
+X-Rspamd-Queue-Id: B56FC68F7E2
 
 From: Animesh Manna <animesh.manna@intel.com>
 
-Take the target transcoder as an explicit parameter so the helper can
-program VRR VMIN/VMAX/FLIPLINE registers for transcoders other than the
-crtc_state->cpu_transcoder (e.g. the CMTG transcoder).
+intel_vrr_set_fixed_rr_timings() now takes the target transcoder as an
+explicit argument rather than implicitly using crtc_state->cpu_transcoder,
+so the parameter name 'cpu_transcoder' is misleading. Rename it to plain
+'transcoder' to reflect that any transcoder may be programmed.
 
-No functional change: all existing callers pass crtc_state->cpu_transcoder.
+No functional change.
 
-v2:
-- Add separate patch for renaming the cpu_transcoder variable. [Ville]
-
-Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 2 +-
- drivers/gpu/drm/i915/display/intel_vrr.c     | 9 +++++----
- drivers/gpu/drm/i915/display/intel_vrr.h     | 4 +++-
- 3 files changed, 9 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_vrr.c | 8 ++++----
+ drivers/gpu/drm/i915/display/intel_vrr.h | 2 +-
+ 2 files changed, 5 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 8455ad878e66..8f6acddac6a9 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -6694,7 +6694,7 @@ static void intel_pipe_fastset(const struct intel_crtc_state *old_crtc_state,
- 	if (new_crtc_state->update_lrr) {
- 		intel_set_transcoder_timings_lrr(new_crtc_state, new_crtc_state->cpu_transcoder);
- 		intel_cmtg_set_timings(new_crtc_state, LRR);
--		intel_vrr_set_fixed_rr_timings(new_crtc_state);
-+		intel_vrr_set_fixed_rr_timings(new_crtc_state, new_crtc_state->cpu_transcoder);
- 		intel_vrr_transcoder_enable(new_crtc_state);
- 	}
- }
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-index e03b5daac5be..60a92e8b1094 100644
+index 60a92e8b1094..401a12aee700 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.c
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-@@ -9,6 +9,7 @@
- #include "intel_alpm.h"
- #include "intel_crtc.h"
- #include "intel_de.h"
-+#include "intel_display_limits.h"
- #include "intel_display_regs.h"
- #include "intel_display_types.h"
- #include "intel_dmc.h"
-@@ -318,10 +319,10 @@ int intel_vrr_fixed_rr_hw_flipline(const struct intel_crtc_state *crtc_state)
- 	return intel_vrr_fixed_rr_hw_vtotal(crtc_state);
+@@ -320,18 +320,18 @@ int intel_vrr_fixed_rr_hw_flipline(const struct intel_crtc_state *crtc_state)
  }
  
--void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state)
-+void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state,
-+				    enum transcoder cpu_transcoder)
+ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state,
+-				    enum transcoder cpu_transcoder)
++				    enum transcoder transcoder)
  {
  	struct intel_display *display = to_intel_display(crtc_state);
--	enum transcoder cpu_transcoder = crtc_state->cpu_transcoder;
  
  	if (!intel_vrr_possible(crtc_state))
  		return;
-@@ -645,7 +646,7 @@ void intel_vrr_set_transcoder_timings(const struct intel_crtc_state *crtc_state)
- 			       lower_32_bits(crtc_state->cmrr.cmrr_n));
- 	}
  
--	intel_vrr_set_fixed_rr_timings(crtc_state);
-+	intel_vrr_set_fixed_rr_timings(crtc_state, cpu_transcoder);
- 
- 	if (!intel_vrr_always_use_vrr_tg(display))
- 		intel_de_write(display, TRANS_VRR_CTL(display, cpu_transcoder),
-@@ -974,7 +975,7 @@ void intel_vrr_disable(const struct intel_crtc_state *old_crtc_state)
- 		intel_vrr_tg_disable(old_crtc_state);
- 
- 	intel_vrr_disable_dc_balancing(old_crtc_state);
--	intel_vrr_set_fixed_rr_timings(old_crtc_state);
-+	intel_vrr_set_fixed_rr_timings(old_crtc_state, old_crtc_state->cpu_transcoder);
+-	intel_de_write(display, TRANS_VRR_VMIN(display, cpu_transcoder),
++	intel_de_write(display, TRANS_VRR_VMIN(display, transcoder),
+ 		       intel_vrr_fixed_rr_hw_vmin(crtc_state) - 1);
+-	intel_de_write(display, TRANS_VRR_VMAX(display, cpu_transcoder),
++	intel_de_write(display, TRANS_VRR_VMAX(display, transcoder),
+ 		       intel_vrr_fixed_rr_hw_vmax(crtc_state) - 1);
+-	intel_de_write(display, TRANS_VRR_FLIPLINE(display, cpu_transcoder),
++	intel_de_write(display, TRANS_VRR_FLIPLINE(display, transcoder),
+ 		       intel_vrr_fixed_rr_hw_flipline(crtc_state) - 1);
  }
  
- void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state)
 diff --git a/drivers/gpu/drm/i915/display/intel_vrr.h b/drivers/gpu/drm/i915/display/intel_vrr.h
-index 4f16ca4af91f..57c5e28378db 100644
+index 57c5e28378db..55e9c429f579 100644
 --- a/drivers/gpu/drm/i915/display/intel_vrr.h
 +++ b/drivers/gpu/drm/i915/display/intel_vrr.h
-@@ -15,6 +15,7 @@ struct intel_crtc;
- struct intel_crtc_state;
- struct intel_dsb;
- struct intel_display;
-+enum transcoder;
- 
- bool intel_vrr_is_capable(struct intel_connector *connector);
- bool intel_vrr_is_in_range(struct intel_connector *connector, int vrefresh);
-@@ -42,7 +43,8 @@ int intel_vrr_vmin_vblank_start(const struct intel_crtc_state *crtc_state);
- bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
+@@ -44,7 +44,7 @@ bool intel_vrr_is_fixed_rr(const struct intel_crtc_state *crtc_state);
  void intel_vrr_transcoder_enable(const struct intel_crtc_state *crtc_state);
  void intel_vrr_transcoder_disable(const struct intel_crtc_state *crtc_state);
--void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state);
-+void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state,
-+				    enum transcoder cpu_transcoder);
+ void intel_vrr_set_fixed_rr_timings(const struct intel_crtc_state *crtc_state,
+-				    enum transcoder cpu_transcoder);
++				    enum transcoder transcoder);
  void intel_vrr_dcb_reset(const struct intel_crtc_state *old_crtc_state,
  			 struct intel_crtc *crtc);
  bool intel_vrr_always_use_vrr_tg(struct intel_display *display);
