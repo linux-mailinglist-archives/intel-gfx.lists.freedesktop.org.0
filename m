@@ -2,232 +2,162 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id sCznNQ+iMmoV3AUAu9opvQ
+	id lDFuLizjMGp/YQUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 15:33:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 07:46:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3CC2569A249
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 15:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 17F0A68C407
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 07:46:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=gmail.com header.s=20251104 header.b="oJCa/UQd";
+	dkim=pass header.d=intel.com header.s=Intel header.b=M9j+A4PK;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=canonical.com (policy=reject)
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C198C10EA4A;
-	Wed, 17 Jun 2026 13:33:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DE4BE10E60D;
+	Tue, 16 Jun 2026 05:46:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9BE2D10EA4A
- for <intel-gfx@lists.freedesktop.org>; Wed, 17 Jun 2026 13:33:00 +0000 (UTC)
-X-CSE-ConnectionGUID: FnUqvnQ8TKyj7lgegDUylQ==
-X-CSE-MsgGUID: UjK+sIQVSX2d78WOOv6Yyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="93870693"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="93870693"
-Received: from fmviesa008.fm.intel.com ([10.60.135.148])
- by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 06:31:49 -0700
-X-CSE-ConnectionGUID: QU1izbbkS0asvIiiR8FRbw==
-X-CSE-MsgGUID: K+8BpooDSKuePvr1q2mRag==
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7768F10E578;
+ Tue, 16 Jun 2026 05:46:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781588776; x=1813124776;
+ h=from:to:cc:subject:date:message-id:references:
+ in-reply-to:content-transfer-encoding:mime-version;
+ bh=ipyPA4Bav/cm5OrFauaj6uM+JDI+CGR9CuBs91zo9is=;
+ b=M9j+A4PK21lCR1GCxzvH0HoMgK7f+XTwBh1f+rHT4LKuT4y5TOh8LTJP
+ w47Nu0xcixuf0+jA22iapjJBd8laPrqWr0g3aw+7eLGebK3lockg0L5IJ
+ U5wyRBPLX3JB5OEq+P0B1mO1qmHUS8IjwVHgyKAwSlG4vH5ylF8/h8kLr
+ 7dXm7G4kC7ygPFvmz0vdkOewuaXNHGnOpF0nOg0pENNwAdEptCAK1DUg5
+ ce/OBTRyvh57ub7bijcdpXJ8cQEFELW4EnchTNxEEX+FJYmy3E7oOzbSb
+ Q25GdP2PfGoAmS5dNlJRma1CecyQnKz/+2LH9rq1tKVKKzJuI/+l46C82 Q==;
+X-CSE-ConnectionGUID: rWVNu7kERM+vcuAgBDGvBg==
+X-CSE-MsgGUID: p/074ECFQwaGHeEcwNWRIQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="107773873"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="107773873"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 22:46:16 -0700
+X-CSE-ConnectionGUID: DiVoUUqjQHG/5pQegdp8dQ==
+X-CSE-MsgGUID: 3j5hlvlHRrqgMtzbCBsSVQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="245680732"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.158])
- by fmviesa008-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 06:31:48 -0700
-Resent-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business
- Park, 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Resent-To: intel-gfx@lists.freedesktop.org
-Resent-From: Jani Nikula <jani.nikula@intel.com>
-Resent-Date: Wed, 17 Jun 2026 16:31:45 +0300
-Resent-Message-ID: <877bc90771748ef95cda06d798c14400ba0ea0c6@intel.com>
-X-Original-To: jani.nikula@linux.intel.com
-Received: from orviesa001.jf.intel.com (ORVIESA001.jf.intel.com
- [10.64.159.141])
- (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
- (No client certificate requested)
- by linux.intel.com (Postfix) with ESMTPS id 6686F20B5713;
- Mon, 15 Jun 2026 22:38:11 -0700 (PDT)
-X-CSE-ConnectionGUID: Z4ordTXETVuCI3PoJLBhPw==
-X-CSE-MsgGUID: NHgUZj+jSLCz29wyhWCgRQ==
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="285785662"
-Received: from fmvoesa101.fm.intel.com ([10.64.2.11])
- by smtp.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026
- 22:38:11 -0700
-X-CSE-ConnectionGUID: krncMu6ISm+aW5HOjqeEag==
-X-CSE-MsgGUID: irDVXZHmR9WK4vZQZNdkGg==
-X-ThreatScanner-Verdict: Negative
-X-IPAS-Result: =?us-ascii?q?A0EBAAAJ4DBqhbHS/INaGQEBAQEBAQEBAQEBAQEBAQEBA?=
- =?us-ascii?q?RIBAQEBAQEBAQEBAQGBfQMBAQEBAQsBgkABFQUBboFqjVOEDYJLgiGBFpcqh?=
- =?us-ascii?q?V6BPxYfCBEBAQEBAQEBAQEHAQEuDxEBAgQBAQMEkkECJjUIDQEBAgQDAgECA?=
- =?us-ascii?q?QEBAQEBAQEBAQELAQEBAgIBAQECAQEGAwEBAQECEAEBAUFJhglGDYI9JQGBJ?=
- =?us-ascii?q?GECBQM7AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBBQINH?=
- =?us-ascii?q?xFPAQEEAQEPIAENAQUKKQECAQIBAgYCBT8ECAMBIgEMAQUBIgEJBQQBBB2CY?=
- =?us-ascii?q?AGCIgEGEQM2AgEFDKY5gQJCjG+BAYINBtszDYJWAQICAQYUAQGBNwGNXYEvg?=
- =?us-ascii?q?0d6J1uBTXoaAYJzB2+BUoEPAQMBF4gLBIMugkqOSUiBHgNZLAFVEw0KCwcFP?=
- =?us-ascii?q?nUzAyAKCxISGBUCFC8PBBYyHXAMJxIsF3kTGwcFOmREdVaBBT2EUiMfAzl/g?=
- =?us-ascii?q?W+BJWdmFTA1gQEBER8KOgMLGA1IESwWIQYOGwQ+bgeMZRcPgUtyAVcjCQuBM?=
- =?us-ascii?q?BOBXwOSQy6DJI8QoRIHA4QdjCGNPod8TYQEk08MPJJQAS6HZpB0I41nmw0CC?=
- =?us-ascii?q?gcHESSBRgI2AoFacIM3UxkPjiEJAxaDYIUTiioBuHU4NBItBwIHDwKFTAMBA?=
- =?us-ascii?q?SETjCEBgUsBAQ?=
-IronPort-PHdr: A9a23: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
-IronPort-Data: A9a23:ELsJUK29ZRzaMjGclvbD5cB2kn2cJEfYwER7XKvMYLTBsI5bpzAGz
- GEXDG2DP67famD2fo90Odyx9kgHu5DczIBlQQVsqSg9HnlHgPSeOdnIdU2Y0wF+jyHgoOCLy
- +1HMoGowBUcFyeEzvuLGuax9SEUOYagH+OsUb6s1hhZHFEiEGF9z0o6xYbVu6Yy6fChGQSBp
- NjulMPWPV6hylZcP3kdg065gEoHUM/a5nVC4jTSWdgR5AWAzydMUcpFTU2MByKQrrd8T7bSq
- 9nrkenRElPxp38FFt6jm7DnRUwGKpa6FRSOkHdfR5+5iRFEoCEouo5jXBbLQRwP49kht4kZJ
- ORl7fRcey9wVkH/sL11vy1jLs1LFfYuFInveiHj7JPJnyUqRFO3qxlmJBle0YT1YY+bC0kWn
- RATAGllghxuHItaaV90IwVhrp1LESXlAG8QknJ6yzr8EKgHepWASpqXxfhaxTodj88bSJ4yZ
- +JBAdZuRBvJaRAJNE0aBZ4zh+S0gWG5dCdXwL6XjfNsui6JkVY3iuG1doOKJbRmRu0N9qqcj
- m7c/iH1Dw8XMJmVzieD+X+3ruvOhj/gHowIGbC0++VpnFqLgGsJB3X6UHPi+abm1RXnA4g3x
- 0o8+zACk5gA1EmRH+beAwOKmUyish0zVI8FewE9wFjRlfuFum51HFMsZzhNcs4rtokVTDcyz
- FiWhNDoLThutqCFD3Ob6rqQ6zi1PEA9JGMLYGkBTBAX6Mvqo6k3jxTSXpBiFrK4ipv+HjSY6
- zmMoCl4nLUCkc8j06S94ECBgjSwq5yPRQkwji3eRGu77wV1Io+pa4Wt8lXH8edoKIefU0nHv
- X4YlszY5+cLZbmPnSqMBuMMH6yt7t6BMTvBkRhuGYUs83Km/HvLVYJZ5ixlNgFqKNQVYi31Z
- 0HSuitV5ZlOLD2ra7N6Z8S6DMFC5arnEtLsTbbQZ9pSY558cieD/SdzdQiR2XzglA4nlqRXE
- ZSSa8GoS2kTAqRg0yG1Rs8Z0Lk21mY/w3/eQdbwyBHP+b+Xb3+YS/EdOUeDausr/aCspATT7
- sYZNs2WxhEZW+r7CgHP/JIeNxYRIH49DLjyqspKZqiCJBZrHCcqDPq5/F86U4NslakTmP3F8
- 32wQUxEz0K5gmfIQemXVpx9QLD1W51asCwaBilvNGn1+18heIuC5ahKIvPbYoIbGPpfIemYp
- sTplu2PC/5CDDrd9jkRYIL+sIt6MhOximpi3hZJghBvIfaMpCSTo7cImzcDEgFTVkJbUuNj+
- dWdOvvzG8ZreuibJJ++hAiTI6yNUYg1wb4tDhqRSjWiUF3r6pRuIir9xuQrKt0BYQjFxyWXz
- R2XHQZwmNQhV7QdqYGT7Yjd9tfBO7UlRCJyQTKEhYtawAGBpQJPN6cbC77QJVgwlQrcpM2fW
- Ami56qibqdexA4V7NUU/nQC5ftW2uYDboRylmxMdEgnpXz3Yl+8ChFqFvWjekGAKnG1dOd2t
- o+yFgFmBIi0
-IronPort-HdrOrdr: A9a23:+/VsZaOalyoDcMBcTuGjsMiBIKoaSvp037BL7TEXdfU7SKKlfq
- yV/cjztiWE7Ar5OktQ++xoUZPoKRmwmaKdh7NwAV7LZmbbUQCTXeRfBOXZsl7d83KUzIVg/J
- YlX6x3CNjcFlhkgd2/xAWjCd4vzJ2m3cmT9J7jJt1WPHlXgtpbnmFENjo=
-X-Talos-CUID: =?us-ascii?q?9a23=3AVVaVUGpMOTt/N9jp31MSFW7mUcM/dHb40SnxGEr?=
- =?us-ascii?q?7AFk0aJqXUFK98awxxg=3D=3D?=
-X-Talos-MUID: 9a23:syLIXAQVe3J2I/YIRXTtnh1cBPVI5p7/N2NRj6c/ie+INgN/bmI=
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="107773102"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="107773102"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from gabe.freedesktop.org ([131.252.210.177])
- by mtab.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Jun 2026
- 22:38:10 -0700
-Received: from gabe.freedesktop.org (localhost [127.0.0.1])
- by gabe.freedesktop.org (Postfix) with ESMTP id 5B47410E429;
- Tue, 16 Jun 2026 05:38:07 +0000 (UTC)
-X-Original-To: dri-devel@lists.freedesktop.org
-Received: from mail-dl1-f47.google.com (mail-dl1-f47.google.com [74.125.82.47])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3C92F10E429
- for <dri-devel@lists.freedesktop.org>; Tue, 16 Jun 2026 05:38:06 +0000 (UTC)
-Received: by mail-dl1-f47.google.com with SMTP id
- a92af1059eb24-13809223fd4so4415254c88.1
- for <dri-devel@lists.freedesktop.org>; Mon, 15 Jun 2026 22:38:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1781588285; x=1782193085;
- darn=lists.freedesktop.org;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:sender:from:to:cc:subject:date:message-id:reply-to;
- bh=h9Hy3tDOEo1WyPKfqS6KI+ShJZyzd2h8DxHBmApwqwI=;
- b=oJCa/UQdEIxIpCjIELEsiUvndc3ZNAgssgvlKYSrvtvH51YGR0PCcVJjbQk7Ciio2l
- VwhFZI3aqYG3X/Wvj7oOFvBLVYlqlscYsc7ujyBeeULu1dJ1PWljs2SO2LTPq9EPH9pW
- hp3ReqptqxWEmGFtRI+dWWudJH2zyn71aDPHtuIgPpqsJaDCmk/61+Gupfe6V/ucYnvx
- zAMfAxMy0WgRruxBt0JhgL+ivvSe/kTkX2UUpFYort5uE2Lkj02s89Cne09sMTS97y3w
- 6D20/DNKdRrzH5WtFcfOGJ0C1rWTirYENrn1ewGpfheA9MA1MMoh6qeOkFhATLHaBjCc
- /8rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1781588285; x=1782193085;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:sender:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=h9Hy3tDOEo1WyPKfqS6KI+ShJZyzd2h8DxHBmApwqwI=;
- b=TmQi9UuSv/huYn1GTCLn/TVl1ypDYLsjDrgoK9m505FB5QHWEp7GCQC7SflzuylWP3
- 4Df5IqGSzMySuZbr1OtuGnLZlIE5PvsCwwITJtjHDyCAoSpuBxrVoqyLbsKXTjs5fslW
- 3jTRjcMIe8rvvmy5accbzjkHrHk0GGs6QZvqpPK/vhZcOHS26bGLnJKKaMi060v8PK35
- 8whZEq7cbkYr0XiiydfxElhflVFDEwGy5rCYvOtA1pMuZrvoj6I791p8NkqLBU1l5T3n
- dE8I9sqh+wZIAMkihTI2z6HN2vvvZ/j/KL8/d+DGGSmM3+ziNy6Tq1REjELsrBIQ3OEv
- Shzg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+2PhnOBhmBscFPqtWiS77HJTBcwcP/BXMHz56MtQG9BV2C4EDUQPzXJTl3je6YI30ETb8KggPKWnM=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyutCkLIuq9SGGthKP4CFAjIEhXyhF7COUyNnS7PcdaceIfX+uG
- SfP1qPzaf1nJ36hISBp+uGSX2MQ8bwNYT4zsouYlbG3f/jFumKeaVRFU
-X-Gm-Gg: Acq92OHHT8hvgEleUYvVv3V6ZEvan2ulpQ+Adyi0AFpTJQjpyNWRp8lchbM7yyfb8eC
- eEfr5N/PMjGkUs8yfUZ1BvAydRrCqLsprZEKcW1uzjP5WedFg6lnD6kmqIts8HucYMqG3y4WWix
- 586rAw08+4vqvV+FiKQXiTTh/kdbEBd5A21J3+JfWdCeJDooiaoGV/5MktkzxHCkRtFqmBTt6Tw
- PUUNhmLsLLwf5O30786/ld2xz7N4VGlRjjyyn6mIH+gFMF+KC3BAhzTpSQICVIWHqb73suS9qGc
- a0h9bXBZl+LJxpXC0G+/HmXyPztv36UdmAtmroXre2oZPugyOhU9AmYgtZcKXMgYVXJ4VeojfKr
- tmagqaA/03CV4hyx5x05gRiQ+zzvwwfnC5QQMag9+w8/UCuIuU3z7qMxWCxYJHgiL1GKgTO4RkF
- ZY1wdLnbQx1aQC7EEbyZORizzvrhVEmKwxyiePCa6VP0/Uar9RdnLTMQjNbZ6HKkk=
-X-Received: by 2002:a05:7300:7b8d:b0:304:bce9:25fa with SMTP id
- 5a478bee46e88-30ba596ab20mr1343852eec.4.1781588285239; 
- Mon, 15 Jun 2026 22:38:05 -0700 (PDT)
-Received: from localhost (118-163-61-247.hinet-ip.hinet.net. [118.163.61.247])
- by smtp.gmail.com with ESMTPSA id
- 5a478bee46e88-3081ea43bc7sm17208123eec.22.2026.06.15.22.38.04
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Mon, 15 Jun 2026 22:38:04 -0700 (PDT)
-From: "Chia-Lin Kao (AceLan)" <acelan.kao@canonical.com>
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>
-Cc: Suraj Kandpal <suraj.kandpal@intel.com>, Imre Deak <imre.deak@intel.com>, 
- Arun R Murthy <arun.r.murthy@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
- Christopher Obbard <christopher.obbard@linaro.org>,
- "Mario Limonciello (AMD)" <superm1@kernel.org>,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] drm/dp: Move byte-by-byte AUX read fallback to
- drm_dp_dpcd_read()
-Date: Tue, 16 Jun 2026 13:38:02 +0800
-Message-ID: <20260616053802.1673782-1-acelan.kao@canonical.com>
-X-Mailer: git-send-email 2.53.0
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="247533592"
+Received: from orsmsx901.amr.corp.intel.com ([10.22.229.23])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 15 Jun 2026 22:46:16 -0700
+Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
+ ORSMSX901.amr.corp.intel.com (10.22.229.23) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 15 Jun 2026 22:46:15 -0700
+Received: from ORSEDG901.ED.cps.intel.com (10.7.248.11) by
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 15 Jun 2026 22:46:15 -0700
+Received: from CY7PR03CU001.outbound.protection.outlook.com (40.93.198.50) by
+ edgegateway.intel.com (134.134.137.111) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 15 Jun 2026 22:46:15 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=EbPP31pdn7aggwjQTxWF2RnkoVYFZHajfNaYaSa7gEmp/jV43++jrIKWaY1qq6yFJ4OweZ0zDJ6Vb3NQPHtcVpuX9CaGZUcRHUpvDbXt05D430s9oPmmjLBtzoaIIwyM3PAPx+zN7YJgSKtdV9q5eqfb8i1eR1KWcqC1q1yWKho5/buD8JClHPq66f1t5Oi8Jtq0/4UN3yD+53/TOAOqVxR+4wSHF/wNNTWO3MxoFZ4i6olg5h7yfGPcBcERvZl6VILysEopdjv2qjq6VEZWeoU1vWvQJkPePKaYvnhMBgpvx2KzdizGRl9NZikxKmnfgAM50Azi4V8wQzPaDeRraQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=8w5X8ZvWzEG/iqZLc7EMTuLJnunYLXbgqvYtrNI8s9c=;
+ b=LVXsN5D4kYJfwgoezbKMR3k80uZyrUeS53Ja8QJCsbkkrNZYv57RH4AsdZiNQE3qMMOhQt6qnQLaBn/qJPLadE2S5keXd2PeiyzsAqBitpwUrrx46HfMYLle+tI++en+8K9Fcnf154uttquOaitEYE1RAedTXBh4S5BPS39u5rNun8LYJcQdTEs0NxfbbUcOvwhlWHf1OGfryzwdB4x6Jom2+xAQB1F5hiAt4fJIc1D6R8h1NI5JEFd1/R550aT3BTl/3MOP2TXPoLe9ta53eMYQOAPuDveFWNnBVDQFZJecm5zZOUNhPYHjDiy7AgDDWXVJE1eJZe6ilX+7nytXBA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com (2603:10b6:208:437::10)
+ by PH0PR11MB9773.namprd11.prod.outlook.com (2603:10b6:510:398::11)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.113.18; Tue, 16 Jun
+ 2026 05:46:08 +0000
+Received: from IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::9d4a:f89:f548:dbc7]) by IA0PR11MB7307.namprd11.prod.outlook.com
+ ([fe80::9d4a:f89:f548:dbc7%2]) with mapi id 15.21.0113.015; Tue, 16 Jun 2026
+ 05:46:07 +0000
+From: "Murthy, Arun R" <arun.r.murthy@intel.com>
+To: "Deak, Imre" <imre.deak@intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>, "Stephen
+ Fuhry" <fuhrysteve@gmail.com>
+Subject: RE: [PATCH] drm/i915/display: Refcount for fec enable/disable
+Thread-Topic: [PATCH] drm/i915/display: Refcount for fec enable/disable
+Thread-Index: AQHc8dNRMfnknTQoWUWsmXcLBW7hPbYrFoQAgAAuq+CAAAFwgIAVenAA
+Date: Tue, 16 Jun 2026 05:46:07 +0000
+Message-ID: <IA0PR11MB730741AD83240FA2CE95BDACBAE52@IA0PR11MB7307.namprd11.prod.outlook.com>
+References: <20260601142943.1481728-1-arun.r.murthy@intel.com>
+ <ah60jJkzbbw25R-L@ideak-desk.lan>
+ <IA0PR11MB7307C39641297A08DB4C6A1ABA122@IA0PR11MB7307.namprd11.prod.outlook.com>
+ <ah7c59mNa4WfTJKu@ideak-desk.lan>
+In-Reply-To: <ah7c59mNa4WfTJKu@ideak-desk.lan>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: IA0PR11MB7307:EE_|PH0PR11MB9773:EE_
+x-ms-office365-filtering-correlation-id: 73bf5203-6aed-42ad-79e2-08decb6a8fc1
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|376014|366016|23010399003|1800799024|6133799003|56012099006|4143699003|11063799006|38070700021|22082099003|18002099003;
+x-microsoft-antispam-message-info: H0JdOJFUU4+XXSOeJpe6+u6GazWTyQsajrjIiqA+wElnIO72txwFK1ELHxAePjelAktOepnmMg41LEGp3R7LtHSf+XXiw9Rb8IZUHZjqwRbTdPuPoRLobXibU6Vwo7+uENEoaXhg1iePSR9J73mO7oztswfiW+0AUEYfNQnRcj6nvBU48/PrsBowtk0SFAIxlFKl0JQoplr5FSaW62O75TvspiRwybVD1prr7JGqZBsc7OnPJ3JZM+Epoc+oalbRW4MS11zZCGK63wotRGkUHreitTqhKQG6tv++7VDfXhT6P81sO5aIK/GRf48LyqixwwzFYtDkAa5sSx39b9j3pq5gmOvCDqi1b26I8OL6FhrEP6OIzwHnwVFK6atWaGgxNEFxTgkUiboC5acbR6fN9kPRuNVcSvbBDZVbT+4qrp9EPB5gfFp8gTjZ/egXRLITjPvD2MTmlDHnKI5LRyqum47+yOOgmPEhiF7CSdfJzxECGSJ+5q9Ka3b700qLhD+bbSF6o9Uy0AQFdSUlti/M+KPC/ZQIE7OV0fq525AIMSxDCpcaNOTfG5tnjri3R2ecJvHug42AUbuoelkIDxPtFxryyt6JdfR1EZ3ddEWNga4kQDX0/l9+Es255OmUFR6dguKuC5SIfaUUAtFy2Iefd7JeBxDneRU6DfOUQGZJZmXNGylqCz4lSBAUamYVprgjLGOR8XnjPf2ra/XEMk9fXQ==
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:IA0PR11MB7307.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(376014)(366016)(23010399003)(1800799024)(6133799003)(56012099006)(4143699003)(11063799006)(38070700021)(22082099003)(18002099003);
+ DIR:OUT; SFP:1101; 
+x-ms-exchange-antispam-messagedata-chunkcount: 1
+x-ms-exchange-antispam-messagedata-0: =?us-ascii?Q?VIZXoG/KkZ5taWM44egElThlKi26csH5uspoQF25bHe/zTgrpedb4YECnMsj?=
+ =?us-ascii?Q?KQYwllHg849SaQMHRDJs2AHReKmv7x57XUr4yDdNTdm5ijyz9SLIvUjm9xQ4?=
+ =?us-ascii?Q?/OOB2aAQJXOZQEM14OTNZRT0bB6gvBgeyWTXQniwY9TwZW9Mq86dPAAd5BzS?=
+ =?us-ascii?Q?ziyN2pLVzsryTtbvyEAm4xa+JJAMpCxlPUqksyfP1SJ5ZeM4iqWI+4ICMZOo?=
+ =?us-ascii?Q?grYqLHUmYbUg+wXn00qqlXkKX6PYZgVr/z/FyhcKhPODouYPx/lb8jbKeiOc?=
+ =?us-ascii?Q?ko06/HfRHxxVHFg2vqAyrhR9hprjCdhxIt7p3b6EFuW3NXw6bOCJxhSKeiB+?=
+ =?us-ascii?Q?kmr5T9Ns/jP1xLaOWcwjALtwsdRmudb+29hhsESRqLnWgzzSzqIxpAKphojO?=
+ =?us-ascii?Q?Wdef91CzlJ7TVZMoV9uYrUSqgbu8+LcSlam0pU3XdfGqbw1dGEi3YQtEZCPX?=
+ =?us-ascii?Q?RDD02jHKQvCwbBs3nY82NqKeypNlhrwRom+7ZRvhS2GBYAteYYJze8VZuzst?=
+ =?us-ascii?Q?hZujSH1ow5TUQVuy0hEMCJ+O5mLKYj0U9T1FixXbmRhrHdycIObXfy58SzUo?=
+ =?us-ascii?Q?Np/jIkkCkrGyElmVOqtCe/zukTvq378zVD08LBcqzkUKpu1ARW40Rh3wCb0r?=
+ =?us-ascii?Q?RH1PWLY1hIM7J71uy7ZpJWXpT3bzd89pDYzMGBGN3zQkVnziLICzNJ72ycLj?=
+ =?us-ascii?Q?zKUrkxsYA9zik3+9vqlm3oKqSGb29FBBhorS50c78wwrly2DHcwH7NwFt2aK?=
+ =?us-ascii?Q?RA3bB72NPN0LXYi9IxFm+1nvug7r95ZT8SS2RUuC3MoUF6ywV75jkxHmPRdJ?=
+ =?us-ascii?Q?Jpz9gxzwrze1JStU9dDkT3IBW5S41LCqWM8UuRVd+uqWOSeYWXSHLxOHzhBv?=
+ =?us-ascii?Q?0iAX39IRq2Wcaw8eZ5aFwwGsUA8MD2jstmUuTf8EZP9rAalFLnrUx35HL0dz?=
+ =?us-ascii?Q?C4vQv1TdbQUksnzhWKbTvHWJF+xdLXBMD13DXGi3TtDTxZg24Nj1V2Y7vvLa?=
+ =?us-ascii?Q?3oscFf/VCpZ6fMxQaWN+LrFJSf5bl/6bptLBfY7pMULzh2LY4MCofixvgnO0?=
+ =?us-ascii?Q?cWK0vRt5vZPRyBzD+Vqi8mop2DjJRdc8Y8IVEqS0XxeENbZy/9dSB1U9OYpz?=
+ =?us-ascii?Q?jOjjglNYMh4iEFn0Iln7/toBjkyPUaIvMdDX1cc7wOGsjIN+kpA4aLKYF+1I?=
+ =?us-ascii?Q?cCAk248TVGWW1029uw+pLR+u4QlVYbybw1oAi+F7xFe/5azNPjqtjpVPjxii?=
+ =?us-ascii?Q?GCGH/Cu21S8ts9yd43vy7YL0QoPjTzdzbwKOeW2whM0W1tqz5LV6e0xegnKG?=
+ =?us-ascii?Q?iW7jqLKdznehdKBnVSvHWb0Gv9L5Tx3Fg88DL1kOB1oIrsCz3ws7BU5a7p3W?=
+ =?us-ascii?Q?OZA/qfrrR00T2JcalKnq5Wr6gH3l4VkKFLBiM4AfTV+kvaJ4T/KR3Z1b47o/?=
+ =?us-ascii?Q?iVeLq+N4rxA+g+nsh0+tz/KyvF4Q4aEwL3qR5KAAmG0LEFroT3R/+VsPI3Id?=
+ =?us-ascii?Q?e9cA2P/8ISMlmrDBvdHksi5OCFKK6JKA9c4ggdw8rEzya51t8ntTAgroOdas?=
+ =?us-ascii?Q?7UobQKI1hJTxGpbK3LixiOMhhyxDH0O9wZtEgnYldYMPqJx1lmWeoIFU/icU?=
+ =?us-ascii?Q?aDsRJChRaunzyOoZAmLd4w3cWpzwuFLix3+ntOXr9+4LId2Ese2elcaDPtiy?=
+ =?us-ascii?Q?YAJSMRAyKymKmBMmpS66FksuUef1iF12xhrM6yUB28lr98j3XGCuONPlHFLp?=
+ =?us-ascii?Q?JNLHt35HWw=3D=3D?=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-BeenThere: dri-devel@lists.freedesktop.org
+X-Exchange-RoutingPolicyChecked: oQL3LGl0Loj+spqzKMQs0KP0f11I4QaTn/NltFXOMg3zFLmuqCHRqBdIgn6vffYuFr6jlOhM+lYUVjE6sEkGQd+Qvz7j89L2BK7ESaDdDuN0tgYFf98K31I8VlpH9u5Xd/dg0X33eer+ywqgt5FChg4sDYoMa6HTVQ8onzcQXu/l2OiPLg9xCQYUvatTzd2MphpaQfTdgjKHESnKLmoaYdU8vFu7dbtHGkwyNHsDYdo41HtSyKbOkDEyiSzb/y27P1D0ZKqxvfwT+VtKnqrTJvYC03fJwoEXKmvRW5wFrTija6JeM+IC8CyNTCKMzlMzqQe53Gu5uvi/tlJDr7XNpg==
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: IA0PR11MB7307.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 73bf5203-6aed-42ad-79e2-08decb6a8fc1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jun 2026 05:46:07.1651 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: +fq8Y/9cEljREoD9L6HAKGBfBEiW039VWyD2ipFyTS25rRIwciqMq62U2RVcmeHqyJ9CkZhg+PNzymPkNV4abQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: PH0PR11MB9773
+X-OriginatorOrg: intel.com
+X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
-X-TUID: 7NPcR7iSv+G5
-X-BeenThere: intel-gfx@lists.freedesktop.org
 List-Id: Intel graphics driver community testing & development
  <intel-gfx.lists.freedesktop.org>
 List-Unsubscribe: <https://lists.freedesktop.org/mailman/options/intel-gfx>,
@@ -240,181 +170,295 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [4.89 / 15.00];
-	DMARC_POLICY_REJECT(2.00)[canonical.com : SPF not aligned (relaxed),reject];
-	DATE_IN_PAST(1.00)[31];
-	R_DKIM_REJECT(1.00)[gmail.com:s=20251104];
-	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [-2.31 / 15.00];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RECEIVED_HELO_LOCALHOST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[14];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:suraj.kandpal@intel.com,m:imre.deak@intel.com,m:arun.r.murthy@intel.com,m:ville.syrjala@linux.intel.com,m:ankit.k.nautiyal@intel.com,m:christopher.obbard@linaro.org,m:superm1@kernel.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,s:lists@lfdr.de];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[acelan.kao@canonical.com,intel-gfx-bounces@lists.freedesktop.org];
-	GREYLIST(0.00)[pass,meta];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch];
-	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp];
-	FROM_NEQ_ENVFROM(0.00)[acelan.kao@canonical.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[gmail.com:-];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[11]
+	TO_DN_SOME(0.00)[];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,gmail.com];
+	RCPT_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[arun.r.murthy@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3CC2569A249
+X-Rspamd-Queue-Id: 17F0A68C407
 
-Move the workaround for USB-C hubs/adapters with buggy firmware (where
-multi-byte AUX reads timeout but single-byte reads work) from the
-high-level drm_dp_dpcd_read_data() helper down into drm_dp_dpcd_read().
+> -----Original Message-----
+> From: Deak, Imre <imre.deak@intel.com>
+> Sent: Tuesday, June 2, 2026 7:09 PM
+> To: Murthy, Arun R <arun.r.murthy@intel.com>
+> Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; Step=
+hen
+> Fuhry <fuhrysteve@gmail.com>
+> Subject: Re: [PATCH] drm/i915/display: Refcount for fec enable/disable
+>=20
+> On Tue, Jun 02, 2026 at 04:35:42PM +0300, Murthy, Arun R wrote:
+> >
+> > > -----Original Message-----
+> > > From: Deak, Imre <imre.deak@intel.com>
+> > > Sent: Tuesday, June 2, 2026 4:17 PM
+> > > To: Murthy, Arun R <arun.r.murthy@intel.com>
+> > > Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org;
+> > > Stephen Fuhry <fuhrysteve@gmail.com>
+> > > Subject: Re: [PATCH] drm/i915/display: Refcount for fec
+> > > enable/disable
+> > >
+> > > On Mon, Jun 01, 2026 at 07:59:43PM +0530, Arun R Murthy wrote:
+> > > > The FEC_ENABLE bit is per port basis and is enabled/disabled on
+> > > > ddi pre_enable and post_disable. This fec is shared across the mst
+> > > > streams and can be enabled per stream basis as well.
+> > > > So have a refcount to track the usage of FEC and then
+> > > > enable/disable accordingly.
+> > > >
+> > > > Closes:
+> > > > https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
+> > > > Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
+> > > > Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
+> > > > ---
+> > > >  drivers/gpu/drm/i915/display/intel_ddi.c      | 66 +++++++++++++++=
+++++
+> > > >  drivers/gpu/drm/i915/display/intel_ddi.h      |  1 +
+> > > >  .../drm/i915/display/intel_display_types.h    | 12 ++++
+> > > >  .../drm/i915/display/intel_modeset_setup.c    |  6 ++
+> > > >  4 files changed, 85 insertions(+)
+> > > >
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > index 86520848892e..e12a3d6d6a67 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+> > > > @@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct
+> > > > intel_encoder
+> > > *encoder)
+> > > >  		encoder->disable_clock(encoder);  }
+> > > >
+> > > > +/**
+> > > > + * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcounts
+> > > > +from active CRTCs
+> > > > + * @display: display device
+> > > > + *
+> > > > + * intel_digital_port::fec_active_streams is the per-port
+> > > > +refcount that gates
+> > > > + * programming of the shared DP_TP_CTL_FEC_ENABLE bit. After
+> > > > +initial HW state
+> > > > + * readout (driver load, resume, GPU reset takeover), the
+> > > > +persistent
+> > > > + * crtc_state->fec_enable values reflect what HW currently has;
+> > > > +we need to
+> > > > + * align the refcount with that so the first paired disable
+> > > > +doesn't underflow
+> > > > + * and the next enable doesn't incorrectly skip programming the HW=
+ bit.
+> > > > + *
+> > > > + * Must be called once after intel_modeset_readout_hw_state(),
+> > > > +before any new
+> > > > + * modeset commit can run.
+> > > > + */
+> > > > +void intel_ddi_seed_fec_refcounts(struct intel_display *display) {
+> > > > +	struct intel_crtc *crtc;
+> > > > +
+> > > > +	for_each_intel_crtc(display->drm, crtc) {
+> > > > +		const struct intel_crtc_state *crtc_state =3D
+> > > > +			to_intel_crtc_state(crtc->base.state);
+> > > > +		struct intel_encoder *encoder;
+> > > > +
+> > > > +		if (!crtc_state->hw.active || !crtc_state->fec_enable)
+> > > > +			continue;
+> > > > +
+> > > > +		for_each_intel_encoder(display->drm, encoder) {
+> > > > +			struct intel_digital_port *dig_port;
+> > > > +
+> > > > +			if (encoder->base.crtc !=3D &crtc->base)
+> > > > +				continue;
+> > > > +			if (!intel_encoder_is_dig_port(encoder))
+> > > > +				continue;
+> > > > +
+> > > > +			dig_port =3D enc_to_dig_port(encoder);
+> > > > +			dig_port->fec_active_streams++;
+> > > > +			break;
+> > > > +		}
+> > > > +	}
+> > > > +}
+> > > > +
+> > > >  void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder
+> > > > *encoder)  {
+> > > >  	struct intel_display *display =3D to_intel_display(encoder); @@
+> > > > -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct
+> > > > intel_encoder
+> > > *encoder,
+> > > >  				 const struct intel_crtc_state *crtc_state)  {
+> > > >  	struct intel_display *display =3D to_intel_display(encoder);
+> > > > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > > >  	int i;
+> > > >  	int ret;
+> > > >
+> > > >  	if (!crtc_state->fec_enable)
+> > > >  		return;
+> > > >
+> > > > +	/*
+> > > > +	 * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port while
+> > > > +	 * crtc_state->fec_enable is per-stream. For DP MST, several stre=
+ams
+> > > > +	 * on this port share the bit. Only program HW on the first strea=
+m
+> > > > +	 * needing FEC; subsequent streams just bump the refcount.
+> > > > +	 */
+> > > > +	if (dig_port->fec_active_streams++ > 0)
+> > > > +		return;
+> > >
+> > > This doesn't make sense to me. FEC is enabled for the MST link and
+> > > if it's enabled then fec_enabled is set in the crtc_state for all
+> > > the streams in the MST topology. intel_ddi_enable_fec() will be
+> > > called only for the first MST stream being enabled and
+> > > intel_ddi_disable_fec() will be called only for the last MST stream
+> > > being disabled. So I don't see why the above refcounting would be nee=
+ded.
+> >
+> > The  logs mentioned in the above listed gitlab issue shows mismatch in
+> > fec enable/disable in the MST scenario. Hence added this refcount
+> > logic to overcome the mismatch.
+>=20
+> The root cause for the mismatch should be better understood then. I still=
+ think
+> that it's something else than the lack of refcounting.
+>=20
+FEC is a link-wide property: DP_TP_CTL_FEC_ENABLE is a per-port HW bit
+while crtc_state->fec_enable is per-stream. With DP MST several streams
+share the same port, so if any sibling stream needs FEC the per-port HW
+bit is on for every sibling. If sibling crtc_states disagree the
+following two symptoms appear(based on the 2 gitlab issues around the fec):
 
-This ensures all direct and indirect callers of drm_dp_dpcd_read()
-benefit from the fallback mechanism, and restores the original clean
-semantics and layout of include/drm/display/drm_dp_helper.h.
+- intel_pipe_config_compare() rejects fastset on the sibling whose new
+  crtc_state->fec_enable disagrees with the old (HW) value
+   forcing an unnecessary full modeset.
+- verify_crtc_state() after commit reports a fec_enable mismatch
+  because the per-port HW bit is read back into every sibling's hw state.
 
-Also, avoid using drm_dp_dpcd_readb() in the fallback loop since it may
-return 0 when the underlying transfer returns no bytes, which would be
-silently treated as success. Instead, call drm_dp_dpcd_read_byte() which
-goes through drm_dp_dpcd_read_data() and maps a short transfer to
--EPROTO; check err < 0 to catch all failure cases.
+Along with this refcount will have to unify the fec handling across the mst=
+ streams.
+This unify will be done by pulling the non-active state(mst stream not part=
+ of the atomic commit, but is a sibling of the mst stream) and then will be=
+ a OR operation across the mst streams.
+Will be pushing a patch implementing this as well.
 
-Fixes: a8f49a004301 ("drm/dp: Add byte-by-byte fallback for broken USB-C adapters")
-Signed-off-by: Chia-Lin Kao (AceLan) <acelan.kao@canonical.com>
----
- drivers/gpu/drm/display/drm_dp_helper.c | 21 +++++++++
- include/drm/display/drm_dp_helper.h     | 57 +++++++++----------------
- 2 files changed, 41 insertions(+), 37 deletions(-)
-
-diff --git a/drivers/gpu/drm/display/drm_dp_helper.c b/drivers/gpu/drm/display/drm_dp_helper.c
-index 9c31e14cc413b..d14a8b40a1f17 100644
---- a/drivers/gpu/drm/display/drm_dp_helper.c
-+++ b/drivers/gpu/drm/display/drm_dp_helper.c
-@@ -762,6 +762,27 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
- 		ret = drm_dp_dpcd_access(aux, DP_AUX_NATIVE_READ, offset,
- 					 buffer, size);
- 
-+	if (ret < 0 && size > 1) {
-+		size_t i;
-+		u8 *buf = buffer;
-+		int err;
-+
-+		/*
-+		 * Workaround for USB-C hubs/adapters with buggy firmware that fail
-+		 * multi-byte AUX reads but work with single-byte reads.
-+		 * Known affected devices:
-+		 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
-+		 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
-+		 * Attempt byte-by-byte reading as a fallback.
-+		 */
-+		for (i = 0; i < size; i++) {
-+			err = drm_dp_dpcd_read_byte(aux, offset + i, &buf[i]);
-+			if (err < 0)
-+				return err;
-+		}
-+		ret = size;
-+	}
-+
- 	drm_dp_dump_access(aux, DP_AUX_NATIVE_READ, offset, buffer, ret);
- 	return ret;
- }
-diff --git a/include/drm/display/drm_dp_helper.h b/include/drm/display/drm_dp_helper.h
-index 8c2d77a032f06..0126fb8080ab8 100644
---- a/include/drm/display/drm_dp_helper.h
-+++ b/include/drm/display/drm_dp_helper.h
-@@ -555,22 +555,6 @@ ssize_t drm_dp_dpcd_read(struct drm_dp_aux *aux, unsigned int offset,
- ssize_t drm_dp_dpcd_write(struct drm_dp_aux *aux, unsigned int offset,
- 			  void *buffer, size_t size);
- 
--/**
-- * drm_dp_dpcd_readb() - read a single byte from the DPCD
-- * @aux: DisplayPort AUX channel
-- * @offset: address of the register to read
-- * @valuep: location where the value of the register will be stored
-- *
-- * Returns the number of bytes transferred (1) on success, or a negative
-- * error code on failure. In most of the cases you should be using
-- * drm_dp_dpcd_read_byte() instead.
-- */
--static inline ssize_t drm_dp_dpcd_readb(struct drm_dp_aux *aux,
--					unsigned int offset, u8 *valuep)
--{
--	return drm_dp_dpcd_read(aux, offset, valuep, 1);
--}
--
- /**
-  * drm_dp_dpcd_read_data() - read a series of bytes from the DPCD
-  * @aux: DisplayPort AUX channel (SST or MST)
-@@ -590,29 +574,12 @@ static inline int drm_dp_dpcd_read_data(struct drm_dp_aux *aux,
- 					void *buffer, size_t size)
- {
- 	int ret;
--	size_t i;
--	u8 *buf = buffer;
- 
- 	ret = drm_dp_dpcd_read(aux, offset, buffer, size);
--	if (ret >= 0) {
--		if (ret < size)
--			return -EPROTO;
--		return 0;
--	}
--
--	/*
--	 * Workaround for USB-C hubs/adapters with buggy firmware that fail
--	 * multi-byte AUX reads but work with single-byte reads.
--	 * Known affected devices:
--	 * - Lenovo USB-C to VGA adapter (VIA VL817, idVendor=17ef, idProduct=7217)
--	 * - Dell DA310 USB-C hub (idVendor=413c, idProduct=c010)
--	 * Attempt byte-by-byte reading as a fallback.
--	 */
--	for (i = 0; i < size; i++) {
--		ret = drm_dp_dpcd_readb(aux, offset + i, &buf[i]);
--		if (ret < 0)
--			return ret;
--	}
-+	if (ret < 0)
-+		return ret;
-+	if (ret < size)
-+		return -EPROTO;
- 
- 	return 0;
- }
-@@ -646,6 +613,22 @@ static inline int drm_dp_dpcd_write_data(struct drm_dp_aux *aux,
- 	return 0;
- }
- 
-+/**
-+ * drm_dp_dpcd_readb() - read a single byte from the DPCD
-+ * @aux: DisplayPort AUX channel
-+ * @offset: address of the register to read
-+ * @valuep: location where the value of the register will be stored
-+ *
-+ * Returns the number of bytes transferred (1) on success, or a negative
-+ * error code on failure. In most of the cases you should be using
-+ * drm_dp_dpcd_read_byte() instead.
-+ */
-+static inline ssize_t drm_dp_dpcd_readb(struct drm_dp_aux *aux,
-+					unsigned int offset, u8 *valuep)
-+{
-+	return drm_dp_dpcd_read(aux, offset, valuep, 1);
-+}
-+
- /**
-  * drm_dp_dpcd_writeb() - write a single byte to the DPCD
-  * @aux: DisplayPort AUX channel
--- 
-2.53.0
-
+Thanks and Regards,
+Arun R Murthy
+--------------------
+> > Thanks and Regards,
+> > Arun R Murthy
+> > --------------------
+> > > > +
+> > > >  	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+> > > >  		     0, DP_TP_CTL_FEC_ENABLE);
+> > > >
+> > > > @@ -2454,10 +2505,25 @@ static void intel_ddi_disable_fec(struct
+> > > intel_encoder *encoder,
+> > > >  				  const struct intel_crtc_state *crtc_state)  {
+> > > >  	struct intel_display *display =3D to_intel_display(encoder);
+> > > > +	struct intel_digital_port *dig_port =3D enc_to_dig_port(encoder);
+> > > >
+> > > >  	if (!crtc_state->fec_enable)
+> > > >  		return;
+> > > >
+> > > > +	/*
+> > > > +	 * FEC is a link-wide property and DP_TP_CTL_FEC_ENABLE is a per-=
+port
+> > > > +	 * register, but crtc_state->fec_enable is per-stream. For DP MST=
+,
+> > > > +	 * multiple streams on the same port share this bit. Refcount the
+> > > > +	 * active FEC users on the port and only clear the HW bit when th=
+e
+> > > > +	 * last user goes away, otherwise tearing down one MST stream wou=
+ld
+> > > > +	 * disable FEC for sibling streams still using it.
+> > > > +	 */
+> > > > +	if (drm_WARN_ON(display->drm, dig_port->fec_active_streams <=3D 0=
+))
+> > > > +		return;
+> > > > +
+> > > > +	if (--dig_port->fec_active_streams > 0)
+> > > > +		return;
+> > > > +
+> > > >  	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+> > > >  		     DP_TP_CTL_FEC_ENABLE, 0);
+> > > >  	intel_de_posting_read(display, dp_tp_ctl_reg(encoder,
+> > > > crtc_state)); diff --git
+> > > > a/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > b/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > index 580ecb09b8b6..3678c28a0dc9 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+> > > > @@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct
+> > > > intel_encoder
+> > > *intel_encoder,
+> > > >  			       enum transcoder cpu_transcoder,
+> > > >  			       bool enable, u32 hdcp_mask);  void
+> > > > intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder
+> > > > *encoder);
+> > > > +void intel_ddi_seed_fec_refcounts(struct intel_display *display);
+> > > >  int intel_ddi_level(struct intel_encoder *encoder,
+> > > >  		    const struct intel_crtc_state *crtc_state,
+> > > >  		    int lane);
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > index f44be5c689ae..84bd0d993197 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+> > > > @@ -1987,6 +1987,18 @@ struct intel_digital_port {
+> > > >  	struct ref_tracker *ddi_io_wakeref;
+> > > >  	struct ref_tracker *aux_wakeref;
+> > > >
+> > > > +	/*
+> > > > +	 * Number of active streams on this port currently using FEC.
+> > > > +	 *
+> > > > +	 * DP_TP_CTL_FEC_ENABLE is a per-port (link-wide) HW bit, but
+> > > > +	 * crtc_state->fec_enable is per-stream. For DP MST several strea=
+ms
+> > > > +	 * share the same port and therefore the same FEC enable bit. Tra=
+ck
+> > > > +	 * how many active streams want FEC so that the HW bit is only
+> > > > +	 * programmed on the first enable and only cleared on the last
+> > > > +	 * disable. Modified under the modeset locks.
+> > > > +	 */
+> > > > +	int fec_active_streams;
+> > > > +
+> > > >  	struct intel_tc_port *tc;
+> > > >
+> > > >  	struct {
+> > > > diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > index e88082c8caac..14f038b8ef81 100644
+> > > > --- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > +++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+> > > > @@ -950,6 +950,12 @@ void intel_modeset_setup_hw_state(struct
+> > > > intel_display *display,
+> > > >
+> > > >  	intel_modeset_readout_hw_state(display);
+> > > >
+> > > > +	/*
+> > > > +	 * Seed per-port FEC refcounts from the just-populated active
+> > > > +	 * crtc_states before anything can issue an enable/disable.
+> > > > +	 */
+> > > > +	intel_ddi_seed_fec_refcounts(display);
+> > > > +
+> > > >  	/* HW state is read out, now we need to sanitize this mess. */
+> > > >  	get_encoder_power_domains(display);
+> > > >
+> > > > --
+> > > > 2.25.1
+> > > >
