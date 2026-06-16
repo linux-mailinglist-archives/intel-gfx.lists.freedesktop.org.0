@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zdGQDYDqMGrNYgUAu9opvQ
+	id XrYFH4PqMGrPYgUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:36 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B5E5168C708
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B094968C710
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 08:17:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Aq6Z81I7;
+	dkim=pass header.d=intel.com header.s=Intel header.b=iaoK2kIY;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4844E10E83B;
-	Tue, 16 Jun 2026 06:17:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 42B6E10E84A;
+	Tue, 16 Jun 2026 06:17:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8DB9410E83B;
- Tue, 16 Jun 2026 06:17:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5E63910E83F;
+ Tue, 16 Jun 2026 06:17:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781590652; x=1813126652;
+ t=1781590654; x=1813126654;
  h=from:date:subject:mime-version:content-transfer-encoding:
  message-id:references:in-reply-to:to:cc;
- bh=/XGrpxPGb55IpTx7akQQugcWr2GN9ixap6aMES0KxIk=;
- b=Aq6Z81I7vhMfptIrx5JE13L+aMgNfMPJRLzB5WvIXBqdQpPMelq50j6i
- dqlAo9cKenRjyxRkFvoE58fktpZn8UWuG7ig2IgbJ0zoAhcyG27jsZrkj
- X9k78Cndy1EdCcpjNWhnRvagJA+APXobt6M7qDiw3mffO7VMZ7Sq4iafE
- hGZ1Zrrc+NdAYYCs5rQWsbs2KmEEfABiu+a2b9AB8t1rhOgz1MhfFUkXj
- CrkKiThhNV1WWBM0S1bDsRgAOmkuKlUR7SY4q6YtEHNywL4Ez8lLrLjnQ
- IlOU85RXYmC1sc3VZ/kgEMjTSdEuVJj9ndm177NR3O08AJwoNMxFLuLZS A==;
-X-CSE-ConnectionGUID: usu+tGJYQ3uzATS3FmqrgA==
-X-CSE-MsgGUID: 5tJCdcQ1TFKnK3Phm9Lnyg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82088145"
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82088145"
+ bh=vakdS0RWKPdZjULWL/DtdhjQ54nVs6GvcshDC3opdUo=;
+ b=iaoK2kIYFHKNfvHqwYIdJFRbEVNiLYwpExWcTHNYi4EsyEri2uoeRvTr
+ oFi9RnnM5CABxP38tubUhr7MQdExoi9DzV09pARsjIszGvZWldHh7Sl5a
+ peNMuYH4WCn4Qa9NZbS2iiudFfSPvzNdhx5K+hxIyKG7Ktd+k4/1/J4Q9
+ CpQpVzow9xNg/Wvy8y7aB4sI/zdmmgY01qIbX567Hgn/hosFZlJtGHFXf
+ XTTRGW/zmyvvnIL3AaO7/rIsGXqtaBe5S2m0hJhfZ6W5YGCC0N0EdHqxr
+ HVuaWfHkiVUN7W19GylEZdm2IJdMw04tRG6aRz2A4c48sA1wRgKwRm47z A==;
+X-CSE-ConnectionGUID: hzw1yD1SSkyG+yALW3d2ow==
+X-CSE-MsgGUID: BCwdY4BARsK5wokupdldmQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="82088152"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="82088152"
 Received: from orviesa004.jf.intel.com ([10.64.159.144])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 15 Jun 2026 23:17:32 -0700
-X-CSE-ConnectionGUID: BE64fp1eTlyaDsFN+y5xig==
-X-CSE-MsgGUID: ArUsgMj/SdCJ4Hu2ES9qmA==
+ 15 Jun 2026 23:17:34 -0700
+X-CSE-ConnectionGUID: uGqHe/mrRE+NP/4hiQjVjQ==
+X-CSE-MsgGUID: JY8W8yXFQMKp1LAnDjMYbA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="251973659"
+X-IronPort-AV: E=Sophos;i="6.24,207,1774335600"; d="scan'208";a="251973669"
 Received: from srr4-3-linux-106-armuthy.iind.intel.com ([10.190.238.56])
- by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 23:17:31 -0700
+ by orviesa004.jf.intel.com with ESMTP; 15 Jun 2026 23:17:33 -0700
 From: Arun R Murthy <arun.r.murthy@intel.com>
-Date: Tue, 16 Jun 2026 11:45:51 +0530
-Subject: [PATCH v2 1/2] drm/i915/mst: Unify fec_enable across mst streams
+Date: Tue, 16 Jun 2026 11:45:52 +0530
+Subject: [PATCH v2 2/2] drm/i915/display: Refcount for fec enable/disable
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260616-fec-v2-1-49a22680138c@intel.com>
+Message-Id: <20260616-fec-v2-2-49a22680138c@intel.com>
 References: <20260616-fec-v2-0-49a22680138c@intel.com>
 In-Reply-To: <20260616-fec-v2-0-49a22680138c@intel.com>
 To: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
@@ -98,133 +98,162 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B5E5168C708
+X-Rspamd-Queue-Id: B094968C710
 
-FEC is a link-wide property: DP_TP_CTL_FEC_ENABLE is a per-port HW bit
-while crtc_state->fec_enable is per-stream. With DP MST several streams
-share the same port, so if any sibling stream needs FEC the per-port HW
-bit is on for every sibling. If sibling crtc_states disagree the
-following two symptoms appear:
-
-- intel_pipe_config_compare() rejects fastset on the sibling whose new
-  crtc_state->fec_enable disagrees with the old (HW) value
-  ("fastset requirement not met in fec_enable"), forcing an
-  unnecessary full modeset.
-- verify_crtc_state() after commit reports a fec_enable mismatch
-  ("[CRTC:..] mismatch in fec_enable (expected no, found yes)") because
-  the per-port HW bit is read back into every sibling's hw state.
-
-Walk every MST connector on @mst_mgr, pulling currently-active siblings
-into @state if they are not already in it (covers the case where the
-user's commit touches only a subset of MST streams on the link). Then OR
-all sibling fec_enable values together and write the unified result back
-into every sibling crtc_state. The unification only widens
-(false -> true), never narrows, so a stream that genuinely needs FEC
-keeps it.
-
-This runs from intel_dp_mst_atomic_check_link(), which is invoked after
-intel_atomic_check_config_and_link() has finished all per-stream
-compute_config and compute_config_late passes but before
-intel_crtc_check_fastset() and the post-commit verify, so the unified
-value is visible to both checks.
+The FEC_ENABLE bit is per port basis and is enabled/disabled on ddi
+pre_enable and post_disable. This fec is shared across the mst streams
+and can be enabled per stream basis as well.
+So have a refcount to track the usage of FEC and then enable/disable
+accordingly.
 
 Closes: https://gitlab.freedesktop.org/drm/i915/kernel/-/work_items/16073
 Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
 Tested-by: Stephen Fuhry <fuhrysteve@gmail.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 70 +++++++++++++++++++++++++++++
- 1 file changed, 70 insertions(+)
+ drivers/gpu/drm/i915/display/intel_ddi.c           | 58 ++++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_ddi.h           |  1 +
+ drivers/gpu/drm/i915/display/intel_display_types.h |  3 ++
+ drivers/gpu/drm/i915/display/intel_modeset_setup.c |  6 +++
+ 4 files changed, 68 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index bcdc504913471a1ac7d255cde49a907c9f3d88a6..d487f1c90dcd2671754e6c6f28f207f32ace9ee2 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -881,6 +881,72 @@ static int intel_dp_mst_check_bw(struct intel_atomic_state *state,
- 	return ret ? : -EAGAIN;
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
+index 25314ec65ae77b91bf4d732c229f236d070e18cc..477a11a63fe8f8d6731905be21de34dcbaa895b5 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.c
++++ b/drivers/gpu/drm/i915/display/intel_ddi.c
+@@ -2096,6 +2096,47 @@ void intel_ddi_disable_clock(struct intel_encoder *encoder)
+ 		encoder->disable_clock(encoder);
  }
  
-+/*
-+ * Unify crtc_state->fec_enable across every MST sibling stream on @mst_mgr.
++/**
++ * intel_ddi_seed_fec_refcounts - Seed per-port FEC refcounts from active CRTCs
++ * @display: display device
++ *
++ * intel_digital_port::fec_active_streams is the per-port refcount that gates
++ * programming of the shared DP_TP_CTL_FEC_ENABLE bit. After initial HW state
++ * readout (driver load, resume, GPU reset takeover), the persistent
++ * crtc_state->fec_enable values reflect what HW currently has; we need to
++ * align the refcount with that so the first paired disable doesn't underflow
++ * and the next enable doesn't incorrectly skip programming the HW bit.
++ *
++ * Must be called once after intel_modeset_readout_hw_state(), before any new
++ * modeset commit can run.
 + */
-+static int intel_dp_mst_unify_fec_enable(struct intel_atomic_state *state,
-+					 struct drm_dp_mst_topology_mgr *mst_mgr)
++void intel_ddi_seed_fec_refcounts(struct intel_display *display)
 +{
-+	struct intel_display *display = to_intel_display(state);
-+	struct drm_connector_list_iter connector_list_iter;
-+	struct intel_connector *connector;
-+	struct intel_crtc *crtcs[I915_MAX_PIPES];
-+	int n_crtcs = 0;
-+	bool need_fec = false;
-+	int ret = 0;
-+	int i;
++	struct intel_crtc *crtc;
 +
-+	drm_connector_list_iter_begin(display->drm, &connector_list_iter);
-+	for_each_intel_connector_iter(connector, &connector_list_iter) {
-+		struct intel_digital_connector_state *conn_state;
-+		struct intel_crtc_state *crtc_state;
-+		struct intel_crtc *crtc;
++	for_each_intel_crtc(display, crtc) {
++		const struct intel_crtc_state *crtc_state =
++			to_intel_crtc_state(crtc->base.state);
++		struct intel_encoder *encoder;
 +
-+		if (&connector->mst.dp->mst.mgr != mst_mgr)
++		if (!crtc_state->hw.active || !crtc_state->fec_enable)
 +			continue;
 +
-+		conn_state = intel_atomic_get_digital_connector_state(state,
-+								      connector);
-+		if (IS_ERR(conn_state)) {
-+			ret = PTR_ERR(conn_state);
++		for_each_intel_encoder(display->drm, encoder) {
++			struct intel_digital_port *dig_port;
++
++			if (encoder->base.crtc != &crtc->base)
++				continue;
++			if (!intel_encoder_is_dig_port(encoder))
++				continue;
++
++			dig_port = enc_to_dig_port(encoder);
++			dig_port->fec_active_streams++;
 +			break;
 +		}
-+
-+		if (!conn_state->base.crtc)
-+			continue;
-+
-+		crtc = to_intel_crtc(conn_state->base.crtc);
-+		crtc_state = intel_atomic_get_crtc_state(&state->base, crtc);
-+		if (IS_ERR(crtc_state)) {
-+			ret = PTR_ERR(crtc_state);
-+			break;
-+		}
-+
-+		if (!crtc_state->hw.active)
-+			continue;
-+
-+		if (drm_WARN_ON(display->drm, n_crtcs >= ARRAY_SIZE(crtcs)))
-+			break;
-+
-+		crtcs[n_crtcs++] = crtc;
-+		if (crtc_state->fec_enable)
-+			need_fec = true;
 +	}
-+	drm_connector_list_iter_end(&connector_list_iter);
-+
-+	if (ret || !need_fec)
-+		return ret;
-+
-+	for (i = 0; i < n_crtcs; i++) {
-+		struct intel_crtc_state *crtc_state =
-+			intel_atomic_get_new_crtc_state(state, crtcs[i]);
-+
-+		crtc_state->fec_enable = true;
-+	}
-+
-+	return 0;
 +}
 +
- /**
-  * intel_dp_mst_atomic_check_link - check all modeset MST link configuration
-  * @state: intel atomic state
-@@ -908,6 +974,10 @@ int intel_dp_mst_atomic_check_link(struct intel_atomic_state *state,
+ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+@@ -2413,12 +2454,22 @@ static void intel_ddi_enable_fec(struct intel_encoder *encoder,
+ 				 const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
  	int i;
+ 	int ret;
  
- 	for_each_new_mst_mgr_in_state(&state->base, mgr, mst_state, i) {
-+		ret = intel_dp_mst_unify_fec_enable(state, mgr);
-+		if (ret)
-+			return ret;
+ 	if (!crtc_state->fec_enable)
+ 		return;
+ 
++	/*
++	 * FEC is link-wide: DP_TP_CTL_FEC_ENABLE is per-port while
++	 * crtc_state->fec_enable is per-stream. For DP MST, several streams
++	 * on this port share the bit. Only program HW on the first stream
++	 * needing FEC; subsequent streams just bump the refcount.
++	 */
++	if (dig_port->fec_active_streams++ > 0)
++		return;
 +
- 		ret = intel_dp_mst_check_dsc_change(state, mgr, limits);
- 		if (ret)
- 			return ret;
+ 	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+ 		     0, DP_TP_CTL_FEC_ENABLE);
+ 
+@@ -2454,10 +2505,17 @@ static void intel_ddi_disable_fec(struct intel_encoder *encoder,
+ 				  const struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
++	struct intel_digital_port *dig_port = enc_to_dig_port(encoder);
+ 
+ 	if (!crtc_state->fec_enable)
+ 		return;
+ 
++	if (drm_WARN_ON(display->drm, dig_port->fec_active_streams <= 0))
++		return;
++
++	if (--dig_port->fec_active_streams > 0)
++		return;
++
+ 	intel_de_rmw(display, dp_tp_ctl_reg(encoder, crtc_state),
+ 		     DP_TP_CTL_FEC_ENABLE, 0);
+ 	intel_de_posting_read(display, dp_tp_ctl_reg(encoder, crtc_state));
+diff --git a/drivers/gpu/drm/i915/display/intel_ddi.h b/drivers/gpu/drm/i915/display/intel_ddi.h
+index 580ecb09b8b606e07445c7e26142a2fcfa69a2d2..3678c28a0dc952d4962428893c519fb7d41e4422 100644
+--- a/drivers/gpu/drm/i915/display/intel_ddi.h
++++ b/drivers/gpu/drm/i915/display/intel_ddi.h
+@@ -78,6 +78,7 @@ int intel_ddi_toggle_hdcp_bits(struct intel_encoder *intel_encoder,
+ 			       enum transcoder cpu_transcoder,
+ 			       bool enable, u32 hdcp_mask);
+ void intel_ddi_sanitize_encoder_pll_mapping(struct intel_encoder *encoder);
++void intel_ddi_seed_fec_refcounts(struct intel_display *display);
+ int intel_ddi_level(struct intel_encoder *encoder,
+ 		    const struct intel_crtc_state *crtc_state,
+ 		    int lane);
+diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
+index aa4772a1c208e4cb4bb6f51dc0dcc2349e422dd0..276d4cc21d6ecdd8c17777608e59223d9f49c554 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_types.h
++++ b/drivers/gpu/drm/i915/display/intel_display_types.h
+@@ -1989,6 +1989,9 @@ struct intel_digital_port {
+ 	struct ref_tracker *ddi_io_wakeref;
+ 	struct ref_tracker *aux_wakeref;
+ 
++	/* Number of active streams on this port currently using FEC */
++	int fec_active_streams;
++
+ 	struct intel_tc_port *tc;
+ 
+ 	struct {
+diff --git a/drivers/gpu/drm/i915/display/intel_modeset_setup.c b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+index e8730b5baf2a4bd2e5edfc5fc8fd2622a57d2a4e..4b6abcb1dd928ab2bc9b17f0521db78ebb6ef586 100644
+--- a/drivers/gpu/drm/i915/display/intel_modeset_setup.c
++++ b/drivers/gpu/drm/i915/display/intel_modeset_setup.c
+@@ -952,6 +952,12 @@ void intel_modeset_setup_hw_state(struct intel_display *display,
+ 
+ 	intel_modeset_readout_hw_state(display);
+ 
++	/*
++	 * Seed per-port FEC refcounts from the just-populated active
++	 * crtc_states before anything can issue an enable/disable.
++	 */
++	intel_ddi_seed_fec_refcounts(display);
++
+ 	/* HW state is read out, now we need to sanitize this mess. */
+ 	get_encoder_power_domains(display);
+ 
 
 -- 
 2.25.1
