@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SL5rIoNFMWo/fwUAu9opvQ
+	id uUS2GoRFMWpAfwUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5762F68F834
-	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3815D68F837
+	for <lists+intel-gfx@lfdr.de>; Tue, 16 Jun 2026 14:45:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Fr2fQ7Hx;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Y60JOVZR;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D18E310EB28;
-	Tue, 16 Jun 2026 12:45:53 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9569410EB31;
+	Tue, 16 Jun 2026 12:45:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4E0BC10EB2E;
- Tue, 16 Jun 2026 12:45:52 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8BA3C10EB28;
+ Tue, 16 Jun 2026 12:45:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781613952; x=1813149952;
+ t=1781613953; x=1813149953;
  h=from:to:subject:date:message-id:in-reply-to:references:
  mime-version:content-transfer-encoding;
- bh=CmLmXM37YZQAUNc26P0DWBhkoIDUS7J4kTHrtaSpXwI=;
- b=Fr2fQ7HxDezzvkziNfkUO8ZzBbwmKU9zzWZpIIAS6i0RBVUf7/oXrEF1
- DBJnJw7QvsxTS3/syPagMsE3SjcuoK5gkM+8r4etWgGy3K3HZKh2kkSfJ
- QVQHZcNc6y5bXpZU8XUOVkXNYDkiNhrFsVIhVnDqiMoceVHCmTjPEHrjJ
- p00uZyi2i9hMBhlBwwSMvHgZsfnLT+4fju/Vxt5M1XyKGJjqpjtktxHEn
- l6RBbKFmDCGncjxVUEhVJTLUjD7dUkY7K8MbgN3ZEEoCrmh3+XOj0D4Ds
- w3beZ0HENXemgSau/wZS78pYlB4VdsHtTfSd+qOL8yQJMoZmXmc/1KQ+x g==;
-X-CSE-ConnectionGUID: /+7BX4VwQjKxKog7mDMLBQ==
-X-CSE-MsgGUID: 2f+XmCKwRdmwC6BT7wQ+Bw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513270"
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513270"
+ bh=E5Ytt8VuR5xUZZ1ZiMuTLN9GoyoURWZbnOiO6+ZgV3Y=;
+ b=Y60JOVZRlVRRkshfgm1PQyXI2+4cgXJK+72uXmgqlNoeLFPXqUNHJWLy
+ pR7Ciafi51fOZfPfG6cbMd2d34f7AZoQCk2GpgYiDg4lkZuHvMGsPW7j/
+ Y4jLf3YzHUoHLqTlIydYoOC1kXdyiK6GwvbLlZo8gw1txk03wUO1Ii2ES
+ O7eo/kTE6hXqGEHJuuF2xAOp9hlyDd1/amFWgfMr1+dxjW1GfBkO3gpvS
+ EVQZVp+89RvpfyXUqy2GzsVpIX18nSLaJcWDwmMqwwFNJF7UNB664mMgd
+ PeU8s35bM+6GaxlSwk/+ofV4CcE+oZbjsHIMtCTFXYmWr9UOWdQYFfCsN A==;
+X-CSE-ConnectionGUID: ZXhmCzw4SkmJRDHamE6IXQ==
+X-CSE-MsgGUID: oQkIaoZDSvWve3OPPr7IgA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11818"; a="81513274"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="81513274"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa112.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:45:52 -0700
-X-CSE-ConnectionGUID: j3DLj5CpQLuZDtUkVthuCw==
-X-CSE-MsgGUID: CxQeSfKrSjG9BQBm8Bof+g==
+ 16 Jun 2026 05:45:53 -0700
+X-CSE-ConnectionGUID: pGsEYavcStSN/lycfCE+Jw==
+X-CSE-MsgGUID: UIgRakm/TOGvFXQJRodxnA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876360"
+X-IronPort-AV: E=Sophos;i="6.24,208,1774335600"; d="scan'208";a="244876362"
 Received: from dibin-nuc7i7bnh.iind.intel.com ([10.190.239.19])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 16 Jun 2026 05:45:51 -0700
+ 16 Jun 2026 05:45:52 -0700
 From: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Subject: [CI v4 27/39] drm/i915/display: Add HAS_DC3CO() macro
-Date: Tue, 16 Jun 2026 18:14:03 +0530
-Message-ID: <20260616124416.2442161-28-dibin.moolakadan.subrahmanian@intel.com>
+Subject: [CI v4 28/39] drm/i915/display: Add DC3CO support check
+Date: Tue, 16 Jun 2026 18:14:04 +0530
+Message-ID: <20260616124416.2442161-29-dibin.moolakadan.subrahmanian@intel.com>
 X-Mailer: git-send-email 2.43.0
 In-Reply-To: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
 References: <20260616124416.2442161-1-dibin.moolakadan.subrahmanian@intel.com>
@@ -99,30 +99,54 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5762F68F834
+X-Rspamd-Queue-Id: 3815D68F837
 
-Add HAS_DC3CO() to identify platforms supporting DC3CO.
-DC3CO is supported from display version 35 onwards.
+Add intel_display_power_dc3co_supported() helper to query DC3CO
+support from allowed_dc_mask.
 
-BSpec: 75253
+Changes in v5:
+- Add HAS_DC3CO() check to intel_display_power_dc3co_supported().
+
 Signed-off-by: Dibin Moolakadan Subrahmanian <dibin.moolakadan.subrahmanian@intel.com>
 Reviewed-by: Uma Shankar <uma.shankar@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_device.h | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/gpu/drm/i915/display/intel_display_power.c | 10 ++++++++++
+ drivers/gpu/drm/i915/display/intel_display_power.h |  1 +
+ 2 files changed, 11 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_device.h b/drivers/gpu/drm/i915/display/intel_display_device.h
-index acb9ca87dda7..f77b3da2cff5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_device.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_device.h
-@@ -159,6 +159,7 @@ struct intel_display_platforms {
- #define HAS_CUR_FBC(__display)		(!HAS_GMCH(__display) && IS_DISPLAY_VER(__display, 7, 13))
- #define HAS_D12_PLANE_MINIMIZATION(__display)	((__display)->platform.rocketlake || (__display)->platform.alderlake_s)
- #define HAS_DBUF_OVERLAP_DETECTION(__display)	(DISPLAY_RUNTIME_INFO(__display)->has_dbuf_overlap_detection)
-+#define HAS_DC3CO(__display)		(DISPLAY_VER(__display) >= 35)
- #define HAS_DDI(__display)		(DISPLAY_INFO(__display)->has_ddi)
- #define HAS_DISPLAY(__display)		(DISPLAY_RUNTIME_INFO(__display)->pipe_mask != 0)
- #define HAS_DMC(__display)		(DISPLAY_RUNTIME_INFO(__display)->has_dmc)
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.c b/drivers/gpu/drm/i915/display/intel_display_power.c
+index e313d719fea1..9e66f9a4fcdc 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.c
++++ b/drivers/gpu/drm/i915/display/intel_display_power.c
+@@ -381,6 +381,16 @@ u32 intel_display_power_get_current_dc_state(struct intel_display *display)
+ 	return current_dc_state;
+ }
+ 
++bool intel_display_power_dc3co_supported(struct intel_display *display)
++{
++	struct i915_power_domains *power_domains = &display->power.domains;
++
++	if (!HAS_DC3CO(display))
++		return false;
++
++	return (power_domains->allowed_dc_mask & DC_STATE_EN_UPTO_DC3CO) == DC_STATE_EN_UPTO_DC3CO;
++}
++
+ static void __async_put_domains_mask(struct i915_power_domains *power_domains,
+ 				     struct intel_power_domain_mask *mask)
+ {
+diff --git a/drivers/gpu/drm/i915/display/intel_display_power.h b/drivers/gpu/drm/i915/display/intel_display_power.h
+index b9c9b68072af..41b4be9018b4 100644
+--- a/drivers/gpu/drm/i915/display/intel_display_power.h
++++ b/drivers/gpu/drm/i915/display/intel_display_power.h
+@@ -184,6 +184,7 @@ bool intel_display_power_get_and_reset_dc3co_to_dc6(struct intel_display *displa
+ void intel_display_power_set_target_dc_state(struct intel_display *display,
+ 					     u32 state);
+ u32 intel_display_power_get_current_dc_state(struct intel_display *display);
++bool intel_display_power_dc3co_supported(struct intel_display *display);
+ 
+ void intel_display_power_runtime_suspend(struct intel_display *display);
+ void intel_display_power_runtime_resume(struct intel_display *display);
 -- 
 2.43.0
 
