@@ -2,38 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dkdAOm98MmrF0gUAu9opvQ
+	id rw0fIoOGMmr41QUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 12:52:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 13:35:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 498E4698ACA
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 12:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 88BDA69920A
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 13:35:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b=EWLE86Ph;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C58CA10EFA9;
-	Wed, 17 Jun 2026 10:52:29 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1D3EB10E9DA;
+	Wed, 17 Jun 2026 11:35:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DA05A10EFA6;
- Wed, 17 Jun 2026 10:52:28 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============4198439568556600356=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.21])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4550610E9DA;
+ Wed, 17 Jun 2026 11:35:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781696128; x=1813232128;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=g0xHTjIqR2d37ONez6BD2EmmdVtZAnasWCkPBmGnLT8=;
+ b=EWLE86Phr32LBMc4vZuGnL7le0xowC9qaKMmG63EPoTpSQQ30V7DTkte
+ /OUaRM/4x2CzXD2jiFrzUoYJvwVuX1u0/ZR4Tai0M9JmRWCPj4J+THiue
+ I1+Toip4iooq8HxHeoCH3SAn0VCsjieYjIjQn7NbxSzovvaoopqc/IQwY
+ RvMhLRIF89OrQUCB2Bn5tVbesr//K6oMA01J96UtvS3NCmEGG9JDGaAr/
+ 1u369Iadljf78/Vq9ZkNFJ/TMmfSxeulKUlc6PnbfhoAwuwXOmnlEVCVh
+ IJd8ynFDAxmuPpw1hoYmxCagqCS+9Z5Nd+6pEr3QrZIrbsvFDJNY3q/aS g==;
+X-CSE-ConnectionGUID: UF0BLAEKThukrZTh5S73nQ==
+X-CSE-MsgGUID: 6GDce3zDQfqjoAG3yemP6w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="82386024"
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="82386024"
+Received: from fmviesa002.fm.intel.com ([10.60.135.142])
+ by orvoesa113.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:35:28 -0700
+X-CSE-ConnectionGUID: 8kTu/oHITGSRY7tZL0ugeQ==
+X-CSE-MsgGUID: biTc0qhlTNKYh5WvaRN0EA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="271759762"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.158])
+ by fmviesa002-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 17 Jun 2026 04:35:26 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Suraj Kandpal <suraj.kandpal@intel.com>, intel-xe@lists.freedesktop.org,
+ intel-gfx@lists.freedesktop.org
+Cc: ankit.k.nautiyal@intel.com, Suraj Kandpal <suraj.kandpal@intel.com>
+Subject: Re: [PATCH] drm/i915/cx0: Remove unnecessary hdmi link rate
+ function declaration
+In-Reply-To: <20260617041807.162927-1-suraj.kandpal@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260617041807.162927-1-suraj.kandpal@intel.com>
+Date: Wed, 17 Jun 2026 14:35:23 +0300
+Message-ID: <ab9cbb1273ae3c0a762060185b3d4bce9867c926@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=97_i915=2ECI=2EBAT=3A_failure_for_drm/i915/color=3A_Enable_?=
- =?utf-8?q?SDR_plane_color_pipeline_=28rev3=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 17 Jun 2026 10:52:28 -0000
-Message-ID: <178169354888.89425.7204996659297350132@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260617090819.1735153-1-chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260617090819.1735153-1-chaitanya.kumar.borah@intel.com>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,168 +74,66 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [5.89 / 15.00];
-	URL_MULTIPLE_AT_SIGNS(6.00)[3];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	GREYLIST(0.00)[pass,meta];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
 	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	HAS_ORG_HEADER(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCPT_COUNT_FIVE(0.00)[5];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,6beec6c84f66:mid,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url,lists.freedesktop.org:replyto,lists.freedesktop.org:email,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 498E4698ACA
+X-Rspamd-Queue-Id: 88BDA69920A
 
---===============4198439568556600356==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Wed, 17 Jun 2026, Suraj Kandpal <suraj.kandpal@intel.com> wrote:
+> intel_cx0_phy_check_hdmi_link_rate is not used by anyone but is still
+> declared. Remove it.
 
-== Series Details ==
+More specifically, the function does not exist.
 
-Series: drm/i915/color: Enable SDR plane color pipeline (rev3)
-URL   : https://patchwork.freedesktop.org/series/162788/
-State : failure
+Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+>
+> Signed-off-by: Suraj Kandpal <suraj.kandpal@intel.com>
+> ---
+>  drivers/gpu/drm/i915/display/intel_cx0_phy.h | 1 -
+>  1 file changed, 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_cx0_phy.h b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> index 1428e7a5a318..95c20eb4b4b7 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cx0_phy.h
+> @@ -60,7 +60,6 @@ void intel_cx0_phy_set_signal_levels(struct intel_encoder *encoder,
+>  				     const struct intel_crtc_state *crtc_state);
+>  void intel_cx0_powerdown_change_sequence(struct intel_encoder *encoder,
+>  					 u8 lane_mask, u8 state);
+> -int intel_cx0_phy_check_hdmi_link_rate(struct intel_hdmi *hdmi, int clock);
+>  void intel_cx0_setup_powerdown(struct intel_encoder *encoder);
+>  bool intel_cx0_is_hdmi_frl(u32 clock);
+>  u8 intel_cx0_read(struct intel_encoder *encoder, u8 lane_mask, u16 addr);
 
-CI Bug Log - changes from CI_DRM_18693 -> Patchwork_162788v3
-====================================================
-
-Summary
--------
-
-  **FAILURE**
-
-  Serious unknown changes coming with Patchwork_162788v3 absolutely need to be
-  verified manually.
-  
-  If you think the reported changes have nothing to do with the changes
-  introduced in Patchwork_162788v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them
-  to document this new failure mode, which will reduce false positives in CI.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html
-
-Participating hosts (41 -> 39)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Possible new issues
--------------------
-
-  Here are the unknown changes that may have been introduced in Patchwork_162788v3:
-
-### IGT changes ###
-
-#### Possible regressions ####
-
-  * igt@i915_selftest@live@gt_tlb:
-    - bat-adlp-9:         [PASS][1] -> [FAIL][2] +31 other tests fail
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18693/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html
-
-  
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18693 -> Patchwork_162788v3
-
-  CI-20190529: 20190529
-  CI_DRM_18693: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8968: 6f40795505dc42c273334e9581c15e6025d8ed57 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_162788v3: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html
-
---===============4198439568556600356==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/color: Enable SDR plane color pipeline (rev3)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162788/">https://patchwork.freedesktop.org/series/162788/</a></td></tr>
-<tr><td><b>State:</b></td><td>failure</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18693 -&gt; Patchwork_162788v3</h1>
-<h2>Summary</h2>
-<p><strong>FAILURE</strong></p>
-<p>Serious unknown changes coming with Patchwork_162788v3 absolutely need to be<br />
-  verified manually.</p>
-<p>If you think the reported changes have nothing to do with the changes<br />
-  introduced in Patchwork_162788v3, please notify your bug team (I915-ci-infra@lists.freedesktop.org) to allow them<br />
-  to document this new failure mode, which will reduce false positives in CI.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html</p>
-<h2>Participating hosts (41 -&gt; 39)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Possible new issues</h2>
-<p>Here are the unknown changes that may have been introduced in Patchwork_162788v3:</p>
-<h3>IGT changes</h3>
-<h4>Possible regressions</h4>
-<ul>
-<li>igt@i915_selftest@live@gt_tlb:<ul>
-<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18693/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html">FAIL</a> +31 other tests fail</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18693 -&gt; Patchwork_162788v3</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18693: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8968: 6f40795505dc42c273334e9581c15e6025d8ed57 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_162788v3: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============4198439568556600356==--
+-- 
+Jani Nikula, Intel
