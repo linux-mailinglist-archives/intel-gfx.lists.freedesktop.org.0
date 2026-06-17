@@ -2,65 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MrGQN/6PMmqk2AUAu9opvQ
+	id cXDsBW2XMmof2gUAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 14:15:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 14:47:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 01D176999AD
-	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 14:15:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 4FB7A699D7E
+	for <lists+intel-gfx@lfdr.de>; Wed, 17 Jun 2026 14:47:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Z9i3FKvU;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 88A7710EFC5;
-	Wed, 17 Jun 2026 12:15:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B847110E742;
+	Wed, 17 Jun 2026 12:47:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22FF310EFC5;
- Wed, 17 Jun 2026 12:15:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781698556; x=1813234556;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version;
- bh=WZr9Hu1YVBgDYyPc7JyInx3ywyW3GTrye6NYAza2ZHc=;
- b=Z9i3FKvUJZ9oZP6QTU/hTh2/KC8t9wrCNaoUFTNDFuyWa/YOgNl2lxCz
- xXNnoKKtntuliAa7CL2DRMV52Pj+ibBNgUV5Df4vZkVpajVoQXGztwKoh
- Eu3GAYtIodXJwN3JK+jr/jnwgopRDI86yinNMtWTquPy4jdwkfuwJk2RD
- eaIJGLH4l2T2r26HqDol3/aDNUfm+3wOi6q9uPjZPyWeKIfErLyqkC6A2
- xZgdtzBh7O0ViaKJ+p2aeAyKTRabQrGVyKtUYX5OTrIlIKr/GZARqqdNK
- iFmB/CWZZ9jVvJRLhjyooKI8cHXx39/dB6LYEyGy5yKoPkOOeOWOmOBkn A==;
-X-CSE-ConnectionGUID: TZEgff/ERiCDyEwH6rA02A==
-X-CSE-MsgGUID: EcYmK+qfT9KYfXiF30PqCA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11819"; a="81485684"
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="81485684"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 05:15:56 -0700
-X-CSE-ConnectionGUID: 9gzlkfLSQUqVP6OzvHs9Yw==
-X-CSE-MsgGUID: 9kty1txiRV+79/NK5LRIYw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,209,1774335600"; d="scan'208";a="278242810"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.245.158])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 17 Jun 2026 05:15:54 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Arun R Murthy <arun.r.murthy@intel.com>,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Cc: Arun R Murthy <arun.r.murthy@intel.com>
-Subject: Re: [PATCH] drm/i915/backlight: Set brightness to 0 on disable
-In-Reply-To: <20260616093636.2334540-1-arun.r.murthy@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260616093636.2334540-1-arun.r.murthy@intel.com>
-Date: Wed, 17 Jun 2026 15:15:51 +0300
-Message-ID: <245d6c1875c760607407faeac238314b85c22c91@intel.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4EB9D10E713;
+ Wed, 17 Jun 2026 12:47:38 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============7320672858740643890=="
 MIME-Version: 1.0
-Content-Type: text/plain
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/color=3A_Enable_?=
+ =?utf-8?q?SDR_plane_color_pipeline_=28rev3=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Chaitanya Kumar Borah" <chaitanya.kumar.borah@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 17 Jun 2026 12:47:38 -0000
+Message-ID: <178170045831.89426.17091403973765786653@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260617090819.1735153-1-chaitanya.kumar.borah@intel.com>
+In-Reply-To: <20260617090819.1735153-1-chaitanya.kumar.borah@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -73,98 +46,160 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [5.89 / 15.00];
+	URL_MULTIPLE_AT_SIGNS(6.00)[3];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
+	FROM_HAS_DN(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	GREYLIST(0.00)[pass,meta];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,6beec6c84f66:mid,patchwork.freedesktop.org:url,gitlab.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 01D176999AD
+X-Rspamd-Queue-Id: 4FB7A699D7E
 
-On Tue, 16 Jun 2026, Arun R Murthy <arun.r.murthy@intel.com> wrote:
-> On backlight disable for AUX based panels set the brightness to 0 before
-> disabling the backlight. PWM based backlight also does set the
-> brightness to 0 before disable.
+--===============7320672858740643890==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Both the commit message and the code comments have a lot of the *what*
-but are very thin on the *why*.
+== Series Details ==
 
-Even if there's *zero* explanation of the *what*, it can be deduced from
-the code changes. But nothing can replace the *why*.
+Series: drm/i915/color: Enable SDR plane color pipeline (rev3)
+URL   : https://patchwork.freedesktop.org/series/162788/
+State : success
 
-Answering the *why* is the single most important thing a commit message
-*must* do.
+== Summary ==
 
-BR,
-Jani.
+CI Bug Log - changes from CI_DRM_18693 -> Patchwork_162788v3
+====================================================
+
+Summary
+-------
+
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html
+
+Participating hosts (41 -> 39)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_162788v3 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_selftest@live@gt_tlb:
+    - bat-adlp-9:         [PASS][1] -> [FAIL][2] ([i915#16113]) +31 other tests fail
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18693/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html
+
+  
+  [i915#16113]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16113
 
 
->
-> Signed-off-by: Arun R Murthy <arun.r.murthy@intel.com>
-> ---
->  .../gpu/drm/i915/display/intel_dp_aux_backlight.c | 15 +++++++++++++--
->  1 file changed, 13 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> index a8d56ebf06a2..e4ce39c1eebb 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_aux_backlight.c
-> @@ -355,9 +355,14 @@ intel_dp_aux_hdr_disable_backlight(const struct drm_connector_state *conn_state,
->  	struct intel_connector *connector = to_intel_connector(conn_state->connector);
->  	struct intel_panel *panel = &connector->panel;
->  
-> -	/* Nothing to do for AUX based backlight controls */
-> -	if (panel->backlight.edp.intel_cap.sdr_uses_aux)
-> +	/*
-> +	 * Drive the DPCD brightness to 0 before tearing down the link / power
-> +	 * sequencer so the panel can blank emission gracefully.
-> +	 */
-> +	if (panel->backlight.edp.intel_cap.sdr_uses_aux) {
-> +		intel_dp_aux_hdr_set_aux_backlight(conn_state, 0);
->  		return;
-> +	}
->  
->  	/* Note we want the actual pwm_level to be 0, regardless of pwm_min */
->  	panel->backlight.pwm_funcs->disable(conn_state, intel_backlight_invert_pwm_level(connector, 0));
-> @@ -519,6 +524,12 @@ static void intel_dp_aux_vesa_disable_backlight(const struct drm_connector_state
->  	struct intel_panel *panel = &connector->panel;
->  	struct intel_dp *intel_dp = enc_to_intel_dp(connector->encoder);
->  
-> +	/*
-> +	 * Drive the DPCD brightness register to 0 before clearing BL_ENABLE or
-> +	 * dropping the panel power.
-> +	 */
-> +	drm_edp_backlight_set_level(&intel_dp->aux, &panel->backlight.edp.vesa.info, 0);
-> +
->  	drm_edp_backlight_disable(&intel_dp->aux, &panel->backlight.edp.vesa.info);
->  
->  	if (!(panel->backlight.edp.vesa.info.aux_enable ||
+Build changes
+-------------
 
--- 
-Jani Nikula, Intel
+  * Linux: CI_DRM_18693 -> Patchwork_162788v3
+
+  CI-20190529: 20190529
+  CI_DRM_18693: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8968: 6f40795505dc42c273334e9581c15e6025d8ed57 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_162788v3: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html
+
+--===============7320672858740643890==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/color: Enable SDR plane color pipeline (rev3)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/162788/">https://patchwork.freedesktop.org/series/162788/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18693 -&gt; Patchwork_162788v3</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/index.html</p>
+<h2>Participating hosts (41 -&gt; 39)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_162788v3 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_selftest@live@gt_tlb:<ul>
+<li>bat-adlp-9:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18693/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_162788v3/bat-adlp-9/igt@i915_selftest@live@gt_tlb.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16113">i915#16113</a>) +31 other tests fail</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18693 -&gt; Patchwork_162788v3</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18693: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8968: 6f40795505dc42c273334e9581c15e6025d8ed57 @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_162788v3: 19b9e4ff1c86741826121bac2d9d2783ed3b3aa5 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============7320672858740643890==--
