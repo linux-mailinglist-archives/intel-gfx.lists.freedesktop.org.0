@@ -2,59 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yFVgKe4ORWqc6AoAu9opvQ
+	id zQXIGCfSM2pTGwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:58:22 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2026 13:10:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7B4986EDB5D
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:58:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA3A769FA3B
+	for <lists+intel-gfx@lfdr.de>; Thu, 18 Jun 2026 13:10:30 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=163.com header.s=s110527 header.b="aJg/Ih3P";
+	dkim=pass header.d=intel.com header.s=Intel header.b=etyVOmPe;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=163.com
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 821F410EFE3;
-	Wed,  1 Jul 2026 12:58:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4E55710F275;
+	Thu, 18 Jun 2026 11:10:29 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from m16.mail.163.com (m16.mail.163.com [117.135.210.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B6D4F10F26C;
- Thu, 18 Jun 2026 11:05:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
- s=s110527; h=From:To:Subject:Date:Message-ID:MIME-Version; bh=Gg
- 0v4mNICq66S4WjgqT9Dzd0uw6VSyp4kHXR3khbLzk=; b=aJg/Ih3Pa18N/nWZAx
- 0s0iTZ8+bJH/bXNherApom2TT970bn8Mc/2T5lUn6Puhq7whiEWqvwEx20gc3tH3
- YyBF7i5aEVIOH7yTb98JbgSPaIHW0V/zNmeQZsegbeX66vXYqkTG+hml+sWmlr5U
- Hk4LrbgMy0kUlVj+kcLVVqaHo=
-Received: from ubuntu.. (unknown [])
- by gzga-smtp-mtada-g1-0 (Coremail) with SMTP id
- _____wD3t77P0DNqfkKHEA--.18129S4; 
- Thu, 18 Jun 2026 19:04:53 +0800 (CST)
-From: Ma Ke <make_ruc2021@163.com>
-To: jani.nikula@linux.intel.com, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch, hansg@kernel.org, matthew.d.roper@intel.com,
- vivek.kasireddy@intel.com
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
- akpm@linux-foundation.org, Ma Ke <make_ruc2021@163.com>,
- stable@vger.kernel.org
-Subject: [PATCH v2] drm/i915/dsi: fix i2c adapter reference leak in
- i2c_adapter_lookup()
-Date: Thu, 18 Jun 2026 19:04:46 +0800
-Message-ID: <20260618110446.518501-1-make_ruc2021@163.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 28A9710F275;
+ Thu, 18 Jun 2026 11:10:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1781781028; x=1813317028;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=XAi4LQz68mwbO06PgjspXhNjInqENaay3fnNGiXT14c=;
+ b=etyVOmPeohye6Vg1gzPkcTuNSusY1FmRtx/OyvphXg3ooOBah6F88rMx
+ XU23R0ENmMbH0vUtB89JTlqXO18J3+oW94uqN3+lM3kCsTrm6mX8NzPEp
+ pCbddauWXOYkzzFJDK6KmldWx80HdusNWOY31MFTu+sasX4XSS9yJ9Ta1
+ 8rR9s3uEQPNKt8nNo9g75mpq3tMeBYRI7nC/LMhmfMasMkDiW+0jxGSLh
+ YHi0dARjEMPYmpjLmTsvW8wuWzidxZP5YDiVPS98e7WOm2Q2p4VpkCpA7
+ ahBGvbgB8z5VhGXuvyR3C2k0Nt4zQdv/8NeSAuvRhcrERv/gqos1WUVdA A==;
+X-CSE-ConnectionGUID: I6sv/rC3SuSuLoF6rP2o2g==
+X-CSE-MsgGUID: 7WjL1XTcT825yEvtlxhcuQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11820"; a="108157652"
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="108157652"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 18 Jun 2026 04:10:28 -0700
+X-CSE-ConnectionGUID: De7huVCkSCexAOq+Mqo4Cg==
+X-CSE-MsgGUID: GAWHosKLSwW4vyQYKfskeA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,211,1774335600"; d="scan'208";a="241962087"
+Received: from rvuia-mobl.ger.corp.intel.com (HELO localhost) ([10.245.244.2])
+ by fmviesa009-auth.fm.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jun 2026 04:10:25 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Colin Ian King <colin.i.king@gmail.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org
+Cc: kernel-janitors@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH][next] drm/i915/display: make read-only array rates
+ static const
+In-Reply-To: <20260608122427.48375-1-colin.i.king@gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260608122427.48375-1-colin.i.king@gmail.com>
+Date: Thu, 18 Jun 2026 14:10:22 +0300
+Message-ID: <9714acffb335c9cc4ce6d6f2c0ce6fd7c5570b8c@intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: _____wD3t77P0DNqfkKHEA--.18129S4
-X-Coremail-Antispam: 1Uf129KBjvJXoW7WF4Dtr1xJw15Gw13Jw13Arb_yoW8Gry7pr
- ZrWF4UCrWYqF9aqay7AF1UuFW7uayIy34rKFZ7Cw13u3Wkuw18JryFyrW0gFyDWa9rXa1D
- tFnrJ3yUKFyjyrJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x0pES_MPUUUUU=
-X-Originating-IP: [202.112.113.208]
-X-CM-SenderInfo: 5pdnvshuxfjiisr6il2tof0z/xtbC9RXQ22oz0NWmMQAA3g
-X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -70,77 +80,66 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
-	DATE_IN_PAST(1.00)[313];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[163.com,none];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
 	R_MISSING_CHARSET(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[163.com:s=s110527];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	FREEMAIL_FROM(0.00)[163.com];
-	RCVD_COUNT_THREE(0.00)[3];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,kernel.org];
-	ARC_NA(0.00)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[lists.freedesktop.org,vger.kernel.org,linux-foundation.org,163.com];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	ALIAS_RESOLVED(0.00)[];
-	HAS_XOIP(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DKIM_TRACE(0.00)[163.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[make_ruc2021@163.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FREEMAIL_TO(0.00)[gmail.com,intel.com,linux.intel.com,ursulin.net,ffwll.ch,lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:mid,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7B4986EDB5D
+X-Rspamd-Queue-Id: BA3A769FA3B
 
-i2c_adapter_lookup() acquires a reference on the i2c adapter through
-i2c_acpi_find_adapter_by_handle() but not releases it.  Each
-invocation of this ACPI resource callback leaks one device reference,
-potentially leading to resource exhaustion over repeated driver
-load/unload cycles.
+On Mon, 08 Jun 2026, Colin Ian King <colin.i.king@gmail.com> wrote:
+> Don't populate the read-only array rates the stack at run time,
+> instead make it static const.
+>
+> Signed-off-by: Colin Ian King <colin.i.king@gmail.com>
 
-Calling path: i2c_acpi_find_adapter_by_handle() -> bus_find_device()
--> get_device.
+Thanks for the patch, pushed to drm-intel-next.
 
-Found by code review.
+BR,
+Jani.
 
-Signed-off-by: Ma Ke <make_ruc2021@163.com>
-Cc: stable@vger.kernel.org
-Fixes: 8cbf89db2941 ("drm/i915/dsi: Parse the I2C element from the VBT MIPI sequence block (v3)")
----
-Changes in v2:
-- Changed email to trigger CI, no code change.
----
- drivers/gpu/drm/i915/display/intel_dsi_vbt.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+> ---
+>  drivers/gpu/drm/i915/display/intel_hdmi.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_hdmi.c b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> index 9076c2b176ec..351a62654a8d 100644
+> --- a/drivers/gpu/drm/i915/display/intel_hdmi.c
+> +++ b/drivers/gpu/drm/i915/display/intel_hdmi.c
+> @@ -71,7 +71,7 @@
+>  
+>  bool intel_hdmi_is_frl(u32 clock)
+>  {
+> -	u32 rates[] = { 300000, 600000, 800000, 1000000, 1200000 };
+> +	static const u32 rates[] = { 300000, 600000, 800000, 1000000, 1200000 };
+>  	int i;
+>  
+>  	for (i = 0; i < ARRAY_SIZE(rates); i++)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-index fe12041e913c..2097c5d17cb7 100644
---- a/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-+++ b/drivers/gpu/drm/i915/display/intel_dsi_vbt.c
-@@ -460,8 +460,10 @@ static int i2c_adapter_lookup(struct acpi_resource *ares, void *data)
- 		return 1;
- 
- 	adapter = i2c_acpi_find_adapter_by_handle(adapter_handle);
--	if (adapter)
-+	if (adapter) {
- 		intel_dsi->i2c_bus_num = adapter->nr;
-+		put_device(&adapter->dev);
-+	}
- 
- 	return 1;
- }
 -- 
-2.43.0
-
+Jani Nikula, Intel
