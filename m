@@ -2,51 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id g8d0OYFNNWoDsAYAu9opvQ
+	id RnjlOYRNNWoHsAYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:09:05 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:09:08 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 943BF6A647F
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:09:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 63F4D6A6489
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:09:08 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=bootlin.com header.s=dkim header.b=EcUPDm3r;
+	dkim=pass header.d=bootlin.com header.s=dkim header.b=ZncerNAw;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=reject) header.from=bootlin.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11B1210F62C;
-	Fri, 19 Jun 2026 14:09:04 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E4DE010F62B;
+	Fri, 19 Jun 2026 14:09:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout-03.galae.net (smtpout-03.galae.net [185.246.85.4])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1910410F62C;
- Fri, 19 Jun 2026 14:09:02 +0000 (UTC)
+Received: from smtpout-02.galae.net (smtpout-02.galae.net [185.246.84.56])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 23F3010F62A
+ for <intel-gfx@lists.freedesktop.org>; Fri, 19 Jun 2026 14:09:05 +0000 (UTC)
 Received: from smtpout-01.galae.net (smtpout-01.galae.net [212.83.139.233])
- by smtpout-03.galae.net (Postfix) with ESMTPS id C5A0C4E42FCC;
- Fri, 19 Jun 2026 14:09:00 +0000 (UTC)
+ by smtpout-02.galae.net (Postfix) with ESMTPS id 15E6C1A3A20;
+ Fri, 19 Jun 2026 14:09:04 +0000 (UTC)
 Received: from mail.galae.net (mail.galae.net [212.83.136.155])
- by smtpout-01.galae.net (Postfix) with ESMTPS id 96D1E601AD;
- Fri, 19 Jun 2026 14:09:00 +0000 (UTC)
+ by smtpout-01.galae.net (Postfix) with ESMTPS id DD1DA601AD;
+ Fri, 19 Jun 2026 14:09:03 +0000 (UTC)
 Received: from [127.0.0.1] (localhost [127.0.0.1]) by localhost (Mailerdaemon)
- with ESMTPSA id 101E8106C8915; 
- Fri, 19 Jun 2026 16:08:56 +0200 (CEST)
+ with ESMTPSA id 51781106C8234; 
+ Fri, 19 Jun 2026 16:08:59 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=bootlin.com; s=dkim;
- t=1781878138; h=from:subject:date:message-id:to:cc:mime-version:content-type:
+ t=1781878142; h=from:subject:date:message-id:to:cc:mime-version:content-type:
  content-transfer-encoding:in-reply-to:references;
- bh=WYmEJNz3NsaspEzRtIiaYYYiWt7RbsEucvy29K5gXTk=;
- b=EcUPDm3ry+OzvhnXOfEkAkHBx/tPYfxd2RMg8aSl9FM0euRx2163xsTU/rtH9/QYc0vwQ5
- fDF3HJTSNYcnvqltUNTK1Oxwk1kMecHBOhDEciah8wIiI31SXZL5EfBxwMGm1SLhehvyJ4
- OpXCP9uv90CTCH80zRXuAnyKeACVORg6yDBUIp/UIOWOdawjARvkwvBxwiLxzVBbac01hY
- e34+Mmo2mmBYokNzH9RcWANF9K5GJI09mXxmXZLkuMBGNmx7d6Rf5uJxqP8Pt8+KX6gTZv
- a2ovF78MO+UGvAdpAN8DLhxdwgDKjg9/sG9Epf0xthekYgwAFwqip+1Zw/jb/Q==
+ bh=TO+8vf61kNju4PwtuIv9SwXy8zceN+AIryuGq2GsET8=;
+ b=ZncerNAwoGtviiVsHNj7vZKGV3N7lfq5zDOhto3C1/blrMQ53z2GWeVHoX7vP7+4dIPbC/
+ +Jeyo+IJzxumTF1XTcTSfOrZ6f1DBrPQJBDPdepkjWx8QF5FfT8sHPIZaOCo0AFL0Oa+nB
+ yqft7kAqpDUipMtTE7sOx5MMRPMhHrV5RRhHB3leE485rWqbyZxMMh5XLn6ohPAnKBZC2A
+ /w7Sh5kA5TrE37Xqkwgeai/pWQz3QKwgQYY/MN12t4Ihw2bLsKtMvp2XDsnE6ddMCD5Yxd
+ M/+xKmasavxYoc75xlouIbBOGat6wmKDUaJrQdxs3n/5ZmDvAn52p8Sj+WzMaw==
 From: Kory Maincent <kory.maincent@bootlin.com>
-Date: Fri, 19 Jun 2026 16:08:44 +0200
-Subject: [PATCH RFC v2 2/4] drm/i915/display/dp: Adopt dp_connector helpers
- to expose link training state
+Date: Fri, 19 Jun 2026 16:08:45 +0200
+Subject: [PATCH RFC v2 3/4] drm/bridge: Wire drmm_connector_dp_init() via
+ new DRM_BRIDGE_OP_DP flag
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-Message-Id: <20260619-feat_link_cap-v2-2-a3dec4c02ad9@bootlin.com>
+Message-Id: <20260619-feat_link_cap-v2-3-a3dec4c02ad9@bootlin.com>
 References: <20260619-feat_link_cap-v2-0-a3dec4c02ad9@bootlin.com>
 In-Reply-To: <20260619-feat_link_cap-v2-0-a3dec4c02ad9@bootlin.com>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -99,166 +99,140 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[bootlin.com:s=dkim];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com,pengutronix.de,collabora.com];
 	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:andrzej.hajda@intel.com,m:neil.armstrong@linaro.org,m:rfoss@kernel.org,m:Laurent.pinchart@ideasonboard.com,m:jonas@kwiboo.se,m:jernej.skrabec@gmail.com,m:luca.ceresoli@bootlin.com,m:chunkuang.hu@kernel.org,m:p.zabel@pengutronix.de,m:matthias.bgg@gmail.com,m:angelogioacchino.delregno@collabora.com,m:lumag@kernel.org,m:daniels@collabora.com,m:thomas.petazzoni@bootlin.com,m:markyacoub@google.com,m:seanpaul@google.com,m:navaremanasi@google.com,m:ddavenport@google.com,m:louis.chauvet@bootlin.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:linux-mediatek@lists.infradead.org,m:linux-arm-kernel@lists.infradead.org,m:kory.maincent@bootlin.com,m:jernejskrabec@gmail.com,m:matthiasbgg@gmai
+ l.com,s:lists@lfdr.de];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER(0.00)[kory.maincent@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_TO(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,linaro.org,ideasonboard.com,kwiboo.se,bootlin.com,pengutronix.de,collabora.com];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	ARC_NA(0.00)[];
 	DKIM_TRACE(0.00)[bootlin.com:+];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCPT_COUNT_TWELVE(0.00)[36];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[5];
 	FROM_NEQ_ENVFROM(0.00)[kory.maincent@bootlin.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	MID_RHS_MATCH_FROM(0.00)[];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 943BF6A647F
+X-Rspamd-Queue-Id: 63F4D6A6489
 
-Switch the i915 DP connector initialization from
-drm_connector_init_with_ddc() to drm_connector_dp_init_with_ddc(),
-providing the source link capabilities (supported lane counts, link rates
-and DSC support).
+Introduce DRM_BRIDGE_OP_DP, a new bridge operation flag for bridges
+that provide DisplayPort connector operations with link training support.
+Bridges advertising this flag must fill the dp_link_caps field in
+struct drm_bridge with their link capabilities.
 
-Add intel_dp_report_link_train() to collect the negotiated link
-parameters (rate, lane count and DSC enable) and report them via
-drm_dp_set_max_link_params() and drm_dp_set_cur_link_params() once
-link training completes successfully.
-
-Reset the link properties via drm_dp_reset_link_params()
-when the connector is reported as disconnected or when the display device
-is disabled, so the exposed state always reflects the current link status.
+In drm_bridge_connector_init(), when a bridge sets DRM_BRIDGE_OP_DP,
+use drmm_connector_dp_init() instead of the generic drmm_connector_init()
+so the connector exposes link training state properties to userspace.
+This mirrors the existing pattern used for HDMI bridges.
 
 Signed-off-by: Kory Maincent <kory.maincent@bootlin.com>
 ---
+ drivers/gpu/drm/display/drm_bridge_connector.c | 24 ++++++++++++++++++++++++
+ include/drm/drm_bridge.h                       | 13 +++++++++++++
+ 2 files changed, 37 insertions(+)
 
-Changes in v2:
-- Remove voltage swing and pre emphasis properties.
----
- drivers/gpu/drm/i915/display/intel_dp.c            | 26 ++++++++++++++++++----
- .../gpu/drm/i915/display/intel_dp_link_training.c  | 17 ++++++++++++++
- 2 files changed, 39 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index f01a6eed38395..46c06c76952e0 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -6414,8 +6414,10 @@ intel_dp_detect(struct drm_connector *_connector,
- 	drm_WARN_ON(display->drm,
- 		    !drm_modeset_is_locked(&display->drm->mode_config.connection_mutex));
- 
--	if (!intel_display_device_enabled(display))
-+	if (!intel_display_device_enabled(display)) {
-+		drm_dp_sink_reset_link_caps(_connector);
- 		return connector_status_disconnected;
-+	}
- 
- 	if (!intel_display_driver_check_access(display))
- 		return connector->base.status;
-@@ -6465,6 +6467,8 @@ intel_dp_detect(struct drm_connector *_connector,
- 
- 		intel_dp_tunnel_disconnect(intel_dp);
- 
-+		drm_dp_sink_reset_link_caps(_connector);
-+
- 		goto out_unset_edid;
- 	}
- 
-@@ -7240,10 +7244,12 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 			struct intel_connector *connector)
- {
- 	struct intel_display *display = to_intel_display(dig_port);
-+	struct drm_connector_dp_link_caps link_caps;
- 	struct intel_dp *intel_dp = &dig_port->dp;
- 	struct intel_encoder *encoder = &dig_port->base;
- 	struct drm_device *dev = encoder->base.dev;
- 	enum port port = encoder->port;
-+	u32 *rates;
- 	int type;
- 
- 	if (drm_WARN(dev, dig_port->max_lanes < 1,
-@@ -7291,8 +7297,21 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		    type == DRM_MODE_CONNECTOR_eDP ? "eDP" : "DP",
- 		    encoder->base.base.id, encoder->base.name);
- 
--	drm_connector_init_with_ddc(dev, &connector->base, &intel_dp_connector_funcs,
--				    type, &intel_dp->aux.ddc);
-+	intel_dp_set_source_rates(intel_dp);
-+	link_caps.nlanes = 4;
-+	link_caps.nlink_rates = intel_dp->num_source_rates;
-+	rates = kmemdup_array(intel_dp->source_rates, intel_dp->num_source_rates,
-+			      sizeof(*rates), GFP_KERNEL);
-+	if (!rates)
-+		goto fail;
-+
-+	link_caps.link_rates = rates;
-+	link_caps.dsc = HAS_DSC(display);
-+
-+	drm_connector_dp_init_with_ddc(dev, &connector->base, &intel_dp_connector_funcs,
-+				       &link_caps, type, &intel_dp->aux.ddc);
-+	kfree(rates);
-+
- 	drm_connector_helper_add(&connector->base, &intel_dp_connector_helper_funcs);
- 
- 	if (!HAS_GMCH(display) && DISPLAY_VER(display) < 12)
-@@ -7315,7 +7334,6 @@ intel_dp_init_connector(struct intel_digital_port *dig_port,
- 		goto fail;
- 	}
- 
--	intel_dp_set_source_rates(intel_dp);
- 	intel_dp_set_common_rates(intel_dp);
- 	intel_dp_reset_link_params(intel_dp);
- 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index a26094223f780..25e0e957fe36d 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1231,6 +1231,18 @@ intel_dp_128b132b_intra_hop(struct intel_dp *intel_dp,
- 	return sink_status & DP_INTRA_HOP_AUX_REPLY_INDICATION ? 1 : 0;
+diff --git a/drivers/gpu/drm/display/drm_bridge_connector.c b/drivers/gpu/drm/display/drm_bridge_connector.c
+index cafa498c38482..6ea4d45e3146b 100644
+--- a/drivers/gpu/drm/display/drm_bridge_connector.c
++++ b/drivers/gpu/drm/display/drm_bridge_connector.c
+@@ -108,6 +108,13 @@ struct drm_bridge_connector {
+ 	 * HDMI Audio infrastructure, if any (see &DRM_BRIDGE_OP_HDMI_AUDIO).
+ 	 */
+ 	struct drm_bridge *bridge_hdmi_audio;
++	/**
++	 * @bridge_dp:
++	 *
++	 * The bridge in the chain that implements necessary support for the
++	 * DisplayPort connector infrastructure, if any (see &DRM_BRIDGE_OP_DP).
++	 */
++	struct drm_bridge *bridge_dp;
+ 	/**
+ 	 * @bridge_dp_audio:
+ 	 *
+@@ -773,6 +780,7 @@ static void drm_bridge_connector_put_bridges(struct drm_device *dev, void *data)
+ 	drm_bridge_put(bridge_connector->bridge_hdmi_audio);
+ 	drm_bridge_put(bridge_connector->bridge_dp_audio);
+ 	drm_bridge_put(bridge_connector->bridge_hdmi_cec);
++	drm_bridge_put(bridge_connector->bridge_dp);
  }
  
-+static void intel_dp_report_link_train(struct intel_dp *intel_dp)
-+{
-+	struct intel_connector *connector = intel_dp->attached_connector;
-+
-+	drm_dp_set_max_link_params(&connector->base, intel_dp->link_rate,
-+				   intel_dp->lane_count);
-+
-+	drm_dp_set_cur_link_params(&connector->base, intel_dp->link_rate,
-+				   intel_dp->lane_count,
-+				   connector->dp.dsc_decompression_enabled);
-+}
-+
  /**
-  * intel_dp_stop_link_train - stop link training
-  * @intel_dp: DP struct
-@@ -1259,6 +1271,9 @@ void intel_dp_stop_link_train(struct intel_dp *intel_dp,
- 	intel_dp_program_link_training_pattern(intel_dp, crtc_state, DP_PHY_DPRX,
- 					       DP_TRAINING_PATTERN_DISABLE);
+@@ -908,6 +916,15 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ 			bridge_connector->bridge_hdmi_audio = drm_bridge_get(bridge);
+ 		}
  
-+	if (!intel_dp->is_mst)
-+		intel_dp_report_link_train(intel_dp);
++		if (bridge->ops & DRM_BRIDGE_OP_DP) {
++			if (bridge_connector->bridge_dp)
++				return ERR_PTR(-EBUSY);
++			if (!bridge->dp_link_caps)
++				return ERR_PTR(-EINVAL);
 +
- 	if (intel_dp_is_uhbr(crtc_state)) {
- 		ret = poll_timeout_us(ret = intel_dp_128b132b_intra_hop(intel_dp, crtc_state),
- 				      ret == 0,
-@@ -1772,6 +1787,8 @@ void intel_dp_start_link_train(struct intel_atomic_state *state,
++			bridge_connector->bridge_dp = drm_bridge_get(bridge);
++		}
++
+ 		if (bridge->ops & DRM_BRIDGE_OP_DP_AUDIO) {
+ 			if (bridge_connector->bridge_dp_audio)
+ 				return ERR_PTR(-EBUSY);
+@@ -996,6 +1013,13 @@ struct drm_connector *drm_bridge_connector_init(struct drm_device *drm,
+ 					       max_bpc);
+ 		if (ret)
+ 			return ERR_PTR(ret);
++	} else if (bridge_connector->bridge_dp) {
++		ret = drmm_connector_dp_init(drm, connector,
++					     &drm_bridge_connector_funcs,
++					     bridge_connector->bridge_dp->dp_link_caps,
++					     connector_type, ddc);
++		if (ret)
++			return ERR_PTR(ret);
+ 	} else {
+ 		ret = drmm_connector_init(drm, connector,
+ 					  &drm_bridge_connector_funcs,
+diff --git a/include/drm/drm_bridge.h b/include/drm/drm_bridge.h
+index 4ba3a5deef9a6..02411e0b71c35 100644
+--- a/include/drm/drm_bridge.h
++++ b/include/drm/drm_bridge.h
+@@ -1092,6 +1092,14 @@ enum drm_bridge_ops {
+ 	 * &drm_bridge_funcs->hdmi_clear_spd_infoframe callbacks.
  	 */
- 	int lttpr_count;
+ 	DRM_BRIDGE_OP_HDMI_SPD_INFOFRAME = BIT(10),
++	/**
++	 * @DRM_BRIDGE_OP_DP: The bridge provides DisplayPort connector
++	 * operations, including link training support. Bridges that set
++	 * this flag must provide DisplayPort-related information and
++	 * fill the &drm_bridge->dp_link_train_caps link training
++	 * capabilities.
++	 */
++	DRM_BRIDGE_OP_DP = BIT(11),
+ };
  
-+	drm_dp_sink_set_link_caps(&intel_dp->attached_connector->base, &intel_dp->aux);
+ /**
+@@ -1267,6 +1275,11 @@ struct drm_bridge {
+ 	 */
+ 	void *hpd_data;
+ 
++	/**
++	 * @dp_link_caps: DisplayPort link capabilities
++	 */
++	const struct drm_connector_dp_link_caps *dp_link_caps;
 +
- 	intel_hpd_block(encoder);
- 
- 	lttpr_count = intel_dp_init_lttpr_and_dprx_caps(intel_dp);
+ 	/**
+ 	 * @next_bridge: Pointer to the following bridge, automatically put
+ 	 * when this bridge is freed (i.e. at destroy time). This is for
 
 -- 
 2.43.0
