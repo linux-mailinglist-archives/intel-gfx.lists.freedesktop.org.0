@@ -2,64 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MfFkB8VBNWpDqQYAu9opvQ
+	id CJkVMNFBNWpIqQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 15:19:01 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 15:19:13 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A4C266A609F
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 15:19:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2DCF76A60A6
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 15:19:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=mPf4iGOU;
+	dkim=pass header.d=intel.com header.s=Intel header.b=Mnpeln5v;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F64310F5CC;
-	Fri, 19 Jun 2026 13:18:59 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A7B2710E065;
+	Fri, 19 Jun 2026 13:19:11 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C7BC010F5CC;
- Fri, 19 Jun 2026 13:18:58 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.7])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 278D010E065;
+ Fri, 19 Jun 2026 13:19:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781875139; x=1813411139;
+ t=1781875151; x=1813411151;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=C1NCR9r1r3rNzniWYkxxuRr+GtV+8PlRZNbzX4AVK8Y=;
- b=mPf4iGOUST39h/OD1CpuxHU9AnJXyAwZGhUuhimp19DzD1MYsPgdYTYx
- G9bDjOkp9vyMDB7DgkmoOIljpBZmhPepPI2IzuHnBHseTPX8KAmgRu0d1
- QOnOm8EJBLFCUujepN06t0lzRa5RNXiAayO75/oxDpqfMNwT6KWupPW/n
- 84FKFgrWPr0kLPrX9II/p/fk7EhDwEwrHy/6ZbDQRqCeyIQO6nkspG2I7
- oLy6UTilkHraQRGULS2CJjCStquTcIBdQ13N8SRQ95EiLCYyQEPaekn/T
- jLqJhkGvBji8HbhbEfA8zTri3PbKSQr9yxOtqmoo5jHGChxDWrBfVKkvu Q==;
-X-CSE-ConnectionGUID: fTQAZXk5TIa8OCYvgBfNEQ==
-X-CSE-MsgGUID: Xq7TWjowQbyjkyUK9N4aEQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="100271846"
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="100271846"
-Received: from orviesa009.jf.intel.com ([10.64.159.149])
- by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 06:18:58 -0700
-X-CSE-ConnectionGUID: uHmFYDEZQ3Wb64qHax9Lbw==
-X-CSE-MsgGUID: QbL9i0GKSO2RaIfMlJwI9w==
+ bh=NPlNAXXsXxJH+YFOo9puxSUdkfJNkAcH77S0IF+Afas=;
+ b=Mnpeln5vWROSPTbN0z1R2ArDmjjt9GUe9b3Cxj8bAPc5GoMrASHvL5X+
+ SpWzTslHTAHZmoJnSwFbHcd/Yl7V8JCau7DnPjMG3lh8BRxSBrO1A9n2N
+ FbIccBUYPrzsMGVhN+BPsjy4D1vnd052BWxRKEKyZk+87a16H6U3bHXhm
+ JZIWA5L25vUVXlQis4IvZF7V9zrysq3FjhpBhxNunfUe0gij5yD7rMy4Y
+ M+n3yT71hcCOEYWvuekGD9mCT4Jg91aecd6ehx1YUiOG4EPGTw6XUgnmG
+ Wu2y8AH2WoVnUIha+qBYhSARguaY+I6oNXTGPcqce5p6TQtzLeVCUy58+ A==;
+X-CSE-ConnectionGUID: 19S1sbhQRbCI55bgQg6gXQ==
+X-CSE-MsgGUID: OQlsXtBqTeeJJKnnRe3CEw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="108267176"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="108267176"
+Received: from fmviesa001.fm.intel.com ([10.60.135.141])
+ by fmvoesa101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 06:19:10 -0700
+X-CSE-ConnectionGUID: +jS6c1X9RQ2pahlNatWBMA==
+X-CSE-MsgGUID: sgr3+WDkSNuUnTHWSRGK0Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="248695420"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="272695101"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa009.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 06:18:58 -0700
-Date: Fri, 19 Jun 2026 15:18:55 +0200 (CEST)
+ by fmviesa001.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 19 Jun 2026 06:19:09 -0700
+Date: Fri, 19 Jun 2026 15:19:07 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Mika Kahola <mika.kahola@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 3/4] drm/i915/display: Prepare DG2 DDI and compute paths
- for DPLL framework
-In-Reply-To: <20260518103642.3678448-4-mika.kahola@intel.com>
-Message-ID: <113fd3df-10c7-f202-3bc7-3dabd066054b@intel.com>
+Subject: Re: [PATCH 4/4] drm/i915/display: Switch DG2 to use DPLL framework
+In-Reply-To: <20260518103642.3678448-5-mika.kahola@intel.com>
+Message-ID: <59f13c29-5741-749c-072a-b9c7b111adc8@intel.com>
 References: <20260518103642.3678448-1-mika.kahola@intel.com>
- <20260518103642.3678448-4-mika.kahola@intel.com>
+ <20260518103642.3678448-5-mika.kahola@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-1279074742-1781874014=:605841"
-Content-ID: <51ed230a-ebf8-e9d6-b368-4b248e83cebb@intel.com>
+Content-Type: multipart/mixed; BOUNDARY="8323329-1145897918-1781874314=:605841"
+Content-ID: <4558a5d3-dc74-8e28-5d6a-f4f886435b6d@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -102,22 +101,23 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A4C266A609F
+X-Rspamd-Queue-Id: 2DCF76A60A6
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-1279074742-1781874014=:605841
+--8323329-1145897918-1781874314=:605841
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <4ce9dccb-9b1c-4f63-e799-5eb0985fb3e9@intel.com>
+Content-ID: <dcb91e74-18d1-5d64-a751-9b752ea9f773@intel.com>
 
 On Mon, 18 May 2026, Mika Kahola wrote:
-> Prepare DG2 users to obtain clock state and reserve PLLs through the
-> shared DPLL framework.
+> Now that DG2 has a DPLL manager and its users are prepared to obtain
+> clock state through the framework, switch the platform over to use the
+> shared DPLL manager.
 >
-> Replace the DG2-specific compute hook with the generic framework-backed
-> helpers.
+> Remove specific MPLLB state verification and use .compare_hw function
+> hook to compare HW and SW PLL states.
 >
 > Assisted-by: Copilot:claude-sonnet-4-6
 > Signed-off-by: Mika Kahola <mika.kahola@intel.com>
@@ -128,100 +128,134 @@ BR,
 Micha³
 
 > ---
-> drivers/gpu/drm/i915/display/intel_ddi.c  | 28 ++++++++++++++++++++---
-> drivers/gpu/drm/i915/display/intel_dpll.c | 22 ++----------------
-> 2 files changed, 27 insertions(+), 23 deletions(-)
+> drivers/gpu/drm/i915/display/intel_ddi.c      |  2 -
+> drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 13 +++--
+> .../drm/i915/display/intel_modeset_verify.c   |  1 -
+> drivers/gpu/drm/i915/display/intel_snps_phy.c | 49 -------------------
+> 4 files changed, 8 insertions(+), 57 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-> index 86520848892e..b6799ed24de4 100644
+> index b6799ed24de4..1c4820430b68 100644
 > --- a/drivers/gpu/drm/i915/display/intel_ddi.c
 > +++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-> @@ -4307,11 +4307,33 @@ static void mtl_ddi_tc_phy_get_config(struct intel_encoder *encoder,
-> 				       mtl_port_to_pll_id(display, encoder->port));
+> @@ -5330,8 +5330,6 @@ void intel_ddi_init(struct intel_display *display,
+> 		else
+> 			encoder->get_config = mtl_ddi_non_tc_phy_get_config;
+> 	} else if (display->platform.dg2) {
+> -		encoder->enable_clock = intel_mpllb_enable;
+> -		encoder->disable_clock = intel_mpllb_disable;
+> 		encoder->get_config = dg2_ddi_get_config;
+> 	} else if (display->platform.alderlake_s) {
+> 		encoder->enable_clock = adls_ddi_enable_clock;
+> diff --git a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> index c03560532d94..6678188e3563 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dpll_mgr.c
+> @@ -4950,7 +4950,6 @@ static bool dg2_compare_hw_state(const struct intel_dpll_hw_state *_a,
+> 		a->mpllb_sscstep == b->mpllb_sscstep;
 > }
 >
-> +static struct intel_dpll *dg2_ddi_get_pll(struct intel_encoder *encoder)
-> +{
-> +	struct intel_display *display = to_intel_display(encoder);
-> +
-> +	return intel_get_dpll_by_id(display, dg2_port_to_pll_id(encoder->port));
-> +}
-> +
-> static void dg2_ddi_get_config(struct intel_encoder *encoder,
-> -				struct intel_crtc_state *crtc_state)
-> +			       struct intel_crtc_state *crtc_state)
-> {
-> -	intel_mpllb_readout_hw_state(encoder, &crtc_state->dpll_hw_state.mpllb);
-> -	crtc_state->port_clock = intel_mpllb_calc_port_clock(encoder, &crtc_state->dpll_hw_state.mpllb);
-> +	struct icl_port_dpll *port_dpll = &crtc_state->icl_port_dplls[ICL_PORT_DPLL_DEFAULT];
-> +	struct intel_dpll *pll = dg2_ddi_get_pll(encoder);
-> +
-> +	if (pll)
-> +		intel_ddi_get_clock(encoder, crtc_state, pll);
-> +
-> +	/*
-> +	 * Keep the hw readout robust against unexpected NULL PLL lookups,
-> +	 * so modeset verify always has intel_dpll populated for DG2.
-> +	 */
-> +	if (!crtc_state->intel_dpll) {
-> +		port_dpll->pll = pll;
-> +		intel_mpllb_readout_hw_state(encoder, &port_dpll->hw_state.mpllb);
-> +		icl_set_active_port_dpll(crtc_state, ICL_PORT_DPLL_DEFAULT);
-> +		crtc_state->port_clock = intel_mpllb_calc_port_clock(encoder,
-> +								     &port_dpll->hw_state.mpllb);
-> +	}
+> -__maybe_unused
+> static const struct intel_dpll_mgr dg2_pll_mgr = {
+> 	.dpll_info = dg2_plls,
+> 	.compute_dplls = dg2_compute_dplls,
+> @@ -4977,8 +4976,7 @@ void intel_dpll_init(struct intel_display *display)
+> 	mutex_init(&display->dpll.lock);
 >
-> 	intel_ddi_get_config(encoder, crtc_state);
-> }
-> diff --git a/drivers/gpu/drm/i915/display/intel_dpll.c b/drivers/gpu/drm/i915/display/intel_dpll.c
-> index f40807a5566b..20fd091cb9db 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dpll.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dpll.c
-> @@ -22,7 +22,6 @@
-> #include "intel_lvds_regs.h"
-> #include "intel_panel.h"
-> #include "intel_pps.h"
-> -#include "intel_snps_phy.h"
-> #include "vlv_dpio_phy_regs.h"
-> #include "vlv_sideband.h"
+> 	if (display->platform.dg2)
+> -		/* No shared DPLLs on DG2; port PLLs are part of the PHY */
+> -		dpll_mgr = NULL;
+> +		dpll_mgr = &dg2_pll_mgr;
+> 	else if (DISPLAY_VER(display) >= 35)
+> 		dpll_mgr = &xe3plpd_pll_mgr;
+> 	else if (DISPLAY_VER(display) >= 14)
+> @@ -5347,8 +5345,13 @@ verify_single_dpll_state(struct intel_display *display,
 >
-> @@ -1194,24 +1193,6 @@ static int hsw_crtc_get_dpll(struct intel_atomic_state *state,
-> 	return intel_dpll_reserve(state, crtc, encoder);
+> 	if (pll->on) {
+> 		const struct intel_dpll_mgr *dpll_mgr = display->dpll.mgr;
+> -
+> -		if (HAS_LT_PHY(display))
+> +		/*
+> +		 * Avoid direct struct comparison here. Some hw state fields, such
+> +		 * as DG2 MPLLB ref_control or LT PHY config[1], are written by
+> +		 * firmware and may differ from the software state without indicating
+> +		 * a real mismatch.
+> +		 */
+> +		if (HAS_LT_PHY(display) || display->platform.dg2)
+> 			pll_mismatch = !dpll_mgr->compare_hw_state(&pll->state.hw_state,
+> 								   &dpll_hw_state);
+> 		else
+> diff --git a/drivers/gpu/drm/i915/display/intel_modeset_verify.c b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> index 2ec17c2bfe0f..f0761d8a7437 100644
+> --- a/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> +++ b/drivers/gpu/drm/i915/display/intel_modeset_verify.c
+> @@ -245,7 +245,6 @@ void intel_modeset_verify_crtc(struct intel_atomic_state *state,
+> 	verify_connector_state(state, crtc);
+> 	verify_crtc_state(state, crtc);
+> 	intel_dpll_state_verify(state, crtc);
+> -	intel_mpllb_state_verify(state, crtc);
 > }
 >
-> -static int dg2_crtc_compute_clock(struct intel_atomic_state *state,
-> -				  struct intel_crtc *crtc)
+> void intel_modeset_verify_disabled(struct intel_atomic_state *state)
+> diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> index dfb3a5c35c85..ce94ac689064 100644
+> --- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> +++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+> @@ -1982,52 +1982,3 @@ void intel_mpllb_readout_hw_state(struct intel_encoder *encoder,
+> 	 */
+> 	pll_state->mpllb_div &= ~SNPS_PHY_MPLLB_FORCE_EN;
+> }
+> -
+> -void intel_mpllb_state_verify(struct intel_atomic_state *state,
+> -			      struct intel_crtc *crtc)
 > -{
-> -	struct intel_crtc_state *crtc_state =
+> -	struct intel_display *display = to_intel_display(state);
+> -	const struct intel_crtc_state *new_crtc_state =
 > -		intel_atomic_get_new_crtc_state(state, crtc);
-> -	struct intel_encoder *encoder =
-> -		intel_get_crtc_new_encoder(state, crtc_state);
-> -	int ret;
+> -	struct intel_mpllb_state mpllb_hw_state = {};
+> -	const struct intel_mpllb_state *mpllb_sw_state = &new_crtc_state->dpll_hw_state.mpllb;
+> -	struct intel_encoder *encoder;
 > -
-> -	ret = intel_mpllb_calc_state(crtc_state, encoder);
-> -	if (ret)
-> -		return ret;
+> -	if (!display->platform.dg2)
+> -		return;
 > -
-> -	crtc_state->hw.adjusted_mode.crtc_clock = intel_crtc_dotclock(crtc_state);
+> -	if (!new_crtc_state->hw.active)
+> -		return;
 > -
-> -	return 0;
+> -	/* intel_get_crtc_new_encoder() only works for modeset/fastset commits */
+> -	if (!intel_crtc_needs_modeset(new_crtc_state) &&
+> -	    !intel_crtc_needs_fastset(new_crtc_state))
+> -		return;
+> -
+> -	encoder = intel_get_crtc_new_encoder(state, new_crtc_state);
+> -	intel_mpllb_readout_hw_state(encoder, &mpllb_hw_state);
+> -
+> -#define MPLLB_CHECK(__name)						\
+> -	INTEL_DISPLAY_STATE_WARN(display, mpllb_sw_state->__name != mpllb_hw_state.__name, \
+> -				 "[CRTC:%d:%s] mismatch in MPLLB: %s (expected 0x%08x, found 0x%08x)", \
+> -				 crtc->base.base.id, crtc->base.name,	\
+> -				 __stringify(__name),			\
+> -				 mpllb_sw_state->__name, mpllb_hw_state.__name)
+> -
+> -	MPLLB_CHECK(mpllb_cp);
+> -	MPLLB_CHECK(mpllb_div);
+> -	MPLLB_CHECK(mpllb_div2);
+> -	MPLLB_CHECK(mpllb_fracn1);
+> -	MPLLB_CHECK(mpllb_fracn2);
+> -	MPLLB_CHECK(mpllb_sscen);
+> -	MPLLB_CHECK(mpllb_sscstep);
+> -
+> -	/*
+> -	 * ref_control is handled by the hardware/firemware and never
+> -	 * programmed by the software, but the proper values are supplied
+> -	 * in the bspec for verification purposes.
+> -	 */
+> -	MPLLB_CHECK(ref_control);
+> -
+> -#undef MPLLB_CHECK
 > -}
-> -
-> static int ilk_fb_cb_factor(const struct intel_crtc_state *crtc_state)
-> {
-> 	struct intel_display *display = to_intel_display(crtc_state);
-> @@ -1682,7 +1663,8 @@ static const struct intel_dpll_global_funcs mtl_dpll_funcs = {
-> };
->
-> static const struct intel_dpll_global_funcs dg2_dpll_funcs = {
-> -	.crtc_compute_clock = dg2_crtc_compute_clock,
-> +	.crtc_compute_clock = hsw_crtc_compute_clock,
-> +	.crtc_get_dpll = hsw_crtc_get_dpll,
-> };
->
-> static const struct intel_dpll_global_funcs hsw_dpll_funcs = {
 > -- 
 > 2.43.0
 >
 >
---8323329-1279074742-1781874014=:605841--
+--8323329-1145897918-1781874314=:605841--
