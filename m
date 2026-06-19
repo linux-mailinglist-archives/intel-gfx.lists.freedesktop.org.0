@@ -2,58 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id IcxfLjIrNWpUnwYAu9opvQ
+	id zHMaMTQrNWpVnwYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 13:42:42 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 13:42:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EE6866A577A
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 13:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 947686A577F
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 13:42:44 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=gHvnMtBd;
+	dkim=pass header.d=intel.com header.s=Intel header.b=fFRIbukJ;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B41310E098;
-	Fri, 19 Jun 2026 11:42:40 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1314410F54B;
+	Fri, 19 Jun 2026 11:42:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 55A1F10E08D;
- Fri, 19 Jun 2026 11:42:32 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6D5EC10F543;
+ Fri, 19 Jun 2026 11:42:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1781869352; x=1813405352;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=4SW8WibIK+hvKSU6PpNjMqwSCXy/WbRMpPZ1gAYI/Ls=;
- b=gHvnMtBdKBaOnRr8Nqx+Aif8hu94eHZN1i7bktWdUaY/DUe/2VG1Szs6
- KhCpedIcZ/jHHy+WNRPW+ZyFAkNXNfHpu7DZp+Jka1/+GT3Vh2XbCwPeM
- 41p1LIvHuyoCBJkpsSiqrZDcZArJcC8OOIvGPY+cXLBXJnAsTFJaxXXao
- ixwqvNf7hhz5CwUpBQqEZrC2W63DjdWkSHaXTLPNXiFosW7W4hJgXbA6E
- Rog13y1KruH4/IDg0sUiOttemNy5hQ6+OnMGLT8nwk8pQbII4iq6TE4Im
- T3zLfobR0m5bY6cel1j0U15Jr0oYOu7QfSHuJpqMAz/N/S3JVGodOVtVs g==;
-X-CSE-ConnectionGUID: f5vIXTK+SDKNbsYxvvAEqg==
-X-CSE-MsgGUID: IzNqSUexRJG6UaliNg1fZg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="70229410"
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="70229410"
+ t=1781869361; x=1813405361;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=vIzbeQrtWE5qIRQSSEhX/A+ooyiPoznkmGkQUg9Ezds=;
+ b=fFRIbukJOJYCJ6QTUHdvqNw47OOedg2fXC/xqbr6nu2ek3JODoAVMoC2
+ 5E5Tr/Sla4GoBnCfqG/sjAv7H5cnUHeye51P3p9HuYUosFHWOmZFd2XdK
+ pTWQIak9wQM7M6ZNk55tdmlY2PsMperAY4C1+TN/tG0U2aXsiynSvCFh5
+ we539Lo/qJDmTsPUIfYezVtjXXIJlp7ZJd3+0Dz7gB7+QUf/DdMTGdEty
+ loHk5tnaqA3N8zYASWWDq2Rtja2St28MCCckI2XicIuUKgFaqIlsOmOrx
+ 6GaQ+MxYifE17C+4JqDv7r+zOG7Y1a6mSodYQX6OzRrRS9X8KFnRitcLW A==;
+X-CSE-ConnectionGUID: pfBy1r+LTb+F2rb7no3s2g==
+X-CSE-MsgGUID: T64P9FNARTCj+U7HAvKwWw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11821"; a="70229415"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="70229415"
 Received: from orviesa001.jf.intel.com ([10.64.159.141])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 19 Jun 2026 04:42:32 -0700
-X-CSE-ConnectionGUID: qmv0y5mNTeePrSqn06+kKg==
-X-CSE-MsgGUID: zh4VmOz6Qg2iZvubu2WW7Q==
+ 19 Jun 2026 04:42:41 -0700
+X-CSE-ConnectionGUID: kg5KmiSOTPmLFEzeT01XHA==
+X-CSE-MsgGUID: fxRdFh5lSSalkTiRc5EgiQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="286738202"
+X-IronPort-AV: E=Sophos;i="6.24,213,1774335600"; d="scan'208";a="286738208"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa001.jf.intel.com with ESMTP; 19 Jun 2026 04:42:30 -0700
+ by orviesa001.jf.intel.com with ESMTP; 19 Jun 2026 04:42:39 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 0/4]  DSC max delta bpp support
-Date: Fri, 19 Jun 2026 17:09:01 +0530
-Message-Id: <20260619113905.1413453-1-nemesa.garg@intel.com>
+Cc: Nemesa Garg <nemesa.garg@intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Subject: [PATCH 1/4] drm/dp: Add DP_DSC_MAX_BPP_DELTA register
+Date: Fri, 19 Jun 2026 17:09:02 +0530
+Message-Id: <20260619113905.1413453-2-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20260619113905.1413453-1-nemesa.garg@intel.com>
+References: <20260619113905.1413453-1-nemesa.garg@intel.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -86,34 +89,49 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	DKIM_TRACE(0.00)[intel.com:+];
-	RCPT_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[nemesa.garg@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:mid,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EE6866A577A
+X-Rspamd-Queue-Id: 947686A577F
 
-    Some sinks exposes DSC max bpp through delta based
-DPCD fields. To support those sinks, add DP DPCD field
-field and logic to decode the delta value in bppx16
-format.
+The dsc max bpp delta masks were incorrectly placed
+under the DP_DSC_BITS_PER_PIXEL_INC(0x06F) register.
+Move these under correct DP_DSC_MAX_BPP_DELTA(0x06E)
+register.
 
-Nemesa Garg (4):
-  drm/dp: Add DP_DSC_MAX_BPP_DELTA register
-  drm/dp: Rename YCbCr420 bpp delta mask to native
-  drm/dp: Add max bpp delta computation constants
-  drm/i915/dp: Decode dsc max delta bpp from sink dpcd
+v2: Separate patch for correcting register. [Ankit]
 
- drivers/gpu/drm/i915/display/intel_dp.c | 43 +++++++++++++++++++++++--
- include/drm/display/drm_dp.h            | 13 ++++++--
- 2 files changed, 52 insertions(+), 4 deletions(-)
+Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
+Reviewed-by: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+---
+ include/drm/display/drm_dp.h | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
+diff --git a/include/drm/display/drm_dp.h b/include/drm/display/drm_dp.h
+index 829e4d98d61c..f34161078622 100644
+--- a/include/drm/display/drm_dp.h
++++ b/include/drm/display/drm_dp.h
+@@ -354,9 +354,11 @@
+ # define DP_DSC_20_PER_DP_DSC_SINK          (1 << 1)
+ # define DP_DSC_24_PER_DP_DSC_SINK          (1 << 2)
+ 
+-#define DP_DSC_BITS_PER_PIXEL_INC           0x06F
++#define DP_DSC_MAX_BPP_DELTA_VERSION_1		0x06E
+ # define DP_DSC_RGB_YCbCr444_MAX_BPP_DELTA_MASK 0x1f
+ # define DP_DSC_RGB_YCbCr420_MAX_BPP_DELTA_MASK 0xe0
++
++#define DP_DSC_BITS_PER_PIXEL_INC           0x06F
+ # define DP_DSC_BITS_PER_PIXEL_1_16         0x0
+ # define DP_DSC_BITS_PER_PIXEL_1_8          0x1
+ # define DP_DSC_BITS_PER_PIXEL_1_4          0x2
 -- 
 2.25.1
 
