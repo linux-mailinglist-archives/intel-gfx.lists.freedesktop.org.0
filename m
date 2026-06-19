@@ -2,38 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id H453A6tPNWqpsQYAu9opvQ
+	id +lA6Iy1VNWoOtQYAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:18:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:41:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 71D276A65CC
-	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:18:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5A05B6A677A
+	for <lists+intel-gfx@lfdr.de>; Fri, 19 Jun 2026 16:41:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A3DEB10F627;
-	Fri, 19 Jun 2026 14:18:16 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CC87C10F642;
+	Fri, 19 Jun 2026 14:41:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 67F3210E09E;
- Fri, 19 Jun 2026 14:18:15 +0000 (UTC)
-Content-Type: text/plain; charset="utf-8"
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5EDA410F63C;
+ Fri, 19 Jun 2026 14:41:43 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 9F992601E2;
+ Fri, 19 Jun 2026 14:41:42 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2F3941F000E9;
+ Fri, 19 Jun 2026 14:41:39 +0000 (UTC)
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+To: jgg@nvidia.com
+Cc: airlied@gmail.com, christian.koenig@amd.com,
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ linaro-mm-sig@lists.linaro.org, linux-media@vger.kernel.org,
+ patches@lists.linux.dev, rodrigo.vivi@intel.com, simona@ffwll.ch,
+ sumit.semwal@linaro.org, tursulin@ursulin.net,
+ Brendan Higgins <brendan.higgins@linux.dev>,
+ David Gow <david@davidgow.net>, kunit-dev@googlegroups.com
+Subject: Re: [PATCH 1/5] dma-buf: Change st-dma-resv.c to use kunit
+Date: Fri, 19 Jun 2026 16:41:37 +0200
+Message-ID: <20260619144137.1582409-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.43.0
+In-Reply-To: <1-v1-0a349a394eff+14110-dmabuf_kunit_jgg@nvidia.com>
+References: <1-v1-0a349a394eff+14110-dmabuf_kunit_jgg@nvidia.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_Add_support_for_DisplayPo?=
- =?utf-8?q?rt_link_training_information_report_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Kory Maincent" <kory.maincent@bootlin.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 19 Jun 2026 14:18:15 -0000
-Message-ID: <178187869542.96127.7236520994520842557@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260619-feat_link_cap-v2-0-a3dec4c02ad9@bootlin.com>
-In-Reply-To: <20260619-feat_link_cap-v2-0-a3dec4c02ad9@bootlin.com>
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,65 +56,96 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_FROM(0.00)[renesas];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DMARC_NA(0.00)[glider.be];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[gmail.com,amd.com,lists.freedesktop.org,linux.intel.com,lists.linaro.org,vger.kernel.org,lists.linux.dev,intel.com,ffwll.ch,linaro.org,ursulin.net,linux.dev,davidgow.net,googlegroups.com];
+	RCPT_COUNT_TWELVE(0.00)[17];
 	MIME_TRACE(0.00)[0:+];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[geert@glider.be,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,nvidia.com:email,linux-m68k.org:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 71D276A65CC
+X-Rspamd-Queue-Id: 5A05B6A677A
 
-== Series Details ==
+	Hi Jason,
 
-Series: Add support for DisplayPort link training information report (rev2)
-URL   : https://patchwork.freedesktop.org/series/164797/
-State : failure
+> Modernize the open coded test framework by using kunit.
+> 
+> The kunit tool can be used to build a kernel and run it in a VM with:
+> 
+> $ tools/testing/kunit/kunit.py run --build_dir build_kunit_x86_64 --arch x86_64 --kunitconfig ./drivers/dma-buf/.kunitconfig
+> 
+> Along with the other ways to run kunits.
+> 
+> To make the kunit tool work like this the DMABUF_KUNIT_TEST kconfig must
+> select DMA_SHARED_BUFFER to get it turned on without building a driver
+> using it.
+> 
+> Signed-off-by: Jason Gunthorpe <jgg@nvidia.com>
 
-== Summary ==
+Thanks for your patch, which is now commit 15b9bde78baddc27 ("dma-buf:
+Change st-dma-resv.c to use kunit") upstream.
 
-Error: patch https://patchwork.freedesktop.org/api/1.0/series/164797/revisions/2/mbox/ not applied
-Applying: drm: Introduce DisplayPort connector helpers with link training state
-Applying: drm/i915/display/dp: Adopt dp_connector helpers to expose link training state
-Using index info to reconstruct a base tree...
-M	drivers/gpu/drm/i915/display/intel_dp.c
-M	drivers/gpu/drm/i915/display/intel_dp_link_training.c
-Falling back to patching base and 3-way merge...
-Auto-merging drivers/gpu/drm/i915/display/intel_dp_link_training.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp_link_training.c
-Auto-merging drivers/gpu/drm/i915/display/intel_dp.c
-CONFLICT (content): Merge conflict in drivers/gpu/drm/i915/display/intel_dp.c
-error: Failed to merge in the changes.
-hint: Use 'git am --show-current-patch=diff' to see the failed patch
-Patch failed at 0002 drm/i915/display/dp: Adopt dp_connector helpers to expose link training state
-When you have resolved this problem, run "git am --continue".
-If you prefer to skip this patch, run "git am --skip" instead.
-To restore the original branch and stop patching, run "git am --abort".
-Build failed, no error log produced
+> --- /dev/null
+> +++ b/drivers/dma-buf/.kunitconfig
+> @@ -0,0 +1,2 @@
+> +CONFIG_KUNIT=y
+> +CONFIG_DMABUF_KUNIT_TEST=y
+> diff --git a/drivers/dma-buf/Kconfig b/drivers/dma-buf/Kconfig
+> index 8d4f2f89f24e3c..7d13c8f4484dd3 100644
+> --- a/drivers/dma-buf/Kconfig
+> +++ b/drivers/dma-buf/Kconfig
+> @@ -54,6 +54,14 @@ config DMABUF_SELFTESTS
+>  	default n
+>  	depends on DMA_SHARED_BUFFER
+>  
+> +config DMABUF_KUNIT_TEST
+> +	tristate "KUnit tests for DMA-BUF" if !KUNIT_ALL_TESTS
+> +	depends on KUNIT
+> +	select DMA_SHARED_BUFFER
 
+This select means that enabling KUNIT_ALL_TESTS also enables extra
+functionality, which may not be desirable in a production system.
+Unfortunately DMA_SHARED_BUFFER is invisible, so just changing this from
+"select" to "depends on" may not be the most desirable solution.
 
+> +	default KUNIT_ALL_TESTS
+> +	help
+> +	   Enable kunit tests for DMA-BUF
+> +
+>  menuconfig DMABUF_HEAPS
+>  	bool "DMA-BUF Userland Memory Heaps"
+>  	select DMA_SHARED_BUFFER
+
+Gr{oetje,eeting}s,
+
+						Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+							    -- Linus Torvalds
