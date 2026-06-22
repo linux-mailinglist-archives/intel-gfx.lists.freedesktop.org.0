@@ -2,165 +2,101 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id h/88MpU0OWoDogcAu9opvQ
+	id Q/kzN5o0OWoFogcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 15:11:49 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 15:11:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 425D56AFB23
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 15:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3B0846AFB29
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 15:11:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=LYxgsuKw;
+	dkim=pass header.d=gmail.com header.s=20251104 header.b=L4Ln4Td0;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=none) header.from=gmail.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CB53710E6B6;
-	Mon, 22 Jun 2026 13:11:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C702E10E6BB;
+	Mon, 22 Jun 2026 13:11:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C30610E6B6;
- Mon, 22 Jun 2026 13:11:47 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782133908; x=1813669908;
- h=from:to:subject:date:message-id:references:in-reply-to:
- content-transfer-encoding:mime-version;
- bh=Gj0xjVWY0ZJJx9M8hgtnJx7+bjHmMD9DtYJmdiHbn4w=;
- b=LYxgsuKwKbkmbFa/2NwZfiL3Z44FT357ubR1kpiPfMRo9jsBNFHU3AIH
- 4j6FdNCmDZQqaHzaDF9sCn6oS0ThoYktXee1WAfexUPo4mPpOO+qKNEHR
- HlOAS08LppWzlYEUQScv/Y4kTSaIIlYR8CI3RMVaCoJZyIdt4cWzwc+RB
- Q/a2PEWa+nn1LQq+FQfUkUo/vnP+/Un3qkBdiBCKIhAiIfIs24U/N9Gw+
- zDhMz78Ymev2acwl3UNhoqX5FBgmh56AGIcT9MhFoKeFQo/PDv/cjqMyR
- WMYT+qNaXnYRc4FpmkHUqNwISdtUiFJ2BOVaePa6hW5kOCx4qpSoZvVCY w==;
-X-CSE-ConnectionGUID: jRDubL3hRIKrS2MIfLVuSQ==
-X-CSE-MsgGUID: Cmolmqw9RZiJczs/uFG9Yg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="100290976"
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="100290976"
-Received: from orviesa003.jf.intel.com ([10.64.159.143])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 06:11:47 -0700
-X-CSE-ConnectionGUID: TfuR8v3QQPe1Qu+U/0e3Fw==
-X-CSE-MsgGUID: dPfWA9ADQMOf000H0x6xlQ==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="253124541"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 06:11:47 -0700
-Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 22 Jun 2026 06:11:46 -0700
-Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
- FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Mon, 22 Jun 2026 06:11:46 -0700
-Received: from BN1PR04CU002.outbound.protection.outlook.com (52.101.56.58) by
- edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Mon, 22 Jun 2026 06:11:46 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=oIltkZc2Pnhmw5DGACZ7QOdo0N4n3DcC0rDPYqxThBxeCRNiWOzIFdXsaeAT2o43KJ/07580We2ohFCsF9hHtSSWkOkeRPyE5Zia4lqlbm8ur5dXVdyRhI089qWjMsZeHdhqDxUmyfJzVMMciW2+3L9l7zLsVhiMReAK8BH4OncU0BJfHd5XUZ9/DmBmNnAx6LN+b0PNDjqlRFCzerLRubx/n/0/k2NRVJOuekfj8JQKWrsMUg7tkq5Zk9RRyaUWjfc1Q5KW9u32vMWPvAegPtJNKDrUecc7sYsxUTk1d2gDPiDBpIOMQvG/XgdsS6E6AoMiv5ddFAZbOzFuPkFtGA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=Gj0xjVWY0ZJJx9M8hgtnJx7+bjHmMD9DtYJmdiHbn4w=;
- b=uDcVkzDSXKyYmfG1VXS8mvHkSuCmSyDtdleh0fmVg6H4s7cw/aq2SlfP37s3rs8zDVZLQ8+RrtyJx+pNxdRTvWU9xnEaJfSFX49x5RR/FK6JJGA7O8YfyhX7XcJ9O2Uyyq4NVZROxckRH83Ee0mregnJVT2CKDW/nOW79VGH4xt61+9J3tNI6p8yGyf5nq3RiwluJQSxRBQSgYpgYO/h2g0R8tGYeL8ImLX+oR0UyrAdKGG60Jr/k8/lP8CJqH7qB0hnnRo9qwZYyHA6uozWH0TvKlf7MPB+K6t8+dg23/+kZfWBsbfFeuJeGzfZ+UYOcqbKuFkF7bOg3PWImDu5FA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from SJ5PPF57F27BA08.namprd11.prod.outlook.com
- (2603:10b6:a0f:fc02::82b) by IA1PR11MB8248.namprd11.prod.outlook.com
- (2603:10b6:208:447::13) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Mon, 22 Jun
- 2026 13:11:39 +0000
-Received: from SJ5PPF57F27BA08.namprd11.prod.outlook.com
- ([fe80::10f:5d3d:a8dd:569c]) by SJ5PPF57F27BA08.namprd11.prod.outlook.com
- ([fe80::10f:5d3d:a8dd:569c%7]) with mapi id 15.21.0139.018; Mon, 22 Jun 2026
- 13:11:38 +0000
-From: "Kahola, Mika" <mika.kahola@intel.com>
-To: "Deak, Imre" <imre.deak@intel.com>, "intel-gfx@lists.freedesktop.org"
- <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
- <intel-xe@lists.freedesktop.org>
-Subject: RE: [PATCH v2 02/28] drm/i915/dp: Add struct intel_dp_link_config
-Thread-Topic: [PATCH v2 02/28] drm/i915/dp: Add struct intel_dp_link_config
-Thread-Index: AQHc/cwV3k+sRDpZUUqi3LYOF+rfH7ZKlaWA
-Date: Mon, 22 Jun 2026 13:11:38 +0000
-Message-ID: <SJ5PPF57F27BA08796E9C1D6630BFF08C87EFEF2@SJ5PPF57F27BA08.namprd11.prod.outlook.com>
-References: <20260616200849.3534628-1-imre.deak@intel.com>
- <20260616200849.3534628-3-imre.deak@intel.com>
-In-Reply-To: <20260616200849.3534628-3-imre.deak@intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-publictraffictype: Email
-x-ms-traffictypediagnostic: SJ5PPF57F27BA08:EE_|IA1PR11MB8248:EE_
-x-ms-office365-filtering-correlation-id: f4eef29c-2ee7-46ac-dec2-08ded05fcb95
-x-ms-exchange-senderadcheck: 1
-x-ms-exchange-antispam-relay: 0
-x-microsoft-antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|18002099003|22082099003|6133799003|3023799007|38070700021|56012099006|4143699003|11063799006;
-x-microsoft-antispam-message-info: 6Y7Za1mGkp4LcxhZOUlnaOx2Hg1g7Yaf2kuPOT7aei3swDAX4jVcotqiNcSCp3wiTpqFw3vjDZKb8slkrdjFrUtxovTAmUiHLe4X/EJsUp5iVETxoc7yl0MZ5Lh7ApeR63K9LfrltqCvDtQGEhMRH4QZLnn6iQASFoZ11Oe3mK6CCtWHUMH3eMO1/CZr1AevPwXVNCAap1xjZFbk7ulkj0XDATAJ4vInd+ZJF64FSRyJr9tePyJayvUWAHekXSUN5COVpwjQ7nXTm8yVWpF+93JlgAAB2OehlhybANtZKOogcf/M/CAZn0OVxL63/toi5sT8aoLpuNosT9RnNtDTakbC/X7MRitMZrL1ySgWfXShXOmf82AnqHv4S+bNr61agbCpNcLVZXLkFJwwRsf5/5yjPyVZR8lxje9tr8EBYek6I72wAJvP5KzkP2m2uy/NQSJUbvJXAX9CU8ZnhosOK/lv0xKoGCzSW6AIbPam1L9I1AtVTkIFS1euq2HmoVgAqO7DMK8uihd9w12Ez5yK1/Y74L1Lnx36ZZK5hN/OBNq2YXgz7bC/ZqydAcLaSLCHhAhKYEdO92ecnUQcy+0kUT3y2gGfBkyY6i/AwQuY+ZOSNPp1lpH2C8rY15WRWUFu3lB5C+iTlcCK8M6/3h53X0uBo+cGdOXt1bKhkbhq+6rvmpws2NcrfiCjl3tj4ksSXh4wg3n5hNMBuYxhKCYCm87PHbon2gXEp/wgcqprauk=
-x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ5PPF57F27BA08.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(18002099003)(22082099003)(6133799003)(3023799007)(38070700021)(56012099006)(4143699003)(11063799006);
- DIR:OUT; SFP:1101; 
-x-ms-exchange-antispam-messagedata-chunkcount: 1
-x-ms-exchange-antispam-messagedata-0: =?utf-8?B?dEk2bkxMWklBL1FodU90MkR4TmFuQXBqb3NodTgvSmwrREtVc2xBcGJuU3I2?=
- =?utf-8?B?c2JZL2FOdmRPUm4vR24yVkpMQ3BGdVNlR1E0Q1B1ck9vZit6UjNxdzJlek40?=
- =?utf-8?B?NzVwS3NBTjJrM2VGMk9tMlZMaEZaVEEyVS9kaldQaS9mNjlkS0tZZVFBWXhu?=
- =?utf-8?B?QnphSzk4YzV0WWwvZE1ZRTYwQ2ZDZkEvZXF6WXF3eHdCM3ZweXFvY0FTL1Yx?=
- =?utf-8?B?OU8yOE40djFFQnB6OTFUTGNsNmxsRHErVUtJVThrWG1qUm45OXVRUlFPd3RF?=
- =?utf-8?B?a2pRUDVJV3djU2wyVlZKckpNSU9hblNtZ21VTDh3bXVBNGs0ak40M1RpTCt6?=
- =?utf-8?B?WFZqaVppSDFoNVNJenJDZ2FYcVZObXc3alo1QWVRN25wQzZ4ZXpkL3FVbjNB?=
- =?utf-8?B?TjluRElURWNCNTZYSDJwYVdHVE56aWRERGlIak1hN1lZeTdMaVVGSjdSTFN5?=
- =?utf-8?B?dXFzSVZwS1UxdFlNaVFhY005bUZnWDk0dVlWaUVYRVV6V2c5UHljRmJFMjZ1?=
- =?utf-8?B?SHVWeWxXbFJrTXo0L3pjQnFXR2hadEpsQi83ZWk5Ty9Ub0cybU1rTXFqR1BQ?=
- =?utf-8?B?cGQySk9iNGlFczR2QkpqR3g0enB3SGhKeWtqZkRhcjhUT1l5MjB0djhtaUN4?=
- =?utf-8?B?V1BtendmejFGQnpHREVBQ3VDUXViTVhQVFJFZ21zUlZjTlowbm9zV0NzNTlv?=
- =?utf-8?B?MG40RmcxR0krSURpeWFHQ2FwZzhFKzNJMXJDc0tHZnlMR1lJWEZIWEpKYTZj?=
- =?utf-8?B?YmdNSUgvaUIyMkJMZ3pvNXRrMHFYZFQ4SzQzWWR3NEhWMnNsZUt6NEp4Qzc1?=
- =?utf-8?B?S3hzTkhXVmM1dTlFSkh2QSt4Rk5jb0ZIc3diL0wySExsb2FHbGVkQU0wU0VY?=
- =?utf-8?B?SU9hN2JEN3pBUFJaM2g2dWpKODM0MUovWTFaRi84YThUOHVlZFU2elZuU0Yw?=
- =?utf-8?B?N2FWSXZoVWVidHg4NXE3dmJEeUw2aFA1WnV0VzhQODFwa0luVEk4VitZd3VB?=
- =?utf-8?B?M1BJWHpsajJ5RzdLQ1o1N2N2VEdNdXY4OEhVc0ROZUtERitQc3hNM1h3dFB4?=
- =?utf-8?B?Zk9JTkR3WmF2c3dBNkZxRDRNYUpGV1VTKzMyNmxjZ2wwVDMxNHVYMGZPZFJ2?=
- =?utf-8?B?RldyRmZqSXkxZFh4YWljM0w2cjlLb0lvbUZkT01RYUxCQUIwSlFpWi9yb0Z1?=
- =?utf-8?B?QzQ0THVDaU1pQUVSeFYwb3Izb1cyUm84cWxqZnVSUXQ5T2xRNHBwSllCSzE0?=
- =?utf-8?B?cnVvMDdFMldlUWlYYjZiY2ZQWUczMVk5bVZBS0xoQjNhZHBRekhBazdMSU1E?=
- =?utf-8?B?dnpDR3oveXIxTStKb2JLQ2JlaWxycG9oNG1pWENYUEdkc0lKMGJvbWt1WWtX?=
- =?utf-8?B?aUJ6MzdGYkVVTzV4MFNMaTdFc1MyWGdHamRBc3RTUkdiZklpWFpuMEh6U0VK?=
- =?utf-8?B?a1FYL0dSMkxBQVFBbmloMVlBRFlzWmFTTFNLbFJ5UzFUUW14a1hiamdwcVBi?=
- =?utf-8?B?dzViNWc4UmJaQTBNMW9qZnR5a21Db0haQXJCTWxoM0xnSTlyWVRlbzJhMUZI?=
- =?utf-8?B?MURLVW9hUUh6LytaQmFtd2cybmRtUmErakNpaUUxdy9RcGJoMWxEOXBTa3hr?=
- =?utf-8?B?NjlxTCtqYUNIUE9mTmFjMjViUWw2RXM3V3lSYzNCb044MkFVWmhENGdna25u?=
- =?utf-8?B?REFybFdueTFFem9ndmtnM3lqUEl2SkJ1MjRYNkdLVXJVWHRVTHVzK0QwK0Qx?=
- =?utf-8?B?aHBWeG5ZSFdVZ29FSlR0TVpPdC9CRG8xZTBjOGNCcjVuOHFJUHZtQ21rQnkr?=
- =?utf-8?B?bDM5U0t3UWZBODVpUmNzYm8zL3BwVFZhb2M0NE8xczhLS2xjTEgrVTc3UHM5?=
- =?utf-8?B?NWJrdUxVYmVCM0g5SmY4WlpRRXV4dEhZa1RaSkt1Snh1VDYrbVBXNHFJZU1V?=
- =?utf-8?B?dUNLOUhkOUZKekxhYmlzZnI2bEY5ZW9yY2lHQTg5SmVGN1UzbmV1TGtNK2JX?=
- =?utf-8?B?ZE9JdzhSbEZrbTRJV1lLZUhRYmZGZVBDWW1DT3lTelZwYTJHVVJ0c211Z3pk?=
- =?utf-8?B?QWhCeXhXNmF3RnZZbGlvK3VXZXJjZUNRN3Fzdk5kR1lQNm5KbTZad2laRk9Q?=
- =?utf-8?B?aldDeTB5NVRRQnRrV2ZZTzNhaUpMN212MjMxeTRyU056QVg5cjBVL01NTXZG?=
- =?utf-8?B?SDlTV093KzVuMmpSUVB6NGExQUN6NjByVUNRWDFoczVrOUpHNUVMV1FiQUJa?=
- =?utf-8?B?TzliUWpjaDlENW9vYUt2eExwM29JN21DUWdTcnhmL3ZURmdpSVlva2ZKWEsz?=
- =?utf-8?Q?PSJMko/8U/AgfQAQa2?=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Received: from mail-yx1-f41.google.com (mail-yx1-f41.google.com
+ [74.125.224.41])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DA76B10E6C1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 13:11:51 +0000 (UTC)
+Received: by mail-yx1-f41.google.com with SMTP id
+ 956f58d0204a3-662bb8b1f93so4130294d50.1
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 06:11:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=gmail.com; s=20251104; t=1782133911; x=1782738711; darn=lists.freedesktop.org;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:date:from:from:to:cc:subject:date:message-id:reply-to;
+ bh=XkaEWxUJkCuHp/17+ud4oWXJ3qqAKnltzqopfMTtFIs=;
+ b=L4Ln4Td0DqrkZ11ZqeVNt/ol8NpCrMCqcFC/LeGcMcFiR9EixxX3NaCdENAE8Etn0W
+ YWI0lbByyf7l/qPwhn4HDOArsGH48BHvHp07egRuSEUBHTrNoaETNo6IXe3K8l08O3vC
+ sqR+snu007I8yBncyjcLNwOKobuvJyaAqBJToslWJwrgrrQkpXZOwuqcMRzrOVhmwJFa
+ jGuAsIyA9fMF1irlMKOVZpWje7rDcR+m6PCTl0URBFSdr3KG1inMN/Ntx33tb1+zqYXp
+ 0xnhXJZA2NmqhBXtFGG7eCJa9wioGz+gUZX71tDQEV/XLx3aYDWwjLsrb9R+riUw2Oeo
+ P+aQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782133911; x=1782738711;
+ h=in-reply-to:content-disposition:mime-version:references:message-id
+ :subject:cc:to:date:from:x-gm-gg:x-gm-message-state:from:to:cc
+ :subject:date:message-id:reply-to;
+ bh=XkaEWxUJkCuHp/17+ud4oWXJ3qqAKnltzqopfMTtFIs=;
+ b=WMa07ushUDMyONPcrD5qPxRK7WBPRAr1ochXVKMXwjSpW588t6oFQLSx5n6XnQP9n7
+ wSAJrC+RsBst6a08zRoBcorKW86kIWnzqHn/fPd+szSbq2jpzEM4qVIa32kSd7+esFul
+ YU1a5fZ4bNpMcWLbSUK0Bw83in8tJceuJvGdVBfrThkPNMMyaQOg8MJOoR/EXdLZY5JG
+ SXAPQ75q8LV00Cr5DVEnRCzCn4bkmgqUksQPI3ONQfFy3L7pKlS5GnFSXADYAqGyhzps
+ kSgy+KWZZrIB9toAgJNYY0DGtgt35C4SNKe0IbUJbaT7hOjz5nr8kgsR02juZYX24TBu
+ k4rw==
+X-Forwarded-Encrypted: i=1;
+ AHgh+RoQiNQGh2ILx/i9XOPG3/CE8G6DUS1BCYevWs7hTGOuAQI78FGSCDYJwXGyhLhnlFJ8UBZnrYykvmQ=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YzMFvC/b73XId+ZfHhLmdgUcoKFDYxU2psO9AJONfSfsSFHtyYW
+ JY+aRDkN88bC0bGeK6t/GEZG138ZRbq9y+6qJyALoXuXkEmcF3GMQovv
+X-Gm-Gg: AfdE7clDffROHEk0iU37xWwchFghzWSmnhsMMd5bLwhAgMruMdwVq/w1NhPYWBF21GM
+ +oWTDm4ikCTJHEfc3E17RmZPsSicINkgHDJRn1M7whLse/h61uor8T1kE34O9luphfc362Rfnun
+ JFIIfVhjXoq0GrPq1OjyKiXnQATLohTI+Z1fRk4EyXgLPuIXvi44dXH063bMqRi0VK4tcK0bvr7
+ cxJWOk5AfKTKXJXYRq63oFgE6QTwjA/dhO7b8VEPlQlCSoqhpodgCJFB7vUfTufNl5c1YUqcSur
+ Bl2/zghJloQAZIeDT8ZCG7Ngu3gHfjbJNGmFNn2ZyTfN1P7sZ6VKBhQSBfR3AGuAVN26qXXhNRZ
+ e6GWqYGQQ3SM6GoXY9d/Rp0X0nn89cU2Rxvk4h8Y8OWzbFIoaXMYYHlmhN16tiAbS5F7ZU2O16s
+ kCyomgvT0=
+X-Received: by 2002:a05:690e:120c:b0:660:54e4:5dd1 with SMTP id
+ 956f58d0204a3-6630333ac1bmr11505521d50.44.1782133910591; 
+ Mon, 22 Jun 2026 06:11:50 -0700 (PDT)
+Received: from localhost ([38.101.158.131]) by smtp.gmail.com with ESMTPSA id
+ 956f58d0204a3-66314ac3f96sm3600882d50.1.2026.06.22.06.11.50
+ (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+ Mon, 22 Jun 2026 06:11:50 -0700 (PDT)
+From: Yury Norov <yury.norov@gmail.com>
+X-Google-Original-From: Yury Norov <ynorov@nvidia.com>
+Date: Mon, 22 Jun 2026 09:11:49 -0400
+To: Steven Rostedt <rostedt@kernel.org>
+Cc: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>,
+ linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ John Ogness <john.ogness@linutronix.de>, Thomas Gleixner <tglx@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Julia Lawall <julia.lawall@inria.fr>,
+ Yury Norov <yury.norov@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-rdma@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-nfs@vger.kernel.org, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH 0/2] tracing: Move trace_printk.h out of kernel.h
+Message-ID: <ajk0lT9P0SeuD94j@yury>
+References: <20260621093430.264983361@kernel.org>
+ <dbb5915e-6587-4de9-87f3-76bea5024da8@kernel.org>
+ <20260622090826.20efadb3@fedora>
 MIME-Version: 1.0
-X-Exchange-RoutingPolicyChecked: BX7ZLeGeRLE2tx7O1AYnW6fx47lPcTcq7Jj4mwlmpE9lNE9t3XDeSBGZ0ZiYmE9Aq/ubjNd7cX4IVvpZO2WwDClcu4Do4cC1zP1kVe298xTpMZsubCJkmp1XXL0AZkuqx5XzBa2ZQLs15pjCI2HfGxaiUFLAfBhuscPxBiH78PFrA4F6gTicJPsyUGyNtDhXktqmo54btcT+G54YSKqA/gwNxVsGjQlL+45786CS2fCAA1lTVmr4ZXmVBBN1K20VhVrhaCyq1AOogC95dih8iUw2I461QekkWN76nuT17Om+aVvSO6ap4GbTXWfhVmyqiBZnugK53fnUUjxmCuP50Q==
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: SJ5PPF57F27BA08.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f4eef29c-2ee7-46ac-dec2-08ded05fcb95
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jun 2026 13:11:38.9192 (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: PHIe0x8qy43tdsrFZd4yEdmWYZUZqCSG/LE6drBqHtH3DzJ6QrlwSchi5Y8+NQRpSG5p29mAAgUOIsWLT9TGBQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA1PR11MB8248
-X-OriginatorOrg: intel.com
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260622090826.20efadb3@fedora>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -176,58 +112,57 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.21 / 15.00];
-	MIME_BASE64_TEXT_BOGUS(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
+	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_BASE64_TEXT(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:from_mime,SJ5PPF57F27BA08.namprd11.prod.outlook.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email];
+	RCVD_COUNT_THREE(0.00)[4];
+	RECEIVED_HELO_LOCALHOST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:rostedt@kernel.org,m:chleroy@kernel.org,m:linux-kernel@vger.kernel.org,m:linux-trace-kernel@vger.kernel.org,m:mhiramat@kernel.org,m:mark.rutland@arm.com,m:mathieu.desnoyers@efficios.com,m:akpm@linux-foundation.org,m:torvalds@linux-foundation.org,m:bigeasy@linutronix.de,m:john.ogness@linutronix.de,m:tglx@kernel.org,m:peterz@infradead.org,m:julia.lawall@inria.fr,m:yury.norov@gmail.com,m:linux-doc@vger.kernel.org,m:linux-kbuild@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:linux-stm32@st-md-mailman.stormreply.com,m:linux-arm-kernel@lists.infradead.org,m:linux-rdma@vger.kernel.org,m:linux-usb@vger.kernel.org,m:linux-ext4@vger.kernel.org,m:linux-nfs@vger.kernel.org,m:kvm@vger.kernel.org,m:yurynorov@gmail.com,s:lists@lfdr.de];
 	MIME_TRACE(0.00)[0:+];
-	TO_DN_EQ_ADDR_SOME(0.00)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	FREEMAIL_FROM(0.00)[gmail.com];
+	RCPT_COUNT_TWELVE(0.00)[27];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[yurynorov@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mika.kahola@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_SOME(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[yurynorov@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[kernel.org,vger.kernel.org,arm.com,efficios.com,linux-foundation.org,linutronix.de,infradead.org,inria.fr,gmail.com,lists.ozlabs.org,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DKIM_TRACE(0.00)[gmail.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	MISSING_XM_UA(0.00)[];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[yury:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 425D56AFB23
+X-Rspamd-Queue-Id: 3B0846AFB29
 
-PiAtLS0tLU9yaWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBJbnRlbC14ZSA8aW50ZWwteGUt
-Ym91bmNlc0BsaXN0cy5mcmVlZGVza3RvcC5vcmc+IE9uIEJlaGFsZiBPZiBJbXJlIERlYWsNCj4g
-U2VudDogVHVlc2RheSwgMTYgSnVuZSAyMDI2IDIzLjA4DQo+IFRvOiBpbnRlbC1nZnhAbGlzdHMu
-ZnJlZWRlc2t0b3Aub3JnOyBpbnRlbC14ZUBsaXN0cy5mcmVlZGVza3RvcC5vcmcNCj4gU3ViamVj
-dDogW1BBVENIIHYyIDAyLzI4XSBkcm0vaTkxNS9kcDogQWRkIHN0cnVjdCBpbnRlbF9kcF9saW5r
-X2NvbmZpZw0KPiANCj4gQWRkIGEgc3RydWN0IHJlcHJlc2VudGluZyB0aGUgcHVibGljIHVucGFj
-a2VkIGZvcm1hdCBvZiBhIGxpbmsNCj4gY29uZmlndXJhdGlvbi4gVGhpcyB3aWxsIGJlIHVzZWQg
-YnkgdGhlIERQIGxpbmsgY2FwYWJpbGl0eSBBUEkgYWRkZWQNCj4gYXMgYSBmb2xsb3ctdXAsIGFu
-ZCBieSBEUCBjb2RlIGluIGdlbmVyYWwgdGhhdCBuZWVkcyB0byB0cmFjayBhIGxpbmsNCj4gY29u
-ZmlndXJhdGlvbi4NCj4gDQoNClJldmlld2VkLWJ5OiBNaWthIEthaG9sYSA8bWlrYS5rYWhvbGFA
-aW50ZWwuY29tPg0KDQo+IFNpZ25lZC1vZmYtYnk6IEltcmUgRGVhayA8aW1yZS5kZWFrQGludGVs
-LmNvbT4NCj4gLS0tDQo+ICBkcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVsX2Rpc3Bs
-YXlfdHlwZXMuaCB8IDggKysrKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA4IGluc2VydGlvbnMo
-KykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vaTkxNS9kaXNwbGF5L2ludGVs
-X2Rpc3BsYXlfdHlwZXMuaCBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlz
-cGxheV90eXBlcy5oDQo+IGluZGV4IGM3MWVkZWExNDU4NzguLmMwOTJjODFlZDJlYjYgMTAwNjQ0
-DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90eXBl
-cy5oDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9pOTE1L2Rpc3BsYXkvaW50ZWxfZGlzcGxheV90
-eXBlcy5oDQo+IEBAIC0xODAwLDYgKzE4MDAsMTQgQEAgc3RydWN0IGludGVsX3BzciB7DQo+ICAJ
-c3RydWN0IHJlZl90cmFja2VyICp2Ymxhbmtfd2FrZXJlZjsNCj4gIH07DQo+IA0KPiArc3RydWN0
-IGludGVsX2RwX2xpbmtfY29uZmlnIHsNCj4gKwlpbnQgcmF0ZTsNCj4gKwlpbnQgbGFuZV9jb3Vu
-dDsNCj4gK307DQo+ICsNCj4gKyNkZWZpbmUgSU5URUxfRFBfTElOS19DT05GSUdfTlVMTCBcDQo+
-ICsJKChzdHJ1Y3QgaW50ZWxfZHBfbGlua19jb25maWcpe30pDQo+ICsNCj4gIHN0cnVjdCBpbnRl
-bF9kcCB7DQo+ICAJaW50ZWxfcmVnX3Qgb3V0cHV0X3JlZzsNCj4gIAl1MzIgRFA7DQo+IC0tDQo+
-IDIuNDkuMQ0KDQo=
+On Mon, Jun 22, 2026 at 09:08:26AM -0400, Steven Rostedt wrote:
+> On Mon, 22 Jun 2026 10:05:13 +0200
+> "Christophe Leroy (CS GROUP)" <chleroy@kernel.org> wrote:
+> 
+> > > There's been complaints about trace_printk() being defined in kernel.h as it
+> > > can increase the compilation time. As it is only used by some developers for
+> > > debugging purposes, it should not be in kernel.h causing lots of wasted CPU
+> > > cycles for those that do not ever care about it.  
+> > 
+> > Do we have a measurement of the increased compilation time ?
+> 
+> I believe Yury does.
+
+I re-run compilation is a more strict environment, and the difference
+is negligible.
