@@ -2,62 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 36aLFM2qOWqOwAcAu9opvQ
+	id r3qANdCqOWqQwAcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:16 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFAFB6B2835
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 814046B283F
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=lDPMKuPp;
+	dkim=pass header.d=intel.com header.s=Intel header.b="c3I+7/C+";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2F6EF10E8BB;
-	Mon, 22 Jun 2026 21:36:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 14D7B10E871;
+	Mon, 22 Jun 2026 21:36:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9B2DA10E871;
- Mon, 22 Jun 2026 21:36:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B50C310E871;
+ Mon, 22 Jun 2026 21:36:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782164169; x=1813700169;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=BIfpUsn/0OSrfLZGMqDoPrNmWunHZK6NnheRC5tKfDU=;
- b=lDPMKuPptY6WNW4caDsNlwro5MiQsyBzN100SbgwVSbwwFAVxgWnAT3I
- uNHAEuBRdDT1VDw8PMmcxsIt3GkbNZ6adx+X+kjz4jrXV5X5jHkNSNsD0
- VSaToMPwF75zFiROGmM6WjIGz2skrejtxnRAmw+d8p2CrrysKwFrN2pUL
- +XbPx4QJeC6UPUebD+n4oYZx4CP46+7OVxIaMiGDJJHGj9ohcjhw5mAsw
- OUK13pJzmCaynAN1BSMV9tuAJt1yJCiJbIC2Iwt5ogvzoAgAILBWt1oeE
- jwVrPlqE5/+6xieUEEHpUssEeioIsrEZYOHiscYpBgtcMhWULG8IYFHS7 w==;
-X-CSE-ConnectionGUID: Mb75aceAS1GgoezdqrQwCg==
-X-CSE-MsgGUID: bjQGQOFfRu6MmZdvP9CfMg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="86812055"
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="86812055"
+ t=1782164174; x=1813700174;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=Xuk9majFbY0IfOEORsSf0A/SUiblC28wIU018j8DalA=;
+ b=c3I+7/C+SlvP8bSIwcvzmiKywpNcXqESkjvxfyEddsWa5LYVLg7+Mrv0
+ QSG8gjWMi8By3vech0+Qoqs3YkP4Qtzukaw7/UC60Z7OG5novsApM7RJr
+ O5htbPVQUiyGEPYnfngWXUKz8ZDscf7RqiyHIudpfEyt1JbOIWz7Zng+a
+ 5lhkFsbJf9FGfrKGLg0O1/YKZyMWp73VuhcHAFsfSPjZwznkA/E147t8e
+ TuOx0tv11YDSQ54A8bMFrACyxvLFn2BIw8TOQS6ulD0jAfhrmAhaijMRD
+ ysewjD8vCjwVeu1eVkggiOBi6tyumMCV9p1zrfLS4Rt2gKAnJIjMVGn0o A==;
+X-CSE-ConnectionGUID: ANSIMSuHQnu/olJwcwim7g==
+X-CSE-MsgGUID: LAvJt+QoTKenUFO6lQ31Fw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="86812056"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="86812056"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 14:36:08 -0700
-X-CSE-ConnectionGUID: SfiLt37+TbmlPekVkdVimA==
-X-CSE-MsgGUID: vG+sxAf3TA+oE5F4x+eKKw==
+ 22 Jun 2026 14:36:14 -0700
+X-CSE-ConnectionGUID: kO1vPLiESDWZDkJd+enHzg==
+X-CSE-MsgGUID: ioY0VZWrS3uQ3pDMKPheKw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="253229744"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="253229815"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.160])
  by ORVIESA003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 14:36:06 -0700
+ 22 Jun 2026 14:36:12 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Suraj Kandpal <suraj.kandpal@intel.com>,
  Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: [PATCH v2 0/5] drm/i915: Work harder to enable VRR based refresh rate
- changes on eDP
-Date: Tue, 23 Jun 2026 00:35:57 +0300
-Message-ID: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 1/5] drm/i915/panel: Split VRR vs. fixed refresh rate fixed
+ mode selection into separate stages
+Date: Tue, 23 Jun 2026 00:35:58 +0300
+Message-ID: <20260622213602.7244-2-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
+References: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
@@ -104,50 +106,196 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AFAFB6B2835
+X-Rspamd-Queue-Id: 814046B283F
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Tweak the eDP fixed mode selection algorithm to allow
-userspace to do refresh rate changes on VRR capable
-eDP panels without full modesets.
+Split the VRR vs. fixed refresh rate fixed mode selection into two
+completely separate stages. First try the VRR method, which will
+only accept fixed modes that are in the VRR range and whose refresh
+rate is equal or higher to the user's requested mode's refresh rate.
+If the VRR method doesn't find anything we fall back to the fixed
+refresh rate method of simply looking for the fixed mode with the
+closest refresh rate to the user's request.
 
-v2: Cleaner split for VRR vs. fixed refresh rate fixed mode
-    selection to avoid some corner cases
+The main benefit is that we will only perform the VRR vtotal adjustment
+on fixed modes that have equal or higher refresh rate to the user's
+requested mode, thus we will never end up in a situation where we'd
+have to shrink the fixed mode's vtotal. This avoids any risk of ending
+up with a vtotal that is too short.
 
 Cc: Suraj Kandpal <suraj.kandpal@intel.com>
 Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_panel.c | 123 ++++++++++++++-------
+ 1 file changed, 84 insertions(+), 39 deletions(-)
 
-Ville Syrjälä (5):
-  drm/i915/panel: Split VRR vs. fixed refresh rate fixed mode selection
-    into separate stages
-  drm/modes: Add DRM_MODE_MATCH_TIMINGS_VRR
-  drm/i915: Pass the full atomic state to .compute_config()
-  drm/i915/panel: Adjust intel_panel_compute_config() calling convention
-  drm/i915/panel: Attempt VRR based refresh rate change for
-    !allow_modeset
-
- drivers/gpu/drm/drm_modes.c                   |  23 +++
- drivers/gpu/drm/i915/display/g4x_dp.c         |   5 +-
- drivers/gpu/drm/i915/display/g4x_hdmi.c       |   4 +-
- drivers/gpu/drm/i915/display/icl_dsi.c        |   5 +-
- drivers/gpu/drm/i915/display/intel_crt.c      |   9 +-
- drivers/gpu/drm/i915/display/intel_ddi.c      |   8 +-
- drivers/gpu/drm/i915/display/intel_display.c  |   4 +-
- .../drm/i915/display/intel_display_types.h    |   6 +-
- drivers/gpu/drm/i915/display/intel_dp.c       |   6 +-
- drivers/gpu/drm/i915/display/intel_dp.h       |   3 +-
- drivers/gpu/drm/i915/display/intel_dp_mst.c   |   8 +-
- drivers/gpu/drm/i915/display/intel_dvo.c      |   5 +-
- drivers/gpu/drm/i915/display/intel_lvds.c     |   5 +-
- drivers/gpu/drm/i915/display/intel_panel.c    | 167 +++++++++++++-----
- drivers/gpu/drm/i915/display/intel_panel.h    |   6 +-
- drivers/gpu/drm/i915/display/intel_sdvo.c     |   7 +-
- drivers/gpu/drm/i915/display/intel_tv.c       |   5 +-
- drivers/gpu/drm/i915/display/vlv_dsi.c        |   5 +-
- include/drm/drm_modes.h                       |   1 +
- 19 files changed, 203 insertions(+), 79 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 81fb349ece5f..12a27edf8bc8 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -67,21 +67,43 @@ static bool is_best_fixed_mode(struct intel_connector *connector,
+ 	if (!best_mode)
+ 		return true;
+ 
+-	/*
+-	 * With VRR always pick a mode with equal/higher than requested
+-	 * vrefresh, which we can then reduce to match the requested
+-	 * vrefresh by extending the vblank length.
+-	 */
+-	if (intel_vrr_is_in_range(connector, vrefresh) &&
+-	    intel_vrr_is_in_range(connector, fixed_mode_vrefresh) &&
+-	    fixed_mode_vrefresh < vrefresh)
+-		return false;
+-
+ 	/* pick the fixed_mode that is closest in terms of vrefresh */
+ 	return abs(fixed_mode_vrefresh - vrefresh) <
+ 		abs(drm_mode_vrefresh(best_mode) - vrefresh);
+ }
+ 
++static const struct drm_display_mode *
++intel_panel_fixed_mode_vrr(struct intel_connector *connector,
++			   const struct drm_display_mode *mode)
++{
++	const struct drm_display_mode *fixed_mode, *best_mode = NULL;
++	int vrefresh = drm_mode_vrefresh(mode);
++
++	if (!intel_vrr_is_in_range(connector, vrefresh))
++		return NULL;
++
++	list_for_each_entry(fixed_mode, &connector->panel.fixed_modes, head) {
++		int fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
++
++		if (!intel_vrr_is_in_range(connector, fixed_mode_vrefresh))
++			continue;
++
++		/*
++		 * With VRR always pick a mode with equal/higher than requested
++		 * vrefresh, which we can then reduce to match the requested
++		 * vrefresh by extending the vblank length.
++		 */
++		if (fixed_mode_vrefresh < vrefresh)
++			continue;
++
++		if (is_best_fixed_mode(connector, vrefresh,
++				       fixed_mode_vrefresh, best_mode))
++			best_mode = fixed_mode;
++	}
++
++	return best_mode;
++}
++
+ const struct drm_display_mode *
+ intel_panel_fixed_mode(struct intel_connector *connector,
+ 		       const struct drm_display_mode *mode)
+@@ -197,47 +219,23 @@ enum drrs_type intel_panel_drrs_type(struct intel_connector *connector)
+ 	return connector->panel.vbt.drrs_type;
+ }
+ 
+-int intel_panel_compute_config(struct intel_connector *connector,
+-			       struct drm_display_mode *adjusted_mode)
++static int intel_panel_compute_config_vrr(struct intel_connector *connector,
++					  struct drm_display_mode *adjusted_mode)
+ {
+ 	const struct drm_display_mode *fixed_mode =
+ 		intel_panel_fixed_mode(connector, adjusted_mode);
+ 	int vrefresh, fixed_mode_vrefresh;
+-	bool is_vrr;
+ 
++	fixed_mode = intel_panel_fixed_mode_vrr(connector, adjusted_mode);
+ 	if (!fixed_mode)
+-		return 0;
++		return -EINVAL;
+ 
+ 	vrefresh = drm_mode_vrefresh(adjusted_mode);
+ 	fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
+ 
+-	/*
+-	 * Assume that we shouldn't muck about with the
+-	 * timings if they don't land in the VRR range.
+-	 */
+-	is_vrr = intel_vrr_is_in_range(connector, vrefresh) &&
+-		intel_vrr_is_in_range(connector, fixed_mode_vrefresh);
+-
+-	if (!is_vrr) {
+-		/*
+-		 * We don't want to lie too much to the user about the refresh
+-		 * rate they're going to get. But we have to allow a bit of latitude
+-		 * for Xorg since it likes to automagically cook up modes with slightly
+-		 * off refresh rates.
+-		 */
+-		if (abs(vrefresh - fixed_mode_vrefresh) > 1) {
+-			drm_dbg_kms(connector->base.dev,
+-				    "[CONNECTOR:%d:%s] Requested mode vrefresh (%d Hz) does not match fixed mode vrefresh (%d Hz)\n",
+-				    connector->base.base.id, connector->base.name,
+-				    vrefresh, fixed_mode_vrefresh);
+-
+-			return -EINVAL;
+-		}
+-	}
+-
+ 	drm_mode_copy(adjusted_mode, fixed_mode);
+ 
+-	if (is_vrr && fixed_mode_vrefresh != vrefresh) {
++	if (fixed_mode_vrefresh != vrefresh) {
+ 		int vsync_start_offset = adjusted_mode->vtotal - adjusted_mode->vsync_start;
+ 		int vsync_end_offset = adjusted_mode->vtotal - adjusted_mode->vsync_end;
+ 
+@@ -254,6 +252,53 @@ int intel_panel_compute_config(struct intel_connector *connector,
+ 	return 0;
+ }
+ 
++static int intel_panel_compute_config_fixed_rr(struct intel_connector *connector,
++					       struct drm_display_mode *adjusted_mode)
++{
++	const struct drm_display_mode *fixed_mode;
++	int vrefresh, fixed_mode_vrefresh;
++
++	fixed_mode = intel_panel_fixed_mode(connector, adjusted_mode);
++	if (!fixed_mode)
++		return 0;
++
++	vrefresh = drm_mode_vrefresh(adjusted_mode);
++	fixed_mode_vrefresh = drm_mode_vrefresh(fixed_mode);
++
++	/*
++	 * We don't want to lie too much to the user about the refresh
++	 * rate they're going to get. But we have to allow a bit of latitude
++	 * for Xorg since it likes to automagically cook up modes with slightly
++	 * off refresh rates.
++	 */
++	if (abs(vrefresh - fixed_mode_vrefresh) > 1) {
++		drm_dbg_kms(connector->base.dev,
++			    "[CONNECTOR:%d:%s] Requested mode vrefresh (%d Hz) does not match fixed mode vrefresh (%d Hz)\n",
++			    connector->base.base.id, connector->base.name,
++			    vrefresh, fixed_mode_vrefresh);
++
++		return -EINVAL;
++	}
++
++	drm_mode_copy(adjusted_mode, fixed_mode);
++
++	drm_mode_set_crtcinfo(adjusted_mode, 0);
++
++	return 0;
++}
++
++int intel_panel_compute_config(struct intel_connector *connector,
++			       struct drm_display_mode *adjusted_mode)
++{
++	int ret;
++
++	ret = intel_panel_compute_config_vrr(connector, adjusted_mode);
++	if (ret)
++		ret = intel_panel_compute_config_fixed_rr(connector, adjusted_mode);
++
++	return ret;
++}
++
+ static void intel_panel_add_edid_alt_fixed_modes(struct intel_connector *connector)
+ {
+ 	struct intel_display *display = to_intel_display(connector);
 -- 
 2.53.0
 
