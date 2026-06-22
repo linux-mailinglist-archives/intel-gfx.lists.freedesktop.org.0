@@ -2,39 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id q2pKJVRbOWorrAcAu9opvQ
+	id +cUJIpxlOWpyrgcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 17:57:08 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 18:41:00 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 150B36B0E62
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 17:57:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 00F016B1331
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 18:40:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=fail ("headers rsa verify failed") header.d=infradead.org header.s=bombadil.20210309 header.b=wSEig2tX;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=infradead.org (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9E5B589F35;
-	Mon, 22 Jun 2026 15:57:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6C71910E558;
+	Mon, 22 Jun 2026 16:40:58 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 28F3B89F35;
- Mon, 22 Jun 2026 15:57:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============6318812735952545346=="
+Received: from bombadil.infradead.org (bombadil.infradead.org
+ [198.137.202.133])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5D2FD10E558;
+ Mon, 22 Jun 2026 16:40:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+ d=infradead.org; s=bombadil.20210309; h=Content-Transfer-Encoding:
+ Content-Type:In-Reply-To:From:References:Cc:To:Subject:MIME-Version:Date:
+ Message-ID:Sender:Reply-To:Content-ID:Content-Description;
+ bh=c5UMhYqzW3FXITWipN5SHhAQOB1P9YUKBIDy0r3xPQw=; b=wSEig2tXNqqYlMi+DO0fVntY5n
+ xOHolZZKA+fIDoV0P9vbcZYk+nTw3ZO3neQaPzi4xv2gcxwSzlDonXdcprWpDH2QVuSHb1XstdPJW
+ SDJunku4cTdk3jGABXOOirk4qvdvStLyf+TSspP6lyyvSkgzI8foJ7iUHjAWC1KMbyOnlr8Bk2/AC
+ kSmplFs4mh7vU8qt6mUcBWozaXfZYbjxcaOPfxhFG3Z95uao/bptRNf0v9TlnvAPmJRfMGZZ11YUj
+ Kd2cOw4Cnm3blaF1fkpC/rbtuwYhawbpOJtgBO9UdgKUgdoYUd8ev6TfDb5XWKvISvKwTYP33Ug+E
+ awdU0f0A==;
+Received: from [50.53.43.113] (helo=[192.168.254.34])
+ by bombadil.infradead.org with esmtpsa (Exim 4.99.1 #2 (Red Hat Linux))
+ id 1wbhhW-00000005CFj-0vuV; Mon, 22 Jun 2026 16:40:46 +0000
+Message-ID: <08b3c961-18bb-43d9-8d7f-8a87bcad0afa@infradead.org>
+Date: Mon, 22 Jun 2026 09:40:45 -0700
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/dp=5Fmst=3A_Handle_to?=
- =?utf-8?q?rn-down_topology_gracefully_in_drm=5Fdp=5Fmst=5Ftopology=5Fqueue?=
- =?utf-8?q?=5Fprobe=28=29_=28rev2=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jonas Emilsson" <jonas.emilsson@gmail.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Mon, 22 Jun 2026 15:57:06 -0000
-Message-ID: <178214382616.102379.16541285848177101291@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260622140532.526722-1-luciano.coelho@intel.com>
-In-Reply-To: <20260622140532.526722-1-luciano.coelho@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 0/2] tracing: Move trace_printk.h out of kernel.h
+To: Peter Zijlstra <peterz@infradead.org>, Steven Rostedt <rostedt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ Masami Hiramatsu <mhiramat@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ John Ogness <john.ogness@linutronix.de>, Thomas Gleixner <tglx@kernel.org>,
+ Julia Lawall <julia.lawall@inria.fr>, Yury Norov <yury.norov@gmail.com>,
+ linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-rdma@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-nfs@vger.kernel.org, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+References: <20260621093430.264983361@kernel.org>
+ <20260622083440.GX49951@noisy.programming.kicks-ass.net>
+Content-Language: en-US
+From: Randy Dunlap <rdunlap@infradead.org>
+In-Reply-To: <20260622083440.GX49951@noisy.programming.kicks-ass.net>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -47,140 +75,72 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [1.99 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	R_DKIM_REJECT(1.00)[infradead.org:s=bombadil.20210309];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_SOFTFAIL(0.10)[infradead.org : SPF not aligned (relaxed),none];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCPT_COUNT_TWO(0.00)[2];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	FREEMAIL_TO(0.00)[gmail.com];
-	FROM_HAS_DN(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,arm.com,efficios.com,linux-foundation.org,linutronix.de,inria.fr,gmail.com,lists.ozlabs.org,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,emeril.freedesktop.org:from_mime,01.org:url,6beec6c84f66:mid]
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[rdunlap@infradead.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[infradead.org:-];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:mid,infradead.org:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 150B36B0E62
-
---===============6318812735952545346==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-== Series Details ==
-
-Series: drm/dp_mst: Handle torn-down topology gracefully in drm_dp_mst_topology_queue_probe() (rev2)
-URL   : https://patchwork.freedesktop.org/series/165902/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18707 -> Patchwork_165902v2
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165902v2/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
+X-Rspamd-Queue-Id: 00F016B1331
 
 
-Changes
--------
 
-  No changes found
+On 6/22/26 1:34 AM, Peter Zijlstra wrote:
+> On Sun, Jun 21, 2026 at 05:34:30AM -0400, Steven Rostedt wrote:
+>> There's been complaints about trace_printk() being defined in kernel.h as it
+>> can increase the compilation time. As it is only used by some developers for
+>> debugging purposes, it should not be in kernel.h causing lots of wasted CPU
+>> cycles for those that do not ever care about it.
+>>
+>> Instead, add a CONFIG_TRACE_PRINTK_DEBUGGING option that developers that do
+>> use it can set and not have to always remember to add #include <linux/trace_printk.h>
+>> to the files they add trace_printk() while debugging. It also means that
+>> those that do not have that config set will not have to worry about wasted
+>> CPU cycles as it is only include in the CFLAGS when the option is set, and
+>> its completely ignored otherwise.
+> 
+> Did you forget your C 101 class? If you use a function, you gotta
+> include the relevant header.
 
+Also item #1 in Documentation/process/submit-checklist.rst.
 
-Build changes
--------------
-
-  * Linux: CI_DRM_18707 -> Patchwork_165902v2
-
-  CI-20190529: 20190529
-  CI_DRM_18707: 6583dd200482a34bb17e5dc54551f91f53b79798 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8976: 8976
-  Patchwork_165902v2: 6583dd200482a34bb17e5dc54551f91f53b79798 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165902v2/index.html
-
---===============6318812735952545346==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> You don't see userspace saying: 'Hey, you know what, perhaps we should
+> add stdio.h to every other header, just in case someone wants to
+> printf()' either.
+> 
+> I really don't understand your argument. Yes, maybe someone will forget
+> and then either their editor (if they have a halfway modern setup with
+> LSP enabled) or their build will complain, but so what? This is all
+> trivial stuff, surely we have more pressing matters to concern outselves
+> with?
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/dp_mst: Handle torn-down topology gracefully in drm_dp_mst_topology_queue_probe() (rev2)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/165902/">https://patchwork.freedesktop.org/series/165902/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165902v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165902v2/index.html</a></td></tr>
+-- 
+~Randy
 
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18707 -&gt; Patchwork_165902v2</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_165902v2/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18707 -&gt; Patchwork_165902v2</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18707: 6583dd200482a34bb17e5dc54551f91f53b79798 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8976: 8976<br />
-  Patchwork_165902v2: 6583dd200482a34bb17e5dc54551f91f53b79798 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============6318812735952545346==--
