@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oNPHD9yqOWqVwAcAu9opvQ
+	id CTCQG+KqOWqYwAcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id CF0D86B2850
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 061346B285B
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 23:36:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=AF+Qe3an;
+	dkim=pass header.d=intel.com header.s=Intel header.b=UWjGSoL6;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4DA2F10E883;
-	Mon, 22 Jun 2026 21:36:26 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A504F10E8A9;
+	Mon, 22 Jun 2026 21:36:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 808C610E8A6;
- Mon, 22 Jun 2026 21:36:24 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6CB5010E8A1;
+ Mon, 22 Jun 2026 21:36:29 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782164185; x=1813700185;
+ t=1782164190; x=1813700190;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=uY7ilmBHefdiRzpI6yyNA2SkNTU8kL6sP+X7nn8oWWU=;
- b=AF+Qe3andJag0yl/4Q61yQNniZm/ZLIBYpcQ1L+6Zy+NHdqdHBV0k/14
- nh3IjRoAubA6M0BnITOs1Zc2ztnAIFns0jxlMdbftrCz10hy++aICa8St
- mPjSLzf8TaT8SSkE71cONr3XNPAL/OhySCXm8tr99m1EgK48BXpY+FBUW
- aFdTEselEcGX/WMDLsBuknCCa6C60RnTXx07y1T9Yk9UpUBaTIn/WdNbQ
- tzyltfR4v5J3xP+aFKB2ibt8ox5Dy9+HLNOA+gcrAXQ2KgJRScdDprTUe
- X3P7L26LrOuxQdcTZQJsl1ffk6e5B2PdGx6VHOgL1PDqBHn/l7LjyAvn7 Q==;
-X-CSE-ConnectionGUID: mzhHH6Z7SEihA4YJHku1Mg==
-X-CSE-MsgGUID: ZNxFTL31TQeXVf/9JaSb8w==
-X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82673588"
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="82673588"
+ bh=4Y4j1dpFvccxjjqjoDM6b486D8XRlyq1jBlQTR7tZxE=;
+ b=UWjGSoL6YJzuyhPBUIhxdwIkrJqCLjRaa3xRwPMa6EDuBhBehHTLFUFt
+ YzM5ehv0HV4h6mDE3hAnyJGvypIqSkiSYPR01g/X3OgVtfN39BI7cpNY3
+ 4g7dY2yHF+4ikF2lrSZwQE06v2WbtUBm8PT7cXylTp4y2iUJtPZgrB2c6
+ 9+EC27p0Y/2/NCvbCT/GpgRZqCYVVYmH9mGLFXkKFyaEHOBvjhuTSm1v/
+ v2KQOhJ9EW2y0sQbOJQWduFY3Qls1aE9DCDsfeEkwvENGLeEamSV/0MIl
+ 5JZkOLjp7UuuxzR7TmYczVPqK1ScTQXwLqxhh+k9GTs3an3BLOKeuXEmF A==;
+X-CSE-ConnectionGUID: aEt3OgB6Ss+KP4TiaxlJyg==
+X-CSE-MsgGUID: 9kC10DmDRQ2ZjuWcxeBXIA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="82673613"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="82673613"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 14:36:24 -0700
-X-CSE-ConnectionGUID: 8Inwe6aST2KyW1LD7bqPgQ==
-X-CSE-MsgGUID: FA6pCVR+QL+BAgTlKQlzqg==
+ 22 Jun 2026 14:36:29 -0700
+X-CSE-ConnectionGUID: bDt/dLRNSIaSLzZNGaFoTw==
+X-CSE-MsgGUID: PRMqIGmqQDS6g0MgWjf3fQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="246422700"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="246422773"
 Received: from kniemiec-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.160])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 22 Jun 2026 14:36:22 -0700
+ 22 Jun 2026 14:36:27 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
  Suraj Kandpal <suraj.kandpal@intel.com>
-Subject: [PATCH v2 3/5] drm/i915: Pass the full atomic state to
- .compute_config()
-Date: Tue, 23 Jun 2026 00:36:00 +0300
-Message-ID: <20260622213602.7244-4-ville.syrjala@linux.intel.com>
+Subject: [PATCH v2 4/5] drm/i915/panel: Adjust intel_panel_compute_config()
+ calling convention
+Date: Tue, 23 Jun 2026 00:36:01 +0300
+Message-ID: <20260622213602.7244-5-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
 References: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
@@ -103,346 +103,188 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: CF0D86B2850
+X-Rspamd-Queue-Id: 061346B285B
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Upcoming changes will need access to the full atomic state
-in .compute_config(). Pass it in from the top.
-
-Couple of the implementations already dug this out via the
-crtc_state/conn_state->state pointer, but we don't want to
-use that anywhere because it's a bit of a footgun by only
-being valid during the early stages of the commit.
+Pass the full atomic state to intel_panel_compute_config(). We'll
+need this for some upcoming VRR fastset tricks. And to accompany
+full state we'll also need the crtc (or its state) as well.
 
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/g4x_dp.c              | 5 +++--
- drivers/gpu/drm/i915/display/g4x_hdmi.c            | 4 ++--
- drivers/gpu/drm/i915/display/icl_dsi.c             | 3 ++-
- drivers/gpu/drm/i915/display/intel_crt.c           | 9 ++++++---
- drivers/gpu/drm/i915/display/intel_ddi.c           | 8 +++++---
- drivers/gpu/drm/i915/display/intel_display.c       | 4 ++--
- drivers/gpu/drm/i915/display/intel_display_types.h | 6 ++++--
- drivers/gpu/drm/i915/display/intel_dp.c            | 4 ++--
- drivers/gpu/drm/i915/display/intel_dp.h            | 3 ++-
- drivers/gpu/drm/i915/display/intel_dp_mst.c        | 8 ++++----
- drivers/gpu/drm/i915/display/intel_dvo.c           | 3 ++-
- drivers/gpu/drm/i915/display/intel_lvds.c          | 3 ++-
- drivers/gpu/drm/i915/display/intel_sdvo.c          | 3 ++-
- drivers/gpu/drm/i915/display/intel_tv.c            | 5 ++---
- drivers/gpu/drm/i915/display/vlv_dsi.c             | 3 ++-
- 15 files changed, 42 insertions(+), 29 deletions(-)
+ drivers/gpu/drm/i915/display/icl_dsi.c     |  2 +-
+ drivers/gpu/drm/i915/display/intel_dp.c    |  2 +-
+ drivers/gpu/drm/i915/display/intel_dvo.c   |  2 +-
+ drivers/gpu/drm/i915/display/intel_lvds.c  |  2 +-
+ drivers/gpu/drm/i915/display/intel_panel.c | 24 +++++++++++++---------
+ drivers/gpu/drm/i915/display/intel_panel.h |  6 ++++--
+ drivers/gpu/drm/i915/display/intel_sdvo.c  |  4 ++--
+ drivers/gpu/drm/i915/display/vlv_dsi.c     |  2 +-
+ 8 files changed, 25 insertions(+), 19 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/g4x_dp.c b/drivers/gpu/drm/i915/display/g4x_dp.c
-index d211e6c49e0a..b867443ff227 100644
---- a/drivers/gpu/drm/i915/display/g4x_dp.c
-+++ b/drivers/gpu/drm/i915/display/g4x_dp.c
-@@ -1222,7 +1222,8 @@ static bool ilk_digital_port_connected(struct intel_encoder *encoder)
- 	return intel_de_read(display, DEISR) & bit;
- }
+diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
+index 59184f2f805c..ea0cdb7822f3 100644
+--- a/drivers/gpu/drm/i915/display/icl_dsi.c
++++ b/drivers/gpu/drm/i915/display/icl_dsi.c
+@@ -1672,7 +1672,7 @@ static int gen11_dsi_compute_config(struct intel_atomic_state *state,
+ 	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
  
--static int g4x_dp_compute_config(struct intel_encoder *encoder,
-+static int g4x_dp_compute_config(struct intel_atomic_state *state,
-+				 struct intel_encoder *encoder,
- 				 struct intel_crtc_state *crtc_state,
- 				 struct drm_connector_state *conn_state)
- {
-@@ -1232,7 +1233,7 @@ static int g4x_dp_compute_config(struct intel_encoder *encoder,
- 	if (HAS_PCH_SPLIT(display) && encoder->port != PORT_A)
- 		crtc_state->has_pch_encoder = true;
- 
--	ret = intel_dp_compute_config(encoder, crtc_state, conn_state);
-+	ret = intel_dp_compute_config(state, encoder, crtc_state, conn_state);
+-	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
++	ret = intel_panel_compute_config(state, pipe_config, intel_connector);
  	if (ret)
  		return ret;
  
-diff --git a/drivers/gpu/drm/i915/display/g4x_hdmi.c b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-index acb36cab999c..4c33aa1d1d32 100644
---- a/drivers/gpu/drm/i915/display/g4x_hdmi.c
-+++ b/drivers/gpu/drm/i915/display/g4x_hdmi.c
-@@ -126,12 +126,12 @@ static bool g4x_compute_has_hdmi_sink(struct intel_atomic_state *state,
- 	return false;
- }
- 
--static int g4x_hdmi_compute_config(struct intel_encoder *encoder,
-+static int g4x_hdmi_compute_config(struct intel_atomic_state *state,
-+				   struct intel_encoder *encoder,
- 				   struct intel_crtc_state *crtc_state,
- 				   struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct intel_atomic_state *state = to_intel_atomic_state(crtc_state->uapi.state);
- 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
- 
- 	if (HAS_PCH_SPLIT(display))
-diff --git a/drivers/gpu/drm/i915/display/icl_dsi.c b/drivers/gpu/drm/i915/display/icl_dsi.c
-index a549f1fac810..59184f2f805c 100644
---- a/drivers/gpu/drm/i915/display/icl_dsi.c
-+++ b/drivers/gpu/drm/i915/display/icl_dsi.c
-@@ -1657,7 +1657,8 @@ static int gen11_dsi_dsc_compute_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
--static int gen11_dsi_compute_config(struct intel_encoder *encoder,
-+static int gen11_dsi_compute_config(struct intel_atomic_state *state,
-+				    struct intel_encoder *encoder,
- 				    struct intel_crtc_state *pipe_config,
- 				    struct drm_connector_state *conn_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_crt.c b/drivers/gpu/drm/i915/display/intel_crt.c
-index 243e332bef57..5b8968197fbc 100644
---- a/drivers/gpu/drm/i915/display/intel_crt.c
-+++ b/drivers/gpu/drm/i915/display/intel_crt.c
-@@ -397,7 +397,8 @@ intel_crt_mode_valid(struct drm_connector *connector,
- 	return MODE_OK;
- }
- 
--static int intel_crt_compute_config(struct intel_encoder *encoder,
-+static int intel_crt_compute_config(struct intel_atomic_state *state,
-+				    struct intel_encoder *encoder,
- 				    struct intel_crtc_state *crtc_state,
- 				    struct drm_connector_state *conn_state)
- {
-@@ -413,7 +414,8 @@ static int intel_crt_compute_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
--static int pch_crt_compute_config(struct intel_encoder *encoder,
-+static int pch_crt_compute_config(struct intel_atomic_state *state,
-+				  struct intel_encoder *encoder,
- 				  struct intel_crtc_state *crtc_state,
- 				  struct drm_connector_state *conn_state)
- {
-@@ -432,7 +434,8 @@ static int pch_crt_compute_config(struct intel_encoder *encoder,
- 	return 0;
- }
- 
--static int hsw_crt_compute_config(struct intel_encoder *encoder,
-+static int hsw_crt_compute_config(struct intel_atomic_state *state,
-+				  struct intel_encoder *encoder,
- 				  struct intel_crtc_state *crtc_state,
- 				  struct drm_connector_state *conn_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_ddi.c b/drivers/gpu/drm/i915/display/intel_ddi.c
-index 25314ec65ae7..2b7eb010511b 100644
---- a/drivers/gpu/drm/i915/display/intel_ddi.c
-+++ b/drivers/gpu/drm/i915/display/intel_ddi.c
-@@ -4485,7 +4485,8 @@ intel_ddi_compute_output_type(struct intel_encoder *encoder,
- 	}
- }
- 
--static int intel_ddi_compute_config(struct intel_encoder *encoder,
-+static int intel_ddi_compute_config(struct intel_atomic_state *state,
-+				    struct intel_encoder *encoder,
- 				    struct intel_crtc_state *pipe_config,
- 				    struct drm_connector_state *conn_state)
- {
-@@ -4503,7 +4504,7 @@ static int intel_ddi_compute_config(struct intel_encoder *encoder,
- 
- 		ret = intel_hdmi_compute_config(encoder, pipe_config, conn_state);
- 	} else {
--		ret = intel_dp_compute_config(encoder, pipe_config, conn_state);
-+		ret = intel_dp_compute_config(state, encoder, pipe_config, conn_state);
- 	}
- 
- 	if (ret)
-@@ -4608,7 +4609,8 @@ intel_ddi_port_sync_transcoders(const struct intel_crtc_state *ref_crtc_state,
- 	return transcoders;
- }
- 
--static int intel_ddi_compute_config_late(struct intel_encoder *encoder,
-+static int intel_ddi_compute_config_late(struct intel_atomic_state *state,
-+					 struct intel_encoder *encoder,
- 					 struct intel_crtc_state *crtc_state,
- 					 struct drm_connector_state *conn_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 805066b02aaa..5bc8e6ea10a5 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -4781,7 +4781,7 @@ intel_modeset_pipe_config(struct intel_atomic_state *state,
- 		if (connector_state->crtc != &crtc->base)
- 			continue;
- 
--		ret = encoder->compute_config(encoder, crtc_state,
-+		ret = encoder->compute_config(state, encoder, crtc_state,
- 					      connector_state);
- 		if (ret == -EDEADLK)
- 			return ret;
-@@ -4841,7 +4841,7 @@ intel_modeset_pipe_config_late(struct intel_atomic_state *state,
- 		    !encoder->compute_config_late)
- 			continue;
- 
--		ret = encoder->compute_config_late(encoder, crtc_state,
-+		ret = encoder->compute_config_late(state, encoder, crtc_state,
- 						   conn_state);
- 		if (ret)
- 			return ret;
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index ebd00922bf3c..2689321609a5 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -178,10 +178,12 @@ struct intel_encoder {
- 	enum intel_output_type (*compute_output_type)(struct intel_encoder *,
- 						      struct intel_crtc_state *,
- 						      struct drm_connector_state *);
--	int (*compute_config)(struct intel_encoder *,
-+	int (*compute_config)(struct intel_atomic_state *,
-+			      struct intel_encoder *,
- 			      struct intel_crtc_state *,
- 			      struct drm_connector_state *);
--	int (*compute_config_late)(struct intel_encoder *,
-+	int (*compute_config_late)(struct intel_atomic_state *,
-+				   struct intel_encoder *,
- 				   struct intel_crtc_state *,
- 				   struct drm_connector_state *);
- 	void (*pre_pll_enable)(struct intel_atomic_state *,
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 3569e61e7fee..b9324b590ee9 100644
+index b9324b590ee9..da8a94821c11 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3627,12 +3627,12 @@ int intel_dp_compute_min_hblank(struct intel_crtc_state *crtc_state,
- }
+@@ -3639,7 +3639,7 @@ intel_dp_compute_config(struct intel_atomic_state *state,
+ 	int ret = 0, link_bpp_x16;
  
- int
--intel_dp_compute_config(struct intel_encoder *encoder,
-+intel_dp_compute_config(struct intel_atomic_state *state,
-+			struct intel_encoder *encoder,
- 			struct intel_crtc_state *pipe_config,
- 			struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
- 	struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
- 	struct intel_dp *intel_dp = enc_to_intel_dp(encoder);
- 	struct intel_connector *connector = intel_dp->attached_connector;
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 92ce04852326..b233739b89ce 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -71,7 +71,8 @@ void intel_dp_sink_disable_decompression(struct intel_atomic_state *state,
- void intel_dp_encoder_suspend(struct intel_encoder *intel_encoder);
- void intel_dp_encoder_shutdown(struct intel_encoder *intel_encoder);
- void intel_dp_encoder_flush_work(struct drm_encoder *encoder);
--int intel_dp_compute_config(struct intel_encoder *encoder,
-+int intel_dp_compute_config(struct intel_atomic_state *state,
-+			    struct intel_encoder *encoder,
- 			    struct intel_crtc_state *pipe_config,
- 			    struct drm_connector_state *conn_state);
- bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 0aa3e6b4c781..ecc90e8faee1 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -697,12 +697,12 @@ static int mst_stream_compute_link_for_joined_pipes(struct intel_encoder *encode
- 	return 0;
- }
- 
--static int mst_stream_compute_config(struct intel_encoder *encoder,
-+static int mst_stream_compute_config(struct intel_atomic_state *state,
-+				     struct intel_encoder *encoder,
- 				     struct intel_crtc_state *pipe_config,
- 				     struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
- 	struct intel_dp *intel_dp = to_primary_dp(encoder);
- 	struct intel_connector *connector =
-@@ -925,11 +925,11 @@ int intel_dp_mst_atomic_check_link(struct intel_atomic_state *state,
- 	return 0;
- }
- 
--static int mst_stream_compute_config_late(struct intel_encoder *encoder,
-+static int mst_stream_compute_config_late(struct intel_atomic_state *state,
-+					  struct intel_encoder *encoder,
- 					  struct intel_crtc_state *crtc_state,
- 					  struct drm_connector_state *conn_state)
- {
--	struct intel_atomic_state *state = to_intel_atomic_state(conn_state->state);
- 	struct intel_dp *intel_dp = to_primary_dp(encoder);
- 
- 	/* lowest numbered transcoder will be designated master */
+ 	if (intel_dp_is_edp(intel_dp)) {
+-		ret = intel_panel_compute_config(connector, adjusted_mode);
++		ret = intel_panel_compute_config(state, pipe_config, connector);
+ 		if (ret)
+ 			return ret;
+ 	}
 diff --git a/drivers/gpu/drm/i915/display/intel_dvo.c b/drivers/gpu/drm/i915/display/intel_dvo.c
-index dd1a995c2979..181722c41b96 100644
+index 181722c41b96..f157699a7c4c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dvo.c
 +++ b/drivers/gpu/drm/i915/display/intel_dvo.c
-@@ -242,7 +242,8 @@ intel_dvo_mode_valid(struct drm_connector *_connector,
- 	return intel_dvo->dev.dev_ops->mode_valid(&intel_dvo->dev, mode);
- }
+@@ -257,7 +257,7 @@ static int intel_dvo_compute_config(struct intel_atomic_state *state,
+ 	 * with the panel scaling set up to source from the H/VDisplay
+ 	 * of the original mode.
+ 	 */
+-	ret = intel_panel_compute_config(connector, adjusted_mode);
++	ret = intel_panel_compute_config(state, pipe_config, connector);
+ 	if (ret)
+ 		return ret;
  
--static int intel_dvo_compute_config(struct intel_encoder *encoder,
-+static int intel_dvo_compute_config(struct intel_atomic_state *state,
-+				    struct intel_encoder *encoder,
- 				    struct intel_crtc_state *pipe_config,
- 				    struct drm_connector_state *conn_state)
- {
 diff --git a/drivers/gpu/drm/i915/display/intel_lvds.c b/drivers/gpu/drm/i915/display/intel_lvds.c
-index c8098104d853..30e4809b36ac 100644
+index 30e4809b36ac..872753478cf2 100644
 --- a/drivers/gpu/drm/i915/display/intel_lvds.c
 +++ b/drivers/gpu/drm/i915/display/intel_lvds.c
-@@ -413,7 +413,8 @@ intel_lvds_mode_valid(struct drm_connector *_connector,
- 	return MODE_OK;
+@@ -460,7 +460,7 @@ static int intel_lvds_compute_config(struct intel_atomic_state *state,
+ 	 * with the panel scaling set up to source from the H/VDisplay
+ 	 * of the original mode.
+ 	 */
+-	ret = intel_panel_compute_config(connector, adjusted_mode);
++	ret = intel_panel_compute_config(state, crtc_state, connector);
+ 	if (ret)
+ 		return ret;
+ 
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.c b/drivers/gpu/drm/i915/display/intel_panel.c
+index 12a27edf8bc8..faa24537ef63 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.c
++++ b/drivers/gpu/drm/i915/display/intel_panel.c
+@@ -219,11 +219,12 @@ enum drrs_type intel_panel_drrs_type(struct intel_connector *connector)
+ 	return connector->panel.vbt.drrs_type;
  }
  
--static int intel_lvds_compute_config(struct intel_encoder *encoder,
-+static int intel_lvds_compute_config(struct intel_atomic_state *state,
-+				     struct intel_encoder *encoder,
- 				     struct intel_crtc_state *crtc_state,
- 				     struct drm_connector_state *conn_state)
+-static int intel_panel_compute_config_vrr(struct intel_connector *connector,
+-					  struct drm_display_mode *adjusted_mode)
++static int intel_panel_compute_config_vrr(struct intel_atomic_state *state,
++					  struct intel_crtc_state *crtc_state,
++					  struct intel_connector *connector)
  {
+-	const struct drm_display_mode *fixed_mode =
+-		intel_panel_fixed_mode(connector, adjusted_mode);
++	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
++	const struct drm_display_mode *fixed_mode;
+ 	int vrefresh, fixed_mode_vrefresh;
+ 
+ 	fixed_mode = intel_panel_fixed_mode_vrr(connector, adjusted_mode);
+@@ -252,9 +253,11 @@ static int intel_panel_compute_config_vrr(struct intel_connector *connector,
+ 	return 0;
+ }
+ 
+-static int intel_panel_compute_config_fixed_rr(struct intel_connector *connector,
+-					       struct drm_display_mode *adjusted_mode)
++static int intel_panel_compute_config_fixed_rr(struct intel_atomic_state *state,
++					       struct intel_crtc_state *crtc_state,
++					       struct intel_connector *connector)
+ {
++	struct drm_display_mode *adjusted_mode = &crtc_state->hw.adjusted_mode;
+ 	const struct drm_display_mode *fixed_mode;
+ 	int vrefresh, fixed_mode_vrefresh;
+ 
+@@ -287,14 +290,15 @@ static int intel_panel_compute_config_fixed_rr(struct intel_connector *connector
+ 	return 0;
+ }
+ 
+-int intel_panel_compute_config(struct intel_connector *connector,
+-			       struct drm_display_mode *adjusted_mode)
++int intel_panel_compute_config(struct intel_atomic_state *state,
++			       struct intel_crtc_state *crtc_state,
++			       struct intel_connector *connector)
+ {
+ 	int ret;
+ 
+-	ret = intel_panel_compute_config_vrr(connector, adjusted_mode);
++	ret = intel_panel_compute_config_vrr(state, crtc_state, connector);
+ 	if (ret)
+-		ret = intel_panel_compute_config_fixed_rr(connector, adjusted_mode);
++		ret = intel_panel_compute_config_fixed_rr(state, crtc_state, connector);
+ 
+ 	return ret;
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_panel.h b/drivers/gpu/drm/i915/display/intel_panel.h
+index 23bd227826c9..30c6078ecb1b 100644
+--- a/drivers/gpu/drm/i915/display/intel_panel.h
++++ b/drivers/gpu/drm/i915/display/intel_panel.h
+@@ -14,6 +14,7 @@ struct drm_connector;
+ struct drm_connector_state;
+ struct drm_display_mode;
+ struct drm_edid;
++struct intel_atomic_state;
+ struct intel_connector;
+ struct intel_crtc_state;
+ struct intel_display;
+@@ -45,8 +46,9 @@ enum drm_mode_status
+ intel_panel_mode_valid(struct intel_connector *connector,
+ 		       const struct drm_display_mode *mode,
+ 		       int *target_clock);
+-int intel_panel_compute_config(struct intel_connector *connector,
+-			       struct drm_display_mode *adjusted_mode);
++int intel_panel_compute_config(struct intel_atomic_state *state,
++			       struct intel_crtc_state *crtc_state,
++			       struct intel_connector *connector);
+ void intel_panel_add_edid_fixed_modes(struct intel_connector *connector,
+ 				      bool use_alt_fixed_modes);
+ void intel_panel_add_vbt_lfp_fixed_mode(struct intel_connector *connector);
 diff --git a/drivers/gpu/drm/i915/display/intel_sdvo.c b/drivers/gpu/drm/i915/display/intel_sdvo.c
-index d83d350959d8..6b73c9a5ec7f 100644
+index 6b73c9a5ec7f..3075ef04df56 100644
 --- a/drivers/gpu/drm/i915/display/intel_sdvo.c
 +++ b/drivers/gpu/drm/i915/display/intel_sdvo.c
-@@ -1354,7 +1354,8 @@ static bool intel_sdvo_has_audio(struct intel_encoder *encoder,
- 		return intel_conn_state->force_audio == HDMI_AUDIO_ON;
- }
+@@ -1399,8 +1399,8 @@ static int intel_sdvo_compute_config(struct intel_atomic_state *state,
+ 		const struct drm_display_mode *fixed_mode;
+ 		int ret;
  
--static int intel_sdvo_compute_config(struct intel_encoder *encoder,
-+static int intel_sdvo_compute_config(struct intel_atomic_state *state,
-+				     struct intel_encoder *encoder,
- 				     struct intel_crtc_state *pipe_config,
- 				     struct drm_connector_state *conn_state)
- {
-diff --git a/drivers/gpu/drm/i915/display/intel_tv.c b/drivers/gpu/drm/i915/display/intel_tv.c
-index 0a926c6f25f4..840e1dcdc2d0 100644
---- a/drivers/gpu/drm/i915/display/intel_tv.c
-+++ b/drivers/gpu/drm/i915/display/intel_tv.c
-@@ -1187,13 +1187,12 @@ static bool intel_tv_vert_scaling(const struct drm_display_mode *tv_mode,
- }
+-		ret = intel_panel_compute_config(&intel_sdvo_connector->base,
+-						 adjusted_mode);
++		ret = intel_panel_compute_config(state, pipe_config,
++						 &intel_sdvo_connector->base);
+ 		if (ret)
+ 			return ret;
  
- static int
--intel_tv_compute_config(struct intel_encoder *encoder,
-+intel_tv_compute_config(struct intel_atomic_state *state,
-+			struct intel_encoder *encoder,
- 			struct intel_crtc_state *pipe_config,
- 			struct drm_connector_state *conn_state)
- {
- 	struct intel_display *display = to_intel_display(encoder);
--	struct intel_atomic_state *state =
--		to_intel_atomic_state(pipe_config->uapi.state);
- 	struct intel_crtc *crtc = to_intel_crtc(pipe_config->uapi.crtc);
- 	struct intel_tv_connector_state *tv_conn_state =
- 		to_intel_tv_connector_state(conn_state);
 diff --git a/drivers/gpu/drm/i915/display/vlv_dsi.c b/drivers/gpu/drm/i915/display/vlv_dsi.c
-index 877eab75f19a..b89318f5bdc2 100644
+index b89318f5bdc2..8829f365592e 100644
 --- a/drivers/gpu/drm/i915/display/vlv_dsi.c
 +++ b/drivers/gpu/drm/i915/display/vlv_dsi.c
-@@ -266,7 +266,8 @@ static void band_gap_reset(struct intel_display *display)
- 	vlv_flisdsi_put(display);
- }
+@@ -281,7 +281,7 @@ static int intel_dsi_compute_config(struct intel_atomic_state *state,
+ 	pipe_config->sink_format = INTEL_OUTPUT_FORMAT_RGB;
+ 	pipe_config->output_format = INTEL_OUTPUT_FORMAT_RGB;
  
--static int intel_dsi_compute_config(struct intel_encoder *encoder,
-+static int intel_dsi_compute_config(struct intel_atomic_state *state,
-+				    struct intel_encoder *encoder,
- 				    struct intel_crtc_state *pipe_config,
- 				    struct drm_connector_state *conn_state)
- {
+-	ret = intel_panel_compute_config(intel_connector, adjusted_mode);
++	ret = intel_panel_compute_config(state, pipe_config, intel_connector);
+ 	if (ret)
+ 		return ret;
+ 
 -- 
 2.53.0
 
