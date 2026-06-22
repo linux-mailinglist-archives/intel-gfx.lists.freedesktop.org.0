@@ -2,109 +2,153 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id oQJ7D9VxOWpHtAcAu9opvQ
+	id Q4lVBr5yOWq+tAcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 19:33:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 19:37:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8C27C6B17C1
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 19:33:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3FDD86B1843
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 19:37:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=gmail.com header.s=20251104 header.b=pgQPT0ma;
+	dkim=pass header.d=intel.com header.s=Intel header.b=kE+yuyPL;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=gmail.com;
-	arc=pass ("google.com:s=arc-20240605:i=1")
+	dmarc=pass (policy=none) header.from=intel.com;
+	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0EB6E10E7BA;
-	Mon, 22 Jun 2026 17:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7C77F10E7B9;
+	Mon, 22 Jun 2026 17:36:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-dl1-f53.google.com (mail-dl1-f53.google.com [74.125.82.53])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 70DF210E7B2
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 17:33:05 +0000 (UTC)
-Received: by mail-dl1-f53.google.com with SMTP id
- a92af1059eb24-1390f75d8bbso3779245c88.0
- for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 10:33:05 -0700 (PDT)
-ARC-Seal: i=1; a=rsa-sha256; t=1782149585; cv=none;
- d=google.com; s=arc-20240605;
- b=edNFEf72mD5O622AvsI9GeEGuLKJ3CHO3IDU2Irr7r7942ZNAnMPonnMyL/gw6Q463
- m0zZFLXliFz9txnCGYhlvytYC478Tzytwo+yVaS81CWLdDE03v/K3ieF8U2XZfeYS/cS
- P+wUALg0qI2tPj5E4OHaMlFo6KTxt6ntYiok8IwKeb4v1FAopwIAWh1kh+ugd6xgrNg8
- Skvqx4MjbGP0d+NxBNUDf9sUa4oP0I0IwmRd3Jw/8hTqUyr5f+7OZRCTun0aDSZ6dV3S
- YGFXseALnUPFPPHDGxKsiXzEyHJI4pX2TfygvGkQTXskDQqIvgigw7dLkMOUyOltOhqD
- MpcQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
- s=arc-20240605; 
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:dkim-signature;
- bh=m189siMGpQATgehzZD5A3PVqGeqotQKZygN7B0hsQio=;
- fh=gxUN1WoNhaDq+BEEOt96IP1HOVx1S1SzxHYYgXjepoI=;
- b=WLUGKQ8M4qzZ6smdnpLYO9udZrLLiop8EC6l+Ws5+x1+9NKOrHgBvI2q7kgY9yypgk
- f56bNK2Y+4tiWAFbP9UN9B4L8TlgWWFlHwICinzMiVpQw3tpNsWT8R5HgMTg+Di8EPJV
- zcutLsFG/Y91ijVT3ldGC2brD+jfkNeCd21kOpEc2Fv5/RzIUYIVXY9cyvRkxHWgu4Lr
- tSeFto0GAbECwwT7xKrIjiGAuC78KQze8gf7ahJXQPh/BhioE1X4LSgnhqvoBISBFbbm
- wXjqx5Co8rSMJ4x9mg+gcoexTYx2E022703xkoUdtXDfPh9MgrQ4Z3/ahfzAluBEwy90
- Bz8A==; darn=lists.freedesktop.org
-ARC-Authentication-Results: i=1; mx.google.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=gmail.com; s=20251104; t=1782149585; x=1782754385; darn=lists.freedesktop.org;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:from:to:cc:subject:date
- :message-id:reply-to;
- bh=m189siMGpQATgehzZD5A3PVqGeqotQKZygN7B0hsQio=;
- b=pgQPT0maD232McPwlJsGGUMEv1/uTrjYdL+dQu/ZIfJGzUUEA7oZTR1vY79fJHyv4G
- drbgil9umyloGQqd+lHKm9oMI5//FjVAV4nX5bCnp7utl72BejTVcpxumU/FpOlJxJwN
- Wn4dnkMrjSjPsojC1dLlQ54S+McNr9tM7cJQamLt4XeH6Nk+kIRZAhdVrjb1SwuIUORn
- yjAUBpntqftd6dnhfBXF9yJellZyOpX2hQII2Clyq265C2Ey+5MQuPGC+85cSXI5get8
- QhyugDNMZUcfrRsMtbUgGFCMdr0Nr7oGYuzXw6glZ6j7woWySLgoliNBRYNWphBu4LJO
- 688A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782149585; x=1782754385;
- h=content-transfer-encoding:cc:to:subject:message-id:date:from
- :in-reply-to:references:mime-version:x-gm-gg:x-gm-message-state:from
- :to:cc:subject:date:message-id:reply-to;
- bh=m189siMGpQATgehzZD5A3PVqGeqotQKZygN7B0hsQio=;
- b=s3A9LKWm6tkeM1k7EFrRHtfJ2I0KNd/RTnLNzzwBGylVMvRznI2KQzF2LsBioCgafV
- lKKRUgDOdysYM9EZvk0vHVI8gE/b8W8v8wmuj9xt2b+MA+mKrM6ajKW+QNlea43uQ+ap
- BIZJueIke/Ra5Cg13apGNX5TAG5eVwsSZCv3eXyJ/oL6YBvTC78VyH5J2OQCtatKRmGy
- x9rQvE4j5OzeYQ1U6C67rQsW2EK7QteULgwS/0yKntsQFrR9gpG3gDH+TdtwvZxHGzgl
- uqoyzmMgx/UCWRYENq1zYgLV+6VUkGEADAU7sxs50SkKvhBfNas/vnF+gx87Pq0lnxM8
- xYcg==
-X-Forwarded-Encrypted: i=1;
- AFNElJ+GfDsEjOmSs6cs+XACBQocZYSQViulvFt8+iXdGadLL0EW7Jowrv4S3yOacWeYcEw5JwuqSsw7xt8=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YzPgrDfHv9xZEjhrap5lh8rfBcSxB6D9ezbHZkxWFIcaNVHgnK8
- B4Y5ElS4z6Ac4d1NtNOBFJLtNsjbGaiwkOYVF0kc6H7HnPlcMnokPQbS+gccyuk0LrqJwDXsj4e
- R+b9xylfIGKnC3PvkcjOomCsEutpsN40=
-X-Gm-Gg: AfdE7cnUexFUFK1fqlOfjIWyRfo3I16h6sVW6v71QT4jVfd6atvjERRcFxObWnRyms8
- TQSmxVn8WneZ3iuXSEkfEo76c/Rgr6PJ1Vf33XgDsWpFOYHsLZStBKhyHpM4BTQUH1blgHiYiVP
- Y8mZQu203TAhDQV9QR3lPHoIdduGVXiwWPhKRBLdGef7S3iM+bk44KbSL8RwmG/gSUOtRfGpU5p
- 9WaDs24l239CBkdDwXpc8uUhdQ7U+SyT0jgYUjFswenmXBC+8MAkq+tv+HpCbhGM85nwo3J4ezS
- yNHNmc+SK3XMSEIgzBXQAxnPkMFFk90=
-X-Received: by 2002:a05:7022:911:b0:138:576:fd with SMTP id
- a92af1059eb24-139a4eb44f1mr7617282c88.2.1782149584465; Mon, 22 Jun 2026
- 10:33:04 -0700 (PDT)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id F2AF810E7B9
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 17:36:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782149819; x=1813685819;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=Tpj7u20VUJOfN2416dNibqQaEkIajaTwVkrnxRRM2WM=;
+ b=kE+yuyPLCdTnIAaksa6xw0ujAswVN7SxuDT2cH64ZdWTlnQOfs4pG7oi
+ CCiU9Me1LFV2d2i2+cpuSoaZ6RNSnZxJ8Xwd9nqbXr2Lcyp3xhBFaZITf
+ GpxbenIzvd5AFmSNJABcUrDmF1+CtZaCUo/L6cj5OE9Of3uUbotSf/erE
+ kgBfWOh2ZYaPtAc8toKDuIYn2uq2D+Oad9E7tz/lLnoQ8HEQ98SATmlmP
+ YJHzoCoapTo5TZXuw03/aRdt1/P7zt1w7BROsQwnwbisqgBd0gjKady66
+ D5iMBsNGX7RQfIOujC2rBXnWLmDE6KkijoR2hsO1hdVPggCK7ETP9fh7X w==;
+X-CSE-ConnectionGUID: h0RHcBB6QNaOAFfc5uRdtw==
+X-CSE-MsgGUID: Q8tILqWRRrGx8nx7YbJ7Iw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11825"; a="94274981"
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="94274981"
+Received: from fmviesa010.fm.intel.com ([10.60.135.150])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 10:36:59 -0700
+X-CSE-ConnectionGUID: 1z6lO6fxTcG/2G/jBuV5ZQ==
+X-CSE-MsgGUID: McipNkUxT26m8O7M1IQ9Rw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,219,1774335600"; d="scan'208";a="245149240"
+Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
+ by fmviesa010.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 10:36:59 -0700
+Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
+ fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 22 Jun 2026 10:36:58 -0700
+Received: from fmsedg902.ED.cps.intel.com (10.1.192.144) by
+ FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37 via Frontend Transport; Mon, 22 Jun 2026 10:36:58 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.21) by
+ edgegateway.intel.com (192.55.55.82) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.2.2562.37; Mon, 22 Jun 2026 10:36:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
+ b=bA1gPUG3ecparRTNHYkERzJlUdzoCIDmjaj10vZSlCxoHvXH+/SgzL+setZjE4hy9uUmGjtVHp2KIh85xrSGE0PLe77b1f/WDng7vwDBfNAIoR26Yeh6BJ1aIHNBQLFv+HeSqKPwK+8LkTbJkitipF49odLohfqgQ0X1sE2ZE5oswEpJS041Dy3s7ugq/mT/6kAzAa7iUARakHHKmqNYWLshTnY2DZJHnXBn0yCKbXTip4uxO3a2VISQcMyGAD5fxXoPEMc5PxOoNCKkdTanB/D835F1n9VHN7jroBaCLm/TeoWXqkDQZRO8YmLK1Pl1ulBiH7HlYBysveLeG5iNAg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
+ s=arcselector10001;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
+ bh=kQ05gs48h4mI2xu+cb2u4DwmquhAvqpbrBTeHJcIJWk=;
+ b=qSYaPBduD2O3lymdumkzhVlDahpIFDtKW87Fc72OK/S041Y3PDVmc76/kJeFBqNp5acW3YGSHhnLktAqaPjUMsdFU3wtgbiHZba/oweKEpRwJt2EraL0+qHx8+VHSOfB4LHKhxzv3t95oAERhDiyLuxs4Ty1QENm+5ZL1XqQ1ho06406TQG3ppFDSrc/fTBDIFtSGPiMFR7ZOAcVOqz7a0RGtg0Zv7/xv5TT8SGT2jKM3tC2AjkXWG2CbyQPNvTZxkeds3UCnBqDJrZRuDq78365FPukttYBdc0zfopKKcj8IgDlBUY6PYhbQ9Tev2I3+pAu8xB2kjhbmb2Vk+lX9w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
+ dkim=pass header.d=intel.com; arc=none
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com (2603:10b6:510:212::12)
+ by SJ0PR11MB4941.namprd11.prod.outlook.com (2603:10b6:a03:2d2::9)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.139.20; Mon, 22 Jun
+ 2026 17:36:56 +0000
+Received: from PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c]) by PH7PR11MB6522.namprd11.prod.outlook.com
+ ([fe80::e0c5:6cd8:6e67:dc0c%4]) with mapi id 15.21.0139.018; Mon, 22 Jun 2026
+ 17:36:56 +0000
+Date: Mon, 22 Jun 2026 10:36:53 -0700
+From: Matthew Brost <matthew.brost@intel.com>
+To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+CC: Intel graphics driver community testing & development
+ <intel-gfx@lists.freedesktop.org>, Martin Hodo <martin.hodo@intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+Subject: Re: [PATCH] drm/i915/gem: Add missing nospec on parallel submit slot
+Message-ID: <ajlytf69NQctYZoD@gsse-cloud1.jf.intel.com>
+References: <20260622132539.165558-1-joonas.lahtinen@linux.intel.com>
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20260622132539.165558-1-joonas.lahtinen@linux.intel.com>
+X-ClientProxiedBy: SJ2P220CA0008.NAMP220.PROD.OUTLOOK.COM
+ (2603:10b6:a03:5da::18) To PH7PR11MB6522.namprd11.prod.outlook.com
+ (2603:10b6:510:212::12)
 MIME-Version: 1.0
-References: <20260612144203.31715-1-ville.syrjala@linux.intel.com>
- <3d441831-71bc-49fd-823f-3af443e55b20@mailbox.org>
- <31da350f-adfc-4b2c-a7c5-5ed884ffd9ca@mailbox.org>
- <ai_40qUa-MVdbOEf@intel.com>
- <18f0c14b-f973-4e1a-948b-5274cc36895c@mailbox.org>
- <ajQ7W44qv28-i6Pq@intel.com>
- <159d862f-f06d-4ed7-bf81-082220cdfdd6@mailbox.org>
- <ajkY958UZbD1-5QQ@intel.com>
-In-Reply-To: <ajkY958UZbD1-5QQ@intel.com>
-From: Mario Kleiner <mario.kleiner.de@gmail.com>
-Date: Mon, 22 Jun 2026 19:32:28 +0200
-X-Gm-Features: AVVi8Ce7K_dQKtNJ32UEIGQhIj8B5c70Hqw4e2CZ5E3IdNQQg76f85ps776U4xw
-Message-ID: <CAEsyxyjVqFv9xoebALSxzLj_7aKt3dw4dZHTB_JsSAbWPGsHPA@mail.gmail.com>
-Subject: Re: [PATCH 0/4] drm/i915: Work harder to enable VRR based refresh
- rate changes on eDP
-To: =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: =?UTF-8?Q?Michel_D=C3=A4nzer?= <michel.daenzer@mailbox.org>, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- dri-devel@lists.freedesktop.org, wayland-devel@lists.freedesktop.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+X-MS-PublicTrafficType: Email
+X-MS-TrafficTypeDiagnostic: PH7PR11MB6522:EE_|SJ0PR11MB4941:EE_
+X-MS-Office365-Filtering-Correlation-Id: 529ed814-7e48-4dd2-93e7-08ded084dabe
+X-MS-Exchange-SenderADCheck: 1
+X-MS-Exchange-AntiSpam-Relay: 0
+X-Microsoft-Antispam: BCL:0;
+ ARA:13230040|1800799024|23010399003|376014|366016|11063799006|56012099006|18002099003|22082099003;
+X-Microsoft-Antispam-Message-Info: 2P/O0t7EnoVbw1rJGpDumAewz0Th6b8ZlpRoDISOuzLqa+32a+unFmjYKmtekPrT/N4MiaAKmUwXaDQ2L9dHY1Qrppj5nVeoq3ZISO3M1dUg4I/PyqZHSUf/jck9brh1368BjacSzdVGMoRxdakAaNJhCMLRb2KRw5+UDpIVLhm2dsQUZPYCuTnouSQOnzDZvFSwkGlnNJPB3hZhwoXCRx82iC7fIV0JoV4vIZVh7wg4oW5Fl0hhEZGt+xfb0r0m/qmHctxu6EA/UQjIXSls4ttdYrP1zCsYPUNGrB/y5rBKiwMquEGpIpbYwcpDhEUGREJFKVaW9EaWxJHsXdCBImeYtrT+ogmki6h6fj9OEtHIFLaebE8SI5BWSSzjxdkHzdpGAJorWk/rnQmSx14L+mYKZ4lX3WAQrvAAE+KoH9/CcM5hy5QkYvxkuohVeq2UMNBTF3ofLhSYJdlciiLssgQrsDyccfKjGDAFpVf4PURixAHlgAG/4GPXbe+/HlOpM1M0xiXQoWr+6XL6qI43VQEGBhS4Pw3nemEY5I2CTeDmUON9SqcuYA1NNjDBnSOg2Cht1H4AiA0u1sheSYt97JcjaNL1YbF49T+O+AC+sLXpvEVSpG2TDV4Sf71Y34w7uPEh88grlvTFaDKh+lz09UXVqxEQ0cHdGqnjW97rgVs=
+X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:PH7PR11MB6522.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(1800799024)(23010399003)(376014)(366016)(11063799006)(56012099006)(18002099003)(22082099003);
+ DIR:OUT; SFP:1101; 
+X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
+X-MS-Exchange-AntiSpam-MessageData-0: =?us-ascii?Q?VnvEhNlTXJzGBlRWrj6UibvA71w5y7m6TMAY51bKEsrX29S5z3xvXCRNBL+m?=
+ =?us-ascii?Q?wOpNVI90EnBsuX5CLXOAI5+T4DhZpJIzKYCwnmYEC4ggeAWr17osAydGrIQo?=
+ =?us-ascii?Q?eOV+PsLPaeqVX7v7dMv7bicpI1pZQgqV1bt0GIQO5o19Jb0VJziXjtMjKDAI?=
+ =?us-ascii?Q?jPTj3ow2oB2zit+6gcWYX9l6IkFCTMYms8UFlRBGELl+owWYP01wPz1NUgPI?=
+ =?us-ascii?Q?AKhCu7rMECStD8hW1JXgvJXHP8TnJRWdGjQ3zCtoL1FvpAwWz8G3z1wgOCtv?=
+ =?us-ascii?Q?SxAqN6RMAPeF5yBypikqeHVPJ8KiYnfz8iwRFRR5eMigdu3oknD6smuDeseA?=
+ =?us-ascii?Q?VeZxpcrYuMkiSpWC+y02A3tUuFf6ctba3sHgk6pnPKyttoYj35iiRSMcVY+j?=
+ =?us-ascii?Q?MJWqGdiYs5OyeYAllspTK/TU/d1GCNKyZ8qbFxliVvlzp2jzicqyxMQ7l8Pp?=
+ =?us-ascii?Q?HoeE7ACHSmsObf4QI4IHj9CuCDwmUsW1ZMRatIKRD1V+qF/yHRUXW1sCro/m?=
+ =?us-ascii?Q?j0BTqNABYjNl76vR3DBaWQ8XHhiry5otyVMqsDHM7EzlnylWvea2jlXD6dyc?=
+ =?us-ascii?Q?UMkhBcRS7wq/Gt3A1LE3Gvv0K80k2R0Kgi/vUY+mLMr1lIDS5tPxMzUD90Pz?=
+ =?us-ascii?Q?CMJ6y3VlwLG9DCtYhRXVMIW8I8obrcseXsQvSbSuYTsn+f9d9g0QFSa/k5Wj?=
+ =?us-ascii?Q?rPljJa7ai4xB4XqVxouRWeU5p8WXbQN5j87KxNxpowBHpJZpLrEWYV3FUShJ?=
+ =?us-ascii?Q?A+muTsQSGjKeAq7zskCQRnFAEgK1oDVGW/J4qD5/HxlO+v+V7Wl7rlcV+CI7?=
+ =?us-ascii?Q?YRViEUDBKyKQuaxKphNAU+ySQttAFiUgDzjCOXevXRWCoO+abRo4CFw46y48?=
+ =?us-ascii?Q?XuJaAh6vsq2Mc3nrCoDAn3+rg5Z/TosbyXuLSw2UivEJ2lpILF8IX1F2sciO?=
+ =?us-ascii?Q?y5OmxlGtYsTlHcjdy/Mmf2J4FGwV6Y9e84XmB369CpaJs1IigdUs32gWZhXX?=
+ =?us-ascii?Q?J/9/4IQiSqqcqvkJIvAJPANYRSDocn1k1pf5hpDaGqVJKvsXMNTOQtS9hCnc?=
+ =?us-ascii?Q?MbpiJi0pCdfv/MY1JI/M7vTEmc2pmhVriXDJ+xCvsbcKTqxh0srj2zsQm6DP?=
+ =?us-ascii?Q?8crtP7MxLIyUGKrNIyqFOKKqpqH1B/Zbe5ScvfGLj4QblMVsq4XvxzoY3pQp?=
+ =?us-ascii?Q?i1WHca5XWwjjGUbKIqP8CVTQIBR308YC4f1shOYyMlojkUj9DInMFzw2SSgT?=
+ =?us-ascii?Q?Z+0FLrCdBJaW49zI6cmzL0rlk/L0N486UJPH+V9bzHgjebl2ULj9YWuSkqYN?=
+ =?us-ascii?Q?dCMaTCJJM00CeAMqwtAYJ8UCDVMwG2576lBZHjSTb79cVx6URBSCuHM5DjkO?=
+ =?us-ascii?Q?fpXo6gNJxxrfU2X+og7fZsV9ekz66r9AWPBFTFepJnvmw0bBvobFQ3nO/Wli?=
+ =?us-ascii?Q?3HgtgtmnoQdF7AZ8m70yzVfru7Cj31zKjVEQ5S2Af79g8dV6n7+714PthnHj?=
+ =?us-ascii?Q?xeuvyBbAEKQ5l/ak00V7QgkdlN5VoSR9YEDX5Qd25FCwILci7TXCcHz5saMj?=
+ =?us-ascii?Q?oXy+mglPRlbZN9f2ZLHiDCQ6gpZFS/5MGmZV1yLsg1Ut61qqMH2cfTcR7LDe?=
+ =?us-ascii?Q?HsjCujT3BSsPs8oleZaMMP21FRc60SJZcTRLi9KerZUhDGAos1+f4KPLOxNp?=
+ =?us-ascii?Q?K5cP5QB8YI4CDyTYtOZ5vs1edBY8pd00PtoJoV2fGPkLhSR80tGOeTVdPXAz?=
+ =?us-ascii?Q?3+uFsF6b8w=3D=3D?=
+X-Exchange-RoutingPolicyChecked: UE6PIWDCNvBeLPBabO+wOcav8wtMraSQR7KDi116vHE5wM/5swTCedE4Xo4ulnsHi9XEeLkLF1hmWlqKJFfaDy+7ZtslHFNqzjjkCv9ES4YOCqHawX2O+Q7krJFO/oHdnajhEacNKaLJK74fAcXw5ry6z0ZPsN3ZRZ6XHKnB0+fMNyPOpVJq8ReSscVp56lSLrxUxlMiHnYxavAbRlYQIcZyDGlufSbDGLwbeL4MWaQ743+2IpHFdOXXwcevV207njYHQTtt5HT+qxtvbkgLWyZpp2+fi3cxGc9R+y6u6CHZuUQoDbiCYNWQUg0FEAFxLWeri5O8NitA0VhbMKrCoA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 529ed814-7e48-4dd2-93e7-08ded084dabe
+X-MS-Exchange-CrossTenant-AuthSource: PH7PR11MB6522.namprd11.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Jun 2026 17:36:55.9693 (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nZl/J7CFWjASsI9BdJ/XFFRlFK7oR2NcJNHEIVgIkfxDiW6qz4jLjohbRTeVyD6jHwvYD6ak2NAzpj0I2WF03w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SJ0PR11MB4941
+X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -120,117 +164,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[google.com:s=arc-20240605:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[gmail.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[gmail.com:s=20251104];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_RECIPIENTS(0.00)[m:ville.syrjala@linux.intel.com,m:michel.daenzer@mailbox.org,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:wayland-devel@lists.freedesktop.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[mariokleinerde@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+];
+	TO_DN_ALL(0.00)[];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:martin.hodo@intel.com,m:tvrtko.ursulin@intel.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[matthew.brost@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
 	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[mariokleinerde@gmail.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[gmail.com:+];
+	FROM_NEQ_ENVFROM(0.00)[matthew.brost@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MID_RHS_MATCH_FROMTLD(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FREEMAIL_FROM(0.00)[gmail.com];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6]
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8C27C6B17C1
+X-Rspamd-Queue-Id: 3FDD86B1843
 
-If I understand correctly, that this is essentially the same or very
-similar to what AMD implemented in amdgpu-kms for VRR capable displays
-as "freesync_video", then a thumbs up from the sideline from a happy
-user of that amdgpu feature with a native X11 client on the native
-X-Server :). Psychtoolbox uses that feature to allow users to select
-fine-grained refresh rates on VRR capable displays, without need for
-full modesets, ie. almost glitch free. Very useful for vision research
-applications that benefit from unusual video refresh rates or the
-ability to quickly switch at fine granularity.
+On Mon, Jun 22, 2026 at 04:25:39PM +0300, Joonas Lahtinen wrote:
+> Add missing Spectre mitigation for userspace controlled parallel
+> submission slot.
+> 
+> Discovered using AI-assisted static analysis confirmed by Intel
+> Product Security.
+> 
+> Reported-by: Martin Hodo <martin.hodo@intel.com>
+> Fixes: e5e32171a2cf ("drm/i915/guc: Connect UAPI to GuC multi-lrc interface")
+> Cc: Matthew Brost <matthew.brost@intel.com>
 
-The useful feature for us here is the ability to do this with a native
-X11 client, using standard RandR api's on existing, unmodified, many
-years old, native X-Server versions which generally don't use or
-support atomic modesetting. Iow. the apps that don't live in a Wayland
-native (or client atomic modesetting) world yet. We are restricted to
-what standard X11 api's can do, or setting or reading a standard
-connector property exposed as RandR output property - without the need
-to first enhance the good ol' X-Server and then hope for a release of
-said improved X-Server maybe years down the road - or never.
+Reviewed-by: Matthew Brost <matthew.brost@intel.com>
 
-Psychtoolbox uses this since over a year, see the following commit if
-interested:
-https://github.com/Psychtoolbox-3/Psychtoolbox-3/commit/96970e6d98c9f6ee293=
-f018186d3d898d27e77bb
-
-I'm not saying a more advanced atomic modesetting based approach won't
-be better / more flexible etc. Just that this is something that can
-benefit real world use cases of people inhabiting non-Wayland world
-quickly. Can do one thing without not doing the other thing.
-
-Best
--mario
-
-On Mon, Jun 22, 2026 at 1:14=E2=80=AFPM Ville Syrj=C3=A4l=C3=A4
-<ville.syrjala@linux.intel.com> wrote:
->
-> On Fri, Jun 19, 2026 at 10:48:45AM +0200, Michel D=C3=A4nzer wrote:
-> > On 6/18/26 20:39, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > > On Tue, Jun 16, 2026 at 09:21:01AM +0200, Michel D=C3=A4nzer wrote:
-> > >> On 6/15/26 15:06, Ville Syrj=C3=A4l=C3=A4 wrote:
-> > >>>
-> > >>> What we're doing here is selecting the actual timings to drive an i=
-nternal laptop
-> > >>> panel, given some random cooked up modeline from userspace.
-> > >>
-> > >> How can user space know what cooked-up modes it can (not) expect to =
-work with this?
-> > >
-> > > Without VRR support it can only expect modes that have the same refre=
-sh
-> > > rate as one of the modes on the connector's mode list to work.
-> >
-> > This seems to contradict "For non-VRR panels we just pick the fixed mod=
-e whose refresh rate is closest to the user specified mode, and reject the =
-commit if it's not close enough (<=3D 1 Hz)" below.
-> >
-> >
-> > >>> We pick the actual mode from the set of "fixed modes" (ie. the mode=
-s
-> > >>> that the panel/system itself has reported as supported via
-> > >>> EDID/VBT/ACPI/etc.). For non-VRR panels we just pick the fixed mode
-> > >>> whose refresh rate is closest to the user specified mode, and rejec=
-t
-> > >>> the commit if it's not close enough (<=3D 1 Hz).
-> > >>
-> > >> Can't programming different mode timings result in the panel blankin=
-g intermittently?
-> > >
-> > > Userspace can specify that a modeset is not allowed, thus if the
-> > > driver can't achieve the refresh rate change without blinks the
-> > > commit will be rejected.
-> >
-> > How can the refresh rate change without a modeset (without VRR)?
->
-> Given a capable eDP panel we can reprogram the dotclock/Mvid/Nvid
-> atomically so that the refresh rate changes from one frame to another.
->
-> --
-> Ville Syrj=C3=A4l=C3=A4
-> Intel
+> Cc: Tvrtko Ursulin <tvrtko.ursulin@intel.com>
+> Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> ---
+>  drivers/gpu/drm/i915/gem/i915_gem_context.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/i915/gem/i915_gem_context.c b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> index 6ac0f23570f3..aeafe1742d30 100644
+> --- a/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> +++ b/drivers/gpu/drm/i915/gem/i915_gem_context.c
+> @@ -613,6 +613,7 @@ set_proto_ctx_engines_parallel_submit(struct i915_user_extension __user *base,
+>  		return -EINVAL;
+>  	}
+>  
+> +	slot = array_index_nospec(slot, set->num_engines);
+>  	if (set->engines[slot].type != I915_GEM_ENGINE_TYPE_INVALID) {
+>  		drm_dbg(&i915->drm,
+>  			"Invalid placement[%d], already occupied\n", slot);
+> -- 
+> 2.54.0
+> 
