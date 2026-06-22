@@ -2,68 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id y5w/BcTsOGqBkAcAu9opvQ
+	id Un1TKwPyOGqvkQcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 10:05:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 10:27:47 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 69CC56AD7D3
-	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 10:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F40906ADB41
+	for <lists+intel-gfx@lfdr.de>; Mon, 22 Jun 2026 10:27:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WKhiDDUd;
+	dkim=pass header.d=intel.com header.s=Intel header.b=nUMs0o12;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 06FB310E4FD;
-	Mon, 22 Jun 2026 08:05:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8515410E538;
+	Mon, 22 Jun 2026 08:27:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C20F410E4FD;
- Mon, 22 Jun 2026 08:05:20 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 1913F6001A;
- Mon, 22 Jun 2026 08:05:20 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 1B84C1F000E9;
- Mon, 22 Jun 2026 08:05:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782115519;
- bh=FAbpiNhKVqoEfhFmUfUdlxgESW8QuGiY+lhl+lA+T60=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To;
- b=WKhiDDUdL0KRgYXfe2WI9TPD1Fcz4Jm9ZEs4TCvppOjXgUFC4H1afMQFw+2v6sbYC
- wyKQOW94sIC2JrNxh5T1XMUYBWAlDKC18spHzcXcYSeSIENbdvnOdBeIFeCRHU0wcr
- GXhaSILwuzYrxIUKMomqoVtJ32rfzWA7jVghDLmfnz+BZrvg16SiSZpHTKMbep/4WK
- cTRFBl6B2TwAUd1X5OjJrSj8wdRtwPxWGGAsp+lGM7jfcHoi8eTosbKCizRmGWHd0+
- cQFh5OCUybibOIb31BzksIWMYD20OkhiGIxmv8Z+opVm7KScIv+rhlWvQYzzdL9N23
- S4BwD770Utgzw==
-Message-ID: <dbb5915e-6587-4de9-87f3-76bea5024da8@kernel.org>
-Date: Mon, 22 Jun 2026 10:05:13 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DF82310E538
+ for <intel-gfx@lists.freedesktop.org>; Mon, 22 Jun 2026 08:27:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782116864; x=1813652864;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=oqOCe2vm5szuS8bk5kjYPZGSTFWtLBUZhVo5Haw/Ge8=;
+ b=nUMs0o12lkZFt8EmLwLLMpoEAVZLUkQbTOvK3KvwLyc7Yqe4GulEQSau
+ EMYmJm/MD3z4p6rEIa0/+6nP4Xy/Xwpx5k0aXVaFmJSj5z/CboIrw/Rzo
+ CoTZmjbhyWTiEUx/15+hrcEC34f2uYtfEHVFYki0fkjC9i3woDeeg2jen
+ Mwn6/YkN9b5RduGFVH2woW9n82cfYoAMHVSSOJeDychgw7BFFR5Idgbm/
+ 38e+6H4ODb+Mn/PTVWFgUN/+zIAfqdLMYhuGIkfk5PTaLd8ESl/3eSbYz
+ jKqfZvjTgWBYVzq/rtrN//61RzU2ExjecMapSU5G50Uantb6655zPoHZv A==;
+X-CSE-ConnectionGUID: Hp1otbJZQyuAd5OUwulLIA==
+X-CSE-MsgGUID: Rq4VkYaxRNKtjCxhj/gKEA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11824"; a="100393297"
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="100393297"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 01:27:43 -0700
+X-CSE-ConnectionGUID: XpdEr1xOR2O3Ccj30TE8gA==
+X-CSE-MsgGUID: dQdYHR7MSk+qQ4tR4gEgaQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,218,1774335600"; d="scan'208";a="251083835"
+Received: from abityuts-desk.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.82])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 22 Jun 2026 01:27:39 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Jakub Bystron <jb@elitecode.cz>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>
+Cc: imre.deak@intel.com
+Subject: Re: [REGRESSION] drm/i915: ThinkPad P1 Gen 7 fails to resume
+ internal eDP panel after longer lid suspend
+In-Reply-To: <eo3pb-09aTKunS-YR2uQS9u4BEDIihwSaGGMzdt-0qC1NvuQN_zVTMoL-r15j-w8vdlZJB4uHDdVXL0dJlJz8dwgt-A0cVe3KD3F8wnMuxg=@elitecode.cz>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <eo3pb-09aTKunS-YR2uQS9u4BEDIihwSaGGMzdt-0qC1NvuQN_zVTMoL-r15j-w8vdlZJB4uHDdVXL0dJlJz8dwgt-A0cVe3KD3F8wnMuxg=@elitecode.cz>
+Date: Mon, 22 Jun 2026 11:27:36 +0300
+Message-ID: <19904ab8a890da1e7e1bfc3ff813aacad1cddd05@intel.com>
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 0/2] tracing: Move trace_printk.h out of kernel.h
-To: Steven Rostedt <rostedt@kernel.org>, linux-kernel@vger.kernel.org,
- linux-trace-kernel@vger.kernel.org
-Cc: Masami Hiramatsu <mhiramat@kernel.org>,
- Mark Rutland <mark.rutland@arm.com>,
- Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
- Andrew Morton <akpm@linux-foundation.org>,
- Linus Torvalds <torvalds@linux-foundation.org>,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- John Ogness <john.ogness@linutronix.de>, Thomas Gleixner <tglx@kernel.org>,
- Peter Zijlstra <peterz@infradead.org>, Julia Lawall <julia.lawall@inria.fr>,
- Yury Norov <yury.norov@gmail.com>, linux-doc@vger.kernel.org,
- linux-kbuild@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
- dri-devel@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
- linux-arm-kernel@lists.infradead.org, linux-rdma@vger.kernel.org,
- linux-usb@vger.kernel.org, linux-ext4@vger.kernel.org,
- linux-nfs@vger.kernel.org, kvm@vger.kernel.org,
- intel-gfx@lists.freedesktop.org
-References: <20260621093430.264983361@kernel.org>
-Content-Language: fr-FR
-From: "Christophe Leroy (CS GROUP)" <chleroy@kernel.org>
-In-Reply-To: <20260621093430.264983361@kernel.org>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,82 +77,56 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	SUSPICIOUS_RECIPS(1.50)[];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:jb@elitecode.cz,m:imre.deak@intel.com,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[26];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FREEMAIL_CC(0.00)[kernel.org,arm.com,efficios.com,linux-foundation.org,linutronix.de,infradead.org,inria.fr,gmail.com,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[chleroy@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	HAS_ORG_HEADER(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:mid,elitecode.cz:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 69CC56AD7D3
+X-Rspamd-Queue-Id: F40906ADB41
+
+On Thu, 18 Jun 2026, Jakub Bystron <jb@elitecode.cz> wrote:
+> I am seeing a suspend/resume regression with i915 on a Lenovo ThinkPad
+> P1 Gen 7 for anything 7.0+. 6.18 LTS is fine.
+
+Please try [1] or current drm-tip. If the problem persists, please file
+a new bug report as described at [2].
+
+Thanks,
+Jani.
+
+[1] https://lore.kernel.org/r/20260612172617.3427027-1-imre.deak@intel.com
+[2] https://drm.pages.freedesktop.org/intel-docs/how-to-file-i915-bugs.html
 
 
-
-Le 21/06/2026 à 11:34, Steven Rostedt a écrit :
-> There's been complaints about trace_printk() being defined in kernel.h as it
-> can increase the compilation time. As it is only used by some developers for
-> debugging purposes, it should not be in kernel.h causing lots of wasted CPU
-> cycles for those that do not ever care about it.
-
-Do we have a measurement of the increased compilation time ?
-
-Christophe
-
-> 
-> Instead, add a CONFIG_TRACE_PRINTK_DEBUGGING option that developers that do
-> use it can set and not have to always remember to add #include <linux/trace_printk.h>
-> to the files they add trace_printk() while debugging. It also means that
-> those that do not have that config set will not have to worry about wasted
-> CPU cycles as it is only include in the CFLAGS when the option is set, and
-> its completely ignored otherwise.
-> 
-> Steven Rostedt (2):
->        tracing: Move non-trace_printk prototypes back to kernel.h
->        tracing: Add CONFIG_TRACE_PRINTK_DEBUGGING to clean up kernel.h
-> 
-> ----
->   .../driver_development_debugging_guide.rst         |  2 +-
->   Makefile                                           |  5 +++++
->   arch/powerpc/kvm/book3s_xics.c                     |  1 +
->   drivers/gpu/drm/i915/gt/intel_gtt.h                |  1 +
->   drivers/gpu/drm/i915/i915_gem.h                    |  1 +
->   drivers/hwtracing/stm/dummy_stm.c                  |  4 ++++
->   drivers/infiniband/hw/hfi1/trace_dbg.h             |  1 +
->   drivers/usb/early/xhci-dbc.c                       |  1 +
->   fs/ext4/inline.c                                   |  1 +
->   include/linux/kernel.h                             | 19 ++++++++++++++++++-
->   include/linux/sunrpc/debug.h                       |  1 +
->   include/linux/trace_printk.h                       | 22 +++-------------------
->   kernel/trace/Kconfig                               | 10 ++++++++++
->   kernel/trace/ring_buffer_benchmark.c               |  1 +
->   kernel/trace/trace.h                               |  1 +
->   samples/fprobe/fprobe_example.c                    |  1 +
->   samples/ftrace/ftrace-direct-modify.c              |  1 +
->   samples/ftrace/ftrace-direct-multi-modify.c        |  1 +
->   samples/ftrace/ftrace-direct-multi.c               |  2 +-
->   samples/ftrace/ftrace-direct-too.c                 |  2 +-
->   samples/ftrace/ftrace-direct.c                     |  2 +-
->   21 files changed, 56 insertions(+), 24 deletions(-)
-> 
-
+-- 
+Jani Nikula, Intel
