@@ -2,35 +2,35 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bDz4BudfOmrO7QcAu9opvQ
+	id wprUKR1gOmrk7QcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 12:28:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 12:29:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5FA186B6468
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 12:28:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 15D9C6B6488
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 12:29:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1080610EA75;
-	Tue, 23 Jun 2026 10:28:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9416810EA7F;
+	Tue, 23 Jun 2026 10:29:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 58A5710EA75;
- Tue, 23 Jun 2026 10:28:50 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 11C3110EA7C;
+ Tue, 23 Jun 2026 10:29:46 +0000 (UTC)
 Received: from 87-93-171-105.bb.dnainternet.fi ([87.93.171.105]
  helo=[192.168.101.113])
  by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
  (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wbyN4-0000000147G-1TYd; Tue, 23 Jun 2026 13:28:48 +0300
-Message-ID: <db3bb5d5efdeee469b291906a7d686af2eee64de.camel@coelho.fi>
+ id 1wbyNy-0000000147r-3yg3; Tue, 23 Jun 2026 13:29:43 +0300
+Message-ID: <3f6f2db373765845388ca58e7b29be2cb60f7c59.camel@coelho.fi>
 From: Luca Coelho <luca@coelho.fi>
 To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
  intel-xe@lists.freedesktop.org
-Date: Tue, 23 Jun 2026 13:28:45 +0300
+Date: Tue, 23 Jun 2026 13:29:41 +0300
 In-Reply-To: <20260616200849.3534628-8-imre.deak@intel.com>
 References: <20260616200849.3534628-1-imre.deak@intel.com>
  <20260616200849.3534628-8-imre.deak@intel.com>
@@ -72,7 +72,7 @@ X-Spamd-Result: default: False [-0.61 / 15.00];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,lists.freedesktop.org:from_smtp,coelho.fi:mid,coelho.fi:from_mime];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,coelho.fi:mid,coelho.fi:from_mime,lists.freedesktop.org:from_smtp,intel.com:email];
 	MID_RHS_MATCH_FROM(0.00)[];
 	R_DKIM_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
@@ -85,7 +85,7 @@ X-Spamd-Result: default: False [-0.61 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5FA186B6468
+X-Rspamd-Queue-Id: 15D9C6B6488
 
 On Tue, 2026-06-16 at 23:08 +0300, Imre Deak wrote:
 > Move the debugfs entries for the forced and max DP link parameters to
@@ -94,6 +94,7 @@ On Tue, 2026-06-16 at 23:08 +0300, Imre Deak wrote:
 > changes.
 >=20
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
+> ---
 
 Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
 
@@ -102,7 +103,7 @@ Cheers,
 Luca.
 
 
-> ---
+
 >  .../drm/i915/display/intel_display_debugfs.c  |   2 +
 >  .../gpu/drm/i915/display/intel_dp_link_caps.c | 280 ++++++++++++++++++
 >  .../gpu/drm/i915/display/intel_dp_link_caps.h |   3 +
