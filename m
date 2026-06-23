@@ -2,60 +2,62 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2AQwBvAMO2pxPQgAu9opvQ
+	id efPWBfIMO2pyPQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:12 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:14 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DB8DC6BA78B
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B48DF6BA790
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:13 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=jVYrbVto;
+	dkim=pass header.d=intel.com header.s=Intel header.b=LspmxkgO;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4C42B10ECFB;
-	Tue, 23 Jun 2026 22:47:10 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 506A810ECFA;
+	Tue, 23 Jun 2026 22:47:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 18BC710ECF8;
- Tue, 23 Jun 2026 22:47:09 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4A55410ECFC;
+ Tue, 23 Jun 2026 22:47:11 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782254830; x=1813790830;
+ t=1782254832; x=1813790832;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=9Mf0NIiTWQ3dbS5ZULhG6zAXAvWqXK1z5f3dtuIs7M8=;
- b=jVYrbVto6/JP0xnYUVvBSlv5ByclcYxXIxi+mhsJs1Rhq5d2RdFkn5RZ
- xdkaiD50MRzpCibhEJRWxU0yHpikHgHtokX5h96FLpiiPiX8lZwjqJ39S
- RfhPCY32tiTt99yhV+eOnBZILw8qNRQb8FxCDVRReMjPONu8WIKyC5VPo
- KpwW4pMxdOXjiQ695gppjjgT9i9cDeI9d6IdQzVeKCTQR070gfVc43+Eq
- 9msJ61/HCPpGP0LDpBf0hCTSsYNEOw3ZOAXXDlDdTsWkimxlmMZ4PUiVV
- Cg3sNdIWQBokVgnNiKXFKkJKKkoLxlx9Rdz6HJYF7pSy/8twtp/GtOmGo Q==;
-X-CSE-ConnectionGUID: Ugijs8CYRFGA1DPV6r9VHg==
-X-CSE-MsgGUID: xQBwPoF0T6uc+m0gCBFcYA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82775548"
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="82775548"
+ bh=1ZKvCxsZ/XEBuzk1gFWlmkd0KF7fMV+Idxl/yEQXWq4=;
+ b=LspmxkgO4O6ZyrBlkyS1Wv+LzpTmn5jUKPuZYsbASz+sppkyMAbL9Kmh
+ oO1/7y4eH43H0o3qMhZwW20Kqt/k66P8bh42f6b8HWsGvSCiGBqnNZMPS
+ JkTiwf8btK54R8QITCJrOcOg6OnFB33Ur/oEkBaygF1MPAeoysx1G8Ybl
+ +5CZ/3X4G8FoOtVDaeVb9djgRghYmxATODF1P2CdNdWEF/VhfciuO/CVE
+ jLhpt+L1CybHhO2kfCoCEWpf5urWZ7HbrdUTOdKmS6AXbh55FG08zdzMk
+ wWkm5dKYXUe8LNbPRuiYKwqJ5N74qN4C0wmnE2eIufOOIwZ8Pka6Cc+H/ A==;
+X-CSE-ConnectionGUID: x3aGZsVYRRCGTRAuAKboog==
+X-CSE-MsgGUID: f6XdWNJjSPWOQoWb1vnJpQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82775550"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="82775550"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 15:47:09 -0700
-X-CSE-ConnectionGUID: 9/+sf5MtRQS7iG6lqZ7xtQ==
-X-CSE-MsgGUID: lnDeJnftTqyDD26Irxor4w==
+ 23 Jun 2026 15:47:12 -0700
+X-CSE-ConnectionGUID: 8RAKpCldTTmQVOhultltJg==
+X-CSE-MsgGUID: psmxOTv3TuGE+w1dBQYSUQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="249497087"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="249497090"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP; 23 Jun 2026 15:47:07 -0700
+ by orviesa008.jf.intel.com with ESMTP; 23 Jun 2026 15:47:09 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Luca Coelho <luciano.coelho@intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>, Imre Deak <imre.deak@intel.com>,
+ Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 02/30] drm/i915/dp: Add struct intel_dp_link_config
-Date: Wed, 24 Jun 2026 00:45:51 +0200
-Message-ID: <20260623224619.1949975-3-michal.grzelak@intel.com>
+Subject: [PATCH v1 03/30] drm/i915/dp_link_caps: Introduce DP link capability
+ module
+Date: Wed, 24 Jun 2026 00:45:52 +0200
+Message-ID: <20260623224619.1949975-4-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260623224619.1949975-1-michal.grzelak@intel.com>
 References: <20260623224619.1949975-1-michal.grzelak@intel.com>
@@ -101,44 +103,168 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DB8DC6BA78B
+X-Rspamd-Queue-Id: B48DF6BA790
 
 From: Imre Deak <imre.deak@intel.com>
 
-Add a struct representing the public unpacked format of a link
-configuration. This will be used by the DP link capability API added
-as a follow-up, and by DP code in general that needs to track a link
-configuration.
+Start isolating the DP link capability logic from the generic DP code by
+adding a separate intel_dp_link_caps module and a corresponding state
+object.
 
+Allocate the state so it can remain opaque within its module.
+
+Follow-up changes will move link capability helpers and state from
+intel_dp.c and intel_dp_link_training.c to the new module and state.
+
+v2: Remove unnecessary function documentation. (Jani)
+
+Cc: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display_types.h | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/Makefile                 |  1 +
+ .../drm/i915/display/intel_display_types.h    |  2 ++
+ drivers/gpu/drm/i915/display/intel_dp.c       |  9 ++++++
+ .../gpu/drm/i915/display/intel_dp_link_caps.c | 30 +++++++++++++++++++
+ .../gpu/drm/i915/display/intel_dp_link_caps.h | 12 ++++++++
+ drivers/gpu/drm/xe/Makefile                   |  1 +
+ 6 files changed, 55 insertions(+)
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+ create mode 100644 drivers/gpu/drm/i915/display/intel_dp_link_caps.h
 
+diff --git a/drivers/gpu/drm/i915/Makefile b/drivers/gpu/drm/i915/Makefile
+index 1fd7a1a5f3158..c4de717505d73 100644
+--- a/drivers/gpu/drm/i915/Makefile
++++ b/drivers/gpu/drm/i915/Makefile
+@@ -356,6 +356,7 @@ i915-y += \
+ 	display/intel_dp_aux.o \
+ 	display/intel_dp_aux_backlight.o \
+ 	display/intel_dp_hdcp.o \
++	display/intel_dp_link_caps.o \
+ 	display/intel_dp_link_training.o \
+ 	display/intel_dp_mst.o \
+ 	display/intel_dp_test.o \
 diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index 7fd7dfd420487..8c1af7b8ba270 100644
+index 8c1af7b8ba270..2b32e8467e62c 100644
 --- a/drivers/gpu/drm/i915/display/intel_display_types.h
 +++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -1800,6 +1800,14 @@ struct intel_psr {
- 	struct ref_tracker *vblank_wakeref;
- };
+@@ -58,6 +58,7 @@ struct cec_notifier;
+ struct drm_printer;
+ struct intel_connector;
+ struct intel_ddi_buf_trans;
++struct intel_dp_link_caps;
+ struct intel_dp_link_training;
+ struct intel_fbc;
+ struct intel_global_objs_state;
+@@ -1867,6 +1868,7 @@ struct intel_dp {
+ 		int force_lane_count;
+ 		int force_rate;
+ 		struct intel_dp_link_training *training;
++		struct intel_dp_link_caps *caps;
+ 	} link;
+ 	bool reset_link_params;
+ 	int mso_link_count;
+diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
+index 00eb3f5103383..fa095c4db7fe6 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp.c
++++ b/drivers/gpu/drm/i915/display/intel_dp.c
+@@ -71,6 +71,7 @@
+ #include "intel_dp.h"
+ #include "intel_dp_aux.h"
+ #include "intel_dp_hdcp.h"
++#include "intel_dp_link_caps.h"
+ #include "intel_dp_link_training.h"
+ #include "intel_dp_mst.h"
+ #include "intel_dp_test.h"
+@@ -7458,10 +7459,18 @@ int intel_dp_link_init(struct intel_dp *intel_dp)
+ 	if (!intel_dp->link.training)
+ 		return -ENOMEM;
  
-+struct intel_dp_link_config {
-+	int rate;
-+	int lane_count;
++	intel_dp->link.caps = intel_dp_link_caps_init(intel_dp);
++	if (!intel_dp->link.caps) {
++		intel_dp_link_training_cleanup(intel_dp->link.training);
++
++		return -ENOMEM;
++	}
++
+ 	return 0;
+ }
+ 
+ void intel_dp_link_cleanup(struct intel_dp *intel_dp)
+ {
++	intel_dp_link_caps_cleanup(intel_dp->link.caps);
+ 	intel_dp_link_training_cleanup(intel_dp->link.training);
+ }
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+new file mode 100644
+index 0000000000000..63989d97effd7
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+@@ -0,0 +1,30 @@
++// SPDX-License-Identifier: MIT
++/*
++ * Copyright © 2026 Intel Corporation
++ */
++
++#include <linux/slab.h>
++
++#include "intel_dp_link_caps.h"
++
++struct intel_dp_link_caps {
++	struct intel_dp *dp;
 +};
 +
-+#define INTEL_DP_LINK_CONFIG_NULL \
-+	((struct intel_dp_link_config){})
++struct intel_dp_link_caps *intel_dp_link_caps_init(struct intel_dp *intel_dp)
++{
++	struct intel_dp_link_caps *link_caps;
 +
- struct intel_dp {
- 	intel_reg_t output_reg;
- 	u32 DP;
++	link_caps = kzalloc_obj(*link_caps);
++	if (!link_caps)
++		return NULL;
++
++	link_caps->dp = intel_dp;
++
++	return link_caps;
++}
++
++void intel_dp_link_caps_cleanup(struct intel_dp_link_caps *link_caps)
++{
++	kfree(link_caps);
++}
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+new file mode 100644
+index 0000000000000..050b279463d6e
+--- /dev/null
++++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+@@ -0,0 +1,12 @@
++/* SPDX-License-Identifier: MIT */
++/* Copyright © 2026 Intel Corporation */
++
++#ifndef __INTEL_DP_LINK_CAPS_H__
++#define __INTEL_DP_LINK_CAPS_H__
++
++struct intel_dp;
++
++struct intel_dp_link_caps *intel_dp_link_caps_init(struct intel_dp *intel_dp);
++void intel_dp_link_caps_cleanup(struct intel_dp_link_caps *link_caps);
++
++#endif /* __INTEL_DP_LINK_CAPS_H__ */
+diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+index 8e7b146880f46..e5a04253e73bf 100644
+--- a/drivers/gpu/drm/xe/Makefile
++++ b/drivers/gpu/drm/xe/Makefile
+@@ -278,6 +278,7 @@ xe-$(CONFIG_DRM_XE_DISPLAY) += \
+ 	i915-display/intel_dp_aux.o \
+ 	i915-display/intel_dp_aux_backlight.o \
+ 	i915-display/intel_dp_hdcp.o \
++	i915-display/intel_dp_link_caps.o \
+ 	i915-display/intel_dp_link_training.o \
+ 	i915-display/intel_dp_mst.o \
+ 	i915-display/intel_dp_test.o \
 -- 
 2.45.2
 
