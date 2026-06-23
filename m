@@ -2,62 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id /qW6JQwNO2qEPQgAu9opvQ
+	id uOgxJA8NO2qFPQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:43 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 44B6A6BA7C8
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 078996BA7CB
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:47:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=OgZvuQNm;
+	dkim=pass header.d=intel.com header.s=Intel header.b=BQn+2+7i;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CCFB710ED28;
-	Tue, 23 Jun 2026 22:47:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 978F810ED2B;
+	Tue, 23 Jun 2026 22:47:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AFA7D10ED24;
- Tue, 23 Jun 2026 22:47:35 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A8DE210ED28;
+ Tue, 23 Jun 2026 22:47:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782254856; x=1813790856;
+ t=1782254858; x=1813790858;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=KIINNQOCDnBy1Ys+4RSo16jTa1FuYCGvCmjUuHee3AA=;
- b=OgZvuQNm579tzzRXgxEccoElIhJOPZGGXDK5Jf6XhgDvQvJ3jApGiPlx
- xgDD7ZZuyp2WeQ859bxcTmpIYWyY3t/j8tVpqtQ7pVtYYRgR6qj/i8tJZ
- RlQlkC47If7cJWdG3xVBrEYFLfjZvOqYBPfUBONEFz5uAB6zX3QwXxgII
- 3OlLH7yTTOXsUYMIgdoshV9DWdwcPfPdMNuK/qLbtSzvXQDaobuFy9kQH
- NjIjAK0LPjYhU7wNkRLsheOSJhriWikxyx9x2T86NX64lhEsA5JYsxyZr
- 0cMw2Wy/5JRO1CEee5b9JZ4VehSoJOR50xv1MZsK7NNbNgt0nOy6B+K8A A==;
-X-CSE-ConnectionGUID: 3L3SkudzQrWhqLKUdprtfQ==
-X-CSE-MsgGUID: N/R9WpduQV6hrsqOjWPV7A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82775593"
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="82775593"
+ bh=7bqmdPVx0zMj0KryvMOvaLdRjHndjsEDf655U9DgrfM=;
+ b=BQn+2+7iiB8YbTYIjyeNtie++4bQYbew/ykK0/Fq6ICtVIwDiki22YGS
+ ZITkXhA4g2P8SGhwDZ6PQaOe77awRfoqblU9d9WoIVEHcN61A8MSV0mNi
+ 9ee2J+6z6DdyrThnaBFrrdGDW85suTh9baP/mJGyjoaN5eLEvFMHDWrq9
+ xcOT4pppTmqsNyh2LhqzNcW+WiMYzHC5Y/yoHqwRuXqnzt/5vVnGXZohZ
+ SwpoyTxkW8hHlMJBMMGRt2V8vBXCv8TiPBS1r55O+ICVLIneWJbhgsrZQ
+ mH3MqTVwyfjPhUHxkBl+vNRqdJ6L6r/J/ICjJR53jo0NnPJPPOIIreybi w==;
+X-CSE-ConnectionGUID: HSyQaBeeSCCzlIbB9zyfqg==
+X-CSE-MsgGUID: O08snoyyQpG9MPVpXuJLVQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82775595"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="82775595"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 15:47:36 -0700
-X-CSE-ConnectionGUID: JuHJxcqURyOmcqUkUesbZQ==
-X-CSE-MsgGUID: 6xVhgEPZQQuVXPZ31KnHLg==
+ 23 Jun 2026 15:47:38 -0700
+X-CSE-ConnectionGUID: eidB4W/BRq6+vUXYb3UNqw==
+X-CSE-MsgGUID: G4glb4w3TSKWU1IJRHZI2A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="249497128"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="249497131"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP; 23 Jun 2026 15:47:33 -0700
+ by orviesa008.jf.intel.com with ESMTP; 23 Jun 2026 15:47:36 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Mika Kahola <mika.kahola@intel.com>,
  Luca Coelho <luciano.coelho@intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>, Imre Deak <imre.deak@intel.com>,
- Jani Nikula <jani.nikula@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 15/30] drm/i915/dp_link_caps: Add helper to print all
- supported link rates
-Date: Wed, 24 Jun 2026 00:46:04 +0200
-Message-ID: <20260623224619.1949975-16-michal.grzelak@intel.com>
+Subject: [PATCH v1 16/30] drm/i915/dp_link_caps: Add helper to get the number
+ of supported link rates
+Date: Wed, 24 Jun 2026 00:46:05 +0200
+Message-ID: <20260623224619.1949975-17-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260623224619.1949975-1-michal.grzelak@intel.com>
 References: <20260623224619.1949975-1-michal.grzelak@intel.com>
@@ -103,86 +102,75 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 44B6A6BA7C8
+X-Rspamd-Queue-Id: 078996BA7CB
 
 From: Imre Deak <imre.deak@intel.com>
 
-Add intel_dp_link_caps_print_rates() to print all the supported link
-rates tracked by the link_caps module. This prepares for tracking
-these capabilities internally within the link caps module.
+Add intel_dp_link_caps_num_common_rates() to return the number of
+supported link rates tracked by the link_caps module. This prepares for
+tracking these capabilities internally within the link caps module.
 
-Suggested-by: Jani Nikula <jani.nikula@intel.com>
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c           |  4 +---
- drivers/gpu/drm/i915/display/intel_dp_link_caps.c | 14 ++++++++++++++
- drivers/gpu/drm/i915/display/intel_dp_link_caps.h |  2 ++
- 3 files changed, 17 insertions(+), 3 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c           | 4 ++--
+ drivers/gpu/drm/i915/display/intel_dp_link_caps.c | 5 +++++
+ drivers/gpu/drm/i915/display/intel_dp_link_caps.h | 1 +
+ 3 files changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index d2b9b6fce2b32..f9c3d3561c417 100644
+index f9c3d3561c417..84640c8394534 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -1543,9 +1543,7 @@ static void intel_dp_print_rates(struct intel_dp *intel_dp)
- 	seq_buf_print_array(&s, intel_dp->sink_rates, intel_dp->num_sink_rates);
- 	drm_dbg_kms(display->drm, "sink rates: %s\n", seq_buf_str(&s));
+@@ -1766,7 +1766,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 		int link_bpp_x16 =
+ 			intel_dp_output_format_link_bpp_x16(pipe_config->output_format, bpp);
  
--	seq_buf_clear(&s);
--	seq_buf_print_array(&s, intel_dp->common_rates, intel_dp->num_common_rates);
--	drm_dbg_kms(display->drm, "common rates: %s\n", seq_buf_str(&s));
-+	intel_dp_link_caps_print_common_rates(intel_dp->link.caps);
- }
+-		for (i = 0; i < intel_dp->num_common_rates; i++) {
++		for (i = 0; i < intel_dp_link_caps_num_common_rates(intel_dp->link.caps); i++) {
+ 			link_rate = intel_dp_common_rate(intel_dp, i);
+ 			if (link_rate < limits->min_rate ||
+ 			    link_rate > limits->max_rate)
+@@ -1995,7 +1995,7 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 	int link_rate, lane_count;
+ 	int i;
  
- int
+-	for (i = 0; i < intel_dp->num_common_rates; i++) {
++	for (i = 0; i < intel_dp_link_caps_num_common_rates(intel_dp->link.caps); i++) {
+ 		link_rate = intel_dp_common_rate(intel_dp, i);
+ 		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
+ 			continue;
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-index 679d59cc256c9..13f9bfd5d7bad 100644
+index 13f9bfd5d7bad..09b60a0cd6fbb 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-@@ -6,6 +6,7 @@
- #include <linux/bitops.h>
- #include <linux/debugfs.h>
- #include <linux/log2.h>
-+#include <linux/seq_buf.h>
- #include <linux/slab.h>
- #include <linux/sort.h>
- #include <linux/string.h>
-@@ -66,6 +67,19 @@ int intel_dp_max_common_rate(struct intel_dp *intel_dp)
+@@ -67,6 +67,11 @@ int intel_dp_max_common_rate(struct intel_dp *intel_dp)
  	return intel_dp_common_rate(intel_dp, intel_dp->num_common_rates - 1);
  }
  
-+void intel_dp_link_caps_print_common_rates(struct intel_dp_link_caps *link_caps)
++int intel_dp_link_caps_num_common_rates(struct intel_dp_link_caps *link_caps)
 +{
-+	struct intel_dp *intel_dp = link_caps->dp;
-+	struct intel_display *display = to_intel_display(intel_dp);
-+	DECLARE_SEQ_BUF(s, 128);
-+	int i;
-+
-+	for (i = 0; i < intel_dp->num_common_rates; i++)
-+		seq_buf_printf(&s, "%s%d", i ? ", " : "", intel_dp->common_rates[i]);
-+
-+	drm_dbg_kms(display->drm, "common rates: %s\n", seq_buf_str(&s));
++	return link_caps->dp->num_common_rates;
 +}
 +
- static int forced_lane_count(struct intel_dp *intel_dp)
+ void intel_dp_link_caps_print_common_rates(struct intel_dp_link_caps *link_caps)
  {
- 	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+ 	struct intel_dp *intel_dp = link_caps->dp;
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-index 09e580bc5c9b3..7333df6b82f97 100644
+index 7333df6b82f97..3413f6f760453 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-@@ -16,6 +16,8 @@ int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
+@@ -15,6 +15,7 @@ int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
+ 				   int max_rate);
  int intel_dp_common_rate(struct intel_dp *intel_dp, int index);
  int intel_dp_max_common_rate(struct intel_dp *intel_dp);
++int intel_dp_link_caps_num_common_rates(struct intel_dp_link_caps *link_caps);
  
-+void intel_dp_link_caps_print_common_rates(struct intel_dp_link_caps *link_caps);
-+
- void intel_dp_link_caps_get_forced_params(struct intel_dp_link_caps *link_caps,
- 					  struct intel_dp_link_config *forced_params);
+ void intel_dp_link_caps_print_common_rates(struct intel_dp_link_caps *link_caps);
  
 -- 
 2.45.2
