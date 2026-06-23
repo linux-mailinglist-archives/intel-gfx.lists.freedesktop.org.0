@@ -2,50 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JDlZKSMNO2qkPQgAu9opvQ
+	id zG/uFSUNO2qmPQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:48:03 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:48:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 541036BA811
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 035F56BA817
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 00:48:05 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=MJ51Eg0U;
+	dkim=pass header.d=intel.com header.s=Intel header.b=AlxDMez4;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC04F10ED49;
-	Tue, 23 Jun 2026 22:48:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 99C3910ED4D;
+	Tue, 23 Jun 2026 22:48:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A5F6410ED48;
- Tue, 23 Jun 2026 22:47:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC06510ED4B;
+ Tue, 23 Jun 2026 22:48:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782254880; x=1813790880;
+ t=1782254882; x=1813790882;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=xw+PHyERKy6daySy7BN2SKtPyMtVdRlF3Ck5vlIVn8E=;
- b=MJ51Eg0U1basLpGnporo4B63EpHUy/gW9z/DNezOv1CPjAxQDx3l41tI
- vwuyYqUg/WE+PBrTsUpzhFMeEqHp5qAb09hCNr9VxRyeON/c161AkkCHv
- x91LEDnLrn8HqHzZzvh900IqKA917xfVZyqfxPQokdqNGhXD4ntOnb5Pz
- Ot3AxNGP87RCgoPnjDr41Eusk9QM5I5HN89vVqg+nCdFLOoeyFCW6iR1X
- /NNe3KRUjPYqwj2edh8fBRl1nOFvIoCCVPLNsyc15dTbNFV15Vjxw9YR9
- K0FQ9TUsp/FDrI+DMdrTzmX0fCaEHUYdmoFuIDctRgVG+AJPzBKNSoGrx A==;
-X-CSE-ConnectionGUID: kBiz2f+kS2OuQ5dWkmOmJw==
-X-CSE-MsgGUID: kDFjZTcoQgax9/846DJx6A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82775613"
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="82775613"
+ bh=D88IXUnJFy8YvKWvyiVDDsS+RD2VA6z0e40Im8swI90=;
+ b=AlxDMez4RKI0h/5H4h+sTxODn+YsFX16g1QwACbbH/hXzJu7RSYQfGY7
+ aL2zvKLHr1ktnT3b/zcXn5/0qXVNrY1Qw6b3o9dFaxIEzO56+BZtdU+uu
+ b0WRpdSU/mUNDUyAmJ4Ksf3ZVymCeDMidQStW0S0VcTHeeGS4o/OqjfDX
+ 0YswHq8Nw1BS3yh+C0XDESJMxWOJwLbUbiIq9cYctNCkknpD+Va726Ti/
+ f88Y+IAvlswqh8fIkfb5V69S5c9u4L6MBBDZ/0JEnwJdkoteoFTltPv/x
+ CCml50daj+4Q51BjjXhnsQ4X5ZzqwBngxpc8isqCXUvvVtJxS0Cz3SYF2 Q==;
+X-CSE-ConnectionGUID: FF2KqhxFQXW6EoJ3E9IlJg==
+X-CSE-MsgGUID: 6BoE/qe8TfGDZgtf12FlAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="82775614"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="82775614"
 Received: from orviesa008.jf.intel.com ([10.64.159.148])
  by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 15:48:00 -0700
-X-CSE-ConnectionGUID: MRgUk9A0QPmIhOsncHwS1w==
-X-CSE-MsgGUID: rr+opEgaR/ulJPonGUpt7g==
+ 23 Jun 2026 15:48:02 -0700
+X-CSE-ConnectionGUID: QqXOQbsSSpWD3IxVciXRSw==
+X-CSE-MsgGUID: 6qSkRr1pTxqUv1+lSLWMHA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="249497169"
+X-IronPort-AV: E=Sophos;i="6.24,221,1774335600"; d="scan'208";a="249497173"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa008.jf.intel.com with ESMTP; 23 Jun 2026 15:47:58 -0700
+ by orviesa008.jf.intel.com with ESMTP; 23 Jun 2026 15:48:00 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
@@ -53,10 +53,10 @@ Cc: Mika Kahola <mika.kahola@intel.com>,
  Luca Coelho <luciano.coelho@intel.com>,
  Nemesa Garg <nemesa.garg@intel.com>, Imre Deak <imre.deak@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v1 27/30] drm/i915/dp_link_caps: Pass link_caps to config
- update/lookup helpers
-Date: Wed, 24 Jun 2026 00:46:16 +0200
-Message-ID: <20260623224619.1949975-28-michal.grzelak@intel.com>
+Subject: [PATCH v1 28/30] drm/i915/dp_link_caps: Pass link_caps to common rate
+ helpers
+Date: Wed, 24 Jun 2026 00:46:17 +0200
+Message-ID: <20260623224619.1949975-29-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260623224619.1949975-1-michal.grzelak@intel.com>
 References: <20260623224619.1949975-1-michal.grzelak@intel.com>
@@ -106,122 +106,229 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 541036BA811
+X-Rspamd-Queue-Id: 035F56BA817
 
 From: Imre Deak <imre.deak@intel.com>
 
-Pass the link_caps pointer to the update/lookup helpers in
+Pass the link_caps pointer to the common rate helpers in
 intel_dp_link_caps.c, as it holds the state with the relevant
 information.
 
 Signed-off-by: Imre Deak <imre.deak@intel.com>
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_dp.c            |  2 +-
- drivers/gpu/drm/i915/display/intel_dp_link_caps.c  | 14 +++++++-------
- drivers/gpu/drm/i915/display/intel_dp_link_caps.h  |  8 +++++---
- .../gpu/drm/i915/display/intel_dp_link_training.c  |  5 +++--
- 4 files changed, 16 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c       | 13 ++++++----
+ .../gpu/drm/i915/display/intel_dp_link_caps.c | 26 +++++++------------
+ .../gpu/drm/i915/display/intel_dp_link_caps.h |  6 ++---
+ .../drm/i915/display/intel_dp_link_training.c |  5 ++--
+ .../gpu/drm/i915/display/intel_dp_tunnel.c    |  2 +-
+ 5 files changed, 25 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index b63c6f047f83a..07266f4e6835b 100644
+index 07266f4e6835b..66346b74b2c04 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -699,7 +699,7 @@ static bool intel_dp_set_common_link_params(struct intel_dp *intel_dp)
- 	bool params_changed = false;
+@@ -1551,14 +1551,15 @@ intel_dp_max_link_rate(struct intel_dp *intel_dp)
+ 		return forced_params.rate;
  
- 	intel_dp_get_common_rates(intel_dp, common_rates, &num_common_rates);
--	if (intel_dp_link_caps_update(intel_dp,
-+	if (intel_dp_link_caps_update(intel_dp->link.caps,
- 				      common_rates, num_common_rates,
- 				      intel_dp_get_max_common_lane_count(intel_dp)))
- 		params_changed = true;
+ 	intel_dp_link_caps_get_max_limits(link_caps, &max_link_limits);
+-	len = intel_dp_common_len_rate_limit(intel_dp, max_link_limits.rate);
++	len = intel_dp_common_len_rate_limit(link_caps, max_link_limits.rate);
+ 
+-	return intel_dp_common_rate(intel_dp, len - 1);
++	return intel_dp_common_rate(link_caps, len - 1);
+ }
+ 
+ static int
+ intel_dp_min_link_rate(struct intel_dp *intel_dp)
+ {
++	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+ 	struct intel_dp_link_config forced_params;
+ 
+ 	intel_dp_link_caps_get_forced_params(intel_dp->link.caps, &forced_params);
+@@ -1566,7 +1567,7 @@ intel_dp_min_link_rate(struct intel_dp *intel_dp)
+ 	if (forced_params.rate)
+ 		return forced_params.rate;
+ 
+-	return intel_dp_common_rate(intel_dp, 0);
++	return intel_dp_common_rate(link_caps, 0);
+ }
+ 
+ int intel_dp_rate_select(struct intel_dp *intel_dp, int rate)
+@@ -1750,6 +1751,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 				  const struct drm_connector_state *conn_state,
+ 				  const struct link_config_limits *limits)
+ {
++	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+ 	int bpp, i, lane_count, clock = intel_dp_mode_clock(pipe_config, conn_state);
+ 	int link_rate, link_avail;
+ 
+@@ -1760,7 +1762,7 @@ intel_dp_compute_link_config_wide(struct intel_dp *intel_dp,
+ 			intel_dp_output_format_link_bpp_x16(pipe_config->output_format, bpp);
+ 
+ 		for (i = 0; i < intel_dp_link_caps_num_common_rates(intel_dp->link.caps); i++) {
+-			link_rate = intel_dp_common_rate(intel_dp, i);
++			link_rate = intel_dp_common_rate(link_caps, i);
+ 			if (link_rate < limits->min_rate ||
+ 			    link_rate > limits->max_rate)
+ 				continue;
+@@ -1984,12 +1986,13 @@ static int dsc_compute_link_config(struct intel_dp *intel_dp,
+ 				   const struct link_config_limits *limits,
+ 				   int dsc_bpp_x16)
+ {
++	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+ 	const struct drm_display_mode *adjusted_mode = &pipe_config->hw.adjusted_mode;
+ 	int link_rate, lane_count;
+ 	int i;
+ 
+ 	for (i = 0; i < intel_dp_link_caps_num_common_rates(intel_dp->link.caps); i++) {
+-		link_rate = intel_dp_common_rate(intel_dp, i);
++		link_rate = intel_dp_common_rate(link_caps, i);
+ 		if (link_rate < limits->min_rate || link_rate > limits->max_rate)
+ 			continue;
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-index fc1061149ef2e..c5701f02fbf69 100644
+index c5701f02fbf69..0917e7f51a26d 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-@@ -266,10 +266,10 @@ static int link_config_cmp_by_bw(const void *a, const void *b, const void *p)
- }
+@@ -60,19 +60,16 @@ struct intel_dp_link_caps {
+ };
  
- /* Return %true if the supported link parameters have changed. */
--bool intel_dp_link_caps_update(struct intel_dp *intel_dp,
-+bool intel_dp_link_caps_update(struct intel_dp_link_caps *link_caps,
- 			       const int *rates, int num_rates, int max_lane_count)
+ /* Get length of common rates array potentially limited by max_rate. */
+-int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
++int intel_dp_common_len_rate_limit(struct intel_dp_link_caps *link_caps,
+ 				   int max_rate)
  {
 -	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
-+	struct intel_dp *intel_dp = link_caps->dp;
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	struct intel_dp_link_config_entry *lc;
- 	bool link_params_changed = false;
-@@ -322,10 +322,10 @@ bool intel_dp_link_caps_update(struct intel_dp *intel_dp,
- 	return link_params_changed;
+-
+ 	return intel_dp_rate_limit_len(link_caps->rates,
+ 				       link_caps->num_rates, max_rate);
  }
  
--void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int *link_rate, int *lane_count)
-+void intel_dp_link_config_get(struct intel_dp_link_caps *link_caps,
-+			      int idx, int *link_rate, int *lane_count)
+-int intel_dp_common_rate(struct intel_dp *intel_dp, int index)
++int intel_dp_common_rate(struct intel_dp_link_caps *link_caps, int index)
  {
 -	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
 -	struct intel_display *display = to_intel_display(intel_dp);
 +	struct intel_display *display = to_intel_display(link_caps->dp);
- 	const struct intel_dp_link_config_entry *lc;
  
- 	if (drm_WARN_ON(display->drm, idx < 0 || idx >= link_caps->num_configs))
-@@ -337,9 +337,9 @@ void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int *link_rate
- 	*lane_count = intel_dp_link_config_lane_count(lc);
+ 	if (drm_WARN_ON(display->drm,
+ 			index < 0 || index >= link_caps->num_rates))
+@@ -89,11 +86,9 @@ int intel_dp_link_caps_common_rate_idx(struct intel_dp_link_caps *link_caps, int
  }
  
--int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate, int lane_count)
-+int intel_dp_link_config_index(struct intel_dp_link_caps *link_caps,
-+			       int link_rate, int lane_count)
+ /* Theoretical max between source and sink */
+-int intel_dp_max_common_rate(struct intel_dp *intel_dp)
++int intel_dp_max_common_rate(struct intel_dp_link_caps *link_caps)
  {
 -	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
- 	int link_rate_idx = intel_dp_rate_index(link_caps->rates, link_caps->num_rates,
- 						link_rate);
- 	int lane_count_exp = ilog2(lane_count);
+-
+-	return intel_dp_common_rate(intel_dp, link_caps->num_rates - 1);
++	return intel_dp_common_rate(link_caps, link_caps->num_rates - 1);
+ }
+ 
+ int intel_dp_link_caps_num_common_rates(struct intel_dp_link_caps *link_caps)
+@@ -129,17 +124,16 @@ static int forced_lane_count(struct intel_dp_link_caps *link_caps)
+ 
+ static int forced_link_rate(struct intel_dp_link_caps *link_caps)
+ {
+-	struct intel_dp *intel_dp = link_caps->dp;
+ 	int len;
+ 
+ 	if (!link_caps->forced_params.rate)
+ 		return 0;
+ 
+-	len = intel_dp_common_len_rate_limit(intel_dp, link_caps->forced_params.rate);
++	len = intel_dp_common_len_rate_limit(link_caps, link_caps->forced_params.rate);
+ 	if (len == 0)
+-		return intel_dp_common_rate(intel_dp, 0);
++		return intel_dp_common_rate(link_caps, 0);
+ 
+-	return intel_dp_common_rate(intel_dp, len - 1);
++	return intel_dp_common_rate(link_caps, len - 1);
+ }
+ 
+ void intel_dp_link_caps_get_forced_params(struct intel_dp_link_caps *link_caps,
+@@ -152,7 +146,7 @@ void intel_dp_link_caps_get_forced_params(struct intel_dp_link_caps *link_caps,
+ static int intel_dp_link_config_rate(struct intel_dp_link_caps *link_caps,
+ 				     const struct intel_dp_link_config_entry *lc)
+ {
+-	return intel_dp_common_rate(link_caps->dp, lc->link_rate_idx);
++	return intel_dp_common_rate(link_caps, lc->link_rate_idx);
+ }
+ 
+ static int intel_dp_link_config_lane_count(const struct intel_dp_link_config_entry *lc)
+@@ -169,7 +163,7 @@ static void set_max_link_limits_no_update(struct intel_dp_link_caps *link_caps,
+ static void reset_max_link_limits_no_update(struct intel_dp_link_caps *link_caps)
+ {
+ 	struct intel_dp_link_config max_link_limits = {
+-		.rate = intel_dp_max_common_rate(link_caps->dp),
++		.rate = intel_dp_max_common_rate(link_caps),
+ 		.lane_count = intel_dp_link_caps_max_common_lane_count(link_caps),
+ 	};
+ 
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-index fa45a46723059..9256f02fed11e 100644
+index 9256f02fed11e..af9028e7cb987 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-@@ -24,8 +24,10 @@ void intel_dp_link_caps_print_common_rates(struct intel_dp_link_caps *link_caps)
- void intel_dp_link_caps_get_forced_params(struct intel_dp_link_caps *link_caps,
- 					  struct intel_dp_link_config *forced_params);
+@@ -11,11 +11,11 @@ struct intel_dp;
+ struct intel_dp_link_caps;
+ struct intel_dp_link_config;
  
--int intel_dp_link_config_index(struct intel_dp *intel_dp, int link_rate, int lane_count);
--void intel_dp_link_config_get(struct intel_dp *intel_dp, int idx, int *link_rate, int *lane_count);
-+int intel_dp_link_config_index(struct intel_dp_link_caps *link_caps,
-+			       int link_rate, int lane_count);
-+void intel_dp_link_config_get(struct intel_dp_link_caps *link_caps,
-+			      int idx, int *link_rate, int *lane_count);
- 
- void intel_dp_link_caps_get_max_limits(struct intel_dp_link_caps *link_caps,
- 				       struct intel_dp_link_config *max_link_limits);
-@@ -33,7 +35,7 @@ bool intel_dp_link_caps_set_max_limits(struct intel_dp_link_caps *link_caps,
- 				       const struct intel_dp_link_config *max_link_limits);
- void intel_dp_link_caps_reset_max_limits(struct intel_dp_link_caps *link_caps);
- 
--bool intel_dp_link_caps_update(struct intel_dp *intel_dp,
-+bool intel_dp_link_caps_update(struct intel_dp_link_caps *link_caps,
- 			       const int *rates, int num_rates, int max_lane_count);
- void intel_dp_link_caps_reset(struct intel_dp_link_caps *link_caps);
+-int intel_dp_common_len_rate_limit(const struct intel_dp *intel_dp,
++int intel_dp_common_len_rate_limit(struct intel_dp_link_caps *link_caps,
+ 				   int max_rate);
+-int intel_dp_common_rate(struct intel_dp *intel_dp, int index);
++int intel_dp_common_rate(struct intel_dp_link_caps *link_caps, int index);
+ int intel_dp_link_caps_common_rate_idx(struct intel_dp_link_caps *link_caps, int rate);
+-int intel_dp_max_common_rate(struct intel_dp *intel_dp);
++int intel_dp_max_common_rate(struct intel_dp_link_caps *link_caps);
+ int intel_dp_link_caps_num_common_rates(struct intel_dp_link_caps *link_caps);
+ int intel_dp_link_caps_max_common_lane_count(struct intel_dp_link_caps *link_caps);
  
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-index 9d9911ebad439..0d4a0bf1dac53 100644
+index 0d4a0bf1dac53..b521dd11b62a7 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-@@ -1858,9 +1858,10 @@ static bool reduce_link_params_in_bw_order(struct intel_dp *intel_dp,
+@@ -1898,7 +1898,7 @@ static int reduce_link_rate(struct intel_dp *intel_dp, int current_rate)
+ 	if (rate_index <= 0)
+ 		return -1;
  
- 	intel_dp_link_caps_get_forced_params(link_caps, &forced_params);
+-	new_rate = intel_dp_common_rate(intel_dp, rate_index - 1);
++	new_rate = intel_dp_common_rate(link_caps, rate_index - 1);
  
--	i = intel_dp_link_config_index(intel_dp, crtc_state->port_clock, crtc_state->lane_count);
-+	i = intel_dp_link_config_index(intel_dp->link.caps,
-+				       crtc_state->port_clock, crtc_state->lane_count);
- 	for (i--; i >= 0; i--) {
--		intel_dp_link_config_get(intel_dp, i, &link_rate, &lane_count);
-+		intel_dp_link_config_get(intel_dp->link.caps, i, &link_rate, &lane_count);
+ 	/* TODO: Make switching from UHBR to non-UHBR rates work. */
+ 	if (drm_dp_is_uhbr_rate(current_rate) != drm_dp_is_uhbr_rate(new_rate))
+@@ -1925,6 +1925,7 @@ static bool reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
+ 						  const struct intel_crtc_state *crtc_state,
+ 						  int *new_link_rate, int *new_lane_count)
+ {
++	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+ 	int link_rate;
+ 	int lane_count;
  
- 		if ((forced_params.rate &&
- 		     forced_params.rate != link_rate) ||
+@@ -1932,7 +1933,7 @@ static bool reduce_link_params_in_rate_lane_order(struct intel_dp *intel_dp,
+ 	link_rate = reduce_link_rate(intel_dp, crtc_state->port_clock);
+ 	if (link_rate < 0) {
+ 		lane_count = reduce_lane_count(intel_dp, crtc_state->lane_count);
+-		link_rate = intel_dp_max_common_rate(intel_dp);
++		link_rate = intel_dp_max_common_rate(link_caps);
+ 	}
+ 
+ 	if (lane_count < 0)
+diff --git a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+index 9d9d8d04742bc..76e9753766b9f 100644
+--- a/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
++++ b/drivers/gpu/drm/i915/display/intel_dp_tunnel.c
+@@ -58,7 +58,7 @@ static int kbytes_to_mbits(int kbytes)
+ static int get_current_link_bw(struct intel_dp *intel_dp)
+ {
+ 	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+-	int rate = intel_dp_max_common_rate(intel_dp);
++	int rate = intel_dp_max_common_rate(link_caps);
+ 	int lane_count = intel_dp_link_caps_max_common_lane_count(link_caps);
+ 
+ 	return intel_dp_max_link_data_rate(intel_dp, rate, lane_count);
 -- 
 2.45.2
 
