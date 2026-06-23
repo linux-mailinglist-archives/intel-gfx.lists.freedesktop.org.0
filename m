@@ -2,58 +2,58 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 92LcIkyBOmoP+gcAu9opvQ
+	id OPMmLlOBOmoX+gcAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 14:51:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 14:51:31 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 04A876B7386
-	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 14:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FBAE6B73A3
+	for <lists+intel-gfx@lfdr.de>; Tue, 23 Jun 2026 14:51:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=CqIksUFA;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ifTOoYo6;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6874E10EB24;
-	Tue, 23 Jun 2026 12:51:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4270410EB31;
+	Tue, 23 Jun 2026 12:51:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5C35B10EB26;
- Tue, 23 Jun 2026 12:51:21 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50DAC10EB27;
+ Tue, 23 Jun 2026 12:51:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782219082; x=1813755082;
+ t=1782219087; x=1813755087;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=RdjN7KHB2mcazyCo6F3VWPrM55qMSOrJSjCQ8CEfu0g=;
- b=CqIksUFA+6RufqIMQJ+f8RMF/UhN32iTrOSehmlKsptfuzckqcfPQ5zP
- dXyCAXjXGA4XYiN4rYuZ73BpNZuggUGQneVGYVyinPH+F+QkG3RaSxxPn
- Z4yMluW8a5PKTpeq1P6XT1xLbONr6jkRHnw+3s56z2NNM1V19a4CtBSvb
- 4QiIC/BQpy6N+vTWQIECvHvYF5gi483Eh2RfgN+ENuFPxG3h3w6bQr9U8
- u0nWSxpO67qAA43yILjh4ZJzDH4iSTINd8lmn359rpLYhlqbg5gOhtt5y
- JCg3c74WKyzyCPi94no/bQS6MK25oaGyUMpaVHb3f0R7Bsq5qfgHXHkdf g==;
-X-CSE-ConnectionGUID: 4VSpT1uLTei1woB7Du+C8w==
-X-CSE-MsgGUID: az92d8M0TqSu3xkhwnyWlA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="100387493"
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="100387493"
+ bh=uvBFSqPOViFcrixOd1HED1hUiwja2GamcZzqArHGNO4=;
+ b=ifTOoYo6C0eL2UYvMy95V9qQno7n2bwfCFfW1nEqgD+023RUSp9n57M/
+ u5SVc4cS+h485oXu/ZhWFQgRQFj/hC6ntuICaTu+dxSXpuLINxAVFH/Hv
+ 2+tIAnXSiG9da+PjyjtYqtCjd2WAcPov6D9zfM2uSxm5jjTq6HLSBMARL
+ I54ryfJzlKB1tjmdKEsFfS/OmGLXtfh0tgfUbvYFXFNhjeJGx5hXI8YSq
+ SR5bzI+PUt/zyBwZ3TzExmzkwk9H3Jg89B1PlMsPPHdOIGXZPbTLbszbz
+ iEs7Ff+vhZus9sUf6u9rhSwYkvDJoGo/MitrBLJJLQrDHvqffm9H9S7JP A==;
+X-CSE-ConnectionGUID: 0YYGzaSBSvyu+gX9cO3fQQ==
+X-CSE-MsgGUID: 8eAbmBtvQVq7fJsmO3pFtQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="100387502"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="100387502"
 Received: from orviesa009.jf.intel.com ([10.64.159.149])
  by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 05:51:21 -0700
-X-CSE-ConnectionGUID: ZqnM4pIvTqq+qxV18TH5sw==
-X-CSE-MsgGUID: EaxnHeK+TZW0BTJxBxnDww==
+ 23 Jun 2026 05:51:26 -0700
+X-CSE-ConnectionGUID: Fi8UMJ2CRu+7ldES+44fYw==
+X-CSE-MsgGUID: EiRUqXNFQrSdf2Kx5EDQdQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="249624909"
+X-IronPort-AV: E=Sophos;i="6.24,220,1774335600"; d="scan'208";a="249624917"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.244.67])
  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 23 Jun 2026 05:51:20 -0700
+ 23 Jun 2026 05:51:25 -0700
 From: Ville Syrjala <ville.syrjala@linux.intel.com>
 To: intel-gfx@lists.freedesktop.org
 Cc: intel-xe@lists.freedesktop.org
-Subject: [PATCH 1/6] drm/i915/gmbus: Rename GPIO pins
-Date: Tue, 23 Jun 2026 15:51:06 +0300
-Message-ID: <20260623125111.6632-2-ville.syrjala@linux.intel.com>
+Subject: [PATCH 2/6] drm/i915/gmbus: s/gmbus_pins_bdw/gmbus_pins_lpt/
+Date: Tue, 23 Jun 2026 15:51:07 +0300
+Message-ID: <20260623125111.6632-3-ville.syrjala@linux.intel.com>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260623125111.6632-1-ville.syrjala@linux.intel.com>
 References: <20260623125111.6632-1-ville.syrjala@linux.intel.com>
@@ -101,188 +101,48 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.intel.com:mid,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 04A876B7386
+X-Rspamd-Queue-Id: 5FBAE6B73A3
 
 From: Ville Syrjälä <ville.syrjala@linux.intel.com>
 
-Replace the alphabetical GPIOA,GPIOB,... with numeric
-GPIO_0,GPIO_1,... This makes the naming scheme agree with
-BSpec. No idea why the alphabetical naming was originally
-chosen as BSpec never used that convention for the GPIO pins.
+The GMBUS pin pair <-> GPIO mapping is purely a property
+of the PCH (on the platforms where GMBUS lives in the PCH).
+So rename gmbus_pins_bdw[] to gmbus_pins_lpt[] and extend
+it to cover all platforms with LPT/WPT PCHs.
 
 Signed-off-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_gmbus.c | 124 ++++++++++-----------
- 1 file changed, 62 insertions(+), 62 deletions(-)
+ drivers/gpu/drm/i915/display/intel_gmbus.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_gmbus.c b/drivers/gpu/drm/i915/display/intel_gmbus.c
-index 049157c41fe2..9990e6391b03 100644
+index 9990e6391b03..2869ec23e1ec 100644
 --- a/drivers/gpu/drm/i915/display/intel_gmbus.c
 +++ b/drivers/gpu/drm/i915/display/intel_gmbus.c
-@@ -54,21 +54,21 @@ struct intel_gmbus {
+@@ -86,7 +86,7 @@ static const struct gmbus_pin gmbus_pins[] = {
+ 	[GMBUS_PIN_DPD] = { "dpd", GPIO_5 },
  };
  
- enum gmbus_gpio {
--	GPIOA,
--	GPIOB,
--	GPIOC,
--	GPIOD,
--	GPIOE,
--	GPIOF,
--	GPIOG,
--	GPIOH,
--	__GPIOI_UNUSED,
--	GPIOJ,
--	GPIOK,
--	GPIOL,
--	GPIOM,
--	GPION,
--	GPIOO,
-+	GPIO_0,
-+	GPIO_1,
-+	GPIO_2,
-+	GPIO_3,
-+	GPIO_4,
-+	GPIO_5,
-+	GPIO_6,
-+	GPIO_7,
-+	GPIO_8,
-+	GPIO_9,
-+	GPIO_10,
-+	GPIO_11,
-+	GPIO_12,
-+	GPIO_13,
-+	GPIO_14,
- };
- 
- struct gmbus_pin {
-@@ -78,77 +78,77 @@ struct gmbus_pin {
- 
- /* Map gmbus pin pairs to names and registers. */
- static const struct gmbus_pin gmbus_pins[] = {
--	[GMBUS_PIN_SSC] = { "ssc", GPIOB },
--	[GMBUS_PIN_VGADDC] = { "vga", GPIOA },
--	[GMBUS_PIN_PANEL] = { "panel", GPIOC },
--	[GMBUS_PIN_DPC] = { "dpc", GPIOD },
--	[GMBUS_PIN_DPB] = { "dpb", GPIOE },
--	[GMBUS_PIN_DPD] = { "dpd", GPIOF },
-+	[GMBUS_PIN_SSC] = { "ssc", GPIO_1 },
-+	[GMBUS_PIN_VGADDC] = { "vga", GPIO_0 },
-+	[GMBUS_PIN_PANEL] = { "panel", GPIO_2 },
-+	[GMBUS_PIN_DPC] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_DPB] = { "dpb", GPIO_4 },
-+	[GMBUS_PIN_DPD] = { "dpd", GPIO_5 },
- };
- 
- static const struct gmbus_pin gmbus_pins_bdw[] = {
--	[GMBUS_PIN_VGADDC] = { "vga", GPIOA },
--	[GMBUS_PIN_DPC] = { "dpc", GPIOD },
--	[GMBUS_PIN_DPB] = { "dpb", GPIOE },
--	[GMBUS_PIN_DPD] = { "dpd", GPIOF },
-+	[GMBUS_PIN_VGADDC] = { "vga", GPIO_0 },
-+	[GMBUS_PIN_DPC] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_DPB] = { "dpb", GPIO_4 },
-+	[GMBUS_PIN_DPD] = { "dpd", GPIO_5 },
- };
- 
- static const struct gmbus_pin gmbus_pins_skl[] = {
--	[GMBUS_PIN_DPC] = { "dpc", GPIOD },
--	[GMBUS_PIN_DPB] = { "dpb", GPIOE },
--	[GMBUS_PIN_DPD] = { "dpd", GPIOF },
-+	[GMBUS_PIN_DPC] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_DPB] = { "dpb", GPIO_4 },
-+	[GMBUS_PIN_DPD] = { "dpd", GPIO_5 },
- };
- 
- static const struct gmbus_pin gmbus_pins_bxt[] = {
--	[GMBUS_PIN_1_BXT] = { "dpb", GPIOB },
--	[GMBUS_PIN_2_BXT] = { "dpc", GPIOC },
--	[GMBUS_PIN_3_BXT] = { "misc", GPIOD },
-+	[GMBUS_PIN_1_BXT] = { "dpb", GPIO_1 },
-+	[GMBUS_PIN_2_BXT] = { "dpc", GPIO_2 },
-+	[GMBUS_PIN_3_BXT] = { "misc", GPIO_3 },
- };
- 
- static const struct gmbus_pin gmbus_pins_cnp[] = {
--	[GMBUS_PIN_1_BXT] = { "dpb", GPIOB },
--	[GMBUS_PIN_2_BXT] = { "dpc", GPIOC },
--	[GMBUS_PIN_3_BXT] = { "misc", GPIOD },
--	[GMBUS_PIN_4_CNP] = { "dpd", GPIOE },
-+	[GMBUS_PIN_1_BXT] = { "dpb", GPIO_1 },
-+	[GMBUS_PIN_2_BXT] = { "dpc", GPIO_2 },
-+	[GMBUS_PIN_3_BXT] = { "misc", GPIO_3 },
-+	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
- };
- 
- static const struct gmbus_pin gmbus_pins_icp[] = {
--	[GMBUS_PIN_1_BXT] = { "dpa", GPIOB },
--	[GMBUS_PIN_2_BXT] = { "dpb", GPIOC },
--	[GMBUS_PIN_3_BXT] = { "dpc", GPIOD },
--	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOJ },
--	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIOK },
--	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIOL },
--	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIOM },
--	[GMBUS_PIN_13_TC5_TGP] = { "tc5", GPION },
--	[GMBUS_PIN_14_TC6_TGP] = { "tc6", GPIOO },
-+	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
-+	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
-+	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIO_9 },
-+	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIO_10 },
-+	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIO_11 },
-+	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIO_12 },
-+	[GMBUS_PIN_13_TC5_TGP] = { "tc5", GPIO_13 },
-+	[GMBUS_PIN_14_TC6_TGP] = { "tc6", GPIO_14 },
- };
- 
- static const struct gmbus_pin gmbus_pins_dg1[] = {
--	[GMBUS_PIN_1_BXT] = { "dpa", GPIOB },
--	[GMBUS_PIN_2_BXT] = { "dpb", GPIOC },
--	[GMBUS_PIN_3_BXT] = { "dpc", GPIOD },
--	[GMBUS_PIN_4_CNP] = { "dpd", GPIOE },
-+	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
-+	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
-+	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
- };
- 
- static const struct gmbus_pin gmbus_pins_dg2[] = {
--	[GMBUS_PIN_1_BXT] = { "dpa", GPIOB },
--	[GMBUS_PIN_2_BXT] = { "dpb", GPIOC },
--	[GMBUS_PIN_3_BXT] = { "dpc", GPIOD },
--	[GMBUS_PIN_4_CNP] = { "dpd", GPIOE },
--	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOJ },
-+	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
-+	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
-+	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
-+	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIO_9 },
- };
- 
- static const struct gmbus_pin gmbus_pins_mtp[] = {
--	[GMBUS_PIN_1_BXT] = { "dpa", GPIOB },
--	[GMBUS_PIN_2_BXT] = { "dpb", GPIOC },
--	[GMBUS_PIN_3_BXT] = { "dpc", GPIOD },
--	[GMBUS_PIN_4_CNP] = { "dpd", GPIOE },
--	[GMBUS_PIN_5_MTP] = { "dpe", GPIOF },
--	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIOJ },
--	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIOK },
--	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIOL },
--	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIOM },
-+	[GMBUS_PIN_1_BXT] = { "dpa", GPIO_1 },
-+	[GMBUS_PIN_2_BXT] = { "dpb", GPIO_2 },
-+	[GMBUS_PIN_3_BXT] = { "dpc", GPIO_3 },
-+	[GMBUS_PIN_4_CNP] = { "dpd", GPIO_4 },
-+	[GMBUS_PIN_5_MTP] = { "dpe", GPIO_5 },
-+	[GMBUS_PIN_9_TC1_ICP] = { "tc1", GPIO_9 },
-+	[GMBUS_PIN_10_TC2_ICP] = { "tc2", GPIO_10 },
-+	[GMBUS_PIN_11_TC3_ICP] = { "tc3", GPIO_11 },
-+	[GMBUS_PIN_12_TC4_ICP] = { "tc4", GPIO_12 },
- };
- 
- static const struct gmbus_pin *get_gmbus_pin(struct intel_display *display,
+-static const struct gmbus_pin gmbus_pins_bdw[] = {
++static const struct gmbus_pin gmbus_pins_lpt[] = {
+ 	[GMBUS_PIN_VGADDC] = { "vga", GPIO_0 },
+ 	[GMBUS_PIN_DPC] = { "dpc", GPIO_3 },
+ 	[GMBUS_PIN_DPB] = { "dpb", GPIO_4 },
+@@ -178,9 +178,9 @@ static const struct gmbus_pin *get_gmbus_pin(struct intel_display *display,
+ 	} else if (DISPLAY_VER(display) == 9) {
+ 		pins = gmbus_pins_skl;
+ 		size = ARRAY_SIZE(gmbus_pins_skl);
+-	} else if (display->platform.broadwell) {
+-		pins = gmbus_pins_bdw;
+-		size = ARRAY_SIZE(gmbus_pins_bdw);
++	} else if (HAS_PCH_LPT(display)) {
++		pins = gmbus_pins_lpt;
++		size = ARRAY_SIZE(gmbus_pins_lpt);
+ 	} else {
+ 		pins = gmbus_pins;
+ 		size = ARRAY_SIZE(gmbus_pins);
 -- 
 2.53.0
 
