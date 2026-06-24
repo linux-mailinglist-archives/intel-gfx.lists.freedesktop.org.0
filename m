@@ -2,144 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Oa3VNzdEPGqdlwgAu9opvQ
+	id bmC0MHxcPGr/nAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 22:55:19 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 00:38:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6B20A6C14AA
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 22:55:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 152CC6C1C98
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 00:38:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=NTnNBCmH;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=nzg2tQsg;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7EE1810E137;
-	Wed, 24 Jun 2026 20:55:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9EA3810E11C;
+	Wed, 24 Jun 2026 22:38:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from BL2PR02CU003.outbound.protection.outlook.com
- (mail-eastusazon11011015.outbound.protection.outlook.com [52.101.52.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C057E10E0F4;
- Wed, 24 Jun 2026 20:55:12 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=ymr4TUsQ3TgE1UyW/zZhLE8VGwAaUvqxbk9Xh/hPETAGs2DzUXt8R+2lW8o0KrVcSpqtq+OdcJxcQQ0M5iAKCSJI9o5zJnAfeZc0gX25EOtt5oexzvqaJcxbthPjDlRjesVxSkOFzm7PilMCICLw2KOojKZrAGFgPt9Bb/4491QALFwognJAE8rIYeWN+/S/3xJ/fStGmWg1orkfjoKUQXE6KFR/Nskn+WiK6qkEfzBXUToBweTEPtPL17xC37BUhNMizDPeyLzd+Ithw5Z36ju2LW9ebpdBoeBgYMKWnC4MWmGqk/EaM3q0bH2E79U+THrZxyjo4hpqHxfgK7/jyA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=U8zNEwiHP2lk2f3Ss5+S/6uqZV8XkAuYQtJdAVKabxk=;
- b=KFdNmlnltUE3+u5zELt65cOk5rcgZ+CUyan1BaftIJLxNl8xGCdYWqnhYv8LwVqlvFL1hBh/hXZBFUBmgqzdocxu66boVBzf6BsY3EZEQg8fhxXTFHqI4STxnILhp6KSxcoUdniR+ZS/R3NFevs8bbmA/IXtfpNMfWIAYn68lqLA59N+ODPZXtXAEtZMkNTw+Qwm+/m9noxBjmrKNst7dbkCOZlqDI77HFR5ncpYg7vEYxjmgVOdj15RoH2tpl6624LaJHVZ3FjiCN+LlJ5f6QR8rwxQEdY47yYz6qi2/6GyKJOIZSObGb6CBbuGsC6AJqD6ocFzCofB9pdbikhtaA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U8zNEwiHP2lk2f3Ss5+S/6uqZV8XkAuYQtJdAVKabxk=;
- b=NTnNBCmHSWdxQQGTf/VTtxV45zcG63z9Ef9OnjhaGmH2Q/gUMqVn6XR6WMSciN+Ps4U5Ama1LPZC9BPSs2J39izYGxqLxu6sF+6NMbMqM1D4q9fVhxk1b84XH1XmJ+2rAWW3njba2V2gXwGEutUNqUM1uDHyNUppsv4vko9l5Gg=
-Received: from SJ0PR12MB7007.namprd12.prod.outlook.com (2603:10b6:a03:486::8)
- by SA1PR12MB9246.namprd12.prod.outlook.com (2603:10b6:806:3ac::6)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.14; Wed, 24 Jun
- 2026 20:55:07 +0000
-Received: from SJ0PR12MB7007.namprd12.prod.outlook.com
- ([fe80::6f95:c4a2:894d:9e8a]) by SJ0PR12MB7007.namprd12.prod.outlook.com
- ([fe80::6f95:c4a2:894d:9e8a%5]) with mapi id 15.21.0139.018; Wed, 24 Jun 2026
- 20:55:07 +0000
-Message-ID: <b4165454-1682-41e5-aaa7-294462251413@amd.com>
-Date: Wed, 24 Jun 2026 16:54:57 -0400
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 0/7] don't allow changes to inactive colorops
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, alex.hung@amd.com, aurabindo.pillai@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- maarten.lankhorst@linux.intel.com, mripard@kernel.org, simona@ffwll.ch,
- siqueira@igalia.com, sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- dri-devel@lists.freedesktop.org
-References: <20260609121230.1358786-1-mwen@igalia.com>
-Content-Language: en-US
-From: Harry Wentland <harry.wentland@amd.com>
-In-Reply-To: <20260609121230.1358786-1-mwen@igalia.com>
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: YQZPR01CA0023.CANPRD01.PROD.OUTLOOK.COM
- (2603:10b6:c01:85::19) To SJ0PR12MB7007.namprd12.prod.outlook.com
- (2603:10b6:a03:486::8)
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 76B3510E11C
+ for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 22:38:48 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 792A260018;
+ Wed, 24 Jun 2026 22:38:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 89AE61F000E9;
+ Wed, 24 Jun 2026 22:38:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782340727;
+ bh=bhIbRHk8twF8AZjRVKuPgILCkNieYzr7N721l7ADEDA=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=nzg2tQsgeVr3dhXKAbqKCm3RBjTl+oYSaWjtZUp9h7xJpcw69220C3Gb8EzwnpJQL
+ 70rQAFapwk6dxRRLpqxY73khneQOW6QPVqxK97vceYuK64sUY71a37b08UdTUqYlL/
+ V4kUqsevv7cHVG7/bWEacDoU1NqsnAQw2l2GWCDiRedXJj/qFWVQ4gO/dng4Uc7OHz
+ y3qXs6FQg/yJp8+trHuG0WOtEyAmwGn+Hph/k8mRjV4QpQfIz2cbQIsfIQdtVEtryi
+ uTgkHvRaevkx0rPJuN8WVG9/I3VVVSESWnP0gXpJZ/8VAyfuqPiJw9P9XZlNrA5Dpi
+ Fm42SUINT856Q==
+Date: Thu, 25 Jun 2026 00:38:43 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Jonathan Cavitt <jonathan.cavitt@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, saurabhg.gupta@intel.com, 
+ alex.zuo@intel.com, michal.wajdeczko@intel.com, raag.jadav@intel.com, 
+ andi.shyti@linux.intel.com, jani.nikula@intel.com
+Subject: Re: [PATCH v5] drm/i915: Refactor generic_handle_irq_safe() error
+ messages
+Message-ID: <ajxcXbydCs7Q3W_t@zenone.zhora.eu>
+References: <20260623202310.1023770-1-jonathan.cavitt@intel.com>
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SJ0PR12MB7007:EE_|SA1PR12MB9246:EE_
-X-MS-Office365-Filtering-Correlation-Id: 7db0ea9e-cde9-4456-9e4d-08ded232df48
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|376014|7416014|23010399003|366016|921020|22082099003|18002099003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: +nntdyI7/b6kihn3JJgAu8kA2Jnxl0HY6vFxq+/Gj4+i9Zsxr3H4mAzm51oaOzVoqNGSfmTcOU2D5e5oSVLNFNoiUOKU/o1grVNmDl4PAWRFFcBRSIUqCobrSMcRMMLNgjsBGtFHCkrda/6AWLQaJyn2FHcgdPNDLMVDcOE67zMMVyL51wlsxObGSfnv5/lPKtgs6fWJ+kw2NKuI9U4LqApbpghKgtNiT2zPEb2C8EuKCZoPCaoM3sPOWfA8yxL8qYaJ7yrWQX1+FBqKHrs7cYc7RV+JRO5k6/qz77a//j+YRzVqDwpYxQL8tvrOFCJdbBCAV2fBb4bWNB6lYPYhrDvLHZ7UAOoOeAJZpQEQbzPcCbWRuCer7hW2mIYN0MFThLJj+K9tqLbG/RE9ugAaZhwu4Of0pRd+HlBr+3BGbZGXZe4fqD/Jevp/CnAM6MAKdQb4CUEoe11LSIRfTPTjoeeueyCzXfqdJiGhDwyeP+q2kB1Q9up1JECPYZegoLe2nLZHWCSF5lRRgunnhfV7MLrRcHjapnQWjgcC/NawSZsT2UD7lgK0Ia2gBMiXKZ7i+GR2cfqqzVkHwEMfU15tUSsWrZ4N//C76iQlbHShtaiVrXYR5NlKVwwoB5aEW6f6PDa3umehjP3b8vNtJtDT4DRL5zmpPGSefMmoYVOw8KpR/OmnOBMFWUPLZbAvh6hfspw9G1zoXmFmLH/Pc5Q16w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:SJ0PR12MB7007.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(1800799024)(376014)(7416014)(23010399003)(366016)(921020)(22082099003)(18002099003)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?RGllRG9nd2JLNnlMTWJOY01IMXpXZGhpQkVUbWJkZDNHdkM1WEI0aEpxWkdT?=
- =?utf-8?B?RGdteU9IOXNGWVpGZnkzRk1UdFRGWlUrbFhvbm0vbmJJZ2VNSTZtUXhRNFRw?=
- =?utf-8?B?OXUwdWV4YjVMRkJMbDVIYXU4Q0dhM204Z2hzMnU1SEZNNnV0emtJVXVid3Nv?=
- =?utf-8?B?SmZXdXZORDNLMGRHcXdRVis2QlBYWmc2dnppU0dqLzRlSVVQRVVDTWZrVzFp?=
- =?utf-8?B?bXl6NHFkN3ZsOGhwdHBEUTlCR0Y4ZjZ3ak9ReGx2RmNnNEpJZldKWTFjZCtG?=
- =?utf-8?B?SytJVGxIQTNmRmU0elFVbFJIOXFiRTFPUkF5NDNrTDVUMlpQK1VRV1pEaUl4?=
- =?utf-8?B?SnR1YmJmMlZaL05JMHRLd3VtZlRpS1p1dzRWWWNSSFJWWjhUVytyeXhRbktR?=
- =?utf-8?B?SUJ6MzdYZytaYVhTMDlyd3pzdDdkZDh4WTkrYkJNWUowc3NoVnBNZjVtNjJx?=
- =?utf-8?B?K004VHpPdGNWUGhWbVdBTlY3dWFhK1hTYi9wbWxUcHlGNmpQYjRXUWlRdUpl?=
- =?utf-8?B?c1RBcjZiU1gzRVRzREZkZjJsN0xZRDdxYW5XcTB2QVNUQ2ZTVEhadkh3bHY0?=
- =?utf-8?B?NEt5cHFRaGNka1MvRUpWRXdXY1A4TDBHMjZPOGE1MGRqRHNQZy9hUGQxQTJT?=
- =?utf-8?B?aFdWY2lkeW9pbW5lUGhocG9la1hib1VoTnlKM3ZIOTQ0SzdqZXhZV1hFb3Iy?=
- =?utf-8?B?YklVNVJldjljRHBTVzBtL0xGSWFPL1lNN0orOWZsQWRUUmdRMzRnSGNUN3Bt?=
- =?utf-8?B?WXZpUDgvZXJxTThIcjFyK2NJU1hpNkNHWTFKczVWeklrVS85UnBLRFNnZWNs?=
- =?utf-8?B?V05ML0NoWUNqQVdwSGx5WmdDemh1dFd0cmFlc2FiRXVmcWFXbG5QaVZCSlQw?=
- =?utf-8?B?SDZkSEU0VHh1Z1RTZHF4MUJoZFJsbkJRMHZPTWZhRFZicVplZnI5dFpib2l6?=
- =?utf-8?B?OW9oQzY2VG52QlE5QzJ5UWQ2R1VxbGZzRlY0M1VoSmJQYnNPV3g4WGN0NVhP?=
- =?utf-8?B?dldjQ1JuLzN0YTBmUnJ1ZGhUOU1abGdTYU5XZ20vaCtiaGdndHo5N3NuL3M3?=
- =?utf-8?B?dGtPVnFYWS9pTWR4aDRtenBqU05JdGdkWGdqOHZTd0FJTitsTk9MMUR6dVFR?=
- =?utf-8?B?NXBqUkJFYU9OZFlXamY5dFVheVpwOUR0U0lKQXovT1g1ZVhzOXF5R01hZlBx?=
- =?utf-8?B?VC9NOEoxWlhSVzNYZUJhZmZyQ2l4U0d2N2FhYm1qZUR6ZXBIdFYxMmRVQ0tt?=
- =?utf-8?B?UlpMblVRRTNnR2VXdkVUY0hTYnZvK3NUSFQ1eGc0UmxvWFBMd0xDMFJDVks2?=
- =?utf-8?B?KzZZL2ZhcHhaME0zeUNuem45L21RUi9qVFcvZUliTWg4YzdESDFRbDJTWnRW?=
- =?utf-8?B?cGhOSXVIRUZJSEhZRjU1cFBDUCtjT2pxSXRWM0xtQVgyOWg5cndsSDB3Y1k4?=
- =?utf-8?B?Z0hnVDY4ckxIUE83K2tKWWlsUW5ia2NpaWpNVlFTRFdENmhpTWxEUHFlbjBM?=
- =?utf-8?B?QU5CUXVDYkpPb0FGSDliUVY5M1ZJVFpOV3FyRkkzaXVNN2xGcWdNUDdqQ1E3?=
- =?utf-8?B?RXMwZVNUREh3VXBuOHVZdzkvYU9ObEJGY0JLWE5LOUxyZG5CRzA5NlZENTdG?=
- =?utf-8?B?L2t0S1BLK3ZZdXZxTTVmNE5SeEN1WURhSGdGM0Z0U0NDUzc3aGhDVG04U1N2?=
- =?utf-8?B?dU90Q0RLeE91NVdUWkVWeFFaNDRMVE9FTE5uWFJ0MTlRb2taQVYxVEJGcFpK?=
- =?utf-8?B?U1lsR3AyeTg0ci94QmR2THZsWXA2T09MVW9VQzRxMlpQS2FJamhYT1poWXA4?=
- =?utf-8?B?SUJobFRQWVhiSFhzYysrRUZJc0h1UDNaUzlXSldON0tOeFZNZzdYUmk5VUo2?=
- =?utf-8?B?RTVNZTA3eGU0c1o5MVN5WlhsSE1yL1lobkJKYnJWWWdHcmtOVFBLUTZLUjFO?=
- =?utf-8?B?Q1J3b2lWdkk3WlJKVDFRWmM4Sk9BczBpT2ZRUmRndUtxeXQreDBpRVNQTTR1?=
- =?utf-8?B?c3o1eFMxNlJ6a24xNjFPbWlnK0orV1RKSzNQZ052cURaSHVwNVVTaG9ZQ2Fh?=
- =?utf-8?B?Y0IrSFVJSDNSSWtiQzVtWHA1TVI1c0NZT2V4M24yd3R4S0lBQ280MlYyM2ZD?=
- =?utf-8?B?YWkwamJaNzlwWVJGaTNwelY2WEpySUpFaldoazBBamI1djlzdE41V014amUz?=
- =?utf-8?B?Z0JLdFpDQzR2R29jUkhkQkdFdmtLa3JQRlZ2VzU2WmRaU29YMDljQ0ZBaEJS?=
- =?utf-8?B?TmdYUndtemR3dEV1WU9TTDk1TFlvM25JaEs0RzVYSnBxVCtCd3NjaEJ6dU9p?=
- =?utf-8?B?RVFnaHcyTTNRN0FFVmNiczI1NmxrVVZUMUloMmUwNEN2NkJmSmhhdz09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7db0ea9e-cde9-4456-9e4d-08ded232df48
-X-MS-Exchange-CrossTenant-AuthSource: SJ0PR12MB7007.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 20:55:07.1628 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: pxAdU6ndPRTM9ZQ99nRnOfz9F3XR1qiIU0VUZoFnxtNVUyUT4ddmCVj4PSDATazDHKmkRxeotuIKgoJ7Ctmrfw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: SA1PR12MB9246
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260623202310.1023770-1-jonathan.cavitt@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -155,104 +65,65 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
-	FREEMAIL_TO(0.00)[igalia.com,gmail.com,amd.com,emersion.fr,collabora.com,linux.intel.com,kernel.org,ffwll.ch,suse.de];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[31];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,m:michal.wajdeczko@intel.com,m:raag.jadav@intel.com,m:andi.shyti@linux.intel.com,m:jani.nikula@intel.com,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[harry.wentland@amd.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6B20A6C14AA
+X-Rspamd-Queue-Id: 152CC6C1C98
 
-On 2026-06-09 07:51, Melissa Wen wrote:
-> This series is a follow-up of what was discussed in [1] and on #wayland
-> IRC channel regarding policy and userspace expectations on changes in
-> colorop properties and the current status of the color pipeline in which
-> the colorop is part of. In short, we agreed that userspace can change
-> properties of colorops that are currently part of an active color
-> pipeline or when the pipeline is switching status in the same commit.
-> However, userspace cannot change colorop properties of inactive color
-> pipeline in the expactation that it will be activated at some point in
-> the future.
-> 
-> Userspace also expects persistence of color pipeline already set, even
-> if it becomes inactive for a while, when activated, colorop settings
-> previouly set should be preserved.
-> 
-> In addition, I found some bugs on IGT tests when this policy is applied.
-> So I sent bug fixes to kms_colorop and kms_properties to behave
-> according to this contract [2]. The rest of the series in [1] was
-> detached in [3] since there is no dependency between them.
-> 
-> [v1] https://lore.kernel.org/dri-devel/20260526142940.504911-1-mwen@igalia.com/
-> Changes:
-> - define a macro to walk in the color pipeline (Alex H.)
-> - fix checkpatch warning (Alex H.)
-> [v2] https://lore.kernel.org/dri-devel/20260604180457.1110110-1-mwen@igalia.com/
-> Changes:
-> - [Drop] drm/atomic: duplicate state of all colorops
->   If inactive colorops state are duplicated on resume, the commit will be
->   rejected. 
-> - [New] Four new patches to make AMD driver match the policy of colorop
->   updates only for colorops in active color pipelines plus individual
->   colorop updates. It also tries to untangle COLOR_PIPELINE = Bypass from
->   colorop BYPASS prop = true. I think patches 3-5 can be cherry-picked and
->   applied if it looks correct for AMD, I just included them here for
->   context (for example, Sashiko reported an issue in the previous version
->   of this series).
-> 
-> [1] https://lore.kernel.org/dri-devel/20260519211111.228303-1-mwen@igalia.com/
-> [2] https://lore.kernel.org/igt-dev/20260602211259.898147-1-mwen@igalia.com
-> [3] https://lore.kernel.org/igt-dev/20260526140752.503380-1-mwen@igalia.com/
-> 
+Hi Jonathan,
 
-I went through the series a week ago before being getting into the weeds
-of other-important-work-tm. It looked fine to me then. Since I'll be off
-for the next two weeks I wanted to make sure to at least provide my
-
-Acked-by: Harry Wentland <harry.wentland@amd.com>
-
-for the series. If you don't have RBs by mid-July I'll be happy to have
-a more thorough review with the aim of giving my RBs.
-
-Harry
-
+On Wed, Jun 24, 2026 at 04:23:10AM +0800, Jonathan Cavitt wrote:
+> Refactor all error messages resulting from generic_handle_irq_safe()
+> failures in I915 for clarity.
 > 
-> Melissa
+> v2:
+> - Use drm_err_ratelimited() correctly (jcavitt)
 > 
-> Melissa Wen (7):
->   drm/atomic: only add states of active or transient active colorops
->   drm/atomic: reject colorop update from inactive color pipeline
->   drm/amd/display: don't check colorop status if its in an inactive
->     pipeline
->   drm/amd/display: truly bypass plane colorop 3x4 matrix and hdr mult
->   drm/amd/display: make shaper bypass mode cleaner
->   drm/amd/display: fix bnld colorop bypass mode
->   drm/amd/display: allow individual colorop changes
+> v3:
+> - Use xe_err_ratelimited() instead (Jadav)
+> - Split into patch series (jcavitt)
 > 
->  .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c |  31 ++-
->  .../amd/display/amdgpu_dm/amdgpu_dm_color.c   | 178 +++++++-----------
->  drivers/gpu/drm/drm_atomic.c                  | 125 +++++++++++-
->  include/drm/drm_colorop.h                     |   3 +
->  4 files changed, 207 insertions(+), 130 deletions(-)
+> v4:
+> - Use suggested phrasing (Wajdeczko)
 > 
+> v5:
+> - s/PTR_ERR/ERR_PTR (jcavitt)
+> 
+> Suggested-by: Raag Jadav <raag.jadav@intel.com>
+> Suggested-by: Michal Wajdeczko <Michal.Wajdeczko@intel.com>
+> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
+> Reviewed-by: Jani Nikula <jani.nikula@intel.com>
 
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
+
+Thanks,
+Andi
