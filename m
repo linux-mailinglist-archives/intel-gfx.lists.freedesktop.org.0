@@ -2,60 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Cdf9D5brO2p9fQgAu9opvQ
+	id yxNTKqHrO2qAfQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 16:37:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 16:37:21 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 099B16BF2D0
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 16:37:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5FECF6BF2DB
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 16:37:21 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=lNJ5xZ1Y;
+	dkim=pass header.d=intel.com header.s=Intel header.b=SN+FZLlG;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 92A4E10E0D7;
-	Wed, 24 Jun 2026 14:37:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id F271110EF3C;
+	Wed, 24 Jun 2026 14:37:19 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A758D10E0CB;
- Wed, 24 Jun 2026 14:37:06 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B93410EF3C;
+ Wed, 24 Jun 2026 14:37:18 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782311827; x=1813847827;
+ t=1782311839; x=1813847839;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=WTsAfuHK4817ZEVijca3f9zMCMIxQjyC70HLJNkghNg=;
- b=lNJ5xZ1Y0vv0bjdcJVk/uEgiiNWqKzZ/Fb2Z8hxxWmeUl1WSOBnMx0o1
- +SZQz1hXKPyQE4Ow+EpcM9zIc/4OPX2/ju+KOfqpJUN+oraYdMhbvlDpX
- eVf9eKF+HQBhhTcGzlRc3WcvdBJyeUdBlbAPNio6A93bWC7EIv1Zc1Rwj
- 3hL+cxxSbJ3EkFW8eyuMltzheV6vEzQPr6DtP7vR0Sh5eKWYGecZCMBHn
- AHzNGGj+neSLIsB8lJXa20cdSWGjsGvZjbc3sDchJKPASJaTCQqjonmeL
- 40Epu/sP9X/1sTAhlOd2ONQYQ6i6k0TvDrh69+bJGdMkDi810xt1ziOp8 Q==;
-X-CSE-ConnectionGUID: x2nqK0AeQye6RHaaTtRLWw==
-X-CSE-MsgGUID: dkSmVIGzSJajGsRfwhNMPQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="86920297"
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="86920297"
+ bh=igYDgT5qzF7BdjsW7kiFxuwdJCifa9wPJIjVR/n8zS4=;
+ b=SN+FZLlGgAOrLtU2MK5sKm51FBnDKYFeguXUu6Z9oDbeDVjlhN94+LZ0
+ rrg5OmnOEw2pvBqpB8feyJ4dl91DCZAtQq1zHUPJLeTJURJXU0F/nE33f
+ e74iM7ohdS9MFY1OTqUKI10vsPf02mgEJI9+QC38sFJ4r3+uSmos9+m0t
+ oNBntaqezKk7Gk4sGfuQ3LaMZDE2+QYUERIJLhfaW2O+ggXBYSSNP/c8v
+ zG3WRXKRhk0VARy1Kxpk74WwPCF6yJoaUB4zD/0svJ2NPQlOcIX0jZ8lF
+ v8PhuSkZ93vI0yr2mB2jGGkQ1FE4AAZVpaG0qEsUP3NKnDh7c4YOvIZ4Y g==;
+X-CSE-ConnectionGUID: G2f3vDEIRQm+Y+6KCBzTNQ==
+X-CSE-MsgGUID: Rd9ts6F5T8SfBx0O4psX1A==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="86920305"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="86920305"
 Received: from orviesa003.jf.intel.com ([10.64.159.143])
  by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 07:37:06 -0700
-X-CSE-ConnectionGUID: ZcA0KSs0RuOt9nGBI7cVDg==
-X-CSE-MsgGUID: AGrfvRPsRme2qykNMn9w9w==
+ 24 Jun 2026 07:37:12 -0700
+X-CSE-ConnectionGUID: v96Bh5USStGFSdtSJexjNA==
+X-CSE-MsgGUID: CKZWWjn2SwiTo8ht4I4TJg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="253798968"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="253799016"
 Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.187])
  by ORVIESA003-auth.jf.intel.com with
- ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2026 07:37:05 -0700
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2026 07:37:10 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, rodrigo.vivi@intel.com,
  ville.syrjala@linux.intel.com
-Subject: [PATCH v2 1/8] drm/i915: call intel_uncore_runtime_resume() for each
- gt
-Date: Wed, 24 Jun 2026 17:36:48 +0300
-Message-ID: <59d87d12e535aa1a587a9c6884b8a43471ff3131.1782311749.git.jani.nikula@intel.com>
+Subject: [PATCH v2 2/8] drm/i915: call intel_display_power_runtime_resume() on
+ suspend error path
+Date: Wed, 24 Jun 2026 17:36:49 +0300
+Message-ID: <025b4c29b6df1d3d4de6dcab417612dc27148e76.1782311749.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1782311749.git.jani.nikula@intel.com>
 References: <cover.1782311749.git.jani.nikula@intel.com>
@@ -105,33 +105,30 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 099B16BF2D0
+X-Rspamd-Queue-Id: 5FECF6BF2DB
 
-All uncore suspend/resume calls are done on each gt. Follow suit in
-vlv_suspend_complete() error path purely for completeness, even if
-VLV/CHV only have one.
+The vlv_suspend_complete() error path fails to call
+intel_display_power_runtime_resume(). Fix it.
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/i915/i915_driver.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/i915/i915_driver.c | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-index 43f747c3c31f..f6c7270300c9 100644
+index f6c7270300c9..51b8bd751376 100644
 --- a/drivers/gpu/drm/i915/i915_driver.c
 +++ b/drivers/gpu/drm/i915/i915_driver.c
-@@ -1545,7 +1545,9 @@ static int i915_pm_runtime_suspend(struct device *kdev)
- 	if (ret) {
+@@ -1546,6 +1546,8 @@ static int i915_pm_runtime_suspend(struct device *kdev)
  		drm_err(&dev_priv->drm,
  			"Runtime suspend failed, disabling it (%d)\n", ret);
--		intel_uncore_runtime_resume(&dev_priv->uncore);
-+
-+		for_each_gt(gt, dev_priv, i)
-+			intel_uncore_runtime_resume(gt->uncore);
  
- 		intel_irq_resume(dev_priv);
++		intel_display_power_runtime_resume(display);
++
+ 		for_each_gt(gt, dev_priv, i)
+ 			intel_uncore_runtime_resume(gt->uncore);
  
 -- 
 2.47.3
