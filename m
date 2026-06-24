@@ -2,166 +2,136 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XBP7CteiO2qnaggAu9opvQ
+	id jtGbMOEORWqO6AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 11:26:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:58:09 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 91EAE6BCEC8
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 11:26:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 508C26EDB38
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:58:09 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=DVSbnCac;
+	dkim=pass header.d=JBTMarel.com header.s=selector1 header.b=FGbHcA+7;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com;
-	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
+	dmarc=pass (policy=reject) header.from=jbtmarel.com;
+	arc=pass ("microsoft.com:s=arcselector10001:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2C00810EE3F;
-	Wed, 24 Jun 2026 09:26:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D817210EFC8;
+	Wed,  1 Jul 2026 12:58:07 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 12AA110EE3F
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 09:26:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782293204; x=1813829204;
- h=content-transfer-encoding:date:message-id:cc:subject:
- from:to:references:in-reply-to:mime-version;
- bh=nhhaW8goi5NAUlOmkImN8UNRIgVkKN2PDtAtuNgDBvo=;
- b=DVSbnCacnN3N/w6aJgVCLvnXo1/DWc4HN4dj7+aR+N5tm+Ca3WVPBW6Z
- v64pm0CQptFTdNcWtcPTQ/judwlKUSXw0iXYEM+dLXA/CzIVGgR0AJ0zS
- yiBlGFrrNucSSbhmD/vv8NTsIMZL+2LyDQ3etkWQi6nrFp0izAyNk8eRw
- mL9YBkmncVmAeMuUXAFHdJwLY/AtMWLxbmcyfcc5A0KnQtAqaOoXhxcDA
- TF3IG/n8y5I+BcPaUft9ZE5OmhU7SbTqyKbdCHYFCI+12Z0+cozh5DNdN
- mR8SDIzZsVClMY5AVfAhtuv9dcYsoERi4TzSkQnIIJmYOj5B35PyVG04A A==;
-X-CSE-ConnectionGUID: GnRR3vLQQsyS5YoB5oWcwA==
-X-CSE-MsgGUID: OuQcw6DcTU+XB88zLhy5Ig==
-X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="86893973"
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="86893973"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 02:26:43 -0700
-X-CSE-ConnectionGUID: uZMXQfqmTh+gxeSER4xatg==
-X-CSE-MsgGUID: 5JzZ/q+wRy2HLgnCP+kw3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="251729539"
-Received: from fmsmsx903.amr.corp.intel.com ([10.18.126.92])
- by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 24 Jun 2026 02:26:43 -0700
-Received: from FMSMSX901.amr.corp.intel.com (10.18.126.90) by
- fmsmsx903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 24 Jun 2026 02:26:42 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37 via Frontend Transport; Wed, 24 Jun 2026 02:26:42 -0700
-Received: from SN4PR0501CU005.outbound.protection.outlook.com (40.93.194.13)
- by edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.37; Wed, 24 Jun 2026 02:26:42 -0700
+Received: from AM0PR83CU005.outbound.protection.outlook.com
+ (mail-westeuropeazon11020081.outbound.protection.outlook.com [52.101.69.81])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id DC71B10EE41;
+ Wed, 24 Jun 2026 09:32:39 +0000 (UTC)
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=yXgDdDTHWfWFTZkKyK7B/shqaoaRtxtDadDAdJW0ShxblUiOoGeKx5WGroqU5BtQrNMTcHXuRhYkfc7eb/QTOBoizYq8S89PiBL+UCsPZAeDUjVXGRDEADvACRmVVNKLGzSJnQkBByBrtwSDIe7WGrArStVGRWGtpHdxCEsKBFJJNNWHNXvlXMwAwdDNRoZg+h7Gl5Doju6l/KQdUz81deBgqdsfo85foHMSTGhy6tsNVmu0mqdKpLYf4WsQoYvg+B2Yz24o0+kIf0z1szt9SsNSA7LHT3SjQTzIk9Nzg6ps1Dzs36Ie0EhSum9zM4JGxxQFFYErfJRORRjsQmdDvg==
+ b=TaDa80iNtG3+xMeGWXJM5UcPcaJNxjzAlIagx2ddEtJVjD7D/y/dwnPA7Di4JRQYJCzu8PskgFhkH//aPc2QGuzKdWVHQI5mEEb0uu0X5wZYQIpZzmYXwKnjzsALspm7PkEI5UHgRMMRh1GhqxW5rA1ImBTUCSQduwBsw5gLucSvJKpNHuf0/iJU6/fMOegX/TsR8kM/OvFKIBflECbId8X4ssWxns+vmCAAMDYf6Tu6vjDvGjb0SsxUxfaetcHlGxHsUGvInPeFsw8FASi5scfy4zsKySWj9S/S+YdqNxDEpWBv4GIcXADMB3roJm4KkhypQzxbxXWmdBIvzeI/eg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=/SIlZ/Zd4qJFyFc2nd9PDqP3AeSEGUJfUTKwEYerlNo=;
- b=efINp+nUofiyDXb/k0Q5u5LPhyULUNCUPRQssd0LQmpQn1qSmTQOAoGqvT6Bw89AGod1dIPJ981rjqSXGitvytgjLkitAiOsXEPRlfOC34JkIvTg0qwQK1I33LBSakRCfKeW+3gdcL3LDPdFuRUcbPARoBYjms7OHW39X9xYaiXhTHY/ZB8dP8O0h+MmSMlpgct13btYFdgDj9UKR+AxWwMS7DpOZi1gV81xNjMDJhPYPwZg7B8UjF3tRyB3vNuO2CLADPOlNOkpcWH6oxSPTSoT1bLszf8HWCAq/5UB3vjD6ydJkbej09dyxaToLF5/Vfb8sNDVtlmU8rBGcrL5Ug==
+ bh=FnYIDE3wfQgB+QTG49iK52h8+mG9V4w7xmefZEWuyX4=;
+ b=yelvgsX/4+XyfYPOqXMVgxsdlOpiiZQk5wFlSY7afWBHcUWf5wud2oci2S0vpdOCnoe5E4brs4KEVOrEiwe4ftFMUZShmx7X5HsrTG6n38eHBnde0Dkhj2YmRG2rZNwNDLZCYkZnxE1Y66IdReT+Glko6kSX5CqsyTCeul/3OGG2m9SozcTkVkOiHmxt7k0p6NgHwUrrr4xs8MSheim+Nf8oFr3ITtf8Nuu+tGMTzUw5uibgT3Y5K92ETnaw2+4fYBBqlcahXIGy0vfzbG3gIzx0exoj3veR87JMad1k1sYAj7N9Q9Bz94K3rZ9o4Al6IPdrnD6O/VH4NhXk0knF0w==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-Received: from MW4SPRMB0067.namprd11.prod.outlook.com (2603:10b6:303:221::22)
- by IA4PR11MB9345.namprd11.prod.outlook.com (2603:10b6:208:56c::15)
- with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.16; Wed, 24 Jun
- 2026 09:26:37 +0000
-Received: from MW4SPRMB0067.namprd11.prod.outlook.com
- ([fe80::3605:4f97:fbe7:2c4a]) by MW4SPRMB0067.namprd11.prod.outlook.com
- ([fe80::3605:4f97:fbe7:2c4a%3]) with mapi id 15.21.0113.020; Wed, 24 Jun 2026
- 09:26:37 +0000
+ smtp.mailfrom=jbtmarel.com; dmarc=pass action=none header.from=jbtmarel.com;
+ dkim=pass header.d=jbtmarel.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=JBTMarel.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FnYIDE3wfQgB+QTG49iK52h8+mG9V4w7xmefZEWuyX4=;
+ b=FGbHcA+7FRp3Un48HszNDo5mKTh2y7H1paULA8m4ZkmtJSxkVd8vk4uNtn4NQyzpC42Pbpkic6ID26HATSOgd2IIMmraNhnUQWNGWLjciYcpe6pL5b4juoVhIwbWYk+ZRIz7lV2LVwrhSp0GAmp/kBf28wDEodxe3opl1E4t9MvMqCeCeKRcjMBE6E1d/GG5rSfGHwln+tPs2K544Y/BAr2DZ6u9ep/jgtBem2Glw6qUY4GiGDW43LBCG+bdNCUOmd45xqpVsyoDUGrdbUcYi/5XLEo1cUC1l25UrbpitnkcCJePZBNA5cZdxrWwhpB/u+zc0LVB7bMCzsCu03HdzQ==
+Received: from AM9PR06MB7860.eurprd06.prod.outlook.com (2603:10a6:20b:3ad::20)
+ by DBAPR06MB7016.eurprd06.prod.outlook.com (2603:10a6:10:1ab::7) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 24 Jun
+ 2026 09:32:36 +0000
+Received: from AM9PR06MB7860.eurprd06.prod.outlook.com
+ ([fe80::f23e:6dfb:b90b:52aa]) by AM9PR06MB7860.eurprd06.prod.outlook.com
+ ([fe80::f23e:6dfb:b90b:52aa%4]) with mapi id 15.21.0159.012; Wed, 24 Jun 2026
+ 09:32:36 +0000
+From: =?iso-8859-1?Q?Gabr=EDel_Arth=FAr_P=E9tursson?=
+ <gabriel.petursson@jbtmarel.com>
+To: =?iso-8859-1?Q?Ville_Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+CC: "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>,
+ "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+ "jani.nikula@linux.intel.com" <jani.nikula@linux.intel.com>,
+ "rodrigo.vivi@intel.com" <rodrigo.vivi@intel.com>,
+ "joonas.lahtinen@linux.intel.com" <joonas.lahtinen@linux.intel.com>,
+ "tursulin@ursulin.net" <tursulin@ursulin.net>
+Subject: RE: [PATCH] drm/i915: Calculate CDCLK on modeset after sanitizing
+ pre-os programming
+Thread-Topic: [PATCH] drm/i915: Calculate CDCLK on modeset after sanitizing
+ pre-os programming
+Thread-Index: AQHdAlVs310XGPyz+0y2jAexjuKZGrZMM2aAgAE7ZwI=
+Date: Wed, 24 Jun 2026 09:32:36 +0000
+Message-ID: <AM9PR06MB7860C510609E052AF39CAA8281ED2@AM9PR06MB7860.eurprd06.prod.outlook.com>
+References: <AM9PR06MB78601E2636164181A4689CC281EF2@AM9PR06MB7860.eurprd06.prod.outlook.com>
+ <ajqXK-fZnty-YGCK@intel.com>
+In-Reply-To: <ajqXK-fZnty-YGCK@intel.com>
+Accept-Language: es-ES, en-GB, en-US
+Content-Language: es-ES
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+msip_labels: 
+x-ms-publictraffictype: Email
+x-ms-traffictypediagnostic: AM9PR06MB7860:EE_|DBAPR06MB7016:EE_
+x-ms-office365-filtering-correlation-id: 9685bb44-9876-4188-b384-08ded1d386d4
+x-ms-exchange-senderadcheck: 1
+x-ms-exchange-antispam-relay: 0
+x-microsoft-antispam: BCL:0;
+ ARA:13230040|23010399003|366016|10070799003|1800799024|376014|6133799003|11063799006|56012099006|4143699003|18002099003|22082099003|38070700021;
+x-microsoft-antispam-message-info: +XALdiId6PqiOhrMdBA7frbfTSvBje5yZF0Ia3EqXTkxlewPjxKWChPNyBJ9c7mEsJsg7CaEteZ0wgogofStaNF9Iw06l5mbuu8iDfL20y3SO31YjFrc1xYt0NUnd1T83dtvu+ri79wa70qMrTCTbr1dDuZYAi8Gq4luNRRyLCm4meCipulXzaBGP5sJgHWpFM0d+x+YLMC3pAjRonMeA8TqM/L7Rr+RBZGMioSepa3pMNPc8ygc6FWy1WqR8cz9Q67eNIEl9ilNqsd37H3ON14Z1YX7KNov+OL3UsaD5trVhcH1nXxKvMM9qEDgmWMm1nqGlMhQ16NJT1jFqS6uespAZbxPfnATqdT0CrxB9v8HKVKC8mcjIfOjDiuobSAj9CsNeN+gKGigUFRyNEL44gZ8tWaGeXtgIyQ+OK/rj9DD3hkGiYvaWyuAWgZBQDpLV2mzWN9BBrteON8YU5Z9qh+pKabZF7vA1UX/CkZESoBFxbU14l3Hofjp2OPGwvOlu+y/YWykE0AkZj0+s75uAGUsePpzNQTPghOjV/wz9yDfL0x1ARr2GjY7gp9hhpHt9PfOj5wtn5ynhxZ/q+bPKkRWk5X1zRhyIJ8NbzAVsxdcuXENv7t+gAEb8sMNvbj5TeyP+MApzY0N+SShlR5lTlIDsn/DCJfBNOdvtenA+pXE+WjmL5tpwvjihOmqYDxIswH+CLwrE+VTthKfMJnKVreD4m8kZI1mYuzN6cJGHlc=
+x-forefront-antispam-report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
+ IPV:NLI; SFV:NSPM; H:AM9PR06MB7860.eurprd06.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(366016)(10070799003)(1800799024)(376014)(6133799003)(11063799006)(56012099006)(4143699003)(18002099003)(22082099003)(38070700021);
+ DIR:OUT; SFP:1102; 
+x-ms-exchange-antispam-messagedata-chunkcount: 2
+x-ms-exchange-antispam-messagedata-0: =?iso-8859-1?Q?IS07k42XmNn+RBjt1xny14VNuOrq6qqZq0p9i3Gh8CJiPGAwxYgWtqTJba?=
+ =?iso-8859-1?Q?65QCMXABbXMCEwWm4a3OxqnnhZMPgAgpOkv8zVUBv/JRiIb7AvTgOtkv7d?=
+ =?iso-8859-1?Q?ur+Hq3p4b8jnfSDHR+VPi2HLdjrMb1a+TV1g7TNDhisUpwCNaSw2i0LEMr?=
+ =?iso-8859-1?Q?tl/x253TKHIHox2TcfP1AwMwd9gs0QtPTYy2MhyyBuAoxxxklEaKRmThMS?=
+ =?iso-8859-1?Q?LwsNOzTrAP1Iu+K6OJ/H0y/z9d+L+I7PggtoGhXQoKFufUmBNPNJyA064r?=
+ =?iso-8859-1?Q?qEzGRYshTVD7x55YTsuc5xyxcBomg/KYvCC1BOBkEhCzgqyuY5b8ZNrUQW?=
+ =?iso-8859-1?Q?4LtVEsxag5CHsW7QJbw7WQgiggv42MGIEQatTTAXss63F49khaETnYmAgT?=
+ =?iso-8859-1?Q?NFxt94dm0i/n89EQ+Rnwf30pHhqVJe5IR6gIJkBsvpNSKZP8TKxR15dnyi?=
+ =?iso-8859-1?Q?y4Z5xn70+JD9NjChp155xRlrbfobXZfkZQFGSoIKu9VflvURlZtlmxSwQW?=
+ =?iso-8859-1?Q?rWEGh0s9E3aVCmZ4oqgvxbtTesLaVGbbdGXuh5maPr2mXSUtJFbVpir6pw?=
+ =?iso-8859-1?Q?WzH1xuTKETDrnE+zh8LCIFqTr9IYQojy44x+M3SgaXHvDi+j8NbM9cQCEV?=
+ =?iso-8859-1?Q?idGPAhHdGKRHge7QbIyOY9w2BgybrYRnKdbxso63XacUICCqpJ3w//UBvz?=
+ =?iso-8859-1?Q?tyy5j05u7enXUFEoAYsoOoPP23H8LO1SgqX3LZxeMVHPStGlF7IEgEjdHa?=
+ =?iso-8859-1?Q?rbG4tbQt4x4FzePGj8lLUtVEEVvAZDsLxxKeo+ceqmR75gXWyKY14iOffF?=
+ =?iso-8859-1?Q?k4j4epezrTguVJUJll1p9cDAcS6mK7atloTm5M+r3IqRc3+nxHkKrILuik?=
+ =?iso-8859-1?Q?Yo6JSy0U+hIxF66pWgJ8JvfeuhrbIHdT7e34JhC0KsX6fAjzj2ZmYqTZf+?=
+ =?iso-8859-1?Q?r/0XXTUEXshooSL6gU0AMW0U49lwwpEk6lUwiyoM/aPXbybbWghHPE59+1?=
+ =?iso-8859-1?Q?AaJ9ginrMiJL9xH2kXSYNewO4MdXM7VEOrTR1kUrzIxS7EK6TDp3CWkVQv?=
+ =?iso-8859-1?Q?v/8aY3baoTfDyIq8j+YsOI/55aLffHSXTbst5Oivqo3B65Ea+dRLHPyoiK?=
+ =?iso-8859-1?Q?Asao8X7fMPks3KtSSoJyUWTtiybMRALK+X/a153ZL0JboxcibMUF4vU+yT?=
+ =?iso-8859-1?Q?gxxnyPPwRPOrg022UwRIxUPu/q+cPtRut3BoTp2QCD6i+IM6GUVrMEw3r9?=
+ =?iso-8859-1?Q?CdI1cZl0Qtw5qpLVqDvXuY1dusAHpLpI6wFoLeZTSuIsnFfzmHHnY2CB/l?=
+ =?iso-8859-1?Q?kUlr7crvdz5IG0yqhfGpgRaruSDEiGzEZT7wJzs5lNwmefpu9XIP+ac0CO?=
+ =?iso-8859-1?Q?07M8RmeI3HhNsS1z3VLeqahzycQDHclcCdhqXj5LjvTngoSWASO8MTW/Ec?=
+ =?iso-8859-1?Q?wxawnVTRPPZ8pqnpwHDeMrRXk5XfAQ8QZRRLAp2MPnVb4+eF9eyAdRkvwI?=
+ =?iso-8859-1?Q?gg8Bu9VfFLPnWIvULjWfICjR+4IzhDNzNHtaX8RbfYqo/K0GVsT1hFPN3S?=
+ =?iso-8859-1?Q?y/cVIMMSKzpxm8fCLOjbOQ0qQ1krInCg3VofRmsgtpb4z7A+N+12Jh6SQr?=
+ =?iso-8859-1?Q?5oblq3OP88+O1ZPmCii2UKnd2S66FAza5LOQKGMTFWn/k4XKWzniQ4BIIa?=
+ =?iso-8859-1?Q?Bl2pjPjzihCE6CCq6uZcVGdVIiqg3y1bynuxd321M7bUAeucKx1KuRjSHP?=
+ =?iso-8859-1?Q?0du+2B92M6uR0Fa+en7u7dfhkfGpsmFSelReKj1ayZS5NnZJsvUXOLRTiY?=
+ =?iso-8859-1?Q?coKWuLExV3rm4CKRSFKH5SSs4oMGaa18igptTxTxVoOjsp7RJSZJvBJ+O8?=
+ =?iso-8859-1?Q?z/?=
+x-ms-exchange-antispam-messagedata-1: qjU3yEXg9lVuSWtXV3gltaCwmYMTiSlQLQY=
+Content-Type: text/plain; charset="iso-8859-1"
 Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
-Date: Wed, 24 Jun 2026 11:27:07 +0200
-Message-ID: <DJH67X9IJD3J.1YRKHO7I0JSZF@intel.com>
-CC: Martin Hodo <martin.hodo@intel.com>, Maarten Lankhorst
- <maarten.lankhorst@linux.intel.com>, =?utf-8?q?Thomas_Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Simona Vetter <simona.vetter@ffwll.ch>,
- <stable@vger.kernel.org>
-Subject: Re: [PATCH] drm/i915: Return NULL on error in active_instance
-From: Sebastian Brzezinka <sebastian.brzezinka@intel.com>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, "Intel graphics driver
- community testing & development" <intel-gfx@lists.freedesktop.org>
-X-Mailer: aerc 0.21.0
-References: <20260624090940.74840-1-joonas.lahtinen@linux.intel.com>
-In-Reply-To: <20260624090940.74840-1-joonas.lahtinen@linux.intel.com>
-X-ClientProxiedBy: DU2PR04CA0258.eurprd04.prod.outlook.com
- (2603:10a6:10:28e::23) To MW4SPRMB0067.namprd11.prod.outlook.com
- (2603:10b6:303:221::22)
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: MW4SPRMB0067:EE_|IA4PR11MB9345:EE_
-X-MS-Office365-Filtering-Correlation-Id: 8ce8aada-e8fe-408c-c6a5-08ded1d2b10c
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|23010399003|1800799024|376014|5023799004|11063799006|56012099006|22082099003|18002099003;
-X-Microsoft-Antispam-Message-Info: 6NyH49OQKkXhi9Tzy0R5/RNEqKdlPCoo17ioOU3XxSYnSAR2s6GlcPy21BeXYxlRVog4veXRHhBS2a43A7f2fDhO79xauGdUQCxGxgwLzpXiIX2HdJ5nxME0f2olXXvwcN/YqvAbgXDLlFaiwsiU+qkqe0FW+UJF5hCOZaw4BbOsNLC7UkqP0Kt/4lXEcUHyehFnEFr8IrmCrnkOMWpGW4ONdzOlADE3T4OBCt0+6Rkxy3vNyUzUhFMfcHVwChfl8uiE/wh0y0SlmUiXYK6zwNyF0v5f1B78X2j0zVnUhOJUSUhJoVC+Lim8Y4WKhM3syqgS0Z9+6WXFDT3z4gmoa9cZR0l3HdOE1im8F9BMDXcI1Re3X6O0TmzD7zbClEbn4q+rromsUGtcRXo1i/PdqFsAafjgrJUC9xWS7nmxBrlg38MW+JPG59GJTwtZeQIM70iNIybNtKUIhKtCTuGP/QXS4TRhb9M4yfymdXamuvTCSHxBqSMkXulB5KEYVF6sd7d8BlGR/pxHApw/k7vlRmYYQstU0NtthNZaM5GS/gdzoviuj/vRNIDs+qgrp3FxwPY2qUY/xin9/YF2XNQ+1t6WkDA2Z4kaaAP7VCen0fouBMjWwZd6g3gb18DqN0k3weY8TfHNjIM6gnLnEmxFbrHkINRHe7t3krEVWOJIWCk=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:MW4SPRMB0067.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(23010399003)(1800799024)(376014)(5023799004)(11063799006)(56012099006)(22082099003)(18002099003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?dXBMY29tSEFDOVlRb0dTRWVSb3IrbXMyVzB2Wk5tak5pbzZqYnFxaUVYQkxJ?=
- =?utf-8?B?T3IyQXY5VFN0bG1qRW9uVDkzU1NoLzJwbXdRS1IvWTdkTUtDZ0xydldlUnlC?=
- =?utf-8?B?UlY5NmZvRVgwVm4zenVCdE9tZlNMaE9TODRYY1lIaDAwWWpiOVM5VmkybUdI?=
- =?utf-8?B?dWI2Qy9GcWlkUmVQYXQ2UjQwUmZMS0I3SWs3cmN1cmhreVlmLy9yZ2s3YWha?=
- =?utf-8?B?QmNKUkl6bmVyalhTelNLLy9mT29oZ1FWSTNEcFpGVEEyRjQvcE45MFQ3NXo4?=
- =?utf-8?B?UWQwSHg2dC9qK0tkN0syVXVyMDVIbGJOMUJ4UnJzZG13YTNhOEx6dFhxMndL?=
- =?utf-8?B?YnZsSGl0eGl0bS9zQnZVdEk1WTJvWGxBZHAxV2ZsWStBaFQzUkRPVE1YRkZm?=
- =?utf-8?B?eXhJY0tRNjgzSGJvM1dMNEIzM3lybHBBaytmekRDM202cmpiNzY3ZmVyOCtU?=
- =?utf-8?B?MDlRVHdVdCt2NGs5S2ppN0R0Y08xejNKRGJBR1g5L2xIUGQrQkpZTVFJOWR1?=
- =?utf-8?B?S0RjVGJ5VExNNk5VaFByaDQ3QnEzcDlEOWpwZ2xWWFRSMVBMUGQwbVV3dkRj?=
- =?utf-8?B?ZDdlQVZxZFFFWENWdVBJM3lMVUdHRUU3QUNPOStoc0c1azh5MkRmN01WZFE2?=
- =?utf-8?B?d2ZHbUp3Zm5pN3dGb2tUZitFeUF6OC92bUtMelVVUFdqQ3pZdVVkVkIyYnpv?=
- =?utf-8?B?djBneTBQT2ZYVXl4akZsOC92eFFoRUZtdEhucXlhZ3BhTE1vNWxjbXNRSEFz?=
- =?utf-8?B?Z3hLbXRFNU5lb0ptUCtGbUlZMVNteFpGaHAzK1c5ZlRPdzNUV2JhYUpBM2pG?=
- =?utf-8?B?Zm1SOHQ0eXEzWEdMNDFEQ2lwZWVoVlRocHRBTmJGNk43N2dZdm9BbDdHNEpP?=
- =?utf-8?B?b0JrM3lIbDZ3TnQ2VnhReGRIQkY5L3JSNTF6MlVDOW12cHVEZm9NR0pYdHVx?=
- =?utf-8?B?bUI0SFhSM2E1WnAveVFiM1dyNnZpb2RFV0ZDdDdzZXJwZ2ZrRDllaDR5ZGdH?=
- =?utf-8?B?WTBNaVl5cnc5WVUxZjY4WHowem96TUl1UU4zSlV0NmhROXl2bXc1SEI1akM1?=
- =?utf-8?B?NzRRVVcvOTVtZFFycEZzb0dnSklDRGdMSXo1WTJvanMwYTRORnJxVjQ0alR4?=
- =?utf-8?B?Rk5UMFhhVkpxcktHYnJWOHpmcWMyZ3N6bEttYkJEL0IyZDc0RmJSNHc4c0NO?=
- =?utf-8?B?czU2VXR5NlM5WmJaTFlEMlJNMTBScDJubFJScjZwcmlBV0JqK3daazVvUTRC?=
- =?utf-8?B?VVhCQ2pLQnNrelM5cDg1RGxtKytkTmtmSmNkTlBpVk00Sm5QcEViWVQzMnlM?=
- =?utf-8?B?UCtuVmZoZVM4NXpKKzZCYy9ydkFVaGxkUXN4MDZrVDV0cWEzbDNGTzZlVTZC?=
- =?utf-8?B?Q2hERCt4TUgzUzFqNVAzdHZiWjZKdDBCdndSUDBXczZ3ZHAzeTZ4R0xZODlG?=
- =?utf-8?B?OVlDOFBkY0NSZWtNcXpYVUxQcXorRFhhL1VVVDJKTGZjcXR3aEQxMmhoei9C?=
- =?utf-8?B?UFoxeUZoY0piMzJHTzRZa3AxT1hBRlZDOVNwbStTT1RRYi8rWmtDcnhmZkV0?=
- =?utf-8?B?ODFOYVdLMEFLd21qd1JqTjZqd3p4aGptQ3c4VG1OdXArMEpZUStRUWk3WC9O?=
- =?utf-8?B?cC81d2FUL2ZNY281RHVwYzMzSEVpZjZ2a2NBOU9XZU1rcEQ3STdBUGVJZEgw?=
- =?utf-8?B?amdFTEZuNDhHNHFCeitLTzJWcVdmaXlYdzRkWmk3bXUyWmExTk8vNlowcjVw?=
- =?utf-8?B?VzRyc3FlVnVJZlZFbExCSGFNWTI4NVJiUVlyWmtoYXI0ZXJ4aHpwVjBuV2M0?=
- =?utf-8?B?a1dCalNKMk5BOVIwaCt4dXR3T1dmSlhYeWVXb0hHaE9EWHZ1VVhJK3ZKMHRy?=
- =?utf-8?B?ZEtxNFhFMkZGOFFrT0pzZWVBWGFoTlBGUzZRMWhCbndYRXBqTm5nYkJmT3Iy?=
- =?utf-8?B?aStqeHhWY3pqVHFhMGdxSnpQelljMHY0RWRYRUpBcjlXd1lsdWxtaklyRXRH?=
- =?utf-8?B?N0lKWGdUMkcvdm5nR1RCd3JMVTdHMVpEeUJOWTZCTUhYa2ljdFN3MHZGNDA1?=
- =?utf-8?B?VVlOUTZZemZrR2pZejdDL1NybC9nUzEyVGZ6b1k1QTNnaDlmeVlCM0JETkM4?=
- =?utf-8?B?NE1DZVRlR3ZpdldZWEptdUpaYWVBK3FSQlVXYkNnRFBJdWE0QkVDdGVRRUJ1?=
- =?utf-8?B?N0JFMzVQOUtPUGhDNFNEUFNFenFoMlNFY0FYUUx5OStGWkNaNTd3OVNmR0xJ?=
- =?utf-8?B?Z05uakRBK2d3RTNvSHlMVFREd2ZOclNBTjZvbHBWRUlnRm53VTBFK201NXRq?=
- =?utf-8?B?MmhQWFVMaEg1VFhnWkVOajdwSGx1bFZvMDBRRnA3Y1lyM09Tc3NBcWJvQnUw?=
- =?utf-8?Q?ZZ6Q/oFri7K+zvkU=3D?=
-X-Exchange-RoutingPolicyChecked: Rkg7ZcgX0u8reK+AFYaAuCa4n6KM3X05tNCW6O0wkwpNuNVVXV4PlSIXQESuj7Ak9Dln2YxrLePpRmnGbmnkaE3K4AqSF6kE1n23VcrFkuGU1C5urrGmIQ3AXdZIQeRAQ0Rom58fK6qI13c2vB04gcIHP8ym0xn1DLJ9lwJCqVlJd3XliB3yRDF8lxGvtJQSJJlZVMTHMHdCTlR1zlkgDI5Qz0RZcyM+k4P4MoXHH0zraXw+2148ZdYZ6pKDnpczVTbHA6brZ3hzFVMp5WmoSUbhyoB5rd4FqrPcYIbK6tBRyEIa5N5ACnIq5BAvwVToW5U86M4oRiV8AutVv/4x8w==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ce8aada-e8fe-408c-c6a5-08ded1d2b10c
-X-MS-Exchange-CrossTenant-AuthSource: MW4SPRMB0067.namprd11.prod.outlook.com
+X-OriginatorOrg: JBTMarel.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 24 Jun 2026 09:26:37.7749 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: oDpWmMFxNQIDFcUJpiiDFmBUK+rzZUULD/G3fcKs+1s7EJdEO94DPT9gkJWCflamjufDMOdOm53R5wXPA3cA9mnirFUUSLPud5EUEH2mf78=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: IA4PR11MB9345
-X-OriginatorOrg: intel.com
+X-MS-Exchange-CrossTenant-AuthSource: AM9PR06MB7860.eurprd06.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9685bb44-9876-4188-b384-08ded1d386d4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jun 2026 09:32:36.3036 (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f672e0e-1e37-47ad-ba73-9c5ada6895a7
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: frywoihZfDUsr3x7uyu04conNmSfI2oxg7YvUy4jOu4deumVGWydt2TpaH0VTwDmwLtnOUihrW3lNkceXLjrZLN9+Nt+3439NRF+BotJiGs=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR06MB7016
+X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -177,73 +147,173 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-0.43 / 15.00];
+	DATE_IN_PAST(1.00)[171];
+	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
+	R_MIXED_CHARSET(0.88)[subject];
+	DMARC_POLICY_ALLOW(-0.50)[jbtmarel.com,reject];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[JBTMarel.com:s=selector1];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:martin.hodo@intel.com,m:maarten.lankhorst@linux.intel.com,m:thomas.hellstrom@linux.intel.com,m:simona.vetter@ffwll.ch,m:stable@vger.kernel.org,m:joonas.lahtinen@linux.intel.com,s:lists@lfdr.de];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_SENDER(0.00)[sebastian.brzezinka@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[sebastian.brzezinka@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FROM_HAS_DN(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FROM_NEQ_ENVFROM(0.00)[gabriel.petursson@jbtmarel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[JBTMarel.com:+];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_SEVEN(0.00)[9]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,lists.freedesktop.org:from_smtp,lists.freedesktop.org:email,AM9PR06MB7860.eurprd06.prod.outlook.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,jbtmarel.com:from_mime,jbtmarel.com:email,JBTMarel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 91EAE6BCEC8
+X-Rspamd-Queue-Id: 508C26EDB38
 
-Hi,
-On Wed Jun 24, 2026 at 11:09 AM CEST, Joonas Lahtinen wrote:
-> Avoid returning &node->base when node is NULL due to OOM
-> during GFP_ATOMIC allocation.
+> This smells like the same thing I already fixed with
+> commit 3f9de66f8acb ("drm/i915/cdclk: Fix up CDCLK_FREQ_DECIMAL
+> without a full PLL re-enable")
+
+Just tested the latest drm-intel-next branch and it does indeed resolve the
+blank screen issue we had encountered.
+
+        [    8.092012] i915 0000:00:02.0: [drm:intel_cdclk_init_hw [i915]] =
+Current CDCLK 624000 kHz, VCO 1248000 kHz, ref 19200 kHz, bypass 19200 kHz,=
+ voltage level 25
+        [    8.092579] i915 0000:00:02.0: [drm:intel_cdclk_init_hw [i915]] =
+Sanitizing CDCLK decimal divider (CDCLK_CTL 0x3104e2, expected 0x3104de)
+
+I therefore rescind my attempt at a fix. Thanks for the quick response. Muc=
+h
+appreciated.
+
+With regards,
+Gabr=EDel
+
+________________________________________
+De: Ville Syrj=E4l=E4 <ville.syrjala@linux.intel.com>
+Enviado: martes, 23 de junio de 2026 14:24
+Para: Gabr=EDel Arth=FAr P=E9tursson
+Cc: intel-gfx@lists.freedesktop.org; intel-xe@lists.freedesktop.org; dri-de=
+vel@lists.freedesktop.org; jani.nikula@linux.intel.com; rodrigo.vivi@intel.=
+com; joonas.lahtinen@linux.intel.com; tursulin@ursulin.net
+Asunto: Re: [PATCH] drm/i915: Calculate CDCLK on modeset after sanitizing p=
+re-os programming
+
+On Mon, Jun 22, 2026 at 02:52:29PM +0000, Gabr=EDel Arth=FAr P=E9tursson wr=
+ote:
+> After sanitizing cdclk programming by pre-os, the cdclk frequency is set
+> to the lowest supported setting. After which, modesetting needs to
+> recalculate the appropriate frequency.
 >
-> Discovered using AI-assisted static analysis confirmed by
-> Intel Product Security.
+> When upgrading the kernel, we encountered an issue where we were left
+> with a blank screen at boot on a number of monitors and the following
+> message in dmesg:
 >
-> Reported-by: Martin Hodo <martin.hodo@intel.com>
-> Fixes: bfaae47db3c0 ("drm/i915: make lockdep slightly happier about execb=
-uf.")
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Thomas Hellstr=C3=B6m <thomas.hellstrom@linux.intel.com>
-> Cc: Simona Vetter <simona.vetter@ffwll.ch>
-> Cc: <stable@vger.kernel.org> # v5.13+
-> Signed-off-by: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+>       i915 0000:00:02.0: [drm] *ERROR* CPU pipe A FIFO underrun
+>
+> Which bisected to these two commits, depending on the exact monitor used
+> during the bisect:
+>
+>       ba91b9eecb47 ("drm/i915/cdclk: Decouple cdclk from state->modeset")
+>       74c31271a1d9 ("drm/i915: Avoid triggering unwanted cdclk changes du=
+e to dbuf bandwidth changes")
+>
+> Although both commits look correct, before they hid the need to explicitl=
+y
+> trigger CDCLK recalculation after sanitization.
+
+This smells like the same thing I already fixed with
+commit 3f9de66f8acb ("drm/i915/cdclk: Fix up CDCLK_FREQ_DECIMAL
+without a full PLL re-enable")
+
+Sadly it looks like I forgot to cc:stable it :/
+
+Jani, can you pick that up for -fixes and slap a cc:stable on it?
+
+>
+> Signed-off-by: Gabr=EDel Arth=FAr P=E9tursson <gabriel.petursson@jbtmarel=
+.com>
 > ---
->  drivers/gpu/drm/i915/i915_active.c | 7 ++++++-
->  1 file changed, 6 insertions(+), 1 deletion(-)
+>  drivers/gpu/drm/i915/display/intel_cdclk.c | 10 ++++++++--
+>  drivers/gpu/drm/i915/display/intel_cdclk.h |  1 +
+>  2 files changed, 9 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/i915/i915_active.c b/drivers/gpu/drm/i915/i9=
-15_active.c
-> index 5cb7a72774a0..aa77def0bc0d 100644
-> --- a/drivers/gpu/drm/i915/i915_active.c
-> +++ b/drivers/gpu/drm/i915/i915_active.c
-> @@ -318,7 +318,7 @@ active_instance(struct i915_active *ref, u64 idx)
->  	 */
->  	node =3D kmem_cache_alloc(slab_cache, GFP_ATOMIC);
->  	if (!node)
-> -		goto out;
-> +		goto err;
-just a nit: this jump is not neccesery, you could return early.
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.c b/drivers/gpu/drm=
+/i915/display/intel_cdclk.c
+> index a47736613f6e..5eba50fde396 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.c
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.c
+> @@ -1267,6 +1267,8 @@ static void skl_sanitize_cdclk(struct intel_display=
+ *display)
+>       display->cdclk.hw.cdclk =3D 0;
+>       /* force full PLL disable + enable */
+>       display->cdclk.hw.vco =3D ~0;
+> +     /* modesetting may require another cdclk programming */
+> +     display->cdclk.hw.sanitized =3D true;
+>  }
+>
+>  static void skl_cdclk_init_hw(struct intel_display *display)
+> @@ -2365,9 +2367,10 @@ static void bxt_sanitize_cdclk(struct intel_displa=
+y *display)
+>
+>       /* force cdclk programming */
+>       display->cdclk.hw.cdclk =3D 0;
+> -
+>       /* force full PLL disable + enable */
+>       display->cdclk.hw.vco =3D ~0;
+> +     /* modesetting may require another cdclk programming */
+> +     display->cdclk.hw.sanitized =3D true;
+>  }
+>
+>  static void bxt_cdclk_init_hw(struct intel_display *display)
+> @@ -3598,9 +3601,10 @@ static int intel_modeset_calc_cdclk(struct intel_a=
+tomic_state *state)
+>
+>  int intel_cdclk_atomic_check(struct intel_atomic_state *state)
+>  {
+> +     struct intel_display *display =3D to_intel_display(state);
+>       const struct intel_cdclk_state *old_cdclk_state;
+>       struct intel_cdclk_state *new_cdclk_state;
+> -     bool need_cdclk_calc =3D false;
+> +     bool need_cdclk_calc =3D display->cdclk.hw.sanitized;
+>       int ret;
+>
+>       ret =3D intel_cdclk_modeset_checks(state, &need_cdclk_calc);
+> @@ -3631,6 +3635,8 @@ int intel_cdclk_atomic_check(struct intel_atomic_st=
+ate *state)
+>               ret =3D intel_modeset_calc_cdclk(state);
+>               if (ret)
+>                       return ret;
+> +
+> +             display->cdclk.hw.sanitized =3D false;
+>       }
+>
+>       return 0;
+> diff --git a/drivers/gpu/drm/i915/display/intel_cdclk.h b/drivers/gpu/drm=
+/i915/display/intel_cdclk.h
+> index 1ff7d078b42c..bae2b7ea2da9 100644
+> --- a/drivers/gpu/drm/i915/display/intel_cdclk.h
+> +++ b/drivers/gpu/drm/i915/display/intel_cdclk.h
+> @@ -18,6 +18,7 @@ struct intel_display;
+>  struct intel_cdclk_config {
+>       unsigned int cdclk, vco, ref, bypass;
+>       u8 voltage_level;
+> +     bool sanitized;
+>       /* This field is only valid for Xe2LPD and above. */
+>       bool joined_mbus;
+>  };
+> --
+> 2.54.0
+>
 
---=20
-Best regards,
-Sebastian
-
+--
+Ville Syrj=E4l=E4
+Intel
