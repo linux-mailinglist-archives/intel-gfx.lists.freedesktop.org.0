@@ -2,56 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id yUsfF7vUO2qadwgAu9opvQ
+	id 63qTJJ7eO2rweQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 14:59:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 15:41:50 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E5EE46BE5B3
-	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 14:59:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9DD8A6BEBC7
+	for <lists+intel-gfx@lfdr.de>; Wed, 24 Jun 2026 15:41:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=TyVTDuvq;
+	dkim=pass header.d=intel.com header.s=Intel header.b=OVWlcFLP;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=kernel.org
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7F78B10E0AB;
-	Wed, 24 Jun 2026 12:59:37 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1A5D710EF38;
+	Wed, 24 Jun 2026 13:41:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AC58310E0AB
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 12:59:35 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 82F77429EE;
- Wed, 24 Jun 2026 12:59:35 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 8500E1F000E9;
- Wed, 24 Jun 2026 12:59:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782305975;
- bh=V1cmYLSXROW5IXWNTGx3/nUqf+/aKOiIIR3ymVREkxo=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=TyVTDuvqe512D15DGXpPqu0lhG4ucutzo1uWi8OvhK2EYovjwUoh5f29YR06CFlma
- sJg5bj5xGeXab8pHxQ+cGoeRH7AVknASKAwebj8Zy/YQjCTOj7SMJeR+O5ThqJIUga
- AWTy2QeJq0EXsi8BzPc8ms8LCNM7gaTBMMC1ppTi3AYE6YZmlDKLVCOegKghLIBdbg
- r+hd8as1Cn9Ne1Xwq52xgCa/umeAnd7/y788DJqrlI5PRnBDS9hiGgEYR8PmUt2hyf
- 9kqByNq/tU7WPtsX52sI2k9MSZkIYjPL4mxSMdO0RAlWdmgqngUgBf2vhWy9QC1NnF
- IGdpZWHQw7hPg==
-Date: Wed, 24 Jun 2026 14:59:30 +0200
-From: Andi Shyti <andi.shyti@kernel.org>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>, Martin Hodo <martin.hodo@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915: Return NULL on error in active_instance
-Message-ID: <ajvTjodx7LLj_BPO@zenone.zhora.eu>
-References: <20260624090940.74840-1-joonas.lahtinen@linux.intel.com>
- <178230031953.112641.4817434529385736057@jlahtine-mobl>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id AACE010EF38;
+ Wed, 24 Jun 2026 13:41:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782308506; x=1813844506;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UYzeCihKwsZTIJt7qUu/V5ZgXRyji+cIh9sSDnuivWg=;
+ b=OVWlcFLPWR4m+ImxVNPxZJOgsDcfQr7ZEa7GPrcN87hVlMaUigzLKV2K
+ aQnl6zYBFMGvk3Isa6rCKiOylL8mgedO8YQOG1bHPi+Fqxsb1p6BdKUgE
+ fsYWUbobjTNf20//x218iZm00BvM8WDkxNJfWiRgzsFEjqyq4TIvLmMd0
+ kfLKdos9gj4tmCgeHbRnC76u1Xguk7c7dMXdNP8EAcBgve5J1x4woHs+9
+ K5xlLAJQG7/3oNUCS45c4yzRm52UZqszOJtpy/Tr/AWKrEF0fxyFIzKY3
+ ul9i5w25LpcNV8Q/VydkgPxbdFSB32flp60+5jKPfF7ZaaVu/3ZqvtBMv A==;
+X-CSE-ConnectionGUID: IO5n5D05QXOoWp1RJA1PnQ==
+X-CSE-MsgGUID: cetbGABGS1uojPdkoCQNZA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11826"; a="100619608"
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="100619608"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 06:41:45 -0700
+X-CSE-ConnectionGUID: DUU7xX6vReSGiGuBw+JA6w==
+X-CSE-MsgGUID: i+kWJjACT+e7w5yfBYrvgw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,222,1774335600"; d="scan'208";a="249693218"
+Received: from amilburn-desk.amilburn-desk (HELO localhost) ([10.245.244.187])
+ by orviesa008-auth.jf.intel.com with
+ ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Jun 2026 06:41:43 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: Ville Syrjala <ville.syrjala@linux.intel.com>,
+ intel-gfx@lists.freedesktop.org
+Cc: intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org, Suraj
+ Kandpal <suraj.kandpal@intel.com>, Ankit Nautiyal
+ <ankit.k.nautiyal@intel.com>, Michel =?utf-8?Q?D=C3=A4nzer?=
+ <michel.daenzer@mailbox.org>
+Subject: Re: [PATCH v2 0/5] drm/i915: Work harder to enable VRR based
+ refresh rate changes on eDP
+In-Reply-To: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260622213602.7244-1-ville.syrjala@linux.intel.com>
+Date: Wed, 24 Jun 2026 16:41:41 +0300
+Message-ID: <04d7e819ccb7301a9484a15906e118306fd786a4@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <178230031953.112641.4817434529385736057@jlahtine-mobl>
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -67,54 +79,55 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:martin.hodo@intel.com,m:maarten.lankhorst@linux.intel.com,m:thomas.hellstrom@linux.intel.com,m:simona.vetter@ffwll.ch,m:stable@vger.kernel.org,s:lists@lfdr.de];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,zenone.zhora.eu:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,linux.intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E5EE46BE5B3
+X-Rspamd-Queue-Id: 9DD8A6BEBC7
 
-Hi Joonas,
+On Tue, 23 Jun 2026, Ville Syrjala <ville.syrjala@linux.intel.com> wrote:
+> Tweak the eDP fixed mode selection algorithm to allow
+> userspace to do refresh rate changes on VRR capable
+> eDP panels without full modesets.
 
-On Wed, Jun 24, 2026 at 02:25:19PM +0300, Joonas Lahtinen wrote:
-> Pushed to drm-intel-gt-next, thanks for the reviews.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
-please, next time:
+I think this is orthogonal to the concerns raised by Michel in the v1
+sub-thread at [1], and is not aimed blocking or being an alternative to
+min/max refresh rates.
 
-- Give people more time to review the patch. Only two hours
-  passed between posting it and pushing it (during lunch time,
-  BTW).
 
-- There were BAT failures. They were unrelated, but so far we
-  have generally held back patches until BAT was green, even for
-  the most obvious changes.
+BR,
+Jani.
 
-Thanks,
-Andi
+
+[1] https://lore.kernel.org/r/3d441831-71bc-49fd-823f-3af443e55b20@mailbox.org
+
+
+
+-- 
+Jani Nikula, Intel
