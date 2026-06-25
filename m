@@ -2,67 +2,72 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4buCO8lNPWol1AgAu9opvQ
+	id jZX0H9EORWp26AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 17:48:26 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:53 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7F1846C72B3
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 17:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 505EB6EDAD9
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:53 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=LWDXcJ+z;
+	dkim=pass header.d=google.com header.s=20251104 header.b=nPgGaDjQ;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=reject) header.from=google.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F27DC10F311;
-	Thu, 25 Jun 2026 15:48:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 72C9C10EFB9;
+	Wed,  1 Jul 2026 12:57:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8E0AE10E219;
- Thu, 25 Jun 2026 15:48:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782402500; x=1813938500;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=1+A6gPT4LQUsY2QnTfPNBJkWRgFjnYZMeyYX+1UYPNk=;
- b=LWDXcJ+zH+ZGMNgOmUOiKgzOkAHDM35/bFsuoLOrFa9OROAt2obIr4ZW
- 5uyB3Brl5ShcoLLUC/+Pne3+SMPl5nPEUQrQGnwt7Dvrp0Gh08Z6n/Tph
- 6F/qXqveor3a0fRRYx/3Ov2ZWwmpZTYi5W5Qj6+eB2ZmxTMMm3GfjW7LC
- C2ngSYUd6kW9vaNMT19O+giUvV8xWYAoIWUftaqiptW1i8ch89grGbWoq
- sJhqCt/v20yvl5xuFpK9mIRx2cMGUELJUA9TRxhB+LvKqymJ06XyfRk+A
- 9vmpdcVMlGsA3VmLIjWu7Nq+MsCYMaemVVRwCzfb4eGyaYoXuOU4xmk3B A==;
-X-CSE-ConnectionGUID: TaTcoHFWR0+A5Xyn0QyxUw==
-X-CSE-MsgGUID: hrhsxAbuTKiTvefJk4k73A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="94672790"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="94672790"
-Received: from orviesa010.jf.intel.com ([10.64.159.150])
- by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 08:48:19 -0700
-X-CSE-ConnectionGUID: bnTDR+9oSp2v6LlaA//k7g==
-X-CSE-MsgGUID: bsv1XPUrSYWzkAVo2KV/4g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="249751034"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 08:48:16 -0700
-Date: Thu, 25 Jun 2026 17:48:14 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Krzysztof Karas <krzysztof.karas@intel.com>
-cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org, 
- iommu@lists.linux.dev, Andi Shyti <andi.shyti@linux.intel.com>, 
- Robin Murphy <robin.murphy@arm.com>, Joerg Roedel <joro@8bytes.org>, 
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>, 
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>, 
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-Subject: Re: [PATCH 1/3] drivers/iommu: Unroll unsuccessful mapping
-In-Reply-To: <20260625134342.1102921-2-krzysztof.karas@intel.com>
-Message-ID: <5016dea0-5710-b0f9-754b-36d0c7325d46@intel.com>
-References: <20260625134342.1102921-1-krzysztof.karas@intel.com>
- <20260625134342.1102921-2-krzysztof.karas@intel.com>
-MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-886975909-1782402498=:605841"
+Received: from mail-qv1-f73.google.com (mail-qv1-f73.google.com
+ [209.85.219.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1FC9710E21D
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 16:11:20 +0000 (UTC)
+Received: by mail-qv1-f73.google.com with SMTP id
+ 6a1803df08f44-8dd6a429cb6so19686d6.2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 09:11:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=google.com; s=20251104; t=1782403879; x=1783008679;
+ darn=lists.freedesktop.org; 
+ h=cc:to:from:subject:message-id:mime-version:date:from:to:cc:subject
+ :date:message-id:reply-to;
+ bh=fN6nJqx26VtLTAWd5mMITPKoI2aS3irfqPoBFs2k1TE=;
+ b=nPgGaDjQEEzQ2OqobMCqC9WGZbcavauEWyRUPrmM8sY/uzvbf1jmbuj1R+Ntd8UMOY
+ w4M0JBOUDgspAO27h4vp9Uq1aOChqzxpAjbsh6pc401KwbEYOed4F9SG2Jdbk4ibTNaC
+ +nOzyIfBjXZzg5Cs3RqOKg05ZOdI5utmplw7+6xs95bRWS/XvWFeLNJ1MsXkaGv5XOFP
+ i2YY9qnT7gWNgjK58uuT8ZSZbZpDm7p4uCPFyh3FCjVhagdCcoaCxWDoE2byUO3Ve6eB
+ dqP46cKjNKzuTlq3Yl2Cem6MRMjrPIdHtt9El8ptwjyKNHrmHboXUGloNH0uBukstm+I
+ I9fA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=1e100.net; s=20251104; t=1782403879; x=1783008679;
+ h=cc:to:from:subject:message-id:mime-version:date:x-gm-message-state
+ :from:to:cc:subject:date:message-id:reply-to;
+ bh=fN6nJqx26VtLTAWd5mMITPKoI2aS3irfqPoBFs2k1TE=;
+ b=pD6Yi8zkKc07bIlPVA6TeF0/ElTh6I7qN20bwWsi/cBwEx3+7TZ+N97fnu2tAYlnOE
+ 5fu0btLJuLJBGMCXBlP4xM5BeKZs4iG4aGmiJ5t/6dNlsernVqITs7Y4rzwnc48M4trQ
+ a5IAtjQmLbnfaYbzvgsqis5O+eK1dt4vyahVQS+Zp7/756AVkkZYzGfmFkOVrX5X2Xfx
+ jc2Tfh+B3s6UE6lR66VOUcFijy3zrF76D098kVhSwHZEiISvF2n8ZmBAhkctg+z0dKT0
+ uj1+PVaUa5POuJ0JvwP0jB/zMMnwyY2V8cRyunIGBjrZS5Nv2Ke2pnqkl9x+aEC41dBI
+ KUpg==
+X-Gm-Message-State: AOJu0YyWst1wa+DLKlyIzwKVC43Hd8mwS9M2w1TpIawJ3mX6lthNKFLa
+ B4V8fVQuOwfLOy37Ue/Fx4u+BPCj66TDcgNro9s7mOrPB9M28QvYeuQuItFhPYni2y4uWsez5rg
+ 319HpgECdob0Go5Be6DPIcRBD5CFGiHS3rKVOJ3U1b+ukfcoMsSUdxosAw9+TBAwsFvnW9/wTbm
+ enU7KyPmbKMI+0gtsc7KGOpvZdu6Hf6JdRdfxchdRPVIUARIKrKNNo2FOPhnY=
+X-Received: from qvoh2.prod.google.com ([2002:a0c:f8c2:0:b0:8a2:cf66:d55a])
+ (user=gildekel job=prod-delivery.src-stubby-dispatcher) by
+ 2002:a05:6214:f2d:b0:8de:1d32:bb5d with SMTP id
+ 6a1803df08f44-8e6d5e9e66cmr49004816d6.3.1782403877055; 
+ Thu, 25 Jun 2026 09:11:17 -0700 (PDT)
+Date: Thu, 25 Jun 2026 12:10:25 -0400
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.55.0.rc0.799.gd6f94ed593-goog
+Message-ID: <20260625161104.2893517-1-gildekel@google.com>
+Subject: [PATCH 0/2] drm/i915/display: Enable HDR over DP MST
+From: Gil Dekel <gildekel@google.com>
+To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
+Cc: jani.nikula@intel.com, imre.deak@intel.com, khaled.almahallawy@intel.com, 
+ navaremanasi@google.com, Gil Dekel <gildekel@google.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -78,116 +83,62 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [1.19 / 15.00];
+	DATE_IN_PAST(1.00)[140];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
+	MV_CASE(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
+	MAILLIST(-0.20)[mailman];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	MIME_TRACE(0.00)[0:+,1:+];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_COUNT_THREE(0.00)[3];
+	RCVD_TLS_LAST(0.00)[];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[10];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[gildekel@google.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[google.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[7];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7F1846C72B3
+X-Rspamd-Queue-Id: 505EB6EDAD9
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+Currently, the Intel display driver does not support HDR over DP MST
+connections. This series enables this functionality.
 
---8323329-886975909-1782402498=:605841
-Content-Type: text/plain; format=flowed; charset=ISO-8859-2
-Content-Transfer-Encoding: 8BIT
+To achieve this:
+1. We refactor colorimetry capability queries to query and cache the value
+   on a per-connector basis (for both SST and MST downstream sinks)
+   instead of checking the root port's DPCD register directly (which returns
+   false for MST hubs).
+2. We update the MST stream configuration to compute the required VSC and
+   HDR metadata SDPs.
+3. We set the transcoder's Video DIP registers on stream enable and during
+   fastsets (update_pipe) to propagate HDR metadata changes without forcing
+   a full modeset.
+4. We expose the max_bpc, HDR metadata, and DP Colorspace properties on
+   MST connectors.
 
-Hi Krzysztof,
+Gil Dekel (2):
+  drm/i915/display: Cache DP colorimetry support per-connector
+  drm/i915/display/mst: Enable HDR over DP MST
 
-I'm wondering about changing the prefix of patch's title into
-iommu/dma:, but there are commits changing dma-iommu.c having other
-prefixes as well; not sure if it matters.
+ .../drm/i915/display/intel_display_types.h    |  1 +
+ drivers/gpu/drm/i915/display/intel_dp.c       | 27 +++++++----
+ drivers/gpu/drm/i915/display/intel_dp.h       |  8 ++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c   | 47 +++++++++++++++++--
+ 4 files changed, 71 insertions(+), 12 deletions(-)
 
-On Thu, 25 Jun 2026, Krzysztof Karas wrote:
-> Currently, if iommu maps fewer bytes than requested (iova_len),
-> it proceeds to free the iova, but never tries to unmap already
-> touched bytes. This behavior may cause memory hogging down the
-> line.
->
-> Correct that by unmapping before exiting.
->
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
-> drivers/iommu/dma-iommu.c | 10 ++++++++--
-> 1 file changed, 8 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-> index 381b60d9e7ce..c4c058ba07ef 100644
-> --- a/drivers/iommu/dma-iommu.c
-> +++ b/drivers/iommu/dma-iommu.c
-> @@ -1515,8 +1515,14 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
-> 	 * implementation - it knows better than we do.
-> 	 */
-> 	ret = iommu_map_sg(domain, iova, sg, nents, prot, GFP_ATOMIC);
-> -	if (ret < 0 || ret < iova_len)
-> +	if (ret < 0 || ret < iova_len) {
-> +		if (ret > 0) {
-> +			/* Unmap partially mapped bytes before freeing IOVA */
-> +			if (iommu_unmap(domain, iova, ret) != ret)
-> +				ret = -EIO;
-> +		}
-> 		goto out_free_iova;
-> +	}
+-- 
+Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
 
-Also thinking whether not to split this into two separate if's,
-something like:
-
-ret = iommu_map_sg(domain, iova, sg, nents, prot, GFP_ATOMIC);
-if (ret < 0)
- 	goto out_free_iova;
-
-if (ret < iova_len) {
- 	if (ret > 0) {
- 		/* Unmap partially mapped bytes before freeing IOVA */
- 		if (iommu_unmap(domain, iova, ret) != ret)
- 			ret = -EIO;
- 	}
-
- 	goto out_free_iova;
-}
-
-But that's probably just a matter of opinion. Whether it applies or not:
-
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
-
-BR,
-Micha³
-
->
-> 	return __finalise_sg(dev, sg, nents, iova);
->
-> @@ -1525,7 +1531,7 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
-> out_restore_sg:
-> 	__invalidate_sg(sg, nents);
-> out:
-> -	if (ret != -ENOMEM && ret != -EREMOTEIO)
-> +	if (ret != -ENOMEM && ret != -EREMOTEIO && ret != -EIO)
-> 		return -EINVAL;
-> 	return ret;
-> }
-> -- 
-> 2.34.1
->
->
---8323329-886975909-1782402498=:605841--
