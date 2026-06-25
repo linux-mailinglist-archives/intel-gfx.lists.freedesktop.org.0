@@ -2,38 +2,53 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id fCUCOcQSPWqYwggAu9opvQ
+	id t/y2GZwdPWrSxAgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 13:36:36 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 14:22:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4F0A26C52AD
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 13:36:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id B4FCF6C583B
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 14:22:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
-	dmarc=none;
+	dmarc=fail reason="SPF not aligned (relaxed), No valid DKIM" header.from=intel.com (policy=none);
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E14D110F25E;
-	Thu, 25 Jun 2026 11:36:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF68810E12C;
+	Thu, 25 Jun 2026 12:22:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9D59D10F25E;
- Thu, 25 Jun 2026 11:36:33 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1312509502289138710=="
+X-Greylist: delayed 1200 seconds by postgrey-1.36 at gabe;
+ Thu, 25 Jun 2026 12:22:48 UTC
+Received: from 7.mo550.mail-out.ovh.net (7.mo550.mail-out.ovh.net
+ [87.98.158.110])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4DA7710E12C
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 12:22:48 +0000 (UTC)
+Received: from director9.ghost.mail-out.ovh.net (unknown [10.110.54.23])
+ by mo550.mail-out.ovh.net (Postfix) with ESMTP id 4gmH6M4RWzz60C2
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 11:44:59 +0000 (UTC)
+Received: from ghost-submission-7d8d68f679-xfpdk (unknown [10.111.182.62])
+ by director9.ghost.mail-out.ovh.net (Postfix) with ESMTPS id D12D680EFF;
+ Thu, 25 Jun 2026 11:44:58 +0000 (UTC)
+Received: from etezian.org ([37.59.142.102])
+ by ghost-submission-7d8d68f679-xfpdk with ESMTPSA
+ id vF+/G7oUPWp1RSYAtJDhiQ
+ (envelope-from <andi@etezian.org>); Thu, 25 Jun 2026 11:44:58 +0000
+X-OVh-ClientIp: 178.82.31.9
+From: Andi Shyti <andi.shyti@linux.intel.com>
+To: dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>, Andi Shyti <andi.shyti@kernel.org>
+Subject: [PATCH] drm/i915/gt: Return bool values from a boolean helper
+Date: Thu, 25 Jun 2026 13:44:42 +0200
+Message-ID: <20260625114442.2912230-1-andi.shyti@linux.intel.com>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/hdcp=3A_require_?=
- =?utf-8?q?monotonically_increasing_seq=5Fnum=5Fv?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 25 Jun 2026 11:36:33 -0000
-Message-ID: <178238739363.117194.7201174584019689660@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260625104407.1025614-1-jani.nikula@intel.com>
-In-Reply-To: <20260625104407.1025614-1-jani.nikula@intel.com>
+Content-Transfer-Encoding: 8bit
+x-ovh-tracer-id: 1493787704206267421
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: 0
+X-VR-SPAMCAUSE: dmFkZTGVaW+6PV9gVfPh92WHYd0KDcfoF5+9nwYDvlaBN3PWZTxNIEUaF2megbst3Y0VmJnlJPFzJmph4fZPnGmTcEfy2DhY9WJK3sgOl62ZKMQEgeCv9CVyjgDjYNSGPW6n5Ug02OFt7eKdfg7L02GfTe0xKZHHQ9quidsSyAKeQm94KnTwaZzQJc0E1V9KJEUD0TIfxX97Fri5cUlWpkAeGf/Zs14NTJBv3m5XH/F4cjF2BF2vCYkZS51o7S6Pu8LpFFoay2d7QoQeHCy4n3nav4Cf7UWwMZHr/8HfUew4b24jU/fgi/lvx457SLslKva5KMKH3o9YUSM4+HCWvwQeEUbXNQOjOfgzDaTlBwDZDF+Ag06oiH9y59iDbXMkvZQT0D5F7DPH/uALK/VO/LUiTKerpZnEw4vnkyoT+NUbDit/TPj8WgkgFTHrPrUlA4m3f+rBP6RbhO+CrA4ioUwibGYbmSvQVTHXmBpWr4rPNnrpgAJu/a5h2qV0RPh026L5dU9LPMy44wBrCif4Ie1Ge7TUDiUmvjY4G6etQ48pVPgRyf36s0QI5R4jDoP59Zl4qG8IxQgx3cAwY3IaRVeOiM5RIUBBFLPnrHD6wenKL1uSAtXr2uguDvsd8t/mn/4j77mFlGUdzWSlY0P4idomTpBxpi1JyySu3k8hkeJZ/JRVYQ
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,202 +61,69 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Action: add header
-X-Spamd-Result: default: False [8.89 / 15.00];
-	URL_MULTIPLE_AT_SIGNS(9.00)[3];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [0.99 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed), No valid DKIM,none];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	GREYLIST(0.00)[pass,meta];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TO_DN_ALL(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:dri-devel@lists.freedesktop.org,m:andi.shyti@linux.intel.com,m:andi.shyti@kernel.org,s:lists@lfdr.de];
+	FORGED_SENDER(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,6beec6c84f66:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,linux.intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:email,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4F0A26C52AD
-X-Spam: Yes
+X-Rspamd-Queue-Id: B4FCF6C583B
 
---===============1312509502289138710==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+intel_has_gpu_reset() returns logically correct values by
+returning a function pointer when GPU reset is supported and
+NULL otherwise. However, as a boolean helper, it is more
+appropriate to return explicit true or false values.
 
-== Series Details ==
+Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+---
+ drivers/gpu/drm/i915/gt/intel_reset.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Series: drm/i915/hdcp: require monotonically increasing seq_num_v
-URL   : https://patchwork.freedesktop.org/series/169186/
-State : success
+diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+index b2cf672564dd..a3f198646e1d 100644
+--- a/drivers/gpu/drm/i915/gt/intel_reset.c
++++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+@@ -797,9 +797,9 @@ static int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask
+ bool intel_has_gpu_reset(const struct intel_gt *gt)
+ {
+ 	if (!gt->i915->params.reset)
+-		return NULL;
++		return false;
+ 
+-	return intel_get_gpu_reset(gt);
++	return !!intel_get_gpu_reset(gt);
+ }
+ 
+ bool intel_has_reset_engine(const struct intel_gt *gt)
+-- 
+2.53.0
 
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18719 -> Patchwork_169186v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_169186v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-kbl-7567u:       [PASS][1] -> [DMESG-WARN][2] ([i915#13735]) +79 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-7567u:       [PASS][3] -> [DMESG-WARN][4] ([i915#13735] / [i915#180])
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@kms_busy@basic@flip.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@kms_busy@basic@flip.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [PASS][5] -> [DMESG-WARN][6] ([i915#13735] / [i915#15673] / [i915#180]) +51 other tests dmesg-warn
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-#### Warnings ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-kbl-7567u:       [SKIP][7] -> [DMESG-WARN][8] ([i915#13735] / [i915#15673] / [i915#180])
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@kms_hdmi_inject@inject-audio.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@kms_hdmi_inject@inject-audio.html
-
-  
-  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
-  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18719 -> Patchwork_169186v1
-
-  CI-20190529: 20190529
-  CI_DRM_18719: adbc617250e16fb2db4a4c777b89440927cb8973 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_169186v1: adbc617250e16fb2db4a4c777b89440927cb8973 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/index.html
-
---===============1312509502289138710==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/hdcp: require monotonically increasing seq_num_v</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169186/">https://patchwork.freedesktop.org/series/169186/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18719 -&gt; Patchwork_169186v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_169186v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@sanitycheck:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) +79 other tests dmesg-warn</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@kms_busy@basic@flip.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>)</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) +51 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Warnings</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18719/fi-kbl-7567u/igt@kms_hdmi_inject@inject-audio.html">SKIP</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169186v1/fi-kbl-7567u/igt@kms_hdmi_inject@inject-audio.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>)</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18719 -&gt; Patchwork_169186v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18719: adbc617250e16fb2db4a4c777b89440927cb8973 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8985: d5fe8732b8547454c38fdd220b55f6f0cc841a3b @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_169186v1: adbc617250e16fb2db4a4c777b89440927cb8973 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1312509502289138710==--
