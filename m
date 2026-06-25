@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id FS3oDX+sPWrp5QgAu9opvQ
+	id Q+p3DK2sPWrv5QgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 00:32:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 00:33:17 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 434EB6C8FB1
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 00:32:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC1096C8FB5
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 00:33:16 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=IX77Gk+A;
+	dkim=pass header.d=intel.com header.s=Intel header.b=fUvjKdPo;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DC76610F3CA;
-	Thu, 25 Jun 2026 22:32:27 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 58A3C10F3B1;
+	Thu, 25 Jun 2026 22:33:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9EFE910F3C6;
- Thu, 25 Jun 2026 22:32:26 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 31EEB10F3A8;
+ Thu, 25 Jun 2026 22:33:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782426747; x=1813962747;
+ t=1782426794; x=1813962794;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version;
- bh=RoZQ7yo0f6ql9S534EkukX/USan0WbtA48/jgUjKhD4=;
- b=IX77Gk+AeZKFE2uBUa/Vtcm/IR9UQphYZVGP/EMQwhDNjwOa7n5ffztY
- RUG5THLdsEETR/NqEfM8yeYjBpTMQUD7SmElLWi2rH49YB/7aYwpcb9ol
- NSU168SOhWzU+7W6exeIIxpSLqifhPrqKoFZYKmLGMdWlrN+VeW4UPK02
- H1dEFh+wM2uisL38g0m1Z7ugaeIx9tSVBpOzJHc4FHV/h5ZXJRofq+fCa
- japBovYPKsebyDuoHQkEyAg1DZDWMB7QIaS8lxhTBKPCPn7RBkoaIYSsK
- NFVfi6MWguWRrnTShHopI8V4bn941u293EHGXaPyLBKtsiKCjQC9MnbcK w==;
-X-CSE-ConnectionGUID: RK14J6XsRLSuIpgj3zX7VA==
-X-CSE-MsgGUID: G/FlLfPXTGil1qg+3Ls0mQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="100774422"
-X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="100774422"
+ bh=AeaIhwnD398Apnv0eJMfIBjoZh+eXTfL0z0VAnYJWZg=;
+ b=fUvjKdPog+coPnAz6pVpIRzLVB6xuUkJ+KyOP1mjaDYaKR8WXF3ItmCQ
+ ifheLthWkhvtA/mjz0nvHIMQpRUyGjRHOPHXdMPzhNABcF/S5sMOUF4Zq
+ WiWxmm3W5Q0KfB6ENS8FD4RRGx+HhMhXmH3mcmOmbPin9WHjSYIBeqDLp
+ 5iy/wLWhBVi9IEH9eMqloyIxGvHmgccICXw2Ykbn/wz1Aq4nu9s3J9/oW
+ rTbLsNGfqTMMZ5LJVEtMq7aEv4NeIl/AUcYoavytmxEWPvzNfJyAtUoe4
+ 7OyawO6NPDbKjF/gRCDJL0PXbJdErgM0g7vyC+ZTBnCsXHSNFMy56f/R9 g==;
+X-CSE-ConnectionGUID: rWsXLUqGQ9iTc6100/D/cQ==
+X-CSE-MsgGUID: m0KKmDSWRSye9aoNeWM7+w==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="100774463"
+X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="100774463"
 Received: from fmviesa004.fm.intel.com ([10.60.135.144])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 15:32:26 -0700
-X-CSE-ConnectionGUID: rGvusdQnSeOZmFzkbUwHwA==
-X-CSE-MsgGUID: 4yP4tTnNT6+o2Gkpfw1/ag==
+ 25 Jun 2026 15:33:14 -0700
+X-CSE-ConnectionGUID: 4rLCOyZBTQqVola7ZoDDug==
+X-CSE-MsgGUID: 0odtAQuBRk+Gv5XLfGpJ6A==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="253012046"
+X-IronPort-AV: E=Sophos;i="6.24,225,1774335600"; d="scan'208";a="253012612"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
  by fmviesa004.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 15:32:25 -0700
-Date: Fri, 26 Jun 2026 00:32:23 +0200 (CEST)
+ 25 Jun 2026 15:33:13 -0700
+Date: Fri, 26 Jun 2026 00:33:11 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Jani Nikula <jani.nikula@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 1/6] drm/i915: move intel_display_device_probe() call a
- level higher
-In-Reply-To: <c97a8790a5cb1f6b10061286adad8148972c5b3b.1781549229.git.jani.nikula@intel.com>
-Message-ID: <4fa75253-f400-a127-11e4-e0733c7775ec@intel.com>
+Subject: Re: [PATCH 2/6] drm/i915: remove superfluous checks for
+ pdev->msi_enabled
+In-Reply-To: <71f61eee227178b61af9c1211be8545828a3f3ef.1781549229.git.jani.nikula@intel.com>
+Message-ID: <490ee1c0-83cd-dfab-631a-d0d943ba60b5@intel.com>
 References: <cover.1781549229.git.jani.nikula@intel.com>
- <c97a8790a5cb1f6b10061286adad8148972c5b3b.1781549229.git.jani.nikula@intel.com>
+ <71f61eee227178b61af9c1211be8545828a3f3ef.1781549229.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-344787606-1782426746=:605841"
+Content-Type: multipart/mixed; boundary="8323329-897563697-1782426793=:605841"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -99,26 +99,20 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 434EB6C8FB1
+X-Rspamd-Queue-Id: BC1096C8FB5
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-344787606-1782426746=:605841
+--8323329-897563697-1782426793=:605841
 Content-Type: text/plain; charset=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
 
 On Mon, 15 Jun 2026, Jani Nikula wrote:
-> Having display probe be called from i915_driver_create() is slightly
-
-to my ear it sounds better with s/be/been/, but am very unsure.
-
-> misleading, and an artefact from the past. Move the
-> intel_display_device_probe() call a level higher.
->
-> Use the shared PCI disable error path while at it.
+> pci_disable_msi() checks for pdev->msi_enabled internally. There's no
+> need to peek at pdev internals in i915. Remove them.
 >
 > Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
@@ -128,57 +122,35 @@ BR,
 Micha³
 
 > ---
-> drivers/gpu/drm/i915/i915_driver.c | 19 +++++++++----------
-> 1 file changed, 9 insertions(+), 10 deletions(-)
+> drivers/gpu/drm/i915/i915_driver.c | 6 ++----
+> 1 file changed, 2 insertions(+), 4 deletions(-)
 >
 > diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 0520cd124686..a69eb3a84005 100644
+> index a69eb3a84005..d1d3f039483f 100644
 > --- a/drivers/gpu/drm/i915/i915_driver.c
 > +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -802,7 +802,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
-> 	const struct intel_device_info *match_info =
-> 		(struct intel_device_info *)ent->driver_data;
-> 	struct drm_i915_private *i915;
-> -	struct intel_display *display;
+> @@ -583,8 +583,7 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
 >
-> 	i915 = devm_drm_dev_alloc(&pdev->dev, &i915_drm_driver,
-> 				  struct drm_i915_private, drm);
-> @@ -817,12 +816,6 @@ i915_driver_create(struct pci_dev *pdev, const struct pci_device_id *ent)
-> 	/* Set up device info and initial runtime info. */
-> 	intel_device_info_driver_create(i915, pdev->device, match_info);
+> err_opregion:
+> 	intel_opregion_cleanup(display);
+> -	if (pdev->msi_enabled)
+> -		pci_disable_msi(pdev);
+> +	pci_disable_msi(pdev);
+> err_mem_regions:
+> 	intel_memory_regions_driver_release(dev_priv);
+> err_ggtt:
+> @@ -610,8 +609,7 @@ static void i915_driver_hw_remove(struct drm_i915_private *dev_priv)
 >
-> -	display = intel_display_device_probe(pdev, &parent);
-> -	if (IS_ERR(display))
-> -		return ERR_CAST(display);
-> -
-> -	i915->display = display;
-> -
-> 	return i915;
+> 	intel_opregion_cleanup(display);
+>
+> -	if (pdev->msi_enabled)
+> -		pci_disable_msi(pdev);
+> +	pci_disable_msi(pdev);
 > }
 >
-> @@ -851,11 +844,17 @@ int i915_driver_probe(struct pci_dev *pdev, const struct pci_device_id *ent)
->
-> 	i915 = i915_driver_create(pdev, ent);
-> 	if (IS_ERR(i915)) {
-> -		pci_disable_device(pdev);
-> -		return PTR_ERR(i915);
-> +		ret = PTR_ERR(i915);
-> +		goto out_pci_disable;
-> 	}
->
-> -	display = i915->display;
-> +	display = intel_display_device_probe(pdev, &parent);
-> +	if (IS_ERR(display)) {
-> +		ret = PTR_ERR(display);
-> +		goto out_pci_disable;
-> +	}
-> +
-> +	i915->display = display;
->
-> 	ret = i915_driver_early_probe(i915);
-> 	if (ret < 0)
+> /**
 > -- 
 > 2.47.3
 >
 >
---8323329-344787606-1782426746=:605841--
+--8323329-897563697-1782426793=:605841--
