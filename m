@@ -2,58 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id iiBoOPLrPGrGuQgAu9opvQ
+	id u5kzFdfwPGrvuggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 10:50:58 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 11:11:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 428986C3F71
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 10:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BD7706C41BB
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 11:11:50 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ElZBykRK;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ktKZ9q29;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CE15C10F1B9;
-	Thu, 25 Jun 2026 08:50:56 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 280A810E144;
+	Thu, 25 Jun 2026 09:11:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0C4D310F1B9
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 08:50:56 +0000 (UTC)
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 50E8310E144
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 09:11:47 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by tor.source.kernel.org (Postfix) with ESMTP id 47D1B60217;
- Thu, 25 Jun 2026 08:50:55 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 343A21F000E9;
- Thu, 25 Jun 2026 08:50:53 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id 15D7E414FE;
+ Thu, 25 Jun 2026 09:11:47 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5FFEE1F000E9;
+ Thu, 25 Jun 2026 09:11:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782377455;
- bh=94j9tcH3gHmgqgGGvo6s8vTq5w3oHDWpmmtffj7Lr/0=;
+ s=k20260515; t=1782378707;
+ bh=V34tprc/VvAXvQiecTPoKtIGl8tAZb+hGLf+GaiXG3c=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=ElZBykRKpnvAKp8ZpTdCQ5/E8HvExus66+R6Tx1kILNRrlqkzWC7m0Yul3nArpEAD
- Q/1HB8S2T2juGjR53x0A/0VtMbZ63cDvKch3NMj+PALadhSfCAXyA3Df5Op4oAt/jI
- 3Jkrc9BEBd6+edUqKT8UHd8TuEFmOf+Y+i6h7bs0MDPI22AveLGmK8b+tr31CUiyFP
- vQDpBRxltp9BW5DLMC6pRP+wEs3oGoGWhTSf7UW96I0xBL3hINlLN9zeo6n/sVFxnG
- eMJJh8Z+JOTRvqe7PvBg8ow0WoZaZVboKdNZjos39hG8Mnk059SgZ2t0878rRk0BSF
- LrWU5s1+rGyIA==
-Date: Thu, 25 Jun 2026 10:50:50 +0200
+ b=ktKZ9q29C7BbnoedYcHSIs+hDD7w81wGoTjsM0rUoYGlrCOA7vV/aGLnuYPiJ8+4h
+ EUSQpNBZsOk2VHhyWl93hyMhLwTIAYQZeqsBjkhdIL8jFImYtrF/3b6DU/R5p6fmPQ
+ 4ht4sBf2CdxwWCNECmvQE9gbIauzEd5i/fs1kC4BIOr1guZVFgMbOPIsl/t3PdPzHy
+ gvfPd8/xSsCYo6o0P0v7vzNU6UhN90BDx5lAMVK70a+3Esn4GazEADb6D4238ouHa6
+ 2rC/2fqVkLg2a8xXNsZiVy3bRZd7mWXPYLv05/if18qLlrzBKR5BbLid3+kM5YYeHM
+ 9V8h4aEv1oxGQ==
+Date: Thu, 25 Jun 2026 11:11:44 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>, Martin Hodo <martin.hodo@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Thomas =?utf-8?Q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, stable@vger.kernel.org
-Subject: Re: [PATCH] drm/i915: Return NULL on error in active_instanceg
-Message-ID: <ajznzdwvxSv2YNHp@zenone.zhora.eu>
-References: <20260624090940.74840-1-joonas.lahtinen@linux.intel.com>
- <178230031953.112641.4817434529385736057@jlahtine-mobl>
- <ajvTjodx7LLj_BPO@zenone.zhora.eu>
- <178236741262.19845.6184407491878204182@jlahtine-mobl>
+To: Jia Yao <jia.yao@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, 
+ Shuicheng Lin <shuicheng.lin@intel.com>, Matt Roper <matthew.d.roper@intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Maciej Plewka <maciej.plewka@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+Subject: Re: [PATCH v7] drm/i915/dg2: Add per-context control for
+ Wa_22013059131
+Message-ID: <ajzwt0GjkgvTZZNJ@zenone.zhora.eu>
+References: <20260623221521.1183124-1-jia.yao@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <178236741262.19845.6184407491878204182@jlahtine-mobl>
+In-Reply-To: <20260623221521.1183124-1-jia.yao@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,7 +78,7 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	HAS_LIST_UNSUB(-0.01)[];
 	FROM_HAS_DN(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:joonas.lahtinen@linux.intel.com,m:martin.hodo@intel.com,m:maarten.lankhorst@linux.intel.com,m:thomas.hellstrom@linux.intel.com,m:simona.vetter@ffwll.ch,m:stable@vger.kernel.org,s:lists@lfdr.de];
+	FORGED_RECIPIENTS(0.00)[m:jia.yao@intel.com,m:shuicheng.lin@intel.com,m:matthew.d.roper@intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:maciej.plewka@intel.com,m:andi.shyti@linux.intel.com,s:lists@lfdr.de];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
@@ -94,92 +93,56 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email,zenone.zhora.eu:mid,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 428986C3F71
+X-Rspamd-Queue-Id: BD7706C41BB
 
-Hi Joonas,
+Hi Jia,
 
-On Thu, Jun 25, 2026 at 09:03:32AM +0300, Joonas Lahtinen wrote:
-> Quoting Andi Shyti (2026-06-24 15:59:30)
-> > On Wed, Jun 24, 2026 at 02:25:19PM +0300, Joonas Lahtinen wrote:
-> > > Pushed to drm-intel-gt-next, thanks for the reviews.
-> > 
-> > please, next time:
-> > 
-> > - Give people more time to review the patch. Only two hours
-> >   passed between posting it and pushing it
+On Tue, Jun 23, 2026 at 10:15:21PM +0000, Jia Yao wrote:
+> Wa_22013059131 sets FORCE_1_SUB_MESSAGE_PER_FRAGMENT in LSC_CHICKEN_BIT_0
+> at engine init, but this is known to cause GPU hangs in certain workloads.
+> Add I915_CONTEXT_PARAM_WA_22013059131 so userspace that handles the
+> workaround itself (e.g. by limiting SLM size) can set it to 1 to let the
+> kernel know bit 15 programming is not needed for that context.
 > 
-> And why exactly is that a problem? I got the review from the original
-> patch author and a yet another person on top while it's a very
-> uncontroversial and trivial patch. Two reviewers per patch is already
-> quite a high bar to clear if you look at git history.
+> LSC_CHICKEN_BIT_0 is not context-saved by hardware, so the kernel restores
+> the correct value on every context switch via the indirect context
+> batchbuffer to avoid leaking state between contexts. The old unconditional
+> application of Wa22013059131 in intel_workarounds.c is removed.
 > 
-> > (during lunch time, BTW).
+> v7:
+> - Reject ioctl with -ENODEV on non-DG2-G11 platforms
 > 
-> Sorry, I did not know there is a universally agreed 2 hour lunch window
-> in UTC timezone that I should follow. I've missed that memo.
-
-It's not a matter of how many reviewers there are or how
-controversial a patch may be. A patch needs to stay on the list
-long enough for the whole community to have a chance to review
-it. Give it one or two days.
-
-Even if you and the other reviewers don't see anything wrong,
-someone else might. As submitters and maintainers, we need to
-give people a reasonable amount of time to look at every patch.
-Two hours, at any time of the day, are definitely not enough.
-
-We often complain when people send new revisions too early for
-exactly the same reason.
-
-> > - There were BAT failures. They were unrelated, but so far we
-> >   have generally held back patches until BAT was green, even for
-> >   the most obvious changes.
+> v6:
+> - Remove excessive blank lines
 > 
-> Strong disagree here. That'd have caused the patch to miss -next-fixes
-> PR just due to random noise of CI.
-
-We shouldn't care. The rules are the same for everyone, including
-maintainers. Very often I've been told to wait until the next
-cycle and very often I've asked others to do the same.
-
-Besides, it's unfair to keep a patch on the list for only two
-hours just to avoid missing the current cycle, while everyone
-else is expected to wait.
-
-> If there was a reasonable doubt about the impact of the patch on the
-> failure, that'd of course be different, but here there was absolutely
-> none in this case.
+> v5:
+> - Remove fix and stable
 > 
-> As per patchwork automated mail reply:
+> v4:
+> - Add a link of the userspace using this API
 > 
-> > If you think the reported changes have nothing to do with the changes
-> > introduced in Patchwork_169089v1, please notify your bug team
+> v3:
+> - Kernel-internal context will not change workaround settings
+> 
+> Bspec: 54833
+> Link: https://github.com/intel/compute-runtime/pull/919
+> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Maciej Plewka <maciej.plewka@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Jia Yao <jia.yao@intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
 
-The bug team is a different matter. Here we're talking about the
-review process.
+Reviewed-by: Andi Shyti <andi.shyti@linux.intel.com>
 
-> That's exactly what was done here. That's a fair ask, but asking for
-> maintainers not to merge any code because of false positives is simply
-> not.
-
-False positive or not, controversial or not, easy or difficult,
-patches have *always* been blocked when BAT was red. The shard
-tests don't even start if BAT is red.
-
-Otherwise, we might as well stop running automatic tests for
-patches considered "non-controversial" and save CI resources.
-
+Thanks,
 Andi
-
-> Regards, Joonas
-> 
-> > 
-> > Thanks,
-> > Andi
