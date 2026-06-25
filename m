@@ -2,68 +2,56 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OCU0NZY5PWrtzQgAu9opvQ
+	id eK5VFT47PWq8zggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 16:22:14 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 16:29:18 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 594236C6934
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 16:22:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 21BC66C6A35
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 16:29:18 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=X6wPTSbq;
+	dkim=fail ("headers rsa verify failed") header.d=arm.com header.s=foss header.b=MnWZqGEn;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=arm.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id E857910F2E7;
-	Thu, 25 Jun 2026 14:22:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 95BAB10F2E3;
+	Thu, 25 Jun 2026 14:29:15 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B4A6E10F2DF;
- Thu, 25 Jun 2026 14:22:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782397331; x=1813933331;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=9RxcQiK8eNwoj4TWdFexDHhbMbFh44gHc1Ur1L8rfnM=;
- b=X6wPTSbq+GssnxBjxKG+H6LoW281NqhQId6Z27OGLXrBgEHrNxwSLTZT
- nlKT5TdrhuQwVNfAp+nIWaCiJy96G1TmsO+bJaIGwD0m3op1cstntxCOA
- BpsUVR9CbqV7WF6lbtEM4GGcm4y+YbvyXdzAQNMKTdICA/sPia6cQGtaZ
- hgUk/F1YS0eTdNp3hGUcbVWikmW1GLn+nSf4079m0NvoPfCzGPOKD7+9U
- i/JKEjE9EJWmcuPpyMXAqRU2P43QfsZE0VzvSFiOAV4hiZqBYlTNUjyub
- 1ZMdxzzf1093djzg8ymSkRFnPgZ9LqUCMDP6NsmYYSaMPEH+2dQ8tYfre Q==;
-X-CSE-ConnectionGUID: +uIxtlXbSGCKxspDY+g06g==
-X-CSE-MsgGUID: VzrUWUCdS9CcaJ/RbEB8fQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="70684413"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="70684413"
-Received: from orviesa004.jf.intel.com ([10.64.159.144])
- by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 07:22:11 -0700
-X-CSE-ConnectionGUID: skDKxPkgSpiGM7kWtDo4XQ==
-X-CSE-MsgGUID: a40Rus0qSYisFycO3GJcnw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="254832038"
-Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.245.126])
- by orviesa004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 07:22:08 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: jani.nikula@intel.com, Martin Hodo <martin.hodo@intel.com>,
- stable@vger.kernel.org,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
- Imre Deak <imre.deak@intel.com>
-Subject: [PATCH] drm/i915/mst: limit DP MST ESI service loop
-Date: Thu, 25 Jun 2026 17:22:04 +0300
-Message-ID: <20260625142204.1078287-1-jani.nikula@intel.com>
-X-Mailer: git-send-email 2.47.3
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id 4B17210F2B0;
+ Thu, 25 Jun 2026 14:29:14 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 262973165;
+ Thu, 25 Jun 2026 07:29:09 -0700 (PDT)
+Received: from [10.2.212.23] (e121345-lin.cambridge.arm.com [10.2.212.23])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 669E53F836;
+ Thu, 25 Jun 2026 07:29:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+ t=1782397753; bh=qjgPdRm4ZE5PWnURF3lUNHIhYW/JfrxqkVr5Kw1oNwE=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=MnWZqGEnKH2EhQavXCW7Yl0+Q8r4veQKBRHMWp+oc8Bz6nX8Ny55VHMzy1n3XM1v3
+ Ci0wWwUw/VUTmG1EyJiBOhzksBI6DlkdWWg194tllBG2FoG7rgJurqCmkvMxyf580d
+ jnj2+fdQZRxD5uEIgUBAUEqxO9xom3Jd/BkU1ceY=
+Message-ID: <ce5f27fd-82be-4750-8592-2eeb31a54523@arm.com>
+Date: Thu, 25 Jun 2026 15:29:10 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-Content-Transfer-Encoding: 8bit
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 1/3] drivers/iommu: Unroll unsuccessful mapping
+To: Krzysztof Karas <krzysztof.karas@intel.com>,
+ intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ iommu@lists.linux.dev
+Cc: Andi Shyti <andi.shyti@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+References: <20260625134342.1102921-1-krzysztof.karas@intel.com>
+ <20260625134342.1102921-2-krzysztof.karas@intel.com>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <20260625134342.1102921-2-krzysztof.karas@intel.com>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,84 +67,81 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[arm.com:s=foss];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
+	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	DKIM_TRACE(0.00)[arm.com:-];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[9];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 594236C6934
+X-Rspamd-Queue-Id: 21BC66C6A35
 
-The loop in intel_dp_check_mst_status() keeps servicing interrupts
-originating from the sink without bound. Add an upper bound to the new
-interrupts occurring during interrupt processing to not get stuck on
-potentially stuck sink devices. Use arbitrary 32 tries to clear incoming
-interrupts in one go.
+On 25/06/2026 2:43 pm, Krzysztof Karas wrote:
+> Currently, if iommu maps fewer bytes than requested (iova_len),
+> it proceeds to free the iova, but never tries to unmap already
+> touched bytes. This behavior may cause memory hogging down the
+> line.
 
-Discovered using AI-assisted static analysis confirmed by Intel Product
-Security.
+Huh? iommu_map_sg() has always unmapped internally upon any error - can 
+you clarify how you've seen it returning a short mapping in a non-error 
+case?
 
-Note: The condition likely pre-dates the commit in the Fixes: tag, but
-this is about as far back as a backport has any chance of
-succeeding. Before that, the retry had a goto.
+Thanks,
+Robin.
 
-Reported-by: Martin Hodo <martin.hodo@intel.com>
-Fixes: 3c0ec2c2d594 ("drm/i915: Flatten intel_dp_check_mst_status() a bit")
-Cc: <stable@vger.kernel.org> # v5.8+
-Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
-Cc: Imre Deak <imre.deak@intel.com>
-Signed-off-by: Jani Nikula <jani.nikula@intel.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6e3fa6662cbe..ade7e51e7590 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -5590,8 +5590,9 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
- 	struct intel_display *display = to_intel_display(intel_dp);
- 	bool force_retrain = intel_dp_link_training_get_force_retrain(intel_dp->link.training);
- 	bool reprobe_needed = false;
-+	int tries = 33;
- 
--	for (;;) {
-+	while (--tries) {
- 		u8 esi[4] = {};
- 		u8 ack[4] = {};
- 		bool new_irqs;
-@@ -5634,6 +5635,11 @@ intel_dp_check_mst_status(struct intel_dp *intel_dp)
- 			break;
- 	}
- 
-+	if (!tries) {
-+		drm_dbg_kms(display->drm, "DPRX ESI not clearing, device may be stuck\n");
-+		reprobe_needed = true;
-+	}
-+
- 	return !reprobe_needed;
- }
- 
--- 
-2.47.3
+> Correct that by unmapping before exiting.
+> 
+> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+> ---
+>   drivers/iommu/dma-iommu.c | 10 ++++++++--
+>   1 file changed, 8 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+> index 381b60d9e7ce..c4c058ba07ef 100644
+> --- a/drivers/iommu/dma-iommu.c
+> +++ b/drivers/iommu/dma-iommu.c
+> @@ -1515,8 +1515,14 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
+>   	 * implementation - it knows better than we do.
+>   	 */
+>   	ret = iommu_map_sg(domain, iova, sg, nents, prot, GFP_ATOMIC);
+> -	if (ret < 0 || ret < iova_len)
+> +	if (ret < 0 || ret < iova_len) {
+> +		if (ret > 0) {
+> +			/* Unmap partially mapped bytes before freeing IOVA */
+> +			if (iommu_unmap(domain, iova, ret) != ret)
+> +				ret = -EIO;
+> +		}
+>   		goto out_free_iova;
+> +	}
+>   
+>   	return __finalise_sg(dev, sg, nents, iova);
+>   
+> @@ -1525,7 +1531,7 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
+>   out_restore_sg:
+>   	__invalidate_sg(sg, nents);
+>   out:
+> -	if (ret != -ENOMEM && ret != -EREMOTEIO)
+> +	if (ret != -ENOMEM && ret != -EREMOTEIO && ret != -EIO)
+>   		return -EINVAL;
+>   	return ret;
+>   }
 
