@@ -2,74 +2,75 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id vf6vEVOxPWq+5ggAu9opvQ
+	id qvVrLi61PWpc5wgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 00:53:07 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 01:09:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AFF626C9101
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 00:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 091E26C9181
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 01:09:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=igalia.com header.s=20170329 header.b=ewzwAMhZ;
+	dkim=pass header.d=kde.org header.s=users header.b=Cj15jEMN;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=igalia.com (policy=none)
+	dmarc=none
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3AC4710F3C1;
-	Thu, 25 Jun 2026 22:53:02 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5BBAC10F3BE;
+	Thu, 25 Jun 2026 23:09:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from fanzine2.igalia.com (fanzine2.igalia.com [213.97.179.56])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D6E7D10F3BD;
- Thu, 25 Jun 2026 22:53:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=igalia.com; 
- s=20170329;
- h=Content-Transfer-Encoding:Content-Type:In-Reply-To:From:
- References:Cc:To:Subject:MIME-Version:Date:Message-ID:Sender:Reply-To:
- Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
- Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:
- List-Subscribe:List-Post:List-Owner:List-Archive;
- bh=SeQUkQiyF5X1qXChmHKlCt3Ean9AaLLtMUxpoOPrDqQ=; b=ewzwAMhZsdUzL05xcHfw2gF0Gs
- FVvpUnxl1S5o5h7Qft0lAkVpDrY+OD3G8E/9XCnQ7T5CFFajBjc7JJ+PKcAQqKwRg9PtYSZDiUpqH
- ODY16qntmkVyBHs1mU9DdHLaXxoiJJHt8drdw2VvuXJnPpVczIMM/jKeNUFjVXFgA54Zu7/ZzKOm5
- ewlHNTU6bLdXzxsutNjlbre3kjIe/gcdXqwB0jZZYXAOWpTnQN7v5snlrzDfsQiERd3HG1xWxT0f0
- 3jteVOWk+NxcVci6vigmHUZRVRHPFXnCWx6j/0D5zbLOotm3CM/pn+043YRJgfzYNluU/HfoJnZyZ
- m5peeCOQ==;
-Received: from c-73-157-168-91.hsd1.or.comcast.net ([73.157.168.91]
- helo=[192.168.1.133]) by fanzine2.igalia.com with esmtpsa 
- (Cipher TLS1.3:ECDHE_X25519__RSA_PSS_RSAE_SHA256__AES_128_GCM:128) (Exim)
- id 1wcsvy-005G2R-Ot; Fri, 26 Jun 2026 00:52:34 +0200
-Message-ID: <3691d76a-4a9c-41ea-ba3b-de08d6c90260@Igalia.com>
-Date: Thu, 25 Jun 2026 15:52:25 -0700
+Received: from letterbox.kde.org (letterbox.kde.org [46.43.1.242])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5F99610F3C0
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 23:09:30 +0000 (UTC)
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com
+ [209.85.222.179]) (Authenticated sender: zamundaaa)
+ by letterbox.kde.org (Postfix) with ESMTPSA id 851E732E498
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 00:09:28 +0100 (BST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kde.org; s=users;
+ t=1782428968; bh=K/o3c3A5OTzQuinic9HUZn27oI9oXWleoJD5KlpDVP0=;
+ h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+ b=Cj15jEMNsVZ/VcZ0kO0bHNoGj0kBrICCq6j05hThsLDU3y88AlcgKJ1N00ugggLmE
+ 7JBHIIP2RS+uM+uy4hLmNC8wWanhEeIo/NuwJP57dkDxtzHraU3qn8ZemYI9ZoOKXY
+ 5a6KOHDtQo9smGb/U6VB0AzqJKV9SisL56NVASt9om81CAI1fAU2/imqVGheUAvV2r
+ qSgSrvSJQQaNOI9gAM+tp7KE4EaSZWrc+DvWBi6G+ixd8eyDx/UUxMyvLzHoFH6gQ0
+ qw2e1C/4/wp49d/T3J+mHc1w+/Ceo308m4IDWTzcjRYBQENuV6oFMDMRcOCVgZuQ3N
+ wc3lpX393CK8A==
+Received: by mail-qk1-f179.google.com with SMTP id
+ af79cd13be357-922ff615c14so51589685a.3
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 16:09:28 -0700 (PDT)
+X-Forwarded-Encrypted: i=1;
+ AFNElJ9PINfbPnZPWPw1TBrhMkUWhErh3g6hsx4IbXPtCpQP5C/tVWCdqx3Tw1sW2zaWoD6TW+M8/oMthR4=@lists.freedesktop.org
+X-Gm-Message-State: AOJu0YxMZ9+Y5aHI4MTrpeDOdbsvdMLgaTCINlscAZFUbvNudRSSsWQ1
+ rtleSw6NNupbYyXPvu9hunlmpNX23wV+f82bpbIgz/S6Cug94D/kDyQmlodsxDUwN0HVaDI0EYP
+ dmlPdq1qCqSQX3CGlx/QLB/HsEAxGPx0=
+X-Received: by 2002:a05:620a:470c:b0:916:1970:5e66 with SMTP id
+ af79cd13be357-9293c9e81f2mr702168885a.44.1782428966671; Thu, 25 Jun 2026
+ 16:09:26 -0700 (PDT)
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v3 3/7] drm/amd/display: don't check colorop status if its
- in an inactive pipeline
-To: Melissa Wen <mwen@igalia.com>, airlied@gmail.com,
- alexander.deucher@amd.com, alex.hung@amd.com, aurabindo.pillai@amd.com,
- christian.koenig@amd.com, contact@emersion.fr, daniels@collabora.com,
- harry.wentland@amd.com, maarten.lankhorst@linux.intel.com,
- mripard@kernel.org, simona@ffwll.ch, siqueira@igalia.com,
- sunpeng.li@amd.com, tzimmermann@suse.de
-Cc: Uma Shankar <uma.shankar@intel.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Xaver Hugl <xaver.hugl@kde.org>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>,
- Matthew Schwartz <matthew.schwartz@linux.dev>,
- amd-gfx@lists.freedesktop.org, kernel-dev@igalia.com,
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov
- <lumag@kernel.org>, Sean Paul <sean@poorly.run>,
- Marijn Suijten <marijn.suijten@somainline.org>,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Sashiko <sashiko-bot@kernel.org>, dri-devel@lists.freedesktop.org
-References: <20260609121230.1358786-1-mwen@igalia.com>
- <20260609121230.1358786-4-mwen@igalia.com>
-Content-Language: en-GB
-From: John Harrison <John.Harrison@Igalia.com>
-In-Reply-To: <20260609121230.1358786-4-mwen@igalia.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+References: <20260331-atomic-v11-0-6a1df7ec5af8@intel.com>
+ <20260331-atomic-v11-1-6a1df7ec5af8@intel.com>
+In-Reply-To: <20260331-atomic-v11-1-6a1df7ec5af8@intel.com>
+From: Xaver Hugl <xaver.hugl@kde.org>
+Date: Fri, 26 Jun 2026 01:09:14 +0200
+X-Gmail-Original-Message-ID: <CAFZQkGy6f9vr5HjjnKtObOGA08TvhEhoaxiBd_0_i7WqJ2S8ow@mail.gmail.com>
+X-Gm-Features: AVVi8CdcXSj6ybUSkqiaEDaNVgsPqIFcwpBgQiGhsvarwZMHGOxf_V2PDTG4YQI
+Message-ID: <CAFZQkGy6f9vr5HjjnKtObOGA08TvhEhoaxiBd_0_i7WqJ2S8ow@mail.gmail.com>
+Subject: Re: [PATCH v11 1/7] drm: Define user readable error codes for atomic
+ ioctl
+To: Arun R Murthy <arun.r.murthy@intel.com>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, 
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, 
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, 
+ harry.wentland@amd.com, uma.shankar@intel.com, louis.chauvet@bootlin.com, 
+ naveen1.kumar@intel.com, ramya.krishna.yella@intel.com, 
+ dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org, 
+ intel-xe@lists.freedesktop.org, Suraj Kandpal <suraj.kandpal@intel.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,116 +86,108 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[igalia.com:s=20170329];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kde.org:s=users];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[igalia.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:arun.r.murthy@intel.com,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:harry.wentland@amd.com,m:uma.shankar@intel.com,m:louis.chauvet@bootlin.com,m:naveen1.kumar@intel.com,m:ramya.krishna.yella@intel.com,m:dri-devel@lists.freedesktop.org,m:intel-xe@lists.freedesktop.org,m:suraj.kandpal@intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[igalia.com,gmail.com,amd.com,emersion.fr,collabora.com,linux.intel.com,kernel.org,ffwll.ch,suse.de];
-	MIME_TRACE(0.00)[0:+];
+	DMARC_NA(0.00)[kde.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com,bootlin.com,lists.freedesktop.org];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kde.org:+];
+	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[19];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[xaver.hugl@kde.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[33];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[John.Harrison@Igalia.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[igalia.com:-];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TO_DN_SOME(0.00)[]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AFF626C9101
+X-Rspamd-Queue-Id: 091E26C9181
 
-On 6/9/26 13:51, Melissa Wen wrote:
-> If colorop BYPASS property is true, but the colorop isn't part of an
-Should this say 'is false'?
+Hi,
 
-John.
+I finally got around to updating the KWin implementation, and made it
+handle some more cases. I found some issues though.
 
-> active/transient active color pipeline, this colorop status should not
-> be taken into account when checking if a plane color pipeline is
-> actually active. For example, if the userspace doesn't explicitly set a
-> colorop obj to bypass but deactivates its color pipeline by setting
-> plane COLOR_PIPELINE to bypass, it means that colorop is inactive
-> regardless of its BYPASS property status.
->
-> Reported-by: Sashiko <sashiko-bot@kernel.org>
-> Fixes: d3a549f4df78 ("drm/amd/display: Use overlay cursor when color pipeline is active")
-> Signed-off-by: Melissa Wen <mwen@igalia.com>
-> ---
->   .../gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c | 31 +++++++++++++------
->   1 file changed, 21 insertions(+), 10 deletions(-)
->
-> diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> index ba7f98a87808..2edec3e1b838 100644
-> --- a/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/amdgpu_dm.c
-> @@ -12590,9 +12590,9 @@ static int add_affected_mst_dsc_crtcs(struct drm_atomic_commit *state, struct dr
->    * @use_old: if true, inspect the old colorop states; otherwise the new ones
->    *
->    * A color pipeline may be selected (color_pipeline != NULL) but still is
-> - * inactive if every colorop in the chain is bypassed.  Only return
-> - * true when at least one colorop has bypass == false, meaning the cursor
-> - * would be subjected to the transformation in native mode.
-> + * inactive if every colorop in the chain is bypassed. Only return true when at
-> + * least one active colorop has bypass == false, meaning the cursor would be
-> + * subjected to the transformation in native mode.
->    *
->    * Return: true if the pipeline modifies pixels, false otherwise.
->    */
-> @@ -12600,18 +12600,29 @@ static bool dm_plane_color_pipeline_active(struct drm_atomic_commit *state,
->   					   struct drm_plane *plane,
->   					   bool use_old)
->   {
-> -	struct drm_colorop *colorop;
-> -	struct drm_colorop_state *old_colorop_state, *new_colorop_state;
-> -	int i;
-> +	struct drm_plane_state *plane_state = use_old ?
-> +					      drm_atomic_get_old_plane_state(state, plane) :
-> +					      drm_atomic_get_new_plane_state(state, plane);
-> +	struct drm_colorop *colorop, *pipeline;
-> +	struct drm_colorop_state *cstate;
->   
-> -	for_each_oldnew_colorop_in_state(state, colorop, old_colorop_state, new_colorop_state, i) {
-> -		struct drm_colorop_state *cstate = use_old ? old_colorop_state : new_colorop_state;
-> +	pipeline = plane_state ? plane_state->color_pipeline :
-> +				 plane->state->color_pipeline;
-Why would plane_state be null? And if it is, why is it correct to use 
-plane->state rather than the old or new state as requested by the 
-use_old flag? Seems like there should be a comment to explain this.
+Am Di., 31. M=C3=A4rz 2026 um 11:06 Uhr schrieb Arun R Murthy
+<arun.r.murthy@intel.com>:
+> +/**
+> + * enum drm_mode_atomic_failure_codes -  error codes for failures in ato=
+mic_ioctl
+> + * @DRM_MODE_ATOMIC_UNSPECIFIED_ERROR: this is the default/unspecified e=
+rror.
+> + * @DRM_MODE_ATOMIC_INVALID_API_USAGE: invallid API usage(DRM_ATOMIC not
+> + *                                    enabled, invalid falg, page_flip e=
+vent
+typo: falg -> flag
 
->   
-> -		if (cstate->colorop->plane != plane)
-> -			continue;
-> +	if (!pipeline)
-> +		return false;
-> +
-> +	drm_for_each_colorop_in_pipeline(colorop, pipeline) {
-> +		cstate = use_old ?
-> +			 drm_atomic_get_old_colorop_state(state, colorop) :
-> +			 drm_atomic_get_new_colorop_state(state, colorop);
-> +
-> +		if (!cstate)
-> +			cstate = colorop->state;
-Same question as above. Why would there not be a old/new state and if 
-there isn't, why is it correct to use the current state when a check 
-against the old/new state was explicitly requested?
+> + *                                    with test-only, etc)
+> + * @DRM_MODE_ATOMIC_NEED_FULL_MODESET: Need full modeset on all connecte=
+d crtc's
+> + * @DRM_MODE_ATOMIC_ASYNC_PROP_CHANGED: Property changed in async flip
+> + * @DRM_MODE_ATOMIC_SCANOUT_BW: For a given resolution, refresh rate and=
+ the
+> + *                              color depth cannot be accomodated. Resol=
+ution
+typo: accomodated -> accommodated
 
-John.
+> + *                              is to lower the refresh rate or color de=
+pth.
+> + * @DRM_MODE_ATOMIC_CONNECTOR_BW: Refers to the limitation on the link r=
+ate on
+> + *                                a given connector.
+> + * @DRM_MODE_ATOMIC_PIPE_BW: Limitation on the pipe, either pipe not ava=
+ilable
+> + *                           or the pipe scaling factor limitation.
+What are actionable things a compositor can or should do in response
+to pipe bandwidth limitations? Just turning off displays, using a
+lower resolution or refresh rate? It's not clear to me if it's
+practically different to scanout_bw in that way.
 
->   		if (!cstate->bypass)
->   			return true;
->   	}
-> +
->   	return false;
->   }
->   
+> + * @DRM_MODE_ATOMIC_MEMORY_DOMAIN: Any other memory/bandwidth related li=
+mitation
+> + *                                 other then the ones specified above.
+> + * @DRM_MODE_ATOMIC_SPEC_VIOLOATION: Limitation of a particular feature =
+on that
+> + *                                   hardware. To get to know the featur=
+e, the
+> + *                                   property/object causing this is bei=
+ng sent
+> + *                                   back to user @failure_objs_ptr in t=
+he
+> + *                                   struct drm_mode_atomic_err_code
+I didn't find any case these two values would be useful in KWin yet,
+should we just leave them as "unspecified" for now?
 
+> +struct drm_mode_atomic_err_code {
+> +       __u64 failure_code;
+> +       __u64 failure_objs_ptr;
+I made use of the object list in the KWin implementation for the
+CONNECTOR_BW case, to reduce the mode resolution and refresh rate on
+only the affected connector.
+When I did that though, I noticed that the memory management of that
+pointer isn't defined. How is it supposed to work?
+
+I think a good way to do it could be to let userspace set it to a
+pointer to an array of uint32_t + specify the max number of elements
+in count_objs. Either way, if it's included in the struct, its use
+needs to be implemented, so these questions are definitely answered
+and it can be tested.
+
+- Xaver
