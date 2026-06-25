@@ -2,71 +2,67 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id rT6HCAQbPWpnxAgAu9opvQ
+	id GemBOVQhPWrpxQgAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 14:11:48 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 14:38:44 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 10D5C6C5700
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 14:11:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 68D0E6C5A4A
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 14:38:43 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=hOAiF4Ku;
+	dkim=pass header.d=intel.com header.s=Intel header.b=WxkEk6xZ;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9DA5310F279;
-	Thu, 25 Jun 2026 12:11:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EDE4C10F290;
+	Thu, 25 Jun 2026 12:38:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9E8D010F279
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 12:11:44 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 94B5A10F290
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 12:38:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782389505; x=1813925505;
+ t=1782391120; x=1813927120;
  h=mime-version:content-transfer-encoding:in-reply-to:
  references:subject:from:cc:to:date:message-id;
- bh=4RTKbkitcOMjvGsAIVLHY1k5xkmU4W3qB9H7A5Crcx8=;
- b=hOAiF4Ku+kwbfDg57HKSyKYp0nrt3JbkJxxNf7B3mGt0wxS0XQXlYGAp
- fYK59MzSv5QZ5jO/3+pjksbMqg5LbPAxB7uuOYxyzGvjAyUidVIskYDrM
- eyiZtv2q0rbgptP+IdgKwA1u3TOQ7YHWg244JZ39U/9ulIwcCuqJky+Wg
- Oh7wHUi23Aih+cY+OzDtNJqM9Mdvf8C8lifCCHw8YFt8uO2A9EIL+sakb
- 2S8rkxXNEaSMjGi31q473td7IDtP48hBtsuia8aoXiyKbi1McUm7s1i2f
- Dbl5MvfLxkeQlQpDK//R0zmhkQK7Qyk0z+buIptPC9fMH9VCWgpEqm+lX w==;
-X-CSE-ConnectionGUID: zdMF6FkfSaqnsUkfkEmCxA==
-X-CSE-MsgGUID: ++xn7iH5SLOhWz2xNoDQIQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="94282435"
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="94282435"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 05:11:45 -0700
-X-CSE-ConnectionGUID: B7sQKSidSg2K32SffHmesQ==
-X-CSE-MsgGUID: lz2jBwjFRDqWegUGolBNTQ==
+ bh=ba3etDmdB/eC0t836NRayCDZwFpsSudxtDdlQcDozAo=;
+ b=WxkEk6xZ5PxWcjmAACGFrlWZPoDSKsCVdypwfGCL/0xeerW9R4bq48cm
+ awW8q2MhvpgtZe47857ek2x5xY5n4xbR3N0cfjByx1Uu0uhOTIPLyjtbI
+ fxll8NhH9WvljXXYIWU68DbEfXKM8JQ44TfjnJkmO2Uv6YZhQsSU6Iy+K
+ ueBi3mhoYLJkM2igGWPZGmQlMwg+/puOImIFgoVaOMTsDE+qYLp10klFC
+ VE/7fot5GnHheCXU6mr5cfnaiB66HaGc6ySTbF2ODWswa7u+ouyQ2FVpl
+ JZ0jFepqTnfDTyE3AlHn4hQIH5ke+DY6c7SVh1TWhEGY5VvN7yl1BdOwl g==;
+X-CSE-ConnectionGUID: HRcvylUnRgeuwGLng1qJ+g==
+X-CSE-MsgGUID: US7vEgv+Tb6OhooUfkZjHQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="87010358"
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="87010358"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 05:38:40 -0700
+X-CSE-ConnectionGUID: ryUGkgg0RS+c8B9HKvw5hw==
+X-CSE-MsgGUID: B+RK9uaMTgmTqlW7G1Ymbw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="255557697"
+X-IronPort-AV: E=Sophos;i="6.24,224,1774335600"; d="scan'208";a="247464798"
 Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.75])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 25 Jun 2026 05:11:42 -0700
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 25 Jun 2026 05:38:38 -0700
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <ajznzdwvxSv2YNHp@zenone.zhora.eu>
-References: <20260624090940.74840-1-joonas.lahtinen@linux.intel.com>
- <178230031953.112641.4817434529385736057@jlahtine-mobl>
- <ajvTjodx7LLj_BPO@zenone.zhora.eu>
- <178236741262.19845.6184407491878204182@jlahtine-mobl>
- <ajznzdwvxSv2YNHp@zenone.zhora.eu>
-Subject: Re: [PATCH] drm/i915: Return NULL on error in active_instanceg
+In-Reply-To: <20260623221521.1183124-1-jia.yao@intel.com>
+References: <20260623221521.1183124-1-jia.yao@intel.com>
+Subject: Re: [PATCH v7] drm/i915/dg2: Add per-context control for
+ Wa_22013059131
 From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
-Cc: Intel graphics driver community testing & development
- <intel-gfx@lists.freedesktop.org>, Martin Hodo <martin.hodo@intel.com>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Thomas =?utf-8?q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
- Simona Vetter <simona.vetter@ffwll.ch>, stable@vger.kernel.org
-To: Andi Shyti <andi.shyti@kernel.org>
-Date: Thu, 25 Jun 2026 15:11:39 +0300
-Message-ID: <178238949911.113301.5828200905284576123@jlahtine-mobl>
+Cc: Jia Yao <jia.yao@intel.com>, Shuicheng Lin <shuicheng.lin@intel.com>,
+ Matt Roper <matthew.d.roper@intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Maciej Plewka <maciej.plewka@intel.com>,
+ Andi Shyti <andi.shyti@linux.intel.com>
+To: Jia Yao <jia.yao@intel.com>, intel-gfx@lists.freedesktop.org
+Date: Thu, 25 Jun 2026 15:38:35 +0300
+Message-ID: <178239111512.123473.311792859568377409@jlahtine-mobl>
 User-Agent: alot/0.13.dev2+g40c57d620
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -84,86 +80,110 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MID_RHS_NOT_FQDN(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:jia.yao@intel.com,m:shuicheng.lin@intel.com,m:matthew.d.roper@intel.com,m:rodrigo.vivi@intel.com,m:maciej.plewka@intel.com,m:andi.shyti@linux.intel.com,s:lists@lfdr.de];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:from_mime,jlahtine-mobl:mid]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[jlahtine-mobl:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 10D5C6C5700
+X-Rspamd-Queue-Id: 68D0E6C5A4A
 
-Quoting Andi Shyti (2026-06-25 11:50:50)
-> On Thu, Jun 25, 2026 at 09:03:32AM +0300, Joonas Lahtinen wrote:
+Being uAPI patch, probably should keep dri-devel in the Cc. That'd also
+pull in Sashiko for review.
+
+Quoting Jia Yao (2026-06-24 01:15:21)
+> Wa_22013059131 sets FORCE_1_SUB_MESSAGE_PER_FRAGMENT in LSC_CHICKEN_BIT_0
+> at engine init, but this is known to cause GPU hangs in certain workloads.
+> Add I915_CONTEXT_PARAM_WA_22013059131 so userspace that handles the
+> workaround itself (e.g. by limiting SLM size) can set it to 1 to let the
+> kernel know bit 15 programming is not needed for that context.
+>=20
+> LSC_CHICKEN_BIT_0 is not context-saved by hardware, so the kernel restores
+> the correct value on every context switch via the indirect context
+> batchbuffer to avoid leaking state between contexts. The old unconditional
+> application of Wa22013059131 in intel_workarounds.c is removed.
+>=20
+> v7:
+> - Reject ioctl with -ENODEV on non-DG2-G11 platforms
+>=20
+> v6:
+> - Remove excessive blank lines
+>=20
+> v5:
+> - Remove fix and stable
+>=20
+> v4:
+> - Add a link of the userspace using this API
+>=20
+> v3:
+> - Kernel-internal context will not change workaround settings
+>=20
+> Bspec: 54833
+> Link: https://github.com/intel/compute-runtime/pull/919
+> Cc: Shuicheng Lin <shuicheng.lin@intel.com>
+> Cc: Matt Roper <matthew.d.roper@intel.com>
+> Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+> Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
+> Cc: Maciej Plewka <maciej.plewka@intel.com>
+> Cc: Andi Shyti <andi.shyti@linux.intel.com>
+> Signed-off-by: Jia Yao <jia.yao@intel.com>
+> Reviewed-by: Matt Roper <matthew.d.roper@intel.com>
+
+It's good practice to either ask for refresh or amend "# v2" here I
+think, given Matt has not commented on the latest versions.
 
 <SNIP>
 
-> The bug team is a different matter. Here we're talking about the
-> review process.
+> +++ b/include/uapi/drm/i915_drm.h
+> @@ -2172,6 +2172,16 @@ struct drm_i915_gem_context_param {
+>   * Note that this is a debug API not available on production kernel buil=
+ds.
+>   */
+>  #define I915_CONTEXT_PARAM_CONTEXT_IMAGE       0xf
+> +
+> +/*
+> + * I915_CONTEXT_PARAM_WA_22013059131:
+> + *
+> + * Default value 0 means the kernel programs Wa_22013059131 for this con=
+text.
+> + * Set to 1 to inform the kernel that userspace is taking responsibility=
+ for
+> + * applying the preferred workaround implementation, so the kernel progr=
+amming
+> + * of LSC_CHICKEN_BIT_0 bit 15 is not needed for this context. DG2-G11 o=
+nly.
+> + */
+> +#define I915_CONTEXT_PARAM_WA_22013059131      0x10
 
-What comes to the review process, you're entitled to express your
-opinion how things should be.
+I see we dropped the "half" terminology based on Matt's review comments.
 
-If you do a rundown of average time spent on mailing list after R-b
-before merge split per subsystem / driver and show some stats for
-patches that are less than 10 lines, and we can maybe talk further.
+There's still one part of the 22013059131 that remains to be implemented
+by KMD, LSC_CHICKEN_BIT_0_UDW, only LSC_CHICKEN_BIT_0 is omitted.
 
-Don't see the point otherwise. You do you, and me do me.
-
-> > That's exactly what was done here. That's a fair ask, but asking for
-> > maintainers not to merge any code because of false positives is simply
-> > not.
->=20
-> False positive or not, controversial or not, easy or difficult,
-> patches have *always* been blocked when BAT was red.
-
-There's a very clear difference between random noise in BAT and something
-being wrong in BAT due to the patch. The whole reason for BAT to be establi=
-shed
-was to have a fast litmus test if the patch would break the world.
-
-Original motivation was to avoid spinning up the more expensive shard
-runs if the litmus test doesn't pass. And it was recognized back then
-that we absolutely can't have false positives in BAT for things to work
-out reasonably.
-
-> Otherwise, we might as well stop running automatic tests for
-> patches considered "non-controversial" and save CI resources.
-
-Now that you bring it up, that's exactly what we should be targeting.
-
-There is zero point in forcibly attaching test results to an individual
-patch if that patch has exactly zero coverage in the test set.
-
-So for example here, if we would have some nice automated code coverage
-analysis that would have declared our tests don't have any coverage for
-the patch in question and skipped shards, that would have absolutely
-made sense (always allowing user to force the run, still).
-
-The shard test run for this specific patch offers no other value than
-an completely disconnected idle run of the test set. A completely
-disconnected idle run would probably be even more valuable as it
-wouldn't connect false positives to unrelated patch.
-
-But I don't think we're there yet. So in the meanwhile let's try to
-live with limitations of reality and fix some bugs.
+Thus, I'm not entirely sold on the description here.
 
 Regards, Joonas
