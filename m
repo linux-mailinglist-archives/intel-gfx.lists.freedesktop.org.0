@@ -2,105 +2,70 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0wxbEuDCPGoNrggAu9opvQ
+	id AwnNHb7EPGqfrggAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 07:55:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 08:03:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 319FB6C2DC6
-	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 07:55:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D97966C2DFF
+	for <lists+intel-gfx@lfdr.de>; Thu, 25 Jun 2026 08:03:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=canonical.com header.s=20251003 header.b=Hg1NhNZm;
+	dkim=pass header.d=intel.com header.s=Intel header.b=JAoszi7l;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=canonical.com
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC27510E19A;
-	Thu, 25 Jun 2026 05:55:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D911910E178;
+	Thu, 25 Jun 2026 06:03:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-relay-internal-1.canonical.com
- (smtp-relay-internal-1.canonical.com [185.125.188.123])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E838910E19A
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 05:55:39 +0000 (UTC)
-Received: from mail-qv1-f70.google.com (mail-qv1-f70.google.com
- [209.85.219.70])
- (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
- key-exchange X25519 server-signature RSA-PSS (2048 bits) server-digest SHA256)
- (No client certificate requested)
- by smtp-relay-internal-1.canonical.com (Postfix) with ESMTPS id 515D03F97D
- for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 05:55:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=canonical.com;
- s=20251003; t=1782366938;
- bh=hrK/hqc0KTSs3qSmB6J+wib7JPcAUEvvkJ6klAPWA3M=;
- h=From:To:Cc:Subject:Date:Message-ID:MIME-Version;
- b=Hg1NhNZmiyR300zXNDW4D6Elo2/dqLNXIz6fr9g76cMvu1syrG9cWkdPT/5N3aLLW
- +efcaZRzphnyOP3EEtmOx7eCSjBBHK0A1sNC1QN/fR2D5E7/yCv0wd6YDO37nKjDeW
- jqPEm2ATMAPapj8qe4eyIs0iybLWr6/YlBHpjZEWz2jdIybfNimV2iWsqEN5vOHsJs
- 6Rgg4bt5QWMhFatUB+yimh+NXXpcpwFD56JygGZ0q77XrvJX/vpBlH6X5owmEeS/UL
- d594U8lFcn9wLR+5sxhzNh2qcVdWoNLxlwDgFM0f8h0BK6htdtIxYzkOiNuUPkmADr
- WVK9s3dAtOxldA+jc2zfDCLgKGYSny/8VRrOcm12tV/GXdLQrGaVN6fu82m9OUzzjX
- LeoQ324x6B+DoYxpUVGz5dg5OxAly7o4OjZriGw7j+YOAfSWu9dAkGIgScj3VXxkDz
- /WhtboeqPZlNkNYlxKiTZz0qpXz7G21bGrtJaYH/7yVP04jK1WZfFiOYa0UmRbvgat
- D0HV8Xff6jJezhH2voGZNgvBr+UG6Wb6stEXZOcrM22OM5qrkhNMsqG4rzKHX0MfzM
- BvPl2XP7YJ2xN4ilsfgOYMOQSfVrGjFhHjwjP+AebKaBgJ+DNgHL1PVLhB7XKzXdlB
- xeFsyVp1vrFh1heUGqemstWw=
-Received: by mail-qv1-f70.google.com with SMTP id
- 6a1803df08f44-8e0dfafa41fso35797916d6.3
- for <intel-gfx@lists.freedesktop.org>; Wed, 24 Jun 2026 22:55:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782366937; x=1782971737;
- h=content-transfer-encoding:mime-version:message-id:date:subject:cc
- :to:from:x-gm-gg:x-gm-message-state:from:to:cc:subject:date
- :message-id:reply-to;
- bh=hrK/hqc0KTSs3qSmB6J+wib7JPcAUEvvkJ6klAPWA3M=;
- b=YKwzJgOYQrKdkNGLmPCGnk4H0stMUmJipQ7Vg6GqY5I6j4Dqbtj2Gw9pLZXdyl/26G
- 8LLWbdWE4A957SE3xaT2ep6DvRFpebZ3SD0x0SVp63fw//7PAAtA9lFEAteVJMx5WsY6
- qKRkM3Q12Jq3hDSLpRydgKZO5e9Zim7B+3/DW8cEY/AXi1Ngv+VIdt9C51aMxWm3wRPo
- yUHGajmrvNwc2JmDEJ6YqGA1bwspzzkalGQod5F4VZHbn5j9vFIed3kd4pe0qcyR+ge1
- oA9wBYXsOKThkBRTzLtg+SDTdpIYxH1kdRd1yN9xm3JRi1yvsSIgT82geKxnoNFGOne7
- 9V0A==
-X-Forwarded-Encrypted: i=1;
- AFNElJ/7J07WQ0CIJSvC6jy4Rm1PJEBM2Jzib1QpqhbqvPnanjB4qKrfqgtfJIyX4wus8vNWmd5kYKlKUNw=@lists.freedesktop.org
-X-Gm-Message-State: AOJu0YyeEvfdj0jvLJ9Ls/TaYJhHWZRj4XpxrQ10Zp3NdjL2ld/Mp6r3
- ze7oq/zi03gkxn0gD19LtZ2rKUflUWlx1ySWV8KO/loILQ7T5nyM6M7LY45aZHB3UXW/zObL1DX
- 2drSZ48iW6BomxGXuccYVy4z3VVipfzppOD81hK1b5lWRy9DowHwzpZSSHerpPerx8ipWj55rd7
- 8WEExlP20U4A==
-X-Gm-Gg: AfdE7ckH/YBbwynUcKJ9rX3HnbMsXY+IgPeJAtSmLPHOnUlnwMacmbUw1+14LNqUrkb
- MRArIzfGkNU5r81eptGaAiuEBB6+T0H8upQg4DKxl661h9p7e+37tIlJV3M2zW4vvLFya0nQQMF
- xyWissIrxKuRpstvoev/9Dopx4dSWyjYT0x7LMEsYhLlLH14UT2HsVIhxjx6kW7uCs/VGTmdXFd
- IKbKvMFak6aCDQ0saltg2N4XzYvq8HPfw3yzDddsp1g41L2xXVVB9f+X9i3bg8RutskPaCHr30b
- 50sGCdmQ10ZYFf2Z9nzg2GNnw2aod+nlMfWtePQ/ySWe6/vzWVE7QgWaFw81Qg3iQs7lZGMAQrd
- xmiAI58E+WEMjBEyhJWwoPv+TgEwiOcv0Iemh7wWniM/7f+O/ubnYlbZobtf2UQwhfvdSNsgmoS
- 17X5eU0zw=
-X-Received: by 2002:a05:620a:1b95:b0:918:419:4b49 with SMTP id
- af79cd13be357-9293d4b31aemr151565485a.32.1782366937133; 
- Wed, 24 Jun 2026 22:55:37 -0700 (PDT)
-X-Received: by 2002:a05:620a:1b95:b0:918:419:4b49 with SMTP id
- af79cd13be357-9293d4b31aemr151562685a.32.1782366936736; 
- Wed, 24 Jun 2026 22:55:36 -0700 (PDT)
-Received: from localhost.localdomain ([103.155.100.9])
- by smtp.gmail.com with ESMTPSA id
- af79cd13be357-926000c2a09sm720088185a.31.2026.06.24.22.55.30
- (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
- Wed, 24 Jun 2026 22:55:35 -0700 (PDT)
-From: Aaron Ma <aaron.ma@canonical.com>
-To: Jani Nikula <jani.nikula@linux.intel.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org
-Cc: Gwan-gyeong Mun <gwan-gyeong.mun@intel.com>,
- =?UTF-8?q?Jos=C3=A9=20Roberto=20de=20Souza?= <jose.souza@intel.com>,
- =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>
-Subject: [PATCH v2] drm/i915/psr: Skip PSR exit for legacy cursor updates on
- LunarLake onwards
-Date: Thu, 25 Jun 2026 13:55:14 +0800
-Message-ID: <20260625055514.3636380-1-aaron.ma@canonical.com>
-X-Mailer: git-send-email 2.43.0
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7413910E178
+ for <intel-gfx@lists.freedesktop.org>; Thu, 25 Jun 2026 06:03:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782367419; x=1813903419;
+ h=mime-version:content-transfer-encoding:in-reply-to:
+ references:subject:from:cc:to:date:message-id;
+ bh=q/YwrEFIdj69fHdgVP44qW151yn/KW8ps9+eXO3UHFo=;
+ b=JAoszi7luhOdjpO4+AqlXIQ7wyh3nJMMIfa69hbxEuad9HQGdXdkvdJE
+ YBPwSD1DCx4ScT2PeUDntmLDgm+K1a7y2MSUtfaVYI+QrSPneR+RTBvj8
+ HzFp1avDQDAAdUy6r00g4Vq9iVi8jq8vHVOoMtbB7whbfcV1d83jy16/j
+ DvoeWITGCP73vIG9apkBXPFGs/MNSvn0RjbH+YseQ9g1xMpLDGVGh1SWc
+ gsW9zGIOQCC8QDdWo6E6I91OycI8nUlPCMZtnWv8+HB/c4tUEMSGsT6JS
+ PoCqKaSbtLIRTfAYAX0WFMEWHR6Yd1QmWiu0cLv1ZniUTLcMg6dIbPAFC g==;
+X-CSE-ConnectionGUID: wNlR0c4vQPu5MxF0VMBo3A==
+X-CSE-MsgGUID: Y1rT384rT2ShW7OqsJ2sgQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11827"; a="83190192"
+X-IronPort-AV: E=Sophos;i="6.24,223,1774335600"; d="scan'208";a="83190192"
+Received: from orviesa001.jf.intel.com ([10.64.159.141])
+ by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 23:03:38 -0700
+X-CSE-ConnectionGUID: vq5Cf/qQR4G4HhsQIQKN4g==
+X-CSE-MsgGUID: vBKTnjf3Ti6bg1qjUqLxJQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,223,1774335600"; d="scan'208";a="288475638"
+Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.245.75])
+ by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 24 Jun 2026 23:03:36 -0700
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ajvTjodx7LLj_BPO@zenone.zhora.eu>
+References: <20260624090940.74840-1-joonas.lahtinen@linux.intel.com>
+ <178230031953.112641.4817434529385736057@jlahtine-mobl>
+ <ajvTjodx7LLj_BPO@zenone.zhora.eu>
+Subject: Re: [PATCH] drm/i915: Return NULL on error in active_instance
+From: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>
+Cc: Intel graphics driver community testing & development
+ <intel-gfx@lists.freedesktop.org>, Martin Hodo <martin.hodo@intel.com>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas =?utf-8?q?Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Simona Vetter <simona.vetter@ffwll.ch>, stable@vger.kernel.org
+To: Andi Shyti <andi.shyti@kernel.org>
+Date: Thu, 25 Jun 2026 09:03:32 +0300
+Message-ID: <178236741262.19845.6184407491878204182@jlahtine-mobl>
+User-Agent: alot/0.13.dev2+g40c57d620
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,84 +81,77 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[canonical.com,reject];
-	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[canonical.com:s=20251003];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MID_RHS_NOT_FQDN(0.50)[];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_RECIPIENTS(0.00)[m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:joonas.lahtinen@linux.intel.com,m:tursulin@ursulin.net,m:airlied@gmail.com,m:simona@ffwll.ch,m:intel-xe@lists.freedesktop.org,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:gwan-gyeong.mun@intel.com,m:jose.souza@intel.com,m:ville.syrjala@linux.intel.com,s:lists@lfdr.de];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	FORGED_SENDER(0.00)[aaron.ma@canonical.com,intel-gfx-bounces@lists.freedesktop.org];
-	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[canonical.com:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[5];
-	FROM_NEQ_ENVFROM(0.00)[aaron.ma@canonical.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[joonas.lahtinen@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[canonical.com:dkim,canonical.com:email,canonical.com:mid,canonical.com:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[7];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,jlahtine-mobl:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 319FB6C2DC6
+X-Rspamd-Queue-Id: D97966C2DFF
 
-ORIGIN_CURSOR_UPDATE falls through to _psr_flush_handle() on
-DISPLAY_VER >= 20, which calls intel_psr_exit(). Cursor plane updated
-via legacy ioctl (drmModeMoveCursor) does not dirty the primary
-frontbuffer, no PSR2 state change is needed. Match the existing
-ORIGIN_FLIP behavior by returning early on DISPLAY_VER >= 20.
+Quoting Andi Shyti (2026-06-24 15:59:30)
+> Hi Joonas,
+>=20
+> On Wed, Jun 24, 2026 at 02:25:19PM +0300, Joonas Lahtinen wrote:
+> > Pushed to drm-intel-gt-next, thanks for the reviews.
+>=20
+> please, next time:
+>=20
+> - Give people more time to review the patch. Only two hours
+>   passed between posting it and pushing it
 
-Before this, the psr2_sel_fetch_enabled guard only prevented the early
-return when PSR2 selective fetch was active, sending cursor updates
-through intel_psr_exit() and causing a black line artifact on some
-panels during the exit/re-enable transition.
+And why exactly is that a problem? I got the review from the original
+patch author and a yet another person on top while it's a very
+uncontroversial and trivial patch. Two reviewers per patch is already
+quite a high bar to clear if you look at git history.
 
-Preserve the fallthrough for pre-LNL platforms with PSR2 selective
-fetch, where intel_psr_force_update() (CURSURFLIVE write) is needed
-for cursor tracking.
+> (during lunch time, BTW).
 
-Fixes: ef39826c12b4 ("drm/i915/display: Fix glitches when moving cursor with PSR2 selective fetch enabled")
-Signed-off-by: Aaron Ma <aaron.ma@canonical.com>
----
-Changes in v2:
-- Add DISPLAY_VER >= 20 guard to only skip PSR exit on LunarLake onwards,
-  preserving the intel_psr_force_update() fallthrough for pre-LNL platforms
-  with PSR2 selective fetch (addresses Sashiko review about cursor trailing
-  artifacts on pre-LNL)
+Sorry, I did not know there is a universally agreed 2 hour lunch window
+in UTC timezone that I should follow. I've missed that memo.
 
-v1: https://lore.kernel.org/r/20260623084137.3421894-1-aaron.ma@canonical.com
+> - There were BAT failures. They were unrelated, but so far we
+>   have generally held back patches until BAT was green, even for
+>   the most obvious changes.
 
- drivers/gpu/drm/i915/display/intel_psr.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Strong disagree here. That'd have caused the patch to miss -next-fixes
+PR just due to random noise of CI.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_psr.c b/drivers/gpu/drm/i915/display/intel_psr.c
-index e138982dc91f6..ba8c427f45463 100644
---- a/drivers/gpu/drm/i915/display/intel_psr.c
-+++ b/drivers/gpu/drm/i915/display/intel_psr.c
-@@ -3772,7 +3772,7 @@ void intel_psr_flush(struct intel_display *display,
- 
- 		if (origin == ORIGIN_FLIP ||
- 		    (origin == ORIGIN_CURSOR_UPDATE &&
--		     !intel_dp->psr.psr2_sel_fetch_enabled)) {
-+		     (DISPLAY_VER(display) >= 20 || !intel_dp->psr.psr2_sel_fetch_enabled))) {
- 			tgl_dc3co_flush_locked(intel_dp, frontbuffer_bits, origin);
- 			goto unlock;
- 		}
--- 
-2.43.0
+If there was a reasonable doubt about the impact of the patch on the
+failure, that'd of course be different, but here there was absolutely
+none in this case.
 
+As per patchwork automated mail reply:
+
+> If you think the reported changes have nothing to do with the changes
+> introduced in Patchwork_169089v1, please notify your bug team
+
+That's exactly what was done here. That's a fair ask, but asking for
+maintainers not to merge any code because of false positives is simply
+not.
+
+Regards, Joonas
+
+>=20
+> Thanks,
+> Andi
