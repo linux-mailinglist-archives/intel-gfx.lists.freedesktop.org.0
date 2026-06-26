@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uWuwGcqBPmr6HAkAu9opvQ
+	id ksrQHM+BPmoDHQkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:34 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 351786CD9FE
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 432DB6CDA21
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:39 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=YkmTIY8A;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=Btncb1ix;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D021910F610;
-	Fri, 26 Jun 2026 13:42:17 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 75CF010F61A;
+	Fri, 26 Jun 2026 13:42:21 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F028D10F60C;
- Fri, 26 Jun 2026 13:42:16 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A2E0110F5E5;
+ Fri, 26 Jun 2026 13:42:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481335;
- bh=SrqQAMYrLxDPK7Yj+2MrfgB0HHUwyS8YP/VDKTn/AAY=;
+ s=default; t=1782481336;
+ bh=veyMqeP/HHsUinNhNIPK3SHl0Euc6gBrTNuDuscCi+0=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YkmTIY8AvYHy0g8ezs9ZrY6JANLxSwF/fOzVnWMaF9EJSsUNvRAR0nEPArtUfZf4E
- iu3alXwfDqmDd8JzL2VlBuN+iwi0TxlIjHM9p84fjXs9e/TujGeC4A6OW3Bu3eKII2
- L0JpjvJyjIcUGY9omGHrWmIgsJ866c3hzeDoSEsLusd+gCeHio/jsVAb+fGPqSQUkb
- Ga6MvNxOVIr468MITxFdZN3dImdkvZey7KUljc+O5intiVvoKifymfSBXHsiE7WnTv
- we6nB0xmJ0xktOjQgjblAL3YzyUpjVlQJ6GAarBupbBS5IuSdWt1vbEiqxNnEt8zZ7
- NOTBAAi9CNoig==
+ b=Btncb1ixxX3rcbBCSTF7ntd9MNkyKUosDbDx/ai9CRzW9jLCfir8ZkUeVv394Dz9n
+ KU+e3L9F/yskwDdH6Y2rn7ZsKInrnIbKXAjYSyKd7KpHA1QTrorj7SPeJOwdOyW+9/
+ N/YKg1EQEr8w33X6Vw+mvRm9aDcE1shqfowhak/Lpw/R0LueDr52ucFuuNT7qdJ12+
+ XJQgKH/Nxz9fBgbmqw8kXRQrzc8kM9qjGJKAkyN7bkgBEIc/ezsgZpKq3zCwPEgxco
+ F5DOXNL3rKUeanX6Sz1hHvEP240bm+AgBYtW0ga0nPkYsaqQCY1vJ3Ld0tISNxCT6Z
+ wGKabD2VJIAmw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 27/29] drm/xe/display: Avoid using stolen memory for
- framebuffer when media gt exists.
-Date: Fri, 26 Jun 2026 15:42:18 +0200
-Message-ID: <20260626134222.1198252-28-dev@lankhorst.se>
+Subject: [PATCH v10.5 28/29] drm/xe/display: Do not allocate into stolen for
+ new framebuffers.
+Date: Fri, 26 Jun 2026 15:42:19 +0200
+Message-ID: <20260626134222.1198252-29-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -86,37 +86,63 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 351786CD9FE
+X-Rspamd-Queue-Id: 432DB6CDA21
 
-On systems with media GT, extra latency is added when accessing stolen
-memory when the GT is in MC6.
+Prefer to use system memory for global framebuffers, and reserve
+the space for FBC use only.
 
-Simply disable allocating stolen memory for framebuffers when media gt
-is found.
+Now that multiple CRTC's can use FBC's, the simple heuristic
+of using less than half of stolen is no longer sufficient.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/xe/display/xe_display_bo.c | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/gpu/drm/xe/display/xe_display_bo.c | 33 ++++------------------
+ 1 file changed, 6 insertions(+), 27 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_display_bo.c b/drivers/gpu/drm/xe/display/xe_display_bo.c
-index 7fbac223b0977..a5080f6540d46 100644
+index a5080f6540d46..1bde12b509fcb 100644
 --- a/drivers/gpu/drm/xe/display/xe_display_bo.c
 +++ b/drivers/gpu/drm/xe/display/xe_display_bo.c
-@@ -130,6 +130,13 @@ bool xe_display_bo_fbdev_prefer_stolen(struct xe_device *xe, unsigned int size)
- 	if (IS_DGFX(xe))
- 		return false;
+@@ -153,33 +153,12 @@ static struct drm_gem_object *xe_display_bo_fbdev_create(struct drm_device *drm,
+ 	struct xe_device *xe = to_xe_device(drm);
+ 	struct xe_bo *obj;
  
-+	/*
-+	 * Avoid stolen memory when the media_gt exists,
-+	 * because a lot of latency is added when media gt is in MC6
-+	 */
-+	if (xe_device_get_root_tile(xe)->media_gt)
-+		return false;
-+
- 	if (XE_DEVICE_WA(xe, 22019338487_display))
- 		return false;
- 
+-	obj = ERR_PTR(-ENODEV);
+-
+-	if (xe_display_bo_fbdev_prefer_stolen(xe, size)) {
+-		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe),
+-						size,
+-						ttm_bo_type_kernel,
+-						XE_BO_FLAG_FORCE_WC |
+-						XE_BO_FLAG_STOLEN |
+-						XE_BO_FLAG_GGTT,
+-						false);
+-		if (!IS_ERR(obj))
+-			drm_info(&xe->drm, "Allocated fbdev into stolen\n");
+-		else
+-			drm_info(&xe->drm, "Allocated fbdev into stolen failed: %li\n", PTR_ERR(obj));
+-	} else {
+-		drm_info(&xe->drm, "Allocating fbdev: Stolen memory not preferred.\n");
+-	}
+-
+-	if (IS_ERR(obj)) {
+-		obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
+-						ttm_bo_type_kernel,
+-						XE_BO_FLAG_FORCE_WC |
+-						XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
+-						XE_BO_FLAG_GGTT,
+-						false);
+-	}
+-
++	obj = xe_bo_create_pin_map_novm(xe, xe_device_get_root_tile(xe), size,
++					ttm_bo_type_kernel,
++					XE_BO_FLAG_FORCE_WC |
++					XE_BO_FLAG_VRAM_IF_DGFX(xe_device_get_root_tile(xe)) |
++					XE_BO_FLAG_GGTT,
++					false);
+ 	if (IS_ERR(obj)) {
+ 		drm_err(&xe->drm, "failed to allocate framebuffer (%pe)\n", obj);
+ 		return ERR_PTR(-ENOMEM);
 -- 
 2.53.0
 
