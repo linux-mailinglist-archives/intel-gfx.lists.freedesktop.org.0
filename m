@@ -2,38 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ta8wNUkgPmqXAAkAu9opvQ
+	id 9QCcGLwnPmpQAgkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 08:46:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 09:18:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A7D26CABD0
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 08:46:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A81F46CADDB
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 09:18:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b=YMCjYnIT;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7D38F10F432;
-	Fri, 26 Jun 2026 06:46:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5264510F3DB;
+	Fri, 26 Jun 2026 07:18:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id C010810E30B;
- Fri, 26 Jun 2026 06:46:30 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============1242415716506401002=="
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E2C8C10E214;
+ Fri, 26 Jun 2026 07:18:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782458296; x=1813994296;
+ h=date:from:to:cc:subject:in-reply-to:message-id:
+ references:mime-version;
+ bh=V5zZ+TKDTUoUBWc7qGP3eF4AW3+kGIYRjReSnDZPCnM=;
+ b=YMCjYnIThfjvBitlmcE41jnU3YkVqSp5U+F7JsScLXmRN5RgUoxW/BdO
+ KT8FTmfHU+T5XYdswBKjyQi3aa2A6GGbFhRHCZgtAmJ1HnMpr3HRASTMK
+ KrQ1OQG3ImEFntj0MoWdPXCaNj1KBuqW18VNS7INzDnh4w/2NqS+CKXKL
+ d4lwlAjPEgkfhWmfeqcB4JjM67SB6r7aZL9tvG+RhTSDZ/AjfUQli9yZk
+ 5PnGAwJ1t7TWMbod8sYmSdgpM6w8fT0BvgXXfHcXEB3eMsfEXDQOU4neI
+ ZcTdGrDYH85JH71njmC0bB3uVjPiw+dhX4nxITuUSQq20vTmLuqJFD3rD g==;
+X-CSE-ConnectionGUID: qcROBhRESROeowqIfK6njA==
+X-CSE-MsgGUID: k5afCp6jTXO84wMVEiH8Lw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="70771837"
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="70771837"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 00:18:15 -0700
+X-CSE-ConnectionGUID: Qs6a0u79RdeQdqzTuusLrg==
+X-CSE-MsgGUID: uekswhV+TuqeA5CZGimPVg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="254870733"
+Received: from dev-417.igk.intel.com ([10.91.214.181])
+ by orviesa003.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 26 Jun 2026 00:18:14 -0700
+Date: Fri, 26 Jun 2026 09:18:12 +0200 (CEST)
+From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
+To: Jani Nikula <jani.nikula@intel.com>
+cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
+Subject: Re: [PATCH 3/6] drm/{i915, xe}: move opregion/dram/bw init to
+ intel_display_driver_probe_noirq()
+In-Reply-To: <aa37d6443516ae660c2de53aba8ca42e6e6d1a5c.1781549229.git.jani.nikula@intel.com>
+Message-ID: <802a72cf-55f3-678e-55c0-4b84f8b2174b@intel.com>
+References: <cover.1781549229.git.jani.nikula@intel.com>
+ <aa37d6443516ae660c2de53aba8ca42e6e6d1a5c.1781549229.git.jani.nikula@intel.com>
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dg2=3A_Add_per-c?=
- =?utf-8?q?ontext_control_for_Wa=5F22013059131_=28rev9=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jia Yao" <jia.yao@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Fri, 26 Jun 2026 06:46:30 -0000
-Message-ID: <178245639077.119364.17377600324585014631@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260626052551.1327022-1-jia.yao@intel.com>
-In-Reply-To: <20260626052551.1327022-1-jia.yao@intel.com>
+Content-Type: multipart/mixed; boundary="8323329-405234400-1782458295=:605841"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,202 +71,233 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Action: add header
-X-Spamd-Result: default: False [8.89 / 15.00];
-	URL_MULTIPLE_AT_SIGNS(9.00)[3];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Rspamd-Action: no action
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	CTYPE_MIXED_BOGUS(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	GREYLIST(0.00)[pass,meta];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+];
+	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
+	RCPT_COUNT_THREE(0.00)[3];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url,01.org:url,emeril.freedesktop.org:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A7D26CABD0
-X-Spam: Yes
+X-Rspamd-Queue-Id: A81F46CADDB
 
---===============1242415716506401002==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+  This message is in MIME format.  The first part should be readable text,
+  while the remaining parts are likely unreadable without MIME-aware tools.
 
-== Series Details ==
+--8323329-405234400-1782458295=:605841
+Content-Type: text/plain; charset=ISO-8859-2; format=flowed
+Content-Transfer-Encoding: 8BIT
 
-Series: drm/i915/dg2: Add per-context control for Wa_22013059131 (rev9)
-URL   : https://patchwork.freedesktop.org/series/164198/
-State : success
+On Mon, 15 Jun 2026, Jani Nikula wrote:
+> The intel_opregion_setup(), intel_dram_detect(), and intel_bw_init_hw()
+> calls should really be in display. Move them at the beginning of
+> intel_display_driver_probe_noirq().
+>
+> This is a completely non-functional change for xe.
+>
+> For i915, the init order changes slightly:
+>
+> - i915_pcode_init() will happen before intel_opregion_setup(). This
+>  should be of no consequence.
+>
+> - The intel_gvt_init() calls will happen before the mentioned
+>  functions. There's a lot going on in intel_gvt_init(), but it does not
+>  look like this should have dependencies on them either.
+>
+> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 
-== Summary ==
+Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
-CI Bug Log - changes from CI_DRM_18723 -> Patchwork_164198v9
-====================================================
+BR,
+Micha³
 
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_164198v9 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@i915_pm_rpm@module-reload:
-    - bat-adlp-6:         [PASS][1] -> [DMESG-WARN][2] ([i915#15673]) +78 other tests dmesg-warn
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live@sanitycheck:
-    - fi-kbl-7567u:       [DMESG-WARN][3] ([i915#13735]) -> [PASS][4] +79 other tests pass
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
-
-  * igt@kms_busy@basic@flip:
-    - fi-kbl-7567u:       [DMESG-WARN][5] ([i915#13735] / [i915#180]) -> [PASS][6]
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_busy@basic@flip.html
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_busy@basic@flip.html
-
-  * igt@kms_pm_rpm@basic-pci-d3-state:
-    - fi-kbl-7567u:       [DMESG-WARN][7] ([i915#13735] / [i915#15673] / [i915#180]) -> [PASS][8] +52 other tests pass
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
-
-  
-  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
-  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
-  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18723 -> Patchwork_164198v9
-
-  CI-20190529: 20190529
-  CI_DRM_18723: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8987: 8987
-  Patchwork_164198v9: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html
-
---===============1242415716506401002==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915/dg2: Add per-context control for Wa_22013059131 (rev9)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164198/">https://patchwork.freedesktop.org/series/164198/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18723 -&gt; Patchwork_164198v9</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_164198v9 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@i915_pm_rpm@module-reload:<ul>
-<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) +78 other tests dmesg-warn</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live@sanitycheck:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">PASS</a> +79 other tests pass</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_busy@basic@flip:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_busy@basic@flip.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
-<ul>
-<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +52 other tests pass</li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18723 -&gt; Patchwork_164198v9</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18723: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8987: 8987<br />
-  Patchwork_164198v9: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============1242415716506401002==--
+> ---
+> .../drm/i915/display/intel_display_driver.c   | 17 +++++++++++++++-
+> drivers/gpu/drm/i915/i915_driver.c            | 20 ++-----------------
+> drivers/gpu/drm/xe/display/xe_display.c       | 20 ++-----------------
+> 3 files changed, 20 insertions(+), 37 deletions(-)
+>
+> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> index 462f78d5b020..15a61f171d73 100644
+> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
+> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
+> @@ -43,6 +43,7 @@
+> #include "intel_dp_tunnel.h"
+> #include "intel_dpll.h"
+> #include "intel_dpll_mgr.h"
+> +#include "intel_dram.h"
+> #include "intel_encoder.h"
+> #include "intel_fb.h"
+> #include "intel_fbc.h"
+> @@ -203,11 +204,23 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+> {
+> 	int ret;
+>
+> +	intel_opregion_setup(display);
+> +
+> +	/*
+> +	 * Fill the dram structure to get the system dram info. This will be
+> +	 * used for memory latency calculation.
+> +	 */
+> +	ret = intel_dram_detect(display);
+> +	if (ret)
+> +		goto cleanup_opregion;
+> +
+> +	intel_bw_init_hw(display);
+> +
+> 	if (HAS_DISPLAY(display)) {
+> 		ret = drm_vblank_init(display->drm,
+> 				      INTEL_NUM_PIPES(display));
+> 		if (ret)
+> -			return ret;
+> +			goto cleanup_opregion;
+> 	}
+>
+> 	intel_bios_init(display);
+> @@ -306,6 +319,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
+> 	intel_display_power_driver_remove(display);
+> cleanup_bios:
+> 	intel_bios_driver_remove(display);
+> +cleanup_opregion:
+> +	intel_opregion_cleanup(display);
+>
+> 	return ret;
+> }
+> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
+> index d1d3f039483f..05fdcba7b2dc 100644
+> --- a/drivers/gpu/drm/i915/i915_driver.c
+> +++ b/drivers/gpu/drm/i915/i915_driver.c
+> @@ -51,7 +51,6 @@
+> #include <drm/intel/intel_pcode_regs.h>
+>
+> #include "display/i9xx_display_sr.h"
+> -#include "display/intel_bw.h"
+> #include "display/intel_cdclk.h"
+> #include "display/intel_crtc.h"
+> #include "display/intel_display_device.h"
+> @@ -60,7 +59,6 @@
+> #include "display/intel_dmc.h"
+> #include "display/intel_dp.h"
+> #include "display/intel_dpt.h"
+> -#include "display/intel_dram.h"
+> #include "display/intel_fbdev.h"
+> #include "display/intel_gmbus.h"
+> #include "display/intel_hotplug.h"
+> @@ -469,7 +467,6 @@ static int i915_pcode_init(struct drm_i915_private *i915)
+>  */
+> static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+> {
+> -	struct intel_display *display = dev_priv->display;
+> 	struct pci_dev *pdev = to_pci_dev(dev_priv->drm.dev);
+> 	int ret;
+>
+> @@ -563,26 +560,13 @@ static int i915_driver_hw_probe(struct drm_i915_private *dev_priv)
+> 			drm_dbg(&dev_priv->drm, "can't enable MSI");
+> 	}
+>
+> -	intel_opregion_setup(display);
+> -
+> 	ret = i915_pcode_init(dev_priv);
+> 	if (ret)
+> -		goto err_opregion;
+> -
+> -	/*
+> -	 * Fill the dram structure to get the system dram info. This will be
+> -	 * used for memory latency calculation.
+> -	 */
+> -	ret = intel_dram_detect(display);
+> -	if (ret)
+> -		goto err_opregion;
+> -
+> -	intel_bw_init_hw(display);
+> +		goto err_msi;
+>
+> 	return 0;
+>
+> -err_opregion:
+> -	intel_opregion_cleanup(display);
+> +err_msi:
+> 	pci_disable_msi(pdev);
+> err_mem_regions:
+> 	intel_memory_regions_driver_release(dev_priv);
+> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
+> index a5768736dbbc..4a621779fc53 100644
+> --- a/drivers/gpu/drm/xe/display/xe_display.c
+> +++ b/drivers/gpu/drm/xe/display/xe_display.c
+> @@ -19,7 +19,6 @@
+>
+> #include "intel_acpi.h"
+> #include "intel_audio.h"
+> -#include "intel_bw.h"
+> #include "intel_display.h"
+> #include "intel_display_core.h"
+> #include "intel_display_device.h"
+> @@ -29,7 +28,6 @@
+> #include "intel_dmc.h"
+> #include "intel_dmc_wl.h"
+> #include "intel_dp.h"
+> -#include "intel_dram.h"
+> #include "intel_fbdev.h"
+> #include "intel_hdcp.h"
+> #include "intel_hotplug.h"
+> @@ -112,22 +110,9 @@ int xe_display_init_early(struct xe_device *xe)
+> 		return 0;
+> 	}
+>
+> -	/* Early display init.. */
+> -	intel_opregion_setup(display);
+> -
+> -	/*
+> -	 * Fill the dram structure to get the system dram info. This will be
+> -	 * used for memory latency calculation.
+> -	 */
+> -	err = intel_dram_detect(display);
+> -	if (err)
+> -		goto err_opregion;
+> -
+> -	intel_bw_init_hw(display);
+> -
+> 	err = intel_display_driver_probe_noirq(display);
+> 	if (err)
+> -		goto err_opregion;
+> +		return err;
+>
+> 	err = intel_display_driver_probe_nogem(display);
+> 	if (err)
+> @@ -137,8 +122,7 @@ int xe_display_init_early(struct xe_device *xe)
+> err_noirq:
+> 	intel_display_driver_remove_noirq(display);
+> 	intel_display_power_cleanup(display);
+> -err_opregion:
+> -	intel_opregion_cleanup(display);
+> +
+> 	return err;
+> }
+>
+> -- 
+> 2.47.3
+>
+>
+--8323329-405234400-1782458295=:605841--
