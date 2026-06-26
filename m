@@ -2,47 +2,46 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2WS5FMKBPmrqHAkAu9opvQ
+	id 2EDGLb+BPmrmHAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:26 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id DDEC56CD9BC
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6C91D6CD9AB
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:23 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=ccK2ZvDS;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=WrEnaoC6;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C29B810F607;
-	Fri, 26 Jun 2026 13:42:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5B67C10F5FD;
+	Fri, 26 Jun 2026 13:42:12 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id F1C5D10F5E5;
- Fri, 26 Jun 2026 13:42:08 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9B78210F5E5;
+ Fri, 26 Jun 2026 13:42:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481327;
- bh=Q8sFpW0LaWK/Smzuxt/7dTEculaPVCfQO31xaLLhI2w=;
+ s=default; t=1782481328;
+ bh=Oh1os3TsHNdW2Pq4AI0gYhWG24uRvSoJ0dx3b6zoRio=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=ccK2ZvDSe7sWnkwZVYHEus48/FyJjVgErgvAkWlTz0klQyAgfJGa39iuPcmRlSIO+
- SaBzYnGMqXKt/z45bZCn6lWmSPgiN2EWrtP0kKVavSOcRimpI/IiCac+k5ycA6XdUr
- Q9x55HLj/O8tUNPYOtNtQ8swOqaGqWx3ZaSK2/lIRYpFA7uf71evti6fAnxyvaRB80
- 0dwUb3tIk1DBCETI7B5kzVPA8mhKDG8pjGjwET3Rp8ogbBAR42NxZtrOLRpl6h0fC3
- Em67tiXquEZ6xfzUf+mdgS8Xz62As2cGebSqgz9bHIVp4GgKDICgVd1139JHM9U36D
- nose3BPrWvXmw==
+ b=WrEnaoC6FbrSPbruGhhufYYPc0Elst2sPqNbMv6K6PienLGWXwJiqCXmlTyPfpQb9
+ 7wjBUlnUAxyCmDoST9U9pJjvMcP4TPvv7m0nz2RauryK80zskhac4FUCcfSHwbVIK+
+ lpo21epzqX6AWqHF26O5uwl9Lr7Z0Ig0oYt+sAzkCF0PFJEcieYPYLVURUznV554go
+ gwCeJfG23gCBx+KsgDpnCwjfSYuIzHM94/zvvl5MXbNWlPgSRCdHU4wXJHayoZp1AF
+ 0uzHiYeRjJGX+x6cygPpx9zi/ty3dJMwR4qy4AnptkBXsq18N9KjzI9AogVwx5kksA
+ 8tigVXY/io2Cg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Clark Williams <williams@redhat.com>,
  Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
  Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 15/29] drm/i915/gt: Use spin_lock_irq() instead of
- local_irq_disable() + spin_lock()
-Date: Fri, 26 Jun 2026 15:42:06 +0200
-Message-ID: <20260626134222.1198252-16-dev@lankhorst.se>
+Subject: [PATCH v10.5 16/29] drm/i915: Drop the irqs_disabled() check
+Date: Fri, 26 Jun 2026 15:42:07 +0200
+Message-ID: <20260626134222.1198252-17-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -87,98 +86,50 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	RCPT_COUNT_SEVEN(0.00)[7];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: DDEC56CD9BC
+X-Rspamd-Queue-Id: 6C91D6CD9AB
 
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-execlists_dequeue() is invoked from a function which uses
-local_irq_disable() to disable interrupts so the spin_lock() behaves
-like spin_lock_irq().
-This breaks PREEMPT_RT because local_irq_disable() + spin_lock() is not
-the same as spin_lock_irq().
+The !irqs_disabled() check triggers on PREEMPT_RT even with
+i915_sched_engine::lock acquired. The reason is the lock is transformed
+into a sleeping lock on PREEMPT_RT and does not disable interrupts.
 
-execlists_dequeue_irq() and execlists_dequeue() has each one caller
-only. If intel_engine_cs::active::lock is acquired and released with the
-_irq suffix then it behaves almost as if execlists_dequeue() would be
-invoked with disabled interrupts. The difference is the last part of the
-function which is then invoked with enabled interrupts.
-I can't tell if this makes a difference. From looking at it, it might
-work to move the last unlock at the end of the function as I didn't find
-anything that would acquire the lock again.
+There is no need to check for disabled interrupts. The lockdep
+annotation below already check if the lock has been acquired by the
+caller and will yell if the interrupts are not disabled.
 
-Reported-by: Clark Williams <williams@redhat.com>
+Remove the !irqs_disabled() check.
+
+Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Reviewed-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- .../drm/i915/gt/intel_execlists_submission.c    | 17 +++++------------
- 1 file changed, 5 insertions(+), 12 deletions(-)
+ drivers/gpu/drm/i915/i915_request.c | 2 --
+ 1 file changed, 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-index 1359fc9cb88ef..e11db81dca9c5 100644
---- a/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-+++ b/drivers/gpu/drm/i915/gt/intel_execlists_submission.c
-@@ -1300,7 +1300,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 * and context switches) submission.
- 	 */
+diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
+index d2c7b1090df08..f66f8efc70629 100644
+--- a/drivers/gpu/drm/i915/i915_request.c
++++ b/drivers/gpu/drm/i915/i915_request.c
+@@ -610,7 +610,6 @@ bool __i915_request_submit(struct i915_request *request)
  
--	spin_lock(&sched_engine->lock);
-+	spin_lock_irq(&sched_engine->lock);
+ 	RQ_TRACE(request, "\n");
  
- 	/*
- 	 * If the queue is higher priority than the last
-@@ -1400,7 +1400,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 				 * Even if ELSP[1] is occupied and not worthy
- 				 * of timeslices, our queue might be.
- 				 */
--				spin_unlock(&sched_engine->lock);
-+				spin_unlock_irq(&sched_engine->lock);
- 				return;
- 			}
- 		}
-@@ -1426,7 +1426,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 
- 		if (last && !can_merge_rq(last, rq)) {
- 			spin_unlock(&ve->base.sched_engine->lock);
--			spin_unlock(&engine->sched_engine->lock);
-+			spin_unlock_irq(&engine->sched_engine->lock);
- 			return; /* leave this for another sibling */
- 		}
- 
-@@ -1588,7 +1588,7 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	 */
- 	sched_engine->queue_priority_hint = queue_prio(sched_engine);
- 	i915_sched_engine_reset_on_empty(sched_engine);
--	spin_unlock(&sched_engine->lock);
-+	spin_unlock_irq(&sched_engine->lock);
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
  
  	/*
- 	 * We can skip poking the HW if we ended up with exactly the same set
-@@ -1614,13 +1614,6 @@ static void execlists_dequeue(struct intel_engine_cs *engine)
- 	}
- }
+@@ -719,7 +718,6 @@ void __i915_request_unsubmit(struct i915_request *request)
+ 	 */
+ 	RQ_TRACE(request, "\n");
  
--static void execlists_dequeue_irq(struct intel_engine_cs *engine)
--{
--	local_irq_disable(); /* Suspend interrupts across request submission */
--	execlists_dequeue(engine);
--	local_irq_enable(); /* flush irq_work (e.g. breadcrumb enabling) */
--}
--
- static void clear_ports(struct i915_request **ports, int count)
- {
- 	memset_p((void **)ports, NULL, count);
-@@ -2475,7 +2468,7 @@ static void execlists_submission_tasklet(struct tasklet_struct *t)
- 	}
+-	GEM_BUG_ON(!irqs_disabled());
+ 	lockdep_assert_held(&engine->sched_engine->lock);
  
- 	if (!engine->execlists.pending[0]) {
--		execlists_dequeue_irq(engine);
-+		execlists_dequeue(engine);
- 		start_timeslice(engine);
- 	}
- 
+ 	/*
 -- 
 2.53.0
 
