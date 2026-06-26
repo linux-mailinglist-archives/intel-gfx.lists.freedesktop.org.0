@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PJMwOsOBPmrtHAkAu9opvQ
+	id CmxVDsiBPmr1HAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 709916CD9C7
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id C93AA6CD9E9
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:31 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=CEEMzl4a;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=PA7CyiVn;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6FF3D10F5FC;
-	Fri, 26 Jun 2026 13:42:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id AD4FC10F60D;
+	Fri, 26 Jun 2026 13:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A305B10F5EE;
- Fri, 26 Jun 2026 13:42:11 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5495410F5FC;
+ Fri, 26 Jun 2026 13:42:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481330;
- bh=j+kZhrKGeVLe6Kwb9Av2wRwsLfG3GUrsHoYClLpC+34=;
+ s=default; t=1782481331;
+ bh=r10AAnKUQPrCjn4nwCrtFvliOfdGv8y4HVOMxu4pQsU=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=CEEMzl4ac8yQAMo8SyO29bXj0TAGkNFg7hDBKQ+7v8lN/bnCW+PjDzziCMbb8E/LS
- PSVl9SEcKa/NdcYAuagRzohwg/BrjQzZrfV5PAbehyzLkR9nnrXCviW/h5DUsg6IQr
- ZnzOBbA2xP2imNz+O0Ev1ptqFwaxhERAWiQQEPprACNhuK/bt2FD/XIrnDq3zE1fHf
- ylB4nWx5QIdxHlQ4BIyWY+ywRYYaoXO8v3qRBKgMJ0/0IaBbI/VvaXEyTOtt97Equx
- xXPKYGJe89p6bHRkKq6W6U9QXYmBwY9Q88RY8awANH6P+18e8/D/+xGCJV6aKsmvlq
- +oqeIIEzWHF1w==
+ b=PA7CyiVnrS0+Jujf9DASbK+e/tjDg0pG2MnHV7D8m9kjay6t0sFjVy+pZotytEQnD
+ bdDI96Z08ljQwQLpDoz5pYzbKcWBI2ZMYoITpLdxrLEXF9WdgytA+PmppLD1AjNyZJ
+ lNvTSWXrzlKLDLh/I3xSFlt2P7vsf+h938ZKTmaAQu6uDfFRIm6MrnoJ2fj+Mxwio2
+ hHpDMuBbk2NzBgSsJfb6kL31jDgZadpDNDhIAeig1K5EniTBsCrGRk9njEh0uZysV9
+ xCHCwXR75wrbUBOWCcnpFnmjy+NR+RvsavnXBYuwI/eMs4kUKrIrSiFAx48WByiBXk
+ igHceDfjqHHsQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 19/29] drm/i915/gt: Set stop_timeout() correctly on
- PREEMPT-RT
-Date: Fri, 26 Jun 2026 15:42:10 +0200
-Message-ID: <20260626134222.1198252-20-dev@lankhorst.se>
+Subject: [PATCH v10.5 20/29] drm/i915/display: Remove uncore lock from
+ vlv_atomic_update_fifo
+Date: Fri, 26 Jun 2026 15:42:11 +0200
+Message-ID: <20260626134222.1198252-21-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -86,29 +86,45 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 709916CD9C7
+X-Rspamd-Queue-Id: C93AA6CD9E9
 
-Also check if RCU is disabled for PREEMPT-RT, which is the case when
-local_bh_disable() is called.
+TODO: Grab uncore lock during entire vblank evasion before disabling
+interrupts, and check what breaks?
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/display/i9xx_wm.c | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c0fd349a4600c..9dd9665128caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
- 
- static unsigned long stop_timeout(const struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/display/i9xx_wm.c b/drivers/gpu/drm/i915/display/i9xx_wm.c
+index 86d1c9f7f0ff0..e07303f0b3cc4 100644
+--- a/drivers/gpu/drm/i915/display/i9xx_wm.c
++++ b/drivers/gpu/drm/i915/display/i9xx_wm.c
+@@ -1863,7 +1863,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 				   struct intel_crtc *crtc)
  {
--	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
- 		return 0;
+ 	struct intel_display *display = to_intel_display(crtc);
+-	struct intel_uncore *uncore = to_intel_uncore(display->drm);
+ 	const struct intel_crtc_state *crtc_state =
+ 		intel_atomic_get_new_crtc_state(state, crtc);
+ 	const struct vlv_fifo_state *fifo_state =
+@@ -1892,7 +1891,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	 * intel_pipe_update_start() has already disabled interrupts
+ 	 * for us, so a plain spin_lock() is sufficient here.
+ 	 */
+-	spin_lock(&uncore->lock);
  
- 	/*
+ 	switch (crtc->pipe) {
+ 	case PIPE_A:
+@@ -1951,8 +1949,6 @@ static void vlv_atomic_update_fifo(struct intel_atomic_state *state,
+ 	}
+ 
+ 	intel_de_read_fw(display, DSPARB(display));
+-
+-	spin_unlock(&uncore->lock);
+ }
+ 
+ #undef VLV_FIFO
 -- 
 2.53.0
 
