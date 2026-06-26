@@ -2,46 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id H40yAsCBPmrnHAkAu9opvQ
+	id InhsJ8SBPmrwHAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:24 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AF0E66CD9AC
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6E1176CD9D4
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=itwXNTba;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=ZhUq7ymc;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 2379210F5EE;
-	Fri, 26 Jun 2026 13:42:12 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB90810F604;
+	Fri, 26 Jun 2026 13:42:16 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 4996210F5EE;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E7C1610F5E7;
  Fri, 26 Jun 2026 13:42:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1782481329;
- bh=aJ674jKfdfYzA1796ckniFKjkGKFKlysonuWe+TKQpQ=;
+ bh=T/OQGU8prg+GP3iTibN/WUfOED1EMA169ETe4ayUGKY=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=itwXNTba2/FEys27lo2wIul+/fgwksImytuh40ElKjBQJoxrLa7Sa9+yVz3K7s+uS
- 9+DdutTZHoWKpl8PU6siyT4/8dGF8bWbGoQ8YkyLVIZhCbBHe7IxtE1egwRxtUwhTC
- xJ5xjtUITHAXJgmdB/UFhVBko+rOx3vmdV2rGQAGch33/wqS4ZGFT0ONGns/skWJ4/
- WboAInNSJKb1EAJO5TpiPLpCVvE77qKq/CDKEJzPcEgLAlgIRTksFxrMrWqOcZ7eoV
- LE/M0jnL/UiOGjEMAgRk4PNgBPed9rj8cBW7fpLf+qsCNzZYkomh0MnYOSJubN05LZ
- enZXNIIzdNFrA==
+ b=ZhUq7ymcHC4fMTlXCxEI9Hmuw8Mt8dGOQQNBGoB/cFLh9dZjxfLqwHtc4m+fp+8bK
+ qIcDxyMc3zjes+48fHMOJn/x223oQddoYgafQytkr/vWGdxYswqik1ofo7+oIZSE7B
+ GiqqFK10dWkl4AW3POH/NdGckQiCHCRmpsU56aUs+RqbP7zV8BJzPXRpwNUCqvEQV8
+ 5nq19ezQFckaSDQIwQ54niGN8qrQzEVaryhUYnRg6ych23hhNlyn7m00hJQu/pnrmC
+ 907rSkdmlvxB5q5RGemYQ5WuvX4pEots5wPdYhb86CFW3FTw3WXTic9SRUZZQU7YbZ
+ yZrwFbKDJsR0w==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- "John B. Wyatt IV" <jwyatt@redhat.com>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 17/29] drm/i915/guc: Consider also RCU depth in busy
- loop.
-Date: Fri, 26 Jun 2026 15:42:08 +0200
-Message-ID: <20260626134222.1198252-18-dev@lankhorst.se>
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v10.5 18/29] drm/i915/gt: Fix selftests on PREEMPT_RT
+Date: Fri, 26 Jun 2026 15:42:09 +0200
+Message-ID: <20260626134222.1198252-19-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -67,59 +64,66 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
 	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
-	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+];
 	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
 	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
 	RCVD_COUNT_TWO(0.00)[2];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AF0E66CD9AC
+X-Rspamd-Queue-Id: 6E1176CD9D4
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-intel_guc_send_busy_loop() looks at in_atomic() and irqs_disabled() to
-decide if it should busy-spin while waiting or if it may sleep.
-Both checks will report false on PREEMPT_RT if sleeping spinlocks are
-acquired leading to RCU splats while the function sleeps.
-
-Check also if RCU has been disabled.
-
-Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
-Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
-Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-index 053780f562c1a..b25fa8f4dc4bd 100644
---- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-+++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-@@ -362,7 +362,7 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
- {
- 	int err;
- 	unsigned int sleep_period_ms = 1;
--	bool not_atomic = !in_atomic() && !irqs_disabled();
-+	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
+diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+index 10e556a7eac45..c1eff9edd8a5e 100644
+--- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
++++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
+@@ -277,11 +277,11 @@ static int live_engine_busy_stats(void *arg)
+ 		st_engine_heartbeat_disable(engine);
  
- 	/*
- 	 * FIXME: Have caller pass in if we are in an atomic context to avoid
+ 		ENGINE_TRACE(engine, "measuring idle time\n");
+-		preempt_disable();
++		migrate_disable();
+ 		de = intel_engine_get_busy_time(engine, &t[0]);
+ 		udelay(100);
+ 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+-		preempt_enable();
++		migrate_enable();
+ 		dt = ktime_sub(t[1], t[0]);
+ 		if (de < 0 || de > 10) {
+ 			pr_err("%s: reported %lldns [%d%%] busyness while sleeping [for %lldns]\n",
+@@ -316,11 +316,11 @@ static int live_engine_busy_stats(void *arg)
+ 		}
+ 
+ 		ENGINE_TRACE(engine, "measuring busy time\n");
+-		preempt_disable();
++		migrate_disable();
+ 		de = intel_engine_get_busy_time(engine, &t[0]);
+ 		mdelay(100);
+ 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
+-		preempt_enable();
++		migrate_enable();
+ 		dt = ktime_sub(t[1], t[0]);
+ 		if (100 * de < 95 * dt || 95 * de > 100 * dt) {
+ 			pr_err("%s: reported %lldns [%d%%] busyness while spinning [for %lldns]\n",
 -- 
 2.53.0
 
