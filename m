@@ -2,63 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id t0XyBf0uPmovBAkAu9opvQ
+	id H3evNtcORWqD6AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 09:49:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6EA8B6CB10A
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 09:49:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8D6476EDB10
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:59 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=IVwuTMjl;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=ZuN86shS;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F277D10F45F;
-	Fri, 26 Jun 2026 07:49:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8492310EFCA;
+	Wed,  1 Jul 2026 12:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BE31C10E31A;
- Fri, 26 Jun 2026 07:49:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782460154; x=1813996154;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=hOYWas3URVRrBb7LGITlzC99DRG/yfe3gkr2jnrg6FM=;
- b=IVwuTMjlK6pH+yu5EBE2U77PROpDIfyzLWWQonlc1B69RiZ1/nreuhjJ
- C3jfSs5eSlI88QsLOPC455E+UaIkjwiEVhSGIfSYgbD6Q6JjXp7rQ3jt9
- IigYUR9GhpQASKnHmk9WLMvybpWdbK4iwlxHhr/jdsNXOAgWHa+Zzs7L7
- ssjAa8W1OgdDybf84uDqp02ahuMKrcmYwzCr1qoInDNsvI3LPIFb5R+SL
- q/FIFSrph/63P38dyJrzy3WLf3iwKuoZCx4yxVlX7P2v/OXGSxJ3ySiBu
- 1x8hnxQGAqyfcXpHtbUJ0VBZ4oqpJG0S/GhURK+Hu9SDM+CdRK96KC+HO w==;
-X-CSE-ConnectionGUID: 8VMSKZk6SeSjG9Dn3TjiRg==
-X-CSE-MsgGUID: A7tiZYfQRtC+QpiY0Uu3Jg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11828"; a="94400610"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="94400610"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 00:49:14 -0700
-X-CSE-ConnectionGUID: 8Q8adguQSGqBZFX8t4psIg==
-X-CSE-MsgGUID: 8xJB3NL1T5yWR0mkgiTBRA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="255685278"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 00:49:13 -0700
-Date: Fri, 26 Jun 2026 09:49:10 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH 6/6] drm/{i915, xe}: move intel_hpd_cancel_work() to
- intel_display_driver_remove_noirq()
-In-Reply-To: <6be8d033a6c8d0038dc14100d3ee6612d6204770.1781549229.git.jani.nikula@intel.com>
-Message-ID: <93ef2e02-d60e-80f3-f892-30e3b72adcb6@intel.com>
-References: <cover.1781549229.git.jani.nikula@intel.com>
- <6be8d033a6c8d0038dc14100d3ee6612d6204770.1781549229.git.jani.nikula@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BE71D10E325;
+ Fri, 26 Jun 2026 08:51:27 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id E0C03600AE;
+ Fri, 26 Jun 2026 08:51:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 55C131F000E9;
+ Fri, 26 Jun 2026 08:51:22 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782463886;
+ bh=dczgg0EG8SzCmQOx10ra7Wu7tyi/QlMQ5W656css9gI=;
+ h=Date:From:To:Cc:Subject:In-Reply-To:References;
+ b=ZuN86shSSyy0XeJHxDjAleAAh3O8h5DItrYs4TSav34bAuZW0MAx9ZBBE9S3nKp+q
+ JUucAqzuWIOp1XCgdpd9P3oFXnLbWNeWduuAN7d3BLmln+qoARZNZxKF2O06nPeYv4
+ 1dAdVGA0JDyuC0sJVCZD2wvL+fK7VqCql7n7upa+dFP/qqyZ8tCeX05jqkcgPFDC5w
+ tFX0+2mg/DvZd1BW9undZCZbfHnid5R0fV0ghRYpjUgkCITPyYbrNbnJWUD3Su88Bu
+ iGHlEwHR4XUomu86ZdOshDLSTLNHrTMNbY7gs9BX+9uYtxaMeTpyySj/HlKZUt2HrK
+ 5/RKab/63CQEw==
+Date: Fri, 26 Jun 2026 04:51:19 -0400
+From: Steven Rostedt <rostedt@kernel.org>
+To: Nathan Chancellor <nathan@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org, Masami
+ Hiramatsu <mhiramat@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>, Andrew Morton
+ <akpm@linux-foundation.org>, Linus Torvalds
+ <torvalds@linux-foundation.org>, Sebastian Andrzej Siewior
+ <bigeasy@linutronix.de>, John Ogness <john.ogness@linutronix.de>, Thomas
+ Gleixner <tglx@kernel.org>, Peter Zijlstra <peterz@infradead.org>, Julia
+ Lawall <julia.lawall@inria.fr>, Yury Norov <yury.norov@gmail.com>,
+ linux-doc@vger.kernel.org, linux-kbuild@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+ linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-rdma@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-nfs@vger.kernel.org, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v4 2/2] tracing: Remove trace_printk.h from kernel.h
+Message-ID: <20260626045119.659d1e6b@fedora>
+In-Reply-To: <20260625234158.GA261868@ax162>
+References: <20260625104007.041432666@kernel.org>
+ <20260625104402.210473477@kernel.org>
+ <20260625234158.GA261868@ax162>
+X-Mailer: Claws Mail 4.4.0 (GTK 3.24.52; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-843812408-1782460153=:605841"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,98 +80,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [1.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DATE_IN_PAST(1.00)[124];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[26];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
-	ARC_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	ARC_NA(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,arm.com,efficios.com,linux-foundation.org,linutronix.de,infradead.org,inria.fr,gmail.com,lists.ozlabs.org,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[rostedt@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[fedora:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6EA8B6CB10A
+X-Rspamd-Queue-Id: 8D6476EDB10
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+On Thu, 25 Jun 2026 16:41:58 -0700
+Nathan Chancellor <nathan@kernel.org> wrote:
 
---8323329-843812408-1782460153=:605841
-Content-Type: text/plain; charset=ISO-8859-2; format=flowed
-Content-Transfer-Encoding: 8BIT
 
-On Mon, 15 Jun 2026, Jani Nikula wrote:
-> intel_hpd_cancel_work() gets called before
-> intel_display_driver_remove_noirq(). Move it there.
->
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
+> The following diff resolves it for me, should I send it as a separate
+> patch or do you want to just fold it in with a note?
+> 
+> diff --git a/include/linux/lockdep.h b/include/linux/lockdep.h
+> index 621566345406..2301a701ffbb 100644
+> --- a/include/linux/lockdep.h
+> +++ b/include/linux/lockdep.h
+> @@ -10,6 +10,7 @@
+>  #ifndef __LINUX_LOCKDEP_H
+>  #define __LINUX_LOCKDEP_H
+>  
+> +#include <linux/instruction_pointer.h>
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+Ah, so the reason for this breakage is because lockdep was relying on
+instruction_pointer.h, that just happened to be included in kernel.h
+via trace_printk.h.
 
-BR,
-Micha³
+This is a separate issue, so it should be a separate patch. I'll add it
+as patch 1 of this series.
 
-> ---
-> drivers/gpu/drm/i915/display/intel_display_driver.c | 2 ++
-> drivers/gpu/drm/i915/i915_driver.c                  | 1 -
-> drivers/gpu/drm/xe/display/xe_display.c             | 1 -
-> 3 files changed, 2 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index a1c91fbf737c..bb5301b90231 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -622,6 +622,8 @@ void intel_display_driver_remove_noirq(struct intel_display *display)
-> 	if (!HAS_DISPLAY(display))
-> 		return;
->
-> +	intel_hpd_cancel_work(display);
-> +
-> 	intel_display_driver_suspend_access(display);
->
-> 	/*
-> diff --git a/drivers/gpu/drm/i915/i915_driver.c b/drivers/gpu/drm/i915/i915_driver.c
-> index 68ab96b8195b..3ac7dc66085f 100644
-> --- a/drivers/gpu/drm/i915/i915_driver.c
-> +++ b/drivers/gpu/drm/i915/i915_driver.c
-> @@ -948,7 +948,6 @@ void i915_driver_remove(struct drm_i915_private *i915)
-> 	intel_display_driver_remove(display);
->
-> 	intel_irq_uninstall(i915);
-> -	intel_hpd_cancel_work(display);
->
-> 	intel_display_driver_remove_noirq(display);
->
-> diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-> index 8be3e600838b..92a4573db28a 100644
-> --- a/drivers/gpu/drm/xe/display/xe_display.c
-> +++ b/drivers/gpu/drm/xe/display/xe_display.c
-> @@ -81,7 +81,6 @@ static void xe_display_fini_early(void *arg)
-> 	if (!xe->info.probe_display)
-> 		return;
->
-> -	intel_hpd_cancel_work(display);
-> 	intel_display_driver_remove_noirq(display);
-> 	intel_display_driver_remove_nogem(display);
-> 	intel_display_power_cleanup(display);
-> -- 
-> 2.47.3
->
->
---8323329-843812408-1782460153=:605841--
+Can you send me the config you used. This didn't trigger in my tests.
+
+Thanks,
+
+-- Steve
+
+
+
+>  #include <linux/lockdep_types.h>
+>  #include <linux/smp.h>
+>  #include <asm/percpu.h>
+
