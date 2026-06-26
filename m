@@ -2,111 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4qB9KDIePmokAAkAu9opvQ
+	id ta8wNUkgPmqXAAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 08:37:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 08:46:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 305C86CAAFE
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 08:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2A7D26CABD0
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 08:46:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=GY2f82LX;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1B5B610F434;
-	Fri, 26 Jun 2026 06:37:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7D38F10F432;
+	Fri, 26 Jun 2026 06:46:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from DM5PR21CU001.outbound.protection.outlook.com
- (mail-centralusazon11011011.outbound.protection.outlook.com [52.101.62.11])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0A94510F42B;
- Fri, 26 Jun 2026 06:37:32 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=HqmOvytKV8+B4kiSl9cE9lMXr8jcJk1I9YmgDctBzR3xtsk4Icr7VdS79lSzB+x8X51Afd357SHSlAZYlCr+GUsGXPiiCfik5ANu1PZtLtrPLroD1LBJtmFqpitmNK9Eafc9gqi9D42h/Rx+v+XTyQyJ9snuuiZLMA6wbUxRMiNIKGOSJ+Z6ia0vPPUmLmcLhcMCJoBwsup4xhc8f9U8JOcycaREklfGOjFOBCCU5ipv30YqAOe1FZpUVXbqpRL4xYX3PBiwagHBmzCi/QK1j/0Hz6N7uJcPUw+FwpQDbF4JCn1/dZ1mvXVPqTztB06nGzsSwTOoWv0VpxTdOB8vEA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=ggr6u9216LoeQgSPX1obf+AY9QMHx3wUFWjGFRk34x0=;
- b=NtLzi7XRsdCwz/ji3J7gyt7UrPkN89BilU/NrYJPO5CzviTpNIieTy9xHZaMKKbcrqkKapKdzvYIpYEz1SNjNYaeNAqwr34Vu2aeXRFRRxGUfVkYuyK7FKIJGMqDvSICQInUkzp94wZl0vvUzjyNFOOM0t00NNdjAmUi3uV+m3Oxx3IxiBKE8iwcIdUyvrnwxupeR6joFk4KlyCM2YPGfOiMDBd3vjKTGTYqzHE+Kkuobhek2+epxPcgMj2Xq8R8d2f20/KEzSzUXqe92CYYDlEpGaQ61UGVabeewFcCIIn0vKL5bo0N3wyxoOXQXHT6PnXuofI5HfGisTapDyHlBw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 165.204.84.17) smtp.rcpttodomain=ursulin.net smtp.mailfrom=amd.com;
- dmarc=pass (p=quarantine sp=quarantine pct=100) action=none
- header.from=amd.com; dkim=none (message not signed); arc=none (0)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ggr6u9216LoeQgSPX1obf+AY9QMHx3wUFWjGFRk34x0=;
- b=GY2f82LXiy6HJ5sfCYsWKXHnNVW//Hq6GgHl5+3bwhShHDuoSBuJ4vjUQkEOELE10gi9ZUuABLYqZ+9+hEy8jBhCsfTXFdWrfl7RBJQOafpeNkMqUl2M4JeDW5WJG/s4yQdbtkzYzwWysd6L9ROCfAtuItMh6+3FOzHnINq8hEQ=
-Received: from DM6PR02CA0118.namprd02.prod.outlook.com (2603:10b6:5:1b4::20)
- by CH3PR12MB8404.namprd12.prod.outlook.com (2603:10b6:610:12d::17) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.17; Fri, 26 Jun
- 2026 06:37:25 +0000
-Received: from SN1PEPF0002BA4B.namprd03.prod.outlook.com
- (2603:10b6:5:1b4:cafe::53) by DM6PR02CA0118.outlook.office365.com
- (2603:10b6:5:1b4::20) with Microsoft SMTP Server (version=TLS1_3,
- cipher=TLS_AES_256_GCM_SHA384) id 15.21.159.17 via Frontend Transport; Fri,
- 26 Jun 2026 06:37:23 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 165.204.84.17)
- smtp.mailfrom=amd.com; dkim=none (message not signed)
- header.d=none;dmarc=pass action=none header.from=amd.com;
-Received-SPF: Pass (protection.outlook.com: domain of amd.com designates
- 165.204.84.17 as permitted sender) receiver=protection.outlook.com;
- client-ip=165.204.84.17; helo=satlexmb07.amd.com; pr=C
-Received: from satlexmb07.amd.com (165.204.84.17) by
- SN1PEPF0002BA4B.mail.protection.outlook.com (10.167.242.68) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.21.181.6 via Frontend Transport; Fri, 26 Jun 2026 06:37:23 +0000
-Received: from arun-nv33.amd.com (10.180.168.240) by satlexmb07.amd.com
- (10.181.42.216) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.2.2562.41; Fri, 26 Jun
- 2026 01:37:20 -0500
-From: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
-To: <christian.koenig@amd.com>, <tursulin@ursulin.net>,
- <dri-devel@lists.freedesktop.org>, <intel-gfx@lists.freedesktop.org>,
- <intel-xe@lists.freedesktop.org>, <amd-gfx@lists.freedesktop.org>,
- <nouveau@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
-CC: <alexander.deucher@amd.com>, Arunpravin Paneer Selvam
- <Arunpravin.PaneerSelvam@amd.com>, =?UTF-8?q?Thomas=20Hellstr=C3=B6m?=
- <thomas.hellstrom@linux.intel.com>, Matthew Auld <matthew.auld@intel.com>,
- Matthew Brost <matthew.brost@intel.com>
-Subject: [PATCH v2] drm/ttm: add generic drvparam[] alias for
- ttm_place::fpfn/lpfn
-Date: Fri, 26 Jun 2026 12:06:58 +0530
-Message-ID: <20260626063658.10237-1-Arunpravin.PaneerSelvam@amd.com>
-X-Mailer: git-send-email 2.34.1
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C010810E30B;
+ Fri, 26 Jun 2026 06:46:30 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============1242415716506401002=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.180.168.240]
-X-ClientProxiedBy: satlexmb08.amd.com (10.181.42.217) To satlexmb07.amd.com
- (10.181.42.216)
-X-EOPAttributedMessage: 0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: SN1PEPF0002BA4B:EE_|CH3PR12MB8404:EE_
-X-MS-Office365-Filtering-Correlation-Id: a8dedce0-0046-4241-1069-08ded34d61a2
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|1800799024|82310400026|23010399003|36860700016|7416014|376014|18002099003|3023799007|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: 6yxEEAyTx+NEmNUTQZ11IucteDeDICAH76SxgbGLnzXYbQfpip2pbE+yBxqPJ7j1FdBtaDRJRaNRmIagEGuC4D9wwkji4GfRwIMCP8iHsWTejPlevZucLU712Tkn0q/UsXK3rADrbO3yNeRqTmyJNfRsd8ALvKXAs+58/P57u4hGmlk6IOzX/usxSsv1WeLfU2f4iZ//F2Q75PH6LwT3sBgIu6sjs6LwoE/OgifHjtGcOdMRdfhRDZpqJ9lYpdZ65fQ5dvVgpjwyYnmOFb4Tnd1qPL3TbDgmihjMSo9nqyIgpIT320PR95yZqdtE0Q2QDzxgR/P3tOPsLqWHQGWG7R2zWVaS38eWeE/Mgg0EUDrV7NcGCMk3gYv7MmmcrUinbC4aJaX4A14PFMqbCoYHUBHa8AK32ETlyBJyheeLEm1IOcLR9ikbFPJHn+4ok3GIAcZ6G/ORROjFRVgRYGxHGKi7Zgdg52d1z+ZLn4ryxg6oQ96ui2NI/2gg1eA1iL2jURlAucFUvAqIr5fprzNp1cF8XoAJYwxO02rFj2DavlNHtqzUrrB6mEYMBsgz4jwuxiTbNe8GfKs4GS6DHh7CHKRH5m4L6LlLzxzI/pg8TDIN3y3DJDg0OHtq7yeeKi8pOkAgK+Rz5UMBHpIJ3lOflZo4fl/mSsCEiZvwfHvL6tDMrrrha2Oy9b4Sew++0w4JRclk0WDPIwSiXFjJrw/Nfg==
-X-Forefront-Antispam-Report: CIP:165.204.84.17; CTRY:US; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:satlexmb07.amd.com; PTR:InfoDomainNonexistent; CAT:NONE;
- SFS:(13230040)(1800799024)(82310400026)(23010399003)(36860700016)(7416014)(376014)(18002099003)(3023799007)(11063799006)(56012099006);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: to/m/0R06wlPH/BfB7PFi85clDhhXRQ3sKmzsd/aSrm1Yr5ougMUobLeLbwNU7oog1vYUrCrcUZliMhMr6epkkM0DZ51tlX+nAazqAang4OrdhdDmn1/upu9gvWg9NJu0Ii1wFAa8sLj0rq3UDblrJASEosMCofJ+iiPKTFxwymCnmh/fu9xyx+iDPWSi7h16IZpOIYnBuS+p8wOzrmBbGcWMpMapPXRxzGtZiyPY7wFNFjp0x3+tBaRjWBdpSiM0RUPeTM3j9rQtrryPZvVVF0uu5cHnFnLpOSynx3STqQVyKued4xJwIs1JzIZuboqE313fcxEpzvrhKUT7Y5Lx8x6TYeKAmeAZ8AXnMh1QrplbAG7BnM9eA5u+XIXkKA766e35Zx+mokhJikhxqEeOUB922Gsh7l6XVaNRYntZb7V932UtGsiTBulQpy73mN+
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 26 Jun 2026 06:37:23.6531 (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: a8dedce0-0046-4241-1069-08ded34d61a2
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=3dd8961f-e488-4e60-8e11-a82d994e183d; Ip=[165.204.84.17];
- Helo=[satlexmb07.amd.com]
-X-MS-Exchange-CrossTenant-AuthSource: SN1PEPF0002BA4B.namprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH3PR12MB8404
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915/dg2=3A_Add_per-c?=
+ =?utf-8?q?ontext_control_for_Wa=5F22013059131_=28rev9=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Jia Yao" <jia.yao@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Fri, 26 Jun 2026 06:46:30 -0000
+Message-ID: <178245639077.119364.17377600324585014631@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260626052551.1327022-1-jia.yao@intel.com>
+In-Reply-To: <20260626052551.1327022-1-jia.yao@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -119,96 +46,202 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
-X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Rspamd-Action: add header
+X-Spamd-Result: default: False [8.89 / 15.00];
+	URL_MULTIPLE_AT_SIGNS(9.00)[3];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[13];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	GREYLIST(0.00)[pass,meta];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_FIVE(0.00)[6];
-	FROM_NEQ_ENVFROM(0.00)[Arunpravin.PaneerSelvam@amd.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[amd.com:+];
-	HAS_XOIP(0.00)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:email]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,patchwork.freedesktop.org:url,01.org:url,emeril.freedesktop.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 305C86CAAFE
+X-Rspamd-Queue-Id: 2A7D26CABD0
+X-Spam: Yes
 
-The fpfn/lpfn fields in struct ttm_place are named after page frame
-numbers, but they are really just placement parameters interpreted by
-the backend resource manager. Wrap them in a union with a generic
-drvparam[2] array so backends can access the same storage without the
-PFN-specific naming.
+--===============1242415716506401002==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-drvparam[0]/drvparam[1] alias fpfn/lpfn, so existing users and the
-VRAM range manager are unchanged. This decouples the API from
-PFN/range-specific semantics so that these fields can be used more
-flexibly in the future (e.g. mask-based or segment-aware placement
-constraints). No functional change.
+== Series Details ==
 
-v2: Use a union exposing a generic drvparam[2] array instead of
-    renaming fpfn/lpfn to param1/param2, keeping existing users
-    unchanged (Tvrtko Ursulin)
+Series: drm/i915/dg2: Add per-context control for Wa_22013059131 (rev9)
+URL   : https://patchwork.freedesktop.org/series/164198/
+State : success
 
-Suggested-by: Christian König <christian.koenig@amd.com>
-Assisted-by: Claude:claude-opus-4-8
-Cc: Christian König <christian.koenig@amd.com>
-Cc: Thomas Hellström <thomas.hellstrom@linux.intel.com>
-Cc: Matthew Auld <matthew.auld@intel.com>
-Cc: Matthew Brost <matthew.brost@intel.com>
-Signed-off-by: Arunpravin Paneer Selvam <Arunpravin.PaneerSelvam@amd.com>
----
- include/drm/ttm/ttm_placement.h | 12 ++++++++++--
- 1 file changed, 10 insertions(+), 2 deletions(-)
+== Summary ==
 
-diff --git a/include/drm/ttm/ttm_placement.h b/include/drm/ttm/ttm_placement.h
-index ab2639e42c54..7db2073f3236 100644
---- a/include/drm/ttm/ttm_placement.h
-+++ b/include/drm/ttm/ttm_placement.h
-@@ -75,14 +75,22 @@
-  *
-  * @fpfn:	first valid page frame number to put the object
-  * @lpfn:	last valid page frame number to put the object
-+ * @drvparam:	generic driver/backend placement parameters; the
-+ *		interpretation is defined by the backend resource manager.
-+ *		drvparam[0] and drvparam[1] alias @fpfn and @lpfn.
-  * @mem_type:	One of TTM_PL_* where the resource should be allocated from.
-  * @flags:	memory domain and caching flags for the object
-  *
-  * Structure indicating a possible place to put an object.
-  */
- struct ttm_place {
--	uint64_t	fpfn;
--	uint64_t	lpfn;
-+	union {
-+		struct {
-+			uint64_t	fpfn;
-+			uint64_t	lpfn;
-+		};
-+		uint64_t	drvparam[2];
-+	};
- 	uint32_t	mem_type;
- 	uint32_t	flags;
- };
+CI Bug Log - changes from CI_DRM_18723 -> Patchwork_164198v9
+====================================================
 
-base-commit: cdeb2ccd993ed8647adbbda2c3b103aa717fd6f7
--- 
-2.34.1
+Summary
+-------
 
+  **SUCCESS**
+
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html
+
+Participating hosts (42 -> 40)
+------------------------------
+
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_164198v9 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@i915_pm_rpm@module-reload:
+    - bat-adlp-6:         [PASS][1] -> [DMESG-WARN][2] ([i915#15673]) +78 other tests dmesg-warn
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/bat-adlp-6/igt@i915_pm_rpm@module-reload.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live@sanitycheck:
+    - fi-kbl-7567u:       [DMESG-WARN][3] ([i915#13735]) -> [PASS][4] +79 other tests pass
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html
+
+  * igt@kms_busy@basic@flip:
+    - fi-kbl-7567u:       [DMESG-WARN][5] ([i915#13735] / [i915#180]) -> [PASS][6]
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_busy@basic@flip.html
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_busy@basic@flip.html
+
+  * igt@kms_pm_rpm@basic-pci-d3-state:
+    - fi-kbl-7567u:       [DMESG-WARN][7] ([i915#13735] / [i915#15673] / [i915#180]) -> [PASS][8] +52 other tests pass
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+   [8]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html
+
+  
+  [i915#13735]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735
+  [i915#15673]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673
+  [i915#180]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18723 -> Patchwork_164198v9
+
+  CI-20190529: 20190529
+  CI_DRM_18723: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8987: 8987
+  Patchwork_164198v9: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html
+
+--===============1242415716506401002==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915/dg2: Add per-context control for Wa_22013059131 (rev9)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/164198/">https://patchwork.freedesktop.org/series/164198/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18723 -&gt; Patchwork_164198v9</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/index.html</p>
+<h2>Participating hosts (42 -&gt; 40)</h2>
+<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_164198v9 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@i915_pm_rpm@module-reload:<ul>
+<li>bat-adlp-6:         <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/bat-adlp-6/igt@i915_pm_rpm@module-reload.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a>) +78 other tests dmesg-warn</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live@sanitycheck:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@i915_selftest@live@sanitycheck.html">PASS</a> +79 other tests pass</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_busy@basic@flip:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_busy@basic@flip.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_busy@basic@flip.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@kms_pm_rpm@basic-pci-d3-state:</p>
+<ul>
+<li>fi-kbl-7567u:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18723/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/13735">i915#13735</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/15673">i915#15673</a> / <a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/180">i915#180</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_164198v9/fi-kbl-7567u/igt@kms_pm_rpm@basic-pci-d3-state.html">PASS</a> +52 other tests pass</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18723 -&gt; Patchwork_164198v9</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18723: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8987: 8987<br />
+  Patchwork_164198v9: 5fe805765b01f6e3519421039c3ade7cff1074ca @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============1242415716506401002==--
