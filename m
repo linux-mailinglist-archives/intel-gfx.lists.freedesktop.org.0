@@ -2,43 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id otJpFsSBPmrvHAkAu9opvQ
+	id PY9jLsWBPmryHAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2A6BB6CD9CD
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8B3C76CD9DC
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=kWkGVQCM;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=g7Qa+Oh6;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 655C710F608;
-	Fri, 26 Jun 2026 13:42:15 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2673110F60F;
+	Fri, 26 Jun 2026 13:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6E32710F5F5;
- Fri, 26 Jun 2026 13:42:14 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 05B9A10F5F5;
+ Fri, 26 Jun 2026 13:42:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1782481333;
- bh=y7YrR9Jx1PcXUHjRQtEYdpxMBRgSE6y36uz2+nOziO0=;
+ bh=QZQHP6SZcmIxH0/+L/HEwqRhaltY7tmMssFrjZ10E1s=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=kWkGVQCM5tp7WiRZz8DWQgTTHzy89AhpMDUPfC9ljkdx3Iwh9/Ew0scb74y0sr3Jm
- 3jMklqQTdavDfLEXkjjRI+sE8jpNFHHnTX6zKRaxXwP930DOE2jlosYJD7cx+qvoqX
- HvT36kYv4oJRjLFU2toF2/yP9FXYnOVwttBQ6qpdEAFksJX+P0O+ZuCem2f+aLJdfo
- EVrNBMdgBiCALU4IQsLfZZf6kZVWdVPkJFtWmxNRXFFXOL0LH43mHRpENX1/77XUPh
- Ll7zLbHPAS9IsUVTDpzuG1WOlH6LeHnRPTlsHFFlzVypyks2g7hVs8ThNqxpaMPQwO
- 9mUhxqjg1eD4Q==
+ b=g7Qa+Oh6weAq6+EpjNbx1dNsqGuVUdyKw/DOGIaNT3Jhk765Y/1mOHTC94zcc0MSe
+ qLe/n9AYqoqkEgp2oU/jkN7mwO0K8NxF8XIxoRJdkEy0JC26I4tw6+EydEQyc9G8fW
+ eEeCHvUbbhREIatSDvYpaF/uIoAMhSZw9lKg5oGnvIm7FamlFTA/BLh4R6uafMeQvs
+ 1RtLXzz2bJc8/hZqcedYp62o9wENpZBg8WmX7cboFeYcn1eb/VqpwMZEG0i9ETBYLs
+ tUbxslAdEJkpZVElVlI2ZebBt5hsljLRXH3mkGlVjxiArd0HMWzYFwEg5IrhxrvWrv
+ NfjRBZ5QzI+Dw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 23/29] PREEMPT_RT injection
-Date: Fri, 26 Jun 2026 15:42:14 +0200
-Message-ID: <20260626134222.1198252-24-dev@lankhorst.se>
+Subject: [PATCH v10.5 24/29] FOR-CI: bump MAX_STACK_TRACE_ENTRIES
+Date: Fri, 26 Jun 2026 15:42:15 +0200
+Message-ID: <20260626134222.1198252-25-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -85,29 +85,34 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2A6BB6CD9CD
+X-Rspamd-Queue-Id: 8B3C76CD9DC
+
+We're hitting a bug in CI where MAX_STACK_TRACE_ENTRIES is set too low.
+My guess is the repeated loading/unloading is creating multiples of the
+same entries. As a hack just reset lockdep. This might only be necessary
+for CI + PREEMPT_RT.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- kernel/Kconfig.preempt | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ lib/Kconfig.debug | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
-diff --git a/kernel/Kconfig.preempt b/kernel/Kconfig.preempt
-index 88c594c6d7fcd..11bec9be95405 100644
---- a/kernel/Kconfig.preempt
-+++ b/kernel/Kconfig.preempt
-@@ -90,9 +90,9 @@ config PREEMPT_LAZY
- endchoice
- 
- config PREEMPT_RT
--	bool "Fully Preemptible Kernel (Real-Time)"
--	depends on EXPERT && ARCH_SUPPORTS_RT && !COMPILE_TEST
-+	def_bool y
- 	select PREEMPTION
-+	depends on ARCH_SUPPORTS_RT
+diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
+index 9b9f7c5935596..ec35b50068a73 100644
+--- a/lib/Kconfig.debug
++++ b/lib/Kconfig.debug
+@@ -1625,9 +1625,8 @@ config LOCKDEP_CHAINS_BITS
+ config LOCKDEP_STACK_TRACE_BITS
+ 	int "Size for MAX_STACK_TRACE_ENTRIES (as Nth power of 2)"
+ 	depends on LOCKDEP && !LOCKDEP_SMALL
+-	range 10 26
+-	default 21 if KASAN
+-	default 19
++	range 22 26
++	default 22
  	help
- 	  This option turns the kernel into a real-time kernel by replacing
- 	  various locking primitives (spinlocks, rwlocks, etc.) with
+ 	  Try increasing this value if you hit "BUG: MAX_STACK_TRACE_ENTRIES too low!" message.
+ 
 -- 
 2.53.0
 
