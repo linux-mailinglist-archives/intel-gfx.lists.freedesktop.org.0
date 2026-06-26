@@ -2,69 +2,68 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jwV2JdIORWp56AoAu9opvQ
+	id uEpDDdcORWqB6AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:59 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 42D566EDAE6
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CE8FB6EDB06
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=google.com header.s=20251104 header.b=IIXYhl7t;
+	dkim=pass header.d=google.com header.s=20251104 header.b=aGuphVXY;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=reject) header.from=google.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C127010EFC1;
-	Wed,  1 Jul 2026 12:57:48 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 401B410EFCF;
+	Wed,  1 Jul 2026 12:57:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qk1-f202.google.com (mail-qk1-f202.google.com
- [209.85.222.202])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 042DB10E40C
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 21:45:18 +0000 (UTC)
-Received: by mail-qk1-f202.google.com with SMTP id
- af79cd13be357-92ad11e2197so203536385a.1
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 14:45:17 -0700 (PDT)
+Received: from mail-qv1-f73.google.com (mail-qv1-f73.google.com
+ [209.85.219.73])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8F89410F518
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 21:45:19 +0000 (UTC)
+Received: by mail-qv1-f73.google.com with SMTP id
+ 6a1803df08f44-8ddd042321dso20235206d6.3
+ for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 14:45:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1782510317; x=1783115117;
+ d=google.com; s=20251104; t=1782510318; x=1783115118;
  darn=lists.freedesktop.org; 
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:from:to:cc:subject:date:message-id:reply-to;
- bh=lMxEbUN4g5HJl8rBCPSd8i2j2INLA6ePpq/n8LCBKjc=;
- b=IIXYhl7t4dWST5nhiVysel1F+W3BpJOSvEapy+wMy5ICcsaV6ujzHwqs6bYI7q3sWR
- 5XyXDU3INuTkYz8dNhE7iwXT+HSZ6iZ+4Yoy/P4ffCFPFKz7miieY57PtVr7NI0bwFdk
- jiMVhSAYc8Oupy61RD98Ty6ncZnCW3SI0ozd/Ua9cL/1kIXoYk6RUK/1Iaz3Lm2HQrOu
- dHgA3YyFUuiElAY11TH3ZDjEh0oCxYziv6KzbQeEwQI2hJFIp5owZvGJnQrljA/zYxcX
- Q+Eh7hZnjWe2LQg3g/u+7w+XtaRDlpqjBs3YrNgZkAgo3Z8mhUvXvDKH3g7PjlbV12uH
- LeFQ==
+ bh=olj0JxUOmKBAVq/owrQmbC5vaced392C6i7uIXa5kD0=;
+ b=aGuphVXYbxCeCpuUQ7TmMSIx+aa9Us/Zny5hq0puxdmn6I/bXQpPHxEMob9ENyDo80
+ HUxU6cm7pW8Np74rPThRZ04bT8+wtb7Mi/w6OMoDtZA8EVYk6gHZJQgArcE7422unrpn
+ rBRWYYOS+KJtNcD3RdY4h6+ubxavGehdpgYV4l82Q53d9QubK3+ZbBLfqVqua3fW21S0
+ Nn/nxGD5t+42bdl1jqcJgHW4pvyO2UidyaI1ydAhPVu/05yH+2b8yVoeDmAjSgpd2G9A
+ 1S+ccaOa+FD00C3sMIMAhyFGXX/EmazPHk4apOMsxIv8yk8tTarKlXKg2qPHrNdI1pT7
+ Ql7g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782510317; x=1783115117;
+ d=1e100.net; s=20251104; t=1782510318; x=1783115118;
  h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
  :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=lMxEbUN4g5HJl8rBCPSd8i2j2INLA6ePpq/n8LCBKjc=;
- b=Q8/rKof5fpFkfroOQ9jF5rlq37zIojoAh6JBcj49hxR1X5z5KlbBNzZJfle7mh1AM+
- HZ8wlg6Y9wXEVpSv8GR7yzNDP7KYSBMZZA+QZiHcMKUshW9yns/G5LccnsTdNr/mFvO/
- N54S+h4IDFlPlISm6rI/NueqnFkKjiWbvtmBUdTVR76QMHPUxhaSwbVmFTsPlMdQ51VU
- 3mjDodCNT/7QFw4M6PurPEH7ybg1VMrgzcadNXNXm3c+ToUv133YQ1fETk6n1wcQRlM8
- NnXNjMNUe8s71d+BhxYO667B3ezDvWZvszg6Hthkfl/GxnDOpRwDV9CpSof7sNV7OHaH
- ei2w==
-X-Gm-Message-State: AOJu0YwGyGc8dEbeXpRDyH+hy3On0J0DSmfSdkjn92J3ReBEg1o+/P/b
- ZCkTOv+fEFRR0nDn0Iw3dvleAMPit09GaYZ1wlV4lGS+gGp1J3Z7+LUPnZSnLUFuS+rhSau/J9H
- X6QYNP5p6jFQWqW0PQ1miyD5WGwaWDaQ6A3Gu5b5TYp3uzENdoldYDO7ZeNYK0cxPSDXtZzyvmh
- BWRjq6fQudvf58fyooxExjGkAqeM6vGKcqYkCt8KtxTiZ3BGhpNk6QFwHjWwI=
-X-Received: from qtbie6.prod.google.com ([2002:a05:622a:6986:b0:517:710d:afde])
+ bh=olj0JxUOmKBAVq/owrQmbC5vaced392C6i7uIXa5kD0=;
+ b=X3bC9r7cw9qB51hnBWIO/PatfTLyA86wZijyYM3THYa9aG4rRv06MPGWi26U0On+p2
+ TmO/T34PmUkYZcVbb/utceYaFRgmhw6M97Kzdmkear0LpPcH8F2AUAYIXKgypKH7CcZC
+ 2GgRZawqneVOmB1AtAneNzH3T9glzGxeeiENznDmmjHgJxqI5deUY+pDnZotJ7vjCrvm
+ n7c2pgyXQobs5wjrK7nwvpKdGViG4uznnWGskWkmcE2zRsrlLPQ0JzG77hc4n1kliiNd
+ OtuvCiMKikNYzEh1alhxbDdGkd54XNhfLEX+okEo5SjtmCEBwF/MqEj/JYrVxuJkgiWU
+ 64iA==
+X-Gm-Message-State: AOJu0YzplsQCpneP8jxla2LoYqTRtBhjl3a/WiDrIK7u78hQOWqcDJHw
+ ylaGA3gzsKQwWM6k+U/7tfjs2mSRBPSJFt69tgcshUS+XNbP5S2iXcLG0Q6a860CTCpzNaklzz+
+ w5qZMp1hd9yi5oZwX8cd+/7x+Re52/Qj+zY9bomsjVbtVNqFCsk43tB6F8Ifko9DTLYhwTP+1M+
+ NGQRrmj6Gn8Fa4ajLeVPEbbetuZ2u26J9QXMZZpHMDDYsapyqYPk5cgAUTpEs=
+X-Received: from qtnp2.prod.google.com ([2002:ac8:4602:0:b0:50e:60ce:5caa])
  (user=gildekel job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:622a:1ba1:b0:519:8988:b107 with SMTP id
- d75a77b69052e-51a7276acbcmr117661791cf.6.1782510316492; 
- Fri, 26 Jun 2026 14:45:16 -0700 (PDT)
-Date: Fri, 26 Jun 2026 17:44:41 -0400
+ 2002:ac8:7d42:0:b0:517:906b:c043 with SMTP id
+ d75a77b69052e-51a8b0e29d1mr31549171cf.36.1782510317872; 
+ Fri, 26 Jun 2026 14:45:17 -0700 (PDT)
+Date: Fri, 26 Jun 2026 17:44:42 -0400
 In-Reply-To: <20260626214513.179943-1-gildekel@google.com>
 Mime-Version: 1.0
 References: <20260626214513.179943-1-gildekel@google.com>
 X-Mailer: git-send-email 2.55.0.rc0.799.gd6f94ed593-goog
-Message-ID: <20260626214513.179943-2-gildekel@google.com>
-Subject: [PATCH v3 1/2] drm/i915/display: Cache DP colorimetry support
- per-connector
+Message-ID: <20260626214513.179943-3-gildekel@google.com>
+Subject: [PATCH v3 2/2] drm/i915/display/mst: Enable HDR over DP MST
 From: Gil Dekel <gildekel@google.com>
 To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
 Cc: uma.shankar@intel.com, jani.nikula@intel.com, imre.deak@intel.com, 
@@ -115,144 +114,144 @@ X-Spamd-Result: default: False [1.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 42D566EDAE6
+X-Rspamd-Queue-Id: CE8FB6EDB06
 
-Query and cache colorimetry format support on a per-connector basis
-instead of checking the root port's DPCD capabilities directly.
+Compute and attach VSC SDP and HDR metadata infoframes for logical MST
+stream connectors.
 
-Introduce intel_dp_get_colorimetry_status_aux() to query colorimetry support
-over a given DP AUX channel. For SST, cache this during intel_dp_detect().
-For MST downstream ports, cache it using the port's sideband AUX
-in mst_connector_detect_ctx().
+Update mst_stream_enable() and implement mst_stream_update_pipe() to
+configure the transcoder's Video DIP registers with VSC and HDR infoframes.
+This allows fastsets (such as toggling HDR ON/OFF) to update the hardware
+without triggering a full modeset.
 
-This prepares the display driver to correctly identify colorimetry/VSC SDP
-support on downstream MST sinks, where checking the root port's capabilities
-incorrectly returns false.
+Expose the max_bpc, HDR metadata, and DP Colorspace connector properties
+during MST connector initialization to enable userspace configuration.
 
 Assisted-by: jetski:gemini-2.5-pro
 Signed-off-by: Gil Dekel <gildekel@google.com>
 ---
- .../gpu/drm/i915/display/intel_display_types.h |  1 +
- drivers/gpu/drm/i915/display/intel_dp.c        | 18 ++++++++++++++----
- drivers/gpu/drm/i915/display/intel_dp.h        |  2 ++
- drivers/gpu/drm/i915/display/intel_dp_mst.c    | 13 +++++++++++--
- 4 files changed, 28 insertions(+), 6 deletions(-)
+ drivers/gpu/drm/i915/display/intel_dp.c     |  9 +++---
+ drivers/gpu/drm/i915/display/intel_dp.h     |  6 ++++
+ drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 ++++++++++++++++++++-
+ 3 files changed, 41 insertions(+), 5 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display_types.h b/drivers/gpu/drm/i915/display/intel_display_types.h
-index c048da7d6fea..428d55f9682f 100644
---- a/drivers/gpu/drm/i915/display/intel_display_types.h
-+++ b/drivers/gpu/drm/i915/display/intel_display_types.h
-@@ -564,6 +564,7 @@ struct intel_connector {
- 		u8 dsc_hblank_expansion_quirk:1;
- 		u8 dsc_throughput_quirk:1;
- 		u8 dsc_decompression_enabled:1;
-+		u8 colorimetry_support:1;
- 
- 		struct {
- 			struct {
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 6e3fa6662cbe..1de26c4c867f 100644
+index 1de26c4c867f..686782d9987f 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3161,9 +3161,9 @@ static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
- 				     struct intel_crtc_state *crtc_state,
- 				     const struct drm_connector_state *conn_state)
+@@ -3157,12 +3157,13 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
+ 		as_sdp->coasting_vtotal = crtc_state->vrr.vmax;
+ }
+ 
+-static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
+-				     struct intel_crtc_state *crtc_state,
+-				     const struct drm_connector_state *conn_state)
++void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
++			      struct intel_crtc_state *crtc_state,
++			      const struct drm_connector_state *conn_state)
  {
-+	struct intel_connector *connector = to_intel_connector(conn_state->connector);
+ 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
  	struct drm_dp_vsc_sdp *vsc;
--
--	if ((!intel_dp->colorimetry_support ||
-+	if ((!connector->dp.colorimetry_support ||
++
+ 	if ((!connector->dp.colorimetry_support ||
  	     !intel_dp_needs_vsc_sdp(crtc_state, conn_state)) &&
  	    !crtc_state->has_psr)
- 		return;
-@@ -4438,16 +4438,21 @@ void intel_dp_configure_protocol_converter(struct intel_dp *intel_dp,
- 			    str_enable_disable(tmp));
+@@ -3218,7 +3219,7 @@ intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
+ 	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
  }
  
--static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
-+bool intel_dp_get_colorimetry_status_aux(struct drm_dp_aux *aux)
- {
- 	u8 dprx = 0;
- 
--	if (drm_dp_dpcd_readb(&intel_dp->aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
-+	if (drm_dp_dpcd_readb(aux, DP_DPRX_FEATURE_ENUMERATION_LIST,
- 			      &dprx) != 1)
- 		return false;
- 	return dprx & DP_VSC_SDP_EXT_FOR_COLORIMETRY_SUPPORTED;
- }
- 
-+static bool intel_dp_get_colorimetry_status(struct intel_dp *intel_dp)
-+{
-+	return intel_dp_get_colorimetry_status_aux(&intel_dp->aux);
-+}
-+
- static int intel_dp_read_dsc_dpcd(struct drm_dp_aux *aux,
- 				  u8 dsc_dpcd[DP_DSC_RECEIVER_CAP_SIZE])
- {
-@@ -6374,6 +6379,11 @@ intel_dp_detect(struct drm_connector *_connector,
- 						 status,
- 						 intel_dp->dpcd,
- 						 intel_dp->downstream_ports);
-+	if (status == connector_status_connected)
-+		connector->dp.colorimetry_support = intel_dp->colorimetry_support;
-+	else
-+		connector->dp.colorimetry_support = false;
-+
- out_vdd_off:
- 	intel_pps_vdd_off(intel_dp);
- 
+-static void
++void
+ intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
+ 					    struct intel_crtc_state *crtc_state,
+ 					    const struct drm_connector_state *conn_state)
 diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 02b691df6755..26b3a0eb354e 100644
+index 26b3a0eb354e..29282540d6ca 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp.h
 +++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -12,6 +12,7 @@ enum intel_output_format;
- enum pipe;
- enum port;
- struct drm_connector_state;
-+struct drm_dp_aux;
- struct drm_dp_desc;
- struct drm_dp_vsc_sdp;
- struct drm_encoder;
-@@ -78,6 +79,7 @@ int intel_dp_compute_config(struct intel_atomic_state *state,
+@@ -76,6 +76,12 @@ int intel_dp_compute_config(struct intel_atomic_state *state,
+ 			    struct intel_encoder *encoder,
+ 			    struct intel_crtc_state *pipe_config,
+ 			    struct drm_connector_state *conn_state);
++void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
++			      struct intel_crtc_state *crtc_state,
++			      const struct drm_connector_state *conn_state);
++void intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
++						 struct intel_crtc_state *crtc_state,
++						 const struct drm_connector_state *conn_state);
  bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
  			      bool dsc_enabled_on_crtc);
  void intel_dp_dsc_reset_config(struct intel_crtc_state *crtc_state);
-+bool intel_dp_get_colorimetry_status_aux(struct drm_dp_aux *aux);
- int intel_dp_dsc_compute_config(struct intel_dp *intel_dp,
- 				struct intel_crtc_state *pipe_config,
- 				struct drm_connector_state *conn_state,
 diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index ecc90e8faee1..5b76d12bb00f 100644
+index 5b76d12bb00f..d438e4942d9c 100644
 --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
 +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -1627,6 +1627,7 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
- 	struct intel_connector *connector = to_intel_connector(_connector);
- 	struct intel_display *display = to_intel_display(connector);
- 	struct intel_dp *intel_dp = connector->mst.dp;
-+	int status;
+@@ -761,6 +761,10 @@ static int mst_stream_compute_config(struct intel_atomic_state *state,
  
- 	if (!intel_display_device_enabled(display))
- 		return connector_status_disconnected;
-@@ -1639,8 +1640,16 @@ mst_connector_detect_ctx(struct drm_connector *_connector,
+ 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
  
- 	intel_dp_flush_connector_commits(connector);
- 
--	return drm_dp_mst_detect_port(&connector->base, ctx, &intel_dp->mst.mgr,
--				      connector->mst.port);
-+	status = drm_dp_mst_detect_port(&connector->base, ctx, &intel_dp->mst.mgr,
-+					connector->mst.port);
++	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
 +
-+	if (status == connector_status_connected)
-+		connector->dp.colorimetry_support =
-+			intel_dp_get_colorimetry_status_aux(&connector->mst.port->aux);
-+	else
-+		connector->dp.colorimetry_support = false;
++	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
 +
-+	return status;
+ 	return intel_dp_tunnel_atomic_compute_stream_bw(state, intel_dp, connector,
+ 							pipe_config);
+ }
+@@ -1332,6 +1336,8 @@ static void mst_stream_enable(struct intel_atomic_state *state,
+ 
+ 	intel_ddi_enable_transcoder_func(encoder, pipe_config);
+ 
++	intel_dp_set_infoframes(primary_encoder, true, pipe_config, conn_state);
++
+ 	intel_vrr_transcoder_enable(pipe_config);
+ 
+ 	intel_ddi_clear_act_sent(encoder, pipe_config);
+@@ -1708,6 +1714,11 @@ static int mst_topology_add_connector_properties(struct intel_dp *intel_dp,
+ 	if (connector->base.max_bpc_property)
+ 		drm_connector_attach_max_bpc_property(&connector->base, 6, 12);
+ 
++	if (intel_dp_has_gamut_metadata_dip(&dp_to_dig_port(intel_dp)->base))
++		drm_connector_attach_hdr_output_metadata_property(&connector->base);
++
++	intel_attach_dp_colorspace_property(&connector->base);
++
+ 	return drm_connector_set_path_property(&connector->base, pathprop);
  }
  
- static const struct drm_connector_helper_funcs mst_connector_helper_funcs = {
+@@ -1856,6 +1867,24 @@ static const struct drm_dp_mst_topology_cbs mst_topology_cbs = {
+ 	.poll_hpd_irq = mst_topology_poll_hpd_irq,
+ };
+ 
++static void mst_stream_update_pipe(struct intel_atomic_state *state,
++				   struct intel_encoder *encoder,
++				   const struct intel_crtc_state *crtc_state,
++				   const struct drm_connector_state *conn_state)
++{
++	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
++
++	/* Fallback to standard DDI updates (like Audio) */
++	intel_ddi_update_pipe(state, encoder, crtc_state, conn_state);
++
++	/*
++	 * intel_ddi_update_pipe historically ignores MST for InfoFrames.
++	 * We must explicitly update the Transcoder's Video DIP registers here
++	 * so Atomic Fastsets (e.g. toggling HDR in the UI) propagate to the hardware.
++	 */
++	intel_dp_set_infoframes(primary_encoder, true, crtc_state, conn_state);
++}
++
+ /* Create a fake encoder for an individual MST stream */
+ static struct intel_dp_mst_encoder *
+ mst_stream_encoder_create(struct intel_digital_port *dig_port, enum pipe pipe)
+@@ -1896,7 +1925,7 @@ mst_stream_encoder_create(struct intel_digital_port *dig_port, enum pipe pipe)
+ 	encoder->disable = mst_stream_disable;
+ 	encoder->post_disable = mst_stream_post_disable;
+ 	encoder->post_pll_disable = mst_stream_post_pll_disable;
+-	encoder->update_pipe = intel_ddi_update_pipe;
++	encoder->update_pipe = mst_stream_update_pipe;
+ 	encoder->pre_pll_enable = mst_stream_pre_pll_enable;
+ 	encoder->pre_enable = mst_stream_pre_enable;
+ 	encoder->enable = mst_stream_enable;
 -- 
 Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
 
