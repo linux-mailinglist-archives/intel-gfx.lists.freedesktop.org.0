@@ -2,44 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id j5lULKqBPmrHHAkAu9opvQ
+	id GiPOCLCBPmrOHAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:08 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 413E96CD92E
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E4D7E6CD94B
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:07 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=YyJ0yQzN;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=ogYShWac;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AC94C10F5C4;
-	Fri, 26 Jun 2026 13:42:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B7E2610F5D3;
+	Fri, 26 Jun 2026 13:42:04 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D6F510F5BE;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B63B710F5C7;
  Fri, 26 Jun 2026 13:42:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481318;
- bh=x/pMnmGlf0E1qkYHnHqsVenD9HzTf66a+fzX4nCRg38=;
+ s=default; t=1782481319;
+ bh=SmCb7iPHg2+9A/ixj9TBOSkQYHIyXxixNZ3hoWoXINI=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=YyJ0yQzNEhuNaeR1a8ojNv5uUHm/XVGOrRDahMhdnqvU3KQyRIv1QKz1SjlJhoSRU
- 0SxeYM4X1tltK+dioGuMV5QZDyBi3kSEHHsw4T4vT0lrGW+0CoI/dUjmPCP3PFTx9m
- 5XfQcEPhGHpqF8BNn4py8bbk1OiN3NSparxvYAFj6IGpu9A6k7fkogHsN5WBQrR9wq
- D/Db5eGVXZXcGEB1X/b89dCV5di60PEiKhU/3GeVcZTToAIgo8pzMvkN9iUblS+HCS
- SMCQgWNPXTFhHrwSU37f1Of8tPwY+ccinkdEn0+TaS0gVl+c0p4jqcgx+HCq7zf95G
- NCrb1H4TNOa9w==
+ b=ogYShWackqtd4O2WNTQFQ2uEP1nIMxVWr8xkmxMd7hyL8uZV/CsHQhRZ8NYu02hG5
+ fKmDxeA50RM3Fsth6t+z5mnYHJe8gnFEYz5iiDSQ9lDLZvXSNiOryZsaYkgObiF3QW
+ vzu0mBccIfzWjXoz7Lv6WFA3vmPuDi01IBaU/3q90xkvEDjzmO1y2ljArTZi9EBoWv
+ dn2zhZ7Rf4OenX2g6Na2B6jWPG01/Ba5k+nVm4Fu+bx2RiOxOQ8yPZKO9urz/eLxoW
+ LbdHdQBzhcH4MpcukDZ4wUp8HZq8VqPagF71L89izmNsnsaSfAxyoZ4jJ+ASjX/E3Y
+ 4XOnKdk/DCx6g==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 02/29] drm/vblank: Add a 2-stage version of
- drm_crtc_arm_vblank_event
-Date: Fri, 26 Jun 2026 15:41:53 +0200
-Message-ID: <20260626134222.1198252-3-dev@lankhorst.se>
+Subject: [PATCH v10.5 03/29] drm/intel/display: Make
+ intel_crtc_arm_vblank_event static
+Date: Fri, 26 Jun 2026 15:41:54 +0200
+Message-ID: <20260626134222.1198252-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -86,149 +86,41 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 413E96CD92E
+X-Rspamd-Queue-Id: E4D7E6CD94B
 
-When trying to fix the hardware programming in intel/display, I had
-to take all the vblank locks with local_irqs_disabled(). This
-required converting the entire vblank code to raw spinlocks.
-
-In the alternative approach, do all preparations in advance, and only
-enable the vblank_event with interrupts disabled, this requires only
-a simple write and prevents a complete re-architecture of the code.
+Only used inside intel_crtc.c now, so no need to export it any more.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/drm_vblank.c | 64 +++++++++++++++++++++++++++++++++++-
- include/drm/drm_vblank.h     | 14 +++++++-
- 2 files changed, 76 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_crtc.c | 2 +-
+ drivers/gpu/drm/i915/display/intel_crtc.h | 1 -
+ 2 files changed, 1 insertion(+), 2 deletions(-)
 
-diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
-index f90fb2d13e423..b52e0215312f8 100644
---- a/drivers/gpu/drm/drm_vblank.c
-+++ b/drivers/gpu/drm/drm_vblank.c
-@@ -1127,12 +1127,71 @@ void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.c b/drivers/gpu/drm/i915/display/intel_crtc.c
+index 10ed9bdfee763..805645318747f 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.c
++++ b/drivers/gpu/drm/i915/display/intel_crtc.c
+@@ -684,7 +684,7 @@ static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end)
+ static void dbg_vblank_evade(struct intel_crtc *crtc, ktime_t end) {}
+ #endif
  
- 	assert_spin_locked(&dev->event_lock);
- 
-+	WARN_ON(e->postponed);
- 	e->pipe = pipe;
- 	e->sequence = drm_crtc_accurate_vblank_count(crtc) + 1;
- 	list_add_tail(&e->base.link, &dev->vblank_event_list);
- }
- EXPORT_SYMBOL(drm_crtc_arm_vblank_event);
- 
-+/**
-+ * drm_crtc_prepare_arm_vblank_event - arm vblank event *before* pageflip.
-+ * @crtc: the source CRTC of the vblank event
-+ * @e: the event to send
-+ *
-+ * See drm_crtc_arm_vblank_event(). This function is a 2-stage version of
-+ * that call. This function is called *BEFORE* programming the hardware.
-+ *
-+ * After programming, call drm_crtc_arm_prepared_vblank_event() and the
-+ * event will be scheduled on the next vblank.
-+ *
-+ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
-+ * with interrupts disabled, since all vblank spinlocks are converted to
-+ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
-+ *
-+ * It also increases determinism for any hardware
-+ * programming, since no vblank related locks are taking when arming.
-+ */
-+void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
-+				       struct drm_pending_vblank_event *e)
-+{
-+	drm_crtc_arm_vblank_event(crtc, e);
-+
-+	/* Set the flag, so that the event is not fired yet */
-+	e->postponed = true;
-+}
-+EXPORT_SYMBOL(drm_crtc_prepare_arm_vblank_event);
-+
-+/**
-+ * drm_crtc_arm_prepared_vblank_event - arm prepared vblank event *after* pageflip.
-+ * @crtc: the source CRTC of the vblank event
-+ * @e: the event to send
-+ *
-+ * See drm_crtc_prepare_arm_vblank_event(). This function is a 2-stage version of
-+ * that call. This function is called directly *AFTER* programming the hardware.
-+ *
-+ * Before this function is called, drm_crtc_prepare_arm_vblank_event() should be
-+ * called instead.
-+ *
-+ * This is mainly useful for code that has to run on PREEMPT_RT kernels,
-+ * with interrupts disabled, since all vblank spinlocks are converted to
-+ * rtmutexes, and code running with irqs disabled cannot take any vblank lock.
-+ *
-+ * It also increases determinism for any hardware
-+ * programming, since no vblank related locks are taking when arming.
-+ */
-+void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e)
-+{
-+	WARN_ON(!e->postponed);
-+
-+	/* Ensure previous writes are visible */
-+	smp_wmb();
-+
-+	/* remove the flag to be processed as a normal event */
-+	WRITE_ONCE(e->postponed, false);
-+}
-+EXPORT_SYMBOL(drm_crtc_arm_prepared_vblank_event);
-+
- /**
-  * drm_crtc_send_vblank_event - helper to send vblank event after pageflip
-  * @crtc: the source CRTC of the vblank event
-@@ -1390,6 +1449,8 @@ void drm_crtc_vblank_off(struct drm_crtc *crtc)
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
- 		if (e->pipe != pipe)
- 			continue;
-+
-+		WARN_ON(e->postponed);
- 		drm_dbg_core(dev, "Sending premature vblank event on disable: "
- 			     "wanted %llu, current %llu\n",
- 			     e->sequence, seq);
-@@ -1892,7 +1953,8 @@ static void drm_handle_vblank_events(struct drm_device *dev, unsigned int pipe)
- 	seq = drm_vblank_count_and_time(dev, pipe, &now);
- 
- 	list_for_each_entry_safe(e, t, &dev->vblank_event_list, base.link) {
--		if (e->pipe != pipe)
-+		/* Matches WRITE_ONCE in drm_crtc_arm_prepared_vblank_event() */
-+		if (e->pipe != pipe || READ_ONCE(e->postponed))
- 			continue;
- 		if (!drm_vblank_passed(seq, e->sequence))
- 			continue;
-diff --git a/include/drm/drm_vblank.h b/include/drm/drm_vblank.h
-index 2fcef9c0f5b1b..956d5621eb7f9 100644
---- a/include/drm/drm_vblank.h
-+++ b/include/drm/drm_vblank.h
-@@ -53,6 +53,13 @@ struct drm_pending_vblank_event {
- 	 * @sequence: frame event should be triggered at
- 	 */
- 	u64 sequence;
-+
-+	/**
-+	 * @postponed: whether drm_crtc_prepare_arm_vblank_event() is called,
-+	 * and drm_crtc_arm_prepared_vblank_event has yet to be called to arm.
-+	 */
-+	bool postponed;
-+
- 	/**
- 	 * @event: Actual event which will be sent to userspace.
- 	 */
-@@ -294,7 +301,12 @@ int drm_crtc_next_vblank_start(struct drm_crtc *crtc, ktime_t *vblanktime);
- void drm_crtc_send_vblank_event(struct drm_crtc *crtc,
- 			       struct drm_pending_vblank_event *e);
- void drm_crtc_arm_vblank_event(struct drm_crtc *crtc,
--			      struct drm_pending_vblank_event *e);
-+			       struct drm_pending_vblank_event *e);
-+
-+void drm_crtc_prepare_arm_vblank_event(struct drm_crtc *crtc,
-+				       struct drm_pending_vblank_event *e);
-+void drm_crtc_arm_prepared_vblank_event(struct drm_pending_vblank_event *e);
-+
- void drm_vblank_set_event(struct drm_pending_vblank_event *e,
- 			  u64 *seq,
- 			  ktime_t *now);
+-void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
++static void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state)
+ {
+ 	struct intel_crtc *crtc = to_intel_crtc(crtc_state->uapi.crtc);
+ 	unsigned long irqflags;
+diff --git a/drivers/gpu/drm/i915/display/intel_crtc.h b/drivers/gpu/drm/i915/display/intel_crtc.h
+index 12507b51ee77e..f65cbafe2b42a 100644
+--- a/drivers/gpu/drm/i915/display/intel_crtc.h
++++ b/drivers/gpu/drm/i915/display/intel_crtc.h
+@@ -33,7 +33,6 @@ int intel_usecs_to_scanlines(const struct drm_display_mode *adjusted_mode,
+ 			     int usecs);
+ int intel_scanlines_to_usecs(const struct drm_display_mode *adjusted_mode,
+ 			     int scanlines);
+-void intel_crtc_arm_vblank_event(struct intel_crtc_state *crtc_state);
+ void intel_crtc_prepare_vblank_event(struct intel_crtc_state *crtc_state,
+ 				     struct drm_pending_vblank_event **event);
+ u32 intel_crtc_max_vblank_count(const struct intel_crtc_state *crtc_state);
 -- 
 2.53.0
 
