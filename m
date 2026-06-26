@@ -2,45 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6VuIDc+BPmoCHQkAu9opvQ
+	id 648cDcmBPmr4HAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:39 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 052CC6CDA1C
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0362D6CD9F4
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=SQCv0I+H;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=i23xqBh1;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D238410F60B;
-	Fri, 26 Jun 2026 13:42:20 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0E4F10F611;
+	Fri, 26 Jun 2026 13:42:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AB4DD10F5F5;
- Fri, 26 Jun 2026 13:42:15 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 5B14010F5F5;
+ Fri, 26 Jun 2026 13:42:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782481334;
- bh=Smwtu6CwhUCwK5agwnez+Jaqs++M2OVTTW4z7GIcls4=;
+ s=default; t=1782481335;
+ bh=8atRt4B/PXAXgr5z4WvxSpmOYT8k6lDmprmy2FqFD64=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=SQCv0I+HneZ5q/vGvPOzYqDruXkoc0fsZ8hRg9lPrJpeYIQpho6TF9nOe6bNjaRUK
- iO0oXf5imxrsQzLfA6QE/7Puyh64zlE1h9NhnWmuVIhEzDDi8ezOYIuQ8nEv86EPZ/
- 0hCwugSIW7hTHMQOKJZBsohbX3R2W4Ed0mTiIJaZ1onr3+A1SKZP8c4lSIztTnPdMW
- kFaKZ3mikRcs/NARdZuolp8TvfUCiJ+vBqk7tb1QadZSztLr6lbyrMaUi9+jFmu9/m
- Q7vUcsRneryH32Dnqa5Ig9x4aKP+oDF68KcAcqrT5miZMOefu2VlU4ErdEB8a2GYRO
- r0JqBOw+PT0zw==
+ b=i23xqBh1BGzGVdxefVLl9XYf7hxCiy/KkIg0mELDBMo7jlkwnzNZyadsuAPx1j9I6
+ DxfQcnntMpD1bIJrWbsP3H5NuLdMBw2xy5R0NG4gilflgNbBAETlBFVoS0Whgq9CMe
+ YKmNME/gMAsDOLwXnz2ZPSfAc9OY5hjG/ZTYEx9cnAZk1OwhJbsCJNZT27Bji60l6s
+ zDKzCPdwzUj4Y5pLlzd8aoqybsAxGQ0tbVufFoPshlV7dwGvGxmmv/Mr+9w1N52roW
+ Orj+a36FyKFEqx6GG187UV1StS/fnwHDJccrjmi8rIZf2n/a2jwRaKboGGXlwa3noL
+ fxbcUB8l7BTRQ==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
- Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v10.5 25/29] drm/i915/gt: Add a spinlock to prevent starvation
- of irq_work.
-Date: Fri, 26 Jun 2026 15:42:16 +0200
-Message-ID: <20260626134222.1198252-26-dev@lankhorst.se>
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v10.5 26/29] drm/xe: Avoid using stolen memory for DPT.
+Date: Fri, 26 Jun 2026 15:42:17 +0200
+Message-ID: <20260626134222.1198252-27-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260626134222.1198252-1-dev@lankhorst.se>
 References: <20260626134222.1198252-1-dev@lankhorst.se>
@@ -65,98 +63,85 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+];
+	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+];
+	RCPT_COUNT_THREE(0.00)[4];
 	RCVD_COUNT_TWO(0.00)[2];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linutronix.de:email,lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lankhorst.se:dkim,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 052CC6CDA1C
+X-Rspamd-Queue-Id: 0362D6CD9F4
 
-From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-
-IRQ-Work (FIFO-1) will be preempted by the threaded-interrupt (FIFO-50)
-and the interrupt will poll on signaler_active while the irq-work can't
-make progress.
-
-Solve this by adding a spinlock to prevent starvation and force
-completion.
+On systems with media GT, extra latency is added when accessing stolen
+memory when the GT is in MC6. Since we additionally aren't counting how
+much memory is used for stolen and we could in theory fill up the
+entire stolen area with DPT's, avoid using stolen and only use the
+default memory region.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_breadcrumbs.c       | 8 +++++++-
- drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h | 1 +
- 2 files changed, 8 insertions(+), 1 deletion(-)
+ drivers/gpu/drm/xe/display/xe_fb_pin.c | 33 +++++++-------------------
+ 1 file changed, 8 insertions(+), 25 deletions(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-index c10ac0ab3bfa8..c2b174bfa1418 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs.c
-@@ -209,6 +209,7 @@ static void signal_irq_work(struct irq_work *work)
- 		intel_breadcrumbs_disarm_irq(b);
+diff --git a/drivers/gpu/drm/xe/display/xe_fb_pin.c b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+index f93c98bec5b5f..86013ef532fd7 100644
+--- a/drivers/gpu/drm/xe/display/xe_fb_pin.c
++++ b/drivers/gpu/drm/xe/display/xe_fb_pin.c
+@@ -164,31 +164,14 @@ static int __xe_pin_fb_vma_dpt(struct drm_gem_object *obj,
+ 		dpt_size = ALIGN(intel_rotation_info_size(&view->rotated) * 8,
+ 				 XE_PAGE_SIZE);
  
- 	rcu_read_lock();
-+	spin_lock(&b->signaler_active_sync);
- 	atomic_inc(&b->signaler_active);
- 	list_for_each_entry_rcu(ce, &b->signalers, signal_link) {
- 		struct i915_request *rq;
-@@ -246,6 +247,7 @@ static void signal_irq_work(struct irq_work *work)
- 		}
- 	}
- 	atomic_dec(&b->signaler_active);
-+	spin_unlock(&b->signaler_active_sync);
- 	rcu_read_unlock();
+-	if (IS_DGFX(xe))
+-		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+-						   dpt_size, ~0ull,
+-						   ttm_bo_type_kernel,
+-						   XE_BO_FLAG_VRAM0 |
+-						   XE_BO_FLAG_GGTT |
+-						   XE_BO_FLAG_PAGETABLE,
+-						   pin_params->alignment, false);
+-	else
+-		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+-						   dpt_size,  ~0ull,
+-						   ttm_bo_type_kernel,
+-						   XE_BO_FLAG_STOLEN |
+-						   XE_BO_FLAG_GGTT |
+-						   XE_BO_FLAG_PAGETABLE,
+-						   pin_params->alignment, false);
+-	if (IS_ERR(dpt))
+-		dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
+-						   dpt_size,  ~0ull,
+-						   ttm_bo_type_kernel,
+-						   XE_BO_FLAG_SYSTEM |
+-						   XE_BO_FLAG_GGTT |
+-						   XE_BO_FLAG_PAGETABLE |
+-						   XE_BO_FLAG_FORCE_WC,
+-						   pin_params->alignment, false);
++	dpt = xe_bo_create_pin_map_at_novm(xe, tile0,
++					   dpt_size,  ~0ull,
++					   ttm_bo_type_kernel,
++					   XE_BO_FLAG_VRAM_IF_DGFX(tile0) |
++					   XE_BO_FLAG_GGTT |
++					   XE_BO_FLAG_PAGETABLE |
++					   XE_BO_FLAG_FORCE_WC,
++					   pin_params->alignment, false);
+ 	if (IS_ERR(dpt))
+ 		return PTR_ERR(dpt);
  
- 	llist_for_each_safe(signal, sn, signal) {
-@@ -290,6 +292,7 @@ intel_breadcrumbs_create(struct intel_engine_cs *irq_engine)
- 	init_llist_head(&b->signaled_requests);
- 
- 	spin_lock_init(&b->irq_lock);
-+	spin_lock_init(&b->signaler_active_sync);
- 	init_irq_work(&b->irq_work, signal_irq_work);
- 
- 	b->irq_engine = irq_engine;
-@@ -487,8 +490,11 @@ void intel_context_remove_breadcrumbs(struct intel_context *ce,
- 	if (release)
- 		intel_context_put(ce);
- 
--	while (atomic_read(&b->signaler_active))
-+	while (atomic_read(&b->signaler_active)) {
-+		spin_lock(&b->signaler_active_sync);
-+		spin_unlock(&b->signaler_active_sync);
- 		cpu_relax();
-+	}
- }
- 
- static void print_signals(struct intel_breadcrumbs *b, struct drm_printer *p)
-diff --git a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-index bdf09fd67b6e7..28dae32628aab 100644
---- a/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-+++ b/drivers/gpu/drm/i915/gt/intel_breadcrumbs_types.h
-@@ -40,6 +40,7 @@ struct intel_breadcrumbs {
- 	struct list_head signalers;
- 	struct llist_head signaled_requests;
- 	atomic_t signaler_active;
-+	spinlock_t signaler_active_sync;
- 
- 	spinlock_t irq_lock; /* protects the interrupt from hardirq context */
- 	struct irq_work irq_work; /* for use from inside irq_lock */
 -- 
 2.53.0
 
