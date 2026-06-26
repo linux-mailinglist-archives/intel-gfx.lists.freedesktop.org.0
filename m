@@ -2,54 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Sm++HNigPmpdJQkAu9opvQ
+	id Pz9ACQihPmplJQkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 17:55:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 17:55:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3E9BA6CEB45
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 17:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E7DE66CEB66
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 17:55:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SDf52Gxp;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=DNiiWP2w;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 031FD10E3D1;
-	Fri, 26 Jun 2026 15:55:01 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 0B17810F67F;
+	Fri, 26 Jun 2026 15:55:50 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8ADD510E3C4;
- Fri, 26 Jun 2026 15:54:59 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id EBAD210F674;
+ Fri, 26 Jun 2026 15:55:48 +0000 (UTC)
 Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 1A9B942A7C;
- Fri, 26 Jun 2026 15:54:59 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5DE1F000E9;
- Fri, 26 Jun 2026 15:54:57 +0000 (UTC)
+ by sea.source.kernel.org (Postfix) with ESMTP id D45B942AA3;
+ Fri, 26 Jun 2026 15:55:48 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A308A1F000E9;
+ Fri, 26 Jun 2026 15:55:47 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1782489299;
- bh=HnX3YkJzFg+3/HFsm1Ylzc3uTkNta0IzAnCrp7mu+iE=;
+ s=k20260515; t=1782489348;
+ bh=Lt3tIKxtEx/sDzO3B7esFu3Va+TQBS4M1CpL1nTybC8=;
  h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=SDf52GxpGNgv+SwKs1zF60r8V4sFTL6eLqeuetGHz5ah5abm2Xorp0vbLk6VPROq2
- 5arCElFTIRI6AMLKM18oKfGsQKC2iHOBoaBgt9tuCfRbb3g2TZVtg/Qsn9BEznse9r
- 3nchadlbDlSA8MUzwliMEPD6cxE69LZ+cSVAZNCsMWLl4mld8bc9KEyzVQVRFuIs2E
- WJNmAHpUKrmfxh6lr1a2UY4yx3X/iHqPLeNJ8zyqM717EKkb5cAOm+OCLUjfwCLL79
- l1kJS7QysIHcYqZjXeFm+3HGSgayW9I3P09wrpuGw3gfUHBa7fvzHZf9fFqsA2MBy1
- 9wOzwo64D3gnw==
-Date: Fri, 26 Jun 2026 17:54:54 +0200
+ b=DNiiWP2w6O6UpV4pL6ppSFUUOkrp/+SmyET7gFVAI40Sup6ibneK9wJIMcQFZ4+9S
+ MT5kr1/t8Xk7hCZK+YynXYvv6dINpcu8pjC4nA8UrHPfkzAWNAIo5XOLQe3oYzaaxT
+ dIOAvAPgMZWRFr6E0P+P0doZ04TujQlnqmGYRs+OvqosaCFZ+0HE/5/IMnDi18qvr/
+ C5mwhPaAxx7dWNYY9YWqpq5/vCEcg4X8yI/oAJpA0fAk78vGm/3GUsjoRMPE4IcAGs
+ 2EwGmGdAhwZ2jVRIbPhypDueVgAaE6vT61SPcNDUanqiWtAQDzjt+DIoy+yHR2V2my
+ SmADq/kWNjMaA==
+Date: Fri, 26 Jun 2026 17:55:43 +0200
 From: Andi Shyti <andi.shyti@kernel.org>
-To: Jani Nikula <jani.nikula@linux.intel.com>
+To: Raag Jadav <raag.jadav@intel.com>
 Cc: Andi Shyti <andi.shyti@linux.intel.com>, 
  dri-devel <dri-devel@lists.freedesktop.org>,
  intel-gfx <intel-gfx@lists.freedesktop.org>
 Subject: Re: [PATCH] drm/i915/gt: Return bool values from a boolean helper
-Message-ID: <aj51Ia0HE9xDufPh@zenone.zhora.eu>
+Message-ID: <aj6g3ZDfaCzdS2Iy@zenone.zhora.eu>
 References: <20260625114442.2912230-1-andi.shyti@linux.intel.com>
- <53ba85083a23024c7d54b656c834c144abbb57cf@intel.com>
+ <aj1HzUjokwiZCk7T@black.igk.intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <53ba85083a23024c7d54b656c834c144abbb57cf@intel.com>
+In-Reply-To: <aj1HzUjokwiZCk7T@black.igk.intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -89,24 +89,12 @@ X-Spamd-Result: default: False [-1.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,zenone.zhora.eu:mid,lists.freedesktop.org:from_smtp,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,zenone.zhora.eu:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3E9BA6CEB45
+X-Rspamd-Queue-Id: E7DE66CEB66
 
-Hi Jani,
+Hi Raag,
 
-On Thu, Jun 25, 2026 at 04:11:45PM +0300, Jani Nikula wrote:
-> On Thu, 25 Jun 2026, Andi Shyti <andi.shyti@linux.intel.com> wrote:
-> > intel_has_gpu_reset() returns logically correct values by
-> > returning a function pointer when GPU reset is supported and
-> > NULL otherwise. However, as a boolean helper, it is more
-> > appropriate to return explicit true or false values.
-> >
-> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
-> > ---
-> >  drivers/gpu/drm/i915/gt/intel_reset.c | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
 > > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
 > > index b2cf672564dd..a3f198646e1d 100644
 > > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
@@ -117,22 +105,11 @@ On Thu, Jun 25, 2026 at 04:11:45PM +0300, Jani Nikula wrote:
 > >  	if (!gt->i915->params.reset)
 > > -		return NULL;
 > > +		return false;
-> >  
-> > -	return intel_get_gpu_reset(gt);
-> > +	return !!intel_get_gpu_reset(gt);
 > 
-> !! is superfluous.
+> I know the logic remains the same but isn't this Fixes material?
 
-OK, I can resend it. I actually like the use of "!!" because it
-explicitly converts the result to 1 or 0, by definition of true
-and false, but I don't have a strong opinion on it in this case.
+I don't think it's necessary, returning NULL instead of false
+doesn't trigger any failure.
 
 Thanks,
 Andi
-
-> >  }
-> >  
-> >  bool intel_has_reset_engine(const struct intel_gt *gt)
-> 
-> -- 
-> Jani Nikula, Intel
