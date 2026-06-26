@@ -2,76 +2,69 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id NM3cJdMORWp86AoAu9opvQ
+	id MI5uJw3NPmrPLwkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:55 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 21:03:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 43DD16EDAF1
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 403156CFD73
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 21:03:36 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=google.com header.s=20251104 header.b=s4ycldpU;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Tw9iWJ3A;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=reject) header.from=google.com
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C010F10EFC7;
-	Wed,  1 Jul 2026 12:57:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C5A9C10F706;
+	Fri, 26 Jun 2026 19:03:34 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mail-qv1-f73.google.com (mail-qv1-f73.google.com
- [209.85.219.73])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 034DF10F6F8
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 17:55:18 +0000 (UTC)
-Received: by mail-qv1-f73.google.com with SMTP id
- 6a1803df08f44-8dba00e17b5so14036496d6.3
- for <intel-gfx@lists.freedesktop.org>; Fri, 26 Jun 2026 10:55:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=google.com; s=20251104; t=1782496517; x=1783101317;
- darn=lists.freedesktop.org; 
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:from:to:cc:subject:date:message-id:reply-to;
- bh=PMvFuTJKKGFEDS38/InD0yHebFzN7SPExIicLwKQFGI=;
- b=s4ycldpU8V32N4Vlf4G8mx/iJhboa7kmv4SYQxjaeA0XjjLRkjit0JeyP1iUiQNd8w
- 8S0F56DXrJIuL6Z04UGITA7c1VyQ2NjN3wqncnYA0UsN27wwV9Fer19w34tyi6+bwTUm
- tYJWOf94+WUOxB5waWjZ8iH3hzy3UUZUkVLUptdoXQpOM3Tq/J8GQeh9rnLjTTQBKrmT
- Kpj5b8ej3Zs1IuA94wfi646DNO3kmAPVeAPqcgpXajL+NfSSDpnN5u97Q2LZ/JfA7IlI
- QSnxR1xPXz0/SvdXGh4x9q6G7Z50MMFSHqrzhlHkp+8wOIvyiTIErKa3dmEMD7XR+Xjp
- /Jzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=1e100.net; s=20251104; t=1782496517; x=1783101317;
- h=cc:to:from:subject:message-id:references:mime-version:in-reply-to
- :date:x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
- bh=PMvFuTJKKGFEDS38/InD0yHebFzN7SPExIicLwKQFGI=;
- b=GOf3WUmfB2aKZPtQZ8kpa0WRRThCv7Jy/q+lvpnh2PeQdLessypsXBnRHX2KEeb8rw
- G2PsYIwfLOLoCwpXtj/CYDivkNYneX56WytythN1NWIjmADKqrsmBZSsNTTHmGgSyZvh
- 9+NX1p4CulH3GmAC0dvCiqIXr9ZMF9pGih0+frHIih1lrvXoylhvV2HoKzM3CZj5e15E
- G0EwtbnkfCSopndaErTIl3raD7DqEKLjH7712q5IlammMZOJsZJuYOXXq7A82zoiDpgO
- gw0Gmu/iKTyFvEvAJpZndtUkN7W7cdaHBmjSAo/GsGkQIsZNgra5RnLw7JBL+43CjTYz
- gL3Q==
-X-Gm-Message-State: AOJu0YwOTKyjs7auFXH9HCJzPdKKseIhvwqBAJuYLzeTmQLSi+Avef5l
- jU+W4O8nETgD9Q8KY55bX3dG7sPo/4QS7jLeCfuVHeq3YOLhMrBlkyV+UYeehfjP2JDGkxROtPz
- wrQ6JTDAT5wV4pDml74Q4FLSSS4xq28ptXI2kw5ZCtU26EXiOixiYQu7/MWeOUNr5iqOPboEWDV
- NG/exBa9PlJ53wAVTI4DyXXwGTUx91peu4vc6LRo6FyQGILalvctw3dr8cNp0=
-X-Received: from qvbon8.prod.google.com ([2002:a05:6214:4488:b0:8cc:ce57:77cd])
- (user=gildekel job=prod-delivery.src-stubby-dispatcher) by
- 2002:a05:6214:246f:b0:8dd:fa4e:a4b8 with SMTP id
- 6a1803df08f44-8e6d657f8damr139312496d6.10.1782496516497; 
- Fri, 26 Jun 2026 10:55:16 -0700 (PDT)
-Date: Fri, 26 Jun 2026 13:54:23 -0400
-In-Reply-To: <20260626175510.3899476-1-gildekel@google.com>
-Mime-Version: 1.0
-References: <20260625160020.2873859-1-gildekel@google.com>
- <20260626175510.3899476-1-gildekel@google.com>
-X-Mailer: git-send-email 2.55.0.rc0.799.gd6f94ed593-goog
-Message-ID: <20260626175510.3899476-3-gildekel@google.com>
-Subject: [PATCH v2 2/2] drm/i915/display/mst: Enable HDR over DP MST
-From: Gil Dekel <gildekel@google.com>
-To: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-Cc: uma.shankar@intel.com, jani.nikula@intel.com, imre.deak@intel.com, 
- khaled.almahallawy@intel.com, navaremanasi@google.com, 
- Gil Dekel <gildekel@google.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 890F710F706;
+ Fri, 26 Jun 2026 19:03:33 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id E1BDB600AA;
+ Fri, 26 Jun 2026 19:03:32 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B10911F000E9;
+ Fri, 26 Jun 2026 19:03:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782500612;
+ bh=TyFl9GWmXNLl+QLk0gYGvkiIPobdLVhGYz9j6ia1saU=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=Tw9iWJ3AW/qVhYN7KGc/ZTiaZzg/3oECz+DiP4VJfyn3QB4fPWwrgNuAJIGNxs+V2
+ gQMOySYXH+qHCB0JOy7ShmXUDJ864WlfuAmNSW4eC0jw1v5I1DDn/MBUmLRwI+Zmn+
+ Tvx68PQugVu+ljQ23TFRCcjPeBFQjWYKgQD+yv+Dj0NPAyY7KU1ce1064Yq2UJQHNh
+ 7PCVds29NYJupkBRTBhXtnaGXQquqVp6AN7Xp9L5f6IxL0XEVKpAcZfxaTF8hC29A2
+ GZgsbwtmAy/ydDOu69TLhC+XE3g2v+Sxjbre9Fp/7W+UikRELgut2FYBWl4v+dv3IH
+ ZX2QubJjR77jQ==
+Date: Fri, 26 Jun 2026 12:03:25 -0700
+From: Nathan Chancellor <nathan@kernel.org>
+To: Steven Rostedt <rostedt@kernel.org>
+Cc: linux-kernel@vger.kernel.org, linux-trace-kernel@vger.kernel.org,
+ Masami Hiramatsu <mhiramat@kernel.org>,
+ Mark Rutland <mark.rutland@arm.com>,
+ Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+ Andrew Morton <akpm@linux-foundation.org>,
+ Linus Torvalds <torvalds@linux-foundation.org>,
+ Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
+ John Ogness <john.ogness@linutronix.de>, Thomas Gleixner <tglx@kernel.org>,
+ Peter Zijlstra <peterz@infradead.org>,
+ Julia Lawall <julia.lawall@inria.fr>,
+ Yury Norov <yury.norov@gmail.com>, linux-doc@vger.kernel.org,
+ linux-kbuild@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, linux-stm32@st-md-mailman.stormreply.com,
+ linux-arm-kernel@lists.infradead.org, linux-rdma@vger.kernel.org,
+ linux-usb@vger.kernel.org, linux-ext4@vger.kernel.org,
+ linux-nfs@vger.kernel.org, kvm@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org
+Subject: Re: [PATCH v4 2/2] tracing: Remove trace_printk.h from kernel.h
+Message-ID: <20260626190325.GA3913132@ax162>
+References: <20260625104007.041432666@kernel.org>
+ <20260625104402.210473477@kernel.org>
+ <20260625234158.GA261868@ax162> <20260626045119.659d1e6b@fedora>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260626045119.659d1e6b@fedora>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -87,172 +80,103 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.19 / 15.00];
-	DATE_IN_PAST(1.00)[115];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[google.com,reject];
-	MV_CASE(0.50)[];
+X-Spamd-Result: default: False [0.69 / 15.00];
+	SUSPICIOUS_RECIPS(1.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[google.com:s=20251104];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[vger.kernel.org,kernel.org,arm.com,efficios.com,linux-foundation.org,linutronix.de,infradead.org,inria.fr,gmail.com,lists.ozlabs.org,lists.freedesktop.org,st-md-mailman.stormreply.com,lists.infradead.org];
+	SEM_URIBL_UNKNOWN_FAIL(0.00)[ax162:query timed out];
 	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[26];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	SURBL_MULTI_FAIL(0.00)[ax162:query timed out];
+	DBL_FAIL(0.00)[lists.freedesktop.org:query timed out,ax162:query timed out];
+	FROM_NEQ_ENVFROM(0.00)[nathan@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FROM_NEQ_ENVFROM(0.00)[gildekel@google.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[google.com:+];
 	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 43DD16EDAF1
+X-Rspamd-Queue-Id: 403156CFD73
 
-Compute and attach VSC SDP and HDR metadata infoframes for logical MST
-stream connectors.
+On Fri, Jun 26, 2026 at 04:51:19AM -0400, Steven Rostedt wrote:
+> On Thu, 25 Jun 2026 16:41:58 -0700
+> Nathan Chancellor <nathan@kernel.org> wrote:
+> 
+> 
+> > The following diff resolves it for me, should I send it as a separate
+> > patch or do you want to just fold it in with a note?
+> > 
+> > diff --git a/include/linux/lockdep.h b/include/linux/lockdep.h
+> > index 621566345406..2301a701ffbb 100644
+> > --- a/include/linux/lockdep.h
+> > +++ b/include/linux/lockdep.h
+> > @@ -10,6 +10,7 @@
+> >  #ifndef __LINUX_LOCKDEP_H
+> >  #define __LINUX_LOCKDEP_H
+> >  
+> > +#include <linux/instruction_pointer.h>
+> 
+> Ah, so the reason for this breakage is because lockdep was relying on
+> instruction_pointer.h, that just happened to be included in kernel.h
+> via trace_printk.h.
 
-Update mst_stream_enable() and implement mst_stream_update_pipe() to
-configure the transcoder's Video DIP registers with VSC and HDR infoframes.
-This allows fastsets (such as toggling HDR ON/OFF) to update the hardware
-without triggering a full modeset.
+Correct.
 
-Expose the max_bpc, HDR metadata, and DP Colorspace connector properties
-during MST connector initialization to enable userspace configuration.
+> This is a separate issue, so it should be a separate patch. I'll add it
+> as patch 1 of this series.
 
-Change-Id: I4e79ec56a0a21650f5c70e80e4fd4d46f5fefaf9
-Signed-off-by: Gil Dekel <gildekel@google.com>
----
- drivers/gpu/drm/i915/display/intel_dp.c     |  9 +++---
- drivers/gpu/drm/i915/display/intel_dp.h     |  6 ++++
- drivers/gpu/drm/i915/display/intel_dp_mst.c | 31 ++++++++++++++++++++-
- 3 files changed, 41 insertions(+), 5 deletions(-)
+Sounds good, thanks!
 
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i915/display/intel_dp.c
-index 1de26c4c867f..686782d9987f 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp.c
-@@ -3157,12 +3157,13 @@ static void intel_dp_compute_as_sdp(struct intel_dp *intel_dp,
- 		as_sdp->coasting_vtotal = crtc_state->vrr.vmax;
- }
- 
--static void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
--				     struct intel_crtc_state *crtc_state,
--				     const struct drm_connector_state *conn_state)
-+void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
-+			      struct intel_crtc_state *crtc_state,
-+			      const struct drm_connector_state *conn_state)
- {
- 	struct intel_connector *connector = to_intel_connector(conn_state->connector);
- 	struct drm_dp_vsc_sdp *vsc;
-+
- 	if ((!connector->dp.colorimetry_support ||
- 	     !intel_dp_needs_vsc_sdp(crtc_state, conn_state)) &&
- 	    !crtc_state->has_psr)
-@@ -3218,7 +3219,7 @@ intel_dp_in_hdr_mode(const struct drm_connector_state *conn_state)
- 	return hdr_metadata->hdmi_metadata_type1.eotf == HDMI_EOTF_SMPTE_ST2084;
- }
- 
--static void
-+void
- intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
- 					    struct intel_crtc_state *crtc_state,
- 					    const struct drm_connector_state *conn_state)
-diff --git a/drivers/gpu/drm/i915/display/intel_dp.h b/drivers/gpu/drm/i915/display/intel_dp.h
-index 26b3a0eb354e..29282540d6ca 100644
---- a/drivers/gpu/drm/i915/display/intel_dp.h
-+++ b/drivers/gpu/drm/i915/display/intel_dp.h
-@@ -76,6 +76,12 @@ int intel_dp_compute_config(struct intel_atomic_state *state,
- 			    struct intel_encoder *encoder,
- 			    struct intel_crtc_state *pipe_config,
- 			    struct drm_connector_state *conn_state);
-+void intel_dp_compute_vsc_sdp(struct intel_dp *intel_dp,
-+			      struct intel_crtc_state *crtc_state,
-+			      const struct drm_connector_state *conn_state);
-+void intel_dp_compute_hdr_metadata_infoframe_sdp(struct intel_dp *intel_dp,
-+						 struct intel_crtc_state *crtc_state,
-+						 const struct drm_connector_state *conn_state);
- bool intel_dp_needs_8b10b_fec(const struct intel_crtc_state *crtc_state,
- 			      bool dsc_enabled_on_crtc);
- void intel_dp_dsc_reset_config(struct intel_crtc_state *crtc_state);
-diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-index 5b76d12bb00f..d438e4942d9c 100644
---- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-+++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-@@ -761,6 +761,10 @@ static int mst_stream_compute_config(struct intel_atomic_state *state,
- 
- 	intel_psr_compute_config(intel_dp, pipe_config, conn_state);
- 
-+	intel_dp_compute_vsc_sdp(intel_dp, pipe_config, conn_state);
-+
-+	intel_dp_compute_hdr_metadata_infoframe_sdp(intel_dp, pipe_config, conn_state);
-+
- 	return intel_dp_tunnel_atomic_compute_stream_bw(state, intel_dp, connector,
- 							pipe_config);
- }
-@@ -1332,6 +1336,8 @@ static void mst_stream_enable(struct intel_atomic_state *state,
- 
- 	intel_ddi_enable_transcoder_func(encoder, pipe_config);
- 
-+	intel_dp_set_infoframes(primary_encoder, true, pipe_config, conn_state);
-+
- 	intel_vrr_transcoder_enable(pipe_config);
- 
- 	intel_ddi_clear_act_sent(encoder, pipe_config);
-@@ -1708,6 +1714,11 @@ static int mst_topology_add_connector_properties(struct intel_dp *intel_dp,
- 	if (connector->base.max_bpc_property)
- 		drm_connector_attach_max_bpc_property(&connector->base, 6, 12);
- 
-+	if (intel_dp_has_gamut_metadata_dip(&dp_to_dig_port(intel_dp)->base))
-+		drm_connector_attach_hdr_output_metadata_property(&connector->base);
-+
-+	intel_attach_dp_colorspace_property(&connector->base);
-+
- 	return drm_connector_set_path_property(&connector->base, pathprop);
- }
- 
-@@ -1856,6 +1867,24 @@ static const struct drm_dp_mst_topology_cbs mst_topology_cbs = {
- 	.poll_hpd_irq = mst_topology_poll_hpd_irq,
- };
- 
-+static void mst_stream_update_pipe(struct intel_atomic_state *state,
-+				   struct intel_encoder *encoder,
-+				   const struct intel_crtc_state *crtc_state,
-+				   const struct drm_connector_state *conn_state)
-+{
-+	struct intel_encoder *primary_encoder = to_primary_encoder(encoder);
-+
-+	/* Fallback to standard DDI updates (like Audio) */
-+	intel_ddi_update_pipe(state, encoder, crtc_state, conn_state);
-+
-+	/*
-+	 * intel_ddi_update_pipe historically ignores MST for InfoFrames.
-+	 * We must explicitly update the Transcoder's Video DIP registers here
-+	 * so Atomic Fastsets (e.g. toggling HDR in the UI) propagate to the hardware.
-+	 */
-+	intel_dp_set_infoframes(primary_encoder, true, crtc_state, conn_state);
-+}
-+
- /* Create a fake encoder for an individual MST stream */
- static struct intel_dp_mst_encoder *
- mst_stream_encoder_create(struct intel_digital_port *dig_port, enum pipe pipe)
-@@ -1896,7 +1925,7 @@ mst_stream_encoder_create(struct intel_digital_port *dig_port, enum pipe pipe)
- 	encoder->disable = mst_stream_disable;
- 	encoder->post_disable = mst_stream_post_disable;
- 	encoder->post_pll_disable = mst_stream_post_pll_disable;
--	encoder->update_pipe = intel_ddi_update_pipe;
-+	encoder->update_pipe = mst_stream_update_pipe;
- 	encoder->pre_pll_enable = mst_stream_pre_pll_enable;
- 	encoder->pre_enable = mst_stream_pre_enable;
- 	encoder->enable = mst_stream_enable;
+> Can you send me the config you used. This didn't trigger in my tests.
+
+It is a plain allmodconfig, for example on arm:
+
+  $ make -skj"$(nproc)" ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- allmodconfig lib/test_context-analysis.o
+  In file included from include/linux/local_lock_internal.h:8,
+                   from include/linux/local_lock.h:5,
+                   from lib/test_context-analysis.c:9:
+  include/linux/local_lock_internal.h: In function 'local_lock_acquire':
+  include/linux/lockdep.h:541:87: error: '_THIS_IP_' undeclared (first use in this function)
+    541 | #define lock_map_acquire(l)                     lock_acquire_exclusive(l, 0, 0, NULL, _THIS_IP_)
+        |                                                                                       ^~~~~~~~~
+  include/linux/lockdep.h:509:88: note: in definition of macro 'lock_acquire_exclusive'
+    509 | #define lock_acquire_exclusive(l, s, t, n, i)           lock_acquire(l, s, t, 0, 1, n, i)
+        |                                                                                        ^
+  include/linux/local_lock_internal.h:46:9: note: in expansion of macro 'lock_map_acquire'
+     46 |         lock_map_acquire(&l->dep_map);
+        |         ^~~~~~~~~~~~~~~~
+  include/linux/lockdep.h:541:87: note: each undeclared identifier is reported only once for each function it appears in
+  ...
+
+I also reproduced it on top of allnoconfig:
+
+  $ cat allno.config
+  CONFIG_CONTEXT_ANALYSIS_TEST=y
+  CONFIG_DEBUG_KERNEL=y
+  CONFIG_DEBUG_LOCK_ALLOC=y
+  CONFIG_EXPERT=y
+  CONFIG_MMU=y
+  CONFIG_RUNTIME_TESTING_MENU=y
+
+  $ make -skj"$(nproc)" ARCH=arm CROSS_COMPILE=arm-linux-gnueabi- KCONFIG_ALLCONFIG=1 clean allnoconfig lib/test_context-analysis.o
+  <same error as above>
+
 -- 
-Gil Dekel, Software Engineer, Google / ChromeOS Display and Graphics
-
+Cheers,
+Nathan
