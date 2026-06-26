@@ -2,68 +2,54 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Zk1+BTKHPmpFHgkAu9opvQ
+	id Sm++HNigPmpdJQkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 16:05:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 17:55:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 8D8196CDC8A
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 16:05:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E9BA6CEB45
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 17:55:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=WfPPpFF9;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=SDf52Gxp;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 21B7F10E396;
-	Fri, 26 Jun 2026 14:05:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 031FD10E3D1;
+	Fri, 26 Jun 2026 15:55:01 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5E21610E312;
- Fri, 26 Jun 2026 14:05:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782482735; x=1814018735;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=gGeatAbNW1Tyu504ZrnFfEPUli8yfMeLx+6zsAYFJ9U=;
- b=WfPPpFF9baFKqJ9OIghoIJMTqMH+NulkU/Ht2S7frlIhs3M8igyr94aS
- Oph7v1Frt4ppi5DTiE+3KT2gNZa66zsq1rAzfQ06mOtb9ej9D1B0Nuy2F
- ODH2k3gISJL8LPEBuMorHMsGYKsRP6Op9LdHNjL1jivF22hK0Lg6sIwr/
- gDeNEnqftTSyD8Tc0NBop+plVCSkfAFZF9nwLGH29GBAK8ehF1ZnY445D
- 4u1BE1aipVPTeTGlXLhR7PE7v2cBRqJRI0/ntxbTuPlJ3E00ycFW5NAWq
- dM7CD0oclGyNVfKchktwId3+nyYOd0hIiHlYcw3tHovsf531Lvtbp9Ztx g==;
-X-CSE-ConnectionGUID: dG6hfvWRRaOBumCH/pPpYQ==
-X-CSE-MsgGUID: HgDkHUUgQym2dpY1jL0/4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="83283955"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="83283955"
-Received: from orviesa001.jf.intel.com ([10.64.159.141])
- by orvoesa111.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 07:05:34 -0700
-X-CSE-ConnectionGUID: e20pPGzvQx+yPzexCcSK7w==
-X-CSE-MsgGUID: exshc02NS/ypqar2jMHPtA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="289431826"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO localhost)
- ([10.245.244.22])
- by smtpauth.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 07:05:32 -0700
-From: Jani Nikula <jani.nikula@intel.com>
-To: Ville =?utf-8?B?U3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, Martin
- Hodo <martin.hodo@intel.com>, stable@vger.kernel.org, Ankit Nautiyal
- <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH] drm/i915/vrr: require valid min/max vfreq for VRR
-In-Reply-To: <aj6BTiskgYhSUGYd@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260625131040.1051272-1-jani.nikula@intel.com>
- <aj6BTiskgYhSUGYd@intel.com>
-Date: Fri, 26 Jun 2026 17:05:28 +0300
-Message-ID: <a09eda4f6b780c0ac079827d73ef23917974b4e4@intel.com>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8ADD510E3C4;
+ Fri, 26 Jun 2026 15:54:59 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id 1A9B942A7C;
+ Fri, 26 Jun 2026 15:54:59 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 2D5DE1F000E9;
+ Fri, 26 Jun 2026 15:54:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782489299;
+ bh=HnX3YkJzFg+3/HFsm1Ylzc3uTkNta0IzAnCrp7mu+iE=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=SDf52GxpGNgv+SwKs1zF60r8V4sFTL6eLqeuetGHz5ah5abm2Xorp0vbLk6VPROq2
+ 5arCElFTIRI6AMLKM18oKfGsQKC2iHOBoaBgt9tuCfRbb3g2TZVtg/Qsn9BEznse9r
+ 3nchadlbDlSA8MUzwliMEPD6cxE69LZ+cSVAZNCsMWLl4mld8bc9KEyzVQVRFuIs2E
+ WJNmAHpUKrmfxh6lr1a2UY4yx3X/iHqPLeNJ8zyqM717EKkb5cAOm+OCLUjfwCLL79
+ l1kJS7QysIHcYqZjXeFm+3HGSgayW9I3P09wrpuGw3gfUHBa7fvzHZf9fFqsA2MBy1
+ 9wOzwo64D3gnw==
+Date: Fri, 26 Jun 2026 17:54:54 +0200
+From: Andi Shyti <andi.shyti@kernel.org>
+To: Jani Nikula <jani.nikula@linux.intel.com>
+Cc: Andi Shyti <andi.shyti@linux.intel.com>, 
+ dri-devel <dri-devel@lists.freedesktop.org>,
+ intel-gfx <intel-gfx@lists.freedesktop.org>
+Subject: Re: [PATCH] drm/i915/gt: Return bool values from a boolean helper
+Message-ID: <aj51Ia0HE9xDufPh@zenone.zhora.eu>
+References: <20260625114442.2912230-1-andi.shyti@linux.intel.com>
+ <53ba85083a23024c7d54b656c834c144abbb57cf@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <53ba85083a23024c7d54b656c834c144abbb57cf@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,95 +66,73 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	FROM_HAS_DN(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_ALL(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[andi.shyti@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_THREE(0.00)[4];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,zenone.zhora.eu:mid,lists.freedesktop.org:from_smtp,intel.com:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 8D8196CDC8A
+X-Rspamd-Queue-Id: 3E9BA6CEB45
 
-On Fri, 26 Jun 2026, Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com=
-> wrote:
-> On Thu, Jun 25, 2026 at 04:10:40PM +0300, Jani Nikula wrote:
->> Ensure the EDID provided min/max vfreq are valid. Most scenarios are
->> already covered (by coincidence) through the checks in
->> intel_vrr_is_capable() and intel_vrr_is_in_range(), but be more explicit
->> about it. At worst, a zero min_vfreq could lead to a division by zero in
->> intel_vrr_compute_vmax().
->>=20
->> Discovered using AI-assisted static analysis confirmed by Intel Product
->> Security.
->>=20
->> Reported-by: Martin Hodo <martin.hodo@intel.com>
->> Fixes: 117cd09ba528 ("drm/i915/display/dp: Compute VRR state in atomic_c=
-heck")
->> Cc: <stable@vger.kernel.org> # v5.12+
->> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
->> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
->> ---
->>  drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
->>  1 file changed, 4 insertions(+)
->>=20
->> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/=
-i915/display/intel_vrr.c
->> index 5d9b11185296..bffbdee76ee1 100644
->> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
->> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
->> @@ -76,6 +76,10 @@ bool intel_vrr_is_capable(struct intel_connector *con=
-nector)
->>  		return false;
->>  	}
->>=20=20
->> +	if (!info->monitor_range.min_vfreq || !info->monitor_range.max_vfreq ||
->> +	    info->monitor_range.min_vfreq > info->monitor_range.max_vfreq)
->> +		return false;
->
-> Perhaps it should be the responsibility of the EDID parser to make sure
-> the range isn't completely insane?
+Hi Jani,
 
-The min_vfreq/max_vfreq may be 0 if the EDID doesn't have the info, and
-if the EDID has bogus info, leaving them to 0 is pretty much the only
-thing we can do.
+On Thu, Jun 25, 2026 at 04:11:45PM +0300, Jani Nikula wrote:
+> On Thu, 25 Jun 2026, Andi Shyti <andi.shyti@linux.intel.com> wrote:
+> > intel_has_gpu_reset() returns logically correct values by
+> > returning a function pointer when GPU reset is supported and
+> > NULL otherwise. However, as a boolean helper, it is more
+> > appropriate to return explicit true or false values.
+> >
+> > Signed-off-by: Andi Shyti <andi.shyti@linux.intel.com>
+> > ---
+> >  drivers/gpu/drm/i915/gt/intel_reset.c | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> >
+> > diff --git a/drivers/gpu/drm/i915/gt/intel_reset.c b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > index b2cf672564dd..a3f198646e1d 100644
+> > --- a/drivers/gpu/drm/i915/gt/intel_reset.c
+> > +++ b/drivers/gpu/drm/i915/gt/intel_reset.c
+> > @@ -797,9 +797,9 @@ static int __intel_gt_reset(struct intel_gt *gt, intel_engine_mask_t engine_mask
+> >  bool intel_has_gpu_reset(const struct intel_gt *gt)
+> >  {
+> >  	if (!gt->i915->params.reset)
+> > -		return NULL;
+> > +		return false;
+> >  
+> > -	return intel_get_gpu_reset(gt);
+> > +	return !!intel_get_gpu_reset(gt);
+> 
+> !! is superfluous.
 
-Since we need the !0 check here anyway, I decided to start off with
-this.
+OK, I can resend it. I actually like the use of "!!" because it
+explicitly converts the result to 1 or 0, by definition of true
+and false, but I don't have a strong opinion on it in this case.
 
-BR,
-Jani.
+Thanks,
+Andi
 
->
->> +
->>  	return info->monitor_range.max_vfreq - info->monitor_range.min_vfreq >=
- 10;
->
-> I've been tempted to get rid of this completely arbitrary 10Hz thing as w=
-ell.
->
->>  }
->>=20=20
->> --=20
->> 2.47.3
-
---=20
-Jani Nikula, Intel
+> >  }
+> >  
+> >  bool intel_has_reset_engine(const struct intel_gt *gt)
+> 
+> -- 
+> Jani Nikula, Intel
