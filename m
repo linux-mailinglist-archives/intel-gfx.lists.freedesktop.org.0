@@ -2,69 +2,47 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SWaHLFaBPmqfHAkAu9opvQ
+	id LH8ABaqBPmrFHAkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:40:38 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:02 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4AEDE6CD8C2
-	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 629B26CD927
+	for <lists+intel-gfx@lfdr.de>; Fri, 26 Jun 2026 15:42:01 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=nF+P0lST;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=UrheN2XH;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id DB5CD899D4;
-	Fri, 26 Jun 2026 13:40:36 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id E1B2910F5BD;
+	Fri, 26 Jun 2026 13:41:59 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 10410899D4;
- Fri, 26 Jun 2026 13:40:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782481236; x=1814017236;
- h=date:from:to:cc:subject:message-id:references:
- mime-version:content-transfer-encoding:in-reply-to;
- bh=48Pim0lMg4gKLMN3rRL4MvTGI1hNae5Mm41LxYs+uF4=;
- b=nF+P0lST1dtoQePvkbHpbCjmF/Xtmljs7fBOl9QmoktzVCigzv/vKi30
- B5oxZnu7irtQqX0X1+uhpq879jmINUpjg4BKsRtZwNQM4GDJ01wacYoRQ
- 6uxKQt3QnasPuQtnvDJMQyxDbhJUAU9X9upJfhL1QaINfBbhauxbFNGY9
- OlbUw4Gi15CmOyVsxrIZrtA0ftMOmJzVSCbR5NEU7/av1e19EbFnTwjgh
- HSXUzBqMrgDCO8h1IaKnrDBPa/A/DrMHC7SB2IWIknXVwOXuRbrPzSxZT
- LpbXksdbqa0LJYkqTtvuS/VzWWfedqigBFBoMx+KZbNOKgGw7p73fq/aR w==;
-X-CSE-ConnectionGUID: P/Qu/Gw7S0at1DBI+QjJoA==
-X-CSE-MsgGUID: K6cjBZNQQPyoSvQaeK7fGg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11829"; a="83407557"
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="83407557"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa109.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 06:40:36 -0700
-X-CSE-ConnectionGUID: LracXZC9Qk6AejU5egDuDg==
-X-CSE-MsgGUID: cQf+2PfYTruPG7dcR8SvbA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,226,1774335600"; d="scan'208";a="253241652"
-Received: from mkosciow-mobl1.ger.corp.intel.com (HELO localhost)
- ([10.245.244.107])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 26 Jun 2026 06:40:34 -0700
-Date: Fri, 26 Jun 2026 16:40:30 +0300
-From: Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
-To: Jani Nikula <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- Martin Hodo <martin.hodo@intel.com>, stable@vger.kernel.org,
- Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-Subject: Re: [PATCH] drm/i915/vrr: require valid min/max vfreq for VRR
-Message-ID: <aj6BTiskgYhSUGYd@intel.com>
-References: <20260625131040.1051272-1-jani.nikula@intel.com>
+Received: from lankhorst.se (unknown [141.105.120.124])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A91DB10F5BD;
+ Fri, 26 Jun 2026 13:41:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
+ s=default; t=1782481317;
+ bh=pylyyD9anJXI0vxeZy2WV/dvPJsbsf/Fy/c+S6LMFO0=;
+ h=From:To:Cc:Subject:Date:From;
+ b=UrheN2XH2wB2q2dO5EMGQpNIZtsXqy6OLXh+kdpKSRpC3pgA5FH0xYzntMDhhdw3F
+ 15jNJbL7P7IryvTncv/BRUxdQlrO1NxinCuME3Nla92iklAdDj/hZMZACUlRFrHwX1
+ 3/cxL7xvvBTvwU7l1lJxJmCXhs9vNieZgCDJM9gvdHgk2yyPsojmJpCiGgvA/dHpEb
+ jAIhCVETTHKwHcMibxYS9117BWbgXpvMBHNrMiwGCVni1z6fZWjzbPAm7ow1FkSkqu
+ U/fulvvAr7rHMt2JK1uLMivRq+AUzIbuLHa6U+9rHEmSrtqlFTi4VBnU4DZEOuYuK6
+ Wk36HMPBWvn9A==
+From: Maarten Lankhorst <dev@lankhorst.se>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: dri-devel@lists.freedesktop.org,
+	Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v10.5 00/29] drm/i915/display: All patches to make PREEMPT_RT
+ work on i915 + xe.
+Date: Fri, 26 Jun 2026 15:41:51 +0200
+Message-ID: <20260626134222.1198252-1-dev@lankhorst.se>
+X-Mailer: git-send-email 2.53.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20260625131040.1051272-1-jani.nikula@intel.com>
-X-Patchwork-Hint: comment
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -80,81 +58,125 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.36 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	R_MIXED_CHARSET(0.67)[subject];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
+	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[ville.syrjala@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCPT_COUNT_THREE(0.00)[4];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[lankhorst.se:+];
+	RCVD_COUNT_TWO(0.00)[2];
+	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4AEDE6CD8C2
+X-Rspamd-Queue-Id: 629B26CD927
 
-On Thu, Jun 25, 2026 at 04:10:40PM +0300, Jani Nikula wrote:
-> Ensure the EDID provided min/max vfreq are valid. Most scenarios are
-> already covered (by coincidence) through the checks in
-> intel_vrr_is_capable() and intel_vrr_is_in_range(), but be more explicit
-> about it. At worst, a zero min_vfreq could lead to a division by zero in
-> intel_vrr_compute_vmax().
-> 
-> Discovered using AI-assisted static analysis confirmed by Intel Product
-> Security.
-> 
-> Reported-by: Martin Hodo <martin.hodo@intel.com>
-> Fixes: 117cd09ba528 ("drm/i915/display/dp: Compute VRR state in atomic_check")
-> Cc: <stable@vger.kernel.org> # v5.12+
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_vrr.c | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i915/display/intel_vrr.c
-> index 5d9b11185296..bffbdee76ee1 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -76,6 +76,10 @@ bool intel_vrr_is_capable(struct intel_connector *connector)
->  		return false;
->  	}
->  
-> +	if (!info->monitor_range.min_vfreq || !info->monitor_range.max_vfreq ||
-> +	    info->monitor_range.min_vfreq > info->monitor_range.max_vfreq)
-> +		return false;
+Still waiting for feedback on the vblank approach, and check to see if there are some
+bugs left.
 
-Perhaps it should be the responsibility of the EDID parser to make sure
-the range isn't completely insane?
+Changes since previous version:
+- Only change: Disable PMU on i915 entirely now, no way to make it work.
 
-> +
->  	return info->monitor_range.max_vfreq - info->monitor_range.min_vfreq > 10;
+For Xe, we also prohibit the use of DSM when CONFIG_PREEMPT_RT is enabled,
+and avoid the use of DSM if we cannot take over the framebuffer from the
+firmware.
 
-I've been tempted to get rid of this completely arbitrary 10Hz thing as well.
+Ideally we copy the framebuffer after intel_fbdev_init_bios(),
+when we decide to preserve the framebuffer and the hardware is
+completely initialized.
 
->  }
->  
-> -- 
-> 2.47.3
+At that point we can use the migration engine to copy the contents over,
+this can potentially be used for preserving the initial framebuffer
+in the other cases where we cannot not use the initial FB too.
+
+Maarten Lankhorst (23):
+  drm/vblank_work: Add methods to schedule vblank_work in 2 stages
+  drm/vblank: Add a 2-stage version of drm_crtc_arm_vblank_event
+  drm/intel/display: Make intel_crtc_arm_vblank_event static
+  drm/intel/display: Convert vblank event handling to 2-stage arming
+  drm/i915/display: Move vblank put until after critical section
+  drm/i915/display: Remove locking from intel_vblank_evade critical
+    section
+  drm/i915/display: Handle vlv dsi workaround in scanline_in_safe_range
+    too
+  drm/i915/display: Make get_vblank_counter use intel_de_read_fw()
+  drm/i915/display: Do not take uncore lock in i915_get_vblank_counter
+  drm/i915/display: Make icl_dsi_frame_update use _fw too
+  drm/i915/display: Use intel_de_read/write_fw in colorops
+  drm/i915/display: Use intel_de_write_fw in intel_pipe_fastset
+  drm/i915/display: Make set_pipeconf use the fw variants
+  drm/i915/gt: Fix selftests on PREEMPT_RT
+  drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+  drm/i915/display: Remove uncore lock from vlv_atomic_update_fifo
+  drm/i915: Use sleeping selftests for igt_atomic on PREEMPT_RT
+  PREEMPT_RT injection
+  FOR-CI: bump MAX_STACK_TRACE_ENTRIES
+  drm/xe: Avoid using stolen memory for DPT.
+  drm/xe/display: Avoid using stolen memory for framebuffer when media
+    gt exists.
+  drm/xe/display: Do not allocate into stolen for new framebuffers.
+  drm/i915/pmu: Disable on PREEMPT_RT
+
+Mike Galbraith (1):
+  drm/i915: Use preempt_disable/enable_rt() where recommended
+
+Sebastian Andrzej Siewior (5):
+  drm/i915/gt: Use spin_lock_irq() instead of local_irq_disable() +
+    spin_lock()
+  drm/i915: Drop the irqs_disabled() check
+  drm/i915/guc: Consider also RCU depth in busy loop.
+  Revert "drm/i915: Depend on !PREEMPT_RT."
+  drm/i915/gt: Add a spinlock to prevent starvation of irq_work.
+
+ drivers/gpu/drm/drm_vblank.c                  |  64 +++++++++-
+ drivers/gpu/drm/drm_vblank_work.c             | 110 +++++++++++++----
+ drivers/gpu/drm/i915/Kconfig                  |   1 -
+ drivers/gpu/drm/i915/display/i9xx_wm.c        |   4 -
+ drivers/gpu/drm/i915/display/icl_dsi.c        |   4 +-
+ drivers/gpu/drm/i915/display/intel_cmtg.c     |   6 +-
+ drivers/gpu/drm/i915/display/intel_color.c    |   6 +-
+ drivers/gpu/drm/i915/display/intel_crtc.c     |  86 ++++++-------
+ drivers/gpu/drm/i915/display/intel_crtc.h     |   1 -
+ drivers/gpu/drm/i915/display/intel_cursor.c   |   8 +-
+ drivers/gpu/drm/i915/display/intel_de.h       |   8 ++
+ drivers/gpu/drm/i915/display/intel_display.c  |  52 ++++----
+ drivers/gpu/drm/i915/display/intel_vblank.c   | 115 ++++++++++--------
+ drivers/gpu/drm/i915/display/intel_vblank.h   |   1 +
+ drivers/gpu/drm/i915/display/intel_vrr.c      |  18 +--
+ drivers/gpu/drm/i915/gt/intel_breadcrumbs.c   |   8 +-
+ .../gpu/drm/i915/gt/intel_breadcrumbs_types.h |   1 +
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c     |   2 +-
+ .../drm/i915/gt/intel_execlists_submission.c  |  17 +--
+ drivers/gpu/drm/i915/gt/selftest_engine_pm.c  |   8 +-
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h        |   2 +-
+ drivers/gpu/drm/i915/i915_pmu.c               |  10 ++
+ drivers/gpu/drm/i915/i915_request.c           |   2 -
+ drivers/gpu/drm/i915/intel_uncore.h           |  26 ++--
+ drivers/gpu/drm/i915/selftests/igt_atomic.c   |   7 ++
+ .../drm/xe/compat-i915-headers/intel_uncore.h |   7 ++
+ drivers/gpu/drm/xe/display/xe_display_bo.c    |  40 ++----
+ drivers/gpu/drm/xe/display/xe_fb_pin.c        |  33 ++---
+ include/drm/drm_vblank.h                      |  14 ++-
+ include/drm/drm_vblank_work.h                 |  12 ++
+ kernel/Kconfig.preempt                        |   4 +-
+ lib/Kconfig.debug                             |   5 +-
+ 32 files changed, 429 insertions(+), 253 deletions(-)
 
 -- 
-Ville Syrjälä
-Intel
+2.53.0
+
