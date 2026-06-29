@@ -2,63 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id mB6LMHcpQmqT1AkAu9opvQ
+	id B7hCEbAuQmqk1QkAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 10:14:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 10:37:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EB1886D75AE
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 10:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id CCD6A6D78D7
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 10:37:03 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=n8e3VAv+;
+	dkim=pass header.d=intel.com header.s=Intel header.b=JOUnnggC;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8C6E510E724;
-	Mon, 29 Jun 2026 08:14:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 5D26410E060;
+	Mon, 29 Jun 2026 08:37:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B266010E724
- for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 08:14:43 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.20])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id A3A3310E060;
+ Mon, 29 Jun 2026 08:37:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782720883; x=1814256883;
+ t=1782722221; x=1814258221;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=/7CSb9dlG5t8qmx+OdfR+THKu3zymgkhUfFXhuR74r8=;
- b=n8e3VAv+XTSRAi8iu5eIFQpHAwxy4qWe0KZYsOI0/fCTRCn64SL5EA4h
- YBrozE1x1OZ43YQFPCl6G5ZAPzpkcjzkB40tbUsUd60A98ivE6D768Odo
- 7Ibv2EEijpvzAHzVdOAaDNB2y/R22wSX7psFl/E5fdtMEfx22/igqnnNQ
- RrvnS9ZkGzFqvmMUrRBBzvJGgpQbNocHOoMhm7uJTVpNJwWG66ho3cQOO
- suJ/2HVVXlL7huOgiBQfJ+9Fdx0Pvqj8f+b12r109j2WUfqjZ+pFYbbsa
- FDuqvMzzi6EV1x4T0Lc8uq89Kwly0SN9Qu8NTheTINLmaUl62DZMS8T1V g==;
-X-CSE-ConnectionGUID: idnFCxk7Tu+hVCH5GBPcSg==
-X-CSE-MsgGUID: ErF7kQSVQUKlJxd5YTjIoQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="85951060"
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="85951060"
-Received: from fmviesa009.fm.intel.com ([10.60.135.149])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:14:43 -0700
-X-CSE-ConnectionGUID: 7hbruyaVSVqdt4Pi8G/OdA==
-X-CSE-MsgGUID: j92UezPmSq+32uUOKETCVg==
+ bh=yW4rE5Zr+InFVrJyY8OysXZwP625ZaE3tG8JAi/w1KE=;
+ b=JOUnnggC8fER4tptQj39CIdRUiQj6cqwdUtwIKFXLQBZ1SOGNP/Du0Gw
+ rBB3lsxr+yWsOHeawWazRYylwOZWgxcccExLXWnJV/Sey4aaHvIPCRzSq
+ g37c2q0H7f3stZ3ba751vDPu/O9QJRFGO+SDOMZX0Q56NOgSgQUyWAroE
+ oZ+ubZT2FkTPmUC5L8fu4ZfuocNRuLPaIMy3O1m4b1Oetvp46jSD1P5rl
+ YtIerCWWjrNikR4N+0E390G03Y8Ctv2OVrgF0Ol1sTB0tyPgo4SsdNgzH
+ Y85lHK4OsCHqg3v8/qAQx+FoES/8SlMRXgsagoax1UhR13U5ScB4HdkL2 w==;
+X-CSE-ConnectionGUID: 23+vvhrCSoSixDPnYvzDEQ==
+X-CSE-MsgGUID: Gj2OLwDTTYqah5kXSoOYyw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11831"; a="83174857"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="83174857"
+Received: from orviesa006.jf.intel.com ([10.64.159.146])
+ by orvoesa112.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 01:37:01 -0700
+X-CSE-ConnectionGUID: cThrWzkYToKtCL0Q7jJf5Q==
+X-CSE-MsgGUID: ZTqd1/pyQK2hsN7TA3cjmQ==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="245526854"
+X-IronPort-AV: E=Sophos;i="6.24,231,1774335600"; d="scan'208";a="250209467"
 Received: from carterle-desk.ger.corp.intel.com (HELO localhost)
  ([10.245.244.253])
- by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 01:14:41 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Jonathan Cavitt <jonathan.cavitt@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: saurabhg.gupta@intel.com, alex.zuo@intel.com, jonathan.cavitt@intel.com
-Subject: Re: [PATCH] drm/i915/gt: Enforce some loop limits
-In-Reply-To: <20260303181531.9953-2-jonathan.cavitt@intel.com>
+ by orviesa006-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 29 Jun 2026 01:36:59 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>,
+ "intel-gfx@lists.freedesktop.org" <intel-gfx@lists.freedesktop.org>,
+ "intel-xe@lists.freedesktop.org" <intel-xe@lists.freedesktop.org>
+Cc: "Hodo, Martin" <martin.hodo@intel.com>, "stable@vger.kernel.org"
+ <stable@vger.kernel.org>
+Subject: RE: [PATCH] drm/i915/hdcp: require monotonically increasing seq_num_v
+In-Reply-To: <DS4PPFE901A304F2E6AD5691A968A6BA2ECE3EA2@DS4PPFE901A304F.namprd11.prod.outlook.com>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260303181531.9953-2-jonathan.cavitt@intel.com>
-Date: Mon, 29 Jun 2026 11:14:38 +0300
-Message-ID: <f524eb479dd39e56d4cfc5815a6ae6b62ccfff96@intel.com>
+References: <20260625104407.1025614-1-jani.nikula@intel.com>
+ <DS4PPFE901A304F2E6AD5691A968A6BA2ECE3EA2@DS4PPFE901A304F.namprd11.prod.outlook.com>
+Date: Mon, 29 Jun 2026 11:36:56 +0300
+Message-ID: <6bfadde9120c6203f01a3b29fa2a1350b5a47904@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -76,136 +79,94 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	FORGED_SENDER_FORWARDING(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_RECIPIENTS(0.00)[m:jonathan.cavitt@intel.com,m:saurabhg.gupta@intel.com,m:alex.zuo@intel.com,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	TO_DN_SOME(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
 	RCPT_COUNT_FIVE(0.00)[5];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EB1886D75AE
+X-Rspamd-Queue-Id: CCD6A6D78D7
 
-On Tue, 03 Mar 2026, Jonathan Cavitt <jonathan.cavitt@intel.com> wrote:
-> The functions intel_guc_send_busy_loop and ct_send can theoretically
-> loop forever.  In the former case, intel_guc_send_busy_loop can iterate
-> forever if intel_guc_send_nb repeatedly returns -EBUSY.  In the latter
-> case, ct_send can loop forever if the guc-to-host or host-to-guc buffers
-> get stuck in a full state.
+On Sat, 27 Jun 2026, "Kandpal, Suraj" <suraj.kandpal@intel.com> wrote:
+>> Subject: [PATCH] drm/i915/hdcp: require monotonically increasing seq_num_v
+>> 
+>> The HDCP 2.2 specification requires the seq_num_v to be monotonically
+>> increasing, and repeated seq_num_v needs to be treated as an integrity failure.
+>> Make it so.
+>> 
+>> For the first message, seq_num_v must be zero, and is already checked. We can
+>> only check for less-than-or-equal for the subsequent messages, where
+>> hdcp2_encrypted is true.
+>> 
+>> Discovered using AI-assisted static analysis confirmed by Intel Product Security.
+>> 
+>> Reported-by: Martin Hodo <martin.hodo@intel.com>
+>> Fixes: d849178e2c9e ("drm/i915: Implement HDCP2.2 repeater authentication")
+>> Cc: <stable@vger.kernel.org> # v5.2+
+>> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
+>> Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 >
-> Rework the sleep_period_ms values here to count the number of loops that
-> have occurred and exit after 20.  This lets both functions run for 10
-> minutes before escaping with -EBUSY (except in the former case if atomic
-> execution is enabled, but 20 consecutive failures in that case should
-> still be reported regardless).
->
-> This also technically solves a static analysis issue wherein
-> sleep_period_ms could overflow, but it would take over three weeks of
-> perpetual sleeping on these functions to ever hit that overflow, so it's
-> debatable whether this actually needed fixing or not.  At any rate, it's
-> better to exit early in the error case.
+> LGTM,
+> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 
-Overall feels like a conversion to iopoll.h poll_timeout_us() and
-friends would be benefitial.
+Thanks for the review, pushed to din.
 
 BR,
 Jani.
 
-
 >
-> Signed-off-by: Jonathan Cavitt <jonathan.cavitt@intel.com>
-> ---
->  drivers/gpu/drm/i915/gt/uc/intel_guc.h    | 10 +++++++---
->  drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c |  8 +++++---
->  2 files changed, 12 insertions(+), 6 deletions(-)
+>> ---
+>>  drivers/gpu/drm/i915/display/intel_hdcp.c | 7 ++++---
+>>  1 file changed, 4 insertions(+), 3 deletions(-)
+>> 
+>> diff --git a/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> index e88fec24af49..d097b478d010 100644
+>> --- a/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> +++ b/drivers/gpu/drm/i915/display/intel_hdcp.c
+>> @@ -1798,9 +1798,10 @@ int hdcp2_authenticate_repeater_topology(struct
+>> intel_connector *connector)
+>>  		return -EINVAL;
+>>  	}
+>> 
+>> -	if (seq_num_v < hdcp->seq_num_v) {
+>> -		/* Roll over of the seq_num_v from repeater. Reauthenticate.
+>> */
+>> -		drm_dbg_kms(display->drm, "Seq_num_v roll over.\n");
+>> +	if (hdcp->hdcp2_encrypted && seq_num_v <= hdcp->seq_num_v) {
+>> +		/* Reauthenticate on Seq_num_v repeat or rollover */
+>> +		drm_dbg_kms(display->drm, "Seq_num_v %s\n",
+>> +			    seq_num_v == hdcp->seq_num_v ? "repeat" :
+>> "rollover");
+>>  		return -EINVAL;
+>>  	}
+>> 
+>> --
+>> 2.47.3
 >
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> index 053780f562c1..b4bf12193f75 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
-> @@ -361,7 +361,7 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
->  					   bool loop)
->  {
->  	int err;
-> -	unsigned int sleep_period_ms = 1;
-> +	unsigned int loop_count = 0;
->  	bool not_atomic = !in_atomic() && !irqs_disabled();
->  
->  	/*
-> @@ -377,13 +377,17 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
->  retry:
->  	err = intel_guc_send_nb(guc, action, len, g2h_len_dw);
->  	if (unlikely(err == -EBUSY && loop)) {
-> +		if (loop_count >= 20)
-> +			return -EBUSY;
-> +
->  		if (likely(not_atomic)) {
-> -			if (msleep_interruptible(sleep_period_ms))
-> +			if (msleep_interruptible(1 << loop_count))
->  				return -EINTR;
-> -			sleep_period_ms = sleep_period_ms << 1;
->  		} else {
->  			cpu_relax();
->  		}
-> +
-> +		loop_count++;
->  		goto retry;
->  	}
->  
-> diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> index 8c4da526d461..e4a5697622c8 100644
-> --- a/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> +++ b/drivers/gpu/drm/i915/gt/uc/intel_guc_ct.c
-> @@ -716,7 +716,7 @@ static int ct_send(struct intel_guc_ct *ct,
->  	struct intel_guc_ct_buffer *ctb = &ct->ctbs.send;
->  	struct ct_request request;
->  	unsigned long flags;
-> -	unsigned int sleep_period_ms = 1;
-> +	unsigned int loop_count = 0;
->  	bool send_again;
->  	u32 fence;
->  	int err;
-> @@ -747,9 +747,11 @@ static int ct_send(struct intel_guc_ct *ct,
->  		if (unlikely(ct_deadlocked(ct)))
->  			return -EPIPE;
->  
-> -		if (msleep_interruptible(sleep_period_ms))
-> +		if (loop_count >= 20)
-> +			return -EBUSY;
-> +
-> +		if (msleep_interruptible(1 << loop_count++))
->  			return -EINTR;
-> -		sleep_period_ms = sleep_period_ms << 1;
->  
->  		goto retry;
->  	}
 
 -- 
 Jani Nikula, Intel
