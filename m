@@ -2,59 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0V8wJta6QmoxAQoAu9opvQ
+	id EOSfNti6Qmo0AQoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 20:35:02 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 20:35:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3BCCD6DE147
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 20:35:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC1C26DE150
+	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 20:35:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=ZNf71i6F;
+	dkim=pass header.d=intel.com header.s=Intel header.b=dY+w4n4m;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id C81A210E0DA;
-	Mon, 29 Jun 2026 18:35:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3ED3610E9D9;
+	Mon, 29 Jun 2026 18:35:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7691710E0DA;
- Mon, 29 Jun 2026 18:34:57 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 14A6710E0E2;
+ Mon, 29 Jun 2026 18:35:00 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782758097; x=1814294097;
+ t=1782758100; x=1814294100;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=UUXdA2xBJyAOvZGHUf33yg+Q6o9g3iThobMHK5D4m6k=;
- b=ZNf71i6F7DWPVy3gQcvtA8B/rlyJE0UCRjUpQvrMt5CxLeqL7RE8QEMl
- +Ib6U/4mTV++9xb8+Rstz9nf1eJJBlQyVTyjb6A7AvZAWbGIptR8K+Dfk
- EjoyCv9bTS4cjWIqbZY91TwGRqYwayaMkKbYbDgqBFLvDyK45D9JQCdWZ
- cdi4Sz6FunsUsvfOYEtdtWomRj9DVR/Xhy0A+e1s6t4OHDMKssPwHNJMp
- VbTG+XykbXGPqc1XhpUC+jli0sY0HxFh6h0x919MNZ0TZo383sXPVBW4i
- NVIuzuCoUALtC64dVgW9bDWI7LZlMv3fxOepBgdkncxC8Sh7jsQUxx2N1 A==;
-X-CSE-ConnectionGUID: UdTsq0B7Rly3glB/Qu0mIA==
-X-CSE-MsgGUID: KxLucWBuQJm/itqdsdHKRA==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="86010632"
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="86010632"
+ bh=8GYbZxGzyAh/L8lIUsJG9NWV1lf3TmstGfv0C5LnCMk=;
+ b=dY+w4n4mTqP05D+sG314hkP6kjzUKfDxBqk/Xhs1RN7dz6WFRpRcP1Ky
+ EQpvy7cDkiTibamnOHTMoAvB9e/nZLvjx22xHtmrs2c5+fV4RhBUEDuH6
+ O/TsvZ2ASBUU17YrTnaBulAz8v4RJ7KJThjgu18quOiBHalAlucEXNxpG
+ NfMcouEhVwUepsR1kPPBliJn8v1IauFZkgcOAvHwrujsRJxud8ZT5F/GT
+ f+v+0j44PFnQWa+uuLT/MpaSw9GIObhxyTBw4Di3lPDdAiXYtdCCUd9Ji
+ 3av5OUBGCCHnJjS274jyzDEE+w9v6QDC0b51BJuoQ0P9OYiyMypxzi228 Q==;
+X-CSE-ConnectionGUID: 8VOlQ+FJRCWGtMRiy8iHJQ==
+X-CSE-MsgGUID: tlybe6UKTfu4klTcBQhVpg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="86010634"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="86010634"
 Received: from fmviesa005.fm.intel.com ([10.60.135.145])
  by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 11:34:57 -0700
-X-CSE-ConnectionGUID: mDZ5sArsQ7qG6F3znymAFg==
-X-CSE-MsgGUID: 52BwTkxPSB619Jcqi1CGEg==
+ 29 Jun 2026 11:35:00 -0700
+X-CSE-ConnectionGUID: cBtZ0DEZS2CrIDkG5v8KDQ==
+X-CSE-MsgGUID: oAn1/XsBQeOSPzwiuzZFBw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256956678"
+X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256956691"
 Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa005.fm.intel.com with ESMTP; 29 Jun 2026 11:34:56 -0700
+ by fmviesa005.fm.intel.com with ESMTP; 29 Jun 2026 11:34:58 -0700
 From: Animesh Manna <animesh.manna@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
  suraj.kandpal@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v2 1/2] drm/i915/display: Guard CMTG disable with
- intel_cmtg_is_allowed()
-Date: Mon, 29 Jun 2026 23:32:35 +0530
-Message-Id: <20260629180236.1353704-2-animesh.manna@intel.com>
+Subject: [PATCH v2 2/2] drm/i915/cmtg: Warn on invalid CMTG transcoder in
+ intel_cmtg_disable()
+Date: Mon, 29 Jun 2026 23:32:36 +0530
+Message-Id: <20260629180236.1353704-3-animesh.manna@intel.com>
 X-Mailer: git-send-email 2.29.0
 In-Reply-To: <20260629180236.1353704-1-animesh.manna@intel.com>
 References: <20260629180236.1353704-1-animesh.manna@intel.com>
@@ -101,60 +101,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3BCCD6DE147
+X-Rspamd-Queue-Id: AC1C26DE150
 
-intel_cmtg_disable() maps crtc_state->cpu_transcoder to a CMTG transcoder
-via to_cmtg_transcoder(), which only returns a valid transcoder for
-TRANSCODER_A/B. The disable call sites in hsw_crtc_disable() and the
-fastset/VRR path only check the sticky crtc->cmtg.enabled flag, so during
-a big-joiner reconfiguration that moves the eDP across pipes
-intel_cmtg_disable() can be reached with a crtc_state whose cpu_transcoder
-does not map to a CMTG transcoder. That results in a negative
-register-array index (trans_offsets[-1]) and a UBSAN
-array-index-out-of-bounds splat:
+intel_cmtg_disable() indexes the per-transcoder register array using the
+CMTG transcoder returned by to_cmtg_transcoder(), which is only valid for
+TRANSCODER_A/B. The callers are now gated by intel_cmtg_is_allowed(), so
+reaching this function with an invalid CMTG transcoder should never
+happen.
 
-  UBSAN: array-index-out-of-bounds in .../display/intel_cmtg.c:187:24
-  intel_cmtg_disable+0x395/0x3d0 [xe]
-  intel_old_crtc_state_disables+0xfb/0x1f0 [xe]
-  intel_atomic_commit_tail+0xca6/0x2040 [xe]
-
-Gate both call sites with intel_cmtg_is_allowed() so that
-intel_cmtg_disable() is only invoked for configurations that actually map
-to a CMTG transcoder.
+Add a drm_WARN_ON() that bails out early in that case, both to document
+the invariant and to guard against the out-of-bounds register access
+(trans_offsets[-1]) should a future caller get it wrong.
 
 v2:
-- Guard the intel_cmtg_disable() call sites with intel_cmtg_is_allowed()
-  instead of a silent return (Suraj).
+- Add an in-function INVALID_TRANSCODER drm_WARN_ON check. (Suraj)
 
-Fixes: 3bb44e8d421a ("drm/i915/cmtg: Modify existing hook to disable CMTG")
 Signed-off-by: Animesh Manna <animesh.manna@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_display.c | 5 +++--
- 1 file changed, 3 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cmtg.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
-index 805066b02aaa..b39f404f9717 100644
---- a/drivers/gpu/drm/i915/display/intel_display.c
-+++ b/drivers/gpu/drm/i915/display/intel_display.c
-@@ -1790,7 +1790,7 @@ static void hsw_crtc_disable(struct intel_atomic_state *state,
- 		intel_atomic_get_old_crtc_state(state, crtc);
- 	struct intel_crtc *pipe_crtc;
+diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
+index 6da28c185080..c8e0f90af910 100644
+--- a/drivers/gpu/drm/i915/display/intel_cmtg.c
++++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
+@@ -183,6 +183,9 @@ void intel_cmtg_disable(const struct intel_crtc_state *crtc_state)
+ 	if (!crtc->cmtg.enabled)
+ 		return;
  
--	if (crtc->cmtg.enabled) {
-+	if (crtc->cmtg.enabled && intel_cmtg_is_allowed(old_crtc_state)) {
- 		intel_cmtg_set_clk_select(old_crtc_state);
- 		intel_cmtg_disable(old_crtc_state);
- 	}
-@@ -6886,7 +6886,8 @@ static void intel_update_crtc(struct intel_atomic_state *state,
- 	    old_crtc_state->inherited)
- 		intel_crtc_arm_fifo_underrun(crtc, new_crtc_state);
- 
--	if (crtc->cmtg.enabled && (intel_crtc_vrr_enabling(state, crtc))) {
-+	if (crtc->cmtg.enabled && intel_crtc_vrr_enabling(state, crtc) &&
-+	    intel_cmtg_is_allowed(new_crtc_state)) {
- 		intel_cmtg_set_clk_select(new_crtc_state);
- 		intel_cmtg_disable(new_crtc_state);
- 	}
++	if (drm_WARN_ON(display->drm, cmtg_transcoder == INVALID_TRANSCODER))
++		return;
++
+ 	crtc->cmtg.enabled = false;
+ 	intel_de_rmw(display, TRANS_VRR_CTL(display, cmtg_transcoder),
+ 		     VRR_CTL_VRR_ENABLE | VRR_CTL_FLIP_LINE_EN, 0);
 -- 
 2.29.0
 
