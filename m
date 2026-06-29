@@ -2,64 +2,104 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id EOSfNti6Qmo0AQoAu9opvQ
+	id 9iVZANAORWpx6AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 20:35:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AC1C26DE150
-	for <lists+intel-gfx@lfdr.de>; Mon, 29 Jun 2026 20:35:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7277B6EDAC6
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:57:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=dY+w4n4m;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=WOjc9JyG;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3ED3610E9D9;
-	Mon, 29 Jun 2026 18:35:03 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 49E4E10EF93;
+	Wed,  1 Jul 2026 12:57:48 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 14A6710E0E2;
- Mon, 29 Jun 2026 18:35:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782758100; x=1814294100;
- h=from:to:cc:subject:date:message-id:in-reply-to:
- references:mime-version:content-transfer-encoding;
- bh=8GYbZxGzyAh/L8lIUsJG9NWV1lf3TmstGfv0C5LnCMk=;
- b=dY+w4n4mTqP05D+sG314hkP6kjzUKfDxBqk/Xhs1RN7dz6WFRpRcP1Ky
- EQpvy7cDkiTibamnOHTMoAvB9e/nZLvjx22xHtmrs2c5+fV4RhBUEDuH6
- O/TsvZ2ASBUU17YrTnaBulAz8v4RJ7KJThjgu18quOiBHalAlucEXNxpG
- NfMcouEhVwUepsR1kPPBliJn8v1IauFZkgcOAvHwrujsRJxud8ZT5F/GT
- f+v+0j44PFnQWa+uuLT/MpaSw9GIObhxyTBw4Di3lPDdAiXYtdCCUd9Ji
- 3av5OUBGCCHnJjS274jyzDEE+w9v6QDC0b51BJuoQ0P9OYiyMypxzi228 Q==;
-X-CSE-ConnectionGUID: 8VOlQ+FJRCWGtMRiy8iHJQ==
-X-CSE-MsgGUID: tlybe6UKTfu4klTcBQhVpg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="86010634"
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="86010634"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by fmvoesa107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 29 Jun 2026 11:35:00 -0700
-X-CSE-ConnectionGUID: cBtZ0DEZS2CrIDkG5v8KDQ==
-X-CSE-MsgGUID: oAn1/XsBQeOSPzwiuzZFBw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,232,1774335600"; d="scan'208";a="256956691"
-Received: from srr4-3-linux-101-amanna.iind.intel.com ([10.190.238.88])
- by fmviesa005.fm.intel.com with ESMTP; 29 Jun 2026 11:34:58 -0700
-From: Animesh Manna <animesh.manna@intel.com>
-To: intel-gfx@lists.freedesktop.org,
-	intel-xe@lists.freedesktop.org
-Cc: uma.shankar@intel.com, dibin.moolakadan.subrahmanian@intel.com,
- suraj.kandpal@intel.com, Animesh Manna <animesh.manna@intel.com>
-Subject: [PATCH v2 2/2] drm/i915/cmtg: Warn on invalid CMTG transcoder in
- intel_cmtg_disable()
-Date: Mon, 29 Jun 2026 23:32:36 +0530
-Message-Id: <20260629180236.1353704-3-animesh.manna@intel.com>
-X-Mailer: git-send-email 2.29.0
-In-Reply-To: <20260629180236.1353704-1-animesh.manna@intel.com>
-References: <20260629180236.1353704-1-animesh.manna@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9427010E0EF;
+ Mon, 29 Jun 2026 19:25:57 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 723DC60008;
+ Mon, 29 Jun 2026 19:25:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 52F6D1F000E9;
+ Mon, 29 Jun 2026 19:25:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1782761156;
+ bh=uYIw6aQ9I+77XwEcGZ5sLAkEEwuPzF6gubx9MILGtr0=;
+ h=From:To:Cc:Subject:Date;
+ b=WOjc9JyG02UBcXhhgV9ic0phr0uZCFD5k0ILdv6ONhCv8Z1XYDxBYiwvpukl7K1Fg
+ a8aIrsAXippHTg2Wibb6tHWkzlE4E0fWXgBDrHzByOJL4F8jISF06sHckyYY+PF7tK
+ OiAiSmS9jz9wRn1oMBm18e5Uavo00IhgOxFuVQdHvJLDYYtq4uXlvS/eQXpk6KaIDD
+ GN3rVLuuxb69YleGJzixCH/hWeHWpFDPzoCr2KQROO1CK5H8VnjBM1FKT5hXUj42/o
+ WOenPbgoWzQyVU21Y69V/YrWJ0M+K8b+G7Zlo5u3zMESofU5MsPpKfLAYEn9kt+uGS
+ wlAF5pba2Dehg==
+From: Lorenzo Stoakes <ljs@kernel.org>
+To: Andrew Morton <akpm@linux-foundation.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+ Madhavan Srinivasan <maddy@linux.ibm.com>,
+ Michael Ellerman <mpe@ellerman.id.au>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Lucas Stach <l.stach@pengutronix.de>,
+ Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim <sw0312.kim@samsung.com>,
+ Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>,
+ Peter Griffin <peter.griffin@linaro.org>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>,
+ Rob Clark <robin.clark@oss.qualcomm.com>,
+ Dmitry Baryshkov <lumag@kernel.org>, Lyude Paul <lyude@redhat.com>,
+ Danilo Krummrich <dakr@kernel.org>,
+ Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
+ Sandy Huang <hjc@rock-chips.com>,
+ =?UTF-8?q?Heiko=20St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan <andy.yan@rock-chips.com>,
+ Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>,
+ Jonathan Hunter <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>,
+ Dmitry Osipenko <dmitry.osipenko@collabora.com>,
+ Zack Rusin <zack.rusin@broadcom.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Thomas Hellstrom <thomas.hellstrom@linux.intel.com>,
+ Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
+ Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>,
+ Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>,
+ Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>,
+ David Hildenbrand <david@kernel.org>, Zi Yan <ziy@nvidia.com>,
+ Baolin Wang <baolin.wang@linux.alibaba.com>,
+ "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>,
+ Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
+ Barry Song <baohua@kernel.org>, Lance Yang <lance.yang@linux.dev>,
+ Hugh Dickins <hughd@google.com>, Vlastimil Babka <vbabka@kernel.org>,
+ Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan <surenb@google.com>,
+ Michal Hocko <mhocko@suse.com>, Jann Horn <jannh@google.com>,
+ Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
+ Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ linux-sound@vger.kernel.org
+Subject: [PATCH 00/13] convert more vm_flags_t users to vma_flags_t
+Date: Mon, 29 Jun 2026 20:25:23 +0100
+Message-ID: <cover.1782760670.git.ljs@kernel.org>
+X-Mailer: git-send-email 2.54.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -75,66 +115,113 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.19 / 15.00];
+X-Spamd-Result: default: False [1.19 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DATE_IN_PAST(1.00)[41];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	R_MISSING_CHARSET(0.50)[];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MAILLIST(-0.20)[mailman];
-	MIME_GOOD(-0.10)[text/plain];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	MIME_TRACE(0.00)[0:+];
+	FREEMAIL_CC(0.00)[alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[animesh.manna@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_GT_50(0.00)[82];
+	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AC1C26DE150
+X-Rspamd-Queue-Id: 7277B6EDAC6
 
-intel_cmtg_disable() indexes the per-transcoder register array using the
-CMTG transcoder returned by to_cmtg_transcoder(), which is only valid for
-TRANSCODER_A/B. The callers are now gated by intel_cmtg_is_allowed(), so
-reaching this function with an invalid CMTG transcoder should never
-happen.
+This series makes further progress in converting usage of the deprecated
+vm_flags_t type to its replacement, vma_flags_t.
 
-Add a drm_WARN_ON() that bails out early in that case, both to document
-the invariant and to guard against the out-of-bounds register access
-(trans_offsets[-1]) should a future caller get it wrong.
+It focuses on mm, though updates some users of mm APIs also.
 
-v2:
-- Add an in-function INVALID_TRANSCODER drm_WARN_ON check. (Suraj)
+It updates:
 
-Signed-off-by: Animesh Manna <animesh.manna@intel.com>
----
- drivers/gpu/drm/i915/display/intel_cmtg.c | 3 +++
- 1 file changed, 3 insertions(+)
+* The core do_mmap() code path for VMA mapping.
+* Unmapped area logic.
+* The usage of mm->def_vma_flags.
+* VMA page protection bit logic.
+* General usage of VMA flags in core mm code, mlock, mprotect, mremap.
 
-diff --git a/drivers/gpu/drm/i915/display/intel_cmtg.c b/drivers/gpu/drm/i915/display/intel_cmtg.c
-index 6da28c185080..c8e0f90af910 100644
---- a/drivers/gpu/drm/i915/display/intel_cmtg.c
-+++ b/drivers/gpu/drm/i915/display/intel_cmtg.c
-@@ -183,6 +183,9 @@ void intel_cmtg_disable(const struct intel_crtc_state *crtc_state)
- 	if (!crtc->cmtg.enabled)
- 		return;
- 
-+	if (drm_WARN_ON(display->drm, cmtg_transcoder == INVALID_TRANSCODER))
-+		return;
-+
- 	crtc->cmtg.enabled = false;
- 	intel_de_rmw(display, TRANS_VRR_CTL(display, cmtg_transcoder),
- 		     VRR_CTL_VRR_ENABLE | VRR_CTL_FLIP_LINE_EN, 0);
--- 
-2.29.0
 
+REVIEWER/MERGER NOTE: This is dependent on [0], which must be merged before
+this.
+
+[0]:https://lore.kernel.org/linux-mm/cover.1782735110.git.ljs@kernel.org/
+
+Lorenzo Stoakes (13):
+  mm: introduce vma_flags_can_grow() and vma_can_grow()
+  mm/vma: update do_mmap() to use vma_flags_t
+  mm: convert __get_unmapped_area() to use vma_flags_t
+  mm: update generic_get_unmapped_area[_topdown]() to use vma_flags_t
+  mm: prefer mm->def_vma_flags in mm logic
+  mm/vma: convert vm_pgprot_modify() to use vma_flags_t and rename
+  mm/vma: rename vma_get_page_prot to vma_flags_to_page_prot
+  mm: introduce vma_get_page_prot() and use it
+  mm/vma: update create_init_stack_vma() to use vma_flags_t
+  mm/vma: convert miscellaneous uses of VMA flags in core mm
+  mm/mlock: convert mlock code to use vma_flags_t
+  mm/mprotect: convert mprotect code to use vma_flags_t
+  mm/mremap: convert mremap code to use vma_flags_t
+
+ arch/mips/kernel/vdso.c                     |   4 +-
+ arch/powerpc/mm/book3s64/slice.c            |   6 +-
+ drivers/gpu/drm/drm_gem.c                   |   2 +-
+ drivers/gpu/drm/drm_gem_dma_helper.c        |   2 +-
+ drivers/gpu/drm/drm_gem_shmem_helper.c      |   2 +-
+ drivers/gpu/drm/etnaviv/etnaviv_gem.c       |   2 +-
+ drivers/gpu/drm/exynos/exynos_drm_gem.c     |   6 +-
+ drivers/gpu/drm/i915/gem/i915_gem_mman.c    |  12 +-
+ drivers/gpu/drm/msm/msm_gem.c               |   2 +-
+ drivers/gpu/drm/nouveau/nouveau_gem.c       |   2 +-
+ drivers/gpu/drm/omapdrm/omap_fbdev.c        |   2 +-
+ drivers/gpu/drm/omapdrm/omap_gem.c          |   6 +-
+ drivers/gpu/drm/rockchip/rockchip_drm_gem.c |   2 +-
+ drivers/gpu/drm/tegra/gem.c                 |   2 +-
+ drivers/gpu/drm/virtio/virtgpu_vram.c       |   2 +-
+ drivers/gpu/drm/vmwgfx/vmwgfx_page_dirty.c  |   2 +-
+ drivers/gpu/drm/xe/xe_device.c              |   2 +-
+ drivers/gpu/drm/xe/xe_mmio_gem.c            |   2 +-
+ drivers/gpu/drm/xen/xen_drm_front_gem.c     |   2 +-
+ drivers/video/fbdev/core/fb_io_fops.c       |   2 +-
+ fs/aio.c                                    |   2 +-
+ fs/hugetlbfs/inode.c                        |   3 +-
+ include/linux/huge_mm.h                     |  10 +-
+ include/linux/memfd.h                       |   6 +-
+ include/linux/mm.h                          |  51 ++++--
+ include/linux/sched/mm.h                    |  16 +-
+ ipc/shm.c                                   |   3 +-
+ mm/debug.c                                  |   2 +-
+ mm/huge_memory.c                            |  21 +--
+ mm/memfd.c                                  |  15 +-
+ mm/mlock.c                                  |  97 ++++++------
+ mm/mmap.c                                   | 164 +++++++++++---------
+ mm/mprotect.c                               |  16 +-
+ mm/mremap.c                                 |  38 ++---
+ mm/nommu.c                                  |   3 +-
+ mm/util.c                                   |  10 +-
+ mm/vma.c                                    |  27 ++--
+ mm/vma.h                                    |   8 +-
+ mm/vma_exec.c                               |  20 ++-
+ sound/core/memalloc.c                       |   2 +-
+ tools/testing/vma/include/dup.h             |  22 ++-
+ 41 files changed, 339 insertions(+), 261 deletions(-)
+
+--
+2.54.0
