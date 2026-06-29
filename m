@@ -2,62 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 1B/RKSkPRWqx6AoAu9opvQ
+	id xgAGCCsPRWqz6AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:59:21 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:59:23 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 35CEA6EDB96
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9CB9F6EDB9E
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:59:22 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=fail ("headers rsa verify failed") header.d=rcpassos.me header.s=purelymail2 header.b=qB9mfzRC;
+	dkim=fail ("headers rsa verify failed") header.d=purelymail.com header.s=purelymail2 header.b=D2WEHFE7;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=rcpassos.me (policy=reject)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B4B7910E74F;
-	Wed,  1 Jul 2026 12:59:19 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D20DF10E891;
+	Wed,  1 Jul 2026 12:59:20 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BCB8410E1E5;
- Sun, 28 Jun 2026 14:11:50 +0000 (UTC)
-Received: from localhost.localdomain (unknown [117.182.74.7])
- by APP-05 (Coremail) with SMTP id zQCowABn8QScK0FqqtzHFQ--.34250S2;
- Sun, 28 Jun 2026 22:11:43 +0800 (CST)
-From: WenTao Liang <vulab@iscas.ac.cn>
-To: jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, airlied@gmail.com,
- simona@ffwll.ch
-Cc: jonathan.cavitt@intel.com, tzimmermann@suse.de, kees@kernel.org,
- matthew.brost@intel.com, vulab@iscas.ac.cn,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
- stable@vger.kernel.org
-Subject: [PATCH v2] drm/i915: fix kref leak in __live_active_setup error path
-Date: Sun, 28 Jun 2026 22:03:27 +0800
-Message-Id: <20260628140327.46842-1-vulab@iscas.ac.cn>
-X-Mailer: git-send-email 2.39.5 (Apple Git-154)
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-CM-TRANSID: zQCowABn8QScK0FqqtzHFQ--.34250S2
-X-Coremail-Antispam: 1UD129KBjvJXoWruF4kWr1xXw1rtw48Gr4DJwb_yoW8Jr4xpa
- 1fJa4YkFWfA3W7tayDuF40qry3WanxGFWxC34qkwsxZw15C3W8J34F9ry3GF1DArZ3Jr1a
- ywnrtFyxJF1UArJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
- 9KBjDU0xBIdaVrnRJUUU9Y14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
- rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
- 1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
- 6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
- 0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
- jxv20xvE14v26r106r15McIj6I8E87Iv67AKxVW8JVWxJwAm72CE4IkC6x0Yz7v_Jr0_Gr
- 1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E8cxa
- n2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFVCjc4
- AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE
- 17CEb7AF67AKxVW8ZVWrXwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r1xMI
- IF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
- IxAIcVC2z280aVAFwI0_Cr0_Gr1UMIIF0xvEx4A2jsIEc7CjxVAFwI0_Gr1j6F4UJbIYCT
- nIWIevJa73UjIFyTuYvjfUOlkVUUUUU
-X-Originating-IP: [117.182.74.7]
-X-CM-SenderInfo: pyxotu46lvutnvoduhdfq/1tbiDAAMA2pBJUUIeAABs5
+Received: from sendmail.purelymail.com (sendmail.purelymail.com
+ [34.202.193.197])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4512510E170
+ for <intel-gfx@lists.freedesktop.org>; Mon, 29 Jun 2026 00:34:59 +0000 (UTC)
+DKIM-Signature: a=rsa-sha256;
+ b=qB9mfzRCZYvoF9IRkZOjzjyQq8O/0jFLZFA0ucmORMzvxBxRp4K7/N7TLCoJt/cYyGfgDwXkJ/ZN6OU36pNb/Wqm/7kLI1+0lsE0q5csj72EEZSqi4zwPRD6Z+kzZWSeCDWIN6wa2wIgR6gnwCRf8PLT3Zu0uWK5mD1X3xq065sKFPS1OfULohLW291ewJoBDIE1jW+2aObKX3J6njkmUQ4Jge0LI8OphBFanZoSaDhZoK3URIOMkfpxB7mCgCNEf2WeG/T6tWohPPdTRrOBP77TEUmlicuKTNHIJyTnw5wa9Z5+QXge9SsiXUreaNTFJC0vW/DnE1EAMYDLdnudpQ==;
+ s=purelymail2; d=rcpassos.me; v=1;
+ bh=ZsfCjmQEzgl9BUa5k4KAiMGgZgn3+ETC4EaT4Dw+yFY=;
+ h=Received:Date:From:To:Subject; 
+DKIM-Signature: a=rsa-sha256;
+ b=D2WEHFE7KDUDAgT5dQJ2KVOBUCpPX/X8nLh3fGFXRxTK4KhZN9GKCzbm1/feLbn73x64KYgD2kR/EvbqzEMDdEHXALWVyptRG7M9czRgnr0eLf1UVRhQpSogE8v+EdRzuTuMIoA3sYQ2VbX8C29bkbLT7HUAndC/qGVZwpTSAT7I54M0JikPAoRfG6EfiwHoLhhGiv9qBq/qChOgFxw9T+ulxxODPN4TlBSLSEH/aPCbFGRk3ftGHeSaWr7hAYp/fnMJirWjYj31EmU4ZauF9XZPq9l7zU/iyriSQMCF93Z9pDmWxXCpgLZ2JnlHWy9KYaE8WDXMo79SZVl+Zu0PuQ==;
+ s=purelymail2; d=purelymail.com; v=1;
+ bh=ZsfCjmQEzgl9BUa5k4KAiMGgZgn3+ETC4EaT4Dw+yFY=;
+ h=Feedback-ID:Received:Date:From:To:Subject; 
+Feedback-ID: 45355:7809:null:purelymail
+X-Pm-Original-To: intel-gfx@lists.freedesktop.org
+Received: by smtp.purelymail.com (Purelymail SMTP) with ESMTPSA id 53992085;
+ (version=TLSv1.3 cipher=TLS_AES_256_GCM_SHA384);
+ Mon, 29 Jun 2026 00:34:29 +0000 (UTC)
+Mime-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Date: Sun, 28 Jun 2026 21:34:49 -0300
+Message-Id: <DJL413GMZH5Q.2S11VUVHGLLVF@rcpassos.me>
+From: "Rafael Passos" <rafael@rcpassos.me>
+To: "Randy Dunlap" <rdunlap@infradead.org>, "Jani Nikula"
+ <jani.nikula@linux.intel.com>, "Rodrigo Vivi" <rodrigo.vivi@intel.com>
+Subject: Re: [PATCH v2] Documentation: xe_drm: fix chars used for subsection
+Cc: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>,
+ <skhan@linuxfoundation.org>, "Intel-xe"
+ <intel-xe-bounces@lists.freedesktop.org>, "Rafael Passos"
+ <rafael@rcpassos.me>
+X-Mailer: aerc 0.21.0
+References: <20260621030114.963405-1-rafael@rcpassos.me>
+ <1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infradead.org>
+In-Reply-To: <1a20e4bf-fd7f-453e-b7a8-c7feb0b077c6@infradead.org>
 X-Mailman-Approved-At: Wed, 01 Jul 2026 12:57:46 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -74,67 +71,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.89 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DATE_IN_PAST(1.00)[70];
-	R_MISSING_CHARSET(0.50)[];
+X-Spamd-Result: default: False [3.89 / 15.00];
+	DMARC_POLICY_REJECT(2.00)[rcpassos.me : SPF not aligned (relaxed),reject];
+	R_DKIM_REJECT(1.00)[rcpassos.me:s=purelymail2,purelymail.com:s=purelymail2];
+	DATE_IN_PAST(1.00)[60];
+	MV_CASE(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_SENDER(0.00)[rafael@rcpassos.me,intel-gfx-bounces@lists.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
-	DMARC_NA(0.00)[iscas.ac.cn];
-	RCVD_COUNT_THREE(0.00)[3];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
-	MIME_TRACE(0.00)[0:+];
-	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
-	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[vulab@iscas.ac.cn,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
-	HAS_XOIP(0.00)[];
-	R_DKIM_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[3];
+	FORGED_RECIPIENTS(0.00)[m:rdunlap@infradead.org,m:jani.nikula@linux.intel.com,m:rodrigo.vivi@intel.com,m:intel-xe@lists.freedesktop.org,m:skhan@linuxfoundation.org,m:intel-xe-bounces@lists.freedesktop.org,m:rafael@rcpassos.me,s:lists@lfdr.de];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[rcpassos.me:-,purelymail.com:-];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FROM_NEQ_ENVFROM(0.00)[rafael@rcpassos.me,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[8];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,iscas.ac.cn:email,iscas.ac.cn:mid,iscas.ac.cn:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[infradead.org:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 35CEA6EDB96
+X-Rspamd-Queue-Id: 9CB9F6EDB9E
 
-When heap_fence_create fails, the early error path calls kfree(active)
-directly instead of __live_put(active), bypassing the kref_put path that
-would call i915_active_fini for proper resource teardown. This skips
-cleanup of the i915_active state while the initial kref from kref_init
-remains unbalanced.
+Hi,
 
-Suggested-by: Greg KH <gregkh@linuxfoundation.org>
-Fixes: 5361db1a33c7 ("drm/i915: Track i915_active using debugobjects")
-Cc: stable@vger.kernel.org
-Signed-off-by: WenTao Liang <vulab@iscas.ac.cn>
----
-Changes in v2:
-- Fix patch format based on reviewer feedback
----
- drivers/gpu/drm/i915/selftests/i915_active.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I just checked, and this issue is still present.
+Since the merge window just closed, I think it's a good time
+to send a ping :)
 
-diff --git a/drivers/gpu/drm/i915/selftests/i915_active.c b/drivers/gpu/drm/i915/selftests/i915_active.c
-index 9fea2fabeac4..8ec7859da762 100644
---- a/drivers/gpu/drm/i915/selftests/i915_active.c
-+++ b/drivers/gpu/drm/i915/selftests/i915_active.c
-@@ -91,7 +91,7 @@ __live_active_setup(struct drm_i915_private *i915)
- 
- 	submit = heap_fence_create(GFP_KERNEL);
- 	if (!submit) {
--		kfree(active);
-+		__live_put(active);
- 		return ERR_PTR(-ENOMEM);
- 	}
- 
--- 
-2.39.5 (Apple Git-154)
+On Sun Jun 21, 2026 at 1:07 AM -03, Randy Dunlap wrote:
+> On 6/20/26 8:01 PM, Rafael Passos wrote:
+>> and the page title is defined the.
+>
+>                         defined there.
 
+Should I send a v3 of this patch fixing this minor typo ?
+
+I see the original email did not show up in Lore (just Randy's response).
+Should resend in cases like this ? In this case, while at it, just do a v3?
+
+> LGTM. Thanks.
+>
+> Reviewed-by: Randy Dunlap <rdunlap@infradead.org>
+> Tested-by: Randy Dunlap <rdunlap@infradead.org>
+
+Also, if I were to send a new version (changing only the commit message),
+and the previous had Review/Tested tags, should I carry them in the new ver=
+sion?
+Or just send it as is?
+
+
+Thanks,
+
+Rafael Passos
