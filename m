@@ -2,65 +2,108 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id dG9HF7aWQ2oIcwoAu9opvQ
+	id jhFuJ0qZQ2r3cwoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 12:13:10 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 12:24:10 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id A65466E2AD3
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 12:13:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 409896E2CA5
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 12:24:10 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=UoYt1eLp;
+	dkim=pass header.d=intel.com header.s=Intel header.b="icQ/wQmM";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 564F810E184;
-	Tue, 30 Jun 2026 10:13:06 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B50C810EC2D;
+	Tue, 30 Jun 2026 10:24:06 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A74610E184;
- Tue, 30 Jun 2026 10:13:05 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2E9C610EC21;
+ Tue, 30 Jun 2026 10:24:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782814385; x=1814350385;
+ t=1782815045; x=1814351045;
  h=from:to:cc:subject:in-reply-to:references:date:
  message-id:mime-version;
- bh=nbKxiQZBkLSyv9zbCELipya6Wp2jnIfPwPH2sKSWukM=;
- b=UoYt1eLp5pPHpGRGCom5fn/tSX53F/wpOkojiPm+oteaXr+WKJBkjHBv
- hMyFvp6JFo/xxFswwe8WlVLyLF78T5tkKPZCBDdt2Sb1+NxrsmO74t4+5
- 71CHFhpo4kuQBLw3n6Z4l38YeMCEhMudrW9zDTkOArtAOQuCtz/7d9MQJ
- kfrLwZE98vks7JkCLdQnrKlM3fHv/ae5a7rhXatbsIsC7MDlS4D/mTDBT
- fO/0tRRC5f33hQR1SCH9CWNN/Dq7DPDHX7gdlNZCQ3yWHolbE0PT0HP0a
- 5pI2MEHowqBwcIrAIxDMsjH9Ln5rcjaGWs9GsxckBOcsL/Blgq/+vjMWL w==;
-X-CSE-ConnectionGUID: Kk480oTJQjGP7WgvBZw23Q==
-X-CSE-MsgGUID: 2u5qGz+sQ4W4a+sHr4OlRg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83580533"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="83580533"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ bh=ktunQaDDS5EVOVO47fVPmptPD5p+avnAGjEgEXLkbp0=;
+ b=icQ/wQmMyVZEeQ41y0s/RD11IysL84RlqYL/arY/vH1/dWVzn1+QLLrf
+ ueBMWmMjezVhy+WaJXO+3iNQGGIcbJzXI6eieapAM1kBIjGjhhVCaXSQm
+ TOdxhxZcTJ6IN/W0mgmM+fsTXj3LXTIHco9RasSd9cPj/qGSeyCO0W2Wz
+ KbLi3LZ7d4xjSij4MOQWw89C0LFz2W4TDpD3vv6oGlWF6PGxSVzs/7RtK
+ R4U6BszKlVT+/8x5p+jGiXmDLemCjiVPuYg/rmmaXKWDznfJUbi98POac
+ d+XGxySUIzljPn21oJFt6BBAIK0pXw+4U1qaOJf6g5aG7EdN+AsAIzC0X w==;
+X-CSE-ConnectionGUID: iWFeh17OSmqppQDgk2FCwA==
+X-CSE-MsgGUID: gGh6se85QkG9MuO9q2JroA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="83581378"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="83581378"
+Received: from fmviesa009.fm.intel.com ([10.60.135.149])
  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 03:13:04 -0700
-X-CSE-ConnectionGUID: FIbk5dIJRnWXYR1ml7HQvg==
-X-CSE-MsgGUID: xBfA8ckhQ/WHoTXZnOIVKg==
+ 30 Jun 2026 03:24:04 -0700
+X-CSE-ConnectionGUID: jgq2xSQuTZCC6QLcUYS3Dw==
+X-CSE-MsgGUID: Tgh3e1tLRQ2N4h0xSzOsDw==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="257136787"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="245877673"
 Received: from ijarvine-mobl1.ger.corp.intel.com (HELO localhost)
  ([10.245.245.148])
- by fmviesa005-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 03:13:02 -0700
+ by fmviesa009-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 30 Jun 2026 03:23:47 -0700
 From: Jani Nikula <jani.nikula@linux.intel.com>
-To: yaolu@kylinos.cn, rodrigo.vivi@intel.com,
- joonas.lahtinen@linux.intel.com, tursulin@ursulin.net
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- linux-kernel@vger.kernel.org, Lu Yao <yaolu@kylinos.cn>
-Subject: Re: [PATCH] drm/i915/display: fix error handling in
- intel_display_driver_probe_noirq
-In-Reply-To: <20260630031652.67747-1-yaolu@kylinos.cn>
+To: Lorenzo Stoakes <ljs@kernel.org>, Andrew Morton <akpm@linux-foundation.org>
+Cc: Thomas Bogendoerfer <tsbogend@alpha.franken.de>, Madhavan Srinivasan
+ <maddy@linux.ibm.com>, Michael Ellerman <mpe@ellerman.id.au>, Maarten
+ Lankhorst <maarten.lankhorst@linux.intel.com>, Maxime Ripard
+ <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, David
+ Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, Lucas Stach
+ <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>, Seung-Woo Kim
+ <sw0312.kim@samsung.com>, Kyungmin Park <kyungmin.park@samsung.com>,
+ Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin
+ <peter.griffin@linaro.org>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Rob Clark
+ <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, Lyude
+ Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, Tomi
+ Valkeinen <tomi.valkeinen@ideasonboard.com>, Sandy Huang
+ <hjc@rock-chips.com>, Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
+ Andy Yan
+ <andy.yan@rock-chips.com>, Thierry Reding <thierry.reding@kernel.org>,
+ Mikko Perttunen <mperttunen@nvidia.com>, Jonathan Hunter
+ <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, Dmitry Osipenko
+ <dmitry.osipenko@collabora.com>, Zack Rusin <zack.rusin@broadcom.com>,
+ Matthew Brost <matthew.brost@intel.com>, Thomas Hellstrom
+ <thomas.hellstrom@linux.intel.com>, Oleksandr Andrushchenko
+ <oleksandr_andrushchenko@epam.com>, Helge Deller <deller@gmx.de>, Benjamin
+ LaHaise <bcrl@kvack.org>, Alexander Viro <viro@zeniv.linux.org.uk>,
+ Christian Brauner <brauner@kernel.org>, Muchun Song
+ <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, David
+ Hildenbrand <david@kernel.org>, Zi Yan <ziy@nvidia.com>, Baolin Wang
+ <baolin.wang@linux.alibaba.com>, "Liam R . Howlett" <liam@infradead.org>,
+ Nico Pache <npache@redhat.com>, Ryan Roberts <ryan.roberts@arm.com>, Dev
+ Jain <dev.jain@arm.com>, Barry Song <baohua@kernel.org>, Lance Yang
+ <lance.yang@linux.dev>, Hugh Dickins <hughd@google.com>, Vlastimil Babka
+ <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, Suren Baghdasaryan
+ <surenb@google.com>, Michal Hocko <mhocko@suse.com>, Jann Horn
+ <jannh@google.com>, Pedro Falcato <pfalcato@suse.de>, Kees Cook
+ <kees@kernel.org>, Jaroslav Kysela <perex@perex.cz>, Takashi Iwai
+ <tiwai@suse.com>, linux-mips@vger.kernel.org,
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+ linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org,
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
+ xen-devel@lists.xenproject.org, linux-fbdev@vger.kernel.org,
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 08/13] mm: introduce vma_get_page_prot() and use it
+In-Reply-To: <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
 Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
  6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260630031652.67747-1-yaolu@kylinos.cn>
-Date: Tue, 30 Jun 2026 13:12:59 +0300
-Message-ID: <677fb92771df1f9f491226bf006c157a007c16dc@intel.com>
+References: <cover.1782760670.git.ljs@kernel.org>
+ <3bb8bdc4788230c33102166d56cbc5abfad9d4cb.1782760670.git.ljs@kernel.org>
+Date: Tue, 30 Jun 2026 13:23:44 +0300
+Message-ID: <d6d75626287ddd46d7da136cf013f7b21b1afc06@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -81,118 +124,42 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
 	R_MISSING_CHARSET(0.50)[];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
-	MAILLIST(-0.20)[mailman];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
+	FREEMAIL_CC(0.00)[alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
 	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
 	HAS_ORG_HEADER(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	MIME_TRACE(0.00)[0:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[82];
 	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[8];
+	ALIAS_RESOLVED(0.00)[];
+	MISSING_XM_UA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.intel.com:from_mime,kylinos.cn:email,intel.com:dkim,intel.com:mid,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,linux.intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: A65466E2AD3
+X-Rspamd-Queue-Id: 409896E2CA5
 
-On Tue, 30 Jun 2026, yaolu@kylinos.cn wrote:
-> From: Lu Yao <yaolu@kylinos.cn>
->
-> Fix two bugs in the probe error path:
->
-> 1. intel_dmc_fini() was called on workqueue alloc failed paths but
->    intel_dmc_init() had been invoked.  Move the dmc init call advance.
+On Mon, 29 Jun 2026, Lorenzo Stoakes <ljs@kernel.org> wrote:
+>  drivers/gpu/drm/i915/gem/i915_gem_mman.c    | 12 ++++++------
 
-You can't move intel_dmc_init() before the wq allocation.
+For i915,
 
-BR,
-Jani.
+Acked-by: Jani Nikula <jani.nikula@intel.com>
 
->
-> 2. If intel_mode_config_init() succeeded, after intel_xxx_init()
->    failed leaked the resources allocated by drm_mode_config_init().
->    Add a cleanup_mode_config label.
->
-> Signed-off-by: Lu Yao <yaolu@kylinos.cn>
-> ---
->  .../drm/i915/display/intel_display_driver.c    | 18 ++++++++++--------
->  1 file changed, 10 insertions(+), 8 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> index d0729936f681..d69bdfb19efe 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-> @@ -223,6 +223,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->  	if (!HAS_DISPLAY(display))
->  		return 0;
->  
-> +	intel_dmc_init(display);
-> +
->  	display->hotplug.dp_wq = alloc_ordered_workqueue("intel-dp", 0);
->  	if (!display->hotplug.dp_wq) {
->  		ret = -ENOMEM;
-> @@ -254,33 +256,31 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->  		goto cleanup_wq_cleanup;
->  	}
->  
-> -	intel_dmc_init(display);
-> -
->  	intel_mode_config_init(display);
->  
->  	ret = intel_cdclk_init(display);
->  	if (ret)
-> -		goto cleanup_wq_unordered;
-> +		goto cleanup_mode_config;
->  
->  	ret = intel_color_init(display);
->  	if (ret)
-> -		goto cleanup_wq_unordered;
-> +		goto cleanup_mode_config;
->  
->  	ret = intel_dbuf_init(display);
->  	if (ret)
-> -		goto cleanup_wq_unordered;
-> +		goto cleanup_mode_config;
->  
->  	ret = intel_dbuf_bw_init(display);
->  	if (ret)
-> -		goto cleanup_wq_unordered;
-> +		goto cleanup_mode_config;
->  
->  	ret = intel_bw_init(display);
->  	if (ret)
-> -		goto cleanup_wq_unordered;
-> +		goto cleanup_mode_config;
->  
->  	ret = intel_pmdemand_init(display);
->  	if (ret)
-> -		goto cleanup_wq_unordered;
-> +		goto cleanup_mode_config;
->  
->  	intel_init_quirks(display);
->  
-> @@ -288,6 +288,8 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
->  
->  	return 0;
->  
-> +cleanup_mode_config:
-> +	intel_mode_config_cleanup(display);
->  cleanup_wq_unordered:
->  	destroy_workqueue(display->wq.unordered);
->  cleanup_wq_cleanup:
+
 
 -- 
 Jani Nikula, Intel
