@@ -2,48 +2,48 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id uihsOKWBQ2r9ZQoAu9opvQ
+	id CJA3KaiBQ2oAZgoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 10:43:17 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 10:43:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id B0BCC6E1C14
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 10:43:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 526346E1C1B
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 10:43:20 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=MzZetzls;
+	dkim=pass header.d=collabora.com header.s=zohomail header.b=TBSZmYCq;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=collabora.com;
 	arc=pass ("zohomail.com:s=zohoarc:i=1")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1074A10E1C0;
-	Tue, 30 Jun 2026 08:43:13 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id C914610E6DE;
+	Tue, 30 Jun 2026 08:43:18 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
  [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DCF1510E196;
- Tue, 30 Jun 2026 08:43:11 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1782808986; cv=none; 
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 7879810E1C8;
+ Tue, 30 Jun 2026 08:43:17 +0000 (UTC)
+ARC-Seal: i=1; a=rsa-sha256; t=1782808991; cv=none; 
  d=zohomail.com; s=zohoarc; 
- b=itvu64uyYDeMZL5jzFV+h038rpP9b3MkBA8N47ZMCA7xS2YYwl7FFK2WnD/kPVQhRCmUX/jsoNSLyKtmzx34cZ6reEVIowBVU4B22kGNJ3mCGMt4Lob7vZY2r4Q8jXhkymPEIKbVojB+4RFaPgVEyGt9SvZxTzWkfHEj4LorJD4=
+ b=Vmcp9+P2+zVVGjlknJcCugSPkACENyZchXZwe3EkEbGbyajkzli0ANoSzeauGiit1WvI9DwnWPjpWbeSIl20fquGutUd0E8txJiXY8aAln6He6+paZA96Ez/adnApuKoquc7ib60BFtjAT0zzpeJmBQtCTqKF85bCSJ0AGgkq4Q=
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1782808986;
- h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:MIME-Version:Message-ID:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=dufAXSONUwo/B9hS1GnhZeSx257k/pmdLJDYuxXDvCc=; 
- b=QZgEsvn0VE3uoZuIphmBFi89Cbbl/JoTq/nLeW8HfnnS3XShSQ6ADn0aiHToyJFuTxDW8vhXcKTaTEQI5w9lOWjSVR6mJL1xAkN0xP+gAVO8r34jRNeyvD6T0Uu4I1oGMCfMlHXsd37Qo7Nh8SqxeSya0NpeLBx5+k8w9P8DgUo=
+ s=zohoarc; t=1782808991;
+ h=Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
+ bh=7SKXbw6sqS2+R2VhFfpClmyyEFJnI1KY9RMDYcCVsTA=; 
+ b=VOC+p1UqsyZHzjNJg6+p75eVv+ap29pjP9V9DgeNuJBibqfI0mKCDWAJYA2mkEM2/RWyRk24i3LE3On/V8yz/K63YnxbcSScBYVqqyw+l2FMPiwvqdIeDrk5lUuGoGpwuWuWR1F3xy8pWAZw/nL4cqtk3NPfvhYG9RYLGLoYUFg=
 ARC-Authentication-Results: i=1; mx.zohomail.com;
  dkim=pass  header.i=collabora.com;
  spf=pass  smtp.mailfrom=robert.mader@collabora.com;
  dmarc=pass header.from=<robert.mader@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782808985; 
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782808991; 
  s=zohomail; d=collabora.com; i=robert.mader@collabora.com;
- h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=dufAXSONUwo/B9hS1GnhZeSx257k/pmdLJDYuxXDvCc=;
- b=MzZetzlskmETFH06K+ecriOu87fICJBQrWKR1OWABCK4v7/nF8extnbCiNS4DUDW
- 4vIXjFytFi5Oe8b8m+H+UlBNsClZ72VH3muSkZV/46dkUj1bAemEDPFeQA0jE3R2asx
- eMPxXtWtqmIp9+sA19w0LBAAsQI13nF5tAezeNbg=
-Received: by mx.zohomail.com with SMTPS id 1782808984200397.6004567094453;
- Tue, 30 Jun 2026 01:43:04 -0700 (PDT)
+ h=From:From:To:To:Cc:Cc:Subject:Subject:Date:Date:Message-ID:In-Reply-To:References:MIME-Version:Content-Transfer-Encoding:Message-Id:Reply-To;
+ bh=7SKXbw6sqS2+R2VhFfpClmyyEFJnI1KY9RMDYcCVsTA=;
+ b=TBSZmYCqT98RYWK0hEu0LgcjnyoNv2ppn7AWZuWxUW686HMA7TPMv4pHdGj9mDlD
+ xkkqwuBh2Y7MeJDD7vpOD9QdH8YAUZw2JeDyV3B6n0IZ/63q904DzFH2S/JZ2MZx/B1
+ Eg0+T18nP5P0K1hSOouI/YhjsFLF5EBUmoOSC8Q0=
+Received: by mx.zohomail.com with SMTPS id 1782808989324295.46946848078676;
+ Tue, 30 Jun 2026 01:43:09 -0700 (PDT)
 From: Robert Mader <robert.mader@collabora.com>
 To: dri-devel@lists.freedesktop.org
 Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
@@ -60,11 +60,13 @@ Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
  Pekka Paalanen <pekka.paalanen@collabora.com>,
  Leandro Ribeiro <leandro.ribeiro@collabora.com>,
  Robert Mader <robert.mader@collabora.com>
-Subject: [PATCH v1 0/4] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE behind
+Subject: [PATCH v1 1/4] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE behind
  driver feature
-Date: Tue, 30 Jun 2026 10:42:25 +0200
-Message-ID: <20260630084229.529682-1-robert.mader@collabora.com>
+Date: Tue, 30 Jun 2026 10:42:26 +0200
+Message-ID: <20260630084229.529682-2-robert.mader@collabora.com>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260630084229.529682-1-robert.mader@collabora.com>
+References: <20260630084229.529682-1-robert.mader@collabora.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
@@ -107,11 +109,9 @@ X-Spamd-Result: default: False [-0.81 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:url,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: B0BCC6E1C14
-
-From the main commit:
+X-Rspamd-Queue-Id: 526346E1C1B
 
 The client cap is currently advertised unconditionally, even for drivers that do
 not support plane color pipelines. If clients supporting the later, like Wayland
@@ -122,33 +122,42 @@ COLOR_RANGE, effectively breaking YUV->RGB conversion support.
 Add a new driver feature and guard the client cap behind it, allowing
 plane color pipeline and legacy YUV->RGB support to co-exist.
 
-In case of VKMS make the client cap depend on the enable_plane_pipeline.
-
-The series can be easily tested with drm_info >= v2.10.0 and VKMS. Without the
-enable_plane_pipeline option - currently the default - the legacy flags
-COLOR_ENCODING and COLOR_RANGE should be advertised, just like older drm_info
-versions.
-
+Signed-off-by: Robert Mader <robert.mader@collabora.com>
 ---
+ drivers/gpu/drm/drm_ioctl.c | 2 ++
+ include/drm/drm_drv.h       | 6 ++++++
+ 2 files changed, 8 insertions(+)
 
-Related series actually implementing the color pipeline replacement for the
-legacy flags:
-https://lists.freedesktop.org/archives/dri-devel/2026-June/575655.html
-
-
-Robert Mader (4):
-  drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE behind driver feature
-  drm/amdgpu: Add DRIVER_PLANE_COLOR_PIPELINE driver feature
-  drm/i915: Add DRIVER_PLANE_COLOR_PIPELINE driver feature
-  drm/vkms: Add DRIVER_PLANE_COLOR_PIPELINE driver feature
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
- drivers/gpu/drm/drm_ioctl.c             | 2 ++
- drivers/gpu/drm/i915/i915_driver.c      | 2 +-
- drivers/gpu/drm/vkms/vkms_drv.c         | 6 +++++-
- include/drm/drm_drv.h                   | 6 ++++++
- 5 files changed, 15 insertions(+), 3 deletions(-)
-
+diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+index ff193155129e..96fda92e31b9 100644
+--- a/drivers/gpu/drm/drm_ioctl.c
++++ b/drivers/gpu/drm/drm_ioctl.c
+@@ -374,6 +374,8 @@ drm_setclientcap(struct drm_device *dev, void *data, struct drm_file *file_priv)
+ 		file_priv->supports_virtualized_cursor_plane = req->value;
+ 		break;
+ 	case DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE:
++		if (!drm_core_check_feature(dev, DRIVER_PLANE_COLOR_PIPELINE))
++			return -EOPNOTSUPP;
+ 		if (!file_priv->atomic)
+ 			return -EINVAL;
+ 		if (req->value > 1)
+diff --git a/include/drm/drm_drv.h b/include/drm/drm_drv.h
+index e09559495c5b..108ddd2c8d30 100644
+--- a/include/drm/drm_drv.h
++++ b/include/drm/drm_drv.h
+@@ -116,6 +116,12 @@ enum drm_driver_feature {
+ 	 * the cursor planes to work correctly).
+ 	 */
+ 	DRIVER_CURSOR_HOTSPOT           = BIT(9),
++	/**
++	 * @DRIVER_PLANE_COLOR_PIPELINE:
++	 *
++	 * Driver supports PLANE_COLOR_PIPELINE.
++	 */
++	DRIVER_PLANE_COLOR_PIPELINE	= BIT(10),
+ 
+ 	/* IMPORTANT: Below are all the legacy flags, add new ones above. */
+ 
 -- 
 2.54.0
 
