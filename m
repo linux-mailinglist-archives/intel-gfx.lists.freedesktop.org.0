@@ -2,59 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 0jFDJ0iuQ2rcewoAu9opvQ
+	id CTiECkquQ2rfewoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 13:53:44 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 13:53:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3A9706E3D89
-	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 13:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1286E3D95
+	for <lists+intel-gfx@lfdr.de>; Tue, 30 Jun 2026 13:53:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=PPKFeseJ;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ljJxk18F;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 8F41710EC0B;
-	Tue, 30 Jun 2026 11:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2E59710EC41;
+	Tue, 30 Jun 2026 11:53:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.8])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A9EDE10EC38;
- Tue, 30 Jun 2026 11:53:40 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C32D610EBFB;
+ Tue, 30 Jun 2026 11:53:41 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782820421; x=1814356421;
- h=from:to:cc:subject:date:message-id:mime-version:
- content-transfer-encoding;
- bh=bQYnf1wladvFHpAezoVK/p32jc2Z349hynexDAVXbZs=;
- b=PPKFeseJG/rIsGpcqdYKBjo3fhn2bv24KlafBJkBAyigQAmsd+e3zzJT
- RklA5U58pBpiY4At22LUM0GghLYBUkHSSOneORQw1QTuzqP8Kd31flzER
- aHp9MMPblN2cPpQfKe2SR01DYGO/qNF5nbbn7VlBwBgFRoW6kYm3Gwo0A
- q+/nv0wdcabhuQIo1tzO4gmCozBdoCNDZs1f605QsoHNJRXFhAe/YbKTn
- IrIyV0rwfvdlXqzsLgb2mSJhLAQynTtOJDpLnGLpyBObNYWXR7xQfN+/U
- +hDoQ4Ehao72PnpfvS/+qnof4J+h9hDUyi6xFjrRgSvfNtqnV9AfyWwLv g==;
-X-CSE-ConnectionGUID: 2t2JGFMNR6GPc1VubssCDg==
-X-CSE-MsgGUID: MNVX17R0RO6Si7rqA4NjdQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="101074292"
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="101074292"
+ t=1782820422; x=1814356422;
+ h=from:to:cc:subject:date:message-id:in-reply-to:
+ references:mime-version:content-transfer-encoding;
+ bh=SrlmM0XoFuMKmBBe1oIRenobNPfogFDht/ab3XIS9gk=;
+ b=ljJxk18FWpJeEWanfhyjBug9Fh1UlJgV+z5RQZXwoxASpZcoRunBXunV
+ CfC425BMhNvex8HBS2Ju05idW1KJBuunAeNkv83ivDb+czH2qJVRreqYh
+ u4uWgvYbAxV8pf1k3xR00Kpw9dosrdDyQ77ZjQXmnOyCWrf1Uh7IUmcMC
+ egwcgdWRcYwdB3B5cWWQ4buRIE2uRzoS4am7b3PHhoOV/cdSjHvd6qPKL
+ fNYV5KK8LlMkgrULPRxytLHNzR5rZAaCibOou+ldd27OuCwIpbNEFxHtl
+ mVULzDpyCfI5eXK9LM2Yeq7pWVLFAalbXfdijHy1u667bKcQIhNt1K1Eg Q==;
+X-CSE-ConnectionGUID: DA1J9WvKRrKD5cce4lWcPw==
+X-CSE-MsgGUID: 7D0ZBaKhQCasg08XbQmvMA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11832"; a="101074295"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="101074295"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by fmvoesa102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 30 Jun 2026 04:53:40 -0700
-X-CSE-ConnectionGUID: ENmdHzhKQ0CScFXdE/6Hwg==
-X-CSE-MsgGUID: T06JcOPKSB+rdDYu0mAX3A==
+ 30 Jun 2026 04:53:42 -0700
+X-CSE-ConnectionGUID: +IMjw2bbRsGbNqFgUYUNcg==
+X-CSE-MsgGUID: O7lqQRlMR+WuMc8vV1CLyA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="248876755"
+X-IronPort-AV: E=Sophos;i="6.24,233,1774335600"; d="scan'208";a="248876758"
 Received: from display-adls.igk.intel.com ([10.211.131.198])
- by fmviesa007.fm.intel.com with ESMTP; 30 Jun 2026 04:53:39 -0700
+ by fmviesa007.fm.intel.com with ESMTP; 30 Jun 2026 04:53:40 -0700
 From: Mika Kahola <mika.kahola@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
-Cc: Mika Kahola <mika.kahola@intel.com>
-Subject: [PATCH v2 0/4] drm/i915/display: Switch DG2 MPLLB handling to the
- DPLL framework
-Date: Tue, 30 Jun 2026 11:53:32 +0000
-Message-ID: <20260630115336.1059976-1-mika.kahola@intel.com>
+Cc: Mika Kahola <mika.kahola@intel.com>,
+ =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
+Subject: [PATCH v2 1/4] drm/i915/display: Split out DG2 MPLLB enable helper
+Date: Tue, 30 Jun 2026 11:53:33 +0000
+Message-ID: <20260630115336.1059976-2-mika.kahola@intel.com>
 X-Mailer: git-send-email 2.43.0
+In-Reply-To: <20260630115336.1059976-1-mika.kahola@intel.com>
+References: <20260630115336.1059976-1-mika.kahola@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -87,7 +89,7 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_NA(0.00)[];
 	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	URIBL_MULTI_FAIL(0.00)[gabe.freedesktop.org:server fail,intel.com:server fail,lists.freedesktop.org:server fail];
+	URIBL_MULTI_FAIL(0.00)[gabe.freedesktop.org:server fail,lists.freedesktop.org:server fail,intel.com:server fail];
 	FROM_HAS_DN(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
@@ -96,31 +98,70 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCPT_COUNT_THREE(0.00)[3];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp]
+	RCPT_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3A9706E3D89
+X-Rspamd-Queue-Id: 9C1286E3D95
 
-This is v2 of [1], with the following changes
-- use of intel_encoder_is_dig_port() to filter out MST virtual encoders
+Refactor the DG2 MPLLB enable path by splitting out a helper that
+programs the PHY directly from an intel_mpllb_state.
 
-[1] https://lore.kernel.org/all/20260518103642.3678448-1-mika.kahola@intel.com/
+This is preparatory work for moving DG2 MPLLB handling under the DPLL
+framework, where callbacks operate on dpll_hw_state rather than the
+full crtc_state.
 
-Mika Kahola (4):
-  drm/i915/display: Split out DG2 MPLLB enable helper
-  drm/i915/display: Add DG2 MPLLB DPLL manager support
-  drm/i915/display: Prepare DG2 DDI and compute paths for DPLL framework
-  drm/i915/display: Switch DG2 to use DPLL framework
+Assisted-by: Copilot:claude-sonnet-4-6
+Signed-off-by: Mika Kahola <mika.kahola@intel.com>
+Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
+---
+ drivers/gpu/drm/i915/display/intel_snps_phy.c | 11 ++++++++---
+ drivers/gpu/drm/i915/display/intel_snps_phy.h |  2 ++
+ 2 files changed, 10 insertions(+), 3 deletions(-)
 
- drivers/gpu/drm/i915/display/intel_ddi.c      |  30 ++-
- drivers/gpu/drm/i915/display/intel_dpll.c     |  22 +-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.c | 221 +++++++++++++++++-
- drivers/gpu/drm/i915/display/intel_dpll_mgr.h |  22 ++
- .../drm/i915/display/intel_modeset_verify.c   |   1 -
- drivers/gpu/drm/i915/display/intel_snps_phy.c |  60 +----
- drivers/gpu/drm/i915/display/intel_snps_phy.h |   2 +
- 7 files changed, 276 insertions(+), 82 deletions(-)
-
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.c b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+index bf9df566630f..dfb3a5c35c85 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_phy.c
++++ b/drivers/gpu/drm/i915/display/intel_snps_phy.c
+@@ -1816,11 +1816,10 @@ int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
+ 	return -EINVAL;
+ }
+ 
+-void intel_mpllb_enable(struct intel_encoder *encoder,
+-			const struct intel_crtc_state *crtc_state)
++void intel_mpllb_enable_phy(struct intel_encoder *encoder,
++			    const struct intel_mpllb_state *pll_state)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+-	const struct intel_mpllb_state *pll_state = &crtc_state->dpll_hw_state.mpllb;
+ 	enum phy phy = intel_encoder_to_phy(encoder);
+ 	intel_reg_t enable_reg = (phy <= PHY_D ?
+ 				 DG2_PLL_ENABLE(phy) : MG_PLL_ENABLE(0));
+@@ -1875,6 +1874,12 @@ void intel_mpllb_enable(struct intel_encoder *encoder,
+ 	 */
+ }
+ 
++void intel_mpllb_enable(struct intel_encoder *encoder,
++			const struct intel_crtc_state *crtc_state)
++{
++	intel_mpllb_enable_phy(encoder, &crtc_state->dpll_hw_state.mpllb);
++}
++
+ void intel_mpllb_disable(struct intel_encoder *encoder)
+ {
+ 	struct intel_display *display = to_intel_display(encoder);
+diff --git a/drivers/gpu/drm/i915/display/intel_snps_phy.h b/drivers/gpu/drm/i915/display/intel_snps_phy.h
+index 7f96da22d028..2c7a5f2040f1 100644
+--- a/drivers/gpu/drm/i915/display/intel_snps_phy.h
++++ b/drivers/gpu/drm/i915/display/intel_snps_phy.h
+@@ -22,6 +22,8 @@ void intel_snps_phy_update_psr_power_state(struct intel_encoder *encoder,
+ 
+ int intel_mpllb_calc_state(struct intel_crtc_state *crtc_state,
+ 			   struct intel_encoder *encoder);
++void intel_mpllb_enable_phy(struct intel_encoder *encoder,
++			    const struct intel_mpllb_state *pll_state);
+ void intel_mpllb_enable(struct intel_encoder *encoder,
+ 			const struct intel_crtc_state *crtc_state);
+ void intel_mpllb_disable(struct intel_encoder *encoder);
 -- 
 2.43.0
 
