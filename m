@@ -2,61 +2,61 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3cjzD+cbRWqc7AoAu9opvQ
+	id MIpnMuobRWqf7AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:53:43 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:53:46 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D00426EE64B
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 09F056EE658
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:53:46 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=i+W4PqYO;
+	dkim=pass header.d=intel.com header.s=Intel header.b=UeTnO39J;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 5BD0B10E3B6;
-	Wed,  1 Jul 2026 13:53:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8E23210E385;
+	Wed,  1 Jul 2026 13:53:44 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
- by gabe.freedesktop.org (Postfix) with ESMTPS id A3AAE10E3B6;
- Wed,  1 Jul 2026 13:53:39 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 3B4E410E385;
+ Wed,  1 Jul 2026 13:53:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782914020; x=1814450020;
+ t=1782914024; x=1814450024;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=/cFqdby3aEE43NZsri4r1IRftfCX1GKYaakxYG5YYpU=;
- b=i+W4PqYOuKbpPALkrgQYVOb6T/QzmHMgZ58t2dzhafBuTXDjy1OYhbSM
- 2rOtBVbC4pA5MdRtlGPp3ugzLwKJ8TjM3C7nmvwAO6WGw10WKKHsmGfek
- U0vqWUSkhTDKTU8U9qnyZyd92GylzLL7nBj2hd/kd7rKySgtVlioLo5ZI
- XfGXnIDFDVcN4kxYmD8YYWsyfS+qceNDPYsdvYFB54dJy7gQK5bdo+52/
- nE7izIsw/xLmv3MwgEk2TL7XC77hsopA/hfpO2DCg4OFXS6gB57JLhw1K
- bx+JhPiZ0WdhpFFyxyy/wHhgARPKU3FAAUOQcMd61BxhEVxfXPK81LX3U w==;
-X-CSE-ConnectionGUID: bt4/bhHfSBmqBskLRYb9Lg==
-X-CSE-MsgGUID: 1vWm/l4zSF2Fbn5jYgs3bg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83733958"
-X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="83733958"
+ bh=ePA0KFZW/OuHuY+kKyHNq2ol/v1/VB6cO61mBYP15Pg=;
+ b=UeTnO39JH+V3bBv+fCGQ1V+Awxn65BaGS4qlB4LM0IGBrRKKWjlVCsJR
+ 6qsryiz3hXJqL0THYqL7mCeld9E8X0gatfz3UjnOMNltsGong18z0CGSp
+ eV8/bBO+8Q6Ft0absY3rnR+yOEcPXgHC9SH+eVQ4pefXwG4r1X8FUNSNR
+ 3MllHtljZ0U1TP3XiDVkfa42z3SufREGddclSyb5iST4/CSJG+Q9VHj1z
+ dhHEgWvdbMlCd7KsV9CKBFQZd4Aifv0N6YPOjOqnEAw34b/SeI5Ir7nEA
+ /4fqdK1XTHjIHkqn0PKgjauNa1r1UMyVgQA2izz7oN+6jC/VAqFjOvUhE Q==;
+X-CSE-ConnectionGUID: 7/hc4+4GTTmuF0CIGnGYhg==
+X-CSE-MsgGUID: ewKJVnPMQdWRF3WdKUURjA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83733969"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="83733969"
 Received: from fmviesa007.fm.intel.com ([10.60.135.147])
  by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 06:53:40 -0700
-X-CSE-ConnectionGUID: 06tLN+qeSd2SOI//8v9z2w==
-X-CSE-MsgGUID: 15GTlvnxS9aqButko9B6vw==
+ 01 Jul 2026 06:53:43 -0700
+X-CSE-ConnectionGUID: 5kT4kRPgQpyecCQLWHWeHA==
+X-CSE-MsgGUID: gUnz4v8eQ0+G2mgOhon7xg==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="249207312"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="249207317"
 Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
  ([10.245.244.61])
  by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 06:53:38 -0700
+ 01 Jul 2026 06:53:42 -0700
 From: Jani Nikula <jani.nikula@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
  rodrigo.vivi@intel.com
-Subject: [RESEND v2 7/8] drm/xe/display: add
- xe_display_pm_runtime_resume_early()
-Date: Wed,  1 Jul 2026 16:53:05 +0300
-Message-ID: <04158267b9d3715512bfb46c9772da04d3372184.1782913901.git.jani.nikula@intel.com>
+Subject: [RESEND v2 8/8] drm/xe/display: unify runtime suspend/resume with
+ i915 for non-d3cold
+Date: Wed,  1 Jul 2026 16:53:06 +0300
+Message-ID: <16205a1ee08e83f6e2f4dd30ed98fc043684a73e.1782913901.git.jani.nikula@intel.com>
 X-Mailer: git-send-email 2.47.3
 In-Reply-To: <cover.1782913901.git.jani.nikula@intel.com>
 References: <cover.1782913901.git.jani.nikula@intel.com>
@@ -106,86 +106,91 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D00426EE64B
+X-Rspamd-Queue-Id: 09F056EE658
 
-Add new display runtime PM hook xe_display_pm_runtime_resume_early(), to
-be called before IRQ resume. This is initially a no-op placeholder.
+With the special d3cold handling in xe runtime suspend/resume separated,
+unify the non-d3cold paths with i915. There are multiple changes here at
+once that probably wouldn't make much sense to split out further.
 
-Add comments on the timing relative to irq suspend/resume to all the
-runtime PM hooks.
+Add the call to intel_display_driver_pm_runtime_suspend(), which, for
+the time being, is a no-op. The intel_hpd_poll_enable() is called later.
+
+Add the call to intel_display_driver_pm_runtime_suspend_late(), which
+starts calling intel_display_power_runtime_suspend() and
+intel_opregion_notify_adapter(). Deep down, the former should take care
+of intel_dmc_wl_flush_release_work(), allowing us to drop the extra call
+in xe_display_pm_runtime_suspend_late(). The intel_hpd_poll_enable()
+call is also done here, postponed from the previous location in
+xe_display_pm_runtime_suspend().
+
+Add the call to intel_display_driver_pm_runtime_resume_early(), which
+contains the intel_display_power_runtime_resume() and
+intel_opregion_notify_adapter() counterparts to the calls in
+intel_display_power_runtime_suspend_late().
+
+Finally, intel_display_driver_pm_runtime_resume() replaces the direct
+calls to intel_hpd_init(), intel_hpd_poll_disable(), and
+skl_watermark_ipc_update(). (The hotplug poll enable/disable calls are
+asymmetric.)
+
+v2:
+- Rebase, move placement of the calls
 
 Cc: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
 Signed-off-by: Jani Nikula <jani.nikula@intel.com>
 ---
- drivers/gpu/drm/xe/display/xe_display.c | 13 +++++++++++++
- drivers/gpu/drm/xe/display/xe_display.h |  1 +
- drivers/gpu/drm/xe/xe_pm.c              |  2 ++
- 3 files changed, 16 insertions(+)
+ drivers/gpu/drm/xe/display/xe_display.c | 13 +++++++------
+ 1 file changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/gpu/drm/xe/display/xe_display.c b/drivers/gpu/drm/xe/display/xe_display.c
-index 01b6501a204a..306c853dd07a 100644
+index 306c853dd07a..8da4c457a4a0 100644
 --- a/drivers/gpu/drm/xe/display/xe_display.c
 +++ b/drivers/gpu/drm/xe/display/xe_display.c
-@@ -349,6 +349,7 @@ static void xe_display_disable_d3cold(struct xe_device *xe)
- 	intel_display_driver_runtime_pm_enable(display);
+@@ -362,7 +362,7 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe)
+ 		return;
+ 	}
+ 
+-	intel_hpd_poll_enable(display);
++	intel_display_driver_pm_runtime_suspend(display);
  }
  
-+/* before irq suspend */
- void xe_display_pm_runtime_suspend(struct xe_device *xe)
+ /* after irq suspend */
+@@ -380,18 +380,21 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
+ 		return;
+ 	}
+ 
+-	/* Ensure the wakelock release work gets flushed */
+-	intel_dmc_wl_flush_release_work(display);
++	intel_display_driver_pm_runtime_suspend_late(display);
+ }
+ 
+ /* before irq resume */
+ void xe_display_pm_runtime_resume_early(struct xe_device *xe)
  {
- 	struct intel_display *display = xe->display;
-@@ -364,6 +365,7 @@ void xe_display_pm_runtime_suspend(struct xe_device *xe)
- 	intel_hpd_poll_enable(display);
- }
- 
-+/* after irq suspend */
- void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
- {
- 	struct intel_display *display = xe->display;
-@@ -382,6 +384,17 @@ void xe_display_pm_runtime_suspend_late(struct xe_device *xe)
- 	intel_dmc_wl_flush_release_work(display);
- }
- 
-+/* before irq resume */
-+void xe_display_pm_runtime_resume_early(struct xe_device *xe)
-+{
-+	if (!xe->info.probe_display)
-+		return;
++	struct intel_display *display = xe->display;
 +
-+	if (xe->d3cold.allowed)
-+		return;
-+}
-+
-+/* after irq resume */
- void xe_display_pm_runtime_resume(struct xe_device *xe)
- {
- 	struct intel_display *display = xe->display;
-diff --git a/drivers/gpu/drm/xe/display/xe_display.h b/drivers/gpu/drm/xe/display/xe_display.h
-index e5f9aed93206..52a5afed172c 100644
---- a/drivers/gpu/drm/xe/display/xe_display.h
-+++ b/drivers/gpu/drm/xe/display/xe_display.h
-@@ -43,6 +43,7 @@ void xe_display_pm_resume_early(struct xe_device *xe);
- void xe_display_pm_resume(struct xe_device *xe);
- void xe_display_pm_runtime_suspend(struct xe_device *xe);
- void xe_display_pm_runtime_suspend_late(struct xe_device *xe);
-+void xe_display_pm_runtime_resume_early(struct xe_device *xe);
- void xe_display_pm_runtime_resume(struct xe_device *xe);
+ 	if (!xe->info.probe_display)
+ 		return;
  
- #define XE_DISPLAY_DRIVER_FEATURES	(DRIVER_MODESET | DRIVER_ATOMIC)
-diff --git a/drivers/gpu/drm/xe/xe_pm.c b/drivers/gpu/drm/xe/xe_pm.c
-index 99562f691080..a5289a9df8d2 100644
---- a/drivers/gpu/drm/xe/xe_pm.c
-+++ b/drivers/gpu/drm/xe/xe_pm.c
-@@ -700,6 +700,8 @@ int xe_pm_runtime_resume(struct xe_device *xe)
  	if (xe->d3cold.allowed)
- 		xe_sysctrl_pm_resume(xe);
- 
-+	xe_display_pm_runtime_resume_early(xe);
+ 		return;
 +
- 	xe_irq_resume(xe);
++	intel_display_driver_pm_runtime_resume_early(display);
+ }
  
- 	for_each_gt(gt, xe, id) {
+ /* after irq resume */
+@@ -407,9 +410,7 @@ void xe_display_pm_runtime_resume(struct xe_device *xe)
+ 		return;
+ 	}
+ 
+-	intel_hpd_init(display);
+-	intel_hpd_poll_disable(display);
+-	skl_watermark_ipc_update(display);
++	intel_display_driver_pm_runtime_resume(display);
+ }
+ 
+ 
 -- 
 2.47.3
 
