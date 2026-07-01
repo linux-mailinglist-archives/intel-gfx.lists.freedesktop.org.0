@@ -2,75 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id j74NKxAXRWpJ6woAu9opvQ
+	id dASuNssbRWqM7AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:33:04 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:53:15 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 49FFC6EE29C
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 8C0B86EE614
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 15:53:15 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=collabora.com header.s=zohomail header.b=EenuKiu2;
+	dkim=pass header.d=intel.com header.s=Intel header.b=axwpOpiU;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=collabora.com;
-	arc=pass ("zohomail.com:s=zohoarc:i=1")
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F400710E38D;
-	Wed,  1 Jul 2026 13:33:00 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1C36910E380;
+	Wed,  1 Jul 2026 13:53:14 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sender4-pp-f112.zoho.com (sender4-pp-f112.zoho.com
- [136.143.188.112])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0F6A610E314;
- Wed,  1 Jul 2026 13:33:00 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; t=1782912770; cv=none; 
- d=zohomail.com; s=zohoarc; 
- b=Fr+ffJ+shEhGfx2Xx8c9Qmcguq5ShSEHRY8UHK2uikcoJrmyJN0mqBE5m69tw9a0GjFJJK2ZHiljtj7n1elao9c0EUXC0q3rTtkRLDIfZ/Bry9zRfUMaO2/N80OFUfY2Ru87j0PMBxQUJGR9r8tkrRspFLqEkBoP8FA/cKDK9wM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zohomail.com;
- s=zohoarc; t=1782912770;
- h=Content-Type:Content-Transfer-Encoding:Cc:Cc:Date:Date:From:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:Subject:To:To:Message-Id:Reply-To;
- bh=NCJFDZPpk2Nltv1OnCZcz9TBVpSBkOaYqsSl+0+3BqE=; 
- b=LGkliixZVInpcr7ef/tpOHNITEYYC7vxVqQjXforxaPCUTmZxfGI1+H2XCYhMjWiB4TXkj5wiwCJHv/5CZRDMMsc3UIMVIiDhsEW3YzAZdIDLkgDPfro4xqsouPXlVxnK22cmkG3QY5Y82GU5/GjrEet83sXCKf9Ztf5LomeX4k=
-ARC-Authentication-Results: i=1; mx.zohomail.com;
- dkim=pass  header.i=collabora.com;
- spf=pass  smtp.mailfrom=robert.mader@collabora.com;
- dmarc=pass header.from=<robert.mader@collabora.com>
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1782912770; 
- s=zohomail; d=collabora.com; i=robert.mader@collabora.com;
- h=Message-ID:Date:Date:MIME-Version:Subject:Subject:To:To:Cc:Cc:References:From:From:In-Reply-To:Content-Type:Content-Transfer-Encoding:Message-Id:Reply-To;
- bh=NCJFDZPpk2Nltv1OnCZcz9TBVpSBkOaYqsSl+0+3BqE=;
- b=EenuKiu2ijrHWQFE9Sy76YtPQGepbJB0VmiQbtiC2wmY5JJnf5Yl3v4OS4NwSltU
- Tgdcnn+PX2Dya7IL9XqzvMBKETKI25FIKAmChvf4xhuWpyWfQH28UcRCPRf7R56hQ9L
- UBIdZkt1jfPjQrKmDZmivKYBIa9msFUaIfToDbfk=
-Received: by mx.zohomail.com with SMTPS id 1782912768462667.1922482526628;
- Wed, 1 Jul 2026 06:32:48 -0700 (PDT)
-Message-ID: <11792a51-aeeb-428f-a793-607ff09558f3@collabora.com>
-Date: Wed, 1 Jul 2026 15:32:40 +0200
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.18])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 49E6710E383;
+ Wed,  1 Jul 2026 13:53:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782913993; x=1814449993;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=FVTDbAhCw7j5yqY1VyNcmzbfLnmAr/sX+z8vjTC9A0o=;
+ b=axwpOpiUrmnzShB7yss6ETZxLzjPfqJy+vjGPiwszXIOPnjoCiuP75eG
+ ddFvXGCho4f1QUJRTHGzVi2FXlh1/vU+yH/crz/nx8bBeev+xWmPUifbB
+ nhzKo0o9XLQJSlkM5oUuCVv6cTmtK4G5/4G3BUchjddiZhBmBGTVG5TA6
+ Gpj/5e/bTRQGLEYLBAFTcjRZ27fgRlGPLn81QmXJ/I7ugVndhrlMJQRWQ
+ A5dEuHQ/rKzzHQI5kGOTlFE4zx49tmcTLAGIBfgcH5z36kjgDNdr1ibHC
+ lX4XjveM0Ag4LiqONE1o6DQHsnmJGSkrj86C5txvHTvWBwp48qYRTgY8a A==;
+X-CSE-ConnectionGUID: PGEkQrsoTkGKQSXxNYkMUQ==
+X-CSE-MsgGUID: xfbuXv0VRoSoUkfW7iVnAA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11833"; a="83733869"
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="83733869"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by orvoesa110.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 06:53:12 -0700
+X-CSE-ConnectionGUID: 7TTAG2pYTNyxacHrRjIJZw==
+X-CSE-MsgGUID: sSrjJlNzQ0mo8hCtr4vB8g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,141,1779174000"; d="scan'208";a="249207277"
+Received: from ettammin-mobl3.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.61])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 06:53:10 -0700
+From: Jani Nikula <jani.nikula@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: jani.nikula@intel.com, ville.syrjala@linux.intel.com,
+ rodrigo.vivi@intel.com
+Subject: [RESEND v2 0/8] drm/{i915,xe}: unify runtime pm calls
+Date: Wed,  1 Jul 2026 16:52:58 +0300
+Message-ID: <cover.1782913901.git.jani.nikula@intel.com>
+X-Mailer: git-send-email 2.47.3
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v1 0/4] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
- behind driver feature
-To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- dri-devel@lists.freedesktop.org
-Cc: Maxime Ripard <mripard@kernel.org>,
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
- amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- Harry Wentland <harry.wentland@amd.com>, Daniel Stone
- <daniels@collabora.com>,
- Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
- Uma Shankar <uma.shankar@intel.com>,
- Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
- Simon Ser <contact@emersion.fr>,
- Pekka Paalanen <pekka.paalanen@collabora.com>,
- Leandro Ribeiro <leandro.ribeiro@collabora.com>
-References: <20260630084229.529682-1-robert.mader@collabora.com>
- <3bc9d27b-2886-48df-a897-7e73f14a88a2@linux.intel.com>
-Content-Language: en-US, de-DE
-From: Robert Mader <robert.mader@collabora.com>
-In-Reply-To: <3bc9d27b-2886-48df-a897-7e73f14a88a2@linux.intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -86,120 +77,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[zohomail.com:s=zohoarc:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[collabora.com,none];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[collabora.com:s=zohomail];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[3];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	ARC_NA(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[18];
-	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robert.mader@collabora.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[collabora.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_FIVE(0.00)[5];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	TO_DN_NONE(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:dkim,collabora.com:mid,collabora.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:url,lists.freedesktop.org:from_smtp]
+	ALIAS_RESOLVED(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 49FFC6EE29C
+X-Rspamd-Queue-Id: 8C0B86EE614
 
-Hi Maarten,
+Resend of [1], which is v2 of [2].
 
-On 01.07.26 12:41, Maarten Lankhorst wrote:
-> Hello,
->
-> All you have to do is iterate over all planes at runtime until
-> one is found that has the pipeline property attached, it's not
-> a performance sensitive area and no locking is required for
-> testing if plane->color_pipeline_property is NULL.
+[1] https://lore.kernel.org/r/cover.1782311749.git.jani.nikula@intel.com
+[2] https://lore.kernel.org/r/cover.1781527161.git.jani.nikula@intel.com
 
-that's correct - I checked that before and while the amount of code 
-changes necessary to support such a 
-"check-planes-with-cap-enabled-and-reinitialize-without-cap-otherwise" 
-is not big (AFAICS it should be possible with under 100 lines in 
-Weston), it would need to be replicated in various Wayland compositors 
-and lots of apps with native DRM backend (drm_info, Gstreamer KMS sink, 
-MPV, Kodi etc.). The small change proposed here seems like a more 
-elegant solution to me.
+Jani Nikula (8):
+  drm/i915: call intel_uncore_runtime_resume() for each gt
+  drm/i915: call intel_display_power_runtime_resume() on suspend error
+    path
+  drm/i915: move some display runtime suspend operations earlier
+  drm/i915: add intel_display_driver_pm_runtime*() functions
+  drm/{i915,xe}: add new
+    intel_display_driver_runtime_pm_{enable,disable}()
+  drm/xe/display: separate d3cold handling from
+    xe_display_pm_runtime_suspend_late()
+  drm/xe/display: add xe_display_pm_runtime_resume_early()
+  drm/xe/display: unify runtime suspend/resume with i915 for non-d3cold
 
-In a previous chat Pekka and Simon seemed to agree, quoting: "< 
-emersion> pq, you mean the cap is advertised regardless of driver 
-support? that sounds like a bug".
+ .../drm/i915/display/intel_display_driver.c   | 71 +++++++++++++++++++
+ .../drm/i915/display/intel_display_driver.h   |  8 +++
+ drivers/gpu/drm/i915/i915_driver.c            | 58 ++++-----------
+ drivers/gpu/drm/xe/display/xe_display.c       | 44 ++++++++----
+ drivers/gpu/drm/xe/display/xe_display.h       |  1 +
+ drivers/gpu/drm/xe/xe_pm.c                    |  2 +
+ 6 files changed, 125 insertions(+), 59 deletions(-)
 
-> You can also make drm_plane_create_color_pipeline_property set
-> the flag in drm_device::driver_features that the cap is supported.
-Automatically enabling the driver feature sounds like a reasonable 
-improvement - I'll try that, thanks!
->
-> But the cap setting code's not really performance sensitive, it will
-> be called only a few times during boot at most. Perhaps check whether
-> the first crtc->primary plane has the cap is also sufficient.
->
-> If you want to continue with a special driver cap, then please set
-> the flag for the xe driver too.
-Indeed, will do in case the approach mentioned above doesn't work out 
-for some reason.
-> Kind regards,
-> ~Maarten Lankhorst
-
-Regards and thanks for the feedback!
-
->
-> On 6/30/26 10:42, Robert Mader wrote:
->>  From the main commit:
->>
->> The client cap is currently advertised unconditionally, even for drivers that do
->> not support plane color pipelines. If clients supporting the later, like Wayland
->> compositors and drm_info, enable the client cap on sich drivers they will be
->> left without both color pipeline and the legacy properties COLOR_ENCODING and
->> COLOR_RANGE, effectively breaking YUV->RGB conversion support.
->>
->> Add a new driver feature and guard the client cap behind it, allowing
->> plane color pipeline and legacy YUV->RGB support to co-exist.
->>
->> In case of VKMS make the client cap depend on the enable_plane_pipeline.
->>
->> The series can be easily tested with drm_info >= v2.10.0 and VKMS. Without the
->> enable_plane_pipeline option - currently the default - the legacy flags
->> COLOR_ENCODING and COLOR_RANGE should be advertised, just like older drm_info
->> versions.
->>
->> ---
->>
->> Related series actually implementing the color pipeline replacement for the
->> legacy flags:
->> https://lists.freedesktop.org/archives/dri-devel/2026-June/575655.html
->>
->>
->> Robert Mader (4):
->>    drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE behind driver feature
->>    drm/amdgpu: Add DRIVER_PLANE_COLOR_PIPELINE driver feature
->>    drm/i915: Add DRIVER_PLANE_COLOR_PIPELINE driver feature
->>    drm/vkms: Add DRIVER_PLANE_COLOR_PIPELINE driver feature
->>
->>   drivers/gpu/drm/amd/amdgpu/amdgpu_drv.c | 2 +-
->>   drivers/gpu/drm/drm_ioctl.c             | 2 ++
->>   drivers/gpu/drm/i915/i915_driver.c      | 2 +-
->>   drivers/gpu/drm/vkms/vkms_drv.c         | 6 +++++-
->>   include/drm/drm_drv.h                   | 6 ++++++
->>   5 files changed, 15 insertions(+), 3 deletions(-)
->>
 -- 
-Robert Mader
-Consultant Software Developer
-
-Collabora Ltd.
-Platinum Building, St John's Innovation Park, Cambridge CB4 0DS, UK
-Registered in England & Wales, no. 5513718
+2.47.3
 
