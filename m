@@ -2,58 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id xKDAGSkBRWqx4woAu9opvQ
+	id H6DAGIUDRWog5AoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 13:59:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:09:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D8F4D6ED06D
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 13:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id D31BE6ED10D
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 14:09:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=arm.com header.s=foss header.b=Omdspmqr;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=arm.com (policy=none)
+	dkim=none;
+	dmarc=none;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1AEDB10E1EF;
-	Wed,  1 Jul 2026 11:59:35 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 65C7A10E453;
+	Wed,  1 Jul 2026 12:09:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id E177610E1EF;
- Wed,  1 Jul 2026 11:59:33 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD4C42BCC;
- Wed,  1 Jul 2026 04:59:28 -0700 (PDT)
-Received: from [10.2.212.23] (e121345-lin.cambridge.arm.com [10.2.212.23])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7CF123F66F;
- Wed,  1 Jul 2026 04:59:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
- t=1782907173; bh=tHsd6ybOVzAA4iRKUUUSr1a7MLJwo183qF7gRG6rm4I=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=OmdspmqrjZ6SdTUbWo9Znf1IiELwK95KpINCbox+m1AZGHFndr5W2CL2RJlCajAR0
- zGqOorBe+dfC+DUnfjq6+FOOjvyj2uYm08YjnRPuxAf2c+ND2xGeekVbUD8Mp13bcr
- A6Y/m7Z0AZCp5fK1pG3wd3SHPZD5DiRNG6Lwk7r4=
-Message-ID: <b65c0f9f-184e-42fb-85dd-aa6c06dc91d8@arm.com>
-Date: Wed, 1 Jul 2026 12:59:29 +0100
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 624DE10E16D;
+ Wed,  1 Jul 2026 12:09:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8450849889887680060=="
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drivers/iommu: Catch scatterlist length overflows
-To: Krzysztof Karas <krzysztof.karas@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- iommu@lists.linux.dev, Joerg Roedel <joro@8bytes.org>,
- Will Deacon <will@kernel.org>
-Cc: Andi Shyti <andi.shyti@linux.intel.com>,
- =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-References: <20260701104437.236979-1-krzysztof.karas@intel.com>
- <20260701104437.236979-4-krzysztof.karas@intel.com>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20260701104437.236979-4-krzysztof.karas@intel.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_Fix_LT_PHY_related_SSC_wr?=
+ =?utf-8?q?ites_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Kandpal, Suraj" <suraj.kandpal@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Wed, 01 Jul 2026 12:09:37 -0000
+Message-ID: <178290777739.135894.11529052206952739810@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260701091503.1302226-1-suraj.kandpal@intel.com>
+In-Reply-To: <20260701091503.1302226-1-suraj.kandpal@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -66,100 +46,158 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[arm.com:s=foss];
+X-Spamd-Result: default: False [-0.11 / 15.00];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed),none];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_TLS_LAST(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:-];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,intel-gfx-bounces@lists.freedesktop.org];
+	RCVD_TLS_LAST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,intel.com:email,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,arm.com:email,arm.com:mid,arm.com:from_mime]
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,gitlab.freedesktop.org:url,emeril.freedesktop.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D8F4D6ED06D
+X-Rspamd-Queue-Id: D31BE6ED10D
 
-On 01/07/2026 11:44 am, Krzysztof Karas wrote:
-> It is possible, when a very large mapping uses a single
-> scatterlist, that padding overflows scatterlist's length field.
-> This results in:
->   1) silently wrapping the value
->   2) smaller than desired mappings produced by iommu_map_sg
->   3) leaving mapped bytes in memory (no iommu_unmap)
-> 
-> Address this issue by adding overflow detection for previous
-> scatterlist length field.
+--===============8450849889887680060==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Awesome, thanks for figuring it out! Looks like this must date all the 
-way back:
+== Series Details ==
 
-Fixes: 809eac54cdd6 ("iommu/dma: Implement scatterlist segment merging")
+Series: Fix LT PHY related SSC writes (rev2)
+URL   : https://patchwork.freedesktop.org/series/169563/
+State : success
 
-> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
-> ---
-> v2:
->   * Address overflows instead of unmapping erroneously mapped
->   memory (Robin).
->   * Put this patch last for easier reproduction of the issue.
-> 
->   drivers/iommu/dma-iommu.c | 14 ++++++++++++--
->   1 file changed, 12 insertions(+), 2 deletions(-)
-> 
-> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
-> index 9abaec0703ef..c403057577df 100644
-> --- a/drivers/iommu/dma-iommu.c
-> +++ b/drivers/iommu/dma-iommu.c
-> @@ -1493,8 +1493,18 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
->   		 *   time through here (i.e. before it has a meaningful value).
->   		 */
->   		if (pad_len && pad_len < s_length - 1) {
-> -			prev->length += pad_len;
-> -			iova_len += pad_len;
-> +			if (overflows_type(prev->length + pad_len, prev->length)) {
-> +				/*
-> +				 * For large mappings spanning multiple GBs we
-> +				 * may not be able to fit all needed padding into
-> +				 * sg->length.
-> +				 */
-> +				ret = -EOVERFLOW;
-> +				goto out_restore_sg;
-> +			} else {
+== Summary ==
 
-Nit: we don't really need an "else" after a goto, but it's hardly a big 
-deal (however if you did want to respin, note also that the preferred 
-title tag here is "iommu/dma: ..."). Either way,
+CI Bug Log - changes from CI_DRM_18739 -> Patchwork_169563v2
+====================================================
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Summary
+-------
 
-I'd imagine Joerg can take this as an IOMMU fix, but FWIW if you did 
-want an ack to take it through drm-fixes to keep it with the i915 
-patches, I wouldn't foresee any significant risk of conflicts.
+  **SUCCESS**
 
-Thanks,
-Robin.
+  No regressions found.
 
-> +				prev->length += pad_len;
-> +				iova_len += pad_len;
-> +			}
->   		}
->   
->   		iova_len += s_length;
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/index.html
 
+Participating hosts (41 -> 40)
+------------------------------
+
+  Additional (1): fi-pnv-d510 
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_169563v2 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - fi-pnv-d510:        NOTRUN -> [SKIP][1] +35 other tests skip
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/fi-pnv-d510/igt@dmabuf@all-tests.html
+
+  
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18739 -> Patchwork_169563v2
+
+  CI-20190529: 20190529
+  CI_DRM_18739: 75f36b5b412ff6aaf866d2bddb37ec5a55851f68 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_169563v2: 75f36b5b412ff6aaf866d2bddb37ec5a55851f68 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/index.html
+
+--===============8450849889887680060==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>Fix LT PHY related SSC writes (rev2)</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169563/">https://patchwork.freedesktop.org/series/169563/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18739 -&gt; Patchwork_169563v2</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Additional (1): fi-pnv-d510 <br />
+  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_169563v2 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>igt@dmabuf@all-tests:<ul>
+<li>fi-pnv-d510:        NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169563v2/fi-pnv-d510/igt@dmabuf@all-tests.html">SKIP</a> +35 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18739 -&gt; Patchwork_169563v2</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18739: 75f36b5b412ff6aaf866d2bddb37ec5a55851f68 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_169563v2: 75f36b5b412ff6aaf866d2bddb37ec5a55851f68 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8450849889887680060==--
