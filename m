@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 4fjTAMJhRWq8/AoAu9opvQ
+	id cvUONRBwRWrkAAsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 20:51:46 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 21:52:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 508206F0B60
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 20:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 04B0E6F11E0
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 21:52:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1BCFB10F0A0;
-	Wed,  1 Jul 2026 18:51:43 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 639DD10E23D;
+	Wed,  1 Jul 2026 19:52:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 5A6EB10E266;
- Wed,  1 Jul 2026 18:51:42 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============5022388384011206474=="
+ by gabe.freedesktop.org (Postfix) with ESMTPS id B486610E20F;
+ Wed,  1 Jul 2026 19:52:44 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_tracing=3A_Move_non-trace?=
- =?utf-8?q?=5Fprintk_prototypes_into_trace=5Fcontrols=2Eh?=
+Content-Transfer-Encoding: 8bit
+Subject: =?utf-8?q?=E2=9C=97_Fi=2ECI=2EBUILD=3A_failure_for_tracing=3A_Move_trace=5Fp?=
+ =?utf-8?q?rintk=2Eh_out_of_kernel=2Eh?=
 From: Patchwork <patchwork@emeril.freedesktop.org>
 To: "Steven Rostedt" <rostedt@kernel.org>
 Cc: intel-gfx@lists.freedesktop.org
-Date: Wed, 01 Jul 2026 18:51:42 -0000
-Message-ID: <178293190232.139769.5116896328479025983@6beec6c84f66>
+Date: Wed, 01 Jul 2026 19:52:44 -0000
+Message-ID: <178293556473.139541.3524224686218654676@6beec6c84f66>
 X-Patchwork-Hint: ignore
-References: <20260625104007.041432666@kernel.org>
-In-Reply-To: <20260625104007.041432666@kernel.org>
+References: <20260621093430.264983361@kernel.org>
+In-Reply-To: <20260621093430.264983361@kernel.org>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -53,8 +53,8 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.11 / 15.00];
 	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
+	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	DMARC_NA(0.00)[emeril.freedesktop.org];
@@ -64,7 +64,7 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	MIME_TRACE(0.00)[0:+];
 	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
@@ -76,144 +76,54 @@ X-Spamd-Result: default: False [-0.11 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:replyto,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,emeril.freedesktop.org:from_mime,6beec6c84f66:mid,patchwork.freedesktop.org:url,gitlab.freedesktop.org:url]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[patchwork.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 508206F0B60
-
---===============5022388384011206474==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+X-Rspamd-Queue-Id: 04B0E6F11E0
 
 == Series Details ==
 
-Series: tracing: Move non-trace_printk prototypes into trace_controls.h
-URL   : https://patchwork.freedesktop.org/series/169230/
-State : success
+Series: tracing: Move trace_printk.h out of kernel.h
+URL   : https://patchwork.freedesktop.org/series/169614/
+State : failure
 
 == Summary ==
 
-CI Bug Log - changes from CI_DRM_18745 -> Patchwork_169230v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/index.html
-
-Participating hosts (42 -> 39)
-------------------------------
-
-  Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_169230v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@kms_hdmi_inject@inject-audio:
-    - fi-tgl-1115g4:      [PASS][1] -> [FAIL][2] ([i915#16115])
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18745/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_module_load@load:
-    - fi-bsw-n3050:       [DMESG-WARN][3] ([i915#16057]) -> [PASS][4]
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18745/fi-bsw-n3050/igt@i915_module_load@load.html
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/fi-bsw-n3050/igt@i915_module_load@load.html
-
-  
-  [i915#16057]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16057
-  [i915#16115]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16115
+Error: make failed
+  DESCEND objtool
+  CC      kernel/rcu/tree.o
+In file included from kernel/rcu/tree.c:70:
+kernel/rcu/tree_stall.h: In function ‘rcu_stall_kick_kthreads’:
+kernel/rcu/rcu.h:337:17: error: implicit declaration of function ‘ftrace_dump’; did you mean ‘ftrace_bug’? [-Werror=implicit-function-declaration]
+  337 |                 ftrace_dump(oops_dump_mode); \
+      |                 ^~~~~~~~~~~
+kernel/rcu/tree_stall.h:238:17: note: in expansion of macro ‘rcu_ftrace_dump’
+  238 |                 rcu_ftrace_dump(DUMP_ALL);
+      |                 ^~~~~~~~~~~~~~~
+kernel/rcu/tree_stall.h:238:33: error: ‘DUMP_ALL’ undeclared (first use in this function)
+  238 |                 rcu_ftrace_dump(DUMP_ALL);
+      |                                 ^~~~~~~~
+kernel/rcu/rcu.h:337:29: note: in definition of macro ‘rcu_ftrace_dump’
+  337 |                 ftrace_dump(oops_dump_mode); \
+      |                             ^~~~~~~~~~~~~~
+kernel/rcu/tree_stall.h:238:33: note: each undeclared identifier is reported only once for each function it appears in
+  238 |                 rcu_ftrace_dump(DUMP_ALL);
+      |                                 ^~~~~~~~
+kernel/rcu/rcu.h:337:29: note: in definition of macro ‘rcu_ftrace_dump’
+  337 |                 ftrace_dump(oops_dump_mode); \
+      |                             ^~~~~~~~~~~~~~
+kernel/rcu/tree_stall.h: In function ‘check_cpu_stall’:
+kernel/rcu/tree_stall.h:859:41: error: ‘DUMP_ALL’ undeclared (first use in this function)
+  859 |                         rcu_ftrace_dump(DUMP_ALL);
+      |                                         ^~~~~~~~
+kernel/rcu/rcu.h:337:29: note: in definition of macro ‘rcu_ftrace_dump’
+  337 |                 ftrace_dump(oops_dump_mode); \
+      |                             ^~~~~~~~~~~~~~
+cc1: some warnings being treated as errors
+make[4]: *** [scripts/Makefile.build:289: kernel/rcu/tree.o] Error 1
+make[3]: *** [scripts/Makefile.build:549: kernel/rcu] Error 2
+make[2]: *** [scripts/Makefile.build:549: kernel] Error 2
+make[1]: *** [/home/kbuild2/kernel/Makefile:2189: .] Error 2
+make: *** [Makefile:248: __sub-make] Error 2
+Build failed, no error log produced
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_18745 -> Patchwork_169230v1
-
-  CI-20190529: 20190529
-  CI_DRM_18745: 0cafeac0ca1baa5846a52337c6b7cd94f830da72 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_169230v1: 0cafeac0ca1baa5846a52337c6b7cd94f830da72 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/index.html
-
---===============5022388384011206474==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>tracing: Move non-trace_printk prototypes into trace_controls.h</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169230/">https://patchwork.freedesktop.org/series/169230/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18745 -&gt; Patchwork_169230v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/index.html</p>
-<h2>Participating hosts (42 -&gt; 39)</h2>
-<p>Missing    (3): bat-dg2-13 fi-snb-2520m bat-adls-6 </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_169230v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>igt@kms_hdmi_inject@inject-audio:<ul>
-<li>fi-tgl-1115g4:      <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18745/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">PASS</a> -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/fi-tgl-1115g4/igt@kms_hdmi_inject@inject-audio.html">FAIL</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16115">i915#16115</a>)</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>igt@i915_module_load@load:<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18745/fi-bsw-n3050/igt@i915_module_load@load.html">DMESG-WARN</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16057">i915#16057</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169230v1/fi-bsw-n3050/igt@i915_module_load@load.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18745 -&gt; Patchwork_169230v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18745: 0cafeac0ca1baa5846a52337c6b7cd94f830da72 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_169230v1: 0cafeac0ca1baa5846a52337c6b7cd94f830da72 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============5022388384011206474==--
