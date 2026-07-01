@@ -2,163 +2,163 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZEg4BrY/RWp29QoAu9opvQ
+	id if9kBZxARWq99QoAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 18:26:30 +0200
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 18:30:20 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id ADE896EFC53
-	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 18:26:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 519126EFCEB
+	for <lists+intel-gfx@lfdr.de>; Wed, 01 Jul 2026 18:30:19 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=JjHAoT8Y;
+	dkim=pass header.d=intel.com header.s=Intel header.b="XUG/iVGC";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com;
 	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4892710F00B;
-	Wed,  1 Jul 2026 16:26:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CB47110F025;
+	Wed,  1 Jul 2026 16:30:17 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6F74910F00B;
- Wed,  1 Jul 2026 16:26:27 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6406D10E3E0;
+ Wed,  1 Jul 2026 16:30:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1782923187; x=1814459187;
+ t=1782923416; x=1814459416;
  h=message-id:date:subject:to:references:from:in-reply-to:
  content-transfer-encoding:mime-version;
- bh=saLpqj1rrVW4OFRHUdxA/FXvWl7AElgtaHeefEwo0kw=;
- b=JjHAoT8YMWUcPvPjWsbaWFXysTRxu3zfW+G+3Uk4V97dxk3+nnCL6rlh
- LmnozcTc6MAig4iao5NyzksMmdP8RTXemLBFn5CnDnnWj7OqsaT1e3Ntt
- OaOsPIQiIqiUNLA7FsxYRnbqUcv8veQxbTn2wHgc9L6pIeWJ1tfEpS+Xr
- CNtQfnlpBHJZlHVQ2h1GkFSNYTNnFm6ZH/rxHI3CNHA/zo20abRuuP9r6
- snenYAe8zgjXPdqKqyeS4NHs6mlyUHM52cfPn3PbOT+OVc02y64bw69O8
- rtoASNu6uOktRJ697gVPa6JJX1C7r9hJVJCbTrFEn/TxlWCwEbvTScRgR g==;
-X-CSE-ConnectionGUID: O7MKT/qvQkyGeCAcb9oFVQ==
-X-CSE-MsgGUID: l6PLhh0TRuuhjZfpiAxO4A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="101087507"
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="101087507"
-Received: from orviesa008.jf.intel.com ([10.64.159.148])
- by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 09:26:27 -0700
-X-CSE-ConnectionGUID: Z1EZmnkYThizPyDnzP6BFA==
-X-CSE-MsgGUID: 2NNP9XV6Tna0ndsFDnk1KQ==
+ bh=BsZ+cvaG0KWrLC8PLb7gNVO4bn1qlTjPWqPvLxyRwrg=;
+ b=XUG/iVGCLey2hMPantAGZl9M4c/NkJ1TSTicbKYIWcD1G+j4x10VOr2o
+ ALiGVzj4Klk3fzrh7Ds0lC9VMxpk1cPrum0XG6+i4aNgCAKSXh7zysSul
+ izbScheglCsKekHbUSQy+iAGpX66rZ36cCYLq/3CeENl5BuQ6DwstvoQE
+ VGLHkgunW9DrDu4UCQoAYY6HXddGJ5oSo4vOLZh7uogUK8jPTIA/PZbD2
+ loxPtyEtBMAMipKdhtSXc06dDpP9Tw044X9Gyanh9X4+IDLMxq00C3f0q
+ I9dZfIZQ9+poHcjyLJi/cIw3vIgVVG+24ZRF7gOV5zAqO43MpKEjeGWt7 w==;
+X-CSE-ConnectionGUID: hTsiUOKkTw+DlJAATZQsNA==
+X-CSE-MsgGUID: LzhEc1Z+Ts67XlZnFwq/zg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83694854"
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="83694854"
+Received: from fmviesa005.fm.intel.com ([10.60.135.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 09:30:16 -0700
+X-CSE-ConnectionGUID: qq9IC1SQTt6lGMdoTJ1Yhw==
+X-CSE-MsgGUID: WW3El4vTT7WFQCVodLVjeA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="252187117"
-Received: from fmsmsx902.amr.corp.intel.com ([10.18.126.91])
- by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 01 Jul 2026 09:26:27 -0700
-Received: from FMSMSX903.amr.corp.intel.com (10.18.126.92) by
- fmsmsx902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
+X-IronPort-AV: E=Sophos;i="6.25,142,1779174000"; d="scan'208";a="257507785"
+Received: from fmsmsx901.amr.corp.intel.com ([10.18.126.90])
+ by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 01 Jul 2026 09:30:16 -0700
+Received: from FMSMSX902.amr.corp.intel.com (10.18.126.91) by
+ fmsmsx901.amr.corp.intel.com (10.18.126.90) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 1 Jul 2026 09:26:26 -0700
-Received: from fmsedg903.ED.cps.intel.com (10.1.192.145) by
- FMSMSX903.amr.corp.intel.com (10.18.126.92) with Microsoft SMTP Server
+ 15.2.2562.43; Wed, 1 Jul 2026 09:30:15 -0700
+Received: from fmsedg901.ED.cps.intel.com (10.1.192.143) by
+ FMSMSX902.amr.corp.intel.com (10.18.126.91) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Wed, 1 Jul 2026 09:26:26 -0700
-Received: from SA9PR02CU001.outbound.protection.outlook.com (40.93.196.43) by
- edgegateway.intel.com (192.55.55.83) with Microsoft SMTP Server
+ 15.2.2562.43 via Frontend Transport; Wed, 1 Jul 2026 09:30:15 -0700
+Received: from CH4PR04CU002.outbound.protection.outlook.com (40.107.201.8) by
+ edgegateway.intel.com (192.55.55.81) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Wed, 1 Jul 2026 09:26:26 -0700
+ 15.2.2562.43; Wed, 1 Jul 2026 09:30:15 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=as+giOIZ6xkDPCUV04eYNkoGAjYSTgRpguNBeHydL7ZJFXQW9AVHJ3KQX759PgGOfKqYB3PJbx5rNw2gCuUabGm4r8y3bUONPoGzB4GUdc1SyaqoxjnauftDwUe0gREhwuBB0jvCeQfQ6hndjZ92Q+dL9EQFu+X7YghojXw/1e+VCIJPQinakBpb46fILQMIOAgAOMKc9h2GbHcWBJhtrfdyQD9udJaiBWX5WcrNSj2/NGEloK6pV5LIsnv+i31oTv2S4GePLMdFlaOLI9oG3CmxK0ceW9gWmonIayxXzzp5uG07cGA7rAqyRv1nsnMn2/xRzIJzNLXV8yz22ReHNQ==
+ b=eIjOJFBXuWT8mz9Vg2kh45nW5vXaPxTcXzauCAmImO1YWSLCTfavXyOD0VU+0WEmmn9Z9tfCUt3F3Y9cDZSZWRn9v92HL5cQdAotBGOYjIRPoZXXAE2mW0F4jN1BPixHfDWZeHGtxgBR0Bg+jN8jXB1Olr/e3EZAPW9bsH5S5JuOpXO+lcuzlGAJI1ppo12Ibj/5iJNgWTqyDDjSrJG4KZnCA9fcMpY10gKmbpLN9WuCN//fPcegmtMWlZClsnjmGxqQp8wrzlLPQVOGyvsIJnWzqUJOokBDy3FgJSikNpf9MgT3jOa7Cjp4w1bdBemjXGgblfgRCuyDohRdoa3ilg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=kihB0ax5KblsXf7e8oXMj/agdSup0YmVrFS35GvJuOU=;
- b=gypn2YCfVOuFWWOLgL0LSzDtHXXMUL0WEdp4lg9/dL65LPJoMz8OmSO7y2py5+cM81nKSDbfmpzy8UHY3HrsOhSQf2b1EoGWce4nHy7dk5eZu7F0u1yGac4DdqEH/WpNLMLTVDCT/va7S8XfSC/ghBwYF77DNBwcc+eoeUJ6xn4ufLvW6L7zeQjZDk9RwCnUYHMoU5R1TZfSAOAhS/V9TFQc3NZqEMhYgkTIt9HamQhiHTq/q49keIr5JlCa/JOepYMaStIEzT8dhtIZ8iXx9N5oemEUSXcSRtTfm/qIqpheGVfzNqAu6yBO9o1Drnqvqf5KKUpH2GWCSQvAO6fIiw==
+ bh=PJoDe8H+rpsk8X8UDCqOtAI/WCNf5lCH/nVKW5/IGQM=;
+ b=rjLkdCpfvkH0NTHA2Hygh/tICJ4IckXQwGjeh/mvZ3iRRODM25sRh2ozOyKQ4IMW0nJNBwuHZjSjo/K7CIXPrU9q0rhu9TEXYOj2xEvH2euSJgGp6Y72r2qk8G1Sp3XV5mNbXvCcBMAcS/bLE1QPB4crg7Dr1S7BDR9LE1SzWYK7Fw7AxUUpOklFUL9ZIoNTlDlM82l/qAAmckYi22NTVGtQ2XnSUL2/5Sgj9MyjKsNcvWdSc70maj9AuNr/fgpQL0j7rdT2pLRDwkHl1M1Cxbou/2cQRG8837yxZ80XVWjAFGXoY9QFznQPLKbfbHDv60Hc9V+ip7fsoxRzFA2ttg==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
 Received: from PH0PR11MB7636.namprd11.prod.outlook.com (2603:10b6:510:26f::13)
- by DS0PR11MB7560.namprd11.prod.outlook.com (2603:10b6:8:14b::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.159.15; Wed, 1 Jul
- 2026 16:26:23 +0000
+ by CH2PR11MB8865.namprd11.prod.outlook.com (2603:10b6:610:282::12)
+ with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Wed, 1 Jul 2026
+ 16:30:12 +0000
 Received: from PH0PR11MB7636.namprd11.prod.outlook.com
  ([fe80::d611:6fa9:bc34:46b]) by PH0PR11MB7636.namprd11.prod.outlook.com
  ([fe80::d611:6fa9:bc34:46b%5]) with mapi id 15.21.0181.008; Wed, 1 Jul 2026
- 16:26:23 +0000
-Message-ID: <c5b413d9-2ef7-49f7-9712-0d3401a07850@intel.com>
-Date: Wed, 1 Jul 2026 21:56:16 +0530
+ 16:30:11 +0000
+Message-ID: <7f94d32d-4673-4dc3-abac-2fefb3526a2f@intel.com>
+Date: Wed, 1 Jul 2026 22:00:05 +0530
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH 2/6] drm/i915/cursor: Add helper to update cursor plane
+Subject: Re: [PATCH 3/6] drm/i915/cursor: Handle secondary cursor state
 To: Nemesa Garg <nemesa.garg@intel.com>, <intel-gfx@lists.freedesktop.org>,
  <intel-xe@lists.freedesktop.org>
 References: <20260608062629.820477-1-nemesa.garg@intel.com>
- <20260608062629.820477-3-nemesa.garg@intel.com>
+ <20260608062629.820477-4-nemesa.garg@intel.com>
 Content-Language: en-GB
 From: "Borah, Chaitanya Kumar" <chaitanya.kumar.borah@intel.com>
-In-Reply-To: <20260608062629.820477-3-nemesa.garg@intel.com>
+In-Reply-To: <20260608062629.820477-4-nemesa.garg@intel.com>
 Content-Type: text/plain; charset="UTF-8"; format=flowed
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: MA0PR01CA0043.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:81::14) To PH0PR11MB7636.namprd11.prod.outlook.com
+X-ClientProxiedBy: MA5P287CA0002.INDP287.PROD.OUTLOOK.COM
+ (2603:1096:a01:176::11) To PH0PR11MB7636.namprd11.prod.outlook.com
  (2603:10b6:510:26f::13)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: PH0PR11MB7636:EE_|DS0PR11MB7560:EE_
-X-MS-Office365-Filtering-Correlation-Id: 223e7c5a-3f25-476a-4540-08ded78d7d19
+X-MS-TrafficTypeDiagnostic: PH0PR11MB7636:EE_|CH2PR11MB8865:EE_
+X-MS-Office365-Filtering-Correlation-Id: b19c392e-6778-47ef-e46d-08ded78e05ad
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|23010399003|1800799024|376014|366016|56012099006|11063799006|18002099003|22082099003|4143699003;
-X-Microsoft-Antispam-Message-Info: nIoXH7BxjDFwoo9PKIqH5zJThLrOQBShFd9MV3sliexi8cgEbDgHPxkq8f+EZg3jBemmzQm3FVug+8axtcvBLbLVEa162TJLcwUSYJi7uDbPujImzVmtFmEa0jhfJ2Hx4kkISpTGwzCcXm9YPytK2wGtypho8JjzqomrbNn9dnp9NLFlz7WWJ0n8ppHhS/c3g9Dqmn6sUp9jpeqES/eUeegK0fTwPxZstpZLyMBN198BrpfkB95vuakaD9tsCgNTptfjzyuONxqwIuDKLNsugFTfNoXaBo0fTRj6E2uCCCHj2+ai2xLvneUEwdvDWorEZD6LT+EICpkUZf7EG/7kZntgJ7kOeBgqii/eh0O67IfPSGqk6yErNPk3xPuAffNpJUUHyt5ooY4tIW5FrO3mv5tvtTFLEnlyox2eKorLoZ15SuShN4C/zE0uPCTj8JqF6q4FWnObnLNfNPEo/OjL84fJzKymwWFzm4AipRN0tUFCGgo8Fc5CoRJdorQaxO8y/qmV3p/oPcYU7E8rBN3CIihy7aekzmAvyb/DVn+rNJI4ii+3vFh6JJvJZGa8/BgSzprhreJ9Qse/wcCRt9ZrOcSixg4lzwz9z4Tnr86d8wY5h3YMmSY7v2U8ShOHDKoC29lHJccO8jypvWCYQX56OA==
+ ARA:13230040|23010399003|376014|1800799024|366016|18002099003|22082099003|11063799006|56012099006|4143699003;
+X-Microsoft-Antispam-Message-Info: eDDy2Td06yBgWM+G/hX+oiVH4+CGw7bhfK1i3QVxNg/BTJ8RXToacg8+0hOiBD23+DdLRMZQi+fb2uWKwQT/aMhO5AOMidAPUDtKgZ6RePW8gMecF+eB/2X4jEoieDTqQNagza/Jdsw7P5Wu5K/s+j2GKIXt668maREZLs4WnLgAXeVAx41R0SSiaEwFm98HSIk2Y+pMA+/YL+XHelGtL7DPkOWlot7aDXJNE28mmU7u6c9Mzp8mJx+adh46FsDKLfIAb17ZI6JOp73rj0uhu1cFcqjQFyDrNftShoaVENEinwuGQGj5iuBXGhM9J/VGRf61DtRkgedgm1uATWfuIf6TyOXvjD8B0M/eIt5eC+kpH6k4QBP+AH7auNlV0auR3/dcFn1BwiC3IUbxczGYITFJqtgWzaHr35vawZ+kbT7RsDzOBAw6JnsJTBzANnlJDU5qFdd+a+BwDf5pjQxmUFCo8GJOmQRYjnIq3OFveBMGKuj8a4w3oDQqdjohM8n+c4p0qv/1/SnTP4JIqpbgPyiO1a1V29OpuYhXmlvTHe2PerRXdTJodX2JjqeDT3sKrwIA9NvXUhPWBEW39vmhb5fNQQJ/PwNEEIZX242XdF5wThEy27v8e22KLELzO+ikzi/vHF9EIJDAwBO/cjQOfkY6F6MZPsiic+EZMkD5F6c=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
  IPV:NLI; SFV:NSPM; H:PH0PR11MB7636.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(23010399003)(1800799024)(376014)(366016)(56012099006)(11063799006)(18002099003)(22082099003)(4143699003);
+ SFS:(13230040)(23010399003)(376014)(1800799024)(366016)(18002099003)(22082099003)(11063799006)(56012099006)(4143699003);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?YmR6UU1LeUlOckZuOUtFRTNMYVNPMGdTeGNzVHF5aWFKZ1J5WnpXWVduR2xl?=
- =?utf-8?B?cVZVcDRoVjhUbVVUZHdTZGRpWUJraU04RWlKdHgvaDNSWXRLZ2NGcHJvWmxl?=
- =?utf-8?B?UW1XOVZOMitrTXlOeThoK3lQc05TYlpZS1ZPaldnNTZ5N29VLzNBZnE3Mys3?=
- =?utf-8?B?SmhibjJuT3U5SVRaSHQ5cTVzckJZY29vd2JWTCs4Uk1lZUQ1N3lRSWp1eXNQ?=
- =?utf-8?B?NElhMDAwNHczeXFva0xNMmFTVWhhQzFac2ZXTkhwV1lralpteEduY25QK3lZ?=
- =?utf-8?B?MURYWHUzQVVVenV2Q2JiclVhbEtUbXFoaGN3bE9SRHJTamZGNlU0Z0NsckRL?=
- =?utf-8?B?SGFYNWtDVUlpNncyY2FHUmRpLzNPelNNcldtMzZvbUtnRDJNNFl3ci9PK2Y5?=
- =?utf-8?B?MEJIdUNCWGJoQlhCOWlOazlheUgwblRZWnA4K3JqQmZCWWRlVytkN3VnWE1M?=
- =?utf-8?B?bnlIblFZdHRLcEFTcVFReXZtRDF2QW4zTFZIeENVZytMY081cWZaSkVoVnZn?=
- =?utf-8?B?aHNZNHB4azlGclJHMXFHUTU5M0JSS0ZDNGFPUDd0Q0RDalVmcmEycUEwY25J?=
- =?utf-8?B?Sy9IOVE0WXhIcWFlclYwMmhtaDBnQURiWDNkV3BEUnhNNm43SUpyYTN6NlNs?=
- =?utf-8?B?QStTeFpHdFJSY2hzdys1KzdLODE2NW5hQVp3dVBFdGtUYyttOEU0ViticVRv?=
- =?utf-8?B?SmkrNXhqUFErdTNhTGJoZkVJS3RGTkhyelNzMnl1Ukg2czRINkQ4QytKbDBh?=
- =?utf-8?B?empMNEx1SklFSzRhUmRzc3FrdEl1SlhOcU5sZUptNDJTRnZGejlPVnhja0Vo?=
- =?utf-8?B?ZjhFMDRpZDVPQ2grZEdhRXN4OW04UWJaa3FjT0xSei94TmtMS1R5SmVtQnM3?=
- =?utf-8?B?WUFsbU9GTTRrN3hGMjQydFdYaVRZNktxMk1YaWJLdjlma21hT25BaXNldW1P?=
- =?utf-8?B?ZlpBQXFDbmtWWDN3ck54RmtrVTRJbVNpQzB6b2U5UUVWUEVTS2pNVXFuek4z?=
- =?utf-8?B?bCt0UmJlN0tCbEJqcGpuVHBYRGFuV1hHQk0xZFZ4MEwwd3hRYXNOL1hGZFh6?=
- =?utf-8?B?UFFIWUN4TVhaRnlxenREYTRXa01nNThIM25oNDRpVm9qVUUvaVVHZDMzSFd5?=
- =?utf-8?B?RHNwR0lmeU9vZmpUMFZoSUxQMmxxUzhYelA2bVF2TWl2b2l4OEpyckZ3czlL?=
- =?utf-8?B?RmF3ZnJIMWluWmQyaENFdGdzcTB0Mi90aTBPM2REYVh2djZkYmFnUGRqc0Nz?=
- =?utf-8?B?NWtLSXVjR2ZDbllCYXA1alhjRTJwRjVNWVlWaVJrZkEyaFBpa2I1UTZqSlZh?=
- =?utf-8?B?d2NhYW81aEVnSXhwaDVDeFJ2K3JaVXhvNko1dTBwM29BdmRESzBia09DeUFM?=
- =?utf-8?B?dW4rZ3pPNWt5YktiaENOUnRJUUcyNFJJRGNyUnE2eVBwNnMxTkRtL3FCUHpM?=
- =?utf-8?B?ek1FQllZUndqZi9SMGhBc1BhMHRvZDVib2ltQkRjYmI1Q3dGRVlOcmtTS281?=
- =?utf-8?B?eFR0M0RQbk1NZXc2eURUb3ZsVDhmWStHWFRlK2xtOGpReEwwN29QWlhRRFBw?=
- =?utf-8?B?NzVwYmU3dDBUTDdlcW9BY2FnSW1SbzJlZk1LTDFRYWNHeWZYcFAvckIyZ2Fo?=
- =?utf-8?B?aUVaenZoWjkwVjNuNjV1Q0xaeStEWVJKUytNbklrZFBOL0VnRUlsZTEyakJC?=
- =?utf-8?B?ZnpkdUZqWFUzdTEwYStzWlVvYk44YUEvY1U0U2UxZ3I3VW5tL29YMmxPUHBS?=
- =?utf-8?B?ZEVsdEUrTXNBb1plQnBQQ2xXTHk2Y3ptWXlSUzg5UGVvMEhoTkxQN1R2Vm40?=
- =?utf-8?B?OTdwZWpwTEZGQ1Era0FYdWx5N2gyU1A3V3ZlRktLeUpONGRDNm1zWTFTdTUv?=
- =?utf-8?B?WkJtNTFtWC9NczdGLzQ5NnBIYUNXMVZEaEs2M3ZhZXRQbTRsMkVhZlczWkpE?=
- =?utf-8?B?MzkxaDZUdDNmbUl3UytRQnJlMUZCa3Y2ZW43M1FHTDhsa2hhbVQ3L3VGZTdG?=
- =?utf-8?B?eU1KemY3alJGZFpHVjdBbFdRL0w1Zm0yRWxoVDRBT3IwQWtlQU5Qc1RZek5V?=
- =?utf-8?B?MlBiK1NSdk5MZ1c1R2RhUnNyUmFHUFlERmt6TU96SUVET1lKa2E5c1c2Y29C?=
- =?utf-8?B?UlN4clZnRUdCT09tdFNOeGRxN2hwR1hZeXJaaGJqU1VBR0VXcjIxUGF2ZkxR?=
- =?utf-8?B?WmpydlRZT3BkbDc3WE9Bb3JoVWtZU1N3d044ZVVVeGtCbmtWdUw2dHN1NGVu?=
- =?utf-8?B?bExCY1RpcFlscWt5ZkNKZjJrUGJGdUViZ2FIa01MTUU1Yzlsc0NkZC9LUlFy?=
- =?utf-8?B?a280WHhFMTRJWVpOQ05UUktWY2JuMHBENEhQaXFZbkw5dEpBYTlmaW5rdkdv?=
- =?utf-8?Q?OGM//xImvsTEaca8=3D?=
-X-Exchange-RoutingPolicyChecked: sRivof5UwzvR6J9YMG5G1kBJw7o2+JKxWyeVepI1ltSWCpiOpHY6LUDfcIBL8PVVl2iYHjQDdmqFSjRcsqvxELicA2l4e+LwbrZRumnyJJNt1//pZEo7ocdnEOTcd0fEwAO3O38E+AlOR2vW2nMKxjTy9WXUYLl5nK3JFndqt/OOCPkhx2hQkCvETCgItSbQV66Zm2Q0GEQMIZE/Zvbs4GkgHXKJHHR0NTPs8RAkG6g7r0zEumVA+t9uPQ2RQdbE2Yec1cRIH7vOkKgRZqUX2MRuN4UcAiu8l1/YW0DQvtwaLyYQGOD46f2/0khKSxc+T+Xz4oaM0g8gPzj1SeOtGA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: 223e7c5a-3f25-476a-4540-08ded78d7d19
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?aG5neXp0QmJqWmljVHZZUDBWNmM0UmswQ2VscWFHSy9LQy9KZ2FBZnRjd3h4?=
+ =?utf-8?B?R2RKRk0xU0pQbUNndGJqOUdVZTF1cnBRamVVRmp4WDJsS2QvQ2o1WkUrdm92?=
+ =?utf-8?B?TjdlZU5GVW5RNnBYRjEzSWJ2ZnJuM3dybHZucTBVSEdIZllLNmdVVDNSdlAr?=
+ =?utf-8?B?WUxGK1Y5YWFqc0ZjL3RzN0MvbENHQ2JpT25mZitGSlNUMUdjTTJVRDdFNE54?=
+ =?utf-8?B?MjJqWlQzTTBqQmZTV3VhMUNtaExHU0tTWVZHN2lUQWs2bFo5K2V6cTJ1dXZJ?=
+ =?utf-8?B?bTl6cUVCUUp3NWhVRmpRQU5haWNWcWNrUWhmSGlVY0dVYU5xZURuRytVYUNG?=
+ =?utf-8?B?eFFEaWFFU1ZobGFYS3lPclRuaVJMOXNWb1RLaXhHOUdkRVhTNTBGcHByRDJ5?=
+ =?utf-8?B?NEZ2Q2VoOGVEa2diMm5FL1dOMzZhL09WK2ZGeUxvTUJjRWNpZ3pvYTZCVUkx?=
+ =?utf-8?B?YlpiMGI4N0c4S2dFVGI4dFVJRVBzUU1UdHFtT0V4WGs1S1dYOE51bldodndw?=
+ =?utf-8?B?ZjRseUczamswT1BsdTdTRitCSTN0VnQ4QVZTT0c2VW9jbHA2OW1wNE9nRHdv?=
+ =?utf-8?B?TUhlSzFzSVQxbzVCZkF1RFZ3ZHJuSE5sQ0l4cTJIT3JQK0M5WXI2Q1VYWXJo?=
+ =?utf-8?B?WnFkTEp4ckNST0w4cURCMHRKaFAvSExhNkIydkM2QkVWNEhnalU4aGsxbjVj?=
+ =?utf-8?B?ZWczMzV0L2pFMms4T3lFOXpxeFNMNjkxbDJGWlZyQWhvSkxQRG1KUmtWZXBl?=
+ =?utf-8?B?U3dRM1gxTE9pTm9jdDRlMDlQd2wwayszd2dZaVpYNG5wVnZYbEhvWmFQc0pq?=
+ =?utf-8?B?a21KYmxqaDhhckZ0b3N5SlhFb295VU9IMVdkMFBvaHdUNVZwMnNLd1ZSaUVn?=
+ =?utf-8?B?R004SlhrRTBrbjFLSURWWFdvb2JZWkRBRWR4YXVDSXZ6bjdPdmNYdnM1OW9x?=
+ =?utf-8?B?dzFzZzVUSnhsaXhZVTB5eWhqMGF4MlpBR3RqRE8vekd0aGxUZlIwYUhsQzVq?=
+ =?utf-8?B?SzN1MEd4eUtQSnBQYnRnU0g2b29zTEVNVkx2b3hyMDgraUtCREZ5cVVPRDdm?=
+ =?utf-8?B?WXgvaUsrVHNqRktRbmZRNGRJajRod2dYY1c0d01QL2Q0azl4VFMrWkYrblVQ?=
+ =?utf-8?B?K2NlWjhwN3MyM1NXSW0rRTZTeGRnWlNBWG15cUh6bnNTdlNXTndRU3F3bjVO?=
+ =?utf-8?B?R0pHUVFMQ1JyVEtIWUFTeWNlSnhqTVdxaFRPYlFkaUZQaDZjTWdQMk10dWg4?=
+ =?utf-8?B?Sk9hUGdPa0dyZVFRZHJ2bFFBd0pGbmxpVVNKc0FQNDdRTitmTDVNNkpkVDRZ?=
+ =?utf-8?B?L2ZCVzVoejE3YkJOYUVaV0JxbGNMcWZPTGZCVU1FUWViMlZJRzJVcnozeU8x?=
+ =?utf-8?B?Nll3c2x0QzYrU1B6bnJXNWZXazRsazNvZlNmcHRRQ3JiMUE2YUJKbStuWGZh?=
+ =?utf-8?B?OUxTa3pVVDFidUdWeU9zd1RwM3QyZHVPWHRZMm95Z3gxbW4zQ0t5dW1LRlFo?=
+ =?utf-8?B?WUJlMS9kY0hOTHRTNm5FbGZFR04yQi9lOEsxMS9yaktEMVF2K2RLOWlyS1lO?=
+ =?utf-8?B?dnNpdXpMTlZ0RkF0UTdJKzZoVTFaa1Vzb0U5Yk84RURQOVRQUS9SR3NpZ3dY?=
+ =?utf-8?B?bXdQNXFtRGRkYzA0dFg5UURnMVBveWZGeUZkUC9QcENCWVRHYjlsSGxtZlNI?=
+ =?utf-8?B?Rm5SR0lPYkY5a1B6bDlxaEdIUUlDSGZ2S1pVWHo5SE5leG43Q3ZqSjd1SFUy?=
+ =?utf-8?B?Nk00bkRwMzZKdHJtVmR1VmJKQ2ZRQVNrM0x3RWFCVk00V1NkVEM5dVdFZzJX?=
+ =?utf-8?B?bStZT2lTRUNhT09LeVdEUS9lOHJGUTRRUWtmSlJaWit4cjFkZDVOTlFqQWxj?=
+ =?utf-8?B?M1pkSEd6amdKMG1pNWRhcnZZVDZreWlQdzdXVzBOeEpTdzRNN2RISHNLZ1l1?=
+ =?utf-8?B?S2REeHRiQ3Axd1ZSTTdCclcxSkNmaGN3ZFdtcVdRaXpFK2VQbklrSmxxSmlN?=
+ =?utf-8?B?TEtCUkxLV1lud1EzSUlBbTZ5MXE3c1N6NXcreWR2cVRad2d0cHQxdmp6bXZs?=
+ =?utf-8?B?N0YrR3diSndpTDJ2ZFFsZitBSjNMR0Q0RTlIdmNBZm9mOVJMaUYzT0g5VUpO?=
+ =?utf-8?B?L2JTTUNqRmtuU1RhdFNPMTY4bWpLNnMzdmhOL1N2UmdTQWl6eGlOelppTzFx?=
+ =?utf-8?B?YzZZTEdGRUJINlJldXViTDRCNWRmTkNiOU0wbGZpQms4dDFKeUQ5T1pyaUwy?=
+ =?utf-8?B?Njg0MFBycEdoWjhZVHFhOXdyME1ERklHKzR6S3V6VmtSLzBmSm9wVUJGV0NU?=
+ =?utf-8?B?a3BtcUJleUl6Ymk1bitvS0ROdmFEU2FIbnZGWGphb1VoR015R1Boak01aUY3?=
+ =?utf-8?Q?IKR+f9UHHZU8K8hs=3D?=
+X-Exchange-RoutingPolicyChecked: EQH8x31ZEafCffaeU85dfqXaD3tvna1gTAXqFC0xZ4KkEY9ONz7wskR8lPfKTWG1jDthWXTgY38Mip/ddHGH8liSDztwc51oaca3y12xoXgaYkHlO4bCa3IfzU9San5isJUVuwp6EYCPkoPu6/rBJJRrUyOY9QnBE6rBUTa9Jun7NLJU8KcuaT29NLcnmp+NVEA9v5SmwFJcvuFxpQ3aF7U35Y5KN62I9VQz0ymSHLuWhBxSylCVxwuNz/z5a/1ZMDdf0N2R+gxjFDc+YwzVZrnTqsjwx1+HRCxANUGb+fHvmc93sv4EbFtsDJhPKN/TMcYEVoUnIAFgsGU4Kop+jA==
+X-MS-Exchange-CrossTenant-Network-Message-Id: b19c392e-6778-47ef-e46d-08ded78e05ad
 X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB7636.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 16:26:22.9687 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Jul 2026 16:30:11.7442 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: K+4A8WcF/xQVEdB0c4JaG+cJtWj0MFE4qWotw50lcCCNyoyBqFx/yNUTcz37oN/mvcDLd+twJHhE2zrbFS2iWDplBvCWWwPpVrzALTqSSTw=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DS0PR11MB7560
+X-MS-Exchange-CrossTenant-UserPrincipalName: Oo3hWI+CuPFkuIsUT0rGvJESedoziZ8+rzru4CH5v70Hs6bnSrLneCYF2OTFYEC6IEkFn8i8NDqQS43NhKS7AfGApLNKjF50prmcB57wLL8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR11MB8865
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -178,116 +178,284 @@ X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.31 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
 	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
 	MIME_TRACE(0.00)[0:+];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCVD_COUNT_SEVEN(0.00)[9];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime,lists.freedesktop.org:from_smtp];
 	RCPT_COUNT_THREE(0.00)[3];
+	TO_DN_SOME(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+]
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: ADE896EFC53
+X-Rspamd-Queue-Id: 519126EFCEB
 
 
 
 On 6/8/2026 11:56 AM, Nemesa Garg wrote:
-> Move cursor fast path plane state update into helper
-> function.
+> In joiner mode the fast path cursor update must handle
+> secondary pipes. Iterate over all joined pipes uniformly
+> to duplicate plane state, run check_plane(), pin the
+> framebuffer and on success swap in the new plane state
+> or each secondary cursor.
+> 
+> Track every successfully prepared pipe in per-pipe arrays
+> so that later frontbuffer, unpin and error-cleanup paths
+> treat primary and secondaries uniformly, and ensures the primary's
+> pinned framebuffer is released if a secondary fails partway through.
 > 
 
-Not a pure move.
+This whole loop remains dormant until patch 6. Worth a line in the 
+commit message
 
+> v2: Use intel_crtc_joined_pipe_mask(). [Ville]
+>      Add locking mechanism. [Ville]
+> v3: Drop the per-pipe fastpath mutex array. [sashiko]
+> 
 > Assisted-by: Claude:claude-sonnet-4.6
 > Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 > ---
->   drivers/gpu/drm/i915/display/intel_cursor.c | 41 +++++++++++++++------
->   1 file changed, 29 insertions(+), 12 deletions(-)
+>   drivers/gpu/drm/i915/display/intel_cursor.c | 141 +++++++++++++++++---
+>   1 file changed, 119 insertions(+), 22 deletions(-)
 > 
 > diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-> index f8b24865c93a..38234c6292ec 100644
+> index 38234c6292ec..3da2c2308081 100644
 > --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 > +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-> @@ -849,6 +849,31 @@ intel_cursor_joiner_commits_idle(struct intel_display *display,
->   	return true;
->   }
->   
-> +static void
-> +intel_cursor_fastpath_update_plane_state(struct intel_plane_state *plane_state,
-> +					 struct drm_framebuffer *fb,
-> +					 struct drm_crtc *uapi_crtc,
-> +					 struct intel_crtc *hw_crtc,
-> +					 int crtc_x, int crtc_y,
-> +					 unsigned int crtc_w, unsigned int crtc_h,
-> +					 u32 src_x, u32 src_y,
-> +					 u32 src_w, u32 src_h)
-> +{
-> +	drm_atomic_set_fb_for_plane(&plane_state->uapi, fb);
-> +
-> +	plane_state->uapi.crtc = uapi_crtc;
+> @@ -889,11 +889,17 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>   	struct intel_display *display = to_intel_display(plane);
+>   	struct intel_plane_state *old_plane_state =
+>   		to_intel_plane_state(plane->base.state);
+> -	struct intel_plane_state *new_plane_state;
+> +	struct intel_plane_state *new_plane_state = NULL;
+>   	struct intel_crtc_state *crtc_state =
+>   		to_intel_crtc_state(crtc->base.state);
+> -	struct intel_crtc_state *new_crtc_state;
+> +	struct intel_crtc_state *new_crtc_state = NULL;
+>   	struct intel_vblank_evade_ctx evade;
+> +	struct intel_plane_state *old_pipe_states[4] = {};
+> +	struct intel_plane_state *new_pipe_states[4] = {};
+> +	struct intel_plane *pipe_planes[4] = {};
+> +	struct intel_crtc *pipe_crtcs[4] = {};
 
-The original inline block didn't set uapi.crtc.
-> +	plane_state->uapi.src_x = src_x;
-> +	plane_state->uapi.src_y = src_y;
-> +	plane_state->uapi.src_w = src_w;
-> +	plane_state->uapi.src_h = src_h;
-> +	plane_state->uapi.crtc_x = crtc_x;
-> +	plane_state->uapi.crtc_y = crtc_y;
-> +	plane_state->uapi.crtc_w = crtc_w;
-> +	plane_state->uapi.crtc_h = crtc_h;
-> +
-> +	intel_plane_copy_uapi_to_hw_state(NULL, plane_state, plane_state, hw_crtc);
-> +}
-> +
->   static int
->   intel_legacy_cursor_update(struct drm_plane *_plane,
->   			   struct drm_crtc *_crtc,
-> @@ -928,18 +953,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+Use I915_MAX_PIPES instead of magic 4.
+
+> +	struct intel_crtc *pipe_crtc;
+> +	int num_pipes = 0;
+>   	int ret;
+>   
+>   	/*
+> @@ -944,8 +950,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>   		goto slow;
+>   
+>   	new_plane_state = to_intel_plane_state(intel_plane_duplicate_state(&plane->base));
+> -	if (!new_plane_state)
+> -		return -ENOMEM;
+> +	if (!new_plane_state) {
+> +		ret = -ENOMEM;
+> +		goto out_free;
+> +	}
+>   
+>   	new_crtc_state = to_intel_crtc_state(intel_crtc_duplicate_state(&crtc->base));
+>   	if (!new_crtc_state) {
+> @@ -967,11 +975,75 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>   	if (ret)
 >   		goto out_free;
->   	}
 >   
-> -	drm_atomic_set_fb_for_plane(&new_plane_state->uapi, fb);
-> -
-> -	new_plane_state->uapi.src_x = src_x;
-> -	new_plane_state->uapi.src_y = src_y;
-> -	new_plane_state->uapi.src_w = src_w;
-> -	new_plane_state->uapi.src_h = src_h;
-> -	new_plane_state->uapi.crtc_x = crtc_x;
-> -	new_plane_state->uapi.crtc_y = crtc_y;
-> -	new_plane_state->uapi.crtc_w = crtc_w;
-> -	new_plane_state->uapi.crtc_h = crtc_h;
-> -
-> -	intel_plane_copy_uapi_to_hw_state(NULL, new_plane_state, new_plane_state, crtc);
-> +	intel_cursor_fastpath_update_plane_state(new_plane_state, fb,
-> +						 &crtc->base, crtc,
-> +						 crtc_x, crtc_y, crtc_w, crtc_h,
-> +						 src_x, src_y, src_w, src_h);
+> +	pipe_planes[num_pipes] = plane;
+> +	pipe_crtcs[num_pipes] = crtc;
+> +	old_pipe_states[num_pipes] = old_plane_state;
+> +	new_pipe_states[num_pipes] = new_plane_state;
+> +	num_pipes++;
+> +
+> +	/*
+> +	 * Iterate over all joined pipes (primary and secondary) uniformly.
+> +	 * The joined pipe mask includes both the primary pipe and all
+> +	 * secondary joiner pipes, allowing us to handle them all the same way.
+> +	 */
+> +	for_each_intel_crtc_in_pipe_mask(display, pipe_crtc,
+> +					 intel_crtc_joined_pipe_mask(crtc_state)) {
+> +		struct intel_plane *pipe_plane;
+> +		struct intel_crtc_state *pipe_crtc_state;
+> +		struct intel_plane_state *old_pipe_plane_state;
+> +		struct intel_plane_state *new_pipe_plane_state;
+> +
+> +		if (pipe_crtc == crtc)
+> +			continue;
+> +
 
-I guess the idea was to mirror intel_plane_copy_uapi_to_hw_state(), 
-where a joiner secondary has uapi.crtc == primary but hw.crtc == 
-secondary. But even that seems to be mishandled in the patch that adds 
-the caller for secondary pipes. More on it later.
+Third way of "skip the primary" in this series.
 
-I would suggest explain the two-crtc signature in the commit message 
-otherwise it's looks unmotivated here.
+> +		pipe_plane = intel_crtc_get_plane(pipe_crtc, PLANE_CURSOR);
+> +		pipe_crtc_state = to_intel_crtc_state(pipe_crtc->base.state);
+> +		old_pipe_plane_state = to_intel_plane_state(pipe_plane->base.state);
+> +
+> +		new_pipe_plane_state =
+> +			to_intel_plane_state(intel_plane_duplicate_state(&pipe_plane->base));
+> +
+> +		if (!new_pipe_plane_state) {
+> +			ret = -ENOMEM;
+> +			goto out_free;
+> +		}
+> +
+> +		intel_cursor_fastpath_update_plane_state(new_pipe_plane_state, fb,
+> +							 &pipe_crtc->base,
+> +							 pipe_crtc,
+> +							 crtc_x, crtc_y,
+> +							 crtc_w, crtc_h,
+> +							 src_x, src_y,
+> +							 src_w, src_h);
+> +
+> +		ret = pipe_plane->check_plane(pipe_crtc_state, new_pipe_plane_state);
+
+This seems to be departure from the single pipe flow of calling 
+intel_plane_atomic_check_with_state(). Any reason we don't call this 
+wrapper for the secondary pipes? And if unneeded can we skip this for 
+the primary pipe as well. More on it in Patch 4.
+
+> +		if (ret) {
+> +			intel_plane_destroy_state(&pipe_plane->base,
+> +						  &new_pipe_plane_state->uapi);
+> +			goto out_free;
+> +		}
+> +
+> +		ret = intel_plane_pin_fb(new_pipe_plane_state, old_pipe_plane_state);
+> +		if (ret) {
+> +			intel_plane_destroy_state(&pipe_plane->base,
+> +						  &new_pipe_plane_state->uapi);
+> +			goto out_free;
+> +		}
+> +
+> +		pipe_planes[num_pipes] = pipe_plane;
+> +		pipe_crtcs[num_pipes] = pipe_crtc;
+> +		old_pipe_states[num_pipes] = old_pipe_plane_state;
+> +		new_pipe_states[num_pipes] = new_pipe_plane_state;
+> +		num_pipes++;
+> +	}
+> +
+>   	intel_frontbuffer_flush(to_intel_frontbuffer(new_plane_state->hw.fb),
+>   				ORIGIN_CURSOR_UPDATE);
+> -	intel_frontbuffer_track(to_intel_frontbuffer(old_plane_state->hw.fb),
+> -				to_intel_frontbuffer(new_plane_state->hw.fb),
+> -				plane->frontbuffer_bit);
+> +
+> +	for (int i = 0; i < num_pipes; i++)
+> +		intel_frontbuffer_track(to_intel_frontbuffer(old_pipe_states[i]->hw.fb),
+> +					to_intel_frontbuffer(new_pipe_states[i]->hw.fb),
+> +					pipe_planes[i]->frontbuffer_bit);
+>   
+>   	/* Swap plane state */
+>   	plane->base.state = &new_plane_state->uapi;
+> @@ -1019,26 +1091,51 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+>   
+>   	intel_psr_unlock(crtc_state);
+>   
+> -	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
+> -		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
+> -				     intel_cursor_unpin_work);
+> -
+> -		drm_vblank_work_schedule(&old_plane_state->unpin_work,
+> -					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
+> -					 false);
+> -
+> -		old_plane_state = NULL;
+> -	} else {
+> -		intel_plane_unpin_fb(old_plane_state);
+> +	/*
+> +	 * Schedule or immediately unpin old framebuffers.
+> +	 * Protect against concurrent access.
+> +	 */
+> +	for (int i = 0; i < num_pipes; i++) {
+> +		struct intel_plane_state *old_pipe = old_pipe_states[i];
+> +		struct intel_crtc *owner_crtc = pipe_crtcs[i];
+> +
+> +		if (old_pipe->ggtt_vma != new_pipe_states[i]->ggtt_vma) {
+> +			drm_vblank_work_init(&old_pipe->unpin_work,
+> +					     &owner_crtc->base,
+> +					     intel_cursor_unpin_work);
+> +			drm_vblank_work_schedule(&old_pipe->unpin_work,
+> +						 drm_crtc_accurate_vblank_count(&owner_crtc->base) + 1,
+> +						 false);
+> +			old_pipe_states[i] = NULL;
+> +		} else {
+> +			intel_plane_unpin_fb(old_pipe);
+> +		}
+
+This schedules each pipe's unpin on its own crtc's vblank. Patch 6 then
+changes this to the primary (&crtc->base). Any reason why? Either way 
+the correct approach should be added in this patch instead of 
+retro-fitting it in a future patch.
+
+Functionally this looks more or less correct, but the code structure is 
+quite fragmented and fragile - multiple parallel arrays indexed by 
+num_pipes, ~6 separate passes over them, a
+primary special-case, and error cleanup split across three sites.
+
+I would also suggest to fold the four index-aligned arrays into one 
+struct so they can't drift out of sync.
+Try to unify the the primary and secondary pipes' code as much as possible.
+
+I would also suggest splitting the patch into two:
+
+- Reshape the existing primary-only fast path into num_pipes/array +
+   loop form (num_pipes==1), including the goto out_free conversion and
+   the per-pipe frontbuffer/unpin/cleanup loops. No functional change.
+- Add the secondary-pipe loop  (or even better a unified loop for both 
+primary and joined pipes).
+
+In addition to this, most of the variable names needs a re-look in this 
+patch. Some that really sticks out - new_pipe_plane_state for secondary 
+pipe's plane_state, *_old_pipe_states for struct intel_plane_state.
+
+Perhaps follow the convention of unprefixed for primary pipe and 
+secondary_*/joined* for the joined pipes.
 
 ==
 Chaitanya
 
+>   	}
 >   
->   	ret = intel_plane_atomic_check_with_state(crtc_state, new_crtc_state,
->   						  old_plane_state, new_plane_state);
+>   out_free:
+>   	if (new_crtc_state)
+>   		intel_crtc_destroy_state(&crtc->base, &new_crtc_state->uapi);
+> -	if (ret)
+> -		intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
+> -	else if (old_plane_state)
+> -		intel_plane_destroy_state(&plane->base, &old_plane_state->uapi);
+> +	if (ret) {
+> +		for (int i = 0; i < num_pipes; i++) {
+> +			intel_plane_unpin_fb(new_pipe_states[i]);
+> +			intel_plane_destroy_state(new_pipe_states[i]->uapi.plane,
+> +						  &new_pipe_states[i]->uapi);
+> +		}
+> +
+> +		/*
+> +		 * Primary failed before being pushed (atomic_check_with_state
+> +		 * or pin_fb): fb was never pinned, only destroy the state.
+> +		 */
+> +		if (!num_pipes && new_plane_state)
+> +			intel_plane_destroy_state(&plane->base, &new_plane_state->uapi);
+> +	} else {
+> +		for (int i = 0; i < num_pipes; i++) {
+> +			if (old_pipe_states[i])
+> +				intel_plane_destroy_state(old_pipe_states[i]->uapi.plane,
+> +							  &old_pipe_states[i]->uapi);
+> +		}
+> +	}
+> +
+>   	return ret;
+>   
+>   slow:
 
