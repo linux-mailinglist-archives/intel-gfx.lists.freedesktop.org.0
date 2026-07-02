@@ -2,38 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZGQnNkUiRmoPKgsAu9opvQ
+	id rVjdApQiRmonKgsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:33:09 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:34:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 4287D6F4CF9
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:33:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A4E706F4D3F
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:34:27 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=intel.com header.s=Intel header.b=QHXXAeqq;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 6E47F10E473;
-	Thu,  2 Jul 2026 08:33:07 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8671010F236;
+	Thu,  2 Jul 2026 08:34:25 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id BD74910F259;
- Thu,  2 Jul 2026 08:33:06 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============0513041004901105413=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9C22310F230;
+ Thu,  2 Jul 2026 08:34:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782981264; x=1814517264;
+ h=message-id:date:mime-version:subject:to:cc:references:
+ from:in-reply-to:content-transfer-encoding;
+ bh=k7eA92s159Ngu+QIltfO74+zhMPwS9Ty8QA1lb2JpIs=;
+ b=QHXXAeqqsSH0X83QpyzY67b7YGKN5bHK42TQzGGqQwXNvfD+0Vae4Lyl
+ d+uuthhd14FfLK05V4Ih57TV+fJWalMX0krq03ycB+o3bRApxciprAQMd
+ YvKzvACN83cUiTY23FjfhJ58c/Jd0BVz2dFA/9hFy89HlaI932eoRbEXw
+ J/otb/MMA2+PSjZo39XPE7EpKQplP4yKB1kpn5+EnsUlQ9N+4yJZ34XM3
+ APvyeCGkMyqnHWQycFl7oxQDXFxYNs48GseZ9+cL4qeZY/3i2yj5puMPX
+ VfnXJgAVTxrr+iuIfsyA4pcZ09QuCeOsryVOqnqEkD3g6YhL2TTfyYX5G A==;
+X-CSE-ConnectionGUID: MGk6NZmtRxS/hx9ZXWe7Uw==
+X-CSE-MsgGUID: Ao28F5LMTMe4wmPJUaK7WQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="83757837"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="83757837"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 01:34:21 -0700
+X-CSE-ConnectionGUID: 1E70bXLBSEaWsOtGDbizPw==
+X-CSE-MsgGUID: Cug6YpbtRD21DUPbY/VThg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="254739884"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.210])
+ ([10.245.244.210])
+ by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 01:34:17 -0700
+Message-ID: <83f324a2-abe1-4b32-8782-439569f651d2@linux.intel.com>
+Date: Thu, 2 Jul 2026 10:34:51 +0200
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/=7Bi915=2Cxe=7D=3A_un?=
- =?utf-8?q?ify_runtime_pm_calls_=28rev4=29?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "Jani Nikula" <jani.nikula@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Thu, 02 Jul 2026 08:33:06 -0000
-Message-ID: <178298118677.141897.17966775121256674042@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <cover.1782913901.git.jani.nikula@intel.com>
-In-Reply-To: <cover.1782913901.git.jani.nikula@intel.com>
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2] drm: Guard DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE
+To: Robert Mader <robert.mader@collabora.com>, dri-devel@lists.freedesktop.org
+Cc: Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, linux-kernel@vger.kernel.org,
+ amd-gfx@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+ Harry Wentland <harry.wentland@amd.com>, Daniel Stone
+ <daniels@collabora.com>,
+ Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Uma Shankar <uma.shankar@intel.com>,
+ Louis Chauvet <louis.chauvet@bootlin.com>, Melissa Wen <mwen@igalia.com>,
+ Simon Ser <contact@emersion.fr>,
+ Pekka Paalanen <pekka.paalanen@collabora.com>,
+ Leandro Ribeiro <leandro.ribeiro@collabora.com>
+References: <20260702081641.22990-1-robert.mader@collabora.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <20260702081641.22990-1-robert.mader@collabora.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,139 +84,105 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.11 / 15.00];
-	MID_RHS_NOT_FQDN(0.50)[];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
+	RCVD_COUNT_THREE(0.00)[4];
 	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[18];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[maarten.lankhorst@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FREEMAIL_CC(0.00)[kernel.org,suse.de,gmail.com,ffwll.ch,vger.kernel.org,lists.freedesktop.org,amd.com,collabora.com,intel.com,bootlin.com,igalia.com,emersion.fr];
+	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gitlab.freedesktop.org:url,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[collabora.com:email,intel.com:dkim,intel.com:email,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 4287D6F4CF9
+X-Rspamd-Queue-Id: A4E706F4D3F
 
---===============0513041004901105413==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Hello,
 
-== Series Details ==
+On 7/2/26 10:16, Robert Mader wrote:
+> The client cap is currently advertised unconditionally, even for drivers
+> that do not support plane color pipelines. If clients supporting the later,
+> like Wayland compositors or tools like drm_info, enable the client cap on
+> such drivers they will be left without both color pipeline and the legacy
+> properties COLOR_ENCODING and COLOR_RANGE, effectively breaking YUV->RGB
+> conversion support.
+> 
+> Prevent that by only marking the cap supported if there are actually planes
+> with color pipelines.
+> 
+> Note: while the color pipeline replacement for the legacy properties is
+> still under review (1), we can assume that it will work as a drop-in
+> replacement. That means any plane on any hardware currently supporting
+> the legacy properties will be able to offer a functionally equal color
+> pipeline and there will be no technical reason keep using the legacy
+> properties if both the driver and the client support the new API.
+> 
+> 1: https://lore.kernel.org/dri-devel/20260623164812.81110-1-harry.wentland@amd.com/
+> 
+> Signed-off-by: Robert Mader <robert.mader@collabora.com>
+> 
+> ---
+> 
+> Changes in v2:
+>  - Replace the driver feature with a simple check (suggested by Maarten
+>    Lankhorst <maarten.lankhorst@linux.intel.com>)
+>  - Expand the commit message slightly and change the title
+> ---
+>  drivers/gpu/drm/drm_ioctl.c | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_ioctl.c b/drivers/gpu/drm/drm_ioctl.c
+> index e2df4becce62..b2c0234eaf14 100644
+> --- a/drivers/gpu/drm/drm_ioctl.c
+> +++ b/drivers/gpu/drm/drm_ioctl.c
+> @@ -373,13 +373,26 @@ drm_setclientcap(struct drm_device *dev, void *data, struct drm_file *file_priv)
+>  			return -EINVAL;
+>  		file_priv->supports_virtualized_cursor_plane = req->value;
+>  		break;
+> -	case DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE:
+> +	case DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE: {
+> +		struct drm_plane *plane;
+> +		bool has_plane_with_color_pipeline = false;
+> +
+> +		drm_for_each_plane(plane, dev) {
+> +			if (plane->color_pipeline_property) {
+> +				has_plane_with_color_pipeline = true;
+> +				break;
+> +			}
+> +		}
+> +		if (!has_plane_with_color_pipeline)
+> +			return -EOPNOTSUPP;
+> +
+>  		if (!file_priv->atomic)
+>  			return -EINVAL;
+>  		if (req->value > 1)
+>  			return -EINVAL;
+>  		file_priv->plane_color_pipeline = req->value;
+>  		break;
+> +	}
 
-Series: drm/{i915,xe}: unify runtime pm calls (rev4)
-URL   : https://patchwork.freedesktop.org/series/168520/
-State : success
+Perhaps put the most specific check (is there a plane with color pipeline?)
+last, and return -EINVAL, as that is the default before
+DRM_CLIENT_CAP_PLANE_COLOR_PIPELINE was added.
 
-== Summary ==
+Kind regards,
+~Maarten Lankhorst
 
-CI Bug Log - changes from CI_DRM_18748 -> Patchwork_168520v4
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v4/index.html
-
-Participating hosts (42 -> 40)
-------------------------------
-
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-
-Changes
--------
-
-  No changes found
-
-
-Build changes
--------------
-
-  * Linux: CI_DRM_18748 -> Patchwork_168520v4
-
-  CI-20190529: 20190529
-  CI_DRM_18748: fa669b282e875afd49a387644ad4d47767fe2e0a @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_168520v4: fa669b282e875afd49a387644ad4d47767fe2e0a @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v4/index.html
-
---===============0513041004901105413==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
-
-
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/{i915,xe}: unify runtime pm calls (rev4)</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/168520/">https://patchwork.freedesktop.org/series/168520/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
-
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v4/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v4/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18748 -&gt; Patchwork_168520v4</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_168520v4/index.html</p>
-<h2>Participating hosts (42 -&gt; 40)</h2>
-<p>Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Changes</h2>
-<p>No changes found</p>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18748 -&gt; Patchwork_168520v4</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18748: fa669b282e875afd49a387644ad4d47767fe2e0a @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8989: a8e2cbd2854d7980a9eccecc6e0c801d0824b88f @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_168520v4: fa669b282e875afd49a387644ad4d47767fe2e0a @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============0513041004901105413==--
