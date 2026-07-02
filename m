@@ -2,82 +2,76 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id Wg6/JFZiRmqASQsAu9opvQ
+	id YLU2DClQRmo0QgsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:30 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 13:48:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6130B6F8202
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 7D3F76F6FEA
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 13:48:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=ElylzNP2;
+	dkim=pass header.d=intel.com header.s=Intel header.b=KbCuFgGi;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=linux.dev
+	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A998610E4D0;
-	Thu,  2 Jul 2026 13:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7A3B910F2F5;
+	Thu,  2 Jul 2026 11:48:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-189.mta0.migadu.com (out-189.mta0.migadu.com
- [91.218.175.189])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7E02C10E4AD
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 11:42:06 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782992513;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=vPHtV6pxZdlKjLiAMh+TI96h/MjbfgTMGiJB5aRI1Dw=;
- b=ElylzNP2HZvUF6FtGgLgsW4vT0OTcdy2XorLGs6M4jbsXqc3kVIN25VDlrp06Kwp+MnkF0
- 7eCUNpZQUAu53ooUNOnYLe8bcSqU2lbFmJuaAoucdQs+qEK4yKsjIpHuYOtBIHp/EvNPEl
- ujU0zKbwsKGW+OA8vv+O0JU4vozY/FA=
-From: Lance Yang <lance.yang@linux.dev>
-To: ljs@kernel.org
-Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
- mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, robin.clark@oss.qualcomm.com,
- lumag@kernel.org, lyude@redhat.com, dakr@kernel.org,
- tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, heiko@sntech.de,
- andy.yan@rock-chips.com, thierry.reding@kernel.org, mperttunen@nvidia.com,
- jonathanh@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
- zack.rusin@broadcom.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
- deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
- muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
- baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
- ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
- lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
- surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
- kees@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
-Subject: Re: [PATCH 04/13] mm: update generic_get_unmapped_area[_topdown]() to
- use vma_flags_t
-Date: Thu,  2 Jul 2026 19:41:35 +0800
-Message-Id: <20260702114135.4189-1-lance.yang@linux.dev>
-In-Reply-To: <cef55b19f86c110952f13829aefa4859db3a70ed.1782760670.git.ljs@kernel.org>
-References: <cef55b19f86c110952f13829aefa4859db3a70ed.1782760670.git.ljs@kernel.org>
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8698310E4B0;
+ Thu,  2 Jul 2026 11:48:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1782992933; x=1814528933;
+ h=from:to:cc:subject:in-reply-to:references:date:
+ message-id:mime-version;
+ bh=UReP3MYn8/Ahqd8MfKgT6QqOYlWMRjhFw9iLuV6rknA=;
+ b=KbCuFgGiXyiyBiKn1lzcYxhm9HTpK6JjPqC0gpYXp1zgUsK8zdTOFjVZ
+ SmNsFXQrajC9yVW7iIblGW7pxDMQKUUoSez15rPei+4jLX3ycMGIJk/B3
+ 7OISiAhvtynZw4ZjrGCEw6aEIIgAOLWjEw9bJBZTnLNwbMz95zjcR1Fwh
+ QEfWYrVgbJmWzlayB54UjlMsnMJcMF8VwFgkqknM9Y6LJHvG2kiXv4G31
+ 5G4eEDDsHc7bAk5FAS7tAm74Ib9NptoMmgSjphQdtDsoHbP1AlVITjqRi
+ BtNuHZYyzsTrL6cy2cpWrLa/kIjsi1YRa5KZHfB6NqMKXvGFitZfunM4a Q==;
+X-CSE-ConnectionGUID: fUzMezSsRIOJ3KuSHpaCwA==
+X-CSE-MsgGUID: ytsGtc+1T4ShVbzdpBb1XQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11834"; a="94399955"
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="94399955"
+Received: from fmviesa007.fm.intel.com ([10.60.135.147])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 04:48:53 -0700
+X-CSE-ConnectionGUID: g2dLrWFEQH2Amj+lwuV+uQ==
+X-CSE-MsgGUID: 3OytmsoTSm+0SuG6EsklJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,143,1779174000"; d="scan'208";a="249489468"
+Received: from smoticic-mobl1.ger.corp.intel.com (HELO localhost)
+ ([10.245.244.209])
+ by fmviesa007-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 02 Jul 2026 04:48:50 -0700
+From: Jani Nikula <jani.nikula@linux.intel.com>
+To: "Liou, Mei Fan" <mei.fan.liou@intel.com>, "Vivi, Rodrigo"
+ <rodrigo.vivi@intel.com>
+Cc: Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>, Simona Vetter
+ <simona@ffwll.ch>, "intel-gfx@lists.freedesktop.org"
+ <intel-gfx@lists.freedesktop.org>, "intel-xe@lists.freedesktop.org"
+ <intel-xe@lists.freedesktop.org>, "dri-devel@lists.freedesktop.org"
+ <dri-devel@lists.freedesktop.org>, "linux-kernel@vger.kernel.org"
+ <linux-kernel@vger.kernel.org>, "Dutta, Ranjan" <ranjan.dutta@intel.com>,
+ "Chang, Junxiao" <junxiao.chang@intel.com>, ville.syrjala@linux.intel.com,
+ "Deak, Imre" <imre.deak@intel.com>
+Subject: RE: [PATCH] drm/i915: add disable_edp module parameter to skip
+ phantom eDP init
+In-Reply-To: <SA1PR11MB71300AD7CBCA15C7E410E852D8F52@SA1PR11MB7130.namprd11.prod.outlook.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
+ 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
+References: <20260630102845.2678707-1-mei.fan.liou@intel.com>
+ <50700395af210f0e5ca0c5e8306cda41b077f43a@intel.com>
+ <SA1PR11MB71300AD7CBCA15C7E410E852D8F52@SA1PR11MB7130.namprd11.prod.outlook.com>
+Date: Thu, 02 Jul 2026 14:48:47 +0300
+Message-ID: <ec41ece75ff57c7641cc13d42588355efe0c00f4@intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Thu, 02 Jul 2026 13:06:24 +0000
+Content-Type: text/plain
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -93,58 +87,79 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
+X-Spamd-Result: default: False [0.19 / 15.00];
+	MID_RHS_MATCH_TO(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_MISSING_CHARSET(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linux-foundation.org,alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
-	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ljs@kernel.org,m:akpm@linux-foundation.org,m:tsbogend@alpha.franken.de,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:l.stach@pengutronix.de,m:inki.dae@samsung.com,m:sw0312.kim@samsung.com,m:kyungmin.park@samsung.com,m:krzk@kernel.org,m:peter.griffin@linaro.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:lyude@redhat.com,m:dakr@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:thierry.reding@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:zack.rusin@broadcom.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:oleksandr_andrushchenko@epam.com,m:deller@gmx.de,m:bcrl@kvack.org,m:viro@zeniv.l
- inux.org.uk,m:brauner@kernel.org,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:ziy@nvidia.com,m:baolin.wang@linux.alibaba.com,m:liam@infradead.org,m:npache@redhat.com,m:ryan.roberts@arm.com,m:dev.jain@arm.com,m:baohua@kernel.org,m:lance.yang@linux.dev,m:hughd@google.com,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:jannh@google.com,m:pfalcato@suse.de,m:kees@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-mips@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:etnaviv@lists.freedesktop.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsung-soc@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:linux-tegra@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:xen-devel@lists.xenproject.org,m:linux-fbdev@vger.kernel.org,m:linux-aio@kv
- ack.org,m:linux-fsdevel@vger.kernel.org,m:linux-mm@kvack.org,m:linux-sound@vger.kernel.org,s:lists@lfdr.de];
-	FORGED_SENDER(0.00)[lance.yang@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
-	ARC_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	TO_DN_EQ_ADDR_SOME(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_CC(0.00)[linux.intel.com,ursulin.net,gmail.com,ffwll.ch,lists.freedesktop.org,vger.kernel.org,intel.com];
+	RCPT_COUNT_TWELVE(0.00)[14];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[lance.yang@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[83];
-	FORGED_SENDER_FORWARDING(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	ALIAS_RESOLVED(0.00)[];
+	MID_RHS_MATCH_FROMTLD(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,linux.dev:email,linux.dev:mid,linux.dev:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	ARC_NA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,linux.intel.com:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,intel.com:dkim,intel.com:email,intel.com:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6130B6F8202
+X-Rspamd-Queue-Id: 7D3F76F6FEA
 
 
-On Mon, Jun 29, 2026 at 08:25:27PM +0100, Lorenzo Stoakes wrote:
->As part of the changes converting VMA flags from a system word size to a
->bitmap, extend this change to generic_get_unmapped_area() and
->generic_get_unmapped_area_topdown(), which also allows us to convert
->stack_guard_placement() as well.
->
->We retain arch_get_unmapped_area() and arch_get_unmapped_area_topdown()
->as-is for now, using legacy_to_vma_flags() as necessary to do so.
->
->No functional change intended.
->
->Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
->---
+Cc: Ville, Imre
 
-Nothing jumped out at me ;) Feel free to add:
+On Thu, 02 Jul 2026, "Liou, Mei Fan" <mei.fan.liou@intel.com> wrote:
+> Rather than adding a new module parameter or DMI quirk, I would like
+> to pursue your suggestion of fixing the existing video=eDP-1:d path
+> (tested: not working for this case).
+> May I rework that?
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+I had a glance.
+
+intel_dp_init_connector() -> drm_connector_init_with_ddc() ->
+drm_connector_init_and_add() -> drm_connector_init_only() ->
+drm_connector_get_cmdline_mode() ->
+drm_mode_parse_command_line_for_connector() ->
+drm_mode_parse_cmdline_extra().
+
+drm_mode_parse_cmdline_extra() sets mode->force.
+
+drm_connector_get_cmdline_mode() sets connector->force if mode->force.
+
+It's an interesting idea to use connector->force == DRM_FORCE_OFF to
+bail out from eDP init in a way that cleans up the eDP connector but
+doesn't fail the probe altogether. (And I think currently this happens
+automatically if the PPS/AUX fail, it just takes a while.)
+
+For other connectors we should keep it dynamic, i.e. the connector
+should stay around even if forced off at probe, as the status may change
+later, but eDP is kind of static. E.g. we don't try all the DPCD reads
+again later.
+
+I'm not dismissing the idea immediately, and it might work, but I'm also
+not pre-emptively acking. There may be corner cases that I can't think
+of right now. Maybe we need to keep the connector around but just not
+try to probe it, and then leave it disconnected. Not sure.
+
+
+BR,
+Jani.
+
+
+-- 
+Jani Nikula, Intel
