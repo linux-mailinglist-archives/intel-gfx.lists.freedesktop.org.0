@@ -2,73 +2,85 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ii+MI2l/Rmp7XQsAu9opvQ
+	id 1C9/JtCCRmpiXgsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:10:33 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:25:04 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E38146F93D1
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:10:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 431F46F9605
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:25:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=l0Osp2qv;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b="kbG+cL/z";
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 77C9B10F44D;
-	Thu,  2 Jul 2026 15:10:31 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 487F010F461;
+	Thu,  2 Jul 2026 15:25:02 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.19])
- by gabe.freedesktop.org (Postfix) with ESMTPS id DC22510F447;
- Thu,  2 Jul 2026 15:10:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783005030; x=1814541030;
- h=date:from:to:cc:subject:message-id:mime-version:
- content-transfer-encoding;
- bh=ZqPDId4rZ0crapCTq1eL01OWkFGEpp+rSALCnzW0tyc=;
- b=l0Osp2qvQj8r9Rl/qUOI4inX7b5KLEEyySq1rStgx3n8N4ljHYEL9ws7
- aQAUl/LZFE5vJszNyOCgaQd7F26UocEDRyGKCuUjxas02A0KWxfEBRskK
- lE+3GPZjwDMY92XWdJbiyuzUdZQGbON1RjATGJiMfUFPJo75B7XU9oAoU
- jvP2EtVzKFKeL7dKlrX0YcZ/fHjBOTFiGHdEuhf6L7MLVZvvF2aN63hDS
- 6GCePCrImMVFaMcJ1Pip45T7GAiKX9rGVIGjbHNoehw9OeLd5/XkrBkPJ
- vLyzBOtIId2xwwMUmNyHtOI2VcWZUeTVW+kjkMwEwiudXHCJEAupbP8Ys Q==;
-X-CSE-ConnectionGUID: 6NSTBeE4RoyX4AG2iV7Jaw==
-X-CSE-MsgGUID: Jdih+9KXSNel97Et777R4g==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="82751168"
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="82751168"
-Received: from fmviesa004.fm.intel.com ([10.60.135.144])
- by fmvoesa113.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 08:10:29 -0700
-X-CSE-ConnectionGUID: wCXkafQbQ7OtQtjmelQETw==
-X-CSE-MsgGUID: C7earjokT/CYAXobTXsUJw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="254819431"
-Received: from kniemiec-mobl1.ger.corp.intel.com (HELO fedora)
- ([10.245.244.232])
- by fmviesa004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 08:10:26 -0700
-Date: Thu, 2 Jul 2026 17:10:09 +0200
-From: Thomas Hellstrom <thomas.hellstrom@linux.intel.com>
-To: Dave Airlie <airlied@gmail.com>, Simona Vetter <simona.vetter@ffwll.ch>
-Cc: Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>,
- Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Thomas Zimmermann <tzimmermann@suse.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Maxime Ripard <mripard@kernel.org>,
- Matthew Brost <matthew.brost@intel.com>,
- Thomas =?iso-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>,
- Oded Gabbay <ogabbay@kernel.org>, dri-devel@lists.freedesktop.org,
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
- dim-tools@lists.freedesktop.org
-Subject: [PULL] drm-xe-fixes
-Message-ID: <akZ_UbrL94G4F2iA@fedora>
+Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2C89610F480;
+ Thu,  2 Jul 2026 15:25:01 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by sea.source.kernel.org (Postfix) with ESMTP id C929640801;
+ Thu,  2 Jul 2026 15:25:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 5F0E41F000E9;
+ Thu,  2 Jul 2026 15:24:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1783005900;
+ bh=LX3BYrLY2k63JpXB67A/Bjg+Ew5yjhUF+WJZEyA1fRw=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=kbG+cL/z/Lm6qSE4udnGibaK8FsMK4daZd2R+hoEFAnemIecEE1GgHP0X+YmGanAO
+ lUy6V/tOsn4eLItop07tyF1+tKZLAB376Z73zBZZR/VxVccPToewSf2zWsClidLb0a
+ 1ba3VdHACF4EGJhQZxBSvTHBcWlMH/zUclnichRT0/C3hk+pIj4TS7GYchozD+ZWNu
+ evu0CqyUEndELEE8NUvVmpXBep2Kukvvzwrnf2DWGzh4uAWg/PKpNORRO9bOZEjI+M
+ pMTZGas90E8+KBulzvC/BZdad1hSIx2FR4a50cjXxyZVyxi/oq6E9v6gCdozTTgwHV
+ VbLDs0NzwuGjg==
+Date: Thu, 2 Jul 2026 16:24:37 +0100
+From: Lorenzo Stoakes <ljs@kernel.org>
+To: Lance Yang <lance.yang@linux.dev>
+Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, 
+ maddy@linux.ibm.com, mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+ l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com, 
+ kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org, 
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, 
+ tursulin@ursulin.net, robin.clark@oss.qualcomm.com, lumag@kernel.org,
+ lyude@redhat.com, 
+ dakr@kernel.org, tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, 
+ heiko@sntech.de, andy.yan@rock-chips.com, thierry.reding@kernel.org, 
+ mperttunen@nvidia.com, jonathanh@nvidia.com, kraxel@redhat.com, 
+ dmitry.osipenko@collabora.com, zack.rusin@broadcom.com, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
+ deller@gmx.de, bcrl@kvack.org, 
+ viro@zeniv.linux.org.uk, brauner@kernel.org, muchun.song@linux.dev,
+ osalvador@suse.de, 
+ david@kernel.org, ziy@nvidia.com, baolin.wang@linux.alibaba.com, 
+ liam@infradead.org, npache@redhat.com, ryan.roberts@arm.com, dev.jain@arm.com, 
+ baohua@kernel.org, hughd@google.com, vbabka@kernel.org, rppt@kernel.org, 
+ surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de, 
+ kees@kernel.org, perex@perex.cz, tiwai@suse.com, linux-mips@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ virtualization@lists.linux.dev, 
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ linux-fbdev@vger.kernel.org, 
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 05/13] mm: prefer mm->def_vma_flags in mm logic
+Message-ID: <akaCFf_SjccZznnP@lucifer>
+References: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
+ <20260702121022.49113-1-lance.yang@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20260702121022.49113-1-lance.yang@linux.dev>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -85,151 +97,84 @@ Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
 X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MID_RHS_NOT_FQDN(0.50)[];
-	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	FREEMAIL_TO(0.00)[gmail.com,ffwll.ch];
 	MIME_TRACE(0.00)[0:+];
-	ARC_NA(0.00)[];
-	RCPT_COUNT_TWELVE(0.00)[16];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
+	FREEMAIL_CC(0.00)[linux-foundation.org,alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
 	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	ARC_NA(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCPT_COUNT_GT_50(0.00)[82];
+	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,linux.intel.com:from_mime]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer:mid,lists.freedesktop.org:from_smtp,linux.dev:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E38146F93D1
+X-Rspamd-Queue-Id: 431F46F9605
 
-Hi Dave, Simona!
+On Thu, Jul 02, 2026 at 08:10:22PM +0800, Lance Yang wrote:
+>
+> On Mon, Jun 29, 2026 at 08:25:28PM +0100, Lorenzo Stoakes wrote:
+> >Currently mm->def_flags (of type vm_flags_t) is union'd with
+> >mm->def_vma_flags (of type vma_flags_t).
+> >
+> >As part of the effort to convert vm_flags_t usage to vma_flags_t (in order
+> >to no longer be arbitrarily limited to a system word size for VMA flags),
+> >prefer mm->def_vma_flags to mm->def_flags throughout the mm logic.
+> >
+> >No functional change intended.
+> >
+> >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+> >---
+> > mm/debug.c |  2 +-
+> > mm/mlock.c | 13 +++++++------
+> > mm/mmap.c  | 11 ++++++-----
+> > mm/vma.c   |  4 ++--
+> > 4 files changed, 16 insertions(+), 14 deletions(-)
+> >
+> >diff --git a/mm/debug.c b/mm/debug.c
+> >index 497654b36f1a..f0a354a9496a 100644
+> >--- a/mm/debug.c
+> >+++ b/mm/debug.c
+> >@@ -226,7 +226,7 @@ void dump_mm(const struct mm_struct *mm)
+> > 		mm->numa_next_scan, mm->numa_scan_offset, mm->numa_scan_seq,
+> > #endif
+> > 		atomic_read(&mm->tlb_flush_pending),
+> >-		mm->def_flags, &mm->def_flags
+> >+		vma_flags_to_legacy(mm->def_vma_flags), &mm->def_vma_flags
+> > 	);
+>
+> While at it, one thing for later: dump_mm() still assumes one-world VMA
+> flags. That works today since vma_flags_t is one word. Maybe worth a
+> BUILD_BUG_ON() here, before that stops being true?
 
-Here's the drm-xe-fixes PR towards -rc2.
+Ah yeah that could actually be pretty straightforward, if you see
+https://www.kernel.org/doc/Documentation/printk-formats.txt there is a bitmap
+format that could be used.
 
-Mostly various fixes sprinkled all over the place, with the notable
-exception of the RTP/OA whitelist fixes backport, manly by Ashutosh
+Can do that on a respin!
 
-Thanks,
-Thomas
+>
+> Not a big deal though. Feel free to add:
+>
+> Reviewed-by: Lance Yang <lance.yang@linux.dev>
+>
+> > }
+> > EXPORT_SYMBOL(dump_mm);
+> [...]
 
-drm-xe-fixes-2026-07-02:
-Driver Changes:
-- Wedge from the timeout handler only after releasing the queue (Rodrigo)
-- Fix a NULL pointer dereference (Francois)
-- Remove redundant exec_queue_suspended (Lu)
-- RTP / OA whitelist fixes (Ashutosh, Gustavo, Thomas)
-- Return error on non-migratable faults requiring devmem (Matt Brost)
-- Skip FORCE_WC and vm_bound check for external dma-bufs (Matt Auld)
-- Hold notifier lock for write on inject test path (Shuicheng)
-- Drop bogus static from finish in force_invalidate (Shuicheng)
-- Fix double-free of managed BO in error path (Shuicheng)
-- Don't attempt to process FAST_REQ or EVENT relays (Michal)
-- Fix NPD in bo_meminfo (Matthew Auld)
-- Prevent invalid cursor access for purged BOs (Matthew Auld)
-- Fix offset alignment for MERT WHITELST_OA_MERT_MMIO_TRG (Ashutosh)
-The following changes since commit dc59e4fea9d83f03bad6bddf3fa2e52491777482:
-
-  Linux 7.2-rc1 (2026-06-28 12:01:31 -0700)
-
-are available in the Git repository at:
-
-  https://gitlab.freedesktop.org/drm/xe/kernel.git tags/drm-xe-fixes-2026-07-02
-
-for you to fetch changes up to 959b5016e4646b55fd2fd0438932e4c4e9ce171f:
-
-  drm/xe/oa: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG (2026-07-02 12:29:44 +0200)
-
-----------------------------------------------------------------
-Driver Changes:
-- Wedge from the timeout handler only after releasing the queue (Rodrigo)
-- Fix a NULL pointer dereference (Francois)
-- Remove redundant exec_queue_suspended (Lu)
-- RTP / OA whitelist fixes (Ashutosh, Gustavo, Thomas)
-- Return error on non-migratable faults requiring devmem (Matt Brost)
-- Skip FORCE_WC and vm_bound check for external dma-bufs (Matt Auld)
-- Hold notifier lock for write on inject test path (Shuicheng)
-- Drop bogus static from finish in force_invalidate (Shuicheng)
-- Fix double-free of managed BO in error path (Shuicheng)
-- Don't attempt to process FAST_REQ or EVENT relays (Michal)
-- Fix NPD in bo_meminfo (Matthew Auld)
-- Prevent invalid cursor access for purged BOs (Matthew Auld)
-- Fix offset alignment for MERT WHITELST_OA_MERT_MMIO_TRG (Ashutosh)
-
-----------------------------------------------------------------
-Ashutosh Dixit (10):
-      drm/xe/rtp: Add RING_FORCE_TO_NONPRIV_DENY to OA whitelists
-      drm/xe/rtp: Maintain OA whitelists separately
-      drm/xe/rtp: Keep track of non-OA nonpriv slots
-      drm/xe/rtp: Generalize whitelist_apply_to_hwe
-      drm/xe/rtp: Save OA nonpriv registers to register save/restore lists
-      drm/xe/rtp: Toggle 'deny' bit to (de-)whitelist OA regs
-      drm/xe/rtp: (De-)whitelist OA registers for all hwe's for a gt
-      drm/xe/oa: (De-)whitelist OA registers on OA stream open/release
-      drm/xe/rtp: Ensure locking/ref counting for OA whitelists
-      drm/xe/oa: Fix offset alignment for MERT WHITELIST_OA_MERT_MMIO_TRG
-
-Francois Dugast (1):
-      drm/xe/pt: Fix NULL pointer dereference in xe_pt_zap_ptes_entry()
-
-Gustavo Sousa (1):
-      drm/xe/rtp: Add struct types for RTP tables
-
-Lu Yao (1):
-      drm/xe: Remove redundant exec_queue_suspended() check in submit_exec_queue()
-
-Matthew Auld (3):
-      drm/xe/display: skip FORCE_WC and vm_bound check for external dma-bufs
-      drm/xe: fix NPD in bo_meminfo()
-      drm/xe/pt: prevent invalid cursor access for purged BOs
-
-Matthew Brost (1):
-      drm/xe: Return error on non-migratable faults requiring devmem
-
-Michal Wajdeczko (1):
-      drm/xe/pf: Don't attempt to process FAST_REQ or EVENT relays
-
-Rodrigo Vivi (1):
-      drm/xe: wedge from the timeout handler only after releasing the queue
-
-Shuicheng Lin (3):
-      drm/xe/userptr: Hold notifier_lock for write on inject test path
-      drm/xe/userptr: Drop bogus static from finish in force_invalidate
-      drm/xe/hw_engine: Fix double-free of managed BO in error path
-
-Thomas Hellström (1):
-      drm/xe/rtp: Fix build error with clang < 21 and non-const initializers
-
- drivers/gpu/drm/xe/display/xe_display_bo.c |   3 +-
- drivers/gpu/drm/xe/display/xe_fb_pin.c     |   3 +-
- drivers/gpu/drm/xe/tests/xe_rtp_test.c     | 103 +++++++++++------------------
- drivers/gpu/drm/xe/xe_drm_client.c         |  12 +++-
- drivers/gpu/drm/xe/xe_gt_debugfs.c         |   4 +-
- drivers/gpu/drm/xe/xe_guc_relay.c          |  13 ++--
- drivers/gpu/drm/xe/xe_guc_submit.c         |   9 ++-
- drivers/gpu/drm/xe/xe_hw_engine.c          |  20 +++---
- drivers/gpu/drm/xe/xe_hw_engine_types.h    |   8 +++
- drivers/gpu/drm/xe/xe_oa.c                 |   7 ++
- drivers/gpu/drm/xe/xe_oa_types.h           |   3 +
- drivers/gpu/drm/xe/xe_pt.c                 |  67 ++++++++++++++-----
- drivers/gpu/drm/xe/xe_reg_whitelist.c      | 102 ++++++++++++++++++++++++----
- drivers/gpu/drm/xe/xe_reg_whitelist.h      |   4 ++
- drivers/gpu/drm/xe/xe_rtp.c                |  31 ++++-----
- drivers/gpu/drm/xe/xe_rtp.h                |  24 ++++++-
- drivers/gpu/drm/xe/xe_rtp_types.h          |  10 +++
- drivers/gpu/drm/xe/xe_svm.c                |   6 +-
- drivers/gpu/drm/xe/xe_svm.h                |  15 ++++-
- drivers/gpu/drm/xe/xe_tuning.c             |  45 ++++++-------
- drivers/gpu/drm/xe/xe_userptr.c            |   2 +-
- drivers/gpu/drm/xe/xe_wa.c                 |  89 +++++++++++++------------
- 22 files changed, 376 insertions(+), 204 deletions(-)
+Cheers, Lorenzo
