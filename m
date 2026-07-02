@@ -2,81 +2,59 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id n6XLMFRiRmp6SQsAu9opvQ
+	id DxPPNeZWRmqDRAsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:28 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 14:17:42 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 52F0E6F81EF
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 825F66F7719
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 14:17:42 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=o2h14zEv;
+	dkim=fail ("headers rsa verify failed") header.d=arm.com header.s=foss header.b=vK6IYk9g;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=linux.dev
+	dmarc=fail reason="SPF not aligned (relaxed)" header.from=arm.com (policy=none)
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id B74B310F3A4;
-	Thu,  2 Jul 2026 13:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7751310E4B8;
+	Thu,  2 Jul 2026 12:17:40 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-180.mta0.migadu.com (out-180.mta0.migadu.com
- [91.218.175.180])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0B68310E4A9
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 12:11:10 +0000 (UTC)
-X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
- include these headers.
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782994254;
- h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
- to:to:cc:cc:mime-version:mime-version:content-type:content-type:
- content-transfer-encoding:content-transfer-encoding:
- in-reply-to:in-reply-to:references:references;
- bh=szYxJDyUXLwpHCPYtdT5QZRTamk7ohIwjDiVPC1pzUs=;
- b=o2h14zEvKcQ49vaQ50LBNnbgHGGpFBTA0OsIFCWdpiUc7gYaraiUcJHgmdFM4mBzY7pBJH
- 3Nawgn9WkBzIHxRb3Nw1H0UdEQI7UMwMGIksMhfoUjYHvm6uqPS5csZAIdTgWkWJ0NxwiR
- +fbu3PSBP2IvpsY/0wNqYNag0+1ZZPU=
-From: Lance Yang <lance.yang@linux.dev>
-To: ljs@kernel.org
-Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
- mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
- tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
- l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com,
- kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org,
- jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- rodrigo.vivi@intel.com, tursulin@ursulin.net, robin.clark@oss.qualcomm.com,
- lumag@kernel.org, lyude@redhat.com, dakr@kernel.org,
- tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, heiko@sntech.de,
- andy.yan@rock-chips.com, thierry.reding@kernel.org, mperttunen@nvidia.com,
- jonathanh@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
- zack.rusin@broadcom.com, matthew.brost@intel.com,
- thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
- deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
- muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
- baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
- ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
- lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
- surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
- kees@kernel.org, perex@perex.cz, tiwai@suse.com,
- linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
- linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
- linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
- intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
- linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
- linux-sound@vger.kernel.org
-Subject: Re: [PATCH 05/13] mm: prefer mm->def_vma_flags in mm logic
-Date: Thu,  2 Jul 2026 20:10:22 +0800
-Message-Id: <20260702121022.49113-1-lance.yang@linux.dev>
-In-Reply-To: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
-References: <3b4ccdc38819b42ddc79ee5a795831208ac7986c.1782760670.git.ljs@kernel.org>
+Received: from foss.arm.com (foss.arm.com [217.140.110.172])
+ by gabe.freedesktop.org (Postfix) with ESMTP id BDFFD10F34B;
+ Thu,  2 Jul 2026 12:17:38 +0000 (UTC)
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+ by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D9CA01D15;
+ Thu,  2 Jul 2026 05:17:33 -0700 (PDT)
+Received: from [10.2.212.23] (e121345-lin.cambridge.arm.com [10.2.212.23])
+ by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 5A4353F905;
+ Thu,  2 Jul 2026 05:17:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
+ t=1782994658; bh=Wnn2Ksvw76sAIUTT1KSmFOtvZNloFjX2aZnafzdf1UQ=;
+ h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
+ b=vK6IYk9gGV1YLFWdtmNJ138PGUigoXO6KoGAs2xhe8xYj4Ie8oxMHU7qkepIguElP
+ keKbPz8EWxK01r1MWaM243c/uNeghukm+UWDWB2botZRsvuycY5oypm60m1JLQns60
+ R3uaSZGvWVURylQgZg0iJQivMo/r2FericMoXnDM=
+Message-ID: <73b486cb-e082-4c3e-a193-6629960efede@arm.com>
+Date: Thu, 2 Jul 2026 13:17:23 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Migadu-Flow: FLOW_OUT
-X-Mailman-Approved-At: Thu, 02 Jul 2026 13:06:24 +0000
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH v2 3/3] drivers/iommu: Catch scatterlist length overflows
+To: Krzysztof Karas <krzysztof.karas@intel.com>
+Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
+ iommu@lists.linux.dev, Joerg Roedel <joro@8bytes.org>,
+ Will Deacon <will@kernel.org>, Andi Shyti <andi.shyti@linux.intel.com>,
+ =?UTF-8?Q?Micha=C5=82_Grzelak?= <michal.grzelak@intel.com>,
+ Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
+ Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
+ Krzysztof Niemiec <krzysztof.niemiec@intel.com>
+References: <20260701104437.236979-1-krzysztof.karas@intel.com>
+ <20260701104437.236979-4-krzysztof.karas@intel.com>
+ <b65c0f9f-184e-42fb-85dd-aa6c06dc91d8@arm.com>
+ <bbh4gbq6eolkqwhcuou2fufcbpthxklb2nmawglhhxdzea6tpg@2j7xekrl64pj>
+From: Robin Murphy <robin.murphy@arm.com>
+Content-Language: en-GB
+In-Reply-To: <bbh4gbq6eolkqwhcuou2fufcbpthxklb2nmawglhhxdzea6tpg@2j7xekrl64pj>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -92,82 +70,126 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_CONTAINS_FROM(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
+X-Spamd-Result: default: False [0.49 / 15.00];
+	R_DKIM_REJECT(1.00)[arm.com:s=foss];
 	MAILLIST(-0.20)[mailman];
-	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linux-foundation.org,alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS(0.00)[m:ljs@kernel.org,m:akpm@linux-foundation.org,m:tsbogend@alpha.franken.de,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:l.stach@pengutronix.de,m:inki.dae@samsung.com,m:sw0312.kim@samsung.com,m:kyungmin.park@samsung.com,m:krzk@kernel.org,m:peter.griffin@linaro.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:lyude@redhat.com,m:dakr@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:thierry.reding@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:zack.rusin@broadcom.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:oleksandr_andrushchenko@epam.com,m:deller@gmx.de,m:bcrl@kvack.org,m:viro@zeniv.l
- inux.org.uk,m:brauner@kernel.org,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:ziy@nvidia.com,m:baolin.wang@linux.alibaba.com,m:liam@infradead.org,m:npache@redhat.com,m:ryan.roberts@arm.com,m:dev.jain@arm.com,m:baohua@kernel.org,m:lance.yang@linux.dev,m:hughd@google.com,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:jannh@google.com,m:pfalcato@suse.de,m:kees@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-mips@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:etnaviv@lists.freedesktop.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsung-soc@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:linux-tegra@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:xen-devel@lists.xenproject.org,m:linux-fbdev@vger.kernel.org,m:linux-aio@kv
- ack.org,m:linux-fsdevel@vger.kernel.org,m:linux-mm@kvack.org,m:linux-sound@vger.kernel.org,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	FORGED_SENDER(0.00)[lance.yang@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[linux.dev:+];
-	MISSING_XM_UA(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_NONE(0.00)[];
-	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[lance.yang@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[83];
-	FORGED_SENDER_FORWARDING(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	TO_DN_SOME(0.00)[];
+	DKIM_TRACE(0.00)[arm.com:-];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.dev:dkim,linux.dev:email,linux.dev:mid,linux.dev:from_mime,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
+	MID_RHS_MATCH_FROM(0.00)[];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,arm.com:email,arm.com:mid,arm.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 52F0E6F81EF
+X-Rspamd-Queue-Id: 825F66F7719
 
+On 02/07/2026 7:22 am, Krzysztof Karas wrote:
+> Hi Robin,
+> 
+> thanks for a quick response!
+> 
+> On 2026-07-01 at 12:59:29 +0100, Robin Murphy wrote:
+>> On 01/07/2026 11:44 am, Krzysztof Karas wrote:
+>>> It is possible, when a very large mapping uses a single
+>>> scatterlist, that padding overflows scatterlist's length field.
+>>> This results in:
+>>>    1) silently wrapping the value
+>>>    2) smaller than desired mappings produced by iommu_map_sg
+>>>    3) leaving mapped bytes in memory (no iommu_unmap)
+>>>
+>>> Address this issue by adding overflow detection for previous
+>>> scatterlist length field.
+>>
+>> Awesome, thanks for figuring it out! Looks like this must date all the way
+>> back:
+>>
+>> Fixes: 809eac54cdd6 ("iommu/dma: Implement scatterlist segment merging")
+> Okay, thanks for pinpointing this commit, I'll add the tag in
+> the next version of this series.
+> 
+>>
+>>> Signed-off-by: Krzysztof Karas <krzysztof.karas@intel.com>
+>>> ---
+>>> v2:
+>>>    * Address overflows instead of unmapping erroneously mapped
+>>>    memory (Robin).
+>>>    * Put this patch last for easier reproduction of the issue.
+>>>
+>>>    drivers/iommu/dma-iommu.c | 14 ++++++++++++--
+>>>    1 file changed, 12 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/iommu/dma-iommu.c b/drivers/iommu/dma-iommu.c
+>>> index 9abaec0703ef..c403057577df 100644
+>>> --- a/drivers/iommu/dma-iommu.c
+>>> +++ b/drivers/iommu/dma-iommu.c
+>>> @@ -1493,8 +1493,18 @@ int iommu_dma_map_sg(struct device *dev, struct scatterlist *sg, int nents,
+>>>    		 *   time through here (i.e. before it has a meaningful value).
+>>>    		 */
+>>>    		if (pad_len && pad_len < s_length - 1) {
+>>> -			prev->length += pad_len;
+>>> -			iova_len += pad_len;
+>>> +			if (overflows_type(prev->length + pad_len, prev->length)) {
+>>> +				/*
+>>> +				 * For large mappings spanning multiple GBs we
+>>> +				 * may not be able to fit all needed padding into
+>>> +				 * sg->length.
+>>> +				 */
+>>> +				ret = -EOVERFLOW;
+>>> +				goto out_restore_sg;
+>>> +			} else {
+>>
+>> Nit: we don't really need an "else" after a goto, but it's hardly a big deal
+>> (however if you did want to respin, note also that the preferred title tag
+>> here is "iommu/dma: ...").
+> I'll be making another version anyway, so I can remove the
+> "else" and change the title :)
 
-On Mon, Jun 29, 2026 at 08:25:28PM +0100, Lorenzo Stoakes wrote:
->Currently mm->def_flags (of type vm_flags_t) is union'd with
->mm->def_vma_flags (of type vma_flags_t).
->
->As part of the effort to convert vm_flags_t usage to vma_flags_t (in order
->to no longer be arbitrarily limited to a system word size for VMA flags),
->prefer mm->def_vma_flags to mm->def_flags throughout the mm logic.
->
->No functional change intended.
->
->Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
->---
-> mm/debug.c |  2 +-
-> mm/mlock.c | 13 +++++++------
-> mm/mmap.c  | 11 ++++++-----
-> mm/vma.c   |  4 ++--
-> 4 files changed, 16 insertions(+), 14 deletions(-)
->
->diff --git a/mm/debug.c b/mm/debug.c
->index 497654b36f1a..f0a354a9496a 100644
->--- a/mm/debug.c
->+++ b/mm/debug.c
->@@ -226,7 +226,7 @@ void dump_mm(const struct mm_struct *mm)
-> 		mm->numa_next_scan, mm->numa_scan_offset, mm->numa_scan_seq,
-> #endif
-> 		atomic_read(&mm->tlb_flush_pending),
->-		mm->def_flags, &mm->def_flags
->+		vma_flags_to_legacy(mm->def_vma_flags), &mm->def_vma_flags
-> 	);
+Cool :)
 
-While at it, one thing for later: dump_mm() still assumes one-world VMA
-flags. That works today since vma_flags_t is one word. Maybe worth a
-BUILD_BUG_ON() here, before that stops being true?
+>> Either way,
+>>
+>> Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+> Thanks!
+> 
+> would this r-b still hold after above minor changes, or would
+> you prefer to have one final look at the finished change and
+> then decide whether you give your r-b?
 
-Not a big deal though. Feel free to add:
+Indeed if it's just those tweaks then feel free to keep it, that's 
+usually what I mean by "either way".
 
-Reviewed-by: Lance Yang <lance.yang@linux.dev>
+Cheers,
+Robin.
 
-> }
-> EXPORT_SYMBOL(dump_mm);
-[...]
+> 
+>>
+>> I'd imagine Joerg can take this as an IOMMU fix, but FWIW if you did want an
+>> ack to take it through drm-fixes to keep it with the i915 patches, I
+>> wouldn't foresee any significant risk of conflicts.
+>>
+>> Thanks,
+>> Robin.
+>>
+>>> +				prev->length += pad_len;
+>>> +				iova_len += pad_len;
+>>> +			}
+>>>    		}
+>>>    		iova_len += s_length;
+>>
+> 
+
