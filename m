@@ -2,59 +2,60 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id aD5wEvO0Rmq1bwsAu9opvQ
+	id 1X+6C/S0Rmq2bwsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 20:58:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 20:59:00 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 62B5E6FC5C8
+	by mail.lfdr.de (Postfix) with ESMTPS id EB0A76FC5C9
 	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 20:58:58 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=Ur7Gm9Zp;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ND2lUJ0A;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=intel.com
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 1224D10F595;
-	Thu,  2 Jul 2026 18:58:54 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 173D110F594;
+	Thu,  2 Jul 2026 18:58:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 3A83D10F58E;
- Thu,  2 Jul 2026 18:58:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E1CEB10F597;
+ Thu,  2 Jul 2026 18:58:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783018733; x=1814554733;
+ t=1783018735; x=1814554735;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=I+nnQrN0rLJTHGX8/Ecumr5cDudOmDEfC3lwsrHgN9U=;
- b=Ur7Gm9ZpT8YkQoi81AUnjTh7ZuoKlwXV9OMv+T4I02GRYc6gSMEt6EQb
- Y3TZWM1BZztizxWOg32mXWoFdSzW0sFiHHaQjztgZABHhenqoxCVor9YF
- l0GOExgkDc4p2O1kLM4Y+dwST3J1CHZ3Ml6HoWTSnwvian2bhEgBR6K12
- K54vu8hry47PfMyQNbOBwxf1Hxzh1eGae/q26eJJGYKwFLC5do93zU8/f
- BMeyz0eir8Lbuqr+Jx/D7XCA/Sydsj5GlpI2TY1/1uQMBB1t8tzIOjdgT
- 8h+XD5Vy0dyZ1h4RZDzAxKkPb7YHcZOBJnk2tzWy3DlHLoAJ+l0ZuLvm5 Q==;
-X-CSE-ConnectionGUID: 6Kes3rSmSfSkWGpyqUuayg==
-X-CSE-MsgGUID: Do9Y7lSSRDqbH6dv5RU6Uw==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="71300034"
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="71300034"
+ bh=INXGljcYXqUWthlSO+jwnckQV2JuWea955KcZ4gMU1U=;
+ b=ND2lUJ0AhVa0VozTm0AlZOio4HpDfMM7e0Txq4ee6DtnX+6Zt7zhT90b
+ 18BI6dIZFP9d/PP6j3HzD32oZbyXs5ZM4l+LCPoIcsbV1xoOyT2xa9WhZ
+ 9lIhzC1vuDmpMHmbzPYaJWVY/L6+eP0vt/RXTbIMJcT13VgkT157gWcM0
+ JtHvua21V0mysF2VUdmhm/BhUL8kGRDo2EZqhcwyPVFJ4n3r1aGgbVo7r
+ Cns1RQQIkc1oU3/Dk5bK0gJIjTD8OH7cI8N6jfFOpKF/SlNS3BDcynpMm
+ GIcGxx7na3mcW6/Md1S2UquT3SovhULubgFGsJjhgZIGyCtjP9YIVZ6MO Q==;
+X-CSE-ConnectionGUID: 45GhMDHRTlabgvbMp6jgOA==
+X-CSE-MsgGUID: HGSWIWk4TC69m8JtGAY5yQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="71300037"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="71300037"
 Received: from orviesa010.jf.intel.com ([10.64.159.150])
  by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 11:58:53 -0700
-X-CSE-ConnectionGUID: Sl4/HUyjSK6YIAC8bvwgvQ==
-X-CSE-MsgGUID: vDAOyAXKRKGIobp9Juh6Nw==
+ 02 Jul 2026 11:58:55 -0700
+X-CSE-ConnectionGUID: 5l5ZfDXfT2qEpGYBiaHFeQ==
+X-CSE-MsgGUID: Ei5WATzIQkqtRltrH6PG4Q==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="251862159"
+X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="251862162"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa010.jf.intel.com with ESMTP; 02 Jul 2026 11:58:51 -0700
+ by orviesa010.jf.intel.com with ESMTP; 02 Jul 2026 11:58:53 -0700
 From: =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Jani Nikula <jani.nikula@intel.com>,
  Suraj Kandpal <suraj.kandpal@intel.com>,
  =?UTF-8?q?Micha=C5=82=20Grzelak?= <michal.grzelak@intel.com>
-Subject: [PATCH v10 3/8] drm/i915/bios: print VS/PE-O port info
-Date: Thu,  2 Jul 2026 20:58:34 +0200
-Message-ID: <20260702185839.4042397-4-michal.grzelak@intel.com>
+Subject: [PATCH v10 4/8] drm/i915/bios: de/allocate VS/PE-O buffers for each
+ port
+Date: Thu,  2 Jul 2026 20:58:35 +0200
+Message-ID: <20260702185839.4042397-5-michal.grzelak@intel.com>
 X-Mailer: git-send-email 2.45.2
 In-Reply-To: <20260702185839.4042397-1-michal.grzelak@intel.com>
 References: <20260702185839.4042397-1-michal.grzelak@intel.com>
@@ -104,67 +105,112 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,intel.com:email,intel.com:mid,intel.com:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 62B5E6FC5C8
+X-Rspamd-Queue-Id: EB0A76FC5C9
 
-Issue a debug message when port asks to override default Vswing /
-Preemphasis tables.
+Every devdata needs a VS/PE-O dedicated buffers since each port can
+request an override. Add intel_ddi_buf_trans{,_entry} pointers into
+intel_bios_encoder_data.
 
-Add helper intel_bios_encoder_requests_vspeo() to check if port
-requests for overriding default VS/PE tables.
+Allocate struct intel_ddi_buf_trans{,_entry} for the port if VS/PE-O was
+requested and is supported. Keep NULL in vspeo if any allocation failed
+or VS/PE-O was not requested. It will be used later for checking if
+override should actually take place.
 
-v6->v7
-- expand VS/PE-O acronym in debug logging (Jani)
+Note that we theoretically could store intel_ddi_buf_trans_entry inside
+`entries` field of newly allocated intel_ddi_buf_trans. However it will
+be impossible to overwrite the buffer during intel_ddi_get_buf_trans()
+without discarding const qualifier of `entries` field. This would
+involve either void casting or deconstifying entries field and in turn
+all predefined tables as well. Thus add a separate non-const qualified
+field into intel_bios_encoder_data for the buffer, which after
+overwriting will be promoted to be const qualified.
 
-v3->v4
-- change debug message when requesting VS/PE-O (Suraj)
+Deallocate the buffer as well as entries if requested.
+
+v9->v10
+- add separate non-const field for `entries` caching
+- cache `entries` into const field after data is overwritten (Jani)
+
+v4->v5
+- set devdata->vspeo->num_entries in intel_bios.c
 
 Signed-off-by: Michał Grzelak <michal.grzelak@intel.com>
 Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_bios.c | 10 ++++++++++
- drivers/gpu/drm/i915/display/intel_bios.h |  1 +
- 2 files changed, 11 insertions(+)
+ drivers/gpu/drm/i915/display/intel_bios.c | 32 +++++++++++++++++++++++
+ 1 file changed, 32 insertions(+)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_bios.c b/drivers/gpu/drm/i915/display/intel_bios.c
-index 06a8dd7581bb..9610b794bc14 100644
+index 9610b794bc14..a491b8500611 100644
 --- a/drivers/gpu/drm/i915/display/intel_bios.c
 +++ b/drivers/gpu/drm/i915/display/intel_bios.c
-@@ -2801,6 +2801,11 @@ static void print_ddi_port(const struct intel_bios_encoder_data *devdata)
- 			    "Port %c supports dynamic DDI allocation in TCSS\n",
- 			    port_name(port));
+@@ -34,6 +34,7 @@
+ #include <drm/drm_fixed.h>
+ #include <drm/drm_print.h>
  
-+	if (intel_bios_encoder_requests_vspeo(devdata))
-+		drm_dbg_kms(display->drm,
-+			    "Port %c requests vswing/pre-emphasis override\n",
-+			    port_name(port));
-+
- 	hdmi_level_shift = intel_bios_hdmi_level_shift(devdata);
- 	if (hdmi_level_shift >= 0) {
- 		drm_dbg_kms(display->drm,
-@@ -3829,6 +3834,11 @@ int intel_bios_hdmi_ddc_pin(const struct intel_bios_encoder_data *devdata)
- 	return map_ddc_pin(devdata->display, devdata->child.ddc_pin);
++#include "intel_ddi_buf_trans.h"
+ #include "intel_display.h"
+ #include "intel_display_core.h"
+ #include "intel_display_rpm.h"
+@@ -72,6 +73,8 @@
+ struct intel_bios_encoder_data {
+ 	struct intel_display *display;
+ 
++	struct intel_ddi_buf_trans *vspeo;
++	union intel_ddi_buf_trans_entry *entries;
+ 	struct child_device_config child;
+ 	struct dsc_compression_parameters_entry *dsc;
+ 	struct list_head node;
+@@ -2648,6 +2651,29 @@ static void sanitize_device_type(struct intel_bios_encoder_data *devdata,
+ 	devdata->child.device_type |= DEVICE_TYPE_NOT_HDMI_OUTPUT;
  }
  
-+bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata)
++static void allocate_vswing_preemph_override(struct intel_bios_encoder_data *devdata)
 +{
-+	return devdata->display->vbt.version >= 218 && devdata->child.use_vbt_vswing;
++	int num_rows = devdata->display->vbt.vspeo.num_rows;
++	union intel_ddi_buf_trans_entry *entries;
++	struct intel_ddi_buf_trans *vspeo;
++
++	if (!intel_bios_encoder_requests_vspeo(devdata))
++		return;
++
++	vspeo = kzalloc_obj(*vspeo);
++	if (!vspeo)
++		return;
++
++	entries = kzalloc_objs(*entries, num_rows);
++	if (!entries) {
++		kfree(vspeo);
++		return;
++	}
++
++	devdata->vspeo = vspeo;
++	devdata->entries = entries;
 +}
 +
- bool intel_bios_encoder_supports_typec_usb(const struct intel_bios_encoder_data *devdata)
+ static void sanitize_hdmi_level_shift(struct intel_bios_encoder_data *devdata,
+ 				      enum port port)
  {
- 	return devdata->display->vbt.version >= 195 && devdata->child.dp_usb_type_c;
-diff --git a/drivers/gpu/drm/i915/display/intel_bios.h b/drivers/gpu/drm/i915/display/intel_bios.h
-index 75dff27b4228..7a50a272cd27 100644
---- a/drivers/gpu/drm/i915/display/intel_bios.h
-+++ b/drivers/gpu/drm/i915/display/intel_bios.h
-@@ -73,6 +73,7 @@ bool intel_bios_get_dsc_params(struct intel_encoder *encoder,
- const struct intel_bios_encoder_data *
- intel_bios_encoder_data_lookup(struct intel_display *display, enum port port);
+@@ -2866,6 +2892,7 @@ static void parse_ddi_port(struct intel_bios_encoder_data *devdata)
+ 	sanitize_dedicated_external(devdata, port);
+ 	sanitize_device_type(devdata, port);
+ 	sanitize_hdmi_level_shift(devdata, port);
++	allocate_vswing_preemph_override(devdata);
+ }
  
-+bool intel_bios_encoder_requests_vspeo(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dvi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_hdmi(const struct intel_bios_encoder_data *devdata);
- bool intel_bios_encoder_supports_dp(const struct intel_bios_encoder_data *devdata);
+ static bool has_ddi_port_info(struct intel_display *display)
+@@ -3403,6 +3430,11 @@ void intel_bios_driver_remove(struct intel_display *display)
+ 	list_for_each_entry_safe(devdata, nd, &display->vbt.display_devices,
+ 				 node) {
+ 		list_del(&devdata->node);
++
++		if (devdata->vspeo)
++			kfree(devdata->vspeo->entries);
++
++		kfree(devdata->vspeo);
+ 		kfree(devdata->dsc);
+ 		kfree(devdata);
+ 	}
 -- 
 2.45.2
 
