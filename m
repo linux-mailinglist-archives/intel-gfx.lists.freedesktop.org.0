@@ -2,38 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id d3GPK1NiRmp3SQsAu9opvQ
+	id PKfEJVliRmqESQsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:33 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5ACB96F81E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 59E336F820D
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=linux.dev header.s=key1 header.b=lN0+Boa2;
+	dkim=pass header.d=linux.dev header.s=key1 header.b=b+ldrvkt;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9035F10F3A2;
-	Thu,  2 Jul 2026 13:06:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D389310F38D;
+	Thu,  2 Jul 2026 13:06:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from out-178.mta0.migadu.com (out-178.mta0.migadu.com
- [91.218.175.178])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 9164D10E4B3
- for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 12:22:04 +0000 (UTC)
+Received: from out-177.mta0.migadu.com (out-177.mta0.migadu.com
+ [91.218.175.177])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D74F410F340
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 12:25:47 +0000 (UTC)
 X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
  include these headers.
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
- t=1782994911;
+ t=1782995144;
  h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
  to:to:cc:cc:mime-version:mime-version:content-type:content-type:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=flDoJiJgtgGf3x2zlQX9jaS5nhFTdBgmSXvfG9PiFjA=;
- b=lN0+Boa2ASIcCLc47EPvtXVMZuYaw78VJ/wVLmRpCeGudutYAguuVxwIGwqQDa2oDibvGW
- bIpbbgc5ew0Ij3QtFyyGuneAdXTOrpkXqfYfNRMzfKjFKxKgZCy8wM/iRDCenl6trdMYJz
- +LOdf87J+2yAD0n3s3yNqonkzwm6x4w=
+ bh=7Ko6g/fNv98hSurpFrjSC8unNT/smMh3pnGqTobbcqg=;
+ b=b+ldrvkt8ZmJ+OrI3yxcQgFLnRxGCWHjhsFZZL3rVzLaxyNILjolYA01aJGr58GPqotONa
+ C0qfjyiCv0Ek1cqalMJ+/t7YCyD5CeARmY/TMOXt2of2lM3qjKi0LZINpNnLjdz9QLcCqu
+ OOzdaIK15Lm4UMi7JwMdKk4MKXYIZlw=
 From: Lance Yang <lance.yang@linux.dev>
 To: ljs@kernel.org
 Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
@@ -67,12 +67,12 @@ Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
  linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
  linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
  linux-sound@vger.kernel.org
-Subject: Re: [PATCH 06/13] mm/vma: convert vm_pgprot_modify() to use
- vma_flags_t and rename
-Date: Thu,  2 Jul 2026 20:21:16 +0800
-Message-Id: <20260702122116.65642-1-lance.yang@linux.dev>
-In-Reply-To: <548ba81b2971734d4d2143237ad1465bd1b2f525.1782760670.git.ljs@kernel.org>
-References: <548ba81b2971734d4d2143237ad1465bd1b2f525.1782760670.git.ljs@kernel.org>
+Subject: Re: [PATCH 07/13] mm/vma: rename vma_get_page_prot to
+ vma_flags_to_page_prot
+Date: Thu,  2 Jul 2026 20:25:15 +0800
+Message-Id: <20260702122515.74271-1-lance.yang@linux.dev>
+In-Reply-To: <fc8ac30d03d29d236e76542b36432bba315aca60.1782760670.git.ljs@kernel.org>
+References: <fc8ac30d03d29d236e76542b36432bba315aca60.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
@@ -126,51 +126,23 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	FORGED_RECIPIENTS_FORWARDING(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:email,linux.dev:mid,linux.dev:from_mime,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,linux.dev:dkim,linux.dev:email,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5ACB96F81E5
+X-Rspamd-Queue-Id: 59E336F820D
 
 
-On Mon, Jun 29, 2026 at 08:25:29PM +0100, Lorenzo Stoakes wrote:
->Update vm_pgprot_modify() to use the new VMA flags type vma_flags_t, and
->rename to vma_pgprot_modify() accordingly.
+On Mon, Jun 29, 2026 at 08:25:30PM +0100, Lorenzo Stoakes wrote:
+>Having vma_get_page_prot() refer to VMA flags and vma_set_page_prot() refer
+>to a VMA is confusing.
 >
->This is part of the ongoing work to convert vm_flags_t to vma_flags_t, in
->order to eliminate the arbitrary limit of the number of bits in a system
->word on available VMA flags.
->
->Update VMA userland tests accordingly, updating vma_set_page_prot() to no
->longer inline vma_pgprot_modify(), rather we can simply define
->vma_pgprot_modify() as a static inline function and the tests will pick it
->up from vma.h.
+>Rename vma_get_page_prot() to vma_flags_to_page_prot() to resolve this
+>confusion.
 >
 >No functional change intended.
 >
 >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
 >---
-[...]
->diff --git a/mm/vma.h b/mm/vma.h
->index bcf0c2773449..6a8abb8ae937 100644
->--- a/mm/vma.h
->+++ b/mm/vma.h
->@@ -522,9 +522,11 @@ static inline bool vma_wants_manual_pte_write_upgrade(struct vm_area_struct *vma
-> }
-> 
-> #ifdef CONFIG_MMU
->-static inline pgprot_t vm_pgprot_modify(pgprot_t oldprot, vm_flags_t vm_flags)
->+static inline pgprot_t vma_pgprot_modify(pgprot_t oldprot, vma_flags_t vma_flags)
-> {
->-	return pgprot_modify(oldprot, vm_get_page_prot(vm_flags));
->+	const pgprot_t prot = vma_get_page_prot(vma_flags);
->+
->+	return pgprot_modify(oldprot, prot);
 
-Nit: could this just stay as a single return? something like:
-
-return pgprot_modify(oldprot, vma_get_page_prot(vma_flags));
-
-Otherwise, LGTM, feel free to add: 
+straight rename, no stale callers that I can spot ;) Feel free to add:
 
 Reviewed-by: Lance Yang <lance.yang@linux.dev>
-
-[...]
