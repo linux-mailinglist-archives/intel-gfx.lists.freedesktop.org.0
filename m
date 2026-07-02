@@ -2,42 +2,43 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id BfisGpIcRmq0KAsAu9opvQ
+	id UIdtMpEcRmqxKAsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:08:50 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:08:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 38A006F49A3
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:08:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C1876F4996
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 10:08:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=FYVyQ8Ep;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=BZtz3xhu;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	dmarc=pass (policy=none) header.from=lankhorst.se
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 62BA110F21D;
-	Thu,  2 Jul 2026 08:08:47 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D0A2B10F216;
+	Thu,  2 Jul 2026 08:08:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F15C10F216;
- Thu,  2 Jul 2026 08:08:43 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 373F810F216;
+ Thu,  2 Jul 2026 08:08:44 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1782979722;
- bh=j+kZhrKGeVLe6Kwb9Av2wRwsLfG3GUrsHoYClLpC+34=;
+ s=default; t=1782979723;
+ bh=0xLvIPUF7dUXs0cb7vXUK9dMYuEsI+fTHrltlGFTpL4=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=FYVyQ8Epsvol8ivf/Zqttxm7ERimG8fRHHu+cs9R8vnaZorjawgqmFl8dlaQ37ml4
- xvvv+/yn3vNS8SRiiLGsBwzFyb5UjggJEd+ddJ9CKjfx7YkGIwQbdb3IAfVUHBDsJg
- gjp5/yIjewq0cf+HR0LqPTdL03k2gZr4fLm2HyBUgFvZPaVrxhfFVXGl2CK5PMQSHd
- R80/qQTGCgCtPb0erCAnDESjRpLKc9WSCwP8sHWTdlomgUrcQvFBtCQQUp3vjGJKYA
- hgTo7whpV5wIQ0rJQ2EapnHcR+lrH+B0UWmCmMhZbaF7WCiXdpJGtxWwUB1pFQM7lm
- 51GaLVL5xpaRg==
+ b=BZtz3xhu0gUQVdqq61uFY+ylojtQq8gocXxaZPnflB3xwO4BQ/pU1jgPxq2bGtvp/
+ ii5Utgz4yJQbJM/Ry3acZtH3fd3ra75H7QhNu8paQXxF0Cuz0cSKbN9qAsVCp4dUpg
+ KCVdyUMgAghswgbrk3j1Q8jbnT+7DHWQYpIQh2Y6avagrICkXJQwHumOsZCTVCBS3R
+ 7h1owkpTq/zqRgmv7a8Q5CiAGFRYGsu+dZZIuvMawDBDwgqbhuUrNRR3A6tge8HRop
+ XfPajnsaM4ERTvValKVAtGdPT1r6xJkR18+JI7P7jm04gyi4wVCGdpW7MKgu+H12ce
+ 8y1gt261Orvqg==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH 5/7] drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
-Date: Thu,  2 Jul 2026 10:09:11 +0200
-Message-ID: <20260702080913.434121-6-dev@lankhorst.se>
+Subject: [PATCH 6/7] drm/i915: Use sleeping selftests for igt_atomic on
+ PREEMPT_RT
+Date: Thu,  2 Jul 2026 10:09:12 +0200
+Message-ID: <20260702080913.434121-7-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260702080913.434121-1-dev@lankhorst.se>
 References: <20260702080913.434121-1-dev@lankhorst.se>
@@ -84,29 +85,38 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 38A006F49A3
+X-Rspamd-Queue-Id: 9C1876F4996
 
-Also check if RCU is disabled for PREEMPT-RT, which is the case when
-local_bh_disable() is called.
+This makes the i915 selftests slightly happier, especially
+related to GPU reset.
+
+I believe this may be a better approach than trying to convert
+uncore->lock to raw_spinlock
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/gpu/drm/i915/selftests/igt_atomic.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
 
-diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-index c0fd349a4600c..9dd9665128caa 100644
---- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-+++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
-@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
+diff --git a/drivers/gpu/drm/i915/selftests/igt_atomic.c b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+index fb506b6990956..8ae39cf570b76 100644
+--- a/drivers/gpu/drm/i915/selftests/igt_atomic.c
++++ b/drivers/gpu/drm/i915/selftests/igt_atomic.c
+@@ -39,7 +39,14 @@ static void __hardirq_end(void)
+ 	local_irq_enable();
+ }
  
- static unsigned long stop_timeout(const struct intel_engine_cs *engine)
- {
--	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
-+	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
- 		return 0;
- 
- 	/*
++static void __maybe_unused __nop(void)
++{}
++
+ const struct igt_atomic_section igt_atomic_phases[] = {
++#if IS_ENABLED(CONFIG_PREEMPT_RT)
++	{ "sleeping", __nop, __nop },
++	{ },
++#endif
+ 	{ "preempt", __preempt_begin, __preempt_end },
+ 	{ "softirq", __softirq_begin, __softirq_end },
+ 	{ "hardirq", __hardirq_begin, __hardirq_end },
 -- 
 2.53.0
 
