@@ -2,68 +2,86 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 6o+kHqyGRmqEXwsAu9opvQ
+	id 552xMdiHRmrPXwsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:41:32 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:46:32 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 82EA26F98E5
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:41:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 3E2AB6F99A7
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 17:46:32 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=SRDovvY2;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=Mynx6GD6;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	dmarc=pass (policy=none) header.from=intel.com
+	dmarc=pass (policy=quarantine) header.from=kernel.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 09EAE10F479;
-	Thu,  2 Jul 2026 15:41:30 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id B3B8210F37E;
+	Thu,  2 Jul 2026 15:46:30 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 198C510F479;
- Thu,  2 Jul 2026 15:41:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783006888; x=1814542888;
- h=from:to:cc:subject:in-reply-to:references:date:
- message-id:mime-version:content-transfer-encoding;
- bh=9Ea14lAEOGohg0ov7VbDShfDUsza34y/w/Usg3DtUm4=;
- b=SRDovvY2RwLwayQBdJb14yyhunV6vwVPxjR4Oqh8djEJ6yoQSqO72YFI
- Lo9w/EogvPFu8D9Yo93zDdk/q7a/cmye1aIA5mbKYJ3Q3a6rN8txKcyhN
- I+tTXvZ/CMsETXnIVlCKjwnmQ2bscjuoswcjmeYZ5/UlryoDoCEegsBOe
- PEXZjTncj4tQBG3pof2yGtzkAWDivkP4pBslSiZezrm+07RIwWtjdJbJs
- IUFNBjoSxREAz7kIQAoDkc5UHny0ozUVxrAjgCfJGiNCHIVZ1mA1K1Tyh
- BjdFQ+2qhS3+1GFty8OnVcPCf7MSbjcmA+UhT9bpOZS/KX68YrxsET/pH g==;
-X-CSE-ConnectionGUID: FicJ1Sf4TaG91P/tZOSPRQ==
-X-CSE-MsgGUID: A0IdAXKBSECgA5tn2X8eyQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11835"; a="83814489"
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="83814489"
-Received: from orviesa002.jf.intel.com ([10.64.159.142])
- by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 08:41:28 -0700
-X-CSE-ConnectionGUID: 8Kp58UXZQoC0FzXQrBzptQ==
-X-CSE-MsgGUID: EnNdNwH/ToKaEQv+xbSOAA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,144,1779174000"; d="scan'208";a="282977504"
-Received: from slindbla-desk.ger.corp.intel.com (HELO localhost)
- ([10.245.245.43])
- by orviesa002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 02 Jul 2026 08:41:25 -0700
-From: Jani Nikula <jani.nikula@linux.intel.com>
-To: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>,
- intel-gfx@lists.freedesktop.org
-Cc: intel-xe@lists.freedesktop.org, ankit.k.nautiyal@intel.com,
- ville.syrjala@linux.intel.com, suraj.kandpal@intel.com
-Subject: Re: [PATCH RESEND v2] drm/i915/display: Program TRANS_VTOTAL from
- mode vtotal
-In-Reply-To: <20260617045850.862100-1-mitulkumar.ajitkumar.golani@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park,
- 6 krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-References: <20260617045850.862100-1-mitulkumar.ajitkumar.golani@intel.com>
-Date: Thu, 02 Jul 2026 18:41:21 +0300
-Message-ID: <0b7919083586f3ba26159f909f87666ea9b41045@intel.com>
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1426F10F37E;
+ Thu,  2 Jul 2026 15:46:29 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 2EBA4601EE;
+ Thu,  2 Jul 2026 15:46:28 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 90EC61F000E9;
+ Thu,  2 Jul 2026 15:46:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1783007187;
+ bh=jvE9wSqWBUCbGMsJG9svgBUezevNvrm1MrcHHSCChso=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=Mynx6GD6LkebsGmUnF9MjOYGoc5t/kjVRBAa3y4hDMiI7/vl1tQdkpNYaMYBglDKt
+ PpjOhV7WkyGWbA6148JfY40EHSUewPFem4EcHLSNtrDL52P+m6uRZFhhXV+p8drDP5
+ krlXhtnXXcRAzWJ2KFYq3Hh8rhTgMNWOvfDO5ubcScHxjko5fhA5/oYXfBSBTm3FYZ
+ q91+d//PbttUXOxvDyYYUNz2FFsT7LJ6pIAF99pcS/rpWlpmF6qsZCGqK6q0R7Cu6u
+ A7jMMvK5AtByO3p0pYtd9gulxJxBI42o3AQ7j7VXEvArqPbpGQYUH4EuymRAwVZamK
+ 6IrFtw9w61Ysg==
+Date: Thu, 2 Jul 2026 16:46:04 +0100
+From: Lorenzo Stoakes <ljs@kernel.org>
+To: Lance Yang <lance.yang@linux.dev>
+Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, 
+ maddy@linux.ibm.com, mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, 
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, 
+ l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com, 
+ kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org, 
+ jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
+ rodrigo.vivi@intel.com, 
+ tursulin@ursulin.net, robin.clark@oss.qualcomm.com, lumag@kernel.org,
+ lyude@redhat.com, 
+ dakr@kernel.org, tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, 
+ heiko@sntech.de, andy.yan@rock-chips.com, thierry.reding@kernel.org, 
+ mperttunen@nvidia.com, jonathanh@nvidia.com, kraxel@redhat.com, 
+ dmitry.osipenko@collabora.com, zack.rusin@broadcom.com, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
+ deller@gmx.de, bcrl@kvack.org, 
+ viro@zeniv.linux.org.uk, brauner@kernel.org, muchun.song@linux.dev,
+ osalvador@suse.de, 
+ david@kernel.org, ziy@nvidia.com, baolin.wang@linux.alibaba.com, 
+ liam@infradead.org, npache@redhat.com, ryan.roberts@arm.com, dev.jain@arm.com, 
+ baohua@kernel.org, hughd@google.com, vbabka@kernel.org, rppt@kernel.org, 
+ surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de, 
+ kees@kernel.org, perex@perex.cz, tiwai@suse.com, linux-mips@vger.kernel.org, 
+ linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+ dri-devel@lists.freedesktop.org, 
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org, 
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, 
+ freedreno@lists.freedesktop.org, nouveau@lists.freedesktop.org, 
+ linux-rockchip@lists.infradead.org, linux-tegra@vger.kernel.org,
+ virtualization@lists.linux.dev, 
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ linux-fbdev@vger.kernel.org, 
+ linux-aio@kvack.org, linux-fsdevel@vger.kernel.org, linux-mm@kvack.org, 
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 10/13] mm/vma: convert miscellaneous uses of VMA flags in
+ core mm
+Message-ID: <akaGxiTaJreEQn8T@lucifer>
+References: <1e7d834c887b6a65627d730addcff13d458c6268.1782760670.git.ljs@kernel.org>
+ <20260702131233.59026-1-lance.yang@linux.dev>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260702131233.59026-1-lance.yang@linux.dev>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -79,129 +97,101 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	MID_RHS_MATCH_TO(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	MAILLIST(-0.20)[mailman];
+X-Spamd-Result: default: False [-0.81 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	RCVD_TLS_LAST(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	TO_DN_SOME(0.00)[];
 	MIME_TRACE(0.00)[0:+];
+	RCVD_TLS_LAST(0.00)[];
+	FREEMAIL_CC(0.00)[linux-foundation.org,alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
+	TO_DN_SOME(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
 	ARC_NA(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	RCPT_COUNT_FIVE(0.00)[6];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[jani.nikula@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	MID_RHS_MATCH_FROMTLD(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[82];
+	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	RCVD_VIA_SMTP_AUTH(0.00)[];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,intel.com:dkim,intel.com:email,intel.com:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lucifer:mid,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 82EA26F98E5
+X-Rspamd-Queue-Id: 3E2AB6F99A7
 
-On Wed, 17 Jun 2026, Mitul Golani <mitulkumar.ajitkumar.golani@intel.com> w=
-rote:
-> There are monitors being sensitive to MSA and end up
-> blanking out when we override Vtotal, DP transcoder
-> uses TRANS_VTOTAL to derive MSA VTotal. Avoid overriding
-> crtc_vtotal to 1 on platform which supports VRR Timing
-> generator and always program VTOTAL from mode timing in
-> transcoder timing paths.
+On Thu, Jul 02, 2026 at 09:12:33PM +0800, Lance Yang wrote:
+>
+> On Mon, Jun 29, 2026 at 08:25:33PM +0100, Lorenzo Stoakes wrote:
+> >Update various uses of legacy flags in vma.c and mmap.c to the new
+> >vma_flags_t type, updating comments alongside them to be consistent.
+> >
+> >Also update __install_special_mapping() to rearrange things slightly to
+> >accommodate the changes.
+> >
+> >Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+> >---
+> [...]
+> >diff --git a/mm/vma.c b/mm/vma.c
+> >index b81c05e67a61..ab2ef0f04420 100644
+> >--- a/mm/vma.c
+> >+++ b/mm/vma.c
+> >@@ -3417,23 +3417,27 @@ struct vm_area_struct *__install_special_mapping(
+> > 	vm_flags_t vm_flags, void *priv,
+> > 	const struct vm_operations_struct *ops)
+> > {
+> >-	int ret;
+> >+	vma_flags_t vma_flags = legacy_to_vma_flags(vm_flags);
+> > 	struct vm_area_struct *vma;
+> >+	int ret;
+> >
+> > 	vma = vm_area_alloc(mm);
+> >-	if (unlikely(vma == NULL))
+> >+	if (unlikely(!vma))
+> > 		return ERR_PTR(-ENOMEM);
+> >
+> >-	vma_set_range(vma, addr, addr + len, 0);
+> >-	vm_flags |= vma_flags_to_legacy(mm->def_vma_flags) | VM_DONTEXPAND;
+> >+	vma_flags_set_mask(&vma_flags, mm->def_vma_flags);
+> >+	vma_flags_set(&vma_flags, VMA_DONTEXPAND_BIT);
+> > 	if (pgtable_supports_soft_dirty())
+> >-		vm_flags |= VM_SOFTDIRTY;
+> >-	vm_flags_init(vma, vm_flags & ~VM_LOCKED_MASK);
+> >+		vma_flags_set(&vma_flags, VMA_SOFTDIRTY_BIT);
+> >+	vma_flags_clear_mask(&vma_flags, VMA_LOCKED_MASK);
+> >+	vma->flags = vma_flags;
+>
+> Maybe worth a vma_flags_init() helper here to mirror vm_flags_init()?
+> With this open-coded, we lose the soft-dirty WARN_ON_ONCE sanity check.
+>
+> Might be nicer to keep that check in one place ;)
 
-Should this have had Fixes: tag? Does it require a backport?
+I really hate all the VMA flag accessors, they conflate things horribly - we
+should be explicitly taking VMA write locks when we need to (and often killable
+ones actually) not assuming that a VMA flags accessor does (they should at most
+assert).
 
-BR,
-Jani.
+This case is even more terribly egregious - you are setting flags at an
+arbitrary time, why are we asserting something about softdirty?
+
+You may update them as part of initialisation, maybe not. It's far from a
+guarantee and feels like a lazy place to put it.
+
+BUT obviously it's an oversight not to open code that here, so I'll update the
+patch to do that!
+
+I want VMA flags to be a clean stateless thing, other than the flags
+themselves. Implicit, unrelated, asserts or lock acquisitions in general should
+be done separately IMO.
 
 >
-> --v2:
-> - Remove write to crtc_state->hw.adjusted_mode.crtc_vtotal
-> during intel_vrr_get_config. (Ankit)
-> - Fix merge conflicts.
->
-> Bspec: 70001
-> Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
-> Cc: Ville Syrj=C3=A4l=C3=A4 <ville.syrjala@linux.intel.com>
-> Cc: Suraj Kandpal <suraj.kandpal@intel.com>
-> Signed-off-by: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
-> Reviewed-by: Suraj Kandpal <suraj.kandpal@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_display.c | 17 -----------------
->  drivers/gpu/drm/i915/display/intel_vrr.c     | 10 ----------
->  2 files changed, 27 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/d=
-rm/i915/display/intel_display.c
-> index e76aa6c8dab6..42eb4c5bc9b6 100644
-> --- a/drivers/gpu/drm/i915/display/intel_display.c
-> +++ b/drivers/gpu/drm/i915/display/intel_display.c
-> @@ -2737,15 +2737,6 @@ void intel_set_transcoder_timings(const struct int=
-el_crtc_state *crtc_state,
->  		       HSYNC_START(adjusted_mode->crtc_hsync_start - 1) |
->  		       HSYNC_END(adjusted_mode->crtc_hsync_end - 1));
->=20=20
-> -	/*
-> -	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> -	 * bits are not required. Since the support for these bits is going to
-> -	 * be deprecated in upcoming platforms, avoid writing these bits for the
-> -	 * platforms that do not use legacy Timing Generator.
-> -	 */
-> -	if (intel_vrr_always_use_vrr_tg(display))
-> -		crtc_vtotal =3D 1;
-> -
->  	intel_de_write(display, TRANS_VTOTAL(display, transcoder),
->  		       VACTIVE(crtc_vdisplay - 1) |
->  		       VTOTAL(crtc_vtotal - 1));
-> @@ -2834,14 +2825,6 @@ void intel_set_transcoder_timings_lrr(const struct=
- intel_crtc_state *crtc_state,
->  	intel_de_write(display, TRANS_VSYNC(display, transcoder),
->  		       VSYNC_START(adjusted_mode->crtc_vsync_start - 1) |
->  		       VSYNC_END(adjusted_mode->crtc_vsync_end - 1));
-> -	/*
-> -	 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtotal
-> -	 * bits are not required. Since the support for these bits is going to
-> -	 * be deprecated in upcoming platforms, avoid writing these bits for the
-> -	 * platforms that do not use legacy Timing Generator.
-> -	 */
-> -	if (intel_vrr_always_use_vrr_tg(display))
-> -		crtc_vtotal =3D 1;
->=20=20
->  	/*
->  	 * The double buffer latch point for TRANS_VTOTAL
-> diff --git a/drivers/gpu/drm/i915/display/intel_vrr.c b/drivers/gpu/drm/i=
-915/display/intel_vrr.c
-> index cd380fe8fd01..5d9b11185296 100644
-> --- a/drivers/gpu/drm/i915/display/intel_vrr.c
-> +++ b/drivers/gpu/drm/i915/display/intel_vrr.c
-> @@ -1102,16 +1102,6 @@ void intel_vrr_get_config(struct intel_crtc_state =
-*crtc_state)
->  			crtc_state->vrr.vmin +=3D intel_vrr_vmin_flipline_offset(display);
->  		}
->=20=20
-> -		/*
-> -		 * For platforms that always use VRR Timing Generator, the VTOTAL.Vtot=
-al
-> -		 * bits are not filled. Since for these platforms TRAN_VMIN is always
-> -		 * filled with crtc_vtotal, use TRAN_VRR_VMIN to get the vtotal for
-> -		 * adjusted_mode.
-> -		 */
-> -		if (intel_vrr_always_use_vrr_tg(display))
-> -			crtc_state->hw.adjusted_mode.crtc_vtotal =3D
-> -				intel_vrr_vmin_vtotal(crtc_state);
-> -
->  		if (HAS_AS_SDP(display)) {
->  			trans_vrr_vsync =3D
->  				intel_de_read(display,
+> [...]
 
---=20
-Jani Nikula, Intel
+Thanks, Lorenzo
