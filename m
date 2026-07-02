@@ -2,60 +2,83 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id bxf4DVdiRmqCSQsAu9opvQ
+	id O5gsNlRiRmp9SQsAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:31 +0200
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:28 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 3539D6F8200
-	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9E1A26F81F0
+	for <lists+intel-gfx@lfdr.de>; Thu, 02 Jul 2026 15:06:28 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
+	dkim=pass header.d=linux.dev header.s=key1 header.b=UUw36nfQ;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
+	dmarc=pass (policy=none) header.from=linux.dev
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 87C2D10F393;
-	Thu,  2 Jul 2026 13:06:28 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 1CED410F395;
+	Thu,  2 Jul 2026 13:06:26 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
- by gabe.freedesktop.org (Postfix) with ESMTPS id E179310E403;
- Thu,  2 Jul 2026 01:12:30 +0000 (UTC)
-X-UUID: 15f341b275b311f1aa26b74ffac11d73-20260702
-X-CID-P-RULE: Release_Ham
-X-CID-O-INFO: VERSION:1.3.12, REQID:49fb15a2-fbfc-40cd-b4de-8fa6bf793a81, IP:0,
- U
- RL:0,TC:0,Content:-5,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION
- :release,TS:-5
-X-CID-META: VersionHash:e7bac3a, CLOUDID:b968c6a74fb6efa6e62b2f52a76dcecd,
- BulkI
- D:nil,BulkQuantity:0,Recheck:0,SF:81|82|102|123|136|850|865|898,TC:nil,Con
- tent:0|15|50,EDM:-3,IP:nil,URL:99|1,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:ni
- l,COL:0,OSI:0,OSA:0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
-X-CID-BVR: 2,SSN|SDN
-X-CID-BAS: 2,SSN|SDN,0,_
-X-CID-FACTOR: TF_CID_SPAM_SNR,TF_CID_SPAM_ULS
-X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
-X-UUID: 15f341b275b311f1aa26b74ffac11d73-20260702
-X-User: yaolu@kylinos.cn
-Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
- (envelope-from <yaolu@kylinos.cn>)
- (Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
- with ESMTP id 284343023; Thu, 02 Jul 2026 09:12:25 +0800
-From: yaolu@kylinos.cn
-To: yaolu@kylinos.cn
-Cc: dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
+X-Greylist: delayed 431 seconds by postgrey-1.36 at gabe;
+ Thu, 02 Jul 2026 07:35:36 UTC
+Received: from out-176.mta1.migadu.com (out-176.mta1.migadu.com
+ [95.215.58.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 2942E10F1AC
+ for <intel-gfx@lists.freedesktop.org>; Thu,  2 Jul 2026 07:35:36 +0000 (UTC)
+X-Report-Abuse: Please report any abuse attempt to abuse@migadu.com and
+ include these headers.
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linux.dev; s=key1;
+ t=1782977290;
+ h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=cdXAMvaGTLXZ4tRHqX+15mFjqPO5NJv7/lbzInUeZeM=;
+ b=UUw36nfQUDO4ek5W5MoGxv/bQdNbTQycY1qQKAEoJymjql+ZXc8a2FUo9eNrafl6xDrEni
+ 1302Z8Y+Ma+0qxdUDhBISoxry5nus7uGAN8fTkB0ZcU/zUf+14Ol9iIljWhjg5Yh/mt933
+ 8BhSh84bNWygA1To4TaXOltx56F5hgs=
+From: Lance Yang <lance.yang@linux.dev>
+To: ljs@kernel.org
+Cc: akpm@linux-foundation.org, tsbogend@alpha.franken.de, maddy@linux.ibm.com,
+ mpe@ellerman.id.au, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+ l.stach@pengutronix.de, inki.dae@samsung.com, sw0312.kim@samsung.com,
+ kyungmin.park@samsung.com, krzk@kernel.org, peter.griffin@linaro.org,
  jani.nikula@linux.intel.com, joonas.lahtinen@linux.intel.com,
- linux-kernel@vger.kernel.org, rodrigo.vivi@intel.com, tursulin@ursulin.net
-Subject: [PATCH v3] drm/i915/display: fix error handling in
- intel_display_driver_probe_noirq
-Date: Thu,  2 Jul 2026 09:12:21 +0800
-Message-Id: <20260702011221.16029-1-yaolu@kylinos.cn>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20260701011533.16336-1-yaolu@kylinos.cn>
-References: <20260701011533.16336-1-yaolu@kylinos.cn>
+ rodrigo.vivi@intel.com, tursulin@ursulin.net, robin.clark@oss.qualcomm.com,
+ lumag@kernel.org, lyude@redhat.com, dakr@kernel.org,
+ tomi.valkeinen@ideasonboard.com, hjc@rock-chips.com, heiko@sntech.de,
+ andy.yan@rock-chips.com, thierry.reding@kernel.org, mperttunen@nvidia.com,
+ jonathanh@nvidia.com, kraxel@redhat.com, dmitry.osipenko@collabora.com,
+ zack.rusin@broadcom.com, matthew.brost@intel.com,
+ thomas.hellstrom@linux.intel.com, oleksandr_andrushchenko@epam.com,
+ deller@gmx.de, bcrl@kvack.org, viro@zeniv.linux.org.uk, brauner@kernel.org,
+ muchun.song@linux.dev, osalvador@suse.de, david@kernel.org, ziy@nvidia.com,
+ baolin.wang@linux.alibaba.com, liam@infradead.org, npache@redhat.com,
+ ryan.roberts@arm.com, dev.jain@arm.com, baohua@kernel.org,
+ lance.yang@linux.dev, hughd@google.com, vbabka@kernel.org, rppt@kernel.org,
+ surenb@google.com, mhocko@suse.com, jannh@google.com, pfalcato@suse.de,
+ kees@kernel.org, perex@perex.cz, tiwai@suse.com,
+ linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
+ etnaviv@lists.freedesktop.org, linux-arm-kernel@lists.infradead.org,
+ linux-samsung-soc@vger.kernel.org, intel-gfx@lists.freedesktop.org,
+ linux-arm-msm@vger.kernel.org, freedreno@lists.freedesktop.org,
+ nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
+ linux-tegra@vger.kernel.org, virtualization@lists.linux.dev,
+ intel-xe@lists.freedesktop.org, xen-devel@lists.xenproject.org,
+ linux-fbdev@vger.kernel.org, linux-aio@kvack.org,
+ linux-fsdevel@vger.kernel.org, linux-mm@kvack.org,
+ linux-sound@vger.kernel.org
+Subject: Re: [PATCH 01/13] mm: introduce vma_flags_can_grow() and
+ vma_can_grow()
+Date: Thu,  2 Jul 2026 15:27:50 +0800
+Message-Id: <20260702072750.45641-1-lance.yang@linux.dev>
+In-Reply-To: <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
+References: <f2e8c32515d328db62279cc8bab8398ea278d74f.1782760670.git.ljs@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Migadu-Flow: FLOW_OUT
 X-Mailman-Approved-At: Thu, 02 Jul 2026 13:06:24 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -72,125 +95,60 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.89 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
 	MID_CONTAINS_FROM(1.00)[];
-	R_MISSING_CHARSET(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[linux.dev,none];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[linux.dev:s=key1];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[3];
+	FREEMAIL_CC(0.00)[linux-foundation.org,alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
+	FROM_HAS_DN(0.00)[];
+	FORGED_RECIPIENTS(0.00)[m:ljs@kernel.org,m:akpm@linux-foundation.org,m:tsbogend@alpha.franken.de,m:maddy@linux.ibm.com,m:mpe@ellerman.id.au,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:l.stach@pengutronix.de,m:inki.dae@samsung.com,m:sw0312.kim@samsung.com,m:kyungmin.park@samsung.com,m:krzk@kernel.org,m:peter.griffin@linaro.org,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:robin.clark@oss.qualcomm.com,m:lumag@kernel.org,m:lyude@redhat.com,m:dakr@kernel.org,m:tomi.valkeinen@ideasonboard.com,m:hjc@rock-chips.com,m:heiko@sntech.de,m:andy.yan@rock-chips.com,m:thierry.reding@kernel.org,m:mperttunen@nvidia.com,m:jonathanh@nvidia.com,m:kraxel@redhat.com,m:dmitry.osipenko@collabora.com,m:zack.rusin@broadcom.com,m:matthew.brost@intel.com,m:thomas.hellstrom@linux.intel.com,m:oleksandr_andrushchenko@epam.com,m:deller@gmx.de,m:bcrl@kvack.org,m:viro@zeniv.l
+ inux.org.uk,m:brauner@kernel.org,m:muchun.song@linux.dev,m:osalvador@suse.de,m:david@kernel.org,m:ziy@nvidia.com,m:baolin.wang@linux.alibaba.com,m:liam@infradead.org,m:npache@redhat.com,m:ryan.roberts@arm.com,m:dev.jain@arm.com,m:baohua@kernel.org,m:lance.yang@linux.dev,m:hughd@google.com,m:vbabka@kernel.org,m:rppt@kernel.org,m:surenb@google.com,m:mhocko@suse.com,m:jannh@google.com,m:pfalcato@suse.de,m:kees@kernel.org,m:perex@perex.cz,m:tiwai@suse.com,m:linux-mips@vger.kernel.org,m:linux-kernel@vger.kernel.org,m:linuxppc-dev@lists.ozlabs.org,m:dri-devel@lists.freedesktop.org,m:etnaviv@lists.freedesktop.org,m:linux-arm-kernel@lists.infradead.org,m:linux-samsung-soc@vger.kernel.org,m:linux-arm-msm@vger.kernel.org,m:freedreno@lists.freedesktop.org,m:nouveau@lists.freedesktop.org,m:linux-rockchip@lists.infradead.org,m:linux-tegra@vger.kernel.org,m:virtualization@lists.linux.dev,m:intel-xe@lists.freedesktop.org,m:xen-devel@lists.xenproject.org,m:linux-fbdev@vger.kernel.org,m:linux-aio@kv
+ ack.org,m:linux-fsdevel@vger.kernel.org,m:linux-mm@kvack.org,m:linux-sound@vger.kernel.org,s:lists@lfdr.de];
 	ARC_NA(0.00)[];
-	DMARC_NA(0.00)[kylinos.cn];
+	FORGED_SENDER(0.00)[lance.yang@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
 	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
+	DKIM_TRACE(0.00)[linux.dev:+];
+	MISSING_XM_UA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TO_DN_NONE(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[yaolu@kylinos.cn,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_NO_DN(0.00)[];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[lance.yang@linux.dev,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCPT_COUNT_GT_50(0.00)[83];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[8];
-	R_DKIM_NA(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo]
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:rdns,gabe.freedesktop.org:helo,lists.freedesktop.org:from_smtp,linux.dev:dkim,linux.dev:email,linux.dev:mid,linux.dev:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 3539D6F8200
+X-Rspamd-Queue-Id: 9E1A26F81F0
 
-From: Lu Yao <yaolu@kylinos.cn>
 
-Fix two bugs in the probe error path:
+On Mon, Jun 29, 2026 at 08:25:24PM +0100, Lorenzo Stoakes wrote:
+>These test whether the VMA has stack sematics, i.e. is able to grow upwards
+>or downwards depending on the architecture.
+>
+>In order to account for arches which do not support upward-growing stacks,
+>introduce VMA_GROWSUP whose definition depends on the architecture
+>supporting it, and use vma_flags_test_single_mask() in vma_flags_can_grow()
+>to account for this.
+>
+>Update the VMA userland tests to reflect the changes
+>
+>No functional change intended.
+>
+>Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+>---
 
-1. If intel_mode_config_init() succeeded, after intel_xxx_init()
-   failed leaked the resources allocated by drm_mode_config_init().
-   Add a cleanup_mode_config label.
+Nice cleanup! Feel free to add:
 
-2. intel_dmc_fini() was called on workqueue alloc failed paths but
-   intel_dmc_init() don't been invoked.  Move the dmc fini call in
-   cleanup_mode_config label.
-
-Signed-off-by: Lu Yao <yaolu@kylinos.cn>
----
-v2->v3: rm unused label checked by CI
-  Link: https://lore.kernel.org/all/178294904225.140838.18311548714090230092@6beec6c84f66/
-
-v1->v2: don't move intel_dmc_init() advance chencked by Sashiko AI and Jani
-  Link: https://lore.kernel.org/all/20260630032254.05B511F000E9@smtp.kernel.org/
-  Link: https://lore.kernel.org/all/677fb92771df1f9f491226bf006c157a007c16dc@intel.com/
-
- .../drm/i915/display/intel_display_driver.c   | 21 ++++++++++---------
- 1 file changed, 11 insertions(+), 10 deletions(-)
-
-diff --git a/drivers/gpu/drm/i915/display/intel_display_driver.c b/drivers/gpu/drm/i915/display/intel_display_driver.c
-index d0729936f681..4af2324f5252 100644
---- a/drivers/gpu/drm/i915/display/intel_display_driver.c
-+++ b/drivers/gpu/drm/i915/display/intel_display_driver.c
-@@ -226,7 +226,7 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 	display->hotplug.dp_wq = alloc_ordered_workqueue("intel-dp", 0);
- 	if (!display->hotplug.dp_wq) {
- 		ret = -ENOMEM;
--		goto cleanup_pw_domain_dmc;
-+		goto cleanup_pw_domain;
- 	}
- 
- 	display->wq.modeset = alloc_ordered_workqueue("i915_modeset", 0);
-@@ -260,27 +260,27 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 
- 	ret = intel_cdclk_init(display);
- 	if (ret)
--		goto cleanup_wq_unordered;
-+		goto cleanup_mode_config;
- 
- 	ret = intel_color_init(display);
- 	if (ret)
--		goto cleanup_wq_unordered;
-+		goto cleanup_mode_config;
- 
- 	ret = intel_dbuf_init(display);
- 	if (ret)
--		goto cleanup_wq_unordered;
-+		goto cleanup_mode_config;
- 
- 	ret = intel_dbuf_bw_init(display);
- 	if (ret)
--		goto cleanup_wq_unordered;
-+		goto cleanup_mode_config;
- 
- 	ret = intel_bw_init(display);
- 	if (ret)
--		goto cleanup_wq_unordered;
-+		goto cleanup_mode_config;
- 
- 	ret = intel_pmdemand_init(display);
- 	if (ret)
--		goto cleanup_wq_unordered;
-+		goto cleanup_mode_config;
- 
- 	intel_init_quirks(display);
- 
-@@ -288,7 +288,9 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 
- 	return 0;
- 
--cleanup_wq_unordered:
-+cleanup_mode_config:
-+	intel_mode_config_cleanup(display);
-+	intel_dmc_fini(display);
- 	destroy_workqueue(display->wq.unordered);
- cleanup_wq_cleanup:
- 	destroy_workqueue(display->wq.cleanup);
-@@ -298,8 +300,7 @@ int intel_display_driver_probe_noirq(struct intel_display *display)
- 	destroy_workqueue(display->wq.modeset);
- cleanup_wq_dp:
- 	destroy_workqueue(display->hotplug.dp_wq);
--cleanup_pw_domain_dmc:
--	intel_dmc_fini(display);
-+cleanup_pw_domain:
- 	intel_display_power_driver_remove(display);
- cleanup_bios:
- 	intel_bios_driver_remove(display);
--- 
-2.25.1
-
+Reviewed-by: Lance Yang <lance.yang@linux.dev>
