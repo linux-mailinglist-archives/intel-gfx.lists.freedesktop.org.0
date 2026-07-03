@@ -2,42 +2,42 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id jIORDOGdR2ppcQAAu9opvQ
+	id PwHqMeGdR2pqcQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
 	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 001AD701E19
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 6CF3A701E1C
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:49 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=m4fQu7Kx;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=fPPXqeKI;
 	dmarc=pass (policy=none) header.from=lankhorst.se;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 81DCE10F7CA;
+	by gabe.freedesktop.org (Postfix) with ESMTP id EB6EB10F7CC;
 	Fri,  3 Jul 2026 11:32:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6954A10F7B3;
- Fri,  3 Jul 2026 11:32:36 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B73510F7BF;
+ Fri,  3 Jul 2026 11:32:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
  s=default; t=1783078355;
- bh=T/OQGU8prg+GP3iTibN/WUfOED1EMA169ETe4ayUGKY=;
+ bh=j+kZhrKGeVLe6Kwb9Av2wRwsLfG3GUrsHoYClLpC+34=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=m4fQu7KxWqVancw13ZzKbi58cdPzHtMiLohdrD7d0KaF8DmuhuXCGk6Hhm0ngiYfG
- feE9Qbth3c5hmjMmD86e0es4gKwyIopYpNzirW9iQ/DLhpWOqGcLuHT4XPhfXNNZwc
- knew4/CY2U319p3HrIln+xOi7lp2qM6xoVMvLrKRdK5pq6Dk+Zj2FOMGWqwX8CPWvo
- hrVntKXVN4OEYMORUFFxVV/PfIqBau5kl0PbWtRL3R7ztFsRxjhN6QvrbR7dAvudNZ
- ut0H9dMwdDkJmLLoos3Tjd9BX4wRDGfB45jloUc0REYDRP5fohcZEkqKARijQuPXgI
- E9JiF5e1Dtbaw==
+ b=fPPXqeKIoynabM2YKh03Qe70aHB19jpg/nNsGyowlf8Vb3S424FjtQ+9pmw3N+397
+ Av76uIjYRtDPve3fBZ3jMUd82pXrjMBrFscUs+4pJ0ivo3sStm0Sz0cghSw+Q1Ip7w
+ jJ810ZQWb0+f367JVvayiRUTU9aDay+v8SQLUC2H4wMDbPVh5Xmt/N4ap+KaKg9BdG
+ cGhXVbT+XtYz7BGipurOGCK9kKbzooGLttGWVpFhwgCmOeOI/H4bKFQcN4ITdS8b+y
+ drXHrGvhKJDmYNp/J70iNCrCKn0/u+fm5pqBqN+4UvI+zCLNE01yNNYqIAwdRVN4xe
+ bvJPjEbfLc97Q==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
 	Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 4/7] drm/i915/gt: Fix selftests on PREEMPT_RT
-Date: Fri,  3 Jul 2026 13:32:56 +0200
-Message-ID: <20260703113259.801374-5-dev@lankhorst.se>
+Subject: [PATCH v2 5/7] drm/i915/gt: Set stop_timeout() correctly on PREEMPT-RT
+Date: Fri,  3 Jul 2026 13:32:57 +0200
+Message-ID: <20260703113259.801374-6-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260703113259.801374-1-dev@lankhorst.se>
 References: <20260703113259.801374-1-dev@lankhorst.se>
@@ -82,47 +82,31 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:from_mime,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 001AD701E19
+X-Rspamd-Queue-Id: 6CF3A701E1C
+
+Also check if RCU is disabled for PREEMPT-RT, which is the case when
+local_bh_disable() is called.
 
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/gt/selftest_engine_pm.c | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ drivers/gpu/drm/i915/gt/intel_engine_cs.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-index 10e556a7eac45..c1eff9edd8a5e 100644
---- a/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-+++ b/drivers/gpu/drm/i915/gt/selftest_engine_pm.c
-@@ -277,11 +277,11 @@ static int live_engine_busy_stats(void *arg)
- 		st_engine_heartbeat_disable(engine);
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_cs.c b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+index c0fd349a4600c..9dd9665128caa 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_cs.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_cs.c
+@@ -1607,7 +1607,7 @@ u64 intel_engine_get_last_batch_head(const struct intel_engine_cs *engine)
  
- 		ENGINE_TRACE(engine, "measuring idle time\n");
--		preempt_disable();
-+		migrate_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
- 		udelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
--		preempt_enable();
-+		migrate_enable();
- 		dt = ktime_sub(t[1], t[0]);
- 		if (de < 0 || de > 10) {
- 			pr_err("%s: reported %lldns [%d%%] busyness while sleeping [for %lldns]\n",
-@@ -316,11 +316,11 @@ static int live_engine_busy_stats(void *arg)
- 		}
+ static unsigned long stop_timeout(const struct intel_engine_cs *engine)
+ {
+-	if (in_atomic() || irqs_disabled()) /* inside atomic preempt-reset? */
++	if (in_atomic() || irqs_disabled() || rcu_preempt_depth()) /* inside atomic preempt-reset? */
+ 		return 0;
  
- 		ENGINE_TRACE(engine, "measuring busy time\n");
--		preempt_disable();
-+		migrate_disable();
- 		de = intel_engine_get_busy_time(engine, &t[0]);
- 		mdelay(100);
- 		de = ktime_sub(intel_engine_get_busy_time(engine, &t[1]), de);
--		preempt_enable();
-+		migrate_enable();
- 		dt = ktime_sub(t[1], t[0]);
- 		if (100 * de < 95 * dt || 95 * de > 100 * dt) {
- 			pr_err("%s: reported %lldns [%d%%] busyness while spinning [for %lldns]\n",
+ 	/*
 -- 
 2.53.0
 
