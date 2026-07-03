@@ -2,45 +2,44 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id faJ2GN+dR2plcQAAu9opvQ
+	id 9sqDNuSdR2pucQAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:52 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1516C701E09
-	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id AC8A2701E2E
+	for <lists+intel-gfx@lfdr.de>; Fri, 03 Jul 2026 13:32:52 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=OVvj8ToD;
+	dkim=pass header.d=lankhorst.se header.s=default header.b=YYGQbFtb;
 	dmarc=pass (policy=none) header.from=lankhorst.se;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 18BCB10F7C5;
-	Fri,  3 Jul 2026 11:32:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 643DC10F7D8;
+	Fri,  3 Jul 2026 11:32:43 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2022010F7B3;
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C28D910E5B8;
  Fri,  3 Jul 2026 11:32:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783078353;
- bh=Oh1os3TsHNdW2Pq4AI0gYhWG24uRvSoJ0dx3b6zoRio=;
+ s=default; t=1783078354;
+ bh=aJ674jKfdfYzA1796ckniFKjkGKFKlysonuWe+TKQpQ=;
  h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
- b=OVvj8ToDW/OVq/oC5XYWReI+PPNL5H2OX/pMyRSf5+muNXVdwbWtJHXQcBv62obsw
- rQKJsw/FSHzzgGjzarmtZlYFd6vbw858v5N3cHAHBSgRWfKuBHxUvjpcvE5auhIJQJ
- +lm+PNJLF7hVU4ph3TTlxdmlCtsksv7LF3ovZoslVNXO1QyNJ1auXprXol3/ZIPcOP
- fK5EYgYpbiW66uJw6Wre4JhUqES3My6E7gZF6+8+uGGjh8Xo3Wa0fQ9NIOzsCqf3mF
- jp0g1jFZiNc1bKuM2e9+XtS6ztMmy83dXOBrE2zELlaTdEoLxqwjH+aCBjte+hk3g+
- tuf9MFw9L6c+w==
+ b=YYGQbFtbdQ8y4MXJvcz429Op65t2CV283EmZjfkDHPkxev3vd2kld3C7ldty/3sgK
+ miY2p1OG4eM8s8h3+H4+cybFlpPQzN3AfEcHLv4S1SF+F7qZMBSd5G3aqVuxIyU/zS
+ JY0Rf3y+gelB471mRcHcPt+1FsXiqCLySFaIo8yDFR/iv3Rjmyumq3VYiqPh3x1u8o
+ D22ddMftfTsDWPr3dXv80dn/PzqU3QL7dSvLlI0fXUckhiiBnrEWCqVL5D3odAgwRm
+ f5bV/mjdiz1ekHJPEPRXnQH8vU0gFCKcGx4uXgvAnu6sAjwXMx4K05eZjUi6o2tNrc
+ pwz3w3bNd2rQw==
 From: Maarten Lankhorst <dev@lankhorst.se>
 To: intel-gfx@lists.freedesktop.org
 Cc: dri-devel@lists.freedesktop.org,
  Sebastian Andrzej Siewior <bigeasy@linutronix.de>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
- Tvrtko Ursulin <tvrtko.ursulin@igalia.com>,
- Maarten Lankhorst <dev@lankhorst.se>
-Subject: [PATCH v2 2/7] drm/i915: Drop the irqs_disabled() check
-Date: Fri,  3 Jul 2026 13:32:54 +0200
-Message-ID: <20260703113259.801374-3-dev@lankhorst.se>
+ "John B. Wyatt IV" <jwyatt@redhat.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Maarten Lankhorst <dev@lankhorst.se>
+Subject: [PATCH v2 3/7] drm/i915/guc: Consider also RCU depth in busy loop.
+Date: Fri,  3 Jul 2026 13:32:55 +0200
+Message-ID: <20260703113259.801374-4-dev@lankhorst.se>
 X-Mailer: git-send-email 2.53.0
 In-Reply-To: <20260703113259.801374-1-dev@lankhorst.se>
 References: <20260703113259.801374-1-dev@lankhorst.se>
@@ -85,50 +84,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	ALIAS_RESOLVED(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:email,linutronix.de:email,lankhorst.se:from_mime,lankhorst.se:email,lankhorst.se:mid,lankhorst.se:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1516C701E09
+X-Rspamd-Queue-Id: AC8A2701E2E
 
 From: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 
-The !irqs_disabled() check triggers on PREEMPT_RT even with
-i915_sched_engine::lock acquired. The reason is the lock is transformed
-into a sleeping lock on PREEMPT_RT and does not disable interrupts.
+intel_guc_send_busy_loop() looks at in_atomic() and irqs_disabled() to
+decide if it should busy-spin while waiting or if it may sleep.
+Both checks will report false on PREEMPT_RT if sleeping spinlocks are
+acquired leading to RCU splats while the function sleeps.
 
-There is no need to check for disabled interrupts. The lockdep
-annotation below already check if the lock has been acquired by the
-caller and will yell if the interrupts are not disabled.
+Check also if RCU has been disabled.
 
-Remove the !irqs_disabled() check.
-
-Reported-by: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-Acked-by: Tvrtko Ursulin <tvrtko.ursulin@igalia.com>
+Reported-by: "John B. Wyatt IV" <jwyatt@redhat.com>
+Reviewed-by: Rodrigo Vivi <rodrigo.vivi@intel.com>
 Signed-off-by: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
 Signed-off-by: Maarten Lankhorst <dev@lankhorst.se>
 ---
- drivers/gpu/drm/i915/i915_request.c | 2 --
- 1 file changed, 2 deletions(-)
+ drivers/gpu/drm/i915/gt/uc/intel_guc.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/drivers/gpu/drm/i915/i915_request.c b/drivers/gpu/drm/i915/i915_request.c
-index d2c7b1090df08..f66f8efc70629 100644
---- a/drivers/gpu/drm/i915/i915_request.c
-+++ b/drivers/gpu/drm/i915/i915_request.c
-@@ -610,7 +610,6 @@ bool __i915_request_submit(struct i915_request *request)
- 
- 	RQ_TRACE(request, "\n");
- 
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
- 
- 	/*
-@@ -719,7 +718,6 @@ void __i915_request_unsubmit(struct i915_request *request)
- 	 */
- 	RQ_TRACE(request, "\n");
- 
--	GEM_BUG_ON(!irqs_disabled());
- 	lockdep_assert_held(&engine->sched_engine->lock);
+diff --git a/drivers/gpu/drm/i915/gt/uc/intel_guc.h b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+index 053780f562c1a..b25fa8f4dc4bd 100644
+--- a/drivers/gpu/drm/i915/gt/uc/intel_guc.h
++++ b/drivers/gpu/drm/i915/gt/uc/intel_guc.h
+@@ -362,7 +362,7 @@ static inline int intel_guc_send_busy_loop(struct intel_guc *guc,
+ {
+ 	int err;
+ 	unsigned int sleep_period_ms = 1;
+-	bool not_atomic = !in_atomic() && !irqs_disabled();
++	bool not_atomic = !in_atomic() && !irqs_disabled() && !rcu_preempt_depth();
  
  	/*
+ 	 * FIXME: Have caller pass in if we are in an atomic context to avoid
 -- 
 2.53.0
 
