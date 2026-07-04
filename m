@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id JHmdCinlSGorvAAAu9opvQ
+	id yIKDJVTlSGpQvAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:49:13 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:49:56 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD1CB7075C8
-	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 11A677075CE
+	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:49:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=HoYTgU8p;
+	dkim=pass header.d=intel.com header.s=Intel header.b=eoSJ2xnc;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3C2C310E691;
-	Sat,  4 Jul 2026 10:49:11 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 91F7210E6AB;
+	Sat,  4 Jul 2026 10:49:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.15])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CCCFC10E691;
- Sat,  4 Jul 2026 10:49:09 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 38B0610E6A3;
+ Sat,  4 Jul 2026 10:49:53 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783162150; x=1814698150;
+ t=1783162193; x=1814698193;
  h=date:from:to:cc:subject:in-reply-to:message-id:
  references:mime-version:content-id;
- bh=6eEbsXnNHbbN51HbDmSZG6Wxi2GU0mLDcfm/rPOGrTA=;
- b=HoYTgU8p1ysMPrYidc46pRlQOgBZJHb8GYx729BGfv3dQ4fLCcRsOj+J
- OVElgX682LrGJTh58Q2FnxI6rRSKGDRK6anTdPHHwUmCtLZVsfeK8adYI
- jo5t8PhI7aaAWmEMRDxdhhu/SX8dnGMMZImPkivrgoaLnKutPKZJqHDEX
- AtPymXBzftcR9Nv0JS5+2YoGLI755azBw+daIZojB3LN7bIyp1AArbmrG
- hwS9PlX29AIG7kLamzMAQGwuBfW1kn6Vxqs8ZWOFPQIcNoNhbKghGlwyC
- 7BTJmwHuryV+/zEaAubGKjKPQsYBfHpsDox6Gm4LnHSoW0UYQc960+N9M g==;
-X-CSE-ConnectionGUID: xOWvdLMxSbiFPFUMx5m1ig==
-X-CSE-MsgGUID: cvE8wfm/TyuWwLK+oelEbg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11836"; a="87559682"
-X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="87559682"
-Received: from fmviesa005.fm.intel.com ([10.60.135.145])
- by orvoesa107.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2026 03:49:10 -0700
-X-CSE-ConnectionGUID: kDd5yMRUTbW7IFfDIe9J4A==
-X-CSE-MsgGUID: bOutkLXaRymUVM9/S/4T9w==
+ bh=OvlpBuyF90McYUgrPnhkRgtA01r29rfl9tPj4ld5RnA=;
+ b=eoSJ2xnctzeaR7cn9qe+/mh6ugVFJnygT8DxG7RYi9K80Jy3vMtud2Cs
+ ZA1bpTT/biUUD1zf2RKDJ2g3eZ0A9OmoXrxElcn8/pNGxb3mgiLON6+Pq
+ u7hlstwNTqsfPyERbe5rLMr41/aYgQzXAmlfbXukb+1PM6SzDF8RHOFY6
+ XkNksDf+aYZHBQACmKLvEZydb5Fu6+dCSsdBh0bxcBIi5jtzJme1ezFb/
+ c5JvyTUHz4DxZRGEnZxjDEUn6mrFInFJK2qNISzv1+WKtzlYpbH0LWWsQ
+ ei6FosHLTS/Oeyc0Q4jhYM3IlkLqPz7xRlanjiPfF4n1DKVgkpN5LsdX8 w==;
+X-CSE-ConnectionGUID: w1sOxAkSQNKJ6IupJ6P+cQ==
+X-CSE-MsgGUID: senvFb6YRaG0BuMxVs+URg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11836"; a="95382520"
+X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="95382520"
+Received: from orviesa004.jf.intel.com ([10.64.159.144])
+ by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2026 03:49:53 -0700
+X-CSE-ConnectionGUID: OsVSMu88Ql6QLYHnsZAIEA==
+X-CSE-MsgGUID: SL4Aqed3SFipq6BsA2tjcA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="258181898"
+X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="257172115"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa005.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2026 03:49:08 -0700
-Date: Sat, 4 Jul 2026 12:49:06 +0200 (CEST)
+ by orviesa004.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2026 03:49:52 -0700
+Date: Sat, 4 Jul 2026 12:49:49 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Imre Deak <imre.deak@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 28/34] drm/xe/kunit: Add display test config
-In-Reply-To: <20260701153204.4124150-29-imre.deak@intel.com>
-Message-ID: <a954aa17-1c56-7f57-508c-bc3e0c6c4fcd@intel.com>
+Subject: Re: [PATCH v2 29/34] drm/xe/kunit: Build DP link display tests
+In-Reply-To: <20260701153204.4124150-30-imre.deak@intel.com>
+Message-ID: <b651cf45-e19f-f509-fa21-e17c026f003b@intel.com>
 References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-29-imre.deak@intel.com>
+ <20260701153204.4124150-30-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-1000968344-1783117019=:605841"
-Content-ID: <33c4decf-4620-f250-5421-a54ebd7ca4ec@intel.com>
+Content-Type: multipart/mixed; BOUNDARY="8323329-346222691-1783117240=:605841"
+Content-ID: <0089ecbd-0590-a9cc-7499-b873a7c377fa@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,73 +101,73 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD1CB7075C8
+X-Rspamd-Queue-Id: 11A677075CE
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-1000968344-1783117019=:605841
+--8323329-346222691-1783117240=:605841
 Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
 Content-Transfer-Encoding: 8BIT
-Content-ID: <c6e3efec-ff0e-0b04-535a-e075ea8a4b1d@intel.com>
+Content-ID: <1e587008-e2bb-2531-e411-c52df0aacbf0@intel.com>
 
 On Wed, 1 Jul 2026, Imre Deak wrote:
-> Add a separate xe KUnit config for display tests.
+> Hook the shared i915 display DP link KUnit tests into the xe display
+> test build.
 >
-> The existing xe .kunitconfig builds xe statically, which is suitable for
-> non-display xe tests. The display code can only be enabled for xe when
-> xe is built as a module, so add a separate display config with DRM_XE=m
-> and DRM_XE_DISPLAY=y.
->
-> This can be folded back into the main xe KUnit config once the display
-> code becomes a separate module.
+> Build the shared display test source from the i915 display test directory
+> when xe display support is enabled.
 >
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
 > ---
-> drivers/gpu/drm/xe/.gitignore           |  1 +
-> drivers/gpu/drm/xe/.kunitconfig-display | 11 +++++++++++
-> 2 files changed, 12 insertions(+)
-> create mode 100644 drivers/gpu/drm/xe/.kunitconfig-display
+> drivers/gpu/drm/xe/Makefile               |  3 +++
+> drivers/gpu/drm/xe/display/tests/Makefile | 11 +++++++++++
+> 2 files changed, 14 insertions(+)
+> create mode 100644 drivers/gpu/drm/xe/display/tests/Makefile
 >
-> diff --git a/drivers/gpu/drm/xe/.gitignore b/drivers/gpu/drm/xe/.gitignore
-> index 8778bf132674d..6dad8a5a21355 100644
-> --- a/drivers/gpu/drm/xe/.gitignore
-> +++ b/drivers/gpu/drm/xe/.gitignore
-> @@ -2,3 +2,4 @@
-> *.hdrtest
-> /generated
-> /xe_gen_wa_oob
-> +!.kunitconfig-display
+> diff --git a/drivers/gpu/drm/xe/Makefile b/drivers/gpu/drm/xe/Makefile
+> index e5a04253e73bf..3ff58186c7678 100644
+> --- a/drivers/gpu/drm/xe/Makefile
+> +++ b/drivers/gpu/drm/xe/Makefile
+> @@ -373,6 +373,9 @@ xe-$(CONFIG_DRM_XE_DP_TUNNEL) += \
+>
+> obj-$(CONFIG_DRM_XE) += xe.o
+> obj-$(CONFIG_DRM_XE_KUNIT_TEST) += tests/
+> +ifeq ($(CONFIG_DRM_XE_DISPLAY),y)
+> +	obj-$(CONFIG_DRM_XE_KUNIT_TEST) += display/tests/
+> +endif
+>
+> # header test
+> hdrtest_find_args := -not -path xe_rtp_helpers.h
+> diff --git a/drivers/gpu/drm/xe/display/tests/Makefile b/drivers/gpu/drm/xe/display/tests/Makefile
+> new file mode 100644
+> index 0000000000000..1a582febe17a6
+> --- /dev/null
+> +++ b/drivers/gpu/drm/xe/display/tests/Makefile
+> @@ -0,0 +1,11 @@
 
-Same comment as on PATCH 26/34 ("drm/i915/kunit: Enable KUnit tests"),
-so not sure why the *-display file here is excluded from .gitignore and
-.kunitconfig is not.
+Not sure but I think # SPDX ... boilterplate is missing.
 
-With that addressed:
+Otherwise or if does not apply:
+
 Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
 
-> diff --git a/drivers/gpu/drm/xe/.kunitconfig-display b/drivers/gpu/drm/xe/.kunitconfig-display
-> new file mode 100644
-> index 0000000000000..17020aa4ded3a
-> --- /dev/null
-> +++ b/drivers/gpu/drm/xe/.kunitconfig-display
-> @@ -0,0 +1,11 @@
-> +CONFIG_EXPERT=y
-> +CONFIG_MODULES=y
-> +CONFIG_KUNIT=y
-> +CONFIG_PCI=y
-> +CONFIG_DEBUG_FS=y
-> +CONFIG_BLK_DEV_INITRD=y
-> +CONFIG_MAGIC_SYSRQ=y
-> +CONFIG_DRM=m
-> +CONFIG_DRM_XE=m
-> +CONFIG_DRM_XE_DISPLAY=y
-> +CONFIG_DRM_XE_KUNIT_TEST=m
+> +subdir-ccflags-$(CONFIG_DRM_XE_DISPLAY) += \
+> +	-I$(srctree)/drivers/gpu/drm/i915/display/
+> +
+> +# Rule to build display code shared with i915
+> +$(obj)/i915-display/tests/%.o: $(srctree)/drivers/gpu/drm/i915/display/tests/%.c FORCE
+> +	$(call cmd,force_checksrc)
+> +	$(call if_changed_rule,cc_o_c)
+> +
+> +obj-$(CONFIG_DRM_XE_KUNIT_TEST) += xe_display_test.o
+> +xe_display_test-y = \
+> +		i915-display/tests/intel_dp_link_test.o
 > -- 
 > 2.49.1
 >
 >
---8323329-1000968344-1783117019=:605841--
+--8323329-346222691-1783117240=:605841--
