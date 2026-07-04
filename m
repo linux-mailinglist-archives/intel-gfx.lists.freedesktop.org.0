@@ -2,63 +2,63 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 2rvOBLjlSGphvAAAu9opvQ
+	id MeB9MPjlSGppvAAAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:51:36 +0200
+	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:52:40 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id AD0DF7075E1
-	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 20DF27075E5
+	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:52:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=dMaOVgnt;
+	dkim=pass header.d=intel.com header.s=Intel header.b=N0oow5J6;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3333910E6A3;
-	Sat,  4 Jul 2026 10:51:34 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A832A10E6B8;
+	Sat,  4 Jul 2026 10:52:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.13])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 1596510E6A3;
- Sat,  4 Jul 2026 10:51:33 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0D86610E6B2;
+ Sat,  4 Jul 2026 10:52:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783162293; x=1814698293;
+ t=1783162357; x=1814698357;
  h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version:content-id;
- bh=VcDUnhszVRhYeow5O+KEzltA9+UL3Sj2OjUMsbQ3LRU=;
- b=dMaOVgnt4eWDv8CUiAn/sANVgslJ5pei5iJq/4uYaNHfgVqBIQIezlmf
- WitzFQCR5osm94BjdfA7xqFN/++eDVluEJsvQpOt4sPJ8kssRSH095Pb5
- TVfkSaURgFd33uLTDmyIihBrOu/2m7OOFJzqyuX/741L5cwe3OJEMJOap
- TiOJC50Cx8zwBlputOQpWQT50ag1BpN+S/5xTE5l6vFw4uLzfQTs11+82
- CL8nLNJ84e28YGTySBMo8AGJj7/nZXHxOW9scN2884Lfz7cg5cpPNcWUT
- KmYxwIwurSRmlv/NX40Su97CPoPRLg+C3jbaKv40Wzy2zTyjA7fq4LE4t A==;
-X-CSE-ConnectionGUID: EGZtnnzmSUqcbhU+5HEY8w==
-X-CSE-MsgGUID: 3f57J89ITXOMBijZD1hUhg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11836"; a="95035552"
-X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="95035552"
-Received: from fmviesa007.fm.intel.com ([10.60.135.147])
- by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2026 03:51:33 -0700
-X-CSE-ConnectionGUID: qmqvYEo7Rq+mX9ddliQbuw==
-X-CSE-MsgGUID: znIhNAbuT9O5TXwzcMcPyg==
+ references:mime-version;
+ bh=Qm/9TDx799BYWd5TRec5D91s7mxSOZdz6BoTi6QGXkk=;
+ b=N0oow5J6dqE1SU3THZkYk1epqMooTsiDSE+zUoO5rPVwEExrb/n7o7gY
+ Hlebv2qkTaFpRs0ZwzWROYEURgxkFmGN+QZsx0h3k4heS16Ept3L6MWvW
+ Ryivv2BWClYWcv5CWlu4sAk02qkDu3f2qRl0GeVXEdkSzdOSnsMGWgH8F
+ qzRTjzFkNr4GCEdCQFYANLQx/Rw0YY/j0aw3LVjr0B9jyDtg53mx/NSKX
+ vlO6eBN424BkAniPllvPyl7oWb31QWiysQmykS7M0QVLD9pmMOJQ6MGD7
+ jqKzn37ZRmcnBUnNZs8PXIOkpe8ATkDRuQAYHG4H8cK5aW3BNqJFfAasg A==;
+X-CSE-ConnectionGUID: BmYJsVACSEGuTgVQfoHkNw==
+X-CSE-MsgGUID: XGIZz4KTRy+egoEAV5VXYg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11836"; a="94526563"
+X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="94526563"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2026 03:52:36 -0700
+X-CSE-ConnectionGUID: kAfQT1BESNu+qVgFYrX8tA==
+X-CSE-MsgGUID: O7jLk10/QMC8T8SoqQzDag==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="249935903"
+X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="257618985"
 Received: from dev-417.igk.intel.com ([10.91.214.181])
- by fmviesa007.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2026 03:51:31 -0700
-Date: Sat, 4 Jul 2026 12:51:29 +0200 (CEST)
+ by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 04 Jul 2026 03:52:36 -0700
+Date: Sat, 4 Jul 2026 12:52:33 +0200 (CEST)
 From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
 To: Imre Deak <imre.deak@intel.com>
 cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 34/34] drm/i915/kunit: DP link: add fallback tests
-In-Reply-To: <20260701153204.4124150-35-imre.deak@intel.com>
-Message-ID: <d1a4f146-384e-bc6b-f13e-b5bb66cae6bb@intel.com>
+Subject: Re: [PATCH v2 31/34] drm/i915/kunit: Export link training and caps
+ funcs for testing
+In-Reply-To: <20260701153204.4124150-32-imre.deak@intel.com>
+Message-ID: <482ca492-e120-07f6-5732-9f5d6e3be12e@intel.com>
 References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-35-imre.deak@intel.com>
+ <20260701153204.4124150-32-imre.deak@intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/mixed; BOUNDARY="8323329-62723454-1783161878=:605841"
-Content-ID: <b90aa552-9a36-7bd2-9361-8b34125a5eb0@intel.com>
+Content-Type: multipart/mixed; boundary="8323329-705612368-1783162356=:605841"
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -101,395 +101,281 @@ X-Spamd-Result: default: False [-0.31 / 15.00];
 	MISSING_XM_UA(0.00)[];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: AD0DF7075E1
+X-Rspamd-Queue-Id: 20DF27075E5
 
   This message is in MIME format.  The first part should be readable text,
   while the remaining parts are likely unreadable without MIME-aware tools.
 
---8323329-62723454-1783161878=:605841
-Content-Type: text/plain; CHARSET=ISO-8859-2; format=flowed
+--8323329-705612368-1783162356=:605841
+Content-Type: text/plain; format=flowed; charset=ISO-8859-2
 Content-Transfer-Encoding: 8BIT
-Content-ID: <743237dc-a022-2c55-a652-68e3d4b3f18d@intel.com>
 
 On Wed, 1 Jul 2026, Imre Deak wrote:
-> Add KUnit tests for DP link fallback selection across eDP, SST, and MST.
-> Verify that the fallback logic properly selects the maximum allowed
-> configuration, iterates through allowed configurations, and disables
-> failed configs as expected.
+> Export the link caps and link training helpers needed by the DP link
+> KUnit tests.
 >
-> These tests include UHBR vs. non-UHBR conditions, MST vs. SST mode,
-> and validate that subsequent fallback selections respect the updated
-> allowed configuration mask.
->
-> v2:
-> - Rebase on changes using a filter object instead of a mask of
->  configuration indices.
-> - Rebase on changes using an iteration object.
+> Use test ops tables instead of exporting the helpers directly, avoiding
+> symbol name collisions between the i915 and xe builds of the shared
+> display code.
 >
 > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
-> .../i915/display/tests/intel_dp_link_test.c   | 318 ++++++++++++++++++
-> 1 file changed, 318 insertions(+)
->
-> diff --git a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> index 43283245ad037..14d749962b0ed 100644
-> --- a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> +++ b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> @@ -1001,6 +1001,319 @@ static void intel_dp_link_caps_test_update_params_expand_disable_random(struct k
-> 		test_update_params_expand_random(test, true);
-> }
->
-> +/*
-> + * TEST: Fallback sequence
-> + * -----------------------
-
-Same comment as in PATCH 32/34.
-
-> + * Verify the eDP fallback logic to set the maximum supported configuration
-> + * as a preference.
-> + *
-> + * For DP SST and MST verify fallback selection from the connector's
-> + * maximum configuration and iteration of the resulting allowed
-> + * configurations.
-> + */
-> +static void intel_dp_link_test_fallback_for_edp(struct kunit *test)
-> +{
-> +	struct test_ctx *ctx = test->priv;
-> +	struct intel_dp_link_caps *link_caps = ctx->dev.dig_port.dp.link.caps;
-> +	struct test_config_table expected_table =
-> +		INIT_STANDARD_TABLE(test, LINK_TEST_NUM_STANDARD_RATES,
-> +					  LINK_TEST_MAX_LANE_COUNT);
-> +	struct intel_digital_port *dig_port = &ctx->dev.dig_port;
-> +	const struct intel_dp_link_training_test_ops *lt_ops =
-> +		ctx->link_training_ops;
-> +	const struct intel_dp_link_caps_test_ops *lc_ops =
-> +		ctx->link_caps_ops;
-> +	struct intel_dp_link_config min_config = {
-> +		.rate = expected_table.rates.entries[0],
-> +		.lane_count = 1,
-> +	};
-> +	struct intel_dp_link_config max_config = {
-> +		.rate = expected_table.rates.entries[expected_table.rates.size - 1],
-> +		.lane_count = LINK_TEST_MAX_LANE_COUNT,
-> +	};
-> +	struct intel_dp_link_caps_order order;
-> +	struct intel_dp_link_config iter_config;
-> +	struct intel_dp_link_caps_iter iter;
-> +	int fallback_err;
-> +
-> +	dig_port->base.type = INTEL_OUTPUT_EDP;
-> +	ctx->dev.dig_port.dp.use_max_params = false;
-> +
-> +	update_link_caps_and_verify(&expected_table, link_caps, true);
-> +
-> +	order = lc_ops->connector_compute_order(&ctx->dev.connector);
-> +
-> +	lc_ops->iter_start(&iter, link_caps, order, INTEL_DP_LINK_CAPS_FILTER_ALL);
-> +	for_each_dp_link_config(&iter, &iter_config)
-> +		break;
-> +	lc_ops->iter_end(&iter);
-> +
-> +	KUNIT_EXPECT_FALSE(test, ctx->dev.dig_port.dp.use_max_params);
-> +	KUNIT_EXPECT_TRUE(test, link_configs_match(&iter_config, &min_config));
-> +
-> +	ctx->dev.crtc_state.output_types = BIT(dig_port->base.type);
-> +	ctx->dev.crtc_state.port_clock = min_config.rate;
-> +	ctx->dev.crtc_state.lane_count = min_config.lane_count;
-> +
-> +	fallback_err = lt_ops->get_fallback_values(&ctx->dev.dig_port.dp, &ctx->dev.crtc_state);
-> +	KUNIT_EXPECT_EQ(test, fallback_err, 0);
-> +
-> +	/* The fallback should've changed the order. */
-> +	order = lc_ops->connector_compute_order(&ctx->dev.connector);
-> +
-> +	lc_ops->iter_start(&iter, link_caps, order, INTEL_DP_LINK_CAPS_FILTER_ALL);
-> +	for_each_dp_link_config(&iter, &iter_config)
-> +		break;
-> +	lc_ops->iter_end(&iter);
-> +
-> +	KUNIT_EXPECT_TRUE(test, ctx->dev.dig_port.dp.use_max_params);
-> +	KUNIT_EXPECT_TRUE(test, link_configs_match(&iter_config, &max_config));
-> +}
-> +
-> +static bool test_fallback_from_target(struct test_config_table *expected_table,
-> +				      enum intel_output_type output_type, int max_rate,
-> +				      const struct intel_dp_link_config *expected_target_config,
-> +				      const struct intel_dp_link_config *expected_fallback_config)
-> +{
-> +	struct kunit *test = expected_table->test;
-> +	struct test_ctx *ctx = test->priv;
-> +	struct intel_dp_link_caps *link_caps = ctx->dev.dig_port.dp.link.caps;
-> +	struct intel_dp_link_config iter_config;
-> +	const struct intel_dp_link_training_test_ops *lt_ops =
-> +		ctx->link_training_ops;
-> +	const struct intel_dp_link_caps_test_ops *lc_ops =
-> +		ctx->link_caps_ops;
-> +	/* Modify default order direction for max config lookup. */
-> +	struct intel_dp_link_caps_order fallback_order =
-> +		lc_ops->connector_fallback_order(ctx->dev.connector.mst.dp);
-> +	struct intel_dp_link_caps_iter iter;
-> +	int expected_fallback_err = 0;
-> +	int fallback_err;
-> +
-> +	/* Get the max connector config, optionally filtered to the max_rate limit. */
-> +	lc_ops->iter_start(&iter, link_caps, fallback_order, INTEL_DP_LINK_CAPS_FILTER_ALL);
-> +	for_each_dp_link_config(&iter, &iter_config)
-> +		if (max_rate == 0 || iter_config.rate <= max_rate)
-> +			break;
-> +	lc_ops->iter_end(&iter);
-> +
-> +	KUNIT_EXPECT_TRUE(test, link_configs_match(&iter_config,
-> +						   expected_target_config));
-> +	KUNIT_EXPECT_FALSE(test, link_configs_match(&iter_config,
-> +						    &INTEL_DP_LINK_CONFIG_NULL));
-> +
-> +	ctx->dev.crtc_state.output_types = BIT(output_type);
-> +	ctx->dev.crtc_state.port_clock = expected_target_config->rate;
-> +	ctx->dev.crtc_state.lane_count = expected_target_config->lane_count;
-> +
-> +	if (link_configs_match(expected_fallback_config, &INTEL_DP_LINK_CONFIG_NULL))
-> +		expected_fallback_err = -1;
-> +
-> +	fallback_err = lt_ops->get_fallback_values(&ctx->dev.dig_port.dp, &ctx->dev.crtc_state);
-> +	KUNIT_EXPECT_EQ(test, fallback_err, expected_fallback_err);
-> +
-> +	if (!fallback_err) {
-> +		/*
-> +		 * NOTE: This test does not verify any implied fallback
-> +		 * target selection.
-> +		 *
-> +		 * The current driver behavior may still select a fallback
-> +		 * configuration indirectly via max_limits, but that is an
-> +		 * implementation artifact rather than part of the intended
-> +		 * fallback API behavior, and is therefore not verified here.
-> +		 *
-> +		 * Instead, the effect of the fallback logic is verified by
-> +		 * checking that the failed target configuration is disabled.
-> +		 * Selecting the next target configuration from the remaining
-> +		 * allowed configurations belongs to the modeset link target
-> +		 * selection logic.
-> +		 */
-> +		add_config(test, &expected_table->disabled_configs,
-> +			   expected_target_config);
-> +	}
-> +
-> +	verify_link_caps(expected_table, link_caps);
-> +
-> +	return !fallback_err;
-> +}
-> +
-> +static const struct link_config_set *
-> +get_target_configs_for_output_type(struct kunit *test,
-> +				   enum intel_output_type output_type)
-> +{
-> +	switch (output_type) {
-> +	case INTEL_OUTPUT_DDI:
-> +	case INTEL_OUTPUT_DP:
-> +	case INTEL_OUTPUT_EDP:
-> +		return &standard_dp_link_configs[INTEL_DP_LINK_CAPS_ORDER_KEY_RATE_LANE];
-> +	case INTEL_OUTPUT_DP_MST:
-> +		return &standard_dp_link_configs[INTEL_DP_LINK_CAPS_ORDER_KEY_BW];
-> +	default:
-> +		KUNIT_FAIL_AND_ABORT(test, "Missing output type: %d", output_type);
-> +
-> +	}
-> +}
-> +
-> +static const struct link_config_set *
-> +get_fallback_configs_for_output_type(struct kunit *test,
-> +				     enum intel_output_type output_type)
-> +{
-> +	switch (output_type) {
-> +	case INTEL_OUTPUT_DDI:
-> +	case INTEL_OUTPUT_DP:
-> +	case INTEL_OUTPUT_EDP:
-> +		return &standard_dp_link_configs[INTEL_DP_LINK_CAPS_ORDER_KEY_LANE_RATE];
-> +	case INTEL_OUTPUT_DP_MST:
-> +		return &standard_dp_link_configs[INTEL_DP_LINK_CAPS_ORDER_KEY_BW];
-> +	default:
-> +		KUNIT_FAIL_AND_ABORT(test, "Missing output type: %d", output_type);
-> +
-> +	}
-> +}
-> +
-> +static bool output_type_allows_uhbr_fallback(enum intel_output_type output_type)
-> +{
-> +	return output_type == INTEL_OUTPUT_DP_MST;
-> +}
-> +
-> +static void assert_config_is_supported(const struct test_config_table *expected_table,
-> +				       const struct intel_dp_link_config *config)
-> +{
-> +	struct kunit *test = expected_table->test;
-> +
-> +	KUNIT_ASSERT_TRUE(test, has_rate(&expected_table->rates, config->rate));
-> +	KUNIT_ASSERT_LE(test, config->lane_count, expected_table->max_lane_count);
-> +}
-> +
-> +static bool get_fallback_config(const struct test_config_table *expected_table,
-> +				enum intel_output_type output_type,
-> +				const struct intel_dp_link_config *target_config,
-> +				struct intel_dp_link_config *fallback_config)
-> +{
-> +	struct kunit *test = expected_table->test;
-> +	const struct link_config_set *config_set =
-> +		get_fallback_configs_for_output_type(test, output_type);
-> +	int i;
-> +
-> +	i = lookup_config(config_set, target_config);
-> +	KUNIT_ASSERT_GE(test, i, 0);
-> +
-> +	for (i--; i >= 0; i--) {
-
-For me it would read easier with being slightly more explicit, eg.:
-
-KUNIT_ASSERT_GE(test, i, 0);
-if (i == 0)
- 	return false;
-
-i--;
-
-for (; i >= 0; i--) {
-
-But that's a matter of opinion I guess. Anyways:
 
 Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
 
 BR,
 Micha³
 
-> +		const struct intel_dp_link_config *config =
-> +			&config_set->entries[i];
-> +
-> +		if (output_type_allows_uhbr_fallback(output_type) ||
-> +		    (drm_dp_is_uhbr_rate(target_config->rate) ==
-> +		     drm_dp_is_uhbr_rate(config->rate))) {
-> +			assert_config_is_supported(expected_table, config);
-> +			*fallback_config = *config;
-> +
-> +			return true;
-> +		}
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static bool get_target_config(const struct test_config_table *expected_table,
-> +			      enum intel_output_type output_type,
-> +			      int max_rate,
-> +			      struct intel_dp_link_config *target)
-> +{
-> +	struct kunit *test = expected_table->test;
-> +	const struct link_config_set *config_set =
-> +		get_target_configs_for_output_type(test, output_type);
-> +	int i;
-> +
-> +	for (i = config_set->size - 1; i >= 0; i--) {
-> +		const struct intel_dp_link_config *config =
-> +			&config_set->entries[i];
-> +
-> +		if (config->rate <= max_rate) {
-> +			assert_config_is_supported(expected_table, config);
-> +			*target = *config;
-> +
-> +			return true;
-> +		}
-> +	}
-> +
-> +	return false;
-> +}
-> +
-> +static void test_fallback_seq(struct kunit *test,
-> +			      enum intel_output_type output_type,
-> +			      bool uhbr)
-> +{
-> +	struct test_ctx *ctx = test->priv;
-> +	struct intel_dp_link_caps *link_caps = ctx->dev.dig_port.dp.link.caps;
-> +	struct test_config_table expected_table =
-> +		INIT_STANDARD_TABLE(test, LINK_TEST_NUM_STANDARD_RATES,
-> +					  LINK_TEST_MAX_LANE_COUNT);
-> +	struct intel_digital_port *dig_port = &ctx->dev.dig_port;
-> +	struct intel_dp_link_config fallback_config = {};
-> +	struct intel_dp_link_config target_config;
-> +	int fallback_count = 0;
-> +	bool target_found;
-> +	int max_rate;
-> +
-> +	if (uhbr)
-> +		max_rate = expected_table.rates.entries[expected_table.rates.size - 1];
-> +	else
-> +		max_rate = 810000;
-> +
-> +	dig_port->base.type = output_type;
-> +	ctx->dev.dig_port.dp.use_max_params = false;
-> +
-> +	update_link_caps_and_verify(&expected_table, link_caps, true);
-> +
-> +	/* Get the initial target config. */
-> +	target_found = get_target_config(&expected_table, output_type,
-> +					 max_rate, &target_config);
-> +	KUNIT_ASSERT_TRUE(test, target_found);
-> +
-> +	for (;;) {
-> +		/* Also test the case where no fallback is available. */
-> +		if (!get_fallback_config(&expected_table, output_type,
-> +					 &target_config, &fallback_config))
-> +			fallback_config = INTEL_DP_LINK_CONFIG_NULL;
-> +
-> +		if (!test_fallback_from_target(&expected_table, output_type, max_rate,
-> +					       &target_config, &fallback_config))
-> +			break;
-> +
-> +		/*
-> +		 * The fallback changed the max rate allowed for the next
-> +		 * target.
-> +		 */
-> +		max_rate = fallback_config.rate;
-> +
-> +		/* Simply select the fallback config as the next target. */
-> +		target_config = fallback_config;
-> +
-> +		fallback_count++;
-> +		KUNIT_ASSERT_LT(test, fallback_count, LINK_TEST_MAX_CONFIGS);
-> +	}
-> +}
-> +
-> +static void intel_dp_link_test_fallback_for_sst_max_non_uhbr(struct kunit *test)
-> +{
-> +	test_fallback_seq(test, INTEL_OUTPUT_DP, false);
-> +}
-> +
-> +static void intel_dp_link_test_fallback_for_sst_max_uhbr(struct kunit *test)
-> +{
-> +	test_fallback_seq(test, INTEL_OUTPUT_DP, true);
-> +}
-> +
-> +static void intel_dp_link_test_fallback_for_mst(struct kunit *test)
-> +{
-> +	struct test_ctx *ctx = test->priv;
-> +
-> +	ctx->dev.connector.mst.dp = &ctx->dev.dig_port.dp;
-> +
-> +	test_fallback_seq(test, INTEL_OUTPUT_DP_MST, true);
-> +}
-> +
-> static struct kunit_case intel_dp_link_test_cases[] = {
-> 	KUNIT_CASE(intel_dp_link_caps_test_baseline),
+> ---
+> .../gpu/drm/i915/display/intel_dp_link_caps.c | 29 +++++++++++++++
+> .../gpu/drm/i915/display/intel_dp_link_caps.h | 37 +++++++++++++++++++
+> .../drm/i915/display/intel_dp_link_training.c | 36 +++++++++++++++++-
+> .../drm/i915/display/intel_dp_link_training.h | 31 ++++++++++++++++
+> .../i915/display/tests/intel_dp_link_test.c   | 17 +++++++++
+> 5 files changed, 148 insertions(+), 2 deletions(-)
 >
-> @@ -1019,6 +1332,11 @@ static struct kunit_case intel_dp_link_test_cases[] = {
-> 	KUNIT_CASE(intel_dp_link_caps_test_update_params_expand_random),
-> 	KUNIT_CASE(intel_dp_link_caps_test_update_params_expand_disable_random),
->
-> +	KUNIT_CASE(intel_dp_link_test_fallback_for_edp),
-> +	KUNIT_CASE(intel_dp_link_test_fallback_for_sst_max_non_uhbr),
-> +	KUNIT_CASE(intel_dp_link_test_fallback_for_sst_max_uhbr),
-> +	KUNIT_CASE(intel_dp_link_test_fallback_for_mst),
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> index 76b7c0fc90115..7b6cc6055da82 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
+> @@ -1281,3 +1281,32 @@ void intel_dp_link_caps_cleanup(struct intel_dp_link_caps *link_caps)
+> {
+> 	kfree(link_caps);
+> }
 > +
-> 	{}
+> +#if IS_ENABLED(CONFIG_KUNIT)
+> +
+> +#define __INIT_MEMBER(__name, __fn) \
+> +	.__name = __fn,
+> +
+> +#define INTEL_DP_LINK_CAPS_TEST_OPS_INIT \
+> +	INTEL_DP_LINK_CAPS_TEST_OPS_MEMBERS(__INIT_MEMBER)
+> +
+> +#ifdef I915
+> +
+> +const struct intel_dp_link_caps_test_ops i915_display_dp_link_caps_test_ops = {
+> +	INTEL_DP_LINK_CAPS_TEST_OPS_INIT
+> +};
+> +EXPORT_SYMBOL(i915_display_dp_link_caps_test_ops);
+> +
+> +#else
+> +
+> +const struct intel_dp_link_caps_test_ops intel_display_dp_link_caps_test_ops = {
+> +	INTEL_DP_LINK_CAPS_TEST_OPS_INIT
+> +};
+> +EXPORT_SYMBOL(intel_display_dp_link_caps_test_ops);
+> +
+> +#endif	/* I915 */
+> +
+> +#undef INTEL_DP_LINK_CAPS_TEST_OPS_INIT
+> +#undef __INIT_MEMBER
+> +
+> +#endif	/* CONFIG_KUNIT */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+> index 56c585eb5a135..a0a88efb95463 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
+> @@ -155,4 +155,41 @@ void intel_dp_link_caps_debugfs_add(struct intel_connector *connector);
+> struct intel_dp_link_caps *intel_dp_link_caps_init(struct intel_dp *intel_dp);
+> void intel_dp_link_caps_cleanup(struct intel_dp_link_caps *link_caps);
+>
+> +#if IS_ENABLED(CONFIG_KUNIT)
+> +
+> +#define INTEL_DP_LINK_CAPS_TEST_OPS_MEMBERS(__X) \
+> +	__X(connector_compute_order,	intel_dp_link_caps_connector_compute_order) \
+> +	__X(connector_fallback_order,	intel_dp_link_caps_connector_fallback_order) \
+> +	__X(iter_start,			intel_dp_link_caps_iter_start) \
+> +	__X(iter_end,			intel_dp_link_caps_iter_end) \
+> +	__X(set_max_limits,		intel_dp_link_caps_set_max_limits) \
+> +	__X(get_max_limits,		intel_dp_link_caps_get_max_limits) \
+> +	__X(get_max_bw_config,		intel_dp_link_caps_get_max_bw_config) \
+> +	__X(reset_max_limits,		intel_dp_link_caps_reset_max_limits) \
+> +	__X(disable_config,		intel_dp_link_caps_disable_config) \
+> +	__X(update,			intel_dp_link_caps_update) \
+> +	__X(init,			intel_dp_link_caps_init) \
+> +	__X(cleanup,			intel_dp_link_caps_cleanup)
+> +
+> +#define __DECLARE_MEMBER(__name, __fn) \
+> +	typeof(__fn) *__name;
+> +
+> +#define INTEL_DP_LINK_CAPS_TEST_OPS_DECLARE \
+> +	INTEL_DP_LINK_CAPS_TEST_OPS_MEMBERS(__DECLARE_MEMBER)
+> +
+> +struct intel_dp_link_caps_test_ops {
+> +	INTEL_DP_LINK_CAPS_TEST_OPS_DECLARE
+> +};
+> +
+> +#undef INTEL_DP_LINK_CAPS_TEST_OPS_DECLARE
+> +#undef __DECLARE_MEMBER
+> +
+> +#ifdef I915
+> +extern const struct intel_dp_link_caps_test_ops i915_display_dp_link_caps_test_ops;
+> +#else
+> +extern const struct intel_dp_link_caps_test_ops intel_display_dp_link_caps_test_ops;
+> +#endif	/* I915 */
+> +
+> +#endif	/* CONFIG_KUNIT */
+> +
+> #endif /* __INTEL_DP_LINK_CAPS_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> index a592bfab5ff0e..fa55664c9d98e 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
+> @@ -21,6 +21,8 @@
+>  * IN THE SOFTWARE.
+>  */
+>
+> +#include <kunit/visibility.h>
+> +
+> #include <linux/debugfs.h>
+> #include <linux/iopoll.h>
+>
+> @@ -1888,8 +1890,9 @@ static bool reduce_link_params(struct intel_dp *intel_dp, const struct intel_crt
+> 	return new_found;
+> }
+>
+> -static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> -						   const struct intel_crtc_state *crtc_state)
+> +VISIBLE_IF_KUNIT
+> +int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> +					    const struct intel_crtc_state *crtc_state)
+> {
+> 	struct intel_display *display = to_intel_display(intel_dp);
+> 	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
+> @@ -2813,3 +2816,32 @@ void intel_dp_link_training_cleanup(struct intel_dp_link_training *link_training
+> {
+> 	kfree(link_training);
+> }
+> +
+> +#if IS_ENABLED(CONFIG_KUNIT)
+> +
+> +#define __INIT_MEMBER(__name, __fn) \
+> +	.__name = __fn,
+> +
+> +#define INTEL_DP_LINK_TRAINING_TEST_OPS_INIT \
+> +	INTEL_DP_LINK_TRAINING_TEST_OPS_MEMBERS(__INIT_MEMBER)
+> +
+> +#ifdef I915
+> +
+> +const struct intel_dp_link_training_test_ops i915_display_dp_link_training_test_ops = {
+> +	INTEL_DP_LINK_TRAINING_TEST_OPS_INIT
+> +};
+> +EXPORT_SYMBOL(i915_display_dp_link_training_test_ops);
+> +
+> +#else
+> +
+> +const struct intel_dp_link_training_test_ops intel_display_dp_link_training_test_ops = {
+> +	INTEL_DP_LINK_TRAINING_TEST_OPS_INIT
+> +};
+> +EXPORT_SYMBOL(intel_display_dp_link_training_test_ops);
+> +
+> +#endif	/* I915 */
+> +
+> +#undef INTEL_DP_LINK_TRAINING_TEST_OPS_INIT
+> +#undef __INIT_MEMBER
+> +
+> +#endif	/* CONFIG_KUNIT */
+> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> index ef16fcabd6da9..581f2361fdfd5 100644
+> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
+> @@ -8,6 +8,8 @@
+>
+> #include <drm/display/drm_dp_helper.h>
+>
+> +#include "intel_dp_link_caps.h"
+> +
+> struct intel_atomic_state;
+> struct intel_connector;
+> struct intel_crtc_state;
+> @@ -71,4 +73,33 @@ void intel_dp_link_training_reset(struct intel_dp_link_training *link_training);
+> struct intel_dp_link_training *intel_dp_link_training_init(struct intel_dp *intel_dp);
+> void intel_dp_link_training_cleanup(struct intel_dp_link_training *link_training);
+>
+> +#if IS_ENABLED(CONFIG_KUNIT)
+> +
+> +int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
+> +					    const struct intel_crtc_state *crtc_state);
+> +
+> +#define INTEL_DP_LINK_TRAINING_TEST_OPS_MEMBERS(__X) \
+> +	__X(get_fallback_values,	intel_dp_get_link_train_fallback_values)
+> +
+> +#define __DECLARE_MEMBER(__name, __fn) \
+> +	typeof(__fn) *__name;
+> +
+> +#define INTEL_DP_LINK_TRAINING_TEST_OPS_DECLARE \
+> +	INTEL_DP_LINK_TRAINING_TEST_OPS_MEMBERS(__DECLARE_MEMBER)
+> +
+> +struct intel_dp_link_training_test_ops {
+> +	INTEL_DP_LINK_TRAINING_TEST_OPS_DECLARE
+> +};
+> +
+> +#undef INTEL_DP_LINK_TRAINING_TEST_OPS_DECLARE
+> +#undef __DECLARE_MEMBER
+> +
+> +#ifdef I915
+> +extern const struct intel_dp_link_training_test_ops i915_display_dp_link_training_test_ops;
+> +#else
+> +extern const struct intel_dp_link_training_test_ops intel_display_dp_link_training_test_ops;
+> +#endif	/* I915 */
+> +
+> +#endif	/* CONFIG_KUNIT */
+> +
+> #endif /* __INTEL_DP_LINK_TRAINING_H__ */
+> diff --git a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+> index aa5358c94839f..b77472e9bbe12 100644
+> --- a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+> +++ b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
+> @@ -17,6 +17,8 @@
+> #include "intel_connector.h"
+> #include "intel_display_core.h"
+> #include "intel_display_types.h"
+> +#include "intel_dp_link_caps.h"
+> +#include "intel_dp_link_training.h"
+>
+> struct test_ctx {
+> 	struct {
+> @@ -30,6 +32,9 @@ struct test_ctx {
+> 		struct intel_crtc_state crtc_state;
+> 	} dev;
+>
+> +	const struct intel_dp_link_caps_test_ops *link_caps_ops;
+> +	const struct intel_dp_link_training_test_ops *link_training_ops;
+> +
+> 	struct rnd_state rnd;
 > };
 >
+> @@ -64,6 +69,8 @@ static int intel_dp_link_test_init(struct kunit *test)
+> 	intel_dp = &dig_port->dp;
+> 	intel_dp->attached_connector = &test_ctx.dev.connector;
+>
+> +	intel_dp->link.caps = test_ctx.link_caps_ops->init(intel_dp);
+> +
+> 	test->priv = &test_ctx;
+>
+> 	return 0;
+> @@ -71,10 +78,20 @@ static int intel_dp_link_test_init(struct kunit *test)
+>
+> static void intel_dp_link_test_exit(struct kunit *test)
+> {
+> +	struct test_ctx *ctx = test->priv;
+> +
+> +	ctx->link_caps_ops->cleanup(ctx->dev.dig_port.dp.link.caps);
+> }
+>
+> static int intel_dp_link_test_suite_init(struct kunit_suite *test_suite)
+> {
+> +#ifdef I915
+> +	test_ctx.link_caps_ops = &i915_display_dp_link_caps_test_ops;
+> +	test_ctx.link_training_ops = &i915_display_dp_link_training_test_ops;
+> +#else
+> +	test_ctx.link_caps_ops = &intel_display_dp_link_caps_test_ops;
+> +	test_ctx.link_training_ops = &intel_display_dp_link_training_test_ops;
+> +#endif
+> 	prandom_seed_state(&test_ctx.rnd, 0);
+>
+> 	return 0;
 > -- 
 > 2.49.1
 >
 >
---8323329-62723454-1783161878=:605841--
+--8323329-705612368-1783162356=:605841--
