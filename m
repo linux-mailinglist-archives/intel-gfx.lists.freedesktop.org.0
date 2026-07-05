@@ -2,63 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id MeB9MPjlSGppvAAAu9opvQ
+	id +BHUEe2sS2pnYQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:52:40 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:26:05 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 20DF27075E5
-	for <lists+intel-gfx@lfdr.de>; Sat, 04 Jul 2026 12:52:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BC2127113C4
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:26:04 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=N0oow5J6;
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=none;
+	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id A832A10E6B8;
-	Sat,  4 Jul 2026 10:52:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 50F5810E965;
+	Mon,  6 Jul 2026 13:26:03 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.9])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 0D86610E6B2;
- Sat,  4 Jul 2026 10:52:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783162357; x=1814698357;
- h=date:from:to:cc:subject:in-reply-to:message-id:
- references:mime-version;
- bh=Qm/9TDx799BYWd5TRec5D91s7mxSOZdz6BoTi6QGXkk=;
- b=N0oow5J6dqE1SU3THZkYk1epqMooTsiDSE+zUoO5rPVwEExrb/n7o7gY
- Hlebv2qkTaFpRs0ZwzWROYEURgxkFmGN+QZsx0h3k4heS16Ept3L6MWvW
- Ryivv2BWClYWcv5CWlu4sAk02qkDu3f2qRl0GeVXEdkSzdOSnsMGWgH8F
- qzRTjzFkNr4GCEdCQFYANLQx/Rw0YY/j0aw3LVjr0B9jyDtg53mx/NSKX
- vlO6eBN424BkAniPllvPyl7oWb31QWiysQmykS7M0QVLD9pmMOJQ6MGD7
- jqKzn37ZRmcnBUnNZs8PXIOkpe8ATkDRuQAYHG4H8cK5aW3BNqJFfAasg A==;
-X-CSE-ConnectionGUID: BmYJsVACSEGuTgVQfoHkNw==
-X-CSE-MsgGUID: XGIZz4KTRy+egoEAV5VXYg==
-X-IronPort-AV: E=McAfee;i="6800,10657,11836"; a="94526563"
-X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="94526563"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by fmvoesa103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2026 03:52:36 -0700
-X-CSE-ConnectionGUID: kAfQT1BESNu+qVgFYrX8tA==
-X-CSE-MsgGUID: O7jLk10/QMC8T8SoqQzDag==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,147,1779174000"; d="scan'208";a="257618985"
-Received: from dev-417.igk.intel.com ([10.91.214.181])
- by orviesa005.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 04 Jul 2026 03:52:36 -0700
-Date: Sat, 4 Jul 2026 12:52:33 +0200 (CEST)
-From: =?ISO-8859-2?Q?Micha=B3_Grzelak?= <michal.grzelak@intel.com>
-To: Imre Deak <imre.deak@intel.com>
-cc: intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org
-Subject: Re: [PATCH v2 31/34] drm/i915/kunit: Export link training and caps
- funcs for testing
-In-Reply-To: <20260701153204.4124150-32-imre.deak@intel.com>
-Message-ID: <482ca492-e120-07f6-5732-9f5d6e3be12e@intel.com>
-References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-32-imre.deak@intel.com>
+Received: from cstnet.cn (smtp25.cstnet.cn [159.226.251.25])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BF94010E161;
+ Sun,  5 Jul 2026 08:02:32 +0000 (UTC)
+Received: from localhost.localdomain (unknown [111.196.245.140])
+ by APP-05 (Coremail) with SMTP id zQCowACnANSSD0pqvkX7Fg--.46571S2;
+ Sun, 05 Jul 2026 16:02:27 +0800 (CST)
+From: Pengpeng Hou <pengpeng@iscas.ac.cn>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Pengpeng Hou <pengpeng@iscas.ac.cn>,
+ Daniele Ceraolo Spurio <daniele.ceraolospurio@intel.com>,
+ Chris Wilson <chris@chris-wilson.co.uk>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/gt: use correct selftest config symbol
+Date: Sun,  5 Jul 2026 16:02:25 +0800
+Message-ID: <20260705080225.436-1-pengpeng@iscas.ac.cn>
+X-Mailer: git-send-email 2.50.1
 MIME-Version: 1.0
-Content-Type: multipart/mixed; boundary="8323329-705612368-1783162356=:605841"
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID: zQCowACnANSSD0pqvkX7Fg--.46571S2
+X-Coremail-Antispam: 1UD129KBjvJXoW7ZF17Zw4xKw18XFW7Ww1xKrg_yoW8Gw13pF
+ n3t342y393Aa1S9ay5ZF40vFySq3Z5Aa4rGasrJ343Ga1kZa48ArZ0qa43X34Uuw43XFyS
+ qF9ag343ua4UKrUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+ 9KBjDU0xBIdaVrnRJUUU9F14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
+ rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
+ 1l84ACjcxK6xIIjxv20xvE14v26r1I6r4UM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
+ 6F4UM28EF7xvwVC2z280aVAFwI0_Gr1j6F4UJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr
+ 1j6rxdM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj
+ 6xIIjxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr
+ 0_Gr1lF7xvr2IYc2Ij64vIr41lF7I21c0EjII2zVCS5cI20VAGYxC7M4IIrI8v6xkF7I0E
+ 8cxan2IY04v7MxkF7I0En4kS14v26r1q6r43MxAIw28IcxkI7VAKI48JMxC20s026xCaFV
+ Cjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWl
+ x4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xIIjxv20xvE14v26r1j6r
+ 1xMIIF0xvE2Ix0cI8IcVCY1x0267AKxVW8JVWxJwCI42IY6xAIw20EY4v20xvaj40_Jr0_
+ JF4lIxAIcVC2z280aVAFwI0_Jr0_Gr1lIxAIcVC2z280aVCY1x0267AKxVW8JVW8JrUvcS
+ sGvfC2KfnxnUUI43ZEXa7VUbGQ6JUUUUU==
+X-Originating-IP: [111.196.245.140]
+X-CM-SenderInfo: pshqw1xhqjqxpvfd2hldfou0/
+X-Mailman-Approved-At: Mon, 06 Jul 2026 13:26:02 +0000
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -74,308 +75,70 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.31 / 15.00];
-	CTYPE_MIXED_BOGUS(1.00)[];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [1.89 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DATE_IN_PAST(1.00)[29];
+	R_MISSING_CHARSET(0.50)[];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/mixed,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	TO_DN_SOME(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+];
+	DMARC_NA(0.00)[iscas.ac.cn];
+	RCVD_COUNT_THREE(0.00)[3];
 	ARC_NA(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[13];
+	MIME_TRACE(0.00)[0:+];
+	SUSPICIOUS_AUTH_ORIGIN(0.00)[];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,suse.de];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[michal.grzelak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[intel.com:+];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[pengpeng@iscas.ac.cn,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	HAS_XOIP(0.00)[];
+	R_DKIM_NA(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,iscas.ac.cn:from_mime,iscas.ac.cn:email,iscas.ac.cn:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 20DF27075E5
+X-Rspamd-Queue-Id: BC2127113C4
 
-  This message is in MIME format.  The first part should be readable text,
-  while the remaining parts are likely unreadable without MIME-aware tools.
+intel_engine_user.c checks CONFIG_DRM_I915_SELFTESTS before running
+the engine UABI isolation check. Kconfig defines DRM_I915_SELFTEST,
+without the trailing "S", and the rest of i915 uses
+CONFIG_DRM_I915_SELFTEST.
 
---8323329-705612368-1783162356=:605841
-Content-Type: text/plain; format=flowed; charset=ISO-8859-2
-Content-Transfer-Encoding: 8BIT
+Because CONFIG_DRM_I915_SELFTESTS is not backed by any Kconfig symbol,
+the IS_ENABLED() test is always false. Use the existing selftest symbol
+so the debug/selftest guarded path can be reached when selftests are
+enabled.
 
-On Wed, 1 Jul 2026, Imre Deak wrote:
-> Export the link caps and link training helpers needed by the DP link
-> KUnit tests.
->
-> Use test ops tables instead of exporting the helpers directly, avoiding
-> symbol name collisions between the i915 and xe builds of the shared
-> display code.
->
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
+This is a source-level fix. It does not claim dynamic hardware
+reproduction; the evidence is the Kconfig definition and the inconsistent
+guard in intel_engine_user.c.
 
-Reviewed-by: Micha³ Grzelak <michal.grzelak@intel.com>
+Fixes: 750e76b4f9f6 ("drm/i915/gt: Move the [class][inst] lookup for engines onto the GT")
+Signed-off-by: Pengpeng Hou <pengpeng@iscas.ac.cn>
+---
+ drivers/gpu/drm/i915/gt/intel_engine_user.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-BR,
-Micha³
+diff --git a/drivers/gpu/drm/i915/gt/intel_engine_user.c b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+index be4bbff1a57c..d5190e11b270 100644
+--- a/drivers/gpu/drm/i915/gt/intel_engine_user.c
++++ b/drivers/gpu/drm/i915/gt/intel_engine_user.c
+@@ -259,7 +259,7 @@
+ 		p = &prev->rb_right;
+ 	}
+ 
+-	if (IS_ENABLED(CONFIG_DRM_I915_SELFTESTS) &&
++	if (IS_ENABLED(CONFIG_DRM_I915_SELFTEST) &&
+ 	    IS_ENABLED(CONFIG_DRM_I915_DEBUG_GEM)) {
+ 		struct intel_engine_cs *engine;
+ 		unsigned int isolation;
+-- 
+2.39.5
 
-> ---
-> .../gpu/drm/i915/display/intel_dp_link_caps.c | 29 +++++++++++++++
-> .../gpu/drm/i915/display/intel_dp_link_caps.h | 37 +++++++++++++++++++
-> .../drm/i915/display/intel_dp_link_training.c | 36 +++++++++++++++++-
-> .../drm/i915/display/intel_dp_link_training.h | 31 ++++++++++++++++
-> .../i915/display/tests/intel_dp_link_test.c   | 17 +++++++++
-> 5 files changed, 148 insertions(+), 2 deletions(-)
->
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> index 76b7c0fc90115..7b6cc6055da82 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.c
-> @@ -1281,3 +1281,32 @@ void intel_dp_link_caps_cleanup(struct intel_dp_link_caps *link_caps)
-> {
-> 	kfree(link_caps);
-> }
-> +
-> +#if IS_ENABLED(CONFIG_KUNIT)
-> +
-> +#define __INIT_MEMBER(__name, __fn) \
-> +	.__name = __fn,
-> +
-> +#define INTEL_DP_LINK_CAPS_TEST_OPS_INIT \
-> +	INTEL_DP_LINK_CAPS_TEST_OPS_MEMBERS(__INIT_MEMBER)
-> +
-> +#ifdef I915
-> +
-> +const struct intel_dp_link_caps_test_ops i915_display_dp_link_caps_test_ops = {
-> +	INTEL_DP_LINK_CAPS_TEST_OPS_INIT
-> +};
-> +EXPORT_SYMBOL(i915_display_dp_link_caps_test_ops);
-> +
-> +#else
-> +
-> +const struct intel_dp_link_caps_test_ops intel_display_dp_link_caps_test_ops = {
-> +	INTEL_DP_LINK_CAPS_TEST_OPS_INIT
-> +};
-> +EXPORT_SYMBOL(intel_display_dp_link_caps_test_ops);
-> +
-> +#endif	/* I915 */
-> +
-> +#undef INTEL_DP_LINK_CAPS_TEST_OPS_INIT
-> +#undef __INIT_MEMBER
-> +
-> +#endif	/* CONFIG_KUNIT */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> index 56c585eb5a135..a0a88efb95463 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_caps.h
-> @@ -155,4 +155,41 @@ void intel_dp_link_caps_debugfs_add(struct intel_connector *connector);
-> struct intel_dp_link_caps *intel_dp_link_caps_init(struct intel_dp *intel_dp);
-> void intel_dp_link_caps_cleanup(struct intel_dp_link_caps *link_caps);
->
-> +#if IS_ENABLED(CONFIG_KUNIT)
-> +
-> +#define INTEL_DP_LINK_CAPS_TEST_OPS_MEMBERS(__X) \
-> +	__X(connector_compute_order,	intel_dp_link_caps_connector_compute_order) \
-> +	__X(connector_fallback_order,	intel_dp_link_caps_connector_fallback_order) \
-> +	__X(iter_start,			intel_dp_link_caps_iter_start) \
-> +	__X(iter_end,			intel_dp_link_caps_iter_end) \
-> +	__X(set_max_limits,		intel_dp_link_caps_set_max_limits) \
-> +	__X(get_max_limits,		intel_dp_link_caps_get_max_limits) \
-> +	__X(get_max_bw_config,		intel_dp_link_caps_get_max_bw_config) \
-> +	__X(reset_max_limits,		intel_dp_link_caps_reset_max_limits) \
-> +	__X(disable_config,		intel_dp_link_caps_disable_config) \
-> +	__X(update,			intel_dp_link_caps_update) \
-> +	__X(init,			intel_dp_link_caps_init) \
-> +	__X(cleanup,			intel_dp_link_caps_cleanup)
-> +
-> +#define __DECLARE_MEMBER(__name, __fn) \
-> +	typeof(__fn) *__name;
-> +
-> +#define INTEL_DP_LINK_CAPS_TEST_OPS_DECLARE \
-> +	INTEL_DP_LINK_CAPS_TEST_OPS_MEMBERS(__DECLARE_MEMBER)
-> +
-> +struct intel_dp_link_caps_test_ops {
-> +	INTEL_DP_LINK_CAPS_TEST_OPS_DECLARE
-> +};
-> +
-> +#undef INTEL_DP_LINK_CAPS_TEST_OPS_DECLARE
-> +#undef __DECLARE_MEMBER
-> +
-> +#ifdef I915
-> +extern const struct intel_dp_link_caps_test_ops i915_display_dp_link_caps_test_ops;
-> +#else
-> +extern const struct intel_dp_link_caps_test_ops intel_display_dp_link_caps_test_ops;
-> +#endif	/* I915 */
-> +
-> +#endif	/* CONFIG_KUNIT */
-> +
-> #endif /* __INTEL_DP_LINK_CAPS_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.c b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> index a592bfab5ff0e..fa55664c9d98e 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.c
-> @@ -21,6 +21,8 @@
->  * IN THE SOFTWARE.
->  */
->
-> +#include <kunit/visibility.h>
-> +
-> #include <linux/debugfs.h>
-> #include <linux/iopoll.h>
->
-> @@ -1888,8 +1890,9 @@ static bool reduce_link_params(struct intel_dp *intel_dp, const struct intel_crt
-> 	return new_found;
-> }
->
-> -static int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
-> -						   const struct intel_crtc_state *crtc_state)
-> +VISIBLE_IF_KUNIT
-> +int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
-> +					    const struct intel_crtc_state *crtc_state)
-> {
-> 	struct intel_display *display = to_intel_display(intel_dp);
-> 	struct intel_dp_link_caps *link_caps = intel_dp->link.caps;
-> @@ -2813,3 +2816,32 @@ void intel_dp_link_training_cleanup(struct intel_dp_link_training *link_training
-> {
-> 	kfree(link_training);
-> }
-> +
-> +#if IS_ENABLED(CONFIG_KUNIT)
-> +
-> +#define __INIT_MEMBER(__name, __fn) \
-> +	.__name = __fn,
-> +
-> +#define INTEL_DP_LINK_TRAINING_TEST_OPS_INIT \
-> +	INTEL_DP_LINK_TRAINING_TEST_OPS_MEMBERS(__INIT_MEMBER)
-> +
-> +#ifdef I915
-> +
-> +const struct intel_dp_link_training_test_ops i915_display_dp_link_training_test_ops = {
-> +	INTEL_DP_LINK_TRAINING_TEST_OPS_INIT
-> +};
-> +EXPORT_SYMBOL(i915_display_dp_link_training_test_ops);
-> +
-> +#else
-> +
-> +const struct intel_dp_link_training_test_ops intel_display_dp_link_training_test_ops = {
-> +	INTEL_DP_LINK_TRAINING_TEST_OPS_INIT
-> +};
-> +EXPORT_SYMBOL(intel_display_dp_link_training_test_ops);
-> +
-> +#endif	/* I915 */
-> +
-> +#undef INTEL_DP_LINK_TRAINING_TEST_OPS_INIT
-> +#undef __INIT_MEMBER
-> +
-> +#endif	/* CONFIG_KUNIT */
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_link_training.h b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> index ef16fcabd6da9..581f2361fdfd5 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_link_training.h
-> @@ -8,6 +8,8 @@
->
-> #include <drm/display/drm_dp_helper.h>
->
-> +#include "intel_dp_link_caps.h"
-> +
-> struct intel_atomic_state;
-> struct intel_connector;
-> struct intel_crtc_state;
-> @@ -71,4 +73,33 @@ void intel_dp_link_training_reset(struct intel_dp_link_training *link_training);
-> struct intel_dp_link_training *intel_dp_link_training_init(struct intel_dp *intel_dp);
-> void intel_dp_link_training_cleanup(struct intel_dp_link_training *link_training);
->
-> +#if IS_ENABLED(CONFIG_KUNIT)
-> +
-> +int intel_dp_get_link_train_fallback_values(struct intel_dp *intel_dp,
-> +					    const struct intel_crtc_state *crtc_state);
-> +
-> +#define INTEL_DP_LINK_TRAINING_TEST_OPS_MEMBERS(__X) \
-> +	__X(get_fallback_values,	intel_dp_get_link_train_fallback_values)
-> +
-> +#define __DECLARE_MEMBER(__name, __fn) \
-> +	typeof(__fn) *__name;
-> +
-> +#define INTEL_DP_LINK_TRAINING_TEST_OPS_DECLARE \
-> +	INTEL_DP_LINK_TRAINING_TEST_OPS_MEMBERS(__DECLARE_MEMBER)
-> +
-> +struct intel_dp_link_training_test_ops {
-> +	INTEL_DP_LINK_TRAINING_TEST_OPS_DECLARE
-> +};
-> +
-> +#undef INTEL_DP_LINK_TRAINING_TEST_OPS_DECLARE
-> +#undef __DECLARE_MEMBER
-> +
-> +#ifdef I915
-> +extern const struct intel_dp_link_training_test_ops i915_display_dp_link_training_test_ops;
-> +#else
-> +extern const struct intel_dp_link_training_test_ops intel_display_dp_link_training_test_ops;
-> +#endif	/* I915 */
-> +
-> +#endif	/* CONFIG_KUNIT */
-> +
-> #endif /* __INTEL_DP_LINK_TRAINING_H__ */
-> diff --git a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> index aa5358c94839f..b77472e9bbe12 100644
-> --- a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> +++ b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> @@ -17,6 +17,8 @@
-> #include "intel_connector.h"
-> #include "intel_display_core.h"
-> #include "intel_display_types.h"
-> +#include "intel_dp_link_caps.h"
-> +#include "intel_dp_link_training.h"
->
-> struct test_ctx {
-> 	struct {
-> @@ -30,6 +32,9 @@ struct test_ctx {
-> 		struct intel_crtc_state crtc_state;
-> 	} dev;
->
-> +	const struct intel_dp_link_caps_test_ops *link_caps_ops;
-> +	const struct intel_dp_link_training_test_ops *link_training_ops;
-> +
-> 	struct rnd_state rnd;
-> };
->
-> @@ -64,6 +69,8 @@ static int intel_dp_link_test_init(struct kunit *test)
-> 	intel_dp = &dig_port->dp;
-> 	intel_dp->attached_connector = &test_ctx.dev.connector;
->
-> +	intel_dp->link.caps = test_ctx.link_caps_ops->init(intel_dp);
-> +
-> 	test->priv = &test_ctx;
->
-> 	return 0;
-> @@ -71,10 +78,20 @@ static int intel_dp_link_test_init(struct kunit *test)
->
-> static void intel_dp_link_test_exit(struct kunit *test)
-> {
-> +	struct test_ctx *ctx = test->priv;
-> +
-> +	ctx->link_caps_ops->cleanup(ctx->dev.dig_port.dp.link.caps);
-> }
->
-> static int intel_dp_link_test_suite_init(struct kunit_suite *test_suite)
-> {
-> +#ifdef I915
-> +	test_ctx.link_caps_ops = &i915_display_dp_link_caps_test_ops;
-> +	test_ctx.link_training_ops = &i915_display_dp_link_training_test_ops;
-> +#else
-> +	test_ctx.link_caps_ops = &intel_display_dp_link_caps_test_ops;
-> +	test_ctx.link_training_ops = &intel_display_dp_link_training_test_ops;
-> +#endif
-> 	prandom_seed_state(&test_ctx.rnd, 0);
->
-> 	return 0;
-> -- 
-> 2.49.1
->
->
---8323329-705612368-1783162356=:605841--
