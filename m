@@ -2,57 +2,57 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ytLNOryYS2r3WAEAu9opvQ
+	id 3zsBCb6YS2r4WAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 13:59:56 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 13:59:58 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 954DC71030F
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 13:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id E6286710312
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 13:59:57 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=eD+mjBta;
+	dkim=pass header.d=intel.com header.s=Intel header.b=avi2w+mq;
 	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 076BA10E90C;
-	Mon,  6 Jul 2026 11:59:55 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 6631D10E936;
+	Mon,  6 Jul 2026 11:59:56 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.12])
- by gabe.freedesktop.org (Postfix) with ESMTPS id B78B110E918;
- Mon,  6 Jul 2026 11:59:53 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 17BD910E924;
+ Mon,  6 Jul 2026 11:59:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783339194; x=1814875194;
+ t=1783339196; x=1814875196;
  h=from:to:cc:subject:date:message-id:in-reply-to:
  references:mime-version:content-transfer-encoding;
- bh=PhANHKbyPDi8i90NMQaPO+qoLf9n+XbCXZimgyWCeTA=;
- b=eD+mjBtaLyVQfATyjS7U/jQZiYrnw3jc1keqmOhAlPo3US04OxZwi/Mm
- E0yLRr9QZ5Mbs5ukJ6alNAV9KqQYwaYOfkON+mrCefYtQ6WBG1D3BM6ew
- Ki24iGDDXfuuTf5sxrjDZ+u9sM9ilHaEbo0uzfXPSG5Fkx2K2l31MpWCw
- 7LIm6WcMjHMbLhoZzw4eRVnMDfKrFwb6cX8VchRlicY0QDKpRvA7zot7Q
- z60rTfRDjpb2vBURxBafIIqdg9ObQZeYDgXrcLn+FhllpIoE9rylaRsQ8
- cHC2SvIL0D66Es9DUUPDYjc6nSquRljddJpi8BTGh66KMdHHuRWivjg2q g==;
-X-CSE-ConnectionGUID: Qq2OZl0pTuiwsdJiXByYlw==
-X-CSE-MsgGUID: zeFf4L/eQ2a4Fz63N4O66A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="95481134"
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="95481134"
+ bh=vQMvJ4OLKgkFZrZs5cejGyWC4azW+2offAbPvRFi520=;
+ b=avi2w+mqpbN5+ibWbLQ0lmZJK26V975iVS3oxPrjRYvgU6z/1fBlg7rZ
+ xCHfwiGXjTsB57DtOvfit9IlFp50dLZhYjq6GBo84Ot0rGI7i3XK0UzTK
+ MeHn6nYpcUDyV0URluMaEG1yliLt+KLPbBaN6bJ8mvTEqnE8ZQRq9nc6d
+ XCt1fqB6i6yE3hdKY8An8sn0egmdTUBHXDv7/zSGNzjWLUqgCyWD+AsZC
+ AApa67cJ0uK8PPVF0iTIZgD6yo8e1kT4qmRKTZ/35MA2TJ3F1h5PDrSM0
+ fPSKruMSAf2mgwZszbLLoIZ07Us0AKH+EatzCwArB1qY5bj10Sk6GsloL Q==;
+X-CSE-ConnectionGUID: l+vtaAV+RtySkAEr72/gMg==
+X-CSE-MsgGUID: ERHq2qokR62KQ9p1iM6PkQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="95481139"
+X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="95481139"
 Received: from orviesa007.jf.intel.com ([10.64.159.147])
  by orvoesa104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 04:59:54 -0700
-X-CSE-ConnectionGUID: +RjRXxG5S8+HrAc0NmIHrw==
-X-CSE-MsgGUID: q0uS08RMQR2tmnTAUx5ZAg==
+ 06 Jul 2026 04:59:55 -0700
+X-CSE-ConnectionGUID: pQPaBjh7SIO/vghXYP299A==
+X-CSE-MsgGUID: eEqIIC46TqONmRGznOXGGA==
 X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="253797570"
+X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="253797588"
 Received: from nemesa.iind.intel.com ([10.190.239.22])
- by orviesa007.jf.intel.com with ESMTP; 06 Jul 2026 04:59:53 -0700
+ by orviesa007.jf.intel.com with ESMTP; 06 Jul 2026 04:59:54 -0700
 From: Nemesa Garg <nemesa.garg@intel.com>
 To: intel-gfx@lists.freedesktop.org,
 	intel-xe@lists.freedesktop.org
 Cc: Nemesa Garg <nemesa.garg@intel.com>
-Subject: [PATCH 5/6] drm/i915/cursor: Schedule cursor unpin per joined pipe
-Date: Mon,  6 Jul 2026 17:26:28 +0530
-Message-Id: <20260706115629.2984258-6-nemesa.garg@intel.com>
+Subject: [PATCH 6/6] drm/i915/cursor: Allow joiner cursor fast path update
+Date: Mon,  6 Jul 2026 17:26:29 +0530
+Message-Id: <20260706115629.2984258-7-nemesa.garg@intel.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20260706115629.2984258-1-nemesa.garg@intel.com>
 References: <20260706115629.2984258-1-nemesa.garg@intel.com>
@@ -99,73 +99,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 954DC71030F
+X-Rspamd-Queue-Id: E6286710312
 
-Convert the primary-only vblank unpin block into a loop over the
-joined[] array so each pipe's old cursor framebuffer is scheduled for
-unpin (or unpinned inline when unchanged) independently. All unpin
-work is armed on the primary crtc's vblank (&crtc->base), consistent
-with the single primary vblank evasion used above.
+The legacy cursor path forced all joiner updates to the
+slow path by checking joiner_pipes.
+Drop the condition so that joiner cursor updates can use
+the fast path.
 
-v4: Split from the update_arm loop conversion. [Chaitanya]
+v4: Trimmed to only the joiner_pipes gate drop. [Chaitanya]
 
 Assisted-by: Claude:claude-sonnet-4.6
 Signed-off-by: Nemesa Garg <nemesa.garg@intel.com>
 ---
- drivers/gpu/drm/i915/display/intel_cursor.c | 26 ++++++++++-----------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+ drivers/gpu/drm/i915/display/intel_cursor.c | 5 +----
+ 1 file changed, 1 insertion(+), 4 deletions(-)
 
 diff --git a/drivers/gpu/drm/i915/display/intel_cursor.c b/drivers/gpu/drm/i915/display/intel_cursor.c
-index 65e1fa60a606..68e73afad330 100644
+index 68e73afad330..f431c00c03ac 100644
 --- a/drivers/gpu/drm/i915/display/intel_cursor.c
 +++ b/drivers/gpu/drm/i915/display/intel_cursor.c
-@@ -887,7 +887,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	struct intel_display *display = to_intel_display(plane);
- 	struct intel_plane_state *old_plane_state =
- 		to_intel_plane_state(plane->base.state);
--	struct intel_plane_state *new_plane_state = NULL;
- 	struct intel_crtc_state *crtc_state =
- 		to_intel_crtc_state(crtc->base.state);
- 	struct intel_vblank_evade_ctx evade;
-@@ -987,7 +986,6 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 		num_pipes++;
- 	}
- 
--	new_plane_state = joined[0].new_plane_state;
- 	intel_frontbuffer_flush(to_intel_frontbuffer(joined[0].new_plane_state->hw.fb),
- 				ORIGIN_CURSOR_UPDATE);
- 
-@@ -1070,17 +1068,19 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
- 	 * Schedule or immediately unpin old framebuffers.
- 	 * Protect against concurrent access.
+@@ -901,13 +901,10 @@ intel_legacy_cursor_update(struct drm_plane *_plane,
+ 	 * PSR2 selective fetch also requires the slow path as
+ 	 * PSR2 plane and transcoder registers can only be updated during
+ 	 * vblank.
+-	 *
+-	 * FIXME joiner fastpath would be good
  	 */
--	if (old_plane_state->ggtt_vma != new_plane_state->ggtt_vma) {
--		drm_vblank_work_init(&old_plane_state->unpin_work, &crtc->base,
--				     intel_cursor_unpin_work);
--
--		drm_vblank_work_schedule(&old_plane_state->unpin_work,
--					 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
--					 false);
--
--		joined[0].old_plane_state = NULL;
--	} else {
--		intel_plane_unpin_fb(old_plane_state);
-+	for (int i = 0; i < num_pipes; i++) {
-+		struct intel_plane_state *old = joined[i].old_plane_state;
-+
-+		if (old->ggtt_vma != joined[i].new_plane_state->ggtt_vma) {
-+			drm_vblank_work_init(&old->unpin_work, &crtc->base,
-+					     intel_cursor_unpin_work);
-+			drm_vblank_work_schedule(&old->unpin_work,
-+						 drm_crtc_accurate_vblank_count(&crtc->base) + 1,
-+						 false);
-+			joined[i].old_plane_state = NULL;
-+		} else {
-+			intel_plane_unpin_fb(old);
-+		}
- 	}
+ 	if (!crtc_state->hw.active ||
+ 	    intel_crtc_needs_modeset(crtc_state) ||
+-	    intel_crtc_needs_fastset(crtc_state) ||
+-	    crtc_state->joiner_pipes)
++	    intel_crtc_needs_fastset(crtc_state))
+ 		goto slow;
  
- out_free:
+ 	/*
 -- 
 2.25.1
 
