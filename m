@@ -2,49 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id KUKIEqfbS2owbgEAu9opvQ
+	id ltuJHvfjS2q4cAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 18:45:27 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 19:20:55 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id C2E1571376A
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 18:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id DE680713CC6
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 19:20:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=ePxDBImn;
+	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4CD8310E3DD;
-	Mon,  6 Jul 2026 16:45:25 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7547E10E9FD;
+	Mon,  6 Jul 2026 17:20:53 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7A55710E3D1;
- Mon,  6 Jul 2026 16:45:24 +0000 (UTC)
-Received: from 87-93-171-105.bb.dnainternet.fi ([87.93.171.105]
- helo=[192.168.101.113])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wgmRd-00000001UFv-1qDL; Mon, 06 Jul 2026 19:45:22 +0300
-Message-ID: <83eb97e76ee3aa7e49cea7a7966a513b51d5d137.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Mon, 06 Jul 2026 19:45:19 +0300
-In-Reply-To: <20260701153204.4124150-21-imre.deak@intel.com>
-References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-21-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10 
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id E673D10E9FD;
+ Mon,  6 Jul 2026 17:20:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783358452; x=1814894452;
+ h=from:to:cc:subject:date:message-id:mime-version:
+ content-transfer-encoding;
+ bh=J8U0CB7/YDuDjPYQRhjIjSgq9opovH2ISKY5vmzVir4=;
+ b=ePxDBImn7DxpuVPVr5iRi+hbBoBsNbH8U7tF7a5opreUlSW5ykYPg2/t
+ eDiP339DLxmVnGnEJTmVJRWUB5iLMYgWMBlSU2dr9euYlM2R7sMgCm8VG
+ XQV5m+NVWCix5BLdNAglybJxF16a8tIhw5PZJvDn2kdhUA4+eIIuqgB9U
+ ypdWH5J812l8wN1Hsi5JelD4wh71tc87DPfZNxjYaVnfvcI7bMhifPOJ0
+ Ow71j8NSdHQOtu45//WWBL4JGRzKXr3rJ6XlRF/bxaxUDiEtDrbd7vBGv
+ j+U8AEq1JuJvdNH2/7+qZYtBpNTdckU2yB18JZbMOo3WGe/WVaLgftJ8E Q==;
+X-CSE-ConnectionGUID: 6ji7Te/EQsm/rc3HBqtY7Q==
+X-CSE-MsgGUID: P4CouFAkRsqvo+Cva64SMw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="101417672"
+X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="101417672"
+Received: from fmviesa004.fm.intel.com ([10.60.135.144])
+ by orvoesa102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 10:20:51 -0700
+X-CSE-ConnectionGUID: 7zxkbQvkRCqvGqbeQ7juRQ==
+X-CSE-MsgGUID: h+x24hecRWCW1YSpxe64Uw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,151,1779174000"; d="scan'208";a="255704355"
+Received: from dut-2a59.iind.intel.com ([10.190.239.113])
+ by fmviesa004.fm.intel.com with ESMTP; 06 Jul 2026 10:20:48 -0700
+From: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>
+To: intel-gfx@lists.freedesktop.org,
+	intel-xe@lists.freedesktop.org
+Cc: Chaitanya Kumar Borah <chaitanya.kumar.borah@intel.com>,
+ Kai Vehmanen <kai.vehmanen@linux.intel.com>,
+ Ankit Nautiyal <ankit.k.nautiyal@intel.com>,
+ =?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+ Vinod Govindapillai <vinod.govindapillai@intel.com>,
+ Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+Subject: [v2 0/2] drm/i915/audio: Add HDMI TMDS audio bandwidth check
+Date: Mon,  6 Jul 2026 22:26:44 +0530
+Message-Id: <20260706165646.2731978-1-chaitanya.kumar.borah@intel.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.3-r1932428 (2026-03-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.3-r1932428
-Subject: Re: [PATCH v2 20/34] drm/i915/dp_mst: Use link caps for non-DSC
- config selection
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,86 +77,67 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.61 / 15.00];
+X-Spamd-Result: default: False [-0.31 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[coelho.fi];
-	RCVD_COUNT_THREE(0.00)[3];
-	FROM_HAS_DN(0.00)[];
 	ARC_NA(0.00)[];
-	RCVD_TLS_LAST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
-	RCPT_COUNT_THREE(0.00)[3];
-	R_DKIM_NA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	MIME_TRACE(0.00)[0:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:email,coelho.fi:mid,coelho.fi:from_mime]
+	RCPT_COUNT_SEVEN(0.00)[8];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[chaitanya.kumar.borah@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	RCVD_COUNT_THREE(0.00)[4];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:from_mime,intel.com:email,intel.com:mid,intel.com:dkim];
+	ALIAS_RESOLVED(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: C2E1571376A
+X-Rspamd-Queue-Id: DE680713CC6
 
-On Wed, 2026-07-01 at 18:31 +0300, Imre Deak wrote:
-> Use the link caps helper to select the maximum MST link configuration
-> for non-DSC computation, instead of using the separate max rate and lane
-> count limits, which may not form a valid configuration after individual
-> configs are disabled by fallback.
->=20
-> This is a step towards unifying configuration selection and iteration
-> across connector types and between compute and fallback paths.
->=20
-> In some cases all configurations should be considered, as noted in the
-> code comment; for now keep the existing behavior of selecting the
-> maximum bandwidth configuration as determined by the MST connector's BW
-> config iteration order.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp_mst.c | 16 ++++++++++++++--
->  1 file changed, 14 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp_mst.c b/drivers/gpu/dr=
-m/i915/display/intel_dp_mst.c
-> index e113c9e60e67d..47b8563f85e4d 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp_mst.c
-> @@ -445,8 +445,20 @@ static int mst_stream_compute_link_config(struct int=
-el_dp *intel_dp,
->  					  struct drm_connector_state *conn_state,
->  					  const struct link_config_limits *limits)
->  {
-> -	crtc_state->lane_count =3D limits->max_lane_count;
-> -	crtc_state->port_clock =3D limits->max_rate;
-> +	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
-nnector);
-> +	struct intel_dp_link_config max_link_config;
-> +
-> +	/*
-> +	 * FIXME: Use a proper iteration over the link configurations, instead
-> +	 * of using only the max BW config. For instance UHBR rate configs may
-> +	 * have additional limitations over non-UHBR ones, due to the DSC DPT
-> +	 * bpp maximum limit.
-> +	 */
-> +	if (!intel_dp_get_connector_max_link_config(connector, limits, &max_lin=
-k_config))
-> +		return -EINVAL;
-> +
-> +	crtc_state->port_clock =3D max_link_config.rate;
-> +	crtc_state->lane_count =3D max_link_config.lane_count;
-> =20
->  	/*
->  	 * FIXME: allocate the BW according to link_bpp, which in the case of
+This series adds audio bandwidth validation for HDMI TMDS mode.
+When the available hblank period cannot carry the required
+audio packets for a given sample rate and channel count, the
+corresponding frequencies are pruned from the ELD SADs before they reach
+the audio driver.
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
+Sample rates are pruned rather than channel counts because compressed
+audio formats like Dolby Digital (AC-3) and DTS require a fixed channel
+configuration to decode.
 
---
-Cheers,
-Luca.
+This improves on an earlier attempt which can be seen in [1]
+
+[1] https://lore.kernel.org/intel-gfx/20230615063137.2219870-3-mitulkumar.ajitkumar.golani@intel.com/
+
+v2:
+ - Use DIV64_U64_ROUND_UP() instead of DIV_ROUND_UP_ULL() to avoid
+   do_div() truncating the 64-bit divisor to 32-bit, which caused
+   audio_packets_line to be wildly inflated and all SADs to be pruned.
+ - Guard intel_audio_hdmi_eld_compute_config() against HDMI FRL modes.
+
+Cc: Kai Vehmanen <kai.vehmanen@linux.intel.com>
+Cc: Ankit Nautiyal <ankit.k.nautiyal@intel.com>
+Cc: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Cc: Vinod Govindapillai <vinod.govindapillai@intel.com>
+Cc: Mitul Golani <mitulkumar.ajitkumar.golani@intel.com>
+
+Chaitanya Kumar Borah (2):
+  drm/i915/hdmi: Move audio compute config after format selection
+  drm/i915/audio: Prune ELD SADs based on HDMI audio bandwidth
+
+ drivers/gpu/drm/i915/display/intel_audio.c | 149 +++++++++++++++++++++
+ drivers/gpu/drm/i915/display/intel_hdmi.c  |   8 +-
+ 2 files changed, 153 insertions(+), 4 deletions(-)
+
+-- 
+2.25.1
+
