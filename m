@@ -2,61 +2,82 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id O6hXN8eoS2piYAEAu9opvQ
+	id QRyCA7OqS2rZYAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:08:23 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:16:35 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 879317110B2
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 607DC711205
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:16:34 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=arm.com header.s=foss header.b=M4rTjdB2;
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=arm.com (policy=none);
+	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=u4v26pTU;
+	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 192E910E97F;
-	Mon,  6 Jul 2026 13:08:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D7EC010E98D;
+	Mon,  6 Jul 2026 13:16:32 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from foss.arm.com (foss.arm.com [217.140.110.172])
- by gabe.freedesktop.org (Postfix) with ESMTP id CE2B710E9A0;
- Mon,  6 Jul 2026 13:08:20 +0000 (UTC)
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
- by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 0F82628C7;
- Mon,  6 Jul 2026 06:08:16 -0700 (PDT)
-Received: from [10.57.82.104] (unknown [10.57.82.104])
- by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E88F43F7B4;
- Mon,  6 Jul 2026 06:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=arm.com; s=foss;
- t=1783343300; bh=0aA4qLPP4be61ChbVSTr6j8z/Dm/HGd90mPQPS4LDmU=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=M4rTjdB20bQ2CIIm6sF9czHLIiKzlI2RImQaKwc20odxzVCQybIaWr3rwfjrKShR5
- KD1O5KVG+VNwczLFB/cfjDMk335CqXNUd1rKGJjEVFahgMi5MA35fcXRGjNdG6lza+
- SNjeWVEgCVnwJxppYQ/IW6dg3IkcQENcwHFbtb7Q=
-Message-ID: <a381d265-e7a4-4fe7-9421-3553706d41c1@arm.com>
-Date: Mon, 6 Jul 2026 14:08:14 +0100
+Received: from 6.mo533.mail-out.ovh.net (6.mo533.mail-out.ovh.net
+ [54.36.140.181])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 4662610E98D
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 13:16:32 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net
+ (director6.derp.mail-out.ovh.net [51.255.22.22])
+ by mo533.mail-out.ovh.net (Postfix) with ESMTPS id 4gv4Rk72Q6z65w4;
+ Mon,  6 Jul 2026 13:08:34 +0000 (UTC)
+Received: from director6.derp.mail-out.ovh.net
+ (director6.derp.mail-out.ovh.net. [127.0.0.1])
+ by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 13:08:34 +0000 (UTC)
+Received: from mta2.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.164.42])
+ by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id
+ 4gv4Rk5gg1z7tKv; Mon,  6 Jul 2026 13:08:34 +0000 (UTC)
+Received: from pixelcluster.dev (unknown [10.1.6.9])
+ (Authenticated sender: nat@pixelcluster.dev)
+ by mta2.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 2832F3E191C; 
+ Mon,  6 Jul 2026 13:08:31 +0000 (UTC)
+X-OVh-ClientIp: 88.133.252.134
+Message-ID: <13276ae0-9a45-454d-b9b6-39ad0d911bc4@pixelcluster.dev>
+Date: Mon, 6 Jul 2026 15:08:20 +0200
 MIME-Version: 1.0
 User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v2 3/3] drivers/iommu: Catch scatterlist length overflows
-To: Jason Gunthorpe <jgg@ziepe.ca>
-Cc: Krzysztof Karas <krzysztof.karas@intel.com>,
- intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org,
- iommu@lists.linux.dev, Andi Shyti <andi.shyti@linux.intel.com>,
- Joerg Roedel <joro@8bytes.org>, =?UTF-8?Q?Micha=C5=82_Grzelak?=
- <michal.grzelak@intel.com>,
- Janusz Krzysztofik <janusz.krzysztofik@linux.intel.com>,
- Sebastian Brzezinka <sebastian.brzezinka@intel.com>,
- Krzysztof Niemiec <krzysztof.niemiec@intel.com>
-References: <20260701104437.236979-1-krzysztof.karas@intel.com>
- <20260701104437.236979-4-krzysztof.karas@intel.com>
- <20260703162236.GX7525@ziepe.ca>
- <90558ba3-44e6-4d5e-9c72-ed8817d372be@arm.com>
- <20260703203502.GC1978949@ziepe.ca>
-From: Robin Murphy <robin.murphy@arm.com>
-Content-Language: en-GB
-In-Reply-To: <20260703203502.GC1978949@ziepe.ca>
+Subject: Re: [PATCH 03/10] drm/ttm: remove ttm_lru_walk_ops
+To: =?UTF-8?Q?Thomas_Hellstr=C3=B6m?= <thomas.hellstrom@linux.intel.com>,
+ Natalie Vock <natalie.vock@gmx.de>,
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>,
+ David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>,
+ Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin
+ <tursulin@ursulin.net>, Christian Koenig <christian.koenig@amd.com>,
+ Huang Rui <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,
+ Matthew Brost <matthew.brost@intel.com>,
+ Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org,
+ amd-gfx@lists.freedesktop.org
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-3-43685ac1286b@gmx.de>
+ <247fece24913008be6d42ab0b6f19da1cb95abe1.camel@linux.intel.com>
+Content-Language: en-US
+From: Natalie Vock <nat@pixelcluster.dev>
+In-Reply-To: <247fece24913008be6d42ab0b6f19da1cb95abe1.camel@linux.intel.com>
 Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+x-ovh-tracer-id: 12164785543678484796
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: dmFkZTFyes8j/v3dXjntvuZ9gBj8Y2sjETrIz38VWdkBP8h4PCS2pdr5Eojh6uKUymPtei1Eh/4IENbrvmzV8qOuf+rEmj29KNot9hpO2kAmMFCTp9Rs53AHRkUCQqzOOSy+scGcELL5dz/1PLEB4zmoG8l16VzEr/n07fUrhR1s7QddpkARyQl0WE5QnIG/PTbrzyamHuzdyKQAvjS0JQ7XzvGcALm8wKo+5sPuXQ2XoUONXegRh1c/IWzmxJb2kU8omXwy++wM/B0D2MrmNDbmpXGntTOltfoXGJMS+5cfDdCBBCu9ohrJ7m/F1HiofiRgLDilA3aFjtFJvX1cW1aEafWjLYV7TT1lNanZmRU/0Oko+xXCq1A+O+JsCASV5jP03F5A0/AGpO9aO+EXDF0F6LQ1H0ynDKTYeQVop6elYuqrcbg09HW74Q7z/6xDu2Fv4nLe+n9q75hcI7zsifhQjjiU8DPW3Vpmu+lnPHD0RSszjqzS01+xmIzQBITFQNjxAJXBQmLD6J25nzXNJU03A3s4pkZ1yr7TxB4mjejnKjHHjIAXvqmzv7hvINxjPfqn72neO4e+BRTOO5nctlHWFI7f4ekBOtJxZxLXN9+AHXzewPqC11daqoy0Nli2OsM8b7Ldv3/Z4aacEQCSr42gW0ps28W2R3o246r062kbmIb97g
+DKIM-Signature: a=rsa-sha256; bh=Ea4tishli31W/v+seTtCrctO5yksmMxv40KcsEOCwX8=; 
+ c=relaxed/relaxed; d=pixelcluster.dev; h=From;
+ s=ovhmo-selector-1; t=1783343315; v=1;
+ b=u4v26pTUxOAO6izLzCACHeWZq9XqyxEJ1dFLE9i32JIgjDrh5i/xQyDt02X+s8OZAf6B9DL8
+ b8pHftSB6n9AvPWyMBD9cGWv5bGxfytQvXdYlcxZMMUrDRpIP5P4w3f6zha+9rtGzZE5X8MH77j
+ DiXTHtD6EYmH39ZVNWe3BpPKh5ynaGPjVBTyXhBhQSEn2LgylcgDORnJX5+oYXUMntOaRkSCbfd
+ p4qZckY7kEmS2W012qGki8SuX1I/TInYNpi06dTyzpUNmvNZrhHH/Wwod6R/naB1vb7IeYuYBSd
+ olmiuPbmhrn1njW42dIqCud3j4d3slSdhQxV2DOlNwHjQ==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -72,137 +93,202 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [0.49 / 15.00];
-	R_DKIM_REJECT(1.00)[arm.com:s=foss];
+X-Spamd-Result: default: False [2.69 / 15.00];
+	SEM_URIBL_FRESH15(3.00)[pixelcluster.dev:from_mime,pixelcluster.dev:dkim,pixelcluster.dev:mid];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	DMARC_POLICY_SOFTFAIL(0.10)[arm.com : SPF not aligned (relaxed),none];
 	MIME_GOOD(-0.10)[text/plain];
+	BAD_REP_POLICIES(0.10)[];
 	HAS_LIST_UNSUB(-0.01)[];
+	FORGED_RECIPIENTS(0.00)[m:thomas.hellstrom@linux.intel.com,m:natalie.vock@gmx.de,m:maarten.lankhorst@linux.intel.com,m:mripard@kernel.org,m:tzimmermann@suse.de,m:airlied@gmail.com,m:simona@ffwll.ch,m:jani.nikula@linux.intel.com,m:joonas.lahtinen@linux.intel.com,m:rodrigo.vivi@intel.com,m:tursulin@ursulin.net,m:christian.koenig@amd.com,m:ray.huang@amd.com,m:matthew.auld@intel.com,m:matthew.brost@intel.com,m:alexander.deucher@amd.com,m:dri-devel@lists.freedesktop.org,m:linux-kernel@vger.kernel.org,m:intel-xe@lists.freedesktop.org,m:amd-gfx@lists.freedesktop.org,s:lists@lfdr.de];
 	RCVD_TLS_LAST(0.00)[];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
+	R_DKIM_ALLOW(0.00)[pixelcluster.dev:s=ovhmo-selector-1];
+	DMARC_NA(0.00)[pixelcluster.dev];
+	FREEMAIL_TO(0.00)[linux.intel.com,gmx.de,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
+	FORGED_SENDER(0.00)[nat@pixelcluster.dev,intel-gfx-bounces@lists.freedesktop.org];
+	RCPT_COUNT_TWELVE(0.00)[21];
+	DKIM_TRACE(0.00)[pixelcluster.dev:+];
 	MIME_TRACE(0.00)[0:+];
-	RCVD_COUNT_THREE(0.00)[4];
-	TO_DN_SOME(0.00)[];
-	DKIM_TRACE(0.00)[arm.com:-];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[robin.murphy@arm.com,intel-gfx-bounces@lists.freedesktop.org];
+	ARC_NA(0.00)[];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	RCPT_COUNT_SEVEN(0.00)[11];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[arm.com:mid,arm.com:from_mime,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
+	RCVD_COUNT_FIVE(0.00)[6];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
+	FORGED_SENDER_FORWARDING(0.00)[];
+	FROM_HAS_DN(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[nat@pixelcluster.dev,intel-gfx-bounces@lists.freedesktop.org];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	FORGED_RECIPIENTS_FORWARDING(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:131.252.210.177:c];
+	MID_RHS_MATCH_FROM(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:email,pixelcluster.dev:from_mime,pixelcluster.dev:dkim,pixelcluster.dev:mid,gmx.de:email]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 879317110B2
+X-Rspamd-Queue-Id: 607DC711205
 
-On 2026-07-03 9:35 pm, Jason Gunthorpe wrote:
-> On Fri, Jul 03, 2026 at 07:58:32PM +0100, Robin Murphy wrote:
->> On 03/07/2026 5:22 pm, Jason Gunthorpe wrote:
->>> On Wed, Jul 01, 2026 at 10:44:37AM +0000, Krzysztof Karas wrote:
->>>> It is possible, when a very large mapping uses a single
->>>> scatterlist, that padding overflows scatterlist's length field.
->>>> This results in:
->>>>    1) silently wrapping the value
->>>>    2) smaller than desired mappings produced by iommu_map_sg
->>>>    3) leaving mapped bytes in memory (no iommu_unmap)
->>>>
->>>> Address this issue by adding overflow detection for previous
->>>> scatterlist length field.
->>>
->>> Urk, this is unfortunate, it means we cannot map certain kinds of
->>> scatterlists? Meaning there is a condition that makes a scatterlist
->>> ill formed?
->>>
->>> This seems like something that needs to be more clearly documented and
->>> we need to ensure at least the common scatterlist builders don't hit
->>> it..
+On 7/6/26 14:34, Thomas Hellström wrote:
+> Hi,
+> 
+> On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+>> From: Christian König <christian.koenig@amd.com>
 >>
->> Well, it's taken 10 years to be caught by a test which seemingly expects the
->> mapping of a single absurdly giant scatterlist to fail anyway,
+>> It's just another layer of indirection.
+>>
+>> Signed-off-by: Christian König <christian.koenig@amd.com>
+>> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
 > 
-> If your server has 0.5TB of ram a 4G IO isn't actually that large.
-> Randomly getting a few contiguous 1G hugetlbfs pages is not even that
-> unlikely. Something like FSDAX has a very high chance of getting high
-> contiguity pages in files.
+> Personally I don't have a strong opinion on this, but the reason for
+> separating out the ops is that adding function pointers in the walk
+> iterator itself was once pushed back on quite forcefully by Linus when
+> I tried to do that in mm/pagewalk. Claiming for various reasons the
+> standard way of doing that in Linux is using a const ops struct that
+> ends up in unmodifiable memory.
 
-Sure, but how many servers had 0.5TB of RAM in 2015? And how many of 
-those were running the arm64 DMA mapping code? As I said, both this 
-merging logic and the iommu_map_sg() interface itself were essentially 
-written to support media buffers on Android phones which didn't even 
-have 4GB of RAM in total. Yes, things have moved on by now, but 
-correspondingly it has also been decided that the ~30-year-old 
-scatterlist design also doesn't scale to modern use-cases anyway, and is 
-being replaced, so limitations of a "legacy" API that don't have any 
-meaningful impact to its existing users are hardly something to panic 
-about. If DRM does want to be able to *reliably* map massive amounts of 
-RAM then it can adopt the new IOMMU API, for this and all the other 
-reasons that that new API was promised to be "better".
+Ack, will drop in next revision.
 
-> So I wouldn't be quite so dismissive that this is not something a real
-> user can hit.
-
-I'm not being dismissive - clearly it can be hit. My point is that 
-anyone who *does* hit it can only expect it to fail (as indeed this 
-particular IGT test seems to), because it has never worked. You cannot 
-encode a 4GB scatterlist segment, because it overflows UINT_MAX. And if 
-you did try to bodge it and pass a UINT_MAX length segment to 
-iommu_map_sg() then that will also fail because it's not aligned to an 
-IOMMU page size. It's purely the matter of *how* exactly it fails which 
-could do with fixing.
-
->> here, but I suspect this is likely just regular iova_granule rounding
->> overflowing when the segment boundary is the maximum 4GB, since the largest
->> representable segment length is 4GB - 1.
+Best,
+Natalie
 > 
-> It looks like the iommu_dma_map_sg() algorithm only works reliably if
-> the scatterlist entry size is less than UINT_MAX/2, otherwise it can
-> risk overflowing when it pads.
+> /Thomas
+> 
+> 
+>> ---
+>>   drivers/gpu/drm/ttm/ttm_bo.c      | 12 ++----------
+>>   drivers/gpu/drm/ttm/ttm_bo_util.c |  2 +-
+>>   include/drm/ttm/ttm_bo.h          | 34 ++++++++++++++---------------
+>> -----
+>>   3 files changed, 17 insertions(+), 31 deletions(-)
+>>
+>> diff --git a/drivers/gpu/drm/ttm/ttm_bo.c
+>> b/drivers/gpu/drm/ttm/ttm_bo.c
+>> index 2b470c1746f60..1fb8c53da0362 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_bo.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_bo.c
+>> @@ -545,10 +545,6 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk
+>> *walk, struct ttm_buffer_object *
+>>   	return lret;
+>>   }
+>>   
+>> -static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
+>> -	.process_bo = ttm_bo_evict_cb,
+>> -};
+>> -
+>>   static int ttm_bo_evict_alloc(struct ttm_device *bdev,
+>>   			      struct ttm_resource_manager *man,
+>>   			      const struct ttm_place *place,
+>> @@ -560,7 +556,7 @@ static int ttm_bo_evict_alloc(struct ttm_device
+>> *bdev,
+>>   {
+>>   	struct ttm_bo_evict_walk evict_walk = {
+>>   		.walk = {
+>> -			.ops = &ttm_evict_walk_ops,
+>> +			.process_bo = ttm_bo_evict_cb,
+>>   			.arg = {
+>>   				.ctx = ctx,
+>>   				.ticket = ticket,
+>> @@ -1187,10 +1183,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk,
+>> struct ttm_buffer_object *bo)
+>>   	return ret;
+>>   }
+>>   
+>> -const struct ttm_lru_walk_ops ttm_swap_ops = {
+>> -	.process_bo = ttm_bo_swapout_cb,
+>> -};
+>> -
+>>   /**
+>>    * ttm_bo_swapout() - Swap out buffer objects on the LRU list to
+>> shmem.
+>>    * @bdev: The ttm device.
+>> @@ -1209,7 +1201,7 @@ s64 ttm_bo_swapout(struct ttm_device *bdev,
+>> struct ttm_operation_ctx *ctx,
+>>   {
+>>   	struct ttm_bo_swapout_walk swapout_walk = {
+>>   		.walk = {
+>> -			.ops = &ttm_swap_ops,
+>> +			.process_bo = ttm_bo_swapout_cb,
+>>   			.arg = {
+>>   				.ctx = ctx,
+>>   				.trylock_only = true,
+>> diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c
+>> b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>> index 7ed085adf1c9b..29f068944a972 100644
+>> --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
+>> +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+>> @@ -919,7 +919,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk
+>> *walk, struct ttm_device *bdev,
+>>   	s64 lret;
+>>   
+>>   	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &walk-
+>>> arg, bo) {
+>> -		lret = walk->ops->process_bo(walk, bo);
+>> +		lret = walk->process_bo(walk, bo);
+>>   		if (lret == -EBUSY || lret == -EALREADY)
+>>   			lret = 0;
+>>   		progress = (lret < 0) ? lret : progress + lret;
+>> diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+>> index 1eae9eea5ff32..0fcd5082a7080 100644
+>> --- a/include/drm/ttm/ttm_bo.h
+>> +++ b/include/drm/ttm/ttm_bo.h
+>> @@ -189,24 +189,6 @@ struct ttm_operation_ctx {
+>>   	uint64_t bytes_moved;
+>>   };
+>>   
+>> -struct ttm_lru_walk;
+>> -
+>> -/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
+>> -struct ttm_lru_walk_ops {
+>> -	/**
+>> -	 * process_bo - Process this bo.
+>> -	 * @walk: struct ttm_lru_walk describing the walk.
+>> -	 * @bo: A locked and referenced buffer object.
+>> -	 *
+>> -	 * Return: Negative error code on error, User-defined
+>> positive value
+>> -	 * (typically, but not always, size of the processed bo) on
+>> success.
+>> -	 * On success, the returned values are summed by the walk
+>> and the
+>> -	 * walk exits when its target is met.
+>> -	 * 0 also indicates success, -EBUSY means this bo was
+>> skipped.
+>> -	 */
+>> -	s64 (*process_bo)(struct ttm_lru_walk *walk, struct
+>> ttm_buffer_object *bo);
+>> -};
+>> -
+>>   /**
+>>    * struct ttm_lru_walk_arg - Common part for the variants of BO LRU
+>> walk.
+>>    */
+>> @@ -223,8 +205,20 @@ struct ttm_lru_walk_arg {
+>>    * struct ttm_lru_walk - Structure describing a LRU walk.
+>>    */
+>>   struct ttm_lru_walk {
+>> -	/** @ops: Pointer to the ops structure. */
+>> -	const struct ttm_lru_walk_ops *ops;
+>> +	/**
+>> +	 * process_bo - Process this bo.
+>> +	 * @walk: struct ttm_lru_walk describing the walk.
+>> +	 * @bo: A locked and referenced buffer object.
+>> +	 *
+>> +	 * Return: Negative error code on error, User-defined
+>> positive value
+>> +	 * (typically, but not always, size of the processed bo) on
+>> success.
+>> +	 * On success, the returned values are summed by the walk
+>> and the
+>> +	 * walk exits when its target is met.
+>> +	 * 0 also indicates success, -EBUSY means this bo was
+>> skipped.
+>> +	 */
+>> +	s64 (*process_bo)(struct ttm_lru_walk *walk,
+>> +			  struct ttm_buffer_object *bo);
+>> +
+>>   	/** @arg: Common bo LRU walk arguments. */
+>>   	struct ttm_lru_walk_arg arg;
+>>   };
 
-AFAICS, the overflow can only happen with a 4GB boundary mask, and for 
-two conditions:
-
-- rounding up the current segment, when s->length + s->offset > 4GB - 
-iova_granule (but still <= 4GB otherwise it's bogus anyway)
-- padding the previous segment in the case where the current segment 
-would otherwise cross the next boundary, when prev->offset = 0 and 
-prev->length + s->length >= 4GB
-
-So yes, limiting any individual segment to <=2GB would end up avoiding 
-both those conditions, but it would also impact plenty of cases that 
-*do* currently work fine, e.g. 1GB+3GB+3GB. The limitation is really 
-that you can't have two consecutive segments where the first starts 
-exactly on a 4GB boundary and the sum of both their sizes >=4GB.
-
-> API wise I expect any arbitary input to sg_alloc_table_from_pages() to
-> result in a scatterlist that iommu_dma_map_sg() will map. This
-> patch highlights there are cornere cases where that isn't true, it
-> should be fixed..
-
-Technically sg_alloc_table_from_pages() carries no such assumption, only 
-sg_alloc_table_from_pages_segment() (or __sg_alloc_table_from_pages()) 
-with the correct dma_seg_boundary value for the given device. But even 
-then in the worst case, they should still end up splitting segments at 
-4GB-PAGE_SIZE due to the fundamental int limitation, and so only be at 
-risk of putting two such segments back-to-back.
-
-> I agree we shouldn't overcomplicate iommu_dma_map_sg(), so the
-> simplest fix is to introduce a SG_MAX_LENGTH set to UINT_MAX/2,
-> justified by the logic in iommu_dma_map_sg(). Fixup the core sg_alloc
-> code to respect that. WARN_ON in iommu_dma_map_sg() if a malformed
-> scatterlist entry is presented. Add a WARN_ON under DMA debugging
-> kconfig as well for the physical path.
-
-Again, it's not "malformed", it's just an edge case of certain 
-otherwise-valid scatterlist layouts that are not supported in this one 
-DMA API implementation. Nothing in the DMA API ever guarantees that any 
-particular mapping must succeed. Furthermore I don't see that anyone's 
-asking for this to actually be supported, just to fail cleanly and 
-correctly without inadvertently corrupting state.
-
-Thanks,
-Robin.
