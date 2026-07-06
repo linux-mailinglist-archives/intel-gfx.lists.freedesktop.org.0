@@ -2,49 +2,64 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id OlUGAUaIS2p0UwEAu9opvQ
+	id xeEVLu+NS2rBVQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:49:42 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 13:13:51 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 7EF6470F782
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 36B0C70FB72
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 13:13:51 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
 	dkim=none;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id F272D10E362;
-	Mon,  6 Jul 2026 10:49:39 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 2CF1F10E8CF;
+	Mon,  6 Jul 2026 11:13:49 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from coelho.fi (coelho.fi [88.99.146.29])
- by gabe.freedesktop.org (Postfix) with ESMTPS id D39DE10E281;
- Mon,  6 Jul 2026 10:49:38 +0000 (UTC)
-Received: from 87-93-171-105.bb.dnainternet.fi ([87.93.171.105]
- helo=[192.168.101.113])
- by coelho.fi with esmtpsa (TLS1.3) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
- (Exim 4.98.2) (envelope-from <luca@coelho.fi>)
- id 1wggtM-00000001Tef-18RA; Mon, 06 Jul 2026 13:49:36 +0300
-Message-ID: <c496755d198f317620e2cfaae20851aa3fc206a8.camel@coelho.fi>
-From: Luca Coelho <luca@coelho.fi>
-To: Imre Deak <imre.deak@intel.com>, intel-gfx@lists.freedesktop.org, 
- intel-xe@lists.freedesktop.org
-Date: Mon, 06 Jul 2026 13:49:35 +0300
-In-Reply-To: <20260701153204.4124150-20-imre.deak@intel.com>
-References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-20-imre.deak@intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.56.2-10 
+Received: from mailgw.kylinos.cn (mailgw.kylinos.cn [124.126.103.232])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id C62FD10E347;
+ Mon,  6 Jul 2026 11:13:47 +0000 (UTC)
+X-UUID: bd1b28d0792b11f1aa26b74ffac11d73-20260706
+X-CID-P-RULE: Release_Ham
+X-CID-O-INFO: VERSION:1.3.12, REQID:615fdcf3-dd64-45a7-ae4b-d9ac2a6c1cc5, IP:0,
+ U
+ RL:0,TC:0,Content:0,EDM:0,RT:0,SF:0,FILE:0,BULK:0,RULE:Release_Ham,ACTION:
+ release,TS:0
+X-CID-META: VersionHash:e7bac3a, CLOUDID:b54be00bfd7698c547a44b9c0b80abf1,
+ BulkI
+ D:nil,BulkQuantity:0,Recheck:0,SF:102|850|865|898,TC:nil,Content:0|15|50,E
+ DM:-3,IP:nil,URL:0,File:nil,RT:nil,Bulk:nil,QS:nil,BEC:nil,COL:0,OSI:0,OSA
+ :0,AV:0,LES:1,SPR:NO,DKR:0,DKP:0,BRR:0,BRE:0,ARC:0
+X-CID-BVR: 2,SSN|SDN
+X-CID-BAS: 2,SSN|SDN,0,_
+X-CID-FACTOR: TF_CID_SPAM_SNR
+X-CID-RHF: D41D8CD98F00B204E9800998ECF8427E
+X-UUID: bd1b28d0792b11f1aa26b74ffac11d73-20260706
+X-User: lilinmao@kylinos.cn
+Received: from localhost.localdomain [(10.44.16.150)] by mailgw.kylinos.cn
+ (envelope-from <lilinmao@kylinos.cn>)
+ (Generic MTA with TLSv1.3 TLS_AES_256_GCM_SHA384 256/256)
+ with ESMTP id 1941358266; Mon, 06 Jul 2026 19:13:38 +0800
+From: Linmao Li <lilinmao@kylinos.cn>
+To: Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen <joonas.lahtinen@linux.intel.com>,
+ Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Andi Shyti <andi.shyti@linux.intel.com>,
+ Konstantin Khorenko <khorenko@virtuozzo.com>,
+ John Harrison <John.C.Harrison@Intel.com>,
+ Matthew Brost <matthew.brost@intel.com>
+Cc: Linmao Li <lilinmao@kylinos.cn>, intel-gfx@lists.freedesktop.org,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] drm/i915/guc: Sort multi-lrc engines by logical instance
+Date: Mon,  6 Jul 2026 19:13:23 +0800
+Message-Id: <20260706111328.618675-1-lilinmao@kylinos.cn>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-Spam-Checker-Version: SpamAssassin 4.0.3-r1932428 (2026-03-21) on
- farmhouse.coelho.fi
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=5.0 tests=ALL_TRUSTED,BAYES_00,
- TVD_RCVD_IP autolearn=ham autolearn_force=no version=4.0.3-r1932428
-Subject: Re: [PATCH v2 19/34] drm/i915/dp: Use link caps for eDP DSC config
- selection
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -60,103 +75,100 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.61 / 15.00];
+X-Spamd-Result: default: False [0.39 / 15.00];
+	MID_CONTAINS_FROM(1.00)[];
 	MAILLIST(-0.20)[mailman];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	TO_DN_SOME(0.00)[];
 	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,coelho.fi:mid,coelho.fi:from_mime,lists.freedesktop.org:from_smtp,intel.com:email];
-	MID_RHS_MATCH_FROM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[luca@coelho.fi,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
+	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DMARC_NA(0.00)[coelho.fi];
+	TO_DN_SOME(0.00)[];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	FROM_HAS_DN(0.00)[];
+	FREEMAIL_TO(0.00)[linux.intel.com,intel.com,ursulin.net,gmail.com,ffwll.ch,virtuozzo.com,Intel.com];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,kylinos.cn:from_mime,kylinos.cn:email,kylinos.cn:mid];
+	FROM_NEQ_ENVFROM(0.00)[lilinmao@kylinos.cn,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	RCVD_TLS_LAST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	DMARC_NA(0.00)[kylinos.cn];
+	R_DKIM_NA(0.00)[];
 	RCVD_COUNT_THREE(0.00)[3]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 7EF6470F782
+X-Rspamd-Queue-Id: 36B0C70FB72
 
-On Wed, 2026-07-01 at 18:31 +0300, Imre Deak wrote:
-> Use the link caps helper to select the maximum eDP link configuration
-> for DSC computation, instead of using the separate max rate and lane
-> count limits, which may not form a valid configuration after individual
-> configs are disabled by fallback.
->=20
-> This is a step towards unifying configuration selection and iteration
-> across connector types and between compute and fallback paths.
->=20
-> The state computation should likely consider all allowed configurations,
-> as noted in the code comment; for now keep the existing eDP DSC behavior
-> of selecting the maximum configuration determined by the eDP connector
-> rate / lane config iteration order.
->=20
-> Signed-off-by: Imre Deak <imre.deak@intel.com>
-> ---
->  drivers/gpu/drm/i915/display/intel_dp.c | 17 ++++++++++++++---
->  1 file changed, 14 insertions(+), 3 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/i915/display/intel_dp.c b/drivers/gpu/drm/i9=
-15/display/intel_dp.c
-> index c6920afb50902..79e3334d24332 100644
-> --- a/drivers/gpu/drm/i915/display/intel_dp.c
-> +++ b/drivers/gpu/drm/i915/display/intel_dp.c
-> @@ -2248,7 +2248,7 @@ static int dsc_compute_compressed_bpp(struct intel_=
-dp *intel_dp,
->  				      int pipe_bpp)
->  {
->  	struct intel_display *display =3D to_intel_display(intel_dp);
-> -	const struct intel_connector *connector =3D to_intel_connector(conn_sta=
-te->connector);
-> +	struct intel_connector *connector =3D to_intel_connector(conn_state->co=
-nnector);
->  	int min_bpp_x16, max_bpp_x16, bpp_step_x16;
->  	int bpp_x16;
->  	int ret;
-> @@ -2260,8 +2260,19 @@ static int dsc_compute_compressed_bpp(struct intel=
-_dp *intel_dp,
->  	max_bpp_x16 =3D align_max_compressed_bpp_x16(connector, pipe_config->ou=
-tput_format,
->  						   pipe_bpp, max_bpp_x16);
->  	if (intel_dp_is_edp(intel_dp)) {
-> -		pipe_config->port_clock =3D limits->max_rate;
-> -		pipe_config->lane_count =3D limits->max_lane_count;
-> +		struct intel_dp_link_config max_link_config;
-> +
-> +		/*
-> +		 * FIXME: Clarify why eDP does not use the regular SST BW
-> +		 * check and instead always uses the maximum link config,
-> +		 * regardless of intel_dp::use_max_params. Then unify this eDP
-> +		 * path with the regular DP path.
-> +		 */
+logical_sort() looks up the engine for each logical instance i by
+scanning all MAX_ENGINE_INSTANCE + 1 slots of the engines array, even
+though its only caller initializes just num_engines entries, so the
+scan can dereference uninitialized stack pointers.  In addition, the
+final memcpy() passes *engines and *sorted instead of the arrays
+themselves, so it copies engine structure data rather than the pointer
+arrays.
 
-Are you planning to clarify this? Will it be part of your current
-refactoring (maybe in later patches)?
+Replace the implementation with a plain sort() of the initialized part
+of the array, keyed by the logical mask.  This touches only initialized
+entries, does not copy anything by hand, and does not rely on the
+logical numbering being contiguous.
 
-> +		if (!intel_dp_get_connector_max_link_config(connector, limits, &max_li=
-nk_config))
-> +			return -EINVAL;
-> +
-> +		pipe_config->port_clock =3D max_link_config.rate;
-> +		pipe_config->lane_count =3D max_link_config.lane_count;
-> =20
->  		pipe_config->dsc.compressed_bpp_x16 =3D max_bpp_x16;
-> =20
+Fixes: f9d72092cb49 ("drm/i915/guc: Add basic GuC multi-lrc selftest")
+Signed-off-by: Linmao Li <lilinmao@kylinos.cn>
+---
+ .../drm/i915/gt/uc/selftest_guc_multi_lrc.c   | 28 ++++++++++---------
+ 1 file changed, 15 insertions(+), 13 deletions(-)
 
-Regardless:
+diff --git a/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c b/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
+index 28e8a092f4e7..b56768d202b0 100644
+--- a/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
++++ b/drivers/gpu/drm/i915/gt/uc/selftest_guc_multi_lrc.c
+@@ -3,6 +3,8 @@
+  * Copyright © 2019 Intel Corporation
+  */
+ 
++#include <linux/sort.h>
++
+ #include "gt/intel_gt_print.h"
+ #include "selftests/igt_spinner.h"
+ #include "selftests/igt_reset.h"
+@@ -10,21 +12,21 @@
+ #include "gt/intel_engine_heartbeat.h"
+ #include "gem/selftests/mock_context.h"
+ 
++static int cmp_logical_instance(const void *a, const void *b)
++{
++	const struct intel_engine_cs *ea = *(const struct intel_engine_cs **)a;
++	const struct intel_engine_cs *eb = *(const struct intel_engine_cs **)b;
++
++	if (ea->logical_mask < eb->logical_mask)
++		return -1;
++	if (ea->logical_mask > eb->logical_mask)
++		return 1;
++	return 0;
++}
++
+ static void logical_sort(struct intel_engine_cs **engines, int num_engines)
+ {
+-	struct intel_engine_cs *sorted[MAX_ENGINE_INSTANCE + 1];
+-	int i, j;
+-
+-	for (i = 0; i < num_engines; ++i)
+-		for (j = 0; j < MAX_ENGINE_INSTANCE + 1; ++j) {
+-			if (engines[j]->logical_mask & BIT(i)) {
+-				sorted[i] = engines[j];
+-				break;
+-			}
+-		}
+-
+-	memcpy(*engines, *sorted,
+-	       sizeof(struct intel_engine_cs *) * num_engines);
++	sort(engines, num_engines, sizeof(*engines), cmp_logical_instance, NULL);
+ }
+ 
+ static struct intel_context *
+-- 
+2.25.1
 
-Reviewed-by: Luca Coelho <luciano.coelho@intel.com>
-
---
-Cheers,
-Luca.
