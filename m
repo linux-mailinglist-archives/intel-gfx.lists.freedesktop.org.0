@@ -2,164 +2,172 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id u1pqKMRZS2pyPwEAu9opvQ
+	id Pg9JFhpdS2qiQAEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 09:31:16 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 09:45:30 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F222770D905
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 09:31:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id A6C1F70DBB7
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 09:45:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=fail ("headers rsa verify failed") header.d=intel.com header.s=Intel header.b="T/g06Vhp";
-	dmarc=fail reason="SPF not aligned (relaxed)" header.from=intel.com (policy=none);
+	dkim=pass header.d=intel.com header.s=Intel header.b=DB7URemc;
+	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
 	arc=reject ("signature check failed: fail, {[1] = sig:microsoft.com:reject}")
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 7324810E7BE;
-	Mon,  6 Jul 2026 07:31:14 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 3989310E30D;
+	Mon,  6 Jul 2026 07:45:28 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.14])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2AC8B10E7C3;
- Mon,  6 Jul 2026 07:31:12 +0000 (UTC)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.16])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1908B10E30D;
+ Mon,  6 Jul 2026 07:45:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783323072; x=1814859072;
- h=date:from:to:cc:subject:message-id:reply-to:references:
- content-transfer-encoding:in-reply-to:mime-version;
- bh=In9v7hcdogM5OSwfecFClr0R7mg/SuFNR0xMrWr7w6o=;
- b=T/g06VhpR/JcD58nKLIvlN/Aqa1lQcmZvjf3CR+AtWI6BOOWMOsva05d
- qiYC8mS1653ZSnTPUpXAxNlsL8kE6NastGTPprioc8LLFWmM8RaBZkaH0
- wuMbTANNHlh8+XzrkurNqVYYExPEnfpqFZ8RIGkMX3n3ABPNANdYWwLOM
- Lb76Evz/0eEEL2khUWErNGdj3RlGVnqT5yB6Xq+7xUZDaYQYV8ryEBAzc
- bio2eSDVb7kyyKSQlNyOY2ZtYZE8OeKT4oi7LRvEXmTGAdL1cgsPXHRoP
- MjRnf9Y9O42utbZZfZSgTYVY3rKKxtFASFss7Mw+/ne6OZ3WzFdMtlhS9 Q==;
-X-CSE-ConnectionGUID: tvR8ce21QQuES16qazsNUw==
-X-CSE-MsgGUID: do4I/bF8SJWJ/7nJaJ722A==
-X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="87861932"
-X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="87861932"
-Received: from fmviesa003.fm.intel.com ([10.60.135.143])
- by orvoesa106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 00:31:12 -0700
-X-CSE-ConnectionGUID: LmZsmZt+TDWrZhRQ5Dno6g==
-X-CSE-MsgGUID: xm8k4vSeTGuSl6z0ZyOLrw==
+ t=1783323927; x=1814859927;
+ h=date:from:to:cc:subject:message-id:references:
+ in-reply-to:mime-version;
+ bh=keuvnFhSOeEEtAb0Qq1gFKd20TPtSiPFD/ZN7oRmWf8=;
+ b=DB7URemcexjQOC3FOiH+LvAIq2avxxSTf0T1yVhil+J0TCLRsesy06eN
+ eCPoxTzqq8cIeVPJ3bL8TBg7DZ2MDL8WugClkz8cWkvIJJgIdt8ck8ZaU
+ G9r6escJFpt73ozywvJOdbNUoVt9xqPq+pDutoPqiD2CWrCZje/mtbHju
+ bnX+hsxeKX1fWXGbxX37Vv3C6QFtFO/SKfYCPbg99ozf9Jh6FLzjODlsZ
+ 3vMI+KXVheeNTJaS2YydcQBISaTggaWDBpnaZ0zPJL5/AtF8GaWrcaQFI
+ gzxgcvnhrOadvvUXJFH5u4Z8spwpZJpJtrJSQ1EEn0PP+1qlyLUN1fUzc A==;
+X-CSE-ConnectionGUID: 9vT9UspKS5GYWTxdWD1pgw==
+X-CSE-MsgGUID: JcF+LPLWQNq5GKCATGDXRg==
+X-IronPort-AV: E=McAfee;i="6800,10657,11838"; a="71470309"
+X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="71470309"
+Received: from orviesa008.jf.intel.com ([10.64.159.148])
+ by fmvoesa110.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 00:43:28 -0700
+X-CSE-ConnectionGUID: 4AzekMU7RDq3H4g2hWfRVQ==
+X-CSE-MsgGUID: wKVAht5DQYiIlflfavNb5g==
 X-ExtLoop1: 1
-Received: from orsmsx903.amr.corp.intel.com ([10.22.229.25])
- by fmviesa003.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 06 Jul 2026 00:31:11 -0700
+X-IronPort-AV: E=Sophos;i="6.25,149,1779174000"; d="scan'208";a="253164957"
+Received: from orsmsx902.amr.corp.intel.com ([10.22.229.24])
+ by orviesa008.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 06 Jul 2026 00:43:28 -0700
 Received: from ORSMSX902.amr.corp.intel.com (10.22.229.24) by
- ORSMSX903.amr.corp.intel.com (10.22.229.25) with Microsoft SMTP Server
+ ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 6 Jul 2026 00:31:11 -0700
+ 15.2.2562.43; Mon, 6 Jul 2026 00:43:27 -0700
 Received: from ORSEDG903.ED.cps.intel.com (10.7.248.13) by
  ORSMSX902.amr.corp.intel.com (10.22.229.24) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43 via Frontend Transport; Mon, 6 Jul 2026 00:31:11 -0700
-Received: from MW6PR02CU001.outbound.protection.outlook.com (52.101.48.2) by
+ 15.2.2562.43 via Frontend Transport; Mon, 6 Jul 2026 00:43:27 -0700
+Received: from BL0PR03CU003.outbound.protection.outlook.com (52.101.53.53) by
  edgegateway.intel.com (134.134.137.113) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.2.2562.43; Mon, 6 Jul 2026 00:31:09 -0700
+ 15.2.2562.43; Mon, 6 Jul 2026 00:43:27 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=QU09eJ3D+yJjG4PozMgBWQQlNCVK+e4vR7sJpuBNHP3PO++NF6qoNMiH+LuxESQxQ6Y0i00MqeMmy3CGpf0t6mD2lQUMQavvuqT5m0RVR3BsWXiVsmSr6ow0V58StMHJiSwCmrvfo1xEp1Zk3h/i1bvfz7MOCkIghA3NoOcamDw5tWdctKBanSp6wJjb9uvvlR9F6zcfTVtIZyzQj41e2xnE5yDN3ECDmtVCXhONHfIjV7mrP824izSivNqVN9tW3UZtn7iQuFOGqEnD6zbuPl05QMJnCm4Kz+z8i/imQeN8C6RKND3Mprq4jl2v2J9mmurj0X5gxZOqB0gqShMR5Q==
+ b=u3nq92dqBdZBWsSxXPrRcmk+H8AGiJnLqK+6MBS6UcmjipWD1ZMBesfFN0/4ZfHgInVcY3kOmGuYP/gn+pNeGmm2oTLM/k/dqH8HHYFUuLlc2sD3PMs6YoQoBQtAC//yGpGGnv0JsvDffCaGZioAnTzAC1Q5rew/BN+5jUt12R3JsTelInMWAEvpDLAzMUDBFIHSey6uGewOI617R4ZjyedkVKozBxCpdOHNpGBHS9SfDQoUi4PbQAssjn3hpot4yRDudiOslHyEgk4MXUWSK1aLUXadUApgIF7ch/frPQU+nZvm0oyUFVMJBJ1CJ1qbyU87VInhbY35TAGYIQoPNg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
  s=arcselector10001;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=A9qrSHHnWUbYKfWCsLM7Z3h903i93x/4/TYkIYvYsmY=;
- b=NINjC4cHEXy137J58kC11iYbFL/j/ho/xd157TkeiF/gVHkkaz0Qrn6KgBJdXiAU9E0X/Bm2aFxxHDIpEJO6I8Jn2RcMwrGeq7yvtrR+8cCvwMNhD29ZCkrPkMzsi5jkI3c3jgkXNb04VW+CDbLeJPypo+w65kuBnW+lV5bwpv02e5EZzCrxOf2pSdq1IRBTzDV8yvJ4WPGDlozAqmos4krPJPdwv09Uwfi1sr1jrez95PdMeBUFt+feEqNANVsHuV6pcixoUlakYhGlKoTmW6E8/3aSB5PX+Zj6ynoDGQt8Wa+2cFPSVgIbPKEu5Je7keBCaAwIfpLdy9vXGeTQFw==
+ bh=lH/athRvk2CdT5UCLP57uYftejalhtixpGgxvbicVcU=;
+ b=K5iQ9d0euYtRZzKGAjGL53jv+OR3Gk6crrsPKBFUCvf0ruScy0rI0NpkZHnbxOVqkIaffq3HDqZ/5lZUiX2SLJzWAuLUAku7sUF//whZb16nBF+JnCeBY8LCc81FISfSRS5IUEUpDyv3ptf31/bzf7tlt79SnQlJ5kP5db+IFW4PAVkf3zuXQcUAk3b3hQBt0ew31DSUV5F0Qoe2gs8XkUArBiQ5dLEEZAiSY8DX1hGx47/NdVs/2AKVWxaFju040KkPywlQgUFUxQ3QEy0jWCVCyZjRxA0KQfyzX88mGNsuUh39skH6ipediMk/xdMa6II5es055GWBn+PYpRfnaw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
  dkim=pass header.d=intel.com; arc=none
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com (2603:10b6:208:573::17)
- by CY8PR11MB7340.namprd11.prod.outlook.com (2603:10b6:930:84::13)
+Received: from PH0PR11MB7424.namprd11.prod.outlook.com (2603:10b6:510:287::7)
+ by MN0PR11MB6088.namprd11.prod.outlook.com (2603:10b6:208:3cc::9)
  with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.8; Mon, 6 Jul 2026
- 07:31:08 +0000
-Received: from IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa]) by IA3PR11MB9273.namprd11.prod.outlook.com
- ([fe80::31a4:58c:e3b5:43fa%4]) with mapi id 15.21.0181.008; Mon, 6 Jul 2026
- 07:31:08 +0000
-Date: Mon, 6 Jul 2026 10:31:03 +0300
-From: Imre Deak <imre.deak@intel.com>
-To: =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>
-CC: <intel-gfx@lists.freedesktop.org>, <intel-xe@lists.freedesktop.org>
-Subject: Re: [PATCH v2 32/34] drm/i915/kunit: DP link: add baseline fixed
- table reference test
-Message-ID: <aktZt2Uwuvkv_S9N@ideak-desk.lan>
-References: <20260701153204.4124150-1-imre.deak@intel.com>
- <20260701153204.4124150-33-imre.deak@intel.com>
- <b23a877a-0442-92ee-916f-d1f3873b5892@intel.com>
+ 07:43:25 +0000
+Received: from PH0PR11MB7424.namprd11.prod.outlook.com
+ ([fe80::c448:1138:6981:52e2]) by PH0PR11MB7424.namprd11.prod.outlook.com
+ ([fe80::c448:1138:6981:52e2%5]) with mapi id 15.21.0181.008; Mon, 6 Jul 2026
+ 07:43:24 +0000
+Date: Mon, 6 Jul 2026 07:43:14 +0000
+From: Krzysztof Karas <krzysztof.karas@intel.com>
+To: Jason Gunthorpe <jgg@ziepe.ca>
+CC: Robin Murphy <robin.murphy@arm.com>, <intel-gfx@lists.freedesktop.org>,
+ <dri-devel@lists.freedesktop.org>, <iommu@lists.linux.dev>, Andi Shyti
+ <andi.shyti@linux.intel.com>, Joerg Roedel <joro@8bytes.org>,
+ =?utf-8?Q?Micha=C5=82?= Grzelak <michal.grzelak@intel.com>, "Janusz
+ Krzysztofik" <janusz.krzysztofik@linux.intel.com>, Sebastian Brzezinka
+ <sebastian.brzezinka@intel.com>, Krzysztof Niemiec
+ <krzysztof.niemiec@intel.com>
+Subject: Re: [PATCH v2 3/3] drivers/iommu: Catch scatterlist length overflows
+Message-ID: <utb5awup2vypdhtcxk3vlczwrqbl3ypae6ftbwrlrkdqfnk4ft@aurl5kme27ac>
+"Organization: Intel Technology Poland sp. z o.o. - ul. Slowackiego 173,
+ 80-298 Gdansk - KRS 101882 - NIP 957-07-52-316"
+References: <20260701104437.236979-1-krzysztof.karas@intel.com>
+ <20260701104437.236979-4-krzysztof.karas@intel.com>
+ <20260703162236.GX7525@ziepe.ca>
+ <90558ba3-44e6-4d5e-9c72-ed8817d372be@arm.com>
+ <20260703203502.GC1978949@ziepe.ca>
 Content-Type: text/plain; charset="utf-8"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <b23a877a-0442-92ee-916f-d1f3873b5892@intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - c/o Alberga Business Park, 6
- krs Bertel Jungin Aukio 5, 02600 Espoo, Finland
-X-ClientProxiedBy: GV2PEPF00023966.SWEP280.PROD.OUTLOOK.COM
- (2603:10a6:158:400::335) To IA3PR11MB9273.namprd11.prod.outlook.com
- (2603:10b6:208:573::17)
+In-Reply-To: <20260703203502.GC1978949@ziepe.ca>
+X-ClientProxiedBy: DU2PR04CA0056.eurprd04.prod.outlook.com
+ (2603:10a6:10:234::31) To PH0PR11MB7424.namprd11.prod.outlook.com
+ (2603:10b6:510:287::7)
 MIME-Version: 1.0
 X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: IA3PR11MB9273:EE_|CY8PR11MB7340:EE_
-X-MS-Office365-Filtering-Correlation-Id: eb30cfb1-7f8b-4b83-4d2c-08dedb308b94
+X-MS-TrafficTypeDiagnostic: PH0PR11MB7424:EE_|MN0PR11MB6088:EE_
+X-MS-Office365-Filtering-Correlation-Id: 44ec0bd8-9965-4e82-7632-08dedb3242a8
 X-MS-Exchange-SenderADCheck: 1
 X-MS-Exchange-AntiSpam-Relay: 0
 X-Microsoft-Antispam: BCL:0;
- ARA:13230040|376014|1800799024|23010399003|366016|22082099003|18002099003|6133799003|4143699003|11063799006|56012099006;
-X-Microsoft-Antispam-Message-Info: tx5jCGyHuZQBJIp/I3dQXUMEzWW+IRfOmgycL3TlhmmiY9wTDLKXJO/JnBCLVXmXtchQVA2uWJ+Iho25zoofx0GVRBDOPrKtrYMZIwWH6zz3WNFlAveiDTB+cGk0pBhnRhSoWV0pfN8HTZCkmehMsO10Ku3NkKsP7KSrdP9g7Ez+duG3nbG0RhrntSysl70bWK4gFKQqGHehhIl3MK0qPi0yDAtvUoIzgQuGNwWPf0T24dA8ru7yJz5X2jySyA9lUT9CtT8Yw2MyQnbu11+sOv3luxMiouZKbcCdlmJpYv3YAPhAYDDnaSSNi6cM9iYD848IUzp9AECZYCh1beR3tvHu68IXf6HvxYPsLc/0fyOHGrfGCvnMYoPHaoh53vUjlJ89qa+6Az+LH9o1ziSX0SWgXlZDcSSl2kS/oGGS26GFgPlgtOiM2d8nKWt3kkEOtSDbAEMfN4yaeopEKHajocTHgZVF+XkpQ9MS1OsCdNILoAk+w3hRZXdvnAFhRnB4dXVj6Ta4aykw/9ykvDtVh393Zb5l341k954ap6liFMwRCAcfZjhKlE5KmXDqEKyOPbfhTPMnOXaMBohSNsu08a8Oegui0ru/yb5CHKkKg9wuC/mseGQNqseH8a2KLRCRWSvGrDb6VjgGJ51B4G3Q0a7pPyAe15Ny7mDqbCWag50=
+ ARA:13230040|23010399003|376014|366016|1800799024|22082099003|18002099003|4143699003|6133799003|11063799006|56012099006;
+X-Microsoft-Antispam-Message-Info: uFzkUfQwzSamOH2YcUJK9FvODt1cx1ZPWi/ieQQKykgO8edhji6Yl7C4erwK6X73WSq5wcRF0XbpWN2O/PnJyjV9jQUHx6+7aSGUIHj7wCoEI5A0wXqXQ6uT36hnBPzVjtaexHewjA3WkqiriA8ghO+0E3qQA1uXr4Izor2+ANrBRT4oEI1pNe0QsTrFmtFTNRlez30Uq0oLC0Pr+2EkhhfvgZeGvvTgLnzzki7RwIdv9NJbVRKEEFDkAn816cOo6bsCewtAaj0ro1IKID9zhQW+uktkDUwhzk4Gak3MtAwzKnkl4gK2w/g+VCWybDDZb9lEfyHmC6pepIDJbVRmh+4C1y639c1maob9ZmcLjuo6FsWJPpBkC6LbBQ/+AjiQD+RCMNcWaSXCZQew+ZFIQ2jEQ2S/YQ/waOd0jFE7Cz5Tn1AI/DE8o/R3Ib3nxyEZiY8jAL5xOeM3e2KmBuq2hzFvZlEqfzBNnsSMl5k4vZDk2jGd2/N78k2XprwQ3B8zKXf1o7nuMD3PJWby+BMYQnbcKn5fPSNfIlG7rsrixLiHZseHyfvQtKsLyoMieZhfCshAO5LbOmy+3ANsgQkChKrIWb5mUhN4DHQ7SdJaF7m0Zjj3fZ7IUBU3p/8Ot6+1HQvzTNw1DXZqDCS53qBDwfFgLRA8/1Nq8D251/cJqmI=
 X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:IA3PR11MB9273.namprd11.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(376014)(1800799024)(23010399003)(366016)(22082099003)(18002099003)(6133799003)(4143699003)(11063799006)(56012099006);
+ IPV:NLI; SFV:NSPM; H:PH0PR11MB7424.namprd11.prod.outlook.com; PTR:; CAT:NONE;
+ SFS:(13230040)(23010399003)(376014)(366016)(1800799024)(22082099003)(18002099003)(4143699003)(6133799003)(11063799006)(56012099006);
  DIR:OUT; SFP:1101; 
 X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?TGxqc05POW1MUHFpZzZBYXFpMmNxeTA0azViUUc1WUhkc1BteWRNLytvanp4?=
- =?utf-8?B?M01UcUJhamV6allRWFlQc1lRSWM3ekRaMFVNZ0p2cHkrVE9uOXlNTE9JS0d3?=
- =?utf-8?B?SE1YVkRCbjd4T1pEbHFDU0REWFI3K0UxVEs5Y3REWDRVNDFkYkxKb2RLcS8r?=
- =?utf-8?B?dnVaTW8vTXhvTEdNWFhMbEdsNzlvSmNVRk0wQzBCaDlZUkRobWl2REREUC95?=
- =?utf-8?B?aFpCRld3amFxaUlETDM2a2ZkQ1FvMVBDbm5zMFdySXFDM3hKbWhoaG5xS2N6?=
- =?utf-8?B?ZHJpNFRpMWwyK0tNdTQ0SDhiNTlDYThVam1TL2R6OW1yT3JrZTJaUHArZVZC?=
- =?utf-8?B?Y3RtNHRFTEwvYUJKNWMzeFJvZ24wNW9qZitncGI4ZWpwaHRraXA3Q1ZXb2hQ?=
- =?utf-8?B?UVpGa1pCeHA3czZ0SS83SWJNazhEbG5yYUR4bWhHOWpTOHh3QkU4UXdQYTgx?=
- =?utf-8?B?UjZDNkI4TkNtV2Z1WW5lNHdQMXZSM0p4Vjc2TmpwcWRYeHVoM2Y4K2RCcHVJ?=
- =?utf-8?B?SFlhSWlyZ0R2VWhVdTJ3Njc0SGJqRjlaYVNMaFlHNTRSUFBmTUExekE5UTNh?=
- =?utf-8?B?Nk0rbkF2RGJEM2ZDaXRKdWFMbDQzajlMcUczWnR6c0p2RjNuTzdFb1FYbUV4?=
- =?utf-8?B?VjU0M1FndGJxQTQzL0xBNGg4N3NsT0s0cUJrbkJmLzllSlRteGpONEJLUHBz?=
- =?utf-8?B?bmxrRXl0STlrdTlteStxekZOVUtKUnJNajE2SWtzQUhWUDV4bE9zRmwzampY?=
- =?utf-8?B?QWx5YWxPaFMxZ2I4ODBDWnluMVV3M1VYNU5yNDcrZGQ2aHhDSS9LUjRDVU5H?=
- =?utf-8?B?WmdURlpENkwzdmlSMW9kNHhmVHdpSk5zb0pjUEFKYlJmTndvdUpLL3dYeVVR?=
- =?utf-8?B?eUVlZk52VXk5eEQrUHJNYnJnUWVXZk95d1lEUFQrRk1hekEzNE1Cdnphc1hr?=
- =?utf-8?B?RTBFVE1seWFNWW1uclFRUzdVaGxGRUJRMmp2Q0pBTTd6R0VPS2ZTa05hblQ3?=
- =?utf-8?B?aGJ1bGpkQUZjNlR5ZFJVQ2hFUkdtN1gxUGZIV1k0TUR2VHBQdStURlBJMGFm?=
- =?utf-8?B?enhqWFhoQXBrb29CdlNyYTJtWmFuWDFmM09nbVlJaWQyMGlsRXR2MEY4VEVV?=
- =?utf-8?B?dnJBM2dJKzFjVUVLYTRXalJoMW9HcTRJYnBOZWVnYUxnRklYNnVWenNRNG9I?=
- =?utf-8?B?eDlVNzJnL3lCeElSU0FhR1A3d1YvRnFmc1BYZHF1VUlmSU8vTk1jbitJamNX?=
- =?utf-8?B?VDBZK2pOcEc2VWJKNFV0WGFzNmtaM2lmc3VHc0NoMUttaUxVTDRpY3NydWpy?=
- =?utf-8?B?eVJpZ29zOHNJaVUvYlN1aHE3Z1ZqWU9iVTlZdzRuMmJVWlVxajY0bUZIY2R2?=
- =?utf-8?B?WjBFQ2FVd2JBZHJLa1RISzN4ZS9qYWxIYlhQb09XNCtaOVRTUWtyRGliaXFz?=
- =?utf-8?B?NEdUc0lhQmZWTXRyQU1VZFVtV25WcWt5eGhoM1lhNnZ0cmI1UnlXUnZpR3Yx?=
- =?utf-8?B?ODhBUk9Sd25wL3g5WWVsUlBUUWptYkFEMVpxOUtLR2x2WDVUMmwxZ3NxVVA5?=
- =?utf-8?B?Mi9pN0p6bzdISmE1RmYzelZrL3Y2WWRUQ2N2eml4RjloZVVlYjltOG5ycld0?=
- =?utf-8?B?Nm9zTHNhbXl3SjhWWkR6WVRkNmQ5YlhWUzNSTVhOWEdFZkF3aytuNVVLZlVo?=
- =?utf-8?B?eDNrNkxKUmVtKzdrZnFqV05hNUhqT3RZdEVOSkdweEpzM2tYaHA2Q0UwV3RE?=
- =?utf-8?B?NEZETUpReG5UdEN0ZXN3MUZmWitmTmNlNDl3SjJub2pBcTVLSE5ERHZFRVFP?=
- =?utf-8?B?ZmRkeE5RMTVPdUlwdWM5S21wNktlMU9OWmVSMTdFRkN4ck1KNno3cUl0citP?=
- =?utf-8?B?QXllaHBRZGlPclZlWEE2TEYwb3pXOC8rUy9BTSsrWHdJVFNMUHRuOHpna2Fj?=
- =?utf-8?B?RGpQcy9wVWliTEFWeW5LRTdiNkpPd0I2bUJBOTUvRU9zK2M2Ry9OeFdaMFZj?=
- =?utf-8?B?bWJ3UFY1ZFRWUHR5YTlydDRJc0tNMExaODl1TVIxVXl3NE0yYk5ZVkhrUHQ3?=
- =?utf-8?B?ZG5ZVlRwOGRuRERzUUNRQ0RzSkR2Mm5BMzR1RDF6SEcydTlseTl6SGNZQ2tr?=
- =?utf-8?B?cGtjSFRWVllYYStEdnBubXBsOHVpaU5UVm9QWGZDdDlDbUdscVlrSUFLdXhB?=
- =?utf-8?B?WTZFRExxRThqc3d5bkNrSUhpTVlLRUZvNGdKdk9qajljN08zbzRDSzNIZWpj?=
- =?utf-8?B?N3lSVWdzYnJPZis4TDFXRWxIQnN0bDduMzhicnhMeXY1dDJaMldiUWpWVUJ5?=
- =?utf-8?B?WTlyVW9sK1Bsc1RSQkJ6RDF0WExTbGdtdktFUjk0YzZaZDNRdjNLZz09?=
-X-Exchange-RoutingPolicyChecked: lzN7xOFlqAiyU1zT87SwXf+EsSinfv6z5xl/vNUptf5FyPfFN01iVH5gsBFJkXVpCdyiU5tpQSKOOs8EnKYUm74Ps00EqbpqHtkFxGJf2vZAhuVO4NFIYuSzWX5jku0JYn7Me36wlhRNyd72WOveJ5GidwSIu/sNEOd7Tvxh+nQ/iQRb7bgO+F+BdImkmCT0Wy495Adp4JnUNoixnZSRshQIms93Z7236YyqyNSSDINY7UYJIm6fQkjkQnruDkKd17KYQ7XaAru2j5gsL6wQsiD+gA1giiA7Z024S4qraKAwAmsOiu39jWN4pRQX2QVBjAe1IKvjZS8mRFSQZ8ONBA==
-X-MS-Exchange-CrossTenant-Network-Message-Id: eb30cfb1-7f8b-4b83-4d2c-08dedb308b94
-X-MS-Exchange-CrossTenant-AuthSource: IA3PR11MB9273.namprd11.prod.outlook.com
+X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?UnJXYXdET0N2UVFLL0c1REdoYkJyNVpYSWFBTnFMNDJBN2tBZjVJWVNjZC9o?=
+ =?utf-8?B?SllRYWhFNFdkRWpKRmRGazZpdnFTelUwS3dSRzFIc2tZT0NBL0tWSUtma1VE?=
+ =?utf-8?B?NGx3MkhlUC8vaVpEaXFUQTVaRHNTdENRekcvVnZWUWRtZlQyN0pSbERpNUlH?=
+ =?utf-8?B?WFd3VzgzNEk5cDZUQ0hIRk1yNjZSUWhrYWMrTFRyaTF3UzRHcVMreXZGdUU4?=
+ =?utf-8?B?djk1SFRZeG5DUW50ODh1MDNwZHZmSXNaeVJEZXc3dUhrU3V2T2gybVpUYW1w?=
+ =?utf-8?B?bGVEdVNzT0lSMXhodjlqcEswVmRMckZxaDZjNGRNd0lBam1BSG1UR1NXYSsw?=
+ =?utf-8?B?YjNnNDRnbTVCYkU0eXY1bkl6Z21DenNnc0tZWm1UemlsVStVZEJ0Z0M2aGNk?=
+ =?utf-8?B?RnBqTXBTVWo2VVRVRmRHN2svNFc1RWhNUHFBaGZYa1M4SlZULzIrVXIwcDJM?=
+ =?utf-8?B?LzdKeG5YKzFaRDdvU2lQaW5mMUFmdTZGbkI5S0ZJekpNRFp2M090eVZVS1k3?=
+ =?utf-8?B?aG92c1IwZGNycUV0ZUxycjZkRmlKbTJhYWhlTUZ5bmwrM1FmV2VFQzhVQ0w0?=
+ =?utf-8?B?WFR4RXVJUCtlbTZYRmhKSnp6c1NiTUMycjM1MTFpQWVsVy9lM3hHZmZTWEJC?=
+ =?utf-8?B?RkdyOEQ1WktzeHNYa1pLUEhiMFpvNWkwdFAvRGFaeEV3ei8yRHpmaDNuSzBM?=
+ =?utf-8?B?TGY5UFhkVlE5Y2hXMm5QZFgzN3dwekNHR0JXeHdZSS9wSHdrbDJKQkhiQ05y?=
+ =?utf-8?B?YUgvUDZidyszbXlGd0pjaUkra3ZYQWMrejNkTmpLTDN1N3V5RS9kUlo0M0lW?=
+ =?utf-8?B?TFhFeG5UeTVsMmRqZmhUM2tCVnROWFBOenE4Y1U2aTNteTlYWHhucDFZbGhQ?=
+ =?utf-8?B?TnhRS0MwemFpQjdUcVVValY4N2diczV5K1p5TERQV1piREE5M1BwVDRjS1d0?=
+ =?utf-8?B?eEJLU0V1Z21mL3M3WG9oNU0wT0tuUHZTenZKaTFNYzdIdk9FY1QyQTlFL2dW?=
+ =?utf-8?B?bkV4QWZSSnpIbHBBMHloWlVqRzVJUFVkNHIzTCsvZlUzMHh4Z29WMTFDMDdO?=
+ =?utf-8?B?bzA0dGQrY2xSV1VyRWlaUUJVcXMxWGJ2WEFVcnV5VzJodDdKd0VRci9sV1VP?=
+ =?utf-8?B?V25NalRWT2gwU1k0K05UVlVEM1NwNkwwU2o1aHdLSERvcWI3UjhwUXlpVkRB?=
+ =?utf-8?B?LzB3bEljNm1XdW5yOWZxaVpoQmRmK1RZYy9TcklSeHFyazBhdG1ZaDVESTVR?=
+ =?utf-8?B?UnpCcFA1RGlNRC9mU1ozVm5aSy9ocTJGcTV1dVY2dVlyUEVHWGR1aGFxek1G?=
+ =?utf-8?B?Vk43dEZsSXh6QWc3TFFPWk9pZjVuTEhJYVZGVGYydi9zS2lrUktIWVgraTlC?=
+ =?utf-8?B?M1JZMzJ0am85RDRUZzcwU1hqRkRVd0FUc2VuRGFXWjNSVHd1emZtSWJINlM1?=
+ =?utf-8?B?RnVQVm9lMXdJejZSODd4YWFaM1UwclcyRUFENHA4MWFSTm16d1RZbm5hc013?=
+ =?utf-8?B?cnRQNzZDYWF5ei9sRWFMMEZVY09jR0t3UjZIOHNPeFRES2VXZk1maVZtT2Yw?=
+ =?utf-8?B?dkRPQU00bm9yeTRoWGlvRnRUQ2dMWFVYb3NpZHVlNzRUaGpzRUlCekxuNno3?=
+ =?utf-8?B?VlNseVhsSFZWSllycmozbDMrV1IwV1hrazNZZnBYQkd3V0VJcUJDbTVZN1Ev?=
+ =?utf-8?B?R09sVUJZOHlEWmxYODNJMDBqWUUwSmpoNUtyLzBacEhYckJJWUJjaXlxL3NV?=
+ =?utf-8?B?WVZoTlFUbWh2M2JqVUZBRmVRY2RuYXJLdDV6V1lWcFQ5SmhYMXBhVXVUSXJE?=
+ =?utf-8?B?RjFrN1VlVXRBQWRtZmF6TmNXMmxBMWc4QTV0TG1WWFZCMURrdThneEg3SjF3?=
+ =?utf-8?B?RHVScGoxYmErdHFHVmMzKzVzNEp6ZENRTzd5V2xTdHJhSkJ1cXg5cGE4ME5I?=
+ =?utf-8?B?S0pZTjJiSTVQNnZWSVk5Tm5RRTZpNHRwTFNPTTU3ZzgwUFQ4ZStJbFYyUzFD?=
+ =?utf-8?B?YWNwWldTUk1ZU2dUenlQamZrck5Ebkp5S1Fnekk5eDgrRWtURXRjMC8vUGJW?=
+ =?utf-8?B?N2cycks1ZXNteG1adHRVM0MvZFU4SkFLQ1JJc01RckNGNW9adFVDY3pOaUNO?=
+ =?utf-8?B?M3NMUFpIazdZRlgwWEZTZUdVWXNMb0JES0NyMjhGUVYvaVFSRlFnNWp5dGZP?=
+ =?utf-8?B?NWl3a3VuZEdEc3k3Y2tBOG0vUkdPdzBNZTJPRXZDQjI1aHl6bTUvUlp4b3Yx?=
+ =?utf-8?B?ZWQwNDZkeVprS1BLRGNXMnQrVUJFbW9zWlBWclMvZWdSRGpOQjg0MzFXUEpL?=
+ =?utf-8?B?WVRuK2liM1VOT0hSTGlrc1BDNnUrUmUxNkM3bFc3R1QvZWtZbi9iY1hWWUVw?=
+ =?utf-8?Q?R80neWwtp+o+8RQQ=3D?=
+X-Exchange-RoutingPolicyChecked: F7gIviuoNGcf/Cqe4zr8GA7A6FPgLeKM0XeVwzSwSK7JKFTU+EXIcDFflfKd0tnWxzNKxhwO3iz6o9FGsFo2QFo59MVBQ/3EkE7z8SBcIIzt+ZZVmnV6GrTt/hfPELzHt8sLATbrnwv+Xgpm4jCRCXY0z03nnvjm7sYrAfuzP1vsVQkTyC05s06oui7M4Bc6phsB2XlF9TF5FyYyOiTyb1zEYtcpxdFPAbS9YESntcnMDbtwN/1s5yO+OaktSfVoZhvDGrlX+AKy1kzNqrgrCQS5XmsDc63T1QoV3knHdOO0wCCbqBLz3zQiYh18FTj9a5GnQEmXP8oz9/aUh/eR7w==
+X-MS-Exchange-CrossTenant-Network-Message-Id: 44ec0bd8-9965-4e82-7632-08dedb3242a8
+X-MS-Exchange-CrossTenant-AuthSource: PH0PR11MB7424.namprd11.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 07:31:08.2618 (UTC)
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 06 Jul 2026 07:43:24.7988 (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
 X-MS-Exchange-CrossTenant-Id: 46c98d88-e344-4ed4-8496-4ed7712e255d
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: DEHHZzpPHMR0iYXxErI6gPCVHfwOKeCyTtp9f1TIVS04jBoHSlWeExxtUEeBJ5IEoG8qXzNLKN6UO3Vlllvumg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY8PR11MB7340
+X-MS-Exchange-CrossTenant-UserPrincipalName: adNa4QwQytNgdn+GpLhF3ZZW6DTt1amYqMERaKZqn5X3RfiZKzpaQ3gFnfS6k2e9jgZxI1uRyq+OGeq7nmq0y8kZU1T1M7wLXplHsVu4h1I=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN0PR11MB6088
 X-OriginatorOrg: intel.com
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
@@ -173,314 +181,103 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: imre.deak@intel.com
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [1.49 / 15.00];
-	R_DKIM_REJECT(1.00)[intel.com:s=Intel];
+X-Spamd-Result: default: False [0.19 / 15.00];
 	ARC_REJECT(1.00)[signature check failed: fail, {[1] = sig:microsoft.com:reject}];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	DMARC_POLICY_SOFTFAIL(0.10)[intel.com : SPF not aligned (relaxed),none];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
 	RCVD_TLS_LAST(0.00)[];
-	REPLYTO_DOM_EQ_TO_DOM(0.00)[];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:from_mime,intel.com:dkim,aurl5kme27ac:mid];
 	MIME_TRACE(0.00)[0:+];
-	HAS_ORG_HEADER(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,intel.com:from_mime,intel.com:replyto,intel.com:email];
-	DKIM_TRACE(0.00)[intel.com:-];
-	HAS_REPLYTO(0.00)[imre.deak@intel.com];
-	REPLYTO_ADDR_EQ_FROM(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[imre.deak@intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
+	MISSING_XM_UA(0.00)[];
+	TO_DN_SOME(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[krzysztof.karas@intel.com,intel-gfx-bounces@lists.freedesktop.org];
 	FROM_HAS_DN(0.00)[];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_THREE(0.00)[3];
-	MISSING_XM_UA(0.00)[];
+	RCPT_COUNT_SEVEN(0.00)[11];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_COUNT_SEVEN(0.00)[9]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F222770D905
+X-Rspamd-Queue-Id: A6C1F70DBB7
 
-On Sat, Jul 04, 2026 at 12:51:07PM +0200, Michał Grzelak wrote:
-> On Wed, 1 Jul 2026, Imre Deak wrote:
-> > Add a simple baseline test for DP link caps iteration using a fixed
-> > standard DP configuration table. This provides a minimal validity check,
-> > independent of more complex test setups, verifying the iterator returns
-> > expected configurations in ascending and descending order.
+Hi Jason,
+
+On 2026-07-03 at 17:35:02 -0300, Jason Gunthorpe wrote:
+> On Fri, Jul 03, 2026 at 07:58:32PM +0100, Robin Murphy wrote:
+> > On 03/07/2026 5:22 pm, Jason Gunthorpe wrote:
+> > > On Wed, Jul 01, 2026 at 10:44:37AM +0000, Krzysztof Karas wrote:
+> > > > It is possible, when a very large mapping uses a single
+> > > > scatterlist, that padding overflows scatterlist's length field.
+> > > > This results in:
+> > > >   1) silently wrapping the value
+> > > >   2) smaller than desired mappings produced by iommu_map_sg
+> > > >   3) leaving mapped bytes in memory (no iommu_unmap)
+> > > > 
+> > > > Address this issue by adding overflow detection for previous
+> > > > scatterlist length field.
+> > > 
+> > > Urk, this is unfortunate, it means we cannot map certain kinds of
+> > > scatterlists? Meaning there is a condition that makes a scatterlist
+> > > ill formed?
+> > > 
+> > > This seems like something that needs to be more clearly documented and
+> > > we need to ensure at least the common scatterlist builders don't hit
+> > > it..
 > > 
-> > Signed-off-by: Imre Deak <imre.deak@intel.com>
-> > ---
-> > .../i915/display/tests/intel_dp_link_test.c   | 200 ++++++++++++++++++
-> > 1 file changed, 200 insertions(+)
-> > 
-> > diff --git a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> > index b77472e9bbe12..1dc5bf6888990 100644
-> > --- a/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> > +++ b/drivers/gpu/drm/i915/display/tests/intel_dp_link_test.c
-> > @@ -7,6 +7,7 @@
-> > 
-> > #include <linux/compiler.h>
-> > #include <linux/device.h>
-> > +#include <linux/log2.h>
-> > #include <linux/prandom.h>
-> > #include <linux/random.h>
-> > 
-> > @@ -20,6 +21,18 @@
-> > #include "intel_dp_link_caps.h"
-> > #include "intel_dp_link_training.h"
-> > 
-> > +#define LINK_TEST_NUM_LANE_CONFIGS(__max_lane_count) \
-> > +	(ilog2(__max_lane_count) + 1)
-> > +
-> > +#define LINK_TEST_NUM_CONFIGS(__num_rates, __max_lane_count) \
-> > +	((__num_rates) * LINK_TEST_NUM_LANE_CONFIGS(__max_lane_count))
-> > +
-> > +#define LINK_TEST_MAX_LANE_COUNT		((u32)4)
-> > +#define LINK_TEST_MAX_CONFIGS			LINK_TEST_NUM_CONFIGS(DP_MAX_SUPPORTED_RATES, \
-> > +								      LINK_TEST_MAX_LANE_COUNT)
-> > +
-> > +#define LINK_TEST_NUM_RANDOM_ITERATIONS		50
-> > +
-> > struct test_ctx {
-> > 	struct {
-> > 		struct intel_display display;
-> > @@ -38,7 +51,194 @@ struct test_ctx {
-> > 	struct rnd_state rnd;
-> > };
-> > 
-> > +struct link_rate_set {
-> > +	const int *entries;
-> > +	int size;
-> > +};
-> > +
-> > +struct link_config_set {
-> > +	struct intel_dp_link_config entries[LINK_TEST_MAX_CONFIGS];
-> > +	int size;
-> > +};
-> > +
-> > +static const int standard_dp_link_rates[] = {
-> > +	162000, 270000, 540000, 810000, 1000000, 1350000, 2000000
-> > +};
-> > +
-> > +#define LINK_TEST_NUM_STANDARD_RATES (ARRAY_SIZE(standard_dp_link_rates))
-> > +
-> > +static const struct link_config_set standard_dp_link_configs[] = {
-> > +	[INTEL_DP_LINK_CAPS_ORDER_KEY_BW] = {                        /* MBps    PBN    */
-> > +		.entries = {
-> > +			{ .rate =  162000, .lane_count = 1 }, /*  162.0    3.00 */
-> > +			{ .rate =  270000, .lane_count = 1 }, /*  270.0    5.00 */
-> > +			{ .rate =  162000, .lane_count = 2 }, /*  324.0    6.00 */
-> > +			{ .rate =  270000, .lane_count = 2 }, /*  540.0   10.00 */
-> > +			{ .rate =  540000, .lane_count = 1 }, /*  540.0   10.00 */
-> > +			{ .rate =  162000, .lane_count = 4 }, /*  648.0   12.00 */
-> > +			{ .rate =  810000, .lane_count = 1 }, /*  810.0   15.00 */
-> > +			{ .rate =  270000, .lane_count = 4 }, /* 1080.0   20.00 */
-> > +			{ .rate =  540000, .lane_count = 2 }, /* 1080.0   20.00 */
-> > +			{ .rate = 1000000, .lane_count = 1 }, /* 1208.9   22.39 */
-> > +			{ .rate =  810000, .lane_count = 2 }, /* 1620.0   30.00 */
-> > +			{ .rate = 1350000, .lane_count = 1 }, /* 1632.0   30.22 */
-> > +			{ .rate =  540000, .lane_count = 4 }, /* 2160.0   40.00 */
-> > +			{ .rate = 1000000, .lane_count = 2 }, /* 2417.8   44.77 */
-> > +			{ .rate = 2000000, .lane_count = 1 }, /* 2417.8   44.77 */
-> > +			{ .rate =  810000, .lane_count = 4 }, /* 3240.0   60.00 */
-> > +			{ .rate = 1350000, .lane_count = 2 }, /* 3264.0   60.44 */
-> > +			{ .rate = 1000000, .lane_count = 4 }, /* 4835.6   89.55 */
-> > +			{ .rate = 2000000, .lane_count = 2 }, /* 4835.6   89.55 */
-> > +			{ .rate = 1350000, .lane_count = 4 }, /* 6527.9  120.89 */
-> > +			{ .rate = 2000000, .lane_count = 4 }, /* 9671.1  179.09 */
-> > +		},
-> > +		.size = LINK_TEST_NUM_CONFIGS(ARRAY_SIZE(standard_dp_link_rates),
-> > +					      LINK_TEST_MAX_LANE_COUNT),
-> > +	},
-> > +	[INTEL_DP_LINK_CAPS_ORDER_KEY_RATE_LANE] = {
-> > +		.entries = {
-> > +			{ .rate = 162000,  .lane_count = 1 },
-> > +			{ .rate = 162000,  .lane_count = 2 },
-> > +			{ .rate = 162000,  .lane_count = 4 },
-> > +
-> > +			{ .rate = 270000,  .lane_count = 1 },
-> > +			{ .rate = 270000,  .lane_count = 2 },
-> > +			{ .rate = 270000,  .lane_count = 4 },
-> > +
-> > +			{ .rate = 540000,  .lane_count = 1 },
-> > +			{ .rate = 540000,  .lane_count = 2 },
-> > +			{ .rate = 540000,  .lane_count = 4 },
-> > +
-> > +			{ .rate = 810000,  .lane_count = 1 },
-> > +			{ .rate = 810000,  .lane_count = 2 },
-> > +			{ .rate = 810000,  .lane_count = 4 },
-> > +
-> > +			{ .rate = 1000000, .lane_count = 1 },
-> > +			{ .rate = 1000000, .lane_count = 2 },
-> > +			{ .rate = 1000000, .lane_count = 4 },
-> > +
-> > +			{ .rate = 1350000, .lane_count = 1 },
-> > +			{ .rate = 1350000, .lane_count = 2 },
-> > +			{ .rate = 1350000, .lane_count = 4 },
-> > +
-> > +			{ .rate = 2000000, .lane_count = 1 },
-> > +			{ .rate = 2000000, .lane_count = 2 },
-> > +			{ .rate = 2000000, .lane_count = 4 },
-> > +		},
-> > +		.size = LINK_TEST_NUM_CONFIGS(ARRAY_SIZE(standard_dp_link_rates),
-> > +					      LINK_TEST_MAX_LANE_COUNT),
-> > +	},
-> > +	[INTEL_DP_LINK_CAPS_ORDER_KEY_LANE_RATE] = {
-> > +		.entries = {
-> > +			{ .rate = 162000,  .lane_count = 1 },
-> > +			{ .rate = 270000,  .lane_count = 1 },
-> > +			{ .rate = 540000,  .lane_count = 1 },
-> > +			{ .rate = 810000,  .lane_count = 1 },
-> > +			{ .rate = 1000000, .lane_count = 1 },
-> > +			{ .rate = 1350000, .lane_count = 1 },
-> > +			{ .rate = 2000000, .lane_count = 1 },
-> > +
-> > +			{ .rate = 162000,  .lane_count = 2 },
-> > +			{ .rate = 270000,  .lane_count = 2 },
-> > +			{ .rate = 540000,  .lane_count = 2 },
-> > +			{ .rate = 810000,  .lane_count = 2 },
-> > +			{ .rate = 1000000, .lane_count = 2 },
-> > +			{ .rate = 1350000, .lane_count = 2 },
-> > +			{ .rate = 2000000, .lane_count = 2 },
-> > +
-> > +			{ .rate = 162000,  .lane_count = 4 },
-> > +			{ .rate = 270000,  .lane_count = 4 },
-> > +			{ .rate = 540000,  .lane_count = 4 },
-> > +			{ .rate = 810000,  .lane_count = 4 },
-> > +			{ .rate = 1000000, .lane_count = 4 },
-> > +			{ .rate = 1350000, .lane_count = 4 },
-> > +			{ .rate = 2000000, .lane_count = 4 },
-> > +		},
-> > +		.size = LINK_TEST_NUM_CONFIGS(ARRAY_SIZE(standard_dp_link_rates),
-> > +					      LINK_TEST_MAX_LANE_COUNT),
-> > +	},
-> > +};
-> > +
-> > +static bool link_configs_match(const struct intel_dp_link_config *a,
-> > +			       const struct intel_dp_link_config *b)
-> > +{
-> > +	return a->rate == b->rate && a->lane_count == b->lane_count;
+> > Well, it's taken 10 years to be caught by a test which seemingly expects the
+> > mapping of a single absurdly giant scatterlist to fail anyway,
 > 
-> maybe: s/\<a\>/lc_a/ and s/\<b\>/lc_b/
+> If your server has 0.5TB of ram a 4G IO isn't actually that large.
+> Randomly getting a few contiguous 1G hugetlbfs pages is not even that
+> unlikely. Something like FSDAX has a very high chance of getting high
+> contiguity pages in files.
+> 
+> So I wouldn't be quite so dismissive that this is not something a real
+> user can hit.
+> 
+> > here, but I suspect this is likely just regular iova_granule rounding
+> > overflowing when the segment boundary is the maximum 4GB, since the largest
+> > representable segment length is 4GB - 1. 
+> 
+> It looks like the iommu_dma_map_sg() algorithm only works reliably if
+> the scatterlist entry size is less than UINT_MAX/2, otherwise it can
+> risk overflowing when it pads.
+> 
+> API wise I expect any arbitary input to sg_alloc_table_from_pages() to
+> result in a scatterlist that iommu_dma_map_sg() will map. This
+> patch highlights there are cornere cases where that isn't true, it
+> should be fixed..
+> 
+Thanks for your input!
 
-It's customary to use a/b as pointers for two objects being compared in
-simple functions like this.
+> I agree we shouldn't overcomplicate iommu_dma_map_sg(), so the
+> simplest fix is to introduce a SG_MAX_LENGTH set to UINT_MAX/2,
+> justified by the logic in iommu_dma_map_sg(). Fixup the core sg_alloc
+> code to respect that. WARN_ON in iommu_dma_map_sg() if a malformed
+> scatterlist entry is presented. Add a WARN_ON under DMA debugging
+> kconfig as well for the physical path.
+So instead of addressing this in iommu, we should focus on
+guarding in sg logic to prevent the overflows? Or would you
+rather have this as additional, separate fix placed in this
+series?
 
 > 
-> > +}
-> > +
-> > +static const struct intel_dp_link_caps_order config_orders[] = {
-> > +	{
-> > +		.key = INTEL_DP_LINK_CAPS_ORDER_KEY_BW,
-> > +		.dir = INTEL_DP_LINK_CAPS_ORDER_DIR_ASC,
-> > +	}, {
-> > +		.key = INTEL_DP_LINK_CAPS_ORDER_KEY_BW,
-> > +		.dir = INTEL_DP_LINK_CAPS_ORDER_DIR_DESC,
-> > +	}, {
-> > +		.key = INTEL_DP_LINK_CAPS_ORDER_KEY_RATE_LANE,
-> > +		.dir = INTEL_DP_LINK_CAPS_ORDER_DIR_ASC,
-> > +	}, {
-> > +		.key = INTEL_DP_LINK_CAPS_ORDER_KEY_RATE_LANE,
-> > +		.dir = INTEL_DP_LINK_CAPS_ORDER_DIR_DESC,
-> > +	}
-> > +};
-> > +
-> > +static const struct link_config_set *
-> > +link_caps_config_order_key_to_set(struct kunit *test, enum intel_dp_link_caps_order_key key)
-> > +{
-> > +	return &standard_dp_link_configs[key];
-> > +}
-> > +
-> > +/*
-> > + * TEST: Baseline with fixed reference table
-> > + * -----------------------------------------
+> DRM would then have to generate scatterlists with a max segment size.
 > 
-> Didn't find in other KUnit tests such header, but I think the info
-> provided is valuable.
+> Jason
 
-The header describes the group of tests added in this patch, similarly
-to the two other group of tests added in the follow-up patches.
-
-> Can we add it to the line below, something like:
-> 
-> * Verify baseline link_caps config iterator using fixed standard DP config tables.
-
-Not sure, to me the line below describes sufficiently what this test
-group does.
-
-> > + * Verify the link_caps config iterator using fixed standard DP config tables.
-> > + */
-> > +static void baseline_test_for_order(struct kunit *test,
-> > +				    struct intel_dp_link_caps *link_caps,
-> > +				    struct intel_dp_link_caps_order config_order)
-> > +{
-> > +	struct test_ctx *ctx = test->priv;
-> > +	const struct link_config_set *config_set =
-> > +		link_caps_config_order_key_to_set(test, config_order.key);
-> > +	const struct intel_dp_link_caps_test_ops *ops = ctx->link_caps_ops;
-> > +	struct intel_dp_link_config iter_config;
-> > +	struct intel_dp_link_caps_iter iter;
-> > +	int pos = 0;
-> > +
-> > +	ops->iter_start(&iter, link_caps, config_order, INTEL_DP_LINK_CAPS_FILTER_ALL);
-> > +	for_each_dp_link_config(&iter, &iter_config) {
-> > +		int idx = pos;
-> > +
-> > +		if (config_order.dir == INTEL_DP_LINK_CAPS_ORDER_DIR_DESC)
-> > +			idx = config_set->size - idx - 1;
-> > +
-> > +		KUNIT_EXPECT_TRUE(test, link_configs_match(&iter_config,
-> > +							   &config_set->entries[idx]));
-> > +
-> > +		pos++;
-> > +	}
-> > +	ops->iter_end(&iter);
-> > +}
-> > +
-> > +static void intel_dp_link_caps_test_baseline(struct kunit *test)
-> > +{
-> > +	struct test_ctx *ctx = test->priv;
-> > +	struct intel_dp_link_caps *link_caps = ctx->dev.dig_port.dp.link.caps;
-> > +	const struct intel_dp_link_caps_test_ops *ops =
-> > +		ctx->link_caps_ops;
-> > +	int i;
-> > +
-> > +	ops->update(link_caps,
-> > +		    standard_dp_link_rates, LINK_TEST_NUM_STANDARD_RATES,
-> > +		    LINK_TEST_MAX_LANE_COUNT,
-> > +		    true);
-> > +
-> > +	for (i = 0; i < ARRAY_SIZE(config_orders); i++)
-> > +		baseline_test_for_order(test, link_caps, config_orders[i]);
-> > +}
-> > +
-> > static struct kunit_case intel_dp_link_test_cases[] = {
-> > +	KUNIT_CASE(intel_dp_link_caps_test_baseline),
-> > +
-> 
-> looks like a superfluous newline.
-
-The newline keeps the {} separate from test entry lines.
-
-> With all that addressed:
-> 
-> Reviewed-by: Michał Grzelak <michal.grzelak@intel.com>
-> 
-> BR,
-> Michał
-> 
-> > 	{}
-> > };
-> > 
-> > -- 
-> > 2.49.1
-> > 
-> > 
-
+-- 
+Best Regards,
+Krzysztof
