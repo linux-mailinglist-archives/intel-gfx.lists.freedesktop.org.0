@@ -2,54 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id XE3WF42AS2r/SQEAu9opvQ
+	id gAclNZCAS2oDSgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id E432070F06C
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5EA3A70F07C
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=DmBwcT1K;
+	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=g9bm8HDG;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4328C10E887;
-	Mon,  6 Jul 2026 10:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id DAB8C10E885;
+	Mon,  6 Jul 2026 10:16:46 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5.mo534.mail-out.ovh.net (5.mo534.mail-out.ovh.net
- [54.36.140.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 8F2BD10E882;
- Mon,  6 Jul 2026 10:16:39 +0000 (UTC)
+Received: from smtpout3.mo534.mail-out.ovh.net
+ (smtpout3.mo534.mail-out.ovh.net [51.210.94.142])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE8DA10E893
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:45 +0000 (UTC)
 Received: from director3.derp.mail-out.ovh.net
  (director3.derp.mail-out.ovh.net [152.228.215.222])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0S94377z6JNY;
- Mon,  6 Jul 2026 10:08:41 +0000 (UTC)
+ by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SC1QPYz6JPw;
+ Mon,  6 Jul 2026 10:08:43 +0000 (UTC)
 Received: from director3.derp.mail-out.ovh.net
  (director3.derp.mail-out.ovh.net. [127.0.0.1])
  by director3.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:41 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.113.54])
- by director3.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0S91f73z5vMF; Mon,  6 Jul 2026 10:08:41 +0000 (UTC)
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:43 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.101.1])
+ by director3.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SC0HkGz5vVf;
+ Mon,  6 Jul 2026 10:08:43 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 68F1B8E18F1; 
- Mon,  6 Jul 2026 10:08:38 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id C78D98E1903; 
+ Mon,  6 Jul 2026 10:08:40 +0000 (UTC)
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Subject: [PATCH v2 00/10] Use drm_exec to lock TTM buffers, respin
-Date: Mon, 06 Jul 2026 12:07:42 +0200
-Message-Id: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
+Date: Mon, 06 Jul 2026 12:07:43 +0200
+Subject: [PATCH v2 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES flag
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-B4-Tracking: v=1; b=H4sIAAAAAAAC/3WNyw6CMBQFf4XctTV9ICIr/8OQhrYXqEnBtJXUE
- P5dimuXk8yZs0JAbzFAU6zgcbHBztMO/FSAHrtpQGLNzsApr+iVChKjk1wa7yQm1IQbZRTr1c2
- UAvbRy2Nv0xF8tD8Ob/VEHXMlG6MNcfaf43Fh2fsbXxihpBRVfek043Wl7oNLZ4PQbtv2BQFwZ
- NG7AAAA
-X-Change-ID: 20260703-ttm_2_drm_exec-2dbdb1fb9d43
+Message-Id: <20260706-ttm_2_drm_exec-v2-1-4bf6bfc0d320@pixelcluster.dev>
+References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
+In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
  Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
  David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
@@ -66,18 +63,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9126826122039877948
+x-ovh-tracer-id: 9127389070351032636
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTFgEUEwEqBo3ZrzVucSTtO/cFkWvVsp3c3LMjrE7Lw1DeNsogoT1lbm30aCROrLeEEj8aVLa9IYqYnCp6i97vxuKze+6oHkIOAtFkImsarfenTHfLFMfIwh9XihJGWYxPe8CNTQTJIcfG+7nbbtlvQBBzK5XJlefECP8Z2oujAU7t3Wnm+UYWnTou5EdXX5eKxxPEX4sWN5iZfmo0z78nSNcf+dOtFZ4CuIghqxnLCu060kV7HrpV7TiD0dnchOO0CEOl3qmNQ19dAxtJ2sT6iAx0/9LWnzIpmxMx1/mrEqXxocLxkArzzMrSmLWpuk8777wwv1IhEzcdmvsVNUlyHbJ2vWreEw5ghkmnAZb3iPDq5BWX/Xfc2/6WV/ko1dcG0xEHhPOVXHeW5lXOY8qX+25C1mroB+HlRWNw4FNckbnyYZHbXzh5WTvKpG69xicFOVxlpldlGrXGzvgTI4aWVM9bSDZ8tOKkcLIuWzvsw0J1Nb+THerDTlZdkgJydSuu5WTez6kfo0JQpPkMcYnN4J4EKHc0JoUaDyEnlPdFO7FHK/O0OFkn9lW+ShT/Z6UfS5A6/DbV1upyvUAeR8xfM0y+4eAGRKY8OB/k3Pmp8MVrfK4HqgO/PpXjTaCa4VxDjlMEwe7NS6cKPIBOAN3+tuf6bnoUmb0oVygtqq09x6IQ
-DKIM-Signature: a=rsa-sha256; bh=b0aRyvHjrmTrYhQ1eeIvNkwvtpG+ep/zFFPoF8zkvLw=; 
+X-VR-SPAMCAUSE: dmFkZTEIx5EftTv6qDYynIITLbKmw2V9F73qkvPfwN+6GC3Ph5+oNBPVWeKaotSSyzsLEoE6aoNeT/z/sb6JP+NEna0IvjfnNYhnKja1q6dxD3Jb7I4shHgEmfwt4RwYwfWMrJeeSWT1tVWzr+1Wc90ClmqxXufcv16gHHKk4vjPweAJ7XZzvQwOvhu6mvw7q+gxZaRp/SFrLzBp8jROoK4pIBgRzH7e8vIhWqDQYAnvzOg3wwI7Cm5iQjWjEqopVyP5ALcEWcgRSjmo1GQmwlWMV5+MubgYMTlgg7JHi/WHKBd7/pcOIWar7nF/9t66zi6TVtVu8SSomL6KSZeUYk011HiNWwXLDfpjBPWLSvSdmxUcsM9aYjoysNMPJOKFE8nluG2E8EZqXxvA+mdjAaTXT/M1hQOgWTPGS3FLsqSsgERyjY0Br1rtM8lxfaynmnKDOuH5dZ+vO/avb+2EpJT6UC1E9mjeCIYddylpjZFBgn3hbF9yDSZ7uNN/fAYfTjCTxYuQiDPv0pGzoO0eyl15hzjbEzRQ/VK1jR6qfZ93H0FmF0209waqBTz34/Mma8XU0xZUqgviYlMEDvnVxtOFDxHZBrBZ9lSK/2y3UQH9rHkB8l9WEvVjpYo4ySKPMOFdcmGok13u2lMDPyXdHv3zDyhh9yq+yAiEhS+dEijzDsRwow
+DKIM-Signature: a=rsa-sha256; bh=N1GjEJtFReJ0oNOCKsB1O/DXSe6xcHnaiP0zlVWxP2o=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332522; v=1;
- b=DmBwcT1KDCPjcJPXWrRTdv2DzBdrghtuPD8RcPRz0WQGtLxYb2DlQX6ugJYSLMERkdRDnE3z
- xsk1FUHxsFgGMdabvWLNJQsMI+/txAZPMzm+rbg7lwU7dUVyI+ciGT6I9Ui6r40HiqOJNC1N+6D
- k2WRWu3rU4WtfbNFO6SQpBKxN+HbF43+xIZ1RXe9AvViUB461Q/Y3azY0inrt6JqAk6wylfOOMp
- WwQbrDkvzSgqIn2SXN+QRPGM3letBD/QX4KWB7scK1yBB/L/2rSbL3DEwcNlnkro1GaxtkAl9uB
- sEqtbesB5aem1v8LdGwgzEaK1q1OOZl+CG54IsYXE5G6g==
+ s=ovhmo-selector-1; t=1783332523; v=1;
+ b=g9bm8HDGNv+oEfb4xMXacBXhP3UH0s3rxe5xsiBflxdCipgZVZmp2R+S7eagIy9MD95MFBpB
+ 1t4hpDTsp9SaS7WNVj2c2NaoZnM+HToChFhrlCeDLgiuMyPztfr8jdcRlO1xKzz1a3+PdTiBDCf
+ c4Kg/aVBf73Vb0+4uRRZqbI21MqNELLsgPcIE5dVK09C4U8LdHHKg6whhUm1iYpCH7HmFgfrsc8
+ 1l7vc12HNKgdOYtmkKwGQtEeJnR0HwPpYZIUm6lN6oeh/EMZBQ1GdY4YFtzyq5q51u2/5zaVreG
+ VIy62vzjyvuk/AIdvaALpSrURIxFsg8h74Nqmqy9Qhfig==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -110,12 +107,12 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	DKIM_TRACE(0.00)[pixelcluster.dev:+];
 	MIME_TRACE(0.00)[0:+];
 	FORGED_SENDER(0.00)[nat@pixelcluster.dev,intel-gfx-bounces@lists.freedesktop.org];
-	FORWARDED(0.00)[alexander.deucher@amd.com];
+	FORWARDED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	RCVD_VIA_SMTP_AUTH(0.00)[];
 	RCVD_COUNT_FIVE(0.00)[6];
-	PREVIOUSLY_DELIVERED(0.00)[alexander.deucher@amd.com];
+	PREVIOUSLY_DELIVERED(0.00)[intel-gfx@lists.freedesktop.org];
 	FORGED_SENDER_FORWARDING(0.00)[];
 	FROM_HAS_DN(0.00)[];
 	FROM_NEQ_ENVFROM(0.00)[nat@pixelcluster.dev,intel-gfx-bounces@lists.freedesktop.org];
@@ -126,91 +123,121 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[msgid.link:url,pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: E432070F06C
+X-Rspamd-Queue-Id: 5EA3A70F07C
 
-Hi all,
+TTM is about to switch to drm_exec for locking objects
+in the LRU list. When we're done processing the object, we want to
+unlock it only if the caller doesn't already hold that lock. If
+DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which callers may
+require for unrelated reasons), we have no way of knowing whether the
+lock is already held.
 
-this is a respin of Christian's patchset to make TTM use drm_exec for
-evicting buffers.
-
-I've been investigating VRAM management for amdgpu quite a bit in recent
-times, and under really strong VRAM contention I observed frequent
-instabilities/random crashes that I traced back to TTM being unable to
-evict buffers properly. The typical failure case was one game squatting
-more or less all of VRAM while also being rather spammy with submits.
-In that case, trylocking fails because concurrent submits from the game
-already hold buffer locks, and since there isn't much else to evict,
-allocation just fails.
-
-The original patchset ended up fizzling out in previous attempts to
-upstream it, but I think it's worth retrying to upstream this, so I took
-over and rebased it on top of current drm-misc-next. Aside from
-that, while testing the patchset I found two bugs causing rather random
-issues ranging from kernel crashes to random GPU hangs in it, which I fixed
-for this respin. The two bugs were:
-1. The ttm_buffer_object duplication in ttm_buffer_object_transfer did
-   not alter the GEM object's driver function pointers, so the
-   transferred object erroneously inherited the free() function of the
-   source buffer. When the transferred object was freed, the driver's
-   free function was invoked and treated the transferred TTM bo as if it
-   was a driver BO. Hilarity ensued.
-2. drm_exec LRU walks were missing handling for already-locked objects.
-   If the incoming exec object was created without
-   DRM_EXEC_IGNORE_DUPLICATES, drm_exec_lock_obj would return -EALREADY
-   and the buffer would be skipped even if ctx->allow_res_evict was set
-   (funkiness level: moderate).
-   If the exec did have DRM_EXEC_IGNORE_DUPLICATES
-   set, the buffer would be processed, and then unlocked, silently
-   dropping the lock of some random object that the caller expected to
-   stay locked (funkiness level: off the charts).
-
-With those two bugs fixed, VRAM overcommit works considerably more
-stable - there are no random eviction failures and related fallouts at
-all anymore.
+To remedy this, add a separate helper that forcefully bypasses the
+IGNORE_DUPLICATES flag for only a single locking operation.
 
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
-Changes in v2:
-- Switched to my new email
-- Reworked drm_exec patch for always reporting duplicates (Christian)
-- Removed spurious continue; rebase artifact in swapout
-- Removed incorrect trylock_only for evict_all
-- Link to v1: https://patch.msgid.link/20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de
+ drivers/gpu/drm/drm_exec.c | 54 ++++++++++++++++++++++++++++++++++------------
+ include/drm/drm_exec.h     |  2 ++
+ 2 files changed, 42 insertions(+), 14 deletions(-)
 
----
-Natalie Vock (10):
-      drm/exec: Add helper to bypass IGNORE_DUPLICATES flag
-      drm/ttm: replace TTMs refcount with the DRM refcount v4
-      drm/ttm: remove ttm_lru_walk_ops
-      drm/ttm: grab BO reference before locking it
-      drm/ttm: switch to ttm_bo_lru_for_each_reserved_guarded for swapout
-      drm/ttm: move zombie handling into ttm_bo_evict
-      drm/ttm: use ttm_bo_lru_for_each_reserved_guarded in evict_all
-      drm/xe: remove workaround for TTM internals
-      drm/ttm: support using drm_exec during eviction v4
-      drm/amdgpu: use drm_exec during BO validation
+diff --git a/drivers/gpu/drm/drm_exec.c b/drivers/gpu/drm/drm_exec.c
+index 7988f5e7d56a3..ec33ed4a523cc 100644
+--- a/drivers/gpu/drm/drm_exec.c
++++ b/drivers/gpu/drm/drm_exec.c
+@@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct drm_exec *exec)
+ 	return ret;
+ }
+ 
+-/**
+- * drm_exec_lock_obj - lock a GEM object for use
+- * @exec: the drm_exec object with the state
+- * @obj: the GEM object to lock
+- *
+- * Lock a GEM object for use and grab a reference to it.
+- *
+- * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
+- * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
+- * flag), -ENOMEM when memory allocation failed and zero for success.
+- */
+-int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
++static int __drm_exec_lock_obj(struct drm_exec *exec,
++			       struct drm_gem_object *obj,
++			       bool ignore_duplicates)
+ {
+ 	int ret;
+ 
+@@ -226,8 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 		return -EDEADLK;
+ 	}
+ 
+-	if (unlikely(ret == -EALREADY) &&
+-	    exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
++	if (unlikely(ret == -EALREADY) && ignore_duplicates)
+ 		return 0;
+ 
+ 	if (unlikely(ret))
+@@ -243,8 +233,44 @@ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
+ 	dma_resv_unlock(obj->resv);
+ 	return ret;
+ }
++
++/**
++ * drm_exec_lock_obj - lock a GEM object for use
++ * @exec: the drm_exec object with the state
++ * @obj: the GEM object to lock
++ *
++ * Lock a GEM object for use and grab a reference to it.
++ *
++ * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
++ * already locked (can be suppressed by setting the DRM_EXEC_IGNORE_DUPLICATES
++ * flag), -ENOMEM when memory allocation failed and zero for success.
++ */
++int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj)
++{
++	return __drm_exec_lock_obj(exec, obj,
++				   exec->flags & DRM_EXEC_IGNORE_DUPLICATES);
++}
+ EXPORT_SYMBOL(drm_exec_lock_obj);
+ 
++/**
++ * drm_exec_lock_obj_report_dup - lock a GEM object for use, but always report duplicates
++ * @exec: the drm_exec object with the state
++ * @obj: the GEM object to lock
++ *
++ * Like drm_exec_lock_obj, lock a GEM object for use and grab a reference to it.
++ * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is ignored and duplicates are
++ * always reported.
++ *
++ * Returns: -EDEADLK if a contention is detected, -EALREADY when object is
++ * already locked, -ENOMEM when memory allocation failed and zero for success.
++ */
++int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
++				 struct drm_gem_object *obj)
++{
++	return __drm_exec_lock_obj(exec, obj, false);
++}
++EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
++
+ /**
+  * drm_exec_unlock_obj - unlock a GEM object in this exec context
+  * @exec: the drm_exec object with the state
+diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+index 8725ba92ff916..ff80dd2b72240 100644
+--- a/include/drm/drm_exec.h
++++ b/include/drm/drm_exec.h
+@@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32 flags, unsigned nr);
+ void drm_exec_fini(struct drm_exec *exec);
+ bool drm_exec_cleanup(struct drm_exec *exec);
+ int drm_exec_lock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
++int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
++				 struct drm_gem_object *obj);
+ void drm_exec_unlock_obj(struct drm_exec *exec, struct drm_gem_object *obj);
+ int drm_exec_prepare_obj(struct drm_exec *exec, struct drm_gem_object *obj,
+ 			 unsigned int num_fences);
 
- drivers/gpu/drm/amd/amdgpu/amdgpu_cs.c           |  80 +++----
- drivers/gpu/drm/drm_exec.c                       |  54 +++--
- drivers/gpu/drm/i915/gem/i915_gem_ttm.c          |  35 ++-
- drivers/gpu/drm/ttm/tests/ttm_bo_validate_test.c |   8 +-
- drivers/gpu/drm/ttm/tests/ttm_kunit_helpers.c    |   2 -
- drivers/gpu/drm/ttm/ttm_bo.c                     | 272 +++++++----------------
- drivers/gpu/drm/ttm/ttm_bo_internal.h            |  17 +-
- drivers/gpu/drm/ttm/ttm_bo_util.c                |  58 +++--
- drivers/gpu/drm/ttm/ttm_device.c                 |  18 +-
- drivers/gpu/drm/ttm/ttm_resource.c               |  21 +-
- drivers/gpu/drm/xe/xe_bo.c                       |  32 +--
- include/drm/drm_exec.h                           |   2 +
- include/drm/ttm/ttm_bo.h                         |  50 ++---
- 13 files changed, 295 insertions(+), 354 deletions(-)
----
-base-commit: 44d19b8a7548aa25cbc6ebd5f27e958f7142c36b
-change-id: 20260703-ttm_2_drm_exec-2dbdb1fb9d43
-
-Best regards,
---  
-Natalie Vock <nat@pixelcluster.dev>
+-- 
+2.55.0
 
