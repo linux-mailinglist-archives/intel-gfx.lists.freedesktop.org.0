@@ -2,50 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 39kOB7OkS2qVXgEAu9opvQ
+	id W8/WBGqnS2rqXwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 14:50:59 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:02:34 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 78D71710C86
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 14:50:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 57B90710F84
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 15:02:33 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=lankhorst.se header.s=default header.b=EFN47mwh;
-	dmarc=pass (policy=none) header.from=lankhorst.se;
+	dkim=none;
+	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0B65189FA5;
-	Mon,  6 Jul 2026 12:50:57 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EFA3410E976;
+	Mon,  6 Jul 2026 13:02:31 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from lankhorst.se (unknown [141.105.120.124])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 2027989FA5;
- Mon,  6 Jul 2026 12:50:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=lankhorst.se;
- s=default; t=1783342254;
- bh=7r+siOYaJs4PQAazhD5o8ko6J7tWMYCwN536i5wzqYg=;
- h=Date:Subject:To:Cc:References:From:In-Reply-To:From;
- b=EFN47mwhH7IrwMCpMv80OA7asq2N+TV0ciI2F9yeSKHFDL3gI3mbnJ6H7O5YS9iVJ
- /Xfvs98yyjNrG/jIUHrmPTHsfshI3iJ+QsTx9WuZNEjPi/bZ/5m/Y6DlMpT3kgIcOl
- l6+1b/gfxGT+v5KeN94iQcraz7PeVInXaJPFG7i4JjccI7cqkMJnRAlt181iO3D8Fl
- e9+KgnmORvsZEcWYOfedKWgfx8ewSjMllgiEVvxdsv2pCwF8E03d8ML6OWwEmGBO/W
- ELtSsLOw4JP4kzZxKKW95p1Jw9BmFNXhQgst+yBvmAmEq7EO5QfS2ktYdkEpr8L25j
- FW6ise1CYSkdQ==
-Message-ID: <623e11ee-2f45-471d-bef1-d7bd9b717e1a@lankhorst.se>
-Date: Mon, 6 Jul 2026 14:51:34 +0200
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id BD71810E974;
+ Mon,  6 Jul 2026 13:02:30 +0000 (UTC)
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 0/7] drm/i915: All fixes to make i915 work well with
- PREEMPT_RT.
-To: Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Cc: intel-gfx@lists.freedesktop.org, dri-devel@lists.freedesktop.org
-References: <20260706114823.752313-1-dev@lankhorst.se>
- <20260706122026.IJAiyhhw@linutronix.de>
-Content-Language: en-US
-From: Maarten Lankhorst <dev@lankhorst.se>
-In-Reply-To: <20260706122026.IJAiyhhw@linutronix.de>
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
+Subject: =?utf-8?q?=E2=9C=97_LGCI=2EVerificationFailed=3A_failure_for_Use_drm=5Fexec_?=
+ =?utf-8?q?to_lock_TTM_buffers=2C_respin_=28rev2=29?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "Natalie Vock" <natalie.vock@gmx.de>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Mon, 06 Jul 2026 13:02:30 -0000
+Message-ID: <178334295077.154539.5433175894120136820@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
+In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -58,66 +46,54 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[lankhorst.se,none];
-	R_DKIM_ALLOW(-0.20)[lankhorst.se:s=default];
+X-Spamd-Result: default: False [3.19 / 15.00];
+	SEM_URIBL_FRESH15(3.00)[pixelcluster.dev:email];
+	MID_RHS_NOT_FQDN(0.50)[];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	BAD_REP_POLICIES(0.10)[];
 	MIME_GOOD(-0.10)[text/plain];
+	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
 	HAS_LIST_UNSUB(-0.01)[];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lankhorst.se:from_mime,lankhorst.se:dkim,lankhorst.se:mid];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	ARC_NA(0.00)[];
-	TO_DN_SOME(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	MID_RHS_MATCH_FROM(0.00)[];
-	ALIAS_RESOLVED(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[dev@lankhorst.se,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
-	RCPT_COUNT_THREE(0.00)[3];
-	RCVD_COUNT_TWO(0.00)[2];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
 	RCVD_TLS_LAST(0.00)[];
+	RCPT_COUNT_TWO(0.00)[2];
+	FREEMAIL_TO(0.00)[gmx.de];
+	MIME_TRACE(0.00)[0:+];
+	ARC_NA(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	DKIM_TRACE(0.00)[lankhorst.se:+]
+	TO_DN_SOME(0.00)[];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	RCVD_COUNT_TWO(0.00)[2];
+	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
+	R_DKIM_NA(0.00)[];
+	R_SPF_ALLOW(0.00)[+ip4:131.252.210.177:c];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MISSING_XM_UA(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,intel.com:url,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 78D71710C86
+X-Rspamd-Queue-Id: 57B90710F84
 
-Hey,
+== Series Details ==
 
-On 7/6/26 14:20, Sebastian Andrzej Siewior wrote:
-> On 2026-07-06 13:48:16 [+0200], Maarten Lankhorst wrote:
->> All fixes to make the core i915 module (without display) working correctly on
->> PREEMPT_RT.
->>
->> Some fixes are still needed, as the selftests still fail. But otherwise the
->> test results were looking good on PREEMPT_RT.
->>
->> It looks like the patch that added a spinlock caused a regression on !PREEMPT_RT,
->> and may even have caused similar test failures on PREEMPT_RT, so to fix it
->> I removed RCU entirely, and converted to a locked implementation instead.
->>
->> This time at least, i915 live selftests pass on !PREEMPRT_RT for at least 1 machine
->> with same config as CI.
-> 
-> I saw the version counter overflowed and is at 4 here. I appreciate all
-> the work. May I ask how are things?
+Series: Use drm_exec to lock TTM buffers, respin (rev2)
+URL   : https://patchwork.freedesktop.org/series/169777/
+State : failure
 
-I'm fixing the bugs in core i915 with this specific PREEMPT_RT series,
-and left out the display changes. This showed that the failures in i915's
-selftests were at least partially related to the PREEMPT_RT changes in the
-last patch.
+== Summary ==
 
-Hopefully v4 passes CI and if you want, you can review those changes so they
-can be merged. Looks like sashiko is great at finding concurrency bugs,
-changing from RCU back to a normal lock is non-trivial. It unfortunately found
-1 more in add_signaling_context for a missing !list_empty(&ce->signal_link),
-but should be safe to review regardless.
+Series author address 'nat@pixelcluster.dev' is not on the allowlist, which prevents CI from being automatically triggered.
+If you want CI to run for this series, ask Patchwork project owners to click 'retest' on the series in Patchwork.
+Exception occurred during validation, bailing out!
+Build URL: http://gfx-ci.igk.intel.com:8080/job/CI_PW_kernel/180803/ (on built-in)
 
-Kind regards,
-~Maarten
+
