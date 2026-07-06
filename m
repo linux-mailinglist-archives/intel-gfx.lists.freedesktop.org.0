@@ -2,49 +2,52 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ucgXDZaAS2oPSgEAu9opvQ
+	id CEcSHIeAS2r3SQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:39 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id D25AB70F0AA
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id F190D70F04B
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:38 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=HtnZymoT;
+	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b="l1/6bP/4";
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id AD88A10E89D;
-	Mon,  6 Jul 2026 10:16:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 7625210E872;
+	Mon,  6 Jul 2026 10:16:37 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 10.mo534.mail-out.ovh.net (10.mo534.mail-out.ovh.net
- [46.105.32.219])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 696ED10E894;
- Mon,  6 Jul 2026 10:16:46 +0000 (UTC)
-Received: from director6.derp.mail-out.ovh.net
- (director6.derp.mail-out.ovh.net [51.255.22.22])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SR2vl7z6JVC;
- Mon,  6 Jul 2026 10:08:55 +0000 (UTC)
-Received: from director6.derp.mail-out.ovh.net
- (director6.derp.mail-out.ovh.net. [127.0.0.1])
- by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:55 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.168.36])
- by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0SR1qmVz7tLG; Mon,  6 Jul 2026 10:08:55 +0000 (UTC)
+X-Greylist: delayed 462 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Jul 2026 10:16:36 UTC
+Received: from smtpout4.mo533.mail-out.ovh.net
+ (smtpout4.mo533.mail-out.ovh.net [46.105.32.238])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 20B9910E33F;
+ Mon,  6 Jul 2026 10:16:36 +0000 (UTC)
+Received: from director5.derp.mail-out.ovh.net
+ (director5.derp.mail-out.ovh.net [57.128.106.70])
+ by mo533.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0ST2Cddz5wl1;
+ Mon,  6 Jul 2026 10:08:57 +0000 (UTC)
+Received: from director5.derp.mail-out.ovh.net
+ (director5.derp.mail-out.ovh.net. [127.0.0.1])
+ by director5.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:57 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.101.74])
+ by director5.derp.mail-out.ovh.net (Postfix) with ESMTPS id
+ 4gv0SS66cJz7tDb; Mon,  6 Jul 2026 10:08:56 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 4C6098E18F1; 
- Mon,  6 Jul 2026 10:08:53 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id D61E18E1900; 
+ Mon,  6 Jul 2026 10:08:54 +0000 (UTC)
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Date: Mon, 06 Jul 2026 12:07:50 +0200
-Subject: [PATCH v2 08/10] drm/xe: remove workaround for TTM internals
+Date: Mon, 06 Jul 2026 12:07:51 +0200
+Subject: [PATCH v2 09/10] drm/ttm: support using drm_exec during eviction
+ v4
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260706-ttm_2_drm_exec-v2-8-4bf6bfc0d320@pixelcluster.dev>
+Message-Id: <20260706-ttm_2_drm_exec-v2-9-4bf6bfc0d320@pixelcluster.dev>
 References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -63,18 +66,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9130766770950267196
+x-ovh-tracer-id: 9131329723485086012
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTFMobFMhrI6mwdMIl0lqtl+jezqUsZKJEyxHHMvx1PsgGmhE5En/0ZDeXryAId2Em9Mti8vRUtIpVOn34/99l1LQ5l030FgMhMXOhVLq+uBm75VRIHj8rLyfz57Jhny6pfLI/a5uMuUBxpgTHiF4Nm51UDgsM1GTjEqQdO2rrr5aKw8so40daAKRKUV/l8A6+ijQJxCtS4zhdGd3Y4dJeQFCQjwYxQZLH5omJZDNaE6whidqSgL6+1HipjQPAFyJDuayta6IuE6t8k2dyZTEl7shc/jp3BLOkEEp/W6WxCVj1xm3fYRykYHxmmG6YjlwsomrEf7+MIILpb+XKIutt3OJ7CA1TJ/vMDYXDKTaoXwPoy3ieHmghJM9xDISzSfl5j/onWhhc7KnKEjIe8aaSq+Br5IdnSj077vprrymbsZBXJ3RwWazEUgqr+vkZ1iV6XeUtoOSfubd+9wZbHy6xtGaHn9xkRv7uZgoIHjo+xDxuKWGDXYUPixYXVsUBrrW9FZ3yXfmla5QaToqulPvdgMAk35Q5gWYvLvFbdWpdZwW0MYAPO6MLgHUuGgA8lon5pB6pIEWNP0vSeZNCscgGMOko2/3FNjatlyI8vkRKfQsIiyoBf+wwrdfqp8bT/tmiauKLyUcpqfBtkhMsBcZyEaOlIoL/38tkH9r+Vb0lSTDg
-DKIM-Signature: a=rsa-sha256; bh=V1VfkBOzIlL1diOCJO7aBkMIwTJ+y/SjTldGqzLicPY=; 
+X-VR-SPAMCAUSE: dmFkZTGrlNJ8ShesFc0BsmoWFi51A7F15j2IaCkSK7BVZBg/BM8MBdGhyqLZmkbZMHw/TdptOPm8sgahQti1Nc9RjBh0KMZiGtpja+p6qhts3jrWUso58aRKRrx2DXtHoeXDd8faKpktnEASA9l57md6lmCqaecpmqLv9KOaMd5Cxk2fFcLRCf7Y1jiwLpKZwWHOg5MLCHSu/c85HhHBD+9tK6DpmR22NTjUbN0dGZJB9cmuuQPGLboQ0v7ZPGbXkip9C+NIKd694im0qBCyEcUf/DwxdiDWy9o5iBQA1zQlg0Y75Jpr3La1ocQctyDO3tKJ1UAaq83N/bdymi3oIi31d22YcqdsW9ZNQHTTK/79SgisJRymKcxBCdmwktBdbden4e5FLdP+Lhu7A5YEPpVUkxChL6uXk8f3HYvWtEFfCPL8PHLp285RU28A15yGPPMBLrnwq6JofiQJCGhFJABVkw7vkHAThSDyuTLzAqFkTXZB7I6jq6b1mIkUr8cXdjikSlf3Ht6j+hGADOsrQSqCJa7pQU3z7q+8p4fspIYHa3wBG5efm2YdAsLrm3GHg8uSsMoBmqrv0mKaiIbDNgysI5BlTKu39FBIqASN7pFGVwZKHnYJd1ewaRDXiA8/eB7TrpPNFYg9s2lzsq2oP1jYytEU6bMDYfjjmUJDY4eCCd5ftA
+DKIM-Signature: a=rsa-sha256; bh=7A5T2b3M6vYyGePnmU0aS80euo+xNigllqLOoN06jgU=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332535; v=1;
- b=HtnZymoTFsua9NRHq9CojE+JhLNQNw/fO5lZi4G6jCuQ7BUkBu8FsCQXKQfMN/Dsx+B/4S8A
- ya4QAIFY/nmv6Yl+f85BY3QfaSOkxjzGWsTHJnas9nAb7r8HD2DkAr6Gd1mJWQZru8miAIQaDVP
- +qLLb5ZclQfvfgd3JZ9ILADvCQKw/Axf1O4hKtkB60rJV31kCXxi6f2HKxuJKMKqThUMw93Ayx5
- BSc5AWhne6wBn1ISPUOxHpWUUtk3WSZju0KBgs4hW8djIy9CI9vjbScT73WLDJlAr/zHTaou1Oi
- 9AuR+AlcXO7/PUbtVuJithM/VpM+6rvYNN2MkYD9n6BNQ==
+ s=ovhmo-selector-1; t=1783332537; v=1;
+ b=l1/6bP/4SOaB40nSpStPbcl1+964adLq07F29uP6SN43ZiTaSgv48zxA0ghb4bYre0z6BAhx
+ WsPOZOPi9o+mq/1CBWnVJWEBDGx4ydb3Y9bAIz6qpgnWCYym2gz5mP9s5VapoUrdC+Yh/c4FmYR
+ h9SFsVYAY2U/YUBOv1tptOAm5RQr8uMnGAqelp1CbAJrZi2AYuUWNjd/n4ERST5C4yVw5AsQ+6H
+ aYP0+13/AyJYEo0lJkLNVa4hkQ2xqOKD0svH+HFoZZvIqt62fAhtY1AIRdDvUa/Gzf0VHNpIqeq
+ wpuePx+j5UDXJmWIALbhoES5Ru+8lTc59gC6p1c1ShcPA==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -123,71 +126,121 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	MID_RHS_MATCH_FROM(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: D25AB70F0AA
+X-Rspamd-Queue-Id: F190D70F04B
 
-This should no longer be necessary, TTM doesn't lock the BO without a
-reference any more.
+Allow specifying a drm_exec object in TTMs operation context which is
+used to lock objects during eviction.
 
-Only compile tested!
+This allows to handle deadlocks much more gracefully and with that
+avoid returning -ENOMEM on heavily contended domains.
+
+v2: rebased on top of Thomas work
+v3: rebased again
+v4: rebased, fixed locks of already-reserved buffers being dropped
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
- drivers/gpu/drm/xe/xe_bo.c | 32 +++++---------------------------
- 1 file changed, 5 insertions(+), 27 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 30 ++++++++++++++++++++++--------
+ include/drm/ttm/ttm_bo.h          |  5 +++++
+ 2 files changed, 27 insertions(+), 8 deletions(-)
 
-diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-index 5843f850339c7..34eae56716076 100644
---- a/drivers/gpu/drm/xe/xe_bo.c
-+++ b/drivers/gpu/drm/xe/xe_bo.c
-@@ -1642,31 +1642,6 @@ static unsigned long xe_ttm_io_mem_pfn(struct ttm_buffer_object *ttm_bo,
+diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
+index a53b25e8c2967..96699532817c2 100644
+--- a/drivers/gpu/drm/ttm/ttm_bo_util.c
++++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
+@@ -38,6 +38,7 @@
+ #include <drm/ttm/ttm_tt.h>
  
- static void __xe_bo_vunmap(struct xe_bo *bo);
+ #include <drm/drm_cache.h>
++#include <drm/drm_exec.h>
  
--/*
-- * TODO: Move this function to TTM so we don't rely on how TTM does its
-- * locking, thereby abusing TTM internals.
-- */
--static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object *ttm_bo)
--{
--	struct xe_device *xe = ttm_to_xe_device(ttm_bo->bdev);
--	bool locked;
--
--	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
--
--	/*
--	 * We can typically only race with TTM trylocking under the
--	 * lru_lock, which will immediately be unlocked again since
--	 * the ttm_bo refcount is zero at this point. So trylocking *should*
--	 * always succeed here, as long as we hold the lru lock.
--	 */
--	spin_lock(&ttm_bo->bdev->lru_lock);
--	locked = dma_resv_trylock(&ttm_bo->base._resv);
--	spin_unlock(&ttm_bo->bdev->lru_lock);
--	xe_assert(xe, locked);
--
--	return locked;
--}
--
- static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
+ #include "ttm_bo_internal.h"
+ 
+@@ -837,6 +838,8 @@ static bool ttm_lru_walk_trylock(struct ttm_bo_lru_cursor *curs,
+ 	struct ttm_operation_ctx *ctx = curs->arg->ctx;
+ 
+ 	curs->needs_unlock = false;
++	if (ctx->exec)
++		return false;
+ 
+ 	if (dma_resv_trylock(bo->base.resv)) {
+ 		curs->needs_unlock = true;
+@@ -857,7 +860,9 @@ static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
+ 	struct ttm_lru_walk_arg *arg = curs->arg;
+ 	int ret;
+ 
+-	if (arg->ctx->interruptible)
++	if (arg->ctx->exec)
++		ret = drm_exec_lock_obj_report_dup(arg->ctx->exec, &bo->base);
++	else if (arg->ctx->interruptible)
+ 		ret = dma_resv_lock_interruptible(bo->base.resv, arg->ticket);
+ 	else
+ 		ret = dma_resv_lock(bo->base.resv, arg->ticket);
+@@ -871,7 +876,11 @@ static int ttm_lru_walk_ticketlock(struct ttm_bo_lru_cursor *curs,
+ 		 * trylocking for this walk.
+ 		 */
+ 		arg->ticket = NULL;
+-	} else if (ret == -EDEADLK) {
++
++	} else if (arg->ctx->exec && arg->ctx->allow_res_evict &&
++		   ret == -EALREADY) {
++		ret = 0;
++	} else if (!arg->ctx->exec && ret == -EDEADLK) {
+ 		/* Caller needs to exit the ww transaction. */
+ 		ret = -ENOSPC;
+ 	}
+@@ -937,12 +946,17 @@ static void ttm_bo_lru_cursor_cleanup_bo(struct ttm_bo_lru_cursor *curs)
  {
- 	struct dma_resv_iter cursor;
-@@ -1680,8 +1655,11 @@ static void xe_ttm_bo_release_notify(struct ttm_buffer_object *ttm_bo)
- 	bo = ttm_to_xe_bo(ttm_bo);
- 	xe_assert(xe_bo_device(bo), !(bo->created && kref_read(&ttm_bo->base.refcount)));
+ 	struct ttm_buffer_object *bo = curs->bo;
  
--	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
--		return;
-+	/*
-+	 * This should never fail since there are no other references to the BO
-+	 * any more.
+-	if (bo) {
+-		if (curs->needs_unlock)
++	if (!bo)
++		return;
++
++	if (curs->needs_unlock) {
++		if (curs->arg->ctx->exec)
++			drm_exec_unlock_obj(curs->arg->ctx->exec, &bo->base);
++		else
+ 			dma_resv_unlock(bo->base.resv);
+-		ttm_bo_put(bo);
+-		curs->bo = NULL;
+ 	}
++	ttm_bo_put(bo);
++	curs->bo = NULL;
+ }
+ 
+ /**
+@@ -1016,8 +1030,8 @@ __ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
+ 		if (ttm_lru_walk_trylock(curs, bo)) {
+ 			bo_locked = true;
+ 
+-		} else if (!arg->ticket || arg->ctx->no_wait_gpu ||
+-			   arg->trylock_only) {
++		} else if ((!arg->ticket || arg->ctx->no_wait_gpu ||
++			    arg->trylock_only) && !arg->ctx->exec) {
+ 			spin_unlock(lru_lock);
+ 			ttm_bo_put(bo);
+ 			spin_lock(lru_lock);
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index a4060e44d23d0..156444b5e85d8 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -187,6 +187,11 @@ struct ttm_operation_ctx {
+ 	 * @bytes_moved: Statistics on how many bytes have been moved.
+ 	 */
+ 	uint64_t bytes_moved;
++	/**
++	 * @exec: optional drm_exec object to use for locking BOs and
++	 * tracking which are locked.
 +	 */
-+	WARN_ON(!dma_resv_trylock(ttm_bo->base.resv));
++	struct drm_exec *exec;
+ };
  
- 	/*
- 	 * Scrub the preempt fences if any. The unbind fence is already
+ /**
 
 -- 
 2.55.0
