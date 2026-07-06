@@ -2,50 +2,49 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id P4w1FY+AS2oCSgEAu9opvQ
+	id CqTMK42AS2oASgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:47 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:45 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id EFF7370F077
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5B6B970F06D
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:45 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=g2qFX0Bb;
+	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b="eUJyg/Kh";
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 4AAA010E88D;
-	Mon,  6 Jul 2026 10:16:45 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id D052710E884;
+	Mon,  6 Jul 2026 10:16:41 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtpout8.mo534.mail-out.ovh.net
- (smtpout8.mo534.mail-out.ovh.net [54.36.140.179])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6A8ED10E88B
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:42 +0000 (UTC)
-Received: from director4.derp.mail-out.ovh.net
- (director4.derp.mail-out.ovh.net [79.137.60.37])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SL0cLtz6JQw;
- Mon,  6 Jul 2026 10:08:50 +0000 (UTC)
-Received: from director4.derp.mail-out.ovh.net
- (director4.derp.mail-out.ovh.net. [127.0.0.1])
- by director4.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:49 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.188.244])
- by director4.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0SK6gg8z1xpM; Mon,  6 Jul 2026 10:08:49 +0000 (UTC)
+Received: from 8.mo533.mail-out.ovh.net (8.mo533.mail-out.ovh.net
+ [54.36.140.183])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 89A3210E878
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:40 +0000 (UTC)
+Received: from director5.derp.mail-out.ovh.net
+ (director5.derp.mail-out.ovh.net [57.128.106.70])
+ by mo533.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SN34SFz64D7;
+ Mon,  6 Jul 2026 10:08:52 +0000 (UTC)
+Received: from director5.derp.mail-out.ovh.net
+ (director5.derp.mail-out.ovh.net. [127.0.0.1])
+ by director5.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:52 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.113.205])
+ by director5.derp.mail-out.ovh.net (Postfix) with ESMTPS id
+ 4gv0SM6Kn7z7tDb; Mon,  6 Jul 2026 10:08:51 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id D6BB88E1900; 
- Mon,  6 Jul 2026 10:08:47 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id C3DC88E18F1; 
+ Mon,  6 Jul 2026 10:08:49 +0000 (UTC)
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Date: Mon, 06 Jul 2026 12:07:47 +0200
-Subject: [PATCH v2 05/10] drm/ttm: switch to
- ttm_bo_lru_for_each_reserved_guarded for swapout
+Date: Mon, 06 Jul 2026 12:07:48 +0200
+Subject: [PATCH v2 06/10] drm/ttm: move zombie handling into ttm_bo_evict
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260706-ttm_2_drm_exec-v2-5-4bf6bfc0d320@pixelcluster.dev>
+Message-Id: <20260706-ttm_2_drm_exec-v2-6-4bf6bfc0d320@pixelcluster.dev>
 References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -64,18 +63,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9129077919805890876
+x-ovh-tracer-id: 9129922348778611004
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTGrlNJ8ShesFc0BsmoWFi51A7F15j2IaCkSK7BVZBg/BM8MBdGhyqLZmkbZMHw/TdptOPm8sgahQti1Nc9RjBh0KMZiGtpja+p6qhts3jrWUso58aRKRrx2DXtHoeXDd8faKpktnEASA9l57md6lmCqaecpmqLv9KOaMd5Cxk2fFcLRCf7Y1jiwLpKZwWHOg5MLCHSu/c85HhHBD+9tK6DpmR22NTjUbN0dGZJB9cmuuQPGLboQ0v7ZPGbXkip9C+NIKd694im0qBCyEcUf/DwxdiDWy9o5iBQA1zQlg0Y75Jpr3La1ocQctyDO3tKJ1UAaq83N/bdymi3oIi31d22Yh6zN0szX2fjCorgmlUwVsjE42R4cTUcyqWz8MJeNfTNeP58CJHiBRHfaOjZHzza+XgPWTFpoIfg39AhpFofapCMjO7Ye8tJfkRcDZwKWHSZc3S4MvZTGAWdHg0lHSkQGvwVvhKn4W9HZH5r47r2MwndWzZPkDQNff/femBsHqANAlYoPK31aHYUR7TGaR5mpDIFitIRzL4jD39nXjOaEIIrSfuIPhhnyDASz5xnxL4YR3aqQtkjp50TS0CduEin0X3zqcP3/gH9LpY70gs6RDaQxwEGlT6DffCe+DpM7fanv05/Q08DKKvxNKcQEIfnBFMr26Jpm5IvsA5zPes/H5Q
-DKIM-Signature: a=rsa-sha256; bh=pL2GIfs9pCSQWKYD/oWsFK8PH5Ljesh1GOwIouQX/U8=; 
+X-VR-SPAMCAUSE: dmFkZTF2rMupFDtSz5VGJXaGrwYUaRUbsc9Nn7nc8ghpwc35VyZFauYARogcas+VOSD8wf0IhZl41F2o83TSTJEqn1M70AEfTiU3uOfrR34AN46Y0JjeW4xo6cV+rH2TUD4SE1NDtof+377HjW5jUw1vYYddQq9f46CIv1pXDMg+OvLcv0mAeBq8idZd3/oeDOqFYW+mp/D/hf65ucF8pcrq4BoeAZT2yueghykMKcN1pOaBvVNRQXaTXALuE+8w2Owws5LoK70lx9jAX+i5vFCotZFddZWqe5L2MI0ywEcZRGnxLB/PRWCfMsAV61ff3CxEAEQBj4aCGHb8mrffVRaINrHzSOGJlXIUmJVwzUoH3BiotNBdeFHV2G71DUEencJEovZdqlMYUuhIAKjA+DfgjS3epEpEQNrzwPCKX2QgC5ldjdmvqjhO6m/WaW7AUu/ZUELhH43surbBI3DIUpdGLhRX8JNLcXwghofbs+01qhIeZxb1zkmYRQBbWo2Y8ozysScI3nlhIZDDntC275P1NiineIUI2cuFBMTmng7YcvOds0YdN9LWNMpWToi3AmaiWuIpn2hvQ6l7CMyrbKhV1zhntLZPe8aW3YFAGk3mXEHHaKn2q35sh1wDwOoxfvgLRxWhNns49UdPIv7G3QOsm+QGLosyNGvX9QaQMuvduSQGLQ
+DKIM-Signature: a=rsa-sha256; bh=e8QHyuDL2skEkQjNtYLhoBSaqvz+SM6k98JVY9giwR0=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332530; v=1;
- b=g2qFX0Bb0GEdNQAwaBtdy+IvZftPdYvnKZW6Sjv1c6W2jfP5cVO0sbPkGkDwBMIw9wwlgQiP
- SDbMVtBb1l1dGwl5RJRyZpsbaB9PVt8p1hi7Agsn+s/nNT5fn2zG5RXZchu956j9fWjzvAsVFw8
- vLFOe3n1nzzDPqouUk+Eqjs0u5N9nFa9efKPwBrJXuNiste1osfgtOwhYvvCFHPiOhkIEyACkXu
- zEdLxvpnhG6wr3P7xeQ9ZPveToyVKkLOpz2v3hemmtq86dm87aGNjAZAmHvgr7FJoIY5sqd8r7W
- tgbuFcD/H4Y9zDvSyWeZKOk+20jJBa/k2ZCBKBYQTT4tw==
+ s=ovhmo-selector-1; t=1783332532; v=1;
+ b=eUJyg/KhLJxqzbeR8X8fv308CF/T3a0hdfG/bBr+nFr+3YsuvxnMub7QzWMolJwsdEYmMj6n
+ 327Wv7hJcXwAMJdmbIRQTFF2jj/PcMin2O8QErzsN39K/kg/rfpoTsykFg7T8sIovxbHEIJjV0n
+ T+OrsnDJiOruY/AxvbhYplnG4EmY7ZcLgxfLJ1gWDytfi/qsJGqzf82QmxOUEr3hRU8vWvQqliR
+ 0xGisukUHwaIpYRgZhNMTlJqLQn+VSiA2glo7arWxyl/GSLCu2Rol/Kb7JX1B5ogMLTvwg6BKhP
+ 7iHCL8Od0xVKOb+1OS7Guc6CG/VjTtuYMCowegzj6+eQA==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -126,157 +125,65 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: EFF7370F077
+X-Rspamd-Queue-Id: 5B6B970F06D
 
-Instead of the walker wrapper use the underlying foreach. Saves us quite
-a bunch of complexity and loc.
+Both callers do the same thing, so we can trivially unify that.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c     | 58 +++++++---------------------------------
- drivers/gpu/drm/ttm/ttm_device.c | 18 ++++++++++---
- include/drm/ttm/ttm_bo.h         |  5 ++--
- 3 files changed, 26 insertions(+), 55 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++---------------
+ 1 file changed, 9 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 1fb8c53da0362..24c52df169ac8 100644
+index 24c52df169ac8..54f01611ec823 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -1080,25 +1080,18 @@ int ttm_bo_wait_ctx(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
- EXPORT_SYMBOL(ttm_bo_wait_ctx);
+@@ -359,6 +359,13 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
+ 	struct ttm_place hop;
+ 	int ret = 0;
  
- /**
-- * struct ttm_bo_swapout_walk - Parameters for the swapout walk
-+ * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-+ * @bo: The buffer to swap out.
-+ * @ctx: The ttm_operation_ctx governing the swapout operation.
-+ * @gfp_flags: The gfp flags used for shmem page allocations.
-+ *
-+ * Return: The number of bytes actually swapped out, or negative error code
-+ * on error.
-  */
--struct ttm_bo_swapout_walk {
--	/** @walk: The walk base parameters. */
--	struct ttm_lru_walk walk;
--	/** @gfp_flags: The gfp flags to use for ttm_tt_swapout() */
--	gfp_t gfp_flags;
--	/** @hit_low: Whether we should attempt to swap BO's with low watermark threshold */
--	/** @evict_low: If we cannot swap a bo when @try_low is false (first pass) */
--	bool hit_low, evict_low;
--};
++	if (ttm_bo_is_zombie(bo)) {
++		ret = ttm_bo_wait_ctx(bo, ctx);
++		if (!ret)
++			ttm_bo_cleanup_memtype_use(bo);
++		return ret;
++	}
++
+ 	memset(&hop, 0, sizeof(hop));
+ 
+ 	dma_resv_assert_held(bo->base.resv);
+@@ -466,13 +473,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man
+ 	if (!bo->resource || bo->resource->mem_type != mem_type)
+ 		goto out_bo_moved;
+ 
+-	if (ttm_bo_is_zombie(bo)) {
+-		ret = ttm_bo_wait_ctx(bo, ctx);
+-		if (!ret)
+-			ttm_bo_cleanup_memtype_use(bo);
+-	} else {
+-		ret = ttm_bo_evict(bo, ctx);
+-	}
++	ret = ttm_bo_evict(bo, ctx);
+ out_bo_moved:
+ 	dma_resv_unlock(bo->base.resv);
+ out_no_lock:
+@@ -520,14 +521,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
+ 	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
+ 		return 0;
+ 
+-	if (ttm_bo_is_zombie(bo)) {
+-		lret = ttm_bo_wait_ctx(bo, walk->arg.ctx);
+-		if (!lret)
+-			ttm_bo_cleanup_memtype_use(bo);
+-	} else {
+-		lret = ttm_bo_evict(bo, walk->arg.ctx);
+-	}
 -
--static s64
--ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
-+s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
-+		   gfp_t gfp_flags)
- {
- 	struct ttm_place place = { .mem_type = bo->resource->mem_type };
--	struct ttm_bo_swapout_walk *swapout_walk =
--		container_of(walk, typeof(*swapout_walk), walk);
--	struct ttm_operation_ctx *ctx = walk->arg.ctx;
- 	struct ttm_device *bdev = bo->bdev;
- 	struct ttm_tt *tt = bo->ttm;
- 	s64 ret;
-@@ -1166,7 +1159,7 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- 		bdev->funcs->swap_notify(bo);
++	lret = ttm_bo_evict(bo, walk->arg.ctx);
+ 	if (lret)
+ 		goto out;
  
- 	if (ttm_tt_is_populated(tt)) {
--		ret = ttm_tt_swapout(bdev, tt, swapout_walk->gfp_flags);
-+		ret = ttm_tt_swapout(bdev, tt, gfp_flags);
- 		if (!ret) {
- 			spin_lock(&bdev->lru_lock);
- 			ttm_resource_del_bulk_move_unevictable(bo->resource, bo);
-@@ -1183,37 +1176,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- 	return ret;
- }
- 
--/**
-- * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-- * @bdev: The ttm device.
-- * @ctx: The ttm_operation_ctx governing the swapout operation.
-- * @man: The resource manager whose resources / buffer objects are
-- * goint to be swapped out.
-- * @gfp_flags: The gfp flags used for shmem page allocations.
-- * @target: The desired number of pages to swap out.
-- *
-- * Return: The number of pages actually swapped out, or negative error code
-- * on error.
-- */
--s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
--		   struct ttm_resource_manager *man, gfp_t gfp_flags,
--		   s64 target)
--{
--	struct ttm_bo_swapout_walk swapout_walk = {
--		.walk = {
--			.process_bo = ttm_bo_swapout_cb,
--			.arg = {
--				.ctx = ctx,
--				.trylock_only = true,
--			},
--		},
--		.gfp_flags = gfp_flags,
--	};
--
--	return ttm_lru_walk_for_evict(&swapout_walk.walk, bdev, man, target);
--}
--EXPORT_SYMBOL_FOR_TESTS_ONLY(ttm_bo_swapout);
--
- void ttm_bo_tt_destroy(struct ttm_buffer_object *bo)
- {
- 	if (bo->ttm == NULL)
-diff --git a/drivers/gpu/drm/ttm/ttm_device.c b/drivers/gpu/drm/ttm/ttm_device.c
-index d3bfb9a696a74..06fc5255d4091 100644
---- a/drivers/gpu/drm/ttm/ttm_device.c
-+++ b/drivers/gpu/drm/ttm/ttm_device.c
-@@ -171,6 +171,12 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 		       gfp_t gfp_flags)
- {
- 	struct ttm_resource_manager *man;
-+	struct ttm_bo_lru_cursor cursor;
-+	struct ttm_buffer_object *bo;
-+	struct ttm_lru_walk_arg arg = {
-+		.ctx = ctx,
-+		.trylock_only = true
-+	};
- 	unsigned i;
- 	s64 lret;
- 
-@@ -179,10 +185,14 @@ int ttm_device_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- 		if (!man || !man->use_tt)
- 			continue;
- 
--		lret = ttm_bo_swapout(bdev, ctx, man, gfp_flags, 1);
--		/* Can be both positive (num_pages) and negative (error) */
--		if (lret)
--			return lret;
-+		ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &arg, bo) {
-+			lret = ttm_bo_swapout(bo, ctx, gfp_flags);
-+			/* Can be both positive (num_pages) and negative (error) */
-+			if (lret && lret != -EBUSY && lret != -EALREADY)
-+				return lret;
-+		}
-+		if (IS_ERR(bo))
-+			return PTR_ERR(bo);
- 	}
- 	return 0;
- }
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 0fcd5082a7080..bbed63064c9a9 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -408,9 +408,8 @@ void *ttm_bo_kmap_try_from_panic(struct ttm_buffer_object *bo, unsigned long pag
- int ttm_bo_vmap(struct ttm_buffer_object *bo, struct iosys_map *map);
- void ttm_bo_vunmap(struct ttm_buffer_object *bo, struct iosys_map *map);
- int ttm_bo_mmap_obj(struct vm_area_struct *vma, struct ttm_buffer_object *bo);
--s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
--		   struct ttm_resource_manager *man, gfp_t gfp_flags,
--		   s64 target);
-+s64 ttm_bo_swapout(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx,
-+		   gfp_t gfp_flags);
- void ttm_bo_pin(struct ttm_buffer_object *bo);
- void ttm_bo_unpin(struct ttm_buffer_object *bo);
- int ttm_bo_evict_first(struct ttm_device *bdev,
 
 -- 
 2.55.0
