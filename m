@@ -2,49 +2,50 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id CqTMK42AS2oASgEAu9opvQ
+	id VtHAB5GAS2oESgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:49 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5B6B970F06D
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BB01770F07E
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b="eUJyg/Kh";
+	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=AksVNzKt;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D052710E884;
-	Mon,  6 Jul 2026 10:16:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 237A010E890;
+	Mon,  6 Jul 2026 10:16:47 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 8.mo533.mail-out.ovh.net (8.mo533.mail-out.ovh.net
- [54.36.140.183])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 89A3210E878
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:40 +0000 (UTC)
-Received: from director5.derp.mail-out.ovh.net
- (director5.derp.mail-out.ovh.net [57.128.106.70])
- by mo533.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SN34SFz64D7;
- Mon,  6 Jul 2026 10:08:52 +0000 (UTC)
-Received: from director5.derp.mail-out.ovh.net
- (director5.derp.mail-out.ovh.net. [127.0.0.1])
- by director5.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:52 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.113.205])
- by director5.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0SM6Kn7z7tDb; Mon,  6 Jul 2026 10:08:51 +0000 (UTC)
+Received: from 5.mo534.mail-out.ovh.net (5.mo534.mail-out.ovh.net
+ [54.36.140.176])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 1D1C010E892
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:46 +0000 (UTC)
+Received: from director3.derp.mail-out.ovh.net
+ (director3.derp.mail-out.ovh.net [152.228.215.222])
+ by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SP5p9qz6JMk;
+ Mon,  6 Jul 2026 10:08:53 +0000 (UTC)
+Received: from director3.derp.mail-out.ovh.net
+ (director3.derp.mail-out.ovh.net. [127.0.0.1])
+ by director3.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:53 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.101.100])
+ by director3.derp.mail-out.ovh.net (Postfix) with ESMTPS id
+ 4gv0SP4j4Hz5vW1; Mon,  6 Jul 2026 10:08:53 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id C3DC88E18F1; 
- Mon,  6 Jul 2026 10:08:49 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 720FA8E1900; 
+ Mon,  6 Jul 2026 10:08:51 +0000 (UTC)
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Date: Mon, 06 Jul 2026 12:07:48 +0200
-Subject: [PATCH v2 06/10] drm/ttm: move zombie handling into ttm_bo_evict
+Date: Mon, 06 Jul 2026 12:07:49 +0200
+Subject: [PATCH v2 07/10] drm/ttm: use ttm_bo_lru_for_each_reserved_guarded
+ in evict_all
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260706-ttm_2_drm_exec-v2-6-4bf6bfc0d320@pixelcluster.dev>
+Message-Id: <20260706-ttm_2_drm_exec-v2-7-4bf6bfc0d320@pixelcluster.dev>
 References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -63,18 +64,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9129922348778611004
+x-ovh-tracer-id: 9130203821519757628
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTF2rMupFDtSz5VGJXaGrwYUaRUbsc9Nn7nc8ghpwc35VyZFauYARogcas+VOSD8wf0IhZl41F2o83TSTJEqn1M70AEfTiU3uOfrR34AN46Y0JjeW4xo6cV+rH2TUD4SE1NDtof+377HjW5jUw1vYYddQq9f46CIv1pXDMg+OvLcv0mAeBq8idZd3/oeDOqFYW+mp/D/hf65ucF8pcrq4BoeAZT2yueghykMKcN1pOaBvVNRQXaTXALuE+8w2Owws5LoK70lx9jAX+i5vFCotZFddZWqe5L2MI0ywEcZRGnxLB/PRWCfMsAV61ff3CxEAEQBj4aCGHb8mrffVRaINrHzSOGJlXIUmJVwzUoH3BiotNBdeFHV2G71DUEencJEovZdqlMYUuhIAKjA+DfgjS3epEpEQNrzwPCKX2QgC5ldjdmvqjhO6m/WaW7AUu/ZUELhH43surbBI3DIUpdGLhRX8JNLcXwghofbs+01qhIeZxb1zkmYRQBbWo2Y8ozysScI3nlhIZDDntC275P1NiineIUI2cuFBMTmng7YcvOds0YdN9LWNMpWToi3AmaiWuIpn2hvQ6l7CMyrbKhV1zhntLZPe8aW3YFAGk3mXEHHaKn2q35sh1wDwOoxfvgLRxWhNns49UdPIv7G3QOsm+QGLosyNGvX9QaQMuvduSQGLQ
-DKIM-Signature: a=rsa-sha256; bh=e8QHyuDL2skEkQjNtYLhoBSaqvz+SM6k98JVY9giwR0=; 
+X-VR-SPAMCAUSE: dmFkZTGrlNJ8ShesFc0BsmoWFi51A7F15j2IaCkSK7BVZBg/BM8MBdGhyqLZmkbZMHw/TdptOPm8sgahQti1Nc9RjBh0KMZiGtpja+p6qhts3jrWUso58aRKRrx2DXtHoeXDd8faKpktnEASA9l57md6lmCqaecpmqLv9KOaMd5Cxk2fFcLRCf7Y1jiwLpKZwWHOg5MLCHSu/c85HhHBD+9tK6DpmR22NTjUbN0dGZJB9cmuuQPGLboQ0v7ZPGbXkip9C+NIKd694im0qBCyEcUf/DwxdiDWy9o5iBQA1zQlg0Y75Jpr3La1ocQctyDO3tKJ1UAaq83N/bdymi3oIi31d22YfaQgISu8BkudkNFC83ngbYpyoXPrY/Vwp3yCL3PnclINqLD/Ub8JUuqwXOSMSABA03aSlmg66ZBy3Sw1AoZl0cbfxYbFgUrMuQ5w9Ie0kBtOepm9bcjMO5dT06DpOSISzEpb4nHUuZOLn58uU+JtJOgrdDnVoqmPC6PdSj55Vk5SYTs8UwgcSaeHr2CSZthjfr4yBQsL/aKXtt9PCLOnzDLnHJouvw8rHck6T6joSvckKUrkz851r+Ia8Q98SfNgLAMCT2D2Vxn3QZ9J2q0jYXaK1IJQ4/ztKOdgIcgdG5mbXApb4OdxAOKERgJpRRf7CU3QAmzr3U1TWnX3Rb40/w
+DKIM-Signature: a=rsa-sha256; bh=2VTWirLQQEh5gYLd+gBFz1PjIG9wAxQUW7SNqFxNanM=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332532; v=1;
- b=eUJyg/KhLJxqzbeR8X8fv308CF/T3a0hdfG/bBr+nFr+3YsuvxnMub7QzWMolJwsdEYmMj6n
- 327Wv7hJcXwAMJdmbIRQTFF2jj/PcMin2O8QErzsN39K/kg/rfpoTsykFg7T8sIovxbHEIJjV0n
- T+OrsnDJiOruY/AxvbhYplnG4EmY7ZcLgxfLJ1gWDytfi/qsJGqzf82QmxOUEr3hRU8vWvQqliR
- 0xGisukUHwaIpYRgZhNMTlJqLQn+VSiA2glo7arWxyl/GSLCu2Rol/Kb7JX1B5ogMLTvwg6BKhP
- 7iHCL8Od0xVKOb+1OS7Guc6CG/VjTtuYMCowegzj6+eQA==
+ s=ovhmo-selector-1; t=1783332534; v=1;
+ b=AksVNzKt7iqsApTx11UxQ1+wT2z9FohXf8jrJQw0k2uOiEDHHLxh/SYaym1jaIUK7PK4e59t
+ a0KslZGMqPN2PJCdVBnd5TwHu1odPKbx1CRo18we1QhBomAM3qQbtmsxPz6HZ5FRUayoYZC3sbJ
+ Ycu8qzijfffAF1VHbqkjq/5b1uJwZvEqn/0vEPtFRomAKwAHNy0ONTOIumLSzL/cs0+TgX84oRk
+ knFwazIXf5BjQlJbhM8iSz1giDd4Y747SNVXI5RV37fYNDAQb7j3iSPP3Dk/7vvH8fsivgy8xuF
+ hweEuTeTS9oTt4C/zF+KRkkGBXzcxzK9DafXowBEWxjLA==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,65 +126,138 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5B6B970F06D
+X-Rspamd-Queue-Id: BB01770F07E
 
-Both callers do the same thing, so we can trivially unify that.
+Use the for_each loop to evict all BOs of an resource manager as well.
+
+Greately simplifying the handling and finally allows us to
+remove ttm_bo_evict_first().
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c | 24 +++++++++---------------
- 1 file changed, 9 insertions(+), 15 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo.c       | 51 +-------------------------------------
+ drivers/gpu/drm/ttm/ttm_resource.c | 21 ++++++++++------
+ include/drm/ttm/ttm_bo.h           |  1 +
+ 3 files changed, 16 insertions(+), 57 deletions(-)
 
 diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 24c52df169ac8..54f01611ec823 100644
+index 54f01611ec823..80933ba6aada9 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -359,6 +359,13 @@ static int ttm_bo_evict(struct ttm_buffer_object *bo,
- 	struct ttm_place hop;
- 	int ret = 0;
+@@ -351,8 +351,7 @@ static int ttm_bo_bounce_temp_buffer(struct ttm_buffer_object *bo,
+ 	return 0;
+ }
  
-+	if (ttm_bo_is_zombie(bo)) {
-+		ret = ttm_bo_wait_ctx(bo, ctx);
-+		if (!ret)
-+			ttm_bo_cleanup_memtype_use(bo);
-+		return ret;
-+	}
-+
- 	memset(&hop, 0, sizeof(hop));
+-static int ttm_bo_evict(struct ttm_buffer_object *bo,
+-			struct ttm_operation_ctx *ctx)
++int ttm_bo_evict(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx)
+ {
+ 	struct ttm_resource *evict_mem;
+ 	struct ttm_placement placement;
+@@ -437,54 +436,6 @@ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+ }
+ EXPORT_SYMBOL(ttm_bo_eviction_valuable);
  
- 	dma_resv_assert_held(bo->base.resv);
-@@ -466,13 +473,7 @@ int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man
- 	if (!bo->resource || bo->resource->mem_type != mem_type)
- 		goto out_bo_moved;
- 
--	if (ttm_bo_is_zombie(bo)) {
--		ret = ttm_bo_wait_ctx(bo, ctx);
--		if (!ret)
--			ttm_bo_cleanup_memtype_use(bo);
--	} else {
--		ret = ttm_bo_evict(bo, ctx);
--	}
-+	ret = ttm_bo_evict(bo, ctx);
- out_bo_moved:
- 	dma_resv_unlock(bo->base.resv);
- out_no_lock:
-@@ -520,14 +521,7 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
- 	if (bo->pin_count || !bo->bdev->funcs->eviction_valuable(bo, evict_walk->place))
- 		return 0;
- 
--	if (ttm_bo_is_zombie(bo)) {
--		lret = ttm_bo_wait_ctx(bo, walk->arg.ctx);
--		if (!lret)
--			ttm_bo_cleanup_memtype_use(bo);
--	} else {
--		lret = ttm_bo_evict(bo, walk->arg.ctx);
--	}
+-/**
+- * ttm_bo_evict_first() - Evict the first bo on the manager's LRU list.
+- * @bdev: The ttm device.
+- * @man: The manager whose bo to evict.
+- * @ctx: The TTM operation ctx governing the eviction.
+- *
+- * Return: 0 if successful or the resource disappeared. Negative error code on error.
+- */
+-int ttm_bo_evict_first(struct ttm_device *bdev, struct ttm_resource_manager *man,
+-		       struct ttm_operation_ctx *ctx)
+-{
+-	struct ttm_resource_cursor cursor;
+-	struct ttm_buffer_object *bo;
+-	struct ttm_resource *res;
+-	unsigned int mem_type;
+-	int ret = 0;
 -
-+	lret = ttm_bo_evict(bo, walk->arg.ctx);
- 	if (lret)
- 		goto out;
+-	spin_lock(&bdev->lru_lock);
+-	ttm_resource_cursor_init(&cursor, man);
+-	res = ttm_resource_manager_first(&cursor);
+-	ttm_resource_cursor_fini(&cursor);
+-	if (!res) {
+-		ret = -ENOENT;
+-		goto out_no_ref;
+-	}
+-	bo = res->bo;
+-	if (!ttm_bo_get_unless_zero(bo))
+-		goto out_no_ref;
+-	mem_type = res->mem_type;
+-	spin_unlock(&bdev->lru_lock);
+-	ret = ttm_bo_reserve(bo, ctx->interruptible, ctx->no_wait_gpu, NULL);
+-	if (ret)
+-		goto out_no_lock;
+-	if (!bo->resource || bo->resource->mem_type != mem_type)
+-		goto out_bo_moved;
+-
+-	ret = ttm_bo_evict(bo, ctx);
+-out_bo_moved:
+-	dma_resv_unlock(bo->base.resv);
+-out_no_lock:
+-	ttm_bo_put(bo);
+-	return ret;
+-
+-out_no_ref:
+-	spin_unlock(&bdev->lru_lock);
+-	return ret;
+-}
+-
+ /**
+  * struct ttm_bo_evict_walk - Parameters for the evict walk.
+  */
+diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
+index 154d6739256f8..107b6cfea66b3 100644
+--- a/drivers/gpu/drm/ttm/ttm_resource.c
++++ b/drivers/gpu/drm/ttm/ttm_resource.c
+@@ -561,17 +561,24 @@ EXPORT_SYMBOL(ttm_resource_manager_init);
+ int ttm_resource_manager_evict_all(struct ttm_device *bdev,
+ 				   struct ttm_resource_manager *man)
+ {
+-	struct ttm_operation_ctx ctx = { };
++	struct ttm_bo_lru_cursor cursor;
++	struct ttm_buffer_object *bo;
++	struct ttm_operation_ctx ctx = {
++		.interruptible = false,
++		.no_wait_gpu = false,
++	};
++	struct ttm_lru_walk_arg arg = {
++		.ctx = &ctx,
++	};
+ 	struct dma_fence *fence;
+ 	int ret, i;
  
+-	do {
+-		ret = ttm_bo_evict_first(bdev, man, &ctx);
++	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &arg, bo) {
++		ret = ttm_bo_evict(bo, &ctx);
++		if (ret)
++			return ret;
+ 		cond_resched();
+-	} while (!ret);
+-
+-	if (ret && ret != -ENOENT)
+-		return ret;
++	}
+ 
+ 	ret = 0;
+ 
+diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
+index bbed63064c9a9..a4060e44d23d0 100644
+--- a/include/drm/ttm/ttm_bo.h
++++ b/include/drm/ttm/ttm_bo.h
+@@ -389,6 +389,7 @@ int ttm_bo_validate(struct ttm_buffer_object *bo,
+ void ttm_bo_fini(struct ttm_buffer_object *bo);
+ void ttm_bo_set_bulk_move(struct ttm_buffer_object *bo,
+ 			  struct ttm_lru_bulk_move *bulk);
++int ttm_bo_evict(struct ttm_buffer_object *bo, struct ttm_operation_ctx *ctx);
+ bool ttm_bo_eviction_valuable(struct ttm_buffer_object *bo,
+ 			      const struct ttm_place *place);
+ int ttm_bo_init_reserved(struct ttm_device *bdev, struct ttm_buffer_object *bo,
 
 -- 
 2.55.0
