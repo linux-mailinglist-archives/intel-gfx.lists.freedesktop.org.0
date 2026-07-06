@@ -2,49 +2,51 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id zAhQMJSAS2oMSgEAu9opvQ
+	id wwfhLYmAS2r7SQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:52 +0200
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 6CC3A70F09D
-	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 44BA670F057
+	for <lists+intel-gfx@lfdr.de>; Mon, 06 Jul 2026 12:16:41 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=cHeSgi80;
+	dkim=pass header.d=pixelcluster.dev header.s=ovhmo-selector-1 header.b=un6e2Xv4;
 	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 9B01910E33F;
-	Mon,  6 Jul 2026 10:16:49 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 8344910E87C;
+	Mon,  6 Jul 2026 10:16:39 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 5.mo534.mail-out.ovh.net (5.mo534.mail-out.ovh.net
- [54.36.140.176])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 57F3E10E892
- for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:47 +0000 (UTC)
-Received: from director6.derp.mail-out.ovh.net
- (director6.derp.mail-out.ovh.net [51.255.22.22])
- by mo534.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SG4RP3z6JNt;
- Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
-Received: from director6.derp.mail-out.ovh.net
- (director6.derp.mail-out.ovh.net. [127.0.0.1])
- by director6.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
- for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
-Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.188.61])
- by director6.derp.mail-out.ovh.net (Postfix) with ESMTPS id
- 4gv0SG3D58z7tKd; Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
+X-Greylist: delayed 470 seconds by postgrey-1.36 at gabe;
+ Mon, 06 Jul 2026 10:16:38 UTC
+Received: from smtpout2.mo533.mail-out.ovh.net
+ (smtpout2.mo533.mail-out.ovh.net [51.210.94.139])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8804910E33F
+ for <intel-gfx@lists.freedesktop.org>; Mon,  6 Jul 2026 10:16:38 +0000 (UTC)
+Received: from director5.derp.mail-out.ovh.net
+ (director5.derp.mail-out.ovh.net [57.128.106.70])
+ by mo533.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SJ5Ky8z64KM;
+ Mon,  6 Jul 2026 10:08:48 +0000 (UTC)
+Received: from director5.derp.mail-out.ovh.net
+ (director5.derp.mail-out.ovh.net. [127.0.0.1])
+ by director5.derp.mail-out.ovh.net (inspect_sender_mail_agent) with SMTP
+ for <alexander.deucher@amd.com>; Mon,  6 Jul 2026 10:08:48 +0000 (UTC)
+Received: from mta6.priv.ovhmail-u1.ea.mail.ovh.net (unknown [10.110.96.8])
+ by director5.derp.mail-out.ovh.net (Postfix) with ESMTPS id 4gv0SJ1x31z7tDj;
+ Mon,  6 Jul 2026 10:08:48 +0000 (UTC)
 Received: from pixelcluster.dev (unknown [10.1.6.11])
  (Authenticated sender: nat@pixelcluster.dev)
- by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 658228E1900; 
- Mon,  6 Jul 2026 10:08:44 +0000 (UTC)
+ by mta6.priv.ovhmail-u1.ea.mail.ovh.net (Postfix) with ESMTPSA id 280418E1903; 
+ Mon,  6 Jul 2026 10:08:46 +0000 (UTC)
 X-OVh-ClientIp: 88.133.252.134
 From: Natalie Vock <nat@pixelcluster.dev>
-Date: Mon, 06 Jul 2026 12:07:45 +0200
-Subject: [PATCH v2 03/10] drm/ttm: remove ttm_lru_walk_ops
+Date: Mon, 06 Jul 2026 12:07:46 +0200
+Subject: [PATCH v2 04/10] drm/ttm: grab BO reference before locking it
 MIME-Version: 1.0
 Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 8bit
-Message-Id: <20260706-ttm_2_drm_exec-v2-3-4bf6bfc0d320@pixelcluster.dev>
+Message-Id: <20260706-ttm_2_drm_exec-v2-4-4bf6bfc0d320@pixelcluster.dev>
 References: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 In-Reply-To: <20260706-ttm_2_drm_exec-v2-0-4bf6bfc0d320@pixelcluster.dev>
 To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
@@ -63,18 +65,18 @@ Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
  intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
  amd-gfx@lists.freedesktop.org
 X-Mailer: b4 0.15.2
-x-ovh-tracer-id: 9128233496850358588
+x-ovh-tracer-id: 9128796448561848636
 X-VR-SPAMSTATE: OK
 X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: dmFkZTF2rMupFDtSz5VGJXaGrwYUaRUbsc9Nn7nc8ghpwc35VyZFauYARogcas+VOSD8wf0IhZl41F2o83TSTJEqn1M70AEfTiU3uOfrR34AN46Y0JjeW4xo6cV+rH2TUD4SE1NDtof+377HjW5jUw1vYYddQq9f46CIv1pXDMg+OvLcv0mAeBq8idZd3/oeDOqFYW+mp/D/hf65ucF8pcrq4BoeAZT2yueghykMKcN1pOaBvVNRQXaTXALuE+8w2Owws5LoK70lx9jAX+i5vFCotZFddZWqe5L2MI0ywEcZRGnxLB/PRWCfMsAV61ff3CxEAEQBj4aCGHb8mrffVRaINrHzcRpKKoY7Gtf57EkJJ2EJ2On7AWz6HYmAqPwk0Ji9fkrtOutngurpFhVNgszUI/SLQtmkCdJMToQTjJW5Ju5ErW7FkPFXHDtcgHcOovBmnVMxv3QguXn8YjMgyBCx6jN7Uf65EiTwYZ/JUpTeM2g8Dj6r2JbJfEJPaFvQp3UUycCxIUVfE3LH2+kCvad2ao+ij+NXwb0S/jJpSM/dx5cmpikbkRhPGhAWiFROqgNsfB54ibFc9TJUCKzU3SMekKBxBCfKGwHO51GcwMCxNxIB8LimCZu4eqjnIA+CksDmmcor4vKUYJ7jvwMPGAZKJm6SfWexZqjVtmT6bLrBitMnLw
-DKIM-Signature: a=rsa-sha256; bh=jmgO1VqoCmbZK7RpvAI9AVCGbRxKc/AL/4JQ8AkCTDk=; 
+X-VR-SPAMCAUSE: dmFkZTF2rMupFDtSz5VGJXaGrwYUaRUbsc9Nn7nc8ghpwc35VyZFauYARogcas+VOSD8wf0IhZl41F2o83TSTJEqn1M70AEfTiU3uOfrR34AN46Y0JjeW4xo6cV+rH2TUD4SE1NDtof+377HjW5jUw1vYYddQq9f46CIv1pXDMg+OvLcv0mAeBq8idZd3/oeDOqFYW+mp/D/hf65ucF8pcrq4BoeAZT2yueghykMKcN1pOaBvVNRQXaTXALuE+8w2Owws5LoK70lx9jAX+i5vFCotZFddZWqe5L2MI0ywEcZRGnxLB/PRWCfMsAV61ff3CxEAEQBj4aCGHb8mrffVRaINrHze7ZOeRvAY5Xkp0vrVNGkK8+RJnyzVoe/LOecOZELTwlB63OAA+WiB2M00rs3kyaG8GOESvA92OgSN0L8sVN6xZIPI0IQgVz6u4W1aaRbK/iyfkwJtG33fwLm0iFxYzJ0qaeQyQgTPJeTJtr3C6tDpPzEhzqZ9s9Jmil5DjGXu375kInZ+rL8OGHB2BpZHCcDHT11HW4E+h/XgbISwzi+8IJUPK3XdDQYvcj5CUHrMWxUnTlG/vSmCK61rnfbq9nqiCEZN+ZisO6TZ1NQXJRNkKmi4LazbfDhi2Gh8UkpGoc2JQhGzIdLNkF3pgk3zk6QCydoYfaV6JJ6vp25wL+Ncg
+DKIM-Signature: a=rsa-sha256; bh=Ust/Lq5DbKVlp/aaj05H8qrX9vfxF8zPwOwSKnBCPBU=; 
  c=relaxed/relaxed; d=pixelcluster.dev; h=From;
- s=ovhmo-selector-1; t=1783332526; v=1;
- b=cHeSgi801Q1TZkJKx1CF7btk76tysmEH+/ubEWnddIH1wZsMdu+KnRQu+E4XPEDuCC2KlHlY
- LODHMaswSF79Hm25kxtF9j9wPuO0NqDlvPSdfd8EIb6uEWg1qY2fmCD5cl337mzBQHfOKUBDm5n
- umubUhMTpE+tsvsMp6lBENKGb3Cq+01v1xm6XbjS2Yzk69zZ7g2PS+dK8/8Rz1aZRraMW5izgIL
- RC6HOih8gqkDBfuAB2y/LkYeV60QHe88u0v4iISTe73TMkaLT3rrn+atRco3vwQCrg0ZWPrr4vQ
- N22CXcfw9oNvVjUNtj6OgCt2ywC21pS1NBbCk+5fAjGTg==
+ s=ovhmo-selector-1; t=1783332529; v=1;
+ b=un6e2Xv4cTU7fmByjvHV6GE/6N/JiXRrk3IFarOyX8OjDj/6AgGBQLQyCI3a/hOKb1j0JHcN
+ 1x3BhatK3UUjm54m1ueOs/BTHJVKAtwjjAkKCzDcYyod/N+gAed6Y7n3cvutD/xAX9g/GaiScZI
+ PSd9WHtSP4rTOn0FCSvYmDhT7Lx6mcdQiZRP0pBfye2ckx3WvfY/0ll3kplNNkBAv0/LRebQsP4
+ XJtm3FRrFfIkgTPoaANlCGNemOObhH8r0MDuGJTjCEXiEXQbI/dLjWGrEpAmnmzxNBsz07aivNi
+ Qgk/zvwUvxnbyZsckwWDy3csWPSP7/hYmbyNm/zytOp/A==
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -125,127 +127,47 @@ X-Spamd-Result: default: False [2.69 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[pixelcluster.dev:from_mime,pixelcluster.dev:email,pixelcluster.dev:mid,pixelcluster.dev:dkim,lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 6CC3A70F09D
+X-Rspamd-Queue-Id: 44BA670F057
 
-It's just another layer of indirection.
+Previously we always grabbed the BO reference after taking the lock, but
+that isn't necessary any more.
+
+So avoid doing that and cleanup the handling here.
 
 Signed-off-by: Christian König <christian.koenig@amd.com>
 Signed-off-by: Natalie Vock <nat@pixelcluster.dev>
 ---
- drivers/gpu/drm/ttm/ttm_bo.c      | 12 ++----------
- drivers/gpu/drm/ttm/ttm_bo_util.c |  2 +-
- include/drm/ttm/ttm_bo.h          | 34 ++++++++++++++--------------------
- 3 files changed, 17 insertions(+), 31 deletions(-)
+ drivers/gpu/drm/ttm/ttm_bo_util.c | 15 +++++++++------
+ 1 file changed, 9 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/gpu/drm/ttm/ttm_bo.c b/drivers/gpu/drm/ttm/ttm_bo.c
-index 2b470c1746f60..1fb8c53da0362 100644
---- a/drivers/gpu/drm/ttm/ttm_bo.c
-+++ b/drivers/gpu/drm/ttm/ttm_bo.c
-@@ -545,10 +545,6 @@ static s64 ttm_bo_evict_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *
- 	return lret;
- }
- 
--static const struct ttm_lru_walk_ops ttm_evict_walk_ops = {
--	.process_bo = ttm_bo_evict_cb,
--};
--
- static int ttm_bo_evict_alloc(struct ttm_device *bdev,
- 			      struct ttm_resource_manager *man,
- 			      const struct ttm_place *place,
-@@ -560,7 +556,7 @@ static int ttm_bo_evict_alloc(struct ttm_device *bdev,
- {
- 	struct ttm_bo_evict_walk evict_walk = {
- 		.walk = {
--			.ops = &ttm_evict_walk_ops,
-+			.process_bo = ttm_bo_evict_cb,
- 			.arg = {
- 				.ctx = ctx,
- 				.ticket = ticket,
-@@ -1187,10 +1183,6 @@ ttm_bo_swapout_cb(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo)
- 	return ret;
- }
- 
--const struct ttm_lru_walk_ops ttm_swap_ops = {
--	.process_bo = ttm_bo_swapout_cb,
--};
--
- /**
-  * ttm_bo_swapout() - Swap out buffer objects on the LRU list to shmem.
-  * @bdev: The ttm device.
-@@ -1209,7 +1201,7 @@ s64 ttm_bo_swapout(struct ttm_device *bdev, struct ttm_operation_ctx *ctx,
- {
- 	struct ttm_bo_swapout_walk swapout_walk = {
- 		.walk = {
--			.ops = &ttm_swap_ops,
-+			.process_bo = ttm_bo_swapout_cb,
- 			.arg = {
- 				.ctx = ctx,
- 				.trylock_only = true,
 diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 7ed085adf1c9b..29f068944a972 100644
+index 29f068944a972..a53b25e8c2967 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
-@@ -919,7 +919,7 @@ s64 ttm_lru_walk_for_evict(struct ttm_lru_walk *walk, struct ttm_device *bdev,
- 	s64 lret;
+@@ -1010,14 +1010,17 @@ __ttm_bo_lru_cursor_next(struct ttm_bo_lru_cursor *curs)
+ 			break;
  
- 	ttm_bo_lru_for_each_reserved_guarded(&cursor, man, &walk->arg, bo) {
--		lret = walk->ops->process_bo(walk, bo);
-+		lret = walk->process_bo(walk, bo);
- 		if (lret == -EBUSY || lret == -EALREADY)
- 			lret = 0;
- 		progress = (lret < 0) ? lret : progress + lret;
-diff --git a/include/drm/ttm/ttm_bo.h b/include/drm/ttm/ttm_bo.h
-index 1eae9eea5ff32..0fcd5082a7080 100644
---- a/include/drm/ttm/ttm_bo.h
-+++ b/include/drm/ttm/ttm_bo.h
-@@ -189,24 +189,6 @@ struct ttm_operation_ctx {
- 	uint64_t bytes_moved;
- };
+ 		bo = res->bo;
+-		if (ttm_lru_walk_trylock(curs, bo))
+-			bo_locked = true;
+-		else if (!arg->ticket || arg->ctx->no_wait_gpu || arg->trylock_only)
++		if (!ttm_bo_get_unless_zero(bo))
+ 			continue;
  
--struct ttm_lru_walk;
--
--/** struct ttm_lru_walk_ops - Operations for a LRU walk. */
--struct ttm_lru_walk_ops {
--	/**
--	 * process_bo - Process this bo.
--	 * @walk: struct ttm_lru_walk describing the walk.
--	 * @bo: A locked and referenced buffer object.
--	 *
--	 * Return: Negative error code on error, User-defined positive value
--	 * (typically, but not always, size of the processed bo) on success.
--	 * On success, the returned values are summed by the walk and the
--	 * walk exits when its target is met.
--	 * 0 also indicates success, -EBUSY means this bo was skipped.
--	 */
--	s64 (*process_bo)(struct ttm_lru_walk *walk, struct ttm_buffer_object *bo);
--};
--
- /**
-  * struct ttm_lru_walk_arg - Common part for the variants of BO LRU walk.
-  */
-@@ -223,8 +205,20 @@ struct ttm_lru_walk_arg {
-  * struct ttm_lru_walk - Structure describing a LRU walk.
-  */
- struct ttm_lru_walk {
--	/** @ops: Pointer to the ops structure. */
--	const struct ttm_lru_walk_ops *ops;
-+	/**
-+	 * process_bo - Process this bo.
-+	 * @walk: struct ttm_lru_walk describing the walk.
-+	 * @bo: A locked and referenced buffer object.
-+	 *
-+	 * Return: Negative error code on error, User-defined positive value
-+	 * (typically, but not always, size of the processed bo) on success.
-+	 * On success, the returned values are summed by the walk and the
-+	 * walk exits when its target is met.
-+	 * 0 also indicates success, -EBUSY means this bo was skipped.
-+	 */
-+	s64 (*process_bo)(struct ttm_lru_walk *walk,
-+			  struct ttm_buffer_object *bo);
+-		if (!ttm_bo_get_unless_zero(bo)) {
+-			if (curs->needs_unlock)
+-				dma_resv_unlock(bo->base.resv);
++		if (ttm_lru_walk_trylock(curs, bo)) {
++			bo_locked = true;
 +
- 	/** @arg: Common bo LRU walk arguments. */
- 	struct ttm_lru_walk_arg arg;
- };
++		} else if (!arg->ticket || arg->ctx->no_wait_gpu ||
++			   arg->trylock_only) {
++			spin_unlock(lru_lock);
++			ttm_bo_put(bo);
++			spin_lock(lru_lock);
+ 			continue;
+ 		}
+ 
 
 -- 
 2.55.0
