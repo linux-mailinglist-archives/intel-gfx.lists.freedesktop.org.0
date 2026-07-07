@@ -2,38 +2,77 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id G99VJJ3UTGrwqQEAu9opvQ
+	id PGReLpboTGqqrwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 12:27:41 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 13:52:54 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 9C5C671A5AC
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 12:27:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 1B49D71B1C7
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 13:52:54 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=none;
-	dmarc=none;
+	dkim=pass header.d=intel.com header.s=Intel header.b=NQzwviyj;
+	dmarc=pass (policy=none) header.from=intel.com;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id CF3EF10E4B7;
-	Tue,  7 Jul 2026 10:27:38 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 73FAE10E4D4;
+	Tue,  7 Jul 2026 11:52:52 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
- by gabe.freedesktop.org (Postfix) with ESMTPS id CE95F10E482;
- Tue,  7 Jul 2026 10:27:37 +0000 (UTC)
-Content-Type: multipart/alternative;
- boundary="===============8558464905450731136=="
+Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6317410E4C6;
+ Tue,  7 Jul 2026 11:52:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783425172; x=1814961172;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=scQCim2uIGkfX0a9VP64B6UKFOAUFt223J/TjraSZmg=;
+ b=NQzwviyjSZMv0zhaRtt720/khriIFUStCYcvybyIStxQiPUp+zyIHov8
+ Yrz3gO+y92pEE9G1vDruMs0bIuYHZXpjEcNI34ct4LmXuSJZBhgdzRh6A
+ 1EiL3CgNJPaUz37KQZkoDjg4hLueCefVNkMp9JhpZPiURU7jsEaySM8IF
+ Wpri4Ye2/Mjv9XAIloOtEateryjDf0Aj7CFqh7rtoAe1Zau48jufJ+D93
+ Ej2Xqg9N3eC+wnN3w6lRLUcOrIl+dCHDTplSxsLKphtRiZOGCu6FaHKdD
+ lqQ67dvDarjbPGrrj3JS26qE9lHCVgMIOVwdvBR4mHB+MWZP2rPJ1ESqQ Q==;
+X-CSE-ConnectionGUID: Q1+5cvVvTG+kJ7QoyH4FgA==
+X-CSE-MsgGUID: 5P7MkFtsTOWCOjtXpmH2KQ==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="84093076"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84093076"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 04:52:46 -0700
+X-CSE-ConnectionGUID: CujSQrjNSnWL6j8xh9YzhQ==
+X-CSE-MsgGUID: EF03b59zRt2Xh3PwRNnI3g==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="258292634"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
+ ([10.245.244.199])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 04:52:42 -0700
+Message-ID: <8642419f410b3c4b21b905b59a800bd5a78fe875.camel@linux.intel.com>
+Subject: Re: [PATCH 08/10] drm/xe: remove workaround for TTM internals
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
+ <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula	
+ <jani.nikula@linux.intel.com>, Joonas Lahtinen
+ <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
+ Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
+ <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
+ <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
+ Deucher	 <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org
+Date: Tue, 07 Jul 2026 13:52:39 +0200
+In-Reply-To: <20260703-ttm_2_drm_exec-v1-8-43685ac1286b@gmx.de>
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-8-43685ac1286b@gmx.de>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_skip_eDP_hw_p?=
- =?utf-8?q?robe_when_connector_forced_off_via_cmdline?=
-From: Patchwork <patchwork@emeril.freedesktop.org>
-To: "LIOU, Mei Fan" <mei.fan.liou@intel.com>
-Cc: intel-gfx@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 10:27:37 -0000
-Message-ID: <178342005783.159280.5463070113054955483@6beec6c84f66>
-X-Patchwork-Hint: ignore
-References: <20260707085704.14519-1-mei.fan.liou@intel.com>
-In-Reply-To: <20260707085704.14519-1-mei.fan.liou@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -46,213 +85,120 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
-Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [5.89 / 15.00];
-	URL_MULTIPLE_AT_SIGNS(6.00)[3];
-	MID_RHS_NOT_FQDN(0.50)[];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	DMARC_NA(0.00)[emeril.freedesktop.org];
-	RCPT_COUNT_TWO(0.00)[2];
-	FROM_HAS_DN(0.00)[];
-	ARC_NA(0.00)[];
-	MIME_TRACE(0.00)[0:+,1:+,2:~];
-	GREYLIST(0.00)[pass,meta];
+	RCVD_COUNT_THREE(0.00)[4];
 	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
+	DKIM_TRACE(0.00)[intel.com:+];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCVD_COUNT_TWO(0.00)[2];
-	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
-	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
-	R_DKIM_NA(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
-	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url]
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,linux.intel.com:from_mime,intel.com:dkim,gmx.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,lists.freedesktop.org:from_smtp]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 9C5C671A5AC
+X-Rspamd-Queue-Id: 1B49D71B1C7
 
---===============8558464905450731136==
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+> From: Christian K=C3=B6nig <christian.koenig@amd.com>
+>=20
+> This should no longer be necessary, TTM doesn't lock the BO without a
+> reference any more.
+>=20
+> Only compile tested!
+>=20
+> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
+> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+> ---
+> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 32 +++++---------------------------
+> =C2=A01 file changed, 5 insertions(+), 27 deletions(-)
+>=20
+> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
+> index 5843f850339c7..34eae56716076 100644
+> --- a/drivers/gpu/drm/xe/xe_bo.c
+> +++ b/drivers/gpu/drm/xe/xe_bo.c
+> @@ -1642,31 +1642,6 @@ static unsigned long xe_ttm_io_mem_pfn(struct
+> ttm_buffer_object *ttm_bo,
+> =C2=A0
+> =C2=A0static void __xe_bo_vunmap(struct xe_bo *bo);
+> =C2=A0
+> -/*
+> - * TODO: Move this function to TTM so we don't rely on how TTM does
+> its
+> - * locking, thereby abusing TTM internals.
+> - */
+> -static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object
+> *ttm_bo)
+> -{
+> -	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
+> -	bool locked;
+> -
+> -	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
+> -
+> -	/*
+> -	 * We can typically only race with TTM trylocking under the
+> -	 * lru_lock, which will immediately be unlocked again since
+> -	 * the ttm_bo refcount is zero at this point. So trylocking
+> *should*
+> -	 * always succeed here, as long as we hold the lru lock.
+> -	 */
+> -	spin_lock(&ttm_bo->bdev->lru_lock);
+> -	locked =3D dma_resv_trylock(&ttm_bo->base._resv);
+> -	spin_unlock(&ttm_bo->bdev->lru_lock);
 
-== Series Details ==
+We could just remove the spinlocks, update the comment and keep the
+asserts. Also the new code below locks .resv rather than ._resv, which
+is incorrect for imported dma-bufs.
 
-Series: drm/i915: skip eDP hw probe when connector forced off via cmdline
-URL   : https://patchwork.freedesktop.org/series/169918/
-State : success
-
-== Summary ==
-
-CI Bug Log - changes from CI_DRM_18774 -> Patchwork_169918v1
-====================================================
-
-Summary
--------
-
-  **SUCCESS**
-
-  No regressions found.
-
-  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html
-
-Participating hosts (41 -> 40)
-------------------------------
-
-  Additional (1): fi-cfl-guc 
-  Missing    (2): bat-dg2-13 fi-snb-2520m 
-
-Known issues
-------------
-
-  Here are the changes found in Patchwork_169918v1 that come from known issues:
-
-### IGT changes ###
-
-#### Issues hit ####
-
-  * igt@dmabuf@all-tests:
-    - fi-bsw-n3050:       NOTRUN -> [SKIP][1]
-   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@dmabuf@all-tests.html
-
-  * igt@gem_lmem_swapping@verify-random:
-    - fi-cfl-guc:         NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
-   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@gem_lmem_swapping@verify-random.html
-
-  * igt@kms_psr@psr-cursor-plane-move:
-    - fi-cfl-guc:         NOTRUN -> [SKIP][3] +13 other tests skip
-   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@kms_psr@psr-cursor-plane-move.html
-
-  
-#### Possible fixes ####
-
-  * igt@i915_selftest@live:
-    - fi-bsw-n3050:       [ABORT][4] ([i915#16562]) -> [PASS][5]
-   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live.html
-   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live.html
-
-  * igt@i915_selftest@live@late_gt_pm:
-    - fi-bsw-n3050:       [ABORT][6] ([i915#16561]) -> [PASS][7]
-   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
-
-  
-  [i915#16561]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16561
-  [i915#16562]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16562
-  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+Thanks,
+Thomas
 
 
-Build changes
--------------
-
-  * Linux: CI_DRM_18774 -> Patchwork_169918v1
-
-  CI-20190529: 20190529
-  CI_DRM_18774: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux
-  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
-  Patchwork_169918v1: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux
-
-== Logs ==
-
-For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html
-
---===============8558464905450731136==
-Content-Type: text/html; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-
-
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
- <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <title>Project List - Patchwork</title>
-  <style id="css-table-select" type="text/css">
-   td { padding: 2pt; }
-  </style>
-</head>
-<body>
+> -	xe_assert(xe, locked);
+> -
+> -	return locked;
+> -}
+> -
+> =C2=A0static void xe_ttm_bo_release_notify(struct ttm_buffer_object
+> *ttm_bo)
+> =C2=A0{
+> =C2=A0	struct dma_resv_iter cursor;
+> @@ -1680,8 +1655,11 @@ static void xe_ttm_bo_release_notify(struct
+> ttm_buffer_object *ttm_bo)
+> =C2=A0	bo =3D ttm_to_xe_bo(ttm_bo);
+> =C2=A0	xe_assert(xe_bo_device(bo), !(bo->created &&
+> kref_read(&ttm_bo->base.refcount)));
+> =C2=A0
+> -	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
+> -		return;
+> +	/*
+> +	 * This should never fail since there are no other
+> references to the BO
+> +	 * any more.
+> +	 */
+> +	WARN_ON(!dma_resv_trylock(ttm_bo->base.resv));
 
 
-<b>Patch Details</b>
-<table>
-<tr><td><b>Series:</b></td><td>drm/i915: skip eDP hw probe when connector forced off via cmdline</td></tr>
-<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169918/">https://patchwork.freedesktop.org/series/169918/</a></td></tr>
-<tr><td><b>State:</b></td><td>success</td></tr>
 
-    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html</a></td></tr>
-
-</table>
-
-
-    <h1>CI Bug Log - changes from CI_DRM_18774 -&gt; Patchwork_169918v1</h1>
-<h2>Summary</h2>
-<p><strong>SUCCESS</strong></p>
-<p>No regressions found.</p>
-<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html</p>
-<h2>Participating hosts (41 -&gt; 40)</h2>
-<p>Additional (1): fi-cfl-guc <br />
-  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
-<h2>Known issues</h2>
-<p>Here are the changes found in Patchwork_169918v1 that come from known issues:</p>
-<h3>IGT changes</h3>
-<h4>Issues hit</h4>
-<ul>
-<li>
-<p>igt@dmabuf@all-tests:</p>
-<ul>
-<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@dmabuf@all-tests.html">SKIP</a></li>
-</ul>
-</li>
-<li>
-<p>igt@gem_lmem_swapping@verify-random:</p>
-<ul>
-<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
-</ul>
-</li>
-<li>
-<p>igt@kms_psr@psr-cursor-plane-move:</p>
-<ul>
-<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> +13 other tests skip</li>
-</ul>
-</li>
-</ul>
-<h4>Possible fixes</h4>
-<ul>
-<li>
-<p>igt@i915_selftest@live:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16562">i915#16562</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live.html">PASS</a></li>
-</ul>
-</li>
-<li>
-<p>igt@i915_selftest@live@late_gt_pm:</p>
-<ul>
-<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16561">i915#16561</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
-</ul>
-</li>
-</ul>
-<h2>Build changes</h2>
-<ul>
-<li>Linux: CI_DRM_18774 -&gt; Patchwork_169918v1</li>
-</ul>
-<p>CI-20190529: 20190529<br />
-  CI_DRM_18774: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
-  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
-  Patchwork_169918v1: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
-
-</body>
-</html>
-
---===============8558464905450731136==--
+> =C2=A0
+> =C2=A0	/*
+> =C2=A0	 * Scrub the preempt fences if any. The unbind fence is
+> already
