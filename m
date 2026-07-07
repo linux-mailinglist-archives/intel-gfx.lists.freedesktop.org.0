@@ -2,80 +2,80 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id ZUL5FOEFTWrXtgEAu9opvQ
+	id f6LQBuUFTWretgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:53 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:57 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id F27E871C3DA
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id BA21E71C3F9
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:56 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Fp6TOcEV;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="Ra/c0w+J";
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=Fp6TOcEV;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="Ra/c0w+J";
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=zrv2jo0Y;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=nA3CUPqh;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=zrv2jo0Y;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=nA3CUPqh;
 	dmarc=pass (policy=none) header.from=suse.de;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 3871810ED65;
-	Tue,  7 Jul 2026 13:57:51 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id EE78A10ED36;
+	Tue,  7 Jul 2026 13:57:54 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 7B9B410ED60
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:49 +0000 (UTC)
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 8868C10ED5B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:53 +0000 (UTC)
 Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
  [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 39D8975AC0;
- Tue,  7 Jul 2026 13:57:34 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 2DC9D75CC4;
+ Tue,  7 Jul 2026 13:57:35 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432654; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783432655; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=6LKRwhmWaV0qI5SvETrloPdhxDBGTJmwhJOMh3VUQis=;
- b=Fp6TOcEVRg7SMxj1zvAikNzv/cJYNK79UHT2AlcEtmxDPq002L64xXfT9NDcLPxbcUYN8k
- woepsaMfl7Dz/GDbWF5bdN2IPDet8QDokLIXDgXnW1z/NIsTFuiiLuck6LKmKjGRIIAyQb
- gK58JQc7u+qRF0pzwqGI5y4bmPhnkko=
+ bh=Gezhe42hCPuf8EJ5YT9wfwNAIh+Y34zKtMBp5FToaFc=;
+ b=zrv2jo0Y9kQ8hic3l6dlQwiACP+CSHn3K9S8zHi0UAHt2qeH+2JfmKogqKEQB7lwPGQg9b
+ NNufZTCUl5VV5EPL9+6+x3EpEkIOrFtxUYccLmTsyvyBxkumHzfBdNGoAGnP1h1siaF8RY
+ 2uDGAu+ycwXVH6J+3jcmhS/p4YDtsIw=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432654;
+ s=susede2_ed25519; t=1783432655;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=6LKRwhmWaV0qI5SvETrloPdhxDBGTJmwhJOMh3VUQis=;
- b=Ra/c0w+JthON9AJKa+72S1lhDciwOhh2Ox0R/UEE+nzGiNgs0P37l3nmMZT7EhXl78OaKJ
- tTZdyPE5JM4q7lBA==
+ bh=Gezhe42hCPuf8EJ5YT9wfwNAIh+Y34zKtMBp5FToaFc=;
+ b=nA3CUPqhNNZV29K9KCZwdEMICNzKf14++DVHz3lQM1in+eCBjFVcXK0dtBAOWTcAmlDoGB
+ TzyOEyioQpKHp/Bw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432654; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783432655; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=6LKRwhmWaV0qI5SvETrloPdhxDBGTJmwhJOMh3VUQis=;
- b=Fp6TOcEVRg7SMxj1zvAikNzv/cJYNK79UHT2AlcEtmxDPq002L64xXfT9NDcLPxbcUYN8k
- woepsaMfl7Dz/GDbWF5bdN2IPDet8QDokLIXDgXnW1z/NIsTFuiiLuck6LKmKjGRIIAyQb
- gK58JQc7u+qRF0pzwqGI5y4bmPhnkko=
+ bh=Gezhe42hCPuf8EJ5YT9wfwNAIh+Y34zKtMBp5FToaFc=;
+ b=zrv2jo0Y9kQ8hic3l6dlQwiACP+CSHn3K9S8zHi0UAHt2qeH+2JfmKogqKEQB7lwPGQg9b
+ NNufZTCUl5VV5EPL9+6+x3EpEkIOrFtxUYccLmTsyvyBxkumHzfBdNGoAGnP1h1siaF8RY
+ 2uDGAu+ycwXVH6J+3jcmhS/p4YDtsIw=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432654;
+ s=susede2_ed25519; t=1783432655;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=6LKRwhmWaV0qI5SvETrloPdhxDBGTJmwhJOMh3VUQis=;
- b=Ra/c0w+JthON9AJKa+72S1lhDciwOhh2Ox0R/UEE+nzGiNgs0P37l3nmMZT7EhXl78OaKJ
- tTZdyPE5JM4q7lBA==
+ bh=Gezhe42hCPuf8EJ5YT9wfwNAIh+Y34zKtMBp5FToaFc=;
+ b=nA3CUPqhNNZV29K9KCZwdEMICNzKf14++DVHz3lQM1in+eCBjFVcXK0dtBAOWTcAmlDoGB
+ TzyOEyioQpKHp/Bw==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id AF19A779AE;
- Tue,  7 Jul 2026 13:57:33 +0000 (UTC)
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 40AA1779AF;
+ Tue,  7 Jul 2026 13:57:34 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 4G6gKc0FTWoFSgAAD6G6ig
- (envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:33 +0000
+ by imap1.dmz-prg2.suse.org with ESMTPSA id AISQDs4FTWoFSgAAD6G6ig
+ (envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:34 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
  christian.koenig@amd.com, airlied@gmail.com, simona@ffwll.ch,
@@ -87,10 +87,10 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 08/10] drm/nouveau: Implement
- vga_switcheroo_client_ops.post_switch
-Date: Tue,  7 Jul 2026 15:38:15 +0200
-Message-ID: <20260707135724.247562-9-tzimmermann@suse.de>
+Subject: [PATCH 09/10] drm/radeon: Implement struct
+ vga_switcheroo_client_ops.pre_switch
+Date: Tue,  7 Jul 2026 15:38:16 +0200
+Message-ID: <20260707135724.247562-10-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
 References: <20260707135724.247562-1-tzimmermann@suse.de>
@@ -148,65 +148,40 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: F27E871C3DA
+X-Rspamd-Queue-Id: BA21E71C3F9
 
-An output's attached display might have changed while a DRM client's
-device did not have the output switched to it.
-
-The nouveau_switcheroo_reprobe() callback sends a hotplug notice to
-DRM's internal clients, wo that they can reconfigure their display
-output if necessary.
-
-As post_switch callback replaces reprobe in vga_switcheroo, update
-nouveau accordingly. No functional changes.
+Call drm_client_dev_acquire_outputs() from vga_switcheroo's pre_switch
+callback. Pushes fbcon updates from vga_switcheroo into DRM's fbdev
+emulation.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/nouveau/nouveau_vga.c | 19 +++++++++----------
- 1 file changed, 9 insertions(+), 10 deletions(-)
+ drivers/gpu/drm/radeon/radeon_device.c | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/drivers/gpu/drm/nouveau/nouveau_vga.c b/drivers/gpu/drm/nouveau/nouveau_vga.c
-index 2d2d08be8fbe..29a801124e56 100644
---- a/drivers/gpu/drm/nouveau/nouveau_vga.c
-+++ b/drivers/gpu/drm/nouveau/nouveau_vga.c
-@@ -54,15 +54,6 @@ nouveau_switcheroo_set_state(struct pci_dev *pdev,
- 	}
+diff --git a/drivers/gpu/drm/radeon/radeon_device.c b/drivers/gpu/drm/radeon/radeon_device.c
+index 705c012fcf9e..8697a9eb5d13 100644
+--- a/drivers/gpu/drm/radeon/radeon_device.c
++++ b/drivers/gpu/drm/radeon/radeon_device.c
+@@ -1258,10 +1258,18 @@ static bool radeon_switcheroo_can_switch(struct pci_dev *pdev)
+ 	return atomic_read(&dev->open_count) == 0;
  }
  
--static void
--nouveau_switcheroo_reprobe(struct pci_dev *pdev)
--{
--	struct nouveau_drm *drm = pci_get_drvdata(pdev);
--	struct drm_device *dev = drm->dev;
--
--	drm_client_dev_hotplug(dev);
--}
--
- static bool
- nouveau_switcheroo_can_switch(struct pci_dev *pdev)
- {
-@@ -84,12 +75,20 @@ nouveau_switcheroo_pre_switch(struct pci_dev *pdev)
- 	drm_client_dev_acquire_outputs(drm->dev);
- }
- 
-+static void
-+nouveau_switcheroo_post_switch(struct pci_dev *pdev)
++static void radeon_switcheroo_pre_switch(struct pci_dev *pdev)
 +{
-+	struct nouveau_drm *drm = pci_get_drvdata(pdev);
++	struct drm_device *dev = pci_get_drvdata(pdev);
 +
-+	drm_client_dev_hotplug(drm->dev);
++	drm_client_dev_acquire_outputs(dev);
 +}
 +
- static const struct vga_switcheroo_client_ops
- nouveau_switcheroo_ops = {
- 	.set_gpu_state = nouveau_switcheroo_set_state,
--	.reprobe = nouveau_switcheroo_reprobe,
- 	.can_switch = nouveau_switcheroo_can_switch,
- 	.pre_switch = nouveau_switcheroo_pre_switch,
-+	.post_switch = nouveau_switcheroo_post_switch,
+ static const struct vga_switcheroo_client_ops radeon_switcheroo_ops = {
+ 	.set_gpu_state = radeon_switcheroo_set_state,
+ 	.reprobe = NULL,
+ 	.can_switch = radeon_switcheroo_can_switch,
++	.pre_switch = radeon_switcheroo_pre_switch,
  };
  
- void
+ /**
 -- 
 2.54.0
 
