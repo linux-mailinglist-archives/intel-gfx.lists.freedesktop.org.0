@@ -2,71 +2,78 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id 3l/uKtEFTWqjtgEAu9opvQ
+	id BcC3CtIFTWqktgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:37 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:38 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 5940671C34B
+	by mail.lfdr.de (Postfix) with ESMTPS id CC1AC71C350
 	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:37 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=JZMcKQXP;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=C+RyRdWP;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=JZMcKQXP;
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=C+RyRdWP;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b="J6wpNNM/";
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=68iXdv7V;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b="J6wpNNM/";
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=68iXdv7V;
 	dmarc=pass (policy=none) header.from=suse.de;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 0DCB010ED39;
+	by gabe.freedesktop.org (Postfix) with ESMTP id 4332E10ED2A;
 	Tue,  7 Jul 2026 13:57:33 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from smtp-out1.suse.de (smtp-out1.suse.de [195.135.223.130])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 24BEF10ED3C
+Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 9F9AE10ED39
  for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:31 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
- [IPv6:2a07:de40:b281:104:10:150:64:97])
+Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out1.suse.de (Postfix) with ESMTPS id 9DF37726F2;
- Tue,  7 Jul 2026 13:57:29 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 4171B759D1;
+ Tue,  7 Jul 2026 13:57:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432649; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
- b=JZMcKQXPD3wy5PFRcdEITfw+miSKvKJ5RTlRAuxpEpPsS5l8wPBhu7f94fvq1bAr/WOr+0
- pUsglwjcyaxwYnrT281uqhdnEzEsoLSpufH5gEu8rNbl0G+vLT7wj+TNMpLAvAf9fzIZ7E
- SO+h0aYfew01KkkLL+kgOIcGFv6WVZE=
+ t=1783432650; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XctuVESh7ZeNSsRmaxqwIzT4LaneT22++w9e8ig4CGA=;
+ b=J6wpNNM/Ut2sYlZlD0xseOall5lm0rzwyt2Tn12vpUbDkQqLjaZmaIYDq8MXXCSsMzJnKl
+ T5TcfVDr5IC9ydVjHFjSksqh7RWAOQ3eqU/8mum9Rn7SfvGBf6liJ0hzimtxjrcL/48GOc
+ GGJYihbwClC0PMlyeH7rmVbF/WvP+HM=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432649;
+ s=susede2_ed25519; t=1783432650;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
- b=C+RyRdWPPLFcwhiNscmhIGQS0IMWLqWZiaNhJ0EJauZjg3KpsekXPUg7vgQhjJxISCOmvl
- +TLK6kAXvGZsgVAQ==
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XctuVESh7ZeNSsRmaxqwIzT4LaneT22++w9e8ig4CGA=;
+ b=68iXdv7VpVpEib/TDsAtlN5u5sb7jnb0Wjb20OErKJ3VYGCdssuNiwk68Dmo3CNZI730fc
+ +szfA+09I8JMfvCg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432649; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
- b=JZMcKQXPD3wy5PFRcdEITfw+miSKvKJ5RTlRAuxpEpPsS5l8wPBhu7f94fvq1bAr/WOr+0
- pUsglwjcyaxwYnrT281uqhdnEzEsoLSpufH5gEu8rNbl0G+vLT7wj+TNMpLAvAf9fzIZ7E
- SO+h0aYfew01KkkLL+kgOIcGFv6WVZE=
+ t=1783432650; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XctuVESh7ZeNSsRmaxqwIzT4LaneT22++w9e8ig4CGA=;
+ b=J6wpNNM/Ut2sYlZlD0xseOall5lm0rzwyt2Tn12vpUbDkQqLjaZmaIYDq8MXXCSsMzJnKl
+ T5TcfVDr5IC9ydVjHFjSksqh7RWAOQ3eqU/8mum9Rn7SfvGBf6liJ0hzimtxjrcL/48GOc
+ GGJYihbwClC0PMlyeH7rmVbF/WvP+HM=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432649;
+ s=susede2_ed25519; t=1783432650;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
- mime-version:mime-version: content-transfer-encoding:content-transfer-encoding;
- bh=/BZajym9uebxwqSIz0M7fPVZU/Sl2uebGIt4iYrAV9g=;
- b=C+RyRdWPPLFcwhiNscmhIGQS0IMWLqWZiaNhJ0EJauZjg3KpsekXPUg7vgQhjJxISCOmvl
- +TLK6kAXvGZsgVAQ==
+ mime-version:mime-version:
+ content-transfer-encoding:content-transfer-encoding:
+ in-reply-to:in-reply-to:references:references;
+ bh=XctuVESh7ZeNSsRmaxqwIzT4LaneT22++w9e8ig4CGA=;
+ b=68iXdv7VpVpEib/TDsAtlN5u5sb7jnb0Wjb20OErKJ3VYGCdssuNiwk68Dmo3CNZI730fc
+ +szfA+09I8JMfvCg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 19C6C779AE;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id A5A29779AF;
  Tue,  7 Jul 2026 13:57:29 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id 1EnlBMkFTWoFSgAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id GGwnJ8kFTWoFSgAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:29 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
@@ -79,16 +86,17 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 00/10] vga_switcheroo,
- drm: Push fbcon handling into DRM clients
-Date: Tue,  7 Jul 2026 15:38:07 +0200
-Message-ID: <20260707135724.247562-1-tzimmermann@suse.de>
+Subject: [PATCH 01/10] drm/edid: Include <linux/fb.h>
+Date: Tue,  7 Jul 2026 15:38:08 +0200
+Message-ID: <20260707135724.247562-2-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
+References: <20260707135724.247562-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Flag: NO
-X-Spam-Score: -3.01
 X-Spam-Level: 
+X-Spam-Score: -2.78
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -136,61 +144,30 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	ALIAS_RESOLVED(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:from_mime,suse.de:dkim,suse.de:mid]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 5940671C34B
+X-Rspamd-Queue-Id: CC1AC71C350
 
-Vga_switcheroo currently invokes fb_switch_outputs() to inform fbcon
-about switching of the physical outputs among framebuffer devices. But
-new DRM clients to not use fbdev/fbcon and might require their own
-vga_switcheroo support. Let's strictly separate them from each other.
+We currently get <linux/fb.h> via <linux/vga_switcheroo.h>. Include it
+explicitly.
 
-Remove fbdev/fbcon from vga_switcheroo. Introduce a pre_switch callback
-for vga_switcheroo clients to do the fbcon update. Allows for removing
-all direct interactions between vga_switcheroo and fbdev/fbcon.
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+---
+ drivers/gpu/drm/drm_edid.c | 1 +
+ 1 file changed, 1 insertion(+)
 
-Also replace the existing reprobe hook with post_switch for symetry.
-
-At the same time, push the fbcon update into DRM's client for fbdev
-emulation. Do this with the new DRM client callback acquire_outputs,
-so that other clients can have their own handling of vga_switcheroo.
-
-There are only four drivers that support vga_switcheroo: amdgpu,
-radeon, i915 and nouveau. Update each of them with the new callbacks.
-When vga_switcheroo now invokes pre_switch, each DRM driver forwards
-to aquire_outputs and lets the DRM clients handle the new outputs.
-
-Tested with radeon on a notebook with Radeon HD 4225 and HD 5430.
-
-Thomas Zimmermann (10):
-  drm/edid: Include <linux/fb.h>
-  drm/client: Add acquire_outputs callback; implement for fbdev
-    emulation
-  vga_switcheroo: Add pre_switch callback to client ops
-  vga_switcheroo: Add post_switch callback to client ops
-  drm/amdgpu: Implement struct vga_switcheroo_client_ops.pre_switch
-  drm/i915: Implement vga_switcheroo_client_ops.pre_switch
-  drm/nouveau: Implement vga_switcheroo_client_ops.pre_switch
-  drm/nouveau: Implement vga_switcheroo_client_ops.post_switch
-  drm/radeon: Implement struct vga_switcheroo_client_ops.pre_switch
-  vga-switcheroo: Remove unused interfaces
-
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c |  9 ++++-
- drivers/gpu/drm/clients/drm_fbdev_client.c | 23 ++++++++----
- drivers/gpu/drm/drm_client_event.c         | 18 ++++++++++
- drivers/gpu/drm/drm_edid.c                 |  1 +
- drivers/gpu/drm/i915/i915_switcheroo.c     | 11 +++++-
- drivers/gpu/drm/nouveau/nouveau_vga.c      | 28 +++++++++------
- drivers/gpu/drm/radeon/radeon_device.c     |  9 ++++-
- drivers/gpu/vga/vga_switcheroo.c           | 41 +++++-----------------
- drivers/video/fbdev/core/fbcon.c           |  8 -----
- include/drm/drm_client.h                   | 14 ++++++++
- include/drm/drm_client_event.h             |  3 ++
- include/linux/vga_switcheroo.h             | 30 +++++++++-------
- 12 files changed, 122 insertions(+), 73 deletions(-)
-
-
-base-commit: cd8abe2554ec7eba16c1d48ab508732bf93534eb
+diff --git a/drivers/gpu/drm/drm_edid.c b/drivers/gpu/drm/drm_edid.c
+index 07970e5b5f65..86ae2d8d4de2 100644
+--- a/drivers/gpu/drm/drm_edid.c
++++ b/drivers/gpu/drm/drm_edid.c
+@@ -32,6 +32,7 @@
+ #include <linux/byteorder/generic.h>
+ #include <linux/cec.h>
+ #include <linux/export.h>
++#include <linux/fb.h> /* for KHZ2PICOS() */
+ #include <linux/hdmi.h>
+ #include <linux/i2c.h>
+ #include <linux/kernel.h>
 -- 
 2.54.0
 
