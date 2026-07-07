@@ -2,136 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id LjNiLrvyTGrLsQEAu9opvQ
+	id opIZHhv0TGoMsgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 14:36:11 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 14:42:03 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 654E571B69B
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 14:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 0B7F071B739
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 14:42:02 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=amd.com header.s=selector1 header.b=v7dQn6Zn;
-	dmarc=pass (policy=quarantine) header.from=amd.com;
-	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org;
-	arc=pass ("microsoft.com:s=arcselector10001:i=1")
+	dkim=pass header.d=intel.com header.s=Intel header.b=Ls3K45+T;
+	dmarc=pass (policy=none) header.from=intel.com;
+	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id D601610ECAB;
-	Tue,  7 Jul 2026 12:36:08 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 624E589226;
+	Tue,  7 Jul 2026 12:42:00 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from SA9PR02CU001.outbound.protection.outlook.com
- (mail-southcentralusazon11013052.outbound.protection.outlook.com
- [40.93.196.52])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 463EB10ECA5;
- Tue,  7 Jul 2026 12:36:07 +0000 (UTC)
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector10001; d=microsoft.com; cv=none;
- b=nk7PSHI1OQOCbi5J7j2XBXFWao+dTEJv3V0Nk9/GGk53RjH2SVSXLtg6Llt7uLxFIfF4sBQ/W+NP7yFjVSrdoLLiMXLzUZeNl22CFzlOp6j7gGQvPziCcqX6W1/NGCenF76MTEJ0YKo5p5T8MdXfYLqEjOHZilExol8+dS8LgR0Z99TNRnmffugOO0sZgQpIqRAhliKa8U8lPhDIuHxYMMp0KxiwlJY+/rm4JQ+k0S1M1YsImkwJVZ2rjnXlz8isRjqqQC56ehmdNGD3ilQDAxAzV2g/5Usva51R735spgRmSb1qhWGsKaGR3wNFLtxP5JAS70mBHUJ0pbphTwRyBw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com; 
- s=arcselector10001;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-AntiSpam-MessageData-ChunkCount:X-MS-Exchange-AntiSpam-MessageData-0:X-MS-Exchange-AntiSpam-MessageData-1;
- bh=8hPeiitVDWNZ8gjHhVVVTRCJuAEAyVpoZMK4dEQO0ws=;
- b=gQw1Big3Y4H9uOUc7YGj/tnx+gwg3xkcymhw97JZ15VYRB+CxBkEuw6TBgNNAzQ3sUwnihflrZ5TKrP2Yu+pH4QEcIa0rpp4QhNACZFYxUop9cmQNQaaFLwmiSBgv1LZO36HgZjN5MtH1DiHlBPIS20uQMxeM1gU74hR0MpnseAKFeq536A0JY/3PVzzGDnzxnUkcpSr2OCrThcUYub/Qb3WViAWYJBAMpjBTQmvEicEy9ErsL5PPC8o4LyP6lQlVaa1p1hNlNlMpeqhSdZ0ddn18aRr6SHnTO3SeKTZZq+gGGkeNGh5sbPtFEIQ+bS47kLpmXQg7b/SuYCw/jO6Mw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=amd.com; dmarc=pass action=none header.from=amd.com; dkim=pass
- header.d=amd.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=amd.com; s=selector1; 
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=8hPeiitVDWNZ8gjHhVVVTRCJuAEAyVpoZMK4dEQO0ws=;
- b=v7dQn6Zn1HV7C7ZLoHM7bHE3RRxaN3jjpZM2w9m09e6oFfBfz6cDeFXSx2bqKrBlo8ZKfXoiSv5+Efej06Mnzb1qmXhnZVCHtEOjjfIBKnJGw3bhZj3UaBNma/h31y54YjsKlwOjJWXMaZgTuOSTW7qfScVY4JFUpf3xBBCl0uE=
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com (2603:10b6:5:38a::18)
- by CH1PPF4C9628624.namprd12.prod.outlook.com (2603:10b6:61f:fc00::60d) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.21.181.14; Tue, 7 Jul
- 2026 12:36:02 +0000
-Received: from DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d]) by DM4PR12MB5039.namprd12.prod.outlook.com
- ([fe80::762:6408:ca99:701d%3]) with mapi id 15.21.0159.015; Tue, 7 Jul 2026
- 12:36:02 +0000
-Message-ID: <74ef08f8-c466-4f54-bb4d-2ec918c00feb@amd.com>
-Date: Tue, 7 Jul 2026 18:05:56 +0530
-User-Agent: Mozilla Thunderbird
-Subject: Re: [PATCH v4 1/2] gpu/buddy: replace dual-tree/force_merge with
- decoupled clear tracker
-From: Arunpravin Paneer Selvam <arunpravin.paneerselvam@amd.com>
-To: Matthew Auld <matthew.auld@intel.com>, christian.koenig@amd.com,
- dri-devel@lists.freedesktop.org, intel-gfx@lists.freedesktop.org,
- intel-xe@lists.freedesktop.org, amd-gfx@lists.freedesktop.org
-Cc: alexander.deucher@amd.com
-References: <20260527112902.3815-1-Arunpravin.PaneerSelvam@amd.com>
- <c9cdcf8a-d531-4e79-a238-97fd39b8c108@intel.com>
- <9b0add60-9bca-44dc-a95d-be289ea2d3c1@amd.com>
- <3ba98ec2-ea1f-4074-b1cc-456fca283ef8@intel.com>
- <6ab93f55-0643-4518-9aaa-b12d55f8ccb4@amd.com>
-Content-Language: en-US
-In-Reply-To: <6ab93f55-0643-4518-9aaa-b12d55f8ccb4@amd.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: 8bit
-X-ClientProxiedBy: MA5PR01CA0077.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:a01:1ad::14) To DM4PR12MB5039.namprd12.prod.outlook.com
- (2603:10b6:5:38a::18)
+Received: from mgamail.intel.com (mgamail.intel.com [192.198.163.10])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 6FD9789226;
+ Tue,  7 Jul 2026 12:41:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+ d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+ t=1783428120; x=1814964120;
+ h=message-id:subject:from:to:cc:date:in-reply-to:
+ references:content-transfer-encoding:mime-version;
+ bh=oLxyLktYGNMszk3W/9KmRAP6Lv0GJ8nHgtRDf5wsq7Q=;
+ b=Ls3K45+TD4se66v4g7vQW+pVBZLuSCXhNMHcO1/x7JYg/ZJGxdW+Wr2L
+ ioDnVEmPAC9QeLOoiHb6JBKV6jZFcSnBZIvypw26G1sVqkzXxYb2Gv0sP
+ RkD3irW2cQ15o9gjgxKEmn8LuZ+pU917H7Cf+3EgVpxzXUqZ9tAWEnvtS
+ DnbpGewLgLCRzGsB4VZWWmcgZ2AGuCxzbVEDMuGhY9r7daby+2+Op0MO7
+ vYF5meT6WG1iJOMCoOKoV2sbNmpAPeBR6br3G5UOJUT0Nd77VlLd8OEAh
+ 97hPW0mGuMNxeS+b9pzDQBNWtwiKcpLxxzlVl8DiyD1N3yevRg2whD/EM w==;
+X-CSE-ConnectionGUID: 5zJbvexJQHKOf0izA32bZw==
+X-CSE-MsgGUID: NCIU4sCgSPuHGOUnuKXu7Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="95452012"
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="95452012"
+Received: from orviesa005.jf.intel.com ([10.64.159.145])
+ by fmvoesa104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:41:59 -0700
+X-CSE-ConnectionGUID: mPdUbNyyRx+oyuNH9e3/dw==
+X-CSE-MsgGUID: XEnS8VB2QBa4q5tY8f8zYQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="258299506"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
+ ([10.245.244.199])
+ by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
+ 07 Jul 2026 05:41:54 -0700
+Message-ID: <6fac8343dc71b1dbf17e77390cc878cfaeb6d650.camel@linux.intel.com>
+Subject: Re: [PATCH 01/10] drm/exec: Add helper to bypass IGNORE_DUPLICATES
+ flag
+From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
+To: Christian =?ISO-8859-1?Q?K=F6nig?= <christian.koenig@amd.com>, Natalie
+ Vock <natalie.vock@gmx.de>, Maarten Lankhorst
+ <maarten.lankhorst@linux.intel.com>,  Maxime Ripard <mripard@kernel.org>,
+ Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>, 
+ Simona Vetter <simona@ffwll.ch>, Jani Nikula <jani.nikula@linux.intel.com>,
+ Joonas Lahtinen	 <joonas.lahtinen@linux.intel.com>, Rodrigo Vivi
+ <rodrigo.vivi@intel.com>,  Tvrtko Ursulin <tursulin@ursulin.net>, Huang Rui
+ <ray.huang@amd.com>, Matthew Auld <matthew.auld@intel.com>,  Matthew Brost
+ <matthew.brost@intel.com>, Alex Deucher <alexander.deucher@amd.com>
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
+ intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
+ amd-gfx@lists.freedesktop.org
+Date: Tue, 07 Jul 2026 14:41:52 +0200
+In-Reply-To: <0f85e12e-7d34-40a8-9efc-0d1a00b7c24c@amd.com>
+References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
+ <20260703-ttm_2_drm_exec-v1-1-43685ac1286b@gmx.de>
+ <673ae71a1fc4dcce0e6a1655985a141d6f08c06f.camel@linux.intel.com>
+ <0f85e12e-7d34-40a8-9efc-0d1a00b7c24c@amd.com>
+Organization: Intel Sweden AB, Registration Number: 556189-6027
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
 MIME-Version: 1.0
-X-MS-PublicTrafficType: Email
-X-MS-TrafficTypeDiagnostic: DM4PR12MB5039:EE_|CH1PPF4C9628624:EE_
-X-MS-Office365-Filtering-Correlation-Id: 87c680aa-6ae5-4dfe-ba48-08dedc244e08
-X-MS-Exchange-SenderADCheck: 1
-X-MS-Exchange-AntiSpam-Relay: 0
-X-Microsoft-Antispam: BCL:0;
- ARA:13230040|366016|1800799024|376014|23010399003|56012099006|6133799003|18002099003|22082099003|11063799006|4143699003;
-X-Microsoft-Antispam-Message-Info: a4znZQjzyVZ+RgvDZcpH/qDhB/dQhUCwOyrjIdPmfTFTiJndCs/2Xrac/R00DqCqxIBbCypxKEBBlcUZc0ZXpC+huAJZGya1VZ+TG69QXh6hMoxtB6vF9IAgUWuJfyUL1HlXMSldlsMq7KO+pSoWBlEqsx8SjaugUu3hyLmzgf2rHHvLk/ISNUyTo/dO3oTF3qVKxGzZ3Q0wDmPWO2QR9uYWG/N0IjY0HKMrbXnG57vyryIZIgjfIZC7AwBKJxm4ZxGopXW8UAkb12ktu2Wej7u55mDJQZT4A2WVoSq0RgnUinNvxAJdvxXAKvaKr6AKjHBIhIwPytlU3B2nsfPOdLrb7K9h8Io0fgcUikch+3HGTYEu2nqt8ptQLWDqsdQFZY9KVP8mB5bU4Z70x795L5+ZAPrP+ezr31L//DEDZAjh3jqYmdskNGiJRpgesSNA80+jwRzZc9toXJiwuywaBPH56dLECbK/woPtY+QpYoLLG63je8Ncpgf5aeAZtk2hx4Sf8I0ruUtUdlAi4ITa/8/4UvXen+jZr9kb10DqvzvxoNSfMlknO8l9oMOMgVmCLVN5eUHroyQgRJmbrsOgKxk/RwOhO4NQWHgd/l7vHSePp36s97DzfdWM969xVUcs1aKIoVivyagBwX06qXkhr5hVrg4vhdBPMwKRVSzCVAg=
-X-Forefront-Antispam-Report: CIP:255.255.255.255; CTRY:; LANG:en; SCL:1; SRV:;
- IPV:NLI; SFV:NSPM; H:DM4PR12MB5039.namprd12.prod.outlook.com; PTR:; CAT:NONE;
- SFS:(13230040)(366016)(1800799024)(376014)(23010399003)(56012099006)(6133799003)(18002099003)(22082099003)(11063799006)(4143699003);
- DIR:OUT; SFP:1101; 
-X-MS-Exchange-AntiSpam-MessageData-ChunkCount: 1
-X-MS-Exchange-AntiSpam-MessageData-0: =?utf-8?B?MEUxSGZlTzJtYUpmbXpYM0ZyY0M0RFc2NHVnaHMzYWpTNmpJTTBDRzh3L2c2?=
- =?utf-8?B?cTlNbkdrMDlNSjNDUFNrajMvNmxYYkxjWmdzZ3l1cU9YVHBob2xqWmRJdStW?=
- =?utf-8?B?SktSUFRhNUhDTmh2cnB1VHg2QkxaYWw2UjM3K3hZc3dWRXlISXVzSGNPNjUw?=
- =?utf-8?B?VHA0QkZoQ3k0VmcxakxkMEVDVGVvcmsxU2NiUW92SjZkZEJnalpIYWl1RGJm?=
- =?utf-8?B?cTFMWTR6endIeERCUjdSajBKc0w2aExoQ0REZnN3YmloVnIzRDFRdlpJNVAz?=
- =?utf-8?B?am1JakdsRUlwYUVLNGtZL2pZK09IRllLSUNWYXJxWlNNbS9aSVRNRkZqNHE0?=
- =?utf-8?B?R1o1U1NOSzNNb3pBaDBKTWxIZEh5S0V0UTFXeVlNa2pUY0dwc1NIeHNPK2tM?=
- =?utf-8?B?ZG9VRk04K0oyOGVPOE05R3ZiWlF3MFprYjMwYnFEQ2N6bzNLUnBlVzlJN3Ja?=
- =?utf-8?B?c0R6OFNwQXRiWXVmeFNHT2VVNXRGdnY4eFlQbVdFQ2I5UG5ZL01Wd1JaWGpZ?=
- =?utf-8?B?VEhDemhoYS9YZkQyQkZ0Y0NrNEFmZ2kwczM4bE9HWEdnM21QanRJeDRJckxJ?=
- =?utf-8?B?ODdKR21IZ1JGak91OVJ6QnlYaHZoVkJDVzdUZlNkaWlXMURDekY3MUxVc0pa?=
- =?utf-8?B?YnVDM3JRbnpyT2xOY1M0M1dwMTdMdzU4T1NMbUNhNXBQbVFpellsMnYvZWtG?=
- =?utf-8?B?Vy93TzVUT0FudWdMNjZvVnJqaWRRUXN0Ty90N0RvMS9wREFqcnYxZU90Wlhy?=
- =?utf-8?B?bzJwYTNQZDdNMGIzbHdiRitUYzIzRlBRVE5JK2hJNGpQbndMNVFJWXViVzJh?=
- =?utf-8?B?YzNabVNXazZKZklIdm1yNTZ0UVdCeHBmSWh4aDBZWjU1ZmVRQVpqMkRNNG5J?=
- =?utf-8?B?WXBpUUMzdDc2ZXBaWHdYWHBkRzdWcHV0SC9lZElGWGpYSjdrZEJqbEgxOWlZ?=
- =?utf-8?B?Smd5cjEzS013VUhkbGMveHJFMkFSeDRTNVplWVVmRlRuaEVZaTVwYkpLQXR1?=
- =?utf-8?B?eXo2bkhDMTNValJIendySXFqRlVZOEpOelVZd0tOU0dJaFYrTnJVcXZaWk50?=
- =?utf-8?B?cTREbnloU0VSSXZ3UXY1bUpNcURqb0NsUmZwOEFnSDVHWm5FVWZjRlY3V3ZK?=
- =?utf-8?B?M2M0REpBOEpQeFYva1pKVWx0T2c5OVBsaEhOMUxVZHdBSWJ2dHl0QmFxYlhT?=
- =?utf-8?B?bTlKRlFOKzAwM3pNN0NkWmsrdWRUM0Z0UWttTk1KdStnTldnWTdwZ3RDUWFt?=
- =?utf-8?B?TlVXemJYeHZlNXR3M0dPeTB1cFlRaHFNbEtoUGJsRzFMcjFDRlBXYVFId3lw?=
- =?utf-8?B?Zm13VHNSZ3VLbjZvUTdjcHp3c0piQi9jS3pVUk42UCs5dXRnOXQwcnl4L1Fi?=
- =?utf-8?B?UEY5MklSZitqUm1oUGVvQTRzL1d2dUNXT3lBbm1aV3k1N3hkdUJPTFpBVklY?=
- =?utf-8?B?UEhRbzFiUGExblNpaUV0Ti9NNG1OcTJUaldDbnYyYmd0a1FkV3VEdndsU1Fr?=
- =?utf-8?B?R3NkVmNhN1JvVGdseHYvRitteUZ5YjVQRTFkMVc1T0FHZUh2RUsrNEtaNEdC?=
- =?utf-8?B?dG1sNVBhcnZmb1BTeW9ZelNnT0hSaDVoYkc2SVhJbVRNM1ZwUWl4SWNjdmE1?=
- =?utf-8?B?RFdwSFBGMExmbG1tSDg5S3BnRmI4bXBEMm43Z3VwWVA3Q21IYVFteWtBVTBC?=
- =?utf-8?B?ejdlTlBYSVJwTi9RQUFnSmhNZ0VVa1ZSWjRnRDAvRGJCdUdtM0NVN2tSZ2dB?=
- =?utf-8?B?Um91c3BJMXFBdis4eWZvWEdSQnI4ZiswSjJHWnpud3pzcDg0a2x3OWNZRDFa?=
- =?utf-8?B?d0VqVlZrSGMyRTlIYklXbVE2Wk1aY041YW15SnR4TExGV1ZJY21CRTdVZGxK?=
- =?utf-8?B?SDhUanBDNXY4MFBjTE85WGVxR0ttMVZiK3dzLyt6OUgyZUt0NzFReWlSZVhL?=
- =?utf-8?B?dTdFaWxMSi9RUDA3YUJVeUVwcy90MkdiTVQ4bmFqM3U3eEpnYUN5THFUZ21J?=
- =?utf-8?B?RkRWSkpVR3JmNnFMRFlQMGJ3aEo2ZmdRbzMrNUdvVEZ4Z0FqSUhaK0FwN0xI?=
- =?utf-8?B?Ung1bjhaQjJIZEFiZVh4OFlPNWNlWkVmdlRyRWJiVXdyTkRiRkd1elI0YllK?=
- =?utf-8?B?VG5xZ21LQ2Q0UnhPQWVTUmQvQjgyTlptckRKOEIrQmc4d3dCNk81QkNHYVJ4?=
- =?utf-8?B?a2RuSnV0TGZ5NWZUSS9VV01iRk1VQUdpZ0FJbFRUcExxbVVpdVlxcWkvZ3Jv?=
- =?utf-8?B?U2kzSHNteDdaQ3p6anBDZnAwMVZDQ3NKV0g2d0ExS2xRVzVtR1VSd1A2Nitk?=
- =?utf-8?B?Zk85bmViaDRGUmF5TDUzNCtDUlp2OUdLZWhzdzRjbkxjYWlGU3JDQT09?=
-X-OriginatorOrg: amd.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 87c680aa-6ae5-4dfe-ba48-08dedc244e08
-X-MS-Exchange-CrossTenant-AuthSource: DM4PR12MB5039.namprd12.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 07 Jul 2026 12:36:02.3640 (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 3dd8961f-e488-4e60-8e11-a82d994e183d
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: yGabTML5n6wSaOEEr4PZMlwXvGkB8wdf0S4IiF2Z+i759UedZg7RiHx46AWqGxil5n/uqOtS5KP9wiEZf7EXeg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH1PPF4C9628624
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,210 +90,219 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-2.31 / 15.00];
-	ARC_ALLOW(-1.00)[microsoft.com:s=arcselector10001:i=1];
-	DMARC_POLICY_ALLOW(-0.50)[amd.com,quarantine];
-	R_DKIM_ALLOW(-0.20)[amd.com:s=selector1];
+X-Spamd-Result: default: False [-1.31 / 15.00];
+	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
+	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
 	MAILLIST(-0.20)[mailman];
-	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	MIME_GOOD(-0.10)[text/plain];
+	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
+	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MID_RHS_MATCH_FROM(0.00)[];
-	MIME_TRACE(0.00)[0:+];
-	FORGED_SENDER_MAILLIST(0.00)[];
-	TO_DN_SOME(0.00)[];
-	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	TAGGED_RCPT(0.00)[intel-gfx];
-	RCPT_COUNT_SEVEN(0.00)[7];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[arunpravin.paneerselvam@amd.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	RCVD_COUNT_THREE(0.00)[4];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,amd.com:from_mime,amd.com:dkim,amd.com:mid];
-	ALIAS_RESOLVED(0.00)[];
+	FORGED_SENDER_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	HAS_ORG_HEADER(0.00)[];
+	FREEMAIL_TO(0.00)[amd.com,gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net];
+	RCPT_COUNT_TWELVE(0.00)[20];
+	MIME_TRACE(0.00)[0:+];
 	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[amd.com:+]
+	DKIM_TRACE(0.00)[intel.com:+];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	TO_DN_SOME(0.00)[];
+	ALIAS_RESOLVED(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	MID_RHS_MATCH_FROM(0.00)[];
+	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[intel.com:dkim,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,gmx.de:email,linux.intel.com:mid,linux.intel.com:from_mime,lists.freedesktop.org:from_smtp,lists.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 654E571B69B
+X-Rspamd-Queue-Id: 0B7F071B739
 
-Hi Matthew,
+On Tue, 2026-07-07 at 14:28 +0200, Christian K=C3=B6nig wrote:
+> On 7/7/26 14:09, Thomas Hellstr=C3=B6m wrote:
+> > On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
+> > > TTM is about to switch to drm_exec for locking objects
+> > > in the LRU list. When we're done processing the object, we want
+> > > to
+> > > unlock it only if the caller doesn't already hold that lock. If
+> > > DRM_EXEC_IGNORE_DUPLICATES is set on the exec object (which
+> > > callers
+> > > may
+> > > require for unrelated reasons), we have no way of knowing whether
+> > > the
+> > > lock is already held.
+> > >=20
+> > > To remedy this, add a separate helper that forcefully bypasses
+> > > the
+> > > IGNORE_DUPLICATES flag for only a single locking operation.
+> > >=20
+> > > Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
+> >=20
+> > The first, more complete attempt to try to tackle the exhaustive
+> > eviction introduced a drm_exec snapshot ability instead.
+> >=20
+> > https://lists.freedesktop.org/archives/intel-xe/2024-May/035820.html
+> >=20
+> > The idea was that one would want to incrementally lock more buffer
+> > objects until the validation succeeded, rather than dropping each
+> > single lock after processing the eviction. That's actually what
+> > guarantees forward progress. Restoring the snapshot unlocked all
+> > locks
+> > that we grabbed in the process, and would work also for single
+> > locks.
+>=20
+> That's actually not what this patch here tries to solve.
+>=20
+> The problem is rather since we don't remove the BOs from the LRU list
+> that we try to evict some which are actually part of our working set.
+>=20
+> So when we lock for eviction we can't ignore duplicates no matter
+> what the global flag says.
 
-On 6/10/2026 6:36 PM, Arunpravin Paneer Selvam wrote:
->
->
-> On 6/10/2026 2:49 PM, Matthew Auld wrote:
->> On 01/06/2026 11:51, Arunpravin Paneer Selvam wrote:
->>>
->>>
->>> On 5/29/2026 11:11 PM, Matthew Auld wrote:
->>>> Hi,
->>>>
->>>> On 27/05/2026 12:29, Arunpravin Paneer Selvam wrote:
->>>>> The current buddy allocator maintains separate clear_tree[] and
->>>>> dirty_tree[] rbtrees per order, preventing coalescing between cleared
->>>>> and dirty buddies. Under mixed workloads, this creates a merge 
->>>>> barrier:
->>>>> adjacent buddies frequently end up split across trees, forcing 
->>>>> reliance
->>>>> on __force_merge() during allocation.
->>>>>
->>>>> __force_merge() performs an O(N x max_order) scan under the VRAM 
->>>>> manager
->>>>> lock, leading to allocation stalls and failures for large contiguous
->>>>> requests even when sufficient total free memory is available.
->>>>
->>>> So is this contig with non power-of-two sizes?
->>> Both power-of-two and non-power-of-two contiguous requests are 
->>> affected - in either case, the required higher-order block can't 
->>> form when its lower-order buddies are separated by clear/dirty state 
->>> across the dual trees. But the core issue we are seeing is VRAM 
->>> fragmentation caused by massive small allocations (e.g., thousands 
->>> of 4 KiB–8 KiB buffers) that end up split across clear and dirty 
->>> trees, preventing buddy coalescing. This leads to allocation 
->>> failures and OOM in later workloads even when sufficient total free 
->>> VRAM is available.
->>>>
->>>> Do we know if we could force_merge everything in one go or somehow 
->>>> be more aggressive and do more than needed now, at the first sign 
->>>> of contention here, instead of doing it piecemeal? Downside would 
->>>> be losing more of the clear tracking, when this happens, but more 
->>>> re- merging.
->>>>
->>>> Could we have another per-order list, of all blocks that we failed 
->>>> to merge, when we did the free step? When doing the force merge 
->>>> step, we maybe don't need to search blindly and can focus instead 
->>>> on the stuff tracked in those lists? Maybe it doesn't need to be a 
->>>> list, but could be another rb-tree?
->>>>
->>>> We know the size of the total allocation, if we trigger 
->>>> force_merge, could we try to merge enough in one go for the entire 
->>>> allocation, instead of restarting the entire thing on the next 
->>>> iteration? Would that help at all?
->>>>
->>>> But I guess these are more for the stalling side, and won't help 
->>>> much with the contig angle?
->>> The memory is highly fragmented into mostly 4 KiB chunks and small 
->>> scattered blocks across the dual trees, so although total free 
->>> memory exists, it is split into low-order fragments. The workload 
->>> then requests very large contiguous allocations (tens of GBs, e.g., 
->>> ~64 GiB), which fail with OOM because the allocator cannot form 
->>> sufficiently large high- order blocks from the fragmented space. We 
->>> could go with more aggressive merging or merge-in-one-go approaches, 
->>> but this might waste more cleared memory. I think fundamentally the 
->>> buddy allocator should be allowed to merge unconditionally - the 
->>> single-tree approach with unconditional coalescing would improve the 
->>> fragmentation and benefit contiguous allocations along with 
->>> addressing the stalling and latency issues.
->>>>
->>>> For the extent idea, is there any merit in maybe doing this for all 
->>>> contig blobs, and not just cleared stuff? Or is the workload you 
->>>> are seeing only benefit users that want cleared stuff? Wondering if 
->>>> this would benefit all users that want contig? Like if we 
->>>> hypothetically kept clear and dirty separate, like we do now, but 
->>>> with an improved force_merge, and then have extent tracking for all 
->>>> contig blobs and replace the try_harder stuff? When you do a contig 
->>>> alloc, the individual clear/dirty is still all there within the 
->>>> range, so you can skip re-clearing in some cases. I guess downside 
->>>> is overall more fuzzy contig + clear/free path, but I guess you 
->>>> would never get allocation failures, when there is sufficient 
->>>> contig space?
->>> Yes, extending extent tracking to all contig allocations has merit, 
->>> but the core problem remains - with the dual-tree design, we still 
->>> need force_merge to undo the clear/dirty split before those extents 
->>> can form. In cases like heavy small-allocation workloads (thousands 
->>> of 4 KiB buffers) running first, the memory ends up massively 
->>> fragmented across both trees. When a very large contiguous 
->>> allocation (e.g., ~64 GiB) comes in later, the allocator fails with 
->>> OOM even though sufficient total free memory exists, because the 
->>> extent tracker can't find a contiguous range that was never allowed 
->>> to merge in the first place. I think the dirty/clear split is 
->>> fundamentally the problem - allowing the buddy allocator to merge 
->>> unconditionally removes this barrier, and the clear tracker can then 
->>> be layered on top as an optimization without blocking coalescing.
->>>>
->>>>>
->>>>> Solution
->>>>>
->>>>> Replace the dual-tree design with:
->>>>> - A single free_tree[order] rbtree for dirty and mixed free blocks
->>>>>    (fully cleared free blocks float outside this tree)
->>>>> - A lightweight out-of-band clear tracker (gpu_clear_tracker)
->>>>>
->>>>> Fully cleared free blocks are tracked outside the buddy trees 
->>>>> using an
->>>>> augmented interval rbtree, enabling O(log E) lookup of the largest
->>>>> cleared extents.
->>>>>
->>>>> Buddy coalescing is now unconditional in __gpu_buddy_free(), 
->>>>> regardless
->>>>> of clear/dirty state. This removes the merge barrier and 
->>>>> eliminates the
->>>>> need for __force_merge().
->>>>>
->>>>> Benefits
->>>>>
->>>>> - Correct high-order allocations after mixed clear/dirty workloads
->>>>> - Elimination of O(N x max_order) merge cost from the allocation path
->>>>> - O(log E) cleared-extent lookup replacing O(N) scans
->>>>> - Predictable allocation latency under fragmentation
->>>>> - Reduced complexity with a single tree per order
->>>>
->>>> Since there is no separate tracking for dirty stuff, is the non- 
->>>> cleared alloc path a bit more "fuzzy" now, with it potentially 
->>>> stealing cleared memory, or is it the same behaviour still?
->>> Right, on v4, the dirty and mixed (partially cleared) blocks are 
->>> allocated for the non-cleared alloc path, which can end up stealing 
->>> cleared memory. On v5, I plan to address this with a three-tier 
->>> dirty allocation fallback: dirty → mixed → clear, driven by rbtree 
->>> augment bits (subtree_has_dirty, subtree_has_mixed), each pass O(log 
->>> N). The split-descent also applies the same preference at every 
->>> level when carving a higher-order block, so cleared memory is 
->>> preserved as much as possible and only used as a last resort.
->>> Thoughts ?
->>
->> No objections from me. Do you want me to still look at v4 in depth, 
->> or wait for v5? I only really looked at this from high level.
-> I will send the v5. Please review the next version.
-After evaluating a few alternatives, I moved from a clear tracker to a 
-dirty tracker. The two-bit dirty + mixed tracking scheme preserves 
-cleared memory correctly, but selecting blocks based on state rather 
-than address order causes dirty allocations to spread into the middle of 
-the pool and increase fragmentation over time. With the dirty tracker, 
-dirty allocations are satisfied from tracked dirty extents first and 
-otherwise fall back to the highest-address free block. Cleared 
-allocations naturally consume the highest-address cleared blocks from 
-the free tree, creating a natural boundary between dirty and cleared 
-regions, while mixed blocks can be split so each allocation type 
-consumes the appropriate portion. The v5 series will follow the 
-dirty-tracker design. Please let me know if you see any issues with this 
-approach.
+Ah yes, I see that now when I've gotten to patch 9. But then I think
+the commit message is a bit misleading. It talks about unlocking an
+already processed object?
 
-Regards,
-Arun.
->
-> Thanks,
-> Arun.
->>
->>>>
->>>> For drivers that don't use free tracking, is there some benefit? 
->>>> Are there any downsides there? I assume that clear tracker is 
->>>> always empty.
->>> Correct, for drivers that don't clear memory, the clear tracker is 
->>> always empty and they simply allocate from the free_tree[]. Benefits:
->>>
->>> Single tree per order instead of dual trees (fewer rbtree operations)
->>> No force_merge path at all (unconditional coalescing at free time)
->>> Simpler code path overall
->>>
->>> No real downsides - the clear tracker adds zero overhead when empty, 
->>> and the augment bits would simply show all blocks as dirty, so the 
->>> walk degenerates to a normal rbtree lookup with no extra cost.
->>>
->>> Regards,
->>> Arun.
->>>
->>>
->>
->
+Thanks,
+Thomas
 
+
+>=20
+> Regards,
+> Christian.
+>=20
+> >=20
+> > Thanks,
+> > Thomas
+> >=20
+> >=20
+> > > ---
+> > > =C2=A0drivers/gpu/drm/drm_exec.c | 52
+> > > ++++++++++++++++++++++++++++++++++--
+> > > ----------
+> > > =C2=A0include/drm/drm_exec.h=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 2 ++
+> > > =C2=A02 files changed, 41 insertions(+), 13 deletions(-)
+> > >=20
+> > > diff --git a/drivers/gpu/drm/drm_exec.c
+> > > b/drivers/gpu/drm/drm_exec.c
+> > > index 7988f5e7d56a3..91de6b4d29df8 100644
+> > > --- a/drivers/gpu/drm/drm_exec.c
+> > > +++ b/drivers/gpu/drm/drm_exec.c
+> > > @@ -190,18 +190,9 @@ static int drm_exec_lock_contended(struct
+> > > drm_exec *exec)
+> > > =C2=A0	return ret;
+> > > =C2=A0}
+> > > =C2=A0
+> > > -/**
+> > > - * drm_exec_lock_obj - lock a GEM object for use
+> > > - * @exec: the drm_exec object with the state
+> > > - * @obj: the GEM object to lock
+> > > - *
+> > > - * Lock a GEM object for use and grab a reference to it.
+> > > - *
+> > > - * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> > > object is
+> > > - * already locked (can be suppressed by setting the
+> > > DRM_EXEC_IGNORE_DUPLICATES
+> > > - * flag), -ENOMEM when memory allocation failed and zero for
+> > > success.
+> > > - */
+> > > -int drm_exec_lock_obj(struct drm_exec *exec, struct
+> > > drm_gem_object
+> > > *obj)
+> > > +static int __drm_exec_lock_obj(struct drm_exec *exec,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct drm_gem_object *obj,
+> > > +			=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 bool always_report_duplicate=
+s)
+> > > =C2=A0{
+> > > =C2=A0	int ret;
+> > > =C2=A0
+> > > @@ -226,7 +217,7 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+> > > struct drm_gem_object *obj)
+> > > =C2=A0		return -EDEADLK;
+> > > =C2=A0	}
+> > > =C2=A0
+> > > -	if (unlikely(ret =3D=3D -EALREADY) &&
+> > > +	if (unlikely(ret =3D=3D -EALREADY) &&
+> > > !always_report_duplicates
+> > > &&
+> > > =C2=A0	=C2=A0=C2=A0=C2=A0 exec->flags & DRM_EXEC_IGNORE_DUPLICATES)
+> > > =C2=A0		return 0;
+> > > =C2=A0
+> > > @@ -243,8 +234,43 @@ int drm_exec_lock_obj(struct drm_exec *exec,
+> > > struct drm_gem_object *obj)
+> > > =C2=A0	dma_resv_unlock(obj->resv);
+> > > =C2=A0	return ret;
+> > > =C2=A0}
+> > > +
+> > > +/**
+> > > + * drm_exec_lock_obj - lock a GEM object for use
+> > > + * @exec: the drm_exec object with the state
+> > > + * @obj: the GEM object to lock
+> > > + *
+> > > + * Lock a GEM object for use and grab a reference to it.
+> > > + *
+> > > + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> > > object is
+> > > + * already locked (can be suppressed by setting the
+> > > DRM_EXEC_IGNORE_DUPLICATES
+> > > + * flag), -ENOMEM when memory allocation failed and zero for
+> > > success.
+> > > + */
+> > > +int drm_exec_lock_obj(struct drm_exec *exec, struct
+> > > drm_gem_object
+> > > *obj)
+> > > +{
+> > > +	return __drm_exec_lock_obj(exec, obj, false);
+> > > +}
+> > > =C2=A0EXPORT_SYMBOL(drm_exec_lock_obj);
+> > > =C2=A0
+> > > +/**
+> > > + * drm_exec_lock_obj_report_dup - lock a GEM object for use, but
+> > > always report duplicates
+> > > + * @exec: the drm_exec object with the state
+> > > + * @obj: the GEM object to lock
+> > > + *
+> > > + * Like drm_exec_lock_obj, lock a GEM object for use and grab a
+> > > reference to it.
+> > > + * Unlike drm_exec_lock_obj, DRM_EXEC_IGNORE_DUPLICATES is
+> > > ignored
+> > > and duplicates are
+> > > + * always reported.
+> > > + *
+> > > + * Returns: -EDEADLK if a contention is detected, -EALREADY when
+> > > object is
+> > > + * already locked, -ENOMEM when memory allocation failed and
+> > > zero
+> > > for success.
+> > > + */
+> > > +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+> > > +				 struct drm_gem_object *obj)
+> > > +{
+> > > +	return __drm_exec_lock_obj(exec, obj, false);
+> > > +}
+> > > +EXPORT_SYMBOL(drm_exec_lock_obj_report_dup);
+> > > +
+> > > =C2=A0/**
+> > > =C2=A0 * drm_exec_unlock_obj - unlock a GEM object in this exec
+> > > context
+> > > =C2=A0 * @exec: the drm_exec object with the state
+> > > diff --git a/include/drm/drm_exec.h b/include/drm/drm_exec.h
+> > > index 8725ba92ff916..ff80dd2b72240 100644
+> > > --- a/include/drm/drm_exec.h
+> > > +++ b/include/drm/drm_exec.h
+> > > @@ -176,6 +176,8 @@ void drm_exec_init(struct drm_exec *exec, u32
+> > > flags, unsigned nr);
+> > > =C2=A0void drm_exec_fini(struct drm_exec *exec);
+> > > =C2=A0bool drm_exec_cleanup(struct drm_exec *exec);
+> > > =C2=A0int drm_exec_lock_obj(struct drm_exec *exec, struct
+> > > drm_gem_object
+> > > *obj);
+> > > +int drm_exec_lock_obj_report_dup(struct drm_exec *exec,
+> > > +				 struct drm_gem_object *obj);
+> > > =C2=A0void drm_exec_unlock_obj(struct drm_exec *exec, struct
+> > > drm_gem_object *obj);
+> > > =C2=A0int drm_exec_prepare_obj(struct drm_exec *exec, struct
+> > > drm_gem_object *obj,
+> > > =C2=A0			 unsigned int num_fences);
