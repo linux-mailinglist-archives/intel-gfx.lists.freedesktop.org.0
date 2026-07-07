@@ -2,108 +2,38 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id RbOCAzXSTGoWqQEAu9opvQ
+	id G99VJJ3UTGrwqQEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 12:17:25 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 12:27:41 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 60A6371A32F
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 12:17:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 9C5C671A5AC
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 12:27:40 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=kernel.org header.s=k20260515 header.b=cGH+4V3q;
-	dmarc=pass (policy=quarantine) header.from=kernel.org;
+	dkim=none;
+	dmarc=none;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 229A610EC3B;
-	Tue,  7 Jul 2026 10:17:22 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id CF3EF10E4B7;
+	Tue,  7 Jul 2026 10:27:38 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from sea.source.kernel.org (sea.source.kernel.org [172.234.252.31])
- by gabe.freedesktop.org (Postfix) with ESMTPS id AE7DF10E479;
- Tue,  7 Jul 2026 10:17:21 +0000 (UTC)
-Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
- by sea.source.kernel.org (Postfix) with ESMTP id 86145419A0;
- Tue,  7 Jul 2026 10:17:21 +0000 (UTC)
-Received: by smtp.kernel.org (Postfix) with ESMTPSA id 122461F000E9;
- Tue,  7 Jul 2026 10:17:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
- s=k20260515; t=1783419441;
- bh=mnyEnVNjUbkl63yjftBd6ZAUslZHuhLMLE5i1q1dbiA=;
- h=Date:From:To:Cc:Subject:References:In-Reply-To;
- b=cGH+4V3qnWn/h2ntR4JOMP1MeFASTJyb/ukIFIKga6vmMPs4hWnZeyozgnP8o9zcj
- 4aOepXlE5yG0XgvATIbejO38So9984JOSQXxfemV7MrbXTQdbQqJryZ7by0rmLtk6g
- KbyecrBlOO6RxZhZHoEJHQvN3lfQ+IRVIfllVkFrcFe5jzAzy0lAaGw02N38CG8Xem
- bIuNc24pIIBeQZLitf75XKOixE/v2BoAd9XaTV+y7NflJFaBKiVOSfh8s3qL1kjbV3
- QtnOkHzUZcffKxdXoostqrwbOmOdDgDEYFoMQefdIk5SYi6OuZQQ8BSF6bkbad2igD
- ZZ2I4X8hc6i0g==
-Date: Tue, 7 Jul 2026 11:16:56 +0100
-From: Lorenzo Stoakes <ljs@kernel.org>
-To: Zi Yan <ziy@nvidia.com>
-Cc: Andrew Morton <akpm@linux-foundation.org>, 
- Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
- Madhavan Srinivasan <maddy@linux.ibm.com>, 
- Michael Ellerman <mpe@ellerman.id.au>,
- Maarten Lankhorst <maarten.lankhorst@linux.intel.com>, 
- Maxime Ripard <mripard@kernel.org>, Thomas Zimmermann <tzimmermann@suse.de>, 
- David Airlie <airlied@gmail.com>, Simona Vetter <simona@ffwll.ch>, 
- Lucas Stach <l.stach@pengutronix.de>, Inki Dae <inki.dae@samsung.com>, 
- Seung-Woo Kim <sw0312.kim@samsung.com>,
- Kyungmin Park <kyungmin.park@samsung.com>, 
- Krzysztof Kozlowski <krzk@kernel.org>, Peter Griffin <peter.griffin@linaro.org>,
- Jani Nikula <jani.nikula@linux.intel.com>,
- Joonas Lahtinen <joonas.lahtinen@linux.intel.com>, 
- Rodrigo Vivi <rodrigo.vivi@intel.com>, Tvrtko Ursulin <tursulin@ursulin.net>, 
- Rob Clark <robin.clark@oss.qualcomm.com>, Dmitry Baryshkov <lumag@kernel.org>, 
- Lyude Paul <lyude@redhat.com>, Danilo Krummrich <dakr@kernel.org>, 
- Tomi Valkeinen <tomi.valkeinen@ideasonboard.com>,
- Sandy Huang <hjc@rock-chips.com>, 
- Heiko =?utf-8?Q?St=C3=BCbner?= <heiko@sntech.de>,
- Andy Yan <andy.yan@rock-chips.com>, 
- Thierry Reding <thierry.reding@kernel.org>,
- Mikko Perttunen <mperttunen@nvidia.com>, 
- Jonathan Hunter <jonathanh@nvidia.com>, Gerd Hoffmann <kraxel@redhat.com>, 
- Dmitry Osipenko <dmitry.osipenko@collabora.com>,
- Zack Rusin <zack.rusin@broadcom.com>, 
- Matthew Brost <matthew.brost@intel.com>,
- Thomas Hellstrom <thomas.hellstrom@linux.intel.com>, 
- Oleksandr Andrushchenko <oleksandr_andrushchenko@epam.com>,
- Helge Deller <deller@gmx.de>, Benjamin LaHaise <bcrl@kvack.org>, 
- Alexander Viro <viro@zeniv.linux.org.uk>,
- Christian Brauner <brauner@kernel.org>, 
- Muchun Song <muchun.song@linux.dev>, Oscar Salvador <osalvador@suse.de>, 
- David Hildenbrand <david@kernel.org>,
- Baolin Wang <baolin.wang@linux.alibaba.com>, 
- "Liam R . Howlett" <liam@infradead.org>, Nico Pache <npache@redhat.com>, 
- Ryan Roberts <ryan.roberts@arm.com>, Dev Jain <dev.jain@arm.com>,
- Barry Song <baohua@kernel.org>, 
- Lance Yang <lance.yang@linux.dev>, Hugh Dickins <hughd@google.com>, 
- Vlastimil Babka <vbabka@kernel.org>, Mike Rapoport <rppt@kernel.org>, 
- Suren Baghdasaryan <surenb@google.com>, Michal Hocko <mhocko@suse.com>,
- Jann Horn <jannh@google.com>, 
- Pedro Falcato <pfalcato@suse.de>, Kees Cook <kees@kernel.org>,
- Jaroslav Kysela <perex@perex.cz>, 
- Takashi Iwai <tiwai@suse.com>, linux-mips@vger.kernel.org,
- linux-kernel@vger.kernel.org, 
- linuxppc-dev@lists.ozlabs.org, dri-devel@lists.freedesktop.org,
- etnaviv@lists.freedesktop.org, 
- linux-arm-kernel@lists.infradead.org, linux-samsung-soc@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
- freedreno@lists.freedesktop.org, 
- nouveau@lists.freedesktop.org, linux-rockchip@lists.infradead.org,
- linux-tegra@vger.kernel.org, 
- virtualization@lists.linux.dev, intel-xe@lists.freedesktop.org,
- xen-devel@lists.xenproject.org, 
- linux-fbdev@vger.kernel.org, linux-aio@kvack.org, linux-fsdevel@vger.kernel.org,
- linux-mm@kvack.org, linux-sound@vger.kernel.org
-Subject: Re: [PATCH 03/13] mm: convert __get_unmapped_area() to use vma_flags_t
-Message-ID: <akzR7JQuaKEQpH5Y@lucifer>
-References: <cover.1782760670.git.ljs@kernel.org>
- <b1ad7c4443f5cba622e4c48c5a9ef15427001a93.1782760670.git.ljs@kernel.org>
- <DJRZGEZU5ESV.3IP5LEAUQJCBK@nvidia.com>
+Received: from 6beec6c84f66 (emeril.freedesktop.org [131.252.210.167])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id CE95F10E482;
+ Tue,  7 Jul 2026 10:27:37 +0000 (UTC)
+Content-Type: multipart/alternative;
+ boundary="===============8558464905450731136=="
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DJRZGEZU5ESV.3IP5LEAUQJCBK@nvidia.com>
+Subject: =?utf-8?q?=E2=9C=93_i915=2ECI=2EBAT=3A_success_for_drm/i915=3A_skip_eDP_hw_p?=
+ =?utf-8?q?robe_when_connector_forced_off_via_cmdline?=
+From: Patchwork <patchwork@emeril.freedesktop.org>
+To: "LIOU, Mei Fan" <mei.fan.liou@intel.com>
+Cc: intel-gfx@lists.freedesktop.org
+Date: Tue, 07 Jul 2026 10:27:37 -0000
+Message-ID: <178342005783.159280.5463070113054955483@6beec6c84f66>
+X-Patchwork-Hint: ignore
+References: <20260707085704.14519-1-mei.fan.liou@intel.com>
+In-Reply-To: <20260707085704.14519-1-mei.fan.liou@intel.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -116,118 +46,213 @@ List-Post: <mailto:intel-gfx@lists.freedesktop.org>
 List-Help: <mailto:intel-gfx-request@lists.freedesktop.org?subject=help>
 List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
  <mailto:intel-gfx-request@lists.freedesktop.org?subject=subscribe>
+Reply-To: intel-gfx@lists.freedesktop.org
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-0.81 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
+X-Spamd-Result: default: False [5.89 / 15.00];
+	URL_MULTIPLE_AT_SIGNS(6.00)[3];
 	MID_RHS_NOT_FQDN(0.50)[];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
-	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
 	MAILLIST(-0.20)[mailman];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
+	MIME_GOOD(-0.10)[multipart/alternative,text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	FREEMAIL_CC(0.00)[linux-foundation.org,alpha.franken.de,linux.ibm.com,ellerman.id.au,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,pengutronix.de,samsung.com,linaro.org,intel.com,ursulin.net,oss.qualcomm.com,redhat.com,ideasonboard.com,rock-chips.com,sntech.de,nvidia.com,collabora.com,broadcom.com,epam.com,gmx.de,kvack.org,zeniv.linux.org.uk,linux.dev,linux.alibaba.com,infradead.org,arm.com,google.com,suse.com,perex.cz,vger.kernel.org,lists.ozlabs.org,lists.freedesktop.org,lists.infradead.org,lists.linux.dev,lists.xenproject.org];
-	TO_DN_SOME(0.00)[];
-	RCVD_COUNT_THREE(0.00)[4];
-	ARC_NA(0.00)[];
+	DMARC_NA(0.00)[emeril.freedesktop.org];
+	RCPT_COUNT_TWO(0.00)[2];
 	FROM_HAS_DN(0.00)[];
-	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	ARC_NA(0.00)[];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	GREYLIST(0.00)[pass,meta];
 	FORGED_SENDER_MAILLIST(0.00)[];
+	TO_DN_SOME(0.00)[];
+	RCVD_TLS_LAST(0.00)[];
+	FORGED_RECIPIENTS_MAILLIST(0.00)[];
+	REPLYTO_DOM_NEQ_TO_DOM(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
-	RCPT_COUNT_GT_50(0.00)[82];
-	FROM_NEQ_ENVFROM(0.00)[ljs@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
-	DKIM_TRACE(0.00)[kernel.org:+];
-	TAGGED_RCPT(0.00)[intel-gfx];
+	RCVD_COUNT_TWO(0.00)[2];
+	FROM_NEQ_ENVFROM(0.00)[patchwork@emeril.freedesktop.org,intel-gfx-bounces@lists.freedesktop.org];
+	REPLYTO_DOM_NEQ_FROM_DOM(0.00)[];
+	R_DKIM_NA(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	RCVD_VIA_SMTP_AUTH(0.00)[];
+	TAGGED_RCPT(0.00)[intel-gfx];
+	HAS_REPLYTO(0.00)[intel-gfx@lists.freedesktop.org];
 	MISSING_XM_UA(0.00)[];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,lucifer:mid,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,nvidia.com:email]
+	DBL_BLOCKED_OPENRESOLVER(0.00)[01.org:url,lists.freedesktop.org:from_smtp,lists.freedesktop.org:replyto,emeril.freedesktop.org:from_mime,patchwork.freedesktop.org:url]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 60A6371A32F
+X-Rspamd-Queue-Id: 9C5C671A5AC
 
-On Mon, Jul 06, 2026 at 10:28:24PM -0400, Zi Yan wrote:
-> On Mon Jun 29, 2026 at 3:25 PM EDT, Lorenzo Stoakes wrote:
-> > Update __get_unmapped_area() to be parameterised by vma_flags_t rather than
-> > vm_flags_t as part of the effort to move VMA flags from a system word to a
-> > bitmap.
-> >
-> > We cascade the changes up to arch_get_unmapped_area_topdown() and
-> > arch_get_unmapped_area(), where, for now, we use vma_flags_to_legacy() in
-> > order to propagate the VMA flags.
-> >
-> > No functional change intended.
-> >
-> > Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
-> > ---
-> >  fs/hugetlbfs/inode.c     |  3 ++-
-> >  include/linux/huge_mm.h  | 10 +++++-----
-> >  include/linux/mm.h       |  6 ++++--
-> >  include/linux/sched/mm.h | 12 ++++++------
-> >  mm/huge_memory.c         | 21 ++++++++++++---------
-> >  mm/mmap.c                | 27 ++++++++++++++-------------
-> >  6 files changed, 43 insertions(+), 36 deletions(-)
-> >
-> <snip>
->
-> > diff --git a/include/linux/sched/mm.h b/include/linux/sched/mm.h
-> > index 95d0040df584..b301ec90740a 100644
-> > --- a/include/linux/sched/mm.h
-> > +++ b/include/linux/sched/mm.h
-> > @@ -193,12 +193,12 @@ unsigned long mm_get_unmapped_area(struct file *filp, unsigned long addr,
-> >  				   unsigned long len, unsigned long pgoff,
-> >  				   unsigned long flags);
-> >
-> > -unsigned long mm_get_unmapped_area_vmflags(struct file *filp,
-> > -					   unsigned long addr,
-> > -					   unsigned long len,
-> > -					   unsigned long pgoff,
-> > -					   unsigned long flags,
-> > -					   vm_flags_t vm_flags);
-> > +unsigned long mm_get_unmapped_area_vmaflags(struct file *filp,
-> > +					    unsigned long addr,
-> > +					    unsigned long len,
-> > +					    unsigned long pgoff,
-> > +					    unsigned long flags,
-> > +					    vma_flags_t vma_flags);
->
-> Want to use two-tab indentation while at it?
+--===============8558464905450731136==
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 
-Yeah sure will fix on respin!
+== Series Details ==
 
->
-> <snip>
->
-> > @@ -812,19 +811,20 @@ arch_get_unmapped_area_topdown(struct file *filp, unsigned long addr,
-> >  }
-> >  #endif
-> >
-> > -unsigned long mm_get_unmapped_area_vmflags(struct file *filp, unsigned long addr,
-> > -					   unsigned long len, unsigned long pgoff,
-> > -					   unsigned long flags, vm_flags_t vm_flags)
-> > +unsigned long mm_get_unmapped_area_vmaflags(struct file *filp, unsigned long addr,
-> > +					    unsigned long len, unsigned long pgoff,
-> > +					    unsigned long flags, vma_flags_t vma_flags)
->
-> Ditto.
+Series: drm/i915: skip eDP hw probe when connector forced off via cmdline
+URL   : https://patchwork.freedesktop.org/series/169918/
+State : success
 
-Ack will fix!
+== Summary ==
 
->
-> LGTM.
->
-> Reviewed-by: Zi Yan <ziy@nvidia.com>
+CI Bug Log - changes from CI_DRM_18774 -> Patchwork_169918v1
+====================================================
 
-Thanks!
+Summary
+-------
 
->
->
-> --
-> Best Regards,
-> Yan, Zi
->
+  **SUCCESS**
 
-Cheers, Lorenzo
+  No regressions found.
+
+  External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html
+
+Participating hosts (41 -> 40)
+------------------------------
+
+  Additional (1): fi-cfl-guc 
+  Missing    (2): bat-dg2-13 fi-snb-2520m 
+
+Known issues
+------------
+
+  Here are the changes found in Patchwork_169918v1 that come from known issues:
+
+### IGT changes ###
+
+#### Issues hit ####
+
+  * igt@dmabuf@all-tests:
+    - fi-bsw-n3050:       NOTRUN -> [SKIP][1]
+   [1]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@dmabuf@all-tests.html
+
+  * igt@gem_lmem_swapping@verify-random:
+    - fi-cfl-guc:         NOTRUN -> [SKIP][2] ([i915#4613]) +3 other tests skip
+   [2]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@gem_lmem_swapping@verify-random.html
+
+  * igt@kms_psr@psr-cursor-plane-move:
+    - fi-cfl-guc:         NOTRUN -> [SKIP][3] +13 other tests skip
+   [3]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@kms_psr@psr-cursor-plane-move.html
+
+  
+#### Possible fixes ####
+
+  * igt@i915_selftest@live:
+    - fi-bsw-n3050:       [ABORT][4] ([i915#16562]) -> [PASS][5]
+   [4]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live.html
+   [5]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live.html
+
+  * igt@i915_selftest@live@late_gt_pm:
+    - fi-bsw-n3050:       [ABORT][6] ([i915#16561]) -> [PASS][7]
+   [6]: https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+   [7]: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html
+
+  
+  [i915#16561]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16561
+  [i915#16562]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16562
+  [i915#4613]: https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613
+
+
+Build changes
+-------------
+
+  * Linux: CI_DRM_18774 -> Patchwork_169918v1
+
+  CI-20190529: 20190529
+  CI_DRM_18774: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux
+  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git
+  Patchwork_169918v1: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux
+
+== Logs ==
+
+For more details see: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html
+
+--===============8558464905450731136==
+Content-Type: text/html; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <title>Project List - Patchwork</title>
+  <style id="css-table-select" type="text/css">
+   td { padding: 2pt; }
+  </style>
+</head>
+<body>
+
+
+<b>Patch Details</b>
+<table>
+<tr><td><b>Series:</b></td><td>drm/i915: skip eDP hw probe when connector forced off via cmdline</td></tr>
+<tr><td><b>URL:</b></td><td><a href="https://patchwork.freedesktop.org/series/169918/">https://patchwork.freedesktop.org/series/169918/</a></td></tr>
+<tr><td><b>State:</b></td><td>success</td></tr>
+
+    <tr><td><b>Details:</b></td><td><a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html">https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html</a></td></tr>
+
+</table>
+
+
+    <h1>CI Bug Log - changes from CI_DRM_18774 -&gt; Patchwork_169918v1</h1>
+<h2>Summary</h2>
+<p><strong>SUCCESS</strong></p>
+<p>No regressions found.</p>
+<p>External URL: https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/index.html</p>
+<h2>Participating hosts (41 -&gt; 40)</h2>
+<p>Additional (1): fi-cfl-guc <br />
+  Missing    (2): bat-dg2-13 fi-snb-2520m </p>
+<h2>Known issues</h2>
+<p>Here are the changes found in Patchwork_169918v1 that come from known issues:</p>
+<h3>IGT changes</h3>
+<h4>Issues hit</h4>
+<ul>
+<li>
+<p>igt@dmabuf@all-tests:</p>
+<ul>
+<li>fi-bsw-n3050:       NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@dmabuf@all-tests.html">SKIP</a></li>
+</ul>
+</li>
+<li>
+<p>igt@gem_lmem_swapping@verify-random:</p>
+<ul>
+<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@gem_lmem_swapping@verify-random.html">SKIP</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/4613">i915#4613</a>) +3 other tests skip</li>
+</ul>
+</li>
+<li>
+<p>igt@kms_psr@psr-cursor-plane-move:</p>
+<ul>
+<li>fi-cfl-guc:         NOTRUN -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-cfl-guc/igt@kms_psr@psr-cursor-plane-move.html">SKIP</a> +13 other tests skip</li>
+</ul>
+</li>
+</ul>
+<h4>Possible fixes</h4>
+<ul>
+<li>
+<p>igt@i915_selftest@live:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16562">i915#16562</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live.html">PASS</a></li>
+</ul>
+</li>
+<li>
+<p>igt@i915_selftest@live@late_gt_pm:</p>
+<ul>
+<li>fi-bsw-n3050:       <a href="https://intel-gfx-ci.01.org/tree/drm-tip/CI_DRM_18774/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">ABORT</a> (<a href="https://gitlab.freedesktop.org/drm/i915/kernel/-/issues/16561">i915#16561</a>) -&gt; <a href="https://intel-gfx-ci.01.org/tree/drm-tip/Patchwork_169918v1/fi-bsw-n3050/igt@i915_selftest@live@late_gt_pm.html">PASS</a></li>
+</ul>
+</li>
+</ul>
+<h2>Build changes</h2>
+<ul>
+<li>Linux: CI_DRM_18774 -&gt; Patchwork_169918v1</li>
+</ul>
+<p>CI-20190529: 20190529<br />
+  CI_DRM_18774: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux<br />
+  IGT_8991: c5721520bb6611ab8fcbe27db0c120b72d25b99e @ https://gitlab.freedesktop.org/drm/igt-gpu-tools.git<br />
+  Patchwork_169918v1: 96e9ac36699d58791b67aea5e1d258074ea63165 @ git://anongit.freedesktop.org/gfx-ci/linux</p>
+
+</body>
+</html>
+
+--===============8558464905450731136==--
