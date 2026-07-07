@@ -2,78 +2,79 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id SgBxHdkFTWrEtgEAu9opvQ
+	id uyLzKNwFTWrMtgEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:45 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:48 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 2080E71C39B
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 5251F71C3B4
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 15:57:48 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b="fjee/qWD";
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="UkTCT6/L";
-	dkim=pass header.d=suse.de header.s=susede2_rsa header.b="fjee/qWD";
-	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b="UkTCT6/L";
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=QXWo++7E;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=zfNjRPsu;
+	dkim=pass header.d=suse.de header.s=susede2_rsa header.b=QXWo++7E;
+	dkim=pass header.d=suse.de header.s=susede2_ed25519 header.b=zfNjRPsu;
 	dmarc=pass (policy=none) header.from=suse.de;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 11FD710ED5A;
-	Tue,  7 Jul 2026 13:57:41 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id 9571010ED70;
+	Tue,  7 Jul 2026 13:57:45 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
 Received: from smtp-out2.suse.de (smtp-out2.suse.de [195.135.223.131])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 22EB010ED5D
- for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:40 +0000 (UTC)
-Received: from imap1.dmz-prg2.suse.org (unknown [10.150.64.97])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id 0B12C10ED7B
+ for <intel-gfx@lists.freedesktop.org>; Tue,  7 Jul 2026 13:57:45 +0000 (UTC)
+Received: from imap1.dmz-prg2.suse.org (imap1.dmz-prg2.suse.org
+ [IPv6:2a07:de40:b281:104:10:150:64:97])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by smtp-out2.suse.de (Postfix) with ESMTPS id 89242759FB;
- Tue,  7 Jul 2026 13:57:32 +0000 (UTC)
+ by smtp-out2.suse.de (Postfix) with ESMTPS id 23AF575A79;
+ Tue,  7 Jul 2026 13:57:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432652; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783432653; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
- b=fjee/qWDTE4L172t9HqVJC7oot8Y3DwZkVNBMAjVimgxthqiN4gPKFQdrENpHBE3fL339b
- HC6xesriwqWICO3Ij5tMgVwKELd0i1vw2XNWjM/uVX7+CCzqe8u6L5qdVbG6wIYWWMKFhj
- al01LGs+uX9DenRTzoDwq9OwQPOhzF0=
+ bh=0xQQfcy1AxYzo0sLqCtimoHIHPKdZLVde37zM51Tqbo=;
+ b=QXWo++7EGqJhHM58pEAQP7BPnXUP60akFg1q5NHJVBi3PldICQ/u3zceLSwTpDiaVwQegl
+ 4gjc+gQXTpIhfat3kSiFTiLZEn1V7GDy7k5po4EWvGYdUpOIYMIt6MS7VBAJGCtqdDuW0V
+ I4KgD0x2XD1VDD24pEUZj8W/RnF9K4I=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432652;
+ s=susede2_ed25519; t=1783432653;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
- b=UkTCT6/LgHZZcg24NHMVTdYznwOKtZe8WYkn7MaYmpKuhha+2+xbjFMLBtZWqNoHsw6FIC
- ATc80/DCwGRLCOCA==
+ bh=0xQQfcy1AxYzo0sLqCtimoHIHPKdZLVde37zM51Tqbo=;
+ b=zfNjRPsu6ghn2y/IjMF54N2PU/lSm+Ot4cAkXYf3OXqAZxAqzkDas+Ul/pIVacWlNj5mqq
+ /PCJiYJKg3ngNpBg==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=suse.de; s=susede2_rsa;
- t=1783432652; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
+ t=1783432653; h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
- b=fjee/qWDTE4L172t9HqVJC7oot8Y3DwZkVNBMAjVimgxthqiN4gPKFQdrENpHBE3fL339b
- HC6xesriwqWICO3Ij5tMgVwKELd0i1vw2XNWjM/uVX7+CCzqe8u6L5qdVbG6wIYWWMKFhj
- al01LGs+uX9DenRTzoDwq9OwQPOhzF0=
+ bh=0xQQfcy1AxYzo0sLqCtimoHIHPKdZLVde37zM51Tqbo=;
+ b=QXWo++7EGqJhHM58pEAQP7BPnXUP60akFg1q5NHJVBi3PldICQ/u3zceLSwTpDiaVwQegl
+ 4gjc+gQXTpIhfat3kSiFTiLZEn1V7GDy7k5po4EWvGYdUpOIYMIt6MS7VBAJGCtqdDuW0V
+ I4KgD0x2XD1VDD24pEUZj8W/RnF9K4I=
 DKIM-Signature: v=1; a=ed25519-sha256; c=relaxed/relaxed; d=suse.de;
- s=susede2_ed25519; t=1783432652;
+ s=susede2_ed25519; t=1783432653;
  h=from:from:reply-to:date:date:message-id:message-id:to:to:cc:cc:
  mime-version:mime-version:
  content-transfer-encoding:content-transfer-encoding:
  in-reply-to:in-reply-to:references:references;
- bh=zVbhDO3tD/f+sXvWZ0QDGfmfPXEwkaYwwxjIby5hPfQ=;
- b=UkTCT6/LgHZZcg24NHMVTdYznwOKtZe8WYkn7MaYmpKuhha+2+xbjFMLBtZWqNoHsw6FIC
- ATc80/DCwGRLCOCA==
+ bh=0xQQfcy1AxYzo0sLqCtimoHIHPKdZLVde37zM51Tqbo=;
+ b=zfNjRPsu6ghn2y/IjMF54N2PU/lSm+Ot4cAkXYf3OXqAZxAqzkDas+Ul/pIVacWlNj5mqq
+ /PCJiYJKg3ngNpBg==
 Received: from imap1.dmz-prg2.suse.org (localhost [127.0.0.1])
  (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
  key-exchange X25519 server-signature RSA-PSS (4096 bits) server-digest SHA256)
  (No client certificate requested)
- by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 070E8779AF;
+ by imap1.dmz-prg2.suse.org (Postfix) with ESMTPS id 90C0B779AE;
  Tue,  7 Jul 2026 13:57:32 +0000 (UTC)
 Received: from dovecot-director2.suse.de ([2a07:de40:b281:106:10:150:64:167])
- by imap1.dmz-prg2.suse.org with ESMTPSA id cNWHAMwFTWoFSgAAD6G6ig
+ by imap1.dmz-prg2.suse.org with ESMTPSA id IPH+IcwFTWoFSgAAD6G6ig
  (envelope-from <tzimmermann@suse.de>); Tue, 07 Jul 2026 13:57:32 +0000
 From: Thomas Zimmermann <tzimmermann@suse.de>
 To: lukas@wunner.de, jfalempe@redhat.com, alexander.deucher@amd.com,
@@ -86,18 +87,17 @@ Cc: dri-devel@lists.freedesktop.org, amd-gfx@lists.freedesktop.org,
  intel-gfx@lists.freedesktop.org, nouveau@lists.freedesktop.org,
  linux-fbdev@vger.kernel.org, sashiko-reviews@lists.linux.dev,
  Thomas Zimmermann <tzimmermann@suse.de>
-Subject: [PATCH 05/10] drm/amdgpu: Implement struct
- vga_switcheroo_client_ops.pre_switch
-Date: Tue,  7 Jul 2026 15:38:12 +0200
-Message-ID: <20260707135724.247562-6-tzimmermann@suse.de>
+Subject: [PATCH 06/10] drm/i915: Implement vga_switcheroo_client_ops.pre_switch
+Date: Tue,  7 Jul 2026 15:38:13 +0200
+Message-ID: <20260707135724.247562-7-tzimmermann@suse.de>
 X-Mailer: git-send-email 2.54.0
 In-Reply-To: <20260707135724.247562-1-tzimmermann@suse.de>
 References: <20260707135724.247562-1-tzimmermann@suse.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-Spam-Flag: NO
+X-Spam-Score: -3.01
 X-Spam-Level: 
-X-Spam-Score: -2.78
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -147,7 +147,7 @@ X-Spamd-Result: default: False [0.19 / 15.00];
 	TAGGED_RCPT(0.00)[intel-gfx];
 	DBL_BLOCKED_OPENRESOLVER(0.00)[lists.freedesktop.org:from_smtp,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,suse.de:from_mime,suse.de:email,suse.de:mid,suse.de:dkim]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 2080E71C39B
+X-Rspamd-Queue-Id: 5251F71C3B4
 
 Call drm_client_dev_acquire_outputs() from vga_switcheroo's pre_switch
 callback. Pushes fbcon updates from vga_switcheroo into DRM's fbdev
@@ -155,32 +155,41 @@ emulation.
 
 Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
 ---
- drivers/gpu/drm/amd/amdgpu/amdgpu_device.c | 8 ++++++++
- 1 file changed, 8 insertions(+)
+ drivers/gpu/drm/i915/i915_switcheroo.c | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-diff --git a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-index 78c96c7102e4..87a59a79a019 100644
---- a/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-+++ b/drivers/gpu/drm/amd/amdgpu/amdgpu_device.c
-@@ -1699,10 +1699,18 @@ static bool amdgpu_switcheroo_can_switch(struct pci_dev *pdev)
- 	return atomic_read(&dev->open_count) == 0;
+diff --git a/drivers/gpu/drm/i915/i915_switcheroo.c b/drivers/gpu/drm/i915/i915_switcheroo.c
+index 7e0791024282..6b306ece0556 100644
+--- a/drivers/gpu/drm/i915/i915_switcheroo.c
++++ b/drivers/gpu/drm/i915/i915_switcheroo.c
+@@ -5,6 +5,7 @@
+ 
+ #include <linux/vga_switcheroo.h>
+ 
++#include <drm/drm_client_event.h>
+ #include <drm/drm_print.h>
+ 
+ #include "display/intel_display_device.h"
+@@ -58,10 +59,19 @@ static bool i915_switcheroo_can_switch(struct pci_dev *pdev)
+ 		atomic_read(&i915->drm.open_count) == 0;
  }
  
-+static void amdgpu_switcheroo_pre_switch(struct pci_dev *pdev)
++static void i915_switcheroo_pre_switch(struct pci_dev *pdev)
 +{
-+	struct drm_device *dev = pci_get_drvdata(pdev);
++	struct drm_i915_private *i915 = pdev_to_i915(pdev);
 +
-+	drm_client_dev_acquire_outputs(dev);
++	if (i915 && intel_display_device_present(i915->display))
++		drm_client_dev_acquire_outputs(&i915->drm);
 +}
 +
- static const struct vga_switcheroo_client_ops amdgpu_switcheroo_ops = {
- 	.set_gpu_state = amdgpu_switcheroo_set_state,
+ static const struct vga_switcheroo_client_ops i915_switcheroo_ops = {
+ 	.set_gpu_state = i915_switcheroo_set_state,
  	.reprobe = NULL,
- 	.can_switch = amdgpu_switcheroo_can_switch,
-+	.pre_switch = amdgpu_switcheroo_pre_switch,
+ 	.can_switch = i915_switcheroo_can_switch,
++	.pre_switch = i915_switcheroo_pre_switch,
  };
  
- /**
+ int i915_switcheroo_register(struct drm_i915_private *i915)
 -- 
 2.54.0
 
