@@ -2,77 +2,66 @@ Return-Path: <intel-gfx-bounces@lists.freedesktop.org>
 Delivered-To: lists+intel-gfx@lfdr.de
 Received: from mail.lfdr.de
 	by mail.lfdr.de with LMTP
-	id PGReLpboTGqqrwEAu9opvQ
+	id i5vBLbnoTGqzrwEAu9opvQ
 	(envelope-from <intel-gfx-bounces@lists.freedesktop.org>)
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 13:52:54 +0200
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 13:53:29 +0200
 X-Original-To: lists+intel-gfx@lfdr.de
 Received: from gabe.freedesktop.org (gabe.freedesktop.org [131.252.210.177])
-	by mail.lfdr.de (Postfix) with ESMTPS id 1B49D71B1C7
-	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 13:52:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTPS id 2AAD971B1E2
+	for <lists+intel-gfx@lfdr.de>; Tue, 07 Jul 2026 13:53:29 +0200 (CEST)
 Authentication-Results: mail.lfdr.de;
-	dkim=pass header.d=intel.com header.s=Intel header.b=NQzwviyj;
-	dmarc=pass (policy=none) header.from=intel.com;
+	dkim=pass header.d=kernel.org header.s=k20260515 header.b=krQ6jR68;
+	dmarc=pass (policy=quarantine) header.from=kernel.org;
 	spf=pass (mail.lfdr.de: domain of intel-gfx-bounces@lists.freedesktop.org designates 131.252.210.177 as permitted sender) smtp.mailfrom=intel-gfx-bounces@lists.freedesktop.org
 Received: from gabe.freedesktop.org (localhost [127.0.0.1])
-	by gabe.freedesktop.org (Postfix) with ESMTP id 73FAE10E4D4;
-	Tue,  7 Jul 2026 11:52:52 +0000 (UTC)
+	by gabe.freedesktop.org (Postfix) with ESMTP id A4F7810EC62;
+	Tue,  7 Jul 2026 11:53:27 +0000 (UTC)
 X-Original-To: intel-gfx@lists.freedesktop.org
 Delivered-To: intel-gfx@lists.freedesktop.org
-Received: from mgamail.intel.com (mgamail.intel.com [198.175.65.17])
- by gabe.freedesktop.org (Postfix) with ESMTPS id 6317410E4C6;
- Tue,  7 Jul 2026 11:52:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
- d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
- t=1783425172; x=1814961172;
- h=message-id:subject:from:to:cc:date:in-reply-to:
- references:content-transfer-encoding:mime-version;
- bh=scQCim2uIGkfX0a9VP64B6UKFOAUFt223J/TjraSZmg=;
- b=NQzwviyjSZMv0zhaRtt720/khriIFUStCYcvybyIStxQiPUp+zyIHov8
- Yrz3gO+y92pEE9G1vDruMs0bIuYHZXpjEcNI34ct4LmXuSJZBhgdzRh6A
- 1EiL3CgNJPaUz37KQZkoDjg4hLueCefVNkMp9JhpZPiURU7jsEaySM8IF
- Wpri4Ye2/Mjv9XAIloOtEateryjDf0Aj7CFqh7rtoAe1Zau48jufJ+D93
- Ej2Xqg9N3eC+wnN3w6lRLUcOrIl+dCHDTplSxsLKphtRiZOGCu6FaHKdD
- lqQ67dvDarjbPGrrj3JS26qE9lHCVgMIOVwdvBR4mHB+MWZP2rPJ1ESqQ Q==;
-X-CSE-ConnectionGUID: Q1+5cvVvTG+kJ7QoyH4FgA==
-X-CSE-MsgGUID: 5P7MkFtsTOWCOjtXpmH2KQ==
-X-IronPort-AV: E=McAfee;i="6800,10657,11839"; a="84093076"
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="84093076"
-Received: from orviesa005.jf.intel.com ([10.64.159.145])
- by orvoesa109.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 04:52:46 -0700
-X-CSE-ConnectionGUID: CujSQrjNSnWL6j8xh9YzhQ==
-X-CSE-MsgGUID: EF03b59zRt2Xh3PwRNnI3g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="6.25,153,1779174000"; d="scan'208";a="258292634"
-Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.244.199])
- ([10.245.244.199])
- by orviesa005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384;
- 07 Jul 2026 04:52:42 -0700
-Message-ID: <8642419f410b3c4b21b905b59a800bd5a78fe875.camel@linux.intel.com>
-Subject: Re: [PATCH 08/10] drm/xe: remove workaround for TTM internals
-From: Thomas =?ISO-8859-1?Q?Hellstr=F6m?= <thomas.hellstrom@linux.intel.com>
-To: Natalie Vock <natalie.vock@gmx.de>, Maarten Lankhorst	
- <maarten.lankhorst@linux.intel.com>, Maxime Ripard <mripard@kernel.org>, 
- Thomas Zimmermann <tzimmermann@suse.de>, David Airlie <airlied@gmail.com>,
- Simona Vetter <simona@ffwll.ch>, Jani Nikula	
- <jani.nikula@linux.intel.com>, Joonas Lahtinen
- <joonas.lahtinen@linux.intel.com>,  Rodrigo Vivi <rodrigo.vivi@intel.com>,
- Tvrtko Ursulin <tursulin@ursulin.net>, Christian Koenig	
- <christian.koenig@amd.com>, Huang Rui <ray.huang@amd.com>, Matthew Auld	
- <matthew.auld@intel.com>, Matthew Brost <matthew.brost@intel.com>, Alex
- Deucher	 <alexander.deucher@amd.com>
-Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, 
- intel-gfx@lists.freedesktop.org, intel-xe@lists.freedesktop.org, 
- amd-gfx@lists.freedesktop.org
-Date: Tue, 07 Jul 2026 13:52:39 +0200
-In-Reply-To: <20260703-ttm_2_drm_exec-v1-8-43685ac1286b@gmx.de>
-References: <20260703-ttm_2_drm_exec-v1-0-43685ac1286b@gmx.de>
- <20260703-ttm_2_drm_exec-v1-8-43685ac1286b@gmx.de>
-Organization: Intel Sweden AB, Registration Number: 556189-6027
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-User-Agent: Evolution 3.58.3 (3.58.3-1.fc43) 
+Received: from tor.source.kernel.org (tor.source.kernel.org [172.105.4.254])
+ by gabe.freedesktop.org (Postfix) with ESMTPS id D50AC10EC6B;
+ Tue,  7 Jul 2026 11:53:26 +0000 (UTC)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+ by tor.source.kernel.org (Postfix) with ESMTP id 589F16001D;
+ Tue,  7 Jul 2026 11:53:26 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 78FE61F000E9;
+ Tue,  7 Jul 2026 11:53:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+ s=k20260515; t=1783425206;
+ bh=LdGStCb5UVcLDPRcPuraOk9pal84IV7d5axrwrI8p8Y=;
+ h=Date:From:To:Cc:Subject:References:In-Reply-To;
+ b=krQ6jR68sHSUwbKKl9wNL5oUT+7BXwUycr43sgVmxv4puH1T5y2oeh4S92AfQsUaV
+ ikzoTol6gRvFZm/31shNM2nwiq1cx0u9pCvuQ6yy7HMNP2chqdjpCD/uM/vP10cTEN
+ TQTv7N8Wzu8XKkA9VyuPTP3wl+I3GoiLpAO3nYPPmLvGAFH6DRPyaid7mkdE9GLTU4
+ /ZZ+FLXrN03gqytti4yDiZcndzMI9O6ZKAcf/o8oWCt36aOB/XHFB9wRz4YSY3FJ7g
+ FQgLxVr1qjSzepQQS3U0T+IFwZqW4nHoJzukKGosGAbWtq/p+0m83YZnZ4WaYtBE5r
+ hKV3AC0lberQw==
+Date: Tue, 7 Jul 2026 13:53:23 +0200
+From: Maxime Ripard <mripard@kernel.org>
+To: Mario Limonciello <mario.limonciello@amd.com>
+Cc: dri-devel@lists.freedesktop.org, harry.wentland@amd.com, 
+ Simona Vetter <simona@ffwll.ch>, Alex Deucher <alexander.deucher@amd.com>, 
+ Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+ Thomas Zimmermann <tzimmermann@suse.de>, 
+ David Airlie <airlied@gmail.com>, Xaver Hugl <xaver.hugl@gmail.com>,
+ amd-gfx@lists.freedesktop.org, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-gfx@lists.freedesktop.org>, 
+ "open list:INTEL DRM DISPLAY FOR XE AND I915 DRIVERS"
+ <intel-xe@lists.freedesktop.org>,
+ "Mario Limonciello (AMD)" <superm1@kernel.org>, 
+ Dmitry Baryshkov <dmitry.baryshkov@oss.qualcomm.com>
+Subject: Re: [PATCH v6 03/10] drm: link connectors to backlight devices
+Message-ID: <20260707-impartial-fierce-vole-fd0e35@penduick>
+References: <20260624165751.2014759-1-mario.limonciello@amd.com>
+ <20260624165751.2014759-4-mario.limonciello@amd.com>
+ <20260626-warping-quizzical-cuttlefish-beb8be@houat>
+ <8a4356c5-de49-43a4-a4ee-cf771ed65f18@amd.com>
 MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha384;
+ protocol="application/pgp-signature"; boundary="5rkfw3icdmipz47z"
+Content-Disposition: inline
+In-Reply-To: <8a4356c5-de49-43a4-a4ee-cf771ed65f18@amd.com>
 X-BeenThere: intel-gfx@lists.freedesktop.org
 X-Mailman-Version: 2.1.29
 Precedence: list
@@ -88,117 +77,93 @@ List-Subscribe: <https://lists.freedesktop.org/mailman/listinfo/intel-gfx>,
 Errors-To: intel-gfx-bounces@lists.freedesktop.org
 Sender: "Intel-gfx" <intel-gfx-bounces@lists.freedesktop.org>
 X-Rspamd-Action: no action
-X-Spamd-Result: default: False [-1.31 / 15.00];
-	DMARC_POLICY_ALLOW(-0.50)[intel.com,none];
-	R_DKIM_ALLOW(-0.20)[intel.com:s=Intel];
+X-Spamd-Result: default: False [-1.41 / 15.00];
+	SIGNED_PGP(-2.00)[];
+	SUSPICIOUS_RECIPS(1.50)[];
+	MID_RHS_NOT_FQDN(0.50)[];
+	DMARC_POLICY_ALLOW(-0.50)[kernel.org,quarantine];
 	MAILLIST(-0.20)[mailman];
+	R_DKIM_ALLOW(-0.20)[kernel.org:s=k20260515];
+	MIME_GOOD(-0.20)[multipart/signed,text/plain];
 	R_SPF_ALLOW(-0.20)[+ip4:131.252.210.177:c];
 	RWL_MAILSPIKE_GOOD(-0.10)[131.252.210.177:from];
-	MIME_GOOD(-0.10)[text/plain];
 	HAS_LIST_UNSUB(-0.01)[];
-	RCVD_COUNT_THREE(0.00)[4];
+	RCVD_TLS_LAST(0.00)[];
 	FORGED_SENDER_MAILLIST(0.00)[];
 	ARC_NA(0.00)[];
-	HAS_ORG_HEADER(0.00)[];
-	FREEMAIL_TO(0.00)[gmx.de,linux.intel.com,kernel.org,suse.de,gmail.com,ffwll.ch,intel.com,ursulin.net,amd.com];
-	RCPT_COUNT_TWELVE(0.00)[20];
-	MIME_TRACE(0.00)[0:+];
-	RCVD_TLS_LAST(0.00)[];
-	DKIM_TRACE(0.00)[intel.com:+];
+	RCVD_COUNT_THREE(0.00)[4];
+	RCPT_COUNT_TWELVE(0.00)[14];
+	MIME_TRACE(0.00)[0:+,1:+,2:~];
+	FREEMAIL_CC(0.00)[lists.freedesktop.org,amd.com,ffwll.ch,linux.intel.com,suse.de,gmail.com,kernel.org,oss.qualcomm.com];
 	FORGED_RECIPIENTS_MAILLIST(0.00)[];
-	FROM_NEQ_ENVFROM(0.00)[thomas.hellstrom@linux.intel.com,intel-gfx-bounces@lists.freedesktop.org];
-	FROM_HAS_DN(0.00)[];
 	TO_DN_SOME(0.00)[];
 	ALIAS_RESOLVED(0.00)[];
+	FROM_NEQ_ENVFROM(0.00)[mripard@kernel.org,intel-gfx-bounces@lists.freedesktop.org];
+	FROM_HAS_DN(0.00)[];
+	DKIM_TRACE(0.00)[kernel.org:+];
 	TAGGED_RCPT(0.00)[intel-gfx];
-	MID_RHS_MATCH_FROM(0.00)[];
 	ASN(0.00)[asn:6366, ipnet:131.252.0.0/16, country:US];
-	DBL_BLOCKED_OPENRESOLVER(0.00)[linux.intel.com:mid,linux.intel.com:from_mime,intel.com:dkim,gmx.de:email,gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,amd.com:email,lists.freedesktop.org:from_smtp]
+	RCVD_VIA_SMTP_AUTH(0.00)[];
+	MISSING_XM_UA(0.00)[];
+	DBL_BLOCKED_OPENRESOLVER(0.00)[gabe.freedesktop.org:helo,gabe.freedesktop.org:rdns,lists.freedesktop.org:from_smtp,penduick:mid]
 X-Rspamd-Server: lfdr
-X-Rspamd-Queue-Id: 1B49D71B1C7
+X-Rspamd-Queue-Id: 2AAD971B1E2
 
-On Fri, 2026-07-03 at 18:31 +0200, Natalie Vock wrote:
-> From: Christian K=C3=B6nig <christian.koenig@amd.com>
+
+--5rkfw3icdmipz47z
+Content-Type: text/plain; protected-headers=v1; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v6 03/10] drm: link connectors to backlight devices
+MIME-Version: 1.0
+
+On Fri, Jun 26, 2026 at 04:40:56PM -0500, Mario Limonciello wrote:
+> > > + * Drivers have to call drm_backlight_alloc() after allocating a con=
+nector via
+> > > + * drm_connector_init(). This will automatically add a backlight dev=
+ice to the
+> > > + * given connector. Drivers must then link a hardware backlight by c=
+alling
+> > > + * drm_backlight_link() with the registered backlight_device. If no =
+link is
+> > > + * established, the DRM backlight property reports an empty range and
+> > > + * brightness changes are no-ops.
+> > > + */
+> >=20
+> > It's not clear to me why we need to dynamically allocate them at all. If
+> > we're using the backlight subsystem we'll already have a handle to it.
+> > If we don't and want to implement something like DDC/CI, then it just
+> > becomes a hassle. Why not treat it like i2c, add a backlight field to
+> > drm_connector, and create the link at registration, add a new hook to
+> > set luminance, and then provide helpers to either use the backlight API,
+> > or anything else if the driver wants to.
 >=20
-> This should no longer be necessary, TTM doesn't lock the BO without a
-> reference any more.
->=20
-> Only compile tested!
->=20
-> Signed-off-by: Christian K=C3=B6nig <christian.koenig@amd.com>
-> Signed-off-by: Natalie Vock <natalie.vock@gmx.de>
-> ---
-> =C2=A0drivers/gpu/drm/xe/xe_bo.c | 32 +++++---------------------------
-> =C2=A01 file changed, 5 insertions(+), 27 deletions(-)
->=20
-> diff --git a/drivers/gpu/drm/xe/xe_bo.c b/drivers/gpu/drm/xe/xe_bo.c
-> index 5843f850339c7..34eae56716076 100644
-> --- a/drivers/gpu/drm/xe/xe_bo.c
-> +++ b/drivers/gpu/drm/xe/xe_bo.c
-> @@ -1642,31 +1642,6 @@ static unsigned long xe_ttm_io_mem_pfn(struct
-> ttm_buffer_object *ttm_bo,
-> =C2=A0
-> =C2=A0static void __xe_bo_vunmap(struct xe_bo *bo);
-> =C2=A0
-> -/*
-> - * TODO: Move this function to TTM so we don't rely on how TTM does
-> its
-> - * locking, thereby abusing TTM internals.
-> - */
-> -static bool xe_ttm_bo_lock_in_destructor(struct ttm_buffer_object
-> *ttm_bo)
-> -{
-> -	struct xe_device *xe =3D ttm_to_xe_device(ttm_bo->bdev);
-> -	bool locked;
-> -
-> -	xe_assert(xe, !kref_read(&ttm_bo->base.refcount));
-> -
-> -	/*
-> -	 * We can typically only race with TTM trylocking under the
-> -	 * lru_lock, which will immediately be unlocked again since
-> -	 * the ttm_bo refcount is zero at this point. So trylocking
-> *should*
-> -	 * always succeed here, as long as we hold the lru lock.
-> -	 */
-> -	spin_lock(&ttm_bo->bdev->lru_lock);
-> -	locked =3D dma_resv_trylock(&ttm_bo->base._resv);
-> -	spin_unlock(&ttm_bo->bdev->lru_lock);
+> I did envision that later on we can have displays with DDC use this
+> infrastructure as well.  But I didn't want to hold up the series
+> implementing that.
 
-We could just remove the spinlocks, update the comment and keep the
-asserts. Also the new code below locks .resv rather than ._resv, which
-is incorrect for imported dma-bufs.
+Oh absolutely. My point wasn't that you should support it right away,
+but rather that the architecture you work on would be extensible enough
+to accomodate for them later on.
 
-Thanks,
-Thomas
+I'm exagerating, but for example having an architecture built around
+having a backlight device doesn't work, but having one where you have a
+set of helpers built around the backlight API does, because then we can
+easily create new helpers to deal with DDC/CI, MIPI-DCS, etc. without
+reworking the core part.
 
+Maxime
 
-> -	xe_assert(xe, locked);
-> -
-> -	return locked;
-> -}
-> -
-> =C2=A0static void xe_ttm_bo_release_notify(struct ttm_buffer_object
-> *ttm_bo)
-> =C2=A0{
-> =C2=A0	struct dma_resv_iter cursor;
-> @@ -1680,8 +1655,11 @@ static void xe_ttm_bo_release_notify(struct
-> ttm_buffer_object *ttm_bo)
-> =C2=A0	bo =3D ttm_to_xe_bo(ttm_bo);
-> =C2=A0	xe_assert(xe_bo_device(bo), !(bo->created &&
-> kref_read(&ttm_bo->base.refcount)));
-> =C2=A0
-> -	if (!xe_ttm_bo_lock_in_destructor(ttm_bo))
-> -		return;
-> +	/*
-> +	 * This should never fail since there are no other
-> references to the BO
-> +	 * any more.
-> +	 */
-> +	WARN_ON(!dma_resv_trylock(ttm_bo->base.resv));
+--5rkfw3icdmipz47z
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
+iJUEABMJAB0WIQTkHFbLp4ejekA/qfgnX84Zoj2+dgUCakzosgAKCRAnX84Zoj2+
+dongAX9//gIADQVQqqONzAdFXTEzGqC7dQFSe7z+w1uXx9/QxHpU/LZSRoTuTiL4
+rsysrjEBgO8JD2jaiBpgfisKPCE3M44O9APxt7O7m5OkUr7kkE1DeikBerCgTEIO
+7d3ece0tqA==
+=30uc
+-----END PGP SIGNATURE-----
 
-> =C2=A0
-> =C2=A0	/*
-> =C2=A0	 * Scrub the preempt fences if any. The unbind fence is
-> already
+--5rkfw3icdmipz47z--
